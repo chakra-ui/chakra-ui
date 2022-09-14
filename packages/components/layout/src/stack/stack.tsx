@@ -98,32 +98,43 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
   const hasDivider = !!divider
   const shouldUseChildren = !shouldWrapChildren && !hasDivider
 
-  const validChildren = getValidChildren(children)
+  const clones = useMemo(() => {
+    const validChildren = getValidChildren(children)
+    return shouldUseChildren
+      ? validChildren
+      : validChildren.map((child, index) => {
+          // Prefer provided child key, fallback to index
+          const key = typeof child.key !== "undefined" ? child.key : index
+          const isLast = index + 1 === validChildren.length
+          const wrappedChild = <StackItem key={key}>{child}</StackItem>
+          const _child = shouldWrapChildren ? wrappedChild : child
 
-  const clones = shouldUseChildren
-    ? validChildren
-    : validChildren.map((child, index) => {
-        // Prefer provided child key, fallback to index
-        const key = typeof child.key !== "undefined" ? child.key : index
-        const isLast = index + 1 === validChildren.length
-        const wrappedChild = <StackItem key={key}>{child}</StackItem>
-        const _child = shouldWrapChildren ? wrappedChild : child
+          if (!hasDivider) return _child
 
-        if (!hasDivider) return _child
+          const clonedDivider = cloneElement(
+            divider as React.ReactElement<any>,
+            {
+              __css: dividerStyle,
+            },
+          )
 
-        const clonedDivider = cloneElement(divider as React.ReactElement<any>, {
-          __css: dividerStyle,
+          const _divider = isLast ? null : clonedDivider
+
+          return (
+            <Fragment key={key}>
+              {_child}
+              {_divider}
+            </Fragment>
+          )
         })
-
-        const _divider = isLast ? null : clonedDivider
-
-        return (
-          <Fragment key={key}>
-            {_child}
-            {_divider}
-          </Fragment>
-        )
-      })
+  }, [
+    divider,
+    dividerStyle,
+    hasDivider,
+    shouldUseChildren,
+    shouldWrapChildren,
+    children,
+  ])
 
   const _className = cx("chakra-stack", className)
 

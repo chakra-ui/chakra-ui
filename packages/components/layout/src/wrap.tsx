@@ -101,11 +101,15 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
     }
   }, [spacing, spacingX, spacingY, justify, align, direction])
 
-  const childrenToRender = shouldWrapChildren
-    ? Children.map(children, (child, index) => (
-        <WrapItem key={index}>{child}</WrapItem>
-      ))
-    : children
+  const childrenToRender = useMemo(
+    () =>
+      shouldWrapChildren
+        ? Children.map(children, (child, index) => (
+            <WrapItem key={index}>{child}</WrapItem>
+          ))
+        : children,
+    [children, shouldWrapChildren],
+  )
 
   return (
     <chakra.div
