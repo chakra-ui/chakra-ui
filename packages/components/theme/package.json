@@ -12,35 +12,11 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "src/index.ts",
   "types": "src/index.ts",
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.esm.js",
-        "default": "./dist/index.esm.js"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "require": "./dist/index.cjs.js",
-        "default": "./dist/index.cjs.js"
-      }
-    },
-    "./*": "./*",
-    "./components": {
-      "require": "./dist/components/index.cjs.js",
-      "import": "./dist/components/index.esm.js"
-    },
-    "./foundations": {
-      "require": "./dist/foundations/index.cjs.js",
-      "import": "./dist/foundations/index.esm.js"
-    }
-  },
   "typesVersions": {
     "*": {
       "components": [
@@ -79,6 +55,8 @@
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts"
+    "build:fast": "tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   }
 }

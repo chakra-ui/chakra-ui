@@ -11,15 +11,10 @@ async function main() {
 
       let data = {
         ...pkg.manifest,
-        main: "dist/index.cjs.js",
-        module: "dist/index.esm.js",
         scripts: {
           ...pkg.manifest.scripts,
-          build: !tsx
-            ? "tsup src/index.ts --dts"
-            : "JSX=1 tsup src/index.ts --dts",
-          "build:fast": !tsx ? "tsup src/index.ts" : "JSX=1 tsup src/index.ts",
-          dev: "pnpm build -- --watch",
+          prepack: "clean-package",
+          postpack: "clean-package restore",
         },
       }
 

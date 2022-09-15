@@ -19,7 +19,6 @@
     "dev": "turbo run dev --filter=!./examples/*",
     "typecheck": "tsc --noEmit",
     "build:theme": "cd packages/components/theme && pnpm build:fast",
-    "pretest": "pnpm build:theme",
     "test": "jest",
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
     "format:check": "prettier --check packages/**/**/src",
@@ -128,6 +127,7 @@
     "node": "16.x"
   },
   "devDependencies": {
-    "@octokit/rest": "^19.0.4"
+    "@octokit/rest": "^19.0.4",
+    "clean-package": "2.1.1"
   }
 }
