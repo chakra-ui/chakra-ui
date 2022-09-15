@@ -1,7 +1,7 @@
 import { useTimeout } from "@chakra-ui/react-use-timeout"
 import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
 import { runIfFn } from "@chakra-ui/shared-utils"
-import { motion, useIsPresent, Variants } from "framer-motion"
+import { m, useIsPresent, Variants } from "framer-motion"
 import { chakra } from "@chakra-ui/system"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
@@ -102,7 +102,7 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
   const toastStyle = useMemo(() => getToastStyle(position), [position])
 
   return (
-    <motion.li
+    <m.li
       layout
       className="chakra-toast"
       variants={motionVariants}
@@ -122,7 +122,7 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
       >
         {runIfFn(message, { id, onClose: close })}
       </chakra.div>
-    </motion.li>
+    </m.li>
   )
 })
 

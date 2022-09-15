@@ -1,14 +1,14 @@
 import { chakra, PropsOf, ChakraComponent } from "@chakra-ui/system"
-import { AnimatePresence, CustomDomComponent, motion } from "framer-motion"
+import { AnimatePresence, CustomDomComponent, m } from "framer-motion"
 
 function __motion<T extends ChakraComponent<any, any>>(
   el: T,
 ): CustomDomComponent<PropsOf<T>> {
-  const m = motion as any
-  if ("custom" in m && typeof m.custom === "function") {
-    return m.custom(el)
+  const mF = m as any
+  if ("custom" in mF && typeof mF.custom === "function") {
+    return mF.custom(el)
   }
-  return m(el)
+  return mF(el)
 }
 
 // @future: only call `motion(chakra.svg)` when we drop framer-motion v3 support
@@ -74,7 +74,7 @@ function CheckboxTransition({ open, children }: any) {
   return (
     <AnimatePresence initial={false}>
       {open && (
-        <motion.div
+        <m.div
           variants={{
             unchecked: { scale: 0.5 },
             checked: { scale: 1 },
@@ -90,7 +90,7 @@ function CheckboxTransition({ open, children }: any) {
           }}
         >
           {children}
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

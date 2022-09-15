@@ -2,7 +2,7 @@ import { cx, warn } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
+  m,
   Variants as _Variants,
 } from "framer-motion"
 import { forwardRef, useEffect, useState } from "react"
@@ -138,7 +138,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
     return (
       <AnimatePresence initial={false} custom={custom}>
         {show && (
-          <motion.div
+          <m.div
             ref={ref}
             {...rest}
             className={cx("chakra-collapse", className)}

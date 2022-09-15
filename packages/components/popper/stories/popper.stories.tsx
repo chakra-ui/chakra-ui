@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { motion, Variants } from "framer-motion"
+import { m, Variants } from "framer-motion"
 import * as React from "react"
 import { usePopper } from "../src"
 
@@ -62,7 +62,7 @@ export const WithTransition = () => {
         Toggle
       </button>
       <div ref={popperRef} style={{ ["--popper-arrow-bg" as string]: "red" }}>
-        <motion.div
+        <m.div
           transition={{
             duration: 0.15,
             easings: "easeInOut",
@@ -81,7 +81,7 @@ export const WithTransition = () => {
           <div data-popper-arrow="">
             <div data-popper-arrow-inner="" />
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </>
   )

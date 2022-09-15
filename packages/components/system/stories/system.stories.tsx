@@ -1,5 +1,5 @@
 import * as React from "react"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import {
   chakra,
   ThemeProvider,
@@ -12,7 +12,7 @@ export default {
   title: "System / Core",
 }
 
-const MotionBox = motion(chakra.div)
+const MotionBox = m(chakra.div)
 
 export const WithFramerMotion = () => (
   <MotionBox

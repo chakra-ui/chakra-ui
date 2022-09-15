@@ -2,7 +2,7 @@ import { cx } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
+  m,
   Variants as _Variants,
 } from "framer-motion"
 import { forwardRef } from "react"
@@ -103,7 +103,7 @@ export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
     return (
       <AnimatePresence custom={custom}>
         {show && (
-          <motion.div
+          <m.div
             ref={ref}
             className={cx("chakra-offset-slide", className)}
             custom={custom}

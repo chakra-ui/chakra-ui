@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, callAll } from "@chakra-ui/shared-utils"
 
-import { CustomDomComponent, motion, Variants } from "framer-motion"
+import { CustomDomComponent, m, Variants } from "framer-motion"
 import { useMenuStyles } from "./menu"
 import { useMenuContext, useMenuList, useMenuPositioner } from "./use-menu"
 
@@ -44,11 +44,11 @@ const motionVariants: Variants = {
 function __motion<T extends ChakraComponent<any, any>>(
   el: T,
 ): CustomDomComponent<PropsOf<T>> {
-  const m = motion as any
-  if ("custom" in m && typeof m.custom === "function") {
-    return m.custom(el)
+  const mF = m as any
+  if ("custom" in mF && typeof mF.custom === "function") {
+    return mF.custom(el)
   }
-  return m(el)
+  return mF(el)
 }
 
 // @future: only call `motion(chakra.div)` when we drop framer-motion v3 support

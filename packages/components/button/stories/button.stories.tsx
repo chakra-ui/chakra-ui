@@ -10,7 +10,7 @@ import * as React from "react"
 import { FaFacebook, FaTwitter } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { Meta, StoryFn } from "@storybook/react"
 import { ThemingProps } from "@chakra-ui/system"
 import { theme } from "@chakra-ui/theme"
@@ -258,7 +258,7 @@ const motionConfig = {
   },
 }
 
-const MotionButton = motion(Button)
+const MotionButton = m(Button)
 const BG_GRADIENT_SOFT = `linear-gradient(to right, #fa8080, #F40000)`
 const BG_GRADIENT_SOFT_REVERSED = `linear-gradient(to right, #F40000, #fa8080)`
 

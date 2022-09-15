@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import { Portal } from "@chakra-ui/portal"
 import { Button } from "@chakra-ui/button"
 import { chakra } from "@chakra-ui/system"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, m } from "framer-motion"
 import * as React from "react"
 import { Tooltip, useTooltip } from "../src"
 
@@ -81,13 +81,13 @@ export const WithTransition = () => {
         {isOpen && (
           <Portal>
             <div {...getTooltipPositionerProps()}>
-              <motion.div
+              <m.div
                 initial="exit"
                 animate="enter"
                 exit="exit"
                 {...(getTooltipProps() as any)}
               >
-                <motion.div
+                <m.div
                   transition={{
                     duration: 0.12,
                     ease: [0.4, 0, 0.2, 1],
@@ -110,8 +110,8 @@ export const WithTransition = () => {
                   <div data-popper-arrow>
                     <div data-popper-arrow-inner />
                   </div>
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             </div>
           </Portal>
         )}

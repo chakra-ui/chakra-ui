@@ -105,7 +105,7 @@ popper and transition to different elements.
 // 1. Import components
 import { useDisclosure } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
-import { motion, AnimatePresence, Variants } from "framer-motion"
+import { m, AnimatePresence, Variants } from "framer-motion"
 
 export function Example() {
   // 2. Create toggle state
@@ -135,7 +135,7 @@ export function Example() {
       <div {...getPopperProps()}>
         <AnimatePresence>
           {isOpen && (
-            <motion.div
+            <m.div
               transition={{
                 type: "spring",
                 duration: 0.2,
@@ -159,7 +159,7 @@ export function Example() {
                   },
                 })}
               />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

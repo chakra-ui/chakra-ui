@@ -11,7 +11,7 @@ import {
   getCSSVar,
 } from "@chakra-ui/system"
 import { omit, pick } from "@chakra-ui/object-utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, m } from "framer-motion"
 import { Children, cloneElement } from "react"
 import { scale } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
@@ -52,7 +52,7 @@ export interface TooltipProps
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
 }
 
-const StyledTooltip = chakra(motion.div)
+const StyledTooltip = chakra(m.div)
 
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.

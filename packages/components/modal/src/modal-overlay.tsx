@@ -6,11 +6,11 @@ import {
   forwardRef,
 } from "@chakra-ui/system"
 import { fadeConfig } from "@chakra-ui/transition"
-import { motion, HTMLMotionProps } from "framer-motion"
+import { m, HTMLMotionProps } from "framer-motion"
 
 import { useModalStyles, useModalContext } from "./modal"
 
-const MotionDiv = chakra(motion.div)
+const MotionDiv = chakra(m.div)
 
 export interface ModalOverlayProps
   extends Omit<HTMLMotionProps<"div">, "color" | "transition">,

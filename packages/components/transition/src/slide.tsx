@@ -2,7 +2,7 @@ import { cx } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
+  m,
   MotionStyle,
   Variants as TVariants,
 } from "framer-motion"
@@ -94,7 +94,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
   return (
     <AnimatePresence custom={custom}>
       {show && (
-        <motion.div
+        <m.div
           {...rest}
           ref={ref}
           initial="exit"
