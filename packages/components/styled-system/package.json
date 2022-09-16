@@ -45,8 +45,7 @@
     "@chakra-ui/shared-utils": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@types/lodash.mergewith": "4.6.6",
-    "cronometro": "^1.1.0"
+    "@types/lodash.mergewith": "4.6.6"
   },
   "sideEffects": false,
   "scripts": {
@@ -54,7 +53,6 @@
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts",
-    "benchmark": "node benchmarks/benchmark.js"
+    "build:fast": "tsup src/index.ts"
   }
 }

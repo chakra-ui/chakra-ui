@@ -1294,7 +1294,6 @@ importers:
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       '@types/lodash.mergewith': 4.6.6
-      cronometro: ^1.1.0
       csstype: ^3.0.11
       lodash.mergewith: 4.6.2
     dependencies:
@@ -1308,7 +1307,6 @@ importers:
       '@emotion/react': 11.9.3_96543585b339e7caed3567fc56fe9e68
       '@emotion/styled': 11.9.3_c6afed0fa10a1ad1311271315df93091
       '@types/lodash.mergewith': 4.6.6
-      cronometro: 1.1.0
 
   packages/components/switch:
     specifiers:
@@ -1968,10 +1966,6 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
-
-  /@assemblyscript/loader/0.19.23:
-    resolution: {integrity: sha512-ulkCYfFbYj01ie1MDOyxv2F6SpRN1TOj7fQxbP07D6HmeR+gr2JLSmINKjga2emB+b1L2KGrFKBTc+e00p54nw==}
-    dev: true
 
   /@babel/cli/7.18.9_@babel+core@7.18.9:
     resolution: {integrity: sha512-e7TOtHVrAXBJGNgoROVxqx0mathd01oJGXIDekRfxdrISnRqfM795APwkDtse9GdyPYivjg3iXiko3sF3W7f5Q==}
@@ -9871,11 +9865,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  /acquerello/1.0.7:
-    resolution: {integrity: sha512-wlqZdFxaiD/1mw2shpOR9Xd7kAVKZ4y820vAsoR9aphtuEkt9FevHsNiPnAIqOhbc1JWlbv/behwBJPjQV5elQ==}
-    engines: {node: '>=14.15.0'}
-    dev: true
-
   /address/1.1.2:
     resolution: {integrity: sha512-aT6camzM4xEA54YVJYSqxz1kv4IHnQZRtThJJHhUMRExaU5spC7jX5ugSwTaTgJliIgs4VhZOk7htClvQ/LmRA==}
     engines: {node: '>= 0.12.0'}
@@ -12118,15 +12107,6 @@ packages:
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
-
-  /cronometro/1.1.0:
-    resolution: {integrity: sha512-y4ag7UnIR7heYpESMG5jghHIBkCaHa/ieat4jYbuv2tL9u069TW7GCsZwUp2ugXUoMpE6A6XikRb50IKzUqz+g==}
-    engines: {node: '>=14.15.0'}
-    dependencies:
-      acquerello: 1.0.7
-      hdr-histogram-js: 3.0.0
-      table: 6.8.0
-    dev: true
 
   /cross-fetch/3.1.4:
     resolution: {integrity: sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==}
@@ -16465,15 +16445,6 @@ packages:
       hast-util-parse-selector: 2.2.5
       property-information: 5.6.0
       space-separated-tokens: 1.1.5
-
-  /hdr-histogram-js/3.0.0:
-    resolution: {integrity: sha512-/EpvQI2/Z98mNFYEnlqJ8Ogful8OpArLG/6Tf2bPnkutBVLIeMVNHjk1ZDfshF2BUweipzbk+dB1hgSB7SIakw==}
-    engines: {node: '>=14'}
-    dependencies:
-      '@assemblyscript/loader': 0.19.23
-      base64-js: 1.5.1
-      pako: 1.0.11
-    dev: true
 
   /he/1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
