@@ -83,6 +83,7 @@ export function getCss(options: GetCSSOptions) {
           computedStyles[key],
           css(value, true),
         )
+        continue
       }
 
       let rawValue = config?.transform?.(value, theme, _styles) ?? value

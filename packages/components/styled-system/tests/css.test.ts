@@ -92,7 +92,7 @@ test("returns system props styles", () => {
         "fontSize": "var(--fontSizes-4)",
       },
       "color": "var(--colors-primary)",
-      "fontSize": "var(--fontSizes-2)",
+      "fontSize": 4,
     }
   `)
 })
@@ -110,7 +110,7 @@ test("returns nested system props styles", () => {
       "&:hover": Object {
         "color": "var(--colors-secondary)",
       },
-      "color": "var(--colors-primary)",
+      "color": "secondary",
     }
   `)
 })
@@ -133,7 +133,12 @@ test("returns nested responsive styles", () => {
         },
         "paddingBottom": "var(--space-3)",
         "paddingTop": "var(--space-3)",
+        "py": 4,
       },
+      "py": Array [
+        3,
+        4,
+      ],
     }
   `)
 })
@@ -231,7 +236,7 @@ test("handles variants with responsive values", () => {
       "@media screen and (min-width: 40em)": Object {
         "fontSize": "var(--fontSizes-2)",
       },
-      "fontSize": "var(--fontSizes-1)",
+      "fontSize": 2,
       "letterSpacing": "0.1em",
       "textTransform": "uppercase",
     }
@@ -248,7 +253,7 @@ test("handles responsive variants", () => {
         "fontSize": "var(--fontSizes-4)",
         "letterSpacing": "-0.02em",
       },
-      "fontSize": "var(--fontSizes-3)",
+      "fontSize": 4,
       "letterSpacing": "-0.01em",
     }
   `)
@@ -315,7 +320,7 @@ test("handles negative top, left, bottom, and right from scale", () => {
   `)
 })
 
-test("skip breakpoints", () => {
+test.only("skip breakpoints", () => {
   const result = css({
     width: ["100%", null, "50%"],
   })(theme)
@@ -359,7 +364,7 @@ test("functional values can return responsive arrays", () => {
       "@media screen and (min-width: 40em)": Object {
         "color": "cyan",
       },
-      "color": "tomato",
+      "color": "cyan",
     }
   `)
 })
@@ -493,7 +498,7 @@ test("returns correct media query order", () => {
         "width": "50%",
       },
       "color": "red",
-      "width": "100%",
+      "width": "50%",
     }
   `)
 })
@@ -515,13 +520,14 @@ test("returns correct media query 2nd order", () => {
       "flexDirection",
       "justifyContent",
       "@media screen and (min-width: 40em)",
+      "px",
       "@media screen and (min-width: 52em)",
       "color",
       "height",
       "paddingInlineStart",
       "paddingInlineEnd",
       "paddingTop",
-      "paddingBottom"
+      "paddingBottom",
     ]
   `)
 })
@@ -546,8 +552,18 @@ test("pseudo selectors are transformed", () => {
           "paddingLeft": "var(--space-4)",
         },
         "paddingBottom": "var(--space-2)",
-        "paddingLeft": "var(--space-2)",
+        "paddingLeft": 4,
         "paddingRight": "var(--space-1)",
+      },
+      "paddingBottom": 2,
+      "paddingLeft": Array [
+        2,
+        3,
+        4,
+      ],
+      "paddingRight": Object {
+        "base": 1,
+        "sm": 2,
       },
     }
   `)
@@ -606,6 +622,7 @@ test("should expand textStyle and layerStyle", () => {
       },
       "fontSize": "lg",
       "letterSpacing": "wide",
+      "textStyle": "lower",
       "textTransform": "uppercase",
     }
   `)
