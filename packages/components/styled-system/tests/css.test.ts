@@ -92,7 +92,7 @@ test("returns system props styles", () => {
         "fontSize": "var(--fontSizes-4)",
       },
       "color": "var(--colors-primary)",
-      "fontSize": 4,
+      "fontSize": "var(--fontSizes-2)",
     }
   `)
 })
@@ -110,7 +110,7 @@ test("returns nested system props styles", () => {
       "&:hover": Object {
         "color": "var(--colors-secondary)",
       },
-      "color": "secondary",
+      "color": "var(--colors-primary)",
     }
   `)
 })
@@ -133,12 +133,7 @@ test("returns nested responsive styles", () => {
         },
         "paddingBottom": "var(--space-3)",
         "paddingTop": "var(--space-3)",
-        "py": 4,
       },
-      "py": Array [
-        3,
-        4,
-      ],
     }
   `)
 })
@@ -236,7 +231,7 @@ test("handles variants with responsive values", () => {
       "@media screen and (min-width: 40em)": Object {
         "fontSize": "var(--fontSizes-2)",
       },
-      "fontSize": 2,
+      "fontSize": "var(--fontSizes-1)",
       "letterSpacing": "0.1em",
       "textTransform": "uppercase",
     }
@@ -253,7 +248,7 @@ test("handles responsive variants", () => {
         "fontSize": "var(--fontSizes-4)",
         "letterSpacing": "-0.02em",
       },
-      "fontSize": 4,
+      "fontSize": "var(--fontSizes-3)",
       "letterSpacing": "-0.01em",
     }
   `)
@@ -320,7 +315,7 @@ test("handles negative top, left, bottom, and right from scale", () => {
   `)
 })
 
-test.only("skip breakpoints", () => {
+test("skip breakpoints", () => {
   const result = css({
     width: ["100%", null, "50%"],
   })(theme)
@@ -364,7 +359,7 @@ test("functional values can return responsive arrays", () => {
       "@media screen and (min-width: 40em)": Object {
         "color": "cyan",
       },
-      "color": "cyan",
+      "color": "tomato",
     }
   `)
 })
@@ -498,7 +493,7 @@ test("returns correct media query order", () => {
         "width": "50%",
       },
       "color": "red",
-      "width": "50%",
+      "width": "100%",
     }
   `)
 })
@@ -520,7 +515,6 @@ test("returns correct media query 2nd order", () => {
       "flexDirection",
       "justifyContent",
       "@media screen and (min-width: 40em)",
-      "px",
       "@media screen and (min-width: 52em)",
       "color",
       "height",
@@ -552,18 +546,8 @@ test("pseudo selectors are transformed", () => {
           "paddingLeft": "var(--space-4)",
         },
         "paddingBottom": "var(--space-2)",
-        "paddingLeft": 4,
+        "paddingLeft": "var(--space-2)",
         "paddingRight": "var(--space-1)",
-      },
-      "paddingBottom": 2,
-      "paddingLeft": Array [
-        2,
-        3,
-        4,
-      ],
-      "paddingRight": Object {
-        "base": 1,
-        "sm": 2,
       },
     }
   `)
@@ -622,7 +606,6 @@ test("should expand textStyle and layerStyle", () => {
       },
       "fontSize": "lg",
       "letterSpacing": "wide",
-      "textStyle": "lower",
       "textTransform": "uppercase",
     }
   `)
