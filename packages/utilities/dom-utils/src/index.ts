@@ -1,15 +1,15 @@
 import { isFocusable, isTabbable } from "./tabbable"
 
 const focusableElList = [
-  "input:not([disabled])",
-  "select:not([disabled])",
-  "textarea:not([disabled])",
+  "input:not(:disabled)",
+  "select:not(:disabled)",
+  "textarea:not(:disabled)",
   "embed",
   "iframe",
   "object",
   "a[href]",
   "area[href]",
-  "button:not([disabled])",
+  "button:not(:disabled)",
   "[tabindex]",
   "audio[controls]",
   "video[controls]",
