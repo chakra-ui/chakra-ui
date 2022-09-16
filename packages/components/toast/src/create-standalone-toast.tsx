@@ -30,6 +30,7 @@ export const defaultStandaloneParam: CreateStandAloneToastParam &
   toggleColorMode: () => {},
   setColorMode: () => {},
   defaultOptions: defaults,
+  forced: false,
 }
 
 export type CreateStandaloneToastReturn = {
@@ -49,8 +50,14 @@ export function createStandaloneToast({
   motionVariants,
   toastSpacing,
   component,
+  forced,
 }: CreateStandAloneToastParam = defaultStandaloneParam): CreateStandaloneToastReturn {
-  const colorModeContextValue = { colorMode, setColorMode, toggleColorMode }
+  const colorModeContextValue = {
+    colorMode,
+    setColorMode,
+    toggleColorMode,
+    forced,
+  }
   const ToastContainer = () => (
     <ThemeProvider theme={theme}>
       <ColorModeContext.Provider value={colorModeContextValue}>

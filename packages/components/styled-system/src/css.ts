@@ -4,6 +4,7 @@ import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
 import { StyleObjectOrFn } from "./system.types"
 import { Config } from "./utils/prop-config"
+import { splitByComma } from "./utils/split-by-comma"
 import { CssTheme } from "./utils/types"
 
 function isCssVar(value: string): boolean {
@@ -19,8 +20,7 @@ const resolveTokenValue = (theme: Record<string, any>, value: string) => {
   const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
   const getValue = (val: string) => getVar(val) ?? val
 
-  const valueSplit = value.split(",").map((v) => v.trim())
-  const [tokenValue, fallbackValue] = valueSplit
+  const [tokenValue, fallbackValue] = splitByComma(value)
   value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
 
   return value
