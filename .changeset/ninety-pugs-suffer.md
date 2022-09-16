@@ -2,4 +2,4 @@
 "@chakra-ui/popover": patch
 ---
 
-Refactor popover
+Refactor popover to reduce bundle size

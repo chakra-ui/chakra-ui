@@ -196,3 +196,38 @@ export const FullWithLongContent = () => {
     </>
   )
 }
+
+export function WithCustomMotionProps() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  return (
+    <>
+      <Button onClick={onOpen}>Open</Button>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent
+          motionProps={{
+            initial: "exit",
+            animate: "enter",
+            exit: "exit",
+            variants: {
+              enter: { opacity: 1, y: 10 },
+              exit: { opacity: 0, y: 0, transition: { duration: 0.1 } },
+            },
+          }}
+        >
+          <ModalCloseButton />
+          <ModalHeader>Welcome Home</ModalHeader>
+          <ModalBody>
+            Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+            ullamco deserunt aute id consequat veniam incididunt duis in sint
+            irure nisi.
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Cancel</Button>
+            <Button>Save</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}

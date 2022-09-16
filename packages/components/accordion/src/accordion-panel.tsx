@@ -1,5 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { Collapse } from "@chakra-ui/transition"
+import { Collapse, CollapseProps } from "@chakra-ui/transition"
 import { cx } from "@chakra-ui/shared-utils"
 import {
   useAccordionItemContext,
@@ -7,7 +7,12 @@ import {
 } from "./accordion-context"
 import { useAccordionContext } from "./use-accordion"
 
-export interface AccordionPanelProps extends HTMLChakraProps<"div"> {}
+export interface AccordionPanelProps extends HTMLChakraProps<"div"> {
+  /**
+   * The properties passed to the underlying `Collapse` component.
+   */
+  motionProps?: CollapseProps
+}
 
 /**
  * Accordion panel that holds the content for each accordion.
@@ -17,13 +22,15 @@ export interface AccordionPanelProps extends HTMLChakraProps<"div"> {}
  */
 export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
   function AccordionPanel(props, ref) {
+    const { className, motionProps, ...rest } = props
+
     const { reduceMotion } = useAccordionContext()
     const { getPanelProps, isOpen } = useAccordionItemContext()
 
     // remove `hidden` prop, 'coz we're using height animation
-    const panelProps = getPanelProps(props, ref)
+    const panelProps = getPanelProps(rest, ref)
 
-    const _className = cx("chakra-accordion__panel", props.className)
+    const _className = cx("chakra-accordion__panel", className)
     const styles = useAccordionStyles()
 
     if (!reduceMotion) {
@@ -35,7 +42,11 @@ export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
     )
 
     if (!reduceMotion) {
-      return <Collapse in={isOpen}>{child}</Collapse>
+      return (
+        <Collapse in={isOpen} {...motionProps}>
+          {child}
+        </Collapse>
+      )
     }
 
     return child
