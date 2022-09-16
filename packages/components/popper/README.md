@@ -105,7 +105,13 @@ popper and transition to different elements.
 // 1. Import components
 import { useDisclosure } from "@chakra-ui/hooks"
 import { usePopper } from "@chakra-ui/popper"
-import { m, AnimatePresence, Variants } from "framer-motion"
+import {
+  AnimatePresence,
+  domAnimation,
+  LazyMotion,
+  m,
+  Variants,
+} from "framer-motion"
 
 export function Example() {
   // 2. Create toggle state
@@ -135,31 +141,33 @@ export function Example() {
       <div {...getPopperProps()}>
         <AnimatePresence>
           {isOpen && (
-            <m.div
-              transition={{
-                type: "spring",
-                duration: 0.2,
-              }}
-              variants={slide}
-              initial="exit"
-              animate="enter"
-              exit="exit"
-              style={{
-                background: "red",
-                width: 200,
-                transformOrigin,
-                borderRadius: 4,
-              }}
-            >
-              Testing
-              <div
-                {...getArrowProps({
-                  style: {
-                    background: "red",
-                  },
-                })}
-              />
-            </m.div>
+            <LazyMotion features={domAnimation}>
+              <m.div
+                transition={{
+                  type: "spring",
+                  duration: 0.2,
+                }}
+                variants={slide}
+                initial="exit"
+                animate="enter"
+                exit="exit"
+                style={{
+                  background: "red",
+                  width: 200,
+                  transformOrigin,
+                  borderRadius: 4,
+                }}
+              >
+                Testing
+                <div
+                  {...getArrowProps({
+                    style: {
+                      background: "red",
+                    },
+                  })}
+                />
+              </m.div>
+            </LazyMotion>
           )}
         </AnimatePresence>
       </div>

@@ -1,4 +1,4 @@
-import { m } from "framer-motion"
+import { domAnimation, LazyMotion, m } from "framer-motion"
 import * as React from "react"
 import { usePopper } from "../src"
 
@@ -116,29 +116,31 @@ export const WithAnimation = () => {
         Trigger
       </button>
       <div {...getPopperProps()}>
-        <m.div
-          style={{
-            transformOrigin,
-            background: "red",
-            padding: 8,
-          }}
-          transition={{ duration: 0.15 }}
-          initial={false}
-          animate={
-            isOpen ? { scale: 1, opacity: 1 } : { scale: 0.85, opacity: 0.01 }
-          }
-        >
-          <div
-            {...getArrowProps({
-              shadowColor: "rgba(0,0,0,0.3)",
-              size: "8px",
-              bg: "red",
-            })}
+        <LazyMotion features={domAnimation}>
+          <m.div
+            style={{
+              transformOrigin,
+              background: "red",
+              padding: 8,
+            }}
+            transition={{ duration: 0.15 }}
+            initial={false}
+            animate={
+              isOpen ? { scale: 1, opacity: 1 } : { scale: 0.85, opacity: 0.01 }
+            }
           >
-            <div {...getArrowInnerProps()} />
-          </div>
-          Popper
-        </m.div>
+            <div
+              {...getArrowProps({
+                shadowColor: "rgba(0,0,0,0.3)",
+                size: "8px",
+                bg: "red",
+              })}
+            >
+              <div {...getArrowInnerProps()} />
+            </div>
+            Popper
+          </m.div>
+        </LazyMotion>
       </div>
     </div>
   )

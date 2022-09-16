@@ -10,7 +10,7 @@ import * as React from "react"
 import { FaFacebook, FaTwitter } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
-import { m } from "framer-motion"
+import { domAnimation, LazyMotion, m } from "framer-motion"
 import { Meta, StoryFn } from "@storybook/react"
 import { ThemingProps } from "@chakra-ui/system"
 import { theme } from "@chakra-ui/theme"
@@ -269,17 +269,19 @@ export const WithMotion = () => {
       <Button onClick={() => setBinary((binary) => !binary)}>
         Toggle binary state: {String(binary)}
       </Button>
-      <MotionButton
-        {...motionConfig}
-        animate={{
-          scale: binary ? 1.2 : 1,
-          backgroundImage: binary
-            ? BG_GRADIENT_SOFT
-            : BG_GRADIENT_SOFT_REVERSED,
-        }}
-      >
-        ({String(binary)}) Doesn't work
-      </MotionButton>
+      <LazyMotion features={domAnimation}>
+        <MotionButton
+          {...motionConfig}
+          animate={{
+            scale: binary ? 1.2 : 1,
+            backgroundImage: binary
+              ? BG_GRADIENT_SOFT
+              : BG_GRADIENT_SOFT_REVERSED,
+          }}
+        >
+          ({String(binary)}) Doesn't work
+        </MotionButton>
+      </LazyMotion>
     </>
   )
 }

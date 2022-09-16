@@ -1,6 +1,6 @@
 import { chakra, ChakraProps } from "@chakra-ui/system"
 import { scaleFadeConfig, slideFadeConfig } from "@chakra-ui/transition"
-import { HTMLMotionProps, m } from "framer-motion"
+import { domAnimation, HTMLMotionProps, LazyMotion, m } from "framer-motion"
 import { forwardRef } from "react"
 
 export interface ModalTransitionProps
@@ -31,7 +31,11 @@ export const ModalTransition = forwardRef(
   (props: ModalTransitionProps, ref: React.Ref<any>) => {
     const { preset, ...rest } = props
     const motionProps = transitions[preset]
-    return <Motion ref={ref} {...(motionProps as ChakraProps)} {...rest} />
+    return (
+      <LazyMotion features={domAnimation}>
+        <Motion ref={ref} {...(motionProps as ChakraProps)} {...rest} />
+      </LazyMotion>
+    )
   },
 )
 

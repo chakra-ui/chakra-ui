@@ -1,5 +1,11 @@
 import { chakra, PropsOf, ChakraComponent } from "@chakra-ui/system"
-import { AnimatePresence, CustomDomComponent, m } from "framer-motion"
+import {
+  AnimatePresence,
+  CustomDomComponent,
+  domAnimation,
+  LazyMotion,
+  m,
+} from "framer-motion"
 
 function __motion<T extends ChakraComponent<any, any>>(
   el: T,
@@ -16,30 +22,32 @@ const MotionSvg = __motion(chakra.svg)
 
 function CheckIcon(props: PropsOf<typeof MotionSvg>) {
   return (
-    <MotionSvg
-      width="1.2em"
-      viewBox="0 0 12 10"
-      variants={{
-        unchecked: {
-          opacity: 0,
-          strokeDashoffset: 16,
-        },
-        checked: {
-          opacity: 1,
-          strokeDashoffset: 0,
-          transition: { duration: 0.2 },
-        },
-      }}
-      style={{
-        fill: "none",
-        strokeWidth: 2,
-        stroke: "currentColor",
-        strokeDasharray: 16,
-      }}
-      {...props}
-    >
-      <polyline points="1.5 6 4.5 9 10.5 1" />
-    </MotionSvg>
+    <LazyMotion features={domAnimation}>
+      <MotionSvg
+        width="1.2em"
+        viewBox="0 0 12 10"
+        variants={{
+          unchecked: {
+            opacity: 0,
+            strokeDashoffset: 16,
+          },
+          checked: {
+            opacity: 1,
+            strokeDashoffset: 0,
+            transition: { duration: 0.2 },
+          },
+        }}
+        style={{
+          fill: "none",
+          strokeWidth: 2,
+          stroke: "currentColor",
+          strokeDasharray: 16,
+        }}
+        {...props}
+      >
+        <polyline points="1.5 6 4.5 9 10.5 1" />
+      </MotionSvg>
+    </LazyMotion>
   )
 }
 

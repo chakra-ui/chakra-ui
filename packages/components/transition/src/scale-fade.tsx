@@ -1,7 +1,9 @@
 import { cx } from "@chakra-ui/shared-utils"
 import {
   AnimatePresence,
+  domAnimation,
   HTMLMotionProps,
+  LazyMotion,
   m,
   Variants as _Variants,
 } from "framer-motion"
@@ -77,14 +79,16 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
     return (
       <AnimatePresence custom={custom}>
         {show && (
-          <m.div
-            ref={ref}
-            className={cx("chakra-offset-slide", className)}
-            {...scaleFadeConfig}
-            animate={animate}
-            custom={custom}
-            {...rest}
-          />
+          <LazyMotion features={domAnimation}>
+            <m.div
+              ref={ref}
+              className={cx("chakra-offset-slide", className)}
+              {...scaleFadeConfig}
+              animate={animate}
+              custom={custom}
+              {...rest}
+            />
+          </LazyMotion>
         )}
       </AnimatePresence>
     )

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { m } from "framer-motion"
+import { domAnimation, LazyMotion, m } from "framer-motion"
 import {
   chakra,
   ThemeProvider,
@@ -15,18 +15,20 @@ export default {
 const MotionBox = m(chakra.div)
 
 export const WithFramerMotion = () => (
-  <MotionBox
-    mt="40px"
-    w="40px"
-    h="40px"
-    bg="red.200"
-    ml="60px"
-    animate={{
-      scale: [1, 2, 2, 1, 1],
-      rotate: [0, 0, 270, 270, 0],
-      borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-    }}
-  />
+  <LazyMotion features={domAnimation}>
+    <MotionBox
+      mt="40px"
+      w="40px"
+      h="40px"
+      bg="red.200"
+      ml="60px"
+      animate={{
+        scale: [1, 2, 2, 1, 1],
+        rotate: [0, 0, 270, 270, 0],
+        borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+      }}
+    />
+  </LazyMotion>
 )
 
 export const ApplyProp = () => (

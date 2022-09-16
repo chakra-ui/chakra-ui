@@ -6,7 +6,7 @@ import {
   forwardRef,
 } from "@chakra-ui/system"
 import { fadeConfig } from "@chakra-ui/transition"
-import { m, HTMLMotionProps } from "framer-motion"
+import { domAnimation, LazyMotion, m, HTMLMotionProps } from "framer-motion"
 
 import { useModalStyles, useModalContext } from "./modal"
 
@@ -43,13 +43,15 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
     const motionProps: any = motionPreset === "none" ? {} : fadeConfig
 
     return (
-      <MotionDiv
-        {...motionProps}
-        __css={overlayStyle}
-        ref={ref}
-        className={_className}
-        {...rest}
-      />
+      <LazyMotion features={domAnimation}>
+        <MotionDiv
+          {...motionProps}
+          __css={overlayStyle}
+          ref={ref}
+          className={_className}
+          {...rest}
+        />
+      </LazyMotion>
     )
   },
 )
