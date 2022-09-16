@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- [`3f764169d`](https://github.com/chakra-ui/chakra-ui/commit/3f764169d18d79c4767e0c515e24388bd078767a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TypeScript 4.8
+  issue with type constraints
+
 ## 2.1.3
 
 ### Patch Changes

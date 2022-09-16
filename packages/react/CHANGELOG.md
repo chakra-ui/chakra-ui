@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.8.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/accordion@1.4.12
+  - @chakra-ui/menu@1.8.12
+  - @chakra-ui/pin-input@1.7.11
+  - @chakra-ui/tabs@1.6.11
+
 ## 1.8.8
 
 ### Patch Changes
