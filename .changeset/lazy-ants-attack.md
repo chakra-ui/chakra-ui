@@ -7,4 +7,4 @@
 "@chakra-ui/tooltip": minor
 ---
 
-Allow control of framer-motion elements
+Allow control of `framer-motion` elements via the `motionProps` prop.
