@@ -1,9 +1,11 @@
 import { isObject, runIfFn } from "@chakra-ui/shared-utils"
 import * as CSS from "csstype"
+import mergeWith from "lodash.mergewith"
 import { pseudoSelectors } from "./pseudos"
 import { systemProps as systemPropConfigs } from "./system"
 import { StyleObjectOrFn } from "./system.types"
-import { Config } from "./utils/prop-config"
+import { expandResponsive } from "./utils/expand-responsive"
+import { Config, PropConfig } from "./utils/prop-config"
 import { splitByComma } from "./utils/split-by-comma"
 import { CssTheme } from "./utils/types"
 
@@ -35,58 +37,20 @@ interface GetCSSOptions {
 export function getCss(options: GetCSSOptions) {
   const { configs = {}, pseudos = {}, theme } = options
 
-  /**
-   * Before any style can be processed, the user needs to call `toCSSVar`
-   * which analyzes the theme's breakpoint and appends a `__breakpoints` property
-   * to the theme with more details of the breakpoints.
-   *
-   * To learn more, go here: packages/utils/src/breakpoint.ts #analyzeBreakpoints
-   */
-  if (!theme.__breakpoints) return () => ({})
-  const { isResponsive, toArrayValue, media: medias } = theme.__breakpoints
-
   const css = (stylesOrFn: Record<string, any>, nested = false) => {
-    const styles = runIfFn(stylesOrFn, theme)
+    const _styles = runIfFn(stylesOrFn, theme)
+    const styles = expandResponsive(_styles)(theme)
 
     let computedStyles: Record<string, any> = {}
 
     for (let key in styles) {
+      const valueOrFn = styles[key]
+
       /**
        * allows the user to pass functional values
        * boxShadow: theme => `0 2px 2px ${theme.colors.red}`
        */
-      let value = runIfFn(styles[key], theme)
-      if (value == null) continue
-
-      if (Array.isArray(value) || (isObject(value) && isResponsive(value))) {
-        let values = Array.isArray(value) ? value : toArrayValue(value)
-        values = values.slice(0, medias.length)
-
-        for (let index = 0; index < values.length; index++) {
-          const media = medias[index]
-          const val = values[index]
-
-          if (media) {
-            if (val == null) {
-              computedStyles[media] ??= {}
-            } else {
-              computedStyles[media] = Object.assign(
-                {},
-                computedStyles[media],
-                css({ [key]: val }, true),
-              )
-            }
-          } else {
-            computedStyles = Object.assign(
-              {},
-              computedStyles,
-              css({ ...styles, [key]: val }, false),
-            )
-          }
-        }
-
-        continue
-      }
+      let value = runIfFn(valueOrFn, theme)
 
       /**
        * converts pseudo shorthands to valid selector
@@ -107,8 +71,14 @@ export function getCss(options: GetCSSOptions) {
         value = resolveTokenValue(theme, value)
       }
 
+      let config = configs[key]
+
+      if (config === true) {
+        config = { property: key } as PropConfig
+      }
       if (isObject(value)) {
-        computedStyles[key] = Object.assign(
+        computedStyles[key] = computedStyles[key] ?? {}
+        computedStyles[key] = mergeWith(
           {},
           computedStyles[key],
           css(value, true),
@@ -116,16 +86,7 @@ export function getCss(options: GetCSSOptions) {
         continue
       }
 
-      let config = configs[key]
-      if (config === true) {
-        config = { property: key }
-      }
-      if (!nested && config?.static) {
-        const staticStyles = runIfFn(config.static, theme)
-        computedStyles = Object.assign({}, computedStyles, staticStyles)
-      }
-
-      let rawValue = config?.transform?.(value, theme, styles) ?? value
+      let rawValue = config?.transform?.(value, theme, _styles) ?? value
 
       /**
        * Used for `layerStyle`, `textStyle` and `apply`. After getting the
@@ -136,11 +97,6 @@ export function getCss(options: GetCSSOptions) {
        */
       rawValue = config?.processResult ? css(rawValue, true) : rawValue
 
-      if (isObject(rawValue)) {
-        computedStyles = Object.assign({}, computedStyles, rawValue)
-        continue
-      }
-
       /**
        * allows us to define css properties for RTL and LTR.
        *
@@ -149,19 +105,30 @@ export function getCss(options: GetCSSOptions) {
        * }
        */
       const configProperty = runIfFn(config?.property, theme)
-      if (configProperty) {
-        if (Array.isArray(configProperty)) {
-          for (const property of configProperty) {
-            computedStyles[property] = rawValue
-          }
-          continue
-        }
 
-        if (configProperty === "&" && isObject(rawValue)) {
-          computedStyles = Object.assign({}, computedStyles, rawValue)
-        } else {
-          computedStyles[configProperty] = rawValue
+      if (!nested && config?.static) {
+        const staticStyles = runIfFn(config.static, theme)
+        computedStyles = mergeWith({}, computedStyles, staticStyles)
+      }
+
+      if (configProperty && Array.isArray(configProperty)) {
+        for (const property of configProperty) {
+          computedStyles[property] = rawValue
         }
+        continue
+      }
+
+      if (configProperty) {
+        if (configProperty === "&" && isObject(rawValue)) {
+          computedStyles = mergeWith({}, computedStyles, rawValue)
+        } else {
+          computedStyles[configProperty as string] = rawValue
+        }
+        continue
+      }
+
+      if (isObject(rawValue)) {
+        computedStyles = mergeWith({}, computedStyles, rawValue)
         continue
       }
 
@@ -174,7 +141,7 @@ export function getCss(options: GetCSSOptions) {
   return css
 }
 
-export const css = (styles: StyleObjectOrFn) => (theme: CssTheme) => {
+export const css = (styles: StyleObjectOrFn) => (theme: any) => {
   const cssFn = getCss({
     theme,
     pseudos: pseudoSelectors,
