@@ -6,7 +6,7 @@ function getLastItem<T>(array: T[]): T | undefined {
 }
 
 function analyzeCSSValue(value: number | string) {
-  const num = parseFloat(value.toString())
+  const num = parseInt(value.toString())
   const unit = value.toString().replace(String(num), "")
   return { unitless: !unit, value: num, unit }
 }
