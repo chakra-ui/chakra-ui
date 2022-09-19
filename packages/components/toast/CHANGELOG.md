@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@2.2.11
+  - @chakra-ui/theme@2.1.12
+  - @chakra-ui/alert@2.0.10
+  - @chakra-ui/close-button@2.0.10
+
 ## 3.0.11
 
 ### Patch Changes

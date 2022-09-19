@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.3
+
+### Patch Changes
+
+- [`ab1c42f50`](https://github.com/chakra-ui/chakra-ui/commit/ab1c42f501a95bdb44ceca796f24a83aa0661868)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Remove unintended
+  `console.log`
+
 ## 2.3.2
 
 ### Patch Changes

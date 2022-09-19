@@ -2,9 +2,11 @@
 
 ## Latest Release
 
-### September 19, 2022: [v2.3.3](/.changelog/v2.3.3.mdx)
+### September 19, 2022: [v2.3.4](/.changelog/v2.3.4.mdx)
 
 ## Previous Releases
+
+### September 19, 2022: [v2.3.3](/.changelog/v2.3.3.mdx)
 
 ### September 7, 2022: [v2.3.2](/.changelog/v2.3.2.mdx)
 
