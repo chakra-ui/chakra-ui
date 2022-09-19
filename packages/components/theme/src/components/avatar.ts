@@ -35,7 +35,9 @@ const baseStyleContainer = defineStyle((props) => {
   const borderColor = mode("white", "gray.800")(props)
 
   return {
-    bg,
+    "&:not([data-loaded])": {
+      bg,
+    },
     color,
     borderColor,
     verticalAlign: "top",

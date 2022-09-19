@@ -7,12 +7,14 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx, dataAttr, runIfFn } from "@chakra-ui/shared-utils"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage } from "./avatar-image"
 import { GenericAvatarIcon } from "./generic-avatar-icon"
 import { initials } from "./avatar-name"
 import { AvatarOptions } from "./avatar-types"
+import { UseImageProps } from "@chakra-ui/image"
+import { useState } from "react"
 
 export const baseStyle: SystemStyleObject = {
   display: "inline-flex",
@@ -43,6 +45,7 @@ export interface AvatarProps
  */
 export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
   const styles = useMultiStyleConfig("Avatar", props)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const {
     src,
@@ -51,6 +54,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     showBorder,
     borderRadius = "full",
     onError,
+    onLoad: onLoadProp,
     getInitials = initials,
     icon = <GenericAvatarIcon />,
     iconLabel = " avatar",
@@ -60,6 +64,11 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     ignoreFallback,
     ...rest
   } = omitThemingProps(props)
+
+  const onLoad: UseImageProps["onLoad"] = (e) => {
+    runIfFn(onLoad, e)
+    setIsLoaded(true)
+  }
 
   const avatarStyles: SystemStyleObject = {
     borderRadius,
@@ -77,6 +86,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
       ref={ref}
       {...rest}
       className={cx("chakra-avatar", props.className)}
+      data-loaded={dataAttr(isLoaded)}
       __css={avatarStyles}
     >
       <AvatarStylesProvider value={styles}>
@@ -84,6 +94,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
           src={src}
           srcSet={srcSet}
           loading={loading}
+          onLoad={onLoad}
           onError={onError}
           getInitials={getInitials}
           name={name}
