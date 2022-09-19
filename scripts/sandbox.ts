@@ -5,6 +5,7 @@ async function main() {
   const pkgs = await findPackages("packages")
   await Promise.all(
     pkgs.map(async (pkg) => {
+      // check if src contains tsx files
       const files = await fs.readdir(`${pkg.dir}/src`)
       const tsx = files.some((f) => f.endsWith(".tsx"))
 
