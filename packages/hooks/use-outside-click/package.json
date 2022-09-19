@@ -43,5 +43,6 @@
   },
   "dependencies": {
     "@chakra-ui/react-use-callback-ref": "workspace:*"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

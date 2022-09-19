@@ -34,5 +34,6 @@
     "build:fast": "tsup src/index.ts --format=esm,cjs",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

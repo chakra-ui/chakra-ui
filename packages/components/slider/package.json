@@ -71,5 +71,6 @@
     "build:fast": "JSX=1 tsup src/index.ts",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

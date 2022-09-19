@@ -44,5 +44,6 @@
   "dependencies": {
     "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/dom-utils": "workspace:*"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

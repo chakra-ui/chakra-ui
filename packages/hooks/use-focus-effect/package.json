@@ -45,5 +45,6 @@
     "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/react-use-update-effect": "workspace:*",
     "@chakra-ui/dom-utils": "workspace:*"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }
