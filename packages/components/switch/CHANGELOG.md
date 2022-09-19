@@ -1,5 +1,26 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+- Updated dependencies
+  [[`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571),
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/checkbox@2.2.0
+
 ## 2.0.11
 
 ### Patch Changes

@@ -1,5 +1,35 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
+  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
+  `framer-motion` elements via the `motionProps` prop.
+
+### Patch Changes
+
+- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+- Updated dependencies
+  [[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/react-use-controllable-state@2.0.4
+  - @chakra-ui/form-control@2.0.10
+  - @chakra-ui/visually-hidden@2.0.10
+
 ## 2.1.8
 
 ### Patch Changes

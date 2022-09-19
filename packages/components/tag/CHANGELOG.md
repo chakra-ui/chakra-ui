@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.10
+
+### Patch Changes
+
+- [#6707](https://github.com/chakra-ui/chakra-ui/pull/6707)
+  [`0ca7b097e`](https://github.com/chakra-ui/chakra-ui/commit/0ca7b097e7c7106cb3aa9daf9ab7462569b5d968)
+  Thanks [@anubra266](https://github.com/anubra266)! - Use `forwardRef` with
+  `TagCloseButton`
+
+- Updated dependencies
+  [[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/icon@3.0.10
+
 ## 2.0.9
 
 ### Patch Changes

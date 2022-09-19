@@ -1,5 +1,40 @@
 # Change Log
 
+## 2.3.2
+
+### Patch Changes
+
+- [#6704](https://github.com/chakra-ui/chakra-ui/pull/6704)
+  [`c570b2415`](https://github.com/chakra-ui/chakra-ui/commit/c570b241522d54e203d6bd151640b34f4ef80faf)
+  Thanks [@anubra266](https://github.com/anubra266)! - Revert
+  [#6335](https://github.com/chakra-ui/chakra-ui/pull/6335/files) to fix issue
+  where lots of responsive styles makes app slower
+
+* [#6700](https://github.com/chakra-ui/chakra-ui/pull/6700)
+  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)
+  Thanks [@sei0603](https://github.com/sei0603)! - Update disabled selector to
+  use state selector `:disabled`, instead of `[disabled]` attribute selector.
+  This is useful when an editable element is wrapped within
+  `<fieldset disabled>`
+
+- [#6595](https://github.com/chakra-ui/chakra-ui/pull/6595)
+  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve style
+  resolution when components are wrapped within forced color mode elements
+  (`DarkMode`, `LightMode`).
+
+  We now dynamically attach the `data-theme` attribute to chakra elements when
+  in forced color mode.
+
+  ```jsx live=false
+  <DarkMode>
+    <chakra.div bg="gray.800" padding="40px">
+      {/* Forced: Badge will now have `data-theme='dark' attached` */}
+      <Badge>Total</Badge>
+    </chakra.div>
+  </DarkMode>
+  ```
+
 ## 2.3.1
 
 ### Patch Changes

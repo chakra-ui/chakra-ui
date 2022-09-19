@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.1.12
+
+### Patch Changes
+
+- [#6657](https://github.com/chakra-ui/chakra-ui/pull/6657)
+  [`e62697467`](https://github.com/chakra-ui/chakra-ui/commit/e62697467fea03c9a6035ed67a635f9dc72bc471)
+  Thanks [@Aexylus](https://github.com/Aexylus)! - Fix incorrect Select `xs`
+  sizing
+
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@2.0.11
+
 ## 2.1.11
 
 ### Patch Changes

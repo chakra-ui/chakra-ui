@@ -1,5 +1,38 @@
 # Change Log
 
+## 2.1.7
+
+### Patch Changes
+
+- [#6644](https://github.com/chakra-ui/chakra-ui/pull/6644)
+  [`a9b004c42`](https://github.com/chakra-ui/chakra-ui/commit/a9b004c42ec31a525c3f5f2b8e987d55093fd35d)
+  Thanks [@SpencerKaiser](https://github.com/SpencerKaiser)! - Fixing an issue
+  with `Highlight`
+
+* [#6684](https://github.com/chakra-ui/chakra-ui/pull/6684)
+  [`59391bb95`](https://github.com/chakra-ui/chakra-ui/commit/59391bb95b05a13feeb9fe84b0cdb027519460ce)
+  Thanks [@anubra266](https://github.com/anubra266)! - Prevent Stack from
+  crashing when there's a lot of children
+
+  NB: This does not help improve loading and refresh performance otherwise,
+  libraries like `react-virtualized` should be used to handle large lists.
+
+- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+- Updated dependencies
+  [[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/icon@3.0.10
+
 ## 2.1.6
 
 ### Patch Changes

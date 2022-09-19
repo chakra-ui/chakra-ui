@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.8
+
+### Patch Changes
+
+- [#6641](https://github.com/chakra-ui/chakra-ui/pull/6641)
+  [`1ce701783`](https://github.com/chakra-ui/chakra-ui/commit/1ce701783e6cec9d22d625761403212d32feb38d)
+  Thanks [@chancegraff](https://github.com/chancegraff)! - Add optional `nonce`
+  back to ColorModeScript
+
 ## 2.1.7
 
 ### Patch Changes
