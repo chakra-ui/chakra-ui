@@ -58,6 +58,5 @@ export const expandResponsive =
       }
     }
 
-    console.log("computedStyles :>> ", computedStyles)
     return computedStyles
   }
