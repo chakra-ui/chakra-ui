@@ -465,7 +465,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         role: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
-          if (!disabled) spinUp(event)
+          if (event.button !== 0 || disabled) return
+          spinUp(event)
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
@@ -485,7 +486,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         role: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
-          if (!disabled) spinDown(event)
+          if (event.button !== 0 || disabled) return
+          spinDown(event)
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
