@@ -3,4 +3,4 @@
 "@chakra-ui/theme": patch
 ---
 
-Fix breadcrumb items alignment
+Ensure breadcrumb items are vertically aligned
