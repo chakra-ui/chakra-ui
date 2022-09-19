@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { isDark, mode, randomColor } from "@chakra-ui/theme-tools"
+import { cssVar, isDark, mode, randomColor } from "@chakra-ui/theme-tools"
 import themeSizes from "../foundations/sizes"
 import { runIfFn } from "../utils/run-if-fn"
 
@@ -24,9 +24,11 @@ const baseStyleExcessLabel = defineStyle((props) => {
   }
 })
 
+const $avatarBg = cssVar("avatar-background")
+
 const baseStyleContainer = defineStyle((props) => {
   const { name, theme } = props
-  const bg = name ? randomColor({ string: name }) : "gray.400"
+  const bg = name ? randomColor({ string: name }) : "colors.gray.400"
   const isBgDark = isDark(bg)(theme)
 
   let color = "white"
@@ -35,7 +37,10 @@ const baseStyleContainer = defineStyle((props) => {
   const borderColor = mode("white", "gray.800")(props)
 
   return {
-    bg,
+    bg: $avatarBg.reference,
+    "&:not([data-loaded])": {
+      [$avatarBg.variable]: bg,
+    },
     color,
     borderColor,
     verticalAlign: "top",
