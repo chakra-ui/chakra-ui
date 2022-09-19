@@ -7,13 +7,12 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { callAllHandlers, cx, dataAttr, runIfFn } from "@chakra-ui/shared-utils"
+import { callAllHandlers, cx, dataAttr } from "@chakra-ui/shared-utils"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage } from "./avatar-image"
 import { GenericAvatarIcon } from "./generic-avatar-icon"
 import { initials } from "./avatar-name"
 import { AvatarOptions } from "./avatar-types"
-import { UseImageProps } from "@chakra-ui/image"
 import { useState } from "react"
 
 export const baseStyle: SystemStyleObject = {
