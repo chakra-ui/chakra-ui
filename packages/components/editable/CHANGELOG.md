@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- [`d5003f916`](https://github.com/chakra-ui/chakra-ui/commit/d5003f91650ade8b4045df8c23be8e8c9ebe288a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  value change triggers text selection unexpected.
+
 ## 2.0.10
 
 ### Patch Changes
