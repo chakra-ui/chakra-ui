@@ -64,6 +64,7 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
             __css={{
               display: "flex",
               alignItems: "center",
+              ...styles.list,
             }}
           >
             {clones}
