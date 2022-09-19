@@ -7,7 +7,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr, runIfFn } from "@chakra-ui/shared-utils"
+import { callAllHandlers, cx, dataAttr, runIfFn } from "@chakra-ui/shared-utils"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage } from "./avatar-image"
 import { GenericAvatarIcon } from "./generic-avatar-icon"
@@ -65,9 +65,6 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     ...rest
   } = omitThemingProps(props)
 
-  const onLoad = callAllHandlers(onLoad, () => {
-    setIsLoaded(true)
-  })
   const avatarStyles: SystemStyleObject = {
     borderRadius,
     borderWidth: showBorder ? "2px" : undefined,
@@ -92,7 +89,9 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
           src={src}
           srcSet={srcSet}
           loading={loading}
-          onLoad={onLoad}
+          onLoad={callAllHandlers(onLoadProp, () => {
+            setIsLoaded(true)
+          })}
           onError={onError}
           getInitials={getInitials}
           name={name}
