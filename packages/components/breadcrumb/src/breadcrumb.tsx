@@ -59,7 +59,13 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
         {...rest}
       >
         <BreadcrumbStylesProvider value={styles}>
-          <chakra.ol className="chakra-breadcrumb__list" __css={styles.list}>
+          <chakra.ol
+            className="chakra-breadcrumb__list"
+            __css={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             {clones}
           </chakra.ol>
         </BreadcrumbStylesProvider>

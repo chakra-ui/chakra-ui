@@ -23,14 +23,8 @@ const baseStyleLink = defineStyle({
   },
 })
 
-const baseStyleList = defineStyle({
-  display: "flex",
-  alignItems: "center",
-})
-
 const baseStyle = definePartsStyle({
   link: baseStyleLink,
-  list: baseStyleList,
 })
 
 export const breadcrumbTheme = defineMultiStyleConfig({
