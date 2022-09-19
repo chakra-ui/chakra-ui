@@ -379,16 +379,22 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * Function that clamps the input's value on blur
    */
   const validateAndClamp = useCallback(() => {
+    let next = counter.value as string | number
     if (counter.value === "") return
 
     const valueStartsWithE = /^[eE]/.test(counter.value.toString())
 
     if (valueStartsWithE) {
       counter.setValue("")
-    } else if (counter.valueAsNumber < min) {
-      counter.cast(min)
-    } else if (counter.valueAsNumber > max) {
-      counter.cast(max)
+    } else {
+      if (counter.valueAsNumber < min) {
+        next = min
+      }
+      if (counter.valueAsNumber > max) {
+        next = max
+      }
+
+      counter.cast(next)
     }
   }, [counter, max, min])
 
