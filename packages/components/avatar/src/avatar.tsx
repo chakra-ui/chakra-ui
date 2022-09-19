@@ -65,11 +65,9 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     ...rest
   } = omitThemingProps(props)
 
-  const onLoad: UseImageProps["onLoad"] = (e) => {
-    runIfFn(onLoad, e)
+  const onLoad = callAllHandlers(onLoad, () => {
     setIsLoaded(true)
-  }
-
+  })
   const avatarStyles: SystemStyleObject = {
     borderRadius,
     borderWidth: showBorder ? "2px" : undefined,
