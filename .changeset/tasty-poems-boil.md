@@ -3,4 +3,4 @@
 "@chakra-ui/theme": patch
 ---
 
-Fix issue where avatar background remained after image is loaded
+Remove background from avatar when the image has loaded. This helps to prevent browser inconsistencies.
