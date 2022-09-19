@@ -52,7 +52,8 @@
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/modal": "workspace:*",
     "framer-motion": "^6.2.9",
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
@@ -67,6 +68,5 @@
     "typecheck": "tsc --noEmit",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
-  },
-  "clean-package": "../../../clean-package.config.json"
+  }
 }

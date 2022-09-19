@@ -45,7 +45,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0"
-  },
-  "clean-package": "../../../clean-package.config.json"
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
+  }
 }

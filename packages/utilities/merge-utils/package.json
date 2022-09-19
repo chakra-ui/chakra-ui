@@ -41,5 +41,7 @@
   "dependencies": {
     "merge-anything": "^5.0.2"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "devDependencies": {
+    "clean-package": "2.1.1"
+  }
 }

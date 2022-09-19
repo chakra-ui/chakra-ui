@@ -40,7 +40,8 @@
     "dlv": "^1.1.3",
     "@types/dlv": "^1.1.2",
     "@chakra-ui/shared-utils": "workspace:*",
-    "@chakra-ui/styled-system": "workspace:*"
+    "@chakra-ui/styled-system": "workspace:*",
+    "clean-package": "2.1.1"
   },
   "scripts": {
     "build": "tsup src/index.ts --dts",
@@ -50,6 +51,5 @@
     "build:fast": "tsup src/index.ts",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
-  },
-  "clean-package": "../../../clean-package.config.json"
+  }
 }

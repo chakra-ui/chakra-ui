@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
@@ -50,6 +51,5 @@
     "build:fast": "JSX=1 tsup src/index.ts",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
-  },
-  "clean-package": "../../../clean-package.config.json"
+  }
 }

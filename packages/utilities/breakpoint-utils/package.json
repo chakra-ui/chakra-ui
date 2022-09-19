@@ -38,7 +38,7 @@
     "postpack": "clean-package restore"
   },
   "devDependencies": {
-    "@chakra-ui/shared-utils": "workspace:*"
-  },
-  "clean-package": "../../../clean-package.config.json"
+    "@chakra-ui/shared-utils": "workspace:*",
+    "clean-package": "2.1.1"
+  }
 }

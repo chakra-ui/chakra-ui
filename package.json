@@ -62,6 +62,7 @@
     "@changesets/types": "5.1.0",
     "@commitlint/cli": "14.1.0",
     "@commitlint/config-conventional": "14.1.0",
+    "@octokit/rest": "^19.0.4",
     "@storybook/addon-a11y": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-storysource": "^6.5.9",
@@ -125,9 +126,5 @@
   },
   "engines": {
     "node": "16.x"
-  },
-  "devDependencies": {
-    "@octokit/rest": "^19.0.4",
-    "clean-package": "2.1.1"
   }
 }

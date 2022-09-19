@@ -5,11 +5,13 @@ async function main() {
   const pkgs = await findPackages("packages")
   await Promise.all(
     pkgs.map(async (pkg) => {
+      // check if src contains tsx files
       let data = {
         ...pkg.manifest,
-        devDependencies: {
-          ...pkg.manifest.devDependencies,
-          "clean-package": "2.1.1",
+        scripts: {
+          ...pkg.manifest.scripts,
+          prepack: "clean-package",
+          postpack: "clean-package restore",
         },
       }
 
