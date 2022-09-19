@@ -2,4 +2,4 @@
 "@chakra-ui/tooltip": patch
 ---
 
-Add `closeOnScroll` prop.
+Added closeOnScroll prop to allow closing tooltip when the page scrolls.
