@@ -37,8 +37,9 @@ const baseStyleContainer = defineStyle((props) => {
   const borderColor = mode("white", "gray.800")(props)
 
   return {
+    bg: $avatarBg.reference,
     "&:not([data-loaded])": {
-      bg: $avatarBg.reference,
+      [$avatarBg.variable]: bg,
     },
     color,
     borderColor,
