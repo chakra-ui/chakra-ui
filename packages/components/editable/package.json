@@ -40,6 +40,7 @@
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/react-use-controllable-state": "workspace:*",
     "@chakra-ui/react-use-focus-on-pointer-down": "workspace:*",
+    "@chakra-ui/react-use-callback-ref": "workspace:*",
     "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/shared-utils": "workspace:*"

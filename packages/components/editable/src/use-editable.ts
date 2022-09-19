@@ -3,9 +3,10 @@ import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
 import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
 import { useControllableState } from "@chakra-ui/react-use-controllable-state"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
 import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
 import { PropGetter } from "@chakra-ui/react-types"
-import React, { useCallback, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 
 export interface UseEditableProps {
   /**
@@ -86,9 +87,11 @@ export function useEditable(props: UseEditableProps = {}) {
     submitOnBlur = true,
     selectAllOnFocus = true,
     placeholder,
-    onEdit: onEditProp,
+    onEdit: onEditCallback,
     ...htmlProps
   } = props
+
+  const onEditProp = useCallbackRef(onEditCallback)
 
   const defaultIsEditing = Boolean(startWithEditView && !isDisabled)
 
@@ -138,7 +141,10 @@ export function useEditable(props: UseEditableProps = {}) {
     }
 
     inputRef.current?.focus()
-    if (selectAllOnFocus) inputRef.current?.select()
+
+    if (selectAllOnFocus) {
+      inputRef.current?.select()
+    }
 
     onEditProp?.()
   }, [isEditing, onEditProp, selectAllOnFocus])
