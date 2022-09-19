@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.20
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/theme@2.1.12
+  - @chakra-ui/provider@2.0.18
+
 ## 2.0.19
 
 ### Patch Changes
