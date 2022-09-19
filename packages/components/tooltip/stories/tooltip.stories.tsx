@@ -234,3 +234,11 @@ export const withAutoPlacement = () => (
     <Button>Can't Touch This</Button>
   </Tooltip>
 )
+
+export const withScroll = () => (
+  <chakra.div border="solid 1px red" h="200vh" pt="48">
+    <Tooltip label="Hello world" placement="auto" hasArrow closeOnScroll>
+      <Button>Can't Touch This</Button>
+    </Tooltip>
+  </chakra.div>
+)
