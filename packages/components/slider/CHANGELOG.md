@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/react-use-controllable-state@2.0.4
+
 ## 2.0.10
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/tooltip",
-  "version": "2.0.10",
+  "version": "2.1.0",
   "description": "A React Component for rendering dynamically positioned Tooltips",
   "sideEffects": false,
   "keywords": [

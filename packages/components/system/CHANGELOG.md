@@ -1,5 +1,49 @@
 # Change Log
 
+## 2.2.10
+
+### Patch Changes
+
+- [#6595](https://github.com/chakra-ui/chakra-ui/pull/6595)
+  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve style
+  resolution when components are wrapped within forced color mode elements
+  (`DarkMode`, `LightMode`).
+
+  We now dynamically attach the `data-theme` attribute to chakra elements when
+  in forced color mode.
+
+  ```jsx live=false
+  <DarkMode>
+    <chakra.div bg="gray.800" padding="40px">
+      {/* Forced: Badge will now have `data-theme='dark' attached` */}
+      <Badge>Total</Badge>
+    </chakra.div>
+  </DarkMode>
+  ```
+
+* [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+* Updated dependencies
+  [[`1ce701783`](https://github.com/chakra-ui/chakra-ui/commit/1ce701783e6cec9d22d625761403212d32feb38d),
+  [`c570b2415`](https://github.com/chakra-ui/chakra-ui/commit/c570b241522d54e203d6bd151640b34f4ef80faf),
+  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44),
+  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479)]:
+  - @chakra-ui/color-mode@2.1.8
+  - @chakra-ui/styled-system@2.3.2
+  - @chakra-ui/utils@2.0.10
+  - @chakra-ui/react-utils@2.0.7
+
 ## 2.2.9
 
 ### Patch Changes
