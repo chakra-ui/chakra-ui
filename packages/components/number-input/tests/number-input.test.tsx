@@ -233,11 +233,11 @@ test("should derive values from surrounding FormControl", () => {
   expect(onBlur).toHaveBeenCalled()
 })
 
-test("should fallback to min if `e` is typed", async () => {
+test("should reset value if `e` is typed", async () => {
   const { getByTestId, user } = renderComponent({ max: 30, min: 1 })
   const input = getByTestId("input")
   await user.type(input, "e")
   // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
-  expect(input).toHaveValue("1")
+  expect(input).toHaveValue("")
 })
