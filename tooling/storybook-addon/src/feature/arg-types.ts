@@ -106,7 +106,7 @@ export function getThemingArgTypes<
         defaultValue: component.defaultProps?.colorScheme,
       }
     }
-
-    return argTypes
   }
+
+  return argTypes
 }
