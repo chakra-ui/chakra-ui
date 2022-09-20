@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/utils"
+import { isObject } from "../../utils/is-object"
 
 const colorHueKeys = [
   "50",

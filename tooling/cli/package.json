@@ -40,7 +40,6 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/utils": "workspace:*",
     "@swc/core": "^1.2.177",
     "chokidar": "^3.5.3",
     "cli-check-node": "^1.3.4",
