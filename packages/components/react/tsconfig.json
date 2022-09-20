@@ -1,8 +1,4 @@
 {
   "extends": "../../../tsconfig.json",
-  "include": [
-    "src",
-    "index.ts",
-    "../../utilities/theme-utils/src/theme-extensions"
-  ]
+  "include": ["src", "index.ts"]
 }
