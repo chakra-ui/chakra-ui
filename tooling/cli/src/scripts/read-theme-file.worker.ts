@@ -4,9 +4,9 @@ import fs from "fs"
 import * as tsNode from "ts-node"
 import * as tsConfigPaths from "tsconfig-paths"
 import moduleAlias from "module-alias"
-import { isObject } from "@chakra-ui/utils"
 import { createThemeTypingsInterface } from "../command/tokens/create-theme-typings-interface"
 import { themeKeyConfiguration } from "../command/tokens/config"
+import { isObject } from "../utils/is-object"
 
 const bold = (text: string) => `\x1b[1m${text}\x1b[22m`
 

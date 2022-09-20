@@ -1,4 +1,3 @@
-import { isObject } from "@chakra-ui/utils"
 import { extractPropertyPaths, printUnionMap } from "./extract-property-paths"
 import {
   extractComponentTypes,
@@ -7,6 +6,7 @@ import {
 import { extractColorSchemeTypes } from "./extract-color-schemes"
 import { extractPropertyKeys } from "./extract-property-keys"
 import { formatWithPrettierIfAvailable } from "../../utils/format-with-prettier"
+import { isObject } from "../../utils/is-object"
 
 export interface ThemeKeyOptions {
   /**
