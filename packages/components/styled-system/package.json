@@ -17,9 +17,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "dist"
   ],
@@ -45,14 +43,17 @@
     "@chakra-ui/shared-utils": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
-    "@types/lodash.mergewith": "4.6.6"
+    "@types/lodash.mergewith": "4.6.6",
+    "clean-package": "2.1.1"
   },
   "sideEffects": false,
   "scripts": {
     "build": "tsup --entry src/index.ts --entry src/theming.types.ts --entry src/shared.types.ts --dts",
-    "dev": "pnpm build -- --watch",
+    "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts"
+    "build:fast": "tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   }
 }

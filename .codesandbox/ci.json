@@ -1,5 +1,5 @@
 {
-  "node": "14",
+  "node": "16",
   "sandboxes": ["/examples/create-react-app"],
   "packages": [
     "packages/components/accordion",

@@ -5,9 +5,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "types": "dist/index.d.ts",
-  "module": "dist/index.esm.js",
+  "main": "src/index.ts",
   "sideEffects": false,
   "files": [
     "dist"
@@ -31,16 +29,19 @@
     "@types/react": "^18.0.1",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
   },
   "dependencies": {
     "@chakra-ui/icon": "workspace:*"
   },
   "scripts": {
     "build": "JSX=1 tsup src/index.ts --dts",
-    "dev": "pnpm build -- --watch",
+    "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts"
+    "build:fast": "JSX=1 tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   }
 }
