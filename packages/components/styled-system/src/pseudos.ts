@@ -67,8 +67,9 @@ export const pseudoSelectors = {
    * - `&[aria-disabled=true]`
    * - `&:disabled`
    * - `&[data-disabled]`
+   * - `&[disabled]`
    */
-  _disabled: "&:disabled, &[aria-disabled=true], &[data-disabled]",
+  _disabled: "&:disabled, &[disabled], &[aria-disabled=true], &[data-disabled]",
   /**
    * Styles for CSS Selector `&:readonly`
    */
