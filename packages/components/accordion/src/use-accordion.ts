@@ -341,7 +341,7 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
 function allowMultipleWarning(props: UseAccordionProps) {
   const index = props.index || props.defaultIndex
   const condition =
-    index == null && !Array.isArray(index) && props.allowMultiple
+    index != null && !Array.isArray(index) && props.allowMultiple
 
   warn({
     condition: !!condition,
