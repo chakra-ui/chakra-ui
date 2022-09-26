@@ -19,21 +19,44 @@ export default {
   ],
 }
 
+const DEFAULT_MAX_VALUE = 40
+
 export const SliderBug = () => {
+  const [count, setCount] = React.useState(0)
+  const [max, setMax] = React.useState(true)
+
+  React.useEffect(() => {
+    const id = setTimeout(() => {
+      setMax(false)
+    }, 1000)
+
+    return () => {
+      clearTimeout(id)
+    }
+  }, [])
+
   return (
-    <Slider
-      defaultValue={10}
-      min={0}
-      max={60}
-      step={5}
-      onChangeStart={console.log}
-      onChangeEnd={console.log}
-    >
-      <SliderTrack bg="red.100">
-        <SliderFilledTrack bg="tomato" />
-      </SliderTrack>
-      <SliderThumb boxSize={6} />
-    </Slider>
+    <chakra.div display="flex" flexDirection="column" gap="8">
+      <h1>Slide max value: {max}</h1>
+      <Slider
+        aria-label="Player Progress"
+        min={0}
+        isDisabled={max}
+        defaultValue={0}
+        value={count}
+        onChange={setCount}
+        mr="20"
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+
+      <button onClick={() => setCount((count) => count + 1)}>
+        count is {count}
+      </button>
+    </chakra.div>
   )
 }
 

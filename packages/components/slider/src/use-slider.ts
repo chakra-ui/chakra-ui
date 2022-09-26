@@ -4,6 +4,7 @@ import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
 import { useControllableState } from "@chakra-ui/react-use-controllable-state"
 import { useSize } from "@chakra-ui/react-use-size"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useLatestRef } from "@chakra-ui/react-use-latest-ref"
 import type { PropGetter, RequiredPropGetter } from "@chakra-ui/react-types"
 import {
   clampValue,
@@ -109,6 +110,15 @@ export interface UseSliderProps {
   direction?: "ltr" | "rtl"
 }
 
+const defaultProps = {
+  min: 0,
+  max: 100,
+  focusThumbOnChange: true,
+  direction: "ltr",
+  orientation: "horizontal",
+  step: 1,
+}
+
 /**
  * React hook that implements an accessible range slider.
  *
@@ -119,29 +129,30 @@ export interface UseSliderProps {
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slider/
  */
 export function useSlider(props: UseSliderProps) {
+  const propsRef = useLatestRef({ ...defaultProps, ...props })
   const {
-    min = 0,
-    max = 100,
+    min,
+    max,
     onChange,
     value: valueProp,
     defaultValue,
     isReversed: isReversedProp,
-    direction = "ltr",
-    orientation = "horizontal",
+    direction,
+    orientation,
     id: idProp,
     isDisabled,
     isReadOnly,
     onChangeStart: onChangeStartProp,
     onChangeEnd: onChangeEndProp,
-    step = 1,
+    step,
     getAriaValueText: getAriaValueTextProp,
     "aria-valuetext": ariaValueText,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     name,
-    focusThumbOnChange = true,
+    focusThumbOnChange,
     ...htmlProps
-  } = props
+  } = propsRef.current
 
   const onChangeStart = useCallbackRef(onChangeStartProp)
   const onChangeEnd = useCallbackRef(onChangeEndProp)
@@ -168,6 +179,7 @@ export function useSlider(props: UseSliderProps) {
   const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
 
   const isInteractive = !(isDisabled || isReadOnly)
+  const interactiveRef = useLatestRef(isInteractive)
 
   /**
    * Constrain the value because it can't be less than min
@@ -223,17 +235,30 @@ export function useSlider(props: UseSliderProps) {
         percent = 1 - percent
       }
 
-      let nextValue = percentToValue(percent, min, max)
+      const constantProps = propsRef.current
 
-      if (step) {
-        nextValue = parseFloat(roundValueToStep(nextValue, min, step))
+      let nextValue = percentToValue(
+        percent,
+        constantProps.min,
+        constantProps.max,
+      )
+
+      if (constantProps.step) {
+        nextValue = parseFloat(
+          roundValueToStep(nextValue, constantProps.min, constantProps.step),
+        )
       }
 
-      nextValue = clampValue(nextValue, min, max)
+      nextValue = clampValue(
+        nextValue,
+        propsRef.current.min,
+        propsRef.current.max,
+      )
 
       return nextValue
     },
-    [isVertical, isReversed, max, min, step],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isVertical, isReversed],
   )
 
   const tenSteps = (max - min) / 10
@@ -241,12 +266,14 @@ export function useSlider(props: UseSliderProps) {
 
   const constrain = useCallback(
     (value: number) => {
-      if (!isInteractive) return
-      value = parseFloat(roundValueToStep(value, min, oneStep))
-      value = clampValue(value, min, max)
+      const constantProps = propsRef.current
+      if (!interactiveRef.current) return
+      value = parseFloat(roundValueToStep(value, constantProps.min, oneStep))
+      value = clampValue(value, constantProps.min, constantProps.max)
       setValue(value)
     },
-    [oneStep, max, min, setValue, isInteractive],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [oneStep, setValue],
   )
 
   const actions = useMemo(
@@ -282,8 +309,8 @@ export function useSlider(props: UseSliderProps) {
         ArrowDown: () => actions.stepDown(),
         PageUp: () => actions.stepUp(tenSteps),
         PageDown: () => actions.stepDown(tenSteps),
-        Home: () => constrain(min),
-        End: () => constrain(max),
+        Home: () => constrain(propsRef.current.min),
+        End: () => constrain(propsRef.current.max),
       }
 
       const action = keyMap[event.key]
@@ -295,7 +322,7 @@ export function useSlider(props: UseSliderProps) {
         eventSourceRef.current = "keyboard"
       }
     },
-    [actions, constrain, max, min, tenSteps],
+    [actions, constrain, tenSteps],
   )
 
   /**
@@ -318,17 +345,17 @@ export function useSlider(props: UseSliderProps) {
       const thumbRect = thumbSize ?? { width: 0, height: 0 }
       return getStyles({
         isReversed,
-        orientation,
+        orientation: propsRef.current.orientation,
         thumbRects: [thumbRect],
         thumbPercents: [thumbPercent],
       })
-    }, [isReversed, orientation, thumbSize, thumbPercent])
+    }, [isReversed, thumbSize, thumbPercent])
 
   const focusThumb = useCallback(() => {
-    if (focusThumbOnChange) {
+    if (propsRef.current.focusThumbOnChange) {
       setTimeout(() => thumbRef.current?.focus())
     }
-  }, [focusThumbOnChange])
+  }, [])
 
   useUpdateEffect(() => {
     focusThumb()
@@ -346,20 +373,20 @@ export function useSlider(props: UseSliderProps) {
 
   usePanEvent(rootRef, {
     onPanSessionStart(event) {
-      if (!isInteractive) return
+      if (!interactiveRef.current) return
       setDragging(true)
       focusThumb()
       setValueFromPointer(event)
       onChangeStart?.(valueRef.current)
     },
     onPanSessionEnd() {
-      if (!isInteractive) return
+      if (!interactiveRef.current) return
       setDragging(false)
       onChangeEnd?.(valueRef.current)
       prevRef.current = valueRef.current
     },
     onPan(event) {
-      if (!isInteractive) return
+      if (!interactiveRef.current) return
       setValueFromPointer(event)
     },
   })
@@ -422,8 +449,8 @@ export function useSlider(props: UseSliderProps) {
         id: thumbId,
         "data-active": dataAttr(isDragging),
         "aria-valuetext": valueText,
-        "aria-valuemin": min,
-        "aria-valuemax": max,
+        "aria-valuemin": propsRef.current.min,
+        "aria-valuemax": propsRef.current.max,
         "aria-valuenow": value,
         "aria-orientation": orientation,
         "aria-disabled": ariaAttr(isDisabled),
@@ -444,8 +471,6 @@ export function useSlider(props: UseSliderProps) {
       thumbId,
       isDragging,
       valueText,
-      min,
-      max,
       value,
       orientation,
       isDisabled,
@@ -459,15 +484,21 @@ export function useSlider(props: UseSliderProps) {
 
   const getMarkerProps: RequiredPropGetter<{ value: number }> = useCallback(
     (props, ref = null) => {
-      const isInRange = !(props.value < min || props.value > max)
+      const isInRange = !(
+        props.value < propsRef.current.min || props.value > propsRef.current.max
+      )
       const isHighlighted = value >= props.value
-      const markerPercent = valueToPercent(props.value, min, max)
+      const markerPercent = valueToPercent(
+        props.value,
+        propsRef.current.min,
+        propsRef.current.max,
+      )
 
       const markerStyle: React.CSSProperties = {
         position: "absolute",
         pointerEvents: "none",
         ...orient({
-          orientation,
+          orientation: propsRef.current.orientation,
           vertical: {
             bottom: isReversed
               ? `${100 - markerPercent}%`
@@ -493,7 +524,7 @@ export function useSlider(props: UseSliderProps) {
         },
       }
     },
-    [isDisabled, isReversed, max, min, orientation, value],
+    [isDisabled, isReversed, value],
   )
 
   const getInputProps: PropGetter = useCallback(
