@@ -249,7 +249,7 @@ export function useSlider(props: UseSliderProps) {
 
       return nextValue
     },
-    [isVertical, isReversed],
+    [isVertical, isReversed, stateRef],
   )
 
   const constrain = useCallback(
@@ -260,7 +260,7 @@ export function useSlider(props: UseSliderProps) {
       value = clampValue(value, state.min, state.max)
       setValue(value)
     },
-    [oneStep, setValue],
+    [oneStep, setValue, stateRef],
   )
 
   const actions = useMemo(
@@ -311,7 +311,7 @@ export function useSlider(props: UseSliderProps) {
         state.eventSource = "keyboard"
       }
     },
-    [actions, constrain, tenSteps],
+    [actions, constrain, tenSteps, stateRef],
   )
 
   /**
@@ -340,14 +340,14 @@ export function useSlider(props: UseSliderProps) {
         thumbRects: [thumbRect],
         thumbPercents: [thumbPercent],
       })
-    }, [isReversed, thumbSize, thumbPercent])
+    }, [isReversed, thumbSize, thumbPercent, stateRef])
 
   const focusThumb = useCallback(() => {
     const state = stateRef.current
     if (state.focusThumbOnChange) {
       setTimeout(() => thumbRef.current?.focus())
     }
-  }, [])
+  }, [stateRef])
 
   useUpdateEffect(() => {
     const state = stateRef.current
