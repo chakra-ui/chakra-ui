@@ -154,3 +154,27 @@ test("shows on pointerover and stays on pressing 'esc' if 'closeOnEsc' is false"
 
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 })
+
+test("does not show tooltip after delay when `isDisabled` prop changes to `true`", async () => {
+  jest.useFakeTimers()
+
+  const { rerender } = render(
+    <DummyComponent openDelay={100} isDisabled={false} />,
+  )
+
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
+
+  act(() => {
+    jest.advanceTimersByTime(50)
+  })
+
+  rerender(<DummyComponent openDelay={100} isDisabled={true} />)
+
+  act(() => {
+    jest.advanceTimersByTime(100)
+  })
+
+  expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument()
+
+  jest.useRealTimers()
+})
