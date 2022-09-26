@@ -21,13 +21,15 @@ export default {
 
 const DEFAULT_MAX_VALUE = 40
 
-export const SliderBug = () => {
+export const WithPropsUpdate = () => {
   const [count, setCount] = React.useState(0)
-  const [max, setMax] = React.useState(true)
+  const [isDisabled, setIsDisabled] = React.useState(true)
+  const [max, setMax] = React.useState(DEFAULT_MAX_VALUE)
 
   React.useEffect(() => {
     const id = setTimeout(() => {
-      setMax(false)
+      setIsDisabled(false)
+      setMax(150)
     }, 1000)
 
     return () => {
@@ -37,11 +39,14 @@ export const SliderBug = () => {
 
   return (
     <chakra.div display="flex" flexDirection="column" gap="8">
-      <h1>Slide max value: {max}</h1>
+      <h1>
+        Slide max value: {max}, isDisabled: {String(isDisabled)}
+      </h1>
       <Slider
         aria-label="Player Progress"
         min={0}
-        isDisabled={max}
+        max={max}
+        isDisabled={isDisabled}
         defaultValue={0}
         value={count}
         onChange={setCount}
@@ -57,33 +62,6 @@ export const SliderBug = () => {
         count is {count}
       </button>
     </chakra.div>
-  )
-}
-
-export const SliderOnChangeBug = () => {
-  const [value, setValue] = React.useState(10)
-  const [counter, setCounter] = React.useState(0)
-
-  return (
-    <div>
-      <Slider
-        min={0}
-        max={20}
-        step={5}
-        value={value}
-        onChange={(value) => {
-          setCounter((c) => c + 1)
-          setValue(value)
-        }}
-      >
-        <SliderTrack bg="red.100">
-          <SliderFilledTrack bg="tomato" />
-        </SliderTrack>
-        <SliderThumb boxSize={6} />
-      </Slider>
-      <chakra.div mt="10px">Value: {value}</chakra.div>
-      <chakra.div mt="10px">Change Count: {counter}</chakra.div>
-    </div>
   )
 }
 
