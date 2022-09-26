@@ -46,6 +46,7 @@
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-use-controllable-state": "workspace:*",
     "@chakra-ui/react-use-callback-ref": "workspace:*",
+    "@chakra-ui/react-use-latest-ref": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/number-utils": "workspace:*"
   },

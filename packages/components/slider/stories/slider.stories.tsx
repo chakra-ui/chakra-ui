@@ -19,48 +19,49 @@ export default {
   ],
 }
 
-export const SliderBug = () => {
-  return (
-    <Slider
-      defaultValue={10}
-      min={0}
-      max={60}
-      step={5}
-      onChangeStart={console.log}
-      onChangeEnd={console.log}
-    >
-      <SliderTrack bg="red.100">
-        <SliderFilledTrack bg="tomato" />
-      </SliderTrack>
-      <SliderThumb boxSize={6} />
-    </Slider>
-  )
-}
+const DEFAULT_MAX_VALUE = 40
 
-export const SliderOnChangeBug = () => {
-  const [value, setValue] = React.useState(10)
-  const [counter, setCounter] = React.useState(0)
+export const WithPropsUpdate = () => {
+  const [count, setCount] = React.useState(0)
+  const [isDisabled, setIsDisabled] = React.useState(true)
+  const [max, setMax] = React.useState(DEFAULT_MAX_VALUE)
+
+  React.useEffect(() => {
+    const id = setTimeout(() => {
+      setIsDisabled(false)
+      setMax(150)
+    }, 1000)
+
+    return () => {
+      clearTimeout(id)
+    }
+  }, [])
 
   return (
-    <div>
+    <chakra.div display="flex" flexDirection="column" gap="8">
+      <h1>
+        Slide max value: {max}, isDisabled: {String(isDisabled)}
+      </h1>
       <Slider
+        aria-label="Player Progress"
         min={0}
-        max={20}
-        step={5}
-        value={value}
-        onChange={(value) => {
-          setCounter((c) => c + 1)
-          setValue(value)
-        }}
+        max={max}
+        isDisabled={isDisabled}
+        defaultValue={0}
+        value={count}
+        onChange={setCount}
+        mr="20"
       >
-        <SliderTrack bg="red.100">
-          <SliderFilledTrack bg="tomato" />
+        <SliderTrack>
+          <SliderFilledTrack />
         </SliderTrack>
-        <SliderThumb boxSize={6} />
+        <SliderThumb />
       </Slider>
-      <chakra.div mt="10px">Value: {value}</chakra.div>
-      <chakra.div mt="10px">Change Count: {counter}</chakra.div>
-    </div>
+
+      <button onClick={() => setCount((count) => count + 1)}>
+        count is {count}
+      </button>
+    </chakra.div>
   )
 }
 
