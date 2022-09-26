@@ -203,6 +203,16 @@ export function useTooltip(props: UseTooltipProps = {}) {
     },
   )
 
+  useEffect(() => {
+    if (isDisabled) {
+      if (enterTimeout.current) {
+        clearTimeout(enterTimeout.current)
+        enterTimeout.current = undefined
+      }
+      if (isOpen) onClose()
+    }
+  }, [isDisabled])
+
   useEffect(
     () => () => {
       clearTimeout(enterTimeout.current)

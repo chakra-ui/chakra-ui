@@ -242,3 +242,27 @@ export const withScroll = () => (
     </Tooltip>
   </chakra.div>
 )
+
+export const withDyanmicIsDisabled = () => {
+  const [isDisabled, setIsDisabled] = React.useState(false)
+  const handleDisabled = () => setIsDisabled(true)
+  const handleEnabled = () => setIsDisabled(false)
+  return (
+    <Tooltip
+      label="Disabled after being triggered"
+      placement="bottom"
+      openDelay={500}
+      isDisabled={isDisabled}
+      hasArrow
+    >
+      <chakra.span
+        draggable
+        onDragStart={handleDisabled}
+        onDragEnd={handleEnabled}
+        cursor="grab"
+      >
+        Drag me, and you won't see
+      </chakra.span>
+    </Tooltip>
+  )
+}
