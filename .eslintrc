@@ -67,7 +67,15 @@
     "react/sort-prop-types": "error",
     "react/prop-types": "off",
     "@typescript-eslint/no-shadow": "off",
-    "react-hooks/exhaustive-deps": "error",
+    "react-hooks/exhaustive-deps": [
+      "error",
+      {
+        "staticHooks": {
+          "useLatestRef": true,
+          "useCallbackRef": true
+        }
+      }
+    ],
     "import/no-named-as-default": "off",
     "prefer-object-spread": "off",
     "arrow-body-style": "off",
