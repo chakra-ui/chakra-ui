@@ -4,6 +4,7 @@ import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
 import { useControllableState } from "@chakra-ui/react-use-controllable-state"
 import { useSize } from "@chakra-ui/react-use-size"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useLatestRef } from "@chakra-ui/react-use-latest-ref"
 import type { PropGetter, RequiredPropGetter } from "@chakra-ui/react-types"
 import {
   clampValue,
@@ -164,25 +165,35 @@ export function useSlider(props: UseSliderProps) {
 
   const [isDragging, setDragging] = useState(false)
   const [isFocused, setFocused] = useState(false)
-
-  const eventSourceRef = useRef<"pointer" | "keyboard" | null>(null)
-
   const isInteractive = !(isDisabled || isReadOnly)
+
+  const tenSteps = (max - min) / 10
+  const oneStep = step || (max - min) / 100
 
   /**
    * Constrain the value because it can't be less than min
    * or greater than max
    */
   const value = clampValue(computedValue, min, max)
-  const valueRef = useRef(-1)
-  valueRef.current = value
-  const prevRef = useRef(valueRef.current)
-
   const reversedValue = max - value + min
   const trackValue = isReversed ? reversedValue : value
   const thumbPercent = valueToPercent(trackValue, min, max)
 
   const isVertical = orientation === "vertical"
+
+  const stateRef = useLatestRef({
+    min,
+    max,
+    step,
+    isDisabled,
+    value,
+    isInteractive,
+    isReversed,
+    isVertical,
+    eventSource: null as "pointer" | "keyboard" | null,
+    focusThumbOnChange,
+    orientation,
+  })
 
   /**
    * Let's keep a reference to the slider track and thumb
@@ -208,7 +219,10 @@ export function useSlider(props: UseSliderProps) {
   const getValueFromPointer = useCallback(
     (event: any) => {
       if (!trackRef.current) return
-      eventSourceRef.current = "pointer"
+
+      const state = stateRef.current
+      state.eventSource = "pointer"
+
       const trackRect = trackRef.current.getBoundingClientRect()
       const { clientX, clientY } = event.touches?.[0] ?? event
 
@@ -223,30 +237,30 @@ export function useSlider(props: UseSliderProps) {
         percent = 1 - percent
       }
 
-      let nextValue = percentToValue(percent, min, max)
+      let nextValue = percentToValue(percent, state.min, state.max)
 
-      if (step) {
-        nextValue = parseFloat(roundValueToStep(nextValue, min, step))
+      if (state.step) {
+        nextValue = parseFloat(
+          roundValueToStep(nextValue, state.min, state.step),
+        )
       }
 
-      nextValue = clampValue(nextValue, min, max)
+      nextValue = clampValue(nextValue, state.min, state.max)
 
       return nextValue
     },
-    [isVertical, isReversed, max, min, step],
+    [isVertical, isReversed, stateRef],
   )
-
-  const tenSteps = (max - min) / 10
-  const oneStep = step || (max - min) / 100
 
   const constrain = useCallback(
     (value: number) => {
-      if (!isInteractive) return
-      value = parseFloat(roundValueToStep(value, min, oneStep))
-      value = clampValue(value, min, max)
+      const state = stateRef.current
+      if (!state.isInteractive) return
+      value = parseFloat(roundValueToStep(value, state.min, oneStep))
+      value = clampValue(value, state.min, state.max)
       setValue(value)
     },
-    [oneStep, max, min, setValue, isInteractive],
+    [oneStep, setValue, stateRef],
   )
 
   const actions = useMemo(
@@ -275,6 +289,8 @@ export function useSlider(props: UseSliderProps) {
    */
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
+      const state = stateRef.current
+
       const keyMap: Record<string, React.KeyboardEventHandler> = {
         ArrowRight: () => actions.stepUp(),
         ArrowUp: () => actions.stepUp(),
@@ -282,8 +298,8 @@ export function useSlider(props: UseSliderProps) {
         ArrowDown: () => actions.stepDown(),
         PageUp: () => actions.stepUp(tenSteps),
         PageDown: () => actions.stepDown(tenSteps),
-        Home: () => constrain(min),
-        End: () => constrain(max),
+        Home: () => constrain(state.min),
+        End: () => constrain(state.max),
       }
 
       const action = keyMap[event.key]
@@ -292,10 +308,10 @@ export function useSlider(props: UseSliderProps) {
         event.preventDefault()
         event.stopPropagation()
         action(event)
-        eventSourceRef.current = "keyboard"
+        state.eventSource = "keyboard"
       }
     },
-    [actions, constrain, max, min, tenSteps],
+    [actions, constrain, tenSteps, stateRef],
   )
 
   /**
@@ -315,51 +331,57 @@ export function useSlider(props: UseSliderProps) {
    */
   const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } =
     useMemo(() => {
+      const state = stateRef.current
+
       const thumbRect = thumbSize ?? { width: 0, height: 0 }
       return getStyles({
         isReversed,
-        orientation,
+        orientation: state.orientation,
         thumbRects: [thumbRect],
         thumbPercents: [thumbPercent],
       })
-    }, [isReversed, orientation, thumbSize, thumbPercent])
+    }, [isReversed, thumbSize, thumbPercent, stateRef])
 
   const focusThumb = useCallback(() => {
-    if (focusThumbOnChange) {
+    const state = stateRef.current
+    if (state.focusThumbOnChange) {
       setTimeout(() => thumbRef.current?.focus())
     }
-  }, [focusThumbOnChange])
+  }, [stateRef])
 
   useUpdateEffect(() => {
+    const state = stateRef.current
     focusThumb()
-    if (eventSourceRef.current === "keyboard") {
-      onChangeEnd?.(valueRef.current)
+    if (state.eventSource === "keyboard") {
+      onChangeEnd?.(state.value)
     }
   }, [value, onChangeEnd])
 
   function setValueFromPointer(event: MouseEvent | TouchEvent | PointerEvent) {
     const nextValue = getValueFromPointer(event)
-    if (nextValue != null && nextValue !== valueRef.current) {
+    if (nextValue != null && nextValue !== stateRef.current.value) {
       setValue(nextValue)
     }
   }
 
   usePanEvent(rootRef, {
     onPanSessionStart(event) {
-      if (!isInteractive) return
+      const state = stateRef.current
+      if (!state.isInteractive) return
       setDragging(true)
       focusThumb()
       setValueFromPointer(event)
-      onChangeStart?.(valueRef.current)
+      onChangeStart?.(state.value)
     },
     onPanSessionEnd() {
-      if (!isInteractive) return
+      const state = stateRef.current
+      if (!state.isInteractive) return
       setDragging(false)
-      onChangeEnd?.(valueRef.current)
-      prevRef.current = valueRef.current
+      onChangeEnd?.(state.value)
     },
     onPan(event) {
-      if (!isInteractive) return
+      const state = stateRef.current
+      if (!state.isInteractive) return
       setValueFromPointer(event)
     },
   })
@@ -467,7 +489,7 @@ export function useSlider(props: UseSliderProps) {
         position: "absolute",
         pointerEvents: "none",
         ...orient({
-          orientation,
+          orientation: orientation,
           vertical: {
             bottom: isReversed
               ? `${100 - markerPercent}%`

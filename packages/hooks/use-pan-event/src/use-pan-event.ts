@@ -1,4 +1,5 @@
 import { addPointerEvent } from "@chakra-ui/event-utils"
+import { useLatestRef } from "@chakra-ui/react-use-latest-ref"
 import { useEffect, useRef } from "react"
 import { PanEvent } from "./pan-event"
 import { AnyPointerEvent, PanEventHandler, PanEventHandlers } from "./types"
@@ -31,7 +32,7 @@ export function usePanEvent(
 
   const panSession = useRef<PanEvent | null>(null)
 
-  const handlers: Partial<PanEventHandlers> = {
+  const handlersRef = useLatestRef<Partial<PanEventHandlers>>({
     onSessionStart: onPanSessionStart,
     onSessionEnd: onPanSessionEnd,
     onStart: onPanStart,
@@ -40,22 +41,23 @@ export function usePanEvent(
       panSession.current = null
       onPanEnd?.(event, info)
     },
-  }
-
-  useEffect(() => {
-    panSession.current?.updateHandlers(handlers)
   })
 
-  function onPointerDown(event: AnyPointerEvent) {
-    panSession.current = new PanEvent(event, handlers, threshold)
-  }
+  useEffect(() => {
+    panSession.current?.updateHandlers(handlersRef.current)
+  })
 
   useEffect(() => {
     const node = ref.current
+
     if (!node || !hasPanEvents) return
+
+    function onPointerDown(event: AnyPointerEvent) {
+      panSession.current = new PanEvent(event, handlersRef.current, threshold)
+    }
+
     return addPointerEvent(node, "pointerdown", onPointerDown)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasPanEvents])
+  }, [ref, hasPanEvents, handlersRef, threshold])
 
   useEffect(() => {
     return () => {
