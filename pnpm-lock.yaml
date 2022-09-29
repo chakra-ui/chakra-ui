@@ -1175,6 +1175,7 @@ importers:
       '@chakra-ui/slider': workspace:*
       '@chakra-ui/spinner': workspace:*
       '@chakra-ui/stat': workspace:*
+      '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/switch': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/table': workspace:*
@@ -1229,6 +1230,7 @@ importers:
       '@chakra-ui/slider': link:../slider
       '@chakra-ui/spinner': link:../spinner
       '@chakra-ui/stat': link:../stat
+      '@chakra-ui/styled-system': link:../styled-system
       '@chakra-ui/switch': link:../switch
       '@chakra-ui/system': link:../system
       '@chakra-ui/table': link:../table
@@ -1599,6 +1601,7 @@ importers:
       '@chakra-ui/react-use-timeout': workspace:*
       '@chakra-ui/react-use-update-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
+      '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
       clean-package: 2.1.1
@@ -1611,6 +1614,7 @@ importers:
       '@chakra-ui/portal': link:../portal
       '@chakra-ui/react-use-timeout': link:../../hooks/use-timeout
       '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
+      '@chakra-ui/styled-system': link:../styled-system
       '@chakra-ui/theme': link:../theme
     devDependencies:
       '@chakra-ui/button': link:../button
@@ -16481,6 +16485,7 @@ packages:
     dependencies:
       '@babel/code-frame': 7.18.6
       chalk: 2.4.2
+      eslint: 8.19.0
       micromatch: 3.1.10
       minimatch: 3.1.2
       semver: 5.7.1
