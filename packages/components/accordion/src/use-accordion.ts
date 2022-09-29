@@ -41,6 +41,8 @@ export interface UseAccordionProps {
 /**
  * useAccordion hook provides all the state and focus management logic
  * for accordion items.
+ *
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
 export function useAccordion(props: UseAccordionProps) {
   const {
@@ -339,7 +341,7 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
 function allowMultipleWarning(props: UseAccordionProps) {
   const index = props.index || props.defaultIndex
   const condition =
-    index == null && !Array.isArray(index) && props.allowMultiple
+    index != null && !Array.isArray(index) && props.allowMultiple
 
   warn({
     condition: !!condition,

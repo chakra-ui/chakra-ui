@@ -26,36 +26,36 @@ const DummyComponent = (
 test("passes a11y test when hovered", async () => {
   render(<DummyComponent />)
 
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   const tooltip = await screen.findByRole("tooltip")
 
   await testA11y(tooltip)
 })
 
-test("shows on mouseover and closes on mouseleave", async () => {
+test("shows on pointerover and closes on pointerleave", async () => {
   render(<DummyComponent />)
 
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   await screen.findByRole("tooltip")
 
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
   expect(screen.getByRole("tooltip")).toBeInTheDocument()
 
-  fireEvent.mouseLeave(screen.getByText(buttonLabel))
+  fireEvent.pointerLeave(screen.getByText(buttonLabel))
 
   await waitFor(() =>
     expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument(),
   )
 })
 
-test("should not show on mouseover if isDisabled is true", async () => {
+test("should not show on pointerover if isDisabled is true", async () => {
   jest.useFakeTimers()
 
   render(<DummyComponent isDisabled />)
 
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   act(() => {
     jest.advanceTimersByTime(200)
@@ -66,12 +66,12 @@ test("should not show on mouseover if isDisabled is true", async () => {
   jest.useRealTimers()
 })
 
-test("should close on mouseleave if openDelay is set", async () => {
+test("should close on pointerleave if openDelay is set", async () => {
   jest.useFakeTimers()
 
   render(<DummyComponent openDelay={500} />)
 
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   act(() => {
     jest.advanceTimersByTime(200)
@@ -83,7 +83,7 @@ test("should close on mouseleave if openDelay is set", async () => {
   })
   expect(screen.queryByText(tooltipLabel)).toBeInTheDocument()
 
-  fireEvent.mouseLeave(screen.getByText(buttonLabel))
+  fireEvent.pointerLeave(screen.getByText(buttonLabel))
 
   act(() => {
     jest.advanceTimersByTime(200)
@@ -96,37 +96,37 @@ test("should close on mouseleave if openDelay is set", async () => {
   jest.useRealTimers()
 })
 
-test("should show on mouseover if isDisabled has a falsy value", async () => {
+test("should show on pointerover if isDisabled has a falsy value", async () => {
   render(<DummyComponent isDisabled={false} />)
 
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   await screen.findByRole("tooltip")
 
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
 })
 
-test("should close on mouseleave if shouldWrapChildren is true and child is a disabled element", async () => {
+test("should close on pointerleave if shouldWrapChildren is true and child is a disabled element", async () => {
   render(<DummyComponent shouldWrapChildren isButtonDisabled />)
 
-  fireEvent.mouseEnter(screen.getByText(buttonLabel))
+  fireEvent.pointerEnter(screen.getByText(buttonLabel))
 
   await screen.findByRole("tooltip")
 
   const wrapper = screen.getByText(buttonLabel).parentElement
   expect(wrapper).not.toBeNull()
 
-  fireEvent.mouseLeave(wrapper!)
+  fireEvent.pointerLeave(wrapper!)
 
   await waitFor(() =>
     expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument(),
   )
 })
 
-test("shows on mouseover and closes on pressing 'esc'", async () => {
+test("shows on pointerover and closes on pressing 'esc'", async () => {
   const { user } = render(<DummyComponent />)
 
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   await screen.findByRole("tooltip")
 
@@ -140,10 +140,10 @@ test("shows on mouseover and closes on pressing 'esc'", async () => {
   )
 })
 
-test("shows on mouseover and stays on pressing 'esc' if 'closeOnEsc' is false", async () => {
+test("shows on pointerover and stays on pressing 'esc' if 'closeOnEsc' is false", async () => {
   const { user } = render(<DummyComponent closeOnEsc={false} />)
 
-  fireEvent.mouseOver(screen.getByText(buttonLabel))
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   await screen.findByRole("tooltip")
 

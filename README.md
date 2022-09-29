@@ -5,7 +5,6 @@
 </p>
 
 <h1 align="center">Build Accessible React Apps with Speed ⚡️</h1>
-
 <br>
 
 <p align="center">
@@ -18,6 +17,7 @@
     <img alt="Discord" src="https://img.shields.io/discord/660863154703695893.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" />
   </a>
 </p>
+
 <br />
 
 Chakra UI provides a set of accessible, reusable, and composable React

@@ -10,7 +10,6 @@ export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
   const styles = useMenuStyles()
   return (
     <chakra.hr
-      role="separator"
       aria-orientation="horizontal"
       className={cx("chakra-menu__divider", className)}
       {...rest}

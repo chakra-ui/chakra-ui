@@ -25,6 +25,8 @@ const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
 
 /**
  * The trigger for the menu list. Must be a direct child of `Menu`.
+ *
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
  */
 export const MenuButton = forwardRef<MenuButtonProps, "button">(
   (props, ref) => {

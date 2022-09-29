@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.1.12
+
+### Patch Changes
+
+- [#6657](https://github.com/chakra-ui/chakra-ui/pull/6657)
+  [`e62697467`](https://github.com/chakra-ui/chakra-ui/commit/e62697467fea03c9a6035ed67a635f9dc72bc471)
+  Thanks [@Aexylus](https://github.com/Aexylus)! - Fix incorrect Select `xs`
+  sizing
+
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@2.0.11
+
+## 2.1.11
+
+### Patch Changes
+
+- [#6605](https://github.com/chakra-ui/chakra-ui/pull/6605)
+  [`7d7e04d53`](https://github.com/chakra-ui/chakra-ui/commit/7d7e04d53d871e324debe0a2cb3ff44d7dbf3bca)
+  Thanks [@yjkwon07](https://github.com/yjkwon07)! - Fix tooltip theme
+
 ## 2.1.10
 
 ### Patch Changes

@@ -84,6 +84,11 @@ const bgFade = keyframes({
   to: { borderColor: endColor, background: endColor },
 })
 
+/**
+ * `Skeleton` is used to display the loading state of some component.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/skeleton
+ */
 export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const styles = useStyleConfig("Skeleton", props)
   const isFirstRender = useIsFirstRender()
@@ -152,6 +157,11 @@ export interface SkeletonTextProps extends SkeletonProps {
 
 const defaultNoOfLines = 3
 
+/**
+ * `SkeletonText` is used to display the loading state in the form of text.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/skeleton
+ */
 export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
   const {
     noOfLines = defaultNoOfLines,
@@ -221,6 +231,11 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
 
 SkeletonText.displayName = "SkeletonText"
 
+/**
+ * `SkeletonCircle` is used to display the loading state in the form of a circular avatar.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/skeleton
+ */
 export const SkeletonCircle: React.FC<SkeletonProps> = ({
   size = "2rem",
   ...rest

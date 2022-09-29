@@ -49,6 +49,9 @@ export interface TabsProps
  * Tabs
  *
  * Provides context and logic for all tabs components.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/tabs
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
  */
 export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   const styles = useMultiStyleConfig("Tabs", props)

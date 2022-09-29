@@ -11,6 +11,8 @@ export type UseMediaQueryOptions = {
  *
  * @param query the media query to match
  * @param options the media query options { fallback, ssr }
+ *
+ * @see Docs https://chakra-ui.com/docs/hooks/use-media-query
  */
 export function useMediaQuery(
   query: string | string[],

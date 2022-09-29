@@ -176,7 +176,7 @@ export const WithLoadingSpinnerPlacement = () => (
 
 export const WithDisabled = () => (
   <HStack spacing="24px">
-    <Button isDisabled colorScheme="teal" variant="solid">
+    <Button as="div" isDisabled colorScheme="teal" variant="solid">
       Button
     </Button>
     <Button isDisabled colorScheme="teal" variant="outline">

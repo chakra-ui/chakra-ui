@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- [`ef722cac8`](https://github.com/chakra-ui/chakra-ui/commit/ef722cac8d1428bcca636c10ce5c2f95cb324b11)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  input spins unexpectedly on right clicking the increment or decrement button
+  with a pointer.
+
+  Now, only left click (or primary button) will trigger a value change.
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.10
+  - @chakra-ui/icon@3.0.10
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/form-control@2.0.10
+  - @chakra-ui/icon@3.0.10
+
 ## 2.0.9
 
 ### Patch Changes

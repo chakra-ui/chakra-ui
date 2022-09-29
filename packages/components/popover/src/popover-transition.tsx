@@ -16,13 +16,14 @@ type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<
     | "onDragStart"
     | "onAnimationStart"
     | "variants"
+    | "transition"
   > & {
     variants?: MotionVariants
   }
 
 type MotionVariants = Partial<Record<"enter" | "exit", Variant>>
 
-function mergeVariants(variants?: MotionVariants) {
+function mergeVariants(variants?: MotionVariants): any {
   if (!variants) return
   return {
     enter: {
@@ -57,29 +58,26 @@ const scaleFade: MotionVariants = {
   },
 }
 
-const Section = motion(chakra.section)
+const MotionSection = chakra(motion.section)
 
 export interface PopoverTransitionProps
   extends HTMLMotionChakraProps<"section"> {}
 
 export const PopoverTransition = forwardRef(function PopoverTransition(
-  props: HTMLMotionChakraProps<"section">,
+  props: PopoverTransitionProps,
   ref: React.Ref<any>,
 ) {
+  const { variants = scaleFade, ...rest } = props
   const { isOpen } = usePopoverContext()
   return (
-    <Section
+    <MotionSection
       ref={ref}
-      variants={mergeVariants(props.variants)}
-      {...props}
+      variants={mergeVariants(variants)}
       initial={false}
       animate={isOpen ? "enter" : "exit"}
+      {...rest}
     />
   )
-}) as React.ComponentType<HTMLMotionChakraProps<"section">>
-
-PopoverTransition.defaultProps = {
-  variants: scaleFade,
-}
+})
 
 PopoverTransition.displayName = "PopoverTransition"

@@ -1,5 +1,16 @@
 # @chakra-ui/dom-utils
 
+## 2.0.2
+
+### Patch Changes
+
+- [#6700](https://github.com/chakra-ui/chakra-ui/pull/6700)
+  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)
+  Thanks [@sei0603](https://github.com/sei0603)! - Update disabled selector to
+  use state selector `:disabled`, instead of `[disabled]` attribute selector.
+  This is useful when an editable element is wrapped within
+  `<fieldset disabled>`
+
 ## 2.0.1
 
 ### Patch Changes

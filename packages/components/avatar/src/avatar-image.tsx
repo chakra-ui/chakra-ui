@@ -17,6 +17,7 @@ export function AvatarImage(props: AvatarImageProps) {
     src,
     srcSet,
     onError,
+    onLoad,
     getInitials,
     name,
     borderRadius,
@@ -66,6 +67,7 @@ export function AvatarImage(props: AvatarImageProps) {
       src={src}
       srcSet={srcSet}
       alt={name}
+      onLoad={onLoad}
       referrerPolicy={referrerPolicy}
       className="chakra-avatar__img"
       loading={loading}

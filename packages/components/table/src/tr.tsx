@@ -5,5 +5,5 @@ export interface TableRowProps extends HTMLChakraProps<"tr"> {}
 export const Tr = forwardRef<TableRowProps, "tr">((props, ref) => {
   const styles = useTableStyles()
 
-  return <chakra.tr role="row" {...props} ref={ref} __css={styles.tr} />
+  return <chakra.tr {...props} ref={ref} __css={styles.tr} />
 })

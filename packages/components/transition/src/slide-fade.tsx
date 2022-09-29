@@ -7,7 +7,7 @@ import {
 } from "framer-motion"
 import { forwardRef } from "react"
 import {
-  TransitionDefaults,
+  TRANSITION_DEFAULTS,
   Variants,
   withDelay,
   WithTransitionConfig,
@@ -38,7 +38,7 @@ const variants: Variants<SlideFadeOptions> = {
     x: offsetX,
     y: offsetY,
     transition:
-      transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+      transition?.exit ?? withDelay.exit(TRANSITION_DEFAULTS.exit, delay),
     transitionEnd: transitionEnd?.exit,
   }),
   enter: ({ transition, transitionEnd, delay }) => ({
@@ -46,7 +46,7 @@ const variants: Variants<SlideFadeOptions> = {
     x: 0,
     y: 0,
     transition:
-      transition?.enter ?? withDelay.enter(TransitionDefaults.enter, delay),
+      transition?.enter ?? withDelay.enter(TRANSITION_DEFAULTS.enter, delay),
     transitionEnd: transitionEnd?.enter,
   }),
   exit: ({ offsetY, offsetX, transition, transitionEnd, reverse, delay }) => {
@@ -54,7 +54,7 @@ const variants: Variants<SlideFadeOptions> = {
     return {
       opacity: 0,
       transition:
-        transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+        transition?.exit ?? withDelay.exit(TRANSITION_DEFAULTS.exit, delay),
       ...(reverse
         ? { ...offset, transitionEnd: transitionEnd?.exit }
         : { transitionEnd: { ...offset, ...transitionEnd?.exit } }),

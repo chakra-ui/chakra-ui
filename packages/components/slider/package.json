@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/slider",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Accessible slider component for React that implements <input type=range>",
   "keywords": [
     "react",
@@ -23,9 +23,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "dist"
   ],
@@ -48,6 +46,7 @@
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-use-controllable-state": "workspace:*",
     "@chakra-ui/react-use-callback-ref": "workspace:*",
+    "@chakra-ui/react-use-latest-ref": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/number-utils": "workspace:*"
   },
@@ -57,7 +56,8 @@
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/provider": "workspace:*",
     "@emotion/styled": "^11.8.1",
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
@@ -65,9 +65,11 @@
   },
   "scripts": {
     "build": "JSX=1 tsup src/index.ts --dts",
-    "dev": "pnpm build -- --watch",
+    "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts"
+    "build:fast": "JSX=1 tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   }
 }

@@ -36,7 +36,7 @@ function buildRegex(query: string[]) {
 function highlightWords({ text, query }: Options): Chunk[] {
   const regex = buildRegex(Array.isArray(query) ? query : [query])
   if (!regex) {
-    return []
+    return [{ text, match: false }]
   }
   const result = text.split(regex).filter(Boolean)
   return result.map((str) => ({ text: str, match: regex.test(str) }))
@@ -68,6 +68,11 @@ export const Mark = forwardRef<MarkProps, "mark">(function Mark(props, ref) {
   )
 })
 
+/**
+ * `Highlight` allows you to highlight substrings of a text.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/highlight
+ */
 export function Highlight(props: HighlightProps): JSX.Element {
   const { children, query, styles } = props
 

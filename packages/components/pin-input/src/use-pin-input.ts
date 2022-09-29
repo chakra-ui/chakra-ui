@@ -178,7 +178,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
   )
 
   const setValue = useCallback(
-    (value: string, index: number) => {
+    (value: string, index: number, handleFocus: boolean = true) => {
       const nextValues = [...values]
       nextValues[index] = value
       setValues(nextValues)
@@ -193,7 +193,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
       if (isComplete) {
         onComplete?.(nextValues.join(""))
       } else {
-        focusNext(index)
+        if (handleFocus) focusNext(index)
       }
     },
     [values, setValues, focusNext, onComplete, descendants],
@@ -267,7 +267,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
           if ((event.target as HTMLInputElement).value === "") {
             const prevInput = descendants.prev(index, false)
             if (prevInput) {
-              setValue("", index - 1)
+              setValue("", index - 1, false)
               prevInput.node?.focus()
               setMoveFocus(true)
             }

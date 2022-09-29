@@ -1,5 +1,27 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
+  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
+  `framer-motion` elements via the `motionProps` prop.
+
+### Patch Changes
+
+- [#6653](https://github.com/chakra-ui/chakra-ui/pull/6653)
+  [`3a79a92ef`](https://github.com/chakra-ui/chakra-ui/commit/3a79a92efcee9d5218cc6eff1d8cc69a9247ccd0)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Fixed issue where
+  disabled tooltip triggers require an extra wrapper (via `shouldWrapChildren).
+  This was fixed by switching from mouse events to pointer events
+- Updated dependencies
+  [[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/react-use-disclosure@2.0.4
+  - @chakra-ui/portal@2.0.9
+  - @chakra-ui/popper@3.0.7
+
 ## 2.0.10
 
 ### Patch Changes

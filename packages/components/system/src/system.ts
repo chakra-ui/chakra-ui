@@ -1,3 +1,4 @@
+import { useColorMode } from "@chakra-ui/color-mode"
 import {
   css,
   isStyleProp,
@@ -9,6 +10,7 @@ import emotionStyled, {
   CSSObject,
   FunctionInterpolation,
 } from "@emotion/styled"
+import React from "react"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"
@@ -77,10 +79,24 @@ export function styled<T extends As, P = {}>(
   }
 
   const styleObject = toCSSObject({ baseStyle })
-  return emotionStyled(
+  const Component = emotionStyled(
     component as React.ComponentType<any>,
     styledOptions,
-  )(styleObject) as ChakraComponent<T, P>
+  )(styleObject)
+
+  const chakraComponent = React.forwardRef(function ChakraComponent(
+    props,
+    ref,
+  ) {
+    const { colorMode, forced } = useColorMode()
+    return React.createElement(Component, {
+      ref,
+      "data-theme": forced ? colorMode : undefined,
+      ...props,
+    })
+  })
+
+  return chakraComponent as ChakraComponent<T, P>
 }
 
 export type HTMLChakraComponents = {
