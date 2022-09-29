@@ -1,5 +1,4 @@
-import { Box, BoxProps, Heading } from "@chakra-ui/layout"
-import { Button } from "@chakra-ui/button"
+import { Box, BoxProps, Heading, Link } from "@chakra-ui/layout"
 import { forwardRef, ThemeProvider, useTheme } from "@chakra-ui/system"
 import { mergeWith } from "@chakra-ui/utils"
 import * as React from "react"
@@ -110,7 +109,7 @@ export const WithMotionPreset = () => {
         production
       </Box>
 
-      <Button onClick={() => setLoading(true)}>Refresh</Button>
+      <Link onClick={() => setLoading(true)}>Refresh</Link>
 
       <LoadingOverlay
         variant="overlay"
