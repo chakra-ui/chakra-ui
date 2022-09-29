@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#6721](https://github.com/chakra-ui/chakra-ui/pull/6721)
+  [`15c86d5d6`](https://github.com/chakra-ui/chakra-ui/commit/15c86d5d655a349a8ecb802c51d7ee243902833d)
+  Thanks [@anubra266](https://github.com/anubra266)! - Added `closeOnScroll`
+  prop to allow closing tooltip when the page or overflow container scrolls.
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+- Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/popper@3.0.8
+  - @chakra-ui/portal@2.0.10
+  - @chakra-ui/react-use-disclosure@2.0.5
+  - @chakra-ui/react-use-event-listener@2.0.4
+  - @chakra-ui/react-use-merge-refs@2.0.4
+
 ## 2.1.0
 
 ### Minor Changes
