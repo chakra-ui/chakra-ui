@@ -33,6 +33,7 @@
     "@chakra-ui/portal": "workspace:*",
     "@chakra-ui/react-use-update-effect": "workspace:*",
     "@chakra-ui/react-use-timeout": "workspace:*",
+    "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/theme": "workspace:*"
   },
   "devDependencies": {
