@@ -88,7 +88,7 @@ export const WithMotionPreset = () => {
   const [isLoading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
-    let timeout
+    let timeout: ReturnType<typeof setTimeout>
     if (isLoading) {
       timeout = setTimeout(() => {
         setLoading(false)
