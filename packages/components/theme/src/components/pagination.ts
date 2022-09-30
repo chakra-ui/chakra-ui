@@ -92,13 +92,18 @@ const baseStyleItem = defineStyle({
   },
 })
 
+const baseStylePrevNextItem = defineStyle({
+  ...baseStyleItem,
+  px: "2",
+})
+
 const baseStyle = definePartsStyle({
   root: baseStyleRoot,
   list: baseStyleList,
   ellipsis: baseStyleEllipsis,
   item: baseStyleItem,
-  prevItem: baseStyleItem,
-  nextItem: baseStyleItem,
+  prevItem: baseStylePrevNextItem,
+  nextItem: baseStylePrevNextItem,
 })
 
 export const paginationTheme = defineMultiStyleConfig({
