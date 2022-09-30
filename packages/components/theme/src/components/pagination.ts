@@ -25,27 +25,61 @@ const baseStyleEllipsis = defineStyle({
 })
 
 const baseStyleItem = defineStyle({
-  border: "1px solid",
-  [$borderColor.variable]: "colors.gray.200",
-  borderColor: $borderColor.reference,
   h: "10",
   minW: "10",
   fontSize: "md",
   px: "4",
 
+  display: "inline-flex",
+  appearance: "none",
+  alignItems: "center",
+  justifyContent: "center",
+  userSelect: "none",
+  position: "relative",
+  whiteSpace: "nowrap",
+  verticalAlign: "middle",
+  outline: "none",
+
+  lineHeight: "1.2",
+  borderRadius: "md",
+  fontWeight: "semibold",
+  transitionProperty: "common",
+  transitionDuration: "normal",
+  _focusVisible: {
+    boxShadow: "outline",
+  },
+
+  border: "1px solid",
+  [$borderColor.variable]: "colors.gray.200",
+  borderColor: $borderColor.reference,
+
   [$color.variable]: "inherit",
+
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+    boxShadow: "none",
+  },
 
   _hover: {
     [$bg.variable]: "colors.gray.100",
     _dark: {
       [$bg.variable]: "colors.whiteAlpha.200",
     },
+    _disabled: {
+      bg: "initial",
+    },
   },
   _selected: {
-    [$color.variable]: "white",
-    [$bg.variable]: "colors.gray.500",
-    _dark: {
+    [$bg.variable]: "colors.gray.100",
+    _hover: {
       [$bg.variable]: "colors.gray.200",
+      _dark: {
+        [$bg.variable]: "colors.whiteAlpha.300",
+      },
+    },
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.200",
       [$color.variable]: "colors.gray.800",
     },
   },
@@ -63,6 +97,8 @@ const baseStyle = definePartsStyle({
   list: baseStyleList,
   ellipsis: baseStyleEllipsis,
   item: baseStyleItem,
+  prevItem: baseStyleItem,
+  nextItem: baseStyleItem,
 })
 
 export const paginationTheme = defineMultiStyleConfig({

@@ -42,11 +42,11 @@ export const Basic = () => {
               &gt;
             </PaginationNextItem>
           </PaginationList>
-          <div>
+          <chakra.div mt="4">
             <span>
               {currentPage} of {totalPages} pages
             </span>
-          </div>
+          </chakra.div>
         </div>
       )}
     </Pagination>
