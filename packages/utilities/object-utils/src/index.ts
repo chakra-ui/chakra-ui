@@ -19,7 +19,7 @@ export function omit<T extends Record<any, any>, K extends keyof T>(
 
 export function pick<T extends Record<any, any>, K extends keyof T>(
   object: T,
-  keysToPick: K[],
+  keysToPick: K[] | ReadonlyArray<K>,
 ) {
   const result = {} as { [P in K]: T[P] }
   for (const key of keysToPick) {

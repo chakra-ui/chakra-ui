@@ -92,6 +92,15 @@ export const numberInputAnatomy = anatomy("numberinput").parts(
   "stepper",
 )
 
+export const paginationAnatomy = anatomy("pagination").parts(
+  "root",
+  "list",
+  "prevItem",
+  "nextItem",
+  "ellipsis",
+  "item",
+)
+
 export const pinInputAnatomy = anatomy("pininput").parts("field")
 
 export const popoverAnatomy = anatomy("popover")

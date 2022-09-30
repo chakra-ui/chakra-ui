@@ -22,6 +22,7 @@ import { listTheme } from "./list"
 import { menuTheme } from "./menu"
 import { modalTheme } from "./modal"
 import { numberInputTheme } from "./number-input"
+import { paginationTheme } from "./pagination"
 import { pinInputTheme } from "./pin-input"
 import { popoverTheme } from "./popover"
 import { progressTheme } from "./progress"
@@ -63,6 +64,7 @@ export { listTheme as List } from "./list"
 export { menuTheme as Menu } from "./menu"
 export { modalTheme as Modal } from "./modal"
 export { numberInputTheme as NumberInput } from "./number-input"
+export { paginationTheme as Pagination } from "./pagination"
 export { pinInputTheme as PinInput } from "./pin-input"
 export { popoverTheme as Popover } from "./popover"
 export { progressTheme as Progress } from "./progress"
@@ -105,6 +107,7 @@ export const components = {
   Menu: menuTheme,
   Modal: modalTheme,
   NumberInput: numberInputTheme,
+  Pagination: paginationTheme,
   PinInput: pinInputTheme,
   Popover: popoverTheme,
   Progress: progressTheme,

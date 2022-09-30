@@ -1,0 +1,72 @@
+{
+  "name": "@chakra-ui/pagination",
+  "version": "2.2.0",
+  "description": "A React Pagination component for use in forms",
+  "keywords": [
+    "react",
+    "pagination",
+    "custom-pagination",
+    "pagination-hook",
+    "react hook",
+    "navigation",
+    "chakra-ui",
+    "use-pagination",
+    "use-pagination"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/pagination"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/form-control": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-types": "workspace:*",
+    "@chakra-ui/react-use-callback-ref": "workspace:*",
+    "@chakra-ui/react-use-controllable-state": "workspace:*",
+    "@chakra-ui/react-use-merge-refs": "workspace:*",
+    "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
+    "@chakra-ui/react-use-update-effect": "workspace:*",
+    "@chakra-ui/visually-hidden": "workspace:*",
+    "@zag-js/pagination": "dev",
+    "@zag-js/react": "dev"
+  },
+  "devDependencies": {
+    "@chakra-ui/icon": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "clean-package": "2.1.1",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  }
+}
