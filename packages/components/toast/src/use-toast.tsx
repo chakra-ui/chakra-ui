@@ -1,5 +1,5 @@
 import type { AlertStatus } from "@chakra-ui/alert"
-import { ThemingProps, useChakra } from "@chakra-ui/system"
+import { StyleProps, ThemingProps, useChakra } from "@chakra-ui/system"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
 import { createToastFn, CreateToastFnReturn } from "./toast"
 import { ToastPosition } from "./toast.placement"
@@ -58,8 +58,10 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   /**
    * Optional style overrides for the container wrapping the toast component.
    */
-  containerStyle?: React.CSSProperties
+  containerStyle?: StyleProps
 }
+
+console.log("a", a)
 
 /**
  * React hook used to create a function that can be used
