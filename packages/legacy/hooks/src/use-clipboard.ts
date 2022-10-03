@@ -15,7 +15,7 @@ export interface UseClipboardOptions {
 /**
  * React hook to copy content to clipboard
  *
- * @param text the text or value to copy
+ * @param initialValue the text or value to copy
  * @param {Number} [optionsOrTimeout=1500] optionsOrTimeout - delay (in ms) to switch back to initial state once copied.
  * @param {Object} optionsOrTimeout
  * @param {string} optionsOrTimeout.format - set the desired MIME type
@@ -24,10 +24,12 @@ export interface UseClipboardOptions {
  * @see Docs https://chakra-ui.com/docs/hooks/use-clipboard
  */
 export function useClipboard(
-  text: string,
+  initialValue: string,
   optionsOrTimeout: number | UseClipboardOptions = {},
 ) {
   const [hasCopied, setHasCopied] = useState(false)
+
+  const [value, setValue] = useState(initialValue)
 
   const { timeout = 1500, ...copyOptions } =
     typeof optionsOrTimeout === "number"
@@ -35,9 +37,9 @@ export function useClipboard(
       : optionsOrTimeout
 
   const onCopy = useCallback(() => {
-    const didCopy = copy(text, copyOptions)
+    const didCopy = copy(value, copyOptions)
     setHasCopied(didCopy)
-  }, [text, copyOptions])
+  }, [value, copyOptions])
 
   useEffect(() => {
     let timeoutId: number | null = null
@@ -55,5 +57,5 @@ export function useClipboard(
     }
   }, [timeout, hasCopied])
 
-  return { value: text, onCopy, hasCopied }
+  return { value, setValue, onCopy, hasCopied }
 }

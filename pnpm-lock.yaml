@@ -13942,7 +13942,6 @@ packages:
       eslint-plugin-react: 7.30.1_eslint@8.19.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.19.0
       eslint-plugin-testing-library: 5.5.1_eslint@8.19.0+typescript@4.7.4
-      typescript: 4.7.4
     transitivePeerDependencies:
       - '@babel/plugin-syntax-flow'
       - '@babel/plugin-transform-react-jsx'
@@ -13977,7 +13976,6 @@ packages:
       eslint-plugin-react: 7.30.1_eslint@8.19.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.19.0
       eslint-plugin-testing-library: 5.5.1_eslint@8.19.0+typescript@4.7.4
-      typescript: 4.7.4
     transitivePeerDependencies:
       - '@babel/plugin-syntax-flow'
       - '@babel/plugin-transform-react-jsx'

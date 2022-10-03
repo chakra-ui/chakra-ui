@@ -28,3 +28,30 @@ test.each`
   expect(copy).toBeCalledWith(text, {})
   expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), expected)
 })
+
+test("sets new copy value", () => {
+  ;(copy as jest.Mock).mockReturnValue(true)
+
+  const { result } = hooks.render(() => useClipboard(text))
+
+  hooks.act(() => {
+    result.current.onCopy()
+  })
+
+  expect(copy).toBeCalledWith(text, {})
+  expect(result.current.value).toBe(text)
+
+  const newText = "dolor sit amet"
+
+  hooks.act(() => {
+    result.current.setValue(newText)
+  })
+
+  expect(result.current.value).toBe(newText)
+
+  hooks.act(() => {
+    result.current.onCopy()
+  })
+
+  expect(copy).toBeCalledWith(newText, {})
+})
