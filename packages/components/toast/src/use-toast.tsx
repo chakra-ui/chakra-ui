@@ -61,8 +61,6 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   containerStyle?: StyleProps
 }
 
-console.log("a", a)
-
 /**
  * React hook used to create a function that can be used
  * to show toasts in an application.
