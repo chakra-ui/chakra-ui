@@ -1,5 +1,93 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- [`ec23eb020`](https://github.com/chakra-ui/chakra-ui/commit/ec23eb02066628d28f85c2c515fba4d0c0120601)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow user optin to
+  the 100vh polyfill because it's only useful in absolute or fixed layout modes.
+
+  Chakra new polyfills the `100vh` attribute to use either the literal `100vh`
+  or `-webkit-fill-available` where supported. To use this feature, set the
+  height values to `$100vh` instead of `100vh`.
+
+  ```jsx live=false
+  // Might not work in all cases
+  <Box minHeight="100vh" position="absolute">
+    Test
+  </Box>
+
+  // Polyfilled version ensures 100vh work correctly
+  <Box minHeight="$100vh" position="absolute">
+    Test
+  </Box>
+  ```
+
+## 2.3.0
+
+### Minor Changes
+
+- [#6221](https://github.com/chakra-ui/chakra-ui/pull/6221)
+  [`872c0ccf5`](https://github.com/chakra-ui/chakra-ui/commit/872c0ccf56d927d49af02a8a4d6bb6811774eff7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `defineStyle`
+  and `defineStyleConfig` to improve the TypeScript authoring experience of
+  style objects and single part component themes.
+
+  ```jsx live=false
+  import { defineStyleConfig, defineStyle } from "@chakra-ui/styled-system"
+
+  // authoring style objects
+  const style = defineStyle({
+    marginTop: "20px",
+  })
+
+  // authoring style configs for single part component
+  const button = defineStyleConfig({
+    baseStyle: {},
+    variants: {},
+    defaultProps: {},
+  })
+  ```
+
+  Add `createMultiStyleConfigHelpers` factory that provides functions that help
+  improve the TypeScript authoring experience of multipart component themes.
+
+  ```jsx live=false
+  import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-sytem"
+
+  // create scoped helpers for that defined parts
+  const helpers = createMultiStyleConfigHelpers(["button", "label"])
+  const { definePartsStyle, defineMultiStyleConfig } = helpers
+
+  // authoring styles for each part
+  const outlineVariant = definePartsStyle({
+    button: {},
+    label: {},
+  })
+
+  // authoring styles for multipart component
+  const accordion = defineMultiStyleConfig({
+    baseStyle: {
+      button: {},
+      label: {},
+    },
+    variants: {
+      outline: outlineVariant,
+    },
+  })
+  ```
+
+### Patch Changes
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
 ## 2.2.8
 
 ### Patch Changes

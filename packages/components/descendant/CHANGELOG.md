@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.9
+
+### Patch Changes
+
+- [#6573](https://github.com/chakra-ui/chakra-ui/pull/6573)
+  [`260076e2a`](https://github.com/chakra-ui/chakra-ui/commit/260076e2ac6165c8079c800475b9d7a9ca0f29a2)
+  Thanks [@EduSantosBrito](https://github.com/EduSantosBrito)! - Fix issue where
+  generic type contraints throws in TypeScript 4.8+
+
 ## 3.0.8
 
 ### Patch Changes

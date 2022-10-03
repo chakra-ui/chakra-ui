@@ -1,5 +1,30 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`e8f634e0d`](https://github.com/chakra-ui/chakra-ui/commit/e8f634e0d56a9d994aa139c7a36add3d30ede11f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  changing avatar badge placement.
+
+  The badge placement can be set to `top-start`, `top-end`, `bottom-start` or
+  `bottom-end`.
+
+  ```jsx live=false
+  <Avatar
+    name="Uchiha Itachi"
+    src="https://uinames.com/api/photos/female/18.jpg"
+  >
+    <AvatarBadge placement="top-start" />
+  </Avatar>
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.10
+
 ## 2.0.10
 
 ### Patch Changes

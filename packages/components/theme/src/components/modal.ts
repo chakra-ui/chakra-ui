@@ -87,7 +87,7 @@ function getSize(value: string) {
     return definePartsStyle({
       dialog: {
         maxW: "100vw",
-        minH: "100vh",
+        minH: "$100vh",
         my: "0",
         borderRadius: "0",
       },

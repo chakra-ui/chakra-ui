@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.10
+
+### Patch Changes
+
+- [`5e6c3fd65`](https://github.com/chakra-ui/chakra-ui/commit/5e6c3fd652446540a3e9825c0d0f1f556d2e17b8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow slider mark
+  to be themable
+
+- Updated dependencies []:
+  - @chakra-ui/react-use-pan-event@2.0.4
+
 ## 2.0.9
 
 ### Patch Changes

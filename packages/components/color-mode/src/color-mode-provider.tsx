@@ -110,6 +110,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       colorMode: value ?? (resolvedValue as ColorMode),
       toggleColorMode: value ? noop : toggleColorMode,
       setColorMode: value ? noop : setColorMode,
+      forced: value !== undefined,
     }),
     [resolvedValue, toggleColorMode, setColorMode, value],
   )
@@ -132,6 +133,7 @@ export function DarkMode(props: React.PropsWithChildren<{}>) {
       colorMode: "dark",
       toggleColorMode: noop,
       setColorMode: noop,
+      forced: true,
     }),
     [],
   )
@@ -150,6 +152,7 @@ export function LightMode(props: React.PropsWithChildren<{}>) {
       colorMode: "light",
       toggleColorMode: noop,
       setColorMode: noop,
+      forced: true,
     }),
     [],
   )

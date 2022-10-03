@@ -726,8 +726,8 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
 
       if (type === "checkbox" && Array.isArray(value)) {
         const nextValue = value.includes(selectedValue)
-          ? value.filter((eachItem) => eachItem !== selectedValue)
-          : [...selectedValue, selectedValue]
+          ? value.filter((item) => item !== selectedValue)
+          : value.concat(selectedValue)
 
         setValue(nextValue)
       }

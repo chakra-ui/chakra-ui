@@ -1,9 +1,9 @@
+import { useAnimationState } from "@chakra-ui/react-use-animation-state"
+import { useFocusOnPointerDown } from "@chakra-ui/react-use-focus-on-pointer-down"
 import {
   useFocusOnHide,
-  useFocusOnPointerDown,
   useFocusOnShow,
-  useAnimationState,
-} from "@chakra-ui/hooks"
+} from "@chakra-ui/react-use-focus-effect"
 import { useDisclosure } from "@chakra-ui/react-use-disclosure"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { DOMAttributes, PropGetter } from "@chakra-ui/react-types"

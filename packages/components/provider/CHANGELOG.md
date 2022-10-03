@@ -1,5 +1,31 @@
 # @chakra-ui/provider
 
+## 2.0.16
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cc0598ddc`](https://github.com/chakra-ui/chakra-ui/commit/cc0598ddcb2a4e7f84859099556c228c5ff354fe)]:
+  - @chakra-ui/css-reset@2.0.7
+  - @chakra-ui/system@2.2.9
+
+## 2.0.15
+
+### Patch Changes
+
+- [#6559](https://github.com/chakra-ui/chakra-ui/pull/6559)
+  [`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactors the theme
+  to use design tokens and css variables as much as possible.
+
+  Improve support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
+- Updated dependencies
+  [[`0cae42007`](https://github.com/chakra-ui/chakra-ui/commit/0cae42007308e94ef9a9fdbae3de259871ca33be)]:
+  - @chakra-ui/css-reset@2.0.6
+  - @chakra-ui/system@2.2.8
+
 ## 2.0.14
 
 ### Patch Changes
