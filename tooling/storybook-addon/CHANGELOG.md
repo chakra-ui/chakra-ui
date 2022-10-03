@@ -1,5 +1,22 @@
 # @chakra-ui/storybook-addon
 
+## 4.0.12
+
+### Patch Changes
+
+- [#6726](https://github.com/chakra-ui/chakra-ui/pull/6726)
+  [`22968783f`](https://github.com/chakra-ui/chakra-ui/commit/22968783f509bca1b4196d7d1772a872a131e845)
+  Thanks [@kibs](https://github.com/kibs)! - Allow setting the storybook chakra
+  theme via a callback function, with access to the context
+
+* [#6725](https://github.com/chakra-ui/chakra-ui/pull/6725)
+  [`5409199a0`](https://github.com/chakra-ui/chakra-ui/commit/5409199a0427f5f895267fc7f3698dc3a6cffc05)
+  Thanks [@kibs](https://github.com/kibs)! - Allow getThemingArgTypes to return
+  args when colorScheme is not supported by component
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/icons@2.0.11
+
 ## 4.0.11
 
 ### Patch Changes

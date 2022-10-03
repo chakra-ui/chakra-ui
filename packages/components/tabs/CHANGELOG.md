@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.1.3
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+- Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/clickable@2.0.10
+  - @chakra-ui/descendant@3.0.10
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-controllable-state@2.0.5
+  - @chakra-ui/react-use-merge-refs@2.0.4
+  - @chakra-ui/react-use-safe-layout-effect@2.0.2
+  - @chakra-ui/lazy-utils@2.0.2
+  - @chakra-ui/react-children-utils@2.0.2
+
 ## 2.1.2
 
 ### Patch Changes

@@ -1,5 +1,32 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#6678](https://github.com/chakra-ui/chakra-ui/pull/6678)
+  [`82edc7274`](https://github.com/chakra-ui/chakra-ui/commit/82edc72745fefad65ac0ed2199616e9e9b3ef9d8)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix number input e
+  character
+
+* [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/counter@2.0.10
+  - @chakra-ui/form-control@2.0.11
+  - @chakra-ui/icon@3.0.11
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-callback-ref@2.0.4
+  - @chakra-ui/react-use-event-listener@2.0.4
+  - @chakra-ui/react-use-interval@2.0.2
+  - @chakra-ui/react-use-merge-refs@2.0.4
+  - @chakra-ui/react-use-safe-layout-effect@2.0.2
+  - @chakra-ui/react-use-update-effect@2.0.4
+
 ## 2.0.11
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/pin-input",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "A React component optimized for entering sequences of digits",
   "keywords": [
     "pin",
