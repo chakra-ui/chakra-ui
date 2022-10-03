@@ -1,0 +1,47 @@
+{
+  "name": "@chakra-ui/theme-utils",
+  "version": "2.0.0",
+  "description": "",
+  "keywords": [
+    "theme",
+    "utilities",
+    "chakra"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/utilities/theme-utils"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "dev": "pnpm build -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts --format=esm,cjs"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@types/lodash.mergewith": "4.6.6"
+  },
+  "dependencies": {
+    "@chakra-ui/styled-system": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
+    "lodash.mergewith": "4.6.2"
+  }
+}

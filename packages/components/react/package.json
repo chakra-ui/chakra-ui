@@ -54,6 +54,7 @@
     "@chakra-ui/tag": "workspace:*",
     "@chakra-ui/textarea": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
+    "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/toast": "workspace:*",
     "@chakra-ui/tooltip": "workspace:*",
     "@chakra-ui/transition": "workspace:*",

@@ -1,13 +1,13 @@
-import { ThemingProps } from "@chakra-ui/system"
-import { Dict, isObject, fromEntries } from "@chakra-ui/utils"
+import { ThemingProps } from "@chakra-ui/styled-system"
+import { isObject } from "@chakra-ui/shared-utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
-export function withDefaultColorScheme({
-  colorScheme,
+export function withDefaultSize({
+  size,
   components,
 }: {
-  colorScheme: ThemingProps["colorScheme"]
-  components?: string[] | Dict
+  size: ThemingProps["size"]
+  components?: string[] | Record<string, any>
 }): ThemeExtension {
   return (theme) => {
     let names = Object.keys(theme.components || {})
@@ -19,14 +19,14 @@ export function withDefaultColorScheme({
     }
 
     return mergeThemeOverride(theme, {
-      components: fromEntries(
+      components: Object.fromEntries(
         names.map((componentName) => {
-          const withColorScheme = {
+          const withSize = {
             defaultProps: {
-              colorScheme,
+              size,
             },
           }
-          return [componentName, withColorScheme]
+          return [componentName, withSize]
         }),
       ),
     })

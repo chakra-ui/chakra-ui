@@ -1,11 +1,5 @@
 import { theme, ChakraTheme, isChakraTheme, Theme } from "@chakra-ui/theme"
-import {
-  AnyFunction,
-  Dict,
-  isFunction,
-  mergeWith,
-  pipe,
-} from "@chakra-ui/utils"
+import mergeWith from "lodash.mergewith"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
 
@@ -32,11 +26,15 @@ type DeepThemeExtension<BaseTheme, ThemeType> = {
 }
 
 export declare type ThemeOverride<BaseTheme = Theme> =
-  DeepPartial<ChakraTheme> & DeepThemeExtension<BaseTheme, ChakraTheme> & Dict
+  DeepPartial<ChakraTheme> &
+    DeepThemeExtension<BaseTheme, ChakraTheme> &
+    Record<string, any>
 
 export type ThemeExtension<Override extends ThemeOverride = ThemeOverride> = (
   themeOverride: Override,
 ) => Override
+
+type AnyFunction<T = any> = (...args: T[]) => any
 
 export type BaseThemeWithExtensions<
   BaseTheme extends ChakraTheme,
@@ -71,9 +69,19 @@ export type BaseThemeWithExtensions<
  * )
  */
 
+function isFunction<T extends Function = Function>(value: any): value is T {
+  return typeof value === "function"
+}
+
+function pipe<R>(...fns: Array<(a: R) => R>) {
+  return (v: R) => fns.reduce((a, b) => b(a), v)
+}
+
 export function extendTheme(
-  ...extensions: Array<Dict | ((theme: Dict) => Dict)>
-): Dict {
+  ...extensions: Array<
+    Record<string, any> | ((theme: Record<string, any>) => Record<string, any>)
+  >
+): Record<string, any> {
   let overrides = [...extensions]
   let baseTheme = extensions[extensions.length - 1]
 

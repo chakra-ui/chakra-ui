@@ -1183,6 +1183,7 @@ importers:
       '@chakra-ui/tag': workspace:*
       '@chakra-ui/textarea': workspace:*
       '@chakra-ui/theme': workspace:*
+      '@chakra-ui/theme-utils': workspace:*
       '@chakra-ui/toast': workspace:*
       '@chakra-ui/tooltip': workspace:*
       '@chakra-ui/transition': workspace:*
@@ -1238,6 +1239,7 @@ importers:
       '@chakra-ui/tag': link:../tag
       '@chakra-ui/textarea': link:../textarea
       '@chakra-ui/theme': link:../theme
+      '@chakra-ui/theme-utils': link:../../utilities/theme-utils
       '@chakra-ui/toast': link:../toast
       '@chakra-ui/tooltip': link:../tooltip
       '@chakra-ui/transition': link:../transition
@@ -1974,6 +1976,21 @@ importers:
       clean-package: 2.1.1
     devDependencies:
       clean-package: 2.1.1
+
+  packages/utilities/theme-utils:
+    specifiers:
+      '@chakra-ui/shared-utils': workspace:*
+      '@chakra-ui/styled-system': workspace:*
+      '@chakra-ui/theme': workspace:*
+      '@types/lodash.mergewith': 4.6.6
+      lodash.mergewith: 4.6.2
+    dependencies:
+      '@chakra-ui/styled-system': link:../../components/styled-system
+      '@chakra-ui/theme': link:../../components/theme
+      lodash.mergewith: 4.6.2
+    devDependencies:
+      '@chakra-ui/shared-utils': link:../shared-utils
+      '@types/lodash.mergewith': 4.6.6
 
   tooling/babel-plugin:
     specifiers:
