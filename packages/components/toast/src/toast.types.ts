@@ -1,5 +1,6 @@
 import type { SystemStyleObject } from "@chakra-ui/system"
 import type { ToastPosition } from "./toast.placement"
+import { UseToastOptions } from "./use-toast"
 
 export interface RenderProps {
   /**
@@ -11,6 +12,10 @@ export interface RenderProps {
    * Function to close the toast
    */
   onClose(): void
+  /**
+   * The original options passed to the toast
+   */
+  options: UseToastOptions
 }
 
 export type ToastMessage = (props: RenderProps) => React.ReactNode
