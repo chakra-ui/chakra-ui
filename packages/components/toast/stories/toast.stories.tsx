@@ -62,14 +62,11 @@ export function CustomRender() {
           toast({
             duration: null,
             position: "top-right",
-            render: ({ options }) => {
-              console.log("options :>> ", options)
-              return (
-                <chakra.div rounded="md" color="white" p={3} bg="blue.500">
-                  Hello World
-                </chakra.div>
-              )
-            },
+            render: () => (
+              <chakra.div rounded="md" color="white" p={3} bg="blue.500">
+                Hello World
+              </chakra.div>
+            ),
           })
         }
       >
