@@ -45,9 +45,16 @@ export function getPrData(pr: PullRequest): PrData | undefined {
   const match = content.match(/## @chakra-ui\/react\@(?<version>\d.+)/)
   const version = match?.groups?.version
 
-  const sanitized = content.replace(/<(https?:\/\/.+)>/g, (_, group) => {
-    return `[${group}](${group})`
-  })
+  const sanitized = content
+    .replace(/<(https?:\/\/.+)>/g, (_, group) => {
+      return `[${group}](${group})`
+    })
+    .replace(/-\s+(Updated dependencies(?:\n.+)*]):(?:\n.+)*/gm, (_, group) => {
+      return `- ${group}`
+    })
+    .replace(/-\s+(Updated dependencies) \\\[\]:(?:\n.+)*/gm, (_, group) => {
+      return `- ${group}`
+    })
 
   const body = [
     "---",

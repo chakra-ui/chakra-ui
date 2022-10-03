@@ -15,6 +15,13 @@ import { ModalFocusScope } from "./modal-focus"
 const MotionDiv = chakra(Slide)
 
 export interface DrawerContentProps extends HTMLChakraProps<"section"> {
+  /**
+   * The props to forward to the modal's content wrapper
+   */
+  containerProps?: HTMLChakraProps<"div">
+  /**
+   * The custom framer-motion transition to use for the modal
+   */
   motionProps?: HTMLMotionProps<"section">
 }
 
@@ -24,13 +31,19 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   (props, ref) => {
-    const { className, children, motionProps, ...rest } = props
+    const {
+      className,
+      children,
+      motionProps,
+      containerProps: rootProps,
+      ...rest
+    } = props
 
     const { getDialogProps, getDialogContainerProps, isOpen } =
       useModalContext()
 
     const dialogProps = getDialogProps(rest, ref) as any
-    const containerProps = getDialogContainerProps()
+    const containerProps = getDialogContainerProps(rootProps)
 
     const _className = cx("chakra-modal__content", className)
 

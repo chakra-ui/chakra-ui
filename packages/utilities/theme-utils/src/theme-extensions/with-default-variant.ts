@@ -1,13 +1,13 @@
-import { ThemingProps } from "@chakra-ui/system"
-import { Dict, isObject, fromEntries } from "@chakra-ui/utils"
+import { ThemingProps } from "@chakra-ui/styled-system"
+import { isObject } from "@chakra-ui/shared-utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 
-export function withDefaultSize({
-  size,
+export function withDefaultVariant({
+  variant,
   components,
 }: {
-  size: ThemingProps["size"]
-  components?: string[] | Dict
+  variant: ThemingProps["variant"]
+  components?: string[] | Record<string, any>
 }): ThemeExtension {
   return (theme) => {
     let names = Object.keys(theme.components || {})
@@ -19,14 +19,14 @@ export function withDefaultSize({
     }
 
     return mergeThemeOverride(theme, {
-      components: fromEntries(
+      components: Object.fromEntries(
         names.map((componentName) => {
-          const withSize = {
+          const withVariant = {
             defaultProps: {
-              size,
+              variant,
             },
           }
-          return [componentName, withSize]
+          return [componentName, withVariant]
         }),
       ),
     })

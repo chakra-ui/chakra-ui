@@ -1,5 +1,33 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* [#6753](https://github.com/chakra-ui/chakra-ui/pull/6753)
+  [`f48718aa8`](https://github.com/chakra-ui/chakra-ui/commit/f48718aa81fa406dbcc8aaea5a94007d85d54349)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed issues with slider
+  state updates
+
+* Updated dependencies
+  [[`f48718aa8`](https://github.com/chakra-ui/chakra-ui/commit/f48718aa81fa406dbcc8aaea5a94007d85d54349),
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290),
+  [`5d583e663`](https://github.com/chakra-ui/chakra-ui/commit/5d583e6636029f7777a9db630799a741ff637edd)]:
+  - @chakra-ui/react-use-latest-ref@2.0.2
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-callback-ref@2.0.4
+  - @chakra-ui/react-use-controllable-state@2.0.5
+  - @chakra-ui/react-use-merge-refs@2.0.4
+  - @chakra-ui/react-use-pan-event@2.0.5
+  - @chakra-ui/react-use-size@2.0.4
+  - @chakra-ui/react-use-update-effect@2.0.4
+  - @chakra-ui/number-utils@2.0.4
+
 ## 2.0.11
 
 ### Patch Changes

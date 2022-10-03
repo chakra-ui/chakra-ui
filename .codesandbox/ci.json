@@ -88,6 +88,7 @@
     "packages/utilities/object-utils",
     "packages/utilities/react-children-utils",
     "packages/utilities/react-types",
-    "packages/utilities/shared-utils"
+    "packages/utilities/shared-utils",
+    "packages/utilities/theme-utils"
   ]
 }
