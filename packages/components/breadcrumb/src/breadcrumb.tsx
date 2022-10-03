@@ -15,7 +15,9 @@ import { BreadcrumbOptions } from "./breadcrumb-types"
 export interface BreadcrumbProps
   extends HTMLChakraProps<"nav">,
     BreadcrumbOptions,
-    ThemingProps<"Breadcrumb"> {}
+    ThemingProps<"Breadcrumb"> {
+  listProps?: HTMLChakraProps<"ol">
+}
 
 /**
  * Breadcrumb is used to render a breadcrumb navigation landmark.
@@ -34,6 +36,7 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
       spacing = "0.5rem",
       separator = "/",
       className,
+      listProps,
       ...rest
     } = ownProps
 
@@ -61,6 +64,7 @@ export const Breadcrumb = forwardRef<BreadcrumbProps, "nav">(
         <BreadcrumbStylesProvider value={styles}>
           <chakra.ol
             className="chakra-breadcrumb__list"
+            {...listProps}
             __css={{
               display: "flex",
               alignItems: "center",
