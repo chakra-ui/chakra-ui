@@ -1,4 +1,4 @@
-import { ThemingProps } from "@chakra-ui/system"
+import { ThemingProps } from "@chakra-ui/styled-system"
 import { isObject } from "@chakra-ui/shared-utils"
 import { mergeThemeOverride, ThemeExtension } from "../extend-theme"
 

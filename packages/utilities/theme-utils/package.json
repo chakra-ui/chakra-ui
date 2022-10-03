@@ -40,7 +40,7 @@
     "@types/lodash.mergewith": "4.6.6"
   },
   "dependencies": {
-    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "lodash.mergewith": "4.6.2"
   }
