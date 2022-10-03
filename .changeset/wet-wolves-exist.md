@@ -1,6 +1,5 @@
 ---
-"@chakra-ui/react": patch
 "@chakra-ui/theme-utils": patch
 ---
 
-Refactor theme-utils
+Moved `extendTheme` utilities to a dedicated package (`@chakra-ui/theme-utils`)
