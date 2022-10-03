@@ -5,6 +5,7 @@ import {
   omitThemingProps,
   ThemingProps,
   useMultiStyleConfig,
+  useTheme,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 import {
@@ -17,6 +18,8 @@ import { usePagination, UsePaginationReturn } from "./use-pagination"
 import { UsePaginationProps } from "./pagination-types"
 import { useMemo } from "react"
 import { pick } from "@chakra-ui/object-utils"
+import { paginationTheme } from "./pagination.styles"
+import { mergeThemeOverride } from "@chakra-ui/theme-utils"
 
 const exposedContext = [
   "page",
@@ -58,7 +61,15 @@ export interface PaginationProps
  * @see Docs http://chakra-ui.com/pagination
  */
 export const Pagination = forwardRef<PaginationProps, "nav">((props, ref) => {
-  const styles = useMultiStyleConfig("Pagination", props)
+  const themeOverrides = useTheme().components?.Pagination || {}
+  const styleConfig = mergeThemeOverride(themeOverrides, paginationTheme)
+
+  const styles = useMultiStyleConfig("Pagination", {
+    size: props.size,
+    variant: props.variant,
+    styleConfig,
+  })
+
   const {
     page,
     defaultPage,
@@ -159,7 +170,7 @@ export const PaginationPrevItem = forwardRef<PaginationPrevItemProps, "a">(
           {...rest}
           className={cx("chakra-pagination__prev-item", props.className)}
           __css={{
-            ...styles.prevItem,
+            ...styles.item,
           }}
         />
       </chakra.li>
@@ -197,7 +208,7 @@ export const PaginationNextItem = forwardRef<PaginationNextItemProps, "a">(
           {...rest}
           className={cx("chakra-pagination__next-item", props.className)}
           __css={{
-            ...styles.nextItem,
+            ...styles.item,
           }}
         />
       </chakra.li>
@@ -235,7 +246,7 @@ export const PaginationEllipsis = forwardRef<PaginationEllipsisProps, "ul">(
           {...rest}
           className={cx("chakra-pagination__ellipsis", props.className)}
           __css={{
-            ...styles.ellipsis,
+            ...styles.item,
           }}
           children={children}
         />

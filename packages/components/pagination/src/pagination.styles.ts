@@ -20,15 +20,10 @@ const baseStyleList = defineStyle({
   gap: "4",
 })
 
-const baseStyleEllipsis = defineStyle({
-  cursor: "default",
-})
-
 const baseStyleItem = defineStyle({
   h: "10",
   minW: "10",
   fontSize: "md",
-  px: "4",
 
   display: "inline-flex",
   appearance: "none",
@@ -92,18 +87,10 @@ const baseStyleItem = defineStyle({
   },
 })
 
-const baseStylePrevNextItem = defineStyle({
-  ...baseStyleItem,
-  px: "2",
-})
-
 const baseStyle = definePartsStyle({
   root: baseStyleRoot,
   list: baseStyleList,
-  ellipsis: baseStyleEllipsis,
   item: baseStyleItem,
-  prevItem: baseStylePrevNextItem,
-  nextItem: baseStylePrevNextItem,
 })
 
 export const paginationTheme = defineMultiStyleConfig({

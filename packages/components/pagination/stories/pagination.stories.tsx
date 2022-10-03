@@ -41,7 +41,34 @@ export const Basic = () => {
                     {page.value}
                   </PaginationItem>
                 )
-              else return <PaginationEllipsis index={i} key={`ellipsis-${i}`} />
+              else
+                return (
+                  <PaginationEllipsis index={i} key={`ellipsis-${i}`}>
+                    <chakra.svg
+                      fill="none"
+                      shapeRendering="geometricPrecision"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      viewBox="0 0 24 24"
+                      boxSize="8"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        fill="currentColor"
+                        r="1"
+                      ></circle>
+                      <circle
+                        cx="19"
+                        cy="12"
+                        fill="currentColor"
+                        r="1"
+                      ></circle>
+                      <circle cx="5" cy="12" fill="currentColor" r="1"></circle>
+                    </chakra.svg>
+                  </PaginationEllipsis>
+                )
             })}
             <PaginationNextItem href="javascript:void(0)">
               <chakra.svg viewBox="0 0 24 24" boxSize="1.4em">

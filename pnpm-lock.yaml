@@ -961,6 +961,7 @@ importers:
 
   packages/components/pagination:
     specifiers:
+      '@chakra-ui/anatomy': workspace:*
       '@chakra-ui/form-control': workspace:*
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/layout': workspace:*
@@ -973,7 +974,9 @@ importers:
       '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@chakra-ui/react-use-update-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
+      '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/system': workspace:*
+      '@chakra-ui/theme-utils': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       '@zag-js/pagination': dev
       '@zag-js/react': dev
@@ -993,11 +996,14 @@ importers:
       '@zag-js/pagination': 0.0.0-dev-20220929201450
       '@zag-js/react': 0.0.0-dev-20220929201450_react@18.2.0
     devDependencies:
+      '@chakra-ui/anatomy': link:../anatomy
       '@chakra-ui/icon': link:../icon
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
+      '@chakra-ui/styled-system': link:../styled-system
       '@chakra-ui/system': link:../system
+      '@chakra-ui/theme-utils': link:../../utilities/theme-utils
       clean-package: 2.1.1
       framer-motion: 6.5.1_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
@@ -14023,6 +14029,7 @@ packages:
       eslint-plugin-react: 7.30.1_eslint@8.19.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.19.0
       eslint-plugin-testing-library: 5.5.1_eslint@8.19.0+typescript@4.7.4
+      typescript: 4.7.4
     transitivePeerDependencies:
       - '@babel/plugin-syntax-flow'
       - '@babel/plugin-transform-react-jsx'
@@ -14057,6 +14064,7 @@ packages:
       eslint-plugin-react: 7.30.1_eslint@8.19.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.19.0
       eslint-plugin-testing-library: 5.5.1_eslint@8.19.0+typescript@4.7.4
+      typescript: 4.7.4
     transitivePeerDependencies:
       - '@babel/plugin-syntax-flow'
       - '@babel/plugin-transform-react-jsx'
