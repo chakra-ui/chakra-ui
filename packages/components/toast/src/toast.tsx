@@ -87,7 +87,7 @@ export function createRenderToast(
   const { render, toastComponent: ToastComponent = Toast } = options
   const renderToast: React.FC<RenderProps> = (props) => {
     if (typeof render === "function") {
-      return render(props) as JSX.Element
+      return render({ ...props, ...options }) as JSX.Element
     }
     return <ToastComponent {...props} {...options} />
   }
