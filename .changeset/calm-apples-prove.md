@@ -2,4 +2,4 @@
 "@chakra-ui/toast": patch
 ---
 
-Fixed `containerStyles` types
+Allow containerStyles to accept style props, not just React CSS properties
