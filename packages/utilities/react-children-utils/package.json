@@ -35,5 +35,8 @@
   },
   "devDependencies": {
     "clean-package": "2.1.1"
+  },
+  "peerDependencies": {
+    "react": ">=18"
   }
 }
