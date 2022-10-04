@@ -1,5 +1,34 @@
 # Change Log
 
+## 3.0.13
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* [#6765](https://github.com/chakra-ui/chakra-ui/pull/6765)
+  [`014d1d224`](https://github.com/chakra-ui/chakra-ui/commit/014d1d224b0e4ac140f92eabade542040177c277)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed unmet
+  `@chakra-ui/styled-system` dependency issue
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290),
+  [`db552c6c0`](https://github.com/chakra-ui/chakra-ui/commit/db552c6c05cacffe6498adf18e753aa972730864),
+  [`d945b9a7d`](https://github.com/chakra-ui/chakra-ui/commit/d945b9a7da3056017cda0cdd552af40fa1426070),
+  [`2283faae3`](https://github.com/chakra-ui/chakra-ui/commit/2283faae3e361a8978a93b0ef7fd43b637153555),
+  [`16c56953b`](https://github.com/chakra-ui/chakra-ui/commit/16c56953b51d34688d06d6599b70bb895f5ac86d)]:
+  - @chakra-ui/alert@2.0.11
+  - @chakra-ui/close-button@2.0.11
+  - @chakra-ui/portal@2.0.10
+  - @chakra-ui/styled-system@2.3.4
+  - @chakra-ui/system@2.2.12
+  - @chakra-ui/theme@2.1.13
+  - @chakra-ui/react-use-timeout@2.0.2
+  - @chakra-ui/react-use-update-effect@2.0.4
+
 ## 3.0.12
 
 ### Patch Changes
