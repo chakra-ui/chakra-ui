@@ -9,8 +9,8 @@ import {
 import { forwardRef } from "react"
 import {
   SlideDirection,
-  slideTransition,
-  TransitionEasings,
+  getSlideTransition,
+  TRANSITION_EASINGS,
   Variants,
   withDelay,
   WithTransitionConfig,
@@ -21,7 +21,7 @@ export type { SlideDirection }
 const defaultTransition = {
   exit: {
     duration: 0.15,
-    ease: TransitionEasings.easeInOut,
+    ease: TRANSITION_EASINGS.easeInOut,
   },
   enter: {
     type: "spring",
@@ -32,7 +32,7 @@ const defaultTransition = {
 
 const variants: Variants<SlideOptions> = {
   exit: ({ direction, transition, transitionEnd, delay }) => {
-    const { exit: exitStyles } = slideTransition({ direction })
+    const { exit: exitStyles } = getSlideTransition({ direction })
     return {
       ...exitStyles,
       transition:
@@ -41,7 +41,7 @@ const variants: Variants<SlideOptions> = {
     }
   },
   enter: ({ direction, transitionEnd, transition, delay }) => {
-    const { enter: enterStyles } = slideTransition({ direction })
+    const { enter: enterStyles } = getSlideTransition({ direction })
     return {
       ...enterStyles,
       transition:
@@ -61,7 +61,9 @@ export interface SlideOptions {
 
 export interface SlideProps
   extends WithTransitionConfig<HTMLMotionProps<"div">>,
-    SlideOptions {}
+    SlideOptions {
+  motionProps?: HTMLMotionProps<"div">
+}
 
 export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
   props,
@@ -76,10 +78,11 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
     transition,
     transitionEnd,
     delay,
+    motionProps,
     ...rest
   } = props
 
-  const transitionStyles = slideTransition({ direction })
+  const transitionStyles = getSlideTransition({ direction })
   const computedStyle: MotionStyle = Object.assign(
     { position: "fixed" },
     transitionStyles.position,
@@ -104,6 +107,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
           custom={custom}
           variants={variants as TVariants}
           style={computedStyle}
+          {...motionProps}
         />
       )}
     </AnimatePresence>

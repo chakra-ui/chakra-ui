@@ -132,7 +132,7 @@ type InputSelection = { start: number | null; end: number | null }
  * It returns prop getters you can use to build your own
  * custom number inputs.
  *
- * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#spinbutton
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/
  * @see Docs     https://www.chakra-ui.com/useNumberInput
  * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
  */
@@ -380,24 +380,22 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    */
   const validateAndClamp = useCallback(() => {
     let next = counter.value as string | number
+    if (counter.value === "") return
 
-    if (next === "") return
+    const valueStartsWithE = /^[eE]/.test(counter.value.toString())
 
-    if (counter.valueAsNumber < min) {
-      next = min
+    if (valueStartsWithE) {
+      counter.setValue("")
+    } else {
+      if (counter.valueAsNumber < min) {
+        next = min
+      }
+      if (counter.valueAsNumber > max) {
+        next = max
+      }
+
+      counter.cast(next)
     }
-
-    if (counter.valueAsNumber > max) {
-      next = max
-    }
-
-    /**
-     * `counter.cast` does 2 things:
-     *
-     * - sanitize the value by using parseFloat and some Regex
-     * - used to round value to computed precision or decimal points
-     */
-    counter.cast(next)
   }, [counter, max, min])
 
   const onInputBlur = useCallback(() => {
@@ -465,7 +463,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         role: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
-          if (!disabled) spinUp(event)
+          if (event.button !== 0 || disabled) return
+          spinUp(event)
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
@@ -485,7 +484,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         role: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
-          if (!disabled) spinDown(event)
+          if (event.button !== 0 || disabled) return
+          spinDown(event)
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),

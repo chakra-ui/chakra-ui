@@ -12,7 +12,7 @@ const baseStyle = defineStyle((props) => {
     bg: $bg.reference,
     color: $fg.reference,
     [$bg.variable]: `colors.${bg}`,
-    [$fg.reference]: `colors.${fg}`,
+    [$fg.variable]: `colors.${fg}`,
     [$arrowBg.variable]: $bg.reference,
     px: "2",
     py: "0.5",

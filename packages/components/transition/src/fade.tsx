@@ -7,7 +7,7 @@ import {
 } from "framer-motion"
 import { forwardRef } from "react"
 import {
-  TransitionDefaults,
+  TRANSITION_DEFAULTS,
   Variants,
   withDelay,
   WithTransitionConfig,
@@ -20,13 +20,13 @@ const variants: Variants = {
   enter: ({ transition, transitionEnd, delay } = {}) => ({
     opacity: 1,
     transition:
-      transition?.enter ?? withDelay.enter(TransitionDefaults.enter, delay),
+      transition?.enter ?? withDelay.enter(TRANSITION_DEFAULTS.enter, delay),
     transitionEnd: transitionEnd?.enter,
   }),
   exit: ({ transition, transitionEnd, delay } = {}) => ({
     opacity: 0,
     transition:
-      transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+      transition?.exit ?? withDelay.exit(TRANSITION_DEFAULTS.exit, delay),
     transitionEnd: transitionEnd?.exit,
   }),
 }

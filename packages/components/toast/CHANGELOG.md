@@ -1,5 +1,78 @@
 # Change Log
 
+## 3.0.13
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* [#6765](https://github.com/chakra-ui/chakra-ui/pull/6765)
+  [`014d1d224`](https://github.com/chakra-ui/chakra-ui/commit/014d1d224b0e4ac140f92eabade542040177c277)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed unmet
+  `@chakra-ui/styled-system` dependency issue
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290),
+  [`db552c6c0`](https://github.com/chakra-ui/chakra-ui/commit/db552c6c05cacffe6498adf18e753aa972730864),
+  [`d945b9a7d`](https://github.com/chakra-ui/chakra-ui/commit/d945b9a7da3056017cda0cdd552af40fa1426070),
+  [`2283faae3`](https://github.com/chakra-ui/chakra-ui/commit/2283faae3e361a8978a93b0ef7fd43b637153555),
+  [`16c56953b`](https://github.com/chakra-ui/chakra-ui/commit/16c56953b51d34688d06d6599b70bb895f5ac86d)]:
+  - @chakra-ui/alert@2.0.11
+  - @chakra-ui/close-button@2.0.11
+  - @chakra-ui/portal@2.0.10
+  - @chakra-ui/styled-system@2.3.4
+  - @chakra-ui/system@2.2.12
+  - @chakra-ui/theme@2.1.13
+  - @chakra-ui/react-use-timeout@2.0.2
+  - @chakra-ui/react-use-update-effect@2.0.4
+
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@2.2.11
+  - @chakra-ui/theme@2.1.12
+  - @chakra-ui/alert@2.0.10
+  - @chakra-ui/close-button@2.0.10
+
+## 3.0.11
+
+### Patch Changes
+
+- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+- Updated dependencies
+  [[`e62697467`](https://github.com/chakra-ui/chakra-ui/commit/e62697467fea03c9a6035ed67a635f9dc72bc471),
+  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479),
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/theme@2.1.12
+  - @chakra-ui/system@2.2.10
+  - @chakra-ui/alert@2.0.10
+  - @chakra-ui/close-button@2.0.10
+  - @chakra-ui/portal@2.0.9
+
+## 3.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7d7e04d53`](https://github.com/chakra-ui/chakra-ui/commit/7d7e04d53d871e324debe0a2cb3ff44d7dbf3bca)]:
+  - @chakra-ui/theme@2.1.11
+
 ## 3.0.9
 
 ### Patch Changes

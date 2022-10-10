@@ -4,6 +4,11 @@ import { ShowProps } from "./show"
 
 export type HideProps = ShowProps
 
+/**
+ * `Hide` wraps a component to not render if the provided media query matches.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/show-hide
+ */
 export function Hide(props: HideProps) {
   const { children, ssr } = props
   const query = useQuery(props)

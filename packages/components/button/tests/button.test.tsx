@@ -127,11 +127,21 @@ test("Has the proper type attribute", () => {
 })
 
 test("Should be disabled", () => {
-  const { getByRole } = render(
+  const { getByTestId, getByRole, rerender } = render(
     <Button isDisabled data-testid="btn">
       I'm a invalid button
     </Button>,
   )
   const button = getByRole("button")
   expect(button).toBeDisabled()
+
+  // This case was introduced to check against regression of #6700
+  rerender(
+    <Button as="div" isDisabled data-testid="btn">
+      I'm a invalid button
+    </Button>,
+  )
+
+  const buttonAsDiv = getByTestId("btn")
+  expect(buttonAsDiv).toHaveAttribute("disabled")
 })

@@ -1,5 +1,27 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+- Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290),
+  [`d945b9a7d`](https://github.com/chakra-ui/chakra-ui/commit/d945b9a7da3056017cda0cdd552af40fa1426070)]:
+  - @chakra-ui/dom-utils@2.0.3
+
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]:
+  - @chakra-ui/dom-utils@2.0.2
+
 ## 2.0.10
 
 ### Patch Changes

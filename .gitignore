@@ -97,3 +97,4 @@ yarn-error.log
 .yarn-integrity
 
 report.*
+*.backup

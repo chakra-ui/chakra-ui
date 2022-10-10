@@ -2,9 +2,17 @@
 
 ## Latest Release
 
-### August 29, 2022: [v2.3.1](/.changelog/v2.3.1.mdx)
+### October 3, 2022: [v2.3.5](/.changelog/v2.3.5.mdx)
 
 ## Previous Releases
+
+### September 19, 2022: [v2.3.4](/.changelog/v2.3.4.mdx)
+
+### September 19, 2022: [v2.3.3](/.changelog/v2.3.3.mdx)
+
+### September 7, 2022: [v2.3.2](/.changelog/v2.3.2.mdx)
+
+### August 29, 2022: [v2.3.1](/.changelog/v2.3.1.mdx)
 
 ### August 29, 2022: [v2.3.0](/.changelog/v2.3.0.mdx)
 
@@ -22,7 +30,7 @@
 
 ### June 7, 2022: [v2.2.1](/.changelog/v2.2.1.mdx)
 
-### June 7, 2022: [v2.2.0](/.changelog/v2.2.0.mdx)
+### June 6, 2022: [v2.2.0](/.changelog/v2.2.0.mdx)
 
 ### May 24, 2022: [v2.1.2](/.changelog/v2.1.2.mdx)
 
@@ -52,9 +60,9 @@
 
 ### January 25, 2022: [v1.8.0](/.changelog/v1.8.0.mdx)
 
-### January 10, 2022: [v1.7.5](/.changelog/v1.7.5.mdx)
+### January 9, 2022: [v1.7.5](/.changelog/v1.7.5.mdx)
 
-### January 5, 2022: [v1.7.4](/.changelog/v1.7.4.mdx)
+### January 4, 2022: [v1.7.4](/.changelog/v1.7.4.mdx)
 
 ### December 9, 2021: [v1.7.3](/.changelog/v1.7.3.mdx)
 
@@ -64,13 +72,13 @@
 
 ### November 11, 2021: [v1.7.0](/.changelog/v1.7.0.mdx)
 
-### November 4, 2021: [v1.6.12](/.changelog/v1.6.12.mdx)
+### November 3, 2021: [v1.6.12](/.changelog/v1.6.12.mdx)
 
 ### October 31, 2021: [v1.6.11](/.changelog/v1.6.11.mdx)
 
 ### October 15, 2021: [v1.6.10](/.changelog/v1.6.10.mdx)
 
-### October 6, 2021: [v1.6.9](/.changelog/v1.6.9.mdx)
+### October 5, 2021: [v1.6.9](/.changelog/v1.6.9.mdx)
 
 ### September 20, 2021: [v1.6.8](/.changelog/v1.6.8.mdx)
 
@@ -84,7 +92,7 @@
 
 ### May 26, 2021: [v1.6.3](/.changelog/v1.6.3.mdx)
 
-### May 18, 2021: [v1.6.2](/.changelog/v1.6.2.mdx)
+### May 17, 2021: [v1.6.2](/.changelog/v1.6.2.mdx)
 
 ### May 5, 2021: [v1.6.1](/.changelog/v1.6.1.mdx)
 
@@ -92,7 +100,7 @@
 
 ### April 19, 2021: [v1.5.2](/.changelog/v1.5.2.mdx)
 
-### April 14, 2021: [v1.5.1](/.changelog/v1.5.1.mdx)
+### April 13, 2021: [v1.5.1](/.changelog/v1.5.1.mdx)
 
 ### April 7, 2021: [v1.5.0](/.changelog/v1.5.0.mdx)
 
@@ -114,4 +122,4 @@
 
 ### January 31, 2021: [v1.2.1](/.changelog/v1.2.1.mdx)
 
-### January 31, 2021: [v1.2.0](/.changelog/v1.2.0.mdx)
+### January 30, 2021: [v1.2.0](/.changelog/v1.2.0.mdx)

@@ -128,7 +128,7 @@ export interface UseRangeSliderProps {
  * prop getters for the component parts
  *
  * @see Docs     https://chakra-ui.com/docs/form/slider
- * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices-1.1/#slider
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
  */
 export function useRangeSlider(props: UseRangeSliderProps) {
   const {

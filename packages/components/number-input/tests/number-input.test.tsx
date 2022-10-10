@@ -50,18 +50,18 @@ test("should start with empty string", () => {
   expect(result.current.value).toBe("")
 })
 
-test("should increment on press increment button", () => {
-  const { getByTestId } = renderComponent()
+test("should increment on press increment button", async () => {
+  const { getByTestId, user } = renderComponent()
 
   const upBtn = getByTestId("up-btn")
   const input = getByTestId("input")
 
-  fireEvent.pointerDown(upBtn)
+  await user.click(upBtn)
   // since the input's value is empty, this will set it to `step`
   // which is `1` by default
   expect(input).toHaveValue("1")
 
-  fireEvent.pointerDown(upBtn)
+  await user.click(upBtn)
   expect(input).toHaveValue("2")
 })
 
@@ -178,13 +178,13 @@ test("should constrain value onBlur", async () => {
   expect(input).toHaveValue("30.00")
 })
 
-test("should focus input on spin", () => {
-  const { getByTestId } = renderComponent()
+test("should focus input on spin", async () => {
+  const { getByTestId, user } = renderComponent()
 
   const input = getByTestId("input")
   const upBtn = getByTestId("up-btn")
 
-  fireEvent.pointerDown(upBtn)
+  await user.click(upBtn)
   expect(input).toHaveValue("1")
 
   // for some reason, .toHaveFocus assertion doesn't work
@@ -233,11 +233,11 @@ test("should derive values from surrounding FormControl", () => {
   expect(onBlur).toHaveBeenCalled()
 })
 
-test("should fallback to min if `e` is typed", async () => {
+test("should reset value if `e` is typed", async () => {
   const { getByTestId, user } = renderComponent({ max: 30, min: 1 })
   const input = getByTestId("input")
   await user.type(input, "e")
   // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
-  expect(input).toHaveValue("1")
+  expect(input).toHaveValue("")
 })

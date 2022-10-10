@@ -1,5 +1,58 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [#6754](https://github.com/chakra-ui/chakra-ui/pull/6754)
+  [`ede395f9f`](https://github.com/chakra-ui/chakra-ui/commit/ede395f9f3e3a8b74e87fac1f350ead201a4d8cc)
+  Thanks [@Pagebakers](https://github.com/Pagebakers)! - Add `containerProps` to
+  drawer component
+
+* [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/close-button@2.0.11
+  - @chakra-ui/focus-lock@2.0.12
+  - @chakra-ui/portal@2.0.10
+  - @chakra-ui/transition@2.0.10
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-merge-refs@2.0.4
+
+## 2.2.0
+
+### Minor Changes
+
+- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
+  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
+  `framer-motion` elements via the `motionProps` prop.
+
+### Patch Changes
+
+- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+- Updated dependencies
+  [[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/close-button@2.0.10
+  - @chakra-ui/focus-lock@2.0.11
+  - @chakra-ui/portal@2.0.9
+  - @chakra-ui/transition@2.0.9
+
 ## 2.1.7
 
 ### Patch Changes

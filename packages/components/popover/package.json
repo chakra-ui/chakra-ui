@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popover",
-  "version": "2.0.9",
+  "version": "2.1.1",
   "description": "A React component to render that renders its content in a popover",
   "keywords": [
     "popover",
@@ -14,9 +14,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "dist"
   ],
@@ -33,13 +31,15 @@
   },
   "dependencies": {
     "@chakra-ui/close-button": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/popper": "workspace:*",
     "@chakra-ui/lazy-utils": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-use-disclosure": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
-    "@chakra-ui/react-context": "workspace:*"
+    "@chakra-ui/react-context": "workspace:*",
+    "@chakra-ui/react-use-animation-state": "workspace:*",
+    "@chakra-ui/react-use-focus-effect": "workspace:*",
+    "@chakra-ui/react-use-focus-on-pointer-down": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/shared-utils": "workspace:*",
@@ -48,9 +48,11 @@
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/radio": "workspace:*",
     "@chakra-ui/input": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*",
     "react-icons": "^4.2.0",
     "framer-motion": "^6.2.9",
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
@@ -59,9 +61,11 @@
   },
   "scripts": {
     "build": "JSX=1 tsup src/index.ts --dts",
-    "dev": "pnpm build -- --watch",
+    "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts"
+    "build:fast": "JSX=1 tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   }
 }

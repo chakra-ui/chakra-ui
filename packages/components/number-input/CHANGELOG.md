@@ -1,5 +1,56 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#6678](https://github.com/chakra-ui/chakra-ui/pull/6678)
+  [`82edc7274`](https://github.com/chakra-ui/chakra-ui/commit/82edc72745fefad65ac0ed2199616e9e9b3ef9d8)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix number input e
+  character
+
+* [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/counter@2.0.10
+  - @chakra-ui/form-control@2.0.11
+  - @chakra-ui/icon@3.0.11
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-callback-ref@2.0.4
+  - @chakra-ui/react-use-event-listener@2.0.4
+  - @chakra-ui/react-use-interval@2.0.2
+  - @chakra-ui/react-use-merge-refs@2.0.4
+  - @chakra-ui/react-use-safe-layout-effect@2.0.2
+  - @chakra-ui/react-use-update-effect@2.0.4
+
+## 2.0.11
+
+### Patch Changes
+
+- [`ef722cac8`](https://github.com/chakra-ui/chakra-ui/commit/ef722cac8d1428bcca636c10ce5c2f95cb324b11)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  input spins unexpectedly on right clicking the increment or decrement button
+  with a pointer.
+
+  Now, only left click (or primary button) will trigger a value change.
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.10
+  - @chakra-ui/icon@3.0.10
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/form-control@2.0.10
+  - @chakra-ui/icon@3.0.10
+
 ## 2.0.9
 
 ### Patch Changes

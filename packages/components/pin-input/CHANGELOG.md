@@ -1,5 +1,49 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+- Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/descendant@3.0.10
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-controllable-state@2.0.5
+  - @chakra-ui/react-use-merge-refs@2.0.4
+  - @chakra-ui/react-children-utils@2.0.2
+
+## 2.0.13
+
+### Patch Changes
+
+- [#6689](https://github.com/chakra-ui/chakra-ui/pull/6689)
+  [`f6002e4a4`](https://github.com/chakra-ui/chakra-ui/commit/f6002e4a41fab8a7e8d0f8e42e10ca7ad1d5daf5)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix issue where backspace
+  did not focus prev input
+
+* [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+* Updated dependencies
+  [[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/react-use-controllable-state@2.0.4
+  - @chakra-ui/descendant@3.0.9
+
 ## 2.0.12
 
 ### Patch Changes

@@ -131,6 +131,9 @@ const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
  * to all other modal components.
  *
  * It doesn't render any DOM node.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/modal
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
  */
 export const Modal: React.FC<ModalProps> = (props) => {
   const {

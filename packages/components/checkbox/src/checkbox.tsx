@@ -15,26 +15,22 @@ import { CheckboxIcon } from "./checkbox-icon"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
 
-const CheckboxControl = chakra("span", {
-  baseStyle: {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    verticalAlign: "top",
-    userSelect: "none",
-    flexShrink: 0,
-  },
-})
+const controlStyles: SystemStyleObject = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  verticalAlign: "top",
+  userSelect: "none",
+  flexShrink: 0,
+}
 
-const CheckboxRoot = chakra("label", {
-  baseStyle: {
-    cursor: "pointer",
-    display: "inline-flex",
-    alignItems: "center",
-    verticalAlign: "top",
-    position: "relative",
-  },
-})
+const rootStyles: SystemStyleObject = {
+  cursor: "pointer",
+  display: "inline-flex",
+  alignItems: "center",
+  verticalAlign: "top",
+  position: "relative",
+}
 
 type CheckboxControlProps = Omit<HTMLChakraProps<"div">, keyof UseCheckboxProps>
 
@@ -57,6 +53,7 @@ export interface CheckboxProps
  * multiple values from several options.
  *
  * @see Docs https://chakra-ui.com/checkbox
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
 export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   props,
@@ -125,8 +122,8 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   })
 
   return (
-    <CheckboxRoot
-      __css={styles.container}
+    <chakra.label
+      __css={{ ...rootStyles, ...styles.container }}
       className={cx("chakra-checkbox", className)}
       {...getRootProps()}
     >
@@ -134,13 +131,13 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
         className="chakra-checkbox__input"
         {...getInputProps(inputProps, ref)}
       />
-      <CheckboxControl
-        __css={styles.control}
+      <chakra.span
+        __css={{ ...controlStyles, ...styles.control }}
         className="chakra-checkbox__control"
         {...getCheckboxProps()}
       >
         {clonedIcon}
-      </CheckboxControl>
+      </chakra.span>
       {children && (
         <chakra.span
           className="chakra-checkbox__label"
@@ -153,7 +150,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
           {children}
         </chakra.span>
       )}
-    </CheckboxRoot>
+    </chakra.label>
   )
 })
 
