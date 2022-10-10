@@ -1,5 +1,9 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
+import {
+  cssVar,
+  defineStyle,
+  defineStyleConfig,
+} from "@chakra-ui/styled-system"
+import { transparentize } from "@chakra-ui/theme-tools"
 
 const baseStyle = defineStyle({
   px: 1,
@@ -9,12 +13,21 @@ const baseStyle = defineStyle({
   fontWeight: "bold",
 })
 
+const $bg = cssVar("badge-bg")
+const $fg = cssVar("badge-color")
+
 const variantSolid = defineStyle((props) => {
   const { colorScheme: c, theme } = props
   const dark = transparentize(`${c}.500`, 0.6)(theme)
   return {
-    bg: mode(`${c}.500`, dark)(props),
-    color: mode(`white`, `whiteAlpha.800`)(props),
+    [$bg.variable]: `colors.${c}.500`,
+    [$fg.variable]: `colors.white`,
+    _dark: {
+      [$bg.variable]: dark,
+      [$fg.variable]: `colors.whiteAlpha.800`,
+    },
+    bg: $bg.reference,
+    color: $fg.reference,
   }
 })
 
@@ -22,20 +35,27 @@ const variantSubtle = defineStyle((props) => {
   const { colorScheme: c, theme } = props
   const darkBg = transparentize(`${c}.200`, 0.16)(theme)
   return {
-    bg: mode(`${c}.100`, darkBg)(props),
-    color: mode(`${c}.800`, `${c}.200`)(props),
+    [$bg.variable]: `colors.${c}.100`,
+    [$fg.variable]: `colors.${c}.800`,
+    _dark: {
+      [$bg.variable]: darkBg,
+      [$fg.variable]: `colors.${c}.200`,
+    },
+    bg: $bg.reference,
+    color: $fg.reference,
   }
 })
 
 const variantOutline = defineStyle((props) => {
   const { colorScheme: c, theme } = props
   const darkColor = transparentize(`${c}.200`, 0.8)(theme)
-  const lightColor = getColor(theme, `${c}.500`)
-  const color = mode(lightColor, darkColor)(props)
-
   return {
-    color,
-    boxShadow: `inset 0 0 0px 1px ${color}`,
+    [$fg.variable]: `colors.${c}.500`,
+    _dark: {
+      [$fg.variable]: darkColor,
+    },
+    color: $fg.reference,
+    boxShadow: `inset 0 0 0px 1px ${$fg.reference}`,
   }
 })
 
