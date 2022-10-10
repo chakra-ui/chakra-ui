@@ -12,11 +12,13 @@ export type StyleFunctionProps = {
   [key: string]: any
 }
 
-export type SystemStyleFunction = (
-  props: StyleFunctionProps,
+export type SystemStyleFunction<T extends StyleFunctionProps> = (
+  props: T,
 ) => SystemStyleObject
 
-export type SystemStyleInterpolation = SystemStyleObject | SystemStyleFunction
+export type SystemStyleInterpolation =
+  | SystemStyleObject
+  | SystemStyleFunction<StyleFunctionProps>
 
 // ------------------------------------------------------------------ //
 
