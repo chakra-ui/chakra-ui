@@ -1,8 +1,9 @@
 import {
-  SystemStyleObject,
   resolveStyleConfig,
+  SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { mergeThemeOverride } from "@chakra-ui/theme-utils"
 import {
   Dict,
   filterUndefined,
@@ -16,11 +17,18 @@ import { useChakra } from "./hooks"
 
 type StylesRef = SystemStyleObject | Record<string, SystemStyleObject>
 
-function useStyleConfigImpl(themeKey: string, props: ThemingProps & Dict = {}) {
+function useStyleConfigImpl(
+  themeKey: string | null,
+  props: ThemingProps & Dict = {},
+) {
   const { styleConfig: styleConfigProp, ...rest } = props
 
   const { theme, colorMode } = useChakra()
-  const themeStyleConfig = get(theme, `components.${themeKey}`)
+
+  const themeStyleConfig = themeKey
+    ? get(theme, `components.${themeKey}`)
+    : undefined
+
   const styleConfig = styleConfigProp || themeStyleConfig
 
   const mergedProps = mergeWith(
@@ -60,6 +68,19 @@ export function useMultiStyleConfig(
   props: ThemingProps & Dict = {},
 ) {
   return useStyleConfigImpl(themeKey, props) as Record<
+    string,
+    SystemStyleObject
+  >
+}
+
+export function useComponentStyles__unstable(
+  props: ThemingProps & { themeKey: string; baseConfig: any },
+) {
+  const { themeKey, baseConfig, ...restProps } = props
+  const { theme } = useChakra()
+  const overrides = theme.components?.[themeKey] || {}
+  const styleConfig = mergeThemeOverride(overrides, baseConfig)
+  return useStyleConfigImpl(null, { ...restProps, styleConfig }) as Record<
     string,
     SystemStyleObject
   >

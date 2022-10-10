@@ -34,6 +34,7 @@
   "dependencies": {
     "@chakra-ui/color-mode": "workspace:*",
     "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "react-fast-compare": "3.2.0"
