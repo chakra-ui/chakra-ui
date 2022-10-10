@@ -4,7 +4,7 @@ import {
   cssVar,
   StyleFunctionProps,
 } from "@chakra-ui/styled-system"
-import { getColor, mode, transparentize } from "@chakra-ui/theme-tools"
+import { transparentize } from "@chakra-ui/theme-tools"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -42,31 +42,41 @@ const baseStyle = definePartsStyle({
   },
 })
 
-function getBg(props: StyleFunctionProps): string {
+function getBg(props: StyleFunctionProps) {
   const { theme, colorScheme: c } = props
-  const lightBg = getColor(theme, `${c}.100`, c)
   const darkBg = transparentize(`${c}.200`, 0.16)(theme)
-  return mode(lightBg, darkBg)(props)
+  return {
+    light: `colors.${c}.100`,
+    dark: darkBg,
+  }
 }
 
 const variantSubtle = definePartsStyle((props) => {
   const { colorScheme: c } = props
-  const fg = mode(`${c}.500`, `${c}.200`)(props)
+  const bg = getBg(props)
   return {
     container: {
-      [$bg.variable]: getBg(props),
-      [$fg.variable]: `colors.${fg}`,
+      [$fg.variable]: `colors.${c}.500`,
+      [$bg.variable]: bg.light,
+      _dark: {
+        [$fg.variable]: `colors.${c}.200`,
+        [$bg.variable]: bg.dark,
+      },
     },
   }
 })
 
 const variantLeftAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
-  const fg = mode(`${c}.500`, `${c}.200`)(props)
+  const bg = getBg(props)
   return {
     container: {
-      [$bg.variable]: getBg(props),
-      [$fg.variable]: `colors.${fg}`,
+      [$fg.variable]: `colors.${c}.500`,
+      [$bg.variable]: bg.light,
+      _dark: {
+        [$fg.variable]: `colors.${c}.200`,
+        [$bg.variable]: bg.dark,
+      },
       paddingStart: "3",
       borderStartWidth: "4px",
       borderStartColor: $fg.reference,
@@ -76,11 +86,15 @@ const variantLeftAccent = definePartsStyle((props) => {
 
 const variantTopAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
-  const fg = mode(`${c}.500`, `${c}.200`)(props)
+  const bg = getBg(props)
   return {
     container: {
-      [$bg.variable]: getBg(props),
-      [$fg.variable]: `colors.${fg}`,
+      [$fg.variable]: `colors.${c}.500`,
+      [$bg.variable]: bg.light,
+      _dark: {
+        [$fg.variable]: `colors.${c}.200`,
+        [$bg.variable]: bg.dark,
+      },
       pt: "2",
       borderTopWidth: "4px",
       borderTopColor: $fg.reference,
@@ -90,12 +104,14 @@ const variantTopAccent = definePartsStyle((props) => {
 
 const variantSolid = definePartsStyle((props) => {
   const { colorScheme: c } = props
-  const bg = mode(`${c}.500`, `${c}.200`)(props)
-  const fg = mode(`white`, `gray.900`)(props)
   return {
     container: {
-      [$bg.variable]: `colors.${bg}`,
-      [$fg.variable]: `colors.${fg}`,
+      [$fg.variable]: `colors.white`,
+      [$bg.variable]: `colors.${c}.500`,
+      _dark: {
+        [$fg.variable]: `colors.gray.900`,
+        [$bg.variable]: `colors.${c}.200`,
+      },
       color: $fg.reference,
     },
   }
