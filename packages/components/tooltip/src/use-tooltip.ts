@@ -72,6 +72,7 @@ export interface UseTooltipProps
    */
   defaultIsOpen?: boolean
   isDisabled?: boolean
+  closeOnScroll?: boolean
   /**
    * @default 10
    */
@@ -91,6 +92,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
     closeDelay = 0,
     closeOnClick = true,
     closeOnMouseDown,
+    closeOnScroll,
     closeOnPointerDown = closeOnMouseDown,
     closeOnEsc = true,
     onOpen: onOpenProp,
@@ -189,6 +191,16 @@ export function useTooltip(props: UseTooltipProps = {}) {
     () => getDoc(ref),
     "keydown",
     closeOnEsc ? onKeyDown : undefined,
+  )
+
+  useEventListener(
+    () => getDoc(ref),
+    "scroll",
+    () => {
+      if (isOpen && closeOnScroll) {
+        closeNow()
+      }
+    },
   )
 
   useEffect(

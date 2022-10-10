@@ -1,5 +1,56 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+- Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-callback-ref@2.0.4
+  - @chakra-ui/react-use-controllable-state@2.0.5
+  - @chakra-ui/react-use-focus-on-pointer-down@2.0.3
+  - @chakra-ui/react-use-merge-refs@2.0.4
+  - @chakra-ui/react-use-safe-layout-effect@2.0.2
+  - @chakra-ui/react-use-update-effect@2.0.4
+  - @chakra-ui/shared-utils@2.0.2
+
+## 2.0.11
+
+### Patch Changes
+
+- [`d5003f916`](https://github.com/chakra-ui/chakra-ui/commit/d5003f91650ade8b4045df8c23be8e8c9ebe288a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  value change triggers text selection unexpected.
+
+## 2.0.10
+
+### Patch Changes
+
+- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
+  component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding JSDocs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+- Updated dependencies
+  [[`08008f453`](https://github.com/chakra-ui/chakra-ui/commit/08008f453e239959b36740ea3e1566cd568cf0df),
+  [`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/react-use-focus-on-pointer-down@2.0.2
+  - @chakra-ui/react-use-controllable-state@2.0.4
+
 ## 2.0.9
 
 ### Patch Changes

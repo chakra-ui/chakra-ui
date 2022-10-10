@@ -50,7 +50,7 @@ export interface RangeSliderProps
  * It provides context and functionality for all slider components
  *
  * @see Docs     https://chakra-ui.com/docs/form/slider
- * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#slider
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
  */
 export const RangeSlider = forwardRef<RangeSliderProps, "div">(
   function RangeSlider(props, ref) {

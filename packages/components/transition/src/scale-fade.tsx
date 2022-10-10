@@ -7,7 +7,7 @@ import {
 } from "framer-motion"
 import { forwardRef } from "react"
 import {
-  TransitionDefaults,
+  TRANSITION_DEFAULTS,
   Variants,
   withDelay,
   WithTransitionConfig,
@@ -33,13 +33,13 @@ const variants: Variants<ScaleFadeOptions> = {
       ? { scale: initialScale, transitionEnd: transitionEnd?.exit }
       : { transitionEnd: { scale: initialScale, ...transitionEnd?.exit } }),
     transition:
-      transition?.exit ?? withDelay.exit(TransitionDefaults.exit, delay),
+      transition?.exit ?? withDelay.exit(TRANSITION_DEFAULTS.exit, delay),
   }),
   enter: ({ transitionEnd, transition, delay }) => ({
     opacity: 1,
     scale: 1,
     transition:
-      transition?.enter ?? withDelay.enter(TransitionDefaults.enter, delay),
+      transition?.enter ?? withDelay.enter(TRANSITION_DEFAULTS.enter, delay),
     transitionEnd: transitionEnd?.enter,
   }),
 }

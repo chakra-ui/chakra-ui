@@ -1,5 +1,47 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* [#6742](https://github.com/chakra-ui/chakra-ui/pull/6742)
+  [`28ffa10de`](https://github.com/chakra-ui/chakra-ui/commit/28ffa10ded221d7f65dcfead1411639909cc5c97)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed `allowMultiple`
+  warning condition
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/descendant@3.0.10
+  - @chakra-ui/icon@3.0.11
+  - @chakra-ui/transition@2.0.10
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-use-controllable-state@2.0.5
+  - @chakra-ui/react-use-merge-refs@2.0.4
+
+## 2.1.0
+
+### Minor Changes
+
+- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
+  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
+  `framer-motion` elements via the `motionProps` prop.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
+  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]:
+  - @chakra-ui/react-use-controllable-state@2.0.4
+  - @chakra-ui/icon@3.0.10
+  - @chakra-ui/descendant@3.0.9
+  - @chakra-ui/transition@2.0.9
+
 ## 2.0.12
 
 ### Patch Changes

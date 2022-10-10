@@ -1,12 +1,8 @@
 import type { SystemStyleObject } from "@chakra-ui/system"
 import type { ToastPosition } from "./toast.placement"
+import { UseToastOptions } from "./use-toast"
 
-export interface RenderProps {
-  /**
-   * The auto-generated or passed `id` of the toast
-   */
-  id: ToastId
-
+export interface RenderProps extends UseToastOptions {
   /**
    * Function to close the toast
    */

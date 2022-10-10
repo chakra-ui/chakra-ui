@@ -13,7 +13,11 @@ export function ChakraProviderDecorator(
     parameters: { chakra: chakraParams },
     globals: { [DIRECTION_TOOL_ID]: globalDirection },
   } = context
-  const chakraTheme = chakraParams?.theme || theme
+  const chakraTheme = chakraParams?.theme
+    ? typeof chakraParams.theme === "function"
+      ? chakraParams.theme(context)
+      : chakraParams.theme
+    : theme
   const direction = useDirection(globalDirection || chakraTheme?.direction)
   const themeWithDirectionOverride = useMemo(
     () => extendTheme({ direction }, chakraTheme),

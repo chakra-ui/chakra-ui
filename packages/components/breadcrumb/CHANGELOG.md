@@ -1,5 +1,24 @@
 # Change Log
 
+## 2.0.10
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* [#6724](https://github.com/chakra-ui/chakra-ui/pull/6724)
+  [`2283faae3`](https://github.com/chakra-ui/chakra-ui/commit/2283faae3e361a8978a93b0ef7fd43b637153555)
+  Thanks [@anubra266](https://github.com/anubra266)! - Ensure breadcrumb items
+  are vertically aligned
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-children-utils@2.0.2
+
 ## 2.0.9
 
 ### Patch Changes

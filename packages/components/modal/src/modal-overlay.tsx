@@ -16,6 +16,7 @@ export interface ModalOverlayProps
   extends Omit<HTMLMotionProps<"div">, "color" | "transition">,
     ChakraProps {
   children?: React.ReactNode
+  motionProps?: HTMLMotionProps<"div">
 }
 
 /**
@@ -26,7 +27,7 @@ export interface ModalOverlayProps
  */
 export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
   (props, ref) => {
-    const { className, transition, ...rest } = props
+    const { className, transition, motionProps: _motionProps, ...rest } = props
     const _className = cx("chakra-modal__overlay", className)
 
     const styles = useModalStyles()
@@ -40,7 +41,10 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
     }
 
     const { motionPreset } = useModalContext()
-    const motionProps: any = motionPreset === "none" ? {} : fadeConfig
+    const defaultMotionProps: HTMLMotionProps<"div"> =
+      motionPreset === "none" ? {} : fadeConfig
+
+    const motionProps: any = _motionProps || defaultMotionProps
 
     return (
       <MotionDiv

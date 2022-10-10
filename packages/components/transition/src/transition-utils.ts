@@ -1,11 +1,22 @@
 import type { Target, TargetAndTransition, Transition } from "framer-motion"
 
+export type TransitionProperties = {
+  /**
+   * Custom `transition` definition for `enter` and `exit`
+   */
+  transition?: TransitionConfig
+  /**
+   * Custom `transitionEnd` definition for `enter` and `exit`
+   */
+  transitionEnd?: TransitionEndConfig
+  /**
+   * Custom `delay` definition for `enter` and `exit`
+   */
+  delay?: number | DelayConfig
+}
+
 type TargetResolver<P = {}> = (
-  props: P & {
-    transition?: TransitionConfig
-    transitionEnd?: TransitionEndConfig
-    delay?: number | DelayConfig
-  },
+  props: P & TransitionProperties,
 ) => TargetAndTransition
 
 type Variant<P = {}> = TargetAndTransition | TargetResolver<P>
@@ -24,14 +35,14 @@ export type TransitionEndConfig = WithMotionState<Target>
 
 export type DelayConfig = WithMotionState<number>
 
-export const TransitionEasings = {
+export const TRANSITION_EASINGS = {
   ease: [0.25, 0.1, 0.25, 1],
   easeIn: [0.4, 0, 1, 1],
   easeOut: [0, 0, 0.2, 1],
   easeInOut: [0.4, 0, 0.2, 1],
 } as const
 
-export const TransitionVariants = {
+export const TRANSITION_VARIANTS = {
   scale: {
     enter: { scale: 1 },
     exit: { scale: 0.95 },
@@ -80,55 +91,44 @@ export const TransitionVariants = {
 
 export type SlideDirection = "top" | "left" | "bottom" | "right"
 
-export function slideTransition(options?: { direction?: SlideDirection }) {
+export function getSlideTransition(options?: { direction?: SlideDirection }) {
   const side = options?.direction ?? "right"
   switch (side) {
     case "right":
-      return TransitionVariants.slideRight
+      return TRANSITION_VARIANTS.slideRight
     case "left":
-      return TransitionVariants.slideLeft
+      return TRANSITION_VARIANTS.slideLeft
     case "bottom":
-      return TransitionVariants.slideDown
+      return TRANSITION_VARIANTS.slideDown
     case "top":
-      return TransitionVariants.slideUp
+      return TRANSITION_VARIANTS.slideUp
     default:
-      return TransitionVariants.slideRight
+      return TRANSITION_VARIANTS.slideRight
   }
 }
 
-export const TransitionDefaults = {
+export const TRANSITION_DEFAULTS = {
   enter: {
     duration: 0.2,
-    ease: TransitionEasings.easeOut,
+    ease: TRANSITION_EASINGS.easeOut,
   },
   exit: {
     duration: 0.1,
-    ease: TransitionEasings.easeIn,
+    ease: TRANSITION_EASINGS.easeIn,
   },
 } as const
 
-export type WithTransitionConfig<P extends object> = Omit<P, "transition"> & {
-  /**
-   * If `true`, the element will unmount when `in={false}` and animation is done
-   */
-  unmountOnExit?: boolean
-  /**
-   * Show the component; triggers when enter or exit states
-   */
-  in?: boolean
-  /**
-   * Custom `transition` definition for `enter` and `exit`
-   */
-  transition?: TransitionConfig
-  /**
-   * Custom `transitionEnd` definition for `enter` and `exit`
-   */
-  transitionEnd?: TransitionEndConfig
-  /**
-   * Custom `delay` definition for `enter` and `exit`
-   */
-  delay?: number | DelayConfig
-}
+export type WithTransitionConfig<P extends object> = Omit<P, "transition"> &
+  TransitionProperties & {
+    /**
+     * If `true`, the element will unmount when `in={false}` and animation is done
+     */
+    unmountOnExit?: boolean
+    /**
+     * Show the component; triggers when enter or exit states
+     */
+    in?: boolean
+  }
 
 export const withDelay = {
   enter: (

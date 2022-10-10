@@ -7,7 +7,7 @@ import {
 } from "framer-motion"
 import { forwardRef, useEffect, useState } from "react"
 import {
-  TransitionEasings,
+  TRANSITION_EASINGS,
   Variants,
   withDelay,
   WithTransitionConfig,
@@ -36,12 +36,12 @@ export interface CollapseOptions {
 
 const defaultTransitions = {
   exit: {
-    height: { duration: 0.2, ease: TransitionEasings.ease },
-    opacity: { duration: 0.3, ease: TransitionEasings.ease },
+    height: { duration: 0.2, ease: TRANSITION_EASINGS.ease },
+    opacity: { duration: 0.3, ease: TRANSITION_EASINGS.ease },
   },
   enter: {
-    height: { duration: 0.3, ease: TransitionEasings.ease },
-    opacity: { duration: 0.4, ease: TransitionEasings.ease },
+    height: { duration: 0.3, ease: TRANSITION_EASINGS.ease },
+    opacity: { duration: 0.4, ease: TRANSITION_EASINGS.ease },
   },
 }
 

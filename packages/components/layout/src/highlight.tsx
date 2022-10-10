@@ -68,6 +68,11 @@ export const Mark = forwardRef<MarkProps, "mark">(function Mark(props, ref) {
   )
 })
 
+/**
+ * `Highlight` allows you to highlight substrings of a text.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/highlight
+ */
 export function Highlight(props: HighlightProps): JSX.Element {
   const { children, query, styles } = props
 

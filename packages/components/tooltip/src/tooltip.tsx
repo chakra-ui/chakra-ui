@@ -11,7 +11,7 @@ import {
   getCSSVar,
 } from "@chakra-ui/system"
 import { omit, pick } from "@chakra-ui/object-utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import { Children, cloneElement } from "react"
 import { scale } from "./tooltip.transition"
 import { useTooltip, UseTooltipProps } from "./use-tooltip"
@@ -50,15 +50,16 @@ export interface TooltipProps
    * Props to be forwarded to the portal component
    */
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
+  motionProps?: HTMLMotionProps<"div">
 }
 
-const StyledTooltip = chakra(motion.div)
+const MotionDiv = chakra(motion.div)
 
 /**
  * Tooltips display informative text when users hover, focus on, or tap an element.
  *
  * @see Docs     https://chakra-ui.com/docs/overlay/tooltip
- * @see WAI-ARIA https://www.w3.org/TR/wai-aria-practices/#tooltip
+ * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
  */
 export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
@@ -76,6 +77,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     background,
     backgroundColor,
     bgColor,
+    motionProps,
     ...rest
   } = ownProps
 
@@ -123,7 +125,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
     ? omit(_tooltipProps, ["role", "id"])
     : _tooltipProps
 
-  const hiddenProps = pick(_tooltipProps, ["role", "id"])
+  const srOnlyProps = pick(_tooltipProps, ["role", "id"])
 
   /**
    * If the `label` is empty, there's no point showing the tooltip.
@@ -146,17 +148,18 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
                 pointerEvents: "none",
               }}
             >
-              <StyledTooltip
+              <MotionDiv
                 variants={scale}
-                {...(tooltipProps as any)}
                 initial="exit"
                 animate="enter"
                 exit="exit"
+                {...motionProps}
+                {...(tooltipProps as any)}
                 __css={styles}
               >
                 {label}
                 {hasAriaLabel && (
-                  <chakra.span srOnly {...hiddenProps}>
+                  <chakra.span srOnly {...srOnlyProps}>
                     {ariaLabel}
                   </chakra.span>
                 )}
@@ -172,7 +175,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
                     />
                   </chakra.div>
                 )}
-              </StyledTooltip>
+              </MotionDiv>
             </chakra.div>
           </Portal>
         )}

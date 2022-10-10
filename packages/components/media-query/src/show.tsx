@@ -21,6 +21,11 @@ export interface ShowProps {
   children?: React.ReactNode
 }
 
+/**
+ * `Show` wraps a component to render if the provided media query matches.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/show-hide
+ */
 export function Show(props: ShowProps) {
   const { children, ssr } = props
   const query = useQuery(props)

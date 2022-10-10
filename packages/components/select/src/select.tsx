@@ -67,6 +67,8 @@ export interface SelectProps
 
 /**
  * React component used to select one item from a list of options.
+ *
+ * @see Docs https://chakra-ui.com/docs/components/select
  */
 export const Select = forwardRef<SelectProps, "select">((props, ref) => {
   const styles = useMultiStyleConfig("Select", props)

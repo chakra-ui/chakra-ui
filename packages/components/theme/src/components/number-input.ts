@@ -45,7 +45,7 @@ const baseStyleStepper = defineStyle((props) => {
 
 const baseStyle = definePartsStyle((props) => ({
   root: baseStyleRoot,
-  field: baseStyleField as any,
+  field: runIfFn(baseStyleField, props) ?? {},
   stepperGroup: baseStyleStepperGroup,
   stepper: runIfFn(baseStyleStepper, props) ?? {},
 }))

@@ -62,9 +62,12 @@ export function CustomRender() {
           toast({
             duration: null,
             position: "top-right",
-            render: () => (
+            title: "Render Toast",
+            description: "Allows custom toast content",
+            render: ({ title, description }) => (
               <chakra.div rounded="md" color="white" p={3} bg="blue.500">
-                Hello World
+                <b>{title}</b>
+                <div>Hello World. {description}</div>
               </chakra.div>
             ),
           })

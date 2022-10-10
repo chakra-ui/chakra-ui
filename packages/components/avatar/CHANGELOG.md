@@ -1,5 +1,26 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#6648](https://github.com/chakra-ui/chakra-ui/pull/6648)
+  [`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Declare package exports
+  @see https://webpack.js.org/guides/package-exports/
+
+* [#6722](https://github.com/chakra-ui/chakra-ui/pull/6722)
+  [`16c56953b`](https://github.com/chakra-ui/chakra-ui/commit/16c56953b51d34688d06d6599b70bb895f5ac86d)
+  Thanks [@anubra266](https://github.com/anubra266)! - Remove background from
+  avatar when the image has loaded. This helps to prevent browser
+  inconsistencies.
+
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/image@2.0.11
+  - @chakra-ui/react-context@2.0.4
+  - @chakra-ui/react-children-utils@2.0.2
+
 ## 2.1.0
 
 ### Minor Changes
