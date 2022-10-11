@@ -71,12 +71,12 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
     const { placement } = useDrawerContext()
 
     return (
-      <chakra.div
-        {...containerProps}
-        className="chakra-modal__content-container"
-        __css={dialogContainerStyles}
-      >
-        <ModalFocusScope>
+      <ModalFocusScope>
+        <chakra.div
+          {...containerProps}
+          className="chakra-modal__content-container"
+          __css={dialogContainerStyles}
+        >
           <MotionDiv
             motionProps={motionProps}
             direction={placement}
@@ -87,8 +87,8 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
           >
             {children}
           </MotionDiv>
-        </ModalFocusScope>
-      </chakra.div>
+        </chakra.div>
+      </ModalFocusScope>
     )
   },
 )
