@@ -90,6 +90,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
       alignItems: "center",
       justifyContent: "flex-end",
       flexDirection: "row-reverse",
+      ...styles.group,
     }
 
     const excessStyles: SystemStyleObject = {
