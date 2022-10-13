@@ -73,15 +73,23 @@ export function useMultiStyleConfig(
   >
 }
 
+type MultipartStyles = Record<string, SystemStyleObject>
+
 export function useComponentStyles__unstable(
-  props: ThemingProps & { themeKey: string; baseConfig: any },
+  themeKey: string,
+  props: ThemingProps & { baseConfig: any },
 ) {
-  const { themeKey, baseConfig, ...restProps } = props
+  const { baseConfig, ...restProps } = props
   const { theme } = useChakra()
-  const overrides = theme.components?.[themeKey] || {}
-  const styleConfig = mergeThemeOverride(overrides, baseConfig)
-  return useStyleConfigImpl(null, { ...restProps, styleConfig }) as Record<
-    string,
-    SystemStyleObject
-  >
+
+  const overrides = theme.components?.[themeKey]
+
+  const styleConfig = overrides
+    ? mergeThemeOverride(overrides, baseConfig)
+    : baseConfig
+
+  return useStyleConfigImpl(null, {
+    ...restProps,
+    styleConfig,
+  }) as MultipartStyles
 }
