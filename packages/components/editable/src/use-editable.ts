@@ -169,6 +169,11 @@ export function useEditable(props: UseEditableProps = {}) {
     setIsEditing(false)
     setPrevValue(value)
     onSubmitProp?.(value)
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=559561
+    const inputEl = inputRef.current
+    if (inputEl?.ownerDocument.activeElement === inputEl) {
+      inputEl?.blur()
+    }
   }, [value, onSubmitProp])
 
   const onChange = useCallback(
