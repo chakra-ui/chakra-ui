@@ -1,6 +1,8 @@
 {
   "node": "16",
   "sandboxes": ["/examples/create-react-app"],
+  "installCommand": "csb:install",
+  "buildCommand": "csb:build",
   "packages": [
     "packages/components/accordion",
     "packages/components/alert",

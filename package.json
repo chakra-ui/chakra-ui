@@ -36,6 +36,8 @@
     "twitter:gen": "tsx scripts/twitter-generate.ts",
     "twitter:write": "tsx scripts/twitter-write.ts",
     "csb": "tsx scripts/csb.ts",
+    "csb:install": "pnpm i -g pnpm@7",
+    "csb:build": "pnpm install && pnpm build",
     "create:pkg": "plop component",
     "version": "changeset version",
     "release": "changeset publish",
@@ -126,6 +128,7 @@
     }
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
+    "pnpm": "7"
   }
 }
