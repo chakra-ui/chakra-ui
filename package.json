@@ -55,6 +55,7 @@
     "@babel/runtime": "^7.18.9",
     "@chakra-ui/cli": "workspace:*",
     "@chakra-ui/storybook-addon": "workspace:*",
+    "@chakra-ui/react": "workspace:*",
     "@chakra-ui/test-utils": "workspace:*",
     "@changesets/changelog-github": "0.4.6",
     "@changesets/cli": "2.24.1",
