@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b06b3cca6`](https://github.com/chakra-ui/chakra-ui/commit/b06b3cca679cc7083826b8629add6db6b8218928)]:
+  - @chakra-ui/react-children-utils@2.0.3
+  - @chakra-ui/descendant@3.0.10
+  - @chakra-ui/clickable@2.0.10
+
 ## 2.1.3
 
 ### Patch Changes

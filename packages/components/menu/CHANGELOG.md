@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`182080e4b`](https://github.com/chakra-ui/chakra-ui/commit/182080e4b2148cfc0a0699d02012ffbfc1f4274c),
+  [`b06b3cca6`](https://github.com/chakra-ui/chakra-ui/commit/b06b3cca679cc7083826b8629add6db6b8218928)]:
+  - @chakra-ui/transition@2.0.11
+  - @chakra-ui/react-children-utils@2.0.3
+  - @chakra-ui/descendant@3.0.10
+  - @chakra-ui/popper@3.0.8
+  - @chakra-ui/clickable@2.0.10
+
 ## 2.1.1
 
 ### Patch Changes

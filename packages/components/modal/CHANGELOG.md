@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- [#6815](https://github.com/chakra-ui/chakra-ui/pull/6815)
+  [`8c8420e79`](https://github.com/chakra-ui/chakra-ui/commit/8c8420e795bf7d0fb7c1f3fb725881b122918a5d)
+  Thanks [@jeferson-sb](https://github.com/jeferson-sb)! - Fix issue where
+  `useInert` doesn't work consistently between the Drawer and Modal
+
+- Updated dependencies
+  [[`182080e4b`](https://github.com/chakra-ui/chakra-ui/commit/182080e4b2148cfc0a0699d02012ffbfc1f4274c)]:
+  - @chakra-ui/transition@2.0.11
+  - @chakra-ui/close-button@2.0.11
+
 ## 2.2.1
 
 ### Patch Changes

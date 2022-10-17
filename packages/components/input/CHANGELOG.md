@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b06b3cca6`](https://github.com/chakra-ui/chakra-ui/commit/b06b3cca679cc7083826b8629add6db6b8218928)]:
+  - @chakra-ui/react-children-utils@2.0.3
+  - @chakra-ui/form-control@2.0.11
+
 ## 2.0.11
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [`87f5c275e`](https://github.com/chakra-ui/chakra-ui/commit/87f5c275e42c36ff806f553f80ae559fad4182ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Implement local
+  component style merging for upcoming optimizations
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5e44868ed`](https://github.com/chakra-ui/chakra-ui/commit/5e44868ed0b86b15ef7892a249a24865d900fe57)]:
+  - @chakra-ui/theme-utils@2.0.1
+
 ## 2.2.12
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`83df0142c`](https://github.com/chakra-ui/chakra-ui/commit/83df0142cba98dd969f16a493888cb13c4b7b4fe)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Expose `listProps`
+  to allow passing props to underlying breadcrumb list element
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b06b3cca6`](https://github.com/chakra-ui/chakra-ui/commit/b06b3cca679cc7083826b8629add6db6b8218928)]:
+  - @chakra-ui/react-children-utils@2.0.3
+
 ## 2.0.10
 
 ### Patch Changes

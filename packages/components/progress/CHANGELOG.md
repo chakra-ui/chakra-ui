@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [`b341ee8d9`](https://github.com/chakra-ui/chakra-ui/commit/b341ee8d9e03a3def97b6fb813ff87504b4d4d43)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  progress bar components (`Progress` and `ProgressFilledTrack`) did not use
+  `forwardRef`
+
 ## 2.0.11
 
 ### Patch Changes
