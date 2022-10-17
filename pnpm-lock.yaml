@@ -45,6 +45,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.30.3
       '@typescript-eslint/parser': 5.30.3
+      clean-package: 2.1.1
       discord.js: ^12.5.3
       dotenv: 16.0.1
       edit-json-file: 1.6.0
@@ -117,6 +118,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.30.3_xuuykav7urhdozug7htlfgar3u
       '@typescript-eslint/parser': 5.30.3_4x5o4skxv6sl53vpwefgt23khm
+      clean-package: 2.1.1
       discord.js: 12.5.3
       dotenv: 16.0.1
       edit-json-file: 1.6.0
@@ -13070,7 +13072,6 @@ packages:
     hasBin: true
     dependencies:
       dot-object: 2.1.4
-    dev: true
 
   /clean-stack/2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
@@ -14572,7 +14573,6 @@ packages:
     dependencies:
       commander: 4.1.1
       glob: 7.2.3
-    dev: true
 
   /dot-prop/5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
