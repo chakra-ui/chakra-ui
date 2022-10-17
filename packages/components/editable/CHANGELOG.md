@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.13
+
+### Patch Changes
+
+- [#6827](https://github.com/chakra-ui/chakra-ui/pull/6827)
+  [`16ba8cdd4`](https://github.com/chakra-ui/chakra-ui/commit/16ba8cdd447be4d8a0a4a4eecc8de81fe04e637c)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fixed issue where input
+  retained focus after exiting input programmaticaly.
+
 ## 2.0.12
 
 ### Patch Changes

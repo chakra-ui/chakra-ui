@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#6763](https://github.com/chakra-ui/chakra-ui/pull/6763)
+  [`ed7f878b3`](https://github.com/chakra-ui/chakra-ui/commit/ed7f878b3463cc5a83d67a7aed6dd6fc5a0570f6)
+  Thanks [@noobinthisgame](https://github.com/noobinthisgame)! - Added
+  `setValue` as function exposed by `useClipboard` to enable control over the
+  value after first initialization
+
 ## 2.0.11
 
 ### Patch Changes

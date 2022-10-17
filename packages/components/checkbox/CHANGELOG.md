@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- [#6784](https://github.com/chakra-ui/chakra-ui/pull/6784)
+  [`91698604c`](https://github.com/chakra-ui/chakra-ui/commit/91698604c78a360b90a946c2f2072c514c98ebc5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow checkbox
+  control and root's style to be overriden from theme
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.11
+  - @chakra-ui/visually-hidden@2.0.11
+
 ## 2.2.1
 
 ### Patch Changes

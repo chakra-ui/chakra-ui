@@ -1,5 +1,14 @@
 # @chakra-ui/react-children-utils
 
+## 2.0.3
+
+### Patch Changes
+
+- [#6789](https://github.com/chakra-ui/chakra-ui/pull/6789)
+  [`b06b3cca6`](https://github.com/chakra-ui/chakra-ui/commit/b06b3cca679cc7083826b8629add6db6b8218928)
+  Thanks [@marvinhagemeister](https://github.com/marvinhagemeister)! - Don't
+  inline React by making it a `peerDependency`
+
 ## 2.0.2
 
 ### Patch Changes
