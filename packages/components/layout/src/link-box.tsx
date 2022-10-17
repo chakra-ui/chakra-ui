@@ -13,7 +13,6 @@ export const LinkOverlay = forwardRef<LinkOverlayProps, "a">(
     const { isExternal, target, rel, className, ...rest } = props
     return (
       <chakra.a
-        {...rest}
         ref={ref}
         className={cx("chakra-linkbox__overlay", className)}
         rel={isExternal ? "noopener noreferrer" : rel}
@@ -31,6 +30,7 @@ export const LinkOverlay = forwardRef<LinkOverlayProps, "a">(
             width: "100%",
             height: "100%",
           },
+          {...rest}
         }}
       />
     )
