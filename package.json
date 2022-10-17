@@ -30,7 +30,7 @@
     "clean": "pnpm -r --parallel exec rimraf dist .turbo *.log",
     "changelog": "tsx scripts/changelog.ts",
     "changelog:latest": "tsx scripts/changelog.ts --latest",
-    "changelog:commit": "git add . && git commit -am 'docs: add changelog' && git push",
+    "changelog:commit": "git add .changelog CHANGELOG.md && git commit -m 'docs: add changelog' && git push",
     "changelog:format": "prettier --write .changelog",
     "discord": "tsx scripts/discord.ts",
     "twitter:gen": "tsx scripts/twitter-generate.ts",
