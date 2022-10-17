@@ -34,7 +34,6 @@
     "clean-package": "2.1.1"
   },
   "scripts": {
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "prepack": "clean-package"
   }
 }

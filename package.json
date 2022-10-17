@@ -23,7 +23,7 @@
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc",
     "format:check": "prettier --check packages/**/**/src",
     "format:write": "prettier --write packages/**/**/src",
-    "build:addon": "cd tooling/storybook-addon && pnpm build",
+    "build:addon": "cd tooling/storybook-addon && pnpm build:fast",
     "storybook": "pnpm build:addon && start-storybook -p 6006",
     "build:storybook": "pnpm build:addon && build-storybook && sb extract",
     "serve:storybook": "pnpx serve storybook-static",

@@ -64,7 +64,6 @@
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "prepack": "clean-package"
   }
 }

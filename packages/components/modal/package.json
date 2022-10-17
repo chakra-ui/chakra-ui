@@ -70,7 +70,6 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "JSX=1 tsup src/index.ts",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "prepack": "clean-package"
   }
 }
