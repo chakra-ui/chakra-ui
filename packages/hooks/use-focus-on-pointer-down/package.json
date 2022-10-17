@@ -40,7 +40,6 @@
     "@chakra-ui/react-use-event-listener": "workspace:*"
   },
   "devDependencies": {
-    "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "react": "^18.0.0"
   }
 }

@@ -42,8 +42,7 @@
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
-    "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "react": "^18.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
