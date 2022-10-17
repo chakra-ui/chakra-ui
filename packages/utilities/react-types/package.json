@@ -32,8 +32,5 @@
   "devDependencies": {
     "react": "^18.0.0"
   },
-  "scripts": {
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
-  }
+  "scripts": {}
 }

@@ -49,8 +49,6 @@
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "build:fast": "JSX=1 tsup src/index.ts"
   }
 }
