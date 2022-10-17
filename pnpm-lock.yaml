@@ -340,7 +340,6 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/transition': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
     dependencies:
@@ -357,7 +356,6 @@ importers:
       '@chakra-ui/react-use-disclosure': link:../../hooks/use-disclosure
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
@@ -369,7 +367,6 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/spinner': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
@@ -379,14 +376,10 @@ importers:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/anatomy:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/components/avatar:
     specifiers:
@@ -397,7 +390,6 @@ importers:
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/image': link:../image
@@ -408,7 +400,6 @@ importers:
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/breadcrumb:
@@ -418,7 +409,6 @@ importers:
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
       react-router-dom: 6.0.0
     dependencies:
@@ -428,7 +418,6 @@ importers:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
       react-router-dom: 6.0.0_react@18.2.0
 
@@ -443,7 +432,6 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
       '@chakra-ui/utils': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-icons: ^4.2.0
@@ -459,7 +447,6 @@ importers:
       '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme
       '@chakra-ui/utils': link:../../legacy/utils
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
@@ -482,7 +469,6 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       '@zag-js/focus-visible': 0.1.0
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
     dependencies:
@@ -502,7 +488,6 @@ importers:
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
@@ -511,40 +496,34 @@ importers:
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/close-button:
     specifiers:
       '@chakra-ui/icon': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
     devDependencies:
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/color-mode:
     specifiers:
       '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@chakra-ui/utils': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
     devDependencies:
       '@chakra-ui/utils': link:../../legacy/utils
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/control-box:
@@ -552,13 +531,11 @@ importers:
       '@chakra-ui/icons': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/system': link:../system
       '@chakra-ui/visually-hidden': link:../visually-hidden
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/counter:
@@ -566,24 +543,20 @@ importers:
       '@chakra-ui/number-utils': workspace:*
       '@chakra-ui/react-use-callback-ref': workspace:*
       '@chakra-ui/shared-utils': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/number-utils': link:../../utilities/number-utils
       '@chakra-ui/react-use-callback-ref': link:../../hooks/use-callback-ref
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/css-reset:
     specifiers:
       '@emotion/react': ^11.9.0
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
       '@emotion/react': 11.9.3_react@18.2.0
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/descendant:
@@ -592,7 +565,6 @@ importers:
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-context': link:../../hooks/context
@@ -600,7 +572,6 @@ importers:
     devDependencies:
       '@chakra-ui/hooks': link:../../legacy/hooks
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/editable:
@@ -616,7 +587,6 @@ importers:
       '@chakra-ui/react-use-update-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-context': link:../../hooks/context
@@ -631,32 +601,27 @@ importers:
     devDependencies:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/env:
     specifiers:
       '@types/react-frame-component': ^4.1.1
-      clean-package: 2.1.1
       react: ^18.2.0
       react-frame-component: ^5.2.3
     devDependencies:
       '@types/react-frame-component': 4.1.3
-      clean-package: 2.1.1
       react: 18.2.0
       react-frame-component: 5.2.3_react@18.2.0
 
   packages/components/focus-lock:
     specifiers:
       '@chakra-ui/dom-utils': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
       react-focus-lock: ^2.9.1
     dependencies:
       '@chakra-ui/dom-utils': link:../../utilities/dom-utils
       react-focus-lock: 2.9.1_react@18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/form-control:
@@ -667,7 +632,6 @@ importers:
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
@@ -677,21 +641,18 @@ importers:
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/icon:
     specifiers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
       react-icons: ^4.2.0
     dependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
 
@@ -701,7 +662,6 @@ importers:
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/system': workspace:*
       '@types/react': ^18.0.1
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
@@ -709,7 +669,6 @@ importers:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/system': link:../system
       '@types/react': 18.0.15
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/image:
@@ -718,7 +677,6 @@ importers:
       '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
@@ -726,7 +684,6 @@ importers:
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/input:
@@ -740,7 +697,6 @@ importers:
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
@@ -753,7 +709,6 @@ importers:
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/layout:
@@ -765,7 +720,6 @@ importers:
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
       react-icons: ^4.2.0
       react-router-dom: 6.0.0
@@ -778,17 +732,14 @@ importers:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
     devDependencies:
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
       react-router-dom: 6.0.0_react@18.2.0
 
   packages/components/live-region:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/media-query:
@@ -800,7 +751,6 @@ importers:
       '@chakra-ui/theme': workspace:*
       '@testing-library/react-hooks': 8.0.0
       '@types/react-frame-component': ^4.1.1
-      clean-package: 2.1.1
       jest-matchmedia-mock: ^1.1.0
       react: ^18.2.0
       react-frame-component: ^5.2.3
@@ -813,7 +763,6 @@ importers:
       '@chakra-ui/theme': link:../theme
       '@testing-library/react-hooks': 8.0.0_react@18.2.0
       '@types/react-frame-component': 4.1.3
-      clean-package: 2.1.1
       jest-matchmedia-mock: 1.1.0
       react: 18.2.0
       react-frame-component: 5.2.3_react@18.2.0
@@ -842,7 +791,6 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
       '@chakra-ui/transition': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-icons: ^4.2.0
@@ -870,7 +818,6 @@ importers:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
@@ -889,7 +836,6 @@ importers:
       '@chakra-ui/transition': workspace:*
       '@testing-library/react-hooks': 8.0.0
       aria-hidden: ^1.1.1
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -910,7 +856,6 @@ importers:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@testing-library/react-hooks': 8.0.0_biqbaboplfbrettd7655fr4n2y
-      clean-package: 2.1.1
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -934,7 +879,6 @@ importers:
       '@chakra-ui/react-use-update-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
       react-hook-form: 7.18.1
       react-lorem-component: 0.13.0
@@ -956,7 +900,6 @@ importers:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
       react-hook-form: 7.18.1_react@18.2.0
       react-lorem-component: 0.13.0_react@18.2.0
@@ -970,7 +913,6 @@ importers:
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/descendant': link:../descendant
@@ -981,7 +923,6 @@ importers:
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/popover:
@@ -1003,7 +944,6 @@ importers:
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-icons: ^4.2.0
@@ -1026,7 +966,6 @@ importers:
       '@chakra-ui/radio': link:../radio
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
@@ -1037,7 +976,6 @@ importers:
       '@chakra-ui/react-types': workspace:*
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@popperjs/core': ^2.9.3
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
     dependencies:
@@ -1046,7 +984,6 @@ importers:
       '@popperjs/core': 2.11.5
     devDependencies:
       '@chakra-ui/hooks': link:../../legacy/hooks
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
@@ -1057,7 +994,6 @@ importers:
       '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@testing-library/react': 13.3.0
       '@types/react-frame-component': ^4.1.1
-      clean-package: 2.1.1
       react: ^18.2.0
       react-dom: ^18.2.0
       react-frame-component: ^4.1.3
@@ -1068,7 +1004,6 @@ importers:
       '@chakra-ui/button': link:../button
       '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
       '@types/react-frame-component': 4.1.3
-      clean-package: 2.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-frame-component: 4.1.3_biqbaboplfbrettd7655fr4n2y
@@ -1077,13 +1012,11 @@ importers:
     specifiers:
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-context': link:../../hooks/context
     devDependencies:
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/provider:
@@ -1095,7 +1028,6 @@ importers:
       '@chakra-ui/utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
-      clean-package: 2.1.1
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
@@ -1107,7 +1039,6 @@ importers:
     devDependencies:
       '@emotion/react': 11.9.3_react@18.2.0
       '@emotion/styled': 11.9.3_jhgplt4fmhans76oq3ok5iox2u
-      clean-package: 2.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 
@@ -1123,7 +1054,6 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
       '@zag-js/focus-visible': 0.1.0
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
@@ -1137,7 +1067,6 @@ importers:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@chakra-ui/visually-hidden': link:../visually-hidden
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/react:
@@ -1193,7 +1122,6 @@ importers:
       '@chakra-ui/visually-hidden': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -1250,7 +1178,6 @@ importers:
     devDependencies:
       '@emotion/react': 11.9.3_react@18.2.0
       '@emotion/styled': 11.9.3_jhgplt4fmhans76oq3ok5iox2u
-      clean-package: 2.1.1
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1262,7 +1189,6 @@ importers:
       '@chakra-ui/object-utils': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
@@ -1271,7 +1197,6 @@ importers:
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/skeleton:
@@ -1283,7 +1208,6 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
-      clean-package: 2.1.1
       jest-matchmedia-mock: 1.1.0
       react: ^18.2.0
     dependencies:
@@ -1295,18 +1219,15 @@ importers:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@chakra-ui/theme': link:../theme
-      clean-package: 2.1.1
       jest-matchmedia-mock: 1.1.0
       react: 18.2.0
 
   packages/components/skip-nav:
     specifiers:
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/slider:
@@ -1326,7 +1247,6 @@ importers:
       '@chakra-ui/theme': workspace:*
       '@chakra-ui/utils': workspace:*
       '@emotion/styled': ^11.8.1
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/number-utils': link:../../utilities/number-utils
@@ -1345,7 +1265,6 @@ importers:
       '@chakra-ui/theme': link:../theme
       '@chakra-ui/utils': link:../../legacy/utils
       '@emotion/styled': 11.9.3_react@18.2.0
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/spinner:
@@ -1353,13 +1272,11 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
       '@chakra-ui/utils': link:../../legacy/utils
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/stat:
@@ -1368,7 +1285,6 @@ importers:
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/icon': link:../icon
@@ -1376,7 +1292,6 @@ importers:
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/styled-system:
@@ -1388,7 +1303,6 @@ importers:
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
       '@types/lodash.mergewith': 4.6.6
-      clean-package: 2.1.1
       csstype: ^3.0.11
       lodash.mergewith: 4.6.2
     dependencies:
@@ -1402,7 +1316,6 @@ importers:
       '@emotion/react': 11.9.3
       '@emotion/styled': 11.9.3_@emotion+react@11.9.3
       '@types/lodash.mergewith': 4.6.6
-      clean-package: 2.1.1
 
   packages/components/switch:
     specifiers:
@@ -1411,7 +1324,6 @@ importers:
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-hook-form: 7.18.1
@@ -1422,7 +1334,6 @@ importers:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
       react-hook-form: 7.18.1_react@18.2.0
@@ -1437,7 +1348,6 @@ importers:
       '@chakra-ui/utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-fast-compare: 3.2.0
@@ -1452,7 +1362,6 @@ importers:
       '@chakra-ui/theme': link:../theme
       '@emotion/react': 11.9.3_react@18.2.0
       '@emotion/styled': 11.9.3_jhgplt4fmhans76oq3ok5iox2u
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
@@ -1465,7 +1374,6 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/test-utils': workspace:*
       '@tanstack/react-table': ^8.5.10
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-context': link:../../hooks/context
@@ -1476,7 +1384,6 @@ importers:
       '@chakra-ui/system': link:../system
       '@chakra-ui/test-utils': link:../../../tooling/test-utils
       '@tanstack/react-table': 8.5.10_react@18.2.0
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/tabs:
@@ -1493,7 +1400,6 @@ importers:
       '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/clickable': link:../clickable
@@ -1509,7 +1415,6 @@ importers:
       '@chakra-ui/react-use-interval': link:../../hooks/use-interval
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/tag:
@@ -1519,7 +1424,6 @@ importers:
       '@chakra-ui/icons': workspace:*
       '@chakra-ui/react-context': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
       react-icons: ^4.2.0
     dependencies:
@@ -1529,7 +1433,6 @@ importers:
       '@chakra-ui/avatar': link:../avatar
       '@chakra-ui/icons': link:../icons
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
 
@@ -1539,7 +1442,6 @@ importers:
       '@chakra-ui/object-utils': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/form-control': link:../form-control
@@ -1547,7 +1449,6 @@ importers:
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/components/theme:
@@ -1557,7 +1458,6 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/theme-tools': workspace:*
-      clean-package: 2.1.1
     dependencies:
       '@chakra-ui/anatomy': link:../anatomy
       '@chakra-ui/theme-tools': link:../theme-tools
@@ -1565,7 +1465,6 @@ importers:
       '@chakra-ui/cli': link:../../../tooling/cli
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/styled-system': link:../styled-system
-      clean-package: 2.1.1
 
   packages/components/theme-tools:
     specifiers:
@@ -1574,7 +1473,6 @@ importers:
       '@chakra-ui/styled-system': workspace:*
       '@ctrl/tinycolor': ^3.4.0
       '@types/dlv': ^1.1.2
-      clean-package: 2.1.1
       dlv: ^1.1.3
     dependencies:
       '@chakra-ui/anatomy': link:../anatomy
@@ -1583,7 +1481,6 @@ importers:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/styled-system': link:../styled-system
       '@types/dlv': 1.1.2
-      clean-package: 2.1.1
       dlv: 1.1.3
 
   packages/components/toast:
@@ -1600,7 +1497,6 @@ importers:
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -1618,7 +1514,6 @@ importers:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1637,7 +1532,6 @@ importers:
       '@chakra-ui/react-use-merge-refs': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -1655,7 +1549,6 @@ importers:
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1664,86 +1557,70 @@ importers:
     specifiers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/shared-utils': workspace:*
-      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
     devDependencies:
       '@chakra-ui/hooks': link:../../legacy/hooks
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
-      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
 
   packages/components/visually-hidden:
     specifiers:
       '@chakra-ui/system': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
       '@chakra-ui/system': link:../system
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/context:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-animation-state:
     specifiers:
       '@chakra-ui/dom-utils': workspace:*
       '@chakra-ui/react-use-event-listener': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/dom-utils': link:../../utilities/dom-utils
       '@chakra-ui/react-use-event-listener': link:../use-event-listener
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-callback-ref:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-controllable-state:
     specifiers:
       '@chakra-ui/react-use-callback-ref': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-disclosure:
     specifiers:
       '@chakra-ui/react-use-callback-ref': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-event-listener:
     specifiers:
       '@chakra-ui/react-use-callback-ref': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-focus-effect:
@@ -1751,70 +1628,57 @@ importers:
       '@chakra-ui/dom-utils': workspace:*
       '@chakra-ui/react-use-event-listener': workspace:*
       '@chakra-ui/react-use-update-effect': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/dom-utils': link:../../utilities/dom-utils
       '@chakra-ui/react-use-event-listener': link:../use-event-listener
       '@chakra-ui/react-use-update-effect': link:../use-update-effect
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-focus-on-pointer-down:
     specifiers:
       '@chakra-ui/react-use-event-listener': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-event-listener': link:../use-event-listener
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-interval:
     specifiers:
       '@chakra-ui/react-use-callback-ref': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-latest-ref:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-merge-refs:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-outside-click:
     specifiers:
       '@chakra-ui/react-use-callback-ref': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-pan-event:
     specifiers:
       '@chakra-ui/event-utils': workspace:*
       '@chakra-ui/react-use-latest-ref': workspace:*
-      clean-package: 2.1.1
       framesync: 5.3.0
       react: ^18.2.0
     dependencies:
@@ -1822,60 +1686,48 @@ importers:
       '@chakra-ui/react-use-latest-ref': link:../use-latest-ref
       framesync: 5.3.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-previous:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-safe-layout-effect:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-size:
     specifiers:
       '@zag-js/element-size': 0.1.0
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@zag-js/element-size': 0.1.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-timeout:
     specifiers:
       '@chakra-ui/react-use-callback-ref': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-callback-ref': link:../use-callback-ref
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/hooks/use-update-effect:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/legacy/hooks:
     specifiers:
       '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/utils': workspace:*
-      clean-package: 2.1.1
       compute-scroll-into-view: 1.0.14
       copy-to-clipboard: 3.3.1
       react: ^18.2.0
@@ -1885,24 +1737,20 @@ importers:
       compute-scroll-into-view: 1.0.14
       copy-to-clipboard: 3.3.1
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/legacy/react-utils:
     specifiers:
       '@chakra-ui/utils': workspace:*
-      clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/utils': link:../utils
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/legacy/utils:
     specifiers:
       '@types/lodash.mergewith': 4.6.6
-      clean-package: 2.1.1
       css-box-model: 1.2.1
       framesync: 5.3.0
       lodash.mergewith: 4.6.2
@@ -1911,75 +1759,45 @@ importers:
       css-box-model: 1.2.1
       framesync: 5.3.0
       lodash.mergewith: 4.6.2
-    devDependencies:
-      clean-package: 2.1.1
 
   packages/utilities/breakpoint-utils:
     specifiers:
       '@chakra-ui/shared-utils': workspace:*
-      clean-package: 2.1.1
     devDependencies:
       '@chakra-ui/shared-utils': link:../shared-utils
-      clean-package: 2.1.1
 
   packages/utilities/dom-utils:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/utilities/event-utils:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/utilities/lazy-utils:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/utilities/merge-utils:
     specifiers:
-      clean-package: 2.1.1
       merge-anything: ^5.0.2
     dependencies:
       merge-anything: 5.0.2
-    devDependencies:
-      clean-package: 2.1.1
 
   packages/utilities/number-utils:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/utilities/object-utils:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/utilities/react-children-utils:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/utilities/react-types:
     specifiers:
-      clean-package: 2.1.1
       react: ^18.2.0
     devDependencies:
-      clean-package: 2.1.1
       react: 18.2.0
 
   packages/utilities/shared-utils:
-    specifiers:
-      clean-package: 2.1.1
-    devDependencies:
-      clean-package: 2.1.1
+    specifiers: {}
 
   packages/utilities/theme-utils:
     specifiers:
@@ -13072,6 +12890,7 @@ packages:
     hasBin: true
     dependencies:
       dot-object: 2.1.4
+    dev: false
 
   /clean-stack/2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
@@ -14573,6 +14392,7 @@ packages:
     dependencies:
       commander: 4.1.1
       glob: 7.2.3
+    dev: false
 
   /dot-prop/5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
