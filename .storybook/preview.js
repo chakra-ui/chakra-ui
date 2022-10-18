@@ -10,7 +10,7 @@ export const parameters = {
   chakra: {
     theme: extendTheme({
       config: {
-        useReducedMotion: true,
+        useReducedMotion: false,
       },
       semanticTokens: {
         colors: {
