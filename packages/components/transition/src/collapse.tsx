@@ -32,6 +32,11 @@ export interface CollapseOptions {
    * @default "auto"
    */
   endingHeight?: number | string
+  /**
+   * Should disable the animations
+   * @default "false"
+   */
+  reducedMotion?: boolean
 }
 
 const defaultTransitions = {
@@ -92,6 +97,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       className,
       transition,
       transitionEnd,
+      reducedMotion,
       ...rest
     } = props
 
@@ -148,7 +154,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
               ...style,
             }}
             custom={custom}
-            variants={variants as _Variants}
+            variants={reducedMotion ? {} : (variants as _Variants)}
             initial={unmountOnExit ? "exit" : false}
             animate={animate}
             exit="exit"

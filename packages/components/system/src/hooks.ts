@@ -1,5 +1,6 @@
 import { useColorMode } from "@chakra-ui/color-mode"
 import { Dict, StringOrNumber } from "@chakra-ui/utils"
+import { useReducedMotion } from "@chakra-ui/react-use-reduced-motion"
 import { useTheme } from "./use-theme"
 
 export function useChakra<T extends Dict = Dict>() {
@@ -60,4 +61,9 @@ export function getToken<T extends StringOrNumber | StringOrNumber[]>(
     })
     return Array.isArray(token) ? result : result[0]
   }
+}
+
+export function useReducedMotionValue() {
+  const theme = useTheme()
+  return useReducedMotion(theme.config?.useReducedMotion)
 }

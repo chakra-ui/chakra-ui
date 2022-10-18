@@ -21,7 +21,7 @@ export function ToastExample() {
           if (toast.isActive(id)) return
           toast({
             id,
-            position: "top-left",
+            position: "bottom-left",
             title: "Error Connecting...",
             description: "You do not have permissions to perform this action.",
             status: "error",
@@ -391,7 +391,7 @@ export const ToastWithCustomIcon = () => {
           if (toast.isActive(id)) return
           toast({
             id,
-            position: "top-left",
+            position: "bottom-left",
             title: "Message me",
             icon: (
               <span role="img" aria-label="icon">

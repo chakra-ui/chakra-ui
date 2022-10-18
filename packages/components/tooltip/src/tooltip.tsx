@@ -9,6 +9,7 @@ import {
   useStyleConfig,
   useTheme,
   getCSSVar,
+  useReducedMotionValue,
 } from "@chakra-ui/system"
 import { omit, pick } from "@chakra-ui/object-utils"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
@@ -63,8 +64,9 @@ const MotionDiv = chakra(motion.div)
  */
 export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
-  const ownProps = omitThemingProps(props)
+  const ownProps: any = omitThemingProps(props)
   const theme = useTheme()
+  const prefersReducedMotion = useReducedMotionValue()
 
   const {
     children,
@@ -149,7 +151,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
               }}
             >
               <MotionDiv
-                variants={scale}
+                variants={prefersReducedMotion ? {} : scale}
                 initial="exit"
                 animate="enter"
                 exit="exit"

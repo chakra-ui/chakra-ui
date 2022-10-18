@@ -4,6 +4,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
+  useReducedMotionValue,
 } from "@chakra-ui/system"
 import { HTMLMotionProps } from "framer-motion"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
@@ -17,6 +18,7 @@ export interface PopoverContentProps extends PopoverTransitionProps {
 export const PopoverContent = forwardRef<PopoverContentProps, "section">(
   function PopoverContent(props, ref) {
     const { rootProps, motionProps, ...contentProps } = props
+    const prefersReducedMotion = useReducedMotionValue()
 
     const { getPopoverProps, getPopoverPositionerProps, onAnimationComplete } =
       usePopoverContext()
@@ -37,6 +39,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
       >
         <PopoverTransition
           {...motionProps}
+          variants={prefersReducedMotion ? {} : motionProps?.variants}
           {...getPopoverProps(contentProps, ref)}
           onAnimationComplete={callAll(
             onAnimationComplete,

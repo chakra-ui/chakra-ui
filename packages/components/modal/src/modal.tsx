@@ -5,6 +5,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
+  useReducedMotionValue,
 } from "@chakra-ui/system"
 import { AnimatePresence } from "framer-motion"
 import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
@@ -136,6 +137,7 @@ const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
  */
 export const Modal: React.FC<ModalProps> = (props) => {
+  const prefersReducedMotion = useReducedMotionValue()
   const {
     portalProps,
     children,
@@ -150,7 +152,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
     motionPreset,
     lockFocusAcrossFrames,
     onCloseComplete,
-  } = props
+  } = {
+    ...props,
+    motionPreset: prefersReducedMotion ? "none" : props.motionPreset,
+  }
 
   const styles = useMultiStyleConfig("Modal", props)
   const modal = useModal(props)

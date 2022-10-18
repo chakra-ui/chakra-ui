@@ -5,6 +5,7 @@ import {
   omitThemingProps,
   ThemingProps,
   useMultiStyleConfig,
+  useReducedMotionValue,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
@@ -40,14 +41,15 @@ export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
   { children, reduceMotion, ...props },
   ref,
 ) {
+  const prefersReducedMotion = useReducedMotionValue()
   const styles = useMultiStyleConfig("Accordion", props)
   const ownProps = omitThemingProps(props)
 
   const { htmlProps, descendants, ...context } = useAccordion(ownProps)
 
   const ctx = useMemo(
-    () => ({ ...context, reduceMotion: !!reduceMotion }),
-    [context, reduceMotion],
+    () => ({ ...context, reduceMotion: reduceMotion ?? prefersReducedMotion }),
+    [context, reduceMotion, prefersReducedMotion],
   )
 
   return (

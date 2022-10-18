@@ -4,6 +4,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
+  useReducedMotionValue,
 } from "@chakra-ui/system"
 import { Slide } from "@chakra-ui/transition"
 import type { HTMLMotionProps } from "framer-motion"
@@ -31,6 +32,7 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   (props, ref) => {
+    const prefersReducedMotion = useReducedMotionValue()
     const {
       className,
       children,
@@ -78,6 +80,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
           __css={dialogContainerStyles}
         >
           <MotionDiv
+            reducedMotion={prefersReducedMotion}
             motionProps={motionProps}
             direction={placement}
             in={isOpen}

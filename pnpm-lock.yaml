@@ -1428,6 +1428,7 @@ importers:
   packages/components/system:
     specifiers:
       '@chakra-ui/color-mode': workspace:*
+      '@chakra-ui/react-use-reduced-motion': workspace:*
       '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/theme': workspace:*
@@ -1441,6 +1442,7 @@ importers:
       react-fast-compare: 3.2.0
     dependencies:
       '@chakra-ui/color-mode': link:../color-mode
+      '@chakra-ui/react-use-reduced-motion': link:../../hooks/use-reduced-motion
       '@chakra-ui/react-utils': link:../../legacy/react-utils
       '@chakra-ui/styled-system': link:../styled-system
       '@chakra-ui/theme-utils': link:../../utilities/theme-utils
@@ -1662,9 +1664,12 @@ importers:
     specifiers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/shared-utils': workspace:*
+      '@chakra-ui/system': workspace:*
       clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
+    dependencies:
+      '@chakra-ui/system': link:../system
     devDependencies:
       '@chakra-ui/hooks': link:../../legacy/hooks
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
@@ -1827,6 +1832,17 @@ importers:
     specifiers:
       clean-package: 2.1.1
       react: ^18.2.0
+    devDependencies:
+      clean-package: 2.1.1
+      react: 18.2.0
+
+  packages/hooks/use-reduced-motion:
+    specifiers:
+      '@chakra-ui/react-env': workspace:*
+      clean-package: 2.1.1
+      react: ^18.2.0
+    dependencies:
+      '@chakra-ui/react-env': link:../../components/env
     devDependencies:
       clean-package: 2.1.1
       react: 18.2.0
@@ -17113,7 +17129,6 @@ packages:
     engines: {node: '>=14.15.0'}
     peerDependencies:
       gatsby: ^4.0.0-next
-      graphql: ^15.0.0
     dependencies:
       '@babel/runtime': 7.18.9
       '@gatsbyjs/potrace': 2.2.0
@@ -17128,6 +17143,8 @@ packages:
       mime: 3.0.0
       mini-svg-data-uri: 1.4.4
       svgo: 2.8.0
+    transitivePeerDependencies:
+      - graphql
     dev: false
 
   /gatsby-plugin-utils/3.13.0_upd2dfgy6javngtb6zz74pjfdq:
@@ -17135,7 +17152,6 @@ packages:
     engines: {node: '>=14.15.0'}
     peerDependencies:
       gatsby: ^4.0.0-next
-      graphql: ^15.0.0
     dependencies:
       '@babel/runtime': 7.18.9
       '@gatsbyjs/potrace': 2.2.0
@@ -17151,6 +17167,8 @@ packages:
       mime: 3.0.0
       mini-svg-data-uri: 1.4.4
       svgo: 2.8.0
+    transitivePeerDependencies:
+      - graphql
 
   /gatsby-react-router-scroll/5.19.0_2b7k3pzsr52a6edilitd4w3peu:
     resolution: {integrity: sha512-tl1E2/ger3Aw5Vb5n53i9wCBePYqb2dBilO05pd6FfgKYJveFidQwGzzOn1F9smdWq+5c3KJSTlKJaNYPwn72w==}

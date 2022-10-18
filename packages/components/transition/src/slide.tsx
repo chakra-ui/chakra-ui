@@ -57,6 +57,11 @@ export interface SlideOptions {
    * @default "right"
    */
   direction?: SlideDirection
+  /**
+   * Should disable the animations
+   * @default "false"
+   */
+  reducedMotion?: boolean
 }
 
 export interface SlideProps
@@ -79,6 +84,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
     transitionEnd,
     delay,
     motionProps,
+    reducedMotion,
     ...rest
   } = props
 
@@ -105,7 +111,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
           animate={animate}
           exit="exit"
           custom={custom}
-          variants={variants as TVariants}
+          variants={reducedMotion ? {} : (variants as TVariants)}
           style={computedStyle}
           {...motionProps}
         />

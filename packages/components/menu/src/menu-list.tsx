@@ -1,5 +1,10 @@
 import { callAll, cx } from "@chakra-ui/shared-utils"
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import {
+  chakra,
+  forwardRef,
+  HTMLChakraProps,
+  useReducedMotionValue,
+} from "@chakra-ui/system"
 
 import { HTMLMotionProps, motion, Variants } from "framer-motion"
 import { useMenuStyles } from "./menu"
@@ -45,6 +50,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
   props,
   ref,
 ) {
+  const prefersReducedMotion = useReducedMotionValue()
   const { rootProps, motionProps, ...rest } = props
   const {
     isOpen,
@@ -63,7 +69,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
       __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
     >
       <MenuTransition
-        variants={motionVariants}
+        variants={prefersReducedMotion ? {} : motionVariants}
         initial={false}
         animate={isOpen ? "enter" : "exit"}
         __css={{ outline: 0, ...styles.list }}

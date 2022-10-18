@@ -14,7 +14,13 @@ import {
 } from "./transition-utils"
 
 export interface FadeProps
-  extends WithTransitionConfig<HTMLMotionProps<"div">> {}
+  extends WithTransitionConfig<HTMLMotionProps<"div">> {
+  /**
+   * Should disable the animations
+   * @default "false"
+   */
+  reducedMotion?: boolean
+}
 
 const variants: Variants = {
   enter: ({ transition, transitionEnd, delay } = {}) => ({
@@ -49,6 +55,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(
     transition,
     transitionEnd,
     delay,
+    reducedMotion,
     ...rest
   } = props
 
@@ -65,6 +72,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(
           className={cx("chakra-fade", className)}
           custom={custom}
           {...fadeConfig}
+          variants={reducedMotion ? {} : variants}
           animate={animate}
           {...rest}
         />

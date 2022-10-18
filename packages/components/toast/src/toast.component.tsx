@@ -2,7 +2,7 @@ import { useTimeout } from "@chakra-ui/react-use-timeout"
 import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
 import { runIfFn } from "@chakra-ui/shared-utils"
 import { motion, useIsPresent, Variants } from "framer-motion"
-import { chakra } from "@chakra-ui/system"
+import { chakra, useReducedMotionValue } from "@chakra-ui/system"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
 import { ToastProviderProps } from "./toast.provider"
@@ -10,7 +10,7 @@ import { memo, useEffect, useMemo, useState } from "react"
 
 const toastMotionVariants: Variants = {
   initial: (props) => {
-    const { position } = props
+    const { position, reduceMotion } = props
 
     const dir = ["top", "bottom"].includes(position) ? "y" : "x"
 
@@ -18,28 +18,28 @@ const toastMotionVariants: Variants = {
     if (position === "bottom") factor = 1
 
     return {
-      opacity: 0,
+      opacity: reduceMotion ? 1 : 0,
       [dir]: factor * 24,
     }
   },
-  animate: {
+  animate: (props) => ({
     opacity: 1,
     y: 0,
     x: 0,
     scale: 1,
     transition: {
-      duration: 0.4,
+      duration: props.reducedMotion ? 0 : 0.4,
       ease: [0.4, 0, 0.2, 1],
     },
-  },
-  exit: {
+  }),
+  exit: (props) => ({
     opacity: 0,
     scale: 0.85,
     transition: {
-      duration: 0.2,
+      duration: props.reducedMotion ? 0 : 0.2,
       ease: [0.4, 0, 1, 1],
     },
-  },
+  }),
 }
 
 export interface ToastComponentProps
@@ -47,6 +47,7 @@ export interface ToastComponentProps
     Pick<ToastProviderProps, "motionVariants" | "toastSpacing"> {}
 
 export const ToastComponent = memo((props: ToastComponentProps) => {
+  const reducedMotion = useReducedMotionValue()
   const {
     id,
     message,
@@ -111,7 +112,7 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
       exit="exit"
       onHoverStart={onMouseEnter}
       onHoverEnd={onMouseLeave}
-      custom={{ position }}
+      custom={{ position, reducedMotion }}
       style={toastStyle}
     >
       <chakra.div
