@@ -112,23 +112,25 @@ export const ToastProvider = (props: ToastProviderProps) => {
     const toasts = state[position]
 
     return (
-      <ul
-        role="region"
+      <div
+        role="alert"
         aria-live="polite"
         key={position}
         id={`chakra-toast-manager-${position}`}
         style={getToastListStyle(position)}
       >
-        <AnimatePresence initial={false}>
-          {toasts.map((toast) => (
-            <Component
-              key={toast.id}
-              motionVariants={motionVariants}
-              {...toast}
-            />
-          ))}
-        </AnimatePresence>
-      </ul>
+        <ul>
+          <AnimatePresence initial={false}>
+            {toasts.map((toast) => (
+              <Component
+                key={toast.id}
+                motionVariants={motionVariants}
+                {...toast}
+              />
+            ))}
+          </AnimatePresence>
+        </ul>
+      </div>
     )
   })
 
