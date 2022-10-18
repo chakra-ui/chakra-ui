@@ -1,4 +1,5 @@
 import type {
+  BaseThemeConfig,
   PartsStyleInterpolation,
   Pseudos,
   SemanticValue,
@@ -11,19 +12,13 @@ import { Styles } from "@chakra-ui/theme-tools"
 type ColorMode = "light" | "dark"
 type Dict = Record<string, any>
 
-type ColorModeOptions = {
-  initialColorMode?: "light" | "dark" | "system"
-  useSystemColorMode?: boolean
-  disableTransitionOnChange?: boolean
-}
-
 export type RecursiveProperty<T = string | number> = RecursiveObject<T> | T
 
 export interface RecursiveObject<T = string | number> {
   [property: string]: RecursiveProperty<T>
 }
 
-export interface ThemeConfig extends ColorModeOptions {
+export interface ThemeConfig extends BaseThemeConfig {
   cssVarPrefix?: string
 }
 

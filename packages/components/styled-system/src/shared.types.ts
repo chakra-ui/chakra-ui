@@ -1,3 +1,10 @@
+export type BaseThemeConfig = {
+  initialColorMode?: "light" | "dark" | "system"
+  useSystemColorMode?: boolean
+  disableTransitionOnChange?: boolean
+  useReducedMotion?: boolean | "system"
+}
+
 export interface BaseThemeTypings {
   borders: string
   colors: string
