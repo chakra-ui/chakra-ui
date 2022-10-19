@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- [`182080e4b`](https://github.com/chakra-ui/chakra-ui/commit/182080e4b2148cfc0a0699d02012ffbfc1f4274c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force publish
+  package due to changes in last release
+
 ## 2.0.10
 
 ### Patch Changes

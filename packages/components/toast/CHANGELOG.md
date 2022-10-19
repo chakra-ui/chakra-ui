@@ -1,5 +1,26 @@
 # Change Log
 
+## 4.0.0
+
+### Patch Changes
+
+- [#6781](https://github.com/chakra-ui/chakra-ui/pull/6781)
+  [`6d3178273`](https://github.com/chakra-ui/chakra-ui/commit/6d3178273dd7742cd14d5902606c70cdd9adb0d3)
+  Thanks [@anubra266](https://github.com/anubra266)! - Allow `containerStyles`
+  to accept style props, not just React CSS properties
+
+* [`58511eae5`](https://github.com/chakra-ui/chakra-ui/commit/58511eae5b6c5f321fef3fade42a63a1639b31f7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Expose original
+  toast options to toast `render` options
+
+* Updated dependencies
+  [[`58856c739`](https://github.com/chakra-ui/chakra-ui/commit/58856c739c536474cc23a94809082a9d549c71a3),
+  [`87f5c275e`](https://github.com/chakra-ui/chakra-ui/commit/87f5c275e42c36ff806f553f80ae559fad4182ef)]:
+  - @chakra-ui/theme@2.1.14
+  - @chakra-ui/system@2.3.0
+  - @chakra-ui/alert@2.0.11
+  - @chakra-ui/close-button@2.0.11
+
 ## 3.0.13
 
 ### Patch Changes

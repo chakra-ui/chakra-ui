@@ -84,16 +84,15 @@ const EditableControls = () => {
 
 export const Basic = () => (
   <Editable
-    defaultValue="Rasengan ⚡️"
-    fontSize="xl"
     textAlign="center"
-    isPreviewFocusable={false}
-    submitOnBlur={false}
-    onChange={console.log}
+    value="Rasengan ⚡️"
+    fontSize="2xl"
+    onSubmit={() => console.log("onSubmit", Math.random())}
+    isPreviewFocusable
   >
     <EditablePreview />
     <EditableInput />
-    <EditableControls />
+    {/* <EditableControls /> */}
   </Editable>
 )
 

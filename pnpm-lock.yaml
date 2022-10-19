@@ -1431,6 +1431,7 @@ importers:
       '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/theme': workspace:*
+      '@chakra-ui/theme-utils': workspace:*
       '@chakra-ui/utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
@@ -1442,6 +1443,7 @@ importers:
       '@chakra-ui/color-mode': link:../color-mode
       '@chakra-ui/react-utils': link:../../legacy/react-utils
       '@chakra-ui/styled-system': link:../styled-system
+      '@chakra-ui/theme-utils': link:../../utilities/theme-utils
       '@chakra-ui/utils': link:../../legacy/utils
       react-fast-compare: 3.2.0
     devDependencies:
@@ -12131,6 +12133,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.9
       '@babel/runtime': 7.18.9
+      '@babel/types': 7.18.9
       gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
 
@@ -17032,6 +17035,7 @@ packages:
       '@sindresorhus/slugify': 1.1.2
       chokidar: 3.5.3
       fs-exists-cached: 1.0.0
+      fs-extra: 10.1.0
       gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
       gatsby-page-utils: 2.19.0
@@ -17109,9 +17113,11 @@ packages:
     engines: {node: '>=14.15.0'}
     peerDependencies:
       gatsby: ^4.0.0-next
+      graphql: ^15.0.0
     dependencies:
       '@babel/runtime': 7.18.9
       '@gatsbyjs/potrace': 2.2.0
+      fastq: 1.13.0
       fs-extra: 10.1.0
       gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
       gatsby-core-utils: 3.19.0
@@ -17122,8 +17128,6 @@ packages:
       mime: 3.0.0
       mini-svg-data-uri: 1.4.4
       svgo: 2.8.0
-    transitivePeerDependencies:
-      - graphql
     dev: false
 
   /gatsby-plugin-utils/3.13.0_upd2dfgy6javngtb6zz74pjfdq:
@@ -17131,21 +17135,22 @@ packages:
     engines: {node: '>=14.15.0'}
     peerDependencies:
       gatsby: ^4.0.0-next
+      graphql: ^15.0.0
     dependencies:
       '@babel/runtime': 7.18.9
       '@gatsbyjs/potrace': 2.2.0
+      fastq: 1.13.0
       fs-extra: 10.1.0
       gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
       gatsby-sharp: 0.13.0
+      graphql: 15.8.0
       graphql-compose: 9.0.8_graphql@15.8.0
       import-from: 4.0.0
       joi: 17.6.0
       mime: 3.0.0
       mini-svg-data-uri: 1.4.4
       svgo: 2.8.0
-    transitivePeerDependencies:
-      - graphql
 
   /gatsby-react-router-scroll/5.19.0_2b7k3pzsr52a6edilitd4w3peu:
     resolution: {integrity: sha512-tl1E2/ger3Aw5Vb5n53i9wCBePYqb2dBilO05pd6FfgKYJveFidQwGzzOn1F9smdWq+5c3KJSTlKJaNYPwn72w==}

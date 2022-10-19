@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.14
+
+### Patch Changes
+
+- [#6594](https://github.com/chakra-ui/chakra-ui/pull/6594)
+  [`58856c739`](https://github.com/chakra-ui/chakra-ui/commit/58856c739c536474cc23a94809082a9d549c71a3)
+  Thanks [@anubra266](https://github.com/anubra266)! - Refactor theme
+
 ## 2.1.13
 
 ### Patch Changes

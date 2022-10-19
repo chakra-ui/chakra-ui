@@ -1,4 +1,9 @@
-import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
+import {
+  chakra,
+  SystemStyleObject,
+  HTMLChakraProps,
+  forwardRef,
+} from "@chakra-ui/system"
 
 import { getProgressProps, spin } from "./progress.utils"
 import { Shape } from "./shape"
@@ -71,87 +76,90 @@ export interface CircularProgressProps
  * @see Docs https://chakra-ui.com/circularprogress
  * @todo add theming support for circular progress
  */
-export const CircularProgress: React.FC<CircularProgressProps> = (props) => {
-  const {
-    size = "48px",
-    max = 100,
-    min = 0,
-    valueText,
-    getValueText,
-    value,
-    capIsRound,
-    children,
-    thickness = "10px",
-    color = "#0078d4",
-    trackColor = "#edebe9",
-    isIndeterminate,
-    ...rest
-  } = props
+export const CircularProgress = forwardRef<CircularProgressProps, "div">(
+  (props, ref) => {
+    const {
+      size = "48px",
+      max = 100,
+      min = 0,
+      valueText,
+      getValueText,
+      value,
+      capIsRound,
+      children,
+      thickness = "10px",
+      color = "#0078d4",
+      trackColor = "#edebe9",
+      isIndeterminate,
+      ...rest
+    } = props
 
-  const progress = getProgressProps({
-    min,
-    max,
-    value,
-    valueText,
-    getValueText,
-    isIndeterminate,
-  })
+    const progress = getProgressProps({
+      min,
+      max,
+      value,
+      valueText,
+      getValueText,
+      isIndeterminate,
+    })
 
-  const determinant = isIndeterminate
-    ? undefined
-    : (progress.percent ?? 0) * 2.64
+    const determinant = isIndeterminate
+      ? undefined
+      : (progress.percent ?? 0) * 2.64
 
-  const strokeDasharray =
-    determinant == null ? undefined : `${determinant} ${264 - determinant}`
+    const strokeDasharray =
+      determinant == null ? undefined : `${determinant} ${264 - determinant}`
 
-  const indicatorProps = isIndeterminate
-    ? {
-        css: { animation: `${spin} 1.5s linear infinite` },
-      }
-    : {
-        strokeDashoffset: 66,
-        strokeDasharray,
-        transitionProperty: "stroke-dasharray, stroke",
-        transitionDuration: "0.6s",
-        transitionTimingFunction: "ease",
-      }
+    const indicatorProps = isIndeterminate
+      ? {
+          css: { animation: `${spin} 1.5s linear infinite` },
+        }
+      : {
+          strokeDashoffset: 66,
+          strokeDasharray,
+          transitionProperty: "stroke-dasharray, stroke",
+          transitionDuration: "0.6s",
+          transitionTimingFunction: "ease",
+        }
 
-  const rootStyles: SystemStyleObject = {
-    display: "inline-block",
-    position: "relative",
-    verticalAlign: "middle",
-    fontSize: size,
-  }
+    const rootStyles: SystemStyleObject = {
+      display: "inline-block",
+      position: "relative",
+      verticalAlign: "middle",
+      fontSize: size,
+    }
 
-  return (
-    <chakra.div
-      className="chakra-progress"
-      {...progress.bind}
-      {...rest}
-      __css={rootStyles}
-    >
-      <Shape size={size} isIndeterminate={isIndeterminate}>
-        <Circle
-          stroke={trackColor}
-          strokeWidth={thickness}
-          className="chakra-progress__track"
-        />
-        <Circle
-          stroke={color}
-          strokeWidth={thickness}
-          className="chakra-progress__indicator"
-          strokeLinecap={capIsRound ? "round" : undefined}
-          /**
-           * fix issue in Safari where indicator still shows when value is 0
-           * @see Issue https://github.com/chakra-ui/chakra-ui/issues/3754
-           */
-          opacity={progress.value === 0 && !isIndeterminate ? 0 : undefined}
-          {...indicatorProps}
-        />
-      </Shape>
-      {children}
-    </chakra.div>
-  )
-}
+    return (
+      <chakra.div
+        ref={ref}
+        className="chakra-progress"
+        {...progress.bind}
+        {...rest}
+        __css={rootStyles}
+      >
+        <Shape size={size} isIndeterminate={isIndeterminate}>
+          <Circle
+            stroke={trackColor}
+            strokeWidth={thickness}
+            className="chakra-progress__track"
+          />
+          <Circle
+            stroke={color}
+            strokeWidth={thickness}
+            className="chakra-progress__indicator"
+            strokeLinecap={capIsRound ? "round" : undefined}
+            /**
+             * fix issue in Safari where indicator still shows when value is 0
+             * @see Issue https://github.com/chakra-ui/chakra-ui/issues/3754
+             */
+            opacity={progress.value === 0 && !isIndeterminate ? 0 : undefined}
+            {...indicatorProps}
+          />
+        </Shape>
+        {children}
+      </chakra.div>
+    )
+  },
+)
 
 CircularProgress.displayName = "CircularProgress"

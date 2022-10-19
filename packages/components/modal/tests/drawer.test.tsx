@@ -54,6 +54,13 @@ it("renders on the correct side under 'ltr' direction", () => {
   expect(screen.queryByRole("dialog")).toHaveStyle("left: 0")
 })
 
+it("should make other elements inert when opened", () => {
+  const { container } = render(<SimpleDrawer placement="right" isOpen />)
+
+  expect(container).toHaveAttribute("data-aria-hidden", "true")
+  expect(container).toHaveAttribute("aria-hidden", "true")
+})
+
 // it("swaps sides (left/right) under 'rtl' direction", () => {
 //   render(
 //     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>

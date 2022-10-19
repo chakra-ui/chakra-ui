@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/provider",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "description": "Theme and components agnostic ChakraProvider",
   "main": "src/index.ts",
   "files": [
