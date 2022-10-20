@@ -4,13 +4,15 @@ import {
   cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
 import { runIfFn } from "../utils/run-if-fn"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $size = cssVar("checkbox-size")
+const $bg = cssVar("badge-bg")
+const $fg = cssVar("badge-color")
+const $bc = cssVar("border-color")
 
 const baseStyleControl = defineStyle((props) => {
   const { colorScheme: c } = props
@@ -22,35 +24,58 @@ const baseStyleControl = defineStyle((props) => {
     transitionDuration: "normal",
     border: "2px solid",
     borderRadius: "sm",
-    borderColor: "inherit",
-    color: "white",
+    [$fg.variable]: `inherit`,
+    [$bg.variable]: `colors.white`,
 
     _checked: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      color: mode("white", "gray.900")(props),
+      [$bc.variable]: `colors.${c}.500`,
+      [$bg.variable]: `colors.${c}.500`,
+      [$fg.variable]: `colors.white`,
+      _dark: {
+        [$bc.variable]: `colors.${c}.200`,
+        [$bg.variable]: `colors.${c}.200`,
+        [$fg.variable]: `colors.gray.900`,
+      },
 
       _hover: {
-        bg: mode(`${c}.600`, `${c}.300`)(props),
-        borderColor: mode(`${c}.600`, `${c}.300`)(props),
+        [$bc.variable]: `colors.${c}.600`,
+        [$bg.variable]: `colors.${c}.600`,
+        _dark: {
+          [$bc.variable]: `colors.${c}.400`,
+          [$bg.variable]: `colors.${c}.300`,
+        },
       },
 
       _disabled: {
-        borderColor: mode("gray.200", "transparent")(props),
-        bg: mode("gray.200", "whiteAlpha.300")(props),
-        color: mode("gray.500", "whiteAlpha.500")(props),
+        [$bc.variable]: `colors.gray.200`,
+        [$bg.variable]: `colors.gray.200`,
+        [$fg.variable]: `colors.gray.500`,
+        _dark: {
+          [$bc.variable]: `transparent`,
+          [$bg.variable]: `colors.whiteAlpha.300`,
+          [$fg.variable]: `colors.whiteAlpha.500`,
+        },
       },
     },
 
     _indeterminate: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
-      borderColor: mode(`${c}.500`, `${c}.200`)(props),
-      color: mode("white", "gray.900")(props),
+      [$bc.variable]: `colors.${c}.500`,
+      [$bg.variable]: `colors.${c}.500`,
+      [$fg.variable]: `colors.white`,
+      _dark: {
+        [$bc.variable]: `colors.${c}.200`,
+        [$bg.variable]: `colors.${c}.200`,
+        [$fg.variable]: `colors.gray.900`,
+      },
     },
 
     _disabled: {
-      bg: mode("gray.100", "whiteAlpha.100")(props),
-      borderColor: mode("gray.100", "transparent")(props),
+      [$bg.variable]: `colors.gray.100`,
+      [$bc.variable]: `colors.gray.100`,
+      _dark: {
+        [$bg.variable]: `colors.whiteAlpha.100`,
+        [$bc.variable]: `transparent`,
+      },
     },
 
     _focusVisible: {
@@ -58,8 +83,15 @@ const baseStyleControl = defineStyle((props) => {
     },
 
     _invalid: {
-      borderColor: mode("red.500", "red.300")(props),
+      [$bc.variable]: `colors.red.500`,
+      _dark: {
+        [$bc.variable]: `colors.red.300`,
+      },
     },
+
+    bg: $bg.reference,
+    color: $fg.reference,
+    borderColor: $bc.reference,
   }
 })
 
