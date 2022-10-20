@@ -1,9 +1,15 @@
 import { inputAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { getColor, mode } from "@chakra-ui/theme-tools"
+import { getColor } from "@chakra-ui/theme-tools"
+
+const $bg = cssVar("background-color")
+const $bc = cssVar("border-color")
+const $fc = cssVar("focus-border-color")
+const $ec = cssVar("error-border-color")
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -73,8 +79,16 @@ const sizes = {
 function getDefaults(props: Record<string, any>) {
   const { focusBorderColor: fc, errorBorderColor: ec } = props
   return {
-    focusBorderColor: fc || mode("blue.500", "blue.300")(props),
-    errorBorderColor: ec || mode("red.500", "red.300")(props),
+    [$fc.variable]: fc || `colors.blue.500`,
+    [$ec.variable]: ec || `colors.red.500`,
+
+    _dark: {
+      [$fc.variable]: fc || `colors.blue.300`,
+      [$ec.variable]: ec || `colors.red.300`,
+    },
+
+    focusBorderColor: $fc.reference,
+    errorBorderColor: $ec.reference,
   }
 }
 
@@ -85,30 +99,40 @@ const variantOutline = definePartsStyle((props) => {
   return {
     field: {
       border: "1px solid",
-      borderColor: "inherit",
+      [$bc.variable]: "inherit",
       bg: "inherit",
       _hover: {
-        borderColor: mode("gray.300", "whiteAlpha.400")(props),
+        [$bc.variable]: "colors.gray.300",
+        _dark: {
+          [$bc.variable]: "colors.whiteAlpha.400",
+        },
       },
       _readOnly: {
         boxShadow: "none !important",
         userSelect: "all",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
+        [$bc.variable]: getColor(theme, ec),
         boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
       },
       _focusVisible: {
         zIndex: 1,
-        borderColor: getColor(theme, fc),
+        [$bc.variable]: getColor(theme, fc),
         boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
       },
     },
     addon: {
       border: "1px solid",
-      borderColor: mode("inherit", "whiteAlpha.50")(props),
-      bg: mode("gray.100", "whiteAlpha.300")(props),
+      [$bc.variable]: "inherit",
+      [$bg.variable]: "colors.gray.100",
+      _dark: {
+        [$bc.variable]: "colors.whiteAlpha.50",
+        [$bg.variable]: "colors.whiteAlpha.300",
+      },
     },
+
+    borderColor: $bc.reference,
+    bg: $bg.reference,
   }
 })
 
@@ -119,28 +143,40 @@ const variantFilled = definePartsStyle((props) => {
   return {
     field: {
       border: "2px solid",
-      borderColor: "transparent",
-      bg: mode("gray.100", "whiteAlpha.50")(props),
+      [$bc.variable]: "transparent",
+      [$bg.variable]: "colors.gray.100",
+      _dark: {
+        [$bg.variable]: "colors.whiteAlpha.50",
+      },
       _hover: {
-        bg: mode("gray.200", "whiteAlpha.100")(props),
+        [$bg.variable]: "colors.gray.200",
+        _dark: {
+          [$bg.variable]: "colors.whiteAlpha.100",
+        },
       },
       _readOnly: {
         boxShadow: "none !important",
         userSelect: "all",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
+        [$bc.variable]: getColor(theme, ec),
       },
       _focusVisible: {
-        bg: "transparent",
-        borderColor: getColor(theme, fc),
+        [$bg.variable]: "transparent",
+        [$bc.variable]: getColor(theme, fc),
       },
     },
     addon: {
       border: "2px solid",
-      borderColor: "transparent",
-      bg: mode("gray.100", "whiteAlpha.50")(props),
+      [$bc.variable]: "transparent",
+      [$bg.variable]: "colors.gray.100",
+      _dark: {
+        [$bg.variable]: "colors.whiteAlpha.50",
+      },
     },
+
+    borderColor: $bc.reference,
+    bg: $bg.reference,
   }
 })
 
@@ -151,7 +187,7 @@ const variantFlushed = definePartsStyle((props) => {
   return {
     field: {
       borderBottom: "1px solid",
-      borderColor: "inherit",
+      [$bc.variable]: "inherit",
       borderRadius: "0",
       px: "0",
       bg: "transparent",
@@ -160,21 +196,22 @@ const variantFlushed = definePartsStyle((props) => {
         userSelect: "all",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
+        [$bc.variable]: getColor(theme, ec),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, ec)}`,
       },
       _focusVisible: {
-        borderColor: getColor(theme, fc),
+        [$bc.variable]: getColor(theme, fc),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },
     },
     addon: {
       borderBottom: "2px solid",
-      borderColor: "inherit",
+      [$bc.variable]: "inherit",
       borderRadius: "0",
       px: "0",
       bg: "transparent",
     },
+    borderColor: $bc.reference,
   }
 })
 
