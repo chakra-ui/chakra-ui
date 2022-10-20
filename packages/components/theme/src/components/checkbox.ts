@@ -10,8 +10,8 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $size = cssVar("checkbox-size")
-const $bg = cssVar("badge-bg")
-const $fg = cssVar("badge-color")
+const $bg = cssVar("background-color")
+const $fg = cssVar("color")
 const $bc = cssVar("border-color")
 
 const baseStyleControl = defineStyle((props) => {
