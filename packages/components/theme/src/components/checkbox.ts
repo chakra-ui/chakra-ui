@@ -10,9 +10,9 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $size = cssVar("checkbox-size")
-const $bg = cssVar("background-color")
-const $fg = cssVar("color")
-const $bc = cssVar("border-color")
+const $bg = cssVar("checkbox-background-color")
+const $fg = cssVar("checkbox-color")
+const $bc = cssVar("checkbox-border-color")
 
 const baseStyleControl = defineStyle((props) => {
   const { colorScheme: c } = props
