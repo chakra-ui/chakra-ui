@@ -1,9 +1,9 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system";
-import { cssVar } from "@chakra-ui/theme-tools";
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
+import { cssVar } from "@chakra-ui/theme-tools"
 
-const $bg = cssVar("tooltip-bg");
-const $fg = cssVar("tooltip-fg");
-const $arrowBg = cssVar("popper-arrow-bg");
+const $bg = cssVar("tooltip-bg")
+const $fg = cssVar("tooltip-fg")
+const $arrowBg = cssVar("popper-arrow-bg")
 
 const baseStyle = defineStyle({
   bg: $bg.reference,
@@ -23,8 +23,8 @@ const baseStyle = defineStyle({
   boxShadow: "md",
   maxW: "xs",
   zIndex: "tooltip",
-});
+})
 
 export const tooltipTheme = defineStyleConfig({
   baseStyle,
-});
+})
