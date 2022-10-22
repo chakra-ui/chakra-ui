@@ -6,10 +6,10 @@ import {
 } from "@chakra-ui/styled-system"
 import { getColor } from "@chakra-ui/theme-tools"
 
-const $bg = cssVar("background-color")
-const $bc = cssVar("border-color")
-const $fc = cssVar("focus-border-color")
-const $ec = cssVar("error-border-color")
+const $bg = cssVar("input-background-color")
+const $bc = cssVar("input-border-color")
+const $fc = cssVar("input-focus-border-color")
+const $ec = cssVar("input-error-border-color")
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
