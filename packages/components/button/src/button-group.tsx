@@ -13,7 +13,9 @@ import { ButtonGroupOptions } from "./button-types"
 export interface ButtonGroupProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"Button">,
-    ButtonGroupOptions {}
+    ButtonGroupOptions {
+  isVertical?: boolean
+}
 
 export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
   function ButtonGroup(props, ref) {
@@ -25,6 +27,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
       spacing = "0.5rem",
       isAttached,
       isDisabled,
+      isVertical,
       ...rest
     } = props
 
@@ -40,11 +43,26 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
     }
 
     if (isAttached) {
-      groupStyles = {
-        ...groupStyles,
-        "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
-        "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-        "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
+      if (isVertical) {
+        groupStyles = {
+          ...groupStyles,
+          "> *:first-of-type:not(:last-of-type)": {
+            borderEndStartRadius: 0,
+            borderEndEndRadius: 0,
+          },
+          "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+          "> *:not(:first-of-type):last-of-type": {
+            borderStartEndRadius: 0,
+            borderStartStartRadius: 0,
+          },
+        }
+      } else {
+        groupStyles = {
+          ...groupStyles,
+          "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
+          "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+          "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
+        }
       }
     } else {
       groupStyles = {
@@ -61,6 +79,8 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
           __css={groupStyles}
           className={_className}
           data-attached={isAttached ? "" : undefined}
+          data-vertical={isVertical ? "" : undefined}
+          flexDir={isVertical ? "column" : undefined}
           {...rest}
         />
       </ButtonGroupProvider>

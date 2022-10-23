@@ -60,6 +60,11 @@ const variantOutline = defineStyle((props) => {
     ".chakra-button__group[data-attached] > &:not(:last-of-type)": {
       marginEnd: "-1px",
     },
+    ".chakra-button__group[data-attached][data-vertical] > &:not(:last-of-type)":
+      {
+        marginEnd: "",
+        marginBottom: "-1px",
+      },
     ...runIfFn(variantGhost, props),
   }
 })
