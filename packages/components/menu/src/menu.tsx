@@ -1,6 +1,7 @@
 import { createContext } from "@chakra-ui/react-context"
 import {
   omitThemingProps,
+  ReducedMotionProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
@@ -26,7 +27,10 @@ export { useMenuStyles }
 
 type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 
-export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
+export interface MenuProps
+  extends UseMenuProps,
+    ReducedMotionProps,
+    ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void
@@ -41,7 +45,7 @@ export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
  * @see Docs https://chakra-ui.com/docs/components/menu
  */
 export const Menu: React.FC<MenuProps> = (props) => {
-  const { children } = props
+  const { children, reducedMotion } = props
 
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
@@ -53,7 +57,7 @@ export const Menu: React.FC<MenuProps> = (props) => {
 
   return (
     <MenuDescendantsProvider value={descendants}>
-      <MenuProvider value={context}>
+      <MenuProvider value={{ ...context, reducedMotion }}>
         <MenuStylesProvider value={styles}>
           {runIfFn(children, { isOpen, onClose, forceUpdate })}
         </MenuStylesProvider>

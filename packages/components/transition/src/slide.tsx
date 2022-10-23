@@ -51,6 +51,21 @@ const variants: Variants<SlideOptions> = {
   },
 }
 
+const reducedMotionVariants: Variants<SlideOptions> = {
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0,
+    },
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: 0,
+    },
+  },
+}
+
 export interface SlideOptions {
   /**
    * The direction to slide from
@@ -111,7 +126,9 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(function Slide(
           animate={animate}
           exit="exit"
           custom={custom}
-          variants={reducedMotion ? {} : (variants as TVariants)}
+          variants={
+            reducedMotion ? reducedMotionVariants : (variants as TVariants)
+          }
           style={computedStyle}
           {...motionProps}
         />

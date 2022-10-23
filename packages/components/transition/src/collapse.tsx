@@ -79,6 +79,21 @@ const variants: Variants<CollapseOptions> = {
   }),
 }
 
+const reducedMotionVariants: Variants<CollapseOptions> = {
+  exit: ({ startingHeight }) => ({
+    height: startingHeight,
+    transition: {
+      duration: 0,
+    },
+  }),
+  enter: ({ endingHeight }) => ({
+    height: endingHeight,
+    transition: {
+      duration: 0,
+    },
+  }),
+}
+
 export type ICollapse = CollapseProps
 
 export interface CollapseProps
@@ -154,7 +169,9 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
               ...style,
             }}
             custom={custom}
-            variants={reducedMotion ? {} : (variants as _Variants)}
+            variants={
+              reducedMotion ? reducedMotionVariants : (variants as _Variants)
+            }
             initial={unmountOnExit ? "exit" : false}
             animate={animate}
             exit="exit"

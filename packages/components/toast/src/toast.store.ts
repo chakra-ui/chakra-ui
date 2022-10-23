@@ -185,5 +185,6 @@ function createToast(message: ToastMessage, options: CreateToastOptions = {}) {
     status: options.status,
     requestClose: false,
     containerStyle: options.containerStyle,
+    reducedMotion: options.reducedMotion,
   }
 }

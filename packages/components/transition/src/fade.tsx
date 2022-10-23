@@ -37,6 +37,21 @@ const variants: Variants = {
   }),
 }
 
+const reducedMotionVariants: Variants = {
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0,
+    },
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: 0,
+    },
+  },
+}
+
 export const fadeConfig: HTMLMotionProps<"div"> = {
   initial: "exit",
   animate: "enter",
@@ -72,7 +87,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(
           className={cx("chakra-fade", className)}
           custom={custom}
           {...fadeConfig}
-          variants={reducedMotion ? {} : variants}
+          variants={reducedMotion ? reducedMotionVariants : variants}
           animate={animate}
           {...rest}
         />

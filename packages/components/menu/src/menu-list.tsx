@@ -50,13 +50,15 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
   props,
   ref,
 ) {
-  const prefersReducedMotion = useReducedMotionValue()
   const { rootProps, motionProps, ...rest } = props
   const {
     isOpen,
     onTransitionEnd,
+    reducedMotion,
     unstable__animationState: animated,
   } = useMenuContext()
+
+  const prefersReducedMotion = useReducedMotionValue(reducedMotion)
 
   const listProps = useMenuList(rest, ref) as any
   const positionerProps = useMenuPositioner(rootProps)

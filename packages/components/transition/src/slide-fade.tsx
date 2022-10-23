@@ -67,6 +67,27 @@ const variants: Variants<SlideFadeOptions> = {
   },
 }
 
+const reducedMotionVariants: Variants<SlideFadeOptions> = {
+  initial: {
+    opacity: 0,
+    transition: {
+      duration: 0,
+    },
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: 0,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0,
+    },
+  },
+}
+
 export const slideFadeConfig: HTMLMotionProps<"div"> = {
   initial: "initial",
   animate: "enter",
@@ -114,7 +135,7 @@ export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
             className={cx("chakra-offset-slide", className)}
             custom={custom}
             {...slideFadeConfig}
-            variants={reducedMotion ? {} : variants}
+            variants={reducedMotion ? reducedMotionVariants : variants}
             animate={animate}
             {...rest}
           />

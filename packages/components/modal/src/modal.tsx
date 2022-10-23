@@ -2,6 +2,7 @@ import { FocusLockProps } from "@chakra-ui/focus-lock"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import { createContext } from "@chakra-ui/react-context"
 import {
+  ReducedMotionProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
@@ -83,6 +84,7 @@ type MotionPreset = "slideInBottom" | "slideInRight" | "scale" | "none"
 export interface ModalProps
   extends UseModalProps,
     ModalOptions,
+    ReducedMotionProps,
     ThemingProps<"Modal"> {
   children: React.ReactNode
   /**
@@ -120,7 +122,9 @@ interface ModalContext extends ModalOptions, UseModalReturn {
   motionPreset?: MotionPreset
 }
 
-const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
+const [ModalContextProvider, useModalContext] = createContext<
+  ModalContext & ReducedMotionProps
+>({
   strict: true,
   name: "ModalContext",
   errorMessage:
@@ -137,7 +141,7 @@ const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
  */
 export const Modal: React.FC<ModalProps> = (props) => {
-  const prefersReducedMotion = useReducedMotionValue()
+  const reducedMotion = useReducedMotionValue(props.reducedMotion)
   const {
     portalProps,
     children,
@@ -154,7 +158,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     onCloseComplete,
   } = {
     ...props,
-    motionPreset: prefersReducedMotion ? "none" : props.motionPreset,
+    motionPreset: reducedMotion ? "none" : props.motionPreset,
   }
 
   const styles = useMultiStyleConfig("Modal", props)
@@ -172,6 +176,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
+    reducedMotion,
   }
 
   return (

@@ -3,6 +3,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
+  ReducedMotionProps,
   ThemingProps,
   useMultiStyleConfig,
   useReducedMotionValue,
@@ -22,12 +23,8 @@ import {
 export interface AccordionProps
   extends UseAccordionProps,
     Omit<HTMLChakraProps<"div">, keyof UseAccordionProps>,
-    ThemingProps<"Accordion"> {
-  /**
-   * If `true`, height animation and transitions will be disabled.
-   */
-  reduceMotion?: boolean
-}
+    ReducedMotionProps,
+    ThemingProps<"Accordion"> {}
 
 /**
  * The wrapper that provides context and focus management
@@ -38,18 +35,18 @@ export interface AccordionProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
 export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
-  { children, reduceMotion, ...props },
+  { children, reducedMotion, ...props },
   ref,
 ) {
-  const prefersReducedMotion = useReducedMotionValue()
+  const prefersReducedMotion = useReducedMotionValue(reducedMotion)
   const styles = useMultiStyleConfig("Accordion", props)
   const ownProps = omitThemingProps(props)
 
   const { htmlProps, descendants, ...context } = useAccordion(ownProps)
 
   const ctx = useMemo(
-    () => ({ ...context, reduceMotion: reduceMotion ?? prefersReducedMotion }),
-    [context, reduceMotion, prefersReducedMotion],
+    () => ({ ...context, reduceMotion: prefersReducedMotion }),
+    [context, prefersReducedMotion],
   )
 
   return (

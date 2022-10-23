@@ -2,7 +2,11 @@ import { useTimeout } from "@chakra-ui/react-use-timeout"
 import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
 import { runIfFn } from "@chakra-ui/shared-utils"
 import { motion, useIsPresent, Variants } from "framer-motion"
-import { chakra, useReducedMotionValue } from "@chakra-ui/system"
+import {
+  chakra,
+  ReducedMotionProps,
+  useReducedMotionValue,
+} from "@chakra-ui/system"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
 import { ToastProviderProps } from "./toast.provider"
@@ -44,10 +48,11 @@ const toastMotionVariants: Variants = {
 
 export interface ToastComponentProps
   extends ToastOptions,
+    ReducedMotionProps,
     Pick<ToastProviderProps, "motionVariants" | "toastSpacing"> {}
 
 export const ToastComponent = memo((props: ToastComponentProps) => {
-  const reducedMotion = useReducedMotionValue()
+  const reducedMotion = useReducedMotionValue(props.reducedMotion)
   const {
     id,
     message,

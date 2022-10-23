@@ -64,6 +64,9 @@ export function getToken<T extends StringOrNumber | StringOrNumber[]>(
 }
 
 export type ReducedMotionProps = {
+  /**
+   * If `true`, height animation and transitions will be disabled.
+   */
   reducedMotion?: boolean
 }
 

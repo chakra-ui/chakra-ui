@@ -1,11 +1,18 @@
 import type { AlertStatus } from "@chakra-ui/alert"
-import { StyleProps, ThemingProps, useChakra } from "@chakra-ui/system"
+import {
+  ReducedMotionProps,
+  StyleProps,
+  ThemingProps,
+  useChakra,
+} from "@chakra-ui/system"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
 import { createToastFn, CreateToastFnReturn } from "./toast"
 import { ToastPosition } from "./toast.placement"
 import { useMemo } from "react"
 
-export interface UseToastOptions extends ThemingProps<"Alert"> {
+export interface UseToastOptions
+  extends ThemingProps<"Alert">,
+    ReducedMotionProps {
   /**
    * The placement of the toast
    *
