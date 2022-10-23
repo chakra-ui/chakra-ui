@@ -4,7 +4,6 @@ import {
   cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
 import { runIfFn } from "../utils/run-if-fn"
 
 const { defineMultiStyleConfig, definePartsStyle } =
