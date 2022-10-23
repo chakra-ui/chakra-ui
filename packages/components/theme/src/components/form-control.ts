@@ -4,22 +4,19 @@ import {
   cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { runIfFn } from "../utils/run-if-fn"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $fg = cssVar("form-control-color")
 
-const baseStyleRequiredIndicator = defineStyle((props) => {
-  return {
-    marginStart: "1",
-    [$fg.variable]: "colors.red.500",
-    _dark: {
-      [$fg.variable]: "colors.red.300",
-    },
-    color: $fg.reference,
-  }
+const baseStyleRequiredIndicator = defineStyle({
+  marginStart: "1",
+  [$fg.variable]: "colors.red.500",
+  _dark: {
+    [$fg.variable]: "colors.red.300",
+  },
+  color: $fg.reference,
 })
 
 const baseStyleHelperText = defineStyle({
@@ -33,14 +30,14 @@ const baseStyleHelperText = defineStyle({
   fontSize: "sm",
 })
 
-const baseStyle = definePartsStyle((props) => ({
+const baseStyle = definePartsStyle({
   container: {
     width: "100%",
     position: "relative",
   },
-  requiredIndicator: runIfFn(baseStyleRequiredIndicator, props),
-  helperText: runIfFn(baseStyleHelperText, props),
-}))
+  requiredIndicator: baseStyleRequiredIndicator,
+  helperText: baseStyleHelperText,
+})
 
 export const formTheme = defineMultiStyleConfig({
   baseStyle,
