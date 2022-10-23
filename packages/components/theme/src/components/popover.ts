@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { cssVar, mode } from "@chakra-ui/theme-tools"
+import { cssVar } from "@chakra-ui/theme-tools"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -15,17 +15,15 @@ const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
 const baseStylePopper = defineStyle({ zIndex: 10 })
 
 const baseStyleContent = defineStyle((props) => {
-  const bg = mode("white", "gray.700")(props)
-  const shadowColor = mode("gray.200", "whiteAlpha.300")(props)
-
   return {
     [$popperBg.variable]: `colors.white`,
     bg: $popperBg.reference,
+    [$arrowBg.variable]: $popperBg.reference,
+    [$arrowShadowColor.variable]: `colors.gray.200`,
     _dark: {
       [$popperBg.variable]: `colors.gray.700`,
+      [$arrowShadowColor.variable]: `colors.whiteAlpha.300`,
     },
-    [$arrowBg.variable]: $popperBg.reference,
-    [$arrowShadowColor.variable]: `colors.${shadowColor}`,
     width: "xs",
     border: "1px solid",
     borderColor: "inherit",
