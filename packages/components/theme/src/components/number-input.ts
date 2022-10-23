@@ -13,6 +13,9 @@ const { defineMultiStyleConfig, definePartsStyle } =
 
 const $stepperWidth = cssVar("number-input-stepper-width")
 const $inputPadding = cssVar("number-input-input-padding")
+const $bg = cssVar("number-input-bg")
+const $fg = cssVar("number-input-color")
+const $bsc = cssVar("number-input-border-start-color")
 const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
 
 const baseStyleRoot = defineStyle({
@@ -28,19 +31,28 @@ const baseStyleStepperGroup = defineStyle({
   width: [$stepperWidth.reference],
 })
 
-const baseStyleStepper = defineStyle((props) => {
-  return {
-    borderStart: "1px solid",
-    borderStartColor: mode("inherit", "whiteAlpha.300")(props),
-    color: mode("inherit", "whiteAlpha.800")(props),
-    _active: {
-      bg: mode("gray.200", "whiteAlpha.300")(props),
+const baseStyleStepper = defineStyle({
+  borderStart: "1px solid",
+  [$fg.variable]: "inherit",
+  [$bsc.variable]: "inherit",
+  _dark: {
+    [$fg.variable]: "colors.whiteAlpha.800",
+    [$bsc.variable]: "colors.whiteAlpha.300",
+  },
+
+  _active: {
+    [$bg.variable]: "colors.gray.200",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.300",
     },
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
-    },
-  }
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+  },
+  borderStartColor: $bsc.variable,
+  color: $fg.variable,
+  bg: $bg.variable,
 })
 
 const baseStyle = definePartsStyle((props) => ({
