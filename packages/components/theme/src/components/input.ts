@@ -79,16 +79,16 @@ const sizes = {
 function getDefaults(props: Record<string, any>) {
   const { focusBorderColor: fc, errorBorderColor: ec } = props
   return {
-    [$fc.variable]: fc || `colors.blue.500`,
-    [$ec.variable]: ec || `colors.red.500`,
+    [$fc.variable]: `colors.blue.500`,
+    [$ec.variable]: `colors.red.500`,
 
     _dark: {
-      [$fc.variable]: fc || `colors.blue.300`,
-      [$ec.variable]: ec || `colors.red.300`,
+      [$fc.variable]: `colors.blue.300`,
+      [$ec.variable]: `colors.red.300`,
     },
 
-    focusBorderColor: $fc.reference,
-    errorBorderColor: $ec.reference,
+    focusBorderColor: fc || $fc.reference,
+    errorBorderColor: ec || $ec.reference,
   }
 }
 
@@ -99,6 +99,7 @@ const variantOutline = definePartsStyle((props) => {
   return {
     field: {
       border: "1px solid",
+      borderColor: $bc.reference,
       [$bc.variable]: "inherit",
       bg: "inherit",
       _hover: {
@@ -129,10 +130,10 @@ const variantOutline = definePartsStyle((props) => {
         [$bc.variable]: "colors.whiteAlpha.50",
         [$bg.variable]: "colors.whiteAlpha.300",
       },
-    },
 
-    borderColor: $bc.reference,
-    bg: $bg.reference,
+      borderColor: $bc.reference,
+      bg: $bg.reference,
+    },
   }
 })
 
@@ -165,6 +166,8 @@ const variantFilled = definePartsStyle((props) => {
         [$bg.variable]: "transparent",
         [$bc.variable]: getColor(theme, fc),
       },
+      borderColor: $bc.reference,
+      bg: $bg.reference,
     },
     addon: {
       border: "2px solid",
@@ -173,10 +176,9 @@ const variantFilled = definePartsStyle((props) => {
       _dark: {
         [$bg.variable]: "colors.whiteAlpha.50",
       },
+      borderColor: $bc.reference,
+      bg: $bg.reference,
     },
-
-    borderColor: $bc.reference,
-    bg: $bg.reference,
   }
 })
 
@@ -203,6 +205,7 @@ const variantFlushed = definePartsStyle((props) => {
         [$bc.variable]: getColor(theme, fc),
         boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
       },
+      borderColor: $bc.reference,
     },
     addon: {
       borderBottom: "2px solid",
@@ -210,8 +213,8 @@ const variantFlushed = definePartsStyle((props) => {
       borderRadius: "0",
       px: "0",
       bg: "transparent",
+      borderColor: $bc.reference,
     },
-    borderColor: $bc.reference,
   }
 })
 
