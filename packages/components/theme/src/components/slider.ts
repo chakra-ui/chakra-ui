@@ -4,13 +4,14 @@ import {
   cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { mode, orient } from "@chakra-ui/theme-tools"
+import { orient } from "@chakra-ui/theme-tools"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $thumbSize = cssVar("slider-thumb-size")
 const $trackSize = cssVar("slider-track-size")
+const $bg = cssVar("slider-bg")
 
 const baseStyleContainer = defineStyle((props) => {
   const { orientation } = props
@@ -43,10 +44,17 @@ const baseStyleTrack = defineStyle((props) => {
     ...orientationStyles,
     overflow: "hidden",
     borderRadius: "sm",
-    bg: mode("gray.200", "whiteAlpha.200")(props),
-    _disabled: {
-      bg: mode("gray.300", "whiteAlpha.300")(props),
+    [$bg.variable]: "colors.gray.200",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.200",
     },
+    _disabled: {
+      [$bg.variable]: "colors.gray.300",
+      _dark: {
+        [$bg.variable]: "colors.whiteAlpha.300",
+      },
+    },
+    bg: $bg.reference,
   }
 })
 
@@ -102,7 +110,11 @@ const baseStyleFilledTrack = defineStyle((props) => {
   return {
     width: "inherit",
     height: "inherit",
-    bg: mode(`${c}.500`, `${c}.200`)(props),
+    [$bg.variable]: `colors.${c}.500`,
+    _dark: {
+      [$bg.variable]: `colors.${c}.200`,
+    },
+    bg: $bg.reference,
   }
 })
 
