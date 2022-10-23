@@ -2,4 +2,4 @@
 "@chakra-ui/use-reduced-motion": patch
 ---
 
-Initial release
+Initial release of the `useReducedMotion` hook.
