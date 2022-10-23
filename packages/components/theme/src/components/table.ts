@@ -1,9 +1,13 @@
 import { tableAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
+
+const $fg = cssVar("table-color")
+const $bc = cssVar("table-border-color")
+const $bg = cssVar("table-background")
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -43,18 +47,32 @@ const variantSimple = definePartsStyle((props) => {
 
   return {
     th: {
-      color: mode("gray.600", "gray.400")(props),
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      [$fg.variable]: "colors.gray.600",
+      [$bc.variable]: `colors.${c}.100`,
+      _dark: {
+        [$fg.variable]: "colors.gray.400",
+        [$bc.variable]: `colors.${c}.700`,
+      },
+      color: $fg.reference,
+      borderColor: $bc.reference,
       ...numericStyles,
     },
     td: {
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      [$bc.variable]: `colors.${c}.100`,
+      _dark: {
+        [$bc.variable]: `colors.${c}.700`,
+      },
+      borderColor: $bc.reference,
       ...numericStyles,
     },
     caption: {
-      color: mode("gray.600", "gray.100")(props),
+      [$fg.variable]: "colors.gray.600",
+      _dark: {
+        [$fg.variable]: "colors.gray.100",
+      },
+      color: $fg.reference,
     },
     tfoot: {
       tr: {
@@ -71,28 +89,50 @@ const variantStripe = definePartsStyle((props) => {
 
   return {
     th: {
-      color: mode("gray.600", "gray.400")(props),
+      [$fg.variable]: "colors.gray.600",
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      [$bc.variable]: `colors.${c}.100`,
+      _dark: {
+        [$fg.variable]: "colors.gray.400",
+        [$bc.variable]: `colors.${c}.700`,
+      },
+      color: $fg.reference,
+      borderColor: $bc.reference,
       ...numericStyles,
     },
     td: {
       borderBottom: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
+      [$bc.variable]: `colors.${c}.100`,
+      _dark: {
+        [$bc.variable]: `colors.${c}.700`,
+      },
+      borderColor: $bc.reference,
       ...numericStyles,
     },
     caption: {
-      color: mode("gray.600", "gray.100")(props),
+      [$fg.variable]: "colors.gray.600",
+      _dark: {
+        [$fg.variable]: "colors.gray.100",
+      },
+      color: $fg.reference,
     },
     tbody: {
       tr: {
         "&:nth-of-type(odd)": {
           "th, td": {
             borderBottomWidth: "1px",
-            borderColor: mode(`${c}.100`, `${c}.700`)(props),
+            [$bc.variable]: `colors.${c}.100`,
+            _dark: {
+              [$bc.variable]: `colors.${c}.700`,
+            },
+            borderColor: $bc.reference,
           },
           td: {
-            background: mode(`${c}.100`, `${c}.700`)(props),
+            [$bg.variable]: `colors.${c}.100`,
+            _dark: {
+              [$bg.variable]: `colors.${c}.700`,
+            },
+            background: $bg.reference,
           },
         },
       },
