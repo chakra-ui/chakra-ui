@@ -1,29 +1,36 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { cssVar, mode } from "@chakra-ui/theme-tools"
+import { cssVar } from "@chakra-ui/theme-tools"
 
 const $size = cssVar("close-button-size")
+const $bg = cssVar("close-button-bg")
 
-const baseStyle = defineStyle((props) => {
-  const hoverBg = mode(`blackAlpha.100`, `whiteAlpha.100`)(props)
-  const activeBg = mode(`blackAlpha.200`, `whiteAlpha.200`)(props)
-
-  return {
-    w: [$size.reference],
-    h: [$size.reference],
-    borderRadius: "md",
-    transitionProperty: "common",
-    transitionDuration: "normal",
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
-      boxShadow: "none",
+const baseStyle = defineStyle({
+  w: [$size.reference],
+  h: [$size.reference],
+  borderRadius: "md",
+  transitionProperty: "common",
+  transitionDuration: "normal",
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+    boxShadow: "none",
+  },
+  _hover: {
+    [$bg.variable]: "colors.blackAlpha.100",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.100",
     },
-    _hover: { bg: hoverBg },
-    _active: { bg: activeBg },
-    _focusVisible: {
-      boxShadow: "outline",
+  },
+  _active: {
+    [$bg.variable]: "colors.blackAlpha.200",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.200",
     },
-  }
+  },
+  _focusVisible: {
+    boxShadow: "outline",
+  },
+  bg: $bg.reference,
 })
 
 const sizes = {
