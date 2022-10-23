@@ -7,6 +7,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
   forwardRef,
+  useReducedMotionValue,
+  ReducedMotionProps,
 } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/react-context"
 import {
@@ -96,6 +98,7 @@ interface ProgressOptions {
 export interface ProgressProps
   extends ProgressOptions,
     ThemingProps<"Progress">,
+    ReducedMotionProps,
     HTMLChakraProps<"div"> {}
 
 /**
@@ -119,10 +122,13 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
     children,
     borderRadius: propBorderRadius,
     isIndeterminate,
+    reducedMotion,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     ...rest
   } = omitThemingProps(props)
+
+  const prefersReducedMotion = useReducedMotionValue(reducedMotion)
 
   const styles = useMultiStyleConfig("Progress", props)
 
@@ -137,7 +143,8 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
    */
   const shouldAddStripe = !isIndeterminate && hasStripe
 
-  const shouldAnimateStripe = shouldAddStripe && isAnimated
+  const shouldAnimateStripe =
+    !prefersReducedMotion && shouldAddStripe && isAnimated
 
   /**
    * Generate styles for stripe and stripe animation

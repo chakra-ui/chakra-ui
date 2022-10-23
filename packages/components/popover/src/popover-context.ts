@@ -1,13 +1,14 @@
 import { createContext } from "@chakra-ui/react-context"
-import { SystemStyleObject } from "@chakra-ui/system"
+import { ReducedMotionProps, SystemStyleObject } from "@chakra-ui/system"
 import { UsePopoverReturn } from "./use-popover"
 
-export const [PopoverProvider, usePopoverContext] =
-  createContext<UsePopoverReturn>({
-    name: "PopoverContext",
-    errorMessage:
-      "usePopoverContext: `context` is undefined. Seems you forgot to wrap all popover components within `<Popover />`",
-  })
+export const [PopoverProvider, usePopoverContext] = createContext<
+  UsePopoverReturn & ReducedMotionProps
+>({
+  name: "PopoverContext",
+  errorMessage:
+    "usePopoverContext: `context` is undefined. Seems you forgot to wrap all popover components within `<Popover />`",
+})
 
 export const [PopoverStylesProvider, usePopoverStyles] = createContext<
   Record<string, SystemStyleObject>

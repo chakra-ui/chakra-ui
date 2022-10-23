@@ -1,4 +1,9 @@
-import { chakra, HTMLChakraProps, forwardRef } from "@chakra-ui/system"
+import {
+  chakra,
+  HTMLChakraProps,
+  forwardRef,
+  useReducedMotionValue,
+} from "@chakra-ui/system"
 import { HTMLMotionProps, motion, Variant } from "framer-motion"
 import React from "react"
 import { usePopoverContext } from "./popover-context"
@@ -68,11 +73,12 @@ export const PopoverTransition = forwardRef(function PopoverTransition(
   ref: React.Ref<any>,
 ) {
   const { variants = scaleFade, ...rest } = props
-  const { isOpen } = usePopoverContext()
+  const { isOpen, reducedMotion } = usePopoverContext()
+  const prefersReducedMotion = useReducedMotionValue(reducedMotion)
   return (
     <MotionSection
       ref={ref}
-      variants={mergeVariants(variants)}
+      variants={prefersReducedMotion ? {} : mergeVariants(variants)}
       initial={false}
       animate={isOpen ? "enter" : "exit"}
       {...rest}

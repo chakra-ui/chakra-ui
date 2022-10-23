@@ -1,6 +1,7 @@
 import { MaybeRenderProp } from "@chakra-ui/react-types"
 import {
   omitThemingProps,
+  ReducedMotionProps,
   ThemingProps,
   useMultiStyleConfig,
   useTheme,
@@ -9,7 +10,10 @@ import { runIfFn } from "@chakra-ui/shared-utils"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { usePopover, UsePopoverProps } from "./use-popover"
 
-export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
+export interface PopoverProps
+  extends UsePopoverProps,
+    ReducedMotionProps,
+    ThemingProps<"Popover"> {
   /**
    * The content of the popover. It is usually the `PopoverTrigger`,
    * and `PopoverContent`
@@ -30,12 +34,12 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
 export function Popover(props: PopoverProps) {
   const styles = useMultiStyleConfig("Popover", props)
 
-  const { children, ...rest } = omitThemingProps(props)
+  const { children, reducedMotion, ...rest } = omitThemingProps(props)
   const theme = useTheme()
   const context = usePopover({ ...rest, direction: theme.direction })
 
   return (
-    <PopoverProvider value={context}>
+    <PopoverProvider value={{ ...context, reducedMotion }}>
       <PopoverStylesProvider value={styles}>
         {runIfFn(children, {
           isOpen: context.isOpen,

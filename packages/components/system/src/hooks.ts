@@ -63,7 +63,11 @@ export function getToken<T extends StringOrNumber | StringOrNumber[]>(
   }
 }
 
-export function useReducedMotionValue() {
+export type ReducedMotionProps = {
+  reducedMotion?: boolean
+}
+
+export function useReducedMotionValue(value?: boolean) {
   const theme = useTheme()
-  return useReducedMotion(theme.config?.useReducedMotion)
+  return useReducedMotion(value ?? theme.config?.useReducedMotion)
 }
