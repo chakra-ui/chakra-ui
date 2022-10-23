@@ -52,6 +52,8 @@ const baseStyleDialog = defineStyle((props) => {
       [$bg.variable]: "colors.gray.700",
       [$bs.variable]: "shadows.dark-lg",
     },
+    bg: $bg.reference,
+    boxShadow: $bs.reference,
   }
 })
 
