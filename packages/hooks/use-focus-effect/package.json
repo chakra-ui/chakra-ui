@@ -43,6 +43,7 @@
   "dependencies": {
     "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/react-use-update-effect": "workspace:*",
+    "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
     "@chakra-ui/dom-utils": "workspace:*"
   }
 }

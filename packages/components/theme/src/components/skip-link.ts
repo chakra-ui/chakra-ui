@@ -1,7 +1,12 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
+import {
+  cssVar,
+  defineStyle,
+  defineStyleConfig,
+} from "@chakra-ui/styled-system"
 
-const baseStyle = defineStyle((props) => ({
+const $bg = cssVar("skip-link-bg")
+
+const baseStyle = defineStyle({
   borderRadius: "md",
   fontWeight: "semibold",
   _focusVisible: {
@@ -10,9 +15,13 @@ const baseStyle = defineStyle((props) => ({
     position: "fixed",
     top: "6",
     insetStart: "6",
-    bg: mode("white", "gray.700")(props),
+    [$bg.variable]: "colors.white",
+    _dark: {
+      [$bg.variable]: "colors.gray.700",
+    },
+    bg: $bg.reference,
   },
-}))
+})
 
 export const skipLinkTheme = defineStyleConfig({
   baseStyle,

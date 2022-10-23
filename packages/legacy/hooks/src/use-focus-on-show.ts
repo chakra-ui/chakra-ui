@@ -5,8 +5,9 @@ import {
   getAllFocusable,
   isRefObject,
 } from "@chakra-ui/utils"
-import { useCallback } from "react"
+import { useCallback, useRef } from "react"
 import { useEventListener } from "./use-event-listener"
+import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 import { useUpdateEffect } from "./use-update-effect"
 
 export interface UseFocusOnShowOptions {
@@ -27,11 +28,20 @@ export function useFocusOnShow<T extends HTMLElement>(
 ) {
   const { focusRef, preventScroll, shouldFocus, visible } = options
   const element = isRefObject(target) ? target.current : target
+  const autoFocusValue = shouldFocus && visible
+  const autoFocusRef = useRef(autoFocusValue)
+  const lastVisibleRef = useRef(visible)
 
-  const autoFocus = shouldFocus && visible
+  useSafeLayoutEffect(() => {
+    if (!lastVisibleRef.current && visible) {
+      autoFocusRef.current = autoFocusValue
+    }
+    lastVisibleRef.current = visible
+  }, [visible, autoFocusValue])
 
   const onFocus = useCallback(() => {
-    if (!element || !autoFocus) return
+    if (!visible || !element || !autoFocusRef.current) return
+    autoFocusRef.current = false
 
     if (contains(element, document.activeElement as HTMLElement)) return
 
@@ -43,7 +53,7 @@ export function useFocusOnShow<T extends HTMLElement>(
         focus(tabbableEls[0], { preventScroll, nextTick: true })
       }
     }
-  }, [autoFocus, preventScroll, element, focusRef])
+  }, [visible, preventScroll, element, focusRef])
 
   useUpdateEffect(() => {
     onFocus()

@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
+import { calc, cssVar } from "@chakra-ui/theme-tools"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -13,6 +13,7 @@ const $height = cssVar("switch-track-height")
 const $diff = cssVar("switch-track-diff")
 const diffValue = calc.subtract($width, $height)
 const $translateX = cssVar("switch-thumb-x")
+const $bg = cssVar("switch-bg")
 
 const baseStyleTrack = defineStyle((props) => {
   const { colorScheme: c } = props
@@ -24,7 +25,10 @@ const baseStyleTrack = defineStyle((props) => {
     height: [$height.reference],
     transitionProperty: "common",
     transitionDuration: "fast",
-    bg: mode("gray.300", "whiteAlpha.400")(props),
+    [$bg.variable]: "colors.gray.300",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.400",
+    },
     _focusVisible: {
       boxShadow: "outline",
     },
@@ -33,8 +37,12 @@ const baseStyleTrack = defineStyle((props) => {
       cursor: "not-allowed",
     },
     _checked: {
-      bg: mode(`${c}.500`, `${c}.200`)(props),
+      [$bg.variable]: `colors.${c}.500`,
+      _dark: {
+        [$bg.variable]: `colors.${c}.200`,
+      },
     },
+    bg: $bg.reference,
   }
 })
 
