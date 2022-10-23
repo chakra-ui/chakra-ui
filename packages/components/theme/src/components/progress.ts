@@ -1,35 +1,43 @@
 import { progressAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { generateStripe, getColor, mode } from "@chakra-ui/theme-tools"
+import { generateStripe } from "@chakra-ui/theme-tools"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
+const $stripe = cssVar("progress-stripe")
+const $bg = cssVar("progress-bg")
+
 const filledStyle = defineStyle((props) => {
-  const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props
-
-  const stripeStyle = mode(
-    generateStripe(),
-    generateStripe("1rem", "rgba(0,0,0,0.1)"),
-  )(props)
-
-  const bgColor = mode(`${c}.500`, `${c}.200`)(props)
+  const { colorScheme: c, isIndeterminate, hasStripe } = props
 
   const gradient = `linear-gradient(
     to right,
     transparent 0%,
-    ${getColor(t, bgColor)} 50%,
+    ${$stripe.reference} 50%,
     transparent 100%
   )`
 
   const addStripe = !isIndeterminate && hasStripe
 
   return {
-    ...(addStripe && stripeStyle),
-    ...(isIndeterminate ? { bgImage: gradient } : { bgColor }),
+    [$stripe.variable]: `colors.${c}.500`,
+    ...(addStripe && generateStripe()),
+    ...(isIndeterminate
+      ? { bgImage: gradient }
+      : { [$bg.variable]: `colors.${c}.500` }),
+
+    _dark: {
+      [$stripe.variable]: `colors.${c}.200`,
+      ...(addStripe && generateStripe("1rem", "rgba(0,0,0,0.1)")),
+      ...(!isIndeterminate && { [$bg.variable]: `colors.${c}.200` }),
+    },
+
+    bgColor: $bg.reference,
   }
 })
 
@@ -40,10 +48,12 @@ const baseStyleLabel = defineStyle({
   color: "white",
 })
 
-const baseStyleTrack = defineStyle((props) => {
-  return {
-    bg: mode("gray.100", "whiteAlpha.300")(props),
-  }
+const baseStyleTrack = defineStyle({
+  bg: $bg.reference,
+  [$bg.variable]: "colors.gray.100",
+  _dark: {
+    [$bg.variable]: "colors.whiteAlpha.300",
+  },
 })
 
 const baseStyleFilledTrack = defineStyle((props) => {
@@ -57,7 +67,7 @@ const baseStyleFilledTrack = defineStyle((props) => {
 const baseStyle = definePartsStyle((props) => ({
   label: baseStyleLabel,
   filledTrack: baseStyleFilledTrack(props),
-  track: baseStyleTrack(props),
+  track: baseStyleTrack,
 }))
 
 const sizes = {
