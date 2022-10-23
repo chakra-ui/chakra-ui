@@ -1,6 +1,7 @@
 import { modalAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
@@ -8,6 +9,9 @@ import { runIfFn } from "../utils/run-if-fn"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
+
+const $bg = cssVar("modal-bg")
+const $bs = cssVar("modal-box-shadow")
 
 const baseStyleOverlay = defineStyle({
   bg: "blackAlpha.600",
@@ -31,12 +35,19 @@ const baseStyleDialog = defineStyle((props) => {
 
   return {
     borderRadius: "md",
-    bg: mode("white", "gray.700")(props),
+
     color: "inherit",
     my: "16",
     zIndex: "modal",
     maxH: scrollBehavior === "inside" ? "calc(100% - 7.5rem)" : undefined,
-    boxShadow: mode("lg", "dark-lg")(props),
+    [$bg.variable]: "colors.white",
+    [$bs.variable]: "shadows.lg",
+    _dark: {
+      [$bg.variable]: "colors.gray.700",
+      [$bs.variable]: "shadows.dark-lg",
+    },
+    bg: $bg.reference,
+    boxShadow: $bs.reference,
   }
 })
 
