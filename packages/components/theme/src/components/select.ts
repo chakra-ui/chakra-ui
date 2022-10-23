@@ -1,6 +1,7 @@
 import { selectAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
 import { mode } from "@chakra-ui/theme-tools"
@@ -9,16 +10,21 @@ import { inputTheme } from "./input"
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
+const $bg = cssVar("select-bg")
+
 const baseStyleField = defineStyle((props) => {
   return {
     ...inputTheme.baseStyle?.field,
-    bg: mode("white", "gray.700")(props),
     appearance: "none",
     paddingBottom: "1px",
     lineHeight: "normal",
-    "> option, > optgroup": {
-      bg: mode("white", "gray.700")(props),
+    "&, > option, > optgroup": {
+      [$bg.variable]: "colors.white",
+      _dark: {
+        [$bg.variable]: "colors.gray.700",
+      },
     },
+    bg: $bg.reference,
   }
 })
 
