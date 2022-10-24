@@ -66,6 +66,7 @@
     "packages/hooks/use-focus-effect",
     "packages/hooks/use-focus-on-pointer-down",
     "packages/hooks/use-interval",
+    "packages/hooks/use-latest-ref",
     "packages/hooks/use-merge-refs",
     "packages/hooks/use-outside-click",
     "packages/hooks/use-pan-event",
