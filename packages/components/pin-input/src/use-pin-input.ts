@@ -180,7 +180,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const setValue = useCallback(
     (value: string, index: number, handleFocus: boolean = true) => {
       const nextValues = [...values]
-      nextValues[index] = value
+      // Index has to fit into our NextValues
+      const currentIndex =
+        nextValues.length >= index ? index : nextValues.length
+      nextValues[currentIndex] = value
       setValues(nextValues)
 
       const isComplete =
@@ -193,7 +196,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
       if (isComplete) {
         onComplete?.(nextValues.join(""))
       } else {
-        if (handleFocus) focusNext(index)
+        if (handleFocus) focusNext(currentIndex)
       }
     },
     [values, setValues, focusNext, onComplete, descendants],
@@ -237,7 +240,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
         }
 
         // in the case of an autocomplete or copy and paste
-        if (eventValue.length > 2) {
+        // We can copy and pase two and more chars
+        if (eventValue.length >= 2) {
           // see if we can use the string to fill out our values
           if (validate(eventValue, type)) {
             // Ensure the value matches the number of inputs
@@ -246,10 +250,13 @@ export function usePinInput(props: UsePinInputProps = {}) {
               .filter((_, index) => index < descendants.count())
 
             setValues(nextValue)
-
             // if pasting fills the entire input fields, trigger `onComplete`
             if (nextValue.length === descendants.count()) {
               onComplete?.(nextValue.join(""))
+            } else {
+              // If copy and was incomplete - we move focus
+              // -1 is fine as we always have 2 and more chars
+              focusNext(nextValue.length - 1)
             }
           }
         } else {
@@ -306,21 +313,22 @@ export function usePinInput(props: UsePinInputProps = {}) {
       }
     },
     [
-      descendants,
       focusedIndex,
-      getNextValue,
+      type,
+      mask,
       id,
       isDisabled,
-      mask,
       isInvalid,
-      manageFocus,
-      onComplete,
+      values,
       otp,
       placeholder,
+      getNextValue,
       setValue,
       setValues,
-      type,
-      values,
+      descendants,
+      onComplete,
+      focusNext,
+      manageFocus,
     ],
   )
 
