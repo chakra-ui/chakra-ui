@@ -5,7 +5,13 @@ import {
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { Dict, filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
+import {
+  Dict,
+  assignAfter,
+  filterUndefined,
+  objectFilter,
+  runIfFn,
+} from "@chakra-ui/utils"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import React from "react"
 import { shouldForwardProp } from "./should-forward-prop"
@@ -49,7 +55,7 @@ export const toCSSObject: GetStyleObject =
     const { theme, css: cssProp, __css, sx, ...rest } = props
     const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
     const finalBaseStyle = runIfFn(baseStyle, props)
-    const finalStyles = Object.assign(
+    const finalStyles = assignAfter(
       {},
       __css,
       finalBaseStyle,
