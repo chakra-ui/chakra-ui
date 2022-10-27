@@ -8,7 +8,7 @@ import { getColor } from "@chakra-ui/theme-tools"
 
 const $fg = cssVar("tabs-color")
 const $bg = cssVar("tabs-bg")
-const $bbc = cssVar("tabs-border-bottom-color")
+const $border = cssVar("tabs-border-color")
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
