@@ -121,6 +121,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
     isIndeterminate,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
+    title,
     ...rest
   } = omitThemingProps(props)
 
@@ -175,6 +176,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
           isIndeterminate={isIndeterminate}
           css={css}
           borderRadius={borderRadius}
+          title={title}
         />
         {children}
       </ProgressStylesProvider>
