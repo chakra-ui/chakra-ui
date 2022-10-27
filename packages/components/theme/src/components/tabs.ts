@@ -143,7 +143,7 @@ const variantEnclosed = definePartsStyle((props) => {
         borderColor: "inherit",
       },
       color: $fg.reference,
-      borderBottomColor: $bbc.reference,
+      borderBottomColor: $border.reference,
     },
     tablist: {
       mb: "-1px",
