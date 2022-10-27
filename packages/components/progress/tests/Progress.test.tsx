@@ -106,3 +106,20 @@ test("CircularProgress: has the proper aria, data, and role attributes", () => {
 
   expect(progress).toHaveAttribute("aria-valuetext", "20 (20%)")
 })
+
+test("Progress as meter", async () => {
+  const { getByRole, queryByRole, container } = render(
+    <Progress
+      color="green"
+      size="sm"
+      value={20}
+      role="meter"
+      aria-label="Usage"
+    />,
+  )
+
+  expect(getByRole("meter")).toBeVisible()
+  expect(queryByRole("progressbar")).toBeNull()
+
+  await testA11y(container)
+})
