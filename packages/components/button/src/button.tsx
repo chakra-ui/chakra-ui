@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/system"
 import { cx, dataAttr } from "@chakra-ui/shared-utils"
 
-import { useMemo } from "react"
+import { useMemo, Fragment } from "react"
 import { useButtonGroup } from "./button-context"
 import { ButtonIcon } from "./button-icon"
 import { ButtonSpinner } from "./button-spinner"
@@ -89,37 +89,39 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       className={cx("chakra-button", className)}
       {...rest}
     >
-      {isLoading && spinnerPlacement === "start" && (
-        <ButtonSpinner
-          className="chakra-button__spinner--start"
-          label={loadingText}
-          placement="start"
-          spacing={iconSpacing}
-        >
-          {spinner}
-        </ButtonSpinner>
-      )}
+      <Fragment>
+        {isLoading && spinnerPlacement === "start" && (
+          <ButtonSpinner
+            className="chakra-button__spinner--start"
+            label={loadingText}
+            placement="start"
+            spacing={iconSpacing}
+          >
+            {spinner}
+          </ButtonSpinner>
+        )}
 
-      {isLoading ? (
-        loadingText || (
-          <chakra.span opacity={0}>
-            <ButtonContent {...contentProps} />
-          </chakra.span>
-        )
-      ) : (
-        <ButtonContent {...contentProps} />
-      )}
+        {isLoading ? (
+          loadingText || (
+            <chakra.span opacity={0}>
+              <ButtonContent {...contentProps} />
+            </chakra.span>
+          )
+        ) : (
+          <ButtonContent {...contentProps} />
+        )}
 
-      {isLoading && spinnerPlacement === "end" && (
-        <ButtonSpinner
-          className="chakra-button__spinner--end"
-          label={loadingText}
-          placement="end"
-          spacing={iconSpacing}
-        >
-          {spinner}
-        </ButtonSpinner>
-      )}
+        {isLoading && spinnerPlacement === "end" && (
+          <ButtonSpinner
+            className="chakra-button__spinner--end"
+            label={loadingText}
+            placement="end"
+            spacing={iconSpacing}
+          >
+            {spinner}
+          </ButtonSpinner>
+        )}
+      </Fragment>
     </chakra.button>
   )
 })
