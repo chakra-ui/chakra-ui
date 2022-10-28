@@ -135,10 +135,10 @@ const variantEnclosed = definePartsStyle((props) => {
       mb: "-1px",
       _selected: {
         [$fg.variable]: `colors.${c}.600`,
-        [$bbc.variable]: `colors.white`,
+        [$border.variable]: `colors.white`,
         _dark: {
           [$fg.variable]: `colors.${c}.300`,
-          [$bbc.variable]: `colors.gray.800`,
+          [$border.variable]: `colors.gray.800`,
         },
         borderColor: "inherit",
       },
