@@ -47,6 +47,7 @@ export interface GetProgressPropsOptions {
   valueText?: string
   getValueText?(value: number, percent: number): string
   isIndeterminate?: boolean
+  role?: React.AriaRole
 }
 
 /**
@@ -61,6 +62,7 @@ export function getProgressProps(options: GetProgressPropsOptions) {
     valueText,
     getValueText,
     isIndeterminate,
+    role = "progressbar",
   } = options
 
   const percent = valueToPercent(value, min, max)
@@ -79,7 +81,7 @@ export function getProgressProps(options: GetProgressPropsOptions) {
       "aria-valuemin": min,
       "aria-valuenow": isIndeterminate ? undefined : value,
       "aria-valuetext": getAriaValueText(),
-      role: "progressbar",
+      role,
     },
     percent,
     value,
