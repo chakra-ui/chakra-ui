@@ -23,9 +23,9 @@ const baseStyleText = defineStyle({
 
 const baseStyleIcon = defineStyle({
   marginEnd: "0.5em",
-  [$fg.variable]: `red.500`,
+  [$fg.variable]: `colors.red.500`,
   _dark: {
-    [$fg.variable]: `red.300`,
+    [$fg.variable]: `colors.red.300`,
   },
   color: $fg.reference,
 })
