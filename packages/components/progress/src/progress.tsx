@@ -39,8 +39,14 @@ export interface ProgressFilledTrackProps
  */
 const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
   (props, ref) => {
-    const { min, max, value, isIndeterminate, ...rest } = props
-    const progress = getProgressProps({ value, min, max, isIndeterminate })
+    const { min, max, value, isIndeterminate, role, ...rest } = props
+    const progress = getProgressProps({
+      value,
+      min,
+      max,
+      isIndeterminate,
+      role,
+    })
 
     const styles = useProgressStyles()
     const trackStyles = {
@@ -122,6 +128,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     title,
+    role,
     ...rest
   } = omitThemingProps(props)
 
@@ -177,6 +184,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
           css={css}
           borderRadius={borderRadius}
           title={title}
+          role={role}
         />
         {children}
       </ProgressStylesProvider>
