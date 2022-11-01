@@ -11,9 +11,9 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const $fg = cssVar("form-error-color")
 
 const baseStyleText = defineStyle({
-  [$fg.variable]: `red.500`,
+  [$fg.variable]: `colors.red.500`,
   _dark: {
-    [$fg.variable]: `red.300`,
+    [$fg.variable]: `colors.red.300`,
   },
   color: $fg.reference,
   mt: "2",
