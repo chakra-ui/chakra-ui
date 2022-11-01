@@ -14,27 +14,25 @@ const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
 
 const baseStylePopper = defineStyle({ zIndex: 10 })
 
-const baseStyleContent = defineStyle((props) => {
-  return {
-    [$popperBg.variable]: `colors.white`,
-    bg: $popperBg.reference,
-    [$arrowBg.variable]: $popperBg.reference,
-    [$arrowShadowColor.variable]: `colors.gray.200`,
-    _dark: {
-      [$popperBg.variable]: `colors.gray.700`,
-      [$arrowShadowColor.variable]: `colors.whiteAlpha.300`,
-    },
-    width: "xs",
-    border: "1px solid",
-    borderColor: "inherit",
-    borderRadius: "md",
-    boxShadow: "sm",
-    zIndex: "inherit",
-    _focusVisible: {
-      outline: 0,
-      boxShadow: "outline",
-    },
-  }
+const baseStyleContent = defineStyle({
+  [$popperBg.variable]: `colors.white`,
+  bg: $popperBg.reference,
+  [$arrowBg.variable]: $popperBg.reference,
+  [$arrowShadowColor.variable]: `colors.gray.200`,
+  _dark: {
+    [$popperBg.variable]: `colors.gray.700`,
+    [$arrowShadowColor.variable]: `colors.whiteAlpha.300`,
+  },
+  width: "xs",
+  border: "1px solid",
+  borderColor: "inherit",
+  borderRadius: "md",
+  boxShadow: "sm",
+  zIndex: "inherit",
+  _focusVisible: {
+    outline: 0,
+    boxShadow: "outline",
+  },
 })
 
 const baseStyleHeader = defineStyle({
@@ -62,14 +60,14 @@ const baseStyleCloseButton = defineStyle({
   padding: 2,
 })
 
-const baseStyle = definePartsStyle((props) => ({
+const baseStyle = definePartsStyle({
   popper: baseStylePopper,
-  content: baseStyleContent(props),
+  content: baseStyleContent,
   header: baseStyleHeader,
   body: baseStyleBody,
   footer: baseStyleFooter,
   closeButton: baseStyleCloseButton,
-}))
+})
 
 export const popoverTheme = defineMultiStyleConfig({
   baseStyle,
