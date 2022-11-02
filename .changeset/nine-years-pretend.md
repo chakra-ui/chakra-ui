@@ -2,4 +2,5 @@
 "@chakra-ui/theme": patch
 ---
 
-Refactor theme to use css variables instead of `mode` function
+Replace using JS runtime function in the theme to CSS variables. This removed
+the need for the `mode` function in most components.
