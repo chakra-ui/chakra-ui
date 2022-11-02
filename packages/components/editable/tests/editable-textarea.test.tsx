@@ -204,18 +204,20 @@ test("has the proper aria attributes", () => {
   expect(textarea).toHaveAttribute("aria-disabled", "true")
 })
 
-test("editable textarea can submit on blur", () => {
+test("editable textarea can submit on blur", async () => {
   const onSubmit = jest.fn()
 
-  render(
+  const { user } = render(
     <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableTextarea data-testid="textarea" />
     </Editable>,
   )
 
+  const preview = screen.getByTestId("preview")
   const textarea = screen.getByTestId("textarea")
 
+  await user.click(preview)
   fireEvent.blur(textarea)
   expect(onSubmit).toHaveBeenCalledWith("testing")
 })

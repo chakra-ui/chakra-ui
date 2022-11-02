@@ -196,18 +196,20 @@ test("has the proper aria attributes", () => {
   expect(input).toHaveAttribute("aria-disabled", "true")
 })
 
-test("can submit on blur", () => {
+test("can submit on blur", async () => {
   const onSubmit = jest.fn()
 
-  render(
+  const { user } = render(
     <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">
       <EditablePreview data-testid="preview" />
       <EditableInput data-testid="input" />
     </Editable>,
   )
 
+  const preview = screen.getByTestId("preview")
   const input = screen.getByTestId("input")
 
+  await user.click(preview)
   fireEvent.blur(input)
   expect(onSubmit).toHaveBeenCalledWith("testing")
 })
