@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.12
+
+### Patch Changes
+
+- [#6839](https://github.com/chakra-ui/chakra-ui/pull/6839)
+  [`132a98958`](https://github.com/chakra-ui/chakra-ui/commit/132a98958be64e46619b1e280ca6405d0a833cb0)
+  Thanks [@mountainash](https://github.com/mountainash)! - Removed unneeded
+  units for zero values `0px -> 0`
+
 ## 2.0.11
 
 ### Patch Changes

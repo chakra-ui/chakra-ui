@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/theme-utils@2.0.2
+
 ## 2.3.0
 
 ### Minor Changes
