@@ -2,4 +2,5 @@
 "@chakra-ui/progress": patch
 ---
 
-Add title to progress inner element for better accessibility
+Fix accessibility issue where the `title` prop was not passed to the underlying
+`role=progress` element.

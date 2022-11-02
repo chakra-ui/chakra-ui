@@ -2,4 +2,4 @@
 "@chakra-ui/visually-hidden": patch
 ---
 
-Remove unneeded units for zero values
+Removed unneeded units for zero values `0px -> 0`

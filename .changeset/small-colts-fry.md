@@ -3,5 +3,5 @@
 "@chakra-ui/hooks": patch
 ---
 
-Fixed an issue with focus sometimes being moved back to the open element when it
-was intentionally moved away from it.
+Fixed issue where focus sometimes moved back to the open element when it was
+intentionally moved away from it.

@@ -2,4 +2,4 @@
 "@chakra-ui/checkbox": patch
 ---
 
-replace framer-motion with CSS animation
+Replaced `framer-motion` with css animation
