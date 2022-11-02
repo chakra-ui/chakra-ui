@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.15
+
+### Patch Changes
+
+- [#6857](https://github.com/chakra-ui/chakra-ui/pull/6857)
+  [`f3b66694f`](https://github.com/chakra-ui/chakra-ui/commit/f3b66694f054491dcf8830ec48cd0e4ee77490e0)
+  Thanks [@anubra266](https://github.com/anubra266)! - Replace using JS runtime
+  function in the theme to CSS variables. This removed the need for the `mode`
+  function in most components.
+
 ## 2.1.14
 
 ### Patch Changes

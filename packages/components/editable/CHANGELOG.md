@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- [#6851](https://github.com/chakra-ui/chakra-ui/pull/6851)
+  [`30b1b62f3`](https://github.com/chakra-ui/chakra-ui/commit/30b1b62f335cdf85b3b46761fdeb0105a4773a61)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix issue where
+  `onSubmit` was called twice when input is blurred with enter key.
+
 ## 2.0.13
 
 ### Patch Changes
