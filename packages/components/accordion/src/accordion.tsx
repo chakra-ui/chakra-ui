@@ -35,10 +35,10 @@ export interface AccordionProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
 export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
-  { children, reducedMotion, ...props },
+  { children, reduceMotion, ...props },
   ref,
 ) {
-  const prefersReducedMotion = useReducedMotionValue(reducedMotion)
+  const prefersReducedMotion = useReducedMotionValue(reduceMotion)
   const styles = useMultiStyleConfig("Accordion", props)
   const ownProps = omitThemingProps(props)
 
