@@ -44,6 +44,26 @@ const motionVariants: Variants = {
   },
 }
 
+const reduceMotionVariants: Variants = {
+  enter: {
+    visibility: "visible",
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0,
+    },
+  },
+  exit: {
+    transitionEnd: {
+      visibility: "hidden",
+    },
+    opacity: 0,
+    transition: {
+      duration: 0,
+    },
+  },
+}
+
 const MenuTransition = chakra(motion.div)
 
 export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
@@ -58,7 +78,9 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
     unstable__animationState: animated,
   } = useMenuContext()
 
+  console.log("REDUCE MOTION PROP", reduceMotion)
   const prefersReducedMotion = useReducedMotionValue(reduceMotion)
+  console.log("PREFERS REDUCE MOTION", prefersReducedMotion)
 
   const listProps = useMenuList(rest, ref) as any
   const positionerProps = useMenuPositioner(rootProps)
@@ -71,7 +93,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
       __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
     >
       <MenuTransition
-        variants={prefersReducedMotion ? undefined : motionVariants}
+        variants={prefersReducedMotion ? reduceMotionVariants : motionVariants}
         initial={false}
         animate={isOpen ? "enter" : "exit"}
         __css={{ outline: 0, ...styles.list }}

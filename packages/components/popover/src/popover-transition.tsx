@@ -68,6 +68,23 @@ const MotionSection = chakra(motion.section)
 export interface PopoverTransitionProps
   extends HTMLMotionChakraProps<"section"> {}
 
+const reduceMotionVariants: MotionVariants = {
+  exit: {
+    opacity: 0,
+    visibility: "hidden",
+    transition: {
+      duration: 0,
+    },
+  },
+  enter: {
+    opacity: 1,
+    visibility: "visible",
+    transition: {
+      duration: 0,
+    },
+  },
+}
+
 export const PopoverTransition = forwardRef(function PopoverTransition(
   props: PopoverTransitionProps,
   ref: React.Ref<any>,
@@ -78,7 +95,9 @@ export const PopoverTransition = forwardRef(function PopoverTransition(
   return (
     <MotionSection
       ref={ref}
-      variants={prefersReducedMotion ? undefined : mergeVariants(variants)}
+      variants={
+        prefersReducedMotion ? reduceMotionVariants : mergeVariants(variants)
+      }
       initial={false}
       animate={isOpen ? "enter" : "exit"}
       {...rest}

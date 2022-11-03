@@ -49,6 +49,21 @@ const variants: Variants<ScaleFadeOptions> = {
   }),
 }
 
+const reduceMotionVariants: Variants = {
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0,
+    },
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: 0,
+    },
+  },
+}
+
 export const scaleFadeConfig: HTMLMotionProps<"div"> = {
   initial: "exit",
   animate: "enter",
@@ -87,7 +102,7 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
             ref={ref}
             className={cx("chakra-offset-slide", className)}
             {...scaleFadeConfig}
-            variants={reduceMotion ? undefined : variants}
+            variants={reduceMotion ? reduceMotionVariants : variants}
             animate={animate}
             custom={custom}
             {...rest}
