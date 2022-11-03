@@ -14,13 +14,4 @@ export default {
       </PortalManager>
     ),
   ],
-  parameters: {
-    chakra: {
-      theme: {
-        config: {
-          useReducedMotion: true,
-        },
-      },
-    },
-  },
 }
