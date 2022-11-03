@@ -71,7 +71,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
       __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
     >
       <MenuTransition
-        variants={prefersReducedMotion ? {} : motionVariants}
+        variants={prefersReducedMotion ? undefined : motionVariants}
         initial={false}
         animate={isOpen ? "enter" : "exit"}
         __css={{ outline: 0, ...styles.list }}

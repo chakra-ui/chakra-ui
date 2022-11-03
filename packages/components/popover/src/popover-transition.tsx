@@ -78,7 +78,7 @@ export const PopoverTransition = forwardRef(function PopoverTransition(
   return (
     <MotionSection
       ref={ref}
-      variants={prefersReducedMotion ? {} : mergeVariants(variants)}
+      variants={prefersReducedMotion ? undefined : mergeVariants(variants)}
       initial={false}
       animate={isOpen ? "enter" : "exit"}
       {...rest}
