@@ -35,23 +35,24 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
+    "@atlas/react": "^0.1.0",
     "@chakra-ui/descendant": "workspace:*",
+    "@chakra-ui/icon": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/react-use-controllable-state": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
-    "@chakra-ui/react-context": "workspace:*",
-    "@chakra-ui/icon": "workspace:*",
     "@chakra-ui/transition": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/button": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*",
-    "@chakra-ui/react-use-disclosure": "workspace:*",
-    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/modal": "workspace:*",
+    "@chakra-ui/react-use-disclosure": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "clean-package": "2.1.1",
     "framer-motion": "^6.2.9",
-    "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "react": "^18.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
