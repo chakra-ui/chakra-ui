@@ -1,6 +1,7 @@
 # @chakra-ui/use-reduced-motion
 
-A Quick description of the component
+The `@chakra-ui/use-reduced-motion` package provides a `useReducedMotion` hook
+that listens for the `prefers-reduced-motion` preference in the browser.
 
 > This is an internal utility, not intended for public usage.
 
