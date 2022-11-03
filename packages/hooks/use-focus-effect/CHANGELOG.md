@@ -1,5 +1,15 @@
 # @chakra-ui/react-use-focus-effect
 
+## 2.0.6
+
+### Patch Changes
+
+- [#6863](https://github.com/chakra-ui/chakra-ui/pull/6863)
+  [`49dc149cc`](https://github.com/chakra-ui/chakra-ui/commit/49dc149cc600af83dcde4fa9b6a34a6b14dca837)
+  Thanks [@Andarist](https://github.com/Andarist)! - Fixed issue where focus
+  sometimes moved back to the open element when it was intentionally moved away
+  from it.
+
 ## 2.0.5
 
 ### Patch Changes

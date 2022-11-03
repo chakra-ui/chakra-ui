@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.2.3
+
+### Patch Changes
+
+- [#6929](https://github.com/chakra-ui/chakra-ui/pull/6929)
+  [`1377b7280`](https://github.com/chakra-ui/chakra-ui/commit/1377b7280e398aadf70b54c7846a36136c7bd772)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Replaced
+  `framer-motion` with css animation
+
+- Updated dependencies
+  [[`132a98958`](https://github.com/chakra-ui/chakra-ui/commit/132a98958be64e46619b1e280ca6405d0a833cb0)]:
+  - @chakra-ui/visually-hidden@2.0.12
+  - @chakra-ui/form-control@2.0.11
+
 ## 2.2.2
 
 ### Patch Changes

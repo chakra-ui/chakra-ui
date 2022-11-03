@@ -1,13 +1,16 @@
 import { drawerAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
 import { runIfFn } from "../utils/run-if-fn"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
+
+const $bg = cssVar("drawer-bg")
+const $bs = cssVar("drawer-box-shadow")
 
 /**
  * Since the `maxWidth` prop references theme.sizes internally,
@@ -42,9 +45,15 @@ const baseStyleDialog = defineStyle((props) => {
     ...(isFullHeight && { height: "100vh" }),
     zIndex: "modal",
     maxH: "100vh",
-    bg: mode("white", "gray.700")(props),
     color: "inherit",
-    boxShadow: mode("lg", "dark-lg")(props),
+    [$bg.variable]: "colors.white",
+    [$bs.variable]: "shadows.lg",
+    _dark: {
+      [$bg.variable]: "colors.gray.700",
+      [$bs.variable]: "shadows.dark-lg",
+    },
+    bg: $bg.reference,
+    boxShadow: $bs.reference,
   }
 })
 

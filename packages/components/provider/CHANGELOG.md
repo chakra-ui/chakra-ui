@@ -1,5 +1,14 @@
 # @chakra-ui/provider
 
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8705372a0`](https://github.com/chakra-ui/chakra-ui/commit/8705372a014bfd7073fe8012a46d7aa22904370b)]:
+  - @chakra-ui/css-reset@2.0.9
+  - @chakra-ui/system@2.3.1
+
 ## 2.0.20
 
 ### Patch Changes
