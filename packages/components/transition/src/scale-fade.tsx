@@ -87,7 +87,7 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
             ref={ref}
             className={cx("chakra-offset-slide", className)}
             {...scaleFadeConfig}
-            variants={reduceMotion ? {} : variants}
+            variants={reduceMotion ? undefined : variants}
             animate={animate}
             custom={custom}
             {...rest}
