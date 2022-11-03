@@ -66,7 +66,7 @@ const MotionDiv = chakra(motion.div)
  */
 export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
-  const ownProps: any = omitThemingProps(props)
+  const ownProps = omitThemingProps(props)
   const theme = useTheme()
   const prefersReducedMotion = useReducedMotionValue(props.reduceMotion)
 
