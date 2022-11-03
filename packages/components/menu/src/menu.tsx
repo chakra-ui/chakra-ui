@@ -45,7 +45,7 @@ export interface MenuProps
  * @see Docs https://chakra-ui.com/docs/components/menu
  */
 export const Menu: React.FC<MenuProps> = (props) => {
-  const { children, reducedMotion } = props
+  const { children, reduceMotion } = props
 
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
@@ -57,7 +57,7 @@ export const Menu: React.FC<MenuProps> = (props) => {
 
   return (
     <MenuDescendantsProvider value={descendants}>
-      <MenuProvider value={{ ...context, reducedMotion }}>
+      <MenuProvider value={{ ...context, reduceMotion }}>
         <MenuStylesProvider value={styles}>
           {runIfFn(children, { isOpen, onClose, forceUpdate })}
         </MenuStylesProvider>
