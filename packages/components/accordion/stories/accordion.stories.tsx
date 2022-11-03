@@ -1,6 +1,13 @@
 import { Container } from "@chakra-ui/layout"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
-import { Accordion, AccordionItem } from "../src"
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+} from "../src"
 
 export default {
   title: "Components / Disclosure / Accordion",
@@ -15,9 +22,9 @@ export default {
  * that is appropriate for the information architecture of the page.
  */
 export const Basic = () => (
-  <Accordion>
-    <AccordionItem>
-      {/* <h2>
+  <Accordion collapsible>
+    <AccordionItem value="one">
+      <h2>
         <AccordionButton>
           <chakra.div flex="1" textAlign="left">
             Section 1 title
@@ -25,10 +32,10 @@ export const Basic = () => (
           <AccordionIcon />
         </AccordionButton>
       </h2>
-      <AccordionPanel>Panel 1</AccordionPanel> */}
+      <AccordionPanel>Panel 1</AccordionPanel>
     </AccordionItem>
 
-    {/*  <AccordionItem>
+    <AccordionItem value="two">
       <h2>
         <AccordionButton>
           <chakra.div flex="1" textAlign="left">
@@ -38,7 +45,7 @@ export const Basic = () => (
         </AccordionButton>
       </h2>
       <AccordionPanel>Panel 2</AccordionPanel>
-    </AccordionItem> */}
+    </AccordionItem>
   </Accordion>
 )
 

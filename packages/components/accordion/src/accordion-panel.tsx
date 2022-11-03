@@ -1,18 +1,21 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { Collapse, CollapseProps } from "@chakra-ui/transition"
-import { cx } from "@chakra-ui/shared-utils"
 import {
+  AccordionPanel as AtlasAccordionPanel,
+  AccordionPanelProps as AtlasAccordionButtonProps,
   useAccordionItemContext,
-  useAccordionStyles,
-} from "./accordion-context"
-import { useAccordionContext } from "./use-accordion"
+} from "@atlas/react"
+import { cx } from "@chakra-ui/shared-utils"
+import { chakra, forwardRef } from "@chakra-ui/system"
+import { Collapse, CollapseProps } from "@chakra-ui/transition"
+import { useAccordionStyles } from "./accordion-context"
 
-export interface AccordionPanelProps extends HTMLChakraProps<"div"> {
+export interface AccordionPanelProps extends AtlasAccordionButtonProps {
   /**
    * The properties passed to the underlying `Collapse` component.
    */
   motionProps?: CollapseProps
 }
+
+const ChakraAccordionPanel = chakra(AtlasAccordionPanel)
 
 /**
  * Accordion panel that holds the content for each accordion.
@@ -23,34 +26,34 @@ export interface AccordionPanelProps extends HTMLChakraProps<"div"> {
 export const AccordionPanel = forwardRef<AccordionPanelProps, "div">(
   function AccordionPanel(props, ref) {
     const { className, motionProps, ...rest } = props
+    const { isOpen } = useAccordionItemContext()
 
-    const { reduceMotion } = useAccordionContext()
-    const { getPanelProps, isOpen } = useAccordionItemContext()
-
+    // const { reduceMotion } = useAccordionContext()
     // remove `hidden` prop, 'coz we're using height animation
-    const panelProps = getPanelProps(rest, ref)
+    // const panelProps = getPanelProps(rest, ref)
 
     const _className = cx("chakra-accordion__panel", className)
     const styles = useAccordionStyles()
 
-    if (!reduceMotion) {
-      delete panelProps.hidden
-    }
-
     const child = (
-      <chakra.div {...panelProps} __css={styles.panel} className={_className} />
+      <ChakraAccordionPanel
+        ref={ref}
+        {...rest}
+        __css={styles.panel}
+        className={_className}
+      />
     )
 
-    if (!reduceMotion) {
-      return (
-        <Collapse in={isOpen} {...motionProps}>
-          {child}
-        </Collapse>
-      )
-    }
+    // if (!reduceMotion) {
+    // delete panelProps.hidden
+    // }
 
-    return child
+    // if (!reduceMotion) {
+    return (
+      <Collapse in={isOpen} {...motionProps}>
+        {child}
+      </Collapse>
+    )
+    // }
   },
 )
-
-AccordionPanel.displayName = "AccordionPanel"

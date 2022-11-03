@@ -39,16 +39,12 @@ export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
   const styles = useMultiStyleConfig("Accordion", props)
   const ownProps = omitThemingProps(props)
 
-  // const { htmlProps, descendants, ...context } = useAccordion(ownProps)
-
   // const ctx = useMemo(
   //   () => ({ ...context, reduceMotion: !!reduceMotion }),
   //   [context, reduceMotion],
   // )
 
   return (
-    // <AccordionDescendantsProvider value={descendants}>
-    // <AccordionProvider value={ctx}>
     <AccordionStylesProvider value={styles}>
       <ChakraAccordion
         ref={ref}
@@ -57,7 +53,5 @@ export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
         __css={styles.root}
       />
     </AccordionStylesProvider>
-    // </AccordionProvider>
-    // </AccordionDescendantsProvider>
   )
 })

@@ -7,19 +7,17 @@ import { chakra, forwardRef, SystemStyleObject } from "@chakra-ui/system"
 import { useAccordionStyles } from "./accordion-context"
 
 export interface AccordionItemProps extends AtlasAccordionItemprops {}
+
+const ChakraAccordionItem = chakra(AtlasAccordionItem)
+
 /**
  * AccordionItem is a single accordion that provides the open-close
  * behavior when the accordion button is clicked.
  *
  * It also provides context for the accordion button and panel.
  */
-
-const ChakraAccordionItem = chakra(AtlasAccordionItem)
-
 export const AccordionItem = forwardRef<AccordionItemProps, "div">(
   function AccordionItem(props, ref) {
-    // const { htmlProps, ...context } = useAccordionItem(props)
-
     const styles = useAccordionStyles()
     const containerStyles: SystemStyleObject = {
       ...styles.container,
@@ -36,5 +34,3 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
     )
   },
 )
-
-AccordionItem.displayName = "AccordionItem"

@@ -1,16 +1,15 @@
-import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
-  SystemStyleObject,
-} from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
-import {
-  useAccordionItemContext,
-  useAccordionStyles,
-} from "./accordion-context"
+import { chakra, forwardRef, SystemStyleObject } from "@chakra-ui/system"
+import { useAccordionStyles } from "./accordion-context"
 
-export interface AccordionButtonProps extends HTMLChakraProps<"button"> {}
+import {
+  AccordionButton as AtlasAccordionButton,
+  AccordionButtonProps as AtlasAccordionButtonProps,
+} from "@atlas/react"
+
+export interface AccordionButtonProps extends AtlasAccordionButtonProps {}
+
+const ChakraAccordionButton = chakra(AtlasAccordionButton)
 
 /**
  * AccordionButton is used expands and collapses an accordion item.
@@ -19,12 +18,8 @@ export interface AccordionButtonProps extends HTMLChakraProps<"button"> {}
  * Note 🚨: Each accordion button must be wrapped in a heading tag,
  * that is appropriate for the information architecture of the page.
  */
-
 export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
   function AccordionButton(props, ref) {
-    const { getButtonProps } = useAccordionItemContext()
-    const buttonProps = getButtonProps(props, ref)
-
     const styles = useAccordionStyles()
     const buttonStyles: SystemStyleObject = {
       display: "flex",
@@ -35,10 +30,11 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
     }
 
     return (
-      <chakra.button
-        {...buttonProps}
+      <ChakraAccordionButton
+        {...props}
         className={cx("chakra-accordion__button", props.className)}
         __css={buttonStyles}
+        ref={ref}
       />
     )
   },

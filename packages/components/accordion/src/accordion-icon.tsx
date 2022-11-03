@@ -1,11 +1,8 @@
+import { useAccordionItemContext } from "@atlas/react"
 import { Icon, IconProps } from "@chakra-ui/icon"
-import { SystemStyleObject } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
-import {
-  useAccordionItemContext,
-  useAccordionStyles,
-} from "./accordion-context"
-import { useAccordionContext } from "./use-accordion"
+import { SystemStyleObject } from "@chakra-ui/system"
+import { useAccordionStyles } from "./accordion-context"
 
 /**
  * AccordionIcon that gives a visual cue of the open/close state of the accordion item.
@@ -14,7 +11,7 @@ import { useAccordionContext } from "./use-accordion"
 
 export function AccordionIcon(props: IconProps) {
   const { isOpen, isDisabled } = useAccordionItemContext()
-  const { reduceMotion } = useAccordionContext()
+  // const { reduceMotion } = useAccordionContext()
 
   const _className = cx("chakra-accordion__icon", props.className)
   const styles = useAccordionStyles()
@@ -22,7 +19,9 @@ export function AccordionIcon(props: IconProps) {
   const iconStyles: SystemStyleObject = {
     opacity: isDisabled ? 0.4 : 1,
     transform: isOpen ? "rotate(-180deg)" : undefined,
-    transition: reduceMotion ? undefined : "transform 0.2s",
+    // TODO fix me
+    // transition: reduceMotion ? undefined : "transform 0.2s",
+    transition: "transform 0.2s",
     transformOrigin: "center",
     ...styles.icon,
   }
@@ -42,5 +41,3 @@ export function AccordionIcon(props: IconProps) {
     </Icon>
   )
 }
-
-AccordionIcon.displayName = "AccordionIcon"
