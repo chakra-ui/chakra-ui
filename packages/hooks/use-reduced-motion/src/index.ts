@@ -16,7 +16,6 @@ export function useReducedMotion(value: ReducedMotionValue) {
 
     const mediaQuery = win.matchMedia("(prefers-reduced-motion: reduce)")
     const handleChange = () => {
-      console.log("SYSTEM REDUCED MOTION", mediaQuery.matches)
       setReduceMotion(mediaQuery.matches)
     }
     mediaQuery.addEventListener("change", handleChange)
