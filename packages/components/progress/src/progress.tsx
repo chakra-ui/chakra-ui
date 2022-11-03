@@ -122,13 +122,13 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
     children,
     borderRadius: propBorderRadius,
     isIndeterminate,
-    reducedMotion,
+    reduceMotion,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     ...rest
   } = omitThemingProps(props)
 
-  const prefersReducedMotion = useReducedMotionValue(reducedMotion)
+  const prefersReducedMotion = useReducedMotionValue(reduceMotion)
 
   const styles = useMultiStyleConfig("Progress", props)
 

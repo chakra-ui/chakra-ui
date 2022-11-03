@@ -4,7 +4,7 @@ import { useEnvironment } from "@chakra-ui/react-env"
 export type ReducedMotionValue = boolean | "system"
 
 export function useReducedMotion(value: ReducedMotionValue) {
-  const [reducedMotion, setReducedMotion] = useState<boolean>(
+  const [reduceMotion, setReduceMotion] = useState<boolean>(
     value === "system" ? false : value,
   )
   const { window: win } = useEnvironment()
@@ -15,7 +15,7 @@ export function useReducedMotion(value: ReducedMotionValue) {
     }
 
     const mediaQuery = win.matchMedia("(prefers-reduced-motion: reduce)")
-    const handleChange = () => setReducedMotion(mediaQuery.matches)
+    const handleChange = () => setReduceMotion(mediaQuery.matches)
     mediaQuery.addEventListener("change", handleChange)
     handleChange()
 
@@ -24,5 +24,5 @@ export function useReducedMotion(value: ReducedMotionValue) {
     }
   }, [value, win])
 
-  return reducedMotion
+  return reduceMotion
 }

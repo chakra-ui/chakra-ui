@@ -39,7 +39,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
       ...rest
     } = props
 
-    const { getDialogProps, getDialogContainerProps, isOpen, reducedMotion } =
+    const { getDialogProps, getDialogContainerProps, isOpen, reduceMotion } =
       useModalContext()
 
     const dialogProps = getDialogProps(rest, ref) as any
@@ -78,7 +78,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
           __css={dialogContainerStyles}
         >
           <MotionDiv
-            reducedMotion={reducedMotion}
+            reduceMotion={reduceMotion}
             motionProps={motionProps}
             direction={placement}
             in={isOpen}

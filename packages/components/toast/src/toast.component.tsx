@@ -32,7 +32,7 @@ const toastMotionVariants: Variants = {
     x: 0,
     scale: 1,
     transition: {
-      duration: props.reducedMotion ? 0 : 0.4,
+      duration: props.reduceMotion ? 0 : 0.4,
       ease: [0.4, 0, 0.2, 1],
     },
   }),
@@ -40,7 +40,7 @@ const toastMotionVariants: Variants = {
     opacity: 0,
     scale: 0.85,
     transition: {
-      duration: props.reducedMotion ? 0 : 0.2,
+      duration: props.reduceMotion ? 0 : 0.2,
       ease: [0.4, 0, 1, 1],
     },
   }),
@@ -52,7 +52,7 @@ export interface ToastComponentProps
     Pick<ToastProviderProps, "motionVariants" | "toastSpacing"> {}
 
 export const ToastComponent = memo((props: ToastComponentProps) => {
-  const reducedMotion = useReducedMotionValue(props.reducedMotion)
+  const reduceMotion = useReducedMotionValue(props.reduceMotion)
   const {
     id,
     message,
@@ -117,7 +117,7 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
       exit="exit"
       onHoverStart={onMouseEnter}
       onHoverEnd={onMouseLeave}
-      custom={{ position, reducedMotion }}
+      custom={{ position, reduceMotion }}
       style={toastStyle}
     >
       <chakra.div

@@ -68,7 +68,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
   const styles = useStyleConfig("Tooltip", props)
   const ownProps: any = omitThemingProps(props)
   const theme = useTheme()
-  const prefersReducedMotion = useReducedMotionValue(props.reducedMotion)
+  const prefersReducedMotion = useReducedMotionValue(props.reduceMotion)
 
   const {
     children,
@@ -153,7 +153,7 @@ export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
               }}
             >
               <MotionDiv
-                variants={prefersReducedMotion ? {} : scale}
+                variants={prefersReducedMotion ? undefined : scale}
                 initial="exit"
                 animate="enter"
                 exit="exit"

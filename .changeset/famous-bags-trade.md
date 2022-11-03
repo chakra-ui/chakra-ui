@@ -19,4 +19,4 @@ Adding support for disabling animations when the `theme.config.useReducedMotion`
 is set to `true`.
 
 Adding support for overriding the theme's `useReducedMotion` value on a
-component level by providing the `reducedMotion` prop, which is just a boolean.
+component level by providing the `reduceMotion` prop, which is just a boolean.

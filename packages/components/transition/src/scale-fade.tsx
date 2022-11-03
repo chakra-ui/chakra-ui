@@ -28,7 +28,7 @@ interface ScaleFadeOptions {
    * Should disable the animations
    * @default "false"
    */
-  reducedMotion?: boolean
+  reduceMotion?: boolean
 }
 
 const variants: Variants<ScaleFadeOptions> = {
@@ -71,7 +71,7 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
       transition,
       transitionEnd,
       delay,
-      reducedMotion,
+      reduceMotion,
       ...rest
     } = props
 
@@ -87,7 +87,7 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
             ref={ref}
             className={cx("chakra-offset-slide", className)}
             {...scaleFadeConfig}
-            variants={reducedMotion ? {} : variants}
+            variants={reduceMotion ? {} : variants}
             animate={animate}
             custom={custom}
             {...rest}

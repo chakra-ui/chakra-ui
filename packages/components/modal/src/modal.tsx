@@ -141,7 +141,7 @@ const [ModalContextProvider, useModalContext] = createContext<
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
  */
 export const Modal: React.FC<ModalProps> = (props) => {
-  const reducedMotion = useReducedMotionValue(props.reducedMotion)
+  const reduceMotion = useReducedMotionValue(props.reduceMotion)
   const {
     portalProps,
     children,
@@ -158,7 +158,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     onCloseComplete,
   } = {
     ...props,
-    motionPreset: reducedMotion ? "none" : props.motionPreset,
+    motionPreset: reduceMotion ? "none" : props.motionPreset,
   }
 
   const styles = useMultiStyleConfig("Modal", props)
@@ -176,7 +176,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     preserveScrollBarGap,
     motionPreset,
     lockFocusAcrossFrames,
-    reducedMotion,
+    reduceMotion,
   }
 
   return (

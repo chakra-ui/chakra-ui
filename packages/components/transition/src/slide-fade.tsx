@@ -34,7 +34,7 @@ interface SlideFadeOptions {
    * Should disable the animations
    * @default "false"
    */
-  reducedMotion?: boolean
+  reduceMotion?: boolean
 }
 
 const variants: Variants<SlideFadeOptions> = {
@@ -111,7 +111,7 @@ export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
       transition,
       transitionEnd,
       delay,
-      reducedMotion,
+      reduceMotion,
       ...rest
     } = props
 
@@ -135,7 +135,7 @@ export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
             className={cx("chakra-offset-slide", className)}
             custom={custom}
             {...slideFadeConfig}
-            variants={reducedMotion ? reducedMotionVariants : variants}
+            variants={reduceMotion ? reducedMotionVariants : variants}
             animate={animate}
             {...rest}
           />

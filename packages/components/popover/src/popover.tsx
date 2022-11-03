@@ -34,12 +34,12 @@ export interface PopoverProps
 export function Popover(props: PopoverProps) {
   const styles = useMultiStyleConfig("Popover", props)
 
-  const { children, reducedMotion, ...rest } = omitThemingProps(props)
+  const { children, reduceMotion, ...rest } = omitThemingProps(props)
   const theme = useTheme()
   const context = usePopover({ ...rest, direction: theme.direction })
 
   return (
-    <PopoverProvider value={{ ...context, reducedMotion }}>
+    <PopoverProvider value={{ ...context, reduceMotion }}>
       <PopoverStylesProvider value={styles}>
         {runIfFn(children, {
           isOpen: context.isOpen,

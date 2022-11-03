@@ -73,8 +73,8 @@ export const PopoverTransition = forwardRef(function PopoverTransition(
   ref: React.Ref<any>,
 ) {
   const { variants = scaleFade, ...rest } = props
-  const { isOpen, reducedMotion } = usePopoverContext()
-  const prefersReducedMotion = useReducedMotionValue(reducedMotion)
+  const { isOpen, reduceMotion } = usePopoverContext()
+  const prefersReducedMotion = useReducedMotionValue(reduceMotion)
   return (
     <MotionSection
       ref={ref}

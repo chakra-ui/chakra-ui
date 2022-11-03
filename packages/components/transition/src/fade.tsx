@@ -19,7 +19,7 @@ export interface FadeProps
    * Should disable the animations
    * @default "false"
    */
-  reducedMotion?: boolean
+  reduceMotion?: boolean
 }
 
 const variants: Variants = {
@@ -70,7 +70,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(
     transition,
     transitionEnd,
     delay,
-    reducedMotion,
+    reduceMotion,
     ...rest
   } = props
 
@@ -87,7 +87,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(
           className={cx("chakra-fade", className)}
           custom={custom}
           {...fadeConfig}
-          variants={reducedMotion ? reducedMotionVariants : variants}
+          variants={reduceMotion ? reducedMotionVariants : variants}
           animate={animate}
           {...rest}
         />
