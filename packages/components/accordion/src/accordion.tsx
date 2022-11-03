@@ -3,7 +3,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,
-  ReducedMotionProps,
+  ReduceMotionProps,
   ThemingProps,
   useMultiStyleConfig,
   useReducedMotionValue,
@@ -23,7 +23,7 @@ import {
 export interface AccordionProps
   extends UseAccordionProps,
     Omit<HTMLChakraProps<"div">, keyof UseAccordionProps>,
-    ReducedMotionProps,
+    ReduceMotionProps,
     ThemingProps<"Accordion"> {}
 
 /**

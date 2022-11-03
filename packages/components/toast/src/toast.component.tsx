@@ -4,7 +4,7 @@ import { runIfFn } from "@chakra-ui/shared-utils"
 import { motion, useIsPresent, Variants } from "framer-motion"
 import {
   chakra,
-  ReducedMotionProps,
+  ReduceMotionProps,
   useReducedMotionValue,
 } from "@chakra-ui/system"
 import type { ToastOptions } from "./toast.types"
@@ -48,7 +48,7 @@ const toastMotionVariants: Variants = {
 
 export interface ToastComponentProps
   extends ToastOptions,
-    ReducedMotionProps,
+    ReduceMotionProps,
     Pick<ToastProviderProps, "motionVariants" | "toastSpacing"> {}
 
 export const ToastComponent = memo((props: ToastComponentProps) => {

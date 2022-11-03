@@ -1,9 +1,9 @@
 import { createContext } from "@chakra-ui/react-context"
-import { ReducedMotionProps, SystemStyleObject } from "@chakra-ui/system"
+import { ReduceMotionProps, SystemStyleObject } from "@chakra-ui/system"
 import { UsePopoverReturn } from "./use-popover"
 
 export const [PopoverProvider, usePopoverContext] = createContext<
-  UsePopoverReturn & ReducedMotionProps
+  UsePopoverReturn & ReduceMotionProps
 >({
   name: "PopoverContext",
   errorMessage:

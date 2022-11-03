@@ -8,7 +8,7 @@ import {
   HTMLChakraProps,
   forwardRef,
   useReducedMotionValue,
-  ReducedMotionProps,
+  ReduceMotionProps,
 } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/react-context"
 import {
@@ -98,7 +98,7 @@ interface ProgressOptions {
 export interface ProgressProps
   extends ProgressOptions,
     ThemingProps<"Progress">,
-    ReducedMotionProps,
+    ReduceMotionProps,
     HTMLChakraProps<"div"> {}
 
 /**

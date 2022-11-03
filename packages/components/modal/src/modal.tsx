@@ -2,7 +2,7 @@ import { FocusLockProps } from "@chakra-ui/focus-lock"
 import { Portal, PortalProps } from "@chakra-ui/portal"
 import { createContext } from "@chakra-ui/react-context"
 import {
-  ReducedMotionProps,
+  ReduceMotionProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
@@ -84,7 +84,7 @@ type MotionPreset = "slideInBottom" | "slideInRight" | "scale" | "none"
 export interface ModalProps
   extends UseModalProps,
     ModalOptions,
-    ReducedMotionProps,
+    ReduceMotionProps,
     ThemingProps<"Modal"> {
   children: React.ReactNode
   /**
@@ -123,7 +123,7 @@ interface ModalContext extends ModalOptions, UseModalReturn {
 }
 
 const [ModalContextProvider, useModalContext] = createContext<
-  ModalContext & ReducedMotionProps
+  ModalContext & ReduceMotionProps
 >({
   strict: true,
   name: "ModalContext",

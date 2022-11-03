@@ -10,7 +10,7 @@ import {
   useTheme,
   getCSSVar,
   useReducedMotionValue,
-  ReducedMotionProps,
+  ReduceMotionProps,
 } from "@chakra-ui/system"
 import { omit, pick } from "@chakra-ui/object-utils"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
@@ -21,7 +21,7 @@ import { useTooltip, UseTooltipProps } from "./use-tooltip"
 export interface TooltipProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"Tooltip">,
-    ReducedMotionProps,
+    ReduceMotionProps,
     UseTooltipProps {
   /**
    * The React component to use as the

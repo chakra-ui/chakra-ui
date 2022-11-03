@@ -1,7 +1,7 @@
 import { MaybeRenderProp } from "@chakra-ui/react-types"
 import {
   omitThemingProps,
-  ReducedMotionProps,
+  ReduceMotionProps,
   ThemingProps,
   useMultiStyleConfig,
   useTheme,
@@ -12,7 +12,7 @@ import { usePopover, UsePopoverProps } from "./use-popover"
 
 export interface PopoverProps
   extends UsePopoverProps,
-    ReducedMotionProps,
+    ReduceMotionProps,
     ThemingProps<"Popover"> {
   /**
    * The content of the popover. It is usually the `PopoverTrigger`,

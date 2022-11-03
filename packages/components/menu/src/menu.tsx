@@ -1,7 +1,7 @@
 import { createContext } from "@chakra-ui/react-context"
 import {
   omitThemingProps,
-  ReducedMotionProps,
+  ReduceMotionProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
@@ -29,7 +29,7 @@ type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 
 export interface MenuProps
   extends UseMenuProps,
-    ReducedMotionProps,
+    ReduceMotionProps,
     ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
     isOpen: boolean

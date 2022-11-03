@@ -11,7 +11,7 @@ import type { UseToastOptions } from "./use-toast"
 import { toastStore } from "./toast.store"
 import { getToastListStyle } from "./toast.utils"
 import { useSyncExternalStore } from "react"
-import { ReducedMotionProps } from "@chakra-ui/system"
+import { ReduceMotionProps } from "@chakra-ui/system"
 
 export interface ToastMethods {
   /**
@@ -47,7 +47,7 @@ export type CreateToastOptions = Partial<
     | "containerStyle"
   >
 > &
-  ReducedMotionProps
+  ReduceMotionProps
 
 export type ToastProviderProps = React.PropsWithChildren<{
   /**

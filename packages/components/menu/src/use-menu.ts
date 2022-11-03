@@ -27,7 +27,7 @@ import React, {
 } from "react"
 import { useShortcut } from "./use-shortcut"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
-import { ReducedMotionProps } from "@chakra-ui/system"
+import { ReduceMotionProps } from "@chakra-ui/system"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -45,7 +45,7 @@ export const [
  * -----------------------------------------------------------------------------------------------*/
 
 export const [MenuProvider, useMenuContext] = createContext<
-  Omit<UseMenuReturn & ReducedMotionProps, "descendants">
+  Omit<UseMenuReturn & ReduceMotionProps, "descendants">
 >({
   strict: false,
   name: "MenuContext",

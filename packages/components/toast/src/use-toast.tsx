@@ -1,6 +1,6 @@
 import type { AlertStatus } from "@chakra-ui/alert"
 import {
-  ReducedMotionProps,
+  ReduceMotionProps,
   StyleProps,
   ThemingProps,
   useChakra,
@@ -12,7 +12,7 @@ import { useMemo } from "react"
 
 export interface UseToastOptions
   extends ThemingProps<"Alert">,
-    ReducedMotionProps {
+    ReduceMotionProps {
   /**
    * The placement of the toast
    *
