@@ -78,9 +78,7 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
     unstable__animationState: animated,
   } = useMenuContext()
 
-  console.log("REDUCE MOTION PROP", reduceMotion)
   const prefersReducedMotion = useReducedMotionValue(reduceMotion)
-  console.log("PREFERS REDUCE MOTION", prefersReducedMotion)
 
   const listProps = useMenuList(rest, ref) as any
   const positionerProps = useMenuPositioner(rootProps)
