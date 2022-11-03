@@ -39,7 +39,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
       >
         <PopoverTransition
           {...motionProps}
-          variants={prefersReducedMotion ? {} : motionProps?.variants}
+          variants={prefersReducedMotion ? undefined : motionProps?.variants}
           {...getPopoverProps(contentProps, ref)}
           onAnimationComplete={callAll(
             onAnimationComplete,
