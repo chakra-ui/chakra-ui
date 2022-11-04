@@ -463,6 +463,26 @@ importers:
       react-icons: 4.4.0_react@18.2.0
       react-spinners: 0.11.0_react@18.2.0
 
+  packages/components/card:
+    specifiers:
+      '@chakra-ui/button': workspace:*
+      '@chakra-ui/image': workspace:*
+      '@chakra-ui/layout': workspace:*
+      '@chakra-ui/menu': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      clean-package: 2.1.1
+      react: ^18.2.0
+    devDependencies:
+      '@chakra-ui/button': link:../button
+      '@chakra-ui/image': link:../image
+      '@chakra-ui/layout': link:../layout
+      '@chakra-ui/menu': link:../menu
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
+      '@chakra-ui/system': link:../system
+      clean-package: 2.1.1
+      react: 18.2.0
+
   packages/components/checkbox:
     specifiers:
       '@chakra-ui/form-control': workspace:*
@@ -11876,7 +11896,7 @@ packages:
   /axios/0.21.4_debug@3.2.7:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
     transitivePeerDependencies:
       - debug
 
@@ -16421,7 +16441,7 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /follow-redirects/1.15.1:
+  /follow-redirects/1.15.1_debug@3.2.7:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -16429,6 +16449,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 3.2.7
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -18547,7 +18569,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
