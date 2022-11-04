@@ -165,3 +165,10 @@ export const tagAnatomy = anatomy("tag").parts(
   "label",
   "closeButton",
 )
+
+export const cardAnatomy = anatomy("card").parts(
+  "container",
+  "header",
+  "body",
+  "footer",
+)
