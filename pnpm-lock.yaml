@@ -1170,6 +1170,7 @@ importers:
       '@chakra-ui/avatar': workspace:*
       '@chakra-ui/breadcrumb': workspace:*
       '@chakra-ui/button': workspace:*
+      '@chakra-ui/card': workspace:*
       '@chakra-ui/checkbox': workspace:*
       '@chakra-ui/close-button': workspace:*
       '@chakra-ui/control-box': workspace:*
@@ -1226,6 +1227,7 @@ importers:
       '@chakra-ui/avatar': link:../avatar
       '@chakra-ui/breadcrumb': link:../breadcrumb
       '@chakra-ui/button': link:../button
+      '@chakra-ui/card': link:../card
       '@chakra-ui/checkbox': link:../checkbox
       '@chakra-ui/close-button': link:../close-button
       '@chakra-ui/control-box': link:../control-box

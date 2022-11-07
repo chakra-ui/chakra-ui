@@ -2,9 +2,10 @@
 "@chakra-ui/anatomy": minor
 "@chakra-ui/card": minor
 "@chakra-ui/theme": minor
+"@chakra-ui/react": minor
 ---
 
-Added new card component
+Added `Card` component
 
 ```jsx live="false"
 export const Basic = () => (

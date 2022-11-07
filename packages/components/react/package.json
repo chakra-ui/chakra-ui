@@ -16,6 +16,7 @@
     "@chakra-ui/avatar": "workspace:*",
     "@chakra-ui/breadcrumb": "workspace:*",
     "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/card": "workspace:*",
     "@chakra-ui/checkbox": "workspace:*",
     "@chakra-ui/close-button": "workspace:*",
     "@chakra-ui/control-box": "workspace:*",

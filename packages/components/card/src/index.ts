@@ -5,4 +5,4 @@ export type {
   CardHeaderProps,
   CardProps,
 } from "./card"
-export { CardStylesProvider, useCardStyles } from "./card-context"
+export { useCardStyles } from "./card-context"
