@@ -31,7 +31,11 @@ export const Card = forwardRef<CardProps, "div">(function Card(props, ref) {
     <chakra.div
       ref={ref}
       className={cx("chakra-card", className)}
-      __css={styles.container}
+      __css={{
+        display: "flex",
+        flexDirection: "column",
+        ...styles.container,
+      }}
       {...rest}
     >
       <StylesProvider value={styles}>{children}</StylesProvider>
