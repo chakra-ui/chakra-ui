@@ -11,22 +11,49 @@ import {
   Text,
 } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { BsThreeDotsVertical } from "react-icons/bs"
 import { BiChat, BiLike, BiShare } from "react-icons/bi"
+import { BsThreeDotsVertical } from "react-icons/bs"
 import { Card, CardBody, CardFooter, CardHeader } from "../src"
-
-// https://designsystem.digital.gov/components/card/
 
 export default {
   title: "Components / Data Display / Card",
   decorators: [
     (Story: any) => (
-      <chakra.div mx="auto" maxW="500px" mt="40px">
+      <chakra.div mx="auto" maxW="2xl" mt="40px">
         <Story />
       </chakra.div>
     ),
   ],
 }
+
+export const Variants = () => (
+  <Stack spacing="4">
+    <Card>
+      <CardHeader>
+        <Heading size="md"> Elevated</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>Elevated variant</Text>
+      </CardBody>
+    </Card>
+    <Card variant="outline">
+      <CardHeader>
+        <Heading size="md"> Outline</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>Outline variant</Text>
+      </CardBody>
+    </Card>
+    <Card variant="filled">
+      <CardHeader>
+        <Heading size="md">Filled</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>Filled variant</Text>
+      </CardBody>
+    </Card>
+  </Stack>
+)
 
 export const Basic = () => (
   <Card>
@@ -108,7 +135,7 @@ export const WithImage = () => (
 )
 
 export const HorizontalCard = () => (
-  <Card flexDirection="row" overflow="hidden">
+  <Card flexDirection="row" overflow="hidden" variant="outline">
     <Image
       objectFit="cover"
       maxW="200px"
