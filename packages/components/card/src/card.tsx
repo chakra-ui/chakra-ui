@@ -6,11 +6,9 @@ import {
   chakra,
   omitThemingProps,
   useMultiStyleConfig,
-  createStylesContext,
   SystemProps,
 } from "@chakra-ui/system"
-
-const [StylesProvider, useStyles] = createStylesContext("Card")
+import { CardStylesProvider, useCardStyles } from "./card-context"
 
 export type CardOptions = {
   /**
@@ -43,7 +41,7 @@ export const Card = forwardRef<CardProps, "div">(function Card(props, ref) {
       }}
       {...rest}
     >
-      <StylesProvider value={styles}>{children}</StylesProvider>
+      <CardStylesProvider value={styles}>{children}</CardStylesProvider>
     </chakra.div>
   )
 })
@@ -53,7 +51,7 @@ export interface CardHeaderProps extends HTMLChakraProps<"div"> {}
 export const CardHeader = forwardRef<CardHeaderProps, "div">(
   function CardHeader(props, ref) {
     const { className, ...rest } = props
-    const styles = useStyles()
+    const styles = useCardStyles()
     return (
       <chakra.div
         ref={ref}
@@ -72,7 +70,7 @@ export const CardBody = forwardRef<CardHeaderProps, "div">(function CardBody(
   ref,
 ) {
   const { className, ...rest } = props
-  const styles = useStyles()
+  const styles = useCardStyles()
   return (
     <chakra.div
       ref={ref}
@@ -88,7 +86,7 @@ export interface CardFooterProps extends HTMLChakraProps<"div"> {}
 export const CardFooter = forwardRef<CardHeaderProps, "div">(
   function CardFooter(props, ref) {
     const { className, ...rest } = props
-    const styles = useStyles()
+    const styles = useCardStyles()
     return (
       <chakra.div
         ref={ref}
