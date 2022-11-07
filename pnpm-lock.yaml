@@ -463,6 +463,33 @@ importers:
       react-icons: 4.4.0_react@18.2.0
       react-spinners: 0.11.0_react@18.2.0
 
+  packages/components/card:
+    specifiers:
+      '@chakra-ui/avatar': workspace:*
+      '@chakra-ui/button': workspace:*
+      '@chakra-ui/image': workspace:*
+      '@chakra-ui/layout': workspace:*
+      '@chakra-ui/menu': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      clean-package: 2.1.1
+      react: ^18.2.0
+      react-icons: ^4.2.0
+    dependencies:
+      '@chakra-ui/react-context': link:../../hooks/context
+    devDependencies:
+      '@chakra-ui/avatar': link:../avatar
+      '@chakra-ui/button': link:../button
+      '@chakra-ui/image': link:../image
+      '@chakra-ui/layout': link:../layout
+      '@chakra-ui/menu': link:../menu
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
+      '@chakra-ui/system': link:../system
+      clean-package: 2.1.1
+      react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
+
   packages/components/checkbox:
     specifiers:
       '@chakra-ui/form-control': workspace:*
