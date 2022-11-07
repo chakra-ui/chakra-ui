@@ -48,6 +48,11 @@ const variants = {
       [$bg.variable]: "colors.chakra-subtle",
     },
   }),
+  unstyled: {
+    body: { padding: 0 },
+    header: { padding: 0 },
+    footer: { padding: 0 },
+  },
 }
 
 export const cardTheme = defineMultiStyleConfig({
