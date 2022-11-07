@@ -37,6 +37,9 @@ export const Card = forwardRef<CardProps, "div">(function Card(props, ref) {
       __css={{
         display: "flex",
         flexDirection: direction,
+        position: "relative",
+        minWidth: 0,
+        wordWrap: "break-word",
         ...styles.container,
       }}
       {...rest}
@@ -65,7 +68,7 @@ export const CardHeader = forwardRef<CardHeaderProps, "div">(
 
 export interface CardBodyProps extends HTMLChakraProps<"div"> {}
 
-export const CardBody = forwardRef<CardHeaderProps, "div">(function CardBody(
+export const CardBody = forwardRef<CardBodyProps, "div">(function CardBody(
   props,
   ref,
 ) {
@@ -81,17 +84,23 @@ export const CardBody = forwardRef<CardHeaderProps, "div">(function CardBody(
   )
 })
 
-export interface CardFooterProps extends HTMLChakraProps<"div"> {}
+export interface CardFooterProps extends HTMLChakraProps<"div"> {
+  justify?: SystemProps["justifyContent"]
+}
 
-export const CardFooter = forwardRef<CardHeaderProps, "div">(
+export const CardFooter = forwardRef<CardFooterProps, "div">(
   function CardFooter(props, ref) {
-    const { className, ...rest } = props
+    const { className, justify, ...rest } = props
     const styles = useCardStyles()
     return (
       <chakra.div
         ref={ref}
         className={cx("chakra-card__footer", className)}
-        __css={styles.footer}
+        __css={{
+          ...styles.footer,
+          display: "flex",
+          justifyContent: justify,
+        }}
         {...rest}
       />
     )
