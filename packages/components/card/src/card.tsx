@@ -15,6 +15,14 @@ export type CardOptions = {
    * The flex direction of the card
    */
   direction?: SystemProps["flexDirection"]
+  /**
+   * The flex alignment of the card
+   */
+  align?: SystemProps["alignItems"]
+  /**
+   * The flex distribution of the card
+   */
+  justify?: SystemProps["justifyContent"]
 }
 
 export interface CardProps
@@ -27,9 +35,13 @@ export const Card = forwardRef<CardProps, "div">(function Card(props, ref) {
     className,
     children,
     direction = "column",
+    justify,
+    align,
     ...rest
   } = omitThemingProps(props)
+
   const styles = useMultiStyleConfig("Card", props)
+
   return (
     <chakra.div
       ref={ref}
@@ -37,6 +49,8 @@ export const Card = forwardRef<CardProps, "div">(function Card(props, ref) {
       __css={{
         display: "flex",
         flexDirection: direction,
+        justifyContent: justify,
+        alignItems: align,
         position: "relative",
         minWidth: 0,
         wordWrap: "break-word",
