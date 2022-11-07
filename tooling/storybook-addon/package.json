@@ -12,6 +12,7 @@
   "exports": {
     ".": {
       "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js"
     },
     "./*": "./*",
