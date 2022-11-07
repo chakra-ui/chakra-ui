@@ -7,16 +7,16 @@ import {
   omitThemingProps,
   useMultiStyleConfig,
   createStylesContext,
+  SystemProps,
 } from "@chakra-ui/system"
 
 const [StylesProvider, useStyles] = createStylesContext("Card")
 
 export type CardOptions = {
   /**
-   * Whether the card is interactive.
-   * When set to `true`, the card will be focusable and hoverable
+   * The flex direction of the card
    */
-  isInteractive?: boolean
+  direction?: SystemProps["flexDirection"]
 }
 
 export interface CardProps
@@ -25,7 +25,12 @@ export interface CardProps
     ThemingProps<"Card"> {}
 
 export const Card = forwardRef<CardProps, "div">(function Card(props, ref) {
-  const { className, children, ...rest } = omitThemingProps(props)
+  const {
+    className,
+    children,
+    direction = "column",
+    ...rest
+  } = omitThemingProps(props)
   const styles = useMultiStyleConfig("Card", props)
   return (
     <chakra.div
@@ -33,7 +38,7 @@ export const Card = forwardRef<CardProps, "div">(function Card(props, ref) {
       className={cx("chakra-card", className)}
       __css={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: direction,
         ...styles.container,
       }}
       {...rest}
