@@ -63,7 +63,7 @@ const variants = {
   }),
   filled: definePartsStyle({
     container: {
-      [$bg.variable]: "colors.chakra-subtle",
+      [$bg.variable]: "colors.chakra-subtle-bg",
     },
   }),
   unstyled: {
