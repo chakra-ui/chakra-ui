@@ -3,6 +3,7 @@ import { Button, ButtonGroup, IconButton } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
 import {
   Box,
+  Divider,
   Flex,
   Heading,
   HStack,
@@ -50,6 +51,14 @@ export const Variants = () => (
       </CardHeader>
       <CardBody>
         <Text>Filled variant</Text>
+      </CardBody>
+    </Card>
+    <Card variant="unstyled">
+      <CardHeader>
+        <Heading size="md">Unstyled</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>Unstyled variant</Text>
       </CardBody>
     </Card>
   </Stack>
@@ -104,7 +113,7 @@ export const WithDivider = () => (
 )
 
 export const WithImage = () => (
-  <Card overflow="hidden">
+  <Card maxW="sm">
     <CardBody>
       <Image
         src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -118,24 +127,27 @@ export const WithImage = () => (
           spaces, earthy toned spaces and for people who love a chic design with
           a sprinkle of vintage design.
         </Text>
-        <Text color="green.600" fontSize="2xl" fontWeight="bold">
+        <Text color="blue.600" fontSize="2xl">
           $450
         </Text>
-        <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
-            Buy now
-          </Button>
-          <Button variant="ghost" colorScheme="blue">
-            Add to cart
-          </Button>
-        </ButtonGroup>
       </Stack>
     </CardBody>
+    <Divider />
+    <CardFooter>
+      <ButtonGroup spacing="2">
+        <Button variant="solid" colorScheme="blue">
+          Buy now
+        </Button>
+        <Button variant="ghost" colorScheme="blue">
+          Add to cart
+        </Button>
+      </ButtonGroup>
+    </CardFooter>
   </Card>
 )
 
 export const HorizontalCard = () => (
-  <Card flexDirection="row" overflow="hidden" variant="outline">
+  <Card direction="row" overflow="hidden" variant="outline">
     <Image
       objectFit="cover"
       maxW="200px"
