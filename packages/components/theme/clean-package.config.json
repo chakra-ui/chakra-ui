@@ -6,7 +6,23 @@
     "exports": {
       ".": {
         "import": "./dist/index.esm.js",
-        "require": "./dist/index.cjs.js"
+        "require": "./dist/index.cjs.js",
+        "types": "./dist/index.d.ts"
+      },
+      "./components": {
+        "import": "./dist/components/index.esm.js",
+        "require": "./dist/components/index.cjs.js",
+        "types": "./dist/components/index.d.ts"
+      },
+      "./components/*": {
+        "import": "./dist/components/*.esm.js",
+        "require": "./dist/components/*.cjs.js",
+        "types": "./dist/components/*.d.ts"
+      },
+      "./foundations": {
+        "import": "./dist/foundations/index.esm.js",
+        "require": "./dist/foundations/index.cjs.js",
+        "types": "./dist/foundations/index.d.ts"
       },
       "./package.json": "./package.json"
     }
