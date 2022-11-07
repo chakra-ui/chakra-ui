@@ -5,28 +5,46 @@ const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $bg = cssVar("card-bg")
+const $padding = cssVar("card-padding")
 
 const baseStyle = definePartsStyle({
   container: {
-    borderRadius: "md",
     [$bg.variable]: "chakra-body-bg",
     backgroundColor: $bg.reference,
     color: "chakra-body-text",
   },
   body: {
-    paddingX: "6",
-    paddingY: "4",
+    padding: $padding.reference,
     flex: "1 1 0%",
   },
   header: {
-    paddingX: "6",
-    paddingY: "4",
+    padding: $padding.reference,
   },
   footer: {
-    paddingX: "6",
-    paddingY: "4",
+    padding: $padding.reference,
   },
 })
+
+const sizes = {
+  sm: definePartsStyle({
+    container: {
+      borderRadius: "base",
+      [$padding.variable]: "space.3",
+    },
+  }),
+  md: definePartsStyle({
+    container: {
+      borderRadius: "md",
+      [$padding.variable]: "space.5",
+    },
+  }),
+  lg: definePartsStyle({
+    container: {
+      borderRadius: "xl",
+      [$padding.variable]: "space.7",
+    },
+  }),
+}
 
 const variants = {
   elevated: definePartsStyle({
@@ -58,7 +76,9 @@ const variants = {
 export const cardTheme = defineMultiStyleConfig({
   baseStyle,
   variants,
+  sizes,
   defaultProps: {
     variant: "elevated",
+    size: "md",
   },
 })

@@ -4,7 +4,6 @@ import { Image } from "@chakra-ui/image"
 import {
   Box,
   Divider,
-  Flex,
   Heading,
   HStack,
   Stack,
@@ -29,38 +28,31 @@ export default {
 
 export const Variants = () => (
   <Stack spacing="4">
-    <Card>
-      <CardHeader>
-        <Heading size="md"> Elevated</Heading>
-      </CardHeader>
-      <CardBody>
-        <Text>Elevated variant</Text>
-      </CardBody>
-    </Card>
-    <Card variant="outline">
-      <CardHeader>
-        <Heading size="md"> Outline</Heading>
-      </CardHeader>
-      <CardBody>
-        <Text>Outline variant</Text>
-      </CardBody>
-    </Card>
-    <Card variant="filled">
-      <CardHeader>
-        <Heading size="md">Filled</Heading>
-      </CardHeader>
-      <CardBody>
-        <Text>Filled variant</Text>
-      </CardBody>
-    </Card>
-    <Card variant="unstyled">
-      <CardHeader>
-        <Heading size="md">Unstyled</Heading>
-      </CardHeader>
-      <CardBody>
-        <Text>Unstyled variant</Text>
-      </CardBody>
-    </Card>
+    {["elevated", "outline", "filled", "unstyled"].map((variant) => (
+      <Card key={variant} variant={variant}>
+        <CardHeader>
+          <Heading size="md"> {variant}</Heading>
+        </CardHeader>
+        <CardBody>
+          <Text>variant = {variant}</Text>
+        </CardBody>
+      </Card>
+    ))}
+  </Stack>
+)
+
+export const Sizes = () => (
+  <Stack spacing="4">
+    {["sm", "md", "lg"].map((size) => (
+      <Card key={size} size={size}>
+        <CardHeader>
+          <Heading size="md"> {size}</Heading>
+        </CardHeader>
+        <CardBody>
+          <Text>size = {size}</Text>
+        </CardBody>
+      </Card>
+    ))}
   </Stack>
 )
 
@@ -172,7 +164,7 @@ export const HorizontalCard = () => (
 )
 
 export const Advanced = () => (
-  <Card>
+  <Card maxW="md">
     <CardHeader>
       <HStack spacing="4">
         <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
@@ -202,18 +194,16 @@ export const Advanced = () => (
       alt="Chakra UI"
     />
 
-    <CardFooter>
-      <Flex justify="space-between">
-        <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
-          Like
-        </Button>
-        <Button flex="1" variant="ghost" leftIcon={<BiChat />}>
-          Comment
-        </Button>
-        <Button flex="1" variant="ghost" leftIcon={<BiShare />}>
-          Share
-        </Button>
-      </Flex>
+    <CardFooter justify="space-between">
+      <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
+        Like
+      </Button>
+      <Button flex="1" variant="ghost" leftIcon={<BiChat />}>
+        Comment
+      </Button>
+      <Button flex="1" variant="ghost" leftIcon={<BiShare />}>
+        Share
+      </Button>
     </CardFooter>
   </Card>
 )
