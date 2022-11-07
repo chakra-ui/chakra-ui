@@ -11,6 +11,7 @@ const baseStyle = definePartsStyle({
   body: {
     paddingX: "6",
     paddingY: "4",
+    flex: "1 1 0%",
   },
   header: {
     paddingX: "6",
@@ -28,7 +29,11 @@ const variants = {
       boxShadow: "base",
     },
   }),
-  outline: definePartsStyle({}),
+  outline: definePartsStyle({
+    container: {
+      borderWidth: "1px",
+    },
+  }),
   filled: definePartsStyle({}),
 }
 
