@@ -39,6 +39,8 @@
     "@chakra-ui/button": "workspace:*",
     "@chakra-ui/menu": "workspace:*",
     "@chakra-ui/image": "workspace:*",
+    "@chakra-ui/avatar": "workspace:*",
+    "react-icons": "^4.2.0",
     "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0",
     "clean-package": "2.1.1"

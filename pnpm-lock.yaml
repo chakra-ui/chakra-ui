@@ -465,6 +465,7 @@ importers:
 
   packages/components/card:
     specifiers:
+      '@chakra-ui/avatar': workspace:*
       '@chakra-ui/button': workspace:*
       '@chakra-ui/image': workspace:*
       '@chakra-ui/layout': workspace:*
@@ -473,7 +474,9 @@ importers:
       '@chakra-ui/system': workspace:*
       clean-package: 2.1.1
       react: ^18.2.0
+      react-icons: ^4.2.0
     devDependencies:
+      '@chakra-ui/avatar': link:../avatar
       '@chakra-ui/button': link:../button
       '@chakra-ui/image': link:../image
       '@chakra-ui/layout': link:../layout
@@ -482,6 +485,7 @@ importers:
       '@chakra-ui/system': link:../system
       clean-package: 2.1.1
       react: 18.2.0
+      react-icons: 4.4.0_react@18.2.0
 
   packages/components/checkbox:
     specifiers:
