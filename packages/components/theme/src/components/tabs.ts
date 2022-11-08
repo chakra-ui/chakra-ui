@@ -133,6 +133,7 @@ const variantEnclosed = definePartsStyle((props) => {
       border: "1px solid",
       borderColor: "transparent",
       mb: "-1px",
+      [$border.reference]: "transparent",
       _selected: {
         [$fg.variable]: `colors.${c}.600`,
         [$border.variable]: `colors.white`,
@@ -141,9 +142,9 @@ const variantEnclosed = definePartsStyle((props) => {
           [$border.variable]: `colors.gray.800`,
         },
         borderColor: "inherit",
+        borderBottomColor: $border.reference,
       },
       color: $fg.reference,
-      borderBottomColor: $border.reference,
     },
     tablist: {
       mb: "-1px",
