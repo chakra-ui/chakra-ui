@@ -210,11 +210,9 @@ const variantSolidRounded = definePartsStyle((props) => {
     tab: {
       borderRadius: "full",
       fontWeight: "semibold",
-      _active: {
-        [$fg.variable]: "colors.gray.600",
-        _dark: {
-          [$fg.variable]: "inherit",
-        },
+      [$fg.variable]: "colors.gray.600",
+      _dark: {
+        [$fg.variable]: "inherit",
       },
       _selected: {
         [$fg.variable]: "colors.white",
