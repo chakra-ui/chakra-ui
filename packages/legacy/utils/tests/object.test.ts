@@ -6,7 +6,6 @@ import {
   memoize,
   getWithDefault,
   filterUndefined,
-  assignAfter,
 } from "../src/object"
 
 const obj = { a: 1, b: 2, c: { d: 3 } }
@@ -50,10 +49,4 @@ test("should get memoized value on successive calls", () => {
   expect(memoizedMockGet(obj, "path")).toStrictEqual(true)
   // make sure get was only called once
   expect(mockGet).toHaveBeenCalledTimes(1)
-})
-
-test("should assign after other properties", () => {
-  const result = assignAfter({ a: 1 }, { b: 2 }, { a: 3 })
-
-  expect(Object.keys(result)).toStrictEqual(["b", "a"])
 })
