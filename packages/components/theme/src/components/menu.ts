@@ -9,14 +9,14 @@ const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $bg = cssVar("menu-bg")
-const $bx = cssVar("menu-box-shadow")
+const $shadow = cssVar("menu-shadow")
 
 const baseStyleList = defineStyle({
   [$bg.variable]: "#fff",
-  [$bx.variable]: "shadows.sm",
+  [$shadow.variable]: "shadows.sm",
   _dark: {
     [$bg.variable]: "colors.gray.700",
-    [$bx.variable]: "shadows.dark-lg",
+    [$shadow.variable]: "shadows.dark-lg",
   },
   color: "inherit",
   minW: "3xs",
@@ -24,9 +24,8 @@ const baseStyleList = defineStyle({
   zIndex: 1,
   borderRadius: "md",
   borderWidth: "1px",
-
   bg: $bg.reference,
-  boxShadow: $bx.reference,
+  boxShadow: $shadow.reference,
 })
 
 const baseStyleItem = defineStyle({
