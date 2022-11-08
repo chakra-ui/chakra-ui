@@ -30,7 +30,7 @@ const baseStyleField = defineStyle(
 )
 
 const baseStyleStepperGroup = defineStyle({
-  width: [$stepperWidth.reference],
+  width: $stepperWidth.reference,
 })
 
 const baseStyleStepper = defineStyle({
