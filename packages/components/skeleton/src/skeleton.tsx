@@ -1,4 +1,3 @@
-import { compact } from "@chakra-ui/object-utils"
 import { usePrevious } from "@chakra-ui/react-use-previous"
 import { cx } from "@chakra-ui/shared-utils"
 import {
@@ -110,10 +109,10 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
 
   const _className = cx("chakra-skeleton", className)
 
-  const cssVarStyles = compact({
-    [$startColor.variable]: startColorVar || undefined,
-    [$endColor.variable]: endColorVar || undefined,
-  })
+  const cssVarStyles = {
+    ...(startColorVar && { [$startColor.variable]: startColorVar }),
+    ...(endColorVar && { [$endColor.variable]: endColorVar }),
+  }
 
   if (isLoaded) {
     const animation =
