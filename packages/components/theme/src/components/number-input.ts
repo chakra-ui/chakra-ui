@@ -12,11 +12,13 @@ const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $stepperWidth = cssVar("number-input-stepper-width")
+
 const $inputPadding = cssVar("number-input-input-padding")
+const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
+
 const $bg = cssVar("number-input-bg")
 const $fg = cssVar("number-input-color")
-const $bsc = cssVar("number-input-border-start-color")
-const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
+const $border = cssVar("number-input-border-color")
 
 const baseStyleRoot = defineStyle({
   [$stepperWidth.variable]: "sizes.6",
@@ -33,13 +35,15 @@ const baseStyleStepperGroup = defineStyle({
 
 const baseStyleStepper = defineStyle({
   borderStart: "1px solid",
+  borderStartColor: $border.variable,
+  color: $fg.variable,
+  bg: $bg.variable,
   [$fg.variable]: "inherit",
-  [$bsc.variable]: "inherit",
+  [$border.variable]: "inherit",
   _dark: {
     [$fg.variable]: "colors.whiteAlpha.800",
-    [$bsc.variable]: "colors.whiteAlpha.300",
+    [$border.variable]: "colors.whiteAlpha.300",
   },
-
   _active: {
     [$bg.variable]: "colors.gray.200",
     _dark: {
@@ -50,16 +54,13 @@ const baseStyleStepper = defineStyle({
     opacity: 0.4,
     cursor: "not-allowed",
   },
-  borderStartColor: $bsc.variable,
-  color: $fg.variable,
-  bg: $bg.variable,
 })
 
 const baseStyle = definePartsStyle((props) => ({
   root: baseStyleRoot,
   field: runIfFn(baseStyleField, props) ?? {},
   stepperGroup: baseStyleStepperGroup,
-  stepper: runIfFn(baseStyleStepper, props) ?? {},
+  stepper: baseStyleStepper,
 }))
 
 type FontSize = keyof typeof typography.fontSizes
