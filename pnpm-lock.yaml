@@ -1276,6 +1276,7 @@ importers:
     specifiers:
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/media-query': workspace:*
+      '@chakra-ui/object-utils': workspace:*
       '@chakra-ui/provider': workspace:*
       '@chakra-ui/react-use-previous': workspace:*
       '@chakra-ui/shared-utils': workspace:*
@@ -1289,6 +1290,7 @@ importers:
       '@chakra-ui/react-use-previous': link:../../hooks/use-previous
     devDependencies:
       '@chakra-ui/layout': link:../layout
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/provider': link:../provider
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/system': link:../system
