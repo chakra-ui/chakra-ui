@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/storybook-addon",
-  "version": "4.0.6",
+  "version": "4.0.12",
   "description": "The official Storybook Addon for Chakra UI",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -12,6 +12,7 @@
   "exports": {
     ".": {
       "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js"
     },
     "./*": "./*",
@@ -74,8 +75,7 @@
     "react": "^18.0.0"
   },
   "dependencies": {
-    "@chakra-ui/icons": "workspace:*",
-    "webpack-merge": "^5.0.0"
+    "@chakra-ui/icons": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",

@@ -1,5 +1,5 @@
 import type { ArgTypes } from "@storybook/react"
-import type { ThemingProps, ThemeComponents } from "@chakra-ui/react"
+import type { ThemingProps } from "@chakra-ui/react"
 
 /**
  * `keyof` alternative which omits non-string keys
@@ -16,7 +16,7 @@ export type ThemingArgTypeKey = "variant" | "size" | "colorScheme"
  * Checks if the given color scale object has all required keys: 50, 100, 200...900.
  */
 function validateColorScheme(value: object) {
-  const valueKeys = Object.keys(value ?? {})
+  const valueKeys = Object.keys(value || {})
   return [
     "50",
     "100",
@@ -65,8 +65,8 @@ function validateColorScheme(value: object) {
  */
 export function getThemingArgTypes<
   Theme extends {
-    colors: object
-    components: ThemeComponents
+    colors: Record<string, any>
+    components: Record<string, any>
   },
   ComponentName extends KeyOf<Theme["components"]>,
 >(theme: Theme, componentName: ComponentName) {
@@ -79,7 +79,7 @@ export function getThemingArgTypes<
     Partial<Pick<ThemingProps<ComponentName>, ThemingArgTypeKey>>
   > = {}
 
-  const variantOptions = Object.keys(component.variants ?? {})
+  const variantOptions = Object.keys(component.variants || {})
   if (variantOptions.length) {
     argTypes.variant = {
       type: { name: "enum", value: variantOptions },
@@ -87,7 +87,7 @@ export function getThemingArgTypes<
     }
   }
 
-  const sizeOptions = Object.keys(component.sizes ?? {})
+  const sizeOptions = Object.keys(component.sizes || {})
   if (sizeOptions.length) {
     argTypes.size = {
       type: { name: "enum", value: sizeOptions },
@@ -106,7 +106,7 @@ export function getThemingArgTypes<
         defaultValue: component.defaultProps?.colorScheme,
       }
     }
-
-    return argTypes
   }
+
+  return argTypes
 }

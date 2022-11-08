@@ -1,5 +1,74 @@
 # @chakra-ui/storybook-addon
 
+## 4.0.12
+
+### Patch Changes
+
+- [#6726](https://github.com/chakra-ui/chakra-ui/pull/6726)
+  [`22968783f`](https://github.com/chakra-ui/chakra-ui/commit/22968783f509bca1b4196d7d1772a872a131e845)
+  Thanks [@kibs](https://github.com/kibs)! - Allow setting the storybook chakra
+  theme via a callback function, with access to the context
+
+* [#6725](https://github.com/chakra-ui/chakra-ui/pull/6725)
+  [`5409199a0`](https://github.com/chakra-ui/chakra-ui/commit/5409199a0427f5f895267fc7f3698dc3a6cffc05)
+  Thanks [@kibs](https://github.com/kibs)! - Allow getThemingArgTypes to return
+  args when colorScheme is not supported by component
+* Updated dependencies
+  [[`9de39921b`](https://github.com/chakra-ui/chakra-ui/commit/9de39921b983ad0eb2df7195e3b683c2e2e9e290)]:
+  - @chakra-ui/icons@2.0.11
+
+## 4.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icons@2.0.10
+
+## 4.0.10
+
+### Patch Changes
+
+- [#6580](https://github.com/chakra-ui/chakra-ui/pull/6580)
+  [`c22fa1a87`](https://github.com/chakra-ui/chakra-ui/commit/c22fa1a87f18ce43415e5c0f91d5988d476e7a31)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - remove an unused dependency
+
+- Updated dependencies []:
+  - @chakra-ui/icons@2.0.9
+
+## 4.0.9
+
+### Patch Changes
+
+- [#6508](https://github.com/chakra-ui/chakra-ui/pull/6508)
+  [`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)
+  Thanks [@anubra266](https://github.com/anubra266)! - - Initial release of
+  react hooks
+  - Refactor all packages to reduce bundle size
+  - Refactor code for proper prop doc generatation
+- Updated dependencies
+  [[`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)]:
+  - @chakra-ui/icons@2.0.9
+
+## 4.0.8
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/icons@2.0.8
+
+## 4.0.7
+
+### Patch Changes
+
+- [`3dc27e05e`](https://github.com/chakra-ui/chakra-ui/commit/3dc27e05e97a1320c4400de6a03feb787160eafb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue with
+  nullish operator in storybook
+
+- Updated dependencies []:
+  - @chakra-ui/icons@2.0.7
+
 ## 4.0.6
 
 ### Patch Changes

@@ -1,5 +1,50 @@
 # @chakra-ui/cli
 
+## 2.1.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]:
+  - @chakra-ui/utils@2.0.10
+
+## 2.1.7
+
+### Patch Changes
+
+- [#6508](https://github.com/chakra-ui/chakra-ui/pull/6508)
+  [`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)
+  Thanks [@anubra266](https://github.com/anubra266)! - - Initial release of
+  react hooks
+  - Refactor all packages to reduce bundle size
+  - Refactor code for proper prop doc generatation
+- Updated dependencies
+  [[`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)]:
+  - @chakra-ui/utils@2.0.9
+
+## 2.1.6
+
+### Patch Changes
+
+- Force release
+
+- Updated dependencies []:
+  - @chakra-ui/utils@2.0.8
+
+## 2.1.5
+
+### Patch Changes
+
+- [#6465](https://github.com/chakra-ui/chakra-ui/pull/6465)
+  [`67edac24a`](https://github.com/chakra-ui/chakra-ui/commit/67edac24ace3c621ecb8cc32ee545acbedaadd79)
+  Thanks [@itkrt2y](https://github.com/itkrt2y)! - Fix regression where
+  `ThemeTypings` created by chakra-cli could not be used
+
+- Updated dependencies
+  [[`dffc18b17`](https://github.com/chakra-ui/chakra-ui/commit/dffc18b1739ad148922fe98e4335457b298c8862),
+  [`99af1e29f`](https://github.com/chakra-ui/chakra-ui/commit/99af1e29fa7b8c8b0bee217227d05f695a0acb47)]:
+  - @chakra-ui/utils@2.0.7
+
 ## 2.1.4
 
 ### Patch Changes

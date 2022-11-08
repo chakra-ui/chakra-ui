@@ -1,0 +1,52 @@
+{
+  "name": "@chakra-ui/transition",
+  "version": "2.0.11",
+  "description": "Common transition components for Chakra UI",
+  "sideEffects": false,
+  "keywords": [
+    "transition",
+    "animation",
+    "react",
+    "react transition group",
+    "motion",
+    "chakra ui"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/transition"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "peerDependencies": {
+    "framer-motion": ">=4.0.0",
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*",
+    "framer-motion": "^6.2.9",
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
+  },
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  }
+}

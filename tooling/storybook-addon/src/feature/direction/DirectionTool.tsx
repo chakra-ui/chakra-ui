@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useCallback, useEffect } from "react"
 import { useAddonState, useGlobals } from "@storybook/api"
 import { addons } from "@storybook/addons"
 import { IconButton } from "@storybook/components"
@@ -47,14 +47,14 @@ export const DirectionTool = () => {
   const [globals, setGlobals] = useGlobals()
   const [direction, setDirection] = useAddonState(
     DIRECTION_TOOL_ID,
-    globals[DIRECTION_TOOL_ID] ?? "ltr",
+    globals[DIRECTION_TOOL_ID] || "ltr",
   )
   const targetDirection = direction !== "ltr" ? "ltr" : "rtl"
-  React.useEffect(() => {
+  useEffect(() => {
     setGlobals({ [DIRECTION_TOOL_ID]: direction })
   }, [direction, setGlobals])
 
-  const toggleDirection = React.useCallback(() => {
+  const toggleDirection = useCallback(() => {
     const channel = addons.getChannel()
     channel.emit(EVENTS.TOGGLE_DIRECTION, targetDirection)
     setDirection(targetDirection)

@@ -1,0 +1,62 @@
+{
+  "name": "@chakra-ui/theme",
+  "version": "2.1.15",
+  "description": "The default theme for chakra components",
+  "keywords": [
+    "theme",
+    "theming",
+    "ui mode",
+    "ui"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "typesVersions": {
+    "*": {
+      "components": [
+        "./dist/components/index.d.ts"
+      ],
+      "foundations": [
+        "./dist/foundations/index.d.ts"
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/theme"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/anatomy": "workspace:*",
+    "@chakra-ui/theme-tools": "workspace:*"
+  },
+  "peerDependencies": {
+    "@chakra-ui/styled-system": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/cli": "workspace:*",
+    "@chakra-ui/styled-system": "workspace:*",
+    "clean-package": "2.1.1"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  }
+}

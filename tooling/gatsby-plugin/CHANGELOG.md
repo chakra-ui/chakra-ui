@@ -1,5 +1,31 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- [#6584](https://github.com/chakra-ui/chakra-ui/pull/6584)
+  [`ababbde39`](https://github.com/chakra-ui/chakra-ui/commit/ababbde390f573b254a380a83fb88a4ccd9d0131)
+  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Removed default
+  value of portalZIndex
+
+## 3.0.5
+
+### Patch Changes
+
+- [#6508](https://github.com/chakra-ui/chakra-ui/pull/6508)
+  [`445661955`](https://github.com/chakra-ui/chakra-ui/commit/445661955dff1329156b535ef50c7cf27b8663a9)
+  Thanks [@anubra266](https://github.com/anubra266)! - - Initial release of
+  react hooks
+  - Refactor all packages to reduce bundle size
+  - Refactor code for proper prop doc generatation
+
+## 3.0.4
+
+### Patch Changes
+
+- Force release
+
 ## 3.0.3
 
 ### Patch Changes

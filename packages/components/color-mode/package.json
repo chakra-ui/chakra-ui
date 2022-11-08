@@ -1,0 +1,57 @@
+{
+  "name": "@chakra-ui/color-mode",
+  "version": "2.1.9",
+  "description": "React component and hooks for handling light and dark mode.",
+  "keywords": [
+    "react",
+    "theming",
+    "ui",
+    "light mode",
+    "use dark mode",
+    "dark mode",
+    "color mode",
+    "hook",
+    "color scheme",
+    "media query",
+    "chakra ui"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "JSX=1 tsup src/index.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/color-mode"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/react-use-safe-layout-effect": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@chakra-ui/utils": "workspace:*",
+    "react": "^18.0.0",
+    "clean-package": "2.1.1"
+  }
+}
