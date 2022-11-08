@@ -17,13 +17,14 @@ const baseStyleField = defineStyle((props) => {
     appearance: "none",
     paddingBottom: "1px",
     lineHeight: "normal",
-    "&, > option, > optgroup": {
-      [$bg.variable]: "colors.white",
-      _dark: {
-        [$bg.variable]: "colors.gray.700",
-      },
-    },
     bg: $bg.reference,
+    [$bg.variable]: "colors.white",
+    _dark: {
+      [$bg.variable]: "colors.gray.700",
+    },
+    "> option, > optgroup": {
+      bg: $bg.reference
+    },
   }
 })
 
