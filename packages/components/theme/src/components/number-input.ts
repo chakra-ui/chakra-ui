@@ -35,11 +35,11 @@ const baseStyleStepperGroup = defineStyle({
 
 const baseStyleStepper = defineStyle({
   borderStart: "1px solid",
-  borderStartColor: $border.variable,
-  color: $fg.variable,
-  bg: $bg.variable,
-  [$fg.variable]: "inherit",
-  [$border.variable]: "inherit",
+  borderStartColor: $border.reference,
+  color: $fg.reference,
+  bg: $bg.reference,
+  [$fg.variable]: "colors.chakra-body-text",
+  [$border.variable]: "colors.chakra-border-color",
   _dark: {
     [$fg.variable]: "colors.whiteAlpha.800",
     [$border.variable]: "colors.whiteAlpha.300",
