@@ -9,8 +9,9 @@ const $bg = cssVar("kbd-bg")
 const baseStyle = defineStyle({
   [$bg.variable]: "colors.gray.100",
   _dark: {
-    [$bg.variable]: "colors.whiteAlpha",
+    [$bg.variable]: "colors.whiteAlpha.100",
   },
+  bg: $bg.reference,
   borderRadius: "md",
   borderWidth: "1px",
   borderBottomWidth: "3px",
