@@ -31,7 +31,36 @@ export default {
   ],
 }
 
-export const HookUsage = () => {
+export const Basic = () => (
+  <NumberInput max={50} min={10}>
+    <NumberInputField />
+    <NumberInputStepper>
+      <NumberIncrementStepper />
+      <NumberDecrementStepper />
+    </NumberInputStepper>
+  </NumberInput>
+)
+
+const sizes = ["xs", "sm", "md", "lg"] as const
+
+export const Sizes = () => (
+  <Stack spacing="6">
+    {sizes.map((size) => (
+      <chakra.div key={size}>
+        <pre>size = {size}</pre>
+        <NumberInput mt="2" size={size} defaultValue={15} min={10}>
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+      </chakra.div>
+    ))}
+  </Stack>
+)
+
+export const UseNumberInput = () => {
   const {
     getInputProps,
     getIncrementButtonProps,
@@ -63,7 +92,7 @@ export const HookUsage = () => {
 const format = (val: string) => `$${val}`
 const parse = (val: string) => val.replace(/^\$/, "")
 
-export const HookWithFormatAndParse = () => {
+export const FormatAndParse = () => {
   const [value, setValue] = React.useState<string>("1.53")
 
   const {
@@ -91,16 +120,6 @@ export const HookWithFormatAndParse = () => {
     </>
   )
 }
-
-export const usage = () => (
-  <NumberInput max={50} min={10}>
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
-)
 
 export const withMinAndMax = () => (
   <NumberInput defaultValue={15} min={10} max={20}>
@@ -155,20 +174,6 @@ export const allowOutOfRange = () => (
       <NumberDecrementStepper />
     </NumberInputStepper>
   </NumberInput>
-)
-
-export const inputSizes = () => (
-  <Stack>
-    {["xs", "sm", "md", "lg"].map((size) => (
-      <NumberInput key={size} size={size} defaultValue={15} min={10}>
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
-    ))}
-  </Stack>
 )
 
 export const WithReactHookForm = () => {
