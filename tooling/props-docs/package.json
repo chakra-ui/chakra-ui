@@ -28,7 +28,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsx src/build.ts",
+    "build": "tsx watch src/new.ts",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },
@@ -38,7 +38,8 @@
     "glob": "^7.1.6",
     "mkdirp": "^1.0.4",
     "react-docgen-typescript": "^2.1.0",
-    "regenerator-runtime": "^0.13.7"
+    "regenerator-runtime": "^0.13.7",
+    "ts-morph": "^16.0.0"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3"

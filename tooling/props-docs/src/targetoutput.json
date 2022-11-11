@@ -1,0 +1,220 @@
+{
+  "tags": {
+    "see": "Docs https://chakra-ui.com/accordion\nWAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/"
+  },
+  "filePath": "/home/runner/work/chakra-ui/chakra-ui/packages/components/accordion/src/accordion.tsx",
+  "description": "The wrapper that provides context and focus management\nfor all accordion items.\n\nIt wraps all accordion items in a `div` for better grouping.",
+  "displayName": "Accordion",
+  "methods": [],
+  "props": {
+    "reduceMotion": {
+      "defaultValue": null,
+      "description": "If `true`, height animation and transitions will be disabled.",
+      "name": "reduceMotion",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/accordion/src/accordion.tsx",
+        "name": "AccordionProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/accordion/src/accordion.tsx",
+          "name": "AccordionProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "allowMultiple": {
+      "defaultValue": null,
+      "description": "If `true`, multiple accordion items can be expanded at once.",
+      "name": "allowMultiple",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+        "name": "UseAccordionProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+          "name": "UseAccordionProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "allowToggle": {
+      "defaultValue": null,
+      "description": "If `true`, any expanded accordion item can be collapsed again.",
+      "name": "allowToggle",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+        "name": "UseAccordionProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+          "name": "UseAccordionProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "index": {
+      "defaultValue": null,
+      "description": "The index(es) of the expanded accordion item",
+      "name": "index",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+        "name": "UseAccordionProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+          "name": "UseAccordionProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "ExpandedIndex"
+      }
+    },
+    "defaultIndex": {
+      "defaultValue": null,
+      "description": "The initial index(es) of the expanded accordion item",
+      "name": "defaultIndex",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+        "name": "UseAccordionProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+          "name": "UseAccordionProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "ExpandedIndex"
+      }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "The callback invoked when accordion items are expanded or collapsed.",
+      "name": "onChange",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+        "name": "UseAccordionProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/accordion/src/use-accordion.ts",
+          "name": "UseAccordionProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "((expandedIndex: ExpandedIndex) => void)"
+      }
+    },
+    "variant": {
+      "defaultValue": null,
+      "description": "",
+      "name": "variant",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+        "name": "ThemingProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+          "name": "ThemingProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "ResponsiveValue<string>"
+      }
+    },
+    "size": {
+      "defaultValue": null,
+      "description": "",
+      "name": "size",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+        "name": "ThemingProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+          "name": "ThemingProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "ResponsiveValue<string>"
+      }
+    },
+    "colorScheme": {
+      "defaultValue": null,
+      "description": "",
+      "name": "colorScheme",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+        "name": "ThemingProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+          "name": "ThemingProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "string"
+      }
+    },
+    "orientation": {
+      "defaultValue": null,
+      "description": "",
+      "name": "orientation",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+        "name": "ThemingProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+          "name": "ThemingProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "\"horizontal\" | \"vertical\""
+      }
+    },
+    "styleConfig": {
+      "defaultValue": null,
+      "description": "",
+      "name": "styleConfig",
+      "parent": {
+        "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+        "name": "ThemingProps"
+      },
+      "declarations": [
+        {
+          "fileName": "chakra-ui/packages/components/styled-system/src/theming-props.ts",
+          "name": "ThemingProps"
+        }
+      ],
+      "required": false,
+      "type": {
+        "name": "Record<string, any>"
+      }
+    }
+  }
+}
