@@ -1,5 +1,32 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [#6752](https://github.com/chakra-ui/chakra-ui/pull/6752)
+  [`7c3733ede`](https://github.com/chakra-ui/chakra-ui/commit/7c3733edefafed48f5d1c54c2b318ab7df721100)
+  Thanks [@jvnlwn](https://github.com/jvnlwn)! - Fixed issue where dynamically
+  changing a tooltip's `isDisabled` when it is open didn't have any effect.
+
+  Now, changing the `isDisabled` prop will close the tooltip leading to a more
+  consistent behavior.
+
+* [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+* Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/popper@3.0.9
+  - @chakra-ui/portal@2.0.11
+  - @chakra-ui/react-use-disclosure@2.0.6
+  - @chakra-ui/react-use-event-listener@2.0.5
+  - @chakra-ui/react-use-merge-refs@2.0.5
+  - @chakra-ui/react-types@2.0.4
+
 ## 2.2.0
 
 ### Minor Changes

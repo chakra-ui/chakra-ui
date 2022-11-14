@@ -1,5 +1,95 @@
 # Change Log
 
+## 2.4.0
+
+### Minor Changes
+
+- [#6947](https://github.com/chakra-ui/chakra-ui/pull/6947)
+  [`2a86d6c35`](https://github.com/chakra-ui/chakra-ui/commit/2a86d6c353e88d86b46030a53130a062433f30b2)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Added `Card`
+  component
+
+  ```jsx live="false"
+  export const Basic = () => (
+    <Card>
+      <CardHeader>
+        <Heading size="md"> Customer dashboard</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>View a summary of all your customers over the last month.</Text>
+      </CardBody>
+      <CardFooter>
+        <Button>View here</Button>
+      </CardFooter>
+    </Card>
+  )
+  ```
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`9c7db55f4`](https://github.com/chakra-ui/chakra-ui/commit/9c7db55f486280ef81adc97cf597a9101db2ceb2),
+  [`7c3733ede`](https://github.com/chakra-ui/chakra-ui/commit/7c3733edefafed48f5d1c54c2b318ab7df721100),
+  [`2a86d6c35`](https://github.com/chakra-ui/chakra-ui/commit/2a86d6c353e88d86b46030a53130a062433f30b2),
+  [`2a86d6c35`](https://github.com/chakra-ui/chakra-ui/commit/2a86d6c353e88d86b46030a53130a062433f30b2),
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/theme@2.2.0
+  - @chakra-ui/tooltip@2.2.1
+  - @chakra-ui/card@2.1.0
+  - @chakra-ui/system@2.3.2
+  - @chakra-ui/accordion@2.1.3
+  - @chakra-ui/alert@2.0.12
+  - @chakra-ui/avatar@2.2.1
+  - @chakra-ui/breadcrumb@2.1.1
+  - @chakra-ui/button@2.0.12
+  - @chakra-ui/checkbox@2.2.4
+  - @chakra-ui/close-button@2.0.12
+  - @chakra-ui/control-box@2.0.11
+  - @chakra-ui/counter@2.0.11
+  - @chakra-ui/css-reset@2.0.10
+  - @chakra-ui/editable@2.0.15
+  - @chakra-ui/react-env@2.0.11
+  - @chakra-ui/form-control@2.0.12
+  - @chakra-ui/icon@3.0.12
+  - @chakra-ui/image@2.0.12
+  - @chakra-ui/input@2.0.13
+  - @chakra-ui/layout@2.1.10
+  - @chakra-ui/live-region@2.0.11
+  - @chakra-ui/media-query@3.2.8
+  - @chakra-ui/menu@2.1.4
+  - @chakra-ui/modal@2.2.3
+  - @chakra-ui/number-input@2.0.13
+  - @chakra-ui/pin-input@2.0.16
+  - @chakra-ui/popover@2.1.3
+  - @chakra-ui/popper@3.0.9
+  - @chakra-ui/portal@2.0.11
+  - @chakra-ui/progress@2.1.1
+  - @chakra-ui/provider@2.0.22
+  - @chakra-ui/radio@2.0.13
+  - @chakra-ui/select@2.0.13
+  - @chakra-ui/skeleton@2.0.18
+  - @chakra-ui/slider@2.0.13
+  - @chakra-ui/spinner@2.0.11
+  - @chakra-ui/stat@2.0.12
+  - @chakra-ui/styled-system@2.3.5
+  - @chakra-ui/switch@2.0.16
+  - @chakra-ui/table@2.0.12
+  - @chakra-ui/tabs@2.1.5
+  - @chakra-ui/tag@2.0.12
+  - @chakra-ui/textarea@2.0.13
+  - @chakra-ui/toast@4.0.2
+  - @chakra-ui/transition@2.0.12
+  - @chakra-ui/visually-hidden@2.0.13
+  - @chakra-ui/hooks@2.1.2
+  - @chakra-ui/utils@2.0.12
+  - @chakra-ui/theme-utils@2.0.3
+
 ## 2.3.7
 
 ### Patch Changes

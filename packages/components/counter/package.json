@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/counter",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "A React hook for managing counters",
   "keywords": [
     "counter",

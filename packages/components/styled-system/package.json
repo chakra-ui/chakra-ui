@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/styled-system",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",

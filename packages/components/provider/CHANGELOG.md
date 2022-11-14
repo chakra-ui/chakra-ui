@@ -1,5 +1,24 @@
 # @chakra-ui/provider
 
+## 2.0.22
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`2a86d6c35`](https://github.com/chakra-ui/chakra-ui/commit/2a86d6c353e88d86b46030a53130a062433f30b2),
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/system@2.3.2
+  - @chakra-ui/css-reset@2.0.10
+  - @chakra-ui/react-env@2.0.11
+  - @chakra-ui/portal@2.0.11
+  - @chakra-ui/utils@2.0.12
+
 ## 2.0.21
 
 ### Patch Changes
