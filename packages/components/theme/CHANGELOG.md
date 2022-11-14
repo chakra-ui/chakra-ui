@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [`cbd09c31f`](https://github.com/chakra-ui/chakra-ui/commit/cbd09c31ff7134157906dbaeaaea5a920185e36a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix TypeScript
+  errors and format files
+
 ## 2.2.0
 
 ### Minor Changes

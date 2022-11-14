@@ -1,5 +1,13 @@
 # @chakra-ui/card
 
+## 2.1.1
+
+### Patch Changes
+
+- [`33e039e2e`](https://github.com/chakra-ui/chakra-ui/commit/33e039e2e0f52bfef20eddd13005534812ccb654)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix
+  `React is not defined` issue when importing `Card` component.
+
 ## 2.1.0
 
 ### Minor Changes
