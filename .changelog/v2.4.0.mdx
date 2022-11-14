@@ -8,187 +8,46 @@ releaseDate: November 14, 2022
 version: 2.4.0
 ---
 
-> The changelog information of each package has been omitted from this message,
-> as the content exceeds the size limit.
+## All packages
 
-## @chakra-ui/anatomy@2.1.0
+Fix issue where using `@chakra-ui/react` or any sub-package in a TypeScript
+project with `"type": "module"` in `package.json` and
+`"moduleResolution": "Node16"` in `tsconfig.json` cannot find the types.
 
 ## @chakra-ui/card@2.1.0
 
-## @chakra-ui/react@2.4.0
+Introduced new `Card` component
 
-## @chakra-ui/theme@2.2.0
-
-## @chakra-ui/accordion@2.1.3
-
-## @chakra-ui/alert@2.0.12
-
-## @chakra-ui/avatar@2.2.1
-
-## @chakra-ui/breadcrumb@2.1.1
-
-## @chakra-ui/button@2.0.12
-
-## @chakra-ui/checkbox@2.2.4
-
-## @chakra-ui/clickable@2.0.11
-
-## @chakra-ui/close-button@2.0.12
-
-## @chakra-ui/color-mode@2.1.10
-
-## @chakra-ui/control-box@2.0.11
-
-## @chakra-ui/counter@2.0.11
-
-## @chakra-ui/css-reset@2.0.10
-
-## @chakra-ui/descendant@3.0.11
-
-## @chakra-ui/editable@2.0.15
-
-## @chakra-ui/react-env@2.0.11
-
-## @chakra-ui/focus-lock@2.0.13
-
-## @chakra-ui/form-control@2.0.12
-
-## @chakra-ui/icon@3.0.12
-
-## @chakra-ui/icons@2.0.12
-
-## @chakra-ui/image@2.0.12
-
-## @chakra-ui/input@2.0.13
-
-## @chakra-ui/layout@2.1.10
-
-## @chakra-ui/live-region@2.0.11
-
-## @chakra-ui/media-query@3.2.8
-
-## @chakra-ui/menu@2.1.4
-
-## @chakra-ui/modal@2.2.3
-
-## @chakra-ui/number-input@2.0.13
-
-## @chakra-ui/pin-input@2.0.16
-
-## @chakra-ui/popover@2.1.3
-
-## @chakra-ui/popper@3.0.9
-
-## @chakra-ui/portal@2.0.11
-
-## @chakra-ui/progress@2.1.1
-
-## @chakra-ui/provider@2.0.22
-
-## @chakra-ui/radio@2.0.13
-
-## @chakra-ui/select@2.0.13
-
-## @chakra-ui/skeleton@2.0.18
-
-## @chakra-ui/skip-nav@2.0.12
-
-## @chakra-ui/slider@2.0.13
-
-## @chakra-ui/spinner@2.0.11
-
-## @chakra-ui/stat@2.0.12
-
-## @chakra-ui/styled-system@2.3.5
-
-## @chakra-ui/switch@2.0.16
+```jsx live=false
+export function Basic() {
+  return (
+    <Card>
+      <CardHeader>
+        <Heading size="md"> Customer dashboard</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>View a summary of all your customers over the last month.</Text>
+      </CardBody>
+      <CardFooter>
+        <Button>View here</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+```
 
 ## @chakra-ui/system@2.3.2
 
-## @chakra-ui/table@2.0.12
-
-## @chakra-ui/tabs@2.1.5
-
-## @chakra-ui/tag@2.0.12
-
-## @chakra-ui/textarea@2.0.13
-
-## @chakra-ui/theme-tools@2.0.13
-
-## @chakra-ui/toast@4.0.2
+Remove `Dict` type dependency from `createStyleContext`
 
 ## @chakra-ui/tooltip@2.2.1
 
-## @chakra-ui/transition@2.0.12
+Fixed issue where dynamically changing a tooltip's `isDisabled` when it is open
+didn't have any effect.
 
-## @chakra-ui/visually-hidden@2.0.13
+Now, changing the `isDisabled` prop will close the tooltip leading to a more
+consistent behavior.
 
-## @chakra-ui/react-context@2.0.5
+## @chakra-ui/theme@2.2.0
 
-## @chakra-ui/react-use-animation-state@2.0.6
-
-## @chakra-ui/react-use-callback-ref@2.0.5
-
-## @chakra-ui/react-use-controllable-state@2.0.6
-
-## @chakra-ui/react-use-disclosure@2.0.6
-
-## @chakra-ui/react-use-event-listener@2.0.5
-
-## @chakra-ui/react-use-focus-effect@2.0.7
-
-## @chakra-ui/react-use-focus-on-pointer-down@2.0.4
-
-## @chakra-ui/react-use-interval@2.0.3
-
-## @chakra-ui/react-use-latest-ref@2.0.3
-
-## @chakra-ui/react-use-merge-refs@2.0.5
-
-## @chakra-ui/react-use-outside-click@2.0.5
-
-## @chakra-ui/react-use-pan-event@2.0.6
-
-## @chakra-ui/react-use-previous@2.0.3
-
-## @chakra-ui/react-use-safe-layout-effect@2.0.3
-
-## @chakra-ui/react-use-size@2.0.5
-
-## @chakra-ui/react-use-timeout@2.0.3
-
-## @chakra-ui/react-use-update-effect@2.0.5
-
-## @chakra-ui/hooks@2.1.2
-
-## @chakra-ui/react-utils@2.0.9
-
-## @chakra-ui/utils@2.0.12
-
-## @chakra-ui/breakpoint-utils@2.0.5
-
-## @chakra-ui/dom-utils@2.0.4
-
-## @chakra-ui/event-utils@2.0.6
-
-## @chakra-ui/lazy-utils@2.0.3
-
-## @chakra-ui/merge-utils@2.0.5
-
-## @chakra-ui/number-utils@2.0.5
-
-## @chakra-ui/object-utils@2.0.5
-
-## @chakra-ui/react-children-utils@2.0.4
-
-## @chakra-ui/react-types@2.0.4
-
-## @chakra-ui/shared-utils@2.0.3
-
-## @chakra-ui/theme-utils@2.0.3
-
-## @chakra-ui/props-docs@2.0.24
-
-## @chakra-ui/storybook-addon@4.0.13
-
-## @chakra-ui/test-utils@2.0.24
+Refactor theme to use CSS variables
