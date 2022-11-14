@@ -5,7 +5,7 @@ const fs = require("fs")
 function getStories(pkg) {
   const scope = pkg ? [pkg] : fs.readdirSync("packages/components")
   return scope
-    .map((package) => `packages/components/${package}/stories`)
+    .map((package) => `packages/components/${package}`)
     .filter((storyDir) => fs.existsSync(storyDir))
     .map((storyDir) => `../${storyDir}/*.stories.tsx`)
 }
@@ -15,7 +15,7 @@ module.exports = {
     builder: "@storybook/builder-webpack5",
     disableTelemetry: true,
   },
-  stories: getStories(),
+  stories: ["../packages/components/react/src/**/*.stories.tsx"],
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-essentials",

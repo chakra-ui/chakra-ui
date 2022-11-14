@@ -11,6 +11,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@ark-ui/react": "rc",
     "@chakra-ui/accordion": "workspace:*",
     "@chakra-ui/alert": "workspace:*",
     "@chakra-ui/avatar": "workspace:*",
@@ -41,6 +42,7 @@
     "@chakra-ui/progress": "workspace:*",
     "@chakra-ui/provider": "workspace:*",
     "@chakra-ui/radio": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/react-env": "workspace:*",
     "@chakra-ui/select": "workspace:*",
     "@chakra-ui/skeleton": "workspace:*",
@@ -96,10 +98,10 @@
   "devDependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "clean-package": "2.1.1",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "clean-package": "2.1.1"
+    "react-dom": "^18.0.0"
   },
   "scripts": {
     "build": "JSX=1 tsup src/index.ts --dts",

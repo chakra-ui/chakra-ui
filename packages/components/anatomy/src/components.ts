@@ -172,3 +172,12 @@ export const cardAnatomy = anatomy("card").parts(
   "body",
   "footer",
 )
+
+export const paginationAnatomy = anatomy("pagination").parts(
+  "root",
+  "list",
+  "item",
+  "ellipsis",
+  "prevItem",
+  "nextItem",
+)
