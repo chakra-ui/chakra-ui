@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/card",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "React component used to group related content",
   "keywords": [
     "card"
