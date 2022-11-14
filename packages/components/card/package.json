@@ -25,11 +25,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "build": "JSX=1 tsup src/index.ts --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts --format=esm,cjs",
+    "build:fast": "JSX=1 tsup src/index.ts",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   },
