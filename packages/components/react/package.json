@@ -11,7 +11,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ark-ui/react": "rc",
+    "@ark-ui/react": "0.0.0-rc-20221114155413",
     "@chakra-ui/accordion": "workspace:*",
     "@chakra-ui/alert": "workspace:*",
     "@chakra-ui/avatar": "workspace:*",

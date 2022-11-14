@@ -1165,7 +1165,7 @@ importers:
 
   packages/components/react:
     specifiers:
-      '@ark-ui/react': rc
+      '@ark-ui/react': 0.0.0-rc-20221114155413
       '@chakra-ui/accordion': workspace:*
       '@chakra-ui/alert': workspace:*
       '@chakra-ui/avatar': workspace:*
@@ -1224,7 +1224,7 @@ importers:
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@ark-ui/react': 0.0.0-rc-20221114120638_biqbaboplfbrettd7655fr4n2y
+      '@ark-ui/react': 0.0.0-rc-20221114155413_biqbaboplfbrettd7655fr4n2y
       '@chakra-ui/accordion': link:../accordion
       '@chakra-ui/alert': link:../alert
       '@chakra-ui/avatar': link:../avatar
@@ -2220,8 +2220,8 @@ packages:
       - encoding
       - supports-color
 
-  /@ark-ui/react/0.0.0-rc-20221114120638_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-MPfGm+nAY5Ury4e7zPnPMb0Nr+fCEffZCjozJVa6qPmi7T3VX/A/N7RahXjdBv0y8hh514XviSN7K9j4bo8+/Q==}
+  /@ark-ui/react/0.0.0-rc-20221114155413_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-8cTqm9bBZ4+4JFEAcmg/kppYlXmulLFlwjE9pkXaRx0ZiJ3Un/3TX2Puyhcf+kMS3JBEP5KU9V/WKus7NeFwpw==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
