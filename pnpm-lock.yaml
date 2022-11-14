@@ -1223,6 +1223,7 @@ importers:
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-icons: ^4.2.0
     dependencies:
       '@ark-ui/react': 0.0.0-rc-20221114155413_biqbaboplfbrettd7655fr4n2y
       '@chakra-ui/accordion': link:../accordion
@@ -1283,6 +1284,7 @@ importers:
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-icons: 4.4.0_react@18.2.0
 
   packages/components/select:
     specifiers:

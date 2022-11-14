@@ -33,7 +33,7 @@ const variantGhost = defineStyle((props) => {
         bg: mode(`gray.100`, `whiteAlpha.200`)(props),
       },
       _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
-      _selected: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
+      _selected: { bg: mode(`gray.100`, `whiteAlpha.200`)(props) },
     }
   }
 
