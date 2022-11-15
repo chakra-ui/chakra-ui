@@ -26,9 +26,13 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 }
 
+type Orientation = "vertical" | "horizontal"
+
 export interface IconProps
   extends Omit<React.SVGAttributes<SVGElement>, keyof ChakraProps>,
-    Omit<ChakraProps, "orientation"> {}
+    ChakraProps {
+  orientation: Orientation
+}
 
 /**
  * The Icon component renders as an svg element to help define your own custom components.
