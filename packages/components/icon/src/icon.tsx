@@ -31,7 +31,7 @@ type Orientation = "vertical" | "horizontal"
 export interface IconProps
   extends Omit<React.SVGAttributes<SVGElement>, keyof ChakraProps>,
     ChakraProps {
-  orientation: Orientation
+  orientation?: Orientation
 }
 
 /**
