@@ -11,21 +11,19 @@ const { defineMultiStyleConfig, definePartsStyle } =
 
 const $bg = cssVar("select-bg")
 
-const baseStyleField = defineStyle((props) => {
-  return {
-    ...inputTheme.baseStyle?.field,
-    appearance: "none",
-    paddingBottom: "1px",
-    lineHeight: "normal",
+const baseStyleField = defineStyle({
+  ...inputTheme.baseStyle?.field,
+  appearance: "none",
+  paddingBottom: "1px",
+  lineHeight: "normal",
+  bg: $bg.reference,
+  [$bg.variable]: "colors.white",
+  _dark: {
+    [$bg.variable]: "colors.gray.700",
+  },
+  "> option, > optgroup": {
     bg: $bg.reference,
-    [$bg.variable]: "colors.white",
-    _dark: {
-      [$bg.variable]: "colors.gray.700",
-    },
-    "> option, > optgroup": {
-      bg: $bg.reference
-    },
-  }
+  },
 })
 
 const baseStyleIcon = defineStyle({
@@ -40,10 +38,10 @@ const baseStyleIcon = defineStyle({
   },
 })
 
-const baseStyle = definePartsStyle((props) => ({
-  field: baseStyleField(props),
+const baseStyle = definePartsStyle({
+  field: baseStyleField,
   icon: baseStyleIcon,
-}))
+})
 
 const iconSpacing = defineStyle({
   paddingInlineEnd: "8",

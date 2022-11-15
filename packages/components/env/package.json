@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-env",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Component and hook for handling window and document object in iframe or ssr environment",
   "keywords": [
     "dom",
