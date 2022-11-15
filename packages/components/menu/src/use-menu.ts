@@ -244,6 +244,11 @@ export function useMenu(props: UseMenuProps = {}) {
    */
   const [buttonId, menuId] = useIds(id, `menu-button`, `menu-list`)
 
+  const hasBeenOpened = useRef(false)
+  if (isOpen) {
+    hasBeenOpened.current = true
+  }
+
   const openAndFocusMenu = useCallback(() => {
     onOpen()
     focusMenu()
@@ -290,6 +295,7 @@ export function useMenu(props: UseMenuProps = {}) {
     forceUpdate: popper.forceUpdate,
     orientation: "vertical",
     isOpen,
+    hasBeenOpened,
     onToggle,
     onOpen,
     onClose,
@@ -399,7 +405,7 @@ export function useMenuList(
     focusedIndex,
     setFocusedIndex,
     menuRef,
-    isOpen,
+    hasBeenOpened,
     onClose,
     menuId,
     isLazy,
@@ -472,11 +478,6 @@ export function useMenuList(
       setFocusedIndex,
     ],
   )
-
-  const hasBeenOpened = useRef(false)
-  if (isOpen) {
-    hasBeenOpened.current = true
-  }
 
   const shouldRenderChildren = lazyDisclosure({
     wasSelected: hasBeenOpened.current,
