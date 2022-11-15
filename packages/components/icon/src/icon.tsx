@@ -3,6 +3,7 @@ import {
   ChakraProps,
   forwardRef,
   SystemStyleObject,
+  useStyleConfig,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 
@@ -25,9 +26,13 @@ const fallbackIcon = {
   viewBox: "0 0 24 24",
 }
 
+type Orientation = "vertical" | "horizontal"
+
 export interface IconProps
   extends Omit<React.SVGAttributes<SVGElement>, keyof ChakraProps>,
-    ChakraProps {}
+    ChakraProps {
+  orientation?: Orientation
+}
 
 /**
  * The Icon component renders as an svg element to help define your own custom components.
@@ -47,6 +52,7 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
   } = props
 
   const _className = cx("chakra-icon", className)
+  const customStyles = useStyleConfig("Icon", props)
 
   const styles: SystemStyleObject = {
     w: "1em",
@@ -56,6 +62,7 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
     flexShrink: 0,
     color,
     ...__css,
+    ...customStyles,
   }
 
   const shared: any = {
