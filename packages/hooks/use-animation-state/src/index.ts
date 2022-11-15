@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useEventListener } from "@chakra-ui/react-use-event-listener"
+import { getOwnerWindow } from "@chakra-ui/dom-utils"
 export type UseAnimationStateProps = {
   isOpen: boolean
   ref: React.RefObject<HTMLElement>
@@ -30,5 +31,10 @@ export function useAnimationState(props: UseAnimationStateProps) {
 
   return {
     present: !hidden,
+    onComplete() {
+      const win = getOwnerWindow(ref.current)
+      const evt = new win.CustomEvent("animationend", { bubbles: true })
+      ref.current?.dispatchEvent(evt)
+    },
   }
 }
