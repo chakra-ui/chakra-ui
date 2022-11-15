@@ -866,7 +866,6 @@ importers:
       '@chakra-ui/theme': workspace:*
       '@chakra-ui/transition': workspace:*
       clean-package: 2.1.1
-      framer-motion: ^6.2.9
       react: ^18.2.0
       react-icons: ^4.2.0
     dependencies:
@@ -894,7 +893,6 @@ importers:
       '@chakra-ui/system': link:../../core/system
       '@chakra-ui/theme': link:../theme
       clean-package: 2.1.1
-      framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
 
