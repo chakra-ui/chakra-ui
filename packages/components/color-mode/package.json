@@ -44,7 +44,6 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/system": "workspace:*",
     "@chakra-ui/react-use-safe-layout-effect": "workspace:*"
   },
   "peerDependencies": {
@@ -52,7 +51,6 @@
   },
   "devDependencies": {
     "@chakra-ui/utils": "workspace:*",
-    "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0",
     "clean-package": "2.1.1"
   }

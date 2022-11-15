@@ -559,17 +559,13 @@ importers:
 
   packages/components/color-mode:
     specifiers:
-      '@chakra-ui/layout': workspace:*
       '@chakra-ui/react-use-safe-layout-effect': workspace:*
-      '@chakra-ui/system': workspace:*
       '@chakra-ui/utils': workspace:*
       clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
-      '@chakra-ui/system': link:../system
     devDependencies:
-      '@chakra-ui/layout': link:../layout
       '@chakra-ui/utils': link:../../legacy/utils
       clean-package: 2.1.1
       react: 18.2.0

@@ -1,6 +1,5 @@
 import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { ColorModeContext } from "./color-mode-context"
 import {
   ColorMode,
@@ -125,13 +124,10 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
 ColorModeProvider.displayName = "ColorModeProvider"
 
-export interface ForcedMode extends HTMLChakraProps<"div"> {}
-
 /**
  * Locks the color mode to `dark`, without any way to change it.
  */
-export const DarkMode = forwardRef<ForcedMode, "div">((props) => {
-  const { as } = props
+export function DarkMode(props: React.PropsWithChildren<{}>) {
   const context = useMemo<ColorModeContextType>(
     () => ({
       colorMode: "dark",
@@ -142,26 +138,15 @@ export const DarkMode = forwardRef<ForcedMode, "div">((props) => {
     [],
   )
 
-  if (as)
-    return (
-      <chakra.div
-        data-theme="dark"
-        bg="chakra-body-bg"
-        color="chakra-body-text"
-        {...props}
-      />
-    )
-
   return <ColorModeContext.Provider value={context} {...props} />
-})
+}
 
 DarkMode.displayName = "DarkMode"
 
 /**
  * Locks the color mode to `light` without any way to change it.
  */
-export const LightMode = forwardRef<ForcedMode, "div">((props) => {
-  const { as } = props
+export function LightMode(props: React.PropsWithChildren<{}>) {
   const context = useMemo<ColorModeContextType>(
     () => ({
       colorMode: "light",
@@ -172,17 +157,7 @@ export const LightMode = forwardRef<ForcedMode, "div">((props) => {
     [],
   )
 
-  if (as)
-    return (
-      <chakra.div
-        data-theme="light"
-        bg="chakra-body-bg"
-        color="chakra-body-text"
-        {...props}
-      />
-    )
-
   return <ColorModeContext.Provider value={context} {...props} />
-})
+}
 
 LightMode.displayName = "LightMode"
