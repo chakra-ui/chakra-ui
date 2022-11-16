@@ -16,7 +16,7 @@
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
-    "gatsby": "^2.29.3 || ^3.0.0 || ^4.0.0"
+    "gatsby": ">=2.29.3"
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
