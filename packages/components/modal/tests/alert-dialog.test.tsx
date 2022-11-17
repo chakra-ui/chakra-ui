@@ -67,9 +67,11 @@ it("renders an element with role='alertdialog' when opened", () => {
 })
 
 it("passes a11y test closed", async () => {
-  await testA11y(<BasicUsage />)
+  const { baseElement } = render(<BasicUsage />)
+  await testA11y(baseElement)
 })
 
 it("passes a11y test opened", async () => {
-  await testA11y(<BasicUsage isOpen />)
+  const { baseElement } = render(<BasicUsage isOpen />)
+  await testA11y(baseElement)
 })
