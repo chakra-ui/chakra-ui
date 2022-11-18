@@ -97,7 +97,7 @@ export function useModal(props: UseModalProps) {
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === "Escape") {
-        event.stopPropagation()
+        event.preventDefault()
 
         if (closeOnEsc) {
           onClose?.()
