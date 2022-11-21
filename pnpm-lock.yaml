@@ -1543,13 +1543,13 @@ importers:
       '@chakra-ui/anatomy': workspace:*
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
-      '@ctrl/tinycolor': ^3.4.0
       '@types/dlv': ^1.1.2
       clean-package: 2.1.1
+      color2k: ^2.0.0
       dlv: ^1.1.3
     dependencies:
       '@chakra-ui/anatomy': link:../anatomy
-      '@ctrl/tinycolor': 3.4.1
+      color2k: 2.0.0
     devDependencies:
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/styled-system': link:../../core/styled-system
@@ -4162,11 +4162,6 @@ packages:
       postcss: 8.4.14
       postcss-selector-parser: 6.0.10
     dev: true
-
-  /@ctrl/tinycolor/3.4.1:
-    resolution: {integrity: sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==}
-    engines: {node: '>=10'}
-    dev: false
 
   /@discordjs/collection/0.1.6:
     resolution: {integrity: sha512-utRNxnd9kSS2qhyivo9lMlt5qgAUasH2gb7BEOn6p0efFh24gjGomHzWKMAPn2hEReOPQZCJaRKoURwRotKucQ==}
@@ -13283,6 +13278,10 @@ packages:
     dependencies:
       color-convert: 2.0.1
       color-string: 1.9.1
+
+  /color2k/2.0.0:
+    resolution: {integrity: sha512-DWX9eXOC4fbJNiuvdH4QSHvvfLWyFo9TuFp7V9OzdsbPAdrWAuYc8qvFP2bIQ/LKh4LrAVnJ6vhiQYPvAHdtTg==}
+    dev: false
 
   /colord/2.9.2:
     resolution: {integrity: sha512-Uqbg+J445nc1TKn4FoDPS6ZZqAvEDnwrH42yo8B40JSOgSLxMZ/gt3h4nmCtPLQeXhjJJkqBx7SCY35WnIixaQ==}
