@@ -13,8 +13,28 @@ import { ButtonGroupOptions } from "./button-types"
 export interface ButtonGroupProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"Button">,
-    ButtonGroupOptions {
-  isVertical?: boolean
+    ButtonGroupOptions {}
+
+const attachedStyles: Record<string, SystemStyleObject> = {
+  horizontal: {
+    "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
+    "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+    "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
+  },
+  vertical: {
+    "> *:first-of-type:not(:last-of-type)": { borderBottomRadius: 0 },
+    "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+    "> *:not(:first-of-type):last-of-type": { borderTopRadius: 0 },
+  },
+}
+
+const gapStyles = {
+  horizontal: (spacing: any): SystemStyleObject => ({
+    "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
+  }),
+  vertical: (spacing: any): SystemStyleObject => ({
+    "& > *:not(style) ~ *:not(style)": { marginTop: spacing },
+  }),
 }
 
 export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
@@ -27,7 +47,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
       spacing = "0.5rem",
       isAttached,
       isDisabled,
-      isVertical,
+      orientation = "horizontal",
       ...rest
     } = props
 
@@ -40,36 +60,12 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
 
     let groupStyles: SystemStyleObject = {
       display: "inline-flex",
+      ...(isAttached
+        ? attachedStyles[orientation]
+        : gapStyles[orientation](spacing)),
     }
 
-    if (isAttached) {
-      if (isVertical) {
-        groupStyles = {
-          ...groupStyles,
-          "> *:first-of-type:not(:last-of-type)": {
-            borderEndStartRadius: 0,
-            borderEndEndRadius: 0,
-          },
-          "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-          "> *:not(:first-of-type):last-of-type": {
-            borderStartEndRadius: 0,
-            borderStartStartRadius: 0,
-          },
-        }
-      } else {
-        groupStyles = {
-          ...groupStyles,
-          "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
-          "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-          "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
-        }
-      }
-    } else {
-      groupStyles = {
-        ...groupStyles,
-        "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
-      }
-    }
+    const isVertical = orientation === "vertical"
 
     return (
       <ButtonGroupProvider value={context}>
@@ -79,7 +75,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
           __css={groupStyles}
           className={_className}
           data-attached={isAttached ? "" : undefined}
-          data-vertical={isVertical ? "" : undefined}
+          data-orientation={orientation}
           flexDir={isVertical ? "column" : undefined}
           {...rest}
         />
