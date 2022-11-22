@@ -25,7 +25,8 @@ const isEmptyObject = (obj: any) => Object.keys(obj).length === 0
  * @deprecated This will be removed in the next major release.
  */
 export const getColor = (theme: Dict, color: string, fallback?: string) => {
-  const hex = get(theme, color, color)
+  const themeKey = color.startsWith("colors") ? color : `colors.${color}`
+  const hex = get(theme, themeKey, color)
   try {
     toHex(hex)
     return hex
