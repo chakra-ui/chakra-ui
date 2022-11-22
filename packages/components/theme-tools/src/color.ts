@@ -30,7 +30,8 @@ export const getColor = (theme: Dict, color: string, fallback?: string) => {
     toHex(hex)
     return hex
   } catch {
-    return fallback
+    // returning black to stay consistent with TinyColor behaviour so as to prevent breaking change
+    return fallback ?? "#000000"
   }
 }
 
