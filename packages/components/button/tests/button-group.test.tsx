@@ -72,7 +72,7 @@ test("Should flush outline button", () => {
 
 test("Should flush vertical button", () => {
   const { getByText } = render(
-    <ButtonGroup isAttached isVertical>
+    <ButtonGroup isAttached orientation="vertical">
       <Button>Button 1</Button>
       <Button>Button 2</Button>
       <Button>Button 3</Button>
@@ -97,7 +97,7 @@ test("Should flush vertical button", () => {
 
 test("Should flush vertical outline button", () => {
   const { getByText } = render(
-    <ButtonGroup isAttached isVertical variant="outline">
+    <ButtonGroup isAttached orientation="vertical" variant="outline">
       <Button>Button 1</Button>
       <Button>Button 2</Button>
       <Button>Button 3</Button>
@@ -105,19 +105,15 @@ test("Should flush vertical outline button", () => {
     </ButtonGroup>,
   )
   expect(getByText(/Button 1/i)).toHaveStyle({
-    marginInlineEnd: "",
-    // marginBottom: "-1px",
+    marginBottom: "-1px",
   })
   expect(getByText(/Button 2/i)).toHaveStyle({
-    marginInlineEnd: "",
-    // marginBottom: "-1px",
+    marginBottom: "-1px",
   })
   expect(getByText(/Button 3/i)).toHaveStyle({
-    marginInlineEnd: "",
-    // marginBottom: "-1px",
+    marginBottom: "-1px",
   })
   expect(getByText(/Button 4/i)).toHaveStyle({
-    marginInlineEnd: "",
     marginBottom: "",
   })
 })
