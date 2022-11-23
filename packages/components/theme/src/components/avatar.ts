@@ -36,7 +36,7 @@ const $avatarBg = cssVar("avatar-background")
 
 const baseStyleContainer = defineStyle((props) => {
   const { name, theme } = props
-  const bg = name ? randomColor({ string: name }) : "gray.400"
+  const bg = name ? randomColor({ string: name }) : "colors.gray.400"
   const isBgDark = isDark(bg)(theme)
 
   let color = "white"
