@@ -82,7 +82,7 @@ export const isLight = (color: string) => (theme: Dict) =>
 export const transparentize =
   (color: string, opacity: number) => (theme: Dict) => {
     const raw = getColor(theme, color)
-    return setTransparency(raw, opacity)
+    return setTransparency(raw, 1 - opacity)
   }
 
 /**
