@@ -24,7 +24,7 @@ export interface UseRadioProps {
    * The value to be used in the radio button.
    * This is the value that will be returned on form submission.
    */
-  value?: string | number
+  value?: string
   /**
    * If `true`, the radio will be checked.
    * You'll need to pass `onChange` to update its value (since it is now controlled)
