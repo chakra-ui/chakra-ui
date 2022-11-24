@@ -27,3 +27,12 @@ export * from "./theme.types"
 export * from "./utils/is-chakra-theme"
 
 export default theme
+
+export const baseTheme = {
+  semanticTokens,
+  direction,
+  components: {},
+  ...foundations,
+  styles,
+  config,
+}
