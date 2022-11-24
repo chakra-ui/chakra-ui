@@ -58,6 +58,10 @@ export interface UseMenuProps
   extends Omit<UsePopperProps, "enabled">,
     UseDisclosureProps {
   /**
+   * The `ref` of the element that should receive focus when the popover opens.
+   */
+  initialFocusRef?: React.RefObject<{ focus(): void }>
+  /**
    * If `true`, the menu will close when a menu item is
    * clicked
    *
@@ -139,6 +143,7 @@ export function useMenu(props: UseMenuProps = {}) {
     id,
     closeOnSelect = true,
     closeOnBlur = true,
+    initialFocusRef,
     autoSelect = true,
     isLazy,
     isOpen: isOpenProp,
@@ -170,11 +175,15 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const focusFirstItem = useCallback(() => {
     const id = setTimeout(() => {
-      const first = descendants.firstEnabled()
-      if (first) setFocusedIndex(first.index)
+      if (initialFocusRef) {
+        initialFocusRef.current?.focus()
+      } else {
+        const first = descendants.firstEnabled()
+        if (first) setFocusedIndex(first.index)
+      }
     })
     timeoutIds.current.add(id)
-  }, [descendants])
+  }, [descendants, initialFocusRef])
 
   const focusLastItem = useCallback(() => {
     const id = setTimeout(() => {
@@ -302,6 +311,7 @@ export function useMenu(props: UseMenuProps = {}) {
     setFocusedIndex,
     isLazy,
     lazyBehavior,
+    initialFocusRef,
   }
 }
 
