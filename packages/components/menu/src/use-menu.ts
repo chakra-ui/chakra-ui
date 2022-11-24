@@ -551,6 +551,7 @@ export function useMenuItem(
     onMouseMove: onMouseMoveProp,
     onMouseLeave: onMouseLeaveProp,
     onClick: onClickProp,
+    onFocus: onFocusProp,
     isDisabled,
     isFocusable,
     closeOnSelect,
@@ -623,6 +624,14 @@ export function useMenuItem(
     [onClose, onClickProp, menuCloseOnSelect, closeOnSelect],
   )
 
+  const onFocus = useCallback(
+    (event: React.FocusEvent) => {
+      onFocusProp?.(event)
+      setFocusedIndex(index)
+    },
+    [setFocusedIndex, onFocusProp, index],
+  )
+
   const isFocused = index === focusedIndex
 
   const trulyDisabled = isDisabled && !isFocusable
@@ -640,6 +649,7 @@ export function useMenuItem(
 
   const clickableProps = useClickable({
     onClick,
+    onFocus,
     onMouseEnter,
     onMouseMove,
     onMouseLeave,
