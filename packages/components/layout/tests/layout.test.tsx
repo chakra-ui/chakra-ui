@@ -37,6 +37,31 @@ describe("<Badge />", () => {
   test("passes a11y test", async () => {
     await testA11y(<Badge>this is a badge</Badge>)
   })
+
+  test("default style property", () => {
+    render(<Badge>My Badge</Badge>)
+
+    expect(screen.getByText("My Badge")).toHaveStyle({
+      display: "inline-block",
+      whiteSpace: "nowrap",
+      verticalAlign: "middle",
+    })
+  })
+
+  test("ellipsis with noOfLines and maxW props", () => {
+    render(
+      <Badge noOfLines={1} maxW={10}>
+        My Badge
+      </Badge>,
+    )
+
+    expect(screen.getByText("My Badge")).toHaveStyle({
+      display: "-webkit-inline-box",
+      verticalAlign: "middle",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    })
+  })
 })
 
 describe("<Container />", () => {
