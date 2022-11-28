@@ -550,3 +550,38 @@ export const WithoutMenuButton = () => {
     </>
   )
 }
+
+export const ProgrammaticFocusMenuOption = () => {
+  const item = React.useRef<HTMLButtonElement>(null)
+  return (
+    <Menu initialFocusRef={item}>
+      <MenuButton>Welcome</MenuButton>
+      <MenuList>
+        <MenuOptionGroup type="radio">
+          <MenuItemOption value="A">A</MenuItemOption>
+          <MenuItemOption value="B">B</MenuItemOption>
+          <MenuItemOption ref={item} value="C">
+            C
+          </MenuItemOption>
+          <MenuDivider />
+          <MenuItemOption value="D">D</MenuItemOption>
+          <MenuItemOption value="E">E</MenuItemOption>
+        </MenuOptionGroup>
+      </MenuList>
+    </Menu>
+  )
+}
+
+export const ProgrammaticFocusMenuItem = () => {
+  const item = React.useRef<HTMLButtonElement>(null)
+  return (
+    <Menu initialFocusRef={item}>
+      <MenuButton>Welcome</MenuButton>
+      <MenuList>
+        <MenuItem>Menu 1</MenuItem>
+        <MenuItem ref={item}>Menu 2</MenuItem>
+        <MenuItem>Menu 3</MenuItem>
+      </MenuList>
+    </Menu>
+  )
+}
