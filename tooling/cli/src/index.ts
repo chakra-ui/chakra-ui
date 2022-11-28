@@ -14,6 +14,7 @@ type OptionsType = {
   strictComponentTypes?: boolean
   format: boolean
   watch?: string
+  strictTokenTypes?: boolean
 }
 
 export async function run() {
@@ -31,8 +32,12 @@ export async function run() {
     )
     .option("--no-format", "Disable auto formatting")
     .option("--watch [path]", "Watch directory for changes and rebuild")
+    .option(
+      "--strict-token-types",
+      "Generate strict types for theme tokens (e.g. color, spacing)",
+    )
     .action(async (themeFile: string, options: OptionsType) => {
-      const { out, strictComponentTypes, format, watch } = options
+      const { out, strictComponentTypes, format, strictTokenTypes, watch } = options
 
       if (watch) {
         const watchPath =
@@ -61,6 +66,7 @@ export async function run() {
         out,
         strictComponentTypes,
         format,
+        strictTokenTypes,
         onError: () => process.exit(1),
       })
     })

@@ -22,6 +22,7 @@ Usage: chakra-cli tokens [options] <source>
 Options:
   --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
   --strict-component-types  Generate strict types for props variant and size
+  --strict-token-types      Generate strict types for theme tokens (e.g. color, spacing)
   --no-format               Disable auto formatting
   --watch [path]            Watch directory for changes and rebuild
   -h, --help                display help for command

@@ -41,6 +41,7 @@ export interface CreateThemeTypingsInterfaceOptions {
   config: ThemeKeyOptions[]
   strictComponentTypes?: boolean
   format?: boolean
+  strictTokenTypes?: boolean
 }
 
 export async function createThemeTypingsInterface(
@@ -49,6 +50,7 @@ export async function createThemeTypingsInterface(
     config,
     strictComponentTypes = false,
     format = true,
+    strictTokenTypes = false,
   }: CreateThemeTypingsInterfaceOptions,
 ) {
   const unions = config.reduce(
@@ -91,7 +93,10 @@ export async function createThemeTypingsInterface(
 // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
 import { BaseThemeTypings } from "./shared.types.js"
 export interface ThemeTypings extends BaseThemeTypings {
-  ${printUnionMap({ ...unions, textStyles, layerStyles, colorSchemes })}
+  ${printUnionMap(
+    { ...unions, textStyles, layerStyles, colorSchemes },
+    strictTokenTypes,
+  )}
   ${printComponentTypes(componentTypes, strictComponentTypes)}
 }
 
