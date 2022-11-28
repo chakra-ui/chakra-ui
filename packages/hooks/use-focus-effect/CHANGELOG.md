@@ -1,5 +1,32 @@
 # @chakra-ui/react-use-focus-effect
 
+## 2.0.7
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/react-use-event-listener@2.0.5
+  - @chakra-ui/react-use-safe-layout-effect@2.0.3
+  - @chakra-ui/react-use-update-effect@2.0.5
+  - @chakra-ui/dom-utils@2.0.4
+
+## 2.0.6
+
+### Patch Changes
+
+- [#6863](https://github.com/chakra-ui/chakra-ui/pull/6863)
+  [`49dc149cc`](https://github.com/chakra-ui/chakra-ui/commit/49dc149cc600af83dcde4fa9b6a34a6b14dca837)
+  Thanks [@Andarist](https://github.com/Andarist)! - Fixed issue where focus
+  sometimes moved back to the open element when it was intentionally moved away
+  from it.
+
 ## 2.0.5
 
 ### Patch Changes

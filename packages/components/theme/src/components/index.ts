@@ -4,6 +4,7 @@ import { avatarTheme } from "./avatar"
 import { badgeTheme } from "./badge"
 import { breadcrumbTheme } from "./breadcrumb"
 import { buttonTheme } from "./button"
+import { cardTheme } from "./card"
 import { checkboxTheme } from "./checkbox"
 import { closeButtonTheme } from "./close-button"
 import { codeTheme } from "./code"
@@ -121,4 +122,5 @@ export const components = {
   Tag: tagTheme,
   Textarea: textareaTheme,
   Tooltip: tooltipTheme,
+  Card: cardTheme,
 }

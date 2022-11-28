@@ -8,6 +8,10 @@ import userEvent from "@testing-library/user-event"
 
 expect.extend(toHaveNoViolations)
 
+const ChakraProviderWrapper = (props: any) => (
+  <ChakraProvider {...props} theme={theme} />
+)
+
 export interface ChakraRenderOptions extends RenderOptions {
   withChakraProvider?: boolean
 }
@@ -18,20 +22,13 @@ export function render(
     withChakraProvider: true,
   },
 ): ReturnType<typeof rtlRender> & { user: ReturnType<typeof userEvent.setup> } {
-  const { wrapper: Wrapper = React.Fragment, ...rtlOptions } = options
   const user = userEvent.setup()
 
-  const MaybeChakraProvider = withChakraProvider
-    ? ChakraProvider
-    : React.Fragment
+  if (withChakraProvider) {
+    options.wrapper = ChakraProviderWrapper
+  }
 
-  const props = withChakraProvider ? { theme } : {}
+  const result = rtlRender(ui, options)
 
-  const result = rtlRender(
-    <MaybeChakraProvider {...props}>
-      <Wrapper>{ui}</Wrapper>
-    </MaybeChakraProvider>,
-    rtlOptions,
-  )
   return { user, ...result }
 }

@@ -120,17 +120,17 @@ export const WithTransition = () => {
   )
 }
 
-export const withButton = () => (
+export const WithButton = () => (
   <Tooltip label="This is a chakra tooltip" placement="bottom" hasArrow>
     <Button>Hover me</Button>
   </Tooltip>
 )
 
-export const withString = () => (
+export const WithString = () => (
   <Tooltip label="This is a chakra tooltip">Hover me</Tooltip>
 )
 
-export const withAriaLabel = () => (
+export const WithAriaLabel = () => (
   <Tooltip
     hasArrow
     bg="tomato"
@@ -147,7 +147,7 @@ export const withAriaLabel = () => (
   </Tooltip>
 )
 
-export const withinFixedContainer = () => (
+export const WithinFixedContainer = () => (
   <div
     style={{
       position: "fixed",
@@ -205,40 +205,64 @@ export const WithModal = () => {
   )
 }
 
-export const withDisabledButton = () => (
+export const WithDisabledButton = () => (
   <Tooltip label="Oh oh oh, oh oh">
     <Button isDisabled>Can't Touch This</Button>
   </Tooltip>
 )
 
-export const withWrappedDisabledButton = () => (
+export const WithWrappedDisabledButton = () => (
   <Tooltip label="Hello world" shouldWrapChildren>
     <Button isDisabled>Hover me</Button>
   </Tooltip>
 )
 
-export const withIsOpenProp = () => (
+export const WithIsOpenProp = () => (
   <Tooltip label="Hello world" isOpen hasArrow>
     <Button disabled>Can't Touch This</Button>
   </Tooltip>
 )
 
-export const withDefaultIsOpenProp = () => (
+export const WithDefaultIsOpenProp = () => (
   <Tooltip label="Hello world" defaultIsOpen>
     <Button>Can't Touch This</Button>
   </Tooltip>
 )
 
-export const withAutoPlacement = () => (
+export const WithAutoPlacement = () => (
   <Tooltip label="Hello world" placement="auto" hasArrow>
     <Button>Can't Touch This</Button>
   </Tooltip>
 )
 
-export const withScroll = () => (
+export const WithScroll = () => (
   <chakra.div border="solid 1px red" h="200vh" pt="48">
     <Tooltip label="Hello world" placement="auto" hasArrow closeOnScroll>
       <Button>Can't Touch This</Button>
     </Tooltip>
   </chakra.div>
 )
+
+export const WithDynamicDisabled = () => {
+  const [isDisabled, setIsDisabled] = React.useState(false)
+  const handleDisabled = () => setIsDisabled(true)
+  const handleEnabled = () => setIsDisabled(false)
+  return (
+    <Tooltip
+      label="Disabled after being triggered"
+      placement="bottom"
+      openDelay={500}
+      isDisabled={isDisabled}
+      hasArrow
+    >
+      <chakra.span
+        draggable
+        onDragStart={handleDisabled}
+        onDragEnd={handleEnabled}
+        cursor="grab"
+      >
+        Drag me, and you won't see
+      </chakra.span>
+    </Tooltip>
+  )
+}

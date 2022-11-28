@@ -6,7 +6,7 @@ const camelCase = (str) => {
   return str.replace(/[-_](\w)/g, (_, c) => c.toUpperCase())
 }
 
-const workspaces = ["packages", "hooks", "utilities"]
+const workspaces = ["components", "hooks", "utilities"]
 
 /**
  * @param {import("plop").NodePlopAPI} plop
@@ -47,7 +47,7 @@ module.exports = function main(plop) {
       actions.push({
         type: "addMany",
         templateFiles: "plop/component/**",
-        destination: `./{{outDir}}/{{dashCase componentName}}`,
+        destination: `./packages/{{outDir}}/{{dashCase componentName}}`,
         base: "plop/component",
         data: { description, componentName, outDir },
         abortOnFail: true,

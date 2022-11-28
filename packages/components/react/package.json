@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "2.3.6",
+  "version": "2.4.1",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "src/index.ts",
   "files": [
@@ -16,6 +16,7 @@
     "@chakra-ui/avatar": "workspace:*",
     "@chakra-ui/breadcrumb": "workspace:*",
     "@chakra-ui/button": "workspace:*",
+    "@chakra-ui/card": "workspace:*",
     "@chakra-ui/checkbox": "workspace:*",
     "@chakra-ui/close-button": "workspace:*",
     "@chakra-ui/control-box": "workspace:*",

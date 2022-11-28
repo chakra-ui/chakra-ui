@@ -1,9 +1,14 @@
 import { tabsAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { getColor, mode } from "@chakra-ui/theme-tools"
+import { getColor } from "@chakra-ui/theme-tools"
+
+const $fg = cssVar("tabs-color")
+const $bg = cssVar("tabs-bg")
+const $border = cssVar("tabs-border-color")
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -99,15 +104,23 @@ const variantLine = definePartsStyle((props) => {
       borderColor: "transparent",
       [marginProp]: "-2px",
       _selected: {
-        color: mode(`${c}.600`, `${c}.300`)(props),
+        [$fg.variable]: `colors.${c}.600`,
+        _dark: {
+          [$fg.variable]: `colors.${c}.300`,
+        },
         borderColor: "currentColor",
       },
       _active: {
-        bg: mode("gray.200", "whiteAlpha.300")(props),
+        [$bg.variable]: "colors.gray.200",
+        _dark: {
+          [$bg.variable]: "colors.whiteAlpha.300",
+        },
       },
       _disabled: {
         _active: { bg: "none" },
       },
+      color: $fg.reference,
+      bg: $bg.reference,
     },
   }
 })
@@ -120,11 +133,18 @@ const variantEnclosed = definePartsStyle((props) => {
       border: "1px solid",
       borderColor: "transparent",
       mb: "-1px",
+      [$border.variable]: "transparent",
       _selected: {
-        color: mode(`${c}.600`, `${c}.300`)(props),
+        [$fg.variable]: `colors.${c}.600`,
+        [$border.variable]: `colors.white`,
+        _dark: {
+          [$fg.variable]: `colors.${c}.300`,
+          [$border.variable]: `colors.gray.800`,
+        },
         borderColor: "inherit",
-        borderBottomColor: mode(`white`, `gray.800`)(props),
+        borderBottomColor: $border.reference,
       },
+      color: $fg.reference,
     },
     tablist: {
       mb: "-1px",
@@ -140,18 +160,27 @@ const variantEnclosedColored = definePartsStyle((props) => {
     tab: {
       border: "1px solid",
       borderColor: "inherit",
-      bg: mode(`gray.50`, `whiteAlpha.50`)(props),
+      [$bg.variable]: "colors.gray.50",
+      _dark: {
+        [$bg.variable]: "colors.whiteAlpha.50",
+      },
       mb: "-1px",
       _notLast: {
         marginEnd: "-1px",
       },
       _selected: {
-        bg: mode("#fff", "gray.800")(props),
-        color: mode(`${c}.600`, `${c}.300`)(props),
+        [$bg.variable]: "colors.white",
+        [$fg.variable]: `colors.${c}.600`,
+        _dark: {
+          [$bg.variable]: "colors.gray.800",
+          [$fg.variable]: `colors.${c}.300`,
+        },
         borderColor: "inherit",
         borderTopColor: "currentColor",
         borderBottomColor: "transparent",
       },
+      color: $fg.reference,
+      bg: $bg.reference,
     },
     tablist: {
       mb: "-1px",
@@ -182,11 +211,20 @@ const variantSolidRounded = definePartsStyle((props) => {
     tab: {
       borderRadius: "full",
       fontWeight: "semibold",
-      color: mode("gray.600", "inherit")(props),
-      _selected: {
-        color: mode(`#fff`, "gray.800")(props),
-        bg: mode(`${c}.600`, `${c}.300`)(props),
+      [$fg.variable]: "colors.gray.600",
+      _dark: {
+        [$fg.variable]: "inherit",
       },
+      _selected: {
+        [$fg.variable]: "colors.white",
+        [$bg.variable]: `colors.${c}.600`,
+        _dark: {
+          [$fg.variable]: "colors.gray.800",
+          [$bg.variable]: `colors.${c}.300`,
+        },
+      },
+      color: $fg.reference,
+      bg: $bg.reference,
     },
   }
 })

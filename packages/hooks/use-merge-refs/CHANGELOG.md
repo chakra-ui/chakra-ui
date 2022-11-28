@@ -1,5 +1,16 @@
 # @chakra-ui/react-use-merge-refs
 
+## 2.0.5
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+
 ## 2.0.4
 
 ### Patch Changes

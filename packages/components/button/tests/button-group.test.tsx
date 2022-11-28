@@ -1,5 +1,4 @@
-import { testA11y, render } from "@chakra-ui/test-utils"
-import * as React from "react"
+import { render, testA11y } from "@chakra-ui/test-utils"
 import { Button, ButtonGroup } from "../src"
 
 it("passes a11y test", async () => {
@@ -67,5 +66,30 @@ test("Should flush outline button", () => {
   })
   expect(getByText(/Button 4/i)).toHaveStyle({
     marginInlineEnd: "",
+  })
+})
+
+test("Should flush vertical button", () => {
+  const { getByText } = render(
+    <ButtonGroup isAttached orientation="vertical" variant="outline">
+      <Button>Button 1</Button>
+      <Button>Button 2</Button>
+      <Button>Button 3</Button>
+      <Button>Button 4</Button>
+    </ButtonGroup>,
+  )
+  expect(getByText(/Button 1/i)).toHaveStyle({
+    borderBottomLeftRadius: "0px",
+    borderBottomRightRadius: "0px",
+  })
+  expect(getByText(/Button 2/i)).toHaveStyle({
+    borderRadius: "0px",
+  })
+  expect(getByText(/Button 3/i)).toHaveStyle({
+    borderRadius: "0px",
+  })
+  expect(getByText(/Button 4/i)).toHaveStyle({
+    borderTopLeftRadius: "0px",
+    borderTopRightRadius: "0px",
   })
 })

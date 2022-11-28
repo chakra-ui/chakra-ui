@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/react-context@2.0.5
+
+## 2.1.0
+
+### Minor Changes
+
+- [#6915](https://github.com/chakra-ui/chakra-ui/pull/6915)
+  [`3ae5df659`](https://github.com/chakra-ui/chakra-ui/commit/3ae5df659a2c6061dbfb57bfce92b5bf3e0b5cd7)
+  Thanks [@lexanth](https://github.com/lexanth)! - Add support for overriding
+  the `role` for `Progress` eleement. This makes it possible to use the progress
+  as a meter element.
+
+  ```jsx live=false
+  <Progress size="sm" value={20} role="meter" aria-label="Usage" />
+  ```
+
+### Patch Changes
+
+- [#6911](https://github.com/chakra-ui/chakra-ui/pull/6911)
+  [`2e7327b64`](https://github.com/chakra-ui/chakra-ui/commit/2e7327b640870546941428f13d0806ec0330c228)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix accessibility issue
+  where the `title` prop was not passed to the underlying `role=progress`
+  element.
+
 ## 2.0.12
 
 ### Patch Changes

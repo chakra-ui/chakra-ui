@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { calc, cssVar, mode } from "@chakra-ui/theme-tools"
+import { calc, cssVar } from "@chakra-ui/theme-tools"
 import typography from "../foundations/typography"
 import { inputTheme } from "./input"
 import { runIfFn } from "../utils/run-if-fn"
@@ -12,8 +12,13 @@ const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $stepperWidth = cssVar("number-input-stepper-width")
+
 const $inputPadding = cssVar("number-input-input-padding")
 const inputPaddingValue = calc($stepperWidth).add("0.5rem").toString()
+
+const $bg = cssVar("number-input-bg")
+const $fg = cssVar("number-input-color")
+const $border = cssVar("number-input-border-color")
 
 const baseStyleRoot = defineStyle({
   [$stepperWidth.variable]: "sizes.6",
@@ -25,29 +30,37 @@ const baseStyleField = defineStyle(
 )
 
 const baseStyleStepperGroup = defineStyle({
-  width: [$stepperWidth.reference],
+  width: $stepperWidth.reference,
 })
 
-const baseStyleStepper = defineStyle((props) => {
-  return {
-    borderStart: "1px solid",
-    borderStartColor: mode("inherit", "whiteAlpha.300")(props),
-    color: mode("inherit", "whiteAlpha.800")(props),
-    _active: {
-      bg: mode("gray.200", "whiteAlpha.300")(props),
+const baseStyleStepper = defineStyle({
+  borderStart: "1px solid",
+  borderStartColor: $border.reference,
+  color: $fg.reference,
+  bg: $bg.reference,
+  [$fg.variable]: "colors.chakra-body-text",
+  [$border.variable]: "colors.chakra-border-color",
+  _dark: {
+    [$fg.variable]: "colors.whiteAlpha.800",
+    [$border.variable]: "colors.whiteAlpha.300",
+  },
+  _active: {
+    [$bg.variable]: "colors.gray.200",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.300",
     },
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
-    },
-  }
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+  },
 })
 
 const baseStyle = definePartsStyle((props) => ({
   root: baseStyleRoot,
   field: runIfFn(baseStyleField, props) ?? {},
   stepperGroup: baseStyleStepperGroup,
-  stepper: runIfFn(baseStyleStepper, props) ?? {},
+  stepper: baseStyleStepper,
 }))
 
 type FontSize = keyof typeof typography.fontSizes

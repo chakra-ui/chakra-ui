@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.2.4
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/form-control@2.0.12
+  - @chakra-ui/visually-hidden@2.0.13
+  - @chakra-ui/react-context@2.0.5
+  - @chakra-ui/react-use-callback-ref@2.0.5
+  - @chakra-ui/react-use-controllable-state@2.0.6
+  - @chakra-ui/react-use-merge-refs@2.0.5
+  - @chakra-ui/react-use-safe-layout-effect@2.0.3
+  - @chakra-ui/react-use-update-effect@2.0.5
+  - @chakra-ui/react-types@2.0.4
+
+## 2.2.3
+
+### Patch Changes
+
+- [#6929](https://github.com/chakra-ui/chakra-ui/pull/6929)
+  [`1377b7280`](https://github.com/chakra-ui/chakra-ui/commit/1377b7280e398aadf70b54c7846a36136c7bd772)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Replaced
+  `framer-motion` with css animation
+
+- Updated dependencies
+  [[`132a98958`](https://github.com/chakra-ui/chakra-ui/commit/132a98958be64e46619b1e280ca6405d0a833cb0)]:
+  - @chakra-ui/visually-hidden@2.0.12
+  - @chakra-ui/form-control@2.0.11
+
 ## 2.2.2
 
 ### Patch Changes

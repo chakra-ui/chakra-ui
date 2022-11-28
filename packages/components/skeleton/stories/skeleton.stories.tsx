@@ -14,9 +14,6 @@ export default {
   ],
 }
 
-// Get more examples from here:
-// https://danilowoz.com/create-content-loader/
-
 export const Basic = () => <Skeleton h="20px" />
 
 export const Text = () => (
@@ -132,4 +129,8 @@ export const WithDarkMode = () => (
       <Skeleton boxSize="100px" />
     </Stack>
   </DarkMode>
+)
+
+export const WithStartAndEndColor = () => (
+  <Skeleton h="20px" startColor="red.200" endColor="green.200" />
 )

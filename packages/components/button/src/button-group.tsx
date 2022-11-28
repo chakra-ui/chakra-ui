@@ -15,6 +15,28 @@ export interface ButtonGroupProps
     ThemingProps<"Button">,
     ButtonGroupOptions {}
 
+const attachedStyles: Record<string, SystemStyleObject> = {
+  horizontal: {
+    "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
+    "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+    "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
+  },
+  vertical: {
+    "> *:first-of-type:not(:last-of-type)": { borderBottomRadius: 0 },
+    "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+    "> *:not(:first-of-type):last-of-type": { borderTopRadius: 0 },
+  },
+}
+
+const gapStyles = {
+  horizontal: (spacing: any): SystemStyleObject => ({
+    "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
+  }),
+  vertical: (spacing: any): SystemStyleObject => ({
+    "& > *:not(style) ~ *:not(style)": { marginTop: spacing },
+  }),
+}
+
 export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
   function ButtonGroup(props, ref) {
     const {
@@ -25,6 +47,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
       spacing = "0.5rem",
       isAttached,
       isDisabled,
+      orientation = "horizontal",
       ...rest
     } = props
 
@@ -37,21 +60,12 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
 
     let groupStyles: SystemStyleObject = {
       display: "inline-flex",
+      ...(isAttached
+        ? attachedStyles[orientation]
+        : gapStyles[orientation](spacing)),
     }
 
-    if (isAttached) {
-      groupStyles = {
-        ...groupStyles,
-        "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
-        "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-        "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
-      }
-    } else {
-      groupStyles = {
-        ...groupStyles,
-        "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
-      }
-    }
+    const isVertical = orientation === "vertical"
 
     return (
       <ButtonGroupProvider value={context}>
@@ -61,6 +75,8 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
           __css={groupStyles}
           className={_className}
           data-attached={isAttached ? "" : undefined}
+          data-orientation={orientation}
+          flexDir={isVertical ? "column" : undefined}
           {...rest}
         />
       </ButtonGroupProvider>

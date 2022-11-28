@@ -2110,6 +2110,16 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "yukukotani",
+      "name": "Yuku Kotani",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16265411?v=4",
+      "profile": "https://yuku.dev",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,

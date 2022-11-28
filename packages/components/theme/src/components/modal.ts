@@ -23,6 +23,7 @@ const baseStyleDialogContainer = defineStyle((props) => {
     justifyContent: "center",
     alignItems: isCentered ? "center" : "flex-start",
     overflow: scrollBehavior === "inside" ? "hidden" : "auto",
+    overscrollBehaviorY: "none",
   }
 })
 

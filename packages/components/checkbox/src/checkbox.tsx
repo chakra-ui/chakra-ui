@@ -2,6 +2,7 @@ import {
   chakra,
   forwardRef,
   HTMLChakraProps,
+  keyframes,
   omitThemingProps,
   PropsOf,
   SystemStyleObject,
@@ -31,6 +32,36 @@ const rootStyles: SystemStyleObject = {
   verticalAlign: "top",
   position: "relative",
 }
+
+const checkAnim = keyframes({
+  from: {
+    opacity: 0,
+    strokeDashoffset: 16,
+    transform: "scale(0.95)",
+  },
+  to: {
+    opacity: 1,
+    strokeDashoffset: 0,
+    transform: "scale(1)",
+  },
+})
+
+const indeterminateOpacityAnim = keyframes({
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+})
+const indeterminateScaleAnim = keyframes({
+  from: {
+    transform: "scaleX(0.65)",
+  },
+  to: {
+    transform: "scaleX(1)",
+  },
+})
 
 type CheckboxControlProps = Omit<HTMLChakraProps<"div">, keyof UseCheckboxProps>
 
@@ -105,14 +136,14 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
 
   const iconStyles: SystemStyleObject = useMemo(
     () => ({
-      opacity: state.isChecked || state.isIndeterminate ? 1 : 0,
-      transform:
-        state.isChecked || state.isIndeterminate ? "scale(1)" : "scale(0.95)",
+      animation: state.isIndeterminate
+        ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
+        : `${checkAnim} 200ms linear`,
       fontSize: iconSize,
       color: iconColor,
       ...styles.icon,
     }),
-    [iconColor, iconSize, state.isChecked, state.isIndeterminate, styles.icon],
+    [iconColor, iconSize, , state.isIndeterminate, styles.icon],
   )
 
   const clonedIcon = cloneElement(icon, {

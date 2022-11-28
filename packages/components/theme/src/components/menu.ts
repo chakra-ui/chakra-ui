@@ -1,48 +1,62 @@
 import { menuAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
-import { runIfFn } from "../utils/run-if-fn"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
-const baseStyleList = defineStyle((props) => {
-  return {
-    bg: mode("#fff", "gray.700")(props),
-    boxShadow: mode("sm", "dark-lg")(props),
-    color: "inherit",
-    minW: "3xs",
-    py: "2",
-    zIndex: 1,
-    borderRadius: "md",
-    borderWidth: "1px",
-  }
+const $bg = cssVar("menu-bg")
+const $shadow = cssVar("menu-shadow")
+
+const baseStyleList = defineStyle({
+  [$bg.variable]: "#fff",
+  [$shadow.variable]: "shadows.sm",
+  _dark: {
+    [$bg.variable]: "colors.gray.700",
+    [$shadow.variable]: "shadows.dark-lg",
+  },
+  color: "inherit",
+  minW: "3xs",
+  py: "2",
+  zIndex: 1,
+  borderRadius: "md",
+  borderWidth: "1px",
+  bg: $bg.reference,
+  boxShadow: $shadow.reference,
 })
 
-const baseStyleItem = defineStyle((props) => {
-  return {
-    py: "1.5",
-    px: "3",
-    transitionProperty: "background",
-    transitionDuration: "ultra-fast",
-    transitionTimingFunction: "ease-in",
-    _focus: {
-      bg: mode("gray.100", "whiteAlpha.100")(props),
+const baseStyleItem = defineStyle({
+  py: "1.5",
+  px: "3",
+  transitionProperty: "background",
+  transitionDuration: "ultra-fast",
+  transitionTimingFunction: "ease-in",
+  _focus: {
+    [$bg.variable]: "colors.gray.100",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.100",
     },
-    _active: {
-      bg: mode("gray.200", "whiteAlpha.200")(props),
+  },
+  _active: {
+    [$bg.variable]: "colors.gray.200",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.200",
     },
-    _expanded: {
-      bg: mode("gray.100", "whiteAlpha.100")(props),
+  },
+  _expanded: {
+    [$bg.variable]: "colors.gray.100",
+    _dark: {
+      [$bg.variable]: "colors.whiteAlpha.100",
     },
-    _disabled: {
-      opacity: 0.4,
-      cursor: "not-allowed",
-    },
-  }
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: "not-allowed",
+  },
+  bg: $bg.reference,
 })
 
 const baseStyleGroupTitle = defineStyle({
@@ -69,14 +83,14 @@ const baseStyleButton = defineStyle({
   transitionDuration: "normal",
 })
 
-const baseStyle = definePartsStyle((props) => ({
+const baseStyle = definePartsStyle({
   button: baseStyleButton,
-  list: runIfFn(baseStyleList, props),
-  item: runIfFn(baseStyleItem, props),
+  list: baseStyleList,
+  item: baseStyleItem,
   groupTitle: baseStyleGroupTitle,
   command: baseStyleCommand,
   divider: baseStyleDivider,
-}))
+})
 
 export const menuTheme = defineMultiStyleConfig({
   baseStyle,

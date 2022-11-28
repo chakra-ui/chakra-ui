@@ -20,6 +20,50 @@ export default {
   ],
 }
 
+const variants = [
+  "line",
+  "enclosed",
+  "enclosed-colored",
+  "soft-rounded",
+  "solid-rounded",
+] as const
+
+export const Variants = () =>
+  variants.map((variant) => (
+    <chakra.div key={variant} my="10">
+      <pre>variant = {variant}</pre>
+      <Tabs variant={variant} mt="3">
+        <TabList>
+          <Tab>Settings</Tab>
+          <Tab>Billings</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>Settings</TabPanel>
+          <TabPanel>Billings</TabPanel>
+        </TabPanels>
+      </Tabs>
+    </chakra.div>
+  ))
+
+const sizes = ["sm", "md", "lg"] as const
+
+export const Sizes = () =>
+  sizes.map((size) => (
+    <chakra.div key={size} my="10">
+      <pre>size = {size}</pre>
+      <Tabs size={size} mt="3">
+        <TabList>
+          <Tab>Settings</Tab>
+          <Tab>Billings</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>Settings</TabPanel>
+          <TabPanel>Billings</TabPanel>
+        </TabPanels>
+      </Tabs>
+    </chakra.div>
+  ))
+
 export const automatic = () => (
   <>
     <p>manual</p>

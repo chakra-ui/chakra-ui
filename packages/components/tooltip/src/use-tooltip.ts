@@ -137,15 +137,25 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const ref = useRef<Element>(null)
 
   const enterTimeout = useRef<number>()
-  const exitTimeout = useRef<number>()
+  const clearEnterTimeout = useCallback(() => {
+    if (enterTimeout.current) {
+      clearTimeout(enterTimeout.current)
+      enterTimeout.current = undefined
+    }
+  }, [])
 
-  const closeNow = useCallback(() => {
+  const exitTimeout = useRef<number>()
+  const clearExitTimeout = useCallback(() => {
     if (exitTimeout.current) {
       clearTimeout(exitTimeout.current)
       exitTimeout.current = undefined
     }
+  }, [])
+
+  const closeNow = useCallback(() => {
+    clearExitTimeout()
     onClose()
-  }, [onClose])
+  }, [onClose, clearExitTimeout])
 
   const dispatchCloseEvent = useCloseEvent(ref, closeNow)
 
@@ -158,13 +168,10 @@ export function useTooltip(props: UseTooltipProps = {}) {
   }, [dispatchCloseEvent, isDisabled, onOpen, openDelay])
 
   const closeWithDelay = useCallback(() => {
-    if (enterTimeout.current) {
-      clearTimeout(enterTimeout.current)
-      enterTimeout.current = undefined
-    }
+    clearEnterTimeout()
     const win = getWin(ref)
     exitTimeout.current = win.setTimeout(closeNow, closeDelay)
-  }, [closeDelay, closeNow])
+  }, [closeDelay, closeNow, clearEnterTimeout])
 
   const onClick = useCallback(() => {
     if (isOpen && closeOnClick) {
@@ -203,12 +210,18 @@ export function useTooltip(props: UseTooltipProps = {}) {
     },
   )
 
+  useEffect(() => {
+    if (!isDisabled) return
+    clearEnterTimeout()
+    if (isOpen) onClose()
+  }, [isDisabled, isOpen, onClose, clearEnterTimeout])
+
   useEffect(
     () => () => {
-      clearTimeout(enterTimeout.current)
-      clearTimeout(exitTimeout.current)
+      clearEnterTimeout()
+      clearExitTimeout()
     },
-    [],
+    [clearEnterTimeout, clearExitTimeout],
   )
 
   /**
