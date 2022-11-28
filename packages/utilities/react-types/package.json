@@ -13,6 +13,7 @@
   "types": "src/index.d.ts",
   "sideEffects": false,
   "files": [
+    "dist",
     "src"
   ],
   "publishConfig": {
@@ -34,6 +35,9 @@
     "clean-package": "2.1.1"
   },
   "scripts": {
+    "build": "JSX=1 tsup src/index.ts --dts",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   }
