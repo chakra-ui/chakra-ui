@@ -2,4 +2,4 @@
 "@chakra-ui/theme": patch
 ---
 
-Fix full size modal safari scroll glitch
+Fix issue where modal dialog scrolls beyond the content in Safari.

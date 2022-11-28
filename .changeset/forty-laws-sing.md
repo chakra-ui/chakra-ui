@@ -8,7 +8,7 @@ Add support for setting the initially focused menu programmatically
 const Example = () => {
   const itemRef = useRef(null)
   return (
-    <Menu initialFocusRef={item}>
+    <Menu initialFocusRef={itemRef}>
       <MenuButton>Welcome</MenuButton>
       <MenuList>
         <MenuItem>Menu 1</MenuItem>
