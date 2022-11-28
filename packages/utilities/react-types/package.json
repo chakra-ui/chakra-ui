@@ -10,7 +10,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "src/index.ts",
+  "types": "src/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
@@ -31,14 +31,6 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
-    "clean-package": "2.1.1"
-  },
-  "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
-    "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "react": "^18.0.0"
   }
 }
