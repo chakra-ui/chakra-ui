@@ -13,6 +13,7 @@
   "types": "src/index.d.ts",
   "sideEffects": false,
   "files": [
+    "dist",
     "src"
   ],
   "publishConfig": {
@@ -30,11 +31,6 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
-    "clean-package": "2.1.1"
-  },
-  "scripts": {
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "react": "^18.0.0"
   }
 }
