@@ -32,6 +32,7 @@ export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
         },
         sx: {
           display: props.display || "-webkit-inline-box",
+          ...rest.sx,
         },
       }
     }
@@ -43,7 +44,7 @@ export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
         ...styles,
       },
     }
-  }, [props.display, props.noOfLines, styles])
+  }, [props.display, props.noOfLines, styles, rest.sx])
 
   return (
     <chakra.span
