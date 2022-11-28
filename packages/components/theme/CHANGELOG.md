@@ -1,5 +1,70 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- [#6997](https://github.com/chakra-ui/chakra-ui/pull/6997)
+  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add `ChakraBaseProvider`,
+  a minimal version of `ChakraProvider` that supplies just the theme tokens, and
+  ignores components.
+
+  Historically, one of the biggest causes of the large initial JS payload is the
+  size of the component themes. With this approach, you get to apply the theme
+  for just the component you need by using `extendBaseTheme`.
+
+  > Base theme refers to the minimal theme for just the design tokens
+
+  ```jsx live=false
+  import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react"
+  import { Button } from "@chakra-ui/theme/components"
+
+  const theme = extendBaseTheme({
+    components: {
+      Button,
+    },
+  })
+
+  function App() {
+    return (
+      <ChakraBaseProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraBaseProvider>
+    )
+  }
+  ```
+
+* [#7023](https://github.com/chakra-ui/chakra-ui/pull/7023)
+  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix issue where modal
+  dialog scrolls beyond the content in Safari.
+
+- [#6886](https://github.com/chakra-ui/chakra-ui/pull/6886)
+  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2)
+  Thanks [@SpencerDuball](https://github.com/SpencerDuball)! - Added support for
+  `orientation` prop in the ButtonGroup component.
+
+  This makes it possible to now have vertical button groups when `isAttached` is
+  set to `true`.
+
+  ```jsx live=false
+  <ButtonGroup isAttached orientation="vertical">
+    <Button>Button 1</Button>
+    <Button>Button 2</Button>
+    <Button>Button 3</Button>
+    <Button>Button 4</Button>
+  </ButtonGroup>
+  ```
+
+* [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed console
+  warning with `Tabs` when using the enclosed variant.
+
+* Updated dependencies
+  [[`c9f976d67`](https://github.com/chakra-ui/chakra-ui/commit/c9f976d6784579b8dc57ae6e83c3489d874d0cce)]:
+  - @chakra-ui/theme-tools@2.0.14
+
 ## 2.2.1
 
 ### Patch Changes

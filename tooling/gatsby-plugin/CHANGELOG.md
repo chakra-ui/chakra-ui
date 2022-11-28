@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.7
+
+### Patch Changes
+
+- [`143641b8e`](https://github.com/chakra-ui/chakra-ui/commit/143641b8ef469164f1249c40e5c11d1c46bf800c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix peer dependency
+  range to support latest version of Gatsby
+
 ## 3.0.6
 
 ### Patch Changes

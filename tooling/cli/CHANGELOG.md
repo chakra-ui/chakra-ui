@@ -1,5 +1,29 @@
 # @chakra-ui/cli
 
+## 2.2.0
+
+### Minor Changes
+
+- [#5701](https://github.com/chakra-ui/chakra-ui/pull/5701)
+  [`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781)
+  Thanks [@lexanth](https://github.com/lexanth)! - Add the flag
+  `--strict-token-types` for `@chakra-ui/cli tokens` to generate strict types
+  for theme tokens (e.g. color, spacing)
+
+  ```bash
+  chakra-cli tokens --strict-token-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Box padding="abc" />
+  // valid type, but "abc" is not available in the theme
+
+  // after
+  <Box padding="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"1" | "2" | ... | undefined'.
+  ```
+
 ## 2.1.8
 
 ### Patch Changes

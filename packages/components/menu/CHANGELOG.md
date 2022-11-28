@@ -1,5 +1,35 @@
 # Change Log
 
+## 2.1.5
+
+### Patch Changes
+
+- [#7032](https://github.com/chakra-ui/chakra-ui/pull/7032)
+  [`f84891b10`](https://github.com/chakra-ui/chakra-ui/commit/f84891b103c1b666f660018442fd92151e3ea868)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add support for setting
+  the initially focused menu programmatically
+
+  ```jsx live=false
+  const Example = () => {
+    const itemRef = useRef(null)
+    return (
+      <Menu initialFocusRef={itemRef}>
+        <MenuButton>Welcome</MenuButton>
+        <MenuList>
+          <MenuItem>Menu 1</MenuItem>
+          <MenuItem ref={itemRef}>Menu 2</MenuItem>
+          <MenuItem>Menu 3</MenuItem>
+        </MenuList>
+      </Menu>
+    )
+  }
+  ```
+
+- Updated dependencies []:
+  - @chakra-ui/popper@3.0.10
+  - @chakra-ui/clickable@2.0.11
+  - @chakra-ui/descendant@3.0.11
+
 ## 2.1.4
 
 ### Patch Changes
