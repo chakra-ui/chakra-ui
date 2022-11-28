@@ -183,7 +183,7 @@ export function useMenu(props: UseMenuProps = {}) {
       }
     })
     timeoutIds.current.add(id)
-  }, [descendants, initialFocusRef])
+  }, [descendants])
 
   const focusLastItem = useCallback(() => {
     const id = setTimeout(() => {
