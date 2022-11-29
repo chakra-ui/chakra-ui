@@ -1,5 +1,14 @@
 # @chakra-ui/react-types
 
+## 2.0.5
+
+### Patch Changes
+
+- [#7046](https://github.com/chakra-ui/chakra-ui/pull/7046)
+  [`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Fixes a problem where
+  types were not exported correctly
+
 ## 2.0.4
 
 ### Patch Changes

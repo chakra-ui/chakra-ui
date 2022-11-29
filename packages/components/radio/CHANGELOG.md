@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- [#7026](https://github.com/chakra-ui/chakra-ui/pull/7026)
+  [`dcc23d1e2`](https://github.com/chakra-ui/chakra-ui/commit/dcc23d1e24d518daf2ddaeef1180b0b7143c3e79)
+  Thanks [@ArthurPedroti](https://github.com/ArthurPedroti)! - Update type of
+  `value` and `defaultValue` to `string` instead of `string | number`. This
+  reflects the internal implementation
+
+- Updated dependencies
+  [[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]:
+  - @chakra-ui/react-types@2.0.5
+  - @chakra-ui/form-control@2.0.13
+
 ## 2.0.13
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- [#7019](https://github.com/chakra-ui/chakra-ui/pull/7019)
+  [`c9f976d67`](https://github.com/chakra-ui/chakra-ui/commit/c9f976d6784579b8dc57ae6e83c3489d874d0cce)
+  Thanks [@anubra266](https://github.com/anubra266)! - Replace `tinycolor`
+  package with `color2k` for smaller bundle size
+
 ## 2.0.13
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]:
+  - @chakra-ui/react-types@2.0.5
+  - @chakra-ui/form-control@2.0.13
+  - @chakra-ui/visually-hidden@2.0.13
+
 ## 2.2.4
 
 ### Patch Changes

@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.0.13
+
+### Patch Changes
+
+- [#6886](https://github.com/chakra-ui/chakra-ui/pull/6886)
+  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2)
+  Thanks [@SpencerDuball](https://github.com/SpencerDuball)! - Added support for
+  `orientation` prop in the ButtonGroup component.
+
+  This makes it possible to now have vertical button groups when `isAttached` is
+  set to `true`.
+
+  ```jsx live=false
+  <ButtonGroup isAttached orientation="vertical">
+    <Button>Button 1</Button>
+    <Button>Button 2</Button>
+    <Button>Button 3</Button>
+    <Button>Button 4</Button>
+  </ButtonGroup>
+  ```
+
+- Updated dependencies []:
+  - @chakra-ui/spinner@2.0.11
+
 ## 2.0.12
 
 ### Patch Changes

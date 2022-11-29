@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]:
+  - @chakra-ui/react-types@2.0.5
+  - @chakra-ui/portal@2.0.11
+  - @chakra-ui/popper@3.0.10
+
 ## 2.2.1
 
 ### Patch Changes

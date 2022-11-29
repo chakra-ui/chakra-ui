@@ -1,5 +1,50 @@
 # @chakra-ui/theme-utils
 
+## 2.0.5
+
+### Patch Changes
+
+- [#6997](https://github.com/chakra-ui/chakra-ui/pull/6997)
+  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add `ChakraBaseProvider`,
+  a minimal version of `ChakraProvider` that supplies just the theme tokens, and
+  ignores components.
+
+  Historically, one of the biggest causes of the large initial JS payload is the
+  size of the component themes. With this approach, you get to apply the theme
+  for just the component you need by using `extendBaseTheme`.
+
+  > Base theme refers to the minimal theme for just the design tokens
+
+  ```jsx live=false
+  import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react"
+  import { Button } from "@chakra-ui/theme/components"
+
+  const theme = extendBaseTheme({
+    components: {
+      Button,
+    },
+  })
+
+  function App() {
+    return (
+      <ChakraBaseProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraBaseProvider>
+    )
+  }
+  ```
+
+- Updated dependencies
+  [[`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781),
+  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
+  [`1a4dad7a4`](https://github.com/chakra-ui/chakra-ui/commit/1a4dad7a4f15e24e0f529b8f8277346d0399c3fc),
+  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa),
+  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2),
+  [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)]:
+  - @chakra-ui/styled-system@2.4.0
+  - @chakra-ui/theme@2.2.2
+
 ## 2.0.4
 
 ### Patch Changes
