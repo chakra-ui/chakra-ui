@@ -45,7 +45,16 @@ it("does renders when isOpen is true", () => {
 })
 
 it("passes a11y test", async () => {
-  await testA11y(<SimpleDrawer placement="left" isOpen />)
+  const { baseElement } = render(<SimpleDrawer placement="left" isOpen />)
+  // Test baseElement because we're in a portal
+  await testA11y(baseElement, {
+    axeOptions: {
+      rules: {
+        // https://github.com/chakra-ui/chakra-ui/issues/7006
+        "aria-dialog-name": { enabled: false },
+      },
+    },
+  })
 })
 
 it("renders on the correct side under 'ltr' direction", () => {
