@@ -1,8 +1,8 @@
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
 import { createContext } from "@chakra-ui/react-context"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { usePortalManager } from "./portal-manager"
-import { useEffect, useMemo, useRef, useState } from "react"
 
 type PortalContext = HTMLDivElement | null
 
@@ -167,16 +167,12 @@ export interface PortalProps {
  */
 
 export function Portal(props: PortalProps) {
-  const { containerRef, ...rest } = props
+  const { containerRef, ...rest } = { appendToParentPortal: true, ...props }
   return containerRef ? (
     <ContainerPortal containerRef={containerRef} {...rest} />
   ) : (
     <DefaultPortal {...rest} />
   )
-}
-
-Portal.defaultProps = {
-  appendToParentPortal: true,
 }
 
 Portal.className = PORTAL_CLASSNAME
