@@ -127,6 +127,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
     isIndeterminate,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
+    "aria-valuetext": ariaValueText,
     title,
     role,
     ...rest
@@ -177,6 +178,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
         <ProgressFilledTrack
           aria-label={ariaLabel}
           aria-labelledby={ariaLabelledBy}
+          aria-valuetext={ariaValueText}
           min={min}
           max={max}
           value={value}
