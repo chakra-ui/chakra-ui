@@ -10,6 +10,7 @@ export const typography: Config = {
   letterSpacing: t.prop("letterSpacing", "letterSpacings"),
   textAlign: true,
   fontStyle: true,
+  textIndent: true,
   wordBreak: true,
   overflowWrap: true,
   textOverflow: true,
@@ -61,6 +62,10 @@ export interface TypographyProps {
    * The CSS `font-style` property
    */
   fontStyle?: Token<CSS.Property.FontStyle>
+  /**
+   * The CSS `text-indent` property
+   */
+  textIndent?: Token<CSS.Property.TextIndent>
   /**
    * The CSS `word-break` property
    */

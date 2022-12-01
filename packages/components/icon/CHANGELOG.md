@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.13
+
+### Patch Changes
+
+- [#6981](https://github.com/chakra-ui/chakra-ui/pull/6981)
+  [`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add support for styling
+  the `Icon` component from the theme object.
+
 ## 3.0.12
 
 ### Patch Changes

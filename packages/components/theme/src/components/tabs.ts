@@ -133,7 +133,7 @@ const variantEnclosed = definePartsStyle((props) => {
       border: "1px solid",
       borderColor: "transparent",
       mb: "-1px",
-      [$border.reference]: "transparent",
+      [$border.variable]: "transparent",
       _selected: {
         [$fg.variable]: `colors.${c}.600`,
         [$border.variable]: `colors.white`,

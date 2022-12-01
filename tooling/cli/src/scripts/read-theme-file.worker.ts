@@ -105,6 +105,7 @@ async function run() {
   const themeFile = process.argv[2]
   const strictComponentTypes = process.argv.includes("--strict-component-types")
   const format = process.argv.includes("--format")
+  const strictTokenTypes = process.argv.includes("--strict-token-types")
 
   if (!themeFile) {
     throw new Error("No path to theme file provided.")
@@ -121,6 +122,7 @@ async function run() {
     config: themeKeyConfiguration,
     strictComponentTypes,
     format,
+    strictTokenTypes,
   })
 
   if (process.send) {

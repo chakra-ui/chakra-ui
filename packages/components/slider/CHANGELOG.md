@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- [#6979](https://github.com/chakra-ui/chakra-ui/pull/6979)
+  [`36ac52021`](https://github.com/chakra-ui/chakra-ui/commit/36ac520213d42e379857aa421240fc85e3b71523)
+  Thanks [@Tisks](https://github.com/Tisks)! - Expose `SliderActions` and
+  `SliderState` types to improve documentation
+
+- Updated dependencies
+  [[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]:
+  - @chakra-ui/react-types@2.0.5
+
 ## 2.0.13
 
 ### Patch Changes

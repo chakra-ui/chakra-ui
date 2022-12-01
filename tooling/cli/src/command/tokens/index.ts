@@ -16,16 +16,19 @@ async function runTemplateWorker({
   themeFile,
   strictComponentTypes,
   format,
+  strictTokenTypes,
 }: {
   themeFile: string
   strictComponentTypes?: boolean
   format?: boolean
+  strictTokenTypes?: boolean
 }): Promise<string> {
   const worker = fork(
     path.join(__dirname, "..", "..", "scripts", "read-theme-file.worker.js"),
     [themeFile]
       .concat(strictComponentTypes ? "--strict-component-types" : [])
-      .concat(format ? "--format" : []),
+      .concat(format ? "--format" : [])
+      .concat(strictTokenTypes ? "--strict-token-types" : []),
     {
       stdio: ["pipe", "pipe", "pipe", "ipc"],
       cwd: process.cwd(),
@@ -51,12 +54,14 @@ export async function generateThemeTypings({
   out,
   strictComponentTypes,
   format,
+  strictTokenTypes,
   onError,
 }: {
   themeFile: string
   out?: string
   strictComponentTypes?: boolean
   format?: boolean
+  strictTokenTypes?: boolean
   onError?: () => void
 }) {
   const spinner = ora("Generating chakra theme typings").start()
@@ -65,6 +70,7 @@ export async function generateThemeTypings({
       themeFile,
       strictComponentTypes,
       format,
+      strictTokenTypes,
     })
     const outPath = await resolveOutputPath(out)
 
