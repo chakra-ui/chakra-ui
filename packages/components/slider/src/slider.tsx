@@ -45,8 +45,12 @@ export interface SliderProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slider/
  */
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
-  const styles = useMultiStyleConfig("Slider", props)
-  const ownProps = omitThemingProps(props)
+  const defaultProps: SliderProps = {
+    orientation: "horizontal",
+    ...props,
+  }
+  const styles = useMultiStyleConfig("Slider", defaultProps)
+  const ownProps = omitThemingProps(defaultProps)
   const { direction } = useTheme()
   ownProps.direction = direction
 
@@ -60,20 +64,16 @@ export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
       <SliderStylesProvider value={styles}>
         <chakra.div
           {...rootProps}
-          className={cx("chakra-slider", props.className)}
+          className={cx("chakra-slider", defaultProps.className)}
           __css={styles.container}
         >
-          {props.children}
+          {defaultProps.children}
           <input {...inputProps} />
         </chakra.div>
       </SliderStylesProvider>
     </SliderProvider>
   )
 })
-
-Slider.defaultProps = {
-  orientation: "horizontal",
-}
 
 Slider.displayName = "Slider"
 

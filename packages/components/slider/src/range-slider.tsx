@@ -54,15 +54,19 @@ export interface RangeSliderProps
  */
 export const RangeSlider = forwardRef<RangeSliderProps, "div">(
   function RangeSlider(props, ref) {
-    const styles = useMultiStyleConfig("Slider", props)
-    const ownProps = omitThemingProps(props)
+    const defaultProps: RangeSliderProps = {
+      orientation: "horizontal",
+      ...props,
+    }
+    const styles = useMultiStyleConfig("Slider", defaultProps)
+    const ownProps = omitThemingProps(defaultProps)
     const { direction } = useTheme()
     ownProps.direction = direction
 
     const { getRootProps, ...context } = useRangeSlider(ownProps)
     const ctx = useMemo(
-      () => ({ ...context, name: props.name }),
-      [context, props.name],
+      () => ({ ...context, name: defaultProps.name }),
+      [context, defaultProps.name],
     )
 
     return (
@@ -73,17 +77,13 @@ export const RangeSlider = forwardRef<RangeSliderProps, "div">(
             className="chakra-slider"
             __css={styles.container}
           >
-            {props.children}
+            {defaultProps.children}
           </chakra.div>
         </RangeSliderStylesProvider>
       </RangeSliderProvider>
     )
   },
 )
-
-RangeSlider.defaultProps = {
-  orientation: "horizontal",
-}
 
 RangeSlider.displayName = "RangeSlider"
 

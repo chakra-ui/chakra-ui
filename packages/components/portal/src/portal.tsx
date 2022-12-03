@@ -167,16 +167,17 @@ export interface PortalProps {
  */
 
 export function Portal(props: PortalProps) {
-  const { containerRef, ...rest } = props
+  const defaultProps: PortalProps = {
+    appendToParentPortal: true,
+    ...props,
+  }
+
+  const { containerRef, ...rest } = defaultProps
   return containerRef ? (
     <ContainerPortal containerRef={containerRef} {...rest} />
   ) : (
     <DefaultPortal {...rest} />
   )
-}
-
-Portal.defaultProps = {
-  appendToParentPortal: true,
 }
 
 Portal.className = PORTAL_CLASSNAME
