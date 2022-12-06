@@ -87,12 +87,12 @@ const bgFade = keyframes({
  * @see Docs https://chakra-ui.com/docs/components/skeleton
  */
 export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
-  const defaultProps: SkeletonProps = {
+  const skeletonProps: SkeletonProps = {
     fadeDuration: 0.4,
     speed: 0.8,
     ...props,
   }
-  const styles = useStyleConfig("Skeleton", defaultProps)
+  const styles = useStyleConfig("Skeleton", skeletonProps)
   const isFirstRender = useIsFirstRender()
 
   const {
@@ -103,7 +103,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
     speed,
     className,
     ...rest
-  } = omitThemingProps(defaultProps)
+  } = omitThemingProps(skeletonProps)
 
   const [startColorVar, endColorVar] = useToken("colors", [
     startColor,

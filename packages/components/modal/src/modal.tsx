@@ -136,7 +136,7 @@ const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
  */
 export const Modal: React.FC<ModalProps> = (props) => {
-  const defaultProps: ModalProps = {
+  const modalProps: ModalProps = {
     scrollBehavior: "outside",
     autoFocus: true,
     trapFocus: true,
@@ -162,10 +162,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
     motionPreset,
     lockFocusAcrossFrames,
     onCloseComplete,
-  } = defaultProps
+  } = modalProps
 
-  const styles = useMultiStyleConfig("Modal", defaultProps)
-  const modal = useModal(defaultProps)
+  const styles = useMultiStyleConfig("Modal", modalProps)
+  const modal = useModal(modalProps)
 
   const context = {
     ...modal,
