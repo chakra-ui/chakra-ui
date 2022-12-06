@@ -1,5 +1,28 @@
 # Change Log
 
+## 2.4.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4dbfc1a11`](https://github.com/chakra-ui/chakra-ui/commit/4dbfc1a115a2fce51b29f3fd3baa3a823b3e359d),
+  [`43aba8ac8`](https://github.com/chakra-ui/chakra-ui/commit/43aba8ac88dc729b17ae7474b42f82642fe5a15f),
+  [`1025a88eb`](https://github.com/chakra-ui/chakra-ui/commit/1025a88eb428adea2797c57a756ea513a6d50762),
+  [`8cfdb799e`](https://github.com/chakra-ui/chakra-ui/commit/8cfdb799eb0d407a25dd10bbd850cadd340c79dd)]:
+  - @chakra-ui/modal@2.2.5
+  - @chakra-ui/portal@2.0.12
+  - @chakra-ui/skeleton@2.0.19
+  - @chakra-ui/slider@2.0.15
+  - @chakra-ui/card@2.1.2
+  - @chakra-ui/progress@2.1.2
+  - @chakra-ui/accordion@2.1.4
+  - @chakra-ui/menu@2.1.5
+  - @chakra-ui/tabs@2.1.5
+  - @chakra-ui/tooltip@2.2.3
+  - @chakra-ui/provider@2.0.25
+  - @chakra-ui/toast@4.0.5
+  - @chakra-ui/table@2.0.12
+
 ## 2.4.2
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # Change Log
 
+## 2.2.5
+
+### Patch Changes
+
+- [#7068](https://github.com/chakra-ui/chakra-ui/pull/7068)
+  [`4dbfc1a11`](https://github.com/chakra-ui/chakra-ui/commit/4dbfc1a115a2fce51b29f3fd3baa3a823b3e359d)
+  Thanks [@cereallarceny](https://github.com/cereallarceny)! - Removed
+  defaultProps from components to support React 18.3.0
+
+* [#7054](https://github.com/chakra-ui/chakra-ui/pull/7054)
+  [`1025a88eb`](https://github.com/chakra-ui/chakra-ui/commit/1025a88eb428adea2797c57a756ea513a6d50762)
+  Thanks [@lexanth](https://github.com/lexanth)! - Update modal a11y unit tests
+  to correctly cover the portal
+
+* Updated dependencies
+  [[`4dbfc1a11`](https://github.com/chakra-ui/chakra-ui/commit/4dbfc1a115a2fce51b29f3fd3baa3a823b3e359d)]:
+  - @chakra-ui/portal@2.0.12
+
 ## 2.2.4
 
 ### Patch Changes

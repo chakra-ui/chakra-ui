@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.2
+
+### Patch Changes
+
+- [#7066](https://github.com/chakra-ui/chakra-ui/pull/7066)
+  [`8cfdb799e`](https://github.com/chakra-ui/chakra-ui/commit/8cfdb799eb0d407a25dd10bbd850cadd340c79dd)
+  Thanks [@nidzola](https://github.com/nidzola)! - Ensure `aria-valuetext`
+  property is set on the correct element
+
 ## 2.1.1
 
 ### Patch Changes

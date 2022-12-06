@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.0.27
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/provider@2.0.25
+
 ## 2.0.26
 
 ### Patch Changes

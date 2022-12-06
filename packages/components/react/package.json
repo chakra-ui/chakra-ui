@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "src/index.ts",
   "files": [
