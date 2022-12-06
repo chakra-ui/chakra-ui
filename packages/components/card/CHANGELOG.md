@@ -1,5 +1,13 @@
 # @chakra-ui/card
 
+## 2.1.2
+
+### Patch Changes
+
+- [`43aba8ac8`](https://github.com/chakra-ui/chakra-ui/commit/43aba8ac88dc729b17ae7474b42f82642fe5a15f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor style
+  context to use `createStylesContext` from `@chakra-ui/system`
+
 ## 2.1.1
 
 ### Patch Changes
