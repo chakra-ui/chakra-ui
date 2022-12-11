@@ -82,7 +82,7 @@ module.exports = {
         /**
          * @property {boolean} [isBaseProvider=false]
          * Setting this to true will render the `ChakraBaseProvider`
-         * with only the inclusion of theme tokens and not components
+         * which only uses theme tokens initially and not default component themes
          */
         isBaseProvider: false,
       },
