@@ -79,6 +79,12 @@ module.exports = {
          * if your app uses a lot z-index to position elements.
          */
         portalZIndex: 40,
+        /**
+         * @property {boolean} [isBaseProvider=false]
+         * Setting this to true will render the `ChakraBaseProvider`
+         * with only the inclusion of theme tokens and not components
+         */
+        isBaseProvider: false,
       },
     },
   ],
