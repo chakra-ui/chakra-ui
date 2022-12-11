@@ -1,15 +1,19 @@
 import * as React from "react"
-import { ChakraProvider } from "@chakra-ui/react"
-import theme from "./theme"
+import { ChakraProvider, ChakraBaseProvider } from "@chakra-ui/react"
+import { theme as defaultTheme, baseTheme } from "./theme"
 
-export const WrapRootElement = ({ element, resetCSS = true, portalZIndex }) => {
+export const WrapRootElement = ({
+  element,
+  isBaseProvider = false,
+  resetCSS = true,
+  portalZIndex,
+}) => {
+  const Provider = isBaseProvider ? ChakraBaseProvider : ChakraProvider
+
+  const theme = isBaseProvider ? baseTheme : defaultTheme
   return (
-    <ChakraProvider
-      theme={theme}
-      resetCSS={resetCSS}
-      portalZIndex={portalZIndex}
-    >
+    <Provider theme={theme} resetCSS={resetCSS} portalZIndex={portalZIndex}>
       {element}
-    </ChakraProvider>
+    </Provider>
   )
 }
