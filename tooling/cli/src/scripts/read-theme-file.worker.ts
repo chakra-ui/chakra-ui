@@ -3,7 +3,6 @@ import path from "path"
 import fs from "fs"
 import * as tsNode from "ts-node"
 import * as tsConfigPaths from "tsconfig-paths"
-import moduleAlias from "module-alias"
 import { createThemeTypingsInterface } from "../command/tokens/create-theme-typings-interface"
 import { themeKeyConfiguration } from "../command/tokens/config"
 import { isObject } from "../utils/is-object"
@@ -45,30 +44,8 @@ async function readTheme(themeFilePath: string) {
       swc: true,
     })
 
-    /**
-     * Replace the module aliases in the transpiled code,
-     * because ts-node does not resolve them to relative require paths.
-     *
-     * 🚨 Note that only the first alias target will work
-     * @example tsconfig.json
-     * {
-     *   "baseUrl": "src",
-     *   "paths": {
-     *     "@alias/*": ["target/*"]
-     *   }
-     * }
-     */
-    const aliases = Object.keys(tsConfig.paths).reduce((acc, tsAlias) => {
-      // target/* -> target/
-      const firstTarget = tsConfig.paths[tsAlias][0].replace(/\*$/, "")
-      // @alias/* -> @alias
-      const jsAlias = tsAlias.replace(/\/\*$/, "")
-      // @alias = baseUrl/target/
-      acc[jsAlias] = path.join(tsConfig.absoluteBaseUrl, firstTarget)
-      return acc
-    }, {} as Record<string, string>)
-
-    moduleAlias.addAliases(aliases)
+    // registers a loader to help node `require` on paths in the tsConfig `paths`
+    tsConfigPaths.register()
   } else {
     // it is a JS project
     const defaultProject = path.join(

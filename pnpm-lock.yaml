@@ -2037,7 +2037,6 @@ importers:
     specifiers:
       '@swc/core': ^1.2.177
       '@types/lodash.throttle': ^4.1.7
-      '@types/module-alias': ^2.0.1
       '@types/ora': ^3.2.0
       '@types/update-notifier': 5.0.0
       chokidar: ^3.5.3
@@ -2046,7 +2045,6 @@ importers:
       cli-welcome: ^2.2.2
       commander: ^9.3.0
       lodash.throttle: ^4.1.1
-      module-alias: ^2.2.2
       ora: ^5.3.0
       prettier: ^2.7.1
       regenerator-runtime: ^0.13.7
@@ -2061,7 +2059,6 @@ importers:
       cli-welcome: 2.2.2
       commander: 9.4.0
       lodash.throttle: 4.1.1
-      module-alias: 2.2.2
       ora: 5.4.1
       prettier: 2.7.1
       regenerator-runtime: 0.13.9
@@ -2070,7 +2067,6 @@ importers:
       update-notifier: 5.1.0
     devDependencies:
       '@types/lodash.throttle': 4.1.7
-      '@types/module-alias': 2.0.1
       '@types/ora': 3.2.0
       '@types/update-notifier': 5.0.0
 
@@ -10531,10 +10527,6 @@ packages:
     dependencies:
       '@types/node': 18.0.6
     dev: false
-
-  /@types/module-alias/2.0.1:
-    resolution: {integrity: sha512-DN/CCT1HQG6HquBNJdLkvV+4v5l/oEuwOHUPLxI+Eub0NED+lk0YUfba04WGH90EINiUrNgClkNnwGmbICeWMQ==}
-    dev: true
 
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
@@ -21675,10 +21667,6 @@ packages:
     dependencies:
       pathe: 0.3.2
       pkg-types: 0.3.3
-    dev: false
-
-  /module-alias/2.2.2:
-    resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
     dev: false
 
   /moment/2.29.4:
