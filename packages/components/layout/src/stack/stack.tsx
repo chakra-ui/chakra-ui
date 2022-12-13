@@ -111,7 +111,8 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
 
           // Don't show divider if child returns null
           const nullChild =
-            typeof child.type === "function" && child.type() === null
+            typeof child.type === "function" &&
+            (child.type as Function)() === null
           if (!hasDivider || nullChild) return _child
 
           const clonedDivider = cloneElement(
