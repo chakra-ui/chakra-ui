@@ -109,7 +109,7 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
           const wrappedChild = <StackItem key={key}>{child}</StackItem>
           const _child = shouldWrapChildren ? wrappedChild : child
 
-          // Don't show divider if child return null
+          // Don't show divider if child returns null
           const nullChild =
             typeof child.type === "function" && child.type() === null
           if (!hasDivider || nullChild) return _child
