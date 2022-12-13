@@ -81,6 +81,9 @@ export const InputGroup = forwardRef<InputGroupProps, "div">(
           width: "100%",
           display: "flex",
           position: "relative",
+          // Parts of inputs override z-index to ensure that they stack correctly on each other
+          // Create a new stacking context so that these overrides don't leak out and conflict with other z-indexes
+          isolation: "isolate",
         }}
         {...rest}
       >
