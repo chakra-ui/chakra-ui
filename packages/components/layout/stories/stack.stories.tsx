@@ -29,6 +29,17 @@ export const WithCustomDivider = () => (
   </div>
 )
 
+const Empty = () => null
+export const WithCustomDividerAndNullComponent = () => (
+  <div>
+    <Stack spacing="40px" divider={<Divider sx={{ borderColor: "red.200" }} />}>
+      <Box>1</Box>
+      <Empty></Empty>
+      <Box>3</Box>
+    </Stack>
+  </div>
+)
+
 export const Inline = () => (
   <Stack w="100%" bg="blue.500" direction="row">
     <Box boxSize="40px" bg="white" borderRadius="full" />
