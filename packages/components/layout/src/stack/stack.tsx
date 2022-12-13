@@ -110,8 +110,6 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
           const _child = shouldWrapChildren ? wrappedChild : child
 
           // Don't show divider if child return null
-          console.log("oooooo")
-          console.log(child)
           const nullChild =
             typeof child.type === "function" && child.type() === null
           if (!hasDivider || nullChild) return _child
