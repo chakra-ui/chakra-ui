@@ -59,8 +59,8 @@
     "react": ">=18"
   },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
-    "build:fast": "JSX=1 tsup src/index.ts",
+    "build": "vite build -- --dts",
+    "build:fast": "vite build",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",

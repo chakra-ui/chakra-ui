@@ -6,7 +6,4 @@ export default defineConfig({
   external: ["@chakra-ui/storybook-addon"],
   format: ["esm", "cjs"],
   inject: ["../../react-shim.js"],
-  outExtension(ctx) {
-    return { js: `.${ctx.format}.js` }
-  },
 })
