@@ -14,6 +14,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
+  "clean-package": "../../../clean-package.config.json",
   "main": "src/index.ts",
   "files": [
     "dist"
@@ -46,11 +47,12 @@
     "react": ">=18"
   },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
+    "vite-node": "vite -c ../../../vite.config.ts",
+    "build": "pnpm vite-node build -- --dts",
+    "build:fast": "pnpm vite-node build",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   }

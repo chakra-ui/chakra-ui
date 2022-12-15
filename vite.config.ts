@@ -3,7 +3,9 @@ import { join } from "path"
 import { defineConfig } from "vite"
 import dts from "vite-plugin-dts"
 
-const pkg = require(join(process.cwd(), "package.json"))
+const cwd = process.cwd()
+
+const pkg = require(join(cwd, "package.json"))
 
 const args = process.argv.slice(2)
 
@@ -13,6 +15,7 @@ const flags = {
 }
 
 const external = [
+  "react/jsx-runtime",
   ...Object.keys(pkg.dependencies),
   ...Object.keys(pkg.peerDependencies),
 ]
@@ -22,13 +25,14 @@ export default defineConfig({
   plugins: [
     flags.dts &&
       dts({
-        rollupTypes: true,
         skipDiagnostics: true,
+        entryRoot: "src",
+        staticImport: true,
       }),
-    react({ jsxRuntime: "classic" }),
+    react(),
   ],
   build: {
-    target: "es2015",
+    target: "esnext",
     minify: false,
     lib: {
       entry: join(process.cwd(), "src/index.ts"),
@@ -38,6 +42,23 @@ export default defineConfig({
     watch: flags.dev ? { clearScreen: true } : undefined,
     rollupOptions: {
       external,
+      treeshake: true,
+      output: [
+        {
+          format: "cjs",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          exports: "named",
+          entryFileNames: "[name].js",
+        },
+        {
+          format: "es",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          exports: "named",
+          entryFileNames: "[name].mjs",
+        },
+      ],
     },
   },
 })
