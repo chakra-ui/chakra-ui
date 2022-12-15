@@ -25,13 +25,14 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "build": "pnpm vite-node build -- --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts --format=esm,cjs",
+    "build:fast": "pnpm vite-node build",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "vite-node": "vite -c ../../../vite.config.ts"
   },
   "peerDependencies": {
     "react": ">=18"
@@ -39,5 +40,6 @@
   "devDependencies": {
     "react": "^18.0.0",
     "clean-package": "2.1.1"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

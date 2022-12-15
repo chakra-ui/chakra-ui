@@ -27,13 +27,14 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format=esm,cjs --dts",
+    "build": "pnpm vite-node build -- --dts",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts --format=esm,cjs",
+    "build:fast": "pnpm vite-node build",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "vite-node": "vite -c ../../../vite.config.ts"
   },
   "devDependencies": {
     "@chakra-ui/shared-utils": "workspace:*",
@@ -44,5 +45,6 @@
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "lodash.mergewith": "4.6.2"
-  }
+  },
+  "clean-package": "../../../clean-package.config.json"
 }

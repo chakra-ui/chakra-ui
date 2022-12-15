@@ -1,4 +1,5 @@
 import react from "@vitejs/plugin-react"
+import { builtinModules } from "module"
 import { join } from "path"
 import { defineConfig } from "vite"
 import dts from "vite-plugin-dts"
@@ -15,10 +16,14 @@ const flags = {
 }
 
 const external = [
+  ...builtinModules,
   "react/jsx-runtime",
-  ...Object.keys(pkg.dependencies),
-  ...Object.keys(pkg.peerDependencies),
+  "@chakra-ui/storybook-addon",
+  ...Object.keys(pkg.dependencies ?? {}),
+  ...Object.keys(pkg.peerDependencies ?? {}),
 ]
+
+const defaultEntry = join(process.cwd(), "src", "index.ts")
 
 // see https://vitejs.dev/config/
 export default defineConfig({
@@ -29,14 +34,13 @@ export default defineConfig({
         entryRoot: "src",
         staticImport: true,
       }),
-    react(),
+    react({ jsxRuntime: "classic" }),
   ],
   build: {
     target: "esnext",
     minify: false,
     lib: {
-      entry: join(process.cwd(), "src/index.ts"),
-      formats: ["es", "cjs"],
+      entry: pkg.entrypoints || defaultEntry,
       fileName: (format) => (format === "es" ? "index.mjs" : "index.js"),
     },
     watch: flags.dev ? { clearScreen: true } : undefined,

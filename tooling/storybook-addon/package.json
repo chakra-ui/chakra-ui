@@ -2,8 +2,8 @@
   "name": "@chakra-ui/storybook-addon",
   "version": "4.0.14",
   "description": "The official Storybook Addon for Chakra UI",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -11,24 +11,29 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/index.cjs.js",
+      "require": "./dist/index.js",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js"
+      "import": "./dist/index.mjs"
     },
     "./*": "./*",
     "./preset": {
-      "require": "./dist/preset/index.cjs.js",
-      "import": "./dist/preset/index.esm.js"
+      "require": "./dist/preset/index.js",
+      "import": "./dist/preset/index.mjs"
     },
     "./preset/decorators": {
-      "require": "./dist/preset/decorators.cjs.js",
-      "import": "./dist/preset/decorators.esm.js"
+      "require": "./dist/preset/decorators.js",
+      "import": "./dist/preset/decorators.mjs"
     },
     "./preset/register": {
-      "require": "./dist/preset/register.cjs.js",
-      "import": "./dist/preset/register.esm.js"
+      "require": "./dist/preset/register.js",
+      "import": "./dist/preset/register.mjs"
     }
   },
+  "entrypoints": [
+    "src/index.ts",
+    "src/preset/decorators.ts",
+    "src/preset/register.ts"
+  ],
   "typesVersions": {
     "*": {
       "preset": [
@@ -43,11 +48,12 @@
     }
   },
   "scripts": {
-    "build": "tsup --dts",
-    "dev": "pnpm build -- --watch",
+    "vite-node": "vite -c ../../vite.config.ts",
+    "build": "pnpm vite-node build -- --dts",
+    "build:fast": "pnpm vite-node build",
+    "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup"
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

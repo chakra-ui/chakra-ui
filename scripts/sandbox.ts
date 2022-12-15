@@ -5,21 +5,23 @@ async function main() {
   const pkgs = await findPackages("packages")
   await Promise.all(
     pkgs.map(async (pkg) => {
-      // check if src contains tsx files
-      const files = await fs.readdir(`${pkg.dir}/src`)
-      const tsx = files.some((f) => f.endsWith(".tsx"))
+      try {
+        await fs.rm(`${pkg.dir}/tsup.config.ts`)
+        if (pkg.manifest.name !== "@chakra-ui/theme") {
+          await fs.rm(`${pkg.dir}/clean-package.config.json`)
+        }
+      } catch (error) {
+        // no-op
+      }
 
       let data = {
         ...pkg.manifest,
-        main: "dist/index.cjs.js",
-        module: "dist/index.esm.js",
+        "clean-package": "../../../clean-package.config.json",
         scripts: {
           ...pkg.manifest.scripts,
-          build: !tsx
-            ? "tsup src/index.ts --dts"
-            : "JSX=1 tsup src/index.ts --dts",
-          "build:fast": !tsx ? "tsup src/index.ts" : "JSX=1 tsup src/index.ts",
-          dev: "pnpm build -- --watch",
+          "vite-node": "vite -c ../../../vite.config.ts",
+          build: "pnpm vite-node build -- --dts",
+          "build:fast": "pnpm vite-node build",
         },
       }
 

@@ -38,12 +38,14 @@
     "clean-package": "2.1.1"
   },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
+    "build": "pnpm vite-node build -- --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts",
+    "build:fast": "pnpm vite-node build",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
-  }
+    "postpack": "clean-package restore",
+    "vite-node": "vite -c ../../../vite.config.ts"
+  },
+  "clean-package": "../../../clean-package.config.json"
 }
