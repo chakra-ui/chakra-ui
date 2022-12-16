@@ -144,7 +144,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
       className={_className}
       {...rest}
       __css={{
-        width: fitContent ? "fit-content" : "initial",
+        width: fitContent ? "fit-content" : undefined,
         ...styles,
         ...cssVarStyles,
         _dark: { ...cssVarStyles },
