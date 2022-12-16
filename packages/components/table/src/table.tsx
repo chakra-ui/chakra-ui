@@ -36,7 +36,7 @@ export interface TableProps
  */
 export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)
-  const { className, layout = "auto", ...tableProps } = omitThemingProps(props)
+  const { className, layout, ...tableProps } = omitThemingProps(props)
 
   return (
     <TableStylesProvider value={styles}>
