@@ -19,15 +19,8 @@ const [TableStylesProvider, useTableStyles] = createContext<
 
 export { useTableStyles }
 
-type Globals =
-  | "-moz-initial"
-  | "inherit"
-  | "initial"
-  | "revert"
-  | "revert-layer"
-  | "unset"
 export interface TableOptions {
-  layout?: Globals | "auto" | "fixed"
+  layout?: SystemStyleObject["tableLayout"]
 }
 
 export interface TableProps
