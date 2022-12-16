@@ -16,6 +16,17 @@ export const typography: Config = {
   textOverflow: true,
   textTransform: true,
   whiteSpace: true,
+  isTruncated: {
+    transform(value) {
+      if (value === true) {
+        return {
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+        }
+      }
+    },
+  },
   noOfLines: {
     static: {
       overflow: "hidden",
@@ -90,4 +101,8 @@ export interface TypographyProps {
    * Used to visually truncate a text after a number of lines.
    */
   noOfLines?: ResponsiveValue<number>
+  /**
+   * If `true`, it clamps truncate a text after one line.
+   */
+  isTruncated?: boolean
 }
