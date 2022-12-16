@@ -39,6 +39,10 @@ export interface SkeletonOptions {
    * 0.4
    */
   fadeDuration?: number
+  /**
+   * If `true`, the skeleton will take the width of it's children
+   */
+  fitContent?: boolean
 }
 
 const StyledSkeleton = chakra("div", {
@@ -102,6 +106,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
     fadeDuration,
     speed,
     className,
+    fitContent,
     ...rest
   } = omitThemingProps(skeletonProps)
 
@@ -139,6 +144,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
       className={_className}
       {...rest}
       __css={{
+        width: fitContent ? "fit-content" : undefined,
         ...styles,
         ...cssVarStyles,
         _dark: { ...cssVarStyles },
