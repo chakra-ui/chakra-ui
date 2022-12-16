@@ -1,5 +1,13 @@
 # @chakra-ui/card
 
+## 2.1.3
+
+### Patch Changes
+
+- [#7114](https://github.com/chakra-ui/chakra-ui/pull/7114)
+  [`0b8c2cf65`](https://github.com/chakra-ui/chakra-ui/commit/0b8c2cf658d3ab5a9feecd8ceb891208ca0fe4ac)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix theme being overriden
+
 ## 2.1.2
 
 ### Patch Changes

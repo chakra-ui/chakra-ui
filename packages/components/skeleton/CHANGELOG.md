@@ -1,5 +1,30 @@
 # Change Log
 
+## 2.0.20
+
+### Patch Changes
+
+- [#7074](https://github.com/chakra-ui/chakra-ui/pull/7074)
+  [`4957cf6d5`](https://github.com/chakra-ui/chakra-ui/commit/4957cf6d51fb895fcacd3d30c9351b79261dd19c)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add support for
+  `fitContent` prop.
+
+  When set to `true`, the `Skeleton` will take the width of its children.
+
+  ```jsx live=false
+  <Skeleton fitContent>
+    <p>Hello World</p>
+  </Skeleton>
+  ```
+
+* [#7115](https://github.com/chakra-ui/chakra-ui/pull/7115)
+  [`8992c86ad`](https://github.com/chakra-ui/chakra-ui/commit/8992c86ad799fff07e1b2cd51af2ba8e5efe1d4c)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix theme being overidden
+  in dark mode
+
+* Updated dependencies []:
+  - @chakra-ui/media-query@3.2.8
+
 ## 2.0.19
 
 ### Patch Changes
