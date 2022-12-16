@@ -136,6 +136,18 @@ const [ModalContextProvider, useModalContext] = createContext<ModalContext>({
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
  */
 export const Modal: React.FC<ModalProps> = (props) => {
+  const modalProps: ModalProps = {
+    scrollBehavior: "outside",
+    autoFocus: true,
+    trapFocus: true,
+    returnFocusOnClose: true,
+    blockScrollOnMount: true,
+    allowPinchZoom: false,
+    motionPreset: "scale",
+    lockFocusAcrossFrames: true,
+    ...props,
+  }
+
   const {
     portalProps,
     children,
@@ -150,10 +162,10 @@ export const Modal: React.FC<ModalProps> = (props) => {
     motionPreset,
     lockFocusAcrossFrames,
     onCloseComplete,
-  } = props
+  } = modalProps
 
-  const styles = useMultiStyleConfig("Modal", props)
-  const modal = useModal(props)
+  const styles = useMultiStyleConfig("Modal", modalProps)
+  const modal = useModal(modalProps)
 
   const context = {
     ...modal,
@@ -178,17 +190,6 @@ export const Modal: React.FC<ModalProps> = (props) => {
       </ModalStylesProvider>
     </ModalContextProvider>
   )
-}
-
-Modal.defaultProps = {
-  lockFocusAcrossFrames: true,
-  returnFocusOnClose: true,
-  scrollBehavior: "outside",
-  trapFocus: true,
-  autoFocus: true,
-  blockScrollOnMount: true,
-  allowPinchZoom: false,
-  motionPreset: "scale",
 }
 
 Modal.displayName = "Modal"
