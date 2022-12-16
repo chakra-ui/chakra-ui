@@ -147,7 +147,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
         width: fitContent ? "fit-content" : undefined,
         ...styles,
         ...cssVarStyles,
-        _dark: { ...cssVarStyles },
+        _dark: { ...(styles as any)["_dark"], ...cssVarStyles },
         animation: `${speed}s linear infinite alternate ${bgFade}`,
       }}
     />
