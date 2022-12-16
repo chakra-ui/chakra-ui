@@ -1,5 +1,14 @@
 # @chakra-ui/table
 
+## 2.0.13
+
+### Patch Changes
+
+- [#7117](https://github.com/chakra-ui/chakra-ui/pull/7117)
+  [`c4b3e9647`](https://github.com/chakra-ui/chakra-ui/commit/c4b3e9647f794de00a7adb102298363641e33ede)
+  Thanks [@anubra266](https://github.com/anubra266)! - Added the `layout` prop
+  to set the `tableLayout` CSS property.
+
 ## 2.0.12
 
 ### Patch Changes

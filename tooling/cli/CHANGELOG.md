@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 2.2.1
+
+### Patch Changes
+
+- [#7099](https://github.com/chakra-ui/chakra-ui/pull/7099)
+  [`322a9f424`](https://github.com/chakra-ui/chakra-ui/commit/322a9f4240211876bfdbe170d18f43345da00fc6)
+  Thanks [@deecewan](https://github.com/deecewan)! - Support TS Config paths
+  more completely
+
 ## 2.2.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#7096](https://github.com/chakra-ui/chakra-ui/pull/7096)
+  [`3547207e5`](https://github.com/chakra-ui/chakra-ui/commit/3547207e50b9245fc6929d6a3f04450654318f5e)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add option
+  to use `ChakraBaseProvider` instead of `ChakraProvider`. This will only apply
+  theme tokens initially and not default theming for components.
+
 ## 3.0.7
 
 ### Patch Changes

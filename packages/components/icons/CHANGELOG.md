@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.14
+
+### Patch Changes
+
+- [`37b7a130a`](https://github.com/chakra-ui/chakra-ui/commit/37b7a130aaff0cbb97f206978315075eb06e5100)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `ReactIcon` to
+  align with Figma UI Kit
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.13
+
 ## 2.0.13
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- [`37b7a130a`](https://github.com/chakra-ui/chakra-ui/commit/37b7a130aaff0cbb97f206978315075eb06e5100)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bring back
+  `isTruncated` to solve some edge cases with `noOfLines={1}`
+
 ## 2.4.0
 
 ### Minor Changes
