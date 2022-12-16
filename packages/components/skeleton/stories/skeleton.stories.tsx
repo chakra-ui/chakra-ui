@@ -31,7 +31,7 @@ export const AsContainer = () => (
   </Skeleton>
 )
 
-export const FitContent = () => (
+export const WithFitContent = () => (
   <Skeleton fitContent>
     <span>Chakra ui is cool</span>
   </Skeleton>
