@@ -19,7 +19,16 @@ const [TableStylesProvider, useTableStyles] = createContext<
 
 export { useTableStyles }
 
-export interface TableOptions {}
+type Globals =
+  | "-moz-initial"
+  | "inherit"
+  | "initial"
+  | "revert"
+  | "revert-layer"
+  | "unset"
+export interface TableOptions {
+  layout?: Globals | "auto" | "fixed"
+}
 
 export interface TableProps
   extends HTMLChakraProps<"table">,
@@ -34,13 +43,13 @@ export interface TableProps
  */
 export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)
-  const { className, ...tableProps } = omitThemingProps(props)
+  const { className, layout = "auto", ...tableProps } = omitThemingProps(props)
 
   return (
     <TableStylesProvider value={styles}>
       <chakra.table
         ref={ref}
-        __css={styles.table}
+        __css={{ tableLayout: layout, ...styles.table }}
         className={cx("chakra-table", className)}
         {...tableProps}
       />
