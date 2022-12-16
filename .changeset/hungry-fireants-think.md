@@ -2,5 +2,12 @@
 "@chakra-ui/skeleton": patch
 ---
 
-Add `fitContent` prop, so when it's true, Skeleton would take the width of it's
-children.
+Add support for `fitContent` prop.
+
+When set to `true`, the `Skeleton` will take the width of its children.
+
+```jsx live=false
+<Skeleton fitContent>
+   <p>Hello World</p>
+</Skeleton>
+```
