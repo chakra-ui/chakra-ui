@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/theme": patch
+"@chakra-ui/skeleton": patch
 ---
 
-Update skeleton to take width of content
+Add `fitContent` prop

@@ -18,7 +18,6 @@ const baseStyle = defineStyle({
   borderColor: $endColor.reference,
   opacity: 0.7,
   borderRadius: "sm",
-  width: "fit-content",
 })
 
 export const skeletonTheme = defineStyleConfig({
