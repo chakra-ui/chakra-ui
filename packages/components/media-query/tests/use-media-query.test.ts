@@ -43,4 +43,20 @@ describe("with useMediaQuery", () => {
     act(() => window.resizeTo(360, 640))
     expect(result.current).toEqual([true, false, false, false])
   })
+
+  test("should return correct value after first render", () => {
+    act(() => window.resizeTo(540, 800))
+
+    const { result } = renderHook(() =>
+      useMediaQuery([
+        "(max-width: 410px)",
+        "(min-width: 411px) and (max-width: 615px)",
+        "(min-width: 616px) and (max-width: 1023px)",
+        "(min-width: 1024px)",
+      ]),
+    )
+
+    expect(result.all[0]).toEqual([false, true, false, false])
+    expect(result.current).toEqual([false, true, false, false])
+  })
 })
