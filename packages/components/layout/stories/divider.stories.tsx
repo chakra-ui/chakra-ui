@@ -19,10 +19,8 @@ export default {
  */
 export const Basic = () => <Divider />
 
-export const Vertical = () => <Divider orientation="vertical" />
+export const Vertical = () => <Divider axis="vertical" />
 
-export const Horizontal = () => <Divider orientation="horizontal" />
+export const Horizontal = () => <Divider axis="horizontal" />
 
-export const DashedVariant = () => (
-  <Divider orientation="horizontal" variant="dashed" />
-)
+export const DashedVariant = () => <Divider variant="dashed" />
