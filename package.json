@@ -36,7 +36,6 @@
     "twitter:gen": "tsx scripts/twitter-generate.ts",
     "twitter:write": "tsx scripts/twitter-write.ts",
     "csb": "tsx scripts/csb.ts",
-    "csb:install": "pnpm add -g @pnpm/exe@7 && pnpm install",
     "create:pkg": "plop component",
     "version": "changeset version",
     "release": "changeset publish",
