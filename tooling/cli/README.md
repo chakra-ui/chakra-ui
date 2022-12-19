@@ -25,6 +25,7 @@ Options:
   --strict-token-types      Generate strict types for theme tokens (e.g. color, spacing)
   --no-format               Disable auto formatting
   --watch [path]            Watch directory for changes and rebuild
+  --template <template>     Choose the template to use for the generation (choices: "default", "augmentation", default: "default"
   -h, --help                display help for command
 
 Example call:
