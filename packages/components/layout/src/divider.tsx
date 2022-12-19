@@ -5,8 +5,10 @@ import {
   ThemingProps,
   useStyleConfig,
   HTMLChakraProps,
+  ResponsiveValue,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
+import { useBreakpointValue } from "../../../components/media-query/src/use-breakpoint-value"
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -28,12 +30,12 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     borderColor,
     ...styles
   } = useStyleConfig("Divider", props)
-  const {
-    className,
-    orientation = "horizontal",
-    __css,
-    ...rest
-  } = omitThemingProps(props)
+  const { className, axis, __css, ...rest } = omitThemingProps(props)
+
+  const axisValue = axis
+    ? useBreakpointValue(typeof axis === "string" ? [axis] : axis) ??
+      "horizontal"
+    : "horizontal"
 
   const dividerStyles = {
     vertical: {
@@ -51,15 +53,14 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
   return (
     <chakra.hr
       ref={ref}
-      aria-orientation={orientation}
+      aria-orientation={axisValue}
       {...rest}
       __css={{
         ...styles,
         border: "0",
-
         borderColor,
         borderStyle,
-        ...dividerStyles[orientation],
+        ...dividerStyles[axisValue],
         ...__css,
       }}
       className={cx("chakra-divider", className)}
@@ -70,7 +71,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
 export interface DividerProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"Divider"> {
-  orientation?: "horizontal" | "vertical"
+  axis?: ResponsiveValue<"horizontal" | "vertical">
 }
 
 Divider.displayName = "Divider"
