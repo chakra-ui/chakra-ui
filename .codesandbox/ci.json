@@ -8,6 +8,7 @@
     "packages/components/avatar",
     "packages/components/breadcrumb",
     "packages/components/button",
+    "packages/components/card",
     "packages/components/checkbox",
     "packages/components/clickable",
     "packages/components/close-button",
