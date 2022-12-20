@@ -7,7 +7,9 @@
 <h1 align="center">Build Accessible React Apps with Speed ⚡️</h1>
 <br>
 
-<p align="center">
+
+<br>
+<p align="">
   <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/react"/>
   <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/chakra-ui/chakra-ui.svg?logo=lgtm&logoWidth=18"/>
   <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
