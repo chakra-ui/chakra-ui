@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.16
+
+### Patch Changes
+
+- [#7095](https://github.com/chakra-ui/chakra-ui/pull/7095)
+  [`40779c6b1`](https://github.com/chakra-ui/chakra-ui/commit/40779c6b1195bf208f7be20d838ea5f22716231b)
+  Thanks [@Tisks](https://github.com/Tisks)! - Expose `RangeSliderState` and
+  `RangeSliderActions` types to improve documentation
+
 ## 2.0.15
 
 ### Patch Changes

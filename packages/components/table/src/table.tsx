@@ -19,7 +19,9 @@ const [TableStylesProvider, useTableStyles] = createContext<
 
 export { useTableStyles }
 
-export interface TableOptions {}
+export interface TableOptions {
+  layout?: SystemStyleObject["tableLayout"]
+}
 
 export interface TableProps
   extends HTMLChakraProps<"table">,
@@ -34,13 +36,13 @@ export interface TableProps
  */
 export const Table = forwardRef<TableProps, "table">((props, ref) => {
   const styles = useMultiStyleConfig("Table", props)
-  const { className, ...tableProps } = omitThemingProps(props)
+  const { className, layout, ...tableProps } = omitThemingProps(props)
 
   return (
     <TableStylesProvider value={styles}>
       <chakra.table
         ref={ref}
-        __css={styles.table}
+        __css={{ tableLayout: layout, ...styles.table }}
         className={cx("chakra-table", className)}
         {...tableProps}
       />
