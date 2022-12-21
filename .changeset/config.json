@@ -15,8 +15,8 @@
   "ignore": [
     "create-react-app-ts",
     "gatsby-starter-default",
-    "chakra-nextjs",
-    "chakra-nextjs-ts",
+    "chakra-next-app",
+    "chakra-next-pages",
     "chakra-storybook-addon",
     "vite-ts"
   ]
