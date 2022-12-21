@@ -13,8 +13,8 @@
     "@emotion/styled": "^11.8.1",
     "cookies-next": "^2.0.4",
     "framer-motion": "^6.2.9",
-    "next": "^12.2.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "next": "^13.0.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
