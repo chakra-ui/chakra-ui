@@ -35,9 +35,9 @@ function subtract(value: string) {
   if (!value) return value
   value = px(value) ?? value
   const factor = value.endsWith("px")
-    ? -1
-    : // the equivalent of 1px in em using a 16px base
-      -0.0625
+    ? -0.02
+    : // the equivalent of 0.02px in em using a 2px base
+      -0.01
   return isNumber(value)
     ? `${value + factor}`
     : value.replace(/(\d+\.?\d*)/u, (m) => `${parseFloat(m) + factor}`)
