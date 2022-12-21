@@ -130,6 +130,10 @@ const setInnerArrowStyles = (state: State) => {
   ) as HTMLElement | null
 
   if (!inner) return
+  const boxShadow = getBoxShadow(state.placement)
+  if (boxShadow) {
+    inner.style.setProperty("--popper-arrow-default-shadow", boxShadow)
+  }
 
   Object.assign(inner.style, {
     transform: "rotate(45deg)",
@@ -140,6 +144,6 @@ const setInnerArrowStyles = (state: State) => {
     height: "100%",
     position: "absolute",
     zIndex: "inherit",
-    boxShadow: getBoxShadow(state.placement),
+    boxShadow: `var(--popper-arrow-shadow, var(--popper-arrow-default-shadow))`,
   })
 }
