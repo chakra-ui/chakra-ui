@@ -1,0 +1,37 @@
+{
+  "name": "chakra-next-pages",
+  "version": "2.0.14",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "workspace:*",
+    "@chakra-ui/react": "workspace:*",
+    "@chakra-ui/theme-tools": "workspace:*",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@faker-js/faker": "^7.1.0",
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.1",
+    "@types/react-dom": "^18.0.0",
+    "framer-motion": "^6.2.9",
+    "next": "^13.0.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.2.0",
+    "typescript": "^4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "examples/nextjs-typescript"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "license": "MIT"
+}

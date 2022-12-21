@@ -51,7 +51,7 @@
     "clean-package": "2.1.1"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts",
+    "build": "tsup src/index.ts src/components/index.ts src/foundations/index.ts --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
