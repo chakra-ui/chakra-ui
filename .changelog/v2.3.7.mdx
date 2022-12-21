@@ -8,15 +8,12 @@ releaseDate: November 2, 2022
 version: 2.3.7
 ---
 
-## @chakra-ui/progress@2.1.0
-
 ### Minor Changes
 
-- [#6915](https://github.com/chakra-ui/chakra-ui/pull/6915)
-  [`3ae5df659`](https://github.com/chakra-ui/chakra-ui/commit/3ae5df659a2c6061dbfb57bfce92b5bf3e0b5cd7)
-  Thanks [@lexanth](https://github.com/lexanth)! - Add support for overriding
-  the `role` for `Progress` eleement. This makes it possible to use the progress
-  as a meter element.
+#### @chakra-ui/progress@2.1.0:
+
+- Add support for overriding the `role` for `Progress` eleement. This makes it
+  possible to use the progress as a meter element.
 
   ```jsx live=false
   <Progress size="sm" value={20} role="meter" aria-label="Usage" />
@@ -24,155 +21,37 @@ version: 2.3.7
 
 ### Patch Changes
 
-- [#6911](https://github.com/chakra-ui/chakra-ui/pull/6911)
-  [`2e7327b64`](https://github.com/chakra-ui/chakra-ui/commit/2e7327b640870546941428f13d0806ec0330c228)
-  Thanks [@anubra266](https://github.com/anubra266)! - Fix accessibility issue
-  where the `title` prop was not passed to the underlying `role=progress`
-  element.
+#### @chakra-ui/progress@2.1.0:
 
-## @chakra-ui/checkbox@2.2.3
+- Fix accessibility issue where the `title` prop was not passed to the
+  underlying `role=progress` element.
 
-### Patch Changes
+#### @chakra-ui/checkbox@2.2.3:
 
-- [#6929](https://github.com/chakra-ui/chakra-ui/pull/6929)
-  [`1377b7280`](https://github.com/chakra-ui/chakra-ui/commit/1377b7280e398aadf70b54c7846a36136c7bd772)
-  Thanks [@yukukotani](https://github.com/yukukotani)! - Replaced
-  `framer-motion` with css animation
+- Replaced `framer-motion` with css animation
 
-- Updated dependencies
-  \[[`132a98958`](https://github.com/chakra-ui/chakra-ui/commit/132a98958be64e46619b1e280ca6405d0a833cb0)]
+#### @chakra-ui/css-reset@2.0.9:
 
-## @chakra-ui/css-reset@2.0.9
-
-### Patch Changes
-
-- [#6898](https://github.com/chakra-ui/chakra-ui/pull/6898)
-  [`8705372a0`](https://github.com/chakra-ui/chakra-ui/commit/8705372a014bfd7073fe8012a46d7aa22904370b)
-  Thanks [@leomelzer](https://github.com/leomelzer)! - fix(css-reset): Use dvh
-  unit if supported
+- fix(css-reset): Use dvh unit if supported
 
   This allows the user agent to dynamically adapt the height of a Modal,
   depending on what parts of the UI (e.g. address bar) are visible.
 
-## @chakra-ui/editable@2.0.14
+#### @chakra-ui/editable@2.0.14:
 
-### Patch Changes
+- Fix issue where `onSubmit` was called twice when input is blurred with enter
+  key.
 
-- [#6851](https://github.com/chakra-ui/chakra-ui/pull/6851)
-  [`30b1b62f3`](https://github.com/chakra-ui/chakra-ui/commit/30b1b62f335cdf85b3b46761fdeb0105a4773a61)
-  Thanks [@anubra266](https://github.com/anubra266)! - Fix issue where
-  `onSubmit` was called twice when input is blurred with enter key.
+#### @chakra-ui/theme@2.1.15:
 
-## @chakra-ui/menu@2.1.3
+- Replace using JS runtime function in the theme to CSS variables. This removed
+  the need for the `mode` function in most components.
 
-### Patch Changes
+#### @chakra-ui/visually-hidden@2.0.12:
 
-- Updated dependencies
-  \[[`49dc149cc`](https://github.com/chakra-ui/chakra-ui/commit/49dc149cc600af83dcde4fa9b6a34a6b14dca837)]
+- Removed unneeded units for zero values `0px -> 0`
 
-## @chakra-ui/popover@2.1.2
+#### @chakra-ui/react-use-focus-effect@2.0.6, @chakra-ui/hooks@2.1.1:
 
-### Patch Changes
-
-- Updated dependencies
-  \[[`49dc149cc`](https://github.com/chakra-ui/chakra-ui/commit/49dc149cc600af83dcde4fa9b6a34a6b14dca837)]
-
-## @chakra-ui/provider@2.0.21
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8705372a0`](https://github.com/chakra-ui/chakra-ui/commit/8705372a014bfd7073fe8012a46d7aa22904370b)]
-
-## @chakra-ui/react@2.3.7
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`1377b7280`](https://github.com/chakra-ui/chakra-ui/commit/1377b7280e398aadf70b54c7846a36136c7bd772),
-  [`30b1b62f3`](https://github.com/chakra-ui/chakra-ui/commit/30b1b62f335cdf85b3b46761fdeb0105a4773a61),
-  [`2e7327b64`](https://github.com/chakra-ui/chakra-ui/commit/2e7327b640870546941428f13d0806ec0330c228),
-  [`132a98958`](https://github.com/chakra-ui/chakra-ui/commit/132a98958be64e46619b1e280ca6405d0a833cb0),
-  [`f3b66694f`](https://github.com/chakra-ui/chakra-ui/commit/f3b66694f054491dcf8830ec48cd0e4ee77490e0),
-  [`3ae5df659`](https://github.com/chakra-ui/chakra-ui/commit/3ae5df659a2c6061dbfb57bfce92b5bf3e0b5cd7),
-  [`49dc149cc`](https://github.com/chakra-ui/chakra-ui/commit/49dc149cc600af83dcde4fa9b6a34a6b14dca837),
-  [`8705372a0`](https://github.com/chakra-ui/chakra-ui/commit/8705372a014bfd7073fe8012a46d7aa22904370b)]
-
-## @chakra-ui/switch@2.0.15
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`1377b7280`](https://github.com/chakra-ui/chakra-ui/commit/1377b7280e398aadf70b54c7846a36136c7bd772)]
-
-## @chakra-ui/system@2.3.1
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/theme@2.1.15
-
-### Patch Changes
-
-- [#6857](https://github.com/chakra-ui/chakra-ui/pull/6857)
-  [`f3b66694f`](https://github.com/chakra-ui/chakra-ui/commit/f3b66694f054491dcf8830ec48cd0e4ee77490e0)
-  Thanks [@anubra266](https://github.com/anubra266)! - Replace using JS runtime
-  function in the theme to CSS variables. This removed the need for the `mode`
-  function in most components.
-
-## @chakra-ui/toast@4.0.1
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`f3b66694f`](https://github.com/chakra-ui/chakra-ui/commit/f3b66694f054491dcf8830ec48cd0e4ee77490e0)]
-
-## @chakra-ui/visually-hidden@2.0.12
-
-### Patch Changes
-
-- [#6839](https://github.com/chakra-ui/chakra-ui/pull/6839)
-  [`132a98958`](https://github.com/chakra-ui/chakra-ui/commit/132a98958be64e46619b1e280ca6405d0a833cb0)
-  Thanks [@mountainash](https://github.com/mountainash)! - Removed unneeded
-  units for zero values `0px -> 0`
-
-## @chakra-ui/react-use-focus-effect@2.0.6
-
-### Patch Changes
-
-- [#6863](https://github.com/chakra-ui/chakra-ui/pull/6863)
-  [`49dc149cc`](https://github.com/chakra-ui/chakra-ui/commit/49dc149cc600af83dcde4fa9b6a34a6b14dca837)
-  Thanks [@Andarist](https://github.com/Andarist)! - Fixed issue where focus
-  sometimes moved back to the open element when it was intentionally moved away
-  from it.
-
-## @chakra-ui/hooks@2.1.1
-
-### Patch Changes
-
-- [#6863](https://github.com/chakra-ui/chakra-ui/pull/6863)
-  [`49dc149cc`](https://github.com/chakra-ui/chakra-ui/commit/49dc149cc600af83dcde4fa9b6a34a6b14dca837)
-  Thanks [@Andarist](https://github.com/Andarist)! - Fixed issue where focus
-  sometimes moved back to the open element when it was intentionally moved away
-  from it.
-
-## @chakra-ui/theme-utils@2.0.2
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`f3b66694f`](https://github.com/chakra-ui/chakra-ui/commit/f3b66694f054491dcf8830ec48cd0e4ee77490e0)]
-
-## @chakra-ui/props-docs@2.0.23
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/test-utils@2.0.23
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`f3b66694f`](https://github.com/chakra-ui/chakra-ui/commit/f3b66694f054491dcf8830ec48cd0e4ee77490e0)]
+- Fixed issue where focus sometimes moved back to the open element when it was
+  intentionally moved away from it.
