@@ -1,3 +1,4 @@
 import { theme, baseTheme } from "@chakra-ui/react"
 
-export { theme, baseTheme }
+export default theme
+export { baseTheme }
