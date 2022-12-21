@@ -5,5 +5,5 @@
 Allow generating theme typings to use via module augmentation
 
 ```bash
-chakra-cli tokens --template augmentation
+chakra-cli tokens --template augmentation --out ./types/chakra-ui__styled-system.d.ts
 ```
