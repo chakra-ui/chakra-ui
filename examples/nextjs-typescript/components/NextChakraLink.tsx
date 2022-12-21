@@ -25,13 +25,14 @@ export const NextChakraLink = ({
     <NextLink
       passHref={true}
       href={href}
-      as={as}
       replace={replace}
       scroll={scroll}
       shallow={shallow}
       prefetch={prefetch}
     >
-      <ChakraLink {...chakraProps}>{children}</ChakraLink>
+      <ChakraLink as="span" {...chakraProps}>
+        {children}
+      </ChakraLink>
     </NextLink>
   )
 }
