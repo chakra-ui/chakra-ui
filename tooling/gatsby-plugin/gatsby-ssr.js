@@ -1,7 +1,7 @@
 import React from "react"
 import { ColorModeScript } from "@chakra-ui/react"
 import { WrapRootElement } from "./src/provider"
-import { theme } from "./src/theme"
+import theme from "./src/theme"
 
 export const onRenderBody = ({ setPreBodyComponents }) => {
   setPreBodyComponents([
