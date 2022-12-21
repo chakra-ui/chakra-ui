@@ -230,27 +230,41 @@ importers:
     devDependencies:
       prettier: 2.7.1
 
-  examples/next-js:
+  examples/next-app:
     specifiers:
+      '@chakra-ui/icons': workspace:*
       '@chakra-ui/react': workspace:*
+      '@chakra-ui/theme-tools': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
-      cookies-next: ^2.0.4
+      '@faker-js/faker': ^7.1.0
+      '@types/node': ^18.0.0
+      '@types/react': ^18.0.1
+      '@types/react-dom': ^18.0.0
       framer-motion: ^6.2.9
       next: ^13.0.7
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-icons: ^4.2.0
+      typescript: ^4.7.4
     dependencies:
+      '@chakra-ui/icons': link:../../packages/components/icons
       '@chakra-ui/react': link:../../packages/components/react
-      '@emotion/react': 11.9.3_react@18.2.0
-      '@emotion/styled': 11.9.3_jhgplt4fmhans76oq3ok5iox2u
-      cookies-next: 2.1.1
+      '@chakra-ui/theme-tools': link:../../packages/components/theme-tools
+      '@emotion/react': 11.9.3_3hx2ussxxho4jajbwrd6gq34qe
+      '@emotion/styled': 11.9.3_t4da3hocwt6ljcf3o6em4qwqzm
+      '@faker-js/faker': 7.3.0
+      '@types/node': 18.0.6
+      '@types/react': 18.0.15
+      '@types/react-dom': 18.0.6
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       next: 13.0.7_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-icons: 4.4.0_react@18.2.0
+      typescript: 4.7.4
 
-  examples/nextjs-typescript:
+  examples/next-pages:
     specifiers:
       '@chakra-ui/icons': workspace:*
       '@chakra-ui/react': workspace:*
@@ -5278,7 +5292,6 @@ packages:
       invariant: 2.2.4
       prop-types: 15.8.1
       react-lifecycles-compat: 3.0.4
-    dev: true
 
   /@gatsbyjs/reach-router/1.3.7_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-KQ5FvMb4BZUlSo+yQgd4t4WB8vkVPWfKjTpSl+Bx/FZhU6OL4lpwgfX7fXAY/18DogqyJCFiNAjV5eo3rQ5Alw==}
@@ -5291,6 +5304,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-lifecycles-compat: 3.0.4
+    dev: false
 
   /@gatsbyjs/webpack-hot-middleware/2.25.3:
     resolution: {integrity: sha512-ul17OZ8Dlw+ATRbnuU+kwxuAlq9lKbYz/2uBS1FLCdgoPTF1H2heP7HbUbgfMZbfRQNcCG2rMscMnr32ritCDw==}
@@ -12952,7 +12966,7 @@ packages:
       '@babel/core': 7.18.9
       '@babel/runtime': 7.18.9
       '@babel/types': 7.18.9
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
 
   /babel-plugin-syntax-object-rest-spread/6.13.0:
@@ -14330,14 +14344,6 @@ packages:
   /cookie/0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
-
-  /cookies-next/2.1.1:
-    resolution: {integrity: sha512-AZGZPdL1hU3jCjN2UMJTGhLOYzNUN9Gm+v8BdptYIHUdwz397Et1p+sZRfvAl8pKnnmMdX2Pk9xDRKCGBum6GA==}
-    dependencies:
-      '@types/cookie': 0.4.1
-      '@types/node': 16.11.45
-      cookie: 0.4.2
-    dev: false
 
   /copy-concurrently/1.0.5:
     resolution: {integrity: sha512-f2domd9fsVDFtaFcbaRZuYXwtdmnzqbADSwhSWYxYB/Q8zsdUUFMXVRwXGDMWmbEzAn1kdRrtI1T/KTFOL4X2A==}
@@ -17859,6 +17865,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /gatsby-link/4.19.1_xqk4ktfct2mldtt7zqnjb4ueue:
     resolution: {integrity: sha512-LCazIxhPOGHJKJVrr5s3jJHYtmaCnaaHQtW9WS0CWvPkW/zC4rKDXyEn8xDWVYaUnRnXUVDhv4Psp6J+Xqifxg==}
@@ -17872,7 +17879,6 @@ packages:
       '@types/reach__router': 1.3.10
       gatsby-page-utils: 2.19.0
       prop-types: 15.8.1
-    dev: true
 
   /gatsby-page-utils/2.19.0:
     resolution: {integrity: sha512-eYStV4jQbuEBKhatH3yzWA+lmoydJBCZVg6w2GG38eSsgcj9pdep8oQqyQdGFU3dy/HizWmWCv+wW9FIUoVQsQ==}
@@ -17960,7 +17966,7 @@ packages:
       chokidar: 3.5.3
       fs-exists-cached: 1.0.0
       fs-extra: 10.1.0
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
       gatsby-page-utils: 2.19.0
       gatsby-plugin-utils: 3.13.0_upd2dfgy6javngtb6zz74pjfdq
@@ -18028,7 +18034,7 @@ packages:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.18.9
       '@babel/runtime': 7.18.9
       babel-plugin-remove-graphql-queries: 4.19.0_dxeruin6mssvjcve62e33yojya
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
     transitivePeerDependencies:
       - supports-color
 
@@ -18065,7 +18071,7 @@ packages:
       '@gatsbyjs/potrace': 2.2.0
       fastq: 1.13.0
       fs-extra: 10.1.0
-      gatsby: 4.19.2_biqbaboplfbrettd7655fr4n2y
+      gatsby: 4.19.2
       gatsby-core-utils: 3.19.0
       gatsby-sharp: 0.13.0
       graphql: 15.8.0
@@ -18089,6 +18095,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /gatsby-react-router-scroll/5.19.0_xqk4ktfct2mldtt7zqnjb4ueue:
     resolution: {integrity: sha512-tl1E2/ger3Aw5Vb5n53i9wCBePYqb2dBilO05pd6FfgKYJveFidQwGzzOn1F9smdWq+5c3KJSTlKJaNYPwn72w==}
@@ -18101,7 +18108,6 @@ packages:
       '@babel/runtime': 7.18.9
       '@gatsbyjs/reach-router': 1.3.7
       prop-types: 15.8.1
-    dev: true
 
   /gatsby-script/1.4.0:
     resolution: {integrity: sha512-+GmHTAfFq/sQWPvl1E8QvApRfxqqamhdqjFo4YloOQRAlDc+e3nMzTzvgj8z3IWqDqlvEfHMnlvQg60E5ThO/A==}
@@ -18109,7 +18115,6 @@ packages:
     peerDependencies:
       react: ^16.9.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
-    dev: true
 
   /gatsby-script/1.4.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-+GmHTAfFq/sQWPvl1E8QvApRfxqqamhdqjFo4YloOQRAlDc+e3nMzTzvgj8z3IWqDqlvEfHMnlvQg60E5ThO/A==}
@@ -18120,6 +18125,7 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /gatsby-sharp/0.13.0:
     resolution: {integrity: sha512-dGuIuWP3rC7hXl/CgkHEY4WQEW+B9Rsg8uo6u+OumuLnLBxD4vTusEIGctVKzlyIxpENEQylQ7w1JKHX9fOy9g==}
@@ -18398,7 +18404,6 @@ packages:
       - webpack-dev-server
       - webpack-hot-middleware
       - webpack-plugin-serve
-    dev: true
 
   /gatsby/4.19.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-e39NL+nEi0GPlE62mz66lwllbR4Baof4l/b187df4tLWZhoUU9mY/flohxPHFH4gxXqD2AqGnJsm/jOXsIKO0g==}
@@ -18598,6 +18603,7 @@ packages:
       - webpack-dev-server
       - webpack-hot-middleware
       - webpack-plugin-serve
+    dev: false
 
   /gauge/3.0.2:
     resolution: {integrity: sha512-+5J6MS/5XksCuXq++uFRsnUd7Ovu1XenbeuIuNRJxYWjgQbPuFhT14lAvsWfqfAmnwluf1OwMjz39HjfLPci0Q==}
