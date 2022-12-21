@@ -456,7 +456,7 @@ describe("Theme typings", () => {
 
     expect(themeInterface).toMatchInlineSnapshot(`
       "// regenerate by running
-      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts) --template augmentation --out path/to/this/file
       import { BaseThemeTypings } from \\"@chakra-ui/styled-system\\"
       declare module \\"@chakra-ui/styled-system\\" {
         export interface CustomThemeTypings extends BaseThemeTypings {
