@@ -2,4 +2,4 @@
 "@chakra-ui/popper": patch
 ---
 
-Set `boxShadow` of inner arrow with css variable
+Refactored to allow overrding the arrow box shadow property

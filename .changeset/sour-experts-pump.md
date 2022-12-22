@@ -6,5 +6,5 @@
 "@chakra-ui/breakpoint-utils": patch
 ---
 
-Reduce gaps in media queries for breakpoints which excluded some viewport widths
-from media query coverage
+Reduced gaps in media queries for breakpoints which excluded some viewport
+widths from media query coverage
