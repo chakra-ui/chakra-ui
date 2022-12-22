@@ -8,15 +8,12 @@ releaseDate: November 29, 2022
 version: 2.4.2
 ---
 
-## @chakra-ui/styled-system@2.4.0
-
 ### Minor Changes
 
-- [#5701](https://github.com/chakra-ui/chakra-ui/pull/5701)
-  [`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781)
-  Thanks [@lexanth](https://github.com/lexanth)! - Add the flag
-  `--strict-token-types` for `@chakra-ui/cli tokens` to generate strict types
-  for theme tokens (e.g. color, spacing)
+#### @chakra-ui/styled-system@2.4.0, @chakra-ui/cli@2.2.0:
+
+- Add the flag `--strict-token-types` for `@chakra-ui/cli tokens` to generate
+  strict types for theme tokens (e.g. color, spacing)
 
   ```bash
   chakra-cli tokens --strict-token-types
@@ -32,56 +29,13 @@ version: 2.4.2
   // Type '"abc"' is not assignable to type '"1" | "2" | ... | undefined'.
   ```
 
-- [`1a4dad7a4`](https://github.com/chakra-ui/chakra-ui/commit/1a4dad7a4f15e24e0f529b8f8277346d0399c3fc)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
-  `textIndent` style prop
-
-## @chakra-ui/cli@2.2.0
-
-### Minor Changes
-
-- [#5701](https://github.com/chakra-ui/chakra-ui/pull/5701)
-  [`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781)
-  Thanks [@lexanth](https://github.com/lexanth)! - Add the flag
-  `--strict-token-types` for `@chakra-ui/cli tokens` to generate strict types
-  for theme tokens (e.g. color, spacing)
-
-  ```bash
-  chakra-cli tokens --strict-token-types
-  ```
-
-  ```tsx live=false
-  // before
-  <Box padding="abc" />
-  // valid type, but "abc" is not available in the theme
-
-  // after
-  <Box padding="abc" /> // invalid
-  // Type '"abc"' is not assignable to type '"1" | "2" | ... | undefined'.
-  ```
-
-## @chakra-ui/accordion@2.1.4
+- Add support for `textIndent` style prop
 
 ### Patch Changes
 
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)]
+#### @chakra-ui/button@2.0.13:
 
-## @chakra-ui/alert@2.0.13
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)]
-
-## @chakra-ui/button@2.0.13
-
-### Patch Changes
-
-- [#6886](https://github.com/chakra-ui/chakra-ui/pull/6886)
-  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2)
-  Thanks [@SpencerDuball](https://github.com/SpencerDuball)! - Added support for
-  `orientation` prop in the ButtonGroup component.
+- Added support for `orientation` prop in the ButtonGroup component.
 
   This makes it possible to now have vertical button groups when `isAttached` is
   set to `true`.
@@ -95,74 +49,13 @@ version: 2.4.2
   </ButtonGroup>
   ```
 
-- Updated dependencies
+#### @chakra-ui/icon@3.0.13:
 
-## @chakra-ui/checkbox@2.2.5
+- Add support for styling the `Icon` component from the theme object.
 
-### Patch Changes
+#### @chakra-ui/menu@2.1.5:
 
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/close-button@2.0.13
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)]
-
-## @chakra-ui/editable@2.0.16
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/form-control@2.0.13
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95),
-  [`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/icon@3.0.13
-
-### Patch Changes
-
-- [#6981](https://github.com/chakra-ui/chakra-ui/pull/6981)
-  [`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)
-  Thanks [@anubra266](https://github.com/anubra266)! - Add support for styling
-  the `Icon` component from the theme object.
-
-## @chakra-ui/icons@2.0.13
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)]
-
-## @chakra-ui/input@2.0.14
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/layout@2.1.11
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)]
-
-## @chakra-ui/menu@2.1.5
-
-### Patch Changes
-
-- [#7032](https://github.com/chakra-ui/chakra-ui/pull/7032)
-  [`f84891b10`](https://github.com/chakra-ui/chakra-ui/commit/f84891b103c1b666f660018442fd92151e3ea868)
-  Thanks [@anubra266](https://github.com/anubra266)! - Add support for setting
-  the initially focused menu programmatically
+- Add support for setting the initially focused menu programmatically
 
   ```jsx live=false
   const Example = () => {
@@ -180,65 +73,15 @@ version: 2.4.2
   }
   ```
 
-- Updated dependencies
+#### @chakra-ui/radio@2.0.14:
 
-## @chakra-ui/modal@2.2.4
+- Update type of `value` and `defaultValue` to `string` instead of
+  `string | number`. This reflects the internal implementation
 
-### Patch Changes
+#### @chakra-ui/react@2.4.2, @chakra-ui/theme@2.2.2:
 
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/number-input@2.0.14
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95),
-  [`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/popover@2.1.4
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/popper@3.0.10
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/provider@2.0.24
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/radio@2.0.14
-
-### Patch Changes
-
-- [#7026](https://github.com/chakra-ui/chakra-ui/pull/7026)
-  [`dcc23d1e2`](https://github.com/chakra-ui/chakra-ui/commit/dcc23d1e24d518daf2ddaeef1180b0b7143c3e79)
-  Thanks [@ArthurPedroti](https://github.com/ArthurPedroti)! - Update type of
-  `value` and `defaultValue` to `string` instead of `string | number`. This
-  reflects the internal implementation
-
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/react@2.4.2
-
-### Patch Changes
-
-- [#6997](https://github.com/chakra-ui/chakra-ui/pull/6997)
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337)
-  Thanks [@anubra266](https://github.com/anubra266)! - Add `ChakraBaseProvider`,
-  a minimal version of `ChakraProvider` that supplies just the theme tokens, and
-  ignores components.
+- Add `ChakraBaseProvider`, a minimal version of `ChakraProvider` that supplies
+  just the theme tokens, and ignores components.
 
   Historically, one of the biggest causes of the large initial JS payload is the
   size of the component themes. With this approach, you get to apply the theme
@@ -265,244 +108,23 @@ version: 2.4.2
   }
   ```
 
-- Updated dependencies
-  \[[`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781),
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
-  [`1a4dad7a4`](https://github.com/chakra-ui/chakra-ui/commit/1a4dad7a4f15e24e0f529b8f8277346d0399c3fc),
-  [`f84891b10`](https://github.com/chakra-ui/chakra-ui/commit/f84891b103c1b666f660018442fd92151e3ea868),
-  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa),
-  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2),
-  [`dcc23d1e2`](https://github.com/chakra-ui/chakra-ui/commit/dcc23d1e24d518daf2ddaeef1180b0b7143c3e79),
-  [`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95),
-  [`36ac52021`](https://github.com/chakra-ui/chakra-ui/commit/36ac520213d42e379857aa421240fc85e3b71523),
-  [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)]
+#### @chakra-ui/slider@2.0.14:
 
-## @chakra-ui/select@2.0.14
+- Expose `SliderActions` and `SliderState` types to improve documentation
 
-### Patch Changes
+#### @chakra-ui/theme@2.2.2:
 
-- Updated dependencies
+- Fix issue where modal dialog scrolls beyond the content in Safari.
+- Fixed console warning with `Tabs` when using the enclosed variant.
 
-## @chakra-ui/slider@2.0.14
+#### @chakra-ui/theme-tools@2.0.14:
 
-### Patch Changes
+- Replace `tinycolor` package with `color2k` for smaller bundle size
 
-- [#6979](https://github.com/chakra-ui/chakra-ui/pull/6979)
-  [`36ac52021`](https://github.com/chakra-ui/chakra-ui/commit/36ac520213d42e379857aa421240fc85e3b71523)
-  Thanks [@Tisks](https://github.com/Tisks)! - Expose `SliderActions` and
-  `SliderState` types to improve documentation
+#### @chakra-ui/react-types@2.0.5:
 
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
+- Fixes a problem where types were not exported correctly
 
-## @chakra-ui/stat@2.0.13
+#### @chakra-ui/gatsby-plugin@3.0.7:
 
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)]
-
-## @chakra-ui/switch@2.0.17
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/tag@2.0.13
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8c2af79fa`](https://github.com/chakra-ui/chakra-ui/commit/8c2af79fa44e7d93e197000bb7e67d8ff11d9f95)]
-
-## @chakra-ui/textarea@2.0.14
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/theme@2.2.2
-
-### Patch Changes
-
-- [#6997](https://github.com/chakra-ui/chakra-ui/pull/6997)
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337)
-  Thanks [@anubra266](https://github.com/anubra266)! - Add `ChakraBaseProvider`,
-  a minimal version of `ChakraProvider` that supplies just the theme tokens, and
-  ignores components.
-
-  Historically, one of the biggest causes of the large initial JS payload is the
-  size of the component themes. With this approach, you get to apply the theme
-  for just the component you need by using `extendBaseTheme`.
-
-  > Base theme refers to the minimal theme for just the design tokens
-
-  ```jsx live=false
-  import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react"
-  import { Button } from "@chakra-ui/theme/components"
-
-  const theme = extendBaseTheme({
-    components: {
-      Button,
-    },
-  })
-
-  function App() {
-    return (
-      <ChakraBaseProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraBaseProvider>
-    )
-  }
-  ```
-
-- [#7023](https://github.com/chakra-ui/chakra-ui/pull/7023)
-  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa)
-  Thanks [@anubra266](https://github.com/anubra266)! - Fix issue where modal
-  dialog scrolls beyond the content in Safari.
-
-- [#6886](https://github.com/chakra-ui/chakra-ui/pull/6886)
-  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2)
-  Thanks [@SpencerDuball](https://github.com/SpencerDuball)! - Added support for
-  `orientation` prop in the ButtonGroup component.
-
-  This makes it possible to now have vertical button groups when `isAttached` is
-  set to `true`.
-
-  ```jsx live=false
-  <ButtonGroup isAttached orientation="vertical">
-    <Button>Button 1</Button>
-    <Button>Button 2</Button>
-    <Button>Button 3</Button>
-    <Button>Button 4</Button>
-  </ButtonGroup>
-  ```
-
-- [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed console
-  warning with `Tabs` when using the enclosed variant.
-
-- Updated dependencies
-  \[[`c9f976d67`](https://github.com/chakra-ui/chakra-ui/commit/c9f976d6784579b8dc57ae6e83c3489d874d0cce)]
-
-## @chakra-ui/theme-tools@2.0.14
-
-### Patch Changes
-
-- [#7019](https://github.com/chakra-ui/chakra-ui/pull/7019)
-  [`c9f976d67`](https://github.com/chakra-ui/chakra-ui/commit/c9f976d6784579b8dc57ae6e83c3489d874d0cce)
-  Thanks [@anubra266](https://github.com/anubra266)! - Replace `tinycolor`
-  package with `color2k` for smaller bundle size
-
-## @chakra-ui/toast@4.0.4
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781),
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
-  [`1a4dad7a4`](https://github.com/chakra-ui/chakra-ui/commit/1a4dad7a4f15e24e0f529b8f8277346d0399c3fc),
-  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa),
-  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2),
-  [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)]
-
-## @chakra-ui/tooltip@2.2.2
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]
-
-## @chakra-ui/system@2.3.4
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781),
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
-  [`1a4dad7a4`](https://github.com/chakra-ui/chakra-ui/commit/1a4dad7a4f15e24e0f529b8f8277346d0399c3fc)]
-
-## @chakra-ui/react-types@2.0.5
-
-### Patch Changes
-
-- [#7046](https://github.com/chakra-ui/chakra-ui/pull/7046)
-  [`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)
-  Thanks [@cschroeter](https://github.com/cschroeter)! - Fixes a problem where
-  types were not exported correctly
-
-## @chakra-ui/theme-utils@2.0.5
-
-### Patch Changes
-
-- [#6997](https://github.com/chakra-ui/chakra-ui/pull/6997)
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337)
-  Thanks [@anubra266](https://github.com/anubra266)! - Add `ChakraBaseProvider`,
-  a minimal version of `ChakraProvider` that supplies just the theme tokens, and
-  ignores components.
-
-  Historically, one of the biggest causes of the large initial JS payload is the
-  size of the component themes. With this approach, you get to apply the theme
-  for just the component you need by using `extendBaseTheme`.
-
-  > Base theme refers to the minimal theme for just the design tokens
-
-  ```jsx live=false
-  import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react"
-  import { Button } from "@chakra-ui/theme/components"
-
-  const theme = extendBaseTheme({
-    components: {
-      Button,
-    },
-  })
-
-  function App() {
-    return (
-      <ChakraBaseProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraBaseProvider>
-    )
-  }
-  ```
-
-- Updated dependencies
-  \[[`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781),
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
-  [`1a4dad7a4`](https://github.com/chakra-ui/chakra-ui/commit/1a4dad7a4f15e24e0f529b8f8277346d0399c3fc),
-  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa),
-  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2),
-  [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)]
-
-## @chakra-ui/gatsby-plugin@3.0.7
-
-### Patch Changes
-
-- [`143641b8e`](https://github.com/chakra-ui/chakra-ui/commit/143641b8ef469164f1249c40e5c11d1c46bf800c)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix peer dependency
-  range to support latest version of Gatsby
-
-## @chakra-ui/props-docs@2.0.26
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781),
-  [`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
-  [`1a4dad7a4`](https://github.com/chakra-ui/chakra-ui/commit/1a4dad7a4f15e24e0f529b8f8277346d0399c3fc)]
-
-## @chakra-ui/storybook-addon@4.0.14
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/test-utils@2.0.26
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
-  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa),
-  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2),
-  [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)]
+- Fix peer dependency range to support latest version of Gatsby
