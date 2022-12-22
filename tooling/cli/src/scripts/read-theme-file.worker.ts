@@ -3,7 +3,10 @@ import path from "path"
 import fs from "fs"
 import * as tsNode from "ts-node"
 import * as tsConfigPaths from "tsconfig-paths"
-import { createThemeTypingsInterface } from "../command/tokens/create-theme-typings-interface"
+import {
+  createThemeTypingsInterface,
+  TypingsTemplate,
+} from "../command/tokens/create-theme-typings-interface"
 import { themeKeyConfiguration } from "../command/tokens/config"
 import { isObject } from "../utils/is-object"
 
@@ -83,6 +86,8 @@ async function run() {
   const strictComponentTypes = process.argv.includes("--strict-component-types")
   const format = process.argv.includes("--format")
   const strictTokenTypes = process.argv.includes("--strict-token-types")
+  const templateArg = process.argv.find((arg) => arg.includes("--template="))
+  const template = templateArg ? templateArg.split("=")[1] : undefined
 
   if (!themeFile) {
     throw new Error("No path to theme file provided.")
@@ -95,17 +100,18 @@ async function run() {
     throw new Error("Theme not found in default or named `theme` export")
   }
 
-  const template = await createThemeTypingsInterface(theme, {
+  const themeTypings = await createThemeTypingsInterface(theme, {
     config: themeKeyConfiguration,
     strictComponentTypes,
     format,
     strictTokenTypes,
+    template: template as TypingsTemplate,
   })
 
   if (process.send) {
-    process.send(template)
+    process.send(themeTypings)
   } else {
-    process.stdout.write(template)
+    process.stdout.write(themeTypings)
   }
 }
 
