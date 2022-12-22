@@ -8,11 +8,11 @@ releaseDate: July 10, 2022
 version: 2.2.3
 ---
 
-### Minor Changes
+## Minor Changes
 
-#### @chakra-ui/layout@2.1.0:
+### Layout `2.1.0`
 
-- Add new highlight text component to emphasize any part of a string with the
+- Added new `Highlight` component to emphasize any part of a string with the
   `mark` tag.
 
   ```jsx live=false
@@ -26,18 +26,19 @@ version: 2.2.3
   </Text>
   ```
 
-### Patch Changes
+## Patch Changes
 
-- Export `useStyles` equivalent for multipart component styles. Accordion
+### All components
+
+- Exported `useStyles` equivalent for multipart component styles. Accordion
   exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
-- Fix hydration issues when using `Suspense`
-- Update ESlint packages and config
+- Fixed hydration issues when using `Suspense`
 
-#### @chakra-ui/image@2.0.4, @chakra-ui/modal@2.1.1:
+### Image `2.0.4`
 
-- Add `displayName` to components using `forwardRef`
+- Added `displayName` and `forwardRef` to components
 
-#### @chakra-ui/popover@2.0.3:
+### Popover `2.0.3`
 
 - Export `useStyles` equivalent for multipart component styles. Accordion
   exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
@@ -45,20 +46,20 @@ version: 2.2.3
 - Fix issue where popover opens when mouse click opens the popover and trigget
   is set to `hover`.
 
-#### @chakra-ui/theme@2.1.2:
+### Theme `2.1.2`
 
-- Add border radius of zero to the default full size modal
+- Added border radius of zero to the default full size modal
 
-#### @chakra-ui/transition@2.0.3:
+### Transition `2.0.3`
 
-- Fix emitted types that were incompatible with latest `framer-motion` release
+- Fixed emitted types that were incompatible with latest `framer-motion` release
 
-#### @chakra-ui/utils@2.0.3:
+### Utilities `2.0.3`
 
-- Fix `TypeError` in `getCSSVar` when the theme is an empty object
-- Fix issue where `getFocusables` causes excessive repaint due to computed style
-  calls
+- Fixed `TypeError` in `getCSSVar` when the theme is an empty object
+- Fixed issue where `getFocusables` causes excessive repaint due to computed
+  style calls
 
-#### @chakra-ui/cli@2.1.2:
+### CLI `2.1.2`
 
-- Fix importing of the default exported theme
+- Fixed importing of the default exported theme

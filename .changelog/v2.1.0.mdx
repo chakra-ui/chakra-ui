@@ -8,9 +8,9 @@ releaseDate: May 22, 2022
 version: 2.1.0
 ---
 
-### Minor Changes
+## Minor Changes
 
-#### @chakra-ui/react@2.1.0, @chakra-ui/styled-system@2.1.0:
+### Styled System `2.1.0`
 
 - Add support for responsive variants and sizes
 
@@ -36,42 +36,41 @@ version: 2.1.0
     feature so there's no "magic" under the hood. If you really want to override
     properties, you can consider using the important syntax
 
-### Patch Changes
+## Patch Changes
 
-#### @chakra-ui/react@2.1.0:
-
-- Ensure types used by other chakra packages are properly exported and imported
-  so that `src` directory is not referenced in the emitted type declarations.
-
-#### @chakra-ui/avatar@2.0.1, @chakra-ui/image@2.0.1:
-
-- Add referrerPolicy prop to Avatar & Image Components
-
-#### @chakra-ui/descendant@3.0.1:
+### All components
 
 - Ensure types used by other chakra packages are properly exported and imported
   so that `src` directory is not referenced in the emitted type declarations.
 
-#### @chakra-ui/focus-lock@2.0.1:
+### Avatar `2.0.1`
+
+- Add `referrerPolicy` prop
+
+### Image `2.0.1`
+
+- Add `referrerPolicy` prop
+
+### Focus Lock `2.0.1`
 
 - Upgrade dependency `react-focus-lock` to be compatible with React 18
 
-#### @chakra-ui/media-query@3.0.1:
+### Media Query `3.0.1`
 
 - Fix regression in use-media-query hook in SSR envrionments where it throws
   hydration mismatch
 
-#### @chakra-ui/textarea@2.0.1:
+### Textarea `2.0.1`
 
 - Fix ESLint warnings and errors
 
-#### @chakra-ui/theme@2.0.2:
+### Theme `2.0.2`
 
 - Tag component variants borderRadius was overwriting baseStyle eventhough
   borderRadius was same for all variants. borderRadius is now part of the
   baseStyle
 
-#### @chakra-ui/toast@2.0.3:
+### Toast `2.0.3`
 
 - Fix regression with the default toast position. It now defaults to `bottom` as
   described in docs

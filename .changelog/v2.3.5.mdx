@@ -8,69 +8,70 @@ releaseDate: October 3, 2022
 version: 2.3.5
 ---
 
-### Minor Changes
+## Minor Changes
 
-#### @chakra-ui/tooltip@2.2.0:
+### Tooltip `2.2.0`
 
 - Added `closeOnScroll` prop to allow closing tooltip when the page or overflow
   container scrolls.
 
-### Patch Changes
+### Modal `2.2.1`
+
+- Added `containerProps` to drawer component
+
+## Patch Changes
 
 - Declare package exports
 - Fixed unmet `@chakra-ui/styled-system` dependency issue
 
-#### @chakra-ui/accordion@2.1.1:
+### Accordion `2.1.1`
 
 - Fixed `allowMultiple` warning condition
 
-#### @chakra-ui/avatar@2.1.1:
+### Avatar `2.1.1`
 
 - Remove background from avatar when the image has loaded. This helps to prevent
   browser inconsistencies.
 
-#### @chakra-ui/breadcrumb@2.0.10:
+### Breadcrumb `2.0.10`
 
 - Ensure breadcrumb items are vertically aligned
 
-#### @chakra-ui/modal@2.2.1:
+### NumberInput `2.0.12`
 
-- Add `containerProps` to drawer component
+- Fixed number input e character
 
-#### @chakra-ui/number-input@2.0.12:
-
-- Fix number input e character
-
-#### @chakra-ui/slider@2.0.12:
+### Slider `2.0.12`
 
 - Fixed issues with slider state updates
 
-#### @chakra-ui/styled-system@2.3.4:
+### Styled System `2.3.4`
 
 - Added `[disabled]` selector on top of `:disabled`
 
-#### @chakra-ui/theme@2.1.13:
+### Theme `2.1.13`
 
 - Fixed number input disabled style
 - Ensure breadcrumb items are vertically aligned
 - Remove background from avatar when the image has loaded. This helps to prevent
   browser inconsistencies
 
-#### @chakra-ui/react-use-latest-ref@2.0.2:
+### UseLatestRef `2.0.2`
 
-- Add `useLatestRef` hook
+- Added `useLatestRef` hook
 
-#### @chakra-ui/react-use-pan-event@2.0.5:
+### UsePanEvent `2.0.5`
 
-- Refactor `usePanEvent` to account for the correct dependency list changes
+- Refactored `usePanEvent` to account for the correct dependency list changes
 
-#### @chakra-ui/utils@2.0.11, @chakra-ui/dom-utils@2.0.3:
+### DOM Utilities `2.0.3`
 
-- Added `[disabled]` selector on top of `:disabled`
+- Added `[disabled]` attribute selector
 
-#### @chakra-ui/storybook-addon@4.0.12:
+### Storybook Addon `4.0.12`
 
 - Allow setting the storybook chakra theme via a callback function, with access
   to the context
-- Allow getThemingArgTypes to return args when colorScheme is not supported by
-  component
+
+- Allow `getThemingArgTypes` to return args when `colorScheme` is not supported
+  by component

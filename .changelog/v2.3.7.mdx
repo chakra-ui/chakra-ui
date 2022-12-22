@@ -8,50 +8,54 @@ releaseDate: November 2, 2022
 version: 2.3.7
 ---
 
-### Minor Changes
+## Minor Changes
 
-#### @chakra-ui/progress@2.1.0:
+### Progress `2.1.0`
 
-- Add support for overriding the `role` for `Progress` eleement. This makes it
+- Added support for overriding the `role` for `Progress` eleement. This makes it
   possible to use the progress as a meter element.
 
   ```jsx live=false
   <Progress size="sm" value={20} role="meter" aria-label="Usage" />
   ```
 
-### Patch Changes
+## Patch Changes
 
-#### @chakra-ui/progress@2.1.0:
+### Progress `2.1.0`
 
-- Fix accessibility issue where the `title` prop was not passed to the
+- Fixed accessibility issue where the `title` prop was not passed to the
   underlying `role=progress` element.
 
-#### @chakra-ui/checkbox@2.2.3:
+### Checkbox `2.2.3`
 
-- Replaced `framer-motion` with css animation
+- Replaced `framer-motion` with native css animation
 
-#### @chakra-ui/css-reset@2.0.9:
+### CSS Reset `2.0.9`
 
-- fix(css-reset): Use dvh unit if supported
+- Use `dvh` unit if supported
 
   This allows the user agent to dynamically adapt the height of a Modal,
   depending on what parts of the UI (e.g. address bar) are visible.
 
-#### @chakra-ui/editable@2.0.14:
+### Editable `2.0.14`
 
-- Fix issue where `onSubmit` was called twice when input is blurred with enter
+- Fixed issue where `onSubmit` was called twice when input is blurred with enter
   key.
 
-#### @chakra-ui/theme@2.1.15:
+### Theme `2.1.15`
 
-- Replace using JS runtime function in the theme to CSS variables. This removed
-  the need for the `mode` function in most components.
+- Replaced `mode` runtime function with CSS variables where possible.
 
-#### @chakra-ui/visually-hidden@2.0.12:
+### Visually Hidden `2.0.12`
 
 - Removed unneeded units for zero values `0px -> 0`
 
-#### @chakra-ui/react-use-focus-effect@2.0.6, @chakra-ui/hooks@2.1.1:
+### UseFocusEffect `2.0.6`
+
+- Fixed issue where focus sometimes moved back to the open element when it was
+  intentionally moved away from it.
+
+### Hooks `2.1.1`
 
 - Fixed issue where focus sometimes moved back to the open element when it was
   intentionally moved away from it.

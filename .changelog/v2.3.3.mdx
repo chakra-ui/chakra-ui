@@ -8,58 +8,64 @@ releaseDate: September 19, 2022
 version: 2.3.3
 ---
 
-### Minor Changes
+## Minor Changes
+
+### All components
 
 - Allow control of `framer-motion` elements via the `motionProps` prop.
 
-### Patch Changes
+## Patch Changes
 
-- Add missing component/function docs and relative docsite links.
+### All components
+
+- Added missing component/function docs and relative docsite links.
 
   Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
+  the Chakra site have corresponding TS Docs and links back to the docsite via
   IDE intellisense.
 
   Includes adding or fixing links within these docs to related WAI-ARIA
   patterns.
 
-#### @chakra-ui/menu@2.1.0:
+### Menu `2.1.0`
 
 - Remove redundant ARIA roles
 
-## @chakra-ui/popover@2.1.0
+## Popover `2.1.0`
 
 - Refactor popover to reduce bundle size
 
-#### @chakra-ui/tooltip@2.1.0:
+### Tooltip `2.1.0`
 
 - Fixed issue where disabled tooltip triggers require an extra wrapper (via
   `shouldWrapChildren`). This was fixed by switching from mouse events to
   pointer events
 
-#### @chakra-ui/color-mode@2.1.8:
+### Color Mode `2.1.8`
 
 - Add optional `nonce` back to ColorModeScript
 
-#### @chakra-ui/layout@2.1.7:
+### Layout `2.1.7`
 
-- Fixing an issue with `Highlight`
-- Prevent Stack from crashing when there's a lot of children
+- Fixed an issue where `Highlight` showed `key` warnings
+- Prevent `Stack` from crashing when there's a lot of child elements
 
-  NB: This does not help improve loading and refresh performance otherwise,
-  libraries like `react-virtualized` should be used to handle large lists.
+  > NB: This does not help improve loading and refresh performance otherwise,
+  > libraries like `react-virtualized` should be used to handle large lists.
 
-#### @chakra-ui/pin-input@2.0.13:
+### PinInput `2.0.13`
 
-- Fix issue where backspace did not focus prev input
+- Fixed issue where backspace did not focus prev input
 
-#### @chakra-ui/styled-system@2.3.2, @chakra-ui/system@2.2.10:
+### Styled System `2.3.2`
 
 - Revert [#6335](https://github.com/chakra-ui/chakra-ui/pull/6335/files) to fix
   issue where lots of responsive styles makes app slower
+
 - Update disabled selector to use state selector `:disabled`, instead of
   `[disabled]` attribute selector. This is useful when an editable element is
   wrapped within `<fieldset disabled>`
+
 - Improve style resolution when components are wrapped within forced color mode
   elements (`DarkMode`, `LightMode`).
 
@@ -75,27 +81,27 @@ version: 2.3.3
   </DarkMode>
   ```
 
-#### @chakra-ui/table@2.0.10:
+### Table `2.0.10`
 
 - Remove redundant ARIA roles
 
-#### @chakra-ui/tag@2.0.10:
+### Tag `2.0.10`
 
 - Use `forwardRef` with `TagCloseButton`
 
-#### @chakra-ui/theme@2.1.12:
+### Theme `2.1.12`
 
 - Fix incorrect Select `xs` sizing
 
-#### @chakra-ui/react-use-controllable-state@2.0.4:
+### UseControllableState `2.0.4`
 
-- Fix slider default value issue
+- Fixed issue with stale values in callbacks
 
-#### @chakra-ui/react-use-focus-on-pointer-down@2.0.2:
+### UseFocusOnPointerDown `2.0.2`
 
 - Fix issue where focus on pointerdown doesn't work on safari
 
-#### @chakra-ui/utils@2.0.10, @chakra-ui/dom-utils@2.0.2:
+### DOM Utilities `2.0.2`
 
 - Update disabled selector to use state selector `:disabled`, instead of
   `[disabled]` attribute selector. This is useful when an editable element is

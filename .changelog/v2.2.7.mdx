@@ -8,30 +8,32 @@ releaseDate: August 13, 2022
 version: 2.2.7
 ---
 
-### Patch Changes
+## Patch Changes
+
+### All components
 
 - Moved hooks in their own packages
 - General package refactoring & restructuring
-- Overall refactor to reduce bundle size
+- Refactored components to reduce bundle size
 
-#### @chakra-ui/color-mode@2.1.5:
+### Color Mode `2.1.5`
 
-- Fix regression where `localStorageManager` was not exported
+- Fixed regression where `localStorageManager` was not exported
 
-#### @chakra-ui/react-env@2.0.7:
+### React Env `2.0.7`
 
-- Omit rendered env span when the environment prop is passed. - Add `id` and
-  `hidden` attributes to the rendered env span
+- Omit rendered env span when the environment prop is passed.
+- Added `id` and `hidden` attributes to the rendered env span
 
-#### @chakra-ui/hooks@2.0.7:
+### Hooks `2.0.7`
 
-- Deprecate `useDimensions` in favor of the `useSize` hook
+- Deprecated `useDimensions` in favor of the `useSize` hook
 
-#### @chakra-ui/react@2.2.7:
+### React `2.2.7`
 
-- Remove `ChakraProvider.defaultProps` and move logic inside the component.
+- Removed `ChakraProvider.defaultProps` and move logic inside the component.
 
-#### @chakra-ui/styled-system@2.2.6:
+### Styled System `2.2.6`
 
 - Improve style computation performance by looping over styles once. Previously,
   we had two steps in the logic (expand responsive and convert to css object).
@@ -39,28 +41,28 @@ version: 2.2.7
 
   We now process both steps in a single pass.
 
-- Fix regression where `ThemeTypings` created by chakra-cli could not be used
+- Fixed regression where `ThemeTypings` created by chakra-cli could not be used
 - Escape symbols in css variable to make it work
 
-#### @chakra-ui/theme@2.1.6:
+### Theme `2.1.6`
 
-- Improve contrast of `FormHelperText` to satisfy accessibility check
-- Fix issue where disabled input with flushed or unstyled variant isn't
+- Improved contrast of `FormHelperText` to satisfy accessibility check
+- Fixed issue where disabled input with flushed or unstyled variant isn't
   perceivable
 
-#### @chakra-ui/theme-tools@2.0.8:
+### Theme Utilities `2.0.8`
 
-- Fix regression where `StyleFunctionProps` type was not exported
+- Fixed regression where `StyleFunctionProps` type was not exported
 
-#### @chakra-ui/utils@2.0.7:
+### Utilities `2.0.7`
 
-- Add pure annotation to utils package
-- Add pure annotation to `isBrowser` to tree-shake when bundling
+- Added pure annotation to utils package
+- Added pure annotation to `isBrowser` to tree-shake when bundling
 
-#### @chakra-ui/cli@2.1.5:
+### CLI `2.1.5`
 
-- Fix regression where `ThemeTypings` created by chakra-cli could not be used
+- Fixed regression where `ThemeTypings` created by chakra-cli could not be used
 
-#### @chakra-ui/storybook-addon@4.0.7:
+### Storybook Addon `4.0.7`
 
-- Fix issue with nullish operator in storybook
+- Fixed issue with nullish operator in storybook

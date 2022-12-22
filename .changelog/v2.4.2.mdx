@@ -8,77 +8,9 @@ releaseDate: November 29, 2022
 version: 2.4.2
 ---
 
-### Minor Changes
+## Minor Changes
 
-#### @chakra-ui/styled-system@2.4.0, @chakra-ui/cli@2.2.0:
-
-- Add the flag `--strict-token-types` for `@chakra-ui/cli tokens` to generate
-  strict types for theme tokens (e.g. color, spacing)
-
-  ```bash
-  chakra-cli tokens --strict-token-types
-  ```
-
-  ```tsx live=false
-  // before
-  <Box padding="abc" />
-  // valid type, but "abc" is not available in the theme
-
-  // after
-  <Box padding="abc" /> // invalid
-  // Type '"abc"' is not assignable to type '"1" | "2" | ... | undefined'.
-  ```
-
-- Add support for `textIndent` style prop
-
-### Patch Changes
-
-#### @chakra-ui/button@2.0.13:
-
-- Added support for `orientation` prop in the ButtonGroup component.
-
-  This makes it possible to now have vertical button groups when `isAttached` is
-  set to `true`.
-
-  ```jsx live=false
-  <ButtonGroup isAttached orientation="vertical">
-    <Button>Button 1</Button>
-    <Button>Button 2</Button>
-    <Button>Button 3</Button>
-    <Button>Button 4</Button>
-  </ButtonGroup>
-  ```
-
-#### @chakra-ui/icon@3.0.13:
-
-- Add support for styling the `Icon` component from the theme object.
-
-#### @chakra-ui/menu@2.1.5:
-
-- Add support for setting the initially focused menu programmatically
-
-  ```jsx live=false
-  const Example = () => {
-    const itemRef = useRef(null)
-    return (
-      <Menu initialFocusRef={itemRef}>
-        <MenuButton>Welcome</MenuButton>
-        <MenuList>
-          <MenuItem>Menu 1</MenuItem>
-          <MenuItem ref={itemRef}>Menu 2</MenuItem>
-          <MenuItem>Menu 3</MenuItem>
-        </MenuList>
-      </Menu>
-    )
-  }
-  ```
-
-#### @chakra-ui/radio@2.0.14:
-
-- Update type of `value` and `defaultValue` to `string` instead of
-  `string | number`. This reflects the internal implementation
-
-#### @chakra-ui/react@2.4.2, @chakra-ui/theme@2.2.2:
+### React `2.4.2`
 
 - Add `ChakraBaseProvider`, a minimal version of `ChakraProvider` that supplies
   just the theme tokens, and ignores components.
@@ -108,23 +40,105 @@ version: 2.4.2
   }
   ```
 
-#### @chakra-ui/slider@2.0.14:
+### Styled System `2.4.0`
+
+- Add support for `textIndent` style prop
+
+### CLI `2.2.0`
+
+- Add the flag `--strict-token-types` for `@chakra-ui/cli tokens` to generate
+  strict types for theme tokens (e.g. color, spacing)
+
+  ```bash
+  chakra-cli tokens --strict-token-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Box padding="abc" />
+  // valid type, but "abc" is not available in the theme
+
+  // after
+  <Box padding="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"1" | "2" | ... | undefined'.
+  ```
+
+### Menu `2.1.5`
+
+- Added support for setting the initially focused menu programmatically using
+  `initialFocusRef`.
+
+  ```jsx live=false
+  const Example = () => {
+    const itemRef = useRef(null)
+    return (
+      <Menu initialFocusRef={itemRef}>
+        <MenuButton>Welcome</MenuButton>
+        <MenuList>
+          <MenuItem>Menu 1</MenuItem>
+          <MenuItem ref={itemRef}>Menu 2</MenuItem>
+          <MenuItem>Menu 3</MenuItem>
+        </MenuList>
+      </Menu>
+    )
+  }
+  ```
+
+### Button `2.0.13`
+
+- Added support for `orientation` prop in the ButtonGroup component.
+
+  This makes it possible to now have vertical button groups when `isAttached` is
+  set to `true`.
+
+  ```jsx live=false
+  <ButtonGroup isAttached orientation="vertical">
+    <Button>Button 1</Button>
+    <Button>Button 2</Button>
+    <Button>Button 3</Button>
+    <Button>Button 4</Button>
+  </ButtonGroup>
+  ```
+
+### Icon `3.0.13`
+
+- Added support for styling the `Icon` component from the theme object.
+
+  ```jsx live=false
+  const theme = extendTheme({
+    components: {
+      Icon: {
+        width: "auto",
+      },
+    },
+  })
+  ```
+
+## Patch Changes
+
+### Radio `2.0.14`
+
+- Updated type of `value` and `defaultValue` to `string` instead of
+  `string | number`. This reflects the internal implementation
+
+### Slider `2.0.14`
 
 - Expose `SliderActions` and `SliderState` types to improve documentation
 
-#### @chakra-ui/theme@2.2.2:
+### Theme `2.2.2`
 
 - Fix issue where modal dialog scrolls beyond the content in Safari.
-- Fixed console warning with `Tabs` when using the enclosed variant.
+- Fixed css variabled warning with `Tabs` when using the enclosed variant.
+- Export `baseTheme` object with includes only the theme tokens.
 
-#### @chakra-ui/theme-tools@2.0.14:
+### Theme Utilities `2.0.14`
 
-- Replace `tinycolor` package with `color2k` for smaller bundle size
+- Replaced `tinycolor` package with `color2k` for smaller bundle size
 
-#### @chakra-ui/react-types@2.0.5:
+### React Types `2.0.5`
 
-- Fixes a problem where types were not exported correctly
+- Fixed issue where types were not exported correctly
 
-#### @chakra-ui/gatsby-plugin@3.0.7:
+### Gatsby Plugin `3.0.7`
 
 - Fix peer dependency range to support latest version of Gatsby

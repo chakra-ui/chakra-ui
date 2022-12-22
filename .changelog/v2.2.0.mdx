@@ -8,14 +8,24 @@ releaseDate: June 6, 2022
 version: 2.2.0
 ---
 
-### Minor Changes
+## Minor Changes
 
-#### @chakra-ui/checkbox@2.1.0:
+### All components
+
+- Ensure components show focus outline only when interacting with the keyboard.
+
+- Migrate components to use `_focusVisible` instead of `_focus` selectors to
+  indicate focus.
+
+  > 🚨 NOTE: This might be a potential breaking change for consumers who use the
+  > `extendTheme` with the `_focus` styles. Kindly migrate to `_focusVisible`.
+
+### Checkbox `2.1.0`
 
 - Remove annoying focus outline by leveraging focus visible
 - Track focus visible and add `data-focus-visible` to `getCheckboxProps`
 
-#### @chakra-ui/media-query@3.1.0:
+### Media Query `3.1.0`
 
 - Add support for client-side rendered (CSR) apps to get the correct value on
   first render.
@@ -45,31 +55,22 @@ version: 2.2.0
   const breakpoint = useBreakpoint({ ssr: false })
   ```
 
-#### @chakra-ui/react@2.2.0:
+### Styled System `2.2.0`
 
-- Ensure components show focus outline only when interacting with the keyboard.
-
-- Migrate components to use `_focusVisible` instead of `_focus` selectors to
-  indicate focus.
-
-  🚨 NOTE: This might be a potential breaking change for consumers who use the
-  `extendTheme` with the `_focus` styles. Kindly migrate to `_focusVisible`.
-
-#### @chakra-ui/styled-system@2.2.0:
-
-- Remove annoying focus outline by leveraging focus visible
 - Add support for styling `data-focus-visible` using the `_focusVisible` pseudo
   prop
 
-#### @chakra-ui/theme@2.1.0:
+### Theme `2.1.0`
 
 - Remove annoying focus outline by leveraging focus visible
 
-#### @chakra-ui/cli@2.1.0:
+### CLI `2.1.0`
 
-- New watch flag for the tokens command. You can specify a directory path to
-  watch for changes. It defaults to the parent dir of `<source>`, e.g.
-  `src/theme/theme.ts` => `src/theme`.
+- New `--watch` flag for the tokens command. You can specify a directory path to
+  watch for changes.
+
+  It defaults to the parent dir of `<source>`, e.g. `src/theme/theme.ts` =>
+  `src/theme`.
 
   ```shell
   > chakra-cli tokens src/theme/theme.ts --watch
@@ -85,23 +86,25 @@ version: 2.2.0
 
   ```
 
-### Patch Changes
+## Patch Changes
+
+### All components
 
 - Improve error messaging around style provider factory by creating a custom
   `createStylesContext` function.
 
-#### @chakra-ui/cli@2.1.0:
+### CLI `2.1.0`
 
 - Fixed an issue where the tokens command failed with
   `SyntaxError: Undefined label 'e'`.
 
-#### @chakra-ui/modal@2.0.3:
+### Modal `2.0.3`
 
 - Fix shifting screen when opening modal
 - Improve error messaging around style provider factory by creating a custom
   `createStylesContext` function
 
-#### @chakra-ui/radio@2.0.2:
+### Radio `2.0.2`
 
 - Fix a bug in chromium browsers where the modal position would change when
   focusing on the radio button in the modal which has some long content.

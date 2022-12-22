@@ -8,58 +8,60 @@ releaseDate: June 21, 2022
 version: 2.2.2
 ---
 
-### Minor Changes
+## Minor Changes
 
-#### @chakra-ui/color-mode@2.1.0:
+### Color Mode `2.1.0`
 
-- Check if the MediaQueryList object supports the addEventListener() method,
-  else fallback to the legacy .addListener() method.
+- Check if the `MediaQueryList` object supports the `addEventListener()` method,
+  else fallback to the legacy `.addListener()` method.
 
-#### @chakra-ui/modal@2.1.0:
+### Modal `2.1.0`
 
 - Export `useDrawerContext` hook
 
-#### @chakra-ui/system@2.2.0:
+### System `2.2.0`
 
 - Extract and export `getToken` function from `useToken`
 - Improve parameter types for `useToken`
 
-### Patch Changes
+## Patch Changes
 
-- Remove internal usage of createBreakpoints function
+### Theme Utilities
 
-#### @chakra-ui/checkbox@2.1.1:
+- Remove internal usage of `createBreakpoints` function
 
-- fixed issue where switch cannot be toggled when text is selectedd
+### Checkbox `2.1.1`
 
-#### @chakra-ui/descendant@3.0.3:
+- Fixed issue where switch cannot be toggled when text is selectedd
 
-- Apply type constraints to `useDescendants` hook for improved TypeScript 4.8
+### Descendant `3.0.3`
+
+- Added type constraints to `useDescendants` hook for improved TypeScript 4.8
   support
 
-#### @chakra-ui/layout@2.0.3:
+### Layout `2.0.3`
 
-- SimpleGrid: Fix issue where `minChildWidth` doesn't work with size tokens
+- **SimpleGrid:** Fixed issue where `minChildWidth` doesn't work with size
+  tokens
 
-#### @chakra-ui/radio@2.0.3:
+### Radio `2.0.3`
 
-- Fix issue where radio doesn't show focus when interacting with keyboard
+- Fixed issue where radio doesn't show focus when interacting with keyboard
 
-#### @chakra-ui/skeleton@2.0.7:
+### Skeleton `2.0.7`
 
-- extend doc for `fadeDuration` prop
-- Remove internal usage of createBreakpoints function
+- Added TS doc comments for `fadeDuration` prop
 
-#### @chakra-ui/toast@3.0.0:
+### Toast `3.0.0`
 
-- Move `@chakra-ui/system` to peer dependency
+- Moved `@chakra-ui/system` to peer dependency
 
-#### @chakra-ui/tooltip@2.0.3:
+### Tooltip `2.0.3`
 
 - Avoid rendering multiple tooltips so that they are not appeared after opening
   a modal
 
-#### @chakra-ui/cli@2.1.1:
+### CLI `2.1.1`
 
-- Add --no-format option
-- Fix issue where CLI crashed due to lodash throttle dependency
+- Added `--no-format` option
+- Fixed issue where CLI crashed due to `lodash.throttle` dependency

@@ -8,18 +8,20 @@ releaseDate: December 6, 2022
 version: 2.4.3
 ---
 
-### Patch Changes
+## Patch Changes
 
-- Removed defaultProps from components to support React 18.3.0
+### All components
 
-#### @chakra-ui/card@2.1.2:
+- Removed `defaultProps` from components to support React `18.3.0`
+
+### Card `2.1.2`
 
 - Refactor style context to use `createStylesContext` from `@chakra-ui/system`
 
-#### @chakra-ui/modal@2.2.5:
+### Modal `2.2.5`
 
-- Update modal a11y unit tests to correctly cover the portal
+- Updated modal accessibility unit tests to correctly cover the use of `Portal`s
 
-#### @chakra-ui/progress@2.1.2:
+### Progress `2.1.2`
 
-- Ensure `aria-valuetext` property is set on the correct element
+- Fixed issue where `aria-valuetext` property was not set on the correct element
