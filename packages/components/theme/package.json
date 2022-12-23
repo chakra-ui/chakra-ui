@@ -16,16 +16,6 @@
   "files": [
     "dist"
   ],
-  "typesVersions": {
-    "*": {
-      "components": [
-        "./dist/components/index.d.ts"
-      ],
-      "foundations": [
-        "./dist/foundations/index.d.ts"
-      ]
-    }
-  },
   "publishConfig": {
     "access": "public"
   },

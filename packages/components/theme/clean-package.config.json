@@ -25,6 +25,12 @@
         "require": "./dist/foundations/index.js"
       },
       "./package.json": "./package.json"
+    },
+    "typesVersions": {
+      "*": {
+        "components": ["./dist/components/index.d.ts"],
+        "foundations": ["./dist/foundations/index.d.ts"]
+      }
     }
   }
 }
