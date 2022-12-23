@@ -45,10 +45,10 @@
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/transition": "workspace:*",
     "aria-hidden": "^1.1.1",
-    "react-remove-scroll": "^2.5.4"
+    "react-remove-scroll": "^2.5.4",
+    "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
     "@testing-library/react-hooks": "8.0.0",
@@ -65,12 +65,21 @@
     "react-dom": ">=18"
   },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts",
+    "build:fast": "tsup src",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }

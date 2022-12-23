@@ -29,25 +29,34 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "color2k": "^2.0.0"
+    "color2k": "^2.0.0",
+    "@chakra-ui/shared-utils": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@types/dlv": "^1.1.2",
     "clean-package": "2.1.1",
     "dlv": "^1.1.3"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts",
+    "build:fast": "tsup src",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }

@@ -16,16 +16,6 @@
   "files": [
     "dist"
   ],
-  "typesVersions": {
-    "*": {
-      "components": [
-        "./dist/components/index.d.ts"
-      ],
-      "foundations": [
-        "./dist/foundations/index.d.ts"
-      ]
-    }
-  },
   "publishConfig": {
     "access": "public"
   },
@@ -39,24 +29,32 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "@chakra-ui/theme-tools": "workspace:*"
+    "@chakra-ui/theme-tools": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.0.0"
   },
   "devDependencies": {
-    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/cli": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "clean-package": "2.1.1"
   },
   "scripts": {
-    "build": "tsup src/index.ts src/components/index.ts src/foundations/index.ts --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src/index.ts",
+    "build:fast": "tsup src",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
+  },
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }

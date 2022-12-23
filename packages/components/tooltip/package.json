@@ -36,11 +36,11 @@
     "@chakra-ui/react-use-disclosure": "workspace:*",
     "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
-    "@chakra-ui/portal": "workspace:*"
+    "@chakra-ui/portal": "workspace:*",
+    "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/button": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/system": "workspace:*",
@@ -57,12 +57,21 @@
     "react-dom": ">=18"
   },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts",
+    "build:fast": "tsup src",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }
