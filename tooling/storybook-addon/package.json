@@ -2,8 +2,8 @@
   "name": "@chakra-ui/storybook-addon",
   "version": "4.0.15",
   "description": "The official Storybook Addon for Chakra UI",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -11,22 +11,25 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.esm.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
     "./*": "./*",
     "./preset": {
-      "require": "./dist/preset/index.cjs.js",
-      "import": "./dist/preset/index.esm.js"
+      "types": "./dist/preset/index.d.ts",
+      "import": "./dist/preset/index.mjs",
+      "require": "./dist/preset/index.js"
     },
     "./preset/decorators": {
-      "require": "./dist/preset/decorators.cjs.js",
-      "import": "./dist/preset/decorators.esm.js"
+      "types": "./dist/preset/index.d.ts",
+      "import": "./dist/preset/decorators.mjs",
+      "require": "./dist/preset/decorators.js"
     },
     "./preset/register": {
-      "require": "./dist/preset/register.cjs.js",
-      "import": "./dist/preset/register.esm.js"
+      "types": "./dist/preset/index.d.ts",
+      "import": "./dist/preset/register.mjs",
+      "require": "./dist/preset/register.js"
     }
   },
   "typesVersions": {
@@ -73,9 +76,6 @@
     "@storybook/api": "^6.5.6",
     "@storybook/components": "^6.5.6",
     "react": "^18.0.0"
-  },
-  "dependencies": {
-    "@chakra-ui/icons": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",

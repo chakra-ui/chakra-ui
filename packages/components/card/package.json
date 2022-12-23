@@ -25,16 +25,15 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts",
+    "build:fast": "tsup src",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   },
   "devDependencies": {
-    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/button": "workspace:*",
     "@chakra-ui/menu": "workspace:*",
@@ -45,8 +44,20 @@
     "react": "^18.0.0",
     "clean-package": "2.1.1"
   },
+  "dependencies": {
+    "@chakra-ui/shared-utils": "workspace:*"
+  },
   "peerDependencies": {
     "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }
