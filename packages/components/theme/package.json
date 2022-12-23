@@ -51,7 +51,7 @@
     "clean-package": "2.1.1"
   },
   "scripts": {
-    "build": "tsup src src --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
