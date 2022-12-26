@@ -1,5 +1,32 @@
 # Change Log
 
+## 3.0.11
+
+### Patch Changes
+
+- [#7137](https://github.com/chakra-ui/chakra-ui/pull/7137)
+  [`b374879fe`](https://github.com/chakra-ui/chakra-ui/commit/b374879fe0c72362575d86161d3093cd73b12caf)
+  Thanks [@anubra266](https://github.com/anubra266)! - Refactored to allow
+  overrding the arrow box shadow property
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)]:
+  - @chakra-ui/react-use-merge-refs@2.0.6
+  - @chakra-ui/react-types@2.0.6
+
 ## 3.0.10
 
 ### Patch Changes

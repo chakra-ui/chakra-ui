@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.3.6
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef),
+  [`0eedc151c`](https://github.com/chakra-ui/chakra-ui/commit/0eedc151caec8dbdb53e4e5e8354e2310553c19f)]:
+  - @chakra-ui/color-mode@2.1.11
+  - @chakra-ui/styled-system@2.5.1
+  - @chakra-ui/react-utils@2.0.10
+  - @chakra-ui/utils@2.0.13
+  - @chakra-ui/theme-utils@2.0.7
+
 ## 2.3.5
 
 ### Patch Changes

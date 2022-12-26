@@ -1,5 +1,36 @@
 # Change Log
 
+## 4.0.7
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef),
+  [`0eedc151c`](https://github.com/chakra-ui/chakra-ui/commit/0eedc151caec8dbdb53e4e5e8354e2310553c19f),
+  [`96287f8c2`](https://github.com/chakra-ui/chakra-ui/commit/96287f8c2cd0642c69529b6384f0bf338ad8476d)]:
+  - @chakra-ui/alert@2.0.14
+  - @chakra-ui/close-button@2.0.14
+  - @chakra-ui/portal@2.0.13
+  - @chakra-ui/theme@2.2.3
+  - @chakra-ui/styled-system@2.5.1
+  - @chakra-ui/system@2.3.6
+  - @chakra-ui/react-use-timeout@2.0.4
+  - @chakra-ui/react-use-update-effect@2.0.6
+  - @chakra-ui/shared-utils@2.0.4
+
 ## 4.0.6
 
 ### Patch Changes

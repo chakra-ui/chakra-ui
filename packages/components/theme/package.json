@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "The default theme for chakra components",
   "keywords": [
     "theme",

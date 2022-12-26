@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- [#6744](https://github.com/chakra-ui/chakra-ui/pull/6744)
+  [`0eedc151c`](https://github.com/chakra-ui/chakra-ui/commit/0eedc151caec8dbdb53e4e5e8354e2310553c19f)
+  Thanks [@joseph082](https://github.com/joseph082)! - Reduced gaps in media
+  queries for breakpoints which excluded some viewport widths from media query
+  coverage
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)]:
+  - @chakra-ui/shared-utils@2.0.4
+
 ## 2.5.0
 
 ### Minor Changes
