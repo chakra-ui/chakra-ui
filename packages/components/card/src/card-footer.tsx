@@ -20,9 +20,9 @@ export const CardFooter = forwardRef<CardFooterProps, "div">(
         ref={ref}
         className={cx("chakra-card__footer", className)}
         __css={{
-          ...styles.footer,
           display: "flex",
           justifyContent: justify,
+          ...styles.footer,
         }}
         {...rest}
       />

@@ -31,6 +31,12 @@ export const AsContainer = () => (
   </Skeleton>
 )
 
+export const WithFitContent = () => (
+  <Skeleton fitContent>
+    <span>Chakra ui is cool</span>
+  </Skeleton>
+)
+
 export const WithFade = () => {
   const [hasLoaded, setHasLoaded] = React.useState(false)
 

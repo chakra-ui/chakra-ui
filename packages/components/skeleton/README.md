@@ -16,8 +16,13 @@ yarn add @chakra-ui/skeleton
 npm i @chakra-ui/skeleton
 ```
 
-## Import components
+## Import component
 
+```jsx
+import { Skeleton } from "@chakra-ui/skeleton"
+```
+
+## Usage
 ```jsx
 <Skeleton>
   <span>Chakra ui is cool</span>

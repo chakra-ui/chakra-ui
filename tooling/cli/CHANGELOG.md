@@ -1,5 +1,30 @@
 # @chakra-ui/cli
 
+## 2.3.0
+
+### Minor Changes
+
+- [#7127](https://github.com/chakra-ui/chakra-ui/pull/7127)
+  [`ffc73f393`](https://github.com/chakra-ui/chakra-ui/commit/ffc73f393b36ca115794caa6e07d98fe95c8ba9c)
+  Thanks [@lexanth](https://github.com/lexanth)! - - Added support for
+  generating theme typings to use via module augmentation of the
+  `@chakra-ui/styled-system` package.
+
+  To use this feature, run the following command:
+
+  ```bash
+  chakra-cli tokens --template augmentation --out ./types/chakra-ui__styled-system.d.ts
+  ```
+
+## 2.2.1
+
+### Patch Changes
+
+- [#7099](https://github.com/chakra-ui/chakra-ui/pull/7099)
+  [`322a9f424`](https://github.com/chakra-ui/chakra-ui/commit/322a9f4240211876bfdbe170d18f43345da00fc6)
+  Thanks [@deecewan](https://github.com/deecewan)! - Support TS Config paths
+  more completely
+
 ## 2.2.0
 
 ### Minor Changes

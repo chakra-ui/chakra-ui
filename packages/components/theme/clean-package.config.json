@@ -1,30 +1,36 @@
 {
   "replace": {
-    "main": "dist/index.cjs.js",
-    "module": "dist/index.esm.js",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
     "types": "dist/index.d.ts",
     "exports": {
       ".": {
-        "import": "./dist/index.esm.js",
-        "require": "./dist/index.cjs.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
       },
       "./components": {
-        "import": "./dist/components/index.esm.js",
-        "require": "./dist/components/index.cjs.js",
-        "types": "./dist/components/index.d.ts"
+        "types": "./dist/components/index.d.ts",
+        "import": "./dist/components/index.mjs",
+        "require": "./dist/components/index.js"
       },
       "./components/*": {
-        "import": "./dist/components/*.esm.js",
-        "require": "./dist/components/*.cjs.js",
-        "types": "./dist/components/*.d.ts"
+        "types": "./dist/components/*.d.ts",
+        "import": "./dist/components/*.mjs",
+        "require": "./dist/components/*.js"
       },
       "./foundations": {
-        "import": "./dist/foundations/index.esm.js",
-        "require": "./dist/foundations/index.cjs.js",
-        "types": "./dist/foundations/index.d.ts"
+        "types": "./dist/foundations/index.d.ts",
+        "import": "./dist/foundations/index.mjs",
+        "require": "./dist/foundations/index.js"
       },
       "./package.json": "./package.json"
+    },
+    "typesVersions": {
+      "*": {
+        "components": ["./dist/components/index.d.ts"],
+        "foundations": ["./dist/foundations/index.d.ts"]
+      }
     }
   }
 }

@@ -7,6 +7,7 @@ import {
   resolveOutputPath,
   themeInterfaceDestination,
 } from "./resolve-output-path"
+import { TypingsTemplate } from "./create-theme-typings-interface"
 
 type ErrorRecord = Record<"err", string>
 
@@ -17,18 +18,21 @@ async function runTemplateWorker({
   strictComponentTypes,
   format,
   strictTokenTypes,
+  template,
 }: {
   themeFile: string
   strictComponentTypes?: boolean
   format?: boolean
   strictTokenTypes?: boolean
+  template?: TypingsTemplate
 }): Promise<string> {
   const worker = fork(
     path.join(__dirname, "..", "..", "scripts", "read-theme-file.worker.js"),
     [themeFile]
       .concat(strictComponentTypes ? "--strict-component-types" : [])
       .concat(format ? "--format" : [])
-      .concat(strictTokenTypes ? "--strict-token-types" : []),
+      .concat(strictTokenTypes ? "--strict-token-types" : [])
+      .concat(template ? `--template=${template}` : []),
     {
       stdio: ["pipe", "pipe", "pipe", "ipc"],
       cwd: process.cwd(),
@@ -55,6 +59,7 @@ export async function generateThemeTypings({
   strictComponentTypes,
   format,
   strictTokenTypes,
+  template,
   onError,
 }: {
   themeFile: string
@@ -62,22 +67,24 @@ export async function generateThemeTypings({
   strictComponentTypes?: boolean
   format?: boolean
   strictTokenTypes?: boolean
+  template?: TypingsTemplate
   onError?: () => void
 }) {
   const spinner = ora("Generating chakra theme typings").start()
   try {
-    const template = await runTemplateWorker({
+    const themeTypings = await runTemplateWorker({
       themeFile,
       strictComponentTypes,
       format,
       strictTokenTypes,
+      template,
     })
     const outPath = await resolveOutputPath(out)
 
     spinner.info()
     spinner.text = `Write file "${outPath}"...`
 
-    await writeFileAsync(outPath, template, "utf8")
+    await writeFileAsync(outPath, themeTypings, "utf8")
     spinner.succeed("Done")
   } catch (e) {
     spinner.fail("An error occurred")
