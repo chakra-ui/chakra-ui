@@ -1,6 +1,9 @@
 import { useClickable } from "@chakra-ui/clickable"
 import { createDescendantContext } from "@chakra-ui/descendant"
-import { useFocusOnHide } from "@chakra-ui/react-use-focus-effect"
+import {
+  useFocusOnHide,
+  useFocusOnShow,
+} from "@chakra-ui/react-use-focus-effect"
 import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
   useDisclosure,
@@ -175,23 +178,23 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const focusFirstItem = useCallback(() => {
     const id = setTimeout(() => {
-      if (initialFocusRef) {
-        initialFocusRef.current?.focus()
-      } else {
-        const first = descendants.firstEnabled()
-        if (first) setFocusedIndex(first.index)
-      }
+      if (initialFocusRef) return
+
+      const first = descendants.firstEnabled()
+      if (first) setFocusedIndex(first.index)
     })
     timeoutIds.current.add(id)
   }, [descendants, initialFocusRef])
 
   const focusLastItem = useCallback(() => {
     const id = setTimeout(() => {
+      if (initialFocusRef) return
+
       const last = descendants.lastEnabled()
       if (last) setFocusedIndex(last.index)
     })
     timeoutIds.current.add(id)
-  }, [descendants])
+  }, [descendants, initialFocusRef])
 
   const onOpenInternal = useCallback(() => {
     onOpenProp?.()
@@ -207,6 +210,12 @@ export function useMenu(props: UseMenuProps = {}) {
     defaultIsOpen,
     onClose: onCloseProp,
     onOpen: onOpenInternal,
+  })
+
+  useFocusOnShow(menuRef, {
+    focusRef: initialFocusRef,
+    visible: isOpen,
+    shouldFocus: true,
   })
 
   useOutsideClick({
