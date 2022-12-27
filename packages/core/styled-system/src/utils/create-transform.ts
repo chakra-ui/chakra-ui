@@ -38,7 +38,35 @@ export function createTransform(options: CreateTransformOptions) {
   const { scale, transform, compose } = options
 
   const fn: Transform = (value, theme) => {
-    const _value = tokenToCSSVar(scale, value)(theme)
+    /**
+     *  For shorthand props that contain multiple like values
+     *
+     * i.e. `margin="4 3rem"` with `4` being valued as a token
+     */
+    let valArray: string[] = []
+    if (typeof value === "string") {
+      valArray = value.split(" ")
+    }
+
+    let _value = ""
+
+    /**
+     * Constrain the check to run a reduction only if:
+     * 1. there is more than one value split into the array
+     * 2. it is for a prop that uses 'space' tokens
+     *
+     * Else, handle the value as usual
+     */
+    if (valArray.length > 1 && scale === "space") {
+      _value = valArray.reduce((prevVal, currVal) => {
+        const convertedVaL = tokenToCSSVar(scale, currVal)(theme)
+
+        return (prevVal + " " + convertedVaL).trim()
+      }, "")
+    } else {
+      _value = tokenToCSSVar(scale, value)(theme)
+    }
+
     let result = transform?.(_value, theme) ?? _value
     if (compose) {
       result = compose(result, theme)

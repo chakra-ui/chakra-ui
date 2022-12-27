@@ -645,3 +645,43 @@ test("should resolve !important syntax", () => {
     }
   `)
 })
+
+test("transforms multiple token values in a shorthand spacing prop", () => {
+  // normal css prop naming
+  expect(
+    css({
+      margin: "1 4 3",
+      padding: "1 4 3",
+    })(theme),
+  ).toMatchInlineSnapshot(`
+    Object {
+      "margin": "var(--space-1) var(--space-4) var(--space-3)",
+      "padding": "var(--space-1) var(--space-4) var(--space-3)",
+    }
+  `)
+  // shorthand css prop naming
+  expect(
+    css({
+      m: "1 4 3",
+      p: "1 4 3",
+    })(theme),
+  ).toMatchInlineSnapshot(`
+    Object {
+      "margin": "var(--space-1) var(--space-4) var(--space-3)",
+      "padding": "var(--space-1) var(--space-4) var(--space-3)",
+    }
+  `)
+
+  // Mixed values (tokens and units)
+  expect(
+    css({
+      margin: "4 2rem",
+      padding: "4px 4",
+    })(theme),
+  ).toMatchInlineSnapshot(`
+    Object {
+      "margin": "var(--space-4) 2rem",
+      "padding": "4px var(--space-4)",
+    }
+  `)
+})
