@@ -36,7 +36,7 @@
     "postpack": "clean-package restore"
   },
   "dependencies": {
-    "framesync": "5.3.0",
+    "framesync": "6.1.2",
     "@chakra-ui/event-utils": "workspace:*",
     "@chakra-ui/react-use-latest-ref": "workspace:*"
   },
