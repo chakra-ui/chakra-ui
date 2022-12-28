@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": false,
+  "extends": ["config:base", "schedule:earlyMondays"],
+  "labels": ["dependencies"],
+  "rebaseWhen": "conflicted",
+  "timezone": "UTC",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": "before 6:00am on the first day of the month"
+  },
+  "packageRules": [
+    {
+      "description": "Automatically merge minor and patch-level updates",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "groupName": "react",
+      "matchPackageNames": ["react", "react-dom"]
+    },
+    {
+      "groupName": "eslint",
+      "matchPackagePatterns": ["eslint*"]
+    },
+    {
+      "groupName": "storybook",
+      "matchPackagePatterns": ["@storybook*"]
+    },
+    {
+      "groupName": "changesets",
+      "matchPackagePatterns": ["@changesets*"]
+    },
+    {
+      "groupName": "babel",
+      "matchPackagePatterns": ["@babel*"]
+    }
+  ]
+}
