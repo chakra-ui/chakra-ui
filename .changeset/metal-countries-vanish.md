@@ -1,5 +1,6 @@
 ---
 "@chakra-ui/checkbox": patch
+"@chakra-ui/radio": patch
 "@chakra-ui/react-use-size": patch
 ---
 
