@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.16
+
+### Patch Changes
+
+- [#7104](https://github.com/chakra-ui/chakra-ui/pull/7104)
+  [`989b36804`](https://github.com/chakra-ui/chakra-ui/commit/989b3680460b067f2425f6a92afb6632fb86ec5e)
+  Thanks [@lexanth](https://github.com/lexanth)! - Ensure input z-index
+  overrides are isolated to the input
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.14
+
 ## 2.0.15
 
 ### Patch Changes

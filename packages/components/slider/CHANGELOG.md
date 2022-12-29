@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7a62c30cc`](https://github.com/chakra-ui/chakra-ui/commit/7a62c30cc4977adf7c6021fabbd16b3bd4707e9f),
+  [`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/react-use-size@2.0.7
+  - @chakra-ui/react-use-pan-event@2.0.8
+
 ## 2.0.17
 
 ### Patch Changes

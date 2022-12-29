@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.3.7
+
+### Patch Changes
+
+- [`2d8f36c1d`](https://github.com/chakra-ui/chakra-ui/commit/2d8f36c1d100bb729aa735cbea4a338550cb2bfc)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add ESM interop for
+  emotion's `styled` default export.
+
+- Updated dependencies
+  [[`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/utils@2.0.14
+  - @chakra-ui/color-mode@2.1.11
+  - @chakra-ui/react-utils@2.0.11
+  - @chakra-ui/theme-utils@2.0.8
+
 ## 2.3.6
 
 ### Patch Changes

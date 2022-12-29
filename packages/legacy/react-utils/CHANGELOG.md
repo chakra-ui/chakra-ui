@@ -1,5 +1,13 @@
 # @chakra-ui/react-utils
 
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/utils@2.0.14
+
 ## 2.0.10
 
 ### Patch Changes

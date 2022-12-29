@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.16
+
+### Patch Changes
+
+- [#7158](https://github.com/chakra-ui/chakra-ui/pull/7158)
+  [`be1926e60`](https://github.com/chakra-ui/chakra-ui/commit/be1926e60366c0478027ae5a0f5dbdf52e0b932b)
+  Thanks [@anubra266](https://github.com/anubra266)! - Resolve theme tools to
+  values between 0 and 1
+
 ## 2.0.15
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.16
+
+### Patch Changes
+
+- [`7a62c30cc`](https://github.com/chakra-ui/chakra-ui/commit/7a62c30cc4977adf7c6021fabbd16b3bd4707e9f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update `@zag-js/*`
+  dependencies to latest versions for better ESM compatibility
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.14
+
 ## 2.0.15
 
 ### Patch Changes
