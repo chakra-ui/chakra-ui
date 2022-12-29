@@ -518,7 +518,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
-      '@zag-js/focus-visible': 0.1.0
+      '@zag-js/focus-visible': 0.2.0
       clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
@@ -532,7 +532,7 @@ importers:
       '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/visually-hidden': link:../visually-hidden
-      '@zag-js/focus-visible': 0.1.0
+      '@zag-js/focus-visible': 0.2.0
     devDependencies:
       '@chakra-ui/icon': link:../icon
       '@chakra-ui/layout': link:../layout
@@ -1884,11 +1884,11 @@ importers:
 
   packages/hooks/use-size:
     specifiers:
-      '@zag-js/element-size': 0.1.0
+      '@zag-js/element-size': 0.3.0
       clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
-      '@zag-js/element-size': 0.1.0
+      '@zag-js/element-size': 0.3.0
     devDependencies:
       clean-package: 2.1.1
       react: 18.2.0
@@ -13088,12 +13088,16 @@ packages:
   /@xtuc/long/4.2.2:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
 
-  /@zag-js/element-size/0.1.0:
-    resolution: {integrity: sha512-QF8wp0+V8++z+FHXiIw93+zudtubYszOtYbNgK39fg3pi+nCZtuSm4L1jC5QZMatNZ83MfOzyNCfgUubapagJQ==}
+  /@zag-js/element-size/0.3.0:
+    resolution: {integrity: sha512-5/hEI+0c6ZNCx6KHlOS5/WeHsd6+I7gk7Y/b/zATp4Rp3tHirs/tu1frq+iy5BmfaG9hbQtfHfUJTjOcI5jnoQ==}
     dev: false
 
   /@zag-js/focus-visible/0.1.0:
     resolution: {integrity: sha512-PeaBcTmdZWcFf7n1aM+oiOdZc+sy14qi0emPIeUuGMTjbP0xLGrZu43kdpHnWSXy7/r4Ubp/vlg50MCV8+9Isg==}
+    dev: false
+
+  /@zag-js/focus-visible/0.2.0:
+    resolution: {integrity: sha512-IczsHrfDXDlndVJU/fWCSGikieXc6Bg3e9P19YVmBMLZ+kqQBg7AY9sc1tYlaTepE2VMvbT9f1vgrpK1FgS9WA==}
     dev: false
 
   /JSONStream/1.3.5:

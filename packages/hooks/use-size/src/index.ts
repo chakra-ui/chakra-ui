@@ -1,10 +1,5 @@
-import { trackElementSize } from "@zag-js/element-size"
+import { trackElementSize, ElementSize } from "@zag-js/element-size"
 import { useEffect, useLayoutEffect, useState } from "react"
-
-type Size = {
-  width: number
-  height: number
-}
 
 const useSafeLayoutEffect = Boolean(globalThis?.document)
   ? useLayoutEffect
@@ -29,7 +24,7 @@ export function useSizes<T extends HTMLElement | null>({
   getNodes: () => T[]
   observeMutation?: boolean
 }) {
-  const [sizes, setSizes] = useState<Size[]>([])
+  const [sizes, setSizes] = useState<ElementSize[]>([])
   const [count, setCount] = useState(0)
 
   useSafeLayoutEffect(() => {
@@ -42,7 +37,7 @@ export function useSizes<T extends HTMLElement | null>({
             ...sizes.slice(0, index),
             size,
             ...sizes.slice(index + 1),
-          ] as Size[]
+          ] as ElementSize[]
         })
       }),
     )
@@ -63,7 +58,7 @@ export function useSizes<T extends HTMLElement | null>({
     }
   }, [count])
 
-  return sizes as Array<Size | undefined>
+  return sizes as Array<ElementSize | undefined>
 }
 
 function isRef(ref: any): ref is React.RefObject<any> {
@@ -80,5 +75,5 @@ export function useSize<T extends HTMLElement | null>(
       return [node]
     },
   })
-  return size as Size | undefined
+  return size as ElementSize | undefined
 }

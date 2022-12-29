@@ -44,7 +44,7 @@
     "@chakra-ui/react-use-update-effect": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/visually-hidden": "workspace:*",
-    "@zag-js/focus-visible": "0.1.0",
+    "@zag-js/focus-visible": "0.2.0",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {

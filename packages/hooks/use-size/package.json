@@ -34,7 +34,7 @@
     "postpack": "clean-package restore"
   },
   "dependencies": {
-    "@zag-js/element-size": "0.1.0"
+    "@zag-js/element-size": "0.3.0"
   },
   "peerDependencies": {
     "react": ">=18"
