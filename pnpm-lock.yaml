@@ -518,7 +518,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
-      '@zag-js/focus-visible': 0.2.0
+      '@zag-js/focus-visible': 0.2.1
       clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
@@ -532,7 +532,7 @@ importers:
       '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/visually-hidden': link:../visually-hidden
-      '@zag-js/focus-visible': 0.2.0
+      '@zag-js/focus-visible': 0.2.1
     devDependencies:
       '@chakra-ui/icon': link:../icon
       '@chakra-ui/layout': link:../layout
@@ -1157,7 +1157,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/visually-hidden': workspace:*
-      '@zag-js/focus-visible': 0.2.0
+      '@zag-js/focus-visible': 0.2.1
       clean-package: 2.1.1
       react: ^18.2.0
     dependencies:
@@ -1166,7 +1166,7 @@ importers:
       '@chakra-ui/react-types': link:../../utilities/react-types
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
-      '@zag-js/focus-visible': 0.2.0
+      '@zag-js/focus-visible': 0.2.1
     devDependencies:
       '@chakra-ui/layout': link:../layout
       '@chakra-ui/object-utils': link:../../utilities/object-utils
@@ -13092,8 +13092,8 @@ packages:
     resolution: {integrity: sha512-5/hEI+0c6ZNCx6KHlOS5/WeHsd6+I7gk7Y/b/zATp4Rp3tHirs/tu1frq+iy5BmfaG9hbQtfHfUJTjOcI5jnoQ==}
     dev: false
 
-  /@zag-js/focus-visible/0.2.0:
-    resolution: {integrity: sha512-IczsHrfDXDlndVJU/fWCSGikieXc6Bg3e9P19YVmBMLZ+kqQBg7AY9sc1tYlaTepE2VMvbT9f1vgrpK1FgS9WA==}
+  /@zag-js/focus-visible/0.2.1:
+    resolution: {integrity: sha512-19uTjoZGP4/Ax7kSNhhay9JA83BirKzpqLkeEAilrpdI1hE5xuq6q+tzJOsrMOOqJrm7LkmZp5lbsTQzvK2pYg==}
     dev: false
 
   /JSONStream/1.3.5:
