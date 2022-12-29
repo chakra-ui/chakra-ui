@@ -1945,12 +1945,12 @@ importers:
       '@types/lodash.mergewith': 4.6.6
       clean-package: 2.1.1
       css-box-model: 1.2.1
-      framesync: 5.3.0
+      framesync: 6.1.2
       lodash.mergewith: 4.6.2
     dependencies:
       '@types/lodash.mergewith': 4.6.6
       css-box-model: 1.2.1
-      framesync: 5.3.0
+      framesync: 6.1.2
       lodash.mergewith: 4.6.2
     devDependencies:
       clean-package: 2.1.1
@@ -18982,12 +18982,6 @@ packages:
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: true
-
-  /framesync/5.3.0:
-    resolution: {integrity: sha512-oc5m68HDO/tuK2blj7ZcdEBRx3p1PjrgHazL8GYEpvULhrtGIFbQArN6cQS2QhW8mitffaB+VYzMjDqBxxQeoA==}
-    dependencies:
-      tslib: 2.4.0
-    dev: false
 
   /framesync/6.0.1:
     resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==}
