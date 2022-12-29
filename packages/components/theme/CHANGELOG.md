@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`be1926e60`](https://github.com/chakra-ui/chakra-ui/commit/be1926e60366c0478027ae5a0f5dbdf52e0b932b)]:
+  - @chakra-ui/theme-tools@2.0.16
+
 ## 2.2.3
 
 ### Patch Changes

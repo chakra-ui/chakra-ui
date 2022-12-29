@@ -1,5 +1,13 @@
 # @chakra-ui/react-use-pan-event
 
+## 2.0.8
+
+### Patch Changes
+
+- [`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Upgrade `framesync`
+  package
+
 ## 2.0.7
 
 ### Patch Changes

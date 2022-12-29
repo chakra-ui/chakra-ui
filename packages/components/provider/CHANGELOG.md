@@ -1,5 +1,15 @@
 # @chakra-ui/provider
 
+## 2.0.28
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b),
+  [`2d8f36c1d`](https://github.com/chakra-ui/chakra-ui/commit/2d8f36c1d100bb729aa735cbea4a338550cb2bfc)]:
+  - @chakra-ui/utils@2.0.14
+  - @chakra-ui/system@2.3.7
+
 ## 2.0.27
 
 ### Patch Changes
