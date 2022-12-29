@@ -6,14 +6,14 @@ import {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import { Dict, filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
-import emotionStyled, {
-  CSSObject,
-  FunctionInterpolation,
-} from "@emotion/styled"
+import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import React from "react"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"
+
+const emotion_styled = ((createStyled as any).default ??
+  createStyled) as typeof createStyled
 
 type StyleResolverProps = SystemStyleObject & {
   __css?: SystemStyleObject
@@ -79,7 +79,7 @@ export function styled<T extends As, P = {}>(
   }
 
   const styleObject = toCSSObject({ baseStyle })
-  const Component = emotionStyled(
+  const Component = emotion_styled(
     component as React.ComponentType<any>,
     styledOptions,
   )(styleObject)
