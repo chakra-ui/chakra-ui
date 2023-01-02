@@ -6,7 +6,7 @@ export function compact<T extends Record<any, any>>(object: T) {
   return clone
 }
 
-export function omit<T extends Record<string, unknown>, K extends keyof T>(
+export function omit<T extends Record<string, any>, K extends keyof T>(
   object: T,
   keysToOmit: K[] = [],
 ) {
@@ -19,7 +19,7 @@ export function omit<T extends Record<string, unknown>, K extends keyof T>(
   return clone as Omit<T, K>
 }
 
-export function pick<T extends Record<any, any>, K extends keyof T>(
+export function pick<T extends Record<string, any>, K extends keyof T>(
   object: T,
   keysToPick: K[],
 ) {
@@ -47,10 +47,7 @@ export function split<T extends Record<string, any>, K extends keyof T>(
   return [picked, omitted] as [{ [P in K]: T[P] }, Omit<T, K>]
 }
 
-export function assignAfter(
-  target: Record<string, unknown>,
-  ...sources: any[]
-) {
+export function assignAfter(target: Record<string, any>, ...sources: any[]) {
   if (target == null) {
     // TypeError if undefined or null
     throw new TypeError("Cannot convert undefined or null to object")
