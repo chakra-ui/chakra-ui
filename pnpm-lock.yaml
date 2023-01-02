@@ -1697,6 +1697,7 @@ importers:
   packages/core/system:
     specifiers:
       '@chakra-ui/color-mode': workspace:*
+      '@chakra-ui/object-utils': workspace:*
       '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/theme': workspace:*
@@ -1710,6 +1711,7 @@ importers:
       react-fast-compare: 3.2.0
     dependencies:
       '@chakra-ui/color-mode': link:../../components/color-mode
+      '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@chakra-ui/react-utils': link:../../legacy/react-utils
       '@chakra-ui/styled-system': link:../styled-system
       '@chakra-ui/theme-utils': link:../../utilities/theme-utils

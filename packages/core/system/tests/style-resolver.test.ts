@@ -134,3 +134,22 @@ test("should override padding correctly", () => {
     }
   `)
 })
+
+test("should respect priority order", () => {
+  const result = toCSSObject({})({
+    theme,
+    __css: {
+      px: 4,
+      padding: 0,
+    },
+    px: 8,
+  })
+
+  expect(JSON.stringify(result, null, 2)).toMatchInlineSnapshot(`
+    "{
+      \\"padding\\": \\"0px\\",
+      \\"paddingInlineStart\\": \\"var(--chakra-space-8)\\",
+      \\"paddingInlineEnd\\": \\"var(--chakra-space-8)\\"
+    }"
+  `)
+})
