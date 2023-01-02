@@ -25,6 +25,7 @@ export async function main() {
     body: JSON.stringify({
       project: "chakra-ui",
       version,
+      url: `https://github.com/chakra-ui/chakra-ui/blob/main/.changelog/v${version}.mdx`,
     }),
   })
 
