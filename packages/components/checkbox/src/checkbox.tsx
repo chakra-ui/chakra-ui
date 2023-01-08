@@ -15,6 +15,7 @@ import { useCheckboxGroupContext } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
+import { Checkbox as checkBoxTheme } from "@chakra-ui/theme/components"
 
 const controlStyles: SystemStyleObject = {
   display: "inline-flex",
@@ -93,7 +94,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
   const group = useCheckboxGroupContext()
 
   const mergedProps = { ...group, ...props } as CheckboxProps
-  const styles = useMultiStyleConfig("Checkbox", mergedProps)
+  const styles = useMultiStyleConfig("Checkbox", mergedProps, checkBoxTheme)
 
   const ownProps = omitThemingProps(props)
 

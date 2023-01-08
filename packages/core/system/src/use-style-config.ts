@@ -20,6 +20,7 @@ type StylesRef = SystemStyleObject | Record<string, SystemStyleObject>
 function useStyleConfigImpl(
   themeKey: string | null,
   props: ThemingProps & Dict = {},
+  defaultConfig: Record<string, any> = {},
 ) {
   const { styleConfig: styleConfigProp, ...rest } = props
 
@@ -29,7 +30,10 @@ function useStyleConfigImpl(
     ? get(theme, `components.${themeKey}`)
     : undefined
 
-  const styleConfig = styleConfigProp || themeStyleConfig
+  const styleConfig = mergeWith(
+    defaultConfig,
+    styleConfigProp || themeStyleConfig,
+  )
 
   const mergedProps = mergeWith(
     { theme, colorMode },
@@ -59,15 +63,17 @@ function useStyleConfigImpl(
 export function useStyleConfig(
   themeKey: string,
   props: ThemingProps & Dict = {},
+  defaultConfig?: Record<string, any>,
 ) {
-  return useStyleConfigImpl(themeKey, props) as SystemStyleObject
+  return useStyleConfigImpl(themeKey, props, defaultConfig) as SystemStyleObject
 }
 
 export function useMultiStyleConfig(
   themeKey: string,
   props: ThemingProps & Dict = {},
+  defaultConfig?: Record<string, any>,
 ) {
-  return useStyleConfigImpl(themeKey, props) as Record<
+  return useStyleConfigImpl(themeKey, props, defaultConfig) as Record<
     string,
     SystemStyleObject
   >
