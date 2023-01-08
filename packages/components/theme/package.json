@@ -13,6 +13,23 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./components": "./src/components/index.ts",
+    "./components/*": "./src/components/*.ts",
+    "./foundations/*": "./src/foundations/*.ts",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "components": [
+        "./src/components/index.ts"
+      ],
+      "foundations": [
+        "./src/foundations/index.ts"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
