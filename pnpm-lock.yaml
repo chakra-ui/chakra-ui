@@ -829,7 +829,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
-      '@testing-library/react-hooks': 8.0.0
+      '@testing-library/react-hooks': 8.0.1
       '@types/react-frame-component': ^4.1.1
       clean-package: 2.1.1
       jest-matchmedia-mock: ^1.1.0
@@ -842,7 +842,7 @@ importers:
     devDependencies:
       '@chakra-ui/system': link:../../core/system
       '@chakra-ui/theme': link:../theme
-      '@testing-library/react-hooks': 8.0.0_react@18.2.0
+      '@testing-library/react-hooks': 8.0.1_react@18.2.0
       '@types/react-frame-component': 4.1.3
       clean-package: 2.1.1
       jest-matchmedia-mock: 1.1.0
@@ -918,7 +918,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/system': workspace:*
       '@chakra-ui/transition': workspace:*
-      '@testing-library/react-hooks': 8.0.0
+      '@testing-library/react-hooks': 8.0.1
       aria-hidden: ^1.1.1
       clean-package: 2.1.1
       framer-motion: ^6.2.9
@@ -940,7 +940,7 @@ importers:
     devDependencies:
       '@chakra-ui/hooks': link:../../legacy/hooks
       '@chakra-ui/system': link:../../core/system
-      '@testing-library/react-hooks': 8.0.0_biqbaboplfbrettd7655fr4n2y
+      '@testing-library/react-hooks': 8.0.1_biqbaboplfbrettd7655fr4n2y
       clean-package: 2.1.1
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
@@ -11782,8 +11782,8 @@ packages:
       redent: 3.0.0
     dev: false
 
-  /@testing-library/react-hooks/8.0.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-uZqcgtcUUtw7Z9N32W13qQhVAD+Xki2hxbTR461MKax8T6Jr8nsUvZB+vcBTkzY2nFvsUet434CsgF0ncW2yFw==}
+  /@testing-library/react-hooks/8.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
     engines: {node: '>=12'}
     peerDependencies:
       '@types/react': ^16.9.0 || ^17.0.0
@@ -11798,30 +11798,9 @@ packages:
       react-test-renderer:
         optional: true
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.20.7
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-error-boundary: 3.1.4_react@18.2.0
-    dev: true
-
-  /@testing-library/react-hooks/8.0.0_react@18.2.0:
-    resolution: {integrity: sha512-uZqcgtcUUtw7Z9N32W13qQhVAD+Xki2hxbTR461MKax8T6Jr8nsUvZB+vcBTkzY2nFvsUet434CsgF0ncW2yFw==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      '@types/react': ^16.9.0 || ^17.0.0
-      react: ^16.9.0 || ^17.0.0
-      react-dom: ^16.9.0 || ^17.0.0
-      react-test-renderer: ^16.9.0 || ^17.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react-dom:
-        optional: true
-      react-test-renderer:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.18.9
-      react: 18.2.0
       react-error-boundary: 3.1.4_react@18.2.0
     dev: true
 
@@ -11841,10 +11820,9 @@ packages:
       react-test-renderer:
         optional: true
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.20.7
       react: 18.2.0
       react-error-boundary: 3.1.4_react@18.2.0
-    dev: false
 
   /@testing-library/react/13.3.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-DB79aA426+deFgGSjnf5grczDPiL4taK3hFaa+M5q7q20Kcve9eQottOG5kZ74KEr55v0tU2CQormSSDK87zYQ==}

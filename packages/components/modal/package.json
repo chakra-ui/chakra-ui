@@ -51,7 +51,7 @@
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
-    "@testing-library/react-hooks": "8.0.0",
+    "@testing-library/react-hooks": "8.0.1",
     "framer-motion": "^6.2.9",
     "react-lorem-component": "0.13.0",
     "react": "^18.0.0",
