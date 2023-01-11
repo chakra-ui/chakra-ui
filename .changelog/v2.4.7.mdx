@@ -8,223 +8,34 @@ releaseDate: January 11, 2023
 version: 2.4.7
 ---
 
-## @chakra-ui/accordion@2.1.6
+## Patch Changes
 
-### Patch Changes
+### Icon `3.0.15`
 
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
+Removed duplicate `export * from 'src'` statements
 
-## @chakra-ui/alert@2.0.15
+### System `2.3.8`
 
-### Patch Changes
+Fixed issue where style overrides does not respect order of precedence due to
+the use of `Object.assign`.
 
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
+To illustrate the issue, consider the following example:
 
-## @chakra-ui/checkbox@2.2.8
+```js
+const stylesFromTheme = {
+  px: 8,
+  padding: 0,
+}
 
-### Patch Changes
+const stylesFromProps = {
+  px: 4,
+}
 
-- Updated dependencies
+const style = Object.assign({}, stylesFromTheme, stylesFromProps)
+// Result: { px: 4, padding: 0 }
+// Expected: { padding: 0, px: 4 }
+```
 
-## @chakra-ui/close-button@2.0.15
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/form-control@2.0.15
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/icon@3.0.15
-
-### Patch Changes
-
-- [#7194](https://github.com/chakra-ui/chakra-ui/pull/7194)
-  [`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)
-  Thanks [@bertho-zero](https://github.com/bertho-zero)! - fix: remove duplicate
-  export
-
-## @chakra-ui/icons@2.0.16
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/input@2.0.17
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]
-
-## @chakra-ui/layout@2.1.13
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36),
-  [`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/modal@2.2.7
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/number-input@2.0.16
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/popover@2.1.6
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/provider@2.0.29
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]
-
-## @chakra-ui/radio@2.0.17
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/react@2.4.7
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36),
-  [`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/select@2.0.16
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/stat@2.0.15
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/switch@2.0.20
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/tag@2.0.15
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]
-
-## @chakra-ui/textarea@2.0.16
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/toast@4.0.9
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]
-
-## @chakra-ui/system@2.3.8
-
-### Patch Changes
-
-- [#6905](https://github.com/chakra-ui/chakra-ui/pull/6905)
-  [`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)
-  Thanks [@bertho-zero](https://github.com/bertho-zero)! - Fixed issue where
-  style overrides does not respect order of precedence due to the use of
-  `Object.assign`.
-
-  To illustrate the issue, consider the following example:
-
-  ```js
-  const stylesFromTheme = {
-    px: 8,
-    padding: 0,
-  }
-
-  const stylesFromProps = {
-    px: 4,
-  }
-
-  const style = Object.assign({}, stylesFromTheme, stylesFromProps)
-  // Result: { px: 4, padding: 0 }
-  // Expected: { padding: 0, px: 4 }
-  ```
-
-  The issue is that `Object.assign` will replace properties in place with values
-  from the override objects. This is not the desired behavior for style
-  overrides hence a custom `assignAfter` function is used instead
-
-- Updated dependencies
-  \[[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]
-
-## @chakra-ui/object-utils@2.0.7
-
-### Patch Changes
-
-- [#6905](https://github.com/chakra-ui/chakra-ui/pull/6905)
-  [`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)
-  Thanks [@bertho-zero](https://github.com/bertho-zero)! - Fixed issue where
-  style overrides does not respect order of precedence due to the use of
-  `Object.assign`.
-
-  To illustrate the issue, consider the following example:
-
-  ```js
-  const stylesFromTheme = {
-    px: 8,
-    padding: 0,
-  }
-
-  const stylesFromProps = {
-    px: 4,
-  }
-
-  const style = Object.assign({}, stylesFromTheme, stylesFromProps)
-  // Result: { px: 4, padding: 0 }
-  // Expected: { padding: 0, px: 4 }
-  ```
-
-  The issue is that `Object.assign` will replace properties in place with values
-  from the override objects. This is not the desired behavior for style
-  overrides hence a custom `assignAfter` function is used instead
-
-## @chakra-ui/props-docs@2.0.31
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/test-utils@2.0.31
-
-### Patch Changes
-
-- Updated dependencies
+The issue is that `Object.assign` will replace properties in place with values
+from the override objects. This is not the desired behavior for style overrides
+hence a custom `assignAfter` function is used instead
