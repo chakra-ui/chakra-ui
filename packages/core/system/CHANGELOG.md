@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.3.8
+
+### Patch Changes
+
+- [#6905](https://github.com/chakra-ui/chakra-ui/pull/6905)
+  [`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)
+  Thanks [@bertho-zero](https://github.com/bertho-zero)! - Fixed issue where
+  style overrides does not respect order of precedence due to the use of
+  `Object.assign`.
+
+  To illustrate the issue, consider the following example:
+
+  ```js
+  const stylesFromTheme = {
+    px: 8,
+    padding: 0,
+  }
+
+  const stylesFromProps = {
+    px: 4,
+  }
+
+  const style = Object.assign({}, stylesFromTheme, stylesFromProps)
+  // Result: { px: 4, padding: 0 }
+  // Expected: { padding: 0, px: 4 }
+  ```
+
+  The issue is that `Object.assign` will replace properties in place with values
+  from the override objects. This is not the desired behavior for style
+  overrides hence a custom `assignAfter` function is used instead
+
+- Updated dependencies
+  [[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]:
+  - @chakra-ui/object-utils@2.0.7
+  - @chakra-ui/styled-system@2.5.1
+
 ## 2.3.7
 
 ### Patch Changes
