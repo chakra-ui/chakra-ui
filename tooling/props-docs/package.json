@@ -10,8 +10,8 @@
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -33,12 +33,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@chakra-ui/react": "workspace:*",
-    "@chakra-ui/styled-system": "workspace:*",
-    "glob": "^7.1.6",
-    "mkdirp": "^1.0.4",
-    "react-docgen-typescript": "^2.1.0",
-    "regenerator-runtime": "^0.13.7"
+    "glob": "^7.1.6"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3"

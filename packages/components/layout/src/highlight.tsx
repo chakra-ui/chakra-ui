@@ -14,7 +14,7 @@ type Chunk = {
   match: boolean
 }
 
-type Options = {
+type HighlightOptions = {
   text: string
   query: string | string[]
 }
@@ -33,7 +33,7 @@ function buildRegex(query: string[]) {
   return new RegExp(`(${_query.join("|")})`, "ig")
 }
 
-function highlightWords({ text, query }: Options): Chunk[] {
+function highlightWords({ text, query }: HighlightOptions): Chunk[] {
   const regex = buildRegex(Array.isArray(query) ? query : [query])
   if (!regex) {
     return [{ text, match: false }]
@@ -42,7 +42,9 @@ function highlightWords({ text, query }: Options): Chunk[] {
   return result.map((str) => ({ text: str, match: regex.test(str) }))
 }
 
-export function useHighlight(props: Options) {
+export type UseHighlightProps = HighlightOptions
+
+export function useHighlight(props: UseHighlightProps) {
   const { text, query } = props
   return useMemo(() => highlightWords({ text, query }), [text, query])
 }

@@ -1,13 +1,44 @@
-export * from "./modal"
-export * from "./modal-body"
-export * from "./modal-close-button"
-export * from "./modal-content"
-export * from "./modal-focus"
-export * from "./modal-footer"
-export * from "./modal-header"
-export * from "./modal-overlay"
+export {
+  Modal,
+  ModalContextProvider,
+  useModalContext,
+  useModalStyles,
+} from "./modal"
+export type { ModalProps } from "./modal"
+export { ModalBody } from "./modal-body"
+export type { ModalBodyProps } from "./modal-body"
+export { ModalCloseButton } from "./modal-close-button"
+export { ModalContent } from "./modal-content"
+export type { ModalContentProps } from "./modal-content"
+export { ModalFocusScope } from "./modal-focus"
+export { ModalFooter } from "./modal-footer"
+export type { ModalFooterProps } from "./modal-footer"
+export { ModalHeader } from "./modal-header"
+export type { ModalHeaderProps } from "./modal-header"
+export { ModalOverlay } from "./modal-overlay"
+export type { ModalOverlayProps } from "./modal-overlay"
 
-export * from "./use-modal"
-export * from "./alert-dialog"
-export * from "./drawer"
-export * from "./drawer-content"
+export { useModal } from "./use-modal"
+export type { UseModalProps, UseModalReturn } from "./use-modal"
+export {
+  AlertDialog,
+  AlertDialogCloseButton,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+} from "./alert-dialog"
+export type { AlertDialogProps } from "./alert-dialog"
+export {
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  useDrawerContext,
+} from "./drawer"
+export type { DrawerProps } from "./drawer"
+export { DrawerContent } from "./drawer-content"
+export type { DrawerContentProps } from "./drawer-content"

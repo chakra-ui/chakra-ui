@@ -1,4 +1,4 @@
-import { FallbackStrategy, shouldShowFallbackImage } from "../src"
+import { FallbackStrategy, shouldShowFallbackImage } from "../src/use-image"
 
 type Status = "loading" | "failed" | "pending" | "loaded"
 describe("shouldShowFallbackImage", () => {
