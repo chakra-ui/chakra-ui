@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.16
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]:
+  - @chakra-ui/icon@3.0.15
+
 ## 2.0.15
 
 ### Patch Changes

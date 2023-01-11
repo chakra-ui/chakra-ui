@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36),
+  [`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]:
+  - @chakra-ui/object-utils@2.0.7
+  - @chakra-ui/icon@3.0.15
+
 ## 2.1.12
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.15
+
+### Patch Changes
+
+- [#7194](https://github.com/chakra-ui/chakra-ui/pull/7194)
+  [`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)
+  Thanks [@bertho-zero](https://github.com/bertho-zero)! - fix: remove duplicate
+  export
+
 ## 3.0.14
 
 ### Patch Changes
