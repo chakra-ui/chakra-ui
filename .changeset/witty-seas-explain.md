@@ -2,4 +2,4 @@
 "@chakra-ui/icons": patch
 ---
 
-Fix export for `ReactIcon`
+Fixed issue where `ReactIcon` was not exported
