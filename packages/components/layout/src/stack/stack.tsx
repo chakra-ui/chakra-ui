@@ -33,10 +33,12 @@ interface StackOptions {
   /**
    * The space between each stack item
    * @type SystemProps["margin"]
+   * @default "0.5rem"
    */
   spacing?: SystemProps["margin"]
   /**
    * The direction to stack the items.
+   * @default "column"
    */
   direction?: StackDirection
   /**

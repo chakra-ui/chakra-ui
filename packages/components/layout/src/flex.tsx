@@ -27,6 +27,7 @@ export interface FlexOptions {
   /**
    * Shorthand for `flexDirection` style prop
    * @type SystemProps["flexDirection"]
+   * @default "row"
    */
   direction?: SystemProps["flexDirection"]
 
