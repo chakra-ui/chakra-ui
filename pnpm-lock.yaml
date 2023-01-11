@@ -1679,7 +1679,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
-      '@types/lodash.mergewith': 4.6.6
+      '@types/lodash.mergewith': 4.6.7
       clean-package: 2.1.1
       csstype: ^3.0.11
       lodash.mergewith: 4.6.2
@@ -1693,7 +1693,7 @@ importers:
       '@chakra-ui/object-utils': link:../../utilities/object-utils
       '@emotion/react': 11.9.3
       '@emotion/styled': 11.9.3_@emotion+react@11.9.3
-      '@types/lodash.mergewith': 4.6.6
+      '@types/lodash.mergewith': 4.6.7
       clean-package: 2.1.1
 
   packages/core/system:
@@ -1946,13 +1946,13 @@ importers:
 
   packages/legacy/utils:
     specifiers:
-      '@types/lodash.mergewith': 4.6.6
+      '@types/lodash.mergewith': 4.6.7
       clean-package: 2.1.1
       css-box-model: 1.2.1
       framesync: 6.1.2
       lodash.mergewith: 4.6.2
     dependencies:
-      '@types/lodash.mergewith': 4.6.6
+      '@types/lodash.mergewith': 4.6.7
       css-box-model: 1.2.1
       framesync: 6.1.2
       lodash.mergewith: 4.6.2
@@ -2030,7 +2030,7 @@ importers:
       '@chakra-ui/shared-utils': workspace:*
       '@chakra-ui/styled-system': workspace:*
       '@chakra-ui/theme': workspace:*
-      '@types/lodash.mergewith': 4.6.6
+      '@types/lodash.mergewith': 4.6.7
       clean-package: 2.1.1
       lodash.mergewith: 4.6.2
     dependencies:
@@ -2039,7 +2039,7 @@ importers:
       '@chakra-ui/theme': link:../../components/theme
       lodash.mergewith: 4.6.2
     devDependencies:
-      '@types/lodash.mergewith': 4.6.6
+      '@types/lodash.mergewith': 4.6.7
       clean-package: 2.1.1
 
   tooling/babel-plugin:
@@ -12171,8 +12171,8 @@ packages:
       '@types/node': 18.11.17
     dev: false
 
-  /@types/lodash.mergewith/4.6.6:
-    resolution: {integrity: sha512-RY/8IaVENjG19rxTZu9Nukqh0W2UrYgmBj5sdns4hWRZaV8PqR7wIKHFKzvOTjo4zVRV7sVI+yFhAJql12Kfqg==}
+  /@types/lodash.mergewith/4.6.7:
+    resolution: {integrity: sha512-3m+lkO5CLRRYU0fhGRp7zbsGi6+BZj0uTVSwvcKU+nSlhjA9/QRNfuSGnD2mX6hQA7ZbmcCkzk5h4ZYGOtk14A==}
     dependencies:
       '@types/lodash': 4.14.182
 

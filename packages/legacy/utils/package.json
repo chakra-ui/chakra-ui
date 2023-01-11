@@ -31,7 +31,7 @@
     "postpack": "clean-package restore"
   },
   "dependencies": {
-    "@types/lodash.mergewith": "4.6.6",
+    "@types/lodash.mergewith": "4.6.7",
     "css-box-model": "1.2.1",
     "framesync": "6.1.2",
     "lodash.mergewith": "4.6.2"

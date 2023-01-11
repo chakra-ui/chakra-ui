@@ -36,7 +36,7 @@
     "postpack": "clean-package restore"
   },
   "devDependencies": {
-    "@types/lodash.mergewith": "4.6.6",
+    "@types/lodash.mergewith": "4.6.7",
     "clean-package": "2.1.1"
   },
   "dependencies": {
