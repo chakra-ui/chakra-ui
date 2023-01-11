@@ -17,5 +17,5 @@ export {
   useFormErrorStyles,
 } from "./form-error"
 export type { FormErrorMessageProps } from "./form-error"
-export { FormLabel } from "./form-label"
-export type { FormLabelProps } from "./form-label"
+export { FormLabel, RequiredIndicator } from "./form-label"
+export type { FormLabelProps, RequiredIndicatorProps } from "./form-label"
