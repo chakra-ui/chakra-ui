@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.2.9
+
+### Patch Changes
+
+- [#7225](https://github.com/chakra-ui/chakra-ui/pull/7225)
+  [`496ebaedd`](https://github.com/chakra-ui/chakra-ui/commit/496ebaedd489a05c19c31c946b872757e4f338d4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  console throws a warning from `react-remove-scroll` when multiple modal
+  dialogs are open.
+
 ## 2.2.8
 
 ### Patch Changes

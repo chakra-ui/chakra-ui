@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.4.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`496ebaedd`](https://github.com/chakra-ui/chakra-ui/commit/496ebaedd489a05c19c31c946b872757e4f338d4)]:
+  - @chakra-ui/modal@2.2.9
+  - @chakra-ui/accordion@2.1.7
+  - @chakra-ui/menu@2.1.7
+  - @chakra-ui/tabs@2.1.7
+  - @chakra-ui/tooltip@2.2.5
+
 ## 2.4.8
 
 ### Patch Changes
