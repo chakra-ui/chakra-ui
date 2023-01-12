@@ -38,7 +38,12 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
 export type OmitCommonProps<
   Target,
   OmitAdditionalProps extends keyof any = never,
-> = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>
+> = Omit<
+  Target,
+  "transition" | "as" | "color" | "translate" | OmitAdditionalProps
+> & {
+  htmlTranslate?: "yes" | "no" | undefined
+}
 
 export type RightJoinProps<
   SourceProps extends object = {},

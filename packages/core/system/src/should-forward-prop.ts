@@ -24,7 +24,12 @@ const allPropNames = new Set([
  *
  * https://github.com/chakra-ui/chakra-ui/issues/149
  */
-const validHTMLProps = new Set(["htmlWidth", "htmlHeight", "htmlSize"])
+const validHTMLProps = new Set([
+  "htmlWidth",
+  "htmlHeight",
+  "htmlSize",
+  "htmlTranslate",
+])
 
 export function shouldForwardProp(prop: string): boolean {
   return validHTMLProps.has(prop) || !allPropNames.has(prop)
