@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.15
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- [`ce86e0b8c`](https://github.com/chakra-ui/chakra-ui/commit/ce86e0b8c91f811b2fbfbba400f7c5b0471a0758)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump
+  `react-remove-scroll`, `react-focus-lock` and `aria-hidden` dependencies
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/dom-utils@2.0.6
+
 ## 2.0.14
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # Change Log
 
+## 2.2.5
+
+### Patch Changes
+
+- [`97fa1d854`](https://github.com/chakra-ui/chakra-ui/commit/97fa1d8541688518768aed9e54ed6ce26b6cd73a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor `Card`
+  theme to use component tokens. This makes it easier to override styles from
+  the base style.
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/anatomy@2.1.2
+  - @chakra-ui/theme-tools@2.0.17
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 2.2.4
 
 ### Patch Changes

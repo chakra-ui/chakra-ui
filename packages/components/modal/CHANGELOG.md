@@ -1,5 +1,28 @@
 # Change Log
 
+## 2.2.8
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- [`ce86e0b8c`](https://github.com/chakra-ui/chakra-ui/commit/ce86e0b8c91f811b2fbfbba400f7c5b0471a0758)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump
+  `react-remove-scroll`, `react-focus-lock` and `aria-hidden` dependencies
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0),
+  [`ce86e0b8c`](https://github.com/chakra-ui/chakra-ui/commit/ce86e0b8c91f811b2fbfbba400f7c5b0471a0758)]:
+  - @chakra-ui/close-button@2.0.16
+  - @chakra-ui/focus-lock@2.0.15
+  - @chakra-ui/portal@2.0.14
+  - @chakra-ui/transition@2.0.14
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/react-use-merge-refs@2.0.7
+  - @chakra-ui/react-types@2.0.7
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 2.2.7
 
 ### Patch Changes

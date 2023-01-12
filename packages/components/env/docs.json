@@ -1,0 +1,5 @@
+{
+  "EnvironmentProvider": {
+    "environment": { "type": "Environment;", "required": false }
+  }
+}

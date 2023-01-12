@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.1.5
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- [`b427ef966`](https://github.com/chakra-ui/chakra-ui/commit/b427ef9668d9ee000f44eb0cdd4d0a5ae9f396ec)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `useDimension` uses stale value of node reference
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/react-utils@2.0.12
+  - @chakra-ui/utils@2.0.15
+
 ## 2.1.4
 
 ### Patch Changes

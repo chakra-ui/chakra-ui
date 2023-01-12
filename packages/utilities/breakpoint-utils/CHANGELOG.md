@@ -1,5 +1,21 @@
 # @chakra-ui/breakpoint-utils
 
+## 2.0.7
+
+### Patch Changes
+
+- [#7222](https://github.com/chakra-ui/chakra-ui/pull/7222)
+  [`292864aba`](https://github.com/chakra-ui/chakra-ui/commit/292864abae83833a826b2fe4a9d69ddcfe7fbe17)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Resolve issue that
+  useBreakpointValue is not responding to window resizing in Firefox
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 2.0.6
 
 ### Patch Changes

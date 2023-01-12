@@ -1,0 +1,189 @@
+{
+  "Tab": {
+    "id": { "type": "string;", "required": false },
+    "isDisabled": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true`, the `Tab` won't be toggleable"
+    },
+    "isSelected": { "type": "boolean;", "required": false },
+    "panelId": { "type": "string;", "required": false }
+  },
+  "TabList": {
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<Element>;",
+      "required": false
+    },
+    "ref": {
+      "type": "((instance: any) => void) | RefObject<any>;",
+      "required": false
+    }
+  },
+  "Tabs": {
+    "align": {
+      "type": "\"center\" | \"start\" | \"end\";",
+      "required": false,
+      "description": "The alignment of the tabs"
+    },
+    "colorScheme": {
+      "defaultValue": "blue",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "defaultIndex": {
+      "type": "number;",
+      "required": false,
+      "description": "The initial index of the selected tab (in uncontrolled mode)"
+    },
+    "direction": {
+      "type": "\"rtl\" | \"ltr\";",
+      "defaultValue": "\"ltr\"",
+      "required": false,
+      "description": "The writing mode direction.\n\n- When in RTL, the left and right navigation is flipped"
+    },
+    "id": {
+      "type": "string;",
+      "required": false,
+      "description": "The id of the tab"
+    },
+    "index": {
+      "type": "number;",
+      "required": false,
+      "description": "The index of the selected tab (in controlled mode)"
+    },
+    "isFitted": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true`, tabs will stretch to width of the tablist."
+    },
+    "isLazy": {
+      "type": "boolean;",
+      "required": false,
+      "description": "Performance 🚀:\nIf `true`, rendering of the tab panel's will be deferred until it is selected."
+    },
+    "isManual": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true`, the tabs will be manually activated and\ndisplay its panel by pressing Space or Enter.\n\nIf `false`, the tabs will be automatically activated\nand their panel is displayed when they receive focus."
+    },
+    "lazyBehavior": {
+      "type": "LazyMode;",
+      "defaultValue": "\"unmount\"",
+      "required": false,
+      "description": "Performance 🚀:\nThe lazy behavior of tab panels' content when not active.\nOnly works when `isLazy={true}`\n\n- \"unmount\": The content of inactive tab panels are always unmounted.\n- \"keepMounted\": The content of inactive tab panels is initially unmounted,\nbut stays mounted when selected."
+    },
+    "onChange": {
+      "type": "(index: number) => void;",
+      "required": false,
+      "description": "Callback when the index (controlled or un-controlled) changes."
+    },
+    "orientation": {
+      "type": "\"vertical\" | \"horizontal\";",
+      "defaultValue": "\"horizontal\"",
+      "required": false,
+      "description": "The orientation of the tab list."
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "description": "The size of the Tabs"
+    },
+    "variant": {
+      "defaultValue": "line",
+      "type": "\"line\" | \"enclosed\" | \"enclosed-colored\" | \"soft-rounded\" | \"solid-rounded\" | \"unstyled\"",
+      "required": false,
+      "description": "The variant of the Tabs"
+    }
+  },
+  "UseTabList": {
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<Element>;",
+      "required": false
+    },
+    "ref": {
+      "type": "((instance: any) => void) | RefObject<any>;",
+      "required": false
+    }
+  },
+  "UseTab": {
+    "clickOnEnter": {
+      "type": "boolean;",
+      "required": false,
+      "description": "Whether or not trigger click on pressing `Enter`."
+    },
+    "clickOnSpace": {
+      "type": "boolean;",
+      "required": false,
+      "description": "Whether or not trigger click on pressing `Space`."
+    },
+    "isDisabled": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true`, the element will be disabled.\nIt will set the `disabled` HTML attribute"
+    },
+    "isFocusable": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true` and isDisabled, the element will\nhave only `aria-disabled` set to `true`"
+    },
+    "isSelected": { "type": "boolean;", "required": false },
+    "panelId": { "type": "string;", "required": false },
+    "ref": {
+      "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLElement | null) => void)\n  | RefObject<HTMLElement>;",
+      "required": false,
+      "description": "The ref for the element"
+    }
+  },
+  "UseTabs": {
+    "defaultIndex": {
+      "type": "number;",
+      "required": false,
+      "description": "The initial index of the selected tab (in uncontrolled mode)"
+    },
+    "direction": {
+      "type": "\"rtl\" | \"ltr\";",
+      "defaultValue": "\"ltr\"",
+      "required": false,
+      "description": "The writing mode direction.\n\n- When in RTL, the left and right navigation is flipped"
+    },
+    "id": {
+      "type": "string;",
+      "required": false,
+      "description": "The id of the tab"
+    },
+    "index": {
+      "type": "number;",
+      "required": false,
+      "description": "The index of the selected tab (in controlled mode)"
+    },
+    "isLazy": {
+      "type": "boolean;",
+      "required": false,
+      "description": "Performance 🚀:\nIf `true`, rendering of the tab panel's will be deferred until it is selected."
+    },
+    "isManual": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true`, the tabs will be manually activated and\ndisplay its panel by pressing Space or Enter.\n\nIf `false`, the tabs will be automatically activated\nand their panel is displayed when they receive focus."
+    },
+    "lazyBehavior": {
+      "type": "LazyMode;",
+      "defaultValue": "\"unmount\"",
+      "required": false,
+      "description": "Performance 🚀:\nThe lazy behavior of tab panels' content when not active.\nOnly works when `isLazy={true}`\n\n- \"unmount\": The content of inactive tab panels are always unmounted.\n- \"keepMounted\": The content of inactive tab panels is initially unmounted,\nbut stays mounted when selected."
+    },
+    "onChange": {
+      "type": "(index: number) => void;",
+      "required": false,
+      "description": "Callback when the index (controlled or un-controlled) changes."
+    },
+    "orientation": {
+      "type": "\"vertical\" | \"horizontal\";",
+      "defaultValue": "\"horizontal\"",
+      "required": false,
+      "description": "The orientation of the tab list."
+    }
+  }
+}

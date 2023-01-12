@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.22
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/media-query@3.2.10
+  - @chakra-ui/react-use-previous@2.0.5
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 2.0.21
 
 ### Patch Changes

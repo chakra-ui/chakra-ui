@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#7216](https://github.com/chakra-ui/chakra-ui/pull/7216)
+  [`08e3ffc4a`](https://github.com/chakra-ui/chakra-ui/commit/08e3ffc4ad6f138ad06e5046320949b2c487029e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - [BREAKING] Refactor
+  props docs and improved its output structure
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
 ## 2.0.31
 
 ### Patch Changes
