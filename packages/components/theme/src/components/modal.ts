@@ -18,7 +18,7 @@ const baseStyleDialogContainer = defineStyle((props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
-    display: scrollBehavior === 'inside' ? 'flex' : 'grid',
+    display: scrollBehavior === "inside" ? "flex" : "grid",
     zIndex: "modal",
     justifyContent: "center",
     alignItems: isCentered ? "center" : "flex-start",
