@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-pan-event",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "React hook to track pan events",
   "keywords": [
     "react",

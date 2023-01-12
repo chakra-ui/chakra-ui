@@ -1,5 +1,26 @@
 # Change Log
 
+## 2.1.7
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/close-button@2.0.16
+  - @chakra-ui/popper@3.0.12
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/react-use-animation-state@2.0.8
+  - @chakra-ui/react-use-disclosure@2.0.8
+  - @chakra-ui/react-use-focus-effect@2.0.9
+  - @chakra-ui/react-use-focus-on-pointer-down@2.0.6
+  - @chakra-ui/react-use-merge-refs@2.0.7
+  - @chakra-ui/lazy-utils@2.0.5
+  - @chakra-ui/react-types@2.0.7
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 2.1.6
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @chakra-ui/cli
 
+## 2.3.1
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
 ## 2.3.0
 
 ### Minor Changes

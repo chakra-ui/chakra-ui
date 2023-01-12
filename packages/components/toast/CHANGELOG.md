@@ -1,5 +1,33 @@
 # Change Log
 
+## 5.0.0
+
+### Patch Changes
+
+- [#6451](https://github.com/chakra-ui/chakra-ui/pull/6451)
+  [`e0f6441c8`](https://github.com/chakra-ui/chakra-ui/commit/e0f6441c8aa3e4a4609f2b49299adfd94097cb51)
+  Thanks [@sofiyevsr](https://github.com/sofiyevsr)! - Fix issue where default
+  toast options are not applied correctly.
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`97fa1d854`](https://github.com/chakra-ui/chakra-ui/commit/97fa1d8541688518768aed9e54ed6ce26b6cd73a),
+  [`292864aba`](https://github.com/chakra-ui/chakra-ui/commit/292864abae83833a826b2fe4a9d69ddcfe7fbe17),
+  [`3ce311ac7`](https://github.com/chakra-ui/chakra-ui/commit/3ce311ac796bc7f24d7b92bf52f5f207348963cc),
+  [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/theme@2.2.5
+  - @chakra-ui/styled-system@2.5.2
+  - @chakra-ui/system@2.4.0
+  - @chakra-ui/alert@2.0.16
+  - @chakra-ui/close-button@2.0.16
+  - @chakra-ui/portal@2.0.14
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/react-use-timeout@2.0.5
+  - @chakra-ui/react-use-update-effect@2.0.7
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 4.0.9
 
 ### Patch Changes

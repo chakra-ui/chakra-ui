@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.2.9
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/form-control@2.0.16
+  - @chakra-ui/visually-hidden@2.0.15
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/react-use-callback-ref@2.0.7
+  - @chakra-ui/react-use-controllable-state@2.0.8
+  - @chakra-ui/react-use-merge-refs@2.0.7
+  - @chakra-ui/react-use-safe-layout-effect@2.0.5
+  - @chakra-ui/react-use-update-effect@2.0.7
+  - @chakra-ui/react-types@2.0.7
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 2.2.8
 
 ### Patch Changes

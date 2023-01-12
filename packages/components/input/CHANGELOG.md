@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/form-control@2.0.16
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/object-utils@2.0.8
+  - @chakra-ui/react-children-utils@2.0.6
+  - @chakra-ui/shared-utils@2.0.5
+
 ## 2.0.17
 
 ### Patch Changes
