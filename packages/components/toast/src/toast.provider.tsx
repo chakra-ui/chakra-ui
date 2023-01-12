@@ -97,6 +97,7 @@ export const [ToastOptionProvider, useToastOptionContext] = createContext<
   UseToastOptions | undefined
 >({
   name: `ToastOptionsContext`,
+  strict: false,
 })
 
 /**
