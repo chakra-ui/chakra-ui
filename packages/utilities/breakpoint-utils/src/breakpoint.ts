@@ -33,19 +33,15 @@ function keys(breakpoints: Record<string, any>) {
   return new Set(value)
 }
 
-const OFFSET = 0.02
-
 function subtract(value: string) {
   if (!value) return value
-
   value = px(value) ?? value
 
-  // offset by 0.02px or equivalent (in em)
-  const factor = value.endsWith("px") ? -OFFSET : -(OFFSET / 16)
+  const OFFSET = -0.02
 
   return typeof value === "number"
-    ? `${value + factor}`
-    : value.replace(/(\d+\.?\d*)/u, (m) => `${parseFloat(m) + factor}`)
+    ? `${value + OFFSET}`
+    : value.replace(/(\d+\.?\d*)/u, (m) => `${parseFloat(m) + OFFSET}`)
 }
 
 export function toMediaQueryString(min: string | null, max?: string) {
