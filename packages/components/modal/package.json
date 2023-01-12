@@ -44,8 +44,8 @@
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/transition": "workspace:*",
-    "aria-hidden": "^1.1.1",
-    "react-remove-scroll": "^2.5.4",
+    "aria-hidden": "^1.2.2",
+    "react-remove-scroll": "^2.5.5",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {

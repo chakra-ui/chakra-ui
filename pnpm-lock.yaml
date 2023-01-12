@@ -690,10 +690,10 @@ importers:
       '@chakra-ui/dom-utils': workspace:*
       clean-package: 2.1.1
       react: ^18.2.0
-      react-focus-lock: ^2.9.1
+      react-focus-lock: ^2.9.2
     dependencies:
       '@chakra-ui/dom-utils': link:../../utilities/dom-utils
-      react-focus-lock: 2.9.1_react@18.2.0
+      react-focus-lock: 2.9.2_react@18.2.0
     devDependencies:
       clean-package: 2.1.1
       react: 18.2.0
@@ -927,13 +927,13 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/transition': workspace:*
       '@testing-library/react-hooks': 8.0.1
-      aria-hidden: ^1.1.1
+      aria-hidden: ^1.2.2
       clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-dom: ^18.2.0
       react-lorem-component: 0.13.0
-      react-remove-scroll: ^2.5.4
+      react-remove-scroll: ^2.5.5
     dependencies:
       '@chakra-ui/close-button': link:../close-button
       '@chakra-ui/focus-lock': link:../focus-lock
@@ -943,7 +943,7 @@ importers:
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
       '@chakra-ui/transition': link:../transition
-      aria-hidden: 1.1.3
+      aria-hidden: 1.2.2_react@18.2.0
       react-remove-scroll: 2.5.5_react@18.2.0
     devDependencies:
       '@chakra-ui/hooks': link:../../legacy/hooks
@@ -13406,11 +13406,18 @@ packages:
   /argparse/2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
-  /aria-hidden/1.1.3:
-    resolution: {integrity: sha512-RhVWFtKH5BiGMycI72q2RAFMLQi8JP9bLuQXgR5a8Znp7P5KOIADSJeyfI8PCVxLEp067B2HbP5JIiI/PXIZeA==}
-    engines: {node: '>=8.5.0'}
+  /aria-hidden/1.2.2_react@18.2.0:
+    resolution: {integrity: sha512-6y/ogyDTk/7YAe91T3E2PR1ALVKyM2QbTio5HwM+N1Q6CMlCKhvClyIjkckBswa0f2xJhjsfzIGa1yVSe1UMVA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.9.0 || ^17.0.0 || ^18.0.0
+      react: ^16.9.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
     dependencies:
-      tslib: 1.14.1
+      react: 18.2.0
+      tslib: 2.4.1
     dev: false
 
   /aria-query/4.2.2:
@@ -26724,8 +26731,8 @@ packages:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
 
-  /react-focus-lock/2.9.1_react@18.2.0:
-    resolution: {integrity: sha512-pSWOQrUmiKLkffPO6BpMXN7SNKXMsuOakl652IBuALAu1esk+IcpJyM+ALcYzPTTFz1rD0R54aB9A4HuP5t1Wg==}
+  /react-focus-lock/2.9.2_react@18.2.0:
+    resolution: {integrity: sha512-5JfrsOKyA5Zn3h958mk7bAcfphr24jPoMoznJ8vaJF6fUrPQ8zrtEd3ILLOK8P5jvGxdMd96OxWNjDzATfR2qw==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -26733,7 +26740,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.20.7
       focus-lock: 0.11.2
       prop-types: 15.8.1
       react: 18.2.0
@@ -26875,7 +26882,7 @@ packages:
       react: 18.2.0
       react-remove-scroll-bar: 2.3.3_react@18.2.0
       react-style-singleton: 2.2.1_react@18.2.0
-      tslib: 2.4.0
+      tslib: 2.4.1
       use-callback-ref: 1.3.0_react@18.2.0
       use-sidecar: 1.1.2_react@18.2.0
     dev: false
