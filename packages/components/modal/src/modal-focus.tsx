@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { RemoveScroll } from "react-remove-scroll"
 
 import { useModalContext } from "./modal"
+import { useModalManager } from "./modal-manager"
 
 interface ModalFocusScopeProps {
   /**
@@ -24,6 +25,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     returnFocusOnClose,
     preserveScrollBarGap,
     lockFocusAcrossFrames,
+    isOpen,
   } = useModalContext()
 
   const [isPresent, safeToRemove] = usePresence()
@@ -33,6 +35,8 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
       setTimeout(safeToRemove)
     }
   }, [isPresent, safeToRemove])
+
+  const index = useModalManager(dialogRef, isOpen)
 
   return (
     <FocusLock
@@ -47,7 +51,8 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
       <RemoveScroll
         removeScrollBar={!preserveScrollBarGap}
         allowPinchZoom={allowPinchZoom}
-        enabled={blockScrollOnMount}
+        // only block scroll for first dialog
+        enabled={index === 1 && blockScrollOnMount}
         forwardProps
       >
         {props.children}
