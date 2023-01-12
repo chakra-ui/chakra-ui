@@ -1,5 +1,6 @@
 import { config } from "dotenv"
 import { readFile } from "fs/promises"
+import fetch from "node-fetch"
 
 config()
 
