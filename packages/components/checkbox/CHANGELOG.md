@@ -1,5 +1,87 @@
 # Change Log
 
+## 2.2.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.15
+  - @chakra-ui/visually-hidden@2.0.14
+
+## 2.2.7
+
+### Patch Changes
+
+- [`7a62c30cc`](https://github.com/chakra-ui/chakra-ui/commit/7a62c30cc4977adf7c6021fabbd16b3bd4707e9f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update `@zag-js/*`
+  dependencies to latest versions for better ESM compatibility
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.14
+  - @chakra-ui/visually-hidden@2.0.14
+
+## 2.2.6
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)]:
+  - @chakra-ui/form-control@2.0.14
+  - @chakra-ui/visually-hidden@2.0.14
+  - @chakra-ui/react-context@2.0.6
+  - @chakra-ui/react-use-callback-ref@2.0.6
+  - @chakra-ui/react-use-controllable-state@2.0.7
+  - @chakra-ui/react-use-merge-refs@2.0.6
+  - @chakra-ui/react-use-safe-layout-effect@2.0.4
+  - @chakra-ui/react-use-update-effect@2.0.6
+  - @chakra-ui/react-types@2.0.6
+  - @chakra-ui/shared-utils@2.0.4
+
+## 2.2.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]:
+  - @chakra-ui/react-types@2.0.5
+  - @chakra-ui/form-control@2.0.13
+  - @chakra-ui/visually-hidden@2.0.13
+
+## 2.2.4
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/form-control@2.0.12
+  - @chakra-ui/visually-hidden@2.0.13
+  - @chakra-ui/react-context@2.0.5
+  - @chakra-ui/react-use-callback-ref@2.0.5
+  - @chakra-ui/react-use-controllable-state@2.0.6
+  - @chakra-ui/react-use-merge-refs@2.0.5
+  - @chakra-ui/react-use-safe-layout-effect@2.0.3
+  - @chakra-ui/react-use-update-effect@2.0.5
+  - @chakra-ui/react-types@2.0.4
+
 ## 2.2.3
 
 ### Patch Changes

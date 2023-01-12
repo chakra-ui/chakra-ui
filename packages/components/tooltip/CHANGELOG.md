@@ -1,5 +1,78 @@
 # Change Log
 
+## 2.2.4
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- Updated dependencies
+  [[`b374879fe`](https://github.com/chakra-ui/chakra-ui/commit/b374879fe0c72362575d86161d3093cd73b12caf),
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)]:
+  - @chakra-ui/popper@3.0.11
+  - @chakra-ui/portal@2.0.13
+  - @chakra-ui/react-use-disclosure@2.0.7
+  - @chakra-ui/react-use-event-listener@2.0.6
+  - @chakra-ui/react-use-merge-refs@2.0.6
+  - @chakra-ui/react-types@2.0.6
+  - @chakra-ui/shared-utils@2.0.4
+
+## 2.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4dbfc1a11`](https://github.com/chakra-ui/chakra-ui/commit/4dbfc1a115a2fce51b29f3fd3baa3a823b3e359d)]:
+  - @chakra-ui/portal@2.0.12
+
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]:
+  - @chakra-ui/react-types@2.0.5
+  - @chakra-ui/portal@2.0.11
+  - @chakra-ui/popper@3.0.10
+
+## 2.2.1
+
+### Patch Changes
+
+- [#6752](https://github.com/chakra-ui/chakra-ui/pull/6752)
+  [`7c3733ede`](https://github.com/chakra-ui/chakra-ui/commit/7c3733edefafed48f5d1c54c2b318ab7df721100)
+  Thanks [@jvnlwn](https://github.com/jvnlwn)! - Fixed issue where dynamically
+  changing a tooltip's `isDisabled` when it is open didn't have any effect.
+
+  Now, changing the `isDisabled` prop will close the tooltip leading to a more
+  consistent behavior.
+
+* [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+* Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/popper@3.0.9
+  - @chakra-ui/portal@2.0.11
+  - @chakra-ui/react-use-disclosure@2.0.6
+  - @chakra-ui/react-use-event-listener@2.0.5
+  - @chakra-ui/react-use-merge-refs@2.0.5
+  - @chakra-ui/react-types@2.0.4
+
 ## 2.2.0
 
 ### Minor Changes

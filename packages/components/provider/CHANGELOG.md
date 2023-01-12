@@ -1,5 +1,98 @@
 # @chakra-ui/provider
 
+## 2.0.29
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]:
+  - @chakra-ui/system@2.3.8
+
+## 2.0.28
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b),
+  [`2d8f36c1d`](https://github.com/chakra-ui/chakra-ui/commit/2d8f36c1d100bb729aa735cbea4a338550cb2bfc)]:
+  - @chakra-ui/utils@2.0.14
+  - @chakra-ui/system@2.3.7
+
+## 2.0.27
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef),
+  [`0eedc151c`](https://github.com/chakra-ui/chakra-ui/commit/0eedc151caec8dbdb53e4e5e8354e2310553c19f)]:
+  - @chakra-ui/css-reset@2.0.11
+  - @chakra-ui/react-env@2.0.12
+  - @chakra-ui/portal@2.0.13
+  - @chakra-ui/system@2.3.6
+  - @chakra-ui/utils@2.0.13
+
+## 2.0.26
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@2.3.5
+
+## 2.0.25
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4dbfc1a11`](https://github.com/chakra-ui/chakra-ui/commit/4dbfc1a115a2fce51b29f3fd3baa3a823b3e359d)]:
+  - @chakra-ui/portal@2.0.12
+
+## 2.0.24
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@2.3.4
+  - @chakra-ui/portal@2.0.11
+
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/system@2.3.3
+
+## 2.0.22
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`2a86d6c35`](https://github.com/chakra-ui/chakra-ui/commit/2a86d6c353e88d86b46030a53130a062433f30b2),
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/system@2.3.2
+  - @chakra-ui/css-reset@2.0.10
+  - @chakra-ui/react-env@2.0.11
+  - @chakra-ui/portal@2.0.11
+  - @chakra-ui/utils@2.0.12
+
 ## 2.0.21
 
 ### Patch Changes

@@ -66,19 +66,17 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
  * React hook used to create a function that can be used
  * to show toasts in an application.
  */
-export function useToast(
-  defaultOptions?: UseToastOptions,
-): CreateToastFnReturn {
+export function useToast(options?: UseToastOptions): CreateToastFnReturn {
   const { theme } = useChakra()
-  const { globalOptions } = useToastOptionContext()
+  const defaultOptions = useToastOptionContext()
 
   return useMemo(
     () =>
       createToastFn(theme.direction, {
-        ...globalOptions,
         ...defaultOptions,
+        ...options,
       }),
-    [defaultOptions, theme.direction, globalOptions],
+    [options, theme.direction, defaultOptions],
   )
 }
 

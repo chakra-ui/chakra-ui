@@ -1,4 +1,10 @@
-import { theme, ChakraTheme, isChakraTheme, Theme } from "@chakra-ui/theme"
+import {
+  theme,
+  baseTheme,
+  ChakraTheme,
+  isChakraTheme,
+  Theme,
+} from "@chakra-ui/theme"
 import mergeWith from "lodash.mergewith"
 
 type CloneKey<Target, Key> = Key extends keyof Target ? Target[Key] : unknown
@@ -77,34 +83,40 @@ function pipe<R>(...fns: Array<(a: R) => R>) {
   return (v: R) => fns.reduce((a, b) => b(a), v)
 }
 
-export function extendTheme(
-  ...extensions: Array<
-    Record<string, any> | ((theme: Record<string, any>) => Record<string, any>)
-  >
-): Record<string, any> {
-  let overrides = [...extensions]
-  let baseTheme = extensions[extensions.length - 1]
+const createExtendTheme = (theme: Record<string, any>) => {
+  return function extendTheme(
+    ...extensions: Array<
+      | Record<string, any>
+      | ((theme: Record<string, any>) => Record<string, any>)
+    >
+  ): Record<string, any> {
+    let overrides = [...extensions]
+    let activeTheme = extensions[extensions.length - 1]
 
-  if (
-    isChakraTheme(baseTheme) &&
-    // this ensures backward compatibility
-    // previously only `extendTheme(override, baseTheme?)` was allowed
-    overrides.length > 1
-  ) {
-    overrides = overrides.slice(0, overrides.length - 1)
-  } else {
-    baseTheme = theme
+    if (
+      isChakraTheme(activeTheme) &&
+      // this ensures backward compatibility
+      // previously only `extendTheme(override, activeTheme?)` was allowed
+      overrides.length > 1
+    ) {
+      overrides = overrides.slice(0, overrides.length - 1)
+    } else {
+      activeTheme = theme
+    }
+
+    return pipe(
+      ...overrides.map(
+        (extension) => (prevTheme: any) =>
+          isFunction(extension)
+            ? (extension as any)(prevTheme)
+            : mergeThemeOverride(prevTheme, extension),
+      ),
+    )(activeTheme)
   }
-
-  return pipe(
-    ...overrides.map(
-      (extension) => (prevTheme: any) =>
-        isFunction(extension)
-          ? (extension as any)(prevTheme)
-          : mergeThemeOverride(prevTheme, extension),
-    ),
-  )(baseTheme)
 }
+
+export const extendTheme = createExtendTheme(theme)
+export const extendBaseTheme = createExtendTheme(baseTheme)
 
 export function mergeThemeOverride(...overrides: any[]): any {
   return mergeWith({}, ...overrides, mergeThemeCustomizer)

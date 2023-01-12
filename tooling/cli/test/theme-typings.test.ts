@@ -264,7 +264,6 @@ describe("Theme typings", () => {
       }
 
       }
-
       "
     `)
   })
@@ -333,6 +332,175 @@ describe("Theme typings", () => {
         transition: string & {}
         zIndices: string & {}
         components: {}
+      }
+      "
+    `)
+  })
+
+  it("should emit strict token types", async () => {
+    const themeInterface = await createThemeTypingsInterface(smallTheme, {
+      config: themeKeyConfiguration,
+      strictTokenTypes: true,
+    })
+
+    expect(themeInterface).toMatchInlineSnapshot(`
+      "// regenerate by running
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+      import { BaseThemeTypings } from \\"./shared.types.js\\"
+      export interface ThemeTypings extends BaseThemeTypings {
+        blur: never
+        borders: \\"sm\\" | \\"md\\"
+        borderStyles: never
+        borderWidths: never
+        breakpoints: \\"sm\\" | \\"md\\"
+        colors:
+          | \\"niceColor\\"
+          | \\"suchWowColor\\"
+          | \\"onlyColorSchemeColor.50\\"
+          | \\"onlyColorSchemeColor.100\\"
+          | \\"onlyColorSchemeColor.200\\"
+          | \\"onlyColorSchemeColor.300\\"
+          | \\"onlyColorSchemeColor.400\\"
+          | \\"onlyColorSchemeColor.500\\"
+          | \\"onlyColorSchemeColor.600\\"
+          | \\"onlyColorSchemeColor.700\\"
+          | \\"onlyColorSchemeColor.800\\"
+          | \\"onlyColorSchemeColor.900\\"
+          | \\"such.deep.color\\"
+        colorSchemes: \\"onlyColorSchemeColor\\"
+        fonts: \\"sm\\" | \\"md\\"
+        fontSizes: \\"sm\\" | \\"md\\"
+        fontWeights: \\"sm\\" | \\"md\\"
+        layerStyles: \\"red\\" | \\"blue\\"
+        letterSpacings: \\"sm\\" | \\"md\\"
+        lineHeights: \\"sm\\" | \\"md\\"
+        radii: \\"sm\\" | \\"md\\"
+        shadows: \\"sm\\" | \\"md\\"
+        sizes: \\"sm\\" | \\"md\\"
+        space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\"
+        textStyles: \\"small\\" | \\"large\\"
+        transition: \\"sm\\" | \\"md\\"
+        zIndices: \\"sm\\" | \\"md\\"
+        components: {
+          Button: {
+            sizes: \\"sm\\" | (string & {})
+            variants: \\"extraordinary\\" | \\"awesome\\" | \\"unused\\" | (string & {})
+          }
+        }
+      }
+      "
+    `)
+  })
+
+  it("should emit strict component and token types", async () => {
+    const themeInterface = await createThemeTypingsInterface(smallTheme, {
+      config: themeKeyConfiguration,
+      strictComponentTypes: true,
+      strictTokenTypes: true,
+    })
+
+    expect(themeInterface).toMatchInlineSnapshot(`
+      "// regenerate by running
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+      import { BaseThemeTypings } from \\"./shared.types.js\\"
+      export interface ThemeTypings extends BaseThemeTypings {
+        blur: never
+        borders: \\"sm\\" | \\"md\\"
+        borderStyles: never
+        borderWidths: never
+        breakpoints: \\"sm\\" | \\"md\\"
+        colors:
+          | \\"niceColor\\"
+          | \\"suchWowColor\\"
+          | \\"onlyColorSchemeColor.50\\"
+          | \\"onlyColorSchemeColor.100\\"
+          | \\"onlyColorSchemeColor.200\\"
+          | \\"onlyColorSchemeColor.300\\"
+          | \\"onlyColorSchemeColor.400\\"
+          | \\"onlyColorSchemeColor.500\\"
+          | \\"onlyColorSchemeColor.600\\"
+          | \\"onlyColorSchemeColor.700\\"
+          | \\"onlyColorSchemeColor.800\\"
+          | \\"onlyColorSchemeColor.900\\"
+          | \\"such.deep.color\\"
+        colorSchemes: \\"onlyColorSchemeColor\\"
+        fonts: \\"sm\\" | \\"md\\"
+        fontSizes: \\"sm\\" | \\"md\\"
+        fontWeights: \\"sm\\" | \\"md\\"
+        layerStyles: \\"red\\" | \\"blue\\"
+        letterSpacings: \\"sm\\" | \\"md\\"
+        lineHeights: \\"sm\\" | \\"md\\"
+        radii: \\"sm\\" | \\"md\\"
+        shadows: \\"sm\\" | \\"md\\"
+        sizes: \\"sm\\" | \\"md\\"
+        space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\"
+        textStyles: \\"small\\" | \\"large\\"
+        transition: \\"sm\\" | \\"md\\"
+        zIndices: \\"sm\\" | \\"md\\"
+        components: {
+          Button: {
+            sizes: \\"sm\\"
+            variants: \\"extraordinary\\" | \\"awesome\\" | \\"unused\\"
+          }
+        }
+      }
+      "
+    `)
+  })
+
+  it("should create typings for a theme for interface augmentation", async () => {
+    const themeInterface = await createThemeTypingsInterface(smallTheme, {
+      config: themeKeyConfiguration,
+      template: "augmentation",
+    })
+
+    expect(themeInterface).toMatchInlineSnapshot(`
+      "// regenerate by running
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts) --template augmentation --out path/to/this/file
+      import { BaseThemeTypings } from \\"@chakra-ui/styled-system\\"
+      declare module \\"@chakra-ui/styled-system\\" {
+        export interface CustomThemeTypings extends BaseThemeTypings {
+          blur: string & {}
+          borders: \\"sm\\" | \\"md\\" | (string & {})
+          borderStyles: string & {}
+          borderWidths: string & {}
+          breakpoints: \\"sm\\" | \\"md\\" | (string & {})
+          colors:
+            | \\"niceColor\\"
+            | \\"suchWowColor\\"
+            | \\"onlyColorSchemeColor.50\\"
+            | \\"onlyColorSchemeColor.100\\"
+            | \\"onlyColorSchemeColor.200\\"
+            | \\"onlyColorSchemeColor.300\\"
+            | \\"onlyColorSchemeColor.400\\"
+            | \\"onlyColorSchemeColor.500\\"
+            | \\"onlyColorSchemeColor.600\\"
+            | \\"onlyColorSchemeColor.700\\"
+            | \\"onlyColorSchemeColor.800\\"
+            | \\"onlyColorSchemeColor.900\\"
+            | \\"such.deep.color\\"
+            | (string & {})
+          colorSchemes: \\"onlyColorSchemeColor\\" | (string & {})
+          fonts: \\"sm\\" | \\"md\\" | (string & {})
+          fontSizes: \\"sm\\" | \\"md\\" | (string & {})
+          fontWeights: \\"sm\\" | \\"md\\" | (string & {})
+          layerStyles: \\"red\\" | \\"blue\\" | (string & {})
+          letterSpacings: \\"sm\\" | \\"md\\" | (string & {})
+          lineHeights: \\"sm\\" | \\"md\\" | (string & {})
+          radii: \\"sm\\" | \\"md\\" | (string & {})
+          shadows: \\"sm\\" | \\"md\\" | (string & {})
+          sizes: \\"sm\\" | \\"md\\" | (string & {})
+          space: \\"sm\\" | \\"-sm\\" | \\"md\\" | \\"-md\\" | (string & {})
+          textStyles: \\"small\\" | \\"large\\" | (string & {})
+          transition: \\"sm\\" | \\"md\\" | (string & {})
+          zIndices: \\"sm\\" | \\"md\\" | (string & {})
+          components: {
+            Button: {
+              sizes: \\"sm\\" | (string & {})
+              variants: \\"extraordinary\\" | \\"awesome\\" | \\"unused\\" | (string & {})
+            }
+          }
+        }
       }
       "
     `)

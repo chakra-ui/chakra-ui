@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-env",
-  "version": "2.0.10",
+  "version": "2.0.12",
   "description": "Component and hook for handling window and document object in iframe or ssr environment",
   "keywords": [
     "dom",
@@ -39,12 +39,22 @@
     "clean-package": "2.1.1"
   },
   "scripts": {
-    "build": "JSX=1 tsup src/index.ts --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "JSX=1 tsup src/index.ts",
+    "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }

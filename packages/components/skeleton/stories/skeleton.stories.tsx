@@ -14,9 +14,6 @@ export default {
   ],
 }
 
-// Get more examples from here:
-// https://danilowoz.com/create-content-loader/
-
 export const Basic = () => <Skeleton h="20px" />
 
 export const Text = () => (
@@ -30,6 +27,12 @@ export const Text = () => (
 
 export const AsContainer = () => (
   <Skeleton>
+    <span>Chakra ui is cool</span>
+  </Skeleton>
+)
+
+export const WithFitContent = () => (
+  <Skeleton fitContent>
     <span>Chakra ui is cool</span>
   </Skeleton>
 )
@@ -132,4 +135,8 @@ export const WithDarkMode = () => (
       <Skeleton boxSize="100px" />
     </Stack>
   </DarkMode>
+)
+
+export const WithStartAndEndColor = () => (
+  <Skeleton h="20px" startColor="red.200" endColor="green.200" />
 )

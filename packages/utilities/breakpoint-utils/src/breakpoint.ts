@@ -33,13 +33,16 @@ function keys(breakpoints: Record<string, any>) {
   return new Set(value)
 }
 
+const OFFSET = 0.02
+
 function subtract(value: string) {
   if (!value) return value
+
   value = px(value) ?? value
-  const factor = value.endsWith("px")
-    ? -1
-    : // the equivalent of 1px in em using a 16px base
-      -0.0625
+
+  // offset by 0.02px or equivalent (in em)
+  const factor = value.endsWith("px") ? -OFFSET : -(OFFSET / 16)
+
   return typeof value === "number"
     ? `${value + factor}`
     : value.replace(/(\d+\.?\d*)/u, (m) => `${parseFloat(m) + factor}`)

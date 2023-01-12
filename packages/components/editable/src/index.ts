@@ -1,15 +1,13 @@
-export { Editable, type EditableProps } from "./editable"
-export { EditableInput, type EditableInputProps } from "./editable-input"
-export {
-  EditableTextarea,
-  type EditableTextareaProps,
-} from "./editable-textarea"
-export { EditablePreview, type EditablePreviewProps } from "./editable-preview"
-export {
-  useEditable,
-  type UseEditableProps,
-  type UseEditableReturn,
-} from "./use-editable"
+export { Editable } from "./editable"
+export type { EditableProps } from "./editable"
+export { useEditableStyles } from "./editable-context"
+export { EditableInput } from "./editable-input"
+export type { EditableInputProps } from "./editable-input"
+export { EditablePreview } from "./editable-preview"
+export type { EditablePreviewProps } from "./editable-preview"
+export { EditableTextarea } from "./editable-textarea"
+export type { EditableTextareaProps } from "./editable-textarea"
+export { useEditable } from "./use-editable"
+export type { UseEditableProps, UseEditableReturn } from "./use-editable"
 export { useEditableControls } from "./use-editable-controls"
 export { useEditableState } from "./use-editable-state"
-export { useEditableStyles } from "./editable-context"

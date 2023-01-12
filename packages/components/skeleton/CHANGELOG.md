@@ -1,5 +1,83 @@
 # Change Log
 
+## 2.0.21
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- [#6744](https://github.com/chakra-ui/chakra-ui/pull/6744)
+  [`0eedc151c`](https://github.com/chakra-ui/chakra-ui/commit/0eedc151caec8dbdb53e4e5e8354e2310553c19f)
+  Thanks [@joseph082](https://github.com/joseph082)! - Reduced gaps in media
+  queries for breakpoints which excluded some viewport widths from media query
+  coverage
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef),
+  [`0eedc151c`](https://github.com/chakra-ui/chakra-ui/commit/0eedc151caec8dbdb53e4e5e8354e2310553c19f)]:
+  - @chakra-ui/media-query@3.2.9
+  - @chakra-ui/react-use-previous@2.0.4
+  - @chakra-ui/shared-utils@2.0.4
+
+## 2.0.20
+
+### Patch Changes
+
+- [#7074](https://github.com/chakra-ui/chakra-ui/pull/7074)
+  [`4957cf6d5`](https://github.com/chakra-ui/chakra-ui/commit/4957cf6d51fb895fcacd3d30c9351b79261dd19c)
+  Thanks [@anubra266](https://github.com/anubra266)! - Add support for
+  `fitContent` prop.
+
+  When set to `true`, the `Skeleton` will take the width of its children.
+
+  ```jsx live=false
+  <Skeleton fitContent>
+    <p>Hello World</p>
+  </Skeleton>
+  ```
+
+* [#7115](https://github.com/chakra-ui/chakra-ui/pull/7115)
+  [`8992c86ad`](https://github.com/chakra-ui/chakra-ui/commit/8992c86ad799fff07e1b2cd51af2ba8e5efe1d4c)
+  Thanks [@anubra266](https://github.com/anubra266)! - Fix theme being overidden
+  in dark mode
+
+* Updated dependencies []:
+  - @chakra-ui/media-query@3.2.8
+
+## 2.0.19
+
+### Patch Changes
+
+- [#7068](https://github.com/chakra-ui/chakra-ui/pull/7068)
+  [`4dbfc1a11`](https://github.com/chakra-ui/chakra-ui/commit/4dbfc1a115a2fce51b29f3fd3baa3a823b3e359d)
+  Thanks [@cereallarceny](https://github.com/cereallarceny)! - Removed
+  defaultProps from components to support React 18.3.0
+
+## 2.0.18
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/media-query@3.2.8
+  - @chakra-ui/react-use-previous@2.0.3
+
 ## 2.0.17
 
 ### Patch Changes

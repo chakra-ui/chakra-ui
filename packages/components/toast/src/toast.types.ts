@@ -30,7 +30,7 @@ export interface ToastOptions {
   /**
    * The status of the toast's alert component.
    */
-  status: Status
+  status: ToastStatus
 
   /**
    * Function that removes the toast from manager's state.
@@ -62,7 +62,7 @@ export type ToastState = {
   [K in ToastPosition]: ToastOptions[]
 }
 
-export type Status =
+export type ToastStatus =
   | "default"
   | "success"
   | "error"

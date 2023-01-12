@@ -1,5 +1,54 @@
 # @chakra-ui/cli
 
+## 2.3.0
+
+### Minor Changes
+
+- [#7127](https://github.com/chakra-ui/chakra-ui/pull/7127)
+  [`ffc73f393`](https://github.com/chakra-ui/chakra-ui/commit/ffc73f393b36ca115794caa6e07d98fe95c8ba9c)
+  Thanks [@lexanth](https://github.com/lexanth)! - - Added support for
+  generating theme typings to use via module augmentation of the
+  `@chakra-ui/styled-system` package.
+
+  To use this feature, run the following command:
+
+  ```bash
+  chakra-cli tokens --template augmentation --out ./types/chakra-ui__styled-system.d.ts
+  ```
+
+## 2.2.1
+
+### Patch Changes
+
+- [#7099](https://github.com/chakra-ui/chakra-ui/pull/7099)
+  [`322a9f424`](https://github.com/chakra-ui/chakra-ui/commit/322a9f4240211876bfdbe170d18f43345da00fc6)
+  Thanks [@deecewan](https://github.com/deecewan)! - Support TS Config paths
+  more completely
+
+## 2.2.0
+
+### Minor Changes
+
+- [#5701](https://github.com/chakra-ui/chakra-ui/pull/5701)
+  [`eb3bfe66d`](https://github.com/chakra-ui/chakra-ui/commit/eb3bfe66d3aecc8cf46f29ef08dc748afb83f781)
+  Thanks [@lexanth](https://github.com/lexanth)! - Add the flag
+  `--strict-token-types` for `@chakra-ui/cli tokens` to generate strict types
+  for theme tokens (e.g. color, spacing)
+
+  ```bash
+  chakra-cli tokens --strict-token-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Box padding="abc" />
+  // valid type, but "abc" is not available in the theme
+
+  // after
+  <Box padding="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"1" | "2" | ... | undefined'.
+  ```
+
 ## 2.1.8
 
 ### Patch Changes

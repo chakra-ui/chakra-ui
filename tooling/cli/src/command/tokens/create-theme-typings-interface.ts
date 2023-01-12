@@ -37,10 +37,41 @@ export interface ThemeKeyOptions {
   flatMap?: (value: string) => string | string[]
 }
 
+export type TypingsTemplate = "default" | "augmentation"
+
 export interface CreateThemeTypingsInterfaceOptions {
   config: ThemeKeyOptions[]
   strictComponentTypes?: boolean
   format?: boolean
+  strictTokenTypes?: boolean
+  template?: TypingsTemplate
+}
+
+function applyThemeTypingTemplate(
+  typingContent: string,
+  template: TypingsTemplate,
+) {
+  switch (template) {
+    case "augmentation":
+      return `// regenerate by running
+// npx @chakra-ui/cli tokens path/to/your/theme.(js|ts) --template augmentation --out path/to/this/file 
+import { BaseThemeTypings } from "@chakra-ui/styled-system";
+declare module "@chakra-ui/styled-system" {
+  export interface CustomThemeTypings extends BaseThemeTypings {
+    ${typingContent}
+  }
+}
+`
+    case "default":
+    default:
+      return `// regenerate by running
+// npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+import { BaseThemeTypings } from "./shared.types.js"
+export interface ThemeTypings extends BaseThemeTypings {
+  ${typingContent}
+}
+`
+  }
 }
 
 export async function createThemeTypingsInterface(
@@ -49,6 +80,8 @@ export async function createThemeTypingsInterface(
     config,
     strictComponentTypes = false,
     format = true,
+    strictTokenTypes = false,
+    template = "default",
   }: CreateThemeTypingsInterfaceOptions,
 ) {
   const unions = config.reduce(
@@ -85,17 +118,12 @@ export async function createThemeTypingsInterface(
   const colorSchemes = extractColorSchemeTypes(theme)
   const componentTypes = extractComponentTypes(theme)
 
-  const template =
-    // language=ts
-    `// regenerate by running
-// npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
-import { BaseThemeTypings } from "./shared.types.js"
-export interface ThemeTypings extends BaseThemeTypings {
-  ${printUnionMap({ ...unions, textStyles, layerStyles, colorSchemes })}
-  ${printComponentTypes(componentTypes, strictComponentTypes)}
-}
+  const typingContent = `${printUnionMap(
+    { ...unions, textStyles, layerStyles, colorSchemes },
+    strictTokenTypes,
+  )}
+  ${printComponentTypes(componentTypes, strictComponentTypes)}`
+  const themeTypings = applyThemeTypingTemplate(typingContent, template)
 
-`
-
-  return format ? formatWithPrettierIfAvailable(template) : template
+  return format ? formatWithPrettierIfAvailable(themeTypings) : themeTypings
 }

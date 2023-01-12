@@ -1,0 +1,55 @@
+---
+title: Version 2.4.0
+description:
+  Explore the changelog for Chakra UI version 2.4.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6948
+releaseDate: November 14, 2022
+version: 2.4.0
+---
+
+## Minor Changes
+
+### All packages
+
+Fixed issue where using `@chakra-ui/react` or any sub-package in a TypeScript
+project with `"type": "module"` in `package.json` and
+`"moduleResolution": "Node16"` in `tsconfig.json` cannot find the types.
+
+### Card `2.1.0`
+
+Introduced new `Card` component
+
+```jsx live=false
+export function Basic() {
+  return (
+    <Card>
+      <CardHeader>
+        <Heading size="md"> Customer dashboard</Heading>
+      </CardHeader>
+      <CardBody>
+        <Text>View a summary of all your customers over the last month.</Text>
+      </CardBody>
+      <CardFooter>
+        <Button>View here</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+```
+
+### System `2.3.2`
+
+- Removed `Dict` type dependency from `createStyleContext`
+
+### Tooltip `2.2.1`
+
+- Fixed issue where dynamically changing a tooltip's `isDisabled` when it is
+  open didn't have any effect.
+
+  Now, changing the `isDisabled` prop will close the tooltip leading to a more
+  consistent behavior.
+
+### Theme `2.2.0`
+
+- Refactored theme to use CSS variables

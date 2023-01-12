@@ -1,5 +1,99 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7a62c30cc`](https://github.com/chakra-ui/chakra-ui/commit/7a62c30cc4977adf7c6021fabbd16b3bd4707e9f),
+  [`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/react-use-size@2.0.7
+  - @chakra-ui/react-use-pan-event@2.0.8
+
+## 2.0.17
+
+### Patch Changes
+
+- [#7154](https://github.com/chakra-ui/chakra-ui/pull/7154)
+  [`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - ## All components
+
+  Improved the bundling setup for all components.
+
+  - Switched to the `.mjs` file extension for correct ESM behavior
+  - Switched to the latest `tsup` will uses automatic JSX runtime detection
+    removing the need for manually inject classic `React` import
+  - Moved `tsup` config to `package.json` since it's very minimal
+  - Removed `clean-package.config.json` in favor of the `package.json` property
+  - Fixed issue where Storybook addon (dark mode and RTL) was not working
+
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef)]:
+  - @chakra-ui/react-context@2.0.6
+  - @chakra-ui/react-use-callback-ref@2.0.6
+  - @chakra-ui/react-use-controllable-state@2.0.7
+  - @chakra-ui/react-use-latest-ref@2.0.4
+  - @chakra-ui/react-use-merge-refs@2.0.6
+  - @chakra-ui/react-use-pan-event@2.0.7
+  - @chakra-ui/react-use-size@2.0.6
+  - @chakra-ui/react-use-update-effect@2.0.6
+  - @chakra-ui/number-utils@2.0.6
+  - @chakra-ui/react-types@2.0.6
+
+## 2.0.16
+
+### Patch Changes
+
+- [#7095](https://github.com/chakra-ui/chakra-ui/pull/7095)
+  [`40779c6b1`](https://github.com/chakra-ui/chakra-ui/commit/40779c6b1195bf208f7be20d838ea5f22716231b)
+  Thanks [@Tisks](https://github.com/Tisks)! - Expose `RangeSliderState` and
+  `RangeSliderActions` types to improve documentation
+
+## 2.0.15
+
+### Patch Changes
+
+- [#7068](https://github.com/chakra-ui/chakra-ui/pull/7068)
+  [`4dbfc1a11`](https://github.com/chakra-ui/chakra-ui/commit/4dbfc1a115a2fce51b29f3fd3baa3a823b3e359d)
+  Thanks [@cereallarceny](https://github.com/cereallarceny)! - Removed
+  defaultProps from components to support React 18.3.0
+
+## 2.0.14
+
+### Patch Changes
+
+- [#6979](https://github.com/chakra-ui/chakra-ui/pull/6979)
+  [`36ac52021`](https://github.com/chakra-ui/chakra-ui/commit/36ac520213d42e379857aa421240fc85e3b71523)
+  Thanks [@Tisks](https://github.com/Tisks)! - Expose `SliderActions` and
+  `SliderState` types to improve documentation
+
+- Updated dependencies
+  [[`67ef76e32`](https://github.com/chakra-ui/chakra-ui/commit/67ef76e32369f7376ccd9242865f758157544b48)]:
+  - @chakra-ui/react-types@2.0.5
+
+## 2.0.13
+
+### Patch Changes
+
+- [#6945](https://github.com/chakra-ui/chakra-ui/pull/6945)
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)
+  Thanks [@anddoutoi](https://github.com/anddoutoi)! - Fix issue where using
+  `@chakra-ui/react` in a TypeScript project with `"type": "module"` in
+  `package.json` and `"moduleResolution": "Node16"` in `tsconfig.json` cannot
+  find the types.
+- Updated dependencies
+  [[`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/react-context@2.0.5
+  - @chakra-ui/react-use-callback-ref@2.0.5
+  - @chakra-ui/react-use-controllable-state@2.0.6
+  - @chakra-ui/react-use-latest-ref@2.0.3
+  - @chakra-ui/react-use-merge-refs@2.0.5
+  - @chakra-ui/react-use-pan-event@2.0.6
+  - @chakra-ui/react-use-size@2.0.5
+  - @chakra-ui/react-use-update-effect@2.0.5
+  - @chakra-ui/number-utils@2.0.5
+  - @chakra-ui/react-types@2.0.4
+
 ## 2.0.12
 
 ### Patch Changes

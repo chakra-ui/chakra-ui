@@ -1,0 +1,41 @@
+---
+title: Version 2.4.7
+description:
+  Explore the changelog for Chakra UI version 2.4.7. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7185
+releaseDate: January 11, 2023
+version: 2.4.7
+---
+
+## Patch Changes
+
+### Icon `3.0.15`
+
+Removed duplicate `export * from 'src'` statements
+
+### System `2.3.8`
+
+Fixed issue where style overrides does not respect order of precedence due to
+the use of `Object.assign`.
+
+To illustrate the issue, consider the following example:
+
+```js
+const stylesFromTheme = {
+  px: 8,
+  padding: 0,
+}
+
+const stylesFromProps = {
+  px: 4,
+}
+
+const style = Object.assign({}, stylesFromTheme, stylesFromProps)
+// Result: { px: 4, padding: 0 }
+// Expected: { padding: 0, px: 4 }
+```
+
+The issue is that `Object.assign` will replace properties in place with values
+from the override objects. This is not the desired behavior for style overrides
+hence a custom `assignAfter` function is used instead

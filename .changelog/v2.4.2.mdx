@@ -1,0 +1,144 @@
+---
+title: Version 2.4.2
+description:
+  Explore the changelog for Chakra UI version 2.4.2. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6989
+releaseDate: November 29, 2022
+version: 2.4.2
+---
+
+## Minor Changes
+
+### React `2.4.2`
+
+- Add `ChakraBaseProvider`, a minimal version of `ChakraProvider` that supplies
+  just the theme tokens, and ignores components.
+
+  Historically, one of the biggest causes of the large initial JS payload is the
+  size of the component themes. With this approach, you get to apply the theme
+  for just the component you need by using `extendBaseTheme`.
+
+  > Base theme refers to the minimal theme for just the design tokens
+
+  ```jsx live=false
+  import { ChakraBaseProvider, extendBaseTheme } from "@chakra-ui/react"
+  import { Button } from "@chakra-ui/theme/components"
+
+  const theme = extendBaseTheme({
+    components: {
+      Button,
+    },
+  })
+
+  function App() {
+    return (
+      <ChakraBaseProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraBaseProvider>
+    )
+  }
+  ```
+
+### Styled System `2.4.0`
+
+- Add support for `textIndent` style prop
+
+### CLI `2.2.0`
+
+- Add the flag `--strict-token-types` for `@chakra-ui/cli tokens` to generate
+  strict types for theme tokens (e.g. color, spacing)
+
+  ```bash
+  chakra-cli tokens --strict-token-types
+  ```
+
+  ```tsx live=false
+  // before
+  <Box padding="abc" />
+  // valid type, but "abc" is not available in the theme
+
+  // after
+  <Box padding="abc" /> // invalid
+  // Type '"abc"' is not assignable to type '"1" | "2" | ... | undefined'.
+  ```
+
+### Menu `2.1.5`
+
+- Added support for setting the initially focused menu programmatically using
+  `initialFocusRef`.
+
+  ```jsx live=false
+  const Example = () => {
+    const itemRef = useRef(null)
+    return (
+      <Menu initialFocusRef={itemRef}>
+        <MenuButton>Welcome</MenuButton>
+        <MenuList>
+          <MenuItem>Menu 1</MenuItem>
+          <MenuItem ref={itemRef}>Menu 2</MenuItem>
+          <MenuItem>Menu 3</MenuItem>
+        </MenuList>
+      </Menu>
+    )
+  }
+  ```
+
+### Button `2.0.13`
+
+- Added support for `orientation` prop in the ButtonGroup component.
+
+  This makes it possible to now have vertical button groups when `isAttached` is
+  set to `true`.
+
+  ```jsx live=false
+  <ButtonGroup isAttached orientation="vertical">
+    <Button>Button 1</Button>
+    <Button>Button 2</Button>
+    <Button>Button 3</Button>
+    <Button>Button 4</Button>
+  </ButtonGroup>
+  ```
+
+### Icon `3.0.13`
+
+- Added support for styling the `Icon` component from the theme object.
+
+  ```jsx live=false
+  const theme = extendTheme({
+    components: {
+      Icon: {
+        width: "auto",
+      },
+    },
+  })
+  ```
+
+## Patch Changes
+
+### Radio `2.0.14`
+
+- Updated type of `value` and `defaultValue` to `string` instead of
+  `string | number`. This reflects the internal implementation
+
+### Slider `2.0.14`
+
+- Expose `SliderActions` and `SliderState` types to improve documentation
+
+### Theme `2.2.2`
+
+- Fix issue where modal dialog scrolls beyond the content in Safari.
+- Fixed css variabled warning with `Tabs` when using the enclosed variant.
+- Export `baseTheme` object with includes only the theme tokens.
+
+### Theme Utilities `2.0.14`
+
+- Replaced `tinycolor` package with `color2k` for smaller bundle size
+
+### React Types `2.0.5`
+
+- Fixed issue where types were not exported correctly
+
+### Gatsby Plugin `3.0.7`
+
+- Fix peer dependency range to support latest version of Gatsby

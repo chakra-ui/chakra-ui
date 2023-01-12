@@ -90,17 +90,14 @@ export type ToastProviderProps = React.PropsWithChildren<{
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
 }>
 
-export interface ToastOptionContext {
-  globalOptions: UseToastOptions | undefined
-}
-
 /**
  * Passes default options down to be used by toast creator function
  */
-export const [ToastOptionProvider, useToastOptionContext] =
-  createContext<ToastOptionContext>({
-    name: `ToastOptionsContext`,
-  })
+export const [ToastOptionProvider, useToastOptionContext] = createContext<
+  UseToastOptions | undefined
+>({
+  name: `ToastOptionsContext`,
+})
 
 /**
  * Manages the creation, and removal of toasts

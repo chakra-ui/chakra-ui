@@ -1,5 +1,82 @@
 # Change Log
 
+## 2.0.31
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/provider@2.0.29
+
+## 2.0.30
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/utils@2.0.14
+  - @chakra-ui/theme@2.2.4
+  - @chakra-ui/provider@2.0.28
+
+## 2.0.29
+
+### Patch Changes
+
+- Updated dependencies
+  [[`2d7398a01`](https://github.com/chakra-ui/chakra-ui/commit/2d7398a0142b5bdd3f68ce05bd159fc824cda5ef),
+  [`0eedc151c`](https://github.com/chakra-ui/chakra-ui/commit/0eedc151caec8dbdb53e4e5e8354e2310553c19f),
+  [`96287f8c2`](https://github.com/chakra-ui/chakra-ui/commit/96287f8c2cd0642c69529b6384f0bf338ad8476d)]:
+  - @chakra-ui/provider@2.0.27
+  - @chakra-ui/theme@2.2.3
+  - @chakra-ui/utils@2.0.13
+
+## 2.0.28
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/theme@2.2.2
+  - @chakra-ui/provider@2.0.26
+
+## 2.0.27
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/provider@2.0.25
+
+## 2.0.26
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4d5501b82`](https://github.com/chakra-ui/chakra-ui/commit/4d5501b82b6fe215f1a7d205250325c0a2221337),
+  [`eb82598c2`](https://github.com/chakra-ui/chakra-ui/commit/eb82598c27e97d0e7a77412d3ecc95918a2b73fa),
+  [`9e3d91fd7`](https://github.com/chakra-ui/chakra-ui/commit/9e3d91fd73b1cadc14f98b6c834c0e6faf134bd2),
+  [`bf7704112`](https://github.com/chakra-ui/chakra-ui/commit/bf7704112ebb2aba675084706c8364a755ad10e3)]:
+  - @chakra-ui/theme@2.2.2
+  - @chakra-ui/provider@2.0.24
+
+## 2.0.25
+
+### Patch Changes
+
+- Updated dependencies
+  [[`cbd09c31f`](https://github.com/chakra-ui/chakra-ui/commit/cbd09c31ff7134157906dbaeaaea5a920185e36a)]:
+  - @chakra-ui/theme@2.2.1
+  - @chakra-ui/provider@2.0.23
+
+## 2.0.24
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9c7db55f4`](https://github.com/chakra-ui/chakra-ui/commit/9c7db55f486280ef81adc97cf597a9101db2ceb2),
+  [`2a86d6c35`](https://github.com/chakra-ui/chakra-ui/commit/2a86d6c353e88d86b46030a53130a062433f30b2),
+  [`75eaba929`](https://github.com/chakra-ui/chakra-ui/commit/75eaba9293e2c7d5bd6aed2037df05128f335930)]:
+  - @chakra-ui/theme@2.2.0
+  - @chakra-ui/provider@2.0.22
+  - @chakra-ui/utils@2.0.12
+
 ## 2.0.23
 
 ### Patch Changes

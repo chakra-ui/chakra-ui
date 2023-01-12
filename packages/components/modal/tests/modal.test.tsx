@@ -17,7 +17,7 @@ import {
 } from "../src"
 
 test("should have no accessibility violations", async () => {
-  const { container } = render(
+  const { baseElement } = render(
     <Modal isOpen onClose={jest.fn()}>
       <ModalOverlay />
       <ModalContent>
@@ -29,7 +29,15 @@ test("should have no accessibility violations", async () => {
     </Modal>,
   )
 
-  await testA11y(container)
+  // Test baseElement because the modal is in a portal
+  await testA11y(baseElement, {
+    axeOptions: {
+      rules: {
+        // https://github.com/dequelabs/axe-core/issues/3752
+        "aria-dialog-name": { enabled: false },
+      },
+    },
+  })
 })
 
 test("should have the proper 'aria' attributes", () => {

@@ -26,6 +26,13 @@ test("Progress renders correctly", async () => {
         isAnimated
         value={80}
       />
+      <Progress
+        aria-label="Account Usage"
+        aria-valuetext="Value text"
+        colorScheme="green"
+        size="sm"
+        value={20}
+      />
     </div>,
   )
   await testA11y(container)
@@ -49,7 +56,7 @@ test("CircularProgress renders correctly", async () => {
 
 test("Progress: has the proper aria, data, and role attributes", () => {
   const { getByRole, rerender } = render(
-    <Progress color="green" size="sm" value={20} />,
+    <Progress color="green" size="sm" aria-valuetext="text" value={20} />,
   )
 
   let progress = getByRole("progressbar")
@@ -58,7 +65,7 @@ test("Progress: has the proper aria, data, and role attributes", () => {
   expect(progress).toHaveAttribute("aria-valuemax", "100")
   expect(progress).toHaveAttribute("aria-valuemin", "0")
   expect(progress).toHaveAttribute("aria-valuenow", "20")
-  expect(progress).not.toHaveAttribute("aria-valuetext")
+  expect(progress).toHaveAttribute("aria-valuetext", "text")
 
   // rerender as indeterminate
   rerender(<Progress color="green" size="sm" isIndeterminate />)

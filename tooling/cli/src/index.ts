@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime"
 import * as path from "path"
-import { program } from "commander"
+import { Option, program } from "commander"
 import chokidar from "chokidar"
 import throttle from "lodash.throttle"
 import { initCLI } from "./utils/init-cli"
@@ -14,6 +14,8 @@ type OptionsType = {
   strictComponentTypes?: boolean
   format: boolean
   watch?: string
+  strictTokenTypes?: boolean
+  template?: "default" | "augmentation"
 }
 
 export async function run() {
@@ -31,8 +33,27 @@ export async function run() {
     )
     .option("--no-format", "Disable auto formatting")
     .option("--watch [path]", "Watch directory for changes and rebuild")
+    .option(
+      "--strict-token-types",
+      "Generate strict types for theme tokens (e.g. color, spacing)",
+    )
+    .addOption(
+      new Option(
+        "--template <template>",
+        "Choose the template to use for the generation",
+      )
+        .default("default")
+        .choices(["default", "augmentation"]),
+    )
     .action(async (themeFile: string, options: OptionsType) => {
-      const { out, strictComponentTypes, format, watch } = options
+      const {
+        out,
+        strictComponentTypes,
+        format,
+        strictTokenTypes,
+        watch,
+        template,
+      } = options
 
       if (watch) {
         const watchPath =
@@ -44,6 +65,8 @@ export async function run() {
             out,
             strictComponentTypes,
             format,
+            strictTokenTypes,
+            template,
           })
           console.timeEnd("Duration")
           console.info(new Date().toLocaleString())
@@ -61,6 +84,8 @@ export async function run() {
         out,
         strictComponentTypes,
         format,
+        strictTokenTypes,
+        template,
         onError: () => process.exit(1),
       })
     })

@@ -1,9 +1,5 @@
-export {
-  ColorModeProvider,
-  DarkMode,
-  LightMode,
-  type ColorModeProviderProps,
-} from "./color-mode-provider"
+export { ColorModeProvider, DarkMode, LightMode } from "./color-mode-provider"
+export type { ColorModeProviderProps } from "./color-mode-provider"
 export {
   cookieStorageManager,
   cookieStorageManagerSSR,
@@ -11,7 +7,8 @@ export {
   localStorageManager,
   createLocalStorageManager,
 } from "./storage-manager"
-export { ColorModeScript, type ColorModeScriptProps } from "./color-mode-script"
+export { ColorModeScript } from "./color-mode-script"
+export type { ColorModeScriptProps } from "./color-mode-script"
 export {
   useColorMode,
   useColorModeValue,

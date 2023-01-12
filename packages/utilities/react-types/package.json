@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-types",
-  "version": "2.0.3",
+  "version": "2.0.6",
   "description": "",
   "keywords": [
     "react",
@@ -13,6 +13,7 @@
   "types": "src/index.d.ts",
   "sideEffects": false,
   "files": [
+    "dist",
     "src"
   ],
   "publishConfig": {
@@ -30,11 +31,15 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "react": "^18.0.0"
   },
-  "scripts": {
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }

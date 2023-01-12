@@ -8,539 +8,66 @@ releaseDate: September 19, 2022
 version: 2.3.3
 ---
 
-## @chakra-ui/accordion@2.1.0
+## Minor Changes
 
-### Minor Changes
+### All components
 
-- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
-  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
-  `framer-motion` elements via the `motionProps` prop.
+- Allow control of `framer-motion` elements via the `motionProps` prop.
 
-### Patch Changes
+## Patch Changes
 
-- Updated dependencies
-  \[[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
+### All components
 
-## @chakra-ui/checkbox@2.2.0
-
-### Minor Changes
-
-- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
-  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
-  `framer-motion` elements via the `motionProps` prop.
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
+- Added missing component/function docs and relative docsite links.
 
   Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
+  the Chakra site have corresponding TS Docs and links back to the docsite via
   IDE intellisense.
 
   Includes adding or fixing links within these docs to related WAI-ARIA
   patterns.
 
-- Updated dependencies
-  \[[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
+### Menu `2.1.0`
 
-## @chakra-ui/menu@2.1.0
+- Remove redundant ARIA roles
 
-### Minor Changes
+## Popover `2.1.0`
 
-- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
-  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
-  `framer-motion` elements via the `motionProps` prop.
+- Refactor popover to reduce bundle size
 
-### Patch Changes
+### Tooltip `2.1.0`
 
-- [#6562](https://github.com/chakra-ui/chakra-ui/pull/6562)
-  [`11afae67a`](https://github.com/chakra-ui/chakra-ui/commit/11afae67ae7d17013b08988bbb7f4bf8b072c5de)
-  Thanks [@iansjk](https://github.com/iansjk)! - Remove redundant ARIA roles
+- Fixed issue where disabled tooltip triggers require an extra wrapper (via
+  `shouldWrapChildren`). This was fixed by switching from mouse events to
+  pointer events
 
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
+### Color Mode `2.1.8`
 
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
+- Add optional `nonce` back to ColorModeScript
 
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
+### Layout `2.1.7`
 
-- Updated dependencies
-  \[[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
+- Fixed an issue where `Highlight` showed `key` warnings
+- Prevent `Stack` from crashing when there's a lot of child elements
 
-## @chakra-ui/modal@2.2.0
+  > NB: This does not help improve loading and refresh performance otherwise,
+  > libraries like `react-virtualized` should be used to handle large lists.
 
-### Minor Changes
+### PinInput `2.0.13`
 
-- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
-  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
-  `framer-motion` elements via the `motionProps` prop.
+- Fixed issue where backspace did not focus prev input
 
-### Patch Changes
+### Styled System `2.3.2`
 
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
+- Revert [#6335](https://github.com/chakra-ui/chakra-ui/pull/6335/files) to fix
+  issue where lots of responsive styles makes app slower
 
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
+- Update disabled selector to use state selector `:disabled`, instead of
+  `[disabled]` attribute selector. This is useful when an editable element is
+  wrapped within `<fieldset disabled>`
 
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/popover@2.1.0
-
-### Minor Changes
-
-- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
-  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
-  `framer-motion` elements via the `motionProps` prop.
-
-### Patch Changes
-
-- [#6592](https://github.com/chakra-ui/chakra-ui/pull/6592)
-  [`65b7c1938`](https://github.com/chakra-ui/chakra-ui/commit/65b7c193827e95e61c2f8549b7011f14fb01814f)
-  Thanks [@anubra266](https://github.com/anubra266)! - Refactor popover to
-  reduce bundle size
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`08008f453`](https://github.com/chakra-ui/chakra-ui/commit/08008f453e239959b36740ea3e1566cd568cf0df),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/tooltip@2.1.0
-
-### Minor Changes
-
-- [#6679](https://github.com/chakra-ui/chakra-ui/pull/6679)
-  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Allow control of
-  `framer-motion` elements via the `motionProps` prop.
-
-### Patch Changes
-
-- [#6653](https://github.com/chakra-ui/chakra-ui/pull/6653)
-  [`3a79a92ef`](https://github.com/chakra-ui/chakra-ui/commit/3a79a92efcee9d5218cc6eff1d8cc69a9247ccd0)
-  Thanks [@nikolovlazar](https://github.com/nikolovlazar)! - Fixed issue where
-  disabled tooltip triggers require an extra wrapper (via \`shouldWrapChildren).
-  This was fixed by switching from mouse events to pointer events
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/alert@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/button@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-
-## @chakra-ui/close-button@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/color-mode@2.1.8
-
-### Patch Changes
-
-- [#6641](https://github.com/chakra-ui/chakra-ui/pull/6641)
-  [`1ce701783`](https://github.com/chakra-ui/chakra-ui/commit/1ce701783e6cec9d22d625761403212d32feb38d)
-  Thanks [@chancegraff](https://github.com/chancegraff)! - Add optional `nonce`
-  back to ColorModeScript
-
-## @chakra-ui/editable@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`08008f453`](https://github.com/chakra-ui/chakra-ui/commit/08008f453e239959b36740ea3e1566cd568cf0df),
-  [`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/focus-lock@2.0.11
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]
-
-## @chakra-ui/form-control@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/icon@3.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-## @chakra-ui/icons@2.0.10
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/input@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/layout@2.1.7
-
-### Patch Changes
-
-- [#6644](https://github.com/chakra-ui/chakra-ui/pull/6644)
-  [`a9b004c42`](https://github.com/chakra-ui/chakra-ui/commit/a9b004c42ec31a525c3f5f2b8e987d55093fd35d)
-  Thanks [@SpencerKaiser](https://github.com/SpencerKaiser)! - Fixing an issue
-  with `Highlight`
-
-- [#6684](https://github.com/chakra-ui/chakra-ui/pull/6684)
-  [`59391bb95`](https://github.com/chakra-ui/chakra-ui/commit/59391bb95b05a13feeb9fe84b0cdb027519460ce)
-  Thanks [@anubra266](https://github.com/anubra266)! - Prevent Stack from
-  crashing when there's a lot of children
-
-  NB: This does not help improve loading and refresh performance otherwise,
-  libraries like `react-virtualized` should be used to handle large lists.
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/media-query@3.2.6
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-## @chakra-ui/number-input@2.0.10
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/pin-input@2.0.13
-
-### Patch Changes
-
-- [#6689](https://github.com/chakra-ui/chakra-ui/pull/6689)
-  [`f6002e4a4`](https://github.com/chakra-ui/chakra-ui/commit/f6002e4a41fab8a7e8d0f8e42e10ca7ad1d5daf5)
-  Thanks [@anubra266](https://github.com/anubra266)! - Fix issue where backspace
-  did not focus prev input
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/provider@2.0.17
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44),
-  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/radio@2.0.11
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/react@2.3.3
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`f6002e4a4`](https://github.com/chakra-ui/chakra-ui/commit/f6002e4a41fab8a7e8d0f8e42e10ca7ad1d5daf5),
-  [`a9b004c42`](https://github.com/chakra-ui/chakra-ui/commit/a9b004c42ec31a525c3f5f2b8e987d55093fd35d),
-  [`11afae67a`](https://github.com/chakra-ui/chakra-ui/commit/11afae67ae7d17013b08988bbb7f4bf8b072c5de),
-  [`59391bb95`](https://github.com/chakra-ui/chakra-ui/commit/59391bb95b05a13feeb9fe84b0cdb027519460ce),
-  [`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571),
-  [`e62697467`](https://github.com/chakra-ui/chakra-ui/commit/e62697467fea03c9a6035ed67a635f9dc72bc471),
-  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44),
-  [`65b7c1938`](https://github.com/chakra-ui/chakra-ui/commit/65b7c193827e95e61c2f8549b7011f14fb01814f),
-  [`3a79a92ef`](https://github.com/chakra-ui/chakra-ui/commit/3a79a92efcee9d5218cc6eff1d8cc69a9247ccd0),
-  [`0ca7b097e`](https://github.com/chakra-ui/chakra-ui/commit/0ca7b097e7c7106cb3aa9daf9ab7462569b5d968),
-  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/select@2.0.11
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/skeleton@2.0.16
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/skip-nav@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-## @chakra-ui/slider@2.0.11
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/stat@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/styled-system@2.3.2
-
-### Patch Changes
-
-- [#6704](https://github.com/chakra-ui/chakra-ui/pull/6704)
-  [`c570b2415`](https://github.com/chakra-ui/chakra-ui/commit/c570b241522d54e203d6bd151640b34f4ef80faf)
-  Thanks [@anubra266](https://github.com/anubra266)! - Revert
-  [#6335](https://github.com/chakra-ui/chakra-ui/pull/6335/files) to fix issue
-  where lots of responsive styles makes app slower
-
-- [#6700](https://github.com/chakra-ui/chakra-ui/pull/6700)
-  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)
-  Thanks [@sei0603](https://github.com/sei0603)! - Update disabled selector to
-  use state selector `:disabled`, instead of `[disabled]` attribute selector.
-  This is useful when an editable element is wrapped within
-  `<fieldset disabled>`
-
-- [#6595](https://github.com/chakra-ui/chakra-ui/pull/6595)
-  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve style
-  resolution when components are wrapped within forced color mode elements
-  (`DarkMode`, `LightMode`).
+- Improve style resolution when components are wrapped within forced color mode
+  elements (`DarkMode`, `LightMode`).
 
   We now dynamically attach the `data-theme` attribute to chakra elements when
   in forced color mode.
@@ -554,307 +81,28 @@ version: 2.3.3
   </DarkMode>
   ```
 
-## @chakra-ui/switch@2.0.12
+### Table `2.0.10`
 
-### Patch Changes
+- Remove redundant ARIA roles
 
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
+### Tag `2.0.10`
 
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
+- Use `forwardRef` with `TagCloseButton`
 
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
+### Theme `2.1.12`
 
-- Updated dependencies
-  \[[`1b89467f6`](https://github.com/chakra-ui/chakra-ui/commit/1b89467f6a1dae072e16884431d898497fa2e571),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
+- Fix incorrect Select `xs` sizing
 
-## @chakra-ui/system@2.2.10
+### UseControllableState `2.0.4`
 
-### Patch Changes
+- Fixed issue with stale values in callbacks
 
-- [#6595](https://github.com/chakra-ui/chakra-ui/pull/6595)
-  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Improve style
-  resolution when components are wrapped within forced color mode elements
-  (`DarkMode`, `LightMode`).
+### UseFocusOnPointerDown `2.0.2`
 
-  We now dynamically attach the `data-theme` attribute to chakra elements when
-  in forced color mode.
+- Fix issue where focus on pointerdown doesn't work on safari
 
-  ```jsx live=false
-  <DarkMode>
-    <chakra.div bg="gray.800" padding="40px">
-      {/* Forced: Badge will now have `data-theme='dark' attached` */}
-      <Badge>Total</Badge>
-    </chakra.div>
-  </DarkMode>
-  ```
+### DOM Utilities `2.0.2`
 
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`1ce701783`](https://github.com/chakra-ui/chakra-ui/commit/1ce701783e6cec9d22d625761403212d32feb38d),
-  [`c570b2415`](https://github.com/chakra-ui/chakra-ui/commit/c570b241522d54e203d6bd151640b34f4ef80faf),
-  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44),
-  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479)]
-
-## @chakra-ui/table@2.0.10
-
-### Patch Changes
-
-- [#6562](https://github.com/chakra-ui/chakra-ui/pull/6562)
-  [`11afae67a`](https://github.com/chakra-ui/chakra-ui/commit/11afae67ae7d17013b08988bbb7f4bf8b072c5de)
-  Thanks [@iansjk](https://github.com/iansjk)! - Remove redundant ARIA roles
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-## @chakra-ui/tabs@2.1.2
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/tag@2.0.10
-
-### Patch Changes
-
-- [#6707](https://github.com/chakra-ui/chakra-ui/pull/6707)
-  [`0ca7b097e`](https://github.com/chakra-ui/chakra-ui/commit/0ca7b097e7c7106cb3aa9daf9ab7462569b5d968)
-  Thanks [@anubra266](https://github.com/anubra266)! - Use `forwardRef` with
-  `TagCloseButton`
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/textarea@2.0.11
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/theme@2.1.12
-
-### Patch Changes
-
-- [#6657](https://github.com/chakra-ui/chakra-ui/pull/6657)
-  [`e62697467`](https://github.com/chakra-ui/chakra-ui/commit/e62697467fea03c9a6035ed67a635f9dc72bc471)
-  Thanks [@Aexylus](https://github.com/Aexylus)! - Fix incorrect Select `xs`
-  sizing
-
-- Updated dependencies
-
-## @chakra-ui/toast@3.0.11
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`e62697467`](https://github.com/chakra-ui/chakra-ui/commit/e62697467fea03c9a6035ed67a635f9dc72bc471),
-  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479),
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)]
-
-## @chakra-ui/visually-hidden@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-## @chakra-ui/react-use-animation-state@2.0.4
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]
-
-## @chakra-ui/react-use-controllable-state@2.0.4
-
-### Patch Changes
-
-- [#6683](https://github.com/chakra-ui/chakra-ui/pull/6683)
-  [`a4df8b70c`](https://github.com/chakra-ui/chakra-ui/commit/a4df8b70c9ade7c331ba6b8d1b422e74b5b8e8c1)
-  Thanks [@anubra266](https://github.com/anubra266)! - Fix slider default value
-  issue
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-## @chakra-ui/react-use-disclosure@2.0.4
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-## @chakra-ui/react-use-focus-effect@2.0.4
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]
-
-## @chakra-ui/react-use-focus-on-pointer-down@2.0.2
-
-### Patch Changes
-
-- [#6677](https://github.com/chakra-ui/chakra-ui/pull/6677)
-  [`08008f453`](https://github.com/chakra-ui/chakra-ui/commit/08008f453e239959b36740ea3e1566cd568cf0df)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
-  focus on pointerdown doesn't work on safari
-
-## @chakra-ui/hooks@2.0.10
-
-### Patch Changes
-
-- [#6666](https://github.com/chakra-ui/chakra-ui/pull/6666)
-  [`3e1b3f6b6`](https://github.com/chakra-ui/chakra-ui/commit/3e1b3f6b6a7398b71ac08339110f075695fbae94)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add missing
-  component/function docs and relative docsite links.
-
-  Ensures that all Components, functions, and hooks that have detailed pages on
-  the Chakra site have corresponding JSDocs and links back to the docsite via
-  IDE intellisense.
-
-  Includes adding or fixing links within these docs to related WAI-ARIA
-  patterns.
-
-- Updated dependencies
-  \[[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]
-
-## @chakra-ui/react-utils@2.0.7
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]
-
-## @chakra-ui/utils@2.0.10
-
-### Patch Changes
-
-- [#6700](https://github.com/chakra-ui/chakra-ui/pull/6700)
-  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)
-  Thanks [@sei0603](https://github.com/sei0603)! - Update disabled selector to
-  use state selector `:disabled`, instead of `[disabled]` attribute selector.
-  This is useful when an editable element is wrapped within
-  `<fieldset disabled>`
-
-## @chakra-ui/dom-utils@2.0.2
-
-### Patch Changes
-
-- [#6700](https://github.com/chakra-ui/chakra-ui/pull/6700)
-  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)
-  Thanks [@sei0603](https://github.com/sei0603)! - Update disabled selector to
-  use state selector `:disabled`, instead of `[disabled]` attribute selector.
-  This is useful when an editable element is wrapped within
-  `<fieldset disabled>`
-
-## @chakra-ui/cli@2.1.8
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]
-
-## @chakra-ui/props-docs@2.0.19
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c570b2415`](https://github.com/chakra-ui/chakra-ui/commit/c570b241522d54e203d6bd151640b34f4ef80faf),
-  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44),
-  [`c2d1c362f`](https://github.com/chakra-ui/chakra-ui/commit/c2d1c362f5bf2dfc3fa27fa8a987c1d037e12479)]
-
-## @chakra-ui/storybook-addon@4.0.11
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/test-utils@2.0.19
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`e62697467`](https://github.com/chakra-ui/chakra-ui/commit/e62697467fea03c9a6035ed67a635f9dc72bc471),
-  [`99329e44a`](https://github.com/chakra-ui/chakra-ui/commit/99329e44a0429a225cd1dffa4b7d76b68a828f44)]
+- Update disabled selector to use state selector `:disabled`, instead of
+  `[disabled]` attribute selector. This is useful when an editable element is
+  wrapped within `<fieldset disabled>`
