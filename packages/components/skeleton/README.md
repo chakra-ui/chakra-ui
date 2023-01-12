@@ -23,6 +23,7 @@ import { Skeleton } from "@chakra-ui/skeleton"
 ```
 
 ## Usage
+
 ```jsx
 <Skeleton>
   <span>Chakra ui is cool</span>

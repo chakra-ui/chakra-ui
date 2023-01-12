@@ -1582,6 +1582,7 @@ importers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/portal': workspace:*
+      '@chakra-ui/react-context': workspace:*
       '@chakra-ui/react-use-timeout': workspace:*
       '@chakra-ui/react-use-update-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
@@ -1596,6 +1597,7 @@ importers:
       '@chakra-ui/alert': link:../alert
       '@chakra-ui/close-button': link:../close-button
       '@chakra-ui/portal': link:../portal
+      '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/react-use-timeout': link:../../hooks/use-timeout
       '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
       '@chakra-ui/shared-utils': link:../../utilities/shared-utils
@@ -13673,7 +13675,7 @@ packages:
   /axios/0.21.4_debug@3.2.7:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
     transitivePeerDependencies:
       - debug
 
@@ -18668,7 +18670,7 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /follow-redirects/1.15.1:
+  /follow-redirects/1.15.1_debug@3.2.7:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -18676,6 +18678,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 3.2.7
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -20828,7 +20832,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug

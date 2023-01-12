@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@chakra-ui/alert": "workspace:*",
+    "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/close-button": "workspace:*",
     "@chakra-ui/portal": "workspace:*",
     "@chakra-ui/react-use-update-effect": "workspace:*",

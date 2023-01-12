@@ -1,6 +1,6 @@
 export { useToast } from "./use-toast"
 export type { UseToastOptions } from "./use-toast"
-export { ToastProvider } from "./toast.provider"
+export { ToastProvider, ToastOptionProvider } from "./toast.provider"
 export type {
   ToastMethods,
   ToastProviderProps,

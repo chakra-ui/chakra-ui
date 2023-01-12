@@ -4,6 +4,7 @@ import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
 import { createToastFn, CreateToastFnReturn } from "./toast"
 import { ToastPosition } from "./toast.placement"
 import { useMemo } from "react"
+import { useToastOptionContext } from "./toast.provider"
 
 export interface UseToastOptions extends ThemingProps<"Alert"> {
   /**
@@ -67,10 +68,15 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
  */
 export function useToast(options?: UseToastOptions): CreateToastFnReturn {
   const { theme } = useChakra()
+  const defaultOptions = useToastOptionContext()
 
   return useMemo(
-    () => createToastFn(theme.direction, options),
-    [options, theme.direction],
+    () =>
+      createToastFn(theme.direction, {
+        ...defaultOptions,
+        ...options,
+      }),
+    [options, theme.direction, defaultOptions],
   )
 }
 
