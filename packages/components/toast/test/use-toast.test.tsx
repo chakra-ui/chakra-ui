@@ -1,3 +1,4 @@
+import React from "react"
 import { render, screen, waitFor } from "@chakra-ui/test-utils"
 import { ToastOptionProvider, ToastProvider, useToast } from "../src"
 
@@ -25,7 +26,7 @@ describe("useToast", () => {
 
     const { user } = render(
       <>
-        <ToastOptionProvider value={{ globalOptions: undefined }}>
+        <ToastOptionProvider value={undefined}>
           <TestComponent />
         </ToastOptionProvider>
         <ToastProvider />
@@ -61,7 +62,7 @@ describe("useToast", () => {
 
     const { user } = render(
       <>
-        <ToastOptionProvider value={{ globalOptions: undefined }}>
+        <ToastOptionProvider value={undefined}>
           <TestComponent />
         </ToastOptionProvider>
         <ToastProvider />
@@ -113,7 +114,7 @@ describe("useToast", () => {
 
     const { user } = render(
       <>
-        <ToastOptionProvider value={{ globalOptions: undefined }}>
+        <ToastOptionProvider value={undefined}>
           <TestComponent />
         </ToastOptionProvider>
         <ToastProvider />
@@ -142,14 +143,7 @@ describe("useToast", () => {
 
     const { user } = render(
       <>
-        <ToastOptionProvider
-          value={{
-            globalOptions: {
-              title,
-              description,
-            },
-          }}
-        >
+        <ToastOptionProvider value={{ title, description }}>
           <TestComponent />
         </ToastOptionProvider>
         <ToastProvider />
@@ -183,12 +177,7 @@ describe("useToast", () => {
     const { user } = render(
       <>
         <ToastOptionProvider
-          value={{
-            globalOptions: {
-              title: defaultTitle,
-              description: defaultDescription,
-            },
-          }}
+          value={{ title: defaultTitle, description: defaultDescription }}
         >
           <TestComponent />
         </ToastOptionProvider>
@@ -221,12 +210,7 @@ describe("useToast", () => {
     const { user } = render(
       <>
         <ToastOptionProvider
-          value={{
-            globalOptions: {
-              title: defaultTitle,
-              description: defaultDescription,
-            },
-          }}
+          value={{ title: defaultTitle, description: defaultDescription }}
         >
           <TestComponent />
         </ToastOptionProvider>
