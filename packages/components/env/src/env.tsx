@@ -6,7 +6,14 @@ interface Environment {
   getDocument: () => Document
 }
 
-const EnvironmentContext = createContext({} as Environment)
+const EnvironmentContext = createContext<Environment>({
+  getDocument() {
+    return document
+  },
+  getWindow() {
+    return window
+  },
+})
 
 EnvironmentContext.displayName = "EnvironmentContext"
 
