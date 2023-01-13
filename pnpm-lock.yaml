@@ -675,10 +675,13 @@ importers:
 
   packages/components/env:
     specifiers:
+      '@chakra-ui/react-use-safe-layout-effect': workspace:*
       '@types/react-frame-component': ^4.1.1
       clean-package: 2.1.1
       react: ^18.2.0
       react-frame-component: ^5.2.3
+    dependencies:
+      '@chakra-ui/react-use-safe-layout-effect': link:../../hooks/use-safe-layout-effect
     devDependencies:
       '@types/react-frame-component': 4.1.3
       clean-package: 2.1.1
