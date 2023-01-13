@@ -20,7 +20,7 @@ export function useMediaQuery(
 ): boolean[] {
   const { ssr = true, fallback } = options
 
-  const env = useEnvironment()
+  const { getWindow } = useEnvironment()
 
   const queries = Array.isArray(query) ? query : [query]
 
@@ -32,19 +32,20 @@ export function useMediaQuery(
       media: query,
       matches: ssr
         ? !!fallbackValues[index]
-        : env.window.matchMedia(query).matches,
+        : getWindow().matchMedia(query).matches,
     }))
   })
 
   useEffect(() => {
+    const win = getWindow()
     setValue(
       queries.map((query) => ({
         media: query,
-        matches: env.window.matchMedia(query).matches,
+        matches: win.matchMedia(query).matches,
       })),
     )
 
-    const mql = queries.map((query) => env.window.matchMedia(query))
+    const mql = queries.map((query) => win.matchMedia(query))
 
     const handler = (evt: MediaQueryListEvent) => {
       setValue((prev) => {
@@ -73,7 +74,7 @@ export function useMediaQuery(
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [env.window])
+  }, [getWindow])
 
   return value.map((item) => item.matches)
 }
