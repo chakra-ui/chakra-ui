@@ -1,5 +1,35 @@
 # Change Log
 
+## 2.0.19
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/react-use-callback-ref@2.0.7
+  - @chakra-ui/react-use-controllable-state@2.0.8
+  - @chakra-ui/react-use-latest-ref@2.0.5
+  - @chakra-ui/react-use-merge-refs@2.0.7
+  - @chakra-ui/react-use-pan-event@2.0.9
+  - @chakra-ui/react-use-size@2.0.8
+  - @chakra-ui/react-use-update-effect@2.0.7
+  - @chakra-ui/number-utils@2.0.7
+  - @chakra-ui/react-types@2.0.7
+
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`7a62c30cc`](https://github.com/chakra-ui/chakra-ui/commit/7a62c30cc4977adf7c6021fabbd16b3bd4707e9f),
+  [`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/react-use-size@2.0.7
+  - @chakra-ui/react-use-pan-event@2.0.8
+
 ## 2.0.17
 
 ### Patch Changes

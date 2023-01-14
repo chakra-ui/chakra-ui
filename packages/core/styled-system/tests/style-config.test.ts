@@ -4,7 +4,7 @@ test("should handle single variant", () => {
   expect(recipe({ theme, variant: "solid", size: ["sm", "md"] }))
     .toMatchInlineSnapshot(`
     Object {
-      "@media screen and (min-width: 0px) and (max-width: 39.99875em)": Object {
+      "@media screen and (min-width: 0px) and (max-width: 39.98em)": Object {
         "fontSize": "sm",
         "h": 8,
         "minW": 8,
@@ -27,7 +27,7 @@ test("should handle single variant", () => {
   expect(recipe({ theme, variant: "solid", size: { base: "sm", sm: "md" } }))
     .toMatchInlineSnapshot(`
     Object {
-      "@media screen and (min-width: 0px) and (max-width: 39.99875em)": Object {
+      "@media screen and (min-width: 0px) and (max-width: 39.98em)": Object {
         "fontSize": "sm",
         "h": 8,
         "minW": 8,
@@ -50,7 +50,7 @@ test("should handle single variant", () => {
   expect(recipe({ theme, variant: "solid", size: { base: "sm", lg: "md" } }))
     .toMatchInlineSnapshot(`
     Object {
-      "@media screen and (min-width: 0px) and (max-width: 63.99875em)": Object {
+      "@media screen and (min-width: 0px) and (max-width: 63.98em)": Object {
         "fontSize": "sm",
         "h": 8,
         "minW": 8,
@@ -80,7 +80,7 @@ test("should work with distant breakpoint", () => {
     }),
   ).toMatchInlineSnapshot(`
     Object {
-      "@media screen and (min-width: 0px) and (max-width: 63.99875em)": Object {
+      "@media screen and (min-width: 0px) and (max-width: 63.98em)": Object {
         "fontSize": "sm",
         "h": 8,
         "minW": 8,
@@ -108,7 +108,7 @@ test("should work with distant breakpoint", () => {
     }),
   ).toMatchInlineSnapshot(`
     Object {
-      "@media screen and (min-width: 0px) and (max-width: 63.99875em)": Object {
+      "@media screen and (min-width: 0px) and (max-width: 63.98em)": Object {
         "fontSize": "sm",
         "h": 8,
         "minW": 8,

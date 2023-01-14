@@ -1,0 +1,53 @@
+---
+title: Version 2.4.8
+description:
+  Explore the changelog for Chakra UI version 2.4.8. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7217
+releaseDate: January 12, 2023
+version: 2.4.8
+---
+
+## Minor Changes
+
+### System `2.4.0`
+
+- Fixed issue where TS throws an error when using the `translate` style prop due
+  to clash with the native DOM translate attribute.
+
+  This was fixed by omitting the native `translate` attribute and introducing a
+  new `htmlTranslate` attribute for user who need this.
+
+## Patch Changes
+
+### All components
+
+- Refactor code to use explicit exports
+
+### Modal `2.2.8`
+
+- Bump `react-remove-scroll`, `react-focus-lock` and `aria-hidden` dependencies
+- Fix issue where console throws a warning from react-remove-scroll when
+  multiple modal dialogs are open.
+
+### Icons `2.0.17`
+
+- Fixed issue where `ReactIcon` was not exported
+
+### Theme `2.2.5`
+
+- Refactored `Card` theme to use component tokens. This makes it easier to
+  override styles from the base style.
+
+### Styled System `2.5.2`
+
+- Fixed issue where `useBreakpointValue` resolves to an incorrect value when
+  resizing the window in `Firefox`
+
+## Hooks `2.1.5`
+
+- Fixed issue where `useDimensions` uses stale value of node reference
+
+## Toast `5.0.0`
+
+- Fixed issue where default toast options are not applied correctly.

@@ -53,6 +53,11 @@ export interface ChakraProviderProps
    * based on where `ChakraProvider` is rendered.
    */
   environment?: EnvironmentProviderProps["environment"]
+  /**
+   * Disabled the use of automatic window and document detection.
+   * This removed the injected `<span/>` element
+   */
+  disableEnvironment?: boolean
 }
 
 /**
@@ -68,10 +73,14 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
     theme = {},
     environment,
     cssVarsRoot,
+    disableEnvironment,
   } = props
 
   const _children = (
-    <EnvironmentProvider environment={environment}>
+    <EnvironmentProvider
+      environment={environment}
+      disabled={disableEnvironment}
+    >
       {children}
     </EnvironmentProvider>
   )

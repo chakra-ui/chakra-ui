@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-size",
-  "version": "2.0.6",
+  "version": "2.0.8",
   "description": "Track an element size over time",
   "keywords": [
     "react-use-size"
@@ -34,7 +34,7 @@
     "postpack": "clean-package restore"
   },
   "dependencies": {
-    "@zag-js/element-size": "0.1.0"
+    "@zag-js/element-size": "0.3.0"
   },
   "peerDependencies": {
     "react": ">=18"

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/focus-lock",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "description": "React focus lock for all Chakra components",
   "keywords": [
     "react focus lock",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@chakra-ui/dom-utils": "workspace:*",
-    "react-focus-lock": "^2.9.1"
+    "react-focus-lock": "^2.9.2"
   },
   "peerDependencies": {
     "react": ">=18"
@@ -46,7 +46,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

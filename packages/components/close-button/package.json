@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/close-button",
-  "version": "2.0.14",
+  "version": "2.0.16",
   "description": "A React and Chakra UI close button component.",
   "keywords": [
     "close-button",
@@ -47,7 +47,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popper",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
     "react",
@@ -54,7 +54,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

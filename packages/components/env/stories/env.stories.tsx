@@ -9,8 +9,8 @@ export default {
 }
 
 const Portal = ({ children }: React.PropsWithChildren<{}>) => {
-  const env = useEnvironment()
-  return createPortal(children, env.document.body)
+  const { getDocument } = useEnvironment({ defer: true })
+  return createPortal(children, getDocument().body)
 }
 
 export function WithIframe() {
@@ -29,32 +29,36 @@ export function WithIframe() {
   )
 }
 
-function useWindow() {
-  const { window: win } = useEnvironment()
+function useWindow({ defer }: { defer?: boolean } = {}) {
+  const { getWindow } = useEnvironment({ defer })
   const [match, setMatch] = useState(false)
 
   useEffect(() => {
+    const win = getWindow()
+
     const handler = (query: MediaQueryListEvent) => {
       setMatch(query.matches)
     }
+
     const mql = win.matchMedia("(min-width: 600px)")
     setMatch(mql.matches)
-    mql.addListener(handler)
+
+    mql.addEventListener("change", handler)
     return () => {
-      mql.removeListener(handler)
+      mql.removeEventListener("change", handler)
     }
-  }, [win])
+  }, [getWindow])
 
   return {
-    w: win.innerWidth,
-    h: win.innerHeight,
+    w: getWindow().innerWidth,
+    h: getWindow().innerHeight,
     match,
   }
 }
 
-function WindowSize() {
-  const details = useWindow()
-  return <pre>{JSON.stringify(details)}</pre>
+function WindowSize({ defer }: { defer?: boolean } = {}) {
+  const data = useWindow({ defer })
+  return <pre>{JSON.stringify(data)}</pre>
 }
 
 export function SizeWithinIframe() {
@@ -63,7 +67,7 @@ export function SizeWithinIframe() {
       <WindowSize />
       <Frame style={{ background: "yellow", width: "100%", maxWidth: "300px" }}>
         <EnvironmentProvider>
-          <WindowSize />
+          <WindowSize defer />
         </EnvironmentProvider>
       </Frame>
     </>

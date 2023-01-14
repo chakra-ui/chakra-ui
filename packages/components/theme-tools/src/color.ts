@@ -106,7 +106,7 @@ export const whiten = (color: string, amount: number) => (theme: Dict) => {
  */
 export const blacken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return toHex(mix(raw, "#000", amount))
+  return toHex(mix(raw, "#000", amount / 100))
 }
 
 /**
@@ -118,7 +118,7 @@ export const blacken = (color: string, amount: number) => (theme: Dict) => {
  */
 export const darken = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  return toHex(reduceLightness(raw, amount))
+  return toHex(reduceLightness(raw, amount / 100))
 }
 
 /**
@@ -130,7 +130,7 @@ export const darken = (color: string, amount: number) => (theme: Dict) => {
  */
 export const lighten = (color: string, amount: number) => (theme: Dict) => {
   const raw = getColor(theme, color)
-  toHex(increaseLightness(raw, amount))
+  toHex(increaseLightness(raw, amount / 100))
 }
 
 /**

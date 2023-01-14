@@ -1,5 +1,25 @@
 # Change Log
 
+## 3.0.16
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/shared-utils@2.0.5
+
+## 3.0.15
+
+### Patch Changes
+
+- [#7194](https://github.com/chakra-ui/chakra-ui/pull/7194)
+  [`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)
+  Thanks [@bertho-zero](https://github.com/bertho-zero)! - fix: remove duplicate
+  export
+
 ## 3.0.14
 
 ### Patch Changes

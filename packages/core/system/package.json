@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "2.3.6",
+  "version": "2.4.0",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@chakra-ui/color-mode": "workspace:*",
+    "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/react-utils": "workspace:*",
     "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",

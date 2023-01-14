@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/modal",
-  "version": "2.2.6",
+  "version": "2.2.8",
   "description": "An accessible dialog (modal) component for React & Chakra UI",
   "keywords": [
     "react",
@@ -44,14 +44,14 @@
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/transition": "workspace:*",
-    "aria-hidden": "^1.1.1",
-    "react-remove-scroll": "^2.5.4",
+    "aria-hidden": "^1.2.2",
+    "react-remove-scroll": "^2.5.5",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
-    "@testing-library/react-hooks": "8.0.0",
+    "@testing-library/react-hooks": "8.0.1",
     "framer-motion": "^6.2.9",
     "react-lorem-component": "0.13.0",
     "react": "^18.0.0",
@@ -71,7 +71,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

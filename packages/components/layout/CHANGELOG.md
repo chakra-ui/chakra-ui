@@ -1,5 +1,32 @@
 # Change Log
 
+## 2.1.14
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`292864aba`](https://github.com/chakra-ui/chakra-ui/commit/292864abae83833a826b2fe4a9d69ddcfe7fbe17),
+  [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/breakpoint-utils@2.0.7
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/object-utils@2.0.8
+  - @chakra-ui/react-children-utils@2.0.6
+  - @chakra-ui/shared-utils@2.0.5
+
+## 2.1.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36),
+  [`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]:
+  - @chakra-ui/object-utils@2.0.7
+  - @chakra-ui/icon@3.0.15
+
 ## 2.1.12
 
 ### Patch Changes

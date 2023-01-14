@@ -22,11 +22,9 @@ export function useDimensions(
   const rafId = useRef<number>()
 
   useSafeLayoutEffect(() => {
-    if (!ref.current) return undefined
-
-    const node = ref.current
-
     function measure() {
+      const node = ref.current
+      if (!node) return
       rafId.current = requestAnimationFrame(() => {
         const boxModel = getBox(node)
         setDimensions(boxModel)

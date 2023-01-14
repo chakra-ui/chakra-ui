@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/lazy-utils",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Utility functions for lazy loading disclosure elements",
   "keywords": [
     "lazy",

@@ -1,38 +1,50 @@
-import { useEffect, Ref } from "react"
+import { RefObject, useEffect, useState } from "react"
 
 /**
  * Proper state management for nested modals.
  * Simplified, but inspired by material-ui's ModalManager class.
  */
 class ModalManager {
-  modals: any[]
+  modals: Map<HTMLElement, number>
   constructor() {
-    this.modals = []
+    this.modals = new Map()
   }
 
-  add(modal: any) {
-    this.modals.push(modal)
+  add(modal: HTMLElement) {
+    this.modals.set(modal, this.modals.size + 1)
+    return this.modals.size
   }
 
-  remove(modal: any) {
-    this.modals = this.modals.filter((_modal) => _modal !== modal)
+  remove(modal: HTMLElement) {
+    this.modals.delete(modal)
   }
 
-  isTopModal(modal: any) {
-    const topmostModal = this.modals[this.modals.length - 1]
-    return topmostModal === modal
+  isTopModal(modal: HTMLElement | null) {
+    if (!modal) return false
+    return this.modals.get(modal) === this.modals.size
   }
 }
 
 export const manager = new ModalManager()
 
-export function useModalManager(ref: Ref<any>, isOpen?: boolean) {
+export function useModalManager(ref: RefObject<HTMLElement>, isOpen?: boolean) {
+  const [index, setIndex] = useState(0)
+
   useEffect(() => {
+    const node = ref.current
+
+    if (!node) return
+
     if (isOpen) {
-      manager.add(ref)
+      const index = manager.add(node)
+      setIndex(index)
     }
+
     return () => {
-      manager.remove(ref)
+      manager.remove(node)
+      setIndex(0)
     }
   }, [isOpen, ref])
+
+  return index
 }

@@ -1,5 +1,24 @@
 # @chakra-ui/react-utils
 
+## 2.0.12
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/utils@2.0.15
+
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/utils@2.0.14
+
 ## 2.0.10
 
 ### Patch Changes

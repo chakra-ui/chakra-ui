@@ -1,5 +1,84 @@
 # Change Log
 
+## 2.4.0
+
+### Minor Changes
+
+- [#7223](https://github.com/chakra-ui/chakra-ui/pull/7223)
+  [`3ce311ac7`](https://github.com/chakra-ui/chakra-ui/commit/3ce311ac796bc7f24d7b92bf52f5f207348963cc)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed issue where
+  TS throws an error when using the `translate` style prop due to clash with the
+  native DOM translate attribute.
+
+  This was fixed by omitting the native `translate` attribute and introducing a
+  new `htmlTranslate` attribute for user who need this.
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`292864aba`](https://github.com/chakra-ui/chakra-ui/commit/292864abae83833a826b2fe4a9d69ddcfe7fbe17),
+  [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/styled-system@2.5.2
+  - @chakra-ui/color-mode@2.1.12
+  - @chakra-ui/react-utils@2.0.12
+  - @chakra-ui/utils@2.0.15
+  - @chakra-ui/object-utils@2.0.8
+  - @chakra-ui/theme-utils@2.0.9
+
+## 2.3.8
+
+### Patch Changes
+
+- [#6905](https://github.com/chakra-ui/chakra-ui/pull/6905)
+  [`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)
+  Thanks [@bertho-zero](https://github.com/bertho-zero)! - Fixed issue where
+  style overrides does not respect order of precedence due to the use of
+  `Object.assign`.
+
+  To illustrate the issue, consider the following example:
+
+  ```js
+  const stylesFromTheme = {
+    px: 8,
+    padding: 0,
+  }
+
+  const stylesFromProps = {
+    px: 4,
+  }
+
+  const style = Object.assign({}, stylesFromTheme, stylesFromProps)
+  // Result: { px: 4, padding: 0 }
+  // Expected: { padding: 0, px: 4 }
+  ```
+
+  The issue is that `Object.assign` will replace properties in place with values
+  from the override objects. This is not the desired behavior for style
+  overrides hence a custom `assignAfter` function is used instead
+
+- Updated dependencies
+  [[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]:
+  - @chakra-ui/object-utils@2.0.7
+  - @chakra-ui/styled-system@2.5.1
+
+## 2.3.7
+
+### Patch Changes
+
+- [`2d8f36c1d`](https://github.com/chakra-ui/chakra-ui/commit/2d8f36c1d100bb729aa735cbea4a338550cb2bfc)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add ESM interop for
+  emotion's `styled` default export.
+
+- Updated dependencies
+  [[`9cdd43733`](https://github.com/chakra-ui/chakra-ui/commit/9cdd43733469e834740ec589a73f0d546c1e6b5b)]:
+  - @chakra-ui/utils@2.0.14
+  - @chakra-ui/color-mode@2.1.11
+  - @chakra-ui/react-utils@2.0.11
+  - @chakra-ui/theme-utils@2.0.8
+
 ## 2.3.6
 
 ### Patch Changes

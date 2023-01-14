@@ -1,4 +1,4 @@
-export * from "./icon"
-export * from "./icon"
+export { Icon } from "./icon"
+export type { IconProps } from "./icon"
 export { default } from "./icon"
-export * from "./create-icon"
+export { createIcon } from "./create-icon"

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/live-region",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "Aria live region for React components",
   "keywords": [
     "aria",
@@ -44,7 +44,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

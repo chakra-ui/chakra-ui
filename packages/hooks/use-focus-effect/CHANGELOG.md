@@ -1,5 +1,19 @@
 # @chakra-ui/react-use-focus-effect
 
+## 2.0.9
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/react-use-event-listener@2.0.7
+  - @chakra-ui/react-use-safe-layout-effect@2.0.5
+  - @chakra-ui/react-use-update-effect@2.0.7
+  - @chakra-ui/dom-utils@2.0.6
+
 ## 2.0.8
 
 ### Patch Changes

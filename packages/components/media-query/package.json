@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/media-query",
-  "version": "3.2.9",
+  "version": "3.2.10",
   "description": "A React hook for changing properties or visibility of a component based on css media query",
   "keywords": [
     "chakra ui",
@@ -39,7 +39,7 @@
     "@chakra-ui/theme": "workspace:*",
     "@types/react-frame-component": "^4.1.1",
     "jest-matchmedia-mock": "^1.1.0",
-    "@testing-library/react-hooks": "8.0.0",
+    "@testing-library/react-hooks": "8.0.1",
     "react-frame-component": "^5.2.3",
     "react": "^18.0.0",
     "clean-package": "2.1.1"
@@ -55,7 +55,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

@@ -1,0 +1,87 @@
+{
+  "Avatar": {
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "getInitials": {
+      "type": "(name: string) => string;",
+      "required": false,
+      "description": "Function to get the initials to display"
+    },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
+      "required": false,
+      "description": "The default avatar used as fallback when `name`, and `src`\nis not specified."
+    },
+    "iconLabel": { "type": "string;", "required": false },
+    "ignoreFallback": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true`, opt out of the avatar's `fallback` logic and\nrenders the `img` at all times."
+    },
+    "loading": {
+      "type": "\"eager\" | \"lazy\";",
+      "required": false,
+      "description": "Defines loading strategy"
+    },
+    "name": {
+      "type": "string;",
+      "required": false,
+      "description": "The name of the person in the avatar.\n\n- if `src` has loaded, the name will be used as the `alt` attribute of the `img`\n- If `src` is not loaded, the name will be used to create the initials"
+    },
+    "onError": {
+      "type": "() => void;",
+      "required": false,
+      "description": "Function called when image failed to load"
+    },
+    "referrerPolicy": {
+      "type": "HTMLAttributeReferrerPolicy;",
+      "required": false,
+      "description": "Defining which referrer is sent when fetching the resource."
+    },
+    "showBorder": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true`, the `Avatar` will show a border around it.\n\nBest for a group of avatars"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"2xs\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+      "required": false,
+      "description": "The size of the Avatar"
+    },
+    "src": {
+      "type": "string;",
+      "required": false,
+      "description": "The image url of the `Avatar`"
+    },
+    "srcSet": {
+      "type": "string;",
+      "required": false,
+      "description": "List of sources to use for different screen resolutions"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Avatar"
+    }
+  },
+  "AvatarBadge": {
+    "placement": { "type": "BadgePlacement;", "required": false }
+  },
+  "AvatarGroup": {
+    "max": {
+      "type": "number;",
+      "required": false,
+      "description": "The maximum number of visible avatars"
+    },
+    "spacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "defaultValue": "\"-0.75rem\"",
+      "required": false,
+      "description": "The space between the avatars in the group."
+    }
+  }
+}

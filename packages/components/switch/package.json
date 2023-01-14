@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/switch",
-  "version": "2.0.18",
+  "version": "2.0.21",
   "description": "A React component to view and switch between on or off states.",
   "keywords": [
     "switch",
@@ -55,7 +55,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

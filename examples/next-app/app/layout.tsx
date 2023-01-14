@@ -1,7 +1,12 @@
 "use client"
 
-import { ChakraProvider } from "@chakra-ui/react"
-import { Container, Flex, Heading, HStack } from "@chakra-ui/react"
+import {
+  ChakraProvider,
+  Container,
+  Flex,
+  Heading,
+  HStack,
+} from "@chakra-ui/react"
 import { ColorModeSwitcher } from "../components/ColorModeSwitcher"
 import { Logo } from "../components/Logo"
 import { NextChakraLink } from "../components/NextChakraLink"

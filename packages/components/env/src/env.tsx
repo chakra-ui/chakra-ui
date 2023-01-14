@@ -1,73 +1,57 @@
-import {
-  createContext,
-  startTransition,
-  useContext,
-  useMemo,
-  useState,
-  useEffect,
-} from "react"
-import { ssrDocument } from "./mock-document"
-import { ssrWindow } from "./mock-window"
+import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { createContext, useContext, useMemo, useReducer, useRef } from "react"
 
 interface Environment {
-  window: Window
-  document: Document
+  getWindow: () => Window
+  getDocument: () => Document
 }
 
-const mockEnv = {
-  window: ssrWindow,
-  document: ssrDocument,
-}
-
-const defaultEnv: Environment =
-  typeof window !== "undefined" ? { window, document } : mockEnv
-
-const EnvironmentContext = createContext(defaultEnv)
+const EnvironmentContext = createContext<Environment>({
+  getDocument() {
+    return document
+  },
+  getWindow() {
+    return window
+  },
+})
 
 EnvironmentContext.displayName = "EnvironmentContext"
 
-export function useEnvironment() {
+export function useEnvironment({ defer }: { defer?: boolean } = {}) {
+  const [, forceUpdate] = useReducer((c) => c + 1, 0)
+
+  useSafeLayoutEffect(() => {
+    if (!defer) return
+    forceUpdate()
+  }, [defer])
+
   return useContext(EnvironmentContext)
 }
 
 export interface EnvironmentProviderProps {
   children: React.ReactNode
+  disabled?: boolean
   environment?: Environment
 }
 
 export function EnvironmentProvider(props: EnvironmentProviderProps) {
-  const { children, environment: environmentProp } = props
-  const [node, setNode] = useState<HTMLElement | null>(null)
+  const { children, environment: environmentProp, disabled } = props
+  const ref = useRef<HTMLSpanElement>(null)
 
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
-
-  const context = useMemo(() => {
-    if (environmentProp) {
-      return environmentProp
+  const context = useMemo<Environment>(() => {
+    if (environmentProp) return environmentProp
+    return {
+      getDocument: () => ref.current?.ownerDocument ?? document,
+      getWindow: () => ref.current?.ownerDocument.defaultView ?? window,
     }
+  }, [environmentProp])
 
-    const doc = node?.ownerDocument
-    const win = node?.ownerDocument.defaultView
-
-    const env = doc ? { document: doc, window: win } : defaultEnv
-    return env as Environment
-  }, [node, environmentProp])
+  const showSpan = !disabled || !environmentProp
 
   return (
     <EnvironmentContext.Provider value={context}>
       {children}
-      {!environmentProp && mounted && (
-        <span
-          id="__chakra_env"
-          hidden
-          ref={(el) => {
-            startTransition(() => {
-              if (el) setNode(el)
-            })
-          }}
-        />
-      )}
+      {showSpan && <span id="__chakra_env" hidden ref={ref} />}
     </EnvironmentContext.Provider>
   )
 }

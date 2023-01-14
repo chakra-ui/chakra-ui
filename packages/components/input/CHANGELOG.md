@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/form-control@2.0.16
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/object-utils@2.0.8
+  - @chakra-ui/react-children-utils@2.0.6
+  - @chakra-ui/shared-utils@2.0.5
+
+## 2.0.17
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c5be1bc73`](https://github.com/chakra-ui/chakra-ui/commit/c5be1bc734e833a32c1c08c734c2ff6e6dca6f36)]:
+  - @chakra-ui/object-utils@2.0.7
+  - @chakra-ui/form-control@2.0.15
+
+## 2.0.16
+
+### Patch Changes
+
+- [#7104](https://github.com/chakra-ui/chakra-ui/pull/7104)
+  [`989b36804`](https://github.com/chakra-ui/chakra-ui/commit/989b3680460b067f2425f6a92afb6632fb86ec5e)
+  Thanks [@lexanth](https://github.com/lexanth)! - Ensure input z-index
+  overrides are isolated to the input
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.14
+
 ## 2.0.15
 
 ### Patch Changes

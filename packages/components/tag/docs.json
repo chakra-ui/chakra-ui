@@ -1,0 +1,3 @@
+{
+  "TagCloseButton": { "isDisabled": { "type": "boolean;", "required": false } }
+}

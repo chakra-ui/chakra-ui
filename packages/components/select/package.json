@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/select",
-  "version": "2.0.15",
+  "version": "2.0.17",
   "description": "description",
   "keywords": [
     "theme",
@@ -52,7 +52,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

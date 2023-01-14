@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.0.17
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- [#7216](https://github.com/chakra-ui/chakra-ui/pull/7216)
+  [`08e3ffc4a`](https://github.com/chakra-ui/chakra-ui/commit/08e3ffc4ad6f138ad06e5046320949b2c487029e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fixed issue where
+  `ReactIcon` was not exported
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/icon@3.0.16
+
+## 2.0.16
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c483d859d`](https://github.com/chakra-ui/chakra-ui/commit/c483d859d015d850bc871cc5156f159a7694e795)]:
+  - @chakra-ui/icon@3.0.15
+
 ## 2.0.15
 
 ### Patch Changes

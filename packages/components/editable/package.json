@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/editable",
-  "version": "2.0.17",
+  "version": "2.0.18",
   "description": "React component used to build inline-editable components",
   "keywords": [
     "chakra ui",
@@ -60,7 +60,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

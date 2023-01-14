@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/slider",
-  "version": "2.0.17",
+  "version": "2.0.19",
   "description": "Accessible slider component for React that implements <input type=range>",
   "keywords": [
     "react",
@@ -70,7 +70,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

@@ -1,5 +1,38 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- [`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump all packages
+
+- Updated dependencies
+  [[`ddbb1b4c4`](https://github.com/chakra-ui/chakra-ui/commit/ddbb1b4c49b8f124c0368929357e2891265a50c0)]:
+  - @chakra-ui/form-control@2.0.16
+  - @chakra-ui/react-context@2.0.7
+  - @chakra-ui/react-use-merge-refs@2.0.7
+  - @chakra-ui/react-types@2.0.7
+  - @chakra-ui/shared-utils@2.0.5
+
+## 2.0.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.15
+
+## 2.0.16
+
+### Patch Changes
+
+- [`7a62c30cc`](https://github.com/chakra-ui/chakra-ui/commit/7a62c30cc4977adf7c6021fabbd16b3bd4707e9f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update `@zag-js/*`
+  dependencies to latest versions for better ESM compatibility
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.14
+
 ## 2.0.15
 
 ### Patch Changes

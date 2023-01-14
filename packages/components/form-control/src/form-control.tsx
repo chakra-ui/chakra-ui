@@ -242,7 +242,7 @@ export const FormControl = forwardRef<FormControlProps, "div">(
 
 FormControl.displayName = "FormControl"
 
-export interface HelpTextProps extends HTMLChakraProps<"div"> {}
+export interface FormHelperTextProps extends HTMLChakraProps<"div"> {}
 
 /**
  * FormHelperText
@@ -251,7 +251,7 @@ export interface HelpTextProps extends HTMLChakraProps<"div"> {}
  * about the field, such as how it will be used and what
  * types in values should be provided.
  */
-export const FormHelperText = forwardRef<HelpTextProps, "div">(
+export const FormHelperText = forwardRef<FormHelperTextProps, "div">(
   function FormHelperText(props, ref) {
     const field = useFormControlContext()
     const styles = useFormControlStyles()

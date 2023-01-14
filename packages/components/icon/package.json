@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/icon",
-  "version": "3.0.14",
+  "version": "3.0.16",
   "description": "A base React component for icons",
   "keywords": [
     "react",
@@ -48,7 +48,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

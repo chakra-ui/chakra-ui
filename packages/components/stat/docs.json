@@ -1,0 +1,6 @@
+{
+  "StatArrow": {
+    "orientation": { "type": "Orientation;", "required": false },
+    "type": { "type": "\"increase\" | \"decrease\";", "required": false }
+  }
+}

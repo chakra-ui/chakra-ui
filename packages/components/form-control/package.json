@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/form-control",
-  "version": "2.0.14",
+  "version": "2.0.16",
   "description": "React component to provide validation states to form fields",
   "keywords": [
     "field",
@@ -55,7 +55,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/color-mode",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "description": "React component and hooks for handling light and dark mode.",
   "keywords": [
     "react",
@@ -30,7 +30,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "publishConfig": {
     "access": "public"
