@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.2.9
+
+### Patch Changes
+
+- [#7248](https://github.com/chakra-ui/chakra-ui/pull/7248)
+  [`c57b00f80`](https://github.com/chakra-ui/chakra-ui/commit/c57b00f80f177c2a165dc3e879e30e362b0806fb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improved JS Doc
+  comments to include default values
+  - Fixed regression in exported components
+- Updated dependencies
+  [[`c57b00f80`](https://github.com/chakra-ui/chakra-ui/commit/c57b00f80f177c2a165dc3e879e30e362b0806fb),
+  [`d5a939cc6`](https://github.com/chakra-ui/chakra-ui/commit/d5a939cc6d3f14cd4ebff16b2c11a441dc879b8f)]:
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/focus-lock@2.0.16
+  - @chakra-ui/portal@2.0.15
+  - @chakra-ui/transition@2.0.15
+
 ## 2.2.8
 
 ### Patch Changes

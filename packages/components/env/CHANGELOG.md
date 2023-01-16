@@ -1,5 +1,22 @@
 # @chakra-ui/react-env
 
+## 3.0.0
+
+### Major Changes
+
+- [#7232](https://github.com/chakra-ui/chakra-ui/pull/7232)
+  [`1d1f202e7`](https://github.com/chakra-ui/chakra-ui/commit/1d1f202e7f44c606659809dcb6f83746a68ac1e6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - [BREAKING 💥]
+  Refactored code to avoid state updates within ref
+
+### Patch Changes
+
+- [#7248](https://github.com/chakra-ui/chakra-ui/pull/7248)
+  [`c57b00f80`](https://github.com/chakra-ui/chakra-ui/commit/c57b00f80f177c2a165dc3e879e30e362b0806fb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improved JS Doc
+  comments to include default values
+  - Fixed regression in exported components
+
 ## 2.0.13
 
 ### Patch Changes
