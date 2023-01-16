@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- Fix issue where some component where not included
+
 ## 2.1.0
 
 ### Minor Changes
