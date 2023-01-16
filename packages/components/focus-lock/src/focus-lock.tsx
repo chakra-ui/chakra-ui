@@ -2,6 +2,9 @@ import ReactFocusLock from "react-focus-lock"
 import { getAllFocusable } from "@chakra-ui/dom-utils"
 import { useCallback } from "react"
 
+const FocusTrap: typeof ReactFocusLock =
+  (ReactFocusLock as any).default ?? ReactFocusLock
+
 interface FocusableElement {
   focus(options?: FocusOptions): void
 }
@@ -92,7 +95,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
   const returnFocus = restoreFocus && !finalFocusRef
 
   return (
-    <ReactFocusLock
+    <FocusTrap
       crossFrame={lockFocusAcrossFrames}
       persistentFocus={persistentFocus}
       autoFocus={autoFocus}
@@ -102,7 +105,7 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
       returnFocus={returnFocus}
     >
       {children}
-    </ReactFocusLock>
+    </FocusTrap>
   )
 }
 
