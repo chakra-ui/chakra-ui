@@ -79,7 +79,6 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
   return (
     <chakra.button
-      disabled={isDisabled || isLoading}
       ref={useMergeRefs(ref, _ref)}
       as={as}
       type={type ?? defaultType}
@@ -88,6 +87,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       __css={buttonStyles}
       className={cx("chakra-button", className)}
       {...rest}
+      disabled={isDisabled || isLoading}
     >
       {isLoading && spinnerPlacement === "start" && (
         <ButtonSpinner
