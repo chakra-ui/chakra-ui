@@ -14,6 +14,7 @@
     "data-radiogroup": { "type": "any;", "required": false },
     "defaultChecked": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be initially checked."
     },
@@ -29,31 +30,37 @@
     },
     "isChecked": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be checked.\nYou'll need to pass `onChange` to update its value (since it is now controlled)"
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be disabled"
     },
     "isFocusable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true` and `isDisabled` is true, the radio will remain\nfocusable but not interactive."
     },
     "isInvalid": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`."
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be read-only"
     },
     "isRequired": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio button will be required. This also sets `aria-required` to `true`."
     },
@@ -99,6 +106,7 @@
     "data-radiogroup": { "type": "any;", "required": false },
     "defaultChecked": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be initially checked."
     },
@@ -109,31 +117,37 @@
     },
     "isChecked": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be checked.\nYou'll need to pass `onChange` to update its value (since it is now controlled)"
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be disabled"
     },
     "isFocusable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true` and `isDisabled` is true, the radio will remain\nfocusable but not interactive."
     },
     "isInvalid": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`."
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio will be read-only"
     },
     "isRequired": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the radio button will be required. This also sets `aria-required` to `true`."
     },
@@ -161,16 +175,19 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, all wrapped radio inputs will be disabled"
     },
     "isFocusable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true` and `isDisabled` is true, all wrapped radio inputs will remain\nfocusable but not interactive."
     },
     "isNative": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
     },
@@ -198,16 +215,19 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, all wrapped radio inputs will be disabled"
     },
     "isFocusable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true` and `isDisabled` is true, all wrapped radio inputs will remain\nfocusable but not interactive."
     },
     "isNative": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
     },

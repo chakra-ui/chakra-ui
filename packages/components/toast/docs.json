@@ -29,7 +29,7 @@
     }
   },
   "Toast": {
-    "addRole": { "type": "boolean;", "required": false },
+    "addRole": { "type": "boolean;", "defaultValue": false, "required": false },
     "containerStyle": {
       "type": "StyleProps;",
       "required": false,
@@ -58,6 +58,7 @@
     },
     "isClosable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, toast will show a close button"
     },

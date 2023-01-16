@@ -94,6 +94,9 @@ const DefaultPortal = (
 
 interface ContainerPortalProps extends React.PropsWithChildren<{}> {
   containerRef: React.RefObject<HTMLElement | null>
+  /**
+   * @default false
+   */
   appendToParentPortal?: boolean
 }
 

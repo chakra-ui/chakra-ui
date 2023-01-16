@@ -13,11 +13,13 @@
     },
     "fitContent": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the skeleton will take the width of it's children"
     },
     "isLoaded": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, it'll render its children with a nice fade transition"
     },
@@ -47,6 +49,7 @@
     },
     "fitContent": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the skeleton will take the width of it's children"
     },

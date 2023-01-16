@@ -1,6 +1,6 @@
 {
   "Alert": {
-    "addRole": { "type": "boolean;", "required": false },
+    "addRole": { "type": "boolean;", "defaultValue": false, "required": false },
     "colorScheme": {
       "defaultValue": "blue",
       "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
@@ -24,5 +24,8 @@
       "required": false,
       "description": "The variant of the Alert"
     }
-  }
+  },
+  "AlertDescription": {},
+  "AlertIcon": {},
+  "AlertTitle": {}
 }

@@ -4,6 +4,8 @@ import { forwardRef } from "@chakra-ui/system"
 
 import { useModalContext, useModalStyles } from "./modal"
 
+export type ModalCloseButtonProps = CloseButtonProps
+
 /**
  * ModalCloseButton is used closes the modal.
  *

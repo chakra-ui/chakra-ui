@@ -6,9 +6,30 @@
       "description": "The aspect ratio of the Box. Common values are:\n\n`21/9`, `16/9`, `9/16`, `4/3`, `1.85/1`"
     }
   },
+  "Badge": {
+    "colorScheme": {
+      "defaultValue": "gray",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "type": "string",
+      "required": false,
+      "description": "The size of the Badge"
+    },
+    "variant": {
+      "defaultValue": "subtle",
+      "type": "\"solid\" | \"subtle\" | \"outline\"",
+      "required": false,
+      "description": "The variant of the Badge"
+    }
+  },
+  "Box": {},
   "Square": {
     "centerContent": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the content will be centered in the square"
     },
@@ -18,9 +39,29 @@
       "description": "The size (width and height) of the square"
     }
   },
+  "Code": {
+    "colorScheme": {
+      "defaultValue": "gray",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "type": "string",
+      "required": false,
+      "description": "The size of the Code"
+    },
+    "variant": {
+      "defaultValue": "subtle",
+      "type": "\"solid\" | \"subtle\" | \"outline\"",
+      "required": false,
+      "description": "The variant of the Code"
+    }
+  },
   "Container": {
     "centerContent": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, container will center its children\nregardless of their width."
     }
@@ -175,28 +216,52 @@
       "required": false
     }
   },
+  "Heading": {
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "defaultValue": "xl",
+      "type": "\"4xl\" | \"3xl\" | \"2xl\" | \"xl\" | \"lg\" | \"md\" | \"sm\" | \"xs\"",
+      "required": false,
+      "description": "The size of the Heading"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Heading"
+    }
+  },
   "Highlight": {
     "query": { "type": "string | string[];", "required": true },
     "styles": { "type": "SystemStyleObject;", "required": false }
   },
+  "Mark": {},
   "UseHighlight": {
     "query": { "type": "string | string[];", "required": true },
     "text": { "type": "string;", "required": true }
   },
+  "Kbd": {},
   "Link": {
     "isExternal": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the link will open in new tab"
     }
   },
+  "LinkBox": {},
   "LinkOverlay": {
     "isExternal": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the link will open in new tab"
     }
   },
+  "ListItem": {},
   "List": {
     "spacing": {
       "type": "ResponsiveValue<string | number | (string & {})>;",
@@ -296,6 +361,8 @@
       "description": "Shorthand prop for `gridTemplateRows`"
     }
   },
+  "Spacer": {},
+  "StackDivider": {},
   "Stack": {
     "align": {
       "type": "ResponsiveValue<AlignItems>;",
@@ -315,6 +382,7 @@
     },
     "isInline": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true` the items will be stacked horizontally."
     },
@@ -325,6 +393,7 @@
     },
     "shouldWrapChildren": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the children will be wrapped in a `Box` with\n`display: inline-block`, and the `Box` will take the spacing props"
     },
@@ -357,6 +426,7 @@
       "description": "The CSS `text-decoration` property"
     }
   },
+  "WrapItem": {},
   "Wrap": {
     "align": {
       "type": "ResponsiveValue<AlignItems>;",
@@ -375,6 +445,7 @@
     },
     "shouldWrapChildren": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the children will be wrapped in a `WrapItem`"
     },

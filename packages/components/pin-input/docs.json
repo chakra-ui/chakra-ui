@@ -1,4 +1,5 @@
 {
+  "PinInputField": {},
   "PinInput": {
     "autoFocus": {
       "type": "boolean;",
@@ -42,7 +43,7 @@
     },
     "manageFocus": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, focus will move automatically to the next input once filled"
     },
@@ -128,7 +129,7 @@
     },
     "manageFocus": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, focus will move automatically to the next input once filled"
     },

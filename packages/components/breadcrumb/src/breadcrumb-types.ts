@@ -16,6 +16,12 @@ export interface BreadcrumbOptions {
 }
 
 export interface BreadcrumbItemOptions extends BreadcrumbOptions {
+  /**
+   * @default false
+   */
   isCurrentPage?: boolean
+  /**
+   * @default false
+   */
   isLastChild?: boolean
 }

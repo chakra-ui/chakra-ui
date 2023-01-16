@@ -26,6 +26,8 @@ export interface UseImageProps {
   onError?: NativeImageProps["onError"]
   /**
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
+   *
+   * @default false
    */
   ignoreFallback?: boolean
   /**

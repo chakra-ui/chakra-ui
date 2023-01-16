@@ -1,4 +1,5 @@
 {
+  "RangeSliderInnerTrack": {},
   "RangeSliderMark": { "value": { "type": "number;", "required": true } },
   "RangeSlider": {
     "aria-label": {
@@ -29,7 +30,7 @@
     },
     "focusThumbOnChange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `false`, the slider handle will not capture focus when value changes."
     },
@@ -45,16 +46,19 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be disabled"
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be in `read-only` state"
     },
     "isReversed": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the value will be incremented or decremented in reverse."
     },
@@ -114,7 +118,9 @@
       "description": "The value of the slider in controlled mode"
     }
   },
+  "RangeSliderTrack": {},
   "RangeSliderThumb": { "index": { "type": "number;", "required": true } },
+  "SliderInnerTrack": {},
   "SliderMark": { "value": { "type": "number;", "required": true } },
   "Slider": {
     "aria-label": {
@@ -151,7 +157,7 @@
     },
     "focusThumbOnChange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `false`, the slider handle will not capture focus when value changes."
     },
@@ -167,11 +173,13 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be disabled"
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be in `read-only` state"
     },
@@ -241,6 +249,8 @@
       "description": "The variant of the Slider"
     }
   },
+  "SliderThumb": {},
+  "SliderTrack": {},
   "UseRangeSlider": {
     "aria-label": {
       "type": "string[];",
@@ -270,7 +280,7 @@
     },
     "focusThumbOnChange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `false`, the slider handle will not capture focus when value changes."
     },
@@ -286,16 +296,19 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be disabled"
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be in `read-only` state"
     },
     "isReversed": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the value will be incremented or decremented in reverse."
     },
@@ -384,7 +397,7 @@
     },
     "focusThumbOnChange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `false`, the slider handle will not capture focus when value changes."
     },
@@ -400,11 +413,13 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be disabled"
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the slider will be in `read-only` state"
     },

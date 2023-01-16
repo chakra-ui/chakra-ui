@@ -2,11 +2,13 @@
   "Accordion": {
     "allowMultiple": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, multiple accordion items can be expanded at once."
     },
     "allowToggle": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, any expanded accordion item can be collapsed again."
     },
@@ -27,9 +29,14 @@
     },
     "reduceMotion": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, height animation and transitions will be disabled."
     }
+  },
+  "AccordionButton": {},
+  "AccordionIcon": {
+    "orientation": { "type": "Orientation;", "required": false }
   },
   "AccordionItem": {
     "id": {
@@ -39,11 +46,13 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the accordion item will be disabled."
     },
     "isFocusable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the accordion item will be focusable."
     }
@@ -63,11 +72,13 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the accordion item will be disabled."
     },
     "isFocusable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the accordion item will be focusable."
     }
@@ -75,11 +86,13 @@
   "UseAccordion": {
     "allowMultiple": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, multiple accordion items can be expanded at once."
     },
     "allowToggle": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, any expanded accordion item can be collapsed again."
     },

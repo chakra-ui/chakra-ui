@@ -16,6 +16,8 @@ export interface UseCheckboxGroupProps {
   onChange?(value: Array<string | number>): void
   /**
    * If `true`, all wrapped checkbox inputs will be disabled
+   *
+   * @default false
    */
   isDisabled?: boolean
   /**
@@ -23,6 +25,8 @@ export interface UseCheckboxGroupProps {
    * `checked` attribute instead of `isChecked`.
    *
    * This assumes, you're using native radio inputs
+   *
+   * @default false
    */
   isNative?: boolean
 }
@@ -33,39 +37,55 @@ export interface UseCheckboxProps {
   /**
    * If `true`, the checkbox will be checked.
    * You'll need to pass `onChange` to update its value (since it is now controlled)
+   *
+   * @default false
    */
   isChecked?: boolean
   /**
    * If `true`, the checkbox will be indeterminate.
    * This only affects the icon shown inside checkbox
    * and does not modify the isChecked property.
+   *
+   * @default false
    */
   isIndeterminate?: boolean
   /**
    * If `true`, the checkbox will be disabled
+   *
+   * @default false
    */
   isDisabled?: boolean
   /**
    * If `true` and `isDisabled` is passed, the checkbox will
    * remain tabbable but not interactive
+   *
+   * @default false
    */
   isFocusable?: boolean
   /**
    * If `true`, the checkbox will be readonly
+   *
+   * @default false
    */
   isReadOnly?: boolean
   /**
    * If `true`, the checkbox is marked as invalid.
    * Changes style of unchecked state.
+   *
+   * @default false
    */
   isInvalid?: boolean
   /**
    * If `true`, the checkbox input is marked as required,
    * and `required` attribute will be added
+   *
+   * @default false
    */
   isRequired?: boolean
   /**
    * If `true`, the checkbox will be initially checked.
+   *
+   * @default false
    */
   defaultChecked?: boolean
   /**

@@ -42,6 +42,7 @@ export interface WrapProps extends HTMLChakraProps<"div"> {
   direction?: SystemProps["flexDirection"]
   /**
    * If `true`, the children will be wrapped in a `WrapItem`
+   * @default false
    */
   shouldWrapChildren?: boolean
 }

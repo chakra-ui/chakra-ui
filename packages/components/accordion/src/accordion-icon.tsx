@@ -7,12 +7,14 @@ import {
 } from "./accordion-context"
 import { useAccordionContext } from "./use-accordion"
 
+export type AccordionIconProps = IconProps
+
 /**
  * AccordionIcon that gives a visual cue of the open/close state of the accordion item.
  * It rotates `180deg` based on the open/close state.
  */
 
-export function AccordionIcon(props: IconProps) {
+export function AccordionIcon(props: AccordionIconProps) {
   const { isOpen, isDisabled } = useAccordionItemContext()
   const { reduceMotion } = useAccordionContext()
 

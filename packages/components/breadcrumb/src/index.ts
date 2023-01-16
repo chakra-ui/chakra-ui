@@ -5,8 +5,6 @@ export { BreadcrumbItem } from "./breadcrumb-item"
 export type { BreadcrumbItemProps } from "./breadcrumb-item"
 export { BreadcrumbLink } from "./breadcrumb-link"
 export type { BreadcrumbLinkProps } from "./breadcrumb-link"
-export {
-  BreadcrumbSeparator,
-  type BreadcrumbSeparatorProps,
-} from "./breadcrumb-separator"
+export { BreadcrumbSeparator } from "./breadcrumb-separator"
+export type { BreadcrumbSeparatorProps } from "./breadcrumb-separator"
 export type { BreadcrumbOptions } from "./breadcrumb-types"

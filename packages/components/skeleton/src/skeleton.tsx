@@ -24,23 +24,25 @@ export interface SkeletonOptions {
   endColor?: string
   /**
    * If `true`, it'll render its children with a nice fade transition
+   *
+   * @default false
    */
   isLoaded?: boolean
   /**
    * The animation speed in seconds
-   * @default
-   * 0.8
+   *
+   * @default 0.8
    */
   speed?: number
   /**
    * The fadeIn duration in seconds. Requires `isLoaded` toggled to `true` in order to see the transition.
    *
-   * @default
-   * 0.4
+   * @default 0.4
    */
   fadeDuration?: number
   /**
    * If `true`, the skeleton will take the width of it's children
+   * @default false
    */
   fitContent?: boolean
 }

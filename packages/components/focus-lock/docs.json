@@ -2,6 +2,7 @@
   "FocusLock": {
     "autoFocus": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the first focusable element within the `children`\nwill auto-focused once `FocusLock` mounts"
     },
@@ -22,22 +23,25 @@
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, focus trapping will be disabled"
     },
     "lockFocusAcrossFrames": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
     },
     "persistentFocus": {
       "type": "boolean;",
-      "defaultValue": "`false`",
+      "defaultValue": false,
       "required": false,
-      "description": "If `true`, disables text selections inside, and outside focus lock."
+      "description": "If `true`, disables text selections inside, and outside focus lock"
     },
     "restoreFocus": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, focus will be restored to the element that\ntriggered the `FocusLock` once it unmounts"
     }

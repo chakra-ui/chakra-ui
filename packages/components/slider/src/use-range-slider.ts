@@ -46,6 +46,7 @@ export interface UseRangeSliderProps {
   orientation?: "horizontal" | "vertical"
   /**
    * If `true`, the value will be incremented or decremented in reverse.
+   * @default false
    */
   isReversed?: boolean
 
@@ -75,10 +76,12 @@ export interface UseRangeSliderProps {
   name?: string | string[]
   /**
    * If `true`, the slider will be disabled
+   * @default false
    */
   isDisabled?: boolean
   /**
    * If `true`, the slider will be in `read-only` state
+   * @default false
    */
   isReadOnly?: boolean
 

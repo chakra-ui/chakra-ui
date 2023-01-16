@@ -9,7 +9,7 @@
   "Portal": {
     "appendToParentPortal": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the portal will check if it is within a parent portal\nand append itself to the parent's portal node.\nThis provides nesting for portals.\n\nIf `false`, the portal will always append to `document.body`\nregardless of nesting. It is used to opt out of portal nesting."
     },

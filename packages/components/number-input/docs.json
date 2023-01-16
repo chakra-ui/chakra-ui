@@ -1,4 +1,7 @@
 {
+  "NumberDecrementStepper": {},
+  "NumberIncrementStepper": {},
+  "NumberInputField": {},
   "NumberInput": {
     "allowMouseWheel": {
       "type": "boolean;",
@@ -10,7 +13,7 @@
     "aria-labelledby": { "type": "string;", "required": false },
     "clampValueOnBlur": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "This controls the value update when you blur out of the input.\n- If `true` and the value is greater than `max`, the value will be reset to `max`\n- Else, the value remains the same."
     },
@@ -36,7 +39,7 @@
     },
     "focusInputOnChange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the input will be focused as you increment\nor decrement the value with the stepper"
     },
@@ -88,7 +91,7 @@
     },
     "keepWithinRange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "This controls the value update behavior in general.\n\n- If `true` and you use the stepper or up/down arrow keys,\n the value will not exceed the `max` or go lower than `min`\n\n- If `false`, the value will be allowed to go out of range."
     },
@@ -166,6 +169,7 @@
       "description": "The variant of the NumberInput"
     }
   },
+  "NumberInputStepper": {},
   "UseNumberInput": {
     "allowMouseWheel": {
       "type": "boolean;",
@@ -177,7 +181,7 @@
     "aria-labelledby": { "type": "string;", "required": false },
     "clampValueOnBlur": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "This controls the value update when you blur out of the input.\n- If `true` and the value is greater than `max`, the value will be reset to `max`\n- Else, the value remains the same."
     },
@@ -188,7 +192,7 @@
     },
     "focusInputOnChange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the input will be focused as you increment\nor decrement the value with the stepper"
     },
@@ -240,7 +244,7 @@
     },
     "keepWithinRange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "This controls the value update behavior in general.\n\n- If `true` and you use the stepper or up/down arrow keys,\n the value will not exceed the `max` or go lower than `min`\n\n- If `false`, the value will be allowed to go out of range."
     },

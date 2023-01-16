@@ -8,7 +8,7 @@
     },
     "autoSelect": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the first enabled menu item will receive focus and be selected\nwhen the menu opens."
     },
@@ -20,13 +20,13 @@
     },
     "closeOnBlur": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the menu will close when you click outside\nthe menu list"
     },
     "closeOnSelect": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the menu will close when a menu item is\nclicked"
     },
@@ -39,13 +39,13 @@
     },
     "eventListeners": {
       "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined };",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
     },
     "flip": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
     },
@@ -75,6 +75,7 @@
     },
     "matchWidth": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
     },
@@ -98,7 +99,7 @@
     },
     "preventOverflow": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
     },
@@ -109,6 +110,10 @@
       "description": "The CSS positioning strategy to use."
     }
   },
+  "MenuButton": {},
+  "MenuCommand": {},
+  "MenuDivider": {},
+  "MenuGroup": {},
   "MenuItem": {
     "closeOnSelect": {
       "type": "boolean;",
@@ -206,6 +211,7 @@
     "type": { "type": "\"radio\" | \"checkbox\";", "required": false },
     "value": { "type": "string | string[];", "required": false }
   },
+  "UseMenuButton": {},
   "UseMenuItem": {
     "closeOnSelect": {
       "type": "boolean;",
@@ -228,6 +234,7 @@
       "description": "The type of the menuitem."
     }
   },
+  "UseMenuList": {},
   "UseMenuOptionGroup": {
     "defaultValue": { "type": "string | string[];", "required": false },
     "onChange": {
@@ -266,7 +273,7 @@
     },
     "autoSelect": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the first enabled menu item will receive focus and be selected\nwhen the menu opens."
     },
@@ -278,13 +285,13 @@
     },
     "closeOnBlur": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the menu will close when you click outside\nthe menu list"
     },
     "closeOnSelect": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the menu will close when a menu item is\nclicked"
     },
@@ -297,13 +304,13 @@
     },
     "eventListeners": {
       "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined };",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
     },
     "flip": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
     },
@@ -333,6 +340,7 @@
     },
     "matchWidth": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
     },
@@ -356,7 +364,7 @@
     },
     "preventOverflow": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
     },

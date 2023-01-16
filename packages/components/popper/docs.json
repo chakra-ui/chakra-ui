@@ -25,13 +25,13 @@
     },
     "eventListeners": {
       "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined };",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
     },
     "flip": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
     },
@@ -43,6 +43,7 @@
     },
     "matchWidth": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
     },
@@ -64,7 +65,7 @@
     },
     "preventOverflow": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
     },

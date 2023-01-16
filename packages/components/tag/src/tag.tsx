@@ -83,6 +83,9 @@ TagCloseIcon.displayName = "TagCloseIcon"
 
 export interface TagCloseButtonProps
   extends Omit<HTMLChakraProps<"button">, "disabled"> {
+  /**
+   * @default false
+   */
   isDisabled?: boolean
 }
 

@@ -4,6 +4,9 @@ import { rotate } from "./progress.utils"
 
 interface ShapeProps extends HTMLChakraProps<"svg"> {
   size?: string | number
+  /**
+   * @default false
+   */
   isIndeterminate?: boolean
 }
 

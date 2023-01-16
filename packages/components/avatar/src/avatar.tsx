@@ -34,6 +34,8 @@ export interface AvatarProps
   /**
    * If `true`, opt out of the avatar's `fallback` logic and
    * renders the `img` at all times.
+   *
+   * @default false
    */
   ignoreFallback?: boolean
 }

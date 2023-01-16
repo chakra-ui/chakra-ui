@@ -35,6 +35,8 @@ interface CircularProgressOptions {
   value?: number
   /**
    * If `true`, the cap of the progress indicator will be rounded.
+   *
+   * @default false
    */
   capIsRound?: boolean
   /**
@@ -60,6 +62,8 @@ interface CircularProgressOptions {
   /**
    * If `true`, the progress will be indeterminate and the `value`
    * prop will be ignored
+   *
+   * @default false
    */
   isIndeterminate?: boolean
 }

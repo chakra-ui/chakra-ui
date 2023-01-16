@@ -27,6 +27,9 @@ export interface AlertProps
   extends HTMLChakraProps<"div">,
     AlertOptions,
     ThemingProps<"Alert"> {
+  /**
+   * @default false
+   */
   addRole?: boolean
 }
 

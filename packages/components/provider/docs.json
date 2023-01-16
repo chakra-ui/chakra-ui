@@ -6,6 +6,11 @@
       "required": false,
       "description": "manager to persist a users color mode preference in\n\nomit if you don't render server-side\nfor SSR: choose `cookieStorageManager`"
     },
+    "disableEnvironment": {
+      "type": "boolean;",
+      "required": false,
+      "description": "Disabled the use of automatic window and document detection.\nThis removed the injected `<span/>` element"
+    },
     "environment": {
       "type": "Environment;",
       "required": false,
@@ -19,7 +24,7 @@
     },
     "resetCSS": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, `CSSReset` component will be mounted to help\nyou reset browser styles"
     },

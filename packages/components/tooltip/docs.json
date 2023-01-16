@@ -21,13 +21,13 @@
     },
     "closeOnClick": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide on click"
     },
     "closeOnEsc": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide on pressing Esc key"
     },
@@ -38,12 +38,18 @@
     },
     "closeOnPointerDown": {
       "type": "boolean;",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide while the pointer is down"
     },
-    "closeOnScroll": { "type": "boolean;", "required": false },
+    "closeOnScroll": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    },
     "defaultIsOpen": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tooltip will be initially shown"
     },
@@ -61,12 +67,18 @@
     },
     "hasArrow": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tooltip will show an arrow tip"
     },
-    "isDisabled": { "type": "boolean;", "required": false },
+    "isDisabled": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    },
     "isOpen": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tooltip will be shown (in controlled mode)"
     },
@@ -115,6 +127,7 @@
     },
     "shouldWrapChildren": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tooltip will wrap its children\nin a `<span/>` with `tabIndex=0`"
     }
@@ -136,13 +149,13 @@
     },
     "closeOnClick": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide on click"
     },
     "closeOnEsc": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide on pressing Esc key"
     },
@@ -153,12 +166,18 @@
     },
     "closeOnPointerDown": {
       "type": "boolean;",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide while the pointer is down"
     },
-    "closeOnScroll": { "type": "boolean;", "required": false },
+    "closeOnScroll": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    },
     "defaultIsOpen": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tooltip will be initially shown"
     },
@@ -179,9 +198,14 @@
       "required": false,
       "description": "Custom `id` to use in place of `uuid`"
     },
-    "isDisabled": { "type": "boolean;", "required": false },
+    "isDisabled": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    },
     "isOpen": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tooltip will be shown (in controlled mode)"
     },

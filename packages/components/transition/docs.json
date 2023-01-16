@@ -4,7 +4,7 @@
     "accessKey": { "type": "string;", "required": false },
     "animateOpacity": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the opacity of the content will be animated"
     },
@@ -2388,7 +2388,7 @@
     "results": { "type": "number;", "required": false },
     "reverse": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the element will transition back to exit state"
     },
@@ -4007,7 +4007,7 @@
     "results": { "type": "number;", "required": false },
     "reverse": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the element will be transitioned back to the offset when it leaves.\nOtherwise, it'll only fade out"
     },

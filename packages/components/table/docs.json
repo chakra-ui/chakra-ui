@@ -31,18 +31,25 @@
       "description": "The placement of the table caption. This sets the `caption-side` CSS attribute."
     }
   },
+  "TableContainer": {},
+  "TableBody": {},
   "TableCell": {
     "isNumeric": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Aligns the cell content to the right"
     }
   },
+  "TableFooter": {},
   "TableColumnHeader": {
     "isNumeric": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Aligns the cell content to the right"
     }
-  }
+  },
+  "TableHead": {},
+  "TableRow": {}
 }
