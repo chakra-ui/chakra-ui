@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.16
+
+### Patch Changes
+
+- [`0f376650e`](https://github.com/chakra-ui/chakra-ui/commit/0f376650efce9eb2d2cba3484ffe4e3a73364504)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Enforce the use of
+  `isDisabled` by disallowing the `disabled` attribute
+
+- [#7248](https://github.com/chakra-ui/chakra-ui/pull/7248)
+  [`c57b00f80`](https://github.com/chakra-ui/chakra-ui/commit/c57b00f80f177c2a165dc3e879e30e362b0806fb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improved JS Doc
+  comments to include default values
+  - Fixed regression in exported components
+
 ## 2.0.15
 
 ### Patch Changes
