@@ -49,7 +49,9 @@ InputElement.id = "InputElement"
 
 InputElement.displayName = "InputElement"
 
-export const InputLeftElement = forwardRef<InputElementProps, "div">(
+export type InputLeftElementProps = Omit<InputElementProps, "placement">
+
+export const InputLeftElement = forwardRef<InputLeftElementProps, "div">(
   function InputLeftElement(props, ref) {
     const { className, ...rest } = props
     const _className = cx("chakra-input__left-element", className)
@@ -70,7 +72,9 @@ InputLeftElement.id = "InputLeftElement"
 
 InputLeftElement.displayName = "InputLeftElement"
 
-export const InputRightElement = forwardRef<InputElementProps, "div">(
+export type InputRightElementProps = Omit<InputElementProps, "placement">
+
+export const InputRightElement = forwardRef<InputRightElementProps, "div">(
   function InputRightElement(props, ref) {
     const { className, ...rest } = props
     const _className = cx("chakra-input__right-element", className)

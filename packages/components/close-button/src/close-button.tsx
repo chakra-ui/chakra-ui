@@ -25,6 +25,7 @@ export interface CloseButtonProps
     ThemingProps<"CloseButton"> {
   /**
    * If `true`, the close button will be disabled.
+   * @default false
    */
   isDisabled?: boolean
 }

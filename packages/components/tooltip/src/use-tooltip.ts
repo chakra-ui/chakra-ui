@@ -44,6 +44,7 @@ export interface UseTooltipProps
   closeOnMouseDown?: boolean
   /**
    * If `true`, the tooltip will hide while the pointer is down
+   * @default true
    */
   closeOnPointerDown?: boolean
   /**
@@ -65,13 +66,21 @@ export interface UseTooltipProps
   id?: string
   /**
    * If `true`, the tooltip will be shown (in controlled mode)
+   * @default false
    */
   isOpen?: boolean
   /**
    * If `true`, the tooltip will be initially shown
+   * @default false
    */
   defaultIsOpen?: boolean
+  /**
+   * @default false
+   */
   isDisabled?: boolean
+  /**
+   * @default false
+   */
   closeOnScroll?: boolean
   /**
    * @default 10

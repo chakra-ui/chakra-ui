@@ -35,6 +35,7 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   description?: React.ReactNode
   /**
    * If `true`, toast will show a close button
+   * @default false
    */
   isClosable?: boolean
   /**

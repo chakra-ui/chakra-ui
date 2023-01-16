@@ -1,9 +1,13 @@
 {
-  "Modal": {
+  "AlertDialog": {
     "isOpen": {
       "type": "boolean;",
       "required": true,
       "description": "If `true`, the modal will be open."
+    },
+    "leastDestructiveRef": {
+      "type": "RefObject<FocusableElement>;",
+      "required": true
     },
     "onClose": {
       "type": "() => void;",
@@ -18,32 +22,27 @@
     },
     "autoFocus": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the modal will autofocus the first enabled and interactive\nelement within the `ModalContent`"
     },
     "blockScrollOnMount": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, scrolling will be disabled on the `body` when the modal opens."
     },
     "closeOnEsc": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the modal will close when the `Esc` key is pressed"
     },
     "closeOnOverlayClick": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the modal will close when the overlay is clicked"
-    },
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
-      "required": false,
-      "description": "The visual color appearance of the component"
     },
     "finalFocusRef": {
       "type": "RefObject<FocusableElement>;",
@@ -55,19 +54,15 @@
       "required": false,
       "description": "The `id` of the modal"
     },
-    "initialFocusRef": {
-      "type": "RefObject<FocusableElement>;",
-      "required": false,
-      "description": "The `ref` of element to receive focus when the modal opens."
-    },
     "isCentered": {
       "type": "boolean;",
-      "defaultValue": "false",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the modal will be centered on screen."
     },
     "lockFocusAcrossFrames": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
     },
@@ -99,12 +94,289 @@
     },
     "preserveScrollBarGap": {
       "type": "boolean;",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, a `padding-right` will be applied to the body element\nthat's equal to the width of the scrollbar.\n\nThis can help prevent some unpleasant flickering effect\nand content adjustment when the modal opens"
     },
     "returnFocusOnClose": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will return focus to the element that triggered it when it closes."
+    },
+    "scrollBehavior": {
+      "type": "ScrollBehavior;",
+      "defaultValue": "\"outside\"",
+      "required": false,
+      "description": "Where scroll behavior should originate.\n- If set to `inside`, scroll only occurs within the `ModalBody`.\n- If set to `outside`, the entire `ModalContent` will scroll within the viewport."
+    },
+    "trapFocus": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, focus lock will be disabled completely.\n\nThis is useful in situations where you still need to interact with\nother surrounding elements.\n\n🚨Warning: We don't recommend doing this because it hurts the\naccessibility of the modal, based on WAI-ARIA specifications."
+    },
+    "useInert": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "A11y: If `true`, the siblings of the `modal` will have `aria-hidden`\nset to `true` so that screen readers can only see the `modal`.\n\nThis is commonly known as making the other elements **inert**"
+    }
+  },
+  "Drawer": {
+    "isOpen": {
+      "type": "boolean;",
+      "required": true,
+      "description": "If `true`, the modal will be open."
+    },
+    "onClose": {
+      "type": "() => void;",
+      "required": true,
+      "description": "Callback invoked to close the modal."
+    },
+    "allowPinchZoom": {
+      "type": "boolean;",
+      "defaultValue": "false.",
+      "required": false,
+      "description": "Handle zoom/pinch gestures on iOS devices when scroll locking is enabled."
+    },
+    "autoFocus": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will autofocus the first enabled and interactive\nelement within the `ModalContent`"
+    },
+    "blockScrollOnMount": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, scrolling will be disabled on the `body` when the modal opens."
+    },
+    "closeOnEsc": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will close when the `Esc` key is pressed"
+    },
+    "closeOnOverlayClick": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will close when the overlay is clicked"
+    },
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "finalFocusRef": {
+      "type": "RefObject<FocusableElement>;",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the modal closes."
+    },
+    "id": {
+      "type": "string;",
+      "required": false,
+      "description": "The `id` of the modal"
+    },
+    "initialFocusRef": {
+      "type": "RefObject<FocusableElement>;",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the modal opens."
+    },
+    "isFullHeight": {
+      "type": "boolean;",
+      "required": false,
+      "description": "If `true` and drawer's placement is `top` or `bottom`,\nthe drawer will occupy the viewport height (100vh)"
+    },
+    "lockFocusAcrossFrames": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false,
+      "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
+    },
+    "onCloseComplete": {
+      "type": "() => void;",
+      "required": false,
+      "description": "Fires when all exiting nodes have completed animating out"
+    },
+    "onEsc": {
+      "type": "() => void;",
+      "required": false,
+      "description": "Callback fired when the escape key is pressed and focus is within modal"
+    },
+    "onOverlayClick": {
+      "type": "() => void;",
+      "required": false,
+      "description": "Callback fired when the overlay is clicked."
+    },
+    "placement": {
+      "type": "SlideDirection | LogicalPlacement;",
+      "defaultValue": "\"right\"",
+      "required": false,
+      "description": "The placement of the drawer"
+    },
+    "portalProps": {
+      "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>;",
+      "required": false,
+      "description": "Props to be forwarded to the portal component"
+    },
+    "preserveScrollBarGap": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, a `padding-right` will be applied to the body element\nthat's equal to the width of the scrollbar.\n\nThis can help prevent some unpleasant flickering effect\nand content adjustment when the modal opens"
+    },
+    "returnFocusOnClose": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will return focus to the element that triggered it when it closes."
+    },
+    "size": {
+      "defaultValue": "xs",
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"full\"",
+      "required": false,
+      "description": "The size of the Drawer"
+    },
+    "trapFocus": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, focus lock will be disabled completely.\n\nThis is useful in situations where you still need to interact with\nother surrounding elements.\n\n🚨Warning: We don't recommend doing this because it hurts the\naccessibility of the modal, based on WAI-ARIA specifications."
+    },
+    "useInert": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "A11y: If `true`, the siblings of the `modal` will have `aria-hidden`\nset to `true` so that screen readers can only see the `modal`.\n\nThis is commonly known as making the other elements **inert**"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Drawer"
+    }
+  },
+  "DrawerContent": {
+    "containerProps": {
+      "type": "HTMLChakraProps<\"div\">;",
+      "required": false,
+      "description": "The props to forward to the modal's content wrapper"
+    },
+    "motionProps": {
+      "type": "HTMLMotionProps<\"section\">;",
+      "required": false,
+      "description": "The custom framer-motion transition to use for the modal"
+    }
+  },
+  "Modal": {
+    "isOpen": {
+      "type": "boolean;",
+      "required": true,
+      "description": "If `true`, the modal will be open."
+    },
+    "onClose": {
+      "type": "() => void;",
+      "required": true,
+      "description": "Callback invoked to close the modal."
+    },
+    "allowPinchZoom": {
+      "type": "boolean;",
+      "defaultValue": "false.",
+      "required": false,
+      "description": "Handle zoom/pinch gestures on iOS devices when scroll locking is enabled."
+    },
+    "autoFocus": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will autofocus the first enabled and interactive\nelement within the `ModalContent`"
+    },
+    "blockScrollOnMount": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, scrolling will be disabled on the `body` when the modal opens."
+    },
+    "closeOnEsc": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will close when the `Esc` key is pressed"
+    },
+    "closeOnOverlayClick": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the modal will close when the overlay is clicked"
+    },
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "finalFocusRef": {
+      "type": "RefObject<FocusableElement>;",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the modal closes."
+    },
+    "id": {
+      "type": "string;",
+      "required": false,
+      "description": "The `id` of the modal"
+    },
+    "initialFocusRef": {
+      "type": "RefObject<FocusableElement>;",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the modal opens."
+    },
+    "isCentered": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the modal will be centered on screen."
+    },
+    "lockFocusAcrossFrames": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false,
+      "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
+    },
+    "motionPreset": {
+      "type": "MotionPreset;",
+      "defaultValue": "\"scale\"",
+      "required": false,
+      "description": "The transition that should be used for the modal"
+    },
+    "onCloseComplete": {
+      "type": "() => void;",
+      "required": false,
+      "description": "Fires when all exiting nodes have completed animating out"
+    },
+    "onEsc": {
+      "type": "() => void;",
+      "required": false,
+      "description": "Callback fired when the escape key is pressed and focus is within modal"
+    },
+    "onOverlayClick": {
+      "type": "() => void;",
+      "required": false,
+      "description": "Callback fired when the overlay is clicked."
+    },
+    "portalProps": {
+      "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>;",
+      "required": false,
+      "description": "Props to be forwarded to the portal component"
+    },
+    "preserveScrollBarGap": {
+      "type": "boolean;",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, a `padding-right` will be applied to the body element\nthat's equal to the width of the scrollbar.\n\nThis can help prevent some unpleasant flickering effect\nand content adjustment when the modal opens"
+    },
+    "returnFocusOnClose": {
+      "type": "boolean;",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the modal will return focus to the element that triggered it when it closes."
     },
@@ -122,13 +394,13 @@
     },
     "trapFocus": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `false`, focus lock will be disabled completely.\n\nThis is useful in situations where you still need to interact with\nother surrounding elements.\n\n🚨Warning: We don't recommend doing this because it hurts the\naccessibility of the modal, based on WAI-ARIA specifications."
     },
     "useInert": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "A11y: If `true`, the siblings of the `modal` will have `aria-hidden`\nset to `true` so that screen readers can only see the `modal`.\n\nThis is commonly known as making the other elements **inert**"
     },
@@ -136,6 +408,15 @@
       "type": "string",
       "required": false,
       "description": "The variant of the Modal"
+    }
+  },
+  "ModalBody": {},
+  "ModalCloseButton": {
+    "isDisabled": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the close button will be disabled."
     }
   },
   "ModalContent": {
@@ -150,6 +431,8 @@
       "description": "The custom framer-motion transition to use for the modal"
     }
   },
+  "ModalFooter": {},
+  "ModalHeader": {},
   "ModalOverlay": {
     "about": { "type": "string;", "required": false },
     "accessKey": { "type": "string;", "required": false },
@@ -935,13 +1218,13 @@
     },
     "closeOnEsc": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the modal will close when the `Esc` key is pressed"
     },
     "closeOnOverlayClick": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the modal will close when the overlay is clicked"
     },
@@ -962,275 +1245,9 @@
     },
     "useInert": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "A11y: If `true`, the siblings of the `modal` will have `aria-hidden`\nset to `true` so that screen readers can only see the `modal`.\n\nThis is commonly known as making the other elements **inert**"
-    }
-  },
-  "AlertDialog": {
-    "isOpen": {
-      "type": "boolean;",
-      "required": true,
-      "description": "If `true`, the modal will be open."
-    },
-    "leastDestructiveRef": {
-      "type": "RefObject<FocusableElement>;",
-      "required": true
-    },
-    "onClose": {
-      "type": "() => void;",
-      "required": true,
-      "description": "Callback invoked to close the modal."
-    },
-    "allowPinchZoom": {
-      "type": "boolean;",
-      "defaultValue": "false.",
-      "required": false,
-      "description": "Handle zoom/pinch gestures on iOS devices when scroll locking is enabled."
-    },
-    "autoFocus": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will autofocus the first enabled and interactive\nelement within the `ModalContent`"
-    },
-    "blockScrollOnMount": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, scrolling will be disabled on the `body` when the modal opens."
-    },
-    "closeOnEsc": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will close when the `Esc` key is pressed"
-    },
-    "closeOnOverlayClick": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will close when the overlay is clicked"
-    },
-    "finalFocusRef": {
-      "type": "RefObject<FocusableElement>;",
-      "required": false,
-      "description": "The `ref` of element to receive focus when the modal closes."
-    },
-    "id": {
-      "type": "string;",
-      "required": false,
-      "description": "The `id` of the modal"
-    },
-    "isCentered": {
-      "type": "boolean;",
-      "defaultValue": "false",
-      "required": false,
-      "description": "If `true`, the modal will be centered on screen."
-    },
-    "lockFocusAcrossFrames": {
-      "type": "boolean;",
-      "required": false,
-      "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
-    },
-    "motionPreset": {
-      "type": "MotionPreset;",
-      "defaultValue": "\"scale\"",
-      "required": false,
-      "description": "The transition that should be used for the modal"
-    },
-    "onCloseComplete": {
-      "type": "() => void;",
-      "required": false,
-      "description": "Fires when all exiting nodes have completed animating out"
-    },
-    "onEsc": {
-      "type": "() => void;",
-      "required": false,
-      "description": "Callback fired when the escape key is pressed and focus is within modal"
-    },
-    "onOverlayClick": {
-      "type": "() => void;",
-      "required": false,
-      "description": "Callback fired when the overlay is clicked."
-    },
-    "portalProps": {
-      "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>;",
-      "required": false,
-      "description": "Props to be forwarded to the portal component"
-    },
-    "preserveScrollBarGap": {
-      "type": "boolean;",
-      "required": false,
-      "description": "If `true`, a `padding-right` will be applied to the body element\nthat's equal to the width of the scrollbar.\n\nThis can help prevent some unpleasant flickering effect\nand content adjustment when the modal opens"
-    },
-    "returnFocusOnClose": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will return focus to the element that triggered it when it closes."
-    },
-    "scrollBehavior": {
-      "type": "ScrollBehavior;",
-      "defaultValue": "\"outside\"",
-      "required": false,
-      "description": "Where scroll behavior should originate.\n- If set to `inside`, scroll only occurs within the `ModalBody`.\n- If set to `outside`, the entire `ModalContent` will scroll within the viewport."
-    },
-    "trapFocus": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `false`, focus lock will be disabled completely.\n\nThis is useful in situations where you still need to interact with\nother surrounding elements.\n\n🚨Warning: We don't recommend doing this because it hurts the\naccessibility of the modal, based on WAI-ARIA specifications."
-    },
-    "useInert": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "A11y: If `true`, the siblings of the `modal` will have `aria-hidden`\nset to `true` so that screen readers can only see the `modal`.\n\nThis is commonly known as making the other elements **inert**"
-    }
-  },
-  "Drawer": {
-    "isOpen": {
-      "type": "boolean;",
-      "required": true,
-      "description": "If `true`, the modal will be open."
-    },
-    "onClose": {
-      "type": "() => void;",
-      "required": true,
-      "description": "Callback invoked to close the modal."
-    },
-    "allowPinchZoom": {
-      "type": "boolean;",
-      "defaultValue": "false.",
-      "required": false,
-      "description": "Handle zoom/pinch gestures on iOS devices when scroll locking is enabled."
-    },
-    "autoFocus": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will autofocus the first enabled and interactive\nelement within the `ModalContent`"
-    },
-    "blockScrollOnMount": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, scrolling will be disabled on the `body` when the modal opens."
-    },
-    "closeOnEsc": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will close when the `Esc` key is pressed"
-    },
-    "closeOnOverlayClick": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will close when the overlay is clicked"
-    },
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
-      "required": false,
-      "description": "The visual color appearance of the component"
-    },
-    "finalFocusRef": {
-      "type": "RefObject<FocusableElement>;",
-      "required": false,
-      "description": "The `ref` of element to receive focus when the modal closes."
-    },
-    "id": {
-      "type": "string;",
-      "required": false,
-      "description": "The `id` of the modal"
-    },
-    "initialFocusRef": {
-      "type": "RefObject<FocusableElement>;",
-      "required": false,
-      "description": "The `ref` of element to receive focus when the modal opens."
-    },
-    "isFullHeight": {
-      "type": "boolean;",
-      "required": false,
-      "description": "If `true` and drawer's placement is `top` or `bottom`,\nthe drawer will occupy the viewport height (100vh)"
-    },
-    "lockFocusAcrossFrames": {
-      "type": "boolean;",
-      "required": false,
-      "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
-    },
-    "onCloseComplete": {
-      "type": "() => void;",
-      "required": false,
-      "description": "Fires when all exiting nodes have completed animating out"
-    },
-    "onEsc": {
-      "type": "() => void;",
-      "required": false,
-      "description": "Callback fired when the escape key is pressed and focus is within modal"
-    },
-    "onOverlayClick": {
-      "type": "() => void;",
-      "required": false,
-      "description": "Callback fired when the overlay is clicked."
-    },
-    "placement": {
-      "type": "SlideDirection | LogicalPlacement;",
-      "defaultValue": "\"right\"",
-      "required": false,
-      "description": "The placement of the drawer"
-    },
-    "portalProps": {
-      "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>;",
-      "required": false,
-      "description": "Props to be forwarded to the portal component"
-    },
-    "preserveScrollBarGap": {
-      "type": "boolean;",
-      "required": false,
-      "description": "If `true`, a `padding-right` will be applied to the body element\nthat's equal to the width of the scrollbar.\n\nThis can help prevent some unpleasant flickering effect\nand content adjustment when the modal opens"
-    },
-    "returnFocusOnClose": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `true`, the modal will return focus to the element that triggered it when it closes."
-    },
-    "size": {
-      "defaultValue": "xs",
-      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"full\"",
-      "required": false,
-      "description": "The size of the Drawer"
-    },
-    "trapFocus": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "If `false`, focus lock will be disabled completely.\n\nThis is useful in situations where you still need to interact with\nother surrounding elements.\n\n🚨Warning: We don't recommend doing this because it hurts the\naccessibility of the modal, based on WAI-ARIA specifications."
-    },
-    "useInert": {
-      "type": "boolean;",
-      "defaultValue": "true",
-      "required": false,
-      "description": "A11y: If `true`, the siblings of the `modal` will have `aria-hidden`\nset to `true` so that screen readers can only see the `modal`.\n\nThis is commonly known as making the other elements **inert**"
-    },
-    "variant": {
-      "type": "string",
-      "required": false,
-      "description": "The variant of the Drawer"
-    }
-  },
-  "DrawerContent": {
-    "containerProps": {
-      "type": "HTMLChakraProps<\"div\">;",
-      "required": false,
-      "description": "The props to forward to the modal's content wrapper"
-    },
-    "motionProps": {
-      "type": "HTMLMotionProps<\"section\">;",
-      "required": false,
-      "description": "The custom framer-motion transition to use for the modal"
     }
   }
 }

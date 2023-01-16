@@ -3,12 +3,18 @@
     "id": { "type": "string;", "required": false },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the `Tab` won't be toggleable"
     },
-    "isSelected": { "type": "boolean;", "required": false },
+    "isSelected": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    },
     "panelId": { "type": "string;", "required": false }
   },
+  "TabIndicator": {},
   "TabList": {
     "onKeyDown": {
       "type": "KeyboardEventHandler<Element>;",
@@ -19,6 +25,8 @@
       "required": false
     }
   },
+  "TabPanel": {},
+  "TabPanels": {},
   "Tabs": {
     "align": {
       "type": "\"center\" | \"start\" | \"end\";",
@@ -54,16 +62,19 @@
     },
     "isFitted": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, tabs will stretch to width of the tablist."
     },
     "isLazy": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Performance 🚀:\nIf `true`, rendering of the tab panel's will be deferred until it is selected."
     },
     "isManual": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tabs will be manually activated and\ndisplay its panel by pressing Space or Enter.\n\nIf `false`, the tabs will be automatically activated\nand their panel is displayed when they receive focus."
     },
@@ -107,28 +118,37 @@
       "required": false
     }
   },
+  "UseTabPanels": {},
   "UseTab": {
     "clickOnEnter": {
       "type": "boolean;",
+      "defaultValue": true,
       "required": false,
       "description": "Whether or not trigger click on pressing `Enter`."
     },
     "clickOnSpace": {
       "type": "boolean;",
+      "defaultValue": true,
       "required": false,
       "description": "Whether or not trigger click on pressing `Space`."
     },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the element will be disabled.\nIt will set the `disabled` HTML attribute"
     },
     "isFocusable": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true` and isDisabled, the element will\nhave only `aria-disabled` set to `true`"
     },
-    "isSelected": { "type": "boolean;", "required": false },
+    "isSelected": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    },
     "panelId": { "type": "string;", "required": false },
     "ref": {
       "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLElement | null) => void)\n  | RefObject<HTMLElement>;",
@@ -160,11 +180,13 @@
     },
     "isLazy": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Performance 🚀:\nIf `true`, rendering of the tab panel's will be deferred until it is selected."
     },
     "isManual": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the tabs will be manually activated and\ndisplay its panel by pressing Space or Enter.\n\nIf `false`, the tabs will be automatically activated\nand their panel is displayed when they receive focus."
     },

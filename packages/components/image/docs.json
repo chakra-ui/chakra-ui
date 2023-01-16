@@ -43,6 +43,7 @@
     },
     "ignoreFallback": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, opt out of the `fallbackSrc` logic and use as `img`"
     },
@@ -93,6 +94,7 @@
     },
     "ignoreFallback": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, opt out of the `fallbackSrc` logic and use as `img`"
     },

@@ -72,10 +72,12 @@ export interface UseSliderProps {
   name?: string
   /**
    * If `true`, the slider will be disabled
+   * @default false
    */
   isDisabled?: boolean
   /**
    * If `true`, the slider will be in `read-only` state
+   * @default false
    */
   isReadOnly?: boolean
   /**

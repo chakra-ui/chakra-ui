@@ -19,6 +19,8 @@ export interface IconButtonProps extends BaseButtonProps {
   icon?: React.ReactElement
   /**
    * If `true`, the button will be perfectly round. Else, it'll be slightly round
+   *
+   * @default false
    */
   isRound?: boolean
   /**

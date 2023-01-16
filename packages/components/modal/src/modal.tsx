@@ -71,6 +71,8 @@ interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
    *
    * This can help prevent some unpleasant flickering effect
    * and content adjustment when the modal opens
+   *
+   * @default true
    */
   preserveScrollBarGap?: boolean
 }

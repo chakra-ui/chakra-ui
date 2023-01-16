@@ -2,6 +2,7 @@
   "CircularProgress": {
     "capIsRound": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the cap of the progress indicator will be rounded."
     },
@@ -17,6 +18,7 @@
     },
     "isIndeterminate": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the progress will be indeterminate and the `value`\nprop will be ignored"
     },
@@ -79,16 +81,19 @@
     },
     "hasStripe": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the progress bar will show stripe"
     },
     "isAnimated": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, and hasStripe is `true`, the stripes will be animated"
     },
     "isIndeterminate": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the progress will be indeterminate and the `value`\nprop will be ignored"
     },
@@ -120,5 +125,8 @@
       "required": false,
       "description": "The variant of the Progress"
     }
-  }
+  },
+  "ProgressTrack": {},
+  "ProgressLabel": {},
+  "CircularProgressLabel": {}
 }

@@ -18,7 +18,7 @@
     },
     "autoFocus": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, focus will be transferred to the first interactive element\nwhen the popover opens"
     },
@@ -35,13 +35,13 @@
     },
     "closeOnBlur": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the popover will close when you blur out it by\nclicking outside or tabbing out"
     },
     "closeOnEsc": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the popover will close when you hit the `Esc` key"
     },
@@ -63,13 +63,13 @@
     },
     "eventListeners": {
       "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined };",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
     },
     "flip": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
     },
@@ -107,6 +107,7 @@
     },
     "matchWidth": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
     },
@@ -143,13 +144,13 @@
     },
     "preventOverflow": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
     },
     "returnFocusOnClose": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, focus will be returned to the element that triggers the popover\nwhen it closes"
     },
@@ -166,6 +167,8 @@
       "description": "The interaction that triggers the popover.\n\n`hover` - means the popover will open when you hover with mouse or\nfocus with keyboard on the popover trigger\n\n`click` - means the popover will open on click or\npress `Enter` to `Space` on keyboard"
     }
   },
+  "PopoverArrow": {},
+  "PopoverBody": {},
   "PopoverContent": {
     "about": { "type": "string;", "required": false },
     "accessKey": { "type": "string;", "required": false },
@@ -898,5 +901,7 @@
       "required": false
     },
     "vocab": { "type": "string;", "required": false }
-  }
+  },
+  "PopoverFooter": {},
+  "PopoverHeader": {}
 }

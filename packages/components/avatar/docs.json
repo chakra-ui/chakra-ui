@@ -18,6 +18,7 @@
     "iconLabel": { "type": "string;", "required": false },
     "ignoreFallback": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, opt out of the avatar's `fallback` logic and\nrenders the `img` at all times."
     },
@@ -43,6 +44,7 @@
     },
     "showBorder": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the `Avatar` will show a border around it.\n\nBest for a group of avatars"
     },

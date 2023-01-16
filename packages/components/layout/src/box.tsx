@@ -30,6 +30,8 @@ export interface SquareProps extends Omit<BoxProps, Omitted> {
   size?: BoxProps["width"]
   /**
    * If `true`, the content will be centered in the square
+   *
+   * @default false
    */
   centerContent?: boolean
 }

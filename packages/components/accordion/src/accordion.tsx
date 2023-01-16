@@ -24,6 +24,8 @@ export interface AccordionProps
     ThemingProps<"Accordion"> {
   /**
    * If `true`, height animation and transitions will be disabled.
+   *
+   * @default false
    */
   reduceMotion?: boolean
 }

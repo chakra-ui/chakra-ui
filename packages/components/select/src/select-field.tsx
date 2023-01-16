@@ -5,6 +5,9 @@ type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface SelectFieldProps
   extends Omit<HTMLChakraProps<"select">, Omitted> {
+  /**
+   * @default false
+   */
   isDisabled?: boolean
 }
 

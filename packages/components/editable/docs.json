@@ -12,7 +12,7 @@
     },
     "isPreviewFocusable": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the read only view, has a `tabIndex` set to `0`\nso it can receive focus via the keyboard or click."
     },
@@ -43,7 +43,7 @@
     },
     "selectAllOnFocus": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the input's text will be highlighted on focus."
     },
@@ -54,7 +54,7 @@
     },
     "submitOnBlur": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, it'll update the value onBlur and turn off the edit mode."
     },
@@ -64,6 +64,9 @@
       "description": "The value of the Editable in both edit & preview mode"
     }
   },
+  "EditableInput": {},
+  "EditablePreview": {},
+  "EditableTextarea": {},
   "UseEditable": {
     "defaultValue": {
       "type": "string;",
@@ -77,7 +80,7 @@
     },
     "isPreviewFocusable": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the read only view, has a `tabIndex` set to `0`\nso it can receive focus via the keyboard or click."
     },
@@ -108,7 +111,7 @@
     },
     "selectAllOnFocus": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, the input's text will be highlighted on focus."
     },
@@ -119,7 +122,7 @@
     },
     "submitOnBlur": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "If `true`, it'll update the value onBlur and turn off the edit mode."
     },

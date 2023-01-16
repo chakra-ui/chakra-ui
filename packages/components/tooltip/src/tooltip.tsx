@@ -40,10 +40,12 @@ export interface TooltipProps
   /**
    * If `true`, the tooltip will wrap its children
    * in a `<span/>` with `tabIndex=0`
+   * @default false
    */
   shouldWrapChildren?: boolean
   /**
    * If `true`, the tooltip will show an arrow tip
+   * @default false
    */
   hasArrow?: boolean
   /**

@@ -22,6 +22,8 @@ export interface FocusLockProps {
   /**
    * If `true`, focus will be restored to the element that
    * triggered the `FocusLock` once it unmounts
+   *
+   * @default false
    */
   restoreFocus?: boolean
   /**
@@ -30,22 +32,29 @@ export interface FocusLockProps {
   children: React.ReactNode
   /**
    * If `true`, focus trapping will be disabled
+   *
+   * @default false
    */
   isDisabled?: boolean
   /**
    * If `true`, the first focusable element within the `children`
    * will auto-focused once `FocusLock` mounts
+   *
+   * @default false
    */
   autoFocus?: boolean
   /**
-   * If `true`, disables text selections inside, and outside focus lock.
-   * @default `false`
+   * If `true`, disables text selections inside, and outside focus lock
+   *
+   * @default false
    */
   persistentFocus?: boolean
   /**
    * Enables aggressive focus capturing within iframes.
    * - If `true`: keep focus in the lock, no matter where lock is active
    * - If `false`:  allows focus to move outside of iframe
+   *
+   * @default false
    */
   lockFocusAcrossFrames?: boolean
 }

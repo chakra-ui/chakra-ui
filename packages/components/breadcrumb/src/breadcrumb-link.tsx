@@ -3,6 +3,9 @@ import { cx } from "@chakra-ui/shared-utils"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {
+  /**
+   * @default false
+   */
   isCurrentPage?: boolean
 }
 /**

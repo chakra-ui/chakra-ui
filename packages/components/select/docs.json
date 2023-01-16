@@ -30,19 +30,26 @@
       "required": false,
       "description": "The size (width and height) of the icon"
     },
-    "isDisabled": { "type": "boolean;", "required": false },
+    "isDisabled": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    },
     "isInvalid": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be invalid. This has 2 side effects:\n- The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`\n- The form element (e.g, Input) will have `aria-invalid` set to `true`"
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be readonly"
     },
     "isRequired": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be required. This has 2 side effects:\n- The `FormLabel` will show a required indicator\n- The form element (e.g, Input) will have `aria-required` set to `true`"
     },
@@ -64,5 +71,11 @@
       "description": "The variant of the Select"
     }
   },
-  "SelectField": { "isDisabled": { "type": "boolean;", "required": false } }
+  "SelectField": {
+    "isDisabled": {
+      "type": "boolean;",
+      "defaultValue": false,
+      "required": false
+    }
+  }
 }

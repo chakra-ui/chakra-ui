@@ -86,6 +86,8 @@ export interface UseMenuProps
    * Performance 🚀:
    * If `true`, the MenuItem rendering will be deferred
    * until the menu is open.
+   *
+   * @default false
    */
   isLazy?: boolean
   /**
@@ -111,6 +113,8 @@ export interface UseMenuProps
    *
    * Note 🚨: We don't recommend using this in a menu/popover intensive UI or page
    * as it might affect scrolling performance.
+   *
+   * @default false
    */
   computePositionOnMount?: boolean
 }

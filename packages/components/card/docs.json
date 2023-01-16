@@ -33,7 +33,9 @@
       "description": "The variant of the Card"
     }
   },
+  "CardBody": {},
   "CardFooter": {
     "justify": { "type": "ResponsiveValue<JustifyContent>;", "required": true }
-  }
+  },
+  "CardHeader": {}
 }

@@ -7,7 +7,7 @@
     },
     "keepWithinRange": {
       "type": "boolean;",
-      "defaultValue": "true",
+      "defaultValue": true,
       "required": false,
       "description": "This controls the value update behavior in general.\n\n- If `true` and you use the stepper or up/down arrow keys,\n the value will not exceed the `max` or go lower than `min`\n\n- If `false`, the value will be allowed to go out of range."
     },

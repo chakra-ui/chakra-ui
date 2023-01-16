@@ -2,21 +2,25 @@
   "FormControl": {
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be disabled. This has 2 side effects:\n- The `FormLabel` will have `data-disabled` attribute\n- The form element (e.g, Input) will be disabled"
     },
     "isInvalid": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be invalid. This has 2 side effects:\n- The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`\n- The form element (e.g, Input) will have `aria-invalid` set to `true`"
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be readonly"
     },
     "isRequired": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be required. This has 2 side effects:\n- The `FormLabel` will show a required indicator\n- The form element (e.g, Input) will have `aria-required` set to `true`"
     },
@@ -26,27 +30,32 @@
       "description": "The label text used to inform users as to what information is\nrequested for a text field."
     }
   },
+  "FormHelperText": {},
   "UseFormControl": {
     "aria-describedby": { "type": "string;", "required": false },
     "disabled": { "type": "boolean;", "required": false },
     "id": { "type": "string;", "required": false },
     "isDisabled": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be disabled. This has 2 side effects:\n- The `FormLabel` will have `data-disabled` attribute\n- The form element (e.g, Input) will be disabled"
     },
     "isInvalid": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be invalid. This has 2 side effects:\n- The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`\n- The form element (e.g, Input) will have `aria-invalid` set to `true`"
     },
     "isReadOnly": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be readonly"
     },
     "isRequired": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be required. This has 2 side effects:\n- The `FormLabel` will show a required indicator\n- The form element (e.g, Input) will have `aria-required` set to `true`"
     },
@@ -55,6 +64,7 @@
     "readOnly": { "type": "boolean;", "required": false },
     "required": { "type": "boolean;", "required": false }
   },
+  "FormErrorMessage": {},
   "FormLabel": {
     "optionalIndicator": {
       "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | ReactFragment\n  | ReactPortal;",
@@ -64,5 +74,6 @@
       "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
       "required": false
     }
-  }
+  },
+  "RequiredIndicator": {}
 }
