@@ -63,6 +63,7 @@
     },
     "isLazy": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Performance 🚀:\nIf `true`, the MenuItem rendering will be deferred\nuntil the menu is open."
     },
@@ -328,6 +329,7 @@
     },
     "isLazy": {
       "type": "boolean;",
+      "defaultValue": false,
       "required": false,
       "description": "Performance 🚀:\nIf `true`, the MenuItem rendering will be deferred\nuntil the menu is open."
     },
