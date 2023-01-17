@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/props-docs",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Extracts prop types for documentation purposes",
   "keywords": [
     "docs",
@@ -33,7 +33,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "glob": "^7.1.6"
+    "glob": "^7.1.6",
+    "outdent": "^0.8.0"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3"

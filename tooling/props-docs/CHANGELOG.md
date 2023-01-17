@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- Add `allPropDocs` and `getPropDoc` helper to get a single prop doc and all
+  props doc object
+
 ## 2.1.1
 
 ### Patch Changes

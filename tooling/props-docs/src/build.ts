@@ -1,6 +1,7 @@
 import { findUpSync } from "find-up"
 import { ensureFileSync, readFile, writeFile } from "fs-extra"
 import glob from "glob"
+import { outdent } from "outdent"
 import { basename, dirname, join } from "path"
 
 type ComponentInfo = {
@@ -38,6 +39,10 @@ async function writeJsonFiles(componentInfo: ComponentInfo[]) {
 }
 
 async function writeIndexMJS(componentInfo: ComponentInfo[]) {
+  const allComponents = componentInfo
+    .map((v) => `${v.componentName}`)
+    .join(",\n")
+
   const esmPropImports = componentInfo
     .map(
       ({ componentName, distJsonName }) =>
@@ -50,41 +55,83 @@ async function writeIndexMJS(componentInfo: ComponentInfo[]) {
       ({ componentName }) =>
         `export const ${componentName} = ${componentName}Json`,
     )
+    .concat(
+      outdent`
+
+    const json = {
+    ${allComponents}
+    }
+
+    export const allPropDocs = Object.fromEntries(
+      Object.values(json).flatMap((doc) => Object.entries(doc)),
+    )
+
+    export const getPropDoc = (name) => allPropDocs[name]
+    `,
+    )
     .join("\n")
 
-  return writeFile(paths.mjs, `${esmPropImports}\n${esmPropExports}`)
+  return writeFile(paths.mjs, `${esmPropImports}\n\n${esmPropExports}`)
 }
 
 async function writeIndexCJS(componentInfo: ComponentInfo[]) {
+  const allComponents = componentInfo
+    .map((v) => `${v.componentName}`)
+    .join(",\n")
+
   const cjsExports = componentInfo.map(
     ({ componentName, distJsonName }) =>
-      `module.exports['${componentName}'] = require('./${distJsonName}')`,
-  )
+      `const ${componentName} = require('./${distJsonName}')`,
+  ).concat(outdent`
+
+      const json = {
+      ${allComponents}
+      }
+
+      const allPropDocs = Object.fromEntries(
+        Object.values(json).flatMap((doc) => Object.entries(doc)),
+      )
+
+      const getPropDoc = (name) => allPropDocs[name]
+
+      module.exports = {
+      allPropDocs,
+      getPropDoc,
+      ${allComponents}
+      }
+  `)
   return writeFile(paths.cjs, cjsExports.join("\n"))
 }
 
 async function writeIndexDTS(componentInfo: ComponentInfo[]) {
   const typeExports = componentInfo
     .map(
-      ({ componentName }) => `export declare const ${componentName}: PropDoc`,
+      ({ componentName }) =>
+        outdent`export declare const ${componentName}: PropDoc`,
     )
     .join("\n")
 
-  const baseType = `
+  const baseType = outdent`
+    export type Prop = {
+      type: string
+      defaultValue?: string | null
+      required: boolean
+      description?: string
+    }
 
-  export type Prop = {
-    type: string
-    defaultValue?: string | null
-    required: boolean
-    description?: string
-  }
-  
-  export type PropDoc = {
-    [componentOrHook: string]: Prop
-  }
+    export type PropDoc = {
+      [componentOrHook: string]: Prop
+    }
+
   `
 
-  return writeFile(paths.dts, `${baseType}\n${typeExports}`)
+  const getterTypes = outdent`  
+
+  export declare const allPropDocs: Record<string, Prop>
+  export declare function getPropDoc(name: string): PropDoc | undefined
+  `
+
+  return writeFile(paths.dts, `${baseType}\n${typeExports}\n${getterTypes}`)
 }
 
 export async function main() {
