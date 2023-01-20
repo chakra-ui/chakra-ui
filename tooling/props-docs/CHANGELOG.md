@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- Strip out unneeded characters from `type` and `defaultValue`
+
 ## 2.2.0
 
 ### Minor Changes
