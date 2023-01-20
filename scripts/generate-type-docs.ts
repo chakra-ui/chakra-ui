@@ -26,6 +26,7 @@ function tryPrettier(typeName: string) {
     const prefix = "type ONLY_FOR_FORMAT = "
     const prettyType = prettier.format(prefix + typeName, {
       parser: "typescript",
+      semi: false,
     })
     return prettyType.replace(prefix, "").trim()
   } catch {
@@ -35,7 +36,9 @@ function tryPrettier(typeName: string) {
 
 function formatValue(value: string | undefined) {
   if (!value) return
-  return value === "true" ? true : value === "false" ? false : value
+  // convert "\"column\"", to "column"
+  const x = value.replace(/^"(.*)"$/, "$1")
+  return x === "true" ? true : x === "false" ? false : x
 }
 
 function sortByRequiredProperties(properties: ComponentTypeProperties) {

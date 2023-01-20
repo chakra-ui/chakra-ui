@@ -1,6 +1,6 @@
 {
   "Alert": {
-    "addRole": { "type": "boolean;", "defaultValue": false, "required": false },
+    "addRole": { "type": "boolean", "defaultValue": false, "required": false },
     "colorScheme": {
       "defaultValue": "blue",
       "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
@@ -13,8 +13,8 @@
       "description": "The size of the Alert"
     },
     "status": {
-      "type": "\"info\" | \"warning\" | \"success\" | \"error\" | \"loading\";",
-      "defaultValue": "\"info\"",
+      "type": "\"info\" | \"warning\" | \"success\" | \"error\" | \"loading\"",
+      "defaultValue": "info",
       "required": false,
       "description": "The status of the alert"
     },

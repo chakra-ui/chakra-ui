@@ -18,8 +18,8 @@
     }
   },
   "StatArrow": {
-    "orientation": { "type": "Orientation;", "required": false },
-    "type": { "type": "\"increase\" | \"decrease\";", "required": false }
+    "orientation": { "type": "Orientation", "required": false },
+    "type": { "type": "\"increase\" | \"decrease\"", "required": false }
   },
   "StatGroup": {},
   "StatHelpText": {},

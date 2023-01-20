@@ -6,7 +6,7 @@
       "description": "The visual color appearance of the component"
     },
     "isDisabled": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the close button will be disabled."

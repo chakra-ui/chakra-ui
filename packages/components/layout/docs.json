@@ -1,7 +1,7 @@
 {
   "AspectRatio": {
     "ratio": {
-      "type": "ResponsiveValue<number>;",
+      "type": "ResponsiveValue<number>",
       "required": false,
       "description": "The aspect ratio of the Box. Common values are:\n\n`21/9`, `16/9`, `9/16`, `4/3`, `1.85/1`"
     }
@@ -28,13 +28,13 @@
   "Box": {},
   "Square": {
     "centerContent": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the content will be centered in the square"
     },
     "size": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The size (width and height) of the square"
     }
@@ -60,7 +60,7 @@
   },
   "Container": {
     "centerContent": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, container will center its children\nregardless of their width."
@@ -73,7 +73,7 @@
       "description": "The visual color appearance of the component"
     },
     "orientation": {
-      "type": "\"horizontal\" | \"vertical\";",
+      "type": "\"horizontal\" | \"vertical\"",
       "required": false
     },
     "size": {
@@ -90,129 +90,129 @@
   },
   "Flex": {
     "align": {
-      "type": "ResponsiveValue<AlignItems>;",
+      "type": "ResponsiveValue<AlignItems>",
       "required": false,
       "description": "Shorthand for `alignItems` style prop"
     },
     "basis": {
-      "type": "ResponsiveValue<FlexBasis<Length>>;",
+      "type": "ResponsiveValue<FlexBasis<Length>>",
       "required": false,
       "description": "Shorthand for `flexBasis` style prop"
     },
     "direction": {
-      "type": "ResponsiveValue<FlexDirection>;",
-      "defaultValue": "\"row\"",
+      "type": "ResponsiveValue<FlexDirection>",
+      "defaultValue": "row",
       "required": false,
       "description": "Shorthand for `flexDirection` style prop"
     },
     "grow": {
-      "type": "ResponsiveValue<FlexGrow>;",
+      "type": "ResponsiveValue<FlexGrow>",
       "required": false,
       "description": "Shorthand for `flexGrow` style prop"
     },
     "justify": {
-      "type": "ResponsiveValue<JustifyContent>;",
+      "type": "ResponsiveValue<JustifyContent>",
       "required": false,
       "description": "Shorthand for `justifyContent` style prop"
     },
     "shrink": {
-      "type": "ResponsiveValue<FlexShrink>;",
+      "type": "ResponsiveValue<FlexShrink>",
       "required": false,
       "description": "Shorthand for `flexShrink` style prop"
     },
     "wrap": {
-      "type": "ResponsiveValue<FlexWrap>;",
+      "type": "ResponsiveValue<FlexWrap>",
       "required": false,
       "description": "Shorthand for `flexWrap` style prop"
     }
   },
   "Grid": {
     "autoColumns": {
-      "type": "ResponsiveValue<GridAutoColumns<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridAutoColumns<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridAutoColumns`"
     },
     "autoFlow": {
-      "type": "ResponsiveValue<GridAutoFlow>;",
+      "type": "ResponsiveValue<GridAutoFlow>",
       "required": false,
       "description": "Shorthand prop for `gridAutoFlow`"
     },
     "autoRows": {
-      "type": "ResponsiveValue<GridAutoRows<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridAutoRows<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridAutoRows`"
     },
     "column": {
-      "type": "ResponsiveValue<GridColumn>;",
+      "type": "ResponsiveValue<GridColumn>",
       "required": false,
       "description": "Shorthand prop for `gridColumn`"
     },
     "columnGap": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridColumnGap`"
     },
     "gap": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridGap`"
     },
     "row": {
-      "type": "ResponsiveValue<GridRow>;",
+      "type": "ResponsiveValue<GridRow>",
       "required": false,
       "description": "Shorthand prop for `gridRow`"
     },
     "rowGap": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridRowGap`"
     },
     "templateAreas": {
-      "type": "ResponsiveValue<GridTemplateAreas>;",
+      "type": "ResponsiveValue<GridTemplateAreas>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateAreas`"
     },
     "templateColumns": {
-      "type": "ResponsiveValue<GridTemplateColumns<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridTemplateColumns<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateColumns`"
     },
     "templateRows": {
-      "type": "ResponsiveValue<GridTemplateRows<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridTemplateRows<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateRows`"
     }
   },
   "GridItem": {
     "area": {
-      "type": "ResponsiveValue<GridArea>;",
+      "type": "ResponsiveValue<GridArea>",
       "required": false,
       "description": "Shorthand prop for `gridArea`"
     },
     "colEnd": {
-      "type": "ResponsiveValue<number | \"auto\">;",
+      "type": "ResponsiveValue<number | \"auto\">",
       "required": false
     },
     "colSpan": {
-      "type": "ResponsiveValue<number | \"auto\">;",
+      "type": "ResponsiveValue<number | \"auto\">",
       "required": false,
       "description": "The number of columns the grid item should `span`."
     },
     "colStart": {
-      "type": "ResponsiveValue<number | \"auto\">;",
+      "type": "ResponsiveValue<number | \"auto\">",
       "required": false,
       "description": "The column number the grid item should start."
     },
     "rowEnd": {
-      "type": "ResponsiveValue<number | \"auto\">;",
+      "type": "ResponsiveValue<number | \"auto\">",
       "required": false
     },
     "rowSpan": {
-      "type": "ResponsiveValue<number | \"auto\">;",
+      "type": "ResponsiveValue<number | \"auto\">",
       "required": false
     },
     "rowStart": {
-      "type": "ResponsiveValue<number | \"auto\">;",
+      "type": "ResponsiveValue<number | \"auto\">",
       "required": false
     }
   },
@@ -235,18 +235,18 @@
     }
   },
   "Highlight": {
-    "query": { "type": "string | string[];", "required": true },
-    "styles": { "type": "SystemStyleObject;", "required": false }
+    "query": { "type": "string | string[]", "required": true },
+    "styles": { "type": "SystemStyleObject", "required": false }
   },
   "Mark": {},
   "UseHighlight": {
-    "query": { "type": "string | string[];", "required": true },
-    "text": { "type": "string;", "required": true }
+    "query": { "type": "string | string[]", "required": true },
+    "text": { "type": "string", "required": true }
   },
   "Kbd": {},
   "Link": {
     "isExternal": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the link will open in new tab"
@@ -255,7 +255,7 @@
   "LinkBox": {},
   "LinkOverlay": {
     "isExternal": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the link will open in new tab"
@@ -264,99 +264,99 @@
   "ListItem": {},
   "List": {
     "spacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The space between each list item"
     },
     "stylePosition": {
-      "type": "ResponsiveValue<ListStylePosition>;",
+      "type": "ResponsiveValue<ListStylePosition>",
       "required": false,
       "description": "Shorthand prop for `listStylePosition`"
     },
     "styleType": {
-      "type": "ResponsiveValue<ListStyleType>;",
+      "type": "ResponsiveValue<ListStyleType>",
       "required": false,
       "description": "Shorthand prop for `listStyleType`"
     }
   },
   "SimpleGrid": {
     "autoColumns": {
-      "type": "ResponsiveValue<GridAutoColumns<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridAutoColumns<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridAutoColumns`"
     },
     "autoFlow": {
-      "type": "ResponsiveValue<GridAutoFlow>;",
+      "type": "ResponsiveValue<GridAutoFlow>",
       "required": false,
       "description": "Shorthand prop for `gridAutoFlow`"
     },
     "autoRows": {
-      "type": "ResponsiveValue<GridAutoRows<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridAutoRows<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridAutoRows`"
     },
     "column": {
-      "type": "ResponsiveValue<GridColumn>;",
+      "type": "ResponsiveValue<GridColumn>",
       "required": false,
       "description": "Shorthand prop for `gridColumn`"
     },
     "columnGap": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridColumnGap`"
     },
     "columns": {
-      "type": "ResponsiveValue<number>;",
+      "type": "ResponsiveValue<number>",
       "required": false,
       "description": "The number of columns"
     },
     "gap": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridGap`"
     },
     "minChildWidth": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length."
     },
     "row": {
-      "type": "ResponsiveValue<GridRow>;",
+      "type": "ResponsiveValue<GridRow>",
       "required": false,
       "description": "Shorthand prop for `gridRow`"
     },
     "rowGap": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridRowGap`"
     },
     "spacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The gap between the grid items"
     },
     "spacingX": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The column gap between the grid items"
     },
     "spacingY": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The row gap between the grid items"
     },
     "templateAreas": {
-      "type": "ResponsiveValue<GridTemplateAreas>;",
+      "type": "ResponsiveValue<GridTemplateAreas>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateAreas`"
     },
     "templateColumns": {
-      "type": "ResponsiveValue<GridTemplateColumns<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridTemplateColumns<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateColumns`"
     },
     "templateRows": {
-      "type": "ResponsiveValue<GridTemplateRows<0 | (string & {})>>;",
+      "type": "ResponsiveValue<GridTemplateRows<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateRows`"
     }
@@ -365,58 +365,58 @@
   "StackDivider": {},
   "Stack": {
     "align": {
-      "type": "ResponsiveValue<AlignItems>;",
+      "type": "ResponsiveValue<AlignItems>",
       "required": false,
       "description": "Shorthand for `alignItems` style prop"
     },
     "direction": {
-      "type": "StackDirection;",
-      "defaultValue": "\"column\"",
+      "type": "StackDirection",
+      "defaultValue": "column",
       "required": false,
       "description": "The direction to stack the items."
     },
     "divider": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
       "required": false,
       "description": "If `true`, each stack item will show a divider"
     },
     "isInline": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true` the items will be stacked horizontally."
     },
     "justify": {
-      "type": "ResponsiveValue<JustifyContent>;",
+      "type": "ResponsiveValue<JustifyContent>",
       "required": false,
       "description": "Shorthand for `justifyContent` style prop"
     },
     "shouldWrapChildren": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the children will be wrapped in a `Box` with\n`display: inline-block`, and the `Box` will take the spacing props"
     },
     "spacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
-      "defaultValue": "\"0.5rem\"",
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "defaultValue": "0.5rem",
       "required": false,
       "description": "The space between each stack item"
     },
     "wrap": {
-      "type": "ResponsiveValue<FlexWrap>;",
+      "type": "ResponsiveValue<FlexWrap>",
       "required": false,
       "description": "Shorthand for `flexWrap` style prop"
     }
   },
   "Text": {
     "align": {
-      "type": "ResponsiveValue<TextAlign>;",
+      "type": "ResponsiveValue<TextAlign>",
       "required": false,
       "description": "The CSS `text-align` property"
     },
     "casing": {
-      "type": "ResponsiveValue<TextTransform>;",
+      "type": "ResponsiveValue<TextTransform>",
       "required": false,
       "description": "The CSS `text-transform` property"
     },
@@ -429,38 +429,38 @@
   "WrapItem": {},
   "Wrap": {
     "align": {
-      "type": "ResponsiveValue<AlignItems>;",
+      "type": "ResponsiveValue<AlignItems>",
       "required": false,
       "description": "The `align-items` value (for main axis alignment)"
     },
     "direction": {
-      "type": "ResponsiveValue<FlexDirection>;",
+      "type": "ResponsiveValue<FlexDirection>",
       "required": false,
       "description": "The `flex-direction` value"
     },
     "justify": {
-      "type": "ResponsiveValue<JustifyContent>;",
+      "type": "ResponsiveValue<JustifyContent>",
       "required": false,
       "description": "The `justify-content` value (for cross-axis alignment)"
     },
     "shouldWrapChildren": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the children will be wrapped in a `WrapItem`"
     },
     "spacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The space between each child (even if it wraps)"
     },
     "spacingX": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The horizontal space between the each child (even if it wraps). Defaults to `spacing` if not defined."
     },
     "spacingY": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The vertical space between the each child (even if it wraps). Defaults to `spacing` if not defined."
     }
