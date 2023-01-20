@@ -102,11 +102,10 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   useEffect(() => {
     if (!useSystemColorMode) return
 
-    if (initialColorMode === "system") {
-      const system = getSystemTheme(defaultColorMode)
-      if (system !== colorModeManager.get()) {
-        setColorMode(system)
-      }
+    const system = getSystemTheme(defaultColorMode)
+    const stored = colorModeManager.get()
+    if (stored !== undefined && system !== stored) {
+      setColorMode(system)
     }
 
     return addListener(setColorMode)
