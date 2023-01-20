@@ -1,17 +1,17 @@
 {
   "Card": {
     "align": {
-      "type": "ResponsiveValue<AlignItems>;",
+      "type": "ResponsiveValue<AlignItems>",
       "required": true,
       "description": "The flex alignment of the card"
     },
     "direction": {
-      "type": "ResponsiveValue<FlexDirection>;",
+      "type": "ResponsiveValue<FlexDirection>",
       "required": true,
       "description": "The flex direction of the card"
     },
     "justify": {
-      "type": "ResponsiveValue<JustifyContent>;",
+      "type": "ResponsiveValue<JustifyContent>",
       "required": true,
       "description": "The flex distribution of the card"
     },
@@ -35,7 +35,7 @@
   },
   "CardBody": {},
   "CardFooter": {
-    "justify": { "type": "ResponsiveValue<JustifyContent>;", "required": true }
+    "justify": { "type": "ResponsiveValue<JustifyContent>", "required": true }
   },
   "CardHeader": {}
 }

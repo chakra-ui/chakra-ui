@@ -25,8 +25,8 @@
   },
   "TableCaption": {
     "placement": {
-      "type": "\"bottom\" | \"top\";",
-      "defaultValue": "\"bottom\"",
+      "type": "\"bottom\" | \"top\"",
+      "defaultValue": "bottom",
       "required": false,
       "description": "The placement of the table caption. This sets the `caption-side` CSS attribute."
     }
@@ -35,7 +35,7 @@
   "TableBody": {},
   "TableCell": {
     "isNumeric": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "Aligns the cell content to the right"
@@ -44,7 +44,7 @@
   "TableFooter": {},
   "TableColumnHeader": {
     "isNumeric": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "Aligns the cell content to the right"

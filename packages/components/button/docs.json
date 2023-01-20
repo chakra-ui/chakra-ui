@@ -7,40 +7,40 @@
       "description": "The visual color appearance of the component"
     },
     "iconSpacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "The space between the button icon and label."
     },
     "isActive": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the button will be styled in its active state."
     },
     "isDisabled": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the button will be disabled."
     },
     "isLoading": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the button will show a spinner."
     },
     "leftIcon": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
       "required": false,
       "description": "If added, the button will show an icon before the button's label."
     },
     "loadingText": {
-      "type": "string;",
+      "type": "string",
       "required": false,
       "description": "The label to show in the button when `isLoading` is true\nIf no text is passed, it only shows the spinner"
     },
     "rightIcon": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
       "required": false,
       "description": "If added, the button will show an icon after the button's label."
     },
@@ -51,13 +51,13 @@
       "description": "The size of the Button"
     },
     "spinner": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
       "required": false,
       "description": "Replace the spinner component when `isLoading` is set to `true`"
     },
     "spinnerPlacement": {
-      "type": "\"start\" | \"end\";",
-      "defaultValue": "\"start\"",
+      "type": "\"start\" | \"end\"",
+      "defaultValue": "start",
       "required": false,
       "description": "It determines the placement of the spinner when isLoading is true"
     },
@@ -70,19 +70,19 @@
   },
   "ButtonGroup": {
     "isAttached": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the borderRadius of button that are direct children will be altered\nto look flushed together"
     },
     "isDisabled": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, all wrapped button will be disabled"
     },
     "spacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>;",
+      "type": "ResponsiveValue<string | number | (string & {})>",
       "defaultValue": "'0.5rem'",
       "required": false,
       "description": "The spacing between the buttons"
@@ -90,41 +90,41 @@
   },
   "IconButton": {
     "aria-label": {
-      "type": "string;",
+      "type": "string",
       "required": true,
       "description": "A11y: A label that describes the button"
     },
     "icon": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
       "required": false,
       "description": "The icon to be used in the button."
     },
     "isActive": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the button will be styled in its active state."
     },
     "isDisabled": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the button will be disabled."
     },
     "isLoading": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the button will show a spinner."
     },
     "isRound": {
-      "type": "boolean;",
+      "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the button will be perfectly round. Else, it'll be slightly round"
     },
     "spinner": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>;",
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
       "required": false,
       "description": "Replace the spinner component when `isLoading` is set to `true`"
     }
