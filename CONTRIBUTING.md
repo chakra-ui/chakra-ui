@@ -32,7 +32,7 @@ that can be consumed in isolation.
 
 ### Tooling
 
-- [PNPM](https://pnpm.io/) to manage packages and dependecnies
+- [PNPM](https://pnpm.io/) to manage packages and dependencies
 - [Tsup](https://tsup.egoist.dev/) to bundle packages
 - [Storybook](https://storybook.js.org/) for rapid UI component development and
   testing

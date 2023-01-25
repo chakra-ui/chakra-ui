@@ -8,7 +8,7 @@ import { extractThemeProps } from "./extract-theme-props"
 
 type ComponentTypeInfo = {
   type: string
-  defaultValue?: string | null
+  defaultValue?: string | boolean | null
   required: boolean
   description?: string
 }
@@ -26,11 +26,19 @@ function tryPrettier(typeName: string) {
     const prefix = "type ONLY_FOR_FORMAT = "
     const prettyType = prettier.format(prefix + typeName, {
       parser: "typescript",
+      semi: false,
     })
     return prettyType.replace(prefix, "").trim()
   } catch {
     return typeName
   }
+}
+
+function formatValue(value: string | undefined) {
+  if (!value) return
+  // convert "\"column\"", to "column"
+  const x = value.replace(/^"(.*)"$/, "$1")
+  return x === "true" ? true : x === "false" ? false : x
 }
 
 function sortByRequiredProperties(properties: ComponentTypeProperties) {
@@ -51,6 +59,7 @@ function extractPropertiesOfTypeName(
 ) {
   const regexSearchTerm =
     typeof searchTerm === "string" ? `^${searchTerm}$` : searchTerm
+
   const typeStatements = sourceFile.statements.filter(
     (statement) =>
       (ts.isInterfaceDeclaration(statement) ||
@@ -89,7 +98,7 @@ function extractPropertiesOfTypeName(
 
       properties[propertyName] = {
         type: prettyType,
-        defaultValue,
+        defaultValue: formatValue(defaultValue),
         required,
         description:
           property
@@ -99,15 +108,13 @@ function extractPropertiesOfTypeName(
       }
     }
 
-    if (Object.keys(properties).length) {
-      let typeName = (typeStatement as any).name.getText() as string
+    let typeName = (typeStatement as any).name.getText() as string
 
-      if (/Props$/.test(typeName)) {
-        typeName = typeName.replace(/Props$/, "")
-        results[typeName] = sortByRequiredProperties(properties)
-      } else {
-        log("Omitting type", `\`${typeName}\``)
-      }
+    if (/Props$/.test(typeName)) {
+      typeName = typeName.replace(/Props$/, "")
+      results[typeName] = sortByRequiredProperties(properties)
+    } else {
+      log("Omitting type", `\`${typeName}\``)
     }
   }
 

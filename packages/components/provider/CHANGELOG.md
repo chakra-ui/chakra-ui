@@ -1,5 +1,27 @@
 # @chakra-ui/provider
 
+## 2.1.0
+
+### Minor Changes
+
+- [#7232](https://github.com/chakra-ui/chakra-ui/pull/7232)
+  [`1d1f202e7`](https://github.com/chakra-ui/chakra-ui/commit/1d1f202e7f44c606659809dcb6f83746a68ac1e6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add
+  `disableEnvironment` option to disable the environment injected span
+
+### Patch Changes
+
+- [#7248](https://github.com/chakra-ui/chakra-ui/pull/7248)
+  [`c57b00f80`](https://github.com/chakra-ui/chakra-ui/commit/c57b00f80f177c2a165dc3e879e30e362b0806fb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improved JS Doc
+  comments to include default values
+  - Fixed regression in exported components
+- Updated dependencies
+  [[`c57b00f80`](https://github.com/chakra-ui/chakra-ui/commit/c57b00f80f177c2a165dc3e879e30e362b0806fb),
+  [`1d1f202e7`](https://github.com/chakra-ui/chakra-ui/commit/1d1f202e7f44c606659809dcb6f83746a68ac1e6)]:
+  - @chakra-ui/react-env@3.0.0
+  - @chakra-ui/portal@2.0.15
+
 ## 2.0.30
 
 ### Patch Changes

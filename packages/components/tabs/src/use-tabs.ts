@@ -43,6 +43,8 @@ export interface UseTabsProps {
    *
    * If `false`, the tabs will be automatically activated
    * and their panel is displayed when they receive focus.
+   *
+   * @default false
    */
   isManual?: boolean
   /**
@@ -64,6 +66,7 @@ export interface UseTabsProps {
   /**
    * Performance 🚀:
    * If `true`, rendering of the tab panel's will be deferred until it is selected.
+   * @default false
    */
   isLazy?: boolean
   /**
@@ -253,10 +256,14 @@ export type UseTabListReturn = ReturnType<typeof useTabList>
 
 export interface UseTabOptions {
   id?: string
+  /**
+   * @default false
+   */
   isSelected?: boolean
   panelId?: string
   /**
    * If `true`, the `Tab` won't be toggleable
+   * @default false
    */
   isDisabled?: boolean
 }

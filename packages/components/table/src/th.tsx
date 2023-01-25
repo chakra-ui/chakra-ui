@@ -4,6 +4,7 @@ import { useTableStyles } from "./table"
 export interface TableColumnHeaderProps extends HTMLChakraProps<"th"> {
   /**
    * Aligns the cell content to the right
+   * @default false
    */
   isNumeric?: boolean
 }

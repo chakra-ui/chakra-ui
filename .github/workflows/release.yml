@@ -67,7 +67,15 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      - name: Send a dispatch event to chakra-ui-docs
+      - name: Dispatch update to docs
         if: steps.changesets.outputs.published == 'true'
-        run: |
-          curl -X POST -u "segunadebayo:${{ secrets.SAGE_PAT }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/chakra-ui/chakra-ui-docs/dispatches --data '{"event_type": "build_application"}'
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.SAGE_PAT }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'chakra-ui',
+              repo: 'chakra-ui-docs',
+              workflow_id: 'release.yml',
+              ref: 'main'
+            })

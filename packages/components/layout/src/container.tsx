@@ -14,6 +14,8 @@ export interface ContainerProps
   /**
    * If `true`, container will center its children
    * regardless of their width.
+   *
+   * @default false
    */
   centerContent?: boolean
 }

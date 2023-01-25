@@ -1,5 +1,24 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- Strip out unneeded characters from `type` and `defaultValue`
+
+## 2.2.0
+
+### Minor Changes
+
+- Add `allPropDocs` and `getPropDoc` helper to get a single prop doc and all
+  props doc object
+
+## 2.1.1
+
+### Patch Changes
+
+- Fix issue where some component where not included
+
 ## 2.1.0
 
 ### Minor Changes

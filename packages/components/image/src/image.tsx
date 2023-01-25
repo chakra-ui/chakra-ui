@@ -43,6 +43,8 @@ interface ImageOptions extends NativeImageOptions {
   align?: SystemProps["objectPosition"]
   /**
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
+   *
+   * @default false
    */
   ignoreFallback?: boolean
 

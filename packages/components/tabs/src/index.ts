@@ -20,6 +20,9 @@ export {
   useTabPanels,
   useTabs,
   useTabsContext,
+  useTabsDescendant,
+  useTabsDescendants,
+  useTabsDescendantsContext,
 } from "./use-tabs"
 export type {
   UseTabListProps,

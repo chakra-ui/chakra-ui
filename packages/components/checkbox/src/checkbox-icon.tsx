@@ -32,7 +32,13 @@ function IndeterminateIcon(props: PropsOf<typeof chakra.svg>) {
 }
 
 export interface CheckboxIconProps extends PropsOf<typeof chakra.svg> {
+  /**
+   * @default false
+   */
   isIndeterminate?: boolean
+  /**
+   * @default false
+   */
   isChecked?: boolean
 }
 

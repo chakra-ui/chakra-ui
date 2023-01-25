@@ -57,12 +57,14 @@ export const InputAddon = forwardRef<InputAddonProps, "div">(
 
 InputAddon.displayName = "InputAddon"
 
+export type InputLeftAddonProps = InputAddonProps
+
 /**
  * InputLeftAddon
  *
  * Element to append to the left of an input
  */
-export const InputLeftAddon = forwardRef<InputAddonProps, "div">(
+export const InputLeftAddon = forwardRef<InputLeftAddonProps, "div">(
   function InputLeftAddon(props, ref) {
     return (
       <InputAddon
@@ -80,12 +82,14 @@ InputLeftAddon.displayName = "InputLeftAddon"
 // This is used in `input-group.tsx`
 InputLeftAddon.id = "InputLeftAddon"
 
+export type InputRightAddonProps = InputAddonProps
+
 /**
  * InputRightAddon
  *
  * Element to append to the right of an input
  */
-export const InputRightAddon = forwardRef<InputAddonProps, "div">(
+export const InputRightAddon = forwardRef<InputRightAddonProps, "div">(
   function InputRightAddon(props, ref) {
     return (
       <InputAddon

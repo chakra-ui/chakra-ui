@@ -4,10 +4,14 @@ export interface ButtonGroupOptions {
   /**
    * If `true`, the borderRadius of button that are direct children will be altered
    * to look flushed together
+   *
+   * @default false
    */
   isAttached?: boolean
   /**
    * If `true`, all wrapped button will be disabled
+   *
+   * @default false
    */
   isDisabled?: boolean
   /**
@@ -21,14 +25,17 @@ export interface ButtonGroupOptions {
 export interface ButtonOptions {
   /**
    * If `true`, the button will show a spinner.
+   * @default false
    */
   isLoading?: boolean
   /**
    * If `true`, the button will be styled in its active state.
+   * @default false
    */
   isActive?: boolean
   /**
    * If `true`, the button will be disabled.
+   * @default false
    */
   isDisabled?: boolean
   /**

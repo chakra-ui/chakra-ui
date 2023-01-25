@@ -12,6 +12,8 @@ export interface AvatarOptions {
    * If `true`, the `Avatar` will show a border around it.
    *
    * Best for a group of avatars
+   *
+   * @default false
    */
   showBorder?: boolean
   /**

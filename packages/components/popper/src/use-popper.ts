@@ -44,6 +44,7 @@ export interface UsePopperProps {
   /**
    * If `true`, the popper will match the width of the reference at all times.
    * It's useful for `autocomplete`, `date-picker` and `select` patterns.
+   * @default false
    */
   matchWidth?: boolean
   /**

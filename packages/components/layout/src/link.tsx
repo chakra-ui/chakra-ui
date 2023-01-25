@@ -11,6 +11,8 @@ import { cx } from "@chakra-ui/shared-utils"
 export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps<"Link"> {
   /**
    *  If `true`, the link will open in new tab
+   *
+   * @default false
    */
   isExternal?: boolean
 }

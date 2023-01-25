@@ -7,19 +7,27 @@ export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * If `true`, the element will be disabled.
    * It will set the `disabled` HTML attribute
+   *
+   * @default false
    */
   isDisabled?: boolean
   /**
    * If `true` and isDisabled, the element will
    * have only `aria-disabled` set to `true`
+   *
+   * @default false
    */
   isFocusable?: boolean
   /**
    * Whether or not trigger click on pressing `Enter`.
+   *
+   * @default true
    */
   clickOnEnter?: boolean
   /**
    * Whether or not trigger click on pressing `Space`.
+   *
+   * @default true
    */
   clickOnSpace?: boolean
   /**

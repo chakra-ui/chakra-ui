@@ -29,6 +29,7 @@ export { useTabsStyles }
 interface TabsOptions {
   /**
    * If `true`, tabs will stretch to width of the tablist.
+   * @default false
    */
   isFitted?: boolean
   /**
