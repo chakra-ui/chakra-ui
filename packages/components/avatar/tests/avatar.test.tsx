@@ -80,4 +80,10 @@ describe("fallback + loading strategy", () => {
     const tools = render(<Avatar />)
     expect(tools.getByRole("img")).toHaveClass("chakra-avatar__svg")
   })
+
+  test("renders an emoji avatar if emoji passed as name", () => {
+    const tools = render(<Avatar name="😄" />)
+    const img = tools.queryByText("😄")
+    expect(img).toBeInTheDocument()
+  })
 })

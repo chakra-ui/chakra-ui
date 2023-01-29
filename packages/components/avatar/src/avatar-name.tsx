@@ -3,9 +3,17 @@ import { useAvatarStyles } from "./avatar-context"
 import { AvatarOptions } from "./avatar-types"
 
 export function initials(name: string) {
+  const emojiRegex = /\p{Extended_Pictographic}/u
+  const hasEmojiInName = emojiRegex.test(name)
   const [firstName, lastName] = name.split(" ")
-  return firstName && lastName
-    ? `${firstName.charAt(0)}${lastName.charAt(0)}`
+  return hasEmojiInName
+    ? name
+    : firstName && lastName
+    ? `${emojiRegex.test(firstName) ? firstName : firstName.charAt(0)}${
+        emojiRegex.test(lastName) ? lastName : lastName.charAt(0)
+      }`
+    : emojiRegex.test(firstName)
+    ? firstName
     : firstName.charAt(0)
 }
 

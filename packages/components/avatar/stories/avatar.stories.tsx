@@ -19,6 +19,7 @@ export const Basic = () => (
     <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
     <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
     <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+    <Avatar name="😄" />
   </Stack>
 )
 
