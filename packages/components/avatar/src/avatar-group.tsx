@@ -59,7 +59,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
     /**
      * get the avatars within the max
      */
-    const childrenWithinMax = max ? validChildren.slice(0, max) : validChildren
+    const childrenWithinMax = max != null ? validChildren.slice(0, max) : validChildren
 
     /**
      * get the remaining avatar count
