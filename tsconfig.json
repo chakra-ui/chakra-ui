@@ -22,7 +22,6 @@
     "scripts",
     "tooling",
     "plopfile.ts",
-    "react-shim.js"
   ],
   "exclude": ["**/node_modules", "**/template*"]
 }
