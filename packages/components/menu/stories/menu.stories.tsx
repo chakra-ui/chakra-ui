@@ -323,6 +323,25 @@ export const WithLetterNavigation = () => (
   </Menu>
 )
 
+export const WithScrolling = () => {
+  const items = React.useMemo(
+    () => Array.from({ length: 30 }).map((_, i) => `Option ${i}`),
+    [],
+  )
+  return (
+    <Menu>
+      <MenuButton>Choose an option</MenuButton>
+      <MenuList maxHeight="15rem" overflowY="scroll">
+        {items.map((value, i) => (
+          <MenuItem key={i} value={value}>
+            {value}
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  )
+}
+
 export const JustAnotherExample = () => (
   <Menu>
     <MenuButton as={Button}>Your Cats</MenuButton>
