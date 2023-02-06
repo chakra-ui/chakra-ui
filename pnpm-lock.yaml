@@ -1196,6 +1196,7 @@ importers:
       '@chakra-ui/counter': workspace:*
       '@chakra-ui/css-reset': workspace:*
       '@chakra-ui/editable': workspace:*
+      '@chakra-ui/focus-lock': workspace:*
       '@chakra-ui/form-control': workspace:*
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/icon': workspace:*
@@ -1253,6 +1254,7 @@ importers:
       '@chakra-ui/counter': link:../counter
       '@chakra-ui/css-reset': link:../css-reset
       '@chakra-ui/editable': link:../editable
+      '@chakra-ui/focus-lock': link:../focus-lock
       '@chakra-ui/form-control': link:../form-control
       '@chakra-ui/hooks': link:../../legacy/hooks
       '@chakra-ui/icon': link:../icon

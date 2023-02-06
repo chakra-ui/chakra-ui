@@ -23,6 +23,7 @@
     "@chakra-ui/counter": "workspace:*",
     "@chakra-ui/css-reset": "workspace:*",
     "@chakra-ui/editable": "workspace:*",
+    "@chakra-ui/focus-lock": "workspace:*",
     "@chakra-ui/form-control": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/icon": "workspace:*",
