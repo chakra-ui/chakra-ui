@@ -290,6 +290,14 @@ export function useMenu(props: UseMenuProps = {}) {
     node?.focus()
   }, [isOpen, focusedIndex, descendants])
 
+  /**
+   * Track the animation frame which is scheduled to focus
+   * a menu item, so it can be cancelled if another item
+   * is focused before the animation executes. This prevents
+   * infinite rerenders.
+   */
+  const [focusAnimationId, setFocusAnimationId] = useState<number | null>(null)
+
   return {
     openAndFocusMenu,
     openAndFocusFirstItem,
@@ -316,6 +324,8 @@ export function useMenu(props: UseMenuProps = {}) {
     isLazy,
     lazyBehavior,
     initialFocusRef,
+    focusAnimationId,
+    setFocusAnimationId,
   }
 }
 
@@ -583,6 +593,8 @@ export function useMenuItem(
     menuRef,
     isOpen,
     menuId,
+    focusAnimationId,
+    setFocusAnimationId,
   } = menu
 
   const ref = useRef<HTMLDivElement>(null)
@@ -653,9 +665,16 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      requestAnimationFrame(() => {
+      // Cancel any pending animations to focus other
+      // menu items, to prevent infinite rerender
+      if (focusAnimationId) {
+        cancelAnimationFrame(focusAnimationId)
+      }
+      const newAnimationId = requestAnimationFrame(() => {
         ref.current?.focus()
+        setFocusAnimationId(null)
       })
+      setFocusAnimationId(newAnimationId)
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
       menuRef.current.focus()
     }
