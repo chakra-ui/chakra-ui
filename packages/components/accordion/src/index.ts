@@ -20,5 +20,6 @@ export type {
   UseAccordionItemReturn,
   UseAccordionProps,
   UseAccordionReturn,
+  ExpandedIndex,
 } from "./use-accordion"
 export { useAccordionItemState } from "./use-accordion-item-state"
