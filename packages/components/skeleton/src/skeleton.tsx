@@ -94,9 +94,10 @@ const bgFade = keyframes({
  */
 export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
   const skeletonProps: SkeletonProps = {
-    fadeDuration: 0.4,
-    speed: 0.8,
     ...props,
+    fadeDuration:
+      typeof props.fadeDuration === "number" ? props.fadeDuration : 0.4,
+    speed: typeof props.speed === "number" ? props.speed : 0.8,
   }
   const styles = useStyleConfig("Skeleton", skeletonProps)
   const isFirstRender = useIsFirstRender()
