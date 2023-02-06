@@ -1928,13 +1928,13 @@ importers:
       '@chakra-ui/react-utils': workspace:*
       '@chakra-ui/utils': workspace:*
       clean-package: 2.1.1
-      compute-scroll-into-view: 1.0.14
+      compute-scroll-into-view: 1.0.20
       copy-to-clipboard: 3.3.1
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/utils': link:../utils
-      compute-scroll-into-view: 1.0.14
+      compute-scroll-into-view: 1.0.20
       copy-to-clipboard: 3.3.1
     devDependencies:
       clean-package: 2.1.1
@@ -15289,8 +15289,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /compute-scroll-into-view/1.0.14:
-    resolution: {integrity: sha512-mKDjINe3tc6hGelUMNDzuhorIUZ7kS7BwyY0r2wQd2HOH2tRuJykiC06iSEX8y1TuhNzvz4GcJnK16mM2J1NMQ==}
+  /compute-scroll-into-view/1.0.20:
+    resolution: {integrity: sha512-UCB0ioiyj8CRjtrvaceBLqqhZCVP+1B8+NWQhmdsm0VXOJtobBCf1dBQmebCCo34qZmUwZfIH2MZLqNHazrfjg==}
     dev: false
 
   /concat-map/0.0.1:
