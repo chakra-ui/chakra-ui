@@ -29,8 +29,10 @@ export function parseGradient(
   theme: Record<string, any>,
 ) {
   if (value == null || globalSet.has(value)) return value
-  const regex = /(?<type>^[a-z-A-Z]+)\((?<values>(.*))\)/g
-  const { type, values } = regex.exec(value)?.groups ?? {}
+  const regex = /(^[a-z-A-Z]+)\((.*)\)/g
+  const results = regex.exec(value)
+  const type = results?.[1]
+  const values = results?.[2]
 
   if (!type || !values) return value
 
