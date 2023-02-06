@@ -1931,13 +1931,13 @@ importers:
       '@chakra-ui/utils': workspace:*
       clean-package: 2.1.1
       compute-scroll-into-view: 1.0.20
-      copy-to-clipboard: 3.3.1
+      copy-to-clipboard: 3.3.3
       react: ^18.2.0
     dependencies:
       '@chakra-ui/react-utils': link:../react-utils
       '@chakra-ui/utils': link:../utils
       compute-scroll-into-view: 1.0.20
-      copy-to-clipboard: 3.3.1
+      copy-to-clipboard: 3.3.3
     devDependencies:
       clean-package: 2.1.1
       react: 18.2.0
@@ -15420,8 +15420,8 @@ packages:
     resolution: {integrity: sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==}
     engines: {node: '>=0.10.0'}
 
-  /copy-to-clipboard/3.3.1:
-    resolution: {integrity: sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==}
+  /copy-to-clipboard/3.3.3:
+    resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
     dependencies:
       toggle-selection: 1.0.6
     dev: false
