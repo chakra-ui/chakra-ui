@@ -2,10 +2,11 @@ const path = require("path")
 const fs = require("fs")
 
 // [Workaround] This logic means `"../packages/components/*/stories/*.stories.tsx"` but it's much faster.
-function getStories(pkg) {
-  const scope = pkg ? [pkg] : fs.readdirSync("packages/components")
+function getStories({ pkg, dir = "components" }) {
+  const dirName = `packages/${dir}`
+  const scope = pkg ? [pkg] : fs.readdirSync(dirName)
   return scope
-    .map((package) => `packages/components/${package}/stories`)
+    .map((package) => `${dirName}/${package}/stories`)
     .filter((storyDir) => fs.existsSync(storyDir))
     .map((storyDir) => `../${storyDir}/*.stories.tsx`)
 }
@@ -15,7 +16,10 @@ module.exports = {
     builder: "@storybook/builder-webpack5",
     disableTelemetry: true,
   },
-  stories: getStories(),
+  stories: [
+    ...getStories({ dir: "core" }),
+    ...getStories({ dir: "components" }),
+  ],
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-essentials",
