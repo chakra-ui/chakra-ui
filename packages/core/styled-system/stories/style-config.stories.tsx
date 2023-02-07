@@ -5,12 +5,12 @@ import { css, resolveStyleConfig, toCSSVar } from "../src"
 import { recipe } from "../tests/theme"
 
 export default {
-  title: "System / css",
+  title: "System / Style Config",
 }
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
 
-export const responsiveButton = () => {
+export const ResponsiveButton = () => {
   const theme = toCSSVar(useTheme())
   const styles = recipe({
     theme,
@@ -27,7 +27,7 @@ export const responsiveButton = () => {
   )
 }
 
-export const multipartAlert = () => {
+export const MultipartAlert = () => {
   const defaultTheme = useTheme() as Record<string, any>
 
   const props = {
