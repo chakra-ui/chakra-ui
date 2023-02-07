@@ -12,6 +12,7 @@
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/theme-tools": "workspace:*",
+    "@chakra-ui/next-js": "workspace:*",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@faker-js/faker": "^7.1.0",

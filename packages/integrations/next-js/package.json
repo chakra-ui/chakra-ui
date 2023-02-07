@@ -1,0 +1,61 @@
+{
+  "name": "@chakra-ui/next-js",
+  "version": "2.0.0",
+  "description": "Chakra UI Integrations for Next.js 13",
+  "keywords": [
+    "next-js"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "integrations/next-js"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.10.5"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "next": ">=13",
+    "@emotion/react": ">=11",
+    "@chakra-ui/react": ">=2.4.0"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.9.0",
+    "@chakra-ui/react": "workspace:*",
+    "clean-package": "2.1.1",
+    "next": ">=13",
+    "react": "^18.0.0"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
+  }
+}
