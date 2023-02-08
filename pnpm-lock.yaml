@@ -242,7 +242,6 @@ importers:
       '@chakra-ui/theme-tools': workspace:*
       '@emotion/react': ^11.9.0
       '@emotion/styled': ^11.8.1
-      '@faker-js/faker': ^7.1.0
       '@types/node': ^18.0.0
       '@types/react': ^18.0.1
       '@types/react-dom': ^18.0.0
@@ -250,7 +249,6 @@ importers:
       next: ^13.0.7
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-icons: ^4.2.0
       typescript: ^4.7.4
     dependencies:
       '@chakra-ui/icons': link:../../packages/components/icons
@@ -259,7 +257,6 @@ importers:
       '@chakra-ui/theme-tools': link:../../packages/components/theme-tools
       '@emotion/react': 11.9.3_3hx2ussxxho4jajbwrd6gq34qe
       '@emotion/styled': 11.9.3_t4da3hocwt6ljcf3o6em4qwqzm
-      '@faker-js/faker': 7.3.0
       '@types/node': 18.0.6
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
@@ -267,7 +264,6 @@ importers:
       next: 13.0.7_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-icons: 4.4.0_react@18.2.0
       typescript: 4.7.4
 
   examples/next-pages:
@@ -13692,7 +13688,7 @@ packages:
   /axios/0.21.4_debug@3.2.7:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
     transitivePeerDependencies:
       - debug
 
@@ -18686,7 +18682,7 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /follow-redirects/1.15.1:
+  /follow-redirects/1.15.1_debug@3.2.7:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -18694,6 +18690,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 3.2.7
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -20846,7 +20844,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
