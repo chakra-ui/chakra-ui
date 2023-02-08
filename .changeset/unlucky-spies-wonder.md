@@ -13,6 +13,13 @@ This package provides 2 main features:
   This is necessary to ensure that computed styles are included in the initial
   server payload (during streaming).
 
+  The `use client` directive is still required to be added to the top of the
+  page-related file. This is a limitation of CSS-in-JS libraries and Emotion for
+  now.
+
+  > Note: Make sure to include the `<head>` tag in your layout component
+  > otherwise it will not work.
+
   ```jsx live=false
   // app/layout.tsx
   "use client"
