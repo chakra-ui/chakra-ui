@@ -7,34 +7,42 @@ experience when using Chakra UI in your Next.js 13 apps.
 
 This package provides 2 main features:
 
+- **CacheProvider**: This component composes the Emotion.js' cache provider with
+  the `useServerInsertedHTML` hook from `next/navigation`.
+
+  This is necessary to ensure that computed styles are included in the initial
+  server payload (during streaming).
+
+  ```jsx live=false
+  // app/layout.tsx
+  "use client"
+  import { CacheProvider } from "@chakra-ui/next-js"
+  import { ChakraProvider } from "@chakra-ui/react"
+
+  export default function RootLayout({
+    children,
+  }: {
+    children: React.ReactNode,
+  }) {
+    return (
+      <html lang="en">
+        <head />
+        <body>
+          <CacheProvider>
+            <ChakraProvider>{children}</ChakraProvider>
+          </CacheProvider>
+        </body>
+      </html>
+    )
+  }
+  ```
+
+- **Link**: This component combines the functionality of the Next.js `Link` and
+  Chakra UI `Link` components.
+
 ```jsx live=false
-// app/layout.tsx
-import { CacheProvider } from "@chakra-ui/next-js"
-import { ChakraProvider } from "@chakra-ui/react"
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode,
-}) {
-  return (
-    <html lang="en">
-      <head />
-      <body>
-        <CacheProvider>
-          <ChakraProvider>{children}</ChakraProvider>
-        </CacheProvider>
-      </body>
-    </html>
-  )
-}
-```
-
-This also introduces a new `Link` component that combines the Next.js `Link` and
-Chakra UI `Link` components.
-
-```jsx live=false
-// app/layout.tsx
+// app/page.tsx
+"use client"
 import { Link } from "@chakra-ui/next-js"
 
 export default function Page() {
@@ -45,3 +53,5 @@ export default function Page() {
   )
 }
 ```
+
+> Support for `next/image` coming soon!
