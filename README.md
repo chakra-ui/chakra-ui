@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">Build Accessible React Apps with Speed ⚡️</h1>
-</br>
+<br />
 
 <p align="center">
   <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/react"/>
