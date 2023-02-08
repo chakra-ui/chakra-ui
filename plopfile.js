@@ -6,7 +6,7 @@ const camelCase = (str) => {
   return str.replace(/[-_](\w)/g, (_, c) => c.toUpperCase())
 }
 
-const workspaces = ["components", "hooks", "utilities"]
+const workspaces = ["components", "hooks", "utilities", "integrations"]
 
 /**
  * @param {import("plop").NodePlopAPI} plop
