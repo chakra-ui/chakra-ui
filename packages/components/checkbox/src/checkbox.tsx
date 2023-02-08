@@ -143,7 +143,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
       color: iconColor,
       ...styles.icon,
     }),
-    [iconColor, iconSize, , state.isIndeterminate, styles.icon],
+    [iconColor, iconSize, state.isIndeterminate, styles.icon],
   )
 
   const clonedIcon = cloneElement(icon, {
