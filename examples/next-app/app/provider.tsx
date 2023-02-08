@@ -1,7 +1,7 @@
 "use client"
 
 import { CacheProvider } from "@chakra-ui/next-js"
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider, cookieStorageManager } from "@chakra-ui/react"
 
 export default function RootLayout({
   children,
@@ -10,7 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <CacheProvider>
-      <ChakraProvider>{children}</ChakraProvider>
+      <ChakraProvider colorModeManager={cookieStorageManager}>
+        {children}
+      </ChakraProvider>
     </CacheProvider>
   )
 }
