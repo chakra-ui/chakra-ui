@@ -86,7 +86,7 @@ export function useModal(props: UseModalProps) {
   /**
    * Hook used to manage multiple or nested modals
    */
-  useModalManager(dialogRef, isOpen)
+  const index = useModalManager(dialogRef, isOpen)
 
   const mouseDownTarget = useRef<EventTarget | null>(null)
 
@@ -178,6 +178,7 @@ export function useModal(props: UseModalProps) {
     overlayRef,
     getDialogProps,
     getDialogContainerProps,
+    index,
   }
 }
 
