@@ -4,7 +4,7 @@ import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { hideOthers } from "aria-hidden"
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
-import { manager, useModalManager } from "./modal-manager"
+import { modalManager, useModalManager } from "./modal-manager"
 
 export interface UseModalProps {
   /**
@@ -145,7 +145,7 @@ export function useModal(props: UseModalProps) {
       /**
        * When you click on the overlay, we want to remove only the topmost modal
        */
-      if (!manager.isTopModal(dialogRef.current)) return
+      if (!modalManager.isTopModal(dialogRef.current)) return
 
       if (closeOnOverlayClick) {
         onClose?.()
