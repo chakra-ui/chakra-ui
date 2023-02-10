@@ -1,6 +1,6 @@
 # Pin Input
 
-The PinInupt component is optimized for entering sequences of digits. The most
+The PinInput component is optimized for entering sequences of digits. The most
 common application is for entering single-use security codes. It is optimized
 for entering digits quickly.
 

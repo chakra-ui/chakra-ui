@@ -13,7 +13,7 @@
     "use-checkbox",
     "checkboxGroup",
     "checkbox-group-hook",
-    "use-checbox-group"
+    "use-checkbox-group"
   ],
   "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",

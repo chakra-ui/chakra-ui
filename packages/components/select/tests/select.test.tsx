@@ -43,7 +43,7 @@ test("renders in disabled state if isDisabled is true", () => {
   expect(iconWrapper).toHaveAttribute("data-disabled", "")
 })
 
-test("doesnt renders in disabled state if isDisabled is false", () => {
+test("doesn't render in disabled state if isDisabled is false", () => {
   const { container } = render(
     <Select isDisabled={false} placeholder="Select an option" />,
   )
