@@ -33,7 +33,7 @@ export interface ButtonProps
  * @see Docs https://chakra-ui.com/docs/components/button
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/button/
  */
-export const Button = forwardRef<ButtonProps, "button">((props, ref): any => {
+export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   const group = useButtonGroup()
   const styles = useStyleConfig("Button", { ...group, ...props })
 
