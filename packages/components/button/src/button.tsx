@@ -51,7 +51,6 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     spinnerPlacement = "start",
     className,
     as,
-    disabled,
     ...rest
   } = omitThemingProps(props)
 
