@@ -18,7 +18,7 @@ import { ButtonOptions } from "./button-types"
 import { useButtonType } from "./use-button-type"
 
 export interface ButtonProps
-  extends Omit<HTMLChakraProps<"button">, "disabled">,
+  extends HTMLChakraProps<"button">,
     ButtonOptions,
     ThemingProps<"Button"> {
   /**
