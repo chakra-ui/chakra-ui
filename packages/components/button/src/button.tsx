@@ -20,7 +20,12 @@ import { useButtonType } from "./use-button-type"
 export interface ButtonProps
   extends HTMLChakraProps<"button">,
     ButtonOptions,
-    ThemingProps<"Button"> {}
+    ThemingProps<"Button"> {
+  /**
+   * @deprecated Use `isDisabled` instead
+   */
+  disabled?: boolean
+}
 
 /**
  * Button component is used to trigger an action or event, such as submitting a form, opening a Dialog, canceling an action, or performing a delete operation.
@@ -28,7 +33,7 @@ export interface ButtonProps
  * @see Docs https://chakra-ui.com/docs/components/button
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/button/
  */
-export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
+export const Button = forwardRef<ButtonProps, "button">((props, ref): any => {
   const group = useButtonGroup()
   const styles = useStyleConfig("Button", { ...group, ...props })
 
