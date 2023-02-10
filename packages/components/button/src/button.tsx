@@ -18,11 +18,11 @@ import { ButtonOptions } from "./button-types"
 import { useButtonType } from "./use-button-type"
 
 export interface ButtonProps
-  extends HTMLChakraProps<"button">,
+  extends Omit<HTMLChakraProps<"button">, "disabled">,
     ButtonOptions,
     ThemingProps<"Button"> {
   /**
-   * @deprecated Use `isDisabled` instead
+   * @deprecated The `disabled` prop is deprecated. Please use `isDisabled` instead.
    */
   disabled?: boolean
 }
@@ -51,6 +51,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref): any => {
     spinnerPlacement = "start",
     className,
     as,
+    disabled,
     ...rest
   } = omitThemingProps(props)
 
