@@ -1,6 +1,7 @@
 export { Editable } from "./editable"
 export type { EditableProps } from "./editable"
 export { useEditableStyles } from "./editable-context"
+export { useEditableContext } from "./editable-context"
 export { EditableInput } from "./editable-input"
 export type { EditableInputProps } from "./editable-input"
 export { EditablePreview } from "./editable-preview"
