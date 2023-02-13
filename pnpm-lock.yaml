@@ -47,7 +47,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.30.3
       '@typescript-eslint/parser': 5.30.3
-      dotenv: 16.0.1
+      dotenv: 16.0.3
       edit-json-file: 1.6.0
       eslint: 8.19.0
       eslint-config-airbnb-typescript: 17.0.0
@@ -121,7 +121,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@typescript-eslint/eslint-plugin': 5.30.3_xuuykav7urhdozug7htlfgar3u
       '@typescript-eslint/parser': 5.30.3_4x5o4skxv6sl53vpwefgt23khm
-      dotenv: 16.0.1
+      dotenv: 16.0.3
       edit-json-file: 1.6.0
       eslint: 8.19.0
       eslint-config-airbnb-typescript: 17.0.0_nbfudvlfjqylf7fceqmxzsgu6e
@@ -16537,8 +16537,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /dotenv/16.0.1:
-    resolution: {integrity: sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==}
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
     dev: false
 
