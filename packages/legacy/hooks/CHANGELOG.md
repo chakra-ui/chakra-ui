@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.6
+
+### Patch Changes
+
+- [`2e07db479`](https://github.com/chakra-ui/chakra-ui/commit/2e07db479222b70609ed6945fa81bc728aad8755)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **useClipboard**:
+  Improve reactivity by ensuring it uses the latest reference of the passed
+  `value`
+
 ## 2.1.5
 
 ### Patch Changes

@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.6.0
+
+### Minor Changes
+
+- [`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `hideFrom`
+  and `hideBelow` style props to styled system. This allows more control over
+  when to show/hide elements without requiring explicit `display: none` every
+  time.
+
+  - Remove experimental style props `experimental_spaceX` and
+    `experimental_spaceY`
+
+### Patch Changes
+
+- [#7318](https://github.com/chakra-ui/chakra-ui/pull/7318)
+  [`3548c6fb7`](https://github.com/chakra-ui/chakra-ui/commit/3548c6fb7893e5db1178a15e104f9ae0e209781b)
+  Thanks [@idootop](https://github.com/idootop)! - Update the regex of
+  `parseGradient` to make it works on legacy Firefox browser.
+
 ## 2.5.2
 
 ### Patch Changes

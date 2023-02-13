@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.1.9
+
+### Patch Changes
+
+- [#7315](https://github.com/chakra-ui/chakra-ui/pull/7315)
+  [`403513380`](https://github.com/chakra-ui/chakra-ui/commit/4035133801cdcf66487f73feb73a6bfd02a063f4)
+  Thanks [@mantariksh](https://github.com/mantariksh)! - Fix issue where `Menu`
+  schedules focus too frequently and leads to infinite rerenders.
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.0.13
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/transition@2.0.15
+  - @chakra-ui/clickable@2.0.14
+
 ## 2.1.8
 
 ### Patch Changes
