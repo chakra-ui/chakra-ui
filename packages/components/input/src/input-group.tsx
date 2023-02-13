@@ -85,6 +85,7 @@ export const InputGroup = forwardRef<InputGroupProps, "div">(
           // Create a new stacking context so that these overrides don't leak out and conflict with other z-indexes
           isolation: "isolate",
         }}
+        data-group
         {...rest}
       >
         <InputGroupStylesProvider value={styles}>
