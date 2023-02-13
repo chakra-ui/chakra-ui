@@ -103,7 +103,7 @@ export interface UseMenuProps
    */
   lazyBehavior?: LazyMode
   /**
-   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * If `rtl`, proper placement positions will be flipped i.e. 'top-right' will
    * become 'top-left' and vice-verse
    */
   direction?: "ltr" | "rtl"

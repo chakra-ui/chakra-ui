@@ -128,7 +128,7 @@ export const WithDisabledButFocusableItem = () => (
   </Menu>
 )
 
-export const WithTogglableMenuItems = () => {
+export const WithToggleableMenuItems = () => {
   const [items, setItems] = React.useState<
     {
       content: string

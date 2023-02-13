@@ -480,7 +480,7 @@ test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
 
   const { container } = render(
     <FormControl mt={4} onFocus={formControlOnFocusMock}>
-      <FormLabel>onFocus xample</FormLabel>
+      <FormLabel>onFocus example</FormLabel>
       <CheckboxGroup>
         <Checkbox value="1" onFocus={checkboxOnFocusMock}>
           onFocus Opt-in 1
@@ -517,7 +517,7 @@ test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
   expect(checkboxOnBlurMock).toHaveBeenCalled()
 })
 
-test("On reseting form, checkbox should reset to its default state i.e., checked", () => {
+test("On resetting form, checkbox should reset to its default state i.e., checked", () => {
   const { getByRole } = render(
     <form>
       <label htmlFor="myCheckbox">My Checkbox</label>
@@ -532,7 +532,7 @@ test("On reseting form, checkbox should reset to its default state i.e., checked
   expect(checkbox).toBeChecked()
 })
 
-test("On reseting form, checkbox should reset to its default state i.e., unchecked", () => {
+test("On resetting form, checkbox should reset to its default state i.e., unchecked", () => {
   const { getByRole } = render(
     <form>
       <label htmlFor="myCheckbox">My Checkbox</label>

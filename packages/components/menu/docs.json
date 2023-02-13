@@ -35,7 +35,7 @@
     "direction": {
       "type": "\"ltr\" | \"rtl\"",
       "required": false,
-      "description": "If `rtl`, poper placement positions will be flipped i.e. 'top-right' will\nbecome 'top-left' and vice-verse"
+      "description": "If `rtl`, proper placement positions will be flipped i.e. 'top-right' will\nbecome 'top-left' and vice-verse"
     },
     "eventListeners": {
       "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined }",
@@ -301,7 +301,7 @@
     "direction": {
       "type": "\"ltr\" | \"rtl\"",
       "required": false,
-      "description": "If `rtl`, poper placement positions will be flipped i.e. 'top-right' will\nbecome 'top-left' and vice-verse"
+      "description": "If `rtl`, proper placement positions will be flipped i.e. 'top-right' will\nbecome 'top-left' and vice-verse"
     },
     "eventListeners": {
       "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined }",
