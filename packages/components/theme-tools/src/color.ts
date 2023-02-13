@@ -161,7 +161,8 @@ interface WCAG2Params {
  * @deprecated This will be removed in the next major release.
  */
 export const isAccessible =
-  (textColor: string, bgColor: string, options?: WCAG2Params) => (theme: Dict) =>
+  (textColor: string, bgColor: string, options?: WCAG2Params) =>
+  (theme: Dict) =>
     isReadable(getColor(theme, bgColor), getColor(theme, textColor), options)
 
 export function isReadable(
