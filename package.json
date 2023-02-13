@@ -98,7 +98,7 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-testing-library": "5.5.1",
     "fs-extra": "11.1.0",
-    "find-packages": "9.0.6",
+    "find-packages": "9.0.13",
     "find-up": "^6.3.0",
     "husky": "^7.0.4",
     "jest": "^28.1.1",
