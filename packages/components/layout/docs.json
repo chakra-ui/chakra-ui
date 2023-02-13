@@ -244,14 +244,7 @@
     "text": { "type": "string", "required": true }
   },
   "Kbd": {},
-  "Link": {
-    "isExternal": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the link will open in new tab"
-    }
-  },
+  "Link": {},
   "LinkBox": {},
   "LinkOverlay": {
     "isExternal": {
