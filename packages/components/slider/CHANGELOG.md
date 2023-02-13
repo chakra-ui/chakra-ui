@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ba7be75c2`](https://github.com/chakra-ui/chakra-ui/commit/ba7be75c2b8f7a38987781f6a0dd30086af7e2f7)]:
+  - @chakra-ui/react-use-size@2.0.9
+
 ## 2.0.20
 
 ### Patch Changes

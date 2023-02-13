@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.16
+
+### Patch Changes
+
+- Updated dependencies
+  [[`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358)]:
+  - @chakra-ui/breakpoint-utils@2.0.8
+  - @chakra-ui/icon@3.0.16
+
 ## 2.1.15
 
 ### Patch Changes

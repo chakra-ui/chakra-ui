@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.2.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358)]:
+  - @chakra-ui/breakpoint-utils@2.0.8
+
 ## 3.2.11
 
 ### Patch Changes

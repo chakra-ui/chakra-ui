@@ -1,5 +1,78 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- [`231c92ef0`](https://github.com/chakra-ui/chakra-ui/commit/231c92ef0751580740db14b4ee44eba238b6eff0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Export `FocusLock`
+  for easy consumption
+
+- [`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `hideFrom`
+  and `hideBelow` style props to styled system. This allows more control over
+  when to show/hide elements without requiring explicit `display: none` every
+  time.
+
+  - Remove experimental style props `experimental_spaceX` and
+    `experimental_spaceY`
+
+### Patch Changes
+
+- Updated dependencies
+  [[`91130dc89`](https://github.com/chakra-ui/chakra-ui/commit/91130dc898867175c8ebc7f85f583eb358c859df),
+  [`3548c6fb7`](https://github.com/chakra-ui/chakra-ui/commit/3548c6fb7893e5db1178a15e104f9ae0e209781b),
+  [`b078cfc44`](https://github.com/chakra-ui/chakra-ui/commit/b078cfc440c6b3bd79bc9ff187a66e20dfa75aa0),
+  [`2e07db479`](https://github.com/chakra-ui/chakra-ui/commit/2e07db479222b70609ed6945fa81bc728aad8755),
+  [`403513380`](https://github.com/chakra-ui/chakra-ui/commit/4035133801cdcf66487f73feb73a6bfd02a063f4),
+  [`6619ee1a9`](https://github.com/chakra-ui/chakra-ui/commit/6619ee1a98988729cb6cab6e6d90a7cc3f5b7ee7),
+  [`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358),
+  [`db3fa510f`](https://github.com/chakra-ui/chakra-ui/commit/db3fa510fe3a0129f2bdfaca12852b0b6c28f977)]:
+  - @chakra-ui/accordion@2.1.9
+  - @chakra-ui/styled-system@2.6.0
+  - @chakra-ui/skeleton@2.0.24
+  - @chakra-ui/hooks@2.1.6
+  - @chakra-ui/menu@2.1.9
+  - @chakra-ui/avatar@2.2.5
+  - @chakra-ui/system@2.5.0
+  - @chakra-ui/input@2.0.20
+  - @chakra-ui/theme@2.2.5
+  - @chakra-ui/toast@6.0.0
+  - @chakra-ui/theme-utils@2.0.10
+  - @chakra-ui/slider@2.0.21
+  - @chakra-ui/modal@2.2.9
+  - @chakra-ui/popover@2.1.8
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/tooltip@2.2.6
+  - @chakra-ui/transition@2.0.15
+  - @chakra-ui/layout@2.1.16
+  - @chakra-ui/media-query@3.2.12
+  - @chakra-ui/card@2.1.6
+  - @chakra-ui/tag@2.0.17
+  - @chakra-ui/alert@2.0.17
+  - @chakra-ui/breadcrumb@2.1.4
+  - @chakra-ui/button@2.0.16
+  - @chakra-ui/checkbox@2.2.10
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/control-box@2.0.13
+  - @chakra-ui/editable@2.0.19
+  - @chakra-ui/form-control@2.0.17
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/image@2.0.15
+  - @chakra-ui/number-input@2.0.18
+  - @chakra-ui/pin-input@2.0.19
+  - @chakra-ui/progress@2.1.5
+  - @chakra-ui/provider@2.1.1
+  - @chakra-ui/radio@2.0.19
+  - @chakra-ui/select@2.0.18
+  - @chakra-ui/spinner@2.0.13
+  - @chakra-ui/stat@2.0.17
+  - @chakra-ui/switch@2.0.22
+  - @chakra-ui/table@2.0.16
+  - @chakra-ui/tabs@2.1.8
+  - @chakra-ui/textarea@2.0.18
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.4.9
 
 ### Patch Changes
