@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.6.1
+
+### Patch Changes
+
+- [`70ec88d49`](https://github.com/chakra-ui/chakra-ui/commit/70ec88d498fc26f8fdd0f28021d3d7d8c661a3d1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `hideFrom` and `hideBelow` doesn't work as expected
+
 ## 2.6.0
 
 ### Minor Changes
