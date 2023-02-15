@@ -1,5 +1,53 @@
 # Change Log
 
+## 2.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`70ec88d49`](https://github.com/chakra-ui/chakra-ui/commit/70ec88d498fc26f8fdd0f28021d3d7d8c661a3d1)]:
+  - @chakra-ui/styled-system@2.6.1
+  - @chakra-ui/theme@2.2.5
+  - @chakra-ui/toast@6.0.1
+  - @chakra-ui/system@2.5.1
+  - @chakra-ui/theme-utils@2.0.11
+  - @chakra-ui/accordion@2.1.9
+  - @chakra-ui/alert@2.0.17
+  - @chakra-ui/avatar@2.2.5
+  - @chakra-ui/breadcrumb@2.1.4
+  - @chakra-ui/button@2.0.16
+  - @chakra-ui/card@2.1.6
+  - @chakra-ui/checkbox@2.2.10
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/control-box@2.0.13
+  - @chakra-ui/editable@2.0.19
+  - @chakra-ui/form-control@2.0.17
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/image@2.0.15
+  - @chakra-ui/input@2.0.20
+  - @chakra-ui/layout@2.1.16
+  - @chakra-ui/media-query@3.2.12
+  - @chakra-ui/menu@2.1.9
+  - @chakra-ui/modal@2.2.9
+  - @chakra-ui/number-input@2.0.18
+  - @chakra-ui/pin-input@2.0.19
+  - @chakra-ui/popover@2.1.8
+  - @chakra-ui/progress@2.1.5
+  - @chakra-ui/provider@2.1.2
+  - @chakra-ui/radio@2.0.19
+  - @chakra-ui/select@2.0.18
+  - @chakra-ui/skeleton@2.0.24
+  - @chakra-ui/slider@2.0.21
+  - @chakra-ui/spinner@2.0.13
+  - @chakra-ui/stat@2.0.17
+  - @chakra-ui/switch@2.0.22
+  - @chakra-ui/table@2.0.16
+  - @chakra-ui/tabs@2.1.8
+  - @chakra-ui/tag@2.0.17
+  - @chakra-ui/textarea@2.0.18
+  - @chakra-ui/tooltip@2.2.6
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.5.0
 
 ### Minor Changes
