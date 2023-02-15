@@ -26,19 +26,19 @@ export const layout: Config = {
   hideFrom: {
     scale: "breakpoints",
     transform: (value: string, theme) => {
-      const { minWQuery = value } = theme.__breakpoints?.get(value) ?? {}
-      return {
-        [`@media screen and (min-width: ${minWQuery})`]: { display: "none" },
-      }
+      const mq =
+        theme.__breakpoints?.get(value)?.minWQuery ??
+        `@media screen and (min-width: ${value})`
+      return { [mq]: { display: "none" } }
     },
   },
   hideBelow: {
     scale: "breakpoints",
     transform: (value: string, theme) => {
-      const { maxWQuery = value } = theme.__breakpoints?.get(value) ?? {}
-      return {
-        [`@media screen and (max-width: ${maxWQuery})`]: { display: "none" },
-      }
+      const mq =
+        theme.__breakpoints?.get(value)?.maxWQuery ??
+        `@media screen and (max-width: ${value})`
+      return { [mq]: { display: "none" } }
     },
   },
   verticalAlign: true,
