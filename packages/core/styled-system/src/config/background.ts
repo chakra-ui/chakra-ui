@@ -18,7 +18,7 @@ export const background: Config = {
   bgPos: t.prop("backgroundPosition"),
   bgRepeat: t.prop("backgroundRepeat"),
   bgAttachment: t.prop("backgroundAttachment"),
-  bgGradient: t.propT("backgroundImage", transforms.gradient),
+  bgGradient: t.gradients("backgroundImage"),
   bgClip: { transform: transforms.bgClip },
 }
 
@@ -59,7 +59,7 @@ export interface BackgroundProps {
   /**
    * The background-gradient shorthand
    */
-  bgGradient?: Token<CSS.Property.BackgroundImage>
+  bgGradient?: Token<CSS.Property.BackgroundImage, "gradients">
   /**
    * The CSS `background-size` property
    */

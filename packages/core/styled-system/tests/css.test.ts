@@ -75,6 +75,10 @@ const theme = toCSSVar({
       common: "opacity, transform, background-color, color",
     },
   },
+  gradients: {
+    baseGradient:
+      "linear-gradient(102.7deg, rgba(185, 185, 241, 0.2) 0%, rgba(84, 132, 234, 0.2) 51.56%, rgba(58, 142, 137, 0.2) 100%)",
+  },
 })
 
 test("returns system props styles", () => {
@@ -642,6 +646,18 @@ test("should resolve !important syntax", () => {
   expect(css({ background: "#fff !important" })(theme)).toMatchInlineSnapshot(`
     Object {
       "background": "#fff !important",
+    }
+  `)
+})
+
+test("bgGradient uses theme.gradients", () => {
+  const style = css({
+    bgGradient: "baseGradient",
+  })(theme)
+
+  expect(style).toMatchInlineSnapshot(`
+    Object {
+      "backgroundImage": "var(--gradients-baseGradient)",
     }
   `)
 })
