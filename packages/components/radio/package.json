@@ -34,7 +34,7 @@
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
-    "@zag-js/focus-visible": "0.2.1",
+    "@zag-js/focus-visible": "0.2.2",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
