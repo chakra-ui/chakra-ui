@@ -2084,7 +2084,7 @@ importers:
       '@swc/core': ^1.2.177
       '@types/lodash.throttle': ^4.1.7
       '@types/ora': ^3.2.0
-      '@types/update-notifier': 5.0.0
+      '@types/update-notifier': 5.1.0
       chokidar: ^3.5.3
       cli-check-node: ^1.3.4
       cli-handle-unhandled: ^1.1.1
@@ -2114,7 +2114,7 @@ importers:
     devDependencies:
       '@types/lodash.throttle': 4.1.7
       '@types/ora': 3.2.0
-      '@types/update-notifier': 5.0.0
+      '@types/update-notifier': 5.1.0
 
   tooling/cra-template:
     specifiers: {}
@@ -12435,8 +12435,8 @@ packages:
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
 
-  /@types/update-notifier/5.0.0:
-    resolution: {integrity: sha512-8CdLLv5ytMXEWfjSmWiuuZEffJJAsfNxSQbShZTmZD5picoci18VV1YqhKNTzlZvNCzt5WsnDQLyPSsj6xGuug==}
+  /@types/update-notifier/5.1.0:
+    resolution: {integrity: sha512-aGY5pH1Q/DcToKXl4MCj1c0uDUB+zSVFDRCI7Q7js5sguzBTqJV/5kJA2awofbtWYF3xnon1TYdZYnFditRPtQ==}
     dependencies:
       '@types/configstore': 6.0.0
       boxen: 4.2.0
