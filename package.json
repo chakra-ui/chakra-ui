@@ -85,7 +85,7 @@
     "@types/testing-library__jest-dom": "5.14.5",
     "@typescript-eslint/eslint-plugin": "5.30.3",
     "@typescript-eslint/parser": "5.30.3",
-    "dotenv": "16.0.1",
+    "dotenv": "16.0.3",
     "edit-json-file": "1.6.0",
     "eslint": "8.19.0",
     "eslint-config-airbnb-typescript": "17.0.0",
