@@ -38,7 +38,7 @@
   "devDependencies": {
     "@chakra-ui/styled-system": "workspace:*",
     "@types/dlv": "^1.1.2",
-    "clean-package": "2.1.1",
+    "clean-package": "2.2.0",
     "dlv": "^1.1.3"
   },
   "scripts": {

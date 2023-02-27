@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@types/lodash.mergewith": "4.6.7",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "dependencies": {
     "@chakra-ui/styled-system": "workspace:*",
