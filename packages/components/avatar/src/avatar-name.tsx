@@ -3,10 +3,10 @@ import { useAvatarStyles } from "./avatar-context"
 import { AvatarOptions } from "./avatar-types"
 
 export function initials(name: string) {
-  const [firstName, lastName] = name.split(" ")
-  return firstName && lastName
-    ? `${firstName.charAt(0)}${lastName.charAt(0)}`
-    : firstName.charAt(0)
+  const splittedName = name.split(' ');
+  const length = splittedName.length;
+  return length == 1 ? splittedName[0].charAt(0)
+  	: `${splittedName[0].charAt(0)}${splittedName[length-1].charAt(0)}`
 }
 
 interface AvatarNameProps
