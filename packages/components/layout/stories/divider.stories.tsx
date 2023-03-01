@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Divider } from ".."
+import { Container, Divider, DividerLabel } from ".."
 
 export default {
   title: "Components / Data Display / Divider",
@@ -25,4 +25,16 @@ export const Horizontal = () => <Divider orientation="horizontal" />
 
 export const DashedVariant = () => (
   <Divider orientation="horizontal" variant="dashed" />
+)
+
+export const HorizontalWithLabel = () => (
+  <Divider orientation="horizontal">
+    <DividerLabel>or</DividerLabel>
+  </Divider>
+)
+
+export const VerticalWithLabel = () => (
+  <Divider orientation="vertical">
+    <DividerLabel>or</DividerLabel>
+  </Divider>
 )

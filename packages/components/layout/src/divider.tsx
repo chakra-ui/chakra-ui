@@ -5,8 +5,10 @@ import {
   ThemingProps,
   useStyleConfig,
   HTMLChakraProps,
+  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
+import React from "react"
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -35,35 +37,67 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     ...rest
   } = omitThemingProps(props)
 
-  const dividerStyles = {
+  const lineStyles = {
     vertical: {
       borderLeftWidth:
         borderLeftWidth || borderRightWidth || borderWidth || "1px",
-      height: "100%",
+      height: "50%",
+      left: -"50%",
     },
     horizontal: {
       borderBottomWidth:
         borderBottomWidth || borderTopWidth || borderWidth || "1px",
-      width: "100%",
+      width: "50%",
+      top: "50%",
     },
+  }
+
+  const line: SystemStyleObject = {
+    content: '""',
+    position: "relative",
+    display: "inline-block",
+    borderColor,
+    borderStyle,
+    ...lineStyles[orientation],
+  }
+
+  let label: React.ReactElement | null = null
+  if (
+    React.isValidElement(rest.children) &&
+    rest.children.type === DividerLabel
+  ) {
+    label = React.cloneElement<any>(rest.children, {
+      orientation,
+    })
+  }
+
+  const dividerStyles: SystemStyleObject = {
+    display: "flex",
+    flexDirection: orientation === "vertical" ? "column" : "row",
+    alignItems: "center",
+    color: borderColor,
+    _before: line,
+    _after: line,
+    border: 0,
+    [orientation === "vertical" ? "height" : "width"]: "100%",
   }
 
   return (
     <chakra.hr
       ref={ref}
+      as={rest.children ? "div" : "hr"}
+      role="separator"
       aria-orientation={orientation}
       {...rest}
       __css={{
         ...styles,
-        border: "0",
-
-        borderColor,
-        borderStyle,
-        ...dividerStyles[orientation],
+        ...dividerStyles,
         ...__css,
       }}
       className={cx("chakra-divider", className)}
-    />
+    >
+      {label}
+    </chakra.hr>
   )
 })
 
@@ -71,6 +105,38 @@ export interface DividerProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"Divider"> {
   orientation?: "horizontal" | "vertical"
+}
+
+export interface DividerLabelProps extends HTMLChakraProps<"span"> {
+  orientation?: "horizontal" | "vertical"
+}
+
+export const DividerLabel: React.FC<DividerLabelProps> = (props) => {
+  const { children, orientation = "horizontal", className, ...rest } = props
+  const labelStyles: SystemStyleObject = {
+    display: "inline-block",
+    flexShrink: 0,
+    mx: 2,
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+    ...(orientation === "vertical"
+      ? {
+          writingMode: "vertical-rl",
+          textOrientation: "mixed",
+        }
+      : {}),
+  }
+
+  return (
+    <chakra.span
+      {...rest}
+      __css={labelStyles}
+      className={cx("chakra-divider__label", className)}
+    >
+      {children}
+    </chakra.span>
+  )
 }
 
 Divider.displayName = "Divider"
