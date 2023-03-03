@@ -8,6 +8,7 @@ import {
 import { HTMLMotionProps } from "framer-motion"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
+import zIndices from "@chakra-ui/theme/src/foundations/z-index"
 
 export interface PopoverContentProps extends PopoverTransitionProps {
   rootProps?: HTMLChakraProps<"div">
@@ -26,6 +27,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
       position: "relative",
       display: "flex",
       flexDirection: "column",
+      zIndex: zIndices["popover"],
       ...styles.content,
     }
 
