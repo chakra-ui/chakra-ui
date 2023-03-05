@@ -1,4 +1,9 @@
-import { forwardRef, HTMLChakraProps, chakra } from "@chakra-ui/system"
+import {
+  forwardRef,
+  HTMLChakraProps,
+  chakra,
+  useStyleConfig,
+} from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 
 import { useMenuStyles } from "./menu"
@@ -7,6 +12,7 @@ import { useMenuButton } from "./use-menu"
 export interface MenuButtonProps extends HTMLChakraProps<"button"> {}
 
 const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
+  const _focusVisible = useStyleConfig("Button", {})?.["_focusVisible"]
   const styles = useMenuStyles()
   return (
     <chakra.button
@@ -17,6 +23,7 @@ const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
         appearance: "none",
         alignItems: "center",
         outline: 0,
+        ...{ _focusVisible },
         ...styles.button,
       }}
     />
