@@ -71,7 +71,7 @@ importers:
       npm-run-all: ^4.1.5
       ora: 6.1.2
       outdent: ^0.8.0
-      plop: 3.1.1
+      plop: 3.1.2
       prettier: ^2.7.1
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -145,7 +145,7 @@ importers:
       npm-run-all: 4.1.5
       ora: 6.1.2
       outdent: 0.8.0
-      plop: 3.1.1
+      plop: 3.1.2
       prettier: 2.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -24376,8 +24376,8 @@ packages:
     resolution: {integrity: sha512-jY5dPJzw6NHd/KPSfPKJ+IHoFS81/tJ43r34ZeNMXGzCOM8jwQDCD12HYayKIB6MuznrnqIYy2e891NA2g0ibA==}
     engines: {node: '>=0.10.0'}
 
-  /node-plop/0.31.0:
-    resolution: {integrity: sha512-aKLPxiBoFTNUovvtK8j/Whc4PZREkYx6htw2HJPiU8wYquXmN8pkd9B3xlFo6AJ4ZlzFsQSf/NXR5xET8EqRYw==}
+  /node-plop/0.31.1:
+    resolution: {integrity: sha512-qmXJJt3YETFt/e0dtMADVpvck6EvN01Jig086o+J3M6G++mWA7iJ3Pqz4m4kvlynh73Iz2/rcZzxq7xTiF+aIQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       '@types/inquirer': 8.2.1
@@ -25279,8 +25279,8 @@ packages:
       semver-compare: 1.0.0
     dev: false
 
-  /plop/3.1.1:
-    resolution: {integrity: sha512-NuctKmuNUACXBQn25bBr5oj/75nHxdKGwjA/+b7cVoj1sp+gTVqcc8eAr4QcNJgMPsZWRJBN2kMkgmsqbqV9gg==}
+  /plop/3.1.2:
+    resolution: {integrity: sha512-39SOtQ3WlePXSNqKqAh/QlUSHXHO25iCnyCO3Qs/9UzPVmwVledRTDGvPd2csh+JnHVXz4c63F6fBwdqZHgbUg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -25289,7 +25289,7 @@ packages:
       interpret: 2.2.0
       liftoff: 4.0.0
       minimist: 1.2.6
-      node-plop: 0.31.0
+      node-plop: 0.31.1
       ora: 6.1.2
       v8flags: 4.0.0
     dev: false
