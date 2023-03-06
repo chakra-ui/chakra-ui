@@ -457,11 +457,11 @@ importers:
       '@chakra-ui/system': workspace:*
       '@chakra-ui/theme': workspace:*
       '@chakra-ui/utils': workspace:*
-      clean-package: 2.2.0
+      clean-package: 2.1.1
       framer-motion: ^6.2.9
       react: ^18.2.0
       react-icons: ^4.2.0
-      react-spinners: 0.11.0
+      react-spinners: 0.13.8
     dependencies:
       '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/react-use-merge-refs': link:../../hooks/use-merge-refs
@@ -473,11 +473,11 @@ importers:
       '@chakra-ui/system': link:../../core/system
       '@chakra-ui/theme': link:../theme
       '@chakra-ui/utils': link:../../legacy/utils
-      clean-package: 2.2.0
+      clean-package: 2.1.1
       framer-motion: 6.5.1_react@18.2.0
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
-      react-spinners: 0.11.0_react@18.2.0
+      react-spinners: 0.13.8_react@18.2.0
 
   packages/components/card:
     specifiers:
@@ -15028,6 +15028,13 @@ packages:
     dependencies:
       source-map: 0.6.1
 
+  /clean-package/2.1.1:
+    resolution: {integrity: sha512-+svGAs1RfjguW3Yi0uk1F2gu56jt0nkpFW6Gd9BDK0w7xcIokFwrQOWuRn5NO5pfTDkLCVP1ttIjvJwXaSvRsA==}
+    hasBin: true
+    dependencies:
+      dot-object: 2.1.4
+    dev: true
+
   /clean-package/2.2.0:
     resolution: {integrity: sha512-vLv8kRqvh4smPDpqAYFPLEijTppAd/cfCz4yBcUGoVl/JKu6ZWKhlo+G/cAmwlSa29RudfBeuyiNEzas8bTwEQ==}
     hasBin: true
@@ -16514,6 +16521,14 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.4.1
+
+  /dot-object/2.1.4:
+    resolution: {integrity: sha512-7FXnyyCLFawNYJ+NhkqyP9Wd2yzuo+7n9pGiYpkmXCTYa8Ci2U0eUNDVg5OuO5Pm6aFXI2SWN8/N/w7SJWu1WA==}
+    hasBin: true
+    dependencies:
+      commander: 4.1.1
+      glob: 7.2.3
+    dev: true
 
   /dot-prop/5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
@@ -27071,17 +27086,13 @@ packages:
       throttle-debounce: 3.0.1
     dev: false
 
-  /react-spinners/0.11.0_react@18.2.0:
-    resolution: {integrity: sha512-rDZc0ABWn/M1OryboGsWVmIPg8uYWl0L35jPUhr40+Yg+syVPjeHwvnB7XWaRpaKus3M0cG9BiJA+ZB0dAwWyw==}
+  /react-spinners/0.13.8_react@18.2.0:
+    resolution: {integrity: sha512-3e+k56lUkPj0vb5NDXPVFAOkPC//XyhKPJjvcGjyMNPWsBKpplfeyialP74G7H7+It7KzhtET+MvGqbKgAqpZA==}
     peerDependencies:
-      react: ^16.0.0 || ^17.0.0
-      react-dom: ^16.0.0 || ^17.0.0
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@emotion/react': 11.9.3_react@18.2.0
       react: 18.2.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@types/react'
     dev: true
 
   /react-style-singleton/2.2.1_react@18.2.0:
