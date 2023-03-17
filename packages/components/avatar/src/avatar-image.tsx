@@ -26,6 +26,7 @@ export function AvatarImage(props: AvatarImageProps) {
     icon = <GenericAvatarIcon />,
     ignoreFallback,
     referrerPolicy,
+    crossOrigin,
   } = props
 
   /**
@@ -69,6 +70,7 @@ export function AvatarImage(props: AvatarImageProps) {
       alt={name}
       onLoad={onLoad}
       referrerPolicy={referrerPolicy}
+      crossOrigin={crossOrigin ?? undefined}
       className="chakra-avatar__img"
       loading={loading}
       __css={{
