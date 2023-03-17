@@ -2,9 +2,11 @@
 
 ## Latest Release
 
-### February 15, 2023: [v2.5.1](/.changelog/v2.5.1.mdx)
+### March 17, 2023: [v2.5.2](/.changelog/v2.5.2.mdx)
 
 ## Previous Releases
+
+### February 15, 2023: [v2.5.1](/.changelog/v2.5.1.mdx)
 
 ### February 13, 2023: [v2.5.0](/.changelog/v2.5.0.mdx)
 
