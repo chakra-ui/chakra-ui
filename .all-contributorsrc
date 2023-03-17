@@ -2120,6 +2120,15 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "Mingyu-Song",
+      "name": "SMG",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61491189?v=4",
+      "profile": "https://github.com/Mingyu-Song",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
