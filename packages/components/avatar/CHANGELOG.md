@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.2.6
+
+### Patch Changes
+
+- [#7438](https://github.com/chakra-ui/chakra-ui/pull/7438)
+  [`01c0a84a5`](https://github.com/chakra-ui/chakra-ui/commit/01c0a84a5fea038e3970666944c2b3096a64504b)
+  Thanks [@nicksrandall](https://github.com/nicksrandall)! - Adding support for
+  Avatar to specify "crossOrigin" prop for image
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
 ## 2.2.5
 
 ### Patch Changes
