@@ -1,5 +1,59 @@
 # Change Log
 
+## 2.5.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`bb7319244`](https://github.com/chakra-ui/chakra-ui/commit/bb731924479d33c75c9a983aa7bc1f3d25b40f35),
+  [`01c0a84a5`](https://github.com/chakra-ui/chakra-ui/commit/01c0a84a5fea038e3970666944c2b3096a64504b),
+  [`eb7cab94c`](https://github.com/chakra-ui/chakra-ui/commit/eb7cab94cc6e762e96c61c63c17d3414b9c71ed6),
+  [`600ec1108`](https://github.com/chakra-ui/chakra-ui/commit/600ec1108e3657b610ce05f6bce47bfd666465f8),
+  [`e5255d86b`](https://github.com/chakra-ui/chakra-ui/commit/e5255d86b05d715c36654a9f2a8cf9d2a1addbeb),
+  [`df1e519b5`](https://github.com/chakra-ui/chakra-ui/commit/df1e519b536cf07957283c4c56153f4799683ff8)]:
+  - @chakra-ui/menu@2.1.10
+  - @chakra-ui/avatar@2.2.6
+  - @chakra-ui/editable@2.0.20
+  - @chakra-ui/styled-system@2.6.2
+  - @chakra-ui/css-reset@2.0.13
+  - @chakra-ui/checkbox@2.2.11
+  - @chakra-ui/radio@2.0.20
+  - @chakra-ui/card@2.1.6
+  - @chakra-ui/tag@2.0.17
+  - @chakra-ui/theme@2.2.5
+  - @chakra-ui/toast@6.0.2
+  - @chakra-ui/system@2.5.2
+  - @chakra-ui/theme-utils@2.0.12
+  - @chakra-ui/provider@2.1.3
+  - @chakra-ui/switch@2.0.23
+  - @chakra-ui/popover@2.1.8
+  - @chakra-ui/slider@2.0.22
+  - @chakra-ui/accordion@2.1.9
+  - @chakra-ui/alert@2.0.17
+  - @chakra-ui/breadcrumb@2.1.4
+  - @chakra-ui/button@2.0.16
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/control-box@2.0.13
+  - @chakra-ui/form-control@2.0.17
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/image@2.0.15
+  - @chakra-ui/input@2.0.20
+  - @chakra-ui/layout@2.1.16
+  - @chakra-ui/media-query@3.2.12
+  - @chakra-ui/modal@2.2.9
+  - @chakra-ui/number-input@2.0.18
+  - @chakra-ui/pin-input@2.0.19
+  - @chakra-ui/progress@2.1.5
+  - @chakra-ui/select@2.0.18
+  - @chakra-ui/skeleton@2.0.24
+  - @chakra-ui/spinner@2.0.13
+  - @chakra-ui/stat@2.0.17
+  - @chakra-ui/table@2.0.16
+  - @chakra-ui/tabs@2.1.8
+  - @chakra-ui/textarea@2.0.18
+  - @chakra-ui/tooltip@2.2.6
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.5.1
 
 ### Patch Changes

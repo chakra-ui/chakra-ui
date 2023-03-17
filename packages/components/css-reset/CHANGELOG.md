@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.13
+
+### Patch Changes
+
+- [#7456](https://github.com/chakra-ui/chakra-ui/pull/7456)
+  [`e5255d86b`](https://github.com/chakra-ui/chakra-ui/commit/e5255d86b05d715c36654a9f2a8cf9d2a1addbeb)
+  Thanks [@kendaganio](https://github.com/kendaganio)! - Attach `--chakra-vh`
+  variable to :host as well
+
 ## 2.0.12
 
 ### Patch Changes

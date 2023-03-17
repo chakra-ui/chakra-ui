@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/avatar",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "A React component used to show users avatar or initials",
   "keywords": [
     "component",
