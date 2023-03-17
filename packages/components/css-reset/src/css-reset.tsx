@@ -1,24 +1,24 @@
 import { Global } from "@emotion/react"
 
 const vhPolyfill = `
-  :root {
+  :root, :host {
     --chakra-vh: 100vh;
   }
 
   @supports (height: -webkit-fill-available) {
-    :root {
+    :root, :host {
       --chakra-vh: -webkit-fill-available;
     }
   }
 
   @supports (height: -moz-fill-available) {
-    :root {
+    :root, :host {
       --chakra-vh: -moz-fill-available;
     }
   }
 
   @supports (height: 100dvh) {
-    :root {
+    :root, :host {
       --chakra-vh: 100dvh;
     }
   }
