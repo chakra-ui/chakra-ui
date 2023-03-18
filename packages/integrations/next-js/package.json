@@ -26,6 +26,8 @@
   },
   "scripts": {
     "build": "tsup src --dts",
+    "postbuild": "pnpm fix:import",
+    "fix:import": "node ./scripts/postbuild.mjs",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
