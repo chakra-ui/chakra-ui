@@ -5,16 +5,20 @@ import {
 } from "@chakra-ui/styled-system"
 import { transparentize } from "@chakra-ui/theme-tools"
 
+const $bg = cssVar("badge-bg")
+const $fg = cssVar("badge-color")
+const $shadow = cssVar("badge-shadow")
+
 const baseStyle = defineStyle({
   px: 1,
   textTransform: "uppercase",
   fontSize: "xs",
   borderRadius: "sm",
   fontWeight: "bold",
+  bg: $bg.reference,
+  color: $fg.reference,
+  boxShadow: $shadow.reference,
 })
-
-const $bg = cssVar("badge-bg")
-const $fg = cssVar("badge-color")
 
 const variantSolid = defineStyle((props) => {
   const { colorScheme: c, theme } = props
@@ -26,8 +30,6 @@ const variantSolid = defineStyle((props) => {
       [$bg.variable]: dark,
       [$fg.variable]: `colors.whiteAlpha.800`,
     },
-    bg: $bg.reference,
-    color: $fg.reference,
   }
 })
 
@@ -41,8 +43,6 @@ const variantSubtle = defineStyle((props) => {
       [$bg.variable]: darkBg,
       [$fg.variable]: `colors.${c}.200`,
     },
-    bg: $bg.reference,
-    color: $fg.reference,
   }
 })
 
@@ -54,8 +54,7 @@ const variantOutline = defineStyle((props) => {
     _dark: {
       [$fg.variable]: darkColor,
     },
-    color: $fg.reference,
-    boxShadow: `inset 0 0 0px 1px ${$fg.reference}`,
+    [$shadow.variable]: `inset 0 0 0px 1px ${$fg.reference}`,
   }
 })
 
