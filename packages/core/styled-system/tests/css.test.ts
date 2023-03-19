@@ -650,14 +650,30 @@ test("should resolve !important syntax", () => {
   `)
 })
 
-test("bgGradient uses theme.gradients", () => {
-  const style = css({
-    bgGradient: "baseGradient",
-  })(theme)
+test("bgGradient, bgImage, bgImg, and backgroundImage uses theme.gradients", () => {
+  ;["bgGradient", "bgImage", "backgroundImage", "bgImg"].forEach((prop) => {
+    const style = css({
+      [prop]: "baseGradient",
+    })(theme)
 
-  expect(style).toMatchInlineSnapshot(`
-    Object {
-      "backgroundImage": "var(--gradients-baseGradient)",
-    }
-  `)
+    expect(style).toMatchInlineSnapshot(`
+      Object {
+        "backgroundImage": "var(--gradients-baseGradient)",
+      }
+    `)
+  })
+})
+
+test("bgImage, bgImg, and backgroundImage maintain `url()` function rendering fallback", () => {
+  ;["bgImage", "backgroundImage", "bgImg"].forEach((prop) => {
+    const style = css({
+      [prop]: "../../media/examples/lizard.png",
+    })(theme)
+
+    expect(style).toMatchInlineSnapshot(`
+      Object {
+        "backgroundImage": "url('../../media/examples/lizard.png')",
+      }
+    `)
+  })
 })

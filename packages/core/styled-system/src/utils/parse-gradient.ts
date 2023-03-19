@@ -29,6 +29,10 @@ export function parseGradient(
   theme: Record<string, any>,
 ) {
   if (value == null || globalSet.has(value)) return value
+
+  const prevent = isCSSFunction(value) || globalSet.has(value)
+  if (!prevent) return `url('${value}')`
+
   const regex = /(^[a-z-A-Z]+)\((.*)\)/g
   const results = regex.exec(value)
   const type = results?.[1]

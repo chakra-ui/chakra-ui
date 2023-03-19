@@ -5,7 +5,7 @@ import { t, Token, transforms } from "../utils"
 export const background: Config = {
   background: t.colors("background"),
   backgroundColor: t.colors("backgroundColor"),
-  backgroundImage: t.propT("backgroundImage", transforms.bgImage),
+  backgroundImage: t.gradients("backgroundImage"),
   backgroundSize: true,
   backgroundPosition: true,
   backgroundRepeat: true,
@@ -55,7 +55,7 @@ export interface BackgroundProps {
   /**
    * The CSS `background-image` property
    */
-  backgroundImage?: Token<CSS.Property.BackgroundImage>
+  backgroundImage?: Token<CSS.Property.BackgroundImage, "gradients">
   /**
    * The background-gradient shorthand
    */
@@ -75,11 +75,11 @@ export interface BackgroundProps {
   /**
    * The CSS `background-image` property
    */
-  bgImage?: Token<CSS.Property.BackgroundImage>
+  bgImage?: Token<CSS.Property.BackgroundImage, "gradients">
   /**
    * The CSS `background-image` property
    */
-  bgImg?: Token<CSS.Property.BackgroundImage>
+  bgImg?: Token<CSS.Property.BackgroundImage, "gradients">
   /**
    * The CSS `background-repeat` property
    */
