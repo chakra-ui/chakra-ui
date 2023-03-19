@@ -10,7 +10,7 @@ const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const $bg = cssVar("modal-bg")
-const $bs = cssVar("modal-box-shadow")
+const $shadow = cssVar("modal-shadow")
 
 const baseStyleOverlay = defineStyle({
   bg: "blackAlpha.600",
@@ -41,13 +41,13 @@ const baseStyleDialog = defineStyle((props) => {
     zIndex: "modal",
     maxH: scrollBehavior === "inside" ? "calc(100% - 7.5rem)" : undefined,
     [$bg.variable]: "colors.white",
-    [$bs.variable]: "shadows.lg",
+    [$shadow.variable]: "shadows.lg",
     _dark: {
       [$bg.variable]: "colors.gray.700",
-      [$bs.variable]: "shadows.dark-lg",
+      [$shadow.variable]: "shadows.dark-lg",
     },
     bg: $bg.reference,
-    boxShadow: $bs.reference,
+    boxShadow: $shadow.reference,
   }
 })
 
