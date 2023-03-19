@@ -57,6 +57,6 @@
   "devDependencies": {
     "@types/lodash.throttle": "^4.1.7",
     "@types/ora": "^3.2.0",
-    "@types/update-notifier": "5.0.0"
+    "@types/update-notifier": "5.1.0"
   }
 }

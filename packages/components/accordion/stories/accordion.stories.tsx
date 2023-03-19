@@ -168,10 +168,11 @@ const data = [
   { title: "Another one", text: "Some value 7..." },
 ]
 
-export function Bug_2160() {
+export function WithSearchFilter() {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [displayData, setDisplayData] = React.useState(data)
   const [filter, setFilter] = React.useState("")
+  const [index, setIndex] = React.useState(-1)
 
   React.useEffect(() => {
     if (!filter || filter === "") {
@@ -190,6 +191,7 @@ export function Bug_2160() {
 
   function onInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
+    setIndex(-1)
   }
 
   return (
@@ -203,7 +205,15 @@ export function Bug_2160() {
         />
       </chakra.div>
       {displayData.length > 0 && (
-        <Accordion allowToggle>
+        <Accordion
+          allowToggle
+          index={index}
+          onChange={(index) => {
+            if (!Array.isArray(index)) {
+              setIndex(index)
+            }
+          }}
+        >
           {displayData.map((item, i) => (
             <AccordionItem key={`accordion-item-${i}`}>
               <h2>
@@ -323,31 +333,3 @@ export const WithDisabledAccordionItem = () => {
     </Accordion>
   )
 }
-
-// export const OverridableAccordionContainer = () => {
-//   return (
-//     <ChakraProvider
-//       theme={extendTheme({
-//         components: {
-//           Accordion: {
-//             baseStyle: {
-//               root: {
-//                 backgroundColor: "red",
-//               },
-//               container: {
-//                 backgroundColor: "green",
-//               },
-//             },
-//           },
-//         },
-//       })}
-//     >
-//       <Accordion allowToggle>
-//         <AccordionItem>
-//           <AccordionButton>This should be green</AccordionButton>
-//           <AccordionPanel>Turns out it's red</AccordionPanel>
-//         </AccordionItem>
-//       </Accordion>
-//     </ChakraProvider>
-//   )
-// }

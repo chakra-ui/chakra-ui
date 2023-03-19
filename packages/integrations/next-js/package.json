@@ -26,6 +26,8 @@
   },
   "scripts": {
     "build": "tsup src --dts",
+    "postbuild": "pnpm fix:import",
+    "fix:import": "node ./scripts/postbuild.mjs",
     "dev": "pnpm build:fast -- --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
@@ -45,7 +47,7 @@
   "devDependencies": {
     "@emotion/react": "^11.9.0",
     "@chakra-ui/react": "workspace:*",
-    "clean-package": "2.1.1",
+    "clean-package": "2.2.0",
     "next": ">=13",
     "react": "^18.0.0"
   },

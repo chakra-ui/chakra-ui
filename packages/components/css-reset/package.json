@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/css-reset",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "CSS reset component for Chakra UI",
   "keywords": [
     "theme",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@emotion/react": "^11.9.0",
     "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

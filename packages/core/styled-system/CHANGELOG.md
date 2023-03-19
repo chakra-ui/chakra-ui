@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.6.2
+
+### Patch Changes
+
+- [#7441](https://github.com/chakra-ui/chakra-ui/pull/7441)
+  [`600ec1108`](https://github.com/chakra-ui/chakra-ui/commit/600ec1108e3657b610ce05f6bce47bfd666465f8)
+  Thanks [@jeferson-sb](https://github.com/jeferson-sb)! - Add ::first-letter
+  pseudo element to style props
+
 ## 2.6.1
 
 ### Patch Changes

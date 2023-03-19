@@ -5,6 +5,10 @@
       "required": false,
       "description": "The visual color appearance of the component"
     },
+    "crossOrigin": {
+      "type": "\"\" | \"anonymous\" | \"use-credentials\"",
+      "required": false
+    },
     "getInitials": {
       "type": "(name: string) => string",
       "required": false,

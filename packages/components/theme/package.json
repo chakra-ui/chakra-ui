@@ -38,7 +38,7 @@
   "devDependencies": {
     "@chakra-ui/cli": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

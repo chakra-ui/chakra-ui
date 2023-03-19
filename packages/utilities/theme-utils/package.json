@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme-utils",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "",
   "keywords": [
     "theme",
@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@types/lodash.mergewith": "4.6.7",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "dependencies": {
     "@chakra-ui/styled-system": "workspace:*",
