@@ -434,7 +434,7 @@ importers:
       '@chakra-ui/system': workspace:*
       clean-package: 2.2.0
       react: ^18.2.0
-      react-router-dom: 6.0.0
+      react-router-dom: 6.9.0
     dependencies:
       '@chakra-ui/react-children-utils': link:../../utilities/react-children-utils
       '@chakra-ui/react-context': link:../../hooks/context
@@ -444,7 +444,7 @@ importers:
       '@chakra-ui/system': link:../../core/system
       clean-package: 2.2.0
       react: 18.2.0
-      react-router-dom: 6.0.0_react@18.2.0
+      react-router-dom: 6.9.0_react@18.2.0
 
   packages/components/button:
     specifiers:
@@ -808,7 +808,7 @@ importers:
       clean-package: 2.2.0
       react: ^18.2.0
       react-icons: ^4.2.0
-      react-router-dom: 6.0.0
+      react-router-dom: 6.9.0
     dependencies:
       '@chakra-ui/breakpoint-utils': link:../../utilities/breakpoint-utils
       '@chakra-ui/icon': link:../icon
@@ -821,7 +821,7 @@ importers:
       clean-package: 2.2.0
       react: 18.2.0
       react-icons: 4.4.0_react@18.2.0
-      react-router-dom: 6.0.0_react@18.2.0
+      react-router-dom: 6.9.0_react@18.2.0
 
   packages/components/live-region:
     specifiers:
@@ -8435,6 +8435,11 @@ packages:
   /@popperjs/core/2.11.5:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
+
+  /@remix-run/router/1.4.0:
+    resolution: {integrity: sha512-BJ9SxXux8zAg991UmT8slpwpsd31K1dHHbD3Ba4VzD+liLQ4WAMSxQp2d2ZPRPfN0jN2NPRowcSSoM7lCaF08Q==}
+    engines: {node: '>=14'}
+    dev: true
 
   /@rollup/plugin-alias/3.1.9_rollup@2.77.0:
     resolution: {integrity: sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==}
@@ -20600,12 +20605,6 @@ packages:
   /highlight.js/10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
 
-  /history/5.3.0:
-    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
-    dependencies:
-      '@babel/runtime': 7.20.7
-    dev: true
-
   /hmac-drbg/1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
     dependencies:
@@ -26938,22 +26937,25 @@ packages:
       use-sidecar: 1.1.2_react@18.2.0
     dev: false
 
-  /react-router-dom/6.0.0_react@18.2.0:
-    resolution: {integrity: sha512-bPXyYipf0zu6K7mHSEmNO5YqLKq2q9N+Dsahw9Xh3oq1IirsI3vbnIYcVWin6A0zWyHmKhMGoV7Gr0j0kcuVFg==}
+  /react-router-dom/6.9.0_react@18.2.0:
+    resolution: {integrity: sha512-/seUAPY01VAuwkGyVBPCn1OXfVbaWGGu4QN9uj0kCPcTyNYgL1ldZpxZUpRU7BLheKQI4Twtl/OW2nHRF1u26Q==}
+    engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
+      '@remix-run/router': 1.4.0
       react: 18.2.0
-      react-router: 6.0.0_react@18.2.0
+      react-router: 6.9.0_react@18.2.0
     dev: true
 
-  /react-router/6.0.0_react@18.2.0:
-    resolution: {integrity: sha512-FcTRCihYZvERMNbG54D9+Wkv2cj/OtoxNlA/87D7vxKYlmSmbF9J9XChI9Is44j/behEiOhbovgVZBhKQn+wgA==}
+  /react-router/6.9.0_react@18.2.0:
+    resolution: {integrity: sha512-51lKevGNUHrt6kLuX3e/ihrXoXCa9ixY/nVWRLlob4r/l0f45x3SzBvYJe3ctleLUQQ5fVa4RGgJOTH7D9Umhw==}
+    engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      history: 5.3.0
+      '@remix-run/router': 1.4.0
       react: 18.2.0
     dev: true
 
