@@ -1,5 +1,21 @@
 # Change Log
 
+## 6.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
+  [`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
+  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
+  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]:
+  - @chakra-ui/theme@2.3.0
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/system@2.5.3
+  - @chakra-ui/alert@2.0.18
+  - @chakra-ui/portal@2.0.16
+  - @chakra-ui/close-button@2.0.17
+
 ## 6.0.2
 
 ### Patch Changes

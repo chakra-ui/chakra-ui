@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - `FormLabel`: Fix
+  issue where `htmlFor` and `id` could not be set to `null`
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/icon@3.0.16
+
 ## 2.0.17
 
 ### Patch Changes

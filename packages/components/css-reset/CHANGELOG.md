@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [#7464](https://github.com/chakra-ui/chakra-ui/pull/7464)
+  [`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  scoping the css reset to specific selector.
+
+  To use this feature, pass the `resetScope` prop to the `ChakraProvider` or
+  `ChakraBaseProvider` component.
+
+  ```jsx live=false
+  import { ChakraProvider } from "@chakra-ui/react"
+
+  function App() {
+    return (
+      <ChakraProvider resetScope=".ck-reset">
+        <App />
+      </ChakraProvider>
+    )
+  }
+  ```
+
 ## 2.0.13
 
 ### Patch Changes
