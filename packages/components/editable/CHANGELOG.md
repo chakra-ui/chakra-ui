@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.20
+
+### Patch Changes
+
+- [#7352](https://github.com/chakra-ui/chakra-ui/pull/7352)
+  [`eb7cab94c`](https://github.com/chakra-ui/chakra-ui/commit/eb7cab94cc6e762e96c61c63c17d3414b9c71ed6)
+  Thanks [@DawidWraga](https://github.com/DawidWraga)! - Export
+  "useEditableContext" hook
+
 ## 2.0.19
 
 ### Patch Changes

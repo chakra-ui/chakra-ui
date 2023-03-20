@@ -30,6 +30,7 @@ export interface AvatarProps
   extends Omit<HTMLChakraProps<"span">, "onError">,
     AvatarOptions,
     ThemingProps<"Avatar"> {
+  crossOrigin?: HTMLChakraProps<"img">["crossOrigin"]
   iconLabel?: string
   /**
    * If `true`, opt out of the avatar's `fallback` logic and
@@ -63,6 +64,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     children,
     borderColor,
     ignoreFallback,
+    crossOrigin,
     ...rest
   } = omitThemingProps(props)
 
@@ -100,6 +102,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
           icon={icon}
           iconLabel={iconLabel}
           ignoreFallback={ignoreFallback}
+          crossOrigin={crossOrigin}
         />
         {children}
       </AvatarStylesProvider>

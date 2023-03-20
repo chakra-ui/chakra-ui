@@ -33,6 +33,10 @@ export interface ChakraProviderProps
    */
   resetCSS?: boolean
   /**
+   * The selector to scope the css reset styles to.
+   */
+  resetScope?: string
+  /**
    * manager to persist a users color mode preference in
    *
    * omit if you don't render server-side
@@ -69,6 +73,7 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
     children,
     colorModeManager,
     portalZIndex,
+    resetScope,
     resetCSS = true,
     theme = {},
     environment,
@@ -91,7 +96,7 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
         colorModeManager={colorModeManager}
         options={theme.config}
       >
-        {resetCSS ? <CSSReset /> : <CSSPolyfill />}
+        {resetCSS ? <CSSReset scope={resetScope} /> : <CSSPolyfill />}
         <GlobalStyle />
         {portalZIndex ? (
           <PortalManager zIndex={portalZIndex}>{_children}</PortalManager>

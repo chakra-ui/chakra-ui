@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.2.11
+
+### Patch Changes
+
+- [#7355](https://github.com/chakra-ui/chakra-ui/pull/7355)
+  [`df1e519b5`](https://github.com/chakra-ui/chakra-ui/commit/df1e519b536cf07957283c4c56153f4799683ff8)
+  Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update
+  dependency @zag-js/focus-visible to v0.2.2
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.17
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.2.10
 
 ### Patch Changes
