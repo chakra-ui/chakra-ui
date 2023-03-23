@@ -306,7 +306,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       ...props,
       ref: forwardedRef,
       onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-      onTouchStart: callAllHandlers(props.onTouchStart, stopEvent),
       "data-disabled": dataAttr(isDisabled),
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
