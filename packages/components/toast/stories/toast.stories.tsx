@@ -27,6 +27,7 @@ export function ToastExample() {
             status: "error",
             duration: null,
             isClosable: true,
+            colorScheme: "red",
             onCloseComplete: () => {
               console.log("hello")
             },
