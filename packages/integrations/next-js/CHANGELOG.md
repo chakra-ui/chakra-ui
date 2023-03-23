@@ -1,5 +1,16 @@
 # @chakra-ui/next-js
 
+## 2.1.0
+
+### Minor Changes
+
+- [`46bd14641`](https://github.com/chakra-ui/chakra-ui/commit/46bd146415ba8232ac1106e1714608704ca73712)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `Image`
+  component that supercharges the Next.js optimized image with Chakra style
+  props.
+
+  - Add ESM interop for `createCache` to avoid server-related errors
+
 ## 2.0.1
 
 ### Patch Changes

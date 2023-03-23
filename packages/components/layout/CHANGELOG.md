@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.17
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/icon@3.0.16
+
 ## 2.1.16
 
 ### Patch Changes

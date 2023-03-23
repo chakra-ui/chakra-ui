@@ -1,5 +1,15 @@
 # @chakra-ui/theme-utils
 
+## 2.0.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
+  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
+  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]:
+  - @chakra-ui/theme@2.3.0
+
 ## 2.0.12
 
 ### Patch Changes

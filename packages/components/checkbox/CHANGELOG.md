@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.2.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
+  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/form-control@2.0.18
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.2.11
 
 ### Patch Changes
