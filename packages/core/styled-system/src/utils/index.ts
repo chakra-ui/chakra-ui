@@ -13,6 +13,7 @@ export const t = {
   borderStyles: toConfig("borderStyles"),
   colors: toConfig("colors"),
   borders: toConfig("borders"),
+  gradients: toConfig("gradients", transforms.gradient),
   radii: toConfig("radii", transforms.px),
   space: toConfig("space", pipe(transforms.vh, transforms.px)),
   spaceT: toConfig("space", pipe(transforms.vh, transforms.px)),
