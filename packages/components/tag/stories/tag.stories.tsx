@@ -22,7 +22,7 @@ export default {
   ],
 }
 
-export const basic = () => <Tag>Gray</Tag>
+export const basic = () => <Tag colorScheme="teal">Teal</Tag>
 
 export const withSizes = () => (
   <>
