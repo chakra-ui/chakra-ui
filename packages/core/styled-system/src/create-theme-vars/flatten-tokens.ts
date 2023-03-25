@@ -1,4 +1,5 @@
 import { isObject } from "@chakra-ui/shared-utils"
+import { pseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
 
 export type SemanticValue<
@@ -31,7 +32,7 @@ export function flattenTokens<T extends FlattenTokensParam>({
     },
   )
   const semanticTokenEntries = Object.entries(
-    flatten(semanticTokens, 1) ?? {},
+    flatten(semanticTokens) ?? {},
   ).map(([token, value]) => {
     const enhancedToken = { isSemantic: true, value }
     return [token, enhancedToken] as [string, SemanticToken]
@@ -43,22 +44,25 @@ export function flattenTokens<T extends FlattenTokensParam>({
   ]) as FlatTokens
 }
 
-export function flatten<Value = any>(
+function flatten<Value = any>(
   target: Record<string, Value> | undefined | null,
-  maxDepth = Infinity,
 ) {
-  if ((!isObject(target) && !Array.isArray(target)) || !maxDepth) {
+  if (!isObject(target) && !Array.isArray(target)) {
     return target
   }
 
   return Object.entries(target).reduce((result, [key, value]) => {
-    if (isObject(value) || Array.isArray(value)) {
-      Object.entries(flatten(value, maxDepth - 1)).forEach(
-        ([childKey, childValue]) => {
-          // e.g. gray.500
-          result[`${key}.${childKey}`] = childValue
-        },
-      )
+    const isPseudoSelectorKeyExist =
+      isObject(value) && pseudoPropNames.some((name) => name in value)
+
+    if (
+      (!isPseudoSelectorKeyExist && isObject(value)) ||
+      Array.isArray(value)
+    ) {
+      Object.entries(flatten(value)).forEach(([childKey, childValue]) => {
+        // e.g. gray.500
+        result[`${key}.${childKey}`] = childValue
+      })
     } else {
       // e.g. transparent
       result[key] = value
