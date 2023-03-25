@@ -274,6 +274,7 @@ describe("Theme typings", () => {
         colors: {
           gray: {
             50: "lightgray",
+            500: "gray",
             900: "darkgray",
           },
           red: {
@@ -286,6 +287,16 @@ describe("Theme typings", () => {
             text: {
               default: "gray.900",
               _dark: "gray.50",
+            },
+            background: {
+              red: {
+                default: "red.500",
+                _dark: "red.400",
+              },
+              gray: {
+                default: "gray.500",
+                _light: "gray.900",
+              },
             },
             "feedback.error": {
               default: "red.500",
@@ -311,10 +322,13 @@ describe("Theme typings", () => {
         breakpoints: string & {}
         colors:
           | \\"gray.50\\"
+          | \\"gray.500\\"
           | \\"gray.900\\"
           | \\"red.400\\"
           | \\"red.500\\"
           | \\"text\\"
+          | \\"background.red\\"
+          | \\"background.gray\\"
           | \\"feedback.error\\"
           | (string & {})
         colorSchemes: string & {}
