@@ -1,5 +1,4 @@
 import { isObject } from "@chakra-ui/shared-utils"
-import { pseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
 
 export type SemanticValue<
@@ -32,7 +31,7 @@ export function flattenTokens<T extends FlattenTokensParam>({
     },
   )
   const semanticTokenEntries = Object.entries(
-    flatten(semanticTokens) ?? {},
+    flattenSemanticTokens(semanticTokens) ?? {},
   ).map(([token, value]) => {
     const enhancedToken = { isSemantic: true, value }
     return [token, enhancedToken] as [string, SemanticToken]
@@ -52,17 +51,35 @@ function flatten<Value = any>(
   }
 
   return Object.entries(target).reduce((result, [key, value]) => {
-    const isPseudoSelectorKeyExist =
-      isObject(value) && pseudoPropNames.some((name) => name in value)
-
-    if (
-      (!isPseudoSelectorKeyExist && isObject(value)) ||
-      Array.isArray(value)
-    ) {
+    if (isObject(value) || Array.isArray(value)) {
       Object.entries(flatten(value)).forEach(([childKey, childValue]) => {
         // e.g. gray.500
         result[`${key}.${childKey}`] = childValue
       })
+    } else {
+      // e.g. transparent
+      result[key] = value
+    }
+
+    return result
+  }, {} as any)
+}
+
+function flattenSemanticTokens<Value = any>(
+  target: Record<string, Value> | undefined | null,
+) {
+  if (!isObject(target) && !Array.isArray(target)) {
+    return target
+  }
+
+  return Object.entries(target).reduce((result, [key, value]) => {
+    if ((isObject(value) && !("default" in value)) || Array.isArray(value)) {
+      Object.entries(flattenSemanticTokens(value)).forEach(
+        ([childKey, childValue]) => {
+          // e.g. gray.500
+          result[`${key}.${childKey}`] = childValue
+        },
+      )
     } else {
       // e.g. transparent
       result[key] = value

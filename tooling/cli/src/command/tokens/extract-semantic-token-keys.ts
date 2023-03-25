@@ -1,4 +1,3 @@
-import { pseudoPropNames } from "./../../../../../packages/core/styled-system/src/pseudos"
 import { isObject } from "../../utils/is-object"
 
 const isSemanticTokensExist = (
@@ -23,10 +22,10 @@ export function extractSemanticTokenKeys(
     return []
   }
 
-  return Object.keys(flatten(themeProperty))
+  return Object.keys(flattenSemanticTokens(themeProperty))
 }
 
-function flatten<Value = any>(
+function flattenSemanticTokens<Value = any>(
   target: Record<string, Value> | undefined | null,
 ) {
   if (!isObject(target) && !Array.isArray(target)) {
@@ -34,17 +33,13 @@ function flatten<Value = any>(
   }
 
   return Object.entries(target).reduce((result, [key, value]) => {
-    const isPseudoSelectorKeyExist =
-      isObject(value) && pseudoPropNames.some((name) => name in value)
-
-    if (
-      (!isPseudoSelectorKeyExist && isObject(value)) ||
-      Array.isArray(value)
-    ) {
-      Object.entries(flatten(value)).forEach(([childKey, childValue]) => {
-        // e.g. gray.500
-        result[`${key}.${childKey}`] = childValue
-      })
+    if ((isObject(value) && !("default" in value)) || Array.isArray(value)) {
+      Object.entries(flattenSemanticTokens(value)).forEach(
+        ([childKey, childValue]) => {
+          // e.g. gray.500
+          result[`${key}.${childKey}`] = childValue
+        },
+      )
     } else {
       // e.g. transparent
       result[key] = value
