@@ -1,6 +1,11 @@
 import { pseudoPropNames } from "./../../../../../packages/core/styled-system/src/pseudos"
 import { isObject } from "../../utils/is-object"
 
+const isSemanticTokensExist = (
+  theme: Record<string, unknown>,
+): theme is Record<"semanticTokens", Record<string, unknown>> =>
+  isObject(theme.semanticTokens)
+
 /**
  * Extract Semantic Token keys
  */
@@ -8,7 +13,12 @@ export function extractSemanticTokenKeys(
   theme: Record<string, unknown>,
   themePropertyName: string,
 ) {
-  const themeProperty = theme[themePropertyName]
+  if (!isSemanticTokensExist(theme)) {
+    return []
+  }
+
+  const themeProperty = theme["semanticTokens"][themePropertyName]
+
   if (!isObject(themeProperty)) {
     return []
   }

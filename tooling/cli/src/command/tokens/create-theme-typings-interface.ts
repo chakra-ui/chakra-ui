@@ -101,10 +101,7 @@ export async function createThemeTypingsInterface(
       }
 
       if (isObject(theme.semanticTokens)) {
-        const semanticTokenKeys = extractSemanticTokenKeys(
-          theme.semanticTokens,
-          key,
-        )
+        const semanticTokenKeys = extractSemanticTokenKeys(theme, key)
           .filter(filter)
           .flatMap(flatMap)
 
