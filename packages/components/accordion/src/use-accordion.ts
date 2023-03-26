@@ -13,6 +13,10 @@ import {
  * useAccordion - The root react hook that manages all accordion items
  * -----------------------------------------------------------------------------------------------*/
 
+/**
+ * @deprecated - This will be removed in future versions.
+ * Please use `number | number[]` instead.
+ */
 export type ExpandedIndex = number | number[]
 
 export interface UseAccordionProps {

@@ -106,7 +106,7 @@ export interface UseMenuProps
    */
   lazyBehavior?: LazyMode
   /**
-   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * If `rtl`, proper placement positions will be flipped i.e. 'top-right' will
    * become 'top-left' and vice-verse
    */
   direction?: "ltr" | "rtl"
@@ -299,6 +299,14 @@ export function useMenu(props: UseMenuProps = {}) {
     node?.focus()
   }, [isOpen, focusedIndex, descendants])
 
+  /**
+   * Track the animation frame which is scheduled to focus
+   * a menu item, so it can be cancelled if another item
+   * is focused before the animation executes. This prevents
+   * infinite rerenders.
+   */
+  const rafId = useRef<number | null>(null)
+
   return {
     openAndFocusMenu,
     openAndFocusFirstItem,
@@ -325,6 +333,7 @@ export function useMenu(props: UseMenuProps = {}) {
     isLazy,
     lazyBehavior,
     initialFocusRef,
+    rafId,
   }
 }
 
@@ -592,6 +601,7 @@ export function useMenuItem(
     menuRef,
     isOpen,
     menuId,
+    rafId,
   } = menu
 
   const ref = useRef<HTMLDivElement>(null)
@@ -662,8 +672,13 @@ export function useMenuItem(
   useUpdateEffect(() => {
     if (!isOpen) return
     if (isFocused && !trulyDisabled && ref.current) {
-      requestAnimationFrame(() => {
+      // Cancel any pending animations
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+      }
+      rafId.current = requestAnimationFrame(() => {
         ref.current?.focus()
+        rafId.current = null
       })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
       menuRef.current.focus()

@@ -34,6 +34,9 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
     isLoaded,
     fadeDuration,
     speed,
+    variant,
+    size,
+    colorScheme,
     children,
     ...rest
   } = props
@@ -77,6 +80,9 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
             isLoaded={isLoaded}
             fadeDuration={fadeDuration}
             speed={speed}
+            variant={variant}
+            size={size}
+            colorScheme={colorScheme}
             {...sizeProps}
           >
             {

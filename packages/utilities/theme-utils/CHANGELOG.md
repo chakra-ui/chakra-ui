@@ -1,5 +1,43 @@
 # @chakra-ui/theme-utils
 
+## 2.0.13
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
+  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
+  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]:
+  - @chakra-ui/theme@2.3.0
+
+## 2.0.12
+
+### Patch Changes
+
+- Updated dependencies
+  [[`600ec1108`](https://github.com/chakra-ui/chakra-ui/commit/600ec1108e3657b610ce05f6bce47bfd666465f8)]:
+  - @chakra-ui/styled-system@2.6.2
+  - @chakra-ui/theme@2.2.5
+
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`70ec88d49`](https://github.com/chakra-ui/chakra-ui/commit/70ec88d498fc26f8fdd0f28021d3d7d8c661a3d1)]:
+  - @chakra-ui/styled-system@2.6.1
+  - @chakra-ui/theme@2.2.5
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3548c6fb7`](https://github.com/chakra-ui/chakra-ui/commit/3548c6fb7893e5db1178a15e104f9ae0e209781b),
+  [`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358)]:
+  - @chakra-ui/styled-system@2.6.0
+  - @chakra-ui/theme@2.2.5
+
 ## 2.0.9
 
 ### Patch Changes

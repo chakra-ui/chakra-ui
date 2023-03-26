@@ -23,6 +23,24 @@ export const layout: Config = {
   overscrollBehaviorX: true,
   overscrollBehaviorY: true,
   display: true,
+  hideFrom: {
+    scale: "breakpoints",
+    transform: (value: string, theme) => {
+      const mq =
+        theme.__breakpoints?.get(value)?.minWQuery ??
+        `@media screen and (min-width: ${value})`
+      return { [mq]: { display: "none" } }
+    },
+  },
+  hideBelow: {
+    scale: "breakpoints",
+    transform: (value: string, theme) => {
+      const mq =
+        theme.__breakpoints?.get(value)?.maxWQuery ??
+        `@media screen and (max-width: ${value})`
+      return { [mq]: { display: "none" } }
+    },
+  },
   verticalAlign: true,
   boxSizing: true,
   boxDecorationBreak: true,
@@ -53,6 +71,14 @@ export interface LayoutProps {
    * The CSS `display` property
    */
   display?: Token<CSS.Property.Display>
+  /**
+   * Hides an element from the specified breakpoint and up
+   */
+  hideFrom?: Token<string & {}, "breakpoints">
+  /**
+   * Hides an element below the specified breakpoint
+   */
+  hideBelow?: Token<string & {}, "breakpoints">
   /**
    * The CSS `width` property
    */

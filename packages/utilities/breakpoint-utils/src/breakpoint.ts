@@ -89,6 +89,9 @@ export function analyzeBreakpoints(breakpoints: Record<string, any>) {
     asObject: sortBps(breakpoints),
     asArray: normalize(breakpoints),
     details: queries,
+    get(key: string) {
+      return queries.find((q) => q.breakpoint === key)
+    },
     media: [
       null,
       ...normalized.map((minW) => toMediaQueryString(minW)).slice(1),

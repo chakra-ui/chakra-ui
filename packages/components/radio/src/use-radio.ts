@@ -272,8 +272,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const getLabelProps: PropGetter = (props = {}, ref = null) => ({
     ...props,
     ref,
-    onMouseDown: callAllHandlers(props.onMouseDown, stop),
-    onTouchStart: callAllHandlers(props.onTouchStart, stop),
+    onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
     "data-disabled": dataAttr(isDisabled),
     "data-checked": dataAttr(isChecked),
     "data-invalid": dataAttr(isInvalid),
@@ -300,8 +299,11 @@ export function useRadio(props: UseRadioProps = {}) {
 
   return {
     state,
-    // the function is renamed to getRadioProps to make the code more consistent. It is renamed towards outside because otherwise this would produce a breaking change
+    /**
+     * @deprecated - use `getRadioProps` instead
+     */
     getCheckboxProps: getRadioProps,
+    getRadioProps,
     getInputProps,
     getLabelProps,
     getRootProps,
@@ -312,7 +314,7 @@ export function useRadio(props: UseRadioProps = {}) {
 /**
  * Prevent `onBlur` being fired when the radio label is touched
  */
-function stop(event: React.SyntheticEvent) {
+function stopEvent(event: React.SyntheticEvent) {
   event.preventDefault()
   event.stopPropagation()
 }

@@ -1,10 +1,9 @@
 import { Global, ThemeProvider, useTheme } from "@emotion/react"
 import styled from "@emotion/styled"
-import * as React from "react"
 import { css, SystemProps, toCSSVar } from "../src"
 
 export default {
-  title: "System / css",
+  title: "System / Styled System",
 }
 
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
@@ -33,7 +32,7 @@ const styles: Styles = {
   },
 }
 
-export const cssVars = () => {
+export const CssVars = () => {
   const theme = toCSSVar(useTheme())
   return (
     <ThemeProvider theme={theme}>
@@ -44,23 +43,6 @@ export const cssVars = () => {
         </Box>
       </Box>
     </ThemeProvider>
-  )
-}
-
-export const Stack = () => {
-  return (
-    <Box
-      css={{
-        display: "flex",
-        flexDirection: { base: "column", md: "row-reverse" },
-        experimental_spaceX: { md: "40px" },
-        experimental_spaceY: { base: "40px", md: "0px" },
-      }}
-    >
-      <div>Child 1</div>
-      <div>Child 2</div>
-      <div>Child 3</div>
-    </Box>
   )
 }
 

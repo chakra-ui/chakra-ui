@@ -1,8 +1,6 @@
 import * as CSS from "csstype"
 import { Length, t, Token, transforms } from "../utils"
-import { createTransform } from "../utils/create-transform"
 import { Config } from "../utils/prop-config"
-import { spaceXTemplate, spaceYTemplate } from "../utils/templates"
 
 export const flexbox: Config = {
   alignItems: true,
@@ -11,22 +9,6 @@ export const flexbox: Config = {
   justifyContent: true,
   flexWrap: true,
   flexDirection: { transform: transforms.flexDirection },
-  experimental_spaceX: {
-    static: spaceXTemplate,
-    transform: createTransform({
-      scale: "space",
-      transform: (value) =>
-        value !== null ? { "--chakra-space-x": value } : null,
-    }),
-  },
-  experimental_spaceY: {
-    static: spaceYTemplate,
-    transform: createTransform({
-      scale: "space",
-      transform: (value) =>
-        value != null ? { "--chakra-space-y": value } : null,
-    }),
-  },
   flex: true,
   flexFlow: true,
   flexGrow: true,
@@ -240,12 +222,4 @@ export interface FlexboxProps {
    * @see [Mozilla Docs](https://developer.mozilla.org/docs/Web/CSS/place-self)
    */
   placeSelf?: Token<CSS.Property.PlaceSelf>
-  /**
-   * Controls the horizontal space between elements
-   */
-  experimental_spaceX?: Token<CSS.Property.Margin | number, "space">
-  /**
-   * Controls the vertical space between elements
-   */
-  experimental_spaceY?: Token<CSS.Property.Margin | number, "space">
 }

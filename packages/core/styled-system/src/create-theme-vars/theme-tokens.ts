@@ -8,6 +8,7 @@ const tokens = [
   "fonts",
   "fontSizes",
   "fontWeights",
+  "gradients",
   "letterSpacings",
   "lineHeights",
   "radii",
@@ -17,6 +18,7 @@ const tokens = [
   "zIndices",
   "transition",
   "blur",
+  "breakpoints",
 ] as const
 
 export type ThemeScale =

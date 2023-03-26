@@ -5,12 +5,14 @@
 </p>
 
 <h1 align="center">Build Accessible React Apps with Speed ⚡️</h1>
-<br>
+<br />
 
 <p align="center">
   <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/react"/>
   <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/chakra-ui/chakra-ui.svg?logo=lgtm&logoWidth=18"/>
-  <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
+  <a href="https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE">
+    <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
+  </a>
   <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@chakra-ui/react.svg?style=flat"/>
   <img alt="Github Stars" src="https://badgen.net/github/stars/chakra-ui/chakra-ui" />
   <a href="https://discord.gg/chakra-ui">
@@ -20,10 +22,24 @@
 
 <br />
 
-Chakra UI provides a set of accessible, reusable, and composable React
-components that make it super easy to create websites and apps.
+Chakra UI is a comprehensive library of accessible, reusable, and composable React components that streamlines the development of modern web applications and websites. The library offers a diverse range of components that can be easily combined to build complex user interfaces while adhering to accessibility best practices.
 
-## Looking for the documentation? 📝
+## Table of contents
+
+- 📋 [Documentation](#documentation)
+- 🚀 [Features](#features)
+- 📦 [Installation](#installation)
+- 💻 [Usage](#usage)
+- 📚 [CodeSandbox Templates](#codesandbox-templates)
+- 📖 [`create-react-app` Templates](#create-react-app-templates)
+- 📝 [Contributing](#contributing)
+- 💖 [Support](#support-chakra-ui)
+- 🙌 [Testimonials](#testimonials)
+- 🏆 [Awards and Mentions](#awards-and-mentions)
+- ✨ [Contributors](#contributors)
+- ⚖️ [License](#license)
+
+## Documentation
 
 It's the https://chakra-ui.com website for the latest version of Chakra UI. For
 older versions head over here
@@ -31,7 +47,7 @@ older versions head over here
 - v1: https://v1.chakra-ui.com
 - v0: https://v0.chakra-ui.com
 
-## Features 🚀
+## Features
 
 - Ease of Styling: Chakra UI contains a set of layout components like `Box` and
   `Stack` that make it easy to style your components by passing props.
@@ -42,15 +58,74 @@ older versions head over here
   and have the right `aria-*` attributes.
 - Dark Mode 😍: Most components in Chakra UI are dark mode compatible.
 
-## Support Chakra UI 💖
+## Installation
 
-By donating \$5 or more you can support the ongoing development of this project.
-We'll appreciate some support. Thank you to all our supporters! 🙏
-[[Contribute](https://opencollective.com/chakra-ui/contribute)]
+To use Chakra UI components, all you need to do is install the
+`@chakra-ui/react` package and its peer dependencies:
 
-### Individuals
+```sh
+$ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 
-<a href="https://opencollective.com/chakra-ui"><img src="https://opencollective.com/chakra-ui/individuals.svg?width=890"></a>
+# or
+
+$ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+```
+
+## Usage
+
+To start using the components, please follow these steps:
+
+1. Wrap your application with the `ChakraProvider` provided by
+   **@chakra-ui/react**.
+
+```jsx
+import { ChakraProvider } from "@chakra-ui/react"
+
+// Do this at the root of your application
+function App({ children }) {
+  return <ChakraProvider>{children}</ChakraProvider>
+}
+```
+
+Optionally, you can wrap your application with the `ColorModeProvider` so you
+can toggle between light and dark mode within your app.
+
+2. Now you can start using components like so!:
+
+```jsx
+import { Button } from "@chakra-ui/react"
+
+function Example() {
+  return <Button>I just consumed some ⚡️Chakra!</Button>
+}
+```
+
+More guides on how to get started are available
+[here](https://chakra-ui.com/getting-started)
+
+## CodeSandbox Templates
+
+- JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
+- TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
+- NextJS TypeScript Starter:
+  https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
+
+## `create-react-app` Templates
+
+[Check out our guide](https://chakra-ui.com/getting-started/cra-guide) for
+information on how to use our official `create-react-app` templates.
+
+## Contributing
+
+Feel like contributing? That's awesome! We have a
+[contributing guide](./CONTRIBUTING.md) to help guide you.
+
+Our docsite lives in a
+[separate repo](https://github.com/chakra-ui/chakra-ui-docs). If you're
+interested in contributing to the documentation, check out the
+[docsite contribution guide](https://github.com/chakra-ui/chakra-ui-docs/blob/main/CONTRIBUTING.md).
+
+## Support Chakra UI
 
 ### Organizations
 
@@ -68,6 +143,14 @@ link to your website.
 <a href="https://opencollective.com/chakra-ui/organization/7/website"><img src="https://opencollective.com/chakra-ui/organization/7/avatar.svg?avatarHeight=130"></a>
 <a href="https://opencollective.com/chakra-ui/organization/8/website"><img src="https://opencollective.com/chakra-ui/organization/8/avatar.svg?avatarHeight=130"></a>
 <a href="https://opencollective.com/chakra-ui/organization/9/website"><img src="https://opencollective.com/chakra-ui/organization/9/avatar.svg?avatarHeight=130"></a>
+
+### Individuals
+
+By donating \$5 or more you can support the ongoing development of this project.
+We'll appreciate some support. Thank you to all our supporters! 🙏
+[[Contribute](https://opencollective.com/chakra-ui/contribute)]
+
+<a href="https://opencollective.com/chakra-ui"><img src="https://opencollective.com/chakra-ui/individuals.svg?width=890"></a>
 
 ## Testimonials
 
@@ -115,74 +198,7 @@ for all the innovation and reach Chakra UI brings to the JavaScript ecosystem.
   </tr>
 </table>
 
-## Installing Chakra UI
-
-To use Chakra UI components, all you need to do is install the
-`@chakra-ui/react` package and its peer dependencies:
-
-```sh
-$ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
-
-# or
-
-$ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
-```
-
-## Usage
-
-To start using the components, please follow these steps:
-
-1. Wrap your application with the `ChakraProvider` provided by
-   **@chakra-ui/react**.
-
-```jsx
-import { ChakraProvider } from "@chakra-ui/react"
-
-// Do this at the root of your application
-function App({ children }) {
-  return <ChakraProvider>{children}</ChakraProvider>
-}
-```
-
-Optionally, you can wrap your application with the `ColorModeProvider` so you
-can toggle between light and dark mode within your app.
-
-2. Now you can start using components like so!:
-
-```jsx
-import { Button } from "@chakra-ui/react"
-
-function Example() {
-  return <Button>I just consumed some ⚡️Chakra!</Button>
-}
-```
-
-More guides on how to get started are available
-[here](https://chakra-ui.com/guides/first-steps)
-
-## CodeSandbox Templates
-
-- JavaScript Starter: https://codesandbox.io/s/chakra-ui-javascript-lzzg9
-- TypeScript Starter: https://codesandbox.io/s/chakra-ui-typescript-pomi8
-- NextJS TypeScript Starter:
-  https://codesandbox.io/s/chakra-ui-next-js-typescript-kxvyr
-
-## `create-react-app` Templates
-
-[Check out our guide](https://chakra-ui.com/getting-started/cra-guide) for
-information on how to use our official `create-react-app` templates.
-
-## Contributing
-
-Feel like contributing? That's awesome! We have a
-[contributing guide](./CONTRIBUTING.md) to help guide you.
-
-Our docsite lives in a
-[separate repo](https://github.com/chakra-ui/chakra-ui-docs). If you're
-interested in contributing to the documentation, check out the
-[docsite contribution guide](https://github.com/chakra-ui/chakra-ui-docs/blob/main/CONTRIBUTING.md).
-
-## Contributors ✨
+## Contributors
 
 Thanks goes to these wonderful people
 

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "2.4.9",
+  "version": "2.5.3",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "src/index.ts",
   "files": [
@@ -23,6 +23,7 @@
     "@chakra-ui/counter": "workspace:*",
     "@chakra-ui/css-reset": "workspace:*",
     "@chakra-ui/editable": "workspace:*",
+    "@chakra-ui/focus-lock": "workspace:*",
     "@chakra-ui/form-control": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/icon": "workspace:*",
@@ -99,7 +100,7 @@
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

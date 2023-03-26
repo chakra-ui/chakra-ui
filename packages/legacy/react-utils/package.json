@@ -22,7 +22,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/legaacy/react-utils"
+    "directory": "packages/legacy/react-utils"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

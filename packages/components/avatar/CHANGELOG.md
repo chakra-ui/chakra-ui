@@ -1,5 +1,37 @@
 # Change Log
 
+## 2.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/image@2.0.15
+
+## 2.2.6
+
+### Patch Changes
+
+- [#7438](https://github.com/chakra-ui/chakra-ui/pull/7438)
+  [`01c0a84a5`](https://github.com/chakra-ui/chakra-ui/commit/01c0a84a5fea038e3970666944c2b3096a64504b)
+  Thanks [@nicksrandall](https://github.com/nicksrandall)! - Adding support for
+  Avatar to specify "crossOrigin" prop for image
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
+## 2.2.5
+
+### Patch Changes
+
+- [#7276](https://github.com/chakra-ui/chakra-ui/pull/7276)
+  [`6619ee1a9`](https://github.com/chakra-ui/chakra-ui/commit/6619ee1a98988729cb6cab6e6d90a7cc3f5b7ee7)
+  Thanks [@LuizCristino](https://github.com/LuizCristino)! - **AvatarGroup**:
+  Fixed issue where setting `max` to `0` lead to unexpected behavior.
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
 ## 2.2.4
 
 ### Patch Changes

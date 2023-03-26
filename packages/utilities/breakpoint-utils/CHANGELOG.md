@@ -1,5 +1,13 @@
 # @chakra-ui/breakpoint-utils
 
+## 2.0.8
+
+### Patch Changes
+
+- [`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `get` method to
+  breakpoint return to query details of a specific breakpoint
+
 ## 2.0.7
 
 ### Patch Changes

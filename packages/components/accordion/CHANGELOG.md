@@ -1,5 +1,30 @@
 # Change Log
 
+## 2.1.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/icon@3.0.16
+
+## 2.1.9
+
+### Patch Changes
+
+- [`91130dc89`](https://github.com/chakra-ui/chakra-ui/commit/91130dc898867175c8ebc7f85f583eb358c859df)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix regression
+  where `ExpandedIndex` was no longer exported.
+
+  > Note: this will be removed in future versions.
+
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.0.13
+  - @chakra-ui/transition@2.0.15
+  - @chakra-ui/icon@3.0.16
+
 ## 2.1.8
 
 ### Patch Changes

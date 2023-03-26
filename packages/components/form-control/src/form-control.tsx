@@ -139,8 +139,8 @@ function useFormControlProvider(props: FormControlContext) {
       "data-disabled": dataAttr(isDisabled),
       "data-invalid": dataAttr(isInvalid),
       "data-readonly": dataAttr(isReadOnly),
-      id: props.id ?? labelId,
-      htmlFor: props.htmlFor ?? id,
+      id: props.id !== undefined ? props.id : labelId,
+      htmlFor: props.htmlFor !== undefined ? props.htmlFor : id,
     }),
     [id, isDisabled, isFocused, isInvalid, isReadOnly, labelId],
   )

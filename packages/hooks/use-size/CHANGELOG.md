@@ -1,5 +1,23 @@
 # @chakra-ui/react-use-size
 
+## 2.0.10
+
+### Patch Changes
+
+- [#7354](https://github.com/chakra-ui/chakra-ui/pull/7354)
+  [`c77973070`](https://github.com/chakra-ui/chakra-ui/commit/c77973070dac3468d701ccb2e7b8ff87c8d430f4)
+  Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update
+  dependency @zag-js/element-size to v0.3.2
+
+## 2.0.9
+
+### Patch Changes
+
+- [#7295](https://github.com/chakra-ui/chakra-ui/pull/7295)
+  [`ba7be75c2`](https://github.com/chakra-ui/chakra-ui/commit/ba7be75c2b8f7a38987781f6a0dd30086af7e2f7)
+  Thanks [@renovate](https://github.com/apps/renovate)! - Update
+  dependency` @zag-js/element-size` to `v0.3.1`
+
 ## 2.0.8
 
 ### Patch Changes

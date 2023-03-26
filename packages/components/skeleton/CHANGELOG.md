@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.24
+
+### Patch Changes
+
+- [#7300](https://github.com/chakra-ui/chakra-ui/pull/7300)
+  [`b078cfc44`](https://github.com/chakra-ui/chakra-ui/commit/b078cfc440c6b3bd79bc9ff187a66e20dfa75aa0)
+  Thanks [@GKosheev](https://github.com/GKosheev)! - Fix regression where
+  `SkeletonText` component doesn't show its shimmer animation.
+- Updated dependencies []:
+  - @chakra-ui/media-query@3.2.12
+
 ## 2.0.23
 
 ### Patch Changes

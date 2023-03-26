@@ -35,7 +35,7 @@
       "description": "If added, the button will show an icon before the button's label."
     },
     "loadingText": {
-      "type": "string",
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | ReactFragment\n  | ReactPortal",
       "required": false,
       "description": "The label to show in the button when `isLoading` is true\nIf no text is passed, it only shows the spinner"
     },

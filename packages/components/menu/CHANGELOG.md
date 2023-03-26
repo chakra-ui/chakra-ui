@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/clickable@2.0.14
+
+## 2.1.10
+
+### Patch Changes
+
+- [#7380](https://github.com/chakra-ui/chakra-ui/pull/7380)
+  [`bb7319244`](https://github.com/chakra-ui/chakra-ui/commit/bb731924479d33c75c9a983aa7bc1f3d25b40f35)
+  Thanks [@anubra266](https://github.com/anubra266)! - Export menu provider
+
+- Updated dependencies []:
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.13
+
+## 2.1.9
+
+### Patch Changes
+
+- [#7315](https://github.com/chakra-ui/chakra-ui/pull/7315)
+  [`403513380`](https://github.com/chakra-ui/chakra-ui/commit/4035133801cdcf66487f73feb73a6bfd02a063f4)
+  Thanks [@mantariksh](https://github.com/mantariksh)! - Fix issue where `Menu`
+  schedules focus too frequently and leads to infinite rerenders.
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.0.13
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/transition@2.0.15
+  - @chakra-ui/clickable@2.0.14
+
 ## 2.1.8
 
 ### Patch Changes
