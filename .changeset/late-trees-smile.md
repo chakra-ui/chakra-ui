@@ -1,8 +1,13 @@
 ---
-"@chakra-ui/toast": major
+"@chakra-ui/toast": minor
 ---
 
-fix: Support colorScheme prop for the Toast component
+Add support for the `colorScheme` property in the `useToast` hook
 
-The colorScheme prop is supported for the Toast component Now you can pass the
-prop using useToast hook
+```jsx live=false
+const toast = useToast({
+  title: "Account created.",
+  description: "We've created your account for you.",
+  colorScheme: "blue",
+})
+```
