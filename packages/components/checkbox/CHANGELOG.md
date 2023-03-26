@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.2.13
+
+### Patch Changes
+
+- [#7484](https://github.com/chakra-ui/chakra-ui/pull/7484)
+  [`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  browser shows console warning due to `preventDefault` call in pointer event on
+  mobile
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.18
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.2.12
 
 ### Patch Changes
