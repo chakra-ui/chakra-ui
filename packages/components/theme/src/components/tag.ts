@@ -8,6 +8,7 @@ import { badgeTheme } from "./badge"
 
 const $bg = cssVar("badge-bg")
 const $fg = cssVar("badge-color")
+const $shadow = cssVar("badge-shadow")
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -18,6 +19,7 @@ const baseStyleContainer = defineStyle({
   outline: 0,
   color: $fg.reference,
   bg: $bg.reference,
+  boxShadow: $shadow.reference,
   borderRadius: "md",
   _focusVisible: {
     boxShadow: "outline",
