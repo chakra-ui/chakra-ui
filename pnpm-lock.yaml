@@ -1424,6 +1424,23 @@ importers:
       clean-package: 2.2.0
       react: 18.2.0
 
+  packages/components/stepper:
+    specifiers:
+      '@chakra-ui/icon': workspace:*
+      '@chakra-ui/react-context': workspace:*
+      '@chakra-ui/shared-utils': workspace:*
+      '@chakra-ui/system': workspace:*
+      clean-package: 2.2.0
+      react: ^18.2.0
+    dependencies:
+      '@chakra-ui/icon': link:../icon
+      '@chakra-ui/react-context': link:../../hooks/context
+      '@chakra-ui/shared-utils': link:../../utilities/shared-utils
+    devDependencies:
+      '@chakra-ui/system': link:../../core/system
+      clean-package: 2.2.0
+      react: 18.2.0
+
   packages/components/switch:
     specifiers:
       '@chakra-ui/checkbox': workspace:*
@@ -18686,16 +18703,6 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /follow-redirects/1.15.1:
-    resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
-    dev: true
-
   /follow-redirects/1.15.1_debug@3.2.7:
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
@@ -20852,7 +20859,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.1
+      follow-redirects: 1.15.1_debug@3.2.7
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
