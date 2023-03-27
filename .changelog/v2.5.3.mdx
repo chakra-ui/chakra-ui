@@ -8,361 +8,60 @@ releaseDate: March 23, 2023
 version: 2.5.3
 ---
 
-## @chakra-ui/css-reset@2.1.0
+## Minor Changes
 
-### Minor Changes
+### CSS Reset `2.1.0`, Provider `2.2.0`
 
-- [#7464](https://github.com/chakra-ui/chakra-ui/pull/7464)
-  [`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
-  scoping the css reset to specific selector.
+Add support for scoping the css reset to specific selector.
 
-  To use this feature, pass the `resetScope` prop to the `ChakraProvider` or
-  `ChakraBaseProvider` component.
+To use this feature, pass the `resetScope` prop to the `ChakraProvider` or
+`ChakraBaseProvider` component.
 
-  ```jsx live=false
-  import { ChakraProvider } from "@chakra-ui/react"
+```jsx live=false
+import { ChakraProvider } from "@chakra-ui/react"
 
-  function App() {
-    return (
-      <ChakraProvider resetScope=".ck-reset">
-        <App />
-      </ChakraProvider>
-    )
-  }
-  ```
+function App() {
+  return (
+    <ChakraProvider resetScope=".ck-reset">
+      <App />
+    </ChakraProvider>
+  )
+}
+```
 
-## @chakra-ui/provider@2.2.0
+### Next.js `2.1.0`
 
-### Minor Changes
+- Add `Image` component that supercharges the Next.js optimized image with
+  Chakra style props.
 
-- [#7464](https://github.com/chakra-ui/chakra-ui/pull/7464)
-  [`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
-  scoping the css reset to specific selector.
+```jsx live=false
+import { Image } from "@chakra-ui/next-js"
 
-  To use this feature, pass the `resetScope` prop to the `ChakraProvider` or
-  `ChakraBaseProvider` component.
+function App() {
+  return (
+    <Image
+      src="/image.jpg"
+      alt="image"
+      width={500}
+      height={500}
+      objectFit="cover"
+    />
+  )
+}
+```
 
-  ```jsx live=false
-  import { ChakraProvider } from "@chakra-ui/react"
+- Add ESM interop for `createCache` to avoid server-related errors
 
-  function App() {
-    return (
-      <ChakraProvider resetScope=".ck-reset">
-        <App />
-      </ChakraProvider>
-    )
-  }
-  ```
+## Patch Changes
 
-### Patch Changes
+### Button `2.0.17`
 
-- Updated dependencies
-  \[[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6)]
+Widen types for `loadingText` to accept `ReactNode` instead of only string
 
-## @chakra-ui/theme@2.3.0
+### Form Control `2.0.18`
 
-### Minor Changes
+Fix issue in `FormLabel` where `htmlFor` and `id` could not be set to `null`
 
-- [#7464](https://github.com/chakra-ui/chakra-ui/pull/7464)
-  [`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
-  scoping the css reset to specific selector.
+### React Context `2.0.8`
 
-  To use this feature, pass the `resetScope` prop to the `ChakraProvider` or
-  `ChakraBaseProvider` component.
-
-  ```jsx live=false
-  import { ChakraProvider } from "@chakra-ui/react"
-
-  function App() {
-    return (
-      <ChakraProvider resetScope=".ck-reset">
-        <App />
-      </ChakraProvider>
-    )
-  }
-  ```
-
-### Patch Changes
-
-- [#6894](https://github.com/chakra-ui/chakra-ui/pull/6894)
-  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb)
-  Thanks [@anubra266](https://github.com/anubra266)! - Refactor Modal theme to
-  use css variables
-
-- [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor badge
-  theme to use more css variables
-
-## @chakra-ui/next-js@2.1.0
-
-### Minor Changes
-
-- [`46bd14641`](https://github.com/chakra-ui/chakra-ui/commit/46bd146415ba8232ac1106e1714608704ca73712)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `Image`
-  component that supercharges the Next.js optimized image with Chakra style
-  props.
-
-  - Add ESM interop for `createCache` to avoid server-related errors
-
-## @chakra-ui/accordion@2.1.10
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/alert@2.0.18
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/avatar@2.2.7
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/breadcrumb@2.1.5
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/button@2.0.17
-
-### Patch Changes
-
-- [`8a3455fe5`](https://github.com/chakra-ui/chakra-ui/commit/8a3455fe55980552bd5726c92ab83a2ba994b7ea)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Widen types for
-  `loadingText` to accept `ReactNode` instead of only string.
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/checkbox@2.2.12
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
-  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]
-
-## @chakra-ui/descendant@3.0.14
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/editable@2.0.21
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/form-control@2.0.18
-
-### Patch Changes
-
-- [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - `FormLabel`: Fix
-  issue where `htmlFor` and `id` could not be set to `null`
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/input@2.0.21
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
-  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]
-
-## @chakra-ui/layout@2.1.17
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/menu@2.1.11
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/modal@2.2.10
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/number-input@2.0.19
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
-  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]
-
-## @chakra-ui/pin-input@2.0.20
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/popover@2.1.9
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/portal@2.0.16
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/progress@2.1.6
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/radio@2.0.21
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
-  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]
-
-## @chakra-ui/react@2.5.3
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
-  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
-  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24),
-  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e),
-  [`8a3455fe5`](https://github.com/chakra-ui/chakra-ui/commit/8a3455fe55980552bd5726c92ab83a2ba994b7ea)]
-
-## @chakra-ui/select@2.0.19
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]
-
-## @chakra-ui/slider@2.0.23
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/stat@2.0.18
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/switch@2.0.24
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/table@2.0.17
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/tabs@2.1.9
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/tag@2.0.18
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]
-
-## @chakra-ui/textarea@2.0.19
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]
-
-## @chakra-ui/toast@6.0.3
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
-  [`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
-  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
-  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]
-
-## @chakra-ui/tooltip@2.2.7
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/system@2.5.3
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/react-context@2.0.8
-
-### Patch Changes
-
-- [#7470](https://github.com/chakra-ui/chakra-ui/pull/7470)
-  [`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)
-  Thanks [@r1tsuu](https://github.com/r1tsuu)! - `createContext`: Fix issue
-  where `defaultValue` is not passing
-
-## @chakra-ui/theme-utils@2.0.13
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
-  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
-  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]
-
-## @chakra-ui/test-utils@2.0.37
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
-  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
-  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]
+Fix issue where default value is not passed to the `createContext` function
