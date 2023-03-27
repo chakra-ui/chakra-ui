@@ -1,5 +1,14 @@
 # @chakra-ui/next-js
 
+## 2.1.1
+
+### Patch Changes
+
+- [`be28f5d0b`](https://github.com/chakra-ui/chakra-ui/commit/be28f5d0ba3a14d9a6b6bd9e059b922d25cdb260)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  theming related props (variant, size) could not be passed to the `Link`
+  component
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,5 +1,33 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- [#7481](https://github.com/chakra-ui/chakra-ui/pull/7481)
+  [`b39e242ad`](https://github.com/chakra-ui/chakra-ui/commit/b39e242adc60798a8ce40c34805cb19d80d05524)
+  Thanks [@hectoraldairah](https://github.com/hectoraldairah)! - Add support for
+  the `colorScheme` property in the `useToast` hook
+
+  ```jsx live=false
+  const toast = useToast({
+    title: "Account created.",
+    description: "We've created your account for you.",
+    colorScheme: "blue",
+  })
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0),
+  [`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)]:
+  - @chakra-ui/theme@3.0.0
+  - @chakra-ui/styled-system@2.7.0
+  - @chakra-ui/system@2.5.4
+  - @chakra-ui/alert@2.0.18
+  - @chakra-ui/close-button@2.0.17
+
 ## 6.0.3
 
 ### Patch Changes
