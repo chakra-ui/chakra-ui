@@ -123,7 +123,6 @@ export const ToastProvider = (props: ToastProviderProps) => {
 
     return (
       <ul
-        role="region"
         aria-live="polite"
         key={position}
         id={`chakra-toast-manager-${position}`}
