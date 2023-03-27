@@ -8,163 +8,59 @@ releaseDate: March 27, 2023
 version: 2.5.4
 ---
 
-## @chakra-ui/tag@3.0.0
+## Minor Changes
 
-### Major Changes
+### Styled System `2.7.0`
 
-- [#7488](https://github.com/chakra-ui/chakra-ui/pull/7488)
-  [`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0)
-  Thanks [@hectoraldairah](https://github.com/hectoraldairah)! - Fix issue where
-  the tag's base style doesn't set the `--badge-bg` and `--badge-color` css
-  variables.
+Creates the `gradients` theme key for props `bgGradient`, `bgImage`, `bgImg`,
+and `backgroundImage`
 
-### Patch Changes
+This addition allows you to use tokens for the gradient values, semantic tokens
+included!
 
-- Updated dependencies
+```tsx live=false
+// gradients.ts
 
-## @chakra-ui/theme@3.0.0
+export const gradients = {
+  lightBgGradient:
+    "linear-gradient(102.7deg, #B9F1B9 0%, #5484EA 51.56%, #3A8E89 100%)",
+}
 
-### Major Changes
+// SomeComponent.tsx
 
-- [#7488](https://github.com/chakra-ui/chakra-ui/pull/7488)
-  [`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0)
-  Thanks [@hectoraldairah](https://github.com/hectoraldairah)! - Fix issue where
-  the tag's base style doesn't set the `--badge-bg` and `--badge-color` css
-  variables.
+<Box bgGradient='lightBgGradient' />
+```
 
-### Patch Changes
+🚨 NOTE: The
+[Background Gradient API](https://chakra-ui.com/docs/styled-system/gradient#background-gradient-api)
+can not be used in a token as the conversion is done when the api is used
+directly on a prop and not when compiling the theme config
 
-- Updated dependencies
+## Patch Changes
 
-## @chakra-ui/toast@6.1.0
+### Tag `3.0.0`
 
-### Minor Changes
+Fix issue where the tag's base style doesn't set the `--badge-bg` and
+`--badge-color` css variables.
 
-- [#7481](https://github.com/chakra-ui/chakra-ui/pull/7481)
-  [`b39e242ad`](https://github.com/chakra-ui/chakra-ui/commit/b39e242adc60798a8ce40c34805cb19d80d05524)
-  Thanks [@hectoraldairah](https://github.com/hectoraldairah)! - Add support for
-  the `colorScheme` property in the `useToast` hook
+### Toast `6.1.0`
 
-  ```jsx live=false
-  const toast = useToast({
-    title: "Account created.",
-    description: "We've created your account for you.",
-    colorScheme: "blue",
-  })
-  ```
+Add support for the `colorScheme` property in the `useToast` hook
 
-### Patch Changes
+```jsx live=false
+const toast = useToast({
+  title: "Account created.",
+  description: "We've created your account for you.",
+  colorScheme: "blue",
+})
+```
 
-- Updated dependencies
-  \[[`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0),
-  [`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)]
+### Checkbox `2.2.13`, Radio `2.0.22`
 
-## @chakra-ui/styled-system@2.7.0
+Fix issue where browser shows console warning due to `preventDefault` call in
+pointer event on mobile
 
-### Minor Changes
+### Next.js `2.1.1`
 
-- [#7370](https://github.com/chakra-ui/chakra-ui/pull/7370)
-  [`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)
-  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Creates the
-  `gradients` theme key for props `bgGradient`, `bgImage`, `bgImg`, and
-  `backgroundImage`
-
-  This addition allows you to use tokens for the gradient values, semantic
-  tokens included!
-
-  ```ts
-  // gradients.ts
-
-  export const gradients = {
-    lightBgGradient:
-      "linear-gradient(102.7deg, #B9F1B9 0%, #5484EA 51.56%, #3A8E89 100%)",
-  }
-
-  // SomeComponent.tsx
-
-  <Box bgGradient='lightBgGradient' />
-  ```
-
-  🚨 NOTE: The
-  [Background Gradient API](https://chakra-ui.com/docs/styled-system/gradient#background-gradient-api)
-  can not be used in a token as the conversion is done when the api is used
-  directly on a prop and not when compiling the theme config
-
-## @chakra-ui/checkbox@2.2.13
-
-### Patch Changes
-
-- [#7484](https://github.com/chakra-ui/chakra-ui/pull/7484)
-  [`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
-  browser shows console warning due to `preventDefault` call in pointer event on
-  mobile
-- Updated dependencies
-
-## @chakra-ui/provider@2.2.1
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/radio@2.0.22
-
-### Patch Changes
-
-- [#7484](https://github.com/chakra-ui/chakra-ui/pull/7484)
-  [`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix issue where
-  shows console warning due to `preventDefault` call in pointer event on mobile
-
-  - Add deprecation warning for `getCheckboxProps` in favor of `getRadioProps`
-
-- Updated dependencies
-
-## @chakra-ui/react@2.5.4
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01),
-  [`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0),
-  [`b39e242ad`](https://github.com/chakra-ui/chakra-ui/commit/b39e242adc60798a8ce40c34805cb19d80d05524),
-  [`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01),
-  [`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)]
-
-## @chakra-ui/switch@2.0.25
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01)]
-
-## @chakra-ui/system@2.5.4
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)]
-
-## @chakra-ui/next-js@2.1.1
-
-### Patch Changes
-
-- [`be28f5d0b`](https://github.com/chakra-ui/chakra-ui/commit/be28f5d0ba3a14d9a6b6bd9e059b922d25cdb260)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
-  theming related props (variant, size) could not be passed to the `Link`
-  component
-
-## @chakra-ui/theme-utils@2.0.14
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0),
-  [`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)]
-
-## @chakra-ui/test-utils@2.0.38
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0)]
+Fix issue where theming related props (`variant`, `size`) could not be passed to
+the `Link` component
