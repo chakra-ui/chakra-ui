@@ -48,7 +48,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.30.3
       '@typescript-eslint/parser': 5.30.3
       dotenv: 16.0.3
-      edit-json-file: 1.6.0
+      edit-json-file: 1.7.0
       eslint: 8.19.0
       eslint-config-airbnb-typescript: 17.0.0
       eslint-config-prettier: 8.5.0
@@ -122,7 +122,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.30.3_xuuykav7urhdozug7htlfgar3u
       '@typescript-eslint/parser': 5.30.3_4x5o4skxv6sl53vpwefgt23khm
       dotenv: 16.0.3
-      edit-json-file: 1.6.0
+      edit-json-file: 1.7.0
       eslint: 8.19.0
       eslint-config-airbnb-typescript: 17.0.0_nbfudvlfjqylf7fceqmxzsgu6e
       eslint-config-prettier: 8.5.0_eslint@8.19.0
@@ -16568,13 +16568,13 @@ packages:
       readable-stream: 2.3.7
       stream-shift: 1.0.1
 
-  /edit-json-file/1.6.0:
-    resolution: {integrity: sha512-m2l38nUbRLxE4rfKC03PYujSGsjpGlF9PyenteiT/rXCGdk7CVoSS2BJEiGUBoAPfGSsiZv8yA5x81WAoQJbuQ==}
+  /edit-json-file/1.7.0:
+    resolution: {integrity: sha512-eIkLJ9i4ija7b2TbaLHy3scyjWFLzwM2Wa6kHbV4ppVLcCqn7FzqnO1vmCG3dLrkd+teWE3mvACfv166mO0VZg==}
     dependencies:
       find-value: 1.0.12
       iterate-object: 1.3.4
       r-json: 1.2.10
-      set-value: 3.0.2
+      set-value: 4.1.0
       w-json: 1.3.10
     dev: false
 
@@ -21442,6 +21442,11 @@ packages:
 
   /is-potential-custom-element-name/1.0.1:
     resolution: {integrity: sha512-bCYeRA2rVibKZd+s2625gGnGF/t7DSqDs4dP7CrLA1m7jKWz6pps0LpYLJN8Q64HtmPKJ1hrN3nzPNKFEKOUiQ==}
+
+  /is-primitive/3.0.1:
+    resolution: {integrity: sha512-GljRxhWvlCNRfZyORiH77FwdFwGcMO620o37EOYC0ORWdq+WYNVqW0w2Juzew4M+L81l6/QS3t5gkkihyRqv9w==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /is-promise/2.2.2:
     resolution: {integrity: sha512-+lP4/6lKUBfQjZ2pdxThZvLUAafmZb8OAxFb8XXtiQmS35INgr85hdOGoEs124ez1FCnZJt6jau/T+alh58QFQ==}
@@ -28046,11 +28051,12 @@ packages:
       is-plain-object: 2.0.4
       split-string: 3.1.0
 
-  /set-value/3.0.2:
-    resolution: {integrity: sha512-npjkVoz+ank0zjlV9F47Fdbjfj/PfXyVhZvGALWsyIYU/qrMzpi6avjKW3/7KeSU2Df3I46BrN1xOI1+6vW0hA==}
-    engines: {node: '>=6.0'}
+  /set-value/4.1.0:
+    resolution: {integrity: sha512-zTEg4HL0RwVrqcWs3ztF+x1vkxfm0lP+MQQFPiMJTKVceBwEV0A569Ou8l9IYQG8jOZdMVI1hGsc0tmeD2o/Lw==}
+    engines: {node: '>=11.0'}
     dependencies:
       is-plain-object: 2.0.4
+      is-primitive: 3.0.1
     dev: false
 
   /setimmediate/1.0.5:
