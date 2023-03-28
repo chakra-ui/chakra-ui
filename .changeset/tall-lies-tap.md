@@ -3,6 +3,7 @@
 "@chakra-ui/next-js": patch
 "@chakra-ui/styled-system": patch
 "@chakra-ui/avatar": patch
+"@chakra-ui/checkbox": patch
 "@chakra-ui/button": patch
 "@chakra-ui/layout": patch
 "@chakra-ui/icons": patch
