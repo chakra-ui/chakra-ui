@@ -59,7 +59,7 @@ export type MergeWithAs<
   AsComponent extends As = As,
 > = (
   | RightJoinProps<ComponentProps, AdditionalProps>
-  | RightJoinProps<Partial<AsProps>, AdditionalProps>
+  | RightJoinProps<AsProps, AdditionalProps>
 ) & {
   as?: AsComponent
 }
