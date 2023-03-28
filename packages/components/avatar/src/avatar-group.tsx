@@ -65,7 +65,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
     /**
      * get the remaining avatar count
      */
-    const excess = max != null && validChildren.length - max
+    const excess = max != null ? validChildren.length - max : 0
 
     /**
      * Reversing the children is a great way to avoid using zIndex

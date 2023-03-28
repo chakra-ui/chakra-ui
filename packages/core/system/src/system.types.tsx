@@ -26,7 +26,7 @@ export interface ChakraProps extends SystemProps {
   css?: Interpolation<{}>
 }
 
-export type As<Props = any> = React.ElementType<Props>
+export type As = React.ElementType
 
 /**
  * Extract the props of a React element or component

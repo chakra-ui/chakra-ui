@@ -12,6 +12,6 @@ export async function testA11y(
 ) {
   const { axeOptions, ...rest } = options
   const container = React.isValidElement(ui) ? render(ui, rest).container : ui
-  const results = await axe(container, axeOptions)
+  const results = await axe(container as HTMLElement, axeOptions)
   expect(results).toHaveNoViolations()
 }
