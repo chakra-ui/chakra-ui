@@ -22,22 +22,20 @@ export type LinkProps = Merge<
   Omit<NextLinkProps, LegacyProps>
 >
 
-export const Link: LinkComponent = forwardRef<LinkProps, typeof NextLink>(
-  function Link(props, ref) {
-    const styles = useStyleConfig("Link", props)
-    const { className, href, children, ...rest } = omitThemingProps(props)
+export const Link: LinkComponent = forwardRef(function Link(props, ref) {
+  const styles = useStyleConfig("Link", props)
+  const { className, href, children, ...rest } = omitThemingProps(props)
 
-    return (
-      <chakra.a
-        ref={ref}
-        href={href as any}
-        {...rest}
-        className={cx("chakra-link", className)}
-        __css={styles}
-        as={NextLink}
-      >
-        {children}
-      </chakra.a>
-    )
-  },
-)
+  return (
+    <chakra.a
+      ref={ref}
+      href={href as any}
+      {...rest}
+      className={cx("chakra-link", className)}
+      __css={styles}
+      as={NextLink}
+    >
+      {children}
+    </chakra.a>
+  )
+})

@@ -26,7 +26,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "@types/react": "^18.0.1",
+    "@types/react": "^18.0.30",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0",

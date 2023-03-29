@@ -3,7 +3,7 @@ import { ChakraStyledOptions, HTMLChakraComponents, styled } from "./system"
 import { As, ChakraComponent } from "./system.types"
 
 type ChakraFactory = {
-  <T extends As, P = {}>(
+  <T extends As, P extends object = {}>(
     component: T,
     options?: ChakraStyledOptions,
   ): ChakraComponent<T, P>
