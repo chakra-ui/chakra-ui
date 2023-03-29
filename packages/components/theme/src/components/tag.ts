@@ -1,14 +1,9 @@
 import { tagAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
-  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { badgeTheme } from "./badge"
-
-const $bg = cssVar("badge-bg")
-const $fg = cssVar("badge-color")
-const $shadow = cssVar("badge-shadow")
+import { badgeTheme, badgeVars as vars } from "./badge"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -17,9 +12,9 @@ const baseStyleContainer = defineStyle({
   fontWeight: "medium",
   lineHeight: 1.2,
   outline: 0,
-  color: $fg.reference,
-  bg: $bg.reference,
-  boxShadow: $shadow.reference,
+  color: vars.color.reference,
+  bg: vars.bg.reference,
+  boxShadow: vars.shadow.reference,
   borderRadius: "md",
   _focusVisible: {
     boxShadow: "outline",
