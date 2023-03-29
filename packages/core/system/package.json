@@ -38,7 +38,7 @@
     "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "react-fast-compare": "3.2.0"
+    "react-fast-compare": "3.2.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",

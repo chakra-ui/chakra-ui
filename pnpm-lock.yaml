@@ -1717,7 +1717,7 @@ importers:
       clean-package: 2.2.0
       framer-motion: ^6.2.9
       react: ^18.2.0
-      react-fast-compare: 3.2.0
+      react-fast-compare: 3.2.1
     dependencies:
       '@chakra-ui/color-mode': link:../../components/color-mode
       '@chakra-ui/object-utils': link:../../utilities/object-utils
@@ -1725,7 +1725,7 @@ importers:
       '@chakra-ui/styled-system': link:../styled-system
       '@chakra-ui/theme-utils': link:../../utilities/theme-utils
       '@chakra-ui/utils': link:../../legacy/utils
-      react-fast-compare: 3.2.0
+      react-fast-compare: 3.2.1
     devDependencies:
       '@chakra-ui/theme': link:../../components/theme
       '@emotion/react': 11.9.3_react@18.2.0
@@ -26771,6 +26771,10 @@ packages:
 
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
+  /react-fast-compare/3.2.1:
+    resolution: {integrity: sha512-xTYf9zFim2pEif/Fw16dBiXpe0hoy5PxcD8+OwBnTtNLfIm3g6WxhKNurY+6OmdH1u6Ta/W/Vl6vjbYP1MFnDg==}
     dev: false
 
   /react-focus-lock/2.9.2_react@18.2.0:
