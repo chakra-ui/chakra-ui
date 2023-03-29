@@ -10,7 +10,7 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { callAll, cx } from "@chakra-ui/shared-utils"
-import { cloneElement, useMemo } from "react"
+import { cloneElement, useMemo, useState } from "react"
 import { useCheckboxGroupContext } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
@@ -134,16 +134,26 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     onChange,
   })
 
+  const [previousIsChecked, setPreviousIsChecked] = useState(state.isChecked)
+  const [animateIcon, setAnimateIcon] = useState(false)
+
+  if (state.isChecked !== previousIsChecked) {
+    setAnimateIcon(true)
+    setPreviousIsChecked(state.isChecked)
+  }
+
   const iconStyles: SystemStyleObject = useMemo(
     () => ({
-      animation: state.isIndeterminate
-        ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
-        : `${checkAnim} 200ms linear`,
+      animation: animateIcon
+        ? state.isIndeterminate
+          ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
+          : `${checkAnim} 200ms linear`
+        : undefined,
       fontSize: iconSize,
       color: iconColor,
       ...styles.icon,
     }),
-    [iconColor, iconSize, state.isIndeterminate, styles.icon],
+    [iconColor, iconSize, state.isIndeterminate, styles.icon, animateIcon],
   )
 
   const clonedIcon = cloneElement(icon, {

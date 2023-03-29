@@ -548,3 +548,55 @@ test("On resetting form, checkbox should reset to its default state i.e., unchec
   fireEvent.click(resetBtn)
   expect(checkbox).not.toBeChecked()
 })
+
+test("animate icon only when transitioning to checked state", () => {
+  const { container, getByRole } = render(<Checkbox defaultChecked />)
+
+  const checkbox = getByRole("checkbox")
+
+  // `getComputedStyle` requires querying the DOM node to receive
+  // up-to-date computed styles, so icon can't be cached in a variable
+  const getIcon = () => {
+    return container.querySelector(".chakra-checkbox__control svg")!
+  }
+
+  // There shouldn't be an animation on initial render
+  expect(getComputedStyle(getIcon()).animation).toEqual("")
+
+  fireEvent.click(checkbox)
+
+  // There is no icon in unchecked state
+  expect(checkbox).not.toBeChecked()
+
+  fireEvent.click(checkbox)
+
+  // There should be an animation when transitioning to checked state
+  expect(getComputedStyle(getIcon()).animation).toBeTruthy()
+})
+
+test("animate icon in indeterminate checkbox only when transitioning to checked state", () => {
+  const { container, getByRole } = render(
+    <Checkbox isIndeterminate defaultChecked />,
+  )
+
+  const checkbox = getByRole("checkbox")
+
+  // `getComputedStyle` requires querying the DOM node to receive
+  // up-to-date computed styles, so icon can't be cached in a variable
+  const getIcon = () => {
+    return container.querySelector(".chakra-checkbox__control svg")!
+  }
+
+  // There shouldn't be an animation on initial render
+  expect(getComputedStyle(getIcon()).animation).toEqual("")
+
+  fireEvent.click(checkbox)
+
+  // There is no icon in unchecked state
+  expect(checkbox).not.toBeChecked()
+
+  fireEvent.click(checkbox)
+
+  // There should be an animation when transitioning to checked state
+  expect(getComputedStyle(getIcon()).animation).toBeTruthy()
+})
