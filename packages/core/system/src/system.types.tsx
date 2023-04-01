@@ -4,6 +4,8 @@ import type {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import type { Interpolation } from "@emotion/react"
+import type { ElementType } from "react"
+import type { Assign, ComponentWithAs } from "@polymorphic-factory/react"
 
 export interface ChakraProps extends SystemProps {
   /**
@@ -26,15 +28,19 @@ export interface ChakraProps extends SystemProps {
   css?: Interpolation<{}>
 }
 
-export type As = React.ElementType
+/**
+ * @deprecated use React.ElementType instead
+ */
+export type As = ElementType
+
+export interface ChakraComponent<
+  T extends ElementType,
+  P extends Record<never, never> = Record<never, never>,
+> extends ComponentWithAs<T, Assign<ChakraProps, P>> {}
 
 /**
- * Extract the props of a React element or component
+ * @deprecated type is not used anymore in the chakra codebase
  */
-export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
-  as?: As
-}
-
 export type OmitCommonProps<
   Target,
   OmitAdditionalProps extends keyof any = never,
@@ -45,17 +51,21 @@ export type OmitCommonProps<
   htmlTranslate?: "yes" | "no" | undefined
 }
 
+/**
+ * @deprecated type is not used anymore in the chakra codebase
+ */
 export type RightJoinProps<
-  SourceProps extends object = {},
-  OverrideProps extends object = {},
+  SourceProps extends Record<never, never> = Record<never, never>,
+  OverrideProps extends Record<never, never> = Record<never, never>,
 > = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps
 
-type Assign<T, U> = Omit<T, keyof U> & U
-
+/**
+ * @deprecated type is not used anymore in the chakra codebase
+ */
 export type MergeWithAs<
-  ComponentProps extends object,
-  AsProps extends object,
-  AdditionalProps extends object = {},
+  ComponentProps extends Record<never, never>,
+  AsProps extends Record<never, never>,
+  AdditionalProps extends Record<never, never> = Record<never, never>,
   AsComponent extends As = As,
 > = (
   | RightJoinProps<ComponentProps, AdditionalProps>
@@ -63,23 +73,3 @@ export type MergeWithAs<
 ) & {
   as?: AsComponent
 }
-
-export type ComponentWithAs<Component extends As, Props extends object = {}> = {
-  <AsComponent extends As = Component>(
-    props: MergeWithAs<
-      React.ComponentProps<Component>,
-      React.ComponentProps<AsComponent>,
-      Props,
-      AsComponent
-    >,
-  ): JSX.Element
-
-  displayName?: string
-  propTypes?: React.WeakValidationMap<any>
-  contextTypes?: React.ValidationMap<any>
-  defaultProps?: Partial<any>
-  id?: string
-}
-
-export interface ChakraComponent<T extends As, P extends object = {}>
-  extends ComponentWithAs<T, Assign<ChakraProps, P>> {}

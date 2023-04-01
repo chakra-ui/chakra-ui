@@ -1,20 +1,22 @@
-/**
- * All credit goes to Chance (Reach UI), Haz (Reakit) and (fluentui)
- * for creating the base type definitions upon which we improved on
- */
-import { forwardRef as forwardReactRef } from "react"
-import { As, ComponentWithAs, PropsOf, RightJoinProps } from "./system.types"
+import type { ElementType, ForwardRefRenderFunction } from "react"
+import {
+  Assign,
+  forwardRef as forwardReactPolymorphic,
+  PropsOf,
+} from "@polymorphic-factory/react"
 
-export function forwardRef<Props extends object, Component extends As>(
-  component: React.ForwardRefRenderFunction<
-    any,
-    RightJoinProps<PropsOf<Component>, Props> & {
-      as?: As
+export function forwardRef<
+  // It's pretty much the same as the original from @polymorphic-factory/react,
+  // but the positions of the generics are swapped
+  Props extends Record<never, never> = Record<never, never>,
+  Component extends ElementType = ElementType,
+>(
+  component: ForwardRefRenderFunction<
+    never,
+    Assign<PropsOf<Component>, Props> & {
+      as?: ElementType
     }
   >,
 ) {
-  return forwardReactRef(component) as unknown as ComponentWithAs<
-    Component,
-    Props
-  >
+  return forwardReactPolymorphic<Component, Props>(component)
 }
