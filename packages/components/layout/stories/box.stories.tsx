@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Box, Circle, Flex, Kbd, Spacer, Square } from "../src"
 
 export default {
@@ -46,4 +45,15 @@ export const square = () => (
       Bee
     </Circle>
   </Square>
+)
+
+export const hideShow = () => (
+  <Box>
+    <Box hideBelow="md">
+      <p>This text should hide below md</p>
+    </Box>
+    <Box hideFrom="md">
+      <p>This text should hide from md</p>
+    </Box>
+  </Box>
 )

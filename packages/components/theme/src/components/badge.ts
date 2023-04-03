@@ -1,13 +1,11 @@
 import {
-  cssVar,
+  defineCssVars,
   defineStyle,
   defineStyleConfig,
 } from "@chakra-ui/styled-system"
 import { transparentize } from "@chakra-ui/theme-tools"
 
-const $bg = cssVar("badge-bg")
-const $fg = cssVar("badge-color")
-const $shadow = cssVar("badge-shadow")
+const vars = defineCssVars("badge", ["bg", "color", "shadow"])
 
 const baseStyle = defineStyle({
   px: 1,
@@ -15,20 +13,20 @@ const baseStyle = defineStyle({
   fontSize: "xs",
   borderRadius: "sm",
   fontWeight: "bold",
-  bg: $bg.reference,
-  color: $fg.reference,
-  boxShadow: $shadow.reference,
+  bg: vars.bg.reference,
+  color: vars.color.reference,
+  boxShadow: vars.shadow.reference,
 })
 
 const variantSolid = defineStyle((props) => {
   const { colorScheme: c, theme } = props
   const dark = transparentize(`${c}.500`, 0.6)(theme)
   return {
-    [$bg.variable]: `colors.${c}.500`,
-    [$fg.variable]: `colors.white`,
+    [vars.bg.variable]: `colors.${c}.500`,
+    [vars.color.variable]: `colors.white`,
     _dark: {
-      [$bg.variable]: dark,
-      [$fg.variable]: `colors.whiteAlpha.800`,
+      [vars.bg.variable]: dark,
+      [vars.color.variable]: `colors.whiteAlpha.800`,
     },
   }
 })
@@ -37,11 +35,11 @@ const variantSubtle = defineStyle((props) => {
   const { colorScheme: c, theme } = props
   const darkBg = transparentize(`${c}.200`, 0.16)(theme)
   return {
-    [$bg.variable]: `colors.${c}.100`,
-    [$fg.variable]: `colors.${c}.800`,
+    [vars.bg.variable]: `colors.${c}.100`,
+    [vars.color.variable]: `colors.${c}.800`,
     _dark: {
-      [$bg.variable]: darkBg,
-      [$fg.variable]: `colors.${c}.200`,
+      [vars.bg.variable]: darkBg,
+      [vars.color.variable]: `colors.${c}.200`,
     },
   }
 })
@@ -50,11 +48,11 @@ const variantOutline = defineStyle((props) => {
   const { colorScheme: c, theme } = props
   const darkColor = transparentize(`${c}.200`, 0.8)(theme)
   return {
-    [$fg.variable]: `colors.${c}.500`,
+    [vars.color.variable]: `colors.${c}.500`,
     _dark: {
-      [$fg.variable]: darkColor,
+      [vars.color.variable]: darkColor,
     },
-    [$shadow.variable]: `inset 0 0 0px 1px ${$fg.reference}`,
+    [vars.shadow.variable]: `inset 0 0 0px 1px ${vars.color.reference}`,
   }
 })
 
@@ -72,3 +70,5 @@ export const badgeTheme = defineStyleConfig({
     colorScheme: "gray",
   },
 })
+
+export { vars as badgeVars }

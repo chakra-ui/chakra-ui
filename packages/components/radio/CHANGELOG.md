@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.0.22
+
+### Patch Changes
+
+- [#7484](https://github.com/chakra-ui/chakra-ui/pull/7484)
+  [`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix issue where
+  shows console warning due to `preventDefault` call in pointer event on mobile
+
+  - Add deprecation warning for `getCheckboxProps` in favor of `getRadioProps`
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.18
+
 ## 2.0.21
 
 ### Patch Changes

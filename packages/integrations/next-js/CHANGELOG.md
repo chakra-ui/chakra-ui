@@ -1,5 +1,27 @@
 # @chakra-ui/next-js
 
+## 2.1.2
+
+### Patch Changes
+
+- [`f8f5280bc`](https://github.com/chakra-ui/chakra-ui/commit/f8f5280bc5fbdc3fc4a30307313e48c7c160c738)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `fill` prop was not forwarded to the underlying component.
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+## 2.1.1
+
+### Patch Changes
+
+- [`be28f5d0b`](https://github.com/chakra-ui/chakra-ui/commit/be28f5d0ba3a14d9a6b6bd9e059b922d25cdb260)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  theming related props (variant, size) could not be passed to the `Link`
+  component
+
 ## 2.1.0
 
 ### Minor Changes
