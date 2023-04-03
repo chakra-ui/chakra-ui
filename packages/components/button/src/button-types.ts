@@ -42,7 +42,7 @@ export interface ButtonOptions {
    * The label to show in the button when `isLoading` is true
    * If no text is passed, it only shows the spinner
    */
-  loadingText?: string
+  loadingText?: React.ReactNode
   /**
    * The html button type to use.
    */
@@ -75,7 +75,7 @@ export interface ButtonOptions {
 }
 
 export interface ButtonSpinnerOptions {
-  label?: string
+  label?: React.ReactNode
   /**
    * @type SystemProps["margin"]
    */

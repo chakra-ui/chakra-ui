@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.19
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
+  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/form-control@2.0.18
+  - @chakra-ui/icon@3.0.16
+
 ## 2.0.18
 
 ### Patch Changes

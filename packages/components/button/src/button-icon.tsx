@@ -6,7 +6,7 @@ export function ButtonIcon(props: HTMLChakraProps<"span">) {
   const { children, className, ...rest } = props
 
   const _children = isValidElement(children)
-    ? cloneElement(children, {
+    ? cloneElement<any>(children, {
         "aria-hidden": true,
         focusable: false,
       })

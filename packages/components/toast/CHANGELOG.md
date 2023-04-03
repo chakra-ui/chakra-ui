@@ -1,5 +1,98 @@
 # Change Log
 
+## 6.1.1
+
+### Patch Changes
+
+- [`4eac402bd`](https://github.com/chakra-ui/chakra-ui/commit/4eac402bdfc21b97e8a2d2d1ea01ee1641c440d1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  zIndex was hardcoded in toast component by providing a css variable
+  `--toast-z-index` for better override experience.
+
+  You can set the toast's `zIndex` globally by setting a value for the
+  `--toast-z-index`. The default value for this variable is `5500`
+
+  ```jsx live=false
+  const theme = extendTheme({
+    styles: {
+      global: {
+        "--toast-z-index": 10,
+      },
+    },
+  })
+  ```
+
+- Updated dependencies
+  [[`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c),
+  [`6a3c8435d`](https://github.com/chakra-ui/chakra-ui/commit/6a3c8435d156a7a1790248e295f8931b2f8ad274),
+  [`559edf420`](https://github.com/chakra-ui/chakra-ui/commit/559edf420c25dab69b652b048f9ceafff0ee13a9),
+  [`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c),
+  [`cc8477505`](https://github.com/chakra-ui/chakra-ui/commit/cc84775051af5ca2af4cda76b88a1c47c318288a),
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b),
+  [`fe882dc2f`](https://github.com/chakra-ui/chakra-ui/commit/fe882dc2f4f249aa011ffcf3da7dcda4d21275b1)]:
+  - @chakra-ui/theme@3.0.1
+  - @chakra-ui/alert@2.1.0
+  - @chakra-ui/styled-system@2.8.0
+  - @chakra-ui/system@2.5.5
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/portal@2.0.16
+
+## 6.1.0
+
+### Minor Changes
+
+- [#7481](https://github.com/chakra-ui/chakra-ui/pull/7481)
+  [`b39e242ad`](https://github.com/chakra-ui/chakra-ui/commit/b39e242adc60798a8ce40c34805cb19d80d05524)
+  Thanks [@hectoraldairah](https://github.com/hectoraldairah)! - Add support for
+  the `colorScheme` property in the `useToast` hook
+
+  ```jsx live=false
+  const toast = useToast({
+    title: "Account created.",
+    description: "We've created your account for you.",
+    colorScheme: "blue",
+  })
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0),
+  [`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)]:
+  - @chakra-ui/theme@3.0.0
+  - @chakra-ui/styled-system@2.7.0
+  - @chakra-ui/system@2.5.4
+  - @chakra-ui/alert@2.0.18
+  - @chakra-ui/close-button@2.0.17
+
+## 6.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
+  [`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
+  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
+  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]:
+  - @chakra-ui/theme@2.3.0
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/system@2.5.3
+  - @chakra-ui/alert@2.0.18
+  - @chakra-ui/portal@2.0.16
+  - @chakra-ui/close-button@2.0.17
+
+## 6.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`600ec1108`](https://github.com/chakra-ui/chakra-ui/commit/600ec1108e3657b610ce05f6bce47bfd666465f8)]:
+  - @chakra-ui/styled-system@2.6.2
+  - @chakra-ui/theme@2.2.5
+  - @chakra-ui/system@2.5.2
+  - @chakra-ui/alert@2.0.17
+  - @chakra-ui/close-button@2.0.17
+
 ## 6.0.1
 
 ### Patch Changes

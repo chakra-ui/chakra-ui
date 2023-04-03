@@ -1,5 +1,42 @@
 # Change Log
 
+## 2.1.12
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies
+  [[`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)]:
+  - @chakra-ui/transition@2.0.16
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.14
+
+## 2.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/clickable@2.0.14
+
+## 2.1.10
+
+### Patch Changes
+
+- [#7380](https://github.com/chakra-ui/chakra-ui/pull/7380)
+  [`bb7319244`](https://github.com/chakra-ui/chakra-ui/commit/bb731924479d33c75c9a983aa7bc1f3d25b40f35)
+  Thanks [@anubra266](https://github.com/anubra266)! - Export menu provider
+
+- Updated dependencies []:
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.13
+
 ## 2.1.9
 
 ### Patch Changes

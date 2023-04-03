@@ -6,6 +6,7 @@ export interface BaseThemeTypings {
   fonts: string
   fontSizes: string
   fontWeights: string
+  gradients: string
   layerStyles: string
   letterSpacings: string
   lineHeights: string

@@ -1,5 +1,14 @@
 # @chakra-ui/react-context
 
+## 2.0.8
+
+### Patch Changes
+
+- [#7470](https://github.com/chakra-ui/chakra-ui/pull/7470)
+  [`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)
+  Thanks [@r1tsuu](https://github.com/r1tsuu)! - `createContext`: Fix issue
+  where `defaultValue` is not passing
+
 ## 2.0.7
 
 ### Patch Changes

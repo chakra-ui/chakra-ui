@@ -75,6 +75,10 @@ const theme = toCSSVar({
       common: "opacity, transform, background-color, color",
     },
   },
+  gradients: {
+    baseGradient:
+      "linear-gradient(102.7deg, rgba(185, 185, 241, 0.2) 0%, rgba(84, 132, 234, 0.2) 51.56%, rgba(58, 142, 137, 0.2) 100%)",
+  },
 })
 
 test("returns system props styles", () => {
@@ -644,4 +648,32 @@ test("should resolve !important syntax", () => {
       "background": "#fff !important",
     }
   `)
+})
+
+test("bgGradient, bgImage, bgImg, and backgroundImage uses theme.gradients", () => {
+  ;["bgGradient", "bgImage", "backgroundImage", "bgImg"].forEach((prop) => {
+    const style = css({
+      [prop]: "baseGradient",
+    })(theme)
+
+    expect(style).toMatchInlineSnapshot(`
+      Object {
+        "backgroundImage": "var(--gradients-baseGradient)",
+      }
+    `)
+  })
+})
+
+test("bgImage, bgImg, and backgroundImage maintain `url()` function rendering fallback", () => {
+  ;["bgImage", "backgroundImage", "bgImg"].forEach((prop) => {
+    const style = css({
+      [prop]: "../../media/examples/lizard.png",
+    })(theme)
+
+    expect(style).toMatchInlineSnapshot(`
+      Object {
+        "backgroundImage": "url('../../media/examples/lizard.png')",
+      }
+    `)
+  })
 })

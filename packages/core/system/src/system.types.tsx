@@ -26,7 +26,7 @@ export interface ChakraProps extends SystemProps {
   css?: Interpolation<{}>
 }
 
-export type As<Props = any> = React.ElementType<Props>
+export type As = React.ElementType
 
 /**
  * Extract the props of a React element or component
@@ -50,15 +50,19 @@ export type RightJoinProps<
   OverrideProps extends object = {},
 > = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps
 
+type Assign<T, U> = Omit<T, keyof U> & U
+
 export type MergeWithAs<
   ComponentProps extends object,
   AsProps extends object,
   AdditionalProps extends object = {},
   AsComponent extends As = As,
-> = RightJoinProps<ComponentProps, AdditionalProps> &
-  RightJoinProps<AsProps, AdditionalProps> & {
-    as?: AsComponent
-  }
+> = (
+  | RightJoinProps<ComponentProps, AdditionalProps>
+  | RightJoinProps<AsProps, AdditionalProps>
+) & {
+  as?: AsComponent
+}
 
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   <AsComponent extends As = Component>(
@@ -77,5 +81,5 @@ export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   id?: string
 }
 
-export interface ChakraComponent<T extends As, P = {}>
-  extends ComponentWithAs<T, ChakraProps & P> {}
+export interface ChakraComponent<T extends As, P extends object = {}>
+  extends ComponentWithAs<T, Assign<ChakraProps, P>> {}

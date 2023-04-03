@@ -160,6 +160,16 @@ export const pseudoSelectors = {
    */
   _first: "&:first-of-type",
   /**
+   * Styles for CSS selector `&::first-letter`
+   *
+   * NOTE: This selector is only applied for block-level elements and not preceded by an image or table.
+   * @example
+   * ```jsx
+   * <Text _firstLetter={{ textDecoration: 'underline' }}>Once upon a time</Text>
+   * ```
+   */
+  _firstLetter: "&::first-letter",
+  /**
    * Styles for CSS Selector `&:last-of-type`
    */
   _last: "&:last-of-type",

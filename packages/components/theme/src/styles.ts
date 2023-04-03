@@ -15,7 +15,6 @@ export const styles: Styles = {
     },
     "*, *::before, &::after": {
       borderColor: "chakra-border-color",
-      wordWrap: "break-word",
     },
   },
 }
