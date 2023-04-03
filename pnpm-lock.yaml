@@ -61,7 +61,7 @@ importers:
       eslint-plugin-testing-library: 5.5.1
       find-packages: 9.0.13
       find-up: ^6.3.0
-      fs-extra: 11.1.0
+      fs-extra: 11.1.1
       husky: ^7.0.4
       jest: ^28.1.1
       jest-environment-jsdom: ^28.1.1
@@ -135,7 +135,7 @@ importers:
       eslint-plugin-testing-library: 5.5.1_wzajlvpeyqkhd33zas4sol2fg4
       find-packages: 9.0.13
       find-up: 6.3.0
-      fs-extra: 11.1.0
+      fs-extra: 11.1.1
       husky: 7.0.4
       jest: 28.1.3_@types+node@18.11.17
       jest-environment-jsdom: 28.1.3
@@ -18998,8 +18998,8 @@ packages:
       jsonfile: 6.1.0
       universalify: 2.0.0
 
-  /fs-extra/11.1.0:
-    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
+  /fs-extra/11.1.1:
+    resolution: {integrity: sha512-MGIE4HOvQCeUCzmlHs0vXpih4ysz4wg9qiSAu6cd42lVwPbTM1TjV7RusoyQqMmk/95gdQZX72u+YW+c3eEpFQ==}
     engines: {node: '>=14.14'}
     dependencies:
       graceful-fs: 4.2.10
