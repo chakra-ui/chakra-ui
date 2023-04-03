@@ -10,22 +10,20 @@ export type ToastStore = ToastMethods & {
   removeToast: (id: ToastId, position: ToastPosition) => void
 }
 
-const defaultInitialState = {
-  top: [],
-  "top-left": [],
-  "top-right": [],
-  "bottom-left": [],
-  bottom: [],
-  "bottom-right": [],
-}
-
 /**
  * Store to track all the toast across all positions
  */
-export const toastStore = createToastStore(defaultInitialState)
+export const toastStore = createToastStore()
 
 export function createToastStore(
-  initialState: ToastState = defaultInitialState,
+  initialState: ToastState = {
+    top: [],
+    "top-left": [],
+    "top-right": [],
+    "bottom-left": [],
+    bottom: [],
+    "bottom-right": [],
+  },
 ): ToastStore {
   let state = initialState
   const listeners = new Set<() => void>()
