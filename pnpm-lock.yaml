@@ -20,7 +20,7 @@ importers:
       '@chakra-ui/test-utils': workspace:*
       '@chakra-ui/theme': workspace:*
       '@changesets/changelog-github': 0.4.8
-      '@changesets/cli': 2.26.0
+      '@changesets/cli': 2.26.1
       '@changesets/get-release-plan': 3.0.16
       '@changesets/types': 5.2.1
       '@commitlint/cli': 14.1.0
@@ -94,7 +94,7 @@ importers:
       '@chakra-ui/test-utils': link:tooling/test-utils
       '@chakra-ui/theme': link:packages/components/theme
       '@changesets/changelog-github': 0.4.8
-      '@changesets/cli': 2.26.0
+      '@changesets/cli': 2.26.1
       '@changesets/get-release-plan': 3.0.16
       '@changesets/types': 5.2.1
       '@commitlint/cli': 14.1.0
@@ -4921,8 +4921,8 @@ packages:
       - encoding
     dev: false
 
-  /@changesets/cli/2.26.0:
-    resolution: {integrity: sha512-0cbTiDms+ICTVtEwAFLNW0jBNex9f5+fFv3I771nBvdnV/mOjd1QJ4+f8KtVSOrwD9SJkk9xbDkWFb0oXd8d1Q==}
+  /@changesets/cli/2.26.1:
+    resolution: {integrity: sha512-XnTa+b51vt057fyAudvDKGB0Sh72xutQZNAdXkCqPBKO2zvs2yYZx5hFZj1u9cbtpwM6Sxtcr02/FQJfZOzemQ==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.20.7
