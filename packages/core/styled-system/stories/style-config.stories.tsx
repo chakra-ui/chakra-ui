@@ -1,6 +1,6 @@
-import { Global, ThemeProvider, useTheme } from "@emotion/react"
+import { Global } from "@emotion/react"
+import { ThemeProvider, useTheme } from "@chakra-ui/system"
 import styled from "@emotion/styled"
-import * as React from "react"
 import { css, resolveStyleConfig, toCSSVar } from "../src"
 import { recipe } from "../tests/theme"
 
