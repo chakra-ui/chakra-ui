@@ -276,20 +276,18 @@ describe("test with resize", () => {
     renderWithProvider()
 
     expect(screen.getByText("__base__")).toBeInTheDocument()
-    // It seems like 3 is the number of renders that happen on initial render
-    // I'm guessing it's the ThemeProvider
-    expect(numOfRenders).toBe(3)
+    expect(numOfRenders).toBe(1)
 
     // 99 -> 399, which moves between base and md breakpoints, but since we
     // only have values on base and xl breakpoints, it should not re-render
     // until we get a new value
     act(() => window.resizeTo(399, 200))
     expect(screen.getByText("__base__")).toBeInTheDocument()
-    expect(numOfRenders).toBe(3)
+    expect(numOfRenders).toBe(1)
 
     // Move across xl breakpoint, so should then update value and re-render
     act(() => window.resizeTo(600, 200))
     expect(screen.getByText("__xl__")).toBeInTheDocument()
-    expect(numOfRenders).toBe(4)
+    expect(numOfRenders).toBe(2)
   })
 })
