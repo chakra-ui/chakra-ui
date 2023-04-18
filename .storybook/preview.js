@@ -1,14 +1,10 @@
 import { extendTheme } from "@chakra-ui/react"
 
 const getThemeOverride = () => {
-  const theme = localStorage.getItem("chakra-theme-override")
-
-  if (!theme) {
-    return {}
-  }
-
   try {
-    return JSON.parse(theme)
+    const theme = window.opener.chakraTheme
+    console.log("Found theme: ", theme)
+    return theme || {}
   } catch (e) {
     console.log("Failed to parse custom theme override", e)
     return {}
