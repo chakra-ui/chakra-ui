@@ -12,6 +12,10 @@ import {
   ModalOverlay,
 } from "../src"
 
+export default {
+  title: "Components / Dialog / Modal",
+}
+
 const Button = chakra("button", {
   baseStyle: {
     outline: 0,

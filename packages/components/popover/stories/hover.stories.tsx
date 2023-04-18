@@ -10,6 +10,10 @@ import {
   PopoverTrigger,
 } from "../src"
 
+export default {
+  title: "Components / Popover / Hover",
+}
+
 function Card() {
   return (
     <Box p={5}>

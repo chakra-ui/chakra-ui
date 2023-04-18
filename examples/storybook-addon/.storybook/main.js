@@ -11,4 +11,8 @@ module.exports = {
   features: {
     emotionAlias: false,
   },
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
 }

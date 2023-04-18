@@ -40,6 +40,10 @@ function logEvents(e: React.MouseEvent | React.KeyboardEvent | undefined) {
   console.log(e)
 }
 
+export default {
+  title: "Components / Menu",
+}
+
 export const Basic = () => (
   <div style={{ minHeight: 4000, paddingTop: 500 }}>
     <Menu>

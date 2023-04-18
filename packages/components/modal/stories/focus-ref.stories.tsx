@@ -7,6 +7,10 @@ import {
   ModalOverlay,
 } from "../src"
 
+export default {
+  title: "Components / Modal / FocusRef",
+}
+
 export const InitialFocusRef = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const inputRef = React.useRef<any>()

@@ -2,9 +2,9 @@
 // import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 // import { Text } from "../src"
 
-// export default {
-//   title: "Components / Typography / Text",
-// }
+export default {
+  title: "Components / Typography / Text",
+}
 
 // const theme = extendTheme({
 //   components: {
@@ -35,5 +35,3 @@
 //     </Text>
 //   </ChakraProvider>
 // )
-
-export {}

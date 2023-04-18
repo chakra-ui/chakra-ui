@@ -1,4 +1,4 @@
-import type { ArgTypes } from "@storybook/react"
+import type { ArgTypes } from "@storybook/react-webpack5"
 import type { ThemingProps } from "@chakra-ui/react"
 
 /**
@@ -41,7 +41,7 @@ function validateColorScheme(value: object) {
  * }
  *
  * @example full example
- * import { Meta, StoryFn } from "@storybook/react"
+ * import { Meta, StoryFn } from "@storybook/react-webpack5"
  * import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
  * import { theme } from "<your-theme>"
  *

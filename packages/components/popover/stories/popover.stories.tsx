@@ -17,6 +17,10 @@ import {
   usePopover,
 } from "../src"
 
+export default {
+  title: "Components / Dialog / Popover",
+}
+
 export function PopoverExample() {
   const { getTriggerProps, getPopoverProps, onClose } = usePopover()
 
