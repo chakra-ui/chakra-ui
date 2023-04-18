@@ -1,5 +1,20 @@
 import { extendTheme } from "@chakra-ui/react"
 
+const getThemeOverride = () => {
+  const theme = localStorage.getItem("chakra-theme-override")
+
+  if (!theme) {
+    return {}
+  }
+
+  try {
+    return JSON.parse(theme)
+  } catch (e) {
+    console.log("Failed to parse custom theme override", e)
+    return {}
+  }
+}
+
 export const parameters = {
   options: {
     storySort: (a, b) =>
@@ -18,6 +33,7 @@ export const parameters = {
           },
         },
       },
+      ...getThemeOverride(),
     }),
   },
 }
