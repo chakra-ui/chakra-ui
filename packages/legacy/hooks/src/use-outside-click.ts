@@ -4,6 +4,10 @@ import { useCallbackRef } from "./use-callback-ref"
 
 export interface UseOutsideClickProps {
   /**
+   * Whether context Menu Listener is enabled
+   */
+  listenContextMenu?: boolean
+  /**
    * Whether the hook is enabled
    */
   enabled?: boolean
@@ -24,7 +28,7 @@ export interface UseOutsideClickProps {
  * @see Docs https://chakra-ui.com/docs/hooks/use-outside-click
  */
 export function useOutsideClick(props: UseOutsideClickProps) {
-  const { ref, handler, enabled = true } = props
+  const { ref, handler, enabled = true, listenContextMenu = false } = props
   const savedHandler = useCallbackRef(handler)
 
   const stateRef = useRef({
@@ -37,7 +41,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
   useEffect(() => {
     if (!enabled) return
     const onPointerDown: any = (e: PointerEvent) => {
-      if (isValidEvent(e, ref)) {
+      if (isValidEvent(e, ref, listenContextMenu)) {
         state.isPointerDown = true
       }
     }
@@ -48,7 +52,11 @@ export function useOutsideClick(props: UseOutsideClickProps) {
         return
       }
 
-      if (state.isPointerDown && handler && isValidEvent(event, ref)) {
+      if (
+        state.isPointerDown &&
+        handler &&
+        isValidEvent(event, ref, listenContextMenu)
+      ) {
         state.isPointerDown = false
         savedHandler(event)
       }
@@ -77,9 +85,19 @@ export function useOutsideClick(props: UseOutsideClickProps) {
   }, [handler, ref, savedHandler, state, enabled])
 }
 
-function isValidEvent(event: any, ref: React.RefObject<HTMLElement>) {
+function isValidEvent(
+  event: any,
+  ref: React.RefObject<HTMLElement>,
+  listenContextMenu?: boolean,
+) {
   const target = event.target as HTMLElement
-  if (event.button > 0) return false
+  const availableButtons = [0]
+
+  if (listenContextMenu) {
+    availableButtons.push(2)
+  }
+
+  if (!availableButtons.includes(event.button)) return false
   // if the event target is no longer in the document
   if (target) {
     const doc = getOwnerDocument(target)
