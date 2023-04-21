@@ -79,9 +79,11 @@ export function useOutsideClick(props: UseOutsideClickProps) {
 
 function isValidEvent(event: Event, ref: React.RefObject<HTMLElement>) {
   const target = event.target as HTMLElement
+
   if (target) {
     const doc = getOwnerDocument(target)
     if (!doc.contains(target)) return false
   }
+
   return !ref.current?.contains(target)
 }
