@@ -2871,8 +2871,8 @@ importers:
         version: 0.8.0
     devDependencies:
       '@types/glob':
-        specifier: ^7.1.3
-        version: 7.2.0
+        specifier: ^8.0.0
+        version: 8.0.0
 
   tooling/storybook-addon:
     devDependencies:
@@ -12665,7 +12665,14 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 3.0.5
-      '@types/node': 18.0.6
+      '@types/node': 18.11.17
+    dev: false
+
+  /@types/glob@8.0.0:
+    resolution: {integrity: sha512-l6NQsDDyQUVeoTynNpC9uRvCUint/gSUXQA2euwmTuWGvPY5LSDUu6tkCtJB2SvGQlJQzLaKqcGZP4//7EDveA==}
+    dependencies:
+      '@types/minimatch': 3.0.5
+      '@types/node': 18.11.17
 
   /@types/graceful-fs@4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
@@ -12837,6 +12844,7 @@ packages:
 
   /@types/node@18.0.6:
     resolution: {integrity: sha512-/xUq6H2aQm261exT6iZTMifUySEt4GR5KX8eYyY+C4MSNPqSh9oNIP7tz2GLKTlFaiBbgZNxffoR3CVRG+cljw==}
+    dev: false
 
   /@types/node@18.11.17:
     resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==}
@@ -12930,7 +12938,7 @@ packages:
   /@types/rimraf@2.0.5:
     resolution: {integrity: sha512-YyP+VfeaqAyFmXoTh3HChxOQMyjByRMsHU7kc5KOJkSlXudhMhQIALbYV7rHh/l8d2lX3VUQzprrcAgWdRuU8g==}
     dependencies:
-      '@types/glob': 7.2.0
+      '@types/glob': 8.0.0
       '@types/node': 18.11.17
 
   /@types/scheduler@0.16.2:
@@ -20210,7 +20218,7 @@ packages:
     peerDependencies:
       glob: '*'
     dependencies:
-      '@types/glob': 7.2.0
+      '@types/glob': 8.0.0
       glob: 7.2.3
 
   /glob-to-regexp@0.3.0:
