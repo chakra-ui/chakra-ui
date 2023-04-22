@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [`51482a41e`](https://github.com/chakra-ui/chakra-ui/commit/51482a41e89fd001f570b6a44d816b781e1dcca0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `<input type="number" />` shows spinner button
+
 ## 2.1.0
 
 ### Minor Changes

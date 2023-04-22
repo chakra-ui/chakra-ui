@@ -6,7 +6,11 @@ import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
 import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
 import { PropGetter } from "@chakra-ui/react-types"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState, RefObject } from "react"
+
+interface FocusableElement {
+  focus(options?: FocusOptions): void
+}
 
 export interface UseEditableProps {
   /**
@@ -54,6 +58,11 @@ export interface UseEditableProps {
    */
   onEdit?: () => void
   /**
+   * Callback invoked when the user either submits or cancels.
+   * It provides the last confirmed value as argument.
+   */
+  onBlur?: (nextValue: string) => void
+  /**
    * If `true`, the input's text will be highlighted on focus.
    * @default true
    */
@@ -62,6 +71,10 @@ export interface UseEditableProps {
    * The placeholder text when the value is empty.
    */
   placeholder?: string
+  /**
+   * The `ref` of element to receive focus when the modal closes.
+   */
+  finalFocusRef?: RefObject<FocusableElement>
 }
 
 function contains(parent: HTMLElement | null, child: HTMLElement) {
@@ -79,6 +92,7 @@ export function useEditable(props: UseEditableProps = {}) {
     onChange: onChangeProp,
     onCancel: onCancelProp,
     onSubmit: onSubmitProp,
+    onBlur: onBlurProp,
     value: valueProp,
     isDisabled,
     defaultValue,
@@ -88,6 +102,7 @@ export function useEditable(props: UseEditableProps = {}) {
     selectAllOnFocus = true,
     placeholder,
     onEdit: onEditCallback,
+    finalFocusRef,
     ...htmlProps
   } = props
 
@@ -136,7 +151,11 @@ export function useEditable(props: UseEditableProps = {}) {
 
   useUpdateEffect(() => {
     if (!isEditing) {
-      editButtonRef.current?.focus()
+      if (finalFocusRef) {
+        finalFocusRef.current?.focus()
+      } else {
+        editButtonRef.current?.focus()
+      }
       return
     }
 
@@ -163,12 +182,14 @@ export function useEditable(props: UseEditableProps = {}) {
     setIsEditing(false)
     setValue(prevValue)
     onCancelProp?.(prevValue)
-  }, [onCancelProp, setValue, prevValue])
+    onBlurProp?.(prevValue)
+  }, [onCancelProp, onBlurProp, setValue, prevValue])
 
   const onSubmit = useCallback(() => {
     setIsEditing(false)
     setPrevValue(value)
     onSubmitProp?.(value)
+    onBlurProp?.(prevValue)
   }, [value, onSubmitProp])
 
   useEffect(() => {

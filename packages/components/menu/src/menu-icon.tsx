@@ -9,7 +9,7 @@ export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const child = Children.only(children)
 
   const clone = isValidElement(child)
-    ? cloneElement(child, {
+    ? cloneElement<any>(child, {
         focusable: "false",
         "aria-hidden": true,
         className: cx("chakra-menu__icon", child.props.className),

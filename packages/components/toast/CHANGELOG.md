@@ -1,5 +1,42 @@
 # Change Log
 
+## 6.1.1
+
+### Patch Changes
+
+- [`4eac402bd`](https://github.com/chakra-ui/chakra-ui/commit/4eac402bdfc21b97e8a2d2d1ea01ee1641c440d1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  zIndex was hardcoded in toast component by providing a css variable
+  `--toast-z-index` for better override experience.
+
+  You can set the toast's `zIndex` globally by setting a value for the
+  `--toast-z-index`. The default value for this variable is `5500`
+
+  ```jsx live=false
+  const theme = extendTheme({
+    styles: {
+      global: {
+        "--toast-z-index": 10,
+      },
+    },
+  })
+  ```
+
+- Updated dependencies
+  [[`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c),
+  [`6a3c8435d`](https://github.com/chakra-ui/chakra-ui/commit/6a3c8435d156a7a1790248e295f8931b2f8ad274),
+  [`559edf420`](https://github.com/chakra-ui/chakra-ui/commit/559edf420c25dab69b652b048f9ceafff0ee13a9),
+  [`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c),
+  [`cc8477505`](https://github.com/chakra-ui/chakra-ui/commit/cc84775051af5ca2af4cda76b88a1c47c318288a),
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b),
+  [`fe882dc2f`](https://github.com/chakra-ui/chakra-ui/commit/fe882dc2f4f249aa011ffcf3da7dcda4d21275b1)]:
+  - @chakra-ui/theme@3.0.1
+  - @chakra-ui/alert@2.1.0
+  - @chakra-ui/styled-system@2.8.0
+  - @chakra-ui/system@2.5.5
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/portal@2.0.16
+
 ## 6.1.0
 
 ### Minor Changes

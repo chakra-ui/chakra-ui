@@ -79,7 +79,7 @@ export function createThemeVars(
       cssVars,
       Object.entries(normalizedValue).reduce(
         (acc, [conditionAlias, conditionValue]) => {
-          const maybeReference = lookupToken(conditionValue)
+          const maybeReference = lookupToken(conditionValue!.toString())
           if (conditionAlias === "default") {
             acc[variable] = maybeReference
             return acc

@@ -4,9 +4,10 @@ export function queue(): Promise<void> {
   return act(() => Promise.resolve())
 }
 
-export function nextTick(): Promise<void> {
+export function nextTick(): Promise<any> {
   return act(
-    () => new Promise((resolve) => requestAnimationFrame(() => resolve())),
+    () =>
+      new Promise((resolve) => requestAnimationFrame(() => resolve(void 0))),
   )
 }
 
