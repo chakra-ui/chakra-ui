@@ -3,10 +3,6 @@ import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
 
 export interface UseOutsideClickProps {
   /**
-   * Whether context Menu Listener is enabled
-   */
-  listenContextMenu?: boolean
-  /**
    * Whether the hook is enabled
    */
   enabled?: boolean
@@ -25,7 +21,7 @@ export interface UseOutsideClickProps {
  * when a user clicks outside them.
  */
 export function useOutsideClick(props: UseOutsideClickProps) {
-  const { ref, handler, enabled = true, listenContextMenu = false } = props
+  const { ref, handler, enabled = true } = props
   const savedHandler = useCallbackRef(handler)
 
   const stateRef = useRef({
@@ -38,7 +34,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
   useEffect(() => {
     if (!enabled) return
     const onPointerDown: any = (e: PointerEvent) => {
-      if (isValidEvent(e, ref, listenContextMenu)) {
+      if (isValidEvent(e, ref)) {
         state.isPointerDown = true
       }
     }
@@ -49,11 +45,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
         return
       }
 
-      if (
-        state.isPointerDown &&
-        handler &&
-        isValidEvent(event, ref, listenContextMenu)
-      ) {
+      if (state.isPointerDown && handler && isValidEvent(event, ref)) {
         state.isPointerDown = false
         savedHandler(event)
       }
@@ -82,20 +74,9 @@ export function useOutsideClick(props: UseOutsideClickProps) {
   }, [handler, ref, savedHandler, state, enabled])
 }
 
-function isValidEvent(
-  event: any,
-  ref: React.RefObject<HTMLElement>,
-  listenContextMenu?: boolean,
-) {
+function isValidEvent(event: Event, ref: React.RefObject<HTMLElement>) {
   const target = event.target as HTMLElement
-  const availableButtons = [0]
 
-  if (listenContextMenu) {
-    availableButtons.push(2)
-  }
-
-  if (!availableButtons.includes(event.button)) return false
-  // if the event target is no longer in the document
   if (target) {
     const doc = getOwnerDocument(target)
     if (!doc.contains(target)) return false
