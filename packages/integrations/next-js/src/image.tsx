@@ -6,5 +6,19 @@ export type ImageProps = NextImageProps &
 
 export const Image: ChakraComponent<"img", NextImageProps> = chakra(NextImage, {
   shouldForwardProp: (prop) =>
-    ["width", "height", "src", "alt", "fill", "loading"].includes(prop),
+    [
+      "src",
+      "alt",
+      "width",
+      "height",
+      "fill",
+      "loader",
+      "quality",
+      "priority",
+      "loading",
+      "placeholder",
+      "blurDataURL",
+      "unoptimized",
+      "onLoadingComplete",
+    ].includes(prop),
 })
