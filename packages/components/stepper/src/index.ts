@@ -1,6 +1,7 @@
 export { Step } from "./step"
 export type { StepProps } from "./step"
 export { useStepContext, useStepperStyles } from "./step-context"
+export type { StepStatusType } from "./step-context"
 export { StepDescription } from "./step-description"
 export type { StepDescriptionProps } from "./step-description"
 export { StepIcon } from "./step-icon"
