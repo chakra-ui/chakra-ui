@@ -1,36 +1,35 @@
-import { Box } from "@chakra-ui/layout"
+import { Box, HStack } from "@chakra-ui/layout"
 import {
   Step,
-  StepStatus,
   StepDescription,
   StepIcon,
   StepIndicator,
   StepNumber,
   StepSeparator,
+  StepStatus,
   StepTitle,
   Stepper,
+  useSteps,
 } from "../src"
-import { useSteps } from "../src/use-steps"
 
 export default {
   title: "Components / Navigation / Stepper",
 }
 
 const steps = [
-  { title: "First Step", description: "Create an account" },
-  { title: "Second Step", description: "Verify Email" },
-  { title: "Third Step", description: "Get Full Access" },
+  { title: "First", description: "Contact Info" },
+  { title: "Second", description: "Date & Time" },
+  { title: "Third", description: "Select Rooms" },
 ]
 
 export const Horizontal = () => {
   const { goToNext, goToPrevious, activeStep, setActiveStep } = useSteps({
     index: 1,
+    count: steps.length,
   })
+
   return (
     <>
-      <button onClick={() => goToPrevious()}>Prev</button>
-      <button onClick={() => goToNext(3)}>Next</button>
-
       <Stepper index={activeStep}>
         {steps.map((step, index) => (
           <Step key={index} onClick={() => setActiveStep(index)}>
@@ -51,12 +50,21 @@ export const Horizontal = () => {
           </Step>
         ))}
       </Stepper>
+
+      <HStack mt="5">
+        <button onClick={goToPrevious}>Prev</button>
+        <button onClick={goToNext}>Next</button>
+      </HStack>
     </>
   )
 }
 
 export const Vertical = () => {
-  const { goToNext, goToPrevious, activeStep } = useSteps({ index: 1 })
+  const { goToNext, goToPrevious, activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
   return (
     <>
       <Stepper index={activeStep} orientation="vertical" height="400px" gap="0">
@@ -80,8 +88,10 @@ export const Vertical = () => {
         ))}
       </Stepper>
 
-      <button onClick={() => goToPrevious()}>Prev</button>
-      <button onClick={() => goToNext(3)}>Next</button>
+      <HStack mt="5">
+        <button onClick={goToPrevious}>Prev</button>
+        <button onClick={goToNext}>Next</button>
+      </HStack>
     </>
   )
 }

@@ -2,12 +2,13 @@ import { useState } from "react"
 
 export type UseStepsProps = {
   index?: number
+  count?: number
 }
 
 export type StepStatus = "complete" | "active" | "incomplete"
 
 export function useSteps(props: UseStepsProps = {}) {
-  const { index = 0 } = props
+  const { index = 0, count } = props
   const [activeStep, setActiveStep] = useState(index)
 
   return {
@@ -21,7 +22,7 @@ export function useSteps(props: UseStepsProps = {}) {
       if (step > activeStep) return "incomplete"
       return "active"
     },
-    goToNext(count?: number) {
+    goToNext() {
       setActiveStep((step) => {
         return typeof count === "number" ? Math.min(count, step + 1) : step + 1
       })
