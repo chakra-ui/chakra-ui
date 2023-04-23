@@ -13,6 +13,8 @@ const { defineMultiStyleConfig, definePartsStyle } =
 
 const $size = cssVar("stepper-indicator-size")
 const $iconSize = cssVar("stepper-icon-size")
+const $titleFontSize = cssVar("stepper-title-font-size")
+const $descFontSize = cssVar("stepper-description-font-size")
 
 const baseStyle = definePartsStyle({
   stepper: {
@@ -29,10 +31,11 @@ const baseStyle = definePartsStyle({
     },
   },
   title: {
+    fontSize: $titleFontSize.reference,
     fontWeight: "medium",
   },
   description: {
-    fontSize: "sm",
+    fontSize: $descFontSize.reference,
     color: "gray.600",
   },
   step: {
@@ -88,7 +91,7 @@ const baseStyle = definePartsStyle({
       height: "100%",
       maxHeight: `calc(100% - ${$size.reference} - 8px)`,
       top: `calc(${$size.reference} + 4px)`,
-      left: `calc(${$size.reference} / 2 - 1px)`,
+      insetStart: `calc(${$size.reference} / 2 - 1px)`,
     },
   },
 })
@@ -100,18 +103,24 @@ export const stepperTheme = defineMultiStyleConfig({
       stepper: {
         [$size.variable]: "sizes.3",
         [$iconSize.variable]: "sizes.2",
+        [$titleFontSize.variable]: "fontSizes.sm",
+        [$descFontSize.variable]: "fontSizes.xs",
       },
     }),
     md: definePartsStyle({
       stepper: {
         [$size.variable]: "sizes.6",
         [$iconSize.variable]: "sizes.4",
+        [$titleFontSize.variable]: "fontSizes.md",
+        [$descFontSize.variable]: "fontSizes.sm",
       },
     }),
     lg: definePartsStyle({
       stepper: {
         [$size.variable]: "sizes.10",
         [$iconSize.variable]: "sizes.6",
+        [$titleFontSize.variable]: "fontSizes.md",
+        [$descFontSize.variable]: "fontSizes.sm",
       },
     }),
   },

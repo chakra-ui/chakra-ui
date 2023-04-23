@@ -2,10 +2,20 @@ import { ComponentProps } from "react"
 
 export function CheckIcon(props: ComponentProps<"svg">) {
   return (
-    <svg viewBox="0 0 24 24" {...props}>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      height="1em"
+      width="1em"
+      {...props}
+    >
       <path
-        fill="currentColor"
-        d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+        fillRule="evenodd"
+        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+        clipRule="evenodd"
       />
     </svg>
   )
