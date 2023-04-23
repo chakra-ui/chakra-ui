@@ -16,8 +16,9 @@ const $size = cssVar("stepper-indicator-size")
 const $iconSize = cssVar("stepper-icon-size")
 const $titleFontSize = cssVar("stepper-title-font-size")
 const $descFontSize = cssVar("stepper-description-font-size")
+const $accentColor = cssVar("stepper-accent-color")
 
-const baseStyle = definePartsStyle({
+const baseStyle = definePartsStyle(({ colorScheme: c }) => ({
   stepper: {
     display: "flex",
     justifyContent: "space-between",
@@ -30,6 +31,10 @@ const baseStyle = definePartsStyle({
       flexDirection: "row",
       alignItems: "center",
     },
+    [$accentColor.variable]: `colors.${c}.500`,
+    _dark: {
+      [$accentColor.variable]: `colors.${c}.200`,
+    },
   },
   title: {
     fontSize: $titleFontSize.reference,
@@ -37,7 +42,7 @@ const baseStyle = definePartsStyle({
   },
   description: {
     fontSize: $descFontSize.reference,
-    color: "gray.600",
+    color: "chakra-subtle-text",
   },
   number: {
     fontSize: $titleFontSize.reference,
@@ -69,21 +74,21 @@ const baseStyle = definePartsStyle({
     alignItems: "center",
     "&[data-status=active]": {
       borderWidth: "2px",
-      borderColor: "tomato",
+      borderColor: $accentColor.reference,
     },
     "&[data-status=complete]": {
-      bg: "tomato",
-      color: "white",
+      bg: $accentColor.reference,
+      color: "chakra-inverse-text",
     },
     "&[data-status=incomplete]": {
       borderWidth: "2px",
     },
   },
   separator: {
-    bg: "gray.200",
+    bg: "chakra-border-color",
     flex: "1",
     "&[data-status=complete]": {
-      bg: "tomato",
+      bg: $accentColor.reference,
     },
     "&[data-orientation=horizontal]": {
       width: "100%",
@@ -99,7 +104,7 @@ const baseStyle = definePartsStyle({
       insetStart: `calc(${$size.reference} / 2 - 1px)`,
     },
   },
-})
+}))
 
 export const stepperTheme = defineMultiStyleConfig({
   baseStyle,
@@ -138,6 +143,7 @@ export const stepperTheme = defineMultiStyleConfig({
     }),
   },
   defaultProps: {
-    size: "lg",
+    size: "md",
+    colorScheme: "blue",
   },
 })
