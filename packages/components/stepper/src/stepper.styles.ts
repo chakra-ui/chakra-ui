@@ -54,7 +54,6 @@ const baseStyle = definePartsStyle({
   },
   indicator: {
     flexShrink: 0,
-    bg: "white",
     borderRadius: "full",
     width: $size.reference,
     height: $size.reference,
@@ -71,6 +70,25 @@ const baseStyle = definePartsStyle({
     },
     "&[data-status=incomplete]": {
       borderWidth: "2px",
+    },
+  },
+  separator: {
+    bg: "gray.200",
+    flex: "1",
+    height: "2px",
+    "&[data-status=complete]": {
+      bg: "tomato",
+    },
+    "&[data-orientation=horizontal]": {
+      marginStart: "2",
+    },
+    "&[data-orientation=vertical]": {
+      width: "2px",
+      position: "absolute",
+      height: "100%",
+      maxHeight: `calc(100% - ${$size.reference} - 8px)`,
+      top: `calc(${$size.reference} + 4px)`,
+      left: `calc(${$size.reference} / 2 - 1px)`,
     },
   },
 })

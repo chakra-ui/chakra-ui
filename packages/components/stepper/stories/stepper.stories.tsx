@@ -1,7 +1,8 @@
-import { Box, Divider } from "@chakra-ui/layout"
+import { Box } from "@chakra-ui/layout"
 import { Step, StepDescription, StepIcon, StepTitle } from "../src"
 import { StepContent, StepIndicator } from "../src/step-indicator"
 import { StepNumber } from "../src/step-number"
+import { StepSeparator } from "../src/step-separator"
 import { Stepper } from "../src/stepper"
 import { useSteps } from "../src/use-steps"
 
@@ -42,20 +43,7 @@ export const Horizontal = () => {
               <StepDescription>{step.description}</StepDescription>
             </Box>
 
-            <StepContent>
-              {({ isLast, orientation, status }) =>
-                !isLast && (
-                  <Divider
-                    borderColor={status === "complete" ? "red" : undefined}
-                    borderWidth="1.25px"
-                    orientation={orientation}
-                    position="relative"
-                    marginStart="2"
-                    flex="1"
-                  />
-                )
-              }
-            </StepContent>
+            <StepSeparator />
           </Step>
         ))}
       </Stepper>
@@ -85,22 +73,7 @@ export const Vertical = () => {
               <StepDescription>{step.description}</StepDescription>
             </Box>
 
-            <StepContent>
-              {({ isLast, orientation, status }) =>
-                !isLast && (
-                  <Divider
-                    orientation={orientation}
-                    borderColor={status === "complete" ? "red" : undefined}
-                    borderWidth="1.25px"
-                    position="absolute"
-                    maxHeight="calc(100% - var(--stepper-indicator-size) - 8px)"
-                    top="calc(var(--stepper-indicator-size) + 3px)"
-                    left="calc(var(--stepper-indicator-size) / 2 - 1px)"
-                    flex="1"
-                  />
-                )
-              }
-            </StepContent>
+            <StepSeparator />
           </Step>
         ))}
       </Stepper>
