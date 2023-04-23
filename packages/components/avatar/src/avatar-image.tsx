@@ -32,7 +32,7 @@ export function AvatarImage(props: AvatarImageProps) {
   /**
    * use the image hook to only show the image when it has loaded
    */
-  const status = useImage({ src, onError, ignoreFallback })
+  const status = useImage({ src, onError, crossOrigin, ignoreFallback })
 
   const hasLoaded = status === "loaded"
 
