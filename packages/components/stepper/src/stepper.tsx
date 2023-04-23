@@ -13,7 +13,6 @@ import {
   StepStatusType,
   StepperStylesProvider,
 } from "./step-context"
-import { stepperTheme } from "./stepper.styles"
 
 export type StepperProps = HTMLChakraProps<"div"> &
   ThemingProps<"Stepper"> & {
@@ -26,10 +25,7 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
   props: StepperProps,
   ref,
 ) {
-  const styles = useMultiStyleConfig("Stepper", {
-    styleConfig: stepperTheme,
-    ...props,
-  })
+  const styles = useMultiStyleConfig("Stepper", props)
 
   const {
     children,

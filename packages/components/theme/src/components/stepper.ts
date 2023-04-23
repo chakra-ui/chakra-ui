@@ -1,4 +1,4 @@
-import { createMultiStyleConfigHelpers, cssVar } from "@chakra-ui/system"
+import { createMultiStyleConfigHelpers, cssVar } from "@chakra-ui/styled-system"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers([
