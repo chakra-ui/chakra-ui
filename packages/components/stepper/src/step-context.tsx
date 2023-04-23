@@ -1,7 +1,7 @@
 import { createContext } from "@chakra-ui/react-context"
 import { createStylesContext } from "@chakra-ui/system"
 
-export type StepStatus = "active" | "complete" | "incomplete"
+export type StepStatusType = "active" | "complete" | "incomplete"
 
 export type Orientation = "horizontal" | "vertical"
 
@@ -10,7 +10,7 @@ export type StepContext = {
    * The status of the step
    * @type "active" | "complete" | "incomplete"
    */
-  status: StepStatus
+  status: StepStatusType
   /**
    * The total number of steps
    */

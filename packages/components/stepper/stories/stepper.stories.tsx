@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/layout"
 import {
   Step,
-  StepContent,
+  StepStatus,
   StepDescription,
   StepIcon,
   StepIndicator,
@@ -35,12 +35,10 @@ export const Horizontal = () => {
         {steps.map((step, index) => (
           <Step key={index} onClick={() => setActiveStep(index)}>
             <StepIndicator>
-              <StepContent
-                when={{
-                  complete: <StepIcon />,
-                  incomplete: <StepNumber />,
-                  active: <StepNumber />,
-                }}
+              <StepStatus
+                complete={<StepIcon />}
+                incomplete={<StepNumber />}
+                active={<StepNumber />}
               />
             </StepIndicator>
 
@@ -65,12 +63,10 @@ export const Vertical = () => {
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator>
-              <StepContent
-                when={{
-                  complete: <StepIcon />,
-                  incomplete: <StepNumber />,
-                  active: <StepNumber />,
-                }}
+              <StepStatus
+                complete={<StepIcon />}
+                incomplete={<StepNumber />}
+                active={<StepNumber />}
               />
             </StepIndicator>
 
