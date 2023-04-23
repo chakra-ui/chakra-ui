@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/layout"
+import { Box, Stack } from "@chakra-ui/layout"
 import { Step, StepDescription, StepIcon, StepTitle } from "../src"
 import { StepIndicator } from "../src/step-indicator"
 import { StepContent } from "../src/step-content"
@@ -26,28 +26,32 @@ export const Horizontal = () => {
       <button onClick={() => goToPrevious()}>Prev</button>
       <button onClick={() => goToNext(3)}>Next</button>
 
-      <Stepper index={activeStep} size="md">
-        {steps.map((step, index) => (
-          <Step key={index} onClick={() => setActiveStep(index)}>
-            <StepIndicator>
-              <StepContent
-                when={{
-                  complete: <StepIcon />,
-                  incomplete: <StepNumber />,
-                  active: <StepNumber />,
-                }}
-              />
-            </StepIndicator>
+      <Stack spacing="6">
+        {["xs", "sm", "md", "lg"].map((size) => (
+          <Stepper key={size} index={activeStep} size={size}>
+            {steps.map((step, index) => (
+              <Step key={index} onClick={() => setActiveStep(index)}>
+                <StepIndicator>
+                  <StepContent
+                    when={{
+                      complete: <StepIcon />,
+                      incomplete: <StepNumber />,
+                      active: <StepNumber />,
+                    }}
+                  />
+                </StepIndicator>
 
-            <Box flexShrink="0">
-              <StepTitle>{step.title}</StepTitle>
-              <StepDescription>{step.description}</StepDescription>
-            </Box>
+                <Box flexShrink="0">
+                  <StepTitle>{step.title}</StepTitle>
+                  <StepDescription>{step.description}</StepDescription>
+                </Box>
 
-            <StepSeparator />
-          </Step>
+                <StepSeparator />
+              </Step>
+            ))}
+          </Stepper>
         ))}
-      </Stepper>
+      </Stack>
     </>
   )
 }

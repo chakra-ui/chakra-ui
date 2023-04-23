@@ -9,6 +9,7 @@ const { defineMultiStyleConfig, definePartsStyle } =
     "indicator",
     "separator",
     "icon",
+    "number",
   ])
 
 const $size = cssVar("stepper-indicator-size")
@@ -37,6 +38,9 @@ const baseStyle = definePartsStyle({
   description: {
     fontSize: $descFontSize.reference,
     color: "gray.600",
+  },
+  number: {
+    fontSize: $titleFontSize.reference,
   },
   step: {
     flexShrink: 0,
@@ -78,11 +82,11 @@ const baseStyle = definePartsStyle({
   separator: {
     bg: "gray.200",
     flex: "1",
-    height: "2px",
     "&[data-status=complete]": {
       bg: "tomato",
     },
     "&[data-orientation=horizontal]": {
+      height: "2px",
       marginStart: "2",
     },
     "&[data-orientation=vertical]": {
@@ -99,18 +103,26 @@ const baseStyle = definePartsStyle({
 export const stepperTheme = defineMultiStyleConfig({
   baseStyle,
   sizes: {
+    xs: definePartsStyle({
+      stepper: {
+        [$size.variable]: "sizes.4",
+        [$iconSize.variable]: "sizes.3",
+        [$titleFontSize.variable]: "fontSizes.xs",
+        [$descFontSize.variable]: "fontSizes.xs",
+      },
+    }),
     sm: definePartsStyle({
       stepper: {
-        [$size.variable]: "sizes.3",
-        [$iconSize.variable]: "sizes.2",
+        [$size.variable]: "sizes.6",
+        [$iconSize.variable]: "sizes.4",
         [$titleFontSize.variable]: "fontSizes.sm",
         [$descFontSize.variable]: "fontSizes.xs",
       },
     }),
     md: definePartsStyle({
       stepper: {
-        [$size.variable]: "sizes.6",
-        [$iconSize.variable]: "sizes.4",
+        [$size.variable]: "sizes.8",
+        [$iconSize.variable]: "sizes.5",
         [$titleFontSize.variable]: "fontSizes.md",
         [$descFontSize.variable]: "fontSizes.sm",
       },
@@ -119,8 +131,8 @@ export const stepperTheme = defineMultiStyleConfig({
       stepper: {
         [$size.variable]: "sizes.10",
         [$iconSize.variable]: "sizes.6",
-        [$titleFontSize.variable]: "fontSizes.md",
-        [$descFontSize.variable]: "fontSizes.sm",
+        [$titleFontSize.variable]: "fontSizes.lg",
+        [$descFontSize.variable]: "fontSizes.md",
       },
     }),
   },

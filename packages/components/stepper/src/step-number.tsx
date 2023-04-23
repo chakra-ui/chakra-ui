@@ -1,5 +1,5 @@
 import { chakra, forwardRef } from "@chakra-ui/system"
-import { useStepContext } from "./step-context"
+import { useStepContext, useStepperStyles } from "./step-context"
 
 export const StepNumber = forwardRef<{}, "div">(function StepNumber(
   props,
@@ -7,8 +7,14 @@ export const StepNumber = forwardRef<{}, "div">(function StepNumber(
 ) {
   const { children, ...restProps } = props
   const { status, index } = useStepContext()
+  const styles = useStepperStyles()
   return (
-    <chakra.div ref={ref} data-status={status} {...restProps}>
+    <chakra.div
+      ref={ref}
+      data-status={status}
+      __css={styles.number}
+      {...restProps}
+    >
       {children || index + 1}
     </chakra.div>
   )
