@@ -1,7 +1,10 @@
 import { chakra, forwardRef } from "@chakra-ui/system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
-export const StepSeparator = forwardRef(function StepSeparator(props, ref) {
+export const StepSeparator = forwardRef<{}, "div">(function StepSeparator(
+  props,
+  ref,
+) {
   const { orientation, status, isLast } = useStepContext()
   const styles = useStepperStyles()
 

@@ -2,6 +2,7 @@ import {
   HTMLChakraProps,
   ThemingProps,
   chakra,
+  forwardRef,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { Children } from "react"
@@ -20,7 +21,10 @@ export type StepperProps = HTMLChakraProps<"div"> &
     children: React.ReactNode
   }
 
-export const Stepper = (props: StepperProps) => {
+export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
+  props: StepperProps,
+  ref,
+) {
   const { index, children, orientation = "horizontal", ...restProps } = props
 
   const styles = useMultiStyleConfig("Stepper", {
@@ -40,6 +44,7 @@ export const Stepper = (props: StepperProps) => {
 
   return (
     <chakra.div
+      ref={ref}
       aria-label="Progress"
       data-orientation={orientation}
       {...restProps}
@@ -64,4 +69,4 @@ export const Stepper = (props: StepperProps) => {
       </StepperStylesProvider>
     </chakra.div>
   )
-}
+})

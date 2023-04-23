@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/layout"
 import { Step, StepDescription, StepIcon, StepTitle } from "../src"
-import { StepContent, StepIndicator } from "../src/step-indicator"
+import { StepIndicator } from "../src/step-indicator"
+import { StepContent } from "../src/step-content"
 import { StepNumber } from "../src/step-number"
 import { StepSeparator } from "../src/step-separator"
 import { Stepper } from "../src/stepper"

@@ -1,12 +1,15 @@
-import { HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { chakra, forwardRef } from "@chakra-ui/system"
 import { useStepContext } from "./step-context"
 
-export function StepNumber(props: HTMLChakraProps<"div">) {
+export const StepNumber = forwardRef<{}, "div">(function StepNumber(
+  props,
+  ref,
+) {
   const { children, ...restProps } = props
   const { status, index } = useStepContext()
   return (
-    <chakra.div data-status={status} {...restProps}>
+    <chakra.div ref={ref} data-status={status} {...restProps}>
       {children || index + 1}
     </chakra.div>
   )
-}
+})
