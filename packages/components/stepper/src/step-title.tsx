@@ -3,7 +3,7 @@ import { useStepContext, useStepperStyles } from "./step-context"
 
 export type StepTitleProps = HTMLChakraProps<"h3">
 
-export const StepTitle = forwardRef(function StepTitle(
+export const StepTitle = forwardRef<{}, "h3">(function StepTitle(
   props: StepTitleProps,
   ref,
 ) {

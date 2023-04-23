@@ -3,13 +3,14 @@ import {
   ThemingProps,
   chakra,
   forwardRef,
+  omitThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { Children } from "react"
 import {
   Orientation,
   StepContextProvider,
-  StepStatus,
+  StepStatusType,
   StepperStylesProvider,
 } from "./step-context"
 import { stepperTheme } from "./stepper.styles"
@@ -25,18 +26,23 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
   props: StepperProps,
   ref,
 ) {
-  const { index, children, orientation = "horizontal", ...restProps } = props
-
   const styles = useMultiStyleConfig("Stepper", {
     styleConfig: stepperTheme,
-    ...restProps,
+    ...props,
   })
+
+  const {
+    children,
+    index,
+    orientation = "horizontal",
+    ...restProps
+  } = omitThemingProps(props)
 
   const stepElements = Children.toArray(children)
 
   const stepCount = stepElements.length
 
-  function getStatus(step: number): StepStatus {
+  function getStatus(step: number): StepStatusType {
     if (step < index) return "complete"
     if (step > index) return "incomplete"
     return "active"
