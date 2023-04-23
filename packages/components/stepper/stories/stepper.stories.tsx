@@ -1,4 +1,4 @@
-import { Box, Stack } from "@chakra-ui/layout"
+import { Box } from "@chakra-ui/layout"
 import {
   Step,
   StepContent,
@@ -31,32 +31,28 @@ export const Horizontal = () => {
       <button onClick={() => goToPrevious()}>Prev</button>
       <button onClick={() => goToNext(3)}>Next</button>
 
-      <Stack spacing="6">
-        {["xs", "sm", "md", "lg"].map((size) => (
-          <Stepper key={size} index={activeStep} size={size}>
-            {steps.map((step, index) => (
-              <Step key={index} onClick={() => setActiveStep(index)}>
-                <StepIndicator>
-                  <StepContent
-                    when={{
-                      complete: <StepIcon />,
-                      incomplete: <StepNumber />,
-                      active: <StepNumber />,
-                    }}
-                  />
-                </StepIndicator>
+      <Stepper index={activeStep}>
+        {steps.map((step, index) => (
+          <Step key={index} onClick={() => setActiveStep(index)}>
+            <StepIndicator>
+              <StepContent
+                when={{
+                  complete: <StepIcon />,
+                  incomplete: <StepNumber />,
+                  active: <StepNumber />,
+                }}
+              />
+            </StepIndicator>
 
-                <Box flexShrink="0">
-                  <StepTitle>{step.title}</StepTitle>
-                  <StepDescription>{step.description}</StepDescription>
-                </Box>
+            <Box flexShrink="0">
+              <StepTitle>{step.title}</StepTitle>
+              <StepDescription>{step.description}</StepDescription>
+            </Box>
 
-                <StepSeparator />
-              </Step>
-            ))}
-          </Stepper>
+            <StepSeparator />
+          </Step>
         ))}
-      </Stack>
+      </Stepper>
     </>
   )
 }
