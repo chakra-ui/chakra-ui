@@ -1,31 +1,36 @@
-import { chakra } from "@chakra-ui/system"
-import { useStepContext } from "./step-context"
+import { HTMLChakraProps, chakra } from "@chakra-ui/system"
+import {
+  StepContext,
+  StepStatus,
+  useStepContext,
+  useStepperStyles,
+} from "./step-context"
 
-export type StepIndicatorProps = {
-  children: React.ReactNode
-}
+export type StepIndicatorProps = HTMLChakraProps<"div">
 
 export function StepIndicator(props: StepIndicatorProps) {
-  const { children, ...rest } = props
   const { status } = useStepContext()
-  const isCompleted = status === "completed"
+  const styles = useStepperStyles()
+  return <chakra.div data-status={status} {...props} __css={styles.indicator} />
+}
 
-  return (
-    <chakra.div
-      rounded="full"
-      boxSize="24px"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      data-status={status}
-      sx={{
-        "&[data-status=active]": { border: "2px solid tomato" },
-        "&[data-status=completed]": { bg: "tomato", color: "white" },
-        "&[data-status=incomplete]": { border: "2px solid gray" },
-      }}
-      {...rest}
-    >
-      {isCompleted ? children : null}
-    </chakra.div>
-  )
+type MaybeRenderProp =
+  | React.ReactNode
+  | ((props: StepContext) => React.ReactNode)
+
+export type StepContentProps = {
+  children?: (props: StepContext) => React.ReactNode
+  when?: Record<StepStatus, MaybeRenderProp>
+}
+
+export function StepContent(props: StepContentProps) {
+  const { children, when } = props
+  const context = useStepContext()
+
+  const resolve = (status: StepStatus) => {
+    const render = when?.[status]
+    return typeof render === "function" ? render(context) : render
+  }
+
+  return <>{children?.(context) ?? resolve(context.status)}</>
 }

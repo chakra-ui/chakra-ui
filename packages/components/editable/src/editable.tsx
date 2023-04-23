@@ -24,7 +24,7 @@ type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 interface BaseEditableProps
   extends Omit<
     HTMLChakraProps<"div">,
-    "onChange" | "value" | "defaultValue" | "onSubmit"
+    "onChange" | "value" | "defaultValue" | "onSubmit" | "onBlur"
   > {}
 
 export interface EditableProps

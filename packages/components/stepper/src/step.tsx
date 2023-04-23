@@ -1,18 +1,18 @@
-import { chakra } from "@chakra-ui/system"
-import { StepContextProvider, StepperStatus } from "./step-context"
+import { HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { useStepContext, useStepperStyles } from "./step-context"
 
-export type StepProps = {
-  status: StepperStatus
-  children: React.ReactNode
-}
+export type StepProps = HTMLChakraProps<"div">
 
 export function Step(props: StepProps) {
-  const { status, children, ...rest } = props
+  const { orientation, status } = useStepContext()
+  const styles = useStepperStyles()
+
   return (
-    <StepContextProvider value={{ status }}>
-      <chakra.div data-status={status} {...rest}>
-        {children}
-      </chakra.div>
-    </StepContextProvider>
+    <chakra.div
+      data-status={status}
+      data-orientation={orientation}
+      __css={styles.step}
+      {...props}
+    />
   )
 }

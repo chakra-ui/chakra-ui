@@ -1,23 +1,10 @@
-import { chakra } from "@chakra-ui/system"
-import { useStepContext } from "./step-context"
+import { HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { useStepContext, useStepperStyles } from "./step-context"
 
-export type StepTitleProps = {
-  children: React.ReactNode
-}
+export type StepTitleProps = HTMLChakraProps<"h5">
 
 export function StepTitle(props: StepTitleProps) {
-  const { children, ...rest } = props
   const { status } = useStepContext()
-  return (
-    <chakra.h5
-      fontWeight="bold"
-      data-status={status}
-      sx={{
-        "&[data-status=incomplete]": { color: "gray.500" },
-      }}
-      {...rest}
-    >
-      {children}
-    </chakra.h5>
-  )
+  const styles = useStepperStyles()
+  return <chakra.h5 data-status={status} {...props} __css={styles.title} />
 }
