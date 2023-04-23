@@ -86,6 +86,7 @@ const baseStyle = definePartsStyle({
       bg: "tomato",
     },
     "&[data-orientation=horizontal]": {
+      width: "100%",
       height: "2px",
       marginStart: "2",
     },
