@@ -1,10 +1,15 @@
 import { Box, Stack } from "@chakra-ui/layout"
-import { Step, StepDescription, StepIcon, StepTitle } from "../src"
-import { StepIndicator } from "../src/step-indicator"
-import { StepContent } from "../src/step-content"
-import { StepNumber } from "../src/step-number"
-import { StepSeparator } from "../src/step-separator"
-import { Stepper } from "../src/stepper"
+import {
+  Step,
+  StepContent,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepTitle,
+  Stepper,
+} from "../src"
 import { useSteps } from "../src/use-steps"
 
 export default {

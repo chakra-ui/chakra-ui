@@ -6,11 +6,30 @@ export type StepStatus = "active" | "complete" | "incomplete"
 export type Orientation = "horizontal" | "vertical"
 
 export type StepContext = {
+  /**
+   * The status of the step
+   * @type "active" | "complete" | "incomplete"
+   */
   status: StepStatus
+  /**
+   * The total number of steps
+   */
   count: number
+  /**
+   * The index of the step
+   */
   index: number
+  /**
+   * The orientation of the stepper
+   */
   orientation: Orientation
+  /**
+   * Whether the step is the last step
+   */
   isLast: boolean
+  /**
+   * Whether the step is the first step
+   */
   isFirst: boolean
 }
 
