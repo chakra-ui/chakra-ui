@@ -1733,6 +1733,9 @@ importers:
       '@chakra-ui/stat':
         specifier: workspace:*
         version: link:../stat
+      '@chakra-ui/stepper':
+        specifier: workspace:*
+        version: link:../stepper
       '@chakra-ui/styled-system':
         specifier: workspace:*
         version: link:../../core/styled-system
@@ -1952,6 +1955,31 @@ importers:
         specifier: workspace:*
         version: link:../../utilities/shared-utils
     devDependencies:
+      '@chakra-ui/system':
+        specifier: workspace:*
+        version: link:../../core/system
+      clean-package:
+        specifier: 2.2.0
+        version: 2.2.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
+  packages/components/stepper:
+    dependencies:
+      '@chakra-ui/icon':
+        specifier: workspace:*
+        version: link:../icon
+      '@chakra-ui/react-context':
+        specifier: workspace:*
+        version: link:../../hooks/context
+      '@chakra-ui/shared-utils':
+        specifier: workspace:*
+        version: link:../../utilities/shared-utils
+    devDependencies:
+      '@chakra-ui/layout':
+        specifier: workspace:*
+        version: link:../layout
       '@chakra-ui/system':
         specifier: workspace:*
         version: link:../../core/system

@@ -48,6 +48,7 @@
     "@chakra-ui/slider": "workspace:*",
     "@chakra-ui/spinner": "workspace:*",
     "@chakra-ui/stat": "workspace:*",
+    "@chakra-ui/stepper": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/switch": "workspace:*",
     "@chakra-ui/system": "workspace:*",
