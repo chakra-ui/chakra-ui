@@ -1733,6 +1733,9 @@ importers:
       '@chakra-ui/stat':
         specifier: workspace:*
         version: link:../stat
+      '@chakra-ui/stepper':
+        specifier: workspace:*
+        version: link:../stepper
       '@chakra-ui/styled-system':
         specifier: workspace:*
         version: link:../../core/styled-system
