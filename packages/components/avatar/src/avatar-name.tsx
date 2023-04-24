@@ -3,7 +3,8 @@ import { useAvatarStyles } from "./avatar-context"
 import { AvatarOptions } from "./avatar-types"
 
 export function initials(name: string) {
-  const [firstName, lastName] = name.split(" ")
+  const [firstName, ...otherNames] = name.split(" ");
+  const [lastName] = otherNames.reverse();
   return firstName && lastName
     ? `${firstName.charAt(0)}${lastName.charAt(0)}`
     : firstName.charAt(0)
