@@ -1,4 +1,5 @@
-import { isObject } from "@chakra-ui/shared-utils"
+import { walkObject } from "@chakra-ui/object-utils"
+import { pseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
 
 export type SemanticValue<
@@ -6,7 +7,10 @@ export type SemanticValue<
   Token extends string = string,
 > = Union<Token> | Partial<Record<"default" | Conditions, Union<Token>>>
 
-export type PlainToken = { isSemantic: false; value: string | number }
+export type PlainToken = {
+  isSemantic: false
+  value: string | number
+}
 
 export type SemanticToken = {
   isSemantic: true
@@ -22,65 +26,28 @@ export type FlattenTokensParam = {
   semanticTokens?: object
 }
 
+const isSemanticCondition = (key: string) =>
+  pseudoPropNames.includes(key as any) || "default" === key
+
 export function flattenTokens<T extends FlattenTokensParam>({
   tokens,
   semanticTokens,
 }: T) {
-  const tokenEntries = Object.entries(flatten(tokens) ?? {}).map(
-    ([token, value]) =>
-      [token, { isSemantic: false, value }] as [string, PlainToken],
+  const result: FlatTokens = {}
+
+  walkObject(tokens, (value, path) => {
+    result[path.join(".")] = { isSemantic: false, value }
+  })
+
+  walkObject(
+    semanticTokens,
+    (value, path) => {
+      result[path.join(".")] = { isSemantic: true, value }
+    },
+    {
+      stop: (value) => Object.keys(value).every(isSemanticCondition),
+    },
   )
 
-  const semanticTokenEntries = Object.entries(
-    flattenSemanticTokens(semanticTokens) ?? {},
-  ).map(
-    ([token, value]) =>
-      [token, { isSemantic: true, value }] as [string, SemanticToken],
-  )
-
-  return Object.fromEntries([
-    ...tokenEntries,
-    ...semanticTokenEntries,
-  ]) as FlatTokens
-}
-
-function flatten<Value = any>(obj: Record<string, Value> | undefined | null) {
-  if (!isObject(obj) && !Array.isArray(obj)) {
-    return obj
-  }
-
-  return Object.entries(obj).reduce((result, [key, value]) => {
-    if (isObject(value) || Array.isArray(value)) {
-      Object.entries(flatten(value)).forEach(([childKey, childValue]) => {
-        result[`${key}.${childKey}`] = childValue
-      })
-    } else {
-      result[key] = value
-    }
-    return result
-  }, {} as any)
-}
-
-function flattenSemanticTokens<Value = any>(
-  obj: Record<string, Value> | undefined | null,
-) {
-  if (!isObject(obj) && !Array.isArray(obj)) {
-    return obj
-  }
-
-  return Object.entries(obj).reduce((result, [key, value]) => {
-    if ((isObject(value) && !("default" in value)) || Array.isArray(value)) {
-      Object.entries(flattenSemanticTokens(value)).forEach(
-        ([childKey, childValue]) => {
-          // e.g. gray.500
-          result[`${key}.${childKey}`] = childValue
-        },
-      )
-    } else {
-      // e.g. transparent
-      result[key] = value
-    }
-
-    return result
-  }, {} as any)
+  return result
 }

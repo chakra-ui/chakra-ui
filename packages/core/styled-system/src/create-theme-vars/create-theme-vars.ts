@@ -43,10 +43,12 @@ export function createThemeVars(
       if (token.startsWith("space")) {
         const keys = token.split(".")
         const [firstKey, ...referenceKeys] = keys
+
         /** @example space.-4 */
         const negativeLookupKey = `${firstKey}.-${referenceKeys.join(".")}`
         const negativeValue = calc.negate(value as Operand)
         const negatedReference = calc.negate(reference)
+
         cssMap[negativeLookupKey] = {
           value: negativeValue,
           var: variable,
@@ -66,9 +68,11 @@ export function createThemeVars(
     const lookupToken = (maybeToken: string) => {
       const scale = String(token).split(".")[0]
       const withScale = [scale, maybeToken].join(".")
+
       /** @example flatTokens['space.4'] === '16px' */
       const resolvedTokenValue = flatTokens[withScale]
       if (!resolvedTokenValue) return maybeToken
+
       const { reference } = tokenToCssVar(withScale, options?.cssVarPrefix)
       return reference
     }
