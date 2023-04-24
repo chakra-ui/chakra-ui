@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.19
+
+### Patch Changes
+
+- [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `aspectRatio` style prop to enable the usage of the native aspect ratio
+  property
+- Updated dependencies
+  [[`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)]:
+  - @chakra-ui/object-utils@2.1.0
+  - @chakra-ui/icon@3.0.16
+
 ## 2.1.18
 
 ### Patch Changes
