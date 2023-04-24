@@ -79,16 +79,19 @@ export function createThemeVars(
       cssVars,
       Object.entries(normalizedValue).reduce(
         (acc, [conditionAlias, conditionValue]) => {
-          const maybeReference = lookupToken(conditionValue!.toString())
+          if (!conditionValue) return acc
+          const tokenReference = lookupToken(`${conditionValue}`)
+
           if (conditionAlias === "default") {
-            acc[variable] = maybeReference
+            acc[variable] = tokenReference
             return acc
           }
 
           /** @example { _dark: "#fff" } => { '.chakra-ui-dark': "#fff" } */
           const conditionSelector =
             (pseudoSelectors as any)?.[conditionAlias] ?? conditionAlias
-          acc[conditionSelector] = { [variable]: maybeReference }
+
+          acc[conditionSelector] = { [variable]: tokenReference }
 
           return acc
         },
