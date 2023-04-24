@@ -167,3 +167,22 @@ export const Disabled = () => (
     <EditableControls />
   </Editable>
 )
+
+export const FinalFocusRef = () => {
+  const finalFocusRef = React.useRef(null)
+
+  return (
+    <>
+      <input ref={finalFocusRef} />
+      <Editable
+        finalFocusRef={finalFocusRef}
+        defaultValue="Final fantasy"
+        fontSize="xl"
+      >
+        <EditablePreview />
+        <EditableInput />
+        <EditableControls />
+      </Editable>
+    </>
+  )
+}

@@ -37,3 +37,21 @@ export function cssVar(name: string, fallback?: string, cssVarPrefix?: string) {
     reference: toVarReference(cssVariable, fallback),
   }
 }
+
+type VarDefinition = ReturnType<typeof cssVar>
+
+export function defineCssVars<K extends string>(
+  scope: string,
+  keys: Array<K | [K, string]>,
+): Record<K, VarDefinition> {
+  const vars = {} as Record<K, VarDefinition>
+  for (const key of keys) {
+    if (Array.isArray(key)) {
+      const [name, fallback] = key
+      vars[name] = cssVar(`${scope}-${name}`, fallback)
+      continue
+    }
+    vars[key] = cssVar(`${scope}-${key}`)
+  }
+  return vars
+}

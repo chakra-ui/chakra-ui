@@ -80,7 +80,6 @@ export function createThemeVars(
       Object.entries(normalizedValue).reduce(
         (acc, [conditionAlias, conditionValue]) => {
           if (!conditionValue) return acc
-
           const tokenReference = lookupToken(`${conditionValue}`)
 
           if (conditionAlias === "default") {

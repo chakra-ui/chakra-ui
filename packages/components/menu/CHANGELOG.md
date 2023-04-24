@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.1.12
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies
+  [[`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)]:
+  - @chakra-ui/transition@2.0.16
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.14
+
 ## 2.1.11
 
 ### Patch Changes

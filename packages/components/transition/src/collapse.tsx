@@ -110,7 +110,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
      * for the height to take effect.
      */
     warn({
-      condition: Boolean(startingHeight > 0 && unmountOnExit),
+      condition: Number(startingHeight) > 0 && !!unmountOnExit,
       message: `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
     })
 

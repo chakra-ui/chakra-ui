@@ -34,7 +34,7 @@
       "description": "The selector to scope the css reset styles to."
     },
     "theme": {
-      "type": "Dict<any>",
+      "type": "Dict",
       "required": false,
       "description": "a theme. if omitted, uses the default theme provided by chakra"
     }

@@ -173,10 +173,8 @@ export const CSSReset = ({ scope = "" }: CSSResetProps) => (
         padding: 0;
       }
 
-      ${scope} :where(
-          [type="number"]::-webkit-inner-spin-button,
-          [type="number"]::-webkit-outer-spin-button
-        ) {
+      ${scope} input[type="number"]::-webkit-inner-spin-button,
+      ${scope} input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none !important;
       }
 
@@ -184,12 +182,12 @@ export const CSSReset = ({ scope = "" }: CSSResetProps) => (
         -moz-appearance: textfield;
       }
 
-      ${scope} [type="search"] {
+      ${scope} input[type="search"] {
         -webkit-appearance: textfield;
         outline-offset: -2px;
       }
 
-      ${scope} [type="search"]::-webkit-search-decoration {
+      ${scope} input[type="search"]::-webkit-search-decoration {
         -webkit-appearance: none !important;
       }
 
