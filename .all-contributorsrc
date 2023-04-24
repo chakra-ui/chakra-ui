@@ -2120,6 +2120,15 @@
         "code",
         "maintenance"
       ]
+    },
+    {
+      "login": "vadimdemedes",
+      "name": "Vadim Demedes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/697676?v=4",
+      "profile": "https://vadimdemedes.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
