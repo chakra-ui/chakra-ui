@@ -23,6 +23,7 @@ export const layout: Config = {
   overscrollBehaviorX: true,
   overscrollBehaviorY: true,
   display: true,
+  aspectRatio: true,
   hideFrom: {
     scale: "breakpoints",
     transform: (value: string, theme) => {
@@ -203,4 +204,8 @@ export interface LayoutProps {
    * The CSS `isolation` property
    */
   isolation?: Token<CSS.Property.Isolation>
+  /**
+   * The CSS `aspect-ratio` property
+   */
+  aspectRatio?: Token<CSS.Property.AspectRatio>
 }
