@@ -36,12 +36,14 @@ export function flattenTokens<T extends FlattenTokensParam>({
   const result: FlatTokens = {}
 
   walkObject(tokens, (value, path) => {
+    if (value == null) return
     result[path.join(".")] = { isSemantic: false, value }
   })
 
   walkObject(
     semanticTokens,
     (value, path) => {
+      if (value == null) return
       result[path.join(".")] = { isSemantic: true, value }
     },
     {
