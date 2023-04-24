@@ -25,6 +25,10 @@ export function extractSemanticTokenKeys(
   return Object.keys(flattenSemanticTokens(themeProperty))
 }
 
+/**
+ * TODO: This is a temporary solution to flatten semantic tokens.
+ * We should use the same flatten function as in `packages/core/styled-system/src/create-theme-vars/flatten-tokens.ts`
+ */
 function flattenSemanticTokens<Value = any>(
   target: Record<string, Value> | undefined | null,
 ) {
