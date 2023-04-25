@@ -390,6 +390,9 @@ test("should convert transition tokens", () => {
 test("should convert semantic tokens", () => {
   const theme = {
     colors: {
+      green: {
+        500: "#38A169",
+      },
       red: {
         100: "#ff0010",
         400: "#ff0040",
@@ -409,7 +412,27 @@ test("should convert semantic tokens", () => {
           _dark: "red.700",
         },
         error: "red.500",
-        success: "red.100",
+        success: "green.500",
+        background: {
+          green: {
+            normal: "green.500",
+          },
+        },
+        text: {
+          green: {
+            default: "green.500",
+          },
+          red: {
+            bold: {
+              default: "red.800",
+              _dark: "red.700",
+            },
+            subtle: {
+              default: "red.500",
+              _dark: "red.400",
+            },
+          },
+        },
       },
     },
   }
@@ -418,10 +441,20 @@ test("should convert semantic tokens", () => {
     Object {
       "__breakpoints": null,
       "__cssMap": Object {
+        "colors.background.green.normal": Object {
+          "value": "var(--colors-background-green-normal)",
+          "var": "--colors-background-green-normal",
+          "varRef": "var(--colors-background-green-normal)",
+        },
         "colors.error": Object {
           "value": "var(--colors-error)",
           "var": "--colors-error",
           "varRef": "var(--colors-error)",
+        },
+        "colors.green.500": Object {
+          "value": "#38A169",
+          "var": "--colors-green-500",
+          "varRef": "var(--colors-green-500)",
         },
         "colors.primary": Object {
           "value": "var(--colors-primary)",
@@ -463,6 +496,21 @@ test("should convert semantic tokens", () => {
           "var": "--colors-success",
           "varRef": "var(--colors-success)",
         },
+        "colors.text.green": Object {
+          "value": "var(--colors-text-green)",
+          "var": "--colors-text-green",
+          "varRef": "var(--colors-text-green)",
+        },
+        "colors.text.red.bold": Object {
+          "value": "var(--colors-text-red-bold)",
+          "var": "--colors-text-red-bold",
+          "varRef": "var(--colors-text-red-bold)",
+        },
+        "colors.text.red.subtle": Object {
+          "value": "var(--colors-text-red-subtle)",
+          "var": "--colors-text-red-subtle",
+          "varRef": "var(--colors-text-red-subtle)",
+        },
       },
       "__cssVars": Object {
         "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
@@ -473,7 +521,9 @@ test("should convert semantic tokens", () => {
         "--chakra-ring-shadow": "0 0 #0000",
         "--chakra-space-x-reverse": "0",
         "--chakra-space-y-reverse": "0",
+        "--colors-background-green-normal": "var(--colors-green-500)",
         "--colors-error": "var(--colors-red-500)",
+        "--colors-green-500": "#38A169",
         "--colors-primary": "var(--colors-red-500)",
         "--colors-red-100": "#ff0010",
         "--colors-red-400": "#ff0040",
@@ -481,13 +531,21 @@ test("should convert semantic tokens", () => {
         "--colors-red-700": "#ff0070",
         "--colors-red-800": "#ff0080",
         "--colors-secondary": "var(--colors-red-800)",
-        "--colors-success": "var(--colors-red-100)",
+        "--colors-success": "var(--colors-green-500)",
+        "--colors-text-green": "var(--colors-green-500)",
+        "--colors-text-red-bold": "var(--colors-red-800)",
+        "--colors-text-red-subtle": "var(--colors-red-500)",
         ".chakra-ui-dark &:not([data-theme]),[data-theme=dark] &:not([data-theme]),&[data-theme=dark]": Object {
           "--colors-primary": "var(--colors-red-400)",
           "--colors-secondary": "var(--colors-red-700)",
+          "--colors-text-red-bold": "var(--colors-red-700)",
+          "--colors-text-red-subtle": "var(--colors-red-400)",
         },
       },
       "colors": Object {
+        "green": Object {
+          "500": "#38A169",
+        },
         "red": Object {
           "100": "#ff0010",
           "400": "#ff0040",
@@ -498,6 +556,11 @@ test("should convert semantic tokens", () => {
       },
       "semanticTokens": Object {
         "colors": Object {
+          "background": Object {
+            "green": Object {
+              "normal": "green.500",
+            },
+          },
           "error": "red.500",
           "primary": Object {
             "_dark": "red.400",
@@ -507,7 +570,22 @@ test("should convert semantic tokens", () => {
             "_dark": "red.700",
             "default": "red.800",
           },
-          "success": "red.100",
+          "success": "green.500",
+          "text": Object {
+            "green": Object {
+              "default": "green.500",
+            },
+            "red": Object {
+              "bold": Object {
+                "_dark": "red.700",
+                "default": "red.800",
+              },
+              "subtle": Object {
+                "_dark": "red.400",
+                "default": "red.500",
+              },
+            },
+          },
         },
       },
     }

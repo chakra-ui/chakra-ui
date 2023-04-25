@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+
+## 2.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c77973070`](https://github.com/chakra-ui/chakra-ui/commit/c77973070dac3468d701ccb2e7b8ff87c8d430f4)]:
+  - @chakra-ui/react-use-size@2.0.10
+
 ## 2.0.21
 
 ### Patch Changes

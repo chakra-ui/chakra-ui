@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`559edf420`](https://github.com/chakra-ui/chakra-ui/commit/559edf420c25dab69b652b048f9ceafff0ee13a9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `data-status`
+  attribute to all alert component parts to allow for better finegrained styling
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/spinner@2.0.13
+
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/spinner@2.0.13
+
 ## 2.0.17
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import { chakra, PropsOf } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps, PropsOf } from "@chakra-ui/system"
 
 function CheckIcon(props: PropsOf<typeof chakra.svg>) {
   return (
@@ -31,7 +31,7 @@ function IndeterminateIcon(props: PropsOf<typeof chakra.svg>) {
   )
 }
 
-export interface CheckboxIconProps extends PropsOf<typeof chakra.svg> {
+export interface CheckboxIconProps extends HTMLChakraProps<"svg"> {
   /**
    * @default false
    */

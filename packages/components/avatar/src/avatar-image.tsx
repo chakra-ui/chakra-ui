@@ -26,12 +26,13 @@ export function AvatarImage(props: AvatarImageProps) {
     icon = <GenericAvatarIcon />,
     ignoreFallback,
     referrerPolicy,
+    crossOrigin,
   } = props
 
   /**
    * use the image hook to only show the image when it has loaded
    */
-  const status = useImage({ src, onError, ignoreFallback })
+  const status = useImage({ src, onError, crossOrigin, ignoreFallback })
 
   const hasLoaded = status === "loaded"
 
@@ -69,6 +70,7 @@ export function AvatarImage(props: AvatarImageProps) {
       alt={name}
       onLoad={onLoad}
       referrerPolicy={referrerPolicy}
+      crossOrigin={crossOrigin ?? undefined}
       className="chakra-avatar__img"
       loading={loading}
       __css={{

@@ -79,12 +79,6 @@ module.exports = {
          * if your app uses a lot z-index to position elements.
          */
         portalZIndex: 40,
-        /**
-         * @property {boolean} [isBaseProvider=false]
-         * Setting this to true will render the `ChakraBaseProvider`
-         * which only uses theme tokens initially and not default component themes
-         */
-        isBaseProvider: false,
       },
     },
   ],
@@ -105,7 +99,7 @@ const theme = {
   },
 }
 
-export default extendTheme(theme)
+export default extendTheme(theme) // or extendBaseTheme
 ```
 
 You can learn more about custom theme at

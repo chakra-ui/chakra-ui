@@ -81,6 +81,7 @@ test("controlled: handles callbacks correctly", async () => {
   const onCancel = jest.fn()
   const onSubmit = jest.fn()
   const onEdit = jest.fn()
+  const onBlur = jest.fn()
 
   const Component = () => {
     const [value, setValue] = React.useState("")
@@ -90,6 +91,7 @@ test("controlled: handles callbacks correctly", async () => {
           setValue(val)
           onChange(val)
         }}
+        onBlur={onBlur}
         onCancel={onCancel}
         onSubmit={onSubmit}
         onEdit={onEdit}
@@ -128,8 +130,11 @@ test("controlled: handles callbacks correctly", async () => {
   // press `Escape`
   fireEvent.keyDown(input, { key: "Escape" })
 
-  // calls `onCancel` with previous `value`
+  // calls `onSubmit` with previous `value`
   expect(onSubmit).toHaveBeenCalledWith("World")
+
+  // calls `onBlur` with previous value
+  expect(onBlur).toHaveBeenCalledWith("World")
 })
 
 test("handles preview and input callbacks", async () => {
@@ -291,4 +296,40 @@ test("should not be interactive when disabled", async () => {
 
   await user.click(screen.getByText(/editable/))
   expect(screen.getByTestId("input")).not.toBeVisible()
+})
+
+test("should return focus to button when closed", async () => {
+  const Component = () => {
+    const buttonRef = React.useRef(null)
+    return (
+      <>
+        <button type="button" ref={buttonRef} data-testid="button">
+          Open
+        </button>
+        <Editable finalFocusRef={buttonRef} defaultValue="editable">
+          <EditablePreview data-testid="preview" />
+          <EditableInput data-testid="input" />
+        </Editable>
+        ,
+      </>
+    )
+  }
+
+  const screen = render(<Component />)
+
+  const preview = screen.getByTestId("preview")
+  const input = screen.getByTestId("input")
+  const button = screen.getByTestId("button")
+
+  await screen.user.click(preview)
+
+  // make sure button isn't focused at the start
+  expect(button).not.toHaveFocus()
+  expect(input).toHaveFocus()
+
+  // blur the input
+  fireEvent.blur(input)
+
+  // wait for button to be focused
+  await waitFor(() => expect(button).toHaveFocus())
 })

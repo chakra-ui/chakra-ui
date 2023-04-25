@@ -1,5 +1,38 @@
 # Change Log
 
+## 2.2.8
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
+## 2.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/image@2.0.15
+
+## 2.2.6
+
+### Patch Changes
+
+- [#7438](https://github.com/chakra-ui/chakra-ui/pull/7438)
+  [`01c0a84a5`](https://github.com/chakra-ui/chakra-ui/commit/01c0a84a5fea038e3970666944c2b3096a64504b)
+  Thanks [@nicksrandall](https://github.com/nicksrandall)! - Adding support for
+  Avatar to specify "crossOrigin" prop for image
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
 ## 2.2.5
 
 ### Patch Changes

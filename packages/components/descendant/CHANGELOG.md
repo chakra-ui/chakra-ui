@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.14
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+
 ## 3.0.13
 
 ### Patch Changes

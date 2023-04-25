@@ -251,6 +251,7 @@
     "aria-valuetext": { "type": "string", "required": false },
     "autoCapitalize": { "type": "string", "required": false },
     "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
     "autoSave": { "type": "string", "required": false },
     "className": { "type": "string", "required": false },
     "color": { "type": "string", "required": false },

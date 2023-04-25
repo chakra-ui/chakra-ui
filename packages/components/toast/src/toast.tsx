@@ -33,6 +33,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
     isClosable,
     onClose,
     description,
+    colorScheme,
     icon,
   } = props
 
@@ -56,6 +57,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
       paddingEnd={8}
       textAlign="start"
       width="auto"
+      colorScheme={colorScheme}
     >
       <AlertIcon>{icon}</AlertIcon>
       <chakra.div flex="1" maxWidth="100%">

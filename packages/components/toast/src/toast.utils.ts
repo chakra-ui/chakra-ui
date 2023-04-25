@@ -87,7 +87,7 @@ export function getToastListStyle(
 
   return {
     position: "fixed",
-    zIndex: 5500,
+    zIndex: "var(--toast-z-index, 5500)",
     pointerEvents: "none",
     display: "flex",
     flexDirection: "column",

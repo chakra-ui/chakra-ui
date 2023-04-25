@@ -1,5 +1,48 @@
 # Change Log
 
+## 2.0.39
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies
+  [[`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c),
+  [`6a3c8435d`](https://github.com/chakra-ui/chakra-ui/commit/6a3c8435d156a7a1790248e295f8931b2f8ad274)]:
+  - @chakra-ui/theme@3.0.1
+  - @chakra-ui/provider@2.2.2
+
+## 2.0.38
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0)]:
+  - @chakra-ui/theme@3.0.0
+  - @chakra-ui/provider@2.2.1
+
+## 2.0.37
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6),
+  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb),
+  [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)]:
+  - @chakra-ui/provider@2.2.0
+  - @chakra-ui/theme@2.3.0
+
+## 2.0.36
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/theme@2.2.5
+  - @chakra-ui/provider@2.1.3
+
 ## 2.0.35
 
 ### Patch Changes
