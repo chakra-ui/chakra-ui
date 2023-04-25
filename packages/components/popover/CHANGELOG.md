@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53)]:
+  - @chakra-ui/react-use-focus-effect@2.0.10
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/close-button@2.0.17
+
 ## 2.1.9
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @chakra-ui/object-utils
 
+## 2.1.0
+
+### Minor Changes
+
+- [`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `walkObject`
+  utility
+
 ## 2.0.8
 
 ### Patch Changes

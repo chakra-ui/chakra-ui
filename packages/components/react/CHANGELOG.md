@@ -1,5 +1,102 @@
 # Change Log
 
+## 2.6.0
+
+### Minor Changes
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Introduce new
+  `Stepper` component to model sequencial steps in a process.
+
+  ```jsx live=false
+  <Stepper index={activeStep}>
+    {steps.map((step, index) => (
+      <Step key={index}>
+        <StepIndicator>
+          <StepStatus
+            complete={<StepIcon />}
+            incomplete={<StepNumber />}
+            active={<StepNumber />}
+          />
+        </StepIndicator>
+
+        <Box>
+          <StepTitle>{step.title}</StepTitle>
+          <StepDescription>{step.description}</StepDescription>
+        </Box>
+
+        <StepSeparator />
+      </Step>
+    ))}
+  </Stepper>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  [[`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311),
+  [`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5),
+  [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76),
+  [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72),
+  [`24f952da2`](https://github.com/chakra-ui/chakra-ui/commit/24f952da27ef43febbe20714a08eb94ce87133eb),
+  [`6077dffc6`](https://github.com/chakra-ui/chakra-ui/commit/6077dffc6303391fba3e12d7a193584fe88bbb14),
+  [`5ff30252f`](https://github.com/chakra-ui/chakra-ui/commit/5ff30252f565f2e171375011a349fde53e6e4ec9),
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d),
+  [`7c62a361a`](https://github.com/chakra-ui/chakra-ui/commit/7c62a361ad7cc52141e7604d34fe57347e25effa),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`417293f8c`](https://github.com/chakra-ui/chakra-ui/commit/417293f8cf65cf953851ce6b99f50d1f611075a2),
+  [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8),
+  [`d6b6941c8`](https://github.com/chakra-ui/chakra-ui/commit/d6b6941c8e64f451313539d15f23fb0fb05ff129)]:
+  - @chakra-ui/checkbox@2.2.15
+  - @chakra-ui/menu@2.1.13
+  - @chakra-ui/theme@3.1.0
+  - @chakra-ui/styled-system@2.9.0
+  - @chakra-ui/layout@2.1.19
+  - @chakra-ui/toast@6.1.2
+  - @chakra-ui/avatar@2.2.9
+  - @chakra-ui/image@2.0.16
+  - @chakra-ui/stepper@2.1.0
+  - @chakra-ui/hooks@2.2.0
+  - @chakra-ui/editable@3.0.0
+  - @chakra-ui/switch@2.0.27
+  - @chakra-ui/card@2.1.6
+  - @chakra-ui/button@2.0.18
+  - @chakra-ui/media-query@3.2.12
+  - @chakra-ui/skeleton@2.0.24
+  - @chakra-ui/slider@2.0.23
+  - @chakra-ui/system@2.5.6
+  - @chakra-ui/theme-utils@2.0.16
+  - @chakra-ui/accordion@2.1.11
+  - @chakra-ui/alert@2.1.0
+  - @chakra-ui/input@2.0.22
+  - @chakra-ui/number-input@2.0.19
+  - @chakra-ui/popover@2.1.10
+  - @chakra-ui/radio@2.0.22
+  - @chakra-ui/select@2.0.19
+  - @chakra-ui/tag@3.0.0
+  - @chakra-ui/textarea@2.0.19
+  - @chakra-ui/tooltip@2.2.7
+  - @chakra-ui/modal@2.2.11
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/transition@2.0.16
+  - @chakra-ui/breadcrumb@2.1.5
+  - @chakra-ui/control-box@2.0.13
+  - @chakra-ui/table@2.0.17
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/form-control@2.0.18
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/pin-input@2.0.20
+  - @chakra-ui/progress@2.1.6
+  - @chakra-ui/provider@2.2.3
+  - @chakra-ui/spinner@2.0.13
+  - @chakra-ui/stat@2.0.18
+  - @chakra-ui/tabs@2.1.9
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.5.5
 
 ### Patch Changes

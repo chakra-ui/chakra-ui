@@ -1,5 +1,27 @@
 # Change Log
 
+## 2.1.13
+
+### Patch Changes
+
+- [`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  scroll is hijacked when the menu and checkbox is opened.
+
+- [`7c62a361a`](https://github.com/chakra-ui/chakra-ui/commit/7c62a361ad7cc52141e7604d34fe57347e25effa)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix vertical
+  alignment of menu icon wrapper to ensure consistent UI
+
+- Updated dependencies
+  [[`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53),
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8)]:
+  - @chakra-ui/react-use-focus-effect@2.0.10
+  - @chakra-ui/react-use-outside-click@2.1.0
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/transition@2.0.16
+  - @chakra-ui/clickable@2.0.14
+
 ## 2.1.12
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#7403](https://github.com/chakra-ui/chakra-ui/pull/7403)
+  [`d6b6941c8`](https://github.com/chakra-ui/chakra-ui/commit/d6b6941c8e64f451313539d15f23fb0fb05ff129)
+  Thanks [@mosnicholas](https://github.com/mosnicholas)! - Adds finalFocusRef
+  and onBlur to Editable component
+
 ## 2.0.21
 
 ### Patch Changes

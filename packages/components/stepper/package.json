@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/stepper",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "The stepper component to create a logical sequence of steps",
   "keywords": [
     "stepper"
