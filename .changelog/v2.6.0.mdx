@@ -1,0 +1,446 @@
+---
+title: Version 2.6.0
+description:
+  Explore the changelog for Chakra UI version 2.6.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7537
+releaseDate: April 25, 2023
+version: 2.6.0
+---
+
+## @chakra-ui/editable@3.0.0
+
+### Major Changes
+
+- [#7403](https://github.com/chakra-ui/chakra-ui/pull/7403)
+  [`d6b6941c8`](https://github.com/chakra-ui/chakra-ui/commit/d6b6941c8e64f451313539d15f23fb0fb05ff129)
+  Thanks [@mosnicholas](https://github.com/mosnicholas)! - Adds finalFocusRef
+  and onBlur to Editable component
+
+## @chakra-ui/react@2.6.0
+
+### Minor Changes
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Introduce new
+  `Stepper` component to model sequencial steps in a process.
+
+  ```jsx live=false
+  <Stepper index={activeStep}>
+    {steps.map((step, index) => (
+      <Step key={index}>
+        <StepIndicator>
+          <StepStatus
+            complete={<StepIcon />}
+            incomplete={<StepNumber />}
+            active={<StepNumber />}
+          />
+        </StepIndicator>
+
+        <Box>
+          <StepTitle>{step.title}</StepTitle>
+          <StepDescription>{step.description}</StepDescription>
+        </Box>
+
+        <StepSeparator />
+      </Step>
+    ))}
+  </Stepper>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311),
+  [`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5),
+  [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76),
+  [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72),
+  [`24f952da2`](https://github.com/chakra-ui/chakra-ui/commit/24f952da27ef43febbe20714a08eb94ce87133eb),
+  [`6077dffc6`](https://github.com/chakra-ui/chakra-ui/commit/6077dffc6303391fba3e12d7a193584fe88bbb14),
+  [`5ff30252f`](https://github.com/chakra-ui/chakra-ui/commit/5ff30252f565f2e171375011a349fde53e6e4ec9),
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d),
+  [`7c62a361a`](https://github.com/chakra-ui/chakra-ui/commit/7c62a361ad7cc52141e7604d34fe57347e25effa),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`417293f8c`](https://github.com/chakra-ui/chakra-ui/commit/417293f8cf65cf953851ce6b99f50d1f611075a2),
+  [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8),
+  [`d6b6941c8`](https://github.com/chakra-ui/chakra-ui/commit/d6b6941c8e64f451313539d15f23fb0fb05ff129)]
+
+## @chakra-ui/stepper@2.1.0
+
+### Minor Changes
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Introduce new
+  `Stepper` component to model sequencial steps in a process.
+
+  ```jsx live=false
+  <Stepper index={activeStep}>
+    {steps.map((step, index) => (
+      <Step key={index}>
+        <StepIndicator>
+          <StepStatus
+            complete={<StepIcon />}
+            incomplete={<StepNumber />}
+            active={<StepNumber />}
+          />
+        </StepIndicator>
+
+        <Box>
+          <StepTitle>{step.title}</StepTitle>
+          <StepDescription>{step.description}</StepDescription>
+        </Box>
+
+        <StepSeparator />
+      </Step>
+    ))}
+  </Stepper>
+  ```
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/theme@3.1.0
+
+### Minor Changes
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Add semantic tokens
+  for inverse text and subtle text
+
+### Patch Changes
+
+- [`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  breadcrumb separator current page link is styled incorrectly
+
+- [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update peer depency
+  requirements
+
+- [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  modal content is cut off when it has overflowing content and isCentered
+
+- Updated dependencies
+
+## @chakra-ui/styled-system@2.9.0
+
+### Minor Changes
+
+- [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `aspectRatio` style prop to enable the usage of the native aspect ratio
+  property
+
+- [#7494](https://github.com/chakra-ui/chakra-ui/pull/7494)
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d)
+  Thanks [@kuroppe1819](https://github.com/kuroppe1819)! - Add support for
+  nested semantic tokens in theme. It is now possible to declare semantic tokens
+  by nesting objects.
+
+  BEFORE:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        "background.pressed.base": { default: "blue.800", _dark: "blue.300" },
+        "background.pressed.subtle": { default: "blue.300", _dark: "blue.700" },
+      },
+    },
+  }
+  ```
+
+  AFTER:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        background: {
+          pressed: {
+            base: { default: "blue.800", _dark: "blue.300" },
+            subtle: { default: "blue.300", _dark: "blue.700" },
+          },
+        },
+      },
+    },
+  }
+  ```
+
+  This allows for cleaner grouping and organization of tokens.
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Add `_horizontal`
+  and `_vertical` pseudo props to style orientation data attributes
+
+## @chakra-ui/react-use-outside-click@2.1.0
+
+### Minor Changes
+
+- [#7379](https://github.com/chakra-ui/chakra-ui/pull/7379)
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8)
+  Thanks [@DimovyM](https://github.com/DimovyM)! - Added option to listen
+  context menu click in useOutsideClick
+
+## @chakra-ui/hooks@2.2.0
+
+### Minor Changes
+
+- [#7379](https://github.com/chakra-ui/chakra-ui/pull/7379)
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8)
+  Thanks [@DimovyM](https://github.com/DimovyM)! - Added option to listen
+  context menu click in useOutsideClick
+
+## @chakra-ui/object-utils@2.1.0
+
+### Minor Changes
+
+- [`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `walkObject`
+  utility
+
+## @chakra-ui/cli@2.4.0
+
+### Minor Changes
+
+- [#7494](https://github.com/chakra-ui/chakra-ui/pull/7494)
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d)
+  Thanks [@kuroppe1819](https://github.com/kuroppe1819)! - Add support for
+  nested semantic tokens in theme. It is now possible to declare semantic tokens
+  by nesting objects.
+
+  BEFORE:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        "background.pressed.base": { default: "blue.800", _dark: "blue.300" },
+        "background.pressed.subtle": { default: "blue.300", _dark: "blue.700" },
+      },
+    },
+  }
+  ```
+
+  AFTER:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        background: {
+          pressed: {
+            base: { default: "blue.800", _dark: "blue.300" },
+            subtle: { default: "blue.300", _dark: "blue.700" },
+          },
+        },
+      },
+    },
+  }
+  ```
+
+  This allows for cleaner grouping and organization of tokens.
+
+## @chakra-ui/avatar@2.2.9
+
+### Patch Changes
+
+- [#7553](https://github.com/chakra-ui/chakra-ui/pull/7553)
+  [`5ff30252f`](https://github.com/chakra-ui/chakra-ui/commit/5ff30252f565f2e171375011a349fde53e6e4ec9)
+  Thanks [@AlphaNecron](https://github.com/AlphaNecron)! - Respect `crossOrigin`
+  property in `useImage`
+
+- [#7406](https://github.com/chakra-ui/chakra-ui/pull/7406)
+  [`417293f8c`](https://github.com/chakra-ui/chakra-ui/commit/417293f8cf65cf953851ce6b99f50d1f611075a2)
+  Thanks [@anLpk](https://github.com/anLpk)! - Fix issue where initials was not
+  correctly computed when name includes a middle name like "Sage Naruto Manich"
+
+- Updated dependencies
+  \[[`5ff30252f`](https://github.com/chakra-ui/chakra-ui/commit/5ff30252f565f2e171375011a349fde53e6e4ec9)]
+
+## @chakra-ui/checkbox@2.2.15
+
+### Patch Changes
+
+- [`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  scroll is hijacked when the menu and checkbox is opened.
+
+- [`24f952da2`](https://github.com/chakra-ui/chakra-ui/commit/24f952da27ef43febbe20714a08eb94ce87133eb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  checkbox initially animates when checked
+
+- Updated dependencies
+
+## @chakra-ui/icons@2.0.19
+
+### Patch Changes
+
+- [`e7bd872d0`](https://github.com/chakra-ui/chakra-ui/commit/e7bd872d007b1ab2c08e71493450557727791c5b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `SpinnerIcon` id causes accessibility violation
+
+- Updated dependencies
+
+## @chakra-ui/image@2.0.16
+
+### Patch Changes
+
+- [#7553](https://github.com/chakra-ui/chakra-ui/pull/7553)
+  [`5ff30252f`](https://github.com/chakra-ui/chakra-ui/commit/5ff30252f565f2e171375011a349fde53e6e4ec9)
+  Thanks [@AlphaNecron](https://github.com/AlphaNecron)! - Respect `crossOrigin`
+  property in `useImage`
+
+## @chakra-ui/input@2.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)]
+
+## @chakra-ui/layout@2.1.19
+
+### Patch Changes
+
+- [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `aspectRatio` style prop to enable the usage of the native aspect ratio
+  property
+- Updated dependencies
+  \[[`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)]
+
+## @chakra-ui/menu@2.1.13
+
+### Patch Changes
+
+- [`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  scroll is hijacked when the menu and checkbox is opened.
+
+- [`7c62a361a`](https://github.com/chakra-ui/chakra-ui/commit/7c62a361ad7cc52141e7604d34fe57347e25effa)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix vertical
+  alignment of menu icon wrapper to ensure consistent UI
+
+- Updated dependencies
+  \[[`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53),
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8)]
+
+## @chakra-ui/popover@2.1.10
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53)]
+
+## @chakra-ui/provider@2.2.3
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/switch@2.0.27
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311),
+  [`24f952da2`](https://github.com/chakra-ui/chakra-ui/commit/24f952da27ef43febbe20714a08eb94ce87133eb)]
+
+## @chakra-ui/toast@6.1.2
+
+### Patch Changes
+
+- [`6077dffc6`](https://github.com/chakra-ui/chakra-ui/commit/6077dffc6303391fba3e12d7a193584fe88bbb14)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update element
+  types for toast list and item to apply appropriate accessibility roles
+- Updated dependencies
+  \[[`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5),
+  [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76),
+  [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72),
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)]
+
+## @chakra-ui/system@2.5.6
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76),
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d),
+  [`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)]
+
+## @chakra-ui/react-use-focus-effect@2.0.10
+
+### Patch Changes
+
+- [`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  returning focus on hide hijacks scroll
+
+## @chakra-ui/next-js@2.1.3
+
+### Patch Changes
+
+- [#7563](https://github.com/chakra-ui/chakra-ui/pull/7563)
+  [`9800a37f4`](https://github.com/chakra-ui/chakra-ui/commit/9800a37f4fe89def6426ab93558a6a255eeb2c54)
+  Thanks [@Zaroxii](https://github.com/Zaroxii)! - Add loading props to the
+  @chakra-ui/next-js.
+
+- [#7595](https://github.com/chakra-ui/chakra-ui/pull/7595)
+  [`1b044474b`](https://github.com/chakra-ui/chakra-ui/commit/1b044474bd04ed3cb36d7d7540d756305a573a9c)
+  Thanks [@Haritaso](https://github.com/Haritaso)! - Fix issue where some prop
+  was not forwarded to the underlying component.
+
+## @chakra-ui/theme-utils@2.0.16
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5),
+  [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76),
+  [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72),
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)]
+
+## @chakra-ui/gatsby-plugin@3.1.3
+
+### Patch Changes
+
+- [#7525](https://github.com/chakra-ui/chakra-ui/pull/7525)
+  [`d14458b5a`](https://github.com/chakra-ui/chakra-ui/commit/d14458b5a6f13f645c126dc640471953722e1f66)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Reverts the
+  use of the `baseTheme` in the plugin
+
+  With the added features of `extendBaseTheme` and `ChakraBaseProvider`, it was
+  determined that the provider is considered unnecessary.
+
+  > Custom theming is to be expected for components when there are no defaults
+  > rendered.
+
+  For Gatsby, this means that the plugin can be reverted back to it's original
+  setup, and still be able to accept `extendBaseTheme` to reduce the payload of
+  the component themes when customizing them.
+
+## @chakra-ui/test-utils@2.0.40
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5),
+  [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288),
+  [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c)]
