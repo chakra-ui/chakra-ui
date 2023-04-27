@@ -1,3 +1,4 @@
+import { cx } from "@chakra-ui/shared-utils"
 import {
   HTMLChakraProps,
   ThemingProps,
@@ -51,6 +52,7 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
       data-orientation={orientation}
       {...restProps}
       __css={styles.stepper}
+      className={cx("chakra-stepper", props.className)}
     >
       <StepperStylesProvider value={styles}>
         {stepElements.map((child, index) => (

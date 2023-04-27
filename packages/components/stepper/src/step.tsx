@@ -1,3 +1,4 @@
+import { cx } from "@chakra-ui/shared-utils"
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
@@ -14,6 +15,7 @@ export const Step = forwardRef<{}, "div">(function Step(props, ref) {
       data-orientation={orientation}
       __css={styles.step}
       {...props}
+      className={cx("chakra-step", props.className)}
     />
   )
 })
