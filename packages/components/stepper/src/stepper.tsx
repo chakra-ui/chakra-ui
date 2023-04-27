@@ -17,8 +17,18 @@ import {
 
 export type StepperProps = HTMLChakraProps<"div"> &
   ThemingProps<"Stepper"> & {
+    /**
+     * The active step index
+     */
     index: number
+    /**
+     * The orientation of the stepper
+     * @default horizontal
+     */
     orientation?: Orientation
+    /**
+     * The children of the stepper. Must be `Step` components
+     */
     children: React.ReactNode
   }
 
