@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/toast",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "description",
   "keywords": [
     "theme",
@@ -49,7 +49,7 @@
     "clean-package": "2.2.0"
   },
   "peerDependencies": {
-    "@chakra-ui/system": "2.5.5",
+    "@chakra-ui/system": "2.5.6",
     "framer-motion": ">=4.0.0",
     "react": ">=18",
     "react-dom": ">=18"

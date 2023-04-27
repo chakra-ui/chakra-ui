@@ -190,7 +190,7 @@ export function useEditable(props: UseEditableProps = {}) {
     setPrevValue(value)
     onSubmitProp?.(value)
     onBlurProp?.(prevValue)
-  }, [value, onSubmitProp])
+  }, [value, onSubmitProp, onBlurProp, prevValue])
 
   useEffect(() => {
     if (isEditing) return

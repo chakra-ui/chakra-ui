@@ -4,7 +4,6 @@ import { useOutsideClick } from "../src"
 
 const OutsideClicker = ({
   onOutsideClick,
-  listenContextMenu,
   enabled = true,
 }: {
   listenContextMenu?: boolean
@@ -13,7 +12,6 @@ const OutsideClicker = ({
 }) => {
   const ref = React.useRef<HTMLDivElement>(null)
   useOutsideClick({
-    listenContextMenu,
     enabled,
     ref,
     handler: onOutsideClick,

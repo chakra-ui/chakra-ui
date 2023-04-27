@@ -23,6 +23,9 @@ export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
       className={_className}
       {...rest}
       __css={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
         flexShrink: 0,
       }}
     >

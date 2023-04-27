@@ -7,6 +7,7 @@ import { extractColorSchemeTypes } from "./extract-color-schemes"
 import { extractPropertyKeys } from "./extract-property-keys"
 import { formatWithPrettierIfAvailable } from "../../utils/format-with-prettier"
 import { isObject } from "../../utils/is-object"
+import { extractSemanticTokenKeys } from "./extract-semantic-token-keys"
 
 export interface ThemeKeyOptions {
   /**
@@ -100,8 +101,7 @@ export async function createThemeTypingsInterface(
       }
 
       if (isObject(theme.semanticTokens)) {
-        // semantic tokens do not allow nesting, we just need to extract the keys
-        const semanticTokenKeys = extractPropertyKeys(theme.semanticTokens, key)
+        const semanticTokenKeys = extractSemanticTokenKeys(theme, key)
           .filter(filter)
           .flatMap(flatMap)
 
