@@ -2,11 +2,9 @@ import { Box, HStack } from "@chakra-ui/layout"
 import {
   Step,
   StepDescription,
-  StepIcon,
   StepIndicator,
-  StepNumber,
+  StepIndicatorContent,
   StepSeparator,
-  StepStatus,
   StepTitle,
   Stepper,
   useSteps,
@@ -34,11 +32,7 @@ export const Horizontal = () => {
         {steps.map((step, index) => (
           <Step key={index} onClick={() => setActiveStep(index)}>
             <StepIndicator>
-              <StepStatus
-                complete={<StepIcon />}
-                incomplete={<StepNumber />}
-                active={<StepNumber />}
-              />
+              <StepIndicatorContent />
             </StepIndicator>
 
             <Box flexShrink="0">
@@ -71,11 +65,7 @@ export const Vertical = () => {
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator>
-              <StepStatus
-                complete={<StepIcon />}
-                incomplete={<StepNumber />}
-                active={<StepNumber />}
-              />
+              <StepIndicatorContent />
             </StepIndicator>
 
             <Box flexShrink="0">
