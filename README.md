@@ -9,7 +9,7 @@
 
 <p align="center">
   <img alt="Bundle Size" src="https://badgen.net/bundlephobia/minzip/@chakra-ui/react"/>
-  <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/chakra-ui/chakra-ui.svg?logo=lgtm&logoWidth=18"/>
+  <img alt="Github Checks" src="https://badgen.net/github/checks/styfle/packagephobia/main"/>
   <a href="https://github.com/chakra-ui/chakra-ui/blob/main/LICENSE">
     <img alt="MIT License" src="https://img.shields.io/github/license/chakra-ui/chakra-ui"/>
   </a>
@@ -22,7 +22,11 @@
 
 <br />
 
-Chakra UI is a comprehensive library of accessible, reusable, and composable React components that streamlines the development of modern web applications and websites. The library offers a diverse range of components that can be easily combined to build complex user interfaces while adhering to accessibility best practices.
+Chakra UI is a comprehensive library of accessible, reusable, and composable
+React components that streamlines the development of modern web applications and
+websites. The library offers a diverse range of components that can be easily
+combined to build complex user interfaces while adhering to accessibility best
+practices.
 
 ## Table of contents
 
