@@ -27,6 +27,10 @@ export type StepperProps = HTMLChakraProps<"div"> &
      */
     orientation?: Orientation
     /**
+     * Whether to show or not the last separator while in vertical orientation
+     */
+    showLastSeparator?: boolean
+    /**
      * The children of the stepper. Must be `Step` components
      */
     children: React.ReactNode
@@ -42,6 +46,7 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
     children,
     index,
     orientation = "horizontal",
+    showLastSeparator = false,
     ...restProps
   } = omitThemingProps(props)
 
@@ -72,6 +77,7 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
               index,
               status: getStatus(index),
               orientation,
+              showLastSeparator,
               count: stepCount,
               isFirst: index === 0,
               isLast: index === stepCount - 1,

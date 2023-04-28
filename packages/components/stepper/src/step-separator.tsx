@@ -6,10 +6,11 @@ export const StepSeparator = forwardRef<{}, "div">(function StepSeparator(
   props,
   ref,
 ) {
-  const { orientation, status, isLast } = useStepContext()
+  const { orientation, status, isLast, showLastSeparator } = useStepContext()
   const styles = useStepperStyles()
 
-  if (isLast) return null
+  if (isLast && (!showLastSeparator || orientation === "horizontal"))
+    return null
 
   return (
     <chakra.div

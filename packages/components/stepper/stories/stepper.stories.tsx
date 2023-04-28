@@ -9,9 +9,13 @@ import {
   Stepper,
   useSteps,
 } from "../src"
+import { Story } from "@storybook/react"
 
 export default {
   title: "Components / Navigation / Stepper",
+  argTypes: {
+    showLastSeparator: { control: "boolean", default: false },
+  },
 }
 
 const steps = [
@@ -53,7 +57,7 @@ export const Horizontal = () => {
   )
 }
 
-export const Vertical = () => {
+export const Vertical: Story<any> = (args) => {
   const { goToNext, goToPrevious, activeStep } = useSteps({
     index: 1,
     count: steps.length,
@@ -61,7 +65,13 @@ export const Vertical = () => {
 
   return (
     <>
-      <Stepper index={activeStep} orientation="vertical" height="400px" gap="0">
+      <Stepper
+        index={activeStep}
+        orientation="vertical"
+        height="400px"
+        gap="0"
+        {...args}
+      >
         {steps.map((step, index) => (
           <Step key={index}>
             <StepIndicator>
