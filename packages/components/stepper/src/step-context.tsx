@@ -5,7 +5,7 @@ export type StepStatusType = "active" | "complete" | "incomplete"
 
 export type Orientation = "horizontal" | "vertical"
 
-export type StepContext = {
+export interface StepContext {
   /**
    * The status of the step
    * @type "active" | "complete" | "incomplete"

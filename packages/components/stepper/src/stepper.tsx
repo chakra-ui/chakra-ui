@@ -15,26 +15,26 @@ import {
   StepperStylesProvider,
 } from "./step-context"
 
-export type StepperProps = HTMLChakraProps<"div"> &
-  ThemingProps<"Stepper"> & {
-    /**
-     * The active step index
-     */
-    index: number
-    /**
-     * The orientation of the stepper
-     * @default horizontal
-     */
-    orientation?: Orientation
-    /**
-     * Whether to show or not the last separator while in vertical orientation
-     */
-    showLastSeparator?: boolean
-    /**
-     * The children of the stepper. Must be `Step` components
-     */
-    children: React.ReactNode
-  }
+export interface StepperProps
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"Stepper"> {
+  /**
+   * The active step index
+   */
+  index: number
+  /**
+   * The orientation of the stepper
+   * @default horizontal
+   */
+  orientation?: Orientation
+  /**
+   * Whether to show or not the last separator while in vertical orientation
+   */
+  showLastSeparator?: boolean
+  /**
+   */
+  children: React.ReactNode
+}
 
 export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
   props: StepperProps,
