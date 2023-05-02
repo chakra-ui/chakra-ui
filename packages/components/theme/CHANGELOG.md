@@ -1,5 +1,19 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update theme to
+  leverage css variables
+
+- [#7613](https://github.com/chakra-ui/chakra-ui/pull/7613)
+  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)
+  Thanks [@Nicoka11](https://github.com/Nicoka11)! - Add support for
+  `showLastSeparator` in the `Stepper` component to show the last separator in
+  the `Stepper` component. By default, the last separator is hidden.
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,0 +1,51 @@
+{
+  "Step": {},
+  "StepDescription": {},
+  "StepIndicator": {},
+  "StepSeparator": {},
+  "StepStatus": {
+    "active": { "type": "MaybeRenderProp", "required": true },
+    "complete": { "type": "MaybeRenderProp", "required": true },
+    "incomplete": { "type": "MaybeRenderProp", "required": true }
+  },
+  "StepTitle": {},
+  "Stepper": {
+    "index": {
+      "type": "number",
+      "required": true,
+      "description": "The active step index"
+    },
+    "orientation": {
+      "type": "Orientation",
+      "defaultValue": "horizontal",
+      "required": true,
+      "description": "The orientation of the stepper"
+    },
+    "showLastSeparator": {
+      "type": "boolean",
+      "required": true,
+      "description": "Whether to show or not the last separator while in vertical orientation"
+    },
+    "colorScheme": {
+      "defaultValue": "blue",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "description": "The size of the Stepper"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Stepper"
+    }
+  },
+  "UseSteps": {
+    "count": { "type": "number", "required": true },
+    "index": { "type": "number", "required": true }
+  }
+}

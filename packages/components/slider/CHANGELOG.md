@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.0.24
+
+### Patch Changes
+
+- [#7612](https://github.com/chakra-ui/chakra-ui/pull/7612)
+  [`a999a033f`](https://github.com/chakra-ui/chakra-ui/commit/a999a033f293b11432999d51c76be5bdfd116660)
+  Thanks [@andreibudoi](https://github.com/andreibudoi)! - Fix issue where
+  Slider orientation doesn't look right when `orientation` is `undefined` .
+
 ## 2.0.23
 
 ### Patch Changes
