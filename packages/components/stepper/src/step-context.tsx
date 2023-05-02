@@ -31,6 +31,10 @@ export interface StepContext {
    * Whether the step is the first step
    */
   isFirst: boolean
+  /**
+   * Whether to show or not the last separator while in vertical orientation
+   */
+  showLastSeparator?: boolean
 }
 
 export const [StepContextProvider, useStepContext] = createContext<StepContext>(
