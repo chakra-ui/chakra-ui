@@ -55,8 +55,9 @@ const baseStyle = definePartsStyle(({ colorScheme: c }) => ({
     "&[data-orientation=horizontal]": {
       alignItems: "center",
     },
-    "&:not(:last-of-type)": {
-      flex: "1",
+    flex: "1",
+    "&:last-of-type:not([data-stretch])": {
+      flex: "0",
     },
   },
   icon: {
