@@ -57,7 +57,7 @@ const baseStyle = definePartsStyle(({ colorScheme: c }) => ({
     },
     flex: "1",
     "&:last-of-type:not([data-stretch])": {
-      flex: "0",
+      flex: "initial",
     },
   },
   icon: {
