@@ -1,6 +1,8 @@
 import { cx } from "@chakra-ui/shared-utils"
-import { chakra, forwardRef } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { useStepContext, useStepperStyles } from "./step-context"
+
+export interface StepSeparatorProps extends HTMLChakraProps<"div"> {}
 
 export const StepSeparator = forwardRef<{}, "div">(function StepSeparator(
   props,
