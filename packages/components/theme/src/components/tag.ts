@@ -1,23 +1,39 @@
 import { tagAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { badgeTheme, badgeVars as vars } from "./badge"
+import { badgeTheme, badgeVars } from "./badge"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
+
+const $bg = cssVar("tag-bg")
+const $color = cssVar("tag-color")
+const $shadow = cssVar("tag-shadow")
+const $minH = cssVar("tag-min-height")
+const $minW = cssVar("tag-min-width")
+const $fontSize = cssVar("tag-font-size")
+const $paddingX = cssVar("tag-padding-inline")
 
 const baseStyleContainer = defineStyle({
   fontWeight: "medium",
   lineHeight: 1.2,
   outline: 0,
-  color: vars.color.reference,
-  bg: vars.bg.reference,
-  boxShadow: vars.shadow.reference,
+  [$color.variable]: badgeVars.color.reference,
+  [$bg.variable]: badgeVars.bg.reference,
+  [$shadow.variable]: badgeVars.shadow.reference,
+  color: $color.reference,
+  bg: $bg.reference,
+  boxShadow: $shadow.reference,
   borderRadius: "md",
+  minH: $minH.reference,
+  minW: $minW.reference,
+  fontSize: $fontSize.reference,
+  px: $paddingX.reference,
   _focusVisible: {
-    boxShadow: "outline",
+    [$shadow.variable]: "shadows.outline",
   },
 })
 
@@ -60,10 +76,10 @@ const baseStyle = definePartsStyle({
 const sizes = {
   sm: definePartsStyle({
     container: {
-      minH: "5",
-      minW: "5",
-      fontSize: "xs",
-      px: "2",
+      [$minH.variable]: "sizes.5",
+      [$minW.variable]: "sizes.5",
+      [$fontSize.variable]: "fontSizes.xs",
+      [$paddingX.variable]: "space.2",
     },
     closeButton: {
       marginEnd: "-2px",
@@ -72,18 +88,18 @@ const sizes = {
   }),
   md: definePartsStyle({
     container: {
-      minH: "6",
-      minW: "6",
-      fontSize: "sm",
-      px: "2",
+      [$minH.variable]: "sizes.6",
+      [$minW.variable]: "sizes.6",
+      [$fontSize.variable]: "fontSizes.sm",
+      [$paddingX.variable]: "space.2",
     },
   }),
   lg: definePartsStyle({
     container: {
-      minH: "8",
-      minW: "8",
-      fontSize: "md",
-      px: "3",
+      [$minH.variable]: "sizes.8",
+      [$minW.variable]: "sizes.8",
+      [$fontSize.variable]: "fontSizes.md",
+      [$paddingX.variable]: "space.3",
     },
   }),
 }
