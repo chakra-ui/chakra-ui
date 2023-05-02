@@ -1,5 +1,6 @@
 ---
 "@chakra-ui/stepper": minor
+"@chakra-ui/theme": patch
 ---
 
 Add support for `showLastSeparator` in the `Stepper` component to show the last
