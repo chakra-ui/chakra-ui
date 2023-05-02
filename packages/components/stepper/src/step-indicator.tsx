@@ -5,7 +5,7 @@ import { StepIcon } from "./step-icon"
 import { StepNumber } from "./step-number"
 import { StepStatus } from "./step-status"
 
-export type StepIndicatorProps = HTMLChakraProps<"div">
+export interface StepIndicatorProps extends HTMLChakraProps<"div"> {}
 
 export function StepIndicator(props: StepIndicatorProps) {
   const { status } = useStepContext()
