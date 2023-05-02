@@ -2,4 +2,5 @@
 "@chakra-ui/slider": patch
 ---
 
-Fix @chakra-ui/slider default orientation value
+Fix issue where Slider orientation doesn't look right when `orientation` is
+`undefined` .
