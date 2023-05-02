@@ -1,6 +1,6 @@
 import { isObject } from "../../utils/is-object"
 
-const isSemanticTokensExist = (
+const hasSemanticTokens = (
   theme: Record<string, unknown>,
 ): theme is Record<"semanticTokens", Record<string, unknown>> =>
   isObject(theme.semanticTokens)
@@ -12,7 +12,7 @@ export function extractSemanticTokenKeys(
   theme: Record<string, unknown>,
   themePropertyName: string,
 ) {
-  if (!isSemanticTokensExist(theme)) {
+  if (!hasSemanticTokens(theme)) {
     return []
   }
 

@@ -1,13 +1,12 @@
-import "regenerator-runtime/runtime"
-import * as path from "path"
-import { Option, program } from "commander"
 import chokidar from "chokidar"
-import throttle from "lodash.throttle"
-import { initCLI } from "./utils/init-cli"
+import { Option, program } from "commander"
+import * as path from "path"
 import {
   generateThemeTypings,
   themeInterfaceDestination,
 } from "./command/tokens"
+import { initCLI } from "./utils/init-cli"
+import { loadTheme } from "./utils/load-theme"
 
 type OptionsType = {
   out?: string
@@ -55,39 +54,44 @@ export async function run() {
         template,
       } = options
 
-      if (watch) {
-        const watchPath =
-          typeof watch === "string" ? watch : path.dirname(themeFile)
-        const throttledGenerateThemeTypings = throttle(async () => {
-          console.time("Duration")
-          await generateThemeTypings({
-            themeFile,
-            out,
-            strictComponentTypes,
-            format,
-            strictTokenTypes,
-            template,
-          })
-          console.timeEnd("Duration")
-          console.info(new Date().toLocaleString())
-        }, 1_000)
-
-        // run once to initialize
-        throttledGenerateThemeTypings()
-
-        chokidar.watch(watchPath).on("change", throttledGenerateThemeTypings)
-        return
+      const read = () => {
+        const filePath = path.resolve(themeFile)
+        return loadTheme(filePath)
       }
 
-      await generateThemeTypings({
-        themeFile,
-        out,
-        strictComponentTypes,
-        format,
-        strictTokenTypes,
-        template,
-        onError: () => process.exit(1),
-      })
+      let ctx = await read()
+
+      const build = async () => {
+        await generateThemeTypings({
+          theme: ctx.theme,
+          out,
+          strictComponentTypes,
+          format,
+          strictTokenTypes,
+          template,
+        })
+
+        if (watch) {
+          console.log("\n", "⌛️ Watching for changes...")
+        }
+      }
+
+      if (watch) {
+        const watchPath = typeof watch === "string" ? watch : ctx.dependencies
+
+        chokidar
+          .watch(watchPath)
+          .on("ready", build)
+          .on("change", async (filePath) => {
+            console.log("📦 File changed", filePath)
+            ctx = await read()
+            return build()
+          })
+
+        //
+      } else {
+        await build()
+      }
     })
 
   program.on("--help", () => {
