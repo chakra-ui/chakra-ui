@@ -1,12 +1,12 @@
-import { extractPropertyPaths, printUnionMap } from "./extract-property-paths"
+import { formatWithPrettier } from "../../utils/format-with-prettier"
+import { isObject } from "../../utils/is-object"
+import { extractColorSchemeTypes } from "./extract-color-schemes"
 import {
   extractComponentTypes,
   printComponentTypes,
 } from "./extract-component-types"
-import { extractColorSchemeTypes } from "./extract-color-schemes"
 import { extractPropertyKeys } from "./extract-property-keys"
-import { formatWithPrettierIfAvailable } from "../../utils/format-with-prettier"
-import { isObject } from "../../utils/is-object"
+import { extractPropertyPaths, printUnionMap } from "./extract-property-paths"
 import { extractSemanticTokenKeys } from "./extract-semantic-token-keys"
 
 export interface ThemeKeyOptions {
@@ -124,6 +124,5 @@ export async function createThemeTypingsInterface(
   )}
   ${printComponentTypes(componentTypes, strictComponentTypes)}`
   const themeTypings = applyThemeTypingTemplate(typingContent, template)
-
-  return format ? formatWithPrettierIfAvailable(themeTypings) : themeTypings
+  return format ? formatWithPrettier(themeTypings) : themeTypings
 }

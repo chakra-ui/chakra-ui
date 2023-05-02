@@ -1,21 +1,5 @@
 import { isObject } from "../../utils/is-object"
-
-const AutoCompleteStringType = "(string & {})"
-
-function wrapWithQuotes(value: unknown) {
-  return `"${value}"`
-}
-
-function printUnionType(values: string[], strict = false) {
-  if (!values.length) {
-    return strict ? "never" : AutoCompleteStringType
-  }
-
-  return values
-    .map(wrapWithQuotes)
-    .concat(strict ? [] : [AutoCompleteStringType])
-    .join(" | ")
-}
+import { printUnionType } from "../../utils/print-union-type"
 
 /**
  * @example
