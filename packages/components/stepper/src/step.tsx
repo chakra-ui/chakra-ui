@@ -2,7 +2,7 @@ import { cx } from "@chakra-ui/shared-utils"
 import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
-export type StepProps = HTMLChakraProps<"div">
+export interface StepProps extends HTMLChakraProps<"div"> {}
 
 export const Step = forwardRef<{}, "div">(function Step(props, ref) {
   const { orientation, status } = useStepContext()

@@ -5,7 +5,8 @@ type MaybeRenderProp =
   | React.ReactNode
   | ((props: StepContext) => React.ReactNode)
 
-export type StepStatusProps = Partial<Record<StepStatusType, MaybeRenderProp>>
+export interface StepStatusProps
+  extends Partial<Record<StepStatusType, MaybeRenderProp>> {}
 
 export function StepStatus(props: StepStatusProps) {
   const { complete, incomplete, active } = props
