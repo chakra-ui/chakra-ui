@@ -1,6 +1,5 @@
 import { IconButton } from "@chakra-ui/button"
 import { Box, Link, Text } from "@chakra-ui/layout"
-import * as React from "react"
 import { MdCheck } from "react-icons/md"
 import {
   Popover,
@@ -9,6 +8,18 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../src"
+import { chakra } from "@chakra-ui/system"
+
+export default {
+  title: "Components / Overlay / Popover - Hover",
+  decorators: [
+    (story: Function) => (
+      <chakra.div mx="auto" maxW="400px" mt="200px">
+        {story()}
+      </chakra.div>
+    ),
+  ],
+}
 
 function Card() {
   return (
