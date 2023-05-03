@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.1.14
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]:
+  - @chakra-ui/popper@3.0.14
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.14
+
 ## 2.1.13
 
 ### Patch Changes
