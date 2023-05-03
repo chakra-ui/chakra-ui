@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 2.4.1
+
+### Patch Changes
+
+- [#7621](https://github.com/chakra-ui/chakra-ui/pull/7621)
+  [`02968c565`](https://github.com/chakra-ui/chakra-ui/commit/02968c56538b1a1f049c2fef8c025d251a209a14)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor theme
+  typings process and fix ESM issues
+
 ## 2.4.0
 
 ### Minor Changes
