@@ -1,3 +1,4 @@
+import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
 import { Option, program } from "commander"
 import * as path from "path"
@@ -6,7 +7,6 @@ import {
   themeInterfaceDestination,
 } from "./command/tokens"
 import { initCLI } from "./utils/init-cli"
-import { loadTheme } from "./utils/load-theme"
 
 type OptionsType = {
   out?: string
@@ -54,9 +54,10 @@ export async function run() {
         template,
       } = options
 
-      const read = () => {
+      const read = async () => {
         const filePath = path.resolve(themeFile)
-        return loadTheme(filePath)
+        const { mod: theme, dependencies } = await bundleNRequire(filePath)
+        return { theme, dependencies }
       }
 
       let ctx = await read()
