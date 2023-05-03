@@ -8,19 +8,15 @@ releaseDate: May 3, 2023
 version: 2.6.1
 ---
 
-## @chakra-ui/stepper@2.2.0
+## Minor Changes
 
-### Minor Changes
+### Stepper `2.2.0`
 
-- [#7613](https://github.com/chakra-ui/chakra-ui/pull/7613)
-  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)
-  Thanks [@Nicoka11](https://github.com/Nicoka11)! - Add support for
-  `showLastSeparator` in the `Stepper` component to show the last separator in
-  the `Stepper` component. By default, the last separator is hidden.
+- Add support for `showLastSeparator` in the `Stepper` component to show the
+  last separator in the `Stepper` component. By default, the last separator is
+  hidden.
 
-- [`88356ab02`](https://github.com/chakra-ui/chakra-ui/commit/88356ab0272435161bf47ca734f67a112c328dfb)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add default
-  `chakra-*` classnames to all component parts.
+- Add default `chakra-*` classnames to all component parts.
 
   - Expose `activeStepPercent`, `isCompleteStep`, and `isIncompleteStep` to
     `useStep` hook.
@@ -28,133 +24,29 @@ version: 2.6.1
   - Add `StepIndicatorContent` component to reduce boilerplate for step
     indicator.
 
-### Patch Changes
+## Patch Changes
 
-- Updated dependencies
+### Avatar `2.2.10`
 
-## @chakra-ui/avatar@2.2.10
+Fix issue where the initial was incorrect when only one name is passed
 
-### Patch Changes
+### Popover `2.1.11`
 
-- [#7603](https://github.com/chakra-ui/chakra-ui/pull/7603)
-  [`a5ad2821e`](https://github.com/chakra-ui/chakra-ui/commit/a5ad2821ed8ed2ddcad4809d505ea8ec6aad0d4d)
-  Thanks [@mauricekleine](https://github.com/mauricekleine)! - Fix issue where
-  the initial was incorrect when only one name is passed
+- Improve popover arrow rendering by removing the default shadow rendered.
+- Added support for `shadowColor` prop in the `PopoverArrow` component to change
+  the color of the arrow's shadow.
 
-- Updated dependencies
+## Slider `2.0.24`
 
-## @chakra-ui/menu@2.1.14
+Fix issue where Slider orientation doesn't look right when `orientation` is
+`undefined` .
 
-### Patch Changes
+## Theme `3.1.1`
 
-- Updated dependencies
-  \[[`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]
+- Update tag theme to leverage css variables
+- Update stepper theme to account for `showLastSeparator` in the `Stepper`
+  component
 
-## @chakra-ui/popover@2.1.11
+## CLI `2.4.1`
 
-### Patch Changes
-
-- [`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improve popover
-  arrow rendering by removing the default shadow rendered.
-  - Added support for `shadowColor` prop in the `PopoverArrow` component to
-    change the color of the arrow's shadow.
-- Updated dependencies
-  \[[`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]
-
-## @chakra-ui/popper@3.0.14
-
-### Patch Changes
-
-- [`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improve popover
-  arrow rendering by removing the default shadow rendered.
-  - Added support for `shadowColor` prop in the `PopoverArrow` component to
-    change the color of the arrow's shadow.
-
-## @chakra-ui/provider@2.2.4
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/react@2.6.1
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`a5ad2821e`](https://github.com/chakra-ui/chakra-ui/commit/a5ad2821ed8ed2ddcad4809d505ea8ec6aad0d4d),
-  [`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef),
-  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef),
-  [`88356ab02`](https://github.com/chakra-ui/chakra-ui/commit/88356ab0272435161bf47ca734f67a112c328dfb),
-  [`a999a033f`](https://github.com/chakra-ui/chakra-ui/commit/a999a033f293b11432999d51c76be5bdfd116660),
-  [`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]
-
-## @chakra-ui/slider@2.0.24
-
-### Patch Changes
-
-- [#7612](https://github.com/chakra-ui/chakra-ui/pull/7612)
-  [`a999a033f`](https://github.com/chakra-ui/chakra-ui/commit/a999a033f293b11432999d51c76be5bdfd116660)
-  Thanks [@andreibudoi](https://github.com/andreibudoi)! - Fix issue where
-  Slider orientation doesn't look right when `orientation` is `undefined` .
-
-## @chakra-ui/theme@3.1.1
-
-### Patch Changes
-
-- [`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update theme to
-  leverage css variables
-
-- [#7613](https://github.com/chakra-ui/chakra-ui/pull/7613)
-  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)
-  Thanks [@Nicoka11](https://github.com/Nicoka11)! - Add support for
-  `showLastSeparator` in the `Stepper` component to show the last separator in
-  the `Stepper` component. By default, the last separator is hidden.
-
-## @chakra-ui/toast@6.1.3
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef),
-  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)]
-
-## @chakra-ui/tooltip@2.2.8
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]
-
-## @chakra-ui/system@2.5.7
-
-### Patch Changes
-
-- Updated dependencies
-
-## @chakra-ui/theme-utils@2.0.17
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef),
-  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)]
-
-## @chakra-ui/cli@2.4.1
-
-### Patch Changes
-
-- [#7621](https://github.com/chakra-ui/chakra-ui/pull/7621)
-  [`02968c565`](https://github.com/chakra-ui/chakra-ui/commit/02968c56538b1a1f049c2fef8c025d251a209a14)
-  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor theme
-  typings process and fix ESM issues
-
-## @chakra-ui/test-utils@2.0.41
-
-### Patch Changes
-
-- Updated dependencies
-  \[[`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef),
-  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)]
+Refactor theme generation process and fixed ESM issues
