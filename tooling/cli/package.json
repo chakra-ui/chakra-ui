@@ -46,7 +46,6 @@
     "cli-handle-unhandled": "^1.1.1",
     "cli-welcome": "^2.2.2",
     "commander": "^9.3.0",
-    "esbuild": "^0.17.18",
     "prettier": "^2.8.8"
   },
   "devDependencies": {
