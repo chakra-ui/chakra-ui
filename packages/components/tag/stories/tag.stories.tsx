@@ -32,11 +32,6 @@ export const withSizes = () => (
   </>
 )
 
-/**
- * Pass the `colorScheme` prop to use any color in the theme object to
- * change the background color of the tag component
- */
-
 export const colorSchemes = () => (
   <>
     <Tag size="sm" colorScheme="green">
@@ -50,12 +45,6 @@ export const colorSchemes = () => (
     </Tag>
   </>
 )
-
-/**
- * The tag component can contain an Icon. This is done by using the `TagIcon` component.
- * Positioning the tag icon can be done by placing it before (left side)
- * or after (right side) the tag component
- */
 
 export const withLeftIcon = () => (
   <Tag colorScheme="cyan">
@@ -78,10 +67,6 @@ export const withRightIcon = () => (
   </>
 )
 
-/**
- * Use the `TagCloseButton` to apply a close button to the tag component.
- */
-
 export const withCloseButton = () => (
   <>
     <Tag variant="solid" size="sm" colorScheme="cyan">
@@ -100,11 +85,6 @@ export const withCloseButton = () => (
     </Tag>
   </>
 )
-
-/**
- * Tag component can contain a custom element. This is done by placing the custom element
- * within the tag component.
- */
 
 export const withCustomElement = () => (
   <Tag size="lg" colorScheme="red" borderRadius="full">

@@ -5,7 +5,7 @@ export type StepStatusType = "active" | "complete" | "incomplete"
 
 export type Orientation = "horizontal" | "vertical"
 
-export type StepContext = {
+export interface StepContext {
   /**
    * The status of the step
    * @type "active" | "complete" | "incomplete"
@@ -31,6 +31,10 @@ export type StepContext = {
    * Whether the step is the first step
    */
   isFirst: boolean
+  /**
+   * Whether to show or not the last separator while in vertical orientation
+   */
+  showLastSeparator?: boolean
 }
 
 export const [StepContextProvider, useStepContext] = createContext<StepContext>(

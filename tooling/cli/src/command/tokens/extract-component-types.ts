@@ -27,10 +27,8 @@ export function extractComponentTypes(theme: Record<string, unknown>) {
   )
 }
 
-function escapeComponentName(componentName: string) {
-  return componentName.match(/^[a-zA-Z0-9\-_]+$/)
-    ? componentName
-    : `"${componentName}"`
+function esc(name: string) {
+  return name.match(/^[a-zA-Z0-9\-_]+$/) ? name : `"${name}"`
 }
 
 export function printComponentTypes(
@@ -40,7 +38,7 @@ export function printComponentTypes(
   const types = Object.entries(componentTypes)
     .map(
       ([componentName, unions]) =>
-        `${escapeComponentName(componentName)}: {
+        `${esc(componentName)}: {
   ${printUnionMap(unions, strict)}
 }`,
     )

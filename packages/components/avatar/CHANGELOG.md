@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.2.10
+
+### Patch Changes
+
+- [#7603](https://github.com/chakra-ui/chakra-ui/pull/7603)
+  [`a5ad2821e`](https://github.com/chakra-ui/chakra-ui/commit/a5ad2821ed8ed2ddcad4809d505ea8ec6aad0d4d)
+  Thanks [@mauricekleine](https://github.com/mauricekleine)! - Fix issue where
+  the initial was incorrect when only one name is passed
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.16
+
 ## 2.2.9
 
 ### Patch Changes

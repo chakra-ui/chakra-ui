@@ -46,8 +46,8 @@ export interface SliderProps
  */
 export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
   const sliderProps: SliderProps = {
-    orientation: "horizontal",
     ...props,
+    orientation: props?.orientation ?? "horizontal",
   }
 
   const styles = useMultiStyleConfig("Slider", sliderProps)

@@ -1,14 +1,17 @@
-import { chakra, forwardRef } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/shared-utils"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { useStepContext, useStepperStyles } from "./step-context"
+
+export interface StepSeparatorProps extends HTMLChakraProps<"div"> {}
 
 export const StepSeparator = forwardRef<{}, "div">(function StepSeparator(
   props,
   ref,
 ) {
-  const { orientation, status, isLast } = useStepContext()
+  const { orientation, status, isLast, showLastSeparator } = useStepContext()
   const styles = useStepperStyles()
 
-  if (isLast) return null
+  if (isLast && !showLastSeparator) return null
 
   return (
     <chakra.div
@@ -18,6 +21,7 @@ export const StepSeparator = forwardRef<{}, "div">(function StepSeparator(
       data-status={status}
       __css={styles.separator}
       {...props}
+      className={cx("chakra-step__separator", props.className)}
     />
   )
 })

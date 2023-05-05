@@ -1,0 +1,52 @@
+---
+title: Version 2.6.1
+description:
+  Explore the changelog for Chakra UI version 2.6.1. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7610
+releaseDate: May 3, 2023
+version: 2.6.1
+---
+
+## Minor Changes
+
+### Stepper `2.2.0`
+
+- Add support for `showLastSeparator` in the `Stepper` component to show the
+  last separator in the `Stepper` component. By default, the last separator is
+  hidden.
+
+- Add default `chakra-*` classnames to all component parts.
+
+  - Expose `activeStepPercent`, `isCompleteStep`, and `isIncompleteStep` to
+    `useStep` hook.
+
+  - Add `StepIndicatorContent` component to reduce boilerplate for step
+    indicator.
+
+## Patch Changes
+
+### Avatar `2.2.10`
+
+Fix issue where the initial was incorrect when only one name is passed
+
+### Popover `2.1.11`
+
+- Improve popover arrow rendering by removing the default shadow rendered.
+- Added support for `shadowColor` prop in the `PopoverArrow` component to change
+  the color of the arrow's shadow.
+
+## Slider `2.0.24`
+
+Fix issue where Slider orientation doesn't look right when `orientation` is
+`undefined` .
+
+## Theme `3.1.1`
+
+- Update tag theme to leverage css variables
+- Update stepper theme to account for `showLastSeparator` in the `Stepper`
+  component
+
+## CLI `2.4.1`
+
+Refactor theme generation process and fixed ESM issues
