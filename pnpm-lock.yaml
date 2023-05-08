@@ -1370,8 +1370,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.18.1
-        version: 7.18.1(react@18.2.0)
+        specifier: 7.43.9
+        version: 7.43.9(react@18.2.0)
       react-lorem-component:
         specifier: 0.13.0
         version: 0.13.0(react@18.2.0)
@@ -2018,8 +2018,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.18.1
-        version: 7.18.1(react@18.2.0)
+        specifier: 7.43.9
+        version: 7.43.9(react@18.2.0)
 
   packages/components/table:
     dependencies:
@@ -27254,10 +27254,11 @@ packages:
       react-side-effect: 2.1.2(react@18.2.0)
     dev: false
 
-  /react-hook-form@7.18.1(react@18.2.0):
-    resolution: {integrity: sha512-T9Lv5nBnLzncEd2p87Bc0+LtNYS+ochURtyvw7Ln474xSGxoUjvVygXa3WPWTc/2lH1sw3VdGtSfNKC35vJd5A==}
+  /react-hook-form@7.43.9(react@18.2.0):
+    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
+    engines: {node: '>=12.22.0'}
     peerDependencies:
-      react: ^16.8.0 || ^17
+      react: ^16.8.0 || ^17 || ^18
     dependencies:
       react: 18.2.0
     dev: true
