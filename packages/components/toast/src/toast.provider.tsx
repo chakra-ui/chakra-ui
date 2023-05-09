@@ -119,7 +119,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
 
   const stateKeys = Object.keys(state) as Array<keyof typeof state>
   const toastList = stateKeys.map((position) => {
-    const toasts = state[position]
+    const toasts = state[position] 
 
     return (
       <ul
