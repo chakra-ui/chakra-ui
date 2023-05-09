@@ -55,7 +55,7 @@
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/provider": "workspace:*",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/styled": "^11.11.0",
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
