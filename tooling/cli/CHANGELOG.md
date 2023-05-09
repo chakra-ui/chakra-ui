@@ -1,5 +1,56 @@
 # @chakra-ui/cli
 
+## 2.4.1
+
+### Patch Changes
+
+- [#7621](https://github.com/chakra-ui/chakra-ui/pull/7621)
+  [`02968c565`](https://github.com/chakra-ui/chakra-ui/commit/02968c56538b1a1f049c2fef8c025d251a209a14)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor theme
+  typings process and fix ESM issues
+
+## 2.4.0
+
+### Minor Changes
+
+- [#7494](https://github.com/chakra-ui/chakra-ui/pull/7494)
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d)
+  Thanks [@kuroppe1819](https://github.com/kuroppe1819)! - Add support for
+  nested semantic tokens in theme. It is now possible to declare semantic tokens
+  by nesting objects.
+
+  BEFORE:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        "background.pressed.base": { default: "blue.800", _dark: "blue.300" },
+        "background.pressed.subtle": { default: "blue.300", _dark: "blue.700" },
+      },
+    },
+  }
+  ```
+
+  AFTER:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        background: {
+          pressed: {
+            base: { default: "blue.800", _dark: "blue.300" },
+            subtle: { default: "blue.300", _dark: "blue.700" },
+          },
+        },
+      },
+    },
+  }
+  ```
+
+  This allows for cleaner grouping and organization of tokens.
+
 ## 2.3.1
 
 ### Patch Changes

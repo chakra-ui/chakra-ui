@@ -1,20 +1,21 @@
+import { callAll, cx } from "@chakra-ui/shared-utils"
 import {
-  chakra,
-  forwardRef,
   HTMLChakraProps,
-  keyframes,
-  omitThemingProps,
   PropsOf,
   SystemStyleObject,
   ThemingProps,
+  chakra,
+  forwardRef,
+  keyframes,
+  omitThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { callAll, cx } from "@chakra-ui/shared-utils"
 import { cloneElement, useMemo } from "react"
 import { useCheckboxGroupContext } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
+import { useInitialAnimationState } from "./use-initial-animation-state"
 
 const controlStyles: SystemStyleObject = {
   display: "inline-flex",
@@ -134,16 +135,20 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
     onChange,
   })
 
+  const shouldAnimate = useInitialAnimationState(state.isChecked)
+
   const iconStyles: SystemStyleObject = useMemo(
     () => ({
-      animation: state.isIndeterminate
+      animation: !shouldAnimate
+        ? undefined
+        : state.isIndeterminate
         ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
         : `${checkAnim} 200ms linear`,
       fontSize: iconSize,
       color: iconColor,
       ...styles.icon,
     }),
-    [iconColor, iconSize, state.isIndeterminate, styles.icon],
+    [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
   )
 
   const clonedIcon = cloneElement(icon, {

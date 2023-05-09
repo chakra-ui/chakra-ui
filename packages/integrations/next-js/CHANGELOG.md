@@ -1,5 +1,19 @@
 # @chakra-ui/next-js
 
+## 2.1.3
+
+### Patch Changes
+
+- [#7563](https://github.com/chakra-ui/chakra-ui/pull/7563)
+  [`9800a37f4`](https://github.com/chakra-ui/chakra-ui/commit/9800a37f4fe89def6426ab93558a6a255eeb2c54)
+  Thanks [@Zaroxii](https://github.com/Zaroxii)! - Add loading props to the
+  @chakra-ui/next-js.
+
+- [#7595](https://github.com/chakra-ui/chakra-ui/pull/7595)
+  [`1b044474b`](https://github.com/chakra-ui/chakra-ui/commit/1b044474bd04ed3cb36d7d7540d756305a573a9c)
+  Thanks [@Haritaso](https://github.com/Haritaso)! - Fix issue where some prop
+  was not forwarded to the underlying component.
+
 ## 2.1.2
 
 ### Patch Changes

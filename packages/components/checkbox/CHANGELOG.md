@@ -1,5 +1,21 @@
 # Change Log
 
+## 2.2.15
+
+### Patch Changes
+
+- [`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  scroll is hijacked when the menu and checkbox is opened.
+
+- [`24f952da2`](https://github.com/chakra-ui/chakra-ui/commit/24f952da27ef43febbe20714a08eb94ce87133eb)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  checkbox initially animates when checked
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.18
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.2.14
 
 ### Patch Changes
