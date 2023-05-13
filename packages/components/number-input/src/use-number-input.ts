@@ -10,14 +10,29 @@ import { useCallback, useMemo, useRef, useState } from "react"
 import { useAttributeObserver } from "./use-attr-observer"
 import { useSpinner } from "./use-spinner"
 
-const FLOATING_POINT_REGEX = /^[Ee0-9+\-.]$/
+const FLOATING_POINT_CHARACTER_REGEX = /^[Ee0-9+\-.]$/
 
 /**
  * Determine if a character is a DOM floating point character
  * @see https://www.w3.org/TR/2012/WD-html-markup-20120329/datatypes.html#common.data.float
  */
 function isFloatingPointNumericCharacter(character: string) {
-  return FLOATING_POINT_REGEX.test(character)
+  return FLOATING_POINT_CHARACTER_REGEX.test(character)
+}
+
+const FLOATING_POINT_STRING_REGEX =
+  /^-?[0-9]*(?:\.[0-9]*)?(?:[eE][-+]?[0-9]*)?$/
+
+/**
+ * Validates that a string is a float or on it's way to being a float,
+ * doesn't guarantee 100%, but reduces chances of errors
+ */
+function isFloatingPointNumericString(s: string) {
+  return (
+    FLOATING_POINT_STRING_REGEX.test(s) &&
+    !s.startsWith("e") &&
+    !s.startsWith("E")
+  )
 }
 
 function isValidNumericKeyboardEvent(
@@ -285,13 +300,19 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
       const evt = event.nativeEvent as InputEvent
       if (evt.isComposing) return
       const parsedInput = parse(event.currentTarget.value)
-      updateFn(sanitize(parsedInput))
+      if (isValidCharacterProp) {
+        updateFn(sanitize(parsedInput))
+      } else if (isFloatingPointNumericString(parsedInput)) {
+        updateFn(parsedInput)
+      } else {
+        return
+      }
       inputSelectionRef.current = {
         start: event.currentTarget.selectionStart,
         end: event.currentTarget.selectionEnd,
       }
     },
-    [updateFn, sanitize, parse],
+    [updateFn, sanitize, parse, isValidCharacterProp],
   )
 
   const _onFocus = useCallback(
