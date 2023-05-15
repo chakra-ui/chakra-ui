@@ -37,30 +37,6 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     ...rest
   } = omitThemingProps(props)
 
-  const lineStyles = {
-    vertical: {
-      borderLeftWidth:
-        borderLeftWidth || borderRightWidth || borderWidth || "1px",
-      height: "50%",
-      left: -"50%",
-    },
-    horizontal: {
-      borderBottomWidth:
-        borderBottomWidth || borderTopWidth || borderWidth || "1px",
-      width: "50%",
-      top: "50%",
-    },
-  }
-
-  const line: SystemStyleObject = {
-    content: '""',
-    position: "relative",
-    display: "inline-block",
-    borderColor,
-    borderStyle,
-    ...lineStyles[orientation],
-  }
-
   let label: React.ReactElement | null = null
   if (
     React.isValidElement(rest.children) &&
@@ -71,13 +47,40 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     })
   }
 
+  const hasLabel = !!label
+
+  const lineStyles = {
+    vertical: {
+      borderLeftWidth:
+        borderLeftWidth || borderRightWidth || borderWidth || "1px",
+      height: hasLabel ? "50%" : "100%",
+      left: -"50%",
+    },
+    horizontal: {
+      borderBottomWidth:
+        borderBottomWidth || borderTopWidth || borderWidth || "1px",
+      width: hasLabel ? "50%" : "100%",
+      top: "50%",
+    },
+  }
+
+  const line: SystemStyleObject = {
+    content: '""',
+    position: "relative",
+    display: "inline-block",
+    borderColor,
+    borderStyle,
+    borderWidth: 0,
+    ...lineStyles[orientation],
+  }
+
   const dividerStyles: SystemStyleObject = {
     display: "flex",
     flexDirection: orientation === "vertical" ? "column" : "row",
     alignItems: "center",
     color: borderColor,
     _before: line,
-    _after: line,
+    _after: hasLabel ? line : undefined,
     border: 0,
     [orientation === "vertical" ? "height" : "width"]: "100%",
   }
@@ -85,7 +88,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
   return (
     <chakra.hr
       ref={ref}
-      as={rest.children ? "div" : "hr"}
+      as={hasLabel ? "div" : "hr"}
       role="separator"
       aria-orientation={orientation}
       {...rest}
