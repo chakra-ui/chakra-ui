@@ -3,6 +3,7 @@ import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 const baseStyle = defineStyle({
   opacity: 0.6,
   borderColor: "inherit",
+  color: "gray.400",
 })
 
 const variantSolid = defineStyle({

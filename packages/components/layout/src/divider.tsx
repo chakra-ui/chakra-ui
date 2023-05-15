@@ -28,6 +28,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     borderWidth,
     borderStyle,
     borderColor,
+    color,
     ...styles
   } = useStyleConfig("Divider", props)
   const {
@@ -54,7 +55,6 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
       borderLeftWidth:
         borderLeftWidth || borderRightWidth || borderWidth || "1px",
       height: hasLabel ? "50%" : "100%",
-      left: -"50%",
     },
     horizontal: {
       borderBottomWidth:
@@ -78,10 +78,10 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     display: "flex",
     flexDirection: orientation === "vertical" ? "column" : "row",
     alignItems: "center",
-    color: borderColor,
+    color,
     _before: line,
     _after: hasLabel ? line : undefined,
-    border: 0,
+    borderWidth: 0,
     [orientation === "vertical" ? "height" : "width"]: "100%",
   }
 
