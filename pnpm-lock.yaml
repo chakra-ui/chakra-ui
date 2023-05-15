@@ -214,7 +214,7 @@ importers:
         version: 3.0.2
       tsup:
         specifier: ^6.5.0
-        version: 6.5.0(@swc/core@1.3.24)(postcss@8.4.20)(typescript@5.0.2)
+        version: 6.5.0(@swc/core@1.3.24)(postcss@7.0.39)(typescript@5.0.2)
       tsx:
         specifier: ^3.8.1
         version: 3.8.1
@@ -527,8 +527,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -660,8 +660,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@17.0.2)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -670,7 +670,7 @@ importers:
         version: 4.4.0(react@18.2.0)
       react-spinners:
         specifier: 0.11.0
-        version: 0.11.0(@types/react@18.0.30)(react-dom@17.0.2)(react@18.2.0)
+        version: 0.11.0(@types/react@18.0.30)(react-dom@18.2.0)(react@18.2.0)
 
   packages/components/card:
     dependencies:
@@ -1245,8 +1245,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1300,8 +1300,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1465,8 +1465,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1493,8 +1493,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1789,8 +1789,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2012,8 +2012,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2241,8 +2241,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2293,8 +2293,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2315,8 +2315,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2404,8 +2404,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       framer-motion:
-        specifier: ^6.2.9
-        version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^10.0.0
+        version: 10.0.0(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -5384,7 +5384,7 @@ packages:
       '@babel/plugin-transform-unicode-escapes': 7.18.6(@babel/core@7.20.5)
       '@babel/plugin-transform-unicode-regex': 7.18.6(@babel/core@7.20.5)
       '@babel/preset-modules': 0.1.5(@babel/core@7.20.5)
-      '@babel/types': 7.20.5
+      '@babel/types': 7.18.9
       babel-plugin-polyfill-corejs2: 0.3.1(@babel/core@7.20.5)
       babel-plugin-polyfill-corejs3: 0.5.2(@babel/core@7.20.5)
       babel-plugin-polyfill-regenerator: 0.3.1(@babel/core@7.20.5)
@@ -8187,6 +8187,7 @@ packages:
       '@motionone/types': 10.13.0
       '@motionone/utils': 10.13.1
       tslib: 2.4.1
+    dev: false
 
   /@motionone/dom@10.12.0:
     resolution: {integrity: sha512-UdPTtLMAktHiqV0atOczNYyDd/d8Cf5fFsd1tua03PqTwwCe/6lwhLSQ8a7TbnQ5SN0gm44N1slBfj+ORIhrqw==}
@@ -8197,12 +8198,14 @@ packages:
       '@motionone/utils': 10.13.1
       hey-listen: 1.0.8
       tslib: 2.4.1
+    dev: false
 
   /@motionone/easing@10.13.1:
     resolution: {integrity: sha512-INEsInHHDHVgx0dp5qlXi1lMXBqYicgLMMSn3zfGzaIvcaEbI1Uz8BoyNV4BiclTupG7RYIh+T6BU83ZcEe74g==}
     dependencies:
       '@motionone/utils': 10.13.1
       tslib: 2.4.1
+    dev: false
 
   /@motionone/generators@10.13.1:
     resolution: {integrity: sha512-+HK5u2YcNJCckTTqfOLgSVcrWv2z1dVwrSZEMVJuAh0EnWEWGDJRvMBoPc0cFf/osbkA2Rq9bH2+vP0Ex/D8uw==}
@@ -8210,9 +8213,11 @@ packages:
       '@motionone/types': 10.13.0
       '@motionone/utils': 10.13.1
       tslib: 2.4.1
+    dev: false
 
   /@motionone/types@10.13.0:
     resolution: {integrity: sha512-qegk4qg8U1N9ZwAJ187BG3TkZz1k9LP/pvNtCSlqdq/PMUDKlCFG4ZnjJ481P0IOH/vIw1OzIbKIuyg0A3rk9g==}
+    dev: false
 
   /@motionone/utils@10.13.1:
     resolution: {integrity: sha512-TjDPTIppaf3ofBXQv4ZzAketJgN0sclALXfZ6mfrkjJkOy83mLls9744F+6S+VKCpBmvbZcBY4PQfrfhAfeMtA==}
@@ -8220,6 +8225,7 @@ packages:
       '@motionone/types': 10.13.0
       hey-listen: 1.0.8
       tslib: 2.4.1
+    dev: false
 
   /@mrmlnc/readdir-enhanced@2.2.1:
     resolution: {integrity: sha512-bPHp6Ji8b41szTOcaP63VlnbbO5Ny6dwAATtY6JTjh5N2OLrb5Qk/Th5cRkRQhkWCt+EJsYrNB0MiL+Gpn6e3g==}
@@ -19511,20 +19517,15 @@ packages:
     dependencies:
       map-cache: 0.2.2
 
-  /framer-motion@6.5.1(react-dom@17.0.2)(react@18.2.0):
-    resolution: {integrity: sha512-o1BGqqposwi7cgDrtg0dNONhkmPsUFDaLcKXigzuTFC5x58mE8iyTazxSudFzmT6MEyJKfjjU8ItoMe3W+3fiw==}
+  /framer-motion@10.0.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qVmndcu4Z3q5ftqcbUCvVewHc5yiw4uIZyM0uvJ0/spj9lza/FnWywUUc8DNIZTG1my6nFsNLRPGDruP4o6eIw==}
     peerDependencies:
-      react: '>=16.8 || ^17.0.0 || ^18.0.0'
-      react-dom: '>=16.8 || ^17.0.0 || ^18.0.0'
+      react: ^18.0.0
+      react-dom: ^18.0.0
     dependencies:
-      '@motionone/dom': 10.12.0
-      framesync: 6.0.1
-      hey-listen: 1.0.8
-      popmotion: 11.0.3
       react: 18.2.0
-      react-dom: 17.0.2(react@18.2.0)
-      style-value-types: 5.0.0
-      tslib: 2.4.0
+      react-dom: 18.2.0(react@18.2.0)
+      tslib: 2.4.1
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: true
@@ -19545,11 +19546,13 @@ packages:
       tslib: 2.4.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
+    dev: false
 
   /framesync@6.0.1:
     resolution: {integrity: sha512-fUY88kXvGiIItgNC7wcTOl0SNRCVXMKSWW2Yzfmn7EKNc+MpCzcz9DhdHcdjbrtN3c6R4H5dTY2jiCpPdysEjA==}
     dependencies:
       tslib: 2.4.1
+    dev: false
 
   /framesync@6.1.2:
     resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
@@ -20922,6 +20925,7 @@ packages:
 
   /hey-listen@1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
+    dev: false
 
   /highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
@@ -25667,6 +25671,7 @@ packages:
       hey-listen: 1.0.8
       style-value-types: 5.0.0
       tslib: 2.4.1
+    dev: false
 
   /posix-character-classes@0.1.1:
     resolution: {integrity: sha512-xTgYBc3fuo7Yt7JbiuFxSYGToMoz8fLoE6TC9Wx1P/u+LfeThMOAqmuyECnlBaaJb+u1m9hHiXUEtwW4OzfUJg==}
@@ -25958,6 +25963,23 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
+  /postcss-load-config@3.1.4(postcss@7.0.39):
+    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.0.6
+      postcss: 7.0.39
+      yaml: 1.10.2
+    dev: false
+
   /postcss-load-config@3.1.4(postcss@8.4.14):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
@@ -25974,23 +25996,6 @@ packages:
       postcss: 8.4.14
       yaml: 1.10.2
     dev: true
-
-  /postcss-load-config@3.1.4(postcss@8.4.20):
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.0.6
-      postcss: 8.4.20
-      yaml: 1.10.2
-    dev: false
 
   /postcss-loader@4.3.0(postcss@7.0.39)(webpack@4.46.0):
     resolution: {integrity: sha512-M/dSoIiNDOo8Rk0mUqoj4kpGq91gcxCfb9PoyZVdZ76/AuhxylHDYZblNE8o+EQ9AMSASeMFEKxZf5aU6wlx1Q==}
@@ -26498,6 +26503,7 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: true
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
@@ -27090,17 +27096,6 @@ packages:
       react: 17.0.2
       scheduler: 0.20.2
 
-  /react-dom@17.0.2(react@18.2.0):
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
-    peerDependencies:
-      react: 17.0.2
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 18.2.0
-      scheduler: 0.20.2
-    dev: true
-
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -27460,7 +27455,7 @@ packages:
       throttle-debounce: 3.0.1
     dev: false
 
-  /react-spinners@0.11.0(@types/react@18.0.30)(react-dom@17.0.2)(react@18.2.0):
+  /react-spinners@0.11.0(@types/react@18.0.30)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-rDZc0ABWn/M1OryboGsWVmIPg8uYWl0L35jPUhr40+Yg+syVPjeHwvnB7XWaRpaKus3M0cG9BiJA+ZB0dAwWyw==}
     peerDependencies:
       react: ^16.0.0 || ^17.0.0
@@ -27468,7 +27463,7 @@ packages:
     dependencies:
       '@emotion/react': 11.11.0(@types/react@18.0.30)(react@18.2.0)
       react: 18.2.0
-      react-dom: 17.0.2(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
     dev: true
@@ -29261,6 +29256,7 @@ packages:
     dependencies:
       hey-listen: 1.0.8
       tslib: 2.4.1
+    dev: false
 
   /styled-jsx@5.1.0(@babel/core@7.18.9)(react@18.2.0):
     resolution: {integrity: sha512-/iHaRJt9U7T+5tp6TRelLnqBqiaIT0HsO0+vgyj8hK2KUk7aejFqRrumqPUlAqDwAj8IbS/1hk3IhBAAK/FCUQ==}
@@ -29947,11 +29943,12 @@ packages:
 
   /tslib@2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
 
   /tslib@2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
 
-  /tsup@6.5.0(@swc/core@1.3.24)(postcss@8.4.20)(typescript@5.0.2):
+  /tsup@6.5.0(@swc/core@1.3.24)(postcss@7.0.39)(typescript@5.0.2):
     resolution: {integrity: sha512-36u82r7rYqRHFkD15R20Cd4ercPkbYmuvRkz3Q1LCm5BsiFNUgpo36zbjVhCOgvjyxNBWNKHsaD5Rl8SykfzNA==}
     engines: {node: '>=14'}
     hasBin: true
@@ -29976,8 +29973,8 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss: 8.4.20
-      postcss-load-config: 3.1.4(postcss@8.4.20)
+      postcss: 7.0.39
+      postcss-load-config: 3.1.4(postcss@7.0.39)
       resolve-from: 5.0.0
       rollup: 3.7.5
       source-map: 0.8.0-beta.0
