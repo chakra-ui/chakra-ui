@@ -33,6 +33,7 @@ import { skipLinkTheme } from "./skip-link"
 import { sliderTheme } from "./slider"
 import { spinnerTheme } from "./spinner"
 import { statTheme } from "./stat"
+import { stepperTheme } from "./stepper"
 import { switchTheme } from "./switch"
 import { tableTheme } from "./table"
 import { tabsTheme } from "./tabs"
@@ -74,6 +75,7 @@ export { skipLinkTheme as SkipLink } from "./skip-link"
 export { sliderTheme as Slider } from "./slider"
 export { spinnerTheme as Spinner } from "./spinner"
 export { statTheme as Stat } from "./stat"
+export { stepperTheme as Stepper } from "./stepper"
 export { switchTheme as Switch } from "./switch"
 export { tableTheme as Table } from "./table"
 export { tabsTheme as Tabs } from "./tabs"
@@ -123,4 +125,5 @@ export const components = {
   Textarea: textareaTheme,
   Tooltip: tooltipTheme,
   Card: cardTheme,
+  Stepper: stepperTheme,
 }

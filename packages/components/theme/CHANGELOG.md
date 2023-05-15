@@ -1,5 +1,109 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update theme to
+  leverage css variables
+
+- [#7613](https://github.com/chakra-ui/chakra-ui/pull/7613)
+  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)
+  Thanks [@Nicoka11](https://github.com/Nicoka11)! - Add support for
+  `showLastSeparator` in the `Stepper` component to show the last separator in
+  the `Stepper` component. By default, the last separator is hidden.
+
+## 3.1.0
+
+### Minor Changes
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Add semantic tokens
+  for inverse text and subtle text
+
+### Patch Changes
+
+- [`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  breadcrumb separator current page link is styled incorrectly
+
+- [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update peer depency
+  requirements
+
+- [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  modal content is cut off when it has overflowing content and isCentered
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@2.0.17
+
+## 3.0.1
+
+### Patch Changes
+
+- [`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor badge,
+  code and tag theme to use `defineCssVars` helper
+
+- [`6a3c8435d`](https://github.com/chakra-ui/chakra-ui/commit/6a3c8435d156a7a1790248e295f8931b2f8ad274)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where tag
+  outline theme doesn't work as expected.
+
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@2.0.17
+
+## 3.0.0
+
+### Major Changes
+
+- [#7488](https://github.com/chakra-ui/chakra-ui/pull/7488)
+  [`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0)
+  Thanks [@hectoraldairah](https://github.com/hectoraldairah)! - Fix issue where
+  the tag's base style doesn't set the `--badge-bg` and `--badge-color` css
+  variables.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@2.0.17
+
+## 2.3.0
+
+### Minor Changes
+
+- [#7464](https://github.com/chakra-ui/chakra-ui/pull/7464)
+  [`0f8a50054`](https://github.com/chakra-ui/chakra-ui/commit/0f8a50054b8b480bb523dd0964bb31a9e061f8c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  scoping the css reset to specific selector.
+
+  To use this feature, pass the `resetScope` prop to the `ChakraProvider` or
+  `ChakraBaseProvider` component.
+
+  ```jsx live=false
+  import { ChakraProvider } from "@chakra-ui/react"
+
+  function App() {
+    return (
+      <ChakraProvider resetScope=".ck-reset">
+        <App />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+### Patch Changes
+
+- [#6894](https://github.com/chakra-ui/chakra-ui/pull/6894)
+  [`0eeadd3c2`](https://github.com/chakra-ui/chakra-ui/commit/0eeadd3c2cd799e5c9beba7fb6fb2067f2c023fb)
+  Thanks [@anubra266](https://github.com/anubra266)! - Refactor Modal theme to
+  use css variables
+
+- [`b6e0a6a81`](https://github.com/chakra-ui/chakra-ui/commit/b6e0a6a818645d13d7dc3dfd9200e30d293c3e24)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor badge
+  theme to use more css variables
+
 ## 2.2.5
 
 ### Patch Changes

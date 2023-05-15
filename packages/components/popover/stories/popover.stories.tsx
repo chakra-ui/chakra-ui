@@ -17,27 +17,45 @@ import {
   usePopover,
 } from "../src"
 
-export function PopoverExample() {
-  const { getTriggerProps, getPopoverProps, onClose } = usePopover()
+export default {
+  title: "Components / Overlay / Popover - Click",
+  decorators: [
+    (story: Function) => (
+      <chakra.div mx="auto" maxW="400px" mt="200px">
+        {story()}
+      </chakra.div>
+    ),
+  ],
+}
+
+export function WithHook() {
+  const {
+    getTriggerProps,
+    getPopoverProps,
+    getPopoverPositionerProps,
+    onClose,
+  } = usePopover()
 
   return (
     <>
       <button type="button" {...getTriggerProps()}>
         Open
       </button>
-      <div
-        {...getPopoverProps({
-          style: {
-            background: "tomato",
-            color: "white",
-            padding: 30,
-          },
-        })}
-      >
-        This is the content <br />
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
+      <div {...getPopoverPositionerProps()}>
+        <div
+          {...getPopoverProps({
+            style: {
+              background: "tomato",
+              color: "white",
+              padding: 30,
+            },
+          })}
+        >
+          This is the content <br />
+          <button type="button" onClick={onClose}>
+            Close
+          </button>
+        </div>
       </div>
     </>
   )

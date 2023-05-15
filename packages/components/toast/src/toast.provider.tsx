@@ -122,7 +122,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
     const toasts = state[position]
 
     return (
-      <ul
+      <div
         role="region"
         aria-live="polite"
         key={position}
@@ -138,7 +138,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
             />
           ))}
         </AnimatePresence>
-      </ul>
+      </div>
     )
   })
 

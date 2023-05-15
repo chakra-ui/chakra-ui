@@ -1,5 +1,24 @@
 # Change Log
 
+## 2.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)]:
+  - @chakra-ui/object-utils@2.1.0
+  - @chakra-ui/form-control@2.0.18
+
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
+  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/form-control@2.0.18
+
 ## 2.0.20
 
 ### Patch Changes

@@ -1,5 +1,71 @@
 # Change Log
 
+## 2.5.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/theme-utils@2.0.17
+
+## 2.5.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76),
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d),
+  [`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4),
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)]:
+  - @chakra-ui/styled-system@2.9.0
+  - @chakra-ui/object-utils@2.1.0
+  - @chakra-ui/theme-utils@2.0.16
+
+## 2.5.5
+
+### Patch Changes
+
+- [#7497](https://github.com/chakra-ui/chakra-ui/pull/7497)
+  [`cc8477505`](https://github.com/chakra-ui/chakra-ui/commit/cc84775051af5ca2af4cda76b88a1c47c318288a)
+  Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency
+  react-fast-compare to v3.2.1
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies
+  [[`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c),
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b),
+  [`fe882dc2f`](https://github.com/chakra-ui/chakra-ui/commit/fe882dc2f4f249aa011ffcf3da7dcda4d21275b1)]:
+  - @chakra-ui/styled-system@2.8.0
+  - @chakra-ui/theme-utils@2.0.15
+
+## 2.5.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)]:
+  - @chakra-ui/styled-system@2.7.0
+  - @chakra-ui/theme-utils@2.0.14
+
+## 2.5.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/theme-utils@2.0.13
+
+## 2.5.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`600ec1108`](https://github.com/chakra-ui/chakra-ui/commit/600ec1108e3657b610ce05f6bce47bfd666465f8)]:
+  - @chakra-ui/styled-system@2.6.2
+  - @chakra-ui/theme-utils@2.0.12
+
 ## 2.5.1
 
 ### Patch Changes

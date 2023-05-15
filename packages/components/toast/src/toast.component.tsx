@@ -102,7 +102,7 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
   const toastStyle = useMemo(() => getToastStyle(position), [position])
 
   return (
-    <motion.li
+    <motion.div
       layout
       className="chakra-toast"
       variants={motionVariants}
@@ -122,7 +122,7 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
       >
         {runIfFn(message, { id, onClose: close })}
       </chakra.div>
-    </motion.li>
+    </motion.div>
   )
 })
 

@@ -1,5 +1,38 @@
 # Change Log
 
+## 2.1.11
+
+### Patch Changes
+
+- [`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improve popover
+  arrow rendering by removing the default shadow rendered.
+  - Added support for `shadowColor` prop in the `PopoverArrow` component to
+    change the color of the arrow's shadow.
+- Updated dependencies
+  [[`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]:
+  - @chakra-ui/popper@3.0.14
+  - @chakra-ui/close-button@2.0.17
+
+## 2.1.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53)]:
+  - @chakra-ui/react-use-focus-effect@2.0.10
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/close-button@2.0.17
+
+## 2.1.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/close-button@2.0.17
+
 ## 2.1.8
 
 ### Patch Changes

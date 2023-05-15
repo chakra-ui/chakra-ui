@@ -1,5 +1,52 @@
 # @chakra-ui/next-js
 
+## 2.1.3
+
+### Patch Changes
+
+- [#7563](https://github.com/chakra-ui/chakra-ui/pull/7563)
+  [`9800a37f4`](https://github.com/chakra-ui/chakra-ui/commit/9800a37f4fe89def6426ab93558a6a255eeb2c54)
+  Thanks [@Zaroxii](https://github.com/Zaroxii)! - Add loading props to the
+  @chakra-ui/next-js.
+
+- [#7595](https://github.com/chakra-ui/chakra-ui/pull/7595)
+  [`1b044474b`](https://github.com/chakra-ui/chakra-ui/commit/1b044474bd04ed3cb36d7d7540d756305a573a9c)
+  Thanks [@Haritaso](https://github.com/Haritaso)! - Fix issue where some prop
+  was not forwarded to the underlying component.
+
+## 2.1.2
+
+### Patch Changes
+
+- [`f8f5280bc`](https://github.com/chakra-ui/chakra-ui/commit/f8f5280bc5fbdc3fc4a30307313e48c7c160c738)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `fill` prop was not forwarded to the underlying component.
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+## 2.1.1
+
+### Patch Changes
+
+- [`be28f5d0b`](https://github.com/chakra-ui/chakra-ui/commit/be28f5d0ba3a14d9a6b6bd9e059b922d25cdb260)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  theming related props (variant, size) could not be passed to the `Link`
+  component
+
+## 2.1.0
+
+### Minor Changes
+
+- [`46bd14641`](https://github.com/chakra-ui/chakra-ui/commit/46bd146415ba8232ac1106e1714608704ca73712)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add `Image`
+  component that supercharges the Next.js optimized image with Chakra style
+  props.
+
+  - Add ESM interop for `createCache` to avoid server-related errors
+
 ## 2.0.1
 
 ### Patch Changes

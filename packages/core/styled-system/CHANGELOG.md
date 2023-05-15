@@ -1,5 +1,131 @@
 # Change Log
 
+## 2.9.0
+
+### Minor Changes
+
+- [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `aspectRatio` style prop to enable the usage of the native aspect ratio
+  property
+
+- [#7494](https://github.com/chakra-ui/chakra-ui/pull/7494)
+  [`27dcf2f56`](https://github.com/chakra-ui/chakra-ui/commit/27dcf2f5647c3323d1e6bee35db6cf1514c1b29d)
+  Thanks [@kuroppe1819](https://github.com/kuroppe1819)! - Add support for
+  nested semantic tokens in theme. It is now possible to declare semantic tokens
+  by nesting objects.
+
+  BEFORE:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        "background.pressed.base": { default: "blue.800", _dark: "blue.300" },
+        "background.pressed.subtle": { default: "blue.300", _dark: "blue.700" },
+      },
+    },
+  }
+  ```
+
+  AFTER:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        background: {
+          pressed: {
+            base: { default: "blue.800", _dark: "blue.300" },
+            subtle: { default: "blue.300", _dark: "blue.700" },
+          },
+        },
+      },
+    },
+  }
+  ```
+
+  This allows for cleaner grouping and organization of tokens.
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Add `_horizontal`
+  and `_vertical` pseudo props to style orientation data attributes
+
+## 2.8.0
+
+### Minor Changes
+
+- [`93d3119a6`](https://github.com/chakra-ui/chakra-ui/commit/93d3119a60ffaf541bd4fc66ee639965145b662c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add new
+  `defineCssVars` helper to improve the experience of authoring a set of css
+  variables for a component theme.
+
+  ```jsx live=false
+  import { defineCssVars } from "@chakra-ui/react"
+
+  // defines the `--badge-bg`, `--badge-border`, and `--badge-size` (with a 1rem fallback)
+  const vars = defineCssVars("badge", ["bg", "border", ["size", "1rem"]])
+
+  const style = {
+    bg: vars.bg.reference,
+    [vars.bg.variable]: "colors.red.500",
+    [vars.border.variable]: "colors.red.300",
+  }
+  ```
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- [`fe882dc2f`](https://github.com/chakra-ui/chakra-ui/commit/fe882dc2f4f249aa011ffcf3da7dcda4d21275b1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `<Box hideBelow="md" />` behavior was inconsistent with `<Hide below="md" />`
+  component
+
+## 2.7.0
+
+### Minor Changes
+
+- [#7370](https://github.com/chakra-ui/chakra-ui/pull/7370)
+  [`c7ad1bf12`](https://github.com/chakra-ui/chakra-ui/commit/c7ad1bf1211ad704420eccf39a3de548b784f964)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Creates the
+  `gradients` theme key for props `bgGradient`, `bgImage`, `bgImg`, and
+  `backgroundImage`
+
+  This addition allows you to use tokens for the gradient values, semantic
+  tokens included!
+
+  ```ts
+  // gradients.ts
+
+  export const gradients = {
+    lightBgGradient:
+      "linear-gradient(102.7deg, #B9F1B9 0%, #5484EA 51.56%, #3A8E89 100%)",
+  }
+
+  // SomeComponent.tsx
+
+  <Box bgGradient='lightBgGradient' />
+  ```
+
+  🚨 NOTE: The
+  [Background Gradient API](https://chakra-ui.com/docs/styled-system/gradient#background-gradient-api)
+  can not be used in a token as the conversion is done when the api is used
+  directly on a prop and not when compiling the theme config
+
+## 2.6.2
+
+### Patch Changes
+
+- [#7441](https://github.com/chakra-ui/chakra-ui/pull/7441)
+  [`600ec1108`](https://github.com/chakra-ui/chakra-ui/commit/600ec1108e3657b610ce05f6bce47bfd666465f8)
+  Thanks [@jeferson-sb](https://github.com/jeferson-sb)! - Add ::first-letter
+  pseudo element to style props
+
 ## 2.6.1
 
 ### Patch Changes

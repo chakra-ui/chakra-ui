@@ -16,13 +16,13 @@ export const cssVars = {
 
 export function getBoxShadow(placement: Placement) {
   if (placement.includes("top"))
-    return `1px 1px 1px 0 var(--popper-arrow-shadow-color)`
+    return `1px 1px 0px 0 var(--popper-arrow-shadow-color)`
   if (placement.includes("bottom"))
-    return `-1px -1px 1px 0 var(--popper-arrow-shadow-color)`
+    return `-1px -1px 0px 0 var(--popper-arrow-shadow-color)`
   if (placement.includes("right"))
-    return `-1px 1px 1px 0 var(--popper-arrow-shadow-color)`
+    return `-1px 1px 0px 0 var(--popper-arrow-shadow-color)`
   if (placement.includes("left"))
-    return `1px -1px 1px 0 var(--popper-arrow-shadow-color)`
+    return `1px -1px 0px 0 var(--popper-arrow-shadow-color)`
 }
 
 const transforms: Record<string, string> = {

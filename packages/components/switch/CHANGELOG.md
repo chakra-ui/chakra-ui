@@ -1,5 +1,45 @@
 # Change Log
 
+## 2.0.27
+
+### Patch Changes
+
+- Updated dependencies
+  [[`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311),
+  [`24f952da2`](https://github.com/chakra-ui/chakra-ui/commit/24f952da27ef43febbe20714a08eb94ce87133eb)]:
+  - @chakra-ui/checkbox@2.2.15
+
+## 2.0.26
+
+### Patch Changes
+
+- Updated dependencies
+  [[`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)]:
+  - @chakra-ui/checkbox@2.2.14
+
+## 2.0.25
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5af9ad8b3`](https://github.com/chakra-ui/chakra-ui/commit/5af9ad8b3dd69bc22bda37358cc7a68b67e29a01)]:
+  - @chakra-ui/checkbox@2.2.13
+
+## 2.0.24
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/checkbox@2.2.12
+
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies
+  [[`df1e519b5`](https://github.com/chakra-ui/chakra-ui/commit/df1e519b536cf07957283c4c56153f4799683ff8)]:
+  - @chakra-ui/checkbox@2.2.11
+
 ## 2.0.22
 
 ### Patch Changes

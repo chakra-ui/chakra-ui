@@ -23,21 +23,20 @@ export const layout: Config = {
   overscrollBehaviorX: true,
   overscrollBehaviorY: true,
   display: true,
+  aspectRatio: true,
   hideFrom: {
     scale: "breakpoints",
     transform: (value: string, theme) => {
-      const mq =
-        theme.__breakpoints?.get(value)?.minWQuery ??
-        `@media screen and (min-width: ${value})`
+      const breakpoint = theme.__breakpoints?.get(value)?.minW ?? value
+      const mq = `@media screen and (min-width: ${breakpoint})`
       return { [mq]: { display: "none" } }
     },
   },
   hideBelow: {
     scale: "breakpoints",
     transform: (value: string, theme) => {
-      const mq =
-        theme.__breakpoints?.get(value)?.maxWQuery ??
-        `@media screen and (max-width: ${value})`
+      const breakpoint = theme.__breakpoints?.get(value)?._minW ?? value
+      const mq = `@media screen and (max-width: ${breakpoint})`
       return { [mq]: { display: "none" } }
     },
   },
@@ -205,4 +204,8 @@ export interface LayoutProps {
    * The CSS `isolation` property
    */
   isolation?: Token<CSS.Property.Isolation>
+  /**
+   * The CSS `aspect-ratio` property
+   */
+  aspectRatio?: Token<CSS.Property.AspectRatio>
 }

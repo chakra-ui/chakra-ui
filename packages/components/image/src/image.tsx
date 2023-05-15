@@ -109,6 +109,7 @@ export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
    */
   const status = useImage({
     ...props,
+    crossOrigin,
     ignoreFallback: shouldIgnoreFallbackImage,
   })
 

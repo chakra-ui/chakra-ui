@@ -1,5 +1,29 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#7488](https://github.com/chakra-ui/chakra-ui/pull/7488)
+  [`1dac7eec0`](https://github.com/chakra-ui/chakra-ui/commit/1dac7eec081e1d3ac3aa5583f5b22094a6a3f5c0)
+  Thanks [@hectoraldairah](https://github.com/hectoraldairah)! - Fix issue where
+  the tag's base style doesn't set the `--badge-bg` and `--badge-color` css
+  variables.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.16
+
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/icon@3.0.16
+
 ## 2.0.17
 
 ### Patch Changes

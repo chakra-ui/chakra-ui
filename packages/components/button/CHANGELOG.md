@@ -1,5 +1,30 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies []:
+  - @chakra-ui/spinner@2.0.13
+
+## 2.0.17
+
+### Patch Changes
+
+- [`8a3455fe5`](https://github.com/chakra-ui/chakra-ui/commit/8a3455fe55980552bd5726c92ab83a2ba994b7ea)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Widen types for
+  `loadingText` to accept `ReactNode` instead of only string.
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/spinner@2.0.13
+
 ## 2.0.16
 
 ### Patch Changes

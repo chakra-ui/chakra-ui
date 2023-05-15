@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popper",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "description": "A React component and hooks wrapper for popper.js",
   "keywords": [
     "react",
@@ -42,7 +42,7 @@
     "@chakra-ui/hooks": "workspace:*",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "peerDependencies": {
     "react": ">=18"

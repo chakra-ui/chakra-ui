@@ -5,6 +5,11 @@
       "required": false,
       "description": "The initial value of the Editable in both edit & preview mode"
     },
+    "finalFocusRef": {
+      "type": "RefObject<FocusableElement>",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the modal closes."
+    },
     "isDisabled": {
       "type": "boolean",
       "required": false,
@@ -15,6 +20,11 @@
       "defaultValue": true,
       "required": false,
       "description": "If `true`, the read only view, has a `tabIndex` set to `0`\nso it can receive focus via the keyboard or click."
+    },
+    "onBlur": {
+      "type": "(nextValue: string) => void",
+      "required": false,
+      "description": "Callback invoked when the user either submits or cancels.\nIt provides the last confirmed value as argument."
     },
     "onCancel": {
       "type": "(previousValue: string) => void",
@@ -73,6 +83,11 @@
       "required": false,
       "description": "The initial value of the Editable in both edit & preview mode"
     },
+    "finalFocusRef": {
+      "type": "RefObject<FocusableElement>",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the modal closes."
+    },
     "isDisabled": {
       "type": "boolean",
       "required": false,
@@ -83,6 +98,11 @@
       "defaultValue": true,
       "required": false,
       "description": "If `true`, the read only view, has a `tabIndex` set to `0`\nso it can receive focus via the keyboard or click."
+    },
+    "onBlur": {
+      "type": "(nextValue: string) => void",
+      "required": false,
+      "description": "Callback invoked when the user either submits or cancels.\nIt provides the last confirmed value as argument."
     },
     "onCancel": {
       "type": "(previousValue: string) => void",

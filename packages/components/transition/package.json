@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/transition",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "Common transition components for Chakra UI",
   "sideEffects": false,
   "keywords": [
@@ -37,7 +37,7 @@
     "@chakra-ui/hooks": "workspace:*",
     "framer-motion": "^6.2.9",
     "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

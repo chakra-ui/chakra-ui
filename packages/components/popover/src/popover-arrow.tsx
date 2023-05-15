@@ -1,11 +1,19 @@
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps, SystemProps } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
-export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
+export interface PopoverArrowProps extends HTMLChakraProps<"div"> {
+  /**
+   * The color of the arrow's shadow
+   */
+  shadowColor?: SystemProps["color"]
+}
+
+const resolveVar = (scale: string, value: unknown) =>
+  value ? `${scale}.${value}, ${value}` : undefined
 
 export function PopoverArrow(props: PopoverArrowProps) {
-  const { bg, bgColor, backgroundColor, shadow, boxShadow } = props
+  const { bg, bgColor, backgroundColor, shadow, boxShadow, shadowColor } = props
   const { getArrowProps, getArrowInnerProps } = usePopoverContext()
   const styles = usePopoverStyles()
   const arrowBg = bg ?? bgColor ?? backgroundColor
@@ -19,12 +27,9 @@ export function PopoverArrow(props: PopoverArrowProps) {
         className={cx("chakra-popover__arrow", props.className)}
         {...getArrowInnerProps(props)}
         __css={{
-          "--popper-arrow-bg": arrowBg
-            ? `colors.${arrowBg}, ${arrowBg}`
-            : undefined,
-          "--popper-arrow-shadow": arrowShadow
-            ? `shadows.${arrowShadow}, ${arrowShadow}`
-            : undefined,
+          "--popper-arrow-shadow-color": resolveVar("colors", shadowColor),
+          "--popper-arrow-bg": resolveVar("colors", arrowBg),
+          "--popper-arrow-shadow": resolveVar("shadows", arrowShadow),
           ...styles.arrow,
         }}
       />
