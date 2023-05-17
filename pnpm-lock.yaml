@@ -214,7 +214,7 @@ importers:
         version: 3.0.2
       tsup:
         specifier: ^6.5.0
-        version: 6.5.0(@swc/core@1.3.24)(postcss@8.4.20)(typescript@5.0.2)
+        version: 6.5.0(@swc/core@1.3.24)(postcss@7.0.39)(typescript@5.0.2)
       tsx:
         specifier: ^3.8.1
         version: 3.8.1
@@ -623,8 +623,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-router-dom:
-        specifier: 6.9.0
-        version: 6.9.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.11.2
+        version: 6.11.2(react-dom@18.2.0)(react@18.2.0)
 
   packages/components/button:
     dependencies:
@@ -1123,8 +1123,8 @@ importers:
         specifier: ^4.2.0
         version: 4.4.0(react@18.2.0)
       react-router-dom:
-        specifier: 6.9.0
-        version: 6.9.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.11.2
+        version: 6.11.2(react-dom@18.2.0)(react@18.2.0)
 
   packages/components/live-region:
     devDependencies:
@@ -5384,7 +5384,7 @@ packages:
       '@babel/plugin-transform-unicode-escapes': 7.18.6(@babel/core@7.20.5)
       '@babel/plugin-transform-unicode-regex': 7.18.6(@babel/core@7.20.5)
       '@babel/preset-modules': 0.1.5(@babel/core@7.20.5)
-      '@babel/types': 7.20.5
+      '@babel/types': 7.18.9
       babel-plugin-polyfill-corejs2: 0.3.1(@babel/core@7.20.5)
       babel-plugin-polyfill-corejs3: 0.5.2(@babel/core@7.20.5)
       babel-plugin-polyfill-regenerator: 0.3.1(@babel/core@7.20.5)
@@ -9193,8 +9193,8 @@ packages:
     resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
     dev: false
 
-  /@remix-run/router@1.4.0:
-    resolution: {integrity: sha512-BJ9SxXux8zAg991UmT8slpwpsd31K1dHHbD3Ba4VzD+liLQ4WAMSxQp2d2ZPRPfN0jN2NPRowcSSoM7lCaF08Q==}
+  /@remix-run/router@1.6.2:
+    resolution: {integrity: sha512-LzqpSrMK/3JBAVBI9u3NWtOhWNw5AMQfrUFYB0+bDHTSw17z++WJLsPsxAuK+oSddsxk4d7F/JcdDPM1M5YAhA==}
     engines: {node: '>=14'}
     dev: true
 
@@ -25958,6 +25958,23 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
+  /postcss-load-config@3.1.4(postcss@7.0.39):
+    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.0.6
+      postcss: 7.0.39
+      yaml: 1.10.2
+    dev: false
+
   /postcss-load-config@3.1.4(postcss@8.4.14):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
@@ -25974,23 +25991,6 @@ packages:
       postcss: 8.4.14
       yaml: 1.10.2
     dev: true
-
-  /postcss-load-config@3.1.4(postcss@8.4.20):
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.0.6
-      postcss: 8.4.20
-      yaml: 1.10.2
-    dev: false
 
   /postcss-loader@4.3.0(postcss@7.0.39)(webpack@4.46.0):
     resolution: {integrity: sha512-M/dSoIiNDOo8Rk0mUqoj4kpGq91gcxCfb9PoyZVdZ76/AuhxylHDYZblNE8o+EQ9AMSASeMFEKxZf5aU6wlx1Q==}
@@ -26498,6 +26498,7 @@ packages:
       nanoid: 3.3.4
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: true
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
@@ -27323,26 +27324,26 @@ packages:
       use-sidecar: 1.1.2(@types/react@18.0.30)(react@18.2.0)
     dev: false
 
-  /react-router-dom@6.9.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-/seUAPY01VAuwkGyVBPCn1OXfVbaWGGu4QN9uj0kCPcTyNYgL1ldZpxZUpRU7BLheKQI4Twtl/OW2nHRF1u26Q==}
+  /react-router-dom@6.11.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-JNbKtAeh1VSJQnH6RvBDNhxNwemRj7KxCzc5jb7zvDSKRnPWIFj9pO+eXqjM69gQJ0r46hSz1x4l9y0651DKWw==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.4.0
+      '@remix-run/router': 1.6.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.9.0(react@18.2.0)
+      react-router: 6.11.2(react@18.2.0)
     dev: true
 
-  /react-router@6.9.0(react@18.2.0):
-    resolution: {integrity: sha512-51lKevGNUHrt6kLuX3e/ihrXoXCa9ixY/nVWRLlob4r/l0f45x3SzBvYJe3ctleLUQQ5fVa4RGgJOTH7D9Umhw==}
+  /react-router@6.11.2(react@18.2.0):
+    resolution: {integrity: sha512-74z9xUSaSX07t3LM+pS6Un0T55ibUE/79CzfZpy5wsPDZaea1F8QkrsiyRnA2YQ7LwE/umaydzXZV80iDCPkMg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.4.0
+      '@remix-run/router': 1.6.2
       react: 18.2.0
     dev: true
 
@@ -29951,7 +29952,7 @@ packages:
   /tslib@2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
 
-  /tsup@6.5.0(@swc/core@1.3.24)(postcss@8.4.20)(typescript@5.0.2):
+  /tsup@6.5.0(@swc/core@1.3.24)(postcss@7.0.39)(typescript@5.0.2):
     resolution: {integrity: sha512-36u82r7rYqRHFkD15R20Cd4ercPkbYmuvRkz3Q1LCm5BsiFNUgpo36zbjVhCOgvjyxNBWNKHsaD5Rl8SykfzNA==}
     engines: {node: '>=14'}
     hasBin: true
@@ -29976,8 +29977,8 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss: 8.4.20
-      postcss-load-config: 3.1.4(postcss@8.4.20)
+      postcss: 7.0.39
+      postcss-load-config: 3.1.4(postcss@7.0.39)
       resolve-from: 5.0.0
       rollup: 3.7.5
       source-map: 0.8.0-beta.0
