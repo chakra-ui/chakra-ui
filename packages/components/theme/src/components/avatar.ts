@@ -63,7 +63,14 @@ const baseStyle = definePartsStyle((props) => ({
   container: runIfFn(baseStyleContainer, props),
 }))
 
-function getSize(size: keyof typeof themeSizes | "100%") {
+type GetSizeOpts = {
+  adjustExcessLabelFontSize?: boolean
+}
+
+function getSize(
+  size: keyof typeof themeSizes | "100%",
+  { adjustExcessLabelFontSize }: GetSizeOpts = {},
+) {
   const themeSize = size !== "100%" ? themeSizes[size] : undefined
   return definePartsStyle({
     container: {
@@ -74,6 +81,9 @@ function getSize(size: keyof typeof themeSizes | "100%") {
     excessLabel: {
       width: size,
       height: size,
+      ...(adjustExcessLabelFontSize && {
+        fontSize: `calc(${themeSize ?? size} / 2)`,
+      }),
     },
     label: {
       fontSize: `calc(${themeSize ?? size} / 2.5)`,
@@ -83,8 +93,8 @@ function getSize(size: keyof typeof themeSizes | "100%") {
 }
 
 const sizes = {
-  "2xs": getSize(4),
-  xs: getSize(6),
+  "2xs": getSize(4, { adjustExcessLabelFontSize: true }),
+  xs: getSize(6, { adjustExcessLabelFontSize: true }),
   sm: getSize(8),
   md: getSize(12),
   lg: getSize(16),
