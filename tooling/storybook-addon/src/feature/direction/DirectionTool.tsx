@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react"
 import { useAddonState, useGlobals } from "@storybook/api"
-import { addons } from "@storybook/addons"
+import { addons } from "@storybook/manager-api"
 import { IconButton } from "@storybook/components"
 import { DIRECTION_TOOL_ID, EVENTS } from "../../constants"
 
@@ -65,6 +65,10 @@ export const DirectionTool = () => {
       active={direction === "rtl"}
       title={`Set layout direction to ${targetDirection}`}
       onClick={toggleDirection}
+      // ! Possible TypeError bug where the following props are required when they shouldn't be
+      content=""
+      rel=""
+      rev=""
     >
       {targetDirection === "ltr" ? <LTRIcon /> : <RTLIcon />}
     </IconButton>

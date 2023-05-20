@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useColorMode } from "@chakra-ui/react"
-import { addons } from "@storybook/addons"
+import { addons } from "@storybook/preview-api"
 import { EVENTS } from "../../constants"
 
 /**
