@@ -110,6 +110,7 @@ export function createMultiStyleConfigHelpers<Part extends string>(
         size?: keyof Sizes
         variant?: keyof Variants
         colorScheme?: string
+        isFitted?: boolean
       }
     }) {
       return { parts: parts as Part[], ...config }
