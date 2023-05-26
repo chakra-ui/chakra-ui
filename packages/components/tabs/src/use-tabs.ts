@@ -278,7 +278,7 @@ export interface UseTabProps
  * hence the use of `useClickable` to handle this scenario
  */
 export function useTab<P extends UseTabProps>(props: P) {
-  const { isDisabled, isFocusable, ...htmlProps } = props
+  const { isDisabled = false, isFocusable = false, ...htmlProps } = props
 
   const { setSelectedIndex, isManual, id, setFocusedIndex, selectedIndex } =
     useTabsContext()
