@@ -255,12 +255,6 @@ export function useTabList<P extends UseTabListProps>(props: P) {
 export type UseTabListReturn = ReturnType<typeof useTabList>
 
 export interface UseTabOptions {
-  id?: string
-  /**
-   * @default false
-   */
-  isSelected?: boolean
-  panelId?: string
   /**
    * If `true`, the `Tab` won't be toggleable
    * @default false

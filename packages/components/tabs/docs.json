@@ -1,18 +1,11 @@
 {
   "Tab": {
-    "id": { "type": "string", "required": false },
     "isDisabled": {
       "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the `Tab` won't be toggleable"
-    },
-    "isSelected": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
-    },
-    "panelId": { "type": "string", "required": false }
+    }
   },
   "TabIndicator": {},
   "TabList": {
