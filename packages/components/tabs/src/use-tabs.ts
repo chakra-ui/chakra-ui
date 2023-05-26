@@ -260,6 +260,11 @@ export interface UseTabOptions {
    * @default false
    */
   isDisabled?: boolean
+  /**
+   * If `true` and `isDisabled`, the `Tab` will be focusable but not interactive.
+   * @default false
+   */
+  isFocusable?: boolean
 }
 
 export interface UseTabProps

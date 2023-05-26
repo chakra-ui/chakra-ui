@@ -5,6 +5,12 @@
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the `Tab` won't be toggleable"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and `isDisabled`, the `Tab` will be focusable but not interactive."
     }
   },
   "TabIndicator": {},
