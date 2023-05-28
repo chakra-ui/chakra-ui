@@ -25,7 +25,7 @@ class ModalManager {
   }
 }
 
-export const manager = new ModalManager()
+export const modalManager = new ModalManager()
 
 export function useModalManager(ref: RefObject<HTMLElement>, isOpen?: boolean) {
   const [index, setIndex] = useState(0)
@@ -36,12 +36,12 @@ export function useModalManager(ref: RefObject<HTMLElement>, isOpen?: boolean) {
     if (!node) return
 
     if (isOpen) {
-      const index = manager.add(node)
+      const index = modalManager.add(node)
       setIndex(index)
     }
 
     return () => {
-      manager.remove(node)
+      modalManager.remove(node)
       setIndex(0)
     }
   }, [isOpen, ref])
