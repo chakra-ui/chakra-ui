@@ -1,6 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+//@ts-ignore
 import Lorem from "react-lorem-component"
 import {
   Modal,
@@ -14,7 +15,10 @@ import {
 
 const Button = chakra("button", {
   baseStyle: {
-    outline: 0,
+    px: "3",
+    py: "2",
+    bg: "gray.100",
+    rounded: "md",
     transitionProperty: "color, box-shadow",
     transitionDuration: "normal",
   },
@@ -225,6 +229,39 @@ export function WithCustomMotionProps() {
           <ModalFooter>
             <Button onClick={onClose}>Cancel</Button>
             <Button>Save</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
+
+export function WithInitialFocus() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const initialFocusRef = React.useRef(null)
+  return (
+    <>
+      <Button onClick={onOpen}>Open Modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        initialFocusRef={initialFocusRef}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <p>With just the text it's awesome</p>
+            <input
+              defaultValue="But with a focussed input it breaks"
+              name="name"
+              ref={initialFocusRef}
+            />
+          </ModalBody>
+
+          <ModalFooter>
+            <Button>Close</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

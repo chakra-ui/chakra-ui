@@ -3,7 +3,6 @@ import { HTMLMotionProps, motion, Variant } from "framer-motion"
 import React from "react"
 import { usePopoverContext } from "./popover-context"
 
-// TODO: consider moving this to some util
 type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<
   HTMLChakraProps<T>,
   keyof HTMLMotionProps<T>
@@ -17,6 +16,7 @@ type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<
     | "onAnimationStart"
     | "variants"
     | "transition"
+    | "children"
   > & {
     variants?: MotionVariants
   }
