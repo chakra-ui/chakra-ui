@@ -41,8 +41,8 @@
     "@chakra-ui/breakpoint-utils": "workspace:*",
     "@chakra-ui/merge-utils": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@types/lodash.mergewith": "4.6.7",
     "clean-package": "2.2.0"
   },
