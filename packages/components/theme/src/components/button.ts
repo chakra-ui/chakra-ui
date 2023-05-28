@@ -28,7 +28,7 @@ const variantGhost = defineStyle((props) => {
 
   if (c === "gray") {
     return {
-      color: mode(`inherit`, `whiteAlpha.900`)(props),
+      color: mode(`gray.800`, `whiteAlpha.900`)(props),
       _hover: {
         bg: mode(`gray.100`, `whiteAlpha.200`)(props),
       },
@@ -96,6 +96,7 @@ const variantSolid = defineStyle((props) => {
 
     return {
       bg,
+      color: mode(`gray.800`, `whiteAlpha.900`)(props),
       _hover: {
         bg: mode(`gray.200`, `whiteAlpha.300`)(props),
         _disabled: {
