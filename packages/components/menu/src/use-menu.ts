@@ -672,7 +672,7 @@ export function useMenuItem(
         rafId.current = null
       })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
-      menuRef.current.focus()
+      menuRef.current.focus({ preventScroll: true })
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 

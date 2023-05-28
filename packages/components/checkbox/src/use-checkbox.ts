@@ -236,7 +236,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         if (!rootIsLabelElement) {
           inputRef.current?.click()
           requestAnimationFrame(() => {
-            inputRef.current?.focus()
+            inputRef.current?.focus({ preventScroll: true })
           })
         }
       }),

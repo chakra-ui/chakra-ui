@@ -77,7 +77,8 @@ const setArrowStyles = (state: Partial<State>) => {
     })
 
     const vars = {
-      [cssVars.arrowSizeHalf.var]: `calc(${cssVars.arrowSize.varRef} / 2)`,
+      [cssVars.arrowSizeHalf
+        .var]: `calc(${cssVars.arrowSize.varRef} / 2 - 1px)`,
       [cssVars.arrowOffset.var]: `calc(${cssVars.arrowSizeHalf.varRef} * -1)`,
     }
 

@@ -1,6 +1,6 @@
 import { extractPropertyKeys } from "../src/command/tokens/extract-property-keys"
 
-describe("Extract Keys", () => {
+describe("Extract Property Keys", () => {
   it("should extract top-level keys from the given property", () => {
     const theme = {
       textStyles: {

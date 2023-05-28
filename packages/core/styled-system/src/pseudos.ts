@@ -321,6 +321,14 @@ export const pseudoSelectors = {
     ".chakra-ui-light &:not([data-theme])," +
     "[data-theme=light] &:not([data-theme])," +
     "&[data-theme=light]",
+  /**
+   * Styles for the CSS Selector `&[data-orientation=horizontal]`
+   */
+  _horizontal: "&[data-orientation=horizontal]",
+  /**
+   * Styles for the CSS Selector `&[data-orientation=vertical]`
+   */
+  _vertical: "&[data-orientation=vertical]",
 }
 
 export type Pseudos = typeof pseudoSelectors

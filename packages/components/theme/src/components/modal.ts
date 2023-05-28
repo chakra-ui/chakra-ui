@@ -31,13 +31,13 @@ const baseStyleDialogContainer = defineStyle((props) => {
 })
 
 const baseStyleDialog = defineStyle((props) => {
-  const { scrollBehavior } = props
+  const { isCentered, scrollBehavior } = props
 
   return {
     borderRadius: "md",
-
     color: "inherit",
-    my: "16",
+    my: isCentered ? "auto" : "16",
+    mx: isCentered ? "auto" : undefined,
     zIndex: "modal",
     maxH: scrollBehavior === "inside" ? "calc(100% - 7.5rem)" : undefined,
     [$bg.variable]: "colors.white",

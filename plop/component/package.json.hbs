@@ -31,7 +31,8 @@
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src",
     "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "postpack": "clean-package restore",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "peerDependencies": {
     "react": ">=18"

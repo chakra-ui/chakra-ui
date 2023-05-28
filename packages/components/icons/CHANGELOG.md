@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.19
+
+### Patch Changes
+
+- [`e7bd872d0`](https://github.com/chakra-ui/chakra-ui/commit/e7bd872d007b1ab2c08e71493450557727791c5b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `SpinnerIcon` id causes accessibility violation
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.16
+
 ## 2.0.18
 
 ### Patch Changes

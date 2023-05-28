@@ -19,7 +19,7 @@ interface AspectRatioOptions {
 }
 
 export interface AspectRatioProps
-  extends HTMLChakraProps<"div">,
+  extends Omit<HTMLChakraProps<"div">, "aspectRatio">,
     AspectRatioOptions {}
 
 /**
