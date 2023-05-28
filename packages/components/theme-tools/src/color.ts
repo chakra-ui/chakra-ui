@@ -1,3 +1,4 @@
+import { getCSSVar } from "@chakra-ui/styled-system"
 import {
   toHex,
   parseToRgba,
@@ -33,6 +34,13 @@ export const getColor = (theme: Dict, color: string, fallback?: string) => {
     // returning black to stay consistent with TinyColor behaviour so as to prevent breaking change
     return fallback ?? "#000000"
   }
+}
+
+/**
+ * Get the color css variable from theme
+ */
+export const getColorVar = (theme: Dict, color: string, fallback?: string) => {
+  return getCSSVar(theme, "colors", color) ?? fallback
 }
 
 const getBrightness = (color: string) => {

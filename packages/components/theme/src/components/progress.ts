@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { generateStripe, getColor, mode } from "@chakra-ui/theme-tools"
+import { generateStripe, getColorVar, mode } from "@chakra-ui/theme-tools"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -21,7 +21,7 @@ const filledStyle = defineStyle((props) => {
   const gradient = `linear-gradient(
     to right,
     transparent 0%,
-    ${getColor(t, bgColor)} 50%,
+    ${getColorVar(t, bgColor)} 50%,
     transparent 100%
   )`
 
