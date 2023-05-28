@@ -9,7 +9,7 @@
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "framer-motion": "^6.2.9",
+    "framer-motion": "^10.12.16",
     "gatsby": "^4.18.2",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-manifest": "^4.18.1",

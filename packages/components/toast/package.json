@@ -43,7 +43,7 @@
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/button": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
-    "framer-motion": "^6.2.9",
+    "framer-motion": "^10.12.16",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "clean-package": "2.2.0"
