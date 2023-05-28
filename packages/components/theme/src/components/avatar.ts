@@ -19,14 +19,15 @@ const $size = cssVar("avatar-size")
 const baseStyleBadge = defineStyle({
   borderRadius: "full",
   border: "0.2em solid",
+  borderColor: $border.reference,
   [$border.variable]: "white",
   _dark: {
     [$border.variable]: "colors.gray.800",
   },
-  borderColor: $border.reference,
 })
 
 const baseStyleExcessLabel = defineStyle({
+  bg: $bg.reference,
   fontSize: $fs.reference,
   width: $size.reference,
   height: $size.reference,
@@ -35,7 +36,6 @@ const baseStyleExcessLabel = defineStyle({
   _dark: {
     [$bg.variable]: "colors.whiteAlpha.400",
   },
-  bgColor: $bg.reference,
 })
 
 const baseStyleContainer = defineStyle((props) => {
