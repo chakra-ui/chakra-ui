@@ -46,12 +46,12 @@ export const others: Config = {
   layerStyle: {
     processResult: true,
     transform: (value, theme, styles) =>
-      getWithPriority(theme, `layerStyles.${value}`, styles),
+      getWithPriority(theme, `layerStyles(${value})`, styles),
   },
   textStyle: {
     processResult: true,
     transform: (value, theme, styles) =>
-      getWithPriority(theme, `textStyles.${value}`, styles),
+      getWithPriority(theme, `textStyles(${value})`, styles),
   },
   apply: {
     processResult: true,
