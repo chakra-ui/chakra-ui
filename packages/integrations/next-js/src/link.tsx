@@ -24,10 +24,12 @@ export type LinkProps = Merge<
 
 export const Link: LinkComponent = forwardRef(function Link(props, ref) {
   const styles = useStyleConfig("Link", props)
-  const { className, href, children, ...rest } = omitThemingProps(props)
+  const { className, isExternal, href, children, ...rest } =
+    omitThemingProps(props)
 
   return (
     <chakra.a
+      target={isExternal ? "_blank" : undefined}
       ref={ref}
       href={href as any}
       {...rest}

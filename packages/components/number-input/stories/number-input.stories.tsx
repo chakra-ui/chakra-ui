@@ -1,5 +1,6 @@
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+//@ts-ignore
 import Lorem from "react-lorem-component"
 import { Button } from "@chakra-ui/button"
 import { Input } from "@chakra-ui/input"
@@ -179,7 +180,7 @@ export const allowOutOfRange = () => (
 export const WithReactHookForm = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      sales: 12,
+      sales: "12",
     },
   })
 
@@ -187,18 +188,15 @@ export const WithReactHookForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <NumberInput
-        name="sales"
-        onBlur={() => {
-          console.log("blurred")
-        }}
-      >
-        <NumberInputField ref={register as any} />
+      <NumberInput name="sales">
+        <NumberInputField {...register("sales")} />
         <NumberInputStepper>
           <NumberIncrementStepper />
           <NumberDecrementStepper />
         </NumberInputStepper>
       </NumberInput>
+
+      <button>Submit</button>
     </form>
   )
 }
