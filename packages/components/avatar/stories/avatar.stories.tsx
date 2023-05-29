@@ -22,10 +22,6 @@ export const Basic = () => (
   </Stack>
 )
 
-/**
- * You can use a custom generic avatar instead of
- * what we have in Chakra.
- */
 const GenericAvatar = (props: PropsOf<"svg">) => (
   <svg
     color="#fff"
@@ -41,10 +37,6 @@ const GenericAvatar = (props: PropsOf<"svg">) => (
   </svg>
 )
 
-/**
- * Without a `src` or `name` attribute, the avatar
- * will show a default svg avatar icon
- */
 export const WithCustomIcon = () => (
   <AvatarGroup>
     <Avatar icon={<GenericAvatar />} />
@@ -52,10 +44,6 @@ export const WithCustomIcon = () => (
   </AvatarGroup>
 )
 
-/**
- * You can change the size of the avatar
- * as defined in your component theme
- */
 export const WithSizes = () => (
   <Stack direction="row" spacing="24px">
     {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
@@ -90,15 +78,15 @@ export const WithSrcSet = () => {
   )
 }
 
-/**
- * Use the AvatarGroup component to stack
- * multiple avatars and add some space between them
- */
-export const avatarGroup = () => (
-  <AvatarGroup size="lg" max={3}>
-    <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
-    <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
-    <Avatar name="Prosper Otemuyiwa" src="https://bit.ly/prosper-baba" />
-    <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
-  </AvatarGroup>
+export const WithAvatarGroup = () => (
+  <Stack spacing="24px">
+    {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
+      <AvatarGroup size={size} max={3} key={size}>
+        <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
+        <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
+        <Avatar name="Prosper Otemuyiwa" src="https://bit.ly/prosper-baba" />
+        <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
+      </AvatarGroup>
+    ))}
+  </Stack>
 )

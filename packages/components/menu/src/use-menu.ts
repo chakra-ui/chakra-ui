@@ -443,6 +443,9 @@ export function useMenuList(
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
+      // ignore events bubbles from portal children
+      if (!event.currentTarget.contains(event.target as Element)) return
+
       const eventKey = event.key
 
       const keyMap: Record<string, React.KeyboardEventHandler> = {

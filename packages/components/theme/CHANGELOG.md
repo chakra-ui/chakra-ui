@@ -1,5 +1,44 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [`243b052d7`](https://github.com/chakra-ui/chakra-ui/commit/243b052d7cc90ba72fd3d16923f66f56f5bda3ef)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Update theme to
+  leverage css variables
+
+- [#7613](https://github.com/chakra-ui/chakra-ui/pull/7613)
+  [`7d27889c8`](https://github.com/chakra-ui/chakra-ui/commit/7d27889c8cff7d7616ea2b061b2a3a73a9bf83ef)
+  Thanks [@Nicoka11](https://github.com/Nicoka11)! - Add support for
+  `showLastSeparator` in the `Stepper` component to show the last separator in
+  the `Stepper` component. By default, the last separator is hidden.
+
+## 3.1.0
+
+### Minor Changes
+
+- [#7502](https://github.com/chakra-ui/chakra-ui/pull/7502)
+  [`49a29a238`](https://github.com/chakra-ui/chakra-ui/commit/49a29a238439242e0959d74ebf48c84411581288)
+  Thanks [@estheragbaje](https://github.com/estheragbaje)! - Add semantic tokens
+  for inverse text and subtle text
+
+### Patch Changes
+
+- [`7b67fd58c`](https://github.com/chakra-ui/chakra-ui/commit/7b67fd58c74765831d1fda016aafae15a49617a5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  breadcrumb separator current page link is styled incorrectly
+
+- [`c2f0d1bb2`](https://github.com/chakra-ui/chakra-ui/commit/c2f0d1bb2a07fe6af5e53a1f216d80c9a7d6df72)
+  Thanks [@cschroeter](https://github.com/cschroeter)! - Update peer depency
+  requirements
+
+- [`82ec66459`](https://github.com/chakra-ui/chakra-ui/commit/82ec66459283ef24a422955952efa1f8d267af2c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  modal content is cut off when it has overflowing content and isCentered
+- Updated dependencies []:
+  - @chakra-ui/theme-tools@2.0.17
+
 ## 3.0.1
 
 ### Patch Changes

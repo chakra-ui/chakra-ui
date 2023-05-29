@@ -1,3 +1,4 @@
+import { cx } from "@chakra-ui/shared-utils"
 import {
   HTMLChakraProps,
   ThemingProps,
@@ -14,12 +15,26 @@ import {
   StepperStylesProvider,
 } from "./step-context"
 
-export type StepperProps = HTMLChakraProps<"div"> &
-  ThemingProps<"Stepper"> & {
-    index: number
-    orientation?: Orientation
-    children: React.ReactNode
-  }
+export interface StepperProps
+  extends HTMLChakraProps<"div">,
+    ThemingProps<"Stepper"> {
+  /**
+   * The active step index
+   */
+  index: number
+  /**
+   * The orientation of the stepper
+   * @default horizontal
+   */
+  orientation?: Orientation
+  /**
+   * Whether to show or not the last separator while in vertical orientation
+   */
+  showLastSeparator?: boolean
+  /**
+   */
+  children: React.ReactNode
+}
 
 export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
   props: StepperProps,
@@ -31,6 +46,7 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
     children,
     index,
     orientation = "horizontal",
+    showLastSeparator = false,
     ...restProps
   } = omitThemingProps(props)
 
@@ -51,6 +67,7 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
       data-orientation={orientation}
       {...restProps}
       __css={styles.stepper}
+      className={cx("chakra-stepper", props.className)}
     >
       <StepperStylesProvider value={styles}>
         {stepElements.map((child, index) => (
@@ -60,6 +77,7 @@ export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
               index,
               status: getStatus(index),
               orientation,
+              showLastSeparator,
               count: stepCount,
               isFirst: index === 0,
               isLast: index === stepCount - 1,

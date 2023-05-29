@@ -72,8 +72,20 @@ describe("fallback + loading strategy", () => {
 
   test("renders a name avatar if no src", () => {
     const tools = render(<Avatar name="Dan Abramov" />)
-    const img = tools.queryByText("DA")
-    expect(img).toBeInTheDocument()
+    const intials = tools.queryByText("DA")
+    expect(intials).toBeInTheDocument()
+  })
+
+  test("renders a single character if only one name is passed", () => {
+    const tools = render(<Avatar name="Dan" />)
+    const intials = tools.queryByText("D")
+    expect(intials).toBeInTheDocument()
+  })
+
+  test("renders the first characters of the first and last name when more than two names are passed", () => {
+    const tools = render(<Avatar name="Dan React Abramov" />)
+    const intials = tools.queryByText("DA")
+    expect(intials).toBeInTheDocument()
   })
 
   test("renders a default avatar if no name or src", () => {

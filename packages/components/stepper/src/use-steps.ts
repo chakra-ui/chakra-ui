@@ -9,13 +9,24 @@ export type StepStatus = "complete" | "active" | "incomplete"
 
 export function useSteps(props: UseStepsProps = {}) {
   const { index = 0, count } = props
+
   const [activeStep, setActiveStep] = useState(index)
+
+  const maxStep = typeof count === "number" ? count - 1 : 0
+  const activeStepPercent = activeStep / maxStep
 
   return {
     activeStep,
     setActiveStep,
+    activeStepPercent,
     isActiveStep(step: number) {
       return step === activeStep
+    },
+    isCompleteStep(step: number) {
+      return step < activeStep
+    },
+    isIncompleteStep(step: number) {
+      return step > activeStep
     },
     getStatus(step: number): StepStatus {
       if (step < activeStep) return "complete"

@@ -62,6 +62,10 @@ export interface ChakraProviderProps
    * This removed the injected `<span/>` element
    */
   disableEnvironment?: boolean
+  /**
+   * If `true`, Chakra will not mount the global styles defined in the theme.
+   */
+  disableGlobalStyle?: boolean
 }
 
 /**
@@ -79,6 +83,7 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
     environment,
     cssVarsRoot,
     disableEnvironment,
+    disableGlobalStyle,
   } = props
 
   const _children = (
@@ -97,7 +102,7 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
         options={theme.config}
       >
         {resetCSS ? <CSSReset scope={resetScope} /> : <CSSPolyfill />}
-        <GlobalStyle />
+        {!disableGlobalStyle && <GlobalStyle />}
         {portalZIndex ? (
           <PortalManager zIndex={portalZIndex}>{_children}</PortalManager>
         ) : (

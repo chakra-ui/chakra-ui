@@ -5,10 +5,6 @@
   "labels": ["dependencies"],
   "rebaseWhen": "conflicted",
   "timezone": "UTC",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": "before 6:00am on the first day of the month"
-  },
   "packageRules": [
     {
       "description": "Automatically merge minor and patch-level updates",

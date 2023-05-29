@@ -163,7 +163,13 @@
       "description": "The interaction that triggers the popover.\n\n`hover` - means the popover will open when you hover with mouse or\nfocus with keyboard on the popover trigger\n\n`click` - means the popover will open on click or\npress `Enter` to `Space` on keyboard"
     }
   },
-  "PopoverArrow": {},
+  "PopoverArrow": {
+    "shadowColor": {
+      "type": "ResponsiveValue<string | (string & {})>",
+      "required": false,
+      "description": "The color of the arrow's shadow"
+    }
+  },
   "PopoverBody": {},
   "PopoverContent": {
     "about": { "type": "string", "required": false },

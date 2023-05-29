@@ -13,26 +13,30 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const $border = cssVar("avatar-border-color")
 const $bg = cssVar("avatar-bg")
+const $fs = cssVar("avatar-font-size")
+const $size = cssVar("avatar-size")
 
 const baseStyleBadge = defineStyle({
   borderRadius: "full",
   border: "0.2em solid",
+  borderColor: $border.reference,
   [$border.variable]: "white",
   _dark: {
     [$border.variable]: "colors.gray.800",
   },
-  borderColor: $border.reference,
 })
 
 const baseStyleExcessLabel = defineStyle({
+  bg: $bg.reference,
+  fontSize: $fs.reference,
+  width: $size.reference,
+  height: $size.reference,
+  lineHeight: "1",
   [$bg.variable]: "colors.gray.200",
   _dark: {
     [$bg.variable]: "colors.whiteAlpha.400",
   },
-  bgColor: $bg.reference,
 })
-
-const $avatarBg = cssVar("avatar-background")
 
 const baseStyleContainer = defineStyle((props) => {
   const { name, theme } = props
@@ -43,41 +47,45 @@ const baseStyleContainer = defineStyle((props) => {
   if (!isBgDark) color = "gray.800"
 
   return {
-    bg: $avatarBg.reference,
-    "&:not([data-loaded])": {
-      [$avatarBg.variable]: bg,
-    },
+    bg: $bg.reference,
+    fontSize: $fs.reference,
     color,
+    borderColor: $border.reference,
+    verticalAlign: "top",
+    width: $size.reference,
+    height: $size.reference,
+    "&:not([data-loaded])": {
+      [$bg.variable]: bg,
+    },
     [$border.variable]: "colors.white",
     _dark: {
       [$border.variable]: "colors.gray.800",
     },
-    borderColor: $border.reference,
-    verticalAlign: "top",
   }
+})
+
+const baseStyleLabel = defineStyle({
+  fontSize: $fs.reference,
+  lineHeight: "1",
 })
 
 const baseStyle = definePartsStyle((props) => ({
   badge: runIfFn(baseStyleBadge, props),
   excessLabel: runIfFn(baseStyleExcessLabel, props),
   container: runIfFn(baseStyleContainer, props),
+  label: baseStyleLabel,
 }))
 
 function getSize(size: keyof typeof themeSizes | "100%") {
   const themeSize = size !== "100%" ? themeSizes[size] : undefined
   return definePartsStyle({
     container: {
-      width: size,
-      height: size,
-      fontSize: `calc(${themeSize ?? size} / 2.5)`,
+      [$size.variable]: themeSize ?? size,
+      [$fs.variable]: `calc(${themeSize ?? size} / 2.5)`,
     },
     excessLabel: {
-      width: size,
-      height: size,
-    },
-    label: {
-      fontSize: `calc(${themeSize ?? size} / 2.5)`,
-      lineHeight: size !== "100%" ? themeSize ?? size : undefined,
+      [$size.variable]: themeSize ?? size,
+      [$fs.variable]: `calc(${themeSize ?? size} / 2.5)`,
     },
   })
 }
@@ -96,5 +104,7 @@ const sizes = {
 export const avatarTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps: { size: "md" },
+  defaultProps: {
+    size: "md",
+  },
 })

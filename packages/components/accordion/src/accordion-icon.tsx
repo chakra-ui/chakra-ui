@@ -1,5 +1,5 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
-import { SystemStyleObject } from "@chakra-ui/system"
+import { Icon } from "@chakra-ui/icon"
+import { PropsOf, SystemStyleObject } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
 import {
   useAccordionItemContext,
@@ -7,7 +7,7 @@ import {
 } from "./accordion-context"
 import { useAccordionContext } from "./use-accordion"
 
-export type AccordionIconProps = IconProps
+export type AccordionIconProps = PropsOf<typeof Icon>
 
 /**
  * AccordionIcon that gives a visual cue of the open/close state of the accordion item.
