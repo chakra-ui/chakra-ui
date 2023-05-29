@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 overrides:
   react: ^18.2.0
@@ -2848,8 +2852,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0
       '@types/update-notifier':
-        specifier: 6.0.2
-        version: 6.0.2
+        specifier: 6.0.4
+        version: 6.0.4
       ora:
         specifier: ^6.3.0
         version: 6.3.0
@@ -13010,8 +13014,8 @@ packages:
   /@types/unist@2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
 
-  /@types/update-notifier@6.0.2:
-    resolution: {integrity: sha512-/OKZaYpzHqBO9D+IzqAB7VfC/fx+xl/CM1upD6D56QPNyvAsFULAVLfjlBIGCl1ibU1rKqZV45xOj018WqHhlA==}
+  /@types/update-notifier@6.0.4:
+    resolution: {integrity: sha512-CiKJPSmt/3F4sVnkQTjnP/onKtTJxRkib6Gvw4XESM8FNsHlvRnBNqU5qL0IQmqjtKnz5e9E6Y7xChOpvxFzKg==}
     dependencies:
       '@types/configstore': 6.0.0
       boxen: 7.1.0
