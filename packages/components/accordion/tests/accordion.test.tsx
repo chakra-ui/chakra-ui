@@ -5,6 +5,7 @@ import {
   AccordionButton,
   AccordionItem,
   AccordionPanel,
+  AccordionIcon,
 } from "../src"
 
 test("passes a11y test", async () => {
@@ -329,4 +330,68 @@ test("panel has role=region and aria-labelledby", async () => {
 
   expect(panel).toHaveAttribute("aria-labelledby")
   expect(panel).toHaveAttribute("role", "region")
+})
+
+test("accordion icon is rendered and rotates on open", async () => {
+  const { user } = render(
+    <Accordion>
+      <AccordionItem>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+          <AccordionIcon data-testid="icon" />
+        </h2>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
+  )
+
+  const button = await screen.findByText("Section 1 title")
+  const icon = screen.getByTestId("icon")
+
+  await user.click(button)
+
+  expect(icon).toHaveStyle("transform: rotate(-180deg);")
+})
+
+test("accordion icon is rendered and has reduced motion", async () => {
+  const { user } = render(
+    <Accordion reduceMotion>
+      <AccordionItem>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+          <AccordionIcon data-testid="icon" />
+        </h2>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
+  )
+
+  const button = await screen.findByText("Section 1 title")
+  const icon = screen.getByTestId("icon")
+
+  await user.click(button)
+
+  expect(icon).toHaveStyle("transform: rotate(-180deg);")
+})
+
+test("accordion icon is rendered at 0.4 opacity and does not rotate if disabled", async () => {
+  const { user } = render(
+    <Accordion>
+      <AccordionItem isDisabled>
+        <h2>
+          <AccordionButton>Section 1 title</AccordionButton>
+          <AccordionIcon data-testid="icon" />
+        </h2>
+        <AccordionPanel>Panel 1</AccordionPanel>
+      </AccordionItem>
+    </Accordion>,
+  )
+
+  const button = await screen.findByText("Section 1 title")
+  const icon = screen.getByTestId("icon")
+
+  await user.click(button)
+
+  expect(icon).toHaveStyle("opacity: 0.4;")
+  expect(icon).not.toHaveStyle("transform: rotate(-180deg);")
 })
