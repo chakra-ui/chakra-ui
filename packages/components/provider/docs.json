@@ -11,6 +11,11 @@
       "required": false,
       "description": "Disabled the use of automatic window and document detection.\nThis removed the injected `<span/>` element"
     },
+    "disableGlobalStyle": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, Chakra will not mount the global styles defined in the theme."
+    },
     "environment": {
       "type": "Environment",
       "required": false,
