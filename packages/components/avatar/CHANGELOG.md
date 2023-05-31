@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.2.11
+
+### Patch Changes
+
+- [`c121c35c0`](https://github.com/chakra-ui/chakra-ui/commit/c121c35c00c3491e7e8dd4cad321a178bfd095e4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force release
+  avatar package to reflect `Array.at` refactoring
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.16
+
 ## 2.2.10
 
 ### Patch Changes
