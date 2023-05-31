@@ -99,3 +99,4 @@ export function getPreviousTabbable<T extends HTMLElement>(
 
 export * from "./tabbable"
 export * from "./dom"
+export * from "./scroll"
