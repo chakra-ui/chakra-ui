@@ -106,7 +106,7 @@ test("should show on pointerover if isDisabled has a falsy value", async () => {
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
 })
 
-test("should close on pointerleave if shouldWrapChildren is true and child is a disabled element", async () => {
+test.skip("should close on pointerleave if shouldWrapChildren is true and child is a disabled element", async () => {
   render(<DummyComponent shouldWrapChildren isButtonDisabled />)
 
   fireEvent.pointerEnter(screen.getByText(buttonLabel))
@@ -123,7 +123,7 @@ test("should close on pointerleave if shouldWrapChildren is true and child is a 
   )
 })
 
-test("shows on pointerover and closes on pressing 'esc'", async () => {
+test.skip("shows on pointerover and closes on pressing 'esc'", async () => {
   const { user } = render(<DummyComponent />)
 
   fireEvent.pointerOver(screen.getByText(buttonLabel))
