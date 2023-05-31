@@ -37,6 +37,7 @@
     "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/portal": "workspace:*",
+    "@chakra-ui/dom-utils": "workspace:*",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {

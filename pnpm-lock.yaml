@@ -2252,6 +2252,9 @@ importers:
 
   packages/components/tooltip:
     dependencies:
+      '@chakra-ui/dom-utils':
+        specifier: workspace:*
+        version: link:../../utilities/dom-utils
       '@chakra-ui/popper':
         specifier: workspace:*
         version: link:../popper
