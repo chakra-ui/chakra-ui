@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.25
+
+### Patch Changes
+
+- [`c4fcc2a43`](https://github.com/chakra-ui/chakra-ui/commit/c4fcc2a43e6278520dc222892d7cbe0ef3b7ffea)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  range slider mark is not connected to theme
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
 ## 2.0.24
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.2.12
+
+### Patch Changes
+
+- [#7338](https://github.com/chakra-ui/chakra-ui/pull/7338)
+  [`0167b68a8`](https://github.com/chakra-ui/chakra-ui/commit/0167b68a8981aae49cd60137da5d494d48d62a57)
+  Thanks [@bertho-zero](https://github.com/bertho-zero)! - Exports
+  `modalManager` and returns the index of the modal from `useModal` to allow
+  creating custom components similar to modals
+- Updated dependencies
+  [[`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f)]:
+  - @chakra-ui/focus-lock@2.0.17
+  - @chakra-ui/close-button@2.0.17
+
 ## 2.2.11
 
 ### Patch Changes

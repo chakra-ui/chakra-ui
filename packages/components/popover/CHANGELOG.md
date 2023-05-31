@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.1.12
+
+### Patch Changes
+
+- [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues due to
+  framer-motion upgrade
+
+- Updated dependencies []:
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/react-use-animation-state@2.0.9
+  - @chakra-ui/react-use-focus-effect@2.0.11
+
 ## 2.1.11
 
 ### Patch Changes

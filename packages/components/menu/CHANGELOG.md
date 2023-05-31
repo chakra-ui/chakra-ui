@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.1.15
+
+### Patch Changes
+
+- [`6f9eb3518`](https://github.com/chakra-ui/chakra-ui/commit/6f9eb35187ded25fc0b3082330330ec35a1dafe8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  keyboard events don't work reliably when a MenuItem contains a Dialog or
+  similar interactive element.
+- Updated dependencies []:
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/react-use-animation-state@2.0.9
+  - @chakra-ui/react-use-focus-effect@2.0.11
+
 ## 2.1.14
 
 ### Patch Changes
