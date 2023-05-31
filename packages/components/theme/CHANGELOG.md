@@ -1,5 +1,33 @@
 # Change Log
 
+## 3.1.2
+
+### Patch Changes
+
+- [#7590](https://github.com/chakra-ui/chakra-ui/pull/7590)
+  [`9d0b311b1`](https://github.com/chakra-ui/chakra-ui/commit/9d0b311b1353453abfd53ab27e22d5b2cd7711bb)
+  Thanks [@dvartic](https://github.com/dvartic)! - Add explicit color attribute
+  on buttons to ensure consistency across light and dark modes.
+
+  **🚨 Potentially Breaking Change 🚨 **
+
+  If your button component code relies on inheriting color on buttons, consider
+  adding an explicit color.
+
+- [#7671](https://github.com/chakra-ui/chakra-ui/pull/7671)
+  [`c6d523ced`](https://github.com/chakra-ui/chakra-ui/commit/c6d523ced6bc78207aab708b0b483ff96aacf314)
+  Thanks [@kashikarparth](https://github.com/kashikarparth)! - Fix issue where
+  excess label looks inconsistent with the avatar initials for `xs` and `2xs`
+  sizes
+
+- [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor input
+  theme to use css var instead of resolving to raw value
+
+- Updated dependencies
+  [[`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b)]:
+  - @chakra-ui/theme-tools@2.0.18
+
 ## 3.1.1
 
 ### Patch Changes

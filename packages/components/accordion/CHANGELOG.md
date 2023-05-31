@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#7631](https://github.com/chakra-ui/chakra-ui/pull/7631)
+  [`2347e3306`](https://github.com/chakra-ui/chakra-ui/commit/2347e33068259319968b1b63bbbeba4934e8c99c)
+  Thanks [@FredPerr](https://github.com/FredPerr)! - Fixed AccordionIconProps
+  failure with 'as' prop
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/icon@3.0.16
+
 ## 2.1.11
 
 ### Patch Changes
