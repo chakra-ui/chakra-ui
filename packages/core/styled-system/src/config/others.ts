@@ -27,12 +27,25 @@ const srFocusable = {
 
 const getWithPriority = (theme: any, key: any, styles: any) => {
   const result: Record<string, any> = {}
-  const obj = get(theme, key, {})
+  let obj = get(theme, key, null)
+
+  if (!obj) {
+    obj = getSecondlyNested(theme, key, {})
+  }
+
   for (const prop in obj) {
     const isInStyles = prop in styles && styles[prop] != null
     if (!isInStyles) result[prop] = obj[prop]
   }
   return result
+}
+
+const getSecondlyNested = (obj: any, path: any, fallback: any) => {
+  const keys = path.split(".")
+  const firstKey = keys[0]
+  const secondKey = keys.slice(1).join(".")
+
+  return obj[firstKey] ? obj[firstKey][secondKey] : fallback
 }
 
 export const others: Config = {
