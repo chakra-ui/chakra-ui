@@ -35,9 +35,7 @@
     }
   },
   "AccordionButton": {},
-  "AccordionIcon": {
-    "orientation": { "type": "Orientation", "required": false }
-  },
+  "AccordionIcon": { "orientation": { "type": "any", "required": false } },
   "AccordionItem": {
     "id": {
       "type": "string",

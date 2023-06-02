@@ -790,7 +790,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -1582,7 +1582,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -2386,7 +2386,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -3185,7 +3185,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -3995,7 +3995,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },

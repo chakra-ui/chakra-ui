@@ -1,5 +1,17 @@
 # @chakra-ui/next-js
 
+## 2.1.4
+
+### Patch Changes
+
+- [`5a755971a`](https://github.com/chakra-ui/chakra-ui/commit/5a755971a6ede83de28c9a670df3d5e2d67bcaee)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `isExternal` to
+  Link component
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
 ## 2.1.3
 
 ### Patch Changes

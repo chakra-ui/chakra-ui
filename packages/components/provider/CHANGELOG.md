@@ -1,5 +1,40 @@
 # @chakra-ui/provider
 
+## 2.3.0
+
+### Minor Changes
+
+- [`3a164da59`](https://github.com/chakra-ui/chakra-ui/commit/3a164da59738c9adc6dcae7113e296c234cf81ba)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  disabling global styles via the `disableGlobalStyle` prop on the
+  `ChakraProvider`.
+
+  This is useful for scenarios where user needs to scope all global styles + css
+  reset to a specific element.
+
+  ```jsx live=false
+  import { ChakraProvider } from "@chakra-ui/react"
+
+  function App() {
+    return (
+      <ChakraProvider disableGlobalStyle>
+        <App />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+- Updated dependencies
+  [[`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)]:
+  - @chakra-ui/css-reset@2.1.2
+  - @chakra-ui/system@2.5.8
+
 ## 2.2.4
 
 ### Patch Changes

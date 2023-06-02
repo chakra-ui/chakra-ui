@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.5.8
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+- Updated dependencies
+  [[`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)]:
+  - @chakra-ui/styled-system@2.9.1
+  - @chakra-ui/theme-utils@2.0.18
+
 ## 2.5.7
 
 ### Patch Changes
