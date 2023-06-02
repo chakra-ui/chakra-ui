@@ -36,20 +36,20 @@ export default {
       },
       resolve: {
         alias: [
-          {
-            find: /\@chakra-ui\/react$/,
-            replacement: path.resolve(
-              __dirname,
-              "../packages/components/react/src",
-            ),
-          },
-          {
-            find: /\@chakra-ui\/theme$/,
-            replacement: path.resolve(
-              __dirname,
-              "../packages/components/theme/src",
-            ),
-          },
+          // {
+          //   find: /\@chakra-ui\/react$/,
+          //   replacement: path.resolve(
+          //     __dirname,
+          //     "../packages/components/react/src",
+          //   ),
+          // },
+          // {
+          //   find: /\@chakra-ui\/theme$/,
+          //   replacement: path.resolve(
+          //     __dirname,
+          //     "../packages/components/theme/src",
+          //   ),
+          // },
         ],
       },
     })

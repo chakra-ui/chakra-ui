@@ -2895,22 +2895,22 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components/react
       '@storybook/addons':
-        specifier: ^7.0.12
+        specifier: ^7.0.18
         version: 7.0.18(react@18.2.0)
       '@storybook/api':
-        specifier: ^7.0.12
+        specifier: ^7.0.18
         version: 7.0.18(react@18.2.0)
       '@storybook/blocks':
-        specifier: ^7.0.12
+        specifier: ^7.0.18
         version: 7.0.18(react@18.2.0)
       '@storybook/components':
-        specifier: ^7.0.12
+        specifier: ^7.0.18
         version: 7.0.18(react@18.2.0)
       '@storybook/manager-api':
-        specifier: ^7.0.12
+        specifier: ^7.0.18
         version: 7.0.18(react@18.2.0)
       '@storybook/preview-api':
-        specifier: ^7.0.12
+        specifier: ^7.0.18
         version: 7.0.18
       react:
         specifier: ^18.2.0
@@ -4253,7 +4253,6 @@ packages:
       '@babel/core': 7.21.8
       '@babel/helper-plugin-utils': 7.18.9
       '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3(@babel/core@7.21.8)
-    dev: false
 
   /@babel/plugin-proposal-numeric-separator@7.18.6(@babel/core@7.18.9):
     resolution: {integrity: sha512-ozlZFogPqoLm8WBr5Z8UckIoE4YQ5KESVcNudyXOR8uqIkliTEgJ3RoketfG6pmzLdeZF0H/wjE9/cCEitBl7Q==}
@@ -4284,7 +4283,6 @@ packages:
       '@babel/core': 7.21.8
       '@babel/helper-plugin-utils': 7.18.9
       '@babel/plugin-syntax-numeric-separator': 7.10.4(@babel/core@7.21.8)
-    dev: false
 
   /@babel/plugin-proposal-object-rest-spread@7.12.1(@babel/core@7.12.9):
     resolution: {integrity: sha512-s6SowJIjzlhx8o7lsFx5zmY4At6CTtDvgNQDdPzkBQucle58A6b/TTeEBYtyDgmcXjUTM+vE8YOGHZzzbc/ioA==}
@@ -4412,7 +4410,6 @@ packages:
       '@babel/helper-plugin-utils': 7.18.9
       '@babel/helper-skip-transparent-expression-wrappers': 7.18.9
       '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.21.8)
-    dev: false
 
   /@babel/plugin-proposal-optional-chaining@7.21.0(@babel/core@7.21.8):
     resolution: {integrity: sha512-p4zeefM72gpmEe2fkUr/OnOXpWEf8nAgk7ZYVqqfFiyIG7oFfVZcCrU64hWn5xp4tQ9LkV4bTIa5rD0KANpKNA==}
@@ -4924,7 +4921,6 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@babel/helper-plugin-utils': 7.18.9
-    dev: false
 
   /@babel/plugin-syntax-numeric-separator@7.10.4(@babel/core@7.18.9):
     resolution: {integrity: sha512-9H6YdfkcK/uOnY/K7/aA2xpzaAgkQn37yzWUMRK7OaPOqOpGS1+n0H5hxT9AUw9EsSjPW8SVyMJwYRtWs3X3ug==}
@@ -4949,7 +4945,6 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@babel/helper-plugin-utils': 7.18.9
-    dev: false
 
   /@babel/plugin-syntax-object-rest-spread@7.8.3(@babel/core@7.12.9):
     resolution: {integrity: sha512-XoqMijGZb9y3y2XskN+P1wUGiVwWZ5JmoDRwx5+3GmEplNyVM2s2Dg8ILFQm8rWM48orGy5YpI5Bl8U1y7ydlA==}
@@ -5031,7 +5026,6 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@babel/helper-plugin-utils': 7.18.9
-    dev: false
 
   /@babel/plugin-syntax-private-property-in-object@7.14.5(@babel/core@7.18.9):
     resolution: {integrity: sha512-0wVnp9dxJ72ZUJDV27ZfbSj6iHLoytYZmh3rFcxNnvsJF3ktkzLDZPy/mA17HGsaQT3/DQsWYX1f1QGWkCoVUg==}
@@ -5115,7 +5109,6 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@babel/helper-plugin-utils': 7.20.2
-    dev: false
 
   /@babel/plugin-syntax-unicode-sets-regex@7.18.6(@babel/core@7.20.5):
     resolution: {integrity: sha512-727YkEAPwSIQTv5im8QHz3upqp92JTWhidIC81Tdx4VJYIte/VndKf1qKrfnnhPLiPghStWfvC/iFaMCQu7Nqg==}
@@ -6769,19 +6762,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@babel/plugin-transform-typescript@7.18.8(@babel/core@7.20.5):
-    resolution: {integrity: sha512-p2xM8HI83UObjsZGofMV/EdYjamsDm6MoN3hXPYIT0+gxIoopE+B7rPYKAxfrz9K9PK7JafTTjqYC6qipLExYA==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.20.5
-      '@babel/helper-create-class-features-plugin': 7.18.9(@babel/core@7.20.5)
-      '@babel/helper-plugin-utils': 7.18.9
-      '@babel/plugin-syntax-typescript': 7.18.6(@babel/core@7.20.5)
-    transitivePeerDependencies:
-      - supports-color
-
   /@babel/plugin-transform-typescript@7.18.8(@babel/core@7.21.8):
     resolution: {integrity: sha512-p2xM8HI83UObjsZGofMV/EdYjamsDm6MoN3hXPYIT0+gxIoopE+B7rPYKAxfrz9K9PK7JafTTjqYC6qipLExYA==}
     engines: {node: '>=6.9.0'}
@@ -6794,7 +6774,6 @@ packages:
       '@babel/plugin-syntax-typescript': 7.18.6(@babel/core@7.21.8)
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@babel/plugin-transform-unicode-escapes@7.18.6(@babel/core@7.18.9):
     resolution: {integrity: sha512-XNRwQUXYMP7VLuy54cr/KS/WeL3AZeORhrmeZ7iewgu+X2eBqmpaLI/hzqr9ZxCeUoq0ASK4GUzSM0BDhZkLFw==}
@@ -7337,19 +7316,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@babel/preset-typescript@7.18.6(@babel/core@7.20.5):
-    resolution: {integrity: sha512-s9ik86kXBAnD760aybBucdpnLsAt0jK1xqJn2juOn9lkOvSHV60os5hxoVJsPzMQxvnUJFAlkont2DvvaYEBtQ==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.20.5
-      '@babel/helper-plugin-utils': 7.18.9
-      '@babel/helper-validator-option': 7.18.6
-      '@babel/plugin-transform-typescript': 7.18.8(@babel/core@7.20.5)
-    transitivePeerDependencies:
-      - supports-color
-
   /@babel/preset-typescript@7.18.6(@babel/core@7.21.8):
     resolution: {integrity: sha512-s9ik86kXBAnD760aybBucdpnLsAt0jK1xqJn2juOn9lkOvSHV60os5hxoVJsPzMQxvnUJFAlkont2DvvaYEBtQ==}
     engines: {node: '>=6.9.0'}
@@ -7362,7 +7328,6 @@ packages:
       '@babel/plugin-transform-typescript': 7.18.8(@babel/core@7.21.8)
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@babel/register@7.18.9(@babel/core@7.18.9):
     resolution: {integrity: sha512-ZlbnXDcNYHMR25ITwwNKT88JiaukkdVj/nG7r3wnuXkOTHc60Uy05PwMCPre0hSkY68E6zK3xz+vUJSP2jWmcw==}
@@ -16328,14 +16293,14 @@ packages:
       gatsby: 4.19.2(react-dom@18.2.0)(react@18.2.0)
       gatsby-core-utils: 3.19.0
 
-  /babel-plugin-remove-graphql-queries@4.19.0(@babel/core@7.20.5)(gatsby@4.19.2):
+  /babel-plugin-remove-graphql-queries@4.19.0(@babel/core@7.21.8)(gatsby@4.19.2):
     resolution: {integrity: sha512-VbxC7aZxdqQA0YiAcTD/djIW+6PP/JVODlRmCiqDyTbtI0zhE/Z6je1maCmC6J2LLBsKxhWT3UYTjRfLofK7sQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       '@babel/core': ^7.0.0
       gatsby: ^4.0.0-next
     dependencies:
-      '@babel/core': 7.20.5
+      '@babel/core': 7.21.8
       '@babel/runtime': 7.20.7
       '@babel/types': 7.18.9
       gatsby: 4.19.2(react-dom@18.2.0)(react@18.2.0)
@@ -21603,10 +21568,10 @@ packages:
     requiresBuild: true
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/core': 7.20.5
+      '@babel/core': 7.21.8
       '@babel/generator': 7.18.9
       '@babel/helper-plugin-utils': 7.18.9
-      '@babel/preset-typescript': 7.18.6(@babel/core@7.20.5)
+      '@babel/preset-typescript': 7.18.6(@babel/core@7.21.8)
       '@babel/runtime': 7.20.7
       '@babel/template': 7.18.6
       '@babel/types': 7.18.9
@@ -21868,13 +21833,13 @@ packages:
     peerDependencies:
       gatsby: ^4.0.0-next
     dependencies:
-      '@babel/core': 7.20.5
-      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.20.5)
-      '@babel/plugin-proposal-numeric-separator': 7.18.6(@babel/core@7.20.5)
-      '@babel/plugin-proposal-optional-chaining': 7.18.9(@babel/core@7.20.5)
-      '@babel/preset-typescript': 7.18.6(@babel/core@7.20.5)
+      '@babel/core': 7.21.8
+      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.21.8)
+      '@babel/plugin-proposal-numeric-separator': 7.18.6(@babel/core@7.21.8)
+      '@babel/plugin-proposal-optional-chaining': 7.18.9(@babel/core@7.21.8)
+      '@babel/preset-typescript': 7.18.6(@babel/core@7.21.8)
       '@babel/runtime': 7.20.7
-      babel-plugin-remove-graphql-queries: 4.19.0(@babel/core@7.20.5)(gatsby@4.19.2)
+      babel-plugin-remove-graphql-queries: 4.19.0(@babel/core@7.21.8)(gatsby@4.19.2)
       gatsby: 4.19.2(react-dom@18.2.0)(react@18.2.0)
     transitivePeerDependencies:
       - supports-color
@@ -22044,7 +22009,7 @@ packages:
     resolution: {integrity: sha512-E0I51K5+rSpcUkv3wQ17FHZiicLeMH/Hz7p3oxlPCM43pcvsYJTa68Q0MqI1K6XV6Z8Nf48dERKMvHT0PnY4GQ==}
     engines: {node: '>=14.15.0'}
     dependencies:
-      '@babel/core': 7.20.5
+      '@babel/core': 7.21.8
       '@babel/runtime': 7.20.7
     transitivePeerDependencies:
       - supports-color

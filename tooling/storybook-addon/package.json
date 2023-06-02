@@ -15,7 +15,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./*": "./*",
     "./preset": {
       "types": "./dist/preset/index.d.ts",
       "import": "./dist/preset/index.mjs",
@@ -72,19 +71,19 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@storybook/addons": "^7.0.12",
-    "@storybook/api": "^7.0.12",
-    "@storybook/blocks": "^7.0.12",
-    "@storybook/components": "^7.0.12",
-    "@storybook/manager-api": "^7.0.12",
-    "@storybook/preview-api": "^7.0.12",
+    "@storybook/addons": "^7.0.18",
+    "@storybook/api": "^7.0.18",
+    "@storybook/blocks": "^7.0.18",
+    "@storybook/components": "^7.0.18",
+    "@storybook/manager-api": "^7.0.18",
+    "@storybook/preview-api": "^7.0.18",
     "react": "^18.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
-    "@storybook/addons": ">=7.0.12",
-    "@storybook/api": ">=7.0.12",
-    "@storybook/components": ">=7.0.12",
+    "@storybook/addons": ">=7.0.18",
+    "@storybook/api": ">=7.0.18",
+    "@storybook/components": ">=7.0.18",
     "react": ">=16.8.x"
   },
   "peerDependenciesMeta": {
