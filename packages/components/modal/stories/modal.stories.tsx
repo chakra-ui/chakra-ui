@@ -13,6 +13,19 @@ import {
   ModalOverlay,
 } from "../src"
 
+import { PortalManager } from "@chakra-ui/portal"
+
+export default {
+  title: "Components / Overlay / Modal",
+  decorators: [
+    (StoryFn: Function) => (
+      <PortalManager>
+        <StoryFn />
+      </PortalManager>
+    ),
+  ],
+}
+
 const Button = chakra("button", {
   baseStyle: {
     px: "3",
@@ -264,6 +277,34 @@ export function WithInitialFocus() {
             <Button>Close</Button>
           </ModalFooter>
         </ModalContent>
+      </Modal>
+    </>
+  )
+}
+
+export const InitialFocusRef = () => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const inputRef = React.useRef<any>()
+  return (
+    <>
+      <button data-testid="button" onClick={() => setIsOpen(true)}>
+        Open
+      </button>
+      <Modal
+        isOpen={isOpen}
+        initialFocusRef={inputRef}
+        onClose={() => setIsOpen(false)}
+      >
+        <ModalOverlay>
+          <ModalContent>
+            <ModalHeader>Modal header</ModalHeader>
+            <ModalBody>
+              <input />
+              <input />
+              <input ref={inputRef} />
+            </ModalBody>
+          </ModalContent>
+        </ModalOverlay>
       </Modal>
     </>
   )
