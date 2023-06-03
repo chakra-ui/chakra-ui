@@ -45,6 +45,7 @@
     "@chakra-ui/react-env": "workspace:*",
     "@chakra-ui/select": "workspace:*",
     "@chakra-ui/skeleton": "workspace:*",
+    "@chakra-ui/skip-nav": "workspace:*",
     "@chakra-ui/slider": "workspace:*",
     "@chakra-ui/spinner": "workspace:*",
     "@chakra-ui/stat": "workspace:*",
