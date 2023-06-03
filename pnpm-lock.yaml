@@ -1724,6 +1724,9 @@ importers:
       '@chakra-ui/skeleton':
         specifier: workspace:*
         version: link:../skeleton
+      '@chakra-ui/skip-nav':
+        specifier: workspace:*
+        version: link:../skip-nav
       '@chakra-ui/slider':
         specifier: workspace:*
         version: link:../slider
