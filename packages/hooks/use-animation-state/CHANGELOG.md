@@ -1,5 +1,13 @@
 # @chakra-ui/react-use-animation-state
 
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]:
+  - @chakra-ui/dom-utils@2.1.0
+
 ## 2.0.8
 
 ### Patch Changes

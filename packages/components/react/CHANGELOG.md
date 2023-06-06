@@ -1,5 +1,99 @@
 # Change Log
 
+## 2.7.0
+
+### Minor Changes
+
+- [`c31df5a4b`](https://github.com/chakra-ui/chakra-ui/commit/c31df5a4bf5077f6f008b3ff27247d81e2402cf1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new
+  `Indicator` layout component. Useful for positioning an element in the corners
+  of another element.
+
+  For example, let's say you want to position a notification badge in the top
+  end corner of a box. You can use the `Indicator` component to achieve this.
+
+  ```jsx live=false
+  <Box position="relative" width="80px" height="80px" bg="gray.50">
+    <Indicator placement="top-end">
+      <Circle size="5" bg="red.100">
+        3
+      </Circle>
+    </Indicator>
+  </Box>
+  ```
+
+  - Refactored the `Stack` and `Wrap` components to use the flex gap instead of
+    the owl selector `& > * ~ *` for spacing.
+
+    This fixes an issue where you can't use raw text nodes as a child of the
+    `Stack` or `Wrap` component.
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+- Updated dependencies
+  [[`9d0b311b1`](https://github.com/chakra-ui/chakra-ui/commit/9d0b311b1353453abfd53ab27e22d5b2cd7711bb),
+  [`c6d523ced`](https://github.com/chakra-ui/chakra-ui/commit/c6d523ced6bc78207aab708b0b483ff96aacf314),
+  [`0167b68a8`](https://github.com/chakra-ui/chakra-ui/commit/0167b68a8981aae49cd60137da5d494d48d62a57),
+  [`c121c35c0`](https://github.com/chakra-ui/chakra-ui/commit/c121c35c00c3491e7e8dd4cad321a178bfd095e4),
+  [`3a164da59`](https://github.com/chakra-ui/chakra-ui/commit/3a164da59738c9adc6dcae7113e296c234cf81ba),
+  [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f),
+  [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b),
+  [`c31df5a4b`](https://github.com/chakra-ui/chakra-ui/commit/c31df5a4bf5077f6f008b3ff27247d81e2402cf1),
+  [`c4fcc2a43`](https://github.com/chakra-ui/chakra-ui/commit/c4fcc2a43e6278520dc222892d7cbe0ef3b7ffea),
+  [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f),
+  [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08),
+  [`6f9eb3518`](https://github.com/chakra-ui/chakra-ui/commit/6f9eb35187ded25fc0b3082330330ec35a1dafe8),
+  [`2347e3306`](https://github.com/chakra-ui/chakra-ui/commit/2347e33068259319968b1b63bbbeba4934e8c99c),
+  [`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]:
+  - @chakra-ui/theme@3.1.2
+  - @chakra-ui/modal@2.2.12
+  - @chakra-ui/avatar@2.2.11
+  - @chakra-ui/provider@2.3.0
+  - @chakra-ui/popover@2.1.12
+  - @chakra-ui/layout@2.2.0
+  - @chakra-ui/slider@2.0.25
+  - @chakra-ui/focus-lock@2.0.17
+  - @chakra-ui/css-reset@2.1.2
+  - @chakra-ui/styled-system@2.9.1
+  - @chakra-ui/system@2.5.8
+  - @chakra-ui/menu@2.1.15
+  - @chakra-ui/accordion@2.2.0
+  - @chakra-ui/tooltip@2.2.9
+  - @chakra-ui/button@2.0.18
+  - @chakra-ui/media-query@3.2.12
+  - @chakra-ui/skeleton@2.0.24
+  - @chakra-ui/toast@6.1.4
+  - @chakra-ui/theme-utils@2.0.18
+  - @chakra-ui/tabs@2.1.9
+  - @chakra-ui/card@2.1.6
+  - @chakra-ui/tag@3.0.0
+  - @chakra-ui/alert@2.1.0
+  - @chakra-ui/checkbox@2.2.15
+  - @chakra-ui/editable@3.0.0
+  - @chakra-ui/input@2.0.22
+  - @chakra-ui/number-input@2.0.19
+  - @chakra-ui/radio@2.0.22
+  - @chakra-ui/select@2.0.19
+  - @chakra-ui/stepper@2.2.0
+  - @chakra-ui/switch@2.0.27
+  - @chakra-ui/breadcrumb@2.1.5
+  - @chakra-ui/close-button@2.0.17
+  - @chakra-ui/control-box@2.0.13
+  - @chakra-ui/form-control@2.0.18
+  - @chakra-ui/icon@3.0.16
+  - @chakra-ui/image@2.0.16
+  - @chakra-ui/pin-input@2.0.20
+  - @chakra-ui/progress@2.1.6
+  - @chakra-ui/spinner@2.0.13
+  - @chakra-ui/stat@2.0.18
+  - @chakra-ui/table@2.0.17
+  - @chakra-ui/textarea@2.0.19
+  - @chakra-ui/visually-hidden@2.0.15
+
 ## 2.6.1
 
 ### Patch Changes

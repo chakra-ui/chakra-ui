@@ -1,14 +1,15 @@
-import { useEventListener } from "@chakra-ui/react-use-event-listener"
-import { useDisclosure } from "@chakra-ui/react-use-disclosure"
+import { getScrollParent } from "@chakra-ui/dom-utils"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { PropGetter } from "@chakra-ui/react-types"
+import { useDisclosure } from "@chakra-ui/react-use-disclosure"
+import { useEventListener } from "@chakra-ui/react-use-event-listener"
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { callAllHandlers } from "@chakra-ui/shared-utils"
 import React, {
   useCallback,
   useEffect,
-  useRef,
   useId,
+  useRef,
   type RefObject,
 } from "react"
 
@@ -143,7 +144,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
   const uid = id ?? uuid
   const tooltipId = `tooltip-${uid}`
 
-  const ref = useRef<Element>(null)
+  const ref = useRef<HTMLElement>(null)
 
   const enterTimeout = useRef<number>()
   const clearEnterTimeout = useCallback(() => {
@@ -210,13 +211,19 @@ export function useTooltip(props: UseTooltipProps = {}) {
   )
 
   useEventListener(
-    () => getDoc(ref),
+    () => {
+      const node = ref.current
+      if (!node) return null
+      const scrollParent = getScrollParent(node)
+      return scrollParent.localName === "body" ? getWin(ref) : scrollParent
+    },
     "scroll",
     () => {
       if (isOpen && closeOnScroll) {
         closeNow()
       }
     },
+    { passive: true, capture: true },
   )
 
   useEffect(() => {
@@ -225,13 +232,12 @@ export function useTooltip(props: UseTooltipProps = {}) {
     if (isOpen) onClose()
   }, [isDisabled, isOpen, onClose, clearEnterTimeout])
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    return () => {
       clearEnterTimeout()
       clearExitTimeout()
-    },
-    [clearEnterTimeout, clearExitTimeout],
-  )
+    }
+  }, [clearEnterTimeout, clearExitTimeout])
 
   /**
    * This allows for catching pointerleave events when the tooltip
