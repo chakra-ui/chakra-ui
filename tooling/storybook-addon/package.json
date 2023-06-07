@@ -72,8 +72,6 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@storybook/api": "^7.0.12",
-    "@storybook/blocks": "^7.0.12",
     "@storybook/components": "^7.0.12",
     "@storybook/manager-api": "^7.0.12",
     "@storybook/preview-api": "^7.0.12",
@@ -83,7 +81,6 @@
     "@chakra-ui/react": ">=2.0.0",
     "@storybook/manager-api": ">=7.0.12",
     "@storybook/preview-api": ">=7.0.12",
-    "@storybook/api": ">=7.0.12",
     "@storybook/components": ">=7.0.12",
     "react": ">=16.8.x"
   },
