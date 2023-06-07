@@ -1,6 +1,5 @@
-import { useAddonState } from "@storybook/api"
 import { IconButton } from "@storybook/components"
-import { addons } from "@storybook/manager-api"
+import { addons, useAddonState } from "@storybook/manager-api"
 import { ADDON_ID, EVENTS } from "../../constants"
 
 const MoonIcon = () => (
