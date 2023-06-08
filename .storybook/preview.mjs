@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from "../packages/components/react"
 
 export const parameters = {
   options: {
