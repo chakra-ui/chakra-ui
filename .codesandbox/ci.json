@@ -13,7 +13,6 @@
     "packages/components/clickable",
     "packages/components/close-button",
     "packages/components/color-mode",
-    "packages/components/control-box",
     "packages/components/counter",
     "packages/components/css-reset",
     "packages/components/descendant",
