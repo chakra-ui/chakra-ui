@@ -13,7 +13,7 @@ function getStories({ pkg, dir = "components" }) {
 }
 
 export default {
-  framework: "@storybook/react-webpack5",
+  framework: "@storybook/react-vite",
   core: {
     disableTelemetry: true,
   },
@@ -27,28 +27,6 @@ export default {
     "@storybook/addon-storysource",
     "@chakra-ui/storybook-addon",
   ],
-  webpackFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@chakra-ui/react": path.resolve(
-        __dirname,
-        "../packages/components/react/src",
-      ),
-      "@chakra-ui/theme": path.resolve(
-        __dirname,
-        "../packages/components/theme/src",
-      ),
-    }
-    config.resolve.extensions.push(".ts", ".tsx")
-
-    config.module.rules.push({
-      test: /\.tsx?$/,
-      include: /packages/,
-      use: "ts-loader",
-    })
-
-    return config
-  },
   async viteFinal(config) {
     // Merge custom configuration into the default config
     return mergeConfig(config, {
@@ -58,6 +36,13 @@ export default {
       },
       resolve: {
         alias: [
+          {
+            find: /\@chakra-ui\/storybook-addon$/,
+            replacement: path.resolve(
+              __dirname,
+              "../tooling/storybook-addon/src",
+            ),
+          },
           {
             find: /\@chakra-ui\/react$/,
             replacement: path.resolve(
