@@ -2,6 +2,9 @@
   "name": "@chakra-ui/storybook-addon",
   "version": "4.0.17",
   "description": "The official Storybook Addon for Chakra UI",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "theming-arg-types.png"
@@ -69,19 +72,16 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@storybook/addons": "^7.0.18",
-    "@storybook/api": "^7.0.18",
-    "@storybook/blocks": "^7.0.18",
-    "@storybook/components": "^7.0.18",
-    "@storybook/manager-api": "^7.0.18",
-    "@storybook/preview-api": "^7.0.18",
+    "@storybook/components": "^7.0.12",
+    "@storybook/manager-api": "^7.0.12",
+    "@storybook/preview-api": "^7.0.12",
     "react": "^18.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
-    "@storybook/addons": ">=7.0.18",
-    "@storybook/api": ">=7.0.18",
-    "@storybook/components": ">=7.0.18",
+    "@storybook/manager-api": ">=7.0.12",
+    "@storybook/preview-api": ">=7.0.12",
+    "@storybook/components": ">=7.0.12",
     "react": ">=16.8.x"
   },
   "peerDependenciesMeta": {

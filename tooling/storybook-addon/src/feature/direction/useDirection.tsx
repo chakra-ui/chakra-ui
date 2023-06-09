@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { addons } from "@storybook/addons"
+import { addons } from "@storybook/preview-api"
 import { EVENTS } from "../../constants"
 
 /**
