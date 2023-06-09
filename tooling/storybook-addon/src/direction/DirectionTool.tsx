@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react"
 import { addons, useAddonState, useGlobals } from "@storybook/manager-api"
 import { IconButton } from "@storybook/components"
-import { DIRECTION_TOOL_ID, EVENTS } from "../../constants"
+import { DIRECTION_TOOL_ID, EVENTS } from "../constants"
 
 const LTRIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
