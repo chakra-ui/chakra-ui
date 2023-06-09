@@ -1,6 +1,6 @@
 import { IconButton } from "@storybook/components"
 import { addons, useAddonState } from "@storybook/manager-api"
-import { ADDON_ID, EVENTS } from "../../constants"
+import { ADDON_ID, EVENTS } from "../constants"
 
 const MoonIcon = () => (
   <svg viewBox="0 0 24 24" focusable="false">

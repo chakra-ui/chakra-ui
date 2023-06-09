@@ -1,9 +1,9 @@
 import { useMemo } from "react"
 import type { DecoratorFn } from "@storybook/react"
 import { ChakraProvider, extendTheme, theme } from "@chakra-ui/react"
-import { ColorModeSync } from "../color-mode/ColorModeSync"
-import { useDirection } from "../direction/useDirection"
-import { DIRECTION_TOOL_ID } from "../../constants"
+import { ColorModeSync } from "./color-mode/ColorModeSync"
+import { useDirection } from "./direction/useDirection"
+import { DIRECTION_TOOL_ID } from "./constants"
 
 export const ChakraProviderDecorator: DecoratorFn = (Story, context) => {
   const {
