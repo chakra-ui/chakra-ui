@@ -29,14 +29,11 @@
   },
   "typesVersions": {
     "*": {
-      "preset": [
-        "./dist/preset/index.d.ts"
+      "manager": [
+        "./dist/manager.d.ts"
       ],
-      "preset/decorators": [
-        "./dist/preset/decorators.d.ts"
-      ],
-      "preset/register": [
-        "./dist/preset/register.d.ts"
+      "previews": [
+        "./dist/preview.d.ts"
       ]
     }
   },
