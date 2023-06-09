@@ -14,6 +14,9 @@ function getStories({ pkg, dir = "components" }) {
 
 export default {
   framework: "@storybook/react-vite",
+  features: {
+    buildStoriesJson: true,
+  },
   core: {
     disableTelemetry: true,
   },
@@ -30,19 +33,8 @@ export default {
   async viteFinal(config) {
     // Merge custom configuration into the default config
     return mergeConfig(config, {
-      // Add storybook-specific dependencies to pre-optimization
-      optimizeDeps: {
-        include: ["@chakra-ui/storybook-addon"],
-      },
       resolve: {
         alias: [
-          {
-            find: /\@chakra-ui\/storybook-addon$/,
-            replacement: path.resolve(
-              __dirname,
-              "../tooling/storybook-addon/src",
-            ),
-          },
           {
             find: /\@chakra-ui\/react$/,
             replacement: path.resolve(
