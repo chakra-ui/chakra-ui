@@ -2,6 +2,8 @@ import { memoizedGet as get } from "../get"
 import { Config } from "../utils/prop-config"
 import { ResponsiveValue, Token } from "../utils/types"
 
+const allowedLayerPropsOverrides = ["bg", "bgColor", "backgroundColor", "color"]
+
 const srOnly = {
   border: "0px",
   clip: "rect(0, 0, 0, 0)",
@@ -30,7 +32,8 @@ const getWithPriority = (theme: any, key: any, styles: any) => {
   const obj = get(theme, key, {})
   for (const prop in obj) {
     const isInStyles = prop in styles && styles[prop] != null
-    if (!isInStyles) result[prop] = obj[prop]
+    const isAllowedProp = allowedLayerPropsOverrides.includes(prop)
+    if (!isInStyles || isAllowedProp) result[prop] = obj[prop]
   }
   return result
 }
