@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.0.18
+
+### Patch Changes
+
+- [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `getColorVar`
+  function to get color css variable from theme object
+
 ## 2.0.17
 
 ### Patch Changes

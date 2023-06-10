@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { getColor, mode } from "@chakra-ui/theme-tools"
+import { getColorVar, mode } from "@chakra-ui/theme-tools"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
@@ -95,13 +95,13 @@ const variantOutline = definePartsStyle((props) => {
         userSelect: "all",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
-        boxShadow: `0 0 0 1px ${getColor(theme, ec)}`,
+        borderColor: getColorVar(theme, ec),
+        boxShadow: `0 0 0 1px ${getColorVar(theme, ec)}`,
       },
       _focusVisible: {
         zIndex: 1,
-        borderColor: getColor(theme, fc),
-        boxShadow: `0 0 0 1px ${getColor(theme, fc)}`,
+        borderColor: getColorVar(theme, fc),
+        boxShadow: `0 0 0 1px ${getColorVar(theme, fc)}`,
       },
     },
     addon: {
@@ -129,11 +129,11 @@ const variantFilled = definePartsStyle((props) => {
         userSelect: "all",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
+        borderColor: getColorVar(theme, ec),
       },
       _focusVisible: {
         bg: "transparent",
-        borderColor: getColor(theme, fc),
+        borderColor: getColorVar(theme, fc),
       },
     },
     addon: {
@@ -160,12 +160,12 @@ const variantFlushed = definePartsStyle((props) => {
         userSelect: "all",
       },
       _invalid: {
-        borderColor: getColor(theme, ec),
-        boxShadow: `0px 1px 0px 0px ${getColor(theme, ec)}`,
+        borderColor: getColorVar(theme, ec),
+        boxShadow: `0px 1px 0px 0px ${getColorVar(theme, ec)}`,
       },
       _focusVisible: {
-        borderColor: getColor(theme, fc),
-        boxShadow: `0px 1px 0px 0px ${getColor(theme, fc)}`,
+        borderColor: getColorVar(theme, fc),
+        boxShadow: `0px 1px 0px 0px ${getColorVar(theme, fc)}`,
       },
     },
     addon: {

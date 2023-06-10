@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/menu",
-  "version": "2.1.14",
+  "version": "2.1.15",
   "description": "A React component to render accessible menus",
   "keywords": [
     "menu",
@@ -57,7 +57,7 @@
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/button": "workspace:*",
     "react-icons": "^4.2.0",
-    "framer-motion": "^6.2.9",
+    "framer-motion": "^10.12.16",
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "src/index.ts",
   "files": [
@@ -45,6 +45,7 @@
     "@chakra-ui/react-env": "workspace:*",
     "@chakra-ui/select": "workspace:*",
     "@chakra-ui/skeleton": "workspace:*",
+    "@chakra-ui/skip-nav": "workspace:*",
     "@chakra-ui/slider": "workspace:*",
     "@chakra-ui/spinner": "workspace:*",
     "@chakra-ui/stat": "workspace:*",
@@ -98,7 +99,7 @@
   "devDependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "framer-motion": "^6.2.9",
+    "framer-motion": "^10.12.16",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "clean-package": "2.2.0"

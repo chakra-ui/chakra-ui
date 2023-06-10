@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.0.17
+
+### Patch Changes
+
+- [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Upgrade
+  `focus-trap` package to fix regression with return focus and initial focus
+  ref.
+- Updated dependencies
+  [[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]:
+  - @chakra-ui/dom-utils@2.1.0
+
 ## 2.0.16
 
 ### Patch Changes

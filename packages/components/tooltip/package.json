@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/tooltip",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "A React Component for rendering dynamically positioned Tooltips",
   "sideEffects": false,
   "keywords": [
@@ -37,6 +37,7 @@
     "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/portal": "workspace:*",
+    "@chakra-ui/dom-utils": "workspace:*",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
@@ -45,7 +46,7 @@
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/modal": "workspace:*",
-    "framer-motion": "^6.2.9",
+    "framer-motion": "^10.12.16",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "clean-package": "2.2.0"

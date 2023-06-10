@@ -42,7 +42,7 @@
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
-    "framer-motion": "^6.2.9",
+    "framer-motion": "^10.12.16",
     "react-icons": "^4.2.0",
     "react-spinners": "0.11.0",
     "react": "^18.0.0",

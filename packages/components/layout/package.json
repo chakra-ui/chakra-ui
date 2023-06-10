@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/layout",
-  "version": "2.1.19",
+  "version": "2.2.0",
   "description": "Chakra UI layout components that give you massive speed",
   "keywords": [
     "layout",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "react-icons": "^4.2.0",
-    "react-router-dom": "6.9.0",
+    "react-router-dom": "6.11.2",
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
