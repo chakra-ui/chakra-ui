@@ -73,7 +73,12 @@ export const formAnatomy = anatomy("form").parts(
 
 export const formErrorAnatomy = anatomy("formError").parts("text", "icon")
 
-export const inputAnatomy = anatomy("input").parts("addon", "field", "element")
+export const inputAnatomy = anatomy("input").parts(
+  "addon",
+  "field",
+  "element",
+  "group",
+)
 
 export const listAnatomy = anatomy("list").parts("container", "item", "icon")
 

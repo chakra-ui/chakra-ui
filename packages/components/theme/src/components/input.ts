@@ -1,6 +1,7 @@
 import { inputAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
+  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
 import { getColor, mode } from "@chakra-ui/theme-tools"
@@ -8,9 +9,24 @@ import { getColor, mode } from "@chakra-ui/theme-tools"
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
+const $height = cssVar("input-height")
+const $fontSize = cssVar("input-font-size")
+const $padding = cssVar("input-padding")
+const $borderRadius = cssVar("input-border-radius")
+
 const baseStyle = definePartsStyle({
+  addon: {
+    height: $height.reference,
+    fontSize: $fontSize.reference,
+    px: $padding.reference,
+    borderRadius: $borderRadius.reference,
+  },
   field: {
     width: "100%",
+    height: $height.reference,
+    fontSize: $fontSize.reference,
+    px: $padding.reference,
+    borderRadius: $borderRadius.reference,
     minWidth: 0,
     outline: 0,
     position: "relative",
@@ -26,47 +42,47 @@ const baseStyle = definePartsStyle({
 
 const size = {
   lg: defineStyle({
-    fontSize: "lg",
-    px: "4",
-    h: "12",
-    borderRadius: "md",
+    [$fontSize.variable]: "fontSizes.lg",
+    [$padding.variable]: "space.4",
+    [$borderRadius.variable]: "radii.md",
+    [$height.variable]: "sizes.12",
   }),
   md: defineStyle({
-    fontSize: "md",
-    px: "4",
-    h: "10",
-    borderRadius: "md",
+    [$fontSize.variable]: "fontSizes.md",
+    [$padding.variable]: "space.4",
+    [$borderRadius.variable]: "radii.md",
+    [$height.variable]: "sizes.10",
   }),
   sm: defineStyle({
-    fontSize: "sm",
-    px: "3",
-    h: "8",
-    borderRadius: "sm",
+    [$fontSize.variable]: "fontSizes.sm",
+    [$padding.variable]: "space.3",
+    [$borderRadius.variable]: "radii.sm",
+    [$height.variable]: "sizes.8",
   }),
   xs: defineStyle({
-    fontSize: "xs",
-    px: "2",
-    h: "6",
-    borderRadius: "sm",
+    [$fontSize.variable]: "fontSizes.xs",
+    [$padding.variable]: "space.2",
+    [$borderRadius.variable]: "radii.sm",
+    [$height.variable]: "sizes.6",
   }),
 }
 
 const sizes = {
   lg: definePartsStyle({
     field: size.lg,
-    addon: size.lg,
+    group: size.lg,
   }),
   md: definePartsStyle({
     field: size.md,
-    addon: size.md,
+    group: size.md,
   }),
   sm: definePartsStyle({
     field: size.sm,
-    addon: size.sm,
+    group: size.sm,
   }),
   xs: definePartsStyle({
     field: size.xs,
-    addon: size.xs,
+    group: size.xs,
   }),
 }
 
