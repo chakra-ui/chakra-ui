@@ -19,7 +19,6 @@
     "@chakra-ui/card": "workspace:*",
     "@chakra-ui/checkbox": "workspace:*",
     "@chakra-ui/close-button": "workspace:*",
-    "@chakra-ui/control-box": "workspace:*",
     "@chakra-ui/counter": "workspace:*",
     "@chakra-ui/css-reset": "workspace:*",
     "@chakra-ui/editable": "workspace:*",
