@@ -60,6 +60,7 @@ export const DirectionTool = () => {
   }, [setDirection, targetDirection])
 
   return (
+    /* @ts-ignore */
     <IconButton
       active={direction === "rtl"}
       title={`Set layout direction to ${targetDirection}`}
