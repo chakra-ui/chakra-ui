@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { addons } from "@storybook/addons"
-import { EVENTS } from "../../constants"
+import { addons } from "@storybook/preview-api"
+import { EVENTS } from "../constants"
 
 /**
  * Sync the layout direction to the html element
