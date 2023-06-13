@@ -23,8 +23,8 @@ export interface UseClipboardOptions {
  *
  * @see Docs https://chakra-ui.com/docs/hooks/use-clipboard
  */
-export function useClipboard(
-  value: string,
+export function useClipboard<TValue extends string | undefined = undefined>(
+  value?: TValue,
   optionsOrTimeout: number | UseClipboardOptions = {},
 ) {
   const [hasCopied, setHasCopied] = useState(false)
@@ -37,10 +37,18 @@ export function useClipboard(
       ? { timeout: optionsOrTimeout }
       : optionsOrTimeout
 
-  const onCopy = useCallback(() => {
-    const didCopy = copy(valueState, copyOptions)
-    setHasCopied(didCopy)
-  }, [valueState, copyOptions])
+  const onCopy = useCallback(
+    (value: string) => {
+      const didCopy = copy(value, copyOptions)
+      setHasCopied(didCopy)
+      return didCopy
+    },
+    [copyOptions],
+  )
+
+  const onCopyValue = useCallback(() => {
+    return onCopy(valueState as string)
+  }, [onCopy, valueState])
 
   useEffect(() => {
     let timeoutId: number | null = null
@@ -60,8 +68,12 @@ export function useClipboard(
 
   return {
     value: valueState,
-    setValue: setValueState,
-    onCopy,
+    setValue: (value ? setValueState : undefined) as TValue extends undefined
+      ? undefined
+      : (value: string) => void,
+    onCopy: (value ? onCopyValue : onCopy) as TValue extends undefined
+      ? (value: string) => boolean
+      : () => void,
     hasCopied,
   }
 }
