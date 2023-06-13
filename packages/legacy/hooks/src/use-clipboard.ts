@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react"
 import copy from "copy-to-clipboard"
-import { __DEV__, warn } from "@chakra-ui/utils"
+import { warn } from "@chakra-ui/utils"
 
 export interface UseClipboardOptions {
   /**
