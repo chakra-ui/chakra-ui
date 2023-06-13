@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react"
 import copy from "copy-to-clipboard"
+import { __DEV__, warn } from "@chakra-ui/utils"
 
 export interface UseClipboardOptions {
   /**
@@ -23,10 +24,19 @@ export interface UseClipboardOptions {
  *
  * @see Docs https://chakra-ui.com/docs/hooks/use-clipboard
  */
-export function useClipboard<TValue extends string | undefined = undefined>(
-  value?: TValue,
-  optionsOrTimeout: number | UseClipboardOptions = {},
+export function useClipboard(
+  valueOrOptionsOrTimeout: string | number | UseClipboardOptions = {},
+  optionsOrTimeoutArgument: number | UseClipboardOptions = {},
 ) {
+  const value =
+    typeof valueOrOptionsOrTimeout === "string"
+      ? valueOrOptionsOrTimeout
+      : undefined
+  const optionsOrTimeout =
+    typeof valueOrOptionsOrTimeout === "string"
+      ? optionsOrTimeoutArgument
+      : valueOrOptionsOrTimeout
+
   const [hasCopied, setHasCopied] = useState(false)
 
   const [valueState, setValueState] = useState(value)
@@ -38,17 +48,22 @@ export function useClipboard<TValue extends string | undefined = undefined>(
       : optionsOrTimeout
 
   const onCopy = useCallback(
-    (value: string) => {
-      const didCopy = copy(value, copyOptions)
-      setHasCopied(didCopy)
-      return didCopy
-    },
-    [copyOptions],
-  )
+    (value?: string) => {
+      if (typeof value !== "string" && typeof valueState !== "string") {
+        warn({
+          condition: true,
+          message:
+            "If `useCallback` is called without `value` argument, a `value` must be passed to as an argument to `onCopy`",
+        })
 
-  const onCopyValue = useCallback(() => {
-    return onCopy(valueState as string)
-  }, [onCopy, valueState])
+        return
+      }
+
+      const didCopy = copy((value ?? valueState) as string, copyOptions)
+      setHasCopied(didCopy)
+    },
+    [valueState, copyOptions],
+  )
 
   useEffect(() => {
     let timeoutId: number | null = null
@@ -68,12 +83,8 @@ export function useClipboard<TValue extends string | undefined = undefined>(
 
   return {
     value: valueState,
-    setValue: (value ? setValueState : undefined) as TValue extends undefined
-      ? undefined
-      : (value: string) => void,
-    onCopy: (value ? onCopyValue : onCopy) as TValue extends undefined
-      ? (value: string) => boolean
-      : () => void,
+    setValue: setValueState,
+    onCopy,
     hasCopied,
   }
 }
