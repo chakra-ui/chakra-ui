@@ -66,6 +66,6 @@ test("sets new copy value imperatively", () => {
   })
 
   expect(copy).toBeCalledWith(text, {})
-  expect(result.current["value"]).toEqual(undefined)
-  expect(result.current["setValue"]).toEqual(undefined)
+  expect(result.current).not.toHaveProperty("value")
+  expect(result.current).not.toHaveProperty("setValue")
 })
