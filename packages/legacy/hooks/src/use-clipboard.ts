@@ -13,6 +13,13 @@ export interface UseClipboardOptions {
   format?: string
 }
 
+interface UseClipboardReturn {
+  value: string
+  setValue: (value: string) => void
+  onCopy: (value?: string) => void
+  hasCopied: boolean
+}
+
 /**
  * React hook to copy content to clipboard
  *
@@ -24,18 +31,24 @@ export interface UseClipboardOptions {
  *
  * @see Docs https://chakra-ui.com/docs/hooks/use-clipboard
  */
+export function useClipboard(): Pick<UseClipboardReturn, "hasCopied" | "onCopy">
 export function useClipboard(
-  valueOrOptionsOrTimeout: string | number | UseClipboardOptions = {},
-  optionsOrTimeoutArgument: number | UseClipboardOptions = {},
+  optionsOrTimeout: number | UseClipboardOptions,
+): Pick<UseClipboardReturn, "hasCopied" | "onCopy">
+export function useClipboard(value: string): UseClipboardReturn
+export function useClipboard(
+  value: string,
+  optionsOrTimeout: number | UseClipboardOptions,
+): UseClipboardReturn
+export function useClipboard(
+  ...args:
+    | []
+    | [string | number | UseClipboardOptions]
+    | [string, number | UseClipboardOptions]
 ) {
-  const value =
-    typeof valueOrOptionsOrTimeout === "string"
-      ? valueOrOptionsOrTimeout
-      : undefined
+  const value = typeof args[0] === "string" ? args[0] : undefined
   const optionsOrTimeout =
-    typeof valueOrOptionsOrTimeout === "string"
-      ? optionsOrTimeoutArgument
-      : valueOrOptionsOrTimeout
+    typeof args[0] === "string" ? args[1] ?? {} : args[0] ?? {}
 
   const [hasCopied, setHasCopied] = useState(false)
 
@@ -81,9 +94,16 @@ export function useClipboard(
     }
   }, [timeout, hasCopied])
 
+  if (typeof valueState === "string") {
+    return {
+      value: valueState,
+      setValue: setValueState,
+      onCopy,
+      hasCopied,
+    } as UseClipboardReturn
+  }
+
   return {
-    value: valueState,
-    setValue: setValueState,
     onCopy,
     hasCopied,
   }
