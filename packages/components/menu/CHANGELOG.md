@@ -1,5 +1,102 @@
 # Change Log
 
+## 2.1.15
+
+### Patch Changes
+
+- [`6f9eb3518`](https://github.com/chakra-ui/chakra-ui/commit/6f9eb35187ded25fc0b3082330330ec35a1dafe8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  keyboard events don't work reliably when a MenuItem contains a Dialog or
+  similar interactive element.
+- Updated dependencies []:
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/react-use-animation-state@2.0.9
+  - @chakra-ui/react-use-focus-effect@2.0.11
+
+## 2.1.14
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]:
+  - @chakra-ui/popper@3.0.14
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.14
+
+## 2.1.13
+
+### Patch Changes
+
+- [`68482afaa`](https://github.com/chakra-ui/chakra-ui/commit/68482afaa6c0dd753a1071fbe3c4207896e7e311)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  scroll is hijacked when the menu and checkbox is opened.
+
+- [`7c62a361a`](https://github.com/chakra-ui/chakra-ui/commit/7c62a361ad7cc52141e7604d34fe57347e25effa)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix vertical
+  alignment of menu icon wrapper to ensure consistent UI
+
+- Updated dependencies
+  [[`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53),
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8)]:
+  - @chakra-ui/react-use-focus-effect@2.0.10
+  - @chakra-ui/react-use-outside-click@2.1.0
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/transition@2.0.16
+  - @chakra-ui/clickable@2.0.14
+
+## 2.1.12
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies
+  [[`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)]:
+  - @chakra-ui/transition@2.0.16
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.14
+
+## 2.1.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/descendant@3.0.14
+  - @chakra-ui/clickable@2.0.14
+
+## 2.1.10
+
+### Patch Changes
+
+- [#7380](https://github.com/chakra-ui/chakra-ui/pull/7380)
+  [`bb7319244`](https://github.com/chakra-ui/chakra-ui/commit/bb731924479d33c75c9a983aa7bc1f3d25b40f35)
+  Thanks [@anubra266](https://github.com/anubra266)! - Export menu provider
+
+- Updated dependencies []:
+  - @chakra-ui/clickable@2.0.14
+  - @chakra-ui/descendant@3.0.13
+
+## 2.1.9
+
+### Patch Changes
+
+- [#7315](https://github.com/chakra-ui/chakra-ui/pull/7315)
+  [`403513380`](https://github.com/chakra-ui/chakra-ui/commit/4035133801cdcf66487f73feb73a6bfd02a063f4)
+  Thanks [@mantariksh](https://github.com/mantariksh)! - Fix issue where `Menu`
+  schedules focus too frequently and leads to infinite rerenders.
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.0.13
+  - @chakra-ui/popper@3.0.13
+  - @chakra-ui/transition@2.0.15
+  - @chakra-ui/clickable@2.0.14
+
 ## 2.1.8
 
 ### Patch Changes

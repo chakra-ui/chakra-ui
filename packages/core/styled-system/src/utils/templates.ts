@@ -96,22 +96,3 @@ export const flexDirectionTemplate = {
     divide: "--chakra-divide-y-reverse",
   },
 }
-
-const owlSelector = "& > :not(style) ~ :not(style)"
-
-export const spaceXTemplate = {
-  [owlSelector]: {
-    marginInlineStart:
-      "calc(var(--chakra-space-x) * calc(1 - var(--chakra-space-x-reverse)))",
-    marginInlineEnd:
-      "calc(var(--chakra-space-x) * var(--chakra-space-x-reverse))",
-  },
-}
-
-export const spaceYTemplate = {
-  [owlSelector]: {
-    marginTop:
-      "calc(var(--chakra-space-y) * calc(1 - var(--chakra-space-y-reverse)))",
-    marginBottom: "calc(var(--chakra-space-y) * var(--chakra-space-y-reverse))",
-  },
-}

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-focus-effect",
-  "version": "2.0.9",
+  "version": "2.0.11",
   "description": "",
   "keywords": [
     "use-focus-effect"
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "dependencies": {
     "@chakra-ui/react-use-event-listener": "workspace:*",

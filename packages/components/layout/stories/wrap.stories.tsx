@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Badge, Box, Text, Wrap, WrapItem } from "../src"
 
 export default {
@@ -24,7 +23,11 @@ export const basic = () => (
 const Placeholder = (props: any) => (
   <WrapItem>
     <div
-      style={{ height: 48, width: props.width || 48, background: "red" }}
+      style={{
+        height: 48,
+        width: props.width || 48,
+        background: "red",
+      }}
       {...props}
     />
   </WrapItem>
@@ -82,7 +85,7 @@ export const withZeroXSpacing = () => (
   <Box>
     <Text>Welcome</Text>
     <Box bg="pink">
-      <Wrap maxW="200px" spacingX={20} spacingY={4}>
+      <Wrap maxW="200px" spacingX="0" spacingY="4">
         <Placeholder />
         <Placeholder />
         <Placeholder />

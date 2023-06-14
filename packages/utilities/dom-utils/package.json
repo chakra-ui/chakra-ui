@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/dom-utils",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "",
   "keywords": [
     "dom-utils"
@@ -34,7 +34,7 @@
     "postpack": "clean-package restore"
   },
   "devDependencies": {
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

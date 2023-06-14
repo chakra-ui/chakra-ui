@@ -1,5 +1,21 @@
 # @chakra-ui/react-use-focus-effect
 
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  [[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]:
+  - @chakra-ui/dom-utils@2.1.0
+
+## 2.0.10
+
+### Patch Changes
+
+- [`e01bdce14`](https://github.com/chakra-ui/chakra-ui/commit/e01bdce142e5463d124f4ec205a0c2e3cd609b53)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  returning focus on hide hijacks scroll
+
 ## 2.0.9
 
 ### Patch Changes

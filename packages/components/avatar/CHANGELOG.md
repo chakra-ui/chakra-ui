@@ -1,5 +1,90 @@
 # Change Log
 
+## 2.2.11
+
+### Patch Changes
+
+- [`c121c35c0`](https://github.com/chakra-ui/chakra-ui/commit/c121c35c00c3491e7e8dd4cad321a178bfd095e4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force release
+  avatar package to reflect `Array.at` refactoring
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.16
+
+## 2.2.10
+
+### Patch Changes
+
+- [#7603](https://github.com/chakra-ui/chakra-ui/pull/7603)
+  [`a5ad2821e`](https://github.com/chakra-ui/chakra-ui/commit/a5ad2821ed8ed2ddcad4809d505ea8ec6aad0d4d)
+  Thanks [@mauricekleine](https://github.com/mauricekleine)! - Fix issue where
+  the initial was incorrect when only one name is passed
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.16
+
+## 2.2.9
+
+### Patch Changes
+
+- [#7553](https://github.com/chakra-ui/chakra-ui/pull/7553)
+  [`5ff30252f`](https://github.com/chakra-ui/chakra-ui/commit/5ff30252f565f2e171375011a349fde53e6e4ec9)
+  Thanks [@AlphaNecron](https://github.com/AlphaNecron)! - Respect `crossOrigin`
+  property in `useImage`
+
+- [#7406](https://github.com/chakra-ui/chakra-ui/pull/7406)
+  [`417293f8c`](https://github.com/chakra-ui/chakra-ui/commit/417293f8cf65cf953851ce6b99f50d1f611075a2)
+  Thanks [@anLpk](https://github.com/anLpk)! - Fix issue where initials was not
+  correctly computed when name includes a middle name like "Sage Naruto Manich"
+
+- Updated dependencies
+  [[`5ff30252f`](https://github.com/chakra-ui/chakra-ui/commit/5ff30252f565f2e171375011a349fde53e6e4ec9)]:
+  - @chakra-ui/image@2.0.16
+
+## 2.2.8
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
+## 2.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/image@2.0.15
+
+## 2.2.6
+
+### Patch Changes
+
+- [#7438](https://github.com/chakra-ui/chakra-ui/pull/7438)
+  [`01c0a84a5`](https://github.com/chakra-ui/chakra-ui/commit/01c0a84a5fea038e3970666944c2b3096a64504b)
+  Thanks [@nicksrandall](https://github.com/nicksrandall)! - Adding support for
+  Avatar to specify "crossOrigin" prop for image
+
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
+## 2.2.5
+
+### Patch Changes
+
+- [#7276](https://github.com/chakra-ui/chakra-ui/pull/7276)
+  [`6619ee1a9`](https://github.com/chakra-ui/chakra-ui/commit/6619ee1a98988729cb6cab6e6d90a7cc3f5b7ee7)
+  Thanks [@LuizCristino](https://github.com/LuizCristino)! - **AvatarGroup**:
+  Fixed issue where setting `max` to `0` lead to unexpected behavior.
+- Updated dependencies []:
+  - @chakra-ui/image@2.0.15
+
 ## 2.2.4
 
 ### Patch Changes

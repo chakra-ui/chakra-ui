@@ -1,3 +1,4 @@
+import { cx } from "@chakra-ui/shared-utils"
 import {
   chakra,
   forwardRef,
@@ -7,7 +8,6 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
 import {
   AlertProvider,
   AlertStatus,
@@ -59,6 +59,7 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
     <AlertProvider value={{ status }}>
       <AlertStylesProvider value={styles}>
         <chakra.div
+          data-status={status}
           role={addRole ? "alert" : undefined}
           ref={ref}
           {...rest}

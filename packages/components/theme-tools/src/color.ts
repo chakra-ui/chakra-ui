@@ -1,3 +1,4 @@
+import { getCSSVar } from "@chakra-ui/styled-system"
 import {
   toHex,
   parseToRgba,
@@ -33,6 +34,13 @@ export const getColor = (theme: Dict, color: string, fallback?: string) => {
     // returning black to stay consistent with TinyColor behaviour so as to prevent breaking change
     return fallback ?? "#000000"
   }
+}
+
+/**
+ * Get the color css variable from theme
+ */
+export const getColorVar = (theme: Dict, color: string, fallback?: string) => {
+  return getCSSVar(theme, "colors", color) ?? fallback
 }
 
 const getBrightness = (color: string) => {
@@ -145,7 +153,7 @@ export const lighten = (color: string, amount: number) => (theme: Dict) => {
 export const contrast = (fg: string, bg: string) => (theme: Dict) =>
   getContrast(getColor(theme, bg), getColor(theme, fg))
 
-interface WCAG2Parms {
+interface WCAG2Params {
   level?: "AA" | "AAA"
   size?: "large" | "small"
 }
@@ -161,13 +169,14 @@ interface WCAG2Parms {
  * @deprecated This will be removed in the next major release.
  */
 export const isAccessible =
-  (textColor: string, bgColor: string, options?: WCAG2Parms) => (theme: Dict) =>
+  (textColor: string, bgColor: string, options?: WCAG2Params) =>
+  (theme: Dict) =>
     isReadable(getColor(theme, bgColor), getColor(theme, textColor), options)
 
 export function isReadable(
   color1: string,
   color2: string,
-  wcag2: WCAG2Parms = { level: "AA", size: "small" },
+  wcag2: WCAG2Params = { level: "AA", size: "small" },
 ): boolean {
   const readabilityLevel = readability(color1, color2)
   switch ((wcag2.level ?? "AA") + (wcag2.size ?? "small")) {

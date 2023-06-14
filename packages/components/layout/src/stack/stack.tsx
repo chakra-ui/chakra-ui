@@ -1,16 +1,16 @@
+import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { cx } from "@chakra-ui/shared-utils"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   SystemProps,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
 import { cloneElement, Fragment, useMemo } from "react"
 
-import type { StackDirection } from "./stack.utils"
-import { getDividerStyles, getStackStyles, selector } from "./stack.utils"
 import { StackItem } from "./stack-item"
+import type { StackDirection } from "./stack.utils"
+import { getDividerStyles } from "./stack.utils"
 
 export type { StackDirection }
 
@@ -57,6 +57,8 @@ interface StackOptions {
    * If `true` the items will be stacked horizontally.
    *
    * @default false
+   *
+   * @deprecated - Use `direction="row"` or `HStack` instead
    */
   isInline?: boolean
 }
@@ -90,11 +92,6 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
   } = props
 
   const direction = isInline ? "row" : directionProp ?? "column"
-
-  const styles = useMemo(
-    () => getStackStyles({ direction, spacing }),
-    [direction, spacing],
-  )
 
   const dividerStyle = useMemo(
     () => getDividerStyles({ spacing, direction }),
@@ -150,10 +147,10 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
       display="flex"
       alignItems={align}
       justifyContent={justify}
-      flexDirection={styles.flexDirection}
+      flexDirection={direction}
       flexWrap={wrap}
+      gap={hasDivider ? undefined : spacing}
       className={_className}
-      __css={hasDivider ? {} : { [selector]: styles[selector] }}
       {...rest}
     >
       {clones}

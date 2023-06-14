@@ -103,7 +103,7 @@ export interface UseMenuProps
    */
   lazyBehavior?: LazyMode
   /**
-   * If `rtl`, poper placement positions will be flipped i.e. 'top-right' will
+   * If `rtl`, proper placement positions will be flipped i.e. 'top-right' will
    * become 'top-left' and vice-verse
    */
   direction?: "ltr" | "rtl"
@@ -443,6 +443,9 @@ export function useMenuList(
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
+      // ignore events bubbles from portal children
+      if (!event.currentTarget.contains(event.target as Element)) return
+
       const eventKey = event.key
 
       const keyMap: Record<string, React.KeyboardEventHandler> = {
@@ -672,7 +675,7 @@ export function useMenuItem(
         rafId.current = null
       })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
-      menuRef.current.focus()
+      menuRef.current.focus({ preventScroll: true })
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 

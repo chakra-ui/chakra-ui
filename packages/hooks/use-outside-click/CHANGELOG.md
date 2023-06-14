@@ -1,5 +1,14 @@
 # @chakra-ui/react-use-outside-click
 
+## 2.1.0
+
+### Minor Changes
+
+- [#7379](https://github.com/chakra-ui/chakra-ui/pull/7379)
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8)
+  Thanks [@DimovyM](https://github.com/DimovyM)! - Added option to listen
+  context menu click in useOutsideClick
+
 ## 2.0.7
 
 ### Patch Changes

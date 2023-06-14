@@ -236,7 +236,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         if (!rootIsLabelElement) {
           inputRef.current?.click()
           requestAnimationFrame(() => {
-            inputRef.current?.focus()
+            inputRef.current?.focus({ preventScroll: true })
           })
         }
       }),
@@ -306,7 +306,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       ...props,
       ref: forwardedRef,
       onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-      onTouchStart: callAllHandlers(props.onTouchStart, stopEvent),
       "data-disabled": dataAttr(isDisabled),
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),

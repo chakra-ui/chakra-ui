@@ -91,7 +91,7 @@ const sizes = {
 const variantLine = definePartsStyle((props) => {
   const { colorScheme: c, orientation } = props
   const isVertical = orientation === "vertical"
-  const borderProp = orientation === "vertical" ? "borderStart" : "borderBottom"
+  const borderProp = isVertical ? "borderStart" : "borderBottom"
   const marginProp = isVertical ? "marginStart" : "marginBottom"
 
   return {

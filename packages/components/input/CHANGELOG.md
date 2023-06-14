@@ -1,5 +1,43 @@
 # Change Log
 
+## 2.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)]:
+  - @chakra-ui/object-utils@2.1.0
+  - @chakra-ui/form-control@2.0.18
+
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d),
+  [`8474beb85`](https://github.com/chakra-ui/chakra-ui/commit/8474beb852ac5df6451c4bf4a509f5f33a383f8e)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/form-control@2.0.18
+
+## 2.0.20
+
+### Patch Changes
+
+- [#7339](https://github.com/chakra-ui/chakra-ui/pull/7339)
+  [`db3fa510f`](https://github.com/chakra-ui/chakra-ui/commit/db3fa510fe3a0129f2bdfaca12852b0b6c28f977)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Add
+  `data-group` attribute to `InputGroup` component.
+
+  This will allow uniform styling changes for `Input`, `InputElement`, and
+  `InputAddon` to occur when detecting state changes such as `:hover` and
+  `:focus-within`.
+
+  Example gif below with a left and right `InputElement`
+  ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/65234762/217900818-cbbbd727-2e75-4523-8563-c90eaac1e69b.gif)
+
+- Updated dependencies []:
+  - @chakra-ui/form-control@2.0.17
+
 ## 2.0.19
 
 ### Patch Changes

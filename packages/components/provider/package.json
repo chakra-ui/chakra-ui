@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/provider",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "description": "Theme and components agnostic ChakraProvider",
   "main": "src/index.ts",
   "files": [
@@ -48,11 +48,11 @@
     "url": "https://chakra-ui.netlify.app"
   },
   "devDependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

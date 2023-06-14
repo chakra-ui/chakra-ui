@@ -8,6 +8,7 @@ const tokens = [
   "fonts",
   "fontSizes",
   "fontWeights",
+  "gradients",
   "letterSpacings",
   "lineHeights",
   "radii",

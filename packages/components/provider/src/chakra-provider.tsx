@@ -33,6 +33,10 @@ export interface ChakraProviderProps
    */
   resetCSS?: boolean
   /**
+   * The selector to scope the css reset styles to.
+   */
+  resetScope?: string
+  /**
    * manager to persist a users color mode preference in
    *
    * omit if you don't render server-side
@@ -58,6 +62,10 @@ export interface ChakraProviderProps
    * This removed the injected `<span/>` element
    */
   disableEnvironment?: boolean
+  /**
+   * If `true`, Chakra will not mount the global styles defined in the theme.
+   */
+  disableGlobalStyle?: boolean
 }
 
 /**
@@ -69,11 +77,13 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
     children,
     colorModeManager,
     portalZIndex,
+    resetScope,
     resetCSS = true,
     theme = {},
     environment,
     cssVarsRoot,
     disableEnvironment,
+    disableGlobalStyle,
   } = props
 
   const _children = (
@@ -91,8 +101,8 @@ export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
         colorModeManager={colorModeManager}
         options={theme.config}
       >
-        {resetCSS ? <CSSReset /> : <CSSPolyfill />}
-        <GlobalStyle />
+        {resetCSS ? <CSSReset scope={resetScope} /> : <CSSPolyfill />}
+        {!disableGlobalStyle && <GlobalStyle />}
         {portalZIndex ? (
           <PortalManager zIndex={portalZIndex}>{_children}</PortalManager>
         ) : (

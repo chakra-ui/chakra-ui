@@ -91,6 +91,7 @@
     "aria-valuetext": { "type": "string", "required": false },
     "autoCapitalize": { "type": "string", "required": false },
     "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
     "autoSave": { "type": "string", "required": false },
     "className": { "type": "string", "required": false },
     "color": { "type": "string", "required": false },
@@ -789,7 +790,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -894,6 +895,7 @@
     "aria-valuetext": { "type": "string", "required": false },
     "autoCapitalize": { "type": "string", "required": false },
     "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
     "autoSave": { "type": "string", "required": false },
     "className": { "type": "string", "required": false },
     "color": { "type": "string", "required": false },
@@ -1580,7 +1582,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -1685,6 +1687,7 @@
     "aria-valuetext": { "type": "string", "required": false },
     "autoCapitalize": { "type": "string", "required": false },
     "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
     "autoSave": { "type": "string", "required": false },
     "className": { "type": "string", "required": false },
     "color": { "type": "string", "required": false },
@@ -2383,7 +2386,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -2488,6 +2491,7 @@
     "aria-valuetext": { "type": "string", "required": false },
     "autoCapitalize": { "type": "string", "required": false },
     "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
     "autoSave": { "type": "string", "required": false },
     "className": { "type": "string", "required": false },
     "color": { "type": "string", "required": false },
@@ -3181,7 +3185,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
@@ -3286,6 +3290,7 @@
     "aria-valuetext": { "type": "string", "required": false },
     "autoCapitalize": { "type": "string", "required": false },
     "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
     "autoSave": { "type": "string", "required": false },
     "className": { "type": "string", "required": false },
     "color": { "type": "string", "required": false },
@@ -3990,7 +3995,7 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition>>",
+      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },

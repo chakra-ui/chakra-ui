@@ -1,5 +1,50 @@
 # Change Log
 
+## 2.0.25
+
+### Patch Changes
+
+- [`c4fcc2a43`](https://github.com/chakra-ui/chakra-ui/commit/c4fcc2a43e6278520dc222892d7cbe0ef3b7ffea)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  range slider mark is not connected to theme
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+## 2.0.24
+
+### Patch Changes
+
+- [#7612](https://github.com/chakra-ui/chakra-ui/pull/7612)
+  [`a999a033f`](https://github.com/chakra-ui/chakra-ui/commit/a999a033f293b11432999d51c76be5bdfd116660)
+  Thanks [@andreibudoi](https://github.com/andreibudoi)! - Fix issue where
+  Slider orientation doesn't look right when `orientation` is `undefined` .
+
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+
+## 2.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c77973070`](https://github.com/chakra-ui/chakra-ui/commit/c77973070dac3468d701ccb2e7b8ff87c8d430f4)]:
+  - @chakra-ui/react-use-size@2.0.10
+
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ba7be75c2`](https://github.com/chakra-ui/chakra-ui/commit/ba7be75c2b8f7a38987781f6a0dd30086af7e2f7)]:
+  - @chakra-ui/react-use-size@2.0.9
+
 ## 2.0.20
 
 ### Patch Changes

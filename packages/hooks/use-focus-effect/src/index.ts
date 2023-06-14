@@ -53,10 +53,15 @@ export function useFocusOnHide(
 
     const el = focusRef?.current || containerRef.current
 
+    let rafId: number
+
     if (el) {
-      requestAnimationFrame(() => {
-        el.focus()
+      rafId = requestAnimationFrame(() => {
+        el.focus({ preventScroll: true })
       })
+      return () => {
+        cancelAnimationFrame(rafId)
+      }
     }
   }, [shouldFocus, containerRef, focusRef])
 }

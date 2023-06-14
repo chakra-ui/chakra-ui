@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "2.4.0",
+  "version": "2.5.8",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -38,7 +38,7 @@
     "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "react-fast-compare": "3.2.0"
+    "react-fast-compare": "3.2.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -47,11 +47,11 @@
   },
   "devDependencies": {
     "@chakra-ui/theme": "workspace:*",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "framer-motion": "^6.2.9",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.12.16",
     "react": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

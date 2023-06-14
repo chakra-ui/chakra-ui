@@ -1,5 +1,31 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#7403](https://github.com/chakra-ui/chakra-ui/pull/7403)
+  [`d6b6941c8`](https://github.com/chakra-ui/chakra-ui/commit/d6b6941c8e64f451313539d15f23fb0fb05ff129)
+  Thanks [@mosnicholas](https://github.com/mosnicholas)! - Adds finalFocusRef
+  and onBlur to Editable component
+
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+
+## 2.0.20
+
+### Patch Changes
+
+- [#7352](https://github.com/chakra-ui/chakra-ui/pull/7352)
+  [`eb7cab94c`](https://github.com/chakra-ui/chakra-ui/commit/eb7cab94cc6e762e96c61c63c17d3414b9c71ed6)
+  Thanks [@DawidWraga](https://github.com/DawidWraga)! - Export
+  "useEditableContext" hook
+
 ## 2.0.19
 
 ### Patch Changes

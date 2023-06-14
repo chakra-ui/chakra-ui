@@ -16,32 +16,24 @@
       "require": "./dist/index.js"
     },
     "./*": "./*",
-    "./preset": {
-      "types": "./dist/preset/index.d.ts",
-      "import": "./dist/preset/index.mjs",
-      "require": "./dist/preset/index.js"
+    "./manager": {
+      "types": "./dist/manager.d.ts",
+      "require": "./dist/manager.js",
+      "import": "./dist/manager.mjs"
     },
-    "./preset/decorators": {
-      "types": "./dist/preset/index.d.ts",
-      "import": "./dist/preset/decorators.mjs",
-      "require": "./dist/preset/decorators.js"
-    },
-    "./preset/register": {
-      "types": "./dist/preset/index.d.ts",
-      "import": "./dist/preset/register.mjs",
-      "require": "./dist/preset/register.js"
+    "./preview": {
+      "types": "./dist/preview.d.ts",
+      "require": "./dist/preview.js",
+      "import": "./dist/preview.mjs"
     }
   },
   "typesVersions": {
     "*": {
-      "preset": [
-        "./dist/preset/index.d.ts"
+      "manager": [
+        "./dist/manager.d.ts"
       ],
-      "preset/decorators": [
-        "./dist/preset/decorators.d.ts"
-      ],
-      "preset/register": [
-        "./dist/preset/register.d.ts"
+      "previews": [
+        "./dist/preview.d.ts"
       ]
     }
   },
@@ -72,16 +64,16 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@storybook/addons": "^6.5.6",
-    "@storybook/api": "^6.5.6",
-    "@storybook/components": "^6.5.6",
+    "@storybook/components": "^7.0.12",
+    "@storybook/manager-api": "^7.0.12",
+    "@storybook/preview-api": "^7.0.12",
     "react": "^18.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
-    "@storybook/addons": ">=6.4",
-    "@storybook/api": ">=6.4",
-    "@storybook/components": ">=6.4",
+    "@storybook/manager-api": ">=7.0.12",
+    "@storybook/preview-api": ">=7.0.12",
+    "@storybook/components": ">=7.0.12",
     "react": ">=16.8.x"
   },
   "peerDependenciesMeta": {

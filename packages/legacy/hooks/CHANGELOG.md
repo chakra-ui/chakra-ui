@@ -1,5 +1,23 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#7379](https://github.com/chakra-ui/chakra-ui/pull/7379)
+  [`169d71679`](https://github.com/chakra-ui/chakra-ui/commit/169d71679ed22d2245240b4018a906d220d502f8)
+  Thanks [@DimovyM](https://github.com/DimovyM)! - Added option to listen
+  context menu click in useOutsideClick
+
+## 2.1.6
+
+### Patch Changes
+
+- [`2e07db479`](https://github.com/chakra-ui/chakra-ui/commit/2e07db479222b70609ed6945fa81bc728aad8755)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **useClipboard**:
+  Improve reactivity by ensuring it uses the latest reference of the passed
+  `value`
+
 ## 2.1.5
 
 ### Patch Changes

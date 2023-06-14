@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "2.4.9",
+  "version": "2.7.0",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "src/index.ts",
   "files": [
@@ -45,9 +45,11 @@
     "@chakra-ui/react-env": "workspace:*",
     "@chakra-ui/select": "workspace:*",
     "@chakra-ui/skeleton": "workspace:*",
+    "@chakra-ui/skip-nav": "workspace:*",
     "@chakra-ui/slider": "workspace:*",
     "@chakra-ui/spinner": "workspace:*",
     "@chakra-ui/stat": "workspace:*",
+    "@chakra-ui/stepper": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/switch": "workspace:*",
     "@chakra-ui/system": "workspace:*",
@@ -95,12 +97,12 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "devDependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "framer-motion": "^6.2.9",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.12.16",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "clean-package": "2.1.1"
+    "clean-package": "2.2.0"
   },
   "scripts": {
     "build": "tsup src --dts",

@@ -346,7 +346,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [isValidCharacter, stepProp, increment, decrement, updateFn, min, max],
   )
 
-  const getStepFactor = <Event extends React.KeyboardEvent | React.WheelEvent>(
+  const getStepFactor = <
+    Event extends React.KeyboardEvent | React.WheelEvent | WheelEvent,
+  >(
     event: Event,
   ) => {
     let ratio = 1
@@ -415,7 +417,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   }, [focusInputOnChange])
 
   const spinUp = useCallback(
-    (event: any) => {
+    (event: React.PointerEvent) => {
       event.preventDefault()
       spinner.up()
       focusInput()
@@ -424,7 +426,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   )
 
   const spinDown = useCallback(
-    (event: any) => {
+    (event: React.PointerEvent) => {
       event.preventDefault()
       spinner.down()
       focusInput()
@@ -435,14 +437,14 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   useEventListener(
     () => inputRef.current,
     "wheel",
-    (event) => {
+    (event: WheelEvent) => {
       const doc = inputRef.current?.ownerDocument ?? document
       const isInputFocused = doc.activeElement === inputRef.current
       if (!allowMouseWheel || !isInputFocused) return
 
       event.preventDefault()
 
-      const stepFactor = getStepFactor(event as any) * stepProp
+      const stepFactor = getStepFactor(event) * stepProp
       const direction = Math.sign(event.deltaY)
 
       if (direction === -1) {

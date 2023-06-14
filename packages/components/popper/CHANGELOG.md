@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.14
+
+### Patch Changes
+
+- [`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Improve popover
+  arrow rendering by removing the default shadow rendered.
+  - Added support for `shadowColor` prop in the `PopoverArrow` component to
+    change the color of the arrow's shadow.
+
 ## 3.0.13
 
 ### Patch Changes

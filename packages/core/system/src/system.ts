@@ -69,7 +69,7 @@ export interface ChakraStyledOptions extends Dict {
     | ((props: StyleResolverProps) => SystemStyleObject)
 }
 
-export function styled<T extends As, P = {}>(
+export function styled<T extends As, P extends object = {}>(
   component: T,
   options?: ChakraStyledOptions,
 ) {

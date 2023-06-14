@@ -1,5 +1,32 @@
 # Change Log
 
+## 2.2.9
+
+### Patch Changes
+
+- [`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `closeOnScroll` doesn't work when tooltip trigger's scrolling parent is not
+  the root document
+- Updated dependencies
+  [[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]:
+  - @chakra-ui/dom-utils@2.1.0
+
+## 2.2.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`6ccf52322`](https://github.com/chakra-ui/chakra-ui/commit/6ccf52322c3ee05b56211f2af5e1dcebaf0c7ab0)]:
+  - @chakra-ui/popper@3.0.14
+
+## 2.2.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/portal@2.0.16
+
 ## 2.2.6
 
 ### Patch Changes

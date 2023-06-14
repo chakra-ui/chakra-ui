@@ -1,5 +1,81 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [`c31df5a4b`](https://github.com/chakra-ui/chakra-ui/commit/c31df5a4bf5077f6f008b3ff27247d81e2402cf1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new
+  `Indicator` layout component. Useful for positioning an element in the corners
+  of another element.
+
+  For example, let's say you want to position a notification badge in the top
+  end corner of a box. You can use the `Indicator` component to achieve this.
+
+  ```jsx live=false
+  <Box position="relative" width="80px" height="80px" bg="gray.50">
+    <Indicator placement="top-end">
+      <Circle size="5" bg="red.100">
+        3
+      </Circle>
+    </Indicator>
+  </Box>
+  ```
+
+  - Refactored the `Stack` and `Wrap` components to use the flex gap instead of
+    the owl selector `& > * ~ *` for spacing.
+
+    This fixes an issue where you can't use raw text nodes as a child of the
+    `Stack` or `Wrap` component.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.16
+
+## 2.1.19
+
+### Patch Changes
+
+- [`379f347a8`](https://github.com/chakra-ui/chakra-ui/commit/379f347a891f131c39a436b5738221105300ad76)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `aspectRatio` style prop to enable the usage of the native aspect ratio
+  property
+- Updated dependencies
+  [[`4c0740a09`](https://github.com/chakra-ui/chakra-ui/commit/4c0740a09737c32bca5390c584fec364e1e796a4)]:
+  - @chakra-ui/object-utils@2.1.0
+  - @chakra-ui/icon@3.0.16
+
+## 2.1.18
+
+### Patch Changes
+
+- [#7506](https://github.com/chakra-ui/chakra-ui/pull/7506)
+  [`68ceb28ae`](https://github.com/chakra-ui/chakra-ui/commit/68ceb28aee0c54dbe9835ac455cc33229e0ff10b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues with TS
+  5.0
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.0.16
+
+## 2.1.17
+
+### Patch Changes
+
+- Updated dependencies
+  [[`62454c154`](https://github.com/chakra-ui/chakra-ui/commit/62454c1542306db14c1f3f2fb809bff1ca4e7a6d)]:
+  - @chakra-ui/react-context@2.0.8
+  - @chakra-ui/icon@3.0.16
+
+## 2.1.16
+
+### Patch Changes
+
+- Updated dependencies
+  [[`12811f264`](https://github.com/chakra-ui/chakra-ui/commit/12811f264751829f2495d8adbbefb677e9583358)]:
+  - @chakra-ui/breakpoint-utils@2.0.8
+  - @chakra-ui/icon@3.0.16
+
 ## 2.1.15
 
 ### Patch Changes
