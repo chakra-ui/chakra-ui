@@ -49,6 +49,7 @@ export const CloseButton = forwardRef<CloseButtonProps, "button">(
       alignItems: "center",
       justifyContent: "center",
       flexShrink: 0,
+      zIndex: 1,
     }
 
     return (
