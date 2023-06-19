@@ -2879,8 +2879,8 @@ importers:
   tooling/cra-template-typescript:
     devDependencies:
       web-vitals:
-        specifier: ^2.1.4
-        version: 2.1.4
+        specifier: ^3.0.0
+        version: 3.0.0
 
   tooling/gatsby-plugin:
     devDependencies:
@@ -4684,6 +4684,15 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.18.9
+      '@babel/helper-plugin-utils': 7.22.5
+
+  /@babel/plugin-syntax-jsx@7.18.6(@babel/core@7.21.8):
+    resolution: {integrity: sha512-6mmljtAedFGTWu2p/8WIORGwy+61PLgOMPOdazc7YoJ9ZCWUyFy3A6CpPkRKLKD1ToAesxX8KGEViAiLo9N+7Q==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.21.8
       '@babel/helper-plugin-utils': 7.22.5
 
   /@babel/plugin-syntax-jsx@7.22.5(@babel/core@7.21.8):
@@ -6589,11 +6598,11 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-      '@babel/helper-annotate-as-pure': 7.22.5
-      '@babel/helper-module-imports': 7.22.5
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.21.8)
-      '@babel/types': 7.22.5
+      '@babel/helper-annotate-as-pure': 7.18.6
+      '@babel/helper-module-imports': 7.18.6
+      '@babel/helper-plugin-utils': 7.18.9
+      '@babel/plugin-syntax-jsx': 7.18.6(@babel/core@7.21.8)
+      '@babel/types': 7.18.9
 
   /@babel/plugin-transform-react-jsx@7.22.5(@babel/core@7.21.8):
     resolution: {integrity: sha512-rog5gZaVbUip5iWDMTYbVM15XQq+RkUKhET/IHR6oizR+JEoN6CAfTTuHcK4vwUyzca30qqHqEpzBOnaRMWYMA==}
@@ -7647,8 +7656,8 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.22.5
+      '@babel/helper-plugin-utils': 7.18.9
+      '@babel/helper-validator-option': 7.18.6
       '@babel/plugin-transform-typescript': 7.18.8(@babel/core@7.21.8)
     transitivePeerDependencies:
       - supports-color
@@ -34270,8 +34279,8 @@ packages:
     engines: {node: '>= 8'}
     dev: false
 
-  /web-vitals@2.1.4:
-    resolution: {integrity: sha512-sVWcwhU5mX6crfI5Vd2dC4qchyTqxV8URinzt25XqVh+bHEPGH4C3NPrNionCP7Obx59wrYEbNlw4Z8sjALzZg==}
+  /web-vitals@3.0.0:
+    resolution: {integrity: sha512-3Gh6rH5aetFYqfkl9V59KCvjj9vp9U2Tkaep9MO+xpAVg+JULmQfi5zEkcPLkE6iU8pNYVwdjHvIU8RFAchYyQ==}
     dev: true
 
   /webidl-conversions@3.0.1:
