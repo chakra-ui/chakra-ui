@@ -1,5 +1,23 @@
 # Change Log
 
+## 2.7.1
+
+### Patch Changes
+
+- [#7730](https://github.com/chakra-ui/chakra-ui/pull/7730)
+  [`2456a7090`](https://github.com/chakra-ui/chakra-ui/commit/2456a7090439ebd1a1d1cdee36daa472d12ce6f7)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Expose the
+  skip nav components and types to the main package
+
+  ```ts
+  import {
+    SkipNavLink,
+    type SkipNavLinkProps,
+    SkipNavContent,
+    type SkipNavContentProps,
+  } from "@chakra-ui/react"
+  ```
+
 ## 2.7.0
 
 ### Minor Changes
