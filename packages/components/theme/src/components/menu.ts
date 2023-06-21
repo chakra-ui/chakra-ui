@@ -66,6 +66,13 @@ const baseStyleGroupTitle = defineStyle({
   fontSize: "sm",
 })
 
+const baseStyleIcon = defineStyle({
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexShrink: 0,
+})
+
 const baseStyleCommand = defineStyle({
   opacity: 0.6,
 })
@@ -88,6 +95,7 @@ const baseStyle = definePartsStyle({
   list: baseStyleList,
   item: baseStyleItem,
   groupTitle: baseStyleGroupTitle,
+  icon: baseStyleIcon,
   command: baseStyleCommand,
   divider: baseStyleDivider,
 })
