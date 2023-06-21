@@ -1,12 +1,23 @@
 import { isObject } from "@chakra-ui/shared-utils"
 import type { ThemeScale } from "../create-theme-vars"
 import type { Transform } from "./types"
+import { pseudoPropNames } from "../pseudos"
 
 interface CreateTransformOptions {
   scale: ThemeScale
   compose?: Transform
   transform?: Transform
 }
+
+/**
+ * Check for use of a prop in the semanticTokens object
+ * That is not a pseudo but uses the underscore prefix.
+ * Also only returns true if it is pascalCase.
+ *
+ * @example `_myClass` is true
+ */
+export const isCustomSelector = (key: string) =>
+  !pseudoPropNames.includes(key as any) && key.match(/^_[a-z]+[A-Z]?[a-z]*$/)
 
 const isImportant = (value: string) => /!(important)?$/.test(value)
 

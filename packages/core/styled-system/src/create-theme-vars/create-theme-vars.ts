@@ -4,6 +4,7 @@ import { cssVar } from "./css-var"
 import { FlatToken, FlatTokens } from "./flatten-tokens"
 import { pseudoSelectors } from "../pseudos"
 import mergeWith from "lodash.mergewith"
+import { isCustomSelector } from "../utils/create-transform"
 
 export interface CreateThemeVarsOptions {
   cssVarPrefix?: string
@@ -88,6 +89,21 @@ export function createThemeVars(
 
           if (conditionAlias === "default") {
             acc[variable] = tokenReference
+            return acc
+          }
+
+          /**
+           * @example { _myClass: "yellow.500" } =>
+           * {
+           *   '.myClass': {
+           *     "--colors-tokenName": "var(--colors-yellow-500)"
+           *   }
+           * }
+           */
+          if (isCustomSelector(conditionAlias)) {
+            const classSelector = conditionAlias.replace("_", ".")
+
+            acc[classSelector] = { [variable]: tokenReference }
             return acc
           }
 

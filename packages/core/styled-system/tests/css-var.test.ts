@@ -390,6 +390,11 @@ test("should convert transition tokens", () => {
 test("should convert semantic tokens", () => {
   const theme = {
     colors: {
+      gray: {
+        200: "#E2E8F0",
+        800: "#1A202C",
+        900: "#171923",
+      },
       green: {
         500: "#38A169",
       },
@@ -399,6 +404,9 @@ test("should convert semantic tokens", () => {
         500: "#ff0050",
         700: "#ff0070",
         800: "#ff0080",
+      },
+      yellow: {
+        300: "#F6E05E",
       },
     },
     semanticTokens: {
@@ -433,6 +441,18 @@ test("should convert semantic tokens", () => {
             },
           },
         },
+        label: {
+          default: "gray.900",
+          _dark: "gray.200",
+          _customClass: "red.500",
+        },
+        body: {
+          base: {
+            default: "white",
+            _dark: "gray.800",
+            _customClass: "yellow.300",
+          },
+        },
       },
     },
   }
@@ -446,15 +466,40 @@ test("should convert semantic tokens", () => {
           "var": "--colors-background-green-normal",
           "varRef": "var(--colors-background-green-normal)",
         },
+        "colors.body.base": Object {
+          "value": "var(--colors-body-base)",
+          "var": "--colors-body-base",
+          "varRef": "var(--colors-body-base)",
+        },
         "colors.error": Object {
           "value": "var(--colors-error)",
           "var": "--colors-error",
           "varRef": "var(--colors-error)",
         },
+        "colors.gray.200": Object {
+          "value": "#E2E8F0",
+          "var": "--colors-gray-200",
+          "varRef": "var(--colors-gray-200)",
+        },
+        "colors.gray.800": Object {
+          "value": "#1A202C",
+          "var": "--colors-gray-800",
+          "varRef": "var(--colors-gray-800)",
+        },
+        "colors.gray.900": Object {
+          "value": "#171923",
+          "var": "--colors-gray-900",
+          "varRef": "var(--colors-gray-900)",
+        },
         "colors.green.500": Object {
           "value": "#38A169",
           "var": "--colors-green-500",
           "varRef": "var(--colors-green-500)",
+        },
+        "colors.label": Object {
+          "value": "var(--colors-label)",
+          "var": "--colors-label",
+          "varRef": "var(--colors-label)",
         },
         "colors.primary": Object {
           "value": "var(--colors-primary)",
@@ -511,6 +556,11 @@ test("should convert semantic tokens", () => {
           "var": "--colors-text-red-subtle",
           "varRef": "var(--colors-text-red-subtle)",
         },
+        "colors.yellow.300": Object {
+          "value": "#F6E05E",
+          "var": "--colors-yellow-300",
+          "varRef": "var(--colors-yellow-300)",
+        },
       },
       "__cssVars": Object {
         "--chakra-ring-color": "rgba(66, 153, 225, 0.6)",
@@ -522,8 +572,13 @@ test("should convert semantic tokens", () => {
         "--chakra-space-x-reverse": "0",
         "--chakra-space-y-reverse": "0",
         "--colors-background-green-normal": "var(--colors-green-500)",
+        "--colors-body-base": "white",
         "--colors-error": "var(--colors-red-500)",
+        "--colors-gray-200": "#E2E8F0",
+        "--colors-gray-800": "#1A202C",
+        "--colors-gray-900": "#171923",
         "--colors-green-500": "#38A169",
+        "--colors-label": "var(--colors-gray-900)",
         "--colors-primary": "var(--colors-red-500)",
         "--colors-red-100": "#ff0010",
         "--colors-red-400": "#ff0040",
@@ -535,14 +590,26 @@ test("should convert semantic tokens", () => {
         "--colors-text-green": "var(--colors-green-500)",
         "--colors-text-red-bold": "var(--colors-red-800)",
         "--colors-text-red-subtle": "var(--colors-red-500)",
+        "--colors-yellow-300": "#F6E05E",
         ".chakra-ui-dark &:not([data-theme]),[data-theme=dark] &:not([data-theme]),&[data-theme=dark]": Object {
+          "--colors-body-base": "var(--colors-gray-800)",
+          "--colors-label": "var(--colors-gray-200)",
           "--colors-primary": "var(--colors-red-400)",
           "--colors-secondary": "var(--colors-red-700)",
           "--colors-text-red-bold": "var(--colors-red-700)",
           "--colors-text-red-subtle": "var(--colors-red-400)",
         },
+        ".customClass": Object {
+          "--colors-body-base": "var(--colors-yellow-300)",
+          "--colors-label": "var(--colors-red-500)",
+        },
       },
       "colors": Object {
+        "gray": Object {
+          "200": "#E2E8F0",
+          "800": "#1A202C",
+          "900": "#171923",
+        },
         "green": Object {
           "500": "#38A169",
         },
@@ -553,6 +620,9 @@ test("should convert semantic tokens", () => {
           "700": "#ff0070",
           "800": "#ff0080",
         },
+        "yellow": Object {
+          "300": "#F6E05E",
+        },
       },
       "semanticTokens": Object {
         "colors": Object {
@@ -561,7 +631,19 @@ test("should convert semantic tokens", () => {
               "normal": "green.500",
             },
           },
+          "body": Object {
+            "base": Object {
+              "_customClass": "yellow.300",
+              "_dark": "gray.800",
+              "default": "white",
+            },
+          },
           "error": "red.500",
+          "label": Object {
+            "_customClass": "red.500",
+            "_dark": "gray.200",
+            "default": "gray.900",
+          },
           "primary": Object {
             "_dark": "red.400",
             "default": "red.500",

@@ -1,6 +1,7 @@
 import { walkObject } from "@chakra-ui/object-utils"
 import { pseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
+import { isCustomSelector } from "../utils/create-transform"
 
 export type SemanticValue<
   Conditions extends string,
@@ -27,7 +28,9 @@ export type FlattenTokensParam = {
 }
 
 const isSemanticCondition = (key: string) =>
-  pseudoPropNames.includes(key as any) || "default" === key
+  pseudoPropNames.includes(key as any) ||
+  "default" === key ||
+  isCustomSelector(key)
 
 export function flattenTokens<T extends FlattenTokensParam>({
   tokens,
