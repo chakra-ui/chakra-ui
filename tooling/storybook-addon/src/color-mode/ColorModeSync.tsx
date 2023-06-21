@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useColorMode } from "@chakra-ui/react"
-import { addons } from "@storybook/addons"
-import { EVENTS } from "../../constants"
+import { addons } from "@storybook/preview-api"
+import { EVENTS } from "../constants"
 
 /**
  * Render <ColorModeSync /> to sync the storybook color mode with Chakra UI

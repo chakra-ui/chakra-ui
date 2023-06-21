@@ -1,7 +1,6 @@
-import { useAddonState } from "@storybook/api"
 import { IconButton } from "@storybook/components"
-import { addons } from "@storybook/addons"
-import { ADDON_ID, EVENTS } from "../../constants"
+import { addons, useAddonState } from "@storybook/manager-api"
+import { ADDON_ID, EVENTS } from "../constants"
 
 const MoonIcon = () => (
   <svg viewBox="0 0 24 24" focusable="false">
@@ -52,10 +51,15 @@ export const ColorModeTool = () => {
   }
 
   return (
+    /* @ts-ignore */
     <IconButton
       active={darkMode}
       title={`Set color mode to ${darkMode ? "light" : "dark"}`}
       onClick={toggleDarkMode}
+      // ! Possible TypeError bug where the following props are required when they shouldn't be
+      content=""
+      rel=""
+      rev=""
     >
       {darkMode ? <SunIcon /> : <MoonIcon />}
     </IconButton>

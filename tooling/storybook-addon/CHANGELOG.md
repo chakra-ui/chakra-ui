@@ -1,5 +1,14 @@
 # @chakra-ui/storybook-addon
 
+## 5.0.0
+
+### Major Changes
+
+- [#7678](https://github.com/chakra-ui/chakra-ui/pull/7678)
+  [`8d9c878a9`](https://github.com/chakra-ui/chakra-ui/commit/8d9c878a9d6e5b82ec19bd1ec8994a75a4dc7de9)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - BREAKING:
+  Adds support for Storybook v7
+
 ## 4.0.17
 
 ### Patch Changes
