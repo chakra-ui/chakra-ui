@@ -93,7 +93,7 @@ export function createThemeVars(
           }
 
           /**
-           * @example { _myClass: "yellow.500" } =>
+           * @example { tokenName: { _myClass: "yellow.500" } } =>
            * {
            *   '.myClass': {
            *     "--colors-tokenName": "var(--colors-yellow-500)"
