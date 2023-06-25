@@ -171,11 +171,11 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   const openWithDelay = useCallback(() => {
     if (!isDisabled && !enterTimeout.current) {
-      dispatchCloseEvent()
+      if (isOpen) dispatchCloseEvent()
       const win = getWin(ref)
       enterTimeout.current = win.setTimeout(onOpen, openDelay)
     }
-  }, [dispatchCloseEvent, isDisabled, onOpen, openDelay])
+  }, [dispatchCloseEvent, isDisabled, isOpen, onOpen, openDelay])
 
   const closeWithDelay = useCallback(() => {
     clearEnterTimeout()

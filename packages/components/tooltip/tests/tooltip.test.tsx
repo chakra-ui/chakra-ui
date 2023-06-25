@@ -178,3 +178,20 @@ test("does not show tooltip after delay when `isDisabled` prop changes to `true`
 
   jest.useRealTimers()
 })
+
+test("should call onClose prop on pointerleave", async () => {
+  const onClose = jest.fn()
+
+  render(<DummyComponent onClose={onClose} />)
+
+  fireEvent.pointerOver(screen.getByText(buttonLabel))
+
+  await screen.findByRole("tooltip")
+
+  expect(screen.getByRole("tooltip")).toBeInTheDocument()
+  expect(onClose).not.toBeCalled()
+
+  fireEvent.pointerLeave(screen.getByText(buttonLabel))
+
+  await waitFor(() => expect(onClose).toBeCalledTimes(1))
+})
