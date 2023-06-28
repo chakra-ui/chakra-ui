@@ -1381,8 +1381,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@18.2.0)
+        specifier: 7.45.1
+        version: 7.45.1(react@18.2.0)
       react-lorem-component:
         specifier: 0.13.0
         version: 0.13.0(react@18.2.0)
@@ -2032,8 +2032,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@18.2.0)
+        specifier: 7.45.1
+        version: 7.45.1(react@18.2.0)
 
   packages/components/table:
     dependencies:
@@ -4686,6 +4686,15 @@ packages:
       '@babel/core': 7.18.9
       '@babel/helper-plugin-utils': 7.22.5
 
+  /@babel/plugin-syntax-jsx@7.18.6(@babel/core@7.21.8):
+    resolution: {integrity: sha512-6mmljtAedFGTWu2p/8WIORGwy+61PLgOMPOdazc7YoJ9ZCWUyFy3A6CpPkRKLKD1ToAesxX8KGEViAiLo9N+7Q==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.21.8
+      '@babel/helper-plugin-utils': 7.22.5
+
   /@babel/plugin-syntax-jsx@7.22.5(@babel/core@7.21.8):
     resolution: {integrity: sha512-gvyP4hZrgrs/wWMaocvxZ44Hw0b3W8Pe+cMxc8V1ULQ07oh8VNbIRaoD1LRZVTvD+0nieDKjfgKg89sD7rrKrg==}
     engines: {node: '>=6.9.0'}
@@ -6589,11 +6598,11 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-      '@babel/helper-annotate-as-pure': 7.22.5
-      '@babel/helper-module-imports': 7.22.5
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.21.8)
-      '@babel/types': 7.22.5
+      '@babel/helper-annotate-as-pure': 7.18.6
+      '@babel/helper-module-imports': 7.18.6
+      '@babel/helper-plugin-utils': 7.18.9
+      '@babel/plugin-syntax-jsx': 7.18.6(@babel/core@7.21.8)
+      '@babel/types': 7.18.9
 
   /@babel/plugin-transform-react-jsx@7.22.5(@babel/core@7.21.8):
     resolution: {integrity: sha512-rog5gZaVbUip5iWDMTYbVM15XQq+RkUKhET/IHR6oizR+JEoN6CAfTTuHcK4vwUyzca30qqHqEpzBOnaRMWYMA==}
@@ -7647,8 +7656,8 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-validator-option': 7.22.5
+      '@babel/helper-plugin-utils': 7.18.9
+      '@babel/helper-validator-option': 7.18.6
       '@babel/plugin-transform-typescript': 7.18.8(@babel/core@7.21.8)
     transitivePeerDependencies:
       - supports-color
@@ -30443,8 +30452,8 @@ packages:
       react-side-effect: 2.1.2(react@18.2.0)
     dev: false
 
-  /react-hook-form@7.43.9(react@18.2.0):
-    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
+  /react-hook-form@7.45.1(react@18.2.0):
+    resolution: {integrity: sha512-6dWoFJwycbuFfw/iKMcl+RdAOAOHDiF11KWYhNDRN/OkUt+Di5qsZHwA0OwsVnu9y135gkHpTw9DJA+WzCeR9w==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -30742,7 +30751,7 @@ packages:
     peerDependencies:
       react: '>= 0.14.0'
     dependencies:
-      '@babel/runtime': 7.22.5
+      '@babel/runtime': 7.20.7
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.28.0

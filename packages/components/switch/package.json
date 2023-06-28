@@ -39,7 +39,7 @@
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "framer-motion": "^10.12.16",
-    "react-hook-form": "7.43.9",
+    "react-hook-form": "7.45.1",
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
