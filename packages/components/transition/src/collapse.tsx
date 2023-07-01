@@ -114,8 +114,6 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       message: `startingHeight and unmountOnExit are mutually exclusive. You can't use them together`,
     })
 
-    const hasStartingHeight = parseFloat(startingHeight.toString()) > 0
-
     const custom = {
       startingHeight,
       endingHeight,
@@ -123,12 +121,7 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       transition: !mounted ? { enter: { duration: 0 } } : transition,
       transitionEnd: {
         enter: transitionEnd?.enter,
-        exit: unmountOnExit
-          ? transitionEnd?.exit
-          : {
-              ...transitionEnd?.exit,
-              display: hasStartingHeight ? "block" : "none",
-            },
+        exit: transitionEnd?.exit,
       },
     }
 
