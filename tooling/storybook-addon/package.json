@@ -38,11 +38,10 @@
     }
   },
   "scripts": {
-    "build": "tsup --dts",
+    "build": "tsup",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup"
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
