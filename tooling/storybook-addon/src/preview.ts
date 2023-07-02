@@ -1,3 +1,8 @@
+import { Renderer, ProjectAnnotations } from "@storybook/types"
 import { ChakraProviderDecorator } from "./ChakraProviderDecorator"
 
-export const decorators: any[] = [ChakraProviderDecorator]
+const preview: ProjectAnnotations<Renderer> = {
+  decorators: [ChakraProviderDecorator],
+}
+
+export default preview
