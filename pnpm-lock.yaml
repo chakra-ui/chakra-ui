@@ -1466,6 +1466,9 @@ importers:
       '@chakra-ui/layout':
         specifier: workspace:*
         version: link:../layout
+      '@chakra-ui/object-utils':
+        specifier: workspace:*
+        version: link:../../utilities/object-utils
       '@chakra-ui/radio':
         specifier: workspace:*
         version: link:../radio
@@ -4686,6 +4689,15 @@ packages:
       '@babel/core': 7.18.9
       '@babel/helper-plugin-utils': 7.22.5
 
+  /@babel/plugin-syntax-jsx@7.18.6(@babel/core@7.21.8):
+    resolution: {integrity: sha512-6mmljtAedFGTWu2p/8WIORGwy+61PLgOMPOdazc7YoJ9ZCWUyFy3A6CpPkRKLKD1ToAesxX8KGEViAiLo9N+7Q==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.21.8
+      '@babel/helper-plugin-utils': 7.22.5
+
   /@babel/plugin-syntax-jsx@7.22.5(@babel/core@7.21.8):
     resolution: {integrity: sha512-gvyP4hZrgrs/wWMaocvxZ44Hw0b3W8Pe+cMxc8V1ULQ07oh8VNbIRaoD1LRZVTvD+0nieDKjfgKg89sD7rrKrg==}
     engines: {node: '>=6.9.0'}
@@ -6589,11 +6601,11 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.21.8
-      '@babel/helper-annotate-as-pure': 7.22.5
-      '@babel/helper-module-imports': 7.22.5
-      '@babel/helper-plugin-utils': 7.22.5
-      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.21.8)
-      '@babel/types': 7.22.5
+      '@babel/helper-annotate-as-pure': 7.18.6
+      '@babel/helper-module-imports': 7.18.6
+      '@babel/helper-plugin-utils': 7.18.9
+      '@babel/plugin-syntax-jsx': 7.18.6(@babel/core@7.21.8)
+      '@babel/types': 7.18.9
 
   /@babel/plugin-transform-react-jsx@7.22.5(@babel/core@7.21.8):
     resolution: {integrity: sha512-rog5gZaVbUip5iWDMTYbVM15XQq+RkUKhET/IHR6oizR+JEoN6CAfTTuHcK4vwUyzca30qqHqEpzBOnaRMWYMA==}
@@ -18218,6 +18230,7 @@ packages:
 
   /color-string@1.9.1:
     resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}
+    requiresBuild: true
     dependencies:
       color-name: 1.1.4
       simple-swizzle: 0.2.2
@@ -19193,6 +19206,7 @@ packages:
   /deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
+    requiresBuild: true
 
   /deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -24430,6 +24444,7 @@ packages:
 
   /is-arrayish@0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
+    requiresBuild: true
 
   /is-bigint@1.0.4:
     resolution: {integrity: sha512-zB9CruMamjym81i2JZ3UMn54PKGsQzsJeo6xvN3HJJ4CAsQNB6iRutp2To77OfCNuoxspsIhzaPoO1zyCEhFOg==}
@@ -27300,6 +27315,7 @@ packages:
   /mimic-response@3.1.0:
     resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
     engines: {node: '>=10'}
+    requiresBuild: true
 
   /mimic-response@4.0.0:
     resolution: {integrity: sha512-e5ISH9xMYU0DzrT+jl8q2ze9D6eWBto+I8CNpe+VI+K2J/F/k3PdkdTdz4wvGVH4NTpo+NRYTVIuMQEMMcsLqg==}
@@ -27725,6 +27741,7 @@ packages:
 
   /node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
+    requiresBuild: true
     dev: true
 
   /node-dir@0.1.17:
@@ -31863,6 +31880,7 @@ packages:
 
   /simple-concat@1.0.1:
     resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
+    requiresBuild: true
 
   /simple-get@4.0.1:
     resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
@@ -31873,6 +31891,7 @@ packages:
 
   /simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
+    requiresBuild: true
     dependencies:
       is-arrayish: 0.3.2
 
@@ -32532,6 +32551,7 @@ packages:
   /strip-json-comments@2.0.1:
     resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
 
   /strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
