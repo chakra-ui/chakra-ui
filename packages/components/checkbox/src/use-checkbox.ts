@@ -123,9 +123,11 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   useSafeLayoutEffect(() => {
     const el = inputRef.current
     if (!el?.form) return
-    el.form.onreset = () => {
+    const formResetListener = () => {
       setCheckedState(!!defaultChecked)
     }
+    el.form.addEventListener("reset", formResetListener)
+    return () => el.form?.removeEventListener("reset", formResetListener)
   }, [])
 
   const trulyDisabled = isDisabled && !isFocusable
