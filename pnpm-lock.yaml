@@ -1381,8 +1381,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@18.2.0)
+        specifier: 7.45.1
+        version: 7.45.1(react@18.2.0)
       react-lorem-component:
         specifier: 0.13.0
         version: 0.13.0(react@18.2.0)
@@ -2032,8 +2032,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@18.2.0)
+        specifier: 7.45.1
+        version: 7.45.1(react@18.2.0)
 
   packages/components/table:
     dependencies:
@@ -30452,8 +30452,8 @@ packages:
       react-side-effect: 2.1.2(react@18.2.0)
     dev: false
 
-  /react-hook-form@7.43.9(react@18.2.0):
-    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
+  /react-hook-form@7.45.1(react@18.2.0):
+    resolution: {integrity: sha512-6dWoFJwycbuFfw/iKMcl+RdAOAOHDiF11KWYhNDRN/OkUt+Di5qsZHwA0OwsVnu9y135gkHpTw9DJA+WzCeR9w==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -30751,7 +30751,7 @@ packages:
     peerDependencies:
       react: '>= 0.14.0'
     dependencies:
-      '@babel/runtime': 7.22.5
+      '@babel/runtime': 7.20.7
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.28.0
