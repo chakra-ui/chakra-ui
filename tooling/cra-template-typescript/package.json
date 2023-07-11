@@ -37,6 +37,6 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^3.0.0"
   }
 }
