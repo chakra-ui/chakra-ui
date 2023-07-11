@@ -79,7 +79,7 @@ export const listAnatomy = anatomy("list").parts("container", "item", "icon")
 
 export const menuAnatomy = anatomy("menu")
   .parts("button", "list", "item")
-  .extend("groupTitle", "command", "divider")
+  .extend("groupTitle", "icon", "command", "divider")
 
 export const modalAnatomy = anatomy("modal")
   .parts("overlay", "dialogContainer", "dialog")
