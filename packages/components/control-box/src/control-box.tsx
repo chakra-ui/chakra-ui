@@ -21,6 +21,9 @@ interface BaseControlProps
 
 export interface ControlBoxProps extends BaseControlProps, ControlBoxOptions {}
 
+/**
+ * @deprecated This component will be removed in the next major release.
+ */
 export const ControlBox: React.FC<ControlBoxProps> = (props) => {
   const {
     type = "checkbox",

@@ -65,6 +65,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     borderColor,
     ignoreFallback,
     crossOrigin,
+    referrerPolicy,
     ...rest
   } = omitThemingProps(props)
 
@@ -103,6 +104,7 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
           iconLabel={iconLabel}
           ignoreFallback={ignoreFallback}
           crossOrigin={crossOrigin}
+          referrerPolicy={referrerPolicy}
         />
         {children}
       </AvatarStylesProvider>

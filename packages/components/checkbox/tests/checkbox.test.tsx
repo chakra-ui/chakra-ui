@@ -517,34 +517,21 @@ test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
   expect(checkboxOnBlurMock).toHaveBeenCalled()
 })
 
-test("On resetting form, checkbox should reset to its default state i.e., checked", () => {
-  const { getByRole } = render(
+test("On resetting form, all checkboxes in the form should reset to its default state i.e., checked/unchecked", () => {
+  const { getByRole, getAllByRole } = render(
     <form>
       <label htmlFor="myCheckbox">My Checkbox</label>
       <Checkbox id="myCheckbox" defaultChecked />
+      <label htmlFor="myCheckbox2">My Checkbox2</label>
+      <Checkbox id="myCheckbox2" />
       <button type="reset">Reset</button>
     </form>,
   )
   const resetBtn = getByRole("button")
-  const checkbox = getByRole("checkbox")
-  fireEvent.click(checkbox)
+  const [checkbox1, checkbox2] = getAllByRole("checkbox")
+  fireEvent.click(checkbox1)
+  fireEvent.click(checkbox2)
   fireEvent.click(resetBtn)
-  expect(checkbox).toBeChecked()
-})
-
-test("On resetting form, checkbox should reset to its default state i.e., unchecked", () => {
-  const { getByRole } = render(
-    <form>
-      <label htmlFor="myCheckbox">My Checkbox</label>
-      <Checkbox id="myCheckbox" />
-      <button type="reset" name="resetBtn">
-        Reset
-      </button>
-    </form>,
-  )
-  const resetBtn = getByRole("button")
-  const checkbox = getByRole("checkbox")
-  fireEvent.click(checkbox)
-  fireEvent.click(resetBtn)
-  expect(checkbox).not.toBeChecked()
+  expect(checkbox1).toBeChecked()
+  expect(checkbox2).not.toBeChecked()
 })
