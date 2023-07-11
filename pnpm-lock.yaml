@@ -112,8 +112,8 @@ importers:
         specifier: ^18.0.11
         version: 18.0.11
       '@types/testing-library__jest-dom':
-        specifier: 5.14.5
-        version: 5.14.5
+        specifier: 5.14.8
+        version: 5.14.8
       '@typescript-eslint/eslint-plugin':
         specifier: 5.30.3
         version: 5.30.3(@typescript-eslint/parser@5.30.3)(eslint@8.19.0)(typescript@5.0.2)
@@ -15126,6 +15126,12 @@ packages:
     resolution: {integrity: sha512-SBwbxYoyPIvxHbeHxTZX2Pe/74F/tX2/D3mMvzabdeJ25bBojfW0TyB8BHrbq/9zaaKICJZjLP+8r6AeZMFCuQ==}
     dependencies:
       '@types/jest': 29.5.1
+
+  /@types/testing-library__jest-dom@5.14.8:
+    resolution: {integrity: sha512-NRfJE9Cgpmu4fx716q9SYmU4jxxhYRU1BQo239Txt/9N3EC745XZX1Yl7h/SBIDlo1ANVOCRB4YDXjaQdoKCHQ==}
+    dependencies:
+      '@types/jest': 29.5.1
+    dev: false
 
   /@types/through@0.0.30:
     resolution: {integrity: sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==}
