@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -42,9 +42,6 @@ importers:
       '@chakra-ui/test-utils':
         specifier: workspace:*
         version: link:tooling/test-utils
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:packages/components/theme
       '@changesets/changelog-github':
         specifier: 0.4.8
         version: 0.4.8
@@ -236,7 +233,7 @@ importers:
     dependencies:
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../packages/components/react
+        version: link:../../packages/components
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
@@ -291,7 +288,7 @@ importers:
         version: link:../../tooling/gatsby-plugin
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../packages/components/react
+        version: link:../../packages/components
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
@@ -344,18 +341,12 @@ importers:
 
   examples/next-app:
     dependencies:
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../../packages/components/icons
       '@chakra-ui/next-js':
         specifier: workspace:*
         version: link:../../packages/integrations/next-js
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../packages/components/react
-      '@chakra-ui/theme-tools':
-        specifier: workspace:*
-        version: link:../../packages/components/theme-tools
+        version: link:../../packages/components
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
@@ -389,15 +380,9 @@ importers:
 
   examples/next-pages:
     dependencies:
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../../packages/components/icons
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../packages/components/react
-      '@chakra-ui/theme-tools':
-        specifier: workspace:*
-        version: link:../../packages/components/theme-tools
+        version: link:../../packages/components
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
@@ -471,7 +456,7 @@ importers:
     devDependencies:
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../packages/components/react
+        version: link:../../packages/components
       '@types/react':
         specifier: ^18.0.30
         version: 18.0.30
@@ -488,1279 +473,14 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(@types/node@18.11.17)
 
-  packages/components/accordion:
+  packages/components:
     dependencies:
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-controllable-state
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/transition':
-        specifier: workspace:*
-        version: link:../transition
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/modal':
-        specifier: workspace:*
-        version: link:../modal
-      '@chakra-ui/react-use-disclosure':
-        specifier: workspace:*
-        version: link:../../hooks/use-disclosure
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/alert:
-    dependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/spinner':
-        specifier: workspace:*
-        version: link:../spinner
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/anatomy:
-    devDependencies:
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-
-  packages/components/avatar:
-    dependencies:
-      '@chakra-ui/image':
-        specifier: workspace:*
-        version: link:../image
-      '@chakra-ui/react-children-utils':
-        specifier: workspace:*
-        version: link:../../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/breadcrumb:
-    dependencies:
-      '@chakra-ui/react-children-utils':
-        specifier: workspace:*
-        version: link:../../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../icons
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-router-dom:
-        specifier: 6.11.2
-        version: 6.11.2(react-dom@18.2.0)(react@18.2.0)
-
-  packages/components/button:
-    dependencies:
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/spinner':
-        specifier: workspace:*
-        version: link:../spinner
-    devDependencies:
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../icons
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../theme
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../legacy/utils
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@17.0.2)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-icons:
-        specifier: ^4.2.0
-        version: 4.4.0(react@18.2.0)
-      react-spinners:
-        specifier: 0.11.0
-        version: 0.11.0(@types/react@18.0.30)(react-dom@17.0.2)(react@18.2.0)
-
-  packages/components/card:
-    dependencies:
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/avatar':
-        specifier: workspace:*
-        version: link:../avatar
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/image':
-        specifier: workspace:*
-        version: link:../image
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/menu':
-        specifier: workspace:*
-        version: link:../menu
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-icons:
-        specifier: ^4.2.0
-        version: 4.4.0(react@18.2.0)
-
-  packages/components/checkbox:
-    dependencies:
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../../hooks/use-callback-ref
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-controllable-state
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-update-effect
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/visually-hidden':
-        specifier: workspace:*
-        version: link:../visually-hidden
-      '@zag-js/focus-visible':
-        specifier: 0.2.2
-        version: 0.2.2
-    devDependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/clickable:
-    dependencies:
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/close-button:
-    dependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/color-mode:
-    dependencies:
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-    devDependencies:
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../legacy/utils
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/counter:
-    dependencies:
-      '@chakra-ui/number-utils':
-        specifier: workspace:*
-        version: link:../../utilities/number-utils
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../../hooks/use-callback-ref
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/css-reset:
-    devDependencies:
-      '@emotion/react':
-        specifier: ^11.11.0
-        version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/descendant:
-    dependencies:
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-    devDependencies:
       '@chakra-ui/hooks':
         specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/editable:
-    dependencies:
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../../hooks/use-callback-ref
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-controllable-state
-      '@chakra-ui/react-use-focus-on-pointer-down':
-        specifier: workspace:*
-        version: link:../../hooks/use-focus-on-pointer-down
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-update-effect
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/env:
-    dependencies:
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-    devDependencies:
-      '@types/react-frame-component':
-        specifier: ^4.1.1
-        version: 4.1.3
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-frame-component:
-        specifier: ^5.2.3
-        version: 5.2.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-
-  packages/components/focus-lock:
-    dependencies:
-      '@chakra-ui/dom-utils':
-        specifier: workspace:*
-        version: link:../../utilities/dom-utils
-      react-focus-lock:
-        specifier: ^2.9.4
-        version: 2.9.4(@types/react@18.0.30)(react@18.2.0)
-    devDependencies:
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/form-control:
-    dependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/icon:
-    dependencies:
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-icons:
-        specifier: ^4.2.0
-        version: 4.4.0(react@18.2.0)
-
-  packages/components/icons:
-    dependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@types/react':
-        specifier: ^18.0.30
-        version: 18.0.30
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/image:
-    dependencies:
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/input:
-    dependencies:
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/react-children-utils':
-        specifier: workspace:*
-        version: link:../../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../icons
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/layout:
-    dependencies:
-      '@chakra-ui/breakpoint-utils':
-        specifier: workspace:*
-        version: link:../../utilities/breakpoint-utils
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/react-children-utils':
-        specifier: workspace:*
-        version: link:../../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-icons:
-        specifier: ^4.2.0
-        version: 4.4.0(react@18.2.0)
-      react-router-dom:
-        specifier: 6.11.2
-        version: 6.11.2(react-dom@18.2.0)(react@18.2.0)
-
-  packages/components/live-region:
-    devDependencies:
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/media-query:
-    dependencies:
-      '@chakra-ui/breakpoint-utils':
-        specifier: workspace:*
-        version: link:../../utilities/breakpoint-utils
-      '@chakra-ui/react-env':
-        specifier: workspace:*
-        version: link:../env
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../theme
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@18.0.30)(react-dom@18.2.0)(react@18.2.0)
-      '@types/react-frame-component':
-        specifier: ^4.1.1
-        version: 4.1.3
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      jest-matchmedia-mock:
-        specifier: ^1.1.0
-        version: 1.1.0(jest@28.1.3)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-frame-component:
-        specifier: ^5.2.3
-        version: 5.2.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-
-  packages/components/menu:
-    dependencies:
-      '@chakra-ui/clickable':
-        specifier: workspace:*
-        version: link:../clickable
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
-      '@chakra-ui/lazy-utils':
-        specifier: workspace:*
-        version: link:../../utilities/lazy-utils
-      '@chakra-ui/popper':
-        specifier: workspace:*
-        version: link:../popper
-      '@chakra-ui/react-children-utils':
-        specifier: workspace:*
-        version: link:../../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-animation-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-animation-state
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-controllable-state
-      '@chakra-ui/react-use-disclosure':
-        specifier: workspace:*
-        version: link:../../hooks/use-disclosure
-      '@chakra-ui/react-use-focus-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-focus-effect
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/react-use-outside-click':
-        specifier: workspace:*
-        version: link:../../hooks/use-outside-click
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-update-effect
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/transition':
-        specifier: workspace:*
-        version: link:../transition
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/image':
-        specifier: workspace:*
-        version: link:../image
-      '@chakra-ui/modal':
-        specifier: workspace:*
-        version: link:../modal
-      '@chakra-ui/portal':
-        specifier: workspace:*
-        version: link:../portal
-      '@chakra-ui/provider':
-        specifier: workspace:*
-        version: link:../provider
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../theme
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-icons:
-        specifier: ^4.2.0
-        version: 4.4.0(react@18.2.0)
-
-  packages/components/modal:
-    dependencies:
-      '@chakra-ui/close-button':
-        specifier: workspace:*
-        version: link:../close-button
-      '@chakra-ui/focus-lock':
-        specifier: workspace:*
-        version: link:../focus-lock
-      '@chakra-ui/portal':
-        specifier: workspace:*
-        version: link:../portal
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/transition':
-        specifier: workspace:*
-        version: link:../transition
-      aria-hidden:
-        specifier: ^1.2.2
-        version: 1.2.2(@types/react@18.0.30)(react@18.2.0)
-      react-remove-scroll:
-        specifier: ^2.5.5
-        version: 2.5.5(@types/react@18.0.30)(react@18.2.0)
-    devDependencies:
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@testing-library/react-hooks':
-        specifier: 8.0.1
-        version: 8.0.1(@types/react@18.0.30)(react-dom@18.2.0)(react@18.2.0)
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-lorem-component:
-        specifier: 0.13.0
-        version: 0.13.0(react@18.2.0)
-
-  packages/components/number-input:
-    dependencies:
-      '@chakra-ui/counter':
-        specifier: workspace:*
-        version: link:../counter
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../../hooks/use-callback-ref
-      '@chakra-ui/react-use-event-listener':
-        specifier: workspace:*
-        version: link:../../hooks/use-event-listener
-      '@chakra-ui/react-use-interval':
-        specifier: workspace:*
-        version: link:../../hooks/use-interval
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-update-effect
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/input':
-        specifier: workspace:*
-        version: link:../input
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@18.2.0)
-      react-lorem-component:
-        specifier: 0.13.0
-        version: 0.13.0(react@18.2.0)
-
-  packages/components/pin-input:
-    dependencies:
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
-      '@chakra-ui/react-children-utils':
-        specifier: workspace:*
-        version: link:../../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-controllable-state
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/popover:
-    dependencies:
-      '@chakra-ui/close-button':
-        specifier: workspace:*
-        version: link:../close-button
-      '@chakra-ui/lazy-utils':
-        specifier: workspace:*
-        version: link:../../utilities/lazy-utils
-      '@chakra-ui/popper':
-        specifier: workspace:*
-        version: link:../popper
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-animation-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-animation-state
-      '@chakra-ui/react-use-disclosure':
-        specifier: workspace:*
-        version: link:../../hooks/use-disclosure
-      '@chakra-ui/react-use-focus-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-focus-effect
-      '@chakra-ui/react-use-focus-on-pointer-down':
-        specifier: workspace:*
-        version: link:../../hooks/use-focus-on-pointer-down
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/input':
-        specifier: workspace:*
-        version: link:../input
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/radio':
-        specifier: workspace:*
-        version: link:../radio
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-icons:
-        specifier: ^4.2.0
-        version: 4.4.0(react@18.2.0)
-
-  packages/components/popper:
-    dependencies:
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@popperjs/core':
-        specifier: ^2.9.3
-        version: 2.11.5
-    devDependencies:
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/portal:
-    dependencies:
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@testing-library/react':
-        specifier: 13.3.0
-        version: 13.3.0(react-dom@18.2.0)(react@18.2.0)
-      '@types/react-frame-component':
-        specifier: ^4.1.1
-        version: 4.1.3
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-frame-component:
-        specifier: ^4.1.3
-        version: 4.1.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
-
-  packages/components/progress:
-    dependencies:
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/provider:
-    dependencies:
-      '@chakra-ui/css-reset':
-        specifier: workspace:*
-        version: link:../css-reset
-      '@chakra-ui/portal':
-        specifier: workspace:*
-        version: link:../portal
-      '@chakra-ui/react-env':
-        specifier: workspace:*
-        version: link:../env
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../legacy/utils
-    devDependencies:
-      '@emotion/react':
-        specifier: ^11.11.0
-        version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
-      '@emotion/styled':
-        specifier: ^11.11.0
-        version: 11.11.0(@emotion/react@11.11.0)(@types/react@18.0.30)(react@18.2.0)
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-
-  packages/components/radio:
-    dependencies:
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@zag-js/focus-visible':
-        specifier: 0.2.2
-        version: 0.2.2
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/visually-hidden':
-        specifier: workspace:*
-        version: link:../visually-hidden
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/react:
-    dependencies:
-      '@chakra-ui/accordion':
-        specifier: workspace:*
-        version: link:../accordion
-      '@chakra-ui/alert':
-        specifier: workspace:*
-        version: link:../alert
-      '@chakra-ui/avatar':
-        specifier: workspace:*
-        version: link:../avatar
-      '@chakra-ui/breadcrumb':
-        specifier: workspace:*
-        version: link:../breadcrumb
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/card':
-        specifier: workspace:*
-        version: link:../card
-      '@chakra-ui/checkbox':
-        specifier: workspace:*
-        version: link:../checkbox
-      '@chakra-ui/close-button':
-        specifier: workspace:*
-        version: link:../close-button
-      '@chakra-ui/counter':
-        specifier: workspace:*
-        version: link:../counter
-      '@chakra-ui/css-reset':
-        specifier: workspace:*
-        version: link:../css-reset
-      '@chakra-ui/editable':
-        specifier: workspace:*
-        version: link:../editable
-      '@chakra-ui/focus-lock':
-        specifier: workspace:*
-        version: link:../focus-lock
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/image':
-        specifier: workspace:*
-        version: link:../image
-      '@chakra-ui/input':
-        specifier: workspace:*
-        version: link:../input
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/live-region':
-        specifier: workspace:*
-        version: link:../live-region
-      '@chakra-ui/media-query':
-        specifier: workspace:*
-        version: link:../media-query
-      '@chakra-ui/menu':
-        specifier: workspace:*
-        version: link:../menu
-      '@chakra-ui/modal':
-        specifier: workspace:*
-        version: link:../modal
-      '@chakra-ui/number-input':
-        specifier: workspace:*
-        version: link:../number-input
-      '@chakra-ui/pin-input':
-        specifier: workspace:*
-        version: link:../pin-input
-      '@chakra-ui/popover':
-        specifier: workspace:*
-        version: link:../popover
-      '@chakra-ui/popper':
-        specifier: workspace:*
-        version: link:../popper
-      '@chakra-ui/portal':
-        specifier: workspace:*
-        version: link:../portal
-      '@chakra-ui/progress':
-        specifier: workspace:*
-        version: link:../progress
-      '@chakra-ui/provider':
-        specifier: workspace:*
-        version: link:../provider
-      '@chakra-ui/radio':
-        specifier: workspace:*
-        version: link:../radio
-      '@chakra-ui/react-env':
-        specifier: workspace:*
-        version: link:../env
-      '@chakra-ui/select':
-        specifier: workspace:*
-        version: link:../select
-      '@chakra-ui/skeleton':
-        specifier: workspace:*
-        version: link:../skeleton
-      '@chakra-ui/slider':
-        specifier: workspace:*
-        version: link:../slider
-      '@chakra-ui/spinner':
-        specifier: workspace:*
-        version: link:../spinner
-      '@chakra-ui/stat':
-        specifier: workspace:*
-        version: link:../stat
-      '@chakra-ui/stepper':
-        specifier: workspace:*
-        version: link:../stepper
+        version: link:../legacy/hooks
       '@chakra-ui/styled-system':
         specifier: workspace:*
-        version: link:../../core/styled-system
-      '@chakra-ui/switch':
-        specifier: workspace:*
-        version: link:../switch
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/table':
-        specifier: workspace:*
-        version: link:../table
-      '@chakra-ui/tabs':
-        specifier: workspace:*
-        version: link:../tabs
-      '@chakra-ui/tag':
-        specifier: workspace:*
-        version: link:../tag
-      '@chakra-ui/textarea':
-        specifier: workspace:*
-        version: link:../textarea
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../theme
-      '@chakra-ui/theme-utils':
-        specifier: workspace:*
-        version: link:../../utilities/theme-utils
-      '@chakra-ui/toast':
-        specifier: workspace:*
-        version: link:../toast
-      '@chakra-ui/tooltip':
-        specifier: workspace:*
-        version: link:../tooltip
-      '@chakra-ui/transition':
-        specifier: workspace:*
-        version: link:../transition
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../legacy/utils
-      '@chakra-ui/visually-hidden':
-        specifier: workspace:*
-        version: link:../visually-hidden
+        version: link:../core/styled-system
     devDependencies:
       '@emotion/react':
         specifier: ^11.11.0
@@ -1780,544 +500,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-
-  packages/components/select:
-    dependencies:
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/skeleton:
-    dependencies:
-      '@chakra-ui/media-query':
-        specifier: workspace:*
-        version: link:../media-query
-      '@chakra-ui/react-use-previous':
-        specifier: workspace:*
-        version: link:../../hooks/use-previous
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/provider':
-        specifier: workspace:*
-        version: link:../provider
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../theme
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      jest-matchmedia-mock:
-        specifier: 1.1.0
-        version: 1.1.0(jest@28.1.3)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/skip-nav:
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/slider:
-    dependencies:
-      '@chakra-ui/number-utils':
-        specifier: workspace:*
-        version: link:../../utilities/number-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../../hooks/use-callback-ref
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-controllable-state
-      '@chakra-ui/react-use-latest-ref':
-        specifier: workspace:*
-        version: link:../../hooks/use-latest-ref
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/react-use-pan-event':
-        specifier: workspace:*
-        version: link:../../hooks/use-pan-event
-      '@chakra-ui/react-use-size':
-        specifier: workspace:*
-        version: link:../../hooks/use-size
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-update-effect
-    devDependencies:
-      '@chakra-ui/provider':
-        specifier: workspace:*
-        version: link:../provider
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../theme
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../legacy/utils
-      '@emotion/styled':
-        specifier: ^11.11.0
-        version: 11.11.0(@emotion/react@11.11.0)(@types/react@18.0.30)(react@18.2.0)
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/spinner:
-    dependencies:
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../legacy/utils
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/stat:
-    dependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/stepper:
-    dependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/switch:
-    dependencies:
-      '@chakra-ui/checkbox':
-        specifier: workspace:*
-        version: link:../checkbox
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-hook-form:
-        specifier: 7.43.9
-        version: 7.43.9(react@18.2.0)
-
-  packages/components/table:
-    dependencies:
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../icons
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      '@chakra-ui/test-utils':
-        specifier: workspace:*
-        version: link:../../../tooling/test-utils
-      '@tanstack/react-table':
-        specifier: ^8.5.10
-        version: 8.5.10(react-dom@18.2.0)(react@18.2.0)
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/tabs:
-    dependencies:
-      '@chakra-ui/clickable':
-        specifier: workspace:*
-        version: link:../clickable
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
-      '@chakra-ui/lazy-utils':
-        specifier: workspace:*
-        version: link:../../utilities/lazy-utils
-      '@chakra-ui/react-children-utils':
-        specifier: workspace:*
-        version: link:../../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../../hooks/use-controllable-state
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-safe-layout-effect
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/modal':
-        specifier: workspace:*
-        version: link:../modal
-      '@chakra-ui/react-use-interval':
-        specifier: workspace:*
-        version: link:../../hooks/use-interval
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/tag:
-    dependencies:
-      '@chakra-ui/icon':
-        specifier: workspace:*
-        version: link:../icon
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-    devDependencies:
-      '@chakra-ui/avatar':
-        specifier: workspace:*
-        version: link:../avatar
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../icons
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-icons:
-        specifier: ^4.2.0
-        version: 4.4.0(react@18.2.0)
-
-  packages/components/textarea:
-    dependencies:
-      '@chakra-ui/form-control':
-        specifier: workspace:*
-        version: link:../form-control
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/theme:
-    dependencies:
-      '@chakra-ui/anatomy':
-        specifier: workspace:*
-        version: link:../anatomy
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/theme-tools':
-        specifier: workspace:*
-        version: link:../theme-tools
-    devDependencies:
-      '@chakra-ui/cli':
-        specifier: workspace:*
-        version: link:../../../tooling/cli
-      '@chakra-ui/styled-system':
-        specifier: workspace:*
-        version: link:../../core/styled-system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-
-  packages/components/theme-tools:
-    dependencies:
-      '@chakra-ui/anatomy':
-        specifier: workspace:*
-        version: link:../anatomy
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      color2k:
-        specifier: ^2.0.0
-        version: 2.0.0
-    devDependencies:
-      '@chakra-ui/styled-system':
-        specifier: workspace:*
-        version: link:../../core/styled-system
-      '@types/dlv':
-        specifier: ^1.1.2
-        version: 1.1.2
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      dlv:
-        specifier: ^1.1.3
-        version: 1.1.3
-
-  packages/components/toast:
-    dependencies:
-      '@chakra-ui/alert':
-        specifier: workspace:*
-        version: link:../alert
-      '@chakra-ui/close-button':
-        specifier: workspace:*
-        version: link:../close-button
-      '@chakra-ui/portal':
-        specifier: workspace:*
-        version: link:../portal
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-timeout':
-        specifier: workspace:*
-        version: link:../../hooks/use-timeout
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../../hooks/use-update-effect
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      '@chakra-ui/styled-system':
-        specifier: workspace:*
-        version: link:../../core/styled-system
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../theme
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/layout':
-        specifier: workspace:*
-        version: link:../layout
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-
-  packages/components/tooltip:
-    dependencies:
-      '@chakra-ui/dom-utils':
-        specifier: workspace:*
-        version: link:../../utilities/dom-utils
-      '@chakra-ui/popper':
-        specifier: workspace:*
-        version: link:../popper
-      '@chakra-ui/portal':
-        specifier: workspace:*
-        version: link:../portal
-      '@chakra-ui/react-types':
-        specifier: workspace:*
-        version: link:../../utilities/react-types
-      '@chakra-ui/react-use-disclosure':
-        specifier: workspace:*
-        version: link:../../hooks/use-disclosure
-      '@chakra-ui/react-use-event-listener':
-        specifier: workspace:*
-        version: link:../../hooks/use-event-listener
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/button':
-        specifier: workspace:*
-        version: link:../button
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/modal':
-        specifier: workspace:*
-        version: link:../modal
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-
-  packages/components/transition:
-    dependencies:
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-    devDependencies:
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/components/visually-hidden:
-    devDependencies:
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
 
   packages/core/styled-system:
     dependencies:
@@ -2352,49 +534,6 @@ importers:
       clean-package:
         specifier: 2.2.0
         version: 2.2.0
-
-  packages/core/system:
-    dependencies:
-      '@chakra-ui/color-mode':
-        specifier: workspace:*
-        version: link:../../components/color-mode
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@chakra-ui/react-utils':
-        specifier: workspace:*
-        version: link:../../legacy/react-utils
-      '@chakra-ui/styled-system':
-        specifier: workspace:*
-        version: link:../styled-system
-      '@chakra-ui/theme-utils':
-        specifier: workspace:*
-        version: link:../../utilities/theme-utils
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../legacy/utils
-      react-fast-compare:
-        specifier: 3.2.1
-        version: 3.2.1
-    devDependencies:
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../../components/theme
-      '@emotion/react':
-        specifier: ^11.11.0
-        version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
-      '@emotion/styled':
-        specifier: ^11.11.0
-        version: 11.11.0(@emotion/react@11.11.0)(@types/react@18.0.30)(react@18.2.0)
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      framer-motion:
-        specifier: ^10.12.16
-        version: 10.12.16(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
 
   packages/hooks/context:
     devDependencies:
@@ -2628,7 +767,7 @@ importers:
     devDependencies:
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../components/react
+        version: link:../../components
       '@emotion/react':
         specifier: ^11.11.0
         version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
@@ -2776,9 +915,6 @@ importers:
       '@chakra-ui/styled-system':
         specifier: workspace:*
         version: link:../../core/styled-system
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../../components/theme
       lodash.mergewith:
         specifier: 4.6.2
         version: 4.6.2
@@ -2855,7 +991,7 @@ importers:
     devDependencies:
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../packages/components/react
+        version: link:../../packages/components
       gatsby:
         specifier: ^4.18.2
         version: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
@@ -2877,7 +1013,7 @@ importers:
     devDependencies:
       '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../../packages/components/react
+        version: link:../../packages/components
       '@storybook/addons':
         specifier: ^6.5.6
         version: 6.5.9(react-dom@18.2.0)(react@18.2.0)
@@ -2893,12 +1029,6 @@ importers:
 
   tooling/test-utils:
     dependencies:
-      '@chakra-ui/provider':
-        specifier: workspace:*
-        version: link:../../packages/components/provider
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../../packages/components/theme
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../../packages/legacy/utils
@@ -7274,6 +5404,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - ts-node
+    dev: false
 
   /@jest/environment@27.5.1:
     resolution: {integrity: sha512-/WQjhPJe3/ghaol/4Bq480JKXV/Rfw8nQdN7f41fM8VDHLcxKXou6QyXAh3EFr9/bVG3x74z1NWDkP87EiY8gA==}
@@ -7293,12 +5424,14 @@ packages:
       '@jest/types': 28.1.3
       '@types/node': 18.11.17
       jest-mock: 28.1.3
+    dev: false
 
   /@jest/expect-utils@28.1.3:
     resolution: {integrity: sha512-wvbi9LUrHJLn3NlDW6wF2hvIMtd4JUl2QNVrjq+IBSHirgfrR3o9RnVtxzdEGO2n9JyIWwHnLfby5KzqBGg2YA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
       jest-get-type: 28.0.2
+    dev: false
 
   /@jest/expect-utils@29.3.1:
     resolution: {integrity: sha512-wlrznINZI5sMjwvUoLVk617ll/UYfGIZNxmbU+Pa7wmkL4vYzhV9R2pwVqUh4NWWuLQWkI8+8mOkxs//prKQ3g==}
@@ -7314,6 +5447,7 @@ packages:
       jest-snapshot: 28.1.3
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@jest/fake-timers@27.5.1:
     resolution: {integrity: sha512-/aPowoolwa07k7/oM3aASneNeBGCmGQsc3ugN4u6s4C/+s5M64MFo/+djTdiwcbQlRfFElGuDXWzaWj6QgKObQ==}
@@ -7337,6 +5471,7 @@ packages:
       jest-message-util: 28.1.3
       jest-mock: 28.1.3
       jest-util: 28.1.3
+    dev: false
 
   /@jest/globals@27.5.1:
     resolution: {integrity: sha512-ZEJNB41OBQQgGzgyInAv0UUfDDj3upmHydjieSxFvTRuZElrx7tXg/uVQ5hYVEwiXs3+aMsAeEc9X7xiSKCm4Q==}
@@ -7356,6 +5491,7 @@ packages:
       '@jest/types': 28.1.3
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@jest/reporters@27.5.1:
     resolution: {integrity: sha512-cPXh9hWIlVJMQkVk84aIvXuBB4uQQmFqZiacloFuGiP3ah1sbCxCosidXFDfqG8+6fO1oR2dTJTlsOy4VFmUfw==}
@@ -7431,6 +5567,7 @@ packages:
       v8-to-istanbul: 9.0.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@jest/schemas@28.1.3:
     resolution: {integrity: sha512-/l/VWsdt/aBXgjshLWOFyFt3IVdYypu5y2Wn2rOO1un6nkqIn8SLXzgIMYXFyYsRWDyF5EthmKJMIdJvk08grg==}
@@ -7460,6 +5597,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.14
       callsites: 3.1.0
       graceful-fs: 4.2.10
+    dev: false
 
   /@jest/test-result@27.5.1:
     resolution: {integrity: sha512-EW35l2RYFUcUQxFJz5Cv5MTOxlJIQs4I7gxzi2zVU7PJhOwfYq1MdC5nhSmYjX1gmMmLPvB3sIaC+BkcHRBfag==}
@@ -7500,6 +5638,7 @@ packages:
       graceful-fs: 4.2.10
       jest-haste-map: 28.1.3
       slash: 3.0.0
+    dev: false
 
   /@jest/transform@26.6.2:
     resolution: {integrity: sha512-E9JjhUgNzvuQ+vVAL21vlyfy12gP0GhazGgJC4h6qUt1jSdUXGWJ1wfu/X7Sd8etSgxV4ovT1pb9v5D6QW4XgA==}
@@ -7567,6 +5706,7 @@ packages:
       write-file-atomic: 4.0.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@jest/types@26.6.2:
     resolution: {integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==}
@@ -9131,15 +7271,6 @@ packages:
       write-yaml-file: 4.2.0
     dev: false
 
-  /@popperjs/core@2.11.5:
-    resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
-    dev: false
-
-  /@remix-run/router@1.6.2:
-    resolution: {integrity: sha512-LzqpSrMK/3JBAVBI9u3NWtOhWNw5AMQfrUFYB0+bDHTSw17z++WJLsPsxAuK+oSddsxk4d7F/JcdDPM1M5YAhA==}
-    engines: {node: '>=14'}
-    dev: true
-
   /@rollup/plugin-alias@3.1.9(rollup@2.77.0):
     resolution: {integrity: sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==}
     engines: {node: '>=8.0.0'}
@@ -9321,6 +7452,7 @@ packages:
     resolution: {integrity: sha512-BPS4ynJW/o92PUR4wgriz2Ud5gpST5vz6GQfMixEDK0Z8ZCUv2M7SkBLykH56T++Xs+8ln9zTGbOvNGIe02/jw==}
     dependencies:
       '@sinonjs/commons': 1.8.3
+    dev: false
 
   /@storybook/addon-a11y@6.5.15(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-4IgsCU7mrfooyGSgvyQdkZVu2iGJZqZ+2GDDIzzeIs1yXvuRy6QiHYNzesSrgeL52ykDXaPGuzKu2pcMKfDQHA==}
@@ -12353,23 +10485,6 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
-  /@tanstack/react-table@8.5.10(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-TG+iyqtZD5/N7gCDNM8HJc+ZWbUAkSjv8JaVqk2eYs4xaTUfPnTTsG0vJYqGkoxp8i2GFY78dRx1FDCsctYPGA==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      react: '>=16'
-      react-dom: '>=16'
-    dependencies:
-      '@tanstack/table-core': 8.5.10
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
-
-  /@tanstack/table-core@8.5.10:
-    resolution: {integrity: sha512-L1GU/BAF7k50vfk1qDvHkRLhEKSjE46EtCuWRrbdu2UKP4mKClTEeL4/zMr6iefMo8QgWa+Gc0CTVVfYcFLlLA==}
-    engines: {node: '>=12'}
-    dev: true
-
   /@testing-library/dom@8.16.0:
     resolution: {integrity: sha512-uxF4zmnLHHDlmW4l+0WDjcgLVwCvH+OVLpD8Dfp+Bjfz85prwxWGbwXgJdLtkgjD0qfOzkJF9SmA6YZPsMYX4w==}
     engines: {node: '>=12'}
@@ -12434,6 +10549,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-error-boundary: 3.1.4(react@18.2.0)
+    dev: false
 
   /@testing-library/react@13.3.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-DB79aA426+deFgGSjnf5grczDPiL4taK3hFaa+M5q7q20Kcve9eQottOG5kZ74KEr55v0tU2CQormSSDK87zYQ==}
@@ -12579,10 +10695,6 @@ packages:
 
   /@types/debug@0.0.30:
     resolution: {integrity: sha512-orGL5LXERPYsLov6CWs3Fh6203+dXzJkR7OnddIr2514Hsecwc8xRpzCapshBbKFImCsvS/mk6+FWiN5LyZJAQ==}
-
-  /@types/dlv@1.1.2:
-    resolution: {integrity: sha512-OyiZ3jEKu7RtGO1yp9oOdK0cTwZ/10oE9PDJ6fyN3r9T5wkyOcvr6awdugjYdqF6KVO5eUvt7jx7rk2Eylufow==}
-    dev: true
 
   /@types/edit-json-file@1.7.0:
     resolution: {integrity: sha512-yZrbGD4Qp92s6xU80MWBdz9vJE8k8EbO+gLWYb4W1UL9WYVUMOtUr5zvKlKgbcc2veYmFLO9dPnYA9Mxul0lOw==}
@@ -12881,12 +10993,6 @@ packages:
     resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
     dependencies:
       '@types/react': 18.0.30
-
-  /@types/react-frame-component@4.1.3:
-    resolution: {integrity: sha512-Ol0pg5m35vTMlam9IJW2iY0O+Qh+5jbeZmVJ2OR/mokWN7AYoMN9FFxj5AmHfwij8bGQctQhbe7o0FoG+axLGA==}
-    dependencies:
-      '@types/react': 18.0.30
-    dev: true
 
   /@types/react-syntax-highlighter@11.0.5:
     resolution: {integrity: sha512-VIOi9i2Oj5XsmWWoB72p3KlZoEbdRAcechJa8Ztebw7bDl2YmR+odxIqhtJGp1q2EozHs02US+gzxJ9nuf56qg==}
@@ -13635,10 +11741,6 @@ packages:
     resolution: {integrity: sha512-bVvvigUGvAuj7PCkE5AbzvTJDTw5f3bg9nQdv+ErhVN8SfPPppLJEmmWdxqsRzrHXgx8ypJt/+Ty0kjtISVDsQ==}
     dev: false
 
-  /@zag-js/focus-visible@0.2.2:
-    resolution: {integrity: sha512-0j2gZq8HiZ51z4zNnSkF1iSkqlwRDvdH+son3wHdoz+7IUdMN/5Exd4TxMJ+gq2Of1DiXReYLL9qqh2PdQ4wgA==}
-    dev: false
-
   /JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
     hasBin: true
@@ -13974,21 +12076,6 @@ packages:
 
   /argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
-
-  /aria-hidden@1.2.2(@types/react@18.0.30)(react@18.2.0):
-    resolution: {integrity: sha512-6y/ogyDTk/7YAe91T3E2PR1ALVKyM2QbTio5HwM+N1Q6CMlCKhvClyIjkckBswa0f2xJhjsfzIGa1yVSe1UMVA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.9.0 || ^17.0.0 || ^18.0.0
-      react: ^16.9.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.30
-      react: 18.2.0
-      tslib: 2.4.1
-    dev: false
 
   /aria-query@4.2.2:
     resolution: {integrity: sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==}
@@ -14344,6 +12431,7 @@ packages:
       slash: 3.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /babel-loader@8.2.5(@babel/core@7.18.9)(webpack@4.46.0):
     resolution: {integrity: sha512-OSiFfH89LrEMiWd4pLNqGz4CwJDtbs2ZVc+iGu2HrkRfPxId9F2anQj38IxWpmRfsUY0aBZYi1EFcd3mhtRMLQ==}
@@ -14457,6 +12545,7 @@ packages:
       '@babel/types': 7.20.5
       '@types/babel__core': 7.1.19
       '@types/babel__traverse': 7.17.1
+    dev: false
 
   /babel-plugin-lodash@3.3.4:
     resolution: {integrity: sha512-yDZLjK7TCkWl1gpBeBGmuaDIFhZKmkoL+Cu2MUUjv5VxUZx/z7tBGBCBcQs5RI1Bkz5LLmNdjx7paOyQtMovyg==}
@@ -14760,6 +12849,7 @@ packages:
       '@babel/core': 7.20.5
       babel-plugin-jest-hoist: 28.1.3
       babel-preset-current-node-syntax: 1.0.1(@babel/core@7.20.5)
+    dev: false
 
   /babel-preset-react-app@10.0.1:
     resolution: {integrity: sha512-b0D9IZ1WhhCWkrTXyFuIIgqGzSkRIH5D5AmB0bXbzYAB1OBAwHcUeyWW2LorutLWF5btNo/N7r/cIdmvvKJlYg==}
@@ -15812,10 +13902,6 @@ packages:
     resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
     hasBin: true
 
-  /color2k@2.0.0:
-    resolution: {integrity: sha512-DWX9eXOC4fbJNiuvdH4QSHvvfLWyFo9TuFp7V9OzdsbPAdrWAuYc8qvFP2bIQ/LKh4LrAVnJ6vhiQYPvAHdtTg==}
-    dev: false
-
   /color@4.2.3:
     resolution: {integrity: sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==}
     engines: {node: '>=12.5.0'}
@@ -16196,13 +14282,6 @@ packages:
       ripemd160: 2.0.2
       safe-buffer: 5.2.1
       sha.js: 2.4.11
-
-  /create-react-class@15.7.0:
-    resolution: {integrity: sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng==}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-    dev: true
 
   /create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -16950,10 +15029,6 @@ packages:
   /detect-newline@3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
-
-  /detect-node-es@1.1.0:
-    resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
-    dev: false
 
   /detect-node@2.1.0:
     resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
@@ -18771,6 +16846,7 @@ packages:
       jest-matcher-utils: 28.1.3
       jest-message-util: 28.1.3
       jest-util: 28.1.3
+    dev: false
 
   /expect@29.3.1:
     resolution: {integrity: sha512-gGb1yTgU30Q0O/tQq+z30KBWv24ApkMgFUpvKBkyLUBL68Wv8dHdJxTBZFl/iT8K/bqDHvUYRH6IIN3rToopPA==}
@@ -19255,13 +17331,6 @@ packages:
       inherits: 2.0.4
       readable-stream: 2.3.7
 
-  /focus-lock@0.11.6:
-    resolution: {integrity: sha512-KSuV3ur4gf2KqMNoZx3nXNVhqCkn42GuTYCX4tXPEwf0MjpFQmNMiN6m7dXaUXgIoivL6/65agoUMg4RLS0Vbg==}
-    engines: {node: '>=10'}
-    dependencies:
-      tslib: 2.4.1
-    dev: false
-
   /follow-redirects@1.15.1(debug@3.2.7):
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
@@ -19457,24 +17526,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       map-cache: 0.2.2
-
-  /framer-motion@10.12.16(react-dom@17.0.2)(react@18.2.0):
-    resolution: {integrity: sha512-w/SfWEIWJkYSgRHYBmln7EhcNo31ao8Xexol8lGXf1pR/tlnBtf1HcxoUmEiEh6pacB4/geku5ami53AAQWHMQ==}
-    peerDependencies:
-      react: ^18.0.0
-      react-dom: ^18.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      react-dom: 17.0.2(react@18.2.0)
-      tslib: 2.4.1
-    optionalDependencies:
-      '@emotion/is-prop-valid': 0.8.8
-    dev: true
 
   /framer-motion@10.12.16(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-w/SfWEIWJkYSgRHYBmln7EhcNo31ao8Xexol8lGXf1pR/tlnBtf1HcxoUmEiEh6pacB4/geku5ami53AAQWHMQ==}
@@ -20258,11 +18309,6 @@ packages:
       function-bind: 1.1.1
       has: 1.0.3
       has-symbols: 1.0.3
-
-  /get-nonce@1.0.1:
-    resolution: {integrity: sha512-FJhYRoDaiatfEkUK8HKlicmu/3SGFD51q3itKDGoSTysQJBnfOcxU5GxnhE1E6soB76MbT0MBtnKJuXyAx+96Q==}
-    engines: {node: '>=6'}
-    dev: false
 
   /get-own-enumerable-property-symbols@3.0.2:
     resolution: {integrity: sha512-I0UBV/XOz1XkIJHEUDMZAbzCThU/H8DxmSfmdGcKPnVhu2VfFqr34jr9777IyaTYvxjedWhqVIilEDsCdP5G6g==}
@@ -22040,6 +20086,7 @@ packages:
     dependencies:
       execa: 5.1.1
       p-limit: 3.1.0
+    dev: false
 
   /jest-circus@27.5.1:
     resolution: {integrity: sha512-D95R7x5UtlMA5iBYsOHFFbMD/GVA4R/Kdq15f7xYWUfWHBto9NYRsOvnSauTgdF+ogCpJ4tyKOXhUifxS65gdw==}
@@ -22093,6 +20140,7 @@ packages:
       stack-utils: 2.0.5
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /jest-cli@27.5.1:
     resolution: {integrity: sha512-Hc6HOOwYq4/74/c62dEE3r5elx8wjYqxY0r0G/nFrLDPMFRu6RA/u8qINOIkvhxG7mMQ5EJsOGfRpI8L6eFUVw==}
@@ -22150,6 +20198,7 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
+    dev: false
 
   /jest-config@27.5.1:
     resolution: {integrity: sha512-5sAsjm6tGdsVbW9ahcChPAFCk4IlkQUknH5AvKjuLTSlcO/wCZKyFdn7Rg0EkC+OGgWODEy2hDpWB1PgzH0JNA==}
@@ -22228,6 +20277,7 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /jest-diff@27.5.1:
     resolution: {integrity: sha512-m0NvkX55LDt9T4mctTEgnZk3fmEg3NRYutvMPWM/0iPnkFj2wIeF45O1718cMSOFO1vINkqmxqD8vE37uTEbqw==}
@@ -22268,6 +20318,7 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
       detect-newline: 3.1.0
+    dev: false
 
   /jest-each@27.5.1:
     resolution: {integrity: sha512-1Ff6p+FbhT/bXQnEouYy00bkNSY7OUpfIcmdl8vZ31A1UUaurOLPA8a8BbJOF2RDUElwJhmeaV7LnagI+5UwNQ==}
@@ -22289,6 +20340,7 @@ packages:
       jest-get-type: 28.0.2
       jest-util: 28.1.3
       pretty-format: 28.1.3
+    dev: false
 
   /jest-environment-jsdom@27.5.1:
     resolution: {integrity: sha512-TFBvkTC1Hnnnrka/fUb56atfDtJ9VMZ94JkjTbggl1PEpwrYtUBKMezB3inLmWqQsXYLcMwNoDQwoBTAvFfsfw==}
@@ -22349,6 +20401,7 @@ packages:
       '@types/node': 18.11.17
       jest-mock: 28.1.3
       jest-util: 28.1.3
+    dev: false
 
   /jest-get-type@27.5.1:
     resolution: {integrity: sha512-2KY95ksYSaK7DMBWQn6dQz3kqAf3BB64y2udeG+hv4KfSOb9qwcYQstTJc1KCbsix+wLZWZYN8t7nwX3GOBLRw==}
@@ -22421,6 +20474,7 @@ packages:
       walker: 1.0.8
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
 
   /jest-jasmine2@27.5.1:
     resolution: {integrity: sha512-jtq7VVyG8SqAorDpApwiJJImd0V2wv1xzdheGHRGyuT7gZm6gG47QEskOlzsN1PG/6WNaCo5pmwMHDf3AkG2pQ==}
@@ -22461,6 +20515,7 @@ packages:
     dependencies:
       jest-get-type: 28.0.2
       pretty-format: 28.1.3
+    dev: false
 
   /jest-matcher-utils@27.0.2:
     resolution: {integrity: sha512-Qczi5xnTNjkhcIB0Yy75Txt+Ez51xdhOxsukN7awzq2auZQGPHcQrJ623PZj0ECDEMOk2soxWx05EXdXGd1CbA==}
@@ -22499,15 +20554,6 @@ packages:
       jest-diff: 29.3.1
       jest-get-type: 29.2.0
       pretty-format: 29.3.1
-
-  /jest-matchmedia-mock@1.1.0(jest@28.1.3):
-    resolution: {integrity: sha512-REnJRsOSCMpGAlkxmvVTqEBpregyFVi9MPEH3N83W1yLKzDdNehtCkcdDZduXq74PLtfI+11NyM4zKCK5ynV9g==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      jest: '>=13'
-    dependencies:
-      jest: 28.1.3(@types/node@18.11.17)
-    dev: true
 
   /jest-message-util@27.5.1:
     resolution: {integrity: sha512-rMyFe1+jnyAAf+NHwTclDz0eAaLkVDdKVHHBFWsBWHnnh5YeJMNWWsv7AbFYXfK3oTqvL7VTWkhNLu1jX24D+g==}
@@ -22566,6 +20612,7 @@ packages:
     dependencies:
       '@jest/types': 28.1.3
       '@types/node': 18.11.17
+    dev: false
 
   /jest-pnp-resolver@1.2.2(jest-resolve@27.5.1):
     resolution: {integrity: sha512-olV41bKSMm8BdnuMsewT4jqlZ8+3TCARAXjZGT9jcoSnrfUnRCqnMoF9XEeoWjbzObpqF9dRhHQj0Xb9QdF6/w==}
@@ -22589,6 +20636,7 @@ packages:
         optional: true
     dependencies:
       jest-resolve: 28.1.3
+    dev: false
 
   /jest-regex-util@26.0.0:
     resolution: {integrity: sha512-Gv3ZIs/nA48/Zvjrl34bf+oD76JHiGDUxNOVgUjh3j890sblXryjY4rss71fPtD/njchl6PSE2hIhvyWa1eT0A==}
@@ -22622,6 +20670,7 @@ packages:
       jest-snapshot: 28.1.3
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /jest-resolve@27.5.1:
     resolution: {integrity: sha512-FFDy8/9E6CV83IMbDpcjOhumAQPDyETnU2KZ1O98DwTnz8AOBsW/Xv3GySr1mOZdItLR+zDZ7I/UdTFbgSOVCw==}
@@ -22652,6 +20701,7 @@ packages:
       resolve: 1.22.1
       resolve.exports: 1.1.0
       slash: 3.0.0
+    dev: false
 
   /jest-runner@27.5.1:
     resolution: {integrity: sha512-g4NPsM4mFCOwFKXO4p/H/kWGdJp9V8kURY2lX8Me2drgXqG7rrZAx5kv+5H7wtt/cdFIjhqYx1HrlqWHaOvDaQ==}
@@ -22712,6 +20762,7 @@ packages:
       source-map-support: 0.5.13
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /jest-runtime@27.5.1:
     resolution: {integrity: sha512-o7gxw3Gf+H2IGt8fv0RiyE1+r83FJBRruoA+FXrlHw6xEyBsU8ugA6IPfTdVyA0w8HClpbK+DGJxH59UrNMx8A==}
@@ -22771,6 +20822,7 @@ packages:
       strip-bom: 4.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /jest-serializer@26.6.2:
     resolution: {integrity: sha512-S5wqyz0DXnNJPd/xfIzZ5Xnp1HrJWBczg8mMfMpN78OJ5eDxXyf+Ygld9wX1DnUWbIbhM1YDY95NjR4CBXkb2g==}
@@ -22846,6 +20898,7 @@ packages:
       semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /jest-util@26.6.2:
     resolution: {integrity: sha512-MDW0fKfsn0OI7MS7Euz6h8HNDXVQ0gaM9uW6RjfDmd1DAFcaxX9OqIakHIqhbnmF08Cf2DLDG+ulq8YQQ0Lp0Q==}
@@ -22914,6 +20967,7 @@ packages:
       jest-get-type: 28.0.2
       leven: 3.1.0
       pretty-format: 28.1.3
+    dev: false
 
   /jest-watch-typeahead@1.1.0(jest@27.5.1):
     resolution: {integrity: sha512-Va5nLSJTN7YFtC2jd+7wsoe1pNe5K4ShLux/E5iHEwlB9AxaxmggY7to9KUqKojhaJw3aXqt5WAb4jGPOolpEw==}
@@ -23036,6 +21090,7 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
+    dev: false
 
   /jimp@0.16.1:
     resolution: {integrity: sha512-+EKVxbR36Td7Hfd23wKGIeEyHbxShZDX6L8uJkgVW3ESA9GiTEPK08tG1XI2r/0w5Ch0HyJF5kPqF9K7EmGjaw==}
@@ -23717,13 +21772,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-
-  /lorem-ipsum@1.0.6:
-    resolution: {integrity: sha512-Rx4XH8X4KSDCKAVvWGYlhAfNqdUP5ZdT4rRyf0jjrvWgtViZimDIlopWNfn/y3lGM5K4uuiAoY28TaD+7YKFrQ==}
-    hasBin: true
-    dependencies:
-      minimist: 1.2.6
-    dev: true
 
   /loud-rejection@1.6.0:
     resolution: {integrity: sha512-RPNliZOFkqFumDhvYqOaNY4Uz9oJM2K9tC6JWsJJsNdhuONW4LQHRBpb0qf4pJApVffI5N39SwzWZJuEhfd7eQ==}
@@ -27210,15 +25258,6 @@ packages:
       whatwg-fetch: 3.6.2
     dev: true
 
-  /react-clientside-effect@1.2.6(react@18.2.0):
-    resolution: {integrity: sha512-XGGGRQAKY+q25Lz9a/4EPqom7WRjz3z9R2k4jhVKA/puQFH/5Nt27vFZYql4m4NVNdUvX8PS3O7r/Zzm7cjUlg==}
-    peerDependencies:
-      react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@babel/runtime': 7.20.7
-      react: 18.2.0
-    dev: false
-
   /react-dev-utils@12.0.1(eslint@7.32.0)(typescript@5.0.2)(webpack@5.73.0):
     resolution: {integrity: sha512-84Ivxmr17KjUupyqzFode6xKhjwuEJDROWKJy/BthkL7Wn6NJ8h4WE6k/exAv6ImS+0oZLRRW5j/aINMHyeGeQ==}
     engines: {node: '>=14'}
@@ -27339,17 +25378,6 @@ packages:
       react: 17.0.2
       scheduler: 0.20.2
 
-  /react-dom@17.0.2(react@18.2.0):
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
-    peerDependencies:
-      react: 17.0.2
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 18.2.0
-      scheduler: 0.20.2
-    dev: true
-
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -27393,6 +25421,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.7
       react: 18.2.0
+    dev: false
 
   /react-error-overlay@6.0.11:
     resolution: {integrity: sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==}
@@ -27403,53 +25432,6 @@ packages:
   /react-fast-compare@3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
-
-  /react-fast-compare@3.2.1:
-    resolution: {integrity: sha512-xTYf9zFim2pEif/Fw16dBiXpe0hoy5PxcD8+OwBnTtNLfIm3g6WxhKNurY+6OmdH1u6Ta/W/Vl6vjbYP1MFnDg==}
-    dev: false
-
-  /react-focus-lock@2.9.4(@types/react@18.0.30)(react@18.2.0):
-    resolution: {integrity: sha512-7pEdXyMseqm3kVjhdVH18sovparAzLg5h6WvIx7/Ck3ekjhrrDMEegHSa3swwC8wgfdd7DIdUVRGeiHT9/7Sgg==}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.7
-      '@types/react': 18.0.30
-      focus-lock: 0.11.6
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-clientside-effect: 1.2.6(react@18.2.0)
-      use-callback-ref: 1.3.0(@types/react@18.0.30)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.0.30)(react@18.2.0)
-    dev: false
-
-  /react-frame-component@4.1.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-4PurhctiqnmC1F5prPZ+LdsalH7pZ3SFA5xoc0HBe8mSHctdLLt4Cr2WXfXOoajHBYq/yiipp9zOgx+vy8GiEA==}
-    peerDependencies:
-      prop-types: ^15.5.9
-      react: '>= 16.3'
-      react-dom: '>= 16.3'
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
-
-  /react-frame-component@5.2.3(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-r+h0o3r/uqOLNT724z4CRVkxQouKJvoi3OPfjqWACD30Y87rtEmeJrNZf1WYPGknn1Y8200HAjx7hY/dPUGgmA==}
-    peerDependencies:
-      prop-types: ^15.5.9
-      react: '>= 16.3'
-      react-dom: '>= 16.3'
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: true
 
   /react-helmet@6.1.0(react@18.2.0):
     resolution: {integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==}
@@ -27463,21 +25445,13 @@ packages:
       react-side-effect: 2.1.2(react@18.2.0)
     dev: false
 
-  /react-hook-form@7.43.9(react@18.2.0):
-    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
-    engines: {node: '>=12.22.0'}
-    peerDependencies:
-      react: ^16.8.0 || ^17 || ^18
-    dependencies:
-      react: 18.2.0
-    dev: true
-
   /react-icons@4.4.0(react@18.2.0):
     resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
     peerDependencies:
       react: '*'
     dependencies:
       react: 18.2.0
+    dev: false
 
   /react-inspector@5.1.1(react@17.0.2):
     resolution: {integrity: sha512-GURDaYzoLbW8pMGXwYPDBIv6nqei4kK7LPRZ9q9HCZF54wqXz/dnylBp/kfE9XmekBhHvLDdcYeyIwSrvtOiWg==}
@@ -27512,18 +25486,6 @@ packages:
   /react-lifecycles-compat@3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
 
-  /react-lorem-component@0.13.0(react@18.2.0):
-    resolution: {integrity: sha512-4mWjxmcG/DJJwdxdKwXWyP2N9zohbJg/yYaC+7JffQNrKj3LYDpA/A4u/Dju1v1ZF6Jew2gbFKGb5Z6CL+UNTw==}
-    peerDependencies:
-      react: 16.x
-    dependencies:
-      create-react-class: 15.7.0
-      lorem-ipsum: 1.0.6
-      object-assign: 4.1.1
-      react: 18.2.0
-      seedable-random: 0.0.1
-    dev: true
-
   /react-refresh@0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
@@ -27536,64 +25498,6 @@ packages:
   /react-refresh@0.9.0:
     resolution: {integrity: sha512-Gvzk7OZpiqKSkxsQvO/mbTN1poglhmAV7gR/DdIrRrSMXraRQQlfikRJOr3Nb9GTMPC5kof948Zy6jJZIFtDvQ==}
     engines: {node: '>=0.10.0'}
-
-  /react-remove-scroll-bar@2.3.3(@types/react@18.0.30)(react@18.2.0):
-    resolution: {integrity: sha512-i9GMNWwpz8XpUpQ6QlevUtFjHGqnPG4Hxs+wlIJntu/xcsZVEpJcIV71K3ZkqNy2q3GfgvkD7y6t/Sv8ofYSbw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.30
-      react: 18.2.0
-      react-style-singleton: 2.2.1(@types/react@18.0.30)(react@18.2.0)
-      tslib: 2.4.1
-    dev: false
-
-  /react-remove-scroll@2.5.5(@types/react@18.0.30)(react@18.2.0):
-    resolution: {integrity: sha512-ImKhrzJJsyXJfBZ4bzu8Bwpka14c/fQt0k+cyFp/PBhTfyDnU5hjOtM4AG/0AMyy8oKzOTR0lDgJIM7pYXI0kw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.30
-      react: 18.2.0
-      react-remove-scroll-bar: 2.3.3(@types/react@18.0.30)(react@18.2.0)
-      react-style-singleton: 2.2.1(@types/react@18.0.30)(react@18.2.0)
-      tslib: 2.4.1
-      use-callback-ref: 1.3.0(@types/react@18.0.30)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.0.30)(react@18.2.0)
-    dev: false
-
-  /react-router-dom@6.11.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-JNbKtAeh1VSJQnH6RvBDNhxNwemRj7KxCzc5jb7zvDSKRnPWIFj9pO+eXqjM69gQJ0r46hSz1x4l9y0651DKWw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-    dependencies:
-      '@remix-run/router': 1.6.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.11.2(react@18.2.0)
-    dev: true
-
-  /react-router@6.11.2(react@18.2.0):
-    resolution: {integrity: sha512-74z9xUSaSX07t3LM+pS6Un0T55ibUE/79CzfZpy5wsPDZaea1F8QkrsiyRnA2YQ7LwE/umaydzXZV80iDCPkMg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: '>=16.8'
-    dependencies:
-      '@remix-run/router': 1.6.2
-      react: 18.2.0
-    dev: true
 
   /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.18.6)(@babel/plugin-transform-react-jsx@7.18.6)(@swc/core@1.3.24)(esbuild@0.14.49)(eslint@8.19.0)(react@18.2.0)(typescript@5.0.2):
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
@@ -27707,36 +25611,6 @@ packages:
       invariant: 2.2.4
       shallowequal: 1.1.0
       throttle-debounce: 3.0.1
-    dev: false
-
-  /react-spinners@0.11.0(@types/react@18.0.30)(react-dom@17.0.2)(react@18.2.0):
-    resolution: {integrity: sha512-rDZc0ABWn/M1OryboGsWVmIPg8uYWl0L35jPUhr40+Yg+syVPjeHwvnB7XWaRpaKus3M0cG9BiJA+ZB0dAwWyw==}
-    peerDependencies:
-      react: ^16.0.0 || ^17.0.0
-      react-dom: ^16.0.0 || ^17.0.0
-    dependencies:
-      '@emotion/react': 11.11.0(@types/react@18.0.30)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 17.0.2(react@18.2.0)
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: true
-
-  /react-style-singleton@2.2.1(@types/react@18.0.30)(react@18.2.0):
-    resolution: {integrity: sha512-ZWj0fHEMyWkHzKYUr2Bs/4zU6XLmq9HsgBURm7g5pAVfyn49DgUiNgY2d4lXRlYSiCif9YBGpQleewkcqddc7g==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.30
-      get-nonce: 1.0.1
-      invariant: 2.2.4
-      react: 18.2.0
-      tslib: 2.4.1
     dev: false
 
   /react-syntax-highlighter@15.5.0(react@17.0.2):
@@ -28571,10 +26445,6 @@ packages:
     resolution: {integrity: sha512-M9gnWtn3J0W+UhJOHmBxBTwv8mZCan5i1Himp60t6vvZcor0wr+IM0URKmIglsWJ7bRujNAVVN77fp+uZaWoKg==}
     dev: false
 
-  /seedable-random@0.0.1:
-    resolution: {integrity: sha512-uZWbEfz3BQdBl4QlUPELPqhInGEO1Q6zjzqrTDkd3j7mHaWWJo7h4ydr2g24a2WtTLk3imTLc8mPbBdQqdsbGw==}
-    dev: true
-
   /select-hose@2.0.0:
     resolution: {integrity: sha512-mEugaLK+YfkijB4fx0e6kImuJdCIt2LxCRcbEYPqRGCs4F2ogyfZU5IAZRdjCP8JPq2AtdNoC/Dux63d9Kiryg==}
 
@@ -29017,6 +26887,7 @@ packages:
     dependencies:
       buffer-from: 1.1.2
       source-map: 0.6.1
+    dev: false
 
   /source-map-support@0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
@@ -30845,37 +28716,6 @@ packages:
       punycode: 1.3.2
       querystring: 0.2.0
 
-  /use-callback-ref@1.3.0(@types/react@18.0.30)(react@18.2.0):
-    resolution: {integrity: sha512-3FT9PRuRdbB9HfXhEq35u4oZkvpJ5kuYbpqhCfmiZyReuRgpnhDlbr2ZEnnuS0RrJAPn6l23xjFg9kpDM+Ms7w==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.30
-      react: 18.2.0
-      tslib: 2.4.1
-    dev: false
-
-  /use-sidecar@1.1.2(@types/react@18.0.30)(react@18.2.0):
-    resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.9.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
-      '@types/react': 18.0.30
-      detect-node-es: 1.1.0
-      react: 18.2.0
-      tslib: 2.4.1
-    dev: false
-
   /use@3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
@@ -30947,6 +28787,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.14
       '@types/istanbul-lib-coverage': 2.0.4
       convert-source-map: 1.8.0
+    dev: false
 
   /v8flags@4.0.0:
     resolution: {integrity: sha512-83N0OkTbn6gOjJ2awNuzuK4czeGxwEwBoTqlhBZhnp8o0IJ72mXRQKphj/azwRf3acbDJZYZhbOPEJHd884ELg==}
@@ -31851,6 +29692,7 @@ packages:
     dependencies:
       imurmurhash: 0.1.4
       signal-exit: 3.0.7
+    dev: false
 
   /write-yaml-file@4.2.0:
     resolution: {integrity: sha512-LwyucHy0uhWqbrOkh9cBluZBeNVxzHjDaE9mwepZG3n3ZlbM4v3ndrFw51zW/NXYFFqP+QWZ72ihtLWTh05e4Q==}
@@ -32035,6 +29877,7 @@ packages:
   /yargs-parser@21.0.1:
     resolution: {integrity: sha512-9BK1jFpLzJROCI5TzwZL/TU4gqjK5xiHV/RfWLOahrjAko/e4DJkRDZQXfvqAsiZzzYhgAzbgz6lg48jcm4GLg==}
     engines: {node: '>=12'}
+    dev: false
 
   /yargs@15.4.1:
     resolution: {integrity: sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==}
@@ -32075,6 +29918,7 @@ packages:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.0.1
+    dev: false
 
   /yauzl@2.10.0:
     resolution: {integrity: sha512-p4a9I6X6nu6IhoGmBqAcbJy1mlC4j27vEPZX9F4L4/vZT3Lyq1VkFHw/V/PUcB9Buo+DG3iHkT0x3Qya58zc3g==}

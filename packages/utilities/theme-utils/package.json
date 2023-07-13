@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "@chakra-ui/styled-system": "workspace:*",
-    "@chakra-ui/theme": "workspace:*",
     "lodash.mergewith": "4.6.2",
     "@chakra-ui/shared-utils": "workspace:*"
   },

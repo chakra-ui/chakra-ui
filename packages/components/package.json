@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@chakra-ui/styled-system": "workspace:*",
-    "@chakra-ui/system": "workspace:*",
     "@chakra-ui/hooks": "workspace:*"
   },
   "peerDependencies": {
