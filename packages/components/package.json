@@ -1,0 +1,75 @@
+{
+  "name": "@chakra-ui/react",
+  "version": "2.7.0",
+  "description": "Responsive and accessible React UI components built with React and Emotion",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@chakra-ui/styled-system": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/components/react"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://storybook.chakra-ui.com"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.12.16",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "clean-package": "2.2.0"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
+  },
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
+  }
+}
