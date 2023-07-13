@@ -480,7 +480,7 @@ importers:
         version: link:../legacy/hooks
       '@chakra-ui/styled-system':
         specifier: workspace:*
-        version: link:../core/styled-system
+        version: link:../styled-system
     devDependencies:
       '@emotion/react':
         specifier: ^11.11.0
@@ -500,40 +500,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-
-  packages/core/styled-system:
-    dependencies:
-      '@chakra-ui/shared-utils':
-        specifier: workspace:*
-        version: link:../../utilities/shared-utils
-      csstype:
-        specifier: ^3.0.11
-        version: 3.1.0
-      lodash.mergewith:
-        specifier: 4.6.2
-        version: 4.6.2
-    devDependencies:
-      '@chakra-ui/breakpoint-utils':
-        specifier: workspace:*
-        version: link:../../utilities/breakpoint-utils
-      '@chakra-ui/merge-utils':
-        specifier: workspace:*
-        version: link:../../utilities/merge-utils
-      '@chakra-ui/object-utils':
-        specifier: workspace:*
-        version: link:../../utilities/object-utils
-      '@emotion/react':
-        specifier: ^11.11.0
-        version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
-      '@emotion/styled':
-        specifier: ^11.11.0
-        version: 11.11.0(@emotion/react@11.11.0)(@types/react@18.0.30)(react@18.2.0)
-      '@types/lodash.mergewith':
-        specifier: 4.6.7
-        version: 4.6.7
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
 
   packages/hooks/context:
     devDependencies:
@@ -835,6 +801,40 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
 
+  packages/styled-system:
+    dependencies:
+      '@chakra-ui/shared-utils':
+        specifier: workspace:*
+        version: link:../utilities/shared-utils
+      csstype:
+        specifier: ^3.0.11
+        version: 3.1.0
+      lodash.mergewith:
+        specifier: 4.6.2
+        version: 4.6.2
+    devDependencies:
+      '@chakra-ui/breakpoint-utils':
+        specifier: workspace:*
+        version: link:../utilities/breakpoint-utils
+      '@chakra-ui/merge-utils':
+        specifier: workspace:*
+        version: link:../utilities/merge-utils
+      '@chakra-ui/object-utils':
+        specifier: workspace:*
+        version: link:../utilities/object-utils
+      '@emotion/react':
+        specifier: ^11.11.0
+        version: 11.11.0(@types/react@18.0.30)(react@18.2.0)
+      '@emotion/styled':
+        specifier: ^11.11.0
+        version: 11.11.0(@emotion/react@11.11.0)(@types/react@18.0.30)(react@18.2.0)
+      '@types/lodash.mergewith':
+        specifier: 4.6.7
+        version: 4.6.7
+      clean-package:
+        specifier: 2.2.0
+        version: 2.2.0
+
   packages/utilities/breakpoint-utils:
     dependencies:
       '@chakra-ui/shared-utils':
@@ -914,7 +914,7 @@ importers:
         version: link:../shared-utils
       '@chakra-ui/styled-system':
         specifier: workspace:*
-        version: link:../../core/styled-system
+        version: link:../../styled-system
       lodash.mergewith:
         specifier: 4.6.2
         version: 4.6.2
@@ -3645,7 +3645,7 @@ packages:
     resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.11
 
   /@babel/runtime@7.20.7:
     resolution: {integrity: sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==}
