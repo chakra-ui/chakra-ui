@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/utils"
+import { isObject } from "../common"
 
 export const breakpoints = Object.freeze([
   "base",

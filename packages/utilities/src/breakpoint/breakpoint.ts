@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/utils"
+import { isObject } from "../common"
 
 function getLastItem<T>(array: T[]): T | undefined {
   const length = array == null ? 0 : array.length
