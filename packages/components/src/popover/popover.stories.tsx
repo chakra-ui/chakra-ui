@@ -15,6 +15,7 @@ import {
 } from "."
 import { Button, ButtonGroup } from "../button"
 import { chakra } from "../system"
+import { useState } from "react"
 
 export default {
   title: "Components / Overlay / Popover - Click",
@@ -133,7 +134,7 @@ export const Arrow = () => (
 )
 
 export function ControlledUsage() {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const open = () => setIsOpen(!isOpen)
   const close = () => setIsOpen(false)
   return (
@@ -171,7 +172,7 @@ export function ControlledUsage() {
 }
 
 const Interval = () => {
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = useState(0)
   useInterval(() => setValue((v) => v + 1), 1000)
   return (
     <span style={{ fontWeight: "bold", color: "tomato", padding: 4 }}>
@@ -218,7 +219,7 @@ export function WithLazyPopoverMounted() {
 
 export function WithPopoverAnchor() {
   const [isEditing, setIsEditing] = useBoolean()
-  const [color, setColor] = React.useState("red")
+  const [color, setColor] = useState("red")
 
   return (
     <Popover

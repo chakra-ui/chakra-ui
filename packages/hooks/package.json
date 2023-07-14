@@ -29,6 +29,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
+    "framesync": "6.1.2",
     "@zag-js/element-size": "0.11.2",
     "@chakra-ui/utils": "workspace:*",
     "compute-scroll-into-view": "1.0.20",

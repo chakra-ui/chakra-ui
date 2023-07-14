@@ -1,9 +1,8 @@
 import { usePrevious } from "@chakra-ui/hooks"
-import { cx } from "@chakra-ui/utils"
+import { cssVar, cx } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
 import {
   chakra,
-  cssVar,
   forwardRef,
   HTMLChakraProps,
   omitThemingProps,

@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import { Box, Heading, Highlight, Mark, Text, useHighlight } from "."
 
 export default {
@@ -77,7 +78,7 @@ export const MarketingExample = () => {
             />
           </Mark>
         ) : (
-          <React.Fragment key={index}>{chunk.text}</React.Fragment>
+          <Fragment key={index}>{chunk.text}</Fragment>
         )
       })}
     </Heading>

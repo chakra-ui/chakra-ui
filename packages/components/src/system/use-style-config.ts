@@ -5,8 +5,8 @@ import {
 } from "@chakra-ui/styled-system"
 import { mergeThemeOverride } from "@chakra-ui/theme-utils"
 import {
+  compact,
   Dict,
-  filterUndefined,
   memoizedGet as get,
   mergeWith,
   omit,
@@ -34,7 +34,7 @@ function useStyleConfigImpl(
   const mergedProps = mergeWith(
     { theme, colorMode },
     styleConfig?.defaultProps ?? {},
-    filterUndefined(omit(rest, ["children"])),
+    compact(omit(rest, ["children"])),
   )
 
   /**

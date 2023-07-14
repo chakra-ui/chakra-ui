@@ -20,6 +20,7 @@ import {
 import { Button } from "../button"
 import { Portal } from "../portal"
 import { ChakraProvider } from "../provider"
+import { useState } from "react"
 
 const words = [
   "About Visual Studio Code",
@@ -338,7 +339,7 @@ const CompWithTwoMenus: React.FC<{
   onClose: () => void
   onBtnClick: () => void
 }> = (props) => {
-  const [active, setActive] = React.useState<string | undefined>(undefined)
+  const [active, setActive] = useState<string | undefined>(undefined)
 
   return (
     <>

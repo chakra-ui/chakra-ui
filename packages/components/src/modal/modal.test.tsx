@@ -14,6 +14,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "."
+import { useState, useRef } from "react"
 
 test("should have no accessibility violations", async () => {
   const { baseElement } = render(
@@ -137,8 +138,8 @@ describe("closing the modal", () => {
 
 test("focuses the initial focus ref when opened", () => {
   const Component = () => {
-    const [isOpen, setIsOpen] = React.useState(false)
-    const inputRef = React.useRef(null)
+    const [isOpen, setIsOpen] = useState(false)
+    const inputRef = useRef(null)
     return (
       <>
         <button
@@ -177,8 +178,8 @@ test("focuses the initial focus ref when opened", () => {
 
 test("should return focus to button when closed", async () => {
   const Component = () => {
-    const [isOpen, setIsOpen] = React.useState(false)
-    const buttonRef = React.useRef(null)
+    const [isOpen, setIsOpen] = useState(false)
+    const buttonRef = useRef(null)
     return (
       <>
         <button

@@ -1,5 +1,5 @@
 import { render } from "@chakra-ui/test-utils"
-import { chakra } from "."
+import { chakra } from ".."
 
 const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {})
 

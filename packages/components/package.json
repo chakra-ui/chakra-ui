@@ -40,9 +40,11 @@
     "@zag-js/focus-visible": "0.11.2",
     "aria-hidden": "1.2.3",
     "react-focus-lock": "2.9.5",
+    "react-fast-compare": "3.2.2",
     "react-remove-scroll": "2.5.6",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/hooks": "workspace:*"
   },
   "devDependencies": {

@@ -6,8 +6,8 @@ import {
   waitFor,
   hooks,
 } from "@chakra-ui/test-utils"
-// import { ChakraProvider, extendTheme } from "@chakra-ui/react"
 import { Box, Badge, Container, Divider, Flex, Stack, useHighlight } from "."
+import { useEffect, useState } from "react"
 
 describe("<Box />", () => {
   test("passes a11y test", async () => {
@@ -91,7 +91,7 @@ describe("<Stack />", () => {
     onUnmount?: (v: string) => void
   }
   const Fruit = ({ name, onUnmount }: FruitProps) => {
-    React.useEffect(() => {
+    useEffect(() => {
       return () => {
         if (onUnmount) onUnmount(name)
       }
@@ -119,7 +119,7 @@ describe("<Stack />", () => {
   test("renders list of items with provided keys when cloning children", async () => {
     const unMountMock = jest.fn()
     const Wrapper = ({ data }: { data: Record<string, any>[] }) => {
-      const [fruits, setFruits] = React.useState(data)
+      const [fruits, setFruits] = useState(data)
 
       return (
         <>

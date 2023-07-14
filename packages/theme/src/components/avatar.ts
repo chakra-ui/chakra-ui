@@ -1,9 +1,8 @@
 import {
   createMultiStyleConfigHelpers,
-  cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { avatarAnatomy as parts } from "@chakra-ui/utils"
+import { cssVar, avatarAnatomy as parts } from "@chakra-ui/utils"
 import themeSizes from "../foundations/sizes"
 import { isDarkColor } from "../utils/color"
 import { runIfFn } from "../utils/run-if-fn"

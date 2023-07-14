@@ -481,6 +481,9 @@ importers:
       '@chakra-ui/styled-system':
         specifier: workspace:*
         version: link:../styled-system
+      '@chakra-ui/theme':
+        specifier: workspace:*
+        version: link:../theme
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../utilities
@@ -493,6 +496,9 @@ importers:
       aria-hidden:
         specifier: 1.2.3
         version: 1.2.3
+      react-fast-compare:
+        specifier: 3.2.2
+        version: 3.2.2
       react-focus-lock:
         specifier: 2.9.5
         version: 2.9.5(@types/react@18.0.30)(react@18.2.0)
@@ -563,6 +569,9 @@ importers:
       copy-to-clipboard:
         specifier: 3.3.3
         version: 3.3.3
+      framesync:
+        specifier: 6.1.2
+        version: 6.1.2
     devDependencies:
       clean-package:
         specifier: 2.2.0
@@ -601,9 +610,6 @@ importers:
       csstype:
         specifier: ^3.0.11
         version: 3.1.0
-      lodash.mergewith:
-        specifier: 4.6.2
-        version: 4.6.2
     devDependencies:
       '@emotion/react':
         specifier: ^11.11.0
@@ -25372,6 +25378,10 @@ packages:
 
   /react-fast-compare@3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
+  /react-fast-compare@3.2.2:
+    resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
     dev: false
 
   /react-focus-lock@2.9.5(@types/react@18.0.30)(react@18.2.0):

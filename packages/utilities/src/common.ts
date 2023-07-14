@@ -1,8 +1,11 @@
 export const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
 
-function isDev() {
+export function isDev() {
   return process.env.NODE_ENV !== "production"
 }
+
+export const isString = (value: any): value is string =>
+  typeof value === "string"
 
 export function isObject(value: any): value is Record<string, any> {
   const type = typeof value

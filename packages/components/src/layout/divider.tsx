@@ -35,7 +35,7 @@ export const Divider = forwardRef<DividerProps, "hr">(function Divider(
     ...rest
   } = omitThemingProps(props)
 
-  const dividerStyles = {
+  const dividerStyles: Record<string, any> = {
     vertical: {
       borderLeftWidth:
         borderLeftWidth || borderRightWidth || borderWidth || "1px",
