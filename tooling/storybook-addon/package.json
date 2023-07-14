@@ -38,11 +38,10 @@
     }
   },
   "scripts": {
-    "build": "tsup --dts",
+    "build": "tsup",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup"
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -67,13 +66,15 @@
     "@storybook/components": "^7.0.12",
     "@storybook/manager-api": "^7.0.12",
     "@storybook/preview-api": "^7.0.12",
+    "@storybook/types": "^7.0.24",
     "react": "^18.0.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
+    "@storybook/components": ">=7.0.12",
     "@storybook/manager-api": ">=7.0.12",
     "@storybook/preview-api": ">=7.0.12",
-    "@storybook/components": ">=7.0.12",
+    "@storybook/types": ">=7.0.24",
     "react": ">=16.8.x"
   },
   "peerDependenciesMeta": {
