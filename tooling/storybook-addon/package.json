@@ -74,6 +74,7 @@
     "@storybook/components": ">=7.0.12",
     "@storybook/manager-api": ">=7.0.12",
     "@storybook/preview-api": ">=7.0.12",
+    "@storybook/types": ">=7.0.24",
     "react": ">=16.8.x"
   },
   "peerDependenciesMeta": {
