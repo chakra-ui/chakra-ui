@@ -11,17 +11,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@chakra-ui/styled-system": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*"
-  },
-  "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "framer-motion": ">=4.0.0",
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "MIT",
   "homepage": "https://chakra-ui.com/",
@@ -46,13 +35,40 @@
     "title": "Chakra UI",
     "url": "https://storybook.chakra-ui.com"
   },
+  "dependencies": {
+    "@popperjs/core": "2.11.8",
+    "@zag-js/focus-visible": "0.11.2",
+    "aria-hidden": "1.2.3",
+    "react-focus-lock": "2.9.5",
+    "react-remove-scroll": "2.5.6",
+    "@chakra-ui/styled-system": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*"
+  },
   "devDependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@tanstack/react-table": "8.9.3",
+    "@testing-library/react": "14.0.0",
+    "@testing-library/react-hooks": "8.0.1",
     "framer-motion": "^10.12.16",
+    "jest-matchmedia-mock": "1.1.0",
+    "react-spinners": "0.13.8",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-frame-component": "5.2.6",
+    "react-lorem-component": "0.13.0",
+    "react-hook-form": "7.45.1",
+    "react-icons": "4.10.1",
+    "react-router-dom": "6.14.1",
     "clean-package": "2.2.0"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "scripts": {
     "build": "tsup src --dts",

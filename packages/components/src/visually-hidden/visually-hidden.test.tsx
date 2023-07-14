@@ -1,6 +1,5 @@
-import * as React from "react"
 import { render, testA11y } from "@chakra-ui/test-utils"
-import { VisuallyHidden } from "../src"
+import { VisuallyHidden } from "."
 
 test("should render correctly", async () => {
   const { getByText } = render(<VisuallyHidden>Click me</VisuallyHidden>)

@@ -1,7 +1,6 @@
-import * as React from "react"
 import { useBoolean } from "@chakra-ui/hooks"
 
-import { Collapse, CollapseProps } from "../src"
+import { Collapse, CollapseProps } from "."
 
 export default {
   title: "Components / Transition / Collapse",

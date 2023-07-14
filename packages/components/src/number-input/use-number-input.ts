@@ -1,14 +1,17 @@
-import { useCounter, UseCounterProps } from "@chakra-ui/counter"
-import { useEventListener } from "@chakra-ui/react-use-event-listener"
-import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
-import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
-import { InputDOMAttributes, PropGetter } from "@chakra-ui/react-types"
+import {
+  UseCounterProps,
+  mergeRefs,
+  useAttributeObserver,
+  useCallbackRef,
+  useCounter,
+  useEventListener,
+  useSafeLayoutEffect,
+  useSpinner,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
+import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { useCallback, useMemo, useRef, useState } from "react"
-import { useAttributeObserver } from "./use-attr-observer"
-import { useSpinner } from "./use-spinner"
+import { InputDOMAttributes, PropGetter } from "../shared/types"
 
 const FLOATING_POINT_REGEX = /^[Ee0-9+\-.]$/
 

@@ -1,14 +1,14 @@
+import { cx } from "@chakra-ui/utils"
+import { createContext } from "../shared/context"
 import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  ThemingProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   omitThemingProps,
-  ThemingProps,
   useMultiStyleConfig,
-  SystemStyleObject,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { createContext } from "@chakra-ui/react-context"
+} from "../system"
 
 const [TableStylesProvider, useTableStyles] = createContext<
   Record<string, SystemStyleObject>

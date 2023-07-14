@@ -1,17 +1,17 @@
 import { AnimatePresence, Variants } from "framer-motion"
-import { Portal, PortalProps } from "@chakra-ui/portal"
+import { useSyncExternalStore } from "react"
+import { Portal, PortalProps } from "../portal"
+import { createContext } from "../shared/context"
 import { ToastComponent, ToastComponentProps } from "./toast.component"
+import { toastStore } from "./toast.store"
 import type {
   CloseAllToastsOptions,
   ToastId,
   ToastMessage,
   ToastOptions,
 } from "./toast.types"
-import type { UseToastOptions } from "./use-toast"
-import { toastStore } from "./toast.store"
 import { getToastListStyle } from "./toast.utils"
-import { useSyncExternalStore } from "react"
-import { createContext } from "@chakra-ui/react-context"
+import type { UseToastOptions } from "./use-toast"
 
 export interface ToastMethods {
   /**

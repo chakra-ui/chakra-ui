@@ -1,6 +1,6 @@
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
-import { Textarea } from "../src"
+import { useState } from "react"
+import { Textarea } from "."
+import { chakra } from "../system"
 
 export default {
   title: "Components / Forms / Textarea",
@@ -52,7 +52,7 @@ export const withSizes = () => (
 )
 
 export const Controlled = () => {
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = useState("")
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value)

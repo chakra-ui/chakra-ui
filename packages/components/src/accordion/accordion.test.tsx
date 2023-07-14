@@ -1,4 +1,3 @@
-import * as React from "react"
 import { focus, render, testA11y, screen } from "@chakra-ui/test-utils"
 import { Accordion, AccordionButton, AccordionItem, AccordionPanel } from "."
 

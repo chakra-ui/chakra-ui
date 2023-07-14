@@ -1,13 +1,7 @@
-import * as React from "react"
-import { chakra } from "@chakra-ui/system"
-import { Stack, Wrap, SimpleGrid, Container, WrapItem } from "@chakra-ui/layout"
-import {
-  useRadio,
-  Radio,
-  useRadioGroup,
-  RadioGroup,
-  UseRadioProps,
-} from "../src"
+import { useState } from "react"
+import { Radio, RadioGroup, UseRadioProps, useRadio, useRadioGroup } from "."
+import { Container, SimpleGrid, Stack, Wrap, WrapItem } from "../layout"
+import { chakra } from "../system"
 
 export default {
   title: "Components / Forms / Radio",
@@ -45,7 +39,7 @@ export const WithSizes = () => {
 }
 
 export const _RadioGroup = () => {
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = useState("")
   return (
     <RadioGroup value={value} onChange={setValue}>
       <Stack>

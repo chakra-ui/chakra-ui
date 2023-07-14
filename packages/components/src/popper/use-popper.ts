@@ -1,5 +1,4 @@
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { PropGetter } from "@chakra-ui/react-types"
+import { mergeRefs } from "@chakra-ui/hooks"
 import {
   createPopper,
   Instance,
@@ -7,6 +6,7 @@ import {
   VirtualElement,
 } from "@popperjs/core"
 import { useCallback, useEffect, useRef } from "react"
+import { PropGetter } from "../shared/types"
 import * as customModifiers from "./modifiers"
 import { getPopperPlacement, PlacementWithLogical } from "./popper.placement"
 import { cssVars, getEventListenerOptions } from "./utils"

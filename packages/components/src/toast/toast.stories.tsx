@@ -1,11 +1,12 @@
-import * as React from "react"
 import { theme as base } from "@chakra-ui/theme"
-import { useToast, createStandaloneToast, ToastId } from "../src"
-import { Button, ButtonGroup } from "@chakra-ui/button"
-import { chakra, useColorMode } from "@chakra-ui/system"
-import { Alert } from "@chakra-ui/alert"
-import { Text } from "@chakra-ui/layout"
+import { useToast, createStandaloneToast, ToastId } from "."
+import { Button, ButtonGroup } from "../button"
+import { chakra } from "../system"
+import { Alert } from "../alert"
+import { Text } from "../layout"
 import { useLatestRef } from "@chakra-ui/hooks"
+import { useColorMode } from "../color-mode"
+import React, { useState, useEffect } from "react"
 
 export default {
   title: "Components / Feedback / Toast",
@@ -269,11 +270,11 @@ export const UseToastWithCustomContainerStyle = () => {
 }
 
 export const useToastCustomRenderUpdate = () => {
-  const [id, setId] = React.useState<ToastId | null>(null)
+  const [id, setId] = useState<ToastId | null>(null)
   const toast = useToast()
   const latestToastRef = useLatestRef(toast)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (id) {
       const timeout = setTimeout(() => {
         latestToastRef.current.update(id, {

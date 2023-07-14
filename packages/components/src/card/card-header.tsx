@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/shared-utils"
-import { forwardRef, HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils"
+import { forwardRef, HTMLChakraProps, chakra } from "../system"
 import { useCardStyles } from "./card-context"
 
 export interface CardHeaderProps extends HTMLChakraProps<"div"> {}

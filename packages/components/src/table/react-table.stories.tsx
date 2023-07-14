@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-key */
-import * as React from "react"
 import {
   flexRender,
   getCoreRowModel,
@@ -7,9 +6,9 @@ import {
   type ColumnDef,
   type RowData,
 } from "@tanstack/react-table"
-import { Button, ButtonGroup, IconButton } from "@chakra-ui/button"
-import { StarIcon } from "@chakra-ui/icons"
-import { Table, Tbody, Td, Th, Thead, Tr } from "../src"
+import { Button, ButtonGroup, IconButton } from "../button"
+import { LuStar } from "react-icons/lu"
+import { Table, Tbody, Td, Th, Thead, Tr } from "."
 
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -51,7 +50,7 @@ const columns: ColumnDef<Data>[] = [
           Open {row.original["col1"]}
         </Button>
         <IconButton
-          icon={<StarIcon color="yellow.500" />}
+          icon={<LuStar color="yellow.500" />}
           aria-label="Add to favorites"
           variant="outline"
         />

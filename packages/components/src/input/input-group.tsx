@@ -1,5 +1,7 @@
-import { createContext } from "@chakra-ui/react-context"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { compact, cx } from "@chakra-ui/utils"
+import { cloneElement } from "react"
+import { getValidChildren } from "../shared/children"
+import { createContext } from "../shared/context"
 import {
   chakra,
   forwardRef,
@@ -8,10 +10,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { compact } from "@chakra-ui/object-utils"
-import { cloneElement } from "react"
+} from "../system"
 
 const [InputGroupStylesProvider, useInputGroupStyles] = createContext<
   Record<string, SystemStyleObject>

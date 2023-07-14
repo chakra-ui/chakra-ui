@@ -1,10 +1,10 @@
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
   SystemStyleObject,
   chakra,
   forwardRef,
-} from "@chakra-ui/system"
+} from "../system"
 import { useAlertContext, useAlertStyles } from "./alert-context"
 
 export interface AlertDescriptionProps extends HTMLChakraProps<"div"> {}

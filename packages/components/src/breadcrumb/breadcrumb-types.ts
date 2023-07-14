@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/system"
+import { SystemStyleObject } from "../system"
 
 export interface BreadcrumbOptions {
   /**

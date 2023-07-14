@@ -1,5 +1,4 @@
-import * as React from "react"
-import { Box, Flex } from "../src"
+import { Box, Flex } from "."
 
 export default {
   title: "Components / Layout / Flex",

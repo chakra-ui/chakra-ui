@@ -1,7 +1,6 @@
 import { testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
 import { Md3DRotation } from "react-icons/md"
-import { Icon } from "../src"
+import { Icon } from "."
 
 it("passes a11y test", async () => {
   await testA11y(<Icon />)

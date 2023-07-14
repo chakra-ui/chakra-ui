@@ -1,22 +1,23 @@
+import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
+import { theme } from "@chakra-ui/theme"
+import { pick } from "@chakra-ui/utils"
+import { Meta, StoryFn } from "@storybook/react"
+import { motion } from "framer-motion"
+import { useState } from "react"
 import {
-  ArrowForwardIcon,
-  ChevronDownIcon,
-  EmailIcon,
-  PhoneIcon,
-  SearchIcon,
-} from "@chakra-ui/icons"
-import { Container, HStack, Stack } from "@chakra-ui/layout"
-import * as React from "react"
-import { FaFacebook, FaTwitter } from "react-icons/fa"
+  FaArrowRight,
+  FaChevronDown,
+  FaEnvelope,
+  FaFacebook,
+  FaPhone,
+  FaSearch,
+  FaTwitter,
+} from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
-import { motion } from "framer-motion"
-import { Meta, StoryFn } from "@storybook/react"
-import { ThemingProps } from "@chakra-ui/system"
-import { theme } from "@chakra-ui/theme"
-import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
-import { pick } from "@chakra-ui/utils"
-import { Button, ButtonGroup, IconButton } from "../src"
+import { Button, ButtonGroup, IconButton } from "."
+import { Container, HStack, Stack } from "../layout"
+import { ThemingProps } from "../system"
 
 export default {
   title: "Components / Forms / Button",
@@ -102,14 +103,10 @@ export const WithSizes = () => (
 
 export const WithIcon = () => (
   <Stack direction="row" spacing={4}>
-    <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
+    <Button leftIcon={<FaEnvelope />} colorScheme="teal" variant="solid">
       Email
     </Button>
-    <Button
-      rightIcon={<ArrowForwardIcon />}
-      colorScheme="teal"
-      variant="outline"
-    >
+    <Button rightIcon={<FaArrowRight />} colorScheme="teal" variant="outline">
       Call us
     </Button>
   </Stack>
@@ -205,16 +202,16 @@ export const CustomComposition = () => (
 
 export const iconButton = () => (
   <Stack direction="row">
-    <IconButton aria-label="Search database" icon={<SearchIcon />} />
+    <IconButton aria-label="Search database" icon={<FaSearch />} />
 
     <IconButton
       colorScheme="blue"
       aria-label="Search database"
-      icon={<SearchIcon />}
+      icon={<FaSearch />}
     />
 
     <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
-      <PhoneIcon />
+      <FaPhone />
     </IconButton>
   </Stack>
 )
@@ -233,23 +230,23 @@ export const WithHorizontalAttachedButtons = () => (
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"
-      icon={<ChevronDownIcon />}
+      icon={<FaChevronDown />}
     />
   </ButtonGroup>
 )
 
 export const WithVerticalAttachedButtons = () => (
   <ButtonGroup size="lg" orientation="vertical" isAttached variant="outline">
-    <IconButton fontSize="2xl" aria-label="Email Santa" icon={<EmailIcon />} />
+    <IconButton fontSize="2xl" aria-label="Email Santa" icon={<FaEnvelope />} />
     <IconButton
       fontSize="2xl"
       aria-label="Call the Grinch"
-      icon={<PhoneIcon />}
+      icon={<FaPhone />}
     />
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"
-      icon={<ChevronDownIcon />}
+      icon={<FaChevronDown />}
     />
   </ButtonGroup>
 )
@@ -279,7 +276,7 @@ const BG_GRADIENT_SOFT = `linear-gradient(to right, #fa8080, #F40000)`
 const BG_GRADIENT_SOFT_REVERSED = `linear-gradient(to right, #F40000, #fa8080)`
 
 export const WithMotion = () => {
-  const [binary, setBinary] = React.useState(false)
+  const [binary, setBinary] = useState(false)
   return (
     <>
       <Button onClick={() => setBinary((binary) => !binary)}>

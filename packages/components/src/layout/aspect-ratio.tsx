@@ -1,11 +1,5 @@
-import {
-  chakra,
-  forwardRef,
-  ResponsiveValue,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx, mapResponsive } from "@chakra-ui/utils"
+import { HTMLChakraProps, ResponsiveValue, chakra, forwardRef } from "../system"
 
 import { Children } from "react"
 

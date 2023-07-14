@@ -1,5 +1,4 @@
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import { chakra } from "../system"
 
 export * from "./menu.stories"
 

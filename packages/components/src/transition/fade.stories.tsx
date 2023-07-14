@@ -1,6 +1,5 @@
 import { useBoolean } from "@chakra-ui/hooks"
-import * as React from "react"
-import { Fade, FadeProps } from "../src/fade"
+import { Fade, FadeProps } from "./fade"
 
 export default {
   title: "Components / Transition / Fade",

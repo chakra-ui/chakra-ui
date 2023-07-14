@@ -1,7 +1,6 @@
-import { ThemeProvider } from "@chakra-ui/system"
-import React from "react"
+import { ThemeProvider } from "../system"
 import { renderToStaticMarkup } from "react-dom/server"
-import { useBreakpointValue } from "../src"
+import { useBreakpointValue } from "."
 import { theme } from "./test-data"
 
 beforeEach(() => {

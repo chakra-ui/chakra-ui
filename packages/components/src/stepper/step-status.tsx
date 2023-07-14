@@ -1,4 +1,4 @@
-import { runIfFn } from "@chakra-ui/shared-utils"
+import { runIfFn } from "@chakra-ui/utils"
 import { StepContext, StepStatusType, useStepContext } from "./step-context"
 
 type MaybeRenderProp =

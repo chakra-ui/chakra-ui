@@ -1,12 +1,12 @@
-import * as React from "react"
+import { useState } from "react"
 import {
   PinInput,
+  PinInputDescendantsProvider,
   PinInputField,
+  PinInputProvider,
   usePinInput,
   usePinInputField,
-  PinInputProvider,
-  PinInputDescendantsProvider,
-} from "../src"
+} from "."
 
 export default {
   title: "Components / Forms / PinInput",
@@ -69,7 +69,7 @@ export const Sizes = () => (
 )
 
 export const Controlled = () => {
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = useState("")
 
   const handleChange = (value: string) => {
     setValue(value)

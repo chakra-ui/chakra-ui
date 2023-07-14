@@ -1,7 +1,7 @@
-import { SystemStyleObject } from "@chakra-ui/system"
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "../shared/context"
+import { Spinner } from "../spinner"
+import { SystemStyleObject } from "../system"
 import { CheckIcon, InfoIcon, WarningIcon } from "./icons"
-import { Spinner } from "@chakra-ui/spinner"
 
 export const [AlertProvider, useAlertContext] = createContext<AlertContext>({
   name: "AlertContext",

@@ -1,5 +1,4 @@
-import * as React from "react"
-import { AspectRatio, Box } from "../src"
+import { AspectRatio, Box } from "."
 
 export default {
   title: "Components / Layout / AspectRatio",

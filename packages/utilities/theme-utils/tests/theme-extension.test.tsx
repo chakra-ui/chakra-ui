@@ -1,4 +1,4 @@
-import { extendTheme, mergeThemeOverride, ThemeOverride } from "../src"
+import { extendTheme, mergeThemeOverride, ThemeOverride } from "."
 
 describe("Theme Extension", () => {
   it("should be backwards compatible", () => {

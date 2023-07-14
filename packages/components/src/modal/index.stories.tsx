@@ -1,5 +1,4 @@
-import { PortalManager } from "@chakra-ui/portal"
-import * as React from "react"
+import { PortalManager } from "../portal"
 
 export * from "./modal.stories"
 export * from "./drawer.stories"

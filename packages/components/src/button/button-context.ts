@@ -1,5 +1,5 @@
-import { createContext } from "@chakra-ui/react-context"
-import { ThemingProps } from "@chakra-ui/system"
+import { createContext } from "../shared/context"
+import { ThemingProps } from "../system"
 
 export interface ButtonGroupContext extends ThemingProps<"Button"> {
   /**

@@ -1,4 +1,4 @@
-import { callAll, cx } from "@chakra-ui/shared-utils"
+import { callAll, cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
   PropsOf,
@@ -6,16 +6,16 @@ import {
   ThemingProps,
   chakra,
   forwardRef,
-  keyframes,
   omitThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { cloneElement, useMemo } from "react"
 import { useCheckboxGroupContext } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
 import { useInitialAnimationState } from "./use-initial-animation-state"
+import { keyframes } from "@emotion/react"
 
 const controlStyles: SystemStyleObject = {
   display: "inline-flex",

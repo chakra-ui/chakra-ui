@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react"
-import createDescendantContext from "../src"
+import { useEffect, useState } from "react"
+import createDescendantContext from "."
 
 export default {
   title: "System / Descendants / NumberInput",
@@ -16,7 +16,7 @@ const [
 function NumberInput({ children }: { children?: React.ReactNode }) {
   const descendants = useDescendants()
 
-  React.useEffect(() => {
+  useEffect(() => {
     descendants.first()?.node.focus()
   }, [descendants])
 
@@ -26,7 +26,7 @@ function NumberInput({ children }: { children?: React.ReactNode }) {
 }
 
 function Input() {
-  const [focused, setFocused] = React.useState(false)
+  const [focused, setFocused] = useState(false)
   const { register, index, descendants } = useDescendant()
 
   return (

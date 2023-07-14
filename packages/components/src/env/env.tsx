@@ -1,4 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { createContext, useContext, useMemo, useReducer, useRef } from "react"
 
 interface Environment {

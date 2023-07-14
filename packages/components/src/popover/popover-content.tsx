@@ -1,10 +1,10 @@
-import { callAll, cx } from "@chakra-ui/shared-utils"
+import { callAll, cx } from "@chakra-ui/utils"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
-} from "@chakra-ui/system"
+} from "../system"
 import { HTMLMotionProps } from "framer-motion"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"

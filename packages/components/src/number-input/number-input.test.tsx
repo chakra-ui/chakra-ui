@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control"
+import { FormControl, FormHelperText, FormLabel } from "../form-control"
 import {
   focus,
   testA11y,
@@ -8,7 +8,6 @@ import {
   screen,
   waitFor,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
 import {
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -17,7 +16,7 @@ import {
   NumberInputProps,
   NumberInputStepper,
   useNumberInput,
-} from "../src"
+} from "."
 
 function renderComponent(props: NumberInputProps = {}) {
   return render(

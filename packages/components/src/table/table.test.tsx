@@ -1,6 +1,5 @@
-import * as React from "react"
 import { testA11y } from "@chakra-ui/test-utils"
-import { Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr } from "../src"
+import { Table, TableCaption, Tbody, Td, Tfoot, Th, Thead, Tr } from "."
 
 describe("<Table />", () => {
   it("should pass a11y test", async () => {

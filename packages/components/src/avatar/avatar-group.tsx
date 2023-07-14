@@ -1,18 +1,17 @@
+import { compact, cx } from "@chakra-ui/utils"
+import { cloneElement } from "react"
+import { getValidChildren } from "../shared/children"
 import {
-  chakra,
-  forwardRef,
-  omitThemingProps,
+  HTMLChakraProps,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
+  chakra,
+  forwardRef,
+  omitThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
-import { compact } from "@chakra-ui/object-utils"
+} from "../system"
 import { baseStyle } from "./avatar"
-import { cloneElement } from "react"
 
 interface AvatarGroupOptions {
   /**

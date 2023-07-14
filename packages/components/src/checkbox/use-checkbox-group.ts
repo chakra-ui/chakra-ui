@@ -1,6 +1,5 @@
-import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
-import { isObject } from "@chakra-ui/shared-utils"
+import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
+import { isObject } from "@chakra-ui/utils"
 import { useCallback } from "react"
 import { EventOrValue, UseCheckboxGroupProps } from "./checkbox-types"
 

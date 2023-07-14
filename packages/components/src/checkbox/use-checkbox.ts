@@ -1,14 +1,15 @@
-import { useFormControlProps } from "@chakra-ui/form-control"
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
-import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
-import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
-import type { PropGetter } from "@chakra-ui/react-types"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { callAllHandlers, dataAttr } from "@chakra-ui/shared-utils"
-import { omit } from "@chakra-ui/object-utils"
-import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
+import {
+  mergeRefs,
+  useCallbackRef,
+  useSafeLayoutEffect,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
+import { callAllHandlers, dataAttr, omit } from "@chakra-ui/utils"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
+import { useFormControlProps } from "../form-control"
+import type { PropGetter } from "../shared/types"
+import { visuallyHiddenStyle } from "../visually-hidden"
 import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 
 /**

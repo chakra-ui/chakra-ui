@@ -1,10 +1,5 @@
-import {
-  chakra,
-  SystemProps,
-  forwardRef,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { omit } from "@chakra-ui/object-utils"
+import { chakra, SystemProps, forwardRef, HTMLChakraProps } from "../system"
+import { omit } from "@chakra-ui/utils"
 import {
   FallbackStrategy,
   shouldShowFallbackImage,

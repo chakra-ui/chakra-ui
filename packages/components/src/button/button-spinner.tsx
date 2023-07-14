@@ -1,6 +1,6 @@
 import { Spinner } from "@chakra-ui/spinner"
-import { chakra, HTMLChakraProps, SystemStyleObject } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { chakra, HTMLChakraProps, SystemStyleObject } from "../system"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import { ButtonSpinnerOptions } from "./button-types"
 

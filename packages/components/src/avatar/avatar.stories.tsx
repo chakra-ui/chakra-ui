@@ -1,7 +1,6 @@
-import { Box, Stack } from "@chakra-ui/layout"
-import { PropsOf } from "@chakra-ui/system"
-import * as React from "react"
-import { Avatar, AvatarBadge, AvatarGroup } from "../src"
+import { Avatar, AvatarBadge, AvatarGroup } from "."
+import { Box, Stack } from "../layout"
+import { PropsOf } from "../system"
 
 export default {
   title: "Components / Media and Icons / Avatar",

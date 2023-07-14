@@ -1,13 +1,13 @@
+import { cx } from "@chakra-ui/utils"
+import { keyframes } from "@emotion/react"
 import {
+  HTMLChakraProps,
+  ThemingProps,
   chakra,
   forwardRef,
-  keyframes,
   omitThemingProps,
-  ThemingProps,
   useStyleConfig,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+} from "../system"
 
 const spin = keyframes({
   "0%": {

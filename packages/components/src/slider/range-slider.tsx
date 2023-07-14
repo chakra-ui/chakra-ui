@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "../shared/context"
 import {
   chakra,
   forwardRef,
@@ -8,7 +8,7 @@ import {
   useMultiStyleConfig,
   useTheme,
   SystemStyleObject,
-} from "@chakra-ui/system"
+} from "../system"
 import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import {

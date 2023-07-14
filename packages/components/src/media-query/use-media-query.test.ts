@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks"
+import { useMediaQuery } from "."
 import MatchMedia from "./matchmedia-mock-plus"
-import { useMediaQuery } from "../src/use-media-query"
 
 let matchMedia: MatchMedia
 

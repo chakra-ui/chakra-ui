@@ -1,6 +1,5 @@
 import { testA11y, render, screen, fireEvent } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "../src"
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "."
 
 test("should no accessibility issues", async () => {
   await testA11y(

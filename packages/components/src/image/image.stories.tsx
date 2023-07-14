@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Image, Img } from "../src"
+import { useState, useRef } from "react"
+import { Image, Img } from "."
 
 export default {
   title: "Components / Media and Icons / Image",
@@ -71,7 +71,7 @@ export const withNativeWidth = () => (
 )
 
 export const Bug = () => {
-  const [src, setSrc] = React.useState("")
+  const [src, setSrc] = useState("")
 
   const onClick = () => {
     setSrc(
@@ -89,8 +89,8 @@ export const Bug = () => {
 }
 
 export const WithSrcSet = () => {
-  const firstRef = React.useRef<HTMLImageElement>(null)
-  const secondRef = React.useRef<HTMLImageElement>(null)
+  const firstRef = useRef<HTMLImageElement>(null)
+  const secondRef = useRef<HTMLImageElement>(null)
 
   const firstLog = (e: any) => {
     console.log(1, "Image", e.type, firstRef.current?.currentSrc)

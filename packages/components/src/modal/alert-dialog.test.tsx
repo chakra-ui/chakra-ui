@@ -1,26 +1,25 @@
-import * as React from "react"
-
-import { render, testA11y, screen } from "@chakra-ui/test-utils"
+import { render, screen, testA11y } from "@chakra-ui/test-utils"
+import { useRef, useState } from "react"
 import {
   AlertDialog,
   AlertDialogBody,
   AlertDialogContent,
+  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
-  AlertDialogFooter,
-} from "../src"
+} from "."
 
 interface BasicUsageProps {
   isOpen?: boolean
 }
 
 const BasicUsage = (props: BasicUsageProps) => {
-  const [isOpen, setIsOpen] = React.useState(props.isOpen || false)
+  const [isOpen, setIsOpen] = useState(props.isOpen || false)
 
   const onOpen = () => setIsOpen(true)
   const onClose = () => setIsOpen(false)
 
-  const cancelRef = React.useRef<HTMLButtonElement>(null)
+  const cancelRef = useRef<HTMLButtonElement>(null)
 
   return (
     <>

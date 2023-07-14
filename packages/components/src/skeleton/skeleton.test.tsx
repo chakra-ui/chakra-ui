@@ -1,9 +1,9 @@
-import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
 import MatchMediaMock from "jest-matchmedia-mock"
-import { ChakraProvider } from "@chakra-ui/provider"
-import { Skeleton, SkeletonText } from "../src"
+import { Skeleton, SkeletonText } from "."
+import { ChakraProvider } from "../provider"
 import { queries, theme } from "./test-data"
+import { useEffect, useState } from "react"
 
 let matchMedia: any
 
@@ -32,8 +32,8 @@ test("SkeletonText renders noOfLines respective to the responsive breakpoint", (
 
 test("Change in parent state does not cause animation if already loaded", () => {
   const TestComponent = () => {
-    const [, setState] = React.useState(false)
-    React.useEffect(() => {
+    const [, setState] = useState(false)
+    useEffect(() => {
       setState(true)
     }, [])
     return (

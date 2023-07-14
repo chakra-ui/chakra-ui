@@ -1,6 +1,6 @@
-import * as React from "react"
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
-import { usePopover, UsePopoverProps } from "../src"
+import { usePopover, UsePopoverProps } from "."
+import { useEffect } from "react"
 
 const Component = (props: UsePopoverProps) => {
   const {
@@ -84,7 +84,7 @@ type LazyPopoverContentProps = {
 
 const LazyPopoverContent = (props: LazyPopoverContentProps) => {
   const { mockFn } = props
-  React.useEffect(() => {
+  useEffect(() => {
     mockFn()
   }, [mockFn])
   return <p data-testid="lazy-content">Lazy content</p>
@@ -109,7 +109,6 @@ const LazyPopoverComponent = (
         <div
           {...getPopoverProps({
             children: (
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               <div data-testid="content" tabIndex={0}>
                 <LazyPopoverContent mockFn={props.mockFn} />
               </div>
@@ -214,7 +213,6 @@ const FocusTestComponent = (props: UsePopoverProps) => {
         <div
           {...getPopoverProps({
             children: (
-              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               <div data-testid="content" tabIndex={0}>
                 Popover content
                 <button type="button" data-testid="InnerButton">

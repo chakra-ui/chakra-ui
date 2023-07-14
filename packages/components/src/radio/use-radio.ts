@@ -1,9 +1,9 @@
-import { useFormControlContext } from "@chakra-ui/form-control"
-import { InputDOMAttributes, PropGetter } from "@chakra-ui/react-types"
-import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/shared-utils"
-import { visuallyHiddenStyle } from "@chakra-ui/visually-hidden"
+import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { trackFocusVisible } from "@zag-js/focus-visible"
-import { useCallback, useEffect, useState, useId } from "react"
+import { useCallback, useEffect, useId, useState } from "react"
+import { useFormControlContext } from "../form-control"
+import { InputDOMAttributes, PropGetter } from "../shared/types"
+import { visuallyHiddenStyle } from "../visually-hidden"
 import { useRadioGroupContext } from "./radio-group"
 
 /**

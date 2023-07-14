@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/shared-utils"
+import { isObject } from "@chakra-ui/utils"
 import type { ThemeScale } from "../create-theme-vars"
 import type { Transform } from "./types"
 

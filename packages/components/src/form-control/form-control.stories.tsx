@@ -1,14 +1,14 @@
-import { chakra, PropsOf, useMultiStyleConfig } from "@chakra-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
-  FormControlOptions,
   FormControl,
+  FormControlOptions,
   FormErrorIcon,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
   useFormControl,
-} from "../src"
+} from "."
+import { chakra, PropsOf, useMultiStyleConfig } from "../system"
 
 export default {
   title: "Components / Forms / FormControl",
@@ -33,13 +33,14 @@ type InputProps = Omit<PropsOf<"input">, OmittedTypes> &
 // Create an input that consumes useFormControl
 type Props = { focusBorderColor?: string; errorBorderColor?: string }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps & Props>(
-  function Input(props, ref) {
-    const styles = useMultiStyleConfig("Input", props)
-    const inputProps = useFormControl<HTMLInputElement>(props)
-    return <chakra.input ref={ref} __css={styles.field} {...inputProps} />
-  },
-)
+const Input = forwardRef<HTMLInputElement, InputProps & Props>(function Input(
+  props,
+  ref,
+) {
+  const styles = useMultiStyleConfig("Input", props)
+  const inputProps = useFormControl<HTMLInputElement>(props)
+  return <chakra.input ref={ref} __css={styles.field} {...inputProps} />
+})
 
 export const InputExample = () => (
   <FormControl id="first-name" isRequired isInvalid>
@@ -53,7 +54,7 @@ export const InputExample = () => (
 type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> &
   FormControlOptions
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+const Textarea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function Textarea(props, ref) {
     const styles = useMultiStyleConfig("Textarea", props)
     const inputProps = useFormControl<HTMLTextAreaElement>(props)
@@ -75,7 +76,7 @@ export const TextAreaExample: React.FC = () => (
 
 type SelectProps = Omit<PropsOf<"select">, OmittedTypes> & FormControlOptions
 
-const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function Select(
+const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
   props,
   ref,
 ) {

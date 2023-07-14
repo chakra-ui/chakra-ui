@@ -1,10 +1,10 @@
-import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/modal"
-import { Portal } from "@chakra-ui/portal"
-import { Button } from "@chakra-ui/button"
-import { chakra } from "@chakra-ui/system"
+import { Modal, ModalContent, ModalOverlay } from "../modal"
+import { Portal } from "../portal"
+import { Button } from "../button"
+import { chakra } from "../system"
 import { AnimatePresence, motion } from "framer-motion"
-import * as React from "react"
-import { Tooltip, useTooltip } from "../src"
+import { Tooltip, useTooltip } from "."
+import { useState } from "react"
 
 export default {
   title: "Components / Overlay / Tooltip",
@@ -163,7 +163,7 @@ export const WithinFixedContainer = () => (
 )
 
 export const WithModal = () => {
-  const [showDialog, setShowDialog] = React.useState(false)
+  const [showDialog, setShowDialog] = useState(false)
   return (
     <div>
       <Button onClick={() => setShowDialog(true)}>Show Dialog</Button>
@@ -254,7 +254,7 @@ export const WithScrollWithin = () => (
 )
 
 export const WithDynamicDisabled = () => {
-  const [isDisabled, setIsDisabled] = React.useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
   const handleDisabled = () => setIsDisabled(true)
   const handleEnabled = () => setIsDisabled(false)
   return (

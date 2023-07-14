@@ -1,5 +1,4 @@
-import * as React from "react"
-import { GridItem, Grid } from "../src"
+import { GridItem, Grid } from "."
 
 export default {
   title: "Components / Layout / Grid",

@@ -1,4 +1,3 @@
-import * as React from "react"
 import { render, fireEvent, screen, waitFor } from "@chakra-ui/test-utils"
 import {
   usePinInput,
@@ -6,7 +5,7 @@ import {
   UsePinInputProps,
   PinInputProvider,
   PinInputDescendantsProvider,
-} from "../src"
+} from "."
 
 function Input(props: any) {
   const inputProps = usePinInputField(props)

@@ -1,13 +1,9 @@
-import { FocusLockProps } from "@chakra-ui/focus-lock"
-import { Portal, PortalProps } from "@chakra-ui/portal"
-import { createContext } from "@chakra-ui/react-context"
-import {
-  SystemStyleObject,
-  ThemingProps,
-  useMultiStyleConfig,
-} from "@chakra-ui/system"
 import { AnimatePresence } from "framer-motion"
-import { useModal, UseModalProps, UseModalReturn } from "./use-modal"
+import { FocusLockProps } from "../focus-lock"
+import { Portal, PortalProps } from "../portal"
+import { createContext } from "../shared/context"
+import { SystemStyleObject, ThemingProps, useMultiStyleConfig } from "../system"
+import { UseModalProps, UseModalReturn, useModal } from "./use-modal"
 
 interface FocusableElement {
   focus(options?: FocusOptions): void

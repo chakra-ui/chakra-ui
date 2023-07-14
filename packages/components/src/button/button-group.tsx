@@ -4,8 +4,8 @@ import {
   HTMLChakraProps,
   SystemStyleObject,
   ThemingProps,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+} from "../system"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import { ButtonGroupContext, ButtonGroupProvider } from "./button-context"
 import { ButtonGroupOptions } from "./button-types"

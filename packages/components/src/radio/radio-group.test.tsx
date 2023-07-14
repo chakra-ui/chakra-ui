@@ -1,7 +1,6 @@
-import { FormControl } from "@chakra-ui/form-control"
+import { FormControl } from "../form-control"
 import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "../src"
+import { Radio, useRadioGroup, UseRadioGroupProps, RadioGroup } from "."
 
 test("works with Radio component", () => {
   const Component = (props: UseRadioGroupProps = {}) => {

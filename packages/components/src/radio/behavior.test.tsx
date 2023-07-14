@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Radio, RadioGroup } from "../src"
+import { useState } from "react"
+import { Radio, RadioGroup } from "."
 
 const runTest = () => {
   const one = screen.getByLabelText("One")
@@ -34,7 +34,7 @@ describe("RadioGroup", () => {
 
   test("controlled", () => {
     const Component = () => {
-      const [value, setValue] = React.useState("1")
+      const [value, setValue] = useState("1")
       const onChange = (value: string) => setValue(value)
 
       return (
@@ -53,7 +53,7 @@ describe("RadioGroup", () => {
 describe("Radio", () => {
   test("controlled", () => {
     const Component = () => {
-      const [value, setValue] = React.useState("1")
+      const [value, setValue] = useState("1")
       const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
         setValue(event.target.value)
 

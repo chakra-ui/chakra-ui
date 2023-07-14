@@ -3,8 +3,8 @@ import {
   forwardRef,
   SystemStyleObject,
   HTMLChakraProps,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+} from "../system"
+import { cx } from "@chakra-ui/utils"
 import { useInputGroupStyles } from "./input-group"
 
 export interface InputElementProps extends HTMLChakraProps<"div"> {

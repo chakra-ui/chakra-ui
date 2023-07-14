@@ -1,5 +1,5 @@
-import { cx, dataAttr } from "@chakra-ui/shared-utils"
-import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { cx, dataAttr } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
 export interface StepProps extends HTMLChakraProps<"div"> {}

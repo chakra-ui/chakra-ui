@@ -1,5 +1,5 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
+import { Icon, IconProps } from "../icon"
 import { CheckIcon } from "./icons"
 import { useStepContext, useStepperStyles } from "./step-context"
 

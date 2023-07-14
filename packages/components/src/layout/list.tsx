@@ -1,18 +1,14 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
-import { createContext } from "@chakra-ui/react-context"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
-import type {
-  HTMLChakraProps,
-  SystemProps,
-  ThemingProps,
-} from "@chakra-ui/system"
+import { Icon, IconProps } from "../icon"
+import { createContext } from "../shared/context"
+import { getValidChildren } from "../shared/children"
+import type { HTMLChakraProps, SystemProps, ThemingProps } from "../system"
 import {
   chakra,
   forwardRef,
   omitThemingProps,
   SystemStyleObject,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 
 const [ListStylesProvider, useListStyles] = createContext<
   Record<string, SystemStyleObject>

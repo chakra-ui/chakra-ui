@@ -1,6 +1,5 @@
 import { mocks, render, testA11y, act } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Avatar, AvatarBadge } from "../src"
+import { Avatar, AvatarBadge } from ".."
 
 describe("accessibility", () => {
   test("passes a11y test", async () => {

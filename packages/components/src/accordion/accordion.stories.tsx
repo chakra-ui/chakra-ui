@@ -1,6 +1,14 @@
-import { Button } from "@chakra-ui/button"
-import { useDisclosure } from "@chakra-ui/react-use-disclosure"
-import { Box, Container } from "@chakra-ui/layout"
+import { useDisclosure } from "@chakra-ui/hooks"
+import { ChangeEvent, useEffect, useRef, useState } from "react"
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+} from "."
+import { Button } from "../button"
+import { Box, Container } from "../layout"
 import {
   Drawer,
   DrawerBody,
@@ -9,30 +17,14 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-} from "@chakra-ui/modal"
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
-import { ChangeEvent } from "react"
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-} from "."
+} from "../modal"
+import { chakra } from "../system"
 
 export default {
   title: "Components / Disclosure / Accordion",
   decorators: [(story: Function) => <Container>{story()}</Container>],
 }
 
-/**
- * By default, only one accordion can be visible
- * at a time, and it can't be toggled.
- *
- * Note 🚨: Each accordion button must be wrapped in a heading tag,
- * that is appropriate for the information architecture of the page.
- */
 export const Basic = () => (
   <Accordion>
     <AccordionItem>
@@ -169,12 +161,12 @@ const data = [
 ]
 
 export function WithSearchFilter() {
-  const inputRef = React.useRef<HTMLInputElement>(null)
-  const [displayData, setDisplayData] = React.useState(data)
-  const [filter, setFilter] = React.useState("")
-  const [index, setIndex] = React.useState(-1)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [displayData, setDisplayData] = useState(data)
+  const [filter, setFilter] = useState("")
+  const [index, setIndex] = useState(-1)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!filter || filter === "") {
       setDisplayData(data)
     }
@@ -185,7 +177,7 @@ export function WithSearchFilter() {
     setDisplayData(filteredData)
   }, [filter])
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputRef.current?.focus()
   }, [displayData])
 

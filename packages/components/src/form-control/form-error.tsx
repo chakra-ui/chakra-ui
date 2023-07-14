@@ -1,5 +1,5 @@
-import { type IconProps, Icon } from "@chakra-ui/icon"
-import { createContext } from "@chakra-ui/react-context"
+import { type IconProps, Icon } from "../icon"
+import { createContext } from "../shared/context"
 import {
   chakra,
   forwardRef,
@@ -8,8 +8,8 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+} from "../system"
+import { cx } from "@chakra-ui/utils"
 import { useFormControlContext } from "./form-control"
 
 const [FormErrorStylesProvider, useFormErrorStyles] = createContext<

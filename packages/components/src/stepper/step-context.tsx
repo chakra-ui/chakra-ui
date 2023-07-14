@@ -1,5 +1,5 @@
-import { createContext } from "@chakra-ui/react-context"
-import { createStylesContext } from "@chakra-ui/system"
+import { createContext } from "../shared/context"
+import { createStylesContext } from "../system"
 
 export type StepStatusType = "active" | "complete" | "incomplete"
 

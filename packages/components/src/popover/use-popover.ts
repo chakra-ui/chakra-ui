@@ -1,16 +1,16 @@
-import { useAnimationState } from "@chakra-ui/react-use-animation-state"
-import { useFocusOnPointerDown } from "@chakra-ui/react-use-focus-on-pointer-down"
 import {
+  mergeRefs,
+  useAnimationState,
+  useDisclosure,
   useFocusOnHide,
+  useFocusOnPointerDown,
   useFocusOnShow,
-} from "@chakra-ui/react-use-focus-effect"
-import { useDisclosure } from "@chakra-ui/react-use-disclosure"
-import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { DOMAttributes, PropGetter } from "@chakra-ui/react-types"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/shared-utils"
-import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
+} from "@chakra-ui/hooks"
+import { callAllHandlers } from "@chakra-ui/utils"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
+import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
+import { LazyMode, lazyDisclosure } from "../shared/lazy"
+import { DOMAttributes, PropGetter } from "../shared/types"
 
 const TRIGGER = {
   click: "click",

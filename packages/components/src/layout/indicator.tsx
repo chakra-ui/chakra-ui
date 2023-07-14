@@ -1,11 +1,11 @@
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { mapResponsive } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
   ResponsiveValue,
   SystemStyleObject,
   chakra,
   forwardRef,
-} from "@chakra-ui/system"
+} from "../system"
 import { useMemo } from "react"
 
 type Dict = Record<string, any>

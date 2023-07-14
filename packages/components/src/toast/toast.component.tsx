@@ -1,12 +1,11 @@
-import { useTimeout } from "@chakra-ui/react-use-timeout"
-import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
-import { runIfFn } from "@chakra-ui/shared-utils"
-import { motion, useIsPresent, Variants } from "framer-motion"
-import { chakra } from "@chakra-ui/system"
+import { useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
+import { runIfFn } from "@chakra-ui/utils"
+import { Variants, motion, useIsPresent } from "framer-motion"
+import { memo, useEffect, useMemo, useState } from "react"
+import { chakra } from "../system"
+import { ToastProviderProps } from "./toast.provider"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
-import { ToastProviderProps } from "./toast.provider"
-import { memo, useEffect, useMemo, useState } from "react"
 
 const toastMotionVariants: Variants = {
   initial: (props) => {

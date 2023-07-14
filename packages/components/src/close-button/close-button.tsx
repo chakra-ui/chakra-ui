@@ -1,4 +1,4 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
+import { Icon, IconProps } from "../icon"
 import {
   chakra,
   forwardRef,
@@ -7,7 +7,7 @@ import {
   ThemingProps,
   useStyleConfig,
   HTMLChakraProps,
-} from "@chakra-ui/system"
+} from "../system"
 
 function CloseIcon(props: IconProps) {
   return (

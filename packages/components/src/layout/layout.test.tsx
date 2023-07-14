@@ -6,17 +6,8 @@ import {
   waitFor,
   hooks,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
 // import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import {
-  Box,
-  Badge,
-  Container,
-  Divider,
-  Flex,
-  Stack,
-  useHighlight,
-} from "../src"
+import { Box, Badge, Container, Divider, Flex, Stack, useHighlight } from "."
 
 describe("<Box />", () => {
   test("passes a11y test", async () => {

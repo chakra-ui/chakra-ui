@@ -1,6 +1,5 @@
-import * as React from "react"
 import { render } from "@chakra-ui/test-utils"
-import { createIcon } from "../src"
+import { createIcon } from "."
 
 const chakraIconPath = [
   <title key="1">Chakra Logo</title>,

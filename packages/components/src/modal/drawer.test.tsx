@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useState } from "react"
 import {
   Drawer,
   DrawerBody,
@@ -6,14 +6,14 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerProps,
-} from "../src"
+} from "."
 import { render, testA11y, screen } from "@chakra-ui/test-utils"
 
 const SimpleDrawer = (props: {
   placement?: DrawerProps["placement"]
   isOpen?: boolean
 }) => {
-  const [isOpen, setIsOpen] = React.useState(props.isOpen || false)
+  const [isOpen, setIsOpen] = useState(props.isOpen || false)
   const onClose = () => setIsOpen(false)
 
   return (
@@ -69,23 +69,3 @@ it("should make other elements inert when opened", () => {
   expect(container).toHaveAttribute("data-aria-hidden", "true")
   expect(container).toHaveAttribute("aria-hidden", "true")
 })
-
-// it("swaps sides (left/right) under 'rtl' direction", () => {
-//   render(
-//     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
-//       <SimpleDrawer placement="start" isOpen />
-//     </ThemeProvider>,
-//   )
-
-//   expect(screen.queryByRole("dialog")).toHaveStyle("right: 0")
-// })
-
-// it("renders correctly (top/bottom) under 'rtl' direction", () => {
-//   render(
-//     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
-//       <SimpleDrawer placement="top" isOpen />
-//     </ThemeProvider>,
-//   )
-
-//   expect(screen.queryByRole("dialog")).toHaveStyle("top: 0")
-// })

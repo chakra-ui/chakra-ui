@@ -1,11 +1,11 @@
-import { MaybeRenderProp } from "@chakra-ui/react-types"
+import { runIfFn } from "@chakra-ui/utils"
+import { MaybeRenderProp } from "../shared/types"
 import {
   omitThemingProps,
   ThemingProps,
   useMultiStyleConfig,
   useTheme,
-} from "@chakra-ui/system"
-import { runIfFn } from "@chakra-ui/shared-utils"
+} from "../system"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { usePopover, UsePopoverProps } from "./use-popover"
 

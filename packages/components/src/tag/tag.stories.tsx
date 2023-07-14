@@ -1,15 +1,8 @@
-import { Avatar } from "@chakra-ui/avatar"
-import { AddIcon } from "@chakra-ui/icons"
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import { Avatar } from "../avatar"
+import { LuPlus } from "react-icons/lu"
+import { chakra } from "../system"
 import { MdSettings } from "react-icons/md"
-import {
-  Tag,
-  TagCloseButton,
-  TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-} from "../src"
+import { Tag, TagCloseButton, TagLabel, TagLeftIcon, TagRightIcon } from "."
 
 export default {
   title: "Components / Data Display / Tag",
@@ -48,7 +41,7 @@ export const colorSchemes = () => (
 
 export const withLeftIcon = () => (
   <Tag colorScheme="cyan">
-    <TagLeftIcon w="12px" h="12px" as={AddIcon} />
+    <TagLeftIcon w="12px" h="12px" as={LuPlus} />
     <TagLabel>Green</TagLabel>
   </Tag>
 )
@@ -57,7 +50,7 @@ export const withRightIcon = () => (
   <>
     <Tag colorScheme="cyan">
       <TagLabel>Green</TagLabel>
-      <TagRightIcon w="12px" h="12px" as={AddIcon} />
+      <TagRightIcon w="12px" h="12px" as={LuPlus} />
     </Tag>
 
     <Tag variant="solid" colorScheme="teal">

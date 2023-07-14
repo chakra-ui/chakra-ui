@@ -1,15 +1,6 @@
-// import { Button } from "@chakra-ui/button"
-// import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu"
-// import {
-//   Popover,
-//   PopoverBody,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from "@chakra-ui/popover"
-// import { Tooltip } from "@chakra-ui/tooltip"
-import * as React from "react"
 import Frame from "react-frame-component"
-import { Portal, PortalManager } from "../src"
+import { Portal, PortalManager } from "."
+import { useRef } from "react"
 
 export default {
   title: "Components / Others / Portal",
@@ -32,7 +23,7 @@ export const WithinIFrame = () => (
 )
 
 export const WithMountRef = () => {
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   return (
     <>
@@ -85,47 +76,8 @@ export const NestedPortals = () => (
   </Portal>
 )
 
-// export const WithZIndex = () => (
-//   <PortalManager zIndex={5}>
-//     <Menu>
-//       <MenuButton as={Button} variant="outline">
-//         Hola
-//       </MenuButton>
-//       <Portal>
-//         <MenuList>
-//           <MenuItem>item1</MenuItem>
-//           <MenuItem>item2</MenuItem>
-//         </MenuList>
-//       </Portal>
-//     </Menu>
-//   </PortalManager>
-// )
-
-// export const WithZIndexPopover = () => (
-//   <PortalManager zIndex={20}>
-//     <Popover isOpen>
-//       <PopoverTrigger>
-//         <p>Popover</p>
-//       </PopoverTrigger>
-//       <Portal>
-//         <PopoverContent>
-//           <PopoverBody>I am a popover</PopoverBody>
-//         </PopoverContent>
-//       </Portal>
-//     </Popover>
-//   </PortalManager>
-// )
-
-// export const WithZIndexTooltip = () => (
-//   <PortalManager zIndex={20}>
-//     <Tooltip isOpen label="I am a tooltip">
-//       Tooltip
-//     </Tooltip>
-//   </PortalManager>
-// )
-
 export const WithCustomContainer = () => {
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   return (
     <div>
       <Portal containerRef={ref}>

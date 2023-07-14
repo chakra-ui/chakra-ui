@@ -1,16 +1,16 @@
-import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox"
+import { cx, dataAttr } from "@chakra-ui/utils"
+import { useMemo } from "react"
+import { useCheckbox, UseCheckboxProps } from "../checkbox"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
+  SystemProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-  SystemProps,
-} from "@chakra-ui/system"
-import { cx, dataAttr } from "@chakra-ui/shared-utils"
-import { useMemo } from "react"
+} from "../system"
 
 export interface SwitchProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,

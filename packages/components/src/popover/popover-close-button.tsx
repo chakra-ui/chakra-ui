@@ -1,6 +1,6 @@
-import { CloseButton, CloseButtonProps } from "@chakra-ui/close-button"
-import { forwardRef } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
+import { CloseButton, CloseButtonProps } from "../close-button"
+import { forwardRef } from "../system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export type PopoverCloseButtonProps = CloseButtonProps

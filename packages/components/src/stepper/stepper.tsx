@@ -1,4 +1,5 @@
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
+import { Children } from "react"
 import {
   HTMLChakraProps,
   ThemingProps,
@@ -6,8 +7,7 @@ import {
   forwardRef,
   omitThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
-import { Children } from "react"
+} from "../system"
 import {
   Orientation,
   StepContextProvider,

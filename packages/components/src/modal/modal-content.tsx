@@ -1,12 +1,11 @@
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
+import { HTMLMotionProps } from "framer-motion"
 import {
   HTMLChakraProps,
-  chakra,
   SystemStyleObject,
+  chakra,
   forwardRef,
-} from "@chakra-ui/system"
-import { HTMLMotionProps } from "framer-motion"
-
+} from "../system"
 import { useModalContext, useModalStyles } from "./modal"
 import { ModalFocusScope } from "./modal-focus"
 import { ModalTransition } from "./modal-transition"

@@ -4,8 +4,8 @@ import {
   forwardRef,
   SystemStyleObject,
   useStyleConfig,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+} from "../system"
+import { cx } from "@chakra-ui/utils"
 
 const fallbackIcon = {
   path: (

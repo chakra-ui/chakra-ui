@@ -1,4 +1,4 @@
-import { Icon, IconProps } from "@chakra-ui/icon"
+import { Icon, IconProps } from "../icon"
 
 export function CheckIcon(props: IconProps) {
   return (

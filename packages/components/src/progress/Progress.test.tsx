@@ -1,6 +1,5 @@
-import * as React from "react"
 import { render, testA11y } from "@chakra-ui/test-utils"
-import { Progress, CircularProgress } from "../src"
+import { Progress, CircularProgress } from "."
 
 test("Progress renders correctly", async () => {
   const { container } = render(

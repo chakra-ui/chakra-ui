@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   Table,
   TableCaption,
@@ -9,7 +8,7 @@ import {
   Th,
   Thead,
   Tr,
-} from "../src"
+} from "."
 
 export default {
   title: "Components / Data Display / Table / Double Header",

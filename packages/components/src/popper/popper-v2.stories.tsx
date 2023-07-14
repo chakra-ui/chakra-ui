@@ -1,13 +1,13 @@
 import { motion } from "framer-motion"
-import * as React from "react"
-import { usePopper } from "../src"
+import { useEffect, useState } from "react"
+import { usePopper } from "."
 
 export default {
   title: "System / Popper v2",
 }
 
 export const ExamplePopper = () => {
-  const [isOpen, setIsOpen] = React.useState(true)
+  const [isOpen, setIsOpen] = useState(true)
   const { referenceRef, popperRef } = usePopper({
     gutter: 16,
     placement: "right-end",
@@ -69,7 +69,7 @@ export const VirtualElement = () => {
       } as DOMRect)
   }
 
-  const [node, setNode] = React.useState({
+  const [node, setNode] = useState({
     getBoundingClientRect: generateGetBoundingClientRect(),
   })
 
@@ -77,7 +77,7 @@ export const VirtualElement = () => {
     eventListeners: false,
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     referenceRef(node)
     const el = document.getElementById("root")
     //@ts-ignore
@@ -100,7 +100,7 @@ export const VirtualElement = () => {
 }
 
 export const WithAnimation = () => {
-  const [isOpen, setIsOpen] = React.useState(true)
+  const [isOpen, setIsOpen] = useState(true)
   const {
     getPopperProps,
     referenceRef,
@@ -110,6 +110,7 @@ export const WithAnimation = () => {
   } = usePopper({
     placement: "bottom",
   })
+
   return (
     <div style={{ minHeight: "200vh", paddingTop: "100vh" }}>
       <button ref={referenceRef} onClick={() => setIsOpen(!isOpen)}>

@@ -6,7 +6,7 @@ import {
   ThemingProps,
   useStyleConfig,
   HTMLChakraProps,
-} from "@chakra-ui/system"
+} from "../system"
 
 export interface SkipNavLinkProps
   extends HTMLChakraProps<"a">,

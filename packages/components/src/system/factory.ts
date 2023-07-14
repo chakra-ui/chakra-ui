@@ -19,7 +19,7 @@ function factory() {
      * const WithChakra = chakra(AnotherComponent)
      */
     apply(target, thisArg, argArray: [DOMElements, ChakraStyledOptions]) {
-      return styled(...argArray)
+      return styled(...argArray) as any
     },
     /**
      * @example

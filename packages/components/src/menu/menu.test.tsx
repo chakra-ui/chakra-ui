@@ -1,17 +1,13 @@
 import {
-  render,
-  testA11y,
-  fireEvent,
-  screen,
   act,
+  fireEvent,
+  render,
+  screen,
+  testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import { Portal } from "@chakra-ui/portal"
-import * as React from "react"
-import { Button } from "@chakra-ui/button"
-import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
-import { ChakraProvider } from "@chakra-ui/provider"
 import theme from "@chakra-ui/theme"
+import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 import {
   Menu,
   MenuButton,
@@ -20,7 +16,10 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-} from "../src"
+} from "."
+import { Button } from "../button"
+import { Portal } from "../portal"
+import { ChakraProvider } from "../provider"
 
 const words = [
   "About Visual Studio Code",

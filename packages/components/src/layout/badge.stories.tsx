@@ -1,4 +1,4 @@
-import { Badge } from "../src"
+import { Badge } from "."
 
 export default {
   title: "Components / Data Display / Badge",

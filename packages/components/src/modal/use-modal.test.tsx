@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks"
 import { hideOthers } from "aria-hidden"
 import { MutableRefObject } from "react"
-import { useAriaHidden } from "../src/use-modal"
+import { useAriaHidden } from "./use-modal"
 
 jest.mock("aria-hidden")
 

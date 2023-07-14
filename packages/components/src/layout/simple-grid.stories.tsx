@@ -1,5 +1,4 @@
-import * as React from "react"
-import { Box, GridItem, SimpleGrid } from "../src"
+import { Box, GridItem, SimpleGrid } from "."
 
 export default {
   title: "Components / Layout / SimpleGrid",

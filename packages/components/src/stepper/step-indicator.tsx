@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/shared-utils"
-import { HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra } from "../system"
 import { useStepContext, useStepperStyles } from "./step-context"
 import { StepIcon } from "./step-icon"
 import { StepNumber } from "./step-number"

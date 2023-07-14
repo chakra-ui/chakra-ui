@@ -1,13 +1,9 @@
-import {
-  ColorMode,
-  ColorModeContext,
-  ThemeProvider,
-  useChakra,
-} from "@chakra-ui/system"
 import defaultTheme from "@chakra-ui/theme"
+import { ColorMode, ColorModeContext } from "../color-mode"
+import { ThemeProvider, useChakra } from "../system"
+import { CreateToastFnReturn, createToastFn } from "./toast"
 import { ToastProvider, ToastProviderProps } from "./toast.provider"
 import { UseToastOptions } from "./use-toast"
-import { createToastFn, CreateToastFnReturn } from "./toast"
 
 const defaults: UseToastOptions = {
   duration: 5000,

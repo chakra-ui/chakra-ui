@@ -5,7 +5,6 @@ import {
   testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
 import {
   Modal,
   ModalBody,
@@ -14,7 +13,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "../src"
+} from "."
 
 test("should have no accessibility violations", async () => {
   const { baseElement } = render(

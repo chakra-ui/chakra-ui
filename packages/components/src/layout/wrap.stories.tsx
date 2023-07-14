@@ -1,4 +1,4 @@
-import { Badge, Box, Text, Wrap, WrapItem } from "../src"
+import { Badge, Box, Text, Wrap, WrapItem } from "."
 
 export default {
   title: "Components / Layout / Wrap",

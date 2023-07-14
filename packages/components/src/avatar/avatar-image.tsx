@@ -1,6 +1,6 @@
-import { ImageProps, useImage } from "@chakra-ui/image"
-import { chakra, SystemStyleObject } from "@chakra-ui/system"
 import { cloneElement } from "react"
+import { ImageProps, useImage } from "../image"
+import { SystemStyleObject, chakra } from "../system"
 import { AvatarName } from "./avatar-name"
 import { GenericAvatarIcon } from "./generic-avatar-icon"
 

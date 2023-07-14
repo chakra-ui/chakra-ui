@@ -1,7 +1,6 @@
-import { CloseButtonProps, CloseButton } from "@chakra-ui/close-button"
-import { cx, callAllHandlers } from "@chakra-ui/shared-utils"
-import { forwardRef } from "@chakra-ui/system"
-
+import { callAllHandlers, cx } from "@chakra-ui/utils"
+import { CloseButton, CloseButtonProps } from "../close-button"
+import { forwardRef } from "../system"
 import { useModalContext, useModalStyles } from "./modal"
 
 export type ModalCloseButtonProps = CloseButtonProps

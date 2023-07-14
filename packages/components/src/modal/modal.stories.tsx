@@ -1,6 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import { chakra } from "../system"
 //@ts-ignore
 import Lorem from "react-lorem-component"
 import {
@@ -11,7 +10,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from "../src"
+} from "."
+import { useRef } from "react"
 
 const Button = chakra("button", {
   baseStyle: {
@@ -51,7 +51,7 @@ export function BasicUsage() {
 
 export function ReturnFocus() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const finalRef = React.useRef<any>()
+  const finalRef = useRef<any>()
 
   return (
     <>
@@ -238,7 +238,7 @@ export function WithCustomMotionProps() {
 
 export function WithInitialFocus() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialFocusRef = React.useRef(null)
+  const initialFocusRef = useRef(null)
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>

@@ -1,5 +1,4 @@
-import * as React from "react"
-import { VisuallyHidden, VisuallyHiddenInput } from "../src"
+import { VisuallyHidden, VisuallyHiddenInput } from "."
 
 export default {
   title: "Components / Disclosure / Visually Hidden",

@@ -43,7 +43,7 @@
   "dependencies": {
     "@chakra-ui/styled-system": "workspace:*",
     "lodash.mergewith": "4.6.2",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/utils": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

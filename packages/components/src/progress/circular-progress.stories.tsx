@@ -1,6 +1,5 @@
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
-import { CircularProgress, CircularProgressLabel } from "../src"
+import { chakra } from "../system"
+import { CircularProgress, CircularProgressLabel } from "."
 
 export default {
   title: "Components / Feedback / Circular Progress",

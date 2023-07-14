@@ -1,4 +1,3 @@
-import * as React from "react"
 import { FaAccessibleIcon, FaCheck, FaPhone } from "react-icons/fa"
 import {
   Box,
@@ -8,7 +7,7 @@ import {
   OrderedList,
   Text,
   UnorderedList,
-} from "../src"
+} from "."
 
 export default {
   title: "Components / Data Display / List",

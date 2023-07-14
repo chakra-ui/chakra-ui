@@ -1,14 +1,10 @@
+import { Theme, baseTheme, theme as defaultTheme } from "@chakra-ui/theme"
+import { Dict } from "@chakra-ui/utils"
 import {
   ChakraProvider as BaseChakraProvider,
   ChakraProviderProps as BaseChakraProviderProps,
-} from "@chakra-ui/provider"
-import { theme as defaultTheme, baseTheme, Theme } from "@chakra-ui/theme"
-import {
-  ToastProvider,
-  ToastProviderProps,
-  ToastOptionProvider,
-} from "@chakra-ui/toast"
-import { Dict } from "@chakra-ui/utils"
+} from "./provider"
+import { ToastOptionProvider, ToastProvider, ToastProviderProps } from "./toast"
 
 export interface ChakraProviderProps extends BaseChakraProviderProps {
   /**

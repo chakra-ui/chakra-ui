@@ -1,4 +1,4 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { useTableStyles } from "./table"
 
 export interface TableColumnHeaderProps extends HTMLChakraProps<"th"> {

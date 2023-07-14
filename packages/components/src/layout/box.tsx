@@ -3,7 +3,7 @@ import {
   forwardRef,
   SystemStyleObject,
   HTMLChakraProps,
-} from "@chakra-ui/system"
+} from "../system"
 
 export interface BoxProps extends HTMLChakraProps<"div"> {}
 

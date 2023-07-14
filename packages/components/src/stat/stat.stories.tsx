@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   Stat,
   StatArrow,
@@ -6,7 +5,7 @@ import {
   StatHelpText,
   StatLabel,
   StatNumber,
-} from "../src"
+} from "."
 
 export default {
   title: "Components / Data Display / Stat",

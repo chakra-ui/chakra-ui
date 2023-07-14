@@ -1,5 +1,5 @@
-import { useFormControlProps } from "@chakra-ui/form-control"
-import { createContext } from "@chakra-ui/react-context"
+import { useFormControlProps } from "../form-control"
+import { createContext } from "../shared/context"
 import {
   chakra,
   forwardRef,
@@ -8,8 +8,8 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+} from "../system"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {

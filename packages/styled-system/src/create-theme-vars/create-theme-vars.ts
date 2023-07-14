@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/shared-utils"
+import { isObject } from "@chakra-ui/utils"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
 import { FlatToken, FlatTokens } from "./flatten-tokens"

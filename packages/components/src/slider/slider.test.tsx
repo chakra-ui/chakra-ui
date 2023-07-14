@@ -1,7 +1,6 @@
-import { ChakraProvider } from "@chakra-ui/provider"
+import { ChakraProvider } from "../provider"
 import { theme as baseTheme } from "@chakra-ui/theme"
 import { focus, screen, render, testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
 import styled from "@emotion/styled"
 import {
   Slider,
@@ -9,7 +8,7 @@ import {
   SliderThumb,
   SliderTrack,
   UseSliderProps,
-} from "../src"
+} from "."
 
 const defaultValue = 10
 

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import * as React from "react"
-import { Portal, PortalManager } from "../src"
+import { Portal, PortalManager } from "."
+import { useRef } from "react"
 
 test("should render portal", async () => {
   const { baseElement } = render(
@@ -68,7 +68,7 @@ test("should render in a different node", () => {
 
 test("should render into a custom container", () => {
   const Custom = () => {
-    const ref = React.useRef<any>(null)
+    const ref = useRef<any>(null)
     return (
       <PortalManager>
         <div data-testid="container" ref={ref} />

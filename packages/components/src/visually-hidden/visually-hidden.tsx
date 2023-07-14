@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { visuallyHiddenStyle } from "./visually-hidden.style"
 
 /**

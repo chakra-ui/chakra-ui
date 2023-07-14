@@ -1,11 +1,10 @@
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
   SystemStyleObject,
   chakra,
   forwardRef,
-} from "@chakra-ui/system"
-
+} from "../system"
 import { useTabsStyles } from "./tabs"
 import { UseTabOptions, useTab } from "./use-tabs"
 

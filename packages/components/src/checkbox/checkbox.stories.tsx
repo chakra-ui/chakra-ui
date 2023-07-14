@@ -1,18 +1,18 @@
-import { FormControl, FormLabel } from "@chakra-ui/form-control"
-import { Icon } from "@chakra-ui/icon"
+import { useState } from "react"
+import { Checkbox, CheckboxGroup, useCheckbox, useCheckboxGroup } from "."
+import { FormControl, FormLabel } from "../form-control"
+import { Icon } from "../icon"
 import {
+  Box,
   Container,
   Divider,
+  Flex,
+  HStack,
   Heading,
   Stack,
-  HStack,
-  Flex,
-  Box,
   Text,
-} from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
-import { Checkbox, CheckboxGroup, useCheckbox, useCheckboxGroup } from "../src"
+} from "../layout"
+import { chakra } from "../system"
 
 export default {
   title: "Components / Forms / Checkbox",
@@ -79,7 +79,7 @@ const CustomIcon = (props: any) => {
 }
 
 export const WithCustomIcon = () => {
-  const [checkedItems, setCheckedItems] = React.useState([false, false])
+  const [checkedItems, setCheckedItems] = useState([false, false])
 
   const allChecked = checkedItems.every(Boolean)
   const isIndeterminate = checkedItems.some(Boolean) && !allChecked
@@ -133,7 +133,7 @@ export const Sizes = () => {
 }
 
 export const Indeterminate = () => {
-  const [checkedItems, setCheckedItems] = React.useState([false, false])
+  const [checkedItems, setCheckedItems] = useState([false, false])
 
   const allChecked = checkedItems.every(Boolean)
   const isIndeterminate = checkedItems.some(Boolean) && !allChecked
@@ -166,7 +166,7 @@ export const Indeterminate = () => {
 }
 
 export const Controlled = () => {
-  const [value, setValue] = React.useState(false)
+  const [value, setValue] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.checked)
@@ -209,7 +209,7 @@ type Value = string | number
 type ArrayOfValue = Value[]
 
 export const ControlledCheckboxGroup = () => {
-  const [value, setValue] = React.useState<ArrayOfValue>(["one", "two"])
+  const [value, setValue] = useState<ArrayOfValue>(["one", "two"])
   return (
     <CheckboxGroup
       value={value}

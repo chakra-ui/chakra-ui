@@ -1,6 +1,6 @@
-import { Container, Stack } from "@chakra-ui/layout"
-import * as React from "react"
-import { Select } from "../src"
+import { useState } from "react"
+import { Select } from "."
+import { Container, Stack } from "../layout"
 
 export default {
   title: "Components / Forms / Select",
@@ -74,7 +74,7 @@ export const SelectSizes = () => (
 )
 
 export const SelectControlled = () => {
-  const [value, setValue] = React.useState("")
+  const [value, setValue] = useState("")
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setValue(event.target.value)
   }

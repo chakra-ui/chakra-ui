@@ -36,12 +36,9 @@
   "dependencies": {
     "csstype": "^3.0.11",
     "lodash.mergewith": "4.6.2",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/breakpoint-utils": "workspace:*",
-    "@chakra-ui/merge-utils": "workspace:*",
-    "@chakra-ui/object-utils": "workspace:*",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@types/lodash.mergewith": "4.6.7",

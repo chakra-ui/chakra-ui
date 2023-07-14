@@ -1,4 +1,4 @@
-import { forwardRef } from "@chakra-ui/system"
+import { forwardRef } from "../system"
 import { Children } from "react"
 import { Icon, IconProps } from "./icon"
 

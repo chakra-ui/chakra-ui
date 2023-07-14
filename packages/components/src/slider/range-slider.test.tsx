@@ -10,7 +10,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
-} from "../src"
+} from "."
 
 const HorizontalSlider = () => {
   return (

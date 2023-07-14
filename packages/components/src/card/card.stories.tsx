@@ -1,19 +1,19 @@
-import { Avatar } from "@chakra-ui/avatar"
-import { Button, ButtonGroup, IconButton } from "@chakra-ui/button"
-import { Image } from "@chakra-ui/image"
+import { BiChat, BiLike, BiShare } from "react-icons/bi"
+import { BsThreeDotsVertical } from "react-icons/bs"
+import { Card, CardBody, CardFooter, CardHeader } from "."
+import { Avatar } from "../avatar"
+import { Button, ButtonGroup, IconButton } from "../button"
+import { Image } from "../image"
 import {
   Box,
   Divider,
-  Heading,
   HStack,
+  Heading,
   Stack,
   StackDivider,
   Text,
-} from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
-import { BiChat, BiLike, BiShare } from "react-icons/bi"
-import { BsThreeDotsVertical } from "react-icons/bs"
-import { Card, CardBody, CardFooter, CardHeader } from "../src"
+} from "../layout"
+import { chakra } from "../system"
 
 export default {
   title: "Components / Data Display / Card",

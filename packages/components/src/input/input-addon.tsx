@@ -1,5 +1,5 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { cx } from "@chakra-ui/utils"
 import { useInputGroupStyles } from "./input-group"
 
 type Placement = "left" | "right"

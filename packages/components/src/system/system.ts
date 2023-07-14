@@ -1,17 +1,32 @@
-import { useColorMode } from "@chakra-ui/color-mode"
 import {
   css,
   isStyleProp,
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { Dict, filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
-import { assignAfter } from "@chakra-ui/object-utils"
+import { assignAfter, compact, Dict, runIfFn } from "@chakra-ui/utils"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import React from "react"
+import { useColorMode } from "../color-mode"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"
+
+type FilterFn<T> = (value: any, key: string, object: T) => boolean
+
+function objectFilter<T extends Dict>(object: T, fn: FilterFn<T>) {
+  const result: Dict = {}
+
+  Object.keys(object).forEach((key) => {
+    const value = object[key]
+    const shouldPass = fn(value, key, object)
+    if (shouldPass) {
+      result[key] = value
+    }
+  })
+
+  return result
+}
 
 const emotion_styled = ((createStyled as any).default ??
   createStyled) as typeof createStyled
@@ -54,7 +69,7 @@ export const toCSSObject: GetStyleObject =
       {},
       __css,
       finalBaseStyle,
-      filterUndefined(styleProps),
+      compact(styleProps),
       sx,
     )
     const computedCSS = css(finalStyles)(props.theme)

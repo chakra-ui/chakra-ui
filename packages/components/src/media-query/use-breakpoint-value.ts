@@ -1,7 +1,6 @@
-import { useTheme } from "@chakra-ui/system"
-import { isObject } from "@chakra-ui/shared-utils"
-import { arrayToObjectNotation } from "@chakra-ui/breakpoint-utils"
-import { getClosestValue } from "./media-query.utils"
+import { arrayToObjectNotation, isObject } from "@chakra-ui/utils"
+import { useTheme } from "../system"
+import { getClosestValue } from "./get-closest-value"
 import { useBreakpoint, UseBreakpointOptions } from "./use-breakpoint"
 
 /**

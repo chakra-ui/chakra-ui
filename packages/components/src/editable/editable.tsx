@@ -1,4 +1,4 @@
-import { cx, runIfFn } from "@chakra-ui/shared-utils"
+import { cx, runIfFn } from "@chakra-ui/utils"
 import {
   chakra,
   forwardRef,
@@ -6,7 +6,7 @@ import {
   omitThemingProps,
   ThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"
 import {
   useEditable,

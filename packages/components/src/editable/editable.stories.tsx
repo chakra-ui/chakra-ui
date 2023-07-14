@@ -1,6 +1,5 @@
-import { Heading } from "@chakra-ui/layout"
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import { Heading } from "../layout"
+import { chakra } from "../system"
 import {
   Editable,
   EditableInput,
@@ -8,7 +7,8 @@ import {
   EditableTextarea,
   useEditable,
   useEditableControls,
-} from "../src"
+} from "."
+import React, { useState, useEffect } from "react"
 
 export default {
   title: "Components / Forms / Editable",
@@ -127,10 +127,10 @@ export const TextareaAsInput = () => {
 }
 
 export const EditableEventHandler = () => {
-  const [name, setName] = React.useState("")
+  const [name, setName] = useState("")
   console.log("State 'name' is ", name)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setName("John")
   }, [])
 

@@ -1,14 +1,13 @@
+import { compact, cx } from "@chakra-ui/utils"
 import {
+  HTMLChakraProps,
+  SystemProps,
+  ThemingProps,
   chakra,
   forwardRef,
   omitThemingProps,
-  SystemProps,
-  ThemingProps,
   useStyleConfig,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { compact } from "@chakra-ui/object-utils"
+} from "../system"
 
 export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {
   /**

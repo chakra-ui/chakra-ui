@@ -1,7 +1,8 @@
-import { Stack } from "@chakra-ui/layout"
-import { chakra, DarkMode } from "@chakra-ui/system"
-import * as React from "react"
-import { Skeleton, SkeletonCircle, SkeletonText } from "../src"
+import { Stack } from "../layout"
+import { chakra } from "../system"
+import { Skeleton, SkeletonCircle, SkeletonText } from "."
+import React, { useState, useEffect } from "react"
+import { DarkMode } from "../color-mode"
 
 export default {
   title: "Components / Feedback / Skeleton",
@@ -74,9 +75,9 @@ export const WithFadeAlreadyLoaded = () => {
 }
 
 export const WithNoFade = () => {
-  const [hasLoaded, setHasLoaded] = React.useState(false)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => setHasLoaded(true), 1000)
   }, [])
 
@@ -97,9 +98,9 @@ export const Combined = () => (
 )
 
 export const WithIsLoaded = () => {
-  const [hasLoaded, setHasLoaded] = React.useState(false)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const intervalId = setInterval(() => setHasLoaded((x) => !x), 1000)
     return () => clearInterval(intervalId)
   }, [])

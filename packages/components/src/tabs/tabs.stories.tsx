@@ -1,13 +1,8 @@
-import { useInterval } from "@chakra-ui/react-use-interval"
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerOverlay,
-} from "@chakra-ui/modal"
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
-import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "../src"
+import { useInterval } from "@chakra-ui/hooks"
+import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "../modal"
+import { chakra } from "../system"
+import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "."
+import { useMemo, useState } from "react"
 
 export default {
   title: "Components / Disclosure / Tabs",
@@ -177,7 +172,7 @@ export const withVerticalTabs = () => (
 )
 
 const Interval = () => {
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = useState(0)
   useInterval(() => setValue((v) => v + 1), 1000)
   return (
     <span style={{ fontWeight: "bold", color: "tomato", padding: 4 }}>
@@ -236,7 +231,7 @@ export const WithSwappedTabs = () => {
     setSelectedItemId: (id: string) => void
   }> = ({ items, selectedItemId, setSelectedItemId }) => {
     // Derive current tab index from id
-    const tabIndex = React.useMemo(() => {
+    const tabIndex = useMemo(() => {
       return items.findIndex((x) => x.id === selectedItemId)
     }, [items, selectedItemId])
 
@@ -272,8 +267,8 @@ export const WithSwappedTabs = () => {
     )
   }
 
-  const [items, setItems] = React.useState(initialData)
-  const [selectedItemId, setSelectedItemId] = React.useState("a")
+  const [items, setItems] = useState(initialData)
+  const [selectedItemId, setSelectedItemId] = useState("a")
 
   const swapData = () => {
     setItems((items) => {

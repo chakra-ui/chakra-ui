@@ -1,11 +1,5 @@
-import {
-  ResponsiveValue,
-  SystemProps,
-  forwardRef,
-  chakra,
-} from "@chakra-ui/system"
-import { compact } from "@chakra-ui/object-utils"
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { compact, mapResponsive } from "@chakra-ui/utils"
+import { ResponsiveValue, SystemProps, chakra, forwardRef } from "../system"
 
 import { BoxProps } from "./box"
 

@@ -1,15 +1,9 @@
-import * as React from "react"
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-} from "../src"
+import { useRef, useState } from "react"
+import { Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay } from "."
 
 export const InitialFocusRef = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const inputRef = React.useRef<any>()
+  const [isOpen, setIsOpen] = useState(false)
+  const inputRef = useRef<any>()
   return (
     <>
       <button data-testid="button" onClick={() => setIsOpen(true)}>

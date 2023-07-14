@@ -1,17 +1,17 @@
+import { runIfFn } from "@chakra-ui/utils"
 import {
   Alert,
   AlertDescription,
   AlertIcon,
   AlertProps,
   AlertTitle,
-} from "@chakra-ui/alert"
-import { chakra } from "@chakra-ui/system"
-import { CloseButton } from "@chakra-ui/close-button"
-import { runIfFn } from "@chakra-ui/shared-utils"
-import type { UseToastOptions } from "./use-toast"
-import type { RenderProps, ToastId } from "./toast.types"
+} from "../alert"
+import { CloseButton } from "../close-button"
+import { chakra } from "../system"
 import { getToastPlacement } from "./toast.placement"
 import { toastStore } from "./toast.store"
+import type { RenderProps, ToastId } from "./toast.types"
+import type { UseToastOptions } from "./use-toast"
 
 export interface ToastProps
   extends UseToastOptions,

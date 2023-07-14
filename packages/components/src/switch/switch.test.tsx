@@ -1,7 +1,7 @@
-import { FormControl, FormLabel } from "@chakra-ui/form-control"
-import { render, fireEvent } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Switch } from "../src"
+import { fireEvent, render } from "@chakra-ui/test-utils"
+import { useState } from "react"
+import { Switch } from "."
+import { FormControl, FormLabel } from "../form-control"
 
 test("Uncontrolled - should check and uncheck", async () => {
   const { container, user } = render(<Switch />)
@@ -26,7 +26,7 @@ test("Uncontrolled - should not check if disabled", async () => {
 
 test("Controlled - should check and uncheck", async () => {
   const ControlledSwitch = ({ onChange }: any) => {
-    const [checked, setChecked] = React.useState(false)
+    const [checked, setChecked] = useState(false)
     return (
       <Switch
         isChecked={checked}

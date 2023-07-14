@@ -1,12 +1,12 @@
-import { chakra } from "@chakra-ui/system"
-import * as React from "react"
+import { chakra } from "../system"
 import {
   Slider,
   SliderMark,
   SliderThumb,
   SliderTrack,
   SliderFilledTrack,
-} from "../src"
+} from "."
+import { useEffect, useState } from "react"
 
 export default {
   title: "Components / Forms / Slider",
@@ -22,11 +22,11 @@ export default {
 const DEFAULT_MAX_VALUE = 40
 
 export const WithPropsUpdate = () => {
-  const [count, setCount] = React.useState(0)
-  const [isDisabled, setIsDisabled] = React.useState(true)
-  const [max, setMax] = React.useState(DEFAULT_MAX_VALUE)
+  const [count, setCount] = useState(0)
+  const [isDisabled, setIsDisabled] = useState(true)
+  const [max, setMax] = useState(DEFAULT_MAX_VALUE)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const id = setTimeout(() => {
       setIsDisabled(false)
       setMax(150)
@@ -103,7 +103,7 @@ export function ChakraHorizontalSlider() {
 }
 
 export function SteppedHorizontalSlider() {
-  const [value, setValue] = React.useState<number>(1)
+  const [value, setValue] = useState<number>(1)
   return (
     <Slider value={value} onChange={setValue} min={1} max={7} step={2}>
       <SliderTrack>

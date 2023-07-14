@@ -1,17 +1,8 @@
-import { chakra } from "@chakra-ui/system"
 import * as React from "react"
+import { chakra } from "../system"
+import { useForm } from "react-hook-form"
 //@ts-ignore
 import Lorem from "react-lorem-component"
-import { Button } from "@chakra-ui/button"
-import { Input } from "@chakra-ui/input"
-import { Stack } from "@chakra-ui/layout"
-import { useForm } from "react-hook-form"
-import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-} from "@chakra-ui/form-control"
 import {
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -19,7 +10,16 @@ import {
   NumberInputField,
   NumberInputStepper,
   useNumberInput,
-} from "../src"
+} from "."
+import { Button } from "../button"
+import {
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+} from "../form-control"
+import { Input } from "../input"
+import { Stack } from "../layout"
 
 export default {
   title: "Components / Forms / NumberInput",

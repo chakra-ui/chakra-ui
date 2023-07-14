@@ -1,9 +1,4 @@
-import { Button } from "@chakra-ui/button"
-import { Image } from "@chakra-ui/image"
-import { Portal } from "@chakra-ui/portal"
-import { chakra } from "@chakra-ui/system"
-import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal"
-import * as React from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import {
   FaChevronDown,
   FaSearch,
@@ -21,7 +16,12 @@ import {
   MenuList,
   MenuOptionGroup,
   useMenuItem,
-} from "../src"
+} from "."
+import { Button } from "../button"
+import { Image } from "../image"
+import { Modal, ModalBody, ModalContent, ModalOverlay } from "../modal"
+import { Portal } from "../portal"
+import { chakra } from "../system"
 
 const words = [
   "About Visual Studio Code",
@@ -129,7 +129,7 @@ export const WithDisabledButFocusableItem = () => (
 )
 
 export const WithToggleableMenuItems = () => {
-  const [items, setItems] = React.useState<
+  const [items, setItems] = useState<
     {
       content: string
       icon: React.ReactElement
@@ -324,7 +324,7 @@ export const WithLetterNavigation = () => (
 )
 
 export const WithScrolling = () => {
-  const items = React.useMemo(
+  const items = useMemo(
     () => Array.from({ length: 30 }).map((_, i) => `Option ${i}`),
     [],
   )
@@ -528,11 +528,11 @@ export const MenuPerformanceTest = () => {
 }
 
 export const WithoutMenuButton = () => {
-  const [isOpen, setOpen] = React.useState(false)
+  const [isOpen, setOpen] = useState(false)
   const open = () => setOpen(true)
   const close = () => setOpen(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const listener = (ev: KeyboardEvent) => {
       if ((ev.metaKey || ev.ctrlKey) && ev.code === "KeyK") {
         ev.preventDefault()
@@ -571,7 +571,7 @@ export const WithoutMenuButton = () => {
 }
 
 export const ProgrammaticFocusMenuOption = () => {
-  const item = React.useRef<HTMLButtonElement>(null)
+  const item = useRef<HTMLButtonElement>(null)
   return (
     <Menu initialFocusRef={item}>
       <MenuButton>Welcome</MenuButton>
@@ -592,7 +592,7 @@ export const ProgrammaticFocusMenuOption = () => {
 }
 
 export const ProgrammaticFocusMenuItem = () => {
-  const item = React.useRef<HTMLButtonElement>(null)
+  const item = useRef<HTMLButtonElement>(null)
   return (
     <Menu initialFocusRef={item}>
       <MenuButton>Welcome</MenuButton>

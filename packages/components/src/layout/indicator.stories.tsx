@@ -1,4 +1,4 @@
-import { Box, Circle, Indicator, Stack } from "../src"
+import { Box, Circle, Indicator, Stack } from "."
 
 export default {
   title: "Components / Layout / Indicator",

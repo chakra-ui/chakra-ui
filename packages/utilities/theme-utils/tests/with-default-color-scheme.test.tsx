@@ -1,5 +1,5 @@
 import defaultTheme from "@chakra-ui/theme"
-import { extendTheme, mergeThemeOverride, withDefaultColorScheme } from "../src"
+import { extendTheme, mergeThemeOverride, withDefaultColorScheme } from "."
 
 describe("Theme extension: withDefaultColorScheme", () => {
   it("should compose all extensions", () => {

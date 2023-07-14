@@ -1,5 +1,5 @@
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { chakra, HTMLChakraProps } from "../system"
+import { cx } from "@chakra-ui/utils"
 import { cloneElement, isValidElement } from "react"
 
 export function ButtonIcon(props: HTMLChakraProps<"span">) {

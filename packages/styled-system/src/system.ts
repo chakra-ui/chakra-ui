@@ -1,5 +1,3 @@
-import mergeWith from "lodash.mergewith"
-
 import {
   background,
   border,
@@ -14,16 +12,16 @@ import {
   others,
   position,
   ring,
+  scroll,
   space,
   textDecoration,
   transform,
   transition,
   typography,
-  scroll,
 } from "./config"
 import { pseudoPropNames, pseudoSelectors } from "./pseudos"
 
-export const systemProps = mergeWith(
+export const systemProps = Object.assign(
   {},
   background,
   border,
@@ -47,6 +45,7 @@ export const systemProps = mergeWith(
 )
 
 const layoutSystem = Object.assign({}, space, layout, flexbox, grid, position)
+
 export const layoutPropNames = Object.keys(
   layoutSystem,
 ) as (keyof typeof layoutSystem)[]

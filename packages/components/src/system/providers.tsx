@@ -1,6 +1,6 @@
-import { useColorMode } from "@chakra-ui/color-mode"
-import { createContext, CreateContextReturn } from "@chakra-ui/react-utils"
-import { css, toCSSVar, SystemStyleObject } from "../../styled-system/src"
+import { useColorMode } from "../color-mode"
+import { createContext, CreateContextReturn } from "../shared/context"
+import { css, toCSSVar, SystemStyleObject } from "@chakra-ui/styled-system"
 import { memoizedGet as get, runIfFn } from "@chakra-ui/utils"
 import {
   Global,

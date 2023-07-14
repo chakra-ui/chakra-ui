@@ -5,8 +5,8 @@ import {
   testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Editable, EditablePreview, EditableTextarea } from "../src"
+import { Editable, EditablePreview, EditableTextarea } from "."
+import { useEffect, useState } from "react"
 
 test("matches snapshot", () => {
   render(
@@ -89,7 +89,7 @@ test("controlled: handles callbacks correctly", async () => {
   const onEdit = jest.fn()
 
   const Component = () => {
-    const [value, setValue] = React.useState("Hello ")
+    const [value, setValue] = useState("Hello ")
     return (
       <Editable
         onChange={(val) => {
@@ -230,9 +230,9 @@ test.each([
   "controlled: sets value toPrevValue onCancel, startWithEditView: $startWithEditView",
   async ({ startWithEditView, text }) => {
     const Component = () => {
-      const [name, setName] = React.useState("")
+      const [name, setName] = useState("")
 
-      React.useEffect(() => {
+      useEffect(() => {
         setName("John")
       }, [])
 

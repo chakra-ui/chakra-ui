@@ -1,5 +1,5 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}

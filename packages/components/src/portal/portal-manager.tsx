@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "../shared/context"
 
 interface PortalManagerContext {
   zIndex?: number

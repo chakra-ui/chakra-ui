@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/layout"
+import { Box, HStack } from "../layout"
 import {
   Step,
   StepDescription,
@@ -8,7 +8,7 @@ import {
   StepTitle,
   Stepper,
   useSteps,
-} from "../src"
+} from "."
 
 export default {
   title: "Components / Navigation / Stepper",

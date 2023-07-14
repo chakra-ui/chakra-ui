@@ -6,8 +6,8 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
-import { callAllHandlers, cx, dataAttr } from "@chakra-ui/shared-utils"
+} from "../system"
+import { callAllHandlers, cx, dataAttr } from "@chakra-ui/utils"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage } from "./avatar-image"
 import { GenericAvatarIcon } from "./generic-avatar-icon"

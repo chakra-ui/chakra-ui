@@ -1,7 +1,7 @@
-import { useBreakpointValue } from "@chakra-ui/media-query"
-import { chakra } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { SkeletonProps, Skeleton } from "./skeleton"
+import { cx } from "@chakra-ui/utils"
+import { useBreakpointValue } from "../media-query"
+import { chakra } from "../system"
+import { Skeleton, SkeletonProps } from "./skeleton"
 
 function range(count: number) {
   return Array(count)

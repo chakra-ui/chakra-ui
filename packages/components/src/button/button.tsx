@@ -1,4 +1,6 @@
-import { useMergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useMergeRefs } from "@chakra-ui/hooks"
+import { cx, dataAttr } from "@chakra-ui/utils"
+import { useMemo } from "react"
 import {
   chakra,
   forwardRef,
@@ -7,10 +9,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useStyleConfig,
-} from "@chakra-ui/system"
-import { cx, dataAttr } from "@chakra-ui/shared-utils"
-
-import { useMemo } from "react"
+} from "../system"
 import { useButtonGroup } from "./button-context"
 import { ButtonIcon } from "./button-icon"
 import { ButtonSpinner } from "./button-spinner"

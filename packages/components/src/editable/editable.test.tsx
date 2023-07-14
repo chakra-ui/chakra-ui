@@ -5,8 +5,8 @@ import {
   testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Editable, EditableInput, EditablePreview } from "../src"
+import { useEffect, useRef, useState } from "react"
+import { Editable, EditableInput, EditablePreview } from "."
 
 test("matches snapshot", () => {
   render(
@@ -84,7 +84,7 @@ test("controlled: handles callbacks correctly", async () => {
   const onBlur = jest.fn()
 
   const Component = () => {
-    const [value, setValue] = React.useState("")
+    const [value, setValue] = useState("")
     return (
       <Editable
         onChange={(val) => {
@@ -241,9 +241,9 @@ test.each([
   "controlled: sets value toPrevValue onCancel, startWithEditView: $startWithEditView",
   async ({ startWithEditView, text }) => {
     const Component = () => {
-      const [name, setName] = React.useState("")
+      const [name, setName] = useState("")
 
-      React.useEffect(() => {
+      useEffect(() => {
         setName("John")
       }, [])
 
@@ -300,7 +300,7 @@ test("should not be interactive when disabled", async () => {
 
 test("should return focus to button when closed", async () => {
   const Component = () => {
-    const buttonRef = React.useRef(null)
+    const buttonRef = useRef(null)
     return (
       <>
         <button type="button" ref={buttonRef} data-testid="button">

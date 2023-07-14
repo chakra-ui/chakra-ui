@@ -1,12 +1,12 @@
-import { chakra, useTheme } from "@chakra-ui/system"
-import * as React from "react"
+import { useEffect, useState } from "react"
 import {
-  useRangeSlider,
   RangeSlider,
   RangeSliderFilledTrack,
-  RangeSliderTrack,
   RangeSliderThumb,
-} from "../src"
+  RangeSliderTrack,
+  useRangeSlider,
+} from "."
+import { chakra, useTheme } from "../system"
 
 export default {
   title: "Components / Forms / Range Slider",
@@ -80,7 +80,7 @@ export function VerticalSlider() {
 }
 
 export function SteppedHorizontalSlider() {
-  const [value, setValue] = React.useState([3, 10])
+  const [value, setValue] = useState([3, 10])
   return (
     <RangeSlider
       colorScheme="pink"
@@ -100,9 +100,9 @@ export function SteppedHorizontalSlider() {
 }
 
 export function DynamicSlider() {
-  const [points, setPoints] = React.useState<number[]>([30, 70])
+  const [points, setPoints] = useState<number[]>([30, 70])
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setPoints([30, 50, 70])
     }, 1000)

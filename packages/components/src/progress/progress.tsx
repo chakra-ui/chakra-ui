@@ -1,20 +1,20 @@
 import {
   chakra,
-  Interpolation,
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   HTMLChakraProps,
   forwardRef,
-} from "@chakra-ui/system"
-import { createContext } from "@chakra-ui/react-context"
+} from "../system"
+import { createContext } from "../shared/context"
 import {
   getProgressProps,
   GetProgressPropsOptions,
   progress,
   stripe,
 } from "./progress.utils"
+import { Interpolation } from "@emotion/react"
 
 const [ProgressStylesProvider, useProgressStyles] = createContext<
   Record<string, SystemStyleObject>

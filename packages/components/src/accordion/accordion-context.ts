@@ -1,6 +1,6 @@
-import { createDescendantContext } from "@chakra-ui/descendant"
-import { createContext } from "@chakra-ui/react-context"
-import { SystemStyleObject } from "@chakra-ui/system"
+import { createDescendantContext } from "../descendant"
+import { createContext } from "../shared/context"
+import { SystemStyleObject } from "../system"
 import { UseAccordionItemReturn } from "./use-accordion"
 
 export const [AccordionStylesProvider, useAccordionStyles] = createContext<

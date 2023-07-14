@@ -1,6 +1,5 @@
-import * as React from "react"
 import { Md3DRotation } from "react-icons/md"
-import { Icon, IconProps, createIcon } from "../src"
+import { Icon, IconProps, createIcon } from "."
 
 export default {
   title: "Components / Media and Icons / Icon",

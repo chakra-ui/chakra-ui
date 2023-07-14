@@ -3,7 +3,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
-} from "@chakra-ui/system"
+} from "../system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {

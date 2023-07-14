@@ -1,4 +1,4 @@
-import { Box, Circle, Flex, Kbd, Spacer, Square } from "../src"
+import { Box, Circle, Flex, Kbd, Spacer, Square } from "."
 
 export default {
   title: "Components / Layout / Box",

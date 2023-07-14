@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useMenuStyles } from "./menu"
 
 export interface MenuCommandProps extends HTMLChakraProps<"span"> {}

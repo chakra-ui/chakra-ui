@@ -1,32 +1,32 @@
-import { useClickable } from "@chakra-ui/clickable"
-import { createDescendantContext } from "@chakra-ui/descendant"
-import { useFocusOnHide } from "@chakra-ui/react-use-focus-effect"
-import { usePopper, UsePopperProps } from "@chakra-ui/popper"
 import {
-  useDisclosure,
   UseDisclosureProps,
-} from "@chakra-ui/react-use-disclosure"
-import { useOutsideClick } from "@chakra-ui/react-use-outside-click"
-import { useAnimationState } from "@chakra-ui/react-use-animation-state"
-import { createContext } from "@chakra-ui/react-context"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
-import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { dataAttr, callAllHandlers } from "@chakra-ui/shared-utils"
-import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
+  mergeRefs,
+  useAnimationState,
+  useClickable,
+  useControllableState,
+  useDisclosure,
+  useFocusOnHide,
+  useOutsideClick,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
+import { callAllHandlers, dataAttr } from "@chakra-ui/utils"
+import { createDescendantContext } from "../descendant"
+import { UsePopperProps, usePopper } from "../popper"
+import { getValidChildren } from "../shared/children"
+import { createContext } from "../shared/context"
+import { LazyMode, lazyDisclosure } from "../shared/lazy"
 
 import React, {
   cloneElement,
   useCallback,
-  useRef,
-  useState,
+  useEffect,
   useId,
   useMemo,
-  useEffect,
+  useRef,
+  useState,
 } from "react"
-import { useShortcut } from "./use-shortcut"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
+import { useShortcut } from "./use-shortcut"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices

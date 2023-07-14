@@ -1,6 +1,5 @@
-import * as React from "react"
 import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
-import { Link, LinkOverlay, LinkBox } from "../src"
+import { Link, LinkOverlay, LinkBox } from "."
 
 export default {
   title: "Components / Navigation / Link",

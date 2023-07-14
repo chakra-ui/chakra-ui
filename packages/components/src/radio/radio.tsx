@@ -1,18 +1,17 @@
+import { callAll, split } from "@chakra-ui/utils"
 import {
+  HTMLChakraProps,
+  SystemProps,
+  SystemStyleObject,
+  ThemingProps,
   chakra,
   forwardRef,
   layoutPropNames,
   omitThemingProps,
-  SystemProps,
-  SystemStyleObject,
-  ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { callAll } from "@chakra-ui/shared-utils"
-import { split } from "@chakra-ui/object-utils"
+} from "../system"
 import { useRadioGroupContext } from "./radio-group"
-import { useRadio, UseRadioProps } from "./use-radio"
+import { UseRadioProps, useRadio } from "./use-radio"
 
 type Omitted = "onChange" | "defaultChecked" | "checked"
 interface BaseControlProps extends Omit<HTMLChakraProps<"div">, Omitted> {}

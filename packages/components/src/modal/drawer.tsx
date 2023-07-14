@@ -1,6 +1,6 @@
-import { createContext } from "@chakra-ui/react-context"
-import { ThemingProps, useTheme } from "@chakra-ui/system"
-import { SlideOptions } from "@chakra-ui/transition"
+import { createContext } from "../shared/context"
+import { ThemingProps, useTheme } from "../system"
+import { SlideOptions } from "../transition"
 import { Modal, ModalProps } from "./modal"
 
 const [DrawerContextProvider, useDrawerContext] = createContext<DrawerOptions>()

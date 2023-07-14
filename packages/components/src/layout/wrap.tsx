@@ -1,10 +1,5 @@
-import { cx } from "@chakra-ui/shared-utils"
-import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
-  SystemProps,
-} from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils"
+import { chakra, forwardRef, HTMLChakraProps, SystemProps } from "../system"
 import { Children, useMemo } from "react"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {

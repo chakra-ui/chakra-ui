@@ -6,8 +6,7 @@ import {
   testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Tooltip, TooltipProps } from "../src"
+import { Tooltip, TooltipProps } from "."
 
 const buttonLabel = "Hover me"
 const tooltipLabel = "tooltip label"

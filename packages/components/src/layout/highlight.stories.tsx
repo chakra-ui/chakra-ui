@@ -1,5 +1,4 @@
-import * as React from "react"
-import { Box, Heading, Highlight, Mark, Text, useHighlight } from "../src"
+import { Box, Heading, Highlight, Mark, Text, useHighlight } from "."
 
 export default {
   title: "Components / Layout / Highlight",

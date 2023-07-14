@@ -1,6 +1,9 @@
-import { runIfFn, isObject } from "@chakra-ui/shared-utils"
-import mergeWith from "lodash.mergewith"
-import { toMediaQueryString } from "@chakra-ui/breakpoint-utils"
+import {
+  isObject,
+  mergeWith,
+  runIfFn,
+  toMediaQueryString,
+} from "@chakra-ui/utils"
 import { ResponsiveValue, WithCSSVar } from "./utils"
 
 type Theme = WithCSSVar<Record<string, any>>

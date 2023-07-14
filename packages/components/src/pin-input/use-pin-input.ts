@@ -1,9 +1,8 @@
-import { createDescendantContext } from "@chakra-ui/descendant"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
-import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
-import { createContext } from "@chakra-ui/react-context"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { useCallback, useEffect, useState, useId } from "react"
+import { useMergeRefs, useControllableState } from "@chakra-ui/hooks"
+import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
+import { useCallback, useEffect, useId, useState } from "react"
+import { createDescendantContext } from "../descendant"
+import { createContext } from "../shared/context"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices
@@ -356,7 +355,7 @@ export function usePinInputField(
 
   return getInputProps({
     ...props,
-    ref: mergeRefs(register, ref),
+    ref: useMergeRefs(register, ref),
     index,
   })
 }

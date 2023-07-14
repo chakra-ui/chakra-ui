@@ -1,4 +1,4 @@
-import { chakra, ChakraComponent } from "@chakra-ui/system"
+import { chakra, ChakraComponent } from "../system"
 
 /**
  * Fallback avatar react component.

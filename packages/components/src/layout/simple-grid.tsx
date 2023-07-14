@@ -1,10 +1,5 @@
-import {
-  forwardRef,
-  getToken,
-  ResponsiveValue,
-  useTheme,
-} from "@chakra-ui/system"
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { mapResponsive } from "@chakra-ui/utils"
+import { forwardRef, getToken, ResponsiveValue, useTheme } from "../system"
 import { Grid, GridProps } from "./grid"
 
 interface SimpleGridOptions {

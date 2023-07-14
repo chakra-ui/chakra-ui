@@ -1,15 +1,15 @@
-import { FormControl, FormLabel } from "@chakra-ui/form-control"
-import { Icon } from "@chakra-ui/icon"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
+import { useState } from "react"
 import {
   Checkbox,
   CheckboxGroup,
   CheckboxGroupProps,
+  UseCheckboxProps,
   useCheckbox,
   useCheckboxGroup,
-  UseCheckboxProps,
-} from "../src"
+} from "."
+import { FormControl, FormLabel } from "../form-control"
+import { Icon } from "../icon"
 
 it("passes a11y test", async () => {
   await testA11y(<Checkbox>label</Checkbox>)
@@ -94,7 +94,7 @@ test("Controlled - should check and uncheck", () => {
   const onChange = jest.fn()
 
   const Component = (props: UseCheckboxProps) => {
-    const [isChecked, setIsChecked] = React.useState(false)
+    const [isChecked, setIsChecked] = useState(false)
     const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox({
       isChecked,
       onChange: (event) => {

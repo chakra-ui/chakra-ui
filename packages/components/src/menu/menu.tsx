@@ -1,12 +1,12 @@
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "../shared/context"
 import {
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
   useTheme,
-} from "@chakra-ui/system"
-import { runIfFn } from "@chakra-ui/shared-utils"
+} from "../system"
+import { runIfFn } from "@chakra-ui/utils"
 import { useMemo } from "react"
 import {
   MenuDescendantsProvider,

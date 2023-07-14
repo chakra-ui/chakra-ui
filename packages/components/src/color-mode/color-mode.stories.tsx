@@ -1,5 +1,4 @@
-import * as React from "react"
-import { useColorModeValue } from "../src"
+import { useColorModeValue } from "."
 
 export default {
   title: "System / Color Mode",

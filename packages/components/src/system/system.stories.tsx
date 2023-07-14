@@ -1,4 +1,3 @@
-import * as React from "react"
 import { motion } from "framer-motion"
 import {
   chakra,
@@ -6,7 +5,7 @@ import {
   useStyleConfig,
   HTMLChakraProps,
   DarkMode,
-} from "../src"
+} from "."
 
 export default {
   title: "System / Core",

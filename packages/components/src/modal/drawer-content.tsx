@@ -1,11 +1,11 @@
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   SystemStyleObject,
-} from "@chakra-ui/system"
-import { Slide } from "@chakra-ui/transition"
+} from "../system"
+import { Slide } from "../transition"
 import type { HTMLMotionProps } from "framer-motion"
 
 import { useDrawerContext } from "./drawer"

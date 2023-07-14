@@ -1,5 +1,5 @@
-import { chakra, ChakraProps } from "@chakra-ui/system"
-import { scaleFadeConfig, slideFadeConfig } from "@chakra-ui/transition"
+import { chakra, ChakraProps } from "../system"
+import { scaleFadeConfig, slideFadeConfig } from "../transition"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
 

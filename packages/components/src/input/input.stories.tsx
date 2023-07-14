@@ -1,23 +1,24 @@
-import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-} from "@chakra-ui/form-control"
-import { CheckIcon, PhoneIcon } from "@chakra-ui/icons"
 import { useDisclosure } from "@chakra-ui/hooks"
-import { Stack } from "@chakra-ui/layout"
-import { chakra, forwardRef } from "@chakra-ui/system"
-import * as React from "react"
+import { useState } from "react"
+import { LuCheck, LuPhone } from "react-icons/lu"
 import {
   Input,
   InputGroup,
   InputLeftAddon,
   InputLeftElement,
+  InputProps,
   InputRightAddon,
   InputRightElement,
-  InputProps,
-} from "../src"
+} from "."
+import {
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+} from "../form-control"
+import { Icon } from "../icon"
+import { Stack } from "../layout"
+import { chakra, forwardRef } from "../system"
 
 export default {
   title: "Components / Forms / Input",
@@ -33,7 +34,7 @@ export default {
 export const Basic = () => <Input placeholder="Basic input" />
 
 export const Controlled = () => {
-  const [value, setValue] = React.useState("Starting...")
+  const [value, setValue] = useState("Starting...")
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value)
 
@@ -95,20 +96,20 @@ export const WithInputAddon = () => (
 export const WithInputElement = () => (
   <Stack align="start">
     <InputGroup>
-      <InputLeftElement children={<PhoneIcon color="gray.300" />} />
+      <InputLeftElement children={<Icon as={LuPhone} color="gray.300" />} />
       <Input paddingStart="60px" type="tel" placeholder="Phone number" />
     </InputGroup>
 
     <InputGroup size="sm">
       <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
       <Input placeholder="Enter amount" />
-      <InputRightElement children={<CheckIcon color="green.500" />} />
+      <InputRightElement children={<Icon as={LuCheck} color="green.500" />} />
     </InputGroup>
   </Stack>
 )
 
 export function PasswordInput() {
-  const [show, setShow] = React.useState(false)
+  const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
 
   return (
@@ -165,7 +166,7 @@ function FormError(props: any) {
 }
 
 export const WithFormControl = () => {
-  const [isError, setIsError] = React.useState(false)
+  const [isError, setIsError] = useState(false)
   return (
     <Stack align="start">
       <FormControl id="first-name" isInvalid={isError}>

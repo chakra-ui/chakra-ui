@@ -1,18 +1,17 @@
-import { FormControlOptions, useFormControl } from "@chakra-ui/form-control"
+import { dataAttr, split } from "@chakra-ui/utils"
+import { cloneElement, isValidElement } from "react"
+import { FormControlOptions, useFormControl } from "../form-control"
 import {
+  HTMLChakraProps,
+  PropsOf,
+  SystemStyleObject,
+  ThemingProps,
   chakra,
   forwardRef,
   layoutPropNames,
   omitThemingProps,
-  PropsOf,
-  SystemStyleObject,
-  ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { dataAttr } from "@chakra-ui/shared-utils"
-import { split } from "@chakra-ui/object-utils"
-import { cloneElement, isValidElement } from "react"
+} from "../system"
 
 import { SelectField, SelectFieldProps } from "./select-field"
 

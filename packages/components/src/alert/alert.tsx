@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils"
 import {
   chakra,
   forwardRef,
@@ -7,7 +7,7 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import {
   AlertProvider,
   AlertStatus,

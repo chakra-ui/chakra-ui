@@ -1,5 +1,4 @@
-import React from "react"
-import { Container, Divider } from ".."
+import { Container, Divider } from "."
 
 export default {
   title: "Components / Data Display / Divider",

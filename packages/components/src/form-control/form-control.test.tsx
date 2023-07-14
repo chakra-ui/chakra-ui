@@ -1,6 +1,5 @@
-import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
+import { chakra, forwardRef, PropsOf } from "../system"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
 import {
   FormControl,
   FormControlOptions,
@@ -10,7 +9,7 @@ import {
   FormLabel,
   RequiredIndicator,
   useFormControl,
-} from "../src"
+} from "."
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 type InputProps = Omit<PropsOf<typeof chakra.input>, OmittedTypes> &

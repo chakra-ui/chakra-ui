@@ -1,4 +1,4 @@
-import { extendTheme, withDefaultVariant } from "../src"
+import { extendTheme, withDefaultVariant } from "."
 
 describe("Theme extension: withDefaultVariant", () => {
   it("should set a defaultVariant", () => {

@@ -1,4 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { ColorModeContext } from "./color-mode-context"
 import {
@@ -7,7 +7,7 @@ import {
   ColorModeOptions,
 } from "./color-mode-types"
 import { getColorModeUtils } from "./color-mode.utils"
-import { localStorageManager, StorageManager } from "./storage-manager"
+import { StorageManager, localStorageManager } from "./storage-manager"
 
 const noop = () => {}
 

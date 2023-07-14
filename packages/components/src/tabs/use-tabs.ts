@@ -1,20 +1,23 @@
-import { useClickable, UseClickableProps } from "@chakra-ui/clickable"
-import { createDescendantContext } from "@chakra-ui/descendant"
-import { createContext } from "@chakra-ui/react-context"
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
-import { callAllHandlers } from "@chakra-ui/shared-utils"
 import {
+  mergeRefs,
+  useClickable,
+  UseClickableProps,
+  useControllableState,
+  useSafeLayoutEffect,
+} from "@chakra-ui/hooks"
+import { callAllHandlers } from "@chakra-ui/utils"
+import {
+  createElement,
   useCallback,
   useEffect,
+  useId,
   useRef,
   useState,
-  useId,
-  createElement,
 } from "react"
+import { createDescendantContext } from "../descendant"
+import { getValidChildren } from "../shared/children"
+import { createContext } from "../shared/context"
+import { lazyDisclosure, LazyMode } from "../shared/lazy"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices

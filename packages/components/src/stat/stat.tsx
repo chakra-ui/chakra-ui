@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "../shared/context"
 import {
   chakra,
   forwardRef,
@@ -7,8 +7,8 @@ import {
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+} from "../system"
+import { cx } from "@chakra-ui/utils"
 
 const [StatStylesProvider, useStatStyles] = createContext<
   Record<string, SystemStyleObject>
