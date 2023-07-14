@@ -24,7 +24,7 @@
     "lint": "eslint packages/**/**/src --ext .ts,.tsx --config .eslintrc --cache",
     "format:check": "prettier --check packages/**/**/src --cache",
     "format:write": "prettier --write packages/**/**/src --cache",
-    "build:addon": "cd tooling/storybook-addon && pnpm build:fast",
+    "build:addon": "cd tooling/storybook-addon && pnpm build",
     "clean:storybook": "rm -rf node_modules/.cache/storybook",
     "storybook": "pnpm build:addon && storybook dev -p 6006",
     "build:storybook": "pnpm build:addon && storybook build",
