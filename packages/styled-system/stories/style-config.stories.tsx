@@ -1,6 +1,6 @@
 import { Global, ThemeProvider, useTheme } from "@emotion/react"
 import styled from "@emotion/styled"
-import { css, resolveStyleConfig, toCSSVar } from "."
+import { css, resolveStyleConfig, toCSSVar } from ".."
 import { recipe } from "../tests/theme"
 
 export default {

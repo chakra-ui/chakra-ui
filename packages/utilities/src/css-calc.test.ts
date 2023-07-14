@@ -1,4 +1,4 @@
-import { calc, cssVar } from "../src"
+import { calc, cssVar } from "."
 
 describe("calc", () => {
   it("standard usage", () => {
