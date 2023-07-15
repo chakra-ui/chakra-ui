@@ -158,6 +158,46 @@ export const stylingExpanded = () => (
   </Accordion>
 )
 
+export const Controlled = () => {
+  const [value, setValue] = React.useState<string>("1")
+  return (
+    <Accordion value={value} onChange={setValue}>
+      <AccordionItem value="1">
+        <h2>
+          <AccordionButton>
+            <chakra.div flex="1" textAlign="left">
+              Item 1
+            </chakra.div>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="2">
+        <h2>
+          <AccordionButton>
+            <chakra.div flex="1" textAlign="left">
+              Item 2
+            </chakra.div>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+
 const data = [
   { title: "First Item", text: "Some value 1..." },
   { title: "Second Item", text: "Some value 2..." },
@@ -172,7 +212,7 @@ export function WithSearchFilter() {
   const inputRef = React.useRef<HTMLInputElement>(null)
   const [displayData, setDisplayData] = React.useState(data)
   const [filter, setFilter] = React.useState("")
-  const [index, setIndex] = React.useState(-1)
+  const [value, setValue] = React.useState<string | undefined>()
 
   React.useEffect(() => {
     if (!filter || filter === "") {
@@ -191,7 +231,7 @@ export function WithSearchFilter() {
 
   function onInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
-    setIndex(-1)
+    setValue(undefined)
   }
 
   return (
@@ -207,10 +247,10 @@ export function WithSearchFilter() {
       {displayData.length > 0 && (
         <Accordion
           allowToggle
-          index={index}
-          onChange={(index) => {
-            if (!Array.isArray(index)) {
-              setIndex(index)
+          value={value}
+          onChange={(value) => {
+            if (!Array.isArray(value)) {
+              setValue(value)
             }
           }}
         >
@@ -309,24 +349,24 @@ export const FocusBug = () => {
 
 export const WithDisabledAccordionItem = () => {
   return (
-    <Accordion index={1}>
-      <AccordionItem isDisabled>
+    <Accordion value="1">
+      <AccordionItem value="1" isDisabled>
         <AccordionButton>Button 1</AccordionButton>
         <AccordionPanel>One Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem isDisabled>
+      <AccordionItem value="2" isDisabled>
         <AccordionButton>Button 2</AccordionButton>
         <AccordionPanel>Two Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem>
+      <AccordionItem value="3">
         <AccordionButton>Button 3</AccordionButton>
         <AccordionPanel>Three Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem isDisabled>
+      <AccordionItem value="4" isDisabled>
         <AccordionButton>Button 4</AccordionButton>
         <AccordionPanel>Four Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem>
+      <AccordionItem value="5">
         <AccordionButton>Button 5</AccordionButton>
         <AccordionPanel>Five Content</AccordionPanel>
       </AccordionItem>

@@ -1,4 +1,3 @@
-import { createDescendantContext } from "@chakra-ui/descendant"
 import { createContext } from "@chakra-ui/react-context"
 import { SystemStyleObject } from "@chakra-ui/system"
 import { UseAccordionItemReturn } from "./use-accordion"
@@ -19,14 +18,3 @@ export const [AccordionItemProvider, useAccordionItemContext] =
     hookName: "useAccordionItemContext",
     providerName: "<AccordionItem />",
   })
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track descendants and their indices
- * -----------------------------------------------------------------------------------------------*/
-
-export const [
-  AccordionDescendantsProvider,
-  useAccordionDescendantsContext,
-  useAccordionDescendants,
-  useAccordionDescendant,
-] = createDescendantContext<HTMLButtonElement>()

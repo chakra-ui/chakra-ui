@@ -36,12 +36,12 @@
   },
   "dependencies": {
     "@chakra-ui/shared-utils": "workspace:*",
-    "@chakra-ui/descendant": "workspace:*",
     "@chakra-ui/react-use-controllable-state": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/icon": "workspace:*",
-    "@chakra-ui/transition": "workspace:*"
+    "@chakra-ui/transition": "workspace:*",
+    "@zag-js/dom-utils": "^0.2.4"
   },
   "devDependencies": {
     "@chakra-ui/layout": "workspace:*",
