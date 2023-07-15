@@ -1,26 +1,13 @@
-import { createDescendantContext } from "@chakra-ui/descendant"
 import { useControllableState } from "@chakra-ui/react-use-controllable-state"
 import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
 import { createContext } from "@chakra-ui/react-context"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { useCallback, useEffect, useState, useId } from "react"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track descendants and their indices
- * -----------------------------------------------------------------------------------------------*/
-
-export const [
-  PinInputDescendantsProvider,
-  usePinInputDescendantsContext,
-  usePinInputDescendants,
-  usePinInputDescendant,
-] = createDescendantContext<HTMLInputElement>()
 
 /* -------------------------------------------------------------------------------------------------
  * Create context that stores pin-input logic
  * -----------------------------------------------------------------------------------------------*/
 
-export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
+export type PinInputContext = UsePinInputReturn & {
   /**
    * Sets the pin input component to the disabled state
    */
@@ -140,8 +127,6 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const uuid = useId()
   const id = idProp ?? `pin-input-${uuid}`
 
-  const descendants = usePinInputDescendants()
-
   const [moveFocus, setMoveFocus] = useState(true)
   const [focusedIndex, setFocusedIndex] = useState(-1)
 
@@ -153,28 +138,29 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
   useEffect(() => {
     if (autoFocus) {
-      const first = descendants.first()
-      if (first) {
-        requestAnimationFrame(() => {
-          first.node.focus()
-        })
-      }
+      // const first = descendants.first()
+      // if (first) {
+      //   requestAnimationFrame(() => {
+      //     first.node.focus()
+      //   })
+      // }
     }
     // We don't want to listen for updates to `autoFocus` since it only runs initially
     // eslint-disable-next-line
-  }, [descendants])
+  }, [])
 
   const focusNext = useCallback(
     (index: number) => {
       if (!moveFocus || !manageFocus) return
-      const next = descendants.next(index, false)
-      if (next) {
-        requestAnimationFrame(() => {
-          next.node.focus()
-        })
-      }
+      console.log(index)
+      // const next = descendants.next(index, false)
+      // if (next) {
+      //   requestAnimationFrame(() => {
+      //     next.node.focus()
+      //   })
+      // }
     },
-    [descendants, moveFocus, manageFocus],
+    [moveFocus, manageFocus],
   )
 
   const setValue = useCallback(
@@ -182,29 +168,29 @@ export function usePinInput(props: UsePinInputProps = {}) {
       const nextValues = [...values]
       nextValues[index] = value
       setValues(nextValues)
+      console.log(handleFocus, focusNext, onComplete)
+      // const isComplete =
+      //   value !== "" &&
+      //   nextValues.length === descendants.count() &&
+      //   nextValues.every(
+      //     (inputValue) => inputValue != null && inputValue !== "",
+      //   )
 
-      const isComplete =
-        value !== "" &&
-        nextValues.length === descendants.count() &&
-        nextValues.every(
-          (inputValue) => inputValue != null && inputValue !== "",
-        )
-
-      if (isComplete) {
-        onComplete?.(nextValues.join(""))
-      } else {
-        if (handleFocus) focusNext(index)
-      }
+      // if (isComplete) {
+      //   onComplete?.(nextValues.join(""))
+      // } else {
+      //   if (handleFocus) focusNext(index)
+      // }
     },
-    [values, setValues, focusNext, onComplete, descendants],
+    [values, setValues, focusNext, onComplete],
   )
 
   const clear = useCallback(() => {
-    const values: string[] = Array(descendants.count()).fill("")
-    setValues(values)
-    const first = descendants.first()
-    first?.node?.focus()
-  }, [descendants, setValues])
+    // const values: string[] = Array(descendants.count()).fill("")
+    // setValues(values)
+    // const first = descendants.first()
+    // first?.node?.focus()
+  }, [])
 
   const getNextValue = useCallback((value: string, eventValue: string) => {
     let nextValue = eventValue
@@ -241,16 +227,14 @@ export function usePinInput(props: UsePinInputProps = {}) {
           // see if we can use the string to fill out our values
           if (validate(eventValue, type)) {
             // Ensure the value matches the number of inputs
-            const nextValue = eventValue
-              .split("")
-              .filter((_, index) => index < descendants.count())
-
-            setValues(nextValue)
-
-            // if pasting fills the entire input fields, trigger `onComplete`
-            if (nextValue.length === descendants.count()) {
-              onComplete?.(nextValue.join(""))
-            }
+            // const nextValue = eventValue
+            //   .split("")
+            //   .filter((_, index) => index < descendants.count())
+            // setValues(nextValue)
+            // // if pasting fills the entire input fields, trigger `onComplete`
+            // if (nextValue.length === descendants.count()) {
+            //   onComplete?.(nextValue.join(""))
+            // }
           }
         } else {
           // only set if the new value is a number
@@ -265,12 +249,12 @@ export function usePinInput(props: UsePinInputProps = {}) {
       const onKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === "Backspace" && manageFocus) {
           if ((event.target as HTMLInputElement).value === "") {
-            const prevInput = descendants.prev(index, false)
-            if (prevInput) {
-              setValue("", index - 1, false)
-              prevInput.node?.focus()
-              setMoveFocus(true)
-            }
+            // const prevInput = descendants.prev(index, false)
+            // if (prevInput) {
+            //   setValue("", index - 1, false)
+            //   prevInput.node?.focus()
+            //   setMoveFocus(true)
+            // }
           } else {
             setMoveFocus(false)
           }
@@ -306,7 +290,6 @@ export function usePinInput(props: UsePinInputProps = {}) {
       }
     },
     [
-      descendants,
       focusedIndex,
       getNextValue,
       id,
@@ -314,11 +297,9 @@ export function usePinInput(props: UsePinInputProps = {}) {
       mask,
       isInvalid,
       manageFocus,
-      onComplete,
       otp,
       placeholder,
       setValue,
-      setValues,
       type,
       values,
     ],
@@ -329,7 +310,6 @@ export function usePinInput(props: UsePinInputProps = {}) {
     getInputProps,
     // state
     id,
-    descendants,
     values,
     // actions
     setValue,
@@ -352,12 +332,11 @@ export function usePinInputField(
   ref: React.Ref<any> = null,
 ) {
   const { getInputProps } = usePinInputContext()
-  const { index, register } = usePinInputDescendant()
 
   return getInputProps({
     ...props,
-    ref: mergeRefs(register, ref),
-    index,
+    ref: ref,
+    index: -1,
   })
 }
 

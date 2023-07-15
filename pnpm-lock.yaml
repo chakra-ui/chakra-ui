@@ -490,9 +490,6 @@ importers:
 
   packages/components/accordion:
     dependencies:
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
       '@chakra-ui/icon':
         specifier: workspace:*
         version: link:../icon
@@ -511,6 +508,9 @@ importers:
       '@chakra-ui/transition':
         specifier: workspace:*
         version: link:../transition
+      '@zag-js/dom-utils':
+        specifier: ^0.2.4
+        version: 0.2.4
     devDependencies:
       '@chakra-ui/button':
         specifier: workspace:*
@@ -847,28 +847,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/components/descendant:
-    dependencies:
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../../hooks/context
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../../hooks/use-merge-refs
-    devDependencies:
-      '@chakra-ui/hooks':
-        specifier: workspace:*
-        version: link:../../legacy/hooks
-      '@chakra-ui/system':
-        specifier: workspace:*
-        version: link:../../core/system
-      clean-package:
-        specifier: 2.2.0
-        version: 2.2.0
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
   packages/components/editable:
     dependencies:
       '@chakra-ui/react-context':
@@ -1163,9 +1141,6 @@ importers:
       '@chakra-ui/clickable':
         specifier: workspace:*
         version: link:../clickable
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
       '@chakra-ui/lazy-utils':
         specifier: workspace:*
         version: link:../../utilities/lazy-utils
@@ -1205,6 +1180,9 @@ importers:
       '@chakra-ui/transition':
         specifier: workspace:*
         version: link:../transition
+      '@zag-js/dom-utils':
+        specifier: ^0.2.4
+        version: 0.2.4
     devDependencies:
       '@chakra-ui/button':
         specifier: workspace:*
@@ -1364,9 +1342,6 @@ importers:
 
   packages/components/pin-input:
     dependencies:
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
       '@chakra-ui/react-children-utils':
         specifier: workspace:*
         version: link:../../utilities/react-children-utils
@@ -2040,9 +2015,6 @@ importers:
       '@chakra-ui/clickable':
         specifier: workspace:*
         version: link:../clickable
-      '@chakra-ui/descendant':
-        specifier: workspace:*
-        version: link:../descendant
       '@chakra-ui/lazy-utils':
         specifier: workspace:*
         version: link:../../utilities/lazy-utils
