@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "@chakra-ui/clickable": "workspace:*",
-    "@chakra-ui/descendant": "workspace:*",
     "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
     "@chakra-ui/react-use-controllable-state": "workspace:*",
