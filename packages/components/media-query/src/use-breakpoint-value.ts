@@ -17,7 +17,7 @@ import { useBreakpoint, UseBreakpointOptions } from "./use-breakpoint"
  * @see Docs https://chakra-ui.com/docs/hooks/use-breakpoint-value
  */
 export function useBreakpointValue<T = any>(
-  values: Partial<Record<string, T>> | T[],
+  values: Partial<Record<string, T>> | Array<T | null>,
   arg?: UseBreakpointOptions | string,
 ): T | undefined {
   const opts = isObject(arg) ? arg : { fallback: arg ?? "base" }
