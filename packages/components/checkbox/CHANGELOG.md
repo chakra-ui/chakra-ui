@@ -1,5 +1,35 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- [`8254cc913`](https://github.com/chakra-ui/chakra-ui/commit/8254cc91315231b9659a541600eacb8e96c40c64)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  switch thumb state can't be styled with pseudo props.
+
+- [#7829](https://github.com/chakra-ui/chakra-ui/pull/7829)
+  [`ddfd11632`](https://github.com/chakra-ui/chakra-ui/commit/ddfd116323b753cf6fbc25ebe062c48ed0d9d696)
+  Thanks [@bparish628](https://github.com/bparish628)! - use addEventListener
+  for form resets instead of overriding the onreset form function.
+- Updated dependencies
+  [[`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/react-use-controllable-state@2.1.0
+  - @chakra-ui/react-use-safe-layout-effect@2.1.0
+  - @chakra-ui/visually-hidden@2.1.0
+  - @chakra-ui/form-control@2.1.0
+  - @chakra-ui/react-use-update-effect@2.1.0
+  - @chakra-ui/react-use-callback-ref@2.1.0
+  - @chakra-ui/react-use-merge-refs@2.1.0
+  - @chakra-ui/react-context@2.1.0
+
 ## 2.2.15
 
 ### Patch Changes

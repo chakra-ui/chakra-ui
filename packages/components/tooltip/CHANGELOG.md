@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- [#7792](https://github.com/chakra-ui/chakra-ui/pull/7792)
+  [`00a06704e`](https://github.com/chakra-ui/chakra-ui/commit/00a06704e5ba609f5b8f4787873dd7c72d56636e)
+  Thanks [@jeferson-sb](https://github.com/jeferson-sb)! - Fix tooltip prevent
+  onClose to get fired on tooltip opened
+
+- Updated dependencies
+  [[`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/react-use-event-listener@2.1.0
+  - @chakra-ui/react-use-disclosure@2.1.0
+  - @chakra-ui/react-use-merge-refs@2.1.0
+  - @chakra-ui/popper@3.1.0
+  - @chakra-ui/portal@2.1.0
+
 ## 2.2.9
 
 ### Patch Changes

@@ -1,5 +1,26 @@
 # @chakra-ui/anatomy
 
+## 2.2.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+- [#7756](https://github.com/chakra-ui/chakra-ui/pull/7756)
+  [`119a52932`](https://github.com/chakra-ui/chakra-ui/commit/119a52932dcca3a74b469ae05dabb8bfec788dfe)
+  Thanks [@jrolfs](https://github.com/jrolfs)! - Add `group` part to
+  `inputAnatomy`
+
+### Patch Changes
+
+- [#7791](https://github.com/chakra-ui/chakra-ui/pull/7791)
+  [`d6036930a`](https://github.com/chakra-ui/chakra-ui/commit/d6036930a68dbc62b13ab1fec9658ffdf5d1243d)
+  Thanks [@Mitelak](https://github.com/Mitelak)! - Allow styling `MenuIcon` as
+  part of `Menu` theme
+
 ## 2.1.2
 
 ### Patch Changes
