@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- [#7858](https://github.com/chakra-ui/chakra-ui/pull/7858)
+  [`6ae02e93f`](https://github.com/chakra-ui/chakra-ui/commit/6ae02e93f1bca0f85be596fecdb8e4d15a2951e8)
+  Thanks [@BaBa0525](https://github.com/BaBa0525)! - Clarify the usage of
+  `openDelay` and `closeDelay` properties of `Popover` component
+- Updated dependencies
+  [[`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/react-use-focus-on-pointer-down@2.1.0
+  - @chakra-ui/react-use-animation-state@2.1.0
+  - @chakra-ui/close-button@2.1.0
+  - @chakra-ui/react-use-focus-effect@2.1.0
+  - @chakra-ui/react-use-disclosure@2.1.0
+  - @chakra-ui/react-use-merge-refs@2.1.0
+  - @chakra-ui/popper@3.1.0
+  - @chakra-ui/react-context@2.1.0
+
 ## 2.1.12
 
 ### Patch Changes

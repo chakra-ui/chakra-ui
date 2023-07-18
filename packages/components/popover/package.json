@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/popover",
-  "version": "2.1.12",
+  "version": "2.2.0",
   "description": "A React component to render that renders its content in a popover",
   "keywords": [
     "popover",

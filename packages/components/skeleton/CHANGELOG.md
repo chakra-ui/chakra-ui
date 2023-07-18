@@ -1,5 +1,22 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4b88b6c71`](https://github.com/chakra-ui/chakra-ui/commit/4b88b6c71868b6d32827973d653ac69175a0a41a),
+  [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/media-query@3.3.0
+  - @chakra-ui/react-use-previous@2.1.0
+
 ## 2.0.24
 
 ### Patch Changes

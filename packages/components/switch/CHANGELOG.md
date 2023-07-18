@@ -1,5 +1,26 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- [`8254cc913`](https://github.com/chakra-ui/chakra-ui/commit/8254cc91315231b9659a541600eacb8e96c40c64)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  switch thumb state can't be styled with pseudo props.
+
+- Updated dependencies
+  [[`8254cc913`](https://github.com/chakra-ui/chakra-ui/commit/8254cc91315231b9659a541600eacb8e96c40c64),
+  [`ddfd11632`](https://github.com/chakra-ui/chakra-ui/commit/ddfd116323b753cf6fbc25ebe062c48ed0d9d696),
+  [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/checkbox@2.3.0
+
 ## 2.0.27
 
 ### Patch Changes

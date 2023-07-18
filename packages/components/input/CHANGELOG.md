@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.1.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- [#7756](https://github.com/chakra-ui/chakra-ui/pull/7756)
+  [`119a52932`](https://github.com/chakra-ui/chakra-ui/commit/119a52932dcca3a74b469ae05dabb8bfec788dfe)
+  Thanks [@jrolfs](https://github.com/jrolfs)! - Fix `InputElement` and
+  `InputAddon` sizing when using a responsive `size` value for `InputGroup`.
+
+  _Note: this requires changes in the latest **@chakra-ui/theme** or, for custom
+  themes, sizes to be driven with CSS variables. See the
+  [default theme](https://github.com/chakra-ui/chakra-ui/blob/main/packages/components/theme/src/components/input.ts)
+  for an example._
+
+- Updated dependencies
+  [[`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/form-control@2.1.0
+  - @chakra-ui/react-context@2.1.0
+
 ## 2.0.22
 
 ### Patch Changes

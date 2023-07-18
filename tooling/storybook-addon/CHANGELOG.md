@@ -1,5 +1,20 @@
 # @chakra-ui/storybook-addon
 
+## 5.0.1
+
+### Patch Changes
+
+- [#7820](https://github.com/chakra-ui/chakra-ui/pull/7820)
+  [`a0144a1d8`](https://github.com/chakra-ui/chakra-ui/commit/a0144a1d884e590b0b2788040e4269b301e67aac)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Improve
+  build and exports
+
+  - Export a `preview` object containing the provider decorator
+  - Modify tsup config for improved build and to generate `.dts` files for prod
+  - Use up-to-date decorator function type for Provider decorator
+    - Turns the first argument for the story into a function which returns the
+      preview.
+
 ## 5.0.0
 
 ### Major Changes
