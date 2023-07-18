@@ -47,13 +47,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

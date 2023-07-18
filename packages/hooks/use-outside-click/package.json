@@ -43,13 +43,5 @@
   "dependencies": {
     "@chakra-ui/react-use-callback-ref": "workspace:*"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

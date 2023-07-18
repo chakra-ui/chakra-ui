@@ -48,14 +48,6 @@
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  },
   "dependencies": {
     "@chakra-ui/shared-utils": "workspace:*"
   }
