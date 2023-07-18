@@ -9,7 +9,7 @@ export interface ToggleButtonGroupProps
   initialIndex?: number
   allowNone?: boolean
   exclusive?: boolean
-  onChange?: (v: string | number | JSX.Element | null) => any
+  onChange?: (v: (string | number | JSX.Element)[] | null) => any
 }
 
 export const ToggleButtonGroup = (
@@ -40,37 +40,47 @@ export const ToggleButtonGroup = (
     }
   }
 
+  const getSelectedValues = (
+    selected: Set<number | undefined>,
+  ): (string | number | JSX.Element)[] | null => {
+    if (selected.size < 1) return null
+    if (Array.isArray(children)) {
+      return [...selected].map((idx) => getValue(children[idx as number]))
+    } else {
+      return [getValue(children)]
+    }
+  }
+
   const handleValueChange = (idx: number) => {
     if (currButton.has(idx)) {
       const cannot_allow_none_and_one_in_set = !allowNone && currButton.size < 2
 
       if (cannot_allow_none_and_one_in_set) return
 
-      if (onChange) {
-        if (currButton.size < 2) {
-          onChange(null)
-        } else {
-          Array.isArray(children)
-            ? onChange(getValue(children[idx]))
-            : onChange(getValue(children))
-        }
-      }
       setCurrButton((prev) => {
         prev.delete(idx)
+
+        if (onChange) onChange(getSelectedValues(prev))
+
         return new Set(prev)
       })
     } else {
       const exclusive_and_one_in_set = exclusive && currButton.size < 2
-      if (exclusive_and_one_in_set) {
-        setCurrButton(new Set([idx]))
-      } else {
-        setCurrButton((prev) => new Set(prev.add(idx)))
-      }
 
-      if (onChange) {
-        Array.isArray(children)
-          ? onChange(getValue(children[idx]))
-          : onChange(getValue(children))
+      if (exclusive_and_one_in_set) {
+        const s = new Set([idx])
+
+        setCurrButton(s)
+
+        if (onChange) onChange(getSelectedValues(s))
+      } else {
+        setCurrButton((prev) => {
+          const s = prev.add(idx)
+
+          if (onChange) onChange(getSelectedValues(s))
+
+          return new Set(s)
+        })
       }
     }
   }
