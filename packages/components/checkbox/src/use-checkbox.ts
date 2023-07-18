@@ -216,6 +216,33 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     ],
   )
 
+  const getIndicatorProps: PropGetter = useCallback(
+    (props = {}, forwardedRef = null) => ({
+      ...props,
+      ref: forwardedRef,
+      "data-active": dataAttr(isActive),
+      "data-hover": dataAttr(isHovered),
+      "data-checked": dataAttr(isChecked),
+      "data-focus": dataAttr(isFocused),
+      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+      "data-indeterminate": dataAttr(isIndeterminate),
+      "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(isInvalid),
+      "data-readonly": dataAttr(isReadOnly),
+    }),
+    [
+      isActive,
+      isChecked,
+      isDisabled,
+      isFocused,
+      isFocusVisible,
+      isHovered,
+      isIndeterminate,
+      isInvalid,
+      isReadOnly,
+    ],
+  )
+
   const getRootProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => ({
       ...htmlProps,
@@ -331,6 +358,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     state,
     getRootProps,
     getCheckboxProps,
+    getIndicatorProps,
     getInputProps,
     getLabelProps,
     htmlProps,
