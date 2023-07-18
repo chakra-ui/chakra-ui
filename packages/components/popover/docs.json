@@ -31,7 +31,8 @@
     "closeDelay": {
       "type": "number",
       "defaultValue": "200",
-      "required": false
+      "required": false,
+      "description": "Delay in milliseconds before the popover closes after a trigger event.\nOnly works when `trigger=\"hover\"`"
     },
     "closeOnBlur": {
       "type": "boolean",
@@ -131,7 +132,12 @@
       "required": false,
       "description": "Callback fired when the popover opens"
     },
-    "openDelay": { "type": "number", "defaultValue": "200", "required": false },
+    "openDelay": {
+      "type": "number",
+      "defaultValue": "200",
+      "required": false,
+      "description": "Delay in milliseconds before the popover opens after a trigger event.\nOnly works when `trigger=\"hover\"`"
+    },
     "placement": {
       "type": "PlacementWithLogical",
       "defaultValue": "bottom",

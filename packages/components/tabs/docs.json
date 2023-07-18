@@ -137,12 +137,6 @@
       "required": false,
       "description": "If `true` and isDisabled, the element will\nhave only `aria-disabled` set to `true`"
     },
-    "isSelected": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
-    },
-    "panelId": { "type": "string", "required": false },
     "ref": {
       "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLElement | null) => void)\n  | RefObject<HTMLElement>",
       "required": false,
