@@ -16,7 +16,7 @@ import { ThemingProps } from "@chakra-ui/system"
 import { theme } from "@chakra-ui/theme"
 import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
 import { pick } from "@chakra-ui/utils"
-import { Button, ButtonGroup, IconButton } from "../src"
+import { Button, ButtonGroup, IconButton, ToggleButtonGroup } from "../src"
 
 export default {
   title: "Components / Forms / Button",
@@ -42,6 +42,17 @@ basic.args = {
   children: "Button",
 }
 
+export const asToggle = () => {
+  return (
+    <>
+      <ToggleButtonGroup onChange={(v) => console.log(v)} variant={"outline"}>
+        <Button>Hello 1</Button>
+        <Button value={"apple"}>Hello 2</Button>
+        <Button>Hello 3</Button>
+      </ToggleButtonGroup>
+    </>
+  )
+}
 export const outlines: StoryFn<StoryProps> = (props) => (
   <>
     <Button {...props} variant="outline" colorScheme="red" />
