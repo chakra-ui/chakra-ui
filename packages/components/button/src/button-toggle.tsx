@@ -24,10 +24,9 @@ export const ToggleButtonGroup = (
     ...rest
   } = props
 
-  const defaultIndex = allowNone ? -1 : 0
-
-  const [currButton, setCurrButton] = useState<Set<number>>(
-    new Set([initialIndex ?? defaultIndex]),
+  const defaultIndex = initialIndex ?? (allowNone ? undefined : 0)
+  const [currButton, setCurrButton] = useState<Set<number | undefined>>(
+    defaultIndex === undefined ? new Set() : new Set([defaultIndex]),
   )
 
   const getValue = (e: JSX.Element): string | number | JSX.Element => {
