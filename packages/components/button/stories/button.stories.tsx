@@ -43,14 +43,20 @@ basic.args = {
 }
 
 export const asToggle = () => {
+  const [selected, setSelected] = React.useState<any>()
   return (
-    <>
-      <ToggleButtonGroup onChange={(v) => console.log(v)} variant={"outline"}>
-        <Button>Hello 1</Button>
-        <Button value={"apple"}>Hello 2</Button>
-        <Button>Hello 3</Button>
+    <Stack>
+      <>Current Value: {selected}</>
+      <ToggleButtonGroup
+        onChange={(v) => setSelected(v)}
+        variant={"outline"}
+        exclusive={false}
+      >
+        <Button>Option 1</Button>
+        <Button value={"opt 2"}>Option 2</Button>
+        <Button>Option 3</Button>
       </ToggleButtonGroup>
-    </>
+    </Stack>
   )
 }
 export const outlines: StoryFn<StoryProps> = (props) => (
