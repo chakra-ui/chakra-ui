@@ -1357,6 +1357,9 @@ importers:
       '@chakra-ui/shared-utils':
         specifier: workspace:*
         version: link:../../utilities/shared-utils
+      '@zag-js/dom-utils':
+        specifier: ^0.2.4
+        version: 0.2.4
     devDependencies:
       '@chakra-ui/system':
         specifier: workspace:*
