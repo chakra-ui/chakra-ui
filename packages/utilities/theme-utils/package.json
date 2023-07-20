@@ -13,7 +13,8 @@
   "main": "src/index.ts",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -41,9 +42,8 @@
   },
   "dependencies": {
     "@chakra-ui/styled-system": "workspace:*",
-    "@chakra-ui/theme": "workspace:*",
     "lodash.mergewith": "4.6.2",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/utils": "workspace:*"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {

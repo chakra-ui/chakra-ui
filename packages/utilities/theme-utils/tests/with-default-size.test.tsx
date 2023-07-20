@@ -1,4 +1,4 @@
-import { extendTheme, withDefaultSize } from "../src"
+import { extendTheme, withDefaultSize } from ".."
 
 describe("Theme extension: withDefaultSize", () => {
   it("should set a defaultSize", () => {

@@ -1,4 +1,4 @@
-import { extendTheme, withDefaultProps } from "../src"
+import { extendTheme, withDefaultProps } from ".."
 
 describe("Theme extension: withDefaultProps", () => {
   it("should set a defaultProps", () => {
