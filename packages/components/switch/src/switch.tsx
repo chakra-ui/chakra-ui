@@ -1,15 +1,15 @@
 import { useCheckbox, UseCheckboxProps } from "@chakra-ui/checkbox"
+import { cx } from "@chakra-ui/shared-utils"
 import {
   chakra,
   forwardRef,
+  HTMLChakraProps,
   omitThemingProps,
+  SystemProps,
   SystemStyleObject,
   ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
-  SystemProps,
 } from "@chakra-ui/system"
-import { cx, dataAttr } from "@chakra-ui/shared-utils"
 import { useMemo } from "react"
 
 export interface SwitchProps
@@ -39,7 +39,7 @@ export const Switch = forwardRef<SwitchProps, "input">(function Switch(
   const { spacing = "0.5rem", children, ...ownProps } = omitThemingProps(props)
 
   const {
-    state,
+    getIndicatorProps,
     getInputProps,
     getCheckboxProps,
     getRootProps,
@@ -93,8 +93,7 @@ export const Switch = forwardRef<SwitchProps, "input">(function Switch(
         <chakra.span
           __css={styles.thumb}
           className="chakra-switch__thumb"
-          data-checked={dataAttr(state.isChecked)}
-          data-hover={dataAttr(state.isHovered)}
+          {...getIndicatorProps()}
         />
       </chakra.span>
       {children && (

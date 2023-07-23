@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/descendant",
-  "version": "3.0.14",
+  "version": "3.1.0",
   "description": "Register child nodes of a react element for better accessibility",
   "keywords": [
     "dom",
@@ -53,13 +53,5 @@
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

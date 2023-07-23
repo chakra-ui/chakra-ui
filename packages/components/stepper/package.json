@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/stepper",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "The stepper component to create a logical sequence of steps",
   "keywords": [
     "stepper"
@@ -49,13 +49,5 @@
     "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

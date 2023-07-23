@@ -90,10 +90,16 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
    */
   trigger?: keyof typeof TRIGGER
   /**
+   * Delay in milliseconds before the popover opens after a trigger event.
+   * Only works when `trigger="hover"`
+   *
    * @default 200
    */
   openDelay?: number
   /**
+   * Delay in milliseconds before the popover closes after a trigger event.
+   * Only works when `trigger="hover"`
+   *
    * @default 200
    */
   closeDelay?: number

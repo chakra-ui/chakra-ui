@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/layout",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Chakra UI layout components that give you massive speed",
   "keywords": [
     "layout",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "react-icons": "^4.2.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "6.14.1",
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
@@ -64,13 +64,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/input",
-  "version": "2.0.22",
+  "version": "2.1.0",
   "description": "A React component for input text field",
   "keywords": [
     "react",
@@ -59,13 +59,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/number-input",
-  "version": "2.0.19",
+  "version": "2.1.0",
   "description": "An accessible numeric input alternative to <input type='number' />",
   "keywords": [
     "theme",
@@ -56,7 +56,7 @@
     "@chakra-ui/layout": "workspace:*",
     "react": "^18.0.0",
     "react-lorem-component": "0.13.0",
-    "react-hook-form": "7.43.9",
+    "react-hook-form": "7.45.1",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {
@@ -73,13 +73,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

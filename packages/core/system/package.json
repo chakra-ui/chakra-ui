@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "2.5.8",
+  "version": "2.6.0",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -62,13 +62,5 @@
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

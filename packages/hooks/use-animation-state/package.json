@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-animation-state",
-  "version": "2.0.9",
+  "version": "2.1.0",
   "description": "",
   "keywords": [
     "use-animation-state"
@@ -44,13 +44,5 @@
     "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/dom-utils": "workspace:*"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

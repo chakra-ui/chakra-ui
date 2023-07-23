@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/tabs",
-  "version": "2.1.9",
+  "version": "2.2.0",
   "description": "Accessible Tabs component for React and Chakra UI",
   "keywords": [
     "react",
@@ -70,13 +70,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

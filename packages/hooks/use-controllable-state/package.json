@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-controllable-state",
-  "version": "2.0.8",
+  "version": "2.1.0",
   "description": "",
   "keywords": [
     "react-use-callback-ref"
@@ -43,13 +43,5 @@
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

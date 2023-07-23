@@ -255,17 +255,16 @@ export function useTabList<P extends UseTabListProps>(props: P) {
 export type UseTabListReturn = ReturnType<typeof useTabList>
 
 export interface UseTabOptions {
-  id?: string
-  /**
-   * @default false
-   */
-  isSelected?: boolean
-  panelId?: string
   /**
    * If `true`, the `Tab` won't be toggleable
    * @default false
    */
   isDisabled?: boolean
+  /**
+   * If `true` and `isDisabled`, the `Tab` will be focusable but not interactive.
+   * @default false
+   */
+  isFocusable?: boolean
 }
 
 export interface UseTabProps
@@ -279,7 +278,7 @@ export interface UseTabProps
  * hence the use of `useClickable` to handle this scenario
  */
 export function useTab<P extends UseTabProps>(props: P) {
-  const { isDisabled, isFocusable, ...htmlProps } = props
+  const { isDisabled = false, isFocusable = false, ...htmlProps } = props
 
   const { setSelectedIndex, isManual, id, setFocusedIndex, selectedIndex } =
     useTabsContext()

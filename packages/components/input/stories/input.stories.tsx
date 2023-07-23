@@ -92,6 +92,14 @@ export const WithInputAddon = () => (
   </Stack>
 )
 
+export const WithInputAddonResponsive = () => (
+  <InputGroup size={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}>
+    <InputLeftAddon children="https://" />
+    <Input placeholder="website.com" />
+    <InputRightAddon children=".com" />
+  </InputGroup>
+)
+
 export const WithInputElement = () => (
   <Stack align="start">
     <InputGroup>
@@ -105,6 +113,14 @@ export const WithInputElement = () => (
       <InputRightElement children={<CheckIcon color="green.500" />} />
     </InputGroup>
   </Stack>
+)
+
+export const WithInputElementResponsive = () => (
+  <InputGroup size={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}>
+    <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
+    <Input placeholder="Enter amount" />
+    <InputRightElement children={<CheckIcon color="green.500" />} />
+  </InputGroup>
 )
 
 export function PasswordInput() {

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/switch",
-  "version": "2.0.27",
+  "version": "2.1.0",
   "description": "A React component to view and switch between on or off states.",
   "keywords": [
     "switch",
@@ -39,7 +39,7 @@
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "framer-motion": "^10.12.16",
-    "react-hook-form": "7.43.9",
+    "react-hook-form": "7.45.1",
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
@@ -58,13 +58,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

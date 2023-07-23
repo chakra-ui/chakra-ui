@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/image",
-  "version": "2.0.16",
+  "version": "2.1.0",
   "description": "React component for progressive image loading",
   "keywords": [
     "react",
@@ -54,13 +54,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/progress",
-  "version": "2.1.6",
+  "version": "2.2.0",
   "description": "Progress bar component for Chakra UI",
   "keywords": [
     "theme",
@@ -50,13 +50,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

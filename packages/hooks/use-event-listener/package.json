@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-event-listener",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "",
   "keywords": [
     "use-event-listener"
@@ -43,13 +43,5 @@
   "dependencies": {
     "@chakra-ui/react-use-callback-ref": "workspace:*"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

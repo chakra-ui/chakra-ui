@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/transition",
-  "version": "2.0.16",
+  "version": "2.1.0",
   "description": "Common transition components for Chakra UI",
   "sideEffects": false,
   "keywords": [
@@ -50,14 +50,6 @@
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
   "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  },
   "dependencies": {
     "@chakra-ui/shared-utils": "workspace:*"
   }

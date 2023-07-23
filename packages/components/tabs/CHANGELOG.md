@@ -1,5 +1,40 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#7706](https://github.com/chakra-ui/chakra-ui/pull/7706)
+  [`2a7189d80`](https://github.com/chakra-ui/chakra-ui/commit/2a7189d800482082c7444ed2b77ebb03a6a59d27)
+  Thanks [@kylebustard](https://github.com/kylebustard)! - Updates the
+  `UseTabOptions` interface, potentially affecting code using `useTab()` or
+  `<Tab />` components:
+
+  - Removes the following unused fields: `id`, `panelId`, and `isSelected`.
+  - Adds the field `isFocusable` which was being directly accessed and used, but
+    was not explicitly typed or documented.
+  - Adds the default value of `false` for `isDisabled` and `isFocusable`. The
+    former was documented as defaulting to `false`, but both were defaulting to
+    `undefined`.
+
+  Please review your codebase to ensure compatibility with these changes.
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/react-use-controllable-state@2.1.0
+  - @chakra-ui/react-use-safe-layout-effect@2.1.0
+  - @chakra-ui/descendant@3.1.0
+  - @chakra-ui/clickable@2.1.0
+  - @chakra-ui/react-use-merge-refs@2.1.0
+  - @chakra-ui/react-context@2.1.0
+
 ## 2.1.9
 
 ### Patch Changes

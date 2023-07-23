@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-timeout",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "React hook for setTimeout",
   "keywords": [
     "react-use-timeout"
@@ -43,13 +43,5 @@
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

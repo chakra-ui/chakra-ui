@@ -1,5 +1,26 @@
 # Change Log
 
+## 2.3.0
+
+### Minor Changes
+
+- [`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - To improve support
+  for the App Router, all components and hooks are exported with the
+  `"use client"` directive.
+
+### Patch Changes
+
+- [#7826](https://github.com/chakra-ui/chakra-ui/pull/7826)
+  [`122d53c92`](https://github.com/chakra-ui/chakra-ui/commit/122d53c92d309c201138532fb03d82d4051a9c67)
+  Thanks [@cranium](https://github.com/cranium)! - Pass referrerPolicy to
+  AvatarImage instead of keeping it on the parent span
+
+- Updated dependencies
+  [[`754d9d4f4`](https://github.com/chakra-ui/chakra-ui/commit/754d9d4f48b4fef8d38cb1d5e342f3776d18e7c6)]:
+  - @chakra-ui/image@2.1.0
+  - @chakra-ui/react-context@2.1.0
+
 ## 2.2.11
 
 ### Patch Changes

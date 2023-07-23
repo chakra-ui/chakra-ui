@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react-use-focus-effect",
-  "version": "2.0.11",
+  "version": "2.1.0",
   "description": "",
   "keywords": [
     "use-focus-effect"
@@ -46,13 +46,5 @@
     "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
     "@chakra-ui/dom-utils": "workspace:*"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

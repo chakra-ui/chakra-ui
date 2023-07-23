@@ -123,9 +123,11 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   useSafeLayoutEffect(() => {
     const el = inputRef.current
     if (!el?.form) return
-    el.form.onreset = () => {
+    const formResetListener = () => {
       setCheckedState(!!defaultChecked)
     }
+    el.form.addEventListener("reset", formResetListener)
+    return () => el.form?.removeEventListener("reset", formResetListener)
   }, [])
 
   const trulyDisabled = isDisabled && !isFocusable
@@ -201,6 +203,33 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         ),
       }
     },
+    [
+      isActive,
+      isChecked,
+      isDisabled,
+      isFocused,
+      isFocusVisible,
+      isHovered,
+      isIndeterminate,
+      isInvalid,
+      isReadOnly,
+    ],
+  )
+
+  const getIndicatorProps: PropGetter = useCallback(
+    (props = {}, forwardedRef = null) => ({
+      ...props,
+      ref: forwardedRef,
+      "data-active": dataAttr(isActive),
+      "data-hover": dataAttr(isHovered),
+      "data-checked": dataAttr(isChecked),
+      "data-focus": dataAttr(isFocused),
+      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+      "data-indeterminate": dataAttr(isIndeterminate),
+      "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(isInvalid),
+      "data-readonly": dataAttr(isReadOnly),
+    }),
     [
       isActive,
       isChecked,
@@ -329,6 +358,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     state,
     getRootProps,
     getCheckboxProps,
+    getIndicatorProps,
     getInputProps,
     getLabelProps,
     htmlProps,

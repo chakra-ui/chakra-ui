@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/textarea",
-  "version": "2.0.19",
+  "version": "2.1.0",
   "description": "Textarea React component for Chakra UI",
   "keywords": [
     "theme",
@@ -54,13 +54,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

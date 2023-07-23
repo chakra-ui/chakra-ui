@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/avatar",
-  "version": "2.2.11",
+  "version": "2.3.0",
   "description": "A React component used to show users avatar or initials",
   "keywords": [
     "component",
@@ -58,13 +58,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

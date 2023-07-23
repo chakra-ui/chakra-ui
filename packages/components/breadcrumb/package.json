@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/breadcrumb",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "description": "A React component used for navigation, with each item acting as a link",
   "keywords": [
     "breadcrumbs",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/system": "workspace:*",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "6.14.1",
     "react": "^18.0.0",
     "clean-package": "2.2.0"
   },
@@ -55,13 +55,5 @@
     "postpack": "clean-package restore",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "clean-package": "../../../clean-package.config.json",
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  }
+  "clean-package": "../../../clean-package.config.json"
 }

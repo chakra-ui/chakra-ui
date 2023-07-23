@@ -1,5 +1,13 @@
 # @chakra-ui/next-js
 
+## 2.1.5
+
+### Patch Changes
+
+- [`e16ee11eb`](https://github.com/chakra-ui/chakra-ui/commit/e16ee11eb1d9849d91604251fe83c96b60166913)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where DOM
+  image props are not forwarded to Image component
+
 ## 2.1.4
 
 ### Patch Changes
