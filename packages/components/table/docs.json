@@ -23,6 +23,22 @@
       "description": "The variant of the Table"
     }
   },
+  "Td": {
+    "isNumeric": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "Aligns the cell content to the right"
+    }
+  },
+  "Th": {
+    "isNumeric": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "Aligns the cell content to the right"
+    }
+  },
   "TableCaption": {
     "placement": {
       "type": "\"bottom\" | \"top\"",
