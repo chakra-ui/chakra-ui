@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -215,7 +215,7 @@ importers:
         version: 3.0.2
       tsup:
         specifier: ^6.5.0
-        version: 6.5.0(@swc/core@1.3.24)(postcss@8.4.20)(typescript@5.0.2)
+        version: 6.5.0(@swc/core@1.3.24)(postcss@7.0.39)(typescript@5.0.2)
       tsx:
         specifier: ^3.8.1
         version: 3.8.1
@@ -490,6 +490,9 @@ importers:
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
+      '@zag-js/dom-utils':
+        specifier: ^0.2.4
+        version: 0.2.4
       '@zag-js/focus-visible':
         specifier: 0.11.2
         version: 0.11.2
@@ -4065,7 +4068,7 @@ packages:
       '@emotion/memoize': 0.8.1
       '@emotion/unitless': 0.8.1
       '@emotion/utils': 1.2.1
-      csstype: 3.1.0
+      csstype: 3.1.1
 
   /@emotion/sheet@1.2.2:
     resolution: {integrity: sha512-0QBtGvaqtWi+nx6doRwDdBIzhNdZrXUppvTM4dtZZWEGTXL/XE/yJxLMGlDT1Gt+UHH5IX1n+jkXyytE/av7OA==}
@@ -11540,6 +11543,12 @@ packages:
     resolution: {integrity: sha512-5i2/FP4V++8YSU/HBhP9qMZJ/OvMX0p33XQsAZ5NrXm+M5nm/MfVbkuWDaU6w7wcMH+Ew+LU7GclwYqmnUmDAQ==}
     dev: false
 
+  /@zag-js/dom-utils@0.2.4:
+    resolution: {integrity: sha512-GSGZWZMOyed2rzyZLmnM6/B8L7FH2z2cAU6F2zP4MzaIFkVOSN/M8fHjvKfmfVpn0tZEyD3iZABsUMv6J22RPw==}
+    dependencies:
+      '@zag-js/types': 0.3.4
+    dev: false
+
   /@zag-js/element-size@0.11.2:
     resolution: {integrity: sha512-I/gLU7uYTP+eLcXq4V6PmniCP8rSZMFd9zmZeHI6cVbrHVlP45hLfN6zoy28znGHoeZDBEhkLt3gXEhrFslTJA==}
     dev: false
@@ -11548,6 +11557,12 @@ packages:
     resolution: {integrity: sha512-JfhWnkSosHARXNpg+EgSdfydo7v7ZFq9GW/bysp7kLBoaSqxWBXV/jEq+w4hEJj8Mdfd/QvRFFyIwuPLRD/WtQ==}
     dependencies:
       '@zag-js/dom-query': 0.11.2
+    dev: false
+
+  /@zag-js/types@0.3.4:
+    resolution: {integrity: sha512-KkZOMNqFZA0TaVF70O6WIRJPWTcDyRQjhXLDkLVfo99gwJdsC1bMZWfjrCiR8g1CfzvCyGNSWzdArIgzTJVEMA==}
+    dependencies:
+      csstype: 3.1.1
     dev: false
 
   /JSONStream@1.3.5:
@@ -14567,6 +14582,9 @@ packages:
 
   /csstype@3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
+
+  /csstype@3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
 
   /csv-generate@3.4.3:
     resolution: {integrity: sha512-w/T+rqR0vwvHqWs/1ZyMDWtHHSJaN06klRqJXBEpDJaM/+dZkso0OKh1VcuuYvK3XM53KysVNq8Ko/epCK8wOw==}
@@ -23949,6 +23967,23 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
+  /postcss-load-config@3.1.4(postcss@7.0.39):
+    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.0.6
+      postcss: 7.0.39
+      yaml: 1.10.2
+    dev: false
+
   /postcss-load-config@3.1.4(postcss@8.4.14):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
@@ -23965,23 +24000,6 @@ packages:
       postcss: 8.4.14
       yaml: 1.10.2
     dev: true
-
-  /postcss-load-config@3.1.4(postcss@8.4.20):
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.0.6
-      postcss: 8.4.20
-      yaml: 1.10.2
-    dev: false
 
   /postcss-loader@4.3.0(postcss@7.0.39)(webpack@4.46.0):
     resolution: {integrity: sha512-M/dSoIiNDOo8Rk0mUqoj4kpGq91gcxCfb9PoyZVdZ76/AuhxylHDYZblNE8o+EQ9AMSASeMFEKxZf5aU6wlx1Q==}
@@ -28173,7 +28191,7 @@ packages:
   /tslib@2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
 
-  /tsup@6.5.0(@swc/core@1.3.24)(postcss@8.4.20)(typescript@5.0.2):
+  /tsup@6.5.0(@swc/core@1.3.24)(postcss@7.0.39)(typescript@5.0.2):
     resolution: {integrity: sha512-36u82r7rYqRHFkD15R20Cd4ercPkbYmuvRkz3Q1LCm5BsiFNUgpo36zbjVhCOgvjyxNBWNKHsaD5Rl8SykfzNA==}
     engines: {node: '>=14'}
     hasBin: true
@@ -28198,8 +28216,8 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss: 8.4.20
-      postcss-load-config: 3.1.4(postcss@8.4.20)
+      postcss: 7.0.39
+      postcss-load-config: 3.1.4(postcss@7.0.39)
       resolve-from: 5.0.0
       rollup: 3.7.5
       source-map: 0.8.0-beta.0

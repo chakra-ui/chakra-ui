@@ -38,6 +38,7 @@
   "dependencies": {
     "@popperjs/core": "2.11.8",
     "@zag-js/focus-visible": "0.11.2",
+    "@zag-js/dom-utils": "^0.2.4",
     "aria-hidden": "1.2.3",
     "react-focus-lock": "2.9.5",
     "react-fast-compare": "3.2.2",

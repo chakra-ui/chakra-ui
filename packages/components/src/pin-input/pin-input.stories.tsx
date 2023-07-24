@@ -1,7 +1,6 @@
 import { useState } from "react"
 import {
   PinInput,
-  PinInputDescendantsProvider,
   PinInputField,
   PinInputProvider,
   usePinInput,
@@ -26,21 +25,19 @@ function Input(props: any) {
 }
 
 export function HookExample() {
-  const { descendants, ...context } = usePinInput({
+  const context = usePinInput({
     autoFocus: true,
     mask: true,
     onComplete: alert,
     type: "number",
   })
   return (
-    <PinInputDescendantsProvider value={descendants}>
-      <PinInputProvider value={context}>
-        <Input style={style} />
-        <Input style={style} />
-        <Input style={style} />
-        <Input style={style} />
-      </PinInputProvider>
-    </PinInputDescendantsProvider>
+    <PinInputProvider value={context}>
+      <Input style={style} />
+      <Input style={style} />
+      <Input style={style} />
+      <Input style={style} />
+    </PinInputProvider>
   )
 }
 
@@ -57,13 +54,11 @@ export function ComponentExample() {
 export const Sizes = () => (
   <>
     {["xs", "sm", "md", "lg"].map((size) => (
-      <div key={size} style={{ marginBottom: "1rem" }}>
-        <PinInput size={size}>
-          <PinInputField />
-          <PinInputField />
-          <PinInputField />
-        </PinInput>
-      </div>
+      <PinInput key={size} size={size} style={{ marginBottom: "1rem" }}>
+        <PinInputField />
+        <PinInputField />
+        <PinInputField />
+      </PinInput>
     ))}
   </>
 )

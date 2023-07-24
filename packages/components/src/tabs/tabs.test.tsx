@@ -3,20 +3,20 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from "."
 
 test("should no accessibility issues", async () => {
   await testA11y(
-    <Tabs>
+    <Tabs value="1">
       <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
+        <Tab value="1">Tab 1</Tab>
+        <Tab value="2">Tab 2</Tab>
+        <Tab value="3">Tab 3</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
+        <TabPanel value="1">
           <p>Panel 1</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="2">
           <p>Panel 2</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="3">
           <p>Panel 3</p>
         </TabPanel>
       </TabPanels>
@@ -26,20 +26,20 @@ test("should no accessibility issues", async () => {
 
 test("selects the correct tab with keyboard navigation", async () => {
   const { user } = render(
-    <Tabs>
+    <Tabs value="1">
       <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
+        <Tab value="1">Tab 1</Tab>
+        <Tab value="2">Tab 2</Tab>
+        <Tab value="3">Tab 3</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
+        <TabPanel value="1">
           <p>Panel 1</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="2">
           <p>Panel 2</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="3">
           <p>Panel 3</p>
         </TabPanel>
       </TabPanels>
@@ -92,20 +92,20 @@ test("selects the correct tab with keyboard navigation", async () => {
 
 test("focuses the correct tab with manual keyboard navigation", async () => {
   const { user } = render(
-    <Tabs isManual>
+    <Tabs value="1" isManual>
       <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
+        <Tab value="1">Tab 1</Tab>
+        <Tab value="2">Tab 2</Tab>
+        <Tab value="3">Tab 3</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
+        <TabPanel value="1">
           <p>Panel 1</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="2">
           <p>Panel 2</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="3">
           <p>Panel 3</p>
         </TabPanel>
       </TabPanels>
@@ -136,16 +136,16 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
 
 test("renders only the currently active tab panel if isLazy", async () => {
   const { user } = render(
-    <Tabs isLazy>
+    <Tabs value="1" isLazy>
       <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
+        <Tab value="1">Tab 1</Tab>
+        <Tab value="2">Tab 2</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
+        <TabPanel value="1">
           <p>Panel 1</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="2">
           <p>Panel 2</p>
         </TabPanel>
       </TabPanels>
@@ -163,16 +163,16 @@ test("renders only the currently active tab panel if isLazy", async () => {
 
 test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", async () => {
   const { user } = render(
-    <Tabs isLazy lazyBehavior="keepMounted">
+    <Tabs value="1" isLazy lazyBehavior="keepMounted">
       <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
+        <Tab value="1">Tab 1</Tab>
+        <Tab value="2">Tab 2</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
+        <TabPanel value="1">
           <p>Panel 1</p>
         </TabPanel>
-        <TabPanel>
+        <TabPanel value="2">
           <p>Panel 2</p>
         </TabPanel>
       </TabPanels>

@@ -10,12 +10,7 @@ import {
 } from "../system"
 import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
-import {
-  TabsDescendantsProvider,
-  TabsProvider,
-  useTabs,
-  UseTabsProps,
-} from "./use-tabs"
+import { TabsProvider, useTabs, UseTabsProps } from "./use-tabs"
 
 const [TabsStylesProvider, useTabsStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -41,7 +36,7 @@ interface TabsOptions {
 export interface TabsProps
   extends UseTabsProps,
     ThemingProps<"Tabs">,
-    Omit<HTMLChakraProps<"div">, "onChange">,
+    Omit<HTMLChakraProps<"div">, "onChange" | "defaultValue">,
     TabsOptions {
   children: React.ReactNode
 }
@@ -58,26 +53,24 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   const styles = useMultiStyleConfig("Tabs", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, descendants, ...ctx } = useTabs(rest)
+  const { htmlProps, ...ctx } = useTabs(rest)
   const context = useMemo(() => ctx, [ctx])
 
   const { isFitted: _, ...rootProps } = htmlProps as any
 
   return (
-    <TabsDescendantsProvider value={descendants}>
-      <TabsProvider value={context}>
-        <TabsStylesProvider value={styles}>
-          <chakra.div
-            className={cx("chakra-tabs", className)}
-            ref={ref}
-            {...rootProps}
-            __css={styles.root}
-          >
-            {children}
-          </chakra.div>
-        </TabsStylesProvider>
-      </TabsProvider>
-    </TabsDescendantsProvider>
+    <TabsProvider value={context}>
+      <TabsStylesProvider value={styles}>
+        <chakra.div
+          className={cx("chakra-tabs", className)}
+          ref={ref}
+          {...rootProps}
+          __css={styles.root}
+        >
+          {children}
+        </chakra.div>
+      </TabsStylesProvider>
+    </TabsProvider>
   )
 })
 
