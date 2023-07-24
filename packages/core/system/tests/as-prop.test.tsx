@@ -40,6 +40,33 @@ describe("`as` prop typings", () => {
     expect(true).toBe(true)
   })
 
+  it("should have correct types for the ChakraComponent with custom props", () => {
+    type CustomProps = {
+      ["data-custom-boolean"]: boolean
+    }
+
+    const CustomCompWithRequired = chakra<typeof CompWithRequired, CustomProps>(
+      CompWithRequired,
+      {
+        baseStyle: (props) => ({
+          color: props["data-custom-boolean"] ? "red.500" : "blue.500",
+        }),
+      },
+    )
+
+    const invalidDueToMissingProp = (
+      // @ts-expect-error - Property '["data-custom-boolean"]' is missing
+      <CustomCompWithRequired thisIsARequiredProp />
+    )
+
+    const renderedCustomCompWithRequired = (
+      <CustomCompWithRequired data-custom-boolean thisIsARequiredProp />
+    )
+
+    // make jest happy
+    expect(true).toBe(true)
+  })
+
   it("should have correct types for the ChakraComponent with additional props", () => {
     const AdditionalPropComp: ChakraComponent<
       "div",

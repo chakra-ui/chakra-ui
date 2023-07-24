@@ -5,7 +5,7 @@ import { As, ChakraComponent } from "./system.types"
 type ChakraFactory = {
   <T extends As, P extends object = {}>(
     component: T,
-    options?: ChakraStyledOptions,
+    options?: ChakraStyledOptions<P>,
   ): ChakraComponent<T, P>
 }
 
