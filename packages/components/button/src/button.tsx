@@ -46,6 +46,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
     spinnerPlacement = "start",
     className,
     as,
+    disabled,
     ...rest
   } = omitThemingProps(props)
 
@@ -87,7 +88,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       __css={buttonStyles}
       className={cx("chakra-button", className)}
       {...rest}
-      disabled={isDisabled || isLoading}
+      disabled={isDisabled || isLoading || disabled}
     >
       {isLoading && spinnerPlacement === "start" && (
         <ButtonSpinner
