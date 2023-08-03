@@ -10,7 +10,7 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "framer-motion": "^10.12.16",
-    "gatsby": "^4.18.2",
+    "gatsby": "^4.25.7",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-manifest": "^4.18.1",
     "gatsby-plugin-offline": "^5.18.1",
