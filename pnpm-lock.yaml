@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -73,7 +77,7 @@ importers:
         version: 7.0.20(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
       '@storybook/react-vite':
         specifier: ^7.0.20
-        version: 7.0.20(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)(vite@4.3.9)
+        version: 7.0.20(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)(vite@4.0.5)
       '@storybook/theming':
         specifier: ^7.0.20
         version: 7.0.20(react-dom@18.2.0)(react@18.2.0)
@@ -222,8 +226,8 @@ importers:
         specifier: 0.7.4
         version: 0.7.4
       vite:
-        specifier: ^4.3.9
-        version: 4.3.9(@types/node@18.11.17)
+        specifier: ^4.0.5
+        version: 4.0.5(@types/node@18.11.17)
     devDependencies:
       '@babel/preset-env':
         specifier: ^7.18.9
@@ -483,13 +487,13 @@ importers:
         version: 18.0.11
       '@vitejs/plugin-react':
         specifier: ^3.0.0
-        version: 3.0.0(vite@4.0.2)
+        version: 3.0.0(vite@4.0.5)
       typescript:
         specifier: ^5.0.2
         version: 5.0.2
       vite:
-        specifier: ^4.0.2
-        version: 4.0.2(@types/node@18.11.17)
+        specifier: ^4.0.5
+        version: 4.0.5(@types/node@18.11.17)
 
   packages/components/accordion:
     dependencies:
@@ -8484,7 +8488,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-arm64@0.17.19:
@@ -8502,7 +8505,6 @@ packages:
     cpu: [arm]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-arm@0.17.19:
@@ -8520,7 +8522,6 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-x64@0.17.19:
@@ -8538,7 +8539,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-arm64@0.17.19:
@@ -8556,7 +8556,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-x64@0.17.19:
@@ -8574,7 +8573,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-arm64@0.17.19:
@@ -8592,7 +8590,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-x64@0.17.19:
@@ -8610,7 +8607,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm64@0.17.19:
@@ -8628,7 +8624,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm@0.17.19:
@@ -8646,7 +8641,6 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ia32@0.17.19:
@@ -8664,7 +8658,6 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-loong64@0.17.19:
@@ -8682,7 +8675,6 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-mips64el@0.17.19:
@@ -8700,7 +8692,6 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ppc64@0.17.19:
@@ -8718,7 +8709,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-riscv64@0.17.19:
@@ -8736,7 +8726,6 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-s390x@0.17.19:
@@ -8754,7 +8743,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-x64@0.17.19:
@@ -8772,7 +8760,6 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/netbsd-x64@0.17.19:
@@ -8790,7 +8777,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/openbsd-x64@0.17.19:
@@ -8808,7 +8794,6 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/sunos-x64@0.17.19:
@@ -8826,7 +8811,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-arm64@0.17.19:
@@ -8844,7 +8828,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-ia32@0.17.19:
@@ -8862,7 +8845,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-x64@0.17.19:
@@ -10472,7 +10454,7 @@ packages:
       regenerator-runtime: 0.13.11
     dev: false
 
-  /@joshwooding/vite-plugin-react-docgen-typescript@0.2.1(typescript@5.0.2)(vite@4.3.9):
+  /@joshwooding/vite-plugin-react-docgen-typescript@0.2.1(typescript@5.0.2)(vite@4.0.5):
     resolution: {integrity: sha512-ou4ZJSXMMWHqGS4g8uNRbC5TiTWxAgQZiVucoUrOCWuPrTbkpJbmVyIi9jU72SBry7gQtuMEDp4YR8EEXAg7VQ==}
     peerDependencies:
       typescript: '>= 4.3.x'
@@ -10486,7 +10468,7 @@ packages:
       magic-string: 0.27.0
       react-docgen-typescript: 2.2.2(typescript@5.0.2)
       typescript: 5.0.2
-      vite: 4.3.9(@types/node@18.11.17)
+      vite: 4.0.5(@types/node@18.11.17)
     dev: false
 
   /@jridgewell/gen-mapping@0.1.1:
@@ -11618,6 +11600,45 @@ packages:
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
       webpack-dev-server: 4.9.3(webpack@5.73.0)
 
+  /@pmmmwh/react-refresh-webpack-plugin@0.5.7(react-refresh@0.14.0)(webpack@5.73.0):
+    resolution: {integrity: sha512-bcKCAzF0DV2IIROp9ZHkRJa6O4jy7NlnHdWL3GmcUxYWNjLXkK5kfELELwEfSP5hXPfVL/qOGMAROuMQb9GG8Q==}
+    engines: {node: '>= 10.13'}
+    peerDependencies:
+      '@types/webpack': 4.x || 5.x
+      react-refresh: '>=0.10.0 <1.0.0'
+      sockjs-client: ^1.4.0
+      type-fest: '>=0.17.0 <3.0.0'
+      webpack: '>=4.43.0 <6.0.0'
+      webpack-dev-server: 3.x || 4.x
+      webpack-hot-middleware: 2.x
+      webpack-plugin-serve: 0.x || 1.x
+    peerDependenciesMeta:
+      '@types/webpack':
+        optional: true
+      sockjs-client:
+        optional: true
+      type-fest:
+        optional: true
+      webpack-dev-server:
+        optional: true
+      webpack-hot-middleware:
+        optional: true
+      webpack-plugin-serve:
+        optional: true
+    dependencies:
+      ansi-html-community: 0.0.8
+      common-path-prefix: 3.0.0
+      core-js-pure: 3.23.5
+      error-stack-parser: 2.1.4
+      find-up: 5.0.0
+      html-entities: 2.3.3
+      loader-utils: 2.0.4
+      react-refresh: 0.14.0
+      schema-utils: 3.1.1
+      source-map: 0.7.4
+      webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
+    dev: true
+
   /@pnpm/config.env-replace@1.1.0:
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
     engines: {node: '>=12.22.0'}
@@ -12654,7 +12675,7 @@ packages:
       - supports-color
     dev: false
 
-  /@storybook/builder-vite@7.0.20(typescript@5.0.2)(vite@4.3.9):
+  /@storybook/builder-vite@7.0.20(typescript@5.0.2)(vite@4.0.5):
     resolution: {integrity: sha512-+SQMdvrqpuuYE1KGNfvGfxt0sjeshMEEXCfxvh2/iCPPIMYTEQ5WfVeEuAla+PRyXrE4JLwCZEowcZoxel1uTA==}
     peerDependencies:
       '@preact/preset-vite': '*'
@@ -12690,7 +12711,7 @@ packages:
       remark-slug: 6.1.0
       rollup: 3.25.1
       typescript: 5.0.2
-      vite: 4.3.9(@types/node@18.11.17)
+      vite: 4.0.5(@types/node@18.11.17)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -13740,7 +13761,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@storybook/react-vite@7.0.20(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)(vite@4.3.9):
+  /@storybook/react-vite@7.0.20(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)(vite@4.0.5):
     resolution: {integrity: sha512-BUIhMD6bxIJ+LTocRyiqfg9Y8HraQDyhSWTIonBjRoIxjCkVhJ3QHQkEy6P+0cerWsntTD2/Gwmq1o1Vzl/6Sw==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -13748,17 +13769,17 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
       vite: ^3.0.0 || ^4.0.0
     dependencies:
-      '@joshwooding/vite-plugin-react-docgen-typescript': 0.2.1(typescript@5.0.2)(vite@4.3.9)
+      '@joshwooding/vite-plugin-react-docgen-typescript': 0.2.1(typescript@5.0.2)(vite@4.0.5)
       '@rollup/pluginutils': 4.2.1
-      '@storybook/builder-vite': 7.0.20(typescript@5.0.2)(vite@4.3.9)
+      '@storybook/builder-vite': 7.0.20(typescript@5.0.2)(vite@4.0.5)
       '@storybook/react': 7.0.20(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
-      '@vitejs/plugin-react': 3.1.0(vite@4.3.9)
+      '@vitejs/plugin-react': 3.1.0(vite@4.0.5)
       ast-types: 0.14.2
       magic-string: 0.27.0
       react: 18.2.0
       react-docgen: 6.0.0-alpha.3
       react-dom: 18.2.0(react@18.2.0)
-      vite: 4.3.9(@types/node@18.11.17)
+      vite: 4.0.5(@types/node@18.11.17)
     transitivePeerDependencies:
       - '@preact/preset-vite'
       - supports-color
@@ -15524,7 +15545,7 @@ packages:
     dependencies:
       resolve: 1.22.1
 
-  /@vitejs/plugin-react@3.0.0(vite@4.0.2):
+  /@vitejs/plugin-react@3.0.0(vite@4.0.5):
     resolution: {integrity: sha512-1mvyPc0xYW5G8CHQvJIJXLoMjl5Ct3q2g5Y2s6Ccfgwm45y48LBvsla7az+GkkAtYikWQ4Lxqcsq5RHLcZgtNQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -15535,12 +15556,12 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.20.5)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.0.2(@types/node@18.11.17)
+      vite: 4.0.5(@types/node@18.11.17)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-react@3.1.0(vite@4.3.9):
+  /@vitejs/plugin-react@3.1.0(vite@4.0.5):
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -15551,7 +15572,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.21.8)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.3.9(@types/node@18.11.17)
+      vite: 4.0.5(@types/node@18.11.17)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -20170,7 +20191,6 @@ packages:
       '@esbuild/win32-arm64': 0.16.9
       '@esbuild/win32-ia32': 0.16.9
       '@esbuild/win32-x64': 0.16.9
-    dev: true
 
   /esbuild@0.17.19:
     resolution: {integrity: sha512-XQ0jAPFkK/u3LcVRcvVHQcTIqD6E2H1fvZMA5dQPSOWb3suUbWbfbRf94pjc0bNzRYLfIrDRQXr7X+LHIm5oHw==}
@@ -22845,7 +22865,7 @@ packages:
       '@nodelib/fs.walk': 1.2.8
       '@parcel/cache': 2.6.2(@parcel/core@2.6.2)
       '@parcel/core': 2.6.2
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.7(react-refresh@0.11.0)(webpack-dev-server@4.9.3)(webpack@5.73.0)
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.7(react-refresh@0.14.0)(webpack@5.73.0)
       '@types/http-proxy': 1.17.9
       '@typescript-eslint/eslint-plugin': 4.33.0(@typescript-eslint/parser@4.33.0)(eslint@8.19.0)(typescript@5.0.2)
       '@typescript-eslint/parser': 4.33.0(eslint@8.19.0)(typescript@5.0.2)
@@ -27559,12 +27579,6 @@ packages:
     requiresBuild: true
     optional: true
 
-  /nanoid@3.3.4:
-    resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-    dev: true
-
   /nanoid@3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -29657,15 +29671,6 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
 
-  /postcss@8.4.20:
-    resolution: {integrity: sha512-6Q04AXR1212bXr5fh03u8aAwbLxAQNGQ/Q1LNa0VfOI06ZAlhPHtQvE4OIdpj4kLThXilalPnmDSOD65DcHt+g==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.4
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
-
   /postcss@8.4.24:
     resolution: {integrity: sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -30701,7 +30706,7 @@ packages:
     peerDependencies:
       react: '>= 0.14.0'
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.22.5
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.28.0
@@ -31379,7 +31384,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
-    dev: false
 
   /rollup@3.7.5:
     resolution: {integrity: sha512-z0ZbqHBtS/et2EEUKMrAl2CoSdwN7ZPzL17UMiKN9RjjqHShTlv7F9J6ZJZJNREYjBh3TvBrdfjkFDIXFNeuiQ==}
@@ -31387,6 +31391,7 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
 
   /rsvp@4.8.5:
     resolution: {integrity: sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==}
@@ -34091,8 +34096,8 @@ packages:
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
 
-  /vite@4.0.2(@types/node@18.11.17):
-    resolution: {integrity: sha512-QJaY3R+tFlTagH0exVqbgkkw45B+/bXVBzF2ZD1KB5Z8RiAoiKo60vSUf6/r4c2Vh9jfGBKM4oBI9b4/1ZJYng==}
+  /vite@4.0.5(@types/node@18.11.17):
+    resolution: {integrity: sha512-7m87RC+caiAxG+8j3jObveRLqaWA/neAdCat6JAZwMkSWqFHOvg8MYe5fAQxVBRAuKAQ1S6XDh3CBQuLNbY33w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -34118,45 +34123,11 @@ packages:
     dependencies:
       '@types/node': 18.11.17
       esbuild: 0.16.9
-      postcss: 8.4.20
-      resolve: 1.22.1
-      rollup: 3.7.5
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
-  /vite@4.3.9(@types/node@18.11.17):
-    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': 18.11.17
-      esbuild: 0.17.19
       postcss: 8.4.24
+      resolve: 1.22.1
       rollup: 3.25.1
     optionalDependencies:
       fsevents: 2.3.2
-    dev: false
 
   /vm-browserify@1.1.2:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==}
@@ -35278,7 +35249,3 @@ packages:
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
