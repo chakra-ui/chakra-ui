@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -320,14 +324,14 @@ importers:
         specifier: ^5.18.0
         version: 5.19.0(gatsby@4.19.2)(react-helmet@6.1.0)
       gatsby-plugin-sharp:
-        specifier: ^4.18.1
-        version: 4.19.0(gatsby@4.19.2)(graphql@15.8.0)
+        specifier: ^4.25.1
+        version: 4.25.1(gatsby@4.19.2)(graphql@15.8.0)
       gatsby-source-filesystem:
         specifier: ^4.18.1
         version: 4.19.0(gatsby@4.19.2)
       gatsby-transformer-sharp:
         specifier: ^4.18.1
-        version: 4.19.0(gatsby-plugin-sharp@4.19.0)(gatsby@4.19.2)(graphql@15.8.0)
+        version: 4.19.0(gatsby-plugin-sharp@4.25.1)(gatsby@4.19.2)(graphql@15.8.0)
       prop-types:
         specifier: ^15.7.2
         version: 15.8.1
@@ -8926,7 +8930,7 @@ packages:
       '@babel/runtime': 7.22.5
       '@parcel/namer-default': 2.6.2(@parcel/core@2.6.2)
       '@parcel/plugin': 2.6.2(@parcel/core@2.6.2)
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
     transitivePeerDependencies:
       - '@parcel/core'
     dev: false
@@ -11043,7 +11047,7 @@ packages:
     resolution: {integrity: sha512-8KG5RD0GVP4ydEzRn/I4BNDuxDtqVbOdm8675T49OIG/NGhaK0pjPX7ZcDlvKYbA+ulvVK3ztfcF4uBdOxuJbQ==}
     dependencies:
       '@gar/promisify': 1.1.3
-      semver: 7.5.1
+      semver: 7.5.4
     dev: false
 
   /@npmcli/move-file@1.1.2:
@@ -11617,6 +11621,45 @@ packages:
       source-map: 0.7.4
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
       webpack-dev-server: 4.9.3(webpack@5.73.0)
+
+  /@pmmmwh/react-refresh-webpack-plugin@0.5.7(react-refresh@0.14.0)(webpack@5.73.0):
+    resolution: {integrity: sha512-bcKCAzF0DV2IIROp9ZHkRJa6O4jy7NlnHdWL3GmcUxYWNjLXkK5kfELELwEfSP5hXPfVL/qOGMAROuMQb9GG8Q==}
+    engines: {node: '>= 10.13'}
+    peerDependencies:
+      '@types/webpack': 4.x || 5.x
+      react-refresh: '>=0.10.0 <1.0.0'
+      sockjs-client: ^1.4.0
+      type-fest: '>=0.17.0 <3.0.0'
+      webpack: '>=4.43.0 <6.0.0'
+      webpack-dev-server: 3.x || 4.x
+      webpack-hot-middleware: 2.x
+      webpack-plugin-serve: 0.x || 1.x
+    peerDependenciesMeta:
+      '@types/webpack':
+        optional: true
+      sockjs-client:
+        optional: true
+      type-fest:
+        optional: true
+      webpack-dev-server:
+        optional: true
+      webpack-hot-middleware:
+        optional: true
+      webpack-plugin-serve:
+        optional: true
+    dependencies:
+      ansi-html-community: 0.0.8
+      common-path-prefix: 3.0.0
+      core-js-pure: 3.23.5
+      error-stack-parser: 2.1.4
+      find-up: 5.0.0
+      html-entities: 2.3.3
+      loader-utils: 2.0.4
+      react-refresh: 0.14.0
+      schema-utils: 3.1.1
+      source-map: 0.7.4
+      webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
+    dev: true
 
   /@pnpm/config.env-replace@1.1.0:
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
@@ -12556,7 +12599,7 @@ packages:
       global: 4.4.0
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.11
 
   /@storybook/addons@7.0.20(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-iqNMclpQszID7xJ01MxUMhMMSlFr9/XkYqxpYiRYRpvbPOPDHdUv3H1ENVTS9/oWOcGllYnaF1AyA6Nxm66jFw==}
@@ -12591,7 +12634,7 @@ packages:
       memoizerific: 1.11.3
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.11
       store2: 2.14.2
       telejson: 6.0.8
       ts-dedent: 2.2.0
@@ -13313,7 +13356,7 @@ packages:
       pretty-hrtime: 1.0.3
       prompts: 2.4.2
       read-pkg-up: 7.0.1
-      semver: 7.5.1
+      semver: 7.5.4
       serve-favicon: 2.5.0
       telejson: 7.1.0
       ts-dedent: 2.2.0
@@ -13504,7 +13547,7 @@ packages:
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      semver: 7.5.1
+      semver: 7.5.4
       store2: 2.14.2
       telejson: 7.1.0
       ts-dedent: 2.2.0
@@ -14448,7 +14491,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.22.5
       '@types/aria-query': 4.2.2
       aria-query: 5.0.0
       chalk: 4.1.2
@@ -14971,6 +15014,7 @@ packages:
 
   /@types/q@1.5.5:
     resolution: {integrity: sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==}
+    dev: true
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -15050,8 +15094,8 @@ packages:
     resolution: {integrity: sha512-mP/CLy6pdrhsDVrz1+Yp5Ly6Tcel2IAEejhyI5NxY6WnBUdWN+AAfGa0HHsdgCdsPWWcd/4D5J2X2TrRYcYRag==}
     dev: false
 
-  /@types/sharp@0.30.4:
-    resolution: {integrity: sha512-6oJEzKt7wZeS7e+6x9QFEOWGs0T/6of00+0onZGN1zSmcSjcTDZKgIGZ6YWJnHowpaKUCFBPH52mYljWqU32Eg==}
+  /@types/sharp@0.30.5:
+    resolution: {integrity: sha512-EhO29617AIBqxoVtpd1qdBanWpspk/kD2B6qTFRJ31Q23Rdf+DNU1xlHSwtqvwq1vgOqBwq1i38SX+HGCymIQg==}
     dependencies:
       '@types/node': 18.11.17
     dev: false
@@ -15191,7 +15235,7 @@ packages:
       functional-red-black-tree: 1.0.1
       ignore: 5.2.0
       regexpp: 3.2.0
-      semver: 7.5.1
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@5.0.2)
       typescript: 5.0.2
     transitivePeerDependencies:
@@ -15369,7 +15413,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@5.0.2)
       typescript: 5.0.2
     transitivePeerDependencies:
@@ -15389,7 +15433,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.7
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@5.0.2)
       typescript: 5.0.2
     transitivePeerDependencies:
@@ -15409,7 +15453,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@5.0.2)
       typescript: 5.0.2
     transitivePeerDependencies:
@@ -15430,7 +15474,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.1
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@5.0.2)
       typescript: 5.0.2
     transitivePeerDependencies:
@@ -15485,7 +15529,7 @@ packages:
       eslint: 8.19.0
       eslint-scope: 5.1.1
       eslint-utils: 3.0.0(eslint@8.19.0)
-      semver: 7.3.7
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -16913,7 +16957,7 @@ packages:
       '@babel/runtime': 7.22.5
       '@babel/types': 7.22.5
       gatsby: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
     dev: false
 
   /babel-plugin-remove-graphql-queries@4.19.0(@babel/core@7.21.8)(gatsby@4.19.2):
@@ -16927,7 +16971,7 @@ packages:
       '@babel/runtime': 7.22.5
       '@babel/types': 7.22.5
       gatsby: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
     dev: false
 
   /babel-plugin-remove-graphql-queries@5.10.0(@babel/core@7.21.8)(gatsby@5.0.0):
@@ -17058,7 +17102,7 @@ packages:
       babel-plugin-macros: 3.1.0
       babel-plugin-transform-react-remove-prop-types: 0.4.24
       core-js: 3.23.5
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
       gatsby-legacy-polyfills: 2.19.0
     transitivePeerDependencies:
       - supports-color
@@ -18156,6 +18200,7 @@ packages:
       '@types/q': 1.5.5
       chalk: 2.4.2
       q: 1.5.1
+    dev: true
 
   /collapse-white-space@1.0.6:
     resolution: {integrity: sha512-jEovNnrhMuqyCcjfEJA56v0Xq8SkIoPKDyaHahwo3POf4qcSXqMYuwNcOTzp74vTsR9Tn08z4MxWqAhcekogkQ==}
@@ -18750,7 +18795,7 @@ packages:
       postcss-modules-values: 4.0.0(postcss@8.4.24)
       postcss-value-parser: 4.2.0
       schema-utils: 3.1.1
-      semver: 7.5.1
+      semver: 7.5.4
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
 
   /css-loader@6.7.1(webpack@5.73.0):
@@ -18766,7 +18811,7 @@ packages:
       postcss-modules-scope: 3.0.0(postcss@8.4.24)
       postcss-modules-values: 4.0.0(postcss@8.4.24)
       postcss-value-parser: 4.2.0
-      semver: 7.5.1
+      semver: 7.5.4
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
     dev: true
 
@@ -18833,6 +18878,7 @@ packages:
 
   /css-select-base-adapter@0.1.1:
     resolution: {integrity: sha512-jQVeeRG70QI08vSTwf1jHxp74JoZsr2XSgETae8/xC8ovSnL2WF87GTLO86Sbwdt2lK4Umg4HnnwMO4YF3Ce7w==}
+    dev: true
 
   /css-select@2.1.0:
     resolution: {integrity: sha512-Dqk7LQKpwLoH3VovzZnkzegqNSuAziQyNZUcrdDM401iY+R5NkGBXGmtO05/yaXQziALuPogeG0b7UAgjnTJTQ==}
@@ -18841,6 +18887,7 @@ packages:
       css-what: 3.4.2
       domutils: 1.7.0
       nth-check: 1.0.2
+    dev: true
 
   /css-select@4.3.0:
     resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}
@@ -18867,6 +18914,7 @@ packages:
     dependencies:
       mdn-data: 2.0.4
       source-map: 0.6.1
+    dev: true
 
   /css-tree@1.1.3:
     resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==}
@@ -18878,6 +18926,7 @@ packages:
   /css-what@3.4.2:
     resolution: {integrity: sha512-ACUm3L0/jiZTqfzRM3Hi9Q8eZqd6IK37mMWPLz9PJxkLWllYeRf+EHUSHYEtFop2Eqytaq1FizFVh7XfBnXCDQ==}
     engines: {node: '>= 6'}
+    dev: true
 
   /css-what@6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
@@ -19499,6 +19548,7 @@ packages:
     dependencies:
       domelementtype: 2.3.0
       entities: 2.2.0
+    dev: true
 
   /dom-serializer@1.4.1:
     resolution: {integrity: sha512-VHwB3KfrcOOkelEG2ZOfxqLZdfkil8PtJi4P8N2MMXucZq2yLp75ClViUlOVwyoHEDjYU433Aq+5zWP61+RGag==}
@@ -19524,6 +19574,7 @@ packages:
 
   /domelementtype@1.3.1:
     resolution: {integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==}
+    dev: true
 
   /domelementtype@2.3.0:
     resolution: {integrity: sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw==}
@@ -19560,6 +19611,7 @@ packages:
     dependencies:
       dom-serializer: 0.2.2
       domelementtype: 1.3.1
+    dev: true
 
   /domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
@@ -20805,7 +20857,7 @@ packages:
       optionator: 0.9.1
       progress: 2.0.3
       regexpp: 3.2.0
-      semver: 7.5.1
+      semver: 7.5.4
       strip-ansi: 6.0.1
       strip-json-comments: 3.1.1
       table: 6.8.0
@@ -21652,7 +21704,7 @@ packages:
       memfs: 3.4.7
       minimatch: 3.1.2
       schema-utils: 2.7.0
-      semver: 7.5.1
+      semver: 7.5.4
       tapable: 1.1.3
       typescript: 5.0.2
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
@@ -21683,7 +21735,7 @@ packages:
       memfs: 3.4.7
       minimatch: 3.1.2
       schema-utils: 2.7.0
-      semver: 7.5.1
+      semver: 7.5.4
       tapable: 1.1.3
       typescript: 5.0.2
       webpack: 4.46.0
@@ -21714,7 +21766,7 @@ packages:
       memfs: 3.4.7
       minimatch: 3.1.2
       schema-utils: 2.7.0
-      semver: 7.5.1
+      semver: 7.5.4
       tapable: 1.1.3
       typescript: 5.0.2
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
@@ -21963,7 +22015,7 @@ packages:
       execa: 5.1.1
       fs-exists-cached: 1.0.0
       fs-extra: 10.1.0
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
       gatsby-telemetry: 3.19.0
       hosted-git-info: 3.0.8
       is-valid-path: 0.1.1
@@ -21977,7 +22029,7 @@ packages:
       prompts: 2.4.2
       redux: 4.1.2
       resolve-cwd: 3.0.0
-      semver: 7.5.1
+      semver: 7.5.4
       signal-exit: 3.0.7
       stack-trace: 0.0.10
       strip-ansi: 6.0.1
@@ -22030,7 +22082,7 @@ packages:
       prompts: 2.4.2
       redux: 4.2.1
       resolve-cwd: 3.0.0
-      semver: 7.5.1
+      semver: 7.5.4
       signal-exit: 3.0.7
       stack-trace: 0.0.10
       strip-ansi: 6.0.1
@@ -22044,6 +22096,27 @@ packages:
 
   /gatsby-core-utils@3.19.0:
     resolution: {integrity: sha512-cjXs9DsXkPZt+UdiLHxtq+rGMGVrcnM0KwkawlruvPchI7lqGNv9CScqlvYPxx1dBhu3zSZS26EBALMlFhyOJA==}
+    engines: {node: '>=14.15.0'}
+    dependencies:
+      '@babel/runtime': 7.22.5
+      ci-info: 2.0.0
+      configstore: 5.0.1
+      fastq: 1.15.0
+      file-type: 16.5.4
+      fs-extra: 10.1.0
+      got: 11.8.6
+      import-from: 4.0.0
+      lmdb: 2.5.3
+      lock: 1.1.0
+      node-object-hash: 2.3.10
+      proper-lockfile: 4.1.2
+      resolve-from: 5.0.0
+      tmp: 0.2.1
+      xdg-basedir: 4.0.0
+    dev: false
+
+  /gatsby-core-utils@3.25.0:
+    resolution: {integrity: sha512-lmMDwbnKpqAi+8WWd7MvCTCx3E0u7j8sbVgydERNCYVxKVpzD/aLCH4WPb4EE9m1H1rSm76w0Z+MaentyB/c/Q==}
     engines: {node: '>=14.15.0'}
     dependencies:
       '@babel/runtime': 7.22.5
@@ -22161,7 +22234,7 @@ packages:
       bluebird: 3.7.2
       chokidar: 3.5.3
       fs-exists-cached: 1.0.0
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
       glob: 7.2.3
       lodash: 4.17.21
       micromatch: 4.0.5
@@ -22277,9 +22350,9 @@ packages:
       fs-exists-cached: 1.0.0
       fs-extra: 10.1.0
       gatsby: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
       gatsby-page-utils: 2.19.0
-      gatsby-plugin-utils: 3.13.0(gatsby@4.19.2)(graphql@15.8.0)
+      gatsby-plugin-utils: 3.19.0(gatsby@4.19.2)(graphql@15.8.0)
       gatsby-telemetry: 3.19.0
       globby: 11.1.0
       lodash: 4.17.21
@@ -22326,33 +22399,26 @@ packages:
       react-helmet: 6.1.0(react@18.2.0)
     dev: false
 
-  /gatsby-plugin-sharp@4.19.0(gatsby@4.19.2)(graphql@15.8.0):
-    resolution: {integrity: sha512-2wIxbCoJmZMeCw+V9ht90tmwoSF2eaEKj6j5QMLe+NlLpLOXwmsHjrauMpqd8ILmcKpZTOJr9yEplzbjxlD36A==}
+  /gatsby-plugin-sharp@4.25.1(gatsby@4.19.2)(graphql@15.8.0):
+    resolution: {integrity: sha512-cGRb8lmwJkzwT1Qze0R+VL+55BIb9weM17m+dUf6gs5Z++lQltqge+L8a1qWWsGL6KfLQN7+bIqjhmTTscIPMQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       gatsby: ^4.0.0-next
     dependencies:
-      '@babel/runtime': 7.18.9
-      '@gatsbyjs/potrace': 2.2.0
+      '@babel/runtime': 7.22.5
       async: 3.2.4
       bluebird: 3.7.2
       debug: 4.3.4(supports-color@8.1.1)
       filenamify: 4.3.0
       fs-extra: 10.1.0
       gatsby: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
-      gatsby-core-utils: 3.19.0
-      gatsby-plugin-utils: 3.13.0(gatsby@4.19.2)(graphql@15.8.0)
-      gatsby-telemetry: 3.19.0
-      got: 11.8.5
+      gatsby-core-utils: 3.25.0
+      gatsby-plugin-utils: 3.19.0(gatsby@4.19.2)(graphql@15.8.0)
       lodash: 4.17.21
-      mini-svg-data-uri: 1.4.4
       probe-image-size: 7.2.3
-      progress: 2.0.3
-      semver: 7.3.7
+      semver: 7.5.4
       sharp: 0.30.7
-      svgo: 1.3.2
     transitivePeerDependencies:
-      - encoding
       - graphql
       - supports-color
     dev: false
@@ -22405,7 +22471,7 @@ packages:
       fastq: 1.15.0
       fs-extra: 10.1.0
       gatsby: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
       gatsby-sharp: 0.13.0
       graphql: 15.8.0
       graphql-compose: 9.0.10(graphql@15.8.0)
@@ -22414,6 +22480,26 @@ packages:
       mime: 3.0.0
       mini-svg-data-uri: 1.4.4
       svgo: 2.8.0
+    dev: false
+
+  /gatsby-plugin-utils@3.19.0(gatsby@4.19.2)(graphql@15.8.0):
+    resolution: {integrity: sha512-EZtvgHSU5NPbEn6a4cfSpEGCQ09SfwbhoybHTJKj1clop86HSwOCV2iH8RbCc+X6jbdgHaSZsfsl7zG1h7DBUw==}
+    engines: {node: '>=14.15.0'}
+    peerDependencies:
+      gatsby: ^4.0.0-next
+      graphql: ^15.0.0
+    dependencies:
+      '@babel/runtime': 7.22.5
+      fastq: 1.15.0
+      fs-extra: 10.1.0
+      gatsby: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
+      gatsby-core-utils: 3.25.0
+      gatsby-sharp: 0.19.0
+      graphql: 15.8.0
+      graphql-compose: 9.0.10(graphql@15.8.0)
+      import-from: 4.0.0
+      joi: 17.9.2
+      mime: 3.0.0
     dev: false
 
   /gatsby-plugin-utils@4.10.0(gatsby@5.0.0)(graphql@16.6.0):
@@ -22494,7 +22580,15 @@ packages:
     resolution: {integrity: sha512-dGuIuWP3rC7hXl/CgkHEY4WQEW+B9Rsg8uo6u+OumuLnLBxD4vTusEIGctVKzlyIxpENEQylQ7w1JKHX9fOy9g==}
     engines: {node: '>=14.15.0'}
     dependencies:
-      '@types/sharp': 0.30.4
+      '@types/sharp': 0.30.5
+      sharp: 0.30.7
+    dev: false
+
+  /gatsby-sharp@0.19.0:
+    resolution: {integrity: sha512-EbI3RNBu2+aaxuMUP/INmoj8vcNAG6BgpFvi1tLeU7/gVTNVQ+7pC/ZYtlVCzSw+faaw7r1ZBMi6F66mNIIz5A==}
+    engines: {node: '>=14.15.0'}
+    dependencies:
+      '@types/sharp': 0.30.5
       sharp: 0.30.7
     dev: false
 
@@ -22539,7 +22633,7 @@ packages:
       boxen: 4.2.0
       configstore: 5.0.1
       fs-extra: 10.1.0
-      gatsby-core-utils: 3.19.0
+      gatsby-core-utils: 3.25.0
       git-up: 4.0.5
       is-docker: 2.2.1
       lodash: 4.17.21
@@ -22569,7 +22663,7 @@ packages:
       - encoding
     dev: true
 
-  /gatsby-transformer-sharp@4.19.0(gatsby-plugin-sharp@4.19.0)(gatsby@4.19.2)(graphql@15.8.0):
+  /gatsby-transformer-sharp@4.19.0(gatsby-plugin-sharp@4.25.1)(gatsby@4.19.2)(graphql@15.8.0):
     resolution: {integrity: sha512-SoY9yGNjC+C+gAfJ//+DqXGBukVKeb4HnobOmkpbugYtLGRwb4AhKOT7eqCn+AK/4+oDDB3ZNNfTUf0vRFQgzA==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
@@ -22582,7 +22676,7 @@ packages:
       common-tags: 1.8.2
       fs-extra: 10.1.0
       gatsby: 4.19.2(@swc/core@1.3.24)(@types/node@18.11.17)(babel-eslint@10.1.0)(esbuild@0.14.49)(eslint-plugin-testing-library@5.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.2)
-      gatsby-plugin-sharp: 4.19.0(gatsby@4.19.2)(graphql@15.8.0)
+      gatsby-plugin-sharp: 4.25.1(gatsby@4.19.2)(graphql@15.8.0)
       gatsby-plugin-utils: 3.13.0(gatsby@4.19.2)(graphql@15.8.0)
       probe-image-size: 7.2.3
       semver: 7.3.7
@@ -22845,7 +22939,7 @@ packages:
       '@nodelib/fs.walk': 1.2.8
       '@parcel/cache': 2.6.2(@parcel/core@2.6.2)
       '@parcel/core': 2.6.2
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.7(react-refresh@0.11.0)(webpack-dev-server@4.9.3)(webpack@5.73.0)
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.7(react-refresh@0.14.0)(webpack@5.73.0)
       '@types/http-proxy': 1.17.9
       '@typescript-eslint/eslint-plugin': 4.33.0(@typescript-eslint/parser@4.33.0)(eslint@8.19.0)(typescript@5.0.2)
       '@typescript-eslint/parser': 4.33.0(eslint@8.19.0)(typescript@5.0.2)
@@ -25849,7 +25943,7 @@ packages:
       jest-util: 27.5.1
       natural-compare: 1.4.0
       pretty-format: 27.5.1
-      semver: 7.5.1
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -25880,7 +25974,7 @@ packages:
       jest-util: 28.1.3
       natural-compare: 1.4.0
       pretty-format: 28.1.3
-      semver: 7.5.1
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
 
@@ -27049,6 +27143,7 @@ packages:
 
   /mdn-data@2.0.4:
     resolution: {integrity: sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==}
+    dev: true
 
   /mdurl@1.0.1:
     resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==}
@@ -27682,7 +27777,7 @@ packages:
     resolution: {integrity: sha512-u4uAs/4Zzmp/jjsD9cyFYDXeISfUWaAVWshPmDZOFOv4Xl4SbzTXm53I04C2uRueYJ+0t5PEtLH/owbn2Npf/w==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
 
   /node-addon-api@3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}
@@ -27851,7 +27946,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.9.0
-      semver: 7.5.1
+      semver: 7.5.4
       validate-npm-package-license: 3.0.4
     dev: false
 
@@ -27923,6 +28018,7 @@ packages:
     resolution: {integrity: sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7VLy0Da6J1+wCT0AtHg==}
     dependencies:
       boolbase: 1.0.0
+    dev: true
 
   /nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -28391,7 +28487,7 @@ packages:
       got: 12.6.1
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.5.1
+      semver: 7.5.4
     dev: true
 
   /pako@0.2.9:
@@ -29155,7 +29251,7 @@ packages:
       loader-utils: 2.0.4
       postcss: 7.0.39
       schema-utils: 3.1.1
-      semver: 7.5.1
+      semver: 7.5.4
       webpack: 4.46.0
     dev: false
 
@@ -29169,7 +29265,7 @@ packages:
       cosmiconfig: 7.0.1
       klona: 2.0.5
       postcss: 8.4.14
-      semver: 7.5.1
+      semver: 7.5.4
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
     dev: false
 
@@ -29183,7 +29279,7 @@ packages:
       cosmiconfig: 7.0.1
       klona: 2.0.5
       postcss: 8.4.24
-      semver: 7.5.1
+      semver: 7.5.4
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
     dev: true
 
@@ -29197,7 +29293,7 @@ packages:
       cosmiconfig: 7.0.1
       klona: 2.0.5
       postcss: 8.4.14
-      semver: 7.5.1
+      semver: 7.5.4
       webpack: 5.73.0(@swc/core@1.3.24)(esbuild@0.14.49)
     dev: true
 
@@ -30136,7 +30232,7 @@ packages:
     peerDependencies:
       react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.22.5
       react: 18.2.0
     dev: false
 
@@ -30341,7 +30437,7 @@ packages:
     peerDependencies:
       react: '>=16.13.1'
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.22.5
       react: 18.2.0
 
   /react-error-overlay@6.0.11:
@@ -30701,7 +30797,7 @@ packages:
     peerDependencies:
       react: '>= 0.14.0'
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.22.5
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.28.0
@@ -31584,7 +31680,7 @@ packages:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
     engines: {node: '>=12'}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.4
     dev: true
 
   /semver@5.7.1:
@@ -31614,20 +31710,12 @@ packages:
     dependencies:
       lru-cache: 6.0.0
 
-  /semver@7.5.1:
-    resolution: {integrity: sha512-Wvss5ivl8TMRZXXESstBA4uR5iXgEN/VC5/sOcuXdVLzcdkz4HWetIoRfG5gb5X+ij/G9rw9YoGn3QoQ8OCSpw==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      lru-cache: 6.0.0
-
   /semver@7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
-    dev: false
 
   /send@0.18.0:
     resolution: {integrity: sha512-qqWzuOjSFOuqPjFe4NOsMLafToQQwBSOEpS+FwEt3A2V3vKubTquT3vmLTQpFgMXp8AlFWFuP1qKaJZOtPpVXg==}
@@ -31761,7 +31849,7 @@ packages:
       detect-libc: 2.0.1
       node-addon-api: 5.0.0
       prebuild-install: 7.1.1
-      semver: 7.3.7
+      semver: 7.5.4
       simple-get: 4.0.1
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
@@ -31776,7 +31864,7 @@ packages:
       detect-libc: 2.0.1
       node-addon-api: 6.1.0
       prebuild-install: 7.1.1
-      semver: 7.5.1
+      semver: 7.5.4
       simple-get: 4.0.1
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
@@ -32668,6 +32756,7 @@ packages:
       stable: 0.1.8
       unquote: 1.1.1
       util.promisify: 1.0.0
+    dev: true
 
   /svgo@2.8.0:
     resolution: {integrity: sha512-+N/Q9kV1+F+UeWYoSiULYo4xYSDQlTgb+ayMobAXPwMnLvop7oxKMo9OzIrX5x3eS4L4f2UHhc9axXwY8DpChg==}
@@ -33755,6 +33844,7 @@ packages:
 
   /unquote@1.1.1:
     resolution: {integrity: sha512-vRCqFv6UhXpWxZPyGDh/F3ZpNv8/qo7w6iufLpQg9aKnQ71qM4B5KiI7Mia9COcjEhrO9LueHpMYjYzsWH3OIg==}
+    dev: true
 
   /unset-value@1.0.0:
     resolution: {integrity: sha512-PcA2tsuGSF9cnySLHTLSh2qrQiJ70mn+r+Glzxv2TWZblxsxCC52BDlZoPCsz7STd9pN7EZetkWZBAvk4cgZdQ==}
@@ -33826,7 +33916,7 @@ packages:
       is-yarn-global: 0.3.0
       latest-version: 5.1.0
       pupa: 2.1.1
-      semver: 7.5.1
+      semver: 7.5.4
       semver-diff: 3.1.1
       xdg-basedir: 4.0.0
     dev: false
@@ -34698,7 +34788,7 @@ packages:
     resolution: {integrity: sha512-UHdwrN3FrDvicM3AqJS/J07X0KXj67R8Cg0waq1MKEOqzo89ap6zh6LmaLnRAjpB+bDIz+7OlPye9iii9KBnxw==}
     engines: {node: '>=4.0.0'}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.22.5
       '@hapi/joi': 15.1.1
       common-tags: 1.8.2
       fs-extra: 4.0.3
@@ -35278,7 +35368,3 @@ packages:
 
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
