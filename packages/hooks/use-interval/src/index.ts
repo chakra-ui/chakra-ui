@@ -7,15 +7,13 @@ import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
  * @param callback the callback to execute at interval
  * @param delay the `setInterval` delay (in ms)
  */
-export function useInterval(callback: () => void, delay: number | null) {
+export function useInterval(callback: () => void, delay = 0) {
   const fn = useCallbackRef(callback)
 
   useEffect(() => {
-    let intervalId: number | null = null
     const tick = () => fn()
-    if (delay !== null) {
-      intervalId = window.setInterval(tick, delay)
-    }
+    const intervalId = window.setInterval(tick, delay)
+
     return () => {
       if (intervalId) {
         window.clearInterval(intervalId)
