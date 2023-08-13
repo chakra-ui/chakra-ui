@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 
 export type UseStepsProps = {
   index?: number
@@ -15,32 +15,51 @@ export function useSteps(props: UseStepsProps = {}) {
   const maxStep = typeof count === "number" ? count - 1 : 0
   const activeStepPercent = activeStep / maxStep
 
-  return {
-    activeStep,
-    setActiveStep,
-    activeStepPercent,
-    isActiveStep(step: number) {
-      return step === activeStep
-    },
-    isCompleteStep(step: number) {
-      return step < activeStep
-    },
-    isIncompleteStep(step: number) {
-      return step > activeStep
-    },
-    getStatus(step: number): StepStatus {
+  const isActiveStep = useCallback(
+    (step: number) => step === activeStep,
+    [activeStep],
+  )
+
+  const isCompleteStep = useCallback(
+    (step: number) => step < activeStep,
+    [activeStep],
+  )
+
+  const isIncompleteStep = useCallback(
+    (step: number) => step > activeStep,
+    [activeStep],
+  )
+
+  const getStatus = useCallback(
+    (step: number): StepStatus => {
       if (step < activeStep) return "complete"
       if (step > activeStep) return "incomplete"
       return "active"
     },
-    goToNext() {
-      setActiveStep((step) => {
-        return typeof count === "number" ? Math.min(count, step + 1) : step + 1
-      })
-    },
-    goToPrevious() {
-      setActiveStep((step) => Math.max(0, step - 1))
-    },
+    [activeStep],
+  )
+
+  const goToNext = useCallback(() => {
+    setActiveStep((step) => {
+      return typeof count === "number" ? Math.min(count, step + 1) : step + 1
+    })
+  }, [count])
+
+  const goToPrevious = useCallback(
+    () => setActiveStep((step) => Math.max(0, step - 1)),
+    [],
+  )
+
+  return {
+    activeStep,
+    setActiveStep,
+    activeStepPercent,
+    isActiveStep,
+    isCompleteStep,
+    isIncompleteStep,
+    getStatus,
+    goToNext,
+    goToPrevious,
   }
 }
 
