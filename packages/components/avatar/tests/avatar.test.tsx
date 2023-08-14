@@ -54,6 +54,21 @@ describe("fallback + loading strategy", () => {
     expect(img).toBeInTheDocument()
   })
 
+  test("renders an image with fallback alt if no name", () => {
+    const mock = mocks.image()
+    mock.simulate("loaded")
+    const tools = render(
+      <Avatar src="https://bit.ly/dan-abramov" iconLabel="Dan" />,
+    )
+
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    const img = tools.getByAltText("Dan")
+    expect(img).toBeInTheDocument()
+  })
+
   test("fires onError if image fails to load", async () => {
     const mock = mocks.image()
     mock.simulate("error")
