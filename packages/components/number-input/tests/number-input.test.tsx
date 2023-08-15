@@ -126,6 +126,25 @@ test("should increase/decrease by 0.1*step on ctrl+Arrow", async () => {
   expect(input).toHaveValue("0.00")
 })
 
+test("should increment/decrement properly without precision value", async () => {
+  const { getByTestId, user } = renderComponent({
+    defaultValue: 0,
+    step: 1,
+  })
+
+  const input = getByTestId("input")
+
+  await user.type(input, "[ArrowUp]")
+  expect(input).toHaveValue("1")
+  await user.keyboard("[ControlLeft>][ArrowUp][/ControlLeft]")
+  expect(input).toHaveValue("1.1")
+
+  await user.keyboard("[ControlLeft>][ArrowDown][/ControlLeft]")
+  expect(input).toHaveValue("1.0")
+  await user.keyboard("[ArrowDown]")
+  expect(input).toHaveValue("0")
+})
+
 test("should behave properly with precision value", async () => {
   const { getByTestId, user } = renderComponent({
     defaultValue: 0,

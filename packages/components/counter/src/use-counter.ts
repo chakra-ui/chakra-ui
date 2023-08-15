@@ -94,14 +94,14 @@ export function useCounter(props: UseCounterProps = {}) {
 
   // Function to clamp the value and round it to the precision
   const clamp = useCallback(
-    (value: number) => {
+    (value: number, precisionToClamp = precision) => {
       let nextValue = value
 
       if (keepWithinRange) {
         nextValue = clampValue(nextValue, min, max)
       }
 
-      return toPrecision(nextValue, precision)
+      return toPrecision(nextValue, precisionToClamp)
     },
     [precision, keepWithinRange, max, min],
   )
@@ -124,10 +124,14 @@ export function useCounter(props: UseCounterProps = {}) {
         next = parse(value) + step
       }
 
-      next = clamp(next as number)
+      /**
+       * Get the precision using step value passed to increment function
+       */
+      const precision = precisionProp ?? getDecimalPlaces(parse(value), step)
+      next = clamp(next as number, precision)
       update(next)
     },
-    [clamp, stepProp, update, value],
+    [clamp, stepProp, update, value, precisionProp],
   )
 
   const decrement = useCallback(
@@ -141,10 +145,11 @@ export function useCounter(props: UseCounterProps = {}) {
         next = parse(value) - step
       }
 
-      next = clamp(next as number)
+      const precision = precisionProp ?? getDecimalPlaces(parse(value), step)
+      next = clamp(next as number, precision)
       update(next)
     },
-    [clamp, stepProp, update, value],
+    [clamp, stepProp, update, value, precisionProp],
   )
 
   const reset = useCallback(() => {
