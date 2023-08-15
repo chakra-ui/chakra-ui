@@ -48,5 +48,13 @@
     "build:fast": "tsup src",
     "prepack": "clean-package",
     "postpack": "clean-package restore"
+  },
+  "tsup": {
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "target": "es2019",
+    "sourcemap": true
   }
 }

@@ -50,5 +50,13 @@
     "prepack": "clean-package",
     "postpack": "clean-package restore"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "target": "es2019",
+    "sourcemap": true
+  }
 }
