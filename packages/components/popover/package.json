@@ -43,6 +43,7 @@
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
+    "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/button": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
