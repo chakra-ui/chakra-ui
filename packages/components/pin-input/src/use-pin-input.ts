@@ -35,7 +35,7 @@ export const [PinInputProvider, usePinInputContext] =
   createContext<PinInputContext>({
     name: "PinInputContext",
     errorMessage:
-      "usePinInputContext: `context` is undefined. Seems you forgot to all pin input fields within `<PinInput />`",
+      "usePinInputContext: `context` is undefined. Seems you forgot to place all pin input fields within `<PinInput />`",
   })
 
 /* -------------------------------------------------------------------------------------------------
