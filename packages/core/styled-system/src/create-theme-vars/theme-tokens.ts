@@ -22,7 +22,7 @@ const tokens = [
 ] as const
 
 export type ThemeScale =
-  | typeof tokens[number]
+  | (typeof tokens)[number]
   | "transition.duration"
   | "transition.property"
   | "transition.easing"
