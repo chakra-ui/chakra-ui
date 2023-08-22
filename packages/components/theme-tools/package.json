@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "color2k": "^2.0.0",
+    "color2k": "^2.0.2",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "peerDependencies": {

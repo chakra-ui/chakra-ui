@@ -52,17 +52,17 @@ describe("Extract Semantic Token Keys", () => {
     }
     const semanticTokenKeys = extractSemanticTokenKeys(theme, "colors")
     expect(semanticTokenKeys).toMatchInlineSnapshot(`
-      Array [
-        "primary",
-        "secondary",
-        "error",
-        "success",
-        "background.green.normal",
-        "text.green",
-        "text.red.bold",
-        "text.red.subtle",
-      ]
-    `)
+[
+  "primary",
+  "secondary",
+  "error",
+  "success",
+  "background.green.normal",
+  "text.green",
+  "text.red.bold",
+  "text.red.subtle",
+]
+`)
   })
   it("should handle empty entries", () => {
     const theme = {
@@ -73,11 +73,11 @@ describe("Extract Semantic Token Keys", () => {
       },
     }
     const semanticTokenKeys = extractSemanticTokenKeys(theme, "colors")
-    expect(semanticTokenKeys).toMatchInlineSnapshot(`Array []`)
+    expect(semanticTokenKeys).toMatchInlineSnapshot(`[]`)
   })
   it("should handle missing properties", () => {
     const theme = {}
     const semanticTokenKeys = extractSemanticTokenKeys(theme, "colors")
-    expect(semanticTokenKeys).toMatchInlineSnapshot(`Array []`)
+    expect(semanticTokenKeys).toMatchInlineSnapshot(`[]`)
   })
 })

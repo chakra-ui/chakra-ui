@@ -13,16 +13,16 @@
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/theme-tools": "workspace:*",
     "@chakra-ui/next-js": "workspace:*",
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@types/node": "^18.0.0",
-    "@types/react": "^18.0.30",
-    "@types/react-dom": "^18.0.11",
-    "framer-motion": "^10.12.16",
-    "next": "^13.0.7",
+    "@types/node": "^20.5.2",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "framer-motion": "^10.16.1",
+    "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.1.6"
   },
   "repository": {
     "type": "git",

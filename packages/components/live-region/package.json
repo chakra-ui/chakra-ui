@@ -34,7 +34,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "scripts": {

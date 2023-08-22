@@ -9,7 +9,7 @@ describe("Format With Prettier", () => {
 
     expect(pretty).toMatchInlineSnapshot(`
       "export interface ThemeTypings {
-        fonts: \\"test1\\" | \\"test2\\" | \\"test3\\"
+        fonts: "test1" | "test2" | "test3"
       }
       "
     `)

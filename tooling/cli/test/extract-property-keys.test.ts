@@ -16,11 +16,11 @@ describe("Extract Property Keys", () => {
 
     const textStyles = extractPropertyKeys(theme, "textStyles")
     expect(textStyles).toMatchInlineSnapshot(`
-      Array [
-        "styleOne",
-        "styleTwo",
-      ]
-    `)
+[
+  "styleOne",
+  "styleTwo",
+]
+`)
   })
 
   it("should handle empty entries", () => {
@@ -33,10 +33,10 @@ describe("Extract Property Keys", () => {
     const componentTypes = extractPropertyKeys(theme, "textStyles")
 
     expect(componentTypes).toMatchInlineSnapshot(`
-      Array [
-        "emptyStyle",
-      ]
-    `)
+[
+  "emptyStyle",
+]
+`)
   })
 
   it("should handle missing properties", () => {
@@ -44,6 +44,6 @@ describe("Extract Property Keys", () => {
 
     const textStyles = extractPropertyKeys(theme, "textStyles")
 
-    expect(textStyles).toMatchInlineSnapshot(`Array []`)
+    expect(textStyles).toMatchInlineSnapshot(`[]`)
   })
 })

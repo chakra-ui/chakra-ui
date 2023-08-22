@@ -34,13 +34,13 @@
     "postpack": "clean-package restore"
   },
   "dependencies": {
-    "@zag-js/element-size": "0.10.5"
+    "@zag-js/element-size": "0.16.0"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "clean-package": "../../../clean-package.config.json"

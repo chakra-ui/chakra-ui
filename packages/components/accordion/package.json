@@ -49,8 +49,8 @@
     "@chakra-ui/react-use-disclosure": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/modal": "workspace:*",
-    "framer-motion": "^10.12.16",
-    "react": "^18.0.0",
+    "framer-motion": "^10.16.1",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

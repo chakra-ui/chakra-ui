@@ -16,16 +16,16 @@ describe("Extract Component Types", () => {
     const componentTypes = extractComponentTypes(theme)
 
     expect(componentTypes).toMatchInlineSnapshot(`
-      Object {
-        "TestComponent": Object {
-          "sizes": Array [],
-          "variants": Array [
-            "outline",
-            "unstyled",
-          ],
-        },
-      }
-    `)
+{
+  "TestComponent": {
+    "sizes": [],
+    "variants": [
+      "outline",
+      "unstyled",
+    ],
+  },
+}
+`)
   })
 
   it("should handle empty variants or sizes", () => {
@@ -38,13 +38,13 @@ describe("Extract Component Types", () => {
     const componentTypes = extractComponentTypes(theme)
 
     expect(componentTypes).toMatchInlineSnapshot(`
-      Object {
-        "TestComponent": Object {
-          "sizes": Array [],
-          "variants": Array [],
-        },
-      }
-    `)
+{
+  "TestComponent": {
+    "sizes": [],
+    "variants": [],
+  },
+}
+`)
   })
 
   it("should handle arbitrary component names", () => {
@@ -58,16 +58,16 @@ describe("Extract Component Types", () => {
     const componentTypes = extractComponentTypes(theme)
 
     expect(componentTypes).toMatchInlineSnapshot(`
-      Object {
-        "design-system/Button": Object {
-          "sizes": Array [],
-          "variants": Array [],
-        },
-        "design-system_Button": Object {
-          "sizes": Array [],
-          "variants": Array [],
-        },
-      }
-    `)
+{
+  "design-system/Button": {
+    "sizes": [],
+    "variants": [],
+  },
+  "design-system_Button": {
+    "sizes": [],
+    "variants": [],
+  },
+}
+`)
   })
 })

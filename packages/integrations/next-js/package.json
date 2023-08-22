@@ -45,11 +45,11 @@
     "@chakra-ui/react": ">=2.4.0"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@chakra-ui/react": "workspace:*",
     "clean-package": "2.2.0",
     "next": ">=13",
-    "react": "^18.0.0"
+    "react": "^18.2.0"
   },
   "clean-package": "../../../clean-package.config.json",
   "tsup": {
