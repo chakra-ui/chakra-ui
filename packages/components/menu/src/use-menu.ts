@@ -264,10 +264,14 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const timeoutIds = useRef<Set<any>>(new Set([]))
 
-  useUnmountEffect(() => {
-    timeoutIds.current.forEach((id) => clearTimeout(id))
-    timeoutIds.current.clear()
-  })
+  // clean up timeouts
+  useEffect(() => {
+    const ids = timeoutIds.current
+    return () => {
+      ids.forEach((id) => clearTimeout(id))
+      ids.clear()
+    }
+  }, [])
 
   const openAndFocusFirstItem = useCallback(() => {
     onOpen()
@@ -287,7 +291,7 @@ export function useMenu(props: UseMenuProps = {}) {
     if (!shouldRefocus) return
 
     const node = descendants.item(focusedIndex)?.node
-    node?.focus()
+    node?.focus({ preventScroll: true })
   }, [isOpen, focusedIndex, descendants])
 
   /**
@@ -671,11 +675,17 @@ export function useMenuItem(
         cancelAnimationFrame(rafId.current)
       }
       rafId.current = requestAnimationFrame(() => {
-        ref.current?.focus()
+        ref.current?.focus({ preventScroll: true })
         rafId.current = null
       })
     } else if (menuRef.current && !isActiveElement(menuRef.current)) {
       menuRef.current.focus({ preventScroll: true })
+    }
+
+    return () => {
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+      }
     }
   }, [isFocused, trulyDisabled, menuRef, isOpen])
 
@@ -829,13 +839,5 @@ function isElement(el: any): el is Element {
     typeof el == "object" &&
     "nodeType" in el &&
     el.nodeType === Node.ELEMENT_NODE
-  )
-}
-
-function useUnmountEffect(fn: () => void, deps: any[] = []) {
-  return useEffect(
-    () => () => fn(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    deps,
   )
 }
