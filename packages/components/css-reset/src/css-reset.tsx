@@ -178,12 +178,14 @@ export const CSSReset = ({ scope = "" }: CSSResetProps) => (
         -webkit-appearance: none !important;
       }
 
+      ${scope} input[type="search"],   
       ${scope} input[type="number"] {
-        -moz-appearance: textfield;
+        -moz-appearance: none !important;
       }
 
-      ${scope} input[type="search"] {
-        -webkit-appearance: textfield;
+      ${scope} input[type="search"],   
+      ${scope} input[type="number"] {
+        -webkit-appearance: none !important;
         outline-offset: -2px;
       }
 
