@@ -1,6 +1,6 @@
 import { getScrollParent } from "@chakra-ui/dom-utils"
 import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
-import { PropGetter } from "@chakra-ui/react-types"
+import { DOMElement, PropGetter } from "@chakra-ui/react-types"
 import { useDisclosure } from "@chakra-ui/react-use-disclosure"
 import { useEventListener } from "@chakra-ui/react-use-event-listener"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
@@ -11,6 +11,7 @@ import React, {
   useId,
   useRef,
   type RefObject,
+  PointerEvent,
 } from "react"
 
 export interface UseTooltipProps
@@ -183,11 +184,20 @@ export function useTooltip(props: UseTooltipProps = {}) {
     exitTimeout.current = win.setTimeout(closeNow, closeDelay)
   }, [closeDelay, closeNow, clearEnterTimeout])
 
-  const onClick = useCallback(() => {
-    if (isOpen && closeOnClick) {
-      closeWithDelay()
-    }
-  }, [closeOnClick, closeWithDelay, isOpen])
+  const onClick = useCallback(
+    (e: PointerEvent<DOMElement>) => {
+      const { pointerType } = e.nativeEvent
+
+      if (pointerType && !isOpen && pointerType === "touch") {
+        openWithDelay()
+      }
+
+      if (isOpen && closeOnClick) {
+        closeWithDelay()
+      }
+    },
+    [closeOnClick, closeWithDelay, openWithDelay, isOpen],
+  )
 
   const onPointerDown = useCallback(() => {
     if (isOpen && closeOnPointerDown) {
