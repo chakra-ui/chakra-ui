@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/provider"
-import theme from "@chakra-ui/theme"
-import "@testing-library/jest-dom/extend-expect"
+import { theme } from "@chakra-ui/theme"
+import "@testing-library/jest-dom"
 import { render as rtlRender, RenderOptions } from "@testing-library/react"
 import { toHaveNoViolations } from "jest-axe"
 import * as React from "react"

@@ -30,13 +30,13 @@
   },
   "dependencies": {
     "@chakra-ui/dom-utils": "workspace:*",
-    "react-focus-lock": "^2.9.4"
+    "react-focus-lock": "^2.9.5"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "scripts": {

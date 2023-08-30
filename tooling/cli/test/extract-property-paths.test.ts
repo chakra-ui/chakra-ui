@@ -31,17 +31,17 @@ describe("Extract Property Paths", () => {
     const propertyPaths = extractPropertyPaths(target, maxDepth)
 
     expect(propertyPaths).toMatchInlineSnapshot(`
-      Array [
-        "1.11.111",
-        "1.11.112",
-        "1.12.121",
-        "1.12.122",
-        "1.12.123.231",
-        "1.12.123.232",
-        "2.21",
-        "2.22",
-      ]
-    `)
+[
+  "1.11.111",
+  "1.11.112",
+  "1.12.121",
+  "1.12.122",
+  "1.12.123.231",
+  "1.12.123.232",
+  "2.21",
+  "2.22",
+]
+`)
   })
 
   it("should omit too deep keys", () => {
@@ -50,15 +50,15 @@ describe("Extract Property Paths", () => {
     const propertyPaths = extractPropertyPaths(target, maxDepth)
 
     expect(propertyPaths).toMatchInlineSnapshot(`
-      Array [
-        "1.11.111",
-        "1.11.112",
-        "1.12.121",
-        "1.12.122",
-        "2.21",
-        "2.22",
-      ]
-    `)
+[
+  "1.11.111",
+  "1.11.112",
+  "1.12.121",
+  "1.12.122",
+  "2.21",
+  "2.22",
+]
+`)
   })
 
   it("should print TS union", () => {
@@ -68,7 +68,7 @@ describe("Extract Property Paths", () => {
     const interfacePartial = printUnionMap(union, strict)
 
     expect(interfacePartial).toMatchInlineSnapshot(
-      `"key: \\"value1\\" | \\"value2\\" | (string & {});"`,
+      `"key: "value1" | "value2" | (string & {});"`,
     )
   })
 
@@ -79,7 +79,7 @@ describe("Extract Property Paths", () => {
     const interfacePartial = printUnionMap(union, strict)
 
     expect(interfacePartial).toMatchInlineSnapshot(
-      `"key: \\"value1\\" | \\"value2\\";"`,
+      `"key: "value1" | "value2";"`,
     )
   })
 

@@ -1,4 +1,4 @@
-import __theme from "@chakra-ui/theme"
+import { theme as __theme } from "@chakra-ui/theme"
 import { toCSSVar } from "@chakra-ui/styled-system"
 
 export function createTheme(theme: any) {

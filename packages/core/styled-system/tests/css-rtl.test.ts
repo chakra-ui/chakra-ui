@@ -11,19 +11,19 @@ test("RTL: should transform logical css properties", () => {
   })(createTheme("rtl"))
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "@media screen and (min-width: 40em)": Object {
-        "borderBottomRightRadius": "40px",
-        "borderTopRightRadius": "40px",
-      },
-      "borderBottomRightRadius": "20px",
-      "borderColor": "red",
-      "borderTopRightRadius": "20px",
-      "float": "right",
-      "marginInlineStart": "var(--space-sm)",
-      "right": "var(--space-sm)",
-    }
-  `)
+{
+  "@media screen and (min-width: 40em)": {
+    "borderBottomRightRadius": "40px",
+    "borderTopRightRadius": "40px",
+  },
+  "borderBottomRightRadius": "20px",
+  "borderColor": "red",
+  "borderTopRightRadius": "20px",
+  "float": "right",
+  "marginInlineStart": "var(--space-sm)",
+  "right": "var(--space-sm)",
+}
+`)
 })
 
 test("can override logical properties", () => {
@@ -33,10 +33,10 @@ test("can override logical properties", () => {
     right: "40px",
   })(createTheme("rtl"))
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "right": "40px",
-    }
-  `)
+{
+  "right": "40px",
+}
+`)
 })
 
 test("LTR: should transform logical css properties", () => {
@@ -48,18 +48,18 @@ test("LTR: should transform logical css properties", () => {
   })(createTheme("ltr"))
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "@media screen and (min-width: 40em)": Object {
-        "borderBottomLeftRadius": "40px",
-        "borderTopLeftRadius": "40px",
-      },
-      "borderBottomLeftRadius": "20px",
-      "borderColor": "red",
-      "borderTopLeftRadius": "20px",
-      "float": "left",
-      "marginInlineEnd": "var(--space-sm)",
-    }
-  `)
+{
+  "@media screen and (min-width: 40em)": {
+    "borderBottomLeftRadius": "40px",
+    "borderTopLeftRadius": "40px",
+  },
+  "borderBottomLeftRadius": "20px",
+  "borderColor": "red",
+  "borderTopLeftRadius": "20px",
+  "float": "left",
+  "marginInlineEnd": "var(--space-sm)",
+}
+`)
 })
 
 test("should work after refactoring. hehe", () => {
@@ -70,11 +70,11 @@ test("should work after refactoring. hehe", () => {
   })(createTheme("ltr"))
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "background": "var(--colors-pinkish)",
-      "marginInlineEnd": "40px",
-      "marginInlineStart": "40px",
-      "width": "40%",
-    }
-  `)
+{
+  "background": "var(--colors-pinkish)",
+  "marginInlineEnd": "40px",
+  "marginInlineStart": "40px",
+  "width": "40%",
+}
+`)
 })

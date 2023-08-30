@@ -1,5 +1,5 @@
 import { toCSSVar } from "@chakra-ui/styled-system"
-import defaultTheme from "@chakra-ui/theme"
+import { theme as defaultTheme } from "@chakra-ui/theme"
 import { toCSSObject } from "../src/system"
 
 const theme = toCSSVar({
@@ -57,45 +57,45 @@ test("should resolve styles correctly", () => {
   })
 
   expect(result).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "&:hover, &[data-hover]": Object {
-          "&::before": Object {
-            "content": "",
-            "display": "block",
-          },
-          "@media screen and (min-width: 30em)": Object {
-            "fontSize": "26px",
-          },
-          "background": "var(--chakra-colors-green-300)",
-          "fontSize": "12px",
-        },
-        "--chakra-line-clamp": 3,
-        "@media screen and (min-width: 30em)": Object {
-          "--chakra-line-clamp": 4,
-          "fontSize": "23px",
-          "letterSpacing": "0.2px",
-          "textTransform": "lowercase",
-        },
-        "WebkitBoxOrient": "vertical",
-        "WebkitLineClamp": "var(--chakra-line-clamp)",
-        "background": "tomato",
-        "backgroundPosition": "top left",
-        "color": "var(--chakra-colors-pink-300)",
-        "display": "-webkit-box",
-        "fontSize": "10px",
-        "letterSpacing": "2px",
-        "overflow": "hidden",
-        "paddingInlineEnd": "var(--chakra-space-5)",
-        "paddingInlineStart": "var(--chakra-space-5)",
-        "textOverflow": "ellipsis",
-        "textTransform": "capitalize",
+[
+  {
+    "&:hover, &[data-hover]": {
+      "&::before": {
+        "content": "",
+        "display": "block",
       },
-      Object {
-        "paddingLeft": 40,
+      "@media screen and (min-width: 30em)": {
+        "fontSize": "26px",
       },
-    ]
-  `)
+      "background": "var(--chakra-colors-green-300)",
+      "fontSize": "12px",
+    },
+    "--chakra-line-clamp": 3,
+    "@media screen and (min-width: 30em)": {
+      "--chakra-line-clamp": 4,
+      "fontSize": "23px",
+      "letterSpacing": "0.2px",
+      "textTransform": "lowercase",
+    },
+    "WebkitBoxOrient": "vertical",
+    "WebkitLineClamp": "var(--chakra-line-clamp)",
+    "background": "tomato",
+    "backgroundPosition": "top left",
+    "color": "var(--chakra-colors-pink-300)",
+    "display": "-webkit-box",
+    "fontSize": "10px",
+    "letterSpacing": "2px",
+    "overflow": "hidden",
+    "paddingInlineEnd": "var(--chakra-space-5)",
+    "paddingInlineStart": "var(--chakra-space-5)",
+    "textOverflow": "ellipsis",
+    "textTransform": "capitalize",
+  },
+  {
+    "paddingLeft": 40,
+  },
+]
+`)
 })
 test("should resolve styles correctly", () => {
   const result = toCSSObject({ baseStyle: (props) => ({ bg: props.color }) })({
@@ -104,11 +104,11 @@ test("should resolve styles correctly", () => {
   })
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "background": "var(--chakra-colors-pink-300)",
-      "color": "var(--chakra-colors-pink-300)",
-    }
-  `)
+{
+  "background": "var(--chakra-colors-pink-300)",
+  "color": "var(--chakra-colors-pink-300)",
+}
+`)
 })
 
 test("should override padding correctly", () => {
@@ -124,15 +124,15 @@ test("should override padding correctly", () => {
   })
 
   expect(result).toMatchInlineSnapshot(`
-    Object {
-      "background": "pinkish",
-      "color": "var(--chakra-colors-green-300)",
-      "marginRight": "var(--chakra-space-5)",
-      "paddingInlineEnd": "var(--chakra-space-4)",
-      "paddingInlineStart": "var(--chakra-space-4)",
-      "paddingRight": "var(--chakra-space-3)",
-    }
-  `)
+{
+  "background": "pinkish",
+  "color": "var(--chakra-colors-green-300)",
+  "marginRight": "var(--chakra-space-5)",
+  "paddingInlineEnd": "var(--chakra-space-4)",
+  "paddingInlineStart": "var(--chakra-space-4)",
+  "paddingRight": "var(--chakra-space-3)",
+}
+`)
 })
 
 test("should respect priority order", () => {
@@ -146,10 +146,10 @@ test("should respect priority order", () => {
   })
 
   expect(JSON.stringify(result, null, 2)).toMatchInlineSnapshot(`
-    "{
-      \\"padding\\": \\"0px\\",
-      \\"paddingInlineStart\\": \\"var(--chakra-space-8)\\",
-      \\"paddingInlineEnd\\": \\"var(--chakra-space-8)\\"
-    }"
-  `)
+"{
+  "padding": "0px",
+  "paddingInlineStart": "var(--chakra-space-8)",
+  "paddingInlineEnd": "var(--chakra-space-8)"
+}"
+`)
 })

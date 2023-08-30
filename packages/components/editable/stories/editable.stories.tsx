@@ -1,5 +1,6 @@
 import { Heading } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
+import { StoryFn } from "@storybook/react"
 import * as React from "react"
 import {
   Editable,
@@ -13,7 +14,7 @@ import {
 export default {
   title: "Components / Forms / Editable",
   decorators: [
-    (Story: Function) => (
+    (Story: StoryFn) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">
         <Story />
       </chakra.div>

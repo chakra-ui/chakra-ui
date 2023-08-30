@@ -18,7 +18,7 @@ import { PortalManager } from "@chakra-ui/portal"
 export default {
   title: "Components / Overlay / Modal",
   decorators: [
-    (StoryFn: Function) => (
+    (StoryFn: any) => (
       <PortalManager>
         <StoryFn />
       </PortalManager>

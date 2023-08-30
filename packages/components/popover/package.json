@@ -49,9 +49,9 @@
     "@chakra-ui/radio": "workspace:*",
     "@chakra-ui/input": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
-    "react-icons": "^4.2.0",
-    "framer-motion": "^10.12.16",
-    "react": "^18.0.0",
+    "react-icons": "^4.10.1",
+    "framer-motion": "^10.16.1",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

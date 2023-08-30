@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react-hooks"
+import { act, renderHook } from "@testing-library/react"
 import MatchMedia from "./matchmedia-mock-plus"
 import { useMediaQuery } from "../src/use-media-query"
 

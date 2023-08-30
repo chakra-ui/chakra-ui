@@ -10,11 +10,11 @@ test("should be resolve peer style", () => {
   }
 
   expect(css(styles)(createTheme("ltr"))).toMatchInlineSnapshot(`
-    Object {
-      "[data-peer]:checked ~ &, [data-peer][data-checked] ~ &, .peer:checked ~ &, .peer[data-checked] ~ &": Object {
-        "background": "var(--colors-pinkish)",
-      },
-      "background": "var(--colors-redish)",
-    }
-  `)
+{
+  "[data-peer]:checked ~ &, [data-peer][data-checked] ~ &, .peer:checked ~ &, .peer[data-checked] ~ &": {
+    "background": "var(--colors-pinkish)",
+  },
+  "background": "var(--colors-redish)",
+}
+`)
 })

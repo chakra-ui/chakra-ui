@@ -1,5 +1,4 @@
-import * as React from "react"
-import VisuallyHidden from "@chakra-ui/visually-hidden"
+import { VisuallyHidden } from "@chakra-ui/visually-hidden"
 import { chakra } from "@chakra-ui/system"
 import { CheckIcon } from "@chakra-ui/icons"
 import { ControlBox } from "../src"

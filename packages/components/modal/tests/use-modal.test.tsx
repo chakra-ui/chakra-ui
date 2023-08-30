@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks"
+import { renderHook } from "@testing-library/react"
 import { hideOthers } from "aria-hidden"
 import { MutableRefObject } from "react"
 import { useAriaHidden } from "../src/use-modal"
