@@ -1,4 +1,3 @@
-"use client"
 export * from "./use-animation-state"
 export * from "./use-boolean"
 export * from "./use-callback-ref"
