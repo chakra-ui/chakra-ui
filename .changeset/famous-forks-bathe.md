@@ -4,4 +4,4 @@
 "@chakra-ui/theme": patch
 ---
 
-remove "use client" directive
+Remove "use client" directive since they are pure JS packages.
