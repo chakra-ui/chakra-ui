@@ -1,5 +1,5 @@
 import { useEnvironment } from "@chakra-ui/react-env"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 export type UseMediaQueryOptions = {
   fallback?: boolean | boolean[]
@@ -22,9 +22,12 @@ export function useMediaQuery(
 
   const { getWindow } = useEnvironment()
 
-  const queries = Array.isArray(query) ? query : [query]
+  const toArray = (item: any) => (Array.isArray(item) ? item : [item])
 
-  let fallbackValues = Array.isArray(fallback) ? fallback : [fallback]
+  const queries = useMemo(() => toArray(query), [query])
+
+  let fallbackValues = useMemo(() => toArray(fallback), [fallback])
+
   fallbackValues = fallbackValues.filter((v) => v != null) as boolean[]
 
   const [value, setValue] = useState(() => {
@@ -45,7 +48,7 @@ export function useMediaQuery(
       })),
     )
 
-    const mql = queries.map((query) => win.matchMedia(query))
+    const mediaQueryLists = queries.map((query) => win.matchMedia(query))
 
     const handler = (evt: MediaQueryListEvent) => {
       setValue((prev) => {
@@ -56,16 +59,16 @@ export function useMediaQuery(
       })
     }
 
-    mql.forEach((mql) => {
-      if (typeof mql.addListener === "function") {
-        mql.addListener(handler)
+    mediaQueryLists.forEach((mediaQueryList) => {
+      if (typeof mediaQueryList.addListener === "function") {
+        mediaQueryList.addListener(handler)
       } else {
-        mql.addEventListener("change", handler)
+        mediaQueryList.addEventListener("change", handler)
       }
     })
 
     return () => {
-      mql.forEach((mql) => {
+      mediaQueryLists.forEach((mql) => {
         if (typeof mql.removeListener === "function") {
           mql.removeListener(handler)
         } else {
@@ -73,8 +76,7 @@ export function useMediaQuery(
         }
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getWindow])
+  }, [getWindow, queries])
 
   return value.map((item) => item.matches)
 }
