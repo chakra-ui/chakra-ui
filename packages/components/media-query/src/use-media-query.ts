@@ -1,5 +1,6 @@
 import { useEnvironment } from "@chakra-ui/react-env"
 import { useEffect, useMemo, useState } from "react"
+import { toArray } from "./media-query.utils"
 
 export type UseMediaQueryOptions = {
   fallback?: boolean | boolean[]
@@ -21,8 +22,6 @@ export function useMediaQuery(
   const { ssr = true, fallback } = options
 
   const { getWindow } = useEnvironment()
-
-  const toArray = (item: any) => (Array.isArray(item) ? item : [item])
 
   const queries = useMemo(() => toArray(query), [query])
 

@@ -30,3 +30,5 @@ export function getClosestValue<T = any>(
 
   return undefined
 }
+
+export const toArray = (item: any) => (Array.isArray(item) ? item : [item])
