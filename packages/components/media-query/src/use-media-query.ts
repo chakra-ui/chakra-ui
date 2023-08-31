@@ -71,11 +71,11 @@ export function useMediaQuery(
     })
 
     return () => {
-      mediaQueryLists.forEach((mql) => {
-        if (typeof mql.removeListener === "function") {
-          mql.removeListener(handler)
+      mediaQueryLists.forEach((mediaQueryList) => {
+        if (typeof mediaQueryList.removeListener === "function") {
+          mediaQueryList.removeListener(handler)
         } else {
-          mql.removeEventListener("change", handler)
+          mediaQueryList.removeEventListener("change", handler)
         }
       })
     }
