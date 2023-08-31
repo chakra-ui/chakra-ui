@@ -28,7 +28,10 @@ export function useMediaQuery(
 
   let fallbackValues = useMemo(() => toArray(fallback), [fallback])
 
-  fallbackValues = fallbackValues.filter((v) => v != null) as boolean[]
+  fallbackValues = useMemo(
+    () => fallbackValues.filter((v) => v != null) as boolean[],
+    [fallbackValues],
+  )
 
   const [value, setValue] = useState(() => {
     return queries.map((query, index) => ({
