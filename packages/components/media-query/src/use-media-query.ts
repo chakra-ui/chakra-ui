@@ -55,7 +55,7 @@ export function useMediaQuery(
 
     const handler = (evt: MediaQueryListEvent) => {
       setValue((prev) => {
-        return prev.slice().map((item) => {
+        return prev.map((item) => {
           if (item.media === evt.media) return { ...item, matches: evt.matches }
           return item
         })
