@@ -1,4 +1,4 @@
-import type { Placement } from "@popperjs/core"
+import type { Placement } from "@zag-js/popper"
 
 type Logical =
   | "start-start"
@@ -22,8 +22,6 @@ const logicals: Record<Logical, { ltr: Placement; rtl: Placement }> = {
 }
 
 const opposites: Partial<Record<Placement, Placement>> = {
-  "auto-start": "auto-end",
-  "auto-end": "auto-start",
   "top-start": "top-end",
   "top-end": "top-start",
   "bottom-start": "bottom-end",

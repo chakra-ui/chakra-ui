@@ -1,15 +1,10 @@
 import { mergeRefs } from "@chakra-ui/hooks"
-import {
-  createPopper,
-  Instance,
-  Modifier,
-  VirtualElement,
-} from "@popperjs/core"
 import { useCallback, useEffect, useRef } from "react"
 import { PropGetter } from "../shared/types"
-import * as customModifiers from "./modifiers"
+// import * as customModifiers from "./modifiers"
 import { getPopperPlacement, PlacementWithLogical } from "./popper.placement"
-import { cssVars, getEventListenerOptions } from "./utils"
+import { cssVars } from "./utils"
+import { getPlacement, AutoUpdateOptions, Boundary } from "@zag-js/popper"
 
 export interface UsePopperProps {
   /**
@@ -49,15 +44,15 @@ export interface UsePopperProps {
   matchWidth?: boolean
   /**
    * The boundary area for the popper. Used within the `preventOverflow` modifier
-   * @default "clippingParents"
+   * @default "clippingAncestors"
    */
-  boundary?: "clippingParents" | "scrollParent" | HTMLElement
+  boundary?: Boundary | (() => Boundary)
   /**
    * If provided, determines whether the popper will reposition itself on `scroll`
    * and `resize` of the window.
    * @default true
    */
-  eventListeners?: boolean | { scroll?: boolean; resize?: boolean }
+  eventListeners?: boolean | AutoUpdateOptions
   /**
    * The padding required to prevent the arrow from
    * reaching the very edge of the popper.
@@ -74,13 +69,6 @@ export interface UsePopperProps {
    * @default "bottom"
    */
   placement?: PlacementWithLogical
-  /**
-   * Array of popper.js modifiers. Check the docs to see
-   * the list of possible modifiers you can pass.
-   *
-   * @see Docs https://popper.js.org/docs/v2/modifiers/
-   */
-  modifiers?: Array<Partial<Modifier<string, any>>>
   /**
    * Theme direction `ltr` or `rtl`. Popper's placement will
    * be set accordingly
@@ -110,23 +98,21 @@ export type ArrowCSSVarProps = {
 export function usePopper(props: UsePopperProps = {}) {
   const {
     enabled = true,
-    modifiers,
     placement: placementProp = "bottom",
     strategy = "absolute",
-    arrowPadding = 8,
+    // arrowPadding = 8,
     eventListeners = true,
     offset,
     gutter = 8,
     flip = true,
-    boundary = "clippingParents",
-    preventOverflow = true,
+    boundary = "clippingAncestors",
+    // preventOverflow = true,
     matchWidth,
     direction = "ltr",
   } = props
 
-  const reference = useRef<Element | VirtualElement | null>(null)
+  const reference = useRef<Element | null>(null)
   const popper = useRef<HTMLElement | null>(null)
-  const instance = useRef<Instance | null>(null)
   const placement = getPopperPlacement(placementProp, direction)
 
   const cleanup = useRef(() => {})
@@ -137,63 +123,80 @@ export function usePopper(props: UsePopperProps = {}) {
     // If popper instance exists, destroy it, so we can create a new one
     cleanup.current?.()
 
-    instance.current = createPopper(reference.current, popper.current, {
-      placement,
-      modifiers: [
-        customModifiers.innerArrow,
-        customModifiers.positionArrow,
-        customModifiers.transformOrigin,
-        {
-          ...customModifiers.matchWidth,
-          enabled: !!matchWidth,
-        },
-        {
-          name: "eventListeners",
-          ...getEventListenerOptions(eventListeners),
-        },
-        {
-          name: "arrow",
-          options: { padding: arrowPadding },
-        },
-        {
-          name: "offset",
-          options: {
-            offset: offset ?? [0, gutter],
-          },
-        },
-        {
-          name: "flip",
-          enabled: !!flip,
-          options: { padding: 8 },
-        },
-        {
-          name: "preventOverflow",
-          enabled: !!preventOverflow,
-          options: { boundary },
-        },
-        // allow users override internal modifiers
-        ...(modifiers ?? []),
-      ],
-      strategy,
-    })
+    // instance.current = createPopper(reference.current, popper.current, {
+    //   placement,
+    //   modifiers: [
+    //     customModifiers.innerArrow,
+    //     customModifiers.positionArrow,
+    //     customModifiers.transformOrigin,
+    //     {
+    //       ...customModifiers.matchWidth,
+    //       enabled: !!matchWidth,
+    //     },
+    //     {
+    //       name: "eventListeners",
+    //       ...getEventListenerOptions(eventListeners),
+    //     },
+    //     {
+    //       name: "arrow",
+    //       options: { padding: arrowPadding },
+    //     },
+    //     {
+    //       name: "offset",
+    //       options: {
+    //         offset: offset ?? [0, gutter],
+    //       },
+    //     },
+    //     {
+    //       name: "flip",
+    //       enabled: !!flip,
+    //       options: { padding: 8 },
+    //     },
+    //     {
+    //       name: "preventOverflow",
+    //       enabled: !!preventOverflow,
+    //       options: { boundary },
+    //     },
+    //     // allow users override internal modifiers
+    //     ...(modifiers ?? []),
+    //   ],
+    //   strategy,
+    // })
 
     // force update one-time to fix any positioning issues
-    instance.current.forceUpdate()
+    // instance.current.forceUpdate()
 
-    cleanup.current = instance.current.destroy
+    //   cleanup.current = instance.current.destroy
+
+    cleanup.current = getPlacement(reference.current, popper.current, {
+      placement,
+      flip,
+      boundary,
+      sameWidth: matchWidth,
+      offset: offset
+        ? {
+            mainAxis: offset[0],
+            crossAxis: offset[1],
+          }
+        : {
+            mainAxis: 0,
+            crossAxis: gutter,
+          },
+      gutter,
+      listeners: eventListeners,
+    })
   }, [
     placement,
     enabled,
-    modifiers,
     matchWidth,
     eventListeners,
-    arrowPadding,
+    // arrowPadding,
     offset,
     gutter,
     flip,
-    preventOverflow,
+    // preventOverflow,
     boundary,
-    strategy,
+    // strategy,
   ])
 
   useEffect(() => {
@@ -203,14 +206,14 @@ export function usePopper(props: UsePopperProps = {}) {
        * even if the reference still exists. This checks against that
        */
       if (!reference.current && !popper.current) {
-        instance.current?.destroy()
-        instance.current = null
+        cleanup.current?.()
+        cleanup.current = () => {}
       }
     }
   }, [])
 
   const referenceRef = useCallback(
-    <T extends Element | VirtualElement>(node: T | null) => {
+    <T extends Element>(node: T | null) => {
       reference.current = node
       setupPopper()
     },
@@ -267,12 +270,6 @@ export function usePopper(props: UsePopperProps = {}) {
   )
 
   return {
-    update() {
-      instance.current?.update()
-    },
-    forceUpdate() {
-      instance.current?.forceUpdate()
-    },
     transformOrigin: cssVars.transformOrigin.varRef,
     referenceRef,
     popperRef,

@@ -487,15 +487,15 @@ importers:
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../utilities
-      '@popperjs/core':
-        specifier: 2.11.8
-        version: 2.11.8
       '@zag-js/dom-utils':
         specifier: ^0.2.4
         version: 0.2.4
       '@zag-js/focus-visible':
         specifier: 0.11.2
         version: 0.11.2
+      '@zag-js/popper':
+        specifier: 0.17.0
+        version: 0.17.0
       aria-hidden:
         specifier: 1.2.3
         version: 1.2.3
@@ -4610,6 +4610,23 @@ packages:
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: false
 
+  /@floating-ui/core@1.4.1:
+    resolution: {integrity: sha512-jk3WqquEJRlcyu7997NtR5PibI+y5bi+LS3hPmguVClypenMsCY3CBa3LAQnozRCtCrYWSEtAdiskpamuJRFOQ==}
+    dependencies:
+      '@floating-ui/utils': 0.1.1
+    dev: false
+
+  /@floating-ui/dom@1.5.1:
+    resolution: {integrity: sha512-KwvVcPSXg6mQygvA1TjbN/gh///36kKtllIF8SUm0qpFj8+rvYrpvlYdL1JoA71SHpDqgSSdGOSoQ0Mp3uY5aw==}
+    dependencies:
+      '@floating-ui/core': 1.4.1
+      '@floating-ui/utils': 0.1.1
+    dev: false
+
+  /@floating-ui/utils@0.1.1:
+    resolution: {integrity: sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==}
+    dev: false
+
   /@gar/promisify@1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: false
@@ -7017,10 +7034,6 @@ packages:
       json5: 2.2.1
       write-file-atomic: 4.0.2
       write-yaml-file: 4.2.0
-    dev: false
-
-  /@popperjs/core@2.11.8:
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
   /@remix-run/router@1.7.1:
@@ -11543,10 +11556,18 @@ packages:
     resolution: {integrity: sha512-5i2/FP4V++8YSU/HBhP9qMZJ/OvMX0p33XQsAZ5NrXm+M5nm/MfVbkuWDaU6w7wcMH+Ew+LU7GclwYqmnUmDAQ==}
     dev: false
 
+  /@zag-js/dom-query@0.17.0:
+    resolution: {integrity: sha512-BNCuIyN6V6Ftd7CaYOMCmToV/sKaqdeZl18IJ6B/X9AB/N8/fOiNYZtqWQH7RFIATAYCwSdk8eQ4thlysP4Jvg==}
+    dev: false
+
   /@zag-js/dom-utils@0.2.4:
     resolution: {integrity: sha512-GSGZWZMOyed2rzyZLmnM6/B8L7FH2z2cAU6F2zP4MzaIFkVOSN/M8fHjvKfmfVpn0tZEyD3iZABsUMv6J22RPw==}
     dependencies:
       '@zag-js/types': 0.3.4
+    dev: false
+
+  /@zag-js/element-rect@0.17.0:
+    resolution: {integrity: sha512-Zp2pIIK1zkLXqBoJ0EMKfdDm7WsC1jK9L/rNbvqwp+iTEHzFObuiuQOGc+xpRhb/kXMkUe2ERGtD7YTM+JBoBg==}
     dev: false
 
   /@zag-js/element-size@0.11.2:
@@ -11559,10 +11580,23 @@ packages:
       '@zag-js/dom-query': 0.11.2
     dev: false
 
+  /@zag-js/popper@0.17.0:
+    resolution: {integrity: sha512-lP6AFvw62JJT2DESkJ6+j/j27K07VbkxxjimK+KEubXgIyIQbDXgSfeiQvsHbutnJ3vikw9OnkqrecvbW6vW+Q==}
+    dependencies:
+      '@floating-ui/dom': 1.5.1
+      '@zag-js/dom-query': 0.17.0
+      '@zag-js/element-rect': 0.17.0
+      '@zag-js/utils': 0.17.0
+    dev: false
+
   /@zag-js/types@0.3.4:
     resolution: {integrity: sha512-KkZOMNqFZA0TaVF70O6WIRJPWTcDyRQjhXLDkLVfo99gwJdsC1bMZWfjrCiR8g1CfzvCyGNSWzdArIgzTJVEMA==}
     dependencies:
       csstype: 3.1.1
+    dev: false
+
+  /@zag-js/utils@0.17.0:
+    resolution: {integrity: sha512-mvPqHNu0e+7P51gk3x3H6FG4i8PBaR6TA2abNpzYB3ngiEuZNa3vdRLkluwLd1bAZPc7o+zdVm/3abwRKZJNaw==}
     dev: false
 
   /JSONStream@1.3.5:

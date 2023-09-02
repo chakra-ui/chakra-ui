@@ -1,4 +1,4 @@
-import { Placement } from "@popperjs/core"
+import { Placement } from "@zag-js/popper"
 
 const toVar = (value: string, fallback?: string) => ({
   var: value,
@@ -44,29 +44,3 @@ const transforms: Record<string, string> = {
 }
 
 export const toTransformOrigin = (placement: Placement) => transforms[placement]
-
-const defaultEventListeners = {
-  scroll: true,
-  resize: true,
-}
-
-export function getEventListenerOptions(
-  value?: boolean | Partial<typeof defaultEventListeners>,
-) {
-  let eventListeners: {
-    enabled?: boolean
-    options?: typeof defaultEventListeners
-  }
-  if (typeof value === "object") {
-    eventListeners = {
-      enabled: true,
-      options: { ...defaultEventListeners, ...value },
-    }
-  } else {
-    eventListeners = {
-      enabled: value,
-      options: defaultEventListeners,
-    }
-  }
-  return eventListeners
-}
