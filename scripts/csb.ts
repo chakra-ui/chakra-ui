@@ -1,4 +1,4 @@
-import findPackages from "find-packages"
+import { findPackages } from "find-packages"
 import path from "path"
 import { promises as fs } from "fs"
 

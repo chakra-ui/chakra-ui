@@ -1,6 +1,6 @@
 import { findUpSync } from "find-up"
 import { ensureFileSync, readFile, writeFile } from "fs-extra"
-import glob from "glob"
+import { globSync } from "glob"
 import { outdent } from "outdent"
 import { basename, dirname, join } from "path"
 
@@ -137,7 +137,7 @@ async function writeIndexDTS(componentInfo: ComponentInfo[]) {
 export async function main() {
   const lockFile = findUpSync("pnpm-lock.yaml")
 
-  const componentFiles = glob.sync("packages/!(node_modules)/*/docs.json", {
+  const componentFiles = globSync("packages/!(node_modules)/*/docs.json", {
     cwd: lockFile ? dirname(lockFile) : undefined,
     absolute: true,
   })

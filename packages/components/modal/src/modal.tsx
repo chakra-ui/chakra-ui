@@ -79,7 +79,13 @@ interface ModalOptions extends Pick<FocusLockProps, "lockFocusAcrossFrames"> {
 
 type ScrollBehavior = "inside" | "outside"
 
-type MotionPreset = "slideInBottom" | "slideInRight" | "scale" | "none"
+type MotionPreset =
+  | "slideInBottom"
+  | "slideInRight"
+  | "slideInTop"
+  | "slideInLeft"
+  | "scale"
+  | "none"
 
 export interface ModalProps
   extends UseModalProps,

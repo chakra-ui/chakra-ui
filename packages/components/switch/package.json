@@ -38,9 +38,9 @@
     "@chakra-ui/form-control": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/system": "workspace:*",
-    "framer-motion": "^10.12.16",
-    "react-hook-form": "7.45.1",
-    "react": "^18.0.0",
+    "framer-motion": "^10.16.1",
+    "react-hook-form": "7.45.4",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

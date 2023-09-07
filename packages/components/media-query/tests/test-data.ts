@@ -10,7 +10,10 @@ export const breakpoints = {
   customBreakpoint: "600px",
 }
 
-export const theme = { ...baseTheme, breakpoints }
+export const theme: any = {
+  ...baseTheme,
+  breakpoints,
+}
 
 export const queries = {
   base: "(min-width: 0px) and (max-width: 99.98px)",

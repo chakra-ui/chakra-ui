@@ -39,5 +39,13 @@
   "devDependencies": {
     "clean-package": "2.2.0"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "target": "es2019",
+    "sourcemap": true
+  }
 }

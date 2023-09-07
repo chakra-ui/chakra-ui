@@ -90,18 +90,18 @@ test("should merge responsive values in textStyles with other responsive styles"
       mt: [3, 4],
     })(theme),
   ).toMatchInlineSnapshot(`
-    Object {
-      "@media screen and (min-width: 30em)": Object {
-        "color": "red",
-        "fontSize": "var(--chakra-fontSizes-4xl)",
-        "marginTop": "var(--chakra-space-4)",
-      },
-      "color": "blue",
-      "fontSize": "var(--chakra-fontSizes-2xl)",
-      "fontWeight": "var(--chakra-fontWeights-bold)",
-      "marginTop": "var(--chakra-space-3)",
-    }
-  `)
+{
+  "@media screen and (min-width: 30em)": {
+    "color": "red",
+    "fontSize": "var(--chakra-fontSizes-4xl)",
+    "marginTop": "var(--chakra-space-4)",
+  },
+  "color": "blue",
+  "fontSize": "var(--chakra-fontSizes-2xl)",
+  "fontWeight": "var(--chakra-fontWeights-bold)",
+  "marginTop": "var(--chakra-space-3)",
+}
+`)
 })
 
 test("should merge responsive values in textStyles + override", () => {
@@ -112,15 +112,15 @@ test("should merge responsive values in textStyles + override", () => {
       fontSize: "30px",
     })(theme),
   ).toMatchInlineSnapshot(`
-    Object {
-      "@media screen and (min-width: 30em)": Object {
-        "color": "red",
-        "marginTop": "var(--chakra-space-4)",
-      },
-      "color": "blue",
-      "fontSize": "30px",
-      "fontWeight": "var(--chakra-fontWeights-bold)",
-      "marginTop": "var(--chakra-space-3)",
-    }
-  `)
+{
+  "@media screen and (min-width: 30em)": {
+    "color": "red",
+    "marginTop": "var(--chakra-space-4)",
+  },
+  "color": "blue",
+  "fontSize": "30px",
+  "fontWeight": "var(--chakra-fontWeights-bold)",
+  "marginTop": "var(--chakra-space-3)",
+}
+`)
 })

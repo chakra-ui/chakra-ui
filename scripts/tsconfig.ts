@@ -1,4 +1,4 @@
-import findPackages from "find-packages"
+import { findPackages } from "find-packages"
 import { promises as fs } from "fs"
 
 async function main() {

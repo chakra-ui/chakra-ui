@@ -38,7 +38,7 @@
     "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "react-fast-compare": "3.2.1"
+    "react-fast-compare": "3.2.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -47,10 +47,10 @@
   },
   "devDependencies": {
     "@chakra-ui/theme": "workspace:*",
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "framer-motion": "^10.12.16",
-    "react": "^18.0.0",
+    "framer-motion": "^10.16.1",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "scripts": {

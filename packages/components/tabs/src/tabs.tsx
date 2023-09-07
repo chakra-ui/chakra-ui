@@ -63,6 +63,11 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
 
   const { isFitted: _, ...rootProps } = htmlProps as any
 
+  const tabsStyles: SystemStyleObject = {
+    position: "relative",
+    ...styles.root,
+  }
+
   return (
     <TabsDescendantsProvider value={descendants}>
       <TabsProvider value={context}>
@@ -71,7 +76,7 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
             className={cx("chakra-tabs", className)}
             ref={ref}
             {...rootProps}
-            __css={styles.root}
+            __css={tabsStyles}
           >
             {children}
           </chakra.div>

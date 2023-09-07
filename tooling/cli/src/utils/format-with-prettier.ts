@@ -4,7 +4,7 @@ export async function formatWithPrettier(content: string) {
   const prettierConfig = await resolveConfig(process.cwd())
 
   try {
-    return format(String(content), {
+    return await format(String(content), {
       ...prettierConfig,
       parser: "typescript",
     })

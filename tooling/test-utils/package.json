@@ -27,17 +27,16 @@
     "@chakra-ui/provider": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/jest-dom": "^6.0.1",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/jest-axe": "^3.5.4",
-    "jest-axe": "^6.0.0"
+    "@types/jest-axe": "^3.5.5",
+    "jest-axe": "^8.0.0"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0"
+    "react": "^18.2.0"
   }
 }

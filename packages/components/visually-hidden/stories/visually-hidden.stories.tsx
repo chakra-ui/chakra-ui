@@ -1,4 +1,3 @@
-import * as React from "react"
 import { VisuallyHidden, VisuallyHiddenInput } from "../src"
 
 export default {

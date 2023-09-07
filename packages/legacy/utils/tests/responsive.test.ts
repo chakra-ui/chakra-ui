@@ -77,54 +77,54 @@ test("should work correctly", () => {
       xl: "4000px",
     })?.details,
   ).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "_minW": "-0.02px",
-        "breakpoint": "base",
-        "maxW": "319.98px",
-        "maxWQuery": "@media screen and (max-width: 319.98px)",
-        "minMaxQuery": "@media screen and (min-width: 0px) and (max-width: 319.98px)",
-        "minW": "0px",
-        "minWQuery": "@media screen and (min-width: 0px)",
-      },
-      Object {
-        "_minW": "319.98px",
-        "breakpoint": "sm",
-        "maxW": "639.98px",
-        "maxWQuery": "@media screen and (max-width: 639.98px)",
-        "minMaxQuery": "@media screen and (min-width: 320px) and (max-width: 639.98px)",
-        "minW": "320px",
-        "minWQuery": "@media screen and (min-width: 320px)",
-      },
-      Object {
-        "_minW": "639.98px",
-        "breakpoint": "md",
-        "maxW": "999.98px",
-        "maxWQuery": "@media screen and (max-width: 999.98px)",
-        "minMaxQuery": "@media screen and (min-width: 640px) and (max-width: 999.98px)",
-        "minW": "640px",
-        "minWQuery": "@media screen and (min-width: 640px)",
-      },
-      Object {
-        "_minW": "999.98px",
-        "breakpoint": "lg",
-        "maxW": "3999.98px",
-        "maxWQuery": "@media screen and (max-width: 3999.98px)",
-        "minMaxQuery": "@media screen and (min-width: 1000px) and (max-width: 3999.98px)",
-        "minW": "1000px",
-        "minWQuery": "@media screen and (min-width: 1000px)",
-      },
-      Object {
-        "_minW": "3999.98px",
-        "breakpoint": "xl",
-        "maxW": undefined,
-        "maxWQuery": "@media screen",
-        "minMaxQuery": "@media screen and (min-width: 4000px)",
-        "minW": "4000px",
-        "minWQuery": "@media screen and (min-width: 4000px)",
-      },
-    ]
-  `)
+[
+  {
+    "_minW": "-0.02px",
+    "breakpoint": "base",
+    "maxW": "319.98px",
+    "maxWQuery": "@media screen and (max-width: 319.98px)",
+    "minMaxQuery": "@media screen and (min-width: 0px) and (max-width: 319.98px)",
+    "minW": "0px",
+    "minWQuery": "@media screen and (min-width: 0px)",
+  },
+  {
+    "_minW": "319.98px",
+    "breakpoint": "sm",
+    "maxW": "639.98px",
+    "maxWQuery": "@media screen and (max-width: 639.98px)",
+    "minMaxQuery": "@media screen and (min-width: 320px) and (max-width: 639.98px)",
+    "minW": "320px",
+    "minWQuery": "@media screen and (min-width: 320px)",
+  },
+  {
+    "_minW": "639.98px",
+    "breakpoint": "md",
+    "maxW": "999.98px",
+    "maxWQuery": "@media screen and (max-width: 999.98px)",
+    "minMaxQuery": "@media screen and (min-width: 640px) and (max-width: 999.98px)",
+    "minW": "640px",
+    "minWQuery": "@media screen and (min-width: 640px)",
+  },
+  {
+    "_minW": "999.98px",
+    "breakpoint": "lg",
+    "maxW": "3999.98px",
+    "maxWQuery": "@media screen and (max-width: 3999.98px)",
+    "minMaxQuery": "@media screen and (min-width: 1000px) and (max-width: 3999.98px)",
+    "minW": "1000px",
+    "minWQuery": "@media screen and (min-width: 1000px)",
+  },
+  {
+    "_minW": "3999.98px",
+    "breakpoint": "xl",
+    "maxW": undefined,
+    "maxWQuery": "@media screen",
+    "minMaxQuery": "@media screen and (min-width: 4000px)",
+    "minW": "4000px",
+    "minWQuery": "@media screen and (min-width: 4000px)",
+  },
+]
+`)
 })
 
 // Ensures no breaking change
@@ -138,52 +138,52 @@ test("should work with createBreakpoint output", () => {
       xl: "4000px",
     })?.details,
   ).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "_minW": "-0.01em",
-        "breakpoint": "base",
-        "maxW": "319.98px",
-        "maxWQuery": "@media screen and (max-width: 319.98px)",
-        "minMaxQuery": "@media screen and (min-width: 0em) and (max-width: 319.98px)",
-        "minW": "0em",
-        "minWQuery": "@media screen and (min-width: 0em)",
-      },
-      Object {
-        "_minW": "319.98px",
-        "breakpoint": "sm",
-        "maxW": "639.98px",
-        "maxWQuery": "@media screen and (max-width: 639.98px)",
-        "minMaxQuery": "@media screen and (min-width: 320px) and (max-width: 639.98px)",
-        "minW": "320px",
-        "minWQuery": "@media screen and (min-width: 320px)",
-      },
-      Object {
-        "_minW": "639.98px",
-        "breakpoint": "md",
-        "maxW": "999.98px",
-        "maxWQuery": "@media screen and (max-width: 999.98px)",
-        "minMaxQuery": "@media screen and (min-width: 640px) and (max-width: 999.98px)",
-        "minW": "640px",
-        "minWQuery": "@media screen and (min-width: 640px)",
-      },
-      Object {
-        "_minW": "999.98px",
-        "breakpoint": "lg",
-        "maxW": "3999.98px",
-        "maxWQuery": "@media screen and (max-width: 3999.98px)",
-        "minMaxQuery": "@media screen and (min-width: 1000px) and (max-width: 3999.98px)",
-        "minW": "1000px",
-        "minWQuery": "@media screen and (min-width: 1000px)",
-      },
-      Object {
-        "_minW": "3999.98px",
-        "breakpoint": "xl",
-        "maxW": undefined,
-        "maxWQuery": "@media screen",
-        "minMaxQuery": "@media screen and (min-width: 4000px)",
-        "minW": "4000px",
-        "minWQuery": "@media screen and (min-width: 4000px)",
-      },
-    ]
-  `)
+[
+  {
+    "_minW": "-0.01em",
+    "breakpoint": "base",
+    "maxW": "319.98px",
+    "maxWQuery": "@media screen and (max-width: 319.98px)",
+    "minMaxQuery": "@media screen and (min-width: 0em) and (max-width: 319.98px)",
+    "minW": "0em",
+    "minWQuery": "@media screen and (min-width: 0em)",
+  },
+  {
+    "_minW": "319.98px",
+    "breakpoint": "sm",
+    "maxW": "639.98px",
+    "maxWQuery": "@media screen and (max-width: 639.98px)",
+    "minMaxQuery": "@media screen and (min-width: 320px) and (max-width: 639.98px)",
+    "minW": "320px",
+    "minWQuery": "@media screen and (min-width: 320px)",
+  },
+  {
+    "_minW": "639.98px",
+    "breakpoint": "md",
+    "maxW": "999.98px",
+    "maxWQuery": "@media screen and (max-width: 999.98px)",
+    "minMaxQuery": "@media screen and (min-width: 640px) and (max-width: 999.98px)",
+    "minW": "640px",
+    "minWQuery": "@media screen and (min-width: 640px)",
+  },
+  {
+    "_minW": "999.98px",
+    "breakpoint": "lg",
+    "maxW": "3999.98px",
+    "maxWQuery": "@media screen and (max-width: 3999.98px)",
+    "minMaxQuery": "@media screen and (min-width: 1000px) and (max-width: 3999.98px)",
+    "minW": "1000px",
+    "minWQuery": "@media screen and (min-width: 1000px)",
+  },
+  {
+    "_minW": "3999.98px",
+    "breakpoint": "xl",
+    "maxW": undefined,
+    "maxWQuery": "@media screen",
+    "minMaxQuery": "@media screen and (min-width: 4000px)",
+    "minW": "4000px",
+    "minWQuery": "@media screen and (min-width: 4000px)",
+  },
+]
+`)
 })
