@@ -1,5 +1,14 @@
 # @chakra-ui/anatomy
 
+## 2.2.1
+
+### Patch Changes
+
+- [#7936](https://github.com/chakra-ui/chakra-ui/pull/7936)
+  [`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Remove "use client"
+  directive since they are pure JS packages.
+
 ## 2.2.0
 
 ### Minor Changes

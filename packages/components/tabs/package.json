@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/tabs",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Accessible Tabs component for React and Chakra UI",
   "keywords": [
     "react",

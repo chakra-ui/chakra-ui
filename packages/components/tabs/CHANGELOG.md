@@ -1,5 +1,26 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- [#7882](https://github.com/chakra-ui/chakra-ui/pull/7882)
+  [`065fd24c7`](https://github.com/chakra-ui/chakra-ui/commit/065fd24c724d78b17e6996607ea1b5c7829e7c2c)
+  Thanks [@vennilamahalingam](https://github.com/vennilamahalingam)! - Distored
+  UI when device orientation or width is changed - On changing the device width
+  and change of device orientation, the tab indicator element which is position
+  absolute aligns realtive to the outer container element.
+
+  Hence, the position of immediate parent(tabs) is set to relative in this
+  fix.This makes sure, if the orientation changes the tab indicator is aligned
+  relative to its parent.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.1.0
+  - @chakra-ui/clickable@2.1.0
+
 ## 2.2.0
 
 ### Minor Changes

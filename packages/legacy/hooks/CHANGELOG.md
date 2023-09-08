@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [`63431c1ef`](https://github.com/chakra-ui/chakra-ui/commit/63431c1ef3b7e8ac9b97c94ca025dd54b9aa3338)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue with use
+  client directive in next.js
+
 ## 2.2.0
 
 ### Minor Changes

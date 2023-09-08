@@ -1,5 +1,64 @@
 # Change Log
 
+## 2.8.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`63431c1ef`](https://github.com/chakra-ui/chakra-ui/commit/63431c1ef3b7e8ac9b97c94ca025dd54b9aa3338),
+  [`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314),
+  [`6526e9be8`](https://github.com/chakra-ui/chakra-ui/commit/6526e9be8adce074cfbfca03bd765aff4eb8914a),
+  [`eb477b6e8`](https://github.com/chakra-ui/chakra-ui/commit/eb477b6e88171e371d113aeda5614ba29423f80f),
+  [`065fd24c7`](https://github.com/chakra-ui/chakra-ui/commit/065fd24c724d78b17e6996607ea1b5c7829e7c2c),
+  [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed),
+  [`0b2c4049f`](https://github.com/chakra-ui/chakra-ui/commit/0b2c4049f9ac59554313b3032e8cf9a904141a5b)]:
+  - @chakra-ui/hooks@2.2.1
+  - @chakra-ui/theme@3.3.0
+  - @chakra-ui/modal@2.3.1
+  - @chakra-ui/tabs@3.0.0
+  - @chakra-ui/visually-hidden@2.2.0
+  - @chakra-ui/css-reset@2.3.0
+  - @chakra-ui/icon@3.2.0
+  - @chakra-ui/menu@2.2.1
+  - @chakra-ui/input@2.1.1
+  - @chakra-ui/popover@2.2.1
+  - @chakra-ui/popper@3.1.0
+  - @chakra-ui/toast@7.0.1
+  - @chakra-ui/tooltip@2.3.0
+  - @chakra-ui/transition@2.1.0
+  - @chakra-ui/button@2.1.0
+  - @chakra-ui/media-query@3.3.0
+  - @chakra-ui/skeleton@2.1.0
+  - @chakra-ui/slider@2.1.0
+  - @chakra-ui/system@2.6.1
+  - @chakra-ui/theme-utils@2.0.20
+  - @chakra-ui/accordion@2.3.1
+  - @chakra-ui/checkbox@2.3.1
+  - @chakra-ui/control-box@2.1.0
+  - @chakra-ui/radio@2.1.1
+  - @chakra-ui/provider@2.4.1
+  - @chakra-ui/alert@2.2.1
+  - @chakra-ui/close-button@2.1.1
+  - @chakra-ui/form-control@2.1.1
+  - @chakra-ui/layout@2.3.1
+  - @chakra-ui/number-input@2.1.1
+  - @chakra-ui/stat@2.1.1
+  - @chakra-ui/stepper@2.3.1
+  - @chakra-ui/tag@3.1.1
+  - @chakra-ui/card@2.2.0
+  - @chakra-ui/table@2.1.0
+  - @chakra-ui/switch@2.1.1
+  - @chakra-ui/select@2.1.1
+  - @chakra-ui/textarea@2.1.1
+  - @chakra-ui/breadcrumb@2.2.0
+  - @chakra-ui/avatar@2.3.0
+  - @chakra-ui/editable@3.1.0
+  - @chakra-ui/image@2.1.0
+  - @chakra-ui/pin-input@2.1.0
+  - @chakra-ui/progress@2.2.0
+  - @chakra-ui/skip-nav@2.1.0
+  - @chakra-ui/spinner@2.1.0
+
 ## 2.8.0
 
 ### Minor Changes
