@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- [#7962](https://github.com/chakra-ui/chakra-ui/pull/7962)
+  [`eb477b6e8`](https://github.com/chakra-ui/chakra-ui/commit/eb477b6e88171e371d113aeda5614ba29423f80f)
+  Thanks [@backy22](https://github.com/backy22)! - Added "slideInTop" and
+  "slideInLeft" options in `motionPreset` prop in modal component
+- Updated dependencies []:
+  - @chakra-ui/transition@2.1.0
+  - @chakra-ui/close-button@2.1.1
+
 ## 2.3.0
 
 ### Minor Changes

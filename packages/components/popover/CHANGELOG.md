@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/popper@3.1.0
+  - @chakra-ui/close-button@2.1.1
+
 ## 2.2.0
 
 ### Minor Changes

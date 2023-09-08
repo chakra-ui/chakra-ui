@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.2.1
+
+### Patch Changes
+
+- [`0b2c4049f`](https://github.com/chakra-ui/chakra-ui/commit/0b2c4049f9ac59554313b3032e8cf9a904141a5b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  menu item causes page scroll unneccessarily
+
+- Updated dependencies []:
+  - @chakra-ui/descendant@3.1.0
+  - @chakra-ui/popper@3.1.0
+  - @chakra-ui/transition@2.1.0
+  - @chakra-ui/clickable@2.1.0
+
 ## 2.2.0
 
 ### Minor Changes
