@@ -1,16 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "include": [
-    "src",
-    "index.ts",
-    "../hooks/src/use-counter.ts",
-    "../hooks/src/use-live-region/live-region.stories.tsx",
-    "../hooks/src/use-live-region/index.ts",
-    "../hooks/src/use-attr-observer.ts",
-    "../hooks/src/use-spinner.ts",
-    "../hooks/src/use-event-listeners.ts",
-    "../hooks/src/use-clickable",
-    "../theme",
-    "../utilities/src/anatomy"
-  ]
+  "include": ["src", "index.ts"]
 }

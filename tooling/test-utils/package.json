@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/react": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/react-hooks": "^8.0.1",

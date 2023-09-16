@@ -45,6 +45,7 @@
     "react-remove-scroll": "2.5.6",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
+    "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/hooks": "workspace:*"
   },
