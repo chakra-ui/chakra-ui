@@ -12,6 +12,18 @@ import {
   ModalOverlay,
 } from "."
 import { useRef } from "react"
+import { PortalManager } from "../portal"
+
+export default {
+  title: "Components / Overlay / Modal",
+  decorators: [
+    (StoryFn: any) => (
+      <PortalManager>
+        <StoryFn />
+      </PortalManager>
+    ),
+  ],
+}
 
 const Button = chakra("button", {
   baseStyle: {

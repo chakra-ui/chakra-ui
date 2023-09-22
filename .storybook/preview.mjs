@@ -1,11 +1,12 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from "../packages/components/src"
 
 export const parameters = {
   options: {
-    storySort: (a, b) =>
-      a[1].kind === b[1].kind
+    storySort: (a, b) => {
+      a.title === b.title
         ? 0
-        : a[1].id.localeCompare(b[1].id, undefined, { numeric: true }),
+        : a.id.localeCompare(b.id, undefined, { numeric: true })
+    },
   },
   chakra: {
     theme: extendTheme({

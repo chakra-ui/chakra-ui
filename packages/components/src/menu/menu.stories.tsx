@@ -23,6 +23,10 @@ import { Modal, ModalBody, ModalContent, ModalOverlay } from "../modal"
 import { Portal } from "../portal"
 import { chakra } from "../system"
 
+export default {
+  title: "Components/Overlay/Menu",
+}
+
 const words = [
   "About Visual Studio Code",
   "Check for updates",

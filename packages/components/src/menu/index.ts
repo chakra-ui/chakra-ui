@@ -18,14 +18,10 @@ export type { MenuListProps } from "./menu-list"
 export { MenuOptionGroup } from "./menu-option-group"
 export type { MenuOptionGroupProps } from "./menu-option-group"
 export {
-  MenuDescendantsProvider,
   MenuProvider,
   useMenu,
   useMenuButton,
   useMenuContext,
-  useMenuDescendant,
-  useMenuDescendants,
-  useMenuDescendantsContext,
   useMenuItem,
   useMenuList,
   useMenuOption,

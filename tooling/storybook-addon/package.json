@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/storybook-addon",
-  "version": "4.0.17",
+  "version": "5.0.1",
   "description": "The official Storybook Addon for Chakra UI",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -16,41 +16,32 @@
       "require": "./dist/index.js"
     },
     "./*": "./*",
-    "./preset": {
-      "types": "./dist/preset/index.d.ts",
-      "import": "./dist/preset/index.mjs",
-      "require": "./dist/preset/index.js"
+    "./manager": {
+      "types": "./dist/manager.d.ts",
+      "require": "./dist/manager.js",
+      "import": "./dist/manager.mjs"
     },
-    "./preset/decorators": {
-      "types": "./dist/preset/index.d.ts",
-      "import": "./dist/preset/decorators.mjs",
-      "require": "./dist/preset/decorators.js"
-    },
-    "./preset/register": {
-      "types": "./dist/preset/index.d.ts",
-      "import": "./dist/preset/register.mjs",
-      "require": "./dist/preset/register.js"
+    "./preview": {
+      "types": "./dist/preview.d.ts",
+      "require": "./dist/preview.js",
+      "import": "./dist/preview.mjs"
     }
   },
   "typesVersions": {
     "*": {
-      "preset": [
-        "./dist/preset/index.d.ts"
+      "manager": [
+        "./dist/manager.d.ts"
       ],
-      "preset/decorators": [
-        "./dist/preset/decorators.d.ts"
-      ],
-      "preset/register": [
-        "./dist/preset/register.d.ts"
+      "previews": [
+        "./dist/preview.d.ts"
       ]
     }
   },
   "scripts": {
-    "build": "tsup --dts",
+    "build": "tsup",
     "dev": "pnpm build -- --watch",
     "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup"
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -72,16 +63,18 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@storybook/addons": "^6.5.6",
-    "@storybook/api": "^6.5.6",
-    "@storybook/components": "^6.5.6",
-    "react": "^18.0.0"
+    "@storybook/components": "^7.3.2",
+    "@storybook/manager-api": "^7.3.2",
+    "@storybook/preview-api": "^7.3.2",
+    "@storybook/types": "^7.3.2",
+    "react": "^18.2.0"
   },
   "peerDependencies": {
     "@chakra-ui/react": ">=2.0.0",
-    "@storybook/addons": ">=6.4",
-    "@storybook/api": ">=6.4",
-    "@storybook/components": ">=6.4",
+    "@storybook/components": ">=7.0.12",
+    "@storybook/manager-api": ">=7.0.12",
+    "@storybook/preview-api": ">=7.0.12",
+    "@storybook/types": ">=7.0.24",
     "react": ">=16.8.x"
   },
   "peerDependenciesMeta": {

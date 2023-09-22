@@ -4,7 +4,6 @@ import {
   usePinInputField,
   UsePinInputProps,
   PinInputProvider,
-  PinInputDescendantsProvider,
 } from "."
 
 function Input(props: any) {
@@ -13,16 +12,14 @@ function Input(props: any) {
 }
 
 const Component = (props: UsePinInputProps = {}) => {
-  const { descendants, ...context } = usePinInput(props)
+  const context = usePinInput(props)
   return (
-    <PinInputDescendantsProvider value={descendants}>
-      <PinInputProvider value={context}>
-        <Input data-testid="1" />
-        <Input data-testid="2" />
-        <Input data-testid="3" />
-        <button onClick={() => context.clear()}>Clear</button>
-      </PinInputProvider>
-    </PinInputDescendantsProvider>
+    <PinInputProvider value={context}>
+      <Input data-testid="1" />
+      <Input data-testid="2" />
+      <Input data-testid="3" />
+      <button onClick={() => context.clear()}>Clear</button>
+    </PinInputProvider>
   )
 }
 

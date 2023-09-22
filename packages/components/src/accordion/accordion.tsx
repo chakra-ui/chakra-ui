@@ -14,7 +14,7 @@ import {
   useAccordion,
   UseAccordionProps,
 } from "./use-accordion"
-import { useMergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useMergeRefs } from "@chakra-ui/hooks"
 
 export interface AccordionProps<Multiple extends boolean>
   extends UseAccordionProps<Multiple>,
