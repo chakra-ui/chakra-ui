@@ -45,8 +45,13 @@ export { SimpleGrid } from "./simple-grid"
 export type { SimpleGridProps } from "./simple-grid"
 export { Spacer } from "./spacer"
 export type { SpacerProps } from "./spacer"
-export { HStack, Stack, StackDivider, StackItem, VStack } from "./stack"
-export type { StackDirection, StackDividerProps, StackProps } from "./stack"
+export { HStack, Stack, StackDivider, StackItem, VStack, ZStack } from "./stack"
+export type {
+  StackDirection,
+  StackDividerProps,
+  StackProps,
+  ZStackProps,
+} from "./stack"
 export { Text } from "./text"
 export type { TextProps } from "./text"
 export { Wrap, WrapItem } from "./wrap"

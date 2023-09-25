@@ -1,5 +1,13 @@
 import * as React from "react"
-import { Stack, StackDivider, Box, Heading, Text, Divider } from "../src"
+import {
+  Stack,
+  StackDivider,
+  Box,
+  Heading,
+  Text,
+  Divider,
+  ZStack,
+} from "../src"
 
 export default {
   title: "Components / Layout / Stack",
@@ -19,6 +27,14 @@ export const Horizontal = () => (
     <Box boxSize="40px" bg="white" borderRadius="full" />
     <Box boxSize="40px" bg="white" borderRadius="full" />
   </Stack>
+)
+
+export const StackOnTop = () => (
+  <ZStack>
+    <Box bg={"red"} w="300px" height="300px" />
+    <Box bg={"blue"} w="200px" height="200px" />
+    <Box bg={"green"} w="100px" height="100px" />
+  </ZStack>
 )
 
 export const WithCustomDivider = () => (
