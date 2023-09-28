@@ -4,11 +4,18 @@ import { HTMLChakraProps, forwardRef } from "@chakra-ui/system"
 import { chakra } from "@chakra-ui/system"
 import { useMemo, cloneElement, Fragment } from "react"
 
-export type ZStackOptions = {}
+export type ZStackOptions = {
+  /**
+   * If set the stack will start from the given index
+   *
+   * @default 0
+   */
+  startIndex?: number
+}
 export interface ZStackProps extends HTMLChakraProps<"div">, ZStackOptions {}
 
 export const ZStack = forwardRef<ZStackProps, "div">((props, ref) => {
-  const { children, className, ...rest } = props
+  const { children, startIndex, className, ...rest } = props
 
   const clones = useMemo(() => {
     const validChildren = getValidChildren(children)
@@ -16,7 +23,7 @@ export const ZStack = forwardRef<ZStackProps, "div">((props, ref) => {
       const key = typeof child.key !== "undefined" ? child.key : index
       const clonedChild = cloneElement(child as React.ReactElement<any>, {
         position: "absolute",
-        zIndex: index,
+        zIndex: startIndex ? startIndex + index : index,
       })
       return <Fragment key={key}>{clonedChild}</Fragment>
     })
