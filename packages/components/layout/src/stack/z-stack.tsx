@@ -27,7 +27,7 @@ export const ZStack = forwardRef<ZStackProps, "div">((props, ref) => {
       })
       return <Fragment key={key}>{clonedChild}</Fragment>
     })
-  }, [children])
+  }, [children, startIndex])
 
   const _className = cx("chakra-stack", className)
 
