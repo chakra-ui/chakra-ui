@@ -1,6 +1,7 @@
 import { Container, Stack } from "@chakra-ui/layout"
 import * as React from "react"
 import { Select } from "../src"
+import { FormControl, FormLabel } from "@chakra-ui/form-control"
 
 export default {
   title: "Components / Forms / Select",
@@ -130,6 +131,15 @@ export const FocusAndErrorColors = () => (
       placeholder="Here is a sample placeholder"
     />
   </Stack>
+)
+
+export const LabelFocus = () => (
+  <FormControl>
+    <FormLabel>Label</FormLabel>
+    <Select>
+      <option>Option 1</option>
+    </Select>
+  </FormControl>
 )
 
 export const OverrideStyles = () => (
