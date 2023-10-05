@@ -177,7 +177,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
       {children && (
         <chakra.span
           className="chakra-checkbox__label"
-          {...getLabelProps()}
+          {...getLabelProps(props, forwardRef)}
           __css={{
             marginStart: spacing,
             ...styles.label,

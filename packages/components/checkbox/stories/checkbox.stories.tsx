@@ -1,3 +1,5 @@
+import { extendTheme } from "../../../utilities/theme-utils"
+import { ThemeProvider } from "../../../core/system"
 import { FormControl, FormLabel } from "@chakra-ui/form-control"
 import { Icon } from "@chakra-ui/icon"
 import {
@@ -336,5 +338,19 @@ export const WithFormControl = () => {
         </CheckboxGroup>
       </FormControl>
     </>
+  )
+}
+
+export const WithThemeAndProperties = () => {
+  const theme = extendTheme({
+    components: { Checkbox: { sizes: { md: { label: { color: "red" } } } } },
+  })
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Checkbox size="md" color="blue">
+        This text should be blue because properties override themes.
+      </Checkbox>
+    </ThemeProvider>
   )
 }
