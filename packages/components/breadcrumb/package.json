@@ -37,7 +37,7 @@
   "devDependencies": {
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/system": "workspace:*",
-    "react-router-dom": "6.15.0",
+    "react-router-dom": "6.17.0",
     "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
