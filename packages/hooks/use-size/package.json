@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "hooks/react-use-size"
+    "directory": "packages/hooks/use-size"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
