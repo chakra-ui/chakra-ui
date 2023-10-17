@@ -2,6 +2,7 @@ import {
   forwardRef,
   chakra,
   HTMLChakraProps,
+  LinkProps as ChakraLinkProps,
   ThemingProps,
   useStyleConfig,
   omitThemingProps,
@@ -18,7 +19,7 @@ type LegacyProps = "as" | "legacyBehavior" | "passHref"
 type LinkComponent = FC<RefAttributes<HTMLAnchorElement> & LinkProps>
 
 export type LinkProps = Merge<
-  HTMLChakraProps<"a"> & ThemingProps<"Link">,
+  HTMLChakraProps<"a"> & ThemingProps<"Link"> & ChakraLinkProps,
   Omit<NextLinkProps, LegacyProps>
 >
 
