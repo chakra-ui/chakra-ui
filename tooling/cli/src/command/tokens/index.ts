@@ -17,6 +17,7 @@ export async function generateThemeTypings({
   format,
   strictTokenTypes,
   template,
+  allowSemanticTokenColorsInColorSchemes,
   onError,
 }: {
   theme: Record<string, any>
@@ -25,6 +26,7 @@ export async function generateThemeTypings({
   format?: boolean
   strictTokenTypes?: boolean
   template?: TypingsTemplate
+  allowSemanticTokenColorsInColorSchemes?: boolean
   onError?: () => void
 }) {
   const spinner = ora("Generating Theme Typings").start()
@@ -38,6 +40,7 @@ export async function generateThemeTypings({
       format,
       strictTokenTypes,
       template,
+      allowSemanticTokenColorsInColorSchemes,
     })
 
     const outPath = await resolveOutputPath(out)

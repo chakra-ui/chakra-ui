@@ -519,4 +519,62 @@ describe("Theme typings", () => {
       "
     `)
   })
+
+  it.only("should include semanticToken colors in colorScheme", async () => {
+    const themeInterface = await createThemeTypingsInterface(
+      {
+        semanticTokens: {
+          colors: {
+            primary: {
+              default: { default: "#64FFDA" },
+              strong: { default: "#42A28F" },
+              medium: { default: "#24514D" },
+              weak: { default: "#152A2D" },
+            },
+            secondary: {
+              default: { default: "#00B0FF" },
+              strong: { default: "#0777AA" },
+              medium: { default: "#0D3E55" },
+              weak: { default: "#11303F" },
+            },
+          },
+        },
+      },
+      {
+        config: themeKeyConfiguration,
+        strictTokenTypes: true,
+        allowSemanticTokenColorsInColorSchemes: true,
+      },
+    )
+
+    expect(themeInterface).toMatchInlineSnapshot(`
+      "// regenerate by running
+      // npx @chakra-ui/cli tokens path/to/your/theme.(js|ts)
+      import { BaseThemeTypings } from "./shared.types.js"
+      export interface ThemeTypings extends BaseThemeTypings {
+        blur: never
+        borders: never
+        borderStyles: never
+        borderWidths: never
+        breakpoints: never
+        colors: "primary" | "secondary"
+        colorSchemes: "primary" | "secondary"
+        fonts: never
+        fontSizes: never
+        fontWeights: never
+        layerStyles: never
+        letterSpacings: never
+        lineHeights: never
+        radii: never
+        shadows: never
+        sizes: never
+        space: never
+        textStyles: never
+        transition: never
+        zIndices: never
+        components: {}
+      }
+      "
+    `)
+  })
 })
