@@ -1,10 +1,6 @@
 import { isColorHue } from "../../utils/is-color-hue"
 import { isObject } from "../../utils/is-object"
-import { extractPropertyPaths } from "./extract-property-paths"
-import {
-  extractSemanticTokenKeys,
-  flattenSemanticTokens,
-} from "./extract-semantic-token-keys"
+import { extractSemanticTokenKeys } from "./extract-semantic-token-keys"
 
 /**
  * Extract color scheme names
