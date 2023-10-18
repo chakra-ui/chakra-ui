@@ -26,6 +26,7 @@ Options:
   --no-format               Disable auto formatting
   --watch [path]            Watch directory for changes and rebuild
   --template <template>     Choose the template to use for the generation (choices: "default", "augmentation", default: "default"
+  --allow-semantic-token-colors-in-color-schemes Include semantic token colors in color schemes types
   -h, --help                display help for command
 
 Example call:
