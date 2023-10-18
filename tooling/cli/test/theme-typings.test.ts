@@ -537,6 +537,14 @@ describe("Theme typings", () => {
               medium: { default: "#0D3E55" },
               weak: { default: "#11303F" },
             },
+            status: {
+              info: {
+                default: { default: "#3478DF" },
+                strong: { default: "#24467C" },
+                medium: { default: "#1A2840" },
+                weak: { default: "#171C28" },
+              },
+            },
           },
         },
       },
@@ -557,8 +565,8 @@ describe("Theme typings", () => {
         borderStyles: never
         borderWidths: never
         breakpoints: never
-        colors: "primary" | "secondary"
-        colorSchemes: "primary" | "secondary"
+        colors: "primary" | "secondary" | "status.info"
+        colorSchemes: "primary" | "secondary" | "status.info"
         fonts: never
         fontSizes: never
         fontWeights: never

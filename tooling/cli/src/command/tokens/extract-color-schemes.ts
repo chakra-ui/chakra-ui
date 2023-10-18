@@ -1,5 +1,10 @@
 import { isColorHue } from "../../utils/is-color-hue"
 import { isObject } from "../../utils/is-object"
+import { extractPropertyPaths } from "./extract-property-paths"
+import {
+  extractSemanticTokenKeys,
+  flattenSemanticTokens,
+} from "./extract-semantic-token-keys"
 
 /**
  * Extract color scheme names
@@ -9,7 +14,7 @@ export function extractColorSchemeTypes(
   theme: Record<string, unknown>,
   allowSemanticTokenColorsInColorSchemes: boolean,
 ) {
-  const { colors, semanticTokens } = theme
+  const { colors } = theme
   const colorSchemeNames: string[] = []
 
   if (isObject(colors)) {
@@ -22,18 +27,8 @@ export function extractColorSchemeTypes(
     }, colorSchemeNames)
   }
 
-  if (allowSemanticTokenColorsInColorSchemes && isObject(semanticTokens)) {
-    const semanticColors = semanticTokens?.colors
-
-    if (isObject(semanticColors)) {
-      Object.entries(semanticColors).reduce((acc: string[], [colorName]) => {
-        if (!colorSchemeNames.includes(colorName)) {
-          acc.push(colorName)
-        }
-
-        return acc
-      }, colorSchemeNames)
-    }
+  if (allowSemanticTokenColorsInColorSchemes) {
+    colorSchemeNames.push(...extractSemanticTokenKeys(theme, "colors"))
   }
 
   return colorSchemeNames
