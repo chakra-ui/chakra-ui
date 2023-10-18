@@ -520,7 +520,7 @@ describe("Theme typings", () => {
     `)
   })
 
-  it.only("should include semanticToken colors in colorScheme", async () => {
+  it("should include semanticToken colors in colorScheme", async () => {
     const themeInterface = await createThemeTypingsInterface(
       {
         semanticTokens: {
