@@ -1230,6 +1230,9 @@ importers:
       '@chakra-ui/transition':
         specifier: workspace:*
         version: link:../transition
+      '@tanstack/react-virtual':
+        specifier: 3.0.0-beta.65
+        version: 3.0.0-beta.65(react@18.2.0)
     devDependencies:
       '@chakra-ui/button':
         specifier: workspace:*
@@ -9867,10 +9870,23 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
+  /@tanstack/react-virtual@3.0.0-beta.65(react@18.2.0):
+    resolution: {integrity: sha512-Q21cUoE0C8Oyzy3RAMV+u4BuB+RwIf2/oQRCWksmIBp1PqLEtvXhAldh7v/wUt7WKEkislKDICZAvbYYs7EAyQ==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      '@tanstack/virtual-core': 3.0.0-beta.65
+      react: 18.2.0
+    dev: false
+
   /@tanstack/table-core@8.9.3:
     resolution: {integrity: sha512-NpHZBoHTfqyJk0m/s/+CSuAiwtebhYK90mDuf5eylTvgViNOujiaOaxNDxJkQQAsVvHWZftUGAx1EfO1rkKtLg==}
     engines: {node: '>=12'}
     dev: true
+
+  /@tanstack/virtual-core@3.0.0-beta.65:
+    resolution: {integrity: sha512-ObP2pvXBdbivinr7BWDbGqYt4TK8wNzYsOWio+qBkDx5AJFuvqcdJxcCCYnv4dzVTe5ELA1MT4tkt8NB/tnEdA==}
+    dev: false
 
   /@testing-library/dom@9.3.1:
     resolution: {integrity: sha512-0DGPd9AR3+iDTjGoMpxIkAsUihHZ3Ai6CneU6bRRrffXMgzCdlNk43jTrD2/5LT6CBb3MWTP8v510JzYtahD2w==}
