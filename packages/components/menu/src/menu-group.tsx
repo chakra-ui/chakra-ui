@@ -3,7 +3,7 @@ import { cx } from "@chakra-ui/shared-utils"
 import { useVirtualizer } from "@tanstack/react-virtual"
 
 import { useMenuStyles } from "./menu"
-import { useRef } from "react"
+import React, { useRef } from "react"
 
 export interface MenuGroupProps extends HTMLChakraProps<"div"> {
   virtualized?: boolean
@@ -15,14 +15,14 @@ export interface MenuGroupProps extends HTMLChakraProps<"div"> {
 
 export const MenuGroup = forwardRef<MenuGroupProps, "div">((props, ref) => {
   const { title, children, className, ...rest } = props
-  const arrayChildren = children as any[] // FIX this
+  const arrayChildren = React.Children.toArray(children)
 
   const virtualizedRef = useRef(null)
   const _className = cx("chakra-menu__group__title", className)
   const styles = useMenuStyles()
 
   const rowVirtualizer = useVirtualizer({
-    count: arrayChildren?.length,
+    count: arrayChildren.length,
     getScrollElement: () => virtualizedRef.current,
     estimateSize: () => props.virtualizedOptions?.rowHeight ?? 35,
   })
