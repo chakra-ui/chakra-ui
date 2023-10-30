@@ -212,6 +212,7 @@ export function useTooltip(props: UseTooltipProps = {}) {
 
   useEventListener(
     () => {
+      if (!closeOnScroll) return null
       const node = ref.current
       if (!node) return null
       const scrollParent = getScrollParent(node)

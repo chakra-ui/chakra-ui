@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "hooks/use-event-listener"
+    "directory": "packages/hooks/use-event-listener"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
