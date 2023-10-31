@@ -1,3 +1,10 @@
+function parsePath(input: string) {
+  const regex = /([a-zA-Z]+)\(([^)]+)\)/
+  const matches = input.match(regex)
+
+  return matches ? [matches[1], matches[2]] : []
+}
+
 /**
  * Get value from a deeply nested object using a string path.
  * Memorizes the value.
@@ -11,7 +18,7 @@ export function get(
   fallback?: any,
   index?: number,
 ) {
-  const key = typeof path === "string" ? path.split(".") : [path]
+  const key = typeof path === "string" ? parsePath(path) : [path]
 
   for (index = 0; index < key.length; index += 1) {
     if (!obj) break
