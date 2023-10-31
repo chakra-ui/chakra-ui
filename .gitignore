@@ -29,6 +29,9 @@ draft*
 .yarn
 .vercel
 
+# Turbo
+.turbo
+
 # Logs
 logs
 *.log

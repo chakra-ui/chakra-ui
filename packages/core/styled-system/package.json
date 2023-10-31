@@ -27,7 +27,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/components/styled-system"
+    "directory": "packages/core/styled-system"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -43,7 +43,7 @@
     "@chakra-ui/object-utils": "workspace:*",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@types/lodash.mergewith": "4.6.7",
+    "@types/lodash.mergewith": "4.6.8",
     "clean-package": "2.2.0"
   },
   "sideEffects": false,
