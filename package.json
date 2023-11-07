@@ -73,7 +73,7 @@
     "@swc/jest": "^0.2.29",
     "@testing-library/jest-dom": "^6.0.1",
     "@types/edit-json-file": "^1.7.0",
-    "@types/fs-extra": "11.0.1",
+    "@types/fs-extra": "11.0.4",
     "@types/jest": "^29.5.3",
     "@types/mkdirp": "1.0.2",
     "@types/node": "^20.5.2",
