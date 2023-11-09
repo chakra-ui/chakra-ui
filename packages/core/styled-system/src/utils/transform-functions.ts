@@ -67,7 +67,8 @@ export const transformFunctions = {
   contrast: wrap("contrast"),
   dropShadow: wrap("drop-shadow"),
   grayscale: wrap("grayscale"),
-  hueRotate: wrap("hue-rotate"),
+  hueRotate: (value: any) =>
+    wrap("hue-rotate")(transformFunctions.degree(value)),
   invert: wrap("invert"),
   saturate: wrap("saturate"),
   sepia: wrap("sepia"),

@@ -137,7 +137,7 @@ export const switchAnatomy = anatomy("switch").parts(
   "container",
   "track",
   "thumb",
-  "label"
+  "label",
 )
 
 export const tableAnatomy = anatomy("table").parts(

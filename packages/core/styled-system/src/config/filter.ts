@@ -7,7 +7,7 @@ export const filter: Config = {
   blur: t.blur("--chakra-blur"),
   brightness: t.propT("--chakra-brightness", transforms.brightness),
   contrast: t.propT("--chakra-contrast", transforms.contrast),
-  hueRotate: t.degreeT("--chakra-hue-rotate"),
+  hueRotate: t.propT("--chakra-hue-rotate", transforms.hueRotate),
   invert: t.propT("--chakra-invert", transforms.invert),
   saturate: t.propT("--chakra-saturate", transforms.saturate),
   dropShadow: t.propT("--chakra-drop-shadow", transforms.dropShadow),
@@ -18,7 +18,10 @@ export const filter: Config = {
     transforms.brightness,
   ),
   backdropContrast: t.propT("--chakra-backdrop-contrast", transforms.contrast),
-  backdropHueRotate: t.degreeT("--chakra-backdrop-hue-rotate"),
+  backdropHueRotate: t.propT(
+    "--chakra-backdrop-hue-rotate",
+    transforms.hueRotate,
+  ),
   backdropInvert: t.propT("--chakra-backdrop-invert", transforms.invert),
   backdropSaturate: t.propT("--chakra-backdrop-saturate", transforms.saturate),
 }

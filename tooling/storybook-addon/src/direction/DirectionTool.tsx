@@ -60,15 +60,10 @@ export const DirectionTool = () => {
   }, [setDirection, targetDirection])
 
   return (
-    /* @ts-ignore */
     <IconButton
       active={direction === "rtl"}
       title={`Set layout direction to ${targetDirection}`}
       onClick={toggleDirection}
-      // ! Possible TypeError bug where the following props are required when they shouldn't be
-      content=""
-      rel=""
-      rev=""
     >
       {targetDirection === "ltr" ? <LTRIcon /> : <RTLIcon />}
     </IconButton>
