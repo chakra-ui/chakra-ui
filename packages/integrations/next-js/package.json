@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/next-js",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "description": "Chakra UI Integrations for Next.js 13",
   "keywords": [
     "nextjs"
