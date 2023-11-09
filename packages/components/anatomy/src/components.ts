@@ -180,12 +180,12 @@ export const cardAnatomy = anatomy("card").parts(
 )
 
 export const stepperAnatomy = anatomy("stepper").parts(
-  'stepper',
-  'step',
-  'title',
-  'description',
-  'indicator',
-  'separator',
-  'icon',
-  'number',
+  "stepper",
+  "step",
+  "title",
+  "description",
+  "indicator",
+  "separator",
+  "icon",
+  "number",
 )
