@@ -677,3 +677,47 @@ test("should resolve !important syntax", () => {
 //     `)
 //   })
 // })
+
+test("returns filter hueRotate css function", () => {
+  const result = css({
+    filter: "auto",
+    hueRotate: "90",
+  })(theme)
+
+  expect(result).toMatchInlineSnapshot(`
+    {
+      "--chakra-blur": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-brightness": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-contrast": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-drop-shadow": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-grayscale": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-hue-rotate": "hue-rotate(90deg)",
+      "--chakra-invert": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-saturate": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-sepia": "var(--chakra-empty,/*!*/ /*!*/)",
+      "filter": "var(--chakra-blur) var(--chakra-brightness) var(--chakra-contrast) var(--chakra-grayscale) var(--chakra-hue-rotate) var(--chakra-invert) var(--chakra-saturate) var(--chakra-sepia) var(--chakra-drop-shadow)",
+    }
+  `)
+})
+
+test("returns backdropFilter backdropHueRotate css function", () => {
+  const result = css({
+    backdropFilter: "auto",
+    backdropHueRotate: "90",
+  })(theme)
+
+  expect(result).toMatchInlineSnapshot(`
+    {
+      "--chakra-backdrop-blur": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-backdrop-brightness": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-backdrop-contrast": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-backdrop-grayscale": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-backdrop-hue-rotate": "hue-rotate(90deg)",
+      "--chakra-backdrop-invert": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-backdrop-opacity": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-backdrop-saturate": "var(--chakra-empty,/*!*/ /*!*/)",
+      "--chakra-backdrop-sepia": "var(--chakra-empty,/*!*/ /*!*/)",
+      "backdropFilter": "var(--chakra-backdrop-blur) var(--chakra-backdrop-brightness) var(--chakra-backdrop-contrast) var(--chakra-backdrop-grayscale) var(--chakra-backdrop-hue-rotate) var(--chakra-backdrop-invert) var(--chakra-backdrop-opacity) var(--chakra-backdrop-saturate) var(--chakra-backdrop-sepia)",
+    }
+  `)
+})
