@@ -1,5 +1,23 @@
 # Change Log
 
+## 7.0.2
+
+### Patch Changes
+
+- [#8004](https://github.com/chakra-ui/chakra-ui/pull/8004)
+  [`3dc2dd41d`](https://github.com/chakra-ui/chakra-ui/commit/3dc2dd41d50674834cc23f449da37fd604cf311c)
+  Thanks [@uship-elon](https://github.com/uship-elon)! - Unique aria-labels for
+  toast-manager divs
+
+- Updated dependencies
+  [[`4168094f3`](https://github.com/chakra-ui/chakra-ui/commit/4168094f327b5b8fd0fcd040363117cdf148e283),
+  [`6d12ea81f`](https://github.com/chakra-ui/chakra-ui/commit/6d12ea81f4791f4df2953533b570178f59551b74)]:
+  - @chakra-ui/styled-system@2.9.2
+  - @chakra-ui/alert@2.2.2
+  - @chakra-ui/theme@3.3.1
+  - @chakra-ui/system@2.6.2
+  - @chakra-ui/close-button@2.1.1
+
 ## 7.0.1
 
 ### Patch Changes
