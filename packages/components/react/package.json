@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "2.8.0",
+  "version": "2.8.2",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "src/index.ts",
   "files": [
@@ -97,11 +97,11 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "framer-motion": "^10.12.16",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "framer-motion": "^10.16.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "scripts": {

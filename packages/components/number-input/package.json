@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/number-input",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "An accessible numeric input alternative to <input type='number' />",
   "keywords": [
     "theme",
@@ -54,9 +54,9 @@
     "@chakra-ui/button": "workspace:*",
     "@chakra-ui/input": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "react-lorem-component": "0.13.0",
-    "react-hook-form": "7.45.1",
+    "react-hook-form": "7.45.4",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

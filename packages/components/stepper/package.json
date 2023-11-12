@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/stepper",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "The stepper component to create a logical sequence of steps",
   "keywords": [
     "stepper"
@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "components/stepper"
+    "directory": "packages/components/stepper"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

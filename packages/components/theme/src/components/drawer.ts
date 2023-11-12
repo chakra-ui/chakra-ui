@@ -29,7 +29,7 @@ function getSize(value: string) {
 
 const baseStyleOverlay = defineStyle({
   bg: "blackAlpha.600",
-  zIndex: "overlay",
+  zIndex: "modal",
 })
 
 const baseStyleDialogContainer = defineStyle({

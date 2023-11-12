@@ -56,7 +56,7 @@ const variantSubtle = definePartsStyle((props) => {
   const bg = getBg(props)
   return {
     container: {
-      [$fg.variable]: `colors.${c}.500`,
+      [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
         [$fg.variable]: `colors.${c}.200`,
@@ -71,7 +71,7 @@ const variantLeftAccent = definePartsStyle((props) => {
   const bg = getBg(props)
   return {
     container: {
-      [$fg.variable]: `colors.${c}.500`,
+      [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
         [$fg.variable]: `colors.${c}.200`,
@@ -89,7 +89,7 @@ const variantTopAccent = definePartsStyle((props) => {
   const bg = getBg(props)
   return {
     container: {
-      [$fg.variable]: `colors.${c}.500`,
+      [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
         [$fg.variable]: `colors.${c}.200`,
@@ -107,7 +107,7 @@ const variantSolid = definePartsStyle((props) => {
   return {
     container: {
       [$fg.variable]: `colors.white`,
-      [$bg.variable]: `colors.${c}.500`,
+      [$bg.variable]: `colors.${c}.600`,
       _dark: {
         [$fg.variable]: `colors.gray.900`,
         [$bg.variable]: `colors.${c}.200`,

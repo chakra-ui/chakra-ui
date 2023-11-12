@@ -1,2 +1,2 @@
-export * from "./css-reset"
-export { default } from "./css-reset"
+export { CSSPolyfill, CSSReset } from "./css-reset"
+export type { CSSResetProps } from "./css-reset"

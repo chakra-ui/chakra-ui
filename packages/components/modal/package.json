@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/modal",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "An accessible dialog (modal) component for React & Chakra UI",
   "keywords": [
     "react",
@@ -44,18 +44,18 @@
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/transition": "workspace:*",
-    "aria-hidden": "^1.2.2",
-    "react-remove-scroll": "^2.5.5",
+    "aria-hidden": "^1.2.3",
+    "react-remove-scroll": "^2.5.6",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
-    "@testing-library/react-hooks": "8.0.1",
-    "framer-motion": "^10.12.16",
+    "@testing-library/react": "14.0.0",
+    "framer-motion": "^10.16.1",
     "react-lorem-component": "0.13.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

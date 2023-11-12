@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/anatomy",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "description": "The anatomy of all chakra components",
   "keywords": [
     "theme",
@@ -39,5 +39,13 @@
   "devDependencies": {
     "clean-package": "2.2.0"
   },
-  "clean-package": "../../../clean-package.config.json"
+  "clean-package": "../../../clean-package.config.json",
+  "tsup": {
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "target": "es2019",
+    "sourcemap": true
+  }
 }

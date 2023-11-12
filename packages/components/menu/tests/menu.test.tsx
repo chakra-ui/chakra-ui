@@ -11,7 +11,7 @@ import * as React from "react"
 import { Button } from "@chakra-ui/button"
 import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 import { ChakraProvider } from "@chakra-ui/provider"
-import theme from "@chakra-ui/theme"
+import { theme } from "@chakra-ui/theme"
 import {
   Menu,
   MenuButton,

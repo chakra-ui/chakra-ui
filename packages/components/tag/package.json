@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/tag",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "This component displays as a tag with an optional link and/or button to remove the given tag.",
   "keywords": [
     "tag",
@@ -37,8 +37,8 @@
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/avatar": "workspace:*",
-    "react-icons": "^4.2.0",
-    "react": "^18.0.0",
+    "react-icons": "^4.10.1",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

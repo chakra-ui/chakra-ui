@@ -1,5 +1,59 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`2647e00ef`](https://github.com/chakra-ui/chakra-ui/commit/2647e00ef130b070a0b601d7b456a2462591f5a3)]:
+  - @chakra-ui/anatomy@2.2.2
+  - @chakra-ui/theme-tools@2.1.2
+
+## 3.3.0
+
+### Minor Changes
+
+- [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **[POTENTIAL
+  BREAKING CHANGE]** Remove export defaults and favor of named exports.
+
+  ```diff
+  - import theme from "@chakra-ui/theme"
+  + import { theme } from "@chakra-ui/theme"
+  ```
+
+  ```diff
+  - import Icon from "@chakra-ui/icon"
+  + import { Icon } from "@chakra-ui/icon"
+  ```
+
+  ```diff
+  - import CSSReset from "@chakra-ui/css-reset"
+  + import { CSSReset } from "@chakra-ui/css-reset"
+  ```
+
+  ```diff
+  - import VisuallyHidden from "@chakra-ui/visually-hidden"
+  + import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+  ```
+
+### Patch Changes
+
+- [#7936](https://github.com/chakra-ui/chakra-ui/pull/7936)
+  [`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Remove "use client"
+  directive since they are pure JS packages.
+
+- [#7690](https://github.com/chakra-ui/chakra-ui/pull/7690)
+  [`6526e9be8`](https://github.com/chakra-ui/chakra-ui/commit/6526e9be8adce074cfbfca03bd765aff4eb8914a)
+  Thanks [@Vija02](https://github.com/Vija02)! - Fix issue where `zIndex` of
+  DrawerOverlay creates incorrect stacking order when multiple drawers are used.
+
+- Updated dependencies
+  [[`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)]:
+  - @chakra-ui/theme-tools@2.1.1
+  - @chakra-ui/anatomy@2.2.1
+
 ## 3.2.0
 
 ### Minor Changes

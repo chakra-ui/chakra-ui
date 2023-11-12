@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.9.2
+
+### Patch Changes
+
+- [#8057](https://github.com/chakra-ui/chakra-ui/pull/8057)
+  [`4168094f3`](https://github.com/chakra-ui/chakra-ui/commit/4168094f327b5b8fd0fcd040363117cdf148e283)
+  Thanks [@hirotomoyamada](https://github.com/hirotomoyamada)! - Fixed a bug
+  where `hueRotate` and `backdropHueRotate` were not working.
+
 ## 2.9.1
 
 ### Patch Changes

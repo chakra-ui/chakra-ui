@@ -37,7 +37,7 @@
     "postpack": "clean-package restore"
   },
   "dependencies": {
-    "merge-anything": "^5.0.2"
+    "merge-anything": "^5.1.7"
   },
   "devDependencies": {
     "clean-package": "2.2.0"

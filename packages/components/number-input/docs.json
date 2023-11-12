@@ -59,7 +59,7 @@
       "description": "The `id` to use for the number input field."
     },
     "inputMode": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"search\"\n  | \"none\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"text\"\n  | \"none\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
       "defaultValue": "decimal",
       "required": false,
       "description": "Hints at the type of data that might be entered by the user. It also determines\nthe type of keyboard shown to the user on mobile devices"
@@ -212,7 +212,7 @@
       "description": "The `id` to use for the number input field."
     },
     "inputMode": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"search\"\n  | \"none\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"text\"\n  | \"none\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
       "defaultValue": "decimal",
       "required": false,
       "description": "Hints at the type of data that might be entered by the user. It also determines\nthe type of keyboard shown to the user on mobile devices"

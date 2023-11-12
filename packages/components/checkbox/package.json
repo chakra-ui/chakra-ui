@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/checkbox",
-  "version": "2.3.0",
+  "version": "2.3.2",
   "description": "A React Checkbox component for use in forms",
   "keywords": [
     "react",
@@ -44,7 +44,7 @@
     "@chakra-ui/react-use-update-effect": "workspace:*",
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/visually-hidden": "workspace:*",
-    "@zag-js/focus-visible": "0.10.5",
+    "@zag-js/focus-visible": "0.16.0",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
@@ -52,7 +52,7 @@
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/icon": "workspace:*",
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

@@ -1,5 +1,14 @@
 # @chakra-ui/next-js
 
+## 2.2.0
+
+### Minor Changes
+
+- [#8028](https://github.com/chakra-ui/chakra-ui/pull/8028)
+  [`61f965a41`](https://github.com/chakra-ui/chakra-ui/commit/61f965a4143012658156d362e809fdd9b0a616f5)
+  Thanks [@klausbadelt](https://github.com/klausbadelt)! - add isExternal to
+  types
+
 ## 2.1.5
 
 ### Patch Changes

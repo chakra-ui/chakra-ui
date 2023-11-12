@@ -125,7 +125,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
       <div
         role="region"
         aria-live="polite"
-        aria-label="Notifications"
+        aria-label={`Notifications-${position}`}
         key={position}
         id={`chakra-toast-manager-${position}`}
         style={getToastListStyle(position)}

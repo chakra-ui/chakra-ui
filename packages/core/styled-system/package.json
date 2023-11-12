@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/styled-system",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "Style function for css-in-js building component libraries",
   "keywords": [
     "theme",
@@ -27,13 +27,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/components/styled-system"
+    "directory": "packages/core/styled-system"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "csstype": "^3.0.11",
+    "csstype": "^3.1.2",
     "lodash.mergewith": "4.6.2",
     "@chakra-ui/shared-utils": "workspace:*"
   },
@@ -41,9 +41,9 @@
     "@chakra-ui/breakpoint-utils": "workspace:*",
     "@chakra-ui/merge-utils": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@types/lodash.mergewith": "4.6.7",
+    "@types/lodash.mergewith": "4.6.8",
     "clean-package": "2.2.0"
   },
   "sideEffects": false,

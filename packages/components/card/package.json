@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/card"
+    "directory": "packages/components/card"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -40,9 +40,9 @@
     "@chakra-ui/menu": "workspace:*",
     "@chakra-ui/image": "workspace:*",
     "@chakra-ui/avatar": "workspace:*",
-    "react-icons": "^4.2.0",
+    "react-icons": "^4.10.1",
     "@chakra-ui/layout": "workspace:*",
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "dependencies": {

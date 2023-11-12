@@ -68,11 +68,17 @@ To use Chakra UI components, all you need to do is install the
 `@chakra-ui/react` package and its peer dependencies:
 
 ```sh
+# with Yarn
 $ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 
-# or
-
+# with npm
 $ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+
+# with pnpm
+$ pnpm add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+
+# with Bun
+$ bun add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
 ```
 
 ## Usage
@@ -137,16 +143,16 @@ Support this project with your organization. Your logo will show up here with a
 link to your website.
 [[Contribute](https://opencollective.com/chakra-ui/contribute)]
 
-<a href="https://opencollective.com/chakra-ui/organization/0/website"><img src="https://opencollective.com/chakra-ui/organization/0/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/1/website"><img src="https://opencollective.com/chakra-ui/organization/1/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/2/website"><img src="https://opencollective.com/chakra-ui/organization/2/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/3/website"><img src="https://opencollective.com/chakra-ui/organization/3/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/4/website"><img src="https://opencollective.com/chakra-ui/organization/4/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/5/website"><img src="https://opencollective.com/chakra-ui/organization/5/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/6/website"><img src="https://opencollective.com/chakra-ui/organization/6/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/7/website"><img src="https://opencollective.com/chakra-ui/organization/7/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/8/website"><img src="https://opencollective.com/chakra-ui/organization/8/avatar.svg?avatarHeight=130"></a>
-<a href="https://opencollective.com/chakra-ui/organization/9/website"><img src="https://opencollective.com/chakra-ui/organization/9/avatar.svg?avatarHeight=130"></a>
+<a href="https://opencollective.com/chakra-ui/organization/0/website"><img src="https://opencollective.com/chakra-ui/organization/0/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/1/website"><img src="https://opencollective.com/chakra-ui/organization/1/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/2/website"><img src="https://opencollective.com/chakra-ui/organization/2/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/3/website"><img src="https://opencollective.com/chakra-ui/organization/3/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/4/website"><img src="https://opencollective.com/chakra-ui/organization/4/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/5/website"><img src="https://opencollective.com/chakra-ui/organization/5/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/6/website"><img src="https://opencollective.com/chakra-ui/organization/6/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/7/website"><img src="https://opencollective.com/chakra-ui/organization/7/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/8/website"><img src="https://opencollective.com/chakra-ui/organization/8/avatar.svg?avatarHeight=130" /></a>
+<a href="https://opencollective.com/chakra-ui/organization/9/website"><img src="https://opencollective.com/chakra-ui/organization/9/avatar.svg?avatarHeight=130" /></a>
 
 ### Individuals
 
@@ -154,7 +160,7 @@ By donating \$5 or more you can support the ongoing development of this project.
 We'll appreciate some support. Thank you to all our supporters! 🙏
 [[Contribute](https://opencollective.com/chakra-ui/contribute)]
 
-<a href="https://opencollective.com/chakra-ui"><img src="https://opencollective.com/chakra-ui/individuals.svg?width=890"></a>
+<a href="https://opencollective.com/chakra-ui"><img src="https://opencollective.com/chakra-ui/individuals.svg?width=890" /></a>
 
 ## Testimonials
 
@@ -184,7 +190,7 @@ for all the innovation and reach Chakra UI brings to the JavaScript ecosystem.
 <table>
   <tr valign="middle">
     <td width="124">
-      <img src="https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/media/tech-radar.png" width="124" alt="Technology Radar">
+      <img src="https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/media/tech-radar.png" width="124" alt="Technology Radar" />
     </td>
     <td>
       <h4>Solution Worth Pursuing</h4>
@@ -193,7 +199,7 @@ for all the innovation and reach Chakra UI brings to the JavaScript ecosystem.
   </tr>
   <tr>
     <td width="124">
-      <img src="https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/media/os-awards.png" width="124" alt="Open Source Awards 2020">
+      <img src="https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/media/os-awards.png" width="124" alt="Open Source Awards 2020" />
     </td>
     <td>
       <h4>The Most Impactful Contribution to the community</h4>

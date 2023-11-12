@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/radio",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "A React component to render custom Radio input types",
   "keywords": [
     "radio",
@@ -34,7 +34,7 @@
     "@chakra-ui/react-types": "workspace:*",
     "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
-    "@zag-js/focus-visible": "0.10.5",
+    "@zag-js/focus-visible": "0.16.0",
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "@chakra-ui/visually-hidden": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

@@ -26,8 +26,6 @@ export type Theme = typeof theme
 export * from "./theme.types"
 export * from "./utils/is-chakra-theme"
 
-export default theme
-
 export const baseTheme = {
   semanticTokens,
   direction,

@@ -1,10 +1,10 @@
-import React from "react"
+import { StoryFn } from "@storybook/react"
 import { Container, Divider } from ".."
 
 export default {
   title: "Components / Data Display / Divider",
   decorators: [
-    (Story: Function) => (
+    (Story: StoryFn) => (
       <Container p={4} height="300px">
         <Story />
       </Container>
@@ -12,11 +12,6 @@ export default {
   ],
 }
 
-/**
- * Divider will use the `horizontal` variant by default.
- *
- * @see `/theme/components/Divider.ts`
- */
 export const Basic = () => <Divider />
 
 export const Vertical = () => <Divider orientation="vertical" />

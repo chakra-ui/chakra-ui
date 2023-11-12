@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "gatsby": "^5.0.0"
+    "gatsby": "^5.11.0"
   }
 }

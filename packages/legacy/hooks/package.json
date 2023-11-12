@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/hooks",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "React hooks for Chakra components",
   "keywords": [
     "hooks",
@@ -30,14 +30,14 @@
   "dependencies": {
     "@chakra-ui/react-utils": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "compute-scroll-into-view": "1.0.20",
+    "compute-scroll-into-view": "3.0.3",
     "copy-to-clipboard": "3.3.3"
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "scripts": {

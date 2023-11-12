@@ -3,7 +3,7 @@
   "version": "2.1.0",
   "description": "",
   "keywords": [
-    "react-use-callback-ref"
+    "react-use-controllable-state"
   ],
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "hooks/react-use-callback-ref"
+    "directory": "packages/hooks/use-controllable-state"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -40,7 +40,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "clean-package": "../../../clean-package.config.json"

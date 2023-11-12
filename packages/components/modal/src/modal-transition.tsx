@@ -6,7 +6,13 @@ import { forwardRef } from "react"
 export interface ModalTransitionProps
   extends Omit<HTMLMotionProps<"section">, "color" | "transition">,
     ChakraProps {
-  preset?: "slideInBottom" | "slideInRight" | "scale" | "none"
+  preset?:
+    | "slideInBottom"
+    | "slideInRight"
+    | "slideInTop"
+    | "slideInLeft"
+    | "scale"
+    | "none"
   motionProps?: HTMLMotionProps<"section">
 }
 
@@ -18,6 +24,14 @@ const transitions = {
   slideInRight: {
     ...slideFadeConfig,
     custom: { offsetX: 16, reverse: true },
+  },
+  slideInTop: {
+    ...slideFadeConfig,
+    custom: { offsetY: -16, reverse: true },
+  },
+  slideInLeft: {
+    ...slideFadeConfig,
+    custom: { offsetX: -16, reverse: true },
   },
   scale: {
     ...scaleFadeConfig,

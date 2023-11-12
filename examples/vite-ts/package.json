@@ -8,15 +8,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@types/react": "^18.0.30",
-    "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^3.0.0",
-    "typescript": "^5.0.2",
-    "vite": "^4.0.2"
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
   }
 }

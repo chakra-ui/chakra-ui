@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/textarea",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "Textarea React component for Chakra UI",
   "keywords": [
     "theme",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "peerDependencies": {

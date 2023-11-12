@@ -21,7 +21,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "hooks/react-use-pan-event"
+    "directory": "packages/hooks/use-pan-event"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
@@ -44,7 +44,7 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "react": "^18.0.0",
+    "react": "^18.2.0",
     "clean-package": "2.2.0"
   },
   "clean-package": "../../../clean-package.config.json"
