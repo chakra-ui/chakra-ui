@@ -71,7 +71,7 @@
       "required": false
     },
     "requiredIndicator": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal",
       "required": false
     }
   },

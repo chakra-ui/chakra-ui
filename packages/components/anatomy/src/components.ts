@@ -137,7 +137,7 @@ export const switchAnatomy = anatomy("switch").parts(
   "container",
   "track",
   "thumb",
-  "label"
+  "label",
 )
 
 export const tableAnatomy = anatomy("table").parts(
@@ -177,4 +177,15 @@ export const cardAnatomy = anatomy("card").parts(
   "header",
   "body",
   "footer",
+)
+
+export const stepperAnatomy = anatomy("stepper").parts(
+  "stepper",
+  "step",
+  "title",
+  "description",
+  "indicator",
+  "separator",
+  "icon",
+  "number",
 )
