@@ -24,6 +24,10 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "dependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/icon": "workspace:*"
+  },
   "scripts": {
     "build": "tsup src --dts",
     "dev": "pnpm build:fast -- --watch",
