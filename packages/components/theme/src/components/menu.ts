@@ -21,7 +21,7 @@ const baseStyleList = defineStyle({
   color: "inherit",
   minW: "3xs",
   py: "2",
-  zIndex: 1,
+  zIndex: "dropdown",
   borderRadius: "md",
   borderWidth: "1px",
   bg: $bg.reference,

@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.3.1
+
+### Patch Changes
+
+- [#8074](https://github.com/chakra-ui/chakra-ui/pull/8074)
+  [`b6befea76`](https://github.com/chakra-ui/chakra-ui/commit/b6befea762b44f923af42792473963215dc50ed1)
+  Thanks [@lexanth](https://github.com/lexanth)! - Don't track tooltip scroll
+  parent when `closeOnScroll` is not set
+
 ## 2.3.0
 
 ### Minor Changes

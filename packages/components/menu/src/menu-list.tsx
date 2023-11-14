@@ -68,8 +68,8 @@ export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
         animate={isOpen ? "enter" : "exit"}
         __css={{ outline: 0, ...styles.list }}
         {...motionProps}
-        className={cx("chakra-menu__menu-list", listProps.className)}
         {...listProps}
+        className={cx("chakra-menu__menu-list", listProps.className)}
         onUpdate={onTransitionEnd}
         onAnimationComplete={callAll(
           animated.onComplete,

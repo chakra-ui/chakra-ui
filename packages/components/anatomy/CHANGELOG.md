@@ -1,5 +1,14 @@
 # @chakra-ui/anatomy
 
+## 2.2.2
+
+### Patch Changes
+
+- [#8097](https://github.com/chakra-ui/chakra-ui/pull/8097)
+  [`2647e00ef`](https://github.com/chakra-ui/chakra-ui/commit/2647e00ef130b070a0b601d7b456a2462591f5a3)
+  Thanks [@iNetJoJo](https://github.com/iNetJoJo)! - Add missing stepper anatomy
+  parts
+
 ## 2.2.1
 
 ### Patch Changes
