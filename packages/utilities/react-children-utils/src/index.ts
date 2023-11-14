@@ -13,7 +13,7 @@ export function getValidChildren(children: React.ReactNode) {
 }
 
 /**
- * Checks if children is an non-renderable value.
+ * Checks if children is a non-renderable value.
  *
  * @param children the children
  */
