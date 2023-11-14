@@ -11,3 +11,13 @@ export function getValidChildren(children: React.ReactNode) {
     isValidElement(child),
   ) as React.ReactElement[]
 }
+
+/**
+ * Gets only the valid children of a component,
+ * and ignores any nullish or falsy child.
+ *
+ * @param children the children
+ */
+export function isNullishChildren(children: React.ReactNode) {
+  return children === null || children === undefined || children === ""
+}

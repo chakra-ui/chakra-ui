@@ -35,6 +35,7 @@
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
+    "@chakra-ui/react-children-utils": "workspace:*",
     "@chakra-ui/form-control": "workspace:*",
     "@chakra-ui/layout": "workspace:*",
     "@chakra-ui/system": "workspace:*",

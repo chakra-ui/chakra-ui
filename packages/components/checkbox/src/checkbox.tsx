@@ -1,4 +1,5 @@
 import { callAll, cx } from "@chakra-ui/shared-utils"
+import { isNullishChildren } from "@chakra-ui/react-children-utils"
 import {
   HTMLChakraProps,
   PropsOf,
@@ -174,7 +175,7 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
       >
         {clonedIcon}
       </chakra.span>
-      {children && (
+      {!isNullishChildren(children) && (
         <chakra.span
           className="chakra-checkbox__label"
           {...getLabelProps()}

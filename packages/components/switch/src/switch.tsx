@@ -10,6 +10,7 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { isNullishChildren } from "@chakra-ui/react-children-utils"
 import { useMemo } from "react"
 
 export interface SwitchProps
@@ -96,7 +97,7 @@ export const Switch = forwardRef<SwitchProps, "input">(function Switch(
           {...getIndicatorProps()}
         />
       </chakra.span>
-      {children && (
+      {!isNullishChildren(children) && (
         <chakra.span
           className="chakra-switch__label"
           {...getLabelProps()}
