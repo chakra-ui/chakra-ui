@@ -13,8 +13,7 @@ export function getValidChildren(children: React.ReactNode) {
 }
 
 /**
- * Gets only the valid children of a component,
- * and ignores any nullish or falsy child.
+ * Checks if children is a valid renderable value.
  *
  * @param children the children
  */
