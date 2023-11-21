@@ -1,7 +1,9 @@
 import * as React from "react"
 import { render, testA11y, screen } from "@chakra-ui/test-utils"
+import { ThemeProvider } from "@chakra-ui/system"
 import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons"
 import { Button, ButtonGroup } from "../src"
+import { theme as baseTheme } from "@chakra-ui/theme"
 
 it("passes a11y test", async () => {
   await testA11y(<Button>test</Button>)
@@ -144,4 +146,33 @@ test("Should be disabled", () => {
 
   const buttonAsDiv = getByTestId("btn")
   expect(buttonAsDiv).toHaveAttribute("disabled")
+})
+
+test("Should inherit the appropriate layerStyle props from the theme", () => {
+  const layerColor = "red"
+  const layerBg = "green"
+
+  const testTheme = {
+    ...baseTheme,
+    layerStyles: {
+      button: {
+        test: {
+          color: layerColor,
+          bg: layerBg,
+        },
+      },
+    },
+  }
+
+  const { getByTestId } = render(
+    <ThemeProvider theme={testTheme}>
+      <Button layerStyle="button.test" data-testid="btn">
+        Layered Button
+      </Button>
+    </ThemeProvider>,
+  )
+
+  const button = getByTestId("btn")
+  expect(button).toHaveStyle(`background-color: ${layerBg}`)
+  expect(button).toHaveStyle(`color: ${layerColor}`)
 })
