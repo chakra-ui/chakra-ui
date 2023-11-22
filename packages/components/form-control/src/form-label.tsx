@@ -13,9 +13,9 @@ export interface FormLabelProps
   extends HTMLChakraProps<"label">,
     ThemingProps<"FormLabel"> {
   /**
-   * @type React.ReactElement
+   * @type React.ReactNode
    */
-  requiredIndicator?: React.ReactElement
+  requiredIndicator?: React.ReactNode
   /**
    * @type React.ReactNode
    */

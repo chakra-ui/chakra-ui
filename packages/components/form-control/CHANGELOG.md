@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.2.0
+
+### Minor Changes
+
+- [#8102](https://github.com/chakra-ui/chakra-ui/pull/8102)
+  [`389ff6184`](https://github.com/chakra-ui/chakra-ui/commit/389ff61843a41cd81431c385b4a8b38c2c2388df)
+  Thanks [@nikparo](https://github.com/nikparo)! - Allow theming FormControl
+  through state style props and its children through \_group\* style props
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/icon@3.2.0
+
 ## 2.1.1
 
 ### Patch Changes
