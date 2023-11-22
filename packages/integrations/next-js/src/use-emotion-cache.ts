@@ -18,6 +18,7 @@ export function useEmotionCache(options?: EmotionCacheOptions) {
     createElement("style", {
       key: cache.key,
       "data-emotion": `${cache.key} ${Object.keys(cache.inserted).join(" ")}`,
+      nonce: cache.nonce,
       dangerouslySetInnerHTML: {
         __html: Object.values(cache.inserted).join(" "),
       },
