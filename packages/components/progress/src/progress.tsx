@@ -183,7 +183,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
   const valueStyles: SystemStyleObject = {
     fontSize: size === "sm" ? "6px" : size === "md" ? "8px" : "10px",
     fontWeight: "bolder",
-    paddingLeft: "5px",
+    marginLeft: "-30px",
   }
   return (
     <>
@@ -211,7 +211,7 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
           />
           {children}
         </ProgressStylesProvider>
-        {showValue ? <chakra.p __css={valueStyles}>{value}</chakra.p> : <></>}
+        {showValue ? <chakra.p __css={valueStyles}>{value}%</chakra.p> : <></>}
       </chakra.div>
     </>
   )
