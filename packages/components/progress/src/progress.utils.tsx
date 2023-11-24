@@ -48,6 +48,7 @@ export interface GetProgressPropsOptions {
   getValueText?(value: number, percent: number): string
   isIndeterminate?: boolean
   role?: React.AriaRole
+  showValue?: boolean
 }
 
 /**

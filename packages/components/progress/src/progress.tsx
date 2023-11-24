@@ -103,6 +103,13 @@ interface ProgressOptions {
    * @default false
    */
   isIndeterminate?: boolean
+  /**
+   * If `true`, the progress will have `value` displayed
+   * prop will be ignored
+   *
+   * @default false
+   */
+  showValue?: boolean
 }
 
 export interface ProgressProps
@@ -136,8 +143,10 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
     "aria-valuetext": ariaValueText,
     title,
     role,
+    showValue,
+    size,
     ...rest
-  } = omitThemingProps(props)
+  } = props
 
   const styles = useMultiStyleConfig("Progress", props)
 
@@ -166,37 +175,45 @@ export const Progress = forwardRef<ProgressProps, "div">((props, ref) => {
       animation: `${progress} 1s ease infinite normal none running`,
     }),
   }
-
   const trackStyles: SystemStyleObject = {
     overflow: "hidden",
     position: "relative",
     ...styles.track,
   }
-
+  const valueStyles: SystemStyleObject = {
+    fontSize: size === "sm" ? "6px" : size === "md" ? "8px" : "10px",
+    fontWeight: "bolder",
+    paddingLeft: "5px",
+  }
   return (
-    <chakra.div
-      ref={ref}
-      borderRadius={borderRadius}
-      __css={trackStyles}
-      {...rest}
-    >
-      <ProgressStylesProvider value={styles}>
-        <ProgressFilledTrack
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy}
-          aria-valuetext={ariaValueText}
-          min={min}
-          max={max}
-          value={value}
-          isIndeterminate={isIndeterminate}
-          css={css}
-          borderRadius={borderRadius}
-          title={title}
-          role={role}
-        />
-        {children}
-      </ProgressStylesProvider>
-    </chakra.div>
+    <>
+      <chakra.div
+        ref={ref}
+        borderRadius={borderRadius}
+        __css={trackStyles}
+        style={showValue ? { display: "flex" } : {}}
+        {...rest}
+      >
+        <ProgressStylesProvider value={styles}>
+          <ProgressFilledTrack
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            aria-valuetext={ariaValueText}
+            min={min}
+            max={max}
+            value={value}
+            isIndeterminate={isIndeterminate}
+            css={css}
+            borderRadius={borderRadius}
+            title={title}
+            role={role}
+            showValue={showValue}
+          />
+          {children}
+        </ProgressStylesProvider>
+        {showValue ? <chakra.p __css={valueStyles}>{value}</chakra.p> : <></>}
+      </chakra.div>
+    </>
   )
 })
 
