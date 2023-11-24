@@ -55,3 +55,17 @@ test("sets new copy value", () => {
 
   expect(copy).toBeCalledWith(newText, {})
 })
+
+test("sets new copy value imperatively", () => {
+  ;(copy as jest.Mock).mockReturnValue(true)
+
+  const { result } = hooks.render(() => useClipboard())
+
+  hooks.act(() => {
+    result.current.onCopy(text)
+  })
+
+  expect(copy).toBeCalledWith(text, {})
+  expect(result.current).not.toHaveProperty("value")
+  expect(result.current).not.toHaveProperty("setValue")
+})
