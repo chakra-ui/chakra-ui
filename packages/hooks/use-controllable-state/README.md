@@ -1,4 +1,4 @@
-# @chakra-ui/react-use-callback-ref
+# @chakra-ui/react-use-controllable-state
 
 A Quick description of the component
 
@@ -7,9 +7,9 @@ A Quick description of the component
 ## Installation
 
 ```sh
-yarn add @chakra-ui/react-use-callback-ref
+yarn add @chakra-ui/react-use-controllable-state
 # or
-npm i @chakra-ui/react-use-callback-ref
+npm i @chakra-ui/react-use-controllable-state
 ```
 
 ## Contribution
