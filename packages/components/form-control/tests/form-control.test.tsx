@@ -217,6 +217,12 @@ test("has the correct data attributes", async () => {
 
   fireEvent.focus(screen.getByLabelText(/Name/))
 
+  const control = screen.getByTestId("control")
+  expect(control).toHaveAttribute("data-focus")
+  expect(control).toHaveAttribute("data-disabled")
+  expect(control).toHaveAttribute("data-invalid")
+  expect(control).toHaveAttribute("data-readonly")
+
   const label = screen.getByTestId("label")
   expect(label).toHaveAttribute("data-focus")
   expect(label).toHaveAttribute("data-invalid")

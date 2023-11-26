@@ -1,5 +1,27 @@
 # Change Log
 
+## 2.2.2
+
+### Patch Changes
+
+- [#8014](https://github.com/chakra-ui/chakra-ui/pull/8014)
+  [`6d12ea81f`](https://github.com/chakra-ui/chakra-ui/commit/6d12ea81f4791f4df2953533b570178f59551b74)
+  Thanks [@CalleEklund](https://github.com/CalleEklund)! - Set the standard
+  color for toasts and alerts to a slightly darker color to make i WCAG
+  compatible
+- Updated dependencies []:
+  - @chakra-ui/icon@3.2.0
+  - @chakra-ui/spinner@2.1.0
+
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]:
+  - @chakra-ui/icon@3.2.0
+  - @chakra-ui/spinner@2.1.0
+
 ## 2.2.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/provider",
-  "version": "2.4.0",
+  "version": "2.4.2",
   "description": "Theme and components agnostic ChakraProvider",
   "main": "src/index.ts",
   "files": [
@@ -29,7 +29,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/chakra-ui/chakra-ui",
-    "directory": "packages/components/react"
+    "directory": "packages/components/provider"
   },
   "keywords": [
     "react",

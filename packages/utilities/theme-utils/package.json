@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/theme-utils",
-  "version": "2.0.19",
+  "version": "2.0.21",
   "description": "",
   "keywords": [
     "theme",
@@ -36,7 +36,7 @@
     "postpack": "clean-package restore"
   },
   "devDependencies": {
-    "@types/lodash.mergewith": "4.6.7",
+    "@types/lodash.mergewith": "4.6.8",
     "clean-package": "2.2.0"
   },
   "dependencies": {

@@ -442,6 +442,8 @@
       "type": "\"none\" | \"list\" | \"inline\" | \"both\"",
       "required": false
     },
+    "aria-braillelabel": { "type": "string", "required": false },
+    "aria-brailleroledescription": { "type": "string", "required": false },
     "aria-busy": { "type": "Booleanish", "required": false },
     "aria-checked": {
       "type": "boolean | \"true\" | \"false\" | \"mixed\"",
@@ -449,13 +451,15 @@
     },
     "aria-colcount": { "type": "number", "required": false },
     "aria-colindex": { "type": "number", "required": false },
+    "aria-colindextext": { "type": "string", "required": false },
     "aria-colspan": { "type": "number", "required": false },
     "aria-controls": { "type": "string", "required": false },
     "aria-current": {
-      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"time\"\n  | \"true\"\n  | \"false\"\n  | \"page\"\n  | \"step\"\n  | \"location\"\n  | \"date\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"time\"\n  | \"page\"\n  | \"true\"\n  | \"false\"\n  | \"step\"\n  | \"location\"\n  | \"date\"",
       "required": false
     },
     "aria-describedby": { "type": "string", "required": false },
+    "aria-description": { "type": "string", "required": false },
     "aria-details": { "type": "string", "required": false },
     "aria-disabled": { "type": "Booleanish", "required": false },
     "aria-dropeffect": {
@@ -506,6 +510,7 @@
     "aria-roledescription": { "type": "string", "required": false },
     "aria-rowcount": { "type": "number", "required": false },
     "aria-rowindex": { "type": "number", "required": false },
+    "aria-rowindextext": { "type": "string", "required": false },
     "aria-rowspan": { "type": "number", "required": false },
     "aria-selected": { "type": "Booleanish", "required": false },
     "aria-setsize": { "type": "number", "required": false },
@@ -522,13 +527,14 @@
     "autoFocus": { "type": "boolean", "required": false },
     "autoSave": { "type": "string", "required": false },
     "className": { "type": "string", "required": false },
+    "content": { "type": "string", "required": false },
     "contentEditable": {
       "type": "\"inherit\" | Booleanish",
       "required": false
     },
     "contextMenu": { "type": "string", "required": false },
     "dangerouslySetInnerHTML": {
-      "type": "{ __html: string }",
+      "type": "{ __html: string | TrustedHTML }",
       "required": false
     },
     "datatype": { "type": "string", "required": false },
@@ -543,7 +549,7 @@
     "id": { "type": "string", "required": false },
     "inlist": { "type": "any", "required": false },
     "inputMode": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"none\"\n  | \"text\"\n  | \"search\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"none\"\n  | \"search\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
       "required": false
     },
     "is": { "type": "string", "required": false },
@@ -1185,8 +1191,10 @@
     "prefix": { "type": "string", "required": false },
     "property": { "type": "string", "required": false },
     "radioGroup": { "type": "string", "required": false },
+    "rel": { "type": "string", "required": false },
     "resource": { "type": "string", "required": false },
     "results": { "type": "number", "required": false },
+    "rev": { "type": "string", "required": false },
     "role": { "type": "AriaRole", "required": false },
     "security": { "type": "string", "required": false },
     "slot": { "type": "string", "required": false },
