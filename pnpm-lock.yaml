@@ -750,8 +750,8 @@ importers:
         specifier: workspace:*
         version: link:../visually-hidden
       '@zag-js/focus-visible':
-        specifier: 0.16.0
-        version: 0.16.0
+        specifier: 0.30.0
+        version: 0.30.0
     devDependencies:
       '@chakra-ui/icon':
         specifier: workspace:*
@@ -1609,8 +1609,8 @@ importers:
         specifier: workspace:*
         version: link:../../utilities/shared-utils
       '@zag-js/focus-visible':
-        specifier: 0.16.0
-        version: 0.16.0
+        specifier: 0.30.0
+        version: 0.30.0
     devDependencies:
       '@chakra-ui/layout':
         specifier: workspace:*
@@ -11492,18 +11492,18 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@zag-js/dom-query@0.16.0:
-    resolution: {integrity: sha512-Oqhd6+biWyKnhKwFFuZrrf6lxBz2tX2pRQe6grUnYwO6HJ8BcbqZomy2lpOdr+3itlaUqx+Ywj5E5ZZDr/LBfQ==}
+  /@zag-js/dom-query@0.30.0:
+    resolution: {integrity: sha512-cNIxL+ySzy8C13tEoDoo+B/j3rVFON3VCJXwieja1izcl+65yr88sJQmEGbOq/zuNTCWA9hijeimhv4c3zht9Q==}
     dev: false
 
   /@zag-js/element-size@0.16.0:
     resolution: {integrity: sha512-GAlrv1PB0bn5dxC+CSXYF0v/HG2mB2cIhyk2cLyAwFVN5lpxGDhYFcuqDVdKWI2wATWJlo3OV+XdIq5GQtYAlQ==}
     dev: false
 
-  /@zag-js/focus-visible@0.16.0:
-    resolution: {integrity: sha512-a7U/HSopvQbrDU4GLerpqiMcHKEkQkNPeDZJWz38cw/6Upunh41GjHetq5TB84hxyCaDzJ6q2nEdNoBQfC0FKA==}
+  /@zag-js/focus-visible@0.30.0:
+    resolution: {integrity: sha512-o7lO7NvjzXqnx5Svl73vz5ivXt6lNy9AZm2HnhNbeH7BLAgSRHC/fHCb1wEg4g9pgIRw7V6IuhXHUzSDSxA9xQ==}
     dependencies:
-      '@zag-js/dom-query': 0.16.0
+      '@zag-js/dom-query': 0.30.0
     dev: false
 
   /JSONStream@1.3.5:
