@@ -27,9 +27,9 @@ const baseDropdown = defineStyle({
 
 const baseDropdownItem = defineStyle({
   p: "2",
+  cursor: "pointer",
   _hover: {
     bg: "gray.100",
-    cursor: "pointer",
   },
 })
 

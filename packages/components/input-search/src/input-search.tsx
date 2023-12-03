@@ -84,6 +84,7 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
             value={query}
             onChange={handleQueryChange}
             onClick={toggleDropdown}
+            aria-autocomplete="list"
           />
         </InputGroup>
         {options.length > 0 && (
@@ -101,8 +102,16 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
               <chakra.li
                 key={option.value}
                 role="listitem"
-                tabIndex={index + 1}
+                tabIndex={0}
                 onClick={() => handleResultSelect(option)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleResultSelect(option)
+                  } else if (e.key === "Tab" && index === options.length - 1) {
+                    // If the last item is focused and Tab is pressed, close the dropdown
+                    closeDropdown()
+                  }
+                }}
                 __css={{
                   ...styles.dropdownItem,
                 }}
