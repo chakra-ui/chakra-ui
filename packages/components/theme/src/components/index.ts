@@ -17,6 +17,7 @@ import { formErrorTheme } from "./form-error"
 import { formLabelTheme } from "./form-label"
 import { headingTheme } from "./heading"
 import { inputTheme } from "./input"
+import { inputSearchTheme } from "./input-search"
 import { kbdTheme } from "./kbd"
 import { linkTheme } from "./link"
 import { listTheme } from "./list"
@@ -59,6 +60,7 @@ export { formErrorTheme as FormError } from "./form-error"
 export { formLabelTheme as FormLabel } from "./form-label"
 export { headingTheme as Heading } from "./heading"
 export { inputTheme as Input } from "./input"
+export { inputSearchTheme as InputSearch } from "./input-search"
 export { kbdTheme as Kbd } from "./kbd"
 export { linkTheme as Link } from "./link"
 export { listTheme as List } from "./list"
@@ -102,6 +104,7 @@ export const components = {
   FormLabel: formLabelTheme,
   Heading: headingTheme,
   Input: inputTheme,
+  InputSearch: inputSearchTheme,
   Kbd: kbdTheme,
   Link: linkTheme,
   List: listTheme,

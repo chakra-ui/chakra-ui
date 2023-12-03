@@ -80,6 +80,11 @@ export const inputAnatomy = anatomy("input").parts(
   "group",
 )
 
+export const inputSearchAnatomy = anatomy("inputsearch").parts(
+  "dropdown",
+  "dropdownItem",
+)
+
 export const listAnatomy = anatomy("list").parts("container", "item", "icon")
 
 export const menuAnatomy = anatomy("menu")
