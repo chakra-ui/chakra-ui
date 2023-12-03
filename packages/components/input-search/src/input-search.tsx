@@ -80,6 +80,7 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
           <Input
             {...rest}
             ref={ref}
+            role="searchbox"
             type="search"
             value={query}
             onChange={handleQueryChange}
