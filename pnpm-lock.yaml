@@ -2619,8 +2619,8 @@ importers:
   packages/hooks/use-size:
     dependencies:
       '@zag-js/element-size':
-        specifier: 0.16.0
-        version: 0.16.0
+        specifier: 0.31.1
+        version: 0.31.1
     devDependencies:
       clean-package:
         specifier: 2.2.0
@@ -11496,8 +11496,8 @@ packages:
     resolution: {integrity: sha512-Oqhd6+biWyKnhKwFFuZrrf6lxBz2tX2pRQe6grUnYwO6HJ8BcbqZomy2lpOdr+3itlaUqx+Ywj5E5ZZDr/LBfQ==}
     dev: false
 
-  /@zag-js/element-size@0.16.0:
-    resolution: {integrity: sha512-GAlrv1PB0bn5dxC+CSXYF0v/HG2mB2cIhyk2cLyAwFVN5lpxGDhYFcuqDVdKWI2wATWJlo3OV+XdIq5GQtYAlQ==}
+  /@zag-js/element-size@0.31.1:
+    resolution: {integrity: sha512-4T3yvn5NqqAjhlP326Fv+w9RqMIBbNN9H72g5q2ohwzhSgSfZzrKtjL4rs9axY/cw9UfMfXjRjEE98e5CMq7WQ==}
     dev: false
 
   /@zag-js/focus-visible@0.16.0:
