@@ -1,8 +1,7 @@
 # @chakra-ui/InputSearch
 
-A Quick description of the component
-
-> This is an internal utility, not intended for public usage.
+The InputSearch component is similar to the [Input](/input), but is a search
+with autocomplete that supplies list of suggestions based on user input.
 
 ## Installation
 
