@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useState } from "react"
 import { chakra, useMultiStyleConfig } from "@chakra-ui/system"
 import { useOutsideClick } from "@chakra-ui/hooks"
+import { useDropdown } from "./use-dropdown"
 import {
   Input,
   InputGroup,
@@ -32,13 +33,12 @@ export interface InputSearchProps extends Omit<InputProps, "results"> {
 export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
   (props, ref) => {
     const styles = useMultiStyleConfig("InputSearch", props)
+    const dropdownRef = useRef<HTMLUListElement | null>(null)
 
     const { options = [], onResultSelect, onQueryChange, ...rest } = props
 
     const [query, setQuery] = useState<string>("")
-    const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
-
-    const dropdownRef = useRef<HTMLUListElement | null>(null)
+    const { isDropdownOpen, closeDropdown, toggleDropdown } = useDropdown()
 
     const handleResultSelect = (result: InputSearchOptionProps) => {
       if (onResultSelect) {
@@ -55,14 +55,6 @@ export const InputSearch = forwardRef<HTMLInputElement, InputSearchProps>(
       if (onQueryChange) {
         onQueryChange(newQuery)
       }
-    }
-
-    const closeDropdown = () => {
-      setIsDropdownOpen(false)
-    }
-
-    const toggleDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen)
     }
 
     useOutsideClick({

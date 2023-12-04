@@ -13,7 +13,7 @@
     "form control"
   ],
   "sideEffects": false,
-  "author": "Wes Gabbard <wgabbard@gmail.com>",
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "src/index.ts",
