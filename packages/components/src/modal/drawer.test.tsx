@@ -32,19 +32,19 @@ const SimpleDrawer = (props: {
   )
 }
 
-it("does not render when isOpen is false", () => {
+test("does not render when isOpen is false", () => {
   render(<SimpleDrawer placement="left" isOpen={false} />)
 
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
 })
 
-it("does renders when isOpen is true", () => {
+test("does renders when isOpen is true", () => {
   render(<SimpleDrawer placement="left" isOpen />)
 
   expect(screen.queryByRole("dialog")).toBeInTheDocument()
 })
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   const { baseElement } = render(<SimpleDrawer placement="left" isOpen />)
   // Test baseElement because we're in a portal
   await testA11y(baseElement, {
@@ -57,20 +57,20 @@ it("passes a11y test", async () => {
   })
 })
 
-it("renders on the correct side under 'ltr' direction", () => {
+test("renders on the correct side under 'ltr' direction", () => {
   render(<SimpleDrawer placement="left" isOpen />)
 
   expect(screen.queryByRole("dialog")).toHaveStyle("left: 0")
 })
 
-it("should make other elements inert when opened", () => {
+test("should make other elements inert when opened", () => {
   const { container } = render(<SimpleDrawer placement="right" isOpen />)
 
   expect(container).toHaveAttribute("data-aria-hidden", "true")
   expect(container).toHaveAttribute("aria-hidden", "true")
 })
 
-// it("swaps sides (left/right) under 'rtl' direction", () => {
+// test("swaps sides (left/right) under 'rtl' direction", () => {
 //   render(
 //     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
 //       <SimpleDrawer placement="start" isOpen />
@@ -80,7 +80,7 @@ it("should make other elements inert when opened", () => {
 //   expect(screen.queryByRole("dialog")).toHaveStyle("right: 0")
 // })
 
-// it("renders correctly (top/bottom) under 'rtl' direction", () => {
+// test("renders correctly (top/bottom) under 'rtl' direction", () => {
 //   render(
 //     <ThemeProvider theme={extendTheme({ direction: "rtl" })}>
 //       <SimpleDrawer placement="top" isOpen />

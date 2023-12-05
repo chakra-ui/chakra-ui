@@ -10,7 +10,7 @@ beforeEach(() => {
 })
 
 describe("useAriaHidden", () => {
-  it("should be triggered if ref.current is changed", () => {
+  test("should be triggered if ref.current is changed", () => {
     const ref: MutableRefObject<null | HTMLElement> = { current: null }
 
     renderHook(() => useAriaHidden(ref, true))
@@ -22,7 +22,7 @@ describe("useAriaHidden", () => {
     expect(hideOthers).toBeCalledWith(ref.current)
   })
 
-  it("shouldn't be triggered if `shouldHide` is `false`", () => {
+  test("shouldn't be triggered if `shouldHide` is `false`", () => {
     const ref: MutableRefObject<null | HTMLElement> = { current: null }
 
     renderHook(() => useAriaHidden(ref, true))

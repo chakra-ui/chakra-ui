@@ -20,7 +20,7 @@ test("matches snapshot", () => {
   expect(textarea).toHaveAttribute("hidden")
 })
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   await testA11y(
     <Editable defaultValue="testing">
       <EditableTextarea data-testid="textarea" />

@@ -30,7 +30,7 @@ const chakraIconPath = [
   </defs>,
 ]
 
-it("sets default viewBox", () => {
+test("sets default viewBox", () => {
   const Icon = createIcon({
     path: chakraIconPath,
   })
@@ -40,7 +40,7 @@ it("sets default viewBox", () => {
   expect(container.querySelector("svg")).toHaveAttribute("viewBox")
 })
 
-it("forwards d attribute onto a path element", () => {
+test("forwards d attribute onto a path element", () => {
   const d =
     "M69.56 133.99l87.59-87c1.64-1.62 4.27.36 3.17 2.38l-32.6 59.76a2 2 0 001.75 2.95h56.34a2 2 0 011.36 3.47l-98.72 92.14c-1.78 1.65-4.41-.68-2.99-2.64l46.74-64.47a2 2 0 00-1.62-3.18H70.97a2 2 0 01-1.41-3.41z"
 
@@ -53,7 +53,7 @@ it("forwards d attribute onto a path element", () => {
   expect(container.querySelector("path")).toHaveAttribute("d", d)
 })
 
-it("accepts a single path", () => {
+test("accepts a single path", () => {
   const d =
     "M69.56 133.99l87.59-87c1.64-1.62 4.27.36 3.17 2.38l-32.6 59.76a2 2 0 001.75 2.95h56.34a2 2 0 011.36 3.47l-98.72 92.14c-1.78 1.65-4.41-.68-2.99-2.64l46.74-64.47a2 2 0 00-1.62-3.18H70.97a2 2 0 01-1.41-3.41z"
   const fill = "#fff"
@@ -69,7 +69,7 @@ it("accepts a single path", () => {
   expect(container.querySelector("path")).toHaveAttribute("fill", fill)
 })
 
-it("accepts multiple paths", () => {
+test("accepts multiple paths", () => {
   const Icon = createIcon({
     path: chakraIconPath,
   })
@@ -81,7 +81,7 @@ it("accepts multiple paths", () => {
   )
 })
 
-it("forwards displayName", () => {
+test("forwards displayName", () => {
   const displayName = "dummy-display-name"
 
   const Icon = createIcon({

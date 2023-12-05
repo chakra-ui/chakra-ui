@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = forwardRef<InputProps, "input">(
   },
 )
 
-it("passes a11y test in default state", async () => {
+test("passes a11y test in default state", async () => {
   await testA11y(
     <FormControl id="name">
       <FormLabel>Name</FormLabel>
@@ -34,7 +34,7 @@ it("passes a11y test in default state", async () => {
   )
 })
 
-it("passes a11y test in when required", async () => {
+test("passes a11y test in when required", async () => {
   await testA11y(
     <FormControl id="name" isRequired>
       <FormLabel>Name</FormLabel>
@@ -45,7 +45,7 @@ it("passes a11y test in when required", async () => {
   )
 })
 
-it("passes a11y test in when invalid", async () => {
+test("passes a11y test in when invalid", async () => {
   await testA11y(
     <FormControl id="name" isInvalid>
       <FormLabel>Name</FormLabel>

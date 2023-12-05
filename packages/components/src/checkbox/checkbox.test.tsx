@@ -11,7 +11,7 @@ import {
   UseCheckboxProps,
 } from "."
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   await testA11y(<Checkbox>label</Checkbox>)
 })
 

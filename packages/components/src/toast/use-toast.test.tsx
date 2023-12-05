@@ -11,7 +11,7 @@ describe("useToast", () => {
     )
   })
 
-  it("should accept default options", async () => {
+  test("should accept default options", async () => {
     const title = "Yay!"
 
     const description = "Something awesome happened"
@@ -42,7 +42,7 @@ describe("useToast", () => {
     expect(allByDescription).toHaveLength(1)
   })
 
-  it("should override default options", async () => {
+  test("should override default options", async () => {
     const defaultTitle = "Yay!"
     const defaultDescription = "Something awesome happened"
 
@@ -78,7 +78,7 @@ describe("useToast", () => {
     expect(allByDescription).toHaveLength(1)
   })
 
-  it("should allow promise toast chainings", async () => {
+  test("should allow promise toast chainings", async () => {
     const loadingTitle = "Toast is loading"
     const successTitle = "Promise resolved"
     const errorTitle = "Error occurred"
@@ -130,7 +130,7 @@ describe("useToast", () => {
     expect(successText).toBeInTheDocument()
   })
 
-  it("should accept top level options", async () => {
+  test("should accept top level options", async () => {
     const title = "Yay!"
 
     const description = "Something awesome happened"
@@ -159,7 +159,7 @@ describe("useToast", () => {
     expect(allByDescription).toHaveLength(1)
   })
 
-  it("toast function should override top level default options", async () => {
+  test("toast function should override top level default options", async () => {
     const defaultTitle = "Yay!"
     const defaultDescription = "Something awesome happened"
 
@@ -194,7 +194,7 @@ describe("useToast", () => {
     expect(allByDescription).toHaveLength(1)
   })
 
-  it("hook's defaults should override top level default options", async () => {
+  test("hook's defaults should override top level default options", async () => {
     const defaultTitle = "Yay!"
     const defaultDescription = "Something awesome happened"
 

@@ -54,19 +54,19 @@ const BasicUsage = (props: BasicUsageProps) => {
   )
 }
 
-it("renders no ui when closed", () => {
+test("renders no ui when closed", () => {
   render(<BasicUsage />)
 
   expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument()
 })
 
-it("renders an element with role='alertdialog' when opened", () => {
+test("renders an element with role='alertdialog' when opened", () => {
   render(<BasicUsage isOpen />)
 
   expect(screen.getByRole("alertdialog")).toBeInTheDocument()
 })
 
-it("passes a11y test closed", async () => {
+test("passes a11y test closed", async () => {
   const { baseElement } = render(<BasicUsage />)
   // Test baseElement because the dialog is in a portal
   await testA11y(baseElement, {
@@ -79,7 +79,7 @@ it("passes a11y test closed", async () => {
   })
 })
 
-it("passes a11y test opened", async () => {
+test("passes a11y test opened", async () => {
   const { baseElement } = render(<BasicUsage isOpen />)
   // Test baseElement because the dialog is in a portal
   await testA11y(baseElement, {

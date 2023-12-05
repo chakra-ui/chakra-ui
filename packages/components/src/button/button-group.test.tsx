@@ -1,7 +1,7 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
 import { Button, ButtonGroup } from "."
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   await testA11y(
     <ButtonGroup>
       <Button>Button 1</Button>

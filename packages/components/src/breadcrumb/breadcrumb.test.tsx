@@ -1,7 +1,7 @@
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "."
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   await testA11y(
     <Breadcrumb>
       <BreadcrumbItem>

@@ -23,7 +23,7 @@ test("matches snapshot", () => {
   expect(preview).toHaveTextContent("testing")
 })
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   await testA11y(
     <Editable defaultValue="testing">
       <EditablePreview data-testid="preview" />

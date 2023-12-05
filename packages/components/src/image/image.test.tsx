@@ -29,7 +29,7 @@ test("creates an instance of Image when mounted", () => {
   expect(screen.getByRole("img")).toBeInstanceOf(HTMLImageElement)
 })
 
-it("passes a11y test", async () => {
+test("passes a11y test", async () => {
   await testA11y(<Image alt="img" src={src} fallbackSrc={fallbackSrc} />)
 })
 

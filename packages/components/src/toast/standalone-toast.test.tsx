@@ -2,7 +2,7 @@ import { act, render, screen } from "@chakra-ui/test-utils"
 import { createStandaloneToast } from "."
 
 describe("Standalone Toast", () => {
-  it("should render a toast correctly", async () => {
+  test("should render a toast correctly", async () => {
     const { ToastContainer, toast } = createStandaloneToast()
     const title = "Yay!"
     const description = "Something awesome happened"

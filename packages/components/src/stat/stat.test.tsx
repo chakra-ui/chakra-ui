@@ -9,7 +9,7 @@ import {
 } from "."
 
 describe("<StatGroup />", () => {
-  it("should renders correctly", () => {
+  test("should renders correctly", () => {
     const { getByTestId } = render(
       <StatGroup data-testid="group">
         <Stat>
@@ -34,7 +34,7 @@ describe("<StatGroup />", () => {
     expect(getByTestId("group")).toBeTruthy()
   })
 
-  it("should passes a11y test", async () => {
+  test("should passes a11y test", async () => {
     await testA11y(
       <StatGroup data-testid="group">
         <Stat>
