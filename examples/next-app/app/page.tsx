@@ -1,5 +1,3 @@
-"use client"
-
 import { Link } from "@chakra-ui/next-js"
 import { Box, Button, Text, useColorMode } from "@chakra-ui/react"
 

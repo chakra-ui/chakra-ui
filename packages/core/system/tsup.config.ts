@@ -11,6 +11,7 @@ function removeDirective(fileName: string) {
 }
 
 export default defineConfig({
+  entry: ["src", "!src/**/*.{test,spec,fixture,stories}.{ts,tsx}"],
   format: ["cjs", "esm"],
   target: "es2019",
   sourcemap: true,

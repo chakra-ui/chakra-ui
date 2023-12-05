@@ -35,8 +35,9 @@
   },
   "scripts": {
     "clean": "rimraf dist .turbo",
-    "build": "tsup src --format cjs --clean --shims",
-    "dev": "pnpm build --watch",
+    "build:fast": "tsup src --format cjs --shims",
+    "build": "tsup src --format cjs --shims",
+    "dev": "pnpm build:fast --watch",
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {

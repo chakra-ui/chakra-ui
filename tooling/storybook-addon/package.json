@@ -38,8 +38,9 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "pnpm build -- --watch",
+    "build": "tsup --dts",
+    "build:fast": "tsup",
+    "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },

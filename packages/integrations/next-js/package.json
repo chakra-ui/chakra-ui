@@ -8,7 +8,7 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "sideEffects": false,
   "files": [
     "dist"
@@ -28,12 +28,10 @@
     "build": "tsup src --dts",
     "postbuild": "pnpm fix:import",
     "fix:import": "node ./scripts/postbuild.mjs",
-    "dev": "pnpm build:fast -- --watch",
+    "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "build:fast": "tsup src"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0"
@@ -47,11 +45,9 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@chakra-ui/react": "workspace:*",
-    "clean-package": "2.2.0",
-    "next": ">=13",
+    "next": ">=14",
     "react": "^18.2.0"
   },
-  "clean-package": "../../../clean-package.config.json",
   "tsup": {
     "clean": true,
     "target": "es2019",
@@ -59,5 +55,16 @@
       "cjs",
       "esm"
     ]
+  },
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "source": "./src/index.ts",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   }
 }

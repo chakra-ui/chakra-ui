@@ -6,7 +6,7 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
@@ -23,12 +23,10 @@
   },
   "scripts": {
     "build": "tsup src --dts",
-    "dev": "pnpm build:fast -- --watch",
+    "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "build:fast": "tsup src"
   },
   "dependencies": {
     "@types/lodash.mergewith": "4.6.8",
@@ -36,10 +34,7 @@
     "framesync": "6.1.2",
     "lodash.mergewith": "4.6.2"
   },
-  "devDependencies": {
-    "clean-package": "2.2.0"
-  },
-  "clean-package": "../../../clean-package.config.json",
+  "devDependencies": {},
   "tsup": {
     "clean": true,
     "target": "es2019",
@@ -47,5 +42,16 @@
       "cjs",
       "esm"
     ]
+  },
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "source": "./src/index.ts",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   }
 }

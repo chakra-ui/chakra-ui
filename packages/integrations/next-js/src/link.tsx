@@ -1,5 +1,4 @@
 import {
-  forwardRef,
   chakra,
   HTMLChakraProps,
   LinkProps as ChakraLinkProps,
@@ -8,7 +7,7 @@ import {
   omitThemingProps,
 } from "@chakra-ui/react"
 import NextLink, { LinkProps as NextLinkProps } from "next/link"
-import type { FC, RefAttributes } from "react"
+import { forwardRef, type FC, type RefAttributes } from "react"
 
 const cx = (...classNames: any[]) => classNames.filter(Boolean).join(" ")
 

@@ -46,6 +46,8 @@ that can be consumed in isolation.
 **`pnpm install`**: bootstraps the entire project, symlinks all dependencies for
 cross-component development and builds all components.
 
+**`pnpm dev`**: Runs the build and watch command for all component packages.
+
 **`pnpm storybook`**: starts storybook server and loads stories in files that
 end with `.stories.tsx`.
 

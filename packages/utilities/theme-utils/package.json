@@ -10,7 +10,17 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "src/index.ts",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "source": "./src/index.ts",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "sideEffects": false,
   "files": [
     "dist"
@@ -28,24 +38,20 @@
   },
   "scripts": {
     "build": "tsup src --dts",
-    "dev": "pnpm build -- --watch",
+    "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src",
-    "prepack": "clean-package",
-    "postpack": "clean-package restore"
+    "build:fast": "tsup src"
   },
   "devDependencies": {
-    "@types/lodash.mergewith": "4.6.8",
-    "clean-package": "2.2.0"
+    "@types/lodash.mergewith": "4.6.8"
   },
   "dependencies": {
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
-    "lodash.mergewith": "4.6.2",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/shared-utils": "workspace:*",
+    "lodash.mergewith": "4.6.2"
   },
-  "clean-package": "../../../clean-package.config.json",
   "tsup": {
     "clean": true,
     "target": "es2019",

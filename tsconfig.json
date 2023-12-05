@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "NodeNext",
     "lib": ["dom", "esnext"],
     "declaration": true,
     "sourceMap": true,
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "skipLibCheck": true,
     "strict": true,
     "isolatedModules": true,
@@ -14,14 +14,9 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "customConditions": ["source"]
   },
-  "include": [
-    "@types",
-    "packages",
-    "scripts",
-    "tooling",
-    "plopfile.ts",
-  ],
+  "include": ["@types", "packages", "scripts", "tooling", "plopfile.ts"],
   "exclude": ["**/node_modules", "**/template*"]
 }
