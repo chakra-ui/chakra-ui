@@ -1,0 +1,113 @@
+{
+  "Accordion": {
+    "allowMultiple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, multiple accordion items can be expanded at once."
+    },
+    "allowToggle": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, any expanded accordion item can be collapsed again."
+    },
+    "defaultIndex": {
+      "type": "ExpandedIndex",
+      "required": false,
+      "description": "The initial index(es) of the expanded accordion item"
+    },
+    "index": {
+      "type": "ExpandedIndex",
+      "required": false,
+      "description": "The index(es) of the expanded accordion item"
+    },
+    "onChange": {
+      "type": "(expandedIndex: ExpandedIndex) => void",
+      "required": false,
+      "description": "The callback invoked when accordion items are expanded or collapsed."
+    },
+    "reduceMotion": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, height animation and transitions will be disabled."
+    }
+  },
+  "AccordionButton": {},
+  "AccordionIcon": { "orientation": { "type": "any", "required": false } },
+  "AccordionItem": {
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "A unique id for the accordion item."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the accordion item will be disabled."
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the accordion item will be focusable."
+    }
+  },
+  "AccordionPanel": {
+    "motionProps": {
+      "type": "CollapseProps",
+      "required": false,
+      "description": "The properties passed to the underlying `Collapse` component."
+    }
+  },
+  "UseAccordionItem": {
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "A unique id for the accordion item."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the accordion item will be disabled."
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the accordion item will be focusable."
+    }
+  },
+  "UseAccordion": {
+    "allowMultiple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, multiple accordion items can be expanded at once."
+    },
+    "allowToggle": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, any expanded accordion item can be collapsed again."
+    },
+    "defaultIndex": {
+      "type": "ExpandedIndex",
+      "required": false,
+      "description": "The initial index(es) of the expanded accordion item"
+    },
+    "index": {
+      "type": "ExpandedIndex",
+      "required": false,
+      "description": "The index(es) of the expanded accordion item"
+    },
+    "onChange": {
+      "type": "(expandedIndex: ExpandedIndex) => void",
+      "required": false,
+      "description": "The callback invoked when accordion items are expanded or collapsed."
+    }
+  }
+}

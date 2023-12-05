@@ -1,0 +1,71 @@
+{
+  "Input": {
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "errorBorderColor": {
+      "type": "string",
+      "required": false,
+      "description": "The border color when the input is invalid. Use color keys in `theme.colors`"
+    },
+    "focusBorderColor": {
+      "type": "string",
+      "required": false,
+      "description": "The border color when the input is focused. Use color keys in `theme.colors`"
+    },
+    "htmlSize": {
+      "type": "number",
+      "required": false,
+      "description": "The native HTML `size` attribute to be passed to the `input`"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be disabled. This has 2 side effects:\n- The `FormLabel` will have `data-disabled` attribute\n- The form element (e.g, Input) will be disabled"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be invalid. This has 2 side effects:\n- The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`\n- The form element (e.g, Input) will have `aria-invalid` set to `true`"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be readonly"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be required. This has 2 side effects:\n- The `FormLabel` will show a required indicator\n- The form element (e.g, Input) will have `aria-required` set to `true`"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"lg\" | \"md\" | \"sm\" | \"xs\"",
+      "required": false,
+      "description": "The size of the Input"
+    },
+    "variant": {
+      "defaultValue": "outline",
+      "type": "\"outline\" | \"filled\" | \"flushed\" | \"unstyled\"",
+      "required": false,
+      "description": "The variant of the Input"
+    }
+  },
+  "InputAddon": { "placement": { "type": "Placement", "required": false } },
+  "InputLeftAddon": { "placement": { "type": "Placement", "required": false } },
+  "InputRightAddon": {
+    "placement": { "type": "Placement", "required": false }
+  },
+  "InputGroup": {},
+  "InputElement": {
+    "placement": { "type": "\"right\" | \"left\"", "required": false }
+  },
+  "InputLeftElement": {},
+  "InputRightElement": {}
+}

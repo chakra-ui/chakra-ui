@@ -1,0 +1,41 @@
+{
+  "Card": {
+    "align": {
+      "type": "ResponsiveValue<AlignItems>",
+      "required": true,
+      "description": "The flex alignment of the card"
+    },
+    "direction": {
+      "type": "ResponsiveValue<FlexDirection>",
+      "required": true,
+      "description": "The flex direction of the card"
+    },
+    "justify": {
+      "type": "ResponsiveValue<JustifyContent>",
+      "required": true,
+      "description": "The flex distribution of the card"
+    },
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "description": "The size of the Card"
+    },
+    "variant": {
+      "defaultValue": "elevated",
+      "type": "\"elevated\" | \"outline\" | \"filled\" | \"unstyled\"",
+      "required": false,
+      "description": "The variant of the Card"
+    }
+  },
+  "CardBody": {},
+  "CardFooter": {
+    "justify": { "type": "ResponsiveValue<JustifyContent>", "required": true }
+  },
+  "CardHeader": {}
+}

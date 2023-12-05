@@ -1,0 +1,81 @@
+{
+  "Skeleton": {
+    "endColor": {
+      "type": "string",
+      "required": false,
+      "description": "The color at the animation end"
+    },
+    "fadeDuration": {
+      "type": "number",
+      "defaultValue": "0.4",
+      "required": false,
+      "description": "The fadeIn duration in seconds. Requires `isLoaded` toggled to `true` in order to see the transition."
+    },
+    "fitContent": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the skeleton will take the width of it's children"
+    },
+    "isLoaded": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, it'll render its children with a nice fade transition"
+    },
+    "speed": {
+      "type": "number",
+      "defaultValue": "0.8",
+      "required": false,
+      "description": "The animation speed in seconds"
+    },
+    "startColor": {
+      "type": "string",
+      "required": false,
+      "description": "The color at the animation start"
+    }
+  },
+  "SkeletonText": {
+    "endColor": {
+      "type": "string",
+      "required": false,
+      "description": "The color at the animation end"
+    },
+    "fadeDuration": {
+      "type": "number",
+      "defaultValue": "0.4",
+      "required": false,
+      "description": "The fadeIn duration in seconds. Requires `isLoaded` toggled to `true` in order to see the transition."
+    },
+    "fitContent": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the skeleton will take the width of it's children"
+    },
+    "isLoaded": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, it'll render its children with a nice fade transition"
+    },
+    "skeletonHeight": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false
+    },
+    "spacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false
+    },
+    "speed": {
+      "type": "number",
+      "defaultValue": "0.8",
+      "required": false,
+      "description": "The animation speed in seconds"
+    },
+    "startColor": {
+      "type": "string",
+      "required": false,
+      "description": "The color at the animation start"
+    }
+  }
+}

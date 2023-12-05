@@ -1,0 +1,128 @@
+{
+  "Image": {
+    "align": {
+      "type": "ResponsiveValue<ObjectPosition<Length>>",
+      "required": false,
+      "description": "How to align the image within its bounds.\nIt maps to css `object-position` property."
+    },
+    "crossOrigin": {
+      "type": "\"\" | \"anonymous\" | \"use-credentials\"",
+      "required": false,
+      "description": "The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.\nThis tells the browser to request cross-origin access when trying to download the image data."
+    },
+    "fallback": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "Fallback element to show if image is loading or image fails."
+    },
+    "fallbackSrc": {
+      "type": "string",
+      "required": false,
+      "description": "Fallback image `src` to show if image is loading or image fails.\n\nNote 🚨: We recommend you use a local image"
+    },
+    "fallbackStrategy": {
+      "type": "FallbackStrategy",
+      "defaultValue": "beforeLoadOrError",
+      "required": false,
+      "description": "- beforeLoadOrError(default): loads the fallbackImage while loading the src\n- onError: loads the fallbackImage only if there is an error fetching the src"
+    },
+    "fit": {
+      "type": "ResponsiveValue<ObjectFit>",
+      "required": false,
+      "description": "How the image to fit within its bounds.\nIt maps to css `object-fit` property."
+    },
+    "htmlHeight": {
+      "type": "string | number",
+      "required": false,
+      "description": "The native HTML `height` attribute to the passed to the `img`"
+    },
+    "htmlWidth": {
+      "type": "string | number",
+      "required": false,
+      "description": "The native HTML `width` attribute to the passed to the `img`"
+    },
+    "ignoreFallback": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, opt out of the `fallbackSrc` logic and use as `img`"
+    },
+    "loading": { "type": "\"eager\" | \"lazy\"", "required": false },
+    "onError": {
+      "type": "ReactEventHandler<HTMLImageElement>",
+      "required": false,
+      "description": "A callback for when there was an error loading the image `src`"
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLImageElement>",
+      "required": false,
+      "description": "A callback for when the image `src` has been loaded"
+    },
+    "sizes": {
+      "type": "string",
+      "required": false,
+      "description": "The image `sizes` attribute"
+    },
+    "src": {
+      "type": "string",
+      "required": false,
+      "description": "The image `src` attribute"
+    },
+    "srcSet": {
+      "type": "string",
+      "required": false,
+      "description": "The image `srcset` attribute"
+    }
+  },
+  "Img": {
+    "htmlHeight": {
+      "type": "string | number",
+      "required": false,
+      "description": "The native HTML `height` attribute to the passed to the `img`"
+    },
+    "htmlWidth": {
+      "type": "string | number",
+      "required": false,
+      "description": "The native HTML `width` attribute to the passed to the `img`"
+    }
+  },
+  "UseImage": {
+    "crossOrigin": {
+      "type": "\"\" | \"anonymous\" | \"use-credentials\"",
+      "required": false,
+      "description": "The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.\nThis tells the browser to request cross-origin access when trying to download the image data."
+    },
+    "ignoreFallback": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, opt out of the `fallbackSrc` logic and use as `img`"
+    },
+    "loading": { "type": "\"eager\" | \"lazy\"", "required": false },
+    "onError": {
+      "type": "ReactEventHandler<HTMLImageElement>",
+      "required": false,
+      "description": "A callback for when there was an error loading the image `src`"
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLImageElement>",
+      "required": false,
+      "description": "A callback for when the image `src` has been loaded"
+    },
+    "sizes": {
+      "type": "string",
+      "required": false,
+      "description": "The image `sizes` attribute"
+    },
+    "src": {
+      "type": "string",
+      "required": false,
+      "description": "The image `src` attribute"
+    },
+    "srcSet": {
+      "type": "string",
+      "required": false,
+      "description": "The image `srcset` attribute"
+    }
+  }
+}

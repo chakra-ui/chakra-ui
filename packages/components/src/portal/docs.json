@@ -1,0 +1,22 @@
+{
+  "PortalManager": {
+    "zIndex": {
+      "type": "number",
+      "required": false,
+      "description": "[Z-Index war] If your has multiple elements\nwith z-index clashing, you might need to apply a z-index to the Portal manager"
+    }
+  },
+  "Portal": {
+    "appendToParentPortal": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the portal will check if it is within a parent portal\nand append itself to the parent's portal node.\nThis provides nesting for portals.\n\nIf `false`, the portal will always append to `document.body`\nregardless of nesting. It is used to opt out of portal nesting."
+    },
+    "containerRef": {
+      "type": "RefObject<HTMLElement | null>",
+      "required": false,
+      "description": "The `ref` to the component where the portal will be attached to."
+    }
+  }
+}

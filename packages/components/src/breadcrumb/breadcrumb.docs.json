@@ -1,0 +1,54 @@
+{
+  "Breadcrumb": {
+    "listProps": { "type": "HTMLChakraProps<\"ol\">", "required": false },
+    "separator": {
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | ReactElement<any, string | JSXElementConstructor<any>>",
+      "defaultValue": "/",
+      "required": false,
+      "description": "The visual separator between each breadcrumb item"
+    },
+    "spacing": {
+      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "defaultValue": "0.5rem",
+      "required": false,
+      "description": "The left and right margin applied to the separator"
+    }
+  },
+  "BreadcrumbItem": {
+    "isCurrentPage": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    },
+    "isLastChild": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    },
+    "separator": {
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | ReactElement<any, string | JSXElementConstructor<any>>",
+      "defaultValue": "/",
+      "required": false,
+      "description": "The visual separator between each breadcrumb item"
+    },
+    "spacing": {
+      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "defaultValue": "0.5rem",
+      "required": false,
+      "description": "The left and right margin applied to the separator"
+    }
+  },
+  "BreadcrumbLink": {
+    "isCurrentPage": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    }
+  },
+  "BreadcrumbSeparator": {
+    "spacing": {
+      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "required": false
+    }
+  }
+}

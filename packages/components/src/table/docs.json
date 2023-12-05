@@ -1,0 +1,55 @@
+{
+  "Table": {
+    "colorScheme": {
+      "defaultValue": "gray",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "layout": {
+      "type": "string | number | boolean | ResponsiveArray<string | number | boolean | undefined> | Partial<Record<string, string | number | boolean | undefined>> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "required": false
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "description": "The size of the Table"
+    },
+    "variant": {
+      "defaultValue": "simple",
+      "type": "\"simple\" | \"striped\" | \"unstyled\"",
+      "required": false,
+      "description": "The variant of the Table"
+    }
+  },
+  "TableCaption": {
+    "placement": {
+      "type": "\"bottom\" | \"top\"",
+      "defaultValue": "bottom",
+      "required": false,
+      "description": "The placement of the table caption. This sets the `caption-side` CSS attribute."
+    }
+  },
+  "TableContainer": {},
+  "TableBody": {},
+  "TableCell": {
+    "isNumeric": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "Aligns the cell content to the right"
+    }
+  },
+  "TableFooter": {},
+  "TableColumnHeader": {
+    "isNumeric": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "Aligns the cell content to the right"
+    }
+  },
+  "TableHead": {},
+  "TableRow": {}
+}

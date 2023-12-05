@@ -1,0 +1,79 @@
+{
+  "UsePopper": {
+    "arrowPadding": {
+      "type": "number",
+      "defaultValue": "8",
+      "required": false,
+      "description": "The padding required to prevent the arrow from\nreaching the very edge of the popper."
+    },
+    "boundary": {
+      "type": "\"clippingParents\" | \"scrollParent\" | HTMLElement",
+      "defaultValue": "clippingParents",
+      "required": false,
+      "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
+    },
+    "direction": {
+      "type": "\"ltr\" | \"rtl\"",
+      "defaultValue": "ltr",
+      "required": false,
+      "description": "Theme direction `ltr` or `rtl`. Popper's placement will\nbe set accordingly"
+    },
+    "enabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the popper.js should be enabled"
+    },
+    "eventListeners": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined }",
+      "defaultValue": true,
+      "required": false,
+      "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
+    },
+    "flip": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
+    },
+    "gutter": {
+      "type": "number",
+      "defaultValue": "8",
+      "required": false,
+      "description": "The distance or margin between the reference and popper.\nIt is used internally to create an `offset` modifier.\n\nNB: If you define `offset` prop, it'll override the gutter."
+    },
+    "matchWidth": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
+    },
+    "modifiers": {
+      "type": "Partial<Modifier<string, any>>[]",
+      "required": false,
+      "description": "Array of popper.js modifiers. Check the docs to see\nthe list of possible modifiers you can pass."
+    },
+    "offset": {
+      "type": "[number, number]",
+      "required": false,
+      "description": "The main and cross-axis offset to displace popper element\nfrom its reference element."
+    },
+    "placement": {
+      "type": "PlacementWithLogical",
+      "defaultValue": "bottom",
+      "required": false,
+      "description": "The placement of the popper relative to its reference."
+    },
+    "preventOverflow": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
+    },
+    "strategy": {
+      "type": "\"absolute\" | \"fixed\"",
+      "defaultValue": "absolute",
+      "required": false,
+      "description": "The CSS positioning strategy to use."
+    }
+  }
+}

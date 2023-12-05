@@ -1,0 +1,33 @@
+{
+  "UseClickable": {
+    "clickOnEnter": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "Whether or not trigger click on pressing `Enter`."
+    },
+    "clickOnSpace": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "Whether or not trigger click on pressing `Space`."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the element will be disabled.\nIt will set the `disabled` HTML attribute"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and isDisabled, the element will\nhave only `aria-disabled` set to `true`"
+    },
+    "ref": {
+      "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLElement | null) => void)\n  | RefObject<HTMLElement>",
+      "required": false,
+      "description": "The ref for the element"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "@chakra-ui/theme-tools",
+  "version": "2.1.2",
+  "description": "Set of helpers that makes theming and styling easier",
+  "keywords": [
+    "theme",
+    "theming",
+    "color",
+    "utilities"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/theme-tools"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/anatomy": "workspace:*",
+    "color2k": "^2.0.2",
+    "@chakra-ui/shared-utils": "workspace:*"
+  },
+  "peerDependencies": {
+    "@chakra-ui/styled-system": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@chakra-ui/styled-system": "workspace:*",
+    "@types/dlv": "^1.1.2",
+    "dlv": "^1.1.3"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src"
+  },
+  "tsup": {
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "target": "es2019",
+    "sourcemap": true
+  }
+}

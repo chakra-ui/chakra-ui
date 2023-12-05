@@ -1,0 +1,36 @@
+{
+  "replace": {
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "./components": {
+        "types": "./dist/components/index.d.ts",
+        "import": "./dist/components/index.mjs",
+        "require": "./dist/components/index.js"
+      },
+      "./components/*": {
+        "types": "./dist/components/*.d.ts",
+        "import": "./dist/components/*.mjs",
+        "require": "./dist/components/*.js"
+      },
+      "./foundations": {
+        "types": "./dist/foundations/index.d.ts",
+        "import": "./dist/foundations/index.mjs",
+        "require": "./dist/foundations/index.js"
+      },
+      "./package.json": "./package.json"
+    },
+    "typesVersions": {
+      "*": {
+        "components": ["./dist/components/index.d.ts"],
+        "foundations": ["./dist/foundations/index.d.ts"]
+      }
+    }
+  }
+}

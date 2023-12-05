@@ -1,0 +1,30 @@
+{
+  "TagCloseButton": {
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    }
+  },
+  "TagLabel": {},
+  "Tag": {
+    "colorScheme": {
+      "defaultValue": "gray",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "description": "The size of the Tag"
+    },
+    "variant": {
+      "defaultValue": "subtle",
+      "type": "\"subtle\" | \"solid\" | \"outline\"",
+      "required": false,
+      "description": "The variant of the Tag"
+    }
+  }
+}

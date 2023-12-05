@@ -1,0 +1,48 @@
+{
+  "UseCounter": {
+    "defaultValue": {
+      "type": "string | number",
+      "required": false,
+      "description": "The initial value of the counter. Should be less than `max` and greater than `min`"
+    },
+    "keepWithinRange": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "This controls the value update behavior in general.\n\n- If `true` and you use the stepper or up/down arrow keys,\n the value will not exceed the `max` or go lower than `min`\n\n- If `false`, the value will be allowed to go out of range."
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "Number.MAX_SAFE_INTEGER",
+      "required": false,
+      "description": "The maximum value of the counter"
+    },
+    "min": {
+      "type": "number",
+      "defaultValue": "Number.MIN_SAFE_INTEGER",
+      "required": false,
+      "description": "The minimum value of the counter"
+    },
+    "onChange": {
+      "type": "(valueAsString: string, valueAsNumber: number) => void",
+      "required": false,
+      "description": "The callback fired when the value changes"
+    },
+    "precision": {
+      "type": "number",
+      "required": false,
+      "description": "The number of decimal points used to round the value"
+    },
+    "step": {
+      "type": "number",
+      "defaultValue": "1",
+      "required": false,
+      "description": "The step used to increment or decrement the value"
+    },
+    "value": {
+      "type": "string | number",
+      "required": false,
+      "description": "The value of the counter. Should be less than `max` and greater than `min`"
+    }
+  }
+}

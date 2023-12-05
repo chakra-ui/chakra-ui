@@ -1,0 +1,172 @@
+{
+  "PinInputField": {},
+  "PinInput": {
+    "autoFocus": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input receives focus on mount"
+    },
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "defaultValue": {
+      "type": "string",
+      "required": false,
+      "description": "The default value of the pin input"
+    },
+    "errorBorderColor": {
+      "type": "string",
+      "required": false,
+      "description": "The border color when the input is invalid. Use color keys in `theme.colors`"
+    },
+    "focusBorderColor": {
+      "type": "string",
+      "required": false,
+      "description": "The border color when the input is focused. Use color keys in `theme.colors`"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "The top-level id string that will be applied to the input fields.\nThe index of the input will be appended to this top-level id."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input component is put in the disabled state"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input component is put in the invalid state"
+    },
+    "manageFocus": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, focus will move automatically to the next input once filled"
+    },
+    "mask": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the input's value will be masked just like `type=password`"
+    },
+    "onChange": {
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Function called on input change"
+    },
+    "onComplete": {
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Function called when all inputs have valid values"
+    },
+    "otp": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input component signals to its fields that they should\nuse `autocomplete=\"one-time-code\"`."
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "The placeholder for the pin input"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"lg\" | \"md\" | \"sm\" | \"xs\"",
+      "required": false,
+      "description": "The size of the PinInput"
+    },
+    "type": {
+      "type": "\"number\" | \"alphanumeric\"",
+      "required": false,
+      "description": "The type of values the pin-input should allow"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The value of the pin input. This is the value\nthat will be returned when the pin input is filled"
+    },
+    "variant": {
+      "defaultValue": "outline",
+      "type": "\"outline\" | \"flushed\" | \"filled\" | \"unstyled\"",
+      "required": false,
+      "description": "The variant of the PinInput"
+    }
+  },
+  "UsePinInputField": {
+    "ref": {
+      "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLInputElement | null) => void)\n  | RefObject<HTMLInputElement>",
+      "required": false
+    }
+  },
+  "UsePinInput": {
+    "autoFocus": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input receives focus on mount"
+    },
+    "defaultValue": {
+      "type": "string",
+      "required": false,
+      "description": "The default value of the pin input"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "The top-level id string that will be applied to the input fields.\nThe index of the input will be appended to this top-level id."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input component is put in the disabled state"
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input component is put in the invalid state"
+    },
+    "manageFocus": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, focus will move automatically to the next input once filled"
+    },
+    "mask": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the input's value will be masked just like `type=password`"
+    },
+    "onChange": {
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Function called on input change"
+    },
+    "onComplete": {
+      "type": "(value: string) => void",
+      "required": false,
+      "description": "Function called when all inputs have valid values"
+    },
+    "otp": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the pin input component signals to its fields that they should\nuse `autocomplete=\"one-time-code\"`."
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "The placeholder for the pin input"
+    },
+    "type": {
+      "type": "\"number\" | \"alphanumeric\"",
+      "required": false,
+      "description": "The type of values the pin-input should allow"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The value of the pin input. This is the value\nthat will be returned when the pin input is filled"
+    }
+  }
+}

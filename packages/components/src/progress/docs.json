@@ -1,0 +1,132 @@
+{
+  "CircularProgress": {
+    "capIsRound": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the cap of the progress indicator will be rounded."
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "description": "The color of the progress indicator. Use a color key in the theme object"
+    },
+    "getValueText": {
+      "type": "(value: number, percent: number) => string",
+      "required": false,
+      "description": "A function that returns the desired valueText to use in place of the value"
+    },
+    "isIndeterminate": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the progress will be indeterminate and the `value`\nprop will be ignored"
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "100",
+      "required": false,
+      "description": "Maximum value defining 100% progress made (must be higher than 'min')"
+    },
+    "min": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "Minimum value defining 'no progress' (must be lower than 'max')"
+    },
+    "size": {
+      "type": "string | number",
+      "required": false,
+      "description": "The size of the circular progress in CSS units"
+    },
+    "thickness": {
+      "type": "string | number",
+      "defaultValue": "10px",
+      "required": false,
+      "description": "This defines the stroke width of the svg circle."
+    },
+    "trackColor": {
+      "type": "string",
+      "required": false,
+      "description": "The color name of the progress track. Use a color key in the theme object"
+    },
+    "value": {
+      "type": "number",
+      "required": false,
+      "description": "Current progress (must be between min/max)"
+    },
+    "valueText": {
+      "type": "string",
+      "required": false,
+      "description": "The desired valueText to use in place of the value"
+    }
+  },
+  "ProgressFilledTrack": {
+    "max": { "type": "number", "required": true },
+    "min": { "type": "number", "required": true },
+    "getValueText": {
+      "type": "(value: number, percent: number) => string",
+      "required": false
+    },
+    "isIndeterminate": { "type": "boolean", "required": false },
+    "value": { "type": "number", "required": false },
+    "valueText": { "type": "string", "required": false }
+  },
+  "Progress": {
+    "colorScheme": {
+      "defaultValue": "blue",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "hasStripe": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the progress bar will show stripe"
+    },
+    "isAnimated": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, and hasStripe is `true`, the stripes will be animated"
+    },
+    "isIndeterminate": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the progress will be indeterminate and the `value`\nprop will be ignored"
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "100",
+      "required": false,
+      "description": "The maximum value of the progress"
+    },
+    "min": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum value of the progress"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "description": "The size of the Progress"
+    },
+    "value": {
+      "type": "number",
+      "required": false,
+      "description": "The `value` of the progress indicator.\nIf `undefined` the progress bar will be in `indeterminate` state"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Progress"
+    }
+  },
+  "ProgressTrack": {},
+  "ProgressLabel": {},
+  "CircularProgressLabel": {}
+}

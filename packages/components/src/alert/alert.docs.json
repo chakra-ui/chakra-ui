@@ -1,0 +1,31 @@
+{
+  "Alert": {
+    "addRole": { "type": "boolean", "defaultValue": false, "required": false },
+    "colorScheme": {
+      "defaultValue": "blue",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "type": "string",
+      "required": false,
+      "description": "The size of the Alert"
+    },
+    "status": {
+      "type": "\"info\" | \"warning\" | \"success\" | \"error\" | \"loading\"",
+      "defaultValue": "info",
+      "required": false,
+      "description": "The status of the alert"
+    },
+    "variant": {
+      "defaultValue": "subtle",
+      "type": "\"subtle\" | \"left-accent\" | \"top-accent\" | \"solid\"",
+      "required": false,
+      "description": "The variant of the Alert"
+    }
+  },
+  "AlertDescription": {},
+  "AlertIcon": {},
+  "AlertTitle": {}
+}

@@ -1,0 +1,481 @@
+{
+  "RangeSliderInnerTrack": {},
+  "RangeSliderMark": { "value": { "type": "number", "required": true } },
+  "RangeSlider": {
+    "aria-label": {
+      "type": "string[]",
+      "required": false,
+      "description": "The static string to use used for `aria-label`\nif no visible label is used."
+    },
+    "aria-labelledby": {
+      "type": "string[]",
+      "required": false,
+      "description": "The static string `aria-labelledby` that points to the\nID of the element that serves as label for the slider"
+    },
+    "aria-valuetext": {
+      "type": "string[]",
+      "required": false,
+      "description": "The static string to use used for `aria-valuetext`"
+    },
+    "defaultValue": {
+      "type": "number[]",
+      "required": false,
+      "description": "The initial value of the slider in uncontrolled mode"
+    },
+    "direction": {
+      "type": "\"ltr\" | \"rtl\"",
+      "defaultValue": "ltr",
+      "required": false,
+      "description": "The writing mode"
+    },
+    "focusThumbOnChange": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, the slider handle will not capture focus when value changes."
+    },
+    "getAriaValueText": {
+      "type": "(value: number) => string",
+      "required": false,
+      "description": "Function that returns the `aria-valuetext` for screen readers.\nIt is mostly used to generate a more human-readable\nrepresentation of the value for assistive technologies"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "The base `id` to use for the slider and its components"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be disabled"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be in `read-only` state"
+    },
+    "isReversed": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the value will be incremented or decremented in reverse."
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "100",
+      "required": false,
+      "description": "The maximum allowed value of the slider. Cannot be less than min."
+    },
+    "min": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum allowed value of the slider. Cannot be greater than max."
+    },
+    "minStepsBetweenThumbs": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum distance between slider thumbs. Useful for preventing\nthe thumbs from being too close together."
+    },
+    "name": {
+      "type": "string | string[]",
+      "required": false,
+      "description": "The name attribute of the hidden `input` field.\nThis is particularly useful in forms"
+    },
+    "onChange": {
+      "type": "(value: number[]) => void",
+      "required": false,
+      "description": "Function called whenever the slider value changes  (by dragging or clicking)"
+    },
+    "onChangeEnd": {
+      "type": "(value: number[]) => void",
+      "required": false,
+      "description": "Function called when the user is done selecting a new value (by dragging or clicking)"
+    },
+    "onChangeStart": {
+      "type": "(value: number[]) => void",
+      "required": false,
+      "description": "Function called when the user starts selecting a new value (by dragging or clicking)"
+    },
+    "orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "defaultValue": "horizontal",
+      "required": false,
+      "description": "Orientation of the slider"
+    },
+    "step": {
+      "type": "number",
+      "defaultValue": "1",
+      "required": false,
+      "description": "The step in which increments/decrements have to be made"
+    },
+    "value": {
+      "type": "number[]",
+      "required": false,
+      "description": "The value of the slider in controlled mode"
+    }
+  },
+  "RangeSliderTrack": {},
+  "RangeSliderThumb": { "index": { "type": "number", "required": true } },
+  "SliderInnerTrack": {},
+  "SliderMark": { "value": { "type": "number", "required": true } },
+  "Slider": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "The static string to use used for `aria-label`\nif no visible label is used."
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "The static string `aria-labelledby` that points to the\nID of the element that serves as label for the slider"
+    },
+    "aria-valuetext": {
+      "type": "string",
+      "required": false,
+      "description": "The static string to use used for `aria-valuetext`"
+    },
+    "colorScheme": {
+      "defaultValue": "blue",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "defaultValue": {
+      "type": "number",
+      "required": false,
+      "description": "The initial value of the slider in uncontrolled mode"
+    },
+    "direction": {
+      "type": "\"ltr\" | \"rtl\"",
+      "defaultValue": "ltr",
+      "required": false,
+      "description": "The writing mode"
+    },
+    "focusThumbOnChange": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, the slider handle will not capture focus when value changes."
+    },
+    "getAriaValueText": {
+      "type": "(value: number) => string",
+      "required": false,
+      "description": "Function that returns the `aria-valuetext` for screen readers.\nIt is mostly used to generate a more human-readable\nrepresentation of the value for assistive technologies"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "The base `id` to use for the slider and its components"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be disabled"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be in `read-only` state"
+    },
+    "isReversed": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the value will be incremented or decremented in reverse."
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "100",
+      "required": false,
+      "description": "The maximum allowed value of the slider. Cannot be less than min."
+    },
+    "min": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum allowed value of the slider. Cannot be greater than max."
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The name attribute of the hidden `input` field.\nThis is particularly useful in forms"
+    },
+    "onChange": {
+      "type": "(value: number) => void",
+      "required": false,
+      "description": "Function called whenever the slider value changes  (by dragging or clicking)"
+    },
+    "onChangeEnd": {
+      "type": "(value: number) => void",
+      "required": false,
+      "description": "Function called when the user is done selecting a new value (by dragging or clicking)"
+    },
+    "onChangeStart": {
+      "type": "(value: number) => void",
+      "required": false,
+      "description": "Function called when the user starts selecting a new value (by dragging or clicking)"
+    },
+    "orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "defaultValue": "horizontal",
+      "required": false,
+      "description": "Orientation of the slider"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"lg\" | \"md\" | \"sm\"",
+      "required": false,
+      "description": "The size of the Slider"
+    },
+    "step": {
+      "type": "number",
+      "defaultValue": "1",
+      "required": false,
+      "description": "The step in which increments/decrements have to be made"
+    },
+    "value": {
+      "type": "number",
+      "required": false,
+      "description": "The value of the slider in controlled mode"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Slider"
+    }
+  },
+  "SliderThumb": {},
+  "SliderTrack": {},
+  "UseRangeSlider": {
+    "aria-label": {
+      "type": "string[]",
+      "required": false,
+      "description": "The static string to use used for `aria-label`\nif no visible label is used."
+    },
+    "aria-labelledby": {
+      "type": "string[]",
+      "required": false,
+      "description": "The static string `aria-labelledby` that points to the\nID of the element that serves as label for the slider"
+    },
+    "aria-valuetext": {
+      "type": "string[]",
+      "required": false,
+      "description": "The static string to use used for `aria-valuetext`"
+    },
+    "defaultValue": {
+      "type": "number[]",
+      "required": false,
+      "description": "The initial value of the slider in uncontrolled mode"
+    },
+    "direction": {
+      "type": "\"ltr\" | \"rtl\"",
+      "defaultValue": "ltr",
+      "required": false,
+      "description": "The writing mode"
+    },
+    "focusThumbOnChange": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, the slider handle will not capture focus when value changes."
+    },
+    "getAriaValueText": {
+      "type": "(value: number) => string",
+      "required": false,
+      "description": "Function that returns the `aria-valuetext` for screen readers.\nIt is mostly used to generate a more human-readable\nrepresentation of the value for assistive technologies"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "The base `id` to use for the slider and its components"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be disabled"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be in `read-only` state"
+    },
+    "isReversed": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the value will be incremented or decremented in reverse."
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "100",
+      "required": false,
+      "description": "The maximum allowed value of the slider. Cannot be less than min."
+    },
+    "min": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum allowed value of the slider. Cannot be greater than max."
+    },
+    "minStepsBetweenThumbs": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum distance between slider thumbs. Useful for preventing\nthe thumbs from being too close together."
+    },
+    "name": {
+      "type": "string | string[]",
+      "required": false,
+      "description": "The name attribute of the hidden `input` field.\nThis is particularly useful in forms"
+    },
+    "onChange": {
+      "type": "(value: number[]) => void",
+      "required": false,
+      "description": "Function called whenever the slider value changes  (by dragging or clicking)"
+    },
+    "onChangeEnd": {
+      "type": "(value: number[]) => void",
+      "required": false,
+      "description": "Function called when the user is done selecting a new value (by dragging or clicking)"
+    },
+    "onChangeStart": {
+      "type": "(value: number[]) => void",
+      "required": false,
+      "description": "Function called when the user starts selecting a new value (by dragging or clicking)"
+    },
+    "orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "defaultValue": "horizontal",
+      "required": false,
+      "description": "Orientation of the slider"
+    },
+    "step": {
+      "type": "number",
+      "defaultValue": "1",
+      "required": false,
+      "description": "The step in which increments/decrements have to be made"
+    },
+    "value": {
+      "type": "number[]",
+      "required": false,
+      "description": "The value of the slider in controlled mode"
+    }
+  },
+  "UseSlider": {
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "The static string to use used for `aria-label`\nif no visible label is used."
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "The static string `aria-labelledby` that points to the\nID of the element that serves as label for the slider"
+    },
+    "aria-valuetext": {
+      "type": "string",
+      "required": false,
+      "description": "The static string to use used for `aria-valuetext`"
+    },
+    "defaultValue": {
+      "type": "number",
+      "required": false,
+      "description": "The initial value of the slider in uncontrolled mode"
+    },
+    "direction": {
+      "type": "\"ltr\" | \"rtl\"",
+      "defaultValue": "ltr",
+      "required": false,
+      "description": "The writing mode"
+    },
+    "focusThumbOnChange": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, the slider handle will not capture focus when value changes."
+    },
+    "getAriaValueText": {
+      "type": "(value: number) => string",
+      "required": false,
+      "description": "Function that returns the `aria-valuetext` for screen readers.\nIt is mostly used to generate a more human-readable\nrepresentation of the value for assistive technologies"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "The base `id` to use for the slider and its components"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be disabled"
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the slider will be in `read-only` state"
+    },
+    "isReversed": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the value will be incremented or decremented in reverse."
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "100",
+      "required": false,
+      "description": "The maximum allowed value of the slider. Cannot be less than min."
+    },
+    "min": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum allowed value of the slider. Cannot be greater than max."
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The name attribute of the hidden `input` field.\nThis is particularly useful in forms"
+    },
+    "onChange": {
+      "type": "(value: number) => void",
+      "required": false,
+      "description": "Function called whenever the slider value changes  (by dragging or clicking)"
+    },
+    "onChangeEnd": {
+      "type": "(value: number) => void",
+      "required": false,
+      "description": "Function called when the user is done selecting a new value (by dragging or clicking)"
+    },
+    "onChangeStart": {
+      "type": "(value: number) => void",
+      "required": false,
+      "description": "Function called when the user starts selecting a new value (by dragging or clicking)"
+    },
+    "orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "defaultValue": "horizontal",
+      "required": false,
+      "description": "Orientation of the slider"
+    },
+    "step": {
+      "type": "number",
+      "defaultValue": "1",
+      "required": false,
+      "description": "The step in which increments/decrements have to be made"
+    },
+    "value": {
+      "type": "number",
+      "required": false,
+      "description": "The value of the slider in controlled mode"
+    }
+  }
+}

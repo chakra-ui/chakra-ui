@@ -1,0 +1,8 @@
+export { Avatar } from "./avatar"
+export type { AvatarProps } from "./avatar"
+export { AvatarBadge } from "./avatar-badge"
+export type { AvatarBadgeProps } from "./avatar-badge"
+export { useAvatarStyles } from "./avatar-context"
+export { AvatarGroup } from "./avatar-group"
+export type { AvatarGroupProps } from "./avatar-group"
+export { GenericAvatarIcon } from "./generic-avatar-icon"

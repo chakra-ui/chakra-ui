@@ -1,0 +1,6 @@
+{
+  "EnvironmentProvider": {
+    "disabled": { "type": "boolean", "required": false },
+    "environment": { "type": "Environment", "required": false }
+  }
+}

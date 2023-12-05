@@ -1,0 +1,15 @@
+{
+  "ControlBox": {
+    "_checked": { "type": "SystemStyleObject", "required": false },
+    "_checkedAndChild": { "type": "SystemStyleObject", "required": false },
+    "_checkedAndDisabled": { "type": "SystemStyleObject", "required": false },
+    "_checkedAndFocus": { "type": "SystemStyleObject", "required": false },
+    "_checkedAndHover": { "type": "SystemStyleObject", "required": false },
+    "_child": { "type": "SystemStyleObject", "required": false },
+    "_disabled": { "type": "SystemStyleObject", "required": false },
+    "_focus": { "type": "SystemStyleObject", "required": false },
+    "_hover": { "type": "SystemStyleObject", "required": false },
+    "_invalid": { "type": "SystemStyleObject", "required": false },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false }
+  }
+}

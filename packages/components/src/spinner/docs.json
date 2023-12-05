@@ -1,0 +1,49 @@
+{
+  "Spinner": {
+    "color": {
+      "type": "string",
+      "required": false,
+      "description": "The color of the spinner"
+    },
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "emptyColor": {
+      "type": "string",
+      "defaultValue": "transparent",
+      "required": false,
+      "description": "The color of the empty area in the spinner"
+    },
+    "label": {
+      "type": "string",
+      "defaultValue": "Loading...",
+      "required": false,
+      "description": "For accessibility, it is important to add a fallback loading text.\nThis text will be visible to screen readers."
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+      "required": false,
+      "description": "The size of the Spinner"
+    },
+    "speed": {
+      "type": "string",
+      "defaultValue": "0.45s",
+      "required": false,
+      "description": "The speed of the spinner."
+    },
+    "thickness": {
+      "type": "string",
+      "defaultValue": "2px",
+      "required": false,
+      "description": "The thickness of the spinner"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Spinner"
+    }
+  }
+}

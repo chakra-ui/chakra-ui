@@ -1,0 +1,43 @@
+{
+  "Hide": {
+    "above": {
+      "type": "string",
+      "required": false,
+      "description": "A value from the `breakpoints` section in the theme. Will render `children`\nfrom that breakpoint and above. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`."
+    },
+    "below": {
+      "type": "string",
+      "required": false,
+      "description": "A value from the `breakpoints` section in the theme. Will render `children`\nfrom that breakpoint and below. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`."
+    },
+    "breakpoint": {
+      "type": "string",
+      "required": false,
+      "description": "A custom css media query that determines when the `children` are rendered.\nWill render `children` if that query resolves to `true`."
+    },
+    "ssr": { "type": "boolean", "required": false }
+  },
+  "UseQuery": {
+    "above": { "type": "string", "required": false },
+    "below": { "type": "string", "required": false },
+    "breakpoint": { "type": "string", "required": false }
+  },
+  "Show": {
+    "above": {
+      "type": "string",
+      "required": false,
+      "description": "A value from the `breakpoints` section in the theme. Will render `children`\nfrom that breakpoint and above. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`."
+    },
+    "below": {
+      "type": "string",
+      "required": false,
+      "description": "A value from the `breakpoints` section in the theme. Will render `children`\nfrom that breakpoint and below. Default breakpoint values: `sm`, `md`, `lg`, `xl`, `2xl`."
+    },
+    "breakpoint": {
+      "type": "string",
+      "required": false,
+      "description": "A custom css media query that determines when the `children` are rendered.\nWill render `children` if that query resolves to `true`."
+    },
+    "ssr": { "type": "boolean", "required": false }
+  }
+}

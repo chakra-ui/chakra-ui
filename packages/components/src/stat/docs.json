@@ -1,0 +1,28 @@
+{
+  "Stat": {
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"md\"",
+      "required": false,
+      "description": "The size of the Stat"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Stat"
+    }
+  },
+  "StatArrow": {
+    "orientation": { "type": "Orientation", "required": false },
+    "type": { "type": "\"increase\" | \"decrease\"", "required": false }
+  },
+  "StatGroup": {},
+  "StatHelpText": {},
+  "StatLabel": {},
+  "StatNumber": {}
+}

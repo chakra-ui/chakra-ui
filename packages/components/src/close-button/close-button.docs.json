@@ -1,0 +1,26 @@
+{
+  "CloseButton": {
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the close button will be disabled."
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"lg\" | \"md\" | \"sm\"",
+      "required": false,
+      "description": "The size of the CloseButton"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the CloseButton"
+    }
+  }
+}

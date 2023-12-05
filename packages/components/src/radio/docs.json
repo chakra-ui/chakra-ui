@@ -1,0 +1,250 @@
+{
+  "Radio": {
+    "aria-describedby": {
+      "type": "string",
+      "required": false,
+      "description": "Refers to the `id` of the element that labels the radio element."
+    },
+    "colorScheme": {
+      "defaultValue": "blue",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "data-radiogroup": { "type": "any", "required": false },
+    "defaultChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be initially checked."
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "id assigned to input"
+    },
+    "inputProps": {
+      "type": "InputHTMLAttributes<HTMLInputElement>",
+      "required": false,
+      "description": "Additional props to be forwarded to the `input` element"
+    },
+    "isChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be checked.\nYou'll need to pass `onChange` to update its value (since it is now controlled)"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and `isDisabled` is true, the radio will remain\nfocusable but not interactive."
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`."
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be read-only"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio button will be required. This also sets `aria-required` to `true`."
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The name of the input field in a radio\n(Useful for form submission)."
+    },
+    "onChange": {
+      "type": "(event: ChangeEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Function called when checked state of the `input` changes"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"md\" | \"lg\" | \"sm\"",
+      "required": false,
+      "description": "The size of the Radio"
+    },
+    "spacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "defaultValue": "0.5rem",
+      "required": false,
+      "description": "The spacing between the checkbox and its label text"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The value to be used in the radio button.\nThis is the value that will be returned on form submission."
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Radio"
+    }
+  },
+  "UseRadio": {
+    "aria-describedby": {
+      "type": "string",
+      "required": false,
+      "description": "Refers to the `id` of the element that labels the radio element."
+    },
+    "data-radiogroup": { "type": "any", "required": false },
+    "defaultChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be initially checked."
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "id assigned to input"
+    },
+    "isChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be checked.\nYou'll need to pass `onChange` to update its value (since it is now controlled)"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and `isDisabled` is true, the radio will remain\nfocusable but not interactive."
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`."
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio will be read-only"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the radio button will be required. This also sets `aria-required` to `true`."
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The name of the input field in a radio\n(Useful for form submission)."
+    },
+    "onChange": {
+      "type": "(event: ChangeEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Function called when checked state of the `input` changes"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The value to be used in the radio button.\nThis is the value that will be returned on form submission."
+    }
+  },
+  "UseRadioGroup": {
+    "defaultValue": {
+      "type": "string",
+      "required": false,
+      "description": "The value of the radio to be `checked`\ninitially (in uncontrolled mode)"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, all wrapped radio inputs will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and `isDisabled` is true, all wrapped radio inputs will remain\nfocusable but not interactive."
+    },
+    "isNative": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The `name` attribute forwarded to each `radio` element"
+    },
+    "onChange": {
+      "type": "(nextValue: string) => void",
+      "required": false,
+      "description": "Function called once a radio is checked"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The value of the radio to be `checked`\n(in controlled mode)"
+    }
+  },
+  "RadioGroup": {
+    "defaultValue": {
+      "type": "string",
+      "required": false,
+      "description": "The value of the radio to be `checked`\ninitially (in uncontrolled mode)"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, all wrapped radio inputs will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and `isDisabled` is true, all wrapped radio inputs will remain\nfocusable but not interactive."
+    },
+    "isNative": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The `name` attribute forwarded to each `radio` element"
+    },
+    "onChange": {
+      "type": "(nextValue: string) => void",
+      "required": false,
+      "description": "Function called once a radio is checked"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The value of the radio to be `checked`\n(in controlled mode)"
+    }
+  }
+}

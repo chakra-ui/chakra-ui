@@ -1,0 +1,299 @@
+{
+  "Checkbox": {
+    "aria-describedby": { "type": "string", "required": false },
+    "aria-invalid": { "type": "true", "required": false },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines the string that labels the checkbox element."
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "Refers to the `id` of the element that labels the checkbox element."
+    },
+    "colorScheme": {
+      "defaultValue": "blue",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "defaultValue": "CheckboxIcon",
+      "required": false,
+      "description": "The checked icon to use"
+    },
+    "iconColor": {
+      "type": "string",
+      "required": false,
+      "description": "The color of the checkbox icon when checked or indeterminate"
+    },
+    "iconSize": {
+      "type": "string | number",
+      "required": false,
+      "description": "The size of the checkbox icon when checked or indeterminate"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "id assigned to input"
+    },
+    "inputProps": {
+      "type": "InputHTMLAttributes<HTMLInputElement>",
+      "required": false,
+      "description": "Additional props to be forwarded to the `input` element"
+    },
+    "isChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be checked.\nYou'll need to pass `onChange` to update its value (since it is now controlled)"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and `isDisabled` is passed, the checkbox will\nremain tabbable but not interactive"
+    },
+    "isIndeterminate": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be indeterminate.\nThis only affects the icon shown inside checkbox\nand does not modify the isChecked property."
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox is marked as invalid.\nChanges style of unchecked state."
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be readonly"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox input is marked as required,\nand `required` attribute will be added"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The name of the input field in a checkbox\n(Useful for form submission)."
+    },
+    "onChange": {
+      "type": "(event: ChangeEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "The callback invoked when the checked state of the `Checkbox` changes."
+    },
+    "onFocus": {
+      "type": "(event: FocusEvent<HTMLInputElement, Element>) => void",
+      "required": false,
+      "description": "The callback invoked when the checkbox is focused"
+    },
+    "size": {
+      "defaultValue": "md",
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "required": false,
+      "description": "The size of the Checkbox"
+    },
+    "spacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "defaultValue": "0.5rem",
+      "required": false,
+      "description": "The spacing between the checkbox and its label text"
+    },
+    "tabIndex": {
+      "type": "number",
+      "required": false,
+      "description": "The tab-index property of the underlying input element."
+    },
+    "value": {
+      "type": "string | number",
+      "required": false,
+      "description": "The value to be used in the checkbox input.\nThis is the value that will be returned on form submission."
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Checkbox"
+    }
+  },
+  "CheckboxGroup": {
+    "defaultValue": {
+      "type": "(string | number)[]",
+      "required": false,
+      "description": "The initial value of the checkbox group"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, all wrapped checkbox inputs will be disabled"
+    },
+    "isNative": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
+    },
+    "onChange": {
+      "type": "(value: (string | number)[]) => void",
+      "required": false,
+      "description": "The callback fired when any children Checkbox is checked or unchecked"
+    },
+    "value": {
+      "type": "(string | number)[]",
+      "required": false,
+      "description": "The value of the checkbox group"
+    }
+  },
+  "CheckboxIcon": {
+    "isChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    },
+    "isIndeterminate": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    }
+  },
+  "UseCheckboxGroup": {
+    "defaultValue": {
+      "type": "(string | number)[]",
+      "required": false,
+      "description": "The initial value of the checkbox group"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, all wrapped checkbox inputs will be disabled"
+    },
+    "isNative": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
+    },
+    "onChange": {
+      "type": "(value: (string | number)[]) => void",
+      "required": false,
+      "description": "The callback fired when any children Checkbox is checked or unchecked"
+    },
+    "value": {
+      "type": "(string | number)[]",
+      "required": false,
+      "description": "The value of the checkbox group"
+    }
+  },
+  "UseCheckbox": {
+    "aria-describedby": { "type": "string", "required": false },
+    "aria-invalid": { "type": "true", "required": false },
+    "aria-label": {
+      "type": "string",
+      "required": false,
+      "description": "Defines the string that labels the checkbox element."
+    },
+    "aria-labelledby": {
+      "type": "string",
+      "required": false,
+      "description": "Refers to the `id` of the element that labels the checkbox element."
+    },
+    "defaultChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be initially checked."
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "id assigned to input"
+    },
+    "isChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be checked.\nYou'll need to pass `onChange` to update its value (since it is now controlled)"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` and `isDisabled` is passed, the checkbox will\nremain tabbable but not interactive"
+    },
+    "isIndeterminate": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be indeterminate.\nThis only affects the icon shown inside checkbox\nand does not modify the isChecked property."
+    },
+    "isInvalid": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox is marked as invalid.\nChanges style of unchecked state."
+    },
+    "isReadOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox will be readonly"
+    },
+    "isRequired": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the checkbox input is marked as required,\nand `required` attribute will be added"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "The name of the input field in a checkbox\n(Useful for form submission)."
+    },
+    "onBlur": {
+      "type": "(event: FocusEvent<HTMLInputElement, Element>) => void",
+      "required": false,
+      "description": "The callback invoked when the checkbox is blurred (loses focus)"
+    },
+    "onChange": {
+      "type": "(event: ChangeEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "The callback invoked when the checked state of the `Checkbox` changes."
+    },
+    "onFocus": {
+      "type": "(event: FocusEvent<HTMLInputElement, Element>) => void",
+      "required": false,
+      "description": "The callback invoked when the checkbox is focused"
+    },
+    "tabIndex": {
+      "type": "number",
+      "required": false,
+      "description": "The tab-index property of the underlying input element."
+    },
+    "value": {
+      "type": "string | number",
+      "required": false,
+      "description": "The value to be used in the checkbox input.\nThis is the value that will be returned on form submission."
+    }
+  }
+}
