@@ -25,7 +25,7 @@ const baseStyleTrack = defineStyle((props) => {
     height: [$height.reference],
     transitionProperty: "common",
     transitionDuration: "fast",
-    [$bg.variable]: "colors.gray.300",
+    [$bg.variable]: "colors.gray.600",
     _dark: {
       [$bg.variable]: "colors.whiteAlpha.400",
     },
@@ -37,7 +37,7 @@ const baseStyleTrack = defineStyle((props) => {
       cursor: "not-allowed",
     },
     _checked: {
-      [$bg.variable]: `colors.${c}.500`,
+      [$bg.variable]: `colors.${c}.600`,
       _dark: {
         [$bg.variable]: `colors.${c}.200`,
       },
