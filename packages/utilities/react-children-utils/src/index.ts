@@ -11,3 +11,12 @@ export function getValidChildren(children: React.ReactNode) {
     isValidElement(child),
   ) as React.ReactElement[]
 }
+
+/**
+ * Checks if children is a non-renderable value.
+ *
+ * @param children the children
+ */
+export function isNullishChildren(children: React.ReactNode) {
+  return children === null || children === undefined || children === ""
+}

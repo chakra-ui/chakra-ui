@@ -762,6 +762,9 @@ importers:
       '@chakra-ui/object-utils':
         specifier: workspace:*
         version: link:../../utilities/object-utils
+      '@chakra-ui/react-children-utils':
+        specifier: workspace:*
+        version: link:../../utilities/react-children-utils
       '@chakra-ui/system':
         specifier: workspace:*
         version: link:../../core/system
@@ -1618,6 +1621,9 @@ importers:
       '@chakra-ui/object-utils':
         specifier: workspace:*
         version: link:../../utilities/object-utils
+      '@chakra-ui/react-children-utils':
+        specifier: workspace:*
+        version: link:../../utilities/react-children-utils
       '@chakra-ui/system':
         specifier: workspace:*
         version: link:../../core/system
@@ -2019,6 +2025,9 @@ importers:
       '@chakra-ui/layout':
         specifier: workspace:*
         version: link:../layout
+      '@chakra-ui/react-children-utils':
+        specifier: workspace:*
+        version: link:../../utilities/react-children-utils
       '@chakra-ui/system':
         specifier: workspace:*
         version: link:../../core/system

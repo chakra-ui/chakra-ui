@@ -11,6 +11,8 @@ import {
 } from "@chakra-ui/system"
 import { callAll } from "@chakra-ui/shared-utils"
 import { split } from "@chakra-ui/object-utils"
+import { isNullishChildren } from "@chakra-ui/react-children-utils"
+
 import { useRadioGroupContext } from "./radio-group"
 import { useRadio, UseRadioProps } from "./use-radio"
 
@@ -121,7 +123,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
         {...checkboxProps}
         __css={checkboxStyles}
       />
-      {children && (
+      {!isNullishChildren(children) && (
         <chakra.span
           className="chakra-radio__label"
           {...labelProps}

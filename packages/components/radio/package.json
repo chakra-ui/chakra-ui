@@ -38,6 +38,7 @@
     "@chakra-ui/shared-utils": "workspace:*"
   },
   "devDependencies": {
+    "@chakra-ui/react-children-utils": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/visually-hidden": "workspace:*",
     "@chakra-ui/system": "workspace:*",
