@@ -1,5 +1,3 @@
-import { CSSReset, CSSPolyfill } from "@chakra-ui/css-reset"
-import { PortalManager } from "@chakra-ui/portal"
 import {
   ColorModeProvider,
   ColorModeProviderProps,
@@ -8,10 +6,9 @@ import {
   ThemeProviderProps,
 } from "@chakra-ui/system"
 import { Dict } from "@chakra-ui/utils"
-import {
-  EnvironmentProvider,
-  EnvironmentProviderProps,
-} from "@chakra-ui/react-env"
+import { CSSPolyfill, CSSReset } from "../css-reset"
+import { EnvironmentProvider, EnvironmentProviderProps } from "../env"
+import { PortalManager } from "../portal"
 
 export interface ChakraProviderProps
   extends Pick<ThemeProviderProps, "cssVarsRoot"> {

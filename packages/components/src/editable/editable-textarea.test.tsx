@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Editable, EditablePreview, EditableTextarea } from "../src"
+import { Editable, EditablePreview, EditableTextarea } from "."
 
 test("matches snapshot", () => {
   render(

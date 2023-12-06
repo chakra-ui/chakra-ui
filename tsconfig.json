@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "NodeNext",
     "lib": ["dom", "esnext"],
+    "allowJs": true,
     "declaration": true,
     "sourceMap": true,
     "moduleResolution": "NodeNext",

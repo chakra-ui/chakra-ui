@@ -1,5 +1,4 @@
 import { getScrollParent } from "@chakra-ui/dom-utils"
-import { popperCSSVars, usePopper, UsePopperProps } from "@chakra-ui/popper"
 import { PropGetter } from "@chakra-ui/react-types"
 import { useDisclosure } from "@chakra-ui/react-use-disclosure"
 import { useEventListener } from "@chakra-ui/react-use-event-listener"
@@ -12,6 +11,7 @@ import React, {
   useRef,
   type RefObject,
 } from "react"
+import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
 
 export interface UseTooltipProps
   extends Pick<

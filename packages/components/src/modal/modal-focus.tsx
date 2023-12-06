@@ -1,8 +1,7 @@
-import { FocusLock } from "@chakra-ui/focus-lock"
 import { usePresence } from "framer-motion"
 import { useEffect } from "react"
 import { RemoveScroll } from "react-remove-scroll"
-
+import { FocusLock } from "../focus-lock"
 import { useModalContext } from "./modal"
 import { useModalManager } from "./modal-manager"
 

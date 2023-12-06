@@ -1,14 +1,13 @@
 import { cx } from "@chakra-ui/shared-utils"
 import {
-  chakra,
   ChakraProps,
   SystemStyleObject,
+  chakra,
   forwardRef,
 } from "@chakra-ui/system"
-import { fadeConfig } from "@chakra-ui/transition"
-import { motion, HTMLMotionProps } from "framer-motion"
-
-import { useModalStyles, useModalContext } from "./modal"
+import { HTMLMotionProps, motion } from "framer-motion"
+import { fadeConfig } from "../transition"
+import { useModalContext, useModalStyles } from "./modal"
 
 const MotionDiv = chakra(motion.div)
 

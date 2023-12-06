@@ -1,5 +1,4 @@
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
-import * as React from "react"
 import {
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -7,7 +6,7 @@ import {
   NumberInputField,
   NumberInputProps,
   NumberInputStepper,
-} from "../src"
+} from "."
 
 function renderComponent(props: NumberInputProps = {}) {
   return render(

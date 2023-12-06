@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react"
-import { chakra, ChakraComponent } from ".."
+import { chakra, ChakraComponent } from "../src"
 
 /**
  * These tests should fail while type checking

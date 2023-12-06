@@ -5,9 +5,8 @@ import {
   HTMLChakraProps,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { Slide } from "@chakra-ui/transition"
 import type { HTMLMotionProps } from "framer-motion"
-
+import { Slide } from "../transition"
 import { useDrawerContext } from "./drawer"
 import { useModalContext, useModalStyles } from "./modal"
 import { ModalFocusScope } from "./modal-focus"

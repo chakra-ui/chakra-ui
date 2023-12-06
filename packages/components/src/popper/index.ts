@@ -1,4 +1,4 @@
-export type { Placement, PlacementWithLogical } from "../src/popper.placement"
-export { usePopper } from "../src/use-popper"
-export type { UsePopperProps, UsePopperReturn } from "../src/use-popper"
-export { cssVars as popperCSSVars } from "../src/utils"
+export type { Placement, PlacementWithLogical } from "./popper.placement"
+export { usePopper } from "./use-popper"
+export type { UsePopperProps, UsePopperReturn } from "./use-popper"
+export { cssVars as popperCSSVars } from "./utils"

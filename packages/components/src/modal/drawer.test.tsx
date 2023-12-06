@@ -1,3 +1,4 @@
+import { render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {
   Drawer,
@@ -6,8 +7,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerProps,
-} from "../src"
-import { render, testA11y, screen } from "@chakra-ui/test-utils"
+} from "."
 
 const SimpleDrawer = (props: {
   placement?: DrawerProps["placement"]

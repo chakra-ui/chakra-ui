@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react"
-import { chakra, forwardRef } from ".."
+import { chakra, forwardRef } from "../src"
 
 /**
  * These tests should fail while type checking

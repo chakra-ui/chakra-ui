@@ -497,6 +497,12 @@ importers:
 
   packages/components:
     dependencies:
+      '@chakra-ui/breakpoint-utils':
+        specifier: workspace:*
+        version: link:../utilities/breakpoint-utils
+      '@chakra-ui/dom-utils':
+        specifier: workspace:*
+        version: link:../utilities/dom-utils
       '@chakra-ui/hooks':
         specifier: workspace:*
         version: link:../legacy/hooks
@@ -518,6 +524,9 @@ importers:
       '@chakra-ui/react-types':
         specifier: workspace:*
         version: link:../utilities/react-types
+      '@chakra-ui/react-use-animation-state':
+        specifier: workspace:*
+        version: link:../hooks/use-animation-state
       '@chakra-ui/react-use-callback-ref':
         specifier: workspace:*
         version: link:../hooks/use-callback-ref
@@ -527,6 +536,12 @@ importers:
       '@chakra-ui/react-use-disclosure':
         specifier: workspace:*
         version: link:../hooks/use-disclosure
+      '@chakra-ui/react-use-event-listener':
+        specifier: workspace:*
+        version: link:../hooks/use-event-listener
+      '@chakra-ui/react-use-focus-effect':
+        specifier: workspace:*
+        version: link:../hooks/use-focus-effect
       '@chakra-ui/react-use-focus-on-pointer-down':
         specifier: workspace:*
         version: link:../hooks/use-focus-on-pointer-down
@@ -539,15 +554,24 @@ importers:
       '@chakra-ui/react-use-merge-refs':
         specifier: workspace:*
         version: link:../hooks/use-merge-refs
+      '@chakra-ui/react-use-outside-click':
+        specifier: workspace:*
+        version: link:../hooks/use-outside-click
       '@chakra-ui/react-use-pan-event':
         specifier: workspace:*
         version: link:../hooks/use-pan-event
+      '@chakra-ui/react-use-previous':
+        specifier: workspace:*
+        version: link:../hooks/use-previous
       '@chakra-ui/react-use-safe-layout-effect':
         specifier: workspace:*
         version: link:../hooks/use-safe-layout-effect
       '@chakra-ui/react-use-size':
         specifier: workspace:*
         version: link:../hooks/use-size
+      '@chakra-ui/react-use-timeout':
+        specifier: workspace:*
+        version: link:../hooks/use-timeout
       '@chakra-ui/react-use-update-effect':
         specifier: workspace:*
         version: link:../hooks/use-update-effect
@@ -569,12 +593,24 @@ importers:
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../legacy/utils
+      '@popperjs/core':
+        specifier: ^2.11.8
+        version: 2.11.8
       '@zag-js/focus-visible':
         specifier: ^0.31.1
         version: 0.31.1
       aria-hidden:
         specifier: ^1.2.3
         version: 1.2.3
+      react-focus-lock:
+        specifier: ^2.9.6
+        version: 2.9.6(@types/react@18.2.42)(react@18.2.0)
+      react-lorem-component:
+        specifier: ^0.13.0
+        version: 0.13.0(react@18.2.0)
+      react-remove-scroll:
+        specifier: ^2.5.7
+        version: 2.5.7(@types/react@18.2.42)(react@18.2.0)
     devDependencies:
       '@chakra-ui/icons':
         specifier: workspace:*
@@ -5354,7 +5390,7 @@ packages:
   /@manypkg/find-root@1.1.0:
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/node': 12.20.55
       find-up: 4.1.0
       fs-extra: 8.1.0
@@ -6229,15 +6265,19 @@ packages:
       write-yaml-file: 4.2.0
     dev: false
 
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
+
   /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
 
   /@radix-ui/primitive@1.0.1:
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
 
   /@radix-ui/react-arrow@1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-wSP+pHsB/jQRaL6voubsQ/ZlrGBHHrOjmBnr19hxYgtS0WvAFwZhK2WP/YY5yF9uKECCEEDGxuLxq1NBK51wFA==}
@@ -6272,7 +6312,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@radix-ui/react-context': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
@@ -6291,7 +6331,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.42
       react: 18.2.0
 
@@ -6304,7 +6344,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.42
       react: 18.2.0
 
@@ -6317,7 +6357,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.42
       react: 18.2.0
 
@@ -6334,7 +6374,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
@@ -6354,7 +6394,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.42
       react: 18.2.0
 
@@ -6371,7 +6411,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.42)(react@18.2.0)
@@ -6389,7 +6429,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@types/react': 18.2.42
       react: 18.2.0
@@ -6407,7 +6447,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@floating-ui/react-dom': 2.0.1(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-arrow': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.42)(react@18.2.0)
@@ -6436,7 +6476,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.42
       '@types/react-dom': 18.2.7
@@ -6456,7 +6496,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.42)(react@18.2.0)
       '@types/react': 18.2.42
       '@types/react-dom': 18.2.7
@@ -6476,7 +6516,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-collection': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.42)(react@18.2.0)
@@ -6544,7 +6584,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.42
       '@types/react-dom': 18.2.7
@@ -6560,7 +6600,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@types/react': 18.2.42
       react: 18.2.0
@@ -6578,7 +6618,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-context': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@radix-ui/react-direction': 1.0.1(@types/react@18.2.42)(react@18.2.0)
@@ -6648,7 +6688,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.42
       react: 18.2.0
 
@@ -6661,7 +6701,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.42)(react@18.2.0)
       '@types/react': 18.2.42
       react: 18.2.0
@@ -6689,7 +6729,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.42
       react: 18.2.0
 
@@ -6702,7 +6742,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/react': 18.2.42
       react: 18.2.0
 
@@ -6747,7 +6787,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.42
       '@types/react-dom': 18.2.7
@@ -10633,7 +10673,7 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       cosmiconfig: 7.0.1
       resolve: 1.22.1
 
@@ -11981,6 +12021,13 @@ packages:
     hasBin: true
     dependencies:
       '@babel/runtime': 7.23.4
+
+  /create-react-class@15.7.0:
+    resolution: {integrity: sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng==}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
 
   /create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -14761,6 +14808,13 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: false
 
+  /focus-lock@1.0.0:
+    resolution: {integrity: sha512-a8Ge6cdKh9za/GZR/qtigTAk7SrGore56EFcoMshClsh7FLk1zwszc/ltuMfKhx56qeuyL/jWQ4J4axou0iJ9w==}
+    engines: {node: '>=10'}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
   /follow-redirects@1.15.1(debug@4.3.4):
     resolution: {integrity: sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==}
     engines: {node: '>=4.0'}
@@ -14823,7 +14877,7 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       cosmiconfig: 6.0.0
-      deepmerge: 4.3.1
+      deepmerge: 4.2.2
       eslint: 7.32.0
       fs-extra: 9.1.0
       glob: 7.2.3
@@ -18816,6 +18870,13 @@ packages:
     dependencies:
       js-tokens: 4.0.0
 
+  /lorem-ipsum@1.0.6:
+    resolution: {integrity: sha512-Rx4XH8X4KSDCKAVvWGYlhAfNqdUP5ZdT4rRyf0jjrvWgtViZimDIlopWNfn/y3lGM5K4uuiAoY28TaD+7YKFrQ==}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.6
+    dev: false
+
   /lower-case-first@2.0.2:
     resolution: {integrity: sha512-EVm/rR94FJTZi3zefZ82fLWab+GX14LJN4HrWBcuo6Evmsl9hEfnqxgcHCKb9q+mNf6EVdsjx/qucYFIIB84pg==}
     dependencies:
@@ -21511,6 +21572,15 @@ packages:
       whatwg-fetch: 3.6.2
     dev: true
 
+  /react-clientside-effect@1.2.6(react@18.2.0):
+    resolution: {integrity: sha512-XGGGRQAKY+q25Lz9a/4EPqom7WRjz3z9R2k4jhVKA/puQFH/5Nt27vFZYql4m4NVNdUvX8PS3O7r/Zzm7cjUlg==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      '@babel/runtime': 7.23.4
+      react: 18.2.0
+    dev: false
+
   /react-colorful@5.6.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
     peerDependencies:
@@ -21663,6 +21733,25 @@ packages:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
     dev: false
 
+  /react-focus-lock@2.9.6(@types/react@18.2.42)(react@18.2.0):
+    resolution: {integrity: sha512-B7gYnCjHNrNYwY2juS71dHbf0+UpXXojt02svxybj8N5bxceAkzPChKEncHuratjUHkIFNCn06k2qj1DRlzTug==}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^18.2.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.4
+      '@types/react': 18.2.42
+      focus-lock: 1.0.0
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-clientside-effect: 1.2.6(react@18.2.0)
+      use-callback-ref: 1.3.0(@types/react@18.2.42)(react@18.2.0)
+      use-sidecar: 1.1.2(@types/react@18.2.42)(react@18.2.0)
+    dev: false
+
   /react-frame-component@5.2.6(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-CwkEM5VSt6nFwZ1Op8hi3JB5rPseZlmnp5CGiismVTauE6S4Jsc4TNMlT0O7Cts4WgIC3ZBAQ2p1Mm9XgLbj+w==}
     peerDependencies:
@@ -21732,6 +21821,18 @@ packages:
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
 
+  /react-lorem-component@0.13.0(react@18.2.0):
+    resolution: {integrity: sha512-4mWjxmcG/DJJwdxdKwXWyP2N9zohbJg/yYaC+7JffQNrKj3LYDpA/A4u/Dju1v1ZF6Jew2gbFKGb5Z6CL+UNTw==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      create-react-class: 15.7.0
+      lorem-ipsum: 1.0.6
+      object-assign: 4.1.1
+      react: 18.2.0
+      seedable-random: 0.0.1
+    dev: false
+
   /react-refresh@0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
@@ -21773,6 +21874,25 @@ packages:
       tslib: 2.6.2
       use-callback-ref: 1.3.0(@types/react@18.2.42)(react@18.2.0)
       use-sidecar: 1.1.2(@types/react@18.2.42)(react@18.2.0)
+
+  /react-remove-scroll@2.5.7(@types/react@18.2.42)(react@18.2.0):
+    resolution: {integrity: sha512-FnrTWO4L7/Bhhf3CYBNArEG/yROV0tKmTv7/3h9QCFvH6sndeFf1wPqOcbFVu5VAulS5dV1wGT3GZZ/1GawqiA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^18.2.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 18.2.42
+      react: 18.2.0
+      react-remove-scroll-bar: 2.3.4(@types/react@18.2.42)(react@18.2.0)
+      react-style-singleton: 2.2.1(@types/react@18.2.42)(react@18.2.0)
+      tslib: 2.6.2
+      use-callback-ref: 1.3.0(@types/react@18.2.42)(react@18.2.0)
+      use-sidecar: 1.1.2(@types/react@18.2.42)(react@18.2.0)
+    dev: false
 
   /react-resize-detector@7.1.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-zXnPJ2m8+6oq9Nn8zsep/orts9vQv3elrpA+R8XTcW7DVVUJ9vwDwMXaBtykAYjMnkCIaOoK9vObyR7ZgFNlOw==}
@@ -21957,7 +22077,7 @@ packages:
     peerDependencies:
       react: ^18.2.0
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       highlight.js: 10.7.3
       lowlight: 1.20.0
       prismjs: 1.28.0
@@ -22165,7 +22285,7 @@ packages:
   /regenerator-transform@0.15.2:
     resolution: {integrity: sha512-hfMp2BoF0qOk3uc5V20ALGDS2ddjQaLrdl7xrGXvAIow7qeWRM2VA2HuCHkUKk9slq3VwEwLNK3DFBqDfPGYtg==}
     dependencies:
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
 
   /regex-parser@2.2.11:
     resolution: {integrity: sha512-jbD/FT0+9MBU2XAZluI7w2OBs1RBi6p9M83nkoZayQXXU9e8Robt69FcZc7wU4eJD/YFTjn1JdCk3rbMJajz8Q==}
@@ -22668,6 +22788,10 @@ packages:
 
   /scule@1.0.0:
     resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==}
+    dev: false
+
+  /seedable-random@0.0.1:
+    resolution: {integrity: sha512-uZWbEfz3BQdBl4QlUPELPqhInGEO1Q6zjzqrTDkd3j7mHaWWJo7h4ydr2g24a2WtTLk3imTLc8mPbBdQqdsbGw==}
     dev: false
 
   /select-hose@2.0.0:

@@ -1,12 +1,11 @@
+import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { compact } from "@chakra-ui/object-utils"
 import {
   ResponsiveValue,
   SystemProps,
-  forwardRef,
   chakra,
+  forwardRef,
 } from "@chakra-ui/system"
-import { compact } from "@chakra-ui/object-utils"
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
-
 import { BoxProps } from "./box"
 
 export interface GridItemProps extends BoxProps {
@@ -49,32 +48,31 @@ function spanFn(span?: ResponsiveValue<number | "auto">) {
   )
 }
 
-export const GridItem = forwardRef<GridItemProps, "div">(function GridItem(
-  props,
-  ref,
-) {
-  const {
-    area,
-    colSpan,
-    colStart,
-    colEnd,
-    rowEnd,
-    rowSpan,
-    rowStart,
-    ...rest
-  } = props
+export const GridItem = forwardRef<GridItemProps, "div">(
+  function GridItem(props, ref) {
+    const {
+      area,
+      colSpan,
+      colStart,
+      colEnd,
+      rowEnd,
+      rowSpan,
+      rowStart,
+      ...rest
+    } = props
 
-  const styles = compact({
-    gridArea: area,
-    gridColumn: spanFn(colSpan),
-    gridRow: spanFn(rowSpan),
-    gridColumnStart: colStart,
-    gridColumnEnd: colEnd,
-    gridRowStart: rowStart,
-    gridRowEnd: rowEnd,
-  })
+    const styles = compact({
+      gridArea: area,
+      gridColumn: spanFn(colSpan),
+      gridRow: spanFn(rowSpan),
+      gridColumnStart: colStart,
+      gridColumnEnd: colEnd,
+      gridRowStart: rowStart,
+      gridRowEnd: rowEnd,
+    })
 
-  return <chakra.div ref={ref} __css={styles} {...rest} />
-})
+    return <chakra.div ref={ref} __css={styles} {...rest} />
+  },
+)
 
 GridItem.displayName = "GridItem"

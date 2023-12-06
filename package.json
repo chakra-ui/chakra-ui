@@ -34,7 +34,7 @@
     "changelog:latest": "tsx scripts/changelog.ts --latest",
     "changelog:commit": "git add . && git commit -am 'docs: add changelog' && git push",
     "changelog:format": "prettier --write .changelog",
-    "slack": "tsx scripts/slack.ts",
+    "slack": "tsx scripts/slack.mts",
     "csb": "tsx scripts/csb.ts",
     "create:pkg": "plop component",
     "version": "changeset version",

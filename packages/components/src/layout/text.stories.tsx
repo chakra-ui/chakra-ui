@@ -1,6 +1,6 @@
-import * as React from "react"
-import { ChakraProvider, extendTheme } from "../../react"
+import { extendTheme } from "@chakra-ui/theme-utils"
 import { Text } from "."
+import { ChakraProvider } from "../provider"
 
 export default {
   title: "Components / Typography / Text",

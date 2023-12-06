@@ -1,4 +1,3 @@
-import { Heading } from "../layout"
 import { chakra } from "@chakra-ui/system"
 import { StoryFn } from "@storybook/react"
 import * as React from "react"
@@ -9,7 +8,8 @@ import {
   EditableTextarea,
   useEditable,
   useEditableControls,
-} from "../src"
+} from "."
+import { Heading } from "../layout"
 
 export default {
   title: "Components / Forms / Editable",

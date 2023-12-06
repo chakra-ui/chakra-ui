@@ -1,5 +1,5 @@
-import { useEnvironment } from "@chakra-ui/react-env"
 import { useEffect, useState } from "react"
+import { useEnvironment } from "../env"
 
 export type UseMediaQueryOptions = {
   fallback?: boolean | boolean[]

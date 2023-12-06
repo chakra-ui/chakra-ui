@@ -1,20 +1,20 @@
-import { popperCSSVars } from "@chakra-ui/popper"
-import { Portal, PortalProps } from "@chakra-ui/portal"
+import { omit, pick } from "@chakra-ui/object-utils"
 import {
+  HTMLChakraProps,
+  ThemingProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
+  getCSSVar,
   omitThemingProps,
-  ThemingProps,
   useStyleConfig,
   useTheme,
-  getCSSVar,
 } from "@chakra-ui/system"
-import { omit, pick } from "@chakra-ui/object-utils"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import { Children, cloneElement } from "react"
+import { popperCSSVars } from "../popper"
+import { Portal, PortalProps } from "../portal"
 import { scale } from "./tooltip.transition"
-import { useTooltip, UseTooltipProps } from "./use-tooltip"
+import { UseTooltipProps, useTooltip } from "./use-tooltip"
 
 export interface TooltipProps
   extends HTMLChakraProps<"div">,

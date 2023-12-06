@@ -1,10 +1,10 @@
-import { ChakraProvider } from "@chakra-ui/provider"
+import { ChakraProvider } from "@chakra-ui/react"
 import { theme } from "@chakra-ui/theme"
 import "@testing-library/jest-dom"
-import { render as rtlRender, RenderOptions } from "@testing-library/react"
+import { RenderOptions, render as rtlRender } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { toHaveNoViolations } from "jest-axe"
 import * as React from "react"
-import userEvent from "@testing-library/user-event"
 
 expect.extend(toHaveNoViolations)
 

@@ -17,7 +17,7 @@ import {
   NumberInputProps,
   NumberInputStepper,
   useNumberInput,
-} from "../src"
+} from "."
 
 function renderComponent(props: NumberInputProps = {}) {
   return render(

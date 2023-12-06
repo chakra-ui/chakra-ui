@@ -5,8 +5,8 @@ import * as path from "path"
 import {
   generateThemeTypings,
   themeInterfaceDestination,
-} from "./command/tokens"
-import { initCLI } from "./utils/init-cli"
+} from "./command/tokens/index.js"
+import { initCLI } from "./utils/init-cli.mjs"
 
 type OptionsType = {
   out?: string

@@ -1,8 +1,4 @@
-import { Button } from "@chakra-ui/button"
-import { Image } from "@chakra-ui/image"
-import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
-import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import * as React from "react"
 import {
   FaChevronDown,
@@ -11,6 +7,10 @@ import {
   FaUndoAlt,
   FaUnlink,
 } from "react-icons/fa"
+import { Button } from "../button"
+import { Image } from "../image"
+import { Modal, ModalBody, ModalContent, ModalOverlay } from "../modal"
+import { Portal } from "../portal"
 import {
   Menu,
   MenuButton,
@@ -21,7 +21,7 @@ import {
   MenuList,
   MenuOptionGroup,
   useMenuItem,
-} from "../src"
+} from "."
 
 export * from "./menu.stories"
 

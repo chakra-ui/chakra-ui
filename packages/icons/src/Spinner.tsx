@@ -1,5 +1,4 @@
-import { Icon, IconProps } from "@chakra-ui/react"
-import { forwardRef } from "@chakra-ui/system"
+import { Icon, IconProps, forwardRef } from "@chakra-ui/react"
 import { useId } from "react"
 
 export const SpinnerIcon = forwardRef<IconProps, "svg">((props, ref) => {

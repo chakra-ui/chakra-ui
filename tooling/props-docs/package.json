@@ -28,7 +28,7 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsx src/build.ts",
+    "build": "tsx src/build.mts",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },

@@ -3,6 +3,17 @@
   "version": "2.8.2",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "source": "./src/index.ts",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
@@ -12,6 +23,8 @@
   },
   "dependencies": {
     "aria-hidden": "^1.2.3",
+    "react-focus-lock": "^2.9.6",
+    "react-remove-scroll": "^2.5.7",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/system": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
@@ -20,23 +33,33 @@
     "@chakra-ui/react-context": "workspace:*",
     "@chakra-ui/react-use-disclosure": "workspace:*",
     "@chakra-ui/number-utils": "workspace:*",
+    "@chakra-ui/breakpoint-utils": "workspace:*",
+    "@chakra-ui/dom-utils": "workspace:*",
     "@chakra-ui/react-use-size": "workspace:*",
+    "@chakra-ui/react-use-previous": "workspace:*",
     "@chakra-ui/react-use-pan-event": "workspace:*",
+    "@chakra-ui/react-use-focus-effect": "workspace:*",
     "@chakra-ui/react-use-interval": "workspace:*",
+    "@chakra-ui/react-use-animation-state": "workspace:*",
     "@chakra-ui/react-use-merge-refs": "workspace:*",
     "@chakra-ui/react-use-latest-ref": "workspace:*",
     "@chakra-ui/react-use-focus-on-pointer-down": "workspace:*",
+    "@chakra-ui/react-use-outside-click": "workspace:*",
+    "@chakra-ui/react-use-timeout": "workspace:*",
     "@chakra-ui/react-use-callback-ref": "workspace:*",
     "@chakra-ui/react-use-controllable-state": "workspace:*",
     "@chakra-ui/react-use-safe-layout-effect": "workspace:*",
     "@chakra-ui/react-use-update-effect": "workspace:*",
     "@chakra-ui/react-children-utils": "workspace:*",
+    "@chakra-ui/react-use-event-listener": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/lazy-utils": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "@zag-js/focus-visible": "^0.31.1"
+    "@zag-js/focus-visible": "^0.31.1",
+    "@popperjs/core": "^2.11.8",
+    "react-lorem-component": "^0.13.0"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
@@ -92,16 +115,5 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src"
-  },
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "source": "./src/index.ts",
-      "require": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
   }
 }

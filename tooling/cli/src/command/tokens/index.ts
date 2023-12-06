@@ -1,4 +1,5 @@
 import { writeFileSync } from "fs-extra"
+//@ts-expect-error
 import ora from "ora"
 import { themeKeyConfiguration } from "./config"
 import {

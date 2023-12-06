@@ -1,9 +1,9 @@
-import { createDescendantContext } from "@chakra-ui/descendant"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
-import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
 import { createContext } from "@chakra-ui/react-context"
+import { useControllableState } from "@chakra-ui/react-use-controllable-state"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { useCallback, useEffect, useState, useId } from "react"
+import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
+import { useCallback, useEffect, useId, useState } from "react"
+import { createDescendantContext } from "../descendant"
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track descendants and their indices

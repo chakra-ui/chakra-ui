@@ -1,7 +1,7 @@
 import { chakra, ChakraProps } from "@chakra-ui/system"
-import { scaleFadeConfig, slideFadeConfig } from "@chakra-ui/transition"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
+import { scaleFadeConfig, slideFadeConfig } from "../transition"
 
 export interface ModalTransitionProps
   extends Omit<HTMLMotionProps<"section">, "color" | "transition">,

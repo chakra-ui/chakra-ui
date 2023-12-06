@@ -1,5 +1,5 @@
 import type { ArgTypes } from "@storybook/react"
-import type { ThemingProps } from "@chakra-ui/react/src"
+import type { ThemingProps } from "@chakra-ui/react"
 
 /**
  * `keyof` alternative which omits non-string keys
