@@ -43,7 +43,6 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
   const {
     as: element,
     viewBox,
-    color = "currentColor",
     focusable = false,
     children,
     className,
@@ -60,7 +59,6 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
     display: "inline-block",
     lineHeight: "1em",
     flexShrink: 0,
-    color,
     ...__css,
     ...customStyles,
   }
