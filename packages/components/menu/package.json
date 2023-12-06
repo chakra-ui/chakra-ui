@@ -46,7 +46,8 @@
     "@chakra-ui/react-use-controllable-state": "workspace:*",
     "@chakra-ui/react-use-outside-click": "workspace:*",
     "@chakra-ui/react-use-update-effect": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@tanstack/react-virtual": "3.0.0-beta.65"
   },
   "devDependencies": {
     "@chakra-ui/system": "workspace:*",

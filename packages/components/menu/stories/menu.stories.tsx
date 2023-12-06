@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button"
 import { Image } from "@chakra-ui/image"
 import { Portal } from "@chakra-ui/portal"
 import { chakra } from "@chakra-ui/system"
+import { StoryFn } from "@storybook/react"
 import { Modal, ModalBody, ModalContent, ModalOverlay } from "@chakra-ui/modal"
 import * as React from "react"
 import {
@@ -20,6 +21,7 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
+  MenuOptionGroupProps,
   useMenuItem,
 } from "../src"
 
@@ -616,4 +618,37 @@ export const ProgrammaticFocusMenuItem = () => {
       </MenuList>
     </Menu>
   )
+}
+
+export const PerformanceOptionGroup: StoryFn<MenuOptionGroupProps> = (
+  props,
+) => {
+  const options = React.useMemo(() => {
+    return [...new Array(200)].map((_, idx) => ({
+      value: `item-${idx}`,
+      displayValue: `Item ${idx}`,
+    }))
+  }, [])
+
+  return (
+    <Menu closeOnSelect={false}>
+      <MenuButton>Open</MenuButton>
+      <MenuList>
+        <MenuOptionGroup {...props} type="checkbox">
+          {options.map((option) => (
+            <MenuItemOption key={option.value} value={option.value}>
+              {option.displayValue}
+            </MenuItemOption>
+          ))}
+        </MenuOptionGroup>
+      </MenuList>
+    </Menu>
+  )
+}
+PerformanceOptionGroup.args = {
+  virtualized: true,
+  virtualizedOptions: {
+    rowHeight: 35,
+    containerHeight: 400,
+  },
 }
