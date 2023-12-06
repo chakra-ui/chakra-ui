@@ -1,17 +1,16 @@
-import {
-  ArrowForwardIcon,
-  ChevronDownIcon,
-  EmailIcon,
-  PhoneIcon,
-  SearchIcon,
-} from "@chakra-ui/icons"
 import { ThemingProps } from "@chakra-ui/system"
-// import { theme } from "@chakra-ui/theme"
-// import { pick } from "@chakra-ui/utils"
 import { Meta, StoryFn } from "@storybook/react"
 import { motion } from "framer-motion"
 import * as React from "react"
-import { FaFacebook, FaTwitter } from "react-icons/fa"
+import {
+  FaArrowRight,
+  FaChevronDown,
+  FaEnvelope,
+  FaFacebook,
+  FaPhone,
+  FaSearch,
+  FaTwitter,
+} from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
 import { Button, ButtonGroup, IconButton } from "."
@@ -34,7 +33,6 @@ interface StoryProps extends ThemingProps<"Button"> {
 
 export const basic: StoryFn<StoryProps> = (props) => <Button {...props} />
 basic.argTypes = {
-  // ...getThemingArgTypes(theme, "Button"),
   children: { type: "string" },
 }
 basic.args = {
@@ -55,7 +53,6 @@ export const outlines: StoryFn<StoryProps> = (props) => (
   </>
 )
 outlines.argTypes = {
-  // ...pick(getThemingArgTypes(theme, "Button") ?? {}, ["size"]),
   children: { type: "string" },
 }
 outlines.args = {
@@ -101,14 +98,10 @@ export const WithSizes = () => (
 
 export const WithIcon = () => (
   <Stack direction="row" spacing={4}>
-    <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
+    <Button leftIcon={<FaEnvelope />} colorScheme="teal" variant="solid">
       Email
     </Button>
-    <Button
-      rightIcon={<ArrowForwardIcon />}
-      colorScheme="teal"
-      variant="outline"
-    >
+    <Button rightIcon={<FaArrowRight />} colorScheme="teal" variant="outline">
       Call us
     </Button>
   </Stack>
@@ -204,16 +197,16 @@ export const CustomComposition = () => (
 
 export const iconButton = () => (
   <Stack direction="row">
-    <IconButton aria-label="Search database" icon={<SearchIcon />} />
+    <IconButton aria-label="Search database" icon={<FaSearch />} />
 
     <IconButton
       colorScheme="blue"
       aria-label="Search database"
-      icon={<SearchIcon />}
+      icon={<FaSearch />}
     />
 
     <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
-      <PhoneIcon />
+      <FaPhone />
     </IconButton>
   </Stack>
 )
@@ -232,23 +225,23 @@ export const WithHorizontalAttachedButtons = () => (
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"
-      icon={<ChevronDownIcon />}
+      icon={<FaChevronDown />}
     />
   </ButtonGroup>
 )
 
 export const WithVerticalAttachedButtons = () => (
   <ButtonGroup size="lg" orientation="vertical" isAttached variant="outline">
-    <IconButton fontSize="2xl" aria-label="Email Santa" icon={<EmailIcon />} />
+    <IconButton fontSize="2xl" aria-label="Email Santa" icon={<FaEnvelope />} />
     <IconButton
       fontSize="2xl"
       aria-label="Call the Grinch"
-      icon={<PhoneIcon />}
+      icon={<FaPhone />}
     />
     <IconButton
       fontSize="2xl"
       aria-label="Add to friends"
-      icon={<ChevronDownIcon />}
+      icon={<FaChevronDown />}
     />
   </ButtonGroup>
 )

@@ -25,5 +25,3 @@ export const VisuallyHiddenInput = chakra("input", {
 })
 
 VisuallyHiddenInput.displayName = "VisuallyHiddenInput"
-
-export default VisuallyHidden

@@ -7,7 +7,7 @@ import {
 import { theme as defaultTheme } from "@chakra-ui/theme"
 import { ToastProvider, ToastProviderProps } from "./toast.provider"
 import { UseToastOptions } from "./use-toast"
-import { createToastFn, CreateToastFnReturn } from "./toast"
+import { createToastFn, CreateToastFnReturn } from "./create-toast-fn"
 
 const defaults: UseToastOptions = {
   duration: 5000,

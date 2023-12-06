@@ -1,7 +1,7 @@
 import { StyleProps, ThemingProps, useChakra } from "@chakra-ui/system"
 import { useMemo } from "react"
 import type { AlertStatus } from "../alert"
-import { CreateToastFnReturn, createToastFn } from "./toast"
+import { CreateToastFnReturn, createToastFn } from "./create-toast-fn"
 import { ToastPosition } from "./toast.placement"
 import { useToastOptionContext } from "./toast.provider"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
@@ -80,5 +80,3 @@ export function useToast(options?: UseToastOptions): CreateToastFnReturn {
     [options, theme.direction, defaultOptions],
   )
 }
-
-export default useToast

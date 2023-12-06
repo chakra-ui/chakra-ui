@@ -82,5 +82,3 @@ export const ControlBox: React.FC<ControlBoxProps> = (props) => {
 }
 
 ControlBox.displayName = "ControlBox"
-
-export default ControlBox

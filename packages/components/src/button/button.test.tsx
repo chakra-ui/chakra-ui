@@ -1,5 +1,5 @@
-import { ArrowForwardIcon, EmailIcon } from "@chakra-ui/icons"
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
+import { FaArrowRight, FaEnvelope } from "react-icons/fa"
 import { Button, ButtonGroup } from "."
 
 test("passes a11y test", async () => {
@@ -9,8 +9,8 @@ test("passes a11y test", async () => {
 test("renders with icons", () => {
   const { getByText } = render(
     <ButtonGroup>
-      <Button leftIcon={<EmailIcon />}>Email</Button>
-      <Button rightIcon={<ArrowForwardIcon />}>Arrow Forward</Button>
+      <Button leftIcon={<FaEnvelope />}>Email</Button>
+      <Button rightIcon={<FaArrowRight />}>Arrow Forward</Button>
     </ButtonGroup>,
   )
   expect(getByText("Email")).toBeTruthy()

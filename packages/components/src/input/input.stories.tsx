@@ -1,23 +1,24 @@
+import { useDisclosure } from "@chakra-ui/hooks"
+import { chakra, forwardRef } from "@chakra-ui/system"
+import * as React from "react"
+import { FaCheck, FaPhone } from "react-icons/fa"
+import {
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  InputLeftElement,
+  InputProps,
+  InputRightAddon,
+  InputRightElement,
+} from "."
+import { Icon } from ".."
 import {
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
 } from "../form-control"
-import { CheckIcon, PhoneIcon } from "@chakra-ui/icons"
-import { useDisclosure } from "@chakra-ui/hooks"
 import { Stack } from "../layout"
-import { chakra, forwardRef } from "@chakra-ui/system"
-import * as React from "react"
-import {
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  InputLeftElement,
-  InputRightAddon,
-  InputRightElement,
-  InputProps,
-} from "."
 
 export default {
   title: "Components / Forms / Input",
@@ -103,14 +104,14 @@ export const WithInputAddonResponsive = () => (
 export const WithInputElement = () => (
   <Stack align="start">
     <InputGroup>
-      <InputLeftElement children={<PhoneIcon color="gray.300" />} />
+      <InputLeftElement children={<Icon as={FaPhone} color="gray.300" />} />
       <Input paddingStart="60px" type="tel" placeholder="Phone number" />
     </InputGroup>
 
     <InputGroup size="sm">
       <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
       <Input placeholder="Enter amount" />
-      <InputRightElement children={<CheckIcon color="green.500" />} />
+      <InputRightElement children={<Icon as={FaCheck} color="green.500" />} />
     </InputGroup>
   </Stack>
 )
@@ -119,7 +120,7 @@ export const WithInputElementResponsive = () => (
   <InputGroup size={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}>
     <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
     <Input placeholder="Enter amount" />
-    <InputRightElement children={<CheckIcon color="green.500" />} />
+    <InputRightElement children={<Icon as={FaCheck} color="green.500" />} />
   </InputGroup>
 )
 

@@ -21,6 +21,30 @@
   "publishConfig": {
     "access": "public"
   },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/components/react"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://storybook.chakra-ui.com"
+  },
   "dependencies": {
     "aria-hidden": "^1.2.3",
     "react-focus-lock": "^2.9.6",
@@ -68,33 +92,8 @@
     "react": ">=18",
     "react-dom": ">=18"
   },
-  "author": "Segun Adebayo <sage@adebayosegun.com>",
-  "license": "MIT",
-  "homepage": "https://chakra-ui.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chakra-ui/chakra-ui",
-    "directory": "packages/components/react"
-  },
-  "keywords": [
-    "react",
-    "ui",
-    "design-system",
-    "react-components",
-    "uikit",
-    "accessible",
-    "components",
-    "emotion",
-    "library",
-    "design-system"
-  ],
-  "storybook": {
-    "title": "Chakra UI",
-    "url": "https://storybook.chakra-ui.com"
-  },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "workspace:*",
-    "@chakra-ui/icons": "workspace:*",
     "@emotion/react": "^11.11.1",
     "jest-matchmedia-mock": "^1.1.0",
     "react-spinners": "^0.13.8",
@@ -110,10 +109,10 @@
     "@tanstack/react-table": "^8.10.7"
   },
   "scripts": {
-    "build": "tsup src --dts",
+    "build": "tsup --dts",
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src"
+    "build:fast": "tsup"
   }
 }

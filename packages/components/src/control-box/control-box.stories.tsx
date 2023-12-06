@@ -1,6 +1,6 @@
 import { VisuallyHidden } from "../visually-hidden"
 import { chakra } from "@chakra-ui/system"
-import { CheckIcon } from "@chakra-ui/icons"
+import { FaCheck } from "react-icons/fa"
 import { ControlBox } from "."
 
 export default {
@@ -21,12 +21,13 @@ export const Checkbox = (props: any) => {
         rounded="md"
         color="white"
         borderColor="inherit"
+        fontSize="0.64em"
         _focus={{ boxShadow: "outline" }}
         _hover={{ borderColor: "gray.300" }}
         _disabled={{ opacity: 0.4 }}
         _checked={{ bg: "green.500", borderColor: "green.500" }}
       >
-        <CheckIcon w="0.64em" h="0.64em" />
+        <FaCheck />
       </ControlBox>
       <Box as="span" ml={2} verticalAlign="center" userSelect="none">
         This is a Checkbox

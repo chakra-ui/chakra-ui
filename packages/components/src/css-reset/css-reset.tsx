@@ -297,5 +297,3 @@ export const CSSReset = ({ scope = "" }: CSSResetProps) => (
     `}
   />
 )
-
-export default CSSReset

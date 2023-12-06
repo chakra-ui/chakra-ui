@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-key */
-import { StarIcon } from "@chakra-ui/icons"
 import {
   flexRender,
   getCoreRowModel,
@@ -7,8 +6,10 @@ import {
   type ColumnDef,
   type RowData,
 } from "@tanstack/react-table"
+import { HiStar } from "react-icons/hi"
 import { Table, Tbody, Td, Th, Thead, Tr } from "."
 import { Button, ButtonGroup, IconButton } from "../button"
+import { Icon } from "../icon"
 
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -50,7 +51,7 @@ const columns: ColumnDef<Data>[] = [
           Open {row.original["col1"]}
         </Button>
         <IconButton
-          icon={<StarIcon color="yellow.500" />}
+          icon={<Icon as={HiStar} color="yellow.500" />}
           aria-label="Add to favorites"
           variant="outline"
         />

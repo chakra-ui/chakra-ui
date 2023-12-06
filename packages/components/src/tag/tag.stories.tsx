@@ -1,5 +1,5 @@
-import { AddIcon } from "@chakra-ui/icons"
 import { chakra } from "@chakra-ui/system"
+import { HiPlus } from "react-icons/hi"
 import { MdSettings } from "react-icons/md"
 import { Tag, TagCloseButton, TagLabel, TagLeftIcon, TagRightIcon } from "."
 import { Avatar } from "../avatar"
@@ -41,7 +41,7 @@ export const colorSchemes = () => (
 
 export const withLeftIcon = () => (
   <Tag colorScheme="cyan">
-    <TagLeftIcon w="12px" h="12px" as={AddIcon} />
+    <TagLeftIcon w="12px" h="12px" as={HiPlus} />
     <TagLabel>Green</TagLabel>
   </Tag>
 )
@@ -50,7 +50,7 @@ export const withRightIcon = () => (
   <>
     <Tag colorScheme="cyan">
       <TagLabel>Green</TagLabel>
-      <TagRightIcon w="12px" h="12px" as={AddIcon} />
+      <TagRightIcon w="12px" h="12px" as={HiPlus} />
     </Tag>
 
     <Tag variant="solid" colorScheme="teal">

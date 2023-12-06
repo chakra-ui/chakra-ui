@@ -110,5 +110,3 @@ export const FocusLock: React.FC<FocusLockProps> = (props) => {
 }
 
 FocusLock.displayName = "FocusLock"
-
-export default FocusLock

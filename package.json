@@ -85,6 +85,7 @@
     "dotenv": "16.3.1",
     "edit-json-file": "1.7.0",
     "eslint": "8.54.0",
+    "execa": "8.0.1",
     "eslint-config-airbnb-typescript": "17.1.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-config-react": "1.1.7",
@@ -116,7 +117,6 @@
     "tsx": "^3.12.7",
     "turbo": "1.10.12",
     "typescript": "^5.1.6",
-    "unbuild": "1.2.1",
     "vite": "^4.4.9"
   },
   "pnpm": {
@@ -129,8 +129,15 @@
     "node": ">=16.x"
   },
   "devDependencies": {
+    "@types/execa": "2.0.0",
     "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5"
+    "@babel/preset-typescript": "^7.22.5",
+    "@rollup/plugin-alias": "^5.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "rollup": "^4.4.1",
+    "rollup-plugin-banner2": "^1.2.2",
+    "rollup-plugin-esbuild": "^6.1.0"
   }
 }

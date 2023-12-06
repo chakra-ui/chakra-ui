@@ -1,4 +1,3 @@
-import { runIfFn } from "@chakra-ui/shared-utils"
 import { chakra } from "@chakra-ui/system"
 import {
   Alert,
@@ -8,9 +7,7 @@ import {
   AlertTitle,
 } from "../alert"
 import { CloseButton } from "../close-button"
-import { getToastPlacement } from "./toast.placement"
-import { toastStore } from "./toast.store"
-import type { RenderProps, ToastId } from "./toast.types"
+import type { RenderProps } from "./toast.types"
 import type { UseToastOptions } from "./use-toast"
 
 export interface ToastProps
@@ -96,69 +93,8 @@ export function createRenderToast(
   return renderToast
 }
 
-type UseToastPromiseOption = Omit<UseToastOptions, "status">
+export type UseToastPromiseOption = Omit<UseToastOptions, "status">
 
-export function createToastFn(
-  dir: "ltr" | "rtl",
-  defaultOptions?: UseToastOptions,
-) {
-  const normalizeToastOptions = (options?: UseToastOptions) => ({
-    ...defaultOptions,
-    ...options,
-    position: getToastPlacement(
-      options?.position ?? defaultOptions?.position,
-      dir,
-    ),
-  })
-
-  const toast = (options?: UseToastOptions) => {
-    const normalizedToastOptions = normalizeToastOptions(options)
-    const Message = createRenderToast(normalizedToastOptions)
-    return toastStore.notify(Message, normalizedToastOptions)
-  }
-
-  toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    toastStore.update(id, normalizeToastOptions(options))
-  }
-
-  toast.promise = <Result extends any, Err extends Error = Error>(
-    promise: Promise<Result>,
-    options: {
-      success: MaybeFunction<UseToastPromiseOption, [Result]>
-      error: MaybeFunction<UseToastPromiseOption, [Err]>
-      loading: UseToastPromiseOption
-    },
-  ) => {
-    const id = toast({
-      ...options.loading,
-      status: "loading",
-      duration: null,
-    })
-
-    promise
-      .then((data) =>
-        toast.update(id, {
-          status: "success",
-          duration: 5_000,
-          ...runIfFn(options.success, data),
-        }),
-      )
-      .catch((error) =>
-        toast.update(id, {
-          status: "error",
-          duration: 5_000,
-          ...runIfFn(options.error, error),
-        }),
-      )
-  }
-
-  toast.closeAll = toastStore.closeAll
-  toast.close = toastStore.close
-  toast.isActive = toastStore.isActive
-
-  return toast
-}
-
-export type CreateToastFnReturn = ReturnType<typeof createToastFn>
-
-type MaybeFunction<T, Args extends unknown[] = []> = T | ((...args: Args) => T)
+export type MaybeFunction<T, Args extends unknown[] = []> =
+  | T
+  | ((...args: Args) => T)

@@ -1,6 +1,4 @@
 import { writeFileSync } from "fs-extra"
-//@ts-expect-error
-import ora from "ora"
 import { themeKeyConfiguration } from "./config"
 import {
   TypingsTemplate,
@@ -28,6 +26,7 @@ export async function generateThemeTypings({
   template?: TypingsTemplate
   onError?: () => void
 }) {
+  const { default: ora } = await import("ora")
   const spinner = ora("Generating Theme Typings").start()
 
   try {
