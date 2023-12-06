@@ -1,4 +1,4 @@
-import { findPackages } from "find-packages"
+import { Project } from "find-packages"
 import { rmSync } from "fs"
 import { join } from "path/posix"
 import * as rollup from "rollup"
@@ -11,32 +11,31 @@ interface BuildOptions {
   dts?: boolean
 }
 
-export async function buildPackages(options: BuildOptions = {}) {
+export async function buildProject(
+  project: Project,
+  options: BuildOptions = {},
+) {
   const { watch, clean, dts } = options
 
-  const [pkg] = await findPackages("packages/components")
+  const { name } = project.manifest
 
   if (clean) {
     //
-    const distDir = join(pkg.dir, "dist")
+    const distDir = join(project.dir, "dist")
     rmSync(distDir, { recursive: true, force: true })
   }
 
-  const config = await getConfig(pkg)
-
-  if (dts) {
-    generateTypes(pkg)
-  }
+  const config = await getConfig(project)
 
   if (watch) {
     //
     config.watch = {
-      include: ["packages/components/src/**"],
+      include: [`${project.dir}/src/**`],
       exclude: ["node_modules/**"],
     }
 
     rollup.watch(config)
-    console.log("Watching source files...")
+    console.log(`[${name}][JS] Watching source files...`)
     //
   } else {
     //
@@ -46,6 +45,12 @@ export async function buildPackages(options: BuildOptions = {}) {
       ? config.output
       : [config.output!]
 
-    return Promise.all(outputs.map((output) => build.write(output)))
+    await Promise.all(outputs.map((output) => build.write(output)))
+    console.log(`[${name}][JS] Generated CJS and ESM files ✅`)
+
+    if (dts) {
+      await generateTypes(project)
+      console.log(`[${name}][DTS] Generated type definitions ✅`)
+    }
   }
 }

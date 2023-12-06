@@ -11,15 +11,20 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./cjs/index.cjs",
+  "module": "./esm/index.mjs",
+  "types": "./types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "source": "./src/index.ts",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./types/index.d.mts",
+        "default": "./esm/index.mjs"
+      },
+      "require": {
+        "types": "./types/index.d.ts",
+        "default": "./cjs/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },

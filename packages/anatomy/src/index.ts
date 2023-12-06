@@ -1,2 +1,2 @@
-export * from "./anatomy"
+export * from "./create-anatomy"
 export * from "./components"

@@ -1,4 +1,4 @@
-import { anatomy } from "./anatomy"
+import { anatomy } from "./create-anatomy"
 
 /**
  * **Accordion anatomy**
@@ -8,9 +8,13 @@ import { anatomy } from "./anatomy"
  * - Panel: the panel is the content of the accordion item
  * - Icon: the expanded/collapsed icon
  */
-export const accordionAnatomy = anatomy("accordion")
-  .parts("root", "container", "button", "panel")
-  .extend("icon")
+export const accordionAnatomy = anatomy("accordion").parts(
+  "root",
+  "container",
+  "button",
+  "panel",
+  "icon",
+)
 
 /**
  * **Alert anatomy**
@@ -18,9 +22,13 @@ export const accordionAnatomy = anatomy("accordion")
  * - Description: the alert's description
  * - Icon: the alert's icon
  */
-export const alertAnatomy = anatomy("alert")
-  .parts("title", "description", "container")
-  .extend("icon", "spinner")
+export const alertAnatomy = anatomy("alert").parts(
+  "title",
+  "description",
+  "container",
+  "icon",
+  "spinner",
+)
 
 /**
  * **Avatar anatomy**
@@ -30,9 +38,13 @@ export const alertAnatomy = anatomy("alert")
  * Typically used in avatar groups.
  * - Group: the container for the avatar group
  */
-export const avatarAnatomy = anatomy("avatar")
-  .parts("label", "badge", "container")
-  .extend("excessLabel", "group")
+export const avatarAnatomy = anatomy("avatar").parts(
+  "label",
+  "badge",
+  "container",
+  "excessLabel",
+  "group",
+)
 
 /**
  * **Breadcrumb anatomy**
@@ -41,23 +53,37 @@ export const avatarAnatomy = anatomy("avatar")
  * - Container: the container for the breadcrumb items
  * - Separator: the separator between breadcrumb items
  */
-export const breadcrumbAnatomy = anatomy("breadcrumb")
-  .parts("link", "item", "container")
-  .extend("separator")
+export const breadcrumbAnatomy = anatomy("breadcrumb").parts(
+  "link",
+  "item",
+  "container",
+  "separator",
+)
 
 export const buttonAnatomy = anatomy("button").parts()
 
-export const checkboxAnatomy = anatomy("checkbox")
-  .parts("control", "icon", "container")
-  .extend("label")
+export const checkboxAnatomy = anatomy("checkbox").parts(
+  "control",
+  "icon",
+  "container",
+  "label",
+)
 
-export const circularProgressAnatomy = anatomy("progress")
-  .parts("track", "filledTrack")
-  .extend("label")
+export const circularProgressAnatomy = anatomy("progress").parts(
+  "track",
+  "filledTrack",
+  "label",
+)
 
-export const drawerAnatomy = anatomy("drawer")
-  .parts("overlay", "dialogContainer", "dialog")
-  .extend("header", "closeButton", "body", "footer")
+export const drawerAnatomy = anatomy("drawer").parts(
+  "overlay",
+  "dialogContainer",
+  "dialog",
+  "header",
+  "closeButton",
+  "body",
+  "footer",
+)
 
 export const editableAnatomy = anatomy("editable").parts(
   "preview",
@@ -82,13 +108,25 @@ export const inputAnatomy = anatomy("input").parts(
 
 export const listAnatomy = anatomy("list").parts("container", "item", "icon")
 
-export const menuAnatomy = anatomy("menu")
-  .parts("button", "list", "item")
-  .extend("groupTitle", "icon", "command", "divider")
+export const menuAnatomy = anatomy("menu").parts(
+  "button",
+  "list",
+  "item",
+  "groupTitle",
+  "icon",
+  "command",
+  "divider",
+)
 
-export const modalAnatomy = anatomy("modal")
-  .parts("overlay", "dialogContainer", "dialog")
-  .extend("header", "closeButton", "body", "footer")
+export const modalAnatomy = anatomy("modal").parts(
+  "overlay",
+  "dialogContainer",
+  "dialog",
+  "header",
+  "closeButton",
+  "body",
+  "footer",
+)
 
 export const numberInputAnatomy = anatomy("numberinput").parts(
   "root",
@@ -99,9 +137,15 @@ export const numberInputAnatomy = anatomy("numberinput").parts(
 
 export const pinInputAnatomy = anatomy("pininput").parts("field")
 
-export const popoverAnatomy = anatomy("popover")
-  .parts("content", "header", "body", "footer")
-  .extend("popper", "arrow", "closeButton")
+export const popoverAnatomy = anatomy("popover").parts(
+  "content",
+  "header",
+  "body",
+  "footer",
+  "popper",
+  "arrow",
+  "closeButton",
+)
 
 export const progressAnatomy = anatomy("progress").parts(
   "label",

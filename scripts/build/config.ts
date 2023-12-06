@@ -6,7 +6,12 @@ import { RollupOptions } from "rollup"
 import banner from "rollup-plugin-banner2"
 import esbuild from "rollup-plugin-esbuild"
 
-const useClientExclude = ["index.mjs", "index.js"]
+const useClientFileExclude = ["index.mjs"].reduce<string[]>((acc, name) => {
+  acc.push(`${name}.js`, `${name}.mjs`, `${name}.cjs`)
+  return acc
+}, [])
+
+const useClientDirExclude = ["packages/anatomy"]
 
 export async function getConfig(project: Project): Promise<RollupOptions> {
   const { manifest, dir } = project
@@ -19,10 +24,13 @@ export async function getConfig(project: Project): Promise<RollupOptions> {
     }),
     replace({ preventAssignment: true }),
     banner((chunk) => {
-      if (!useClientExclude.includes(chunk.fileName)) {
-        return "'use client';\n"
-      }
-      return
+      const skip =
+        useClientFileExclude.includes(chunk.fileName) ||
+        useClientDirExclude.includes(dir)
+
+      if (skip) return
+
+      return "'use client';\n"
     }),
   ]
 

@@ -1,10 +1,30 @@
+export interface AnatomyPart {
+  selector: string
+  className: string
+  toString(): string
+}
+
+export type AnatomyInstance<T extends string> = Omit<Anatomy<T>, "parts">
+
+export type AnatomyPartName<T> = T extends AnatomyInstance<infer U> ? U : never
+
+export interface Anatomy<T extends string> {
+  toPart: (part: string) => AnatomyPart
+  parts: <U extends string>(...parts: U[]) => AnatomyInstance<U>
+  extend: <V extends string>(...parts: V[]) => AnatomyInstance<T | V>
+  readonly keys: T[]
+  selectors: () => Record<T, string>
+  classnames: () => Record<T, string>
+  __type: T
+}
+
 /**
  * Used to define the anatomy/parts of a component in a way that provides
  * a consistent API for `className`, css selector and `theming`.
  */
 export function anatomy<T extends string = string>(
   name: string,
-  map = {} as Record<T, Part>,
+  map = {} as any,
 ): Anatomy<T> {
   let called = false
 
@@ -29,7 +49,7 @@ export function anatomy<T extends string = string>(
   function parts<V extends string>(...values: V[]) {
     assert()
     for (const part of values) {
-      ;(map as any)[part] = toPart(part)
+      map[part] = toPart(part)
     }
     return anatomy(name, map) as unknown as Omit<Anatomy<V>, "parts">
   }
@@ -40,7 +60,7 @@ export function anatomy<T extends string = string>(
   function extend<U extends string>(...parts: U[]) {
     for (const part of parts) {
       if (part in map) continue
-      ;(map as any)[part] = toPart(part)
+      map[part] = toPart(part)
     }
     return anatomy(name, map) as unknown as Omit<Anatomy<T | U>, "parts">
   }
@@ -100,20 +120,4 @@ export function anatomy<T extends string = string>(
     },
     __type,
   }
-}
-
-type Part = {
-  className: string
-  selector: string
-  toString: () => string
-}
-
-type Anatomy<T extends string> = {
-  parts: <V extends string>(...values: V[]) => Omit<Anatomy<V>, "parts">
-  toPart: (part: string) => Part
-  extend: <U extends string>(...parts: U[]) => Omit<Anatomy<T | U>, "parts">
-  selectors: () => Record<T, string>
-  classnames: () => Record<T, string>
-  keys: T[]
-  __type: T
 }

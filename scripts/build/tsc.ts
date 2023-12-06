@@ -9,6 +9,7 @@ export async function generateTypes(project: Project) {
 
   await execa("pnpm", ["tsc", "--project", "tsconfig.build.json"], {
     cwd: dir,
+    stdio: "inherit",
   })
 
   copyFileSync(

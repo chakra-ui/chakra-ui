@@ -2,15 +2,20 @@
   "name": "@chakra-ui/react",
   "version": "2.8.2",
   "description": "Responsive and accessible React UI components built with React and Emotion",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./cjs/index.cjs",
+  "module": "./esm/index.mjs",
+  "types": "./types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "source": "./src/index.ts",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./types/index.d.mts",
+        "default": "./esm/index.mjs"
+      },
+      "require": {
+        "types": "./types/index.d.ts",
+        "default": "./cjs/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
