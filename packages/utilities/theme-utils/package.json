@@ -10,14 +10,41 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "source": "./src/index.ts",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./extend-theme": {
+      "source": "./src/extend-theme.ts",
+      "import": {
+        "types": "./dist/types/extend-theme.d.mts",
+        "default": "./dist/esm/extend-theme.mjs"
+      },
+      "require": {
+        "types": "./dist/types/extend-theme.d.ts",
+        "default": "./dist/cjs/extend-theme.cjs"
+      }
+    },
+    "./theme-extensions": {
+      "source": "./src/theme-extensions/index.ts",
+      "import": {
+        "types": "./dist/types/theme-extensions/index.d.mts",
+        "default": "./dist/esm/theme-extensions/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/theme-extensions/index.d.ts",
+        "default": "./dist/cjs/theme-extensions/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -47,9 +74,9 @@
     "@types/lodash.mergewith": "4.6.8"
   },
   "dependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*",
     "lodash.mergewith": "4.6.2"
   },
   "tsup": {
@@ -59,5 +86,6 @@
       "cjs",
       "esm"
     ]
-  }
+  },
+  "main": "dist/cjs/index.cjs"
 }

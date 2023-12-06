@@ -5,7 +5,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
@@ -26,8 +28,8 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "@types/react": "^18.2.42",
     "@chakra-ui/react": "workspace:*",
+    "@types/react": "^18.2.42",
     "react": "^18.2.0"
   },
   "scripts": {
@@ -38,14 +40,666 @@
     "build:fast": "tsup src",
     "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
   },
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "source": "./src/index.ts",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./Add": {
+      "source": "./src/Add.tsx",
+      "import": {
+        "types": "./dist/types/Add.d.mts",
+        "default": "./dist/esm/Add.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Add.d.ts",
+        "default": "./dist/cjs/Add.cjs"
+      }
+    },
+    "./ArrowBack": {
+      "source": "./src/ArrowBack.tsx",
+      "import": {
+        "types": "./dist/types/ArrowBack.d.mts",
+        "default": "./dist/esm/ArrowBack.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ArrowBack.d.ts",
+        "default": "./dist/cjs/ArrowBack.cjs"
+      }
+    },
+    "./ArrowDown": {
+      "source": "./src/ArrowDown.tsx",
+      "import": {
+        "types": "./dist/types/ArrowDown.d.mts",
+        "default": "./dist/esm/ArrowDown.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ArrowDown.d.ts",
+        "default": "./dist/cjs/ArrowDown.cjs"
+      }
+    },
+    "./ArrowForward": {
+      "source": "./src/ArrowForward.tsx",
+      "import": {
+        "types": "./dist/types/ArrowForward.d.mts",
+        "default": "./dist/esm/ArrowForward.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ArrowForward.d.ts",
+        "default": "./dist/cjs/ArrowForward.cjs"
+      }
+    },
+    "./ArrowLeft": {
+      "source": "./src/ArrowLeft.tsx",
+      "import": {
+        "types": "./dist/types/ArrowLeft.d.mts",
+        "default": "./dist/esm/ArrowLeft.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ArrowLeft.d.ts",
+        "default": "./dist/cjs/ArrowLeft.cjs"
+      }
+    },
+    "./ArrowRight": {
+      "source": "./src/ArrowRight.tsx",
+      "import": {
+        "types": "./dist/types/ArrowRight.d.mts",
+        "default": "./dist/esm/ArrowRight.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ArrowRight.d.ts",
+        "default": "./dist/cjs/ArrowRight.cjs"
+      }
+    },
+    "./ArrowUp": {
+      "source": "./src/ArrowUp.tsx",
+      "import": {
+        "types": "./dist/types/ArrowUp.d.mts",
+        "default": "./dist/esm/ArrowUp.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ArrowUp.d.ts",
+        "default": "./dist/cjs/ArrowUp.cjs"
+      }
+    },
+    "./ArrowUpDown": {
+      "source": "./src/ArrowUpDown.tsx",
+      "import": {
+        "types": "./dist/types/ArrowUpDown.d.mts",
+        "default": "./dist/esm/ArrowUpDown.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ArrowUpDown.d.ts",
+        "default": "./dist/cjs/ArrowUpDown.cjs"
+      }
+    },
+    "./AtSign": {
+      "source": "./src/AtSign.tsx",
+      "import": {
+        "types": "./dist/types/AtSign.d.mts",
+        "default": "./dist/esm/AtSign.mjs"
+      },
+      "require": {
+        "types": "./dist/types/AtSign.d.ts",
+        "default": "./dist/cjs/AtSign.cjs"
+      }
+    },
+    "./Attachment": {
+      "source": "./src/Attachment.tsx",
+      "import": {
+        "types": "./dist/types/Attachment.d.mts",
+        "default": "./dist/esm/Attachment.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Attachment.d.ts",
+        "default": "./dist/cjs/Attachment.cjs"
+      }
+    },
+    "./Bell": {
+      "source": "./src/Bell.tsx",
+      "import": {
+        "types": "./dist/types/Bell.d.mts",
+        "default": "./dist/esm/Bell.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Bell.d.ts",
+        "default": "./dist/cjs/Bell.cjs"
+      }
+    },
+    "./Calendar": {
+      "source": "./src/Calendar.tsx",
+      "import": {
+        "types": "./dist/types/Calendar.d.mts",
+        "default": "./dist/esm/Calendar.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Calendar.d.ts",
+        "default": "./dist/cjs/Calendar.cjs"
+      }
+    },
+    "./Chat": {
+      "source": "./src/Chat.tsx",
+      "import": {
+        "types": "./dist/types/Chat.d.mts",
+        "default": "./dist/esm/Chat.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Chat.d.ts",
+        "default": "./dist/cjs/Chat.cjs"
+      }
+    },
+    "./Check": {
+      "source": "./src/Check.tsx",
+      "import": {
+        "types": "./dist/types/Check.d.mts",
+        "default": "./dist/esm/Check.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Check.d.ts",
+        "default": "./dist/cjs/Check.cjs"
+      }
+    },
+    "./CheckCircle": {
+      "source": "./src/CheckCircle.tsx",
+      "import": {
+        "types": "./dist/types/CheckCircle.d.mts",
+        "default": "./dist/esm/CheckCircle.mjs"
+      },
+      "require": {
+        "types": "./dist/types/CheckCircle.d.ts",
+        "default": "./dist/cjs/CheckCircle.cjs"
+      }
+    },
+    "./ChevronDown": {
+      "source": "./src/ChevronDown.tsx",
+      "import": {
+        "types": "./dist/types/ChevronDown.d.mts",
+        "default": "./dist/esm/ChevronDown.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ChevronDown.d.ts",
+        "default": "./dist/cjs/ChevronDown.cjs"
+      }
+    },
+    "./ChevronLeft": {
+      "source": "./src/ChevronLeft.tsx",
+      "import": {
+        "types": "./dist/types/ChevronLeft.d.mts",
+        "default": "./dist/esm/ChevronLeft.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ChevronLeft.d.ts",
+        "default": "./dist/cjs/ChevronLeft.cjs"
+      }
+    },
+    "./ChevronRight": {
+      "source": "./src/ChevronRight.tsx",
+      "import": {
+        "types": "./dist/types/ChevronRight.d.mts",
+        "default": "./dist/esm/ChevronRight.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ChevronRight.d.ts",
+        "default": "./dist/cjs/ChevronRight.cjs"
+      }
+    },
+    "./ChevronUp": {
+      "source": "./src/ChevronUp.tsx",
+      "import": {
+        "types": "./dist/types/ChevronUp.d.mts",
+        "default": "./dist/esm/ChevronUp.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ChevronUp.d.ts",
+        "default": "./dist/cjs/ChevronUp.cjs"
+      }
+    },
+    "./Close": {
+      "source": "./src/Close.tsx",
+      "import": {
+        "types": "./dist/types/Close.d.mts",
+        "default": "./dist/esm/Close.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Close.d.ts",
+        "default": "./dist/cjs/Close.cjs"
+      }
+    },
+    "./Copy": {
+      "source": "./src/Copy.tsx",
+      "import": {
+        "types": "./dist/types/Copy.d.mts",
+        "default": "./dist/esm/Copy.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Copy.d.ts",
+        "default": "./dist/cjs/Copy.cjs"
+      }
+    },
+    "./Delete": {
+      "source": "./src/Delete.tsx",
+      "import": {
+        "types": "./dist/types/Delete.d.mts",
+        "default": "./dist/esm/Delete.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Delete.d.ts",
+        "default": "./dist/cjs/Delete.cjs"
+      }
+    },
+    "./Download": {
+      "source": "./src/Download.tsx",
+      "import": {
+        "types": "./dist/types/Download.d.mts",
+        "default": "./dist/esm/Download.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Download.d.ts",
+        "default": "./dist/cjs/Download.cjs"
+      }
+    },
+    "./DragHandle": {
+      "source": "./src/DragHandle.tsx",
+      "import": {
+        "types": "./dist/types/DragHandle.d.mts",
+        "default": "./dist/esm/DragHandle.mjs"
+      },
+      "require": {
+        "types": "./dist/types/DragHandle.d.ts",
+        "default": "./dist/cjs/DragHandle.cjs"
+      }
+    },
+    "./Edit": {
+      "source": "./src/Edit.tsx",
+      "import": {
+        "types": "./dist/types/Edit.d.mts",
+        "default": "./dist/esm/Edit.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Edit.d.ts",
+        "default": "./dist/cjs/Edit.cjs"
+      }
+    },
+    "./Email": {
+      "source": "./src/Email.tsx",
+      "import": {
+        "types": "./dist/types/Email.d.mts",
+        "default": "./dist/esm/Email.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Email.d.ts",
+        "default": "./dist/cjs/Email.cjs"
+      }
+    },
+    "./ExternalLink": {
+      "source": "./src/ExternalLink.tsx",
+      "import": {
+        "types": "./dist/types/ExternalLink.d.mts",
+        "default": "./dist/esm/ExternalLink.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ExternalLink.d.ts",
+        "default": "./dist/cjs/ExternalLink.cjs"
+      }
+    },
+    "./Hamburger": {
+      "source": "./src/Hamburger.tsx",
+      "import": {
+        "types": "./dist/types/Hamburger.d.mts",
+        "default": "./dist/esm/Hamburger.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Hamburger.d.ts",
+        "default": "./dist/cjs/Hamburger.cjs"
+      }
+    },
+    "./Info": {
+      "source": "./src/Info.tsx",
+      "import": {
+        "types": "./dist/types/Info.d.mts",
+        "default": "./dist/esm/Info.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Info.d.ts",
+        "default": "./dist/cjs/Info.cjs"
+      }
+    },
+    "./InfoOutline": {
+      "source": "./src/InfoOutline.tsx",
+      "import": {
+        "types": "./dist/types/InfoOutline.d.mts",
+        "default": "./dist/esm/InfoOutline.mjs"
+      },
+      "require": {
+        "types": "./dist/types/InfoOutline.d.ts",
+        "default": "./dist/cjs/InfoOutline.cjs"
+      }
+    },
+    "./Link": {
+      "source": "./src/Link.tsx",
+      "import": {
+        "types": "./dist/types/Link.d.mts",
+        "default": "./dist/esm/Link.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Link.d.ts",
+        "default": "./dist/cjs/Link.cjs"
+      }
+    },
+    "./Lock": {
+      "source": "./src/Lock.tsx",
+      "import": {
+        "types": "./dist/types/Lock.d.mts",
+        "default": "./dist/esm/Lock.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Lock.d.ts",
+        "default": "./dist/cjs/Lock.cjs"
+      }
+    },
+    "./Minus": {
+      "source": "./src/Minus.tsx",
+      "import": {
+        "types": "./dist/types/Minus.d.mts",
+        "default": "./dist/esm/Minus.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Minus.d.ts",
+        "default": "./dist/cjs/Minus.cjs"
+      }
+    },
+    "./Moon": {
+      "source": "./src/Moon.tsx",
+      "import": {
+        "types": "./dist/types/Moon.d.mts",
+        "default": "./dist/esm/Moon.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Moon.d.ts",
+        "default": "./dist/cjs/Moon.cjs"
+      }
+    },
+    "./NotAllowed": {
+      "source": "./src/NotAllowed.tsx",
+      "import": {
+        "types": "./dist/types/NotAllowed.d.mts",
+        "default": "./dist/esm/NotAllowed.mjs"
+      },
+      "require": {
+        "types": "./dist/types/NotAllowed.d.ts",
+        "default": "./dist/cjs/NotAllowed.cjs"
+      }
+    },
+    "./Phone": {
+      "source": "./src/Phone.tsx",
+      "import": {
+        "types": "./dist/types/Phone.d.mts",
+        "default": "./dist/esm/Phone.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Phone.d.ts",
+        "default": "./dist/cjs/Phone.cjs"
+      }
+    },
+    "./PlusSquare": {
+      "source": "./src/PlusSquare.tsx",
+      "import": {
+        "types": "./dist/types/PlusSquare.d.mts",
+        "default": "./dist/esm/PlusSquare.mjs"
+      },
+      "require": {
+        "types": "./dist/types/PlusSquare.d.ts",
+        "default": "./dist/cjs/PlusSquare.cjs"
+      }
+    },
+    "./Question": {
+      "source": "./src/Question.tsx",
+      "import": {
+        "types": "./dist/types/Question.d.mts",
+        "default": "./dist/esm/Question.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Question.d.ts",
+        "default": "./dist/cjs/Question.cjs"
+      }
+    },
+    "./QuestionOutline": {
+      "source": "./src/QuestionOutline.tsx",
+      "import": {
+        "types": "./dist/types/QuestionOutline.d.mts",
+        "default": "./dist/esm/QuestionOutline.mjs"
+      },
+      "require": {
+        "types": "./dist/types/QuestionOutline.d.ts",
+        "default": "./dist/cjs/QuestionOutline.cjs"
+      }
+    },
+    "./React": {
+      "source": "./src/React.tsx",
+      "import": {
+        "types": "./dist/types/React.d.mts",
+        "default": "./dist/esm/React.mjs"
+      },
+      "require": {
+        "types": "./dist/types/React.d.ts",
+        "default": "./dist/cjs/React.cjs"
+      }
+    },
+    "./Repeat": {
+      "source": "./src/Repeat.tsx",
+      "import": {
+        "types": "./dist/types/Repeat.d.mts",
+        "default": "./dist/esm/Repeat.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Repeat.d.ts",
+        "default": "./dist/cjs/Repeat.cjs"
+      }
+    },
+    "./RepeatClock": {
+      "source": "./src/RepeatClock.tsx",
+      "import": {
+        "types": "./dist/types/RepeatClock.d.mts",
+        "default": "./dist/esm/RepeatClock.mjs"
+      },
+      "require": {
+        "types": "./dist/types/RepeatClock.d.ts",
+        "default": "./dist/cjs/RepeatClock.cjs"
+      }
+    },
+    "./Search": {
+      "source": "./src/Search.tsx",
+      "import": {
+        "types": "./dist/types/Search.d.mts",
+        "default": "./dist/esm/Search.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Search.d.ts",
+        "default": "./dist/cjs/Search.cjs"
+      }
+    },
+    "./Search2": {
+      "source": "./src/Search2.tsx",
+      "import": {
+        "types": "./dist/types/Search2.d.mts",
+        "default": "./dist/esm/Search2.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Search2.d.ts",
+        "default": "./dist/cjs/Search2.cjs"
+      }
+    },
+    "./Settings": {
+      "source": "./src/Settings.tsx",
+      "import": {
+        "types": "./dist/types/Settings.d.mts",
+        "default": "./dist/esm/Settings.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Settings.d.ts",
+        "default": "./dist/cjs/Settings.cjs"
+      }
+    },
+    "./SmallAdd": {
+      "source": "./src/SmallAdd.tsx",
+      "import": {
+        "types": "./dist/types/SmallAdd.d.mts",
+        "default": "./dist/esm/SmallAdd.mjs"
+      },
+      "require": {
+        "types": "./dist/types/SmallAdd.d.ts",
+        "default": "./dist/cjs/SmallAdd.cjs"
+      }
+    },
+    "./SmallClose": {
+      "source": "./src/SmallClose.tsx",
+      "import": {
+        "types": "./dist/types/SmallClose.d.mts",
+        "default": "./dist/esm/SmallClose.mjs"
+      },
+      "require": {
+        "types": "./dist/types/SmallClose.d.ts",
+        "default": "./dist/cjs/SmallClose.cjs"
+      }
+    },
+    "./Spinner": {
+      "source": "./src/Spinner.tsx",
+      "import": {
+        "types": "./dist/types/Spinner.d.mts",
+        "default": "./dist/esm/Spinner.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Spinner.d.ts",
+        "default": "./dist/cjs/Spinner.cjs"
+      }
+    },
+    "./Star": {
+      "source": "./src/Star.tsx",
+      "import": {
+        "types": "./dist/types/Star.d.mts",
+        "default": "./dist/esm/Star.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Star.d.ts",
+        "default": "./dist/cjs/Star.cjs"
+      }
+    },
+    "./Sun": {
+      "source": "./src/Sun.tsx",
+      "import": {
+        "types": "./dist/types/Sun.d.mts",
+        "default": "./dist/esm/Sun.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Sun.d.ts",
+        "default": "./dist/cjs/Sun.cjs"
+      }
+    },
+    "./Time": {
+      "source": "./src/Time.tsx",
+      "import": {
+        "types": "./dist/types/Time.d.mts",
+        "default": "./dist/esm/Time.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Time.d.ts",
+        "default": "./dist/cjs/Time.cjs"
+      }
+    },
+    "./TriangleDown": {
+      "source": "./src/TriangleDown.tsx",
+      "import": {
+        "types": "./dist/types/TriangleDown.d.mts",
+        "default": "./dist/esm/TriangleDown.mjs"
+      },
+      "require": {
+        "types": "./dist/types/TriangleDown.d.ts",
+        "default": "./dist/cjs/TriangleDown.cjs"
+      }
+    },
+    "./TriangleUp": {
+      "source": "./src/TriangleUp.tsx",
+      "import": {
+        "types": "./dist/types/TriangleUp.d.mts",
+        "default": "./dist/esm/TriangleUp.mjs"
+      },
+      "require": {
+        "types": "./dist/types/TriangleUp.d.ts",
+        "default": "./dist/cjs/TriangleUp.cjs"
+      }
+    },
+    "./Unlock": {
+      "source": "./src/Unlock.tsx",
+      "import": {
+        "types": "./dist/types/Unlock.d.mts",
+        "default": "./dist/esm/Unlock.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Unlock.d.ts",
+        "default": "./dist/cjs/Unlock.cjs"
+      }
+    },
+    "./UpDown": {
+      "source": "./src/UpDown.tsx",
+      "import": {
+        "types": "./dist/types/UpDown.d.mts",
+        "default": "./dist/esm/UpDown.mjs"
+      },
+      "require": {
+        "types": "./dist/types/UpDown.d.ts",
+        "default": "./dist/cjs/UpDown.cjs"
+      }
+    },
+    "./View": {
+      "source": "./src/View.tsx",
+      "import": {
+        "types": "./dist/types/View.d.mts",
+        "default": "./dist/esm/View.mjs"
+      },
+      "require": {
+        "types": "./dist/types/View.d.ts",
+        "default": "./dist/cjs/View.cjs"
+      }
+    },
+    "./ViewOff": {
+      "source": "./src/ViewOff.tsx",
+      "import": {
+        "types": "./dist/types/ViewOff.d.mts",
+        "default": "./dist/esm/ViewOff.mjs"
+      },
+      "require": {
+        "types": "./dist/types/ViewOff.d.ts",
+        "default": "./dist/cjs/ViewOff.cjs"
+      }
+    },
+    "./Warning": {
+      "source": "./src/Warning.tsx",
+      "import": {
+        "types": "./dist/types/Warning.d.mts",
+        "default": "./dist/esm/Warning.mjs"
+      },
+      "require": {
+        "types": "./dist/types/Warning.d.ts",
+        "default": "./dist/cjs/Warning.cjs"
+      }
+    },
+    "./WarningTwo": {
+      "source": "./src/WarningTwo.tsx",
+      "import": {
+        "types": "./dist/types/WarningTwo.d.mts",
+        "default": "./dist/esm/WarningTwo.mjs"
+      },
+      "require": {
+        "types": "./dist/types/WarningTwo.d.ts",
+        "default": "./dist/cjs/WarningTwo.cjs"
+      }
     },
     "./package.json": "./package.json"
   }

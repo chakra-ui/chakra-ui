@@ -519,10 +519,6 @@ importers:
   packages/anatomy: {}
 
   packages/color-mode:
-    dependencies:
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../hooks/use-safe-layout-effect
     devDependencies:
       '@chakra-ui/utils':
         specifier: workspace:*
@@ -541,7 +537,7 @@ importers:
         version: link:../utilities/dom-utils
       '@chakra-ui/hooks':
         specifier: workspace:*
-        version: link:../legacy/hooks
+        version: link:../hooks
       '@chakra-ui/lazy-utils':
         specifier: workspace:*
         version: link:../utilities/lazy-utils
@@ -554,63 +550,9 @@ importers:
       '@chakra-ui/react-children-utils':
         specifier: workspace:*
         version: link:../utilities/react-children-utils
-      '@chakra-ui/react-context':
-        specifier: workspace:*
-        version: link:../hooks/context
       '@chakra-ui/react-types':
         specifier: workspace:*
         version: link:../utilities/react-types
-      '@chakra-ui/react-use-animation-state':
-        specifier: workspace:*
-        version: link:../hooks/use-animation-state
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../hooks/use-callback-ref
-      '@chakra-ui/react-use-controllable-state':
-        specifier: workspace:*
-        version: link:../hooks/use-controllable-state
-      '@chakra-ui/react-use-disclosure':
-        specifier: workspace:*
-        version: link:../hooks/use-disclosure
-      '@chakra-ui/react-use-event-listener':
-        specifier: workspace:*
-        version: link:../hooks/use-event-listener
-      '@chakra-ui/react-use-focus-effect':
-        specifier: workspace:*
-        version: link:../hooks/use-focus-effect
-      '@chakra-ui/react-use-focus-on-pointer-down':
-        specifier: workspace:*
-        version: link:../hooks/use-focus-on-pointer-down
-      '@chakra-ui/react-use-interval':
-        specifier: workspace:*
-        version: link:../hooks/use-interval
-      '@chakra-ui/react-use-latest-ref':
-        specifier: workspace:*
-        version: link:../hooks/use-latest-ref
-      '@chakra-ui/react-use-merge-refs':
-        specifier: workspace:*
-        version: link:../hooks/use-merge-refs
-      '@chakra-ui/react-use-outside-click':
-        specifier: workspace:*
-        version: link:../hooks/use-outside-click
-      '@chakra-ui/react-use-pan-event':
-        specifier: workspace:*
-        version: link:../hooks/use-pan-event
-      '@chakra-ui/react-use-previous':
-        specifier: workspace:*
-        version: link:../hooks/use-previous
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../hooks/use-safe-layout-effect
-      '@chakra-ui/react-use-size':
-        specifier: workspace:*
-        version: link:../hooks/use-size
-      '@chakra-ui/react-use-timeout':
-        specifier: workspace:*
-        version: link:../hooks/use-timeout
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../hooks/use-update-effect
       '@chakra-ui/shared-utils':
         specifier: workspace:*
         version: link:../utilities/shared-utils
@@ -648,9 +590,6 @@ importers:
         specifier: ^2.5.7
         version: 2.5.7(@types/react@18.2.42)(react@18.2.0)
     devDependencies:
-      '@chakra-ui/storybook-addon':
-        specifier: workspace:*
-        version: link:../../tooling/storybook-addon
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.42)(react@18.2.0)
@@ -691,171 +630,26 @@ importers:
         specifier: ^0.13.8
         version: 0.13.8(react-dom@18.2.0)(react@18.2.0)
 
-  packages/hooks/context:
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-animation-state:
+  packages/hooks:
     dependencies:
       '@chakra-ui/dom-utils':
         specifier: workspace:*
-        version: link:../../utilities/dom-utils
-      '@chakra-ui/react-use-event-listener':
+        version: link:../utilities/dom-utils
+      '@chakra-ui/number-utils':
         specifier: workspace:*
-        version: link:../use-event-listener
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-callback-ref:
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-controllable-state:
-    dependencies:
-      '@chakra-ui/react-use-callback-ref':
+        version: link:../utilities/number-utils
+      '@chakra-ui/react-utils':
         specifier: workspace:*
-        version: link:../use-callback-ref
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-disclosure:
-    dependencies:
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../use-callback-ref
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-event-listener:
-    dependencies:
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../use-callback-ref
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-focus-effect:
-    dependencies:
-      '@chakra-ui/dom-utils':
-        specifier: workspace:*
-        version: link:../../utilities/dom-utils
-      '@chakra-ui/react-use-event-listener':
-        specifier: workspace:*
-        version: link:../use-event-listener
-      '@chakra-ui/react-use-safe-layout-effect':
-        specifier: workspace:*
-        version: link:../use-safe-layout-effect
-      '@chakra-ui/react-use-update-effect':
-        specifier: workspace:*
-        version: link:../use-update-effect
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-focus-on-pointer-down:
-    dependencies:
-      '@chakra-ui/react-use-event-listener':
-        specifier: workspace:*
-        version: link:../use-event-listener
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-interval:
-    dependencies:
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../use-callback-ref
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-latest-ref:
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-merge-refs:
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-outside-click:
-    dependencies:
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../use-callback-ref
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-pan-event:
-    dependencies:
-      '@chakra-ui/event-utils':
-        specifier: workspace:*
-        version: link:../../utilities/event-utils
-      '@chakra-ui/react-use-latest-ref':
-        specifier: workspace:*
-        version: link:../use-latest-ref
-      framesync:
-        specifier: 6.1.2
-        version: 6.1.2
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-previous:
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-safe-layout-effect:
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-size:
-    dependencies:
+        version: link:../legacy/react-utils
       '@zag-js/element-size':
-        specifier: 0.16.0
-        version: 0.16.0
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-timeout:
-    dependencies:
-      '@chakra-ui/react-use-callback-ref':
-        specifier: workspace:*
-        version: link:../use-callback-ref
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/hooks/use-update-effect:
+        specifier: 0.31.1
+        version: 0.31.1
+      compute-scroll-into-view:
+        specifier: 3.0.3
+        version: 3.0.3
+      copy-to-clipboard:
+        specifier: 3.3.3
+        version: 3.3.3
     devDependencies:
       react:
         specifier: ^18.2.0
@@ -869,25 +663,6 @@ importers:
       '@types/react':
         specifier: ^18.2.42
         version: 18.2.42
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  packages/legacy/hooks:
-    dependencies:
-      '@chakra-ui/react-utils':
-        specifier: workspace:*
-        version: link:../react-utils
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../utils
-      compute-scroll-into-view:
-        specifier: 3.0.3
-        version: 3.0.3
-      copy-to-clipboard:
-        specifier: 3.3.3
-        version: 3.3.3
-    devDependencies:
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1037,6 +812,9 @@ importers:
       color2k:
         specifier: ^2.0.2
         version: 2.0.2
+      dlv:
+        specifier: ^1.1.3
+        version: 1.1.3
     devDependencies:
       '@chakra-ui/styled-system':
         specifier: workspace:*
@@ -1044,9 +822,6 @@ importers:
       '@types/dlv':
         specifier: ^1.1.2
         version: 1.1.2
-      dlv:
-        specifier: ^1.1.3
-        version: 1.1.3
 
   packages/utilities/breakpoint-utils:
     dependencies:
@@ -9883,8 +9658,8 @@ packages:
     resolution: {integrity: sha512-oiuohEXAXhBxpzzNm9k2VHGEOLC1SXlXSbRPcfBZ9so5NRQUA++zCE7cyQJqGLTZR0t3itFLlZqDbYEXRrefwg==}
     dev: false
 
-  /@zag-js/element-size@0.16.0:
-    resolution: {integrity: sha512-GAlrv1PB0bn5dxC+CSXYF0v/HG2mB2cIhyk2cLyAwFVN5lpxGDhYFcuqDVdKWI2wATWJlo3OV+XdIq5GQtYAlQ==}
+  /@zag-js/element-size@0.31.1:
+    resolution: {integrity: sha512-4T3yvn5NqqAjhlP326Fv+w9RqMIBbNN9H72g5q2ohwzhSgSfZzrKtjL4rs9axY/cw9UfMfXjRjEE98e5CMq7WQ==}
     dev: false
 
   /@zag-js/focus-visible@0.31.1:
@@ -12763,7 +12538,6 @@ packages:
 
   /dlv@1.1.3:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
-    dev: true
 
   /dns-equal@1.0.0:
     resolution: {integrity: sha512-z+paD6YUQsk+AbGCEM4PrOXSss5gd66QfcVBFTKR/HpFL9jCqikS94HYwKww6fQyO7IxrIIyUu+g0Ka9tUS2Cg==}

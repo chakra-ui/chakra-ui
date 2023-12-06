@@ -1,5 +1,4 @@
-import * as React from "react"
-import { render, testA11y, screen } from "@chakra-ui/test-utils"
+import { render, screen, testA11y } from "@chakra-ui/test-utils"
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "."
 
 test("passes a11y test", async () => {

@@ -8,15 +8,75 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "source": "./src/index.ts",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./emotion-cache-provider": {
+      "source": "./src/emotion-cache-provider.tsx",
+      "import": {
+        "types": "./dist/types/emotion-cache-provider.d.mts",
+        "default": "./dist/esm/emotion-cache-provider.mjs"
+      },
+      "require": {
+        "types": "./dist/types/emotion-cache-provider.d.ts",
+        "default": "./dist/cjs/emotion-cache-provider.cjs"
+      }
+    },
+    "./image": {
+      "source": "./src/image.tsx",
+      "import": {
+        "types": "./dist/types/image.d.mts",
+        "default": "./dist/esm/image.mjs"
+      },
+      "require": {
+        "types": "./dist/types/image.d.ts",
+        "default": "./dist/cjs/image.cjs"
+      }
+    },
+    "./interop": {
+      "source": "./src/interop.ts",
+      "import": {
+        "types": "./dist/types/interop.d.mts",
+        "default": "./dist/esm/interop.mjs"
+      },
+      "require": {
+        "types": "./dist/types/interop.d.ts",
+        "default": "./dist/cjs/interop.cjs"
+      }
+    },
+    "./link": {
+      "source": "./src/link.tsx",
+      "import": {
+        "types": "./dist/types/link.d.mts",
+        "default": "./dist/esm/link.mjs"
+      },
+      "require": {
+        "types": "./dist/types/link.d.ts",
+        "default": "./dist/cjs/link.cjs"
+      }
+    },
+    "./use-emotion-cache": {
+      "source": "./src/use-emotion-cache.ts",
+      "import": {
+        "types": "./dist/types/use-emotion-cache.d.mts",
+        "default": "./dist/esm/use-emotion-cache.mjs"
+      },
+      "require": {
+        "types": "./dist/types/use-emotion-cache.d.ts",
+        "default": "./dist/cjs/use-emotion-cache.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -48,14 +108,14 @@
     "@emotion/cache": "^11.11.0"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "next": ">=13",
+    "@chakra-ui/react": ">=2.4.0",
     "@emotion/react": ">=11",
-    "@chakra-ui/react": ">=2.4.0"
+    "next": ">=13",
+    "react": ">=18"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.1",
     "@chakra-ui/react": "workspace:*",
+    "@emotion/react": "^11.11.1",
     "next": ">=14",
     "react": "^18.2.0"
   }

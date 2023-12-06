@@ -1,8 +1,8 @@
 import { getScrollParent } from "@chakra-ui/dom-utils"
 import { PropGetter } from "@chakra-ui/react-types"
-import { useDisclosure } from "@chakra-ui/react-use-disclosure"
+import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
 import { useEventListener } from "@chakra-ui/react-use-event-listener"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { callAllHandlers } from "@chakra-ui/shared-utils"
 import React, {
   useCallback,

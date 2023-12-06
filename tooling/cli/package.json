@@ -14,7 +14,7 @@
   "author": "Tim Kolberger <tim@kolberger.eu>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.cjs",
   "sideEffects": false,
   "files": [
     "dist",
@@ -54,5 +54,43 @@
     "@types/update-notifier": "6.0.4",
     "ora": "^7.0.1",
     "update-notifier": "^6.0.2"
-  }
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.mts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./command": {
+      "source": "./src/command/index.ts",
+      "import": {
+        "types": "./dist/types/command/index.d.mts",
+        "default": "./dist/esm/command/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/command/index.d.ts",
+        "default": "./dist/cjs/command/index.cjs"
+      }
+    },
+    "./utils": {
+      "source": "./src/utils/index.ts",
+      "import": {
+        "types": "./dist/types/utils/index.d.mts",
+        "default": "./dist/esm/utils/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/cjs/utils/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts"
 }

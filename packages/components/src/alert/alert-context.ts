@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "@chakra-ui/hooks/use-context"
 import { SystemStyleObject } from "@chakra-ui/system"
 import { Spinner } from "../spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./alert-icons"

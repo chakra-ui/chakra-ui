@@ -1,19 +1,19 @@
-import { usePanEvent } from "@chakra-ui/react-use-pan-event"
-import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
-import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
-import { useSize } from "@chakra-ui/react-use-size"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { useLatestRef } from "@chakra-ui/react-use-latest-ref"
-import type { PropGetter, RequiredPropGetter } from "@chakra-ui/react-types"
+import { useCallbackRef } from "@chakra-ui/hooks/use-callback-ref"
+import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
+import { useLatestRef } from "@chakra-ui/hooks/use-latest-ref"
+import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { usePanEvent } from "@chakra-ui/hooks/use-pan-event"
+import { useSize } from "@chakra-ui/hooks/use-size"
+import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
 import {
   clampValue,
   percentToValue,
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/number-utils"
+import type { PropGetter, RequiredPropGetter } from "@chakra-ui/react-types"
 import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
-import { useCallback, useMemo, useRef, useId, useState } from "react"
+import { useCallback, useId, useMemo, useRef, useState } from "react"
 import { getIsReversed, getStyles } from "./slider-utils"
 
 export interface UseSliderProps {

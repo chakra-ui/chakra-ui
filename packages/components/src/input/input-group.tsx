@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "@chakra-ui/hooks/use-context"
 import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   chakra,

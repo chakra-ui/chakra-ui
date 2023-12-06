@@ -17,15 +17,141 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "source": "./src/index.ts",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./config": {
+      "source": "./src/config/index.ts",
+      "import": {
+        "types": "./dist/types/config/index.d.mts",
+        "default": "./dist/esm/config/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/config/index.d.ts",
+        "default": "./dist/cjs/config/index.cjs"
+      }
+    },
+    "./create-theme-vars": {
+      "source": "./src/create-theme-vars/index.ts",
+      "import": {
+        "types": "./dist/types/create-theme-vars/index.d.mts",
+        "default": "./dist/esm/create-theme-vars/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/create-theme-vars/index.d.ts",
+        "default": "./dist/cjs/create-theme-vars/index.cjs"
+      }
+    },
+    "./css": {
+      "source": "./src/css.ts",
+      "import": {
+        "types": "./dist/types/css.d.mts",
+        "default": "./dist/esm/css.mjs"
+      },
+      "require": {
+        "types": "./dist/types/css.d.ts",
+        "default": "./dist/cjs/css.cjs"
+      }
+    },
+    "./define-styles": {
+      "source": "./src/define-styles.ts",
+      "import": {
+        "types": "./dist/types/define-styles.d.mts",
+        "default": "./dist/esm/define-styles.mjs"
+      },
+      "require": {
+        "types": "./dist/types/define-styles.d.ts",
+        "default": "./dist/cjs/define-styles.cjs"
+      }
+    },
+    "./get": {
+      "source": "./src/get.ts",
+      "import": {
+        "types": "./dist/types/get.d.mts",
+        "default": "./dist/esm/get.mjs"
+      },
+      "require": {
+        "types": "./dist/types/get.d.ts",
+        "default": "./dist/cjs/get.cjs"
+      }
+    },
+    "./get-css-var": {
+      "source": "./src/get-css-var.ts",
+      "import": {
+        "types": "./dist/types/get-css-var.d.mts",
+        "default": "./dist/esm/get-css-var.mjs"
+      },
+      "require": {
+        "types": "./dist/types/get-css-var.d.ts",
+        "default": "./dist/cjs/get-css-var.cjs"
+      }
+    },
+    "./pseudos": {
+      "source": "./src/pseudos.ts",
+      "import": {
+        "types": "./dist/types/pseudos.d.mts",
+        "default": "./dist/esm/pseudos.mjs"
+      },
+      "require": {
+        "types": "./dist/types/pseudos.d.ts",
+        "default": "./dist/cjs/pseudos.cjs"
+      }
+    },
+    "./style-config": {
+      "source": "./src/style-config.ts",
+      "import": {
+        "types": "./dist/types/style-config.d.mts",
+        "default": "./dist/esm/style-config.mjs"
+      },
+      "require": {
+        "types": "./dist/types/style-config.d.ts",
+        "default": "./dist/cjs/style-config.cjs"
+      }
+    },
+    "./system": {
+      "source": "./src/system.ts",
+      "import": {
+        "types": "./dist/types/system.d.mts",
+        "default": "./dist/esm/system.mjs"
+      },
+      "require": {
+        "types": "./dist/types/system.d.ts",
+        "default": "./dist/cjs/system.cjs"
+      }
+    },
+    "./theming-props": {
+      "source": "./src/theming-props.ts",
+      "import": {
+        "types": "./dist/types/theming-props.d.mts",
+        "default": "./dist/esm/theming-props.mjs"
+      },
+      "require": {
+        "types": "./dist/types/theming-props.d.ts",
+        "default": "./dist/cjs/theming-props.cjs"
+      }
+    },
+    "./utils": {
+      "source": "./src/utils/index.ts",
+      "import": {
+        "types": "./dist/types/utils/index.d.mts",
+        "default": "./dist/esm/utils/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/cjs/utils/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -44,9 +170,9 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
+    "@chakra-ui/shared-utils": "workspace:*",
     "csstype": "^3.1.2",
-    "lodash.mergewith": "4.6.2",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "lodash.mergewith": "4.6.2"
   },
   "devDependencies": {
     "@chakra-ui/breakpoint-utils": "workspace:*",

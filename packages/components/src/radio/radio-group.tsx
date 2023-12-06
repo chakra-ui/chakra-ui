@@ -5,7 +5,7 @@ import {
   HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/shared-utils"
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "@chakra-ui/hooks/use-context"
 import {
   useRadioGroup,
   UseRadioGroupProps,

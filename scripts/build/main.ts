@@ -8,15 +8,18 @@ async function main() {
   const clean = flags.includes("--clean")
   const dts = flags.includes("--dts")
 
-  const packages = await findPackages("packages/styled-system")
+  const packages = await findPackages("packages", {
+    ignore: ["packages/utilities", "packages/theme", "packages/theme-tools"],
+  })
 
-  const buildPackages = async () => {
-    for (const pkg of packages) {
+  const result = await Promise.allSettled(
+    packages.map(async (pkg) => {
       await buildProject(pkg, { watch, clean, dts })
-    }
-  }
+      return { name: pkg.manifest.name, dir: pkg.dir }
+    }),
+  )
 
-  buildPackages()
+  console.log(result)
 }
 
 main().catch((err) => {

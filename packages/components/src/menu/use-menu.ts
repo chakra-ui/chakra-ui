@@ -1,16 +1,16 @@
 import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
 import { getValidChildren } from "@chakra-ui/react-children-utils"
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "@chakra-ui/hooks/use-context"
 import { useAnimationState } from "@chakra-ui/react-use-animation-state"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
+import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import {
   useDisclosure,
   UseDisclosureProps,
-} from "@chakra-ui/react-use-disclosure"
+} from "@chakra-ui/hooks/use-disclosure"
 import { useFocusOnHide } from "@chakra-ui/react-use-focus-effect"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useOutsideClick } from "@chakra-ui/react-use-outside-click"
-import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
 import { callAllHandlers, dataAttr } from "@chakra-ui/shared-utils"
 import { useClickable } from "../clickable"
 import { createDescendantContext } from "../descendant"

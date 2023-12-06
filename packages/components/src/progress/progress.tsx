@@ -8,7 +8,7 @@ import {
   HTMLChakraProps,
   forwardRef,
 } from "@chakra-ui/system"
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "@chakra-ui/hooks/use-context"
 import {
   getProgressProps,
   GetProgressPropsOptions,

@@ -4,6 +4,7 @@ import { join } from "path/posix"
 import * as rollup from "rollup"
 import { getConfig } from "./config"
 import { generateTypes } from "./tsc"
+import { prepareProject } from "./prepare"
 
 interface BuildOptions {
   watch?: boolean
@@ -19,6 +20,8 @@ export async function buildProject(
 
   const { name } = project.manifest
 
+  console.log(`[${name}] Building...`)
+
   if (clean) {
     //
     const distDir = join(project.dir, "dist")
@@ -26,6 +29,7 @@ export async function buildProject(
   }
 
   const config = await getConfig(project)
+  await prepareProject(project)
 
   if (watch) {
     //
@@ -34,8 +38,14 @@ export async function buildProject(
       exclude: ["node_modules/**"],
     }
 
-    rollup.watch(config)
+    const watcher = rollup.watch(config)
     console.log(`[${name}][JS] Watching source files...`)
+
+    watcher.on("change", async () => {
+      await prepareProject(project)
+      console.log(`[${name}][JS] Source files changed, rebuilding...`)
+    })
+
     //
   } else {
     //
@@ -46,6 +56,7 @@ export async function buildProject(
       : [config.output!]
 
     await Promise.all(outputs.map((output) => build.write(output)))
+
     console.log(`[${name}][JS] Generated CJS and ESM files ✅`)
 
     if (dts) {

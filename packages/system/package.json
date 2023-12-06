@@ -16,15 +16,108 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "source": "./src/index.ts",
-      "require": "./dist/index.js"
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./factory": {
+      "source": "./src/factory.ts",
+      "import": {
+        "types": "./dist/types/factory.d.mts",
+        "default": "./dist/esm/factory.mjs"
+      },
+      "require": {
+        "types": "./dist/types/factory.d.ts",
+        "default": "./dist/cjs/factory.cjs"
+      }
+    },
+    "./forward-ref": {
+      "source": "./src/forward-ref.tsx",
+      "import": {
+        "types": "./dist/types/forward-ref.d.mts",
+        "default": "./dist/esm/forward-ref.mjs"
+      },
+      "require": {
+        "types": "./dist/types/forward-ref.d.ts",
+        "default": "./dist/cjs/forward-ref.cjs"
+      }
+    },
+    "./hooks": {
+      "source": "./src/hooks.ts",
+      "import": {
+        "types": "./dist/types/hooks.d.mts",
+        "default": "./dist/esm/hooks.mjs"
+      },
+      "require": {
+        "types": "./dist/types/hooks.d.ts",
+        "default": "./dist/cjs/hooks.cjs"
+      }
+    },
+    "./providers": {
+      "source": "./src/providers.tsx",
+      "import": {
+        "types": "./dist/types/providers.d.mts",
+        "default": "./dist/esm/providers.mjs"
+      },
+      "require": {
+        "types": "./dist/types/providers.d.ts",
+        "default": "./dist/cjs/providers.cjs"
+      }
+    },
+    "./should-forward-prop": {
+      "source": "./src/should-forward-prop.ts",
+      "import": {
+        "types": "./dist/types/should-forward-prop.d.mts",
+        "default": "./dist/esm/should-forward-prop.mjs"
+      },
+      "require": {
+        "types": "./dist/types/should-forward-prop.d.ts",
+        "default": "./dist/cjs/should-forward-prop.cjs"
+      }
+    },
+    "./system": {
+      "source": "./src/system.ts",
+      "import": {
+        "types": "./dist/types/system.d.mts",
+        "default": "./dist/esm/system.mjs"
+      },
+      "require": {
+        "types": "./dist/types/system.d.ts",
+        "default": "./dist/cjs/system.cjs"
+      }
+    },
+    "./use-style-config": {
+      "source": "./src/use-style-config.ts",
+      "import": {
+        "types": "./dist/types/use-style-config.d.mts",
+        "default": "./dist/esm/use-style-config.mjs"
+      },
+      "require": {
+        "types": "./dist/types/use-style-config.d.ts",
+        "default": "./dist/cjs/use-style-config.cjs"
+      }
+    },
+    "./use-theme": {
+      "source": "./src/use-theme.ts",
+      "import": {
+        "types": "./dist/types/use-theme.d.mts",
+        "default": "./dist/esm/use-theme.mjs"
+      },
+      "require": {
+        "types": "./dist/types/use-theme.d.ts",
+        "default": "./dist/cjs/use-theme.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
@@ -46,8 +139,8 @@
     "@chakra-ui/color-mode": "workspace:*",
     "@chakra-ui/object-utils": "workspace:*",
     "@chakra-ui/react-utils": "workspace:*",
-    "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
+    "@chakra-ui/theme-utils": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "react-fast-compare": "3.2.2"
   },

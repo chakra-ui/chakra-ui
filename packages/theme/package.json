@@ -12,32 +12,9 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./components": {
-      "types": "./dist/components/index.d.ts",
-      "import": "./dist/components/index.mjs",
-      "require": "./dist/components/index.js"
-    },
-    "./components/*": {
-      "types": "./dist/components/*.d.ts",
-      "import": "./dist/components/*.mjs",
-      "require": "./dist/components/*.js"
-    },
-    "./foundations": {
-      "types": "./dist/foundations/index.d.ts",
-      "import": "./dist/foundations/index.mjs",
-      "require": "./dist/foundations/index.js"
-    },
-    "./package.json": "./package.json"
-  },
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -54,8 +31,8 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "@chakra-ui/theme-tools": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*"
+    "@chakra-ui/shared-utils": "workspace:*",
+    "@chakra-ui/theme-tools": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.8.0"
@@ -70,5 +47,74 @@
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
     "build:fast": "tsup src"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./components": {
+      "source": "./src/components/index.ts",
+      "import": {
+        "types": "./dist/types/components/index.d.mts",
+        "default": "./dist/esm/components/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/components/index.d.ts",
+        "default": "./dist/cjs/components/index.cjs"
+      }
+    },
+    "./foundations": {
+      "source": "./src/foundations/index.ts",
+      "import": {
+        "types": "./dist/types/foundations/index.d.mts",
+        "default": "./dist/esm/foundations/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/foundations/index.d.ts",
+        "default": "./dist/cjs/foundations/index.cjs"
+      }
+    },
+    "./semantic-tokens": {
+      "source": "./src/semantic-tokens.ts",
+      "import": {
+        "types": "./dist/types/semantic-tokens.d.mts",
+        "default": "./dist/esm/semantic-tokens.mjs"
+      },
+      "require": {
+        "types": "./dist/types/semantic-tokens.d.ts",
+        "default": "./dist/cjs/semantic-tokens.cjs"
+      }
+    },
+    "./styles": {
+      "source": "./src/styles.ts",
+      "import": {
+        "types": "./dist/types/styles.d.mts",
+        "default": "./dist/esm/styles.mjs"
+      },
+      "require": {
+        "types": "./dist/types/styles.d.ts",
+        "default": "./dist/cjs/styles.cjs"
+      }
+    },
+    "./utils": {
+      "source": "./src/utils/index.ts",
+      "import": {
+        "types": "./dist/types/utils/index.d.mts",
+        "default": "./dist/esm/utils/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/cjs/utils/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
   }
 }

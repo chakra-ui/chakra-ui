@@ -1,9 +1,9 @@
 import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
 import { getValidChildren } from "@chakra-ui/react-children-utils"
-import { createContext } from "@chakra-ui/react-context"
-import { useControllableState } from "@chakra-ui/react-use-controllable-state"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
+import { createContext } from "@chakra-ui/hooks/use-context"
+import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
+import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
 import { callAllHandlers } from "@chakra-ui/shared-utils"
 import {
   createElement,

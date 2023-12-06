@@ -1,4 +1,4 @@
-import { useDisclosure } from "@chakra-ui/react-use-disclosure"
+import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { ChangeEvent } from "react"

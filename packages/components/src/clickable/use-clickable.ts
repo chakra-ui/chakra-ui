@@ -1,5 +1,5 @@
 import { dataAttr } from "@chakra-ui/shared-utils"
-import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useEventListeners } from "./use-event-listeners"
 import { useCallback, useState } from "react"
 

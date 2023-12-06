@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/react-context"
+import { createContext } from "@chakra-ui/hooks/use-context"
 import { ThemingProps, useTheme } from "@chakra-ui/system"
 import { SlideOptions } from "../transition"
 import { Modal, ModalProps } from "./modal"

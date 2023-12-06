@@ -11,7 +11,12 @@ const useClientFileExclude = ["index.mjs"].reduce<string[]>((acc, name) => {
   return acc
 }, [])
 
-const useClientDirExclude = ["packages/anatomy"]
+const useClientDirExclude = [
+  "packages/anatomy",
+  "packages/theme",
+  "packages/theme-tools",
+  "packages/utilities",
+]
 
 export async function getConfig(project: Project): Promise<RollupOptions> {
   const { manifest, dir } = project
@@ -42,14 +47,12 @@ export async function getConfig(project: Project): Promise<RollupOptions> {
         entryFileNames: "[name].mjs",
         dir: path.resolve(dir, "dist/esm"),
         preserveModules: true,
-        sourcemap: true,
       },
       {
         format: "cjs",
         entryFileNames: "[name].cjs",
         dir: path.resolve(dir, "dist/cjs"),
         preserveModules: true,
-        sourcemap: true,
       },
     ],
     external: [

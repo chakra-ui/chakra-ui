@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useInterval } from "@chakra-ui/hooks"
+import { useInterval } from "@chakra-ui/hooks/use-interval"
 import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import createDescendantContext from "."

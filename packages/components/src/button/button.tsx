@@ -1,4 +1,4 @@
-import { useMergeRefs } from "@chakra-ui/react-use-merge-refs"
+import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { cx, dataAttr } from "@chakra-ui/shared-utils"
 import {
   chakra,

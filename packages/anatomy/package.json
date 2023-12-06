@@ -11,19 +11,41 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "./cjs/index.cjs",
-  "module": "./esm/index.mjs",
-  "types": "./types/index.d.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "source": "./src/index.ts",
       "import": {
-        "types": "./types/index.d.mts",
-        "default": "./esm/index.mjs"
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
       },
       "require": {
-        "types": "./types/index.d.ts",
-        "default": "./cjs/index.cjs"
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./components": {
+      "source": "./src/components.ts",
+      "import": {
+        "types": "./dist/types/components.d.mts",
+        "default": "./dist/esm/components.mjs"
+      },
+      "require": {
+        "types": "./dist/types/components.d.ts",
+        "default": "./dist/cjs/components.cjs"
+      }
+    },
+    "./create-anatomy": {
+      "source": "./src/create-anatomy.ts",
+      "import": {
+        "types": "./dist/types/create-anatomy.d.mts",
+        "default": "./dist/esm/create-anatomy.mjs"
+      },
+      "require": {
+        "types": "./dist/types/create-anatomy.d.ts",
+        "default": "./dist/cjs/create-anatomy.cjs"
       }
     },
     "./package.json": "./package.json"

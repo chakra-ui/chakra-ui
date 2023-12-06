@@ -1,5 +1,4 @@
 import { render, act, screen, testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
 import { Image } from "."
 
 const src = "https://image.xyz/source"
