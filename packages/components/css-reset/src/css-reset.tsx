@@ -293,6 +293,12 @@ export const CSSReset = ({ scope = "" }: CSSResetProps) => (
         display: none;
       }
 
+      @-moz-document url-prefix() {
+        ${scope} select:focus {
+          outline: auto;
+        }
+      }
+
       ${vhPolyfill}
     `}
   />
