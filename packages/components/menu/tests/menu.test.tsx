@@ -30,6 +30,14 @@ const words = [
   "Hide Visual Studio Code",
   "Show All",
 ]
+const options = [
+  "Option 1",
+  "Option 2",
+  "Option 3",
+  "Option 4",
+  "Option 5",
+  "Option 6",
+]
 
 test("passes a11y test", async () => {
   await testA11y(
@@ -487,4 +495,222 @@ test("can override menu item type", async () => {
   await waitFor(() => expect(submitOption).toHaveFocus())
 
   expect(submitOption).toHaveAttribute("type", "submit")
+})
+
+test("focuses the first MenuItem after clicking MenuButton", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={true}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  await user.click(button)
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["0", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("focuses the first MenuItem after pressing Enter on MenuButton", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={true}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[Enter]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["0", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("focuses the first MenuItem after pressing Space on MenuButton", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={true}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[Space]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["0", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("focuses the first MenuItem after pressing ArrowDown on MenuButton", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={true}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[ArrowDown]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["0", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("focuses the last MenuItem after pressing ArrowUp on MenuButton", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={true}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[ArrowUp]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["-1", "-1", "-1", "-1", "-1", "0"])
+})
+
+test("does not focus any MenuItem after clicking MenuButton when autoSelect is false", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  await user.click(button)
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["-1", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("does not focus any MenuItem after pressing Enter on MenuButton when autoSelect is false", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[Enter]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["-1", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("does not focus any MenuItem after pressing Space on MenuButton when autoSelect is false", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[Space]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["-1", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("does not focus any MenuItem after pressing ArrowDown on MenuButton when autoSelect is false", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[ArrowDown]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["-1", "-1", "-1", "-1", "-1", "-1"])
+})
+
+test("does not focus any MenuItem after pressing ArrowUp on MenuButton when autoSelect is false", async () => {
+  const { user, getAllByText } = render(
+    <Menu autoSelect={false}>
+      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuList>
+        {options.map((option) => (
+          <MenuItem key={option}>{option}</MenuItem>
+        ))}
+      </MenuList>
+    </Menu>,
+  )
+
+  const button = screen.getByRole("button")
+  button.focus()
+  await user.keyboard("[ArrowUp]")
+  expect(button).toHaveAttribute("data-active")
+
+  const menuItems = getAllByText(/Option /)
+  const tabIndexes = menuItems.map((item) => item.getAttribute("tabindex"))
+  expect(tabIndexes).toEqual(["-1", "-1", "-1", "-1", "-1", "-1"])
 })

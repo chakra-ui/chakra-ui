@@ -353,16 +353,29 @@ export function useMenuButton(
 ) {
   const menu = useMenuContext()
 
-  const { onToggle, popper, openAndFocusFirstItem, openAndFocusLastItem } = menu
+  const {
+    onToggle,
+    popper,
+    openAndFocusFirstItem,
+    openAndFocusLastItem,
+    openAndFocusMenu,
+    autoSelect,
+  } = menu
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const eventKey = event.key
-      const keyMap: Record<string, React.KeyboardEventHandler> = {
-        Enter: openAndFocusFirstItem,
-        ArrowDown: openAndFocusFirstItem,
-        ArrowUp: openAndFocusLastItem,
-      }
+      const keyMap: Record<string, React.KeyboardEventHandler> = autoSelect
+        ? {
+            Enter: openAndFocusFirstItem,
+            ArrowDown: openAndFocusFirstItem,
+            ArrowUp: openAndFocusLastItem,
+          }
+        : {
+            Enter: openAndFocusMenu,
+            ArrowDown: openAndFocusMenu,
+            ArrowUp: openAndFocusMenu,
+          }
 
       const action = keyMap[eventKey]
 
@@ -372,7 +385,7 @@ export function useMenuButton(
         action(event)
       }
     },
-    [openAndFocusFirstItem, openAndFocusLastItem],
+    [autoSelect, openAndFocusFirstItem, openAndFocusLastItem, openAndFocusMenu],
   )
 
   return {
