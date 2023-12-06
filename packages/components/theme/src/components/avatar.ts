@@ -66,7 +66,6 @@ const baseStyleContainer = defineStyle((props) => {
 
 const baseStyleLabel = defineStyle({
   fontSize: $fs.reference,
-  lineHeight: "1",
 })
 
 const baseStyle = definePartsStyle((props) => ({
