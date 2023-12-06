@@ -46,6 +46,7 @@ export interface CreateThemeTypingsInterfaceOptions {
   format?: boolean
   strictTokenTypes?: boolean
   template?: TypingsTemplate
+  allowSemanticTokenColorsInColorSchemes?: boolean
 }
 
 function applyThemeTypingTemplate(
@@ -83,6 +84,7 @@ export async function createThemeTypingsInterface(
     format = true,
     strictTokenTypes = false,
     template = "default",
+    allowSemanticTokenColorsInColorSchemes = false,
   }: CreateThemeTypingsInterfaceOptions,
 ) {
   const unions = config.reduce(
@@ -115,7 +117,10 @@ export async function createThemeTypingsInterface(
 
   const textStyles = extractPropertyKeys(theme, "textStyles")
   const layerStyles = extractPropertyKeys(theme, "layerStyles")
-  const colorSchemes = extractColorSchemeTypes(theme)
+  const colorSchemes = extractColorSchemeTypes(
+    theme,
+    allowSemanticTokenColorsInColorSchemes,
+  )
   const componentTypes = extractComponentTypes(theme)
 
   const typingContent = `${printUnionMap(

@@ -15,6 +15,7 @@ type OptionsType = {
   watch?: string
   strictTokenTypes?: boolean
   template?: "default" | "augmentation"
+  allowSemanticTokenColorsInColorSchemes?: boolean
 }
 
 export async function run() {
@@ -36,6 +37,10 @@ export async function run() {
       "--strict-token-types",
       "Generate strict types for theme tokens (e.g. color, spacing)",
     )
+    .option(
+      "--allow-semantic-token-colors-in-color-schemes",
+      "Include semantic token colors in color schemes types",
+    )
     .addOption(
       new Option(
         "--template <template>",
@@ -52,6 +57,7 @@ export async function run() {
         strictTokenTypes,
         watch,
         template,
+        allowSemanticTokenColorsInColorSchemes,
       } = options
 
       const read = async () => {
@@ -70,6 +76,7 @@ export async function run() {
           format,
           strictTokenTypes,
           template,
+          allowSemanticTokenColorsInColorSchemes,
         })
 
         if (watch) {
