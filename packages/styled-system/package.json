@@ -20,6 +20,36 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/core/styled-system"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/utils": "workspace:*",
+    "csstype": "^3.1.2"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup --entry src/index.ts --entry src/theming.types.ts --entry src/shared.types.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src"
+  },
   "exports": {
     ".": {
       "source": "./src/index.ts",
@@ -154,40 +184,5 @@
       }
     },
     "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/core/styled-system"
-  },
-  "bugs": {
-    "url": "https://github.com/chakra-ui/chakra-ui/issues"
-  },
-  "dependencies": {
-    "@chakra-ui/shared-utils": "workspace:*",
-    "csstype": "^3.1.2",
-    "lodash.mergewith": "4.6.2"
-  },
-  "devDependencies": {
-    "@chakra-ui/breakpoint-utils": "workspace:*",
-    "@chakra-ui/merge-utils": "workspace:*",
-    "@chakra-ui/object-utils": "workspace:*",
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@types/lodash.mergewith": "4.6.8"
-  },
-  "sideEffects": false,
-  "scripts": {
-    "build": "tsup --entry src/index.ts --entry src/theming.types.ts --entry src/shared.types.ts --dts",
-    "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src"
   }
 }

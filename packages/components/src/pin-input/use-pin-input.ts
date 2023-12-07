@@ -1,7 +1,8 @@
-import { createContext } from "@chakra-ui/hooks/use-context"
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
+import { ariaAttr } from "@chakra-ui/utils/attr"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { createContext } from "@chakra-ui/utils/context"
 import { useCallback, useEffect, useId, useState } from "react"
 import { createDescendantContext } from "../descendant"
 

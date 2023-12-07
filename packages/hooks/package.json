@@ -30,12 +30,11 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "dependencies": {
-    "@chakra-ui/dom-utils": "workspace:*",
-    "@chakra-ui/number-utils": "workspace:*",
-    "@chakra-ui/react-utils": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
     "@zag-js/element-size": "0.31.1",
     "compute-scroll-into-view": "3.0.3",
-    "copy-to-clipboard": "3.3.3"
+    "copy-to-clipboard": "3.3.3",
+    "framesync": "6.1.2"
   },
   "peerDependencies": {
     "react": ">=18"
@@ -51,17 +50,6 @@
     "build:fast": "tsup src"
   },
   "exports": {
-    ".": {
-      "source": "./src/index.ts",
-      "import": {
-        "types": "./dist/types/index.d.mts",
-        "default": "./dist/esm/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    },
     "./use-animation-state": {
       "source": "./src/use-animation-state.ts",
       "import": {
@@ -104,17 +92,6 @@
       "require": {
         "types": "./dist/types/use-clipboard.d.ts",
         "default": "./dist/cjs/use-clipboard.cjs"
-      }
-    },
-    "./use-context": {
-      "source": "./src/use-context.ts",
-      "import": {
-        "types": "./dist/types/use-context.d.mts",
-        "default": "./dist/esm/use-context.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-context.d.ts",
-        "default": "./dist/cjs/use-context.cjs"
       }
     },
     "./use-controllable-state": {

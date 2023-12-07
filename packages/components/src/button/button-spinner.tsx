@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
 import { chakra, HTMLChakraProps, SystemStyleObject } from "@chakra-ui/system"
 import { useMemo } from "react"
 import { Spinner } from "../spinner"

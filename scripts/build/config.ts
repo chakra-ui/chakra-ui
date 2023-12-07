@@ -3,6 +3,7 @@ import replace from "@rollup/plugin-replace"
 import { Project } from "find-packages"
 import path, { join, resolve } from "node:path"
 import { RollupOptions } from "rollup"
+import alias, { Alias } from "@rollup/plugin-alias"
 import banner from "rollup-plugin-banner2"
 import esbuild from "rollup-plugin-esbuild"
 
@@ -18,10 +19,14 @@ const useClientDirExclude = [
   "packages/utilities",
 ]
 
-export async function getConfig(project: Project): Promise<RollupOptions> {
+export async function getConfig(
+  project: Project,
+  aliases: Alias[],
+): Promise<RollupOptions> {
   const { manifest, dir } = project
 
   const plugins = [
+    alias({ entries: aliases }),
     nodeResolve({ extensions: [".ts", ".tsx", ".js", ".jsx"] }),
     esbuild({
       sourceMap: false,

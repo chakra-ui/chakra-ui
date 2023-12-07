@@ -1,6 +1,6 @@
 import { Icon, IconProps } from "../icon"
-import { createContext } from "@chakra-ui/hooks/use-context"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { createContext } from "@chakra-ui/utils/context"
+import { getValidChildren } from "@chakra-ui/utils/children"
 import type {
   HTMLChakraProps,
   SystemProps,

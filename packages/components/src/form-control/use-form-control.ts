@@ -1,4 +1,5 @@
-import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
+import { ariaAttr } from "@chakra-ui/utils/attr"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { FormControlOptions, useFormControlContext } from "./form-control"
 
 export interface UseFormControlProps<T extends HTMLElement>

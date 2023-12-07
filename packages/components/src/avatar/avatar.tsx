@@ -7,13 +7,15 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { callAllHandlers, cx, dataAttr } from "@chakra-ui/shared-utils"
+import { dataAttr } from "@chakra-ui/utils/attr"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { cx } from "@chakra-ui/utils/cx"
+import { useState } from "react"
 import { AvatarStylesProvider } from "./avatar-context"
 import { AvatarImage } from "./avatar-image"
-import { GenericAvatarIcon } from "./generic-avatar-icon"
 import { initials } from "./avatar-name"
 import { AvatarOptions } from "./avatar-types"
-import { useState } from "react"
+import { GenericAvatarIcon } from "./generic-avatar-icon"
 
 export const baseStyle: SystemStyleObject = {
   display: "inline-flex",

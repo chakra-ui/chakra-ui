@@ -5,18 +5,80 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/components/react"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://storybook.chakra-ui.com"
+  },
+  "dependencies": {
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/styled-system": "workspace:*",
+    "@chakra-ui/system": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
+    "@popperjs/core": "^2.11.8",
+    "@zag-js/focus-visible": "^0.31.1",
+    "aria-hidden": "^1.2.3",
+    "react-focus-lock": "^2.9.6",
+    "react-lorem-component": "^0.13.0",
+    "react-remove-scroll": "^2.5.7"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@tanstack/react-table": "^8.10.7",
+    "@testing-library/react": "^14.0.0",
+    "framer-motion": "10.16.15",
+    "jest-matchmedia-mock": "^1.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-frame-component": "^5.2.6",
+    "react-hook-form": "^7.48.2",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.20.1",
+    "react-spinners": "^0.13.8"
+  },
+  "scripts": {
+    "build": "tsup --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup"
+  },
   "exports": {
-    ".": {
-      "source": "./src/index.ts",
-      "import": {
-        "types": "./dist/types/index.d.mts",
-        "default": "./dist/esm/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    },
     "./accordion": {
       "source": "./src/accordion/index.ts",
       "import": {
@@ -180,6 +242,17 @@
       "require": {
         "types": "./dist/types/env/index.d.ts",
         "default": "./dist/cjs/env/index.cjs"
+      }
+    },
+    "./extend-theme": {
+      "source": "./src/extend-theme/index.ts",
+      "import": {
+        "types": "./dist/types/extend-theme/index.d.mts",
+        "default": "./dist/esm/extend-theme/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/extend-theme/index.d.ts",
+        "default": "./dist/cjs/extend-theme/index.cjs"
       }
     },
     "./focus-lock": {
@@ -557,87 +630,5 @@
       }
     },
     "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": "Segun Adebayo <sage@adebayosegun.com>",
-  "license": "MIT",
-  "homepage": "https://chakra-ui.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chakra-ui/chakra-ui",
-    "directory": "packages/components/react"
-  },
-  "keywords": [
-    "react",
-    "ui",
-    "design-system",
-    "react-components",
-    "uikit",
-    "accessible",
-    "components",
-    "emotion",
-    "library",
-    "design-system"
-  ],
-  "storybook": {
-    "title": "Chakra UI",
-    "url": "https://storybook.chakra-ui.com"
-  },
-  "dependencies": {
-    "@chakra-ui/breakpoint-utils": "workspace:*",
-    "@chakra-ui/dom-utils": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*",
-    "@chakra-ui/lazy-utils": "workspace:*",
-    "@chakra-ui/number-utils": "workspace:*",
-    "@chakra-ui/object-utils": "workspace:*",
-    "@chakra-ui/react-children-utils": "workspace:*",
-    "@chakra-ui/react-types": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*",
-    "@chakra-ui/styled-system": "workspace:*",
-    "@chakra-ui/system": "workspace:*",
-    "@chakra-ui/theme": "workspace:*",
-    "@chakra-ui/theme-utils": "workspace:*",
-    "@chakra-ui/utils": "workspace:*",
-    "@popperjs/core": "^2.11.8",
-    "@zag-js/focus-visible": "^0.31.1",
-    "aria-hidden": "^1.2.3",
-    "react-focus-lock": "^2.9.6",
-    "react-lorem-component": "^0.13.0",
-    "react-remove-scroll": "^2.5.7"
-  },
-  "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "framer-motion": ">=4.0.0",
-    "react": ">=18",
-    "react-dom": ">=18"
-  },
-  "devDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@tanstack/react-table": "^8.10.7",
-    "@testing-library/react": "^14.0.0",
-    "framer-motion": "^10.16.1",
-    "jest-matchmedia-mock": "^1.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-frame-component": "^5.2.6",
-    "react-hook-form": "^7.48.2",
-    "react-icons": "^4.12.0",
-    "react-router-dom": "^6.20.1",
-    "react-spinners": "^0.13.8"
-  },
-  "scripts": {
-    "build": "tsup --dts",
-    "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup"
   }
 }

@@ -10,8 +10,8 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { dataAttr } from "@chakra-ui/shared-utils"
-import { split } from "@chakra-ui/object-utils"
+import { dataAttr } from "@chakra-ui/utils/attr"
+import { split } from "@chakra-ui/utils/split"
 import { cloneElement, isValidElement } from "react"
 
 import { SelectField, SelectFieldProps } from "./select-field"

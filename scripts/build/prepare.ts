@@ -9,10 +9,14 @@ const typesDir = join("dist", "types")
 const swapExt = (path: string, ext: string) =>
   path.replace("src/", "/").replace(/\.[^.]+$/, ext)
 
-export async function prepareProject(project: Project) {
+export async function prepareProject(project: Project, skipIndex: boolean) {
   const { manifest } = project
 
-  const entries = getProjectEntries(project)
+  let entries = getProjectEntries(project)
+
+  if (skipIndex) {
+    entries = entries.filter(([name]) => name !== ".")
+  }
 
   const exports = entries.reduce((acc, [name, source]) => {
     const entry = name === "index" ? "." : name.replace(/\/index$/, "")

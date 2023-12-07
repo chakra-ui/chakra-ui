@@ -5,14 +5,18 @@ import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { usePanEvent } from "@chakra-ui/hooks/use-pan-event"
 import { useSize } from "@chakra-ui/hooks/use-size"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
+import { ariaAttr, dataAttr } from "@chakra-ui/utils/attr"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import {
   clampValue,
   percentToValue,
   roundValueToStep,
   valueToPercent,
-} from "@chakra-ui/number-utils"
-import type { PropGetter, RequiredPropGetter } from "@chakra-ui/react-types"
-import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/utils"
+} from "@chakra-ui/utils/number"
+import type {
+  PropGetter,
+  RequiredPropGetter,
+} from "@chakra-ui/utils/prop-types"
 import { useCallback, useId, useMemo, useRef, useState } from "react"
 import { getIsReversed, getStyles } from "./slider-utils"
 

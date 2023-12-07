@@ -1,14 +1,14 @@
-import { FormControlOptions, useFormControl } from "../form-control"
 import {
+  HTMLChakraProps,
+  ThemingProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   omitThemingProps,
-  ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { omit } from "@chakra-ui/object-utils"
+import { cx } from "@chakra-ui/utils/cx"
+import { omit } from "@chakra-ui/utils/omit"
+import { FormControlOptions, useFormControl } from "../form-control"
 
 interface TextareaOptions {
   /**

@@ -1,4 +1,4 @@
-export type Point = {
+export interface Point {
   x: number
   y: number
 }
@@ -75,7 +75,7 @@ export interface PanEventHandlers {
 
 export type PanEventHistory = TimestampedPoint[]
 
-export type PanEventOptions = {
+export interface PanEventOptions {
   threshold?: number
   window?: Window
 }

@@ -1,5 +1,3 @@
-import { createContext } from "@chakra-ui/hooks/use-context"
-import { PropGetter } from "@chakra-ui/react-types"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import {
   chakra,
@@ -10,7 +8,10 @@ import {
   ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx, dataAttr } from "@chakra-ui/shared-utils"
+import { dataAttr } from "@chakra-ui/utils/attr"
+import { createContext } from "@chakra-ui/utils/context"
+import { cx } from "@chakra-ui/utils/cx"
+import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useId, useState } from "react"
 
 const [FormControlStylesProvider, useFormControlStyles] = createContext<

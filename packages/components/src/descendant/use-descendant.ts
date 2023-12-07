@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/hooks/use-context"
+import { createContext } from "@chakra-ui/utils/context"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useRef, useState } from "react"
 import { DescendantsManager, DescendantOptions } from "./descendant"

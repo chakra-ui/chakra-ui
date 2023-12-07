@@ -1,4 +1,5 @@
-import { omit, pick } from "@chakra-ui/object-utils"
+import { omit } from "@chakra-ui/utils/omit"
+import { pick } from "@chakra-ui/utils/pick"
 import {
   HTMLChakraProps,
   ThemingProps,

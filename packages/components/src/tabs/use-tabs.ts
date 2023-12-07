@@ -1,10 +1,10 @@
-import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
-import { createContext } from "@chakra-ui/hooks/use-context"
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
-import { callAllHandlers } from "@chakra-ui/shared-utils"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { getValidChildren } from "@chakra-ui/utils/children"
+import { createContext } from "@chakra-ui/utils/context"
+import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
 import {
   createElement,
   useCallback,

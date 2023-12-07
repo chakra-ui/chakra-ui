@@ -1,4 +1,4 @@
-import { isObject } from "./shared"
+import { isObject } from "./is"
 
 function getLastItem<T>(array: T[]): T | undefined {
   const length = array == null ? 0 : array.length

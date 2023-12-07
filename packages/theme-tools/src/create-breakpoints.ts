@@ -1,4 +1,4 @@
-import { warn } from "@chakra-ui/shared-utils"
+import { warn } from "@chakra-ui/utils/warn"
 
 export interface BaseBreakpointConfig {
   sm: string

@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/hooks/use-context"
+import { createContext } from "@chakra-ui/utils/context"
 import {
   chakra,
   forwardRef,
@@ -8,7 +8,7 @@ import {
   useMultiStyleConfig,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
 import {
   TabsDescendantsProvider,

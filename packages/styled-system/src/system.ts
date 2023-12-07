@@ -1,5 +1,4 @@
-import mergeWith from "lodash.mergewith"
-
+import { mergeWith } from "@chakra-ui/utils/merge"
 import {
   background,
   border,
@@ -14,12 +13,12 @@ import {
   others,
   position,
   ring,
+  scroll,
   space,
   textDecoration,
   transform,
   transition,
   typography,
-  scroll,
 } from "./config"
 import { pseudoPropNames, pseudoSelectors } from "./pseudos"
 

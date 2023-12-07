@@ -1,4 +1,4 @@
-import { runIfFn } from "@chakra-ui/shared-utils"
+import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { getToastPlacement } from "./toast.placement"
 import { toastStore } from "./toast.store"
 import type { ToastId } from "./toast.types"

@@ -1,5 +1,5 @@
 import { addDomEvent } from "./add-dom-event"
-import { isMouseEvent } from "./event"
+import { isMouseEvent } from "./is-event"
 import { getEventPoint } from "./event-point"
 import { MixedEventListener } from "./event-types"
 

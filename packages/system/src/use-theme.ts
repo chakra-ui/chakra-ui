@@ -1,5 +1,5 @@
 import { WithCSSVar } from "@chakra-ui/styled-system"
-import { Dict } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils/types"
 import { ThemeContext } from "@emotion/react"
 import { useContext } from "react"
 

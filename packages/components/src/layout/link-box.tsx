@@ -1,5 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
 
 export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
   /**
@@ -47,25 +47,24 @@ export interface LinkBoxProps extends HTMLChakraProps<"div"> {}
  * @see Docs https://chakra-ui.com/docs/navigation/link-overlay
  * @see Resources https://www.sarasoueidan.com/blog/nested-links
  */
-export const LinkBox = forwardRef<LinkBoxProps, "div">(function LinkBox(
-  props,
-  ref,
-) {
-  const { className, ...rest } = props
+export const LinkBox = forwardRef<LinkBoxProps, "div">(
+  function LinkBox(props, ref) {
+    const { className, ...rest } = props
 
-  return (
-    <chakra.div
-      ref={ref}
-      position="relative"
-      {...rest}
-      className={cx("chakra-linkbox", className)}
-      __css={{
-        /* Elevate the links and abbreviations up */
-        "a[href]:not(.chakra-linkbox__overlay), abbr[title]": {
-          position: "relative",
-          zIndex: 1,
-        },
-      }}
-    />
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        position="relative"
+        {...rest}
+        className={cx("chakra-linkbox", className)}
+        __css={{
+          /* Elevate the links and abbreviations up */
+          "a[href]:not(.chakra-linkbox__overlay), abbr[title]": {
+            position: "relative",
+            zIndex: 1,
+          },
+        }}
+      />
+    )
+  },
+)

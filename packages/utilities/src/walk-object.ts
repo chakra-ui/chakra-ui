@@ -1,6 +1,4 @@
-function isObject(value: any): value is Record<string, any> {
-  return typeof value === "object" && value != null && !Array.isArray(value)
-}
+import { isObject } from "./is"
 
 type Predicate<R = any> = (value: any, path: string[]) => R
 
@@ -44,9 +42,4 @@ export function walkObject<T, K>(
   }
 
   return inner(target)
-}
-
-export function mapObject(obj: any, fn: (value: any) => any) {
-  if (!isObject(obj)) return fn(obj)
-  return walkObject(obj, (value) => fn(value))
 }

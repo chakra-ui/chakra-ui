@@ -1,11 +1,11 @@
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
-import { compact } from "@chakra-ui/object-utils"
 import {
   ResponsiveValue,
   SystemProps,
   chakra,
   forwardRef,
 } from "@chakra-ui/system"
+import { compact } from "@chakra-ui/utils/compact"
+import { mapResponsive } from "@chakra-ui/utils/responsive"
 import { BoxProps } from "./box"
 
 export interface GridItemProps extends BoxProps {

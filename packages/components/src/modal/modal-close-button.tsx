@@ -1,5 +1,6 @@
-import { callAllHandlers, cx } from "@chakra-ui/shared-utils"
 import { forwardRef } from "@chakra-ui/system"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { cx } from "@chakra-ui/utils/cx"
 import { CloseButton, CloseButtonProps } from "../close-button"
 
 import { useModalContext, useModalStyles } from "./modal"

@@ -1,5 +1,4 @@
 import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { cx, dataAttr } from "@chakra-ui/shared-utils"
 import {
   chakra,
   forwardRef,
@@ -9,6 +8,8 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
+import { dataAttr } from "@chakra-ui/utils/attr"
+import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
 import { useButtonGroup } from "./button-context"
 import { ButtonIcon } from "./button-icon"

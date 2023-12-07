@@ -1,4 +1,4 @@
-import { isObject } from "./shared"
+import { isObject } from "./is"
 
 export const breakpoints = Object.freeze([
   "base",

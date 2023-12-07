@@ -1,4 +1,3 @@
-import { createContext } from "@chakra-ui/hooks/use-context"
 import {
   chakra,
   forwardRef,
@@ -9,7 +8,8 @@ import {
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/utils/context"
+import { cx } from "@chakra-ui/utils/cx"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
 
 interface SliderContext
@@ -29,8 +29,7 @@ const [SliderStylesProvider, useSliderStyles] = createContext<
   providerName: "<Slider />",
 })
 
-export { useSliderStyles }
-export { SliderProvider, useSliderContext }
+export { SliderProvider, useSliderContext, useSliderStyles }
 
 export interface SliderProps
   extends UseSliderProps,

@@ -1,8 +1,8 @@
-import { analyzeBreakpoints } from "@chakra-ui/breakpoint-utils"
+import { analyzeBreakpoints } from "@chakra-ui/utils/breakpoint"
 import type { WithCSSVar } from "../utils"
 import { createThemeVars } from "./create-theme-vars"
-import { extractSemanticTokens, extractTokens, omitVars } from "./theme-tokens"
 import { flattenTokens } from "./flatten-tokens"
+import { extractSemanticTokens, extractTokens, omitVars } from "./theme-tokens"
 
 export function toCSSVar<T extends Record<string, any>>(rawTheme: T) {
   /**

@@ -1,6 +1,6 @@
 import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { Collapse, CollapseProps } from "../transition"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
 import {
   useAccordionItemContext,
   useAccordionStyles,

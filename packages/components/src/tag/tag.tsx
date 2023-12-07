@@ -1,5 +1,5 @@
 import { Icon, IconProps } from "../icon"
-import { createContext } from "@chakra-ui/hooks/use-context"
+import { createContext } from "@chakra-ui/utils/context"
 import {
   chakra,
   forwardRef,

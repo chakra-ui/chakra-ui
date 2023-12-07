@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/shared-utils"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
+import { cx } from "@chakra-ui/utils/cx"
+import { getValidChildren } from "@chakra-ui/utils/children"
 import {
   chakra,
   forwardRef,

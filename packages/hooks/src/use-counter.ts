@@ -2,7 +2,7 @@ import {
   clampValue,
   countDecimalPlaces,
   toPrecision,
-} from "@chakra-ui/number-utils"
+} from "@chakra-ui/utils/number"
 import { useCallback, useState } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 

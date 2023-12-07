@@ -1,5 +1,5 @@
 import { usePrevious } from "@chakra-ui/react-use-previous"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
 import {
   chakra,
   cssVar,

@@ -1,5 +1,5 @@
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
-import { cx } from "@chakra-ui/shared-utils"
+import { mapResponsive } from "@chakra-ui/utils/responsive"
+import { cx } from "@chakra-ui/utils/cx"
 import {
   HTMLChakraProps,
   ResponsiveValue,

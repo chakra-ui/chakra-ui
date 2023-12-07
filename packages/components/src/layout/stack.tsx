@@ -1,11 +1,11 @@
-import { getValidChildren } from "@chakra-ui/react-children-utils"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   SystemProps,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils"
+import { getValidChildren } from "@chakra-ui/utils/children"
+import { cx } from "@chakra-ui/utils/cx"
 import { cloneElement, Fragment, useMemo } from "react"
 import { StackItem } from "./stack-item"
 import type { StackDirection } from "./stack.utils"

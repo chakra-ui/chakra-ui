@@ -4,8 +4,11 @@ export { useBoolean } from "./use-boolean"
 export { useCallbackRef } from "./use-callback-ref"
 export { useClipboard } from "./use-clipboard"
 export type { UseClipboardOptions } from "./use-clipboard"
-export { createContext } from "./use-context"
-export type { CreateContextOptions, CreateContextReturn } from "./use-context"
+export { createContext } from "../../utilities/src/context"
+export type {
+  CreateContextOptions,
+  CreateContextReturn,
+} from "../../utilities/src/context"
 export {
   useControllableProp,
   useControllableState,

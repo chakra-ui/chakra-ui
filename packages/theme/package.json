@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "@chakra-ui/shared-utils": "workspace:*",
-    "@chakra-ui/theme-tools": "workspace:*"
+    "@chakra-ui/theme-tools": "workspace:*",
+    "@chakra-ui/utils": "workspace:*"
   },
   "peerDependencies": {
     "@chakra-ui/styled-system": ">=2.8.0"

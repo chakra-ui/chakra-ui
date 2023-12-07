@@ -1,7 +1,6 @@
 export * from "@chakra-ui/hooks"
 export * from "@chakra-ui/system"
 export * from "@chakra-ui/theme"
-export * from "@chakra-ui/theme-utils"
 export * from "./accordion"
 export * from "./alert"
 export * from "./avatar"

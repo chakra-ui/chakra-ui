@@ -1,5 +1,5 @@
 import { forwardRef, HTMLChakraProps, SystemProps } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
 
 import { MenuCommand } from "./menu-command"
 import { MenuIcon } from "./menu-icon"

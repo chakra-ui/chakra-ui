@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/hooks/use-context"
+import { createContext } from "@chakra-ui/utils/context"
 import {
   omitThemingProps,
   SystemStyleObject,
@@ -6,7 +6,7 @@ import {
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"
-import { runIfFn } from "@chakra-ui/shared-utils"
+import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { useMemo } from "react"
 import {
   MenuDescendantsProvider,

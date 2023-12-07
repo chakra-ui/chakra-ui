@@ -6,7 +6,7 @@ import {
   ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
 import { useFormControlContext, useFormControlStyles } from "./form-control"
 
 export interface FormLabelProps
@@ -30,39 +30,38 @@ export interface FormLabelProps
  *
  * ♿️ Accessibility: Every form field should have a form label.
  */
-export const FormLabel = forwardRef<FormLabelProps, "label">(function FormLabel(
-  passedProps,
-  ref,
-) {
-  const styles = useStyleConfig("FormLabel", passedProps)
-  const props = omitThemingProps(passedProps)
+export const FormLabel = forwardRef<FormLabelProps, "label">(
+  function FormLabel(passedProps, ref) {
+    const styles = useStyleConfig("FormLabel", passedProps)
+    const props = omitThemingProps(passedProps)
 
-  const {
-    className,
-    children,
-    requiredIndicator = <RequiredIndicator />,
-    optionalIndicator = null,
-    ...rest
-  } = props
+    const {
+      className,
+      children,
+      requiredIndicator = <RequiredIndicator />,
+      optionalIndicator = null,
+      ...rest
+    } = props
 
-  const field = useFormControlContext()
-  const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
+    const field = useFormControlContext()
+    const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
 
-  return (
-    <chakra.label
-      {...ownProps}
-      className={cx("chakra-form__label", props.className)}
-      __css={{
-        display: "block",
-        textAlign: "start",
-        ...styles,
-      }}
-    >
-      {children}
-      {field?.isRequired ? requiredIndicator : optionalIndicator}
-    </chakra.label>
-  )
-})
+    return (
+      <chakra.label
+        {...ownProps}
+        className={cx("chakra-form__label", props.className)}
+        __css={{
+          display: "block",
+          textAlign: "start",
+          ...styles,
+        }}
+      >
+        {children}
+        {field?.isRequired ? requiredIndicator : optionalIndicator}
+      </chakra.label>
+    )
+  },
+)
 
 FormLabel.displayName = "FormLabel"
 

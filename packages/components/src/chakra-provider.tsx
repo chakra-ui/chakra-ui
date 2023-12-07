@@ -1,5 +1,5 @@
 import { Theme, baseTheme, theme as defaultTheme } from "@chakra-ui/theme"
-import { Dict } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils/types"
 import {
   ChakraProvider as BaseChakraProvider,
   ChakraProviderProps as BaseChakraProviderProps,

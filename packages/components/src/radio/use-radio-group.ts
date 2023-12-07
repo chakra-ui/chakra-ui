@@ -1,7 +1,7 @@
-import { isObject } from "@chakra-ui/shared-utils"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { useCallback, useRef, useState, useId } from "react"
-import { InputDOMAttributes, PropGetter } from "@chakra-ui/react-types"
+import { isObject } from "@chakra-ui/utils/is"
+import { InputDOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
+import { useCallback, useId, useRef, useState } from "react"
 
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | string | number
 

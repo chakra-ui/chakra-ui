@@ -7,8 +7,8 @@ import {
   useMultiStyleConfig,
   SystemStyleObject,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/shared-utils"
-import { createContext } from "@chakra-ui/hooks/use-context"
+import { cx } from "@chakra-ui/utils/cx"
+import { createContext } from "@chakra-ui/utils/context"
 
 const [TableStylesProvider, useTableStyles] = createContext<
   Record<string, SystemStyleObject>

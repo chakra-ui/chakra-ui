@@ -1,4 +1,5 @@
-import { cx, warn } from "@chakra-ui/shared-utils"
+import { cx } from "@chakra-ui/utils/cx"
+import { warn } from "@chakra-ui/utils/warn"
 import {
   AnimatePresence,
   HTMLMotionProps,

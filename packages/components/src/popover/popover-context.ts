@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/hooks/use-context"
+import { createContext } from "@chakra-ui/utils/context"
 import { SystemStyleObject } from "@chakra-ui/system"
 import { UsePopoverReturn } from "./use-popover"
 

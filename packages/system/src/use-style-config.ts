@@ -3,7 +3,6 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
-import { mergeThemeOverride } from "@chakra-ui/theme-utils"
 import {
   Dict,
   filterUndefined,
@@ -71,25 +70,4 @@ export function useMultiStyleConfig(
     string,
     SystemStyleObject
   >
-}
-
-type MultipartStyles = Record<string, SystemStyleObject>
-
-export function useComponentStyles__unstable(
-  themeKey: string,
-  props: ThemingProps & { baseConfig: any },
-) {
-  const { baseConfig, ...restProps } = props
-  const { theme } = useChakra()
-
-  const overrides = theme.components?.[themeKey]
-
-  const styleConfig = overrides
-    ? mergeThemeOverride(overrides, baseConfig)
-    : baseConfig
-
-  return useStyleConfigImpl(null, {
-    ...restProps,
-    styleConfig,
-  }) as MultipartStyles
 }

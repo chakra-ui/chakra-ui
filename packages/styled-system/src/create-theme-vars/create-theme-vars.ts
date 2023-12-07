@@ -1,9 +1,9 @@
-import { isObject } from "@chakra-ui/shared-utils"
+import { isObject } from "@chakra-ui/utils/is"
+import { mergeWith } from "@chakra-ui/utils/merge"
+import { pseudoSelectors } from "../pseudos"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
 import { FlatToken, FlatTokens } from "./flatten-tokens"
-import { pseudoSelectors } from "../pseudos"
-import mergeWith from "lodash.mergewith"
 
 export interface CreateThemeVarsOptions {
   cssVarPrefix?: string

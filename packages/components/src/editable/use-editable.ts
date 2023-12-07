@@ -4,8 +4,9 @@ import { useFocusOnPointerDown } from "@chakra-ui/hooks/use-focus-on-pointer-dow
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { PropGetter } from "@chakra-ui/react-types"
-import { ariaAttr, callAllHandlers } from "@chakra-ui/shared-utils"
+import { ariaAttr } from "@chakra-ui/utils/attr"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 
 interface FocusableElement {

@@ -4,7 +4,7 @@ import {
   forwardRef,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { omit } from "@chakra-ui/object-utils"
+import { omit } from "@chakra-ui/utils/omit"
 import {
   FallbackStrategy,
   shouldShowFallbackImage,

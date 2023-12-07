@@ -1,5 +1,6 @@
-import { InputDOMAttributes, PropGetter } from "@chakra-ui/react-types"
-import { ariaAttr, callAllHandlers, dataAttr } from "@chakra-ui/shared-utils"
+import { ariaAttr, dataAttr } from "@chakra-ui/utils/attr"
+import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { InputDOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useId, useState } from "react"
 import { useFormControlContext } from "../form-control"

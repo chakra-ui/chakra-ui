@@ -4,7 +4,7 @@ import {
   ResponsiveValue,
   useTheme,
 } from "@chakra-ui/system"
-import { mapResponsive } from "@chakra-ui/breakpoint-utils"
+import { mapResponsive } from "@chakra-ui/utils/responsive"
 import { Grid, GridProps } from "./grid"
 
 interface SimpleGridOptions {

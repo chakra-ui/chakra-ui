@@ -1,4 +1,4 @@
-import { isTouchEvent } from "./event"
+import { isTouchEvent } from "./is-event"
 import { AnyPointerEvent, PointType } from "./event-types"
 
 function pointFromTouch(e: TouchEvent, type: PointType = "page") {

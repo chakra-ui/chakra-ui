@@ -1,4 +1,4 @@
-import { dataAttr } from "@chakra-ui/shared-utils"
+import { dataAttr } from "@chakra-ui/utils/attr"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useEventListeners } from "./use-event-listeners"
 import { useCallback, useState } from "react"

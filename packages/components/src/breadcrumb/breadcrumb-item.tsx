@@ -4,8 +4,8 @@ import {
   SystemStyleObject,
   HTMLChakraProps,
 } from "@chakra-ui/system"
-import { getValidChildren } from "@chakra-ui/react-children-utils"
-import { cx } from "@chakra-ui/shared-utils"
+import { getValidChildren } from "@chakra-ui/utils/children"
+import { cx } from "@chakra-ui/utils/cx"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 import { BreadcrumbSeparator } from "./breadcrumb-separator"
 import { BreadcrumbLink } from "./breadcrumb-link"

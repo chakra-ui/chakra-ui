@@ -1,4 +1,4 @@
-import { breakpoints as defaultBreakPoints } from "@chakra-ui/breakpoint-utils"
+import { breakpoints as defaultBreakPoints } from "@chakra-ui/utils/responsive"
 
 export function getClosestValue<T = any>(
   values: Record<string, T>,

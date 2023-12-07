@@ -1,5 +1,11 @@
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { isBrowser } from "@chakra-ui/utils/is-element"
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react"
 import { ColorModeContext } from "./color-mode-context"
 import {
   ColorMode,
@@ -7,9 +13,11 @@ import {
   ColorModeOptions,
 } from "./color-mode-types"
 import { getColorModeUtils } from "./color-mode.utils"
-import { localStorageManager, StorageManager } from "./storage-manager"
+import { StorageManager, localStorageManager } from "./storage-manager"
 
 const noop = () => {}
+
+const useSafeLayoutEffect = isBrowser() ? useLayoutEffect : useEffect
 
 export interface ColorModeProviderProps {
   value?: ColorMode

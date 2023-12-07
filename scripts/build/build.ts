@@ -1,22 +1,27 @@
+import { Alias } from "@rollup/plugin-alias"
 import { Project } from "find-packages"
 import { rmSync } from "fs"
 import { join } from "path/posix"
 import * as rollup from "rollup"
 import { getConfig } from "./config"
-import { generateTypes } from "./tsc"
 import { prepareProject } from "./prepare"
+import { generateTypes } from "./tsc"
 
 interface BuildOptions {
   watch?: boolean
   clean?: boolean
   dts?: boolean
+  prod?: boolean
+  aliases?: Alias[]
 }
+
+const ignoreDirs = /utilities|hooks|components/
 
 export async function buildProject(
   project: Project,
   options: BuildOptions = {},
 ) {
-  const { watch, clean, dts } = options
+  const { watch, clean, dts, prod, aliases = [] } = options
 
   const { name } = project.manifest
 
@@ -28,8 +33,9 @@ export async function buildProject(
     rmSync(distDir, { recursive: true, force: true })
   }
 
-  const config = await getConfig(project)
-  await prepareProject(project)
+  const config = await getConfig(project, aliases)
+
+  await prepareProject(project, !prod && ignoreDirs.test(project.dir))
 
   if (watch) {
     //
@@ -42,7 +48,7 @@ export async function buildProject(
     console.log(`[${name}][JS] Watching source files...`)
 
     watcher.on("change", async () => {
-      await prepareProject(project)
+      await prepareProject(project, !prod)
       console.log(`[${name}][JS] Source files changed, rebuilding...`)
     })
 

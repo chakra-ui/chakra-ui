@@ -1,4 +1,4 @@
-import { walkObject } from "@chakra-ui/object-utils"
+import { walkObject } from "@chakra-ui/utils/walk-object"
 import { pseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
 

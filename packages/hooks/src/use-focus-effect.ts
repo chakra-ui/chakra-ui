@@ -1,14 +1,11 @@
-import {
-  FocusableElement,
-  getActiveElement,
-  getAllFocusable,
-  isTabbable,
-} from "@chakra-ui/dom-utils"
-import { useEventListener } from "@chakra-ui/react-use-event-listener"
-import { useSafeLayoutEffect } from "@chakra-ui/react-use-safe-layout-effect"
-import { useUpdateEffect } from "@chakra-ui/react-use-update-effect"
+import { useEventListener } from "@chakra-ui/hooks/use-event-listener"
+import { getAllFocusable } from "@chakra-ui/utils/focusable"
+import { getActiveElement } from "@chakra-ui/utils/owner"
+import { FocusableElement, isTabbable } from "@chakra-ui/utils/tabbable"
 import type { RefObject } from "react"
 import { useCallback, useRef } from "react"
+import { useSafeLayoutEffect } from "./use-safe-layout-effect"
+import { useUpdateEffect } from "./use-update-effect"
 
 export interface UseFocusOnHideOptions {
   focusRef: RefObject<FocusableElement>
@@ -21,8 +18,8 @@ function preventReturnFocus(containerRef: React.RefObject<HTMLElement>) {
   if (!el) return false
 
   const activeElement = getActiveElement(el)
-
   if (!activeElement) return false
+
   if (el.contains(activeElement)) return false
   if (isTabbable(activeElement)) return true
 

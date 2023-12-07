@@ -6,7 +6,7 @@ import {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import { Dict, filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
-import { assignAfter } from "@chakra-ui/object-utils"
+import { assignAfter } from "@chakra-ui/utils/assign-after"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import React from "react"
 import { shouldForwardProp } from "./should-forward-prop"
