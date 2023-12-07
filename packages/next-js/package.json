@@ -11,6 +11,45 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/integrations/next-js"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "postbuild": "pnpm fix:import",
+    "fix:import": "node ./scripts/postbuild.mjs",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.11.0"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=2.4.0",
+    "@emotion/react": ">=11",
+    "next": ">=13",
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "workspace:*",
+    "@emotion/react": "^11.11.1",
+    "next": ">=14",
+    "react": "^18.2.0"
+  },
   "exports": {
     ".": {
       "source": "./src/index.ts",
@@ -79,44 +118,5 @@
       }
     },
     "./package.json": "./package.json"
-  },
-  "sideEffects": false,
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/integrations/next-js"
-  },
-  "bugs": {
-    "url": "https://github.com/chakra-ui/chakra-ui/issues"
-  },
-  "scripts": {
-    "build": "tsup src --dts",
-    "postbuild": "pnpm fix:import",
-    "fix:import": "node ./scripts/postbuild.mjs",
-    "dev": "pnpm build:fast --watch",
-    "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src"
-  },
-  "dependencies": {
-    "@emotion/cache": "^11.11.0"
-  },
-  "peerDependencies": {
-    "@chakra-ui/react": ">=2.4.0",
-    "@emotion/react": ">=11",
-    "next": ">=13",
-    "react": ">=18"
-  },
-  "devDependencies": {
-    "@chakra-ui/react": "workspace:*",
-    "@emotion/react": "^11.11.1",
-    "next": ">=14",
-    "react": "^18.2.0"
   }
 }

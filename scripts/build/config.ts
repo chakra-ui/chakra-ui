@@ -1,9 +1,9 @@
+import alias, { Alias } from "@rollup/plugin-alias"
 import { nodeResolve } from "@rollup/plugin-node-resolve"
 import replace from "@rollup/plugin-replace"
 import { Project } from "find-packages"
-import path, { join, resolve } from "node:path"
+import { resolve } from "node:path"
 import { RollupOptions } from "rollup"
-import alias, { Alias } from "@rollup/plugin-alias"
 import banner from "rollup-plugin-banner2"
 import esbuild from "rollup-plugin-esbuild"
 
@@ -12,11 +12,10 @@ const useClientFileExclude = ["index.mjs"].reduce<string[]>((acc, name) => {
   return acc
 }, [])
 
-const useClientDirExclude = [
-  "packages/anatomy",
-  "packages/theme",
-  "packages/theme-tools",
-  "packages/utilities",
+const useClientDirInclude = [
+  "packages/hooks",
+  "packages/components",
+  "packages/system",
 ]
 
 export async function getConfig(
@@ -26,17 +25,17 @@ export async function getConfig(
   const { manifest, dir } = project
 
   const plugins = [
-    alias({ entries: aliases }),
     nodeResolve({ extensions: [".ts", ".tsx", ".js", ".jsx"] }),
+    alias({ entries: aliases }),
     esbuild({
-      sourceMap: false,
-      tsconfig: join(dir, "tsconfig.json"),
+      sourceMap: true,
+      // tsconfig: resolve(dir, "tsconfig.json"),
     }),
     replace({ preventAssignment: true }),
     banner((chunk) => {
       const skip =
         useClientFileExclude.includes(chunk.fileName) ||
-        useClientDirExclude.includes(dir)
+        !useClientDirInclude.includes(dir)
 
       if (skip) return
 
@@ -44,27 +43,32 @@ export async function getConfig(
     }),
   ]
 
+  const deps = [
+    ...Object.keys(manifest.dependencies ?? {}),
+    ...Object.keys(manifest.peerDependencies ?? {}),
+    "react/jsx-runtime",
+    "next/image",
+  ]
+
+  const external = new RegExp(`^(${deps.join("|")})`)
+
   return {
-    input: resolve(project.dir, "src", "index.ts"),
+    input: resolve(project.dir, "src"),
     output: [
       {
         format: "es",
         entryFileNames: "[name].mjs",
-        dir: path.resolve(dir, "dist/esm"),
+        dir: resolve(dir, "dist/esm"),
         preserveModules: true,
       },
       {
         format: "cjs",
         entryFileNames: "[name].cjs",
-        dir: path.resolve(dir, "dist/cjs"),
+        dir: resolve(dir, "dist/cjs"),
         preserveModules: true,
       },
     ],
-    external: [
-      ...Object.keys(manifest.dependencies ?? {}),
-      ...Object.keys(manifest.peerDependencies ?? {}),
-      "react/jsx-runtime",
-    ],
+    external,
     plugins,
   }
 }

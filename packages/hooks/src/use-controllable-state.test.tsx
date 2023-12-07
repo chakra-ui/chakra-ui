@@ -1,4 +1,4 @@
-import { useControllableState } from "."
+import { useControllableState } from "./use-controllable-state"
 import { hooks, render, screen } from "@chakra-ui/test-utils"
 import { useState } from "react"
 

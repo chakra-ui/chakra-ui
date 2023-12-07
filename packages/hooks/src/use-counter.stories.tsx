@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useCounter } from "../../components/src/counter"
+import { useCounter } from "./use-counter"
 
 export default {
   title: "System / Counter",

@@ -1,7 +1,6 @@
-import copy from "copy-to-clipboard"
 import { hooks } from "@chakra-ui/test-utils"
-
-import { useClipboard } from "@chakra-ui/hooks"
+import copy from "copy-to-clipboard"
+import { useClipboard } from "./use-clipboard"
 
 jest.mock("copy-to-clipboard")
 

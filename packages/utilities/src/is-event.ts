@@ -1,5 +1,5 @@
 import { AnyPointerEvent } from "./event-types"
-import { getEventWindow } from "./event-window"
+import { getEventWindow } from "./owner"
 
 export function isMouseEvent(event: any): event is MouseEvent {
   const win = getEventWindow(event)

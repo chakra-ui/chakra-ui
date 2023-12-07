@@ -1,4 +1,4 @@
-import { isHTMLElement } from "./dom"
+import { isHTMLElement } from "./is-element"
 
 function isScrollParent(el: HTMLElement): boolean {
   const win = el.ownerDocument.defaultView || window

@@ -32,7 +32,6 @@
   "dependencies": {
     "@chakra-ui/utils": "workspace:*",
     "@zag-js/element-size": "0.31.1",
-    "compute-scroll-into-view": "3.0.3",
     "copy-to-clipboard": "3.3.3",
     "framesync": "6.1.2"
   },

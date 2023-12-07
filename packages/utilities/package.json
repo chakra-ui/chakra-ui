@@ -184,17 +184,6 @@
         "default": "./dist/cjs/event-types.cjs"
       }
     },
-    "./event-window": {
-      "source": "./src/event-window.ts",
-      "import": {
-        "types": "./dist/types/event-window.d.mts",
-        "default": "./dist/esm/event-window.mjs"
-      },
-      "require": {
-        "types": "./dist/types/event-window.d.ts",
-        "default": "./dist/cjs/event-window.cjs"
-      }
-    },
     "./focusable": {
       "source": "./src/focusable.ts",
       "import": {
@@ -204,6 +193,17 @@
       "require": {
         "types": "./dist/types/focusable.d.ts",
         "default": "./dist/cjs/focusable.cjs"
+      }
+    },
+    "./get": {
+      "source": "./src/get.ts",
+      "import": {
+        "types": "./dist/types/get.d.mts",
+        "default": "./dist/esm/get.mjs"
+      },
+      "require": {
+        "types": "./dist/types/get.d.ts",
+        "default": "./dist/cjs/get.cjs"
       }
     },
     "./interop-default": {

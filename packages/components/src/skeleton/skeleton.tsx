@@ -1,5 +1,4 @@
-import { usePrevious } from "@chakra-ui/react-use-previous"
-import { cx } from "@chakra-ui/utils/cx"
+import { usePrevious } from "@chakra-ui/hooks/use-previous"
 import {
   chakra,
   cssVar,
@@ -11,6 +10,7 @@ import {
   useStyleConfig,
   useToken,
 } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils/cx"
 import { useIsFirstRender } from "./use-is-first-render"
 
 export interface SkeletonOptions {

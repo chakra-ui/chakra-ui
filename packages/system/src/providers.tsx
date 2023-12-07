@@ -1,12 +1,13 @@
 import { useColorMode } from "@chakra-ui/color-mode"
-import { createContext, CreateContextReturn } from "@chakra-ui/react-utils"
-import { css, toCSSVar, SystemStyleObject } from "@chakra-ui/styled-system"
-import { memoizedGet as get, runIfFn } from "@chakra-ui/utils"
+import { css, SystemStyleObject, toCSSVar } from "@chakra-ui/styled-system"
+import { createContext, CreateContextReturn } from "@chakra-ui/utils/context"
+import { memoizedGet as get } from "@chakra-ui/utils/get"
+import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import {
-  Global,
-  Interpolation,
   ThemeProvider as EmotionThemeProvider,
   ThemeProviderProps as EmotionThemeProviderProps,
+  Global,
+  Interpolation,
 } from "@emotion/react"
 import { useMemo } from "react"
 

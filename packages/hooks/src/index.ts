@@ -4,11 +4,6 @@ export { useBoolean } from "./use-boolean"
 export { useCallbackRef } from "./use-callback-ref"
 export { useClipboard } from "./use-clipboard"
 export type { UseClipboardOptions } from "./use-clipboard"
-export { createContext } from "../../utilities/src/context"
-export type {
-  CreateContextOptions,
-  CreateContextReturn,
-} from "../../utilities/src/context"
 export {
   useControllableProp,
   useControllableState,
@@ -20,6 +15,8 @@ export { useDisclosure } from "./use-disclosure"
 export type { UseDisclosureProps, UseDisclosureReturn } from "./use-disclosure"
 export { useEventListener } from "./use-event-listener"
 export { useLatestRef } from "./use-latest-ref"
+export { useMergeRefs } from "./use-merge-refs"
+export * from "./use-pan-event"
 export { usePrevious } from "./use-previous"
 export { useSize } from "./use-size"
 export { useTimeout } from "./use-timeout"

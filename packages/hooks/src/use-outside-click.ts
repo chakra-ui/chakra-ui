@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { useCallbackRef } from "@chakra-ui/react-use-callback-ref"
+import { useCallbackRef } from "@chakra-ui/hooks/use-callback-ref"
 
 export interface UseOutsideClickProps {
   /**
