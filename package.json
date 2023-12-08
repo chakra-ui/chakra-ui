@@ -138,6 +138,7 @@
     "@rollup/plugin-alias": "^5.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
+    "fast-glob": "^3.3.2",
     "rollup": "^4.4.1",
     "rollup-plugin-banner2": "^1.2.2",
     "rollup-plugin-esbuild": "^6.1.0"

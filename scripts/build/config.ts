@@ -1,13 +1,14 @@
 import alias, { Alias } from "@rollup/plugin-alias"
 import { nodeResolve } from "@rollup/plugin-node-resolve"
 import replace from "@rollup/plugin-replace"
+import glob from "fast-glob"
 import { Project } from "find-packages"
 import { resolve } from "node:path"
-import { RollupOptions } from "rollup"
+import { Plugin, RollupOptions } from "rollup"
 import banner from "rollup-plugin-banner2"
 import esbuild from "rollup-plugin-esbuild"
 
-const useClientFileExclude = ["index.mjs"].reduce<string[]>((acc, name) => {
+const useClientFileExclude = ["index"].reduce<string[]>((acc, name) => {
   acc.push(`${name}.js`, `${name}.mjs`, `${name}.cjs`)
   return acc
 }, [])
@@ -24,7 +25,7 @@ export async function getConfig(
 ): Promise<RollupOptions> {
   const { manifest, dir } = project
 
-  const plugins = [
+  const plugins: Plugin[] = [
     nodeResolve({ extensions: [".ts", ".tsx", ".js", ".jsx"] }),
     alias({ entries: aliases }),
     esbuild({
@@ -42,6 +43,16 @@ export async function getConfig(
 
       return "'use client';\n"
     }),
+    {
+      name: "@rollup-plugin/remove-empty-chunks",
+      generateBundle(_, bundle) {
+        for (const [name, chunk] of Object.entries(bundle)) {
+          if (chunk.type === "chunk" && chunk.code.length === 0) {
+            delete bundle[name]
+          }
+        }
+      },
+    },
   ]
 
   const deps = [
@@ -53,8 +64,23 @@ export async function getConfig(
 
   const external = new RegExp(`^(${deps.join("|")})`)
 
+  const entries = await glob("src/**/*.{ts,tsx}", {
+    cwd: project.dir,
+    absolute: true,
+    ignore: [
+      "**/*.d.ts",
+      "**/*.test.{ts,tsx}",
+      "**/*.stories.tsx",
+      "**/*.fixture.{ts,tsx}",
+    ],
+  })
+
   return {
-    input: resolve(project.dir, "src"),
+    input: entries,
+    onLog(level, log, handler) {
+      if (log.code === "EMPTY_BUNDLE") return
+      return handler(level, log)
+    },
     output: [
       {
         format: "es",

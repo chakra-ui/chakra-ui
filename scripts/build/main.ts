@@ -13,11 +13,21 @@ async function main() {
   const prod = flags.includes("--prod")
 
   const packages = await findPackages("packages", {
-    ignore: ["**/test-utils", "**/props-docs", "**/gatsby-plugin"],
+    ignore: [
+      "**/test-utils",
+      "**/props-docs",
+      "**/gatsby-plugin",
+      "**/node_modules",
+    ],
   })
 
-  const { graph } = createPkgGraph(packages)
-  const sortedDirs = sortPackages(graph).flat()
+  const { graph } = createPkgGraph(packages, {
+    ignoreDevDeps: true,
+    linkWorkspacePackages: true,
+  })
+  const sortedDirs = sortPackages(graph)
+    .flat()
+    .filter((t) => !t.includes("node_modules"))
 
   packages.sort((a, b) => {
     const aIndex = sortedDirs.indexOf(a.dir)

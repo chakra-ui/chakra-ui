@@ -1,4 +1,4 @@
-import { isString, __DEV__ } from "@chakra-ui/utils"
+import { isString } from "@chakra-ui/utils/is"
 
 /**
  * All html and svg elements for chakra components.
@@ -6,10 +6,12 @@ import { isString, __DEV__ } from "@chakra-ui/utils"
  */
 export type DOMElements = keyof JSX.IntrinsicElements
 
-export default function isTag(target: any) {
+export function isTag(target: any) {
   return (
     isString(target) &&
-    (__DEV__ ? target.charAt(0) === target.charAt(0).toLowerCase() : true)
+    (process.env.NODE_ENV !== "production"
+      ? target.charAt(0) === target.charAt(0).toLowerCase()
+      : true)
   )
 }
 
@@ -19,7 +21,9 @@ export function getDisplayName(primitive: any) {
 
 function getComponentName(primitive: React.ComponentType | string) {
   return (
-    (__DEV__ ? isString(primitive) && primitive : false) ||
+    (process.env.NODE_ENV !== "production"
+      ? isString(primitive) && primitive
+      : false) ||
     (!isString(primitive) && primitive.displayName) ||
     (!isString(primitive) && primitive.name) ||
     "ChakraComponent"

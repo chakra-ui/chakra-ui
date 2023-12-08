@@ -13,5 +13,3 @@ export function useLiveRegion(options?: LiveRegionOptions) {
 
   return liveRegion
 }
-
-export default useLiveRegion
