@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { run } = require("../dist/index.js")
+const { run } = require("../dist/cjs/index.cjs")
 
 run().catch((e) => {
   console.error(e)

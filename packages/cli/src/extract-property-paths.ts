@@ -1,5 +1,5 @@
-import { isObject } from "../../utils/is-object"
-import { printUnionType } from "../../utils/print-union-type"
+import { isObject } from "./utils/is-object"
+import { printUnionType } from "./utils/print-union-type"
 
 /**
  * @example

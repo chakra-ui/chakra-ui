@@ -1,4 +1,4 @@
-import { extractSemanticTokenKeys } from "../src/command/tokens/extract-semantic-token-keys"
+import { extractSemanticTokenKeys } from "./extract-semantic-token-keys"
 
 describe("Extract Semantic Token Keys", () => {
   it("should extract semantic token keys from the given property", () => {

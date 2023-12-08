@@ -1,12 +1,11 @@
-import checkNode from "cli-check-node"
+//@ts-expect-error
 import welcome from "cli-welcome"
-import updateNotifier from "update-notifier"
-import unhandledError from "cli-handle-unhandled"
-import pkgJSON from "../../package.json"
 
 export async function initCLI() {
-  checkNode(`12`)
-  await unhandledError()
+  const pkgJSON = require("../../package.json")
+
+  const { default: updateNotifier } = await import("update-notifier")
+
   welcome({
     title: "Chakra UI CLI",
     tagLine: `by Chakra UI\n${pkgJSON.description}`,

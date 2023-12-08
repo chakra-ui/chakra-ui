@@ -1,7 +1,4 @@
-import {
-  extractPropertyPaths,
-  printUnionMap,
-} from "../src/command/tokens/extract-property-paths"
+import { extractPropertyPaths, printUnionMap } from "./extract-property-paths"
 
 describe("Extract Property Paths", () => {
   const target = {

@@ -1,14 +1,14 @@
 import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
 import { Option, program } from "commander"
-import * as path from "path"
+import { join, resolve } from "node:path/posix"
 import {
   generateThemeTypings,
   themeInterfaceDestination,
-} from "./command/tokens/index.js"
-import { initCLI } from "./utils/init-cli.mjs"
+} from "./generate-theme-typings"
+import { initCLI } from "./utils/init-cli"
 
-type OptionsType = {
+interface OptionsType {
   out?: string
   strictComponentTypes?: boolean
   format: boolean
@@ -24,7 +24,7 @@ export async function run() {
     .command("tokens <source>")
     .option(
       "--out <path>",
-      `output file e.g. ${path.join(...themeInterfaceDestination)}`,
+      `output file e.g. ${join(...themeInterfaceDestination)}`,
     )
     .option(
       "--strict-component-types",
@@ -55,7 +55,7 @@ export async function run() {
       } = options
 
       const read = async () => {
-        const filePath = path.resolve(themeFile)
+        const filePath = resolve(themeFile)
         const { mod: theme, dependencies } = await bundleNRequire(filePath)
         return { theme, dependencies }
       }
@@ -97,8 +97,8 @@ export async function run() {
 
   program.on("--help", () => {
     console.info(`Example call:
-  $ chakra-cli tokens theme.ts
-`)
+    $ chakra-cli tokens theme.ts
+  `)
   })
 
   program.parse()

@@ -29,7 +29,8 @@ export async function getConfig(
     alias({ entries: aliases }),
     esbuild({
       sourceMap: true,
-      // tsconfig: resolve(dir, "tsconfig.json"),
+      tsconfig: resolve(dir, "tsconfig.json"),
+      platform: manifest.bin ? "node" : "browser",
     }),
     replace({ preventAssignment: true }),
     banner((chunk) => {
@@ -53,7 +54,7 @@ export async function getConfig(
   const external = new RegExp(`^(${deps.join("|")})`)
 
   return {
-    input: resolve(project.dir, "src"),
+    input: resolve(project.dir, "src", "index.ts"),
     output: [
       {
         format: "es",

@@ -1,4 +1,4 @@
-import { writeFileSync } from "fs-extra"
+import { writeFileSync } from "node:fs"
 import { themeKeyConfiguration } from "./config"
 import {
   TypingsTemplate,

@@ -1,4 +1,4 @@
-import { isObject } from "../../utils/is-object"
+import { isObject } from "./utils/is-object"
 import { printUnionMap } from "./extract-property-paths"
 
 interface ComponentType extends Record<string, string[]> {

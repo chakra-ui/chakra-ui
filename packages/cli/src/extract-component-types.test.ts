@@ -1,4 +1,4 @@
-import { extractComponentTypes } from "../src/command/tokens/extract-component-types"
+import { extractComponentTypes } from "./extract-component-types"
 
 describe("Extract Component Types", () => {
   it("should extract all component types", () => {

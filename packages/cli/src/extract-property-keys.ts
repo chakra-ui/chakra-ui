@@ -1,4 +1,4 @@
-import { isObject } from "../../utils/is-object"
+import { isObject } from "./utils/is-object"
 
 /**
  * Extract textStyles keys

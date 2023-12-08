@@ -1,5 +1,5 @@
-import { isColorHue } from "../../utils/is-color-hue"
-import { isObject } from "../../utils/is-object"
+import { isColorHue } from "./utils/is-color-hue"
+import { isObject } from "./utils/is-object"
 
 /**
  * Extract color scheme names

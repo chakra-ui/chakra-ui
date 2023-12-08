@@ -1,5 +1,5 @@
-import { formatWithPrettier } from "../../utils/format-with-prettier"
-import { isObject } from "../../utils/is-object"
+import { formatWithPrettier } from "./utils/format-with-prettier"
+import { isObject } from "./utils/is-object"
 import { extractColorSchemeTypes } from "./extract-color-schemes"
 import {
   extractComponentTypes,

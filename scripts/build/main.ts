@@ -1,8 +1,8 @@
+import { sortPackages } from "@pnpm/sort-packages"
+import { createPkgGraph } from "@pnpm/workspace.pkgs-graph"
 import { findPackages } from "find-packages"
 import { resolve } from "path/posix"
 import { buildProject } from "./build"
-import { sortPackages } from "@pnpm/sort-packages"
-import { createPkgGraph } from "@pnpm/workspace.pkgs-graph"
 
 async function main() {
   const flags = process.argv.slice(2)
