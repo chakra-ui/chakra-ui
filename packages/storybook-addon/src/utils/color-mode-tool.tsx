@@ -2,7 +2,7 @@ import * as React from "react"
 import { IconButton } from "@storybook/components"
 import { addons } from "@storybook/manager-api"
 
-import { EVENTS } from "../constants"
+import { EVENTS } from "./constants"
 
 const MoonIcon = () => (
   <svg viewBox="0 0 24 24" focusable="false">

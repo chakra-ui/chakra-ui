@@ -29,10 +29,10 @@ importers:
         version: link:packages/cli
       '@chakra-ui/storybook-addon':
         specifier: workspace:*
-        version: link:tooling/storybook-addon
+        version: link:packages/storybook-addon
       '@chakra-ui/test-utils':
         specifier: workspace:*
-        version: link:tooling/test-utils
+        version: link:packages/test-utils
       '@chakra-ui/theme':
         specifier: workspace:*
         version: link:packages/theme
@@ -322,7 +322,7 @@ importers:
     dependencies:
       '@chakra-ui/gatsby-plugin':
         specifier: workspace:*
-        version: link:../../tooling/gatsby-plugin
+        version: link:../../packages/gatsby-plugin
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/components
@@ -476,7 +476,7 @@ importers:
         version: 7.22.10
       '@chakra-ui/storybook-addon':
         specifier: workspace:*
-        version: link:../../tooling/storybook-addon
+        version: link:../../packages/storybook-addon
       '@storybook/addon-actions':
         specifier: ^7.3.2
         version: 7.3.2(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
@@ -532,21 +532,21 @@ importers:
       chokidar:
         specifier: ^3.5.3
         version: 3.5.3
-      cli-check-node:
-        specifier: ^1.3.4
-        version: 1.3.4
-      cli-handle-unhandled:
-        specifier: ^1.1.1
-        version: 1.1.1
       cli-welcome:
         specifier: ^2.2.2
         version: 2.2.2
       commander:
         specifier: ^11.0.0
         version: 11.0.0
+      ora:
+        specifier: ^7.0.1
+        version: 7.0.1
       prettier:
         specifier: ^3.0.2
         version: 3.0.2
+      update-notifier:
+        specifier: ^6.0.2
+        version: 6.0.2
     devDependencies:
       '@types/ora':
         specifier: ^3.2.0
@@ -554,12 +554,6 @@ importers:
       '@types/update-notifier':
         specifier: 6.0.4
         version: 6.0.4
-      ora:
-        specifier: ^7.0.1
-        version: 7.0.1
-      update-notifier:
-        specifier: ^6.0.2
-        version: 6.0.2
 
   packages/color-mode:
     devDependencies:
@@ -646,6 +640,15 @@ importers:
         specifier: ^0.13.8
         version: 0.13.8(react-dom@18.2.0)(react@18.2.0)
 
+  packages/gatsby-plugin:
+    devDependencies:
+      '@chakra-ui/react':
+        specifier: workspace:*
+        version: link:../components
+      gatsby:
+        specifier: ^5.11.0
+        version: 5.11.0(@swc/core@1.3.78)(babel-eslint@10.1.0)(esbuild@0.19.8)(eslint-plugin-testing-library@6.2.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)
+
   packages/hooks:
     dependencies:
       '@chakra-ui/utils':
@@ -696,6 +699,40 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
+  packages/props-docs:
+    dependencies:
+      glob:
+        specifier: ^10.3.3
+        version: 10.3.3
+      outdent:
+        specifier: ^0.8.0
+        version: 0.8.0
+    devDependencies:
+      '@types/glob':
+        specifier: ^8.1.0
+        version: 8.1.0
+
+  packages/storybook-addon:
+    devDependencies:
+      '@chakra-ui/react':
+        specifier: workspace:*
+        version: link:../components
+      '@storybook/components':
+        specifier: ^7.5.3
+        version: 7.5.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/manager-api':
+        specifier: ^7.5.3
+        version: 7.5.3(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/preview-api':
+        specifier: ^7.5.3
+        version: 7.5.3
+      '@storybook/types':
+        specifier: ^7.3.2
+        version: 7.5.3
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
   packages/styled-system:
     dependencies:
       '@chakra-ui/utils':
@@ -739,6 +776,37 @@ importers:
       framer-motion:
         specifier: ^10.16.1
         version: 10.16.1(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+
+  packages/test-utils:
+    dependencies:
+      '@chakra-ui/react':
+        specifier: workspace:*
+        version: link:../components
+      '@chakra-ui/theme':
+        specifier: workspace:*
+        version: link:../theme
+      '@chakra-ui/utils':
+        specifier: workspace:*
+        version: link:../utilities
+      '@testing-library/jest-dom':
+        specifier: ^6.0.1
+        version: 6.0.1(@types/jest@29.5.3)(jest@29.6.3)
+      '@testing-library/react':
+        specifier: ^14.0.0
+        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.4.3
+        version: 14.4.3(@testing-library/dom@9.3.1)
+      '@types/jest-axe':
+        specifier: ^3.5.5
+        version: 3.5.5
+      jest-axe:
+        specifier: ^8.0.0
+        version: 8.0.0
+    devDependencies:
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -797,80 +865,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  tooling/gatsby-plugin:
-    devDependencies:
-      '@chakra-ui/react':
-        specifier: workspace:*
-        version: link:../../packages/components
-      gatsby:
-        specifier: ^5.11.0
-        version: 5.11.0(@swc/core@1.3.78)(babel-eslint@10.1.0)(esbuild@0.19.8)(eslint-plugin-testing-library@6.2.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)
-
-  tooling/props-docs:
-    dependencies:
-      glob:
-        specifier: ^10.3.3
-        version: 10.3.3
-      outdent:
-        specifier: ^0.8.0
-        version: 0.8.0
-    devDependencies:
-      '@types/glob':
-        specifier: ^8.1.0
-        version: 8.1.0
-
-  tooling/storybook-addon:
-    devDependencies:
-      '@chakra-ui/react':
-        specifier: workspace:*
-        version: link:../../packages/components
-      '@storybook/components':
-        specifier: ^7.5.3
-        version: 7.5.3(@types/react-dom@18.2.7)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/manager-api':
-        specifier: ^7.5.3
-        version: 7.5.3(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/preview-api':
-        specifier: ^7.5.3
-        version: 7.5.3
-      '@storybook/types':
-        specifier: ^7.3.2
-        version: 7.3.2
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
-  tooling/test-utils:
-    dependencies:
-      '@chakra-ui/react':
-        specifier: workspace:*
-        version: link:../../packages/components
-      '@chakra-ui/theme':
-        specifier: workspace:*
-        version: link:../../packages/theme
-      '@chakra-ui/utils':
-        specifier: workspace:*
-        version: link:../../packages/utilities
-      '@testing-library/jest-dom':
-        specifier: ^6.0.1
-        version: 6.0.1(@types/jest@29.5.3)(jest@29.6.3)
-      '@testing-library/react':
-        specifier: ^14.0.0
-        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@testing-library/user-event':
-        specifier: ^14.4.3
-        version: 14.4.3(@testing-library/dom@9.3.1)
-      '@types/jest-axe':
-        specifier: ^3.5.5
-        version: 3.5.5
-      jest-axe:
-        specifier: ^8.0.0
-        version: 8.0.0
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -906,10 +900,10 @@ packages:
       graphql: '*'
     dependencies:
       '@babel/core': 7.22.10
-      '@babel/generator': 7.22.5
+      '@babel/generator': 7.22.10
       '@babel/parser': 7.22.10
       '@babel/runtime': 7.23.4
-      '@babel/traverse': 7.22.5
+      '@babel/traverse': 7.22.10
       '@babel/types': 7.22.10
       babel-preset-fbjs: 3.4.0(@babel/core@7.22.10)
       chalk: 4.1.2
@@ -1493,7 +1487,7 @@ packages:
     dependencies:
       '@babel/compat-data': 7.22.5
       '@babel/core': 7.22.10
-      '@babel/helper-compilation-targets': 7.22.5(@babel/core@7.22.10)
+      '@babel/helper-compilation-targets': 7.22.10
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.22.10)
       '@babel/plugin-transform-parameters': 7.22.5(@babel/core@7.22.10)
@@ -4164,7 +4158,7 @@ packages:
     dependencies:
       '@babel/parser': 7.22.10
       '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.22.10)
-      '@babel/traverse': 7.22.5
+      '@babel/traverse': 7.22.10
       '@babel/types': 7.22.10
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
@@ -5550,7 +5544,7 @@ packages:
       '@parcel/utils': 2.8.3
       '@parcel/workers': 2.8.3(@parcel/core@2.8.3)
       '@swc/helpers': 0.4.14
-      browserslist: 4.21.7
+      browserslist: 4.21.10
       detect-libc: 1.0.3
       nullthrows: 1.1.1
       regenerator-runtime: 0.13.11
@@ -7226,7 +7220,7 @@ packages:
       react: 18.2.0
       react-colorful: 5.6.1(react-dom@18.2.0)(react@18.2.0)
       react-dom: 18.2.0(react@18.2.0)
-      telejson: 7.1.0
+      telejson: 7.2.0
       tocbot: 4.21.1
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
@@ -8217,9 +8211,9 @@ packages:
         optional: true
     dependencies:
       '@adobe/css-tools': 4.0.1
-      '@babel/runtime': 7.22.10
+      '@babel/runtime': 7.23.4
       '@types/jest': 29.5.3
-      aria-query: 5.1.3
+      aria-query: 5.3.0
       chalk: 3.0.0
       css.escape: 1.5.1
       dom-accessibility-api: 0.5.14
@@ -8513,12 +8507,6 @@ packages:
     resolution: {integrity: sha512-HC8G7c1WmaF2ekqpnFq626xd3Zz0uvaqFmBJNRZCGEZCXkvSdJoNFn/8Ygbd9fKNQj8UzLdCETaI0UWPAjK7IA==}
     dependencies:
       '@types/node': 20.5.2
-
-  /@types/http-proxy@1.17.9:
-    resolution: {integrity: sha512-QsbSjA/fSk7xB+UXlCT3wHBy5ai9wOcNDWwZAtud+jXhwOM3l+EYZh8Lng4+/6n8uar0J7xILzqftJdJ/Wdfkw==}
-    dependencies:
-      '@types/node': 20.5.2
-    dev: true
 
   /@types/inquirer@8.2.1:
     resolution: {integrity: sha512-wKW3SKIUMmltbykg4I5JzCVzUhkuD9trD6efAmYgN2MrSntY0SMRQzEnD3mkyJ/rv9NLbTC7g3hKKE86YwEDLw==}
@@ -10562,7 +10550,7 @@ packages:
       '@babel/plugin-transform-arrow-functions': 7.22.5(@babel/core@7.22.10)
       '@babel/plugin-transform-block-scoped-functions': 7.22.5(@babel/core@7.22.10)
       '@babel/plugin-transform-block-scoping': 7.22.5(@babel/core@7.22.10)
-      '@babel/plugin-transform-classes': 7.22.5(@babel/core@7.22.10)
+      '@babel/plugin-transform-classes': 7.22.6(@babel/core@7.22.10)
       '@babel/plugin-transform-computed-properties': 7.22.5(@babel/core@7.22.10)
       '@babel/plugin-transform-destructuring': 7.22.5(@babel/core@7.22.10)
       '@babel/plugin-transform-flow-strip-types': 7.18.9(@babel/core@7.22.10)
@@ -10831,7 +10819,6 @@ packages:
       type-fest: 2.19.0
       widest-line: 4.0.1
       wrap-ansi: 8.1.0
-    dev: true
 
   /bplist-parser@0.2.0:
     resolution: {integrity: sha512-z0M+byMThzQmD9NILRniCUXYsYpjwnlO8N5uCFaCqIOpqRsJCrQL9NK3JsD67CN5a08nF5oIL2bD6loTdHOuKw==}
@@ -11085,12 +11072,11 @@ packages:
   /camelcase@7.0.1:
     resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
     engines: {node: '>=14.16'}
-    dev: true
 
   /caniuse-api@3.0.0:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
-      browserslist: 4.21.7
+      browserslist: 4.21.10
       caniuse-lite: 1.0.30001522
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
@@ -11299,14 +11285,6 @@ packages:
   /cli-boxes@3.0.0:
     resolution: {integrity: sha512-/lzGpEWL/8PfI0BmBOPRwp0c/wFNX1RdUML3jK/RcSBA9T8mZDdQpqYBKtCFTOfQbwPqWEOpjqW+Fnayc0969g==}
     engines: {node: '>=10'}
-    dev: true
-
-  /cli-check-node@1.3.4:
-    resolution: {integrity: sha512-iLGgQXm82iP8eH3R67qbOWs5qqUOLmNnMy5Lzl/RybcMh3y+H2zWU5POzuQ6oDUOdz4XWuxcFhP75szqd6frLg==}
-    dependencies:
-      chalk: 3.0.0
-      log-symbols: 3.0.0
-    dev: false
 
   /cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}
@@ -11319,19 +11297,6 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       restore-cursor: 4.0.0
-
-  /cli-handle-error@4.4.0:
-    resolution: {integrity: sha512-RyBCnKlc7xVr79cKb9RfBq+4fjwQeX8HKeNzIPnI/W+DWWIUUKh2ur576DpwJ3kZt2UGHlIAOF7N9txy+mgZsA==}
-    dependencies:
-      chalk: 3.0.0
-      log-symbols: 3.0.0
-    dev: false
-
-  /cli-handle-unhandled@1.1.1:
-    resolution: {integrity: sha512-Em91mJvU7VdgT2MxQpyY633vW1tDzRjPDbii6ZjEBHHLLh0xDoVkFt/wjvi9nSvJcz9rJmvtJSK8KL/hvF0Stg==}
-    dependencies:
-      cli-handle-error: 4.4.0
-    dev: false
 
   /cli-spinners@2.9.0:
     resolution: {integrity: sha512-4/aL9X3Wh0yiMQlE+eeRhWP6vclO3QRtw1JHKIT0FFUs5FjpFmESqtMvYZ0+lbzBw900b95mS0hohy+qn2VK/g==}
@@ -11591,7 +11556,7 @@ packages:
       unique-string: 3.0.0
       write-file-atomic: 3.0.3
       xdg-basedir: 5.1.0
-    dev: true
+    dev: false
 
   /confusing-browser-globals@1.0.11:
     resolution: {integrity: sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==}
@@ -11675,7 +11640,7 @@ packages:
   /core-js-compat@3.30.2:
     resolution: {integrity: sha512-nriW1nuJjUgvkEjIot1Spwakz52V9YkYHZAQG6A1eCgC8AA1p0zngrQEP9R0+V6hji5XilWKG1Bd0YRppmGimA==}
     dependencies:
-      browserslist: 4.21.7
+      browserslist: 4.21.10
 
   /core-js-compat@3.31.0:
     resolution: {integrity: sha512-hM7YCu1cU6Opx7MXNu0NuumM0ezNeAeRKadixyiQELWY3vT3De9S4J5ZBMraWV2vZnrE1Cirl0GtFtDtMUXzPw==}
@@ -11814,7 +11779,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       type-fest: 1.4.0
-    dev: true
+    dev: false
 
   /css-blank-pseudo@3.0.3(postcss@8.4.14):
     resolution: {integrity: sha512-VS90XWtsHGqoM0t4KpH053c4ehxZ2E6HtGI7x68YFV0pTo/QmkV/YFA+NnlvK8guxZVNWGQhVNJGC39Q8XF4OQ==}
@@ -12432,7 +12397,7 @@ packages:
     engines: {node: '>= 4.2.1'}
     hasBin: true
     dependencies:
-      address: 1.2.0
+      address: 1.2.2
       debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
@@ -12652,7 +12617,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       is-obj: 2.0.0
-    dev: true
+    dev: false
 
   /dotenv-expand@10.0.0:
     resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
@@ -13124,7 +13089,7 @@ packages:
   /escape-goat@4.0.0:
     resolution: {integrity: sha512-2Sd4ShcWxbx6OY1IHyla/CVNwvg7XwZVoXZHcSu9w9SReNP1EzzD5T8NWKIR38fIqEns9kDWKUQTXXAmlDrdPg==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /escape-html@1.0.3:
     resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
@@ -14387,7 +14352,7 @@ packages:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
       loader-utils: 2.0.4
-      schema-utils: 3.1.1
+      schema-utils: 3.3.0
       webpack: 5.88.2(@swc/core@1.3.78)(esbuild@0.19.8)
 
   /file-system-cache@2.3.0:
@@ -15594,7 +15559,7 @@ packages:
       foreground-child: 3.1.1
       jackspeak: 2.3.0
       minimatch: 9.0.3
-      minipass: 5.0.0
+      minipass: 7.0.4
       path-scurry: 1.10.1
 
   /glob@7.1.6:
@@ -15630,7 +15595,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       ini: 2.0.0
-    dev: true
+    dev: false
 
   /global-modules@1.0.0:
     resolution: {integrity: sha512-sKzpEkf11GpOFuw0Zzjzmt4B4UZwjOcG757PPvrfhxcLFbq0wpsgpOqxpxtxFiCG4DtG93M6XRVbF2oGdev7bg==}
@@ -15866,7 +15831,7 @@ packages:
   /has-yarn@3.0.0:
     resolution: {integrity: sha512-IrsVwUHhEULx3R8f/aA8AHuEzAorplsab/v8HBzEiIukwq5i/EC+xmOW+HfP1OaDP+2JkgT1yILHN2O3UFIbcA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: true
+    dev: false
 
   /has@1.0.3:
     resolution: {integrity: sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==}
@@ -16094,7 +16059,7 @@ packages:
         optional: true
     dependencies:
       '@types/express': 4.17.13
-      '@types/http-proxy': 1.17.9
+      '@types/http-proxy': 1.17.11
       http-proxy: 1.18.1
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
@@ -16242,7 +16207,7 @@ packages:
   /import-lazy@4.0.0:
     resolution: {integrity: sha512-rKtvo6a868b5Hu3heneU+L4yEQ4jYKLtjpnPeUdK7h0yzXGmyBTypknlkCvHFBqfX9YlorEiMM6Dnq/5atfHkw==}
     engines: {node: '>=8'}
-    dev: true
+    dev: false
 
   /import-local@3.1.0:
     resolution: {integrity: sha512-ASB07uLtnDs1o6EHjKpX34BKYDSqnFerfTOJL2HvMqF70LnxpjkzDB8J44oT9pu4AMPkQwf8jl6szgvNd2tRIg==}
@@ -16283,7 +16248,7 @@ packages:
   /ini@2.0.0:
     resolution: {integrity: sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA==}
     engines: {node: '>=10'}
-    dev: true
+    dev: false
 
   /inline-style-parser@0.1.1:
     resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
@@ -16446,6 +16411,7 @@ packages:
     hasBin: true
     dependencies:
       ci-info: 3.3.2
+    dev: false
 
   /is-core-module@2.13.0:
     resolution: {integrity: sha512-Z7dk6Qo8pOCp3l4tsX2C5ZVas4V+UxwQodwZhLopL91TX8UyyHEXafPcyoeeWuLrwzHcr3igO78wNLwHJHsMCQ==}
@@ -16549,7 +16515,7 @@ packages:
     dependencies:
       global-dirs: 3.0.0
       is-path-inside: 3.0.3
-    dev: true
+    dev: false
 
   /is-interactive@1.0.0:
     resolution: {integrity: sha512-2HvIEKRoqS62guEC+qBjpvRubdX910WCMuJTZ+I9yvqKU2/12eSL549HMwtabb4oupdj2sMP50k+XJfB/8JE6w==}
@@ -16592,7 +16558,7 @@ packages:
   /is-npm@6.0.0:
     resolution: {integrity: sha512-JEjxbSmtPSt1c8XTkVrlujcXdKV1/tvuQ7GwKcAlyiVLeYFQ2VHat8xfrDJsIkhCdF/tZ7CiIR3sy141c6+gPQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: true
+    dev: false
 
   /is-number-object@1.0.7:
     resolution: {integrity: sha512-k1U0IRzLMo7ZlYIfzRu23Oh6MiIFasgpb9X76eqfFZAqwH44UI4KTBvBYIZ1dSL9ZzChTB9ShHfLkR4pdW5krQ==}
@@ -16807,7 +16773,7 @@ packages:
   /is-yarn-global@0.4.1:
     resolution: {integrity: sha512-/kppl+R+LO5VmhYSEWARUFjodS25D68gvj8W7z0I7OWhUla5xWu8KL6CtB2V0R6yqhnRgbcaREMr4EEM6htLPQ==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /isarray@1.0.0:
     resolution: {integrity: sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==}
@@ -17395,8 +17361,8 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       chalk: 4.1.2
-      jest-diff: 29.3.1
-      jest-get-type: 29.2.0
+      jest-diff: 29.6.3
+      jest-get-type: 29.6.3
       pretty-format: 29.6.3
     dev: false
 
@@ -17724,9 +17690,9 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@babel/core': 7.22.10
-      '@babel/generator': 7.22.5
+      '@babel/generator': 7.22.10
       '@babel/plugin-syntax-typescript': 7.18.6(@babel/core@7.22.10)
-      '@babel/traverse': 7.22.5
+      '@babel/traverse': 7.22.10
       '@babel/types': 7.22.10
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
@@ -18586,13 +18552,6 @@ packages:
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
-  /log-symbols@3.0.0:
-    resolution: {integrity: sha512-dSkNGuI7iG3mfvDzUuYZyvk5dD9ocYCYzNU6CYDE6+Xqd+gwme6Z00NS3dUh8mq/73HaEtT7m6W+yUPtU6BZnQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      chalk: 2.4.2
-    dev: false
-
   /log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
@@ -19016,11 +18975,11 @@ packages:
   /minipass@5.0.0:
     resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
     engines: {node: '>=8'}
+    dev: false
 
   /minipass@7.0.4:
     resolution: {integrity: sha512-jYofLM5Dam9279rdkWzqHozUo4ybjdZmCsDHePy5V/PbBcVMiSZR97gmAy45aqi8CK1lG2ECd356FU86avfwUQ==}
     engines: {node: '>=16 || 14 >=14.17'}
-    dev: false
 
   /minizlib@2.1.2:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
@@ -20019,7 +19978,7 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       lru-cache: 10.0.1
-      minipass: 5.0.0
+      minipass: 7.0.4
 
   /path-temp@2.1.0:
     resolution: {integrity: sha512-cMMJTAZlion/RWRRC48UbrDymEIt+/YSD/l8NqjneyDw2rDOBQcP5yRkMB4CYGn47KMhZvbblBP7Z79OsMw72w==}
@@ -20866,7 +20825,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.7
+      browserslist: 4.21.10
       caniuse-api: 3.0.0
       postcss: 8.4.31
 
@@ -21199,7 +21158,7 @@ packages:
     engines: {node: '>=12.20'}
     dependencies:
       escape-goat: 4.0.0
-    dev: true
+    dev: false
 
   /puppeteer-core@2.1.1:
     resolution: {integrity: sha512-n13AWriBMPYxnpbb6bnaY5YoY6rGj8vPLrz6CZF3o0qJNEwlcfJVxBzYZ0NJsQ21UbdJoijPCDrM++SUVEz7+w==}
@@ -21356,9 +21315,9 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@babel/code-frame': 7.22.5
-      address: 1.2.0
-      browserslist: 4.21.7
+      '@babel/code-frame': 7.22.10
+      address: 1.2.2
+      browserslist: 4.21.10
       chalk: 4.1.2
       cross-spawn: 7.0.3
       detect-port-alt: 1.1.6
@@ -22355,7 +22314,7 @@ packages:
       jest-worker: 26.6.2
       rollup: 2.77.0
       serialize-javascript: 4.0.0
-      terser: 5.14.2
+      terser: 5.19.2
     dev: true
 
   /rollup@2.77.0:
@@ -22571,7 +22530,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       semver: 7.5.4
-    dev: true
+    dev: false
 
   /semver@5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
@@ -23387,7 +23346,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.7
+      browserslist: 4.21.10
       postcss: 8.4.31
       postcss-selector-parser: 6.0.10
 
@@ -23587,7 +23546,6 @@ packages:
     resolution: {integrity: sha512-1QTEcJkJEhc8OnStBx/ILRu5J2p0GjvWsBx56bmZRqnrkdBMUe+nX92jxV+p3dB4CP6PZCdJMQJwCggkNBMzkQ==}
     dependencies:
       memoizerific: 1.11.3
-    dev: true
 
   /temp-dir@2.0.0:
     resolution: {integrity: sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg==}
@@ -23680,7 +23638,7 @@ packages:
       '@swc/core': 1.3.78
       esbuild: 0.18.20
       jest-worker: 27.5.1
-      schema-utils: 3.1.1
+      schema-utils: 3.3.0
       serialize-javascript: 6.0.1
       terser: 5.19.2
       webpack: 5.88.2(@swc/core@1.3.78)(esbuild@0.18.20)
@@ -24170,6 +24128,7 @@ packages:
   /type-fest@1.4.0:
     resolution: {integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==}
     engines: {node: '>=10'}
+    dev: false
 
   /type-fest@2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
@@ -24295,7 +24254,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       crypto-random-string: 4.0.0
-    dev: true
+    dev: false
 
   /unist-util-is@4.1.0:
     resolution: {integrity: sha512-ZOQSsnce92GrxSqlnEEseX0gi7GH9zTJZ0p9dtu87WRb/37mMPO2Ilx1s/t9vBHrFhbgweUwb+t7cIn5dxPhZg==}
@@ -24411,7 +24370,7 @@ packages:
       semver: 7.5.4
       semver-diff: 4.0.0
       xdg-basedir: 5.1.0
-    dev: true
+    dev: false
 
   /upper-case-first@2.0.2:
     resolution: {integrity: sha512-514ppYHBaKwfJRK/pNC6c/OxfGa0obSnAl106u97Ed0I625Nin96KAjttZF6ZL3e1XLtphxnqrOi9iWgm+u+bg==}
@@ -24876,10 +24835,10 @@ packages:
       '@webassemblyjs/wasm-parser': 1.11.6
       acorn: 8.10.0
       acorn-import-assertions: 1.9.0(acorn@8.10.0)
-      browserslist: 4.21.7
+      browserslist: 4.21.10
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
-      es-module-lexer: 1.3.0
+      es-module-lexer: 1.4.1
       eslint-scope: 5.1.1
       events: 3.3.0
       glob-to-regexp: 0.4.1
@@ -25087,7 +25046,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       string-width: 5.1.2
-    dev: true
 
   /wildcard@2.0.0:
     resolution: {integrity: sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==}
@@ -25511,7 +25469,7 @@ packages:
   /xdg-basedir@5.1.0:
     resolution: {integrity: sha512-GCPAHLvrIH13+c0SuacwvRYj2SxJXQ4kaVTT5xgL3kPrz56XxkF21IGhjSE1+W0aw7gpBWRGXLCPnPby6lSpmQ==}
     engines: {node: '>=12'}
-    dev: true
+    dev: false
 
   /xml-name-validator@3.0.0:
     resolution: {integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==}

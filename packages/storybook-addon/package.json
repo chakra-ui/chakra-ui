@@ -2,41 +2,13 @@
   "name": "@chakra-ui/storybook-addon",
   "version": "5.1.0",
   "description": "The official Storybook Addon for Chakra UI",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist",
     "theming-arg-types.png"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./*": "./*",
-    "./manager": {
-      "types": "./dist/manager.d.ts",
-      "require": "./dist/manager.js",
-      "import": "./dist/manager.mjs"
-    },
-    "./preview": {
-      "types": "./dist/preview.d.ts",
-      "require": "./dist/preview.js",
-      "import": "./dist/preview.mjs"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "manager": [
-        "./dist/manager.d.ts"
-      ],
-      "previews": [
-        "./dist/preview.d.ts"
-      ]
-    }
-  },
   "scripts": {
     "build": "tsup --dts",
     "build:fast": "tsup",
@@ -100,5 +72,63 @@
       "Svelte"
     ],
     "icon": "https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/logo/logomark-colored.svg"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./arg-types": {
+      "source": "./src/arg-types.ts",
+      "import": {
+        "types": "./dist/types/arg-types.d.mts",
+        "default": "./dist/esm/arg-types.mjs"
+      },
+      "require": {
+        "types": "./dist/types/arg-types.d.ts",
+        "default": "./dist/cjs/arg-types.cjs"
+      }
+    },
+    "./manager": {
+      "source": "./src/manager.ts",
+      "import": {
+        "types": "./dist/types/manager.d.mts",
+        "default": "./dist/esm/manager.mjs"
+      },
+      "require": {
+        "types": "./dist/types/manager.d.ts",
+        "default": "./dist/cjs/manager.cjs"
+      }
+    },
+    "./preview": {
+      "source": "./src/preview.ts",
+      "import": {
+        "types": "./dist/types/preview.d.mts",
+        "default": "./dist/esm/preview.mjs"
+      },
+      "require": {
+        "types": "./dist/types/preview.d.ts",
+        "default": "./dist/cjs/preview.cjs"
+      }
+    },
+    "./utils": {
+      "source": "./src/utils/index.ts",
+      "import": {
+        "types": "./dist/types/utils/index.d.mts",
+        "default": "./dist/esm/utils/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/utils/index.d.ts",
+        "default": "./dist/cjs/utils/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
   }
 }

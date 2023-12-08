@@ -12,7 +12,9 @@ async function main() {
   const dts = flags.includes("--dts")
   const prod = flags.includes("--prod")
 
-  const packages = await findPackages("packages")
+  const packages = await findPackages("packages", {
+    ignore: ["**/test-utils", "**/props-docs", "**/gatsby-plugin"],
+  })
 
   const { graph } = createPkgGraph(packages)
   const sortedDirs = sortPackages(graph).flat()

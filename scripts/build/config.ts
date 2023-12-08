@@ -54,7 +54,7 @@ export async function getConfig(
   const external = new RegExp(`^(${deps.join("|")})`)
 
   return {
-    input: resolve(project.dir, "src", "index.ts"),
+    input: resolve(project.dir, "src"),
     output: [
       {
         format: "es",
