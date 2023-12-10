@@ -1,4 +1,3 @@
-import { chakra } from "@chakra-ui/system"
 import { Rating } from "../src"
 
 export default {
@@ -24,7 +23,7 @@ const starIcon = (
 )
 
 export const Basic = () => (
-  <Rating amount={5} size="lg" fillColor={"red"} strokeColor={"black"} />
+  <Rating amount={5} size="lg" fillColor={"yellow"} strokeColor={"black"} />
 )
 
 /* export const Large = () => <Rating max={10} /> */
