@@ -24,13 +24,7 @@ const starIcon = (
 )
 
 export const Basic = () => (
-  <Rating
-    amount={5}
-    icon={starIcon}
-    size="lg"
-    fillColor={"green"}
-    strokeColor={"red"}
-  />
+  <Rating amount={5} size="lg" fillColor={"red"} strokeColor={"black"} />
 )
 
 /* export const Large = () => <Rating max={10} /> */
