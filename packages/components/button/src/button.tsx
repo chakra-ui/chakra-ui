@@ -20,7 +20,12 @@ import { useButtonType } from "./use-button-type"
 export interface ButtonProps
   extends HTMLChakraProps<"button">,
     ButtonOptions,
-    ThemingProps<"Button"> {}
+    ThemingProps<"Button"> {
+  /**
+   * @deprecated The `disabled` prop is deprecated. Please use `isDisabled` instead.
+   */
+  disabled?: boolean
+}
 
 /**
  * Button component is used to trigger an action or event, such as submitting a form, opening a Dialog, canceling an action, or performing a delete operation.
