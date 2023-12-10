@@ -42,6 +42,16 @@ export const withSizes = () => (
   </div>
 )
 
+export const withValue = () => (
+  <div>
+    <Progress colorScheme="green" size="sm" value={20} showValue />
+    <br />
+    <Progress colorScheme="green" size="md" value={20} showValue />
+    <br />
+    <Progress colorScheme="green" size="lg" value={20} showValue />
+  </div>
+)
+
 export const withAnimation = () => (
   <Progress colorScheme="green" hasStripe isAnimated value={20} />
 )
