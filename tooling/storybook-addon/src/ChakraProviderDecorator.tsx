@@ -11,16 +11,17 @@ export const ChakraProviderDecorator = makeDecorator({
   parameterName: "chakra",
   skipIfNoParametersOrOptions: false,
   wrapper: (getStory, context, { parameters }) => {
-    const chakraTheme = parameters?.theme
+    const chakraTheme: Record<string, any> | undefined = parameters?.theme
 
     const direction = useDirection(
-      context.globals[DIRECTION_TOOL_ID] || chakraTheme.direction,
+      context.globals[DIRECTION_TOOL_ID] || chakraTheme?.direction,
     )
 
-    const themeWithDirectionOverride = React.useMemo(
-      () => extendTheme({ direction }, chakraTheme),
-      [chakraTheme, direction],
-    )
+    const themeWithDirectionOverride = React.useMemo(() => {
+      return chakraTheme
+        ? extendTheme({ direction }, chakraTheme)
+        : extendTheme({ direction })
+    }, [chakraTheme, direction])
 
     return (
       <ChakraBaseProvider {...parameters} theme={themeWithDirectionOverride}>

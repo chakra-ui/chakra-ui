@@ -12,6 +12,7 @@ export type {
   ToastOptions,
   ToastState,
 } from "./toast.types"
+export { toastStore } from "./toast.store"
 export { getToastPlacement } from "./toast.placement"
 export type {
   ToastPosition,
