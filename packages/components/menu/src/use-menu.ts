@@ -217,7 +217,10 @@ export function useMenu(props: UseMenuProps = {}) {
     enabled: isOpen && closeOnBlur,
     ref: menuRef,
     handler: (event) => {
-      if (!buttonRef.current?.contains(event.target as HTMLElement)) {
+      if (
+        !buttonRef.current ||
+        !event.composedPath().includes(buttonRef.current)
+      ) {
         onClose()
       }
     },

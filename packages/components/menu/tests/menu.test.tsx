@@ -12,6 +12,8 @@ import { Button } from "@chakra-ui/button"
 import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
 import { ChakraProvider } from "@chakra-ui/provider"
 import { theme } from "@chakra-ui/theme"
+import createCache from "@emotion/cache"
+import { CacheProvider } from "@emotion/react"
 import {
   Menu,
   MenuButton,
@@ -487,4 +489,46 @@ test("can override menu item type", async () => {
   await waitFor(() => expect(submitOption).toHaveFocus())
 
   expect(submitOption).toHaveAttribute("type", "submit")
+})
+
+test("does not close when clicking inside the menu in a shadow dom", async () => {
+  const rootNode = document.createElement("div")
+  const shadow = rootNode.attachShadow({ mode: "open" })
+  document.body.append(rootNode)
+
+  const styleNode = document.createElement("style")
+  const contentNode = document.createElement("div")
+  shadow.append(styleNode, contentNode)
+
+  const styleCache = createCache({
+    key: "react-shadow",
+    container: styleNode,
+  })
+
+  const onOpen = jest.fn()
+  const onClose = jest.fn()
+  const { getByText, getByTestId, user } = render(
+    <CacheProvider value={styleCache}>
+      <ChakraProvider>
+        <Menu closeOnSelect={false} onOpen={onOpen} onClose={onClose}>
+          <MenuButton as={Button} data-testId="open-menu">
+            Open Menu
+          </MenuButton>
+          <MenuList>
+            <MenuItem as={Button}>Menu Item</MenuItem>
+          </MenuList>
+        </Menu>
+      </ChakraProvider>
+    </CacheProvider>,
+    { container: contentNode, withChakraProvider: false },
+  )
+
+  const button = getByTestId("open-menu")
+  await user.click(button)
+  expect(onOpen).toHaveBeenCalled()
+  expect(onClose).not.toHaveBeenCalled()
+
+  const item = getByText("Menu Item")
+  await user.click(item)
+  expect(onClose).not.toHaveBeenCalled()
 })

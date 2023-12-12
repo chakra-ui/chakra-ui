@@ -82,7 +82,7 @@ function isValidEvent(event: Event, ref: React.RefObject<HTMLElement>) {
     if (!doc.contains(target)) return false
   }
 
-  return !ref.current?.contains(target)
+  return !(ref.current && event.composedPath().includes(ref.current))
 }
 
 function getOwnerDocument(node?: Element | null): Document {

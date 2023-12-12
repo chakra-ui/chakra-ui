@@ -56,6 +56,8 @@
     "@chakra-ui/portal": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/button": "workspace:*",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "react-icons": "^4.10.1",
     "framer-motion": "^10.16.1",
     "react": "^18.2.0",
