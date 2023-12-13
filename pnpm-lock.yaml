@@ -1381,8 +1381,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.45.4
-        version: 7.45.4(react@18.2.0)
+        specifier: 7.49.2
+        version: 7.49.2(react@18.2.0)
       react-lorem-component:
         specifier: 0.13.0
         version: 0.13.0(react@18.2.0)
@@ -2032,8 +2032,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-hook-form:
-        specifier: 7.45.4
-        version: 7.45.4(react@18.2.0)
+        specifier: 7.49.2
+        version: 7.49.2(react@18.2.0)
 
   packages/components/table:
     dependencies:
@@ -16462,7 +16462,7 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       cosmiconfig: 6.0.0
-      deepmerge: 4.3.1
+      deepmerge: 4.2.2
       eslint: 7.32.0
       fs-extra: 9.1.0
       glob: 7.2.3
@@ -23398,9 +23398,9 @@ packages:
       react-side-effect: 2.1.2(react@18.2.0)
     dev: false
 
-  /react-hook-form@7.45.4(react@18.2.0):
-    resolution: {integrity: sha512-HGDV1JOOBPZj10LB3+OZgfDBTn+IeEsNOKiq/cxbQAIbKaiJUe/KV8DBUzsx0Gx/7IG/orWqRRm736JwOfUSWQ==}
-    engines: {node: '>=12.22.0'}
+  /react-hook-form@7.49.2(react@18.2.0):
+    resolution: {integrity: sha512-TZcnSc17+LPPVpMRIDNVITY6w20deMdNi6iehTFLV1x8SqThXGwu93HjlUVU09pzFgZH7qZOvLMM7UYf2ShAHA==}
+    engines: {node: '>=18', pnpm: '8'}
     peerDependencies:
       react: ^18.2.0
     dependencies:
