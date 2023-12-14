@@ -8,7 +8,7 @@ import type {
   ToastOptions,
 } from "./toast.types"
 import type { UseToastOptions } from "./use-toast"
-import { toastStore } from "./toast.store"
+import { ToastStore, toastStore as toastStoreSingleton } from "./toast.store"
 import { getToastListStyle } from "./toast.utils"
 import { useSyncExternalStore } from "react"
 import { createContext } from "@chakra-ui/react-context"
@@ -88,6 +88,10 @@ export type ToastProviderProps = React.PropsWithChildren<{
    * Props to be forwarded to the portal component
    */
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
+  /**
+   * Optional toast store. Will use a singleton store if not provided
+   */
+  toastStore?: ToastStore
 }>
 
 /**
@@ -105,17 +109,18 @@ export const [ToastOptionProvider, useToastOptionContext] = createContext<
  * across all corners ("top", "bottom", etc.)
  */
 export const ToastProvider = (props: ToastProviderProps) => {
+  const {
+    motionVariants,
+    component: Component = ToastComponent,
+    toastStore = toastStoreSingleton,
+    portalProps,
+  } = props
+
   const state = useSyncExternalStore(
     toastStore.subscribe,
     toastStore.getState,
     toastStore.getState,
   )
-
-  const {
-    motionVariants,
-    component: Component = ToastComponent,
-    portalProps,
-  } = props
 
   const stateKeys = Object.keys(state) as Array<keyof typeof state>
   const toastList = stateKeys.map((position) => {

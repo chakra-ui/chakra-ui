@@ -6,6 +6,8 @@ export type {
   ToastProviderProps,
   CreateToastOptions,
 } from "./toast.provider"
+export { createToastStore } from "./toast.store"
+export type { ToastStore } from "./toast.store"
 export type {
   ToastId,
   ToastMessage,
