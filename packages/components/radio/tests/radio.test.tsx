@@ -5,12 +5,12 @@ import { Radio, useRadio, UseRadioProps } from "../src"
 
 test("has proper aria and data attributes", async () => {
   const Component = (props: UseRadioProps = {}) => {
-    const { getCheckboxProps, getInputProps, getRootProps } = useRadio(props)
+    const { getRadioProps, getInputProps, getRootProps } = useRadio(props)
 
     return (
       <label data-testid="container" {...getRootProps()}>
         <input data-testid="input" {...getInputProps()} />
-        <div data-testid="checkbox" {...getCheckboxProps()} />
+        <div data-testid="checkbox" {...getRadioProps()} />
       </label>
     )
   }
@@ -75,13 +75,12 @@ test("handles events and callbacks correctly", () => {
     onKeyUp: jest.fn(),
   }
   const Component = () => {
-    const { getCheckboxProps, getInputProps, getRootProps } =
-      useRadio(hookProps)
+    const { getRadioProps, getInputProps, getRootProps } = useRadio(hookProps)
 
     return (
       <label data-testid="container" {...getRootProps()}>
         <input data-testid="input" {...getInputProps(inputProps)} />
-        <div data-testid="checkbox" {...getCheckboxProps(checkboxProps)} />
+        <div data-testid="checkbox" {...getRadioProps(checkboxProps)} />
       </label>
     )
   }

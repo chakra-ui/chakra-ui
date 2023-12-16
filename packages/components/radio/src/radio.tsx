@@ -70,7 +70,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
 
   const {
     getInputProps,
-    getCheckboxProps,
+    getRadioProps,
     getLabelProps,
     getRootProps,
     htmlProps,
@@ -85,7 +85,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
 
   const [layoutProps, otherProps] = split(htmlProps, layoutPropNames as any)
 
-  const checkboxProps = getCheckboxProps(otherProps)
+  const checkboxProps = getRadioProps(otherProps)
   const inputProps = getInputProps(htmlInputProps, ref)
   const labelProps = getLabelProps()
   const rootProps = Object.assign({}, layoutProps, getRootProps())
