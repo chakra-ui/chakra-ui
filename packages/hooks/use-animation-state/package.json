@@ -19,7 +19,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "hooks/use-animation-state"
+    "directory": "packages/hooks/use-animation-state"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

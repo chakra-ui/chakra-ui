@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/system",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "description": "Chakra UI system primitives",
   "keywords": [
     "system",
@@ -26,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/components/system"
+    "directory": "packages/core/system"
   },
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"

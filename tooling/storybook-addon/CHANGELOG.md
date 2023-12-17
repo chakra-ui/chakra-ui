@@ -1,5 +1,23 @@
 # @chakra-ui/storybook-addon
 
+## 5.1.0
+
+### Minor Changes
+
+- [#8109](https://github.com/chakra-ui/chakra-ui/pull/8109)
+  [`4340dbda4`](https://github.com/chakra-ui/chakra-ui/commit/4340dbda47bd01d8b4e64ef70a44401a1853606d)
+  Thanks [@TylerAPfledderer](https://github.com/TylerAPfledderer)! - Bumps
+  Storybook deps to latest (7.5.3) and updates the tooling
+
+  - Toggling state for color mode originally used Storybook's `useAddonState`
+    api hook. However, this hook is not reliable to persistent allow toggling of
+    boolean state. Replaces this hook with React's `useState` as this state is a
+    primitive.
+  - Makes use of the `makeDecorator` function to make this addon more like an
+    official Storybook addon.
+  - Removes unneeded props from the button components that were originally part
+    of a Type error bug.
+
 ## 5.0.1
 
 ### Patch Changes

@@ -168,8 +168,12 @@ function useFormControlProvider(props: FormControlContext) {
       ...htmlProps,
       ref: forwardedRef,
       role: "group",
+      "data-focus": dataAttr(isFocused),
+      "data-disabled": dataAttr(isDisabled),
+      "data-invalid": dataAttr(isInvalid),
+      "data-readonly": dataAttr(isReadOnly),
     }),
-    [htmlProps],
+    [htmlProps, isDisabled, isFocused, isInvalid, isReadOnly],
   )
 
   const getRequiredIndicatorProps = useCallback<PropGetter>(

@@ -1,18 +1,16 @@
 "use client"
 
-import { CacheProvider as EmotionCacheProvider } from "@emotion/react"
 import { PropsWithChildren } from "react"
-import { EmotionCacheOptions, useEmotionCache } from "./use-emotion-cache"
+import { EmotionCacheOptions } from "./use-emotion-cache"
 
+/**
+ * @deprecated - This component type is no longer necessary
+ */
 export type CacheProviderProps = PropsWithChildren<EmotionCacheOptions>
 
-export function CacheProvider({
-  children,
-  ...cacheOptions
-}: CacheProviderProps) {
-  return (
-    <EmotionCacheProvider value={useEmotionCache(cacheOptions)}>
-      {children}
-    </EmotionCacheProvider>
-  )
+/**
+ * @deprecated - This component is no longer necessary
+ */
+export function CacheProvider({ children }: CacheProviderProps) {
+  return children
 }

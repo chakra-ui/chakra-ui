@@ -1,33 +1,33 @@
-import { useMemo } from "react"
-import type { DecoratorFunction, Renderer } from "@storybook/types"
-import { ChakraProvider, extendTheme, theme } from "@chakra-ui/react"
+import * as React from "react"
+
+import { ChakraBaseProvider, extendTheme } from "@chakra-ui/react"
+import { makeDecorator } from "@storybook/preview-api"
 import { ColorModeSync } from "./color-mode/ColorModeSync"
 import { useDirection } from "./direction/useDirection"
 import { DIRECTION_TOOL_ID } from "./constants"
 
-export const ChakraProviderDecorator: DecoratorFunction<Renderer> = (
-  getStory,
-  context,
-) => {
-  const {
-    parameters: { chakra: chakraParams },
-    globals: { [DIRECTION_TOOL_ID]: globalDirection },
-  } = context
-  const chakraTheme = chakraParams?.theme
-    ? typeof chakraParams.theme === "function"
-      ? chakraParams.theme(context)
-      : chakraParams.theme
-    : theme
-  const direction = useDirection(globalDirection || chakraTheme?.direction)
-  const themeWithDirectionOverride = useMemo(
-    () => extendTheme({ direction }, chakraTheme),
-    [chakraTheme, direction],
-  )
+export const ChakraProviderDecorator = makeDecorator({
+  name: "ChakraProviderDecorator",
+  parameterName: "chakra",
+  skipIfNoParametersOrOptions: false,
+  wrapper: (getStory, context, { parameters }) => {
+    const chakraTheme: Record<string, any> | undefined = parameters?.theme
 
-  return (
-    <ChakraProvider {...chakraParams} theme={themeWithDirectionOverride}>
-      <ColorModeSync />
-      {getStory(context)}
-    </ChakraProvider>
-  )
-}
+    const direction = useDirection(
+      context.globals[DIRECTION_TOOL_ID] || chakraTheme?.direction,
+    )
+
+    const themeWithDirectionOverride = React.useMemo(() => {
+      return chakraTheme
+        ? extendTheme({ direction }, chakraTheme)
+        : extendTheme({ direction })
+    }, [chakraTheme, direction])
+
+    return (
+      <ChakraBaseProvider {...parameters} theme={themeWithDirectionOverride}>
+        <ColorModeSync />
+        <>{getStory(context)}</>
+      </ChakraBaseProvider>
+    )
+  },
+})

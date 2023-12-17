@@ -1,11 +1,11 @@
-import emotion_createCache, { Options as CacheOptions } from "@emotion/cache"
+import _createCache, { Options as CacheOptions } from "@emotion/cache"
 import { useServerInsertedHTML } from "next/navigation"
 import { createElement, useMemo } from "react"
+import { interopDefault } from "./interop"
 
 export type EmotionCacheOptions = Partial<CacheOptions>
 
-const createCache = ((emotion_createCache as any).default ??
-  emotion_createCache) as typeof emotion_createCache
+const createCache = interopDefault(_createCache) as typeof _createCache
 
 export function useEmotionCache(options?: EmotionCacheOptions) {
   const cache = useMemo(() => {
@@ -18,6 +18,7 @@ export function useEmotionCache(options?: EmotionCacheOptions) {
     createElement("style", {
       key: cache.key,
       "data-emotion": `${cache.key} ${Object.keys(cache.inserted).join(" ")}`,
+      nonce: cache.nonce,
       dangerouslySetInnerHTML: {
         __html: Object.values(cache.inserted).join(" "),
       },
