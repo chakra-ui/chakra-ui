@@ -41,11 +41,15 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
         {...buttonProps}
         className={cx("chakra-menu__menu-button", props.className)}
       >
-        <chakra.span
-          __css={{ pointerEvents: "none", flex: "1 1 auto", minW: 0 }}
-        >
-          {props.children}
-        </chakra.span>
+        {
+          props.children && (
+            <chakra.span
+              __css={{ pointerEvents: "none", flex: "1 1 auto", minW: 0 }}
+            >
+              {props.children}
+            </chakra.span>
+          )
+        }
       </Element>
     )
   },
