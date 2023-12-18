@@ -261,7 +261,7 @@ export function WithPopoverAnchor() {
   )
 }
 
-export function WithCustomPopoverAnchor() {
+export function WithPopoverAnchorRef() {
   const [isEditing, setIsEditing] = useBoolean()
   const [color, setColor] = React.useState("red");
 
