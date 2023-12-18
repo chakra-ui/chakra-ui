@@ -30,7 +30,7 @@
   "dependencies": {
     "@chakra-ui/react-utils": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "compute-scroll-into-view": "3.0.3",
+    "compute-scroll-into-view": "3.1.0",
     "copy-to-clipboard": "3.3.3"
   },
   "peerDependencies": {
