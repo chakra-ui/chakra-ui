@@ -10,7 +10,7 @@ import { DOMAttributes, PropGetter } from "@chakra-ui/react-types"
 import { mergeRefs } from "@chakra-ui/react-use-merge-refs"
 import { callAllHandlers } from "@chakra-ui/shared-utils"
 import { lazyDisclosure, LazyMode } from "@chakra-ui/lazy-utils"
-import { useCallback, useEffect, useId, useRef, useState } from "react"
+import { RefObject, useCallback, useEffect, useId, useRef, useState } from "react"
 
 const TRIGGER = {
   click: "click",
@@ -155,7 +155,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
 
-  const anchorRef = useRef<HTMLElement>(null)
+  const anchorRef = useRef<HTMLElement | null>(null)
   const triggerRef = useRef<HTMLElement>(null)
   const popoverRef = useRef<HTMLElement>(null)
 
@@ -316,6 +316,13 @@ export function usePopover(props: UsePopoverProps = {}) {
     [anchorRef, referenceRef],
   )
 
+  const setAnchorRef = useCallback((ref: RefObject<HTMLElement | null>) => {
+    const node = ref.current;
+    if (node){
+      mergeRefs(anchorRef, referenceRef)(node);
+    }
+  }, [anchorRef, referenceRef]);
+
   const openTimeout = useRef<number>()
   const closeTimeout = useRef<number>()
 
@@ -390,7 +397,7 @@ export function usePopover(props: UsePopoverProps = {}) {
           }
 
           closeTimeout.current = window.setTimeout(() => {
-            if (isHoveringRef.current === false) {
+            if (!isHoveringRef.current) {
               onClose()
             }
           }, closeDelay)
@@ -460,6 +467,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     getTriggerProps,
     getHeaderProps,
     getBodyProps,
+    setAnchorRef
   }
 }
 
