@@ -16,8 +16,8 @@ import {
   PopoverTrigger,
   usePopover,
 } from "../src"
-import { useRef } from "react";
-import { Box } from "@chakra-ui/layout";
+import { useRef } from "react"
+import { Box } from "@chakra-ui/layout"
 
 export default {
   title: "Components / Overlay / Popover - Click",
@@ -263,39 +263,43 @@ export function WithPopoverAnchor() {
 
 export function WithPopoverAnchorRef() {
   const [isEditing, setIsEditing] = useBoolean()
-  const [color, setColor] = React.useState("red");
+  const [color, setColor] = React.useState("red")
 
   const anchorRef = useRef(null)
 
   return (
-      <>
-        <Box w="200px" h="200px" bg={color} ref={anchorRef}></Box>
-        <Popover
-            isOpen={isEditing}
-            onOpen={setIsEditing.on}
-            onClose={setIsEditing.off}
-            closeOnBlur={false}
-            isLazy
-            lazyBehavior="keepMounted"
-        >
-          <PopoverAnchor anchorRef={anchorRef} />
+    <>
+      <Box w="200px" h="200px" bg={color} ref={anchorRef}></Box>
+      <Popover
+        isOpen={isEditing}
+        onOpen={setIsEditing.on}
+        onClose={setIsEditing.off}
+        closeOnBlur={false}
+        isLazy
+        lazyBehavior="keepMounted"
+      >
+        <PopoverAnchor anchorRef={anchorRef} />
 
-          <PopoverTrigger>
-            <Button colorScheme="pink">{isEditing ? "Save" : "Edit"}</Button>
-          </PopoverTrigger>
+        <PopoverTrigger>
+          <Button colorScheme="pink">{isEditing ? "Save" : "Edit"}</Button>
+        </PopoverTrigger>
 
-          <PopoverContent>
-            <PopoverBody>
-              Colors:
-              <RadioGroup value={color} onChange={(newColor) => setColor(newColor)}>
-                <Radio value="red">red</Radio>
-                <Radio value="blue">blue</Radio>
-                <Radio value="green">green</Radio>
-                <Radio value="purple">purple</Radio>
-              </RadioGroup>
-            </PopoverBody>
-          </PopoverContent>
-        </Popover></>
+        <PopoverContent>
+          <PopoverBody>
+            Colors:
+            <RadioGroup
+              value={color}
+              onChange={(newColor) => setColor(newColor)}
+            >
+              <Radio value="red">red</Radio>
+              <Radio value="blue">blue</Radio>
+              <Radio value="green">green</Radio>
+              <Radio value="purple">purple</Radio>
+            </RadioGroup>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+    </>
   )
 }
 
