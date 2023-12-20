@@ -7,6 +7,7 @@ import { StyledMenuItem } from "./styled-menu-item"
 import { MenuIcon } from "./menu-icon"
 import { cx } from "@chakra-ui/shared-utils"
 
+type Placement = "left" | "right"
 const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
@@ -27,18 +28,28 @@ export interface MenuItemOptionProps
    * @type SystemProps["mr"]
    */
   iconSpacing?: SystemProps["mr"]
+  /**
+   * @type Placement
+   */
+  iconPlacement?: Placement
 }
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   (props, ref) => {
     // menu option item should always be `type=button`, so we omit `type`
-    const { icon, iconSpacing = "0.75rem", ...rest } = props
+    const {
+      icon,
+      iconSpacing = "0.75rem",
+      iconPlacement = "left",
+      ...rest
+    } = props
 
     const optionProps = useMenuOption(rest, ref) as HTMLAttributes<HTMLElement>
 
     return (
       <StyledMenuItem
         {...optionProps}
+        flexDir={iconPlacement === "right" ? "row-reverse" : "row"}
         className={cx("chakra-menu__menuitem-option", rest.className)}
       >
         {icon !== null && (
