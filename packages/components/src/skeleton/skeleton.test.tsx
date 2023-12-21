@@ -1,11 +1,11 @@
 import { render } from "@chakra-ui/test-utils"
-import MatchMediaMock from "jest-matchmedia-mock"
 import * as React from "react"
+import MatchMediaMock from "vitest-matchmedia-mock"
 import { Skeleton, SkeletonText } from "."
 import { ChakraProvider } from "../provider"
 import { queries, theme } from "./test.fixture"
 
-let matchMedia: any
+let matchMedia: MatchMediaMock
 
 beforeAll(() => {
   matchMedia = new MatchMediaMock()

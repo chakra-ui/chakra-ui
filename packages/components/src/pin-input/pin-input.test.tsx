@@ -68,7 +68,7 @@ test("pressing backspace moves to the previous input and clears", async () => {
 })
 
 test("filling out all inputs calls the complete callback", async () => {
-  const onComplete = vi.fn()()
+  const onComplete = vi.fn()
   const { user } = render(<Component onComplete={onComplete} />)
 
   await user.type(screen.getByTestId("1"), "1")
@@ -111,7 +111,7 @@ test('otp flag enables "one-time-code" autocomplete on fields', async () => {
 })
 
 test("Replacing last input calls onComplete correctly", async () => {
-  const onComplete = vi.fn()()
+  const onComplete = vi.fn()
   const { user } = render(<Component onComplete={onComplete} />)
 
   const input1 = screen.getByTestId("1")

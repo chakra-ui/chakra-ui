@@ -154,7 +154,7 @@ test("should behave properly with precision value", async () => {
 })
 
 test("should call onChange on value change", async () => {
-  const onChange = vi.fn()()
+  const onChange = vi.fn()
   const { getByTestId, user } = renderComponent({ onChange })
 
   const upBtn = getByTestId("up-btn")
@@ -191,8 +191,8 @@ test("should focus input on spin", async () => {
 })
 
 test("should derive values from surrounding FormControl", () => {
-  const onFocus = vi.fn()()
-  const onBlur = vi.fn()()
+  const onFocus = vi.fn()
+  const onBlur = vi.fn()
 
   render(
     <FormControl

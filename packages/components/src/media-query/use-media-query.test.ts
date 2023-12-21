@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react"
-import MatchMedia from "./media-query.fixture"
+import MatchMedia from "./match-media.fixture"
 import { useMediaQuery } from "./use-media-query"
 
 let matchMedia: MatchMedia

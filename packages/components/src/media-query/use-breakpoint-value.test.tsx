@@ -1,10 +1,10 @@
 import { ThemeProvider } from "@chakra-ui/system"
 import { render, screen } from "@chakra-ui/test-utils"
-import MatchMediaMock from "jest-matchmedia-mock"
+import MatchMediaMock from "vitest-matchmedia-mock"
 import { useBreakpointValue } from "."
 import { queries, theme } from "./breakpoint.fixture"
 
-let matchMedia: any
+let matchMedia: MatchMediaMock
 
 describe("with object", () => {
   beforeAll(() => {

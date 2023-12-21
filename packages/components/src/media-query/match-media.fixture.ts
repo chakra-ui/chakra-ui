@@ -1,25 +1,3 @@
-/**
- * This mock is a combination of jest-matchmedia-mock
- * https://github.com/dyakovk/jest-matchmedia-mock and
- * mq-polyfill https://github.com/bigslycat/mq-polyfill.
- *
- * A solution which allowed resizing and a more realistic implementation of
- * matchMedia was the reason for its creation. Neither project provided a good
- * solution. Combining their strong points does. The class will listen for a
- * resize event which is provided by a resizeTo function defined in the test:
- *
- *  window.resizeTo = function resizeTo(width, height) {
- *    Object.assign(this, {
- *      innerWidth: width,
- *      innerHeight: height,
- *      outerWidth: width,
- *      outerHeight: height,
- *    }).dispatchEvent(new this.Event('resize'))
- *  }
- *
- * Listeners are only called if there has been a change in the match
- * status for their media query.
- */
 type MediaQueryListener = (this: MediaQueryList) => void
 
 interface MediaQueryList {
@@ -66,7 +44,7 @@ export default class MatchMedia {
 
             this.removeListener(query, listener)
           },
-          dispatchEvent: vi.fn()(),
+          dispatchEvent: vi.fn(),
         }
 
         return this.mediaQueryList

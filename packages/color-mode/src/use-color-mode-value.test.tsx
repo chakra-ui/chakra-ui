@@ -1,6 +1,5 @@
-import * as React from "react"
 import { render, screen } from "@chakra-ui/test-utils"
-import { ColorModeProvider, useColorModeValue, useColorMode } from "."
+import { ColorModeProvider, useColorMode, useColorModeValue } from "."
 import { defaultThemeOptions, mockMatchMedia } from "./test.fixture"
 
 const lightValue = "light-value"

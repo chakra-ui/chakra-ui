@@ -7,11 +7,11 @@ export function mockMatchMedia(media: string, matches: boolean) {
       return {
         matches,
         media,
-        addEventListener: vi.fn()(),
-        addListener: vi.fn()(),
-        removeEventListener: vi.fn()(),
-        removeListener: vi.fn()(),
-        dispatchEvent: vi.fn()(),
+        addEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        removeListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       }
     },
   }

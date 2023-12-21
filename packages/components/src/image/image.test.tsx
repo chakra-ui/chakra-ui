@@ -51,7 +51,7 @@ test("renders image if there is no fallback behavior defined", async () => {
 test("fires onload", () => {
   trackImageOnload()
 
-  const onLoad = vi.fn()()
+  const onLoad = vi.fn()
 
   render(<Image src={src} fallbackSrc={fallbackSrc} onLoad={onLoad} />)
 

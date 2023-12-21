@@ -1,9 +1,9 @@
 /* eslint-disable global-require */
 import { mocks, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
+import { useColorMode } from "./color-mode-context"
 
 export const DummyComponent = () => {
-  const { useColorMode } = require("../src/color-mode-context")
   const { colorMode, toggleColorMode } = useColorMode()
 
   return (

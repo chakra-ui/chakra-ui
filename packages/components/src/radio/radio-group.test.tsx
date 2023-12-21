@@ -106,7 +106,7 @@ test("controlled: correctly manages state", () => {
       </div>
     )
   }
-  const onChange = vi.fn()()
+  const onChange = vi.fn()
   const utils = render(<Component onChange={onChange} value="a" />)
 
   // has value prop checked

@@ -18,7 +18,7 @@ import {
 
 test("should have no accessibility violations", async () => {
   const { baseElement } = render(
-    <Modal isOpen onClose={vi.fn()()}>
+    <Modal isOpen onClose={vi.fn()}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Modal header</ModalHeader>
@@ -42,7 +42,7 @@ test("should have no accessibility violations", async () => {
 
 test("should have the proper 'aria' attributes", () => {
   const tools = render(
-    <Modal isOpen onClose={vi.fn()()}>
+    <Modal isOpen onClose={vi.fn()}>
       <ModalOverlay />
       <ModalContent data-testid="modal">
         <ModalHeader>Modal header</ModalHeader>
@@ -75,7 +75,7 @@ test("should have the proper 'aria' attributes", () => {
 })
 
 test("should fire 'onClose' callback when close button is clicked", () => {
-  const onClose = vi.fn()()
+  const onClose = vi.fn()
 
   const tools = render(
     <Modal isOpen onClose={onClose}>
@@ -97,7 +97,7 @@ test("should fire 'onClose' callback when close button is clicked", () => {
 
 describe("closing the modal", () => {
   test("clicking overlay calls the onClose callback", async () => {
-    const onClose = vi.fn()()
+    const onClose = vi.fn()
     render(
       <Modal isOpen onClose={onClose}>
         <ModalOverlay />
@@ -120,7 +120,7 @@ describe("closing the modal", () => {
   })
 
   test("pressing escape key calls the onClose callback", async () => {
-    const onClose = vi.fn()()
+    const onClose = vi.fn()
     const { user } = render(
       <Modal isOpen onClose={onClose}>
         <ModalOverlay />
@@ -149,7 +149,7 @@ test("focuses the initial focus ref when opened", () => {
         >
           Open
         </button>
-        <Modal isOpen={isOpen} initialFocusRef={inputRef} onClose={vi.fn()()}>
+        <Modal isOpen={isOpen} initialFocusRef={inputRef} onClose={vi.fn()}>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Modal header</ModalHeader>

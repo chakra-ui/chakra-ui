@@ -59,7 +59,7 @@ describe("fallback + loading strategy", () => {
 
     const src = "https://bit.ly/dan-abramov"
     const name = "Dan Abramov"
-    const onErrorFn = vi.fn()()
+    const onErrorFn = vi.fn()
     render(<Avatar src={src} name={name} onError={onErrorFn} />)
 
     act(() => {

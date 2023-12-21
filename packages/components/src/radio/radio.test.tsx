@@ -61,17 +61,17 @@ test("has proper aria and data attributes", async () => {
 })
 
 test("handles events and callbacks correctly", () => {
-  const hookProps = { onChange: vi.fn()() }
+  const hookProps = { onChange: vi.fn() }
   const checkboxProps = {
-    onMouseDown: vi.fn()(),
-    onMouseUp: vi.fn()(),
+    onMouseDown: vi.fn(),
+    onMouseUp: vi.fn(),
   }
   const inputProps = {
-    onChange: vi.fn()(),
-    onBlur: vi.fn()(),
-    onFocus: vi.fn()(),
-    onKeyDown: vi.fn()(),
-    onKeyUp: vi.fn()(),
+    onChange: vi.fn(),
+    onBlur: vi.fn(),
+    onFocus: vi.fn(),
+    onKeyDown: vi.fn(),
+    onKeyUp: vi.fn(),
   }
   const Component = () => {
     const { getRadioProps, getInputProps, getRootProps } = useRadio(hookProps)
@@ -127,8 +127,8 @@ test("handles events and callbacks correctly", () => {
 })
 
 test("should derive values from surrounding FormControl", () => {
-  const onFocus = vi.fn()()
-  const onBlur = vi.fn()()
+  const onFocus = vi.fn()
+  const onBlur = vi.fn()
 
   render(
     <FormControl

@@ -118,8 +118,8 @@ test("only displays required indicator when required", () => {
 })
 
 test("useFormControl calls provided input callbacks", () => {
-  const onFocus = vi.fn()()
-  const onBlur = vi.fn()()
+  const onFocus = vi.fn()
+  const onBlur = vi.fn()
 
   render(
     <FormControl id="name">

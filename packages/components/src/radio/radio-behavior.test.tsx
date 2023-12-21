@@ -20,7 +20,7 @@ const runTest = () => {
 
 describe("RadioGroup", () => {
   test("uncontrolled", async () => {
-    const onChange = vi.fn()()
+    const onChange = vi.fn()
     render(
       <RadioGroup name="radio" defaultValue="1" onChange={onChange}>
         <Radio value="1">One</Radio>

@@ -63,7 +63,6 @@
     "@tanstack/react-table": "^8.10.7",
     "@testing-library/react": "^14.0.0",
     "framer-motion": "10.16.15",
-    "jest-matchmedia-mock": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.6",

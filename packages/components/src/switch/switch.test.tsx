@@ -38,7 +38,7 @@ test("Controlled - should check and uncheck", async () => {
     )
   }
 
-  const onChange = vi.fn()()
+  const onChange = vi.fn()
 
   const { container, user } = render(<ControlledSwitch onChange={onChange} />)
 
@@ -166,8 +166,8 @@ test("Uncontrolled FormControl - mark readonly", () => {
 })
 
 test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
-  const formControlOnFocusMock = vi.fn()()
-  const switchOnFocusMock = vi.fn()()
+  const formControlOnFocusMock = vi.fn()
+  const switchOnFocusMock = vi.fn()
 
   const { container } = render(
     <FormControl mt={4} onFocus={formControlOnFocusMock}>
@@ -183,8 +183,8 @@ test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
 })
 
 test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
-  const formControlOnBlurMock = vi.fn()()
-  const switchOnBlurMock = vi.fn()()
+  const formControlOnBlurMock = vi.fn()
+  const switchOnBlurMock = vi.fn()
 
   const { container } = render(
     <FormControl mt={4} onBlur={formControlOnBlurMock}>

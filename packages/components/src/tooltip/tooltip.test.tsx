@@ -180,7 +180,7 @@ test("does not show tooltip after delay when `isDisabled` prop changes to `true`
 })
 
 test("should call onClose prop on pointerleave", async () => {
-  const onClose = vi.fn()()
+  const onClose = vi.fn()
 
   render(<DummyComponent onClose={onClose} />)
 
