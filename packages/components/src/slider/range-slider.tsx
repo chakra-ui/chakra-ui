@@ -1,15 +1,17 @@
-import { createContext } from "@chakra-ui/utils/context"
+import {
+  omitThemingProps,
+  SystemStyleObject,
+  ThemingProps,
+} from "@chakra-ui/styled-system"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
-  omitThemingProps,
-  ThemingProps,
   useMultiStyleConfig,
   useTheme,
-  SystemStyleObject,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils"
+import { createContext } from "@chakra-ui/utils/context"
 import { useMemo } from "react"
 import {
   useRangeSlider,

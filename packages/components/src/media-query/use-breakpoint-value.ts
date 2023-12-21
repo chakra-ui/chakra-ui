@@ -29,7 +29,7 @@ export function useBreakpointValue<T = any>(
   /**
    * Get the sorted breakpoint keys from the provided breakpoints
    */
-  const breakpoints = Array.from(theme.__breakpoints?.keys || [])
+  const breakpoints: string[] = Array.from(theme.__breakpoints?.keys || [])
 
   const obj = Array.isArray(values)
     ? Object.fromEntries<any>(

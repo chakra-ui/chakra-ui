@@ -1,11 +1,10 @@
-import { createContext } from "@chakra-ui/utils/context"
 import {
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
-  useMultiStyleConfig,
-  useTheme,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled-system"
+import { useMultiStyleConfig, useTheme } from "@chakra-ui/system"
+import { createContext } from "@chakra-ui/utils/context"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { useMemo } from "react"
 import {

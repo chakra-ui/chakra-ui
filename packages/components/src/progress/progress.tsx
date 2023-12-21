@@ -1,17 +1,19 @@
 import {
-  chakra,
-  Interpolation,
-  omitThemingProps,
   SystemStyleObject,
   ThemingProps,
-  useMultiStyleConfig,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
+import {
   HTMLChakraProps,
+  chakra,
   forwardRef,
+  useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils/context"
+import { Interpolation } from "@emotion/react"
 import {
-  getProgressProps,
   GetProgressPropsOptions,
+  getProgressProps,
   progress,
   stripe,
 } from "./progress.utils"

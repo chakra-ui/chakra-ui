@@ -1,4 +1,5 @@
-import { chakra, SystemStyleObject, HTMLChakraProps } from "@chakra-ui/system"
+import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { chakra, HTMLChakraProps } from "@chakra-ui/system"
 
 export interface ControlBoxOptions {
   type?: "checkbox" | "radio"

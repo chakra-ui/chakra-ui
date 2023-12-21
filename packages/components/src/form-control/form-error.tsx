@@ -1,12 +1,14 @@
 import { type IconProps, Icon } from "../icon"
 import { createContext } from "@chakra-ui/utils/context"
 import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
+} from "@chakra-ui/styled-system"
+import {
+  chakra,
+  forwardRef,
+  HTMLChakraProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"

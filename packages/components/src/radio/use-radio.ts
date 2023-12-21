@@ -300,10 +300,6 @@ export function useRadio(props: UseRadioProps = {}) {
 
   return {
     state,
-    /**
-     * @deprecated - use `getRadioProps` instead
-     */
-    getCheckboxProps: getRadioProps,
     getRadioProps,
     getInputProps,
     getLabelProps,

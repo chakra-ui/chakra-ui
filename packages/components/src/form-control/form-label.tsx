@@ -1,9 +1,8 @@
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
-  omitThemingProps,
-  ThemingProps,
   useStyleConfig,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"

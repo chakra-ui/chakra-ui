@@ -1,7 +1,8 @@
-import { Stack } from "../layout"
-import { chakra, DarkMode } from "@chakra-ui/system"
+import { DarkMode } from "@chakra-ui/color-mode"
+import { chakra } from "@chakra-ui/system"
 import * as React from "react"
 import { Skeleton, SkeletonCircle, SkeletonText } from "."
+import { Stack } from "../layout"
 
 export default {
   title: "Components / Feedback / Skeleton",

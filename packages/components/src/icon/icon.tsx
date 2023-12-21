@@ -1,8 +1,8 @@
+import { SystemStyleObject } from "@chakra-ui/styled-system"
 import {
   chakra,
   ChakraProps,
   forwardRef,
-  SystemStyleObject,
   useStyleConfig,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"

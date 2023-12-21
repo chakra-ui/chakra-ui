@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/system"
+import { SystemStyleObject } from "@chakra-ui/styled-system"
 
 export const commonStyles: SystemStyleObject = {
   fontSize: "inherit",

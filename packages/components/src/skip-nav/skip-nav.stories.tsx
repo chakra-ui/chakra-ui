@@ -1,4 +1,3 @@
-import * as React from "react"
 import { SkipNavContent, SkipNavLink } from "."
 
 export default {

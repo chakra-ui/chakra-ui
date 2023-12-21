@@ -1,6 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import { motion, Variants } from "framer-motion"
-import * as React from "react"
 import { usePopper } from "."
 
 export default {

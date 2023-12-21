@@ -1,10 +1,6 @@
+import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
-  SystemStyleObject,
-} from "@chakra-ui/system"
 import type { HTMLMotionProps } from "framer-motion"
 import { Slide } from "../transition"
 import { useDrawerContext } from "./drawer"

@@ -1,11 +1,13 @@
 import {
-  chakra,
-  forwardRef,
-  omitThemingProps,
   SystemStyleObject,
   ThemingProps,
-  useStyleConfig,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
+import {
   HTMLChakraProps,
+  chakra,
+  forwardRef,
+  useStyleConfig,
 } from "@chakra-ui/system"
 
 export interface SkipNavLinkProps

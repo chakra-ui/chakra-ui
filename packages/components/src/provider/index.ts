@@ -1,2 +1,2 @@
-export { ChakraProvider } from "./chakra-provider"
-export type { ChakraProviderProps } from "./chakra-provider"
+export { ChakraProvider } from "./provider"
+export type { ChakraProviderProps } from "./provider"

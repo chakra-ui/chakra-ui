@@ -1,13 +1,12 @@
-import { FormControlOptions, useFormControl } from "../form-control"
+import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  omitThemingProps,
-  ThemingProps,
   useMultiStyleConfig,
-  HTMLChakraProps,
 } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
+import { FormControlOptions, useFormControl } from "../form-control"
 
 interface InputOptions {
   /**

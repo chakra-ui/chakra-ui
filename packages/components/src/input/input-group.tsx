@@ -1,16 +1,18 @@
-import { createContext } from "@chakra-ui/utils/context"
-import { getValidChildren } from "@chakra-ui/utils/children"
+import {
+  omitThemingProps,
+  SystemStyleObject,
+  ThemingProps,
+} from "@chakra-ui/styled-system"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
-  omitThemingProps,
-  SystemStyleObject,
-  ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils/cx"
+import { getValidChildren } from "@chakra-ui/utils/children"
 import { compact } from "@chakra-ui/utils/compact"
+import { createContext } from "@chakra-ui/utils/context"
+import { cx } from "@chakra-ui/utils/cx"
 import { cloneElement } from "react"
 
 const [InputGroupStylesProvider, useInputGroupStyles] = createContext<

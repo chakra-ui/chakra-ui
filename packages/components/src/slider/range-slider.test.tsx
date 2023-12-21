@@ -122,14 +122,14 @@ test.skip("should move the correct thumb when user clicks the track in case of s
 
   // getBoundingClientRect is not supported by JSDOM
   // its implementation needs to be mocked
-  jest.spyOn(rangeSliderTrack, "getBoundingClientRect").mockImplementation(
+  vi.spyOn(rangeSliderTrack, "getBoundingClientRect").mockImplementation(
     () =>
       ({
         left: 0,
         top: 0,
         width: 100,
         height: 20,
-      } as DOMRect),
+      }) as DOMRect,
   )
 
   const clickCoordinates = { clientX: 20, clientY: 10 }

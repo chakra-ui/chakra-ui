@@ -11,7 +11,7 @@ export function PopoverAnchor(props: React.PropsWithChildren<{}>) {
   const child: any = Children.only(props.children)
   const { getAnchorProps } = usePopoverContext()
 
-  return cloneElement(child, getAnchorProps(child.props, child.ref))
+  return <>{cloneElement(child, getAnchorProps(child.props, child.ref))}</>
 }
 
 PopoverAnchor.displayName = "PopoverAnchor"

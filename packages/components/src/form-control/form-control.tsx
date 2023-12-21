@@ -1,11 +1,13 @@
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
+} from "@chakra-ui/styled-system"
+import {
+  chakra,
+  forwardRef,
+  HTMLChakraProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { dataAttr } from "@chakra-ui/utils/attr"

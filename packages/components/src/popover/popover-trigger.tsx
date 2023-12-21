@@ -10,7 +10,7 @@ export function PopoverTrigger(props: { children: React.ReactNode }) {
   // enforce a single child
   const child: any = Children.only(props.children)
   const { getTriggerProps } = usePopoverContext()
-  return cloneElement(child, getTriggerProps(child.props, child.ref))
+  return <>{cloneElement(child, getTriggerProps(child.props, child.ref))}</>
 }
 
 PopoverTrigger.displayName = "PopoverTrigger"

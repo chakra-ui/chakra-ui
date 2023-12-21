@@ -1,17 +1,13 @@
-import {
-  chakra,
-  forwardRef,
-  ThemingProps,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils/cx"
+import { ThemingProps } from "@chakra-ui/styled-system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils/context"
+import { cx } from "@chakra-ui/utils/cx"
+import { useMemo } from "react"
 import {
   useRadioGroup,
   UseRadioGroupProps,
   UseRadioGroupReturn,
 } from "./use-radio-group"
-import { useMemo } from "react"
 
 export interface RadioGroupContext
   extends Pick<
@@ -34,6 +30,7 @@ type Omitted =
   | "defaultValue"
   | "defaultChecked"
   | "children"
+
 export interface RadioGroupProps
   extends UseRadioGroupProps,
     Omit<HTMLChakraProps<"div">, Omitted>,

@@ -1,13 +1,13 @@
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import {
   chakra,
   forwardRef,
-  omitThemingProps,
-  ThemingProps,
-  useStyleConfig,
   HTMLChakraProps,
+  useStyleConfig,
 } from "@chakra-ui/system"
-import { cx } from "@chakra-ui/utils/cx"
 import { getValidChildren } from "@chakra-ui/utils/children"
+import { cx } from "@chakra-ui/utils/cx"
+import { cloneElement } from "react"
 import {
   PinInputDescendantsProvider,
   PinInputProvider,
@@ -15,7 +15,6 @@ import {
   usePinInputField,
   UsePinInputProps,
 } from "./use-pin-input"
-import { cloneElement } from "react"
 
 interface InputOptions {
   /**

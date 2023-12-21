@@ -1,13 +1,8 @@
-import {
-  chakra,
-  SystemStyleObject,
-  HTMLChakraProps,
-  forwardRef,
-} from "@chakra-ui/system"
-
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { Circle } from "./circle"
 import { getProgressProps, spin } from "./progress.utils"
 import { Shape } from "./shape"
-import { Circle } from "./circle"
 
 interface CircularProgressOptions {
   /**
@@ -126,12 +121,12 @@ export const CircularProgress = forwardRef<CircularProgressProps, "div">(
           transitionTimingFunction: "ease",
         }
 
-    const rootStyles: SystemStyleObject = {
+    const rootStyles = defineStyle({
       display: "inline-block",
       position: "relative",
       verticalAlign: "middle",
       fontSize: size,
-    }
+    })
 
     return (
       <chakra.div

@@ -1,10 +1,12 @@
 import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
+} from "@chakra-ui/styled-system"
+import {
+  chakra,
+  forwardRef,
+  HTMLChakraProps,
   useMultiStyleConfig,
   useTheme,
 } from "@chakra-ui/system"

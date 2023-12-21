@@ -16,8 +16,7 @@ import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
 import { useClickable } from "../clickable"
 import { createDescendantContext } from "../descendant"
 import { usePopper, UsePopperProps } from "../popper"
-
-import React, {
+import {
   cloneElement,
   useCallback,
   useEffect,

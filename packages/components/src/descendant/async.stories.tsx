@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useInterval } from "@chakra-ui/hooks/use-interval"
 import { chakra } from "@chakra-ui/system"
-import * as React from "react"
-import createDescendantContext from "."
+import { useEffect, useState } from "react"
+import { createDescendantContext } from "."
 
 export default {
   title: "System / Descendants / Async",
@@ -19,7 +19,7 @@ function Select({ children }: { children?: React.ReactNode }) {
   const descendants = useDescendants()
   const count = descendants.count()
 
-  React.useEffect(() => {
+  useEffect(() => {
     descendants.last()?.node.focus()
   }, [descendants, count])
 
@@ -51,7 +51,7 @@ function Option({ value, disabled }: { value?: string; disabled?: boolean }) {
 }
 
 export const DescendantsWithInterval = () => {
-  const [done, setDone] = React.useState(false)
+  const [done, setDone] = useState(false)
 
   useInterval(() => {
     setDone(!done)

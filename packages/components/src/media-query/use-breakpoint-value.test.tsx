@@ -1,9 +1,8 @@
-import React from "react"
 import { ThemeProvider } from "@chakra-ui/system"
 import { render, screen } from "@chakra-ui/test-utils"
 import MatchMediaMock from "jest-matchmedia-mock"
-import { theme, queries } from "./breakpoint.fixture"
 import { useBreakpointValue } from "."
+import { queries, theme } from "./breakpoint.fixture"
 
 let matchMedia: any
 

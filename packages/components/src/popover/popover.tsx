@@ -1,10 +1,6 @@
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
+import { useMultiStyleConfig, useTheme } from "@chakra-ui/system"
 import { MaybeRenderProp } from "@chakra-ui/utils/prop-types"
-import {
-  omitThemingProps,
-  ThemingProps,
-  useMultiStyleConfig,
-  useTheme,
-} from "@chakra-ui/system"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { usePopover, UsePopoverProps } from "./use-popover"
