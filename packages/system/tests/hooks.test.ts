@@ -1,5 +1,6 @@
+import { toCSSVar } from "@chakra-ui/styled-system"
 import { hooks } from "@chakra-ui/test-utils"
-import { toCSSVar, useToken } from "../src"
+import { useToken } from "../src"
 
 const mockRed = {
   100: "mockRed.100",
