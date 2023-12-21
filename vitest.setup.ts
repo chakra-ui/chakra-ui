@@ -1,7 +1,9 @@
-import "@testing-library/jest-dom"
+import "vitest-axe/extend-expect"
+import "@testing-library/jest-dom/vitest"
 
-import React from "react"
-global.React = React
+import * as matchers from "vitest-axe/matchers"
+import { expect } from "vitest"
+expect.extend(matchers)
 
 const { getComputedStyle } = window
 window.getComputedStyle = (elt) => getComputedStyle(elt)
@@ -13,15 +15,15 @@ if (typeof window.matchMedia !== "function") {
     enumerable: true,
     configurable: true,
     writable: true,
-    value: jest.fn().mockImplementation((query) => ({
+    value: vi.fn().mockImplementation((query) => ({
       matches: false,
       media: query,
       onchange: null,
-      addListener: jest.fn(), // Deprecated
-      removeListener: jest.fn(), // Deprecated
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
+      addListener: vi.fn(), // Deprecated
+      removeListener: vi.fn(), // Deprecated
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
     })),
   })
 }
@@ -29,8 +31,8 @@ if (typeof window.matchMedia !== "function") {
 // Workaround https://github.com/jsdom/jsdom/issues/2524#issuecomment-897707183
 global.TextEncoder = require("util").TextEncoder
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+global.ResizeObserver = vi.fn().mockImplementation(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
 }))

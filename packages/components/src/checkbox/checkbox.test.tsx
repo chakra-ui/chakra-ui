@@ -91,7 +91,7 @@ test("indeterminate state", () => {
 })
 
 test("Controlled - should check and uncheck", () => {
-  const onChange = jest.fn()
+  const onChange = vi.fn()()
 
   const Component = (props: UseCheckboxProps) => {
     const [isChecked, setIsChecked] = React.useState(false)
@@ -149,7 +149,7 @@ test("CheckboxGroup Uncontrolled - default values should be check", () => {
 
 test("Controlled CheckboxGroup", () => {
   let checked = ["one", "two"]
-  const onChange = jest.fn((value) => {
+  const onChange = vi.fn()((value) => {
     checked = value
   })
 
@@ -211,7 +211,7 @@ test("Uncontrolled CheckboxGroup - should not check if group disabled", () => {
 })
 
 test("uncontrolled CheckboxGroup handles change", () => {
-  const onChange = jest.fn()
+  const onChange = vi.fn()()
   render(
     <CheckboxGroup defaultValue={["A", "C"]} onChange={onChange}>
       <Checkbox value="A">A</Checkbox>
@@ -475,8 +475,8 @@ test("Uncontrolled FormControl - mark readonly", () => {
 })
 
 test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
-  const formControlOnFocusMock = jest.fn()
-  const checkboxOnFocusMock = jest.fn()
+  const formControlOnFocusMock = vi.fn()()
+  const checkboxOnFocusMock = vi.fn()()
 
   const { container } = render(
     <FormControl mt={4} onFocus={formControlOnFocusMock}>
@@ -496,8 +496,8 @@ test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
 })
 
 test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
-  const formControlOnBlurMock = jest.fn()
-  const checkboxOnBlurMock = jest.fn()
+  const formControlOnBlurMock = vi.fn()()
+  const checkboxOnBlurMock = vi.fn()()
 
   const { container } = render(
     <FormControl mt={4} onBlur={formControlOnBlurMock}>

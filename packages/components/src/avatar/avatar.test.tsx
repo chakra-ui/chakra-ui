@@ -1,5 +1,4 @@
-import { mocks, render, testA11y, act } from "@chakra-ui/test-utils"
-import * as React from "react"
+import { act, mocks, render, testA11y } from "@chakra-ui/test-utils"
 import { Avatar, AvatarBadge } from "."
 
 describe("accessibility", () => {
@@ -31,11 +30,11 @@ describe("accessibility", () => {
 
 describe("fallback + loading strategy", () => {
   beforeEach(() => {
-    jest.useFakeTimers()
+    vi.useFakeTimers()
   })
 
   afterEach(() => {
-    jest.useRealTimers()
+    vi.useRealTimers()
     mocks.image().restore()
   })
 
@@ -47,7 +46,7 @@ describe("fallback + loading strategy", () => {
     )
 
     act(() => {
-      jest.runAllTimers()
+      vi.runAllTimers()
     })
 
     const img = tools.getByAltText("Dan Abramov")
@@ -60,11 +59,11 @@ describe("fallback + loading strategy", () => {
 
     const src = "https://bit.ly/dan-abramov"
     const name = "Dan Abramov"
-    const onErrorFn = jest.fn()
+    const onErrorFn = vi.fn()()
     render(<Avatar src={src} name={name} onError={onErrorFn} />)
 
     act(() => {
-      jest.runAllTimers()
+      vi.runAllTimers()
     })
 
     expect(onErrorFn).toHaveBeenCalledTimes(1)

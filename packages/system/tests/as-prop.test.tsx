@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react"
 import { chakra, ChakraComponent } from "../src"
 
 /**
@@ -21,7 +20,7 @@ describe("`as` prop typings", () => {
       <chakra.div as={CompWithRequired} thisIsARequiredProp />
     )
 
-    // make jest happy
+    // make test happy
     expect(true).toBe(true)
   })
 
@@ -36,7 +35,7 @@ describe("`as` prop typings", () => {
       <CustomCompWithRequired thisIsARequiredProp />
     )
 
-    // make jest happy
+    // make test happy
     expect(true).toBe(true)
   })
 
@@ -48,7 +47,7 @@ describe("`as` prop typings", () => {
 
     const renderedAdditionPropComp = <AdditionalPropComp additionalProp />
 
-    // make jest happy
+    // make test happy
     expect(true).toBe(true)
   })
 
@@ -60,7 +59,7 @@ describe("`as` prop typings", () => {
 
     const renderedAdditionPropComp = <OptionalAdditionalPropComp />
 
-    // make jest happy
+    // make test happy
     expect(true).toBe(true)
   })
 })

@@ -96,7 +96,7 @@ test("sets correct aria attributes on disabled MenuItems", () => {
 })
 
 test("does not fire onClick on disabled MenuItem", () => {
-  const onClick = jest.fn()
+  const onClick = vi.fn()()
 
   render(
     <Menu>
@@ -368,9 +368,9 @@ const CompWithTwoMenus: React.FC<{
 }
 
 test("onClose doesn't affect the state of other menus", async () => {
-  const onClose = jest.fn()
-  const onItemClick = jest.fn()
-  const onBtnClick = jest.fn()
+  const onClose = vi.fn()()
+  const onItemClick = vi.fn()()
+  const onBtnClick = vi.fn()()
 
   render(
     <CompWithTwoMenus
@@ -403,7 +403,7 @@ test("onClose doesn't affect the state of other menus", async () => {
 })
 
 test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu open", async () => {
-  const onClose = jest.fn()
+  const onClose = vi.fn()()
   render(
     <Menu onClose={onClose}>
       <MenuButton as={Button}>Open menu</MenuButton>
@@ -427,7 +427,7 @@ test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu 
 })
 
 test("MenuItem can override its parent menu's `closeOnSelect` and close the menu", async () => {
-  const onClose = jest.fn()
+  const onClose = vi.fn()()
   render(
     <Menu onClose={onClose} closeOnSelect={false}>
       <MenuButton as={Button}>Open menu</MenuButton>

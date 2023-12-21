@@ -1,5 +1,5 @@
 import { Project } from "find-packages"
-import { copyFileSync } from "fs-extra"
+import * as fs from "fs-extra"
 import { join } from "node:path/posix"
 
 export async function generateTypes(project: Project) {
@@ -12,7 +12,7 @@ export async function generateTypes(project: Project) {
     stdio: "inherit",
   })
 
-  copyFileSync(
+  fs.copyFileSync(
     join(dir, "dist", "types", "index.d.ts"),
     join(dir, "dist", "types", "index.d.mts"),
   )

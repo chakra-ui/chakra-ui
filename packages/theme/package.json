@@ -104,17 +104,6 @@
         "default": "./dist/cjs/styles.cjs"
       }
     },
-    "./utils": {
-      "source": "./src/utils/index.ts",
-      "import": {
-        "types": "./dist/types/utils/index.d.mts",
-        "default": "./dist/esm/utils/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/utils/index.d.ts",
-        "default": "./dist/cjs/utils/index.cjs"
-      }
-    },
     "./package.json": "./package.json"
   }
 }

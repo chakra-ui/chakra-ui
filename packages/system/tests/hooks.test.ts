@@ -38,13 +38,13 @@ const mockValue = toCSSVar({
   breakpoints: mockBreakpoints,
 })
 
-jest.mock("../src/use-theme", () => ({
+vi.mock("../src/use-theme", () => ({
   useTheme: () => mockValue,
 }))
 
 describe("useToken", () => {
   afterEach(() => {
-    jest.resetAllMocks()
+    vi.resetAllMocks()
   })
 
   test("resolves a single value", () => {

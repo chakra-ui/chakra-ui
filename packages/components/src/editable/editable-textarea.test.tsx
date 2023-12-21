@@ -29,10 +29,10 @@ test("passes a11y test", async () => {
 })
 
 test("uncontrolled: handles callbacks correctly", async () => {
-  const onChange = jest.fn()
-  const onCancel = jest.fn()
-  const onSubmit = jest.fn()
-  const onEdit = jest.fn()
+  const onChange = vi.fn()()
+  const onCancel = vi.fn()()
+  const onSubmit = vi.fn()()
+  const onEdit = vi.fn()()
 
   const { user } = render(
     <Editable
@@ -83,10 +83,10 @@ test("uncontrolled: handles callbacks correctly", async () => {
 })
 
 test("controlled: handles callbacks correctly", async () => {
-  const onChange = jest.fn()
-  const onCancel = jest.fn()
-  const onSubmit = jest.fn()
-  const onEdit = jest.fn()
+  const onChange = vi.fn()()
+  const onCancel = vi.fn()()
+  const onSubmit = vi.fn()()
+  const onEdit = vi.fn()()
 
   const Component = () => {
     const [value, setValue] = React.useState("Hello ")
@@ -147,10 +147,10 @@ test("controlled: handles callbacks correctly", async () => {
 })
 
 test("handles preview and textarea callbacks", async () => {
-  const onFocus = jest.fn()
-  const onBlur = jest.fn()
-  const onChange = jest.fn()
-  const onKeyDown = jest.fn()
+  const onFocus = vi.fn()()
+  const onBlur = vi.fn()()
+  const onChange = vi.fn()()
+  const onKeyDown = vi.fn()()
 
   const { user } = render(
     <Editable defaultValue="Hello ">
@@ -205,7 +205,7 @@ test("has the proper aria attributes", () => {
 })
 
 test("editable textarea can submit on blur", async () => {
-  const onSubmit = jest.fn()
+  const onSubmit = vi.fn()()
 
   const { user } = render(
     <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">

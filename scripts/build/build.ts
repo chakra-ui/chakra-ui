@@ -3,9 +3,9 @@ import { Project } from "find-packages"
 import { rmSync } from "fs"
 import { join } from "path/posix"
 import * as rollup from "rollup"
-import { getConfig } from "./config"
-import { prepareProject } from "./prepare"
-import { generateTypes } from "./tsc"
+import { getConfig } from "./config.js"
+import { prepareProject } from "./prepare.js"
+import { generateTypes } from "./tsc.js"
 
 interface BuildOptions {
   watch?: boolean
@@ -42,8 +42,8 @@ export async function buildProject(
   if (watch) {
     //
     config.watch = {
-      include: [`${project.dir}/src/**`],
-      exclude: ["node_modules/**"],
+      include: config.input as string[],
+      chokidar: { ignoreInitial: true },
     }
 
     const watcher = rollup.watch(config)

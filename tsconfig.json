@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ESNext",
     "module": "NodeNext",
-    "lib": ["dom", "esnext"],
+    "moduleResolution": "NodeNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["node", "vitest/globals"],
     "allowJs": true,
     "declaration": true,
     "sourceMap": true,
-    "moduleResolution": "NodeNext",
     "skipLibCheck": true,
     "strict": true,
     "isolatedModules": true,
@@ -18,6 +19,15 @@
     "downlevelIteration": true,
     "customConditions": ["source"]
   },
-  "include": ["@types", "packages", "scripts", "tooling", "plopfile.ts"],
-  "exclude": ["**/node_modules", "**/template*"]
+  "include": [
+    "vitest.setup.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mts",
+    "**/*.cts",
+    "**/*.js",
+    "**/*.cjs",
+    "**/*.mjs"
+  ],
+  "exclude": ["node_modules"]
 }

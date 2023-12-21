@@ -17,7 +17,7 @@ test("should render when disabled and focusable", () => {
 })
 
 test("should click correctly", () => {
-  const fn = jest.fn()
+  const fn = vi.fn()()
   render(<Clickable onClick={fn}>clickable</Clickable>)
   const clickable = screen.getByText("clickable")
 
@@ -27,7 +27,7 @@ test("should click correctly", () => {
 })
 
 test("should not click if disabled", () => {
-  const fn = jest.fn()
+  const fn = vi.fn()()
 
   render(
     <Clickable onClick={fn} isDisabled>
@@ -50,7 +50,7 @@ test("should not focus if disabled", () => {
 })
 
 test("non-native: should click on press `space` or `enter`", () => {
-  const fn = jest.fn()
+  const fn = vi.fn()()
   render(
     <Clickable as="div" onClick={fn}>
       clickable

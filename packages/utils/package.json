@@ -41,6 +41,17 @@
     "react": ">=16.8.0"
   },
   "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
     "./add-dom-event": {
       "source": "./src/add-dom-event.ts",
       "import": {
@@ -380,6 +391,17 @@
       "require": {
         "types": "./dist/types/split.d.ts",
         "default": "./dist/cjs/split.cjs"
+      }
+    },
+    "./split-props": {
+      "source": "./src/split-props.ts",
+      "import": {
+        "types": "./dist/types/split-props.d.mts",
+        "default": "./dist/esm/split-props.mjs"
+      },
+      "require": {
+        "types": "./dist/types/split-props.d.ts",
+        "default": "./dist/cjs/split-props.cjs"
       }
     },
     "./tabbable": {

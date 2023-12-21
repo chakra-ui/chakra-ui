@@ -118,7 +118,7 @@ describe("<Stack />", () => {
   })
 
   test("renders list of items with provided keys when cloning children", async () => {
-    const unMountMock = jest.fn()
+    const unMountMock = vi.fn()()
     const Wrapper = ({ data }: { data: Record<string, any>[] }) => {
       const [fruits, setFruits] = React.useState(data)
 

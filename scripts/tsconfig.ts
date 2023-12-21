@@ -1,5 +1,5 @@
 import { findPackages } from "find-packages"
-import { promises as fs } from "fs"
+import { writeFile } from "node:fs/promises"
 
 async function main() {
   const pkgs = await findPackages("hooks")
@@ -10,7 +10,7 @@ async function main() {
         include: ["src", "index.ts"],
       }
 
-      return fs.writeFile(
+      return writeFile(
         `${pkg.dir}/tsconfig.json`,
         JSON.stringify(data, null, 2),
       )

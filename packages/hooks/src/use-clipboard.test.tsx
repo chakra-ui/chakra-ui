@@ -1,11 +1,12 @@
 import { hooks } from "@chakra-ui/test-utils"
 import copy from "copy-to-clipboard"
+import { Mock } from "vitest"
 import { useClipboard } from "./use-clipboard"
 
-jest.mock("copy-to-clipboard")
+vi.mock("copy-to-clipboard")
 
-jest.useFakeTimers()
-jest.spyOn(global, "setTimeout")
+vi.useFakeTimers()
+vi.spyOn(global, "setTimeout")
 
 const text = "lorem ipsum"
 
@@ -16,7 +17,7 @@ test.each`
   ${{}}                | ${1500}
   ${0}                 | ${1500}
 `("calls setTimeout with proper value", ({ params, expected }) => {
-  ;(copy as jest.Mock).mockReturnValue(true)
+  ;(copy as Mock).mockReturnValue(true)
 
   const { result } = hooks.render(() => useClipboard(text, params))
 
@@ -29,7 +30,7 @@ test.each`
 })
 
 test("sets new copy value", () => {
-  ;(copy as jest.Mock).mockReturnValue(true)
+  ;(copy as Mock).mockReturnValue(true)
 
   const { result } = hooks.render(() => useClipboard(text))
 

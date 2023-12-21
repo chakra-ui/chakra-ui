@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "include": [
-    "src",
-    "../hooks/src/use-counter.stories.tsx",
-    "../hooks/src/use-counter.test.tsx"
-  ]
-}

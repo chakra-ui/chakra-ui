@@ -62,17 +62,17 @@ test("has proper aria and data attributes", async () => {
 })
 
 test("handles events and callbacks correctly", () => {
-  const hookProps = { onChange: jest.fn() }
+  const hookProps = { onChange: vi.fn()() }
   const checkboxProps = {
-    onMouseDown: jest.fn(),
-    onMouseUp: jest.fn(),
+    onMouseDown: vi.fn()(),
+    onMouseUp: vi.fn()(),
   }
   const inputProps = {
-    onChange: jest.fn(),
-    onBlur: jest.fn(),
-    onFocus: jest.fn(),
-    onKeyDown: jest.fn(),
-    onKeyUp: jest.fn(),
+    onChange: vi.fn()(),
+    onBlur: vi.fn()(),
+    onFocus: vi.fn()(),
+    onKeyDown: vi.fn()(),
+    onKeyUp: vi.fn()(),
   }
   const Component = () => {
     const { getCheckboxProps, getInputProps, getRootProps } =
@@ -129,8 +129,8 @@ test("handles events and callbacks correctly", () => {
 })
 
 test("should derive values from surrounding FormControl", () => {
-  const onFocus = jest.fn()
-  const onBlur = jest.fn()
+  const onFocus = vi.fn()()
+  const onBlur = vi.fn()()
 
   render(
     <FormControl

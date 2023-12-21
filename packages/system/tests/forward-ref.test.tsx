@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react"
 import { chakra, forwardRef } from "../src"
 
 /**
@@ -19,7 +18,7 @@ describe("`forward-ref` prop typings", () => {
       <Button allowedProp="allowed" type="submit" />
     )
 
-    // make jest happy
+    // make test happy
     expect(true).toBe(true)
   })
 })

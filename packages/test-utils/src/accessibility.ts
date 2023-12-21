@@ -1,10 +1,8 @@
 import "@testing-library/jest-dom"
 import { RenderOptions } from "@testing-library/react"
-import { axe, toHaveNoViolations, JestAxeConfigureOptions } from "jest-axe"
 import * as React from "react"
+import { axe } from "vitest-axe"
 import { render } from "./render"
-
-expect.extend(toHaveNoViolations)
 
 export async function testA11y(
   ui: React.ReactElement | HTMLElement,

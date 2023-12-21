@@ -1,6 +1,6 @@
 import { Project } from "find-packages"
 import { join } from "path/posix"
-import { getProjectEntries } from "./entries"
+import { getProjectEntries } from "./entries.js"
 
 const esmDir = join("dist", "esm")
 const cjsDir = join("dist", "cjs")

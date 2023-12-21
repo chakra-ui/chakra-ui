@@ -3,7 +3,7 @@ export function mockLocalStorage(value: string) {
     writable: true,
     value: {
       getItem: () => value,
-      setItem: jest.fn(),
+      setItem: vi.fn()(),
     },
   })
 }

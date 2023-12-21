@@ -124,7 +124,7 @@ const LazyPopoverComponent = (
 }
 
 test("loads content lazily and unmounts the component from the DOM", async () => {
-  const mock = jest.fn()
+  const mock = vi.fn()()
   const utils = render(<LazyPopoverComponent isLazy mockFn={mock} />)
 
   // by default, content should not be visible
@@ -160,7 +160,7 @@ test("loads content lazily and unmounts the component from the DOM", async () =>
 })
 
 test("loads content lazily and persists the component in the DOM", async () => {
-  const mock = jest.fn()
+  const mock = vi.fn()()
   const utils = render(
     <LazyPopoverComponent isLazy lazyBehavior="keepMounted" mockFn={mock} />,
   )

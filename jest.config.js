@@ -13,11 +13,6 @@ module.exports = {
   transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
   setupFilesAfterEnv: ["./scripts/setup-test.ts"],
   testTimeout: 10000,
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.json",
-    },
-  },
   watchPlugins: [
     "jest-watch-typeahead/filename",
     "jest-watch-typeahead/testname",

@@ -10,7 +10,7 @@ function removeExt(path: string) {
 const excludeFileRegex = /\.(stories|test|fixture|types|utils)\.[^.]+$/
 
 // exclude in shared or utils folder
-const excludeDirRegex = /\/(shared|utils)\//
+const excludeDirRegex = /^(shared|utils)$/
 
 type Entry = [string, string]
 

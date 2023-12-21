@@ -1,12 +1,9 @@
 import { ChakraProvider } from "@chakra-ui/react/chakra-provider"
 import { theme } from "@chakra-ui/theme"
-import "@testing-library/jest-dom"
+import "@testing-library/jest-dom/vitest"
 import { RenderOptions, render as rtlRender } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { toHaveNoViolations } from "jest-axe"
 import * as React from "react"
-
-expect.extend(toHaveNoViolations)
 
 const ChakraProviderWrapper = (props: any) => (
   <ChakraProvider {...props} theme={theme} />

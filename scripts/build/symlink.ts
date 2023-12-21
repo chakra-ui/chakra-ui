@@ -1,5 +1,5 @@
 import { Project } from "find-packages"
-import { getProjectEntries } from "./entries"
+import { getProjectEntries } from "./entries.js"
 
 export async function symlinkProject(project: Project) {
   const entries = getProjectEntries(project)

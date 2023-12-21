@@ -51,49 +51,49 @@ test("shows on pointerover and closes on pointerleave", async () => {
 })
 
 test("should not show on pointerover if isDisabled is true", async () => {
-  jest.useFakeTimers()
+  vi.useFakeTimers()
 
   render(<DummyComponent isDisabled />)
 
   fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   act(() => {
-    jest.advanceTimersByTime(200)
+    vi.advanceTimersByTime(200)
   })
 
   expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument()
 
-  jest.useRealTimers()
+  vi.useRealTimers()
 })
 
 test.skip("should close on pointerleave if openDelay is set", async () => {
-  jest.useFakeTimers()
+  vi.useFakeTimers()
 
   render(<DummyComponent openDelay={500} />)
 
   fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   act(() => {
-    jest.advanceTimersByTime(200)
+    vi.advanceTimersByTime(200)
   })
   expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument()
 
   act(() => {
-    jest.advanceTimersByTime(500)
+    vi.advanceTimersByTime(500)
   })
   expect(screen.queryByText(tooltipLabel)).toBeInTheDocument()
 
   fireEvent.pointerLeave(screen.getByText(buttonLabel))
 
   act(() => {
-    jest.advanceTimersByTime(200)
+    vi.advanceTimersByTime(200)
   })
 
   await waitFor(() =>
     expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument(),
   )
 
-  jest.useRealTimers()
+  vi.useRealTimers()
 })
 
 test("should show on pointerover if isDisabled has a falsy value", async () => {
@@ -156,7 +156,7 @@ test.skip("shows on pointerover and stays on pressing 'esc' if 'closeOnEsc' is f
 })
 
 test("does not show tooltip after delay when `isDisabled` prop changes to `true`", async () => {
-  jest.useFakeTimers()
+  vi.useFakeTimers()
 
   const { rerender } = render(
     <DummyComponent openDelay={100} isDisabled={false} />,
@@ -165,22 +165,22 @@ test("does not show tooltip after delay when `isDisabled` prop changes to `true`
   fireEvent.pointerOver(screen.getByText(buttonLabel))
 
   act(() => {
-    jest.advanceTimersByTime(50)
+    vi.advanceTimersByTime(50)
   })
 
   rerender(<DummyComponent openDelay={100} isDisabled={true} />)
 
   act(() => {
-    jest.advanceTimersByTime(100)
+    vi.advanceTimersByTime(100)
   })
 
   expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument()
 
-  jest.useRealTimers()
+  vi.useRealTimers()
 })
 
 test("should call onClose prop on pointerleave", async () => {
-  const onClose = jest.fn()
+  const onClose = vi.fn()()
 
   render(<DummyComponent onClose={onClose} />)
 

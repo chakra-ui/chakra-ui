@@ -5,16 +5,19 @@ import {
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { Dict, filterUndefined, objectFilter, runIfFn } from "@chakra-ui/utils"
 import { assignAfter } from "@chakra-ui/utils/assign-after"
+import { compact } from "@chakra-ui/utils/compact"
+import { interopDefault } from "@chakra-ui/utils/interop-default"
+import { runIfFn } from "@chakra-ui/utils/run-if-fn"
+import { splitProps } from "@chakra-ui/utils/split-props"
+import { Dict } from "@chakra-ui/utils/types"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
-import React from "react"
+import { createElement, forwardRef } from "react"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"
 
-const emotion_styled = ((createStyled as any).default ??
-  createStyled) as typeof createStyled
+const emotion_styled = interopDefault(createStyled)
 
 type StyleResolverProps = SystemStyleObject & {
   __css?: SystemStyleObject
@@ -48,13 +51,13 @@ export const toCSSObject: GetStyleObject =
   ({ baseStyle }) =>
   (props) => {
     const { theme, css: cssProp, __css, sx, ...rest } = props
-    const styleProps = objectFilter(rest, (_, prop) => isStyleProp(prop))
+    const [styleProps] = splitProps(rest, isStyleProp)
     const finalBaseStyle = runIfFn(baseStyle, props)
     const finalStyles = assignAfter(
       {},
       __css,
       finalBaseStyle,
-      filterUndefined(styleProps),
+      compact(styleProps),
       sx,
     )
     const computedCSS = css(finalStyles)(props.theme)
@@ -85,16 +88,14 @@ export function styled<T extends As, P extends object = {}>(
     styledOptions,
   )(styleObject)
 
-  const chakraComponent = React.forwardRef(
-    function ChakraComponent(props, ref) {
-      const { colorMode, forced } = useColorMode()
-      return React.createElement(Component, {
-        ref,
-        "data-theme": forced ? colorMode : undefined,
-        ...props,
-      })
-    },
-  )
+  const chakraComponent = forwardRef(function ChakraComponent(props, ref) {
+    const { colorMode, forced } = useColorMode()
+    return createElement(Component, {
+      ref,
+      "data-theme": forced ? colorMode : undefined,
+      ...props,
+    })
+  })
 
   return chakraComponent as ChakraComponent<T, P>
 }

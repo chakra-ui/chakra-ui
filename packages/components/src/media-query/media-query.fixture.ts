@@ -66,7 +66,7 @@ export default class MatchMedia {
 
             this.removeListener(query, listener)
           },
-          dispatchEvent: jest.fn(),
+          dispatchEvent: vi.fn()(),
         }
 
         return this.mediaQueryList
