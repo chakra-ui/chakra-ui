@@ -18,7 +18,7 @@
     "build:prop-docs": "pnpm typedocs && pnpm --filter=*props-docs build",
     "typedocs": "pnpm --filter=./packages/components/** typedocs",
     "postbuild": "pnpm build:tokens",
-    "dev": "pnpm -r --filter=./packages/** dev",
+    "dev": "tsx scripts/build/main.ts --watch --prod",
     "typecheck": "tsc --noEmit",
     "build:theme": "cd packages/components/theme && pnpm build:fast",
     "test": "vitest",
