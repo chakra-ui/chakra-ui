@@ -634,8 +634,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       react-router-dom:
-        specifier: 6.17.0
-        version: 6.17.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.21.1
+        version: 6.21.1(react-dom@18.2.0)(react@18.2.0)
 
   packages/components/button:
     dependencies:
@@ -1134,8 +1134,8 @@ importers:
         specifier: ^4.10.1
         version: 4.10.1(react@18.2.0)
       react-router-dom:
-        specifier: 6.17.0
-        version: 6.17.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 6.21.1
+        version: 6.21.1(react-dom@18.2.0)(react@18.2.0)
 
   packages/components/live-region:
     devDependencies:
@@ -8491,8 +8491,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.22.10
 
-  /@remix-run/router@1.10.0:
-    resolution: {integrity: sha512-Lm+fYpMfZoEucJ7cMxgt4dYt8jLfbpwRCzAjm9UgSLOkmlqo9gupxt6YX3DY0Fk155NT9l17d/ydi+964uS9Lw==}
+  /@remix-run/router@1.14.1:
+    resolution: {integrity: sha512-Qg4DMQsfPNAs88rb2xkdk03N3bjK4jgX5fR24eHCTR9q6PrhZQZ4UJBPzCHJkIpTRN1UKxx2DzjZmnC+7Lj0Ow==}
     engines: {node: '>=14.0.0'}
     dev: true
 
@@ -16462,7 +16462,7 @@ packages:
       chalk: 4.1.2
       chokidar: 3.5.3
       cosmiconfig: 6.0.0
-      deepmerge: 4.3.1
+      deepmerge: 4.2.2
       eslint: 7.32.0
       fs-extra: 9.1.0
       glob: 7.2.3
@@ -23518,26 +23518,26 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-router-dom@6.17.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-qWHkkbXQX+6li0COUUPKAUkxjNNqPJuiBd27dVwQGDNsuFBdMbrS6UZ0CLYc4CsbdLYTckn4oB4tGDuPZpPhaQ==}
+  /react-router-dom@6.21.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-QCNrtjtDPwHDO+AO21MJd7yIcr41UetYt5jzaB9Y1UYaPTCnVuJq6S748g1dE11OQlCFIQg+RtAA1SEZIyiBeA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
     dependencies:
-      '@remix-run/router': 1.10.0
+      '@remix-run/router': 1.14.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.17.0(react@18.2.0)
+      react-router: 6.21.1(react@18.2.0)
     dev: true
 
-  /react-router@6.17.0(react@18.2.0):
-    resolution: {integrity: sha512-YJR3OTJzi3zhqeJYADHANCGPUu9J+6fT5GLv82UWRGSxu6oJYCKVmxUcaBQuGm9udpWmPsvpme/CdHumqgsoaA==}
+  /react-router@6.21.1(react@18.2.0):
+    resolution: {integrity: sha512-W0l13YlMTm1YrpVIOpjCADJqEUpz1vm+CMo47RuFX4Ftegwm6KOYsL5G3eiE52jnJpKvzm6uB/vTKTPKM8dmkA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18.2.0
     dependencies:
-      '@remix-run/router': 1.10.0
+      '@remix-run/router': 1.14.1
       react: 18.2.0
     dev: true
 
