@@ -1,9 +1,5 @@
-import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
-  SystemStyleObject,
-} from "@chakra-ui/system"
+import { defineStyle } from "@chakra-ui/styled-system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
 import { AccordionItemProvider, useAccordionStyles } from "./accordion-context"
@@ -32,10 +28,11 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
     const { htmlProps, ...context } = useAccordionItem(props)
 
     const styles = useAccordionStyles()
-    const containerStyles: SystemStyleObject = {
+
+    const containerStyles = defineStyle({
       ...styles.container,
       overflowAnchor: "none",
-    }
+    })
 
     const ctx = useMemo(() => context, [context])
 

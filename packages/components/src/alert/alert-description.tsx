@@ -1,22 +1,20 @@
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "@chakra-ui/system"
 import { useAlertContext, useAlertStyles } from "./alert-context"
 
 export interface AlertDescriptionProps extends HTMLChakraProps<"div"> {}
 
 export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
   function AlertDescription(props, ref) {
-    const styles = useAlertStyles()
     const { status } = useAlertContext()
-    const descriptionStyles: SystemStyleObject = {
+
+    const styles = useAlertStyles()
+
+    const descriptionStyles = defineStyle({
       display: "inline",
       ...styles.description,
-    }
+    })
 
     return (
       <chakra.div

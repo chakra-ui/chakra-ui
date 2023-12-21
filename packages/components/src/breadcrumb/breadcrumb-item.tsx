@@ -1,15 +1,11 @@
-import {
-  chakra,
-  forwardRef,
-  SystemStyleObject,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
+import { defineStyle } from "@chakra-ui/styled-system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 import { getValidChildren } from "@chakra-ui/utils/children"
 import { cx } from "@chakra-ui/utils/cx"
-import { useBreadcrumbStyles } from "./breadcrumb-context"
-import { BreadcrumbSeparator } from "./breadcrumb-separator"
-import { BreadcrumbLink } from "./breadcrumb-link"
 import { cloneElement } from "react"
+import { useBreadcrumbStyles } from "./breadcrumb-context"
+import { BreadcrumbLink } from "./breadcrumb-link"
+import { BreadcrumbSeparator } from "./breadcrumb-separator"
 import { BreadcrumbItemOptions } from "./breadcrumb-types"
 
 export interface BreadcrumbItemProps
@@ -55,11 +51,12 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
     })
 
     const styles = useBreadcrumbStyles()
-    const itemStyles: SystemStyleObject = {
+
+    const itemStyles = defineStyle({
       display: "inline-flex",
       alignItems: "center",
       ...styles.item,
-    }
+    })
 
     const _className = cx("chakra-breadcrumb__list-item", className)
 

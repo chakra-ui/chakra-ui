@@ -1,11 +1,13 @@
 import {
-  HTMLChakraProps,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
+import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  omitThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { getValidChildren } from "@chakra-ui/utils/children"

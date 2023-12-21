@@ -1,9 +1,5 @@
-import {
-  forwardRef,
-  getToken,
-  ResponsiveValue,
-  useTheme,
-} from "@chakra-ui/system"
+import { ResponsiveValue } from "@chakra-ui/styled-system"
+import { forwardRef, getToken, useTheme } from "@chakra-ui/system"
 import { mapResponsive } from "@chakra-ui/utils/responsive"
 import { Grid, GridProps } from "./grid"
 

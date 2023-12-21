@@ -1,13 +1,10 @@
-import { ChakraProvider } from "@chakra-ui/react/chakra-provider"
+import { ChakraProvider } from "@chakra-ui/react/provider"
 import { theme } from "@chakra-ui/theme"
 import "@testing-library/jest-dom/vitest"
 import { RenderOptions, render as rtlRender } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import * as React from "react"
+import user from "@testing-library/user-event"
 
-const ChakraProviderWrapper = (props: any) => (
-  <ChakraProvider {...props} theme={theme} />
-)
+const Provider = (props: any) => <ChakraProvider {...props} theme={theme} />
 
 export interface ChakraRenderOptions extends RenderOptions {
   withChakraProvider?: boolean
@@ -18,11 +15,9 @@ export function render(
   { withChakraProvider, ...options }: ChakraRenderOptions = {
     withChakraProvider: true,
   },
-): ReturnType<typeof rtlRender> & { user: ReturnType<typeof userEvent.setup> } {
-  const user = userEvent.setup()
-
+): ReturnType<typeof rtlRender> & { user: typeof user } {
   if (withChakraProvider) {
-    options.wrapper = ChakraProviderWrapper
+    options.wrapper = Provider
   }
 
   const result = rtlRender(ui, options)

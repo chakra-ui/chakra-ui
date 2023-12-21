@@ -1,4 +1,4 @@
-import { ThemingProps } from "@chakra-ui/system"
+import { ThemingProps } from "@chakra-ui/styled-system"
 import { Meta, StoryFn } from "@storybook/react"
 import { motion } from "framer-motion"
 import * as React from "react"

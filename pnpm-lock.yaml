@@ -547,6 +547,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@chakra-ui/color-mode':
+        specifier: workspace:*
+        version: link:../color-mode
       '@chakra-ui/hooks':
         specifier: workspace:*
         version: link:../hooks
@@ -732,12 +735,6 @@ importers:
 
   packages/system:
     dependencies:
-      '@chakra-ui/color-mode':
-        specifier: workspace:*
-        version: link:../color-mode
-      '@chakra-ui/styled-system':
-        specifier: workspace:*
-        version: link:../styled-system
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../utils
@@ -745,6 +742,12 @@ importers:
         specifier: 3.2.2
         version: 3.2.2
     devDependencies:
+      '@chakra-ui/color-mode':
+        specifier: workspace:*
+        version: link:../color-mode
+      '@chakra-ui/styled-system':
+        specifier: workspace:*
+        version: link:../styled-system
       '@chakra-ui/theme':
         specifier: workspace:*
         version: link:../theme

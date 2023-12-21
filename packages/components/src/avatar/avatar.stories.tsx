@@ -1,6 +1,5 @@
 import { Box, Stack } from "../layout"
 import { PropsOf } from "@chakra-ui/system"
-import * as React from "react"
 import { Avatar, AvatarBadge, AvatarGroup } from "."
 
 export default {

@@ -1,5 +1,5 @@
+import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
-import { SystemStyleObject } from "@chakra-ui/system"
 
 export const [BreadcrumbStylesProvider, useBreadcrumbStyles] = createContext<
   Record<string, SystemStyleObject>

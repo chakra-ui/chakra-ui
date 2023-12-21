@@ -1,4 +1,4 @@
-import { keyframes } from "@chakra-ui/system"
+import { keyframes } from "@emotion/react"
 
 function valueToPercent(value: number, min: number, max: number) {
   return ((value - min) * 100) / (max - min)

@@ -1,12 +1,7 @@
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import {
-  HTMLChakraProps,
-  chakra,
-  SystemStyleObject,
-  forwardRef,
-} from "@chakra-ui/system"
 import { HTMLMotionProps } from "framer-motion"
-
 import { useModalContext, useModalStyles } from "./modal"
 import { ModalFocusScope } from "./modal-focus"
 import { ModalTransition } from "./modal-transition"
@@ -45,16 +40,16 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
 
     const styles = useModalStyles()
 
-    const dialogStyles: SystemStyleObject = {
+    const dialogStyles = defineStyle({
       display: "flex",
       flexDirection: "column",
       position: "relative",
       width: "100%",
       outline: 0,
       ...styles.dialog,
-    }
+    })
 
-    const dialogContainerStyles: SystemStyleObject = {
+    const dialogContainerStyles = defineStyle({
       display: "flex",
       width: "100vw",
       height: "$100vh",
@@ -62,7 +57,7 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
       left: 0,
       top: 0,
       ...styles.dialogContainer,
-    }
+    })
 
     const { motionPreset } = useModalContext()
 

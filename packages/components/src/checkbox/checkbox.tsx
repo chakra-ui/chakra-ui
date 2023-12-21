@@ -1,16 +1,18 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { callAll } from "@chakra-ui/utils/call-all"
+import {
+  SystemStyleObject,
+  ThemingProps,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
 import {
   HTMLChakraProps,
   PropsOf,
-  SystemStyleObject,
-  ThemingProps,
   chakra,
   forwardRef,
-  keyframes,
-  omitThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { callAll } from "@chakra-ui/utils/call-all"
+import { cx } from "@chakra-ui/utils/cx"
+import { keyframes } from "@emotion/react"
 import { cloneElement, useMemo } from "react"
 import { useCheckboxGroupContext } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
@@ -93,8 +95,8 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(
     const group = useCheckboxGroupContext()
 
     const mergedProps = { ...group, ...props } as CheckboxProps
-    const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
+    const styles = useMultiStyleConfig("Checkbox", mergedProps)
     const ownProps = omitThemingProps(props)
 
     const {

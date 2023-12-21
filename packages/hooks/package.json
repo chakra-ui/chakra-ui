@@ -49,6 +49,17 @@
     "build:fast": "tsup src"
   },
   "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
     "./use-animation-state": {
       "source": "./src/use-animation-state.ts",
       "import": {

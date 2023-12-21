@@ -3,10 +3,10 @@ import { hideOthers } from "aria-hidden"
 import { MutableRefObject } from "react"
 import { useAriaHidden } from "../modal/use-modal"
 
-jest.mock("aria-hidden")
+vi.mock("aria-hidden")
 
 beforeEach(() => {
-  jest.clearAllMocks()
+  vi.clearAllMocks()
 })
 
 describe("useAriaHidden", () => {

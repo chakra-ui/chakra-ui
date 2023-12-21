@@ -1,7 +1,7 @@
 import "vitest-axe/extend-expect"
 import "@testing-library/jest-dom/vitest"
 
-import * as matchers from "vitest-axe/matchers"
+import * as matchers from "vitest-axe/matchers.js"
 import { expect } from "vitest"
 expect.extend(matchers)
 
@@ -36,3 +36,7 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
   unobserve: vi.fn(),
   disconnect: vi.fn(),
 }))
+
+window.HTMLCanvasElement.prototype.getContext = vi
+  .fn()
+  .mockImplementation(() => ({}))

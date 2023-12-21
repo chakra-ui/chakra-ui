@@ -1,13 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
+import {
+  defineStyle,
+  omitThemingProps,
+  ThemingProps,
+} from "@chakra-ui/styled-system"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
-  omitThemingProps,
-  SystemStyleObject,
-  ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils/cx"
 import {
   AlertProvider,
   AlertStatus,
@@ -46,14 +48,14 @@ export const Alert = forwardRef<AlertProps, "div">(function Alert(props, ref) {
 
   const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
 
-  const alertStyles: SystemStyleObject = {
+  const alertStyles = defineStyle({
     width: "100%",
     display: "flex",
     alignItems: "center",
     position: "relative",
     overflow: "hidden",
     ...styles.container,
-  }
+  })
 
   return (
     <AlertProvider value={{ status }}>

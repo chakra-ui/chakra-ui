@@ -1,10 +1,13 @@
 import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
+  defineStyle,
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
+} from "@chakra-ui/styled-system"
+import {
+  chakra,
+  forwardRef,
+  HTMLChakraProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
 import { dataAttr } from "@chakra-ui/utils/attr"
@@ -17,7 +20,7 @@ import { initials } from "./avatar-name"
 import { AvatarOptions } from "./avatar-types"
 import { GenericAvatarIcon } from "./generic-avatar-icon"
 
-export const baseStyle: SystemStyleObject = {
+export const baseStyle = defineStyle({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
@@ -26,7 +29,7 @@ export const baseStyle: SystemStyleObject = {
   fontWeight: "medium",
   position: "relative",
   flexShrink: 0,
-}
+})
 
 export interface AvatarProps
   extends Omit<HTMLChakraProps<"span">, "onError">,

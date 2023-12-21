@@ -1,14 +1,13 @@
 import {
   fireEvent,
+  hooks,
   render,
   screen,
   testA11y,
   waitFor,
-  hooks,
 } from "@chakra-ui/test-utils"
-import * as React from "react"
-// import { ChakraProvider, extendTheme } from "@chakra-ui/react"
-import { Box, Badge, Container, Divider, Flex, Stack, useHighlight } from "."
+import { useEffect, useState } from "react"
+import { Badge, Box, Container, Divider, Flex, Stack, useHighlight } from "."
 
 describe("<Box />", () => {
   test("passes a11y test", async () => {
@@ -39,27 +38,6 @@ describe("<Container />", () => {
   test("centerContent - prop works correctly", () => {
     render(<Container centerContent>This is centered container</Container>)
   })
-
-  // test("theming works correctly", () => {
-  //   const theme = extendTheme({
-  //     components: {
-  //       Container: {
-  //         variants: {
-  //           customBackground: {
-  //             bgColor: "red.500",
-  //           },
-  //         },
-  //       },
-  //     },
-  //   })
-  //   render(
-  //     <ChakraProvider theme={theme}>
-  //       <Container variant="customBackground">
-  //         This is container has a red background
-  //       </Container>
-  //     </ChakraProvider>,
-  //   )
-  // })
 })
 
 describe("<Flex />", () => {
@@ -87,12 +65,14 @@ describe("<Stack />", () => {
     { id: "kiwi" },
     { id: "pineapple" },
   ]
+
   interface FruitProps {
     name: string
     onUnmount?: (v: string) => void
   }
+
   const Fruit = ({ name, onUnmount }: FruitProps) => {
-    React.useEffect(() => {
+    useEffect(() => {
       return () => {
         if (onUnmount) onUnmount(name)
       }
@@ -118,9 +98,10 @@ describe("<Stack />", () => {
   })
 
   test("renders list of items with provided keys when cloning children", async () => {
-    const unMountMock = vi.fn()()
+    const unMountMock = vi.fn()
+
     const Wrapper = ({ data }: { data: Record<string, any>[] }) => {
-      const [fruits, setFruits] = React.useState(data)
+      const [fruits, setFruits] = useState(data)
 
       return (
         <>
@@ -140,9 +121,12 @@ describe("<Stack />", () => {
         </>
       )
     }
+
     render(<Wrapper data={data} />)
+
     const items = await screen.findAllByTestId("fruit")
     expect(items).toHaveLength(6)
+
     expect(unMountMock).not.toHaveBeenCalled()
 
     const deleteFirst = await screen.findByTestId("delete-button")

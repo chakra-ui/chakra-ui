@@ -1,11 +1,9 @@
+import { forwardRef, HTMLChakraProps, useStyleConfig } from "@chakra-ui/system"
 import {
-  forwardRef,
-  HTMLChakraProps,
   omitThemingProps,
   SystemStyleObject,
   ThemingProps,
-  useStyleConfig,
-} from "@chakra-ui/system"
+} from "@chakra-ui/styled-system"
 import { Fragment, useMemo } from "react"
 import { Box } from "./box"
 

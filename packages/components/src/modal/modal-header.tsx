@@ -1,12 +1,7 @@
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "@chakra-ui/system"
 import { useEffect } from "react"
-
 import { useModalContext, useModalStyles } from "./modal"
 
 export interface ModalHeaderProps extends HTMLChakraProps<"header"> {}
@@ -36,10 +31,10 @@ export const ModalHeader = forwardRef<ModalHeaderProps, "header">(
     const _className = cx("chakra-modal__header", className)
 
     const styles = useModalStyles()
-    const headerStyles: SystemStyleObject = {
+    const headerStyles = defineStyle({
       flex: 0,
       ...styles.header,
-    }
+    })
 
     return (
       <chakra.header

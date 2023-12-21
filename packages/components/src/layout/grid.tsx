@@ -1,9 +1,5 @@
-import {
-  chakra,
-  forwardRef,
-  SystemProps,
-  HTMLChakraProps,
-} from "@chakra-ui/system"
+import { SystemProps } from "@chakra-ui/styled-system"
+import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
 
 export interface GridOptions {
   /**

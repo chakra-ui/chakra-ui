@@ -1,13 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
 import {
-  forwardRef,
-  HTMLChakraProps,
-  ThemingProps,
-  chakra,
-  omitThemingProps,
-  useMultiStyleConfig,
   SystemProps,
+  ThemingProps,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
+import {
+  HTMLChakraProps,
+  chakra,
+  forwardRef,
+  useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils/cx"
 import { CardStylesProvider } from "./card-context"
 
 export type CardOptions = {

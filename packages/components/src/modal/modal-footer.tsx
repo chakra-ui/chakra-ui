@@ -1,11 +1,6 @@
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "@chakra-ui/system"
-
 import { useModalStyles } from "./modal"
 
 export interface ModalFooterProps extends HTMLChakraProps<"footer"> {}
@@ -20,12 +15,13 @@ export const ModalFooter = forwardRef<ModalFooterProps, "footer">(
     const _className = cx("chakra-modal__footer", className)
 
     const styles = useModalStyles()
-    const footerStyles: SystemStyleObject = {
+
+    const footerStyles = defineStyle({
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
       ...styles.footer,
-    }
+    })
 
     return (
       <chakra.footer

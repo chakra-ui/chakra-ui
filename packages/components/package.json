@@ -37,6 +37,7 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
+    "@chakra-ui/color-mode": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
     "@chakra-ui/system": "workspace:*",
@@ -50,8 +51,8 @@
     "react-remove-scroll": "^2.5.7"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
     "framer-motion": ">=4.0.0",
     "react": ">=18",
     "react-dom": ">=18"
@@ -79,6 +80,17 @@
     "build:fast": "tsup"
   },
   "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
     "./accordion": {
       "source": "./src/accordion/index.ts",
       "import": {

@@ -1,5 +1,6 @@
+import { defineStyle } from "@chakra-ui/styled-system"
+import { chakra, HTMLChakraProps } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, HTMLChakraProps, SystemStyleObject } from "@chakra-ui/system"
 import { useMemo } from "react"
 import { Spinner } from "../spinner"
 import { ButtonSpinnerOptions } from "./button-types"
@@ -23,16 +24,17 @@ export function ButtonSpinner(props: ButtonSpinnerProps) {
 
   const marginProp = placement === "start" ? "marginEnd" : "marginStart"
 
-  const spinnerStyles: SystemStyleObject = useMemo(
-    () => ({
-      display: "flex",
-      alignItems: "center",
-      position: label ? "relative" : "absolute",
-      [marginProp]: label ? spacing : 0,
-      fontSize: "1em",
-      lineHeight: "normal",
-      ...__css,
-    }),
+  const spinnerStyles = useMemo(
+    () =>
+      defineStyle({
+        display: "flex",
+        alignItems: "center",
+        position: label ? "relative" : "absolute",
+        [marginProp]: label ? spacing : 0,
+        fontSize: "1em",
+        lineHeight: "normal",
+        ...__css,
+      }),
     [__css, label, marginProp, spacing],
   )
 

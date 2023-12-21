@@ -1,10 +1,10 @@
-import { useEventListener } from "@chakra-ui/hooks/use-event-listener"
 import { getAllFocusable } from "@chakra-ui/utils/focusable"
 import { getActiveElement } from "@chakra-ui/utils/owner"
 import { isTabbable } from "@chakra-ui/utils/tabbable"
 import { FocusableElement } from "@chakra-ui/utils/types"
 import type { RefObject } from "react"
 import { useCallback, useRef } from "react"
+import { useEventListener } from "./use-event-listener"
 import { useSafeLayoutEffect } from "./use-safe-layout-effect"
 import { useUpdateEffect } from "./use-update-effect"
 

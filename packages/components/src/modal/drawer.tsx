@@ -1,11 +1,13 @@
+import { ThemingProps } from "@chakra-ui/styled-system"
+import { useTheme } from "@chakra-ui/system"
 import { createContext } from "@chakra-ui/utils/context"
-import { ThemingProps, useTheme } from "@chakra-ui/system"
 import { SlideOptions } from "../transition"
 import { Modal, ModalProps } from "./modal"
 
 const [DrawerContextProvider, useDrawerContext] = createContext<DrawerOptions>()
 
 type LogicalPlacement = "start" | "end"
+
 type LogicalPlacementMap = Record<
   LogicalPlacement,
   { ltr: SlideOptions["direction"]; rtl: SlideOptions["direction"] }

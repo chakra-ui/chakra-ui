@@ -1,13 +1,12 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { getValidChildren } from "@chakra-ui/utils/children"
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
-  omitThemingProps,
-  ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { getValidChildren } from "@chakra-ui/utils/children"
+import { cx } from "@chakra-ui/utils/cx"
 import { cloneElement } from "react"
 import { BreadcrumbStylesProvider } from "./breadcrumb-context"
 import { BreadcrumbOptions } from "./breadcrumb-types"
