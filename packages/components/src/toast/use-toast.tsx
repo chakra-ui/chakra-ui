@@ -1,4 +1,5 @@
-import { StyleProps, ThemingProps, useChakra } from "@chakra-ui/system"
+import { SystemProps, ThemingProps } from "@chakra-ui/styled-system"
+import { useChakra } from "@chakra-ui/system"
 import { useMemo } from "react"
 import type { AlertStatus } from "../alert"
 import { CreateToastFnReturn, createToastFn } from "./create-toast-fn"
@@ -60,7 +61,7 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   /**
    * Optional style overrides for the container wrapping the toast component.
    */
-  containerStyle?: StyleProps
+  containerStyle?: SystemProps
 }
 
 /**

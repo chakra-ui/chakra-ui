@@ -1,20 +1,22 @@
-import { createContext } from "@chakra-ui/utils/context"
 import {
-  chakra,
-  forwardRef,
-  omitThemingProps,
   SystemStyleObject,
   ThemingProps,
-  useMultiStyleConfig,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
+import {
   HTMLChakraProps,
+  chakra,
+  forwardRef,
+  useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
 import {
   TabsDescendantsProvider,
   TabsProvider,
-  useTabs,
   UseTabsProps,
+  useTabs,
 } from "./use-tabs"
 
 const [TabsStylesProvider, useTabsStyles] = createContext<

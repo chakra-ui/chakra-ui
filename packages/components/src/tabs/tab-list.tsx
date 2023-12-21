@@ -1,11 +1,6 @@
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "@chakra-ui/system"
-
 import { useTabsStyles } from "./tabs"
 import { UseTabListProps, useTabList } from "./use-tabs"
 
@@ -23,10 +18,10 @@ export const TabList = forwardRef<TabListProps, "div">(
 
     const styles = useTabsStyles()
 
-    const tablistStyles: SystemStyleObject = {
+    const tablistStyles = defineStyle({
       display: "flex",
       ...styles.tablist,
-    }
+    })
 
     return (
       <chakra.div

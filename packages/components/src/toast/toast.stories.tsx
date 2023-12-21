@@ -1,5 +1,6 @@
+import { useColorMode } from "@chakra-ui/color-mode"
 import { useLatestRef } from "@chakra-ui/hooks"
-import { chakra, useColorMode } from "@chakra-ui/system"
+import { chakra } from "@chakra-ui/system"
 import { theme as base } from "@chakra-ui/theme"
 import * as React from "react"
 import { ToastId, createStandaloneToast, useToast } from "."

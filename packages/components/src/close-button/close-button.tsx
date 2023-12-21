@@ -1,13 +1,15 @@
-import { Icon, IconProps } from "../icon"
 import {
-  chakra,
-  forwardRef,
-  omitThemingProps,
   SystemStyleObject,
   ThemingProps,
-  useStyleConfig,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
+import {
   HTMLChakraProps,
+  chakra,
+  forwardRef,
+  useStyleConfig,
 } from "@chakra-ui/system"
+import { Icon, IconProps } from "../icon"
 
 function CloseIcon(props: IconProps) {
   return (

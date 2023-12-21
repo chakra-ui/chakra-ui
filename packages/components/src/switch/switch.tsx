@@ -1,14 +1,16 @@
-import { cx } from "@chakra-ui/utils/cx"
 import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
   omitThemingProps,
   SystemProps,
   SystemStyleObject,
   ThemingProps,
+} from "@chakra-ui/styled-system"
+import {
+  chakra,
+  forwardRef,
+  HTMLChakraProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
 import { useCheckbox, UseCheckboxProps } from "../checkbox"
 

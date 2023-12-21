@@ -1,13 +1,15 @@
-import { createContext } from "@chakra-ui/utils/context"
+import {
+  omitThemingProps,
+  SystemStyleObject,
+  ThemingProps,
+} from "@chakra-ui/styled-system"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
-  omitThemingProps,
-  SystemStyleObject,
-  ThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 
 const [StatStylesProvider, useStatStyles] = createContext<

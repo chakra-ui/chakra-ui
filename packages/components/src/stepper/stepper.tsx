@@ -1,12 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import {
   HTMLChakraProps,
-  ThemingProps,
   chakra,
   forwardRef,
-  omitThemingProps,
   useMultiStyleConfig,
 } from "@chakra-ui/system"
+import { cx } from "@chakra-ui/utils/cx"
 import { Children } from "react"
 import {
   Orientation,

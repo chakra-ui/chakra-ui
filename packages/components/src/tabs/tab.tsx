@@ -1,11 +1,6 @@
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
 import { cx } from "@chakra-ui/utils/cx"
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "@chakra-ui/system"
-
 import { useTabsStyles } from "./tabs"
 import { UseTabOptions, useTab } from "./use-tabs"
 
@@ -19,13 +14,13 @@ export const Tab = forwardRef<TabProps, "button">(function Tab(props, ref) {
   const styles = useTabsStyles()
   const tabProps = useTab({ ...props, ref })
 
-  const tabStyles: SystemStyleObject = {
+  const tabStyles = defineStyle({
     outline: "0",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     ...styles.tab,
-  }
+  })
 
   return (
     <chakra.button
