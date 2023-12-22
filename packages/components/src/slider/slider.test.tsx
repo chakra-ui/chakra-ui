@@ -8,7 +8,7 @@ import {
   SliderTrack,
   UseSliderProps,
 } from "."
-import { ChakraProvider } from "../provider"
+import { Provider as ChakraProvider } from "../provider"
 
 const defaultValue = 10
 

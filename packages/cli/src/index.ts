@@ -5,8 +5,8 @@ import { join, resolve } from "node:path/posix"
 import {
   generateThemeTypings,
   themeInterfaceDestination,
-} from "./generate-theme-typings"
-import { initCLI } from "./utils/init-cli"
+} from "./generate-theme-typings.js"
+import { initCLI } from "./utils/init-cli.js"
 
 interface OptionsType {
   out?: string
@@ -56,7 +56,8 @@ export async function run() {
 
       const read = async () => {
         const filePath = resolve(themeFile)
-        const { mod: theme, dependencies } = await bundleNRequire(filePath)
+        const { mod, dependencies } = await bundleNRequire(filePath)
+        const theme = mod.default || mod.theme || mod
         return { theme, dependencies }
       }
 

@@ -1,6 +1,6 @@
-import { extendTheme } from "@chakra-ui/theme-utils"
 import { Text } from "."
-import { ChakraProvider } from "../provider"
+import { extendTheme } from "../extend-theme"
+import { Provider as ChakraProvider } from "../provider"
 
 export default {
   title: "Components / Typography / Text",

@@ -2,7 +2,7 @@ import { render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import MatchMediaMock from "vitest-matchmedia-mock"
 import { Skeleton, SkeletonText } from "."
-import { ChakraProvider } from "../provider"
+import { Provider as ChakraProvider } from "../provider"
 import { queries, theme } from "./test.fixture"
 
 let matchMedia: MatchMediaMock

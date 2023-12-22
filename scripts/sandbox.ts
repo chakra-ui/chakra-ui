@@ -22,8 +22,6 @@ async function main() {
         },
       }
 
-      delete (data as any)["clean-package"]
-
       return fs.writeFile(
         `${pkg.dir}/package.json`,
         JSON.stringify(data, null, 2),

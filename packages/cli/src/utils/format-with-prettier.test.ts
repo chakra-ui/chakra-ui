@@ -1,4 +1,4 @@
-import { formatWithPrettier } from "./format-with-prettier"
+import { formatWithPrettier } from "./format-with-prettier.js"
 
 describe("Format With Prettier", () => {
   it("should format with prettier", async () => {

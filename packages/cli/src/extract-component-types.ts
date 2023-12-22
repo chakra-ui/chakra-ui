@@ -1,5 +1,5 @@
-import { isObject } from "./utils/is-object"
-import { printUnionMap } from "./extract-property-paths"
+import { isObject } from "./utils/is-object.js"
+import { printUnionMap } from "./extract-property-paths.js"
 
 interface ComponentType extends Record<string, string[]> {
   sizes: string[]

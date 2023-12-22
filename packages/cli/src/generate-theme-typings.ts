@@ -1,13 +1,13 @@
 import { writeFileSync } from "node:fs"
-import { themeKeyConfiguration } from "./config"
+import { themeKeyConfiguration } from "./config.js"
 import {
   TypingsTemplate,
   createThemeTypingsInterface,
-} from "./create-theme-typings-interface"
+} from "./create-theme-typings-interface.js"
 import {
   resolveOutputPath,
   themeInterfaceDestination,
-} from "./resolve-output-path"
+} from "./resolve-output-path.js"
 
 export async function generateThemeTypings({
   theme,

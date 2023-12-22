@@ -1,4 +1,4 @@
-import { extractPropertyKeys } from "./extract-property-keys"
+import { extractPropertyKeys } from "./extract-property-keys.js"
 
 describe("Extract Property Keys", () => {
   it("should extract top-level keys from the given property", () => {

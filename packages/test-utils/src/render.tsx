@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react/provider"
+import { Provider as ChakraProvider } from "@chakra-ui/react/provider"
 import { theme } from "@chakra-ui/theme"
 import "@testing-library/jest-dom/vitest"
 import { RenderOptions, render as rtlRender } from "@testing-library/react"

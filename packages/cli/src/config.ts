@@ -1,4 +1,4 @@
-import { ThemeKeyOptions } from "./create-theme-typings-interface"
+import { ThemeKeyOptions } from "./create-theme-typings-interface.js"
 
 export const themeKeyConfiguration: ThemeKeyOptions[] = [
   { key: "blur" },

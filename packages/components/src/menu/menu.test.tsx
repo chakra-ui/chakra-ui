@@ -20,7 +20,7 @@ import {
 } from "."
 import { Button } from "../button"
 import { Portal } from "../portal"
-import { ChakraProvider } from "../provider"
+import { Provider as ChakraProvider } from "../provider"
 
 const words = [
   "About Visual Studio Code",

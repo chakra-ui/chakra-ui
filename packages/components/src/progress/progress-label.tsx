@@ -1,5 +1,5 @@
-import { HTMLChakraProps, SystemStyleObject, chakra } from "@chakra-ui/system"
-
+import { defineStyle } from "@chakra-ui/styled-system"
+import { HTMLChakraProps, chakra } from "@chakra-ui/system"
 import { useProgressStyles } from "./progress"
 
 export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
@@ -10,7 +10,8 @@ export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
  */
 export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
   const styles = useProgressStyles()
-  const labelStyles: SystemStyleObject = {
+
+  const labelStyles = defineStyle({
     top: "50%",
     left: "50%",
     width: "100%",
@@ -18,7 +19,8 @@ export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
     position: "absolute",
     transform: "translate(-50%, -50%)",
     ...styles.label,
-  }
+  })
+
   return <chakra.div {...props} __css={labelStyles} />
 }
 

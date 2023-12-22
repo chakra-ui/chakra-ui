@@ -1,13 +1,16 @@
-import { formatWithPrettier } from "./utils/format-with-prettier"
-import { isObject } from "./utils/is-object"
-import { extractColorSchemeTypes } from "./extract-color-schemes"
+import { extractColorSchemeTypes } from "./extract-color-schemes.js"
 import {
   extractComponentTypes,
   printComponentTypes,
-} from "./extract-component-types"
-import { extractPropertyKeys } from "./extract-property-keys"
-import { extractPropertyPaths, printUnionMap } from "./extract-property-paths"
-import { extractSemanticTokenKeys } from "./extract-semantic-token-keys"
+} from "./extract-component-types.js"
+import { extractPropertyKeys } from "./extract-property-keys.js"
+import {
+  extractPropertyPaths,
+  printUnionMap,
+} from "./extract-property-paths.js"
+import { extractSemanticTokenKeys } from "./extract-semantic-token-keys.js"
+import { formatWithPrettier } from "./utils/format-with-prettier.js"
+import { isObject } from "./utils/is-object.js"
 
 export interface ThemeKeyOptions {
   /**

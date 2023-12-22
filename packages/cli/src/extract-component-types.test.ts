@@ -1,4 +1,4 @@
-import { extractComponentTypes } from "./extract-component-types"
+import { extractComponentTypes } from "./extract-component-types.js"
 
 describe("Extract Component Types", () => {
   it("should extract all component types", () => {

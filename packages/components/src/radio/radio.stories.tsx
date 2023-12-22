@@ -116,13 +116,13 @@ export const WithHook = () => {
  * Compose a custom RadioCard component using the `useRadio` hook.
  */
 function RadioCard(props: UseRadioProps & { children?: React.ReactNode }) {
-  const { getInputProps, getCheckboxProps } = useRadio(props)
+  const { getInputProps, getRadioProps } = useRadio(props)
 
   return (
     <chakra.label>
       <input {...getInputProps()} />
       <chakra.div
-        {...getCheckboxProps()}
+        {...getRadioProps()}
         display="inline-block"
         border="1px solid gray"
         _checked={{ bg: "tomato", color: "white" }}

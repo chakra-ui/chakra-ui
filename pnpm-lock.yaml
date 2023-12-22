@@ -73,13 +73,13 @@ importers:
         specifier: ^2.0.11
         version: 2.0.11(@pnpm/logger@5.0.0)
       '@rollup/plugin-alias':
-        specifier: ^5.0.1
+        specifier: 5.1.0
         version: 5.1.0(rollup@4.6.1)
       '@rollup/plugin-node-resolve':
-        specifier: ^15.2.3
+        specifier: 15.2.3
         version: 15.2.3(rollup@4.6.1)
       '@rollup/plugin-replace':
-        specifier: ^5.0.5
+        specifier: 5.0.5
         version: 5.0.5(rollup@4.6.1)
       '@storybook/addon-a11y':
         specifier: ^7.3.2
@@ -234,9 +234,6 @@ importers:
       tsx:
         specifier: ^3.12.7
         version: 3.12.7
-      turbo:
-        specifier: 1.10.12
-        version: 1.10.12
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -6385,7 +6382,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.3(rollup@4.6.1)
+      '@rollup/pluginutils': 5.1.0(rollup@4.6.1)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
@@ -6413,8 +6410,8 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.3(rollup@4.6.1)
-      magic-string: 0.30.3
+      '@rollup/pluginutils': 5.1.0(rollup@4.6.1)
+      magic-string: 0.30.5
       rollup: 4.6.1
     dev: false
 
@@ -7050,7 +7047,7 @@ packages:
       express: 4.18.1
       find-cache-dir: 3.3.2
       fs-extra: 11.1.1
-      magic-string: 0.30.3
+      magic-string: 0.30.5
       remark-external-links: 8.0.0
       remark-slug: 6.1.0
       rollup: 3.28.1
@@ -22748,67 +22745,6 @@ packages:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
     dependencies:
       safe-buffer: 5.2.1
-
-  /turbo-darwin-64@1.10.12:
-    resolution: {integrity: sha512-vmDfGVPl5/aFenAbOj3eOx3ePNcWVUyZwYr7taRl0ZBbmv2TzjRiFotO4vrKCiTVnbqjQqAFQWY2ugbqCI1kOQ==}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /turbo-darwin-arm64@1.10.12:
-    resolution: {integrity: sha512-3JliEESLNX2s7g54SOBqqkqJ7UhcOGkS0ywMr5SNuvF6kWVTbuUq7uBU/sVbGq8RwvK1ONlhPvJne5MUqBCTCQ==}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /turbo-linux-64@1.10.12:
-    resolution: {integrity: sha512-siYhgeX0DidIfHSgCR95b8xPee9enKSOjCzx7EjTLmPqPaCiVebRYvbOIYdQWRqiaKh9yfhUtFmtMOMScUf1gg==}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /turbo-linux-arm64@1.10.12:
-    resolution: {integrity: sha512-K/ZhvD9l4SslclaMkTiIrnfcACgos79YcAo4kwc8bnMQaKuUeRpM15sxLpZp3xDjDg8EY93vsKyjaOhdFG2UbA==}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /turbo-windows-64@1.10.12:
-    resolution: {integrity: sha512-7FSgSwvktWDNOqV65l9AbZwcoueAILeE4L7JvjauNASAjjbuzXGCEq5uN8AQU3U5BOFj4TdXrVmO2dX+lLu8Zg==}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /turbo-windows-arm64@1.10.12:
-    resolution: {integrity: sha512-gCNXF52dwom1HLY9ry/cneBPOKTBHhzpqhMylcyvJP0vp9zeMQQkt6yjYv+6QdnmELC92CtKNp2FsNZo+z0pyw==}
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /turbo@1.10.12:
-    resolution: {integrity: sha512-WM3+jTfQWnB9W208pmP4oeehZcC6JQNlydb/ZHMRrhmQa+htGhWLCzd6Q9rLe0MwZLPpSPFV2/bN5egCLyoKjQ==}
-    hasBin: true
-    requiresBuild: true
-    optionalDependencies:
-      turbo-darwin-64: 1.10.12
-      turbo-darwin-arm64: 1.10.12
-      turbo-linux-64: 1.10.12
-      turbo-linux-arm64: 1.10.12
-      turbo-windows-64: 1.10.12
-      turbo-windows-arm64: 1.10.12
-    dev: false
 
   /type-check@0.3.2:
     resolution: {integrity: sha512-ZCmOJdvOWDBYJlzAoFkC+Q0+bUyEOS1ltgp1MGU03fqHG+dbi9tBFU2Rd9QKiDZFAYrhPh2JUf7rZRIuHRKtOg==}

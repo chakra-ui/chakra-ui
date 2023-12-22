@@ -21,13 +21,13 @@
   },
   "include": [
     "vitest.setup.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.mts",
-    "**/*.cts",
-    "**/*.js",
-    "**/*.cjs",
-    "**/*.mjs"
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.mts",
+    "packages/**/*.cts",
+    "packages/**/*.js",
+    "packages/**/*.cjs",
+    "packages/**/*.mjs"
   ],
   "exclude": ["node_modules"]
 }
