@@ -44,11 +44,13 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
+  "dependencies": {
+    "@chakra-ui/utils": "workspace:*"
+  },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
-    "@chakra-ui/utils": "workspace:*",
     "react": "^18.2.0"
   },
   "exports": {

@@ -1,5 +1,3 @@
-import { mergeConfig } from "vite"
-
 export default {
   framework: "@storybook/react-vite",
   features: {
@@ -15,14 +13,6 @@ export default {
     "@storybook/addon-storysource",
     "@chakra-ui/storybook-addon",
   ],
-  async viteFinal(config) {
-    // Merge custom configuration into the default config
-    return mergeConfig(config, {
-      resolve: {
-        conditions: ["source"],
-      },
-    })
-  },
   typescript: {
     reactDocgen: false,
   },
