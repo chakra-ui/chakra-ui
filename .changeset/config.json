@@ -5,7 +5,7 @@
     { "repo": "chakra-ui/chakra-ui" }
   ],
   "commit": false,
-  "linked": [],
+  "fixed": [["@chakra-ui/**"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
