@@ -10,7 +10,7 @@ import {
   HTMLChakraProps,
   useStyleConfig,
   useToken,
-} from "@chakra-ui/system"
+} from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { keyframes } from "@emotion/react"
 import { useIsFirstRender } from "./use-is-first-render"

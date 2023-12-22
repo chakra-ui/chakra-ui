@@ -1,5 +1,5 @@
 import { SystemProps } from "@chakra-ui/styled-system"
-import { forwardRef, PropsOf } from "@chakra-ui/system"
+import { forwardRef, PropsOf } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLAttributes, ReactElement } from "react"
 import { MenuIcon } from "./menu-icon"

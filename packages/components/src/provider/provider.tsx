@@ -1,12 +1,5 @@
-import {
-  ColorModeProvider,
-  ColorModeProviderProps,
-} from "@chakra-ui/color-mode"
-import {
-  GlobalStyle,
-  ThemeProvider,
-  ThemeProviderProps,
-} from "@chakra-ui/system"
+import { ColorModeProvider, ColorModeProviderProps } from "../color-mode"
+import { GlobalStyle, ThemeProvider, ThemeProviderProps } from "../system"
 import type { Dict } from "@chakra-ui/utils"
 import { CSSPolyfill, CSSReset } from "../css-reset"
 import { EnvironmentProvider, EnvironmentProviderProps } from "../env"

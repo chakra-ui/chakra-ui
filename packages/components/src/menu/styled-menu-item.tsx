@@ -1,5 +1,5 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { chakra, forwardRef } from "@chakra-ui/system"
+import { chakra, forwardRef } from "../system"
 import { useMemo } from "react"
 import { useMenuStyles } from "./menu"
 import { StyledMenuItemProps } from "./menu-item"

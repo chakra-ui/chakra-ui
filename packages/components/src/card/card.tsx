@@ -8,7 +8,7 @@ import {
   chakra,
   forwardRef,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { CardStylesProvider } from "./card-context"
 

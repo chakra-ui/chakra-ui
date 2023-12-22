@@ -1,4 +1,4 @@
-import { ChakraComponent, chakra } from "@chakra-ui/system"
+import { ChakraComponent, chakra } from "../system"
 
 export const StackItem: ChakraComponent<"div"> = (props) => (
   <chakra.div

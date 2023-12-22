@@ -1,6 +1,6 @@
-import { DOMElements } from "./system.utils"
 import { ChakraStyledOptions, HTMLChakraComponents, styled } from "./system"
 import { As, ChakraComponent } from "./system.types"
+import { DOMElements } from "./system.utils"
 
 type ChakraFactory = {
   <T extends As, P extends object = {}>(

@@ -1,5 +1,5 @@
 import { defineStyle } from "@chakra-ui/styled-system"
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
 import { Spinner } from "../spinner"

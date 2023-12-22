@@ -1,4 +1,4 @@
-export type ColorModeScriptProps = {
+export interface ColorModeScriptProps {
   type?: "localStorage" | "cookie"
   initialColorMode?: "light" | "dark" | "system"
   storageKey?: string

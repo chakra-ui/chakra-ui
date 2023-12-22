@@ -1,4 +1,4 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { Collapse, CollapseProps } from "../transition"
 import { cx } from "@chakra-ui/utils/cx"
 import {

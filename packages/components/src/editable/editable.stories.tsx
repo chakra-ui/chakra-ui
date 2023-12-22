@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { StoryFn } from "@storybook/react"
 import * as React from "react"
 import {

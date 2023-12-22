@@ -1,4 +1,4 @@
-import { forwardRef, HTMLChakraProps, useStyleConfig } from "@chakra-ui/system"
+import { forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
 import {
   omitThemingProps,
   SystemStyleObject,

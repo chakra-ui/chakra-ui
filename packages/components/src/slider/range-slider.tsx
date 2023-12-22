@@ -9,7 +9,7 @@ import {
   HTMLChakraProps,
   useMultiStyleConfig,
   useTheme,
-} from "@chakra-ui/system"
+} from "../system"
 import { cx } from "@chakra-ui/utils"
 import { createContext } from "@chakra-ui/utils/context"
 import { useMemo } from "react"

@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import Frame from "react-frame-component"
 import { EnvironmentProvider } from "../env"
 import { Hide, Show, useBreakpoint, useBreakpointValue } from "."

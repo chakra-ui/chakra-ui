@@ -4,8 +4,8 @@ import {
   ThemingProps,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
-import type { HTMLChakraProps } from "@chakra-ui/system"
-import { chakra, forwardRef, useMultiStyleConfig } from "@chakra-ui/system"
+import type { HTMLChakraProps } from "../system"
+import { chakra, forwardRef, useMultiStyleConfig } from "../system"
 import { getValidChildren } from "@chakra-ui/utils/children"
 import { createContext } from "@chakra-ui/utils/context"
 import { Icon, IconProps } from "../icon"

@@ -1,4 +1,4 @@
-import { chakra, HTMLChakraProps, forwardRef } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps, forwardRef } from "../system"
 import { HTMLMotionProps, motion, Variant } from "framer-motion"
 import React from "react"
 import { usePopoverContext } from "./popover-context"

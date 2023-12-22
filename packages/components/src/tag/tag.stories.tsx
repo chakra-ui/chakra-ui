@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { HiPlus } from "react-icons/hi"
 import { MdSettings } from "react-icons/md"
 import { Tag, TagCloseButton, TagLabel, TagLeftIcon, TagRightIcon } from "."

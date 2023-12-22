@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { Container } from "../layout"
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "."
 

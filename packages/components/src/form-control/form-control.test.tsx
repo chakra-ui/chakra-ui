@@ -1,4 +1,4 @@
-import { chakra, forwardRef, PropsOf } from "@chakra-ui/system"
+import { chakra, forwardRef, PropsOf } from "../system"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import {

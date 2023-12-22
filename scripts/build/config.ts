@@ -17,6 +17,7 @@ const useClientDirInclude = [
   "packages/hooks",
   "packages/components",
   "packages/system",
+  "packages/color-mode",
 ]
 
 export async function getConfig(

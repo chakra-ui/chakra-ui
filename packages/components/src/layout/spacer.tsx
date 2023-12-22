@@ -1,4 +1,4 @@
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps } from "../system"
 
 export interface SpacerProps extends HTMLChakraProps<"div"> {}
 

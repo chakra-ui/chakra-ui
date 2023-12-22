@@ -1,5 +1,5 @@
 import { Box, Stack } from "../layout"
-import { PropsOf } from "@chakra-ui/system"
+import { PropsOf } from "../system"
 import { Avatar, AvatarBadge, AvatarGroup } from "."
 
 export default {

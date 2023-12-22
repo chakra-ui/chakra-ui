@@ -9,7 +9,7 @@ import {
   forwardRef,
   useStyleConfig,
   useTheme,
-} from "@chakra-ui/system"
+} from "../system"
 import { omit } from "@chakra-ui/utils/omit"
 import { pick } from "@chakra-ui/utils/pick"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"

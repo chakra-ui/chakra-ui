@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@chakra-ui/system"
+import { ThemeProvider } from "../system"
 import { renderToStaticMarkup } from "react-dom/server"
 import { useBreakpointValue } from "."
 import { theme } from "./breakpoint.fixture"

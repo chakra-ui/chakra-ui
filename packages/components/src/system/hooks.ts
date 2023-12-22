@@ -1,5 +1,5 @@
-import { useColorMode } from "@chakra-ui/color-mode"
 import { Dict } from "@chakra-ui/utils"
+import { useColorMode } from "../color-mode"
 import { useTheme } from "./use-theme"
 
 type StringOrNumber = string | number

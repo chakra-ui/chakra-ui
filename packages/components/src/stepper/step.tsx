@@ -1,6 +1,6 @@
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
 export interface StepProps extends HTMLChakraProps<"div"> {}

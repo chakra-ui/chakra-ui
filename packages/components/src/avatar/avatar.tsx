@@ -9,7 +9,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { cx } from "@chakra-ui/utils/cx"

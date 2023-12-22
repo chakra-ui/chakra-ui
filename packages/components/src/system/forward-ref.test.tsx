@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { chakra, forwardRef } from "../src"
+import { chakra, forwardRef } from "."
 
 /**
  * These tests should fail while type checking

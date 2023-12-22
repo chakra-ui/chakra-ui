@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { BiChat, BiLike, BiShare } from "react-icons/bi"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { Card, CardBody, CardFooter, CardHeader } from "."

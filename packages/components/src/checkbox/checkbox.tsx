@@ -9,7 +9,7 @@ import {
   chakra,
   forwardRef,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { callAll } from "@chakra-ui/utils/call-all"
 import { cx } from "@chakra-ui/utils/cx"
 import { keyframes } from "@emotion/react"

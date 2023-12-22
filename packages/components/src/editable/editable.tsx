@@ -4,7 +4,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"

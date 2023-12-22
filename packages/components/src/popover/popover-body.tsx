@@ -1,4 +1,4 @@
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 

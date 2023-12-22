@@ -1,5 +1,5 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { ChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { ChakraProps, chakra, forwardRef } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { fadeConfig } from "../transition"

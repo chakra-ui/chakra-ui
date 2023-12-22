@@ -8,7 +8,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { getValidChildren } from "@chakra-ui/utils/children"
 import { compact } from "@chakra-ui/utils/compact"
 import { createContext } from "@chakra-ui/utils/context"

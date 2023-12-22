@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef } from "@chakra-ui/system"
+import { chakra, forwardRef } from "../system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
 export const StepNumber = forwardRef<{}, "div">(

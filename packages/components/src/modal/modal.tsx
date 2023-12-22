@@ -1,5 +1,5 @@
 import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
-import { useMultiStyleConfig } from "@chakra-ui/system"
+import { useMultiStyleConfig } from "../system"
 import { createContext } from "@chakra-ui/utils/context"
 import { AnimatePresence } from "framer-motion"
 import { FocusLockProps } from "../focus-lock"

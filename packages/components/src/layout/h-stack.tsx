@@ -1,4 +1,4 @@
-import { forwardRef } from "@chakra-ui/system"
+import { forwardRef } from "../system"
 import { Stack, StackProps } from "./stack"
 
 /**

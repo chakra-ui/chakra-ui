@@ -10,7 +10,7 @@ import {
   chakra,
   forwardRef,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { callAll } from "@chakra-ui/utils/call-all"
 import { split } from "@chakra-ui/utils/split"
 import { useRadioGroupContext } from "./radio-group"

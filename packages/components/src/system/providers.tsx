@@ -1,4 +1,3 @@
-import { useColorMode } from "@chakra-ui/color-mode"
 import { css, SystemStyleObject, toCSSVar } from "@chakra-ui/styled-system"
 import { createContext, CreateContextReturn } from "@chakra-ui/utils/context"
 import { memoizedGet as get } from "@chakra-ui/utils/get"
@@ -10,6 +9,7 @@ import {
   Interpolation,
 } from "@emotion/react"
 import { useMemo } from "react"
+import { useColorMode } from "../color-mode"
 
 export interface ThemeProviderProps extends EmotionThemeProviderProps {
   cssVarsRoot?: string

@@ -1,5 +1,5 @@
 import { defineStyle, SystemStyleObject } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {

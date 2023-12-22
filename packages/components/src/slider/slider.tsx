@@ -9,7 +9,7 @@ import {
   HTMLChakraProps,
   useMultiStyleConfig,
   useTheme,
-} from "@chakra-ui/system"
+} from "../system"
 import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"

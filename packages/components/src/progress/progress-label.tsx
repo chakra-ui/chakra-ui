@@ -1,5 +1,5 @@
 import { defineStyle } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra } from "../system"
 import { useProgressStyles } from "./progress"
 
 export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}

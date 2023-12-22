@@ -1,4 +1,3 @@
-import { useColorMode } from "@chakra-ui/color-mode"
 import {
   css,
   isStyleProp,
@@ -13,6 +12,7 @@ import { splitProps } from "@chakra-ui/utils/split-props"
 import { Dict } from "@chakra-ui/utils/types"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import { createElement, forwardRef } from "react"
+import { useColorMode } from "../color-mode"
 import { shouldForwardProp } from "./should-forward-prop"
 import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
 import { DOMElements } from "./system.utils"

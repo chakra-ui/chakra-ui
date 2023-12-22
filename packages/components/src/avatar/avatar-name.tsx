@@ -1,4 +1,4 @@
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps } from "../system"
 import { useAvatarStyles } from "./avatar-context"
 import { AvatarOptions } from "./avatar-types"
 

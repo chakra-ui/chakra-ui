@@ -1,4 +1,4 @@
-import { chakra, forwardRef } from "@chakra-ui/system"
+import { chakra, forwardRef } from "../system"
 import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import { useClickable } from "."
 

@@ -4,7 +4,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { getValidChildren } from "@chakra-ui/utils/children"
 import { cx } from "@chakra-ui/utils/cx"
 import { cloneElement } from "react"

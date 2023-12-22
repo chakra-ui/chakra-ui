@@ -1,4 +1,4 @@
-import { chakra, HTMLChakraProps, PropsOf } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps, PropsOf } from "../system"
 
 function CheckIcon(props: PropsOf<typeof chakra.svg>) {
   return (

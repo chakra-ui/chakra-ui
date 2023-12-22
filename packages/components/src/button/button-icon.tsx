@@ -1,4 +1,4 @@
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { cloneElement, isValidElement } from "react"
 

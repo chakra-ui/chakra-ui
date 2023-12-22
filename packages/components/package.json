@@ -37,16 +37,15 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
-    "@chakra-ui/color-mode": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/styled-system": "workspace:*",
-    "@chakra-ui/system": "workspace:*",
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",
     "@zag-js/focus-visible": "^0.31.1",
     "aria-hidden": "^1.2.3",
     "react-focus-lock": "^2.9.6",
+    "react-fast-compare": "3.2.2",
     "react-lorem-component": "^0.13.0",
     "react-remove-scroll": "^2.5.7"
   },
@@ -209,6 +208,17 @@
       "require": {
         "types": "./dist/types/close-button/index.d.ts",
         "default": "./dist/cjs/close-button/index.cjs"
+      }
+    },
+    "./color-mode": {
+      "source": "./src/color-mode/index.ts",
+      "import": {
+        "types": "./dist/types/color-mode/index.d.mts",
+        "default": "./dist/esm/color-mode/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/color-mode/index.d.ts",
+        "default": "./dist/cjs/color-mode/index.cjs"
       }
     },
     "./control-box": {
@@ -561,6 +571,17 @@
       "require": {
         "types": "./dist/types/switch/index.d.ts",
         "default": "./dist/cjs/switch/index.cjs"
+      }
+    },
+    "./system": {
+      "source": "./src/system/index.ts",
+      "import": {
+        "types": "./dist/types/system/index.d.mts",
+        "default": "./dist/esm/system/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/system/index.d.ts",
+        "default": "./dist/cjs/system/index.cjs"
       }
     },
     "./table": {

@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { useAlertContext, useAlertStyles } from "./alert-context"
 
 export interface AlertTitleProps extends HTMLChakraProps<"div"> {}

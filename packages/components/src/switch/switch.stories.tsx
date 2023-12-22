@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import * as React from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { Switch } from "."

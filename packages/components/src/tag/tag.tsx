@@ -8,7 +8,7 @@ import {
   chakra,
   forwardRef,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { createContext } from "@chakra-ui/utils/context"
 import { Icon, IconProps } from "../icon"
 const [TagStylesProvider, useTagStyles] = createContext<

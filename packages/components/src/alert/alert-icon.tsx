@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, HTMLChakraProps } from "../system"
 import { getStatusIcon, useAlertContext, useAlertStyles } from "./alert-context"
 
 export interface AlertIconProps extends HTMLChakraProps<"span"> {}

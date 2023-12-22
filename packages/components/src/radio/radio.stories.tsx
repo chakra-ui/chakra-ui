@@ -1,5 +1,5 @@
 import * as React from "react"
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { Stack, Wrap, SimpleGrid, Container, WrapItem } from "../layout"
 import { useRadio, Radio, useRadioGroup, RadioGroup, UseRadioProps } from "."
 

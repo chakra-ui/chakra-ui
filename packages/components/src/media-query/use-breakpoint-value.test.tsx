@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@chakra-ui/system"
+import { ThemeProvider } from "../system"
 import { render, screen } from "@chakra-ui/test-utils"
 import MatchMediaMock from "vitest-matchmedia-mock"
 import { useBreakpointValue } from "."

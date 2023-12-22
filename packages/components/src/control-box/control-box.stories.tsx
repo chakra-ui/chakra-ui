@@ -1,5 +1,5 @@
 import { VisuallyHidden } from "../visually-hidden"
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { FaCheck } from "react-icons/fa"
 import { ControlBox } from "."
 

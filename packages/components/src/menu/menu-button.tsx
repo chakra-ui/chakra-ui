@@ -1,4 +1,4 @@
-import { forwardRef, HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { forwardRef, HTMLChakraProps, chakra } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 
 import { useMenuStyles } from "./menu"

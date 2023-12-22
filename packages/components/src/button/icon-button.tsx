@@ -1,4 +1,4 @@
-import { forwardRef } from "@chakra-ui/system"
+import { forwardRef } from "../system"
 import { cloneElement, isValidElement } from "react"
 import { Button, ButtonProps } from "./button"
 

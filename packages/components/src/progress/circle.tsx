@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra } from "../system"
 
 interface CircleProps extends HTMLChakraProps<"circle"> {}
 

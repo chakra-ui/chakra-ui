@@ -10,7 +10,7 @@ import {
   chakra,
   forwardRef,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { split } from "@chakra-ui/utils/split"
 import { cloneElement, isValidElement } from "react"

@@ -1,6 +1,6 @@
 import { useInterval } from "@chakra-ui/hooks/use-interval"
 import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "../modal"
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import * as React from "react"
 import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "."
 

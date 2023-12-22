@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import * as React from "react"
 import { Checkbox, CheckboxGroup, useCheckbox, useCheckboxGroup } from "."
 import { FormControl, FormLabel } from "../form-control"

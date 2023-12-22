@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useEffect } from "react"
 
 import { useModalContext, useModalStyles } from "./modal"

@@ -1,4 +1,4 @@
-import { ThemeProvider, useTheme } from "@chakra-ui/system"
+import { ThemeProvider, useTheme } from "../system"
 import { mergeWith } from "@chakra-ui/utils"
 import { Spinner } from "."
 

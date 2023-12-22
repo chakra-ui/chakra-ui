@@ -1,5 +1,5 @@
 import { ResponsiveValue, SystemProps } from "@chakra-ui/styled-system"
-import { chakra, forwardRef } from "@chakra-ui/system"
+import { chakra, forwardRef } from "../system"
 import { compact } from "@chakra-ui/utils/compact"
 import { mapResponsive } from "@chakra-ui/utils/responsive"
 import { BoxProps } from "./box"

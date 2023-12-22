@@ -1,5 +1,5 @@
 import { render } from "@chakra-ui/test-utils"
-import { chakra } from "../src"
+import { chakra } from "."
 
 const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {})
 

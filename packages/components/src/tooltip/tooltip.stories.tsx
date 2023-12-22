@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/system"
+import { chakra } from "../system"
 import { AnimatePresence, motion } from "framer-motion"
 import * as React from "react"
 import { Tooltip, useTooltip } from "."

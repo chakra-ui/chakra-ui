@@ -1,4 +1,4 @@
-import { useTheme } from "@chakra-ui/system"
+import { useTheme } from "../system"
 import { isObject } from "@chakra-ui/utils/is"
 import { useMediaQuery } from "./use-media-query"
 

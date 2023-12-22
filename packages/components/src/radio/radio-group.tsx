@@ -1,5 +1,5 @@
 import { ThemingProps } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "@chakra-ui/system"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"

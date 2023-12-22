@@ -1,5 +1,5 @@
 import { ResponsiveValue, SystemStyleObject } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { mapResponsive } from "@chakra-ui/utils/responsive"
 import { useMemo } from "react"
 

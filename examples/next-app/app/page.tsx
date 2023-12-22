@@ -1,13 +1,11 @@
-import { Link } from "@chakra-ui/next-js"
-import { Box, Button, Text, useColorMode } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
+import { ColorModeToggle } from "../components/color-mode-toggle"
 
-export default function Page() {
-  const { toggleColorMode } = useColorMode()
+export default async function Page() {
   return (
     <Box textAlign="center" fontSize="xl">
       <Text>Welcome to Chakra UI + Next.js</Text>
-      <Link href="#">Go to next</Link>
-      <Button onClick={toggleColorMode}>Click me</Button>
+      <ColorModeToggle />
     </Box>
   )
 }

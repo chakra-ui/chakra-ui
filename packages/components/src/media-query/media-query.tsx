@@ -1,4 +1,4 @@
-import { useTheme } from "@chakra-ui/system"
+import { useTheme } from "../system"
 
 const getBreakpoint = (theme: Record<string, any>, value: any) => {
   return theme?.breakpoints?.[value] ?? value

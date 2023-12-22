@@ -1,5 +1,5 @@
 import type { SystemStyleObject } from "@chakra-ui/styled-system"
-import type { PropsOf } from "@chakra-ui/system"
+import type { PropsOf } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { Icon } from "../icon"
 import {

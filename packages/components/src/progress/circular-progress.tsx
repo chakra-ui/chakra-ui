@@ -1,5 +1,5 @@
 import { defineStyle } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { Circle } from "./circle"
 import { getProgressProps, spin } from "./progress.utils"
 import { Shape } from "./shape"

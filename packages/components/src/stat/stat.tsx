@@ -8,7 +8,7 @@ import {
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
-} from "@chakra-ui/system"
+} from "../system"
 import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 

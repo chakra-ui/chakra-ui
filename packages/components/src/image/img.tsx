@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "@chakra-ui/system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 
 import { NativeImageOptions, NativeImage } from "./native-image"
 
