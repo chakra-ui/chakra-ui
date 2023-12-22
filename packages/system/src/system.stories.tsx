@@ -1,11 +1,6 @@
+import { DarkMode } from "@chakra-ui/color-mode"
 import { motion } from "framer-motion"
-import {
-  DarkMode,
-  HTMLChakraProps,
-  ThemeProvider,
-  chakra,
-  useStyleConfig,
-} from "."
+import { HTMLChakraProps, ThemeProvider, chakra, useStyleConfig } from "."
 
 export default {
   title: "System / Core",

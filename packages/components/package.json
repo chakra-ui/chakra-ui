@@ -156,6 +156,17 @@
         "default": "./dist/cjs/card/index.cjs"
       }
     },
+    "./chakra-base-provider": {
+      "source": "./src/chakra-base-provider.tsx",
+      "import": {
+        "types": "./dist/types/chakra-base-provider.d.mts",
+        "default": "./dist/esm/chakra-base-provider.mjs"
+      },
+      "require": {
+        "types": "./dist/types/chakra-base-provider.d.ts",
+        "default": "./dist/cjs/chakra-base-provider.cjs"
+      }
+    },
     "./chakra-provider": {
       "source": "./src/chakra-provider.tsx",
       "import": {

@@ -207,6 +207,12 @@ importers:
       prettier:
         specifier: ^3.0.0
         version: 3.0.2
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
       rimraf:
         specifier: 5.0.1
         version: 5.0.1
@@ -723,6 +729,9 @@ importers:
         specifier: ^3.1.2
         version: 3.1.2
     devDependencies:
+      '@chakra-ui/theme':
+        specifier: workspace:*
+        version: link:../theme
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.2.42)(react@18.2.0)

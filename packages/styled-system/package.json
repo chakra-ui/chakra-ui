@@ -40,7 +40,8 @@
   },
   "devDependencies": {
     "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0"
+    "@emotion/styled": "^11.11.0",
+    "@chakra-ui/theme": "workspace:*"
   },
   "sideEffects": false,
   "scripts": {

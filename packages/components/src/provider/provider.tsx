@@ -12,8 +12,7 @@ import { CSSPolyfill, CSSReset } from "../css-reset"
 import { EnvironmentProvider, EnvironmentProviderProps } from "../env"
 import { PortalManager } from "../portal"
 
-export interface ChakraProviderProps
-  extends Pick<ThemeProviderProps, "cssVarsRoot"> {
+export interface ProviderProps extends Pick<ThemeProviderProps, "cssVarsRoot"> {
   /**
    * a theme. if omitted, uses the default theme provided by chakra
    */
@@ -71,7 +70,7 @@ export interface ChakraProviderProps
  * The global provider that must be added to make all Chakra components
  * work correctly
  */
-export const ChakraProvider: React.FC<ChakraProviderProps> = (props) => {
+export const Provider: React.FC<ProviderProps> = (props) => {
   const {
     children,
     colorModeManager,

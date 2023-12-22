@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import * as React from "react"
-import { ChakraBaseProvider } from "@chakra-ui/react/chakra-provider"
+import { ChakraBaseProvider } from "@chakra-ui/react/chakra-base-provider"
 import { extendTheme } from "@chakra-ui/react/extend-theme"
 import { makeDecorator } from "@storybook/preview-api"
 import { ColorModeSync } from "./color-mode-sync"
 import { DIRECTION_TOOL_ID } from "./constants"
 import { useDirection } from "./use-direction"
 
-export const ChakraProviderDecorator = makeDecorator({
+export const Provider = makeDecorator({
   name: "ChakraProviderDecorator",
   parameterName: "chakra",
   skipIfNoParametersOrOptions: false,

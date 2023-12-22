@@ -1,4 +1,4 @@
-import { extendTheme } from "../packages/components/react"
+import { extendTheme } from "../packages/components"
 
 export const parameters = {
   options: {

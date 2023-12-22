@@ -1,6 +1,6 @@
-import { Global, ThemeProvider, useTheme } from "@emotion/react"
+import { Global, ThemeProvider } from "@emotion/react"
+import { theme as defaultTheme } from "@chakra-ui/theme"
 import styled from "@emotion/styled"
-import * as React from "react"
 import { css, resolveStyleConfig, toCSSVar } from "."
 import { recipe } from "../tests/theme"
 
@@ -11,7 +11,7 @@ export default {
 const Box = styled("div")((props: any) => css(props.css)(props.theme))
 
 export const ResponsiveButton = () => {
-  const theme = toCSSVar(useTheme())
+  const theme = toCSSVar(defaultTheme)
   const styles = recipe({
     theme,
     variant: ["solid", "outline", "link"],
@@ -28,8 +28,6 @@ export const ResponsiveButton = () => {
 }
 
 export const MultipartAlert = () => {
-  const defaultTheme = useTheme() as Record<string, any>
-
   const props = {
     variant: ["left-accent", "top-accent", "subtle"],
     colorScheme: "red",

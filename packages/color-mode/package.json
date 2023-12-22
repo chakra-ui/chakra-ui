@@ -22,6 +22,35 @@
   "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src --dts",
+    "dev": "pnpm build:fast -- --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src",
+    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/color-mode"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@chakra-ui/utils": "workspace:*",
+    "react": "^18.2.0"
+  },
   "exports": {
     ".": {
       "source": "./src/index.ts",
@@ -90,34 +119,5 @@
       }
     },
     "./package.json": "./package.json"
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsup src --dts",
-    "dev": "pnpm build:fast -- --watch",
-    "clean": "rimraf dist .turbo",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup src",
-    "typedocs": "tsx ../../../scripts/generate-type-docs.ts"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
-    "directory": "packages/components/color-mode"
-  },
-  "bugs": {
-    "url": "https://github.com/chakra-ui/chakra-ui/issues"
-  },
-  "peerDependencies": {
-    "react": ">=18"
-  },
-  "devDependencies": {
-    "@chakra-ui/utils": "workspace:*",
-    "react": "^18.2.0"
   }
 }
