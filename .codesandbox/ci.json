@@ -3,11 +3,9 @@
   "sandboxes": ["/examples/create-react-app"],
   "packages": [
     "packages/anatomy",
-    "packages/color-mode",
     "packages/components",
     "packages/hooks",
     "packages/styled-system",
-    "packages/system",
     "packages/theme",
     "packages/theme-tools",
     "packages/utils"

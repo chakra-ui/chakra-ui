@@ -1,13 +1,5 @@
 import { anatomy } from "./create-anatomy"
 
-/**
- * **Accordion anatomy**
- * - Root: the root container of the accordion
- * - Container: the accordion item contains the button and panel
- * - Button: the button is the trigger for the panel
- * - Panel: the panel is the content of the accordion item
- * - Icon: the expanded/collapsed icon
- */
 export const accordionAnatomy = anatomy("accordion").parts(
   "root",
   "container",
@@ -16,12 +8,6 @@ export const accordionAnatomy = anatomy("accordion").parts(
   "icon",
 )
 
-/**
- * **Alert anatomy**
- * - Title: the alert's title
- * - Description: the alert's description
- * - Icon: the alert's icon
- */
 export const alertAnatomy = anatomy("alert").parts(
   "title",
   "description",
@@ -30,14 +16,6 @@ export const alertAnatomy = anatomy("alert").parts(
   "spinner",
 )
 
-/**
- * **Avatar anatomy**
- * - Container: the container for the avatar
- * - Label: the avatar initials text
- * - Excess Label: the label or text that represents excess avatar count.
- * Typically used in avatar groups.
- * - Group: the container for the avatar group
- */
 export const avatarAnatomy = anatomy("avatar").parts(
   "label",
   "badge",
@@ -46,13 +24,6 @@ export const avatarAnatomy = anatomy("avatar").parts(
   "group",
 )
 
-/**
- * **Breadcrumb anatomy**
- * - Item: the container for a breadcrumb item
- * - Link: the element that represents the breadcrumb link
- * - Container: the container for the breadcrumb items
- * - Separator: the separator between breadcrumb items
- */
 export const breadcrumbAnatomy = anatomy("breadcrumb").parts(
   "link",
   "item",
