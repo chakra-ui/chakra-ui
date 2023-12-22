@@ -19,15 +19,6 @@
     "downlevelIteration": true,
     "customConditions": ["source"]
   },
-  "include": [
-    "vitest.setup.ts",
-    "packages/**/*.ts",
-    "packages/**/*.tsx",
-    "packages/**/*.mts",
-    "packages/**/*.cts",
-    "packages/**/*.js",
-    "packages/**/*.cjs",
-    "packages/**/*.mjs"
-  ],
+  "include": ["vitest.setup.ts", "packages"],
   "exclude": ["node_modules"]
 }
