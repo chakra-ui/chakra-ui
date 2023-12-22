@@ -4,7 +4,7 @@ import { readFile } from "fs/promises"
 import path from "path"
 import prettier from "prettier"
 import ts from "typescript"
-import { extractThemeProps } from "./extract-theme-props"
+import { extractThemeProps } from "./extract-theme-props.js"
 
 type ComponentTypeInfo = {
   type: string
