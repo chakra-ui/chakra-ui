@@ -543,10 +543,11 @@ importers:
         version: 6.0.4
 
   packages/color-mode:
-    devDependencies:
+    dependencies:
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../utils
+    devDependencies:
       react:
         specifier: ^18.2.0
         version: 18.2.0

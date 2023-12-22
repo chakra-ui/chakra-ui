@@ -34,7 +34,6 @@
     "changelog:commit": "git add . && git commit -am 'docs: add changelog' && git push",
     "changelog:format": "prettier --write .changelog",
     "slack": "tsx scripts/slack.mts",
-    "csb": "tsx scripts/csb.ts",
     "version": "changeset version",
     "release": "changeset publish",
     "version:dev": "changeset version --snapshot dev",
