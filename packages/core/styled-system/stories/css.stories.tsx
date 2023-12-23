@@ -1,6 +1,6 @@
 import { Global, ThemeProvider, useTheme } from "@emotion/react"
 import styled from "@emotion/styled"
-import { css, SystemProps, toCSSVar } from "../src"
+import { SystemProps, css, toCSSVar } from "../src"
 
 export default {
   title: "System / Styled System",
@@ -94,5 +94,40 @@ export const peerSelector = () => {
         Test 2
       </Box>
     </div>
+  )
+}
+
+export const CustomPsuedos = () => {
+  const styles: Styles = {
+    card: {
+      _hover: {
+        bg: "green.300",
+      },
+      _closed: {
+        bg: "red.300",
+      },
+      _open: {
+        bg: "blue.300",
+      },
+    },
+  }
+
+  const theme = {
+    ...useTheme(),
+    pseudos: {
+      _open: "&:is([open], [data-state=open])",
+      _closed: "&:is([closed], [data-state=closed])",
+    },
+  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Box css={styles.card} data-state="closed">
+        Closed Box
+      </Box>
+      <Box css={styles.card} data-state="open">
+        Open Box
+      </Box>
+    </ThemeProvider>
   )
 }

@@ -144,7 +144,7 @@ export function getCss(options: GetCSSOptions) {
 export const css = (styles: StyleObjectOrFn) => (theme: any) => {
   const cssFn = getCss({
     theme,
-    pseudos: pseudoSelectors,
+    pseudos: { ...pseudoSelectors, ...theme.pseudos },
     configs: systemPropConfigs,
   })
   return cssFn(styles)
