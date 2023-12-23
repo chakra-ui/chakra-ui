@@ -331,7 +331,9 @@ export const pseudoSelectors = {
   _vertical: "&[data-orientation=vertical]",
 }
 
-export type Pseudos = typeof pseudoSelectors
+export type Pseudos = typeof pseudoSelectors & {
+  [x: `_${string}`]: string
+}
 
 export const pseudoPropNames = Object.keys(
   pseudoSelectors,
