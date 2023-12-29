@@ -101,8 +101,23 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
   useEffect(() => {
     if (!useSystemColorMode) return
+
+    const system = getSystemTheme(defaultColorMode)
+    const stored = colorModeManager.get()
+    if (stored !== undefined && system !== stored) {
+      setColorMode(system)
+    }
+
     return addListener(setColorMode)
-  }, [useSystemColorMode, addListener, setColorMode])
+  }, [
+    useSystemColorMode,
+    addListener,
+    setColorMode,
+    getSystemTheme,
+    defaultColorMode,
+    colorModeManager,
+    initialColorMode,
+  ])
 
   // presence of `value` indicates a controlled context
   const context = useMemo(

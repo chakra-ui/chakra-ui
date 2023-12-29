@@ -50,6 +50,22 @@ describe("<ColorModeProvider /> localStorage browser", () => {
     )
     expect(getColorModeButton()).toHaveTextContent(result.expect)
   })
+
+  test("useSystemColorMode is true and stored value is different from system value", () => {
+    mockMatchMedia("dark")
+    mockLocalStorage("light")
+
+    const options = {
+      useSystemColorMode: true,
+      initialColorMode: "light",
+    } as const
+    render(
+      <ColorModeProvider options={options}>
+        <DummyComponent />
+      </ColorModeProvider>,
+    )
+    expect(getColorModeButton()).toHaveTextContent("dark")
+  })
 })
 
 describe("Config options", () => {
