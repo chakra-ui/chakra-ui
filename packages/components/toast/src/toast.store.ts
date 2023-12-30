@@ -30,7 +30,7 @@ function createStore(initialState: ToastState): ToastStore {
 
   const setState = (setStateFn: (values: ToastState) => ToastState) => {
     state = setStateFn(state)
-    listeners.forEach((l) => l())
+    listeners.forEach((listener) => listener())
   }
 
   return {
