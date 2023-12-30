@@ -60,7 +60,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
       colorScheme={colorScheme}
     >
       <AlertIcon>{icon}</AlertIcon>
-      <chakra.div flex="1" maxWidth="100%">
+      <chakra.div flex={1} maxWidth="100%">
         {title && <AlertTitle id={ids?.title}>{title}</AlertTitle>}
         {description && (
           <AlertDescription id={ids?.description} display="block">
