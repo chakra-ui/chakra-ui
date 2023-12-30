@@ -69,9 +69,8 @@ export function getToastStyle(position: ToastPosition): React.CSSProperties {
 export function getToastListStyle(
   position: ToastPosition,
 ): React.CSSProperties {
-  const isTopOrBottom = position === "top" || position === "bottom"
+  const isTopOrBottom = ["top", "bottom"].includes(position)
   const margin = isTopOrBottom ? "0 auto" : undefined
-
   const top = position.includes("top")
     ? "env(safe-area-inset-top, 0px)"
     : undefined

@@ -9,13 +9,11 @@ import { ToastProviderProps } from "./toast.provider"
 import { memo, useEffect, useMemo, useState } from "react"
 
 const toastMotionVariants: Variants = {
-  initial: (props) => {
-    const { position } = props
-
+  initial: ({ position }) => {
     const dir = ["top", "bottom"].includes(position) ? "y" : "x"
-
-    let factor = ["top-right", "bottom-right"].includes(position) ? 1 : -1
-    if (position === "bottom") factor = 1
+    const factor = ["top-right", "bottom-right", "bottom"].includes(position)
+      ? 1
+      : -1
 
     return {
       opacity: 0,
