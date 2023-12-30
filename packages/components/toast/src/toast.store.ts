@@ -61,7 +61,7 @@ function createStore(initialState: ToastState): ToastStore {
       const toast = createToast(message, options)
       const { position, id } = toast
 
-      setState((prevToasts) => {
+      setState((prevState) => {
         const isTop = position.includes("top")
 
         /**
@@ -72,11 +72,11 @@ function createStore(initialState: ToastState): ToastStore {
          * toast stacks below the other toasts.
          */
         const toasts = isTop
-          ? [toast, ...(prevToasts[position] ?? [])]
-          : [...(prevToasts[position] ?? []), toast]
+          ? [toast, ...(prevState[position] ?? [])]
+          : [...(prevState[position] ?? []), toast]
 
         return {
-          ...prevToasts,
+          ...prevState,
           [position]: toasts,
         }
       })
@@ -106,7 +106,7 @@ function createStore(initialState: ToastState): ToastStore {
     closeAll: ({ positions } = {}) => {
       // only one setState here for perf reasons
       // instead of spamming this.closeToast
-      setState((prev) => {
+      setState((prevState) => {
         const allPositions: ToastPosition[] = [
           "bottom",
           "bottom-right",
@@ -120,14 +120,14 @@ function createStore(initialState: ToastState): ToastStore {
 
         return positionsToClose.reduce(
           (acc, position) => {
-            acc[position] = prev[position].map((toast) => ({
+            acc[position] = prevState[position].map((toast) => ({
               ...toast,
               requestClose: true,
             }))
 
             return acc
           },
-          { ...prev } as ToastState,
+          { ...prevState } as ToastState,
         )
       })
     },
