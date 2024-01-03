@@ -59,7 +59,7 @@
       "description": "The `id` to use for the number input field."
     },
     "inputMode": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"text\"\n  | \"none\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"none\"\n  | \"search\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
       "defaultValue": "decimal",
       "required": false,
       "description": "Hints at the type of data that might be entered by the user. It also determines\nthe type of keyboard shown to the user on mobile devices"
@@ -126,7 +126,7 @@
       "required": false
     },
     "onInvalid": {
-      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number\n) => void",
+      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number,\n) => void",
       "required": false
     },
     "parse": {
@@ -212,7 +212,7 @@
       "description": "The `id` to use for the number input field."
     },
     "inputMode": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"text\"\n  | \"none\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"none\"\n  | \"search\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
       "defaultValue": "decimal",
       "required": false,
       "description": "Hints at the type of data that might be entered by the user. It also determines\nthe type of keyboard shown to the user on mobile devices"
@@ -279,7 +279,7 @@
       "required": false
     },
     "onInvalid": {
-      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number\n) => void",
+      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number,\n) => void",
       "required": false
     },
     "parse": {

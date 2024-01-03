@@ -23,7 +23,7 @@
       "description": "If `true`, focus will be transferred to the first interactive element\nwhen the popover opens"
     },
     "boundary": {
-      "type": "\"clippingParents\" | \"scrollParent\" | HTMLElement",
+      "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
       "defaultValue": "clippingParents",
       "required": false,
       "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
@@ -157,7 +157,7 @@
       "description": "If `true`, focus will be returned to the element that triggers the popover\nwhen it closes"
     },
     "strategy": {
-      "type": "\"absolute\" | \"fixed\"",
+      "type": "\"fixed\" | \"absolute\"",
       "defaultValue": "absolute",
       "required": false,
       "description": "The CSS positioning strategy to use."

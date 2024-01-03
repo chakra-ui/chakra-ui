@@ -35,7 +35,7 @@
     "aria-details": { "type": "string", "required": false },
     "aria-disabled": { "type": "Booleanish", "required": false },
     "aria-dropeffect": {
-      "type": "\"link\" | \"none\" | \"copy\" | \"execute\" | \"move\" | \"popup\"",
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
       "required": false
     },
     "aria-errormessage": { "type": "string", "required": false },
@@ -75,7 +75,7 @@
     },
     "aria-readonly": { "type": "Booleanish", "required": false },
     "aria-relevant": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"all\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
       "required": false
     },
     "aria-required": { "type": "Booleanish", "required": false },
@@ -117,7 +117,7 @@
       "required": false
     },
     "delay": {
-      "type": "number | Partial<Record<\"exit\" | \"enter\", number>>",
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
       "required": false,
       "description": "Custom `delay` definition for `enter` and `exit`"
     },
@@ -798,12 +798,12 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
     "transitionEnd": {
-      "type": "Partial<\n  Record<\"exit\" | \"enter\", MakeCustomValueType<TargetProperties>>\n>",
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
       "required": false,
       "description": "Custom `transitionEnd` definition for `enter` and `exit`"
     },
@@ -847,7 +847,7 @@
     "aria-details": { "type": "string", "required": false },
     "aria-disabled": { "type": "Booleanish", "required": false },
     "aria-dropeffect": {
-      "type": "\"link\" | \"none\" | \"copy\" | \"execute\" | \"move\" | \"popup\"",
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
       "required": false
     },
     "aria-errormessage": { "type": "string", "required": false },
@@ -887,7 +887,7 @@
     },
     "aria-readonly": { "type": "Booleanish", "required": false },
     "aria-relevant": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"all\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
       "required": false
     },
     "aria-required": { "type": "Booleanish", "required": false },
@@ -929,7 +929,7 @@
       "required": false
     },
     "delay": {
-      "type": "number | Partial<Record<\"exit\" | \"enter\", number>>",
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
       "required": false,
       "description": "Custom `delay` definition for `enter` and `exit`"
     },
@@ -1598,12 +1598,12 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
     "transitionEnd": {
-      "type": "Partial<\n  Record<\"exit\" | \"enter\", MakeCustomValueType<TargetProperties>>\n>",
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
       "required": false,
       "description": "Custom `transitionEnd` definition for `enter` and `exit`"
     },
@@ -1647,7 +1647,7 @@
     "aria-details": { "type": "string", "required": false },
     "aria-disabled": { "type": "Booleanish", "required": false },
     "aria-dropeffect": {
-      "type": "\"link\" | \"none\" | \"copy\" | \"execute\" | \"move\" | \"popup\"",
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
       "required": false
     },
     "aria-errormessage": { "type": "string", "required": false },
@@ -1687,7 +1687,7 @@
     },
     "aria-readonly": { "type": "Booleanish", "required": false },
     "aria-relevant": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"all\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
       "required": false
     },
     "aria-required": { "type": "Booleanish", "required": false },
@@ -1729,7 +1729,7 @@
       "required": false
     },
     "delay": {
-      "type": "number | Partial<Record<\"exit\" | \"enter\", number>>",
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
       "required": false,
       "description": "Custom `delay` definition for `enter` and `exit`"
     },
@@ -2410,12 +2410,12 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
     "transitionEnd": {
-      "type": "Partial<\n  Record<\"exit\" | \"enter\", MakeCustomValueType<TargetProperties>>\n>",
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
       "required": false,
       "description": "Custom `transitionEnd` definition for `enter` and `exit`"
     },
@@ -2459,7 +2459,7 @@
     "aria-details": { "type": "string", "required": false },
     "aria-disabled": { "type": "Booleanish", "required": false },
     "aria-dropeffect": {
-      "type": "\"link\" | \"none\" | \"copy\" | \"execute\" | \"move\" | \"popup\"",
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
       "required": false
     },
     "aria-errormessage": { "type": "string", "required": false },
@@ -2499,7 +2499,7 @@
     },
     "aria-readonly": { "type": "Booleanish", "required": false },
     "aria-relevant": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"all\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
       "required": false
     },
     "aria-required": { "type": "Booleanish", "required": false },
@@ -2541,7 +2541,7 @@
       "required": false
     },
     "delay": {
-      "type": "number | Partial<Record<\"exit\" | \"enter\", number>>",
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
       "required": false,
       "description": "Custom `delay` definition for `enter` and `exit`"
     },
@@ -3217,12 +3217,12 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
     "transitionEnd": {
-      "type": "Partial<\n  Record<\"exit\" | \"enter\", MakeCustomValueType<TargetProperties>>\n>",
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
       "required": false,
       "description": "Custom `transitionEnd` definition for `enter` and `exit`"
     },
@@ -3266,7 +3266,7 @@
     "aria-details": { "type": "string", "required": false },
     "aria-disabled": { "type": "Booleanish", "required": false },
     "aria-dropeffect": {
-      "type": "\"link\" | \"none\" | \"copy\" | \"execute\" | \"move\" | \"popup\"",
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
       "required": false
     },
     "aria-errormessage": { "type": "string", "required": false },
@@ -3306,7 +3306,7 @@
     },
     "aria-readonly": { "type": "Booleanish", "required": false },
     "aria-relevant": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"all\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
       "required": false
     },
     "aria-required": { "type": "Booleanish", "required": false },
@@ -3348,7 +3348,7 @@
       "required": false
     },
     "delay": {
-      "type": "number | Partial<Record<\"exit\" | \"enter\", number>>",
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
       "required": false,
       "description": "Custom `delay` definition for `enter` and `exit`"
     },
@@ -4035,12 +4035,12 @@
     "tabIndex": { "type": "number", "required": false },
     "title": { "type": "string", "required": false },
     "transition": {
-      "type": "Partial<Record<\"exit\" | \"enter\", Transition$1>>",
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
       "required": false,
       "description": "Custom `transition` definition for `enter` and `exit`"
     },
     "transitionEnd": {
-      "type": "Partial<\n  Record<\"exit\" | \"enter\", MakeCustomValueType<TargetProperties>>\n>",
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
       "required": false,
       "description": "Custom `transitionEnd` definition for `enter` and `exit`"
     },
