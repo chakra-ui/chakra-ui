@@ -21,10 +21,10 @@ type TypeSearchOptions = {
   shouldIgnoreProperty?: (property: ts.Symbol) => boolean | undefined
 }
 
-function tryPrettier(typeName: string) {
+async function tryPrettier(typeName: string) {
   try {
     const prefix = "type ONLY_FOR_FORMAT = "
-    const prettyType = prettier.format(prefix + typeName, {
+    const prettyType = await prettier.format(prefix + typeName, {
       parser: "typescript",
       semi: false,
     })
@@ -51,7 +51,7 @@ function sortByRequiredProperties(properties: ComponentTypeProperties) {
   )
 }
 
-function extractPropertiesOfTypeName(
+async function extractPropertiesOfTypeName(
   searchTerm: string | RegExp,
   sourceFile: ts.SourceFile,
   typeChecker: ts.TypeChecker,
@@ -94,7 +94,7 @@ function extractPropertiesOfTypeName(
       const typeName = typeChecker.typeToString(nonNullableType)
       const required = nonNullableType === type && typeName !== "any"
 
-      const prettyType = tryPrettier(typeName)
+      const prettyType = await tryPrettier(typeName)
 
       properties[propertyName] = {
         type: prettyType,
@@ -137,10 +137,12 @@ function createTypeSearch(
   const program = ts.createProgram(fileNames, options)
   const sourceFiles = program.getSourceFiles()
 
-  return (searchTerm: Parameters<typeof extractPropertiesOfTypeName>[0]) => {
+  return async (
+    searchTerm: Parameters<typeof extractPropertiesOfTypeName>[0],
+  ) => {
     const results: Record<string, ComponentTypeProperties> = {}
     for (const sourceFile of sourceFiles) {
-      const typeInfo = extractPropertiesOfTypeName(
+      const typeInfo = await extractPropertiesOfTypeName(
         searchTerm,
         sourceFile,
         program.getTypeChecker(),
@@ -212,10 +214,13 @@ const main = async () => {
 
   const themeProps = extractThemeProps(theme)
 
-  const typeExports = extractTypeExports(fileContent)
-    ?.map(searchType)
-    .filter((value) => Object.keys(value).length !== 0)
-    .reduce((acc, value) => ({ ...acc, ...value }), {})
+  const typeExports = await Promise.all(
+    extractTypeExports(fileContent)?.map(searchType),
+  ).then((values) =>
+    values
+      .filter((value) => Object.keys(value).length !== 0)
+      .reduce((acc, value) => ({ ...acc, ...value }), {}),
+  )
 
   const typeExportsWithThemeProps: Record<string, unknown> = {}
 
@@ -231,7 +236,7 @@ const main = async () => {
   if (!isEmpty) {
     writeFileSync(
       "docs.json",
-      prettier.format(JSON.stringify(typeExportsWithThemeProps), {
+      await prettier.format(JSON.stringify(typeExportsWithThemeProps), {
         parser: "json",
       }),
     )
