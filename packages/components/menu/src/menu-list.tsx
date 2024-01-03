@@ -41,43 +41,42 @@ const motionVariants: Variants = {
 
 const MenuTransition = chakra(motion.div)
 
-export const MenuList = forwardRef<MenuListProps, "div">(function MenuList(
-  props,
-  ref,
-) {
-  const { rootProps, motionProps, ...rest } = props
-  const {
-    isOpen,
-    onTransitionEnd,
-    unstable__animationState: animated,
-  } = useMenuContext()
+export const MenuList = forwardRef<MenuListProps, "div">(
+  function MenuList(props, ref) {
+    const { rootProps, motionProps, ...rest } = props
+    const {
+      isOpen,
+      onTransitionEnd,
+      unstable__animationState: animated,
+    } = useMenuContext()
 
-  const listProps = useMenuList(rest, ref) as any
-  const positionerProps = useMenuPositioner(rootProps)
+    const listProps = useMenuList(rest, ref) as any
+    const positionerProps = useMenuPositioner(rootProps)
 
-  const styles = useMenuStyles()
+    const styles = useMenuStyles()
 
-  return (
-    <chakra.div
-      {...positionerProps}
-      __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
-    >
-      <MenuTransition
-        variants={motionVariants}
-        initial={false}
-        animate={isOpen ? "enter" : "exit"}
-        __css={{ outline: 0, ...styles.list }}
-        {...motionProps}
-        {...listProps}
-        className={cx("chakra-menu__menu-list", listProps.className)}
-        onUpdate={onTransitionEnd}
-        onAnimationComplete={callAll(
-          animated.onComplete,
-          listProps.onAnimationComplete,
-        )}
-      />
-    </chakra.div>
-  )
-})
+    return (
+      <chakra.div
+        {...positionerProps}
+        __css={{ zIndex: props.zIndex ?? styles.list?.zIndex }}
+      >
+        <MenuTransition
+          variants={motionVariants}
+          initial={false}
+          animate={isOpen ? "enter" : "exit"}
+          __css={{ outline: 0, ...styles.list }}
+          {...motionProps}
+          {...listProps}
+          className={cx("chakra-menu__menu-list", listProps.className)}
+          onUpdate={onTransitionEnd}
+          onAnimationComplete={callAll(
+            animated.onComplete,
+            listProps.onAnimationComplete,
+          )}
+        />
+      </chakra.div>
+    )
+  },
+)
 
 MenuList.displayName = "MenuList"

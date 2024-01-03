@@ -43,27 +43,26 @@ export interface InputProps
  *
  * @see Docs https://chakra-ui.com/docs/components/input
  */
-export const Input = forwardRef<InputProps, "input">(function Input(
-  props,
-  ref,
-) {
-  const { htmlSize, ...rest } = props
+export const Input = forwardRef<InputProps, "input">(
+  function Input(props, ref) {
+    const { htmlSize, ...rest } = props
 
-  const styles = useMultiStyleConfig("Input", rest)
-  const ownProps = omitThemingProps(rest)
-  const input = useFormControl<HTMLInputElement>(ownProps)
-  const _className = cx("chakra-input", props.className)
+    const styles = useMultiStyleConfig("Input", rest)
+    const ownProps = omitThemingProps(rest)
+    const input = useFormControl<HTMLInputElement>(ownProps)
+    const _className = cx("chakra-input", props.className)
 
-  return (
-    <chakra.input
-      size={htmlSize}
-      {...input}
-      __css={styles.field}
-      ref={ref}
-      className={_className}
-    />
-  )
-})
+    return (
+      <chakra.input
+        size={htmlSize}
+        {...input}
+        __css={styles.field}
+        ref={ref}
+        className={_className}
+      />
+    )
+  },
+)
 
 Input.displayName = "Input"
 

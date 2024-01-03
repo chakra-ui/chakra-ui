@@ -17,26 +17,25 @@ export interface TabListProps
  * TabList is used to manage a list of tab buttons. It renders a `div` by default,
  * and is responsible the keyboard interaction between tabs.
  */
-export const TabList = forwardRef<TabListProps, "div">(function TabList(
-  props,
-  ref,
-) {
-  const tablistProps = useTabList({ ...props, ref })
+export const TabList = forwardRef<TabListProps, "div">(
+  function TabList(props, ref) {
+    const tablistProps = useTabList({ ...props, ref })
 
-  const styles = useTabsStyles()
+    const styles = useTabsStyles()
 
-  const tablistStyles: SystemStyleObject = {
-    display: "flex",
-    ...styles.tablist,
-  }
+    const tablistStyles: SystemStyleObject = {
+      display: "flex",
+      ...styles.tablist,
+    }
 
-  return (
-    <chakra.div
-      {...tablistProps}
-      className={cx("chakra-tabs__tablist", props.className)}
-      __css={tablistStyles}
-    />
-  )
-})
+    return (
+      <chakra.div
+        {...tablistProps}
+        className={cx("chakra-tabs__tablist", props.className)}
+        __css={tablistStyles}
+      />
+    )
+  },
+)
 
 TabList.displayName = "TabList"

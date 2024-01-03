@@ -22,27 +22,26 @@ const StyledInputElement = chakra("div", {
   },
 })
 
-const InputElement = forwardRef<InputElementProps, "div">(function InputElement(
-  props,
-  ref,
-) {
-  const { placement = "left", ...rest } = props
+const InputElement = forwardRef<InputElementProps, "div">(
+  function InputElement(props, ref) {
+    const { placement = "left", ...rest } = props
 
-  const styles = useInputGroupStyles()
-  const input: any = styles.field
+    const styles = useInputGroupStyles()
+    const input: any = styles.field
 
-  const attr = placement === "left" ? "insetStart" : "insetEnd"
+    const attr = placement === "left" ? "insetStart" : "insetEnd"
 
-  const elementStyles: SystemStyleObject = {
-    [attr]: "0",
-    width: input?.height ?? input?.h,
-    height: input?.height ?? input?.h,
-    fontSize: input?.fontSize,
-    ...styles.element,
-  }
+    const elementStyles: SystemStyleObject = {
+      [attr]: "0",
+      width: input?.height ?? input?.h,
+      height: input?.height ?? input?.h,
+      fontSize: input?.fontSize,
+      ...styles.element,
+    }
 
-  return <StyledInputElement ref={ref} __css={elementStyles} {...rest} />
-})
+    return <StyledInputElement ref={ref} __css={elementStyles} {...rest} />
+  },
+)
 
 // This is used in `input-group.tsx`
 InputElement.id = "InputElement"

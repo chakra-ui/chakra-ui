@@ -106,19 +106,18 @@ Wrap.displayName = "Wrap"
 
 export interface WrapItemProps extends HTMLChakraProps<"li"> {}
 
-export const WrapItem = forwardRef<WrapItemProps, "li">(function WrapItem(
-  props,
-  ref,
-) {
-  const { className, ...rest } = props
-  return (
-    <chakra.li
-      ref={ref}
-      __css={{ display: "flex", alignItems: "flex-start" }}
-      className={cx("chakra-wrap__listitem", className)}
-      {...rest}
-    />
-  )
-})
+export const WrapItem = forwardRef<WrapItemProps, "li">(
+  function WrapItem(props, ref) {
+    const { className, ...rest } = props
+    return (
+      <chakra.li
+        ref={ref}
+        __css={{ display: "flex", alignItems: "flex-start" }}
+        className={cx("chakra-wrap__listitem", className)}
+        {...rest}
+      />
+    )
+  },
+)
 
 WrapItem.displayName = "WrapItem"

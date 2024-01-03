@@ -42,39 +42,38 @@ export interface EditableProps
  *
  * @see Docs https://chakra-ui.com/docs/components/editable
  */
-export const Editable = forwardRef<EditableProps, "div">(function Editable(
-  props,
-  ref,
-) {
-  const styles = useMultiStyleConfig("Editable", props)
+export const Editable = forwardRef<EditableProps, "div">(
+  function Editable(props, ref) {
+    const styles = useMultiStyleConfig("Editable", props)
 
-  const ownProps = omitThemingProps(props)
-  const { htmlProps, ...context } = useEditable(ownProps)
+    const ownProps = omitThemingProps(props)
+    const { htmlProps, ...context } = useEditable(ownProps)
 
-  const { isEditing, onSubmit, onCancel, onEdit } = context
+    const { isEditing, onSubmit, onCancel, onEdit } = context
 
-  const _className = cx("chakra-editable", props.className)
+    const _className = cx("chakra-editable", props.className)
 
-  const children = runIfFn(props.children, {
-    isEditing,
-    onSubmit,
-    onCancel,
-    onEdit,
-  })
+    const children = runIfFn(props.children, {
+      isEditing,
+      onSubmit,
+      onCancel,
+      onEdit,
+    })
 
-  return (
-    <EditableProvider value={context}>
-      <EditableStylesProvider value={styles}>
-        <chakra.div
-          ref={ref}
-          {...(htmlProps as HTMLChakraProps<"div">)}
-          className={_className}
-        >
-          {children}
-        </chakra.div>
-      </EditableStylesProvider>
-    </EditableProvider>
-  )
-})
+    return (
+      <EditableProvider value={context}>
+        <EditableStylesProvider value={styles}>
+          <chakra.div
+            ref={ref}
+            {...(htmlProps as HTMLChakraProps<"div">)}
+            className={_className}
+          >
+            {children}
+          </chakra.div>
+        </EditableStylesProvider>
+      </EditableProvider>
+    )
+  },
+)
 
 Editable.displayName = "Editable"

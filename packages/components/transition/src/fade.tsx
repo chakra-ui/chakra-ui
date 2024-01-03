@@ -38,39 +38,38 @@ export const fadeConfig: HTMLMotionProps<"div"> = {
   variants: variants as _Variants,
 }
 
-export const Fade = forwardRef<HTMLDivElement, FadeProps>(function Fade(
-  props,
-  ref,
-) {
-  const {
-    unmountOnExit,
-    in: isOpen,
-    className,
-    transition,
-    transitionEnd,
-    delay,
-    ...rest
-  } = props
+export const Fade = forwardRef<HTMLDivElement, FadeProps>(
+  function Fade(props, ref) {
+    const {
+      unmountOnExit,
+      in: isOpen,
+      className,
+      transition,
+      transitionEnd,
+      delay,
+      ...rest
+    } = props
 
-  const animate = isOpen || unmountOnExit ? "enter" : "exit"
-  const show = unmountOnExit ? isOpen && unmountOnExit : true
+    const animate = isOpen || unmountOnExit ? "enter" : "exit"
+    const show = unmountOnExit ? isOpen && unmountOnExit : true
 
-  const custom = { transition, transitionEnd, delay }
+    const custom = { transition, transitionEnd, delay }
 
-  return (
-    <AnimatePresence custom={custom}>
-      {show && (
-        <motion.div
-          ref={ref}
-          className={cx("chakra-fade", className)}
-          custom={custom}
-          {...fadeConfig}
-          animate={animate}
-          {...rest}
-        />
-      )}
-    </AnimatePresence>
-  )
-})
+    return (
+      <AnimatePresence custom={custom}>
+        {show && (
+          <motion.div
+            ref={ref}
+            className={cx("chakra-fade", className)}
+            custom={custom}
+            {...fadeConfig}
+            animate={animate}
+            {...rest}
+          />
+        )}
+      </AnimatePresence>
+    )
+  },
+)
 
 Fade.displayName = "Fade"

@@ -85,17 +85,16 @@ export function styled<T extends As, P extends object = {}>(
     styledOptions,
   )(styleObject)
 
-  const chakraComponent = React.forwardRef(function ChakraComponent(
-    props,
-    ref,
-  ) {
-    const { colorMode, forced } = useColorMode()
-    return React.createElement(Component, {
-      ref,
-      "data-theme": forced ? colorMode : undefined,
-      ...props,
-    })
-  })
+  const chakraComponent = React.forwardRef(
+    function ChakraComponent(props, ref) {
+      const { colorMode, forced } = useColorMode()
+      return React.createElement(Component, {
+        ref,
+        "data-theme": forced ? colorMode : undefined,
+        ...props,
+      })
+    },
+  )
 
   return chakraComponent as ChakraComponent<T, P>
 }

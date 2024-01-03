@@ -30,29 +30,28 @@ export interface ContainerProps
  *
  * @see Docs https://chakra-ui.com/docs/components/container
  */
-export const Container = forwardRef<ContainerProps, "div">(function Container(
-  props,
-  ref,
-) {
-  const { className, centerContent, ...rest } = omitThemingProps(props)
+export const Container = forwardRef<ContainerProps, "div">(
+  function Container(props, ref) {
+    const { className, centerContent, ...rest } = omitThemingProps(props)
 
-  const styles = useStyleConfig("Container", props)
+    const styles = useStyleConfig("Container", props)
 
-  return (
-    <chakra.div
-      ref={ref}
-      className={cx("chakra-container", className)}
-      {...rest}
-      __css={{
-        ...styles,
-        ...(centerContent && {
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }),
-      }}
-    />
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        className={cx("chakra-container", className)}
+        {...rest}
+        __css={{
+          ...styles,
+          ...(centerContent && {
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }),
+        }}
+      />
+    )
+  },
+)
 
 Container.displayName = "Container"

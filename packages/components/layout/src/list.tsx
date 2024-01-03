@@ -98,15 +98,14 @@ export const OrderedList = forwardRef<ListProps, "ol">((props, ref) => {
 
 OrderedList.displayName = "OrderedList"
 
-export const UnorderedList = forwardRef<ListProps, "ul">(function UnorderedList(
-  props,
-  ref,
-) {
-  const { as, ...rest } = props
-  return (
-    <List ref={ref} as="ul" styleType="initial" marginStart="1em" {...rest} />
-  )
-})
+export const UnorderedList = forwardRef<ListProps, "ul">(
+  function UnorderedList(props, ref) {
+    const { as, ...rest } = props
+    return (
+      <List ref={ref} as="ul" styleType="initial" marginStart="1em" {...rest} />
+    )
+  },
+)
 
 UnorderedList.displayName = "UnorderedList"
 
@@ -117,14 +116,13 @@ export interface ListItemProps extends HTMLChakraProps<"li"> {}
  *
  * Used to render a list item
  */
-export const ListItem = forwardRef<ListItemProps, "li">(function ListItem(
-  props,
-  ref,
-) {
-  const styles = useListStyles()
+export const ListItem = forwardRef<ListItemProps, "li">(
+  function ListItem(props, ref) {
+    const styles = useListStyles()
 
-  return <chakra.li ref={ref} {...props} __css={styles.item} />
-})
+    return <chakra.li ref={ref} {...props} __css={styles.item} />
+  },
+)
 
 ListItem.displayName = "ListItem"
 
@@ -133,13 +131,12 @@ ListItem.displayName = "ListItem"
  *
  * Used to render an icon beside the list item text
  */
-export const ListIcon = forwardRef<IconProps, "svg">(function ListIcon(
-  props,
-  ref,
-) {
-  const styles = useListStyles()
+export const ListIcon = forwardRef<IconProps, "svg">(
+  function ListIcon(props, ref) {
+    const styles = useListStyles()
 
-  return <Icon ref={ref} role="presentation" {...props} __css={styles.icon} />
-})
+    return <Icon ref={ref} role="presentation" {...props} __css={styles.icon} />
+  },
+)
 
 ListIcon.displayName = "ListIcon"

@@ -122,11 +122,14 @@ export function analyzeBreakpoints(breakpoints: Record<string, any>) {
       if (!Array.isArray(test)) {
         throw new Error("toObjectValue: value must be an array")
       }
-      return test.reduce((acc, value, index) => {
-        const key = _keysArr[index]
-        if (key != null && value != null) acc[key] = value
-        return acc
-      }, {} as Record<string, any>)
+      return test.reduce(
+        (acc, value, index) => {
+          const key = _keysArr[index]
+          if (key != null && value != null) acc[key] = value
+          return acc
+        },
+        {} as Record<string, any>,
+      )
     },
   }
 }

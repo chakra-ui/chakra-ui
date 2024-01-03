@@ -143,10 +143,13 @@ export const objectKeys = <T extends Dict>(obj: T) =>
  * Object.entries polyfill for Node v10 compatibility
  */
 export const fromEntries = <T extends unknown>(entries: [string, any][]) =>
-  entries.reduce((carry, [key, value]) => {
-    carry[key] = value
-    return carry
-  }, {} as Record<string, any>) as T
+  entries.reduce(
+    (carry, [key, value]) => {
+      carry[key] = value
+      return carry
+    },
+    {} as Record<string, any>,
+  ) as T
 
 /**
  * Get the CSS variable ref stored in the theme

@@ -87,107 +87,106 @@ export interface CheckboxProps
  * @see Docs https://chakra-ui.com/checkbox
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
-export const Checkbox = forwardRef<CheckboxProps, "input">(function Checkbox(
-  props,
-  ref,
-) {
-  const group = useCheckboxGroupContext()
+export const Checkbox = forwardRef<CheckboxProps, "input">(
+  function Checkbox(props, ref) {
+    const group = useCheckboxGroupContext()
 
-  const mergedProps = { ...group, ...props } as CheckboxProps
-  const styles = useMultiStyleConfig("Checkbox", mergedProps)
+    const mergedProps = { ...group, ...props } as CheckboxProps
+    const styles = useMultiStyleConfig("Checkbox", mergedProps)
 
-  const ownProps = omitThemingProps(props)
+    const ownProps = omitThemingProps(props)
 
-  const {
-    spacing = "0.5rem",
-    className,
-    children,
-    iconColor,
-    iconSize,
-    icon = <CheckboxIcon />,
-    isChecked: isCheckedProp,
-    isDisabled = group?.isDisabled,
-    onChange: onChangeProp,
-    inputProps,
-    ...rest
-  } = ownProps
+    const {
+      spacing = "0.5rem",
+      className,
+      children,
+      iconColor,
+      iconSize,
+      icon = <CheckboxIcon />,
+      isChecked: isCheckedProp,
+      isDisabled = group?.isDisabled,
+      onChange: onChangeProp,
+      inputProps,
+      ...rest
+    } = ownProps
 
-  let isChecked = isCheckedProp
-  if (group?.value && ownProps.value) {
-    isChecked = group.value.includes(ownProps.value)
-  }
+    let isChecked = isCheckedProp
+    if (group?.value && ownProps.value) {
+      isChecked = group.value.includes(ownProps.value)
+    }
 
-  let onChange = onChangeProp
-  if (group?.onChange && ownProps.value) {
-    onChange = callAll(group.onChange, onChangeProp)
-  }
+    let onChange = onChangeProp
+    if (group?.onChange && ownProps.value) {
+      onChange = callAll(group.onChange, onChangeProp)
+    }
 
-  const {
-    state,
-    getInputProps,
-    getCheckboxProps,
-    getLabelProps,
-    getRootProps,
-  } = useCheckbox({
-    ...rest,
-    isDisabled,
-    isChecked,
-    onChange,
-  })
+    const {
+      state,
+      getInputProps,
+      getCheckboxProps,
+      getLabelProps,
+      getRootProps,
+    } = useCheckbox({
+      ...rest,
+      isDisabled,
+      isChecked,
+      onChange,
+    })
 
-  const shouldAnimate = useInitialAnimationState(state.isChecked)
+    const shouldAnimate = useInitialAnimationState(state.isChecked)
 
-  const iconStyles: SystemStyleObject = useMemo(
-    () => ({
-      animation: !shouldAnimate
-        ? undefined
-        : state.isIndeterminate
-        ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
-        : `${checkAnim} 200ms linear`,
-      fontSize: iconSize,
-      color: iconColor,
-      ...styles.icon,
-    }),
-    [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
-  )
+    const iconStyles: SystemStyleObject = useMemo(
+      () => ({
+        animation: !shouldAnimate
+          ? undefined
+          : state.isIndeterminate
+          ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
+          : `${checkAnim} 200ms linear`,
+        fontSize: iconSize,
+        color: iconColor,
+        ...styles.icon,
+      }),
+      [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
+    )
 
-  const clonedIcon = cloneElement(icon, {
-    __css: iconStyles,
-    isIndeterminate: state.isIndeterminate,
-    isChecked: state.isChecked,
-  })
+    const clonedIcon = cloneElement(icon, {
+      __css: iconStyles,
+      isIndeterminate: state.isIndeterminate,
+      isChecked: state.isChecked,
+    })
 
-  return (
-    <chakra.label
-      __css={{ ...rootStyles, ...styles.container }}
-      className={cx("chakra-checkbox", className)}
-      {...getRootProps()}
-    >
-      <input
-        className="chakra-checkbox__input"
-        {...getInputProps(inputProps, ref)}
-      />
-      <chakra.span
-        __css={{ ...controlStyles, ...styles.control }}
-        className="chakra-checkbox__control"
-        {...getCheckboxProps()}
+    return (
+      <chakra.label
+        __css={{ ...rootStyles, ...styles.container }}
+        className={cx("chakra-checkbox", className)}
+        {...getRootProps()}
       >
-        {clonedIcon}
-      </chakra.span>
-      {children && (
+        <input
+          className="chakra-checkbox__input"
+          {...getInputProps(inputProps, ref)}
+        />
         <chakra.span
-          className="chakra-checkbox__label"
-          {...getLabelProps()}
-          __css={{
-            marginStart: spacing,
-            ...styles.label,
-          }}
+          __css={{ ...controlStyles, ...styles.control }}
+          className="chakra-checkbox__control"
+          {...getCheckboxProps()}
         >
-          {children}
+          {clonedIcon}
         </chakra.span>
-      )}
-    </chakra.label>
-  )
-})
+        {children && (
+          <chakra.span
+            className="chakra-checkbox__label"
+            {...getLabelProps()}
+            __css={{
+              marginStart: spacing,
+              ...styles.label,
+            }}
+          >
+            {children}
+          </chakra.span>
+        )}
+      </chakra.label>
+    )
+  },
+)
 
 Checkbox.displayName = "Checkbox"

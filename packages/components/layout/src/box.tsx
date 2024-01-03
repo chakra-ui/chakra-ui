@@ -36,38 +36,36 @@ export interface SquareProps extends Omit<BoxProps, Omitted> {
   centerContent?: boolean
 }
 
-export const Square = forwardRef<SquareProps, "div">(function Square(
-  props,
-  ref,
-) {
-  const { size, centerContent = true, ...rest } = props
+export const Square = forwardRef<SquareProps, "div">(
+  function Square(props, ref) {
+    const { size, centerContent = true, ...rest } = props
 
-  const styles: SystemStyleObject = centerContent
-    ? { display: "flex", alignItems: "center", justifyContent: "center" }
-    : {}
+    const styles: SystemStyleObject = centerContent
+      ? { display: "flex", alignItems: "center", justifyContent: "center" }
+      : {}
 
-  return (
-    <Box
-      ref={ref}
-      boxSize={size}
-      __css={{
-        ...styles,
-        flexShrink: 0,
-        flexGrow: 0,
-      }}
-      {...rest}
-    />
-  )
-})
+    return (
+      <Box
+        ref={ref}
+        boxSize={size}
+        __css={{
+          ...styles,
+          flexShrink: 0,
+          flexGrow: 0,
+        }}
+        {...rest}
+      />
+    )
+  },
+)
 
 Square.displayName = "Square"
 
-export const Circle = forwardRef<SquareProps, "div">(function Circle(
-  props,
-  ref,
-) {
-  const { size, ...rest } = props
-  return <Square size={size} ref={ref} borderRadius="9999px" {...rest} />
-})
+export const Circle = forwardRef<SquareProps, "div">(
+  function Circle(props, ref) {
+    const { size, ...rest } = props
+    return <Square size={size} ref={ref} borderRadius="9999px" {...rest} />
+  },
+)
 
 Circle.displayName = "Circle"
