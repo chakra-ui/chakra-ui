@@ -89,10 +89,8 @@ async function extractPropertiesOfTypeName(
           ?.text?.map((doc) => doc.text)
           ?.join("\n") || undefined
 
-      const nonNullableType = type.getNonNullableType()
-
-      const typeName = typeChecker.typeToString(nonNullableType)
-      const required = nonNullableType === type && typeName !== "any"
+      const typeName = typeChecker.typeToString(type.getNonNullableType())
+      const required = !(property.flags & ts.SymbolFlags.Optional)
 
       const prettyType = await tryPrettier(typeName)
 

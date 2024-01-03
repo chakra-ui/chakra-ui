@@ -4,9 +4,9 @@
   "StepIndicator": {},
   "StepSeparator": {},
   "StepStatus": {
-    "active": { "type": "MaybeRenderProp", "required": true },
-    "complete": { "type": "MaybeRenderProp", "required": true },
-    "incomplete": { "type": "MaybeRenderProp", "required": true }
+    "active": { "type": "MaybeRenderProp", "required": false },
+    "complete": { "type": "MaybeRenderProp", "required": false },
+    "incomplete": { "type": "MaybeRenderProp", "required": false }
   },
   "StepTitle": {},
   "Stepper": {
@@ -15,22 +15,22 @@
       "required": true,
       "description": "The active step index"
     },
-    "orientation": {
-      "type": "Orientation",
-      "defaultValue": "horizontal",
-      "required": true,
-      "description": "The orientation of the stepper"
-    },
-    "showLastSeparator": {
-      "type": "boolean",
-      "required": true,
-      "description": "Whether to show or not the last separator while in vertical orientation"
-    },
     "colorScheme": {
       "defaultValue": "blue",
       "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
       "required": false,
       "description": "The visual color appearance of the component"
+    },
+    "orientation": {
+      "type": "Orientation",
+      "defaultValue": "horizontal",
+      "required": false,
+      "description": "The orientation of the stepper"
+    },
+    "showLastSeparator": {
+      "type": "boolean",
+      "required": false,
+      "description": "Whether to show or not the last separator while in vertical orientation"
     },
     "size": {
       "defaultValue": "md",
@@ -45,7 +45,7 @@
     }
   },
   "UseSteps": {
-    "count": { "type": "number", "required": true },
-    "index": { "type": "number", "required": true }
+    "count": { "type": "number", "required": false },
+    "index": { "type": "number", "required": false }
   }
 }
