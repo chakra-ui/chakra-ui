@@ -39,7 +39,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
       }
     }
 
-    const onMouseUp: any = (event: MouseEvent) => {
+    const onPointerUp: any = (event: MouseEvent) => {
       if (state.ignoreEmulatedMouseEvents) {
         state.ignoreEmulatedMouseEvents = false
         return
@@ -60,14 +60,14 @@ export function useOutsideClick(props: UseOutsideClickProps) {
     }
 
     const doc = getOwnerDocument(ref.current)
-    doc.addEventListener("mousedown", onPointerDown, true)
-    doc.addEventListener("mouseup", onMouseUp, true)
+    doc.addEventListener("pointerdown", onPointerDown, true)
+    doc.addEventListener("pointerup", onPointerUp, true)
     doc.addEventListener("touchstart", onPointerDown, true)
     doc.addEventListener("touchend", onTouchEnd, true)
 
     return () => {
-      doc.removeEventListener("mousedown", onPointerDown, true)
-      doc.removeEventListener("mouseup", onMouseUp, true)
+      doc.removeEventListener("pointerdown", onPointerDown, true)
+      doc.removeEventListener("pointerup", onPointerUp, true)
       doc.removeEventListener("touchstart", onPointerDown, true)
       doc.removeEventListener("touchend", onTouchEnd, true)
     }
