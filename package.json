@@ -83,7 +83,7 @@
     "@typescript-eslint/eslint-plugin": "6.12.0",
     "@typescript-eslint/parser": "6.12.0",
     "dotenv": "16.3.1",
-    "edit-json-file": "1.7.0",
+    "edit-json-file": "1.8.0",
     "eslint": "8.54.0",
     "eslint-config-airbnb-typescript": "17.1.0",
     "eslint-config-prettier": "9.0.0",
