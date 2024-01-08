@@ -1,0 +1,43 @@
+{
+  "Image": {},
+  "Img": {},
+  "UseImage": {
+    "crossOrigin": {
+      "type": "\"\" | \"anonymous\" | \"use-credentials\"",
+      "required": false,
+      "description": "The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.\nThis tells the browser to request cross-origin access when trying to download the image data."
+    },
+    "ignoreFallback": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, opt out of the `fallbackSrc` logic and use as `img`"
+    },
+    "loading": { "type": "\"eager\" | \"lazy\"", "required": false },
+    "onError": {
+      "type": "ReactEventHandler<HTMLImageElement>",
+      "required": false,
+      "description": "A callback for when there was an error loading the image `src`"
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLImageElement>",
+      "required": false,
+      "description": "A callback for when the image `src` has been loaded"
+    },
+    "sizes": {
+      "type": "string",
+      "required": false,
+      "description": "The image `sizes` attribute"
+    },
+    "src": {
+      "type": "string",
+      "required": false,
+      "description": "The image `src` attribute"
+    },
+    "srcSet": {
+      "type": "string",
+      "required": false,
+      "description": "The image `srcset` attribute"
+    }
+  }
+}

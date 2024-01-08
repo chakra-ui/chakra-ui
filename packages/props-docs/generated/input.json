@@ -5,21 +5,6 @@
       "required": false,
       "description": "The visual color appearance of the component"
     },
-    "errorBorderColor": {
-      "type": "string",
-      "required": false,
-      "description": "The border color when the input is invalid. Use color keys in `theme.colors`"
-    },
-    "focusBorderColor": {
-      "type": "string",
-      "required": false,
-      "description": "The border color when the input is focused. Use color keys in `theme.colors`"
-    },
-    "htmlSize": {
-      "type": "number",
-      "required": false,
-      "description": "The native HTML `size` attribute to be passed to the `input`"
-    },
     "isDisabled": {
       "type": "boolean",
       "defaultValue": false,

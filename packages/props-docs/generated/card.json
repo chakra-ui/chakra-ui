@@ -2,23 +2,23 @@
   "Card": {
     "align": {
       "type": "ResponsiveValue<AlignItems>",
-      "required": true,
+      "required": false,
       "description": "The flex alignment of the card"
-    },
-    "direction": {
-      "type": "ResponsiveValue<FlexDirection>",
-      "required": true,
-      "description": "The flex direction of the card"
-    },
-    "justify": {
-      "type": "ResponsiveValue<JustifyContent>",
-      "required": true,
-      "description": "The flex distribution of the card"
     },
     "colorScheme": {
       "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
       "required": false,
       "description": "The visual color appearance of the component"
+    },
+    "direction": {
+      "type": "ResponsiveValue<FlexDirection>",
+      "required": false,
+      "description": "The flex direction of the card"
+    },
+    "justify": {
+      "type": "ResponsiveValue<JustifyContent>",
+      "required": false,
+      "description": "The flex distribution of the card"
     },
     "size": {
       "defaultValue": "md",
@@ -35,7 +35,7 @@
   },
   "CardBody": {},
   "CardFooter": {
-    "justify": { "type": "ResponsiveValue<JustifyContent>", "required": true }
+    "justify": { "type": "ResponsiveValue<JustifyContent>", "required": false }
   },
   "CardHeader": {}
 }

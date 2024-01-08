@@ -19,6 +19,6 @@
     "downlevelIteration": true,
     "customConditions": ["source"]
   },
-  "include": ["vitest.setup.ts", "packages"],
+  "include": ["vitest.setup.ts", "packages", "scripts"],
   "exclude": ["node_modules"]
 }

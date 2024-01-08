@@ -18,7 +18,7 @@
     "build:fast": "pnpm tsx scripts/build/main.ts --prod",
     "dev": "tsx scripts/build/main.ts --watch --prod",
     "postbuild": "pnpm build:tokens",
-    "typedocs": "pnpm --filter=./packages/components/** typedocs",
+    "typedocs": "tsx scripts/typedocs.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "lint": "eslint packages --ext .ts,.tsx --config .eslintrc --cache",
@@ -29,17 +29,12 @@
     "build:storybook": "pnpm build:fast && storybook build",
     "serve:storybook": "pnpx serve storybook-static",
     "clean": "pnpm -r --parallel exec rimraf dist *.log",
-    "changelog": "tsx scripts/changelog.ts",
-    "changelog:latest": "tsx scripts/changelog.ts --latest",
-    "changelog:commit": "git add . && git commit -am 'docs: add changelog' && git push",
-    "changelog:format": "prettier --write .changelog",
     "slack": "tsx scripts/slack.mts",
     "version": "changeset version",
     "release": "changeset publish",
     "version:dev": "changeset version --snapshot dev",
     "release:dev": "changeset publish --tag dev",
-    "sandbox": "tsx scripts/sandbox.ts",
-    "notify:release": "npm-run-all changelog:write slack changelog:commit"
+    "sandbox": "tsx scripts/sandbox.ts"
   },
   "version": "2.0.0",
   "dependencies": {

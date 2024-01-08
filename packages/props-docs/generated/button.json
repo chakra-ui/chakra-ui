@@ -35,7 +35,7 @@
       "description": "If added, the button will show an icon before the button's label."
     },
     "loadingText": {
-      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal",
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
       "required": false,
       "description": "The label to show in the button when `isLoading` is true\nIf no text is passed, it only shows the spinner"
     },
@@ -88,45 +88,5 @@
       "description": "The spacing between the buttons"
     }
   },
-  "IconButton": {
-    "aria-label": {
-      "type": "string",
-      "required": true,
-      "description": "A11y: A label that describes the button"
-    },
-    "icon": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-      "required": false,
-      "description": "The icon to be used in the button."
-    },
-    "isActive": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the button will be styled in its active state."
-    },
-    "isDisabled": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the button will be disabled."
-    },
-    "isLoading": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the button will show a spinner."
-    },
-    "isRound": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the button will be perfectly round. Else, it'll be slightly round"
-    },
-    "spinner": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-      "required": false,
-      "description": "Replace the spinner component when `isLoading` is set to `true`"
-    }
-  }
+  "IconButton": {}
 }

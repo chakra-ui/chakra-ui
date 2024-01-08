@@ -1,42 +1,13 @@
 {
-  "ToastProvider": {
-    "component": {
-      "type": "FC<ToastComponentProps>",
-      "defaultValue": "ToastComponent",
-      "required": false,
-      "description": "Are you looking for a way to style the toast? Use a custom `Alert` variant in the theme.\nThis property overrides the default ToastComponent with your own implementation."
-    },
-    "defaultOptions": {
-      "type": "UseToastOptions",
-      "required": false,
-      "description": "Default options for `useToast(options)`"
-    },
-    "motionVariants": {
-      "type": "Variants",
-      "required": false,
-      "description": "Customize the default motion config to animate the toasts your way"
-    },
-    "portalProps": {
-      "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>",
-      "required": false,
-      "description": "Props to be forwarded to the portal component"
-    },
-    "toastSpacing": {
-      "type": "string | number",
-      "defaultValue": "0.5rem",
-      "required": false,
-      "description": "Define the margin between toasts"
-    }
-  },
   "Toast": {
     "addRole": { "type": "boolean", "defaultValue": false, "required": false },
     "containerStyle": {
-      "type": "StyleProps",
+      "type": "SystemProps",
       "required": false,
       "description": "Optional style overrides for the container wrapping the toast component."
     },
     "description": {
-      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal",
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
       "required": false,
       "description": "The description of the toast"
     },
@@ -47,7 +18,7 @@
       "description": "The delay before the toast hides (in milliseconds)\nIf set to `null`, toast will never dismiss."
     },
     "icon": {
-      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal",
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
       "required": false,
       "description": "A custom icon that will be displayed by the toast."
     },
@@ -80,14 +51,43 @@
       "description": "Render a component toast component.\nAny component passed will receive 2 props: `id` and `onClose`."
     },
     "status": {
-      "type": "\"info\" | \"warning\" | \"success\" | \"error\" | \"loading\"",
+      "type": "\"success\" | \"error\" | \"warning\" | \"info\" | \"loading\"",
       "required": false,
       "description": "The status of the toast."
     },
     "title": {
-      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal",
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
       "required": false,
       "description": "The title of the toast"
+    }
+  },
+  "ToastProvider": {
+    "component": {
+      "type": "FC<ToastComponentProps>",
+      "defaultValue": "ToastComponent",
+      "required": false,
+      "description": "Are you looking for a way to style the toast? Use a custom `Alert` variant in the theme.\nThis property overrides the default ToastComponent with your own implementation."
+    },
+    "defaultOptions": {
+      "type": "UseToastOptions",
+      "required": false,
+      "description": "Default options for `useToast(options)`"
+    },
+    "motionVariants": {
+      "type": "Variants",
+      "required": false,
+      "description": "Customize the default motion config to animate the toasts your way"
+    },
+    "portalProps": {
+      "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>",
+      "required": false,
+      "description": "Props to be forwarded to the portal component"
+    },
+    "toastSpacing": {
+      "type": "string | number",
+      "defaultValue": "0.5rem",
+      "required": false,
+      "description": "Define the margin between toasts"
     }
   }
 }

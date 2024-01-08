@@ -126,7 +126,7 @@
       "required": false
     },
     "onInvalid": {
-      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number\n) => void",
+      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number,\n) => void",
       "required": false
     },
     "parse": {
@@ -279,7 +279,7 @@
       "required": false
     },
     "onInvalid": {
-      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number\n) => void",
+      "type": "(\n  message: ValidityState,\n  value: string,\n  valueAsNumber: number,\n) => void",
       "required": false
     },
     "parse": {

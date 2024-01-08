@@ -439,7 +439,7 @@
     "aria-activedescendant": { "type": "string", "required": false },
     "aria-atomic": { "type": "Booleanish", "required": false },
     "aria-autocomplete": {
-      "type": "\"none\" | \"list\" | \"inline\" | \"both\"",
+      "type": "\"list\" | \"none\" | \"inline\" | \"both\"",
       "required": false
     },
     "aria-braillelabel": { "type": "string", "required": false },
@@ -463,7 +463,7 @@
     "aria-details": { "type": "string", "required": false },
     "aria-disabled": { "type": "Booleanish", "required": false },
     "aria-dropeffect": {
-      "type": "\"none\" | \"link\" | \"copy\" | \"execute\" | \"move\" | \"popup\"",
+      "type": "\"link\" | \"none\" | \"copy\" | \"execute\" | \"move\" | \"popup\"",
       "required": false
     },
     "aria-errormessage": { "type": "string", "required": false },
@@ -529,7 +529,7 @@
     "className": { "type": "string", "required": false },
     "content": { "type": "string", "required": false },
     "contentEditable": {
-      "type": "\"inherit\" | Booleanish",
+      "type": "\"inherit\" | Booleanish | \"plaintext-only\"",
       "required": false
     },
     "contextMenu": { "type": "string", "required": false },
@@ -549,7 +549,7 @@
     "id": { "type": "string", "required": false },
     "inlist": { "type": "any", "required": false },
     "inputMode": {
-      "type": "type ONLY_FOR_FORMAT =\n  | \"none\"\n  | \"search\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"text\"\n  | \"none\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
       "required": false
     },
     "is": { "type": "string", "required": false },

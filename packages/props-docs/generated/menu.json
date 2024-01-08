@@ -13,7 +13,7 @@
       "description": "If `true`, the first enabled menu item will receive focus and be selected\nwhen the menu opens."
     },
     "boundary": {
-      "type": "\"clippingParents\" | \"scrollParent\" | HTMLElement",
+      "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
       "defaultValue": "clippingParents",
       "required": false,
       "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
@@ -105,7 +105,7 @@
       "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
     },
     "strategy": {
-      "type": "\"absolute\" | \"fixed\"",
+      "type": "\"fixed\" | \"absolute\"",
       "defaultValue": "absolute",
       "required": false,
       "description": "The CSS positioning strategy to use."
@@ -188,7 +188,7 @@
       "required": false,
       "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
     },
-    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
     "value": { "type": "string", "required": false }
   },
   "MenuList": {
@@ -209,7 +209,7 @@
       "type": "(value: string | string[]) => void",
       "required": false
     },
-    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
     "value": { "type": "string | string[]", "required": false }
   },
   "UseMenuButton": {},
@@ -242,7 +242,7 @@
       "type": "(value: string | string[]) => void",
       "required": false
     },
-    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
     "value": { "type": "string | string[]", "required": false }
   },
   "UseMenuOption": {
@@ -262,7 +262,7 @@
       "required": false,
       "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
     },
-    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
     "value": { "type": "string", "required": false }
   },
   "UseMenu": {
@@ -279,7 +279,7 @@
       "description": "If `true`, the first enabled menu item will receive focus and be selected\nwhen the menu opens."
     },
     "boundary": {
-      "type": "\"clippingParents\" | \"scrollParent\" | HTMLElement",
+      "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
       "defaultValue": "clippingParents",
       "required": false,
       "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
@@ -371,7 +371,7 @@
       "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
     },
     "strategy": {
-      "type": "\"absolute\" | \"fixed\"",
+      "type": "\"fixed\" | \"absolute\"",
       "defaultValue": "absolute",
       "required": false,
       "description": "The CSS positioning strategy to use."

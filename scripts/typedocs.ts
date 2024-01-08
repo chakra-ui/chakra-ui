@@ -1,23 +1,24 @@
 import { theme } from "@chakra-ui/theme"
-import { writeFileSync } from "fs"
-import { readFile } from "fs/promises"
-import path from "path"
+import { existsSync } from "node:fs"
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises"
+import path from "node:path"
+import { join } from "node:path/posix"
 import prettier from "prettier"
 import ts from "typescript"
 import { extractThemeProps } from "./extract-theme-props.js"
 
-type ComponentTypeInfo = {
+interface ComponentTypeInfo {
   type: string
   defaultValue?: string | boolean | null
   required: boolean
   description?: string
 }
 
-type ComponentTypeProperties = {
+interface ComponentTypeProperties {
   [component: string]: ComponentTypeInfo
 }
 
-type TypeSearchOptions = {
+interface TypeSearchOptions {
   shouldIgnoreProperty?: (property: ts.Symbol) => boolean | undefined
 }
 
@@ -41,9 +42,9 @@ function formatValue(value: string | undefined) {
   return x === "true" ? true : x === "false" ? false : x
 }
 
-function sortByRequiredProperties(properties: ComponentTypeProperties) {
+function sortByRequiredProperties(props: ComponentTypeProperties) {
   return Object.fromEntries(
-    Object.entries(properties)
+    Object.entries(props)
       .sort(([aName], [bName]) => aName.localeCompare(bName))
       .sort(([, a], [, b]) =>
         a.required === b.required ? 0 : a.required ? -1 : 1,
@@ -201,47 +202,64 @@ function extractTypeExports(code: string) {
 
 function shouldIgnoreProperty(property: ts.Symbol) {
   const sourceFileName = getSourceFileName(property)
-  const isExternal = /(node_modules|styled-system|system)/.test(
+  const isExternal = /(node_modules|styled-system|system|@types\/react)/.test(
     sourceFileName ?? "",
   )
   const isExcludedByName = ["children"].includes(property.getName())
   return isExternal || isExcludedByName
 }
 
-const main = async () => {
-  const fileContent = await readFile(path.join("src", "index.ts"), "utf8")
-  const searchType = createTypeSearch("tsconfig.json", {
-    shouldIgnoreProperty,
-  })
+async function extractDirectory(dir: string) {
+  const file = join("packages", "components", "src", dir, "index.ts")
+  if (!existsSync(file)) return {}
 
-  const themeProps = extractThemeProps(theme)
+  const content = await readFile(file, "utf8")
+  const searchType = createTypeSearch("tsconfig.json", { shouldIgnoreProperty })
 
   const promises = await Promise.all(
-    extractTypeExports(fileContent)?.map(searchType),
+    extractTypeExports(content)?.map(searchType),
   )
 
-  const typeExports = promises
+  return promises
     .filter((value) => Object.keys(value).length !== 0)
     .reduce((acc, value) => ({ ...acc, ...value }), {})
+}
 
-  const typeExportsWithThemeProps: Record<string, unknown> = {}
+const main = async () => {
+  //
+  const themeProps = extractThemeProps(theme)
 
-  for (const [name, values] of Object.entries(typeExports)) {
-    typeExportsWithThemeProps[name] = sortByRequiredProperties({
-      ...values,
-      ...themeProps[name],
-    })
-  }
+  const dirs = await readdir(join("packages", "components", "src"))
 
-  const isEmpty = Object.keys(typeExportsWithThemeProps).length === 0
+  for (const dir of dirs) {
+    const typeExports = await extractDirectory(dir)
 
-  if (!isEmpty) {
-    writeFileSync(
-      "docs.json",
-      await prettier.format(JSON.stringify(typeExportsWithThemeProps), {
+    const propMap: Record<string, any> = {}
+
+    for (const [name, values] of Object.entries(typeExports)) {
+      propMap[name] = sortByRequiredProperties({
+        ...values,
+        ...themeProps[name],
+      })
+    }
+
+    const isEmpty = Object.keys(propMap).length === 0
+
+    if (!isEmpty) {
+      await mkdir(join("packages", "props-docs", "generated"), {
+        recursive: true,
+      })
+
+      const outPath = join("packages", "props-docs", "generated", `${dir}.json`)
+
+      const formatted = await prettier.format(JSON.stringify(propMap), {
         parser: "json",
-      }),
-    )
+      })
+
+      await writeFile(outPath, formatted, "utf8")
+
+      log(`Wrote ${outPath}`)
+    }
   }
 }
 

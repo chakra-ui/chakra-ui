@@ -1,0 +1,16 @@
+{
+  "ColorModeProvider": {
+    "colorModeManager": { "type": "StorageManager", "required": false },
+    "options": { "type": "ColorModeOptions", "required": false },
+    "value": { "type": "ColorMode", "required": false }
+  },
+  "ColorModeScript": {
+    "initialColorMode": {
+      "type": "\"light\" | \"dark\" | \"system\"",
+      "required": false
+    },
+    "nonce": { "type": "string", "required": false },
+    "storageKey": { "type": "string", "required": false },
+    "type": { "type": "\"localStorage\" | \"cookie\"", "required": false }
+  }
+}
