@@ -84,6 +84,12 @@
       "parserOptions": {
         "project": ["tsconfig.json"]
       }
+    },
+    {
+      "files": ["**/*.ts"],
+      "parserOptions": {
+        "project": ["scripts/tsconfig.json"]
+      }
     }
   ]
 }
