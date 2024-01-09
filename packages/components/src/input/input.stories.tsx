@@ -1,8 +1,12 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { chakra, forwardRef } from "../system"
 import * as React from "react"
 import { FaCheck, FaPhone } from "react-icons/fa"
 import {
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+  Icon,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -10,15 +14,10 @@ import {
   InputProps,
   InputRightAddon,
   InputRightElement,
-} from "."
-import { Icon } from ".."
-import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-} from "../form-control"
-import { Stack } from "../layout"
+  Stack,
+  chakra,
+  forwardRef,
+} from ".."
 
 export default {
   title: "Components / Forms / Input",

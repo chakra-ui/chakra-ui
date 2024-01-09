@@ -1,6 +1,6 @@
-import { Container, Stack } from "../layout"
 import * as React from "react"
 import { Select } from "."
+import { Container, Stack } from ".."
 
 export default {
   title: "Components / Forms / Select",

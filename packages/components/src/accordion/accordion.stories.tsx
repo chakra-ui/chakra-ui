@@ -1,5 +1,4 @@
 import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
-import { chakra } from "../system"
 import * as React from "react"
 import { ChangeEvent } from "react"
 import {
@@ -8,10 +7,9 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-} from "."
-import { Button } from "../button"
-import { Box, Container } from "../layout"
-import {
+  Box,
+  Button,
+  Container,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -19,7 +17,8 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-} from "../modal"
+  chakra,
+} from ".."
 
 export default {
   title: "Components / Disclosure / Accordion",

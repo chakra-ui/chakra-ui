@@ -1,14 +1,16 @@
-import { chakra } from "../system"
 import { MdCheck } from "react-icons/md"
 import {
+  Box,
+  IconButton,
+  Link,
   Popover,
   PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-} from "."
-import { IconButton } from "../button"
-import { Box, Link, Text } from "../layout"
+  Text,
+  chakra,
+} from ".."
 
 export default {
   title: "Components / Overlay / Popover - Hover",

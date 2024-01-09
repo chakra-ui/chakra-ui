@@ -1,4 +1,3 @@
-import { Box, HStack } from "../layout"
 import {
   Step,
   StepDescription,
@@ -9,6 +8,7 @@ import {
   Stepper,
   useSteps,
 } from "."
+import { Box, HStack } from ".."
 
 export default {
   title: "Components / Navigation / Stepper",

@@ -13,8 +13,7 @@ import {
 } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
-import { Button, ButtonGroup, IconButton } from "."
-import { Container, HStack, Stack } from "../layout"
+import { Button, ButtonGroup, Container, HStack, IconButton, Stack } from ".."
 
 export default {
   title: "Components / Forms / Button",

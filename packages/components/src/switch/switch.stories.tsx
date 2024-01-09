@@ -1,9 +1,6 @@
-import { chakra } from "../system"
 import * as React from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { Switch } from "."
-import { FormControl, FormLabel } from "../form-control"
-import { HStack, Stack } from "../layout"
+import { FormControl, FormLabel, HStack, Stack, Switch, chakra } from ".."
 
 export default {
   title: "Components / Forms / Switch",

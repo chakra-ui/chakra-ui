@@ -1,0 +1,40 @@
+{
+  "Flex": {
+    "align": {
+      "type": "ResponsiveValue<AlignItems>",
+      "required": false,
+      "description": "Shorthand for `alignItems` style prop"
+    },
+    "basis": {
+      "type": "ResponsiveValue<FlexBasis<Length>>",
+      "required": false,
+      "description": "Shorthand for `flexBasis` style prop"
+    },
+    "direction": {
+      "type": "ResponsiveValue<FlexDirection>",
+      "defaultValue": "row",
+      "required": false,
+      "description": "Shorthand for `flexDirection` style prop"
+    },
+    "grow": {
+      "type": "ResponsiveValue<FlexGrow>",
+      "required": false,
+      "description": "Shorthand for `flexGrow` style prop"
+    },
+    "justify": {
+      "type": "ResponsiveValue<JustifyContent>",
+      "required": false,
+      "description": "Shorthand for `justifyContent` style prop"
+    },
+    "shrink": {
+      "type": "ResponsiveValue<FlexShrink>",
+      "required": false,
+      "description": "Shorthand for `flexShrink` style prop"
+    },
+    "wrap": {
+      "type": "ResponsiveValue<FlexWrap>",
+      "required": false,
+      "description": "Shorthand for `flexWrap` style prop"
+    }
+  }
+}

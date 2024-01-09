@@ -1,7 +1,9 @@
 import { useBoolean, useInterval } from "@chakra-ui/hooks"
-import { chakra } from "../system"
 import * as React from "react"
 import {
+  Button,
+  ButtonGroup,
+  Input,
   Popover,
   PopoverAnchor,
   PopoverArrow,
@@ -11,11 +13,11 @@ import {
   PopoverFooter,
   PopoverHeader,
   PopoverTrigger,
+  Radio,
+  RadioGroup,
+  chakra,
   usePopover,
-} from "."
-import { Button, ButtonGroup } from "../button"
-import { Input } from "../input"
-import { Radio, RadioGroup } from "../radio"
+} from ".."
 
 export default {
   title: "Components / Overlay / Popover - Click",

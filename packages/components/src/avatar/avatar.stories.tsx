@@ -1,6 +1,5 @@
-import { Box, Stack } from "../layout"
+import { Avatar, AvatarBadge, AvatarGroup, Box, Stack } from ".."
 import { PropsOf } from "../system"
-import { Avatar, AvatarBadge, AvatarGroup } from "."
 
 export default {
   title: "Components / Media and Icons / Avatar",

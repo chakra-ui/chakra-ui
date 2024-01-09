@@ -1,6 +1,11 @@
-import { chakra } from "../system"
-import { Container } from "../layout"
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from "."
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Container,
+  chakra,
+} from ".."
 
 export default {
   title: "Components / Feedback / Alert",

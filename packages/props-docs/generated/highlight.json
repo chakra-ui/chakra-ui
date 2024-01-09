@@ -1,0 +1,11 @@
+{
+  "Highlight": {
+    "query": { "type": "string | string[]", "required": true },
+    "styles": { "type": "SystemStyleObject", "required": false }
+  },
+  "Mark": {},
+  "UseHighlight": {
+    "query": { "type": "string | string[]", "required": true },
+    "text": { "type": "string", "required": true }
+  }
+}

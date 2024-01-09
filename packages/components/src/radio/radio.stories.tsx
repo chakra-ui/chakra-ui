@@ -1,7 +1,7 @@
 import * as React from "react"
+import { Radio, RadioGroup, UseRadioProps, useRadio, useRadioGroup } from "."
+import { Container, SimpleGrid, Stack, Wrap, WrapItem } from ".."
 import { chakra } from "../system"
-import { Stack, Wrap, SimpleGrid, Container, WrapItem } from "../layout"
-import { useRadio, Radio, useRadioGroup, RadioGroup, UseRadioProps } from "."
 
 export default {
   title: "Components / Forms / Radio",

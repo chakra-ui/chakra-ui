@@ -2,11 +2,7 @@ import { useLatestRef } from "@chakra-ui/hooks"
 import { theme as base } from "@chakra-ui/theme"
 import * as React from "react"
 import { ToastId, createStandaloneToast, useToast } from "."
-import { Alert } from "../alert"
-import { Button, ButtonGroup } from "../button"
-import { useColorMode } from "../color-mode"
-import { Text } from "../layout"
-import { chakra } from "../system"
+import { Alert, Button, ButtonGroup, Text, chakra, useColorMode } from ".."
 
 export default {
   title: "Components / Feedback / Toast",

@@ -1,19 +1,24 @@
-import { chakra } from "../system"
 import { BiChat, BiLike, BiShare } from "react-icons/bi"
 import { BsThreeDotsVertical } from "react-icons/bs"
-import { Card, CardBody, CardFooter, CardHeader } from "."
-import { Avatar } from "../avatar"
-import { Button, ButtonGroup, IconButton } from "../button"
-import { Image } from "../image"
 import {
+  Avatar,
   Box,
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
   Divider,
   HStack,
   Heading,
+  IconButton,
+  Image,
   Stack,
   StackDivider,
   Text,
-} from "../layout"
+  chakra,
+} from ".."
 
 export default {
   title: "Components / Data Display / Card",

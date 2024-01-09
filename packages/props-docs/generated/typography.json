@@ -1,0 +1,37 @@
+{
+  "Heading": {
+    "colorScheme": {
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "defaultValue": "xl",
+      "type": "\"4xl\" | \"3xl\" | \"2xl\" | \"xl\" | \"lg\" | \"md\" | \"sm\" | \"xs\"",
+      "required": false,
+      "description": "The size of the Heading"
+    },
+    "variant": {
+      "type": "string",
+      "required": false,
+      "description": "The variant of the Heading"
+    }
+  },
+  "Text": {
+    "align": {
+      "type": "ResponsiveValue<TextAlign>",
+      "required": false,
+      "description": "The CSS `text-align` property"
+    },
+    "casing": {
+      "type": "ResponsiveValue<TextTransform>",
+      "required": false,
+      "description": "The CSS `text-transform` property"
+    },
+    "decoration": {
+      "type": "ResponsiveValue<number | \"blink\" | (string & {}) | \"-moz-initial\" | \"inherit\" | \"initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"aliceblue\" | \"antiquewhite\" | \"aqua\" | \"aquamarine\" | \"azure\" | ... 185 more ... | \"wavy\">",
+      "required": false,
+      "description": "The CSS `text-decoration` property"
+    }
+  }
+}

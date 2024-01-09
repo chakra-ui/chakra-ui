@@ -1,4 +1,3 @@
-import { chakra } from "../system"
 import { StoryFn } from "@storybook/react"
 import * as React from "react"
 import {
@@ -6,10 +5,11 @@ import {
   EditableInput,
   EditablePreview,
   EditableTextarea,
+  Heading,
+  chakra,
   useEditable,
   useEditableControls,
-} from "."
-import { Heading } from "../layout"
+} from ".."
 
 export default {
   title: "Components / Forms / Editable",

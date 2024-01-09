@@ -1,18 +1,22 @@
-import { chakra } from "../system"
 import * as React from "react"
-import { Checkbox, CheckboxGroup, useCheckbox, useCheckboxGroup } from "."
-import { FormControl, FormLabel } from "../form-control"
-import { Icon } from "../icon"
 import {
   Box,
+  Checkbox,
+  CheckboxGroup,
   Container,
   Divider,
   Flex,
+  FormControl,
+  FormLabel,
   HStack,
   Heading,
+  Icon,
   Stack,
   Text,
-} from "../layout"
+  chakra,
+  useCheckbox,
+  useCheckboxGroup,
+} from ".."
 
 export default {
   title: "Components / Forms / Checkbox",
