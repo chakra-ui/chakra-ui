@@ -86,7 +86,7 @@
       }
     },
     {
-      "files": ["**/*.ts"],
+      "files": ["scripts/**/*.ts"],
       "parserOptions": {
         "project": ["scripts/tsconfig.json"]
       }
