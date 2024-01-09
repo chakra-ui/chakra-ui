@@ -29,7 +29,7 @@
     "build:storybook": "pnpm build:fast && storybook build",
     "serve:storybook": "pnpx serve storybook-static",
     "clean": "pnpm -r --parallel exec rimraf dist *.log",
-    "slack": "tsx scripts/slack.mts",
+    "slack": "tsx scripts/slack.ts",
     "version": "changeset version",
     "release": "changeset publish",
     "version:dev": "changeset version --snapshot dev",
