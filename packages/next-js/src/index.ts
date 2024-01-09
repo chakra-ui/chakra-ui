@@ -1,0 +1,6 @@
+export { CacheProvider } from "./emotion-cache-provider"
+export type { CacheProviderProps } from "./emotion-cache-provider"
+export { Image } from "./image"
+export type { ImageProps } from "./image"
+export { Link } from "./link"
+export type { LinkProps } from "./link"

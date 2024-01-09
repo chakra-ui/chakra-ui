@@ -1,0 +1,49 @@
+{
+  "Stack": {
+    "align": {
+      "type": "ResponsiveValue<AlignItems>",
+      "required": false,
+      "description": "Shorthand for `alignItems` style prop"
+    },
+    "direction": {
+      "type": "StackDirection",
+      "defaultValue": "column",
+      "required": false,
+      "description": "The direction to stack the items."
+    },
+    "divider": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "If `true`, each stack item will show a divider"
+    },
+    "isInline": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true` the items will be stacked horizontally."
+    },
+    "justify": {
+      "type": "ResponsiveValue<JustifyContent>",
+      "required": false,
+      "description": "Shorthand for `justifyContent` style prop"
+    },
+    "shouldWrapChildren": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the children will be wrapped in a `Box` with\n`display: inline-block`, and the `Box` will take the spacing props"
+    },
+    "spacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "defaultValue": "0.5rem",
+      "required": false,
+      "description": "The space between each stack item"
+    },
+    "wrap": {
+      "type": "ResponsiveValue<FlexWrap>",
+      "required": false,
+      "description": "Shorthand for `flexWrap` style prop"
+    }
+  },
+  "StackDivider": {}
+}

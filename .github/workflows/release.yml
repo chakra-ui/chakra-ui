@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - ".changeset/**"
-      - "tooling/**"
       - "packages/**"
     branches:
       - main
@@ -54,28 +53,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update changelog
-        if: steps.changesets.outputs.published == 'true'
-        run: |
-          pnpm changelog:latest
-          pnpm changelog:format
-          pnpm changelog:commit
-
       - name: Slack notification
         if: steps.changesets.outputs.published == 'true'
         run: pnpm slack
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Dispatch update to docs
-        if: steps.changesets.outputs.published == 'true'
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.SAGE_PAT }}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: 'chakra-ui',
-              repo: 'chakra-ui-docs',
-              workflow_id: 'release.yml',
-              ref: 'main'
-            })

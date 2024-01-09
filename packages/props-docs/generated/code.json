@@ -1,0 +1,21 @@
+{
+  "Code": {
+    "colorScheme": {
+      "defaultValue": "gray",
+      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\" | \"linkedin\" | \"facebook\" | \"messenger\" | \"whatsapp\" | \"twitter\" | \"telegram\"",
+      "required": false,
+      "description": "The visual color appearance of the component"
+    },
+    "size": {
+      "type": "string",
+      "required": false,
+      "description": "The size of the Code"
+    },
+    "variant": {
+      "defaultValue": "subtle",
+      "type": "\"solid\" | \"subtle\" | \"outline\"",
+      "required": false,
+      "description": "The variant of the Code"
+    }
+  }
+}

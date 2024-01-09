@@ -1,0 +1,25 @@
+{
+  "Indicator": {
+    "offset": {
+      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "required": false,
+      "description": "The x and y offset of the indicator"
+    },
+    "offsetX": {
+      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "required": false,
+      "description": "The x offset of the indicator"
+    },
+    "offsetY": {
+      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "required": false,
+      "description": "The y offset of the indicator"
+    },
+    "placement": {
+      "type": "ResponsiveValue<\n  | \"bottom-end\"\n  | \"bottom-start\"\n  | \"top-end\"\n  | \"top-start\"\n  | \"bottom-center\"\n  | \"top-center\"\n  | \"middle-center\"\n  | \"middle-end\"\n  | \"middle-start\"\n>",
+      "defaultValue": "top-end",
+      "required": false,
+      "description": "The placement of the indicator"
+    }
+  }
+}

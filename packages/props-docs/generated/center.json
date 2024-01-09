@@ -1,0 +1,9 @@
+{
+  "AbsoluteCenter": {
+    "axis": {
+      "type": "\"horizontal\" | \"vertical\" | \"both\"",
+      "required": false
+    }
+  },
+  "Center": {}
+}

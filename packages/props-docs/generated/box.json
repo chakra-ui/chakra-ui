@@ -1,0 +1,17 @@
+{
+  "Box": {},
+  "Square": {
+    "centerContent": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the content will be centered in the square"
+    },
+    "size": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The size (width and height) of the square"
+    }
+  },
+  "Circle": {}
+}

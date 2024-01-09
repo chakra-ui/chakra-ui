@@ -1,0 +1,10 @@
+{
+  "Container": {
+    "centerContent": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, container will center its children\nregardless of their width."
+    }
+  }
+}

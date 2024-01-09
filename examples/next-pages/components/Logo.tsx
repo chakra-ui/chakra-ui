@@ -1,9 +1,5 @@
-import {
-  keyframes,
-  IconProps,
-  chakra,
-  usePrefersReducedMotion,
-} from "@chakra-ui/react"
+import { IconProps, chakra, usePrefersReducedMotion } from "@chakra-ui/react"
+import { keyframes } from "@emotion/react"
 
 const spin = keyframes`
   from { transform: rotate(0deg); }

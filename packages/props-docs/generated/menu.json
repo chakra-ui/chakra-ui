@@ -1,0 +1,380 @@
+{
+  "Menu": {
+    "arrowPadding": {
+      "type": "number",
+      "defaultValue": "8",
+      "required": false,
+      "description": "The padding required to prevent the arrow from\nreaching the very edge of the popper."
+    },
+    "autoSelect": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the first enabled menu item will receive focus and be selected\nwhen the menu opens."
+    },
+    "boundary": {
+      "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
+      "defaultValue": "clippingParents",
+      "required": false,
+      "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
+    },
+    "closeOnBlur": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the menu will close when you click outside\nthe menu list"
+    },
+    "closeOnSelect": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the menu will close when a menu item is\nclicked"
+    },
+    "computePositionOnMount": { "type": "boolean", "required": false },
+    "defaultIsOpen": { "type": "boolean", "required": false },
+    "direction": {
+      "type": "\"ltr\" | \"rtl\"",
+      "required": false,
+      "description": "If `rtl`, proper placement positions will be flipped i.e. 'top-right' will\nbecome 'top-left' and vice-verse"
+    },
+    "eventListeners": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined }",
+      "defaultValue": true,
+      "required": false,
+      "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
+    },
+    "flip": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
+    },
+    "gutter": {
+      "type": "number",
+      "defaultValue": "8",
+      "required": false,
+      "description": "The distance or margin between the reference and popper.\nIt is used internally to create an `offset` modifier.\n\nNB: If you define `offset` prop, it'll override the gutter."
+    },
+    "id": { "type": "string", "required": false },
+    "initialFocusRef": {
+      "type": "RefObject<{ focus(): void }>",
+      "required": false,
+      "description": "The `ref` of the element that should receive focus when the popover opens."
+    },
+    "isLazy": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "Performance 🚀:\nIf `true`, the MenuItem rendering will be deferred\nuntil the menu is open."
+    },
+    "isOpen": { "type": "boolean", "required": false },
+    "lazyBehavior": {
+      "type": "LazyMode",
+      "defaultValue": "unmount",
+      "required": false,
+      "description": "Performance 🚀:\nThe lazy behavior of menu's content when not visible.\nOnly works when `isLazy={true}`\n\n- \"unmount\": The menu's content is always unmounted when not open.\n- \"keepMounted\": The menu's content initially unmounted,\nbut stays mounted when menu is open."
+    },
+    "matchWidth": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
+    },
+    "modifiers": {
+      "type": "Partial<Modifier<string, any>>[]",
+      "required": false,
+      "description": "Array of popper.js modifiers. Check the docs to see\nthe list of possible modifiers you can pass."
+    },
+    "offset": {
+      "type": "[number, number]",
+      "required": false,
+      "description": "The main and cross-axis offset to displace popper element\nfrom its reference element."
+    },
+    "onClose": { "type": "() => void", "required": false },
+    "onOpen": { "type": "() => void", "required": false },
+    "placement": {
+      "type": "PlacementWithLogical",
+      "defaultValue": "bottom",
+      "required": false,
+      "description": "The placement of the popper relative to its reference."
+    },
+    "preventOverflow": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
+    },
+    "strategy": {
+      "type": "\"fixed\" | \"absolute\"",
+      "defaultValue": "absolute",
+      "required": false,
+      "description": "The CSS positioning strategy to use."
+    }
+  },
+  "MenuButton": {},
+  "MenuCommand": {},
+  "MenuDivider": {},
+  "MenuGroup": {},
+  "MenuItem": {
+    "closeOnSelect": {
+      "type": "boolean",
+      "required": false,
+      "description": "Overrides the parent menu's `closeOnSelect` prop."
+    },
+    "command": {
+      "type": "string",
+      "required": false,
+      "description": "Right-aligned label text content, useful for displaying hotkeys."
+    },
+    "commandSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the command and menu item's label."
+    },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "The icon to render before the menu item's label."
+    },
+    "iconSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the icon and menu item's label."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the menuitem will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
+    }
+  },
+  "MenuItemOption": {
+    "closeOnSelect": {
+      "type": "boolean",
+      "required": false,
+      "description": "Overrides the parent menu's `closeOnSelect` prop."
+    },
+    "command": {
+      "type": "string",
+      "required": false,
+      "description": "Right-aligned label text content, useful for displaying hotkeys."
+    },
+    "commandSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the command and menu item's label."
+    },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false
+    },
+    "iconSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the icon and menu item's label."
+    },
+    "isChecked": { "type": "boolean", "required": false },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the menuitem will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
+    },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
+    "value": { "type": "string", "required": false }
+  },
+  "MenuList": {
+    "motionProps": {
+      "type": "HTMLMotionProps<\"div\">",
+      "required": false,
+      "description": "The framer-motion props to animate the menu list"
+    },
+    "rootProps": {
+      "type": "HTMLChakraProps<\"div\">",
+      "required": false,
+      "description": "Props for the root element that positions the menu."
+    }
+  },
+  "MenuOptionGroup": {
+    "defaultValue": { "type": "string | string[]", "required": false },
+    "onChange": {
+      "type": "(value: string | string[]) => void",
+      "required": false
+    },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
+    "value": { "type": "string | string[]", "required": false }
+  },
+  "UseMenuButton": {},
+  "UseMenuItem": {
+    "closeOnSelect": {
+      "type": "boolean",
+      "required": false,
+      "description": "Overrides the parent menu's `closeOnSelect` prop."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the menuitem will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
+    },
+    "type": {
+      "type": "\"button\" | \"submit\" | \"reset\"",
+      "required": false,
+      "description": "The type of the menuitem."
+    }
+  },
+  "UseMenuList": {},
+  "UseMenuOptionGroup": {
+    "defaultValue": { "type": "string | string[]", "required": false },
+    "onChange": {
+      "type": "(value: string | string[]) => void",
+      "required": false
+    },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
+    "value": { "type": "string | string[]", "required": false }
+  },
+  "UseMenuOption": {
+    "closeOnSelect": {
+      "type": "boolean",
+      "required": false,
+      "description": "Overrides the parent menu's `closeOnSelect` prop."
+    },
+    "isChecked": { "type": "boolean", "required": false },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the menuitem will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
+    },
+    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
+    "value": { "type": "string", "required": false }
+  },
+  "UseMenu": {
+    "arrowPadding": {
+      "type": "number",
+      "defaultValue": "8",
+      "required": false,
+      "description": "The padding required to prevent the arrow from\nreaching the very edge of the popper."
+    },
+    "autoSelect": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the first enabled menu item will receive focus and be selected\nwhen the menu opens."
+    },
+    "boundary": {
+      "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
+      "defaultValue": "clippingParents",
+      "required": false,
+      "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
+    },
+    "closeOnBlur": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the menu will close when you click outside\nthe menu list"
+    },
+    "closeOnSelect": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the menu will close when a menu item is\nclicked"
+    },
+    "computePositionOnMount": { "type": "boolean", "required": false },
+    "defaultIsOpen": { "type": "boolean", "required": false },
+    "direction": {
+      "type": "\"ltr\" | \"rtl\"",
+      "required": false,
+      "description": "If `rtl`, proper placement positions will be flipped i.e. 'top-right' will\nbecome 'top-left' and vice-verse"
+    },
+    "eventListeners": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | { scroll?: boolean | undefined; resize?: boolean | undefined }",
+      "defaultValue": true,
+      "required": false,
+      "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
+    },
+    "flip": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
+    },
+    "gutter": {
+      "type": "number",
+      "defaultValue": "8",
+      "required": false,
+      "description": "The distance or margin between the reference and popper.\nIt is used internally to create an `offset` modifier.\n\nNB: If you define `offset` prop, it'll override the gutter."
+    },
+    "id": { "type": "string", "required": false },
+    "initialFocusRef": {
+      "type": "RefObject<{ focus(): void }>",
+      "required": false,
+      "description": "The `ref` of the element that should receive focus when the popover opens."
+    },
+    "isLazy": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "Performance 🚀:\nIf `true`, the MenuItem rendering will be deferred\nuntil the menu is open."
+    },
+    "isOpen": { "type": "boolean", "required": false },
+    "lazyBehavior": {
+      "type": "LazyMode",
+      "defaultValue": "unmount",
+      "required": false,
+      "description": "Performance 🚀:\nThe lazy behavior of menu's content when not visible.\nOnly works when `isLazy={true}`\n\n- \"unmount\": The menu's content is always unmounted when not open.\n- \"keepMounted\": The menu's content initially unmounted,\nbut stays mounted when menu is open."
+    },
+    "matchWidth": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
+    },
+    "modifiers": {
+      "type": "Partial<Modifier<string, any>>[]",
+      "required": false,
+      "description": "Array of popper.js modifiers. Check the docs to see\nthe list of possible modifiers you can pass."
+    },
+    "offset": {
+      "type": "[number, number]",
+      "required": false,
+      "description": "The main and cross-axis offset to displace popper element\nfrom its reference element."
+    },
+    "onClose": { "type": "() => void", "required": false },
+    "onOpen": { "type": "() => void", "required": false },
+    "placement": {
+      "type": "PlacementWithLogical",
+      "defaultValue": "bottom",
+      "required": false,
+      "description": "The placement of the popper relative to its reference."
+    },
+    "preventOverflow": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
+    },
+    "strategy": {
+      "type": "\"fixed\" | \"absolute\"",
+      "defaultValue": "absolute",
+      "required": false,
+      "description": "The CSS positioning strategy to use."
+    }
+  }
+}

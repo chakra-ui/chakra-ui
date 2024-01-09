@@ -1,0 +1,12 @@
+{
+  "Link": {},
+  "LinkBox": {},
+  "LinkOverlay": {
+    "isExternal": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the link will open in new tab"
+    }
+  }
+}

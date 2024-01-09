@@ -1,0 +1,453 @@
+{
+  "name": "@chakra-ui/utils",
+  "version": "2.0.15",
+  "description": "Common utilities and types for Chakra UI",
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/legacy/utils"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src"
+  },
+  "dependencies": {
+    "@types/lodash.mergewith": "4.6.8",
+    "lodash.mergewith": "4.6.2"
+  },
+  "devDependencies": {
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./add-dom-event": {
+      "source": "./src/add-dom-event.ts",
+      "import": {
+        "types": "./dist/types/add-dom-event.d.mts",
+        "default": "./dist/esm/add-dom-event.mjs"
+      },
+      "require": {
+        "types": "./dist/types/add-dom-event.d.ts",
+        "default": "./dist/cjs/add-dom-event.cjs"
+      }
+    },
+    "./add-pointer-event": {
+      "source": "./src/add-pointer-event.ts",
+      "import": {
+        "types": "./dist/types/add-pointer-event.d.mts",
+        "default": "./dist/esm/add-pointer-event.mjs"
+      },
+      "require": {
+        "types": "./dist/types/add-pointer-event.d.ts",
+        "default": "./dist/cjs/add-pointer-event.cjs"
+      }
+    },
+    "./assign-after": {
+      "source": "./src/assign-after.ts",
+      "import": {
+        "types": "./dist/types/assign-after.d.mts",
+        "default": "./dist/esm/assign-after.mjs"
+      },
+      "require": {
+        "types": "./dist/types/assign-after.d.ts",
+        "default": "./dist/cjs/assign-after.cjs"
+      }
+    },
+    "./attr": {
+      "source": "./src/attr.ts",
+      "import": {
+        "types": "./dist/types/attr.d.mts",
+        "default": "./dist/esm/attr.mjs"
+      },
+      "require": {
+        "types": "./dist/types/attr.d.ts",
+        "default": "./dist/cjs/attr.cjs"
+      }
+    },
+    "./breakpoint": {
+      "source": "./src/breakpoint.ts",
+      "import": {
+        "types": "./dist/types/breakpoint.d.mts",
+        "default": "./dist/esm/breakpoint.mjs"
+      },
+      "require": {
+        "types": "./dist/types/breakpoint.d.ts",
+        "default": "./dist/cjs/breakpoint.cjs"
+      }
+    },
+    "./call-all": {
+      "source": "./src/call-all.ts",
+      "import": {
+        "types": "./dist/types/call-all.d.mts",
+        "default": "./dist/esm/call-all.mjs"
+      },
+      "require": {
+        "types": "./dist/types/call-all.d.ts",
+        "default": "./dist/cjs/call-all.cjs"
+      }
+    },
+    "./children": {
+      "source": "./src/children.ts",
+      "import": {
+        "types": "./dist/types/children.d.mts",
+        "default": "./dist/esm/children.mjs"
+      },
+      "require": {
+        "types": "./dist/types/children.d.ts",
+        "default": "./dist/cjs/children.cjs"
+      }
+    },
+    "./compact": {
+      "source": "./src/compact.ts",
+      "import": {
+        "types": "./dist/types/compact.d.mts",
+        "default": "./dist/esm/compact.mjs"
+      },
+      "require": {
+        "types": "./dist/types/compact.d.ts",
+        "default": "./dist/cjs/compact.cjs"
+      }
+    },
+    "./contains": {
+      "source": "./src/contains.ts",
+      "import": {
+        "types": "./dist/types/contains.d.mts",
+        "default": "./dist/esm/contains.mjs"
+      },
+      "require": {
+        "types": "./dist/types/contains.d.ts",
+        "default": "./dist/cjs/contains.cjs"
+      }
+    },
+    "./context": {
+      "source": "./src/context.ts",
+      "import": {
+        "types": "./dist/types/context.d.mts",
+        "default": "./dist/esm/context.mjs"
+      },
+      "require": {
+        "types": "./dist/types/context.d.ts",
+        "default": "./dist/cjs/context.cjs"
+      }
+    },
+    "./cx": {
+      "source": "./src/cx.ts",
+      "import": {
+        "types": "./dist/types/cx.d.mts",
+        "default": "./dist/esm/cx.mjs"
+      },
+      "require": {
+        "types": "./dist/types/cx.d.ts",
+        "default": "./dist/cjs/cx.cjs"
+      }
+    },
+    "./event-point": {
+      "source": "./src/event-point.ts",
+      "import": {
+        "types": "./dist/types/event-point.d.mts",
+        "default": "./dist/esm/event-point.mjs"
+      },
+      "require": {
+        "types": "./dist/types/event-point.d.ts",
+        "default": "./dist/cjs/event-point.cjs"
+      }
+    },
+    "./event-types": {
+      "source": "./src/event-types.ts",
+      "import": {
+        "types": "./dist/types/event-types.d.mts",
+        "default": "./dist/esm/event-types.mjs"
+      },
+      "require": {
+        "types": "./dist/types/event-types.d.ts",
+        "default": "./dist/cjs/event-types.cjs"
+      }
+    },
+    "./focusable": {
+      "source": "./src/focusable.ts",
+      "import": {
+        "types": "./dist/types/focusable.d.mts",
+        "default": "./dist/esm/focusable.mjs"
+      },
+      "require": {
+        "types": "./dist/types/focusable.d.ts",
+        "default": "./dist/cjs/focusable.cjs"
+      }
+    },
+    "./get": {
+      "source": "./src/get.ts",
+      "import": {
+        "types": "./dist/types/get.d.mts",
+        "default": "./dist/esm/get.mjs"
+      },
+      "require": {
+        "types": "./dist/types/get.d.ts",
+        "default": "./dist/cjs/get.cjs"
+      }
+    },
+    "./interop-default": {
+      "source": "./src/interop-default.ts",
+      "import": {
+        "types": "./dist/types/interop-default.d.mts",
+        "default": "./dist/esm/interop-default.mjs"
+      },
+      "require": {
+        "types": "./dist/types/interop-default.d.ts",
+        "default": "./dist/cjs/interop-default.cjs"
+      }
+    },
+    "./is": {
+      "source": "./src/is.ts",
+      "import": {
+        "types": "./dist/types/is.d.mts",
+        "default": "./dist/esm/is.mjs"
+      },
+      "require": {
+        "types": "./dist/types/is.d.ts",
+        "default": "./dist/cjs/is.cjs"
+      }
+    },
+    "./is-element": {
+      "source": "./src/is-element.ts",
+      "import": {
+        "types": "./dist/types/is-element.d.mts",
+        "default": "./dist/esm/is-element.mjs"
+      },
+      "require": {
+        "types": "./dist/types/is-element.d.ts",
+        "default": "./dist/cjs/is-element.cjs"
+      }
+    },
+    "./is-event": {
+      "source": "./src/is-event.ts",
+      "import": {
+        "types": "./dist/types/is-event.d.mts",
+        "default": "./dist/esm/is-event.mjs"
+      },
+      "require": {
+        "types": "./dist/types/is-event.d.ts",
+        "default": "./dist/cjs/is-event.cjs"
+      }
+    },
+    "./lazy": {
+      "source": "./src/lazy.ts",
+      "import": {
+        "types": "./dist/types/lazy.d.mts",
+        "default": "./dist/esm/lazy.mjs"
+      },
+      "require": {
+        "types": "./dist/types/lazy.d.ts",
+        "default": "./dist/cjs/lazy.cjs"
+      }
+    },
+    "./map-object": {
+      "source": "./src/map-object.ts",
+      "import": {
+        "types": "./dist/types/map-object.d.mts",
+        "default": "./dist/esm/map-object.mjs"
+      },
+      "require": {
+        "types": "./dist/types/map-object.d.ts",
+        "default": "./dist/cjs/map-object.cjs"
+      }
+    },
+    "./merge": {
+      "source": "./src/merge.ts",
+      "import": {
+        "types": "./dist/types/merge.d.mts",
+        "default": "./dist/esm/merge.mjs"
+      },
+      "require": {
+        "types": "./dist/types/merge.d.ts",
+        "default": "./dist/cjs/merge.cjs"
+      }
+    },
+    "./number": {
+      "source": "./src/number.ts",
+      "import": {
+        "types": "./dist/types/number.d.mts",
+        "default": "./dist/esm/number.mjs"
+      },
+      "require": {
+        "types": "./dist/types/number.d.ts",
+        "default": "./dist/cjs/number.cjs"
+      }
+    },
+    "./omit": {
+      "source": "./src/omit.ts",
+      "import": {
+        "types": "./dist/types/omit.d.mts",
+        "default": "./dist/esm/omit.mjs"
+      },
+      "require": {
+        "types": "./dist/types/omit.d.ts",
+        "default": "./dist/cjs/omit.cjs"
+      }
+    },
+    "./owner": {
+      "source": "./src/owner.ts",
+      "import": {
+        "types": "./dist/types/owner.d.mts",
+        "default": "./dist/esm/owner.mjs"
+      },
+      "require": {
+        "types": "./dist/types/owner.d.ts",
+        "default": "./dist/cjs/owner.cjs"
+      }
+    },
+    "./pick": {
+      "source": "./src/pick.ts",
+      "import": {
+        "types": "./dist/types/pick.d.mts",
+        "default": "./dist/esm/pick.mjs"
+      },
+      "require": {
+        "types": "./dist/types/pick.d.ts",
+        "default": "./dist/cjs/pick.cjs"
+      }
+    },
+    "./prop-types": {
+      "source": "./src/prop-types.ts",
+      "import": {
+        "types": "./dist/types/prop-types.d.mts",
+        "default": "./dist/esm/prop-types.mjs"
+      },
+      "require": {
+        "types": "./dist/types/prop-types.d.ts",
+        "default": "./dist/cjs/prop-types.cjs"
+      }
+    },
+    "./responsive": {
+      "source": "./src/responsive.ts",
+      "import": {
+        "types": "./dist/types/responsive.d.mts",
+        "default": "./dist/esm/responsive.mjs"
+      },
+      "require": {
+        "types": "./dist/types/responsive.d.ts",
+        "default": "./dist/cjs/responsive.cjs"
+      }
+    },
+    "./run-if-fn": {
+      "source": "./src/run-if-fn.ts",
+      "import": {
+        "types": "./dist/types/run-if-fn.d.mts",
+        "default": "./dist/esm/run-if-fn.mjs"
+      },
+      "require": {
+        "types": "./dist/types/run-if-fn.d.ts",
+        "default": "./dist/cjs/run-if-fn.cjs"
+      }
+    },
+    "./scroll-parent": {
+      "source": "./src/scroll-parent.ts",
+      "import": {
+        "types": "./dist/types/scroll-parent.d.mts",
+        "default": "./dist/esm/scroll-parent.mjs"
+      },
+      "require": {
+        "types": "./dist/types/scroll-parent.d.ts",
+        "default": "./dist/cjs/scroll-parent.cjs"
+      }
+    },
+    "./split": {
+      "source": "./src/split.ts",
+      "import": {
+        "types": "./dist/types/split.d.mts",
+        "default": "./dist/esm/split.mjs"
+      },
+      "require": {
+        "types": "./dist/types/split.d.ts",
+        "default": "./dist/cjs/split.cjs"
+      }
+    },
+    "./split-props": {
+      "source": "./src/split-props.ts",
+      "import": {
+        "types": "./dist/types/split-props.d.mts",
+        "default": "./dist/esm/split-props.mjs"
+      },
+      "require": {
+        "types": "./dist/types/split-props.d.ts",
+        "default": "./dist/cjs/split-props.cjs"
+      }
+    },
+    "./tabbable": {
+      "source": "./src/tabbable.ts",
+      "import": {
+        "types": "./dist/types/tabbable.d.mts",
+        "default": "./dist/esm/tabbable.mjs"
+      },
+      "require": {
+        "types": "./dist/types/tabbable.d.ts",
+        "default": "./dist/cjs/tabbable.cjs"
+      }
+    },
+    "./types": {
+      "source": "./src/types.ts",
+      "import": {
+        "types": "./dist/types/types.d.mts",
+        "default": "./dist/esm/types.mjs"
+      },
+      "require": {
+        "types": "./dist/types/types.d.ts",
+        "default": "./dist/cjs/types.cjs"
+      }
+    },
+    "./walk-object": {
+      "source": "./src/walk-object.ts",
+      "import": {
+        "types": "./dist/types/walk-object.d.mts",
+        "default": "./dist/esm/walk-object.mjs"
+      },
+      "require": {
+        "types": "./dist/types/walk-object.d.ts",
+        "default": "./dist/cjs/walk-object.cjs"
+      }
+    },
+    "./warn": {
+      "source": "./src/warn.ts",
+      "import": {
+        "types": "./dist/types/warn.d.mts",
+        "default": "./dist/esm/warn.mjs"
+      },
+      "require": {
+        "types": "./dist/types/warn.d.ts",
+        "default": "./dist/cjs/warn.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  }
+}

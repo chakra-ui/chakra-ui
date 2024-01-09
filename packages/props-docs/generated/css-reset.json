@@ -1,0 +1,9 @@
+{
+  "CSSReset": {
+    "scope": {
+      "type": "string",
+      "required": false,
+      "description": "The selector to scope the css reset styles to."
+    }
+  }
+}

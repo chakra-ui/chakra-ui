@@ -1,0 +1,41 @@
+{
+  "WrapItem": {},
+  "Wrap": {
+    "align": {
+      "type": "ResponsiveValue<AlignItems>",
+      "required": false,
+      "description": "The `align-items` value (for main axis alignment)"
+    },
+    "direction": {
+      "type": "ResponsiveValue<FlexDirection>",
+      "required": false,
+      "description": "The `flex-direction` value"
+    },
+    "justify": {
+      "type": "ResponsiveValue<JustifyContent>",
+      "required": false,
+      "description": "The `justify-content` value (for cross-axis alignment)"
+    },
+    "shouldWrapChildren": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the children will be wrapped in a `WrapItem`"
+    },
+    "spacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The space between each child (even if it wraps)"
+    },
+    "spacingX": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The horizontal space between the each child (even if it wraps). Defaults to `spacing` if not defined."
+    },
+    "spacingY": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The vertical space between the each child (even if it wraps). Defaults to `spacing` if not defined."
+    }
+  }
+}

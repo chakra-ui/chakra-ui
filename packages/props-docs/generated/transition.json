@@ -1,0 +1,4057 @@
+{
+  "Collapse": {
+    "about": { "type": "string", "required": false },
+    "accessKey": { "type": "string", "required": false },
+    "animateOpacity": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the opacity of the content will be animated"
+    },
+    "aria-activedescendant": { "type": "string", "required": false },
+    "aria-atomic": { "type": "Booleanish", "required": false },
+    "aria-autocomplete": {
+      "type": "\"list\" | \"none\" | \"inline\" | \"both\"",
+      "required": false
+    },
+    "aria-braillelabel": { "type": "string", "required": false },
+    "aria-brailleroledescription": { "type": "string", "required": false },
+    "aria-busy": { "type": "Booleanish", "required": false },
+    "aria-checked": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-colcount": { "type": "number", "required": false },
+    "aria-colindex": { "type": "number", "required": false },
+    "aria-colindextext": { "type": "string", "required": false },
+    "aria-colspan": { "type": "number", "required": false },
+    "aria-controls": { "type": "string", "required": false },
+    "aria-current": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"time\"\n  | \"true\"\n  | \"false\"\n  | \"page\"\n  | \"step\"\n  | \"location\"\n  | \"date\"",
+      "required": false
+    },
+    "aria-describedby": { "type": "string", "required": false },
+    "aria-description": { "type": "string", "required": false },
+    "aria-details": { "type": "string", "required": false },
+    "aria-disabled": { "type": "Booleanish", "required": false },
+    "aria-dropeffect": {
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
+      "required": false
+    },
+    "aria-errormessage": { "type": "string", "required": false },
+    "aria-expanded": { "type": "Booleanish", "required": false },
+    "aria-flowto": { "type": "string", "required": false },
+    "aria-grabbed": { "type": "Booleanish", "required": false },
+    "aria-haspopup": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"dialog\"\n  | \"menu\"\n  | \"true\"\n  | \"false\"\n  | \"grid\"\n  | \"listbox\"\n  | \"tree\"",
+      "required": false
+    },
+    "aria-hidden": { "type": "Booleanish", "required": false },
+    "aria-invalid": {
+      "type": "boolean | \"true\" | \"false\" | \"grammar\" | \"spelling\"",
+      "required": false
+    },
+    "aria-keyshortcuts": { "type": "string", "required": false },
+    "aria-label": { "type": "string", "required": false },
+    "aria-labelledby": { "type": "string", "required": false },
+    "aria-level": { "type": "number", "required": false },
+    "aria-live": {
+      "type": "\"off\" | \"assertive\" | \"polite\"",
+      "required": false
+    },
+    "aria-modal": { "type": "Booleanish", "required": false },
+    "aria-multiline": { "type": "Booleanish", "required": false },
+    "aria-multiselectable": { "type": "Booleanish", "required": false },
+    "aria-orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false
+    },
+    "aria-owns": { "type": "string", "required": false },
+    "aria-placeholder": { "type": "string", "required": false },
+    "aria-posinset": { "type": "number", "required": false },
+    "aria-pressed": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-readonly": { "type": "Booleanish", "required": false },
+    "aria-relevant": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "required": false
+    },
+    "aria-required": { "type": "Booleanish", "required": false },
+    "aria-roledescription": { "type": "string", "required": false },
+    "aria-rowcount": { "type": "number", "required": false },
+    "aria-rowindex": { "type": "number", "required": false },
+    "aria-rowindextext": { "type": "string", "required": false },
+    "aria-rowspan": { "type": "number", "required": false },
+    "aria-selected": { "type": "Booleanish", "required": false },
+    "aria-setsize": { "type": "number", "required": false },
+    "aria-sort": {
+      "type": "\"none\" | \"ascending\" | \"descending\" | \"other\"",
+      "required": false
+    },
+    "aria-valuemax": { "type": "number", "required": false },
+    "aria-valuemin": { "type": "number", "required": false },
+    "aria-valuenow": { "type": "number", "required": false },
+    "aria-valuetext": { "type": "string", "required": false },
+    "autoCapitalize": { "type": "string", "required": false },
+    "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
+    "autoSave": { "type": "string", "required": false },
+    "className": { "type": "string", "required": false },
+    "color": { "type": "string", "required": false },
+    "content": { "type": "string", "required": false },
+    "contentEditable": {
+      "type": "\"inherit\" | Booleanish | \"plaintext-only\"",
+      "required": false
+    },
+    "contextMenu": { "type": "string", "required": false },
+    "dangerouslySetInnerHTML": {
+      "type": "{ __html: string | TrustedHTML }",
+      "required": false
+    },
+    "datatype": { "type": "string", "required": false },
+    "defaultChecked": { "type": "boolean", "required": false },
+    "defaultValue": {
+      "type": "string | number | readonly string[]",
+      "required": false
+    },
+    "delay": {
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
+      "required": false,
+      "description": "Custom `delay` definition for `enter` and `exit`"
+    },
+    "dir": { "type": "string", "required": false },
+    "draggable": { "type": "Booleanish", "required": false },
+    "endingHeight": {
+      "type": "string | number",
+      "defaultValue": "auto",
+      "required": false,
+      "description": "The height you want the content in its expanded state."
+    },
+    "hidden": { "type": "boolean", "required": false },
+    "id": { "type": "string", "required": false },
+    "in": {
+      "type": "boolean",
+      "required": false,
+      "description": "Show the component; triggers when enter or exit states"
+    },
+    "inlist": { "type": "any", "required": false },
+    "inputMode": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"none\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "required": false
+    },
+    "is": { "type": "string", "required": false },
+    "itemID": { "type": "string", "required": false },
+    "itemProp": { "type": "string", "required": false },
+    "itemRef": { "type": "string", "required": false },
+    "itemScope": { "type": "boolean", "required": false },
+    "itemType": { "type": "string", "required": false },
+    "lang": { "type": "string", "required": false },
+    "nonce": { "type": "string", "required": false },
+    "onAbort": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAbortCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEnd": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEndCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIteration": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIterationCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationStartCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlur": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlurCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThrough": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThroughCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChange": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChangeCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEnd": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEndCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStart": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStartCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdate": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdateCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenu": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenuCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopy": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopyCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCut": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCutCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEndCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnter": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnterCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExit": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExitCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeave": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeaveCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOver": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOverCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragStartCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDrop": { "type": "DragEventHandler<HTMLDivElement>", "required": false },
+    "onDropCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptied": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptiedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncrypted": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncryptedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEnded": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEndedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onError": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onErrorCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocus": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocusCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalid": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalidCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDownCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPress": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPressCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUp": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUpCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedData": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedDataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadata": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStart": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStartCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDown": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDownCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseEnter": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseLeave": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMove": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMoveCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOut": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOutCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOver": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOverCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUp": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUpCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPaste": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPasteCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPause": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPauseCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlaying": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancel": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancelCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDown": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDownCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnter": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnterCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeave": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeaveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMove": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMoveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOut": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOutCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOver": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOverCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUp": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUpCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgress": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgressCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onReset": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResetCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResize": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResizeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onScroll": { "type": "UIEventHandler<HTMLDivElement>", "required": false },
+    "onScrollCapture": {
+      "type": "UIEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeked": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeking": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelect": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelectCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalled": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalledCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmit": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmitCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspend": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspendCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdate": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdateCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancel": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancelCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEnd": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEndCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMove": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMoveCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStart": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStartCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEnd": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEndCapture": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaiting": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaitingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheel": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheelCapture": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "placeholder": { "type": "string", "required": false },
+    "prefix": { "type": "string", "required": false },
+    "property": { "type": "string", "required": false },
+    "radioGroup": { "type": "string", "required": false },
+    "rel": { "type": "string", "required": false },
+    "resource": { "type": "string", "required": false },
+    "results": { "type": "number", "required": false },
+    "rev": { "type": "string", "required": false },
+    "role": { "type": "AriaRole", "required": false },
+    "security": { "type": "string", "required": false },
+    "slot": { "type": "string", "required": false },
+    "spellCheck": { "type": "Booleanish", "required": false },
+    "startingHeight": {
+      "type": "string | number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The height you want the content in its collapsed state."
+    },
+    "suppressContentEditableWarning": { "type": "boolean", "required": false },
+    "suppressHydrationWarning": { "type": "boolean", "required": false },
+    "tabIndex": { "type": "number", "required": false },
+    "title": { "type": "string", "required": false },
+    "transition": {
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
+      "required": false,
+      "description": "Custom `transition` definition for `enter` and `exit`"
+    },
+    "transitionEnd": {
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
+      "required": false,
+      "description": "Custom `transitionEnd` definition for `enter` and `exit`"
+    },
+    "translate": { "type": "\"yes\" | \"no\"", "required": false },
+    "typeof": { "type": "string", "required": false },
+    "unmountOnExit": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the element will unmount when `in={false}` and animation is done"
+    },
+    "unselectable": { "type": "\"on\" | \"off\"", "required": false },
+    "vocab": { "type": "string", "required": false }
+  },
+  "Fade": {
+    "about": { "type": "string", "required": false },
+    "accessKey": { "type": "string", "required": false },
+    "aria-activedescendant": { "type": "string", "required": false },
+    "aria-atomic": { "type": "Booleanish", "required": false },
+    "aria-autocomplete": {
+      "type": "\"list\" | \"none\" | \"inline\" | \"both\"",
+      "required": false
+    },
+    "aria-braillelabel": { "type": "string", "required": false },
+    "aria-brailleroledescription": { "type": "string", "required": false },
+    "aria-busy": { "type": "Booleanish", "required": false },
+    "aria-checked": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-colcount": { "type": "number", "required": false },
+    "aria-colindex": { "type": "number", "required": false },
+    "aria-colindextext": { "type": "string", "required": false },
+    "aria-colspan": { "type": "number", "required": false },
+    "aria-controls": { "type": "string", "required": false },
+    "aria-current": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"time\"\n  | \"true\"\n  | \"false\"\n  | \"page\"\n  | \"step\"\n  | \"location\"\n  | \"date\"",
+      "required": false
+    },
+    "aria-describedby": { "type": "string", "required": false },
+    "aria-description": { "type": "string", "required": false },
+    "aria-details": { "type": "string", "required": false },
+    "aria-disabled": { "type": "Booleanish", "required": false },
+    "aria-dropeffect": {
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
+      "required": false
+    },
+    "aria-errormessage": { "type": "string", "required": false },
+    "aria-expanded": { "type": "Booleanish", "required": false },
+    "aria-flowto": { "type": "string", "required": false },
+    "aria-grabbed": { "type": "Booleanish", "required": false },
+    "aria-haspopup": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"dialog\"\n  | \"menu\"\n  | \"true\"\n  | \"false\"\n  | \"grid\"\n  | \"listbox\"\n  | \"tree\"",
+      "required": false
+    },
+    "aria-hidden": { "type": "Booleanish", "required": false },
+    "aria-invalid": {
+      "type": "boolean | \"true\" | \"false\" | \"grammar\" | \"spelling\"",
+      "required": false
+    },
+    "aria-keyshortcuts": { "type": "string", "required": false },
+    "aria-label": { "type": "string", "required": false },
+    "aria-labelledby": { "type": "string", "required": false },
+    "aria-level": { "type": "number", "required": false },
+    "aria-live": {
+      "type": "\"off\" | \"assertive\" | \"polite\"",
+      "required": false
+    },
+    "aria-modal": { "type": "Booleanish", "required": false },
+    "aria-multiline": { "type": "Booleanish", "required": false },
+    "aria-multiselectable": { "type": "Booleanish", "required": false },
+    "aria-orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false
+    },
+    "aria-owns": { "type": "string", "required": false },
+    "aria-placeholder": { "type": "string", "required": false },
+    "aria-posinset": { "type": "number", "required": false },
+    "aria-pressed": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-readonly": { "type": "Booleanish", "required": false },
+    "aria-relevant": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "required": false
+    },
+    "aria-required": { "type": "Booleanish", "required": false },
+    "aria-roledescription": { "type": "string", "required": false },
+    "aria-rowcount": { "type": "number", "required": false },
+    "aria-rowindex": { "type": "number", "required": false },
+    "aria-rowindextext": { "type": "string", "required": false },
+    "aria-rowspan": { "type": "number", "required": false },
+    "aria-selected": { "type": "Booleanish", "required": false },
+    "aria-setsize": { "type": "number", "required": false },
+    "aria-sort": {
+      "type": "\"none\" | \"ascending\" | \"descending\" | \"other\"",
+      "required": false
+    },
+    "aria-valuemax": { "type": "number", "required": false },
+    "aria-valuemin": { "type": "number", "required": false },
+    "aria-valuenow": { "type": "number", "required": false },
+    "aria-valuetext": { "type": "string", "required": false },
+    "autoCapitalize": { "type": "string", "required": false },
+    "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
+    "autoSave": { "type": "string", "required": false },
+    "className": { "type": "string", "required": false },
+    "color": { "type": "string", "required": false },
+    "content": { "type": "string", "required": false },
+    "contentEditable": {
+      "type": "\"inherit\" | Booleanish | \"plaintext-only\"",
+      "required": false
+    },
+    "contextMenu": { "type": "string", "required": false },
+    "dangerouslySetInnerHTML": {
+      "type": "{ __html: string | TrustedHTML }",
+      "required": false
+    },
+    "datatype": { "type": "string", "required": false },
+    "defaultChecked": { "type": "boolean", "required": false },
+    "defaultValue": {
+      "type": "string | number | readonly string[]",
+      "required": false
+    },
+    "delay": {
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
+      "required": false,
+      "description": "Custom `delay` definition for `enter` and `exit`"
+    },
+    "dir": { "type": "string", "required": false },
+    "draggable": { "type": "Booleanish", "required": false },
+    "hidden": { "type": "boolean", "required": false },
+    "id": { "type": "string", "required": false },
+    "in": {
+      "type": "boolean",
+      "required": false,
+      "description": "Show the component; triggers when enter or exit states"
+    },
+    "inlist": { "type": "any", "required": false },
+    "inputMode": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"none\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "required": false
+    },
+    "is": { "type": "string", "required": false },
+    "itemID": { "type": "string", "required": false },
+    "itemProp": { "type": "string", "required": false },
+    "itemRef": { "type": "string", "required": false },
+    "itemScope": { "type": "boolean", "required": false },
+    "itemType": { "type": "string", "required": false },
+    "lang": { "type": "string", "required": false },
+    "nonce": { "type": "string", "required": false },
+    "onAbort": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAbortCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEnd": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEndCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIteration": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIterationCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationStartCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlur": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlurCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThrough": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThroughCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChange": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChangeCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEnd": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEndCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStart": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStartCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdate": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdateCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenu": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenuCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopy": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopyCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCut": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCutCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEndCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnter": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnterCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExit": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExitCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeave": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeaveCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOver": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOverCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragStartCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDrop": { "type": "DragEventHandler<HTMLDivElement>", "required": false },
+    "onDropCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptied": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptiedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncrypted": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncryptedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEnded": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEndedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onError": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onErrorCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocus": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocusCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalid": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalidCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDownCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPress": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPressCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUp": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUpCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedData": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedDataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadata": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStart": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStartCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDown": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDownCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseEnter": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseLeave": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMove": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMoveCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOut": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOutCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOver": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOverCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUp": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUpCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPaste": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPasteCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPause": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPauseCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlaying": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancel": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancelCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDown": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDownCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnter": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnterCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeave": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeaveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMove": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMoveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOut": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOutCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOver": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOverCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUp": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUpCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgress": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgressCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onReset": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResetCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResize": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResizeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onScroll": { "type": "UIEventHandler<HTMLDivElement>", "required": false },
+    "onScrollCapture": {
+      "type": "UIEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeked": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeking": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelect": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelectCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalled": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalledCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmit": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmitCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspend": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspendCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdate": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdateCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancel": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancelCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEnd": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEndCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMove": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMoveCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStart": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStartCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEnd": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEndCapture": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaiting": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaitingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheel": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheelCapture": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "placeholder": { "type": "string", "required": false },
+    "prefix": { "type": "string", "required": false },
+    "property": { "type": "string", "required": false },
+    "radioGroup": { "type": "string", "required": false },
+    "rel": { "type": "string", "required": false },
+    "resource": { "type": "string", "required": false },
+    "results": { "type": "number", "required": false },
+    "rev": { "type": "string", "required": false },
+    "role": { "type": "AriaRole", "required": false },
+    "security": { "type": "string", "required": false },
+    "slot": { "type": "string", "required": false },
+    "spellCheck": { "type": "Booleanish", "required": false },
+    "suppressContentEditableWarning": { "type": "boolean", "required": false },
+    "suppressHydrationWarning": { "type": "boolean", "required": false },
+    "tabIndex": { "type": "number", "required": false },
+    "title": { "type": "string", "required": false },
+    "transition": {
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
+      "required": false,
+      "description": "Custom `transition` definition for `enter` and `exit`"
+    },
+    "transitionEnd": {
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
+      "required": false,
+      "description": "Custom `transitionEnd` definition for `enter` and `exit`"
+    },
+    "translate": { "type": "\"yes\" | \"no\"", "required": false },
+    "typeof": { "type": "string", "required": false },
+    "unmountOnExit": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the element will unmount when `in={false}` and animation is done"
+    },
+    "unselectable": { "type": "\"on\" | \"off\"", "required": false },
+    "vocab": { "type": "string", "required": false }
+  },
+  "ScaleFade": {
+    "about": { "type": "string", "required": false },
+    "accessKey": { "type": "string", "required": false },
+    "aria-activedescendant": { "type": "string", "required": false },
+    "aria-atomic": { "type": "Booleanish", "required": false },
+    "aria-autocomplete": {
+      "type": "\"list\" | \"none\" | \"inline\" | \"both\"",
+      "required": false
+    },
+    "aria-braillelabel": { "type": "string", "required": false },
+    "aria-brailleroledescription": { "type": "string", "required": false },
+    "aria-busy": { "type": "Booleanish", "required": false },
+    "aria-checked": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-colcount": { "type": "number", "required": false },
+    "aria-colindex": { "type": "number", "required": false },
+    "aria-colindextext": { "type": "string", "required": false },
+    "aria-colspan": { "type": "number", "required": false },
+    "aria-controls": { "type": "string", "required": false },
+    "aria-current": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"time\"\n  | \"true\"\n  | \"false\"\n  | \"page\"\n  | \"step\"\n  | \"location\"\n  | \"date\"",
+      "required": false
+    },
+    "aria-describedby": { "type": "string", "required": false },
+    "aria-description": { "type": "string", "required": false },
+    "aria-details": { "type": "string", "required": false },
+    "aria-disabled": { "type": "Booleanish", "required": false },
+    "aria-dropeffect": {
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
+      "required": false
+    },
+    "aria-errormessage": { "type": "string", "required": false },
+    "aria-expanded": { "type": "Booleanish", "required": false },
+    "aria-flowto": { "type": "string", "required": false },
+    "aria-grabbed": { "type": "Booleanish", "required": false },
+    "aria-haspopup": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"dialog\"\n  | \"menu\"\n  | \"true\"\n  | \"false\"\n  | \"grid\"\n  | \"listbox\"\n  | \"tree\"",
+      "required": false
+    },
+    "aria-hidden": { "type": "Booleanish", "required": false },
+    "aria-invalid": {
+      "type": "boolean | \"true\" | \"false\" | \"grammar\" | \"spelling\"",
+      "required": false
+    },
+    "aria-keyshortcuts": { "type": "string", "required": false },
+    "aria-label": { "type": "string", "required": false },
+    "aria-labelledby": { "type": "string", "required": false },
+    "aria-level": { "type": "number", "required": false },
+    "aria-live": {
+      "type": "\"off\" | \"assertive\" | \"polite\"",
+      "required": false
+    },
+    "aria-modal": { "type": "Booleanish", "required": false },
+    "aria-multiline": { "type": "Booleanish", "required": false },
+    "aria-multiselectable": { "type": "Booleanish", "required": false },
+    "aria-orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false
+    },
+    "aria-owns": { "type": "string", "required": false },
+    "aria-placeholder": { "type": "string", "required": false },
+    "aria-posinset": { "type": "number", "required": false },
+    "aria-pressed": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-readonly": { "type": "Booleanish", "required": false },
+    "aria-relevant": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "required": false
+    },
+    "aria-required": { "type": "Booleanish", "required": false },
+    "aria-roledescription": { "type": "string", "required": false },
+    "aria-rowcount": { "type": "number", "required": false },
+    "aria-rowindex": { "type": "number", "required": false },
+    "aria-rowindextext": { "type": "string", "required": false },
+    "aria-rowspan": { "type": "number", "required": false },
+    "aria-selected": { "type": "Booleanish", "required": false },
+    "aria-setsize": { "type": "number", "required": false },
+    "aria-sort": {
+      "type": "\"none\" | \"ascending\" | \"descending\" | \"other\"",
+      "required": false
+    },
+    "aria-valuemax": { "type": "number", "required": false },
+    "aria-valuemin": { "type": "number", "required": false },
+    "aria-valuenow": { "type": "number", "required": false },
+    "aria-valuetext": { "type": "string", "required": false },
+    "autoCapitalize": { "type": "string", "required": false },
+    "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
+    "autoSave": { "type": "string", "required": false },
+    "className": { "type": "string", "required": false },
+    "color": { "type": "string", "required": false },
+    "content": { "type": "string", "required": false },
+    "contentEditable": {
+      "type": "\"inherit\" | Booleanish | \"plaintext-only\"",
+      "required": false
+    },
+    "contextMenu": { "type": "string", "required": false },
+    "dangerouslySetInnerHTML": {
+      "type": "{ __html: string | TrustedHTML }",
+      "required": false
+    },
+    "datatype": { "type": "string", "required": false },
+    "defaultChecked": { "type": "boolean", "required": false },
+    "defaultValue": {
+      "type": "string | number | readonly string[]",
+      "required": false
+    },
+    "delay": {
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
+      "required": false,
+      "description": "Custom `delay` definition for `enter` and `exit`"
+    },
+    "dir": { "type": "string", "required": false },
+    "draggable": { "type": "Booleanish", "required": false },
+    "hidden": { "type": "boolean", "required": false },
+    "id": { "type": "string", "required": false },
+    "in": {
+      "type": "boolean",
+      "required": false,
+      "description": "Show the component; triggers when enter or exit states"
+    },
+    "initialScale": {
+      "type": "number",
+      "defaultValue": "0.95",
+      "required": false,
+      "description": "The initial scale of the element"
+    },
+    "inlist": { "type": "any", "required": false },
+    "inputMode": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"none\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "required": false
+    },
+    "is": { "type": "string", "required": false },
+    "itemID": { "type": "string", "required": false },
+    "itemProp": { "type": "string", "required": false },
+    "itemRef": { "type": "string", "required": false },
+    "itemScope": { "type": "boolean", "required": false },
+    "itemType": { "type": "string", "required": false },
+    "lang": { "type": "string", "required": false },
+    "nonce": { "type": "string", "required": false },
+    "onAbort": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAbortCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEnd": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEndCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIteration": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIterationCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationStartCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlur": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlurCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThrough": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThroughCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChange": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChangeCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEnd": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEndCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStart": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStartCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdate": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdateCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenu": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenuCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopy": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopyCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCut": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCutCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEndCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnter": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnterCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExit": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExitCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeave": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeaveCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOver": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOverCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragStartCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDrop": { "type": "DragEventHandler<HTMLDivElement>", "required": false },
+    "onDropCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptied": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptiedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncrypted": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncryptedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEnded": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEndedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onError": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onErrorCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocus": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocusCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalid": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalidCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDownCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPress": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPressCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUp": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUpCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedData": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedDataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadata": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStart": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStartCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDown": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDownCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseEnter": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseLeave": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMove": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMoveCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOut": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOutCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOver": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOverCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUp": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUpCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPaste": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPasteCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPause": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPauseCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlaying": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancel": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancelCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDown": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDownCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnter": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnterCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeave": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeaveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMove": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMoveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOut": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOutCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOver": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOverCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUp": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUpCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgress": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgressCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onReset": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResetCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResize": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResizeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onScroll": { "type": "UIEventHandler<HTMLDivElement>", "required": false },
+    "onScrollCapture": {
+      "type": "UIEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeked": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeking": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelect": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelectCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalled": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalledCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmit": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmitCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspend": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspendCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdate": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdateCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancel": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancelCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEnd": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEndCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMove": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMoveCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStart": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStartCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEnd": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEndCapture": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaiting": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaitingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheel": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheelCapture": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "placeholder": { "type": "string", "required": false },
+    "prefix": { "type": "string", "required": false },
+    "property": { "type": "string", "required": false },
+    "radioGroup": { "type": "string", "required": false },
+    "rel": { "type": "string", "required": false },
+    "resource": { "type": "string", "required": false },
+    "results": { "type": "number", "required": false },
+    "rev": { "type": "string", "required": false },
+    "reverse": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the element will transition back to exit state"
+    },
+    "role": { "type": "AriaRole", "required": false },
+    "security": { "type": "string", "required": false },
+    "slot": { "type": "string", "required": false },
+    "spellCheck": { "type": "Booleanish", "required": false },
+    "suppressContentEditableWarning": { "type": "boolean", "required": false },
+    "suppressHydrationWarning": { "type": "boolean", "required": false },
+    "tabIndex": { "type": "number", "required": false },
+    "title": { "type": "string", "required": false },
+    "transition": {
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
+      "required": false,
+      "description": "Custom `transition` definition for `enter` and `exit`"
+    },
+    "transitionEnd": {
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
+      "required": false,
+      "description": "Custom `transitionEnd` definition for `enter` and `exit`"
+    },
+    "translate": { "type": "\"yes\" | \"no\"", "required": false },
+    "typeof": { "type": "string", "required": false },
+    "unmountOnExit": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the element will unmount when `in={false}` and animation is done"
+    },
+    "unselectable": { "type": "\"on\" | \"off\"", "required": false },
+    "vocab": { "type": "string", "required": false }
+  },
+  "Slide": {
+    "about": { "type": "string", "required": false },
+    "accessKey": { "type": "string", "required": false },
+    "aria-activedescendant": { "type": "string", "required": false },
+    "aria-atomic": { "type": "Booleanish", "required": false },
+    "aria-autocomplete": {
+      "type": "\"list\" | \"none\" | \"inline\" | \"both\"",
+      "required": false
+    },
+    "aria-braillelabel": { "type": "string", "required": false },
+    "aria-brailleroledescription": { "type": "string", "required": false },
+    "aria-busy": { "type": "Booleanish", "required": false },
+    "aria-checked": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-colcount": { "type": "number", "required": false },
+    "aria-colindex": { "type": "number", "required": false },
+    "aria-colindextext": { "type": "string", "required": false },
+    "aria-colspan": { "type": "number", "required": false },
+    "aria-controls": { "type": "string", "required": false },
+    "aria-current": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"time\"\n  | \"true\"\n  | \"false\"\n  | \"page\"\n  | \"step\"\n  | \"location\"\n  | \"date\"",
+      "required": false
+    },
+    "aria-describedby": { "type": "string", "required": false },
+    "aria-description": { "type": "string", "required": false },
+    "aria-details": { "type": "string", "required": false },
+    "aria-disabled": { "type": "Booleanish", "required": false },
+    "aria-dropeffect": {
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
+      "required": false
+    },
+    "aria-errormessage": { "type": "string", "required": false },
+    "aria-expanded": { "type": "Booleanish", "required": false },
+    "aria-flowto": { "type": "string", "required": false },
+    "aria-grabbed": { "type": "Booleanish", "required": false },
+    "aria-haspopup": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"dialog\"\n  | \"menu\"\n  | \"true\"\n  | \"false\"\n  | \"grid\"\n  | \"listbox\"\n  | \"tree\"",
+      "required": false
+    },
+    "aria-hidden": { "type": "Booleanish", "required": false },
+    "aria-invalid": {
+      "type": "boolean | \"true\" | \"false\" | \"grammar\" | \"spelling\"",
+      "required": false
+    },
+    "aria-keyshortcuts": { "type": "string", "required": false },
+    "aria-label": { "type": "string", "required": false },
+    "aria-labelledby": { "type": "string", "required": false },
+    "aria-level": { "type": "number", "required": false },
+    "aria-live": {
+      "type": "\"off\" | \"assertive\" | \"polite\"",
+      "required": false
+    },
+    "aria-modal": { "type": "Booleanish", "required": false },
+    "aria-multiline": { "type": "Booleanish", "required": false },
+    "aria-multiselectable": { "type": "Booleanish", "required": false },
+    "aria-orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false
+    },
+    "aria-owns": { "type": "string", "required": false },
+    "aria-placeholder": { "type": "string", "required": false },
+    "aria-posinset": { "type": "number", "required": false },
+    "aria-pressed": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-readonly": { "type": "Booleanish", "required": false },
+    "aria-relevant": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "required": false
+    },
+    "aria-required": { "type": "Booleanish", "required": false },
+    "aria-roledescription": { "type": "string", "required": false },
+    "aria-rowcount": { "type": "number", "required": false },
+    "aria-rowindex": { "type": "number", "required": false },
+    "aria-rowindextext": { "type": "string", "required": false },
+    "aria-rowspan": { "type": "number", "required": false },
+    "aria-selected": { "type": "Booleanish", "required": false },
+    "aria-setsize": { "type": "number", "required": false },
+    "aria-sort": {
+      "type": "\"none\" | \"ascending\" | \"descending\" | \"other\"",
+      "required": false
+    },
+    "aria-valuemax": { "type": "number", "required": false },
+    "aria-valuemin": { "type": "number", "required": false },
+    "aria-valuenow": { "type": "number", "required": false },
+    "aria-valuetext": { "type": "string", "required": false },
+    "autoCapitalize": { "type": "string", "required": false },
+    "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
+    "autoSave": { "type": "string", "required": false },
+    "className": { "type": "string", "required": false },
+    "color": { "type": "string", "required": false },
+    "content": { "type": "string", "required": false },
+    "contentEditable": {
+      "type": "\"inherit\" | Booleanish | \"plaintext-only\"",
+      "required": false
+    },
+    "contextMenu": { "type": "string", "required": false },
+    "dangerouslySetInnerHTML": {
+      "type": "{ __html: string | TrustedHTML }",
+      "required": false
+    },
+    "datatype": { "type": "string", "required": false },
+    "defaultChecked": { "type": "boolean", "required": false },
+    "defaultValue": {
+      "type": "string | number | readonly string[]",
+      "required": false
+    },
+    "delay": {
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
+      "required": false,
+      "description": "Custom `delay` definition for `enter` and `exit`"
+    },
+    "dir": { "type": "string", "required": false },
+    "direction": {
+      "type": "SlideDirection",
+      "defaultValue": "right",
+      "required": false,
+      "description": "The direction to slide from"
+    },
+    "draggable": { "type": "Booleanish", "required": false },
+    "hidden": { "type": "boolean", "required": false },
+    "id": { "type": "string", "required": false },
+    "in": {
+      "type": "boolean",
+      "required": false,
+      "description": "Show the component; triggers when enter or exit states"
+    },
+    "inlist": { "type": "any", "required": false },
+    "inputMode": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"none\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "required": false
+    },
+    "is": { "type": "string", "required": false },
+    "itemID": { "type": "string", "required": false },
+    "itemProp": { "type": "string", "required": false },
+    "itemRef": { "type": "string", "required": false },
+    "itemScope": { "type": "boolean", "required": false },
+    "itemType": { "type": "string", "required": false },
+    "lang": { "type": "string", "required": false },
+    "motionProps": { "type": "HTMLMotionProps<\"div\">", "required": false },
+    "nonce": { "type": "string", "required": false },
+    "onAbort": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAbortCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEnd": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEndCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIteration": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIterationCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationStartCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlur": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlurCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThrough": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThroughCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChange": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChangeCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEnd": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEndCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStart": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStartCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdate": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdateCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenu": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenuCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopy": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopyCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCut": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCutCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEndCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnter": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnterCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExit": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExitCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeave": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeaveCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOver": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOverCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragStartCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDrop": { "type": "DragEventHandler<HTMLDivElement>", "required": false },
+    "onDropCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptied": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptiedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncrypted": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncryptedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEnded": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEndedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onError": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onErrorCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocus": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocusCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalid": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalidCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDownCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPress": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPressCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUp": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUpCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedData": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedDataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadata": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStart": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStartCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDown": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDownCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseEnter": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseLeave": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMove": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMoveCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOut": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOutCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOver": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOverCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUp": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUpCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPaste": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPasteCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPause": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPauseCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlaying": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancel": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancelCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDown": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDownCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnter": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnterCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeave": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeaveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMove": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMoveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOut": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOutCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOver": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOverCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUp": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUpCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgress": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgressCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onReset": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResetCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResize": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResizeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onScroll": { "type": "UIEventHandler<HTMLDivElement>", "required": false },
+    "onScrollCapture": {
+      "type": "UIEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeked": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeking": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelect": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelectCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalled": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalledCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmit": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmitCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspend": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspendCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdate": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdateCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancel": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancelCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEnd": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEndCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMove": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMoveCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStart": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStartCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEnd": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEndCapture": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaiting": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaitingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheel": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheelCapture": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "placeholder": { "type": "string", "required": false },
+    "prefix": { "type": "string", "required": false },
+    "property": { "type": "string", "required": false },
+    "radioGroup": { "type": "string", "required": false },
+    "rel": { "type": "string", "required": false },
+    "resource": { "type": "string", "required": false },
+    "results": { "type": "number", "required": false },
+    "rev": { "type": "string", "required": false },
+    "role": { "type": "AriaRole", "required": false },
+    "security": { "type": "string", "required": false },
+    "slot": { "type": "string", "required": false },
+    "spellCheck": { "type": "Booleanish", "required": false },
+    "suppressContentEditableWarning": { "type": "boolean", "required": false },
+    "suppressHydrationWarning": { "type": "boolean", "required": false },
+    "tabIndex": { "type": "number", "required": false },
+    "title": { "type": "string", "required": false },
+    "transition": {
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
+      "required": false,
+      "description": "Custom `transition` definition for `enter` and `exit`"
+    },
+    "transitionEnd": {
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
+      "required": false,
+      "description": "Custom `transitionEnd` definition for `enter` and `exit`"
+    },
+    "translate": { "type": "\"yes\" | \"no\"", "required": false },
+    "typeof": { "type": "string", "required": false },
+    "unmountOnExit": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the element will unmount when `in={false}` and animation is done"
+    },
+    "unselectable": { "type": "\"on\" | \"off\"", "required": false },
+    "vocab": { "type": "string", "required": false }
+  },
+  "SlideFade": {
+    "about": { "type": "string", "required": false },
+    "accessKey": { "type": "string", "required": false },
+    "aria-activedescendant": { "type": "string", "required": false },
+    "aria-atomic": { "type": "Booleanish", "required": false },
+    "aria-autocomplete": {
+      "type": "\"list\" | \"none\" | \"inline\" | \"both\"",
+      "required": false
+    },
+    "aria-braillelabel": { "type": "string", "required": false },
+    "aria-brailleroledescription": { "type": "string", "required": false },
+    "aria-busy": { "type": "Booleanish", "required": false },
+    "aria-checked": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-colcount": { "type": "number", "required": false },
+    "aria-colindex": { "type": "number", "required": false },
+    "aria-colindextext": { "type": "string", "required": false },
+    "aria-colspan": { "type": "number", "required": false },
+    "aria-controls": { "type": "string", "required": false },
+    "aria-current": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"time\"\n  | \"true\"\n  | \"false\"\n  | \"page\"\n  | \"step\"\n  | \"location\"\n  | \"date\"",
+      "required": false
+    },
+    "aria-describedby": { "type": "string", "required": false },
+    "aria-description": { "type": "string", "required": false },
+    "aria-details": { "type": "string", "required": false },
+    "aria-disabled": { "type": "Booleanish", "required": false },
+    "aria-dropeffect": {
+      "type": "\"link\" | \"none\" | \"copy\" | \"move\" | \"execute\" | \"popup\"",
+      "required": false
+    },
+    "aria-errormessage": { "type": "string", "required": false },
+    "aria-expanded": { "type": "Booleanish", "required": false },
+    "aria-flowto": { "type": "string", "required": false },
+    "aria-grabbed": { "type": "Booleanish", "required": false },
+    "aria-haspopup": {
+      "type": "type ONLY_FOR_FORMAT =\n  | boolean\n  | \"dialog\"\n  | \"menu\"\n  | \"true\"\n  | \"false\"\n  | \"grid\"\n  | \"listbox\"\n  | \"tree\"",
+      "required": false
+    },
+    "aria-hidden": { "type": "Booleanish", "required": false },
+    "aria-invalid": {
+      "type": "boolean | \"true\" | \"false\" | \"grammar\" | \"spelling\"",
+      "required": false
+    },
+    "aria-keyshortcuts": { "type": "string", "required": false },
+    "aria-label": { "type": "string", "required": false },
+    "aria-labelledby": { "type": "string", "required": false },
+    "aria-level": { "type": "number", "required": false },
+    "aria-live": {
+      "type": "\"off\" | \"assertive\" | \"polite\"",
+      "required": false
+    },
+    "aria-modal": { "type": "Booleanish", "required": false },
+    "aria-multiline": { "type": "Booleanish", "required": false },
+    "aria-multiselectable": { "type": "Booleanish", "required": false },
+    "aria-orientation": {
+      "type": "\"horizontal\" | \"vertical\"",
+      "required": false
+    },
+    "aria-owns": { "type": "string", "required": false },
+    "aria-placeholder": { "type": "string", "required": false },
+    "aria-posinset": { "type": "number", "required": false },
+    "aria-pressed": {
+      "type": "boolean | \"true\" | \"false\" | \"mixed\"",
+      "required": false
+    },
+    "aria-readonly": { "type": "Booleanish", "required": false },
+    "aria-relevant": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"text\"\n  | \"all\"\n  | \"additions\"\n  | \"additions removals\"\n  | \"additions text\"\n  | \"removals\"\n  | \"removals additions\"\n  | \"removals text\"\n  | \"text additions\"\n  | \"text removals\"",
+      "required": false
+    },
+    "aria-required": { "type": "Booleanish", "required": false },
+    "aria-roledescription": { "type": "string", "required": false },
+    "aria-rowcount": { "type": "number", "required": false },
+    "aria-rowindex": { "type": "number", "required": false },
+    "aria-rowindextext": { "type": "string", "required": false },
+    "aria-rowspan": { "type": "number", "required": false },
+    "aria-selected": { "type": "Booleanish", "required": false },
+    "aria-setsize": { "type": "number", "required": false },
+    "aria-sort": {
+      "type": "\"none\" | \"ascending\" | \"descending\" | \"other\"",
+      "required": false
+    },
+    "aria-valuemax": { "type": "number", "required": false },
+    "aria-valuemin": { "type": "number", "required": false },
+    "aria-valuenow": { "type": "number", "required": false },
+    "aria-valuetext": { "type": "string", "required": false },
+    "autoCapitalize": { "type": "string", "required": false },
+    "autoCorrect": { "type": "string", "required": false },
+    "autoFocus": { "type": "boolean", "required": false },
+    "autoSave": { "type": "string", "required": false },
+    "className": { "type": "string", "required": false },
+    "color": { "type": "string", "required": false },
+    "content": { "type": "string", "required": false },
+    "contentEditable": {
+      "type": "\"inherit\" | Booleanish | \"plaintext-only\"",
+      "required": false
+    },
+    "contextMenu": { "type": "string", "required": false },
+    "dangerouslySetInnerHTML": {
+      "type": "{ __html: string | TrustedHTML }",
+      "required": false
+    },
+    "datatype": { "type": "string", "required": false },
+    "defaultChecked": { "type": "boolean", "required": false },
+    "defaultValue": {
+      "type": "string | number | readonly string[]",
+      "required": false
+    },
+    "delay": {
+      "type": "number | Partial<Record<\"enter\" | \"exit\", number>>",
+      "required": false,
+      "description": "Custom `delay` definition for `enter` and `exit`"
+    },
+    "dir": { "type": "string", "required": false },
+    "draggable": { "type": "Booleanish", "required": false },
+    "hidden": { "type": "boolean", "required": false },
+    "id": { "type": "string", "required": false },
+    "in": {
+      "type": "boolean",
+      "required": false,
+      "description": "Show the component; triggers when enter or exit states"
+    },
+    "inlist": { "type": "any", "required": false },
+    "inputMode": {
+      "type": "type ONLY_FOR_FORMAT =\n  | \"search\"\n  | \"none\"\n  | \"text\"\n  | \"tel\"\n  | \"url\"\n  | \"email\"\n  | \"numeric\"\n  | \"decimal\"",
+      "required": false
+    },
+    "is": { "type": "string", "required": false },
+    "itemID": { "type": "string", "required": false },
+    "itemProp": { "type": "string", "required": false },
+    "itemRef": { "type": "string", "required": false },
+    "itemScope": { "type": "boolean", "required": false },
+    "itemType": { "type": "string", "required": false },
+    "lang": { "type": "string", "required": false },
+    "nonce": { "type": "string", "required": false },
+    "offsetX": {
+      "type": "string | number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The offset on the horizontal or `x` axis"
+    },
+    "offsetY": {
+      "type": "string | number",
+      "defaultValue": "8",
+      "required": false,
+      "description": "The offset on the vertical or `y` axis"
+    },
+    "onAbort": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAbortCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEnd": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationEndCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIteration": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationIterationCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAnimationStartCapture": {
+      "type": "AnimationEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onAuxClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBeforeInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlur": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onBlurCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThrough": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCanPlayThroughCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChange": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onChangeCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEnd": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionEndCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStart": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionStartCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdate": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCompositionUpdateCapture": {
+      "type": "CompositionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenu": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onContextMenuCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopy": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCopyCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCut": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onCutCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClick": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDoubleClickCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEndCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnter": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragEnterCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExit": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragExitCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeave": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragLeaveCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOver": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragOverCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDragStartCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDrop": { "type": "DragEventHandler<HTMLDivElement>", "required": false },
+    "onDropCapture": {
+      "type": "DragEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onDurationChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptied": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEmptiedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncrypted": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEncryptedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEnded": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onEndedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onError": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onErrorCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocus": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onFocusCapture": {
+      "type": "FocusEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onGotPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInput": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInputCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalid": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onInvalidCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDown": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyDownCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPress": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyPressCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUp": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onKeyUpCapture": {
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoad": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedData": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedDataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadata": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadedMetadataCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStart": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLoadStartCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onLostPointerCaptureCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDown": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseDownCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseEnter": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseLeave": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMove": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseMoveCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOut": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOutCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOver": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseOverCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUp": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onMouseUpCapture": {
+      "type": "MouseEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPaste": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPasteCapture": {
+      "type": "ClipboardEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPause": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPauseCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlay": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlaying": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPlayingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancel": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerCancelCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDown": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerDownCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnter": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerEnterCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeave": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerLeaveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMove": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerMoveCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOut": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOutCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOver": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerOverCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUp": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onPointerUpCapture": {
+      "type": "PointerEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgress": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onProgressCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onRateChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onReset": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResetCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResize": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onResizeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onScroll": { "type": "UIEventHandler<HTMLDivElement>", "required": false },
+    "onScrollCapture": {
+      "type": "UIEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeked": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekedCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeeking": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSeekingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelect": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSelectCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalled": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onStalledCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmit": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSubmitCapture": {
+      "type": "FormEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspend": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onSuspendCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdate": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTimeUpdateCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancel": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchCancelCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEnd": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchEndCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMove": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchMoveCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStart": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTouchStartCapture": {
+      "type": "TouchEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEnd": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onTransitionEndCapture": {
+      "type": "TransitionEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChange": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onVolumeChangeCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaiting": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWaitingCapture": {
+      "type": "ReactEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheel": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "onWheelCapture": {
+      "type": "WheelEventHandler<HTMLDivElement>",
+      "required": false
+    },
+    "placeholder": { "type": "string", "required": false },
+    "prefix": { "type": "string", "required": false },
+    "property": { "type": "string", "required": false },
+    "radioGroup": { "type": "string", "required": false },
+    "rel": { "type": "string", "required": false },
+    "resource": { "type": "string", "required": false },
+    "results": { "type": "number", "required": false },
+    "rev": { "type": "string", "required": false },
+    "reverse": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the element will be transitioned back to the offset when it leaves.\nOtherwise, it'll only fade out"
+    },
+    "role": { "type": "AriaRole", "required": false },
+    "security": { "type": "string", "required": false },
+    "slot": { "type": "string", "required": false },
+    "spellCheck": { "type": "Booleanish", "required": false },
+    "suppressContentEditableWarning": { "type": "boolean", "required": false },
+    "suppressHydrationWarning": { "type": "boolean", "required": false },
+    "tabIndex": { "type": "number", "required": false },
+    "title": { "type": "string", "required": false },
+    "transition": {
+      "type": "Partial<Record<\"enter\" | \"exit\", Transition$1>>",
+      "required": false,
+      "description": "Custom `transition` definition for `enter` and `exit`"
+    },
+    "transitionEnd": {
+      "type": "Partial<\n  Record<\"enter\" | \"exit\", MakeCustomValueType<TargetProperties>>\n>",
+      "required": false,
+      "description": "Custom `transitionEnd` definition for `enter` and `exit`"
+    },
+    "translate": { "type": "\"yes\" | \"no\"", "required": false },
+    "typeof": { "type": "string", "required": false },
+    "unmountOnExit": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the element will unmount when `in={false}` and animation is done"
+    },
+    "unselectable": { "type": "\"on\" | \"off\"", "required": false },
+    "vocab": { "type": "string", "required": false }
+  }
+}

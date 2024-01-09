@@ -1,5 +1,3 @@
-"use client"
-
 import { ColorModeScript } from "@chakra-ui/react"
 import Provider from "./provider"
 

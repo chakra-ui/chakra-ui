@@ -1,0 +1,93 @@
+{
+  "Toast": {
+    "addRole": { "type": "boolean", "defaultValue": false, "required": false },
+    "containerStyle": {
+      "type": "SystemProps",
+      "required": false,
+      "description": "Optional style overrides for the container wrapping the toast component."
+    },
+    "description": {
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
+      "required": false,
+      "description": "The description of the toast"
+    },
+    "duration": {
+      "type": "number",
+      "defaultValue": "5000 ( = 5000ms )",
+      "required": false,
+      "description": "The delay before the toast hides (in milliseconds)\nIf set to `null`, toast will never dismiss."
+    },
+    "icon": {
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
+      "required": false,
+      "description": "A custom icon that will be displayed by the toast."
+    },
+    "id": {
+      "type": "ToastId",
+      "required": false,
+      "description": "The `id` of the toast.\n\nMostly used when you need to prevent duplicate.\nBy default, we generate a unique `id` for each toast"
+    },
+    "isClosable": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, toast will show a close button"
+    },
+    "onClose": { "type": "() => void", "required": false },
+    "onCloseComplete": {
+      "type": "() => void",
+      "required": false,
+      "description": "Callback function to run side effects after the toast has closed."
+    },
+    "position": {
+      "type": "ToastPosition",
+      "defaultValue": "bottom",
+      "required": false,
+      "description": "The placement of the toast"
+    },
+    "render": {
+      "type": "(props: RenderProps) => ReactNode",
+      "required": false,
+      "description": "Render a component toast component.\nAny component passed will receive 2 props: `id` and `onClose`."
+    },
+    "status": {
+      "type": "\"success\" | \"error\" | \"warning\" | \"info\" | \"loading\"",
+      "required": false,
+      "description": "The status of the toast."
+    },
+    "title": {
+      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
+      "required": false,
+      "description": "The title of the toast"
+    }
+  },
+  "ToastProvider": {
+    "component": {
+      "type": "FC<ToastComponentProps>",
+      "defaultValue": "ToastComponent",
+      "required": false,
+      "description": "Are you looking for a way to style the toast? Use a custom `Alert` variant in the theme.\nThis property overrides the default ToastComponent with your own implementation."
+    },
+    "defaultOptions": {
+      "type": "UseToastOptions",
+      "required": false,
+      "description": "Default options for `useToast(options)`"
+    },
+    "motionVariants": {
+      "type": "Variants",
+      "required": false,
+      "description": "Customize the default motion config to animate the toasts your way"
+    },
+    "portalProps": {
+      "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>",
+      "required": false,
+      "description": "Props to be forwarded to the portal component"
+    },
+    "toastSpacing": {
+      "type": "string | number",
+      "defaultValue": "0.5rem",
+      "required": false,
+      "description": "Define the margin between toasts"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@chakra-ui/test-utils",
+  "version": "2.0.45",
+  "private": true,
+  "description": "Testing utilities for Chakra UI's components",
+  "keywords": [
+    "chakra",
+    "test utils",
+    "testing",
+    "utils",
+    "testing library",
+    "react testing library"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "tooling/test-utils"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
+    "@testing-library/jest-dom": "^6.0.1",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "vitest-axe": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "react": "^18.2.0"
+  }
+}

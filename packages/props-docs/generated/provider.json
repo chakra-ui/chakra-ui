@@ -1,0 +1,47 @@
+{
+  "Provider": {
+    "colorModeManager": {
+      "type": "StorageManager",
+      "defaultValue": "localStorageManager",
+      "required": false,
+      "description": "manager to persist a users color mode preference in\n\nomit if you don't render server-side\nfor SSR: choose `cookieStorageManager`"
+    },
+    "disableEnvironment": {
+      "type": "boolean",
+      "required": false,
+      "description": "Disabled the use of automatic window and document detection.\nThis removed the injected `<span/>` element"
+    },
+    "disableGlobalStyle": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, Chakra will not mount the global styles defined in the theme."
+    },
+    "environment": {
+      "type": "Environment",
+      "required": false,
+      "description": "The environment (`window` and `document`) to be used by\nall components and hooks.\n\nBy default, we smartly determine the ownerDocument and defaultView\nbased on where `ChakraProvider` is rendered."
+    },
+    "portalZIndex": {
+      "type": "number",
+      "defaultValue": "undefined",
+      "required": false,
+      "description": "Common z-index to use for `Portal`"
+    },
+    "resetCSS": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, `CSSReset` component will be mounted to help\nyou reset browser styles"
+    },
+    "resetScope": {
+      "type": "string",
+      "required": false,
+      "description": "The selector to scope the css reset styles to."
+    },
+    "theme": {
+      "type": "Dict",
+      "required": false,
+      "description": "a theme. if omitted, uses the default theme provided by chakra"
+    }
+  }
+}

@@ -1,0 +1,864 @@
+{
+  "name": "@chakra-ui/react",
+  "version": "2.8.2",
+  "description": "Responsive and accessible React UI components built with React and Emotion",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/components/react"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://storybook.chakra-ui.com"
+  },
+  "dependencies": {
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/styled-system": "workspace:*",
+    "@chakra-ui/theme": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
+    "@popperjs/core": "^2.11.8",
+    "@zag-js/focus-visible": "^0.31.1",
+    "aria-hidden": "^1.2.3",
+    "react-fast-compare": "3.2.2",
+    "react-focus-lock": "^2.9.6",
+    "react-lorem-component": "^0.13.0",
+    "react-remove-scroll": "^2.5.7"
+  },
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@tanstack/react-table": "^8.10.7",
+    "@testing-library/react": "^14.0.0",
+    "framer-motion": "10.16.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-frame-component": "^5.2.6",
+    "react-hook-form": "^7.48.2",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^6.20.1",
+    "react-spinners": "^0.13.8"
+  },
+  "scripts": {
+    "build": "tsup --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./accordion": {
+      "source": "./src/accordion/index.ts",
+      "import": {
+        "types": "./dist/types/accordion/index.d.mts",
+        "default": "./dist/esm/accordion/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/accordion/index.d.ts",
+        "default": "./dist/cjs/accordion/index.cjs"
+      }
+    },
+    "./alert": {
+      "source": "./src/alert/index.ts",
+      "import": {
+        "types": "./dist/types/alert/index.d.mts",
+        "default": "./dist/esm/alert/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/alert/index.d.ts",
+        "default": "./dist/cjs/alert/index.cjs"
+      }
+    },
+    "./aspect-ratio": {
+      "source": "./src/aspect-ratio/index.ts",
+      "import": {
+        "types": "./dist/types/aspect-ratio/index.d.mts",
+        "default": "./dist/esm/aspect-ratio/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/aspect-ratio/index.d.ts",
+        "default": "./dist/cjs/aspect-ratio/index.cjs"
+      }
+    },
+    "./avatar": {
+      "source": "./src/avatar/index.ts",
+      "import": {
+        "types": "./dist/types/avatar/index.d.mts",
+        "default": "./dist/esm/avatar/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/avatar/index.d.ts",
+        "default": "./dist/cjs/avatar/index.cjs"
+      }
+    },
+    "./badge": {
+      "source": "./src/badge/index.ts",
+      "import": {
+        "types": "./dist/types/badge/index.d.mts",
+        "default": "./dist/esm/badge/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/badge/index.d.ts",
+        "default": "./dist/cjs/badge/index.cjs"
+      }
+    },
+    "./box": {
+      "source": "./src/box/index.ts",
+      "import": {
+        "types": "./dist/types/box/index.d.mts",
+        "default": "./dist/esm/box/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/box/index.d.ts",
+        "default": "./dist/cjs/box/index.cjs"
+      }
+    },
+    "./breadcrumb": {
+      "source": "./src/breadcrumb/index.ts",
+      "import": {
+        "types": "./dist/types/breadcrumb/index.d.mts",
+        "default": "./dist/esm/breadcrumb/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/breadcrumb/index.d.ts",
+        "default": "./dist/cjs/breadcrumb/index.cjs"
+      }
+    },
+    "./button": {
+      "source": "./src/button/index.ts",
+      "import": {
+        "types": "./dist/types/button/index.d.mts",
+        "default": "./dist/esm/button/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/button/index.d.ts",
+        "default": "./dist/cjs/button/index.cjs"
+      }
+    },
+    "./card": {
+      "source": "./src/card/index.ts",
+      "import": {
+        "types": "./dist/types/card/index.d.mts",
+        "default": "./dist/esm/card/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/card/index.d.ts",
+        "default": "./dist/cjs/card/index.cjs"
+      }
+    },
+    "./center": {
+      "source": "./src/center/index.ts",
+      "import": {
+        "types": "./dist/types/center/index.d.mts",
+        "default": "./dist/esm/center/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/center/index.d.ts",
+        "default": "./dist/cjs/center/index.cjs"
+      }
+    },
+    "./chakra-base-provider": {
+      "source": "./src/chakra-base-provider.tsx",
+      "import": {
+        "types": "./dist/types/chakra-base-provider.d.mts",
+        "default": "./dist/esm/chakra-base-provider.mjs"
+      },
+      "require": {
+        "types": "./dist/types/chakra-base-provider.d.ts",
+        "default": "./dist/cjs/chakra-base-provider.cjs"
+      }
+    },
+    "./chakra-provider": {
+      "source": "./src/chakra-provider.tsx",
+      "import": {
+        "types": "./dist/types/chakra-provider.d.mts",
+        "default": "./dist/esm/chakra-provider.mjs"
+      },
+      "require": {
+        "types": "./dist/types/chakra-provider.d.ts",
+        "default": "./dist/cjs/chakra-provider.cjs"
+      }
+    },
+    "./checkbox": {
+      "source": "./src/checkbox/index.ts",
+      "import": {
+        "types": "./dist/types/checkbox/index.d.mts",
+        "default": "./dist/esm/checkbox/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/checkbox/index.d.ts",
+        "default": "./dist/cjs/checkbox/index.cjs"
+      }
+    },
+    "./clickable": {
+      "source": "./src/clickable/index.ts",
+      "import": {
+        "types": "./dist/types/clickable/index.d.mts",
+        "default": "./dist/esm/clickable/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/clickable/index.d.ts",
+        "default": "./dist/cjs/clickable/index.cjs"
+      }
+    },
+    "./close-button": {
+      "source": "./src/close-button/index.ts",
+      "import": {
+        "types": "./dist/types/close-button/index.d.mts",
+        "default": "./dist/esm/close-button/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/close-button/index.d.ts",
+        "default": "./dist/cjs/close-button/index.cjs"
+      }
+    },
+    "./code": {
+      "source": "./src/code/index.ts",
+      "import": {
+        "types": "./dist/types/code/index.d.mts",
+        "default": "./dist/esm/code/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/code/index.d.ts",
+        "default": "./dist/cjs/code/index.cjs"
+      }
+    },
+    "./color-mode": {
+      "source": "./src/color-mode/index.ts",
+      "import": {
+        "types": "./dist/types/color-mode/index.d.mts",
+        "default": "./dist/esm/color-mode/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/color-mode/index.d.ts",
+        "default": "./dist/cjs/color-mode/index.cjs"
+      }
+    },
+    "./container": {
+      "source": "./src/container/index.ts",
+      "import": {
+        "types": "./dist/types/container/index.d.mts",
+        "default": "./dist/esm/container/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/container/index.d.ts",
+        "default": "./dist/cjs/container/index.cjs"
+      }
+    },
+    "./control-box": {
+      "source": "./src/control-box/index.ts",
+      "import": {
+        "types": "./dist/types/control-box/index.d.mts",
+        "default": "./dist/esm/control-box/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/control-box/index.d.ts",
+        "default": "./dist/cjs/control-box/index.cjs"
+      }
+    },
+    "./css-reset": {
+      "source": "./src/css-reset/index.ts",
+      "import": {
+        "types": "./dist/types/css-reset/index.d.mts",
+        "default": "./dist/esm/css-reset/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/css-reset/index.d.ts",
+        "default": "./dist/cjs/css-reset/index.cjs"
+      }
+    },
+    "./descendant": {
+      "source": "./src/descendant/index.ts",
+      "import": {
+        "types": "./dist/types/descendant/index.d.mts",
+        "default": "./dist/esm/descendant/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/descendant/index.d.ts",
+        "default": "./dist/cjs/descendant/index.cjs"
+      }
+    },
+    "./divider": {
+      "source": "./src/divider/index.ts",
+      "import": {
+        "types": "./dist/types/divider/index.d.mts",
+        "default": "./dist/esm/divider/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/divider/index.d.ts",
+        "default": "./dist/cjs/divider/index.cjs"
+      }
+    },
+    "./editable": {
+      "source": "./src/editable/index.ts",
+      "import": {
+        "types": "./dist/types/editable/index.d.mts",
+        "default": "./dist/esm/editable/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/editable/index.d.ts",
+        "default": "./dist/cjs/editable/index.cjs"
+      }
+    },
+    "./env": {
+      "source": "./src/env/index.ts",
+      "import": {
+        "types": "./dist/types/env/index.d.mts",
+        "default": "./dist/esm/env/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/env/index.d.ts",
+        "default": "./dist/cjs/env/index.cjs"
+      }
+    },
+    "./extend-theme": {
+      "source": "./src/extend-theme/index.ts",
+      "import": {
+        "types": "./dist/types/extend-theme/index.d.mts",
+        "default": "./dist/esm/extend-theme/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/extend-theme/index.d.ts",
+        "default": "./dist/cjs/extend-theme/index.cjs"
+      }
+    },
+    "./flex": {
+      "source": "./src/flex/index.ts",
+      "import": {
+        "types": "./dist/types/flex/index.d.mts",
+        "default": "./dist/esm/flex/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/flex/index.d.ts",
+        "default": "./dist/cjs/flex/index.cjs"
+      }
+    },
+    "./focus-lock": {
+      "source": "./src/focus-lock/index.ts",
+      "import": {
+        "types": "./dist/types/focus-lock/index.d.mts",
+        "default": "./dist/esm/focus-lock/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/focus-lock/index.d.ts",
+        "default": "./dist/cjs/focus-lock/index.cjs"
+      }
+    },
+    "./form-control": {
+      "source": "./src/form-control/index.ts",
+      "import": {
+        "types": "./dist/types/form-control/index.d.mts",
+        "default": "./dist/esm/form-control/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/form-control/index.d.ts",
+        "default": "./dist/cjs/form-control/index.cjs"
+      }
+    },
+    "./grid": {
+      "source": "./src/grid/index.ts",
+      "import": {
+        "types": "./dist/types/grid/index.d.mts",
+        "default": "./dist/esm/grid/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/grid/index.d.ts",
+        "default": "./dist/cjs/grid/index.cjs"
+      }
+    },
+    "./highlight": {
+      "source": "./src/highlight/index.ts",
+      "import": {
+        "types": "./dist/types/highlight/index.d.mts",
+        "default": "./dist/esm/highlight/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/highlight/index.d.ts",
+        "default": "./dist/cjs/highlight/index.cjs"
+      }
+    },
+    "./icon": {
+      "source": "./src/icon/index.ts",
+      "import": {
+        "types": "./dist/types/icon/index.d.mts",
+        "default": "./dist/esm/icon/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/icon/index.d.ts",
+        "default": "./dist/cjs/icon/index.cjs"
+      }
+    },
+    "./image": {
+      "source": "./src/image/index.ts",
+      "import": {
+        "types": "./dist/types/image/index.d.mts",
+        "default": "./dist/esm/image/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/image/index.d.ts",
+        "default": "./dist/cjs/image/index.cjs"
+      }
+    },
+    "./indicator": {
+      "source": "./src/indicator/index.ts",
+      "import": {
+        "types": "./dist/types/indicator/index.d.mts",
+        "default": "./dist/esm/indicator/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/indicator/index.d.ts",
+        "default": "./dist/cjs/indicator/index.cjs"
+      }
+    },
+    "./input": {
+      "source": "./src/input/index.ts",
+      "import": {
+        "types": "./dist/types/input/index.d.mts",
+        "default": "./dist/esm/input/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/input/index.d.ts",
+        "default": "./dist/cjs/input/index.cjs"
+      }
+    },
+    "./kbd": {
+      "source": "./src/kbd/index.ts",
+      "import": {
+        "types": "./dist/types/kbd/index.d.mts",
+        "default": "./dist/esm/kbd/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/kbd/index.d.ts",
+        "default": "./dist/cjs/kbd/index.cjs"
+      }
+    },
+    "./link": {
+      "source": "./src/link/index.ts",
+      "import": {
+        "types": "./dist/types/link/index.d.mts",
+        "default": "./dist/esm/link/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/link/index.d.ts",
+        "default": "./dist/cjs/link/index.cjs"
+      }
+    },
+    "./list": {
+      "source": "./src/list/index.ts",
+      "import": {
+        "types": "./dist/types/list/index.d.mts",
+        "default": "./dist/esm/list/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/list/index.d.ts",
+        "default": "./dist/cjs/list/index.cjs"
+      }
+    },
+    "./live-region": {
+      "source": "./src/live-region/index.ts",
+      "import": {
+        "types": "./dist/types/live-region/index.d.mts",
+        "default": "./dist/esm/live-region/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/live-region/index.d.ts",
+        "default": "./dist/cjs/live-region/index.cjs"
+      }
+    },
+    "./media-query": {
+      "source": "./src/media-query/index.ts",
+      "import": {
+        "types": "./dist/types/media-query/index.d.mts",
+        "default": "./dist/esm/media-query/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/media-query/index.d.ts",
+        "default": "./dist/cjs/media-query/index.cjs"
+      }
+    },
+    "./menu": {
+      "source": "./src/menu/index.ts",
+      "import": {
+        "types": "./dist/types/menu/index.d.mts",
+        "default": "./dist/esm/menu/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/menu/index.d.ts",
+        "default": "./dist/cjs/menu/index.cjs"
+      }
+    },
+    "./modal": {
+      "source": "./src/modal/index.ts",
+      "import": {
+        "types": "./dist/types/modal/index.d.mts",
+        "default": "./dist/esm/modal/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/modal/index.d.ts",
+        "default": "./dist/cjs/modal/index.cjs"
+      }
+    },
+    "./number-input": {
+      "source": "./src/number-input/index.ts",
+      "import": {
+        "types": "./dist/types/number-input/index.d.mts",
+        "default": "./dist/esm/number-input/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/number-input/index.d.ts",
+        "default": "./dist/cjs/number-input/index.cjs"
+      }
+    },
+    "./pin-input": {
+      "source": "./src/pin-input/index.ts",
+      "import": {
+        "types": "./dist/types/pin-input/index.d.mts",
+        "default": "./dist/esm/pin-input/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/pin-input/index.d.ts",
+        "default": "./dist/cjs/pin-input/index.cjs"
+      }
+    },
+    "./popover": {
+      "source": "./src/popover/index.ts",
+      "import": {
+        "types": "./dist/types/popover/index.d.mts",
+        "default": "./dist/esm/popover/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/popover/index.d.ts",
+        "default": "./dist/cjs/popover/index.cjs"
+      }
+    },
+    "./popper": {
+      "source": "./src/popper/index.ts",
+      "import": {
+        "types": "./dist/types/popper/index.d.mts",
+        "default": "./dist/esm/popper/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/popper/index.d.ts",
+        "default": "./dist/cjs/popper/index.cjs"
+      }
+    },
+    "./portal": {
+      "source": "./src/portal/index.ts",
+      "import": {
+        "types": "./dist/types/portal/index.d.mts",
+        "default": "./dist/esm/portal/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/portal/index.d.ts",
+        "default": "./dist/cjs/portal/index.cjs"
+      }
+    },
+    "./progress": {
+      "source": "./src/progress/index.ts",
+      "import": {
+        "types": "./dist/types/progress/index.d.mts",
+        "default": "./dist/esm/progress/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/progress/index.d.ts",
+        "default": "./dist/cjs/progress/index.cjs"
+      }
+    },
+    "./provider": {
+      "source": "./src/provider/index.ts",
+      "import": {
+        "types": "./dist/types/provider/index.d.mts",
+        "default": "./dist/esm/provider/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/provider/index.d.ts",
+        "default": "./dist/cjs/provider/index.cjs"
+      }
+    },
+    "./radio": {
+      "source": "./src/radio/index.ts",
+      "import": {
+        "types": "./dist/types/radio/index.d.mts",
+        "default": "./dist/esm/radio/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/radio/index.d.ts",
+        "default": "./dist/cjs/radio/index.cjs"
+      }
+    },
+    "./select": {
+      "source": "./src/select/index.ts",
+      "import": {
+        "types": "./dist/types/select/index.d.mts",
+        "default": "./dist/esm/select/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/select/index.d.ts",
+        "default": "./dist/cjs/select/index.cjs"
+      }
+    },
+    "./skeleton": {
+      "source": "./src/skeleton/index.ts",
+      "import": {
+        "types": "./dist/types/skeleton/index.d.mts",
+        "default": "./dist/esm/skeleton/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/skeleton/index.d.ts",
+        "default": "./dist/cjs/skeleton/index.cjs"
+      }
+    },
+    "./skip-nav": {
+      "source": "./src/skip-nav/index.ts",
+      "import": {
+        "types": "./dist/types/skip-nav/index.d.mts",
+        "default": "./dist/esm/skip-nav/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/skip-nav/index.d.ts",
+        "default": "./dist/cjs/skip-nav/index.cjs"
+      }
+    },
+    "./slider": {
+      "source": "./src/slider/index.ts",
+      "import": {
+        "types": "./dist/types/slider/index.d.mts",
+        "default": "./dist/esm/slider/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/slider/index.d.ts",
+        "default": "./dist/cjs/slider/index.cjs"
+      }
+    },
+    "./spacer": {
+      "source": "./src/spacer/index.ts",
+      "import": {
+        "types": "./dist/types/spacer/index.d.mts",
+        "default": "./dist/esm/spacer/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/spacer/index.d.ts",
+        "default": "./dist/cjs/spacer/index.cjs"
+      }
+    },
+    "./spinner": {
+      "source": "./src/spinner/index.ts",
+      "import": {
+        "types": "./dist/types/spinner/index.d.mts",
+        "default": "./dist/esm/spinner/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/spinner/index.d.ts",
+        "default": "./dist/cjs/spinner/index.cjs"
+      }
+    },
+    "./stack": {
+      "source": "./src/stack/index.ts",
+      "import": {
+        "types": "./dist/types/stack/index.d.mts",
+        "default": "./dist/esm/stack/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/stack/index.d.ts",
+        "default": "./dist/cjs/stack/index.cjs"
+      }
+    },
+    "./stat": {
+      "source": "./src/stat/index.ts",
+      "import": {
+        "types": "./dist/types/stat/index.d.mts",
+        "default": "./dist/esm/stat/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/stat/index.d.ts",
+        "default": "./dist/cjs/stat/index.cjs"
+      }
+    },
+    "./stepper": {
+      "source": "./src/stepper/index.ts",
+      "import": {
+        "types": "./dist/types/stepper/index.d.mts",
+        "default": "./dist/esm/stepper/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/stepper/index.d.ts",
+        "default": "./dist/cjs/stepper/index.cjs"
+      }
+    },
+    "./switch": {
+      "source": "./src/switch/index.ts",
+      "import": {
+        "types": "./dist/types/switch/index.d.mts",
+        "default": "./dist/esm/switch/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/switch/index.d.ts",
+        "default": "./dist/cjs/switch/index.cjs"
+      }
+    },
+    "./system": {
+      "source": "./src/system/index.ts",
+      "import": {
+        "types": "./dist/types/system/index.d.mts",
+        "default": "./dist/esm/system/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/system/index.d.ts",
+        "default": "./dist/cjs/system/index.cjs"
+      }
+    },
+    "./table": {
+      "source": "./src/table/index.ts",
+      "import": {
+        "types": "./dist/types/table/index.d.mts",
+        "default": "./dist/esm/table/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/table/index.d.ts",
+        "default": "./dist/cjs/table/index.cjs"
+      }
+    },
+    "./tabs": {
+      "source": "./src/tabs/index.ts",
+      "import": {
+        "types": "./dist/types/tabs/index.d.mts",
+        "default": "./dist/esm/tabs/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/tabs/index.d.ts",
+        "default": "./dist/cjs/tabs/index.cjs"
+      }
+    },
+    "./tag": {
+      "source": "./src/tag/index.ts",
+      "import": {
+        "types": "./dist/types/tag/index.d.mts",
+        "default": "./dist/esm/tag/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/tag/index.d.ts",
+        "default": "./dist/cjs/tag/index.cjs"
+      }
+    },
+    "./textarea": {
+      "source": "./src/textarea/index.ts",
+      "import": {
+        "types": "./dist/types/textarea/index.d.mts",
+        "default": "./dist/esm/textarea/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/textarea/index.d.ts",
+        "default": "./dist/cjs/textarea/index.cjs"
+      }
+    },
+    "./toast": {
+      "source": "./src/toast/index.ts",
+      "import": {
+        "types": "./dist/types/toast/index.d.mts",
+        "default": "./dist/esm/toast/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/toast/index.d.ts",
+        "default": "./dist/cjs/toast/index.cjs"
+      }
+    },
+    "./tooltip": {
+      "source": "./src/tooltip/index.ts",
+      "import": {
+        "types": "./dist/types/tooltip/index.d.mts",
+        "default": "./dist/esm/tooltip/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/tooltip/index.d.ts",
+        "default": "./dist/cjs/tooltip/index.cjs"
+      }
+    },
+    "./transition": {
+      "source": "./src/transition/index.ts",
+      "import": {
+        "types": "./dist/types/transition/index.d.mts",
+        "default": "./dist/esm/transition/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/transition/index.d.ts",
+        "default": "./dist/cjs/transition/index.cjs"
+      }
+    },
+    "./typography": {
+      "source": "./src/typography/index.ts",
+      "import": {
+        "types": "./dist/types/typography/index.d.mts",
+        "default": "./dist/esm/typography/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/typography/index.d.ts",
+        "default": "./dist/cjs/typography/index.cjs"
+      }
+    },
+    "./visually-hidden": {
+      "source": "./src/visually-hidden/index.ts",
+      "import": {
+        "types": "./dist/types/visually-hidden/index.d.mts",
+        "default": "./dist/esm/visually-hidden/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/visually-hidden/index.d.ts",
+        "default": "./dist/cjs/visually-hidden/index.cjs"
+      }
+    },
+    "./wrap": {
+      "source": "./src/wrap/index.ts",
+      "import": {
+        "types": "./dist/types/wrap/index.d.mts",
+        "default": "./dist/esm/wrap/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/wrap/index.d.ts",
+        "default": "./dist/cjs/wrap/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  }
+}

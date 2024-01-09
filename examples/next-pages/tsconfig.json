@@ -6,8 +6,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
@@ -17,7 +17,8 @@
     "strict": true,
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
-    "incremental": true
+    "incremental": true,
+    "customConditions": ["source"]
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]
