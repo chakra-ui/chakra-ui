@@ -34,3 +34,17 @@ export const baseTheme = {
   styles,
   config,
 }
+
+export const extendedTheme = {
+  ...theme,
+  components: {
+    ...theme.components,
+    extended: {
+      bgOpacity: (opacity: number) => ({
+          backgroundColor: `rgba(0, 0, 0, ${opacity})`,
+      }),
+    }
+  },
+}
+
+export type ExtendedTheme = typeof extendedTheme & Theme
