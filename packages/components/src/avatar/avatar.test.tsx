@@ -87,6 +87,24 @@ describe("fallback + loading strategy", () => {
     expect(intials).toBeInTheDocument()
   })
 
+  test("renders a name avatar if name has leading space", () => {
+    const tools = render(<Avatar name=" Dan Abramov" />)
+    const intials = tools.queryByText("DA")
+    expect(intials).toBeInTheDocument()
+  })
+
+  test("renders a name avatar if name has trailing space", () => {
+    const tools = render(<Avatar name="Dan Abramov " />)
+    const intials = tools.queryByText("DA")
+    expect(intials).toBeInTheDocument()
+  })
+
+  test("renders a name avatar if name has leading and trailing space", () => {
+    const tools = render(<Avatar name=" Dan Abramov " />)
+    const intials = tools.queryByText("DA")
+    expect(intials).toBeInTheDocument()
+  })
+
   test("renders a default avatar if no name or src", () => {
     const tools = render(<Avatar />)
     expect(tools.getByRole("img")).toHaveClass("chakra-avatar__svg")
