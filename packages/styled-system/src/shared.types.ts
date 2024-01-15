@@ -1,4 +1,7 @@
 export interface BaseThemeTypings {
+  conditions: {
+    [conditionName: string]: string
+  }
   borders: string
   colors: string
   breakpoints: string

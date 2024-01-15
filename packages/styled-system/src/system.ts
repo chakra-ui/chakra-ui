@@ -20,7 +20,7 @@ import {
   transition,
   typography,
 } from "./config"
-import { pseudoPropNames, pseudoSelectors } from "./pseudos"
+import { getPseudoPropNames, getPseudoSelectors } from "./pseudos"
 
 export const systemProps = mergeWith(
   {},
@@ -50,7 +50,15 @@ export const layoutPropNames = Object.keys(
   layoutSystem,
 ) as (keyof typeof layoutSystem)[]
 
-export const propNames = [...Object.keys(systemProps), ...pseudoPropNames]
-const styleProps = { ...systemProps, ...pseudoSelectors }
+export const getPropNames = (theme: any) => [
+  ...Object.keys(systemProps),
+  ...getPseudoPropNames(theme),
+]
 
-export const isStyleProp = (prop: string) => prop in styleProps
+export const isStylePropFn = (theme: any) => {
+  const pseudoSelectors = getPseudoSelectors(theme)
+  return (prop: string) => {
+    const styleProps = { ...systemProps, ...pseudoSelectors }
+    return Reflect.has(styleProps, prop)
+  }
+}

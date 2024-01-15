@@ -7,6 +7,10 @@ const defaultRecord = {
 }
 
 const smallTheme: Record<string, unknown> = {
+  conditions: {
+    open: '[data-state="open"]',
+    closed: '[data-state="closed"]',
+  },
   colors: {
     niceColor: "",
     suchWowColor: "",
@@ -106,6 +110,7 @@ describe("Theme typings", () => {
           | "such.deep.color"
           | (string & {})
         colorSchemes: "onlyColorSchemeColor" | (string & {})
+        conditions: "_open" | "_closed" | (string & {})
         fonts: "sm" | "md" | (string & {})
         fontSizes: "sm" | "md" | (string & {})
         fontWeights: "sm" | "md" | (string & {})
@@ -150,6 +155,7 @@ describe("Theme typings", () => {
         breakpoints: string & {}
         colors: string & {}
         colorSchemes: string & {}
+        conditions: string & {}
         fonts: string & {}
         fontSizes: string & {}
         fontWeights: string & {}
@@ -201,6 +207,7 @@ describe("Theme typings", () => {
           | "such.deep.color"
           | (string & {})
         colorSchemes: "onlyColorSchemeColor" | (string & {})
+        conditions: "_open" | "_closed" | (string & {})
         fonts: "sm" | "md" | (string & {})
         fontSizes: "sm" | "md" | (string & {})
         fontWeights: "sm" | "md" | (string & {})
@@ -243,6 +250,7 @@ describe("Theme typings", () => {
       breakpoints: "sm" | "md" | (string & {});
       colors: "niceColor" | "suchWowColor" | "onlyColorSchemeColor.50" | "onlyColorSchemeColor.100" | "onlyColorSchemeColor.200" | "onlyColorSchemeColor.300" | "onlyColorSchemeColor.400" | "onlyColorSchemeColor.500" | "onlyColorSchemeColor.600" | "onlyColorSchemeColor.700" | "onlyColorSchemeColor.800" | "onlyColorSchemeColor.900" | "such.deep.color" | (string & {});
       colorSchemes: "onlyColorSchemeColor" | (string & {});
+      conditions: "_open" | "_closed" | (string & {});
       fonts: "sm" | "md" | (string & {});
       fontSizes: "sm" | "md" | (string & {});
       fontWeights: "sm" | "md" | (string & {});
@@ -332,6 +340,7 @@ describe("Theme typings", () => {
           | "feedback.error"
           | (string & {})
         colorSchemes: string & {}
+        conditions: string & {}
         fonts: string & {}
         fontSizes: string & {}
         fontWeights: string & {}
@@ -382,6 +391,7 @@ describe("Theme typings", () => {
           | "onlyColorSchemeColor.900"
           | "such.deep.color"
         colorSchemes: "onlyColorSchemeColor"
+        conditions: "_open" | "_closed"
         fonts: "sm" | "md"
         fontSizes: "sm" | "md"
         fontWeights: "sm" | "md"
@@ -438,6 +448,7 @@ describe("Theme typings", () => {
           | "onlyColorSchemeColor.900"
           | "such.deep.color"
         colorSchemes: "onlyColorSchemeColor"
+        conditions: "_open" | "_closed"
         fonts: "sm" | "md"
         fontSizes: "sm" | "md"
         fontWeights: "sm" | "md"
@@ -495,6 +506,7 @@ describe("Theme typings", () => {
             | "such.deep.color"
             | (string & {})
           colorSchemes: "onlyColorSchemeColor" | (string & {})
+          conditions: "_open" | "_closed" | (string & {})
           fonts: "sm" | "md" | (string & {})
           fontSizes: "sm" | "md" | (string & {})
           fontWeights: "sm" | "md" | (string & {})

@@ -1,3 +1,5 @@
+import { ThemeTypings } from "./theming.types"
+
 type AnyFunction<T = any> = (...args: T[]) => any
 
 const state = {
@@ -34,7 +36,7 @@ const toPeer = (fn: AnyFunction) =>
 const merge = (fn: AnyFunction, ...selectors: string[]) =>
   selectors.map(fn).join(", ")
 
-export const pseudoSelectors = {
+const pseudoSelectors = {
   /**
    * Styles for CSS selector `&:hover`
    */
@@ -331,8 +333,20 @@ export const pseudoSelectors = {
   _vertical: "&[data-orientation=vertical]",
 }
 
-export type Pseudos = typeof pseudoSelectors
+export type Pseudos = typeof pseudoSelectors & keyof ThemeTypings["conditions"]
+export type PseudoKey = RemoveStringNumber<keyof Pseudos>
 
-export const pseudoPropNames = Object.keys(
-  pseudoSelectors,
-) as (keyof typeof pseudoSelectors)[]
+// from a type like this 'sm' | 'lg' | 'md' | 'xl' | '2xl' | (string | number), remove the (string | number) part
+type RemoveStringNumber<T> = Exclude<T, keyof string | keyof number>
+
+export function getPseudoSelectors(theme: any) {
+  return { ...pseudoSelectors, ...theme.conditions }
+}
+
+export function getPseudoPropNames(theme: any) {
+  return Object.keys(getPseudoSelectors(theme))
+}
+
+export function isSemanticCondition(key: string) {
+  return key in pseudoSelectors || key in state
+}
