@@ -56,7 +56,7 @@
     "@commitlint/cli": "17.7.1",
     "@commitlint/config-conventional": "17.7.0",
     "@octokit/rest": "^20.0.1",
-    "@pnpm/sort-packages": "5.0.7",
+    "@pnpm/sort-packages": "5.0.9",
     "@pnpm/workspace.pkgs-graph": "^2.0.11",
     "@rollup/plugin-alias": "5.1.0",
     "@rollup/plugin-node-resolve": "15.2.3",

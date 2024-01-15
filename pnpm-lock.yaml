@@ -67,8 +67,8 @@ importers:
         specifier: ^20.0.1
         version: 20.0.1
       '@pnpm/sort-packages':
-        specifier: 5.0.7
-        version: 5.0.7
+        specifier: 5.0.9
+        version: 5.0.9
       '@pnpm/workspace.pkgs-graph':
         specifier: ^2.0.11
         version: 2.0.11(@pnpm/logger@5.0.0)
@@ -5881,12 +5881,12 @@ packages:
       '@pnpm/types': 9.4.0
     dev: false
 
-  /@pnpm/sort-packages@5.0.7:
-    resolution: {integrity: sha512-sB8y4o8yKFWR8eRsXBA3Q8zo6TUNrmoYfBhrzBDNCDLBUypoywMwUwaUywRMm8wIVrM4w4sohEvoAst2kC5R7w==}
+  /@pnpm/sort-packages@5.0.9:
+    resolution: {integrity: sha512-eKbbnw1DgTlMqN2vY0b6Erv7sekqaMyMyzOm19uBzIYApNdMqGHWt/hrgxS3pIdzb4cgOWUaqh0PyVGHMyZmvg==}
     engines: {node: '>=16.14'}
     dependencies:
       '@pnpm/deps.graph-sequencer': 1.0.0
-      '@pnpm/types': 9.4.0
+      '@pnpm/types': 9.4.2
     dev: false
 
   /@pnpm/text.comments-parser@1.0.0:
@@ -5903,6 +5903,11 @@ packages:
 
   /@pnpm/types@9.4.0:
     resolution: {integrity: sha512-IRDuIuNobLRQe0UyY2gbrrTzYS46tTNvOEfL6fOf0Qa8NyxUzeXz946v7fQuQE3LSBf8ENBC5SXhRmDl+mBEqA==}
+    engines: {node: '>=16.14'}
+    dev: false
+
+  /@pnpm/types@9.4.2:
+    resolution: {integrity: sha512-g1hcF8Nv4gd76POilz9gD4LITAPXOe5nX4ijgr8ixCbLQZfcpYiMfJ+C1RlMNRUDo8vhlNB4O3bUlxmT6EAQXA==}
     engines: {node: '>=16.14'}
     dev: false
 
