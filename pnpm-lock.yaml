@@ -796,8 +796,8 @@ importers:
   packages/utils:
     dependencies:
       '@types/lodash.mergewith':
-        specifier: 4.6.8
-        version: 4.6.8
+        specifier: 4.6.9
+        version: 4.6.9
       lodash.mergewith:
         specifier: 4.6.2
         version: 4.6.2
@@ -8315,8 +8315,8 @@ packages:
     dependencies:
       '@types/node': 20.5.2
 
-  /@types/lodash.mergewith@4.6.8:
-    resolution: {integrity: sha512-/ks3wEdqlshVj49m+0ux9tVbqN3AGi89x/rqKsPKY/HXf8MoBYV6OOEJCe7TnGO5ucuGs1N91I7oocAv/nKeZQ==}
+  /@types/lodash.mergewith@4.6.9:
+    resolution: {integrity: sha512-fgkoCAOF47K7sxrQ7Mlud2TH023itugZs2bUg8h/KzT+BnZNrR2jAOmaokbLunHNnobXVWOezAeNn/lZqwxkcw==}
     dependencies:
       '@types/lodash': 4.14.182
     dev: false
