@@ -13,14 +13,20 @@ const theme = extendTheme({
   conditions: {
     _closed: "[data-state='closed']", // pseudo prop
   },
-  components: {
-    CustomComponent: {
-      baseStyle: {
-        _closed: {
-          bg: "red.200",
-        },
-      },
-    },
-  },
 })
+```
+
+This allows you to use the pseudo prop in your components
+
+```jsx
+<Box data-state="closed" _closed={{ bg: "red.200" }}>
+  This box is closed
+</Box>
+```
+
+**For TypeScript users**, you need to use the Chakra CLI to generate the types
+for your custom conditions.
+
+```sh
+pnpm chakra-cli tokens src/theme/index.ts
 ```
