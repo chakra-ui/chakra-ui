@@ -333,20 +333,19 @@ const pseudoSelectors = {
   _vertical: "&[data-orientation=vertical]",
 }
 
-export type Pseudos = typeof pseudoSelectors & keyof ThemeTypings["conditions"]
-export type PseudoKey = RemoveStringNumber<keyof Pseudos>
+export type Pseudos = typeof pseudoSelectors &
+  Record<ThemeTypings["conditions"], string>
 
-// from a type like this 'sm' | 'lg' | 'md' | 'xl' | '2xl' | (string | number), remove the (string | number) part
-type RemoveStringNumber<T> = Exclude<T, keyof string | keyof number>
+export type PseudoKey = keyof Pseudos
 
 export function getPseudoSelectors(theme: any) {
-  return { ...pseudoSelectors, ...theme.conditions }
+  const __conds = theme.conditions ?? {}
+  const conditions = Object.fromEntries(
+    Object.entries(__conds).map(([key, value]) => [`_${key}`, value]),
+  )
+  return { ...pseudoSelectors, ...conditions }
 }
 
 export function getPseudoPropNames(theme: any) {
   return Object.keys(getPseudoSelectors(theme))
-}
-
-export function isSemanticCondition(key: string) {
-  return key in pseudoSelectors || key in state
 }

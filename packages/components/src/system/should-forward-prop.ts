@@ -32,5 +32,7 @@ const validHTMLProps = new Set([
 ])
 
 export function shouldForwardProp(prop: string): boolean {
-  return validHTMLProps.has(prop) || !allPropNames.has(prop)
+  return (
+    (validHTMLProps.has(prop) || !allPropNames.has(prop)) && prop[0] !== "_"
+  )
 }
