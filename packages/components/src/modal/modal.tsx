@@ -148,6 +148,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     returnFocusOnClose: true,
     blockScrollOnMount: true,
     allowPinchZoom: false,
+    preserveScrollBarGap: true,
     motionPreset: "scale",
     ...props,
     lockFocusAcrossFrames: props.lockFocusAcrossFrames || true,
