@@ -113,7 +113,7 @@
     "tsup": "^8.0.1",
     "tsx": "^3.12.7",
     "typescript": "^5.1.6",
-    "vite": "^4.4.9",
+    "vite": "^4.5.2",
     "vitest": "^1.0.2",
     "vitest-axe": "^0.1.0",
     "vitest-matchmedia-mock": "^1.0.2"
