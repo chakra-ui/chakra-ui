@@ -1,0 +1,714 @@
+---
+title: Style Props
+description:
+  Learn how to use style props in Chakra UI. Style props are a way to alter the
+  style of a component by simply passing props to it
+category: 'features'
+---
+
+Style props are a way to alter the style of a component by simply passing props
+to it. It helps to save time by providing helpful shorthand ways to style
+components.
+
+## Reference
+
+The following table shows a list of every style prop and the properties within
+each group.
+
+### Margin and padding
+
+```jsx live=false
+import { Box } from "@chakra-ui/react"
+
+// m={2} refers to the value of `theme.space[2]`
+<Box m={2}>Tomato</Box>
+
+// You can also use custom values
+<Box maxW="960px" mx="auto" />
+
+// sets margin `8px` on all viewports and `12px` from the first breakpoint and up
+<Box m={[2, 3]} />
+```
+
+| Prop                  | CSS Property                                  | Theme Key |
+| --------------------- | --------------------------------------------- | --------- |
+| `m`, `margin`         | `margin`                                      | `space`   |
+| `mt`, `marginTop`     | `margin-top`                                  | `space`   |
+| `mr`, `marginRight`   | `margin-right`                                | `space`   |
+| `me`, `marginEnd`     | `margin-inline-end`                           | `space`   |
+| `mb`, `marginBottom`  | `margin-bottom`                               | `space`   |
+| `ml`, `marginLeft`    | `margin-left`                                 | `space`   |
+| `ms`, `marginStart`   | `margin-inline-start`                         | `space`   |
+| `mx`, `marginX`       | `margin-inline-start` + `margin-inline-end`   | `space`   |
+| `my`, `marginY`       | `margin-top` + `margin-bottom`                | `space`   |
+| `p`, `padding`        | `padding`                                     | `space`   |
+| `pt`, `paddingTop`    | `padding-top`                                 | `space`   |
+| `pr`, `paddingRight`  | `padding-right`                               | `space`   |
+| `pe`, `paddingEnd`    | `padding-inline-end`                          | `space`   |
+| `pb`, `paddingBottom` | `padding-bottom`                              | `space`   |
+| `pl`, `paddingLeft`   | `padding-left`                                | `space`   |
+| `ps`, `paddingStart`  | `padding-inline-start`                        | `space`   |
+| `px`, `paddingX`      | `padding-inline-start` + `padding-inline-end` | `space`   |
+| `py`, `paddingY`      | `padding-top` + `padding-bottom`              | `space`   |
+
+> For `mx` and `px` props, we use `margin-inline-start` and `margin-inline-end`
+> to ensure the generated styles are RTL-friendly
+
+### Color and background color
+
+```jsx live=false
+import { Box } from "@chakra-ui/react"
+
+// picks up a nested color value using dot notation
+// => `theme.colors.gray[50]`
+<Box color='gray.50' />
+
+// raw CSS color value
+<Box color='#f00' />
+
+// background colors
+<Box bg='tomato' />
+
+// verbose prop
+<Box backgroundColor='tomato' />
+```
+
+| Prop               | CSS Property       | Theme Key |
+| ------------------ | ------------------ | --------- |
+| `color`            | `color`            | `colors`  |
+| `bg`, `background` | `background`       | `colors`  |
+| `bgColor`          | `background-color` | `colors`  |
+| `opacity`          | `opacity`          | none      |
+
+### Gradient
+
+```jsx live=false
+import { Box, Text } from "@chakra-ui/react"
+
+// adding linear gradient and color transitions
+<Box w="100%" h="200px" bgGradient="linear(to-t, green.200, pink.500)" />
+
+// adding radial gradient and color transitions
+<Box w="100%" h="200px" bgGradient="radial(gray.300, yellow.400, pink.200)" />
+
+// adding the text gradient
+<Text
+  bgGradient="linear(to-l, #7928CA, #FF0080)"
+  bgClip="text"
+  fontSize="6xl"
+  fontWeight="extrabold"
+>
+  Welcome to Chakra UI
+</Text>
+
+```
+
+| Prop                       | CSS Property       | Theme Key |
+| -------------------------- | ------------------ | --------- |
+| `bgGradient`               | `background-image` | none      |
+| `bgClip`, `backgroundClip` | `background-clip`  | none      |
+
+### Typography
+
+```jsx live=false
+import { Text } from "@chakra-ui/react"
+
+// font-size of `theme.fontSizes.md`
+<Text fontSize="md" />
+
+// font-size `32px`
+<Text fontSize={32} />
+
+// font-size `'2em'`
+<Text fontSize='2em' />
+
+// text-align `left` on all viewports and `center` from the first breakpoint and up
+<Text textAlign={[ 'left', 'center' ]} />
+```
+
+| Prop             | CSS Property      | Theme Key        |
+| ---------------- | ----------------- | ---------------- |
+| `fontFamily`     | `font-family`     | `fonts`          |
+| `fontSize`       | `font-size`       | `fontSizes`      |
+| `fontWeight`     | `font-weight`     | `fontWeights`    |
+| `lineHeight`     | `line-height`     | `lineHeights`    |
+| `letterSpacing`  | `letter-spacing`  | `letterSpacings` |
+| `textAlign`      | `text-align`      | none             |
+| `fontStyle`      | `font-style`      | none             |
+| `textTransform`  | `text-transform`  | none             |
+| `textDecoration` | `text-decoration` | none             |
+
+### Layout, width and height
+
+```jsx live=false
+import { Box } from "@chakra-ui/react"
+
+// verbose
+<Box width="100%" height={32} />
+
+// shorthand
+<Box w="100%" h="32px" />
+
+// use theme sizing
+<Box boxSize="sm" />
+
+// width `256px`
+<Box w={256} />
+
+// width `'40px'`
+<Box w='40px' />
+
+```
+
+| Prop                | CSS Property      | Theme Key |
+| ------------------- | ----------------- | --------- |
+| `w`, `width`        | `width`           | `sizes`   |
+| `h`, `height`       | `height`          | `sizes`   |
+| `minW`, `minWidth`  | `min-width`       | `sizes`   |
+| `maxW`, `maxWidth`  | `max-width`       | `sizes`   |
+| `minH`, `minHeight` | `min-height`      | `sizes`   |
+| `maxH`, `maxHeight` | `max-height`      | `sizes`   |
+| `boxSize`           | `width`, `height` | `sizes`   |
+| `verticalAlign`     | `vertical-align`  | none      |
+| `overflow`          | `overflow`        | none      |
+| `overflowX`         | `overflow-x`      | none      |
+| `overflowY`         | `overflow-y`      | none      |
+
+### Display
+
+```jsx live=false
+import { Box } from '@chakra-ui/react'
+
+// hide the element on all viewports
+<Box display='none' />
+
+// hide the element by default, and show from 'md' up
+<Box display={{ base: "none", md: "block" }} />
+
+// shorthand
+<Box hideBelow='md' />
+
+// hide the element from 'md' up
+<Box display={{ base: "block", md: "none" }} />
+
+// shorthand
+<Box hideFrom='md' />
+```
+
+| Prop        | CSS Property              | Theme Key     |
+| ----------- | ------------------------- | ------------- |
+| `display`   | `display`                 | none          |
+| `hideFrom`  | `display` (at breakpoint) | `breakpoints` |
+| `hideBelow` | `display` (at breakpoint) | `breakpoints` |
+
+### Flexbox
+
+```jsx live=false
+import { Box, Flex } from "@chakra-ui/react"
+
+// verbose
+<Box display="flex" alignItems="center" justifyContent="space-between">
+  Box with Flex props
+</Box>
+
+// shorthand using the `Flex` component
+<Flex align="center" justify="center">
+  Flex Container
+</Flex>
+```
+
+> Note: Props in `*` will only work if you use the `Flex` component.
+
+| Prop                                      | CSS Property      | Theme Key |
+| ----------------------------------------- | ----------------- | --------- |
+| `gap`                                     | `gap`             | `space`   |
+| `rowGap`                                  | `row-gap`         | `space`   |
+| `columnGap`                               | `column-gap`      | `space`   |
+| `alignItems`, \*`align`                   | `align-items`     | none      |
+| `alignContent`                            | `align-content`   | none      |
+| `justifyItems`                            | `justify-items`   | none      |
+| `justifyContent`, \*`justify`             | `justify-content` | none      |
+| `flexWrap`, \*`wrap`                      | `flex-wrap`       | none      |
+| `flexDirection`, `flexDir`, \*`direction` | `flex-direction`  | none      |
+| `flex`                                    | `flex`            | none      |
+| `flexGrow`                                | `flex-grow`       | none      |
+| `flexShrink`                              | `flex-shrink`     | none      |
+| `flexBasis`                               | `flex-basis`      | none      |
+| `justifySelf`                             | `justify-self`    | none      |
+| `alignSelf`                               | `align-self`      | none      |
+| `order`                                   | `order`           | none      |
+
+### Grid Layout
+
+```jsx live=false
+import { Box, Grid } from "@chakra-ui/react"
+
+// verbose
+<Box display="grid" gridGap={2} gridAutoFlow="row dense">
+  Grid
+</Box>
+
+// shorthand using the `Grid` component
+<Grid gap={2} autoFlow="row dense">
+  Grid
+</Grid>
+```
+
+> Note: Props in `*` will only work if you use the `Grid` component.
+
+| Prop                                       | CSS Property            | Theme Key |
+| ------------------------------------------ | ----------------------- | --------- |
+| `gridGap`, \*`gap`                         | `grid-gap`              | `space`   |
+| `gridRowGap`, \*`rowGap`                   | `grid-row-gap`          | `space`   |
+| `gridColumnGap`, \*`columnGap`             | `grid-column-gap`       | `space`   |
+| `gridColumn`, \*`column`                   | `grid-column`           | none      |
+| `gridRow`, \*`row`                         | `grid-row`              | none      |
+| `gridArea`, \*`area`                       | `grid-area`             | none      |
+| `gridAutoFlow`, \*`autoFlow`               | `grid-auto-flow`        | none      |
+| `gridAutoRows`, \*`autoRows`               | `grid-auto-rows`        | none      |
+| `gridAutoColumns`, \*`autoColumns`         | `grid-auto-columns`     | none      |
+| `gridTemplateRows`, \*`templateRows`       | `grid-template-rows`    | none      |
+| `gridTemplateColumns`, \*`templateColumns` | `grid-template-columns` | none      |
+| `gridTemplateAreas`, \*`templateAreas`     | `grid-template-areas`   | none      |
+
+### Background
+
+```jsx live=false
+import { Box } from "@chakra-ui/react"
+
+// verbose
+<Box
+  backgroundImage="url('/images/kyuubi.png')"
+  backgroundPosition="center"
+  backgroundRepeat="no-repeat"
+/>
+
+// shorthand
+<Box
+  bgImage="url('/images/gaara.png')"
+  bgPosition="center"
+  bgRepeat="no-repeat"
+/>
+```
+
+| Prop                                  | CSS Property            | Theme Key |
+| ------------------------------------- | ----------------------- | --------- |
+| `bg`, `background`                    | `background`            | none      |
+| `bgImage`, `backgroundImage`          | `background-image`      | none      |
+| `bgSize`, `backgroundSize`            | `background-size`       | none      |
+| `bgPosition`,`backgroundPosition`     | `background-position`   | none      |
+| `bgRepeat`,`backgroundRepeat`         | `background-repeat`     | none      |
+| `bgAttachment`,`backgroundAttachment` | `background-attachment` | none      |
+
+### Borders
+
+```jsx live=false
+<Box border='1px' borderColor='gray.200'>
+  Card
+</Box>
+```
+
+| Prop                | CSS Property                   | Theme Field    |
+| ------------------- | ------------------------------ | -------------- |
+| `border`            | `border`                       | `borders`      |
+| `borderWidth`       | `border-width`                 | `borderWidths` |
+| `borderStyle`       | `border-style`                 | `borderStyles` |
+| `borderColor`       | `border-color`                 | `colors`       |
+| `borderTop`         | `border-top`                   | `borders`      |
+| `borderTopWidth`    | `border-top-width`             | `borderWidths` |
+| `borderTopStyle`    | `border-top-style`             | `borderStyles` |
+| `borderTopColor`    | `border-top-color`             | `colors`       |
+| `borderRight`       | `border-right`                 | `borders`      |
+| `borderEnd`         | `border-inline-end`            | `borders`      |
+| `borderRightWidth`  | `border-right-width`           | `borderWidths` |
+| `borderEndWidth`    | `border-inline-end-width`      | `borderWidths` |
+| `borderRightStyle`  | `border-right-style`           | `borderStyles` |
+| `borderEndStyle`    | `border-inline-end-style`      | `borderStyles` |
+| `borderRightColor`  | `border-right-color`           | `colors`       |
+| `borderEndColor`    | `border-inline-end-color`      | `colors`       |
+| `borderBottom`      | `border-bottom`                | `borders`      |
+| `borderBottomWidth` | `border-bottom-width`          | `borderWidths` |
+| `borderBottomStyle` | `border-bottom-style`          | `borderStyles` |
+| `borderBottomColor` | `border-bottom-color`          | `colors`       |
+| `borderLeft`        | `border-left`                  | `borders`      |
+| `borderStart`       | `border-inline-start`          | `borders`      |
+| `borderLeftWidth`   | `border-left-width`            | `borderWidths` |
+| `borderStartWidth`  | `border-inline-start-width`    | `borderWidths` |
+| `borderLeftStyle`   | `border-left-style`            | `borderStyles` |
+| `borderStartStyle`  | `border-inline-start-style`    | `borderStyles` |
+| `borderLeftColor`   | `border-left-color`            | `colors`       |
+| `borderStartColor`  | `border-inline-start-color`    | `colors`       |
+| `borderX`           | `border-left` , `border-right` | `borders`      |
+| `borderY`           | `border-top` , `border-bottom` | `borders`      |
+
+### Border Radius
+
+```jsx live=false
+import { Button } from "@chakra-ui/react"
+
+// This button will have no right borderRadius
+<Button borderRightRadius="0">Button 1</Button>
+
+// This button will have no left borderRadius*/
+<Button borderLeftRadius="0">Button 2</Button>
+
+// top left and top right radius will be `theme.radii.md` => 4px
+<Button borderTopRadius="md">Button 2</Button>
+```
+
+| Prop                      | CSS Property                                                                 | Theme Field |
+| ------------------------- | ---------------------------------------------------------------------------- | ----------- |
+| `borderRadius`            | `border-radius`                                                              | `radii`     |
+| `borderTopLeftRadius`     | `border-top-left-radius`                                                     | `radii`     |
+| `borderTopStartRadius`    | `border-top-left-radius` in LTR,<br/> `border-top-right-radius` in RTL       | `radii`     |
+| `borderTopRightRadius`    | `border-top-right-radius`                                                    | `radii`     |
+| `borderTopEndRadius`      | `border-top-right-radius` in LTR,<br/> `border-top-left-radius` in RTL       | `radii`     |
+| `borderBottomRightRadius` | `border-bottom-right-radius`                                                 | `radii`     |
+| `borderBottomEndRadius`   | `border-bottom-right-radius` in LTR,<br/> `border-bottom-left-radius` in RTL | `radii`     |
+| `borderBottomLeftRadius`  | `border-bottom-left-radius`                                                  | `radii`     |
+| `borderBottomStartRadius` | `border-bottom-left-radius` in LTR,<br/> `border-bottom-left-radius` in RTL  | `radii`     |
+| `borderTopRadius`         | `border-top-left-radius` + `border-top-right-radius`                         | `radii`     |
+| `borderRightRadius`       | `border-top-right-radius` + `border-bottom-right-radius`                     | `radii`     |
+| `borderEndRadius`         | `border-top-right-radius` + `border-bottom-right-radius`                     | `radii`     |
+| `borderBottomRadius`      | `border-bottom-left-radius` + `border-bottom-right-radius`                   | `radii`     |
+| `borderLeftRadius`        | `border-top-left-radius` + `border-bottom-left-radius`                       | `radii`     |
+| `borderStartRadius`       | `border-top-left-radius` + `border-bottom-left-radius`                       | `radii`     |
+
+### Position
+
+```jsx live=false
+import { Box } from "@chakra-ui/react"
+
+// verbose
+<Box position="absolute">Cover</Box>
+
+// shorthand
+<Box pos="absolute">Cover</Box>
+<Box pos="absolute" top="0" left="0">
+  Absolute with top and left
+</Box>
+<Box pos="fixed" w="100%" zIndex={2}>
+  Fixed with zIndex
+</Box>
+```
+
+| Prop             | CSS Property | Theme Field |
+| ---------------- | ------------ | ----------- |
+| `pos`,`position` | `position`   | none        |
+| `zIndex`         | `z-index`    | `zIndices`  |
+| `top`            | `top`        | `space`     |
+| `right`          | `right`      | `space`     |
+| `bottom`         | `bottom`     | `space`     |
+| `left`           | `left`       | `space`     |
+
+### Shadow
+
+```jsx
+<SimpleGrid
+  bg='gray.50'
+  columns={{ sm: 2, md: 4 }}
+  spacing='8'
+  p='10'
+  textAlign='center'
+  rounded='lg'
+  color='gray.400'
+>
+  <Box boxShadow='xs' p='6' rounded='md' bg='white'>
+    xs
+  </Box>
+  <Box boxShadow='sm' p='6' rounded='md' bg='white'>
+    sm
+  </Box>
+  <Box boxShadow='base' p='6' rounded='md' bg='white'>
+    Base
+  </Box>
+  <Box boxShadow='md' p='6' rounded='md' bg='white'>
+    md
+  </Box>
+  <Box boxShadow='lg' p='6' rounded='md' bg='white'>
+    lg
+  </Box>
+  <Box boxShadow='xl' p='6' rounded='md' bg='white'>
+    xl
+  </Box>
+  <Box boxShadow='2xl' p='6' rounded='md' bg='white'>
+    2xl
+  </Box>
+  <Box boxShadow='dark-lg' p='6' rounded='md' bg='white'>
+    Dark lg
+  </Box>
+  <Box boxShadow='outline' p='6' rounded='md' bg='white'>
+    Outline
+  </Box>
+  <Box boxShadow='inner' p='6' rounded='md' bg='white'>
+    Inner
+  </Box>
+</SimpleGrid>
+```
+
+```jsx
+<Text textShadow='1px 1px #ff0000' m='6'>
+  Text with shadows
+</Text>
+```
+
+| Prop                  | CSS Property  | Theme Field |
+| --------------------- | ------------- | ----------- |
+| `textShadow`          | `text-shadow` | `shadows`   |
+| `shadow`, `boxShadow` | `box-shadow`  | `shadows`   |
+
+### Filter
+
+```jsx
+function Filters() {
+  const basicBoxStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    boxSize: '250px',
+    color: 'white',
+    textShadow: '0 0 20px black',
+    fontWeight: 'bold',
+    fontSize: '20px',
+    px: 4,
+    background:
+      'url(https://picsum.photos/id/1080/200/300) center/cover no-repeat',
+  }
+  return (
+    <Flex flexWrap='wrap' gap='24px' justifyContent='space-evenly'>
+      {/* adding filter property to the element */}
+      <Box sx={basicBoxStyles} filter='grayscale(80%)'>
+        Box with Filter
+      </Box>
+      {/* adding blur property to the element */}
+      <Box sx={basicBoxStyles} filter='auto' blur='2px'>
+        Box with Blur
+      </Box>
+      {/* adding brightness property to the element */}
+      <Box sx={basicBoxStyles} filter='auto' brightness='40%'>
+        Box with Brightness
+      </Box>
+    </Flex>
+  )
+}
+```
+
+> Note: To apply `blur`, `brightness`, `contrast`, `hueRotate`, `invert`,
+> `saturate` props on the element, set `filter` prop value to "auto".
+
+```jsx
+function BackdropFilters() {
+  const outerBoxStyles = {
+    boxSize: '250px',
+    p: '10',
+    background:
+      'url(https://picsum.photos/id/1068/200/300) center/cover no-repeat',
+  }
+
+  const innerBoxStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    boxSize: 'full',
+    color: 'white',
+    textShadow: '0 0 20px black',
+    fontWeight: 'bold',
+    fontSize: '20px',
+  }
+  return (
+    <Flex flexWrap='wrap' gap='24px' justifyContent='space-evenly'>
+      {/* adding backdrop-filter property to the element */}
+      <Box sx={outerBoxStyles}>
+        <Box sx={innerBoxStyles} backdropFilter='invert(100%)'>
+          Box with Backdrop Filter
+        </Box>
+      </Box>
+      {/* adding backdrop-blur property to the element */}
+      <Box sx={outerBoxStyles}>
+        <Box sx={innerBoxStyles} backdropFilter='auto' backdropBlur='8px'>
+          Box with Backdrop Blur
+        </Box>
+      </Box>
+      {/* adding backdrop-contrast property to the element */}
+      <Box sx={outerBoxStyles}>
+        <Box sx={innerBoxStyles} backdropFilter='auto' backdropContrast='30%'>
+          Box with Backdrop Contrast
+        </Box>
+      </Box>
+    </Flex>
+  )
+}
+```
+
+> 🚨 `backdrop-filter` is not supported in Firefox. It can be enabled by the
+> user, but it is suggested to design a component that looks good with and
+> without this property.
+
+> Note: To apply `backdropBlur`, `backdropBrightness`, `backdropContrast`,
+> `backdropHueRotate`, `backdropInvert`, `backdropSaturate` props on the
+> element, set `backdropFilter` prop value to "auto".
+
+| Prop                 | CSS Property      | Theme Field |
+| -------------------- | ----------------- | ----------- |
+| `filter`             | `filter`          | none        |
+| `blur`               | `filter`          | `blur`      |
+| `brightness`         | `filter`          | none        |
+| `contrast`           | `filter`          | none        |
+| `hueRotate`          | `filter`          | none        |
+| `invert`             | `filter`          | none        |
+| `saturate`           | `filter`          | none        |
+| `dropShadow`         | `filter`          | `shadows`   |
+| `backdropFilter`     | `backdrop-filter` | none        |
+| `backdropBlur`       | `backdrop-filter` | `blur`      |
+| `backdropBrightness` | `backdrop-filter` | none        |
+| `backdropContrast`   | `backdrop-filter` | none        |
+| `backdropHueRotate`  | `backdrop-filter` | none        |
+| `backdropInvert`     | `backdrop-filter` | none        |
+| `backdropSaturate`   | `backdrop-filter` | none        |
+
+### Pseudo
+
+```jsx live=false
+import { Button } from "@chakra-ui/react"
+
+// :hover style
+<Button
+  colorScheme="teal"
+  _hover={{
+    background: "white",
+    color: "teal.500",
+  }}
+>
+  Hover me
+</Button>
+
+// apply :hover over parent element
+<Box
+  role="group"
+>
+  <Box
+    _hover={{ fontWeight: 'semibold' }}
+    _groupHover={{ color: 'tomato' }}
+  >
+  </Box>
+</Box>
+
+// add ::before pseudo element
+// Note: the content value needs an extra set of quotes!
+<Box
+  _before={{ content: '"🙂"', display: 'inline-block', mr: '5px' }}
+>
+  A pseudo element
+</Box>
+
+```
+
+| Prop                    | CSS Property                                                                                                                                                                               | Theme Field |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `_hover`                | `&:hover`<br />`&[data-hover]`                                                                                                                                                             | none        |
+| `_active`               | `&:active`<br />`&[data-active]`                                                                                                                                                           | none        |
+| `_focus`                | `&:focus`<br />`&[data-focus]`                                                                                                                                                             | none        |
+| `_highlighted`          | `&[data-highlighted]`                                                                                                                                                                      | none        |
+| `_focusWithin`          | `&:focus-within`                                                                                                                                                                           | none        |
+| `_focusVisible`         | `&:focus-visible`                                                                                                                                                                          | none        |
+| `_disabled`             | `&[disabled]`<br />`&[aria-disabled=true]`<br />`&[data-disabled]`                                                                                                                         | none        |
+| `_readOnly`             | `&[aria-readonly=true]`<br />`&[readonly]`<br />`&[data-readonly]`                                                                                                                         | none        |
+| `_before`               | `&::before`                                                                                                                                                                                | none        |
+| `_after`                | `&::after`                                                                                                                                                                                 | none        |
+| `_empty`                | `&:empty`                                                                                                                                                                                  | none        |
+| `_expanded`             | `&[aria-expanded=true]`<br />`&[data-expanded]`                                                                                                                                            | none        |
+| `_checked`              | `&[aria-checked=true]`<br />`&[data-checked]`                                                                                                                                              | none        |
+| `_grabbed`              | `&[aria-grabbed=true]`<br />`&[data-grabbed]`                                                                                                                                              | none        |
+| `_pressed`              | `&[aria-pressed=true]`<br />`&[data-pressed]`                                                                                                                                              | none        |
+| `_invalid`              | `&[aria-invalid=true]`<br />`&[data-invalid]`                                                                                                                                              | none        |
+| `_valid`                | `&[data-valid]`<br />`&[data-state=valid]`                                                                                                                                                 | none        |
+| `_loading`              | `&[data-loading]`<br />`&[aria-busy=true]`                                                                                                                                                 | none        |
+| `_selected`             | `&[aria-selected=true]`<br />`&[data-selected]`                                                                                                                                            | none        |
+| `_hidden`               | `&[hidden]`<br />`&[data-hidden]`                                                                                                                                                          | none        |
+| `_autofill`             | `&:-webkit-autofill`                                                                                                                                                                       | none        |
+| `_even`                 | `&:nth-of-type(even)`                                                                                                                                                                      | none        |
+| `_odd`                  | `&:nth-of-type(odd)`                                                                                                                                                                       | none        |
+| `_first`                | `&:first-of-type`                                                                                                                                                                          | none        |
+| `_last`                 | `&:last-of-type`                                                                                                                                                                           | none        |
+| `_notFirst`             | `&:not(:first-of-type)`                                                                                                                                                                    | none        |
+| `_notLast`              | `&:not(:last-of-type)`                                                                                                                                                                     | none        |
+| `_visited`              | `&:visited`                                                                                                                                                                                | none        |
+| `_activeLink`           | `&[aria-current=page]`                                                                                                                                                                     | none        |
+| `_activeStep`           | `&[aria-current=step]`                                                                                                                                                                     | none        |
+| `_indeterminate`        | `&:indeterminate`<br />`&[aria-checked=mixed]`<br />`&[data-indeterminate]`                                                                                                                | none        |
+| `_groupHover`           | `[role=group]:hover &`<br />`[role=group][data-hover] &`<br />`[data-group]:hover &`<br />`[data-group][data-hover] &`<br />`.group:hover &`<br />`.group[data-hover] &`                   | none        |
+| `_peerHover`            | `[data-peer]:hover ~ &`<br />`[data-peer][data-hover] ~ &`<br />`.peer:hover ~ &`<br />`.peer[data-hover] ~ &`                                                                             | none        |
+| `_groupFocus`           | `[role=group]:focus &`<br />`[role=group][data-focus] &`<br />`[data-group]:focus &`<br />`[data-group][data-focus] &`<br />`.group:focus &`<br />`.group[data-focus] &`                   | none        |
+| `_peerFocus`            | `[data-peer]:focus ~ &`<br />`[data-peer][data-focus] ~ &`<br />`.peer:focus ~ &`<br />`.peer[data-focus] ~ &`                                                                             | none        |
+| `_groupFocusVisible`    | `[role=group]:focus-visible &`<br />`[data-group]:focus-visible &`<br />`.group:focus-visible &`                                                                                           | none        |
+| `_peerFocusVisible`     | `[data-peer]:focus-visible ~ &`<br />`.peer:focus-visible ~ &`                                                                                                                             | none        |
+| `_groupActive`          | `[role=group]:active &`<br />`[role=group][data-active] &`<br />`[data-group]:active &`<br />`[data-group][data-active] &`<br />`.group:active &`<br />`.group[data-active] &`             | none        |
+| `_peerActive`           | `[data-peer]:active ~ &`<br />`[data-peer][data-active] ~ &`<br />`.peer:active ~ &`<br />`.peer[data-active] ~ &`                                                                         | none        |
+| `_groupDisabled`        | `[role=group]:disabled &`<br />`[role=group][data-disabled] &`<br />`[data-group]:disabled &`<br />`[data-group][data-disabled] &`<br />`.group:disabled &`<br />`.group[data-disabled] &` | none        |
+| `_peerDisabled`         | `[data-peer]:disabled ~ &`<br />`[data-peer][data-disabled] ~ &`<br />`.peer:disabled ~ &`<br />`.peer[data-disabled] ~ &`                                                                 | none        |
+| `_groupInvalid`         | `[role=group]:invalid &`<br />`[role=group][data-invalid] &`<br />`[data-group]:invalid &`<br />`[data-group][data-invalid] &`<br />`.group:invalid &`<br />`.group[data-invalid] &`       | none        |
+| `_peerInvalid`          | `[data-peer]:invalid ~ &`<br />`[data-peer][data-invalid] ~ &`<br />`.peer:invalid ~ &`<br />`.peer[data-invalid] ~ &`                                                                     | none        |
+| `_groupChecked`         | `[role=group]:checked &`<br />`[role=group][data-checked] &`<br />`[data-group]:checked &`<br />`[data-group][data-checked] &`<br />`.group:checked &`<br />`.group[data-checked] &`       | none        |
+| `_peerChecked`          | `[data-peer]:checked ~ &`<br />`[data-peer][data-checked] ~ &`<br />`.peer:checked ~ &`<br />`.peer[data-checked] ~ &`                                                                     | none        |
+| `_groupFocusWithin`     | `[role=group]:focus-within &`<br />`[data-group]:focus-within &`<br />`.group:focus-within &`                                                                                              | none        |
+| `_peerFocusWithin`      | `[data-peer]:focus-within ~ &`<br />`.peer:focus-within ~ &`                                                                                                                               | none        |
+| `_peerPlaceholderShown` | `[data-peer]:placeholder-shown ~ &`<br />`.peer:placeholder-shown ~ &`                                                                                                                     | none        |
+| `_placeholder`          | `&::placeholder`                                                                                                                                                                           | none        |
+| `_placeholderShown`     | `&:placeholder-shown`                                                                                                                                                                      | none        |
+| `_fullScreen`           | `&:fullscreen`                                                                                                                                                                             | none        |
+| `_selection`            | `&::selection`                                                                                                                                                                             | none        |
+| `_rtl`                  | `[dir=rtl] &`<br />`&[dir=rtl]`                                                                                                                                                            | none        |
+| `_ltr`                  | `[dir=ltr] &`<br />`&[dir=ltr]`                                                                                                                                                            | none        |
+| `_mediaDark`            | `@media (prefers-color-scheme: dark)`                                                                                                                                                      | none        |
+| `_mediaReduceMotion`    | `@media (prefers-reduced-motion: reduce)`                                                                                                                                                  | none        |
+| `_dark`                 | `.chakra-ui-dark &`<br />`[data-theme=dark] &`<br />`&[data-theme=dark]`                                                                                                                   | none        |
+| `_light`                | `.chakra-ui-light &`<br />`[data-theme=light] &`<br />`&[data-theme=light]`                                                                                                                | none        |
+
+### Other Props
+
+Asides all the common style props listed above, all component will accept the
+following props:
+
+| Prop              | CSS Property       | Theme Field |
+| ----------------- | ------------------ | ----------- |
+| `animation`       | `animation`        | none        |
+| `appearance`      | `appearance`       | none        |
+| `content`         | `content`          | none        |
+| `transform`       | `transform`        | none        |
+| `transformOrigin` | `transform-origin` | none        |
+| `visibility`      | `visibility`       | none        |
+| `whiteSpace`      | `white-space`      | none        |
+| `userSelect`      | `user-select`      | none        |
+| `pointerEvents`   | `pointer-events`   | none        |
+| `wordBreak`       | `word-break`       | none        |
+| `overflowWrap`    | `overflow-wrap`    | none        |
+| `textOverflow`    | `text-overflow`    | none        |
+| `boxSizing`       | `box-sizing`       | none        |
+| `cursor`          | `cursor`           | none        |
+| `resize`          | `resize`           | none        |
+| `transition`      | `transition`       | none        |
+| `objectFit`       | `object-fit`       | none        |
+| `objectPosition`  | `object-position`  | none        |
+| `float`           | `float`            | none        |
+| `fill`            | `fill`             | `colors`    |
+| `stroke`          | `stroke`           | `colors`    |
+| `outline`         | `outline`          | none        |
+
+## The `as` prop
+
+The `as` prop is a feature in all of our components that allows you to pass an
+HTML tag or component to be rendered.
+
+For example, say you are using a `Button` component, and you need to make it a
+link instead. You can compose `a` and `Button` like this:
+
+```jsx
+<Button as='a' target='_blank' variant='outline' href='https://chakra-ui.com'>
+  Hello
+</Button>
+```
+
+This allows you to use all of the `Button` props and all of the `a` props
+without having to wrap the Button in an `a` component.

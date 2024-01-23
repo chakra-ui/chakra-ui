@@ -1,0 +1,24 @@
+---
+title: Version 2.4.5
+description:
+  Explore the changelog for Chakra UI version 2.4.5. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7146
+releaseDate: December 26, 2022
+version: 2.4.5
+---
+
+## Patch Changes
+
+### All components
+
+Improved the build setup for all packages.
+
+- Switched to the `latest` version of `tsup` for automatic JSX runtime detection
+- Simplied the build configs by moving `tsup` config to `package.json`
+- Switched to `.mjs` file extension for correct module loading
+
+### Storybook addon `4.0.16`
+
+- Fixed issue where color mode and RTL switcher were not working correctly in
+  the addon

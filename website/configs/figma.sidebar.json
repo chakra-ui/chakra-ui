@@ -1,0 +1,11 @@
+{
+  "routes": [
+    {
+      "title": "Figma",
+      "routes": [
+        { "title": "Figma UI Kit", "path": "/figma/ui-kit" },
+        { "title": "Figma Plugin", "path": "/figma/plugin" }
+      ]
+    }
+  ]
+}

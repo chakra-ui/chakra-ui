@@ -1,0 +1,37 @@
+---
+title: Page specific color mode
+description: How to lock a specific page to a specific color mode
+author: segunadebayo
+---
+
+The default way to add color mode in your application or website is to wrap it
+in the `ChakraProvider` which provides a way to change the color mode to `light`
+or `dark` depending on system/user preferences.
+
+In reality, you might run into scenarios where you want to lock a page to a
+specific color mode (light or dark).
+
+A combination of `LightMode` or `DarkMode` components and the _undocumented_
+`GlobalStyle` component can help you achieve this.
+
+The `GlobalStyle` component provides the styles defined in `theme.styles.global`
+to the elements on entire page.
+
+> **Note 🚨:** The caveat of this approach is that you won't be able to switch
+> between color modes. You're effectively "locking" the mode.
+
+Let's say we want to lock the page to light mode, you can import the `LightMode`
+component and wrap the page within it.
+
+```jsx live=false
+import { LightMode, GlobalStyle } from '@chakra-ui/react'
+
+function Page() {
+  return (
+    <LightMode>
+      <GlobalStyle />
+      {/* rest of your page */}
+    </LightMode>
+  )
+}
+```

@@ -1,0 +1,348 @@
+{
+  "routes": [
+    {
+      "title": "Components",
+      "heading": false,
+      "routes": [
+        {
+          "title": "Layout",
+          "path": "/docs/components/layout",
+          "sort": true,
+          "open": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Aspect Ratio",
+              "path": "/docs/components/aspect-ratio"
+            },
+            {
+              "title": "Box",
+              "path": "/docs/components/box"
+            },
+            {
+              "title": "Center",
+              "path": "/docs/components/center"
+            },
+            {
+              "title": "Container",
+              "path": "/docs/components/container"
+            },
+            {
+              "title": "Flex",
+              "path": "/docs/components/flex"
+            },
+            {
+              "title": "Grid",
+              "path": "/docs/components/grid"
+            },
+            {
+              "title": "SimpleGrid",
+              "path": "/docs/components/simple-grid"
+            },
+            {
+              "title": "Stack",
+              "path": "/docs/components/stack"
+            },
+            {
+              "title": "Wrap",
+              "path": "/docs/components/wrap"
+            }
+          ]
+        },
+        {
+          "title": "Forms",
+          "path": "/docs/components/form",
+          "sort": true,
+          "open": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Button",
+              "path": "/docs/components/button"
+            },
+            {
+              "title": "Checkbox",
+              "path": "/docs/components/checkbox"
+            },
+            {
+              "title": "Editable",
+              "path": "/docs/components/editable"
+            },
+            {
+              "title": "Form Control",
+              "path": "/docs/components/form-control"
+            },
+            {
+              "title": "Icon Button",
+              "path": "/docs/components/icon-button"
+            },
+            {
+              "title": "Input",
+              "path": "/docs/components/input"
+            },
+            {
+              "title": "Number Input",
+              "path": "/docs/components/number-input"
+            },
+            {
+              "title": "Pin Input",
+              "path": "/docs/components/pin-input"
+            },
+            {
+              "title": "Radio",
+              "path": "/docs/components/radio"
+            },
+            {
+              "title": "Range Slider",
+              "path": "/docs/components/range-slider"
+            },
+            {
+              "title": "Select",
+              "path": "/docs/components/select"
+            },
+            {
+              "title": "Slider",
+              "path": "/docs/components/slider"
+            },
+            {
+              "title": "Switch",
+              "path": "/docs/components/switch"
+            },
+            {
+              "title": "Textarea",
+              "path": "/docs/components/textarea"
+            }
+          ]
+        },
+        {
+          "title": "Data Display",
+          "path": "/docs/components/data-display",
+          "open": true,
+          "sort": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Badge",
+              "path": "/docs/components/badge"
+            },
+            {
+              "title": "Card",
+              "path": "/docs/components/card"
+            },
+            {
+              "title": "Code",
+              "path": "/docs/components/code"
+            },
+            {
+              "title": "Divider",
+              "path": "/docs/components/divider"
+            },
+            {
+              "title": "Kbd",
+              "path": "/docs/components/kbd"
+            },
+            {
+              "title": "List",
+              "path": "/docs/components/list"
+            },
+            {
+              "title": "Stat",
+              "path": "/docs/components/stat"
+            },
+            {
+              "title": "Table",
+              "path": "/docs/components/table"
+            },
+            {
+              "title": "Tag",
+              "path": "/docs/components/tag"
+            }
+          ]
+        },
+        {
+          "title": "Feedback",
+          "path": "/docs/components/feedback",
+          "open": true,
+          "sort": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Alert",
+              "path": "/docs/components/alert"
+            },
+            {
+              "title": "Circular Progress",
+              "path": "/docs/components/circular-progress"
+            },
+            {
+              "title": "Progress",
+              "path": "/docs/components/progress"
+            },
+            {
+              "title": "Skeleton",
+              "path": "/docs/components/skeleton"
+            },
+            {
+              "title": "Spinner",
+              "path": "/docs/components/spinner"
+            },
+            {
+              "title": "Toast",
+              "path": "/docs/components/toast"
+            }
+          ]
+        },
+        {
+          "title": "Typography",
+          "path": "/docs/components/typography",
+          "open": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Text",
+              "path": "/docs/components/text"
+            },
+            {
+              "title": "Heading",
+              "path": "/docs/components/heading"
+            },
+            {
+              "title": "Highlight",
+              "path": "/docs/components/highlight"
+            }
+          ]
+        },
+        {
+          "title": "Overlay",
+          "path": "/docs/components/overlay",
+          "open": true,
+          "sort": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Alert Dialog",
+              "path": "/docs/components/alert-dialog"
+            },
+            {
+              "title": "Drawer",
+              "path": "/docs/components/drawer"
+            },
+            {
+              "title": "Menu",
+              "path": "/docs/components/menu"
+            },
+            {
+              "title": "Modal",
+              "path": "/docs/components/modal"
+            },
+            {
+              "title": "Popover",
+              "path": "/docs/components/popover"
+            },
+            {
+              "title": "Tooltip",
+              "path": "/docs/components/tooltip"
+            }
+          ]
+        },
+        {
+          "title": "Disclosure",
+          "path": "/docs/components/disclosure",
+          "open": true,
+          "sort": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Accordion",
+              "path": "/docs/components/accordion"
+            },
+            {
+              "title": "Tabs",
+              "path": "/docs/components/tabs"
+            },
+            {
+              "title": "Visually Hidden",
+              "path": "/docs/components/visually-hidden"
+            }
+          ]
+        },
+        {
+          "title": "Navigation",
+          "path": "/docs/components/navigation",
+          "open": true,
+          "sort": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Breadcrumb",
+              "path": "/docs/components/breadcrumb"
+            },
+            {
+              "title": "Link",
+              "path": "/docs/components/link"
+            },
+            {
+              "title": "LinkOverlay",
+              "path": "/docs/components/link-overlay"
+            },
+            {
+              "title": "SkipNav",
+              "path": "/docs/components/skip-nav"
+            },
+            {
+              "new": true,
+              "title": "Stepper",
+              "path": "/docs/components/stepper"
+            }
+          ]
+        },
+        {
+          "title": "Media and icons",
+          "path": "/docs/components/media-and-icons",
+          "sort": true,
+          "open": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Avatar",
+              "path": "/docs/components/avatar"
+            },
+            {
+              "title": "Icon",
+              "path": "/docs/components/icon"
+            },
+            {
+              "title": "Image",
+              "path": "/docs/components/image"
+            }
+          ]
+        },
+        {
+          "title": "Other",
+          "path": "/docs/components/other",
+          "open": true,
+          "sort": true,
+          "summarize": true,
+          "routes": [
+            {
+              "title": "Close Button",
+              "path": "/docs/components/close-button"
+            },
+            {
+              "title": "Portal",
+              "path": "/docs/components/portal"
+            },
+            {
+              "title": "Show / Hide",
+              "path": "/docs/components/show-hide"
+            },
+            {
+              "title": "Transitions",
+              "path": "/docs/components/transitions"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

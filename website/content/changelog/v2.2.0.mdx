@@ -1,0 +1,110 @@
+---
+title: Version 2.2.0
+description:
+  Explore the changelog for Chakra UI version 2.2.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6125
+releaseDate: June 6, 2022
+version: 2.2.0
+---
+
+## Minor Changes
+
+### All components
+
+- Ensure components show focus outline only when interacting with the keyboard.
+
+- Migrate components to use `_focusVisible` instead of `_focus` selectors to
+  indicate focus.
+
+  > 🚨 NOTE: This might be a potential breaking change for consumers who use the
+  > `extendTheme` with the `_focus` styles. Kindly migrate to `_focusVisible`.
+
+### Checkbox `2.1.0`
+
+- Remove annoying focus outline by leveraging focus visible
+- Track focus visible and add `data-focus-visible` to `getCheckboxProps`
+
+### Media Query `3.1.0`
+
+- Add support for client-side rendered (CSR) apps to get the correct value on
+  first render.
+
+  > Affected hooks: `useMediaQuery`, `useBreakpoint`, `useBreakpointValue`.
+
+  These hooks are built work in server-side rendering (SSR) applications by
+  default. You might notice a quick flash of incorrect media query value when
+  you use them.
+
+  If you're creating a CSR-only app, you can now leverage the `ssr` argument to
+  get the correct value on first render.
+
+  ```jsx live=false
+  const [isMobile] = useMediaQuery('(max-width: 768px)', {
+    // you can now pass `ssr: false`
+    ssr: false,
+  })
+
+  const buttonSize = useBreakpointValue(
+    { base: 'sm', lg: 'md' },
+    // you can now pass `ssr: false`
+    { ssr: false },
+  )
+
+  // you can now pass `ssr: false`
+  const breakpoint = useBreakpoint({ ssr: false })
+  ```
+
+### Styled System `2.2.0`
+
+- Add support for styling `data-focus-visible` using the `_focusVisible` pseudo
+  prop
+
+### Theme `2.1.0`
+
+- Remove annoying focus outline by leveraging focus visible
+
+### CLI `2.1.0`
+
+- New `--watch` flag for the tokens command. You can specify a directory path to
+  watch for changes.
+
+  It defaults to the parent dir of `<source>`, e.g. `src/theme/theme.ts` =>
+  `src/theme`.
+
+  ```shell
+  > chakra-cli tokens src/theme/theme.ts --watch
+
+  > chakra-cli tokens --help
+  Usage: chakra-cli tokens [options] <source>
+
+  Options:
+    --out <path>              output file e.g. node_modules/@chakra-ui/styled-system/dist/declarations/src/theming.types.d.ts
+    --strict-component-types  Generate strict types for props variant and size
+    --watch [path]            Watch directory for changes and rebuild
+    -h, --help                display help for command
+
+  ```
+
+## Patch Changes
+
+### All components
+
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function.
+
+### CLI `2.1.0`
+
+- Fixed an issue where the tokens command failed with
+  `SyntaxError: Undefined label 'e'`.
+
+### Modal `2.0.3`
+
+- Fix shifting screen when opening modal
+- Improve error messaging around style provider factory by creating a custom
+  `createStylesContext` function
+
+### Radio `2.0.2`
+
+- Fix a bug in chromium browsers where the modal position would change when
+  focusing on the radio button in the modal which has some long content.

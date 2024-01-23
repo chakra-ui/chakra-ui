@@ -1,0 +1,231 @@
+---
+id: input
+category: form
+title: Input
+package: '@chakra-ui/input'
+description:
+  Input component is a component that is used to get user input in a text field.
+video: 'https://youtu.be/4y86kDy3Z2E'
+---
+
+## Import
+
+```js
+import { Input } from '@chakra-ui/react'
+```
+
+## Usage
+
+Here's a basic usage example of the `Input` component:
+
+```jsx
+<Input placeholder='Basic usage' />
+```
+
+### Changing the size of the Input
+
+The `Input` component comes in four sizes. The default is `md`.
+
+- `xs` (`24px`)
+- `sm` (`32px`)
+- `md` (`40px`)
+- `lg` (`48px`)
+
+```jsx
+<Stack spacing={3}>
+  <Input placeholder='extra small size' size='xs' />
+  <Input placeholder='small size' size='sm' />
+  <Input placeholder='medium size' size='md' />
+  <Input placeholder='large size' size='lg' />
+</Stack>
+```
+
+If you want to use the native DOM `size` attribute you can use the `htmlSize`
+prop. For it to work as expected you will also need to provide the `width` prop
+set to `auto`.
+
+```jsx
+<Input htmlSize={4} width='auto' />
+```
+
+### Changing the appearance of the input
+
+The input component comes in 4 variants: `outline`, `unstyled`, `flushed`, and
+`filled`. Pass the `variant` prop and set it to one of these values.
+
+```jsx
+<Stack spacing={3}>
+  <Input variant='outline' placeholder='Outline' />
+  <Input variant='filled' placeholder='Filled' />
+  <Input variant='flushed' placeholder='Flushed' />
+  <Input variant='unstyled' placeholder='Unstyled' />
+</Stack>
+```
+
+### Left and Right Addons
+
+Like bootstrap, you can add addons to the left and right of the `Input`
+component. Chakra UI exports `InputGroup`, `InputLeftAddon`, and
+`InputRightAddon` to help with this use case.
+
+```jsx
+<Stack spacing={4}>
+  <InputGroup>
+    <InputLeftAddon>+234</InputLeftAddon>
+    <Input type='tel' placeholder='phone number' />
+  </InputGroup>
+
+  {/* If you add the size prop to `InputGroup`, it'll pass it to all its children. */}
+  <InputGroup size='sm'>
+    <InputLeftAddon>https://</InputLeftAddon>
+    <Input placeholder='mysite' />
+    <InputRightAddon>.com</InputRightAddon>
+  </InputGroup>
+</Stack>
+```
+
+### Add elements inside Input
+
+In some scenarios, you might need to add an icon or button inside the input
+component. Chakra UI exports `InputLeftElement` and `InputRightElement` to help
+with this use case.
+
+If the left or right is an icon or text, you can pass `pointerEvents="none"` to
+`InputLeftElement` or `InputRightElement` to ensure that clicking on them
+focused the input.
+
+```jsx
+<Stack spacing={4}>
+  <InputGroup>
+    <InputLeftElement pointerEvents='none'>
+      <PhoneIcon color='gray.300' />
+    </InputLeftElement>
+    <Input type='tel' placeholder='Phone number' />
+  </InputGroup>
+
+  <InputGroup>
+    <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em'>
+      $
+    </InputLeftElement>
+    <Input placeholder='Enter amount' />
+    <InputRightElement>
+      <CheckIcon color='green.500' />
+    </InputRightElement>
+  </InputGroup>
+</Stack>
+```
+
+### Password Input Example
+
+Let's use these components to create a password input with a show/hide password
+functionality:
+
+```jsx
+function PasswordInput() {
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
+
+  return (
+    <InputGroup size='md'>
+      <Input
+        pr='4.5rem'
+        type={show ? 'text' : 'password'}
+        placeholder='Enter password'
+      />
+      <InputRightElement width='4.5rem'>
+        <Button h='1.75rem' size='sm' onClick={handleClick}>
+          {show ? 'Hide' : 'Show'}
+        </Button>
+      </InputRightElement>
+    </InputGroup>
+  )
+}
+```
+
+### Controlled Input
+
+```jsx
+function Example() {
+  const [value, setValue] = React.useState('')
+  const handleChange = (event) => setValue(event.target.value)
+
+  return (
+    <>
+      <Text mb='8px'>Value: {value}</Text>
+      <Input
+        value={value}
+        onChange={handleChange}
+        placeholder='Here is a sample placeholder'
+        size='sm'
+      />
+    </>
+  )
+}
+```
+
+### Changing the focus and error border colors
+
+You can change the border color that shows when the input receives focus
+(`focusBorderColor`) and when `isInvalid` is set to `true` (`errorBorderColor`).
+The value can be set to a color in the theme object, like `teal.400`, or a raw
+CSS value.
+
+```jsx
+<Stack spacing={3}>
+  <Input focusBorderColor='lime' placeholder='Here is a sample placeholder' />
+  <Input
+    focusBorderColor='pink.400'
+    placeholder='Here is a sample placeholder'
+  />
+  <Input
+    isInvalid
+    errorBorderColor='red.300'
+    placeholder='Here is a sample placeholder'
+  />
+  <Input
+    isInvalid
+    errorBorderColor='crimson'
+    placeholder='Here is a sample placeholder'
+  />
+</Stack>
+```
+
+### Styling the placeholder
+
+The placeholder of an input can be styled by using the `_placeholder` prop. Per
+default the placeholder has an opacity of 0.6, so it can be necessary to set the
+opacity to 1 if you want the placeholder to have a specific color.
+
+```jsx
+<Stack spacing={3}>
+  <Input placeholder='default placeholder' />
+  <Input
+    placeholder='custom placeholder'
+    _placeholder={{ opacity: 1, color: 'gray.500' }}
+  />
+  <Input
+    color='teal'
+    placeholder='custom placeholder'
+    _placeholder={{ color: 'inherit' }}
+  />
+  <Input
+    color='tomato'
+    placeholder='custom placeholder'
+    _placeholder={{ opacity: 0.4, color: 'inherit' }}
+  />
+</Stack>
+```
+
+### Input Methods other than Text
+
+You can use different types with `Input` such as dateTime, color, search, file
+etc.
+
+Date and Time Picker
+
+```jsx
+<Input placeholder='Select Date and Time' size='md' type='datetime-local' />
+```
+
+Check for different input types available :
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types

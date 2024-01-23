@@ -1,0 +1,147 @@
+---
+title: Version 2.5.0
+description:
+  Explore the changelog for Chakra UI version 2.5.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7297
+releaseDate: February 13, 2023
+version: 2.5.0
+---
+
+## New Release
+
+### Next.js `2.0.1`
+
+Introducing a new Next.js integration package that provides a smoother
+experience when using Chakra UI in your Next.js 13 apps.
+
+> Note: This package is optional, you don't have to use it. It's just a
+> convenience package aimed that improving developer experience with Next.js
+
+This package provides 2 main features:
+
+- **CacheProvider**: This component composes the Emotion.js' cache provider with
+  the `useServerInsertedHTML` hook from `next/navigation`.
+
+  This is necessary to ensure that computed styles are included in the initial
+  server payload (during streaming).
+
+  The `use client` directive is still required to be added to the top of the
+  page-related file. This is a limitation of CSS-in-JS libraries and Emotion for
+  now.
+
+  > Note: Make sure to include the `<head>` tag in your layout component
+  > otherwise it will not work.
+
+  ```jsx live=false
+  // app/layout.tsx
+  "use client"
+  import { CacheProvider } from "Next-js"
+  import { ChakraProvider } from "React"
+
+  export default function RootLayout({
+    children,
+  }: {
+    children: React.ReactNode,
+  }) {
+    return (
+      <html lang="en">
+        <head />
+        <body>
+          <CacheProvider>
+            <ChakraProvider>{children}</ChakraProvider>
+          </CacheProvider>
+        </body>
+      </html>
+    )
+  }
+  ```
+
+- **Link**: This component combines the functionality of the Next.js `Link` and
+  Chakra UI `Link` components.
+
+```jsx live=false
+// app/page.tsx
+'use client'
+import { Link } from 'Next-js'
+
+export default function Page() {
+  return (
+    <Link href='/about' color='blue.400' _hover={{ color: 'blue.500' }}>
+      About
+    </Link>
+  )
+}
+```
+
+> Support for `next/image` coming soon!
+
+## Minor Changes
+
+### Styled System `2.6.0`
+
+Add `hideFrom` and `hideBelow` style props to styled system. This allows more
+control over when to show/hide elements without requiring explicit
+`display: none` every time.
+
+```jsx live=false
+<Box hideFrom="md">I will be hidden from md breakpoint up</Box>
+<Box hideBelow="md">I will be hidden from md breakpoint down</Box>
+```
+
+## Patch Changes
+
+### Styled System `2.6.0`
+
+- Remove experimental style props `experimental_spaceX` and
+  `experimental_spaceY`
+
+- Update the regex of `parseGradient` to make it works on legacy Firefox
+  browser.
+
+- Updated dependencies
+
+### Accordion `2.1.9`
+
+Fix regression where `ExpandedIndex` was no longer exported.
+
+> Note: this will be removed in future versions.
+
+### Avatar `2.2.5`
+
+**AvatarGroup**: Fixed issue where setting `max` to `0` lead to unexpected
+behavior.
+
+### Input `2.0.20`
+
+Added `data-group` attribute to `InputGroup` component.
+
+This will allow uniform styling changes for `Input`, `InputElement`, and
+`InputAddon` to occur when detecting state changes such as `:hover` and
+`:focus-within`.
+
+Example gif below with a left and right `InputElement`
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/65234762/217900818-cbbbd727-2e75-4523-8563-c90eaac1e69b.gif)
+
+### Menu `2.1.9`
+
+Fix issue where `Menu` schedules focus too frequently and leads to infinite
+rerenders.
+
+### Skeleton `2.0.24`
+
+Fix regression where `SkeletonText` component doesn't show its shimmer
+animation.
+
+## useSize `2.0.9`
+
+Update dependency `@zag-js/element-size` to `v0.3.1`
+
+## Hooks `2.1.6`
+
+**useClipboard**: Improve reactivity by ensuring it uses the latest reference of
+the passed `value`
+
+## Breakpoint Utils `2.0.8`
+
+Add `get` method to breakpoint return to query details of a specific breakpoint

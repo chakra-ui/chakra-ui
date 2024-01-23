@@ -1,0 +1,94 @@
+---
+title: Chakra UI Prose
+description:
+  Chakra UI Prose is a second-party package that adds ready-made styles to
+  remote HTML content.
+tags: ['prose', 'typography', 'remote content']
+author: nikolovlazar
+---
+
+[Chakra UI Prose](https://github.com/nikolovlazar/chakra-ui-prose) is a
+"second-party" package that adds ready-made styles to a remote HTML content.
+
+> If you need this package to be part of the core library, don't forget to let
+> us know in
+> [this discussion thread](https://github.com/chakra-ui/chakra-ui-docs/discussions/469).
+
+Chakra UI Prose is essentially a custom component that applies styles to its
+children content.
+
+Integrating the `Prose` component is fairly easy. To get started, you need to
+install the package:
+
+<PackageManagers
+  command={{
+    npm: 'npm install @nikolovlazar/chakra-ui-prose',
+    yarn: 'yarn add @nikolovlazar/chakra-ui-prose',
+    pnpm: 'pnpm add @nikolovlazar/chakra-ui-prose',
+    bun: 'bun add @nikolovlazar/chakra-ui-prose',
+  }}
+/>
+
+Then, you need to use the `withProse` theme extension to add the Prose component
+styling into your own theme:
+
+```typescript ln={2,8}
+import { extendTheme } from '@chakra-ui/react'
+import { withProse } from '@nikolovlazar/chakra-ui-prose'
+
+const theme = extendTheme(
+  {
+    // your own theme
+  },
+  withProse(),
+)
+
+export default theme
+```
+
+To apply the styles to the remote HTML content, you just need to wrap it with
+the `Prose` component:
+
+```typescript
+import { Prose } from '@nikolovlazar/chakra-ui-prose'
+
+const MyPage = (content) => {
+  return <Prose>{content}</Prose>
+}
+
+export default MyPage
+```
+
+If you want to override the default Prose style, you can do so by providing your
+style overrides as an argument to the `withProse` extension:
+
+```typescript
+const theme = extendTheme(
+  {},
+  withProse({
+    baseStyle: {
+      h2: {
+        fontWeight: 'light',
+      },
+    },
+  }),
+)
+```
+
+You can refer to the
+[default theme](https://github.com/nikolovlazar/chakra-ui-prose/blob/main/packages/chakra-ui-prose/src/theme.ts#L17)
+to understand how you can override a certain element style.
+
+There's also a CodeSandbox available that uses the Chakra UI Prose package:
+
+import { App, Index } from 'configs/sandpack-contents/prose/prose'
+
+<SandpackEmbed
+  dependencies={{
+    '@nikolovlazar/chakra-ui-prose': '1.0.4',
+  }}
+  files={{
+    '/App.tsx': App,
+    '/index.tsx': Index,
+  }}
+/>

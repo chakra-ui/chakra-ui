@@ -1,0 +1,487 @@
+---
+title: Customize Theme
+description: How to modify Chakra UI's default theme
+category: 'theming'
+---
+
+By default, all Chakra components inherit values from the default theme. In some
+scenarios, you might need to customize the theme tokens to match your design
+requirements.
+
+Here are some options depending on your goals:
+
+- Customize the theme tokens like colors, font sizes, line heights, etc.
+- Customize the component styles, changing the base styles, sizes, or variants.
+- Customize the global styles.
+
+## Customizing theme tokens
+
+To extend or override a token in the default theme, import the `extendTheme`
+function and add the keys you'd like to override. You can also add new values to
+the theme.
+
+For example, if you'd like to update the colors in the theme to include your
+brand colors, here's what you'll do:
+
+```jsx live=false
+// 1. Import `extendTheme`
+import { extendTheme } from "@chakra-ui/react"
+
+// 2. Call `extendTheme` and pass your custom values
+const theme = extendTheme({
+  colors: {
+    brand: {
+      100: "#f7fafc",
+      // ...
+      900: "#1a202c",
+    },
+  },
+})
+
+// 3. Pass the new theme to `ChakraProvider`
+<ChakraProvider theme={theme}>
+  <App />
+</ChakraProvider>
+
+// 4. Now you can use these colors in your components
+function Usage() {
+  return <Box bg="brand.100">Welcome</Box>
+}
+```
+
+You can also use the color for the `colorScheme` prop like this:
+
+```jsx live=false
+<Button colorScheme='brand'>Click me</Button>
+```
+
+> If you're curious as to what theme styles you can override, please reference
+> the
+> [default theme foundation style files](https://github.com/chakra-ui/chakra-ui/tree/main/packages/theme/src/foundations).
+
+## Customizing component styles
+
+Chakra has a specific approach or API for styling components. The main idea is
+most components have default or base styles (`baseStyle`), styles for different
+sizes (`sizes`), and styles for different visual variants (`variants`).
+
+It is important to understand this so you can override any component style
+effectively.
+
+> You're not limited to the component styles that Chakra provides, you can also
+> create your own custom component styles.
+> [Learn more](/docs/styled-system/component-style).
+
+### Customizing single components
+
+As we mentioned earlier, a component style consists of `baseStyle`, `sizes`,
+`variants` and an optional `defaultProps` to denote the default `size`,
+`variant` or `colorScheme`.
+
+> Not every component has all three `defaultProps`, to figure out which prop can
+> be set just have a short look on the theme source by using the
+> `View theme source` button on the top of every components page.
+
+Here's what the component style object looks like:
+
+```tsx live=false
+import { ComponentStyleConfig } from '@chakra-ui/react'
+
+const ComponentStyle: ComponentStyleConfig = {
+  // style object for base or default style
+  baseStyle: {},
+  // styles for different sizes ("sm", "md", "lg")
+  sizes: {},
+  // styles for different visual variants ("outline", "solid")
+  variants: {},
+  // default values for 'size', 'variant' and 'colorScheme'
+  defaultProps: {
+    size: '',
+    variant: '',
+    colorScheme: '',
+  },
+}
+```
+
+For example, let's override the component styles for Chakra's Button component.
+
+```tsx live=false
+// theme.ts (tsx file with usage of StyleFunctions, see 4.)
+import { extendTheme } from '@chakra-ui/react'
+import type { StyleFunctionProps } from '@chakra-ui/styled-system'
+
+const theme = extendTheme({
+  components: {
+    Button: {
+      // 1. We can update the base styles
+      baseStyle: {
+        fontWeight: 'bold', // Normally, it is "semibold"
+      },
+      // 2. We can add a new button size or extend existing
+      sizes: {
+        xl: {
+          h: '56px',
+          fontSize: 'lg',
+          px: '32px',
+        },
+      },
+      // 3. We can add a new visual variant
+      variants: {
+        'with-shadow': {
+          bg: 'red.400',
+          boxShadow: '0 0 2px 2px #efdfde',
+        },
+        // 4. We can override existing variants
+        solid: (props: StyleFunctionProps) => ({
+          bg: props.colorMode === 'dark' ? 'red.300' : 'red.500',
+        }),
+        // 5. We can add responsive variants
+        sm: {
+          bg: 'teal.500',
+          fontSize: 'md',
+        },
+      },
+      // 6. We can overwrite defaultProps
+      defaultProps: {
+        size: 'lg', // default is md
+        variant: 'sm', // default is solid
+        colorScheme: 'green', // default is gray
+      },
+    },
+  },
+})
+
+export default theme
+```
+
+That's it! When you use the Button from Chakra, these updates will be
+automatically applied.
+
+> When styling/overwriting the theme for a component be sure that it is really a
+> single component with only one part, since you otherwise need to name the part
+> that should be affected by your change when styling
+> [multipart components](/docs/styled-system/component-style#styling-multipart-components).
+
+```jsx live=false
+<Button size='xl' variant='with-shadow'>
+  Welcome
+</Button>
+```
+
+> If you're curious as to what component styles you can override, please
+> reference the
+> [default component style files](https://github.com/chakra-ui/chakra-ui/tree/main/packages/components).
+
+### Customizing global styles
+
+Global styles are theme-aware styles you can apply to any html element globally.
+
+To add global styles, update the `theme.styles.global` key in the theme. Global
+styles can be a style object or a function that returns a style object.
+
+```tsx live=false
+// theme.ts (Version 2 needs to be a tsx file, due to usage of StyleFunctions)
+import { extendTheme } from '@chakra-ui/react'
+import { mode } from '@chakra-ui/theme-tools'
+import type { StyleFunctionProps } from '@chakra-ui/styled-system'
+
+// Version 1: Using objects
+const theme = extendTheme({
+  styles: {
+    global: {
+      // styles for the `body`
+      body: {
+        bg: 'gray.400',
+        color: 'white',
+      },
+      // styles for the `a`
+      a: {
+        color: 'teal.500',
+        _hover: {
+          textDecoration: 'underline',
+        },
+      },
+    },
+  },
+})
+
+// Version 2: Using functions
+const overrides = extendTheme({
+  styles: {
+    global: (props: StyleFunctionProps) => ({
+      body: {
+        fontFamily: 'body',
+        color: mode('gray.800', 'whiteAlpha.900')(props),
+        bg: mode('white', 'gray.800')(props),
+        lineHeight: 'base',
+      },
+    }),
+  },
+})
+```
+
+### Responsive variants
+
+Responsive variants can be used to have different styles for components
+depending on the current active breakpoint. The properties in `sizes` of the
+component will be overwritten if passed in the responsive variant.
+
+> With responsive variants, prop override might not work as expected since we
+> use regular CSS media queries. That's why we also came up with the notion of
+> `!important` as an escape hatch.
+
+To declare the responsive variants you can simply add them to the variants of
+the component:
+
+```ts live=false
+const theme = extendTheme({
+  components: {
+    Button: {
+      ...
+      sizes: {
+        sm: {
+          fontSize: 'md'
+        }
+      },
+      variants: {
+        ...
+        base: {
+          bg: 'yellow.500',
+          fontSize: 'md'
+         },
+        sm: {
+          bg: 'teal.500',
+          fontSize: 'lg'
+         },
+        md: {
+          bg: 'orange.500',
+          fontSize: 'xl'
+         },
+      }
+    },
+  },
+});
+```
+
+> Based on how the responsive variants are designed, there's no support for
+> responsive `colorScheme` since it is technically not a variant.
+
+Just pass them either with the `Array syntax` or the `Object syntax` to the
+component. The array syntax may not work as expected, since it ignores the
+naming of the variant and uses them straight in the order on which they are
+passed into the array.
+
+```tsx live=false
+<>
+  <Button variant={{ base: 'base', md: 'md' }}>Object syntax</Button>
+  // the button will be orange after the `sm` breakpoint due to the array syntax
+  <Button variant={['base', 'md']}>Array syntax</Button>
+</>
+```
+
+It is required to use `!important` within a components style prop if this prop
+is set in the responsive variant as shown in the example below based on the
+theme above.
+
+```tsx live=false
+<>
+  <Button variant={{ sm: 'sm' }}>fontSize lg after breakpoint sm</Button>
+  // without declaration of fontSize in the sm variant the fontSize would be lg as
+  expected
+  <Button variant={{ sm: 'sm' }} fontSize='xl'>
+    still fontSize lg after breakpoint sm
+  </Button>
+  <Button variant={{ sm: 'sm' }} fontSize='xl !important'>
+    fontSize xl due to the !important
+  </Button>
+</>
+```
+
+Combined usage with `size` in the theme is only possible by covering breakpoints
+below the responsive variant or by using `!important`, which overrides
+everything.
+
+```tsx live=false
+<Button size='sm' variant={{ md: 'md' }}>
+  fontSize md from 'sizes' until breakpoint md where the variant takes over
+</Button>
+```
+
+## Scaling out your project
+
+As your project grows in size, it is best to keep things organized. We highly
+suggest that instead of using a single `theme.js` (or `theme.ts`) file, you
+create a `/theme` folder in its place. Inside this folder, you could have a
+directory structure that looks like this:
+
+```bash
+📁 theme
+  📄 index.js  # my main theme entrypoint
+  📄 styles.js  # all my global style overrides
+  📁 foundations
+    📄 borders.js  # all my border overrides
+  📁 components
+    📄 button.js  # all my button overrides
+```
+
+This way, you can structure your main theme entrypoint file to be much cleaner,
+like this:
+
+```jsx live=false
+// theme/index.js
+import { extendTheme } from '@chakra-ui/react'
+
+// Global style overrides
+import styles from './styles'
+
+// Foundational style overrides
+import borders from './foundations/borders'
+
+// Component style overrides
+import Button from './components/button'
+
+const overrides = {
+  styles,
+  borders,
+  // Other foundational style overrides go here
+  components: {
+    Button,
+    // Other components go here
+  },
+}
+
+export default extendTheme(overrides)
+```
+
+None of these is strictly required to use Chakra - but we've learned some hard
+lessons on the "right" way and the "wrong" way to write styles. The above is our
+best suggestion on how to write style overrides and organize your custom theme.
+
+## Using Theme extensions
+
+<Badge fontSize='sm' colorScheme='teal' letterSpacing='wider'>
+  v1.6.0
+</Badge>
+
+The `extendTheme` function allows you to pass multiple overrides or extensions:
+
+```js
+import {
+  extendTheme,
+  withDefaultColorScheme,
+  theme as baseTheme,
+} from '@chakra-ui/react'
+
+const customTheme = extendTheme(
+  {
+    colors: {
+      brand: baseTheme.colors.red,
+    },
+    components: {
+      Alert: {
+        defaultProps: {
+          colorScheme: 'blue',
+        },
+      },
+    },
+  },
+  withDefaultColorScheme({ colorScheme: 'brand' }),
+)
+```
+
+The order of overrides is from left to right. E.g. the second extension
+overrides the first one, and so on.
+
+> Please note that you can pass a base theme as last parameter. If no base theme
+> is provided, we use the Chakra UI default theme
+
+```js
+extendTheme(
+  withFirstExtension,
+  withSecondExtension,
+  withThirdExtension,
+  optionalBaseTheme,
+)
+```
+
+## Theme Extension: withDefaultColorScheme
+
+You can apply a default color scheme to all components.
+
+```js
+import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+
+const customTheme = extendTheme(withDefaultColorScheme({ colorScheme: 'red' }))
+```
+
+Or pass the component names you want to apply a default `colorScheme` to. This
+lets you apply different color schemes to a group of components.
+
+```js
+import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+
+const customTheme = extendTheme(
+  withDefaultColorScheme({
+    colorScheme: 'red',
+    components: ['Button', 'Badge'],
+  }),
+  withDefaultColorScheme({
+    colorScheme: 'blue',
+    components: ['Alert', 'Table'],
+  }),
+)
+```
+
+## Theme Extension: withDefaultSize
+
+You can apply a default size to all components.
+
+```js
+import { extendTheme, withDefaultSize } from '@chakra-ui/react'
+
+const customTheme = extendTheme(
+  withDefaultSize({
+    size: 'lg',
+    components: ['Button', 'Badge'],
+  }),
+)
+```
+
+## Theme Extension: withDefaultVariant
+
+You can apply a default variant to all components.
+
+```js
+import { extendTheme, withDefaultVariant } from '@chakra-ui/react'
+
+const customTheme = extendTheme(
+  withDefaultVariant({
+    variant: 'outline',
+    components: ['Input', 'NumberInput', 'PinInput'],
+  }),
+)
+```
+
+## Theme Extension: withDefaultProps
+
+You can apply default props to all components.
+
+```js
+import { extendTheme, withDefaultProps } from '@chakra-ui/react'
+
+const customTheme = extendTheme(
+  withDefaultProps({
+    defaultProps: {
+      variant: 'outline',
+      size: 'lg',
+    },
+    components: ['Input', 'NumberInput', 'PinInput'],
+  }),
+)
+```
+
+---
+
+[In the next section](/docs/styled-system/component-style), we'll show some
+examples of how to create custom component styles and use them in your
+components!

@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "title": "Community",
+      "routes": [
+        {
+          "title": "Team",
+          "path": "/community/team"
+        },
+        {
+          "title": "Showcase",
+          "path": "/community/showcase"
+        },
+        {
+          "title": "Recipes",
+          "open": true,
+          "sort": true,
+          "routes": [
+            {
+              "title": "Floating Labels",
+              "path": "/community/recipes/floating-labels"
+            },
+            {
+              "title": "Horizontal Collapse",
+              "path": "/community/recipes/horizontal-collapse"
+            },
+            {
+              "title": "Portals and z-index",
+              "path": "/community/recipes/z-index"
+            },
+            {
+              "title": "The `as` prop",
+              "path": "/community/recipes/as-prop"
+            },
+            {
+              "title": "Formik Integration",
+              "path": "/community/recipes/advanced-formik-integration"
+            },
+            {
+              "title": "Atlaskit editable",
+              "path": "/community/recipes/atlaskit-editable"
+            },
+            {
+              "title": "Chakra UI Prose",
+              "path": "/community/recipes/prose"
+            },
+            {
+              "title": "Page Specific Color Mode",
+              "path": "/community/recipes/page-specific-color-mode"
+            },
+            {
+              "title": "Using Fonts",
+              "path": "/community/recipes/using-fonts"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

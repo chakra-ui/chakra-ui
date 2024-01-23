@@ -28,7 +28,8 @@
   },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsx src/build.mts",
+    "build": "tsx src",
+    "build:fast": "tsup src",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit"
   },

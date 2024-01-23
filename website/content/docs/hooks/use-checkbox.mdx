@@ -1,0 +1,83 @@
+---
+title: useCheckbox
+package: '@chakra-ui/checkbox'
+description: 'React hook to manage checkboxes.'
+---
+
+`useCheckbox` is a custom hook used to provide checkbox functionality, as well
+as state and focus management to custom checkbox components when using it.
+
+## Import
+
+```js
+import { useCheckbox } from '@chakra-ui/react'
+```
+
+## Return value
+
+The `useCheckbox` hook returns following props
+
+| Name               | Type            | Description                                                                 |
+| ------------------ | --------------- | --------------------------------------------------------------------------- |
+| `state`            | `CheckboxState` | An object that contains all props defining the current state of a checkbox. |
+| `getCheckboxProps` | `PropGetter`    | A function to get the props of the checkbox.                                |
+| `getInputProps`    | `PropGetter`    | A function to get the props of the input field.                             |
+| `getLabelProps`    | `PropGetter`    | A function to get the props of the checkbox label.                          |
+| `htmlProps`        | `{}`            | An object with all htmlProps.                                               |
+
+## Usage
+
+```jsx
+function Example() {
+  const CustomCheckbox = (props) => {
+    const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
+      useCheckbox(props)
+
+    return (
+      <chakra.label
+        display='flex'
+        flexDirection='row'
+        alignItems='center'
+        gridColumnGap={2}
+        maxW='36'
+        bg='green.50'
+        border='1px solid'
+        borderColor='green.500'
+        rounded='lg'
+        px={3}
+        py={1}
+        cursor='pointer'
+        {...htmlProps}
+      >
+        <input {...getInputProps()} hidden />
+        <Flex
+          alignItems='center'
+          justifyContent='center'
+          border='2px solid'
+          borderColor='green.500'
+          w={4}
+          h={4}
+          {...getCheckboxProps()}
+        >
+          {state.isChecked && <Box w={2} h={2} bg='green.500' />}
+        </Flex>
+        <Text color='gray.700' {...getLabelProps()}>
+          Click me
+        </Text>
+      </chakra.label>
+    )
+  }
+
+  return (
+    <div>
+      <CustomCheckbox />
+    </div>
+  )
+}
+```
+
+## Parameters
+
+The `useCheckbox` hook accepts an object with the following properties:
+
+<PropsTable of='useCheckbox' />

@@ -1,0 +1,77 @@
+---
+title: Atlaskit editable
+description:
+  A well styled editable inspired by the Atlaskit inline edit component
+tags: ['editable', 'inline-edit', 'component']
+author: Jacob Marshall (github.com/jacobhq)
+---
+
+This example features a tweaked UI, a hover color with dark mode support, and a
+tooltip. As you can see, we can change the input by setting the `as` prop. This
+design is inspired by the
+[Atlassian inline edit](https://atlassian.design/components/inline-edit/examples)
+component. Read more about the editable [here](/docs/form/editable).
+
+Here are the imports required:
+
+```js live=false
+import {
+  EditablePreview,
+  Box,
+  useColorModeValue,
+  IconButton,
+  Input,
+  useDisclosure,
+  useEditableControls,
+  ButtonGroup,
+  SlideFade,
+  Editable,
+  Tooltip,
+  EditableInput,
+} from '@chakra-ui/react'
+import { CheckIcon, CloseIcon } from '@chakra-ui/icons'
+```
+
+```jsx
+function App() {
+  /* Here's a custom control */
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls()
+
+    return isEditing ? (
+      <ButtonGroup justifyContent='end' size='sm' w='full' spacing={2} mt={2}>
+        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton
+          icon={<CloseIcon boxSize={3} />}
+          {...getCancelButtonProps()}
+        />
+      </ButtonGroup>
+    ) : null
+  }
+
+  return (
+    <Editable
+      defaultValue='Rasengan ⚡️'
+      isPreviewFocusable={true}
+      selectAllOnFocus={false}
+    >
+      <Tooltip label='Click to edit' shouldWrapChildren={true}>
+        <EditablePreview
+          py={2}
+          px={4}
+          _hover={{
+            background: useColorModeValue('gray.100', 'gray.700'),
+          }}
+        />
+      </Tooltip>
+      <Input py={2} px={4} as={EditableInput} />
+      <EditableControls />
+    </Editable>
+  )
+}
+```

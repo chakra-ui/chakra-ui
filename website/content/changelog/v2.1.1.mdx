@@ -1,0 +1,46 @@
+---
+title: Version 2.1.1
+description:
+  Explore the changelog for Chakra UI version 2.1.1. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6087
+releaseDate: May 24, 2022
+version: 2.1.1
+---
+
+## Patch Changes
+
+### All components
+
+- Improve TS doc comments to include the `@default` value for prop types
+- Update version of react packages and fix TS error
+
+### React `2.1.1`
+
+- Refactor toast provider to not wrap entire app to prevent unneeded re-renders
+
+### Styled System `2.1.1`
+
+- Fix media query calculations for responsive variants and sizes
+- Fix issue where values with `!important` can resolve to a double `!important`
+  being added
+
+### System `2.1.1`
+
+- Revert type updates for `useStyleConfig`
+- Fix media query calculations for responsive variants and sizes
+- Fix issue where values with `!important` can resolve to a double `!important`
+  being added
+
+### Theme `2.0.3`
+
+- **Tab:** Add visual feedback for disabled state in all variants.
+
+### Toast `2.0.4`
+
+- Refactor toast internal architecture to fix issues with toast instance methods
+  and `createStandaloneToast`
+
+### Utilities `2.0.1`
+
+- Expose `toMediaQuery` internal function for use in the styled system package

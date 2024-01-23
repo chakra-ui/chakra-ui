@@ -1,0 +1,86 @@
+---
+title: Chakra UI + React Hook Form
+description: Building Forms with Chakra UI and React Hook Form
+tags: ['form', 'react-hook-form']
+author: abheist
+category: integrations
+---
+
+This example shows how to build a simple form with Chakra UI's form components
+and the [React Hook Form](https://react-hook-form.com) form library:
+
+```jsx live=false
+import { useForm } from 'react-hook-form'
+import {
+  FormErrorMessage,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+} from '@chakra-ui/react'
+
+export default function HookForm() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm()
+
+  function onSubmit(values) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2))
+        resolve()
+      }, 3000)
+    })
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormControl isInvalid={errors.name}>
+        <FormLabel htmlFor='name'>First name</FormLabel>
+        <Input
+          id='name'
+          placeholder='name'
+          {...register('name', {
+            required: 'This is required',
+            minLength: { value: 4, message: 'Minimum length should be 4' },
+          })}
+        />
+        <FormErrorMessage>
+          {errors.name && errors.name.message}
+        </FormErrorMessage>
+      </FormControl>
+      <Button mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'>
+        Submit
+      </Button>
+    </form>
+  )
+}
+```
+
+Wiring up to the rest of your app:
+
+```jsx live=false
+import React from 'react'
+import * as ReactDOM from 'react-dom/client'
+import HookForm from './HookForm'
+import { ChakraProvider, Box } from '@chakra-ui/react'
+
+function App() {
+  return (
+    <ChakraProvider>
+      <Box p={4}>
+        <HookForm />
+      </Box>
+    </ChakraProvider>
+  )
+}
+
+const rootElement = document.getElementById('root')
+ReactDOM.createRoot(rootElement).render(<App />)
+```
+
+credit: Abhishek Kumar Singh - https://abheist.com/
+
+[Explore on Code Sandbox](https://codesandbox.io/s/chakra-ui-react-hook-form-t3l69)

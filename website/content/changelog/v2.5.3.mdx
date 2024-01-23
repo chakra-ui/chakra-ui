@@ -1,0 +1,67 @@
+---
+title: Version 2.5.3
+description:
+  Explore the changelog for Chakra UI version 2.5.3. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7461
+releaseDate: March 23, 2023
+version: 2.5.3
+---
+
+## Minor Changes
+
+### CSS Reset `2.1.0`, Provider `2.2.0`
+
+Add support for scoping the css reset to specific selector.
+
+To use this feature, pass the `resetScope` prop to the `ChakraProvider` or
+`ChakraBaseProvider` component.
+
+```jsx live=false
+import { ChakraProvider } from '@chakra-ui/react'
+
+function App() {
+  return (
+    <ChakraProvider resetScope='.ck-reset'>
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+### Next.js `2.1.0`
+
+- Add `Image` component that supercharges the Next.js optimized image with
+  Chakra style props.
+
+```jsx live=false
+import { Image } from '@chakra-ui/next-js'
+
+function App() {
+  return (
+    <Image
+      src='/image.jpg'
+      alt='image'
+      width={500}
+      height={500}
+      objectFit='cover'
+    />
+  )
+}
+```
+
+- Add ESM interop for `createCache` to avoid server-related errors
+
+## Patch Changes
+
+### Button `2.0.17`
+
+Widen types for `loadingText` to accept `ReactNode` instead of only string
+
+### Form Control `2.0.18`
+
+Fix issue in `FormLabel` where `htmlFor` and `id` could not be set to `null`
+
+### React Context `2.0.8`
+
+Fix issue where default value is not passed to the `createContext` function

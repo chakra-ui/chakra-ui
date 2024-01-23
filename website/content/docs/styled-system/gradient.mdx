@@ -1,0 +1,141 @@
+---
+title: Gradient
+description:
+  Learn how to use gradients in Chakra UI. Gradients are a way to transition
+  between two or more colors.
+category: 'features'
+---
+
+Gradients are a way to have transition between two or more colors. You can add
+gradient support using any of the following style props.
+
+- `bgGradient`: a shorthand, convenient style prop to apply theme-aware
+  gradients.
+- `bgClip`: a shorthand for `background-clip` CSS attribute. Useful when
+  creating text gradients.
+- `backgroundClip`: the typical `background-clip` CSS attribute. Useful when
+  creating text gradients.
+
+## Background Gradient API
+
+To add a gradient to an element, pass the `bgGradient` prop and set its value
+following the API:
+
+- `linear(<direction>, <from>, <to>)`
+- `radial(<from>, <to>)`
+
+You can also use other CSS gradient types like `repeating-linear`, `conic`, etc.
+
+For linear gradients, the `<direction>` can be set to the default CSS directions
+(e.g. `to top`) or the shorthand equivalent (e.g `to-t`).
+
+Here's the list of supported direction shorthands and their respective values:
+
+```json
+{
+  "to-t": "to top",
+  "to-tr": "to top right",
+  "to-r": "to right",
+  "to-br": "to bottom right",
+  "to-b": "to bottom",
+  "to-bl": "to bottom left",
+  "to-l": "to left",
+  "to-tl": "to top left"
+}
+```
+
+## Usage
+
+Let's create a simple gradient from `green.200` to `pink.500`
+
+```jsx
+<Box w='100%' h='200px' bgGradient='linear(to-r, green.200, pink.500)' />
+```
+
+### Customizing Colors
+
+You can use both theme-aware color tokens or raw CSS color values.
+
+```jsx
+<Box w='100%' h='200px' bgGradient='linear(to-l, #7928CA, #FF0080)' />
+```
+
+### Multiple Color Stops
+
+By adding more color-stop points on the gradient line, you can create a highly
+customized transition between multiple colors.
+
+```jsx
+<Box
+  w='100%'
+  h='200px'
+  bgGradient='linear(to-r, gray.300, yellow.400, pink.200)'
+/>
+```
+
+Following the CSS gradient specification, you can also define the distribution
+of the color stops
+
+```jsx
+<Box
+  w='100%'
+  h='200px'
+  bgGradient='linear(red.100 0%, orange.100 25%, yellow.100 50%)'
+/>
+```
+
+## Text Gradient API
+
+To add a text gradient, pass the `bgGradient` following the API and `bgClip`
+prop to `text`.
+
+```jsx
+<Text
+  bgGradient='linear(to-l, #7928CA, #FF0080)'
+  bgClip='text'
+  fontSize='6xl'
+  fontWeight='extrabold'
+>
+  Welcome to Chakra UI
+</Text>
+```
+
+## Responsive Gradients
+
+You can control the responsiveness of gradients by specifying the gradients at
+the different breakpoints.
+
+```jsx
+<Box
+  w='100%'
+  h='200px'
+  bgGradient={[
+    'linear(to-tr, teal.300, yellow.400)',
+    'linear(to-t, blue.200, teal.500)',
+    'linear(to-b, orange.100, purple.300)',
+  ]}
+/>
+```
+
+## Changing gradient with pseudo props
+
+You can change the gradient of an element based on common CSS pseudo attributes
+(hover, focus, active, etc).
+
+For example, on hover, add the gradient you wish to have.
+
+```jsx
+<Box
+  as='button'
+  p={4}
+  color='white'
+  fontWeight='bold'
+  borderRadius='md'
+  bgGradient='linear(to-r, teal.500, green.500)'
+  _hover={{
+    bgGradient: 'linear(to-r, red.500, yellow.500)',
+  }}
+>
+  Click here
+</Box>
+```

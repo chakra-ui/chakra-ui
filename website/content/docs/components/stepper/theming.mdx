@@ -1,0 +1,92 @@
+---
+id: stepper
+scope: theming
+---
+
+## Theming
+
+The `Stepper` component is a multipart component. The styling needs to be
+applied to each part specifically.
+
+### Anatomy
+
+The Stepper theming is made up of the following parts:
+
+- `stepper`: Maps to the `Stepper` component
+- `step`: Maps to the `Step` component
+- `title`: Maps to the `StepTitle` component
+- `description`: Maps to the `StepDescription` component
+- `indicator`: Maps to the `StepIndicator` component
+- `separator`: Maps to the `StepSeparator` component
+- `icon`: Maps to the `StepIcon` component
+- `number`: Maps to the `StepNumber` component
+
+### Customizing a component
+
+Let's say we want to override the step indicator to use a square instead of a
+circle. Here's how we'll go about that:
+
+```jsx live=false
+// themes/stepper.ts
+
+const baseStyle = {
+  // select the indicator part
+  indicator: {
+    // change the default border radius to 0
+    borderRadius: 0,
+  },
+}
+
+const stepperTheme = {
+  baseStyle,
+}
+
+const theme = extendTheme({
+  components: {
+    Stepper: stepperTheme,
+  },
+})
+```
+
+### Changing the styles for a specific size
+
+In addition to the `baseStyle`, you can also change the styles for a specific
+size. Let's say we want to change the step title's font size for the `lg` size.
+
+```jsx live=false
+// themes/stepper.ts
+
+const baseStyle = {
+  indicator: {
+    borderRadius: 0,
+  },
+}
+
+const sizes = {
+  lg: {
+    // select the title part
+    title: {
+      // change the font size to lg
+      fontSize: 'lg',
+    },
+  },
+}
+
+const stepperTheme = {
+  baseStyle,
+  sizes,
+}
+
+const theme = extendTheme({
+  components: {
+    Stepper: stepperTheme,
+  },
+})
+```
+
+The styling for a stepper component can be overriden at any level, whether it's
+`variant` or `size`, it's completely up to you.
+
+> To learn more about styling multipart components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-multipart-components)
+> page.

@@ -1,0 +1,68 @@
+## 03-11-2021
+
+`@chakra-ui/react@1.6.12`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Radio** `v1.3.13`
+
+- Improve types defined for `getRadioprops`
+
+**Checkbox** `v1.5.10`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Menu** `v1.7.8`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Modal** `v1.9.4`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Popover** `v1.9.1`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Theme** `v1.11.1`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Toast** `v1.3.4`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Tooltip** `v1.3.14`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Transition** `v1.3.8`
+
+- Allow usage of `framer-motion` 5.x in `peerDependency`
+
+**Media Query** `v1.1.5`
+
+- Corrected eslint errors.
+- Fix an issue where the `useMediaQuery` was not updating the array of booleans
+  correctly when resizing the viewport.
+
+It also removes deprecated calls `addListener` and `removeListener` in favor of
+the recommended `addEventListener` and `removeEventListener` calls.
+
+**Color Mode** `v1.2.0`
+
+Added possibility to use the system preferred color scheme as value for
+`initialColorMode`, while still respecting a user's previous choice.
+
+As long as the user does not manually select a color mode through a website
+interaction, the theme will change when the system preference changes.
+
+This would easily allow for an implementation where the user can choose between
+`light`, `dark` and `system` by simply setting the `initialColorMode` setting to
+`system` and presenting the user with the three options.
+
+**Popper** `v2.3.1`
+
+- Remove default `[]` value for modifiers and moved it into `createPopper`
+  definition. This allows memoized modifiers to work correctly in user-land when
+  used with `useCallback`.

@@ -1,0 +1,64 @@
+---
+title: Version 2.0.1
+description:
+  Explore the changelog for Chakra UI version 2.0.1. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6034
+releaseDate: May 17, 2022
+version: 2.0.1
+---
+
+## Patch Changes
+
+### Checkbox `2.0.1`
+
+- Fix issue where checkbox doesn't reset the the form reset event is triggered
+
+### Color Mode `2.0.1`
+
+- Improve SSR for color mode by adding `manager.get()` in the default state
+
+- Add support `disableTransitionOnChange` option in `ColorModeProvider` and
+  `theme.config` to control whether the transition of all elements should be
+  temporarily disabled while the color mode changes.
+
+- Expose `cookieStorageManagerSSR` for users who prefer to manage color mode
+  server-side. If you use this, there's no need for the `ColorModeScript`
+
+  ```jsx live=false
+  function App({ Component, pageProps }) {
+    // get the `cookie` from each page `getServerSideProps` return value
+    // Note: the implementation is up to you
+    const manager = cookieStorageManagerSSR(pageProps.cookie)
+    return (
+      <ChakraProvider manager={manager}>
+        <Component />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+- We now provide a way to customize the localStorage / cookie storage key
+
+  ```jsx live=false
+  import { createLocalStorageManager } from '@chakra-ui/react'
+
+  const manager = createLocalStorageManager('my-key')
+
+  // in root
+  function App() {
+    return <ChakraProvider colorModeManager={manager} />
+  }
+
+  // in script
+  function Document() {
+    return <ColorModeScript storageKey='my-key' />
+  }
+  ```
+
+- Fix inconsistent handling across provider and script
+
+### Theme `@2.0.1`
+
+- Refactor global theme to use semantic token to prevent flash of white
+- Revert toast's default variant to `solid`

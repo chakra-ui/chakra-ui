@@ -1,0 +1,270 @@
+---
+id: select
+scope: theming
+---
+
+The `Select` component is a multipart component. The styling needs to be applied
+to each part specifically.
+
+> To learn more about styling multipart components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-multipart-components)
+> page.
+
+## Anatomy
+
+- A: `field`
+- B: `icon`
+
+<AspectRatio ratio={16 / 9}>
+  <svg
+    width='100%'
+    height='100%'
+    viewBox='0 0 384 216'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <rect width='384' height='216' fill='white' />
+    <path
+      d='M46.2329 108V97.8182H47.4659V102.352H52.8948V97.8182H54.1278V108H52.8948V103.446H47.4659V108H46.2329Z'
+      fill='#2D3748'
+    />
+    <path
+      d='M59.6388 108.159C58.903 108.159 58.2683 107.997 57.7347 107.672C57.2044 107.344 56.7951 106.886 56.5067 106.3C56.2217 105.71 56.0791 105.024 56.0791 104.241C56.0791 103.459 56.2217 102.77 56.5067 102.173C56.7951 101.573 57.1961 101.106 57.7098 100.771C58.2269 100.433 58.8301 100.264 59.5195 100.264C59.9172 100.264 60.31 100.33 60.6978 100.463C61.0855 100.596 61.4385 100.811 61.7567 101.109C62.0749 101.404 62.3284 101.795 62.5174 102.283C62.7063 102.77 62.8007 103.37 62.8007 104.082V104.58H56.9144V103.565H61.6076C61.6076 103.134 61.5214 102.75 61.349 102.412C61.18 102.074 60.938 101.807 60.6232 101.612C60.3116 101.416 59.9437 101.318 59.5195 101.318C59.0522 101.318 58.6478 101.434 58.3064 101.666C57.9684 101.895 57.7082 102.193 57.5259 102.561C57.3436 102.929 57.2524 103.323 57.2524 103.744V104.42C57.2524 104.997 57.3519 105.486 57.5507 105.887C57.7529 106.285 58.033 106.588 58.3909 106.797C58.7489 107.002 59.1648 107.105 59.6388 107.105C59.947 107.105 60.2255 107.062 60.474 106.976C60.7259 106.886 60.943 106.754 61.1253 106.578C61.3076 106.399 61.4485 106.177 61.5479 105.912L62.6814 106.23C62.5621 106.615 62.3616 106.953 62.0799 107.244C61.7981 107.533 61.4501 107.758 61.0358 107.92C60.6215 108.08 60.1559 108.159 59.6388 108.159Z'
+      fill='#2D3748'
+    />
+    <path d='M65.7588 97.8182V108H64.5855V97.8182H65.7588Z' fill='#2D3748' />
+    <path d='M69.0811 97.8182V108H67.9078V97.8182H69.0811Z' fill='#2D3748' />
+    <path
+      d='M74.3323 108.159C73.6429 108.159 73.0381 107.995 72.5177 107.667C72.0007 107.339 71.5963 106.88 71.3046 106.29C71.0163 105.7 70.8721 105.01 70.8721 104.222C70.8721 103.426 71.0163 102.732 71.3046 102.138C71.5963 101.545 72.0007 101.085 72.5177 100.756C73.0381 100.428 73.6429 100.264 74.3323 100.264C75.0217 100.264 75.625 100.428 76.142 100.756C76.6624 101.085 77.0667 101.545 77.3551 102.138C77.6467 102.732 77.7926 103.426 77.7926 104.222C77.7926 105.01 77.6467 105.7 77.3551 106.29C77.0667 106.88 76.6624 107.339 76.142 107.667C75.625 107.995 75.0217 108.159 74.3323 108.159ZM74.3323 107.105C74.856 107.105 75.2869 106.971 75.625 106.702C75.963 106.434 76.2133 106.081 76.3757 105.643C76.5381 105.206 76.6193 104.732 76.6193 104.222C76.6193 103.711 76.5381 103.236 76.3757 102.795C76.2133 102.354 75.963 101.998 75.625 101.726C75.2869 101.454 74.856 101.318 74.3323 101.318C73.8087 101.318 73.3778 101.454 73.0397 101.726C72.7017 101.998 72.4514 102.354 72.289 102.795C72.1266 103.236 72.0454 103.711 72.0454 104.222C72.0454 104.732 72.1266 105.206 72.289 105.643C72.4514 106.081 72.7017 106.434 73.0397 106.702C73.3778 106.971 73.8087 107.105 74.3323 107.105Z'
+      fill='#2D3748'
+    />
+    <path
+      d='M335 103.977L339.125 99.8517L340.303 101.03L335 106.333L329.697 101.03L330.875 99.8517L335 103.977Z'
+      fill='#2D3748'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M347 88H39C36.2386 88 34 90.2386 34 93V113C34 115.761 36.2386 118 39 118H347C349.761 118 352 115.761 352 113V93C352 90.2386 349.761 88 347 88ZM39 87C35.6863 87 33 89.6863 33 93V113C33 116.314 35.6863 119 39 119H347C350.314 119 353 116.314 353 113V93C353 89.6863 350.314 87 347 87H39Z'
+      fill='#E2E8F0'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M334 94L334 73L335 73L335 94L334 94Z'
+      fill='#00B5D8'
+    />
+    <path
+      d='M349 60C349 67.732 342.732 74 335 74C327.268 74 321 67.732 321 60C321 52.268 327.268 46 335 46C342.732 46 349 52.268 349 60Z'
+      fill='#C4F1F9'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M335 73C342.18 73 348 67.1797 348 60C348 52.8203 342.18 47 335 47C327.82 47 322 52.8203 322 60C322 67.1797 327.82 73 335 73ZM335 74C342.732 74 349 67.732 349 60C349 52.268 342.732 46 335 46C327.268 46 321 52.268 321 60C321 67.732 327.268 74 335 74Z'
+      fill='#00B5D8'
+    />
+    <path
+      d='M331.544 66V54.3636H335.805C336.631 54.3636 337.315 54.5 337.856 54.7727C338.398 55.0417 338.803 55.4072 339.072 55.8693C339.341 56.3277 339.476 56.8447 339.476 57.4205C339.476 57.9053 339.387 58.3144 339.209 58.6477C339.031 58.9773 338.792 59.2424 338.493 59.4432C338.197 59.6402 337.872 59.7841 337.516 59.875V59.9886C337.902 60.0076 338.279 60.1326 338.646 60.3636C339.017 60.5909 339.324 60.9148 339.567 61.3352C339.809 61.7557 339.93 62.2671 339.93 62.8693C339.93 63.464 339.79 63.9981 339.51 64.4716C339.233 64.9413 338.805 65.3144 338.226 65.5909C337.646 65.8636 336.906 66 336.004 66H331.544ZM333.3 64.4943H335.834C336.675 64.4943 337.277 64.3315 337.641 64.0057C338.004 63.6799 338.186 63.2727 338.186 62.7841C338.186 62.4167 338.093 62.0796 337.908 61.7727C337.722 61.4659 337.457 61.2216 337.112 61.0398C336.771 60.858 336.366 60.7671 335.896 60.7671H333.3V64.4943ZM333.3 59.3977H335.652C336.046 59.3977 336.4 59.322 336.714 59.1705C337.033 59.019 337.284 58.8068 337.47 58.5341C337.659 58.2576 337.754 57.9318 337.754 57.5568C337.754 57.0758 337.586 56.6724 337.248 56.3466C336.911 56.0208 336.394 55.858 335.697 55.858H333.3V59.3977Z'
+      fill='#00B5D8'
+    />
+    <circle cx='334.5' cy='95' r='2' fill='#00B5D8' />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M192 82L192 72L193 72L193 82L192 82Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M207 59C207 66.732 200.732 73 193 73C185.268 73 179 66.732 179 59C179 51.268 185.268 45 193 45C200.732 45 207 51.268 207 59Z'
+      fill='#FED7E2'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M193 72C200.18 72 206 66.1797 206 59C206 51.8203 200.18 46 193 46C185.82 46 180 51.8203 180 59C180 66.1797 185.82 72 193 72ZM193 73C200.732 73 207 66.732 207 59C207 51.268 200.732 45 193 45C185.268 45 179 51.268 179 59C179 66.732 185.268 73 193 73Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M189.66 65H187.796L191.984 53.3636H194.012L198.2 65H196.336L193.046 55.4773H192.955L189.66 65ZM189.973 60.4432H196.018V61.9205H189.973V60.4432Z'
+      fill='#D53F8C'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M358 83H27V123H358V83ZM26 82V124H359V82H26Z'
+      fill='#D53F8C'
+    />
+  </svg>
+</AspectRatio>
+
+## Theming properties
+
+The properties that affect the theming of the `Select` component are:
+
+- `variant`: The visual variant of the button. Defaults to `outline`.
+- `size`: The size of the button. Defaults to `md`.
+
+## Theming utilities
+
+- `createMultiStyleConfigHelpers`: a function that returns a set of utilities
+  for creating style configs for a multipart component (`definePartsStyle` and
+  `defineMultiStyleConfig`).
+- `definePartsStyle`: a function used to create multipart style objects.
+- `defineMultiStyleConfig`: a function used to define the style configuration
+  for a multipart component.
+
+```jsx live=false
+import { selectAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(selectAnatomy.keys)
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { selectAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(selectAnatomy.keys)
+
+const baseStyle = definePartsStyle({
+  // define the part you're going to style
+  field: {
+    background: 'blue.100',
+  },
+  icon: {
+    color: 'blue.400',
+  },
+})
+
+export const selectTheme = defineMultiStyleConfig({ baseStyle })
+```
+
+After customizing the select theme, we can import it in our theme file and add
+it in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { selectTheme } from './components/select'
+
+export const theme = extendTheme({
+  components: { Select: selectTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the
+> select theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to create a select with a custom size. Here's how we can do
+that:
+
+```jsx live=false
+import { selectAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(selectAnatomy.keys)
+
+const xl = defineStyle({
+  fontSize: 'lg',
+  px: '4',
+  h: '12',
+})
+
+const sizes = {
+  xl: definePartsStyle({ field: xl, icon: xl }),
+}
+
+export const selectTheme = defineMultiStyleConfig({ sizes })
+
+// Now we can use the new `xl` size
+<Select size="xl" ... />
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to create a custom variant of the select component. Here's
+how to do that:
+
+```jsx live=false
+import { selectAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(selectAnatomy.keys)
+
+const brandPrimary = definePartsStyle({
+ field: {
+    background: "purple.100",
+    border: "1px dashed",
+    borderColor: "purple.200",
+    borderRadius: "full"
+  },
+  icon: {
+    color: "purple.400"
+  }
+})
+
+export const selectTheme = defineMultiStyleConfig({
+  variants: { brandPrimary },
+})
+
+// Now we can use the new `brandPrimary` variant
+<Select variant="brandPrimary" ... />
+```
+
+## Changing the default properties
+
+Let's assume we want to change the default size and variant of every select in
+our application. Here's how we can do that:
+
+```jsx live=false
+import { selectAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  selectAnatomy.keys,
+)
+
+export const selectTheme = defineMultiStyleConfig({
+  defaultProps: {
+    size: 'xl',
+    variant: 'brandPrimary',
+  },
+})
+
+// This saves you time, instead of manually setting the size and variant every time you use a select:
+<Select size="xl" variant="pill" ... />
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  SelectTheme,
+} from 'configs/sandpack-contents/component-theming/select'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Select.ts': SelectTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

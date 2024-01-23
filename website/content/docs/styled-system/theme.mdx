@@ -1,0 +1,435 @@
+---
+title: Default Theme
+description: The default chakra theme tokens
+category: 'theming'
+---
+
+The theme object is where you define your application's color palette, type
+scale, font stacks, breakpoints, border radius values, and more.
+
+Theming with Chakra UI is based on the
+[Styled System Theme Specification](https://styled-system.com/theme-specification/)
+
+<br></br>
+<ComponentLinks
+  github={{ package: 'theme' }}
+  npm={{ package: '@chakra-ui/theme' }}
+/>
+
+## Colors
+
+Add a `theme.colors` object to provide colors for your project. By default these
+colors can be referenced by the `color`, `borderColor`, `backgroundColor`,
+`fill`, `stroke`, styles.
+
+We recommend adding a palette that ranges from `50` to `900`. Tools like
+[Themera](https://themera.vercel.app/),
+[Smart Swatch](https://smart-swatch.netlify.app/),
+[Coolors](https://coolors.co/app) or [Palx](https://palx.jxnblk.com) are
+available to generate these palettes.
+
+```js
+// theme.js
+export default {
+  colors: {
+    transparent: 'transparent',
+    black: '#000',
+    white: '#fff',
+    gray: {
+      50: '#f7fafc',
+      // ...
+      900: '#171923',
+    },
+    // ...
+  },
+}
+```
+
+Chakra provides a sensible
+[default theme](https://github.com/chakra-ui/chakra-ui/tree/main/packages/theme/src/components)
+inspired by Tailwind CSS, but you can customize it to fit your design.
+
+### Black & White
+
+<ColorWrapper>
+  <ColorPalette color='black' name='Black' />
+  <ColorPalette color='white' name='White' />
+  <div />
+</ColorWrapper>
+
+### Alphas
+
+> Note: Toggle the site's color mode to see the change in the whiteAlpha colors.
+
+<ColorWrapper>
+  <ColorPalettes color='blackAlpha' />
+  <ColorPalettes color='whiteAlpha' />
+</ColorWrapper>
+
+### Gray
+
+<ColorWrapper>
+  <ColorPalettes color='gray' />
+</ColorWrapper>
+
+### Red
+
+<ColorWrapper>
+  <ColorPalettes color='red' />
+</ColorWrapper>
+
+### Orange
+
+<ColorWrapper>
+  <ColorPalettes color='orange' />
+</ColorWrapper>
+
+### Yellow
+
+<ColorWrapper>
+  <ColorPalettes color='yellow' />
+</ColorWrapper>
+
+### Green
+
+<ColorWrapper>
+  <ColorPalettes color='green' />
+</ColorWrapper>
+
+### Teal
+
+<ColorWrapper>
+  <ColorPalettes color='teal' />
+</ColorWrapper>
+
+### Blue
+
+<ColorWrapper>
+  <ColorPalettes color='blue' />
+</ColorWrapper>
+
+### Cyan
+
+<ColorWrapper>
+  <ColorPalettes color='cyan' />
+</ColorWrapper>
+
+### Purple
+
+<ColorWrapper>
+  <ColorPalettes color='purple' />
+</ColorWrapper>
+
+### Pink
+
+<ColorWrapper>
+  <ColorPalettes color='pink' />
+</ColorWrapper>
+
+## Typography
+
+To manage Typography options, the theme object supports the following keys:
+
+- `fonts` (font families)
+- `fontSizes`
+- `fontWeights`
+- `lineHeights`
+- `letterSpacings`
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+
+// example theme
+const theme = extendTheme({
+  colors: {...},
+  fonts: {
+    body: "system-ui, sans-serif",
+    heading: "Georgia, serif",
+    mono: "Menlo, monospace",
+  },
+  fontSizes: {
+    xs: "0.75rem",
+    sm: "0.875rem",
+    md: "1rem",
+    lg: "1.125rem",
+    xl: "1.25rem",
+    "2xl": "1.5rem",
+    "3xl": "1.875rem",
+    "4xl": "2.25rem",
+    "5xl": "3rem",
+    "6xl": "3.75rem",
+    "7xl": "4.5rem",
+    "8xl": "6rem",
+    "9xl": "8rem",
+  },
+  fontWeights: {
+    hairline: 100,
+    thin: 200,
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
+    extrabold: 800,
+    black: 900,
+  },
+  lineHeights: {
+    normal: "normal",
+    none: 1,
+    shorter: 1.25,
+    short: 1.375,
+    base: 1.5,
+    tall: 1.625,
+    taller: "2",
+    "3": ".75rem",
+    "4": "1rem",
+    "5": "1.25rem",
+    "6": "1.5rem",
+    "7": "1.75rem",
+    "8": "2rem",
+    "9": "2.25rem",
+    "10": "2.5rem",
+  },
+  letterSpacings: {
+    tighter: "-0.05em",
+    tight: "-0.025em",
+    normal: "0",
+    wide: "0.025em",
+    wider: "0.05em",
+    widest: "0.1em",
+  },
+});
+```
+
+## Breakpoints
+
+Chakra UI comes with a
+[predefined set of commonly used breakpoints](https://github.com/chakra-ui/chakra-ui/blob/f5b1a3569fd0c654897d2397b3d0bd4677783fa7/packages/utilities/breakpoint-utils/src/responsive.ts#L3C17-L3C17).
+
+> Learn more about
+> [Responsive Styles and Customizing Breakpoints](/docs/styled-system/responsive-styles).
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+
+const breakpoints = {
+  base: '0em',
+  sm: '30em',
+  md: '48em',
+  lg: '62em',
+  xl: '80em',
+  '2xl': '96em',
+}
+
+const theme = extendTheme({ breakpoints, ... })
+```
+
+## Spacing
+
+The `space` key allows you to customize the global spacing and sizing scale for
+your project. By default these spacing value can be referenced by the `padding`,
+`margin`, and `top`, `left`, `right`, `bottom` styles.
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+
+const spacing = {
+  space: {
+    px: '1px',
+    0.5: '0.125rem',
+    1: '0.25rem',
+    1.5: '0.375rem',
+    2: '0.5rem',
+    2.5: '0.625rem',
+    3: '0.75rem',
+    3.5: '0.875rem',
+    4: '1rem',
+    5: '1.25rem',
+    6: '1.5rem',
+    7: '1.75rem',
+    8: '2rem',
+    9: '2.25rem',
+    10: '2.5rem',
+    12: '3rem',
+    14: '3.5rem',
+    16: '4rem',
+    20: '5rem',
+    24: '6rem',
+    28: '7rem',
+    32: '8rem',
+    36: '9rem',
+    40: '10rem',
+    44: '11rem',
+    48: '12rem',
+    52: '13rem',
+    56: '14rem',
+    60: '15rem',
+    64: '16rem',
+    72: '18rem',
+    80: '20rem',
+    96: '24rem',
+  },
+}
+
+const theme = extendTheme({ ...spacing })
+```
+
+By default, Chakra includes a comprehensive numeric spacing scale inspired by
+Tailwind CSS. The values are proportional, so 1 spacing unit is equal to
+`0.25rem`, which translates to `4px` by default in common browsers.
+
+> **Mental model:** If you need a spacing of `40px`, divide it by `4`. That'll
+> give you `10`. Then use it in your component.
+
+| Name | Space    | Pixels |                                    |
+| ---- | -------- | ------ | ---------------------------------- |
+| px   | 1px      | 1px    | <Box bg="pink.200" h="4" w="px"/>  |
+| 0.5  | 0.125rem | 2px    | <Box bg="pink.200" h="4" w="0.5"/> |
+| 1    | 0.25rem  | 4px    | <Box bg="pink.200" h="4" w="1"/>   |
+| 1.5  | 0.375rem | 6px    | <Box bg="pink.200" h="4" w="1.5"/> |
+| 2    | 0.5rem   | 8px    | <Box bg="pink.200" h="4" w="2"/>   |
+| 2.5  | 0.625rem | 10px   | <Box bg="pink.200" h="4" w="2.5"/> |
+| 3    | 0.75rem  | 12px   | <Box bg="pink.200" h="4" w="3"/>   |
+| 3.5  | 0.875rem | 14px   | <Box bg="pink.200" h="4" w="3.5"/> |
+| 4    | 1rem     | 16px   | <Box bg="pink.200" h="4" w="4"/>   |
+| 5    | 1.25rem  | 20px   | <Box bg="pink.200" h="4" w="5"/>   |
+| 6    | 1.5rem   | 24px   | <Box bg="pink.200" h="4" w="6"/>   |
+| 7    | 1.75rem  | 28px   | <Box bg="pink.200" h="4" w="7"/>   |
+| 8    | 2rem     | 32px   | <Box bg="pink.200" h="4" w="8"/>   |
+| 9    | 2.25rem  | 36px   | <Box bg="pink.200" h="4" w="9"/>   |
+| 10   | 2.5rem   | 40px   | <Box bg="pink.200" h="4" w="10"/>  |
+| 12   | 3rem     | 48px   | <Box bg="pink.200" h="4" w="12"/>  |
+| 14   | 3.5rem   | 56px   | <Box bg="pink.200" h="4" w="14"/>  |
+| 16   | 4rem     | 64px   | <Box bg="pink.200" h="4" w="16"/>  |
+| 20   | 5rem     | 80px   | <Box bg="pink.200" h="4" w="20"/>  |
+| 24   | 6rem     | 96px   | <Box bg="pink.200" h="4" w="24"/>  |
+| 28   | 7rem     | 112px  | <Box bg="pink.200" h="4" w="28"/>  |
+| 32   | 8rem     | 128px  | <Box bg="pink.200" h="4" w="32"/>  |
+| 36   | 9rem     | 144px  | <Box bg="pink.200" h="4" w="36"/>  |
+| 40   | 10rem    | 160px  | <Box bg="pink.200" h="4" w="40"/>  |
+| 44   | 11rem    | 176px  | <Box bg="pink.200" h="4" w="44"/>  |
+| 48   | 12rem    | 192px  | <Box bg="pink.200" h="4" w="48"/>  |
+| 56   | 14rem    | 224px  | <Box bg="pink.200" h="4" w="56"/>  |
+| 60   | 15rem    | 240px  | <Box bg="pink.200" h="4" w="60"/>  |
+| 64   | 16rem    | 256px  | <Box bg="pink.200" h="4" w="64"/>  |
+| 72   | 18rem    | 288px  | <Box bg="pink.200" h="4" w="72"/>  |
+| 80   | 20rem    | 320px  | <Box bg="pink.200" h="4" w="80"/>  |
+| 96   | 24rem    | 384px  | <Box bg="pink.200" h="4" w="96"/>  |
+
+## Sizes
+
+The `sizes` key allows you to customize the global sizing of components you
+build for your project. By default these sizes value can be referenced by the
+`width`, `height`, and `maxWidth`, `minWidth`, `maxHeight`, `minHeight` styles.
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+
+const sizes = {
+  sizes: {
+    ...theme.space,
+    max: 'max-content',
+    min: 'min-content',
+    full: '100%',
+    '3xs': '14rem',
+    '2xs': '16rem',
+    xs: '20rem',
+    sm: '24rem',
+    md: '28rem',
+    lg: '32rem',
+    xl: '36rem',
+    '2xl': '42rem',
+    '3xl': '48rem',
+    '4xl': '56rem',
+    '5xl': '64rem',
+    '6xl': '72rem',
+    '7xl': '80rem',
+    '8xl': '90rem',
+    container: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+    },
+  },
+}
+
+const theme = extendTheme({ sizes, ...})
+```
+
+A component like this: `<Box w={4} h={3} />` will generate an empty `div` with
+width set to `1rem` or `16px` and height set to `0.75rem` or `12px`.
+
+## Border radius
+
+Chakra provides a set of smooth corner radius values defined by the `radii` key.
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+
+const borderRadius = {
+  radii: {
+    none: '0',
+    sm: '0.125rem',
+    base: '0.25rem',
+    md: '0.375rem',
+    lg: '0.5rem',
+    xl: '0.75rem',
+    '2xl': '1rem',
+    '3xl': '1.5rem',
+    full: '9999px',
+  },
+}
+
+const theme = extendTheme({ ...borderRadius, ...})
+```
+
+## z-index values
+
+Chakra provides a minimal set of z-Indices out of the box to help control the
+stacking order of components.
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+
+const zIndices = {
+  hide: -1,
+  auto: 'auto',
+  base: 0,
+  docked: 10,
+  dropdown: 1000,
+  sticky: 1100,
+  banner: 1200,
+  overlay: 1300,
+  modal: 1400,
+  popover: 1500,
+  skipLink: 1600,
+  toast: 1700,
+  tooltip: 1800,
+}
+const theme = extendTheme({ zIndices, ...})
+```
+
+## Config
+
+The theme's config is to provide global settings that are used by different
+parts of the Chakra UI system.
+
+| Property                  | Description                                                                                               | Default  |
+| ------------------------- | --------------------------------------------------------------------------------------------------------- | -------- |
+| `cssVarPrefix` **(v1.4)** | The prefix to use for the generated CSS custom properties                                                 | `chakra` |
+| `initialColorMode`        | The initial color mode your application should start with. <br reset/> Can be `light`, `dark` or `system` | `light`  |
+| `useSystemColorMode`      | If `true`, the chakra system will update color mode <br reset/> based on your system preferences          | `false`  |
+
+You can leverage the `extendTheme` function to override a specific theme config
+property.
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+
+const theme = extendTheme({
+  config: {
+    cssVarPrefix: 'ck',
+  },
+})
+```

@@ -1,0 +1,96 @@
+---
+title: Meteor
+description: A guide for installing Chakra UI with meteor projects
+tags: ['meteor']
+author: grubba27
+category: frameworks
+---
+
+### 1. Installation
+
+> To get started with Meteor and Chakra UI, you must have the
+> [Meteor CLI](https://www.meteor.com/developers/install) installed.
+
+To create a Chakra UI with `meteor` project, simply run:
+
+```bash
+meteor create project-name --chakra-ui
+```
+
+This creates a project with Chakra UI and sets up the `ChakraProvider`.
+
+### ChakraProvider Props
+
+| Name             | Type             | Default               | Description                                         |
+| ---------------- | ---------------- | --------------------- | --------------------------------------------------- |
+| resetCSS         | `boolean`        | `true`                | automatically includes `<CSSReset />`               |
+| theme            | `Theme`          | `@chakra-ui/theme`    | optional custom theme                               |
+| colorModeManager | `StorageManager` | `localStorageManager` | manager to persist a users color mode preference in |
+| portalZIndex     | `number`         | `undefined`           | common z-index to use for `Portal`                  |
+
+> Boom! You're good to go 🚀🚀🚀 However, if you'd love to take it a step
+> further, check out the optional step below.
+
+#### 2. Optional Setup
+
+- Customizing Theme
+
+If you intend to customise the default theme object to match your design
+requirements, you can extend the `theme` from `@chakra-ui/react`.
+
+Chakra UI provides an `extendTheme` function that deep merges the default theme
+with your customizations.
+
+```jsx live=false
+// 1. Import the extendTheme function
+import { extendTheme } from '@chakra-ui/react'
+
+// 2. Extend the theme to include custom colors, fonts, etc
+const colors = {
+  brand: {
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
+  },
+}
+
+const theme = extendTheme({ colors })
+
+// 3. Pass the `theme` prop to the `ChakraProvider`
+function App() {
+  return (
+    <ChakraProvider theme={theme}>
+      <ErrorBoundary
+        FallbackComponent={RootErrorFallback}
+        resetKeys={[router.asPath]}
+        onReset={() => {
+          // This ensures the Blitz useQuery hooks will automatically refetch
+          // data any time you reset the error boundary
+          queryCache.resetErrorBoundaries()
+        }}
+      >
+        {getLayout(<Component {...pageProps} />)}
+      </ErrorBoundary>
+    </ChakraProvider>
+  )
+}
+```
+
+> To further customize components or build your own design system, the
+> `theme-tools` package includes useful utilities. Install
+> `@chakra-ui/theme-tools`.
+
+- Using Chakra Icons
+
+Chakra provides a set of commonly used interface icons you can use in your
+project.
+
+If you want to use the icons from Chakra UI, install `@chakra-ui/icons`.
+
+> Follow this guide for customising Chakra Icons
+> [Using Chakra UI Icons](/docs/components/media-and-icons/icon).
+
+#### Notes on TypeScript 🚨
+
+Please note that when adding Chakra UI to a TypeScript project, a minimum
+TypeScript version of `4.1.0` is required.

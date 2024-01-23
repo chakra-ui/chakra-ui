@@ -1,0 +1,93 @@
+---
+title: Chakra UI + Framer Motion
+description: Adding Animation to Chakra UI Components with Framer Motion
+tags: ['framer', 'animation']
+author: segunadebayo
+category: integrations
+---
+
+This example shows how to add some interesting motion interaction or animation
+to your Chakra UI websites or apps with
+[Framer Motion](https://www.framer.com/docs/).
+
+## Usage
+
+There are two ways to use `as props` and `chakra factory`.
+
+### chakra factory
+
+The chakra factory function can be used to represent animation and interaction
+using `framer motion` props, as in the example below.
+
+```tsx live=false
+import { chakra } from '@chakra-ui/react'
+import { motion, isValidMotionProp } from 'framer-motion'
+
+const ChakraBox = chakra(motion.div, {
+  shouldForwardProp: isValidMotionProp,
+})
+```
+
+Let's see an example using the chakra factory function!
+
+import {
+  App as AppFactory,
+  Index as IndexFactory,
+} from 'configs/sandpack-contents/framer-motion-examples/chakra-factory'
+
+<SandpackEmbed
+  files={{
+    '/App.tsx': AppFactory,
+    '/index.tsx': IndexFactory,
+  }}
+/>
+
+> `shouldForwardProp` is needed to allow framer props to be used instead of the
+> matching props from Chakra. If you do not include "children" somehow (for
+> example by using our `shouldForwardProp`), then you will not be able to use
+> child components. Either way, all other Chakra props can still be used.
+
+### as prop
+
+You can also use `as` prop to add animations and interactions.
+
+> It is important to note that if there are props with the same name as the
+> `chakra` props, they take precedence over the `framer motion` props. For
+> example, a `transition` will take precedence over a `framer motion` prop and
+> the `framer motion` feature will not work.
+
+```tsx live=false
+import { Box } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
+
+function Example() {
+  return (
+    <Box
+      as={motion.div}
+      height='40px'
+      width='40px'
+      bg='orange.400'
+      drag='x'
+      dragConstraints={{ left: -100, right: 100 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      transition='0.5s linear'
+      // not work: transition={{ transition: "0.5", ease: "linear" }}
+    />
+  )
+}
+```
+
+Let's look at an example of `as` prop!
+
+import {
+  App as AppAsProps,
+  Index as IndexAsProps,
+} from 'configs/sandpack-contents/framer-motion-examples/as-props'
+
+<SandpackEmbed
+  files={{
+    '/App.tsx': AppAsProps,
+    '/index.tsx': IndexAsProps,
+  }}
+/>

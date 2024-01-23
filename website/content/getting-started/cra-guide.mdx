@@ -1,0 +1,167 @@
+---
+title: Create React App
+description: A guide for installing Chakra UI with create-react-app projects
+tags: ['create-react-app']
+author: estheragbaje
+category: frameworks
+---
+
+## Automatic Installation
+
+Create React App allows users to create a project using a template, which
+determines the files and dependencies included with the generated project.
+
+### JavaScript Template
+
+To generate the starter template for a JavaScript project, run the command
+below:
+
+<PackageManagers
+  command={{
+    npm: 'npx create-react-app my-app --template @chakra-ui',
+    yarn: 'yarn create react-app my-app --template @chakra-ui',
+    pnpm: 'pnpm create react-app my-app --template @chakra-ui',
+    bun: 'bun create react-app my-app --template @chakra-ui',
+  }}
+/>
+
+### TypeScript Template
+
+To generate the starter template for a TypeScript project, run the command
+below:
+
+<PackageManagers
+  command={{
+    npm: 'npx create-react-app my-app --template @chakra-ui/typescript',
+    yarn: 'yarn create react-app my-app --template @chakra-ui/typescript',
+    pnpm: 'pnpm create react-app my-app --template @chakra-ui/typescript',
+    bun: 'bun create react-app my-app --template @chakra-ui/typescript',
+  }}
+/>
+
+### What's included
+
+The official templates are similar to the base `create-react-app` template, but
+they come with Chakra UI dependencies pre-installed and include Chakra-specific
+functionality.
+
+#### Pre-install dependencies
+
+- `@chakra-ui/react`
+- `@chakra-ui/theme`
+- `@chakra-ui/theme-tools`
+- `react-icons`
+
+#### Chakra-specific functionality
+
+- `ChakraProvider` and `CSSReset` already connected to the default `theme`
+- `ColorModeSwitcher` component, using Chakra's color mode management
+- Animated Chakra UI logo instead of the React logo
+
+## Manual Installation
+
+### 1. Installation
+
+Inside your CRA project directory, install Chakra UI by running either of the
+following:
+
+<PackageManagers
+  command={{
+    npm: 'npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+    yarn: 'yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+    pnpm: 'pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+    bun: 'bun add @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+  }}
+/>
+
+### 2. Provider Setup
+
+After installing Chakra UI, you need to set up the `ChakraProvider` at the root
+of your application. This can be either in your `index.jsx` or `index.tsx`
+
+Put in the following code:
+
+```jsx live=false
+import * as React from 'react'
+
+// 1. import `ChakraProvider` component
+import { ChakraProvider } from '@chakra-ui/react'
+
+function App() {
+  // 2. Wrap ChakraProvider at the root of your app
+  return (
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+### ChakraProvider Props
+
+| Name             | Type             | Default               | Description                                         |
+| ---------------- | ---------------- | --------------------- | --------------------------------------------------- |
+| resetCSS         | `boolean`        | `true`                | automatically includes `<CSSReset />`               |
+| theme            | `Theme`          | `@chakra-ui/theme`    | optional custom theme                               |
+| colorModeManager | `StorageManager` | `localStorageManager` | manager to persist a users color mode preference in |
+| portalZIndex     | `number`         | `undefined`           | common z-index to use for `Portal`                  |
+
+> Boom! You're good to go with steps 1 and 2 🚀🚀🚀 However, if you'd love to
+> take it a step further, check out step 3.
+
+### 3. Optional Setup
+
+#### Customizing Theme
+
+If you intend to customise the default theme object to match your design
+requirements, you can extend the `theme` from `@chakra-ui/react`.
+
+Chakra UI provides an `extendTheme` function that deep merges the default theme
+with your customizations.
+
+```jsx live=false
+// 1. Import the extendTheme function
+import { extendTheme, ChakraProvider } from '@chakra-ui/react'
+
+// 2. Extend the theme to include custom colors, fonts, etc
+const colors = {
+  brand: {
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
+  },
+}
+
+const theme = extendTheme({ colors })
+
+// 3. Pass the `theme` prop to the `ChakraProvider`
+function App() {
+  return (
+    <ChakraProvider theme={theme}>
+      <App />
+    </ChakraProvider>
+  )
+}
+```
+
+> To further customize components or build your own design system, the
+> `theme-tools` package includes useful utilities. Install
+> `@chakra-ui/theme-tools`.
+
+#### Using Chakra Icons
+
+Chakra provides a set of commonly used interface icons you can use in your
+project.
+
+If you want to use the icons from Chakra UI, install `@chakra-ui/icons`.
+
+> Follow this guide for customising Chakra Icons
+> [Using Chakra UI Icons](/docs/components/media-and-icons/icon).
+
+#### Notes on TypeScript 🚨
+
+Please note that when adding Chakra UI to a TypeScript project, a minimum
+TypeScript version of `4.1.0` is required.
+
+In`create-react-app` project, you'll need to manually upgrade `typescript` to
+`^4.1.0`.

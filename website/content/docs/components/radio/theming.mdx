@@ -1,0 +1,299 @@
+---
+id: radio
+scope: theming
+---
+
+The `Radio` component is a multipart component. The styling needs to be applied
+to each part specifically.
+
+> To learn more about styling multipart components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-multipart-components)
+> page.
+
+## Anatomy
+
+- A: `control`
+- B: `label`
+- C: `container`
+
+<AspectRatio ratio={16 / 9}>
+  <svg
+    width='100%'
+    height='100%'
+    viewBox='0 0 298 216'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <rect width='298' height='216' fill='white' />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M82 94L82 77L83 77L83 94L82 94Z'
+      fill='#00B5D8'
+    />
+    <path
+      d='M97 64C97 71.732 90.732 78 83 78C75.268 78 69 71.732 69 64C69 56.268 75.268 50 83 50C90.732 50 97 56.268 97 64Z'
+      fill='#C4F1F9'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M83 77C90.1797 77 96 71.1797 96 64C96 56.8203 90.1797 51 83 51C75.8203 51 70 56.8203 70 64C70 71.1797 75.8203 77 83 77ZM83 78C90.732 78 97 71.732 97 64C97 56.268 90.732 50 83 50C75.268 50 69 56.268 69 64C69 71.732 75.268 78 83 78Z'
+      fill='#00B5D8'
+    />
+    <path
+      d='M79.6595 70H77.7959L81.9834 58.3636H84.0118L88.1993 70H86.3357L83.0459 60.4773H82.955L79.6595 70ZM79.972 65.4432H86.0175V66.9205H79.972V65.4432Z'
+      fill='#00B5D8'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M189 86L189 76L190 76L190 86L189 86Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M204 63C204 70.732 197.732 77 190 77C182.268 77 176 70.732 176 63C176 55.268 182.268 49 190 49C197.732 49 204 55.268 204 63Z'
+      fill='#FED7E2'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M190 76C197.18 76 203 70.1797 203 63C203 55.8203 197.18 50 190 50C182.82 50 177 55.8203 177 63C177 70.1797 182.82 76 190 76ZM190 77C197.732 77 204 70.732 204 63C204 55.268 197.732 49 190 49C182.268 49 176 55.268 176 63C176 70.732 182.268 77 190 77Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M195.06 61.1477H193.288C193.219 60.7689 193.092 60.4356 192.907 60.1477C192.721 59.8598 192.494 59.6155 192.225 59.4148C191.956 59.214 191.655 59.0625 191.322 58.9602C190.992 58.8579 190.642 58.8068 190.271 58.8068C189.6 58.8068 189 58.9754 188.469 59.3125C187.943 59.6496 187.526 60.1439 187.219 60.7954C186.916 61.447 186.765 62.2424 186.765 63.1818C186.765 64.1288 186.916 64.928 187.219 65.5795C187.526 66.231 187.945 66.7235 188.475 67.0568C189.005 67.3901 189.602 67.5568 190.265 67.5568C190.632 67.5568 190.981 67.5076 191.31 67.4091C191.644 67.3068 191.945 67.1572 192.214 66.9602C192.483 66.7632 192.71 66.5227 192.896 66.2386C193.085 65.9507 193.216 65.6212 193.288 65.25L195.06 65.2557C194.966 65.8276 194.782 66.3542 194.509 66.8352C194.24 67.3125 193.894 67.7254 193.469 68.0738C193.049 68.4185 192.568 68.6856 192.026 68.875C191.485 69.0644 190.894 69.1591 190.253 69.1591C189.246 69.1591 188.348 68.9204 187.56 68.4432C186.772 67.9621 186.151 67.2746 185.697 66.3807C185.246 65.4867 185.021 64.4204 185.021 63.1818C185.021 61.9394 185.248 60.8731 185.702 59.9829C186.157 59.089 186.778 58.4034 187.566 57.9261C188.354 57.4451 189.25 57.2045 190.253 57.2045C190.871 57.2045 191.447 57.2935 191.981 57.4716C192.519 57.6458 193.002 57.9034 193.43 58.2443C193.858 58.5814 194.212 58.9943 194.492 59.4829C194.772 59.9678 194.962 60.5227 195.06 61.1477Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M143 153C143 160.732 136.732 167 129 167C121.268 167 115 160.732 115 153C115 145.268 121.268 139 129 139C136.732 139 143 145.268 143 153Z'
+      fill='#C6F6D5'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M129 166C136.18 166 142 160.18 142 153C142 145.82 136.18 140 129 140C121.82 140 116 145.82 116 153C116 160.18 121.82 166 129 166ZM129 167C136.732 167 143 160.732 143 153C143 145.268 136.732 139 129 139C121.268 139 115 145.268 115 153C115 160.732 121.268 167 129 167Z'
+      fill='#38A169'
+    />
+    <path
+      d='M125.544 159V147.364H129.805C130.631 147.364 131.315 147.5 131.856 147.773C132.398 148.042 132.803 148.407 133.072 148.869C133.341 149.328 133.476 149.845 133.476 150.42C133.476 150.905 133.387 151.314 133.209 151.648C133.031 151.977 132.792 152.242 132.493 152.443C132.197 152.64 131.872 152.784 131.516 152.875V152.989C131.902 153.008 132.279 153.133 132.646 153.364C133.017 153.591 133.324 153.915 133.567 154.335C133.809 154.756 133.93 155.267 133.93 155.869C133.93 156.464 133.79 156.998 133.51 157.472C133.233 157.941 132.805 158.314 132.226 158.591C131.646 158.864 130.906 159 130.004 159H125.544ZM127.3 157.494H129.834C130.675 157.494 131.277 157.331 131.641 157.006C132.004 156.68 132.186 156.273 132.186 155.784C132.186 155.417 132.093 155.08 131.908 154.773C131.722 154.466 131.457 154.222 131.112 154.04C130.771 153.858 130.366 153.767 129.896 153.767H127.3V157.494ZM127.3 152.398H129.652C130.046 152.398 130.4 152.322 130.714 152.17C131.033 152.019 131.284 151.807 131.47 151.534C131.659 151.258 131.754 150.932 131.754 150.557C131.754 150.076 131.586 149.672 131.248 149.347C130.911 149.021 130.394 148.858 129.697 148.858H127.3V152.398Z'
+      fill='#38A169'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M234 87H63V127H234V87ZM62 86V128H235V86H62Z'
+      fill='#D53F8C'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M129 139L129 117L130 117L130 139L129 139Z'
+      fill='#38A169'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M96 94H70V120H96V94ZM69 93V121H97V93H69Z'
+      fill='#00B5D8'
+    />
+    <circle cx='129.5' cy='116' r='2' fill='#38A169' />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M83 115C87.4183 115 91 111.418 91 107C91 102.582 87.4183 99 83 99C78.5817 99 75 102.582 75 107C75 111.418 78.5817 115 83 115ZM83 110C84.6569 110 86 108.657 86 107C86 105.343 84.6569 104 83 104C81.3431 104 80 105.343 80 107C80 108.657 81.3431 110 83 110Z'
+      fill='#4299E1'
+    />
+    <path
+      d='M100.233 112V101.818H101.466V110.906H106.199V112H100.233Z'
+      fill='black'
+    />
+    <path
+      d='M110.196 112.179C109.713 112.179 109.273 112.088 108.879 111.906C108.485 111.72 108.171 111.453 107.939 111.105C107.707 110.754 107.591 110.33 107.591 109.832C107.591 109.395 107.678 109.04 107.85 108.768C108.022 108.493 108.253 108.278 108.541 108.122C108.829 107.966 109.147 107.85 109.495 107.774C109.847 107.695 110.2 107.632 110.554 107.585C111.018 107.526 111.395 107.481 111.683 107.451C111.975 107.418 112.187 107.363 112.319 107.287C112.455 107.211 112.523 107.078 112.523 106.889V106.849C112.523 106.359 112.389 105.978 112.12 105.706C111.855 105.434 111.453 105.298 110.912 105.298C110.352 105.298 109.913 105.421 109.595 105.666C109.277 105.911 109.053 106.173 108.924 106.452L107.81 106.054C108.009 105.59 108.274 105.229 108.606 104.97C108.94 104.708 109.305 104.526 109.699 104.423C110.097 104.317 110.488 104.264 110.873 104.264C111.118 104.264 111.4 104.294 111.718 104.354C112.039 104.41 112.349 104.528 112.647 104.707C112.949 104.886 113.199 105.156 113.398 105.517C113.597 105.878 113.696 106.362 113.696 106.969V112H112.523V110.966H112.464C112.384 111.132 112.251 111.309 112.066 111.498C111.88 111.687 111.633 111.848 111.325 111.98C111.017 112.113 110.641 112.179 110.196 112.179ZM110.375 111.125C110.839 111.125 111.231 111.034 111.549 110.852C111.87 110.669 112.112 110.434 112.275 110.146C112.44 109.857 112.523 109.554 112.523 109.236V108.162C112.473 108.222 112.364 108.276 112.195 108.326C112.029 108.372 111.837 108.414 111.618 108.45C111.403 108.483 111.192 108.513 110.987 108.54C110.785 108.563 110.621 108.583 110.495 108.599C110.19 108.639 109.905 108.704 109.64 108.793C109.378 108.879 109.166 109.01 109.003 109.186C108.844 109.358 108.765 109.594 108.765 109.892C108.765 110.3 108.915 110.608 109.217 110.817C109.522 111.022 109.908 111.125 110.375 111.125Z'
+      fill='black'
+    />
+    <path
+      d='M115.997 112V101.818H117.17V105.577H117.27C117.356 105.444 117.475 105.275 117.628 105.07C117.784 104.861 118.006 104.675 118.294 104.513C118.586 104.347 118.98 104.264 119.477 104.264C120.12 104.264 120.687 104.425 121.177 104.746C121.668 105.068 122.051 105.524 122.326 106.114C122.601 106.704 122.739 107.4 122.739 108.202C122.739 109.01 122.601 109.711 122.326 110.305C122.051 110.895 121.67 111.352 121.182 111.677C120.695 111.998 120.133 112.159 119.497 112.159C119.007 112.159 118.614 112.078 118.319 111.915C118.024 111.75 117.797 111.562 117.638 111.354C117.479 111.142 117.356 110.966 117.27 110.827H117.131V112H115.997ZM117.15 108.182C117.15 108.759 117.235 109.267 117.404 109.708C117.573 110.146 117.82 110.489 118.145 110.737C118.47 110.982 118.867 111.105 119.338 111.105C119.829 111.105 120.238 110.976 120.566 110.717C120.897 110.455 121.146 110.104 121.312 109.663C121.481 109.219 121.565 108.725 121.565 108.182C121.565 107.645 121.482 107.161 121.317 106.73C121.154 106.296 120.907 105.953 120.576 105.701C120.248 105.446 119.835 105.318 119.338 105.318C118.861 105.318 118.46 105.439 118.135 105.681C117.81 105.92 117.565 106.254 117.399 106.685C117.233 107.113 117.15 107.612 117.15 108.182Z'
+      fill='black'
+    />
+    <path
+      d='M127.735 112.159C126.999 112.159 126.364 111.997 125.831 111.672C125.301 111.344 124.891 110.886 124.603 110.3C124.318 109.71 124.175 109.024 124.175 108.241C124.175 107.459 124.318 106.77 124.603 106.173C124.891 105.573 125.292 105.106 125.806 104.771C126.323 104.433 126.926 104.264 127.616 104.264C128.013 104.264 128.406 104.33 128.794 104.463C129.182 104.596 129.535 104.811 129.853 105.109C130.171 105.404 130.425 105.795 130.614 106.283C130.802 106.77 130.897 107.37 130.897 108.082V108.58H125.011V107.565H129.704C129.704 107.134 129.618 106.75 129.445 106.412C129.276 106.074 129.034 105.807 128.719 105.612C128.408 105.416 128.04 105.318 127.616 105.318C127.148 105.318 126.744 105.434 126.403 105.666C126.065 105.895 125.804 106.193 125.622 106.561C125.44 106.929 125.349 107.323 125.349 107.744V108.42C125.349 108.997 125.448 109.486 125.647 109.887C125.849 110.285 126.129 110.588 126.487 110.797C126.845 111.002 127.261 111.105 127.735 111.105C128.043 111.105 128.322 111.062 128.57 110.976C128.822 110.886 129.039 110.754 129.222 110.578C129.404 110.399 129.545 110.177 129.644 109.912L130.778 110.23C130.658 110.615 130.458 110.953 130.176 111.244C129.894 111.533 129.546 111.758 129.132 111.92C128.718 112.08 128.252 112.159 127.735 112.159Z'
+      fill='black'
+    />
+    <path d='M133.855 101.818V112H132.682V101.818H133.855Z' fill='black' />
+  </svg>
+</AspectRatio>
+
+## Theming properties
+
+The properties that affect the theming of the `Radio` component are:
+
+- `variant`: The visual variant of the radio. The color scheme defaults to
+  `blue`.
+- `size`: The size of the radio. Defaults to `md`.
+
+## Theming utilities
+
+- `createMultiStyleConfigHelpers`: a function that returns a set of utilities
+  for creating style configs for a multipart component (`definePartsStyle` and
+  `defineMultiStyleConfig`).
+- `definePartsStyle`: a function used to create multipart style objects.
+- `defineMultiStyleConfig`: a function used to define the style configuration
+  for a multipart component.
+
+```jsx live=false
+import { radioAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(radioAnatomy.keys)
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { radioAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(radioAnatomy.keys)
+
+const baseStyle = definePartsStyle({
+  // define the part you're going to style
+  control: {
+    borderRadius: '12px', // change the border radius
+    borderColor: 'teal.500', // change the border color
+  },
+})
+
+export const radioTheme = defineMultiStyleConfig({ baseStyle })
+```
+
+After customizing the radio theme, we can import it in our theme file and add it
+in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { radioTheme } from './components/radio.ts'
+
+export const theme = extendTheme({
+  components: { Radio: radioTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the radio
+> theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to include an extra large radio size. Here's how we can do
+that:
+
+```jsx live=false
+import { radioAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(radioAnatomy.keys)
+
+const xl = defineStyle({
+  w: '6',
+  h: '6'
+})
+
+const sizes = {
+  xl: definePartsStyle({ control: xl})
+}
+
+export const radioTheme = defineMultiStyleConfig({ sizes })
+
+// Now we can use the new `xl` size
+<Radio size="xl">This is a radio</Radio>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a custom outline variant. Here's how we can do
+that:
+
+```jsx live=false
+import { radioAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(radioAnatomy.keys)
+
+const outline = definePartsStyle({
+  control: {
+    border: '1px solid',
+    borderColor: 'gray.300',
+
+    // Let's also provide dark mode alternatives
+    _dark: {
+      borderColor: 'gray.600',
+    },
+  }
+
+})
+
+export const radioTheme = defineMultiStyleConfig({
+  variants: { outline },
+})
+
+// Now we can use the new `outline` variant
+<Radio variant="outline" ... />
+```
+
+## Changing the default properties
+
+Let's assume we want to change the default size and variant of radio in our app.
+Here's how we can do that:
+
+```jsx live=false
+import { radioAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  radioAnatomy.keys,
+)
+
+export const radioTheme = defineMultiStyleConfig({
+  defaultProps: {
+    size: 'xl',
+    variant: 'outline',
+  },
+})
+
+// This saves you time, instead of manually setting the size and variant every time you use a radio:
+<Radio size="xl" variant="outline">This is a radio</Radio>
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  Theme,
+  Radio,
+  ColorModeSwitcher,
+} from 'configs/sandpack-contents/component-theming/radio'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Radio.ts': Radio,
+    '/theme/index.ts': Theme,
+    '/App.tsx': App,
+    '/ColorModeSwitcher.tsx': {
+      code: ColorModeSwitcher,
+      hidden: true,
+    },
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+/>

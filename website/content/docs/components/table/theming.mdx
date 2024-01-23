@@ -1,0 +1,340 @@
+---
+id: table
+scope: theming
+---
+
+The `Table` component and its containing components are a multipart component.
+Styling needs to be applied to each specific part.
+
+The `TableContainer` component is a single part component. Styling is applied
+directly to the component.
+
+> To learn more about styling single and multipart components, visit the
+> [Component Style](/docs/styled-system/component-style) page.
+
+## Table Anatomy
+
+- A: `table`: The main table
+- B: `thead`: A group of table rows which label the table's columns
+- C: `tbody`: A group of table rows which contain data
+- D: `tfoot`: A group of table rows which summarize table data
+- D: `tr`: A row of table cells (`td` or `th`)
+- E: `th`: A table cell which labels a group of other table cells
+- F: `td`: A data-containing table cell
+- G: `caption`: The table's title
+
+## Theming utilities
+
+The following examples use theme utility functions to help define the table
+theme. These steps are included in all the examples below but are omitted from
+the specific examples to avoid repeating information.
+
+1. Import the `tableAnatomy` object from `@chakra-ui/anatomy`
+1. Import `createMultiStyleConfigHelpers`, and for some examples, `defineStyle`,
+   from `@chakra-ui/react`, which provides a set of utilities for defining
+   styles.
+1. Destructure `definePartsStyle` and `defineMultiStyleConfig` from
+   `createMultiStyleConfigHelpers`. These utility functions define style
+   configurations for multipart components.
+
+## Customizing the default Table theme
+
+1. Use the `definePartsStyle` function to create a multipart style object with
+   your base style customizations.
+1. Use the `defineMultiStyleConfig` function to create a multipart component
+   style theme configuration with customized base style.
+1. Import the table theme into your theme file's components property.
+
+**Steps 1-2 example**
+
+```jsx live=false
+import { tableAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(tableAnatomy.keys)
+
+const baseStyle = definePartsStyle({
+  // define the part you're going to style
+  td: {
+    fontFamily: 'mono', // change the font family
+    color: 'teal.500', // change the td text color
+  },
+})
+
+export const tableTheme = defineMultiStyleConfig({ baseStyle })
+```
+
+**Step 3 example**
+
+> Step 3 is a crucial step to make sure that any changes that we make to the
+> table theme are applied.
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { tableTheme } from './components/table.ts'
+
+export const theme = extendTheme({
+  components: { Table: tableTheme },
+})
+```
+
+## Theming properties
+
+- `variant`: The visual variant of the table. Defaults to `simple`.
+- `colorScheme`: The color scheme of the table. Defaults to `gray`.
+- `size`: The size of the table. Defaults to `md`.
+
+## Adding a custom table size
+
+To add an `xl` size to the table, add a new size to the table theme's sizes.
+
+1. Use the `defineStyle` function to create the style for the `xl` size.
+1. Use the `definePartsStyle` function to create a multipart style object with
+   your new size, and define it for different component parts.
+1. Use the `defineMultiStyleConfig` function to create a multipart component
+   style theme configuration with customized size.
+1. Import the table theme into your theme file's components property.
+1. Run the CLI tool to update your IDE's autocomplete recognition of the new
+   size. Learn more about the CLI tool [here](/docs/styled-system/cli).
+
+**Steps 1-3 example**
+
+```jsx live=false
+import { tableAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(tableAnatomy.keys)
+
+const xl = defineStyle({
+  fontSize: 'lg',
+  px: '4',
+  h: '12',
+})
+
+const sizes = {
+  xl: definePartsStyle({ th: xl, td: xl, caption: xl }),
+}
+
+export const tableTheme = defineMultiStyleConfig({ sizes })
+```
+
+**Step 4 example**
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { tableTheme } from './components/table.ts'
+
+export const theme = extendTheme({
+  components: { Table: tableTheme },
+})
+```
+
+**Example utilizing the new size in a component**
+
+```jsx live=false
+import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react'
+function Table() {
+  return (
+    // Using new size in application
+    <Table size='xl'>
+      <Thead>
+        <Tr>
+          <Th>Month</Th>
+          <Th>Savings</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        <Tr>
+          <Td>January</Td>
+          <Td>$100</Td>
+        </Tr>
+      </Tbody>
+    </Table>
+  )
+}
+```
+
+## Adding a custom table variant
+
+To add a `rounded` variant to the table, add a new variant to the table theme's
+variants.
+
+1. Use the `definePartsStyle` function to create a multipart style object with
+   your new variant.
+1. Use the `defineMultiStyleConfig` function to create a multipart component
+   style theme configuration with custom variant.
+1. Import the table theme into your theme file's components property.
+1. Run the CLI tool to update your IDE's autocomplete recognition of the new
+   size. Learn more about the CLI tool [here](/docs/styled-system/cli).
+
+**Steps 1-2 example**
+
+```jsx live=false
+import { tableAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(tableAnatomy.keys)
+
+const variantRounded = definePartsStyle((props) => {
+  const { colorScheme: c, colorMode } = props
+
+  return {
+    tr: {
+      'td:first-child': {
+        borderTopLeftRadius: 'full',
+        borderBottomLeftRadius: 'full',
+      },
+      'td:last-child': {
+        borderTopRightRadius: 'full',
+        borderBottomRightRadius: 'full',
+      },
+    },
+    th: {
+      '&[data-is-numeric=true]': {
+        textAlign: 'end',
+      },
+    },
+    td: {
+      '&[data-is-numeric=true]': {
+        textAlign: 'end',
+      },
+    },
+    caption: {
+      color: colorMode === 'light' ? `${c}.600` : `${c}.100`,
+    },
+    tbody: {
+      tr: {
+        '&:nth-of-type(odd)': {
+          'th, td': {
+            borderBottomWidth: '1px',
+            borderColor: colorMode === 'light' ? `${c}.100` : `${c}.700`,
+          },
+          td: {
+            background: colorMode === 'light' ? `${c}.100` : `${c}.700`,
+          },
+        },
+        '&:nth-of-type(even)': {
+          'th, td': {
+            borderBottomWidth: '1px',
+            borderColor: colorMode === 'light' ? `${c}.300` : `${c}.600`,
+          },
+          td: {
+            background: colorMode === 'light' ? `${c}.300` : `${c}.600`,
+          },
+        },
+      },
+    },
+    tfoot: {
+      tr: {
+        '&:last-of-type': {
+          th: { borderBottomWidth: 0 },
+        },
+      },
+    },
+  }
+})
+
+export const tableTheme = defineMultiStyleConfig({
+  variants: { variantRounded },
+})
+```
+
+**Step 3 example**
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { tableTheme } from './components/table.ts'
+
+export const theme = extendTheme({
+  components: { Table: tableTheme },
+})
+```
+
+**Example utilizing the new variant in a component**
+
+```jsx live=false
+import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react'
+function Table() {
+  return (
+    <TableContainer width={{ base: 'full', md: '25%' }} mx='auto'>
+      {/* Using new variant in application */}
+      <Table variant='bubble' size='sm'>
+        <TableCaption placement='top'>Spending By Month</TableCaption>
+        <Thead>
+          <Tr>
+            <Th>Month</Th>
+            <Th isNumeric>Spending</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td>January</Td>
+            <Td isNumeric>100</Td>
+          </Tr>
+          <Tr>
+            <Td>February</Td>
+            <Td isNumeric>100</Td>
+          </Tr>
+        </Tbody>
+        <Tfoot>
+          <Tr>
+            <Td>Total</Td>
+            <Td isNumeric>200</Td>
+          </Tr>
+        </Tfoot>
+      </Table>
+    </TableContainer>
+  )
+}
+```
+
+## Changing default table properties
+
+To change the default variant and size used for every `Table` component, change
+the component's `defaultProps`. This prevents the need to repeat setting the
+same size or variant each time a `Table` component is used.
+
+Instead of using `<Table variant="rounded" size="xl" ... />` each time you
+create a table, you can use `<Table ... />` and the `rounded` variant and `xl`
+size will be applied by default.
+
+```jsx live=false
+import { tableAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  tableAnatomy.keys,
+)
+
+export const tableTheme = defineMultiStyleConfig({
+  defaultProps: {
+    size: 'xl',
+    variant: 'rounded',
+  },
+})
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  TableTheme,
+} from 'configs/sandpack-contents/component-theming/table'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Table.ts': TableTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

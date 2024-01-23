@@ -1,0 +1,61 @@
+---
+title: Version 2.3.7
+description:
+  Explore the changelog for Chakra UI version 2.3.7. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6875
+releaseDate: November 2, 2022
+version: 2.3.7
+---
+
+## Minor Changes
+
+### Progress `2.1.0`
+
+- Added support for overriding the `role` for `Progress` eleement. This makes it
+  possible to use the progress as a meter element.
+
+  ```jsx live=false
+  <Progress size='sm' value={20} role='meter' aria-label='Usage' />
+  ```
+
+## Patch Changes
+
+### Progress `2.1.0`
+
+- Fixed accessibility issue where the `title` prop was not passed to the
+  underlying `role=progress` element.
+
+### Checkbox `2.2.3`
+
+- Replaced `framer-motion` with native css animation
+
+### CSS Reset `2.0.9`
+
+- Use `dvh` unit if supported
+
+  This allows the user agent to dynamically adapt the height of a Modal,
+  depending on what parts of the UI (e.g. address bar) are visible.
+
+### Editable `2.0.14`
+
+- Fixed issue where `onSubmit` was called twice when input is blurred with enter
+  key.
+
+### Theme `2.1.15`
+
+- Replaced `mode` runtime function with CSS variables where possible.
+
+### Visually Hidden `2.0.12`
+
+- Removed unneeded units for zero values `0px -> 0`
+
+### UseFocusEffect `2.0.6`
+
+- Fixed issue where focus sometimes moved back to the open element when it was
+  intentionally moved away from it.
+
+### Hooks `2.1.1`
+
+- Fixed issue where focus sometimes moved back to the open element when it was
+  intentionally moved away from it.
