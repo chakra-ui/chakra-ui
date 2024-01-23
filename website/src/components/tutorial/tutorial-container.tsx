@@ -1,32 +1,33 @@
 import {
   Box,
-  chakra,
-  Stack,
-  HStack,
-  Flex,
   Button,
   Center,
-  VStack,
+  Flex,
+  HStack,
   Heading,
+  SkipNavContent,
+  SkipNavLink,
+  Stack,
   Text,
+  VStack,
+  chakra,
 } from '@chakra-ui/react'
-import { SkipNavContent, SkipNavLink } from '@chakra-ui/skip-nav'
 import {
   SandpackCodeEditor,
   SandpackLayout,
   SandpackPreview,
   SandpackProvider,
 } from '@codesandbox/sandpack-react'
-import { useRouter } from 'next/router'
-import * as React from 'react'
+import { nightOwl } from '@codesandbox/sandpack-themes'
 import EditPageLink from 'components/edit-page-button'
 import Header from 'components/header'
 import SEO from 'components/seo'
+import { useRouter } from 'next/router'
 import mainPackageJson from 'package.json'
-import { t } from 'utils/i18n'
+import * as React from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import { nightOwl } from '@codesandbox/sandpack-themes'
 import { Frontmatter } from 'src/types/frontmatter'
+import { t } from 'utils/i18n'
 
 function useHeadingFocusOnRouteChange() {
   const router = useRouter()

@@ -134,6 +134,7 @@ function OmniSearch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // @ts-expect-error @segunadebayo not sure what this should be?!
   useEventListener('keydown', (event) => {
     const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform)
     const hotkey = isMac ? 'metaKey' : 'ctrlKey'
