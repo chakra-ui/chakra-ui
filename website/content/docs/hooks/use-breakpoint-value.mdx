@@ -1,0 +1,69 @@
+---
+title: 'useBreakpointValue'
+package: '@chakra-ui/media-query'
+description:
+  'React hook for getting the value for the current breakpoint from the provided
+  responsive values object.'
+---
+
+`useBreakpointValue` is a custom hook which returns the value for the current
+breakpoint from the provided responsive values object. This hook also responds
+to the window resizing and returning the appropriate value for the new window
+size.
+
+The new `variant` and `size` props don't currently accept responsive values
+(specified as objects or arrays), but `useBreakpointValue` is a good way to
+achieve the same behavior.
+
+## Import
+
+```js
+import { useBreakpointValue } from '@chakra-ui/react'
+```
+
+## Return value
+
+The `useBreakpointValue` hook returns the value for the current breakpoint.
+
+## Usage
+
+> Make sure to provide a base value when using `useBreakpointValue` so it
+> doesn't return `undefined` in the first render.
+
+```jsx
+function Example() {
+  const variant = useBreakpointValue(
+    {
+      base: 'outline',
+      md: 'solid',
+    },
+    {
+      // Breakpoint to use when mediaqueries cannot be used, such as in server-side rendering
+      // (Defaults to 'base')
+      fallback: 'md',
+    },
+  )
+
+  return (
+    <VStack align='flex-start'>
+      <Text>Resize your window to see the button variant change</Text>
+      <Button colorScheme='teal' variant={variant}>
+        Button
+      </Button>
+    </VStack>
+  )
+}
+```
+
+This hook is built to work in server-side rendering (SSR) applications by
+default. You might notice a quick flash of incorrect media query values when you
+use them.
+
+If you're creating a client-side rendered app, you can leverage the ssr argument
+to get the correct value on the first render.
+
+```jsx live=false
+const buttonSize = useBreakpointValue({ base: 'sm', lg: 'md' }, { ssr: false })
+
+const breakpoint = useBreakpoint({ ssr: false })
+```

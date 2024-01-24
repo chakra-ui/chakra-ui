@@ -1,0 +1,40 @@
+---
+title: Version 2.5.2
+description:
+  Explore the changelog for Chakra UI version 2.5.2. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7372
+releaseDate: March 17, 2023
+version: 2.5.2
+---
+
+## Patch Changes
+
+### Avatar `2.2.6`
+
+Adding support for Avatar to specify `crossOrigin` prop for image
+
+### Checkbox `2.2.11`, Radio `2.0.20`
+
+Update dependency `@zag-js/focus-visible` to `v0.2.2`
+
+### CSSReset `2.0.13`
+
+Attach `--chakra-vh` variable to `:host` as well
+
+### Editable `2.0.20`
+
+Export `useEditableContext` hook
+
+### Menu `2.1.10`
+
+Fix issue where `MenuProvider` was not exported
+
+### Styled System `2.6.2`
+
+Add support for `_firstLetter` pseudo style props which translates to the css
+select `&::first-letter`
+
+```jsx live=false
+<Text _firstLetter={{ fontSize: '80px' }}>Hello World</Text>
+```

@@ -1,0 +1,122 @@
+---
+title: Semantic Tokens
+description:
+  Chakra UI provides built-in support for conditional semantic design tokens
+category: 'features'
+---
+
+Chakra UI supports **conditional semantic tokens** for every scale (colors, font
+sizes, etc). This allows to change the value of a token depending on the
+environment, like dark mode, direction and other CSS selectors.
+
+We are using CSS variables which can change with a CSS condition. E.g. the color
+token `text` can have a different value in dark and light mode.
+
+## Token References
+
+A semantic token value can be a `string | SemanticValue`. The `string` value is
+used as reference to another token in the same scale e.g.
+
+```js
+{
+  error: 'red.500'
+}
+```
+
+## Conditional Tokens
+
+The object notation `SemanticValue` allows to define the default value and
+conditional keys. The condition can be one of
+[chakra pseudo selectors](/docs/styled-system/style-props#pseudo) or a custom
+CSS selector. Try `_dark`, `_light`, `_rtl`, `_ltr` and `_mediaReduceMotion`.
+
+If you are tempted to use a CSS selector like `_focus`, `_hover` etc. define
+those CSS variables at the component level.
+
+The CSS variables are attached to the host element (CSS selector `:host, :root`)
+and cannot react to the components `<LightMode />` and `<DarkMode />`,
+`data-theme` attributes nor body class `.chakra-ui-dark`. It listens to e.g.
+`html[data-theme="dark"]`.
+
+> Since the CSS variables are attached to the host element by default we can
+> only specify certain CSS selectors. E.g. `_hover` would always trigger, when
+> the `html` element is hovered - that's mostly not intended.
+
+```js
+{
+  text: {
+    default: 'gray.900',
+    _dark: 'gray.50'
+  }
+}
+```
+
+Semantic Tokens can reference theme tokens like `gray.900` and allow plain CSS
+values like e.g. `#F7FAFC`.
+
+```jsx live=false
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+const customTheme = extendTheme({
+  semanticTokens: {
+    colors: {
+      error: 'red.500',
+      text: {
+        default: 'gray.900',
+        _dark: 'gray.50',
+      },
+    },
+  },
+})
+
+const App = () => (
+  <ChakraProvider theme={customTheme}>
+    <Text color='text'>
+      will be gray.900 in light mode and gray.50 in dark mode
+    </Text>
+  </ChakraProvider>
+)
+```
+
+## Nested Tokens (2.6.x)
+
+As of v2.6, semantic tokens can be nested to any depth. This can be useful to
+better organize your tokens into logical groups.
+
+```jsx live=false
+const customTheme = extendTheme({
+  semanticTokens: {
+    colors: {
+      // group all background tokens together
+      background: {
+        pressed: {
+          base: { default: 'gray.900', _dark: 'gray.50' },
+          subtle: { default: 'gray.800', _dark: 'gray.100' },
+        },
+      },
+    },
+  },
+})
+```
+
+## Theme Example
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+
+const theme = extendTheme({
+  semanticTokens: {
+    colors: {
+      error: 'red.500',
+      success: 'green.500',
+      primary: {
+        default: 'red.500',
+        _dark: 'red.400',
+      },
+      secondary: {
+        default: 'red.800',
+        _dark: 'red.700',
+      },
+    },
+  },
+})
+```

@@ -1,0 +1,184 @@
+---
+title: Advanced Theming
+description: Documentation for making advanced modifications to themes.
+category: 'theming'
+---
+
+Now that you understand how to use Chakra UI theming API. Let's take a step
+further and see if we can adapt a component to color mode.
+
+When defining the styles for the `sizes` or `variants`, you can either pass a
+style object or a function that returns a style object.
+
+## Single Part Component
+
+For a single part component like button, badge, etc. The style configuration has
+the following signature:
+
+```tsx live=false
+type StyleInterpolation = StyleObject | ((options: StyleOptions) => StyleObject)
+
+interface StyleOptions {
+  theme: Theme
+  colorMode: 'light' | 'dark'
+  colorScheme: string
+}
+
+interface StyleConfig {
+  baseStyle: StyleInterpolation
+  sizes: { [size: string]: StyleInterpolation }
+  variants: { [variant: string]: StyleInterpolation }
+  defaultProps?: {
+    variant: string
+    size: string
+  }
+}
+```
+
+For example, to create a simple badge that changes its background based on color
+mode, here's how to go about it:
+
+import {
+  App as AppSingleComponentStyle,
+  Index as IndexSingleComponentStyle,
+} from 'configs/sandpack-contents/single-component-style/custom-badge.js'
+
+<SandpackEmbed
+  dependencies={{
+    '@chakra-ui/theme-tools': '2.0.0',
+    react: '^18.0.0',
+    'react-dom': '^18.0.0',
+    'react-scripts': '^5.0.0',
+  }}
+  devDependencies={{
+    '@types/react': '^18.0.0',
+    '@types/react-dom': '^18.0.0',
+  }}
+  files={{
+    '/App.tsx': AppSingleComponentStyle,
+    '/index.tsx': IndexSingleComponentStyle,
+  }}
+/>
+
+## Multipart or Composite Component
+
+When it comes to multipart components for example tabs or menus etc, that have
+multiple sub-parts, you can also style them based on the color mode. Here's the
+signature:
+
+```tsx live=false
+type StyleInterpolation =
+  | { [part: string]: SystemStyleObject }
+  | ((options: StyleOptions) => { [part: string]: SystemStyleObject })
+
+interface StyleOptions {
+  theme: Theme
+  colorMode: 'light' | 'dark'
+  colorScheme: string
+}
+
+interface StyleConfig {
+  baseStyle: StyleInterpolation
+  sizes: { [size: string]: StyleInterpolation }
+  variants: { [variant: string]: StyleInterpolation }
+  defaultProps?: {
+    variant: string
+    size: string
+  }
+}
+```
+
+## Distributing a Theme Package
+
+Publishing your theme to a package registry such as NPM is a great way to share
+your theme across multiple projects or applications.
+
+A published theme package should export a theme object as either the `default`
+export or an export named `theme`. For example, in
+`chakra-theme-package/src/index.js`:
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+const theme = extendTheme({})
+
+// as default export
+export default theme
+
+// as named export
+export { theme }
+```
+
+See [this guide](/docs/styled-system/customize-theme#scaling-out-your-project)
+for more recommendations on how to structure your theme package.
+
+> Note ⚠️: If you're using TypeScript, you'll want to include some documentation
+> guiding consumers of your theme package to add a `postinstall` script to
+> generate typings for your theme. See the
+> [theme typings](/docs/styled-system/advanced-theming#theme-typings) section
+> for details.
+
+## Theme Typings
+
+<Badge fontSize='sm' colorScheme='teal' letterSpacing='wider'>
+  v1.2.0
+</Badge>
+
+When adding new components, component variations, sizes, colors and other theme
+foundations, you can extend the internal theme typings to provide autocomplete
+for your application theme.
+
+If you want to learn how to scale your custom theme you can
+[follow this guide](/docs/styled-system/customize-theme#scaling-out-your-project).
+
+### Install
+
+<PackageManagers
+  command={{
+    npm: 'npm i -D @chakra-ui/cli',
+    yarn: 'yarn add --dev @chakra-ui/cli',
+    pnpm: 'pnpm add -D @chakra-ui/cli',
+    bun: 'bun add -D @chakra-ui/cli',
+  }}
+/>
+
+### Usage
+
+For a theme file:
+
+```bash
+chakra-cli tokens <path/to/your/theme.(js|ts)>
+```
+
+or, for a
+[theme package](/docs/styled-system/advanced-theming#distributing-a-theme-package):
+
+```bash
+chakra-cli tokens <@your-org/chakra-theme-package>
+```
+
+The theme entrypoint file should export the theme object either as `default`
+export or as named `theme` export.
+
+> Note 🚨: If you delete the `node_modules` directory, you'll need to re-run the
+> command to get proper typings again.
+
+For convenience, you can add a `postinstall` script to your `package.json`, so
+you don't have to think about this every time you reinstall your dependencies.
+
+```json
+"scripts": {
+  "gen:theme-typings": "chakra-cli tokens <path/to/your/theme.(js|ts)>",
+  "postinstall": "npm run gen:theme-typings"
+},
+"devDependencies": {
+  "@chakra-ui/cli": "^1.1.0"
+}
+```
+
+The autocomplete for theme token **only works in _Visual Studio Code_ for now**.
+We'd love to support JetBrains IDEs, but we have to wait for them to improve
+their TypeScript support.
+
+Please note that the CLI cannot read non-JavaScript/TypeScript files. If you
+import other file types (`.css`, `.woff` or `.svg`) in your theme file, you'll
+need to move those imports out of the theme file.

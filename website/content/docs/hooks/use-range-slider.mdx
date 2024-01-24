@@ -1,0 +1,59 @@
+---
+title: useRangeSlider
+package: '@chakra-ui/slider'
+description: 'React hook to manage range sliders.'
+---
+
+`useRangeSlider` is a custom hook used to provide range slider functionality, as
+well as state and focus management to custom range slider components when using
+it.
+
+## Import
+
+```js
+import { useRangeSlider } from '@chakra-ui/react'
+```
+
+## Return value
+
+The `useRangeSlider` hook returns the following props
+
+| Name                 | Type                                    | Description                                                                                                             |
+| -------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `state`              | `RangeSliderState`                      | An object that contains all props defining the current state of a range slider.                                         |
+| `actions`            | `RangeSliderActions`                    | An object that contains all the functions that can be called to modify the range slider's value                         |
+| `getRootProps`       | `PropGetter`                            | A function that takes range slider root props and handles changes for the range slider.                                 |
+| `getTrackProps`      | `PropGetter`                            | A function that takes range slider track props and handles changes for the range slider's track.                        |
+| `getInnerTrackProps` | `PropGetter`                            | A function that takes range slider inner track style props and handles changes in the range slider's inner track style. |
+| `getThumbProps`      | `RequiredPropGetter<{ index: number }`  | A function that takes the value of the slider thumb's index and handles changes for that range slider's thumb.          |
+| `getMarkerProps`     | `RequiredPropGetter<{ value: number }>` | A function that takes the value of the marker and handle changes for the slider's marker positioning and style.         |
+| `getInputProps`      | `RequiredPropGetter<{ index: number }>` | A function to get the props of the input field of one of the two possible inputs.                                       |
+| `getOutputProps`     | `PropGetter`                            | A function to get the props of the input field.                                                                         |
+
+## Usage
+
+import {
+  App,
+  Thumb,
+  Index,
+  Actions,
+  Instructions,
+  ThumbIndexIcon,
+} from 'configs/sandpack-contents/hooks/use-range-slider'
+
+<SandpackEmbed
+  files={{
+    '/App.tsx': App,
+    '/Actions.tsx': Actions,
+    '/Thumb.tsx': Thumb,
+    '/index.tsx': { code: Index, hidden: true },
+    '/Instructions.tsx': { code: Instructions, hidden: true },
+    '/ThumbIndexIcon.tsx': { code: ThumbIndexIcon, hidden: true },
+  }}
+/>
+
+## Parameters
+
+The `useRangeSlider` hook accepts an object with the following properties:
+
+<PropsTable of='useRangeSlider' />

@@ -1,0 +1,72 @@
+---
+id: visually-hidden
+title: Visually Hidden
+category: 'disclosure'
+package: '@chakra-ui/visually-hidden'
+description:
+  'VisuallyHidden is a common technique used in web accessibility to hide
+  content from the visual client, but keep it readable for screen readers.'
+---
+
+## Import
+
+Chakra UI exports 2 components for the VisuallyHidden.
+
+`VisuallyHidden`: Visually hidden span component used to hide elements on
+screen. `VisuallyHiddenInput`: Visually hidden input component used for
+designing custom input components using the html `input` as a proxy
+
+```js
+import { VisuallyHidden, VisuallyHiddenInput } from '@chakra-ui/react'
+```
+
+## Usage
+
+It is used to visually hide an element but to make it accessible for
+screen-readers. It renders html `<span>` as a proxy.
+
+```jsx
+function Example() {
+  return (
+    <Button>
+      <VisuallyHidden>Checkmark</VisuallyHidden>
+      <CheckIcon />
+    </Button>
+  )
+}
+```
+
+Here is another example:
+
+```jsx
+function Example() {
+  return (
+    <Box>
+      <Heading>Title and description</Heading>
+      <VisuallyHidden>This will be hidden</VisuallyHidden>
+    </Box>
+  )
+}
+```
+
+### Visually hidden input
+
+It renders html `<input>` as a proxy.
+
+```jsx
+function Example() {
+  return (
+    <VisuallyHiddenInput
+      defaultChecked
+      onChange={(event) => {
+        console.log(event.target.checked)
+      }}
+    />
+  )
+}
+```
+
+## Accessibility
+
+`VisuallyHidden` has all the styles necessary to hide it from visual clients,
+but keep it for screen readers.

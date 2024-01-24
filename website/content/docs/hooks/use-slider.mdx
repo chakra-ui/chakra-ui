@@ -1,0 +1,53 @@
+---
+title: useSlider
+package: '@chakra-ui/slider'
+description: 'React hook to manage sliders.'
+---
+
+`useSlider` is a custom hook used to provide slider functionality, as well as
+state and focus management to custom slider components when using it.
+
+## Import
+
+```js
+import { useSlider } from '@chakra-ui/react'
+```
+
+## Return value
+
+The `useSlider` hook returns the following props
+
+| Name                 | Type                                    | Description                                                                                                      |
+| -------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `state`              | `SliderState`                           | An object that contains all the props that define the current state of the slider.                               |
+| `actions`            | `SliderActions`                         | An object that contains all the functions that can be called to modify the slider's value                        |
+| `getRootProps`       | `PropGetter`                            | A function that takes slider root props and handles changes for the slider.                                      |
+| `getTrackProps`      | `PropGetter`                            | A function that takes slider track props and handles changes for the slider's track.                             |
+| `getInnerTrackProps` | `PropGetter`                            | A function that takes slider inner track style props and handles changes in the slider's inner track style.      |
+| `getThumbProps`      | `PropGetter`                            | A function that takes slider thumb props and handles changes for the slider's thumb.                             |
+| `getMarkerProps`     | `RequiredPropGetter<{ value: number }>` | A function that takes the value of the marker and handles changes for the slider's marker positioning and style. |
+| `getInputProps`      | `PropGetter`                            | A function to get the props of the input field.                                                                  |
+
+## Usage
+
+import {
+  App,
+  Index,
+  Instructions,
+  Actions,
+} from 'configs/sandpack-contents/hooks/use-slider'
+
+<SandpackEmbed
+  files={{
+    '/App.tsx': App,
+    '/index.tsx': { code: Index, hidden: true },
+    '/Actions.tsx': Actions,
+    '/Instructions.tsx': Instructions,
+  }}
+/>
+
+## Parameters
+
+The `useSlider` hook accepts an object with the following properties:
+
+<PropsTable of='useSlider' />

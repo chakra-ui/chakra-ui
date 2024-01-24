@@ -1,0 +1,110 @@
+{
+  "routes": [
+    {
+      "routes": [
+        {
+          "title": "Installation",
+          "path": "/getting-started"
+        },
+        {
+          "title": "Upgrade to v2",
+          "path": "/getting-started/migration"
+        },
+        {
+          "title": "Design Principles",
+          "path": "/getting-started/principles"
+        },
+        {
+          "title": "Comparison",
+          "path": "/getting-started/comparison"
+        },
+        {
+          "title": "Roadmap",
+          "path": "https://chakra-ui.canny.io",
+          "external": true
+        },
+        {
+          "title": "Changelog",
+          "path": "/changelog"
+        },
+        {
+          "title": "Contributing",
+          "path": "/getting-started/contributing"
+        },
+        {
+          "title": "Frameworks",
+          "open": true,
+          "routes": [
+            {
+              "title": "Vite",
+              "path": "/getting-started/vite-guide"
+            },
+            {
+              "title": "Next.js (App)",
+              "path": "/getting-started/nextjs-app-guide"
+            },
+            {
+              "title": "Next.js (Pages)",
+              "path": "/getting-started/nextjs-pages-guide"
+            },
+            {
+              "title": "Gatsby",
+              "path": "/getting-started/gatsby-guide"
+            },
+            {
+              "title": "Blitz.js",
+              "path": "/getting-started/blitzjs-guide"
+            },
+            {
+              "title": "RedwoodJS",
+              "path": "/getting-started/redwoodjs-guide"
+            },
+            {
+              "title": "Remix",
+              "path": "/getting-started/remix-guide"
+            },
+            {
+              "title": "Meteor",
+              "path": "/getting-started/meteor-guide"
+            },
+            {
+              "title": "Create React App",
+              "path": "/getting-started/cra-guide"
+            }
+          ]
+        },
+        {
+          "title": "Integrations",
+          "path": "/getting-started/integrations",
+          "open": true,
+          "routes": [
+            {
+              "title": "Capsize",
+              "path": "/getting-started/with-capsize"
+            },
+            {
+              "title": "Formik",
+              "path": "/getting-started/with-formik"
+            },
+            {
+              "title": "Framer Motion",
+              "path": "/getting-started/with-framer"
+            },
+            {
+              "title": "React Hook Form",
+              "path": "/getting-started/with-hook-form"
+            },
+            {
+              "title": "React Table",
+              "path": "/getting-started/with-react-table"
+            },
+            {
+              "title": "Storybook",
+              "path": "/getting-started/with-storybook"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

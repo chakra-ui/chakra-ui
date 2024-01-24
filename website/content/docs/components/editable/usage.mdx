@@ -1,0 +1,105 @@
+---
+id: editable
+category: form
+title: Editable
+package: '@chakra-ui/editable'
+description:
+  EditableText is used for inline renaming of some text. It appears as normal UI
+  text but transforms into a text input field when the user clicks or focuses on
+  it.
+---
+
+## Import
+
+Chakra UI exports 3 components to handle this functionality.
+
+- `Editable`: The wrapper component that provides context value.
+- `EditableInput`: The edit view of the component. It shows when you click or
+  focus on the text.
+- `EditableTextarea`: Use the textarea element to handle multi line text input
+  in an editable context.
+- `EditablePreview`: The read-only view of the component.
+
+```js
+import {
+  Editable,
+  EditableInput,
+  EditableTextarea,
+  EditablePreview,
+} from '@chakra-ui/react'
+```
+
+## Usage
+
+The editable's text input and preview inherits all font styling from the root
+`Editable` container in order to make the edit and read view transition
+seamless.
+
+```jsx
+// Click the text to edit
+<Editable defaultValue='Take some chakra'>
+  <EditablePreview />
+  <EditableInput />
+</Editable>
+```
+
+### Usage with textarea
+
+```jsx
+// Click the text to edit
+<Editable defaultValue='Take some chakra'>
+  <EditablePreview />
+  <EditableTextarea />
+</Editable>
+```
+
+### With custom input and controls
+
+In some cases, you might need to use custom controls to toggle the edit and read
+mode. We use the render prop pattern to provide access to the internal state of
+the component. You may want to customize the `EditableInput` as well. This can
+be achieved by using a custom `Input` component in the `as` prop.
+
+```jsx
+function CustomControlsExample() {
+  /* Here's a custom control */
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls()
+
+    return isEditing ? (
+      <ButtonGroup justifyContent='center' size='sm'>
+        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
+      </ButtonGroup>
+    ) : (
+      <Flex justifyContent='center'>
+        <IconButton size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
+      </Flex>
+    )
+  }
+
+  return (
+    <Editable
+      textAlign='center'
+      defaultValue='Rasengan ⚡️'
+      fontSize='2xl'
+      isPreviewFocusable={false}
+    >
+      <EditablePreview />
+      {/* Here is the custom input */}
+      <Input as={EditableInput} />
+      <EditableControls />
+    </Editable>
+  )
+}
+```
+
+### Styling the editable
+
+Please see the [recipe](/community/recipes/atlaskit-editable) for a styled
+example.

@@ -1,0 +1,65 @@
+---
+title: Version 2.2.3
+description:
+  Explore the changelog for Chakra UI version 2.2.3. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6220
+releaseDate: July 10, 2022
+version: 2.2.3
+---
+
+## Minor Changes
+
+### Layout `2.1.0`
+
+- Added new `Highlight` component to emphasize any part of a string with the
+  `mark` tag.
+
+  ```jsx live=false
+  <Text fontWeight='semibold'>
+    <Highlight
+      query={'with speed'}
+      styles={{ px: '2', py: '1', rounded: 'full', bg: 'teal.100' }}
+    >
+      Create accessible React apps with speed
+    </Highlight>
+  </Text>
+  ```
+
+## Patch Changes
+
+### All components
+
+- Exported `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+- Fixed hydration issues when using `Suspense`
+
+### Image `2.0.4`
+
+- Added `displayName` and `forwardRef` to components
+
+### Popover `2.0.3`
+
+- Export `useStyles` equivalent for multipart component styles. Accordion
+  exports `useAccordionStyles`, Alert exports `useAlertStyles`, and so on.
+- Add `displayName` to components using `forwardRef`
+- Fix issue where popover opens when mouse click opens the popover and trigget
+  is set to `hover`.
+
+### Theme `2.1.2`
+
+- Added border radius of zero to the default full size modal
+
+### Transition `2.0.3`
+
+- Fixed emitted types that were incompatible with latest `framer-motion` release
+
+### Utilities `2.0.3`
+
+- Fixed `TypeError` in `getCSSVar` when the theme is an empty object
+- Fixed issue where `getFocusables` causes excessive repaint due to computed
+  style calls
+
+### CLI `2.1.2`
+
+- Fixed importing of the default exported theme

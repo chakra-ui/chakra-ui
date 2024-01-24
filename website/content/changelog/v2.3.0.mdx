@@ -1,0 +1,130 @@
+---
+title: Version 2.3.0
+description:
+  Explore the changelog for Chakra UI version 2.3.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6555
+releaseDate: August 29, 2022
+version: 2.3.0
+---
+
+## Minor Changes
+
+## Avatar `2.1.0`
+
+- Added support for changing avatar badge placement. The badge placement can be
+  set to `top-start`, `top-end`, `bottom-start` or `bottom-end`.
+
+  ```jsx live=false
+  <Avatar
+    name='Uchiha Itachi'
+    src='https://uinames.com/api/photos/female/18.jpg'
+  >
+    <AvatarBadge placement='top-start' />
+  </Avatar>
+  ```
+
+### Styled System `2.3.0`
+
+- Added `defineStyle` and `defineStyleConfig` to improve the TypeScript
+  authoring experience of style objects and single part component themes.
+
+  ```jsx live=false
+  import { defineStyleConfig, defineStyle } from '@chakra-ui/styled-system'
+
+  // authoring style objects
+  const style = defineStyle({
+    marginTop: '20px',
+  })
+
+  // authoring style configs for single part component
+  const button = defineStyleConfig({
+    baseStyle: {},
+    variants: {},
+    defaultProps: {},
+  })
+  ```
+
+- Added `createMultiStyleConfigHelpers` factory that provides functions that
+  help improve the TypeScript authoring experience of multipart component
+  themes.
+
+  ```jsx live=false
+  import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-sytem'
+
+  // create scoped helpers for that defined parts
+  const helpers = createMultiStyleConfigHelpers(['button', 'label'])
+  const { definePartsStyle, defineMultiStyleConfig } = helpers
+
+  // authoring styles for each part
+  const outlineVariant = definePartsStyle({
+    button: {},
+    label: {},
+  })
+
+  // authoring styles for multipart component
+  const accordion = defineMultiStyleConfig({
+    baseStyle: {
+      button: {},
+      label: {},
+    },
+    variants: {
+      outline: outlineVariant,
+    },
+  })
+  ```
+
+## Patch Changes
+
+- Refactored the theme to use design tokens and css variables.
+- Improved support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+
+### Slider `2.0.10`
+
+- Added support for styling slider mark from the theme
+
+### Anatomy `2.0.6`
+
+- Updated package to use styled-system as dependency
+
+### Descendants `3.0.9`
+
+- Fixed issue where generic type contraints throws in TypeScript 4.8+
+
+### Select `2.0.10`
+
+- Fixed issue where select theme throws when `field` part is not defined
+
+### Skeleton `2.0.15`
+
+- Refactored to use the new helpers from `styled-system` package
+
+### Tabs `2.1.1`
+
+- Fixed key warning for tabs component
+
+### Theme `2.1.9`
+
+- Refactored alert theme to use css variables
+- Refactored the theme to use design tokens and css variables as much as
+  possible.
+- Improved support for `100vh` values by using a polyfill css variable
+  `--chakra-vh`.
+- Refactored to use the new helpers from `styled-system` package
+
+### Theme Tools `2.0.11`
+
+- Refactored code to use from `styled-system` package
+
+### Toast `3.0.8`
+
+- Fixdd issue where toast double update doesn't work
+
+### Event Utilities `2.0.4`
+
+- Fixed regression in `addPointerEvent` utility
+
+### Gatsby Plugin `3.0.6`
+
+- Removed default value of portalZIndex

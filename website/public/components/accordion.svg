@@ -1,0 +1,14 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+ 
+<rect x="53" y="53" width="294" height="194" rx="7" fill="white"/>
+<path d="M316.41 80.4102L321 75.8302L325.59 80.4102L327 79.0002L321 73.0002L315 79.0002L316.41 80.4102Z" fill="#718096"/>
+<path d="M325.59 169.59L321 174.17L316.41 169.59L315 171L321 177L327 171L325.59 169.59Z" fill="#718096"/>
+<path d="M325.59 217.59L321 222.17L316.41 217.59L315 219L321 225L327 219L325.59 217.59Z" fill="#718096"/>
+<rect x="71" y="71" width="216" height="12" rx="6" fill="#38B2AC"/>
+<rect x="71" y="167" width="216" height="12" rx="6" fill="#A0AEC0"/>
+<rect x="71" y="215" width="216" height="12" rx="6" fill="#A0AEC0"/>
+<rect x="71" y="102" width="251" height="8" rx="4" fill="#CBD5E0"/>
+<rect x="71" y="123" width="228" height="8" rx="4" fill="#CBD5E0"/>
+<line x1="53" y1="148.5" x2="347" y2="148.5" stroke="#CBD5E0"/>
+<line x1="53" y1="196.5" x2="347" y2="196.5" stroke="#CBD5E0"/>
+</svg>

@@ -1,0 +1,66 @@
+---
+title: useRadio
+package: '@chakra-ui/radio'
+description: 'React hook to manage radio.'
+---
+
+`useRadio` is a custom hook used to provide radio functionality, as well as
+state and focus management to custom radio components when using it.
+
+## Import
+
+```js
+import { useRadio } from '@chakra-ui/react'
+```
+
+## Return value
+
+The `useRadio` hook returns following props
+
+| Name            | Type         | Description                                                              |
+| --------------- | ------------ | ------------------------------------------------------------------------ |
+| `state`         | `RadioState` | An object that contains all props defining the current state of a radio. |
+| `getRadioProps` | `PropGetter` | A function to get the props of the radio.                                |
+| `getInputProps` | `PropGetter` | A function to get the props of the input field.                          |
+| `getLabelProps` | `PropGetter` | A function to get the props of the radio label.                          |
+| `getRootProps`  | `PropGetter` | A function to get the props of the radio root.                           |
+| `htmlProps`     | `{}`         | An object with all htmlProps.                                            |
+
+## Usage
+
+```jsx
+function Example() {
+  const CustomRadio = (props) => {
+    const { image, ...radioProps } = props
+    const { state, getInputProps, getRadioProps, htmlProps, getLabelProps } =
+      useRadio(radioProps)
+
+    return (
+      <chakra.label {...htmlProps} cursor='pointer'>
+        <input {...getInputProps({})} hidden />
+        <Box
+          {...getRadioProps()}
+          bg={state.isChecked ? 'green.200' : 'transparent'}
+          w={12}
+          p={1}
+          rounded='full'
+        >
+          <Image src={image} rounded='full' {...getLabelProps()} />
+        </Box>
+      </chakra.label>
+    )
+  }
+
+  return (
+    <div>
+      <CustomRadio image={'https://randomuser.me/api/portraits/men/86.jpg'} />
+    </div>
+  )
+}
+```
+
+## Parameters
+
+The `useRadio` hook accepts an object with the following properties:
+
+<PropsTable of='useRadio' />

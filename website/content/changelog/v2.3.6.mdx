@@ -1,0 +1,85 @@
+---
+title: Version 2.3.6
+description:
+  Explore the changelog for Chakra UI version 2.3.6. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6782
+releaseDate: October 17, 2022
+version: 2.3.6
+---
+
+## Minor Changes
+
+### Avatar `2.2.0`
+
+- Added support for styling the `AvatarGroup` from the theme by adding the
+  `group` part.
+
+  ```jsx live=false
+  const theme = extendTheme({
+    components: {
+      Avatar: {
+        baseStyle: {
+          group: {
+            // styles for the AvatarGroup
+          },
+        },
+      },
+    },
+  })
+  ```
+
+### Breadcrumb `2.1.0`
+
+- Expose `listProps` to allow passing props to underlying `ol` element
+
+### System `2.3.0`
+
+- Implement local component style merging for upcoming optimizations
+
+### Hooks `2.1.0`
+
+- Added `setValue` as function exposed by `useClipboard` to enable control over
+  the value after first initialization
+
+### Checkbox `2.2.2`
+
+- Allow checkbox control and root's style to be overriden from theme
+
+## Patch Changes
+
+### Editable `2.0.13`
+
+- Fixed issue where input retained focus after exiting input programmaticaly.
+
+### Modal `2.2.2`
+
+- Fix issue where `useInert` doesn't work consistently between the Drawer and
+  Modal
+
+### Progress `2.0.12`
+
+- Fix issue where progress bar components (`Progress` and `ProgressFilledTrack`)
+  did not use `forwardRef`
+
+### Theme `2.1.14`
+
+- Refactor theme
+
+### Toast `4.0.0`
+
+- Allow `containerStyles` to accept style props, not just React CSS properties
+- Expose original toast options to toast `render` options
+
+### Transition `2.0.11`
+
+- Force publish package due to changes in last release
+
+### Children Utilities `2.0.3`
+
+- Don't inline React by making it a `peerDependency`
+
+### Theme Utilities `2.0.1`
+
+- Moved `extendTheme` utilities to a dedicated package
+  (`@chakra-ui/theme-utils`)

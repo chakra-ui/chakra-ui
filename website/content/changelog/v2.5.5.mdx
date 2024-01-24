@@ -1,0 +1,73 @@
+---
+title: Version 2.5.5
+description:
+  Explore the changelog for Chakra UI version 2.5.5. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7501
+releaseDate: March 30, 2023
+version: 2.5.5
+---
+
+## Minor Changes
+
+### Alert `2.1.0`
+
+- Add `data-status` attribute to all alert component parts to allow for better
+  finegrained styling
+
+### Styled System `2.8.0`
+
+- Add new `defineCssVars` helper to improve the experience of authoring a set of
+  css variables for a component theme.
+
+  ```jsx live=false
+  import { defineCssVars } from '@chakra-ui/react'
+
+  // defines the `--badge-bg`, `--badge-border`, and `--badge-size` (with a 1rem fallback)
+  const vars = defineCssVars('badge', ['bg', 'border', ['size', '1rem']])
+
+  const style = {
+    bg: vars.bg.reference,
+    [vars.bg.variable]: 'colors.red.500',
+    [vars.border.variable]: 'colors.red.300',
+  }
+  ```
+
+## Patch Changes
+
+### Styled System `2.8.0`
+
+- Fix TS exhaustive issues with v5.0
+
+- Fix issue where `<Box hideBelow="md" />` behavior was inconsistent with
+  `<Hide below="md" />` component
+
+### Css Reset `2.1.1`
+
+- Fix issue where `<input type="number" />` shows spinner button
+
+### Theme `3.0.1`
+
+- Fix issue where tag outline theme doesn't work as expected.
+
+### Toast `6.1.1`
+
+- Fix issue where zIndex was hardcoded in toast component by providing a css
+  variable `--toast-z-index` for better override experience.
+
+  You can set the toast's `zIndex` globally by setting a value for the
+  `--toast-z-index`. The default value for this variable is `5500`
+
+  ```jsx live=false
+  const theme = extendTheme({
+    styles: {
+      global: {
+        '--toast-z-index': 10,
+      },
+    },
+  })
+  ```
+
+### Next-js `2.1.2`
+
+- Fix issue where `fill` prop was not forwarded to the underlying component.

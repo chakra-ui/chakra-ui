@@ -1,0 +1,211 @@
+---
+title: Upgrading to v2
+description: How to upgrade your existing Chakra UI projects to v2.0
+tags: ['migration']
+---
+
+Chakra UI v2 is focused on providing compatibility for React 18. Doing so we had
+to introduce some breaking changes. That lead us to remove some features that we
+deprecated previously.
+
+> Still using v0 and want to upgrade to v1?
+> [Go here](https://v1.chakra-ui.com/guides/migration)
+
+---
+
+## Upgrade steps
+
+Here is a list of steps to migrate your project to v2.
+
+### 1. Update your dependencies
+
+Make sure you update all `@chakra-ui` packages you use to
+`@chakra-ui/<package-name>@2.0.0` and your `react` dependencies to at least v18
+
+> 🚨 Chakra UI v2 is not backwards compatible with React v17 and lower. Make
+> sure to upgrade to React v18.
+
+Here is how your dependencies could look like:
+
+```json
+{
+  "dependencies": {
+    "@chakra-ui/react": "^2.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
+  }
+}
+```
+
+Step 2 and 3 are only necessary if you used the mentioned functions in your
+project.
+
+### 2. Update createStandaloneToast
+
+We had to make some changes to the our `createStandaloneToast` function, because
+of changes in the way React 18 works.
+
+Chakra UI v1 rendered the toast container DOM element for you. The usage of
+`createStandaloneToast` could look like this:
+
+```ts
+import { createStandaloneToast } from '@chakra-ui/toast'
+
+const toast = createStandaloneToast()
+toast({ title: 'Chakra UI' })
+```
+
+In v2 you need to render the `ToastContainer` in your application code. This
+allows you have only one React root in your application.
+
+Here is an example on how to update your code:
+
+```tsx
+import * as ReactDOM from 'react-dom/client'
+import { createStandaloneToast } from '@chakra-ui/toast'
+
+const { ToastContainer, toast } = createStandaloneToast()
+
+// render the ToastContainer in your React root
+const rootElement = document.getElementById('root')
+ReactDOM.createRoot(yourRootElement).render(
+  <>
+    <App />
+    <ToastContainer />
+  </>,
+)
+
+toast({ title: 'Chakra UI' })
+```
+
+> Please note: There are **no breaking changes** to the hook `useToast`. There
+> are only breaking changes to `createStandaloneToast`.
+
+### 3. Color mode update
+
+#### Color mode transition
+
+Ensure the transition between light/dark modes happens instantly without
+transition. This helps to avoid a weird UX when switch modes for elements with
+different `transition` definition on the page.
+
+To opt out of this feature, set `theme.config.disableTransitionOnChange` to
+`false`.
+
+#### Using custom storage keys
+
+Allow user configure the storage key for the provider and script. We now export
+a `createLocalStorageManager` and `createCookieStorageManager` functions.
+
+```jsx live=false
+const manager = createLocalStorageManager('my-key')
+
+function App({ Component, pageProps }) {
+  return (
+    <ChakraProvider colorModeManager={manager}>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+```
+
+If you use `ColorModeScript`, you'll need to configure the `storageKey` from
+script as well.
+
+```jsx live=false
+<ColorModeScript storageKey='my-key' />
+```
+
+#### Improved cookie support
+
+Add support for using cookie storage in color mode script. To use cookie script,
+you can set `type` prop to `cookie`.
+
+```jsx live=false
+<ColorModeScript type='cookie' />
+```
+
+#### Color mode precedence
+
+Refactored color mode to behave consistently between provider and script. The
+new precedence is as follows:
+
+- Get the color mode value in the specified `localStorage` or `cookie`
+- If value doesn't exist, use the `initialColorMode` value specified.
+  - If the initial value is `system`, then we'll compute the color mode using
+    `window.matchMedia(...)`
+  - else, we use the initial value as is.
+- If user specifies `useSystemColorMode: true`, we'll subscribe to color mode
+  changes from the operating system.
+
+#### Breaking changes
+
+- In the theme's config, the `useSystemColorMode` property is no longer used to
+  determine the initial color mode. To achieve that, please use
+  `initialColorMode: "system"`.
+
+  It is now used to only determine whether to subscribe to color mode changes
+  from the operating system.
+
+- We removed the references to `--chakra-ui-color-mode`. Use the `data-theme`
+  property instead
+
+### 4. Use the new style creation methods
+
+In `v2` we introduced a new way to create component styles. There are three new
+methods:
+
+- `defineStyle`
+- `defineStyleConfig`
+- `defineMultiStyleConfig`
+
+These methods provide a better developer experience. To see how to use them,
+check out the Theming docs for any of the components (ex.
+[Button Theming](/docs/components/button/theming)).
+
+### 5. Deprecated features
+
+We removed some previously deprecated features from Chakra UI v2. Here is a
+detailed list of affected components or packages:
+
+#### Button, Icon Button, Input, NumberInput, Radio, Checkbox, Select
+
+We removed the `isFullWidth` prop from these components. Use `width="full"` or
+`width="100%"` instead.
+
+#### Checkbox
+
+We removed the `defaultIsChecked` prop from the `Checkbox` component. Use the
+`defaultChecked` prop instead.
+
+#### Hooks
+
+We removed the `useEventCallback` hook
+
+#### Grid
+
+We removed the `area` prop from the `Grid` component. You can pass it to the
+`GridItem` component instead.
+
+#### Styled system
+
+We removed the `d` style prop. Use written out `display` prop instead.
+
+We removed the `isTruncated` style prop. You can use `noOfLines={1}` instead and
+manually set the `wordBreak` to `break-all`.
+
+#### Theme
+
+We removed deprecated types.
+
+---
+
+**That's it! Welcome to Chakra UI v2 🥳.**
+
+> If you still experience issues after migrating, feel free to
+> [create an issue](https://github.com/chakra-ui/chakra-ui/issues) or join our
+> Discord chat here: https://discord.gg/dQHfcWF

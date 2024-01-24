@@ -1,0 +1,44 @@
+---
+id: transitions
+scope: props
+---
+
+## Props
+
+The transition components extends the
+[framer-motion](https://www.framer.com/api/motion/component/).
+
+### Fade Props
+
+<PropsTable of='Fade' only={['in', 'unmountOnExit']} />
+
+### ScaleFade Props
+
+<PropsTable
+  of='ScaleFade'
+  only={['initialScale', 'reverse', 'unmountOnExit', 'in']}
+/>
+
+### Slide Props
+
+<PropsTable of='Slide' only={['unmountOnExit', 'direction', 'in']} />
+
+### SlideFade Props
+
+<PropsTable
+  of='SlideFade'
+  only={['offsetX', 'offsetY', 'reverse', 'unmountOnExit', 'in']}
+/>
+
+### Collapse Props
+
+<PropsTable
+  of='Collapse'
+  only={[
+    'animateOpacity',
+    'unmountOnExit',
+    'in',
+    'startingHeight',
+    'endingHeight',
+  ]}
+/>

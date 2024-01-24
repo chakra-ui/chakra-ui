@@ -1,0 +1,409 @@
+---
+id: toast
+category: feedback
+title: Toast
+package: '@chakra-ui/toast'
+description:
+  'The toast component is used to give feedback to users after an action has
+  taken place.'
+---
+
+## Import
+
+```js
+import { useToast } from '@chakra-ui/react'
+```
+
+## Usage
+
+The toast will close itself when the close button is clicked, or after a
+timeout.
+
+Toasts can be configured to appear at either the top or the bottom of an
+application window, and it is possible to have more than one toast onscreen at a
+time.
+
+```jsx
+function ToastExample() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          title: 'Account created.',
+          description: "We've created your account for you.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  )
+}
+```
+
+> Make sure to call `useToast` at least one component level below the
+> `<ChakraProvider>` because it needs access to the current theme.
+
+## Promise-Based Toast
+
+Display a toast asynchronously based on a `Promise` for `loading`, `success`,
+and `error` states:
+
+- `loading` will be shown until the promise is either resolved or rejected.
+- `success` will be shown when/if the promise is resolved.
+- `error` will be shown when/if the promise is rejected.
+
+```jsx
+function PromiseBasedToastExample() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() => {
+        // Create an example promise that resolves in 5s
+        const examplePromise = new Promise((resolve, reject) => {
+          setTimeout(() => resolve(200), 5000)
+        })
+
+        // Will display the loading toast until the promise is either resolved
+        // or rejected.
+        toast.promise(examplePromise, {
+          success: { title: 'Promise resolved', description: 'Looks great' },
+          error: { title: 'Promise rejected', description: 'Something wrong' },
+          loading: { title: 'Promise pending', description: 'Please wait' },
+        })
+      }}
+    >
+      Show Toast
+    </Button>
+  )
+}
+```
+
+## Custom component
+
+Display a custom component instead of the default Toast UI.
+
+```jsx
+function CustomToastExample() {
+  const toast = useToast()
+  return (
+    <Button
+      onClick={() =>
+        toast({
+          position: 'bottom-left',
+          render: () => (
+            <Box color='white' p={3} bg='blue.500'>
+              Hello World
+            </Box>
+          ),
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  )
+}
+```
+
+## Closing Toasts
+
+Toasts can be closed imperatively, individually (via the `close` instance
+method) or all together (via the `closeAll` instance method).
+
+```jsx
+function ClosingToastExample() {
+  const toast = useToast()
+  const toastIdRef = React.useRef()
+
+  function close() {
+    if (toastIdRef.current) {
+      toast.close(toastIdRef.current)
+    }
+  }
+
+  function closeAll() {
+    // you may optionally pass an object of positions to exclusively close
+    // keeping other positions opened
+    // e.g. `{ positions: ['bottom'] }`
+    toast.closeAll()
+  }
+
+  function addToast() {
+    toastIdRef.current = toast({ description: 'some text' })
+  }
+
+  return (
+    <Wrap>
+      <Button onClick={addToast} type='button'>
+        Toast
+      </Button>
+
+      <Button onClick={close} type='button' variant='outline'>
+        Close last toast
+      </Button>
+
+      <Button onClick={closeAll} type='button' variant='outline'>
+        Close all toasts
+      </Button>
+    </Wrap>
+  )
+}
+```
+
+## Updating Toasts
+
+Toasts' options can be updated, by passing an `id` and the new `options` to the
+`update` instance method.
+
+```jsx
+function UpdatingToastExample() {
+  const toast = useToast()
+  const toastIdRef = React.useRef()
+
+  function update() {
+    if (toastIdRef.current) {
+      toast.update(toastIdRef.current, { description: 'new text' })
+    }
+  }
+
+  function addToast() {
+    toastIdRef.current = toast({ description: 'some text' })
+  }
+
+  return (
+    <Stack isInline spacing={2}>
+      <Button onClick={addToast} type='button'>
+        Toast
+      </Button>
+
+      <Button onClick={update} type='button' variant='outline'>
+        Update last toast
+      </Button>
+    </Stack>
+  )
+}
+```
+
+## Status
+
+You can use `status` to change the color of your toasts.
+
+```jsx
+function ToastStatusExample() {
+  const toast = useToast()
+  const statuses = ['success', 'error', 'warning', 'info']
+
+  return (
+    <Wrap>
+      {statuses.map((status, i) => (
+        <WrapItem key={i}>
+          <Button
+            onClick={() =>
+              toast({
+                title: `${status} toast`,
+                status: status,
+                isClosable: true,
+              })
+            }
+          >
+            Show {status} toast
+          </Button>
+        </WrapItem>
+      ))}
+    </Wrap>
+  )
+}
+```
+
+## Variants
+
+`Toast` uses the same variants as the
+[`Alert`](https://chakra-ui.com/docs/components/feedback/alert) component.
+
+```jsx
+function ToastVariantsExample() {
+  const toast = useToast()
+  const variants = ['solid', 'subtle', 'left-accent', 'top-accent']
+
+  return (
+    <Wrap>
+      {variants.map((variant, i) => (
+        <WrapItem key={i}>
+          <Button
+            onClick={() =>
+              toast({
+                title: `${variant} toast`,
+                variant: variant,
+                isClosable: true,
+              })
+            }
+          >
+            Show {variant} toast
+          </Button>
+        </WrapItem>
+      ))}
+    </Wrap>
+  )
+}
+```
+
+## Custom container styles
+
+The `toast` function now exposes a `containerStyle` property you can use to
+override the default styles for the toast container.
+
+```jsx
+function Example() {
+  // Via instantiation
+  const toast = useToast({
+    position: 'top',
+    title: 'Container style is updated',
+    containerStyle: {
+      width: '800px',
+      maxWidth: '100%',
+    },
+  })
+  // Or via trigger
+  // Style here will overwrite the entire style above
+  return (
+    <Button
+      onClick={() => {
+        toast({
+          containerStyle: {
+            border: '20px solid red',
+          },
+        })
+      }}
+    >
+      Click me to show toast with custom container style.
+    </Button>
+  )
+}
+```
+
+## Changing the toast position
+
+Using the `position` prop you can adjust where your toast will be popup from.
+
+```jsx
+function PositionExample() {
+  const toast = useToast()
+  const positions = [
+    'top',
+    'top-right',
+    'top-left',
+    'bottom',
+    'bottom-right',
+    'bottom-left',
+  ]
+
+  return (
+    <Wrap>
+      {positions.map((position, i) => (
+        <WrapItem key={i}>
+          <Button
+            onClick={() =>
+              toast({
+                title: `${position} toast`,
+                position: position,
+                isClosable: true,
+              })
+            }
+          >
+            Show {position} toast
+          </Button>
+        </WrapItem>
+      ))}
+    </Wrap>
+  )
+}
+```
+
+## Preventing duplicate toast
+
+In some cases you might need to prevent duplicate of specific toasts. To achieve
+you need to pass an `id` and use the `toast.isActive` method to determine when
+to call `toast(...)`.
+
+```jsx live=false
+function PreventDuplicateExample() {
+  const toast = useToast()
+  const id = 'test-toast'
+  return (
+    <Button
+      onClick={() => {
+        if (!toast.isActive(id)) {
+          toast({
+            id,
+            title: 'Hey! You can create a duplicate toast',
+          })
+        }
+      }}
+    >
+      Click me!
+    </Button>
+  )
+}
+```
+
+## Configuring toast globally
+
+You can configure the toast globally by passing the `toastOptions` prop to the
+`ChakraProvider` component.
+
+The `toastOptions` prop accepts the same options as the `useToast` hook.
+
+```jsx live=false
+<ChakraProvider toastOptions={{ defaultOptions: { position: 'bottom' } }}>
+  <App />
+</ChakraProvider>
+```
+
+Besides the `defaultOptions`, you can also pass the following options:
+
+- `motionVariants`: The framer motion variants for the toast container. This
+  controls the animations for the toasts.
+
+- `component`: The custom component to use for the toast
+
+- `portalProps`: The props to pass to the toast's portal component
+
+- `toastSpacing`: The spacing between toasts. The default is `0.5rem`
+
+## Standalone Toasts
+
+Use `createStandaloneToast` to create toasts from outside of your React
+Components. Both `ChakraProvider` and `ToastContainer` will render a
+`ToastProvider`, so only include `<ToastContainer />` to create toasts from
+outside `ChakraProvider`.
+
+> 🚨 If you're using a custom theme, you **must** pass it in the arguments to
+> `createStandaloneToast`. If you don't, the default theme will be applied,
+> causing the font size of your page to shift when the toast is open.
+
+```tsx
+import * as ReactDOM from 'react-dom/client'
+import { createStandaloneToast } from '@chakra-ui/react'
+
+const { ToastContainer, toast } = createStandaloneToast()
+
+// render the ToastContainer in your React root
+const rootElement = document.getElementById('root')
+ReactDOM.createRoot(yourRootElement).render(
+  <>
+    <App />
+    <ToastContainer />
+  </>,
+)
+
+toast({
+  title: 'An error occurred.',
+  description: 'Unable to create user account.',
+  status: 'error',
+  duration: 9000,
+  isClosable: true,
+})
+```

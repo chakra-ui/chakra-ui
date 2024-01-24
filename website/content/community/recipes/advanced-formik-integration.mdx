@@ -1,0 +1,48 @@
+---
+title: Advanced Formik integration
+description: Advanced customization and integration of Chakra UI and Formik.
+tags: ['formik', 'form', 'integration']
+author: aacevski
+---
+
+Chakra UI can be coupled smoothly with [Formik](https://formik.org/), by the end
+of the example up ahead, you will be proficient at Chakra & Formik.
+
+In the `ImageRadio` component, we will utilize the `useRadio` hook from Chakra
+UI to get the necessary props and the `isChecked` boolean. `isChecked` will be
+used for validation in Formik's `useField` hook.
+
+To finalize, we will need to render our content and pass `getInputProps` and
+`getCheckedProps` from Chakra UI.
+
+import {
+  App as AppValidation,
+  Index as IndexValidation,
+  ImageRadio as ImageRadioValidation,
+  RadioGroup as RadioGroupValidation,
+  Input as InputValidation,
+} from 'configs/sandpack-contents/advanced-formik-integration/image-radio-buttons'
+
+<SandpackEmbed
+  dependencies={{
+    formik: '2.2.9',
+  }}
+  files={{
+    '/App.tsx': AppValidation,
+    '/index.tsx': IndexValidation,
+    '/image-radio.tsx': ImageRadioValidation,
+    '/radio-group.tsx': RadioGroupValidation,
+    '/input.tsx': InputValidation,
+  }}
+/>
+
+In the example above, there are 2 more components:
+
+- `Radio Group` - which renders multiple radio buttons
+- `Input` - where we will enter our value of choice
+
+Upon submitting the form, in the CodeSandbox console, you should see the result
+of which radio you've selected but also the value of the input.
+
+> If you have any questions, or need help around an advanced usage, don't
+> hesitate to reach out in our [Discord server](https://discord.gg/chakra-ui).

@@ -1,0 +1,221 @@
+---
+id: tooltip
+scope: theming
+---
+
+The `Tooltip` component is a single part component. All of the styling is
+applied directly to the `div` element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page.
+
+## Theming properties
+
+The properties that affect the theming of the `Tooltip` component are:
+
+- `variant`: The visual variant of the button. Variants for this component are
+  not implemented in the default theme.
+- `colorScheme`: The color scheme of the button. Color schemes for this
+  component are not implemented in the default theme.
+- `size`: The size of the button. Sizes for this component are not implemented
+  in the default theme.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+// define the base component styles
+const baseStyle = {
+  borderRadius: 'md', // add a border radius
+  fontWeight: 'normal', // change the font weight
+  border: '1px solid', // add a border
+}
+
+// export the component theme
+export const tooltipTheme = defineStyleConfig({ baseStyle })
+```
+
+After customizing the default theme, we can import it in our theme file and add
+it in the `components` property.
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { tooltipTheme } from './components/Tooltip'
+
+const theme = extendTheme({
+  components: {
+    Tooltip: tooltipTheme,
+  },
+})
+
+export default theme
+```
+
+> This is a crucial step to make sure that any changes that we make to the
+> tooltip theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to create a small, medium, and large size. Here's how we
+can do that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+// define custom sizes
+const sizes = {
+  sm: defineStyle({
+    fontSize: 'sm',
+    py: '1',
+    px: '2',
+    maxW: '200px',
+  }),
+  md: defineStyle({
+    fontSize: 'md',
+    py: '2',
+    px: '3',
+    maxW: '300px',
+  }),
+  lg: defineStyle({
+    fontSize: 'lg',
+    py: '2',
+    px: '4',
+    maxW: '350px',
+  }),
+}
+
+// export the component theme
+export const tooltipTheme = defineStyleConfig({ sizes })
+```
+
+Every time you're adding anything new to the theme, you need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a variant that can use a color scheme. Here's
+how we can do that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+// define styles for custom variant
+const colorfulVariant = defineStyle((props) => {
+  const { colorScheme: c } = props // add color scheme as a prop
+  return {
+    _light: {
+      bg: `${c}.300`,
+      borderColor: `${c}.600`,
+      color: `${c}.800`,
+    },
+    _dark: {
+      bg: `${c}.600`,
+      borderColor: `${c}.300`,
+      color: `${c}.200`,
+    },
+  }
+})
+
+// define custom variants
+const variants = {
+  colorful: colorfulVariant,
+}
+
+// export the component theme
+export const tooltipTheme = defineStyleConfig({ variants })
+```
+
+## Using a custom color scheme
+
+Let's assume we want to use our own custom color scale based on our brand.
+First, we need to define the color scale in the main theme file:
+
+```jsx live=false
+
+import { extendTheme } from '@chakra-ui/react';
+import { tooltipTheme } from './components/Tooltip';
+
+const theme = extendTheme({
+  // add a custom color scheme
+  colors: {
+    brand: {
+      50: '#ffeae1',
+      ...
+      500: '#d24314',
+      ...
+      900: '#1e0400',
+    },
+  },
+
+});
+
+export default theme;
+
+```
+
+Then, we can use the custom color scale as the color scheme for the tooltip:
+
+```jsx live=false
+<Tooltip colorScheme='brand'>...</Tooltip>
+```
+
+## Changing the default properties
+
+Let's assume we want to add a default size, variant, and color scheme of every
+tooltip in our app. Here's how we can do that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+// define which sizes, variants, and color schemes are applied by default
+const defaultProps = {
+  size: 'md',
+  variant: 'colorful',
+  colorScheme: 'brand',
+}
+
+// export the component theme
+export const tooltipTheme = defineStyleConfig({ defaultProps })
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  Theme,
+  Tooltip,
+  ColorModeSwitcher,
+} from 'configs/sandpack-contents/component-theming/tooltip'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Tooltip.tsx': Tooltip,
+    '/theme/index.tsx': Theme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+    '/ColorModeSwitcher.tsx': {
+      code: ColorModeSwitcher,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

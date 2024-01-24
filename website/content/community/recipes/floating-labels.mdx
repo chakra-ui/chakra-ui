@@ -1,0 +1,26 @@
+---
+title: Floating Labels
+description: How to implement floating labels in Chakra UI
+author: Patrick-Ullrich
+---
+
+While Chakra UI doesn't enforce a specific style or design system, it makes it
+easy to implement what ever style you want yourself. One popular style are the
+use of `floating labels`.
+
+This is one way to implement floating labels in your project, it doesn't mean
+this is the only way to achieve this.
+
+Below is the gist to achieve floating labels.
+
+import {
+  App as AppFloatingLabel,
+  Index as IndexFloatingLabel,
+} from 'configs/sandpack-contents/floating-labels/floating-labels.js'
+
+<SandpackEmbed
+  files={{
+    '/App.tsx': AppFloatingLabel,
+    '/index.tsx': IndexFloatingLabel,
+  }}
+/>

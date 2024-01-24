@@ -1,0 +1,145 @@
+---
+title: Getting Started with Next.js (App)
+description: A guide for installing Chakra UI with Next.js app directory
+tags: ['nextjs', 'app']
+author: estheragbaje
+category: frameworks
+---
+
+### Installation
+
+Chakra UI provides an additional integration package `@chakra-ui/next-js` for
+Next.js that gives you a smoother experience when using both frameworks.
+
+<PackageManagers
+  command={{
+    npm: 'npm i @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    yarn: 'yarn add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    pnpm: 'pnpm add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+  }}
+/>
+
+### Setup Provider
+
+Next.js 13 introduced a new `app/` directory / folder structure. By default it
+uses Server Components. However, **Chakra UI only works in client-side
+components**.
+
+To use Chakra UI in server components, you need to convert them into client-side
+component by adding a `'use client';` at the top of your file.
+
+We've also provided a `@chakra-ui/next-js` package that gives you a smoother
+experience when using Chakra UI in the app directory.
+
+```jsx live=false
+// app/providers.tsx
+'use client'
+
+import { ChakraProvider } from '@chakra-ui/react'
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <ChakraProvider>{children}</ChakraProvider>
+}
+```
+
+### Setup Layout
+
+Next, use the `Providers` component in your layouts.
+
+```jsx live=false
+// app/layout.tsx
+import { Providers } from './providers'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode,
+}) {
+  return (
+    <html lang='en'>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  )
+}
+```
+
+### Styling Next.js Link
+
+We recommend using the `Link` component provided from the `@chakra-ui/next-js`
+package. It combines the functionality of the Next.js Link and Chakra's styling
+features.
+
+```jsx live=false
+// app/page.tsx
+'use client'
+import { Link } from '@chakra-ui/next-js'
+
+export default function Page() {
+  return (
+    <Link href='/about' color='blue.400' _hover={{ color: 'blue.500' }}>
+      About
+    </Link>
+  )
+}
+```
+
+### Using custom font
+
+With Next.js 13, you can optimize your fonts (including custom fonts) and remove
+external network requests for improved privacy and performance.
+
+First, you need define the font you need
+
+```jsx live=false
+// app/fonts.ts
+import { Rubik } from 'next/font/google'
+
+const rubik = Rubik({
+  subsets: ['latin'],
+  variable: '--font-rubik',
+})
+
+export const fonts = {
+  rubik,
+}
+```
+
+Next, you need to update your root layout to include the font styles.
+
+```jsx live=false
+// app/layout.tsx
+import { fonts } from './fonts'
+import { Providers } from './providers'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode,
+}) {
+  return (
+    <html lang='en' className={fonts.rubik.variable}>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  )
+}
+```
+
+Finally, you can use font variable in your custom theme file across the app.
+
+```jsx live=false
+/* theme.ts */
+import { extendTheme } from "@chakra-ui/react";
+
+export const theme = extendTheme({
+  ...
+    fonts: {
+      heading: 'var(--font-rubik)',
+      body: 'var(--font-rubik)',
+    }
+  ...
+});
+```

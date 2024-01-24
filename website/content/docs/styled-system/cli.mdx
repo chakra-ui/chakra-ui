@@ -1,0 +1,85 @@
+---
+title: 'CLI'
+package: '@chakra-ui/cli'
+description: Using the CLI command to generate theme typings
+category: 'features'
+---
+
+The Chakra UI CLI can be used to generate typings for your custom theme tokens,
+like colors, semantic tokens, component variants, etc.
+
+The CLI scans your theme configuration and generates typings for your custom
+tokens in the `node_modules/@chakra-ui/styled-system/dist/theming.types.d.ts`
+file.
+
+> **Troubleshoot:** If the theme typings don't show up immediately, try
+> restarting your TypeScript server
+> (`Cmd + Shift + P > "TypeScript: Restart TS server"` if you're using VSCode).
+
+## Installation
+
+In order to use the CLI, you need to install it as a dev dependency in your
+project:
+
+```bash
+npm install --save-dev @chakra-ui/cli
+#or
+yarn add --dev @chakra-ui/cli
+```
+
+To make it more convenient, it's also a good idea to create an npm script that
+triggers it:
+
+```json
+// package.json
+{
+  ...
+  "scripts": {
+    ...
+    "theme": "chakra-cli tokens path/to/theme.ts",
+    "theme:watch": "chakra-cli tokens path/to/theme.ts --watch",
+  },
+  ...
+}
+```
+
+Don't forget to replace `path/to/theme.ts` with your theme file location.
+
+## Usage
+
+To generate typings for your theme, run the `theme` script:
+
+<PackageManagers
+  command={{
+    npm: 'npm run theme',
+    yarn: 'yarn theme',
+    pnpm: 'pnpm theme',
+    bun: 'bun theme',
+  }}
+/>
+
+If you'd like to continuously generate theme typings as you're editing your
+theme, run the `theme:watch` script:
+
+<PackageManagers
+  command={{
+    npm: 'npm run theme:watch',
+    yarn: 'yarn theme:watch',
+    pnpm: 'pnpm theme:watch',
+    bun: 'bun theme:watch',
+  }}
+/>
+
+A successful execution should output something like this:
+
+```sh
+$ chakra-cli tokens src/theme/index.ts
+
+Chakra UI CLI v2.1.8 by Chakra UI
+Generate theme typings for autocomplete
+
+
+ℹ Generating chakra theme typings
+✔ Done
+✨  Done in 0.83s.
+```

@@ -1,0 +1,124 @@
+---
+id: skeleton
+category: feedback
+title: Skeleton
+description: Skeleton is used to display the loading state of some component.
+package: '@chakra-ui/skeleton'
+---
+
+## Import
+
+```js
+import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+```
+
+## Usage
+
+You can use it as a standalone component.
+
+```jsx
+<Stack>
+  <Skeleton height='20px' />
+  <Skeleton height='20px' />
+  <Skeleton height='20px' />
+</Stack>
+```
+
+Or to wrap another component to take the same height and width.
+
+```jsx
+<Skeleton>
+  <div>contents wrapped</div>
+  <div>won't be visible</div>
+</Skeleton>
+```
+
+Useful when fetching remote data.
+
+```js live=false
+import { Box } from '@chakra-ui/react'
+
+function Card() {
+  const { data, loading, error } = useRemoteData()
+  if (error) return <Box children='error' />
+  return (
+    <Box>
+      <Skeleton isLoaded={!loading}>
+        <Heading>{data.title}</Heading>
+      </Skeleton>
+    </Box>
+  )
+}
+```
+
+### Circle and Text Skeleton
+
+```jsx
+<Box padding='6' boxShadow='lg' bg='white'>
+  <SkeletonCircle size='10' />
+  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
+</Box>
+```
+
+### Skeleton color
+
+You can change the animation color with `startColor` and `endColor`.
+
+```jsx
+<Skeleton startColor='pink.500' endColor='orange.500' height='20px' />
+```
+
+### Skipping the skeleton when content is loaded
+
+You can prevent the skeleton from rendering using the `isLoaded` prop.
+
+```jsx
+<Skeleton isLoaded>
+  <span>Chakra ui is cool</span>
+</Skeleton>
+```
+
+### `fadeDuration` with `isLoaded`
+
+With the `fadeDuration` prop, you can control the duration of the content fading
+into view. The value in this prop is a number representing seconds which is part
+of the `animation` style prop that is rendered to the component. Default value
+is `0.4` seconds.
+
+This requires the `isLoaded` prop, and the animation is best visible when the
+`isLoaded` prop is toggled to `true`.
+
+```jsx
+function Example() {
+  const [isLoaded, setIsLoaded] = React.useState(false)
+  return (
+    <Stack padding={4} spacing={1}>
+      <Skeleton height='40px' isLoaded={isLoaded}>
+        <Box>Hello World!</Box>
+      </Skeleton>
+      <Skeleton
+        height='40px'
+        isLoaded={isLoaded}
+        bg='green.500'
+        color='white'
+        fadeDuration={1}
+      >
+        <Box>Hello React!</Box>
+      </Skeleton>
+      <Skeleton
+        height='40px'
+        isLoaded={isLoaded}
+        fadeDuration={4}
+        bg='blue.500'
+        color='white'
+      >
+        <Box>Hello ChakraUI!</Box>
+      </Skeleton>
+
+      <Box textAlign='center'>
+        <Button onClick={() => setIsLoaded((v) => !v)}>toggle</Button>
+      </Box>
+    </Stack>
+  )
+}
+```

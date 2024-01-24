@@ -1,0 +1,298 @@
+{
+  "data": [
+    {
+      "heading": "How To Build an Advanced Multipart Component with Chakra UI",
+      "type": "blog",
+      "tags": ["Vite", "Advanced", "Theming", "v1.6"],
+      "author": "Lennart Jörgens",
+      "description": "Learn how to create a custom made container component that supports light/dark mode, variants, sizes, and color schemes.",
+      "url": "https://www.lekoarts.de/react/how-to-build-an-advanced-multipart-component-with-chakra-ui"
+    },
+    {
+      "heading": "How to Integrate Chakra UI in React App",
+      "type": "blog",
+      "tags": ["Create React App", "Dark Mode", "v0.8"],
+      "author": "Sumit Kharche",
+      "description": "Learn about Chakra UI and also build a react application using Chakra UI components.",
+      "url": "https://www.c-sharpcorner.com/article/getting-started-with-chakra-ui-react/"
+    },
+    {
+      "heading": "React Forms Using Chakra UI",
+      "type": "video",
+      "tags": ["Forms", "v0.8"],
+      "author": "Karl Hadwen",
+      "description": "Learn how to build a React form using Chakra UI.",
+      "url": "https://www.youtube.com/watch?v=4UIbOoySiXw"
+    },
+    {
+      "heading": "Build a Landing Page with Chakra UI",
+      "type": "blog",
+      "tags": ["Landing page", "Router", "Responsive", "v0.8"],
+      "author": "Jim Raptis",
+      "description": "How to build a responsive landing page in React using the Chakra UI design system.",
+      "url": "https://dev.to/d__raptis/build-a-landing-page-with-chakra-ui-part-1-56gd"
+    },
+    {
+      "heading": "Chakra UI Crash Course",
+      "type": "video",
+      "tags": ["Course", "Getting Started", "v0.8"],
+      "author": "Mahmoud Shehata",
+      "description": "Learn how to get started with Chakra UI (v0.8).",
+      "url": "https://www.youtube.com/playlist?list=PLDIXF8nb0VG174PlQuej1su71AvR1JHoo"
+    },
+    {
+      "heading": "How to Use Chakra UI with Next.js and React",
+      "type": "blog",
+      "tags": ["Next.js", "Responsive", "v0.8"],
+      "author": "Colby Fayock",
+      "description": "How to take advantage of the power of Chakra UI to build great web apps.",
+      "url": "https://www.freecodecamp.org/news/how-to-use-chakra-ui-with-next-js-and-react/"
+    },
+    {
+      "heading": "Choosing the right component library for your design system: MUI vs Chakra",
+      "type": "blog",
+      "tags": ["Chakra UI", "Design Systems"],
+      "author": "Kolby Sisk",
+      "description": "Comparison between MUI and Chakra UI for building Design Systems",
+      "url": "https://engineering.udacity.com/choosing-the-right-component-library-for-your-design-system-mui-vs-chakra-45c4c949d150"
+    },
+    {
+      "heading": "Installing and Using Chakra UI with React",
+      "type": "blog",
+      "tags": ["Create React App", "Basics", "v0.8"],
+      "author": "Ashutosh Singh",
+      "description": "We will discuss how to install, import, and use components from Chakra UI.",
+      "url": "https://www.pluralsight.com/guides/installing-and-using-chakra-ui-with-react"
+    },
+    {
+      "heading": "How to Build an Image Gallery with NextJS using the Pexels API and Chakra UI",
+      "type": "blog",
+      "tags": ["Next.js", "Basics", "v1.0"],
+      "author": "Ashutosh Singh",
+      "description": "In this article, we will build an Image Gallery with Next.js using the Pexels API and Chakra UI v1, a modular and accessible component library.",
+      "url": "https://www.freecodecamp.org/news/build-an-image-gallery-with-nextjs/"
+    },
+    {
+      "heading": "How to use Chakra UI's Default Theme",
+      "type": "video",
+      "tags": ["Theming", "v1.0"],
+      "author": "Folasade Agbaje",
+      "description": "Learn how to use Chakra UI's default theme.",
+      "url": "https://www.youtube.com/watch?v=KOCAnM7HJ4U"
+    },
+    {
+      "heading": "Coding a Login Form with Chakra UI | React | Dark Theme & Light Theme",
+      "type": "video",
+      "tags": ["Form", "Dark Theme", "v0.8"],
+      "author": "Eshwaren Manoharen",
+      "description": "Learn how to create a login form with Chakra UI.",
+      "url": "https://www.youtube.com/watch?v=Rs59VBGfLP4"
+    },
+    {
+      "heading": "Chakra UI and Gatsby - Getting Started",
+      "type": "video",
+      "tags": ["Gatsby", "Getting Started", "v1.0"],
+      "author": "Scott Spence",
+      "description": "Get Started with Gatsby using Chakra UI.",
+      "url": "https://www.youtube.com/watch?v=hXM9Ju_NIpU"
+    },
+    {
+      "heading": "How to easily use Chakra UI Stack Component",
+      "type": "video",
+      "author": "Folasade Agbaje",
+      "tags": ["Stack", "v1.0"],
+      "description": "Learn how to easily use Chakra UI Stack Component.",
+      "url": "https://www.youtube.com/watch?v=gTaikL689PU"
+    },
+    {
+      "heading": "How to enable Right-to-Left (RTL) support using Chakra UI",
+      "type": "video",
+      "author": "Folasade Agbaje",
+      "tags": ["RTL", "v1.0"],
+      "description": "Learn how to enable Right-to-Left (RTL) support using Chakra UI",
+      "url": "https://www.youtube.com/watch?v=PzEHoqLj4OM"
+    },
+    {
+      "heading": "Setting Up Chakra UI in a GatsbyJS App",
+      "type": "video",
+      "author": "Apollo GraphQL",
+      "tags": ["Gatsby", "Getting Started", "v0.8"],
+      "description": "Learn how to Set Up Chakra UI in a GatsbyJS App.",
+      "url": "https://www.youtube.com/watch?v=PjQHqDWnzGw"
+    },
+    {
+      "heading": "Making a set of React + Chakra UI components for building landing pages",
+      "type": "video",
+      "tags": ["Landing page", "v0.8"],
+      "author": "Kitze",
+      "description": "Learn how to build landing pages in React using Chakra UI components.",
+      "url": "https://www.pscp.tv/thekitze/1OyJAgleVMbKb"
+    },
+    {
+      "heading": "How to build a portfolio website using Next.js, Chakra UI, Framer Motion, and Three.js",
+      "type": "video",
+      "tags": [
+        "Portfolio Website",
+        "Next.js",
+        "Framer Motion",
+        "Three.js",
+        "v1.7.2"
+      ],
+      "author": "devaslife",
+      "description": "Learn how Takuya Matsuyama builds his portfolio website using Next.js, Chakra UI, Framer Motion, and Three.js.",
+      "url": "https://www.youtube.com/watch?v=yt0F8srvg_Q"
+    },
+    {
+      "heading": "Chakra UI Quickstart - With Next.js",
+      "type": "video",
+      "tags": ["Next.js", "Dark Mode", "v1.0"],
+      "author": "Benjamin Carlson",
+      "description": "Learn about the basic components of chakra-ui, add it to Next.js and make a dark switch component.",
+      "url": "https://www.youtube.com/watch?v=lhOvI9s5gQY"
+    },
+    {
+      "heading": "Chakra UI: Design vs Dev Challenge #1",
+      "type": "video",
+      "tags": ["Next.js", "Design Implementation", "v1.6.2"],
+      "author": "Lazar Nikolov",
+      "description": "In this video Lazar is rebuilding a full Chat App interface designed by Denys Sergushkin.",
+      "url": "https://www.youtube.com/watch?v=wGhZMOInL18"
+    },
+    {
+      "heading": "Chakra UI: Design vs Dev Challenge #2",
+      "type": "video",
+      "tags": ["Next.js", "Design Implementation", "v1.6.2"],
+      "author": "Lazar Nikolov",
+      "description": "In this video Lazar is rebuilding the Afrosonic Dashboard Concept designed by Jide Pinheiro's",
+      "url": "https://www.youtube.com/watch?v=l30P02RZ7Dk"
+    },
+    {
+      "heading": "The Chakra UI Component Library",
+      "type": "talk",
+      "tags": ["React", "UI", "Accessibility"],
+      "author": "Devmode.fm",
+      "description": "In this talk, Segun ​“Sage” Ade­bayo talks about how Chakra UI came to be, and how help­ing peo­ple has changed his life.",
+      "url": "https://devmode.fm/episodes/the-chakra-ui-component-library#2"
+    },
+    {
+      "heading": "The Future of Chakra UI",
+      "type": "talk",
+      "tags": ["Vision", "UI", "Framework"],
+      "author": "Lee Robinson",
+      "description": "Learn about the future of Chakra UI, an accessible React component library, from it's creator Segun Adebayo.",
+      "url": "https://www.youtube.com/watch?v=I5xEc9t-HZg"
+    },
+    {
+      "heading": "Interview with Segun Adebayo: Chakra UI, Open Source, Life.",
+      "type": "talk",
+      "tags": ["Open source", "Life", "Balance"],
+      "author": "Gift Egwuenu",
+      "description": "I had the pleasure of inviting Segun Adebayo(Sage) for a chat. We talked about Chakra UI, Open Source, Work-Life Balance and so much more.",
+      "url": "https://youtu.be/DpKMxzQvRzk"
+    },
+    {
+      "heading": "Chakra UI Talk and Demo",
+      "type": "talk",
+      "tags": ["React", "Demo", "Accessibility"],
+      "author": "ReactEurope",
+      "description": "Segun Adebayo talks about how Chakra UI came to be, and performs a live demo.",
+      "url": "https://www.youtube.com/watch?v=laBJihRC560"
+    },
+    {
+      "heading": "The road to Chakra 1.0 and all about Chakra UI",
+      "type": "talk",
+      "tags": ["Chakra UI", "v1.0"],
+      "author": "Kitze",
+      "description": "Kitze talks to Segun from Chakra - The road to Chakra 1.0 and all about Chakra UI.",
+      "url": "https://www.youtube.com/watch?v=eeODp2pdRdo"
+    },
+    {
+      "heading": "How to Set Up Chakra UI with Next.js by creating a Hero component",
+      "type": "blog",
+      "tags": ["Next.js", "Landing page", "Basics", "v1.0"],
+      "author": "creativedesignsguru.com",
+      "description": "Learn how to create a simple, beautiful, and reusable hero component built using NextJs and Chakra UI.",
+      "url": "https://creativedesignsguru.com/chakra-ui-next-js/"
+    },
+    {
+      "heading": "SimpleGrid: Chakra UI Component of the Week",
+      "type": "video",
+      "tags": ["Chakra UI", "Component of the Week", "v1.7.2"],
+      "author": "Chakra UI",
+      "description": "Learn what Chakra UI SimpleGrid Component is, how to use, props it accepts and around how to make it auto-responsive.",
+      "url": "https://www.youtube.com/watch?v=uyJNBGBI5sI"
+    },
+    {
+      "heading": "Input: Chakra UI Component of the Week",
+      "type": "video",
+      "tags": ["Chakra UI", "Component of the Week", "v1.7.2"],
+      "author": "Chakra UI",
+      "description": "Learn what Chakra UI Input Component is, how to change input size, style, add elements to input and add add-ons to an input component.",
+      "url": "https://www.youtube.com/watch?v=4y86kDy3Z2E"
+    },
+    {
+      "heading": "Stack: Chakra UI Component of the Week",
+      "type": "video",
+      "tags": ["Chakra UI", "Component of the Week", "v1.7.2"],
+      "author": "Chakra UI",
+      "description": "Learn what Chakra UI Stack Component is, when to use Stack Component, how to stack items horizontally and vertically and about alternative stack components.",
+      "url": "https://www.youtube.com/watch?v=6Az4Yd6f8RA"
+    },
+    {
+      "heading": "Menu: Chakra UI Component of the Week",
+      "type": "video",
+      "tags": ["Chakra UI", "Component of the Week", "v1.7.2"],
+      "author": "Chakra UI",
+      "description": "Learn what Chakra UI Menu Component is, how to use menu component and how to separate/group Menu items.",
+      "url": "https://www.youtube.com/watch?v=Q-AMFseuFrk"
+    },
+    {
+      "heading": "Tabs: Chakra UI Component of the Week",
+      "type": "video",
+      "tags": ["Chakra UI", "Component of the Week", "v1.7.2"],
+      "author": "Chakra UI",
+      "description": "Learn what Chakra UI Tabs Component is, how to use Tabs component, some props that Tabs accepts and about Tab Variants.",
+      "url": "https://www.youtube.com/watch?v=hSVhhOamFaI"
+    },
+    {
+      "heading": "Modal: Chakra UI Component of the Week",
+      "type": "video",
+      "tags": ["Chakra UI", "Component of the Week", "v1.7.2"],
+      "author": "Chakra UI",
+      "description": "Learn what Chakra UI Modal Component is, how to use Modal component, some props that Modal accepts and how to change Modal Behaviour.",
+      "url": "https://www.youtube.com/watch?v=kTwaBM_bJUQ"
+    },
+    {
+      "heading": "RangeSlider: Chakra UI Component of the Week",
+      "type": "video",
+      "tags": ["Chakra UI", "Component of the Week", "v1.7.2"],
+      "author": "Chakra UI",
+      "description": "Learn what Chakra UI RangeSlider Component is, how to use RangeSlider component, parts that make up the RangeSlider Component, some of the props RangeSlider accepts and how to customize RangeSlider.",
+      "url": "https://www.youtube.com/watch?v=yt0F8srvg_Q"
+    },
+    {
+      "heading": "Maintaining Chakra UI",
+      "type": "talk",
+      "tags": ["Core Team", "Chakra UI", "Open Source"],
+      "author": "Chakra UI",
+      "description": "Watch the maintainers of Chakra UI triage issues, add features and release new versions of the library 🎉",
+      "url": "https://www.youtube.com/watch?v=0TLxtE_GCbM"
+    },
+    {
+      "heading": "Chakra Shorts #1 - Dynamic Shadow Image",
+      "type": "video",
+      "tags": ["Chakra UI", "Chakra Shorts", "v1.7.2"],
+      "author": "Andrej Acevski",
+      "description": "In this Short we'll we're covering dynamic shadows and how you can create them using Chakra UI.",
+      "url": "https://www.youtube.com/watch?v=HMTyQjASff4"
+    },
+    {
+      "heading": "Chakra Shorts #2 - Custom Ring Colors",
+      "type": "video",
+      "tags": ["Chakra UI", "Chakra Shorts", "Open Source"],
+      "author": "Andrej Acevski",
+      "description": "In this video, I'll show you how to change the default ring color. This method can be applied to not just the button, but any element that has a ring and a focus state.",
+      "url": "https://www.youtube.com/watch?v=7p16X1JkEE0"
+    }
+  ]
+}

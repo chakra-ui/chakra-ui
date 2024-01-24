@@ -1,0 +1,94 @@
+---
+id: heading
+category: typography
+title: Heading
+package: '@chakra-ui/layout'
+description: Heading is used to render semantic HTML heading elements.
+---
+
+## Import
+
+```js
+import { Heading } from '@chakra-ui/react'
+```
+
+## Usage
+
+`Heading` composes `Box` so you can use all the style props and add responsive
+styles as well. It renders an `<h2>` tag by default.
+
+```jsx
+<Heading>I'm a Heading</Heading>
+```
+
+### Changing visual size
+
+To increase the visual size of the heading, use the `size` props. This property
+ensures that the heading size automatically adjusts for smaller screens.
+
+```jsx
+<Stack spacing={6}>
+  <Heading as='h1' size='4xl' noOfLines={1}>
+    (4xl) In love with React & Next
+  </Heading>
+  <Heading as='h2' size='3xl' noOfLines={1}>
+    (3xl) In love with React & Next
+  </Heading>
+  <Heading as='h2' size='2xl'>
+    (2xl) In love with React & Next
+  </Heading>
+  <Heading as='h2' size='xl'>
+    (xl) In love with React & Next
+  </Heading>
+  <Heading as='h3' size='lg'>
+    (lg) In love with React & Next
+  </Heading>
+  <Heading as='h4' size='md'>
+    (md) In love with React & Next
+  </Heading>
+  <Heading as='h5' size='sm'>
+    (sm) In love with React & Next
+  </Heading>
+  <Heading as='h6' size='xs'>
+    (xs) In love with React & Next
+  </Heading>
+</Stack>
+```
+
+### Truncate heading
+
+If you'd like to truncate the heading after a specific number of lines, pass the
+`noOfLines` prop. This will render an ellipsis when the heading exceeds the
+width of the viewport or `maxWidth` prop.
+
+```jsx
+<Heading noOfLines={1}>
+  Basic text writing, including headings, body text, lists, and more.
+</Heading>
+```
+
+### Override style
+
+You can override the size of the Heading component by passing the `fontSize`
+prop. No need to write `css` or `styled()`.
+
+```jsx
+<Heading size='lg' fontSize='50px'>
+  I'm overriding this heading
+</Heading>
+```
+
+## Composition
+
+```jsx
+<Box maxW='32rem'>
+  <Heading mb={4}>Modern online and offline payments for Africa</Heading>
+  <Text fontSize='xl'>
+    Paystack helps businesses in Africa get paid by anyone, anywhere in the
+    world
+  </Text>
+  <Button size='lg' colorScheme='green' mt='24px'>
+    Create a free account
+  </Button>
+</Box>
+```

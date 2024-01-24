@@ -1,0 +1,461 @@
+---
+title: 'Color Mode'
+package: '@chakra-ui/color-mode'
+description: Working with color mode (light and dark mode) in Chakra UI
+category: 'features'
+---
+
+Chakra UI comes with built-in support for managing color mode in your apps.
+
+By default, most of Chakra's components are dark mode compatible. In some
+scenarios, you might need to make your component respond to color mode.
+
+> **Tip:** Chakra stores the color mode in `localStorage` or in `cookies` and
+> appends a className to the `body` to ensure the color mode is persistent.  
+> In case you need to reset the color mode, you must delete the item from
+> `localStorage` or `cookies`, so on next page load the value is initialized
+> like the first time user visited the page.
+
+## Introduction to Color Mode
+
+In the recent years, operating systems (`system` for this guide) give user the
+option to choose from Light or Dark color mode. Some operating systems include
+also an automatic option that toggle color mode based on daylight, (day = light,
+night = dark).
+
+Browsers can access this value provided by the operating system, and subscribe
+to the changes.
+
+With Chakra UI, you can customize the behavior of color mode.
+
+You can decide:
+
+- Where to store the current value, choosing from `localStorage`, `cookies`, or
+  custom.
+- If the application color mode changes based on the system's color mode.
+- Whether the initial value (used on the first visit or after storage reset) is
+  decided by the `system` or the developer.
+
+## Setup
+
+To get dark mode working correctly, you need to do two things:
+
+1. Update your theme config to determine how Chakra UI should manage color mode
+   updates.
+
+2. Add the `ColorModeScript` to your application, and set the initial color mode
+   your application should start with to either `light`, `dark` or `system`. It
+   is `light` by default.
+
+### Updating the theme config
+
+The theme config for color mode has 2 options:
+
+- `initialColorMode`: The initial mode you'd like your app to start with when
+  user visit the page for first time (or after storage reset). Can be one of
+  `dark`, `light` or `system`. Default is `light`.
+
+- `useSystemColorMode`: If `true`, Chakra UI subscribes to changes in `system`
+  color mode. If set to `false`, the app's color mode is detached from the
+  `system` color mode. Default is `false`.
+
+```jsx live=false
+// theme.js
+
+// 1. import `extendTheme` function
+import { extendTheme } from '@chakra-ui/react'
+
+// 2. Add your color mode config
+const config = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+
+// 3. extend the theme
+const theme = extendTheme({ config })
+
+export default theme
+```
+
+For typescript, you need to explicitly describe the theme config type as
+`ThemeConfig` object.
+
+```tsx live=false
+// theme.ts
+
+// 1. import `extendTheme` function
+import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+
+// 2. Add your color mode config
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+
+// 3. extend the theme
+const theme = extendTheme({ config })
+
+export default theme
+```
+
+> Remember to pass your custom `theme` to the `ChakraProvider`, otherwise your
+> color mode config won't be taken into consideration.
+
+#### Common Configurations
+
+To help you define your desired behavior, here we define all common usage of the
+theme config. In alternative, you can use this
+[playground](https://codesandbox.io/s/chakra-ui-color-mode-test-f5fcwr?file=/src/chakra-ui/chakra-ui.custom-theme.ts)
+to try different values.
+
+> **Note** The hook `useColorMode` let you update color mode of your app in
+> every cases. [Learn more](#changing-color-mode)
+
+```tsx live=false
+// A.
+// System sets initial value.
+// App subscribes to system color mode changes.
+const config: ThemeConfig = {
+  initialColorMode: 'system',
+  useSystemColorMode: true,
+}
+
+// B.
+// System sets initial value.
+// App color mode is detached from system color mode changes.
+const config: ThemeConfig = {
+  initialColorMode: 'system',
+  useSystemColorMode: false,
+}
+
+// C.
+// You choose initial value.
+// App color mode is detached from system color mode changes.
+const config: ThemeConfig = {
+  initialColorMode: 'dark', // 'dark' | 'light'
+  useSystemColorMode: false,
+}
+
+// D.
+// You choose initial value.
+// App subscribes to system color mode changes.
+const config: ThemeConfig = {
+  initialColorMode: 'dark', // 'dark' | 'light'
+  useSystemColorMode: true,
+}
+```
+
+#### Behavior of ColorMode
+
+The current hierarchy of how Chakra UI resolves the color mode:
+
+- Get the color mode value in the specified storage (localStorage, cookie
+  manager or custom)
+
+- If value doesn't exist, use the `initialColorMode` value specified.
+
+  - If the initial value is `system`, then we'll compute the color mode using
+    `matchMedia`
+  - Else, we use the initial value as is.
+
+- If user specifies `useSystemColorMode: true`, then we'll subscribe to color
+  mode changes from the operating system. It is no longer used to determine the
+  initial color mode. To achieve that, please use `initialColorMode: "system"`
+
+> **Tip:** In case you need to reset the color mode, you must delete the item in
+> the specified storage (localStorage, cookie manager or custom), so on next
+> page load the value is initialized like the first time user visited the page.
+
+#### Difference between `initialColorMode='system'` and `useSystemColorMode`
+
+`initialColorMode` value is used to determine the value on first visit, or after
+a storage reset.
+
+`useSystemColorMode` is a boolean that indicates if Chakra UI must subscribes
+(and updates) based on the operating system's color mode changes. If
+`useSystemColorMode=true` and operating system changes from `light` to `dark`,
+due to a manual or automatic switch, the page automatically changes color mode,
+without user interaction. If `useSystemColorMode=false` color mode can only be
+changed via the `useColorMode` hook.
+
+### Adding the `ColorModeScript`
+
+The color mode script needs to be added before the content inside the `body` tag
+for local storage syncing to work correctly.
+
+> When setting the initial color mode, we recommend adding it as a config to
+> your theme and reference that in the `ColorModeScript`.
+
+> To use `ColorModeScript` on a site with strict `Content-Security-Policy`, you
+> can use the `nonce` prop that will be passed to the `<script>` tag.
+
+#### For Next.js
+
+For Next.js, you need to add the `ColorModeScript` to the `_document.js` file.
+
+```jsx live=false ln={14}
+// pages/_document.js
+
+import { ColorModeScript } from '@chakra-ui/react'
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+import theme from './theme'
+
+export default class Document extends NextDocument {
+  render() {
+    return (
+      <Html lang='en'>
+        <Head />
+        <body>
+          {/* 👇 Here's the script */}
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+```
+
+#### For Create React App
+
+For Create React App, you need to add the `ColorModeScript` to the `index.js`
+file.
+
+```jsx live=false ln={11}
+// index.js
+
+import { ColorModeScript } from '@chakra-ui/react'
+import * as ReactDOM from 'react-dom/client'
+import App from './App'
+import theme from './theme'
+
+const rootElement = document.getElementById('root')
+ReactDOM.createRoot(rootElement).render(
+  <>
+    {/* 👇 Here's the script */}
+    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <App />
+  </>,
+)
+```
+
+#### For Gatsby
+
+Install `@chakra-ui/gatsby-plugin` in your project. You can read more in the
+[Chakra UI + Gatsby guide](/getting-started/gatsby-guide).
+
+## Changing Color Mode
+
+To manage color mode in your application, Chakra UI exposes the `useColorMode`
+or `useColorModeValue` hooks.
+
+### useColorMode
+
+`useColorMode` is a React hook that gives you access to the current color mode,
+and a function to toggle the color mode.
+
+```jsx
+function Example() {
+  const { colorMode, toggleColorMode } = useColorMode()
+  return (
+    <header>
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </Button>
+    </header>
+  )
+}
+```
+
+Calling `toggleColorMode` anywhere in your app tree toggles the color mode from
+`light` or `dark` and vice versa.
+
+### useColorModeValue
+
+`useColorModeValue` is a React hook used to change any value or style based on
+the color mode. It takes 2 arguments: the value in light mode, and the value in
+dark mode.
+
+```jsx live=false
+// Here's the signature
+const value = useColorModeValue(lightModeValue, darkModeValue)
+```
+
+Here's an example that changes the `background-color` and `color` using the
+`useColorModeValue` hook.
+
+> Click the **Toggle Mode** button to see it in action.
+
+```jsx
+function StyleColorMode() {
+  const { toggleColorMode } = useColorMode()
+
+  const bg = useColorModeValue('red.500', 'red.200')
+  const color = useColorModeValue('white', 'gray.800')
+
+  return (
+    <>
+      <Box mb={4} bg={bg} color={color}>
+        This box's style will change based on the color mode.
+      </Box>
+      <Button size='sm' onClick={toggleColorMode}>
+        Toggle Mode
+      </Button>
+    </>
+  )
+}
+```
+
+## Forcing a specific mode
+
+In some occasions, you might want Chakra UI components to look the same in both
+light and dark modes. To achieve this, wrap the component in a `LightMode` or
+`DarkMode` component. Doing this will override the global `colorMode`.
+
+> Click the **"Toggle Mode"** button to see it in action.
+
+```jsx
+function Example() {
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  return (
+    <HStack>
+      <LightMode>
+        <Button size='sm' colorScheme='blue'>
+          Light Mode Always
+        </Button>
+      </LightMode>
+
+      <DarkMode>
+        <Button size='sm' colorScheme='blue'>
+          Dark Mode Always
+        </Button>
+      </DarkMode>
+
+      <Button size='sm' colorScheme='blue' onClick={toggleColorMode}>
+        Toggle Mode
+      </Button>
+    </HStack>
+  )
+}
+```
+
+## Add colorModeManager (Optional, for SSR)
+
+For server-side rendered sites, e.g. in Next.js, you may want to know the color
+preference of a user upfront so you can avoid rendering the initial color mode
+and then changing it during hydration (so-called `flashing`).
+
+If you don't use SSR or don't care about this, you don't need to pass anything.
+Chakra UI will use `localStorageManager` by default.
+
+Here's how to do this in Next.js 9.3 or newer:
+
+1. Create a reusable wrapper as demonstrated in the examples:
+
+```jsx live=false
+// e.g. src/Chakra.js
+// a) import `ChakraProvider` component as well as the storageManagers
+import {
+  ChakraProvider,
+  cookieStorageManagerSSR,
+  localStorageManager,
+} from '@chakra-ui/react'
+
+export function Chakra({ cookies, children }) {
+  // b) Pass `colorModeManager` prop
+  const colorModeManager =
+    typeof cookies === 'string'
+      ? cookieStorageManagerSSR(cookies)
+      : localStorageManager
+
+  return (
+    <ChakraProvider colorModeManager={colorModeManager}>
+      {children}
+    </ChakraProvider>
+  )
+}
+
+// also export a reusable function getServerSideProps
+export function getServerSideProps({ req }) {
+  return {
+    props: {
+      // first time users will not have any cookies and you may not return
+      // undefined here, hence ?? is necessary
+      cookies: req.headers.cookie ?? '',
+    },
+  }
+}
+```
+
+2. Import your wrapper component setting up Chakra UI:
+
+```jsx live=false
+// setup your wrapper in the _app file (e.g: pages/_app.js)
+import { Chakra } from "../src/Chakra";
+
+export default function App({ Component, pageProps }) {
+  return (
+    <Chakra cookies={pageProps.cookies}>
+      <Component {...pageProps} />
+    </Chakra>
+  );
+}
+
+// e.g pages/index.js
+export default function Index() {
+  return <h1>Example</h1>;
+}
+
+// re-export the reusable `getServerSideProps` function
+export { getServerSideProps } from "./Chakra";
+```
+
+> If you need to know the name of the Chakra cookie for specific reasons, it's
+> `chakra-ui-color-mode`. Also, if you use `colorModeManager`, you can avoid
+> adding the `<ColorModeScript />` to `_document.js`.
+
+> **Important:** if you're using `Next.js 9.3` or newer, the Next.js team
+> recommends avoiding `getInitialProps`. The following example is for Next 9.2
+> or older!
+
+```jsx live=false
+// pages/_app.js
+import {
+  ChakraProvider,
+  cookieStorageManagerSSR,
+  localStorageManager,
+} from '@chakra-ui/react'
+
+export default function App({ cookies }) {
+  // 2. Pass `colorModeManager` prop - it finds the relevant cookie on its own
+  return (
+    <ChakraProvider
+      colorModeManager={
+        typeof cookies === 'string'
+          ? cookieStorageManagerSSR(cookies)
+          : localStorageManager
+      }
+    >
+      <h1>Example</h1>
+    </ChakraProvider>
+  )
+}
+
+App.getInitialProps = ({ req }) => {
+  return {
+    // first time users will not have any cookies and you may not return
+    // undefined here, hence ?? is necessary
+    cookies: req.headers.cookie ?? '',
+  }
+}
+```
+
+## Color Mode Flash Issue
+
+In some cases, when you switch to dark mode and refresh the page, you might
+experience a quick flash of light mode before it switches correctly.
+
+This is a known issue and we're looking to fix it. If you have some ideas, feel
+free to share with us on Discord or GitHub.

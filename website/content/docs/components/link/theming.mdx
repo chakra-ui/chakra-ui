@@ -1,0 +1,157 @@
+---
+id: link
+scope: theming
+---
+
+The `Link` component is a single part component. All of the styling is applied
+directly to the `anchor` element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page.
+
+## Theming properties
+
+The properties that affect the theming of the `Link` component are:
+
+- `variant`: The visual variant of the Link component.
+- `colorScheme`: The color scheme of the Link component.
+- `size`: The size of the Link component.
+
+> Note: Theming properties for Link component are not implemented in the default
+> theme. You can
+> [extend the theme](/docs/styled-system/customize-theme#customizing-component-styles)
+> to implement them.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Adding a custom size
+
+Let's assume we want to include an extra large link size. Here's how we can do
+that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const xl = defineStyle({
+  fontSize: 'xl',
+})
+
+export const linkTheme = defineStyleConfig({
+  sizes: { xl },
+})
+
+// Now we can use the new `xl` size
+<Link size="xl">...</Link>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a custom branded variant. Here's how we can do
+that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const brandPrimary = defineStyle({
+  textDecoration: 'underline',
+  color: 'white',
+  fontFamily: 'serif',
+  fontWeight: 'normal',
+
+  // let's also provide dark mode alternatives
+  _dark: {
+    color: 'orange.800',
+  }
+})
+
+export const linkTheme = defineStyleConfig({
+  variants: { brandPrimary },
+})
+
+// Now we can use the new `brandPrimary` variant
+<Link variant="brandPrimary">...</Link>
+```
+
+## Using a custom color scheme
+
+Let's assume we want to use our own custom color scale based on our brand. We'd
+need to define the color scale first in the main theme file:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+
+export const theme = extendTheme({
+  colors: {
+    brand: {
+      50: '#f7fafc',
+      ...
+      500: '#718096',
+      ...
+      900: '#171923',
+    }
+  }
+})
+```
+
+Then, we can use the custom color scale as the color scheme for the Link
+component:
+
+```jsx live=false
+<Link colorScheme='brand'>...</Link>
+```
+
+## Setting default properties
+
+Let's assume that we want to set the default size, variant or color scheme of
+every link in our app. Here's how we can do that:
+
+```jsx live=false
+import { defineStyleConfig } from '@chakra-ui/react'
+
+export const linkTheme = defineStyleConfig({
+  defaultProps: {
+    size: 'xl',
+    variant: 'brandPrimary',
+    colorScheme: 'brand',
+  },
+})
+
+// This saves you time, instead of manually setting the size,
+// variant and color scheme every time you use a Link component:
+<Link size="xl" variant="brandPrimary" colorScheme="brand">...</Link>
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  LinkTheme,
+} from 'configs/sandpack-contents/component-theming/link'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Link.ts': LinkTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

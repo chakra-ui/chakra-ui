@@ -1,0 +1,77 @@
+---
+title: Version 2.3.5
+description:
+  Explore the changelog for Chakra UI version 2.3.5. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6723
+releaseDate: October 3, 2022
+version: 2.3.5
+---
+
+## Minor Changes
+
+### Tooltip `2.2.0`
+
+- Added `closeOnScroll` prop to allow closing tooltip when the page or overflow
+  container scrolls.
+
+### Modal `2.2.1`
+
+- Added `containerProps` to drawer component
+
+## Patch Changes
+
+- Declare package exports
+- Fixed unmet `@chakra-ui/styled-system` dependency issue
+
+### Accordion `2.1.1`
+
+- Fixed `allowMultiple` warning condition
+
+### Avatar `2.1.1`
+
+- Remove background from avatar when the image has loaded. This helps to prevent
+  browser inconsistencies.
+
+### Breadcrumb `2.0.10`
+
+- Ensure breadcrumb items are vertically aligned
+
+### NumberInput `2.0.12`
+
+- Fixed number input e character
+
+### Slider `2.0.12`
+
+- Fixed issues with slider state updates
+
+### Styled System `2.3.4`
+
+- Added `[disabled]` selector on top of `:disabled`
+
+### Theme `2.1.13`
+
+- Fixed number input disabled style
+- Ensure breadcrumb items are vertically aligned
+- Remove background from avatar when the image has loaded. This helps to prevent
+  browser inconsistencies
+
+### UseLatestRef `2.0.2`
+
+- Added `useLatestRef` hook
+
+### UsePanEvent `2.0.5`
+
+- Refactored `usePanEvent` to account for the correct dependency list changes
+
+### DOM Utilities `2.0.3`
+
+- Added `[disabled]` attribute selector
+
+### Storybook Addon `4.0.12`
+
+- Allow setting the storybook chakra theme via a callback function, with access
+  to the context
+
+- Allow `getThemingArgTypes` to return args when `colorScheme` is not supported
+  by component
