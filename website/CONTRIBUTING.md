@@ -50,6 +50,8 @@ cd chakra-ui-docs
 
 **`pnpm lint`**: runs the nextjs linter which checks for code issues.
 
+**`pnpm website dev`**: runs the docsite in development mode.
+
 **`pnpm avatars:gen`**: regenerates the avatars
 
 **`pnpm members:gen`**: regenerates the members

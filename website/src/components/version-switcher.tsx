@@ -1,11 +1,11 @@
 import { Select, SelectProps } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import packageJSON from 'package.json'
+import packageJSON from '@chakra-ui/react/package.json'
 
 function VersionSwitcher(props: SelectProps) {
   const router = useRouter()
 
-  const currentVerion = `v${packageJSON.dependencies['@chakra-ui/react']}`
+  const currentVerion = `v${packageJSON.version}`
 
   const versions = [
     {
