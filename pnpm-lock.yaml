@@ -139,8 +139,8 @@ importers:
         specifier: 6.18.1
         version: 6.18.1(eslint@8.56.0)(typescript@5.1.6)
       dotenv:
-        specifier: 16.3.1
-        version: 16.3.1
+        specifier: 16.4.1
+        version: 16.4.1
       edit-json-file:
         specifier: 1.7.0
         version: 1.7.0
@@ -11369,6 +11369,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
@@ -12211,8 +12212,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /dotenv@16.3.1:
-    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+  /dotenv@16.4.1:
+    resolution: {integrity: sha512-CjA3y+Dr3FyFDOAMnxZEGtnW9KBR2M0JvvUtXNW+dYJL5ROWxP9DUHCwgFqpMk0OXCc0ljhaNTr2w/kutYIcHQ==}
     engines: {node: '>=12'}
 
   /dotenv@7.0.0:
@@ -17125,7 +17126,7 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       app-root-dir: 1.0.2
-      dotenv: 16.3.1
+      dotenv: 16.4.1
       dotenv-expand: 10.0.0
 
   /leven@3.1.0:
