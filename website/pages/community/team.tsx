@@ -8,7 +8,6 @@ import {
   Stack,
   Text,
   VisuallyHidden,
-  VStack,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react'
@@ -16,7 +15,6 @@ import fs from 'fs'
 import MDXLayout from 'layouts/mdx'
 import NextImage from 'next/image'
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from 'react-icons/io'
-import { IFormerMember } from 'scripts/get-former-members'
 import { Contributor, Member as IMember } from 'src/types/github'
 import { t } from 'utils/i18n'
 
@@ -88,36 +86,12 @@ function Member(props: { member: IMember }) {
   )
 }
 
-function FormerMember({ formerMember }: { formerMember: IFormerMember }) {
-  return (
-    <VStack spacing={2}>
-      <Circle overflow='hidden' bg='gray.50'>
-        <NextImage
-          src={`https://github.com/${formerMember.githubName}.png`}
-          width='96'
-          height='96'
-          alt={formerMember.name}
-        />
-      </Circle>
-      <Text
-        as='a'
-        href={`https://github.com/${formerMember.githubName}`}
-        fontSize='md'
-        textAlign='center'
-      >
-        {formerMember.name}
-      </Text>
-    </VStack>
-  )
-}
-
 interface TeamProps {
   members: IMember[]
-  formerMembers: IFormerMember[]
   contributors: Contributor[]
 }
 
-function Team({ members, formerMembers, contributors }: TeamProps) {
+function Team({ members, contributors }: TeamProps) {
   const memberLogins = members.map(({ login }) => login)
   const contributorsWithoutTeam = contributors.filter(
     ({ login }) => !memberLogins.includes(login),
@@ -142,26 +116,6 @@ function Team({ members, formerMembers, contributors }: TeamProps) {
             <Member key={member.login} member={member} />
           ))}
         </SimpleGrid>
-
-        {formerMembers && (
-          <Stack spacing='8' pt='4'>
-            <Text textStyle='caps' textTransform='uppercase' opacity='0.7'>
-              {t('team.former-members')}
-            </Text>
-            <SimpleGrid columns={[2, 2, 6]} spacing='40px'>
-              {formerMembers.map(
-                (member) =>
-                  member.name &&
-                  member.githubName && (
-                    <FormerMember
-                      key={member.githubName}
-                      formerMember={member}
-                    />
-                  ),
-              )}
-            </SimpleGrid>
-          </Stack>
-        )}
       </Stack>
 
       <Stack py='12' spacing={8}>
@@ -226,14 +180,6 @@ export async function getStaticProps() {
   const { members } = JSON.parse(fs.readFileSync('.all-membersrc', 'utf-8'))
 
   /**
-   * Read former members from `.all-former-membersrc` file
-   * to avoid overfetching from Github
-   */
-  const formerMembers = JSON.parse(
-    fs.readFileSync('.all-former-membersrc', 'utf-8'),
-  )
-
-  /**
    * Read contributors from `.all-contributorsrc` file
    * to avoid overfetching from Github
    */
@@ -244,7 +190,6 @@ export async function getStaticProps() {
   return {
     props: {
       members,
-      formerMembers,
       contributors,
     },
   }

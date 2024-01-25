@@ -3,7 +3,8 @@
   "version": "2.1.6",
   "scripts": {
     "dev": "next",
-    "build": "pnpm search-meta:gen && next build",
+    "prebuild": "pnpm search-meta:gen && pnpm props:docs",
+    "build": "next build",
     "lint": "next lint",
     "gen:theme-typings": "chakra-cli tokens theme.ts",
     "avatars:gen": "tsx scripts/avatars.ts",
@@ -13,9 +14,7 @@
     "contributing:gen": "tsx scripts/build-contributing-page.ts",
     "start": "next start",
     "cache:clean": "rm -rf .next .contentlayer",
-    "clean": "rm -rf pnpm-lock.yaml node_modules",
-    "reinstall": "pnpm clean && pnpm i",
-    "deps": "pnpm up '@chakra-ui/*' --latest",
+    "props:docs": "pnpm --filter=*props-docs build",
     "create:docs": "plop component",
     "content": "contentlayer build --clearCache"
   },
