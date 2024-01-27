@@ -87,18 +87,20 @@ Next, you need to update your `_app.js` to include the font styles.
 import { fonts } from '../lib/fonts'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  ;<>
-    <style jsx global>
-      {`
-        :root {
-          --font-rubik: ${fonts.rubik.style.fontFamily};
-        }
-      `}
-    </style>
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  </>
+  return (
+    <>
+      <style jsx global>
+        {`
+          :root {
+            --font-rubik: ${fonts.rubik.style.fontFamily};
+          }
+        `}
+      </style>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
+  );
 }
 ```
 
