@@ -33,7 +33,7 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.9.3",
     "@octokit/rest": "^19.0.5",
-    "contentlayer": "0.3.0",
+    "contentlayer": "0.3.4",
     "date-fns": "^2.28.0",
     "docsearch.js": "^2.6.3",
     "focus-visible": "5.2.0",
