@@ -557,8 +557,8 @@ importers:
         specifier: ^2.11.8
         version: 2.11.8
       '@zag-js/focus-visible':
-        specifier: ^0.31.1
-        version: 0.31.1
+        specifier: ^0.34.0
+        version: 0.34.0
       aria-hidden:
         specifier: ^1.2.3
         version: 1.2.3
@@ -627,8 +627,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@zag-js/element-size':
-        specifier: 0.31.1
-        version: 0.31.1
+        specifier: 0.34.0
+        version: 0.34.0
       copy-to-clipboard:
         specifier: 3.3.3
         version: 3.3.3
@@ -11596,18 +11596,18 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@zag-js/dom-query@0.31.1:
-    resolution: {integrity: sha512-oiuohEXAXhBxpzzNm9k2VHGEOLC1SXlXSbRPcfBZ9so5NRQUA++zCE7cyQJqGLTZR0t3itFLlZqDbYEXRrefwg==}
+  /@zag-js/dom-query@0.34.0:
+    resolution: {integrity: sha512-cgCzqnCMjlZzVs+Zz+oHx43MpVRjolnHnxpYmGnB1oduSw0pV0XBK1x7S0Tbb+DoIrOQ5gik5zQxlQMOxTA6Kg==}
     dev: false
 
-  /@zag-js/element-size@0.31.1:
-    resolution: {integrity: sha512-4T3yvn5NqqAjhlP326Fv+w9RqMIBbNN9H72g5q2ohwzhSgSfZzrKtjL4rs9axY/cw9UfMfXjRjEE98e5CMq7WQ==}
+  /@zag-js/element-size@0.34.0:
+    resolution: {integrity: sha512-zr+7VAuKpBKMMYmdaMFzjN/Jut2eQV2bRORJmrwHra1dS59j9TiZH2kjNxD1bc3c6fC5uXOWbv7fA3OvXLgK6w==}
     dev: false
 
-  /@zag-js/focus-visible@0.31.1:
-    resolution: {integrity: sha512-dbLksz7FEwyFoANbpIlNnd3bVm0clQSUsnP8yUVQucStZPsuWjCrhL2jlAbGNrTrahX96ntUMXHb/sM68TibFg==}
+  /@zag-js/focus-visible@0.34.0:
+    resolution: {integrity: sha512-K51Q53MEcYZT646tf9sRd5B4Yt51lI3TC4u8xwtoADfEpBZmxuDH1gJBffFPNjYzzQjcvjnAsZBrlQClBBJ/gQ==}
     dependencies:
-      '@zag-js/dom-query': 0.31.1
+      '@zag-js/dom-query': 0.34.0
     dev: false
 
   /@zkochan/js-yaml@0.0.6:

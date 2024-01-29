@@ -42,7 +42,7 @@
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",
-    "@zag-js/focus-visible": "^0.31.1",
+    "@zag-js/focus-visible": "^0.34.0",
     "aria-hidden": "^1.2.3",
     "react-fast-compare": "3.2.2",
     "react-focus-lock": "^2.9.6",
