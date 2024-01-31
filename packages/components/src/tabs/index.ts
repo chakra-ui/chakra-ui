@@ -11,7 +11,6 @@ export type { TabPanelsProps } from "./tab-panels"
 export { Tabs, useTabsStyles } from "./tabs"
 export type { TabsProps } from "./tabs"
 export {
-  TabsDescendantsProvider,
   TabsProvider,
   useTab,
   useTabIndicator,
@@ -20,9 +19,6 @@ export {
   useTabPanels,
   useTabs,
   useTabsContext,
-  useTabsDescendant,
-  useTabsDescendants,
-  useTabsDescendantsContext,
 } from "./use-tabs"
 export type {
   UseTabListProps,

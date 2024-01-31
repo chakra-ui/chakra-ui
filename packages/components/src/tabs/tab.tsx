@@ -4,7 +4,9 @@ import { cx } from "@chakra-ui/utils/cx"
 import { useTabsStyles } from "./tabs"
 import { UseTabOptions, useTab } from "./use-tabs"
 
-export interface TabProps extends UseTabOptions, HTMLChakraProps<"button"> {}
+export interface TabProps
+  extends UseTabOptions,
+    Omit<HTMLChakraProps<"button">, "value"> {}
 
 /**
  * Tab button used to activate a specific tab panel. It renders a `button`,

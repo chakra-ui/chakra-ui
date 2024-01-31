@@ -6,7 +6,7 @@ import { warn } from "@chakra-ui/utils/warn"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useId, useRef, useState } from "react"
 
-type AccordionValue<T extends boolean | undefined> = T extends undefined
+export type AccordionValue<T extends boolean | undefined> = T extends undefined
   ? string
   : T extends true
   ? string[]
