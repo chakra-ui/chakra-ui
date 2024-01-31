@@ -123,9 +123,12 @@ export async function createThemeTypingsInterface(
 
   const typingContent = `${printUnionMap(
     { ...unions, textStyles, layerStyles, colorSchemes },
-    strictTokenTypes,
+    (targetKey) => (targetKey === "conditions" ? true : strictTokenTypes),
   )}
+
   ${printComponentTypes(componentTypes, strictComponentTypes)}`
+
   const themeTypings = applyThemeTypingTemplate(typingContent, template)
+
   return format ? formatWithPrettier(themeTypings) : themeTypings
 }

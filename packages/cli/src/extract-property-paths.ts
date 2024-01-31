@@ -7,13 +7,14 @@ import { printUnionType } from "./utils/print-union-type.js"
  */
 export function printUnionMap(
   unions: Record<string, string[]>,
-  strict = false,
+  strict: boolean | ((targetKey: string) => boolean) = false,
 ) {
   return Object.entries(unions)
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(
-      ([targetKey, union]) => `${targetKey}: ${printUnionType(union, strict)};`,
-    )
+    .map(([targetKey, union]) => {
+      const isStrict = typeof strict === "function" ? strict(targetKey) : strict
+      return `${targetKey}: ${printUnionType(union, isStrict)};`
+    })
     .join("\n")
 }
 
