@@ -174,7 +174,7 @@ export function useTabList<P extends UseTabListProps>(props: P) {
       }
       const prevTab = () => {
         const prev = prevById(allTabNodes(), makeTabId(id, focusedValue), true)
-        if (prev) prev.node?.focus()
+        if (prev) prev?.focus()
       }
       const firstTab = () => {
         const first = tabListRef.current?.querySelector<HTMLDivElement>(
