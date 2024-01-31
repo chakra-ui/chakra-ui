@@ -21,6 +21,7 @@ const style: React.CSSProperties = {
 
 function Input(props: any) {
   const inputProps = usePinInputField(props)
+  console.log(inputProps)
   return <input {...inputProps} />
 }
 
@@ -33,10 +34,12 @@ export function HookExample() {
   })
   return (
     <PinInputProvider value={context}>
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
-      <Input style={style} />
+      <div ref={context.containerRef} id={context.id}>
+        <Input style={style} index="0" />
+        <Input style={style} index="1" />
+        <Input style={style} index="2" />
+        <Input style={style} index="3" />
+      </div>
     </PinInputProvider>
   )
 }
@@ -76,6 +79,16 @@ export const Controlled = () => {
 
   return (
     <PinInput value={value} onChange={handleChange} onComplete={handleComplete}>
+      <PinInputField />
+      <PinInputField />
+      <PinInputField />
+    </PinInput>
+  )
+}
+
+export function AutoFocus() {
+  return (
+    <PinInput autoFocus>
       <PinInputField />
       <PinInputField />
       <PinInputField />

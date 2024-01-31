@@ -246,7 +246,6 @@ export function usePinInput(props: UsePinInputProps = {}) {
               .filter((_, index) => index < allItems.length)
 
             setValues(nextValue)
-
             // if pasting fills the entire input fields, trigger `onComplete`
             if (nextValue.length === allItems.length) {
               onComplete?.(nextValue.join(""))

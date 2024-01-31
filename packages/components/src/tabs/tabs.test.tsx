@@ -3,7 +3,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from "."
 
 test("should no accessibility issues", async () => {
   await testA11y(
-    <Tabs value="1">
+    <Tabs defaultValue="1">
       <TabList>
         <Tab value="1">Tab 1</Tab>
         <Tab value="2">Tab 2</Tab>
@@ -26,7 +26,7 @@ test("should no accessibility issues", async () => {
 
 test("selects the correct tab with keyboard navigation", async () => {
   const { user } = render(
-    <Tabs value="1">
+    <Tabs defaultValue="1">
       <TabList>
         <Tab value="1">Tab 1</Tab>
         <Tab value="2">Tab 2</Tab>
@@ -92,7 +92,7 @@ test("selects the correct tab with keyboard navigation", async () => {
 
 test("focuses the correct tab with manual keyboard navigation", async () => {
   const { user } = render(
-    <Tabs value="1" isManual>
+    <Tabs defaultValue="1" isManual>
       <TabList>
         <Tab value="1">Tab 1</Tab>
         <Tab value="2">Tab 2</Tab>
@@ -136,7 +136,7 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
 
 test("renders only the currently active tab panel if isLazy", async () => {
   const { user } = render(
-    <Tabs value="1" isLazy>
+    <Tabs defaultValue="1" isLazy>
       <TabList>
         <Tab value="1">Tab 1</Tab>
         <Tab value="2">Tab 2</Tab>
@@ -163,7 +163,7 @@ test("renders only the currently active tab panel if isLazy", async () => {
 
 test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", async () => {
   const { user } = render(
-    <Tabs value="1" isLazy lazyBehavior="keepMounted">
+    <Tabs defaultValue="1" isLazy lazyBehavior="keepMounted">
       <TabList>
         <Tab value="1">Tab 1</Tab>
         <Tab value="2">Tab 2</Tab>

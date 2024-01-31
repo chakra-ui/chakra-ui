@@ -165,7 +165,7 @@ export const withIndicatorAndLongTabText = () => (
 )
 
 export const withVerticalTabs = () => (
-  <Tabs defaultValue="" orientation="vertical">
+  <Tabs defaultValue="settings" orientation="vertical">
     <TabList>
       <Tab value="settings">Settings</Tab>
       <Tab value="billing">Billing</Tab>
