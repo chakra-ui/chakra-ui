@@ -310,17 +310,6 @@
         "default": "./dist/cjs/css-reset/index.cjs"
       }
     },
-    "./descendant": {
-      "source": "./src/descendant/index.ts",
-      "import": {
-        "types": "./dist/types/descendant/index.d.mts",
-        "default": "./dist/esm/descendant/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/descendant/index.d.ts",
-        "default": "./dist/cjs/descendant/index.cjs"
-      }
-    },
     "./divider": {
       "source": "./src/divider/index.ts",
       "import": {

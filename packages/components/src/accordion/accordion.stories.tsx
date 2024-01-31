@@ -8,7 +8,6 @@ import {
   AccordionPanel,
 } from "."
 import { Button } from "../button"
-import { Box, Container } from "../layout"
 import {
   Drawer,
   DrawerBody,
@@ -19,6 +18,8 @@ import {
   DrawerOverlay,
 } from "../modal"
 import { chakra } from "../system"
+import { Container } from "../container"
+import { Box } from "../box"
 
 export default {
   title: "Components / Disclosure / Accordion",

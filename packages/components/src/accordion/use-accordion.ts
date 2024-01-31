@@ -16,7 +16,7 @@ type AccordionValue<T extends boolean | undefined> = T extends undefined
  * useAccordion - The root react hook that manages all accordion items
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseAccordionProps<Multiple extends boolean = boolean> {
+export interface UseAccordionProps<Multiple extends boolean> {
   /**
    * If `true`, multiple accordion items can be expanded at once.
    *
@@ -53,7 +53,9 @@ export interface UseAccordionProps<Multiple extends boolean = boolean> {
  *
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
-export function useAccordion(props: UseAccordionProps) {
+export function useAccordion<Multiple extends boolean>(
+  props: UseAccordionProps<Multiple>,
+) {
   const {
     onChange,
     defaultValue,
@@ -337,7 +339,9 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
  * Validate accordion and accordion item props, and emit warnings.
  * -----------------------------------------------------------------------------------------------*/
 
-function allowMultipleWarning(props: UseAccordionProps) {
+function allowMultipleWarning<Multiple extends boolean>(
+  props: UseAccordionProps<Multiple>,
+) {
   const value = props.value || props.defaultValue
   const condition =
     value != null && !Array.isArray(value) && props.allowMultiple
@@ -348,7 +352,9 @@ function allowMultipleWarning(props: UseAccordionProps) {
   })
 }
 
-function allowMultipleAndAllowToggleWarning(props: UseAccordionProps) {
+function allowMultipleAndAllowToggleWarning<Multiple extends boolean>(
+  props: UseAccordionProps<Multiple>,
+) {
   warn({
     condition: !!(props.allowMultiple && props.allowToggle),
     message: `If 'allowMultiple' is passed, 'allowToggle' will be ignored. Either remove 'allowToggle' or 'allowMultiple' depending on whether you want multiple accordions visible or not`,

@@ -6,6 +6,7 @@ import {
   useMultiStyleConfig,
 } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
+import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useMemo } from "react"
 import { AccordionStylesProvider } from "./accordion-context"
 import {
@@ -16,7 +17,7 @@ import {
 
 export interface AccordionProps<Multiple extends boolean>
   extends UseAccordionProps<Multiple>,
-    Omit<HTMLChakraProps<"div">, keyof UseAccordionProps>,
+    Omit<HTMLChakraProps<"div">, keyof UseAccordionProps<Multiple>>,
     ThemingProps<"Accordion"> {
   /**
    * If `true`, height animation and transitions will be disabled.
@@ -34,10 +35,8 @@ export interface AccordionProps<Multiple extends boolean>
  * @see Docs https://chakra-ui.com/accordion
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
-export const Accordion = forwardRef(function Accordion<
-  Multiple extends boolean,
->(
-  { children, reduceMotion, ...props }: AccordionProps<Multiple>,
+export const Accordion = forwardRef(function Accordion(
+  { children, reduceMotion, ...props },
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
   const styles = useMultiStyleConfig("Accordion", props)
@@ -64,6 +63,8 @@ export const Accordion = forwardRef(function Accordion<
       </AccordionStylesProvider>
     </AccordionProvider>
   )
-})
+}) as (<Multiple extends boolean = false>(
+  props: AccordionProps<Multiple> & { ref?: React.Ref<HTMLDivElement> },
+) => JSX.Element) & { displayName?: string }
 
 Accordion.displayName = "Accordion"
