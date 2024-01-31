@@ -7,12 +7,7 @@ import { useMultiStyleConfig, useTheme } from "../system"
 import { createContext } from "@chakra-ui/utils/context"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { useMemo } from "react"
-import {
-  MenuDescendantsProvider,
-  MenuProvider,
-  useMenu,
-  UseMenuProps,
-} from "./use-menu"
+import { MenuProvider, useMenu, UseMenuProps } from "./use-menu"
 
 const [MenuStylesProvider, useMenuStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -45,19 +40,17 @@ export const Menu: React.FC<MenuProps> = (props) => {
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
   const { direction } = useTheme()
-  const { descendants, ...ctx } = useMenu({ ...ownProps, direction })
+  const ctx = useMenu({ ...ownProps, direction })
   const context = useMemo(() => ctx, [ctx])
 
   const { isOpen, onClose, forceUpdate } = context
 
   return (
-    <MenuDescendantsProvider value={descendants}>
-      <MenuProvider value={context}>
-        <MenuStylesProvider value={styles}>
-          {runIfFn(children, { isOpen, onClose, forceUpdate })}
-        </MenuStylesProvider>
-      </MenuProvider>
-    </MenuDescendantsProvider>
+    <MenuProvider value={context}>
+      <MenuStylesProvider value={styles}>
+        {runIfFn(children, { isOpen, onClose, forceUpdate })}
+      </MenuStylesProvider>
+    </MenuProvider>
   )
 }
 

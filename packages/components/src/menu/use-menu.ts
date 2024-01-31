@@ -13,8 +13,8 @@ import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { getValidChildren } from "@chakra-ui/utils/children"
 import { createContext } from "@chakra-ui/utils/context"
 import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
+import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useClickable } from "../clickable"
-import { createDescendantContext } from "../descendant"
 import { usePopper, UsePopperProps } from "../popper"
 import {
   cloneElement,
@@ -27,17 +27,6 @@ import {
 } from "react"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
 import { useShortcut } from "./use-shortcut"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track descendants and their indices
- * -----------------------------------------------------------------------------------------------*/
-
-export const [
-  MenuDescendantsProvider,
-  useMenuDescendantsContext,
-  useMenuDescendants,
-  useMenuDescendant,
-] = createDescendantContext<HTMLElement>()
 
 /* -------------------------------------------------------------------------------------------------
  * Create context to track menu state and logic
@@ -166,11 +155,6 @@ export function useMenu(props: UseMenuProps = {}) {
   const menuRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  /**
-   * Context to register all menu item nodes
-   */
-  const descendants = useMenuDescendants()
-
   const focusMenu = useCallback(() => {
     requestAnimationFrame(() => {
       menuRef.current?.focus({ preventScroll: false })
@@ -182,20 +166,24 @@ export function useMenu(props: UseMenuProps = {}) {
       if (initialFocusRef) {
         initialFocusRef.current?.focus()
       } else {
-        const first = descendants.firstEnabled()
-        if (first) setFocusedIndex(first.index)
+        const first = menuRef.current?.querySelector(
+          '[role="menuitem"]:first-of-type:not([disabled])',
+        )
+        if (first) setFocusedId(first.getAttribute("id"))
       }
     })
     timeoutIds.current.add(id)
-  }, [descendants, initialFocusRef])
+  }, [initialFocusRef])
 
   const focusLastItem = useCallback(() => {
     const id = setTimeout(() => {
-      const last = descendants.lastEnabled()
-      if (last) setFocusedIndex(last.index)
+      const last = menuRef.current?.querySelector<HTMLElement>(
+        '[role="menuitem"]:last-of-type:not([disabled])',
+      )
+      if (last) setFocusedId(last.getAttribute("id"))
     })
     timeoutIds.current.add(id)
-  }, [descendants])
+  }, [])
 
   const onOpenInternal = useCallback(() => {
     onOpenProp?.()
@@ -234,6 +222,7 @@ export function useMenu(props: UseMenuProps = {}) {
   })
 
   const [focusedIndex, setFocusedIndex] = useState(-1)
+  const [focusedId, setFocusedId] = useState<string | null>(null)
 
   /**
    * Focus the button when we close the menu
@@ -241,6 +230,7 @@ export function useMenu(props: UseMenuProps = {}) {
   useUpdateEffect(() => {
     if (!isOpen) {
       setFocusedIndex(-1)
+      setFocusedId(null)
     }
   }, [isOpen])
 
@@ -290,9 +280,11 @@ export function useMenu(props: UseMenuProps = {}) {
 
     if (!shouldRefocus) return
 
-    const node = descendants.item(focusedIndex)?.node
+    const node = menuRef.current?.querySelector<HTMLElement>(
+      `[role=menuitem][id="${focusedId}"]`,
+    )
     node?.focus({ preventScroll: true })
-  }, [isOpen, focusedIndex, descendants])
+  }, [isOpen, focusedId])
 
   /**
    * Track the animation frame which is scheduled to focus
@@ -308,7 +300,6 @@ export function useMenu(props: UseMenuProps = {}) {
     openAndFocusLastItem,
     onTransitionEnd: refocus,
     unstable__animationState: animationState,
-    descendants,
     popper,
     buttonId,
     menuId,
@@ -321,10 +312,12 @@ export function useMenu(props: UseMenuProps = {}) {
     menuRef,
     buttonRef,
     focusedIndex,
+    focusedId,
     closeOnSelect,
     closeOnBlur,
     autoSelect,
     setFocusedIndex,
+    setFocusedId,
     isLazy,
     lazyBehavior,
     initialFocusRef,
@@ -396,6 +389,10 @@ function isTargetMenuItem(target: EventTarget | null) {
   )
 }
 
+function queryAllMenuItems(root: HTMLElement | null) {
+  return queryAll(root, `[role='menuitem']:not([disabled])`)
+}
+
 /* -------------------------------------------------------------------------------------------------
  * useMenuList
  * -----------------------------------------------------------------------------------------------*/
@@ -423,8 +420,8 @@ export function useMenuList(
   }
 
   const {
-    focusedIndex,
-    setFocusedIndex,
+    focusedId,
+    setFocusedId,
     menuRef,
     isOpen,
     onClose,
@@ -433,8 +430,6 @@ export function useMenuList(
     lazyBehavior,
     unstable__animationState: animated,
   } = menu
-
-  const descendants = useMenuDescendantsContext()
 
   /**
    * Hook that creates a keydown event handler that listens
@@ -456,12 +451,20 @@ export function useMenuList(
         Tab: (event) => event.preventDefault(),
         Escape: onClose,
         ArrowDown: () => {
-          const next = descendants.nextEnabled(focusedIndex)
-          if (next) setFocusedIndex(next.index)
+          const next = nextById(
+            queryAllMenuItems(menuRef.current),
+            focusedId ?? "",
+            true,
+          )
+          if (next) setFocusedId(next.getAttribute("id"))
         },
         ArrowUp: () => {
-          const prev = descendants.prevEnabled(focusedIndex)
-          if (prev) setFocusedIndex(prev.index)
+          const prev = prevById(
+            queryAllMenuItems(menuRef.current),
+            focusedId ?? "",
+            true,
+          )
+          if (prev) setFocusedId(prev.getAttribute("id"))
         },
       }
 
@@ -479,14 +482,13 @@ export function useMenuList(
        */
       const onTypeahead = createTypeaheadHandler((character) => {
         const nextItem = getNextItemFromSearch(
-          descendants.values(),
+          queryAllMenuItems(menuRef.current),
           character,
-          (item) => item?.node?.textContent ?? "",
-          descendants.item(focusedIndex),
+          (item) => item?.textContent ?? "",
+          menuRef.current?.querySelector(`[role="menuitem"][id=${focusedId}]`),
         )
         if (nextItem) {
-          const index = descendants.indexOf(nextItem.node)
-          setFocusedIndex(index)
+          setFocusedId(nextItem.getAttribute("id"))
         }
       })
 
@@ -494,13 +496,7 @@ export function useMenuList(
         onTypeahead(event)
       }
     },
-    [
-      descendants,
-      focusedIndex,
-      createTypeaheadHandler,
-      onClose,
-      setFocusedIndex,
-    ],
+    [menuRef, focusedId, createTypeaheadHandler, onClose, setFocusedId],
   )
 
   const hasBeenOpened = useRef(false)
@@ -592,8 +588,8 @@ export function useMenuItem(
   const menu = useMenuContext()
 
   const {
-    setFocusedIndex,
-    focusedIndex,
+    focusedId,
+    setFocusedId,
     closeOnSelect: menuCloseOnSelect,
     onClose,
     menuRef,
@@ -605,20 +601,13 @@ export function useMenuItem(
   const ref = useRef<HTMLDivElement>(null)
   const id = `${menuId}-menuitem-${useId()}`
 
-  /**
-   * Register the menuitem's node into the domContext
-   */
-  const { index, register } = useMenuDescendant({
-    disabled: isDisabled && !isFocusable,
-  })
-
   const onMouseEnter = useCallback(
     (event: any) => {
       onMouseEnterProp?.(event)
       if (isDisabled) return
-      setFocusedIndex(index)
+      setFocusedId(id)
     },
-    [setFocusedIndex, index, isDisabled, onMouseEnterProp],
+    [setFocusedId, id, isDisabled, onMouseEnterProp],
   )
 
   const onMouseMove = useCallback(
@@ -635,9 +624,9 @@ export function useMenuItem(
     (event: any) => {
       onMouseLeaveProp?.(event)
       if (isDisabled) return
-      setFocusedIndex(-1)
+      setFocusedId(null)
     },
-    [setFocusedIndex, isDisabled, onMouseLeaveProp],
+    [setFocusedId, isDisabled, onMouseLeaveProp],
   )
 
   const onClick = useCallback(
@@ -658,12 +647,12 @@ export function useMenuItem(
   const onFocus = useCallback(
     (event: React.FocusEvent) => {
       onFocusProp?.(event)
-      setFocusedIndex(index)
+      setFocusedId(id)
     },
-    [setFocusedIndex, onFocusProp, index],
+    [setFocusedId, onFocusProp, id],
   )
 
-  const isFocused = index === focusedIndex
+  const isFocused = id === focusedId
 
   const trulyDisabled = isDisabled && !isFocusable
 
@@ -695,7 +684,7 @@ export function useMenuItem(
     onMouseEnter,
     onMouseMove,
     onMouseLeave,
-    ref: mergeRefs(register, ref, externalRef),
+    ref: mergeRefs(ref, externalRef),
     isDisabled,
     isFocusable,
   })
