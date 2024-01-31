@@ -1,15 +1,15 @@
-import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
-import * as React from "react"
-import { ChangeEvent } from "react"
+import { useDisclosure } from "@chakra-ui/hooks"
+import { ChangeEvent, useEffect, useRef, useState } from "react"
 import {
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Box,
-  Button,
-  Container,
+} from "."
+import { Button } from "../button"
+import { Box, Container } from "../layout"
+import {
   Drawer,
   DrawerBody,
   DrawerCloseButton,
@@ -17,21 +17,14 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  chakra,
-} from ".."
+} from "../modal"
+import { chakra } from "../system"
 
 export default {
   title: "Components / Disclosure / Accordion",
   decorators: [(story: Function) => <Container>{story()}</Container>],
 }
 
-/**
- * By default, only one accordion can be visible
- * at a time, and it can't be toggled.
- *
- * Note 🚨: Each accordion button must be wrapped in a heading tag,
- * that is appropriate for the information architecture of the page.
- */
 export const Basic = () => (
   <Accordion>
     <AccordionItem>
@@ -157,6 +150,46 @@ export const stylingExpanded = () => (
   </Accordion>
 )
 
+export const Controlled = () => {
+  const [value, setValue] = useState<string>("1")
+  return (
+    <Accordion value={value} onChange={setValue}>
+      <AccordionItem value="1">
+        <h2>
+          <AccordionButton>
+            <chakra.div flex="1" textAlign="left">
+              Item 1
+            </chakra.div>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem value="2">
+        <h2>
+          <AccordionButton>
+            <chakra.div flex="1" textAlign="left">
+              Item 2
+            </chakra.div>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+
 const data = [
   { title: "First Item", text: "Some value 1..." },
   { title: "Second Item", text: "Some value 2..." },
@@ -168,12 +201,12 @@ const data = [
 ]
 
 export function WithSearchFilter() {
-  const inputRef = React.useRef<HTMLInputElement>(null)
-  const [displayData, setDisplayData] = React.useState(data)
-  const [filter, setFilter] = React.useState("")
-  const [index, setIndex] = React.useState(-1)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [displayData, setDisplayData] = useState(data)
+  const [filter, setFilter] = useState("")
+  const [value, setValue] = useState<string | undefined>()
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!filter || filter === "") {
       setDisplayData(data)
     }
@@ -184,13 +217,13 @@ export function WithSearchFilter() {
     setDisplayData(filteredData)
   }, [filter])
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputRef.current?.focus()
   }, [displayData])
 
   function onInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
-    setIndex(-1)
+    setValue(undefined)
   }
 
   return (
@@ -206,10 +239,10 @@ export function WithSearchFilter() {
       {displayData.length > 0 && (
         <Accordion
           allowToggle
-          index={index}
-          onChange={(index) => {
-            if (!Array.isArray(index)) {
-              setIndex(index)
+          value={value}
+          onChange={(value) => {
+            if (!Array.isArray(value)) {
+              setValue(value)
             }
           }}
         >
@@ -308,24 +341,24 @@ export const FocusBug = () => {
 
 export const WithDisabledAccordionItem = () => {
   return (
-    <Accordion index={1}>
-      <AccordionItem isDisabled>
+    <Accordion value="1">
+      <AccordionItem value="1" isDisabled>
         <AccordionButton>Button 1</AccordionButton>
         <AccordionPanel>One Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem isDisabled>
+      <AccordionItem value="2" isDisabled>
         <AccordionButton>Button 2</AccordionButton>
         <AccordionPanel>Two Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem>
+      <AccordionItem value="3">
         <AccordionButton>Button 3</AccordionButton>
         <AccordionPanel>Three Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem isDisabled>
+      <AccordionItem value="4" isDisabled>
         <AccordionButton>Button 4</AccordionButton>
         <AccordionPanel>Four Content</AccordionPanel>
       </AccordionItem>
-      <AccordionItem>
+      <AccordionItem value="5">
         <AccordionButton>Button 5</AccordionButton>
         <AccordionPanel>Five Content</AccordionPanel>
       </AccordionItem>
