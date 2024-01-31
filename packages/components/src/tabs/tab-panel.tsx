@@ -3,7 +3,13 @@ import { cx } from "@chakra-ui/utils/cx"
 import { useTabsStyles } from "./tabs"
 import { useTabPanel } from "./use-tabs"
 
-export interface TabPanelProps extends HTMLChakraProps<"div"> {}
+export interface TabPanelProps extends HTMLChakraProps<"div"> {
+  /**
+   * The value of the tab panel. Must be equal to the value of the
+   * corresponding tab.
+   */
+  value: string
+}
 
 /**
  * TabPanel

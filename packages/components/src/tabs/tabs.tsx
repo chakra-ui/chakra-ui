@@ -12,12 +12,7 @@ import {
 import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
-import {
-  TabsDescendantsProvider,
-  TabsProvider,
-  UseTabsProps,
-  useTabs,
-} from "./use-tabs"
+import { TabsProvider, UseTabsProps, useTabs } from "./use-tabs"
 
 const [TabsStylesProvider, useTabsStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -43,7 +38,7 @@ interface TabsOptions {
 export interface TabsProps
   extends UseTabsProps,
     ThemingProps<"Tabs">,
-    Omit<HTMLChakraProps<"div">, "onChange">,
+    Omit<HTMLChakraProps<"div">, "onChange" | "defaultValue">,
     TabsOptions {
   children: React.ReactNode
 }
@@ -60,7 +55,7 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   const styles = useMultiStyleConfig("Tabs", props)
   const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, descendants, ...ctx } = useTabs(rest)
+  const { htmlProps, ...ctx } = useTabs(rest)
   const context = useMemo(() => ctx, [ctx])
 
   const { isFitted: _, ...rootProps } = htmlProps as any
@@ -71,20 +66,18 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
   }
 
   return (
-    <TabsDescendantsProvider value={descendants}>
-      <TabsProvider value={context}>
-        <TabsStylesProvider value={styles}>
-          <chakra.div
-            className={cx("chakra-tabs", className)}
-            ref={ref}
-            {...rootProps}
-            __css={tabsStyles}
-          >
-            {children}
-          </chakra.div>
-        </TabsStylesProvider>
-      </TabsProvider>
-    </TabsDescendantsProvider>
+    <TabsProvider value={context}>
+      <TabsStylesProvider value={styles}>
+        <chakra.div
+          className={cx("chakra-tabs", className)}
+          ref={ref}
+          {...rootProps}
+          __css={tabsStyles}
+        >
+          {children}
+        </chakra.div>
+      </TabsStylesProvider>
+    </TabsProvider>
   )
 })
 

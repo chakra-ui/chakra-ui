@@ -5,7 +5,7 @@ import { useTabsStyles } from "./tabs"
 import { UseTabListProps, useTabList } from "./use-tabs"
 
 export interface TabListProps
-  extends UseTabListProps,
+  extends Omit<UseTabListProps, "ref">,
     Omit<HTMLChakraProps<"div">, "onKeyDown" | "ref"> {}
 
 /**
