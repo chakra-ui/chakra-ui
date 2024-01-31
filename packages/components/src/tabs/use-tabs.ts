@@ -406,9 +406,7 @@ export function useTabIndicator(): React.CSSProperties {
   useSafeLayoutEffect(() => {
     if (selectedValue == null) return
 
-    const tab = document.querySelector<HTMLElement>(
-      `#${makeTabId(id, selectedValue)}`,
-    )
+    const tab = document.getElementById(`${makeTabId(id, selectedValue)}`)
     if (tab == null) return
 
     // Horizontal Tab: Calculate width and left distance
