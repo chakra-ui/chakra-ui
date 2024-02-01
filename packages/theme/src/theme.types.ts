@@ -1,6 +1,6 @@
 import type {
   PartsStyleInterpolation,
-  Pseudos,
+  PseudoKey,
   SemanticValue,
   StyleObjectOrFn,
   SystemStyleInterpolation,
@@ -120,8 +120,9 @@ interface Foundations extends Typography {
 }
 
 export interface ChakraTheme extends Foundations {
+  conditions?: Record<string, string>
   semanticTokens?: Partial<
-    Record<keyof Foundations, Record<string, SemanticValue<keyof Pseudos>>>
+    Record<keyof Foundations, Record<string, SemanticValue<PseudoKey>>>
   >
   components: ThemeComponents
   config: ThemeConfig

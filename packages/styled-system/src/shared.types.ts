@@ -1,4 +1,5 @@
 export interface BaseThemeTypings {
+  conditions: never
   borders: string
   colors: string
   breakpoints: string
