@@ -152,7 +152,7 @@ export const stylingExpanded = () => (
 )
 
 export const Controlled = () => {
-  const [value, setValue] = useState<string>("1")
+  const [value, setValue] = useState(["1"])
   return (
     <Accordion value={value} onChange={setValue}>
       <AccordionItem value="1">
@@ -205,7 +205,7 @@ export function WithSearchFilter() {
   const inputRef = useRef<HTMLInputElement>(null)
   const [displayData, setDisplayData] = useState(data)
   const [filter, setFilter] = useState("")
-  const [value, setValue] = useState<string | undefined>()
+  const [value, setValue] = useState<string[]>([])
 
   useEffect(() => {
     if (!filter || filter === "") {
@@ -224,7 +224,7 @@ export function WithSearchFilter() {
 
   function onInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
-    setValue(undefined)
+    setValue([])
   }
 
   return (
@@ -238,15 +238,7 @@ export function WithSearchFilter() {
         />
       </chakra.div>
       {displayData.length > 0 && (
-        <Accordion
-          allowToggle
-          value={value}
-          onChange={(value) => {
-            if (!Array.isArray(value)) {
-              setValue(value)
-            }
-          }}
-        >
+        <Accordion allowToggle value={value} onChange={setValue}>
           {displayData.map((item, i) => (
             <AccordionItem key={`accordion-item-${i}`}>
               <h2>
@@ -342,7 +334,7 @@ export const FocusBug = () => {
 
 export const WithDisabledAccordionItem = () => {
   return (
-    <Accordion value="1">
+    <Accordion value={["1"]}>
       <AccordionItem value="1" isDisabled>
         <AccordionButton>Button 1</AccordionButton>
         <AccordionPanel>One Content</AccordionPanel>
