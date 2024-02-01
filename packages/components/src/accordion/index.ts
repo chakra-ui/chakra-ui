@@ -20,6 +20,5 @@ export type {
   UseAccordionItemReturn,
   UseAccordionProps,
   UseAccordionReturn,
-  AccordionValue,
 } from "./use-accordion"
 export { useAccordionItemState } from "./use-accordion-item-state"

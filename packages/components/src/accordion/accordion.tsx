@@ -15,9 +15,9 @@ import {
   UseAccordionProps,
 } from "./use-accordion"
 
-export interface AccordionProps<Multiple extends boolean>
-  extends UseAccordionProps<Multiple>,
-    Omit<HTMLChakraProps<"div">, keyof UseAccordionProps<Multiple>>,
+export interface AccordionProps
+  extends UseAccordionProps,
+    Omit<HTMLChakraProps<"div">, keyof UseAccordionProps>,
     ThemingProps<"Accordion"> {
   /**
    * If `true`, height animation and transitions will be disabled.
@@ -35,9 +35,9 @@ export interface AccordionProps<Multiple extends boolean>
  * @see Docs https://chakra-ui.com/accordion
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
-export const Accordion = forwardRef(function Accordion(
+export const Accordion = forwardRef<AccordionProps, "div">(function Accordion(
   { children, reduceMotion, ...props },
-  ref: React.ForwardedRef<HTMLDivElement>,
+  ref,
 ) {
   const styles = useMultiStyleConfig("Accordion", props)
   const ownProps = omitThemingProps(props)
@@ -63,8 +63,6 @@ export const Accordion = forwardRef(function Accordion(
       </AccordionStylesProvider>
     </AccordionProvider>
   )
-}) as (<Multiple extends boolean = false>(
-  props: AccordionProps<Multiple> & { ref?: React.Ref<HTMLDivElement> },
-) => JSX.Element) & { displayName?: string }
+})
 
 Accordion.displayName = "Accordion"

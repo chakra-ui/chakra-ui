@@ -122,6 +122,8 @@ export function useTabs(props: UseTabsProps) {
   const uid = props.id ?? uuid
   const id = `tabs-${uid}`
 
+  const rootRef = useRef<HTMLDivElement>(null)
+
   return {
     id,
     focusedValue,
@@ -134,6 +136,7 @@ export function useTabs(props: UseTabsProps) {
     orientation,
     direction,
     htmlProps,
+    rootRef,
   }
 }
 
@@ -388,7 +391,7 @@ export function useTabPanel(props: Record<string, any>) {
  */
 export function useTabIndicator(): React.CSSProperties {
   const context = useTabsContext()
-  const { selectedValue, orientation, id } = context
+  const { selectedValue, orientation, id, rootRef } = context
 
   const isHorizontal = orientation === "horizontal"
   const isVertical = orientation === "vertical"
@@ -406,7 +409,9 @@ export function useTabIndicator(): React.CSSProperties {
   useSafeLayoutEffect(() => {
     if (selectedValue == null) return
 
-    const tab = document.getElementById(`${makeTabId(id, selectedValue)}`)
+    const tab = rootRef.current?.ownerDocument.getElementById(
+      `${makeTabId(id, selectedValue)}`,
+    )
     if (tab == null) return
 
     // Horizontal Tab: Calculate width and left distance

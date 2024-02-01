@@ -6,23 +6,17 @@ import { warn } from "@chakra-ui/utils/warn"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useId, useRef, useState } from "react"
 
-export type AccordionValue<T extends boolean | undefined> = T extends undefined
-  ? string
-  : T extends true
-  ? string[]
-  : string
-
 /* -------------------------------------------------------------------------------------------------
  * useAccordion - The root react hook that manages all accordion items
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseAccordionProps<Multiple extends boolean> {
+export interface UseAccordionProps {
   /**
    * If `true`, multiple accordion items can be expanded at once.
    *
    * @default false
    */
-  allowMultiple?: Multiple
+  allowMultiple?: boolean
   /**
    * If `true`, any expanded accordion item can be collapsed again.
    *
@@ -32,15 +26,15 @@ export interface UseAccordionProps<Multiple extends boolean> {
   /**
    * The id(s) of the expanded accordion item(s)
    */
-  value?: AccordionValue<Multiple>
+  value?: string[]
   /**
    * The initial id(s) of the expanded accordion item(s)
    */
-  defaultValue?: AccordionValue<Multiple>
+  defaultValue?: string[]
   /**
    * The callback invoked when accordion items are expanded or collapsed.
    */
-  onChange?(value: AccordionValue<Multiple>): void
+  onChange?(value: string[]): void
   /**
    * The id of the accordion
    */
@@ -53,9 +47,7 @@ export interface UseAccordionProps<Multiple extends boolean> {
  *
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
-export function useAccordion<Multiple extends boolean>(
-  props: UseAccordionProps<Multiple>,
-) {
+export function useAccordion(props: UseAccordionProps) {
   const {
     onChange,
     defaultValue,
@@ -74,7 +66,7 @@ export function useAccordion<Multiple extends boolean>(
   const id = `accordion-${idProp ?? reactId}`
 
   /**
-   * This state is used to track the index focused accordion
+   * This state is used to track the focused accordion
    * button when click on the button, tab on the button, or
    * use the down/up arrow to navigate.
    */
@@ -86,13 +78,12 @@ export function useAccordion<Multiple extends boolean>(
    * Hook that manages the controlled and un-controlled state
    * for the accordion.
    */
-  const [value, setValue] = useControllableState<string | string[] | null>({
+  const [value, setValue] = useControllableState<string[]>({
     value: valueProp,
     defaultValue() {
-      if (allowMultiple) return defaultValue ?? []
-      return defaultValue ?? null
+      return defaultValue ?? []
     },
-    onChange: onChange as any,
+    onChange,
   })
 
   /**
@@ -104,27 +95,23 @@ export function useAccordion<Multiple extends boolean>(
   const getAccordionItemProps = (itemValue: string | null) => {
     let isOpen = false
 
-    if (itemValue !== null) {
-      isOpen = Array.isArray(value)
-        ? value.includes(itemValue)
-        : value === itemValue
+    if (itemValue) {
+      isOpen = value.includes(itemValue)
     }
 
     const onChange = (isOpen: boolean) => {
       if (itemValue === null) return
 
-      if (allowMultiple && Array.isArray(value)) {
-        //
+      if (allowMultiple) {
         const nextState = isOpen
           ? value.concat(itemValue)
           : value.filter((i) => i !== itemValue)
 
         setValue(nextState)
-        //
       } else if (isOpen) {
-        setValue(itemValue)
+        setValue([itemValue])
       } else if (allowToggle) {
-        setValue(null)
+        setValue([])
       }
     }
 
@@ -192,7 +179,7 @@ function getAllItems(root: HTMLElement | null) {
   return queryAll(root, "[aria-controls]:not([disabled])")
 }
 
-function makeId(type: string, id: string, value?: string) {
+function makeId(type: string, id: string, value: string) {
   return `accordion-${type}-${id}-${value}`
 }
 
@@ -339,9 +326,7 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
  * Validate accordion and accordion item props, and emit warnings.
  * -----------------------------------------------------------------------------------------------*/
 
-function allowMultipleWarning<Multiple extends boolean>(
-  props: UseAccordionProps<Multiple>,
-) {
+function allowMultipleWarning(props: UseAccordionProps) {
   const value = props.value || props.defaultValue
   const condition =
     value != null && !Array.isArray(value) && props.allowMultiple
@@ -352,9 +337,7 @@ function allowMultipleWarning<Multiple extends boolean>(
   })
 }
 
-function allowMultipleAndAllowToggleWarning<Multiple extends boolean>(
-  props: UseAccordionProps<Multiple>,
-) {
+function allowMultipleAndAllowToggleWarning(props: UseAccordionProps) {
   warn({
     condition: !!(props.allowMultiple && props.allowToggle),
     message: `If 'allowMultiple' is passed, 'allowToggle' will be ignored. Either remove 'allowToggle' or 'allowMultiple' depending on whether you want multiple accordions visible or not`,

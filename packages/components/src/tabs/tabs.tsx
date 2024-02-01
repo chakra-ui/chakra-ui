@@ -13,6 +13,7 @@ import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
 import { TabsProvider, UseTabsProps, useTabs } from "./use-tabs"
+import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 
 const [TabsStylesProvider, useTabsStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -70,7 +71,7 @@ export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
       <TabsStylesProvider value={styles}>
         <chakra.div
           className={cx("chakra-tabs", className)}
-          ref={ref}
+          ref={useMergeRefs(ref, context.rootRef)}
           {...rootProps}
           __css={tabsStyles}
         >
