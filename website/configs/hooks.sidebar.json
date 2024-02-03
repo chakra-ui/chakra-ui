@@ -1,0 +1,97 @@
+{
+  "routes": [
+    {
+      "title": "Hooks",
+      "routes": [
+        {
+          "title": "Utility",
+          "open": true,
+          "routes": [
+            {
+              "title": "useBoolean",
+              "path": "/docs/hooks/use-boolean"
+            },
+            {
+              "title": "useBreakpointValue",
+              "path": "/docs/hooks/use-breakpoint-value"
+            },
+            {
+              "title": "useClipboard",
+              "path": "/docs/hooks/use-clipboard"
+            },
+            {
+              "title": "useConst",
+              "path": "/docs/hooks/use-const"
+            },
+            {
+              "title": "useControllable",
+              "path": "/docs/hooks/use-controllable"
+            },
+            {
+              "title": "useDimensions",
+              "path": "/docs/hooks/use-dimensions"
+            },
+            {
+              "title": "useDisclosure",
+              "path": "/docs/hooks/use-disclosure"
+            },
+            {
+              "title": "useMediaQuery",
+              "path": "/docs/hooks/use-media-query"
+            },
+            {
+              "title": "useMergeRefs",
+              "path": "/docs/hooks/use-merge-refs"
+            },
+            {
+              "title": "useOutsideClick",
+              "path": "/docs/hooks/use-outside-click"
+            },
+            {
+              "title": "usePrefersReducedMotion",
+              "path": "/docs/hooks/use-prefers-reduced-motion"
+            },
+            {
+              "title": "useTheme",
+              "path": "/docs/hooks/use-theme"
+            },
+            {
+              "title": "useToken",
+              "path": "/docs/hooks/use-token"
+            }
+          ]
+        },
+        {
+          "title": "Component",
+          "open": true,
+          "routes": [
+            {
+              "title": "useCheckbox",
+              "path": "/docs/hooks/use-checkbox"
+            },
+            {
+              "title": "useCheckboxGroup",
+              "path": "/docs/hooks/use-checkbox-group"
+            },
+            {
+              "title": "useRadio",
+              "path": "/docs/hooks/use-radio"
+            },
+            {
+              "title": "useRadioGroup",
+              "path": "/docs/hooks/use-radio-group"
+            },
+            {
+              "title": "useSlider",
+              "path": "/docs/hooks/use-slider"
+            },
+            {
+              "title": "useRangeSlider",
+              "path": "/docs/hooks/use-range-slider"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

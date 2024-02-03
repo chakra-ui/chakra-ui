@@ -1,0 +1,67 @@
+---
+title: Version 2.2.2
+description:
+  Explore the changelog for Chakra UI version 2.2.2. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6169
+releaseDate: June 21, 2022
+version: 2.2.2
+---
+
+## Minor Changes
+
+### Color Mode `2.1.0`
+
+- Check if the `MediaQueryList` object supports the `addEventListener()` method,
+  else fallback to the legacy `.addListener()` method.
+
+### Modal `2.1.0`
+
+- Export `useDrawerContext` hook
+
+### System `2.2.0`
+
+- Extract and export `getToken` function from `useToken`
+- Improve parameter types for `useToken`
+
+## Patch Changes
+
+### Theme Utilities
+
+- Remove internal usage of `createBreakpoints` function
+
+### Checkbox `2.1.1`
+
+- Fixed issue where switch cannot be toggled when text is selectedd
+
+### Descendant `3.0.3`
+
+- Added type constraints to `useDescendants` hook for improved TypeScript 4.8
+  support
+
+### Layout `2.0.3`
+
+- **SimpleGrid:** Fixed issue where `minChildWidth` doesn't work with size
+  tokens
+
+### Radio `2.0.3`
+
+- Fixed issue where radio doesn't show focus when interacting with keyboard
+
+### Skeleton `2.0.7`
+
+- Added TS doc comments for `fadeDuration` prop
+
+### Toast `3.0.0`
+
+- Moved `@chakra-ui/system` to peer dependency
+
+### Tooltip `2.0.3`
+
+- Avoid rendering multiple tooltips so that they are not appeared after opening
+  a modal
+
+### CLI `2.1.1`
+
+- Added `--no-format` option
+- Fixed issue where CLI crashed due to `lodash.throttle` dependency

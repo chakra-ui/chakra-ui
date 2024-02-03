@@ -1,0 +1,94 @@
+---
+title: Chakra UI + Formik
+description: Integrating Chakra UI with Formik
+tags: ['form', 'formik']
+author: nikolovlazar
+category: integrations
+---
+
+The way we start building forms with [Formik](https://formik.org/) is by using
+its `useFormik` hook that returns us the formik instance. That Formik instance
+contains pretty much everything we need to connect our form's UI elements and
+submit handler. Let's see a pure React + Formik example:
+
+import {
+  App as AppPlain,
+  Index as IndexPlain,
+} from 'configs/sandpack-contents/formik-examples/plain-formik'
+
+<SandpackEmbed
+  dependencies={{
+    formik: '2.2.9',
+  }}
+  files={{
+    '/App.tsx': AppPlain,
+    '/index.tsx': IndexPlain,
+  }}
+/>
+
+As you can see from the example above, our `formik` instance contains the
+`handleSubmit`, `handleChange`, and `values`, and we use them to handle the
+submit event, handle all of the change events, and keep the values in a single
+variable.
+
+Introducing Chakra UI into the mix is very straightforward! If we were to
+replace the `input` element in the example above with a Chakra UI `Input`
+component, everything will work the same!
+
+import {
+  App as AppSimple,
+  Index as IndexSimple,
+} from 'configs/sandpack-contents/formik-examples/simple'
+
+<SandpackEmbed
+  dependencies={{
+    formik: '2.2.9',
+  }}
+  files={{
+    '/App.tsx': AppSimple,
+    '/index.tsx': IndexSimple,
+  }}
+/>
+
+Awesome! This means we can continue building our form UI, and just connect
+Formik's and Chakra UI's events! Let's try to build a bit more complex Login UI:
+
+import {
+  App as AppLogin,
+  Index as IndexLogin,
+} from 'configs/sandpack-contents/formik-examples/login-form'
+
+<SandpackEmbed
+  dependencies={{
+    formik: '2.2.9',
+  }}
+  files={{
+    '/App.tsx': AppLogin,
+    '/index.tsx': IndexLogin,
+  }}
+/>
+
+What about validation? And what about using the `Formik` component instead of
+the `useFormik` hook? Here's a modified example of the Login UI that uses the
+`Formik` component with password validation implemented:
+
+import {
+  App as AppValidation,
+  Index as IndexValidation,
+} from 'configs/sandpack-contents/formik-examples/validation'
+
+<SandpackEmbed
+  dependencies={{
+    formik: '2.2.9',
+  }}
+  files={{
+    '/App.tsx': AppValidation,
+    '/index.tsx': IndexValidation,
+  }}
+/>
+
+These examples should help you understand how to integrate Chakra UI with
+Formik.
+
+> If you have any questions, or need help around an advanced usage, don't
+> hesitate to reach out in our [Discord server](https://discord.gg/chakra-ui).

@@ -21,6 +21,7 @@
     "typedocs": "tsx scripts/typedocs.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
+    "website": "pnpm --filter=./website",
     "lint": "eslint packages --ext .ts,.tsx --config .eslintrc --cache",
     "format:check": "prettier --check packages --cache",
     "format:write": "prettier --write packages --cache",

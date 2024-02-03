@@ -1,0 +1,394 @@
+---
+id: slider
+scope: theming
+---
+
+The `Slider` component is a multipart component. The styling needs to be applied
+to each part specifically.
+
+> To learn more about styling multipart components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-multipart-components)
+> page.
+
+## Anatomy
+
+- A: `container`
+- B: `track`
+- C: `thumb`
+- D: `filledTrack`
+- E: `mark`
+
+<AspectRatio ratio={16 / 9}>
+  <svg
+    width='100%'
+    height='100%'
+    viewBox='0 0 298 216'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <rect width='298' height='216' fill='white' />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M277 96H57V119H277V96ZM56 95V120H278V95H56Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M60 107C60 105.895 60.8954 105 62 105H272C273.105 105 274 105.895 274 107V109C274 110.105 273.105 111 272 111H62C60.8954 111 60 110.105 60 109V107Z'
+      fill='#E2E8F0'
+    />
+    <path
+      d='M60 107C60 105.895 60.8954 105 62 105H144C145.105 105 146 105.895 146 107V109C146 110.105 145.105 111 144 111H62C60.8954 111 60 110.105 60 109V107Z'
+      fill='#3182CE'
+    />
+    <g filter='url(#filter0_dd_1008_9274)'>
+      <path
+        d='M146 108C146 112.418 142.418 116 138 116C133.582 116 130 112.418 130 108C130 103.582 133.582 100 138 100C142.418 100 146 103.582 146 108Z'
+        fill='#4299E1'
+      />
+    </g>
+    <path
+      d='M246 71C246 78.732 239.732 85 232 85C224.268 85 218 78.732 218 71C218 63.268 224.268 57 232 57C239.732 57 246 63.268 246 71Z'
+      fill='#FED7E2'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M232 84C239.18 84 245 78.1797 245 71C245 63.8203 239.18 58 232 58C224.82 58 219 63.8203 219 71C219 78.1797 224.82 84 232 84ZM232 85C239.732 85 246 78.732 246 71C246 63.268 239.732 57 232 57C224.268 57 218 63.268 218 71C218 78.732 224.268 85 232 85Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M228.66 77H226.796L230.983 65.3636H233.012L237.199 77H235.336L232.046 67.4773H231.955L228.66 77ZM228.972 72.4432H235.017V73.9205H228.972V72.4432Z'
+      fill='#D53F8C'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M231 95L231 85L232 85L232 95L231 95Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M218 145C218 152.732 211.732 159 204 159C196.268 159 190 152.732 190 145C190 137.268 196.268 131 204 131C211.732 131 218 137.268 218 145Z'
+      fill='#C4F1F9'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M204 158C211.18 158 217 152.18 217 145C217 137.82 211.18 132 204 132C196.82 132 191 137.82 191 145C191 152.18 196.82 158 204 158ZM204 159C211.732 159 218 152.732 218 145C218 137.268 211.732 131 204 131C196.268 131 190 137.268 190 145C190 152.732 196.268 159 204 159Z'
+      fill='#00B5D8'
+    />
+    <path
+      d='M200.544 151V139.364H204.805C205.631 139.364 206.315 139.5 206.856 139.773C207.398 140.042 207.803 140.407 208.072 140.869C208.341 141.328 208.476 141.845 208.476 142.42C208.476 142.905 208.387 143.314 208.209 143.648C208.031 143.977 207.792 144.242 207.493 144.443C207.197 144.64 206.872 144.784 206.516 144.875V144.989C206.902 145.008 207.279 145.133 207.646 145.364C208.017 145.591 208.324 145.915 208.567 146.335C208.809 146.756 208.93 147.267 208.93 147.869C208.93 148.464 208.79 148.998 208.51 149.472C208.233 149.941 207.805 150.314 207.226 150.591C206.646 150.864 205.906 151 205.004 151H200.544ZM202.3 149.494H204.834C205.675 149.494 206.277 149.331 206.641 149.006C207.004 148.68 207.186 148.273 207.186 147.784C207.186 147.417 207.093 147.08 206.908 146.773C206.722 146.466 206.457 146.222 206.112 146.04C205.771 145.858 205.366 145.767 204.896 145.767H202.3V149.494ZM202.3 144.398H204.652C205.046 144.398 205.4 144.322 205.714 144.17C206.033 144.019 206.284 143.807 206.47 143.534C206.659 143.258 206.754 142.932 206.754 142.557C206.754 142.076 206.586 141.672 206.248 141.347C205.911 141.021 205.394 140.858 204.697 140.858H202.3V144.398Z'
+      fill='#00B5D8'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M204 132L204 110L205 110L205 132L204 132Z'
+      fill='#00B5D8'
+    />
+    <path
+      d='M206.5 109C206.5 110.105 205.605 111 204.5 111C203.395 111 202.5 110.105 202.5 109C202.5 107.895 203.395 107 204.5 107C205.605 107 206.5 107.895 206.5 109Z'
+      fill='#00B5D8'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M138.5 85L138.5 102L137.5 102L137.5 85L138.5 85Z'
+      fill='#805AD5'
+    />
+    <path
+      d='M152 71C152 78.732 145.732 85 138 85C130.268 85 124 78.732 124 71C124 63.268 130.268 57 138 57C145.732 57 152 63.268 152 71Z'
+      fill='#E9D8FD'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M138 84C145.18 84 151 78.1797 151 71C151 63.8203 145.18 58 138 58C130.82 58 125 63.8203 125 71C125 78.1797 130.82 84 138 84ZM138 85C145.732 85 152 78.732 152 71C152 63.268 145.732 57 138 57C130.268 57 124 63.268 124 71C124 78.732 130.268 85 138 85Z'
+      fill='#805AD5'
+    />
+    <path
+      d='M143.06 69.1477H141.288C141.219 68.7689 141.092 68.4356 140.907 68.1477C140.721 67.8598 140.494 67.6155 140.225 67.4148C139.956 67.214 139.655 67.0625 139.322 66.9602C138.992 66.8579 138.642 66.8068 138.271 66.8068C137.6 66.8068 137 66.9754 136.469 67.3125C135.943 67.6496 135.526 68.1439 135.219 68.7954C134.916 69.447 134.765 70.2424 134.765 71.1818C134.765 72.1288 134.916 72.928 135.219 73.5795C135.526 74.231 135.945 74.7235 136.475 75.0568C137.005 75.3901 137.602 75.5568 138.265 75.5568C138.632 75.5568 138.981 75.5076 139.31 75.4091C139.644 75.3068 139.945 75.1572 140.214 74.9602C140.483 74.7632 140.71 74.5227 140.896 74.2386C141.085 73.9507 141.216 73.6212 141.288 73.25L143.06 73.2557C142.966 73.8276 142.782 74.3542 142.509 74.8352C142.24 75.3125 141.894 75.7254 141.469 76.0738C141.049 76.4185 140.568 76.6856 140.026 76.875C139.485 77.0644 138.894 77.1591 138.253 77.1591C137.246 77.1591 136.348 76.9204 135.56 76.4432C134.772 75.9621 134.151 75.2746 133.697 74.3807C133.246 73.4867 133.021 72.4204 133.021 71.1818C133.021 69.9394 133.248 68.8731 133.702 67.9829C134.157 67.089 134.778 66.4034 135.566 65.9261C136.354 65.4451 137.25 65.2045 138.253 65.2045C138.871 65.2045 139.447 65.2935 139.981 65.4716C140.519 65.6458 141.002 65.9034 141.43 66.2443C141.858 66.5814 142.212 66.9943 142.492 67.4829C142.772 67.9678 142.962 68.5227 143.06 69.1477Z'
+      fill='#805AD5'
+    />
+    <path
+      d='M140 103C140 104.105 139.105 105 138 105C136.895 105 136 104.105 136 103C136 101.895 136.895 101 138 101C139.105 101 140 101.895 140 103Z'
+      fill='#805AD5'
+    />
+    <circle cx='76' cy='108' r='2' fill='#38A169' />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M47 107.5L75 107.5L75 108.5L47 108.5L47 107.5Z'
+      fill='#38A169'
+    />
+    <path
+      d='M48 108C48 115.732 41.732 122 34 122C26.268 122 20 115.732 20 108C20 100.268 26.268 94 34 94C41.732 94 48 100.268 48 108Z'
+      fill='#C6F6D5'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M34 121C41.1797 121 47 115.18 47 108C47 100.82 41.1797 95 34 95C26.8203 95 21 100.82 21 108C21 115.18 26.8203 121 34 121ZM34 122C41.732 122 48 115.732 48 108C48 100.268 41.732 94 34 94C26.268 94 20 100.268 20 108C20 115.732 26.268 122 34 122Z'
+      fill='#38A169'
+    />
+    <path
+      d='M33.2719 114H29.5049V102.364H33.3912C34.5314 102.364 35.5106 102.597 36.3287 103.063C37.1469 103.525 37.7738 104.189 38.2094 105.057C38.6488 105.92 38.8685 106.956 38.8685 108.165C38.8685 109.377 38.6469 110.419 38.2037 111.29C37.7644 112.161 37.128 112.831 36.2947 113.301C35.4613 113.767 34.4537 114 33.2719 114ZM31.2606 112.466H33.1753C34.0617 112.466 34.7984 112.299 35.3856 111.966C35.9727 111.629 36.4121 111.142 36.7037 110.506C36.9954 109.866 37.1412 109.085 37.1412 108.165C37.1412 107.252 36.9954 106.477 36.7037 105.841C36.4159 105.205 35.9859 104.722 35.414 104.392C34.842 104.063 34.1318 103.898 33.2833 103.898H31.2606V112.466Z'
+      fill='#38A169'
+    />
+    <path d='M123 126H150V140H123V126Z' fill='#3182CE' />
+    <path
+      d='M126.907 135.58V134.692L130.05 129.727H130.75V131.034H130.306L128.058 134.592V134.649H132.365V135.58H126.907ZM130.355 137V135.31L130.362 134.905V129.727H131.403V137H130.355Z'
+      fill='white'
+    />
+    <path
+      d='M136.135 137.121C135.574 137.118 135.094 136.97 134.697 136.677C134.299 136.383 133.995 135.956 133.784 135.395C133.573 134.834 133.468 134.158 133.468 133.367C133.468 132.579 133.573 131.905 133.784 131.347C133.997 130.788 134.302 130.362 134.7 130.068C135.1 129.775 135.579 129.628 136.135 129.628C136.691 129.628 137.168 129.776 137.566 130.072C137.964 130.365 138.268 130.791 138.479 131.35C138.692 131.906 138.798 132.579 138.798 133.367C138.798 134.16 138.693 134.837 138.482 135.398C138.271 135.957 137.967 136.384 137.57 136.68C137.172 136.974 136.694 137.121 136.135 137.121ZM136.135 136.173C136.627 136.173 137.012 135.932 137.289 135.452C137.568 134.971 137.708 134.276 137.708 133.367C137.708 132.763 137.644 132.253 137.516 131.837C137.391 131.418 137.21 131.1 136.973 130.885C136.739 130.667 136.459 130.558 136.135 130.558C135.645 130.558 135.26 130.8 134.981 131.283C134.701 131.766 134.561 132.46 134.558 133.367C134.558 133.973 134.621 134.486 134.746 134.905C134.874 135.321 135.055 135.638 135.29 135.853C135.524 136.066 135.806 136.173 136.135 136.173Z'
+      fill='white'
+    />
+    <path
+      d='M143.854 135.636V135.253C143.854 134.978 143.911 134.727 144.025 134.5C144.141 134.27 144.309 134.087 144.529 133.95C144.751 133.81 145.02 133.74 145.335 133.74C145.657 133.74 145.927 133.809 146.145 133.946C146.362 134.083 146.527 134.267 146.638 134.496C146.752 134.726 146.809 134.978 146.809 135.253V135.636C146.809 135.911 146.752 136.163 146.638 136.393C146.525 136.62 146.358 136.804 146.138 136.943C145.92 137.08 145.652 137.149 145.335 137.149C145.015 137.149 144.745 137.08 144.525 136.943C144.305 136.804 144.138 136.62 144.025 136.393C143.911 136.163 143.854 135.911 143.854 135.636ZM144.682 135.253V135.636C144.682 135.84 144.73 136.025 144.827 136.19C144.924 136.356 145.093 136.439 145.335 136.439C145.574 136.439 145.741 136.356 145.836 136.19C145.93 136.025 145.978 135.84 145.978 135.636V135.253C145.978 135.049 145.932 134.865 145.839 134.699C145.749 134.533 145.581 134.45 145.335 134.45C145.098 134.45 144.93 134.533 144.831 134.699C144.731 134.865 144.682 135.049 144.682 135.253ZM140.196 131.474V131.091C140.196 130.816 140.253 130.564 140.367 130.335C140.483 130.105 140.651 129.921 140.871 129.784C141.094 129.647 141.362 129.578 141.677 129.578C141.999 129.578 142.269 129.647 142.487 129.784C142.705 129.921 142.869 130.105 142.981 130.335C143.092 130.564 143.147 130.816 143.147 131.091V131.474C143.147 131.749 143.091 132.001 142.977 132.231C142.866 132.458 142.7 132.642 142.48 132.781C142.262 132.919 141.995 132.987 141.677 132.987C141.355 132.987 141.084 132.919 140.864 132.781C140.646 132.642 140.481 132.458 140.367 132.231C140.253 132.001 140.196 131.749 140.196 131.474ZM141.027 131.091V131.474C141.027 131.678 141.075 131.863 141.169 132.028C141.267 132.194 141.436 132.277 141.677 132.277C141.914 132.277 142.08 132.194 142.174 132.028C142.272 131.863 142.32 131.678 142.32 131.474V131.091C142.32 130.887 142.274 130.703 142.182 130.537C142.089 130.371 141.921 130.288 141.677 130.288C141.441 130.288 141.272 130.371 141.173 130.537C141.076 130.703 141.027 130.887 141.027 131.091ZM140.534 137L145.534 129.727H146.383L141.383 137H140.534Z'
+      fill='white'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M137 143L137 163L136 163L136 143L137 143Z'
+      fill='#DD6B20'
+    />
+    <path
+      d='M150 177C150 184.732 143.732 191 136 191C128.268 191 122 184.732 122 177C122 169.268 128.268 163 136 163C143.732 163 150 169.268 150 177Z'
+      fill='#FEEBCB'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M136 190C143.18 190 149 184.18 149 177C149 169.82 143.18 164 136 164C128.82 164 123 169.82 123 177C123 184.18 128.82 190 136 190ZM136 191C143.732 191 150 184.732 150 177C150 169.268 143.732 163 136 163C128.268 163 122 169.268 122 177C122 184.732 128.268 191 136 191Z'
+      fill='#DD6B20'
+    />
+    <path
+      d='M132.458 183V171.364H139.753V172.875H134.214V176.42H139.373V177.926H134.214V181.489H139.822V183H132.458Z'
+      fill='#DD6B20'
+    />
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M153 123H120V143H153V123ZM119 122V144H154V122H119Z'
+      fill='#DD6B20'
+    />
+    <defs>
+      <filter
+        id='filter0_dd_1008_9274'
+        x='127'
+        y='98'
+        width='22'
+        height='22'
+        filterUnits='userSpaceOnUse'
+        color-interpolation-filters='sRGB'
+      >
+        <feFlood flood-opacity='0' result='BackgroundImageFix' />
+        <feColorMatrix
+          in='SourceAlpha'
+          type='matrix'
+          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+          result='hardAlpha'
+        />
+        <feOffset dy='1' />
+        <feGaussianBlur stdDeviation='1' />
+        <feColorMatrix
+          type='matrix'
+          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'
+        />
+        <feBlend
+          mode='normal'
+          in2='BackgroundImageFix'
+          result='effect1_dropShadow_1008_9274'
+        />
+        <feColorMatrix
+          in='SourceAlpha'
+          type='matrix'
+          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+          result='hardAlpha'
+        />
+        <feOffset dy='1' />
+        <feGaussianBlur stdDeviation='1.5' />
+        <feColorMatrix
+          type='matrix'
+          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0'
+        />
+        <feBlend
+          mode='normal'
+          in2='effect1_dropShadow_1008_9274'
+          result='effect2_dropShadow_1008_9274'
+        />
+        <feBlend
+          mode='normal'
+          in='SourceGraphic'
+          in2='effect2_dropShadow_1008_9274'
+          result='shape'
+        />
+      </filter>
+    </defs>
+  </svg>
+</AspectRatio>
+
+## Theming properties
+
+The properties that affect the theming of the `Slider` component are:
+
+- `size`: The size of the slider. Defaults to `md`.
+- `colorScheme`: The color scheme of the slider. Defaults to `blue`.
+
+## Theming utilities
+
+- `createMultiStyleConfigHelpers`: a function that returns a set of utilities
+  for creating style configs for a multipart component (`definePartsStyle` and
+  `defineMultiStyleConfig`).
+- `definePartsStyle`: a function used to create multipart style objects.
+- `defineMultiStyleConfig`: a function used to define the style configuration
+  for a multipart component.
+
+```jsx live=false
+import { sliderAnatomy as parts } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { sliderAnatomy as parts } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+const baseStyle = definePartsStyle({
+  // define the part you're going to style
+  thumb: {
+    bg: 'orange.400', // change the background of the thumb to orange.400
+  },
+  filledTrack: {
+    bg: 'blue.600', // change the background of the filled track to blue.600
+  },
+})
+export const sliderTheme = defineMultiStyleConfig({ baseStyle })
+```
+
+After customizing the slider theme, we can import it in our theme file and add
+it in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { sliderTheme } from './theme/components/slider.ts'
+export const theme = extendTheme({
+  components: { Slider: sliderTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the
+> slider theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to include an extra large slider size. Here's how we can do
+that:
+
+```jsx live=false
+import { sliderAnatomy as parts } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const sizes = {
+  xl: definePartsStyle({
+    container: defineStyle({
+      w: "50%",
+    }),
+    track: defineStyle({
+      h: 7,
+    }),
+    thumb: defineStyle({
+      boxSize: 7,
+    }),
+  }),
+};
+export const sliderTheme = defineMultiStyleConfig({ sizes })
+// Now we can use the new `xl` size
+<Slider size="xl">...</Slider>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Creating a custom variant
+
+Let's assume we want to create a custom square variant. Here's how we can do
+that:
+
+```jsx live=false
+import { sliderAnatomy as parts } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys)
+
+const square = definePartsStyle({
+  thumb: defineStyle({
+    rounded: "none",
+  }),
+});
+
+export const sliderTheme = defineMultiStyleConfig({
+  variants: { square },
+})
+
+// Now we can use the new `square` variant
+<Slider variant="square">...</Slider>
+```
+
+## Changing the default properties
+
+Let's assume we want to change the default size and variant of every slider in
+our app. Here's how we can do that:
+
+```jsx live=false
+import { sliderAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  sliderAnatomy.keys,
+)
+
+export const sliderTheme = defineMultiStyleConfig({
+  defaultProps: {
+    size: 'xl',
+    variant: 'square',
+  },
+})
+
+// This saves you time, instead of manually setting the size and variant every time you use a slider:
+<Slider size="xl" variant="square">...</Slider>
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  SliderTheme,
+} from 'configs/sandpack-contents/component-theming/slider'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Slider.ts': SliderTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{ 'react-icons': '^4.4.0' }}
+  previewOptions={{
+    minHeight: '500px',
+  }}
+/>

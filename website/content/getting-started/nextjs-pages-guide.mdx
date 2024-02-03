@@ -1,0 +1,121 @@
+---
+title: Getting Started with Next.js (Pages)
+description: A guide for installing Chakra UI with Next.js pages directory.
+tags: ['nextjs', 'pages']
+author: estheragbaje
+category: frameworks
+---
+
+<br />
+<VideoPlayer url='https://www.youtube.com/watch?v=wI2vqXsjsIo' />
+
+### Installation
+
+Chakra UI provides an additional integration package `@chakra-ui/next-js` for
+Next.js that gives you a smoother experience when using both frameworks.
+
+<PackageManagers
+  command={{
+    npm: 'npm i @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    yarn: 'yarn add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+    pnpm: 'pnpm add @chakra-ui/react @chakra-ui/next-js @emotion/react @emotion/styled framer-motion',
+  }}
+/>
+
+### Setup Provider
+
+Wrap your `_app.js` file with the `ChakraProvider`
+
+```jsx live=false
+// pages/_app.js
+import { ChakraProvider } from '@chakra-ui/react'
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ChakraProvider>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+
+export default MyApp
+```
+
+### Styling Next.js Link
+
+We recommend using the `Link` component provided from the `@chakra-ui/next-js`
+package. It combines the functionality of the Next.js Link and Chakra's styling
+features.
+
+```jsx live=false
+// app/page.tsx
+'use client'
+import { Link } from '@chakra-ui/next-js'
+
+export default function Page() {
+  return (
+    <Link href='/about' color='blue.400' _hover={{ color: 'blue.500' }}>
+      About
+    </Link>
+  )
+}
+```
+
+### Using custom font
+
+With Next.js 13, you can optimize your fonts (including custom fonts) and remove
+external network requests for improved privacy and performance.
+
+```jsx live=false
+// lib/fonts.ts
+import { Rubik } from 'next/font/google'
+
+const rubik = Rubik({
+  subsets: ['latin'],
+  variable: '--font-rubik',
+})
+
+export const fonts = {
+  rubik,
+}
+```
+
+Next, you need to update your `_app.js` to include the font styles.
+
+```jsx live=false
+/* pages/_app.tsx */
+import { fonts } from '../lib/fonts'
+
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <>
+      <style jsx global>
+        {`
+          :root {
+            --font-rubik: ${fonts.rubik.style.fontFamily};
+          }
+        `}
+      </style>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
+  );
+}
+```
+
+Finally, you can use font variable in your custom theme file across the app.
+
+```jsx live=false
+/* theme.ts */
+import { extendTheme } from "@chakra-ui/react";
+
+export const theme = extendTheme({
+  ...
+    fonts: {
+      heading: 'var(--font-rubik)',
+      body: 'var(--font-rubik)',
+    }
+  ...
+});
+```

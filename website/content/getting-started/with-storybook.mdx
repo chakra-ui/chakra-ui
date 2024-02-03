@@ -1,0 +1,81 @@
+---
+title: Chakra UI + Storybook
+description: Render your Chakra UI Components in Storybook
+tags: ['storybook', 'documentation', testing']
+author: TimKolberger
+category: integrations
+---
+
+Use the official Storybook Addon for Chakra UI to configure Storybook to
+automatically wrap your stories with the `<ChakraProvider />` and add a color
+mode toggle.
+
+## Installation
+
+<PackageManagers
+  command={{
+    npm: 'npm i -D @chakra-ui/storybook-addon',
+    yarn: 'yarn add -D @chakra-ui/storybook-addon',
+    pnpm: 'pnpm add -D @chakra-ui/storybook-addon',
+    bun: 'bun add -D @chakra-ui/storybook-addon',
+  }}
+/>
+
+> The Storybook addon is only compatible with storybook >6.4
+
+## Usage
+
+Add the addon to your configuration in `.storybook/main.js`:
+
+```js live=false
+module.exports = {
+  addons: ['@chakra-ui/storybook-addon'],
+  features: {
+    emotionAlias: false,
+  },
+}
+```
+
+You can specify global parameters for the addon in `.storybook/preview.js`.
+These options are the same as the props to `ChakraProvider` (without
+`children`).
+
+```js live=false
+// .storybook/preview.js
+
+const theme = require('../path/to/your/theme')
+
+export const parameters = {
+  chakra: {
+    theme,
+  },
+}
+```
+
+<PropsTable of='ChakraProvider' omit={['children']} />
+
+## Troubleshooting Storybook
+
+If you're facing an issue where Storybook isn't working with Chakra UI, here's a
+work around 👇
+
+In your `.storybook/main.js` file, you'll need to config the `features` and
+`webpackFinal` properties like so:
+
+```jsx live=false
+module.exports = {
+  stories: ['../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  framework: '@storybook/react',
+  features: { emotionAlias: false },
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto',
+    })
+
+    return config
+  },
+}
+```

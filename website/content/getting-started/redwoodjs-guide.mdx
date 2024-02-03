@@ -1,0 +1,173 @@
+---
+title: RedwoodJS
+description: A guide for installing Chakra UI with redwoodjs projects
+tags: ['redwoodjs']
+author: estheragbaje, philzen
+category: frameworks
+---
+
+## Installation
+
+### Automatic
+
+RedwoodJS provides a convenient setup script via its
+[CLI tool](https://redwoodjs.com/docs/cli-commands#setup-ui) to enable Chakra UI
+in your project with a single command. In your project folder, simply enter:
+
+<PackageManagers
+  command={{
+    npm: 'npx redwood setup ui chakra-ui',
+    yarn: 'yarn redwood setup ui chakra-ui',
+    pnpm: 'pnpm redwood setup ui chakra-ui',
+    bun: 'bun redwood setup ui chakra-ui',
+  }}
+/>
+
+This will make the necessary modifications to your `App.tsx` (or `App.js`,
+respectively) which are basically the same as outlined in manual installation
+steps below.
+
+See [additional setup](#additional-setup) (such as including theme
+customizations and Storybook integration) below.
+
+### Manual
+
+1. Inside your `Redwoodjs` project , cd into `web`, then, install Chakra UI by
+   running either of the following:
+
+   <PackageManagers
+     command={{
+       npm: 'npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+       yarn: 'yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+       pnpm: 'pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+       bun: 'bun add @chakra-ui/react @emotion/react @emotion/styled framer-motion',
+     }}
+   />
+
+2. After installing Chakra UI, you need to set up the `ChakraProvider` at the
+   root of your application. Go to `App.js` and add the `ChakraProvider` like
+   this:
+
+   ```jsx live=false
+   import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+
+   const App = () => (
+     <FatalErrorBoundary page={FatalErrorPage}>
+       <RedwoodProvider titleTemplate='%PageTitle | %AppTitle'>
+         <ColorModeScript />
+         <ChakraProvider>
+           <RedwoodApolloProvider>
+             <Routes />
+           </RedwoodApolloProvider>
+         </ChakraProvider>
+       </RedwoodProvider>
+     </FatalErrorBoundary>
+   )
+
+   export default App
+   ```
+
+> Boom! You're good to go with steps 1 and 2 🚀🚀🚀 However, if you'd love to
+> take it a step further, check out the additional steps
+> [outlined below](#additional-setup).
+
+### Notes on TypeScript 🚨
+
+Please note that when adding Chakra UI to a TypeScript project, a minimum
+TypeScript version of `4.1.0` is required.
+
+## Additional setup
+
+### Customize Theme
+
+If you intend to
+[customize the default theme](/docs/styled-system/customize-theme), you will
+need to pass your extended theme object as a prop to `ChakraProvider` as
+follows:
+
+```jsx live=false
+// 1. Import the extendTheme function
+import { extendTheme } from '@chakra-ui/react'
+
+// 2. Extend the theme to include custom colors, fonts, etc
+const colors = {
+  brand: {
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
+  },
+}
+
+const theme = extendTheme({ colors })
+
+// 3. Pass the `theme` prop to the `ChakraProvider`
+const App = () => (
+  <FatalErrorBoundary page={FatalErrorPage}>
+    <RedwoodProvider titleTemplate='%PageTitle | %AppTitle'>
+      <ColorModeScript />
+      <ChakraProvider theme={theme}>
+        <RedwoodApolloProvider>
+          <Routes />
+        </RedwoodApolloProvider>
+      </ChakraProvider>
+    </RedwoodProvider>
+  </FatalErrorBoundary>
+)
+```
+
+### Storybook Integration
+
+RedwoodJS ships with Storybook included. To automatically wrap your your stories
+with the `<ChakraProvider />` and add a color mode toggle, follow the steps
+below.
+
+> The steps outlined here are semantically identical to our
+> [Storybook integration Guide](/getting-started/with-storybook), only the
+> install commands and file locations differ.
+
+1. Install the official Storybook Addon for Chakra UI:
+
+   ```bash
+   yarn workspace web add -D @chakra-ui/storybook-addon
+   ```
+
+2. Add the addon to your configuration in `web/config/storybook.config.js`:
+
+   ```jsx live=false
+   module.exports = {
+     addons: [
+       // ...
+       '@chakra-ui/storybook-addon',
+     ],
+   }
+   ```
+
+3. Additional configuration:  
+    In case you are using any [Theme customizations](/docs/styled-system/customize-theme),
+   you will want to see them applied in Storybook as well. Enable them in `web/config/storybook.preview.js`
+   like this:
+
+   ```jsx live=false
+   const theme = require('../path/to/your/theme')
+
+   export const parameters = {
+     // ...
+     chakra: {
+       theme,
+     },
+   }
+   ```
+
+   The `chakra` object accepts the same [props](#chakraprovider-props) as
+   `ChakraProvider` (without `children`).
+
+## ChakraProvider Props
+
+| Name             | Type             | Default               | Description                                                                                                                                                                                       |
+| ---------------- | ---------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| colorModeManager | `StorageManager` | `localStorageManager` | Manager to persist a user's color mode preference in                                                                                                                                              |
+| cssVarsRoot      | `string`         | `:root`               | The root element that Chakra attaches the CSS variables to                                                                                                                                        |
+| environment      | `Environment`    | Depends on context    | The environment (`window` and `document`) to be used by all components and hooks. By default, we smartly determine the ownerDocument and defaultView based on where `ChakraProvider` is rendered. |
+| portalZIndex     | `number`         | `undefined`           | Common z-index to use for `Portal`                                                                                                                                                                |
+| resetCSS         | `boolean`        | `true`                | Automatically includes `<CSSReset />`                                                                                                                                                             |
+| theme            | `Theme`          | `@chakra-ui/theme`    | Optional custom theme                                                                                                                                                                             |

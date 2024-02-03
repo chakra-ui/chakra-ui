@@ -1,0 +1,155 @@
+---
+id: textarea
+scope: theming
+---
+
+The `Textarea` component is a single part component. All of the styling is
+applied directly to the textarea element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page.
+
+## Theming properties
+
+The properties that affect the theming of the `Textarea` component are:
+
+- `variant`: The visual variant of the textarea. Defaults to `outline`.
+- `size`: The size of the textarea. Defaults to `md`.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const outline = defineStyle({
+  border: '2px dashed', // change the appearance of the border
+  borderRadius: 0, // remove the border radius
+  fontWeight: 'semibold', // change the font weight
+})
+
+export const textareaTheme = defineStyleConfig({
+  variants: { outline },
+})
+```
+
+After the customization of the textarea theme, we can import it in our theme
+file and add it in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { textareaTheme } from './components/textarea'
+
+export const theme = extendTheme({
+  components: { Textarea: textareaTheme },
+})
+```
+
+## Adding a custom size
+
+Let's assume you want to add a custom size of your textarea. Here's how we can
+do that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const xl = defineStyle({
+  fontSize: 'xl',
+  px: '6',
+  h: '16',
+  borderRadius: 'md',
+})
+
+export const textareaTheme = defineStyleConfig({
+  sizes: { xl },
+})
+
+// Now we can use the new `xl` size
+<Textarea size="xl">...</Textarea>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a custom branded variant. Here's how we can do
+that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const brandPrimary = defineStyle({
+  background: 'orange.500',
+  color: 'white',
+  fontFamily: 'serif',
+  fontWeight: 'normal',
+
+  // let's also provide dark mode alternatives
+  _dark: {
+    background: 'orange.300',
+    color: 'orange.800',
+  }
+})
+
+export const textareaTheme = defineStyleConfig({
+  variants: { brandPrimary },
+})
+
+// Now we can use the new `brandPrimary` variant
+<Textarea variant="brandPrimary">...</Textarea>
+```
+
+## Changing the default properties
+
+Let's assume we want to change the default size or variant of every textarea in
+our app. Here's how we can do that:
+
+```jsx live=false
+import { defineStyleConfig } from '@chakra-ui/react'
+
+export const textareaTheme = defineStyleConfig({
+  defaultProps: {
+    size: 'lg',
+    variant: 'outline',
+    colorScheme: 'brand',
+  },
+})
+
+// This saves you time, instead of manually setting the size and
+// variant every time you use the textarea component:
+<Textarea size="lg" variant="outline">...</Textarea>
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  TextareaTheme,
+} from 'configs/sandpack-contents/component-theming/textarea'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Textarea.ts': TextareaTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

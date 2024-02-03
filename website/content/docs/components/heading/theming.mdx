@@ -1,0 +1,131 @@
+---
+id: heading
+scope: theming
+---
+
+The `Heading` component is a single part component. All of the styling is
+applied directly to the `h2` element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page
+
+## Theming properties
+
+The properties that affect the theming of the `Heading` component are:
+
+- `size`: The size of the divider. Defaults to `xl`.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```js
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Customizing the default theme
+
+```js
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const custom = defineStyle({
+  color: 'yellow.500',
+  fontFamily: 'mono',
+  fontWeight: 'semibold',
+  // let's also provide dark mode alternatives
+  _dark: {
+    color: 'yellow.300',
+  },
+})
+```
+
+After customizing the heading theme, we can import it in our theme file and add
+it in the components property:
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+import { headingTheme } from './components/heading'
+
+export const theme = extendTheme({
+  components: { Heading: headingTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the
+> heading theme are applied.
+
+## Adding a custom variant
+
+Let's assume we want to include a custom branded variant. Here's how we can do
+that:
+
+```js
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const underline = defineStyle({
+    color: "orange.500",
+    borderBottom: "2px",
+    borderRadius: "10",
+    fontFamily: "serif"
+    // let's also provide dark mode alternatives
+    _dark: {
+        color: 'orange.400',
+    },
+    _hover: {
+        borderColor: "red.200",
+        _dark: {
+            borderColor: "red.300"
+        }
+    }
+})
+
+// Now we can use the new `underline` variant
+<Heading variant="underline">...</Heading>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the cli
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Changing the default properties
+
+```js
+import { defineStyleConfig } from '@chakra-ui/react'
+
+export const headingTheme = defineStyleConfig({
+    defaultProps: {
+        size: 'xl',
+        variant: 'custom',
+        colorScheme: 'brand',
+    },
+})
+
+// This saves you time, instead of manually setting the size,
+// variant every time you use a heading:
+<Heading size="xl" variant="underline">...</Heading>
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  HeadingTheme,
+} from 'configs/sandpack-contents/component-theming/heading'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Heading.ts': HeadingTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

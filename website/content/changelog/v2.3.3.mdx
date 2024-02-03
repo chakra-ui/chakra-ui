@@ -1,0 +1,108 @@
+---
+title: Version 2.3.3
+description:
+  Explore the changelog for Chakra UI version 2.3.3. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6652
+releaseDate: September 19, 2022
+version: 2.3.3
+---
+
+## Minor Changes
+
+### All components
+
+- Allow control of `framer-motion` elements via the `motionProps` prop.
+
+## Patch Changes
+
+### All components
+
+- Added missing component/function docs and relative docsite links.
+
+  Ensures that all Components, functions, and hooks that have detailed pages on
+  the Chakra site have corresponding TS Docs and links back to the docsite via
+  IDE intellisense.
+
+  Includes adding or fixing links within these docs to related WAI-ARIA
+  patterns.
+
+### Menu `2.1.0`
+
+- Remove redundant ARIA roles
+
+## Popover `2.1.0`
+
+- Refactor popover to reduce bundle size
+
+### Tooltip `2.1.0`
+
+- Fixed issue where disabled tooltip triggers require an extra wrapper (via
+  `shouldWrapChildren`). This was fixed by switching from mouse events to
+  pointer events
+
+### Color Mode `2.1.8`
+
+- Add optional `nonce` back to ColorModeScript
+
+### Layout `2.1.7`
+
+- Fixed an issue where `Highlight` showed `key` warnings
+- Prevent `Stack` from crashing when there's a lot of child elements
+
+  > NB: This does not help improve loading and refresh performance otherwise,
+  > libraries like `react-virtualized` should be used to handle large lists.
+
+### PinInput `2.0.13`
+
+- Fixed issue where backspace did not focus prev input
+
+### Styled System `2.3.2`
+
+- Revert [#6335](https://github.com/chakra-ui/chakra-ui/pull/6335/files) to fix
+  issue where lots of responsive styles makes app slower
+
+- Update disabled selector to use state selector `:disabled`, instead of
+  `[disabled]` attribute selector. This is useful when an editable element is
+  wrapped within `<fieldset disabled>`
+
+- Improve style resolution when components are wrapped within forced color mode
+  elements (`DarkMode`, `LightMode`).
+
+  We now dynamically attach the `data-theme` attribute to chakra elements when
+  in forced color mode.
+
+  ```jsx live=false
+  <DarkMode>
+    <chakra.div bg='gray.800' padding='40px'>
+      {/* Forced: Badge will now have `data-theme='dark' attached` */}
+      <Badge>Total</Badge>
+    </chakra.div>
+  </DarkMode>
+  ```
+
+### Table `2.0.10`
+
+- Remove redundant ARIA roles
+
+### Tag `2.0.10`
+
+- Use `forwardRef` with `TagCloseButton`
+
+### Theme `2.1.12`
+
+- Fix incorrect Select `xs` sizing
+
+### UseControllableState `2.0.4`
+
+- Fixed issue with stale values in callbacks
+
+### UseFocusOnPointerDown `2.0.2`
+
+- Fix issue where focus on pointerdown doesn't work on safari
+
+### DOM Utilities `2.0.2`
+
+- Update disabled selector to use state selector `:disabled`, instead of
+  `[disabled]` attribute selector. This is useful when an editable element is
+  wrapped within `<fieldset disabled>`

@@ -1,0 +1,50 @@
+---
+id: show-hide
+category: other
+title: Show / Hide
+package: '@chakra-ui/media-query'
+description:
+  Show and Hide wrapper components render or not render the child elements if
+  the media query matches.
+---
+
+## Import
+
+```js
+import { Show, Hide } from '@chakra-ui/react'
+```
+
+- **Show**: Show the children if the media query matches.
+- **Hide**: Hide the children if the media query matches.
+
+## Usage
+
+### Breakpoint Prop
+
+Use the `breakpoint` prop to pass in a custom query.
+
+```jsx
+<Show breakpoint='(max-width: 400px)'>
+  <Box>This text appears only on screens 400px and smaller.</Box>
+</Show>
+```
+
+### Above / Below
+
+The `above` and `below` props receive the Chakra theme's breakpoint keys.
+
+- `above` is similar to "min-width"
+- `below` is similar to "max-width"
+
+```jsx
+<>
+  <Show above='sm'>
+    <Box>This text appears at the "sm" value screen width or greater.</Box>
+  </Show>
+  <Hide below='md'>
+    <Box>This text hides at the "md" value screen width and smaller.</Box>
+  </Hide>
+</>
+```
+
+> Note: You can not combine `above` and `below` props

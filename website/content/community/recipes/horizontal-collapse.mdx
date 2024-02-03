@@ -1,0 +1,56 @@
+---
+title: Horizontal Collapse
+description:
+  How to support horizontal version of the default collapse component in Chakra
+  UI
+author: segunadebayo
+---
+
+The default `Collapse` component in Chakra UI works for vertical orientation.
+
+In some cases, you might need the horizontal orientation (e.g when you're
+building a side panel) and you cannot use the `Drawer` component.
+
+Here's a code snippet to help you achieve that while ensuring the offscreen
+content stays hidden from screen readers and keyboard (via tabbing) when closed.
+
+> This recipe was inspired by
+> [#2791](https://github.com/chakra-ui/chakra-ui/issues/2791)
+
+```jsx live=false
+import { useDisclosure } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+
+export default function App() {
+  const { getButtonProps, getDisclosureProps, isOpen } = useDisclosure()
+  const [hidden, setHidden] = useState(!isOpen)
+
+  return (
+    <div>
+      <button {...getButtonProps()}>Toggle</button>
+      <motion.div
+        {...getDisclosureProps()}
+        hidden={hidden}
+        initial={false}
+        onAnimationStart={() => setHidden(false)}
+        onAnimationComplete={() => setHidden(!isOpen)}
+        animate={{ width: isOpen ? 500 : 0 }}
+        style={{
+          background: 'red',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          position: 'absolute',
+          right: '0',
+          height: '100vh',
+          top: '0',
+        }}
+      >
+        welcome home
+      </motion.div>
+    </div>
+  )
+}
+```
+
+[Explore on Code Sandbox](https://codesandbox.io/s/horizontal-collapse-fmq66)

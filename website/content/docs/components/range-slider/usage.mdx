@@ -1,0 +1,148 @@
+---
+id: range-slider
+category: form
+title: Range Slider
+package: '@chakra-ui/slider'
+description:
+  'The RangeSlider is a multi thumb slider used to select a range of related
+  values.'
+video: 'https://youtu.be/yt0F8srvg_Q'
+---
+
+## Import
+
+Chakra UI exports the following component parts to implement the Range Slider:
+
+- **`RangeSlider`**: The wrapper that provides context and functionality for all
+  children.
+- **`RangeSliderTrack`**: The empty part of the slider that shows the track.
+- **`RangeSliderFilledTrack`**: The filled part of the slider.
+- **`RangeSliderThumb`**: The handle that's used to change the slider value.
+
+```js
+import {
+  RangeSlider,
+  RangeSliderTrack,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+} from '@chakra-ui/react'
+```
+
+## Usage
+
+The `RangeSlider` is a multi thumb slider used to select a range of related
+values. A common use-case of this component is a price range picker that allows
+a user to set the minimum and maximum price.
+
+> **Note:** We recommend adding a `aria-label` or `aria-labelledby` prop to
+> provide an accessible label for the Slider.
+
+```jsx
+<RangeSlider aria-label={['min', 'max']} defaultValue={[10, 30]}>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>
+```
+
+### Changing the slider color scheme
+
+You can override the color scheme of the slider to any color key specified in
+`theme.colors`.
+
+```jsx
+<RangeSlider
+  aria-label={['min', 'max']}
+  colorScheme='pink'
+  defaultValue={[10, 30]}
+>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>
+```
+
+### Changing the slider orientation
+
+By default, the slider orientation is `horizontal`. However, if you want to have
+it vertical, pass the `orientation` prop and set its value to `vertical`.
+
+```jsx
+<RangeSlider
+  aria-label={['min', 'max']}
+  colorScheme='pink'
+  defaultValue={[10, 30]}
+  orientation='vertical'
+  minH='32'
+>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>
+```
+
+### Customizing the Slider
+
+`Slider` component was designed to be composed to make it easy for you to
+customize its styles.
+
+```jsx
+<RangeSlider aria-label={['min', 'max']} defaultValue={[30, 80]}>
+  <RangeSliderTrack bg='red.100'>
+    <RangeSliderFilledTrack bg='tomato' />
+  </RangeSliderTrack>
+  <RangeSliderThumb boxSize={6} index={0}>
+    <Box color='tomato' as={MdGraphicEq} />
+  </RangeSliderThumb>
+  <RangeSliderThumb boxSize={6} index={1}>
+    <Box color='tomato' as={MdGraphicEq} />
+  </RangeSliderThumb>
+</RangeSlider>
+```
+
+### Discrete Sliders
+
+Discrete sliders allow you to snap to predefined sets of values. This can be
+accomplished using the `step` prop.
+
+```jsx
+<RangeSlider defaultValue={[120, 240]} min={0} max={300} step={30}>
+  <RangeSliderTrack bg='red.100'>
+    <RangeSliderFilledTrack bg='tomato' />
+  </RangeSliderTrack>
+  <RangeSliderThumb boxSize={6} index={0} />
+  <RangeSliderThumb boxSize={6} index={1} />
+</RangeSlider>
+```
+
+### Getting the final value when dragging the slider
+
+Dragging the slider can trigger lots of updates and the user might only be
+interested in the final result after sliding is complete. You can use
+`onChangeEnd` for this.
+
+```jsx live=false
+<RangeSlider
+  aria-label={['min', 'max']}
+  onChangeEnd={(val) => console.log(val)}
+>
+  <RangeSliderTrack>
+    <RangeSliderFilledTrack />
+  </RangeSliderTrack>
+  <RangeSliderThumb index={0} />
+  <RangeSliderThumb index={1} />
+</RangeSlider>
+```
+
+### useRangeSlider
+
+The `useRangeSlider` hook is exported with state and focus management logic for
+use in creating tailor-made range slider component for your application. Read
+more about the `useRangeSlider` hook
+[here](/docs/styled-system/component-hooks/use-range-slider).

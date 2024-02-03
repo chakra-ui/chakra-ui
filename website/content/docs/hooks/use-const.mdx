@@ -1,0 +1,57 @@
+---
+title: useConst
+package: '@chakra-ui/hooks'
+description: 'React hook to initialize and return a constant value'
+---
+
+`useConst` is a custom hook used to initialize and return a constant value.
+Unlike `useMemo`, this will always return the same value, and if the initializer
+is a function, only call it once.
+
+## Import
+
+```js
+import { useConst } from '@chakra-ui/react'
+```
+
+## Parameters
+
+The hook `useConst` accepts the initial value, or a function to get the initial
+value.
+
+## Usage
+
+```jsx
+function Example() {
+  const mountTime = useConst(() => new Date().toTimeString())
+  const obj = useConst({ a: Math.random() })
+  return (
+    <>
+      <p>Mount time: {mountTime}</p>
+      <p>Value from constant object: {obj.a}</p>
+    </>
+  )
+}
+```
+
+## Why not use `useMemo`?
+
+The React documentation says that the engine may choose to “forget” some
+previously memoized values and recalculate them on next render, and you should
+write your code so that it still works without `useMemo` and then add it to
+optimize performance.
+
+You should use `useMemo` only when you need to recalculate the value based on
+dependencies.
+
+## Why not use `useState`?
+
+```jsx
+function Example() {
+  const [value] = useState(new Date().toTimeString())
+  return <p>Mount time: {value}</p>
+}
+```
+
+This will work as a constant, but this is semantically wrong and it's expensive
+due to reducer handling which we don't need.

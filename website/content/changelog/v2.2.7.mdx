@@ -1,0 +1,68 @@
+---
+title: Version 2.2.7
+description:
+  Explore the changelog for Chakra UI version 2.2.7. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/6441
+releaseDate: August 13, 2022
+version: 2.2.7
+---
+
+## Patch Changes
+
+### All components
+
+- Moved hooks in their own packages
+- General package refactoring & restructuring
+- Refactored components to reduce bundle size
+
+### Color Mode `2.1.5`
+
+- Fixed regression where `localStorageManager` was not exported
+
+### React Env `2.0.7`
+
+- Omit rendered env span when the environment prop is passed.
+- Added `id` and `hidden` attributes to the rendered env span
+
+### Hooks `2.0.7`
+
+- Deprecated `useDimensions` in favor of the `useSize` hook
+
+### React `2.2.7`
+
+- Removed `ChakraProvider.defaultProps` and move logic inside the component.
+
+### Styled System `2.2.6`
+
+- Improve style computation performance by looping over styles once. Previously,
+  we had two steps in the logic (expand responsive and convert to css object).
+  This can be quite expensive with large css objects (or style props).
+
+  We now process both steps in a single pass.
+
+- Fixed regression where `ThemeTypings` created by chakra-cli could not be used
+- Escape symbols in css variable to make it work
+
+### Theme `2.1.6`
+
+- Improved contrast of `FormHelperText` to satisfy accessibility check
+- Fixed issue where disabled input with flushed or unstyled variant isn't
+  perceivable
+
+### Theme Utilities `2.0.8`
+
+- Fixed regression where `StyleFunctionProps` type was not exported
+
+### Utilities `2.0.7`
+
+- Added pure annotation to utils package
+- Added pure annotation to `isBrowser` to tree-shake when bundling
+
+### CLI `2.1.5`
+
+- Fixed regression where `ThemeTypings` created by chakra-cli could not be used
+
+### Storybook Addon `4.0.7`
+
+- Fixed issue with nullish operator in storybook

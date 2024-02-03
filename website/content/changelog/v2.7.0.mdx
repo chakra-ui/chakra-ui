@@ -1,0 +1,341 @@
+---
+title: Version 2.7.0
+description:
+  Explore the changelog for Chakra UI version 2.7.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7640
+releaseDate: May 31, 2023
+version: 2.7.0
+---
+
+## @chakra-ui/accordion@2.2.0
+
+### Minor Changes
+
+- [#7631](https://github.com/chakra-ui/chakra-ui/pull/7631)
+  [`2347e3306`](https://github.com/chakra-ui/chakra-ui/commit/2347e33068259319968b1b63bbbeba4934e8c99c)
+  Thanks [@FredPerr](https://github.com/FredPerr)! - Fixed AccordionIconProps
+  failure with 'as' prop
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/layout@2.2.0
+
+### Minor Changes
+
+- [`c31df5a4b`](https://github.com/chakra-ui/chakra-ui/commit/c31df5a4bf5077f6f008b3ff27247d81e2402cf1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new
+  `Indicator` layout component. Useful for positioning an element in the corners
+  of another element.
+
+  For example, let's say you want to position a notification badge in the top
+  end corner of a box. You can use the `Indicator` component to achieve this.
+
+  ```jsx live=false
+  <Box position='relative' width='80px' height='80px' bg='gray.50'>
+    <Indicator placement='top-end'>
+      <Circle size='5' bg='red.100'>
+        3
+      </Circle>
+    </Indicator>
+  </Box>
+  ```
+
+  - Refactored the `Stack` and `Wrap` components to use the flex gap instead of
+    the owl selector `& > * ~ *` for spacing.
+
+    This fixes an issue where you can't use raw text nodes as a child of the
+    `Stack` or `Wrap` component.
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/provider@2.3.0
+
+### Minor Changes
+
+- [`3a164da59`](https://github.com/chakra-ui/chakra-ui/commit/3a164da59738c9adc6dcae7113e296c234cf81ba)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  disabling global styles via the `disableGlobalStyle` prop on the
+  `ChakraProvider`.
+
+  This is useful for scenarios where user needs to scope all global styles + css
+  reset to a specific element.
+
+  ```jsx live=false
+  import { ChakraProvider } from '@chakra-ui/react'
+
+  function App() {
+    return (
+      <ChakraProvider disableGlobalStyle>
+        <App />
+      </ChakraProvider>
+    )
+  }
+  ```
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+- Updated dependencies
+  \[[`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)]
+
+## @chakra-ui/react@2.7.0
+
+### Minor Changes
+
+- [`c31df5a4b`](https://github.com/chakra-ui/chakra-ui/commit/c31df5a4bf5077f6f008b3ff27247d81e2402cf1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new
+  `Indicator` layout component. Useful for positioning an element in the corners
+  of another element.
+
+  For example, let's say you want to position a notification badge in the top
+  end corner of a box. You can use the `Indicator` component to achieve this.
+
+  ```jsx live=false
+  <Box position='relative' width='80px' height='80px' bg='gray.50'>
+    <Indicator placement='top-end'>
+      <Circle size='5' bg='red.100'>
+        3
+      </Circle>
+    </Indicator>
+  </Box>
+  ```
+
+  - Refactored the `Stack` and `Wrap` components to use the flex gap instead of
+    the owl selector `& > * ~ *` for spacing.
+
+    This fixes an issue where you can't use raw text nodes as a child of the
+    `Stack` or `Wrap` component.
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+- Updated dependencies
+  \[[`9d0b311b1`](https://github.com/chakra-ui/chakra-ui/commit/9d0b311b1353453abfd53ab27e22d5b2cd7711bb),
+  [`c6d523ced`](https://github.com/chakra-ui/chakra-ui/commit/c6d523ced6bc78207aab708b0b483ff96aacf314),
+  [`0167b68a8`](https://github.com/chakra-ui/chakra-ui/commit/0167b68a8981aae49cd60137da5d494d48d62a57),
+  [`c121c35c0`](https://github.com/chakra-ui/chakra-ui/commit/c121c35c00c3491e7e8dd4cad321a178bfd095e4),
+  [`3a164da59`](https://github.com/chakra-ui/chakra-ui/commit/3a164da59738c9adc6dcae7113e296c234cf81ba),
+  [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f),
+  [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b),
+  [`c31df5a4b`](https://github.com/chakra-ui/chakra-ui/commit/c31df5a4bf5077f6f008b3ff27247d81e2402cf1),
+  [`c4fcc2a43`](https://github.com/chakra-ui/chakra-ui/commit/c4fcc2a43e6278520dc222892d7cbe0ef3b7ffea),
+  [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f),
+  [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08),
+  [`6f9eb3518`](https://github.com/chakra-ui/chakra-ui/commit/6f9eb35187ded25fc0b3082330330ec35a1dafe8),
+  [`2347e3306`](https://github.com/chakra-ui/chakra-ui/commit/2347e33068259319968b1b63bbbeba4934e8c99c),
+  [`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]
+
+## @chakra-ui/dom-utils@2.1.0
+
+### Minor Changes
+
+- [`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `closeOnScroll` doesn't work when tooltip trigger's scrolling parent is not
+  the root document
+
+## @chakra-ui/avatar@2.2.11
+
+### Patch Changes
+
+- [`c121c35c0`](https://github.com/chakra-ui/chakra-ui/commit/c121c35c00c3491e7e8dd4cad321a178bfd095e4)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Force release
+  avatar package to reflect `Array.at` refactoring
+
+- Updated dependencies
+
+## @chakra-ui/css-reset@2.1.2
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+## @chakra-ui/focus-lock@2.0.17
+
+### Patch Changes
+
+- [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Upgrade
+  `focus-trap` package to fix regression with return focus and initial focus
+  ref.
+- Updated dependencies
+  \[[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]
+
+## @chakra-ui/menu@2.1.15
+
+### Patch Changes
+
+- [`6f9eb3518`](https://github.com/chakra-ui/chakra-ui/commit/6f9eb35187ded25fc0b3082330330ec35a1dafe8)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  keyboard events don't work reliably when a MenuItem contains a Dialog or
+  similar interactive element.
+- Updated dependencies
+
+## @chakra-ui/modal@2.2.12
+
+### Patch Changes
+
+- [#7338](https://github.com/chakra-ui/chakra-ui/pull/7338)
+  [`0167b68a8`](https://github.com/chakra-ui/chakra-ui/commit/0167b68a8981aae49cd60137da5d494d48d62a57)
+  Thanks [@bertho-zero](https://github.com/bertho-zero)! - Exports
+  `modalManager` and returns the index of the modal from `useModal` to allow
+  creating custom components similar to modals
+- Updated dependencies
+  \[[`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f)]
+
+## @chakra-ui/popover@2.1.12
+
+### Patch Changes
+
+- [`148c66bc6`](https://github.com/chakra-ui/chakra-ui/commit/148c66bc6df249230e29322747cda9a6e802e15f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issues due to
+  framer-motion upgrade
+
+- Updated dependencies
+
+## @chakra-ui/slider@2.0.25
+
+### Patch Changes
+
+- [`c4fcc2a43`](https://github.com/chakra-ui/chakra-ui/commit/c4fcc2a43e6278520dc222892d7cbe0ef3b7ffea)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  range slider mark is not connected to theme
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+## @chakra-ui/theme@3.1.2
+
+### Patch Changes
+
+- [#7590](https://github.com/chakra-ui/chakra-ui/pull/7590)
+  [`9d0b311b1`](https://github.com/chakra-ui/chakra-ui/commit/9d0b311b1353453abfd53ab27e22d5b2cd7711bb)
+  Thanks [@dvartic](https://github.com/dvartic)! - Add explicit color attribute
+  on buttons to ensure consistency across light and dark modes.
+
+  **🚨 Potentially Breaking Change 🚨 **
+
+  If your button component code relies on inheriting color on buttons, consider
+  adding an explicit color.
+
+- [#7671](https://github.com/chakra-ui/chakra-ui/pull/7671)
+  [`c6d523ced`](https://github.com/chakra-ui/chakra-ui/commit/c6d523ced6bc78207aab708b0b483ff96aacf314)
+  Thanks [@kashikarparth](https://github.com/kashikarparth)! - Fix issue where
+  excess label looks inconsistent with the avatar initials for `xs` and `2xs`
+  sizes
+
+- [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Refactor input
+  theme to use css var instead of resolving to raw value
+
+- Updated dependencies
+  \[[`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b)]
+
+## @chakra-ui/theme-tools@2.0.18
+
+### Patch Changes
+
+- [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `getColorVar`
+  function to get color css variable from theme object
+
+## @chakra-ui/toast@6.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`9d0b311b1`](https://github.com/chakra-ui/chakra-ui/commit/9d0b311b1353453abfd53ab27e22d5b2cd7711bb),
+  [`c6d523ced`](https://github.com/chakra-ui/chakra-ui/commit/c6d523ced6bc78207aab708b0b483ff96aacf314),
+  [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b),
+  [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)]
+
+## @chakra-ui/tooltip@2.2.9
+
+### Patch Changes
+
+- [`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `closeOnScroll` doesn't work when tooltip trigger's scrolling parent is not
+  the root document
+- Updated dependencies
+  \[[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]
+
+## @chakra-ui/styled-system@2.9.1
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+## @chakra-ui/system@2.5.8
+
+### Patch Changes
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+- Updated dependencies
+  \[[`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)]
+
+## @chakra-ui/react-use-animation-state@2.0.9
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]
+
+## @chakra-ui/react-use-focus-effect@2.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`0bec820bd`](https://github.com/chakra-ui/chakra-ui/commit/0bec820bd1ece0c4ba9538394fe2897ff1043c87)]
+
+## @chakra-ui/next-js@2.1.4
+
+### Patch Changes
+
+- [`5a755971a`](https://github.com/chakra-ui/chakra-ui/commit/5a755971a6ede83de28c9a670df3d5e2d67bcaee)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `isExternal` to
+  Link component
+
+- [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Bump emotion
+  version to `11.11.x` to support css cascade layers
+
+## @chakra-ui/theme-utils@2.0.18
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`9d0b311b1`](https://github.com/chakra-ui/chakra-ui/commit/9d0b311b1353453abfd53ab27e22d5b2cd7711bb),
+  [`c6d523ced`](https://github.com/chakra-ui/chakra-ui/commit/c6d523ced6bc78207aab708b0b483ff96aacf314),
+  [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b),
+  [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)]
+
+## @chakra-ui/test-utils@2.0.42
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`9d0b311b1`](https://github.com/chakra-ui/chakra-ui/commit/9d0b311b1353453abfd53ab27e22d5b2cd7711bb),
+  [`c6d523ced`](https://github.com/chakra-ui/chakra-ui/commit/c6d523ced6bc78207aab708b0b483ff96aacf314),
+  [`3a164da59`](https://github.com/chakra-ui/chakra-ui/commit/3a164da59738c9adc6dcae7113e296c234cf81ba),
+  [`16c0ab7ec`](https://github.com/chakra-ui/chakra-ui/commit/16c0ab7ecca6078a24c0f0b054ab0c95d1b0771b),
+  [`38acfe89c`](https://github.com/chakra-ui/chakra-ui/commit/38acfe89c5d1f1edc67bbc44e2edd38980ca3e08)]

@@ -1,0 +1,33 @@
+---
+title: Version 2.4.9
+description:
+  Explore the changelog for Chakra UI version 2.4.9. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7233
+releaseDate: January 16, 2023
+version: 2.4.9
+---
+
+## All components
+
+- Improved JS Doc comments to include default values
+- Fixed regression in exported components
+
+## Minor Changes
+
+### Provider `2.1.0`
+
+- Add `disableEnvironment` option to disable the environment injected span. The
+  environment is used for automatic detection of the `window` and `document`.
+
+```jsx live=false
+<ChakraProvider disableEnvironment>
+  <App />
+</ChakraProvider>
+```
+
+## Patch Changes
+
+### Focus Lock `2.0.16`
+
+- Fix ESM interop for `react-focus-lock` and Vitest

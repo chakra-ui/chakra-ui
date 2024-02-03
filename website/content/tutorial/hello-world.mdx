@@ -1,0 +1,43 @@
+---
+title: 'Hello World'
+description: 'Introduction to the Chakra UI tutorial'
+---
+
+## Introduction
+
+This is the Chakra UI tutorial. Here you will be able to learn about how to work
+with Chakra UI and its features.
+
+## Code along
+
+You will be able to code along the tutorial without opening a separate IDE. You
+will come accross buttons with code actions to help you. This could look like
+this:
+
+Open your <TutorialFileAction type='open' path='/App.tsx' /> file.
+
+You will also find code blocks with step by step examples. You can copy the code
+to the codesandbox by clicking on the top right button in the codeblock. Like
+this you focus more on the conten and less on the typing. Try it out:
+
+```tsx path=/App.tsx type=tutorial
+import { Center, ChakraProvider, Heading } from '@chakra-ui/react'
+
+export default function App() {
+  return (
+    <ChakraProvider>
+      <Center h='100vh'>
+        <Heading>Hello World</Heading>
+      </Center>
+    </ChakraProvider>
+  )
+}
+```
+
+> Copying the code from codeblocks always replaces the complete code in the file
+> of codesandbox
+
+<TutorialFileAction type='open' path='/package.json' />
+<TutorialFileAction type='open' path='/App.tsx' />
+<TutorialFileAction type='add' path='/Test.tsx' />
+<TutorialFileAction type='delete' path='/Test.tsx' />

@@ -1,0 +1,74 @@
+{
+  "members": [
+    {
+      "login": "segunadebayo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6916170?v=4",
+      "url": "https://github.com/segunadebayo",
+      "blog": "https://twitter.com/thesegunadebayo",
+      "name": "Segun Adebayo",
+      "bio": "Building @chakra-ui ⚡️. Design Systems and UI Engineer",
+      "twitter_username": "thesegunadebayo",
+      "location": "United Kingdom"
+    },
+    {
+      "login": "carwack",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16015740?v=4",
+      "url": "https://github.com/carwack",
+      "blog": "",
+      "name": "Sybren W",
+      "bio": null,
+      "twitter_username": "Carwack",
+      "location": null
+    },
+    {
+      "login": "codebender828",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21237954?v=4",
+      "url": "https://github.com/codebender828",
+      "blog": "https://jbakebwa.dev",
+      "name": "Jonathan Bakebwa",
+      "bio": "Building @chakra-ui/vue  |\r\nCo-founder, Software Engineer, rct.ai",
+      "twitter_username": "codebender828",
+      "location": "Paris, France"
+    },
+    {
+      "login": "cschroeter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1846056?v=4",
+      "url": "https://github.com/cschroeter",
+      "blog": "https://cschroeter.net",
+      "name": "Christian Schröter",
+      "bio": "Happy Hacking ✌️",
+      "twitter_username": null,
+      "location": "Landau, Germany"
+    },
+    {
+      "login": "estheragbaje",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53586167?v=4",
+      "url": "https://github.com/estheragbaje",
+      "blog": "https://estheragbaje.dev/",
+      "name": "Esther Agbaje",
+      "bio": "Developer Advocate",
+      "twitter_username": "_estheragbaje",
+      "location": "United Kingdom"
+    },
+    {
+      "login": "noobinthisgame",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21695702?v=4",
+      "url": "https://github.com/noobinthisgame",
+      "blog": "https://johann-ehlers.eu/",
+      "name": "Johann Ehlers",
+      "bio": "Full-Stack dev with a strong affinity for React, Chakra UI, Typescript and AWS.",
+      "twitter_username": "noobinthisgame",
+      "location": "Darmstadt, Germany"
+    },
+    {
+      "login": "Shyrro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10008963?v=4",
+      "url": "https://github.com/Shyrro",
+      "blog": "",
+      "name": "Zakaria Sahmane",
+      "bio": null,
+      "twitter_username": "TheDumbThinker",
+      "location": "France"
+    }
+  ]
+}

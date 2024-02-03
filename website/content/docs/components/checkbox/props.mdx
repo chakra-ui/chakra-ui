@@ -1,0 +1,26 @@
+---
+id: checkbox
+scope: props
+---
+
+## Props
+
+### Checkbox Props
+
+<PropsTable of='Checkbox' />
+
+### CheckboxGroup Props
+
+<PropsTable of='CheckboxGroup' />
+
+#### Shared Style Props
+
+The following style props can be set on `CheckboxGroup` and they will be
+forwarded to all children `Checkbox` components.
+
+| Name        | Type              | Default | Description                                                                                                           |
+| ----------- | ----------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
+| colorScheme | `string`          |         | The color of the checkbox when it is checked. This should be one of the color keys in the theme (e.g."green", "red"). |
+| children    | `React.ReactNode` |         | The content of the checkbox group.                                                                                    |
+| size        | `sm`, `md`, `lg`  | `md`    | The size of the checkbox.                                                                                             |
+| variant     | `string`          |         | The `variant` of the checkbox.                                                                                        |

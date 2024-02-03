@@ -1,0 +1,139 @@
+{
+  "data": [
+    {
+      "name": "Chakra UI Pro",
+      "url": "https://pro.chakra-ui.com",
+      "image": "showcases/Chakra-UI-Pro.jpg"
+    },
+    {
+      "name": "Udacity",
+      "url": "https://www.udacity.com/",
+      "image": "showcases/udacity.jpg"
+    },
+    {
+      "name": "Ethereum",
+      "url": "https://ethereum.org/",
+      "image": "showcases/ethereum.jpg"
+    },
+    {
+      "name": "Figma Conf '23",
+      "url": "https://config.figma.com/",
+      "image": "showcases/figma-schema-23.png"
+    },
+    {
+      "name": "Planet.com",
+      "url": "https://planet.com/",
+      "image": "showcases/planet.jpg"
+    },
+    {
+      "name": "Solidity",
+      "url": "https://soliditylang.org/",
+      "image": "showcases/solidity.png"
+    },
+    {
+      "name": "yubo",
+      "url": "https://yubo.live/",
+      "image": "showcases/yubo.jpg"
+    },
+    {
+      "name": "Typebot",
+      "url": "https://typebot.io",
+      "image": "showcases/Typebot.jpg"
+    },
+    {
+      "name": "snappify",
+      "url": "https://snappify.com/",
+      "image": "showcases/Snappify.jpg"
+    },
+    {
+      "name": "thirdweb",
+      "url": "https://thirdweb.com/",
+      "image": "showcases/thirdweb.jpg"
+    },
+    {
+      "name": "Razorpay",
+      "url": "https://razorpay.com",
+      "image": "showcases/Razorpay.jpg"
+    },
+    {
+      "name": "Supa Palette Website",
+      "url": "https://supa-palette.com",
+      "image": "showcases/Supa-Palette-Website.jpg"
+    },
+    {
+      "name": "Codiga",
+      "url": "https://codiga.io",
+      "image": "showcases/Codiga.jpg"
+    },
+    {
+      "name": "World Economic Forum",
+      "url": "https://weforum.org/",
+      "image": "showcases/weforum.jpg"
+    },
+    {
+      "name": "iFixit",
+      "url": "https://ifixit.com/",
+      "image": "showcases/ifixit.jpg"
+    },
+    {
+      "name": "BrandBird",
+      "url": "https://brandbird.app",
+      "image": "showcases/BrandBird.jpg"
+    },
+    {
+      "name": "June",
+      "url": "https://june.so",
+      "image": "showcases/June.jpg"
+    },
+    {
+      "name": "Clerk",
+      "url": "https://clerk.dev",
+      "image": "showcases/Clerk.jpg"
+    },
+    {
+      "name": "StockX",
+      "url": "https://stockx.com",
+      "image": "showcases/StockX.jpg"
+    },
+    {
+      "name": "MockRocket",
+      "url": "https://mockrocket.io/",
+      "image": "showcases/MockRocket.jpg"
+    },
+    {
+      "name": "Apollo Odyssey",
+      "url": "https://www.apollographql.com/tutorials/",
+      "image": "showcases/Apollo-Odyssey.jpg"
+    },
+    {
+      "name": "Stately.ai",
+      "url": "https://stately.ai/registry/new",
+      "image": "showcases/Stately.jpg"
+    },
+    {
+      "name": "Horizon UI",
+      "url": "https://horizon-ui.com/horizon-ui-chakra/",
+      "image": "showcases/Horizon-UI.jpg"
+    },
+    {
+      "name": "Life Pro Tips",
+      "url": "https://lifeprotips.com/",
+      "image": "showcases/Life-Pro-Tips.jpg"
+    },
+    {
+      "name": "UI Foundations",
+      "url": "https://www.uifoundations.com/",
+      "image": "showcases/UI-Foundations.jpg"
+    },
+    {
+      "name": "Tweetpik",
+      "url": "https://tweetpik.com",
+      "image": "showcases/Tweetpik.jpg"
+    },
+    {
+      "name": "Bitwarden",
+      "url": "https://bitwarden.com",
+      "image": "showcases/Bitwarden.jpg"
+    }
+  ]
+}

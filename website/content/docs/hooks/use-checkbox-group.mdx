@@ -1,0 +1,90 @@
+---
+title: useCheckboxGroup
+package: '@chakra-ui/checkbox'
+description: 'React hooks to manage checkbox groups.'
+---
+
+`useCheckboxGroup` is a custom hook that provides all the state management logic
+for a group of checkboxes.
+
+## Import
+
+```js
+import { useCheckboxGroup } from '@chakra-ui/react'
+```
+
+## Return value
+
+The `useCheckboxGroup` hook returns following props
+
+| Name               | Type                                | Description                                                                                                             |
+| ------------------ | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `value`            | `StringOrNumber[]`                  | The value of checkbox group.                                                                                            |
+| `isDisabled`       | `boolean`                           | A function to set the boolean value to `false`.                                                                         |
+| `onChange`         | `(input: EventOrValue) => void`     | The onChange handler for the checkbox group.                                                                            |
+| `setValue`         | `(state: StringOrNumber[]) => void` | A function to set the value of the checkbox group.                                                                      |
+| `getCheckboxProps` | `(props?: Dict) => Dict`            | A function that takes checkbox props returns them with a onChange handler for the checkbox group and the checked state. |
+
+## Usage
+
+```jsx
+function Example() {
+  function CustomCheckbox(props) {
+    const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
+      useCheckbox(props)
+
+    return (
+      <chakra.label
+        display='flex'
+        flexDirection='row'
+        alignItems='center'
+        gridColumnGap={2}
+        maxW='40'
+        bg='green.50'
+        border='1px solid'
+        borderColor='green.500'
+        rounded='lg'
+        px={3}
+        py={1}
+        cursor='pointer'
+        {...htmlProps}
+      >
+        <input {...getInputProps()} hidden />
+        <Flex
+          alignItems='center'
+          justifyContent='center'
+          border='2px solid'
+          borderColor='green.500'
+          w={4}
+          h={4}
+          {...getCheckboxProps()}
+        >
+          {state.isChecked && <Box w={2} h={2} bg='green.500' />}
+        </Flex>
+        <Text color='gray.700' {...getLabelProps()}>
+          Click me for {props.value}
+        </Text>
+      </chakra.label>
+    )
+  }
+
+  const { value, getCheckboxProps } = useCheckboxGroup({
+    defaultValue: ['2'],
+  })
+
+  return (
+    <Stack>
+      <Text>The selected checkboxes are: {value.sort().join(' and ')}</Text>
+      <CustomCheckbox {...getCheckboxProps({ value: '1' })} />
+      <CustomCheckbox {...getCheckboxProps({ value: '2' })} />
+      <CustomCheckbox {...getCheckboxProps({ value: '3' })} />
+    </Stack>
+  )
+}
+```
+
+## Parameters
+
+The `useCheckboxGroup` hook accepts an object with the following properties:
+
+<PropsTable of='useCheckboxGroup' />

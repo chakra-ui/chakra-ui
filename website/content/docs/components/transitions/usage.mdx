@@ -1,0 +1,213 @@
+---
+id: transitions
+category: other
+title: Transitions
+package: '@chakra-ui/transition'
+description:
+  Chakra exports five components `Fade`, `ScaleFade`, `Slide`, `SlideFade` and
+  `Collapse` to provide simple transitions.
+---
+
+## Import
+
+Most transition components are made using `framer-motion`. They accept the
+following props:
+
+- Common props from framer's `motion` elements
+- `in` prop used to trigger the transition
+- `unmountOnExit` prop used to unmount the component when it is not visible.
+
+```js
+import { Fade, ScaleFade, Slide, SlideFade, Collapse } from '@chakra-ui/react'
+```
+
+## Usage
+
+Chakra exports five components `Fade`, `ScaleFade`, `Slide`, `SlideFade` and
+`Collapse` to provide simple transitions.
+
+### Fade transition
+
+```jsx
+function FadeEx() {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Click Me</Button>
+      <Fade in={isOpen}>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          Fade
+        </Box>
+      </Fade>
+    </>
+  )
+}
+```
+
+### ScaleFade transition
+
+```jsx
+function ScaleFadeEx() {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Click Me</Button>
+      <ScaleFade initialScale={0.9} in={isOpen}>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          Fade
+        </Box>
+      </ScaleFade>
+    </>
+  )
+}
+```
+
+### Slide transition
+
+```jsx
+function SlideEx() {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Click Me</Button>
+      <Slide direction='bottom' in={isOpen} style={{ zIndex: 10 }}>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          <Lorem count={2} />
+        </Box>
+      </Slide>
+    </>
+  )
+}
+```
+
+### Slide Fade transition
+
+```jsx
+function SlideFadeEx() {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Click Me</Button>
+      <SlideFade in={isOpen} offsetY='20px'>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          <Lorem count={1} />
+        </Box>
+      </SlideFade>
+    </>
+  )
+}
+```
+
+### Collapse transition
+
+The Collapse component is used to create regions of content that can
+expand/collapse with a simple animation. It helps to hide content that's not
+immediately relevant to the user.
+
+```jsx
+function CollapseEx() {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Click Me</Button>
+      <Collapse in={isOpen} animateOpacity>
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          <Lorem count={1} />
+        </Box>
+      </Collapse>
+    </>
+  )
+}
+```
+
+#### Changing the startingHeight
+
+```jsx
+function Example() {
+  const [show, setShow] = React.useState(false)
+
+  const handleToggle = () => setShow(!show)
+
+  return (
+    <>
+      <Collapse startingHeight={20} in={show}>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+        labore wes anderson cred nesciunt sapiente ea proident.
+      </Collapse>
+      <Button size='sm' onClick={handleToggle} mt='1rem'>
+        Show {show ? 'Less' : 'More'}
+      </Button>
+    </>
+  )
+}
+```
+
+#### Changing transitions manually using motion props
+
+```jsx
+function CollapseEx() {
+  const { isOpen, onToggle } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onToggle}>Click Me</Button>
+      <Collapse
+        in={isOpen}
+        transition={{ exit: { delay: 1 }, enter: { duration: 0.5 } }}
+      >
+        <Box
+          p='40px'
+          color='white'
+          mt='4'
+          bg='teal.500'
+          rounded='md'
+          shadow='md'
+        >
+          <Lorem count={1} />
+        </Box>
+      </Collapse>
+    </>
+  )
+}
+```

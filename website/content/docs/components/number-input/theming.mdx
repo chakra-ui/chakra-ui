@@ -1,0 +1,335 @@
+---
+id: number-input
+scope: theming
+---
+
+The `NumberInput` component is a multipart component. The styling needs to be
+applied to each part specifically.
+
+> To learn more about styling multipart components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-multipart-components)
+> page.
+
+## Anatomy
+
+- A: `root`
+- B: `field`
+- C: `stepperGroup`
+- D: `stepper`
+
+<AspectRatio ratio={16 / 9}>
+  <svg
+    width='100%'
+    height='100%'
+    viewBox='0 0 384 216'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <rect width='384' height='216' fill='white' />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M346 92H38C35.2386 92 33 94.2386 33 97V117C33 119.761 35.2386 122 38 122H346C348.761 122 351 119.761 351 117V97C351 94.2386 348.761 92 346 92ZM38 91C34.6863 91 32 93.6863 32 97V117C32 120.314 34.6863 123 38 123H346C349.314 123 352 120.314 352 117V97C352 93.6863 349.314 91 346 91H38Z'
+      fill='#E2E8F0'
+    />
+    <path
+      d='M44.8154 109.912V108.898L49.2899 101.818H50.0257V103.389H49.5285L46.1478 108.739V108.818H52.1734V109.912H44.8154ZM49.608 112V101.818H50.7813V112H49.608Z'
+      fill='#2D3748'
+    />
+    <path
+      d='M54.0365 112V111.105L57.3973 107.426C57.7917 106.995 58.1165 106.621 58.3717 106.303C58.6269 105.981 58.8158 105.679 58.9385 105.398C59.0644 105.113 59.1274 104.814 59.1274 104.503C59.1274 104.145 59.0412 103.835 58.8689 103.573C58.6998 103.311 58.4678 103.109 58.1729 102.967C57.8779 102.824 57.5464 102.753 57.1785 102.753C56.7874 102.753 56.4461 102.834 56.1544 102.996C55.866 103.156 55.6423 103.379 55.4832 103.668C55.3274 103.956 55.2496 104.294 55.2496 104.682H54.0763C54.0763 104.085 54.2138 103.562 54.4889 103.111C54.764 102.66 55.1385 102.309 55.6125 102.057C56.0898 101.805 56.625 101.679 57.2183 101.679C57.8149 101.679 58.3435 101.805 58.8042 102.057C59.2649 102.309 59.6262 102.648 59.8881 103.076C60.1499 103.504 60.2808 103.979 60.2808 104.503C60.2808 104.877 60.2129 105.244 60.077 105.602C59.9444 105.956 59.7124 106.352 59.3809 106.79C59.0528 107.224 58.5971 107.754 58.0138 108.381L55.7268 110.827V110.906H60.4598V112H54.0365Z'
+      fill='#2D3748'
+    />
+    <path d='M340 96L344.5 100.5H335.5L340 96Z' fill='#2D3748' />
+    <path d='M340 118L335.5 113.5H344.5L340 118Z' fill='#2D3748' />
+    <rect x='328' y='106.5' width='24' height='1' fill='#E2E8F0' />
+    <rect x='327' y='91' width='1' height='32' fill='#E2E8F0' />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M191 86L191 76L192 76L192 86L191 86Z'
+      fill='#D53F8C'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M339 90L339 76L340 76L340 90L339 90Z'
+      fill='#38A169'
+    />
+    <path
+      d='M354 63C354 70.732 347.732 77 340 77C332.268 77 326 70.732 326 63C326 55.268 332.268 49 340 49C347.732 49 354 55.268 354 63Z'
+      fill='#C6F6D5'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M340 76C347.18 76 353 70.1797 353 63C353 55.8203 347.18 50 340 50C332.82 50 327 55.8203 327 63C327 70.1797 332.82 76 340 76ZM340 77C347.732 77 354 70.732 354 63C354 55.268 347.732 49 340 49C332.268 49 326 55.268 326 63C326 70.732 332.268 77 340 77Z'
+      fill='#38A169'
+    />
+    <path
+      d='M345.06 61.1477H343.288C343.219 60.7689 343.092 60.4356 342.907 60.1477C342.721 59.8598 342.494 59.6155 342.225 59.4148C341.956 59.214 341.655 59.0625 341.322 58.9602C340.992 58.8579 340.642 58.8068 340.271 58.8068C339.6 58.8068 339 58.9754 338.469 59.3125C337.943 59.6496 337.526 60.1439 337.219 60.7954C336.916 61.447 336.765 62.2424 336.765 63.1818C336.765 64.1288 336.916 64.928 337.219 65.5795C337.526 66.231 337.945 66.7235 338.475 67.0568C339.005 67.3901 339.602 67.5568 340.265 67.5568C340.632 67.5568 340.981 67.5076 341.31 67.4091C341.644 67.3068 341.945 67.1572 342.214 66.9602C342.483 66.7632 342.71 66.5227 342.896 66.2386C343.085 65.9507 343.216 65.6212 343.288 65.25L345.06 65.2557C344.966 65.8276 344.782 66.3542 344.509 66.8352C344.24 67.3125 343.894 67.7254 343.469 68.0738C343.049 68.4185 342.568 68.6856 342.026 68.875C341.485 69.0644 340.894 69.1591 340.253 69.1591C339.246 69.1591 338.348 68.9204 337.56 68.4432C336.772 67.9621 336.151 67.2746 335.697 66.3807C335.246 65.4867 335.021 64.4204 335.021 63.1818C335.021 61.9394 335.248 60.8731 335.702 59.9829C336.157 59.089 336.778 58.4034 337.566 57.9261C338.354 57.4451 339.25 57.2045 340.253 57.2045C340.871 57.2045 341.447 57.2935 341.981 57.4716C342.519 57.6458 343.002 57.9034 343.43 58.2443C343.858 58.5814 344.212 58.9943 344.492 59.4829C344.772 59.9678 344.962 60.5227 345.06 61.1477Z'
+      fill='#38A169'
+    />
+    <path
+      d='M327.5 152C327.5 159.732 321.232 166 313.5 166C305.768 166 299.5 159.732 299.5 152C299.5 144.268 305.768 138 313.5 138C321.232 138 327.5 144.268 327.5 152Z'
+      fill='#BEE3F8'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M313.5 165C320.68 165 326.5 159.18 326.5 152C326.5 144.82 320.68 139 313.5 139C306.32 139 300.5 144.82 300.5 152C300.5 159.18 306.32 165 313.5 165ZM313.5 166C321.232 166 327.5 159.732 327.5 152C327.5 144.268 321.232 138 313.5 138C305.768 138 299.5 144.268 299.5 152C299.5 159.732 305.768 166 313.5 166Z'
+      fill='#3182CE'
+    />
+    <path
+      d='M312.772 158H309.005V146.364H312.891C314.031 146.364 315.011 146.597 315.829 147.063C316.647 147.525 317.274 148.189 317.709 149.057C318.149 149.92 318.369 150.956 318.369 152.165C318.369 153.377 318.147 154.419 317.704 155.29C317.264 156.161 316.628 156.831 315.795 157.301C314.961 157.767 313.954 158 312.772 158ZM310.761 156.466H312.675C313.562 156.466 314.298 156.299 314.886 155.966C315.473 155.629 315.912 155.142 316.204 154.506C316.495 153.866 316.641 153.085 316.641 152.165C316.641 151.252 316.495 150.477 316.204 149.841C315.916 149.205 315.486 148.722 314.914 148.392C314.342 148.063 313.632 147.898 312.783 147.898H310.761V156.466Z'
+      fill='#3182CE'
+    />
+    <path
+      d='M206 63C206 70.732 199.732 77 192 77C184.268 77 178 70.732 178 63C178 55.268 184.268 49 192 49C199.732 49 206 55.268 206 63Z'
+      fill='#FED7E2'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M192 76C199.18 76 205 70.1797 205 63C205 55.8203 199.18 50 192 50C184.82 50 179 55.8203 179 63C179 70.1797 184.82 76 192 76ZM192 77C199.732 77 206 70.732 206 63C206 55.268 199.732 49 192 49C184.268 49 178 55.268 178 63C178 70.732 184.268 77 192 77Z'
+      fill='#D53F8C'
+    />
+    <path
+      d='M188.66 69H186.796L190.984 57.3636H193.012L197.2 69H195.336L192.046 59.4773H191.955L188.66 69ZM188.973 64.4432H195.018V65.9205H188.973V64.4432Z'
+      fill='#D53F8C'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M107 102L107 76L108 76L108 102L107 102Z'
+      fill='#DD6B20'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M313 139L313 99L314 99L314 139L313 139Z'
+      fill='#3182CE'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M330 99.5H313V98.5H330V99.5Z'
+      fill='#3182CE'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M330 115.5H313V114.5H330V115.5Z'
+      fill='#3182CE'
+    />
+    <circle cx='107.5' cy='102' r='2' fill='#DD6B20' />
+    <circle cx='331' cy='99' r='2' fill='#3182CE' />
+    <circle cx='331' cy='115' r='2' fill='#3182CE' />
+    <path
+      d='M122 63C122 70.732 115.732 77 108 77C100.268 77 94 70.732 94 63C94 55.268 100.268 49 108 49C115.732 49 122 55.268 122 63Z'
+      fill='#FEEBCB'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M108 76C115.18 76 121 70.1797 121 63C121 55.8203 115.18 50 108 50C100.82 50 95 55.8203 95 63C95 70.1797 100.82 76 108 76ZM108 77C115.732 77 122 70.732 122 63C122 55.268 115.732 49 108 49C100.268 49 94 55.268 94 63C94 70.732 100.268 77 108 77Z'
+      fill='#DD6B20'
+    />
+    <path
+      d='M104.544 69V57.3636H108.805C109.631 57.3636 110.315 57.5 110.856 57.7727C111.398 58.0417 111.803 58.4072 112.072 58.8693C112.341 59.3277 112.476 59.8447 112.476 60.4205C112.476 60.9053 112.387 61.3144 112.209 61.6477C112.031 61.9773 111.792 62.2424 111.493 62.4432C111.197 62.6402 110.872 62.7841 110.516 62.875V62.9886C110.902 63.0076 111.279 63.1326 111.646 63.3636C112.017 63.5909 112.324 63.9148 112.567 64.3352C112.809 64.7557 112.93 65.2671 112.93 65.8693C112.93 66.464 112.79 66.9981 112.51 67.4716C112.233 67.9413 111.805 68.3144 111.226 68.5909C110.646 68.8636 109.906 69 109.004 69H104.544ZM106.3 67.4943H108.834C109.675 67.4943 110.277 67.3315 110.641 67.0057C111.004 66.6799 111.186 66.2727 111.186 65.7841C111.186 65.4167 111.093 65.0796 110.908 64.7727C110.722 64.4659 110.457 64.2216 110.112 64.0398C109.771 63.858 109.366 63.7671 108.896 63.7671H106.3V67.4943ZM106.3 62.3977H108.652C109.046 62.3977 109.4 62.322 109.714 62.1705C110.033 62.019 110.284 61.8068 110.47 61.5341C110.659 61.2576 110.754 60.9318 110.754 60.5568C110.754 60.0758 110.586 59.6724 110.248 59.3466C109.911 59.0208 109.394 58.858 108.697 58.858H106.3V62.3977Z'
+      fill='#DD6B20'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M357 87H26V127H357V87ZM25 86V128H358V86H25Z'
+      fill='#D53F8C'
+    />
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M353 90H326V124H353V90ZM325 89V125H354V89H325Z'
+      fill='#38A169'
+    />
+  </svg>
+</AspectRatio>
+
+## Theming properties
+
+The properties that affect the theming of the `NumberInput` component are:
+
+- `variant`: The visual variant of the button. Defaults to `outline`.
+- `size`: The size of the button. Defaults to `md`.
+
+## Theming utilities
+
+- `createMultiStyleConfigHelpers`: a function that returns a set of utilities
+  for creating style configs for a multipart component (`definePartsStyle` and
+  `defineMultiStyleConfig`).
+- `definePartsStyle`: a function used to create multipart style objects.
+- `defineMultiStyleConfig`: a function used to define the style configuration
+  for a multipart component.
+
+```jsx live=false
+import { numberInputAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(numberInputAnatomy.keys)
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { numberInputAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(numberInputAnatomy.keys)
+
+const baseStyle = definePartsStyle({
+  // define the part you're going to style
+  field: {
+    fontWeight: 'semibold',
+    color: 'red.500',
+  },
+})
+
+export const numberInputTheme = defineMultiStyleConfig({ baseStyle })
+```
+
+After customizing the number input theme, we can import it in our theme file and
+add it in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { numberInputTheme } from './components/number-input'
+
+export const theme = extendTheme({
+  components: { NumberInput: numberInputTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the input
+> theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to include an extra large input size. Here's how we can do
+that:
+
+```jsx live=false
+import { numberInputAnatomy } from "@chakra-ui/anatomy";
+import { createMultiStyleConfigHelpers, defineStyle } from "@chakra-ui/react";
+
+const {
+  definePartsStyle,
+  defineMultiStyleConfig
+} = createMultiStyleConfigHelpers(numberInputAnatomy.keys);
+
+const xl = defineStyle({
+  fontSize: "lg",
+  h: "20",
+  px: "2"
+});
+
+const sizes = {
+  xl: definePartsStyle({ field: xl, stepper: xl, addon: xl })
+};
+
+export const numberInputTheme = defineMultiStyleConfig({ sizes });
+
+// Now we can use the new `xl` size
+<NumberInput size="xl" ... />
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a custom primary variant. Here's how we can do
+that:
+
+```jsx live=false
+import { numberInputAnatomy } from "@chakra-ui/anatomy";
+import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
+
+const {
+  definePartsStyle,
+  defineMultiStyleConfig
+} = createMultiStyleConfigHelpers(numberInputAnatomy.keys);
+
+const primary = definePartsStyle({
+  field: {
+    border: "1px solid",
+    borderColor: "gray.200",
+    background: "gray.50",
+    fontWeight: "bold",
+
+    // Let's also provide dark mode alternatives
+    _dark: {
+      borderColor: "gray.600",
+      background: "gray.800"
+    }
+  },
+  stepper: {
+    color: "purple.500",
+    background: "gray.200"
+  }
+});
+
+export const numberInputTheme = defineMultiStyleConfig({
+  variants: { primary }
+});
+
+// Now we can use the new `pill` variant
+<NumberInput variant="primary" ... />
+```
+
+## Changing the default properties
+
+Let's assume we want to change the default size and variant of every number
+input in our app. Here's how we can do that:
+
+```jsx live=false
+import { numberInputAnatomy } from '@chakra-ui/anatomy'
+import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react'
+
+const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(
+  numberInputAnatomy.keys,
+)
+
+export const numberInputTheme = defineMultiStyleConfig({
+  defaultProps: {
+    size: 'xl',
+    variant: 'primary',
+  },
+})
+
+// This saves you time, instead of manually setting the size and variant every time you use an input:
+<NumberInput size="xl" variant="primary" ... />
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  NumberInputTheme,
+} from 'configs/sandpack-contents/component-theming/number-input'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/NumberInput.ts': NumberInputTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

@@ -1,0 +1,74 @@
+---
+id: container
+category: layout
+title: 'Container'
+package: '@chakra-ui/layout'
+description:
+  Containers are used to constrain a content's width to the current breakpoint,
+  while keeping it fluid.
+---
+
+## Import
+
+```js
+import { Container } from '@chakra-ui/react'
+```
+
+## Usage
+
+To contain any piece of content, wrap it in the `Container` component.
+
+```jsx
+<Container>
+  There are many benefits to a joint design and development system. Not only
+  does it bring benefits to the design team, but it also brings benefits to
+  engineering teams. It makes sure that our experiences have a consistent look
+  and feel, not just in our design specs, but in production
+</Container>
+```
+
+## Container Size
+
+By default, the `Container` component sets the `maxWidth` of the content to 60
+characters (`60ch`) but you can customize this by passing custom `maxWidth`
+values or changing the size tokens defined in
+[theme.sizes.container](https://chakra-ui.com/docs/styled-system/theme#sizes).
+
+> - About the default value: The `ch` unit is a relative unit defined by the
+>   rendered typeface's "0" character width. This width varies by the shape and
+>   style of the font.
+> - If you are curious about the reason for this default value of `60`
+>   characters, consider this explanation about
+>   [line length](https://betterwebtype.com/articles/2019/06/16/5-keys-to-accessible-web-typography/#line-length)
+>   from Better Web Type.
+
+```jsx
+<VStack>
+  <Container maxW='md' bg='blue.600' color='white'>
+    "md" Container
+  </Container>
+  <Container maxW='550px' bg='purple.600' color='white'>
+    "550px" Container
+  </Container>
+  <Container maxW='container.sm' bg='green.400' color='#262626'>
+    "container.sm" Container
+  </Container>
+</VStack>
+```
+
+## Centering the children
+
+In some cases, the width of the content can be smaller than the container's
+width. You can use the `centerContent` prop to center the content. It renders a
+flexbox with `flexDirection` set to `column` and `alignItems` set to `center`.
+
+```jsx
+<Container maxW='2xl' bg='blue.600' centerContent>
+  <Box padding='4' bg='blue.400' color='black' maxW='md'>
+    There are many benefits to a joint design and development system. Not only
+    does it bring benefits to the design team, but it also brings benefits to
+    engineering teams. It makes sure that our experiences have a consistent look
+    and feel, not just in our design specs, but in production.
+  </Box>
+</Container>
+```

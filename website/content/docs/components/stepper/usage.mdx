@@ -1,0 +1,389 @@
+---
+id: stepper
+title: Stepper
+category: 'navigation'
+package: '@chakra-ui/stepper'
+description:
+  A stepper component is used to indicate progress through a multi-step process.
+---
+
+## Import
+
+Chakra UI exports the followings components:
+
+```js
+import {
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
+} from '@chakra-ui/react'
+```
+
+## Usage
+
+Use the step indicator component to show the user’s position in and progress
+through a multi-step process. Step indicators are often used on application
+forms or workflow screens.
+
+The `useSteps` hook is exported to help manage the state of stepper and the
+active step index.
+
+Here's a basic example of a horizontal stepper:
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  return (
+    <Stepper index={activeStep}>
+      {steps.map((step, index) => (
+        <Step key={index}>
+          <StepIndicator>
+            <StepStatus
+              complete={<StepIcon />}
+              incomplete={<StepNumber />}
+              active={<StepNumber />}
+            />
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.title}</StepTitle>
+            <StepDescription>{step.description}</StepDescription>
+          </Box>
+
+          <StepSeparator />
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+
+render(<Example />)
+```
+
+## Changing the orientation
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  return (
+    <Stepper index={activeStep} orientation='vertical' height='400px' gap='0'>
+      {steps.map((step, index) => (
+        <Step key={index}>
+          <StepIndicator>
+            <StepStatus
+              complete={<StepIcon />}
+              incomplete={<StepNumber />}
+              active={<StepNumber />}
+            />
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.title}</StepTitle>
+            <StepDescription>{step.description}</StepDescription>
+          </Box>
+
+          <StepSeparator />
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+
+render(<Example />)
+```
+
+## Changing the size
+
+To change the size of the step indicator, you can pass the `size` prop to the
+`Stepper` component, setting it to either `sm`, `md` or `lg`.
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  return (
+    <Stepper size='lg' index={activeStep}>
+      {steps.map((step, index) => (
+        <Step key={index}>
+          <StepIndicator>
+            <StepStatus
+              complete={<StepIcon />}
+              incomplete={<StepNumber />}
+              active={<StepNumber />}
+            />
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.title}</StepTitle>
+            <StepDescription>{step.description}</StepDescription>
+          </Box>
+
+          <StepSeparator />
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+
+render(<Example />)
+```
+
+## Changing the color scheme
+
+The stepper uses a blue color scheme by default. To change the colorScheme, you
+can pass the `colorScheme` prop to `Stepper` component to any color in the
+theme.
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  return (
+    <Stepper size='lg' colorScheme='red' index={activeStep}>
+      {steps.map((step, index) => (
+        <Step key={index}>
+          <StepIndicator>
+            <StepStatus
+              complete={<StepIcon />}
+              incomplete={<StepNumber />}
+              active={<StepNumber />}
+            />
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.title}</StepTitle>
+            <StepDescription>{step.description}</StepDescription>
+          </Box>
+
+          <StepSeparator />
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+
+render(<Example />)
+```
+
+## Changing the step indicator's content
+
+In some cases you might want to render custom icons or elements within the
+`StepIndicator` component.
+
+To do this, you can leverage the `StepStatus` component to show custom React
+elements based on the step's status.
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  return (
+    <Stepper size='lg' colorScheme='yellow' index={activeStep}>
+      {steps.map((step, index) => (
+        <Step key={index}>
+          <StepIndicator>
+            <StepStatus complete={`✅`} incomplete={`😅`} active={`📍`} />
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.title}</StepTitle>
+            <StepDescription>{step.description}</StepDescription>
+          </Box>
+
+          <StepSeparator />
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+
+render(<Example />)
+```
+
+## Setting the active step with click
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep, setActiveStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  return (
+    <Stepper size='lg' index={activeStep}>
+      {steps.map((step, index) => (
+        <Step key={index} onClick={() => setActiveStep(index)}>
+          <StepIndicator>
+            <StepStatus
+              complete={<StepIcon />}
+              incomplete={<StepNumber />}
+              active={<StepNumber />}
+            />
+          </StepIndicator>
+
+          <Box flexShrink='0'>
+            <StepTitle>{step.title}</StepTitle>
+            <StepDescription>{step.description}</StepDescription>
+          </Box>
+
+          <StepSeparator />
+        </Step>
+      ))}
+    </Stepper>
+  )
+}
+
+render(<Example />)
+```
+
+## Adding a progress bar
+
+You can replace the StepSeparator component with a custom progress indicator,
+e.g. the `Progress` component for more custom experience.
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep, setActiveStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  const activeStepText = steps[activeStep].description
+
+  const max = steps.length - 1
+  const progressPercent = (activeStep / max) * 100
+
+  return (
+    <Box position='relative'>
+      <Stepper size='sm' index={activeStep} gap='0'>
+        {steps.map((step, index) => (
+          <Step key={index} gap='0'>
+            <StepIndicator bg='white'>
+              <StepStatus complete={<StepIcon />} />
+            </StepIndicator>
+          </Step>
+        ))}
+      </Stepper>
+      <Progress
+        value={progressPercent}
+        position='absolute'
+        height='3px'
+        width='full'
+        top='10px'
+        zIndex={-1}
+      />
+    </Box>
+  )
+}
+
+render(<Example />)
+```
+
+## Showing step summary
+
+A step summary can be shown when labels are hidden. The step summary allows the
+user to see the label of the current step directly below the step group and is
+recommended for smaller screens and responsive mobile views.
+
+```jsx manual=true
+const steps = [
+  { title: 'First', description: 'Contact Info' },
+  { title: 'Second', description: 'Date & Time' },
+  { title: 'Third', description: 'Select Rooms' },
+]
+
+function Example() {
+  const { activeStep, setActiveStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  })
+
+  const activeStepText = steps[activeStep].description
+
+  return (
+    <Stack>
+      <Stepper size='sm' index={activeStep} gap='0'>
+        {steps.map((step, index) => (
+          <Step key={index} gap='0'>
+            <StepIndicator>
+              <StepStatus complete={<StepIcon />} />
+            </StepIndicator>
+            <StepSeparator _horizontal={{ ml: '0' }} />
+          </Step>
+        ))}
+      </Stepper>
+      <Text>
+        Step {activeStep + 1}: <b>{activeStepText}</b>
+      </Text>
+    </Stack>
+  )
+}
+
+render(<Example />)
+```

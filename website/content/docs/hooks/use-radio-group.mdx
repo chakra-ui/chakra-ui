@@ -1,0 +1,162 @@
+---
+title: useRadioGroup
+package: '@chakra-ui/radio'
+description: 'React hooks to manage radio groups.'
+---
+
+`useRadioGroup` is a custom hook that provides all the state management logic
+for a group of radios.
+
+## Import
+
+```js
+import { useRadioGroup } from '@chakra-ui/react'
+```
+
+## Return value
+
+The `useRadioGroup` hook returns following props
+
+| Name            | Type                                | Description                                                                    |
+| --------------- | ----------------------------------- | ------------------------------------------------------------------------------ |
+| `value`         | `StringOrNumber[]`                  | The value of radio group.                                                      |
+| `name`          | `string`                            | The name of the radio options. All radio options must use the same name.       |
+| `ref`           | `any`                               | The ref of the radio group.                                                    |
+| `isDisabled`    | `boolean`                           | A utility to manage disabled state.                                            |
+| `isFocusable`   | `boolean`                           | A utility to manage focused state.                                             |
+| `focus`         | `() => void`                        | A utility function to set the focus on the first enabled radio.                |
+| `onChange`      | `(nextValue: EventOrValue) => void` | The onChange handler for the radio group.                                      |
+| `setValue`      | `(state: StringOrNumber[]) => void` | A function to set the value of the radio group.                                |
+| `getRadioProps` | `(props?: Dict) => Dict`            | A function that takes root props and handles changes for the radio group       |
+| `getRootProps`  | `(props?: Dict) => Dict`            | A function that takes radio root props and handles changes for the radio group |
+| `htmlProps`     | `{}`                                | A function that takes radio root props and handles changes for the radio group |
+
+## Usage
+
+```jsx
+function Example() {
+  function CustomRadio(props) {
+    const { image, ...radioProps } = props
+    const { state, getInputProps, getRadioProps, htmlProps, getLabelProps } =
+      useRadio(radioProps)
+
+    return (
+      <chakra.label {...htmlProps} cursor='pointer'>
+        <input {...getInputProps({})} hidden />
+        <Box
+          {...getRadioProps()}
+          bg={state.isChecked ? 'green.200' : 'transparent'}
+          w={12}
+          p={1}
+          rounded='full'
+        >
+          <Image src={image} rounded='full' {...getLabelProps()} />
+        </Box>
+      </chakra.label>
+    )
+  }
+
+  const toast = useToast()
+
+  const avatars = [
+    { name: 'Kat', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
+    { name: 'Kevin', image: 'https://randomuser.me/api/portraits/men/86.jpg' },
+    { name: 'Andy', image: 'https://randomuser.me/api/portraits/men/29.jpg' },
+    { name: 'Jess', image: 'https://randomuser.me/api/portraits/women/95.jpg' },
+  ]
+
+  const handleChange = (value) => {
+    toast({
+      title: `The value got changed to ${value}!`,
+      status: 'success',
+      duration: 2000,
+    })
+  }
+
+  const { value, getRadioProps, getRootProps } = useRadioGroup({
+    defaultValue: 'Kevin',
+    onChange: handleChange,
+  })
+
+  return (
+    <Stack {...getRootProps()}>
+      <Text>The selected radio is: {value}</Text>
+      <HStack>
+        {avatars.map((avatar) => {
+          return (
+            <CustomRadio
+              key={avatar.name}
+              image={avatar.image}
+              {...getRadioProps({ value: avatar.name })}
+            />
+          )
+        })}
+      </HStack>
+    </Stack>
+  )
+}
+```
+
+## Using `isDisabled` and `isFocusable`
+
+When providing the hook with the `isDisabled` and/or `isFocusable` props, this
+values also need to be returned and passed to the radio inputs.
+
+This is different than simply passing them as props to the `RadioGroup`
+component because the component has access to context to supply the values to
+the radio inputs.
+
+Below is an example with `isDisabled` being passed to the hook and used with the
+`Radio` component. If needed, this custom component can than be controllable by
+a parent, which would supply the logic to determine if the inputs need to be
+disabled.
+
+```jsx manual=true
+function CustomRadioGroup(props) {
+  const { options, ...rest } = props
+
+  const { getRootProps, getRadioProps, isDisabled } = useRadioGroup({
+    ...rest,
+  })
+
+  const group = getRootProps()
+
+  return (
+    <HStack {...group}>
+      {options.map((value) => {
+        const radio = getRadioProps({ value })
+        return (
+          <Radio isDisabled={isDisabled} key={value} {...radio}>
+            {value}
+          </Radio>
+        )
+      })}
+    </HStack>
+  )
+}
+
+function Parent() {
+  const [isDisabled, setIsDisabled] = useState(true)
+
+  // Some logic to handle the disabled state
+
+  return (
+    <>
+      {/* Any components above */}
+      <CustomRadioGroup
+        isDisabled={isDisabled}
+        options={['react', 'vue', 'svelte']}
+      />
+      {/* Any components below */}
+    </>
+  )
+}
+
+render(<Parent />)
+```
+
+## Parameters
+
+The `useRadioGroup` hook accepts an object with the following properties:
+
+<PropsTable of='useRadioGroup' />

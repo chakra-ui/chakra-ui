@@ -1,0 +1,186 @@
+---
+id: button
+scope: theming
+---
+
+The `Button` component is a single part component. All of the styling is applied
+directly to the `button` element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page.
+
+## Theming properties
+
+The properties that affect the theming of the `Button` component are:
+
+- `variant`: The visual variant of the button. Defaults to `solid`.
+- `colorScheme`: The color scheme of the button. Defaults to `gray`.
+- `size`: The size of the button. Defaults to `md`.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const outline = defineStyle({
+  border: '2px dashed', // change the appearance of the border
+  borderRadius: 0, // remove the border radius
+  fontWeight: 'semibold', // change the font weight
+})
+
+export const buttonTheme = defineStyleConfig({
+  variants: { outline },
+})
+```
+
+After customizing the button theme, we can import it in our theme file and add
+it in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { buttonTheme } from './components/button'
+
+export const theme = extendTheme({
+  components: { Button: buttonTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the
+> button theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to include an extra large button size. Here's how we can do
+that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const xl = defineStyle({
+  fontSize: 'xl',
+  px: '6',
+  h: '16',
+  borderRadius: 'md',
+})
+
+export const buttonTheme = defineStyleConfig({
+  sizes: { xl },
+})
+
+// Now we can use the new `xl` size
+<Button size="xl">...</Button>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a custom branded variant. Here's how we can do
+that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const brandPrimary = defineStyle({
+  background: 'orange.500',
+  color: 'white',
+  fontFamily: 'serif',
+  fontWeight: 'normal',
+
+  // let's also provide dark mode alternatives
+  _dark: {
+    background: 'orange.300',
+    color: 'orange.800',
+  }
+})
+
+export const buttonTheme = defineStyleConfig({
+  variants: { brandPrimary },
+})
+
+// Now we can use the new `brandPrimary` variant
+<Button variant="brandPrimary">...</Button>
+```
+
+## Using a custom color scheme
+
+Let's assume we want to use our own custom color scale based on our brand. We'd
+need to define the color scale first in the main theme file:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+
+export const theme = extendTheme({
+  colors: {
+    brand: {
+      50: '#f7fafc',
+      ...
+      500: '#718096',
+      ...
+      900: '#171923',
+    }
+  }
+})
+```
+
+Then, we can use the custom color scale as the color scheme for the button:
+
+```jsx live=false
+<Button colorScheme='brand'>...</Button>
+```
+
+## Changing the default properties
+
+Let's assume we want to change the default size, variant or color scheme of
+every button in our app. Here's how we can do that:
+
+```jsx live=false
+import { defineStyleConfig } from '@chakra-ui/react'
+
+export const buttonTheme = defineStyleConfig({
+  defaultProps: {
+    size: 'lg',
+    variant: 'outline',
+    colorScheme: 'brand',
+  },
+})
+
+// This saves you time, instead of manually setting the size,
+// variant and color scheme every time you use a button:
+<Button size="lg" variant="outline" colorScheme="brand">...</Button>
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  ButtonTheme,
+} from 'configs/sandpack-contents/component-theming/button'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Button.ts': ButtonTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

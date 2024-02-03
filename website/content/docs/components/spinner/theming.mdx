@@ -1,0 +1,95 @@
+---
+id: spinner
+scope: theming
+---
+
+The `Spinner` component is a single part component. All of the styling is
+applied directly to the `Spinner` element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page.
+
+## Theming properties
+
+The properties that affect the theming of the `Spinner` component are:
+
+- `size`: The size of the spinner. Defaults to `md`.
+- `colorScheme`: The color scheme of the spinner.
+- `variant`: The visual variant of the spinner.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+const bold = defineStyle({
+  borderWidth: 4, // change the thickness of the spinner
+})
+export const spinnerTheme = defineStyleConfig({
+  variants: { bold },
+})
+```
+
+After customizing the spinner theme, we can import it in our theme file and add
+it in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { spinnerTheme } from './components/spinner'
+export const theme = extendTheme({
+  components: { Spinner: spinnerTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the
+> spinner theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to include an extra large spinner size. Here's how we can
+do that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+const xxl = defineStyle({
+  height: 100,
+  width: 100,
+});
+export const spinnerTheme = defineStyleConfig({
+  sizes: { xxl },
+})
+// Now we can use the new `xxl` size
+<Spinner size="xxl">...</Spinner>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Changing the default properties
+
+Let's assume we want to change the default size, variant of every spinner in our
+app. Here's how we can do that:
+
+```jsx live=false
+import { defineStyleConfig } from '@chakra-ui/react'
+export const spinnerTheme = defineStyleConfig({
+  defaultProps: {
+    size: 'lg',
+    variant: 'bold',
+  },
+})
+// This saves you time, instead of manually setting the
+// size and variant every time you use a spinner:
+<Spinner size="lg" variant="bold">...</Spinner>
+```

@@ -1,0 +1,34 @@
+---
+title: Chakra UI + React Table
+description: Building a Data Table with Chakra UI and React Table
+tags: ['table', 'data table', 'react-table']
+author: TimKolberger
+category: integrations
+---
+
+This example shows how to build a sortable data table with Chakra UI's table
+components, and the [React Table library](https://react-table.tanstack.com/).
+
+[Explore this example on CodeSandbox](https://codesandbox.io/s/chakra-ui-data-table-vfivp?file=/src/DataTable.tsx)
+
+import {
+  App,
+  Index,
+  DataTable,
+} from 'configs/sandpack-contents/react-table/react-table'
+
+<SandpackEmbed
+  dependencies={{
+    '@tanstack/react-table': '8.5.11',
+  }}
+  files={{
+    '/App.tsx': App,
+    '/index.tsx': Index,
+    '/DataTable.tsx': DataTable,
+  }}
+/>
+
+> Many examples from the
+> [React Table docs](https://react-table.tanstack.com/docs/examples/basic) are
+> portable to use Chakra UI's components by converting `<table />` to
+> `<Table />`, `<td />` to `<Td />`, etc...

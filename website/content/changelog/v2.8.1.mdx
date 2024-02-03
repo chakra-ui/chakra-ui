@@ -1,0 +1,370 @@
+---
+title: Version 2.8.1
+description:
+  Explore the changelog for Chakra UI version 2.8.1. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7950
+releaseDate: September 8, 2023
+version: 2.8.1
+---
+
+## @chakra-ui/tabs@3.0.0
+
+### Major Changes
+
+- [#7882](https://github.com/chakra-ui/chakra-ui/pull/7882)
+  [`065fd24c7`](https://github.com/chakra-ui/chakra-ui/commit/065fd24c724d78b17e6996607ea1b5c7829e7c2c)
+  Thanks [@vennilamahalingam](https://github.com/vennilamahalingam)! - Distored
+  UI when device orientation or width is changed - On changing the device width
+  and change of device orientation, the tab indicator element which is position
+  absolute aligns realtive to the outer container element.
+
+  Hence, the position of immediate parent(tabs) is set to relative in this
+  fix.This makes sure, if the orientation changes the tab indicator is aligned
+  relative to its parent.
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/css-reset@2.3.0
+
+### Minor Changes
+
+- [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **[POTENTIAL
+  BREAKING CHANGE]** Remove export defaults and favor of named exports.
+
+  ```diff
+  - import theme from "@chakra-ui/theme"
+  + import { theme } from "@chakra-ui/theme"
+  ```
+
+  ```diff
+  - import Icon from "@chakra-ui/icon"
+  + import { Icon } from "@chakra-ui/icon"
+  ```
+
+  ```diff
+  - import CSSReset from "@chakra-ui/css-reset"
+  + import { CSSReset } from "@chakra-ui/css-reset"
+  ```
+
+  ```diff
+  - import VisuallyHidden from "@chakra-ui/visually-hidden"
+  + import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+  ```
+
+## @chakra-ui/icon@3.2.0
+
+### Minor Changes
+
+- [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **[POTENTIAL
+  BREAKING CHANGE]** Remove export defaults and favor of named exports.
+
+  ```diff
+  - import theme from "@chakra-ui/theme"
+  + import { theme } from "@chakra-ui/theme"
+  ```
+
+  ```diff
+  - import Icon from "@chakra-ui/icon"
+  + import { Icon } from "@chakra-ui/icon"
+  ```
+
+  ```diff
+  - import CSSReset from "@chakra-ui/css-reset"
+  + import { CSSReset } from "@chakra-ui/css-reset"
+  ```
+
+  ```diff
+  - import VisuallyHidden from "@chakra-ui/visually-hidden"
+  + import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+  ```
+
+## @chakra-ui/theme@3.3.0
+
+### Minor Changes
+
+- [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **[POTENTIAL
+  BREAKING CHANGE]** Remove export defaults and favor of named exports.
+
+  ```diff
+  - import theme from "@chakra-ui/theme"
+  + import { theme } from "@chakra-ui/theme"
+  ```
+
+  ```diff
+  - import Icon from "@chakra-ui/icon"
+  + import { Icon } from "@chakra-ui/icon"
+  ```
+
+  ```diff
+  - import CSSReset from "@chakra-ui/css-reset"
+  + import { CSSReset } from "@chakra-ui/css-reset"
+  ```
+
+  ```diff
+  - import VisuallyHidden from "@chakra-ui/visually-hidden"
+  + import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+  ```
+
+### Patch Changes
+
+- [#7936](https://github.com/chakra-ui/chakra-ui/pull/7936)
+  [`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Remove "use client"
+  directive since they are pure JS packages.
+
+- [#7690](https://github.com/chakra-ui/chakra-ui/pull/7690)
+  [`6526e9be8`](https://github.com/chakra-ui/chakra-ui/commit/6526e9be8adce074cfbfca03bd765aff4eb8914a)
+  Thanks [@Vija02](https://github.com/Vija02)! - Fix issue where `zIndex` of
+  DrawerOverlay creates incorrect stacking order when multiple drawers are used.
+
+- Updated dependencies
+  \[[`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)]
+
+## @chakra-ui/visually-hidden@2.2.0
+
+### Minor Changes
+
+- [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - **[POTENTIAL
+  BREAKING CHANGE]** Remove export defaults and favor of named exports.
+
+  ```diff
+  - import theme from "@chakra-ui/theme"
+  + import { theme } from "@chakra-ui/theme"
+  ```
+
+  ```diff
+  - import Icon from "@chakra-ui/icon"
+  + import { Icon } from "@chakra-ui/icon"
+  ```
+
+  ```diff
+  - import CSSReset from "@chakra-ui/css-reset"
+  + import { CSSReset } from "@chakra-ui/css-reset"
+  ```
+
+  ```diff
+  - import VisuallyHidden from "@chakra-ui/visually-hidden"
+  + import { VisuallyHidden } from "@chakra-ui/visually-hidden"
+  ```
+
+## @chakra-ui/accordion@2.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/alert@2.2.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/anatomy@2.2.1
+
+### Patch Changes
+
+- [#7936](https://github.com/chakra-ui/chakra-ui/pull/7936)
+  [`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Remove "use client"
+  directive since they are pure JS packages.
+
+## @chakra-ui/checkbox@2.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/close-button@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/form-control@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/icons@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/input@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/layout@2.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/menu@2.2.1
+
+### Patch Changes
+
+- [`0b2c4049f`](https://github.com/chakra-ui/chakra-ui/commit/0b2c4049f9ac59554313b3032e8cf9a904141a5b)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  menu item causes page scroll unneccessarily
+
+- Updated dependencies
+
+## @chakra-ui/modal@2.3.1
+
+### Patch Changes
+
+- [#7962](https://github.com/chakra-ui/chakra-ui/pull/7962)
+  [`eb477b6e8`](https://github.com/chakra-ui/chakra-ui/commit/eb477b6e88171e371d113aeda5614ba29423f80f)
+  Thanks [@backy22](https://github.com/backy22)! - Added "slideInTop" and
+  "slideInLeft" options in `motionPreset` prop in modal component
+- Updated dependencies
+
+## @chakra-ui/number-input@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/popover@2.2.1
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/provider@2.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/radio@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/react@2.8.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`63431c1ef`](https://github.com/chakra-ui/chakra-ui/commit/63431c1ef3b7e8ac9b97c94ca025dd54b9aa3338),
+  [`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314),
+  [`6526e9be8`](https://github.com/chakra-ui/chakra-ui/commit/6526e9be8adce074cfbfca03bd765aff4eb8914a),
+  [`eb477b6e8`](https://github.com/chakra-ui/chakra-ui/commit/eb477b6e88171e371d113aeda5614ba29423f80f),
+  [`065fd24c7`](https://github.com/chakra-ui/chakra-ui/commit/065fd24c724d78b17e6996607ea1b5c7829e7c2c),
+  [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed),
+  [`0b2c4049f`](https://github.com/chakra-ui/chakra-ui/commit/0b2c4049f9ac59554313b3032e8cf9a904141a5b)]
+
+## @chakra-ui/select@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/stat@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/stepper@2.3.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/switch@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/tag@3.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/textarea@2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/theme-tools@2.1.1
+
+### Patch Changes
+
+- [#7936](https://github.com/chakra-ui/chakra-ui/pull/7936)
+  [`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)
+  Thanks [@yukukotani](https://github.com/yukukotani)! - Remove "use client"
+  directive since they are pure JS packages.
+
+- Updated dependencies
+  \[[`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314)]
+
+## @chakra-ui/toast@7.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314),
+  [`6526e9be8`](https://github.com/chakra-ui/chakra-ui/commit/6526e9be8adce074cfbfca03bd765aff4eb8914a),
+  [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/system@2.6.1
+
+### Patch Changes
+
+- Updated dependencies
+
+## @chakra-ui/hooks@2.2.1
+
+### Patch Changes
+
+- [`63431c1ef`](https://github.com/chakra-ui/chakra-ui/commit/63431c1ef3b7e8ac9b97c94ca025dd54b9aa3338)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue with use
+  client directive in next.js
+
+## @chakra-ui/theme-utils@2.0.20
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314),
+  [`6526e9be8`](https://github.com/chakra-ui/chakra-ui/commit/6526e9be8adce074cfbfca03bd765aff4eb8914a),
+  [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]
+
+## @chakra-ui/test-utils@2.0.44
+
+### Patch Changes
+
+- Updated dependencies
+  \[[`58e059d18`](https://github.com/chakra-ui/chakra-ui/commit/58e059d18da6620747f074f7efb9ec0fd695a314),
+  [`6526e9be8`](https://github.com/chakra-ui/chakra-ui/commit/6526e9be8adce074cfbfca03bd765aff4eb8914a),
+  [`3aaf0c3b1`](https://github.com/chakra-ui/chakra-ui/commit/3aaf0c3b19c64cdae29ac1893d199049cc4133ed)]

@@ -1,0 +1,117 @@
+---
+id: link
+category: navigation
+title: Link
+package: '@chakra-ui/layout'
+description: Link is an accessible element for navigation.
+---
+
+## Imports
+
+```js
+import { Link } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+```
+
+## Usage
+
+```jsx
+<Link>Chakra UI</Link>
+```
+
+### External Link
+
+```jsx
+<Link href='https://chakra-ui.com' isExternal>
+  Chakra Design system <ExternalLinkIcon mx='2px' />
+</Link>
+```
+
+### Link inline with text
+
+```jsx
+<Text>
+  Did you know that{' '}
+  <Link color='teal.500' href='#'>
+    links can live inline with text
+  </Link>
+</Text>
+```
+
+## Usage with Routing Library
+
+To use the `Link` with a routing library like Reach Router or React Router, all
+you need to do is pass the `as` prop. It'll replace the rendered `a` tag with
+Reach's `Link`.
+
+```jsx live=false
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ChakraLink, LinkProps } from '@chakra-ui/react'
+
+;<ChakraLink as={ReactRouterLink} to='/home'>
+  Home
+</ChakraLink>
+```
+
+## Usage with Next.js
+
+As of Next.js 13, the `Link` component directly renders an `a` element,
+therefore its child can no longer be another `a` element. The recommended way is
+to use the `as` property on Chakra UI components used as a link. Here is an
+example using the `Link` component:
+
+```jsx live=false
+import NextLink from 'next/link'
+import { Link } from '@chakra-ui/react'
+
+;<Link as={NextLink} href='/home'>
+  Home
+</Link>
+```
+
+If you are using Next.js 13 and do not want to use the new behavior, you can
+either use the `legacyBehavior` prop directly on the Next.js `Link` component or
+if you want to set this behavior globally you can use the following Next.js
+configuration:
+
+```js live=false
+{
+  experimental: {
+    newNextLinkBehavior: false
+  }
+}
+```
+
+If you are using a version of Next.js below the version 13 you can use the
+Chakra UI `Link` this way:
+
+```jsx live=false
+import NextLink from 'next/link'
+
+;<NextLink href='/home' passHref>
+  <Link>Home</Link>
+</NextLink>
+```
+
+Another way to style the new Next.js `Link` component is to create a custom
+component using the Chakra Factory function:
+
+```jsx live=false
+import NextLink, { type LinkProps as NextLinkProps } from 'next/link'
+import { chakra } from '@chakra-ui/react'
+
+// wrap the NextLink with Chakra UI's factory function
+const MagicLink = chakra<typeof NextLink, NextLinkProps>(NextLink, {
+  // ensure that you're forwarding all of the required props for your case
+  shouldForwardProp: (prop) => ['href', 'target', 'children', ...].includes(prop),
+})
+
+// use the MagicLink just like you'd use the ordinary Chakra UI link
+<MagicLink
+  href='...'
+  color='...'
+  target='...'
+>
+  ...
+</MagicLink>
+```

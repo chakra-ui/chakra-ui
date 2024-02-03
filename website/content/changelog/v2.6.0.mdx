@@ -1,0 +1,161 @@
+---
+title: Version 2.6.0
+description:
+  Explore the changelog for Chakra UI version 2.6.0. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7537
+releaseDate: April 25, 2023
+version: 2.6.0
+---
+
+## New Component
+
+### Stepper
+
+Introduce new `Stepper` component to model sequencial steps in a process.
+
+```jsx live=false
+<Stepper index={activeStep}>
+  {steps.map((step, index) => (
+    <Step key={index}>
+      <StepIndicator>
+        <StepStatus
+          complete={<StepIcon />}
+          incomplete={<StepNumber />}
+          active={<StepNumber />}
+        />
+      </StepIndicator>
+
+      <Box>
+        <StepTitle>{step.title}</StepTitle>
+        <StepDescription>{step.description}</StepDescription>
+      </Box>
+
+      <StepSeparator />
+    </Step>
+  ))}
+</Stepper>
+```
+
+## Minor Changes
+
+### Editable
+
+Adds `finalFocusRef` and `onBlur` to Editable component
+
+### Theme
+
+Add semantic tokens for inverse text and subtle text
+
+### Styled System
+
+- Add support for native `aspectRatio` style prop
+
+  ```jsx live=false
+  <Box aspectRatio='16/9' />
+  ```
+
+- Add support for nested semantic tokens in theme. It is now possible to declare
+  semantic tokens by nesting objects.
+
+  BEFORE:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        'background.pressed.base': { default: 'blue.800', _dark: 'blue.300' },
+        'background.pressed.subtle': { default: 'blue.300', _dark: 'blue.700' },
+      },
+    },
+  }
+  ```
+
+  AFTER:
+
+  ```js
+  const theme = {
+    semanticTokens: {
+      colors: {
+        background: {
+          pressed: {
+            base: { default: 'blue.800', _dark: 'blue.300' },
+            subtle: { default: 'blue.300', _dark: 'blue.700' },
+          },
+        },
+      },
+    },
+  }
+  ```
+
+  This allows for cleaner grouping and organization of tokens.
+
+- Add `_horizontal` and `_vertical` pseudo props to style orientation data
+  attributes
+
+  ```jsx live=false
+  <Box _horizontal={{ width: '2px' }} _vertical={{ height: '4px' }} />
+  ```
+
+## Patch Changes
+
+### Theme
+
+- Fix issue where breadcrumb separator current page link is styled incorrectly
+- Fix issue where modal content is cut off when it has overflowing content and
+  `isCentered` is set to `true`
+
+### useOutsideClick
+
+Fix issue where outside click doesn't get triggered on context menu click
+outside.
+
+### Avatar
+
+- Respect `crossOrigin` property in `useImage`
+
+- Fix issue where initials was not correctly computed when name includes a
+  middle name like "Sage Naruto Manich"
+
+### Checkbox
+
+- Fix issue where scroll is hijacked when the menu and checkbox is opened.
+- Fix issue where checkbox initially animates when checked
+
+### Icons
+
+- Fix issue where `SpinnerIcon` id causes accessibility violation
+
+### Image
+
+- Respect `crossOrigin` property in `useImage`
+
+### Menu
+
+- Fix issue where scroll is hijacked when the menu and checkbox is opened.
+- Fix vertical alignment of menu icon wrapper to ensure consistent UI
+
+### Toast
+
+Update element types for toast list and item to apply appropriate accessibility
+roles
+
+### Next-js
+
+- Add loading props to the `@chakra-ui/next-js`.
+- Fix issue where some `next/image` props were not forwarded to the underlying
+  component.
+
+### Gatsby Plugin `3.1.3`
+
+Reverts the use of the `baseTheme` in the plugin
+
+With the added features of `extendBaseTheme` and `ChakraBaseProvider`, it was
+determined that the provider is considered unnecessary.
+
+> Custom theming is to be expected for components when there are no defaults
+> rendered.
+
+For Gatsby, this means that the plugin can be reverted back to it's original
+setup, and still be able to accept `extendBaseTheme` to reduce the payload of
+the component themes when customizing them.

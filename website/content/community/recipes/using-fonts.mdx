@@ -1,0 +1,195 @@
+---
+title: Using Fonts
+description: A guide for adding fonts to your Chakra project
+author: DecliningLotus
+---
+
+Fonts can be loaded into your project either by using NPM or by using the
+`Global` component from the `@emotion/react` package.
+
+> Please do not forget to add font-family fallbacks like e.g. `sans-serif` on
+> both options.
+
+## Option 1: Install with NPM
+
+[Fontsource](https://github.com/fontsource/fontsource) is an updating monorepo
+full of self-hostable fonts bundled into individual NPM packages. It currently
+supports all Google Fonts and a small subset of other custom Open Source fonts
+that have been manually added.
+
+Hosting your own fonts locally within a project can lead to large performance
+gains as they won't experience extra (render blocking) network requests, as well
+as streamlining developer experiences.
+
+For the purposes of this guide, we'll use
+[Open Sans](https://fonts.google.com/specimen/Open+Sans) for the heading font
+and [Raleway](https://fonts.google.com/specimen/Raleway) for the body font. If
+you have a different font you want to use, you can find the corresponding
+package on [NPM](https://www.npmjs.com/search?q=fontsource) or their
+[website](https://fontsource.org/).
+
+Install the relevant fonts you wish to install using your package manager of
+choice:
+
+```bash
+npm install @fontsource/open-sans @fontsource/raleway
+```
+
+Assign these fonts to `theme.fonts` to use them with Chakra. More details on
+theming [here](/docs/styled-system/customize-theme).
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import '@fontsource-variable/open-sans'
+import '@fontsource-variable/raleway'
+
+const theme = extendTheme({
+  fonts: {
+    heading: `'Open Sans', sans-serif`,
+    body: `'Raleway', sans-serif`,
+  },
+})
+
+export default theme
+```
+
+Then import the relevant font weights and styles into the `theme` file you
+created or the same root file you import `ChakraProvider` into.
+
+```jsx live=false
+import '@fontsource/raleway/400.css'
+import '@fontsource/open-sans/700.css'
+
+import {
+  ChakraProvider,
+  Container,
+  Stack,
+  Heading,
+  Text,
+} from '@chakra-ui/react'
+import theme from './theme'
+
+const App = () => (
+  <ChakraProvider theme={theme}>
+    <Container>
+      <Stack>
+        <Heading>The spectacle before us was indeed sublime.</Heading>
+        <Text>
+          Apparently we had reached a great height in the atmosphere, for the
+          sky was a dead black, and the stars had ceased to twinkle. By the same
+          illusion which lifts the horizon of the sea to the level of the
+          spectator on a hillside, the sable cloud beneath was dished out, and
+          the car seemed to float in the middle of an immense dark sphere, whose
+          upper half was strewn with silver. Looking down into the dark gulf
+          below, I could see a ruddy light streaming through a rift in the
+          clouds.
+        </Text>
+      </Stack>
+    </Container>
+  </ChakraProvider>
+)
+```
+
+> - For Create React App, you need to set this up in `App.jsx`
+> - In Next.js, this can be found in `_app.js`
+> - In Gatsby, usually `ChakraProvider` is set up in `gatsby-browser.js` using
+>   `wrapRootElement`
+
+## Option 2: Using `@font-face`
+
+Alternatively, custom fonts can be loaded in your Chakra project using the
+`Global` component from the `@emotion/react` package and `@font-face` css rules.
+You can then add these fonts to `theme.fonts` to make use of them throughout the
+Chakra system.
+
+First, we'll import all our relevant font files into the `public` or `static`
+directory of your project, where the files will persist in location. Please note
+that these persisting folders can vary per bundler or framework and should be
+double-checked. This can later be used for the `url` selector for the
+`@font-face` CSS rules.
+
+Next, we'll define a `Fonts` component that sets up the `@font-face` rules in
+the `styles` prop of `Global`:
+
+```jsx live=false
+import { Global } from '@emotion/react'
+
+const Fonts = () => (
+  <Global
+    styles={`
+      /* latin */
+      @font-face {
+        font-family: 'Heading Font Name';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('./fonts/headingfont.woff2') format('woff2'), url('./fonts/headingfont.woff') format('woff');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Body Font Name';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./fonts/bodyfont.woff2') format('woff2'), url('./fonts/bodyfont.woff') format('woff');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      `}
+  />
+)
+
+export default Fonts
+```
+
+Assign these fonts to `theme.fonts` to use them with Chakra. More details on
+theming [here](/docs/styled-system/customize-theme).
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+
+const theme = extendTheme({
+  fonts: {
+    heading: `'Heading Font Name', sans-serif`,
+    body: `'Body Font Name', sans-serif`,
+  },
+})
+
+export default theme
+```
+
+Then compose the rest of the project together by importing the `Fonts` component
+and `theme` file.
+
+```jsx live=false
+import {
+  ChakraProvider,
+  Container,
+  Stack,
+  Heading,
+  Text,
+} from '@chakra-ui/react'
+import Fonts from './fonts'
+import theme from './theme'
+
+const App = () => (
+  <ChakraProvider theme={theme}>
+    <Fonts />
+    <Container>
+      <Stack>
+        <Heading>The spectacle before us was indeed sublime.</Heading>
+        <Text>
+          Apparently we had reached a great height in the atmosphere, for the
+          sky was a dead black, and the stars had ceased to twinkle. By the same
+          illusion which lifts the horizon of the sea to the level of the
+          spectator on a hillside, the sable cloud beneath was dished out, and
+          the car seemed to float in the middle of an immense dark sphere, whose
+          upper half was strewn with silver. Looking down into the dark gulf
+          below, I could see a ruddy light streaming through a rift in the
+          clouds.
+        </Text>
+      </Stack>
+    </Container>
+  </ChakraProvider>
+)
+```

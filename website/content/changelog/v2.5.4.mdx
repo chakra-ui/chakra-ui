@@ -1,0 +1,66 @@
+---
+title: Version 2.5.4
+description:
+  Explore the changelog for Chakra UI version 2.5.4. Learn about the latest
+  features, bug fixes, and improvements.
+releaseUrl: https://github.com/chakra-ui/chakra-ui/pull/7482
+releaseDate: March 27, 2023
+version: 2.5.4
+---
+
+## Minor Changes
+
+### Styled System `2.7.0`
+
+Creates the `gradients` theme key for props `bgGradient`, `bgImage`, `bgImg`,
+and `backgroundImage`
+
+This addition allows you to use tokens for the gradient values, semantic tokens
+included!
+
+```tsx live=false
+// gradients.ts
+
+export const gradients = {
+  lightBgGradient:
+    "linear-gradient(102.7deg, #B9F1B9 0%, #5484EA 51.56%, #3A8E89 100%)",
+}
+
+// SomeComponent.tsx
+
+<Box bgGradient='lightBgGradient' />
+```
+
+🚨 NOTE: The
+[Background Gradient API](https://chakra-ui.com/docs/styled-system/gradient#background-gradient-api)
+can not be used in a token as the conversion is done when the api is used
+directly on a prop and not when compiling the theme config
+
+## Patch Changes
+
+### Tag `3.0.0`
+
+Fix issue where the tag's base style doesn't set the `--badge-bg` and
+`--badge-color` css variables.
+
+### Toast `6.1.0`
+
+Add support for the `colorScheme` property in the `useToast` hook
+
+```jsx live=false
+const toast = useToast({
+  title: 'Account created.',
+  description: "We've created your account for you.",
+  colorScheme: 'blue',
+})
+```
+
+### Checkbox `2.2.13`, Radio `2.0.22`
+
+Fix issue where browser shows console warning due to `preventDefault` call in
+pointer event on mobile
+
+### Next.js `2.1.1`
+
+Fix issue where theming related props (`variant`, `size`) could not be passed to
+the `Link` component

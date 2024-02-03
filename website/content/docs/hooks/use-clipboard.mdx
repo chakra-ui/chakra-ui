@@ -1,0 +1,97 @@
+---
+title: useClipboard
+package: '@chakra-ui/hooks'
+description:
+  'useClipboard is a custom hook that handles copying content to clipboard.'
+---
+
+`useClipboard` is a custom hook that handles copying content to clipboard.
+
+## Arguments
+
+The `useClipboard` hook takes the following arguments:
+
+| Name               | Type                 | Required | Description                                                                                                                                                                      |
+| ------------------ | -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `text`             | `string`             | `false`  | The text or value that is to be copied.                                                                                                                                          |
+| `optionsOrTimeout` | `number` or `object` | `false`  | The timeout as a `number` or an `object` containing 2 properties: `timeout` and `format` for the MIME type. The timeout is measured in milliseconds and has a default of 1500ms. |
+
+## Return value
+
+The `useClipboard` hook returns an object with the following fields:
+
+| Name        | Type                      | Default | Description                                                                                                                                                                       |
+| ----------- | ------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value`     | `string` or `undefined`   |         | The copied value.                                                                                                                                                                 |
+| `setValue`  | `function` or `undefined` |         | State action to change the copied value.                                                                                                                                          |
+| `onCopy`    | `function`                |         | Callback function to copy content.                                                                                                                                                |
+| `hasCopied` | `boolean`                 | `false` | If `true`, the content has been copied within the last `timeout` milliseconds. That is, it is set to true right after `onCopy` is called, and `false` after `timeout` has passed. |
+
+## Import
+
+```js
+import { useClipboard } from '@chakra-ui/react'
+```
+
+## Usage
+
+```jsx
+function Example() {
+  const placeholder = 'text to be copied...'
+  const { onCopy, value, setValue, hasCopied } = useClipboard('')
+
+  return (
+    <>
+      <Flex mb={2}>
+        <Input
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value)
+          }}
+          mr={2}
+        />
+        <Button onClick={onCopy}>{hasCopied ? 'Copied!' : 'Copy'}</Button>
+      </Flex>
+      <Editable placeholder='Paste here'>
+        <EditablePreview width='100%' />
+        <EditableInput />
+      </Editable>
+    </>
+  )
+}
+```
+
+### Imperative
+
+Use this approach when you need to get the value to copy imperatively, e.g.
+getting a URL from browser or getting an input using `prompt`.
+
+```jsx
+function Example() {
+  const { onCopy, hasCopied } = useClipboard()
+
+  return (
+    <>
+      <Button
+        onClick={() => {
+          onCopy(window.location.href)
+        }}
+      >
+        {hasCopied ? 'URL copied!' : 'Copy URL'}
+      </Button>
+
+      {/* or */}
+
+      <Button
+        onClick={() => {
+          const userInput = prompt()
+          onCopy(userInput)
+        }}
+      >
+        {hasCopied ? "User's propmt copied!" : "Copy user's propmt"}
+      </Button>
+    </>
+  )
+}
+```

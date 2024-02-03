@@ -1,0 +1,85 @@
+---
+title: Chakra UI + Capsize
+description: Integrating Chakra UI with Capsize
+tags: ['typography', 'capsize']
+author: nikolovlazar
+category: integrations
+---
+
+> 🚨 `chakra-capsize` is currently NOT compatible with Chakra UI v2 and React
+> 18, and is not actively being updated. Revert to `@chakra-ui/react@1.8.8` if
+> you want to use this package.
+
+Integrating Chakra UI with Capsize is made super easy by using the
+[chakra-capsize](https://github.com/ceteio/chakra-capsize) community package by
+[ceteio](https://github.com/ceteio).
+
+To get started, first you need to install the `chakra-capsize` package:
+
+<PackageManagers
+  command={{
+    npm: 'npm i @ceteio/chakra-capsize',
+    yarn: 'yarn add @ceteio/chakra-capsize',
+    pnpm: 'pnpm add @ceteio/chakra-capsize',
+    bun: 'bun add @ceteio/chakra-capsize',
+  }}
+/>
+
+The package exports a theme extension called `withCappedText` that you need to
+use in your theme:
+
+```typescript ln={19-23}
+import { withCappedText } from '@ceteio/chakra-capsize/theme'
+import { extendTheme } from '@chakra-ui/react'
+import robotoFontMetrics from '@capsizecss/metrics/roboto'
+
+const theme = extendTheme(
+  defaultTheme,
+  {
+    fonts: {
+      heading: 'Roboto',
+      body: 'Roboto',
+    },
+    capHeights: {
+      sm: 10,
+      md: 14,
+      lg: 18,
+      xl: 24,
+    },
+  },
+  withCappedText({
+    fontMetrics: {
+      Roboto: robotoFontMetrics,
+    },
+  }),
+)
+```
+
+To utilize Capsize in your app, you can use the `CappedHeading` and `CappedText`
+components exported from `chakra-capsize`:
+
+```typescript
+import { CappedText, CappedHeading } from '@ceteio/chakra-capsize'
+
+export const ExampleComponent = () => {
+  return (
+    <div>
+      <CappedHeading as='h1' size='2xl'>
+        Hi!
+      </CappedHeading>
+      <CappedText>
+        This paragraph will have surrounding whitespace trimmed. It will also
+        have space between the lines of text reduced to 0.
+      </CappedText>
+      <CappedText capHeight='lg' lineGap={4}>
+        Setting a capHeight overrides any fontSize prop for more exact sizing.
+        Meanwhile, a lineGap uses the Chakra 'spacings' scale to insert space
+        between lines of text just like any other Chakra element.
+      </CappedText>
+    </div>
+  )
+}
+```
+
+> For more advanced usage and theming, please refer to the
+> [chakra-capsize documentation](https://github.com/ceteio/chakra-capsize).

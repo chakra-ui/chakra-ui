@@ -1,0 +1,182 @@
+---
+id: badge
+scope: theming
+---
+
+The `Badge` component is a single part component. All of the styling is applied
+directly to the `span` element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page.
+
+## Theming properties
+
+The properties that affect the theming of the `Badge` component are:
+
+- `variant`: The visual variant of the badge. Defaults to `subtle`.
+- `colorScheme`: The color scheme of the badge. Defaults to `gray`.
+- `size`: The size of the badge.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Customizing the default theme
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const boxy = defineStyle({
+  border: '1px solid', // change the appearance of the border
+  borderRadius: 0, // remove the border radius
+})
+
+export const badgeTheme = defineStyleConfig({
+  variants: { boxy },
+})
+```
+
+After customizing the badge theme, we can import it in our theme file and add it
+in the `components` property:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+import { badgeTheme } from './components/badge'
+
+export const theme = extendTheme({
+  components: { Badge: badgeTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the badge
+> theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to include an extra large badge size. Here's how we can do
+that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const xl = defineStyle({
+  fontSize: 'xl',
+})
+
+export const badgeTheme = defineStyleConfig({
+  sizes: { xl },
+})
+
+// Now we can use the new `xl` size
+<Badge size='xl'>XL Badge</Badge>
+```
+
+Every time you're adding anything new to the theme, you'd need to run the CLI
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a custom branded variant. Here's how we can do
+that:
+
+```jsx live=false
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const brandPrimary = defineStyle({
+  background: 'orange.500',
+  color: 'white',
+  fontFamily: 'serif',
+  fontWeight: 'normal',
+
+  // let's also provide dark mode alternatives
+  _dark: {
+    background: 'orange.300',
+    color: 'orange.800',
+  }
+})
+
+export const badgeTheme = defineStyleConfig({
+  variants: { brandPrimary }
+})
+
+// Now we can use the new `brandPrimary` variant
+<Badge variant='brandPrimary'>...</Badge>
+```
+
+## Using a custom color scheme
+
+Let's assume we want to use our own custom color scale based on our brand. We'd
+need to define the color scale first in the main theme file:
+
+```jsx live=false
+import { extendTheme } from '@chakra-ui/react'
+
+export const theme = extendTheme({
+  colors: {
+    brand: {
+      100: '#9520e4',
+      ...
+      200: '#33006d',
+      ...
+      800: '#1a0044',
+    }
+  }
+})
+```
+
+Then, we can use the custom color scale as the color scheme for the badge:
+
+```jsx live=false
+<Badge colorScheme='brand'>...</Badge>
+```
+
+## Changing the default properties
+
+Let's assume we want to change the default size, variant or color scheme of
+every badge in our app. Here's how we can do that:
+
+```jsx live=false
+import { defineStyleConfig } from '@chakra-ui/react'
+
+export const badgeTheme = defineStyleConfig({
+  defaultProps: {
+    size: 'xl',
+    variant: 'outline',
+    colorScheme: 'brand',
+  },
+})
+
+// This saves you time, instead of manually setting the size,
+// variant and color scheme every time you use a badge:
+<Badge size="xl" variant="outline" colorScheme="brand">...</Badge>
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  BadgeTheme,
+} from 'configs/sandpack-contents/component-theming/badge'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Badge.ts': BadgeTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>
