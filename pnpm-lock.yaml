@@ -836,8 +836,8 @@ importers:
         specifier: ^1.0.0-alpha.27
         version: 1.0.0-alpha.28(react-dom@18.2.0)(react@18.2.0)
       '@docusaurus/utils':
-        specifier: 2.4.3
-        version: 2.4.3(esbuild@0.19.11)
+        specifier: 2.3.0
+        version: 2.3.0(esbuild@0.19.11)
       '@emotion/react':
         specifier: ^11.10.0
         version: 11.11.1(@types/react@18.2.48)(react@18.2.0)
@@ -866,8 +866,8 @@ importers:
         specifier: 9.0.2
         version: 9.0.2(react-dom@18.2.0)(react@18.2.0)
       github-slugger:
-        specifier: 1.4.0
-        version: 1.4.0
+        specifier: 1.5.0
+        version: 1.5.0
       highlight-words-core:
         specifier: ^1.2.2
         version: 1.2.2
@@ -3657,16 +3657,16 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@docusaurus/logger@2.4.3:
-    resolution: {integrity: sha512-Zxws7r3yLufk9xM1zq9ged0YHs65mlRmtsobnFkdZTxWXdTYlWWLWdKyNKAsVC+D7zg+pv2fGbyabdOnyZOM3w==}
+  /@docusaurus/logger@2.3.0:
+    resolution: {integrity: sha512-GO8s+FJpNT0vwt6kr/BZ/B1iB8EgHH/CF590i55Epy3TP2baQHGEHcAnQWvz5067OXIEke7Sa8sUNi0V9FrcJw==}
     engines: {node: '>=16.14'}
     dependencies:
       chalk: 4.1.2
       tslib: 2.6.2
     dev: false
 
-  /@docusaurus/utils@2.4.3(esbuild@0.19.11):
-    resolution: {integrity: sha512-fKcXsjrD86Smxv8Pt0TBFqYieZZCPh4cbf9oszUq/AMhZn3ujwpKaVYZACPX8mmjtYx0JOgNx52CREBfiGQB4A==}
+  /@docusaurus/utils@2.3.0(esbuild@0.19.11):
+    resolution: {integrity: sha512-6+GCurDsePHHbLM3ktcjv8N4zrjgrl1O7gOQNG4UMktcwHssFFVm+geVcB4M8siOmwUjV2VaNrp0hpGy8DOQHw==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@docusaurus/types': '*'
@@ -3674,12 +3674,12 @@ packages:
       '@docusaurus/types':
         optional: true
     dependencies:
-      '@docusaurus/logger': 2.4.3
+      '@docusaurus/logger': 2.3.0
       '@svgr/webpack': 6.5.1
       escape-string-regexp: 4.0.0
       file-loader: 6.2.0(webpack@5.88.2)
       fs-extra: 10.1.0
-      github-slugger: 1.4.0
+      github-slugger: 1.5.0
       globby: 11.1.0
       gray-matter: 4.0.3
       js-yaml: 4.1.0
@@ -18071,8 +18071,8 @@ packages:
   /github-from-package@0.0.0:
     resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
 
-  /github-slugger@1.4.0:
-    resolution: {integrity: sha512-w0dzqw/nt51xMVmlaV1+JRzN+oCa1KfcgGEWhxUG16wbdA+Xnt/yoFO8Z8x/V82ZcZ0wy6ln9QDup5avbhiDhQ==}
+  /github-slugger@1.5.0:
+    resolution: {integrity: sha512-wIh+gKBI9Nshz2o46B0B3f5k/W+WI9ZAv6y5Dn5WJ5SK1t0TnDimB4WE5rmTD05ZAIn8HALCZVmCsvj0w0v0lw==}
 
   /glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -25616,7 +25616,7 @@ packages:
   /remark-slug@6.1.0:
     resolution: {integrity: sha512-oGCxDF9deA8phWvxFuyr3oSJsdyUAxMFbA0mZ7Y1Sas+emILtO+e5WutF9564gDsEN4IXaQXm5pFo6MLH+YmwQ==}
     dependencies:
-      github-slugger: 1.4.0
+      github-slugger: 1.5.0
       mdast-util-to-string: 1.1.0
       unist-util-visit: 2.0.3
 
@@ -25625,7 +25625,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       '@types/mdast': 3.0.15
-      github-slugger: 1.4.0
+      github-slugger: 1.5.0
       mdast-util-to-string: 3.2.0
       unified: 10.1.2
       unist-util-visit: 4.1.2
