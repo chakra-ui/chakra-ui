@@ -180,7 +180,7 @@ function getAllItems(root: HTMLElement | null) {
 }
 
 function makeId(type: string, id: string, value: string) {
-  return `accordion-${type}-${id}-${value}`
+  return `accordion-${type}-${id}-${value.trim().replace(/\s+/g, "-")}`
 }
 
 /**
