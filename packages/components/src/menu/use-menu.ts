@@ -582,6 +582,7 @@ export function useMenuItem(
     isFocusable,
     closeOnSelect,
     type: typeProp,
+    id: idProp,
     ...htmlProps
   } = props
 
@@ -599,7 +600,9 @@ export function useMenuItem(
   } = menu
 
   const ref = useRef<HTMLDivElement>(null)
-  const id = `${menuId}-menuitem-${useId()}`
+
+  const reactId = `${menuId}-menuitem-${useId()}`
+  const id = idProp ?? reactId
 
   const onMouseEnter = useCallback(
     (event: any) => {

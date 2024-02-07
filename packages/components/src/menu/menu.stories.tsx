@@ -610,9 +610,11 @@ export const ProgrammaticFocusMenuItem = () => {
     <Menu initialFocusRef={item}>
       <MenuButton>Welcome</MenuButton>
       <MenuList>
-        <MenuItem>Menu 1</MenuItem>
-        <MenuItem ref={item}>Menu 2</MenuItem>
-        <MenuItem>Menu 3</MenuItem>
+        <MenuItem id="menu-1">Menu 1</MenuItem>
+        <MenuItem id="menu-2" ref={item}>
+          Menu 2
+        </MenuItem>
+        <MenuItem id="menu-3">Menu 3</MenuItem>
       </MenuList>
     </Menu>
   )
