@@ -1,6 +1,7 @@
 import { walkObject } from "@chakra-ui/utils/walk-object"
-import { pseudoPropNames } from "../pseudos"
+import { getPseudoPropNames } from "../pseudos"
 import { Union } from "../utils"
+import { extractSemanticTokens, extractTokens } from "./theme-tokens"
 
 export type SemanticValue<
   Conditions extends string,
@@ -26,13 +27,14 @@ export type FlattenTokensParam = {
   semanticTokens?: object
 }
 
-const isSemanticCondition = (key: string) =>
-  pseudoPropNames.includes(key as any) || "default" === key
+export function flattenTokens(theme: Record<string, any>) {
+  const tokens = extractTokens(theme)
+  const semanticTokens = extractSemanticTokens(theme)
 
-export function flattenTokens<T extends FlattenTokensParam>({
-  tokens,
-  semanticTokens,
-}: T) {
+  const pseudoPropNames = getPseudoPropNames(theme)
+  const isSemanticCondition = (key: string) =>
+    pseudoPropNames.includes(key) || "default" === key
+
   const result: FlatTokens = {}
 
   walkObject(tokens, (value, path) => {
