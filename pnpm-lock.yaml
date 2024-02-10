@@ -836,8 +836,8 @@ importers:
         specifier: ^1.0.0-alpha.27
         version: 1.0.0-alpha.28(react-dom@18.2.0)(react@18.2.0)
       '@docusaurus/utils':
-        specifier: 2.3.0
-        version: 2.3.0(esbuild@0.19.11)
+        specifier: 2.4.3
+        version: 2.4.3(esbuild@0.19.11)
       '@emotion/react':
         specifier: ^11.10.0
         version: 11.11.1(@types/react@18.2.48)(react@18.2.0)
@@ -3657,16 +3657,16 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@docusaurus/logger@2.3.0:
-    resolution: {integrity: sha512-GO8s+FJpNT0vwt6kr/BZ/B1iB8EgHH/CF590i55Epy3TP2baQHGEHcAnQWvz5067OXIEke7Sa8sUNi0V9FrcJw==}
+  /@docusaurus/logger@2.4.3:
+    resolution: {integrity: sha512-Zxws7r3yLufk9xM1zq9ged0YHs65mlRmtsobnFkdZTxWXdTYlWWLWdKyNKAsVC+D7zg+pv2fGbyabdOnyZOM3w==}
     engines: {node: '>=16.14'}
     dependencies:
       chalk: 4.1.2
       tslib: 2.6.2
     dev: false
 
-  /@docusaurus/utils@2.3.0(esbuild@0.19.11):
-    resolution: {integrity: sha512-6+GCurDsePHHbLM3ktcjv8N4zrjgrl1O7gOQNG4UMktcwHssFFVm+geVcB4M8siOmwUjV2VaNrp0hpGy8DOQHw==}
+  /@docusaurus/utils@2.4.3(esbuild@0.19.11):
+    resolution: {integrity: sha512-fKcXsjrD86Smxv8Pt0TBFqYieZZCPh4cbf9oszUq/AMhZn3ujwpKaVYZACPX8mmjtYx0JOgNx52CREBfiGQB4A==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@docusaurus/types': '*'
@@ -3674,7 +3674,7 @@ packages:
       '@docusaurus/types':
         optional: true
     dependencies:
-      '@docusaurus/logger': 2.3.0
+      '@docusaurus/logger': 2.4.3
       '@svgr/webpack': 6.5.1
       escape-string-regexp: 4.0.0
       file-loader: 6.2.0(webpack@5.88.2)
