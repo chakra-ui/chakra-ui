@@ -145,9 +145,9 @@ export const Checkbox = forwardRef<CheckboxProps, "input">(
           : state.isIndeterminate
           ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
           : `${checkAnim} 200ms linear`,
-        fontSize: iconSize,
-        color: iconColor,
         ...styles.icon,
+        fontSize: iconSize ?? styles.icon.fontSize,
+        color: iconColor ?? styles.icon.color,
       }),
       [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
     )
