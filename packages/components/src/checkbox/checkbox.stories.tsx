@@ -57,6 +57,17 @@ export const WithIconColor = () => (
   <Checkbox iconColor="yellow.400">I love chakra</Checkbox>
 )
 
+export const WithIconSize = () => {
+  return (
+    <Stack direction="row">
+      <Checkbox>Default</Checkbox>
+      <Checkbox iconSize="1rem">Option</Checkbox>
+      <Checkbox iconSize="0.8rem">With big icon</Checkbox>
+      <Checkbox iconSize="0.4rem">With small icon</Checkbox>
+    </Stack>
+  )
+}
+
 export const WithColorScheme = () => {
   return (
     <Stack>
