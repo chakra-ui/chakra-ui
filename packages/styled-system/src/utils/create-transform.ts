@@ -13,16 +13,23 @@ const isImportant = (value: string) => /!(important)?$/.test(value)
 const withoutImportant = (value: string | number) =>
   typeof value === "string" ? value.replace(/!(important)?$/, "").trim() : value
 
+const withOpacity = (value: string | number) =>
+  typeof value === "string" ? /^.+\/[0-9]+$/.test(value) : value
+
 export const tokenToCSSVar =
   (scale: ThemeScale, value: any) => (theme: Record<string, any>) => {
     const valueStr = String(value)
-
     const important = isImportant(valueStr)
-    const valueWithoutImportant = withoutImportant(valueStr)
+    let parsedValue = withoutImportant(valueStr)
 
-    const key = scale
-      ? `${scale}.${valueWithoutImportant}`
-      : valueWithoutImportant
+    let opacity
+    if (scale === "colors" && withOpacity(value)) {
+      const [tokenValue, opacityValue] = value.split("/")
+      parsedValue = tokenValue
+      opacity = Math.max(Math.min(parseInt(opacityValue), 100), 0)
+    }
+
+    const key = scale ? `${scale}.${parsedValue}` : parsedValue
 
     let transformed =
       isObject(theme.__cssMap) && key in theme.__cssMap
@@ -30,6 +37,10 @@ export const tokenToCSSVar =
         : value
 
     transformed = withoutImportant(transformed)
+
+    if (opacity) {
+      transformed = `color-mix(in srgb, ${transformed} ${opacity}%, transparent)`
+    }
 
     return important ? `${transformed} !important` : transformed
   }

@@ -44,11 +44,11 @@ const baseStyle = definePartsStyle({
 
 function getBg(props: StyleFunctionProps) {
   const { colorScheme: c } = props
-  const darkBg = transparentize(`${c}.200`, 0.16)
-  console.log("darkBg", darkBg)
+  // const darkBg = transparentize(`${c}.200`, 0.16)
+  // console.log("darkBg", darkBg)
   return {
     light: `colors.${c}.100`,
-    dark: darkBg,
+    dark: `colors.${c}.200/16`,
   }
 }
 
@@ -62,6 +62,7 @@ const variantSubtle = definePartsStyle((props) => {
       _dark: {
         [$fg.variable]: `colors.${c}.200`,
         [$bg.variable]: bg.dark,
+        color: `${c}.200/16`,
       },
     },
   }

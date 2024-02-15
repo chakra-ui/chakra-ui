@@ -22,14 +22,20 @@ const resolveTokenValue = (theme: Record<string, any>, value: string) => {
 
   const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
   const getValue = (val: string) => getVar(val) ?? val
-
-  if (value.match(/^var\(--.+\)$/)) {
+  console.log(value)
+  if (value.match(/^colors\..+\/[0-9]+$/)) {
+    const [tokenValue, opacity] = value.split("/")
+    const percentage = Math.max(Math.min(parseInt(opacity), 100), 0)
+    value = `color-mix(in srgb, ${getVar(
+      tokenValue,
+    )} ${percentage}%, transparent)`
+  } else if (value.match(/^var\(--.+\)$/)) {
     const [tokenValue, fallbackValue] = splitByComma(value)
     value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
   } else {
     value = getValue(value)
   }
-
+  console.log(value)
   return value
 }
 
