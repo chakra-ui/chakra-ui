@@ -43,8 +43,9 @@ const baseStyle = definePartsStyle({
 })
 
 function getBg(props: StyleFunctionProps) {
-  const { theme, colorScheme: c } = props
-  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
+  const { colorScheme: c } = props
+  const darkBg = transparentize(`${c}.200`, 0.16)
+  console.log("darkBg", darkBg)
   return {
     light: `colors.${c}.100`,
     dark: darkBg,

@@ -32,6 +32,7 @@ export function toVarDefinition(value: string, prefix = "") {
 
 export function cssVar(name: string, fallback?: string, cssVarPrefix?: string) {
   const cssVariable = toVarDefinition(name, cssVarPrefix)
+
   return {
     variable: cssVariable,
     reference: toVarReference(cssVariable, fallback),

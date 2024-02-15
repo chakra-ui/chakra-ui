@@ -23,8 +23,12 @@ const resolveTokenValue = (theme: Record<string, any>, value: string) => {
   const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
   const getValue = (val: string) => getVar(val) ?? val
 
-  const [tokenValue, fallbackValue] = splitByComma(value)
-  value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
+  if (value.match(/^var\(--.+\)$/)) {
+    const [tokenValue, fallbackValue] = splitByComma(value)
+    value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
+  } else {
+    value = getValue(value)
+  }
 
   return value
 }

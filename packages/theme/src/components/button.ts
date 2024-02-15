@@ -24,7 +24,7 @@ const baseStyle = defineStyle({
 })
 
 const variantGhost = defineStyle((props) => {
-  const { colorScheme: c, theme } = props
+  const { colorScheme: c } = props
 
   if (c === "gray") {
     return {
@@ -36,8 +36,8 @@ const variantGhost = defineStyle((props) => {
     }
   }
 
-  const darkHoverBg = transparentize(`${c}.200`, 0.12)(theme)
-  const darkActiveBg = transparentize(`${c}.200`, 0.24)(theme)
+  const darkHoverBg = transparentize(`${c}.200`, 0.12)
+  const darkActiveBg = transparentize(`${c}.200`, 0.24)
 
   return {
     color: mode(`${c}.600`, `${c}.200`)(props),

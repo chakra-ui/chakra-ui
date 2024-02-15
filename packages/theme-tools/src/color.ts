@@ -1,8 +1,7 @@
-import { getCSSVar } from "@chakra-ui/styled-system"
+import { ThemeTypings, getCSSVar } from "@chakra-ui/styled-system"
 import {
   toHex,
   parseToRgba,
-  transparentize as setTransparency,
   mix,
   darken as reduceLightness,
   lighten as increaseLightness,
@@ -80,17 +79,18 @@ export const isLight = (color: string) => (theme: Dict) =>
   tone(color)(theme) === "light"
 
 /**
- * Make a color transparent
- * @param color - the color in hex, rgb, or hsl
- * @param opacity - the amount of opacity the color should have (0-1)
- *
- * @deprecated This will be removed in the next major release.
+ * Make a color token transparent
+ * @param color - Chakra UI color token
+ * @param opacity - Opacity value 0 to 1.
  */
-export const transparentize =
-  (color: string, opacity: number) => (theme: Dict) => {
-    const raw = getColor(theme, color)
-    return setTransparency(raw, 1 - opacity)
-  }
+export const transparentize = (
+  color: ThemeTypings["colors"],
+  value: number,
+) => {
+  const key = color.replaceAll(".", "-")
+  const opacity = Math.max(Math.min(value * 100, 100), 0)
+  return `color-mix(in srgb, var(--chakra-colors-${key}) ${opacity}%, transparent)`
+}
 
 /**
  * Add white to a color
