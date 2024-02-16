@@ -557,8 +557,8 @@ importers:
         specifier: ^2.11.8
         version: 2.11.8
       '@zag-js/focus-visible':
-        specifier: ^0.31.1
-        version: 0.31.1
+        specifier: ^0.36.0
+        version: 0.36.3
       aria-hidden:
         specifier: ^1.2.3
         version: 1.2.3
@@ -627,8 +627,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@zag-js/element-size':
-        specifier: 0.31.1
-        version: 0.31.1
+        specifier: 0.36.3
+        version: 0.36.3
       copy-to-clipboard:
         specifier: 3.3.3
         version: 3.3.3
@@ -3462,10 +3462,6 @@ packages:
     peerDependencies:
       '@effect-ts/otel-node': '*'
     peerDependenciesMeta:
-      '@effect-ts/core':
-        optional: true
-      '@effect-ts/otel':
-        optional: true
       '@effect-ts/otel-node':
         optional: true
     dependencies:
@@ -11540,18 +11536,18 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@zag-js/dom-query@0.31.1:
-    resolution: {integrity: sha512-oiuohEXAXhBxpzzNm9k2VHGEOLC1SXlXSbRPcfBZ9so5NRQUA++zCE7cyQJqGLTZR0t3itFLlZqDbYEXRrefwg==}
+  /@zag-js/dom-query@0.36.3:
+    resolution: {integrity: sha512-ID8bFHFWS2ynOTZ3LiUmnVUllkmVfCw5nEAY14SZHdEa0wTCCubyAiTmuUxtu7QksBg27OsL5+FIezO1pFbsdw==}
     dev: false
 
-  /@zag-js/element-size@0.31.1:
-    resolution: {integrity: sha512-4T3yvn5NqqAjhlP326Fv+w9RqMIBbNN9H72g5q2ohwzhSgSfZzrKtjL4rs9axY/cw9UfMfXjRjEE98e5CMq7WQ==}
+  /@zag-js/element-size@0.36.3:
+    resolution: {integrity: sha512-jeNm44rCndYZ7E779ixPY3KyKmuXgPVflVOzY9DY5W7nX8fuOLySBKrwkazB2IES0IO3BZ7G351sKZYjRzG6ig==}
     dev: false
 
-  /@zag-js/focus-visible@0.31.1:
-    resolution: {integrity: sha512-dbLksz7FEwyFoANbpIlNnd3bVm0clQSUsnP8yUVQucStZPsuWjCrhL2jlAbGNrTrahX96ntUMXHb/sM68TibFg==}
+  /@zag-js/focus-visible@0.36.3:
+    resolution: {integrity: sha512-UgCkDQDNlzNZouBrd4eIkIIY3ChI/mP5pqD/GfsnkNl8QEBgSLMUrYU1YA683teHOb1QoI8At5T6XugLvE3chw==}
     dependencies:
-      '@zag-js/dom-query': 0.31.1
+      '@zag-js/dom-query': 0.36.3
     dev: false
 
   /@zkochan/js-yaml@0.0.6:
