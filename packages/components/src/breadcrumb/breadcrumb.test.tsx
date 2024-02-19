@@ -3,23 +3,25 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "."
 
 test("passes a11y test", async () => {
   await testA11y(
-    <Breadcrumb>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink>Link 3</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
+    <Breadcrumb.Root>
+      <Breadcrumb.List>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink>Link 3</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb.List>
+    </Breadcrumb.Root>,
   )
 })
 
 test("has the proper aria-attributes", () => {
   render(
-    <Breadcrumb>
+    <Breadcrumb.Root>
       <BreadcrumbItem>
         <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
       </BreadcrumbItem>
@@ -29,7 +31,7 @@ test("has the proper aria-attributes", () => {
       <BreadcrumbItem isCurrentPage>
         <BreadcrumbLink>Link 3</BreadcrumbLink>
       </BreadcrumbItem>
-    </Breadcrumb>,
+    </Breadcrumb.Root>,
   )
 
   // surrounding `nav` has aria-label="breadcrumb"
@@ -45,28 +47,32 @@ test("has the proper aria-attributes", () => {
 
 test("separator can be changed", () => {
   render(
-    <Breadcrumb separator="-">
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
+    <Breadcrumb.Root>
+      <Breadcrumb.List separator="-">
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb.List>
+    </Breadcrumb.Root>,
   )
   expect(screen.getAllByText("-")).toHaveLength(1)
 })
 
 test("breadcrumb link has its href attribute correctly set", () => {
   render(
-    <Breadcrumb>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>,
+    <Breadcrumb.Root>
+      <Breadcrumb.List>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage>
+          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb.List>
+    </Breadcrumb.Root>,
   )
   const breadcrumbLink = screen.getByText("Link 1")
   expect(breadcrumbLink.getAttribute("href")).toBe("#")
@@ -74,14 +80,14 @@ test("breadcrumb link has its href attribute correctly set", () => {
 
 test("current page link doesn't have href attribute set", () => {
   render(
-    <Breadcrumb>
+    <Breadcrumb.Root>
       <BreadcrumbItem>
         <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem isCurrentPage>
         <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
       </BreadcrumbItem>
-    </Breadcrumb>,
+    </Breadcrumb.Root>,
   )
   const currentPageLink = screen.getByText("Link 2")
   expect(currentPageLink.getAttribute("href")).toBe(null)
