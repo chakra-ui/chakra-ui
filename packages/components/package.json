@@ -243,6 +243,17 @@
         "default": "./dist/cjs/clickable/index.cjs"
       }
     },
+    "./client-only": {
+      "source": "./src/client-only.tsx",
+      "import": {
+        "types": "./dist/types/client-only.d.mts",
+        "default": "./dist/esm/client-only.mjs"
+      },
+      "require": {
+        "types": "./dist/types/client-only.d.ts",
+        "default": "./dist/cjs/client-only.cjs"
+      }
+    },
     "./close-button": {
       "source": "./src/close-button/index.ts",
       "import": {
