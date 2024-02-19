@@ -287,17 +287,6 @@
         "default": "./dist/cjs/container/index.cjs"
       }
     },
-    "./control-box": {
-      "source": "./src/control-box/index.ts",
-      "import": {
-        "types": "./dist/types/control-box/index.d.mts",
-        "default": "./dist/esm/control-box/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/control-box/index.d.ts",
-        "default": "./dist/cjs/control-box/index.cjs"
-      }
-    },
     "./css-reset": {
       "source": "./src/css-reset/index.ts",
       "import": {
@@ -384,6 +373,17 @@
       "require": {
         "types": "./dist/types/focus-lock/index.d.ts",
         "default": "./dist/cjs/focus-lock/index.cjs"
+      }
+    },
+    "./for": {
+      "source": "./src/for.tsx",
+      "import": {
+        "types": "./dist/types/for.d.mts",
+        "default": "./dist/esm/for.mjs"
+      },
+      "require": {
+        "types": "./dist/types/for.d.ts",
+        "default": "./dist/cjs/for.cjs"
       }
     },
     "./form-control": {
