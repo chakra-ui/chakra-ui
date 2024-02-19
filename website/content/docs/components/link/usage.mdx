@@ -47,9 +47,8 @@ Reach's `Link`.
 ```jsx live=false
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Link as ChakraLink, LinkProps } from '@chakra-ui/react'
-
-;<ChakraLink as={ReactRouterLink} to='/home'>
-  Home
+;<ChakraLink asChild>
+  <ReactRouterLink to='/home'>Home</ReactRouterLink>
 </ChakraLink>
 ```
 
@@ -63,9 +62,8 @@ example using the `Link` component:
 ```jsx live=false
 import NextLink from 'next/link'
 import { Link } from '@chakra-ui/react'
-
-;<Link as={NextLink} href='/home'>
-  Home
+;<Link asChild>
+  <NextLink href='/home'>Home</NextLink>
 </Link>
 ```
 
@@ -87,7 +85,6 @@ Chakra UI `Link` this way:
 
 ```jsx live=false
 import NextLink from 'next/link'
-
 ;<NextLink href='/home' passHref>
   <Link>Home</Link>
 </NextLink>

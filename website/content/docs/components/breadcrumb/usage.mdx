@@ -171,13 +171,13 @@ It'll replace the rendered `a` tag with Reach's Link.
 
 <Breadcrumb>
   <BreadcrumbItem>
-    <BreadcrumbLink as={Link} to='#'>
-      Home
+    <BreadcrumbLink asChild>
+      <Link to='#'>Home</Link>
     </BreadcrumbLink>
   </BreadcrumbItem>
   <BreadcrumbItem>
-    <BreadcrumbLink as={Link} to='#'>
-      About
+    <BreadcrumbLink asChild>
+      <Link to='#'>About</Link>
     </BreadcrumbLink>
   </BreadcrumbItem>
   <BreadcrumbItem isCurrentPage>
