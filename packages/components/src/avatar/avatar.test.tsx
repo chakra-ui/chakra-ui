@@ -1,9 +1,19 @@
 import { act, mocks, render, testA11y } from "@chakra-ui/test-utils"
 import { Avatar, AvatarBadge } from "."
 
+const AvatarComp = (props: Avatar.RootProps) => {
+  return (
+    <Avatar.Root {...props}>
+      <Avatar.Image />
+      <Avatar.Fallback />
+      {props.children}
+    </Avatar.Root>
+  )
+}
+
 describe("accessibility", () => {
   test("passes a11y test", async () => {
-    await testA11y(<Avatar />, {
+    await testA11y(<AvatarComp />, {
       axeOptions: {
         rules: {
           "svg-img-alt": { enabled: false },
@@ -14,9 +24,9 @@ describe("accessibility", () => {
 
   test("passes a11y test with AvatarBadge", async () => {
     await testA11y(
-      <Avatar>
+      <AvatarComp>
         <AvatarBadge />
-      </Avatar>,
+      </AvatarComp>,
       {
         axeOptions: {
           rules: {
@@ -42,7 +52,7 @@ describe("fallback + loading strategy", () => {
     const mock = mocks.image()
     mock.simulate("loaded")
     const tools = render(
-      <Avatar src="https://bit.ly/dan-abramov" name="Dan Abramov" />,
+      <AvatarComp src="https://bit.ly/dan-abramov" name="Dan Abramov" />,
     )
 
     act(() => {
@@ -60,7 +70,7 @@ describe("fallback + loading strategy", () => {
     const src = "https://bit.ly/dan-abramov"
     const name = "Dan Abramov"
     const onErrorFn = vi.fn()
-    render(<Avatar src={src} name={name} onError={onErrorFn} />)
+    render(<AvatarComp src={src} name={name} onError={onErrorFn} />)
 
     act(() => {
       vi.runAllTimers()
@@ -70,43 +80,43 @@ describe("fallback + loading strategy", () => {
   })
 
   test("renders a name avatar if no src", () => {
-    const tools = render(<Avatar name="Dan Abramov" />)
+    const tools = render(<AvatarComp name="Dan Abramov" />)
     const intials = tools.queryByText("DA")
     expect(intials).toBeInTheDocument()
   })
 
   test("renders a single character if only one name is passed", () => {
-    const tools = render(<Avatar name="Dan" />)
+    const tools = render(<AvatarComp name="Dan" />)
     const intials = tools.queryByText("D")
     expect(intials).toBeInTheDocument()
   })
 
   test("renders the first characters of the first and last name when more than two names are passed", () => {
-    const tools = render(<Avatar name="Dan React Abramov" />)
+    const tools = render(<AvatarComp name="Dan React Abramov" />)
     const intials = tools.queryByText("DA")
     expect(intials).toBeInTheDocument()
   })
 
   test("renders a name avatar if name has leading space", () => {
-    const tools = render(<Avatar name=" Dan Abramov" />)
+    const tools = render(<AvatarComp name=" Dan Abramov" />)
     const intials = tools.queryByText("DA")
     expect(intials).toBeInTheDocument()
   })
 
   test("renders a name avatar if name has trailing space", () => {
-    const tools = render(<Avatar name="Dan Abramov " />)
+    const tools = render(<AvatarComp name="Dan Abramov " />)
     const intials = tools.queryByText("DA")
     expect(intials).toBeInTheDocument()
   })
 
   test("renders a name avatar if name has leading and trailing space", () => {
-    const tools = render(<Avatar name=" Dan Abramov " />)
+    const tools = render(<AvatarComp name=" Dan Abramov " />)
     const intials = tools.queryByText("DA")
     expect(intials).toBeInTheDocument()
   })
 
   test("renders a default avatar if no name or src", () => {
-    const tools = render(<Avatar />)
+    const tools = render(<AvatarComp />)
     expect(tools.getByRole("img")).toHaveClass("chakra-avatar__svg")
   })
 })

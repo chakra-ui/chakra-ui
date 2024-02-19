@@ -14,7 +14,7 @@ import { getValidChildren } from "@chakra-ui/utils/children"
 import { compact } from "@chakra-ui/utils/compact"
 import { cx } from "@chakra-ui/utils/cx"
 import { cloneElement } from "react"
-import { baseStyle } from "./avatar"
+import { baseStyle } from "./avatar-root"
 
 interface AvatarGroupOptions {
   /**

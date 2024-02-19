@@ -14,13 +14,24 @@ export default {
 
 export const Basic = () => (
   <Stack direction="row">
-    <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
-    <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
-    <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+    <Avatar.Root name="Dan Abrahmov" src="https://bit.ly/dan-abramov">
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
+
+    <Avatar.Root name="Christian Nwamba" src="https://bit.ly/code-beast">
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
+
+    <Avatar.Root name="Segun Adebayo" src="https://bit.ly/sage-adebayo">
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </Stack>
 )
 
-const GenericAvatar = (props: PropsOf<"svg">) => (
+const AvatarSvg = (props: PropsOf<"svg">) => (
   <svg
     color="#fff"
     viewBox="0 0 30 31"
@@ -37,22 +48,31 @@ const GenericAvatar = (props: PropsOf<"svg">) => (
 
 export const WithCustomIcon = () => (
   <AvatarGroup>
-    <Avatar icon={<GenericAvatar />} />
-    <Avatar />
+    <Avatar.Root icon={<AvatarSvg />}>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
+
+    <Avatar.Root>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </AvatarGroup>
 )
 
 export const WithSizes = () => (
   <Stack direction="row" spacing="24px">
     {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
-      <Avatar
+      <Avatar.Root
         key={size}
         size={size}
         name="Uchiha Itachi"
         src="https://uinames.com/api/photos/female/18.jpg"
       >
+        <Avatar.Image />
+        <Avatar.Fallback />
         <AvatarBadge boxSize="1.25em" bg="green.500" />
-      </Avatar>
+      </Avatar.Root>
     ))}
   </Stack>
 )
@@ -68,11 +88,14 @@ export const WithSrcSet = () => {
     "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_3200.jpg"
 
   return (
-    <Avatar
+    <Avatar.Root
       name="Uchiha Itachi"
       src={small}
       srcSet={`${small} 300w, ${medium} 768w, ${large} 1280w, ${xlarge} 3200w`}
-    />
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   )
 }
 
@@ -80,10 +103,25 @@ export const WithAvatarGroup = () => (
   <Stack spacing="24px">
     {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
       <AvatarGroup size={size} max={3} key={size}>
-        <Avatar name="Ryan Florence" src="https://bit.ly/ryan-florence" />
-        <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
-        <Avatar name="Prosper Otemuyiwa" src="https://bit.ly/prosper-baba" />
-        <Avatar name="Christian Nwamba" src="https://bit.ly/code-beast" />
+        <Avatar.Root name="Ryan Florence" src="https://bit.ly/ryan-florence">
+          <Avatar.Image />
+          <Avatar.Fallback />
+        </Avatar.Root>
+
+        <Avatar.Root name="Kent Dodds" src="https://bit.ly/kent-c-dodds">
+          <Avatar.Image />
+          <Avatar.Fallback />
+        </Avatar.Root>
+
+        <Avatar.Root name="Prosper Otemuyiwa" src="https://bit.ly/prosper-baba">
+          <Avatar.Image />
+          <Avatar.Fallback />
+        </Avatar.Root>
+
+        <Avatar.Root name="Christian Nwamba" src="https://bit.ly/code-beast">
+          <Avatar.Image />
+          <Avatar.Fallback />
+        </Avatar.Root>
       </AvatarGroup>
     ))}
   </Stack>

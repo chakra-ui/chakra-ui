@@ -38,7 +38,7 @@ export interface UseImageProps {
   loading?: NativeImageProps["loading"]
 }
 
-type Status = "loading" | "failed" | "pending" | "loaded"
+export type ImageLoadStatus = "loading" | "failed" | "pending" | "loaded"
 
 export type FallbackStrategy = "onError" | "beforeLoadOrError"
 
@@ -72,7 +72,7 @@ export function useImage(props: UseImageProps) {
     ignoreFallback,
   } = props
 
-  const [status, setStatus] = useState<Status>("pending")
+  const [status, setStatus] = useState<ImageLoadStatus>("pending")
 
   useEffect(() => {
     setStatus(src ? "loading" : "pending")
@@ -137,7 +137,7 @@ export function useImage(props: UseImageProps) {
 }
 
 export const shouldShowFallbackImage = (
-  status: Status,
+  status: ImageLoadStatus,
   fallbackStrategy: FallbackStrategy,
 ) =>
   (status !== "loaded" && fallbackStrategy === "beforeLoadOrError") ||

@@ -4,21 +4,20 @@ import {
   SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
+import { dataAttr } from "@chakra-ui/utils/attr"
+import { cx } from "@chakra-ui/utils/cx"
+import { useState } from "react"
+import { useImage } from "../image"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { cx } from "@chakra-ui/utils/cx"
-import { useState } from "react"
-import { AvatarStylesProvider } from "./avatar-context"
-import { AvatarImage } from "./avatar-image"
-import { initials } from "./avatar-name"
+import { AvatarProvider, AvatarStylesProvider } from "./avatar-context"
+import { AvatarIcon } from "./avatar-icon"
 import { AvatarOptions } from "./avatar-types"
-import { GenericAvatarIcon } from "./generic-avatar-icon"
+import { getInitials as getInitialsFn } from "./get-initials"
 
 export const baseStyle = defineStyle({
   display: "inline-flex",
@@ -31,7 +30,7 @@ export const baseStyle = defineStyle({
   flexShrink: 0,
 })
 
-export interface AvatarProps
+export interface AvatarRootProps
   extends Omit<HTMLChakraProps<"span">, "onError">,
     AvatarOptions,
     ThemingProps<"Avatar"> {
@@ -50,9 +49,8 @@ export interface AvatarProps
  * Avatar component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
+export const AvatarRoot = forwardRef<AvatarRootProps, "span">((props, ref) => {
   const styles = useMultiStyleConfig("Avatar", props)
-  const [isLoaded, setIsLoaded] = useState(false)
 
   const {
     src,
@@ -62,8 +60,8 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     borderRadius = "full",
     onError,
     onLoad: onLoadProp,
-    getInitials = initials,
-    icon = <GenericAvatarIcon />,
+    getInitials = getInitialsFn,
+    icon = <AvatarIcon />,
     iconLabel = " avatar",
     loading,
     children,
@@ -73,6 +71,19 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
     referrerPolicy,
     ...rest
   } = omitThemingProps(props)
+
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  const status = useImage({
+    src,
+    onError,
+    crossOrigin,
+    ignoreFallback,
+    onLoad(event) {
+      setIsLoaded(true)
+      onLoadProp?.(event)
+    },
+  })
 
   const avatarStyles: SystemStyleObject = {
     borderRadius,
@@ -94,27 +105,28 @@ export const Avatar = forwardRef<AvatarProps, "span">((props, ref) => {
       __css={avatarStyles}
     >
       <AvatarStylesProvider value={styles}>
-        <AvatarImage
-          src={src}
-          srcSet={srcSet}
-          loading={loading}
-          onLoad={callAllHandlers(onLoadProp, () => {
-            setIsLoaded(true)
-          })}
-          onError={onError}
-          getInitials={getInitials}
-          name={name}
-          borderRadius={borderRadius}
-          icon={icon}
-          iconLabel={iconLabel}
-          ignoreFallback={ignoreFallback}
-          crossOrigin={crossOrigin}
-          referrerPolicy={referrerPolicy}
-        />
-        {children}
+        <AvatarProvider
+          value={{
+            src,
+            borderRadius,
+            crossOrigin,
+            status,
+            loading,
+            srcSet,
+            referrerPolicy,
+            isLoaded,
+            getInitials,
+            icon,
+            iconLabel,
+            showFallback: !src || !isLoaded,
+            name,
+          }}
+        >
+          {children}
+        </AvatarProvider>
       </AvatarStylesProvider>
     </chakra.span>
   )
 })
 
-Avatar.displayName = "Avatar"
+AvatarRoot.displayName = "Avatar"

@@ -4,7 +4,7 @@ import { chakra, ChakraComponent } from "../system"
  * Fallback avatar react component.
  * This should be a generic svg used to represent an avatar
  */
-export const GenericAvatarIcon: ChakraComponent<"svg"> = (props) => (
+export const AvatarIcon: ChakraComponent<"svg"> = (props) => (
   <chakra.svg
     viewBox="0 0 128 128"
     color="#fff"
