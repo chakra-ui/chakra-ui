@@ -25,8 +25,10 @@ export const Default = () => (
  */
 export const WithRoutingLibrary = () => (
   <BrowserRouter>
-    <Link as={ReactRouterLink} to="/home" replace>
-      Click me
+    <Link asChild>
+      <ReactRouterLink to="/home" replace>
+        Click me
+      </ReactRouterLink>
     </Link>
   </BrowserRouter>
 )

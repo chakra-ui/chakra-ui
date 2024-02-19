@@ -20,7 +20,9 @@ export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps<"Link"> {
  * @example
  *
  * ```jsx
- * <Link as={ReactRouterLink} to="/home">Home</Link>
+ * <Link asChild>
+ *   <ReactRouterLink to="/home">Home</ReactRouterLink>
+ * </Link>
  * ```
  *
  * @see Docs https://chakra-ui.com/link
