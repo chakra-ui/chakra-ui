@@ -95,7 +95,7 @@
     "semver": "^7.5.4",
     "sharp": "^0.33.1",
     "tsx": "^4.7.0",
-    "unified": "^10.1.2",
+    "unified": "^11.0.0",
     "unist-util-visit": "^4.1.1"
   }
 }
