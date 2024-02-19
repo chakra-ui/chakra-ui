@@ -34,14 +34,15 @@ const words = [
 test("passes a11y test", async () => {
   await testA11y(
     <Menu>
-      <MenuButton
-        as={Button}
-        variant="solid"
-        colorScheme="teal"
-        size="sm"
-        // rightIcon={<FaUnlink />}
-      >
-        Open Wakanda menu
+      <MenuButton asChild>
+        <Button
+          variant="solid"
+          colorScheme="teal"
+          size="sm"
+          // rightIcon={<FaUnlink />}
+        >
+          Open Wakanda menu
+        </Button>
       </MenuButton>
       <MenuList>
         {words.map((word) => (
@@ -55,14 +56,15 @@ test("passes a11y test", async () => {
 test("does not render MenuList Items if Menu isLazy", () => {
   render(
     <Menu isLazy>
-      <MenuButton
-        as={Button}
-        variant="solid"
-        colorScheme="teal"
-        size="sm"
-        // rightIcon={<FaUnlink />}
-      >
-        Open Wakanda menu
+      <MenuButton asChild>
+        <Button
+          variant="solid"
+          colorScheme="teal"
+          size="sm"
+          // rightIcon={<FaUnlink />}
+        >
+          Open Wakanda menu
+        </Button>
       </MenuButton>
       <MenuList>
         {words.map((word) => (
@@ -78,7 +80,9 @@ test("does not render MenuList Items if Menu isLazy", () => {
 test("sets correct aria attributes on disabled MenuItems", () => {
   render(
     <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <MenuList>
         <MenuItem icon={<FaSearch />} command="⌥T">
           Search
@@ -100,7 +104,9 @@ test("does not fire onClick on disabled MenuItem", () => {
 
   render(
     <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <MenuList>
         <MenuItem icon={<FaSearch />} command="⌥T">
           Search
@@ -130,7 +136,9 @@ test("does not fire onClick on disabled MenuItem", () => {
 test.skip("allows focusing disabled MenuItems given isFocusable", async () => {
   render(
     <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <MenuList>
         <MenuItem isDisabled isFocusable icon={<FaTruck />}>
           Delivery
@@ -150,7 +158,9 @@ test.skip("allows focusing disabled MenuItems given isFocusable", async () => {
 test("allows using a Portal to render the MenuList", async () => {
   render(
     <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <Portal>
         <MenuList>
           <MenuItem>Menu 1</MenuItem>
@@ -174,7 +184,9 @@ test("allows using a Portal to render the MenuList", async () => {
 test("MenuGroup has correct role ", async () => {
   render(
     <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <MenuList minWidth="240px">
         <MenuGroup title="Group 1">
           <MenuItem>Share...</MenuItem>
@@ -201,8 +213,10 @@ test("MenuGroup has correct role ", async () => {
 test("MenuOptionGroup radio", async () => {
   render(
     <Menu>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-        Open menu
+      <MenuButton asChild>
+        <Button variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </Button>
       </MenuButton>
 
       <MenuList minWidth="240px">
@@ -227,8 +241,10 @@ test("MenuOptionGroup radio", async () => {
 test("MenuOptionGroup radio defaultValue checked", async () => {
   render(
     <Menu closeOnSelect={false}>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-        Open menu
+      <MenuButton asChild>
+        <Button variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </Button>
       </MenuButton>
 
       <MenuList minWidth="240px">
@@ -249,8 +265,10 @@ test("MenuOptionGroup radio defaultValue checked", async () => {
 test("MenuOptionGroup checkbox defaultValue single checked", async () => {
   render(
     <Menu closeOnSelect={false}>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-        Open menu
+      <MenuButton asChild>
+        <Button variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </Button>
       </MenuButton>
 
       <MenuList minWidth="240px">
@@ -281,8 +299,10 @@ test("MenuOptionGroup checkbox defaultValue single checked", async () => {
 test("MenuOptionGroup checkbox defaultValue multiple checked", () => {
   render(
     <Menu closeOnSelect={false}>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-        Open menu
+      <MenuButton asChild>
+        <Button variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </Button>
       </MenuButton>
 
       <MenuList minWidth="240px">
@@ -313,7 +333,9 @@ test("exposes internal state as render prop", () => {
     <Menu>
       {({ isOpen }) => (
         <>
-          <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
+          <MenuButton asChild>
+            <Button>{isOpen ? "Close" : "Open"}</Button>
+          </MenuButton>
           <MenuList>
             <MenuItem>Download</MenuItem>
             <MenuItem onClick={() => alert("Kagebunshin")}>
@@ -344,8 +366,8 @@ const CompWithTwoMenus: React.FC<{
   return (
     <>
       <Menu isOpen={active === "1"}>
-        <MenuButton onClick={props.onBtnClick} as={Button}>
-          No 1
+        <MenuButton onClick={props.onBtnClick} asChild>
+          <Button>No 1</Button>
         </MenuButton>
         <MenuList>
           <MenuItem onClick={props.onItemClick}>1–A</MenuItem>
@@ -358,7 +380,9 @@ const CompWithTwoMenus: React.FC<{
           props.onClose()
         }}
       >
-        <MenuButton as={Button}>No 2</MenuButton>
+        <MenuButton asChild>
+          <Button>No 2</Button>
+        </MenuButton>
         <MenuList>
           <MenuItem>2–A</MenuItem>
         </MenuList>
@@ -406,7 +430,9 @@ test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu 
   const onClose = vi.fn()
   render(
     <Menu onClose={onClose}>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <MenuList>
         <MenuItem closeOnSelect={false}>I do not close the menu</MenuItem>
         <MenuItem>I close the menu</MenuItem>
@@ -430,7 +456,9 @@ test("MenuItem can override its parent menu's `closeOnSelect` and close the menu
   const onClose = vi.fn()
   render(
     <Menu onClose={onClose} closeOnSelect={false}>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <MenuList>
         <MenuItem>I do not close the menu</MenuItem>
         <MenuItem closeOnSelect>I close the menu</MenuItem>
@@ -454,7 +482,9 @@ test("MenuList direction flips in rtl", () => {
   render(
     <ChakraProvider theme={{ ...theme, direction: "rtl" }}>
       <Menu placement="top-end" isOpen>
-        <MenuButton as={Button}>Open menu</MenuButton>
+        <MenuButton asChild>
+          <Button>Open menu</Button>
+        </MenuButton>
         <MenuList>
           <MenuItem>Pick me</MenuItem>
           <MenuItem>No no, pick me</MenuItem>
@@ -472,10 +502,14 @@ test("MenuList direction flips in rtl", () => {
 test("can override menu item type", async () => {
   render(
     <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
+      <MenuButton asChild>
+        <Button>Open menu</Button>
+      </MenuButton>
       <MenuList>
         <MenuItem type="submit">Submit</MenuItem>
-        <MenuItem as={Button}>Button</MenuItem>
+        <MenuItem asChild>
+          <Button>Button</Button>
+        </MenuItem>
       </MenuList>
     </Menu>,
   )
