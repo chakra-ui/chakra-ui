@@ -63,23 +63,25 @@ States like `isDisabled` have an impact on the usability of a `Switch` and on
 the styles, except for the `isInvalid` and the `isRequired` prop.
 
 ```jsx
-<FormControl as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
-  <FormLabel htmlFor='isChecked'>isChecked:</FormLabel>
-  <Switch id='isChecked' isChecked />
+<FormControl asChild>
+  <SimpleGrid columns={{ base: 2, lg: 4 }}>
+    <FormLabel htmlFor='isChecked'>isChecked:</FormLabel>
+    <Switch id='isChecked' isChecked />
 
-  <FormLabel htmlFor='isDisabled'>isDisabled:</FormLabel>
-  <Switch id='isDisabled' isDisabled defaultChecked />
+    <FormLabel htmlFor='isDisabled'>isDisabled:</FormLabel>
+    <Switch id='isDisabled' isDisabled defaultChecked />
 
-  <FormLabel htmlFor='isFocusable'>isFocusable:</FormLabel>
-  <Switch id='isFocusable' isFocusable isDisabled />
+    <FormLabel htmlFor='isFocusable'>isFocusable:</FormLabel>
+    <Switch id='isFocusable' isFocusable isDisabled />
 
-  <FormLabel htmlFor='isInvalid'>isInvalid:</FormLabel>
-  <Switch id='isInvalid' isInvalid />
+    <FormLabel htmlFor='isInvalid'>isInvalid:</FormLabel>
+    <Switch id='isInvalid' isInvalid />
 
-  <FormLabel htmlFor='isReadOnly'>isReadOnly:</FormLabel>
-  <Switch id='isReadOnly' isReadOnly />
+    <FormLabel htmlFor='isReadOnly'>isReadOnly:</FormLabel>
+    <Switch id='isReadOnly' isReadOnly />
 
-  <FormLabel htmlFor='isRequired'>isRequired:</FormLabel>
-  <Switch id='isRequired' isRequired />
+    <FormLabel htmlFor='isRequired'>isRequired:</FormLabel>
+    <Switch id='isRequired' isRequired />
+  </SimpleGrid>
 </FormControl>
 ```

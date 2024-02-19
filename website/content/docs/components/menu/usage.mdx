@@ -40,8 +40,8 @@ import {
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-    Actions
+  <MenuButton asChild>
+    <Button rightIcon={<ChevronDownIcon />}>Actions</Button>
   </MenuButton>
   <MenuList>
     <MenuItem>Download</MenuItem>
@@ -63,8 +63,10 @@ To access the internal state of the `Menu`, use a function as `children`
 <Menu>
   {({ isOpen }) => (
     <>
-      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
-        {isOpen ? 'Close' : 'Open'}
+      <MenuButton asChild>
+        <Button isActive={isOpen} rightIcon={<ChevronDownIcon />}>
+          {isOpen ? 'Close' : 'Open'}
+        </Button>
       </MenuButton>
       <MenuList>
         <MenuItem>Download</MenuItem>
@@ -129,8 +131,8 @@ the letter you typed.
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-    Your Cats
+  <MenuButton asChild>
+    <Button rightIcon={<ChevronDownIcon />}>Your Cats</Button>
   </MenuButton>
   <MenuList>
     <MenuItem minH='48px'>
@@ -164,12 +166,13 @@ commands (or hotkeys) to menu items, you can use the `command` prop.
 
 ```jsx
 <Menu>
-  <MenuButton
-    as={IconButton}
-    aria-label='Options'
-    icon={<HamburgerIcon />}
-    variant='outline'
-  />
+  <MenuButton asChild>
+    <IconButton
+      aria-label='Options'
+      icon={<HamburgerIcon />}
+      variant='outline'
+    />
+  </MenuButton>
   <MenuList>
     <MenuItem icon={<AddIcon />} command='⌘T'>
       New Tab
@@ -235,8 +238,8 @@ To group related `MenuItem`s, use the `MenuGroup` component and pass it a
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} colorScheme='pink'>
-    Profile
+  <MenuButton asChild>
+    <Button colorScheme='pink'>Profile</Button>
   </MenuButton>
   <MenuList>
     <MenuGroup title='Profile'>
@@ -277,8 +280,8 @@ options. Use the `MenuOptionGroup` and `MenuItemOption` components.
 
 ```jsx
 <Menu closeOnSelect={false}>
-  <MenuButton as={Button} colorScheme='blue'>
-    MenuItem
+  <MenuButton asChild>
+    <Button colorScheme='blue'>MenuItem</Button>
   </MenuButton>
   <MenuList minWidth='240px'>
     <MenuOptionGroup defaultValue='asc' title='Order' type='radio'>
