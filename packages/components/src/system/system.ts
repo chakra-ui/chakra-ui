@@ -126,8 +126,9 @@ export function styled<T extends ElementType, P extends object = {}>(
         )
       }
 
-      if (isValidElement(props.children)) {
-        const onlyChild = Children.only(props.children)
+      const onlyChild = Children.only(props.children)
+
+      if (isValidElement(onlyChild)) {
         const composedProps = mergeProps(restProps, onlyChild.props ?? {})
 
         const composedRef = ref
@@ -135,20 +136,20 @@ export function styled<T extends ElementType, P extends object = {}>(
           : (onlyChild as any).ref
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const res = useMemo(
+        const styledElement = useMemo(
           () =>
             emotion_styled(onlyChild.type as any, styledOptions)(styleObject),
           [onlyChild.type],
         )
 
-        return createElement(res, {
+        return createElement(styledElement, {
           ref: composedRef,
           "data-theme": dataTheme,
           ...composedProps,
         })
       }
 
-      return null
+      return onlyChild
     },
   )
 
