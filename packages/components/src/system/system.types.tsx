@@ -32,6 +32,10 @@ export interface AsChildProps {
 }
 
 export interface AsProps<T extends ElementType = ElementType> {
+  /**
+   * @deprecated - This prop is deprecated and will be removed in a future release
+   * Switch to the `asChild` prop instead
+   */
   as?: T
 }
 
