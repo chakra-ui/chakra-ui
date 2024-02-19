@@ -35,12 +35,13 @@ const TutorialMenu = ({
 
   return (
     <Menu>
-      <MenuButton
-        as={IconButton}
-        icon={<AiOutlineMenu />}
-        aria-label='Tutorial menu'
-        variant='outline'
-      />
+      <MenuButton asChild>
+        <IconButton
+          icon={<AiOutlineMenu />}
+          aria-label='Tutorial menu'
+          variant='outline'
+        />
+      </MenuButton>
       <MenuList>
         {routes.map((route) => {
           if (route.path === asPath) {
