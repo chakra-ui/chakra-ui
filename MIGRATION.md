@@ -30,6 +30,39 @@ After:
 </Avatar.Root>
 ```
 
+### Breadcrumb
+
+Before:
+
+```tsx
+<Breadcrumb spacing="4">
+  <BreadcrumbItem>
+    <BreadcrumbLink as={Link} to="/home" replace>
+      Breadcrumb 1
+    </BreadcrumbLink>
+  </BreadcrumbItem>
+</Breadcrumb>
+```
+
+After:
+
+```tsx
+<Breadcrumb.Root>
+  <Breadcrumb.List spacing="4">
+    <Breadcrumb.Item>
+      <Breadcrumb.Link asChild>
+        <Link to="/home" replace>
+          Breadcrumb 1
+        </Link>
+      </Breadcrumb.Link>
+    </Breadcrumb.Item>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
+```
+
+- Move `spacing` and `separator` props to `Breadcrumb.List`
+- `listProps` has been removed. Pass props directly to `Breadcrumb.List`
+
 ## Added
 
 ### Namespace components

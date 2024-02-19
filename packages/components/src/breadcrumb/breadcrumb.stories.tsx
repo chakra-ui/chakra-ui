@@ -1,6 +1,6 @@
 import { FaChevronRight } from "react-icons/fa"
 import { BrowserRouter, Link } from "react-router-dom"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "."
+import { Breadcrumb } from "."
 
 export default {
   title: "Components / Navigation / Breadcrumb",
@@ -8,52 +8,58 @@ export default {
 
 export const Basic = () => (
   <BrowserRouter>
-    <Breadcrumb spacing="4">
-      <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/home" replace>
-          Breadcrumb 1
-        </BreadcrumbLink>
-      </BreadcrumbItem>
+    <Breadcrumb.Root>
+      <Breadcrumb.List spacing="4">
+        <Breadcrumb.Item>
+          <Breadcrumb.Link as={Link} to="/home" replace>
+            Breadcrumb 1
+          </Breadcrumb.Link>
+        </Breadcrumb.Item>
 
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Breadcrumb 2</BreadcrumbLink>
-      </BreadcrumbItem>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Breadcrumb 2</Breadcrumb.Link>
+        </Breadcrumb.Item>
 
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href="#">Breadcrumb 3</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>
+        <Breadcrumb.Item isCurrentPage>
+          <Breadcrumb.Link href="#">Breadcrumb 3</Breadcrumb.Link>
+        </Breadcrumb.Item>
+      </Breadcrumb.List>
+    </Breadcrumb.Root>
   </BrowserRouter>
 )
 
 export const WithSeparator = () => (
-  <Breadcrumb separator=">">
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#">Home</BreadcrumbLink>
-    </BreadcrumbItem>
+  <Breadcrumb.Root>
+    <Breadcrumb.List separator=">">
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Home</Breadcrumb.Link>
+      </Breadcrumb.Item>
 
-    <BreadcrumbItem>
-      <BreadcrumbLink href="#">About</BreadcrumbLink>
-    </BreadcrumbItem>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">About</Breadcrumb.Link>
+      </Breadcrumb.Item>
 
-    <BreadcrumbItem isCurrentPage>
-      <BreadcrumbLink href="#">Current</BreadcrumbLink>
-    </BreadcrumbItem>
-  </Breadcrumb>
+      <Breadcrumb.Item isCurrentPage>
+        <Breadcrumb.Link href="#">Current</Breadcrumb.Link>
+      </Breadcrumb.Item>
+    </Breadcrumb.List>
+  </Breadcrumb.Root>
 )
 
 export const WithCustomSeparator = () => (
-  <Breadcrumb spacing="8px" separator={<FaChevronRight />}>
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
-    </BreadcrumbItem>
+  <Breadcrumb.Root>
+    <Breadcrumb.List spacing="8px" separator={<FaChevronRight />}>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="/">Home</Breadcrumb.Link>
+      </Breadcrumb.Item>
 
-    <BreadcrumbItem>
-      <BreadcrumbLink href="/about">About</BreadcrumbLink>
-    </BreadcrumbItem>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="/about">About</Breadcrumb.Link>
+      </Breadcrumb.Item>
 
-    <BreadcrumbItem isCurrentPage>
-      <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
-    </BreadcrumbItem>
-  </Breadcrumb>
+      <Breadcrumb.Item isCurrentPage>
+        <Breadcrumb.Link href="/contact">Contact</Breadcrumb.Link>
+      </Breadcrumb.Item>
+    </Breadcrumb.List>
+  </Breadcrumb.Root>
 )

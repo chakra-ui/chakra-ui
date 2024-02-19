@@ -1,6 +1,6 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 
-export interface BreadcrumbOptions {
+export interface BreadcrumbListOptions {
   /**
    * The visual separator between each breadcrumb item
    * @default "/"
@@ -15,7 +15,7 @@ export interface BreadcrumbOptions {
   spacing?: SystemStyleObject["mx"]
 }
 
-export interface BreadcrumbItemOptions extends BreadcrumbOptions {
+export interface BreadcrumbItemOptions extends BreadcrumbListOptions {
   /**
    * @default false
    */
