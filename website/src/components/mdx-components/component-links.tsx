@@ -21,9 +21,7 @@ function ComponentLink(props: ComponentLinkProps) {
   const { icon: BtnIcon, url, children, iconSize, iconColor, ...rest } = props
   return (
     <Button
-      as={Link}
-      href={url}
-      isExternal
+      asChild
       size='sm'
       fontWeight='normal'
       variant='outline'
@@ -47,7 +45,9 @@ function ComponentLink(props: ComponentLinkProps) {
       }}
       {...rest}
     >
-      {children}
+      <Link href={url} isExternal>
+        {children}
+      </Link>
     </Button>
   )
 }

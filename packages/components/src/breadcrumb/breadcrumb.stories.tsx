@@ -10,8 +10,10 @@ export const Basic = () => (
   <BrowserRouter>
     <Breadcrumb spacing="4">
       <BreadcrumbItem>
-        <BreadcrumbLink as={Link} to="/home" replace>
-          Breadcrumb 1
+        <BreadcrumbLink asChild>
+          <Link to="/home" replace>
+            Breadcrumb 1
+          </Link>
         </BreadcrumbLink>
       </BreadcrumbItem>
 

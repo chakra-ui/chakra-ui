@@ -37,23 +37,25 @@ function NavLink({ href, children }: NavLinkProps) {
   const isActive = router.asPath.startsWith(href)
 
   return (
-    <GridItem as={NextLink} href={href}>
-      <Center
-        flex='1'
-        minH='40px'
-        as='button'
-        rounded='md'
-        transition='0.2s all'
-        fontWeight={isActive ? 'semibold' : 'medium'}
-        bg={isActive ? 'teal.400' : undefined}
-        borderWidth={isActive ? undefined : '1px'}
-        color={isActive ? 'white' : undefined}
-        _hover={{
-          bg: isActive ? 'teal.500' : bgActiveHoverColor,
-        }}
-      >
-        {children}
-      </Center>
+    <GridItem asChild>
+      <NextLink href={href}>
+        <Center
+          flex='1'
+          minH='40px'
+          as='button'
+          rounded='md'
+          transition='0.2s all'
+          fontWeight={isActive ? 'semibold' : 'medium'}
+          bg={isActive ? 'teal.400' : undefined}
+          borderWidth={isActive ? undefined : '1px'}
+          color={isActive ? 'white' : undefined}
+          _hover={{
+            bg: isActive ? 'teal.500' : bgActiveHoverColor,
+          }}
+        >
+          {children}
+        </Center>
+      </NextLink>
     </GridItem>
   )
 }

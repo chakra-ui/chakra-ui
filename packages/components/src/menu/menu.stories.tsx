@@ -56,14 +56,15 @@ function logEvents(e: React.MouseEvent | React.KeyboardEvent | undefined) {
 export const Basic = () => (
   <div style={{ minHeight: 4000, paddingTop: 500 }}>
     <Menu>
-      <MenuButton
-        as={Button}
-        variant="solid"
-        colorScheme="teal"
-        size="sm"
-        rightIcon={<FaUnlink />}
-      >
-        Open Wakanda menu
+      <MenuButton asChild>
+        <Button
+          variant="solid"
+          colorScheme="teal"
+          size="sm"
+          rightIcon={<FaUnlink />}
+        >
+          Open Wakanda menu
+        </Button>
       </MenuButton>
       <MenuList>
         {words.map((word) => (
@@ -78,7 +79,9 @@ export const Basic = () => (
 
 export const LazyMenu = () => (
   <Menu isLazy>
-    <MenuButton as={Button}>Open Wakanda menu</MenuButton>
+    <MenuButton asChild>
+      <Button>Open Wakanda menu</Button>
+    </MenuButton>
     <MenuList>
       {words.map((word) => (
         <MenuItem key={word} onClick={logEvents}>
@@ -92,8 +95,10 @@ export const LazyMenu = () => (
 export const WithDisabledItem = () => (
   <>
     <Menu>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-        Open menu
+      <MenuButton asChild>
+        <Button variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </Button>
       </MenuButton>
       <MenuList>
         <MenuItem isDisabled icon={<FaSearch />} command="⌥T">
@@ -108,8 +113,10 @@ export const WithDisabledItem = () => (
     </Menu>
 
     <Menu>
-      <MenuButton as={Button} variant="solid" colorScheme="red" size="sm">
-        Open menu
+      <MenuButton asChild>
+        <Button variant="solid" colorScheme="red" size="sm">
+          Open menu
+        </Button>
       </MenuButton>
       <MenuList>
         <MenuItem icon={<FaSearch />} command="⌥T">
@@ -127,8 +134,10 @@ export const WithDisabledItem = () => (
 
 export const WithDisabledButFocusableItem = () => (
   <Menu>
-    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <MenuButton asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </MenuButton>
     <MenuList>
       <MenuItem>Menu 1</MenuItem>
@@ -193,8 +202,10 @@ export const WithToggleableMenuItems = () => {
         Enable Search
       </Button>
       <Menu>
-        <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-          Open menu
+        <MenuButton asChild>
+          <Button variant="solid" colorScheme="green" size="sm">
+            Open menu
+          </Button>
         </MenuButton>
         <MenuList>
           {items.map(({ content, icon, isDisabled, command }) => (
@@ -215,8 +226,10 @@ export const WithToggleableMenuItems = () => {
 
 export const WithPortal = () => (
   <Menu>
-    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <MenuButton asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </MenuButton>
     <Portal>
       <MenuList>
@@ -231,8 +244,10 @@ export const WithPortal = () => (
 
 export const withGroupedItems = () => (
   <Menu>
-    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <MenuButton asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </MenuButton>
     <MenuList minWidth="240px">
       <MenuGroup title="Group 1">
@@ -249,8 +264,10 @@ export const withGroupedItems = () => (
 
 export const withMenuRadio = () => (
   <Menu closeOnSelect={false}>
-    <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <MenuButton asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </MenuButton>
 
     <MenuList minWidth="240px">
@@ -276,8 +293,10 @@ export const withMenuRadio = () => (
 
 export const withDisabledIconInMenuRadio = () => (
   <Menu closeOnSelect={false}>
-    <MenuButton as={Button} variant="solid" colorScheme="teal" size="sm">
-      Open menu
+    <MenuButton asChild>
+      <Button variant="solid" colorScheme="teal" size="sm">
+        Open menu
+      </Button>
     </MenuButton>
 
     <MenuList minWidth="240px">
@@ -300,7 +319,9 @@ export const WithInternalState = () => (
   <Menu>
     {({ isOpen }) => (
       <>
-        <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
+        <MenuButton asChild>
+          <Button>{isOpen ? "Close" : "Open"}</Button>
+        </MenuButton>
         <MenuList>
           <MenuItem>Download</MenuItem>
           <MenuItem onClick={() => alert("Kagebunshin")}>
@@ -357,7 +378,9 @@ export const WithScrolling = () => {
 
 export const JustAnotherExample = () => (
   <Menu>
-    <MenuButton as={Button}>Your Cats</MenuButton>
+    <MenuButton asChild>
+      <Button>Your Cats</Button>
+    </MenuButton>
     <MenuList>
       <MenuItem minH="48px">
         <Image
@@ -385,7 +408,9 @@ export const JustAnotherExample = () => (
 
 export const WithLink = () => (
   <Menu>
-    <MenuButton as={Button}>Actions</MenuButton>
+    <MenuButton asChild>
+      <Button>Actions</Button>
+    </MenuButton>
     <MenuList>
       <MenuItem>Download</MenuItem>
       <MenuItem>Create a Copy</MenuItem>
@@ -404,14 +429,10 @@ export const SplitButton = () => (
       Welcome
     </Button>
     <Menu placement="bottom-end" gutter={4}>
-      <MenuButton
-        as={Button}
-        variant="outline"
-        size="sm"
-        fontSize="xs"
-        borderLeftRadius="0"
-      >
-        <FaChevronDown />
+      <MenuButton asChild>
+        <Button variant="outline" size="sm" fontSize="xs" borderLeftRadius="0">
+          <FaChevronDown />
+        </Button>
       </MenuButton>
       <MenuList minW="160px">
         <MenuItem fontSize="14px">Menu 1</MenuItem>
@@ -428,7 +449,9 @@ export const WithinForm = () => {
       <fieldset>
         <legend>regular MenuList with MenuItems</legend>
         <Menu>
-          <MenuButton as={Button}>do something</MenuButton>
+          <MenuButton asChild>
+            <Button>do something</Button>
+          </MenuButton>
           <MenuList>
             <MenuItem isDisabled>Download</MenuItem>
             <MenuItem>Create a Copy</MenuItem>

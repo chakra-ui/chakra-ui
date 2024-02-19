@@ -25,16 +25,17 @@ export const BlackFridayBanner = () => (
           </Text>
         </Stack>
 
-        <Button
-          as={Link}
-          isExternal
-          href={getUrl('ad-banner')}
-          colorScheme='yellow'
-          size='sm'
-          alignSelf={{ base: 'stretch', sm: 'center' }}
-          _hover={{ textDecoration: 'none' }}
-        >
-          Get it now
+        <Button asChild>
+          <Link
+            isExternal
+            href={getUrl('ad-banner')}
+            colorScheme='yellow'
+            size='sm'
+            alignSelf={{ base: 'stretch', sm: 'center' }}
+            _hover={{ textDecoration: 'none' }}
+          >
+            Get it now
+          </Link>
         </Button>
       </Stack>
     </DarkMode>

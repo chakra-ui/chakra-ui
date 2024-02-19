@@ -88,8 +88,8 @@ function Example() {
   return (
     <LinkBox as='article'>
       <h2>
-        <LinkOverlay as={NextLink} href='#'>
-          Some blog post
+        <LinkOverlay asChild>
+          <NextLink href='#'>Some blog post</NextLink>
         </LinkOverlay>
       </h2>
       <p>
