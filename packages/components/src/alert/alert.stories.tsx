@@ -1,11 +1,4 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Container,
-  chakra,
-} from ".."
+import { Alert, Container, chakra } from ".."
 
 export default {
   title: "Components / Feedback / Alert",
@@ -13,58 +6,60 @@ export default {
 }
 
 export const Basic = () => (
-  <Alert status="error" variant="solid" borderRadius="md">
-    <AlertIcon />
-    <AlertTitle mr={2}>Outdated</AlertTitle>
-    <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
-  </Alert>
+  <Alert.Root status="error" variant="solid" borderRadius="md">
+    <Alert.Icon />
+    <Alert.Title mr={2}>Outdated</Alert.Title>
+    <Alert.Description>
+      Your Chakra experience may be degraded.
+    </Alert.Description>
+  </Alert.Root>
 )
 
 export const Subtle = () => (
-  <Alert status="success" mx="auto" alignItems="start">
-    <AlertIcon />
+  <Alert.Root status="success" mx="auto" alignItems="start">
+    <Alert.Icon />
     <chakra.div flex="1">
-      <AlertTitle>Holy Smokes</AlertTitle>
-      <AlertDescription>Something just happened!</AlertDescription>
+      <Alert.Title>Holy Smokes</Alert.Title>
+      <Alert.Description>Something just happened!</Alert.Description>
     </chakra.div>
-  </Alert>
+  </Alert.Root>
 )
 
 export const LeftAccent = () => (
-  <Alert variant="left-accent" mx="auto" alignItems="start">
-    <AlertIcon />
+  <Alert.Root variant="left-accent" mx="auto" alignItems="start">
+    <Alert.Icon />
     <chakra.div flex="1">
-      <AlertTitle>Holy Smokes</AlertTitle>
-      <AlertDescription>Something just happened!</AlertDescription>
+      <Alert.Title>Holy Smokes</Alert.Title>
+      <Alert.Description>Something just happened!</Alert.Description>
     </chakra.div>
-  </Alert>
+  </Alert.Root>
 )
 
 export const TopAccent = () => (
-  <Alert
+  <Alert.Root
     variant="top-accent"
     mx="auto"
     alignItems="flex-start"
     pt="3"
     rounded="md"
   >
-    <AlertIcon />
+    <Alert.Icon />
     <chakra.div flex="1">
-      <AlertTitle display="block" mr="2">
+      <Alert.Title display="block" mr="2">
         Holy Smokes
-      </AlertTitle>
-      <AlertDescription>Something just happened!</AlertDescription>
+      </Alert.Title>
+      <Alert.Description>Something just happened!</Alert.Description>
     </chakra.div>
-  </Alert>
+  </Alert.Root>
 )
 
 export const DocsExample = () => {
   return (
     <div>
-      <Alert status="error">
-        <AlertIcon />
+      <Alert.Root status="error">
+        <Alert.Icon />
         There was an error processing your request
-      </Alert>
+      </Alert.Root>
     </div>
   )
 }
@@ -72,10 +67,10 @@ export const DocsExample = () => {
 export const LoadingExample = () => {
   return (
     <div>
-      <Alert status="loading">
-        <AlertIcon />
+      <Alert.Root status="loading">
+        <Alert.Icon />
         We are loading something
-      </Alert>
+      </Alert.Root>
     </div>
   )
 }
