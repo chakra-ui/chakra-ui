@@ -2,6 +2,10 @@
 
 ## Changed
 
+### Removed Components
+
+- Removed `ControlBox` component
+
 ### Root component and types
 
 All root components and their respective types are now suffixed with `<X>.Root`
@@ -64,6 +68,23 @@ After:
 - `listProps` has been removed. Pass props directly to `Breadcrumb.List`
 
 ## Added
+
+### `For` component
+
+The `For` component is a new component that allows you to render a list of items
+using a render prop.
+
+```tsx
+import { For } from "@chakra-ui/react"
+
+const Demo = () => {
+  return (
+    <For each={[1, 2, 3]} fallback={<div>No items</div>}>
+      {(item) => <div key={item}>{item}</div>}
+    </For>
+  )
+}
+```
 
 ### Namespace components
 
