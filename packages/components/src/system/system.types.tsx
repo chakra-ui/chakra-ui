@@ -64,10 +64,14 @@ export type MergeWithAs<
   as?: AsComponent
 }
 
+export interface AsChildProps {
+  asChild?: boolean
+}
+
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   <AsComponent extends As = Component>(
     props: MergeWithAs<
-      React.ComponentProps<Component>,
+      React.ComponentProps<Component> & AsChildProps,
       React.ComponentProps<AsComponent>,
       Props,
       AsComponent
