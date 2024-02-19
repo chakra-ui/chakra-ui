@@ -1,8 +1,8 @@
-type Dict = Record<string, unknown>
+type Dict = Record<string, any>
 type PredicateFn = (key: string) => boolean
 type Key = PredicateFn | string[]
 
-export function splitProps(props: Dict, ...keys: Key[]) {
+export function splitProps<T extends Dict>(props: T, ...keys: Key[]) {
   const descriptors = Object.getOwnPropertyDescriptors(props)
   const dKeys = Object.keys(descriptors)
   const split = (k: string[]) => {

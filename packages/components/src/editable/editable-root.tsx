@@ -1,13 +1,14 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
+import { cx } from "@chakra-ui/utils/cx"
+import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"
+import { splitEditableProps } from "./editable-props"
 import {
   useEditable,
   UseEditableProps,
@@ -27,7 +28,7 @@ interface BaseEditableProps
     "onChange" | "value" | "defaultValue" | "onSubmit" | "onBlur"
   > {}
 
-export interface EditableProps
+export interface EditableRootProps
   extends UseEditableProps,
     Omit<BaseEditableProps, "children">,
     ThemingProps<"Editable"> {
@@ -42,13 +43,14 @@ export interface EditableProps
  *
  * @see Docs https://chakra-ui.com/docs/components/editable
  */
-export const Editable = forwardRef<EditableProps, "div">(
+export const EditableRoot = forwardRef<EditableRootProps, "div">(
   function Editable(props, ref) {
     const styles = useMultiStyleConfig("Editable", props)
 
     const ownProps = omitThemingProps(props)
-    const { htmlProps, ...context } = useEditable(ownProps)
+    const [hookProps, localProps] = splitEditableProps(ownProps)
 
+    const context = useEditable(hookProps)
     const { isEditing, onSubmit, onCancel, onEdit } = context
 
     const _className = cx("chakra-editable", props.className)
@@ -63,11 +65,7 @@ export const Editable = forwardRef<EditableProps, "div">(
     return (
       <EditableProvider value={context}>
         <EditableStylesProvider value={styles}>
-          <chakra.div
-            ref={ref}
-            {...(htmlProps as HTMLChakraProps<"div">)}
-            className={_className}
-          >
+          <chakra.div ref={ref} {...localProps} className={_className}>
             {children}
           </chakra.div>
         </EditableStylesProvider>
@@ -76,4 +74,4 @@ export const Editable = forwardRef<EditableProps, "div">(
   },
 )
 
-Editable.displayName = "Editable"
+EditableRoot.displayName = "Editable"

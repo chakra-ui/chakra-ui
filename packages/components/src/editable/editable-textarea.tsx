@@ -32,4 +32,5 @@ export const EditableTextarea = forwardRef<EditableTextareaProps, "textarea">(
     )
   },
 )
+
 EditableTextarea.displayName = "EditableTextarea"

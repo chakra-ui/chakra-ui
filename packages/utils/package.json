@@ -162,6 +162,17 @@
         "default": "./dist/cjs/context.cjs"
       }
     },
+    "./create-props": {
+      "source": "./src/create-props.ts",
+      "import": {
+        "types": "./dist/types/create-props.d.mts",
+        "default": "./dist/esm/create-props.mjs"
+      },
+      "require": {
+        "types": "./dist/types/create-props.d.ts",
+        "default": "./dist/cjs/create-props.cjs"
+      }
+    },
     "./cx": {
       "source": "./src/cx.ts",
       "import": {

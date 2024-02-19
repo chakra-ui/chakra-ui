@@ -1,15 +1,6 @@
 import { StoryFn } from "@storybook/react"
 import * as React from "react"
-import {
-  Editable,
-  EditableInput,
-  EditablePreview,
-  EditableTextarea,
-  Heading,
-  chakra,
-  useEditable,
-  useEditableControls,
-} from ".."
+import { Editable, Heading, chakra, useEditable, useEditableControls } from ".."
 
 export default {
   title: "Components / Forms / Editable",
@@ -22,46 +13,7 @@ export default {
   ],
 }
 
-export const UseEditableHook = () => {
-  const {
-    getInputProps,
-    getPreviewProps,
-    getCancelButtonProps,
-    getSubmitButtonProps,
-    isValueEmpty,
-    isEditing,
-    onEdit,
-  } = useEditable({
-    placeholder: "Title...",
-    submitOnBlur: true,
-    onCancel: () => console.log("cancel"),
-    onSubmit: () => console.log("submit"),
-  })
-
-  return (
-    <>
-      <input
-        style={{ width: "auto", background: "transparent" }}
-        {...getInputProps()}
-      />
-      <span
-        style={{ opacity: isValueEmpty ? 0.7 : 1 }}
-        {...getPreviewProps()}
-      />
-      {!isEditing && <button onClick={onEdit}>Edit</button>}
-      {isEditing && (
-        <>
-          <button {...getSubmitButtonProps()}>Save</button>
-          <button {...getCancelButtonProps({ style: { padding: 10 } })}>
-            Cancel
-          </button>
-        </>
-      )}
-    </>
-  )
-}
-
-const EditableControls = () => {
+const Actions = () => {
   const {
     isEditing,
     getEditButtonProps,
@@ -83,36 +35,66 @@ const EditableControls = () => {
   )
 }
 
+export const UseEditableHook = () => {
+  const state = useEditable({
+    placeholder: "Title...",
+    submitOnBlur: true,
+    onCancel: () => console.log("cancel"),
+    onSubmit: () => console.log("submit"),
+  })
+
+  return (
+    <>
+      <input
+        style={{ width: "auto", background: "transparent" }}
+        {...state.getInputProps()}
+      />
+      <span
+        style={{ opacity: state.isValueEmpty ? 0.7 : 1 }}
+        {...state.getPreviewProps()}
+      />
+      {!state.isEditing && <button onClick={state.onEdit}>Edit</button>}
+      {state.isEditing && (
+        <>
+          <button {...state.getSubmitButtonProps()}>Save</button>
+          <button {...state.getCancelButtonProps({ style: { padding: 10 } })}>
+            Cancel
+          </button>
+        </>
+      )}
+    </>
+  )
+}
+
 export const Basic = () => (
-  <Editable
+  <Editable.Root
     textAlign="center"
-    value="Rasengan ⚡️"
+    defaultValue="Rasengan ⚡️"
     fontSize="2xl"
     onSubmit={() => console.log("onSubmit", Math.random())}
     isPreviewFocusable
   >
-    <EditablePreview />
-    <EditableInput />
-    {/* <EditableControls /> */}
-  </Editable>
+    <Editable.Preview />
+    <Editable.Input />
+  </Editable.Root>
 )
 
-export const CodeSandboxTopbar = () => {
+export const CodeSandboxDemo = () => {
   return (
     <chakra.div py="4" display="flex" alignItems="center">
       <chakra.p fontWeight="medium">My Sandboxes</chakra.p>
       <chakra.span mx="3">/</chakra.span>
-      <Editable defaultValue="chakra-ui-demo">
-        <EditableInput _focus={{ boxShadow: "none" }} />
-        <EditablePreview />
-      </Editable>
+      <Editable.Root defaultValue="chakra-ui-demo">
+        <Editable.Input _focus={{ boxShadow: "none" }} />
+        <Editable.Preview />
+      </Editable.Root>
     </chakra.div>
   )
 }
 
-export const TextareaAsInput = () => {
+export const WithTextarea = () => {
   return (
-    <Editable
+    <Editable.Root
       defaultValue="Hello!!"
       fontSize="xl"
       textAlign="center"
@@ -120,10 +102,10 @@ export const TextareaAsInput = () => {
       submitOnBlur={false}
       onChange={console.log}
     >
-      <EditablePreview />
-      <EditableTextarea />
-      <EditableControls />
-    </Editable>
+      <Editable.Preview />
+      <Editable.Textarea />
+      <Actions />
+    </Editable.Root>
   )
 }
 
@@ -138,7 +120,7 @@ export const EditableEventHandler = () => {
   return (
     <>
       <Heading>Name State=[{name}]</Heading>
-      <Editable
+      <Editable.Root
         value={name}
         onChange={(value) => {
           console.log("onChange called with ", value)
@@ -154,19 +136,19 @@ export const EditableEventHandler = () => {
         }}
         placeholder="Enter your name"
       >
-        <EditablePreview />
-        <EditableInput />
-      </Editable>
+        <Editable.Preview />
+        <Editable.Input />
+      </Editable.Root>
     </>
   )
 }
 
 export const Disabled = () => (
-  <Editable isDisabled defaultValue="Rasengan ⚡️" fontSize="xl">
-    <EditablePreview />
-    <EditableInput />
-    <EditableControls />
-  </Editable>
+  <Editable.Root isDisabled defaultValue="Rasengan ⚡️" fontSize="xl">
+    <Editable.Preview />
+    <Editable.Input />
+    <Actions />
+  </Editable.Root>
 )
 
 export const FinalFocusRef = () => {
@@ -175,15 +157,15 @@ export const FinalFocusRef = () => {
   return (
     <>
       <input ref={finalFocusRef} />
-      <Editable
+      <Editable.Root
         finalFocusRef={finalFocusRef}
         defaultValue="Final fantasy"
         fontSize="xl"
       >
-        <EditablePreview />
-        <EditableInput />
-        <EditableControls />
-      </Editable>
+        <Editable.Preview />
+        <Editable.Input />
+        <Actions />
+      </Editable.Root>
     </>
   )
 }
