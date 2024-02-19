@@ -366,8 +366,8 @@ const CompWithTwoMenus: React.FC<{
   return (
     <>
       <Menu isOpen={active === "1"}>
-        <MenuButton onClick={props.onBtnClick} asChild>
-          <Button>No 1</Button>
+        <MenuButton asChild>
+          <Button onClick={props.onBtnClick}>No 1</Button>
         </MenuButton>
         <MenuList>
           <MenuItem onClick={props.onItemClick}>1–A</MenuItem>
