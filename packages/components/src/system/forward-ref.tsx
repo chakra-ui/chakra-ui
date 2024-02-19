@@ -2,14 +2,14 @@
  * All credit goes to Chance (Reach UI), Haz (Reakit) and (fluentui)
  * for creating the base type definitions upon which we improved on
  */
-import { forwardRef as forwardReactRef } from "react"
-import { As, ComponentWithAs, PropsOf, RightJoinProps } from "./system.types"
+import { ElementType, forwardRef as forwardReactRef } from "react"
+import { ComponentWithAs, PropsOf, RightJoinProps } from "./system.types"
 
-export function forwardRef<Props extends object, Component extends As>(
+export function forwardRef<Props extends object, Component extends ElementType>(
   component: React.ForwardRefRenderFunction<
     any,
     RightJoinProps<PropsOf<Component>, Props> & {
-      as?: As
+      as?: ElementType
     }
   >,
 ) {

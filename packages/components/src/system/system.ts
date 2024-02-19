@@ -15,6 +15,7 @@ import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import {
   Children,
   createElement,
+  ElementType,
   forwardRef,
   isValidElement,
   useMemo,
@@ -22,7 +23,13 @@ import {
 import { useColorMode } from "../color-mode"
 import { mergeProps } from "./merge-props"
 import { shouldForwardProp } from "./should-forward-prop"
-import { As, ChakraComponent, ChakraProps, PropsOf } from "./system.types"
+import {
+  AsChildProps,
+  AsProps,
+  ChakraComponent,
+  ChakraProps,
+  PropsOf,
+} from "./system.types"
 import { DOMElements } from "./system.utils"
 
 const emotion_styled = interopDefault(createStyled)
@@ -82,7 +89,7 @@ export interface ChakraStyledOptions extends Dict {
     | ((props: StyleResolverProps) => SystemStyleObject)
 }
 
-export function styled<T extends As, P extends object = {}>(
+export function styled<T extends ElementType, P extends object = {}>(
   component: T,
   options?: ChakraStyledOptions,
 ) {
@@ -152,8 +159,10 @@ export type HTMLChakraComponents = {
   [Tag in DOMElements]: ChakraComponent<Tag, {}>
 }
 
-export type HTMLChakraProps<T extends As> = Omit<
+export type HTMLChakraProps<T extends ElementType> = Omit<
   PropsOf<T>,
   "ref" | keyof StyleProps
 > &
-  ChakraProps & { as?: As; asChild?: boolean }
+  ChakraProps &
+  AsChildProps &
+  AsProps
