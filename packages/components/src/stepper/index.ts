@@ -1,5 +1,6 @@
-export { Step } from "./step"
-export type { StepProps } from "./step"
+export * as Step from "./namespace"
+export { StepRoot } from "./step-root"
+export type { StepRootProps } from "./step-root"
 export { useStepContext, useStepperStyles } from "./step-context"
 export type { StepStatusType } from "./step-context"
 export { StepDescription } from "./step-description"
