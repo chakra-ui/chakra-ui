@@ -1,10 +1,21 @@
-import { FormControl, FormLabel } from "../form-control"
-import { render, fireEvent } from "@chakra-ui/test-utils"
+import { fireEvent, render } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Switch } from "."
+import { Form } from "../form-control"
+
+const DemoSwitch = (props: Switch.RootProps) => {
+  return (
+    <Switch.Root {...props}>
+      <Switch.Track>
+        <Switch.Thumb />
+      </Switch.Track>
+      {props.children && <Switch.Label>{props.children}</Switch.Label>}
+    </Switch.Root>
+  )
+}
 
 test("Uncontrolled - should check and uncheck", async () => {
-  const { container, user } = render(<Switch />)
+  const { container, user } = render(<DemoSwitch />)
   const input = container.querySelector("input") as HTMLInputElement
 
   await user.click(input)
@@ -15,7 +26,7 @@ test("Uncontrolled - should check and uncheck", async () => {
 })
 
 test("Uncontrolled - should not check if disabled", async () => {
-  const { container, user } = render(<Switch isDisabled />)
+  const { container, user } = render(<DemoSwitch isDisabled />)
   const input = container.querySelector("input") as HTMLInputElement
 
   expect(input).toBeDisabled()
@@ -28,7 +39,7 @@ test("Controlled - should check and uncheck", async () => {
   const ControlledSwitch = ({ onChange }: any) => {
     const [checked, setChecked] = React.useState(false)
     return (
-      <Switch
+      <DemoSwitch
         isChecked={checked}
         onChange={(e) => {
           onChange?.()
@@ -59,12 +70,12 @@ test("Controlled - should check and uncheck", async () => {
 
 test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
   const { container, user } = render(
-    <FormControl isDisabled mt={4}>
-      <FormLabel>Disabled Opt-in Example</FormLabel>
-      <Switch />
-      <Switch isDisabled />
-      <Switch isDisabled={false} />
-    </FormControl>,
+    <Form.Control isDisabled mt={4}>
+      <Form.Label>Disabled Opt-in Example</Form.Label>
+      <DemoSwitch />
+      <DemoSwitch isDisabled />
+      <DemoSwitch isDisabled={false} />
+    </Form.Control>,
   )
 
   const [switchOne, switchTwo, switchThree] = Array.from(
@@ -86,12 +97,12 @@ test("Uncontrolled FormControl - should not check if form-control disabled", asy
 
 test("Uncontrolled FormControl - mark label as invalid", () => {
   const { container } = render(
-    <FormControl isInvalid mt={4}>
-      <FormLabel>Invalid Opt-in Example</FormLabel>
-      <Switch>Invalid Opt-in 1</Switch>
-      <Switch isInvalid>Invalid Opt-in 2</Switch>
-      <Switch isInvalid={false}>Invalid Opt-in 3</Switch>
-    </FormControl>,
+    <Form.Control isInvalid mt={4}>
+      <Form.Label>Invalid Opt-in Example</Form.Label>
+      <DemoSwitch>Invalid Opt-in 1</DemoSwitch>
+      <DemoSwitch isInvalid>Invalid Opt-in 2</DemoSwitch>
+      <DemoSwitch isInvalid={false}>Invalid Opt-in 3</DemoSwitch>
+    </Form.Control>,
   )
 
   const [switchOne, switchTwo, switchThree] = Array.from(
@@ -121,12 +132,12 @@ test("Uncontrolled FormControl - mark label as invalid", () => {
 
 test("Uncontrolled FormControl - mark required", () => {
   const { container } = render(
-    <FormControl isRequired mt={4}>
-      <FormLabel>Required Opt-in Example</FormLabel>
-      <Switch />
-      <Switch isRequired />
-      <Switch isRequired={false} />
-    </FormControl>,
+    <Form.Control isRequired mt={4}>
+      <Form.Label>Required Opt-in Example</Form.Label>
+      <DemoSwitch />
+      <DemoSwitch isRequired />
+      <DemoSwitch isRequired={false} />
+    </Form.Control>,
   )
 
   const [switchOne, switchTwo, switchThree] = Array.from(
@@ -140,12 +151,12 @@ test("Uncontrolled FormControl - mark required", () => {
 
 test("Uncontrolled FormControl - mark readonly", () => {
   const { container } = render(
-    <FormControl isReadOnly mt={4}>
-      <FormLabel>ReadOnly Opt-in Example</FormLabel>
-      <Switch />
-      <Switch isReadOnly />
-      <Switch isReadOnly={false} />
-    </FormControl>,
+    <Form.Control isReadOnly mt={4}>
+      <Form.Label>ReadOnly Opt-in Example</Form.Label>
+      <DemoSwitch />
+      <DemoSwitch isReadOnly />
+      <DemoSwitch isReadOnly={false} />
+    </Form.Control>,
   )
 
   const [switchOne, switchTwo, switchThree] = Array.from(
@@ -170,10 +181,10 @@ test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
   const switchOnFocusMock = vi.fn()
 
   const { container } = render(
-    <FormControl mt={4} onFocus={formControlOnFocusMock}>
-      <FormLabel>onFocus Example</FormLabel>
-      <Switch onFocus={switchOnFocusMock} />
-    </FormControl>,
+    <Form.Control mt={4} onFocus={formControlOnFocusMock}>
+      <Form.Label>onFocus Example</Form.Label>
+      <DemoSwitch onFocus={switchOnFocusMock} />
+    </Form.Control>,
   )
 
   const [switchOne] = Array.from(container.querySelectorAll("input"))
@@ -187,10 +198,10 @@ test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
   const switchOnBlurMock = vi.fn()
 
   const { container } = render(
-    <FormControl mt={4} onBlur={formControlOnBlurMock}>
-      <FormLabel>onBlur Example</FormLabel>
-      <Switch onBlur={switchOnBlurMock} />
-    </FormControl>,
+    <Form.Control mt={4} onBlur={formControlOnBlurMock}>
+      <Form.Label>onBlur Example</Form.Label>
+      <DemoSwitch onBlur={switchOnBlurMock} />
+    </Form.Control>,
   )
 
   const [switchOne] = Array.from(container.querySelectorAll("input"))

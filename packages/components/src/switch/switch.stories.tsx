@@ -13,18 +13,29 @@ export default {
   ],
 }
 
-export const Base = () => <Switch colorScheme="green" />
+const DemoSwitch = (props: Switch.RootProps) => {
+  return (
+    <Switch.Root {...props}>
+      <Switch.Track>
+        <Switch.Thumb />
+      </Switch.Track>
+      {props.children && <Switch.Label>{props.children}</Switch.Label>}
+    </Switch.Root>
+  )
+}
+
+export const Base = () => <DemoSwitch colorScheme="green" />
 
 export const Disabled = () => (
-  <Switch isDisabled size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch isDisabled size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Readonly = () => (
-  <Switch isReadOnly size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch isReadOnly size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Invalid = () => (
-  <Switch isInvalid size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch isInvalid size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Usage = () => (
@@ -32,16 +43,16 @@ export const Usage = () => (
     <chakra.label htmlFor="email-alerts" mr="16px">
       Enable email alerts?
     </chakra.label>
-    <Switch colorScheme="green" id="email-alerts" />
+    <DemoSwitch colorScheme="green" id="email-alerts" />
   </chakra.div>
 )
 
 export const Sizes = () => {
   return (
     <HStack>
-      <Switch size="sm" colorScheme="green" />
-      <Switch size="md" colorScheme="green" />
-      <Switch size="lg" colorScheme="green" />
+      <DemoSwitch size="sm" colorScheme="green" />
+      <DemoSwitch size="md" colorScheme="green" />
+      <DemoSwitch size="lg" colorScheme="green" />
     </HStack>
   )
 }
@@ -52,7 +63,7 @@ export const Controlled = () => {
   return (
     <>
       {checked ? "Checked" : "Unchecked"}
-      <Switch
+      <DemoSwitch
         isChecked={checked}
         colorScheme="blue"
         onChange={(e) => setChecked(e.target.checked)}
@@ -79,8 +90,7 @@ export const WithReactHookForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input placeholder="name" {...register("name")} />
-      {/* <input type="Switch" {...register("boolean")} /> */}
-      <Switch {...register("boolean")} />
+      <DemoSwitch {...register("boolean")} />
       <button type="submit">Submit</button>
     </form>
   )
@@ -92,45 +102,45 @@ export const WithFormControl = () => {
       <FormControl id="optIn">
         <FormLabel>Opt-in Example</FormLabel>
         <Stack>
-          <Switch value="1">Opt-in 1</Switch>
-          <Switch value="2">Opt-in 2</Switch>
-          <Switch value="3">Opt-in 3</Switch>
+          <DemoSwitch value="1">Opt-in 1</DemoSwitch>
+          <DemoSwitch value="2">Opt-in 2</DemoSwitch>
+          <DemoSwitch value="3">Opt-in 3</DemoSwitch>
         </Stack>
       </FormControl>
 
       <FormControl id="optInInvalid" isInvalid mt={4}>
         <FormLabel>Invalid Opt-in Example</FormLabel>
         <Stack spacing={2}>
-          <Switch value="1">Invalid Opt-in 1</Switch>
-          <Switch value="2">Invalid Opt-in 2</Switch>
-          <Switch value="3">Invalid Opt-in 3</Switch>
+          <DemoSwitch value="1">Invalid Opt-in 1</DemoSwitch>
+          <DemoSwitch value="2">Invalid Opt-in 2</DemoSwitch>
+          <DemoSwitch value="3">Invalid Opt-in 3</DemoSwitch>
         </Stack>
       </FormControl>
 
       <FormControl id="optInDisabled" isDisabled mt={4}>
         <FormLabel>Disabled Opt-in Example</FormLabel>
         <Stack spacing={2}>
-          <Switch value="1">Disabled Opt-in 1</Switch>
-          <Switch value="2">Disabled Opt-in 2</Switch>
-          <Switch value="3">Disabled Opt-in 3</Switch>
+          <DemoSwitch value="1">Disabled Opt-in 1</DemoSwitch>
+          <DemoSwitch value="2">Disabled Opt-in 2</DemoSwitch>
+          <DemoSwitch value="3">Disabled Opt-in 3</DemoSwitch>
         </Stack>
       </FormControl>
 
       <FormControl id="optInReadonly" isReadOnly mt={4}>
         <FormLabel>Readonly Opt-in Example</FormLabel>
         <Stack spacing={2}>
-          <Switch value="1">Readonly Opt-in 1</Switch>
-          <Switch value="2">Readonly Opt-in 2</Switch>
-          <Switch value="3">Readonly Opt-in 3</Switch>
+          <DemoSwitch value="1">Readonly Opt-in 1</DemoSwitch>
+          <DemoSwitch value="2">Readonly Opt-in 2</DemoSwitch>
+          <DemoSwitch value="3">Readonly Opt-in 3</DemoSwitch>
         </Stack>
       </FormControl>
 
       <FormControl id="optInRequired" isRequired mt={4}>
         <FormLabel>Required Opt-in Example</FormLabel>
         <Stack spacing={2}>
-          <Switch value="1">Required Opt-in 1</Switch>
-          <Switch value="2">Required Opt-in 2</Switch>
-          <Switch value="3">Required Opt-in 3</Switch>
+          <DemoSwitch value="1">Required Opt-in 1</DemoSwitch>
+          <DemoSwitch value="2">Required Opt-in 2</DemoSwitch>
+          <DemoSwitch value="3">Required Opt-in 3</DemoSwitch>
         </Stack>
       </FormControl>
     </>
