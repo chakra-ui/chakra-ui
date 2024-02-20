@@ -60,7 +60,5 @@ export interface FormControlContext extends FormControlOptions {
   id?: string
 }
 
-export type FormControlProviderContext = Omit<
-  UseFormControlProviderReturn,
-  "getRootProps"
->
+export interface FormControlProviderContext
+  extends UseFormControlProviderReturn {}

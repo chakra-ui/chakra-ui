@@ -12,6 +12,7 @@ import {
 } from "./form-control-context"
 import { FormControlContext } from "./types"
 import { useFormControlProvider } from "./use-form-control-provider"
+import { splitFormControlProps } from "./form-control-props"
 
 export interface FormControlProps
   extends HTMLChakraProps<"div">,
@@ -30,16 +31,18 @@ export interface FormControlProps
 export const FormControl = forwardRef<FormControlProps, "div">(
   function FormControl(props, ref) {
     const styles = useMultiStyleConfig("Form", props)
-    const ownProps = omitThemingProps(props)
-    const { getRootProps, ...context } = useFormControlProvider(ownProps)
+    const localProps = omitThemingProps(props)
+
+    const [formControlProps, rootProps] = splitFormControlProps(localProps)
+    const api = useFormControlProvider(formControlProps)
 
     const className = cx("chakra-form-control", props.className)
 
     return (
-      <FormControlProvider value={context}>
+      <FormControlProvider value={api}>
         <FormControlStylesProvider value={styles}>
           <chakra.div
-            {...getRootProps({}, ref)}
+            {...api.getRootProps(rootProps, ref)}
             className={className}
             __css={styles["container"]}
           />

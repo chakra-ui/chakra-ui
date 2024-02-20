@@ -1,16 +1,8 @@
-import { chakra, forwardRef, PropsOf } from "../system"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
-import {
-  FormControl,
-  FormControlOptions,
-  FormErrorIcon,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  RequiredIndicator,
-  useFormControl,
-} from "."
+import { Form, FormControlOptions, RequiredIndicator, useFormControl } from "."
+import { chakra, forwardRef, PropsOf } from "../system"
+import { splitFormControlProps } from "./form-control-props"
 
 type OmittedTypes = "disabled" | "required" | "readOnly"
 
@@ -19,72 +11,73 @@ type InputProps = Omit<PropsOf<typeof chakra.input>, OmittedTypes> &
 
 const Input: React.FC<InputProps> = forwardRef<InputProps, "input">(
   (props, ref) => {
-    const inputProps = useFormControl<HTMLInputElement>(props)
-    return <chakra.input ref={ref} {...inputProps} />
+    const [controlProps, restProps] = splitFormControlProps(props)
+    const inputProps = useFormControl<HTMLInputElement>(controlProps)
+    return <chakra.input ref={ref} {...inputProps} {...restProps} />
   },
 )
 
 test("passes a11y test in default state", async () => {
   await testA11y(
-    <FormControl id="name">
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name">
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage>Your name is invalid</Form.ErrorMessage>
+    </Form.Control>,
   )
 })
 
 test("passes a11y test in when required", async () => {
   await testA11y(
-    <FormControl id="name" isRequired>
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name" isRequired>
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage>Your name is invalid</Form.ErrorMessage>
+    </Form.Control>,
   )
 })
 
 test("passes a11y test in when invalid", async () => {
   await testA11y(
-    <FormControl id="name" isInvalid>
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name" isInvalid>
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage>Your name is invalid</Form.ErrorMessage>
+    </Form.Control>,
   )
 })
 
 test("only displays error icon and message when invalid", () => {
   const { rerender } = render(
-    <FormControl id="name" isInvalid>
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name" isInvalid>
+      <Form.Label>Name</Form.Label>
       <RequiredIndicator />
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage data-testid="message">
-        <FormErrorIcon data-testid="icon" />
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage data-testid="message">
+        <Form.ErrorIcon data-testid="icon" />
         Your name is invalid
-      </FormErrorMessage>
-    </FormControl>,
+      </Form.ErrorMessage>
+    </Form.Control>,
   )
 
   expect(screen.getByTestId("icon")).toBeVisible()
   expect(screen.getByTestId("message")).toBeVisible()
 
   rerender(
-    <FormControl id="name">
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name">
+      <Form.Label>Name</Form.Label>
       <RequiredIndicator />
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage data-testid="message">
-        <FormErrorIcon data-testid="icon" />
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage data-testid="message">
+        <Form.ErrorIcon data-testid="icon" />
         Your name is invalid
-      </FormErrorMessage>
-    </FormControl>,
+      </Form.ErrorMessage>
+    </Form.Control>,
   )
 
   expect(screen.queryByTestId("icon")).not.toBeInTheDocument()
@@ -93,12 +86,12 @@ test("only displays error icon and message when invalid", () => {
 
 test("only displays required indicator when required", () => {
   const { rerender } = render(
-    <FormControl id="name" isRequired>
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name" isRequired>
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage>Your name is invalid</Form.ErrorMessage>
+    </Form.Control>,
   )
 
   const indicator = screen.getByRole("presentation", { hidden: true })
@@ -107,31 +100,31 @@ test("only displays required indicator when required", () => {
   expect(indicator).toHaveTextContent("*")
 
   rerender(
-    <FormControl id="name">
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name">
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage>Your name is invalid</FormErrorMessage>
-    </FormControl>,
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage>Your name is invalid</Form.ErrorMessage>
+    </Form.Control>,
   )
 
   expect(screen.queryByRole("presentation")).not.toBeInTheDocument()
 })
 
-test("useFormControl calls provided input callbacks", () => {
+test("useForm.Control calls provided input callbacks", () => {
   const onFocus = vi.fn()
   const onBlur = vi.fn()
 
   render(
-    <FormControl id="name">
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name">
+      <Form.Label>Name</Form.Label>
       <Input
         data-testid="input"
         placeholder="Name"
         onFocus={onFocus}
         onBlur={onBlur}
       />
-    </FormControl>,
+    </Form.Control>,
   )
   const input = screen.getByTestId("input")
 
@@ -143,11 +136,11 @@ test("useFormControl calls provided input callbacks", () => {
 
 test("has the proper aria attributes", async () => {
   const { rerender } = render(
-    <FormControl id="name">
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name">
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-    </FormControl>,
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+    </Form.Control>,
   )
   let input = screen.getByLabelText(/Name/)
 
@@ -157,14 +150,14 @@ test("has the proper aria attributes", async () => {
   expect(input).not.toHaveAttribute("aria-readonly")
 
   rerender(
-    <FormControl id="name" isRequired isInvalid isReadOnly>
-      <FormLabel>Name</FormLabel>
+    <Form.Control id="name" isRequired isInvalid isReadOnly>
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-      <FormHelperText>Enter your name please!</FormHelperText>
-      <FormErrorMessage data-testid="error">
+      <Form.HelperText>Enter your name please!</Form.HelperText>
+      <Form.ErrorMessage data-testid="error">
         Your name is invalid
-      </FormErrorMessage>
-    </FormControl>,
+      </Form.ErrorMessage>
+    </Form.Control>,
   )
   input = screen.getByLabelText(/Name/)
   const indicator = screen.getByRole("presentation", { hidden: true })
@@ -183,10 +176,10 @@ test("has the proper aria attributes", async () => {
 
 test("has the correct role attributes", () => {
   render(
-    <FormControl data-testid="control" id="name" isRequired>
-      <FormLabel>Name</FormLabel>
+    <Form.Control data-testid="control" id="name" isRequired>
+      <Form.Label>Name</Form.Label>
       <Input placeholder="Name" />
-    </FormControl>,
+    </Form.Control>,
   )
   const control = screen.getByTestId("control")
 
@@ -196,7 +189,7 @@ test("has the correct role attributes", () => {
 
 test("has the correct data attributes", async () => {
   render(
-    <FormControl
+    <Form.Control
       data-testid="control"
       id="name"
       isRequired
@@ -204,19 +197,19 @@ test("has the correct data attributes", async () => {
       isDisabled
       isReadOnly
     >
-      <FormLabel data-testid="label">Name</FormLabel>
+      <Form.Label data-testid="label">Name</Form.Label>
       <RequiredIndicator data-testid="indicator" />
       <Input placeholder="Name" />
-      <FormHelperText data-testid="helper-text">
+      <Form.HelperText data-testid="helper-text">
         Please enter your name!
-      </FormHelperText>
-      <FormErrorMessage data-testid="error-message">
+      </Form.HelperText>
+      <Form.ErrorMessage data-testid="error-message">
         Your name is invalid.
-      </FormErrorMessage>
-    </FormControl>,
+      </Form.ErrorMessage>
+    </Form.Control>,
   )
 
-  fireEvent.focus(screen.getByLabelText(/Name/))
+  fireEvent.focus(screen.getByPlaceholderText("Name"))
 
   const control = screen.getByTestId("control")
   expect(control).toHaveAttribute("data-focus")
@@ -231,21 +224,30 @@ test("has the correct data attributes", async () => {
 })
 
 test("can provide a custom aria-describedby reference", () => {
-  const { rerender } = render(<Input aria-describedby="reference" />)
+  const screen = render(
+    <Input data-testid="input" aria-describedby="reference" />,
+  )
+
+  screen.debug()
+
   expect(screen.getByRole("textbox")).toHaveAttribute(
     "aria-describedby",
     "reference",
   )
+})
 
-  rerender(
-    <FormControl id="name">
+test("should respect form control aria-describedby", () => {
+  const screen = render(
+    <Form.Control id="name">
       <Input aria-describedby="name-expanded-helptext" />
-      <FormHelperText>Please enter your name!</FormHelperText>
+      <Form.HelperText>Please enter your name!</Form.HelperText>
       <p id="name-expanded-helptext">
         Sometimes it can be really helpful to enter a name, trust me.
       </p>
-    </FormControl>,
+    </Form.Control>,
   )
+
+  screen.debug()
 
   expect(screen.getByRole("textbox")).toHaveAttribute(
     "aria-describedby",
@@ -253,12 +255,12 @@ test("can provide a custom aria-describedby reference", () => {
   )
 })
 
-test("it renders the optionalIndicator in FormLabel if it is provided", () => {
+test("it renders the optionalIndicator in Form.Label if it is provided", () => {
   render(
-    <FormControl isRequired={false}>
-      <FormLabel optionalIndicator=" (optional)">Test</FormLabel>
+    <Form.Control isRequired={false}>
+      <Form.Label optionalIndicator=" (optional)">Test</Form.Label>
       <Input />
-    </FormControl>,
+    </Form.Control>,
   )
 
   expect(screen.getByText("Test (optional)")).toBeInTheDocument()
