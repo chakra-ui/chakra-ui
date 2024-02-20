@@ -1,3 +1,4 @@
+export * as Tabs from "./namespace"
 export { Tab } from "./tab"
 export type { TabProps } from "./tab"
 export { TabIndicator } from "./tab-indicator"
@@ -8,8 +9,8 @@ export { TabPanel } from "./tab-panel"
 export type { TabPanelProps } from "./tab-panel"
 export { TabPanels } from "./tab-panels"
 export type { TabPanelsProps } from "./tab-panels"
-export { Tabs, useTabsStyles } from "./tabs"
-export type { TabsProps } from "./tabs"
+export { TabsRoot, useTabsStyles } from "./tabs-root"
+export type { TabsRootProps } from "./tabs-root"
 export {
   TabsDescendantsProvider,
   TabsProvider,

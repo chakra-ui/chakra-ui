@@ -1,7 +1,7 @@
 import { defineStyle } from "@chakra-ui/styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-import { useTabsStyles } from "./tabs"
+import { useTabsStyles } from "./tabs-root"
 import { UseTabOptions, useTab } from "./use-tabs"
 
 export interface TabProps extends UseTabOptions, HTMLChakraProps<"button"> {}

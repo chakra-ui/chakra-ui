@@ -40,7 +40,7 @@ interface TabsOptions {
   align?: "start" | "end" | "center"
 }
 
-export interface TabsProps
+export interface TabsRootProps
   extends UseTabsProps,
     ThemingProps<"Tabs">,
     Omit<HTMLChakraProps<"div">, "onChange">,
@@ -56,36 +56,38 @@ export interface TabsProps
  * @see Docs https://chakra-ui.com/docs/components/tabs
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
  */
-export const Tabs = forwardRef<TabsProps, "div">(function Tabs(props, ref) {
-  const styles = useMultiStyleConfig("Tabs", props)
-  const { children, className, ...rest } = omitThemingProps(props)
+export const TabsRoot = forwardRef<TabsRootProps, "div">(
+  function TabsRoot(props, ref) {
+    const styles = useMultiStyleConfig("Tabs", props)
+    const { children, className, ...rest } = omitThemingProps(props)
 
-  const { htmlProps, descendants, ...ctx } = useTabs(rest)
-  const context = useMemo(() => ctx, [ctx])
+    const { htmlProps, descendants, ...ctx } = useTabs(rest)
+    const context = useMemo(() => ctx, [ctx])
 
-  const { isFitted: _, ...rootProps } = htmlProps as any
+    const { isFitted: _, ...rootProps } = htmlProps as any
 
-  const tabsStyles: SystemStyleObject = {
-    position: "relative",
-    ...styles.root,
-  }
+    const tabsStyles: SystemStyleObject = {
+      position: "relative",
+      ...styles.root,
+    }
 
-  return (
-    <TabsDescendantsProvider value={descendants}>
-      <TabsProvider value={context}>
-        <TabsStylesProvider value={styles}>
-          <chakra.div
-            className={cx("chakra-tabs", className)}
-            ref={ref}
-            {...rootProps}
-            __css={tabsStyles}
-          >
-            {children}
-          </chakra.div>
-        </TabsStylesProvider>
-      </TabsProvider>
-    </TabsDescendantsProvider>
-  )
-})
+    return (
+      <TabsDescendantsProvider value={descendants}>
+        <TabsProvider value={context}>
+          <TabsStylesProvider value={styles}>
+            <chakra.div
+              className={cx("chakra-tabs", className)}
+              ref={ref}
+              {...rootProps}
+              __css={tabsStyles}
+            >
+              {children}
+            </chakra.div>
+          </TabsStylesProvider>
+        </TabsProvider>
+      </TabsDescendantsProvider>
+    )
+  },
+)
 
-Tabs.displayName = "Tabs"
+TabsRoot.displayName = "Tabs"

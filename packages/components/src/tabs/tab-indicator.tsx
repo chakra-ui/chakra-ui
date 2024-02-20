@@ -1,6 +1,6 @@
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-import { useTabsStyles } from "./tabs"
+import { useTabsStyles } from "./tabs-root"
 import { useTabIndicator } from "./use-tabs"
 
 export interface TabIndicatorProps extends HTMLChakraProps<"div"> {}
