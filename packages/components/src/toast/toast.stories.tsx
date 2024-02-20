@@ -190,7 +190,7 @@ export const ColorModeBug = () => {
         onClick={() =>
           toast({
             render() {
-              return <Alert>test</Alert>
+              return <Alert.Root>test</Alert.Root>
             },
           })
         }

@@ -81,13 +81,16 @@ export const withCloseButton = () => (
 
 export const withCustomElement = () => (
   <Tag size="lg" colorScheme="red" borderRadius="full">
-    <Avatar
+    <Avatar.Root
       src="https://bit.ly/sage-adebayo"
       size="xs"
       name="Segun Adebayo"
       marginLeft={-1}
       marginRight={2}
-    />
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
     <TagLabel>Segun</TagLabel>
     <TagCloseButton />
   </Tag>
