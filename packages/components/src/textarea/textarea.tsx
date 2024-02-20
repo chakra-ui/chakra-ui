@@ -1,8 +1,9 @@
 import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { omit } from "@chakra-ui/utils/omit"
 import { FormControlOptions, useFormControl } from "../form-control"
+import { splitFormControlProps } from "../form-control/form-control-props"
+import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 interface TextareaOptions {
   /**
@@ -37,7 +38,8 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
   const styles = useStyleConfig("Textarea", props)
   const { className, rows, ...rest } = omitThemingProps(props)
 
-  const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
+  const [_controlProps, localProps] = splitFormControlProps(rest)
+  const formProps = useFormControl<HTMLTextAreaElement>(_controlProps)
 
   //@ts-ignore
   const textareaStyles = rows ? omit(styles, omitted) : styles
@@ -46,7 +48,8 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
     <chakra.textarea
       ref={ref}
       rows={rows}
-      {...textareaProps}
+      {...localProps}
+      {...formProps}
       className={cx("chakra-textarea", className)}
       __css={textareaStyles}
     />
