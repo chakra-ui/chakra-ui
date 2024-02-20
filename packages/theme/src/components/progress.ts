@@ -33,7 +33,7 @@ const filledStyle = defineStyle((props) => {
   }
 })
 
-const baseStyleLabel = defineStyle({
+const baseStyleValueText = defineStyle({
   lineHeight: "1",
   fontSize: "0.25em",
   fontWeight: "bold",
@@ -48,6 +48,9 @@ const baseStyleTrack = defineStyle((props) => {
 
 const baseStyleFilledTrack = defineStyle((props) => {
   return {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     transitionProperty: "common",
     transitionDuration: "slow",
     ...filledStyle(props),
@@ -55,7 +58,7 @@ const baseStyleFilledTrack = defineStyle((props) => {
 })
 
 const baseStyle = definePartsStyle((props) => ({
-  label: baseStyleLabel,
+  valueText: baseStyleValueText,
   filledTrack: baseStyleFilledTrack(props),
   track: baseStyleTrack(props),
 }))

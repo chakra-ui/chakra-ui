@@ -67,6 +67,46 @@ After:
 - Move `spacing` and `separator` props to `Breadcrumb.List`
 - `listProps` has been removed. Pass props directly to `Breadcrumb.List`
 
+### Checkbox
+
+Before:
+
+```tsx
+<Checkbox defaultChecked>My Checkbox</Checkbox>
+```
+
+After:
+
+```tsx
+<Checkbox.Root defaultChecked>
+  <Checkbox.Control />
+  <Checkbox.Label>My Checkbox</Checkbox.Label>
+</Checkbox.Root>
+```
+
+### Progress
+
+Before:
+
+```tsx
+<Progress value={50} />
+```
+
+After:
+
+```tsx
+<Progress.Root value={50}>
+  <Progress.Track>
+    <Progress.FilledTrack />
+  </Progress.Track>
+</Progress.Root>
+```
+
+- `ProgressLabel` is now assigned to `Progress.ValueText`. This means the theme
+  key for the label is now `valueText`
+
+- `ProgressLabel` should now be used to provide a label for the progress bar
+
 ## Added
 
 ### `For` component

@@ -617,6 +617,17 @@
         "default": "./dist/cjs/progress/index.cjs"
       }
     },
+    "./progress-circular": {
+      "source": "./src/progress-circular/index.ts",
+      "import": {
+        "types": "./dist/types/progress-circular/index.d.mts",
+        "default": "./dist/esm/progress-circular/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/progress-circular/index.d.ts",
+        "default": "./dist/cjs/progress-circular/index.cjs"
+      }
+    },
     "./provider": {
       "source": "./src/provider/index.ts",
       "import": {
