@@ -1,14 +1,6 @@
-import { chakra, PropsOf, useMultiStyleConfig } from "../system"
 import * as React from "react"
-import {
-  FormControlOptions,
-  FormControl,
-  FormErrorIcon,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  useFormControl,
-} from "."
+import { Form, FormControlOptions, useFormControl } from "."
+import { PropsOf, chakra, useMultiStyleConfig } from "../system"
 
 export default {
   title: "Components / Forms / FormControl",
@@ -21,6 +13,10 @@ export default {
   ],
 }
 
+/* -----------------------------------------------------------------------------
+ * Setup
+ * -----------------------------------------------------------------------------*/
+
 type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
 
 type InputProps = Omit<PropsOf<"input">, OmittedTypes> &
@@ -31,7 +27,10 @@ type InputProps = Omit<PropsOf<"input">, OmittedTypes> &
   }
 
 // Create an input that consumes useFormControl
-type Props = { focusBorderColor?: string; errorBorderColor?: string }
+interface Props {
+  focusBorderColor?: string
+  errorBorderColor?: string
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps & Props>(
   function Input(props, ref) {
@@ -41,14 +40,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps & Props>(
   },
 )
 
-export const InputExample = () => (
-  <FormControl id="first-name" isRequired isInvalid>
-    <FormLabel>First name</FormLabel>
-    <Input placeholder="First Name" />
-    <FormHelperText>Keep it very short and sweet!</FormHelperText>
-    <FormErrorMessage>Your First name is invalid</FormErrorMessage>
-  </FormControl>
-)
+// ------------------
 
 type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> &
   FormControlOptions
@@ -61,17 +53,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   },
 )
 
-export const TextAreaExample: React.FC = () => (
-  <FormControl id="first-name" isInvalid>
-    <FormLabel>First name</FormLabel>
-    <Textarea placeholder="First Name" />
-    <FormHelperText>Keep it very short and sweet!</FormHelperText>
-    <FormErrorMessage>
-      <FormErrorIcon />
-      Your First name is invalid
-    </FormErrorMessage>
-  </FormControl>
-)
+// ------------------
 
 type SelectProps = Omit<PropsOf<"select">, OmittedTypes> & FormControlOptions
 
@@ -83,36 +65,57 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   },
 )
 
-export const SelectExample: React.FC = () => (
-  <FormControl id="first-name" isInvalid>
-    <FormLabel>First name</FormLabel>
+/* -----------------------------------------------------------------------------
+ * Stories
+ * -----------------------------------------------------------------------------*/
+
+export const WithInput = () => (
+  <Form.Control id="first-name" isRequired isInvalid>
+    <Form.Label>First name</Form.Label>
+    <Input placeholder="First Name" />
+    <Form.HelperText>Keep it very short and sweet!</Form.HelperText>
+    <Form.ErrorMessage>Your First name is invalid</Form.ErrorMessage>
+  </Form.Control>
+)
+
+export const WithTextarea = () => (
+  <Form.Control id="first-name" isInvalid>
+    <Form.Label>First name</Form.Label>
+    <Textarea placeholder="First Name" />
+    <Form.HelperText>Keep it very short and sweet!</Form.HelperText>
+    <Form.ErrorMessage>
+      <Form.ErrorIcon />
+      Your First name is invalid
+    </Form.ErrorMessage>
+  </Form.Control>
+)
+
+export const WithSelect = () => (
+  <Form.Control id="first-name" isInvalid>
+    <Form.Label>First name</Form.Label>
     <Select>
       <option>Option 1</option>
       <option>Option 2</option>
       <option>Option 3</option>
     </Select>
-    <FormHelperText>Keep it very short and sweet!</FormHelperText>
-    <FormErrorMessage>
-      <FormErrorIcon />
+    <Form.HelperText>Keep it very short and sweet!</Form.HelperText>
+    <Form.ErrorMessage>
+      <Form.ErrorIcon />
       Your First name is invalid
-    </FormErrorMessage>
-  </FormControl>
+    </Form.ErrorMessage>
+  </Form.Control>
 )
 
-/**
- * You can style the label when the input is focused,
- * simply pass the `_focus` pseudo prop
- */
-export const StylingFocus: React.FC = () => (
-  <FormControl id="first-name">
-    <FormLabel _focus={{ color: "blue.600" }}>First name</FormLabel>
+export const WithFocusStyle = () => (
+  <Form.Control id="first-name">
+    <Form.Label _focus={{ color: "blue.600" }}>First name</Form.Label>
     <Input placeholder="First Name" width="100%" />
-    <FormErrorMessage>Your First name is invalid</FormErrorMessage>
-  </FormControl>
+    <Form.ErrorMessage>Your First name is invalid</Form.ErrorMessage>
+  </Form.Control>
 )
 
-export const FormLabelStandalone = () => (
-  <FormLabel fontWeight="bold" color="blue">
+export const WithLabel = () => (
+  <Form.Label fontWeight="bold" color="blue">
     Not wrapped by FormControl
-  </FormLabel>
+  </Form.Label>
 )

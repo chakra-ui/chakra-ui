@@ -2,12 +2,10 @@ import * as React from "react"
 import {
   Box,
   Checkbox,
-  CheckboxGroup,
   Container,
   Divider,
   Flex,
-  FormControl,
-  FormLabel,
+  Form,
   HStack,
   Heading,
   Icon,
@@ -17,10 +15,20 @@ import {
   useCheckbox,
   useCheckboxGroup,
 } from ".."
+import { splitCheckboxProps } from "./checkbox-props"
 
 export default {
   title: "Components / Forms / Checkbox",
   decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
+}
+
+const DemoCheckbox = (props: Checkbox.RootProps) => {
+  return (
+    <Checkbox.Root {...props}>
+      <Checkbox.Control />
+      <Checkbox.Label>{props.children}</Checkbox.Label>
+    </Checkbox.Root>
+  )
 }
 
 export const WithHooks = () => {
@@ -34,36 +42,42 @@ export const WithHooks = () => {
   )
 }
 
-export const Basic = () => <Checkbox colorScheme="red">Hello</Checkbox>
+export const Basic = () => <DemoCheckbox colorScheme="red">Hello</DemoCheckbox>
 
-export const Disabled = () => <Checkbox isDisabled>Disabled</Checkbox>
+export const Disabled = () => <DemoCheckbox isDisabled>Disabled</DemoCheckbox>
 
-export const Readonly = () => <Checkbox isReadOnly>Readonly</Checkbox>
+export const Readonly = () => <DemoCheckbox isReadOnly>Readonly</DemoCheckbox>
 
-export const Invalid = () => <Checkbox isInvalid>Invalid</Checkbox>
+export const Invalid = () => <DemoCheckbox isInvalid>Invalid</DemoCheckbox>
+
 export const NotFocusable = () => (
   <>
-    <Checkbox isFocusable={false}>not focusable</Checkbox>
-    <Checkbox isFocusable={false} isDisabled>
+    <DemoCheckbox isFocusable={false}>not focusable</DemoCheckbox>
+    <DemoCheckbox isFocusable={false} isDisabled>
       disabled and not focusable (truly disabled)
-    </Checkbox>
-    <Checkbox tabIndex={-1} isFocusable={false}>
+    </DemoCheckbox>
+    <DemoCheckbox tabIndex={-1} isFocusable={false}>
       Not Focusable with provided tabIndex
-    </Checkbox>
+    </DemoCheckbox>
   </>
 )
 
-export const WithIconColor = () => (
-  <Checkbox iconColor="yellow.400">I love chakra</Checkbox>
-)
+export const WithIconColor = () => {
+  return (
+    <Checkbox.Root>
+      <Checkbox.Control iconColor="yellow.400" />
+      <Checkbox.Label>I love chakra</Checkbox.Label>
+    </Checkbox.Root>
+  )
+}
 
 export const WithColorScheme = () => {
   return (
     <Stack>
-      <Checkbox defaultChecked colorScheme="red">
+      <DemoCheckbox defaultChecked colorScheme="red">
         Hello world
-      </Checkbox>
-      <Checkbox defaultChecked>Hello world</Checkbox>
+      </DemoCheckbox>
+      <DemoCheckbox defaultChecked>Hello world</DemoCheckbox>
     </Stack>
   )
 }
@@ -90,35 +104,40 @@ export const WithCustomIcon = () => {
 
   return (
     <>
-      <Heading>Default </Heading>
-      <Checkbox icon={<CustomIcon />} colorScheme="red">
-        Hello world
-      </Checkbox>
+      <Heading>Default</Heading>
+
+      <Checkbox.Root colorScheme="red">
+        <Checkbox.Control icon={<CustomIcon />} />
+        <Checkbox.Label>Hello world</Checkbox.Label>
+      </Checkbox.Root>
 
       <Divider />
 
       <Heading>Indeterminate</Heading>
-      <Checkbox
+
+      <Checkbox.Root
         isChecked={allChecked}
         isIndeterminate={isIndeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
-        icon={<CustomIcon />}
+        colorScheme="red"
       >
-        Parent Checkbox
-      </Checkbox>
+        <Checkbox.Control icon={<CustomIcon />} />
+        <Checkbox.Label>Parent Checkbox</Checkbox.Label>
+      </Checkbox.Root>
+
       <Stack ml="6" mt="2" align="start">
-        <Checkbox
+        <DemoCheckbox
           isChecked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
         >
           Child Checkbox 1
-        </Checkbox>
-        <Checkbox
+        </DemoCheckbox>
+        <DemoCheckbox
           isChecked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
         >
           Child Checkbox 2
-        </Checkbox>
+        </DemoCheckbox>
       </Stack>
     </>
   )
@@ -130,7 +149,7 @@ export const Sizes = () => {
   return (
     <Stack direction="row">
       {sizes.map((size) => (
-        <Checkbox key={size} size={size} />
+        <DemoCheckbox key={size} size={size} />
       ))}
     </Stack>
   )
@@ -144,26 +163,26 @@ export const Indeterminate = () => {
 
   return (
     <>
-      <Checkbox
+      <DemoCheckbox
         isChecked={allChecked}
         isIndeterminate={isIndeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
       >
         Parent Checkbox
-      </Checkbox>
+      </DemoCheckbox>
       <Stack ml="6" mt="2" align="start">
-        <Checkbox
+        <DemoCheckbox
           isChecked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
         >
           Child Checkbox 1
-        </Checkbox>
-        <Checkbox
+        </DemoCheckbox>
+        <DemoCheckbox
           isChecked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
         >
           Child Checkbox 2
-        </Checkbox>
+        </DemoCheckbox>
       </Stack>
     </>
   )
@@ -176,36 +195,36 @@ export const Controlled = () => {
     setValue(e.target.checked)
   }
 
-  return <Checkbox isChecked={value} onChange={handleChange} />
+  return <DemoCheckbox isChecked={value} onChange={handleChange} />
 }
 
 export const CheckboxGroupExample = () => {
   return (
-    <CheckboxGroup
+    <Checkbox.Group
       defaultValue={["one", "two"]}
       onChange={(value) => console.log(value)}
     >
       <Stack align="start" direction={["column", "row"]} spacing={[2, 4, 6]}>
-        <Checkbox value="one">One</Checkbox>
-        <Checkbox value="two">Two</Checkbox>
-        <Checkbox value="three">Three</Checkbox>
+        <DemoCheckbox value="one">One</DemoCheckbox>
+        <DemoCheckbox value="two">Two</DemoCheckbox>
+        <DemoCheckbox value="three">Three</DemoCheckbox>
       </Stack>
-    </CheckboxGroup>
+    </Checkbox.Group>
   )
 }
 
 export const ResponsiveCheckboxGroup = () => {
   return (
-    <CheckboxGroup
+    <Checkbox.Group
       defaultValue={["one", "two"]}
       onChange={(value) => console.log(value)}
     >
       <Stack spacing={[2, 4, 6]} direction={["column", "row"]}>
-        <Checkbox value="one">One</Checkbox>
-        <Checkbox value="two">Two</Checkbox>
-        <Checkbox value="three">Three</Checkbox>
+        <DemoCheckbox value="one">One</DemoCheckbox>
+        <DemoCheckbox value="two">Two</DemoCheckbox>
+        <DemoCheckbox value="three">Three</DemoCheckbox>
       </Stack>
-    </CheckboxGroup>
+    </Checkbox.Group>
   )
 }
 
@@ -215,7 +234,7 @@ type ArrayOfValue = Value[]
 export const ControlledCheckboxGroup = () => {
   const [value, setValue] = React.useState<ArrayOfValue>(["one", "two"])
   return (
-    <CheckboxGroup
+    <Checkbox.Group
       value={value}
       onChange={(value) => {
         console.log(value)
@@ -223,18 +242,20 @@ export const ControlledCheckboxGroup = () => {
       }}
     >
       <Stack direction="row" spacing="40px">
-        <Checkbox value="one">One</Checkbox>
-        <Checkbox value="two">Two</Checkbox>
-        <Checkbox value="three">Three</Checkbox>
+        <DemoCheckbox value="one">One</DemoCheckbox>
+        <DemoCheckbox value="two">Two</DemoCheckbox>
+        <DemoCheckbox value="three">Three</DemoCheckbox>
       </Stack>
-    </CheckboxGroup>
+    </Checkbox.Group>
   )
 }
 
 export const CustomCheckboxGroup = () => {
   function CustomCheckbox(props: any) {
-    const { state, getCheckboxProps, getInputProps, getLabelProps, htmlProps } =
-      useCheckbox(props)
+    const [checkboxProps, htmlProps] = splitCheckboxProps(props)
+
+    const { state, getCheckboxProps, getInputProps, getLabelProps } =
+      useCheckbox(checkboxProps)
 
     return (
       <chakra.label
@@ -285,60 +306,60 @@ export const CustomCheckboxGroup = () => {
 export const WithFormControl = () => {
   return (
     <>
-      <FormControl id="optIn">
-        <FormLabel>Opt-in Example</FormLabel>
-        <CheckboxGroup defaultValue={["1", "3"]}>
+      <Form.Control id="optIn">
+        <Form.Label>Opt-in Example</Form.Label>
+        <Checkbox.Group defaultValue={["1", "3"]}>
           <HStack>
-            <Checkbox value="1">Opt-in 1</Checkbox>
-            <Checkbox value="2">Opt-in 2</Checkbox>
-            <Checkbox value="3">Opt-in 3</Checkbox>
+            <DemoCheckbox value="1">Opt-in 1</DemoCheckbox>
+            <DemoCheckbox value="2">Opt-in 2</DemoCheckbox>
+            <DemoCheckbox value="3">Opt-in 3</DemoCheckbox>
           </HStack>
-        </CheckboxGroup>
-      </FormControl>
+        </Checkbox.Group>
+      </Form.Control>
 
-      <FormControl id="optInInvalid" isInvalid mt={4}>
-        <FormLabel>Invalid Opt-in Example</FormLabel>
-        <CheckboxGroup defaultValue={["2", "3"]}>
+      <Form.Control id="optInInvalid" isInvalid mt={4}>
+        <Form.Label>Invalid Opt-in Example</Form.Label>
+        <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
-            <Checkbox value="1">Invalid Opt-in 1</Checkbox>
-            <Checkbox value="2">Invalid Opt-in 2</Checkbox>
-            <Checkbox value="3">Invalid Opt-in 3</Checkbox>
+            <DemoCheckbox value="1">Invalid Opt-in 1</DemoCheckbox>
+            <DemoCheckbox value="2">Invalid Opt-in 2</DemoCheckbox>
+            <DemoCheckbox value="3">Invalid Opt-in 3</DemoCheckbox>
           </Stack>
-        </CheckboxGroup>
-      </FormControl>
+        </Checkbox.Group>
+      </Form.Control>
 
-      <FormControl id="optInDisabled" isDisabled mt={4}>
-        <FormLabel>Disabled Opt-in Example</FormLabel>
-        <CheckboxGroup defaultValue={["2", "3"]}>
+      <Form.Control id="optInDisabled" isDisabled mt={4}>
+        <Form.Label>Disabled Opt-in Example</Form.Label>
+        <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
-            <Checkbox value="1">Disabled Opt-in 1</Checkbox>
-            <Checkbox value="2">Disabled Opt-in 2</Checkbox>
-            <Checkbox value="3">Disabled Opt-in 3</Checkbox>
+            <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
+            <DemoCheckbox value="2">Disabled Opt-in 2</DemoCheckbox>
+            <DemoCheckbox value="3">Disabled Opt-in 3</DemoCheckbox>
           </Stack>
-        </CheckboxGroup>
-      </FormControl>
+        </Checkbox.Group>
+      </Form.Control>
 
-      <FormControl id="optInReadonly" isReadOnly mt={4}>
-        <FormLabel>Readonly Opt-in Example</FormLabel>
-        <CheckboxGroup defaultValue={["2", "3"]}>
+      <Form.Control id="optInReadonly" isReadOnly mt={4}>
+        <Form.Label>Readonly Opt-in Example</Form.Label>
+        <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
-            <Checkbox value="1">Readonly Opt-in 1</Checkbox>
-            <Checkbox value="2">Readonly Opt-in 2</Checkbox>
-            <Checkbox value="3">Readonly Opt-in 3</Checkbox>
+            <DemoCheckbox value="1">Readonly Opt-in 1</DemoCheckbox>
+            <DemoCheckbox value="2">Readonly Opt-in 2</DemoCheckbox>
+            <DemoCheckbox value="3">Readonly Opt-in 3</DemoCheckbox>
           </Stack>
-        </CheckboxGroup>
-      </FormControl>
+        </Checkbox.Group>
+      </Form.Control>
 
-      <FormControl id="optInRequired" isRequired mt={4}>
-        <FormLabel>Required Opt-in Example</FormLabel>
-        <CheckboxGroup defaultValue={["2", "3"]}>
+      <Form.Control id="optInRequired" isRequired mt={4}>
+        <Form.Label>Required Opt-in Example</Form.Label>
+        <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
-            <Checkbox value="1">Required Opt-in 1</Checkbox>
-            <Checkbox value="2">Required Opt-in 2</Checkbox>
-            <Checkbox value="3">Required Opt-in 3</Checkbox>
+            <DemoCheckbox value="1">Required Opt-in 1</DemoCheckbox>
+            <DemoCheckbox value="2">Required Opt-in 2</DemoCheckbox>
+            <DemoCheckbox value="3">Required Opt-in 3</DemoCheckbox>
           </Stack>
-        </CheckboxGroup>
-      </FormControl>
+        </Checkbox.Group>
+      </Form.Control>
     </>
   )
 }

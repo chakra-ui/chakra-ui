@@ -1,17 +1,7 @@
 import { ariaAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { FormControlOptions, useFormControlContext } from "./form-control"
-
-export interface UseFormControlProps<T extends HTMLElement>
-  extends FormControlOptions {
-  id?: string
-  onFocus?: React.FocusEventHandler<T>
-  onBlur?: React.FocusEventHandler<T>
-  disabled?: boolean
-  readOnly?: boolean
-  required?: boolean
-  "aria-describedby"?: string
-}
+import { UseFormControlProps } from "./types"
+import { useFormControlContext } from "./form-control-context"
 
 /**
  * React hook that provides the props that should be spread on to
@@ -58,12 +48,10 @@ export function useFormControlProps<T extends HTMLElement>(
     isDisabled,
     onFocus,
     onBlur,
-    ...rest
+    "aria-describedby": ariaDescribedby,
   } = props
 
-  const labelIds: string[] = props["aria-describedby"]
-    ? [props["aria-describedby"]]
-    : []
+  const labelIds: string[] = ariaDescribedby ? [ariaDescribedby] : []
 
   // Error message must be described first in all scenarios.
   if (field?.hasFeedbackText && field?.isInvalid) {
@@ -75,7 +63,6 @@ export function useFormControlProps<T extends HTMLElement>(
   }
 
   return {
-    ...rest,
     "aria-describedby": labelIds.join(" ") || undefined,
     id: id ?? field?.id,
     isDisabled: disabled ?? isDisabled ?? field?.isDisabled,

@@ -8,7 +8,7 @@ export const [AccordionStylesProvider, useAccordionStyles] = createContext<
 >({
   name: "AccordionStylesContext",
   hookName: "useAccordionStyles",
-  providerName: "<Accordion />",
+  providerName: "<AccordionRoot />",
 })
 
 type AccordionItemContext = Omit<UseAccordionItemReturn, "htmlProps">

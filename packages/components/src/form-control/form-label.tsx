@@ -1,7 +1,8 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-import { useFormControlContext, useFormControlStyles } from "./form-control"
+import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
+import { useFormControlContext } from "./form-control-context"
+import { RequiredIndicator } from "./form-indicator"
 
 export interface FormLabelProps
   extends HTMLChakraProps<"label">,
@@ -58,30 +59,3 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
 )
 
 FormLabel.displayName = "FormLabel"
-
-export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
-
-/**
- * Used to show a "required" text or an asterisks (*) to indicate that
- * a field is required.
- */
-export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
-  function RequiredIndicator(props, ref) {
-    const field = useFormControlContext()
-    const styles = useFormControlStyles()
-
-    if (!field?.isRequired) return null
-
-    const className = cx("chakra-form__required-indicator", props.className)
-
-    return (
-      <chakra.span
-        {...field?.getRequiredIndicatorProps(props, ref)}
-        __css={styles.requiredIndicator}
-        className={className}
-      />
-    )
-  },
-)
-
-RequiredIndicator.displayName = "RequiredIndicator"
