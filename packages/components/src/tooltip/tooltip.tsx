@@ -66,127 +66,129 @@ const MotionDiv = chakra(motion.div)
  * @see Docs     https://chakra-ui.com/docs/overlay/tooltip
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
  */
-export const Tooltip = forwardRef<TooltipProps, "div">((props, ref) => {
-  const styles = useStyleConfig("Tooltip", props)
-  const ownProps = omitThemingProps(props)
-  const theme = useTheme()
+export const Tooltip = forwardRef<TooltipProps, "div">(
+  function Tooltip(props, ref) {
+    const styles = useStyleConfig("Tooltip", props)
+    const ownProps = omitThemingProps(props)
+    const theme = useTheme()
 
-  const {
-    children,
-    label,
-    shouldWrapChildren,
-    "aria-label": ariaLabel,
-    hasArrow,
-    bg,
-    portalProps,
-    background,
-    backgroundColor,
-    bgColor,
-    motionProps,
-    ...rest
-  } = ownProps
+    const {
+      children,
+      label,
+      shouldWrapChildren,
+      "aria-label": ariaLabel,
+      hasArrow,
+      bg,
+      portalProps,
+      background,
+      backgroundColor,
+      bgColor,
+      motionProps,
+      ...rest
+    } = ownProps
 
-  const userDefinedBg = background ?? backgroundColor ?? bg ?? bgColor
+    const userDefinedBg = background ?? backgroundColor ?? bg ?? bgColor
 
-  if (userDefinedBg) {
-    styles.bg = userDefinedBg
-    const bgVar = getCSSVar(theme, "colors", userDefinedBg)
-    ;(styles as any)[popperCSSVars.arrowBg.var] = bgVar
-  }
-  const tooltip = useTooltip({ ...rest, direction: theme.direction })
-
-  const shouldWrap = typeof children === "string" || shouldWrapChildren
-
-  let trigger: React.ReactElement
-
-  if (shouldWrap) {
-    trigger = (
-      <chakra.span
-        display="inline-block"
-        tabIndex={0}
-        {...tooltip.getTriggerProps()}
-      >
-        {children}
-      </chakra.span>
-    )
-  } else {
-    /**
-     * Ensure tooltip has only one child node
-     */
-    const child = Children.only(children) as React.ReactElement & {
-      ref?: React.Ref<any>
+    if (userDefinedBg) {
+      styles.bg = userDefinedBg
+      const bgVar = getCSSVar(theme, "colors", userDefinedBg)
+      ;(styles as any)[popperCSSVars.arrowBg.var] = bgVar
     }
-    trigger = cloneElement(
-      child,
-      tooltip.getTriggerProps(child.props, child.ref),
-    )
-  }
+    const tooltip = useTooltip({ ...rest, direction: theme.direction })
 
-  const hasAriaLabel = !!ariaLabel
+    const shouldWrap = typeof children === "string" || shouldWrapChildren
 
-  const _tooltipProps = tooltip.getTooltipProps({}, ref)
+    let trigger: React.ReactElement
 
-  const tooltipProps = hasAriaLabel
-    ? omit(_tooltipProps, ["role", "id"])
-    : _tooltipProps
+    if (shouldWrap) {
+      trigger = (
+        <chakra.span
+          display="inline-block"
+          tabIndex={0}
+          {...tooltip.getTriggerProps()}
+        >
+          {children}
+        </chakra.span>
+      )
+    } else {
+      /**
+       * Ensure tooltip has only one child node
+       */
+      const child = Children.only(children) as React.ReactElement & {
+        ref?: React.Ref<any>
+      }
+      trigger = cloneElement(
+        child,
+        tooltip.getTriggerProps(child.props, child.ref),
+      )
+    }
 
-  const srOnlyProps = pick(_tooltipProps, ["role", "id"])
+    const hasAriaLabel = !!ariaLabel
 
-  /**
-   * If the `label` is empty, there's no point showing the tooltip.
-   * Let's simply return the children
-   */
-  if (!label) {
-    return <>{children}</>
-  }
+    const _tooltipProps = tooltip.getTooltipProps({}, ref)
 
-  return (
-    <>
-      {trigger}
-      <AnimatePresence>
-        {tooltip.isOpen && (
-          <Portal {...portalProps}>
-            <chakra.div
-              {...tooltip.getTooltipPositionerProps()}
-              __css={{
-                zIndex: styles.zIndex,
-                pointerEvents: "none",
-              }}
-            >
-              <MotionDiv
-                variants={scale}
-                initial="exit"
-                animate="enter"
-                exit="exit"
-                {...motionProps}
-                {...(tooltipProps as any)}
-                __css={styles}
+    const tooltipProps = hasAriaLabel
+      ? omit(_tooltipProps, ["role", "id"])
+      : _tooltipProps
+
+    const srOnlyProps = pick(_tooltipProps, ["role", "id"])
+
+    /**
+     * If the `label` is empty, there's no point showing the tooltip.
+     * Let's simply return the children
+     */
+    if (!label) {
+      return <>{children}</>
+    }
+
+    return (
+      <>
+        {trigger}
+        <AnimatePresence>
+          {tooltip.isOpen && (
+            <Portal {...portalProps}>
+              <chakra.div
+                {...tooltip.getTooltipPositionerProps()}
+                __css={{
+                  zIndex: styles.zIndex,
+                  pointerEvents: "none",
+                }}
               >
-                {label}
-                {hasAriaLabel && (
-                  <chakra.span srOnly {...srOnlyProps}>
-                    {ariaLabel}
-                  </chakra.span>
-                )}
-                {hasArrow && (
-                  <chakra.div
-                    data-popper-arrow
-                    className="chakra-tooltip__arrow-wrapper"
-                  >
+                <MotionDiv
+                  variants={scale}
+                  initial="exit"
+                  animate="enter"
+                  exit="exit"
+                  {...motionProps}
+                  {...(tooltipProps as any)}
+                  __css={styles}
+                >
+                  {label}
+                  {hasAriaLabel && (
+                    <chakra.span srOnly {...srOnlyProps}>
+                      {ariaLabel}
+                    </chakra.span>
+                  )}
+                  {hasArrow && (
                     <chakra.div
-                      data-popper-arrow-inner
-                      className="chakra-tooltip__arrow"
-                      __css={{ bg: styles.bg }}
-                    />
-                  </chakra.div>
-                )}
-              </MotionDiv>
-            </chakra.div>
-          </Portal>
-        )}
-      </AnimatePresence>
-    </>
-  )
-})
+                      data-popper-arrow
+                      className="chakra-tooltip__arrow-wrapper"
+                    >
+                      <chakra.div
+                        data-popper-arrow-inner
+                        className="chakra-tooltip__arrow"
+                        __css={{ bg: styles.bg }}
+                      />
+                    </chakra.div>
+                  )}
+                </MotionDiv>
+              </chakra.div>
+            </Portal>
+          )}
+        </AnimatePresence>
+      </>
+    )
+  },
+)
 
 Tooltip.displayName = "Tooltip"
