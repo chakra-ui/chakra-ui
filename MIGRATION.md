@@ -131,6 +131,11 @@ After:
 - `CircularProgressLabel` should now be used to provide a label for the progress
   bar
 
+### Tag
+
+- `TagLeftIcon` and `TagRightIcon` are now assigned to `Tag.StartIcon` and
+  `Tag.EndIcon` respectively
+
 ## Added
 
 ### `For` component

@@ -1,8 +1,9 @@
-import { chakra } from "../system"
 import { HiPlus } from "react-icons/hi"
 import { MdSettings } from "react-icons/md"
-import { Tag, TagCloseButton, TagLabel, TagLeftIcon, TagRightIcon } from "."
+import { Tag } from "."
 import { Avatar } from "../avatar"
+import { chakra } from "../system"
+import { For, HStack } from ".."
 
 export default {
   title: "Components / Data Display / Tag",
@@ -15,72 +16,80 @@ export default {
   ],
 }
 
-export const basic = () => <Tag colorScheme="teal">Teal</Tag>
+export const basic = () => <Tag.Root colorScheme="teal">Teal</Tag.Root>
 
 export const withSizes = () => (
-  <>
-    <Tag size="sm">Gray</Tag>
-    <Tag size="md">Gray</Tag>
-    <Tag size="lg">Gray</Tag>
-  </>
+  <HStack>
+    <For each={["sm", "md", "lg"]}>
+      {(size) => (
+        <Tag.Root key={size} size={size}>
+          Gray
+        </Tag.Root>
+      )}
+    </For>
+  </HStack>
 )
 
 export const colorSchemes = () => (
-  <>
-    <Tag size="sm" colorScheme="green">
+  <HStack>
+    <Tag.Root size="sm" colorScheme="green">
       Gray
-    </Tag>
-    <Tag size="md" colorScheme="pink">
+    </Tag.Root>
+    <Tag.Root size="md" colorScheme="pink">
       Gray
-    </Tag>
-    <Tag size="lg" colorScheme="blue">
+    </Tag.Root>
+    <Tag.Root size="lg" colorScheme="blue">
       Gray
-    </Tag>
-  </>
+    </Tag.Root>
+  </HStack>
 )
 
 export const withLeftIcon = () => (
-  <Tag colorScheme="cyan">
-    <TagLeftIcon w="12px" h="12px" as={HiPlus} />
-    <TagLabel>Green</TagLabel>
-  </Tag>
+  <Tag.Root colorScheme="cyan">
+    <Tag.StartIcon w="12px" h="12px" asChild>
+      <HiPlus />
+    </Tag.StartIcon>
+    <Tag.Label>Green</Tag.Label>
+  </Tag.Root>
 )
 
 export const withRightIcon = () => (
   <>
-    <Tag colorScheme="cyan">
-      <TagLabel>Green</TagLabel>
-      <TagRightIcon w="12px" h="12px" as={HiPlus} />
-    </Tag>
+    <Tag.Root colorScheme="cyan">
+      <Tag.Label>Green</Tag.Label>
+      <Tag.EndIcon w="12px" h="12px" asChild>
+        <HiPlus />
+      </Tag.EndIcon>
+    </Tag.Root>
 
-    <Tag variant="solid" colorScheme="teal">
-      <TagLabel>Teal</TagLabel>
-      <TagRightIcon as={MdSettings} />
-    </Tag>
+    <Tag.Root variant="solid" colorScheme="teal">
+      <Tag.Label>Teal</Tag.Label>
+      <Tag.EndIcon as={MdSettings} />
+    </Tag.Root>
   </>
 )
 
 export const withCloseButton = () => (
   <>
-    <Tag variant="solid" size="sm" colorScheme="cyan">
-      <TagLabel>Tab Label</TagLabel>
-      <TagCloseButton />
-    </Tag>
+    <Tag.Root variant="solid" size="sm" colorScheme="cyan">
+      <Tag.Label>Tab Label</Tag.Label>
+      <Tag.CloseButton />
+    </Tag.Root>
 
-    <Tag variant="solid" size="md" colorScheme="cyan">
-      <TagLabel>Tab Label</TagLabel>
-      <TagCloseButton />
-    </Tag>
+    <Tag.Root variant="solid" size="md" colorScheme="cyan">
+      <Tag.Label>Tab Label</Tag.Label>
+      <Tag.CloseButton />
+    </Tag.Root>
 
-    <Tag variant="solid" size="lg" colorScheme="cyan">
-      <TagLabel>Tab Label</TagLabel>
-      <TagCloseButton />
-    </Tag>
+    <Tag.Root variant="solid" size="lg" colorScheme="cyan">
+      <Tag.Label>Tab Label</Tag.Label>
+      <Tag.CloseButton />
+    </Tag.Root>
   </>
 )
 
 export const withCustomElement = () => (
-  <Tag size="lg" colorScheme="red" borderRadius="full">
+  <Tag.Root size="lg" colorScheme="red" borderRadius="full">
     <Avatar.Root
       src="https://bit.ly/sage-adebayo"
       size="xs"
@@ -91,7 +100,7 @@ export const withCustomElement = () => (
       <Avatar.Image />
       <Avatar.Fallback />
     </Avatar.Root>
-    <TagLabel>Segun</TagLabel>
-    <TagCloseButton />
-  </Tag>
+    <Tag.Label>Segun</Tag.Label>
+    <Tag.CloseButton />
+  </Tag.Root>
 )
