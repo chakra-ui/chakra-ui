@@ -1,16 +1,5 @@
 import { MdCheck } from "react-icons/md"
-import {
-  Box,
-  IconButton,
-  Link,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  Text,
-  chakra,
-} from ".."
+import { Box, IconButton, Link, Popover, Text, chakra } from ".."
 
 export default {
   title: "Components / Overlay / Popover - Hover",
@@ -36,14 +25,13 @@ function Card() {
 
 export function TwitterEx() {
   return (
-    <Popover trigger="hover">
-      <PopoverTrigger>
+    <Popover.Root trigger="hover">
+      <Popover.Trigger>
         <Link href="#test" color="blue.500">
           Hover to see @swyx profile
         </Link>
-      </PopoverTrigger>
-
-      <PopoverContent
+      </Popover.Trigger>
+      <Popover.Content
         sx={{
           bg: "#15202b",
           color: "white",
@@ -51,20 +39,20 @@ export function TwitterEx() {
         }}
       >
         <Card />
-      </PopoverContent>
-    </Popover>
+      </Popover.Content>
+    </Popover.Root>
   )
 }
 
 export function WithCustomAnimation() {
   return (
-    <Popover>
-      <PopoverTrigger>
+    <Popover.Root>
+      <Popover.Trigger>
         <IconButton aria-label="Check" p={8}>
           <MdCheck />
         </IconButton>
-      </PopoverTrigger>
-      <PopoverContent
+      </Popover.Trigger>
+      <Popover.Content
         width="400px"
         variants={{
           enter: {
@@ -83,9 +71,11 @@ export function WithCustomAnimation() {
           },
         }}
       >
-        <PopoverArrow />
-        <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
-      </PopoverContent>
-    </Popover>
+        <Popover.Arrow />
+        <Popover.Body>
+          Are you sure you want to have that milkshake?
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
   )
 }

@@ -11,6 +11,7 @@ import { LazyMode, lazyDisclosure } from "@chakra-ui/utils/lazy"
 import { DOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
+import { contains } from "@chakra-ui/utils"
 
 const TRIGGER = {
   click: "click",
@@ -464,10 +465,6 @@ export function usePopover(props: UsePopoverProps = {}) {
 }
 
 export type UsePopoverReturn = ReturnType<typeof usePopover>
-
-function contains(parent: HTMLElement | null, child: HTMLElement | null) {
-  return parent === child || parent?.contains(child)
-}
 
 function getRelatedTarget(event: React.FocusEvent) {
   const activeEl = event.currentTarget.ownerDocument.activeElement

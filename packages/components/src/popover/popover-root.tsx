@@ -5,7 +5,9 @@ import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { usePopover, UsePopoverProps } from "./use-popover"
 
-export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
+export interface PopoverRootProps
+  extends UsePopoverProps,
+    ThemingProps<"Popover"> {
   /**
    * The content of the popover. It is usually the `PopoverTrigger`,
    * and `PopoverContent`
@@ -23,7 +25,7 @@ export interface PopoverProps extends UsePopoverProps, ThemingProps<"Popover"> {
  *
  * @see Docs https://chakra-ui.com/docs/components/popover
  */
-export function Popover(props: PopoverProps) {
+export function PopoverRoot(props: PopoverRootProps) {
   const styles = useMultiStyleConfig("Popover", props)
 
   const { children, ...rest } = omitThemingProps(props)
@@ -43,4 +45,4 @@ export function Popover(props: PopoverProps) {
   )
 }
 
-Popover.displayName = "Popover"
+PopoverRoot.displayName = "Popover"

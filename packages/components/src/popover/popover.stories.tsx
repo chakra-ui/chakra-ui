@@ -5,14 +5,6 @@ import {
   ButtonGroup,
   Input,
   Popover,
-  PopoverAnchor,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTrigger,
   Radio,
   RadioGroup,
   chakra,
@@ -64,54 +56,54 @@ export function WithHook() {
 }
 
 export const simple = () => (
-  <Popover placement="right-start">
-    <PopoverTrigger>
+  <Popover.Root placement="right-start">
+    <Popover.Trigger>
       <chakra.button mt="180px">Trigger</chakra.button>
-    </PopoverTrigger>
-    <PopoverContent>
-      <PopoverArrow />
-      <PopoverCloseButton />
-      <PopoverHeader>Confirmation!</PopoverHeader>
-      <PopoverBody>
+    </Popover.Trigger>
+    <Popover.Content>
+      <Popover.Arrow />
+      <Popover.CloseButton />
+      <Popover.Header>Confirmation!</Popover.Header>
+      <Popover.Body>
         <p>Are you sure you want to have that milkshake?</p>
         <br />
         <button>Yes</button>
         <button>No</button>
-      </PopoverBody>
-    </PopoverContent>
-  </Popover>
+      </Popover.Body>
+    </Popover.Content>
+  </Popover.Root>
 )
 
 export const basic = () => (
   <>
-    <Popover placement="top">
-      <PopoverTrigger>
+    <Popover.Root placement="top">
+      <Popover.Trigger>
         <chakra.button>Welcome home</chakra.button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverHeader>Submit now</PopoverHeader>
-        <PopoverBody>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Arrow />
+        <Popover.Header>Submit now</Popover.Header>
+        <Popover.Body>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
 
-    <Popover placement="bottom">
-      <PopoverTrigger>
+    <Popover.Root placement="bottom">
+      <Popover.Trigger>
         <chakra.button>Welcome home</chakra.button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverCloseButton />
-        <PopoverHeader>Submit now</PopoverHeader>
-        <PopoverBody>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Arrow />
+        <Popover.CloseButton />
+        <Popover.Header>Submit now</Popover.Header>
+        <Popover.Body>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
 
     <chakra.input />
   </>
@@ -119,56 +111,60 @@ export const basic = () => (
 
 export const Arrow = () => (
   <>
-    <Popover placement="top" arrowShadowColor="red" arrowSize={40}>
-      <PopoverTrigger>
+    <Popover.Root placement="top" arrowShadowColor="red" arrowSize={40}>
+      <Popover.Trigger>
         <chakra.button>Welcome home</chakra.button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverArrow />
-        <PopoverHeader>Submit now</PopoverHeader>
-        <PopoverBody>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Arrow />
+        <Popover.Header>Submit now</Popover.Header>
+        <Popover.Body>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
   </>
 )
 
-export function ControlledUsage() {
+export const Controlled = () => {
   const [isOpen, setIsOpen] = React.useState(false)
+
   const open = () => setIsOpen(!isOpen)
   const close = () => setIsOpen(false)
+
   return (
     <>
       <Button mr={5} onClick={open}>
         Trigger
       </Button>
-      <Popover
+
+      <Popover.Root
         returnFocusOnClose={false}
         isOpen={isOpen}
         onClose={close}
         placement="right"
         closeOnBlur={false}
       >
-        <PopoverTrigger>
+        <Popover.Trigger>
           <Button colorScheme="pink">Popover Target</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
-          <PopoverArrow />
-          <PopoverCloseButton />
-          <PopoverBody>
+        </Popover.Trigger>
+
+        <Popover.Content>
+          <Popover.Header fontWeight="semibold">Confirmation</Popover.Header>
+          <Popover.Arrow />
+          <Popover.CloseButton />
+          <Popover.Body>
             Are you sure you want to continue with your action?
-          </PopoverBody>
-          <PopoverFooter display="flex" justifyContent="flex-end">
+          </Popover.Body>
+          <Popover.Footer display="flex" justifyContent="flex-end">
             <ButtonGroup size="sm">
               <Button variant="outline">Cancel</Button>
               <Button colorScheme="red">Apply</Button>
             </ButtonGroup>
-          </PopoverFooter>
-        </PopoverContent>
-      </Popover>
+          </Popover.Footer>
+        </Popover.Content>
+      </Popover.Root>
     </>
   )
 }
@@ -185,37 +181,37 @@ const Interval = () => {
 
 export function WithLazyPopover() {
   return (
-    <Popover isLazy>
-      <PopoverTrigger>
+    <Popover.Root isLazy>
+      <Popover.Trigger>
         <Button colorScheme="pink">Popover Target</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverBody>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Body>
           Are you sure you want to continue with your action?
           <p>
             Timer: <Interval />
           </p>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
   )
 }
 
 export function WithLazyPopoverMounted() {
   return (
-    <Popover isLazy lazyBehavior="keepMounted">
-      <PopoverTrigger>
+    <Popover.Root isLazy lazyBehavior="keepMounted">
+      <Popover.Trigger>
         <Button colorScheme="pink">Popover Target</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverBody>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Body>
           Are you sure you want to continue with your action?
           <p>
             Timer: <Interval />
           </p>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
   )
 }
 
@@ -224,7 +220,7 @@ export function WithPopoverAnchor() {
   const [color, setColor] = React.useState("red")
 
   return (
-    <Popover
+    <Popover.Root
       isOpen={isEditing}
       onOpen={setIsEditing.on}
       onClose={setIsEditing.off}
@@ -232,7 +228,7 @@ export function WithPopoverAnchor() {
       isLazy
       lazyBehavior="keepMounted"
     >
-      <PopoverAnchor>
+      <Popover.Anchor>
         <Input
           color={color}
           w="auto"
@@ -240,14 +236,14 @@ export function WithPopoverAnchor() {
           isDisabled={!isEditing}
           defaultValue="Popover Anchor"
         />
-      </PopoverAnchor>
+      </Popover.Anchor>
 
-      <PopoverTrigger>
+      <Popover.Trigger>
         <Button colorScheme="pink">{isEditing ? "Save" : "Edit"}</Button>
-      </PopoverTrigger>
+      </Popover.Trigger>
 
-      <PopoverContent>
-        <PopoverBody>
+      <Popover.Content>
+        <Popover.Body>
           Colors:
           <RadioGroup value={color} onChange={(newColor) => setColor(newColor)}>
             <Radio value="red">red</Radio>
@@ -255,24 +251,24 @@ export function WithPopoverAnchor() {
             <Radio value="green">green</Radio>
             <Radio value="purple">purple</Radio>
           </RadioGroup>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
   )
 }
 
 export const WithMatchWidth = () => (
-  <Popover matchWidth>
-    <PopoverTrigger>
+  <Popover.Root matchWidth>
+    <Popover.Trigger>
       <Button w="400px">Long Content</Button>
-    </PopoverTrigger>
-    <PopoverContent w="full">
-      <PopoverBody>
+    </Popover.Trigger>
+    <Popover.Content w="full">
+      <Popover.Body>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
-      </PopoverBody>
-    </PopoverContent>
-  </Popover>
+      </Popover.Body>
+    </Popover.Content>
+  </Popover.Root>
 )
