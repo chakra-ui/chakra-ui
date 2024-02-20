@@ -1,8 +1,8 @@
-import { Form } from "../form-control"
-import { Icon } from "../icon"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
-import { Checkbox, useCheckbox, useCheckboxGroup, UseCheckboxProps } from "."
+import { Checkbox, UseCheckboxProps, useCheckbox, useCheckboxGroup } from "."
+import { Form } from "../form-control"
+import { Icon } from "../icon"
 
 const HookCheckbox = (
   props: UseCheckboxProps & { children?: React.ReactNode },
