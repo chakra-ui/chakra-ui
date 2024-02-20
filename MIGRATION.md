@@ -107,6 +107,30 @@ After:
 
 - `ProgressLabel` should now be used to provide a label for the progress bar
 
+### Circular Progress
+
+Before:
+
+```tsx
+<CircularProgress value={50} />
+```
+
+After:
+
+```tsx
+<CircularProgress.Root value={50}>
+  <CircularProgress.Circle>
+    <CircularProgress.Track />
+    <CircularProgress.FilledTrack />
+  </CircularProgress.Circle>
+</CircularProgress.Root>
+```
+
+- `CircularProgressLabel` is now assigned to `CircularProgress.ValueText`
+
+- `CircularProgressLabel` should now be used to provide a label for the progress
+  bar
+
 ## Added
 
 ### `For` component
