@@ -1,31 +1,17 @@
-import {
-  omitThemingProps,
-  SystemStyleObject,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
-import { useMultiStyleConfig, useTheme } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { useMemo } from "react"
+import { useMultiStyleConfig, useTheme } from "../system"
 import {
   MenuDescendantsProvider,
   MenuProvider,
-  useMenu,
-  UseMenuProps,
-} from "./use-menu"
-
-const [MenuStylesProvider, useMenuStyles] = createContext<
-  Record<string, SystemStyleObject>
->({
-  name: `MenuStylesContext`,
-  errorMessage: `useMenuStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Menu />" `,
-})
-
-export { useMenuStyles }
+  MenuStylesProvider,
+} from "./menu-context"
+import { useMenu, UseMenuProps } from "./use-menu"
 
 type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 
-export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
+export interface MenuRootProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void
@@ -39,7 +25,7 @@ export interface MenuProps extends UseMenuProps, ThemingProps<"Menu"> {
  *
  * @see Docs https://chakra-ui.com/docs/components/menu
  */
-export const Menu: React.FC<MenuProps> = (props) => {
+export const MenuRoot: React.FC<MenuRootProps> = (props) => {
   const { children } = props
 
   const styles = useMultiStyleConfig("Menu", props)
@@ -61,4 +47,4 @@ export const Menu: React.FC<MenuProps> = (props) => {
   )
 }
 
-Menu.displayName = "Menu"
+MenuRoot.displayName = "Menu"

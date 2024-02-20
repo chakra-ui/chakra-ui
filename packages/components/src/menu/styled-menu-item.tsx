@@ -1,7 +1,7 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { chakra, forwardRef } from "../system"
 import { useMemo } from "react"
-import { useMenuStyles } from "./menu"
+import { chakra, forwardRef } from "../system"
+import { useMenuStyles } from "./menu-context"
 import { StyledMenuItemProps } from "./menu-item"
 
 export const StyledMenuItem = forwardRef<StyledMenuItemProps, "button">(

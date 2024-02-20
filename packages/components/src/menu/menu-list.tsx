@@ -1,9 +1,9 @@
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { callAll } from "@chakra-ui/utils/call-all"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLMotionProps, motion, Variants } from "framer-motion"
-import { useMenuStyles } from "./menu"
-import { useMenuContext, useMenuList, useMenuPositioner } from "./use-menu"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { useMenuContext, useMenuStyles } from "./menu-context"
+import { useMenuList, useMenuPositioner } from "./use-menu"
 
 export interface MenuListProps extends HTMLChakraProps<"div"> {
   /**

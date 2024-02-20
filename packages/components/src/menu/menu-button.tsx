@@ -1,8 +1,7 @@
-import { forwardRef, HTMLChakraProps, chakra } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-
-import { useMenuStyles } from "./menu"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useMenuButton } from "./use-menu"
+import { useMenuStyles } from "./menu-context"
 
 export interface MenuButtonProps extends HTMLChakraProps<"button"> {}
 
@@ -30,7 +29,7 @@ const StyledMenuButton = forwardRef<MenuButtonProps, "button">((props, ref) => {
  */
 export const MenuButton = forwardRef<MenuButtonProps, "button">(
   (props, ref) => {
-    const { children, as: As, ...rest } = props
+    const { children, as: As, asChild, ...rest } = props
 
     const buttonProps = useMenuButton(rest, ref)
 

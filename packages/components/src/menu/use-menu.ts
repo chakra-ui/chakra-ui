@@ -11,11 +11,7 @@ import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { getValidChildren } from "@chakra-ui/utils/children"
-import { createContext } from "@chakra-ui/utils/context"
 import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
-import { useClickable } from "../clickable"
-import { createDescendantContext } from "../descendant"
-import { usePopper, UsePopperProps } from "../popper"
 import {
   cloneElement,
   useCallback,
@@ -25,30 +21,16 @@ import {
   useRef,
   useState,
 } from "react"
+import { useClickable } from "../clickable"
+import { usePopper, UsePopperProps } from "../popper"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
-import { useShortcut } from "./use-shortcut"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track descendants and their indices
- * -----------------------------------------------------------------------------------------------*/
-
-export const [
-  MenuDescendantsProvider,
-  useMenuDescendantsContext,
-  useMenuDescendants,
+import {
+  useMenuContext,
   useMenuDescendant,
-] = createDescendantContext<HTMLElement>()
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track menu state and logic
- * -----------------------------------------------------------------------------------------------*/
-
-export const [MenuProvider, useMenuContext] = createContext<
-  Omit<UseMenuReturn, "descendants">
->({
-  strict: false,
-  name: "MenuContext",
-})
+  useMenuDescendants,
+  useMenuDescendantsContext,
+} from "./menu-context"
+import { useShortcut } from "./use-shortcut"
 
 /* -------------------------------------------------------------------------------------------------
  * useMenu hook

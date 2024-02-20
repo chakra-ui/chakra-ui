@@ -1,9 +1,16 @@
-export { Menu, useMenuStyles } from "./menu"
-export type { MenuProps } from "./menu"
 export { MenuButton } from "./menu-button"
 export type { MenuButtonProps } from "./menu-button"
 export { MenuCommand } from "./menu-command"
 export type { MenuCommandProps } from "./menu-command"
+export {
+  MenuDescendantsProvider,
+  MenuProvider,
+  useMenuContext,
+  useMenuDescendant,
+  useMenuDescendants,
+  useMenuDescendantsContext,
+  useMenuStyles,
+} from "./menu-context"
 export { MenuDivider } from "./menu-divider"
 export type { MenuDividerProps } from "./menu-divider"
 export { MenuGroup } from "./menu-group"
@@ -17,15 +24,12 @@ export { MenuList } from "./menu-list"
 export type { MenuListProps } from "./menu-list"
 export { MenuOptionGroup } from "./menu-option-group"
 export type { MenuOptionGroupProps } from "./menu-option-group"
+export { MenuRoot } from "./menu-root"
+export type { MenuRootProps } from "./menu-root"
+export * as Menu from "./namespace"
 export {
-  MenuDescendantsProvider,
-  MenuProvider,
   useMenu,
   useMenuButton,
-  useMenuContext,
-  useMenuDescendant,
-  useMenuDescendants,
-  useMenuDescendantsContext,
   useMenuItem,
   useMenuList,
   useMenuOption,
