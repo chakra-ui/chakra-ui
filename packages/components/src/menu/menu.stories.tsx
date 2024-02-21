@@ -42,14 +42,15 @@ function logEvents(e: React.MouseEvent | React.KeyboardEvent | undefined) {
 export const Basic = () => (
   <div style={{ minHeight: 4000, paddingTop: 500 }}>
     <Menu.Root>
-      <Menu.Button
-        as={Button}
-        variant="solid"
-        colorScheme="teal"
-        size="sm"
-        rightIcon={<FaUnlink />}
-      >
-        Open Wakanda menu
+      <Menu.Button asChild>
+        <Button
+          variant="solid"
+          colorScheme="teal"
+          size="sm"
+          rightIcon={<FaUnlink />}
+        >
+          Open Wakanda menu
+        </Button>
       </Menu.Button>
       <Menu.List>
         {words.map((word) => (
@@ -64,7 +65,9 @@ export const Basic = () => (
 
 export const LazyMenu = () => (
   <Menu.Root isLazy>
-    <Menu.Button as={Button}>Open Wakanda menu</Menu.Button>
+    <Menu.Button asChild>
+      <Button>Open Wakanda menu</Button>
+    </Menu.Button>
     <Menu.List>
       {words.map((word) => (
         <Menu.Item key={word} onClick={logEvents}>
@@ -78,8 +81,10 @@ export const LazyMenu = () => (
 export const WithDisabledItem = () => (
   <>
     <Menu.Root>
-      <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
-        Open menu
+      <Menu.Button asChild>
+        <Button variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </Button>
       </Menu.Button>
       <Menu.List>
         <Menu.Item isDisabled icon={<FaSearch />} command="⌥T">
@@ -94,8 +99,10 @@ export const WithDisabledItem = () => (
     </Menu.Root>
 
     <Menu.Root>
-      <Menu.Button as={Button} variant="solid" colorScheme="red" size="sm">
-        Open menu
+      <Menu.Button asChild>
+        <Button variant="solid" colorScheme="green" size="sm">
+          Open menu
+        </Button>
       </Menu.Button>
       <Menu.List>
         <Menu.Item icon={<FaSearch />} command="⌥T">
@@ -113,7 +120,10 @@ export const WithDisabledItem = () => (
 
 export const WithDisabledButFocusableItem = () => (
   <Menu.Root>
-    <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
+    <Menu.Button asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
       Open menu
     </Menu.Button>
     <Menu.List>
@@ -180,8 +190,10 @@ export const WithToggleableMenuItems = () => {
       </Button>
 
       <Menu.Root>
-        <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
-          Open menu
+        <Menu.Button asChild>
+          <Button variant="solid" colorScheme="green" size="sm">
+            Open menu
+          </Button>
         </Menu.Button>
         <Menu.List>
           {items.map(({ content, icon, isDisabled, command }) => (
@@ -202,8 +214,10 @@ export const WithToggleableMenuItems = () => {
 
 export const WithPortal = () => (
   <Menu.Root>
-    <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <Menu.Button asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </Menu.Button>
     <Portal>
       <Menu.List>
@@ -218,8 +232,10 @@ export const WithPortal = () => (
 
 export const withGroupedItems = () => (
   <Menu.Root>
-    <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <Menu.Button asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </Menu.Button>
     <Menu.List minWidth="240px">
       <Menu.Group title="Group 1">
@@ -236,13 +252,14 @@ export const withGroupedItems = () => (
 
 export const withMenuRadio = () => (
   <Menu.Root closeOnSelect={false}>
-    <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
-      Open menu
+    <Menu.Button asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </Menu.Button>
 
     <Menu.List minWidth="240px">
       <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-
       <Menu.Divider />
 
       <Menu.OptionGroup defaultValue="val-1" title="Order" type="radio">
@@ -251,7 +268,6 @@ export const withMenuRadio = () => (
       </Menu.OptionGroup>
 
       <Menu.Divider />
-
       <Menu.OptionGroup title="Country" type="checkbox">
         <Menu.ItemOption value="email">Email</Menu.ItemOption>
         <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
@@ -263,8 +279,10 @@ export const withMenuRadio = () => (
 
 export const withDisabledIconInMenuRadio = () => (
   <Menu.Root closeOnSelect={false}>
-    <Menu.Button as={Button} variant="solid" colorScheme="teal" size="sm">
-      Open menu
+    <Menu.Button asChild>
+      <Button variant="solid" colorScheme="green" size="sm">
+        Open menu
+      </Button>
     </Menu.Button>
 
     <Menu.List minWidth="240px">
@@ -287,7 +305,9 @@ export const WithInternalState = () => (
   <Menu.Root>
     {(api) => (
       <>
-        <Menu.Button as={Button}>{api.isOpen ? "Close" : "Open"}</Menu.Button>
+        <Menu.Button asChild>
+          <Button>{api.isOpen ? "Close" : "Open"}</Button>
+        </Menu.Button>
         <Menu.List>
           <Menu.Item>Download</Menu.Item>
           <Menu.Item onClick={() => alert("Kagebunshin")}>
@@ -344,7 +364,9 @@ export const WithScrolling = () => {
 
 export const JustAnotherExample = () => (
   <Menu.Root>
-    <Menu.Button as={Button}>Your Cats</Menu.Button>
+    <Menu.Button asChild>
+      <Button>Your Cats</Button>
+    </Menu.Button>
     <Menu.List>
       <Menu.Item minH="48px">
         <Image
@@ -372,7 +394,9 @@ export const JustAnotherExample = () => (
 
 export const WithLink = () => (
   <Menu.Root>
-    <Menu.Button as={Button}>Actions</Menu.Button>
+    <Menu.Button asChild>
+      <Button>Actions</Button>
+    </Menu.Button>
     <Menu.List>
       <Menu.Item>Download</Menu.Item>
       <Menu.Item>Create a Copy</Menu.Item>
@@ -391,14 +415,10 @@ export const SplitButton = () => (
       Welcome
     </Button>
     <Menu.Root placement="bottom-end" gutter={4}>
-      <Menu.Button
-        as={Button}
-        variant="outline"
-        size="sm"
-        fontSize="xs"
-        borderLeftRadius="0"
-      >
-        <FaChevronDown />
+      <Menu.Button asChild>
+        <Button variant="outline" size="sm" fontSize="xs" borderLeftRadius="0">
+          <FaChevronDown />
+        </Button>
       </Menu.Button>
       <Menu.List minW="160px">
         <Menu.Item fontSize="14px">Menu 1</Menu.Item>
@@ -415,7 +435,9 @@ export const WithinForm = () => {
       <fieldset>
         <legend>regular Menu.List with Menu.Items</legend>
         <Menu.Root>
-          <Menu.Button as={Button}>do something</Menu.Button>
+          <Menu.Button asChild>
+            <Button>do something</Button>
+          </Menu.Button>
           <Menu.List>
             <Menu.Item isDisabled>Download</Menu.Item>
             <Menu.Item>Create a Copy</Menu.Item>
