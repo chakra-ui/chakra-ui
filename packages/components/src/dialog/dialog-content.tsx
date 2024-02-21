@@ -36,7 +36,7 @@ export const DialogContent = forwardRef<DialogContentProps, "section">(
         <DialogTransition
           preset={motionPreset}
           motionProps={motionProps}
-          {...(api.getDialogProps(rest, ref) as any)}
+          {...(api.getContentProps(rest, ref) as any)}
           className={cx("chakra-dialog__content", className)}
           __css={dialogStyles}
         >

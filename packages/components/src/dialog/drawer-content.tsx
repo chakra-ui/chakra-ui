@@ -7,7 +7,7 @@ import { useDialogContext, useDialogStyles } from "./dialog-context"
 import { DialogFocusScope } from "./dialog-focus"
 import { useDrawerContext } from "./drawer"
 
-const MotionDiv = chakra(Slide)
+const StyledContent = chakra(Slide)
 
 export interface DrawerContentProps extends HTMLChakraProps<"section"> {
   /**
@@ -34,55 +34,34 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
       ...rest
     } = props
 
-    const { getDialogProps, getDialogContainerProps, isOpen } =
-      useDialogContext()
+    const { getContentProps, isOpen } = useDialogContext()
 
-    const dialogProps = getDialogProps(rest, ref) as any
-    const containerProps = getDialogContainerProps(rootProps)
-
-    const _className = cx("chakra-dialog__content", className)
-
+    const contentProps = getContentProps(rest, ref) as any
     const styles = useDialogStyles()
 
-    const dialogStyles = defineStyle({
+    const ContentStyles = defineStyle({
       display: "flex",
       flexDirection: "column",
       position: "relative",
       width: "100%",
       outline: 0,
-      ...styles.dialog,
-    })
-
-    const dialogContainerStyles = defineStyle({
-      display: "flex",
-      width: "100vw",
-      height: "$100vh",
-      position: "fixed",
-      left: 0,
-      top: 0,
-      ...styles.dialogContainer,
+      ...styles.content,
     })
 
     const { placement } = useDrawerContext()
 
     return (
       <DialogFocusScope>
-        <chakra.div
-          {...containerProps}
-          className="chakra-dialog__content-container"
-          __css={dialogContainerStyles}
+        <StyledContent
+          motionProps={motionProps}
+          direction={placement}
+          in={isOpen}
+          className={cx("chakra-dialog__content", className)}
+          {...contentProps}
+          __css={ContentStyles}
         >
-          <MotionDiv
-            motionProps={motionProps}
-            direction={placement}
-            in={isOpen}
-            className={_className}
-            {...dialogProps}
-            __css={dialogStyles}
-          >
-            {children}
-          </MotionDiv>
-        </chakra.div>
+          {children}
+        </StyledContent>
       </DialogFocusScope>
     )
   },

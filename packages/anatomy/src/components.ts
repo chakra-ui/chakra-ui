@@ -49,7 +49,7 @@ export const circularProgressAnatomy = anatomy("progress").parts(
 export const drawerAnatomy = anatomy("drawer").parts(
   "overlay",
   "positioner",
-  "dialog",
+  "content",
   "header",
   "closeButton",
   "body",

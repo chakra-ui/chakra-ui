@@ -19,11 +19,11 @@ const $bs = cssVar("drawer-box-shadow")
 function getSize(value: string) {
   if (value === "full") {
     return definePartsStyle({
-      dialog: { maxW: "100vw", h: "100vh" },
+      content: { maxW: "100vw", h: "100vh" },
     })
   }
   return definePartsStyle({
-    dialog: { maxW: value },
+    content: { maxW: value },
   })
 }
 
@@ -32,7 +32,7 @@ const baseStyleOverlay = defineStyle({
   zIndex: "modal",
 })
 
-const baseStyleDialogContainer = defineStyle({
+const baseStylePositioner = defineStyle({
   display: "flex",
   zIndex: "modal",
   justifyContent: "center",
@@ -84,7 +84,7 @@ const baseStyleFooter = defineStyle({
 
 const baseStyle = definePartsStyle((props) => ({
   overlay: baseStyleOverlay,
-  dialogContainer: baseStyleDialogContainer,
+  positioner: baseStylePositioner,
   dialog: runIfFn(baseStyleDialog, props),
   header: baseStyleHeader,
   closeButton: baseStyleCloseButton,

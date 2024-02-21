@@ -102,7 +102,7 @@ export function useDialog(props: UseDialogProps) {
   const [headerMounted, setHeaderMounted] = useState(false)
   const [bodyMounted, setBodyMounted] = useState(false)
 
-  const getDialogProps: PropGetter = useCallback(
+  const getContentProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       role,
       ...props,
@@ -166,7 +166,7 @@ export function useDialog(props: UseDialogProps) {
     setHeaderMounted,
     dialogRef,
     overlayRef,
-    getDialogProps,
+    getContentProps,
     getPositionerProps,
     index,
   }
