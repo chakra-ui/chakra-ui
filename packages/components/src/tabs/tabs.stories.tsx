@@ -1,7 +1,7 @@
 import { useInterval } from "@chakra-ui/hooks/use-interval"
 import * as React from "react"
 import { Tabs } from "."
-import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "../dialog"
+import { Drawer } from "../drawer"
 import { chakra } from "../system"
 
 export default {
@@ -291,11 +291,12 @@ export const WithSwappedTabs = () => {
   )
 }
 
-export const withinDrawer = () => (
-  <Drawer isOpen onClose={console.log}>
-    <DrawerOverlay>
-      <DrawerContent>
-        <DrawerBody>
+export const WithinDrawer = () => (
+  <Drawer.Root isOpen onClose={console.log}>
+    <Drawer.Overlay />
+    <Drawer.Positioner>
+      <Drawer.Content>
+        <Drawer.Body>
           <Tabs.Root variant="unstyled" isManual>
             <Tabs.List>
               <Tabs.Tab>Settings</Tabs.Tab>
@@ -311,10 +312,10 @@ export const withinDrawer = () => (
               <Tabs.Panel>Preferences</Tabs.Panel>
             </Tabs.Panels>
           </Tabs.Root>
-        </DrawerBody>
-      </DrawerContent>
-    </DrawerOverlay>
-  </Drawer>
+        </Drawer.Body>
+      </Drawer.Content>
+    </Drawer.Positioner>
+  </Drawer.Root>
 )
 
 export const WithTabPanelWrapper = () => (
