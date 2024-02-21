@@ -2,7 +2,7 @@ import { ThemingProps } from "@chakra-ui/styled-system"
 import { useTheme } from "../system"
 import { createContext } from "@chakra-ui/utils/context"
 import { SlideOptions } from "../transition"
-import { Modal, ModalProps } from "./modal"
+import { DialogRoot, DialogRootProps } from "./dialog-root"
 
 const [DrawerContextProvider, useDrawerContext] = createContext<DrawerOptions>()
 
@@ -45,7 +45,7 @@ export interface DrawerProps
   extends DrawerOptions,
     ThemingProps<"Drawer">,
     Omit<
-      ModalProps,
+      DialogRootProps,
       "scrollBehavior" | "motionPreset" | "isCentered" | keyof ThemingProps
     > {}
 
@@ -70,22 +70,22 @@ export function Drawer(props: DrawerProps) {
 
   return (
     <DrawerContextProvider value={{ placement }}>
-      <Modal
+      <DialogRoot
         isOpen={isOpen}
         onClose={onClose}
         styleConfig={drawerStyleConfig}
         {...rest}
       >
         {children}
-      </Modal>
+      </DialogRoot>
     </DrawerContextProvider>
   )
 }
 
-export { ModalBody as DrawerBody } from "./modal-body"
-export { ModalCloseButton as DrawerCloseButton } from "./modal-close-button"
-export { ModalFooter as DrawerFooter } from "./modal-footer"
-export { ModalHeader as DrawerHeader } from "./modal-header"
-export { ModalOverlay as DrawerOverlay } from "./modal-overlay"
+export { DialogBody as DrawerBody } from "./dialog-body"
+export { DialogCloseButton as DrawerCloseButton } from "./dialog-close-button"
+export { DialogFooter as DrawerFooter } from "./dialog-footer"
+export { DialogHeader as DrawerHeader } from "./dialog-header"
+export { DialogOverlay as DrawerOverlay } from "./dialog-overlay"
 
 export { useDrawerContext }

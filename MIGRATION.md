@@ -242,6 +242,16 @@ After:
 </NativeSelect.Root>
 ```
 
+### Modal -> Dialog
+
+The `Modal` component has been renamed to `Dialog` to better reflect its purpose
+as a dialog element.
+
+### Alert Dialog
+
+We've removed the `AlertDialog` component in favor of passing the
+`role="alertdialog"` to the `Dialog` component.
+
 ## Added
 
 ### `For` component

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Tooltip } from "."
 import { Button } from "../button"
-import { Modal, ModalContent, ModalOverlay } from "../modal"
+import { Modal, ModalContent, ModalOverlay } from "../dialog"
 import { chakra } from "../system"
 
 export default {

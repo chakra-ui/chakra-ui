@@ -2,17 +2,17 @@ import { usePresence } from "framer-motion"
 import { useEffect } from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { FocusLock } from "../focus-lock"
-import { useModalContext } from "./modal"
-import { useModalManager } from "./modal-manager"
+import { useDialogContext } from "./dialog-context"
+import { useDialogManager } from "./dialog-manager"
 
-interface ModalFocusScopeProps {
+interface DialogFocusScopeProps {
   /**
    * @type React.ReactElement
    */
   children: React.ReactElement
 }
 
-export function ModalFocusScope(props: ModalFocusScopeProps) {
+export function DialogFocusScope(props: DialogFocusScopeProps) {
   const {
     autoFocus,
     trapFocus,
@@ -25,7 +25,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     preserveScrollBarGap,
     lockFocusAcrossFrames,
     isOpen,
-  } = useModalContext()
+  } = useDialogContext()
 
   const [isPresent, safeToRemove] = usePresence()
 
@@ -35,7 +35,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
     }
   }, [isPresent, safeToRemove])
 
-  const index = useModalManager(dialogRef, isOpen)
+  const index = useDialogManager(dialogRef, isOpen)
 
   return (
     <FocusLock

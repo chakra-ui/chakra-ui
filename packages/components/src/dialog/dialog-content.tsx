@@ -1,27 +1,23 @@
 import { defineStyle } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLMotionProps } from "framer-motion"
-import { useModalContext, useModalStyles } from "./modal"
-import { ModalFocusScope } from "./modal-focus"
-import { ModalTransition } from "./modal-transition"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { useDialogContext, useDialogStyles } from "./dialog-context"
+import { DialogFocusScope } from "./dialog-focus"
+import { DialogTransition } from "./dialog-transition"
 
-export interface ModalContentProps extends HTMLChakraProps<"section"> {
+export interface DialogContentProps extends HTMLChakraProps<"section"> {
   /**
-   * The props to forward to the modal's content wrapper
+   * The props to forward to the dialog's content wrapper
    */
   containerProps?: HTMLChakraProps<"div">
   /**
-   * The custom framer-motion transition to use for the modal
+   * The custom framer-motion transition to use for the dialog
    */
   motionProps?: HTMLMotionProps<"section">
 }
 
-/**
- * ModalContent is used to group modal's content. It has all the
- * necessary `aria-*` properties to indicate that it is a modal
- */
-export const ModalContent = forwardRef<ModalContentProps, "section">(
+export const DialogContent = forwardRef<DialogContentProps, "section">(
   (props, ref) => {
     const {
       className,
@@ -31,14 +27,14 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
       ...rest
     } = props
 
-    const { getDialogProps, getDialogContainerProps } = useModalContext()
+    const { getDialogProps, getDialogContainerProps } = useDialogContext()
 
     const dialogProps = getDialogProps(rest, ref) as any
     const containerProps = getDialogContainerProps(rootProps)
 
-    const _className = cx("chakra-modal__content", className)
+    const _className = cx("chakra-dialog__content", className)
 
-    const styles = useModalStyles()
+    const styles = useDialogStyles()
 
     const dialogStyles = defineStyle({
       display: "flex",
@@ -59,17 +55,17 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
       ...styles.dialogContainer,
     })
 
-    const { motionPreset } = useModalContext()
+    const { motionPreset } = useDialogContext()
 
     return (
-      <ModalFocusScope>
+      <DialogFocusScope>
         <chakra.div
           {...containerProps}
-          className="chakra-modal__content-container"
+          className="chakra-dialog__content-container"
           tabIndex={-1}
           __css={dialogContainerStyles}
         >
-          <ModalTransition
+          <DialogTransition
             preset={motionPreset}
             motionProps={motionProps}
             className={_className}
@@ -77,11 +73,11 @@ export const ModalContent = forwardRef<ModalContentProps, "section">(
             __css={dialogStyles}
           >
             {children}
-          </ModalTransition>
+          </DialogTransition>
         </chakra.div>
-      </ModalFocusScope>
+      </DialogFocusScope>
     )
   },
 )
 
-ModalContent.displayName = "ModalContent"
+DialogContent.displayName = "DialogContent"

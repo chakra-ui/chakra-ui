@@ -3,19 +3,11 @@ import { chakra } from "../system"
 import * as React from "react"
 //@ts-ignore
 import Lorem from "react-lorem-component"
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-} from "."
+import { Dialog } from "."
 import { PortalManager } from "../portal"
 
 export default {
-  title: "Components / Overlay / Modal",
+  title: "Components / Overlay / Dialog",
   decorators: [
     (StoryFn: any) => (
       <PortalManager>
@@ -36,32 +28,32 @@ const Button = chakra("button", {
   },
 })
 
-export function BasicUsage() {
+export function Basic() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button onClick={onOpen}>Open</Button>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalHeader>Welcome Home</ModalHeader>
-          <ModalBody>
+      <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.CloseButton />
+          <Dialog.Header>Welcome Home</Dialog.Header>
+          <Dialog.Body>
             Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
             ullamco deserunt aute id consequat veniam incididunt duis in sint
             irure nisi.
-          </ModalBody>
-          <ModalFooter>
+          </Dialog.Body>
+          <Dialog.Footer>
             <Button onClick={onClose}>Cancel</Button>
             <Button>Save</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
 
-export function ReturnFocus() {
+export function FinalFocusRef() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef<any>()
 
@@ -76,73 +68,73 @@ export function ReturnFocus() {
       </chakra.div>
 
       <Button mt={4} onClick={onOpen}>
-        Open Modal
+        Open Dialog.
       </Button>
 
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+      <Dialog.Root finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Header>Dialog. Title</Dialog.Header>
+          <Dialog.CloseButton />
+          <Dialog.Body>
             Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
             ullamco deserunt aute id consequat veniam incididunt duis in sint
             irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
             officia tempor esse quis.
-          </ModalBody>
+          </Dialog.Body>
 
-          <ModalFooter>
+          <Dialog.Footer>
             <Button onClick={onClose}>Close</Button>
             <Button>Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
 
-export function NestedModal() {
+export function NestedDialogs() {
   const first = useDisclosure()
   const second = useDisclosure()
   const third = useDisclosure()
   return (
     <>
       <button onClick={first.onOpen}>Open</button>
-      <Modal isOpen={first.isOpen} onClose={first.onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalBody>
+      <Dialog.Root isOpen={first.isOpen} onClose={first.onClose}>
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Header>Dialog. Title</Dialog.Header>
+          <Dialog.Body>
             Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
             ullamco deserunt aute id consequat veniam incididunt duis in sint
             irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
             officia tempor esse quis.
-          </ModalBody>
-          <ModalFooter>
+          </Dialog.Body>
+          <Dialog.Footer>
             <chakra.div flex="1" />
             <Button>Button 2</Button>
             <Button onClick={second.onOpen}>Open Nested</Button>
-          </ModalFooter>
+          </Dialog.Footer>
 
-          <Modal isOpen={second.isOpen} onClose={second.onClose}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Modal 2 Title</ModalHeader>
-              <ModalFooter>
+          <Dialog.Root isOpen={second.isOpen} onClose={second.onClose}>
+            <Dialog.Overlay />
+            <Dialog.Content>
+              <Dialog.Header>Dialog. 2 Title</Dialog.Header>
+              <Dialog.Footer>
                 <chakra.div flex="1" />
                 <Button onClick={third.onOpen}>Open Nested 2</Button>
-              </ModalFooter>
+              </Dialog.Footer>
 
-              <Modal isOpen={third.isOpen} onClose={third.onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader tabIndex={0}>Modal 3 Title</ModalHeader>
-                </ModalContent>
-              </Modal>
-            </ModalContent>
-          </Modal>
-        </ModalContent>
-      </Modal>
+              <Dialog.Root isOpen={third.isOpen} onClose={third.onClose}>
+                <Dialog.Overlay />
+                <Dialog.Content>
+                  <Dialog.Header tabIndex={0}>Dialog. 3 Title</Dialog.Header>
+                </Dialog.Content>
+              </Dialog.Root>
+            </Dialog.Content>
+          </Dialog.Root>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
@@ -152,19 +144,19 @@ export const InsideScroll = () => {
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Modal onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+      <Dialog.Root onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Header>Dialog. Title</Dialog.Header>
+          <Dialog.CloseButton />
+          <Dialog.Body>
             <Lorem size={5} />
-          </ModalBody>
-          <ModalFooter>
+          </Dialog.Body>
+          <Dialog.Footer>
             <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
@@ -174,19 +166,19 @@ export const AnimationDisabled = () => {
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Modal onClose={onClose} isOpen={isOpen} motionPreset="none">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+      <Dialog.Root onClose={onClose} isOpen={isOpen} motionPreset="none">
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Header>Dialog. Title</Dialog.Header>
+          <Dialog.CloseButton />
+          <Dialog.Body>
             <Lorem size={5} />
-          </ModalBody>
-          <ModalFooter>
+          </Dialog.Body>
+          <Dialog.Footer>
             <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
@@ -196,19 +188,19 @@ export const FullWithLongContent = () => {
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Modal onClose={onClose} isOpen={isOpen} size="full">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title2</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+      <Dialog.Root onClose={onClose} isOpen={isOpen} size="full">
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Header>Dialog. Title2</Dialog.Header>
+          <Dialog.CloseButton />
+          <Dialog.Body>
             <Lorem count={30} />
-          </ModalBody>
-          <ModalFooter>
+          </Dialog.Body>
+          <Dialog.Footer>
             <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
@@ -218,9 +210,9 @@ export function WithCustomMotionProps() {
   return (
     <>
       <Button onClick={onOpen}>Open</Button>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
-        <ModalContent
+      <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
+        <Dialog.Overlay />
+        <Dialog.Content
           motionProps={{
             initial: "exit",
             animate: "enter",
@@ -231,19 +223,19 @@ export function WithCustomMotionProps() {
             },
           }}
         >
-          <ModalCloseButton />
-          <ModalHeader>Welcome Home</ModalHeader>
-          <ModalBody>
+          <Dialog.CloseButton />
+          <Dialog.Header>Welcome Home</Dialog.Header>
+          <Dialog.Body>
             Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
             ullamco deserunt aute id consequat veniam incididunt duis in sint
             irure nisi.
-          </ModalBody>
-          <ModalFooter>
+          </Dialog.Body>
+          <Dialog.Footer>
             <Button onClick={onClose}>Cancel</Button>
             <Button>Save</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
@@ -253,30 +245,30 @@ export function WithInitialFocus() {
   const initialFocusRef = React.useRef(null)
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Modal
+      <Button onClick={onOpen}>Open Dialog.</Button>
+      <Dialog.Root
         isOpen={isOpen}
         onClose={onClose}
         initialFocusRef={initialFocusRef}
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Header>Dialog. Title</Dialog.Header>
+          <Dialog.CloseButton />
+          <Dialog.Body>
             <p>With just the text it's awesome</p>
             <input
               defaultValue="But with a focussed input it breaks"
               name="name"
               ref={initialFocusRef}
             />
-          </ModalBody>
+          </Dialog.Body>
 
-          <ModalFooter>
+          <Dialog.Footer>
             <Button>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Root>
     </>
   )
 }
@@ -289,22 +281,22 @@ export const InitialFocusRef = () => {
       <button data-testid="button" onClick={() => setIsOpen(true)}>
         Open
       </button>
-      <Modal
+      <Dialog.Root
         isOpen={isOpen}
         initialFocusRef={inputRef}
         onClose={() => setIsOpen(false)}
       >
-        <ModalOverlay>
-          <ModalContent>
-            <ModalHeader>Modal header</ModalHeader>
-            <ModalBody>
+        <Dialog.Overlay>
+          <Dialog.Content>
+            <Dialog.Header>Dialog. header</Dialog.Header>
+            <Dialog.Body>
               <input />
               <input />
               <input ref={inputRef} />
-            </ModalBody>
-          </ModalContent>
-        </ModalOverlay>
-      </Modal>
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Overlay>
+      </Dialog.Root>
     </>
   )
 }

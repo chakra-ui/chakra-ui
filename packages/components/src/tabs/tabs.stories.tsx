@@ -1,7 +1,7 @@
 import { useInterval } from "@chakra-ui/hooks/use-interval"
 import * as React from "react"
 import { Tabs } from "."
-import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "../modal"
+import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "../dialog"
 import { chakra } from "../system"
 
 export default {

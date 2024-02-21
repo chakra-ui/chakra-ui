@@ -3,26 +3,26 @@ import { cx } from "@chakra-ui/utils/cx"
 import type { HTMLMotionProps } from "framer-motion"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { Slide } from "../transition"
+import { useDialogContext, useDialogStyles } from "./dialog-context"
+import { DialogFocusScope } from "./dialog-focus"
 import { useDrawerContext } from "./drawer"
-import { useModalContext, useModalStyles } from "./modal"
-import { ModalFocusScope } from "./modal-focus"
 
 const MotionDiv = chakra(Slide)
 
 export interface DrawerContentProps extends HTMLChakraProps<"section"> {
   /**
-   * The props to forward to the modal's content wrapper
+   * The props to forward to the dialog's content wrapper
    */
   containerProps?: HTMLChakraProps<"div">
   /**
-   * The custom framer-motion transition to use for the modal
+   * The custom framer-motion transition to use for the dialog
    */
   motionProps?: HTMLMotionProps<"section">
 }
 
 /**
- * ModalContent is used to group modal's content. It has all the
- * necessary `aria-*` properties to indicate that it is a modal
+ * Used to group dialog's content. It has all the
+ * necessary `aria-*` properties to indicate that it is a dialog
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   (props, ref) => {
@@ -35,14 +35,14 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
     } = props
 
     const { getDialogProps, getDialogContainerProps, isOpen } =
-      useModalContext()
+      useDialogContext()
 
     const dialogProps = getDialogProps(rest, ref) as any
     const containerProps = getDialogContainerProps(rootProps)
 
-    const _className = cx("chakra-modal__content", className)
+    const _className = cx("chakra-dialog__content", className)
 
-    const styles = useModalStyles()
+    const styles = useDialogStyles()
 
     const dialogStyles = defineStyle({
       display: "flex",
@@ -66,10 +66,10 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
     const { placement } = useDrawerContext()
 
     return (
-      <ModalFocusScope>
+      <DialogFocusScope>
         <chakra.div
           {...containerProps}
-          className="chakra-modal__content-container"
+          className="chakra-dialog__content-container"
           __css={dialogContainerStyles}
         >
           <MotionDiv
@@ -83,7 +83,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
             {children}
           </MotionDiv>
         </chakra.div>
-      </ModalFocusScope>
+      </DialogFocusScope>
     )
   },
 )

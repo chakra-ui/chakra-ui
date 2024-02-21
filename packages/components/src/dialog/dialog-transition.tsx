@@ -1,18 +1,13 @@
-import { chakra, ChakraProps } from "../system"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
+import { ChakraProps, chakra } from "../system"
 import { scaleFadeConfig, slideFadeConfig } from "../transition"
+import { DialogMotionPreset } from "./dialog-types"
 
-export interface ModalTransitionProps
+export interface DialogTransitionProps
   extends Omit<HTMLMotionProps<"section">, "color" | "transition">,
     ChakraProps {
-  preset?:
-    | "slideInBottom"
-    | "slideInRight"
-    | "slideInTop"
-    | "slideInLeft"
-    | "scale"
-    | "none"
+  preset?: DialogMotionPreset
   motionProps?: HTMLMotionProps<"section">
 }
 
@@ -42,12 +37,12 @@ const transitions = {
 
 const MotionSection = chakra(motion.section)
 
-const getMotionProps = (preset: ModalTransitionProps["preset"]) => {
+const getMotionProps = (preset: DialogTransitionProps["preset"]) => {
   return transitions[preset || "none"]
 }
 
-export const ModalTransition = forwardRef(
-  (props: ModalTransitionProps, ref: React.Ref<any>) => {
+export const DialogTransition = forwardRef(
+  (props: DialogTransitionProps, ref: React.Ref<any>) => {
     const { preset, motionProps = getMotionProps(preset), ...rest } = props
     return (
       <MotionSection ref={ref} {...(motionProps as ChakraProps)} {...rest} />
@@ -55,4 +50,4 @@ export const ModalTransition = forwardRef(
   },
 )
 
-ModalTransition.displayName = "ModalTransition"
+DialogTransition.displayName = "DialogTransition"

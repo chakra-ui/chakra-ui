@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react"
 import { hideOthers } from "aria-hidden"
 import { MutableRefObject } from "react"
-import { useAriaHidden } from "../modal/use-modal"
+import { useAriaHidden } from "./use-aria-hidden"
 
 vi.mock("aria-hidden")
 

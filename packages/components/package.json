@@ -320,6 +320,17 @@
         "default": "./dist/cjs/descendant/index.cjs"
       }
     },
+    "./dialog": {
+      "source": "./src/dialog/index.ts",
+      "import": {
+        "types": "./dist/types/dialog/index.d.mts",
+        "default": "./dist/esm/dialog/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/dialog/index.d.ts",
+        "default": "./dist/cjs/dialog/index.cjs"
+      }
+    },
     "./divider": {
       "source": "./src/divider/index.ts",
       "import": {
@@ -538,17 +549,6 @@
       "require": {
         "types": "./dist/types/menu/index.d.ts",
         "default": "./dist/cjs/menu/index.cjs"
-      }
-    },
-    "./modal": {
-      "source": "./src/modal/index.ts",
-      "import": {
-        "types": "./dist/types/modal/index.d.mts",
-        "default": "./dist/esm/modal/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/modal/index.d.ts",
-        "default": "./dist/cjs/modal/index.cjs"
       }
     },
     "./native-select": {

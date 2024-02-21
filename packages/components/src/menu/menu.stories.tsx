@@ -7,11 +7,7 @@ import {
   FaUnlink,
 } from "react-icons/fa"
 import { Menu, useMenuItem } from "."
-import { Button } from "../button"
-import { Image } from "../image"
-import { Modal, ModalBody, ModalContent, ModalOverlay } from "../modal"
-import { Portal } from "../portal"
-import { chakra } from "../system"
+import { Button, Dialog, Image, Portal, chakra } from ".."
 
 export * from "./menu.stories"
 
@@ -549,15 +545,19 @@ export const WithoutMenuButton = () => {
 
   return (
     <>
-      <Modal
+      <Dialog.Root
         onClose={close}
         isOpen={isOpen}
         isCentered
         motionPreset="slideInBottom"
       >
-        <ModalOverlay />
-        <ModalContent minHeight={100} background="none" boxShadow="none">
-          <ModalBody display="flex" justifyContent="center" alignItems="center">
+        <Dialog.Overlay />
+        <Dialog.Content minHeight={100} background="none" boxShadow="none">
+          <Dialog.Body
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
             <Menu.Root isOpen closeOnSelect onClose={close}>
               <Menu.List paddingY={5}>
                 <Menu.Item>
@@ -566,9 +566,9 @@ export const WithoutMenuButton = () => {
                 <Menu.Item>Visualizes the current editor code</Menu.Item>
               </Menu.List>
             </Menu.Root>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+          </Dialog.Body>
+        </Dialog.Content>
+      </Dialog.Root>
       <p>Press Cmd + K to open</p>
     </>
   )

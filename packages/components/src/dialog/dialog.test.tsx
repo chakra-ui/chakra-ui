@@ -6,30 +6,26 @@ import {
   waitFor,
 } from "@chakra-ui/test-utils"
 import * as React from "react"
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-} from "."
+import { Dialog } from "."
+
+const DemoDialog = (props: Omit<Dialog.RootProps, "children">) => {
+  return (
+    <Dialog.Root {...props}>
+      <Dialog.Overlay />
+      <Dialog.Content data-testid="content">
+        <Dialog.Header>Dialog header</Dialog.Header>
+        <Dialog.CloseButton data-testid="close" />
+        <Dialog.Body>Dialog body</Dialog.Body>
+        <Dialog.Footer>Dialog footer</Dialog.Footer>
+      </Dialog.Content>
+    </Dialog.Root>
+  )
+}
 
 test("should have no accessibility violations", async () => {
-  const { baseElement } = render(
-    <Modal isOpen onClose={vi.fn()}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal header</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>Modal body</ModalBody>
-        <ModalFooter>Modal footer</ModalFooter>
-      </ModalContent>
-    </Modal>,
-  )
+  const { baseElement } = render(<DemoDialog isOpen onClose={vi.fn()} />)
 
-  // Test baseElement because the modal is in a portal
+  // Test baseElement because the Dialog. is in a portal
   await testA11y(baseElement, {
     axeOptions: {
       rules: {
@@ -41,79 +37,43 @@ test("should have no accessibility violations", async () => {
 })
 
 test("should have the proper 'aria' attributes", () => {
-  const tools = render(
-    <Modal isOpen onClose={vi.fn()}>
-      <ModalOverlay />
-      <ModalContent data-testid="modal">
-        <ModalHeader>Modal header</ModalHeader>
-        <ModalBody>Modal body</ModalBody>
-      </ModalContent>
-    </Modal>,
-  )
+  const tools = render(<DemoDialog isOpen onClose={vi.fn()} />)
 
-  const dialog = tools.getByTestId("modal")
+  const dialog = tools.getByRole("dialog")
 
-  /**
-   * should have `aria-modal` set to `true`
-   */
   expect(dialog).toHaveAttribute("aria-modal", "true")
   expect(dialog).toHaveAttribute("role", "dialog")
 
-  /**
-   * The id of `DialogBody` should equal the `aria-describedby` of the dialog
-   */
-  expect(tools.getByText("Modal body").id).toEqual(
+  expect(tools.getByText("Dialog body").id).toEqual(
     dialog.getAttribute("aria-describedby"),
   )
 
   /**
    * The id of `DialogHeader` should equal the `aria-labelledby` of the dialog
    */
-  expect(tools.getByText("Modal header").id).toEqual(
+  expect(tools.getByText("Dialog header").id).toEqual(
     dialog.getAttribute("aria-labelledby"),
   )
 })
 
 test("should fire 'onClose' callback when close button is clicked", () => {
   const onClose = vi.fn()
+  const tools = render(<DemoDialog isOpen onClose={onClose} />)
 
-  const tools = render(
-    <Modal isOpen onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal header</ModalHeader>
-        <ModalCloseButton data-testid="close" />
-      </ModalContent>
-    </Modal>,
-  )
-
-  /**
-   * click the close button
-   */
   fireEvent.click(tools.getByTestId("close"))
-
   expect(onClose).toHaveBeenCalled()
 })
 
-describe("closing the modal", () => {
+describe("closing the Dialog.", () => {
   test("clicking overlay calls the onClose callback", async () => {
     const onClose = vi.fn()
-    render(
-      <Modal isOpen onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal header</ModalHeader>
-          <ModalBody>Modal body</ModalBody>
-        </ModalContent>
-      </Modal>,
-    )
+    render(<DemoDialog isOpen onClose={onClose} />)
 
     const dialog = await screen.findByRole("dialog")
     const overlay = dialog.parentElement
 
     if (overlay) {
-      // an extra mousedown is required to get onOverlayClick function in `useModal` to work
-      fireEvent.mouseDown(overlay)
+      fireEvent.pointerDown(overlay)
       fireEvent.click(overlay)
       expect(onClose).toHaveBeenCalled()
     }
@@ -121,15 +81,7 @@ describe("closing the modal", () => {
 
   test("pressing escape key calls the onClose callback", async () => {
     const onClose = vi.fn()
-    const { user } = render(
-      <Modal isOpen onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal header</ModalHeader>
-          <ModalBody>Modal body</ModalBody>
-        </ModalContent>
-      </Modal>,
-    )
+    const { user } = render(<DemoDialog isOpen onClose={onClose} />)
 
     await user.keyboard("[Escape]")
     expect(onClose).toHaveBeenCalled()
@@ -149,24 +101,29 @@ test("focuses the initial focus ref when opened", () => {
         >
           Open
         </button>
-        <Modal isOpen={isOpen} initialFocusRef={inputRef} onClose={vi.fn()}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Modal header</ModalHeader>
-            <ModalBody>
+
+        <Dialog.Root
+          isOpen={isOpen}
+          initialFocusRef={inputRef}
+          onClose={vi.fn()}
+        >
+          <Dialog.Overlay />
+          <Dialog.Content>
+            <Dialog.Header>Dialog. header</Dialog.Header>
+            <Dialog.Body>
               <input />
               <input />
               <input data-testid="input" ref={inputRef} />
-            </ModalBody>
-          </ModalContent>
-        </Modal>
+            </Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Root>
       </>
     )
   }
   const tools = render(<Component />)
 
   /**
-   * User clicks button to open the modal
+   * User clicks button to open the Dialog.
    */
   fireEvent.click(tools.getByTestId("button"))
 
@@ -190,18 +147,19 @@ test("should return focus to button when closed", async () => {
         >
           Open
         </button>
-        <Modal
+
+        <Dialog.Root
           finalFocusRef={buttonRef}
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Modal header</ModalHeader>
-            <ModalCloseButton data-testid="close" />
-            <ModalBody>Modal body</ModalBody>
-          </ModalContent>
-        </Modal>
+          <Dialog.Overlay />
+          <Dialog.Content>
+            <Dialog.Header>Dialog. header</Dialog.Header>
+            <Dialog.CloseButton data-testid="close" />
+            <Dialog.Body>Dialog. body</Dialog.Body>
+          </Dialog.Content>
+        </Dialog.Root>
       </>
     )
   }
@@ -211,7 +169,7 @@ test("should return focus to button when closed", async () => {
   // make sure button isn't focused at the start
   expect(button).not.toHaveFocus()
 
-  // open and close the modal
+  // open and close the Dialog.
   fireEvent.click(button)
   fireEvent.click(tools.getByTestId("close"))
 
