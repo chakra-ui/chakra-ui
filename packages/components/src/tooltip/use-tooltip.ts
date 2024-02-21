@@ -271,7 +271,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     ],
   )
 
-  const getTooltipPositionerProps: PropGetter = useCallback(
+  const getPositionerProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) =>
       getPopperProps(
         {
@@ -289,7 +289,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     [getPopperProps, arrowSize, arrowShadowColor],
   )
 
-  const getTooltipProps: PropGetter = useCallback(
+  const getContentProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
       const styles: React.CSSProperties = {
         ...props.style,
@@ -314,8 +314,8 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     show: openWithDelay,
     hide: closeWithDelay,
     getTriggerProps,
-    getTooltipProps,
-    getTooltipPositionerProps,
+    getContentProps,
+    getPositionerProps,
     getArrowProps,
     getArrowInnerProps,
   }

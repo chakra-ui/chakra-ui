@@ -1,12 +1,13 @@
-import { getCSSVar } from "@chakra-ui/styled-system"
+import { defineStyle, getCSSVar } from "@chakra-ui/styled-system"
+import { cx } from "@chakra-ui/utils"
 import { omit } from "@chakra-ui/utils/omit"
 import { pick } from "@chakra-ui/utils/pick"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import { popperCSSVars } from "../popper"
 import { Portal, PortalProps } from "../portal"
 import { HTMLChakraProps, chakra, forwardRef, useTheme } from "../system"
-import { scale } from "./tooltip.transition"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
+import { scale } from "./tooltip-transition"
 
 export interface TooltipContentProps extends HTMLChakraProps<"div"> {
   /**
@@ -19,13 +20,13 @@ export interface TooltipContentProps extends HTMLChakraProps<"div"> {
   motionProps?: HTMLMotionProps<"div">
 }
 
-const MotionDiv = chakra(motion.div)
+const StyledContent = chakra(motion.div)
 
 export const TooltipContent = forwardRef<TooltipContentProps, "div">(
   function TooltipContent(props, ref) {
     const styles = useTooltipStyles()
 
-    const { ariaLabel, isOpen, getTooltipPositionerProps } = useTooltipContext()
+    const { ariaLabel, isOpen, getPositionerProps } = useTooltipContext()
 
     const theme = useTheme()
 
@@ -50,32 +51,36 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
 
     const hasAriaLabel = !!ariaLabel
 
-    const tooltipProps = hasAriaLabel
+    const contentProps = hasAriaLabel
       ? omit(restProps, ["role", "id"])
       : restProps
 
     const srOnlyProps = pick(restProps, ["role", "id"])
+
+    const positionerStyles = defineStyle({
+      zIndex: styles.zIndex,
+      pointerEvents: "none",
+    })
 
     return (
       <AnimatePresence>
         {isOpen && (
           <Portal {...portalProps}>
             <chakra.div
-              {...getTooltipPositionerProps()}
-              __css={{
-                zIndex: styles.zIndex,
-                pointerEvents: "none",
-              }}
+              {...getPositionerProps()}
+              className="chakra-tooltip__positioner"
+              __css={positionerStyles}
             >
-              <MotionDiv
+              <StyledContent
                 ref={ref}
                 variants={scale}
                 initial="exit"
                 animate="enter"
                 exit="exit"
                 {...motionProps}
-                {...(tooltipProps as any)}
+                {...(contentProps as any)}
                 __css={styles}
+                className={cx("chakra-tooltip__content", props.className)}
               >
                 {children}
                 {hasAriaLabel && (
@@ -83,7 +88,7 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
                     {ariaLabel}
                   </chakra.span>
                 )}
-              </MotionDiv>
+              </StyledContent>
             </chakra.div>
           </Portal>
         )}
