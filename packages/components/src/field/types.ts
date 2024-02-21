@@ -33,7 +33,7 @@ export interface FieldOptions {
   isReadOnly?: boolean
 }
 
-export interface UseFieldProps<T extends HTMLElement = HTMLInputElement>
+export interface UseFieldProps<T extends HTMLElement = HTMLElement>
   extends FieldOptions {
   id?: string
   onFocus?: React.FocusEventHandler<T>

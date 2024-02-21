@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, FormLabel } from "../field"
+import { Field } from "../field"
 import {
   focus,
   testA11y,
@@ -32,12 +32,6 @@ function renderComponent(props: NumberInputProps = {}) {
     </>,
   )
 }
-
-/**
- * Get some inspiration here
- * https://github.com/palantir/blueprint/blob/3aa56473d253f5287e0960759bee367a9ff3e045/packages/core/test/controls/numericInputTests.tsx
- * https://github.com/deberoppa7/react-numeric-input/blob/master/src/index.test.js
- */
 
 test("passes a11y test", async () => {
   const { container } = renderComponent()
@@ -185,9 +179,6 @@ test("should focus input on spin", async () => {
 
   await user.click(upBtn)
   expect(input).toHaveValue("1")
-
-  // for some reason, .toHaveFocus assertion doesn't work
-  // expect(tools.getByTestId("input")).toEqual(document.activeElement)
 })
 
 test("should derive values from surrounding FormControl", () => {
@@ -195,7 +186,7 @@ test("should derive values from surrounding FormControl", () => {
   const onBlur = vi.fn()
 
   render(
-    <FormControl
+    <Field.Root
       id="input"
       isRequired
       isInvalid
@@ -204,7 +195,7 @@ test("should derive values from surrounding FormControl", () => {
       onFocus={onFocus}
       onBlur={onBlur}
     >
-      <FormLabel>Number</FormLabel>
+      <Field.Label>Number</Field.Label>
       <NumberInput data-testid="root">
         <NumberInputField data-testid="input" />
         <NumberInputStepper data-testid="group">
@@ -212,8 +203,8 @@ test("should derive values from surrounding FormControl", () => {
           <NumberDecrementStepper children="-" data-testid="down-btn" />
         </NumberInputStepper>
       </NumberInput>
-      <FormHelperText>Select a number</FormHelperText>
-    </FormControl>,
+      <Field.HelpText>Select a number</Field.HelpText>
+    </Field.Root>,
   )
 
   const input = screen.getByTestId("input")
@@ -234,8 +225,10 @@ test("should derive values from surrounding FormControl", () => {
 
 test("should reset value if `e` is typed", async () => {
   const { getByTestId, user } = renderComponent({ max: 30, min: 1 })
+
   const input = getByTestId("input")
   await user.type(input, "e")
+
   // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
   expect(input).toHaveValue("")

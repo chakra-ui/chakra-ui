@@ -1,6 +1,6 @@
 import * as React from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { FormControl, FormLabel, HStack, Stack, Switch, chakra } from ".."
+import { Field, HStack, Stack, Switch, chakra } from ".."
 
 export default {
   title: "Components / Forms / Switch",
@@ -99,50 +99,50 @@ export const WithReactHookForm = () => {
 export const WithFormControl = () => {
   return (
     <>
-      <FormControl id="optIn">
-        <FormLabel>Opt-in Example</FormLabel>
+      <Field.Root id="optIn">
+        <Field.Label>Opt-in Example</Field.Label>
         <Stack>
           <DemoSwitch value="1">Opt-in 1</DemoSwitch>
           <DemoSwitch value="2">Opt-in 2</DemoSwitch>
           <DemoSwitch value="3">Opt-in 3</DemoSwitch>
         </Stack>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl id="optInInvalid" isInvalid mt={4}>
-        <FormLabel>Invalid Opt-in Example</FormLabel>
+      <Field.Root id="optInInvalid" isInvalid mt={4}>
+        <Field.Label>Invalid Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Invalid Opt-in 1</DemoSwitch>
           <DemoSwitch value="2">Invalid Opt-in 2</DemoSwitch>
           <DemoSwitch value="3">Invalid Opt-in 3</DemoSwitch>
         </Stack>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl id="optInDisabled" isDisabled mt={4}>
-        <FormLabel>Disabled Opt-in Example</FormLabel>
+      <Field.Root id="optInDisabled" isDisabled mt={4}>
+        <Field.Label>Disabled Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Disabled Opt-in 1</DemoSwitch>
           <DemoSwitch value="2">Disabled Opt-in 2</DemoSwitch>
           <DemoSwitch value="3">Disabled Opt-in 3</DemoSwitch>
         </Stack>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl id="optInReadonly" isReadOnly mt={4}>
-        <FormLabel>Readonly Opt-in Example</FormLabel>
+      <Field.Root id="optInReadonly" isReadOnly mt={4}>
+        <Field.Label>Readonly Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Readonly Opt-in 1</DemoSwitch>
           <DemoSwitch value="2">Readonly Opt-in 2</DemoSwitch>
           <DemoSwitch value="3">Readonly Opt-in 3</DemoSwitch>
         </Stack>
-      </FormControl>
+      </Field.Root>
 
-      <FormControl id="optInRequired" isRequired mt={4}>
-        <FormLabel>Required Opt-in Example</FormLabel>
+      <Field.Root id="optInRequired" isRequired mt={4}>
+        <Field.Label>Required Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Required Opt-in 1</DemoSwitch>
           <DemoSwitch value="2">Required Opt-in 2</DemoSwitch>
           <DemoSwitch value="3">Required Opt-in 3</DemoSwitch>
         </Stack>
-      </FormControl>
+      </Field.Root>
     </>
   )
 }

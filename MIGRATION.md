@@ -212,6 +212,36 @@ element that represents a form field.
 
 HelperText has been renamed to `Field.HelpText` for brevity.
 
+### Select -> NativeSelect
+
+The `Select` component has been renamed to `NativeSelect` to better reflect its
+purpose as a native select element, and give room for a custom select component.
+
+The API has also changed significantly to make it more modular.
+
+Before:
+
+```tsx
+<Select color="red.400">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+</Select>
+```
+
+After:
+
+```tsx
+<NativeSelect.Root>
+  <NativeSelect.Field color="pink.500" placeholder="Select option">
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+  </NativeSelect.Field>
+  <NativeSelect.Icon />
+</NativeSelect.Root>
+```
+
 ## Added
 
 ### `For` component

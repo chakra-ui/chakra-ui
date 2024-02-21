@@ -551,6 +551,17 @@
         "default": "./dist/cjs/modal/index.cjs"
       }
     },
+    "./native-select": {
+      "source": "./src/native-select/index.ts",
+      "import": {
+        "types": "./dist/types/native-select/index.d.mts",
+        "default": "./dist/esm/native-select/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/native-select/index.d.ts",
+        "default": "./dist/cjs/native-select/index.cjs"
+      }
+    },
     "./number-input": {
       "source": "./src/number-input/index.ts",
       "import": {
@@ -648,17 +659,6 @@
       "require": {
         "types": "./dist/types/radio/index.d.ts",
         "default": "./dist/cjs/radio/index.cjs"
-      }
-    },
-    "./select": {
-      "source": "./src/select/index.ts",
-      "import": {
-        "types": "./dist/types/select/index.d.mts",
-        "default": "./dist/esm/select/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/select/index.d.ts",
-        "default": "./dist/cjs/select/index.cjs"
       }
     },
     "./skeleton": {

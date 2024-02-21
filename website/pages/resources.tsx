@@ -1,9 +1,7 @@
 import {
   Box,
   Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
+  Field,
   HTMLChakraProps,
   Heading,
   Input,
@@ -110,18 +108,18 @@ function ResourceSection(props: ResourceSectionProps) {
 
   return (
     <Box as='section' mt='8'>
-      <FormControl id={filterInputId} mt='8' mb='8'>
-        <FormLabel>{t('resources.searchFilter.label')}</FormLabel>
+      <Field id={filterInputId} mt='8' mb='8'>
+        <Field.Label>{t('resources.searchFilter.label')}</Field.Label>
         <Input
           name={filterInputId}
           onChange={formik.handleChange}
           placeholder={t('resources.searchFilter.placeholder')}
           value={formik.values[filterInputId]}
         />
-        <FormHelperText>
+        <Field.HelpText>
           {t('resources.searchFilter.helperText')}
-        </FormHelperText>
-      </FormControl>
+        </Field.HelpText>
+      </Field>
       <ResponsiveMasonry columnsCountBreakPoints={masonryGridBreakpoints}>
         <Masonry gutter='16px'>
           {filteredResources.map((item, index) => (

@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
 import { Radio, RadioGroup, UseRadioGroupProps, useRadioGroup } from "."
-import { FormControl } from "../field"
+import { Field } from "../field"
 
 test("works with Radio component", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
@@ -29,6 +29,7 @@ test("uncontrolled: correctly manages state", () => {
       </div>
     )
   }
+
   const utils = render(<Component defaultValue="a" />)
 
   // checks default value by default
@@ -202,16 +203,18 @@ test("should use unique id when wrapped in FormControl", () => {
     const { getRootProps, getRadioProps, setValue } = useRadioGroup()
 
     return (
-      <FormControl>
+      <Field.Root>
         <button onClick={() => setValue("a")}>Set</button>
         <div {...getRootProps()}>
           <Radio {...getRadioProps({ value: "a" })}>a</Radio>
           <Radio {...getRadioProps({ value: "b" })}>b</Radio>
         </div>
-      </FormControl>
+      </Field.Root>
     )
   }
+
   const { getAllByRole } = render(<Component />)
   const [input1, input2] = getAllByRole("radio")
+
   expect(input1.id === input2.id).toBeFalsy()
 })

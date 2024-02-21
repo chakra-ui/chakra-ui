@@ -4,10 +4,7 @@ import { useForm } from "react-hook-form"
 import Lorem from "react-lorem-component"
 import {
   Button,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
+  Field,
   Input,
   NumberDecrementStepper,
   NumberIncrementStepper,
@@ -199,31 +196,26 @@ export const WithReactHookForm = () => {
   )
 }
 
-function FormError(props: any) {
-  return (
-    <FormErrorMessage
-      mt="0"
-      bg="red.500"
-      color="white"
-      px="1"
-      lineHeight="1em"
-      borderRadius="sm"
-      {...props}
-    />
-  )
-}
-
 export const WithFormControl = () => {
   const [isError, setIsError] = React.useState(false)
 
   return (
     <Stack align="start">
-      <FormControl id="first-name" isInvalid={isError}>
+      <Field.Root id="first-name" isInvalid={isError}>
         <chakra.div display="flex" mb="2">
-          <FormLabel mb="0" lineHeight="1em">
+          <Field.Label mb="0" lineHeight="1em">
             Amount
-          </FormLabel>
-          <FormError>is invalid!</FormError>
+          </Field.Label>
+          <Field.ErrorMessage
+            mt="0"
+            bg="red.500"
+            color="white"
+            px="1"
+            lineHeight="1em"
+            borderRadius="sm"
+          >
+            is invalid!
+          </Field.ErrorMessage>
         </chakra.div>
         <NumberInput
           max={50}
@@ -239,8 +231,8 @@ export const WithFormControl = () => {
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <FormHelperText>Keep it very short and sweet!</FormHelperText>
-      </FormControl>
+        <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+      </Field.Root>
       <Button onClick={() => setIsError((s) => !s)}>Toggle Invalid</Button>
     </Stack>
   )

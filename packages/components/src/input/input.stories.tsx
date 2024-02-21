@@ -1,22 +1,16 @@
-import { useDisclosure } from "@chakra-ui/hooks"
 import * as React from "react"
 import { FaCheck, FaPhone } from "react-icons/fa"
 import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
+  Field,
   Icon,
   Input,
   InputGroup,
   InputLeftAddon,
   InputLeftElement,
-  InputProps,
   InputRightAddon,
   InputRightElement,
   Stack,
   chakra,
-  forwardRef,
 } from ".."
 
 export default {
@@ -166,67 +160,36 @@ export const WithFocusAndErrorColors = () => (
   </Stack>
 )
 
-function FormError(props: any) {
-  return (
-    <FormErrorMessage
-      mt="0"
-      bg="red.500"
-      color="white"
-      px="1"
-      lineHeight="1em"
-      borderRadius="sm"
-      {...props}
-    />
-  )
-}
-
-export const WithFormControl = () => {
+export const WithField = () => {
   const [isError, setIsError] = React.useState(false)
   return (
     <Stack align="start">
-      <FormControl id="first-name" isInvalid={isError}>
+      <Field.Root id="first-name" isInvalid={isError}>
         <chakra.div display="flex" mb="2">
-          <FormLabel mb="0" lineHeight="1em">
+          <Field.Label mb="0" lineHeight="1em">
             Amount
-          </FormLabel>
-          <FormError>is invalid!</FormError>
+          </Field.Label>
+          <Field.ErrorMessage
+            mt="0"
+            bg="red.500"
+            color="white"
+            px="1"
+            lineHeight="1em"
+            borderRadius="sm"
+          >
+            is invalid!
+          </Field.ErrorMessage>
         </chakra.div>
+
         <InputGroup size="sm">
           <InputLeftElement children="$" />
           <Input placeholder="Enter amount" />
           <InputRightAddon children=".com" />
         </InputGroup>
-        <FormHelperText>Keep it very short and sweet!</FormHelperText>
-      </FormControl>
+        <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+      </Field.Root>
+
       <button onClick={() => setIsError((s) => !s)}>Toggle Invalid</button>
     </Stack>
   )
 }
-
-export const WithInputElementBug = () => {
-  const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: true })
-  return (
-    <>
-      <button onClick={onToggle}>Toggle element</button>
-      <InputGroup>
-        {isOpen && <InputLeftElement>O</InputLeftElement>}
-        <Input name="input" placeholder="placeholder" />
-      </InputGroup>
-    </>
-  )
-}
-
-export const InputGroupCustomInputProps = () => {
-  return (
-    <>
-      <InputGroup>
-        <CustomInput m="10px" placeholder="should be flushed" />
-      </InputGroup>
-      <CustomInput m="10px" placeholder="is flushed" />
-    </>
-  )
-}
-
-const CustomInput = forwardRef<InputProps, "input">((props, ref) => (
-  <Input ref={ref} color="gray.600" variant="flushed" {...props} />
-))

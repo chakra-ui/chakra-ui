@@ -21,10 +21,10 @@ import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const formControlProps = useFieldProps(props)
   const {
-    isDisabled,
-    isReadOnly,
-    isRequired,
-    isInvalid,
+    disabled: isDisabled,
+    readOnly: isReadOnly,
+    required: isRequired,
+    invalid: isInvalid,
     id,
     onBlur,
     onFocus,

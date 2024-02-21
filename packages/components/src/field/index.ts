@@ -1,5 +1,5 @@
-export { FieldRoot as FormControl } from "./field-root"
-export type { FieldRootProps as FormControlProps } from "./field-root"
+export { FieldRoot } from "./field-root"
+export type { FieldRootProps } from "./field-root"
 
 export {
   useFieldContext,
@@ -22,7 +22,7 @@ export type { FieldLabelProps } from "./field-label"
 export * as Field from "./namespace"
 
 export type { FieldOptions, UseFieldProps } from "./types"
-export { useField, useFieldProps } from "./use-field"
+export { useField, useField as useFieldProps } from "./use-field"
 
 export { FieldErrorIcon } from "./field-error-icon"
 export type { FieldErrorIconProps } from "./field-error-icon"

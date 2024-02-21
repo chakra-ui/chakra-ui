@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import { Radio, UseRadioProps, useRadio } from "."
-import { FormControl, FormHelperText, FormLabel } from "../field"
+import { Field } from "../field"
 
 test("has proper aria and data attributes", async () => {
   const Component = (props: UseRadioProps = {}) => {
@@ -131,7 +131,7 @@ test("should derive values from surrounding FormControl", () => {
   const onBlur = vi.fn()
 
   render(
-    <FormControl
+    <Field.Root
       id="radio"
       isRequired
       isInvalid
@@ -140,10 +140,10 @@ test("should derive values from surrounding FormControl", () => {
       onFocus={onFocus}
       onBlur={onBlur}
     >
-      <FormLabel>Radio</FormLabel>
+      <Field.Label>Radio</Field.Label>
       <Radio value="Chakra UI">Chakra UI</Radio>
-      <FormHelperText>Select a value</FormHelperText>
-    </FormControl>,
+      <Field.HelpText>Select a value</Field.HelpText>
+    </Field.Root>,
   )
 
   const radio = screen.getByRole("radio")
