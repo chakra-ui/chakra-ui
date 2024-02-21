@@ -4,7 +4,7 @@ import {
   useNumberInputStyles,
   useNumberInputContext,
 } from "./number-input-context"
-import { StyledStepper } from "./number-input-root"
+import { StyledStepper } from "./styled-stepper"
 
 export interface NumberInputDecrementStepperProps
   extends HTMLChakraProps<"div"> {}

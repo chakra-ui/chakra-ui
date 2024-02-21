@@ -4,7 +4,6 @@ import {
   ThemingProps,
 } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
-import { splitFieldProps, useFieldProps } from "../field"
 import {
   chakra,
   forwardRef,
@@ -15,6 +14,7 @@ import {
   NumberInputContextProvider,
   NumberInputStylesProvider,
 } from "./number-input-context"
+import { splitNumberInputProps } from "./number-input-props"
 import { useNumberInput, UseNumberInputProps } from "./use-number-input"
 
 interface InputOptions {
@@ -53,10 +53,9 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
     const styles = useMultiStyleConfig("NumberInput", props)
 
     const ownProps = omitThemingProps(props)
-    const [fieldProps, localProps] = splitFieldProps(ownProps)
+    const [hookProps, rootProps] = splitNumberInputProps(ownProps)
 
-    const _fieldProps = useFieldProps(fieldProps)
-    const api = useNumberInput(_fieldProps)
+    const api = useNumberInput(hookProps)
 
     const rootStyles = defineStyle({
       position: "relative",
@@ -68,7 +67,7 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
       <NumberInputContextProvider value={api}>
         <NumberInputStylesProvider value={styles}>
           <chakra.div
-            {...localProps}
+            {...rootProps}
             ref={ref}
             className={cx("chakra-numberinput", props.className)}
             __css={rootStyles}
@@ -80,17 +79,3 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
 )
 
 NumberInputRoot.displayName = "NumberInput"
-
-export const StyledStepper = chakra("div", {
-  baseStyle: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
-    transitionProperty: "common",
-    transitionDuration: "normal",
-    userSelect: "none",
-    cursor: "pointer",
-    lineHeight: "normal",
-  },
-})
