@@ -1,19 +1,15 @@
 import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import type { HTMLMotionProps } from "framer-motion"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { useDialogContext, useDialogStyles } from "../dialog/dialog-context"
+import { DialogFocusScope } from "../dialog/dialog-focus"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { Slide } from "../transition"
-import { useDialogContext, useDialogStyles } from "./dialog-context"
-import { DialogFocusScope } from "./dialog-focus"
-import { useDrawerContext } from "./drawer"
+import { useDrawerContext } from "./drawer-context"
 
 const StyledContent = chakra(Slide)
 
 export interface DrawerContentProps extends HTMLChakraProps<"section"> {
-  /**
-   * The props to forward to the dialog's content wrapper
-   */
-  containerProps?: HTMLChakraProps<"div">
   /**
    * The custom framer-motion transition to use for the dialog
    */
@@ -26,20 +22,13 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   (props, ref) => {
-    const {
-      className,
-      children,
-      motionProps,
-      containerProps: rootProps,
-      ...rest
-    } = props
+    const { className, children, motionProps, ...rest } = props
 
-    const { getContentProps, isOpen } = useDialogContext()
-
-    const contentProps = getContentProps(rest, ref) as any
+    const api = useDialogContext()
+    const { placement } = useDrawerContext()
     const styles = useDialogStyles()
 
-    const ContentStyles = defineStyle({
+    const contentStyles = defineStyle({
       display: "flex",
       flexDirection: "column",
       position: "relative",
@@ -48,17 +37,15 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
       ...styles.content,
     })
 
-    const { placement } = useDrawerContext()
-
     return (
       <DialogFocusScope>
         <StyledContent
           motionProps={motionProps}
           direction={placement}
-          in={isOpen}
+          in={api.isOpen}
+          {...(api.getContentProps(rest, ref) as any)}
           className={cx("chakra-dialog__content", className)}
-          {...contentProps}
-          __css={ContentStyles}
+          __css={contentStyles}
         >
           {children}
         </StyledContent>

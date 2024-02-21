@@ -342,6 +342,17 @@
         "default": "./dist/cjs/divider/index.cjs"
       }
     },
+    "./drawer": {
+      "source": "./src/drawer/index.ts",
+      "import": {
+        "types": "./dist/types/drawer/index.d.mts",
+        "default": "./dist/esm/drawer/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/drawer/index.d.ts",
+        "default": "./dist/cjs/drawer/index.cjs"
+      }
+    },
     "./editable": {
       "source": "./src/editable/index.ts",
       "import": {

@@ -1,12 +1,6 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import React from "react"
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-} from "."
+import { Drawer } from "."
 
 export default {
   title: "Components / Overlay / Drawer",
@@ -17,13 +11,15 @@ export const DrawerExample = () => {
   return (
     <>
       <button onClick={() => setOpen(!open)}>Open</button>
-      <Drawer isOpen={open} onClose={() => setOpen(false)}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <div>This is the drawer content</div>
-          <button>This is a button</button>
-        </DrawerContent>
-      </Drawer>
+      <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
+        <Drawer.Overlay />
+        <Drawer.Positioner>
+          <Drawer.Content>
+            <div>This is the drawer content</div>
+            <button>This is a button</button>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Drawer.Root>
     </>
   )
 }
@@ -33,26 +29,28 @@ export const WithCustomMotion = () => {
   return (
     <>
       <button onClick={() => setOpen(!open)}>Open</button>
-      <Drawer isOpen={open} onClose={() => setOpen(false)}>
-        <DrawerOverlay />
-        <DrawerContent
-          motionProps={{
-            variants: {
-              enter: {
-                x: "0%",
-                transition: { duration: 0.2 },
+      <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
+        <Drawer.Overlay />
+        <Drawer.Positioner>
+          <Drawer.Content
+            motionProps={{
+              variants: {
+                enter: {
+                  x: "0%",
+                  transition: { duration: 0.2 },
+                },
+                exit: {
+                  x: "100%",
+                  transition: { duration: 0.1 },
+                },
               },
-              exit: {
-                x: "100%",
-                transition: { duration: 0.1 },
-              },
-            },
-          }}
-        >
-          <div>This is the drawer content</div>
-          <button>This is a button</button>
-        </DrawerContent>
-      </Drawer>
+            }}
+          >
+            <div>This is the drawer content</div>
+            <button>This is a button</button>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Drawer.Root>
     </>
   )
 }
@@ -63,11 +61,17 @@ export const WithLongContent = () => {
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Drawer placement="bottom" onClose={onClose} isOpen={isOpen} size="md">
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
-            <DrawerBody>
+      <Drawer.Root
+        placement="bottom"
+        onClose={onClose}
+        isOpen={isOpen}
+        size="md"
+      >
+        <Drawer.Overlay />
+        <Drawer.Positioner>
+          <Drawer.Content>
+            <Drawer.Header borderBottomWidth="1px">Basic Drawer</Drawer.Header>
+            <Drawer.Body>
               <input placeholder="Type here..." />
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
@@ -183,10 +187,10 @@ export const WithLongContent = () => {
                 ultricies mi augue non mauris. Generated 10 paragraphs, 996
                 words, 6777 bytes of Lorem Ipsum
               </p>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+            </Drawer.Body>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Drawer.Root>
     </>
   )
 }

@@ -1,17 +1,3 @@
-export {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  useDrawerContext,
-} from "./drawer"
-export type { DrawerProps } from "./drawer"
-
-export { DrawerContent } from "./drawer-content"
-export type { DrawerContentProps } from "./drawer-content"
-
 export { DialogRoot } from "./dialog-root"
 export type { DialogRootProps } from "./dialog-root"
 
