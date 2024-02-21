@@ -39,11 +39,6 @@ export interface UseTooltipProps
    */
   closeOnClick?: boolean
   /**
-   * If `true`, the tooltip will hide while the mouse is down
-   * @deprecated - use `closeOnPointerDown` instead
-   */
-  closeOnMouseDown?: boolean
-  /**
    * If `true`, the tooltip will hide while the pointer is down
    * @default true
    */
@@ -101,9 +96,8 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     openDelay = 0,
     closeDelay = 0,
     closeOnClick = true,
-    closeOnMouseDown,
     closeOnScroll,
-    closeOnPointerDown = closeOnMouseDown,
+    closeOnPointerDown,
     closeOnEsc = true,
     onOpen: onOpenProp,
     onClose: onCloseProp,

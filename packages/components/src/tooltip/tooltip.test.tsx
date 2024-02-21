@@ -6,19 +6,25 @@ import {
   testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import { Tooltip, TooltipProps } from "."
+import { Tooltip } from "."
 
 const buttonLabel = "Hover me"
 const tooltipLabel = "tooltip label"
 
 const DummyComponent = (
-  props: Omit<TooltipProps & { isButtonDisabled?: boolean }, "children">,
+  props: Omit<Tooltip.RootProps, "children"> & {
+    label?: string
+    isButtonDisabled?: boolean
+  },
 ) => {
-  const { isButtonDisabled, ...tooltipProps } = props
+  const { isButtonDisabled, label, ...rootProps } = props
   return (
-    <Tooltip label={tooltipLabel} {...tooltipProps}>
-      <button disabled={isButtonDisabled || false}>{buttonLabel}</button>
-    </Tooltip>
+    <Tooltip.Root {...rootProps}>
+      <Tooltip.Trigger disabled={isButtonDisabled || false}>
+        {buttonLabel}
+      </Tooltip.Trigger>
+      <Tooltip.Content>{label}</Tooltip.Content>
+    </Tooltip.Root>
   )
 }
 
@@ -103,55 +109,6 @@ test("should show on pointerover if isDisabled has a falsy value", async () => {
   await screen.findByRole("tooltip")
 
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
-})
-
-test.skip("should close on pointerleave if shouldWrapChildren is true and child is a disabled element", async () => {
-  render(<DummyComponent shouldWrapChildren isButtonDisabled />)
-
-  fireEvent.pointerEnter(screen.getByText(buttonLabel))
-
-  await screen.findByRole("tooltip")
-
-  const wrapper = screen.getByText(buttonLabel).parentElement
-  expect(wrapper).not.toBeNull()
-
-  fireEvent.pointerLeave(wrapper!)
-
-  await waitFor(() =>
-    expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument(),
-  )
-})
-
-test.skip("shows on pointerover and closes on pressing 'esc'", async () => {
-  const { user } = render(<DummyComponent />)
-
-  fireEvent.pointerOver(screen.getByText(buttonLabel))
-
-  await screen.findByRole("tooltip")
-
-  expect(screen.getByText(buttonLabel)).toBeInTheDocument()
-  expect(screen.getByRole("tooltip")).toBeInTheDocument()
-
-  await user.keyboard("[Escape]")
-
-  await waitFor(() =>
-    expect(screen.queryByText(tooltipLabel)).not.toBeInTheDocument(),
-  )
-})
-
-test.skip("shows on pointerover and stays on pressing 'esc' if 'closeOnEsc' is false", async () => {
-  const { user } = render(<DummyComponent closeOnEsc={false} />)
-
-  fireEvent.pointerOver(screen.getByText(buttonLabel))
-
-  await screen.findByRole("tooltip")
-
-  expect(screen.getByText(buttonLabel)).toBeInTheDocument()
-  expect(screen.getByRole("tooltip")).toBeInTheDocument()
-
-  await user.keyboard("[Escape]")
-
-  expect(screen.getByRole("tooltip")).toBeInTheDocument()
 })
 
 test("does not show tooltip after delay when `isDisabled` prop changes to `true`", async () => {

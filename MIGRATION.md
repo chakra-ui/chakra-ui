@@ -136,6 +136,62 @@ After:
 - `TagLeftIcon` and `TagRightIcon` are now assigned to `Tag.StartIcon` and
   `Tag.EndIcon` respectively
 
+### Tooltip
+
+Before:
+
+```tsx
+<Tooltip label="Hey there" hasArrow>
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
+After:
+
+```tsx
+<Tooltip.Root placement="bottom">
+  <Tooltip.Trigger asChild>
+    <Button>Hover me</Button>
+  </Tooltip.Trigger>
+  <Tooltip.Content>
+    <Tooltip.Arrow />
+    Hey there
+  </Tooltip.Content>
+</Tooltip.Root>
+```
+
+However, you can still get back to the legacy API by creating a custom
+component.
+
+```tsx
+import { Tooltip } from "@chakra-ui/react"
+
+export type CustomTooltipProps = Tooltip.RootProps & {
+  label?: string
+  hasArrow?: boolean
+}
+
+const CustomTooltip = (props: Props) => {
+  const { label, children, hasArrow, ...localProps } = props
+  const [rootProps, contentProps] = Tooltip.splitProps(localProps)
+
+  return (
+    <Tooltip.Root placement="bottom" {...rootProps}>
+      <Tooltip.Trigger asChild>
+        {isValidElement(children) ? children : <span>{children}</span>}
+      </Tooltip.Trigger>
+      <Tooltip.Content {...contentProps}>
+        {hasArrow && <Tooltip.Arrow />}
+        {label}
+      </Tooltip.Content>
+    </Tooltip.Root>
+  )
+}
+```
+
+- Remove `closeOnMouseDown`, use `closeOnPointerDown` instead
+- Remove all `arrow*` props in favor of rendering the `Tooltip.Arrow` component
+
 ## Added
 
 ### `For` component
