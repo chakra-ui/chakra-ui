@@ -16,12 +16,7 @@ export default {
 }
 
 const HookTooltip = ({ children }: any) => {
-  const {
-    getTriggerProps,
-    getTooltipPositionerProps,
-    getTooltipProps,
-    isOpen,
-  } = useTooltip({
+  const api = useTooltip({
     openDelay: 100,
     arrowSize: 8,
     placement: "bottom",
@@ -29,16 +24,16 @@ const HookTooltip = ({ children }: any) => {
 
   return (
     <>
-      <Button {...getTriggerProps()}>Hover me</Button>
-      <div {...getTooltipPositionerProps()}>
+      <Button {...api.getTriggerProps()}>Hover me</Button>
+      <div {...api.getPositionerProps()}>
         <div
-          {...getTooltipProps({
+          {...api.getContentProps({
             style: {
               background: "tomato",
               color: "white",
               borderRadius: "4px",
               padding: "0.5em 1em",
-              visibility: isOpen ? "visible" : "hidden",
+              visibility: api.isOpen ? "visible" : "hidden",
               ["--popper-arrow-bg" as string]: "tomato",
             },
           })}
@@ -63,27 +58,22 @@ export const WithMultiple = () => (
 )
 
 export const WithTransition = () => {
-  const {
-    getTriggerProps,
-    getTooltipPositionerProps,
-    getTooltipProps,
-    isOpen,
-  } = useTooltip({
+  const api = useTooltip({
     openDelay: 100,
   })
 
   return (
     <>
-      <Button {...getTriggerProps()}>Hover me</Button>
+      <Button {...api.getTriggerProps()}>Hover me</Button>
       <AnimatePresence>
-        {isOpen && (
+        {api.isOpen && (
           <Portal>
-            <div {...getTooltipPositionerProps()}>
+            <div {...api.getPositionerProps()}>
               <motion.div
                 initial="exit"
                 animate="enter"
                 exit="exit"
-                {...(getTooltipProps() as any)}
+                {...(api.getContentProps() as any)}
               >
                 <motion.div
                   transition={{
