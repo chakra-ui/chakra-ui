@@ -1,15 +1,11 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { cx } from "@chakra-ui/utils/cx"
-import { cloneElement } from "react"
+import { useStyleConfig } from "../system"
 import {
   PinInputDescendantsProvider,
   PinInputProvider,
-  usePinInput,
-  usePinInputField,
-  UsePinInputProps,
-} from "./use-pin-input"
+  PinInputStylesProvider,
+} from "./pin-input-context"
+import { usePinInput, UsePinInputProps } from "./use-pin-input"
 
 interface InputOptions {
   /**
@@ -26,7 +22,7 @@ interface InputOptions {
   errorBorderColor?: string
 }
 
-export interface PinInputProps
+export interface PinInputRootProps
   extends UsePinInputProps,
     ThemingProps<"PinInput">,
     InputOptions {
@@ -41,37 +37,19 @@ export interface PinInputProps
  *
  * @see Docs https://chakra-ui.com/docs/components/pin-input
  */
-export function PinInput(props: PinInputProps) {
+export function PinInputRoot(props: PinInputRootProps) {
   const styles = useStyleConfig("PinInput", props)
 
   const { children, ...rest } = omitThemingProps(props)
   const { descendants, ...context } = usePinInput(rest)
 
-  const clones = getValidChildren(children).map((child) =>
-    cloneElement(child, { __css: styles }),
-  )
-
   return (
     <PinInputDescendantsProvider value={descendants}>
-      <PinInputProvider value={context}>{clones}</PinInputProvider>
+      <PinInputStylesProvider value={styles}>
+        <PinInputProvider value={context}>{children}</PinInputProvider>
+      </PinInputStylesProvider>
     </PinInputDescendantsProvider>
   )
 }
 
-PinInput.displayName = "PinInput"
-
-export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}
-
-export const PinInputField = forwardRef<PinInputFieldProps, "input">(
-  function PinInputField(props, ref) {
-    const inputProps = usePinInputField(props, ref)
-    return (
-      <chakra.input
-        {...inputProps}
-        className={cx("chakra-pin-input", props.className)}
-      />
-    )
-  },
-)
-
-PinInputField.displayName = "PinInputField"
+PinInputRoot.displayName = "PinInput"

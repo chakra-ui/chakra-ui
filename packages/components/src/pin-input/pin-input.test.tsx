@@ -1,11 +1,10 @@
-import * as React from "react"
-import { render, fireEvent, screen, waitFor } from "@chakra-ui/test-utils"
+import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import {
+  PinInputDescendantsProvider,
+  PinInputProvider,
+  UsePinInputProps,
   usePinInput,
   usePinInputField,
-  UsePinInputProps,
-  PinInputProvider,
-  PinInputDescendantsProvider,
 } from "."
 
 function Input(props: any) {
