@@ -1,19 +1,19 @@
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "."
+import { Breadcrumb } from "."
 
 test("passes a11y test", async () => {
   await testA11y(
     <Breadcrumb.Root>
       <Breadcrumb.List>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink>Link 3</BreadcrumbLink>
-        </BreadcrumbItem>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item isCurrentPage>
+          <Breadcrumb.Link>Link 3</Breadcrumb.Link>
+        </Breadcrumb.Item>
       </Breadcrumb.List>
     </Breadcrumb.Root>,
   )
@@ -22,15 +22,15 @@ test("passes a11y test", async () => {
 test("has the proper aria-attributes", () => {
   render(
     <Breadcrumb.Root>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink>Link 3</BreadcrumbLink>
-      </BreadcrumbItem>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item isCurrentPage>
+        <Breadcrumb.Link>Link 3</Breadcrumb.Link>
+      </Breadcrumb.Item>
     </Breadcrumb.Root>,
   )
 
@@ -49,12 +49,12 @@ test("separator can be changed", () => {
   render(
     <Breadcrumb.Root>
       <Breadcrumb.List separator="-">
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-        </BreadcrumbItem>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        </Breadcrumb.Item>
       </Breadcrumb.List>
     </Breadcrumb.Root>,
   )
@@ -65,30 +65,32 @@ test("breadcrumb link has its href attribute correctly set", () => {
   render(
     <Breadcrumb.Root>
       <Breadcrumb.List>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-        </BreadcrumbItem>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item isCurrentPage>
+          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        </Breadcrumb.Item>
       </Breadcrumb.List>
     </Breadcrumb.Root>,
   )
-  const breadcrumbLink = screen.getByText("Link 1")
-  expect(breadcrumbLink.getAttribute("href")).toBe("#")
+
+  const link = screen.getByText("Link 1")
+  expect(link.getAttribute("href")).toBe("#")
 })
 
 test("current page link doesn't have href attribute set", () => {
   render(
     <Breadcrumb.Root>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="#">Link 1</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink href="#">Link 2</BreadcrumbLink>
-      </BreadcrumbItem>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item isCurrentPage>
+        <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+      </Breadcrumb.Item>
     </Breadcrumb.Root>,
   )
-  const currentPageLink = screen.getByText("Link 2")
-  expect(currentPageLink.getAttribute("href")).toBe(null)
+
+  const link = screen.getByText("Link 2")
+  expect(link.getAttribute("href")).toBe(null)
 })
