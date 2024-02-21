@@ -12,7 +12,7 @@ const $border = cssVar("card-border-width", "0")
 const $borderColor = cssVar("card-border-color")
 
 const baseStyle = definePartsStyle({
-  container: {
+  root: {
     [$bg.variable]: "colors.chakra-body-bg",
     backgroundColor: $bg.reference,
     boxShadow: $shadow.reference,
@@ -35,19 +35,19 @@ const baseStyle = definePartsStyle({
 
 const sizes = {
   sm: definePartsStyle({
-    container: {
+    root: {
       [$radius.variable]: "radii.base",
       [$padding.variable]: "space.3",
     },
   }),
   md: definePartsStyle({
-    container: {
+    root: {
       [$radius.variable]: "radii.md",
       [$padding.variable]: "space.5",
     },
   }),
   lg: definePartsStyle({
-    container: {
+    root: {
       [$radius.variable]: "radii.xl",
       [$padding.variable]: "space.7",
     },
@@ -56,7 +56,7 @@ const sizes = {
 
 const variants = {
   elevated: definePartsStyle({
-    container: {
+    root: {
       [$shadow.variable]: "shadows.base",
       _dark: {
         [$bg.variable]: "colors.gray.700",
@@ -64,13 +64,13 @@ const variants = {
     },
   }),
   outline: definePartsStyle({
-    container: {
+    root: {
       [$border.variable]: "1px",
       [$borderColor.variable]: "colors.chakra-border-color",
     },
   }),
   filled: definePartsStyle({
-    container: {
+    root: {
       [$bg.variable]: "colors.chakra-subtle-bg",
     },
   }),

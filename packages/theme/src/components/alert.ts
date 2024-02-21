@@ -13,7 +13,7 @@ const $fg = cssVar("alert-fg")
 const $bg = cssVar("alert-bg")
 
 const baseStyle = definePartsStyle({
-  container: {
+  root: {
     bg: $bg.reference,
     px: "4",
     py: "3",
@@ -55,7 +55,7 @@ const variantSubtle = definePartsStyle((props) => {
   const { colorScheme: c } = props
   const bg = getBg(props)
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
@@ -70,7 +70,7 @@ const variantLeftAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
   const bg = getBg(props)
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
@@ -88,7 +88,7 @@ const variantTopAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
   const bg = getBg(props)
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
@@ -105,7 +105,7 @@ const variantTopAccent = definePartsStyle((props) => {
 const variantSolid = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.white`,
       [$bg.variable]: `colors.${c}.600`,
       _dark: {

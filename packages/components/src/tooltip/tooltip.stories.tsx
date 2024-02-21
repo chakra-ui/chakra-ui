@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Tooltip } from "."
 import { Button } from "../button"
-import { Modal, ModalContent, ModalOverlay } from "../dialog"
+import { Dialog } from "../dialog"
 import { chakra } from "../system"
 
 export default {
@@ -87,45 +87,47 @@ export const WithinFixedContainer = () => (
   </div>
 )
 
-export const WithModal = () => {
+export const WithDialog = () => {
   const [showDialog, setShowDialog] = React.useState(false)
   return (
     <div>
       <Button onClick={() => setShowDialog(true)}>Show Dialog</Button>
-      <Modal isOpen={showDialog} onClose={() => setShowDialog(false)}>
-        <ModalOverlay />
-        <ModalContent height="300px">
-          <div>
-            <Button onClick={() => setShowDialog(false)}>Close Dialog</Button>
-            <DemoTooltip label="Notifications">
-              <Button>
-                <span aria-hidden>🔔</span>
-              </Button>
-            </DemoTooltip>
-            <DemoTooltip label="Settings">
-              <Button>
-                <span aria-hidden>⚙️</span>
-              </Button>
-            </DemoTooltip>
-            <DemoTooltip label="Your files are safe with us">
-              <Button>
-                <span aria-hidden>💾</span> Save
-              </Button>
-            </DemoTooltip>
-
-            <div style={{ float: "right" }}>
-              <DemoTooltip label="Notifications" aria-label="3 Notifications">
+      <Dialog.Root isOpen={showDialog} onClose={() => setShowDialog(false)}>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content height="300px">
+            <div>
+              <Button onClick={() => setShowDialog(false)}>Close Dialog</Button>
+              <DemoTooltip label="Notifications">
                 <Button>
-                  <span role="img" aria-label="Bell">
-                    🔔
-                  </span>
-                  <span>3</span>
+                  <span aria-hidden>🔔</span>
                 </Button>
               </DemoTooltip>
+              <DemoTooltip label="Settings">
+                <Button>
+                  <span aria-hidden>⚙️</span>
+                </Button>
+              </DemoTooltip>
+              <DemoTooltip label="Your files are safe with us">
+                <Button>
+                  <span aria-hidden>💾</span> Save
+                </Button>
+              </DemoTooltip>
+
+              <div style={{ float: "right" }}>
+                <DemoTooltip label="Notifications" aria-label="3 Notifications">
+                  <Button>
+                    <span role="img" aria-label="Bell">
+                      🔔
+                    </span>
+                    <span>3</span>
+                  </Button>
+                </DemoTooltip>
+              </div>
             </div>
-          </div>
-        </ModalContent>
-      </Modal>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </div>
   )
 }
