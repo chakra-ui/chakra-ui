@@ -1,7 +1,7 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import type { HTMLMotionProps } from "framer-motion"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { Slide } from "../transition"
 import { useDrawerContext } from "./drawer"
 import { useModalContext, useModalStyles } from "./modal"
@@ -44,16 +44,16 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
 
     const styles = useModalStyles()
 
-    const dialogStyles: SystemStyleObject = {
+    const dialogStyles = defineStyle({
       display: "flex",
       flexDirection: "column",
       position: "relative",
       width: "100%",
       outline: 0,
       ...styles.dialog,
-    }
+    })
 
-    const dialogContainerStyles: SystemStyleObject = {
+    const dialogContainerStyles = defineStyle({
       display: "flex",
       width: "100vw",
       height: "$100vh",
@@ -61,7 +61,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
       left: 0,
       top: 0,
       ...styles.dialogContainer,
-    }
+    })
 
     const { placement } = useDrawerContext()
 

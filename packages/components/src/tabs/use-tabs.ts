@@ -110,21 +110,8 @@ export function useTabs(props: UseTabsProps) {
     lazyBehavior = "unmount",
     orientation = "horizontal",
     direction = "ltr",
-    ...htmlProps
   } = props
 
-  /**
-   * We use this to keep track of the index of the focused tab.
-   *
-   * Tabs can be automatically activated, this means selection follows focus.
-   * When we navigate with the arrow keys, we move focus and selection to next/prev tab
-   *
-   * Tabs can also be manually activated, this means selection does not follow focus.
-   * When we navigate with the arrow keys, we only move focus NOT selection. The user
-   * will need not manually activate the tab using `Enter` or `Space`.
-   *
-   * This is why we need to keep track of the `focusedIndex` and `selectedIndex`
-   */
   const [focusedIndex, setFocusedIndex] = useState(defaultIndex ?? 0)
 
   const [selectedIndex, setSelectedIndex] = useControllableState({
@@ -166,7 +153,6 @@ export function useTabs(props: UseTabsProps) {
     orientation,
     descendants,
     direction,
-    htmlProps,
   }
 }
 
@@ -335,15 +321,6 @@ const [TabPanelProvider, useTabPanelContext] = createContext<{
   selectedIndex: number
 }>({})
 
-/**
- * Tabs hook for managing the visibility of multiple tab panels.
- *
- * Since only one panel can be show at a time, we use `cloneElement`
- * to inject `selected` panel to each TabPanel.
- *
- * It returns a cloned version of its children with
- * all functionality included.
- */
 export function useTabPanels<P extends UseTabPanelsProps>(props: P) {
   const context = useTabsContext()
 

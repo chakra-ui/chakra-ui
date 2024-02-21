@@ -1,7 +1,6 @@
 import {
   defineStyle,
   omitThemingProps,
-  SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
 import { dataAttr } from "@chakra-ui/utils/attr"
@@ -85,12 +84,12 @@ export const AvatarRoot = forwardRef<AvatarRootProps, "span">((props, ref) => {
     },
   })
 
-  const avatarStyles: SystemStyleObject = {
+  const avatarStyles = defineStyle({
     borderRadius,
     borderWidth: showBorder ? "2px" : undefined,
     ...baseStyle,
     ...styles.container,
-  }
+  })
 
   if (borderColor) {
     avatarStyles.borderColor = borderColor

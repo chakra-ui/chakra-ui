@@ -1,13 +1,13 @@
 import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import {
+  defineStyle,
   omitThemingProps,
-  SystemStyleObject,
   ThemingProps,
 } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
+import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
 import { useButtonGroup } from "./button-context"
 import { ButtonIcon } from "./button-icon"
 import { ButtonSpinner } from "./button-spinner"
@@ -52,10 +52,10 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
    *
    * So let's read the component styles and then add `zIndex` to it.
    */
-  const buttonStyles: SystemStyleObject = useMemo(() => {
+  const buttonStyles = useMemo(() => {
     // @ts-ignore
     const _focus = { ...styles?.["_focus"], zIndex: 1 }
-    return {
+    return defineStyle({
       display: "inline-flex",
       appearance: "none",
       alignItems: "center",
@@ -67,7 +67,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       outline: "none",
       ...styles,
       ...(!!group && { _focus }),
-    }
+    })
   }, [styles, group])
 
   const { ref: _ref, type: defaultType } = useButtonType(as)

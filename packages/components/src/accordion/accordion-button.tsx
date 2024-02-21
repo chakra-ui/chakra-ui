@@ -1,6 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import {
   useAccordionItemContext,
   useAccordionStyles,
@@ -22,13 +22,14 @@ export const AccordionButton = forwardRef<AccordionButtonProps, "button">(
     const buttonProps = getButtonProps(props, ref)
 
     const styles = useAccordionStyles()
-    const buttonStyles: SystemStyleObject = {
+
+    const buttonStyles = defineStyle({
       display: "flex",
       alignItems: "center",
       width: "100%",
       outline: 0,
       ...styles.button,
-    }
+    })
 
     return (
       <chakra.button

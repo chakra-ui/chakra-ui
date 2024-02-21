@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle, SystemStyleObject } from "@chakra-ui/styled-system"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { useInputGroupStyles } from "./input-group"
@@ -27,13 +27,13 @@ const InputElement = forwardRef<InputElementProps, "div">(
 
     const attr = placement === "left" ? "insetStart" : "insetEnd"
 
-    const elementStyles: SystemStyleObject = {
+    const elementStyles = defineStyle({
       [attr]: "0",
       width: input?.height ?? input?.h,
       height: input?.height ?? input?.h,
       fontSize: input?.fontSize,
       ...styles.element,
-    }
+    })
 
     return <StyledInputElement ref={ref} __css={elementStyles} {...rest} />
   },

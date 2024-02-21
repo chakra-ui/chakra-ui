@@ -1,19 +1,19 @@
 import {
   SystemProps,
-  SystemStyleObject,
   ThemingProps,
+  defineStyle,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { getValidChildren } from "@chakra-ui/utils/children"
+import { compact } from "@chakra-ui/utils/compact"
+import { cx } from "@chakra-ui/utils/cx"
+import { cloneElement } from "react"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { compact } from "@chakra-ui/utils/compact"
-import { cx } from "@chakra-ui/utils/cx"
-import { cloneElement } from "react"
 import { baseStyle } from "./avatar-root"
 
 interface AvatarGroupOptions {
@@ -88,20 +88,20 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
       return cloneElement(child, compact(childProps))
     })
 
-    const groupStyles: SystemStyleObject = {
+    const groupStyles = defineStyle({
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
       flexDirection: "row-reverse",
       ...styles.group,
-    }
+    })
 
-    const excessStyles: SystemStyleObject = {
+    const excessStyles = defineStyle({
       borderRadius,
       marginStart: spacing,
       ...baseStyle,
       ...styles.excessLabel,
-    }
+    })
 
     return (
       <chakra.div

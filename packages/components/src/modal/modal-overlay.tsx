@@ -1,7 +1,7 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { ChakraProps, chakra, forwardRef } from "../system"
+import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLMotionProps, motion } from "framer-motion"
+import { ChakraProps, chakra, forwardRef } from "../system"
 import { fadeConfig } from "../transition"
 import { useModalContext, useModalStyles } from "./modal"
 
@@ -26,16 +26,18 @@ export const ModalOverlay = forwardRef<ModalOverlayProps, "div">(
     const _className = cx("chakra-modal__overlay", className)
 
     const styles = useModalStyles()
-    const overlayStyle: SystemStyleObject = {
+
+    const overlayStyle = defineStyle({
       pos: "fixed",
       left: "0",
       top: "0",
       w: "100vw",
       h: "100vh",
       ...styles.overlay,
-    }
+    })
 
     const { motionPreset } = useModalContext()
+
     const defaultMotionProps: HTMLMotionProps<"div"> =
       motionPreset === "none" ? {} : fadeConfig
 

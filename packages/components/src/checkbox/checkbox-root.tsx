@@ -1,6 +1,6 @@
 import {
-  SystemStyleObject,
   ThemingProps,
+  defineStyle,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
 import { callAll } from "@chakra-ui/utils/call-all"
@@ -21,13 +21,13 @@ import { splitCheckboxProps } from "./checkbox-props"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
 
-const rootStyles: SystemStyleObject = {
+const rootStyles = defineStyle({
   cursor: "pointer",
   display: "inline-flex",
   alignItems: "center",
   verticalAlign: "top",
   position: "relative",
-}
+})
 
 type CheckboxControlProps = Omit<HTMLChakraProps<"div">, keyof UseCheckboxProps>
 

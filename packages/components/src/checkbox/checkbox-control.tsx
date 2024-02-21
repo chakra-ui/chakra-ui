@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle } from "@chakra-ui/styled-system"
 import { keyframes } from "@emotion/react"
 import { cloneElement, useMemo } from "react"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
@@ -6,14 +6,14 @@ import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { useInitialAnimationState } from "./use-initial-animation-state"
 
-const controlStyles: SystemStyleObject = {
+const controlStyles = defineStyle({
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
   verticalAlign: "top",
   userSelect: "none",
   flexShrink: 0,
-}
+})
 
 const checkAnim = keyframes({
   from: {
@@ -72,17 +72,18 @@ export const CheckboxControl = forwardRef<CheckboxControlProps, "span">(
 
     const shouldAnimate = useInitialAnimationState(state.isChecked)
 
-    const iconStyles: SystemStyleObject = useMemo(
-      () => ({
-        animation: !shouldAnimate
-          ? undefined
-          : state.isIndeterminate
-          ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
-          : `${checkAnim} 200ms linear`,
-        fontSize: iconSize,
-        color: iconColor,
-        ...styles.icon,
-      }),
+    const iconStyles = useMemo(
+      () =>
+        defineStyle({
+          animation: !shouldAnimate
+            ? undefined
+            : state.isIndeterminate
+            ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
+            : `${checkAnim} 200ms linear`,
+          fontSize: iconSize,
+          color: iconColor,
+          ...styles.icon,
+        }),
       [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
     )
 

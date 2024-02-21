@@ -1,17 +1,18 @@
 import {
   SystemStyleObject,
   ThemingProps,
+  defineStyle,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { createContext } from "@chakra-ui/utils/context"
+import { cx } from "@chakra-ui/utils/cx"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
-import { useMemo } from "react"
+import { splitTabsProps } from "./tab-props"
 import {
   TabsDescendantsProvider,
   TabsProvider,
@@ -61,15 +62,13 @@ export const TabsRoot = forwardRef<TabsRootProps, "div">(
     const styles = useMultiStyleConfig("Tabs", props)
     const { children, className, ...rest } = omitThemingProps(props)
 
-    const { htmlProps, descendants, ...ctx } = useTabs(rest)
-    const context = useMemo(() => ctx, [ctx])
+    const [hookProps, rootProps] = splitTabsProps(rest)
+    const { descendants, ...context } = useTabs(hookProps)
 
-    const { isFitted: _, ...rootProps } = htmlProps as any
-
-    const tabsStyles: SystemStyleObject = {
+    const tabsStyles = defineStyle({
       position: "relative",
       ...styles.root,
-    }
+    })
 
     return (
       <TabsDescendantsProvider value={descendants}>

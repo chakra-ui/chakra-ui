@@ -1,18 +1,18 @@
 import {
   SystemProps,
-  SystemStyleObject,
   ThemingProps,
+  defineStyle,
   layoutPropNames,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { callAll } from "@chakra-ui/utils/call-all"
+import { split } from "@chakra-ui/utils/split"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { callAll } from "@chakra-ui/utils/call-all"
-import { split } from "@chakra-ui/utils/split"
 import { useRadioGroupContext } from "./radio-group"
 import { UseRadioProps, useRadio } from "./use-radio"
 
@@ -93,28 +93,28 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
   const labelProps = getLabelProps()
   const rootProps = Object.assign({}, layoutProps, getRootProps())
 
-  const rootStyles = {
+  const rootStyles = defineStyle({
     display: "inline-flex",
     alignItems: "center",
     verticalAlign: "top",
     cursor: "pointer",
     position: "relative",
     ...styles.container,
-  }
+  })
 
-  const checkboxStyles = {
+  const checkboxStyles = defineStyle({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
     ...styles.control,
-  }
+  })
 
-  const labelStyles: SystemStyleObject = {
+  const labelStyles = defineStyle({
     userSelect: "none",
     marginStart: spacing,
     ...styles.label,
-  }
+  })
 
   return (
     <chakra.label className="chakra-radio" {...rootProps} __css={rootStyles}>
