@@ -216,7 +216,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     isSelected: animated.present,
   })
 
-  const getPopoverProps: PropGetter = useCallback(
+  const getContentProps: PropGetter = useCallback(
     (props = {}, _ref = null) => {
       const popoverProps: DOMAttributes = {
         ...props,
@@ -291,7 +291,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     ],
   )
 
-  const getPopoverPositionerProps: PropGetter = useCallback(
+  const getPositionerProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) =>
       getPopperProps(
         {
@@ -456,8 +456,8 @@ export function usePopover(props: UsePopoverProps = {}) {
     getAnchorProps,
     getArrowProps,
     getArrowInnerProps,
-    getPopoverPositionerProps,
-    getPopoverProps,
+    getPositionerProps,
+    getContentProps,
     getTriggerProps,
     getHeaderProps,
     getBodyProps,

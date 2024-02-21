@@ -26,20 +26,16 @@ function Card() {
 export function TwitterEx() {
   return (
     <Popover.Root trigger="hover">
-      <Popover.Trigger>
+      <Popover.Trigger asChild>
         <Link href="#test" color="blue.500">
           Hover to see @swyx profile
         </Link>
       </Popover.Trigger>
-      <Popover.Content
-        sx={{
-          bg: "#15202b",
-          color: "white",
-          width: "400px",
-        }}
-      >
-        <Card />
-      </Popover.Content>
+      <Popover.Positioner>
+        <Popover.Content sx={{ bg: "#15202b", color: "white", width: "400px" }}>
+          <Card />
+        </Popover.Content>
+      </Popover.Positioner>
     </Popover.Root>
   )
 }
@@ -47,35 +43,37 @@ export function TwitterEx() {
 export function WithCustomAnimation() {
   return (
     <Popover.Root>
-      <Popover.Trigger>
+      <Popover.Trigger asChild>
         <IconButton aria-label="Check" p={8}>
           <MdCheck />
         </IconButton>
       </Popover.Trigger>
-      <Popover.Content
-        width="400px"
-        variants={{
-          enter: {
-            y: 0,
-            opacity: 1,
-            transition: {
-              duration: 0.15,
+      <Popover.Positioner>
+        <Popover.Content
+          width="400px"
+          variants={{
+            enter: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                duration: 0.15,
+              },
             },
-          },
-          exit: {
-            y: -4,
-            opacity: 0,
-            transition: {
-              duration: 0.1,
+            exit: {
+              y: -4,
+              opacity: 0,
+              transition: {
+                duration: 0.1,
+              },
             },
-          },
-        }}
-      >
-        <Popover.Arrow />
-        <Popover.Body>
-          Are you sure you want to have that milkshake?
-        </Popover.Body>
-      </Popover.Content>
+          }}
+        >
+          <Popover.Arrow />
+          <Popover.Body>
+            Are you sure you want to have that milkshake?
+          </Popover.Body>
+        </Popover.Content>
+      </Popover.Positioner>
     </Popover.Root>
   )
 }

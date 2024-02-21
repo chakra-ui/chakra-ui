@@ -22,3 +22,6 @@ export { PopoverHeader as Header } from "./popover-header"
 export type { PopoverHeaderProps as HeaderProps } from "./popover-header"
 
 export { PopoverTrigger as Trigger } from "./popover-trigger"
+
+export { PopoverPositioner as Positioner } from "./popover-positioner"
+export type { PopoverPositionerProps as PositionerProps } from "./popover-positioner"

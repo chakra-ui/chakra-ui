@@ -285,6 +285,59 @@ After:
 We've removed the `AlertDialog` component in favor of passing the
 `role="alertdialog"` to the `Dialog` component.
 
+### Popover
+
+- `PopoverTrigger` now renders a `button` by default. Use the `asChild` to
+  switch the trigger to a different element.
+
+- `PopoverAnchor` now renders a `span` by default. Use the `asChild` to switch
+  the anchor to a different element.
+
+- Popover now requires the `Popover.Positioner` component to control the
+  position of the popover.
+
+- Removed `containerProps` in favor of rendering the `Popover.Positioner`
+  component
+
+Before:
+
+```tsx
+<Popover>
+  <PopoverTrigger>
+    <Button>Trigger</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverArrow />
+    <PopoverCloseButton />
+    <PopoverHeader>Confirmation!</PopoverHeader>
+    <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+  </PopoverContent>
+</Popover>
+```
+
+After:
+
+```tsx
+<Popover.Root>
+  <Popover.Trigger asChild>
+    <Button>Trigger</Button>
+  </Popover.Trigger>
+  <Popover.Positioner>
+    <Popover.Content>
+      <Popover.Arrow />
+      <Popover.CloseButton />
+      <Popover.Header>Confirmation!</Popover.Header>
+      <Popover.Body>
+        <p>Are you sure you want to have that milkshake?</p>
+        <br />
+        <button>Yes</button>
+        <button>No</button>
+      </Popover.Body>
+    </Popover.Content>
+  </Popover.Positioner>
+</Popover.Root>
+```
+
 ## Added
 
 ### `For` component

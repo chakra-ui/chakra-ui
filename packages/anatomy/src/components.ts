@@ -113,7 +113,7 @@ export const popoverAnatomy = anatomy("popover").parts(
   "header",
   "body",
   "footer",
-  "popper",
+  "positioner",
   "arrow",
   "closeButton",
 )
