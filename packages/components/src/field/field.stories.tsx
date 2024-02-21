@@ -3,7 +3,7 @@ import { Field, FieldOptions, useField } from "."
 import { PropsOf, chakra, useMultiStyleConfig } from "../system"
 
 export default {
-  title: "Components / Forms / FormControl",
+  title: "Components / Forms / Field",
   decorators: [
     (story: Function) => (
       <chakra.div mx="auto" mt="40px" maxW="400px">
