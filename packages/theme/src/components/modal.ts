@@ -17,7 +17,7 @@ const baseStyleOverlay = defineStyle({
   zIndex: "modal",
 })
 
-const baseStyleDialogContainer = defineStyle((props) => {
+const baseStylePositioner = defineStyle((props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
@@ -30,7 +30,7 @@ const baseStyleDialogContainer = defineStyle((props) => {
   }
 })
 
-const baseStyleDialog = defineStyle((props) => {
+const baseStyleContent = defineStyle((props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
@@ -81,8 +81,8 @@ const baseStyleFooter = defineStyle({
 
 const baseStyle = definePartsStyle((props) => ({
   overlay: baseStyleOverlay,
-  dialogContainer: runIfFn(baseStyleDialogContainer, props),
-  dialog: runIfFn(baseStyleDialog, props),
+  positioner: runIfFn(baseStylePositioner, props),
+  content: runIfFn(baseStyleContent, props),
   header: baseStyleHeader,
   closeButton: baseStyleCloseButton,
   body: runIfFn(baseStyleBody, props),

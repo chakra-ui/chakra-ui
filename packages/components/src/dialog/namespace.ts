@@ -18,3 +18,6 @@ export type { DialogHeaderProps as HeaderProps } from "./dialog-header"
 
 export { DialogOverlay as Overlay } from "./dialog-overlay"
 export type { DialogOverlayProps as OverlayProps } from "./dialog-overlay"
+
+export { DialogPositioner as Positioner } from "./dialog-positioner"
+export type { DialogPositionerProps as PositionerProps } from "./dialog-positioner"

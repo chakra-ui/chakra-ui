@@ -247,6 +247,39 @@ After:
 The `Modal` component has been renamed to `Dialog` to better reflect its purpose
 as a dialog element.
 
+Removed `containerProps` in favor of rendering the `Dialog.Positioner` component
+to better control this element.
+
+Before:
+
+```tsx
+<Modal>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>Modal Title</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody />
+    <ModalFooter />
+  </ModalContent>
+</Modal>
+```
+
+After:
+
+```tsx
+<Dialog.Root>
+  <Dialog.Overlay />
+  <Dialog.Positioner>
+    <Dialog.Content>
+      <Dialog.Header>Dialog Title</Dialog.Header>
+      <Dialog.CloseButton />
+      <Dialog.Body />
+      <Dialog.Footer />
+    </Dialog.Content>
+  </Dialog.Positioner>
+</Dialog.Root>
+```
+
 ### Alert Dialog
 
 We've removed the `AlertDialog` component in favor of passing the

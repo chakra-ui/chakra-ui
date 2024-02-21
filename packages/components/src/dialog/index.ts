@@ -25,6 +25,9 @@ export {
 export { DialogBody } from "./dialog-body"
 export type { DialogBodyProps } from "./dialog-body"
 
+export { DialogPositioner } from "./dialog-positioner"
+export type { DialogPositionerProps } from "./dialog-positioner"
+
 export { DialogCloseButton } from "./dialog-close-button"
 export type { DialogCloseButtonProps } from "./dialog-close-button"
 

@@ -146,7 +146,7 @@ export function useDialog(props: UseDialogProps) {
     [onClose, closeOnOverlayClick, onOverlayClickProp],
   )
 
-  const getDialogContainerProps: PropGetter = useCallback(
+  const getPositionerProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref: mergeRefs(ref, overlayRef),
@@ -167,7 +167,7 @@ export function useDialog(props: UseDialogProps) {
     dialogRef,
     overlayRef,
     getDialogProps,
-    getDialogContainerProps,
+    getPositionerProps,
     index,
   }
 }

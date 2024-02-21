@@ -35,19 +35,21 @@ export function Basic() {
       <Button onClick={onOpen}>Open</Button>
       <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
         <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.CloseButton />
-          <Dialog.Header>Welcome Home</Dialog.Header>
-          <Dialog.Body>
-            Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
-            ullamco deserunt aute id consequat veniam incididunt duis in sint
-            irure nisi.
-          </Dialog.Body>
-          <Dialog.Footer>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button>Save</Button>
-          </Dialog.Footer>
-        </Dialog.Content>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.CloseButton />
+            <Dialog.Header>Welcome Home</Dialog.Header>
+            <Dialog.Body>
+              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+              ullamco deserunt aute id consequat veniam incididunt duis in sint
+              irure nisi.
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Cancel</Button>
+              <Button>Save</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -73,21 +75,23 @@ export function FinalFocusRef() {
 
       <Dialog.Root finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
         <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Header>Dialog. Title</Dialog.Header>
-          <Dialog.CloseButton />
-          <Dialog.Body>
-            Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
-            ullamco deserunt aute id consequat veniam incididunt duis in sint
-            irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
-            officia tempor esse quis.
-          </Dialog.Body>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+              ullamco deserunt aute id consequat veniam incididunt duis in sint
+              irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
+              officia tempor esse quis.
+            </Dialog.Body>
 
-          <Dialog.Footer>
-            <Button onClick={onClose}>Close</Button>
-            <Button>Secondary Action</Button>
-          </Dialog.Footer>
-        </Dialog.Content>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+              <Button>Secondary Action</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -96,44 +100,41 @@ export function FinalFocusRef() {
 export function NestedDialogs() {
   const first = useDisclosure()
   const second = useDisclosure()
-  const third = useDisclosure()
+
   return (
     <>
       <button onClick={first.onOpen}>Open</button>
       <Dialog.Root isOpen={first.isOpen} onClose={first.onClose}>
         <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Header>Dialog. Title</Dialog.Header>
-          <Dialog.Body>
-            Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
-            ullamco deserunt aute id consequat veniam incididunt duis in sint
-            irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
-            officia tempor esse quis.
-          </Dialog.Body>
-          <Dialog.Footer>
-            <chakra.div flex="1" />
-            <Button>Button 2</Button>
-            <Button onClick={second.onOpen}>Open Nested</Button>
-          </Dialog.Footer>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.Body>
+              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+              ullamco deserunt aute id consequat veniam incididunt duis in sint
+              irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit
+              officia tempor esse quis.
+            </Dialog.Body>
+            <Dialog.Footer>
+              <chakra.div flex="1" />
+              <Button>Button 2</Button>
+              <Button onClick={second.onOpen}>Open Nested</Button>
+            </Dialog.Footer>
 
-          <Dialog.Root isOpen={second.isOpen} onClose={second.onClose}>
-            <Dialog.Overlay />
-            <Dialog.Content>
-              <Dialog.Header>Dialog. 2 Title</Dialog.Header>
-              <Dialog.Footer>
-                <chakra.div flex="1" />
-                <Button onClick={third.onOpen}>Open Nested 2</Button>
-              </Dialog.Footer>
-
-              <Dialog.Root isOpen={third.isOpen} onClose={third.onClose}>
-                <Dialog.Overlay />
+            <Dialog.Root isOpen={second.isOpen} onClose={second.onClose}>
+              <Dialog.Overlay />
+              <Dialog.Positioner>
                 <Dialog.Content>
-                  <Dialog.Header tabIndex={0}>Dialog. 3 Title</Dialog.Header>
+                  <Dialog.Header>Dialog. 2 Title</Dialog.Header>
+                  <Dialog.Body>
+                    Sit nulla est ex deserunt exercitation anim occaecat.
+                    Nostrud ullamco deserunt aute id consequat ven.
+                  </Dialog.Body>
                 </Dialog.Content>
-              </Dialog.Root>
-            </Dialog.Content>
-          </Dialog.Root>
-        </Dialog.Content>
+              </Dialog.Positioner>
+            </Dialog.Root>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -146,16 +147,18 @@ export const InsideScroll = () => {
       <button onClick={onOpen}>Open</button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
         <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Header>Dialog. Title</Dialog.Header>
-          <Dialog.CloseButton />
-          <Dialog.Body>
-            <Lorem size={5} />
-          </Dialog.Body>
-          <Dialog.Footer>
-            <Button onClick={onClose}>Close</Button>
-          </Dialog.Footer>
-        </Dialog.Content>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem size={5} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -168,16 +171,18 @@ export const AnimationDisabled = () => {
       <button onClick={onOpen}>Open</button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} motionPreset="none">
         <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Header>Dialog. Title</Dialog.Header>
-          <Dialog.CloseButton />
-          <Dialog.Body>
-            <Lorem size={5} />
-          </Dialog.Body>
-          <Dialog.Footer>
-            <Button onClick={onClose}>Close</Button>
-          </Dialog.Footer>
-        </Dialog.Content>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem size={5} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -190,16 +195,18 @@ export const FullWithLongContent = () => {
       <button onClick={onOpen}>Open</button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} size="full">
         <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Header>Dialog. Title2</Dialog.Header>
-          <Dialog.CloseButton />
-          <Dialog.Body>
-            <Lorem count={30} />
-          </Dialog.Body>
-          <Dialog.Footer>
-            <Button onClick={onClose}>Close</Button>
-          </Dialog.Footer>
-        </Dialog.Content>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog. Title2</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem count={30} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -212,29 +219,31 @@ export function WithCustomMotionProps() {
       <Button onClick={onOpen}>Open</Button>
       <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
         <Dialog.Overlay />
-        <Dialog.Content
-          motionProps={{
-            initial: "exit",
-            animate: "enter",
-            exit: "exit",
-            variants: {
-              enter: { opacity: 1, y: 10 },
-              exit: { opacity: 0, y: 0, transition: { duration: 0.1 } },
-            },
-          }}
-        >
-          <Dialog.CloseButton />
-          <Dialog.Header>Welcome Home</Dialog.Header>
-          <Dialog.Body>
-            Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
-            ullamco deserunt aute id consequat veniam incididunt duis in sint
-            irure nisi.
-          </Dialog.Body>
-          <Dialog.Footer>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button>Save</Button>
-          </Dialog.Footer>
-        </Dialog.Content>
+        <Dialog.Positioner>
+          <Dialog.Content
+            motionProps={{
+              initial: "exit",
+              animate: "enter",
+              exit: "exit",
+              variants: {
+                enter: { opacity: 1, y: 10 },
+                exit: { opacity: 0, y: 0, transition: { duration: 0.1 } },
+              },
+            }}
+          >
+            <Dialog.CloseButton />
+            <Dialog.Header>Welcome Home</Dialog.Header>
+            <Dialog.Body>
+              Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
+              ullamco deserunt aute id consequat veniam incididunt duis in sint
+              irure nisi.
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Cancel</Button>
+              <Button>Save</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -252,22 +261,24 @@ export function WithInitialFocus() {
         initialFocusRef={initialFocusRef}
       >
         <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Header>Dialog. Title</Dialog.Header>
-          <Dialog.CloseButton />
-          <Dialog.Body>
-            <p>With just the text it's awesome</p>
-            <input
-              defaultValue="But with a focussed input it breaks"
-              name="name"
-              ref={initialFocusRef}
-            />
-          </Dialog.Body>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <p>With just the text it's awesome</p>
+              <input
+                defaultValue="But with a focussed input it breaks"
+                name="name"
+                ref={initialFocusRef}
+              />
+            </Dialog.Body>
 
-          <Dialog.Footer>
-            <Button>Close</Button>
-          </Dialog.Footer>
-        </Dialog.Content>
+            <Dialog.Footer>
+              <Button>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
@@ -286,7 +297,8 @@ export const InitialFocusRef = () => {
         initialFocusRef={inputRef}
         onClose={() => setIsOpen(false)}
       >
-        <Dialog.Overlay>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog. header</Dialog.Header>
             <Dialog.Body>
@@ -295,7 +307,7 @@ export const InitialFocusRef = () => {
               <input ref={inputRef} />
             </Dialog.Body>
           </Dialog.Content>
-        </Dialog.Overlay>
+        </Dialog.Positioner>
       </Dialog.Root>
     </>
   )
