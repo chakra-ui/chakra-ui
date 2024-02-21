@@ -126,7 +126,7 @@ export const progressAnatomy = anatomy("progress").parts(
 
 export const radioAnatomy = anatomy("radio").parts("root", "control", "label")
 
-export const selectAnatomy = anatomy("select").parts("field", "icon")
+export const selectAnatomy = anatomy("select").parts("root", "field", "icon")
 
 export const sliderAnatomy = anatomy("slider").parts(
   "root",

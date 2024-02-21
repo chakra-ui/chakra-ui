@@ -88,7 +88,7 @@ export const AvatarRoot = forwardRef<AvatarRootProps, "span">((props, ref) => {
     borderRadius,
     borderWidth: showBorder ? "2px" : undefined,
     ...baseStyle,
-    ...styles.container,
+    ...styles.root,
   })
 
   if (borderColor) {

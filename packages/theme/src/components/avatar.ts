@@ -38,7 +38,7 @@ const baseStyleExcessLabel = defineStyle({
   },
 })
 
-const baseStyleContainer = defineStyle((props) => {
+const baseStyleRoot = defineStyle((props) => {
   const { name, theme } = props
   const bg = name ? randomColor({ string: name }) : "colors.gray.400"
   const isBgDark = isDark(bg)(theme)
@@ -72,7 +72,7 @@ const baseStyleLabel = defineStyle({
 const baseStyle = definePartsStyle((props) => ({
   badge: runIfFn(baseStyleBadge, props),
   excessLabel: runIfFn(baseStyleExcessLabel, props),
-  container: runIfFn(baseStyleContainer, props),
+  container: runIfFn(baseStyleRoot, props),
   label: baseStyleLabel,
 }))
 

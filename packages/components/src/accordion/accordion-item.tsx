@@ -30,7 +30,7 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
     const styles = useAccordionStyles()
 
     const containerStyles = defineStyle({
-      ...styles.container,
+      ...styles.root,
       overflowAnchor: "none",
     })
 

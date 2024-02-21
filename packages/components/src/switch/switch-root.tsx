@@ -46,19 +46,19 @@ export const SwitchRoot = forwardRef<SwitchRootProps, "input">(
     const [checkboxProps, localProps] = splitCheckboxProps(ownProps)
     const api = useCheckbox(checkboxProps)
 
-    const containerStyles = defineStyle({
+    const rootStyles = defineStyle({
       display: "inline-block",
       position: "relative",
       verticalAlign: "middle",
       lineHeight: 0,
-      ...styles.container,
+      ...styles.root,
     })
 
     return (
       <chakra.label
         {...api.getRootProps(localProps)}
         className={cx("chakra-switch", props.className)}
-        __css={containerStyles}
+        __css={rootStyles}
       >
         <input
           className="chakra-switch__input"

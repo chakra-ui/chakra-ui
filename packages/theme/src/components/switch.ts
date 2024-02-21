@@ -59,7 +59,7 @@ const baseStyleThumb = defineStyle({
 })
 
 const baseStyle = definePartsStyle((props) => ({
-  container: {
+  root: {
     [$diff.variable]: diffValue,
     [$translateX.variable]: $diff.reference,
     _rtl: {
@@ -72,19 +72,19 @@ const baseStyle = definePartsStyle((props) => ({
 
 const sizes = {
   sm: definePartsStyle({
-    container: {
+    root: {
       [$width.variable]: "1.375rem",
       [$height.variable]: "sizes.3",
     },
   }),
   md: definePartsStyle({
-    container: {
+    root: {
       [$width.variable]: "1.875rem",
       [$height.variable]: "sizes.4",
     },
   }),
   lg: definePartsStyle({
-    container: {
+    root: {
       [$width.variable]: "2.875rem",
       [$height.variable]: "sizes.6",
     },

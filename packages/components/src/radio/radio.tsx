@@ -99,7 +99,7 @@ export const Radio = forwardRef<RadioProps, "input">((props, ref) => {
     verticalAlign: "top",
     cursor: "pointer",
     position: "relative",
-    ...styles.container,
+    ...styles.root,
   })
 
   const checkboxStyles = defineStyle({

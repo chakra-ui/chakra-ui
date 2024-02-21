@@ -17,7 +17,7 @@ const $minW = cssVar("tag-min-width")
 const $fontSize = cssVar("tag-font-size")
 const $paddingX = cssVar("tag-padding-inline")
 
-const baseStyleContainer = defineStyle({
+const baseStyleRoot = defineStyle({
   fontWeight: "medium",
   lineHeight: 1.2,
   outline: 0,
@@ -68,14 +68,14 @@ const baseStyleCloseButton = defineStyle({
 })
 
 const baseStyle = definePartsStyle({
-  container: baseStyleContainer,
+  root: baseStyleRoot,
   label: baseStyleLabel,
   closeButton: baseStyleCloseButton,
 })
 
 const sizes = {
   sm: definePartsStyle({
-    container: {
+    root: {
       [$minH.variable]: "sizes.5",
       [$minW.variable]: "sizes.5",
       [$fontSize.variable]: "fontSizes.xs",
@@ -87,7 +87,7 @@ const sizes = {
     },
   }),
   md: definePartsStyle({
-    container: {
+    root: {
       [$minH.variable]: "sizes.6",
       [$minW.variable]: "sizes.6",
       [$fontSize.variable]: "fontSizes.sm",
@@ -95,7 +95,7 @@ const sizes = {
     },
   }),
   lg: definePartsStyle({
-    container: {
+    root: {
       [$minH.variable]: "sizes.8",
       [$minW.variable]: "sizes.8",
       [$fontSize.variable]: "fontSizes.md",
@@ -106,13 +106,13 @@ const sizes = {
 
 const variants = {
   subtle: definePartsStyle((props) => ({
-    container: badgeTheme.variants?.subtle(props),
+    root: badgeTheme.variants?.subtle(props),
   })),
   solid: definePartsStyle((props) => ({
-    container: badgeTheme.variants?.solid(props),
+    root: badgeTheme.variants?.solid(props),
   })),
   outline: definePartsStyle((props) => ({
-    container: badgeTheme.variants?.outline(props),
+    root: badgeTheme.variants?.outline(props),
   })),
 }
 

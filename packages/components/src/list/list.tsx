@@ -74,7 +74,7 @@ export const List = forwardRef<ListProps, "ul">(function List(props, ref) {
          * @see https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html
          */
         role="list"
-        __css={{ ...styles.container, ...spacingStyle }}
+        __css={{ ...styles.root, ...spacingStyle }}
         {...rest}
       >
         {validChildren}

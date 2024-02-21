@@ -42,7 +42,7 @@ export const MultipartAlert = () => {
     <ThemeProvider theme={defaultTheme}>
       <pre style={{ fontSize: "small" }}>{JSON.stringify(styles, null, 2)}</pre>
       <Global styles={(theme: any) => ({ ":root": theme.__cssVars })} />
-      <Box css={styles.container}>
+      <Box css={styles.root}>
         <Box css={styles.title}>Welcome</Box>
       </Box>
     </ThemeProvider>

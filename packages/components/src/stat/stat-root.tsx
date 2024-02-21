@@ -25,10 +25,10 @@ export const StatRoot = forwardRef<StatRootProps, "div">(
   function StatRoot(props, ref) {
     const styles = useMultiStyleConfig("Stat", props)
 
-    const statStyles = defineStyle({
+    const rootStyles = defineStyle({
       position: "relative",
       flex: "1 1 0%",
-      ...styles.container,
+      ...styles.root,
     })
 
     const restProps = omitThemingProps(props)
@@ -39,7 +39,7 @@ export const StatRoot = forwardRef<StatRootProps, "div">(
           ref={ref}
           {...restProps}
           className={cx("chakra-stat", restProps.className)}
-          __css={statStyles}
+          __css={rootStyles}
         >
           <dl>{restProps.children}</dl>
         </chakra.div>

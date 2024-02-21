@@ -7,7 +7,7 @@ import {
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
-const baseStyleContainer = defineStyle({
+const baseStyleRoot = defineStyle({
   borderTopWidth: "1px",
   borderColor: "inherit",
   _last: {
@@ -44,7 +44,7 @@ const baseStyleIcon = defineStyle({
 })
 
 const baseStyle = definePartsStyle({
-  container: baseStyleContainer,
+  root: baseStyleRoot,
   button: baseStyleButton,
   panel: baseStylePanel,
   icon: baseStyleIcon,

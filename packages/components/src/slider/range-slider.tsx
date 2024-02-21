@@ -79,7 +79,7 @@ export const RangeSlider = forwardRef<RangeSliderProps, "div">(
           <chakra.div
             {...getRootProps({}, ref)}
             className="chakra-slider"
-            __css={styles.container}
+            __css={styles.root}
           >
             {sliderProps.children}
           </chakra.div>

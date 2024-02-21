@@ -21,14 +21,6 @@ import { splitCheckboxProps } from "./checkbox-props"
 import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
 
-const rootStyles = defineStyle({
-  cursor: "pointer",
-  display: "inline-flex",
-  alignItems: "center",
-  verticalAlign: "top",
-  position: "relative",
-})
-
 type CheckboxControlProps = Omit<HTMLChakraProps<"div">, keyof UseCheckboxProps>
 
 type BaseInputProps = Pick<
@@ -84,15 +76,24 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
 
     const { getRootProps, getInputProps } = checkboxState
 
+    const rootStyles = defineStyle({
+      cursor: "pointer",
+      display: "inline-flex",
+      alignItems: "center",
+      verticalAlign: "top",
+      position: "relative",
+      ...styles.root,
+    })
+
     return (
       <chakra.label
-        __css={{ ...rootStyles, ...styles.container }}
-        className={cx("chakra-checkbox", className)}
         {...getRootProps(localProps)}
+        __css={rootStyles}
+        className={cx("chakra-checkbox", className)}
       >
         <input
-          className="chakra-checkbox__input"
           {...getInputProps(inputProps, ref)}
+          className="chakra-checkbox__input"
         />
         <CheckboxStylesProvider value={styles}>
           <CheckboxProvider value={{ ...checkboxState, spacing }}>

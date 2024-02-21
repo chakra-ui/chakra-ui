@@ -63,7 +63,7 @@ const baseStyleControl = defineStyle((props) => {
   }
 })
 
-const baseStyleContainer = defineStyle({
+const baseStyleRoot = defineStyle({
   _disabled: { cursor: "not-allowed" },
 })
 
@@ -79,7 +79,7 @@ const baseStyleIcon = defineStyle({
 
 const baseStyle = definePartsStyle((props) => ({
   icon: baseStyleIcon,
-  container: baseStyleContainer,
+  root: baseStyleRoot,
   control: runIfFn(baseStyleControl, props),
   label: baseStyleLabel,
 }))

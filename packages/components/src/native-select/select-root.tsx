@@ -46,6 +46,7 @@ export const NativeSelectRoot = forwardRef<NativeSelectRootProps, "select">(
       width: "100%",
       height: "fit-content",
       position: "relative",
+      ...styles.root,
     })
 
     return (

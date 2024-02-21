@@ -1,6 +1,6 @@
 import {
-  SystemStyleObject,
   ThemingProps,
+  defineStyle,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
 import {
@@ -22,15 +22,16 @@ export interface TagRootProps
  */
 export const TagRoot = forwardRef<TagRootProps, "span">((props, ref) => {
   const styles = useMultiStyleConfig("Tag", props)
+
   const rootProps = omitThemingProps(props)
 
-  const rootStyles: SystemStyleObject = {
+  const rootStyles = defineStyle({
     display: "inline-flex",
     verticalAlign: "top",
     alignItems: "center",
     maxWidth: "100%",
-    ...styles.container,
-  }
+    ...styles.root,
+  })
 
   return (
     <TagStylesProvider value={styles}>

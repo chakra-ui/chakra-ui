@@ -24,17 +24,15 @@ export const BreadcrumbRoot = forwardRef<BreadcrumbRootProps, "nav">(
     const styles = useMultiStyleConfig("Breadcrumb", props)
     const ownProps = omitThemingProps(props)
 
-    const { children, className, ...rest } = ownProps
-
-    const _className = cx("chakra-breadcrumb", className)
+    const { children, ...rest } = ownProps
 
     return (
       <chakra.nav
         ref={ref}
         aria-label="breadcrumb"
-        className={_className}
-        __css={styles.container}
         {...rest}
+        className={cx("chakra-breadcrumb", props.className)}
+        __css={styles.root}
       >
         <BreadcrumbStylesProvider value={styles}>
           {children}

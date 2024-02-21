@@ -1,15 +1,16 @@
 import {
   SystemProps,
   ThemingProps,
+  defineStyle,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
+import { cx } from "@chakra-ui/utils/cx"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
 import { CardStylesProvider } from "./card-context"
 
 export interface CardOptions {
@@ -35,7 +36,6 @@ export interface CardRootProps
 export const CardRoot = forwardRef<CardRootProps, "div">(
   function CardRoot(props, ref) {
     const {
-      className,
       children,
       direction = "column",
       justify,
@@ -45,21 +45,23 @@ export const CardRoot = forwardRef<CardRootProps, "div">(
 
     const styles = useMultiStyleConfig("Card", props)
 
+    const rootStyles = defineStyle({
+      display: "flex",
+      flexDirection: direction,
+      justifyContent: justify,
+      alignItems: align,
+      position: "relative",
+      minWidth: 0,
+      wordWrap: "break-word",
+      ...styles.root,
+    })
+
     return (
       <chakra.div
         ref={ref}
-        className={cx("chakra-card", className)}
-        __css={{
-          display: "flex",
-          flexDirection: direction,
-          justifyContent: justify,
-          alignItems: align,
-          position: "relative",
-          minWidth: 0,
-          wordWrap: "break-word",
-          ...styles.container,
-        }}
         {...rest}
+        className={cx("chakra-card", props.className)}
+        __css={rootStyles}
       >
         <CardStylesProvider value={styles}>{children}</CardStylesProvider>
       </chakra.div>
