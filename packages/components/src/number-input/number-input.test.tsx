@@ -1,34 +1,26 @@
-import { Field } from "../field"
 import {
-  focus,
-  testA11y,
   fireEvent,
-  render,
+  focus,
   hooks,
+  render,
   screen,
+  testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import {
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputProps,
-  NumberInputStepper,
-  useNumberInput,
-} from "."
+import { NumberInput, useNumberInput } from "."
+import { Field } from "../field"
 
-function renderComponent(props: NumberInputProps = {}) {
+function renderComponent(props: NumberInput.RootProps = {}) {
   return render(
     <>
       <label htmlFor="input">Select number:</label>
-      <NumberInput id="input" data-testid="root" {...props}>
-        <NumberInputField data-testid="input" />
-        <NumberInputStepper data-testid="group">
-          <NumberIncrementStepper children="+" data-testid="up-btn" />
-          <NumberDecrementStepper children="-" data-testid="down-btn" />
-        </NumberInputStepper>
-      </NumberInput>
+      <NumberInput.Root id="input" data-testid="root" {...props}>
+        <NumberInput.Field data-testid="input" />
+        <NumberInput.Stepper data-testid="group">
+          <NumberInput.IncrementStepper children="+" data-testid="up-btn" />
+          <NumberInput.DecrementStepper children="-" data-testid="down-btn" />
+        </NumberInput.Stepper>
+      </NumberInput.Root>
     </>,
   )
 }
@@ -196,13 +188,13 @@ test("should derive values from surrounding FormControl", () => {
       onBlur={onBlur}
     >
       <Field.Label>Number</Field.Label>
-      <NumberInput data-testid="root">
-        <NumberInputField data-testid="input" />
-        <NumberInputStepper data-testid="group">
-          <NumberIncrementStepper children="+" data-testid="up-btn" />
-          <NumberDecrementStepper children="-" data-testid="down-btn" />
-        </NumberInputStepper>
-      </NumberInput>
+      <NumberInput.Root data-testid="root">
+        <NumberInput.Field data-testid="input" />
+        <NumberInput.Stepper data-testid="group">
+          <NumberInput.IncrementStepper children="+" data-testid="up-btn" />
+          <NumberInput.DecrementStepper children="-" data-testid="down-btn" />
+        </NumberInput.Stepper>
+      </NumberInput.Root>
       <Field.HelpText>Select a number</Field.HelpText>
     </Field.Root>,
   )

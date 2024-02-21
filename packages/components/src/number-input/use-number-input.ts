@@ -153,8 +153,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     inputMode = "decimal",
     allowMouseWheel,
     id,
-    onChange: _,
-    precision,
     name,
     "aria-describedby": ariaDescBy,
     "aria-label": ariaLabel,
@@ -166,7 +164,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isValidCharacter: isValidCharacterProp,
     format: formatValue,
     parse: parseValue,
-    ...htmlProps
   } = props
 
   const onFocus = useCallbackRef(onFocusProp)
@@ -571,7 +568,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     getIncrementButtonProps,
     getDecrementButtonProps,
     getInputProps,
-    htmlProps,
   }
 }
 
