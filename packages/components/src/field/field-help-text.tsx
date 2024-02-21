@@ -1,23 +1,20 @@
 import { cx } from "@chakra-ui/utils/cx"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
-import {
-  useFormControlContext,
-  useFormControlStyles,
-} from "./form-control-context"
+import { useFieldContext, useFieldStyles } from "./field-context"
 
-export interface FormHelperTextProps extends HTMLChakraProps<"div"> {}
+export interface FieldHelpTextProps extends HTMLChakraProps<"div"> {}
 
 /**
- * FormHelperText
+ * FieldHelpText
  *
  * Assistive component that conveys additional guidance
  * about the field, such as how it will be used and what
  * types in values should be provided.
  */
-export const FormHelperText = forwardRef<FormHelperTextProps, "div">(
-  function FormHelperText(props, ref) {
-    const field = useFormControlContext()
-    const styles = useFormControlStyles()
+export const FieldHelpText = forwardRef<FieldHelpTextProps, "div">(
+  function FieldHelpText(props, ref) {
+    const field = useFieldContext()
+    const styles = useFieldStyles()
     const className = cx("chakra-form__helper-text", props.className)
     return (
       <chakra.div
@@ -29,4 +26,4 @@ export const FormHelperText = forwardRef<FormHelperTextProps, "div">(
   },
 )
 
-FormHelperText.displayName = "FormHelperText"
+FieldHelpText.displayName = "FieldHelpText"

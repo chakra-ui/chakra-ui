@@ -2,9 +2,9 @@ import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useId, useState } from "react"
-import { FormControlContext } from "./types"
+import { FieldContext } from "./types"
 
-export function useFormControlProvider(props: FormControlContext) {
+export function useFieldProvider(props: FieldContext) {
   const { id: idProp, isRequired, isInvalid, isDisabled, isReadOnly } = props
 
   // Generate all the required ids
@@ -126,6 +126,4 @@ export function useFormControlProvider(props: FormControlContext) {
   }
 }
 
-export type UseFormControlProviderReturn = ReturnType<
-  typeof useFormControlProvider
->
+export type UseFieldProviderReturn = ReturnType<typeof useFieldProvider>

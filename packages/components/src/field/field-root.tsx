@@ -6,18 +6,15 @@ import {
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import {
-  FormControlProvider,
-  FormControlStylesProvider,
-} from "./form-control-context"
-import { FormControlContext } from "./types"
-import { useFormControlProvider } from "./use-form-control-provider"
-import { splitFormControlProps } from "./form-control-props"
+import { FieldContextProvider, FieldStylesProvider } from "./field-context"
+import { splitFieldProps } from "./field-props"
+import { FieldContext } from "./types"
+import { useFieldProvider } from "./use-field-provider"
 
-export interface FormControlProps
+export interface FieldRootProps
   extends HTMLChakraProps<"div">,
     ThemingProps<"FormControl">,
-    FormControlContext {}
+    FieldContext {}
 
 /**
  * FormControl provides context such as
@@ -28,28 +25,28 @@ export interface FormControlProps
  *
  * @see Docs https://chakra-ui.com/docs/components/form-control
  */
-export const FormControl = forwardRef<FormControlProps, "div">(
-  function FormControl(props, ref) {
+export const FieldRoot = forwardRef<FieldRootProps, "div">(
+  function FieldRoot(props, ref) {
     const styles = useMultiStyleConfig("Form", props)
     const localProps = omitThemingProps(props)
 
-    const [formControlProps, rootProps] = splitFormControlProps(localProps)
-    const api = useFormControlProvider(formControlProps)
+    const [formControlProps, rootProps] = splitFieldProps(localProps)
+    const api = useFieldProvider(formControlProps)
 
     const className = cx("chakra-form-control", props.className)
 
     return (
-      <FormControlProvider value={api}>
-        <FormControlStylesProvider value={styles}>
+      <FieldContextProvider value={api}>
+        <FieldStylesProvider value={styles}>
           <chakra.div
             {...api.getRootProps(rootProps, ref)}
             className={className}
             __css={styles["container"]}
           />
-        </FormControlStylesProvider>
-      </FormControlProvider>
+        </FieldStylesProvider>
+      </FieldContextProvider>
     )
   },
 )
 
-FormControl.displayName = "FormControl"
+FieldRoot.displayName = "FormControl"

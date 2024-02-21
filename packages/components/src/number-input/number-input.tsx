@@ -12,7 +12,7 @@ import {
 import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
-import { useFormControlProps } from "../form-control"
+import { useFieldProps } from "../field"
 import { TriangleDownIcon, TriangleUpIcon } from "./icons"
 import {
   useNumberInput,
@@ -77,7 +77,7 @@ export const NumberInput = forwardRef<NumberInputProps, "div">(
     const styles = useMultiStyleConfig("NumberInput", props)
 
     const ownProps = omitThemingProps(props)
-    const controlProps = useFormControlProps(ownProps)
+    const controlProps = useFieldProps(ownProps)
 
     const { htmlProps, ...context } = useNumberInput(controlProps)
     const ctx = useMemo(() => context, [context])

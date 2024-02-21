@@ -1,5 +1,5 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
-import { FormControl } from "../form-control"
+import { FormControl } from "../field"
 // import { theme } from "@chakra-ui/theme"
 import { Select } from "."
 

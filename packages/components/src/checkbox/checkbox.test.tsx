@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Checkbox, UseCheckboxProps, useCheckbox, useCheckboxGroup } from "."
-import { Form } from "../form-control"
+import { Field } from "../field"
 import { Icon } from "../icon"
 
 const HookCheckbox = (
@@ -293,8 +293,8 @@ test("useCheckboxGroup can handle both strings and numbers", () => {
 
 test("Uncontrolled Form.Control - should not check if form-control disabled", () => {
   const { container } = render(
-    <Form.Control isDisabled mt={4}>
-      <Form.Label>Disabled Opt-in Example</Form.Label>
+    <Field.Root isDisabled mt={4}>
+      <Field.Label>Disabled Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
         <DemoCheckbox value="2" isDisabled>
@@ -313,7 +313,7 @@ test("Uncontrolled Form.Control - should not check if form-control disabled", ()
           Disabled Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
-    </Form.Control>,
+    </Field.Root>,
   )
 
   const [
@@ -352,8 +352,8 @@ test("Uncontrolled Form.Control - should not check if form-control disabled", ()
 
 test("Uncontrolled Form.Control - mark label as invalid", () => {
   const { container } = render(
-    <Form.Control isInvalid mt={4}>
-      <Form.Label>Invalid Opt-in Example</Form.Label>
+    <Field.Root isInvalid mt={4}>
+      <Field.Label>Invalid Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Invalid Opt-in 1</DemoCheckbox>
         <DemoCheckbox value="2" isInvalid>
@@ -363,7 +363,7 @@ test("Uncontrolled Form.Control - mark label as invalid", () => {
           Invalid Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
-    </Form.Control>,
+    </Field.Root>,
   )
 
   const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
@@ -393,8 +393,8 @@ test("Uncontrolled Form.Control - mark label as invalid", () => {
 
 test("Uncontrolled Form.Control - mark label required", () => {
   const { container } = render(
-    <Form.Control isRequired mt={4}>
-      <Form.Label>Required Opt-in Example</Form.Label>
+    <Field.Root isRequired mt={4}>
+      <Field.Label>Required Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Required Opt-in 1</DemoCheckbox>
         <DemoCheckbox value="2" isRequired>
@@ -404,7 +404,7 @@ test("Uncontrolled Form.Control - mark label required", () => {
           Required Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
-    </Form.Control>,
+    </Field.Root>,
   )
 
   const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
@@ -418,8 +418,8 @@ test("Uncontrolled Form.Control - mark label required", () => {
 
 test("Uncontrolled Form.Control - mark readonly", () => {
   const { container } = render(
-    <Form.Control isReadOnly mt={4}>
-      <Form.Label>ReadOnly Opt-in Example</Form.Label>
+    <Field.Root isReadOnly mt={4}>
+      <Field.Label>ReadOnly Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">ReadOnly Opt-in 1</DemoCheckbox>
         <DemoCheckbox value="2" isReadOnly>
@@ -429,7 +429,7 @@ test("Uncontrolled Form.Control - mark readonly", () => {
           ReadOnly Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
-    </Form.Control>,
+    </Field.Root>,
   )
 
   const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
@@ -454,14 +454,14 @@ test("Uncontrolled Form.Control - calls all onFocus EventHandler", () => {
   const checkboxOnFocusMock = vi.fn()
 
   const { container } = render(
-    <Form.Control mt={4} onFocus={formControlOnFocusMock}>
-      <Form.Label>onFocus example</Form.Label>
+    <Field.Root mt={4} onFocus={formControlOnFocusMock}>
+      <Field.Label>onFocus example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1" onFocus={checkboxOnFocusMock}>
           onFocus Opt-in 1
         </DemoCheckbox>
       </Checkbox.Group>
-    </Form.Control>,
+    </Field.Root>,
   )
 
   const [checkboxOne] = Array.from(container.querySelectorAll("input"))
@@ -475,14 +475,14 @@ test("Uncontrolled Form.Control - calls all onBlur EventHandler", () => {
   const checkboxOnBlurMock = vi.fn()
 
   const { container } = render(
-    <Form.Control mt={4} onBlur={formControlOnBlurMock}>
-      <Form.Label>onBlur Example</Form.Label>
+    <Field.Root mt={4} onBlur={formControlOnBlurMock}>
+      <Field.Label>onBlur Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1" onBlur={checkboxOnBlurMock}>
           onBlur EOpt-in 1
         </DemoCheckbox>
       </Checkbox.Group>
-    </Form.Control>,
+    </Field.Root>,
   )
 
   const [checkboxOne] = Array.from(container.querySelectorAll("input"))

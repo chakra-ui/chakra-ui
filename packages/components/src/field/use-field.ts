@@ -1,7 +1,7 @@
 import { ariaAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { UseFormControlProps } from "./types"
-import { useFormControlContext } from "./form-control-context"
+import { useFieldContext } from "./field-context"
+import { UseFieldProps } from "./types"
 
 /**
  * React hook that provides the props that should be spread on to
@@ -12,11 +12,9 @@ import { useFormControlContext } from "./form-control-context"
  *
  * @internal
  */
-export function useFormControl<T extends HTMLElement>(
-  props: UseFormControlProps<T>,
-) {
+export function useField<T extends HTMLElement>(props: UseFieldProps<T>) {
   const { isDisabled, isInvalid, isReadOnly, isRequired, ...rest } =
-    useFormControlProps(props)
+    useFieldProps(props)
 
   return {
     ...rest,
@@ -32,10 +30,10 @@ export function useFormControl<T extends HTMLElement>(
 /**
  * @internal
  */
-export function useFormControlProps<T extends HTMLElement>(
-  props: UseFormControlProps<T>,
+export function useFieldProps<T extends HTMLElement = HTMLInputElement>(
+  props: UseFieldProps<T>,
 ) {
-  const field = useFormControlContext()
+  const field = useFieldContext()
 
   const {
     id,

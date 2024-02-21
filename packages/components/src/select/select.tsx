@@ -14,13 +14,13 @@ import {
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { split } from "@chakra-ui/utils/split"
 import { cloneElement, isValidElement } from "react"
-import { FormControlOptions, useFormControl } from "../form-control"
+import { FieldOptions, useField } from "../field"
 
 import { SelectField, SelectFieldProps } from "./select-field"
 
 interface RootProps extends Omit<HTMLChakraProps<"div">, "color"> {}
 
-interface SelectOptions extends FormControlOptions {
+interface SelectOptions extends FieldOptions {
   /**
    * The border color when the select is focused. Use color keys in `theme.colors`
    * @example
@@ -91,7 +91,7 @@ export const Select = forwardRef<SelectProps, "select">((props, ref) => {
 
   const [layoutProps, otherProps] = split(rest, layoutPropNames as any[])
 
-  const ownProps = useFormControl(otherProps)
+  const ownProps = useField(otherProps)
 
   const rootStyles: SystemStyleObject = {
     width: "100%",

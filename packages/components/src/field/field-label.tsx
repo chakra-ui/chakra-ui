@@ -1,10 +1,10 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
-import { useFormControlContext } from "./form-control-context"
-import { RequiredIndicator } from "./form-indicator"
+import { useFieldContext } from "./field-context"
+import { RequiredIndicator } from "./field-indicator"
 
-export interface FormLabelProps
+export interface FieldLabelProps
   extends HTMLChakraProps<"label">,
     ThemingProps<"FormLabel"> {
   /**
@@ -25,7 +25,7 @@ export interface FormLabelProps
  *
  * ♿️ Accessibility: Every form field should have a form label.
  */
-export const FormLabel = forwardRef<FormLabelProps, "label">(
+export const FieldLabel = forwardRef<FieldLabelProps, "label">(
   function FormLabel(passedProps, ref) {
     const styles = useStyleConfig("FormLabel", passedProps)
     const props = omitThemingProps(passedProps)
@@ -38,7 +38,7 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
       ...rest
     } = props
 
-    const field = useFormControlContext()
+    const field = useFieldContext()
     const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
 
     return (
@@ -58,4 +58,4 @@ export const FormLabel = forwardRef<FormLabelProps, "label">(
   },
 )
 
-FormLabel.displayName = "FormLabel"
+FieldLabel.displayName = "FieldLabel"

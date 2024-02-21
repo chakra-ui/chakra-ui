@@ -2,6 +2,10 @@
 
 ## Changed
 
+### Theming
+
+Renamed all `container` parts to `root`. Kindly update your theme to reflect
+
 ### Removed Components
 
 - Removed `ControlBox` component
@@ -191,6 +195,22 @@ const CustomTooltip = (props: Props) => {
 
 - Remove `closeOnMouseDown`, use `closeOnPointerDown` instead
 - Remove all `arrow*` props in favor of rendering the `Tooltip.Arrow` component
+
+### FormControl -> Field
+
+Form control has now been renamed to `Field` to better reflect its purpose as an
+element that represents a form field.
+
+```tsx
+<Field.Root id="first-name" isRequired isInvalid>
+  <Field.Label>First name</Field.Label>
+  <Input placeholder="First Name" />
+  <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+  <Field.ErrorMessage>Your First name is invalid</Field.ErrorMessage>
+</Field.Root>
+```
+
+HelperText has been renamed to `Field.HelpText` for brevity.
 
 ## Added
 

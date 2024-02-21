@@ -6,29 +6,26 @@ import {
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import {
-  FormErrorStylesProvider,
-  useFormControlContext,
-} from "./form-control-context"
+import { FieldErrorStylesProvider, useFieldContext } from "./field-context"
 
-export interface FormErrorMessageProps
+export interface FieldErrorMessageProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"FormErrorMessage"> {}
+    ThemingProps<"FieldErrorMessage"> {}
 
 /**
  * Used to provide feedback about an invalid input,
  * and suggest clear instructions on how to fix it.
  */
-export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
-  function FormErrorMessage(props, ref) {
+export const FieldErrorMessage = forwardRef<FieldErrorMessageProps, "div">(
+  function FieldErrorMessage(props, ref) {
     const styles = useMultiStyleConfig("FormError", props)
     const ownProps = omitThemingProps(props)
-    const field = useFormControlContext()
+    const field = useFieldContext()
 
     if (!field?.isInvalid) return null
 
     return (
-      <FormErrorStylesProvider value={styles}>
+      <FieldErrorStylesProvider value={styles}>
         <chakra.div
           {...field?.getErrorMessageProps(ownProps, ref)}
           className={cx("chakra-form__error-message", props.className)}
@@ -38,9 +35,9 @@ export const FormErrorMessage = forwardRef<FormErrorMessageProps, "div">(
             ...styles.text,
           }}
         />
-      </FormErrorStylesProvider>
+      </FieldErrorStylesProvider>
     )
   },
 )
 
-FormErrorMessage.displayName = "FormErrorMessage"
+FieldErrorMessage.displayName = "FieldErrorMessage"

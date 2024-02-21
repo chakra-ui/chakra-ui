@@ -1,9 +1,6 @@
 import { cx } from "@chakra-ui/utils/cx"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
-import {
-  useFormControlContext,
-  useFormControlStyles,
-} from "./form-control-context"
+import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
 
@@ -13,8 +10,8 @@ export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
  */
 export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
   function RequiredIndicator(props, ref) {
-    const field = useFormControlContext()
-    const styles = useFormControlStyles()
+    const field = useFieldContext()
+    const styles = useFieldStyles()
 
     if (!field?.isRequired) return null
 

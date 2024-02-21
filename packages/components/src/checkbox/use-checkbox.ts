@@ -7,7 +7,7 @@ import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import type { PropGetter } from "@chakra-ui/utils/prop-types"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
-import { useFormControlProps } from "../form-control"
+import { useFieldProps } from "../field"
 import { visuallyHiddenStyle } from "../visually-hidden"
 import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 
@@ -19,7 +19,7 @@ import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
-  const formControlProps = useFormControlProps(props)
+  const formControlProps = useFieldProps(props)
   const {
     isDisabled,
     isReadOnly,

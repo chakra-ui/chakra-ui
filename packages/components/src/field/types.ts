@@ -1,6 +1,6 @@
-import { UseFormControlProviderReturn } from "./use-form-control-provider"
+import { UseFieldProviderReturn } from "./use-field-provider"
 
-export interface FormControlOptions {
+export interface FieldOptions {
   /**
    * If `true`, the form control will be required. This has 2 side effects:
    * - The `FormLabel` will show a required indicator
@@ -33,8 +33,8 @@ export interface FormControlOptions {
   isReadOnly?: boolean
 }
 
-export interface UseFormControlProps<T extends HTMLElement = HTMLElement>
-  extends FormControlOptions {
+export interface UseFieldProps<T extends HTMLElement = HTMLInputElement>
+  extends FieldOptions {
   id?: string
   onFocus?: React.FocusEventHandler<T>
   onBlur?: React.FocusEventHandler<T>
@@ -44,7 +44,7 @@ export interface UseFormControlProps<T extends HTMLElement = HTMLElement>
   "aria-describedby"?: string
 }
 
-export interface FormControlContext extends FormControlOptions {
+export interface FieldContext extends FieldOptions {
   /**
    * The label text used to inform users as to what information is
    * requested for a text field.
@@ -60,5 +60,4 @@ export interface FormControlContext extends FormControlOptions {
   id?: string
 }
 
-export interface FormControlProviderContext
-  extends UseFormControlProviderReturn {}
+export interface FieldProviderContext extends UseFieldProviderReturn {}

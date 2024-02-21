@@ -1,21 +1,18 @@
 import { cx } from "@chakra-ui/utils/cx"
 import { Icon, type IconProps } from "../icon"
 import { forwardRef } from "../system"
-import {
-  useFormControlContext,
-  useFormErrorStyles,
-} from "./form-control-context"
+import { useFieldContext, useFieldErrorStyles } from "./field-context"
 
-export interface FormErrorIconProps extends IconProps {}
+export interface FieldErrorIconProps extends IconProps {}
 
 /**
  * Used as the visual indicator that a field is invalid or
  * a field has incorrect values.
  */
-export const FormErrorIcon = forwardRef<FormErrorIconProps, "svg">(
-  function FormErrorIcon(props, ref) {
-    const styles = useFormErrorStyles()
-    const field = useFormControlContext()
+export const FieldErrorIcon = forwardRef<FieldErrorIconProps, "svg">(
+  function FieldErrorIcon(props, ref) {
+    const styles = useFieldErrorStyles()
+    const field = useFieldContext()
 
     if (!field?.isInvalid) return null
 
@@ -38,4 +35,4 @@ export const FormErrorIcon = forwardRef<FormErrorIconProps, "svg">(
   },
 )
 
-FormErrorIcon.displayName = "FormErrorIcon"
+FieldErrorIcon.displayName = "FieldErrorIcon"

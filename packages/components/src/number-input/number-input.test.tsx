@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, FormLabel } from "../form-control"
+import { FormControl, FormHelperText, FormLabel } from "../field"
 import {
   focus,
   testA11y,

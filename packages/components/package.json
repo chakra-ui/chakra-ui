@@ -364,6 +364,17 @@
         "default": "./dist/cjs/extend-theme/index.cjs"
       }
     },
+    "./field": {
+      "source": "./src/field/index.ts",
+      "import": {
+        "types": "./dist/types/field/index.d.mts",
+        "default": "./dist/esm/field/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/field/index.d.ts",
+        "default": "./dist/cjs/field/index.cjs"
+      }
+    },
     "./flex": {
       "source": "./src/flex/index.ts",
       "import": {
@@ -395,17 +406,6 @@
       "require": {
         "types": "./dist/types/for.d.ts",
         "default": "./dist/cjs/for.cjs"
-      }
-    },
-    "./form-control": {
-      "source": "./src/form-control/index.ts",
-      "import": {
-        "types": "./dist/types/form-control/index.d.mts",
-        "default": "./dist/esm/form-control/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/form-control/index.d.ts",
-        "default": "./dist/cjs/form-control/index.cjs"
       }
     },
     "./grid": {

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Form, FormControlOptions, useFormControl } from "."
+import { Field, FieldOptions, useField } from "."
 import { PropsOf, chakra, useMultiStyleConfig } from "../system"
 
 export default {
@@ -20,13 +20,13 @@ export default {
 type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
 
 type InputProps = Omit<PropsOf<"input">, OmittedTypes> &
-  FormControlOptions & {
+  FieldOptions & {
     // Input component as `size` by default, so it resolves to `never`
     // Omitted it from types in Line 16 and added back here.
     size?: string
   }
 
-// Create an input that consumes useFormControl
+// Create an input that consumes useField
 interface Props {
   focusBorderColor?: string
   errorBorderColor?: string
@@ -35,32 +35,31 @@ interface Props {
 const Input = React.forwardRef<HTMLInputElement, InputProps & Props>(
   function Input(props, ref) {
     const styles = useMultiStyleConfig("Input", props)
-    const inputProps = useFormControl<HTMLInputElement>(props)
+    const inputProps = useField(props)
     return <chakra.input ref={ref} __css={styles.field} {...inputProps} />
   },
 )
 
 // ------------------
 
-type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> &
-  FormControlOptions
+type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & FieldOptions
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function Textarea(props, ref) {
     const styles = useMultiStyleConfig("Textarea", props)
-    const inputProps = useFormControl<HTMLTextAreaElement>(props)
+    const inputProps = useField<HTMLTextAreaElement>(props)
     return <chakra.textarea ref={ref} __css={styles} {...inputProps} />
   },
 )
 
 // ------------------
 
-type SelectProps = Omit<PropsOf<"select">, OmittedTypes> & FormControlOptions
+type SelectProps = Omit<PropsOf<"select">, OmittedTypes> & FieldOptions
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   function Select(props, ref) {
     const styles = useMultiStyleConfig("Select", props)
-    const inputProps = useFormControl<HTMLSelectElement>(props)
+    const inputProps = useField<HTMLSelectElement>(props)
     return <chakra.select ref={ref} __css={styles.field} {...inputProps} />
   },
 )
@@ -70,52 +69,52 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
  * -----------------------------------------------------------------------------*/
 
 export const WithInput = () => (
-  <Form.Control id="first-name" isRequired isInvalid>
-    <Form.Label>First name</Form.Label>
+  <Field.Root id="first-name" isRequired isInvalid>
+    <Field.Label>First name</Field.Label>
     <Input placeholder="First Name" />
-    <Form.HelperText>Keep it very short and sweet!</Form.HelperText>
-    <Form.ErrorMessage>Your First name is invalid</Form.ErrorMessage>
-  </Form.Control>
+    <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+    <Field.ErrorMessage>Your First name is invalid</Field.ErrorMessage>
+  </Field.Root>
 )
 
 export const WithTextarea = () => (
-  <Form.Control id="first-name" isInvalid>
-    <Form.Label>First name</Form.Label>
+  <Field.Root id="first-name" isInvalid>
+    <Field.Label>First name</Field.Label>
     <Textarea placeholder="First Name" />
-    <Form.HelperText>Keep it very short and sweet!</Form.HelperText>
-    <Form.ErrorMessage>
-      <Form.ErrorIcon />
+    <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+    <Field.ErrorMessage>
+      <Field.ErrorIcon />
       Your First name is invalid
-    </Form.ErrorMessage>
-  </Form.Control>
+    </Field.ErrorMessage>
+  </Field.Root>
 )
 
 export const WithSelect = () => (
-  <Form.Control id="first-name" isInvalid>
-    <Form.Label>First name</Form.Label>
+  <Field.Root id="first-name" isInvalid>
+    <Field.Label>First name</Field.Label>
     <Select>
       <option>Option 1</option>
       <option>Option 2</option>
       <option>Option 3</option>
     </Select>
-    <Form.HelperText>Keep it very short and sweet!</Form.HelperText>
-    <Form.ErrorMessage>
-      <Form.ErrorIcon />
+    <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+    <Field.ErrorMessage>
+      <Field.ErrorIcon />
       Your First name is invalid
-    </Form.ErrorMessage>
-  </Form.Control>
+    </Field.ErrorMessage>
+  </Field.Root>
 )
 
 export const WithFocusStyle = () => (
-  <Form.Control id="first-name">
-    <Form.Label _focus={{ color: "blue.600" }}>First name</Form.Label>
+  <Field.Root id="first-name">
+    <Field.Label _focus={{ color: "blue.600" }}>First name</Field.Label>
     <Input placeholder="First Name" width="100%" />
-    <Form.ErrorMessage>Your First name is invalid</Form.ErrorMessage>
-  </Form.Control>
+    <Field.ErrorMessage>Your First name is invalid</Field.ErrorMessage>
+  </Field.Root>
 )
 
 export const WithLabel = () => (
-  <Form.Label fontWeight="bold" color="blue">
+  <Field.Label fontWeight="bold" color="blue">
     Not wrapped by FormControl
-  </Form.Label>
+  </Field.Label>
 )

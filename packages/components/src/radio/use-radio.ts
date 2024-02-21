@@ -3,7 +3,7 @@ import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { InputDOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useId, useState } from "react"
-import { useFormControlContext } from "../form-control"
+import { useFieldContext } from "../field"
 import { visuallyHiddenStyle } from "../visually-hidden"
 import { useRadioGroupContext } from "./radio-group"
 
@@ -120,7 +120,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const uuid = `radio-${useId()}`
 
-  const formControl = useFormControlContext()
+  const formControl = useFieldContext()
   const group = useRadioGroupContext()
 
   const isWithinRadioGroup = !!group || !!dataRadioGroup

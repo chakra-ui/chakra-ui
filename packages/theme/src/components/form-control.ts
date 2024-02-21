@@ -19,7 +19,7 @@ const baseStyleRequiredIndicator = defineStyle({
   color: $fg.reference,
 })
 
-const baseStyleHelperText = defineStyle({
+const baseStyleHelpText = defineStyle({
   mt: "2",
   [$fg.variable]: "colors.gray.600",
   _dark: {
@@ -36,7 +36,7 @@ const baseStyle = definePartsStyle({
     position: "relative",
   },
   requiredIndicator: baseStyleRequiredIndicator,
-  helperText: baseStyleHelperText,
+  helpText: baseStyleHelpText,
 })
 
 export const formTheme = defineMultiStyleConfig({

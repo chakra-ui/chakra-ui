@@ -5,7 +5,7 @@ import {
   Container,
   Divider,
   Flex,
-  Form,
+  Field,
   HStack,
   Heading,
   Icon,
@@ -306,8 +306,8 @@ export const CustomCheckboxGroup = () => {
 export const WithFormControl = () => {
   return (
     <>
-      <Form.Control id="optIn">
-        <Form.Label>Opt-in Example</Form.Label>
+      <Field.Root id="optIn">
+        <Field.Label>Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["1", "3"]}>
           <HStack>
             <DemoCheckbox value="1">Opt-in 1</DemoCheckbox>
@@ -315,10 +315,10 @@ export const WithFormControl = () => {
             <DemoCheckbox value="3">Opt-in 3</DemoCheckbox>
           </HStack>
         </Checkbox.Group>
-      </Form.Control>
+      </Field.Root>
 
-      <Form.Control id="optInInvalid" isInvalid mt={4}>
-        <Form.Label>Invalid Opt-in Example</Form.Label>
+      <Field.Root id="optInInvalid" isInvalid mt={4}>
+        <Field.Label>Invalid Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
             <DemoCheckbox value="1">Invalid Opt-in 1</DemoCheckbox>
@@ -326,10 +326,10 @@ export const WithFormControl = () => {
             <DemoCheckbox value="3">Invalid Opt-in 3</DemoCheckbox>
           </Stack>
         </Checkbox.Group>
-      </Form.Control>
+      </Field.Root>
 
-      <Form.Control id="optInDisabled" isDisabled mt={4}>
-        <Form.Label>Disabled Opt-in Example</Form.Label>
+      <Field.Root id="optInDisabled" isDisabled mt={4}>
+        <Field.Label>Disabled Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
             <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
@@ -337,10 +337,10 @@ export const WithFormControl = () => {
             <DemoCheckbox value="3">Disabled Opt-in 3</DemoCheckbox>
           </Stack>
         </Checkbox.Group>
-      </Form.Control>
+      </Field.Root>
 
-      <Form.Control id="optInReadonly" isReadOnly mt={4}>
-        <Form.Label>Readonly Opt-in Example</Form.Label>
+      <Field.Root id="optInReadonly" isReadOnly mt={4}>
+        <Field.Label>Readonly Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
             <DemoCheckbox value="1">Readonly Opt-in 1</DemoCheckbox>
@@ -348,10 +348,10 @@ export const WithFormControl = () => {
             <DemoCheckbox value="3">Readonly Opt-in 3</DemoCheckbox>
           </Stack>
         </Checkbox.Group>
-      </Form.Control>
+      </Field.Root>
 
-      <Form.Control id="optInRequired" isRequired mt={4}>
-        <Form.Label>Required Opt-in Example</Form.Label>
+      <Field.Root id="optInRequired" isRequired mt={4}>
+        <Field.Label>Required Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
             <DemoCheckbox value="1">Required Opt-in 1</DemoCheckbox>
@@ -359,7 +359,7 @@ export const WithFormControl = () => {
             <DemoCheckbox value="3">Required Opt-in 3</DemoCheckbox>
           </Stack>
         </Checkbox.Group>
-      </Form.Control>
+      </Field.Root>
     </>
   )
 }
