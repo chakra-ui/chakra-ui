@@ -8,13 +8,6 @@ export default {
   decorators: [(story: Function) => <Container>{story()}</Container>],
 }
 
-/**
- * By default, only one accordion can be visible
- * at a time, and it can't be toggled.
- *
- * Note 🚨: Each accordion button must be wrapped in a heading tag,
- * that is appropriate for the information architecture of the page.
- */
 export const Basic = () => (
   <Accordion.Root>
     <Accordion.Item>
@@ -43,8 +36,8 @@ export const Basic = () => (
   </Accordion.Root>
 )
 
-export const allowToggle = () => (
-  <Accordion.Root allowToggle>
+export const WithCollapsible = () => (
+  <Accordion.Root collapsible>
     <Accordion.Item>
       <h2>
         <Accordion.Trigger>
@@ -82,7 +75,7 @@ export const allowToggle = () => (
 )
 
 export const allowMultiple = () => (
-  <Accordion.Root allowMultiple>
+  <Accordion.Root multiple>
     <Accordion.Item>
       <h2>
         <Accordion.Trigger>
@@ -120,7 +113,7 @@ export const allowMultiple = () => (
 )
 
 export const stylingExpanded = () => (
-  <Accordion.Root allowToggle>
+  <Accordion.Root collapsible>
     <Accordion.Item>
       <h2>
         <Accordion.Trigger _expanded={{ bg: "tomato", color: "white" }}>
@@ -188,7 +181,7 @@ export function WithSearchFilter() {
       </chakra.div>
       {displayData.length > 0 && (
         <Accordion.Root
-          allowToggle
+          collapsible
           index={index}
           onChange={(index) => {
             if (!Array.isArray(index)) {
@@ -231,7 +224,7 @@ export const FocusBug = () => {
             <Drawer.Header>Create your account</Drawer.Header>
 
             <Drawer.Body>
-              <Accordion.Root allowMultiple>
+              <Accordion.Root multiple>
                 <Accordion.Item>
                   <h2>
                     <Accordion.Trigger>

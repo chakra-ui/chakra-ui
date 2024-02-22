@@ -151,7 +151,7 @@ test("only one accordion can be visible + is not toggleable", async () => {
 // test the only one accordion can be visible + is toggleable
 test("only one accordion can be visible + is toggleable", async () => {
   const { user } = render(
-    <Accordion.Root allowToggle>
+    <Accordion.Root collapsible>
       <Accordion.Item>
         <h2>
           <Accordion.Trigger>First section</Accordion.Trigger>
@@ -180,7 +180,7 @@ test("only one accordion can be visible + is toggleable", async () => {
 // test that multiple accordions can be opened + is toggleable
 test("multiple accordions can be opened + is toggleable", async () => {
   const { user } = render(
-    <Accordion.Root allowMultiple>
+    <Accordion.Root multiple>
       <Accordion.Item>
         <h2>
           <Accordion.Trigger>First section</Accordion.Trigger>

@@ -21,6 +21,13 @@ or `<X>Root`
 - `CheckboxProps` -> `CheckboxRootProps`
 - and so on...
 
+### Accordion
+
+- Rename `allowMultiple` to `multiple`
+- Rename `allowToggle` to `collapsible`
+- Rename `AccordionButton` to `Accordion.Trigger`
+- Rename `AccordionPanel` to `Accordion.Content`
+
 ### Avatar
 
 Before:

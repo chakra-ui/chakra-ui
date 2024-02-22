@@ -11,11 +11,11 @@ export const splitAccordionItemProps =
   createSplitProps<UseAccordionItemProps>(accordionItemProps)
 
 const accordionProps = createProps<UseAccordionProps>()([
-  "allowMultiple",
+  "multiple",
   "defaultIndex",
   "index",
   "onChange",
-  "allowToggle",
+  "collapsible",
 ])
 
 export const splitAccordionProps =

@@ -18,13 +18,13 @@ export interface UseAccordionProps {
    *
    * @default false
    */
-  allowMultiple?: boolean
+  multiple?: boolean
   /**
    * If `true`, any expanded accordion item can be collapsed again.
    *
    * @default false
    */
-  allowToggle?: boolean
+  collapsible?: boolean
   /**
    * The index(es) of the expanded accordion item
    */
@@ -50,13 +50,13 @@ export function useAccordion(props: UseAccordionProps) {
     onChange,
     defaultIndex,
     index: indexProp,
-    allowMultiple,
-    allowToggle,
+    multiple,
+    collapsible,
   } = props
 
   // validate the props and `warn` if used incorrectly
-  allowMultipleWarning(props)
-  allowMultipleAndAllowToggleWarning(props)
+  multipleWarning(props)
+  multipleAndcollapsibleWarning(props)
 
   /**
    * Think of this as the register to each accordion item.
@@ -90,7 +90,7 @@ export function useAccordion(props: UseAccordionProps) {
   const [index, setIndex] = useControllableState({
     value: indexProp,
     defaultValue() {
-      if (allowMultiple) return defaultIndex ?? []
+      if (multiple) return defaultIndex ?? []
       return defaultIndex ?? -1
     },
     onChange,
@@ -112,7 +112,7 @@ export function useAccordion(props: UseAccordionProps) {
     const onChange = (isOpen: boolean) => {
       if (idx === null) return
 
-      if (allowMultiple && Array.isArray(index)) {
+      if (multiple && Array.isArray(index)) {
         //
         const nextState = isOpen
           ? index.concat(idx)
@@ -122,7 +122,7 @@ export function useAccordion(props: UseAccordionProps) {
         //
       } else if (isOpen) {
         setIndex(idx)
-      } else if (allowToggle) {
+      } else if (collapsible) {
         setIndex(-1)
       }
     }
@@ -324,21 +324,20 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
  * Validate accordion and accordion item props, and emit warnings.
  * -----------------------------------------------------------------------------------------------*/
 
-function allowMultipleWarning(props: UseAccordionProps) {
+function multipleWarning(props: UseAccordionProps) {
   const index = props.index || props.defaultIndex
-  const condition =
-    index != null && !Array.isArray(index) && props.allowMultiple
+  const condition = index != null && !Array.isArray(index) && props.multiple
 
   warn({
     condition: !!condition,
-    message: `If 'allowMultiple' is passed, then 'index' or 'defaultIndex' must be an array. You passed: ${typeof index},`,
+    message: `If 'multiple' is passed, then 'index' or 'defaultIndex' must be an array. You passed: ${typeof index},`,
   })
 }
 
-function allowMultipleAndAllowToggleWarning(props: UseAccordionProps) {
+function multipleAndcollapsibleWarning(props: UseAccordionProps) {
   warn({
-    condition: !!(props.allowMultiple && props.allowToggle),
-    message: `If 'allowMultiple' is passed, 'allowToggle' will be ignored. Either remove 'allowToggle' or 'allowMultiple' depending on whether you want multiple accordions visible or not`,
+    condition: !!(props.multiple && props.collapsible),
+    message: `If 'multiple' is passed, 'collapsible' will be ignored. Either remove 'collapsible' or 'multiple' depending on whether you want multiple accordions visible or not`,
   })
 }
 
