@@ -1,5 +1,5 @@
 export interface ForProps<T> {
-  each: T[]
+  each: T[] | readonly T[]
   fallback?: React.ReactNode
   children: (item: T, index: number) => React.ReactNode
 }

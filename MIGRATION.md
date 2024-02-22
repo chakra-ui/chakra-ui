@@ -338,7 +338,81 @@ After:
 </Popover.Root>
 ```
 
+### Button
+
+The `Button` component has been simplified to remove internal complexity.
+
+**isLoading**
+
+Removed `isLoading` prop in favor of rendering `Spinner` component
+
+Before:
+
+```tsx
+<Button isLoading colorScheme="blue">
+  Click me
+</Button>
+```
+
+After:
+
+```tsx
+<Button colorScheme="blue">
+  <Spinner boxSize="1em" />
+  Click me
+</Button>
+```
+
+**leftIcon and rightIcon**
+
+Removed `leftIcon` and `rightIcon` in favor of rendering an icon component
+inlined with the button content.
+
+> To implement `iconSpacing`, you can use the `gap` prop on the `Button`
+> component.
+
+Before:
+
+```tsx
+<Button leftIcon={<AddIcon />}>
+  Click me
+  <AddIcon />
+</Button>
+```
+
+After:
+
+```tsx
+<Button>
+  <AddIcon />
+  Click me
+</Button>
+```
+
+Removed `loadingText` in favor of updating the button content directly.
+
+Before:
+
+```tsx
+<Button isLoading loadingText="Submitting">
+  Click me
+</Button>
+```
+
+After:
+
+```tsx
+<Button>
+  <Spinner boxSize="1em" />
+  Submitting
+</Button>
+```
+
 ## Added
+
+### Typography components
+
+We've added `Em` , `Strong`, `Quote` and `Span` components
 
 ### `For` component
 
