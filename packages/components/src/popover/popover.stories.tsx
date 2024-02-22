@@ -5,7 +5,6 @@ import {
   ButtonGroup,
   Input,
   Popover,
-  Radio,
   RadioGroup,
   chakra,
   usePopover,
@@ -248,15 +247,15 @@ export function WithPopoverAnchor() {
         <Popover.Content>
           <Popover.Body>
             Colors:
-            <RadioGroup
+            <RadioGroup.Root
               value={color}
               onChange={(newColor) => setColor(newColor)}
             >
-              <Radio value="red">red</Radio>
-              <Radio value="blue">blue</Radio>
-              <Radio value="green">green</Radio>
-              <Radio value="purple">purple</Radio>
-            </RadioGroup>
+              <RadioGroup.Item value="red">red</RadioGroup.Item>
+              <RadioGroup.Item value="blue">blue</RadioGroup.Item>
+              <RadioGroup.Item value="green">green</RadioGroup.Item>
+              <RadioGroup.Item value="purple">purple</RadioGroup.Item>
+            </RadioGroup.Root>
           </Popover.Body>
         </Popover.Content>
       </Popover.Positioner>
