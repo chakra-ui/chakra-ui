@@ -5,12 +5,8 @@ import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useId, useState } from "react"
 import { useFieldContext } from "../field"
 import { visuallyHiddenStyle } from "../visually-hidden"
-import { useRadioGroupContext } from "./radio-group"
+import { useRadioGroupContext } from "./radio-group-context"
 
-/**
- * @todo use the `useClickable` hook here
- * to manage the isFocusable & isDisabled props
- */
 export interface UseRadioProps {
   /**
    * id assigned to input
@@ -115,7 +111,6 @@ export function useRadio(props: UseRadioProps = {}) {
     id: idProp,
     "data-radiogroup": dataRadioGroup,
     "aria-describedby": ariaDescribedBy,
-    ...htmlProps
   } = props
 
   const uuid = `radio-${useId()}`
@@ -304,7 +299,6 @@ export function useRadio(props: UseRadioProps = {}) {
     getInputProps,
     getLabelProps,
     getRootProps,
-    htmlProps,
   }
 }
 

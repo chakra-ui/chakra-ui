@@ -1,8 +1,15 @@
 type Dict = Record<string, any>
-type PredicateFn = (key: string) => boolean
-type Key = PredicateFn | string[]
+type PredicateFn<T> = (key: T) => boolean
 
-export function splitProps<T extends Dict>(props: T, ...keys: Key[]) {
+export type SplitProps<T, K extends (keyof T)[]> = [
+  Pick<T, K[number]>,
+  Omit<T, K[number]>,
+]
+
+export function splitProps<T extends Dict, K extends keyof T>(
+  props: T,
+  keys: PredicateFn<K> | K[],
+): SplitProps<T, K[]> {
   const descriptors = Object.getOwnPropertyDescriptors(props)
   const dKeys = Object.keys(descriptors)
   const split = (k: string[]) => {
@@ -16,8 +23,11 @@ export function splitProps<T extends Dict>(props: T, ...keys: Key[]) {
     }
     return clone
   }
-  const fn = (key: Key) => split(Array.isArray(key) ? key : dKeys.filter(key))
-  return keys.map(fn).concat(split(dKeys))
+
+  // @ts-expect-error
+  const resKeys = Array.isArray(keys) ? keys : (dKeys.filter(keys) as K[])
+
+  return split(resKeys as any).concat(split(dKeys))
 }
 
 export const createSplitProps = <T>(keys: (keyof T)[]) => {

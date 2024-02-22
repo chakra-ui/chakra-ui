@@ -1,15 +1,25 @@
 import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
-import { Radio, RadioGroup, UseRadioGroupProps, useRadioGroup } from "."
+import { RadioGroup, UseRadioGroupProps, useRadioGroup } from "."
 import { Field } from "../field"
+
+const RadioDemo = (props: RadioGroup.ItemProps) => {
+  const { children, ...rest } = props
+  return (
+    <RadioGroup.Item {...rest}>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>{children}</RadioGroup.ItemText>
+    </RadioGroup.Item>
+  )
+}
 
 test("works with Radio component", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
-    const { getRootProps, getRadioProps } = useRadioGroup(props)
+    const { getRootProps, getItemProps } = useRadioGroup(props)
 
     return (
       <div {...getRootProps()}>
-        <Radio {...getRadioProps({ value: "a" })}>a</Radio>
-        <Radio {...getRadioProps({ value: "b" })}>b</Radio>
+        <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
+        <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
       </div>
     )
   }
@@ -20,12 +30,12 @@ test("works with Radio component", () => {
 
 test("uncontrolled: correctly manages state", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
-    const { getRootProps, getRadioProps } = useRadioGroup(props)
+    const { getRootProps, getItemProps } = useRadioGroup(props)
 
     return (
       <div {...getRootProps()}>
-        <Radio {...getRadioProps({ value: "a" })}>a</Radio>
-        <Radio {...getRadioProps({ value: "b" })}>b</Radio>
+        <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
+        <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
       </div>
     )
   }
@@ -42,21 +52,21 @@ test("uncontrolled: correctly manages state", () => {
 
 test("Uncontrolled RadioGroup - should not check if group disabled", async () => {
   const Component = () => (
-    <RadioGroup isDisabled isFocusable={false}>
-      <Radio value="one">One</Radio>
-      <Radio value="one-focus" isFocusable>
+    <RadioGroup.Root isDisabled isFocusable={false}>
+      <RadioDemo value="one">One</RadioDemo>
+      <RadioDemo value="one-focus" isFocusable>
         One Focusable
-      </Radio>
-      <Radio value="two" isDisabled>
+      </RadioDemo>
+      <RadioDemo value="two" isDisabled>
         Two
-      </Radio>
-      <Radio value="two-focus" isDisabled isFocusable>
+      </RadioDemo>
+      <RadioDemo value="two-focus" isDisabled isFocusable>
         Two Focusable
-      </Radio>
-      <Radio value="three" isDisabled={false}>
+      </RadioDemo>
+      <RadioDemo value="three" isDisabled={false}>
         Three
-      </Radio>
-    </RadioGroup>
+      </RadioDemo>
+    </RadioGroup.Root>
   )
   const { container } = render(<Component />)
   const [radioOne, radioOneFocusable, radioTwo, radioTwoFocusable, radioThree] =
@@ -98,12 +108,12 @@ test("Uncontrolled RadioGroup - should not check if group disabled", async () =>
 
 test("controlled: correctly manages state", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
-    const { getRootProps, getRadioProps } = useRadioGroup(props)
+    const { getRootProps, getItemProps } = useRadioGroup(props)
 
     return (
       <div {...getRootProps()}>
-        <Radio {...getRadioProps({ value: "a" })}>a</Radio>
-        <Radio {...getRadioProps({ value: "b" })}>b</Radio>
+        <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
+        <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
       </div>
     )
   }
@@ -120,14 +130,14 @@ test("controlled: correctly manages state", () => {
 
 test("setValue action allows setting specific value", () => {
   const Component = () => {
-    const { getRootProps, getRadioProps, setValue } = useRadioGroup()
+    const { getRootProps, getItemProps, setValue } = useRadioGroup()
 
     return (
       <>
         <button onClick={() => setValue("a")}>Set</button>
         <div {...getRootProps()}>
-          <Radio {...getRadioProps({ value: "a" })}>a</Radio>
-          <Radio {...getRadioProps({ value: "b" })}>b</Radio>
+          <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
+          <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
         </div>
       </>
     )
@@ -140,7 +150,7 @@ test("setValue action allows setting specific value", () => {
 
 describe("focus action", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
-    const { getRootProps, getRadioProps, focus } = useRadioGroup({
+    const { getRootProps, getItemProps, focus } = useRadioGroup({
       isNative: true,
       ...props,
     })
@@ -152,16 +162,16 @@ describe("focus action", () => {
           <label>
             <input
               type="radio"
-              {...getRadioProps({ value: "a", disabled: true })}
+              {...getItemProps({ value: "a", disabled: true })}
             />
             <span>a</span>
           </label>
           <label>
-            <input type="radio" {...getRadioProps({ value: "b" })} />
+            <input type="radio" {...getItemProps({ value: "b" })} />
             <span>b</span>
           </label>
           <label>
-            <input type="radio" {...getRadioProps({ value: "c" })} />
+            <input type="radio" {...getItemProps({ value: "c" })} />
             <span>c</span>
           </label>
         </div>
@@ -200,14 +210,14 @@ test("has the proper role", () => {
 
 test("should use unique id when wrapped in FormControl", () => {
   const Component = () => {
-    const { getRootProps, getRadioProps, setValue } = useRadioGroup()
+    const { getRootProps, getItemProps, setValue } = useRadioGroup()
 
     return (
       <Field.Root>
         <button onClick={() => setValue("a")}>Set</button>
         <div {...getRootProps()}>
-          <Radio {...getRadioProps({ value: "a" })}>a</Radio>
-          <Radio {...getRadioProps({ value: "b" })}>b</Radio>
+          <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
+          <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
         </div>
       </Field.Root>
     )

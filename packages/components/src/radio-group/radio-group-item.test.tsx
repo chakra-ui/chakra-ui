@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@chakra-ui/test-utils"
-import { Radio, UseRadioProps, useRadio } from "."
+import { RadioGroup, UseRadioProps, useRadio } from "."
 import { Field } from "../field"
 
 test("has proper aria and data attributes", async () => {
@@ -141,7 +141,10 @@ test("should derive values from surrounding FormControl", () => {
       onBlur={onBlur}
     >
       <Field.Label>Radio</Field.Label>
-      <Radio value="Chakra UI">Chakra UI</Radio>
+      <RadioGroup.Item value="Chakra UI">
+        <RadioGroup.ItemControl />
+        <RadioGroup.ItemText>Chakra UI</RadioGroup.ItemText>
+      </RadioGroup.Item>
       <Field.HelpText>Select a value</Field.HelpText>
     </Field.Root>,
   )

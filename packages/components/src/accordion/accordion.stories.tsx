@@ -1,6 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
 import * as React from "react"
-import { ChangeEvent } from "react"
 import { Accordion, Box, Button, Container, Drawer, chakra } from ".."
 
 export default {
@@ -164,7 +163,7 @@ export function WithSearchFilter() {
     inputRef.current?.focus()
   }, [displayData])
 
-  function onInputChange(e: ChangeEvent<HTMLInputElement>) {
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
     setIndex(-1)
   }

@@ -31,8 +31,8 @@ const baseStyleControl = defineStyle((props) => {
 })
 
 const baseStyle = definePartsStyle((props) => ({
-  label: checkboxTheme.baseStyle?.(props).label,
   root: checkboxTheme.baseStyle?.(props).root,
+  label: checkboxTheme.baseStyle?.(props).label,
   control: baseStyleControl(props),
 }))
 

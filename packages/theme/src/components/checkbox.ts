@@ -16,6 +16,10 @@ const baseStyleControl = defineStyle((props) => {
   const { colorScheme: c } = props
 
   return {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
     w: $size.reference,
     h: $size.reference,
     transitionProperty: "box-shadow",
@@ -64,7 +68,15 @@ const baseStyleControl = defineStyle((props) => {
 })
 
 const baseStyleRoot = defineStyle({
-  _disabled: { cursor: "not-allowed" },
+  display: "inline-flex",
+  gap: "0.5rem",
+  alignItems: "center",
+  verticalAlign: "top",
+  cursor: "pointer",
+  position: "relative",
+  _disabled: {
+    cursor: "not-allowed",
+  },
 })
 
 const baseStyleLabel = defineStyle({

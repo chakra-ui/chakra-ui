@@ -1,6 +1,6 @@
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { isObject } from "@chakra-ui/utils/is"
-import { InputDOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
+import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useId, useRef, useState } from "react"
 
 type EventOrValue = React.ChangeEvent<HTMLInputElement> | string | number
@@ -68,7 +68,6 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     isDisabled,
     isFocusable,
     isNative,
-    ...htmlProps
   } = props
 
   const [valueState, setValue] = useState<string | number>(defaultValue || "")
@@ -129,10 +128,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     [],
   )
 
-  const getRadioProps: PropGetter<
-    InputDOMAttributes & { isChecked?: boolean },
-    InputDOMAttributes
-  > = useCallback(
+  //@ts-expect-error
+  const getItemProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
       const checkedKey = isNative ? "checked" : "isChecked"
       return {
@@ -140,9 +137,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
         ref,
         name,
         [checkedKey]: value != null ? props.value === value : undefined,
-        onChange(event) {
-          onChange(event as any)
-        },
+        onChange: onChange,
         "data-radiogroup": true,
       }
     },
@@ -151,7 +146,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
 
   return {
     getRootProps,
-    getRadioProps,
+    getItemProps,
     name,
     ref,
     focus,
@@ -160,7 +155,6 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     onChange,
     isDisabled,
     isFocusable,
-    htmlProps,
   }
 }
 

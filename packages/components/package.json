@@ -661,15 +661,15 @@
         "default": "./dist/cjs/provider/index.cjs"
       }
     },
-    "./radio": {
-      "source": "./src/radio/index.ts",
+    "./radio-group": {
+      "source": "./src/radio-group/index.ts",
       "import": {
-        "types": "./dist/types/radio/index.d.mts",
-        "default": "./dist/esm/radio/index.mjs"
+        "types": "./dist/types/radio-group/index.d.mts",
+        "default": "./dist/esm/radio-group/index.mjs"
       },
       "require": {
-        "types": "./dist/types/radio/index.d.ts",
-        "default": "./dist/cjs/radio/index.cjs"
+        "types": "./dist/types/radio-group/index.d.ts",
+        "default": "./dist/cjs/radio-group/index.cjs"
       }
     },
     "./skeleton": {

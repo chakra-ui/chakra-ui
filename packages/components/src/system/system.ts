@@ -106,54 +106,51 @@ export function styled<T extends ElementType, P extends object = {}>(
     styledOptions,
   )(styleObject)
 
-  const chakraComponent = forwardRef<any, any>(
-    function ChakraComponent(props, ref) {
-      const { asChild, children, ...restProps } = props
+  const __el = forwardRef<any, any>(function ChakraComponent(props, ref) {
+    const { asChild, children, ...restProps } = props
 
-      const { colorMode, forced } = useColorMode()
+    const { colorMode, forced } = useColorMode()
 
-      const dataTheme = forced ? colorMode : undefined
+    const dataTheme = forced ? colorMode : undefined
 
-      if (!asChild) {
-        return createElement(
-          Component,
-          {
-            ref,
-            "data-theme": dataTheme,
-            ...restProps,
-          },
-          children,
-        )
-      }
-
-      const onlyChild = Children.only(props.children)
-
-      if (isValidElement(onlyChild)) {
-        const composedProps = mergeProps(restProps, onlyChild.props ?? {})
-
-        const composedRef = ref
-          ? mergeRefs(ref, (onlyChild as any).ref)
-          : (onlyChild as any).ref
-
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const styledElement = useMemo(
-          () =>
-            emotion_styled(onlyChild.type as any, styledOptions)(styleObject),
-          [onlyChild.type],
-        )
-
-        return createElement(styledElement, {
-          ref: composedRef,
+    if (!asChild) {
+      return createElement(
+        Component,
+        {
+          ref,
           "data-theme": dataTheme,
-          ...composedProps,
-        })
-      }
+          ...restProps,
+        },
+        children,
+      )
+    }
 
-      return onlyChild
-    },
-  )
+    const onlyChild = Children.only(props.children)
 
-  return chakraComponent as ChakraComponent<T, P>
+    if (isValidElement(onlyChild)) {
+      const composedProps = mergeProps(restProps, onlyChild.props ?? {})
+
+      const composedRef = ref
+        ? mergeRefs(ref, (onlyChild as any).ref)
+        : (onlyChild as any).ref
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const styledElement = useMemo(
+        () => emotion_styled(onlyChild.type as any, styledOptions)(styleObject),
+        [onlyChild.type],
+      )
+
+      return createElement(styledElement, {
+        ref: composedRef,
+        "data-theme": dataTheme,
+        ...composedProps,
+      })
+    }
+
+    return onlyChild
+  })
+
+  return __el as ChakraComponent<T, P>
 }
 
 export type HTMLChakraComponents = {
