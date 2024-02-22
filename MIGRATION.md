@@ -442,8 +442,8 @@ const Demo = () => {
   return (
     <Accordion.Root>
       <Accordion.Item>
-        <Accordion.Button>Click me</Accordion.Button>
-        <Accordion.Panel>Panel content</Accordion.Panel>
+        <Accordion.Trigger>Click me</Accordion.Trigger>
+        <Accordion.Content>Panel content</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>
   )

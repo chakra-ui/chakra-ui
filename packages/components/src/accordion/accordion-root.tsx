@@ -1,21 +1,19 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
+import { cx } from "@chakra-ui/utils"
+import { useMemo } from "react"
 import {
   chakra,
   forwardRef,
   HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
-import { useMemo } from "react"
 import {
+  AccordionContextProvider,
   AccordionDescendantsProvider,
   AccordionStylesProvider,
 } from "./accordion-context"
-import {
-  AccordionProvider,
-  useAccordion,
-  UseAccordionProps,
-} from "./use-accordion"
+import { splitAccordionProps } from "./accordion-props"
+import { useAccordion, UseAccordionProps } from "./use-accordion"
 
 export interface AccordionRootProps
   extends UseAccordionProps,
@@ -39,10 +37,13 @@ export interface AccordionRootProps
  */
 export const AccordionRoot = forwardRef<AccordionRootProps, "div">(
   function Accordion({ children, reduceMotion, ...props }, ref) {
-    const styles = useMultiStyleConfig("Accordion", props)
     const ownProps = omitThemingProps(props)
 
-    const { htmlProps, descendants, ...context } = useAccordion(ownProps)
+    const styles = useMultiStyleConfig("Accordion", props)
+
+    const [accordionProps, localProps] = splitAccordionProps(ownProps)
+
+    const { descendants, ...context } = useAccordion(accordionProps)
 
     const ctx = useMemo(
       () => ({ ...context, reduceMotion: !!reduceMotion }),
@@ -51,18 +52,18 @@ export const AccordionRoot = forwardRef<AccordionRootProps, "div">(
 
     return (
       <AccordionDescendantsProvider value={descendants}>
-        <AccordionProvider value={ctx}>
+        <AccordionContextProvider value={ctx}>
           <AccordionStylesProvider value={styles}>
             <chakra.div
               ref={ref}
-              {...htmlProps}
+              {...localProps}
               className={cx("chakra-accordion", props.className)}
               __css={styles.root}
             >
               {children}
             </chakra.div>
           </AccordionStylesProvider>
-        </AccordionProvider>
+        </AccordionContextProvider>
       </AccordionDescendantsProvider>
     )
   },

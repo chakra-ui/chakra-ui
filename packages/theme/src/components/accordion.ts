@@ -7,15 +7,20 @@ import {
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
-const baseStyleRoot = defineStyle({
+const baseStyleItem = defineStyle({
   borderTopWidth: "1px",
   borderColor: "inherit",
+  overflowAnchor: "none",
   _last: {
     borderBottomWidth: "1px",
   },
 })
 
-const baseStyleButton = defineStyle({
+const baseStyleTrigger = defineStyle({
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+  outline: 0,
   transitionProperty: "common",
   transitionDuration: "normal",
   fontSize: "md",
@@ -33,7 +38,7 @@ const baseStyleButton = defineStyle({
   py: "2",
 })
 
-const baseStylePanel = defineStyle({
+const baseStyleContent = defineStyle({
   pt: "2",
   px: "4",
   pb: "5",
@@ -44,9 +49,9 @@ const baseStyleIcon = defineStyle({
 })
 
 const baseStyle = definePartsStyle({
-  root: baseStyleRoot,
-  button: baseStyleButton,
-  panel: baseStylePanel,
+  item: baseStyleItem,
+  trigger: baseStyleTrigger,
+  content: baseStyleContent,
   icon: baseStyleIcon,
 })
 

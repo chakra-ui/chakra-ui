@@ -1,10 +1,9 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { createContext } from "@chakra-ui/utils/context"
-import { warn } from "@chakra-ui/utils/warn"
+import { callAllHandlers, warn } from "@chakra-ui/utils"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
 import {
+  useAccordionContext,
   useAccordionDescendant,
   useAccordionDescendants,
 } from "./accordion-context"
@@ -12,12 +11,6 @@ import {
 /* -------------------------------------------------------------------------------------------------
  * useAccordion - The root react hook that manages all accordion items
  * -----------------------------------------------------------------------------------------------*/
-
-/**
- * @deprecated - This will be removed in future versions.
- * Please use `number | number[]` instead.
- */
-export type ExpandedIndex = number | number[]
 
 export interface UseAccordionProps {
   /**
@@ -35,15 +28,15 @@ export interface UseAccordionProps {
   /**
    * The index(es) of the expanded accordion item
    */
-  index?: ExpandedIndex
+  index?: number | number[]
   /**
    * The initial index(es) of the expanded accordion item
    */
-  defaultIndex?: ExpandedIndex
+  defaultIndex?: number | number[]
   /**
    * The callback invoked when accordion items are expanded or collapsed.
    */
-  onChange?(expandedIndex: ExpandedIndex): void
+  onChange?(expandedIndex: number | number[]): void
 }
 
 /**
@@ -59,7 +52,6 @@ export function useAccordion(props: UseAccordionProps) {
     index: indexProp,
     allowMultiple,
     allowToggle,
-    ...htmlProps
   } = props
 
   // validate the props and `warn` if used incorrectly
@@ -141,7 +133,6 @@ export function useAccordion(props: UseAccordionProps) {
   return {
     index,
     setIndex,
-    htmlProps,
     getAccordionItemProps,
     focusedIndex,
     setFocusedIndex,
@@ -150,22 +141,6 @@ export function useAccordion(props: UseAccordionProps) {
 }
 
 export type UseAccordionReturn = ReturnType<typeof useAccordion>
-
-/* -------------------------------------------------------------------------------------------------
- * Create context for the root accordion logic
- * -----------------------------------------------------------------------------------------------*/
-
-interface AccordionContext
-  extends Omit<UseAccordionReturn, "htmlProps" | "descendants"> {
-  reduceMotion: boolean
-}
-
-export const [AccordionProvider, useAccordionContext] =
-  createContext<AccordionContext>({
-    name: "AccordionContext",
-    hookName: "useAccordionContext",
-    providerName: "Accordion",
-  })
 
 /* -------------------------------------------------------------------------------------------------
  * Hook for a single accordion item
@@ -197,7 +172,7 @@ export interface UseAccordionItemProps {
  * for an accordion item and its children
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
-  const { isDisabled, isFocusable, id, ...htmlProps } = props
+  const { isDisabled, isFocusable, id } = props
   const { getAccordionItemProps, setFocusedIndex } = useAccordionContext()
 
   const buttonRef = useRef<HTMLElement>(null)
@@ -285,8 +260,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     setFocusedIndex(index)
   }, [setFocusedIndex, index])
 
-  const getButtonProps = useCallback(
-    function getButtonProps(
+  const getTriggerProps = useCallback(
+    function getTriggerProps(
       props: Omit<React.HTMLAttributes<HTMLElement>, "color"> = {},
       ref: React.Ref<HTMLButtonElement> | null = null,
     ): React.ComponentProps<"button"> {
@@ -315,8 +290,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     ],
   )
 
-  const getPanelProps = useCallback(
-    function getPanelProps<T>(
+  const getContentProps = useCallback(
+    function getContentProps<T>(
       props: Omit<React.HTMLAttributes<T>, "color"> = {},
       ref: React.Ref<T> | null = null,
     ): React.HTMLAttributes<T> & React.RefAttributes<T> {
@@ -338,9 +313,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     isFocusable,
     onOpen,
     onClose,
-    getButtonProps,
-    getPanelProps,
-    htmlProps,
+    getTriggerProps,
+    getContentProps,
   }
 }
 

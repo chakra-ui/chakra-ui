@@ -6,9 +6,9 @@ test("passes a11y test", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Section 1 title</Accordion.Button>
+          <Accordion.Trigger>Section 1 title</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -19,11 +19,11 @@ test("uncontrolled: It opens the accordion panel", async () => {
     <Accordion.Root defaultIndex={0}>
       <Accordion.Item>
         <h2>
-          <Accordion.Button data-testid="button">
+          <Accordion.Trigger data-testid="button">
             Section 1 title
-          </Accordion.Button>
+          </Accordion.Trigger>
         </h2>
-        <Accordion.Panel data-testid="panel">Panel 1</Accordion.Panel>
+        <Accordion.Content data-testid="panel">Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -36,9 +36,9 @@ test("uncontrolled: toggles the accordion on click", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Trigger</Accordion.Button>
+          <Accordion.Trigger>Trigger</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel</Accordion.Panel>
+        <Accordion.Content>Panel</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -59,14 +59,14 @@ test("arrow up & down moves focus to next/previous accordion", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Section 1 title</Accordion.Button>
+          <Accordion.Trigger>Section 1 title</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
-        <Accordion.Button>Section 2 title</Accordion.Button>
-        <Accordion.Panel>Panel 2</Accordion.Panel>
+        <Accordion.Trigger>Section 2 title</Accordion.Trigger>
+        <Accordion.Content>Panel 2</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -88,23 +88,23 @@ test("home & end keys moves focus to first/last accordion", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>First section</Accordion.Button>
+          <Accordion.Trigger>First section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Second section</Accordion.Button>
+          <Accordion.Trigger>Second section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Last section</Accordion.Button>
+          <Accordion.Trigger>Last section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 2</Accordion.Panel>
+        <Accordion.Content>Panel 2</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -126,16 +126,16 @@ test("only one accordion can be visible + is not toggleable", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>First section</Accordion.Button>
+          <Accordion.Trigger>First section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Second section</Accordion.Button>
+          <Accordion.Trigger>Second section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -154,16 +154,16 @@ test("only one accordion can be visible + is toggleable", async () => {
     <Accordion.Root allowToggle>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>First section</Accordion.Button>
+          <Accordion.Trigger>First section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Second section</Accordion.Button>
+          <Accordion.Trigger>Second section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -183,16 +183,16 @@ test("multiple accordions can be opened + is toggleable", async () => {
     <Accordion.Root allowMultiple>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>First section</Accordion.Button>
+          <Accordion.Trigger>First section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Second section</Accordion.Button>
+          <Accordion.Trigger>Second section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -213,9 +213,9 @@ test("has the proper aria attributes", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Section 1 title</Accordion.Button>
+          <Accordion.Trigger>Section 1 title</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -233,23 +233,23 @@ test("tab moves focus to the next focusable element", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>First section</Accordion.Button>
+          <Accordion.Trigger>First section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Second section</Accordion.Button>
+          <Accordion.Trigger>Second section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
 
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Last section</Accordion.Button>
+          <Accordion.Trigger>Last section</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 2</Accordion.Panel>
+        <Accordion.Content>Panel 2</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -273,9 +273,9 @@ test("aria-controls for button is same as id for panel", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Section 1 title</Accordion.Button>
+          <Accordion.Trigger>Section 1 title</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -290,15 +290,15 @@ test("aria-expanded is true/false when accordion is open/closed", async () => {
     <Accordion.Root defaultIndex={0}>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Section 1 title</Accordion.Button>
+          <Accordion.Trigger>Section 1 title</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Section 2 title</Accordion.Button>
+          <Accordion.Trigger>Section 2 title</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 2</Accordion.Panel>
+        <Accordion.Content>Panel 2</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )
@@ -313,9 +313,9 @@ test("panel has role=region and aria-labelledby", async () => {
     <Accordion.Root>
       <Accordion.Item>
         <h2>
-          <Accordion.Button>Section 1 title</Accordion.Button>
+          <Accordion.Trigger>Section 1 title</Accordion.Trigger>
         </h2>
-        <Accordion.Panel>Panel 1</Accordion.Panel>
+        <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>,
   )

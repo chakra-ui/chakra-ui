@@ -19,3 +19,12 @@ export function splitProps<T extends Dict>(props: T, ...keys: Key[]) {
   const fn = (key: Key) => split(Array.isArray(key) ? key : dKeys.filter(key))
   return keys.map(fn).concat(split(dKeys))
 }
+
+export const createSplitProps = <T>(keys: (keyof T)[]) => {
+  return function split<Props extends T>(
+    props: Props,
+  ): [T, Omit<Props, keyof T>] {
+    // @ts-expect-error
+    return splitProps(props, keys)
+  }
+}

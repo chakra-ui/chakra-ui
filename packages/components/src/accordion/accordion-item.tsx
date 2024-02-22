@@ -1,8 +1,10 @@
-import { defineStyle } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-import { useMemo } from "react"
-import { AccordionItemProvider, useAccordionStyles } from "./accordion-context"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import {
+  AccordionItemContextProvider,
+  useAccordionStyles,
+} from "./accordion-context"
+import { splitAccordionItemProps } from "./accordion-props"
 import { useAccordionItem, UseAccordionItemProps } from "./use-accordion"
 
 export interface AccordionItemProps
@@ -21,28 +23,22 @@ export interface AccordionItemProps
  *
  * It also provides context for the accordion button and panel.
  */
-
 export const AccordionItem = forwardRef<AccordionItemProps, "div">(
   function AccordionItem(props, ref) {
     const { children, className } = props
-    const { htmlProps, ...context } = useAccordionItem(props)
+
+    const [itemProps, localProps] = splitAccordionItemProps(props)
+    const context = useAccordionItem(itemProps)
 
     const styles = useAccordionStyles()
 
-    const containerStyles = defineStyle({
-      ...styles.root,
-      overflowAnchor: "none",
-    })
-
-    const ctx = useMemo(() => context, [context])
-
     return (
-      <AccordionItemProvider value={ctx}>
+      <AccordionItemContextProvider value={context}>
         <chakra.div
           ref={ref}
-          {...htmlProps}
+          {...localProps}
           className={cx("chakra-accordion__item", className)}
-          __css={containerStyles}
+          __css={styles.item}
         >
           {typeof children === "function"
             ? children({
@@ -51,7 +47,7 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
               })
             : children}
         </chakra.div>
-      </AccordionItemProvider>
+      </AccordionItemContextProvider>
     )
   },
 )

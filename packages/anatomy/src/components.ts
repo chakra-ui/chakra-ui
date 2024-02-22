@@ -2,9 +2,9 @@ import { anatomy } from "./create-anatomy"
 
 export const accordionAnatomy = anatomy("accordion").parts(
   "root",
-  "container",
-  "button",
-  "panel",
+  "item",
+  "trigger",
+  "content",
   "icon",
 )
 

@@ -3,10 +3,10 @@ import { cx } from "@chakra-ui/utils/cx"
 import { Icon } from "../icon"
 import type { PropsOf } from "../system"
 import {
+  useAccordionContext,
   useAccordionItemContext,
   useAccordionStyles,
 } from "./accordion-context"
-import { useAccordionContext } from "./use-accordion"
 
 export type AccordionIconProps = PropsOf<typeof Icon>
 
