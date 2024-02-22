@@ -1,5 +1,5 @@
+import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
-import { defineStyle } from ".."
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useMenuStyles } from "./menu-context"
 import { useMenuButton } from "./use-menu"
