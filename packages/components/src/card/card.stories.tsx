@@ -200,14 +200,14 @@ export const Advanced = () => (
     />
 
     <Card.Footer justify="space-between">
-      <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
-        Like
+      <Button flex="1" variant="ghost">
+        <BiLike /> Like
       </Button>
-      <Button flex="1" variant="ghost" leftIcon={<BiChat />}>
-        Comment
+      <Button flex="1" variant="ghost">
+        <BiChat /> Comment
       </Button>
-      <Button flex="1" variant="ghost" leftIcon={<BiShare />}>
-        Share
+      <Button flex="1" variant="ghost">
+        <BiShare /> Share
       </Button>
     </Card.Footer>
   </Card.Root>

@@ -43,13 +43,8 @@ export const Basic = () => (
   <div style={{ minHeight: 4000, paddingTop: 500 }}>
     <Menu.Root>
       <Menu.Button asChild>
-        <Button
-          variant="solid"
-          colorScheme="teal"
-          size="sm"
-          rightIcon={<FaUnlink />}
-        >
-          Open Wakanda menu
+        <Button variant="solid" colorScheme="teal" size="sm">
+          Open Wakanda menu <FaUnlink />
         </Button>
       </Menu.Button>
       <Menu.List>
