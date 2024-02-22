@@ -1,6 +1,5 @@
 import { ThemingProps } from "@chakra-ui/styled-system"
 import { Meta, StoryFn } from "@storybook/react"
-import { motion } from "framer-motion"
 import * as React from "react"
 import {
   FaArrowRight,
@@ -11,10 +10,20 @@ import {
 } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
-import { Button, ButtonGroup, Container, HStack, IconButton, Stack } from ".."
+import { Button, ButtonGroup } from "."
+import {
+  AbsoluteCenter,
+  Container,
+  For,
+  HStack,
+  IconButton,
+  Spinner,
+  Stack,
+  Span,
+} from ".."
 
 export default {
-  title: "Components / Forms / Button",
+  title: "Components / Button",
   decorators: [
     (Story: any) => (
       <Container mt="40px" display="flex" flexWrap="wrap" gap="4">
@@ -22,165 +31,137 @@ export default {
       </Container>
     ),
   ],
+  argTypes: {
+    children: { type: "string" },
+  },
+  args: {
+    children: "Button",
+  },
 } satisfies Meta
 
 interface StoryProps extends ThemingProps<"Button"> {
   children?: React.ReactNode
 }
 
-export const basic: StoryFn<StoryProps> = (props) => <Button {...props} />
-basic.argTypes = {
-  children: { type: "string" },
-}
-basic.args = {
-  children: "Button",
-}
+export const Basic: StoryFn<StoryProps> = (props) => <Button {...props} />
 
-export const outlines: StoryFn<StoryProps> = (props) => (
-  <>
-    <Button {...props} variant="outline" colorScheme="red" />
-    <Button {...props} variant="outline" colorScheme="green" />
-    <Button {...props} variant="outline" colorScheme="blue" />
-    <Button {...props} variant="outline" colorScheme="teal" />
-    <Button {...props} variant="outline" colorScheme="pink" />
-    <Button {...props} variant="outline" colorScheme="purple" />
-    <Button {...props} variant="outline" colorScheme="cyan" />
-    <Button {...props} variant="outline" colorScheme="orange" />
-    <Button {...props} variant="outline" colorScheme="yellow" />
-  </>
+const colorSchemes = [
+  "red",
+  "green",
+  "blue",
+  "teal",
+  "pink",
+  "purple",
+  "cyan",
+  "orange",
+  "yellow",
+] as const
+
+const buttonVariants = [
+  "solid",
+  "outline",
+  "ghost",
+  "link",
+  "unstyled",
+] as const
+
+const buttonSizes = ["xs", "sm", "md", "lg"] as const
+
+export const OutlineVariants: StoryFn<StoryProps> = (props) => (
+  <For each={colorSchemes}>
+    {(colorScheme) => (
+      <Button {...props} variant="outline" colorScheme={colorScheme} />
+    )}
+  </For>
 )
-outlines.argTypes = {
-  children: { type: "string" },
-}
-outlines.args = {
-  children: "Button",
-}
 
 export const WithVariants = () => (
   <HStack spacing="24px">
-    <Button colorScheme="teal" variant="solid">
-      Button
-    </Button>
-    <Button colorScheme="teal" variant="outline">
-      Button
-    </Button>
-    <Button colorScheme="teal" variant="ghost">
-      Button
-    </Button>
-    <Button colorScheme="teal" variant="link">
-      Button
-    </Button>
-    <Button colorScheme="teal" variant="unstyled">
-      Button
-    </Button>
+    <For each={buttonVariants}>
+      {(variant) => (
+        <Button colorScheme="teal" variant={variant}>
+          Button
+        </Button>
+      )}
+    </For>
   </HStack>
 )
 
 export const WithSizes = () => (
   <HStack>
-    <Button colorScheme="blue" size="xs">
-      Button
-    </Button>
-    <Button colorScheme="blue" size="sm">
-      Button
-    </Button>
-    <Button colorScheme="blue" size="md">
-      Button
-    </Button>
-    <Button colorScheme="blue" size="lg">
-      Button
-    </Button>
+    <For each={buttonSizes}>
+      {(size) => (
+        <Button colorScheme="blue" size={size}>
+          Button
+        </Button>
+      )}
+    </For>
   </HStack>
 )
 
 export const WithIcon = () => (
   <Stack direction="row" spacing={4}>
-    <Button leftIcon={<FaEnvelope />} colorScheme="teal" variant="solid">
+    <Button colorScheme="teal" variant="solid">
+      <FaEnvelope />
       Email
     </Button>
-    <Button rightIcon={<FaArrowRight />} colorScheme="teal" variant="outline">
+    <Button colorScheme="teal" variant="outline">
       Call us
+      <FaArrowRight />
     </Button>
   </Stack>
 )
 
 export const WithReactIcons = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button leftIcon={<MdBuild />} colorScheme="pink" variant="solid">
-      Settings
+    <Button colorScheme="pink" variant="solid">
+      <MdBuild /> Settings
     </Button>
-    <Button rightIcon={<MdCall />} colorScheme="blue" variant="outline">
-      Call us
+    <Button colorScheme="blue" variant="outline">
+      <MdCall /> Call us
     </Button>
   </Stack>
 )
 
 export const WithLoading = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button size="lg" isLoading colorScheme="teal">
-      Email
+    <Button isDisabled colorScheme="teal">
+      <Spinner boxSize="1em" />
     </Button>
 
-    <Button
-      isLoading
-      colorScheme="blue"
-      spinner={<BeatLoader size={8} color="white" />}
-    >
-      Click me
-    </Button>
-
-    <Button
-      isLoading
-      loadingText="Submitting..."
-      colorScheme="teal"
-      variant="outline"
-    >
-      Submit
+    <Button isDisabled colorScheme="blue">
+      <AbsoluteCenter>
+        <BeatLoader size={8} color="white" />
+      </AbsoluteCenter>
+      <Span opacity="0">Click me</Span>
     </Button>
   </Stack>
 )
 
-export const WithLoadingSpinnerPlacement = () => (
+export const WithSpinnerPlacements = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button
-      isLoading
-      loadingText="Loading"
-      colorScheme="teal"
-      variant="outline"
-      spinnerPlacement="start"
-    >
-      Submit
+    <Button isDisabled colorScheme="teal" variant="outline">
+      <Spinner boxSize="1em" /> Loading
     </Button>
-    <Button
-      isLoading
-      loadingText="Loading"
-      colorScheme="teal"
-      variant="outline"
-      spinnerPlacement="end"
-    >
-      Continue
+    <Button isDisabled colorScheme="teal" variant="outline">
+      Loading <Spinner boxSize="1em" />
     </Button>
   </Stack>
 )
 
 export const WithDisabled = () => (
   <HStack spacing="24px">
-    <Button as="div" isDisabled colorScheme="teal" variant="solid">
-      Button
-    </Button>
-    <Button isDisabled colorScheme="teal" variant="outline">
-      Button
-    </Button>
-    <Button isDisabled colorScheme="teal" variant="ghost">
-      Button
-    </Button>
-    <Button isDisabled colorScheme="teal" variant="link">
-      Button
-    </Button>
+    <For each={buttonVariants}>
+      {(variant) => (
+        <Button isDisabled colorScheme="teal" variant={variant}>
+          Button
+        </Button>
+      )}
+    </For>
   </HStack>
 )
 
-export const CustomComposition = () => (
+export const WithStyleOverrides = () => (
   <Button
     size="md"
     height="48px"
@@ -190,22 +171,6 @@ export const CustomComposition = () => (
   >
     Button
   </Button>
-)
-
-export const iconButton = () => (
-  <Stack direction="row">
-    <IconButton aria-label="Search database" icon={<FaSearch />} />
-
-    <IconButton
-      colorScheme="blue"
-      aria-label="Search database"
-      icon={<FaSearch />}
-    />
-
-    <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
-      <FaPhone />
-    </IconButton>
-  </Stack>
 )
 
 export const WithButtonGroup = () => (
@@ -227,6 +192,22 @@ export const WithHorizontalAttachedButtons = () => (
   </ButtonGroup>
 )
 
+export const iconButton = () => (
+  <Stack direction="row">
+    <IconButton aria-label="Search database" icon={<FaSearch />} />
+
+    <IconButton
+      colorScheme="blue"
+      aria-label="Search database"
+      icon={<FaSearch />}
+    />
+
+    <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
+      <FaPhone />
+    </IconButton>
+  </Stack>
+)
+
 export const WithVerticalAttachedButtons = () => (
   <ButtonGroup size="lg" orientation="vertical" isAttached variant="outline">
     <IconButton fontSize="2xl" aria-label="Email Santa" icon={<FaEnvelope />} />
@@ -242,38 +223,3 @@ export const WithVerticalAttachedButtons = () => (
     />
   </ButtonGroup>
 )
-
-const motionConfig = {
-  initial: false,
-  transition: {
-    type: "spring",
-    duration: 2,
-    bounce: 0,
-  },
-}
-
-const MotionButton = motion(Button)
-const BG_GRADIENT_SOFT = `linear-gradient(to right, #fa8080, #F40000)`
-const BG_GRADIENT_SOFT_REVERSED = `linear-gradient(to right, #F40000, #fa8080)`
-
-export const WithMotion = () => {
-  const [binary, setBinary] = React.useState(false)
-  return (
-    <>
-      <Button onClick={() => setBinary((binary) => !binary)}>
-        Toggle binary state: {String(binary)}
-      </Button>
-      <MotionButton
-        {...motionConfig}
-        animate={{
-          scale: binary ? 1.2 : 1,
-          backgroundImage: binary
-            ? BG_GRADIENT_SOFT
-            : BG_GRADIENT_SOFT_REVERSED,
-        }}
-      >
-        ({String(binary)}) Doesn't work
-      </MotionButton>
-    </>
-  )
-}
