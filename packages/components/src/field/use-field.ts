@@ -1,5 +1,4 @@
-import { ariaAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { useFieldContext } from "./field-context"
 import { UseFieldProps } from "./types"
 
@@ -20,6 +19,7 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
     onFocus,
     onBlur,
     "aria-describedby": ariaDescribedby,
+    ...restProps
   } = props
 
   const labelIds: string[] = ariaDescribedby ? [ariaDescribedby] : []
@@ -34,6 +34,7 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
   }
 
   return {
+    ...restProps,
     "aria-describedby": labelIds.join(" ") || undefined,
     "aria-invalid": ariaAttr(isInvalid),
     "aria-required": ariaAttr(isRequired),
@@ -42,7 +43,6 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
     disabled: disabled ?? isDisabled ?? field?.isDisabled,
     readOnly: readOnly ?? isReadOnly ?? field?.isReadOnly,
     required: required ?? isRequired ?? field?.isRequired,
-    invalid: isInvalid ?? field?.isInvalid,
     onFocus: callAllHandlers(field?.onFocus, onFocus),
     onBlur: callAllHandlers(field?.onBlur, onBlur),
   }

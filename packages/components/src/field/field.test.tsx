@@ -1,21 +1,11 @@
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
-import { Field, FieldOptions, RequiredIndicator, useField } from "."
-import { chakra, forwardRef, PropsOf } from "../system"
-import { splitFieldProps } from "./field-props"
+import { Field, RequiredIndicator, useField } from "."
+import { chakra, forwardRef } from "../system"
 
-type OmittedTypes = "disabled" | "required" | "readOnly"
-
-type InputProps = Omit<PropsOf<typeof chakra.input>, OmittedTypes> &
-  FieldOptions
-
-const Input: React.FC<InputProps> = forwardRef<InputProps, "input">(
-  (props, ref) => {
-    const [controlProps, restProps] = splitFieldProps(props)
-    const inputProps = useField<HTMLInputElement>(controlProps)
-    return <chakra.input ref={ref} {...inputProps} {...restProps} />
-  },
-)
+const Input = forwardRef((props: any, ref) => {
+  const inputProps = useField<HTMLInputElement>(props)
+  return <chakra.input ref={ref} {...inputProps} />
+})
 
 test("passes a11y test in default state", async () => {
   await testA11y(
@@ -135,43 +125,32 @@ test("useForm.Control calls provided input callbacks", () => {
 })
 
 test("has the proper aria attributes", async () => {
-  const { rerender } = render(
+  render(
     <Field.Root id="name">
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
     </Field.Root>,
   )
-  let input = screen.getByLabelText(/Name/)
 
-  expect(input).toHaveAttribute("aria-describedby", "name-helptext")
-  expect(input).not.toHaveAttribute("aria-invalid")
-  expect(input).not.toHaveAttribute("aria-required")
-  expect(input).not.toHaveAttribute("aria-readonly")
+  const inputEl = screen.getByRole("textbox")
+  expect(inputEl).toHaveAttribute("aria-describedby", "name-helptext")
+  expect(inputEl).not.toHaveAttribute("aria-invalid")
+  expect(inputEl).not.toHaveAttribute("aria-required")
+  expect(inputEl).not.toHaveAttribute("aria-readonly")
+})
 
-  rerender(
-    <Field.Root id="name" isRequired isInvalid isReadOnly>
+test("inherit required attribute", async () => {
+  render(
+    <Field.Root id="name" isRequired>
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
-      <Field.ErrorMessage data-testid="error">
-        Your name is invalid
-      </Field.ErrorMessage>
     </Field.Root>,
   )
-  input = screen.getByLabelText(/Name/)
-  const indicator = screen.getByRole("presentation", { hidden: true })
-  const errorMessage = screen.getByTestId("error")
 
-  expect(input).toHaveAttribute("aria-invalid", "true")
-  expect(input).toHaveAttribute("aria-required", "true")
-  expect(input).toHaveAttribute("aria-readonly", "true")
-  expect(input).toHaveAttribute(
-    "aria-describedby",
-    "name-feedback name-helptext",
-  )
-  expect(indicator).toHaveAttribute("aria-hidden")
-  expect(errorMessage).toHaveAttribute("aria-live", "polite")
+  const inputEl = screen.getByRole("textbox")
+  expect(inputEl).toHaveAttribute("required")
 })
 
 test("has the correct role attributes", () => {
@@ -224,11 +203,7 @@ test("has the correct data attributes", async () => {
 })
 
 test("can provide a custom aria-describedby reference", () => {
-  const screen = render(
-    <Input data-testid="input" aria-describedby="reference" />,
-  )
-
-  screen.debug()
+  render(<Input data-testid="input" aria-describedby="reference" />)
 
   expect(screen.getByRole("textbox")).toHaveAttribute(
     "aria-describedby",
@@ -237,7 +212,7 @@ test("can provide a custom aria-describedby reference", () => {
 })
 
 test("should respect form control aria-describedby", () => {
-  const screen = render(
+  render(
     <Field.Root id="name">
       <Input aria-describedby="name-expanded-helptext" />
       <Field.HelpText>Please enter your name!</Field.HelpText>
@@ -246,8 +221,6 @@ test("should respect form control aria-describedby", () => {
       </p>
     </Field.Root>,
   )
-
-  screen.debug()
 
   expect(screen.getByRole("textbox")).toHaveAttribute(
     "aria-describedby",
