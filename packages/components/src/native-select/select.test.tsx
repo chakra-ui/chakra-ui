@@ -1,28 +1,32 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
 import { Field } from "../field"
-import { NativeSelect as Select } from "."
+import { NativeSelect } from "."
 
-const SelectDemo = (props: Select.RootProps) => {
+const DemoSelect = (props: NativeSelect.RootProps) => {
   const { placeholder = "Select an option", ...restProps } = props
   return (
-    <Select.Root {...restProps}>
-      <Select.Field color="pink.500" placeholder={placeholder}>
+    <NativeSelect.Root {...restProps}>
+      <NativeSelect.Field
+        aria-label="select"
+        color="pink.500"
+        placeholder={placeholder}
+      >
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>
         <option value="Option 3">Option 3</option>
-      </Select.Field>
-      <Select.Icon />
-    </Select.Root>
+      </NativeSelect.Field>
+      <NativeSelect.Icon />
+    </NativeSelect.Root>
   )
 }
 
 test("should pass a11y check", async () => {
-  const { container } = render(<SelectDemo />)
+  const { container } = render(<DemoSelect />)
   await testA11y(container)
 })
 
 test("renders a placeholder option", () => {
-  const { container } = render(<SelectDemo />)
+  const { container } = render(<DemoSelect />)
 
   const option = container.querySelector("option[value='']")
   expect(option).toBeInTheDocument()
@@ -31,7 +35,7 @@ test("renders a placeholder option", () => {
 })
 
 test("renders an icon by default", () => {
-  const { getByRole } = render(<SelectDemo />)
+  const { getByRole } = render(<DemoSelect />)
 
   const icon = getByRole("presentation", { hidden: true })
   expect(icon).toHaveAttribute("aria-hidden", "true")
@@ -40,7 +44,7 @@ test("renders an icon by default", () => {
 })
 
 test("renders in disabled state if isDisabled is true", () => {
-  const { container } = render(<SelectDemo isDisabled />)
+  const { container } = render(<DemoSelect isDisabled />)
 
   const select = container.querySelector("select")
   const iconWrapper = container.querySelector(".chakra-select__icon-wrapper")
@@ -50,7 +54,7 @@ test("renders in disabled state if isDisabled is true", () => {
 })
 
 test("doesn't render in disabled state if isDisabled is false", () => {
-  const { container } = render(<SelectDemo isDisabled={false} />)
+  const { container } = render(<DemoSelect isDisabled={false} />)
 
   const select = container.querySelector("select")
   const iconWrapper = container.querySelector(".chakra-select__icon-wrapper")
@@ -62,7 +66,7 @@ test("doesn't render in disabled state if isDisabled is false", () => {
 test("renders in disabled state if wrapped by FormControl with isDisabled=true", () => {
   const { container } = render(
     <Field.Root isDisabled>
-      <SelectDemo />,
+      <DemoSelect />,
     </Field.Root>,
   )
 
