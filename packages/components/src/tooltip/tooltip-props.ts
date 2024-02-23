@@ -1,4 +1,4 @@
-import { createProps, splitProps } from "@chakra-ui/utils"
+import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseTooltipProps } from "./use-tooltip"
 
 export const tooltipProps = createProps<UseTooltipProps>()([
@@ -24,9 +24,4 @@ export const tooltipProps = createProps<UseTooltipProps>()([
   "placement",
 ])
 
-export const splitTooltipProps = <T extends UseTooltipProps>(props: T) => {
-  return splitProps(props, tooltipProps) as [
-    UseTooltipProps,
-    Omit<T, keyof UseTooltipProps>,
-  ]
-}
+export const splitTooltipProps = createSplitProps<UseTooltipProps>(tooltipProps)

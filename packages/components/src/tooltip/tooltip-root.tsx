@@ -1,5 +1,5 @@
 import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
-import { useStyleConfig, useTheme } from "../system"
+import { useStyleConfig } from "../system"
 import {
   TooltipContextProvider,
   TooltipStylesProvider,
@@ -14,14 +14,6 @@ export interface TooltipRootProps
    * trigger for the tooltip
    */
   children: React.ReactNode
-  /**
-   * The accessible, human friendly label to use for
-   * screen readers.
-   *
-   * If passed, tooltip will show the content `label`
-   * but expose only `aria-label` to assistive technologies
-   */
-  "aria-label"?: string
 }
 
 /**
@@ -33,22 +25,15 @@ export interface TooltipRootProps
 export const TooltipRoot = (props: TooltipRootProps) => {
   const styles = useStyleConfig("Tooltip", props)
   const ownProps = omitThemingProps(props)
-  const theme = useTheme()
-
-  const { children, "aria-label": ariaLabel, ...restProps } = ownProps
-
-  const api = useTooltip({
-    ...restProps,
-    direction: theme.direction,
-  })
+  const api = useTooltip(ownProps)
 
   return (
     <TooltipStylesProvider value={styles}>
-      <TooltipContextProvider value={{ ...api, ariaLabel }}>
+      <TooltipContextProvider value={api}>
         {props.children}
       </TooltipContextProvider>
     </TooltipStylesProvider>
   )
 }
 
-TooltipRoot.displayName = "Tooltip"
+TooltipRoot.displayName = "TooltipRoot"

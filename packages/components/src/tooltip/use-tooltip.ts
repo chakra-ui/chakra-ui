@@ -12,6 +12,7 @@ import React, {
   type RefObject,
 } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
+import { useTheme } from "../system"
 
 export interface UseTooltipProps
   extends Pick<
@@ -92,6 +93,8 @@ const getWin = (ref: React.RefObject<Element | null>) =>
   ref.current?.ownerDocument?.defaultView || window
 
 export function useTooltip(props: Partial<UseTooltipProps> = {}) {
+  const theme = useTheme()
+
   const {
     openDelay = 0,
     closeDelay = 0,
@@ -112,8 +115,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     isDisabled,
     gutter,
     offset,
-    direction,
-    ...htmlProps
+    direction = theme.direction,
   } = props
 
   const { isOpen, onOpen, onClose } = useDisclosure({
@@ -299,14 +301,13 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
 
       return {
         ref,
-        ...htmlProps,
         ...props,
         id: tooltipId,
         role: "tooltip",
         style: styles,
       }
     },
-    [htmlProps, tooltipId],
+    [tooltipId],
   )
 
   return {
