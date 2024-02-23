@@ -74,7 +74,7 @@ const baseStyleHeader = defineStyle({
   fontWeight: "semibold",
 })
 
-const baseStyleCloseTrigger = defineStyle({
+const baseStyleCloseButton = defineStyle({
   position: "absolute",
   top: "2",
   insetEnd: "3",
@@ -103,7 +103,7 @@ const baseStyle = definePartsStyle((props) => ({
   positioner: runIfFn(baseStylePositioner, props),
   content: runIfFn(baseStyleContent, props),
   header: baseStyleHeader,
-  closeTrigger: baseStyleCloseTrigger,
+  closeButton: baseStyleCloseButton,
   body: runIfFn(baseStyleBody, props),
   footer: baseStyleFooter,
 }))

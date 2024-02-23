@@ -37,21 +37,23 @@ test("should have no accessibility violations", async () => {
 })
 
 test("should have the proper 'aria' attributes", () => {
-  const tools = render(<DemoDialog isOpen onClose={vi.fn()} />)
+  const { getByRole, getByText } = render(
+    <DemoDialog isOpen onClose={vi.fn()} />,
+  )
 
-  const dialog = tools.getByRole("dialog")
+  const dialog = getByRole("dialog")
 
   expect(dialog).toHaveAttribute("aria-modal", "true")
   expect(dialog).toHaveAttribute("role", "dialog")
 
-  expect(tools.getByText("Dialog body").id).toEqual(
+  expect(getByText("Dialog body").id).toEqual(
     dialog.getAttribute("aria-describedby"),
   )
 
   /**
    * The id of `DialogHeader` should equal the `aria-labelledby` of the dialog
    */
-  expect(tools.getByText("Dialog header").id).toEqual(
+  expect(getByText("Dialog header").id).toEqual(
     dialog.getAttribute("aria-labelledby"),
   )
 })
@@ -64,31 +66,29 @@ test("should fire 'onClose' callback when close button is clicked", () => {
   expect(onClose).toHaveBeenCalled()
 })
 
-describe("closing the Dialog.", () => {
-  test("clicking overlay calls the onClose callback", async () => {
-    const onClose = vi.fn()
-    render(<DemoDialog isOpen onClose={onClose} />)
+test("should close on overlay click", async () => {
+  const onClose = vi.fn()
+  render(<DemoDialog isOpen onClose={onClose} />)
 
-    const dialog = await screen.findByRole("dialog")
-    const overlay = dialog.parentElement
+  const dialog = await screen.findByRole("dialog")
+  const overlay = dialog.parentElement
 
-    if (overlay) {
-      fireEvent.pointerDown(overlay)
-      fireEvent.click(overlay)
-      expect(onClose).toHaveBeenCalled()
-    }
-  })
-
-  test("pressing escape key calls the onClose callback", async () => {
-    const onClose = vi.fn()
-    const { user } = render(<DemoDialog isOpen onClose={onClose} />)
-
-    await user.keyboard("[Escape]")
+  if (overlay) {
+    fireEvent.pointerDown(overlay)
+    fireEvent.click(overlay)
     expect(onClose).toHaveBeenCalled()
-  })
+  }
 })
 
-test("focuses the initial focus ref when opened", () => {
+test("should close on escape key", async () => {
+  const onClose = vi.fn()
+  const { user } = render(<DemoDialog isOpen onClose={onClose} />)
+
+  await user.keyboard("[Escape]")
+  expect(onClose).toHaveBeenCalled()
+})
+
+test("focus initial element when opened", () => {
   const Component = () => {
     const [isOpen, setIsOpen] = React.useState(false)
     const inputRef = React.useRef(null)
@@ -120,17 +120,11 @@ test("focuses the initial focus ref when opened", () => {
       </>
     )
   }
-  const tools = render(<Component />)
 
-  /**
-   * User clicks button to open the Dialog.
-   */
-  fireEvent.click(tools.getByTestId("button"))
+  const { getByTestId } = render(<Component />)
 
-  /**
-   * We focus the input right away!
-   */
-  expect(tools.getByTestId("input")).toHaveFocus()
+  fireEvent.click(getByTestId("button"))
+  expect(getByTestId("input")).toHaveFocus()
 })
 
 test("should return focus to button when closed", async () => {
@@ -163,16 +157,14 @@ test("should return focus to button when closed", async () => {
       </>
     )
   }
-  const tools = render(<Component />)
-  const button = tools.getByTestId("button")
 
-  // make sure button isn't focused at the start
+  const { getByTestId } = render(<Component />)
+
+  const button = getByTestId("button")
   expect(button).not.toHaveFocus()
 
-  // open and close the Dialog.
   fireEvent.click(button)
-  fireEvent.click(tools.getByTestId("close"))
+  fireEvent.click(getByTestId("close"))
 
-  // wait for button to be focused
   await waitFor(() => expect(button).toHaveFocus())
 })

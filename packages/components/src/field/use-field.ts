@@ -43,6 +43,7 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
     disabled: disabled ?? isDisabled ?? field?.isDisabled,
     readOnly: readOnly ?? isReadOnly ?? field?.isReadOnly,
     required: required ?? isRequired ?? field?.isRequired,
+    invalid: isInvalid ?? field?.isInvalid,
     onFocus: callAllHandlers(field?.onFocus, onFocus),
     onBlur: callAllHandlers(field?.onBlur, onBlur),
   }

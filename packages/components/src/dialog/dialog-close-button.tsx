@@ -13,24 +13,20 @@ export interface DialogCloseButtonProps extends CloseButtonProps {}
  * `onClose` action from the dialog context.
  */
 export const DialogCloseButton = forwardRef<CloseButtonProps, "button">(
-  (props, ref) => {
-    const { onClick, className, ...rest } = props
-    const { onClose } = useDialogContext()
-
-    const _className = cx("chakra-dialog__close-btn", className)
-
+  function DialogCloseButton(props, ref) {
     const styles = useDialogStyles()
+    const api = useDialogContext()
 
     return (
       <CloseButton
         ref={ref}
         __css={styles.closeButton}
-        className={_className}
-        onClick={callAllHandlers(onClick, (event: React.MouseEvent) => {
+        {...props}
+        className={cx("chakra-dialog__close-btn", props.className)}
+        onClick={callAllHandlers(props.onClick, (event: React.MouseEvent) => {
           event.stopPropagation()
-          onClose()
+          api.onClose()
         })}
-        {...rest}
       />
     )
   },

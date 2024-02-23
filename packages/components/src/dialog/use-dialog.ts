@@ -109,7 +109,7 @@ export function useDialog(props: UseDialogProps) {
       ref: mergeRefs(ref, dialogRef),
       id: dialogId,
       tabIndex: -1,
-      "aria-dialog": true,
+      "aria-modal": true,
       "aria-labelledby": headerMounted ? headerId : undefined,
       "aria-describedby": bodyMounted ? bodyId : undefined,
       onClick: callAllHandlers(props.onClick, (event: React.MouseEvent) =>

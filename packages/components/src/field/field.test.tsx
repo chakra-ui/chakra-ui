@@ -3,7 +3,8 @@ import { Field, RequiredIndicator, useField } from "."
 import { chakra, forwardRef } from "../system"
 
 const Input = forwardRef((props: any, ref) => {
-  const inputProps = useField<HTMLInputElement>(props)
+  // @ts-ignore
+  const { invalid: _, ...inputProps } = useField<HTMLInputElement>(props)
   return <chakra.input ref={ref} {...inputProps} />
 })
 
@@ -101,7 +102,7 @@ test("only displays required indicator when required", () => {
   expect(screen.queryByRole("presentation")).not.toBeInTheDocument()
 })
 
-test("useForm.Control calls provided input callbacks", () => {
+test("should invoke input callbacks", () => {
   const onFocus = vi.fn()
   const onBlur = vi.fn()
 
