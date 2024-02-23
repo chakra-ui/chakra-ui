@@ -20,6 +20,7 @@ const baseStyleTrack = defineStyle((props) => {
 
   return {
     display: "inline-flex",
+    gap: "0.5rem",
     flexShrink: 0,
     justifyContent: "flex-start",
     boxSizing: "content-box",

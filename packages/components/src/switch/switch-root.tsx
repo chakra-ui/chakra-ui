@@ -1,8 +1,4 @@
-import {
-  omitThemingProps,
-  SystemProps,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { useCheckbox, UseCheckboxProps } from "../checkbox"
 import { splitCheckboxProps } from "../checkbox/checkbox-props"
@@ -17,14 +13,7 @@ import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"
 export interface SwitchRootProps
   extends Omit<UseCheckboxProps, "isIndeterminate">,
     Omit<HTMLChakraProps<"label">, keyof UseCheckboxProps>,
-    ThemingProps<"Switch"> {
-  /**
-   * The spacing between the switch and its label text
-   * @default 0.5rem
-   * @type SystemProps["marginLeft"]
-   */
-  spacing?: SystemProps["marginLeft"]
-}
+    ThemingProps<"Switch"> {}
 
 /**
  * The `Switch` component is used as an alternative for the checkbox component for switching between "enabled" and "disabled" states.
@@ -35,19 +24,14 @@ export interface SwitchRootProps
 export const SwitchRoot = forwardRef<SwitchRootProps, "input">(
   function SwitchRoot(props, ref) {
     const styles = useMultiStyleConfig("Switch", props)
-
-    const {
-      spacing = "0.5rem",
-      children,
-      ...ownProps
-    } = omitThemingProps(props)
+    const ownProps = omitThemingProps(props)
 
     const [checkboxProps, localProps] = splitCheckboxProps(ownProps)
     const api = useCheckbox(checkboxProps)
 
     return (
       <SwitchStylesProvider value={styles}>
-        <SwitchContextProvider value={{ ...api, spacing }}>
+        <SwitchContextProvider value={api}>
           <chakra.label
             {...api.getRootProps(localProps)}
             className={cx("chakra-switch", props.className)}
@@ -57,7 +41,7 @@ export const SwitchRoot = forwardRef<SwitchRootProps, "input">(
               className="chakra-switch__input"
               {...api.getInputProps({}, ref)}
             />
-            {children}
+            {localProps.children}
           </chakra.label>
         </SwitchContextProvider>
       </SwitchStylesProvider>
