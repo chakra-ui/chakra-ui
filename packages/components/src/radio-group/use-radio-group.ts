@@ -71,6 +71,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   } = props
 
   const [valueState, setValue] = useState<string | number>(defaultValue || "")
+
   const isControlled = typeof valueProp !== "undefined"
   const value = isControlled ? valueProp : valueState
 
@@ -82,9 +83,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
 
     let query = `input:not(:disabled):checked`
 
-    const firstEnabledAndCheckedInput = rootNode.querySelector(
-      query,
-    ) as HTMLElement
+    const firstEnabledAndCheckedInput = rootNode.querySelector(query)
 
     if (firstEnabledAndCheckedInput) {
       firstEnabledAndCheckedInput.focus()

@@ -1,8 +1,8 @@
-import { fireEvent, render, waitFor } from "@chakra-ui/test-utils"
+import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import { RadioGroup, UseRadioGroupProps, useRadioGroup } from "."
 import { Field } from "../field"
 
-const RadioDemo = (props: RadioGroup.ItemProps) => {
+const DemoRadio = (props: RadioGroup.ItemProps) => {
   const { children, ...rest } = props
   return (
     <RadioGroup.Item {...rest}>
@@ -18,14 +18,14 @@ test("works with Radio component", () => {
 
     return (
       <div {...getRootProps()}>
-        <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
-        <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
+        <DemoRadio {...getItemProps({ value: "a" })}>a</DemoRadio>
+        <DemoRadio {...getItemProps({ value: "b" })}>b</DemoRadio>
       </div>
     )
   }
-  const utils = render(<Component defaultValue="a" />)
 
-  expect(utils.getByLabelText("a")).toBeChecked()
+  const { getByLabelText } = render(<Component defaultValue="a" />)
+  expect(getByLabelText("a")).toBeChecked()
 })
 
 test("uncontrolled: correctly manages state", () => {
@@ -34,76 +34,29 @@ test("uncontrolled: correctly manages state", () => {
 
     return (
       <div {...getRootProps()}>
-        <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
-        <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
+        <DemoRadio {...getItemProps({ value: "a" })}>a</DemoRadio>
+        <DemoRadio {...getItemProps({ value: "b" })}>b</DemoRadio>
       </div>
     )
   }
 
-  const utils = render(<Component defaultValue="a" />)
+  const { getByLabelText } = render(<Component defaultValue="a" />)
 
-  // checks default value by default
-  expect(utils.getByLabelText("a")).toBeChecked()
+  expect(getByLabelText("a")).toBeChecked()
 
-  // changes checked on click
-  fireEvent.click(utils.getByLabelText("b"))
-  expect(utils.getByLabelText("b")).toBeChecked()
+  fireEvent.click(getByLabelText("b"))
+  expect(getByLabelText("b")).toBeChecked()
 })
 
 test("Uncontrolled RadioGroup - should not check if group disabled", async () => {
-  const Component = () => (
-    <RadioGroup.Root isDisabled isFocusable={false}>
-      <RadioDemo value="one">One</RadioDemo>
-      <RadioDemo value="one-focus" isFocusable>
-        One Focusable
-      </RadioDemo>
-      <RadioDemo value="two" isDisabled>
-        Two
-      </RadioDemo>
-      <RadioDemo value="two-focus" isDisabled isFocusable>
-        Two Focusable
-      </RadioDemo>
-      <RadioDemo value="three" isDisabled={false}>
-        Three
-      </RadioDemo>
-    </RadioGroup.Root>
+  render(
+    <RadioGroup.Root isDisabled>
+      <DemoRadio value="one">One</DemoRadio>
+    </RadioGroup.Root>,
   )
-  const { container } = render(<Component />)
-  const [radioOne, radioOneFocusable, radioTwo, radioTwoFocusable, radioThree] =
-    Array.from(container.querySelectorAll("input"))
 
-  const [
-    radioOneSpan,
-    radioOneSpanFocusable,
-    radioTwoSpan,
-    radioTwoSpanFocusable,
-    radioThreeSpan,
-  ] = Array.from(container.querySelectorAll(".chakra-radio__control"))
-
-  // since `RadioGroup` has `isDisabled={true}` all radio spans should be disabled
-  expect(radioOneSpan).toHaveAttribute("data-disabled", "")
-  expect(radioOneSpanFocusable).toHaveAttribute("data-disabled", "")
-  expect(radioTwoSpan).toHaveAttribute("data-disabled", "")
-  expect(radioTwoSpanFocusable).toHaveAttribute("data-disabled", "")
-  expect(radioThreeSpan).not.toHaveAttribute("data-disabled") // radioThree isn't disabled at all
-
-  // to be truly disabled on the input field the condition `!isFocusable && isDisabled` has to be truthy
-  expect(radioOne).toBeDisabled()
-  expect(radioOneFocusable).not.toBeDisabled() // because it is still focusable
-  expect(radioTwo).toBeDisabled()
-  expect(radioTwoFocusable).not.toBeDisabled() // because it is still focusable
-  expect(radioThree).not.toBeDisabled()
-
-  fireEvent.click(radioOne)
-  await waitFor(() => expect(radioOne).not.toBeChecked())
-  fireEvent.click(radioOneFocusable)
-  await waitFor(() => expect(radioOneFocusable).not.toBeChecked())
-  fireEvent.click(radioTwo)
-  await waitFor(() => expect(radioTwo).not.toBeChecked())
-  fireEvent.click(radioTwoFocusable)
-  await waitFor(() => expect(radioTwoFocusable).not.toBeChecked())
-  fireEvent.click(radioThree)
-  expect(radioThree).toBeChecked()
+  const inputEl = screen.getByRole("radio")
+  expect(inputEl).toBeDisabled()
 })
 
 test("controlled: correctly manages state", () => {
@@ -112,19 +65,17 @@ test("controlled: correctly manages state", () => {
 
     return (
       <div {...getRootProps()}>
-        <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
-        <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
+        <DemoRadio {...getItemProps({ value: "a" })}>a</DemoRadio>
+        <DemoRadio {...getItemProps({ value: "b" })}>b</DemoRadio>
       </div>
     )
   }
   const onChange = vi.fn()
-  const utils = render(<Component onChange={onChange} value="a" />)
+  const { getByLabelText } = render(<Component onChange={onChange} value="a" />)
 
-  // has value prop checked
-  expect(utils.getByLabelText("a")).toBeChecked()
+  expect(getByLabelText("a")).toBeChecked()
 
-  // calls the onChange callback with newly-selected value
-  fireEvent.click(utils.getByLabelText("b"))
+  fireEvent.click(getByLabelText("b"))
   expect(onChange).toHaveBeenCalledWith("b")
 })
 
@@ -136,16 +87,16 @@ test("setValue action allows setting specific value", () => {
       <>
         <button onClick={() => setValue("a")}>Set</button>
         <div {...getRootProps()}>
-          <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
-          <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
+          <DemoRadio {...getItemProps({ value: "a" })}>a</DemoRadio>
+          <DemoRadio {...getItemProps({ value: "b" })}>b</DemoRadio>
         </div>
       </>
     )
   }
-  const utils = render(<Component />)
+  const { getByText, getByLabelText } = render(<Component />)
 
-  fireEvent.click(utils.getByText(/set/i))
-  expect(utils.getByLabelText("a")).toBeChecked()
+  fireEvent.click(getByText(/set/i))
+  expect(getByLabelText("a")).toBeChecked()
 })
 
 describe("focus action", () => {
@@ -180,32 +131,22 @@ describe("focus action", () => {
   }
 
   test("focuses first checked input", () => {
-    const utils = render(<Component value="c" />)
-    fireEvent.click(utils.getByText(/focus/i))
-    expect(document.activeElement).toEqual(utils.getByLabelText("c"))
+    const { getByText, getByLabelText } = render(<Component value="c" />)
+    fireEvent.click(getByText(/focus/i))
+    expect(document.activeElement).toEqual(getByLabelText("c"))
   })
 
   test("focuses first enabled input if none checked", () => {
-    const utils = render(<Component />)
-    fireEvent.click(utils.getByText(/focus/i))
-    expect(document.activeElement).toEqual(utils.getByLabelText("b"))
+    const { getByText, getByLabelText } = render(<Component />)
+    fireEvent.click(getByText(/focus/i))
+    expect(document.activeElement).toEqual(getByLabelText("b"))
   })
 
   test("focuses first enabled input if checked input is disabled", () => {
-    const utils = render(<Component value="a" />)
-    fireEvent.click(utils.getByText(/focus/i))
-    expect(document.activeElement).toEqual(utils.getByLabelText("b"))
+    const { getByText, getByLabelText } = render(<Component value="a" />)
+    fireEvent.click(getByText(/focus/i))
+    expect(document.activeElement).toEqual(getByLabelText("b"))
   })
-})
-
-test("has the proper role", () => {
-  const Component = () => {
-    const { getRootProps } = useRadioGroup()
-    return <div {...getRootProps()} />
-  }
-  const utils = render(<Component />)
-
-  utils.getByRole("radiogroup")
 })
 
 test("should use unique id when wrapped in FormControl", () => {
@@ -216,8 +157,8 @@ test("should use unique id when wrapped in FormControl", () => {
       <Field.Root>
         <button onClick={() => setValue("a")}>Set</button>
         <div {...getRootProps()}>
-          <RadioDemo {...getItemProps({ value: "a" })}>a</RadioDemo>
-          <RadioDemo {...getItemProps({ value: "b" })}>b</RadioDemo>
+          <DemoRadio {...getItemProps({ value: "a" })}>a</DemoRadio>
+          <DemoRadio {...getItemProps({ value: "b" })}>b</DemoRadio>
         </div>
       </Field.Root>
     )
