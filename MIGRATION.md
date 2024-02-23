@@ -110,6 +110,7 @@ After:
   <Progress.Track>
     <Progress.FilledTrack />
   </Progress.Track>
+  <Progress.ValueText />
 </Progress.Root>
 ```
 
@@ -364,7 +365,7 @@ Before:
 After:
 
 ```tsx
-<Button colorScheme="blue">
+<Button isDisabled colorScheme="blue">
   <Spinner boxSize="1em" />
   Click me
 </Button>
@@ -381,10 +382,7 @@ inlined with the button content.
 Before:
 
 ```tsx
-<Button leftIcon={<AddIcon />}>
-  Click me
-  <AddIcon />
-</Button>
+<Button leftIcon={<AddIcon />}>Click me</Button>
 ```
 
 After:
@@ -409,7 +407,7 @@ Before:
 After:
 
 ```tsx
-<Button>
+<Button isDisabled>
   <Spinner boxSize="1em" />
   Submitting
 </Button>
