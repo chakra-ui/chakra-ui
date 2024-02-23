@@ -1,4 +1,3 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useSelectContext, useSelectStyles } from "./select-context"
@@ -20,22 +19,13 @@ export const NativeSelectField = forwardRef<NativeSelectFieldProps, "select">(
     const styles = useSelectStyles()
     const fieldProps = useSelectContext()
 
-    const fieldStyles = defineStyle({
-      paddingEnd: "2rem",
-      ...styles.field,
-      _focus: {
-        zIndex: "unset",
-        ...(styles as any).field?.["_focus"],
-      },
-    })
-
     return (
       <chakra.select
         {...rest}
         {...fieldProps}
         ref={ref}
         className={cx("chakra-select__field", className)}
-        __css={fieldStyles}
+        __css={styles.field}
       >
         {placeholder && <option value="">{placeholder}</option>}
         {children}

@@ -9,9 +9,7 @@ export const [SwitchStylesProvider, useSwitchStyles] = createContext<
   errorMessage: `useSwitchStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Switch />" `,
 })
 
-interface SwitchContext extends UseCheckboxReturn {
-  spacing: any
-}
+interface SwitchContext extends UseCheckboxReturn {}
 
 export const [SwitchContextProvider, useSwitchContext] =
   createContext<SwitchContext>({

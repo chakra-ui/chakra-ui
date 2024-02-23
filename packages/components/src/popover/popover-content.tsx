@@ -1,6 +1,4 @@
-import { defineStyle } from "@chakra-ui/styled-system"
-import { callAll } from "@chakra-ui/utils/call-all"
-import { cx } from "@chakra-ui/utils/cx"
+import { callAll, cx } from "@chakra-ui/utils"
 import { HTMLMotionProps } from "framer-motion"
 import { forwardRef, HTMLChakraProps } from "../system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
@@ -18,13 +16,6 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
     const api = usePopoverContext()
     const styles = usePopoverStyles()
 
-    const contentStyles = defineStyle({
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      ...styles.content,
-    })
-
     return (
       <PopoverTransition
         {...motionProps}
@@ -34,7 +25,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
           contentProps.onAnimationComplete,
         )}
         className={cx("chakra-popover__content", props.className)}
-        __css={contentStyles}
+        __css={styles.content}
       />
     )
   },

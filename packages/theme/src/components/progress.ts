@@ -42,6 +42,8 @@ const baseStyleValueText = defineStyle({
 
 const baseStyleTrack = defineStyle((props) => {
   return {
+    overflow: "hidden",
+    position: "relative",
     bg: mode("gray.100", "whiteAlpha.300")(props),
   }
 })
@@ -53,7 +55,18 @@ const baseStyleFilledTrack = defineStyle((props) => {
     justifyContent: "center",
     transitionProperty: "common",
     transitionDuration: "slow",
+    height: "100%",
     ...filledStyle(props),
+    "&[data-animated]": {
+      animation: "var(--stripe-animation) 1s linear infinite",
+    },
+    "&[data-indeterminate]": {
+      position: "absolute",
+      willChange: "left",
+      minWidth: "50%",
+      animation:
+        "var(--progress-animation) 1s ease infinite normal none running",
+    },
   }
 })
 

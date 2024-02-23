@@ -1,10 +1,5 @@
-import {
-  ThemingProps,
-  defineStyle,
-  omitThemingProps,
-} from "@chakra-ui/styled-system"
-import { callAll } from "@chakra-ui/utils/call-all"
-import { cx } from "@chakra-ui/utils/cx"
+import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
+import { callAll, cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
   PropsOf,
@@ -13,7 +8,7 @@ import {
   useMultiStyleConfig,
 } from "../system"
 import {
-  CheckboxProvider,
+  CheckboxContextProvider,
   CheckboxStylesProvider,
   useCheckboxGroupContext,
 } from "./checkbox-context"
@@ -76,31 +71,22 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
 
     const { getRootProps, getInputProps } = checkboxState
 
-    const rootStyles = defineStyle({
-      cursor: "pointer",
-      display: "inline-flex",
-      alignItems: "center",
-      verticalAlign: "top",
-      position: "relative",
-      ...styles.root,
-    })
-
     return (
-      <chakra.label
-        {...getRootProps(localProps)}
-        __css={rootStyles}
-        className={cx("chakra-checkbox", className)}
-      >
-        <input
-          {...getInputProps(inputProps, ref)}
-          className="chakra-checkbox__input"
-        />
-        <CheckboxStylesProvider value={styles}>
-          <CheckboxProvider value={{ ...checkboxState, spacing }}>
+      <CheckboxStylesProvider value={styles}>
+        <CheckboxContextProvider value={{ ...checkboxState, spacing }}>
+          <chakra.label
+            {...getRootProps(localProps)}
+            __css={styles.root}
+            className={cx("chakra-checkbox", className)}
+          >
+            <input
+              {...getInputProps(inputProps, ref)}
+              className="chakra-checkbox__input"
+            />
             {children}
-          </CheckboxProvider>
-        </CheckboxStylesProvider>
-      </chakra.label>
+          </chakra.label>
+        </CheckboxContextProvider>
+      </CheckboxStylesProvider>
     )
   },
 )

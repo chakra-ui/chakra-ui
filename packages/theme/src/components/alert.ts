@@ -14,6 +14,11 @@ const $bg = cssVar("alert-bg")
 
 const baseStyle = definePartsStyle({
   root: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+    overflow: "hidden",
     bg: $bg.reference,
     px: "4",
     py: "3",
@@ -24,6 +29,7 @@ const baseStyle = definePartsStyle({
     marginEnd: "2",
   },
   description: {
+    display: "inline",
     lineHeight: "6",
   },
   icon: {

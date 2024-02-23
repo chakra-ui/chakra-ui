@@ -1,35 +1,24 @@
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { useEditableContext, useEditableStyles } from "./editable-context"
-import { commonStyles } from "./shared"
 
 export interface EditablePreviewProps extends HTMLChakraProps<"div"> {}
 
-/**
- * EditablePreview
- *
- * The `span` used to display the final value, in the `preview` mode
- */
 export const EditablePreview = forwardRef<EditablePreviewProps, "span">(
   function EditablePreview(props, ref) {
-    const { getPreviewProps } = useEditableContext()
+    const api = useEditableContext()
     const styles = useEditableStyles()
 
-    const previewProps = getPreviewProps(props, ref) as HTMLChakraProps<"span">
-    const _className = cx("chakra-editable__preview", props.className)
+    const previewProps = api.getPreviewProps(props, ref) as any
 
     return (
       <chakra.span
         {...previewProps}
-        __css={{
-          cursor: "text",
-          display: "inline-block",
-          ...commonStyles,
-          ...styles.preview,
-        }}
-        className={_className}
+        __css={styles.preview}
+        className={cx("chakra-editable__preview", props.className)}
       />
     )
   },
 )
+
 EditablePreview.displayName = "EditablePreview"

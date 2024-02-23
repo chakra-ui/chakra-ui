@@ -14,7 +14,6 @@ import {
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { baseStyle } from "./avatar-root"
 
 interface AvatarGroupOptions {
   /**
@@ -88,18 +87,9 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
       return cloneElement(child, compact(childProps))
     })
 
-    const groupStyles = defineStyle({
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      flexDirection: "row-reverse",
-      ...styles.group,
-    })
-
     const excessStyles = defineStyle({
       borderRadius,
       marginStart: spacing,
-      ...baseStyle,
       ...styles.excessLabel,
     })
 
@@ -107,7 +97,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
       <chakra.div
         ref={ref}
         role="group"
-        __css={groupStyles}
+        __css={styles.group}
         {...rest}
         className={cx("chakra-avatar__group", props.className)}
       >

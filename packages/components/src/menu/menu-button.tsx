@@ -1,4 +1,3 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useMenuStyles } from "./menu-context"
@@ -16,19 +15,11 @@ export const MenuButton = forwardRef<MenuButtonProps, "button">(
     const buttonProps = useMenuButton(props, ref)
     const styles = useMenuStyles()
 
-    const buttonStyles = defineStyle({
-      display: "inline-flex",
-      appearance: "none",
-      alignItems: "center",
-      outline: 0,
-      ...styles.button,
-    })
-
     return (
       <chakra.button
         {...buttonProps}
         className={cx("chakra-menu__button", props.className)}
-        __css={buttonStyles}
+        __css={styles.button}
       />
     )
   },

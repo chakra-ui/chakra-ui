@@ -20,6 +20,7 @@ const baseStyleControl = defineStyle((props) => {
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
+    userSelect: "none",
     w: $size.reference,
     h: $size.reference,
     transitionProperty: "box-shadow",
@@ -28,6 +29,7 @@ const baseStyleControl = defineStyle((props) => {
     borderRadius: "sm",
     borderColor: "inherit",
     color: "white",
+    verticalAlign: "top",
 
     _checked: {
       bg: mode(`${c}.500`, `${c}.200`)(props),

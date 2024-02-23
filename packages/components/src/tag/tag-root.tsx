@@ -1,8 +1,4 @@
-import {
-  ThemingProps,
-  defineStyle,
-  omitThemingProps,
-} from "@chakra-ui/styled-system"
+import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import {
   HTMLChakraProps,
   chakra,
@@ -20,24 +16,17 @@ export interface TagRootProps
  * To style the tag globally, change the styles in `theme.components.Tag`
  * @see Docs https://chakra-ui.com/tag
  */
-export const TagRoot = forwardRef<TagRootProps, "span">((props, ref) => {
-  const styles = useMultiStyleConfig("Tag", props)
+export const TagRoot = forwardRef<TagRootProps, "span">(
+  function TagRoot(props, ref) {
+    const styles = useMultiStyleConfig("Tag", props)
+    const rootProps = omitThemingProps(props)
 
-  const rootProps = omitThemingProps(props)
+    return (
+      <TagStylesProvider value={styles}>
+        <chakra.span ref={ref} {...rootProps} __css={styles.root} />
+      </TagStylesProvider>
+    )
+  },
+)
 
-  const rootStyles = defineStyle({
-    display: "inline-flex",
-    verticalAlign: "top",
-    alignItems: "center",
-    maxWidth: "100%",
-    ...styles.root,
-  })
-
-  return (
-    <TagStylesProvider value={styles}>
-      <chakra.span ref={ref} {...rootProps} __css={rootStyles} />
-    </TagStylesProvider>
-  )
-})
-
-TagRoot.displayName = "Tag"
+TagRoot.displayName = "TagRoot"

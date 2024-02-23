@@ -77,11 +77,11 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
     return <chakra.svg as={element} {...shared} {...rest} />
   }
 
-  const _path = (children ?? fallbackIcon.path) as React.ReactNode
+  const iconPath = (children ?? fallbackIcon.path) as React.ReactNode
 
   return (
     <chakra.svg verticalAlign="middle" viewBox={_viewBox} {...shared} {...rest}>
-      {_path}
+      {iconPath}
     </chakra.svg>
   )
 })

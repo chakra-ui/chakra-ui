@@ -1,8 +1,4 @@
-import {
-  ThemingProps,
-  defineStyle,
-  omitThemingProps,
-} from "@chakra-ui/styled-system"
+import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import { FieldOptions, splitFieldProps, useField } from "../field"
 import { chakra, forwardRef, useMultiStyleConfig } from "../system"
 import { SelectContextProvider, SelectStylesProvider } from "./select-context"
@@ -42,26 +38,19 @@ export const NativeSelectRoot = forwardRef<NativeSelectRootProps, "select">(
 
     const field = useField(fieldProps)
 
-    const rootStyles = defineStyle({
-      width: "100%",
-      height: "fit-content",
-      position: "relative",
-      ...styles.root,
-    })
-
     return (
-      <chakra.div
-        ref={ref}
-        className="chakra-select__wrapper"
-        __css={rootStyles}
-        {...localProps}
-      >
-        <SelectContextProvider value={field}>
-          <SelectStylesProvider value={styles}>
+      <SelectContextProvider value={field}>
+        <SelectStylesProvider value={styles}>
+          <chakra.div
+            ref={ref}
+            className="chakra-select"
+            __css={styles.root}
+            {...localProps}
+          >
             {props.children}
-          </SelectStylesProvider>
-        </SelectContextProvider>
-      </chakra.div>
+          </chakra.div>
+        </SelectStylesProvider>
+      </SelectContextProvider>
     )
   },
 )

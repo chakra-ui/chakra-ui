@@ -6,15 +6,6 @@ import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { useInitialAnimationState } from "./use-initial-animation-state"
 
-const controlStyles = defineStyle({
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  verticalAlign: "top",
-  userSelect: "none",
-  flexShrink: 0,
-})
-
 const checkAnim = keyframes({
   from: {
     opacity: 0,
@@ -36,6 +27,7 @@ const indeterminateOpacityAnim = keyframes({
     opacity: 1,
   },
 })
+
 const indeterminateScaleAnim = keyframes({
   from: {
     transform: "scaleX(0.65)",
@@ -97,7 +89,7 @@ export const CheckboxControl = forwardRef<CheckboxControlProps, "span">(
       <chakra.span
         ref={ref}
         {...restProps}
-        __css={{ ...controlStyles, ...styles.control }}
+        __css={styles.control}
         className="chakra-checkbox__control"
         {...getCheckboxProps()}
       >

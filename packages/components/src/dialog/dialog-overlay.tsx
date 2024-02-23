@@ -1,11 +1,10 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { ChakraProps, chakra, forwardRef } from "../system"
 import { fadeConfig } from "../transition"
 import { useDialogContext, useDialogStyles } from "./dialog-context"
 
-const MotionDiv = chakra(motion.div)
+const StyledDiv = chakra(motion.div)
 
 export interface DialogOverlayProps
   extends Omit<HTMLMotionProps<"div">, "color" | "transition">,
@@ -27,15 +26,6 @@ export const DialogOverlay = forwardRef<DialogOverlayProps, "div">(
 
     const styles = useDialogStyles()
 
-    const overlayStyles = defineStyle({
-      pos: "fixed",
-      left: "0",
-      top: "0",
-      w: "100vw",
-      h: "100vh",
-      ...styles.overlay,
-    })
-
     const { motionPreset } = useDialogContext()
 
     const defaultMotionProps: HTMLMotionProps<"div"> =
@@ -44,9 +34,9 @@ export const DialogOverlay = forwardRef<DialogOverlayProps, "div">(
     const motionProps: any = _motionProps || defaultMotionProps
 
     return (
-      <MotionDiv
+      <StyledDiv
         {...motionProps}
-        __css={overlayStyles}
+        __css={styles.overlay}
         ref={ref}
         className={_className}
         {...rest}

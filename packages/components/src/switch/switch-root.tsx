@@ -1,5 +1,4 @@
 import {
-  defineStyle,
   omitThemingProps,
   SystemProps,
   ThemingProps,
@@ -46,32 +45,24 @@ export const SwitchRoot = forwardRef<SwitchRootProps, "input">(
     const [checkboxProps, localProps] = splitCheckboxProps(ownProps)
     const api = useCheckbox(checkboxProps)
 
-    const rootStyles = defineStyle({
-      display: "inline-block",
-      position: "relative",
-      verticalAlign: "middle",
-      lineHeight: 0,
-      ...styles.root,
-    })
-
     return (
-      <chakra.label
-        {...api.getRootProps(localProps)}
-        className={cx("chakra-switch", props.className)}
-        __css={rootStyles}
-      >
-        <input
-          className="chakra-switch__input"
-          {...api.getInputProps({}, ref)}
-        />
-        <SwitchStylesProvider value={styles}>
-          <SwitchContextProvider value={{ ...api, spacing }}>
+      <SwitchStylesProvider value={styles}>
+        <SwitchContextProvider value={{ ...api, spacing }}>
+          <chakra.label
+            {...api.getRootProps(localProps)}
+            className={cx("chakra-switch", props.className)}
+            __css={styles.root}
+          >
+            <input
+              className="chakra-switch__input"
+              {...api.getInputProps({}, ref)}
+            />
             {children}
-          </SwitchContextProvider>
-        </SwitchStylesProvider>
-      </chakra.label>
+          </chakra.label>
+        </SwitchContextProvider>
+      </SwitchStylesProvider>
     )
   },
 )
 
-SwitchRoot.displayName = "Switch"
+SwitchRoot.displayName = "SwitchRoot"

@@ -47,6 +47,7 @@ export const circularProgressAnatomy = anatomy("progress").parts(
 )
 
 export const editableAnatomy = anatomy("editable").parts(
+  "root",
   "preview",
   "input",
   "textarea",

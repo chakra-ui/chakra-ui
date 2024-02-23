@@ -1,8 +1,4 @@
-import {
-  defineStyle,
-  omitThemingProps,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import {
   chakra,
@@ -49,15 +45,6 @@ export const AlertRoot = forwardRef<AlertRootProps, "div">(
 
     const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
 
-    const rootStyles = defineStyle({
-      width: "100%",
-      display: "flex",
-      alignItems: "center",
-      position: "relative",
-      overflow: "hidden",
-      ...styles.root,
-    })
-
     return (
       <AlertProvider value={{ status }}>
         <AlertStylesProvider value={styles}>
@@ -67,7 +54,7 @@ export const AlertRoot = forwardRef<AlertRootProps, "div">(
             ref={ref}
             {...rest}
             className={cx("chakra-alert", props.className)}
-            __css={rootStyles}
+            __css={styles.root}
           />
         </AlertStylesProvider>
       </AlertProvider>

@@ -1,6 +1,5 @@
 import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
-import { cx } from "@chakra-ui/utils/cx"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
+import { cx, pick, runIfFn } from "@chakra-ui/utils"
 import {
   chakra,
   forwardRef,
@@ -15,7 +14,7 @@ import {
   UseEditableReturn,
 } from "./use-editable"
 
-type RenderProps = Pick<
+export type EditableState = Pick<
   UseEditableReturn,
   "isEditing" | "onSubmit" | "onCancel" | "onEdit"
 >
@@ -32,7 +31,7 @@ export interface EditableRootProps
   extends UseEditableProps,
     Omit<BaseEditableProps, "children">,
     ThemingProps<"Editable"> {
-  children?: MaybeRenderProp<RenderProps>
+  children?: MaybeRenderProp<EditableState>
 }
 
 /**
@@ -48,24 +47,28 @@ export const EditableRoot = forwardRef<EditableRootProps, "div">(
     const styles = useMultiStyleConfig("Editable", props)
 
     const ownProps = omitThemingProps(props)
-    const [hookProps, localProps] = splitEditableProps(ownProps)
+    const [hookProps, rootProps] = splitEditableProps(ownProps)
 
-    const context = useEditable(hookProps)
-    const { isEditing, onSubmit, onCancel, onEdit } = context
+    const api = useEditable(hookProps)
 
-    const _className = cx("chakra-editable", props.className)
+    const editableState = pick(api, [
+      "isEditing",
+      "onSubmit",
+      "onCancel",
+      "onEdit",
+    ])
 
-    const children = runIfFn(props.children, {
-      isEditing,
-      onSubmit,
-      onCancel,
-      onEdit,
-    })
+    const children = runIfFn(props.children, editableState)
 
     return (
-      <EditableProvider value={context}>
+      <EditableProvider value={api}>
         <EditableStylesProvider value={styles}>
-          <chakra.div ref={ref} {...localProps} className={_className}>
+          <chakra.div
+            ref={ref}
+            {...rootProps}
+            __css={styles.root}
+            className={cx("chakra-editable", props.className)}
+          >
             {children}
           </chakra.div>
         </EditableStylesProvider>

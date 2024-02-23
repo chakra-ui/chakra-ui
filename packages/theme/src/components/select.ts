@@ -13,11 +13,15 @@ const $bg = cssVar("select-bg")
 
 const baseStyleField = defineStyle({
   ...inputTheme.baseStyle?.field,
+  paddingEnd: "2rem",
   appearance: "none",
   paddingBottom: "1px",
   lineHeight: "normal",
   bg: $bg.reference,
   [$bg.variable]: "colors.white",
+  _focus: {
+    zIndex: "unset",
+  },
   _dark: {
     [$bg.variable]: "colors.gray.700",
   },
@@ -27,10 +31,16 @@ const baseStyleField = defineStyle({
 })
 
 const baseStyleIcon = defineStyle({
+  position: "absolute",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  pointerEvents: "none",
+  top: "50%",
+  transform: "translateY(-50%)",
   width: "6",
   height: "100%",
   insetEnd: "2",
-  position: "relative",
   color: "currentColor",
   fontSize: "xl",
   _disabled: {
@@ -38,7 +48,14 @@ const baseStyleIcon = defineStyle({
   },
 })
 
+const baseStyleRoot = defineStyle({
+  width: "100%",
+  height: "fit-content",
+  position: "relative",
+})
+
 const baseStyle = definePartsStyle({
+  root: baseStyleRoot,
   field: baseStyleField,
   icon: baseStyleIcon,
 })

@@ -1,4 +1,3 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import type { HTMLMotionProps } from "framer-motion"
 import { useDialogContext, useDialogStyles } from "../dialog/dialog-context"
@@ -21,21 +20,12 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {
  * necessary `aria-*` properties to indicate that it is a dialog
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
-  (props, ref) => {
+  function DrawerContent(props, ref) {
     const { className, children, motionProps, ...rest } = props
 
     const api = useDialogContext()
     const { placement } = useDrawerContext()
     const styles = useDialogStyles()
-
-    const contentStyles = defineStyle({
-      display: "flex",
-      flexDirection: "column",
-      position: "relative",
-      width: "100%",
-      outline: 0,
-      ...styles.content,
-    })
 
     return (
       <DialogFocusScope>
@@ -45,7 +35,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
           in={api.isOpen}
           {...(api.getContentProps(rest, ref) as any)}
           className={cx("chakra-dialog__content", className)}
-          __css={contentStyles}
+          __css={styles.content}
         >
           {children}
         </StyledContent>

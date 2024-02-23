@@ -38,7 +38,7 @@ const baseStylePositioner = defineStyle({
   justifyContent: "center",
 })
 
-const baseStyleDialog = defineStyle((props) => {
+const baseStyleContent = defineStyle((props) => {
   const { isFullHeight } = props
 
   return {
@@ -90,7 +90,7 @@ const baseStyleFooter = defineStyle({
 const baseStyle = definePartsStyle((props) => ({
   overlay: baseStyleOverlay,
   positioner: baseStylePositioner,
-  dialog: runIfFn(baseStyleDialog, props),
+  content: runIfFn(baseStyleContent, props),
   header: baseStyleHeader,
   closeButton: baseStyleCloseButton,
   body: baseStyleBody,

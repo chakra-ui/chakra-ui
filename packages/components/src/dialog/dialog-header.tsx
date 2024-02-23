@@ -1,4 +1,3 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { useEffect } from "react"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
@@ -21,21 +20,15 @@ export const DialogHeader = forwardRef<DialogHeaderProps, "header">(
       return () => setHeaderMounted(false)
     }, [setHeaderMounted])
 
-    const _className = cx("chakra-dialog__header", className)
-
     const styles = useDialogStyles()
-    const headerStyles = defineStyle({
-      flex: 0,
-      ...styles.header,
-    })
 
     return (
       <chakra.header
         ref={ref}
-        className={_className}
         id={headerId}
         {...rest}
-        __css={headerStyles}
+        className={cx("chakra-dialog__header", className)}
+        __css={styles.header}
       />
     )
   },

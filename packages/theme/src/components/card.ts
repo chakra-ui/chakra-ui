@@ -13,6 +13,10 @@ const $borderColor = cssVar("card-border-color")
 
 const baseStyle = definePartsStyle({
   root: {
+    display: "flex",
+    position: "relative",
+    minWidth: 0,
+    wordWrap: "break-word",
     [$bg.variable]: "colors.chakra-body-bg",
     backgroundColor: $bg.reference,
     boxShadow: $shadow.reference,

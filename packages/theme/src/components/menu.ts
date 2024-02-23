@@ -29,6 +29,15 @@ const baseStyleList = defineStyle({
 })
 
 const baseStyleItem = defineStyle({
+  textDecoration: "none",
+  color: "inherit",
+  userSelect: "none",
+  display: "flex",
+  width: "100%",
+  alignItems: "center",
+  textAlign: "start",
+  flex: "0 0 auto",
+  outline: 0,
   py: "1.5",
   px: "3",
   transitionProperty: "background",
@@ -88,6 +97,10 @@ const baseStyleDivider = defineStyle({
 const baseStyleButton = defineStyle({
   transitionProperty: "common",
   transitionDuration: "normal",
+  display: "inline-flex",
+  appearance: "none",
+  alignItems: "center",
+  outline: 0,
 })
 
 const baseStyle = definePartsStyle({

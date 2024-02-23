@@ -28,8 +28,13 @@ const baseStyleIcon = defineStyle({
   verticalAlign: "middle",
 })
 
+const baseStyleRoot = defineStyle({
+  position: "relative",
+  flex: "1 1 0%",
+})
+
 const baseStyle = definePartsStyle({
-  container: {},
+  root: baseStyleRoot,
   label: baseStyleLabel,
   helpText: baseStyleHelpText,
   number: baseStyleNumber,

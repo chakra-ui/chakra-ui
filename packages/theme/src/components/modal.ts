@@ -13,6 +13,11 @@ const $bg = cssVar("modal-bg")
 const $shadow = cssVar("modal-shadow")
 
 const baseStyleOverlay = defineStyle({
+  pos: "fixed",
+  left: "0",
+  top: "0",
+  w: "100vw",
+  h: "100vh",
   bg: "blackAlpha.600",
   zIndex: "modal",
 })
@@ -22,6 +27,11 @@ const baseStylePositioner = defineStyle((props) => {
 
   return {
     display: "flex",
+    width: "100vw",
+    height: "$100vh",
+    position: "fixed",
+    left: 0,
+    top: 0,
     zIndex: "modal",
     justifyContent: "center",
     alignItems: isCentered ? "center" : "flex-start",
@@ -57,6 +67,7 @@ const baseStyleContent = defineStyle((props) => {
 })
 
 const baseStyleHeader = defineStyle({
+  flex: 0,
   px: "6",
   py: "4",
   fontSize: "xl",
@@ -80,6 +91,9 @@ const baseStyleBody = defineStyle((props) => {
 })
 
 const baseStyleFooter = defineStyle({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
   px: "6",
   py: "4",
 })

@@ -5,6 +5,11 @@ const $size = cssVar("close-button-size")
 const $bg = cssVar("close-button-bg")
 
 const baseStyle = defineStyle({
+  outline: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexShrink: 0,
   w: [$size.reference],
   h: [$size.reference],
   borderRadius: "md",

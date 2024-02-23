@@ -18,17 +18,6 @@ import { AvatarIcon } from "./avatar-icon"
 import { AvatarOptions } from "./avatar-types"
 import { getInitials as getInitialsFn } from "./get-initials"
 
-export const baseStyle = defineStyle({
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  textAlign: "center",
-  textTransform: "uppercase",
-  fontWeight: "medium",
-  position: "relative",
-  flexShrink: 0,
-})
-
 export interface AvatarRootProps
   extends Omit<HTMLChakraProps<"span">, "onError">,
     AvatarOptions,
@@ -87,7 +76,6 @@ export const AvatarRoot = forwardRef<AvatarRootProps, "span">((props, ref) => {
   const avatarStyles = defineStyle({
     borderRadius,
     borderWidth: showBorder ? "2px" : undefined,
-    ...baseStyle,
     ...styles.root,
   })
 
@@ -96,35 +84,35 @@ export const AvatarRoot = forwardRef<AvatarRootProps, "span">((props, ref) => {
   }
 
   return (
-    <chakra.span
-      ref={ref}
-      {...rest}
-      className={cx("chakra-avatar", props.className)}
-      data-loaded={dataAttr(isLoaded)}
-      __css={avatarStyles}
-    >
-      <AvatarStylesProvider value={styles}>
-        <AvatarProvider
-          value={{
-            src,
-            borderRadius,
-            crossOrigin,
-            status,
-            loading,
-            srcSet,
-            referrerPolicy,
-            isLoaded,
-            getInitials,
-            icon,
-            iconLabel,
-            showFallback: !src || !isLoaded,
-            name,
-          }}
+    <AvatarStylesProvider value={styles}>
+      <AvatarProvider
+        value={{
+          src,
+          borderRadius,
+          crossOrigin,
+          status,
+          loading,
+          srcSet,
+          referrerPolicy,
+          isLoaded,
+          getInitials,
+          icon,
+          iconLabel,
+          showFallback: !src || !isLoaded,
+          name,
+        }}
+      >
+        <chakra.span
+          ref={ref}
+          {...rest}
+          className={cx("chakra-avatar", props.className)}
+          data-loaded={dataAttr(isLoaded)}
+          __css={avatarStyles}
         >
           {children}
-        </AvatarProvider>
-      </AvatarStylesProvider>
-    </chakra.span>
+        </chakra.span>
+      </AvatarProvider>
+    </AvatarStylesProvider>
   )
 })
 

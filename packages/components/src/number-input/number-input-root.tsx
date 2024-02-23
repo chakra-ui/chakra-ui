@@ -1,8 +1,4 @@
-import {
-  defineStyle,
-  omitThemingProps,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import {
   chakra,
@@ -57,12 +53,6 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
 
     const api = useNumberInput(hookProps)
 
-    const rootStyles = defineStyle({
-      position: "relative",
-      zIndex: 0,
-      ...styles.root,
-    })
-
     return (
       <NumberInputContextProvider value={api}>
         <NumberInputStylesProvider value={styles}>
@@ -70,7 +60,7 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
             {...rootProps}
             ref={ref}
             className={cx("chakra-numberinput", props.className)}
-            __css={rootStyles}
+            __css={styles.root}
           />
         </NumberInputStylesProvider>
       </NumberInputContextProvider>

@@ -52,32 +52,32 @@ export const CircularProgressRoot = forwardRef<
   })
 
   return (
-    <chakra.div
-      ref={ref}
-      role="progressbar"
-      {...rest}
-      data-indeterminate={isIndeterminate ? "" : undefined}
-      aria-valuemax={computed.max}
-      aria-valuemin={computed.min}
-      aria-valuenow={isIndeterminate ? undefined : computed.value}
-      aria-valuetext={computed.valueText}
-      className={cx("chakra-progress", rest.className)}
-      __css={rootStyles}
+    <CircularProgressContextProvider
+      value={{
+        computed,
+        thickness,
+        trackColor,
+        color,
+        isIndeterminate,
+        capIsRound,
+        size,
+      }}
     >
-      <CircularProgressContextProvider
-        value={{
-          computed,
-          thickness,
-          trackColor,
-          color,
-          isIndeterminate,
-          capIsRound,
-          size,
-        }}
+      <chakra.div
+        ref={ref}
+        role="progressbar"
+        {...rest}
+        data-indeterminate={isIndeterminate ? "" : undefined}
+        aria-valuemax={computed.max}
+        aria-valuemin={computed.min}
+        aria-valuenow={isIndeterminate ? undefined : computed.value}
+        aria-valuetext={computed.valueText}
+        className={cx("chakra-progress", rest.className)}
+        __css={rootStyles}
       >
         {children}
-      </CircularProgressContextProvider>
-    </chakra.div>
+      </chakra.div>
+    </CircularProgressContextProvider>
   )
 })
 

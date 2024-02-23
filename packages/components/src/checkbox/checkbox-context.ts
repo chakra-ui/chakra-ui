@@ -8,7 +8,7 @@ export const [CheckboxGroupProvider, useCheckboxGroupContext] =
     strict: false,
   })
 
-export const [CheckboxProvider, useCheckboxContext] =
+export const [CheckboxContextProvider, useCheckboxContext] =
   createContext<CheckboxContext>({
     name: "CheckboxContext",
     strict: false,

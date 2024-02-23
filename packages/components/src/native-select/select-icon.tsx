@@ -1,5 +1,4 @@
-import { defineStyle } from "@chakra-ui/styled-system"
-import { dataAttr } from "@chakra-ui/utils"
+import { cx, dataAttr } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra } from "../system"
 import { useSelectContext, useSelectStyles } from "./select-context"
 
@@ -24,16 +23,6 @@ const Icon = (props: HTMLChakraProps<"svg">) => (
   </chakra.svg>
 )
 
-const iconStyles = defineStyle({
-  position: "absolute",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  pointerEvents: "none",
-  top: "50%",
-  transform: "translateY(-50%)",
-})
-
 export interface NativeSelectIconProps extends HTMLChakraProps<"div"> {}
 
 export const NativeSelectIcon: React.FC<NativeSelectIconProps> = (props) => {
@@ -46,8 +35,8 @@ export const NativeSelectIcon: React.FC<NativeSelectIconProps> = (props) => {
     <chakra.div
       {...rest}
       data-disabled={dataAttr(fieldProps.disabled)}
-      className="chakra-select__icon-wrapper"
-      __css={{ ...iconStyles, ...styles.icon }}
+      className={cx("chakra-select__icon-wrapper", props.className)}
+      __css={styles.icon}
     >
       <Icon />
     </chakra.div>

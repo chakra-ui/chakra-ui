@@ -1,5 +1,5 @@
 import { defineStyle } from "@chakra-ui/styled-system"
-import { cx } from "@chakra-ui/utils"
+import { cx, dataAttr } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useProgressContext, useProgressStyles } from "./progress-context"
 import { progressAnim, stripeAnim } from "./progress-utils"
@@ -15,41 +15,31 @@ export interface ProgressFilledTrackProps extends HTMLChakraProps<"div"> {}
  * @see Docs https://chakra-ui.com/progress
  */
 export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
-  (props, ref) => {
+  function ProgressFilledTrack(props, ref) {
     const { role, style, ...rest } = props
 
     const styles = useProgressStyles()
+    const api = useProgressContext()
 
-    const { hasStripe, isAnimated, isIndeterminate, computed } =
-      useProgressContext()
-
-    const shouldAddStripe = !isIndeterminate && hasStripe
+    const shouldAddStripe = !api.isIndeterminate && api.hasStripe
 
     const trackStyles = defineStyle({
-      height: "100%",
+      "--stripe-animation": `${stripeAnim}`,
+      "--progress-animation": `${progressAnim}`,
       ...styles.filledTrack,
-      "&[data-animated]": {
-        animation: `${stripeAnim} 1s linear infinite`,
-      },
-      "&[data-indeterminate]": {
-        position: "absolute",
-        willChange: "left",
-        minWidth: "50%",
-        animation: `${progressAnim} 1s ease infinite normal none running`,
-      },
     })
 
     return (
       <chakra.div
         ref={ref}
-        style={{ width: `${computed.percent}%`, ...style }}
-        data-animated={shouldAddStripe && isAnimated ? "" : undefined}
+        style={{ width: `${api.computed.percent}%`, ...style }}
+        data-animated={dataAttr(shouldAddStripe && api.isAnimated)}
         role="progressbar"
-        data-indeterminate={isIndeterminate ? "" : undefined}
-        aria-valuemax={computed.max}
-        aria-valuemin={computed.min}
-        aria-valuenow={isIndeterminate ? undefined : computed.value}
-        aria-valuetext={computed.valueText}
+        data-indeterminate={dataAttr(api.isIndeterminate)}
+        aria-valuemax={api.computed.max}
+        aria-valuemin={api.computed.min}
+        aria-valuenow={api.isIndeterminate ? undefined : api.computed.value}
+        aria-valuetext={api.computed.valueText}
         {...rest}
         __css={trackStyles}
         className={cx("chakra-progress__filled-track", props.className)}

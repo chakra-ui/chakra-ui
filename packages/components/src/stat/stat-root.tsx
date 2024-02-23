@@ -1,8 +1,4 @@
-import {
-  defineStyle,
-  omitThemingProps,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
+import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import {
   chakra,
@@ -24,24 +20,16 @@ export interface StatRootProps
 export const StatRoot = forwardRef<StatRootProps, "div">(
   function StatRoot(props, ref) {
     const styles = useMultiStyleConfig("Stat", props)
-
-    const rootStyles = defineStyle({
-      position: "relative",
-      flex: "1 1 0%",
-      ...styles.root,
-    })
-
-    const restProps = omitThemingProps(props)
-
+    const rootProps = omitThemingProps(props)
     return (
       <StatStylesProvider value={styles}>
         <chakra.div
           ref={ref}
-          {...restProps}
-          className={cx("chakra-stat", restProps.className)}
-          __css={rootStyles}
+          {...rootProps}
+          className={cx("chakra-stat", rootProps.className)}
+          __css={styles.root}
         >
-          <dl>{restProps.children}</dl>
+          <dl>{rootProps.children}</dl>
         </chakra.div>
       </StatStylesProvider>
     )
