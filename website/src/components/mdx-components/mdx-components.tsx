@@ -23,7 +23,6 @@ import CarbonAd from './carbon-ad'
 import CodeBlock from './codeblock/codeblock'
 import ComponentLinks from './component-links'
 import { FeaturesCourses } from './course-banner'
-import IconsList from './icons-list'
 import { VideoPlayer } from './video-player'
 
 const { Alert, AspectRatio, Box, chakra, Kbd, Link } = Chakra
@@ -106,7 +105,7 @@ export const MDXComponents = {
   ),
   'carbon-ad': CarbonAd,
   ComponentLinks,
-  IconsList,
+  IconsList: null,
   PropsTable,
   FrameworkLinks,
   VideoPlayer,

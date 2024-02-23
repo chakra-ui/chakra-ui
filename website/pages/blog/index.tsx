@@ -1,4 +1,3 @@
-import { ArrowForwardIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -7,10 +6,14 @@ import {
   Stack,
   StackDivider,
   Text,
+  chakra,
 } from '@chakra-ui/react'
 import { allBlogs } from 'contentlayer/generated'
 import MDXLayout from 'layouts/mdx'
 import NextLink from 'next/link'
+import { FaArrowRight } from 'react-icons/fa'
+
+const ArrowForwardIcon = chakra(FaArrowRight)
 
 function Blog() {
   return (

@@ -362,9 +362,6 @@ importers:
 
   examples/next-app:
     dependencies:
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
       '@chakra-ui/next-js':
         specifier: workspace:*
         version: link:../../packages/next-js
@@ -407,9 +404,6 @@ importers:
 
   examples/next-pages:
     dependencies:
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../../packages/icons
       '@chakra-ui/react':
         specifier: workspace:*
         version: link:../../packages/components
@@ -640,18 +634,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
-  packages/icons:
-    devDependencies:
-      '@chakra-ui/react':
-        specifier: workspace:*
-        version: link:../components
-      '@types/react':
-        specifier: ^18.2.42
-        version: 18.2.42
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
   packages/next-js:
     dependencies:
       '@emotion/cache':
@@ -811,9 +793,6 @@ importers:
       '@chakra-ui/cli':
         specifier: workspace:*
         version: link:../packages/cli
-      '@chakra-ui/icons':
-        specifier: workspace:*
-        version: link:../packages/icons
       '@chakra-ui/props-docs':
         specifier: workspace:*
         version: link:../packages/props-docs

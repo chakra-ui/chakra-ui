@@ -1,4 +1,3 @@
-import { SearchIcon } from '@chakra-ui/icons'
 import {
   HStack,
   HTMLChakraProps,
@@ -17,8 +16,11 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import * as React from 'react'
-import SearchStyle from './search.styles'
+import { FaSearch } from 'react-icons/fa'
 import { t } from 'utils/i18n'
+import SearchStyle from './search.styles'
+
+const SearchIcon = chakra(FaSearch)
 
 const ACTION_KEY_DEFAULT = ['Ctrl', 'Control']
 const ACTION_KEY_APPLE = ['⌘', 'Command']

@@ -1,4 +1,3 @@
-import { SearchIcon } from '@chakra-ui/icons'
 import {
   Box,
   Center,
@@ -12,15 +11,18 @@ import {
   useEventListener,
   useUpdateEffect,
 } from '@chakra-ui/react'
+import searchData from 'configs/search-meta.json'
 import { findAll } from 'highlight-words-core'
 import { matchSorter } from 'match-sorter'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import * as React from 'react'
+import { FaSearch } from 'react-icons/fa'
 import MultiRef from 'react-multi-ref'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import { SearchButton } from './algolia-search'
-import searchData from 'configs/search-meta.json'
+
+const SearchIcon = chakra(FaSearch)
 
 interface OptionTextProps {
   searchWords: string[]
