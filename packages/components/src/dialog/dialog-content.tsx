@@ -1,4 +1,3 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLMotionProps } from "framer-motion"
 import { HTMLChakraProps, forwardRef } from "../system"
@@ -20,15 +19,6 @@ export const DialogContent = forwardRef<DialogContentProps, "section">(
     const api = useDialogContext()
     const styles = useDialogStyles()
 
-    const dialogStyles = defineStyle({
-      display: "flex",
-      flexDirection: "column",
-      position: "relative",
-      width: "100%",
-      outline: 0,
-      ...styles.content,
-    })
-
     const { motionPreset } = useDialogContext()
 
     return (
@@ -38,7 +28,7 @@ export const DialogContent = forwardRef<DialogContentProps, "section">(
           motionProps={motionProps}
           {...(api.getContentProps(rest, ref) as any)}
           className={cx("chakra-dialog__content", className)}
-          __css={dialogStyles}
+          __css={styles.content}
         >
           {children}
         </DialogTransition>

@@ -34,6 +34,11 @@ const baseStyleContent = defineStyle((props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    width: "100%",
+    outline: 0,
     borderRadius: "md",
     color: "inherit",
     my: isCentered ? "auto" : "16",
@@ -58,7 +63,7 @@ const baseStyleHeader = defineStyle({
   fontWeight: "semibold",
 })
 
-const baseStyleCloseButton = defineStyle({
+const baseStyleCloseTrigger = defineStyle({
   position: "absolute",
   top: "2",
   insetEnd: "3",
@@ -84,7 +89,7 @@ const baseStyle = definePartsStyle((props) => ({
   positioner: runIfFn(baseStylePositioner, props),
   content: runIfFn(baseStyleContent, props),
   header: baseStyleHeader,
-  closeButton: baseStyleCloseButton,
+  closeTrigger: baseStyleCloseTrigger,
   body: runIfFn(baseStyleBody, props),
   footer: baseStyleFooter,
 }))
@@ -96,7 +101,7 @@ const baseStyle = definePartsStyle((props) => ({
 function getSize(value: string) {
   if (value === "full") {
     return definePartsStyle({
-      dialog: {
+      content: {
         maxW: "100vw",
         minH: "$100vh",
         my: "0",
@@ -105,7 +110,7 @@ function getSize(value: string) {
     })
   }
   return definePartsStyle({
-    dialog: { maxW: value },
+    content: { maxW: value },
   })
 }
 
@@ -126,5 +131,7 @@ const sizes = {
 export const modalTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps: { size: "md" },
+  defaultProps: {
+    size: "md",
+  },
 })

@@ -42,6 +42,11 @@ const baseStyleDialog = defineStyle((props) => {
   const { isFullHeight } = props
 
   return {
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    width: "100%",
+    outline: 0,
     ...(isFullHeight && { height: "100vh" }),
     zIndex: "modal",
     maxH: "100vh",

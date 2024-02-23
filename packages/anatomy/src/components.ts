@@ -46,16 +46,6 @@ export const circularProgressAnatomy = anatomy("progress").parts(
   "label",
 )
 
-export const drawerAnatomy = anatomy("drawer").parts(
-  "overlay",
-  "positioner",
-  "content",
-  "header",
-  "closeButton",
-  "body",
-  "footer",
-)
-
 export const editableAnatomy = anatomy("editable").parts(
   "preview",
   "input",
@@ -92,7 +82,17 @@ export const menuAnatomy = anatomy("menu").parts(
 export const modalAnatomy = anatomy("modal").parts(
   "overlay",
   "positioner",
-  "dialog",
+  "content",
+  "header",
+  "closeButton",
+  "body",
+  "footer",
+)
+
+export const drawerAnatomy = anatomy("drawer").parts(
+  "overlay",
+  "positioner",
+  "content",
   "header",
   "closeButton",
   "body",
