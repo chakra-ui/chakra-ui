@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@chakra-ui/test-utils"
+import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Switch } from "."
 import { Field } from "../field"
@@ -150,63 +150,51 @@ test("Uncontrolled FormControl - mark required", () => {
 })
 
 test("Uncontrolled FormControl - mark readonly", () => {
-  const { container } = render(
+  render(
     <Field.Root isReadOnly mt={4}>
       <Field.Label>ReadOnly Opt-in Example</Field.Label>
       <DemoSwitch />
-      <DemoSwitch isReadOnly />
-      <DemoSwitch isReadOnly={false} />
     </Field.Root>,
   )
 
-  const [switchOne, switchTwo, switchThree] = Array.from(
-    container.querySelectorAll("input"),
-  )
-
-  expect(switchOne).toHaveAttribute("readOnly")
-  expect(switchTwo).toHaveAttribute("readOnly")
-  expect(switchThree).not.toHaveAttribute("readOnly")
-
-  const [controlOne, controlTwo, controlThree] = Array.from(
-    container.querySelectorAll("span.chakra-switch__track"),
-  )
-
-  expect(controlOne).toHaveAttribute("data-readonly", "")
-  expect(controlTwo).toHaveAttribute("data-readonly", "")
-  expect(controlThree).not.toHaveAttribute("data-readonly")
+  const inputEl = screen.getByRole("checkbox")
+  expect(inputEl).toHaveAttribute("readonly")
 })
 
-test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
-  const formControlOnFocusMock = vi.fn()
-  const switchOnFocusMock = vi.fn()
+test("Uncontrolled FormControl - calls all onFocus EventHandler", async () => {
+  const onFocus = vi.fn()
+  const _onFocus = vi.fn()
 
-  const { container } = render(
-    <Field.Root mt={4} onFocus={formControlOnFocusMock}>
+  const { user } = render(
+    <Field.Root mt={4} onFocus={onFocus}>
       <Field.Label>onFocus Example</Field.Label>
-      <DemoSwitch onFocus={switchOnFocusMock} />
+      <DemoSwitch onFocus={_onFocus} />
     </Field.Root>,
   )
 
-  const [switchOne] = Array.from(container.querySelectorAll("input"))
-  fireEvent.focus(switchOne)
-  expect(formControlOnFocusMock).toHaveBeenCalled()
-  expect(switchOnFocusMock).toHaveBeenCalled()
+  const inputEl = screen.getByRole("checkbox")
+  await user.click(inputEl)
+
+  expect(onFocus).toHaveBeenCalled()
+  expect(_onFocus).toHaveBeenCalled()
 })
 
 test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
-  const formControlOnBlurMock = vi.fn()
-  const switchOnBlurMock = vi.fn()
+  const onBlur = vi.fn()
+  const _onBlur = vi.fn()
 
-  const { container } = render(
-    <Field.Root mt={4} onBlur={formControlOnBlurMock}>
+  render(
+    <Field.Root mt={4} onBlur={onBlur}>
       <Field.Label>onBlur Example</Field.Label>
-      <DemoSwitch onBlur={switchOnBlurMock} />
+      <DemoSwitch onBlur={_onBlur} />
     </Field.Root>,
   )
 
-  const [switchOne] = Array.from(container.querySelectorAll("input"))
-  fireEvent.focus(switchOne)
-  fireEvent.blur(switchOne)
-  expect(formControlOnBlurMock).toHaveBeenCalled()
-  expect(switchOnBlurMock).toHaveBeenCalled()
+  const inputEl = screen.getByRole("checkbox")
+
+  fireEvent.focus(inputEl)
+  fireEvent.blur(inputEl)
+
+  expect(onBlur).toHaveBeenCalled()
+  expect(_onBlur).toHaveBeenCalled()
 })

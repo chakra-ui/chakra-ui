@@ -1,4 +1,4 @@
-import { formAnatomy as parts } from "@chakra-ui/anatomy"
+import { fieldAnatomy as parts } from "@chakra-ui/anatomy"
 import {
   createMultiStyleConfigHelpers,
   cssVar,
@@ -30,15 +30,17 @@ const baseStyleHelpText = defineStyle({
   fontSize: "sm",
 })
 
+const baseStyleRoot = defineStyle({
+  width: "100%",
+  position: "relative",
+})
+
 const baseStyle = definePartsStyle({
-  container: {
-    width: "100%",
-    position: "relative",
-  },
+  root: baseStyleRoot,
   requiredIndicator: baseStyleRequiredIndicator,
   helpText: baseStyleHelpText,
 })
 
-export const formTheme = defineMultiStyleConfig({
+export const fieldTheme = defineMultiStyleConfig({
   baseStyle,
 })

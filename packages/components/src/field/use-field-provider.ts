@@ -5,7 +5,14 @@ import { useCallback, useId, useState } from "react"
 import { FieldContext } from "./types"
 
 export function useFieldProvider(props: FieldContext) {
-  const { id: idProp, isRequired, isInvalid, isDisabled, isReadOnly } = props
+  const {
+    id: idProp,
+    isRequired,
+    isInvalid,
+    isDisabled,
+    isReadOnly,
+    ...rootProps
+  } = props
 
   // Generate all the required ids
   const uuid = useId()
@@ -80,7 +87,7 @@ export function useFieldProvider(props: FieldContext) {
   const getRootProps = useCallback<PropGetter>(
     (props = {}, _ref = null) => ({
       ...props,
-      // ...htmlProps,
+      ...rootProps,
       ref: _ref,
       role: "group",
       "data-focus": dataAttr(isFocused),
@@ -88,7 +95,7 @@ export function useFieldProvider(props: FieldContext) {
       "data-invalid": dataAttr(isInvalid),
       "data-readonly": dataAttr(isReadOnly),
     }),
-    [isDisabled, isFocused, isInvalid, isReadOnly],
+    [rootProps, isDisabled, isFocused, isInvalid, isReadOnly],
   )
 
   const getRequiredIndicatorProps = useCallback<PropGetter>(

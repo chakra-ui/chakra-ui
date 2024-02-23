@@ -27,21 +27,19 @@ export interface FieldRootProps
  */
 export const FieldRoot = forwardRef<FieldRootProps, "div">(
   function FieldRoot(props, ref) {
-    const styles = useMultiStyleConfig("Form", props)
+    const styles = useMultiStyleConfig("Field", props)
     const localProps = omitThemingProps(props)
 
     const [formControlProps, rootProps] = splitFieldProps(localProps)
     const api = useFieldProvider(formControlProps)
-
-    const className = cx("chakra-form-control", props.className)
 
     return (
       <FieldContextProvider value={api}>
         <FieldStylesProvider value={styles}>
           <chakra.div
             {...api.getRootProps(rootProps, ref)}
-            className={className}
-            __css={styles["container"]}
+            className={cx("chakra-form-control", props.className)}
+            __css={styles.root}
           />
         </FieldStylesProvider>
       </FieldContextProvider>

@@ -53,7 +53,7 @@ export const editableAnatomy = anatomy("editable").parts(
   "textarea",
 )
 
-export const formAnatomy = anatomy("form").parts(
+export const fieldAnatomy = anatomy("form").parts(
   "root",
   "requiredIndicator",
   "helpText",
