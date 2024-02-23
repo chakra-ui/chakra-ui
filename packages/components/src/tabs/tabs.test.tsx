@@ -5,21 +5,21 @@ test("should no accessibility issues", async () => {
   await testA11y(
     <Tabs.Root>
       <Tabs.List>
-        <Tabs.Tab>Tab 1</Tabs.Tab>
-        <Tabs.Tab>Tab 2</Tabs.Tab>
-        <Tabs.Tab>Tab 3</Tabs.Tab>
+        <Tabs.Trigger>Tab 1</Tabs.Trigger>
+        <Tabs.Trigger>Tab 2</Tabs.Trigger>
+        <Tabs.Trigger>Tab 3</Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Panels>
-        <Tabs.Panel>
+      <Tabs.ContentGroup>
+        <Tabs.Content>
           <p>Panel 1</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 2</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 3</p>
-        </Tabs.Panel>
-      </Tabs.Panels>
+        </Tabs.Content>
+      </Tabs.ContentGroup>
     </Tabs.Root>,
   )
 })
@@ -28,21 +28,21 @@ test("selects the correct tab with keyboard navigation", async () => {
   const { user } = render(
     <Tabs.Root>
       <Tabs.List>
-        <Tabs.Tab>Tab 1</Tabs.Tab>
-        <Tabs.Tab>Tab 2</Tabs.Tab>
-        <Tabs.Tab>Tab 3</Tabs.Tab>
+        <Tabs.Trigger>Tab 1</Tabs.Trigger>
+        <Tabs.Trigger>Tab 2</Tabs.Trigger>
+        <Tabs.Trigger>Tab 3</Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Panels>
-        <Tabs.Panel>
+      <Tabs.ContentGroup>
+        <Tabs.Content>
           <p>Panel 1</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 2</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 3</p>
-        </Tabs.Panel>
-      </Tabs.Panels>
+        </Tabs.Content>
+      </Tabs.ContentGroup>
     </Tabs.Root>,
   )
 
@@ -94,21 +94,21 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
   const { user } = render(
     <Tabs.Root isManual>
       <Tabs.List>
-        <Tabs.Tab>Tab 1</Tabs.Tab>
-        <Tabs.Tab>Tab 2</Tabs.Tab>
-        <Tabs.Tab>Tab 3</Tabs.Tab>
+        <Tabs.Trigger>Tab 1</Tabs.Trigger>
+        <Tabs.Trigger>Tab 2</Tabs.Trigger>
+        <Tabs.Trigger>Tab 3</Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Panels>
-        <Tabs.Panel>
+      <Tabs.ContentGroup>
+        <Tabs.Content>
           <p>Panel 1</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 2</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 3</p>
-        </Tabs.Panel>
-      </Tabs.Panels>
+        </Tabs.Content>
+      </Tabs.ContentGroup>
     </Tabs.Root>,
   )
 
@@ -138,17 +138,17 @@ test("renders only the currently active tab panel if isLazy", async () => {
   const { user } = render(
     <Tabs.Root isLazy>
       <Tabs.List>
-        <Tabs.Tab>Tab 1</Tabs.Tab>
-        <Tabs.Tab>Tab 2</Tabs.Tab>
+        <Tabs.Trigger>Tab 1</Tabs.Trigger>
+        <Tabs.Trigger>Tab 2</Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Panels>
-        <Tabs.Panel>
+      <Tabs.ContentGroup>
+        <Tabs.Content>
           <p>Panel 1</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 2</p>
-        </Tabs.Panel>
-      </Tabs.Panels>
+        </Tabs.Content>
+      </Tabs.ContentGroup>
     </Tabs.Root>,
   )
 
@@ -165,17 +165,17 @@ test("renders the currently active tab panel and previously-selected tabs if isL
   const { user } = render(
     <Tabs.Root isLazy lazyBehavior="keepMounted">
       <Tabs.List>
-        <Tabs.Tab>Tab 1</Tabs.Tab>
-        <Tabs.Tab>Tab 2</Tabs.Tab>
+        <Tabs.Trigger>Tab 1</Tabs.Trigger>
+        <Tabs.Trigger>Tab 2</Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Panels>
-        <Tabs.Panel>
+      <Tabs.ContentGroup>
+        <Tabs.Content>
           <p>Panel 1</p>
-        </Tabs.Panel>
-        <Tabs.Panel>
+        </Tabs.Content>
+        <Tabs.Content>
           <p>Panel 2</p>
-        </Tabs.Panel>
-      </Tabs.Panels>
+        </Tabs.Content>
+      </Tabs.ContentGroup>
     </Tabs.Root>,
   )
 

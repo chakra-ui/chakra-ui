@@ -1,10 +1,4 @@
-import {
-  SystemStyleObject,
-  ThemingProps,
-  defineStyle,
-  omitThemingProps,
-} from "@chakra-ui/styled-system"
-import { createContext } from "@chakra-ui/utils/context"
+import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import {
   HTMLChakraProps,
@@ -14,20 +8,11 @@ import {
 } from "../system"
 import { splitTabsProps } from "./tab-props"
 import {
+  TabsContextProvider,
   TabsDescendantsProvider,
-  TabsProvider,
-  UseTabsProps,
-  useTabs,
-} from "./use-tabs"
-
-const [TabsStylesProvider, useTabsStyles] = createContext<
-  Record<string, SystemStyleObject>
->({
-  name: `TabsStylesContext`,
-  errorMessage: `useTabsStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Tabs />" `,
-})
-
-export { useTabsStyles }
+  TabsStylesProvider,
+} from "./tabs-context"
+import { UseTabsProps, useTabs } from "./use-tabs"
 
 interface TabsOptions {
   /**
@@ -62,31 +47,26 @@ export const TabsRoot = forwardRef<TabsRootProps, "div">(
     const styles = useMultiStyleConfig("Tabs", props)
     const { children, className, ...rest } = omitThemingProps(props)
 
-    const [hookProps, rootProps] = splitTabsProps(rest)
-    const { descendants, ...context } = useTabs(hookProps)
-
-    const tabsStyles = defineStyle({
-      position: "relative",
-      ...styles.root,
-    })
+    const [useTabsProps, rootProps] = splitTabsProps(rest)
+    const { descendants, ...context } = useTabs(useTabsProps)
 
     return (
       <TabsDescendantsProvider value={descendants}>
-        <TabsProvider value={context}>
+        <TabsContextProvider value={context}>
           <TabsStylesProvider value={styles}>
             <chakra.div
               className={cx("chakra-tabs", className)}
               ref={ref}
               {...rootProps}
-              __css={tabsStyles}
+              __css={styles.root}
             >
               {children}
             </chakra.div>
           </TabsStylesProvider>
-        </TabsProvider>
+        </TabsContextProvider>
       </TabsDescendantsProvider>
     )
   },
 )
 
-TabsRoot.displayName = "Tabs"
+TabsRoot.displayName = "TabsRoot"

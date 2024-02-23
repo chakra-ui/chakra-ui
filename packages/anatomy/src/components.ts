@@ -164,10 +164,10 @@ export const tableAnatomy = anatomy("table").parts(
 
 export const tabsAnatomy = anatomy("tabs").parts(
   "root",
-  "tab",
-  "tablist",
-  "tabpanel",
-  "tabpanels",
+  "trigger",
+  "list",
+  "content",
+  "contentGroup",
   "indicator",
 )
 

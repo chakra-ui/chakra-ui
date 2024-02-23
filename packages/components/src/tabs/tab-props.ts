@@ -1,5 +1,5 @@
-import { createProps, splitProps } from "@chakra-ui/utils"
-import { UseTabsProps } from "."
+import { createProps, createSplitProps } from "@chakra-ui/utils"
+import { UseTabsProps } from "./use-tabs"
 
 export const tabsProps = createProps<UseTabsProps>()([
   "defaultIndex",
@@ -14,5 +14,4 @@ export const tabsProps = createProps<UseTabsProps>()([
   "orientation",
 ])
 
-export const splitTabsProps = <T extends UseTabsProps>(props: T) =>
-  splitProps(props, tabsProps) as [UseTabsProps, Omit<T, keyof UseTabsProps>]
+export const splitTabsProps = createSplitProps<UseTabsProps>(tabsProps)
