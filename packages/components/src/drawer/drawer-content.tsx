@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils/cx"
 import type { HTMLMotionProps } from "framer-motion"
 import { useDialogContext, useDialogStyles } from "../dialog/dialog-context"
-import { DialogFocusScope } from "../dialog/dialog-focus"
+import { DialogFocusScope } from "../dialog/dialog-focus-scope"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { Slide } from "../transition"
 import { useDrawerContext } from "./drawer-context"

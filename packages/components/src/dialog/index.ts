@@ -20,7 +20,7 @@ export type { DialogCloseButtonProps } from "./dialog-close-button"
 export { DialogContent } from "./dialog-content"
 export type { DialogContentProps } from "./dialog-content"
 
-export { DialogFocusScope } from "./dialog-focus"
+export { DialogFocusScope } from "./dialog-focus-scope"
 
 export { DialogFooter } from "./dialog-footer"
 export type { DialogFooterProps } from "./dialog-footer"

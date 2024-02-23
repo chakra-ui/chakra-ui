@@ -64,7 +64,7 @@ export function useDialog(props: UseDialogProps) {
     role = "dialog",
   } = props
 
-  const dialogRef = useRef<HTMLElement>(null)
+  const contentRef = useRef<HTMLElement>(null)
   const overlayRef = useRef<HTMLElement>(null)
 
   const [dialogId, headerId, bodyId] = useIds(
@@ -74,9 +74,9 @@ export function useDialog(props: UseDialogProps) {
     `chakra-dialog--body`,
   )
 
-  useAriaHidden(dialogRef, isOpen && useInert)
+  const index = useDialogManager(contentRef, isOpen)
 
-  const index = useDialogManager(dialogRef, isOpen)
+  useAriaHidden(contentRef, isOpen && useInert)
 
   const mouseDownTarget = useRef<EventTarget | null>(null)
 
@@ -106,7 +106,7 @@ export function useDialog(props: UseDialogProps) {
     (props = {}, ref = null) => ({
       role,
       ...props,
-      ref: mergeRefs(ref, dialogRef),
+      ref: mergeRefs(ref, contentRef),
       id: dialogId,
       tabIndex: -1,
       "aria-modal": true,
@@ -135,7 +135,7 @@ export function useDialog(props: UseDialogProps) {
       /**
        * When you click on the overlay, we want to remove only the topmost dialog
        */
-      if (!dialogManager.isTopMost(dialogRef.current)) return
+      if (!dialogManager.isTopMost(contentRef.current)) return
 
       if (closeOnOverlayClick) {
         onClose?.()
@@ -164,7 +164,7 @@ export function useDialog(props: UseDialogProps) {
     bodyId,
     setBodyMounted,
     setHeaderMounted,
-    dialogRef,
+    contentRef,
     overlayRef,
     getContentProps,
     getPositionerProps,

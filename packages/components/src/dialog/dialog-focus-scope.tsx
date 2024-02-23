@@ -6,17 +6,14 @@ import { useDialogContext } from "./dialog-context"
 import { useDialogManager } from "./dialog-manager"
 
 interface DialogFocusScopeProps {
-  /**
-   * @type React.ReactElement
-   */
-  children: React.ReactElement
+  children: any
 }
 
 export function DialogFocusScope(props: DialogFocusScopeProps) {
   const {
     autoFocus,
     trapFocus,
-    dialogRef,
+    contentRef,
     initialFocusRef,
     blockScrollOnMount,
     allowPinchZoom,
@@ -35,7 +32,7 @@ export function DialogFocusScope(props: DialogFocusScopeProps) {
     }
   }, [isPresent, safeToRemove])
 
-  const index = useDialogManager(dialogRef, isOpen)
+  const index = useDialogManager(contentRef, isOpen)
 
   return (
     <FocusLock
@@ -44,7 +41,7 @@ export function DialogFocusScope(props: DialogFocusScopeProps) {
       initialFocusRef={initialFocusRef}
       finalFocusRef={finalFocusRef}
       restoreFocus={returnFocusOnClose}
-      contentRef={dialogRef}
+      contentRef={contentRef}
       lockFocusAcrossFrames={lockFocusAcrossFrames}
     >
       <RemoveScroll
@@ -52,7 +49,6 @@ export function DialogFocusScope(props: DialogFocusScopeProps) {
         allowPinchZoom={allowPinchZoom}
         // only block scroll for first dialog
         enabled={index === 1 && blockScrollOnMount}
-        forwardProps
       >
         {props.children}
       </RemoveScroll>

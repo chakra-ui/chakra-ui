@@ -35,7 +35,7 @@ const transitions = {
   none: {},
 }
 
-const MotionSection = chakra(motion.section)
+const StyledSection = chakra(motion.section)
 
 const getMotionProps = (preset: DialogTransitionProps["preset"]) => {
   return transitions[preset || "none"]
@@ -43,10 +43,8 @@ const getMotionProps = (preset: DialogTransitionProps["preset"]) => {
 
 export const DialogTransition = forwardRef(
   (props: DialogTransitionProps, ref: React.Ref<any>) => {
-    const { preset, motionProps = getMotionProps(preset), ...rest } = props
-    return (
-      <MotionSection ref={ref} {...(motionProps as ChakraProps)} {...rest} />
-    )
+    const { preset, motionProps = getMotionProps(preset), ...restProps } = props
+    return <StyledSection ref={ref} {...(motionProps as any)} {...restProps} />
   },
 )
 

@@ -5,11 +5,13 @@ import {
   StyleProps,
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
-import { assignAfter } from "@chakra-ui/utils/assign-after"
-import { compact } from "@chakra-ui/utils/compact"
-import { interopDefault } from "@chakra-ui/utils/interop-default"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
-import { splitProps } from "@chakra-ui/utils/split-props"
+import {
+  assignAfter,
+  compact,
+  interopDefault,
+  runIfFn,
+  splitProps,
+} from "@chakra-ui/utils"
 import { Dict } from "@chakra-ui/utils/types"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import {
