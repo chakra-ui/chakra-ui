@@ -10,7 +10,7 @@ import {
 } from ".."
 
 export default {
-  title: "Components / Data Display / List",
+  title: "Data Display / List",
 }
 
 export const Default = () => (

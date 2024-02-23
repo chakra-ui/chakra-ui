@@ -3,7 +3,7 @@ import { mergeWith } from "@chakra-ui/utils"
 import { Spinner } from "."
 
 export default {
-  title: "Components / Feedback / Spinner",
+  title: "Feedback / Spinner",
 }
 
 export const basic = () => <Spinner />

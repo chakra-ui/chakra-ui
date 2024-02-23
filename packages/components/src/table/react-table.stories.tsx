@@ -19,7 +19,7 @@ declare module "@tanstack/react-table" {
 }
 
 export default {
-  title: "Components / Data Display / Table / React Table",
+  title: "Data Display / Table / React Table",
 }
 
 type Data = {

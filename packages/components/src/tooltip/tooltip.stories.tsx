@@ -5,7 +5,7 @@ import { Dialog } from "../dialog"
 import { chakra } from "../system"
 
 export default {
-  title: "Components / Overlay / Tooltip",
+  title: "Overlay / Tooltip",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" mx="auto" mt="200px">

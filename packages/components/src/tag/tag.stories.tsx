@@ -6,7 +6,7 @@ import { chakra } from "../system"
 import { For, HStack } from ".."
 
 export default {
-  title: "Components / Data Display / Tag",
+  title: "Data Display / Tag",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="600px" mx="auto" mt="40px">

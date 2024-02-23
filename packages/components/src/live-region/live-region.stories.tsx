@@ -1,7 +1,7 @@
 import { useLiveRegion } from "."
 
 export default {
-  title: "Components / Disclosure / Live Region",
+  title: "Disclosure / Live Region",
 }
 
 export function PoliteExample() {

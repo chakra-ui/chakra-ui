@@ -13,7 +13,7 @@ import {
 } from ".."
 
 export default {
-  title: "Components / Forms / NumberInput",
+  title: "Forms / NumberInput",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">

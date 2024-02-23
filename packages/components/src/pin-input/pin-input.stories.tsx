@@ -9,7 +9,7 @@ import {
 import { For } from ".."
 
 export default {
-  title: "Components / Forms / PinInput",
+  title: "Forms / PinInput",
 }
 
 const style: React.CSSProperties = {

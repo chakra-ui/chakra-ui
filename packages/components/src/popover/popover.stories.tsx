@@ -11,7 +11,7 @@ import {
 } from ".."
 
 export default {
-  title: "Components / Overlay / Popover - Click",
+  title: "Overlay / Popover - Click",
   decorators: [
     (story: Function) => (
       <chakra.div mx="auto" maxW="400px" mt="200px">

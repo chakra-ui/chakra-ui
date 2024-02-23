@@ -3,7 +3,7 @@ import * as React from "react"
 import { Editable, Heading, chakra, useEditable, useEditableControls } from ".."
 
 export default {
-  title: "Components / Forms / Editable",
+  title: "Forms / Editable",
   decorators: [
     (Story: StoryFn) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">

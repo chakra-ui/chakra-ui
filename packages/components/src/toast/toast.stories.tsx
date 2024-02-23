@@ -5,7 +5,7 @@ import { ToastId, createStandaloneToast, useToast } from "."
 import { Alert, Button, ButtonGroup, Text, chakra, useColorMode } from ".."
 
 export default {
-  title: "Components / Feedback / Toast",
+  title: "Feedback / Toast",
 }
 
 export function ToastExample() {

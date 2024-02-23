@@ -14,7 +14,7 @@ import {
 } from ".."
 
 export default {
-  title: "Components / Forms / Input",
+  title: "Forms / Input",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="560px" mx="auto" mt="40px">

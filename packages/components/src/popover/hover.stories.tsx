@@ -2,7 +2,7 @@ import { MdCheck } from "react-icons/md"
 import { Box, IconButton, Link, Popover, Text, chakra } from ".."
 
 export default {
-  title: "Components / Overlay / Popover - Hover",
+  title: "Overlay / Popover - Hover",
   decorators: [
     (story: Function) => (
       <chakra.div mx="auto" maxW="400px" mt="200px">

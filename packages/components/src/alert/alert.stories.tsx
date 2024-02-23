@@ -1,7 +1,7 @@
 import { Alert, Container, chakra } from ".."
 
 export default {
-  title: "Components / Feedback / Alert",
+  title: "Feedback / Alert",
   decorators: [(story: Function) => <Container mt={4}>{story()}</Container>],
 }
 

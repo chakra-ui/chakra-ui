@@ -23,7 +23,7 @@ import {
 } from ".."
 
 export default {
-  title: "Components / Button",
+  title: "Form / Button",
   decorators: [
     (Story: any) => (
       <Container mt="40px" display="flex" flexWrap="wrap" gap="4">

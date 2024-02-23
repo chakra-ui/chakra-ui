@@ -2,7 +2,7 @@ import { chakra } from "../system"
 import { CircularProgress } from "."
 
 export default {
-  title: "Components / Feedback / Circular Progress",
+  title: "Feedback / Circular Progress",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="500px" mt="40px" mx="auto">

@@ -2,7 +2,7 @@ import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
 import { Link, LinkOverlay, LinkBox } from ".."
 
 export default {
-  title: "Components / Navigation / Link",
+  title: "Navigation / Link",
 }
 
 /**

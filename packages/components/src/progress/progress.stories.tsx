@@ -2,7 +2,7 @@ import { Progress } from "."
 import { chakra, For, Stack } from ".."
 
 export default {
-  title: "Components / Feedback / Linear Progress",
+  title: "Feedback / Linear Progress",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="500px" mt="40px" mx="auto">

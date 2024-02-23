@@ -7,7 +7,7 @@ import { Dialog } from "."
 import { PortalManager } from "../portal"
 
 export default {
-  title: "Components / Overlay / Dialog",
+  title: "Overlay / Dialog",
   decorators: [
     (StoryFn: any) => (
       <PortalManager>

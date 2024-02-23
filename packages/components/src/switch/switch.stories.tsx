@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { Field, HStack, Stack, Switch, chakra } from ".."
 
 export default {
-  title: "Components / Forms / Switch",
+  title: "Forms / Switch",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="lg" mx="auto" mt={6} p={6}>

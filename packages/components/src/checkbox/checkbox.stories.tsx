@@ -4,8 +4,8 @@ import {
   Checkbox,
   Container,
   Divider,
-  Flex,
   Field,
+  Flex,
   HStack,
   Heading,
   Icon,
@@ -18,7 +18,7 @@ import {
 import { splitCheckboxProps } from "./checkbox-props"
 
 export default {
-  title: "Components / Forms / Checkbox",
+  title: "Forms / Checkbox",
   decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
 }
 

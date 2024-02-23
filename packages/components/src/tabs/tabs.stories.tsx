@@ -5,7 +5,7 @@ import { Drawer } from "../drawer"
 import { chakra } from "../system"
 
 export default {
-  title: "Components / Disclosure / Tabs",
+  title: "Disclosure / Tabs",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="500px" mt="100px" mx="auto">

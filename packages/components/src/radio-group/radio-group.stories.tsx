@@ -13,7 +13,7 @@ import {
 import { chakra } from "../system"
 
 export default {
-  title: "Components / Radio Group",
+  title: "Form / Radio Group",
   decorators: [(story: Function) => <Container mt="40px">{story()}</Container>],
 }
 

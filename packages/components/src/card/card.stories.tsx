@@ -18,7 +18,7 @@ import {
 } from ".."
 
 export default {
-  title: "Components / Data Display / Card",
+  title: "Data Display / Card",
   decorators: [
     (Story: any) => (
       <chakra.div mx="auto" maxW="2xl" mt="40px">

@@ -11,7 +11,7 @@ import {
 } from "."
 
 export default {
-  title: "Components / Data Display / Table / Simple",
+  title: "Data Display / Table / Simple",
 }
 
 const SimpleTable = (props: TableProps) => (

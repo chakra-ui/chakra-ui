@@ -2,7 +2,7 @@ import { Step, Stepper, useSteps } from "."
 import { Box, HStack } from ".."
 
 export default {
-  title: "Components / Navigation / Stepper",
+  title: "Navigation / Stepper",
 }
 
 const steps = [

@@ -5,7 +5,7 @@ import { Portal } from "../portal"
 import { chakra } from "../system"
 
 export default {
-  title: "Components / Overlay / Tooltip - useTooltip",
+  title: "Overlay / Tooltip - useTooltip",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" mx="auto" mt="200px">

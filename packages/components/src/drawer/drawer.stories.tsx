@@ -3,7 +3,7 @@ import React from "react"
 import { Drawer } from "."
 
 export default {
-  title: "Components / Overlay / Drawer",
+  title: "Overlay / Drawer",
 }
 
 export const DrawerExample = () => {

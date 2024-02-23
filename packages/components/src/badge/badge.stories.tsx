@@ -1,7 +1,7 @@
 import { Badge } from ".."
 
 export default {
-  title: "Components / Data Display / Badge",
+  title: "Data Display / Badge",
 }
 
 export const Basic = () => <Badge>Success</Badge>

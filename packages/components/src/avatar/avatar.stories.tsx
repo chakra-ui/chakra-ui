@@ -2,7 +2,7 @@ import { Avatar, AvatarBadge, AvatarGroup, Box, Stack } from ".."
 import { PropsOf } from "../system"
 
 export default {
-  title: "Components / Media and Icons / Avatar",
+  title: "Media and Icons / Avatar",
   decorators: [
     (Story: any) => (
       <Box mx="auto" maxW="500px" mt="40px">
