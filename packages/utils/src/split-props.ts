@@ -1,33 +1,37 @@
 type Dict = Record<string, any>
 type PredicateFn<T> = (key: T) => boolean
 
-export type SplitProps<T, K extends (keyof T)[]> = [
-  Pick<T, K[number]>,
-  Omit<T, K[number]>,
-]
+export interface SplitPropsFn {
+  <T extends Dict, K extends keyof T>(
+    props: T,
+    keys: K[],
+  ): [Pick<T, K>, Omit<T, K>]
 
-export function splitProps<T extends Dict, K extends keyof T>(
-  props: T,
-  keys: PredicateFn<K> | K[],
-): SplitProps<T, K[]> {
-  const descriptors = Object.getOwnPropertyDescriptors(props)
-  const dKeys = Object.keys(descriptors)
-  const split = (k: string[]) => {
-    const clone = {} as Dict
-    for (let i = 0; i < k.length; i++) {
-      const key = k[i]
-      if (descriptors[key]) {
-        Object.defineProperty(clone, key, descriptors[key])
-        delete descriptors[key]
+  <T extends Dict, K extends PredicateFn<keyof T>>(
+    props: T,
+    keys: K,
+  ): [Dict, Dict]
+}
+
+export const splitProps: SplitPropsFn = (props: any, keys: any) => {
+  const picked = {} as any
+  const omitted = { ...props }
+
+  if (typeof keys === "function") {
+    for (const key in props) {
+      if (keys(key)) {
+        picked[key] = props[key]
+        delete omitted[key]
       }
     }
-    return clone
+  } else {
+    for (const key of keys) {
+      picked[key] = props[key]
+      delete omitted[key]
+    }
   }
 
-  // @ts-expect-error
-  const resKeys = Array.isArray(keys) ? keys : (dKeys.filter(keys) as K[])
-
-  return split(resKeys as any).concat(split(dKeys))
+  return [picked, omitted] as any
 }
 
 export const createSplitProps = <T>(keys: (keyof T)[]) => {
