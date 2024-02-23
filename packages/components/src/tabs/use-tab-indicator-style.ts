@@ -2,15 +2,6 @@ import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
 import { useState } from "react"
 import { useTabsContext, useTabsDescendantsContext } from "./tabs-context"
 
-/**
- * Tabs hook to show an animated indicators that
- * follows the active tab.
- *
- * The way we do it is by measuring the DOM Rect (or dimensions)
- * of the active tab, and return that as CSS style for
- * the indicator.
- */
-
 export function useTabIndicatorStyle(): React.CSSProperties {
   const context = useTabsContext()
   const descendants = useTabsDescendantsContext()
