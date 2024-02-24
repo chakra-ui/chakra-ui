@@ -469,6 +469,22 @@ const Demo = () => {
 }
 ```
 
+### Bleed component
+
+The `Bleed` component applied a negative margin to allow content to bleed out
+into the surrounding layout.
+
+```tsx
+export const Demo = () => (
+  <Box padding="4" borderWidth="1px">
+    <Bleed inline="4" bg="pink.100" padding="3">
+      Some bleed
+    </Bleed>
+    <Box padding="4">Inner text</Box>
+  </Box>
+)
+```
+
 ### Namespace components
 
 You can import components by leveraging the dot notation.

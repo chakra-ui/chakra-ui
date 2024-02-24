@@ -1,13 +1,4 @@
-import {
-  Badge,
-  Box,
-  Center,
-  chakra,
-  HStack,
-  List,
-  ListItem,
-  ListProps,
-} from '@chakra-ui/react'
+import { Badge, Box, Center, chakra, HStack, List } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Fragment, ReactElement, ReactNode, useRef } from 'react'
@@ -209,20 +200,15 @@ export const mainNavLinks = [
     new: false,
     external: true,
   },
-  // {
-  //   icon: <FaReadme />,
-  //   href: '/blog',
-  //   label: 'Blog',
-  // },
 ]
 
-export const MainNavLinkGroup = (props: ListProps) => {
+export const MainNavLinkGroup = (props: List.RootProps) => {
   const router = useRouter()
 
   return (
-    <List spacing='4' styleType='none' {...props}>
+    <List.Root spacing='4' styleType='none' {...props}>
       {mainNavLinks.map((item) => (
-        <ListItem key={item.label}>
+        <List.Item key={item.label}>
           <MainNavLink
             icon={item.icon}
             href={item.href}
@@ -232,9 +218,9 @@ export const MainNavLinkGroup = (props: ListProps) => {
           >
             {item.label} {item.new && <NewBadge />}
           </MainNavLink>
-        </ListItem>
+        </List.Item>
       ))}
-    </List>
+    </List.Root>
   )
 }
 

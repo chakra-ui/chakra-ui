@@ -437,6 +437,17 @@
         "default": "./dist/cjs/types.cjs"
       }
     },
+    "./unit": {
+      "source": "./src/unit.ts",
+      "import": {
+        "types": "./dist/types/unit.d.mts",
+        "default": "./dist/esm/unit.mjs"
+      },
+      "require": {
+        "types": "./dist/types/unit.d.ts",
+        "default": "./dist/cjs/unit.cjs"
+      }
+    },
     "./walk-object": {
       "source": "./src/walk-object.ts",
       "import": {
