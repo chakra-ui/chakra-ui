@@ -1,4 +1,4 @@
-import type { SystemStyleObject } from "@chakra-ui/styled-system"
+import type { SystemStyleObject } from "../styled-system"
 import type { ToastPosition } from "./toast.placement"
 import { UseToastOptions } from "./use-toast"
 

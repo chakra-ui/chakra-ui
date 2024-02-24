@@ -1,7 +1,7 @@
 import { callAll } from "@chakra-ui/utils/call-all"
 import { cx } from "@chakra-ui/utils/cx"
-import { HTMLMotionProps, motion, Variants } from "framer-motion"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLMotionProps, Variants, motion } from "framer-motion"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useMenuContext, useMenuStyles } from "./menu-context"
 import { useMenuContent } from "./use-menu"
 

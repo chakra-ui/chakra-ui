@@ -1,11 +1,11 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
-import { useCheckbox, UseCheckboxProps } from "../checkbox"
+import { UseCheckboxProps, useCheckbox } from "../checkbox"
 import { splitCheckboxProps } from "../checkbox/checkbox-props"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
 import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"

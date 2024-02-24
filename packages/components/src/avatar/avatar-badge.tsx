@@ -1,6 +1,6 @@
-import { defineStyle, SystemStyleObject } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
+import { SystemStyleObject, defineStyle } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useAvatarStyles } from "./avatar-context"
 
 type BadgePlacement = "top-start" | "top-end" | "bottom-start" | "bottom-end"

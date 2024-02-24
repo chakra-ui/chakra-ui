@@ -1,8 +1,8 @@
-import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { omit } from "@chakra-ui/utils/omit"
 import { FieldOptions, useField } from "../field"
 import { splitFieldProps } from "../field/field-props"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 interface TextareaOptions {

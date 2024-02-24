@@ -1,6 +1,6 @@
 import { cx, getValidChildren } from "@chakra-ui/utils"
 import { cloneElement } from "react"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 import { BreadcrumbLink } from "./breadcrumb-link"
 import { BreadcrumbSeparator } from "./breadcrumb-separator"

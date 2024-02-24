@@ -1,6 +1,6 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
-import { Field } from "../field"
 import { NativeSelect } from "."
+import { Field } from "../field"
 
 const DemoSelect = (props: NativeSelect.RootProps) => {
   const { placeholder = "Select an option", ...restProps } = props

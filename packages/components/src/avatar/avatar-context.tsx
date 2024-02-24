@@ -1,6 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
 import { ImageLoadStatus } from "../image/use-image"
+import { SystemStyleObject } from "../styled-system"
 
 export const [AvatarStylesProvider, useAvatarStyles] = createContext<
   Record<string, SystemStyleObject>

@@ -1,6 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils"
 import { createDescendantContext } from "../descendant"
+import { SystemStyleObject } from "../styled-system"
 import { UseTabsReturn } from "./use-tabs"
 
 export const [

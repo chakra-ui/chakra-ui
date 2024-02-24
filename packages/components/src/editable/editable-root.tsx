@@ -1,17 +1,17 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx, pick, runIfFn } from "@chakra-ui/utils"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"
 import { splitEditableProps } from "./editable-props"
 import {
-  useEditable,
   UseEditableProps,
   UseEditableReturn,
+  useEditable,
 } from "./use-editable"
 
 export type EditableState = Pick<

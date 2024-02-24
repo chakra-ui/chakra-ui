@@ -1,4 +1,4 @@
-import { sortNodes, isElement, getNextIndex, getPrevIndex } from "./utils"
+import { getNextIndex, getPrevIndex, isElement, sortNodes } from "./utils"
 
 export type DescendantOptions<T = {}> = T & {
   /**

@@ -1,9 +1,9 @@
 import { radioAnatomy as parts } from "@chakra-ui/anatomy"
+import { runIfFn } from "@chakra-ui/utils"
 import {
   createMultiStyleConfigHelpers,
   defineStyle,
-} from "@chakra-ui/styled-system"
-import { runIfFn } from "../utils/run-if-fn"
+} from "../../../components/src/styled-system"
 import { checkboxTheme } from "./checkbox"
 
 const { defineMultiStyleConfig, definePartsStyle } =

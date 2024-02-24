@@ -1,5 +1,5 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils"
+import { SystemStyleObject } from "../styled-system"
 import { FieldProviderContext } from "./types"
 
 export const [FieldStylesProvider, useFieldStyles] = createContext<

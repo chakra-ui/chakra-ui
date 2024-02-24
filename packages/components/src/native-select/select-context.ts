@@ -1,6 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
 import { UseFieldReturn } from "../field/use-field"
+import { SystemStyleObject } from "../styled-system"
 
 export const [SelectStylesProvider, useSelectStyles] = createContext<
   Record<string, SystemStyleObject>

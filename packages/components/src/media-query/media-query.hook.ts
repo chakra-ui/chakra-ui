@@ -1,4 +1,4 @@
-import { useMediaQuery, UseMediaQueryOptions } from "./use-media-query"
+import { UseMediaQueryOptions, useMediaQuery } from "./use-media-query"
 
 /**
  * React hook used to get the user's animation preference.

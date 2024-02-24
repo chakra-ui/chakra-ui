@@ -2,18 +2,18 @@ import { cx } from "@chakra-ui/utils/cx"
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
   MotionStyle,
   Variants as TVariants,
+  motion,
 } from "framer-motion"
 import { forwardRef } from "react"
 import {
   SlideDirection,
-  getSlideTransition,
   TRANSITION_EASINGS,
   Variants,
-  withDelay,
   WithTransitionConfig,
+  getSlideTransition,
+  withDelay,
 } from "./transition-utils"
 
 export type { SlideDirection }

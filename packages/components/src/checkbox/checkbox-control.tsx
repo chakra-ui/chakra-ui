@@ -1,6 +1,6 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { keyframes } from "@emotion/react"
 import { cloneElement, useMemo } from "react"
+import { defineStyle } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"

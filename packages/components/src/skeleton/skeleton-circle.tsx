@@ -1,4 +1,4 @@
-import { SkeletonProps, Skeleton } from "./skeleton"
+import { Skeleton, SkeletonProps } from "./skeleton"
 
 /**
  * `SkeletonCircle` is used to display the loading state in the form of a circular avatar.

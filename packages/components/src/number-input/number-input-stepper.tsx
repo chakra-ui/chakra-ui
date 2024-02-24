@@ -1,4 +1,4 @@
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useNumberInputStyles } from "./number-input-context"
 
 export interface NumberInputStepperProps extends HTMLChakraProps<"div"> {}

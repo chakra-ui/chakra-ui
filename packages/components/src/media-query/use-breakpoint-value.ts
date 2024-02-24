@@ -1,8 +1,8 @@
-import { useTheme } from "../system"
 import { isObject } from "@chakra-ui/utils/is"
 import { arrayToObjectNotation } from "@chakra-ui/utils/responsive"
+import { useTheme } from "../system"
 import { getClosestValue } from "./media-query.utils"
-import { useBreakpoint, UseBreakpointOptions } from "./use-breakpoint"
+import { UseBreakpointOptions, useBreakpoint } from "./use-breakpoint"
 
 /**
  * React hook for getting the value for the current breakpoint from the

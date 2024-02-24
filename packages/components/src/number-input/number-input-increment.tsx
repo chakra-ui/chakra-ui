@@ -1,9 +1,9 @@
-import { forwardRef, HTMLChakraProps } from "../system"
-import { TriangleUpIcon } from "./number-input-icons"
+import { HTMLChakraProps, forwardRef } from "../system"
 import {
-  useNumberInputStyles,
   useNumberInputContext,
+  useNumberInputStyles,
 } from "./number-input-context"
+import { TriangleUpIcon } from "./number-input-icons"
 import { StyledStepper } from "./styled-stepper"
 
 export interface NumberInputIncrementStepperProps

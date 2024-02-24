@@ -1,5 +1,5 @@
-import { chakra } from "../system"
 import { CircularProgress } from "."
+import { chakra } from "../system"
 
 export default {
   title: "Feedback / Circular Progress",

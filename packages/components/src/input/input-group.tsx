@@ -1,19 +1,19 @@
-import {
-  omitThemingProps,
-  SystemStyleObject,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
-import {
-  chakra,
-  forwardRef,
-  HTMLChakraProps,
-  useMultiStyleConfig,
-} from "../system"
 import { getValidChildren } from "@chakra-ui/utils/children"
 import { compact } from "@chakra-ui/utils/compact"
 import { createContext } from "@chakra-ui/utils/context"
 import { cx } from "@chakra-ui/utils/cx"
 import { cloneElement } from "react"
+import {
+  SystemStyleObject,
+  ThemingProps,
+  omitThemingProps,
+} from "../styled-system"
+import {
+  HTMLChakraProps,
+  chakra,
+  forwardRef,
+  useMultiStyleConfig,
+} from "../system"
 
 const [InputGroupStylesProvider, useInputGroupStyles] = createContext<
   Record<string, SystemStyleObject>

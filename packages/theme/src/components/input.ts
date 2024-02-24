@@ -1,10 +1,10 @@
 import { inputAnatomy as parts } from "@chakra-ui/anatomy"
+import { getColor, mode } from "@chakra-ui/theme-tools"
 import {
   createMultiStyleConfigHelpers,
   cssVar,
   defineStyle,
-} from "@chakra-ui/styled-system"
-import { getColor, mode } from "@chakra-ui/theme-tools"
+} from "../../../components/src/styled-system"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)

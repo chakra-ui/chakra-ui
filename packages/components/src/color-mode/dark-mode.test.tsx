@@ -1,12 +1,12 @@
-import * as React from "react"
 import { render, screen } from "@chakra-ui/test-utils"
+import * as React from "react"
 import { DarkMode } from "."
 import {
   DummyComponent,
-  getColorModeButton,
   MemoizedComponent,
-  mockMatchMedia,
   RegularComponent,
+  getColorModeButton,
+  mockMatchMedia,
   resetCounter,
 } from "./test.fixture"
 

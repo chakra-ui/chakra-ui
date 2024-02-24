@@ -1,6 +1,6 @@
-import { ThemingProps } from "@chakra-ui/styled-system"
 import { AnimatePresence } from "framer-motion"
 import { Portal, PortalProps } from "../portal"
+import { ThemingProps } from "../styled-system"
 import { useMultiStyleConfig } from "../system"
 import { DialogContextProvider, DialogStylesProvider } from "./dialog-context"
 import {

@@ -1,13 +1,13 @@
-import {
-  omitThemingProps,
-  SystemStyleObject,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import {
+  SystemStyleObject,
+  ThemingProps,
+  omitThemingProps,
+} from "../styled-system"
+import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
 import { TableStylesProvider } from "./table-context"

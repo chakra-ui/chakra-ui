@@ -1,4 +1,4 @@
-import { theme, ChakraTheme, isChakraTheme } from "../src"
+import { ChakraTheme, isChakraTheme, theme } from "../src"
 
 describe("Theme", () => {
   it("should be of type ChakraTheme", () => {

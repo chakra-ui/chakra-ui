@@ -1,7 +1,7 @@
-import { WithCSSVar } from "@chakra-ui/styled-system"
 import { Dict } from "@chakra-ui/utils/types"
 import { ThemeContext } from "@emotion/react"
 import { useContext } from "react"
+import { WithCSSVar } from "../styled-system"
 
 /**
  * `useTheme` is a custom hook used to get the theme object from context.

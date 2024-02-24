@@ -1,5 +1,5 @@
 import { dataAttr } from "@chakra-ui/utils"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useTableStyles } from "./table-context"
 
 export interface TableColumnHeaderProps extends HTMLChakraProps<"th"> {

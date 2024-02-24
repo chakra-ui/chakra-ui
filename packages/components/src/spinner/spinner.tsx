@@ -1,7 +1,7 @@
-import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { keyframes } from "@emotion/react"
+import { ThemingProps, omitThemingProps } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 const spin = keyframes({
   "0%": {

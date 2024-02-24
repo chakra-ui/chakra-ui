@@ -1,10 +1,10 @@
 import { useDisclosure } from "@chakra-ui/hooks"
-import { chakra } from "../system"
 import * as React from "react"
 //@ts-ignore
 import Lorem from "react-lorem-component"
 import { Dialog } from "."
 import { PortalManager } from "../portal"
+import { chakra } from "../system"
 
 export default {
   title: "Overlay / Dialog",

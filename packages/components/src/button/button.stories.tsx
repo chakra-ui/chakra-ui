@@ -1,4 +1,3 @@
-import { ThemingProps } from "@chakra-ui/styled-system"
 import { Meta, StoryFn } from "@storybook/react"
 import * as React from "react"
 import {
@@ -17,10 +16,11 @@ import {
   For,
   HStack,
   IconButton,
+  Span,
   Spinner,
   Stack,
-  Span,
 } from ".."
+import { ThemingProps } from "../styled-system"
 
 export default {
   title: "Form / Button",

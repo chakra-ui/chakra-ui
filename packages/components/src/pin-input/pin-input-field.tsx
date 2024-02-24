@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { usePinInputField } from "./use-pin-input-field"
 
 export interface PinInputFieldProps extends HTMLChakraProps<"input"> {}

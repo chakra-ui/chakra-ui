@@ -1,10 +1,10 @@
 import { avatarAnatomy as parts } from "@chakra-ui/anatomy"
+import { isDark, randomColor } from "@chakra-ui/theme-tools"
 import {
   createMultiStyleConfigHelpers,
   cssVar,
   defineStyle,
-} from "@chakra-ui/styled-system"
-import { isDark, randomColor } from "@chakra-ui/theme-tools"
+} from "../../../components/src/styled-system"
 import themeSizes from "../foundations/sizes"
 import { runIfFn } from "../utils/run-if-fn"
 

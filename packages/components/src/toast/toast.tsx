@@ -1,6 +1,6 @@
-import { chakra } from "../system"
 import { Alert } from "../alert"
 import { CloseButton } from "../close-button"
+import { chakra } from "../system"
 import type { RenderProps } from "./toast.types"
 import type { UseToastOptions } from "./use-toast"
 

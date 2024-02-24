@@ -1,9 +1,9 @@
-import { ColorModeProvider, ColorModeProviderProps } from "../color-mode"
-import { GlobalStyle, ThemeProvider, ThemeProviderProps } from "../system"
 import type { Dict } from "@chakra-ui/utils"
+import { ColorModeProvider, ColorModeProviderProps } from "../color-mode"
 import { CSSPolyfill, CSSReset } from "../css-reset"
 import { EnvironmentProvider, EnvironmentProviderProps } from "../env"
 import { PortalManager } from "../portal"
+import { GlobalStyle, ThemeProvider, ThemeProviderProps } from "../system"
 
 export interface ProviderProps extends Pick<ThemeProviderProps, "cssVarsRoot"> {
   /**

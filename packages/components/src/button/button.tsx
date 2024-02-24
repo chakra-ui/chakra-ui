@@ -1,6 +1,6 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx, dataAttr } from "@chakra-ui/utils"
-import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
+import { ThemingProps, omitThemingProps } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 import { useButtonGroup } from "./button-context"
 import { ButtonOptions } from "./button-types"
 

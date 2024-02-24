@@ -2,15 +2,15 @@ import { cx } from "@chakra-ui/utils/cx"
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
   Variants as _Variants,
+  motion,
 } from "framer-motion"
 import { forwardRef } from "react"
 import {
   TRANSITION_DEFAULTS,
   Variants,
-  withDelay,
   WithTransitionConfig,
+  withDelay,
 } from "./transition-utils"
 
 interface ScaleFadeOptions {

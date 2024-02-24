@@ -1,6 +1,9 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import { inputTheme } from "./input"
+import {
+  defineStyle,
+  defineStyleConfig,
+} from "../../../components/src/styled-system"
 import { runIfFn } from "../utils/run-if-fn"
+import { inputTheme } from "./input"
 
 const baseStyle = defineStyle({
   ...inputTheme.baseStyle?.field,

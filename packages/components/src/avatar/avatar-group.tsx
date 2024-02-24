@@ -1,13 +1,13 @@
+import { getValidChildren } from "@chakra-ui/utils/children"
+import { compact } from "@chakra-ui/utils/compact"
+import { cx } from "@chakra-ui/utils/cx"
+import { cloneElement } from "react"
 import {
   SystemProps,
   ThemingProps,
   defineStyle,
   omitThemingProps,
-} from "@chakra-ui/styled-system"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { compact } from "@chakra-ui/utils/compact"
-import { cx } from "@chakra-ui/utils/cx"
-import { cloneElement } from "react"
+} from "../styled-system"
 import {
   HTMLChakraProps,
   chakra,

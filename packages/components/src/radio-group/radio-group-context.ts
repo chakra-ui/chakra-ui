@@ -1,5 +1,5 @@
-import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
+import { SystemStyleObject, ThemingProps } from "../styled-system"
 import { UseRadioReturn } from "./use-radio"
 import { UseRadioGroupReturn } from "./use-radio-group"
 

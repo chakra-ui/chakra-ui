@@ -1,18 +1,18 @@
+import { createContext } from "@chakra-ui/utils/context"
+import { cx } from "@chakra-ui/utils/cx"
 import {
-  omitThemingProps,
   SystemStyleObject,
   ThemingProps,
-} from "@chakra-ui/styled-system"
+  omitThemingProps,
+} from "../styled-system"
 import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   useMultiStyleConfig,
   useTheme,
 } from "../system"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
-import { useSlider, UseSliderProps, UseSliderReturn } from "./use-slider"
+import { UseSliderProps, UseSliderReturn, useSlider } from "./use-slider"
 
 interface SliderContext
   extends Omit<UseSliderReturn, "getInputProps" | "getRootProps"> {}

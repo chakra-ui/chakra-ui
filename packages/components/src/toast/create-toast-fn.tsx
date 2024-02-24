@@ -1,13 +1,13 @@
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
+import {
+  MaybeFunction,
+  UseToastPromiseOption,
+  createRenderToast,
+} from "./toast"
 import { getToastPlacement } from "./toast.placement"
 import { toastStore } from "./toast.store"
 import type { ToastId } from "./toast.types"
 import type { UseToastOptions } from "./use-toast"
-import {
-  createRenderToast,
-  MaybeFunction,
-  UseToastPromiseOption,
-} from "./toast"
 
 export function createToastFn(
   dir: "ltr" | "rtl",

@@ -1,8 +1,4 @@
-import {
-  SystemProps,
-  ThemingProps,
-  omitThemingProps,
-} from "@chakra-ui/styled-system"
+import { SystemProps, ThemingProps, omitThemingProps } from "../styled-system"
 import type { HTMLChakraProps } from "../system"
 import { chakra, forwardRef, useMultiStyleConfig } from "../system"
 import { ListStylesProvider } from "./list-context"

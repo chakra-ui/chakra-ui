@@ -1,8 +1,3 @@
-import {
-  resolveStyleConfig,
-  SystemStyleObject,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
 import { compact } from "@chakra-ui/utils/compact"
 import { memoizedGet as get } from "@chakra-ui/utils/get"
 import { mergeWith } from "@chakra-ui/utils/merge"
@@ -10,6 +5,11 @@ import { omit } from "@chakra-ui/utils/omit"
 import { Dict } from "@chakra-ui/utils/types"
 import { useRef } from "react"
 import isEqual from "react-fast-compare"
+import {
+  SystemStyleObject,
+  ThemingProps,
+  resolveStyleConfig,
+} from "../styled-system"
 import { useChakra } from "./hooks"
 
 type StylesRef = SystemStyleObject | Record<string, SystemStyleObject>

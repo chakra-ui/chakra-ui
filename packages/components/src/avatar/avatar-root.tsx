@@ -1,16 +1,11 @@
-import {
-  defineStyle,
-  omitThemingProps,
-  ThemingProps,
-} from "@chakra-ui/styled-system"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx, dataAttr } from "@chakra-ui/utils"
 import { useState } from "react"
 import { useImage } from "../image"
+import { ThemingProps, defineStyle, omitThemingProps } from "../styled-system"
 import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
 import { AvatarProvider, AvatarStylesProvider } from "./avatar-context"

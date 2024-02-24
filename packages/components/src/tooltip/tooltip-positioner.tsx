@@ -1,6 +1,6 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { AnimatePresence } from "framer-motion"
 import { Portal, PortalProps } from ".."
+import { defineStyle } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
 

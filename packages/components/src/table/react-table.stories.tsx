@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-key */
 import {
+  type ColumnDef,
+  type RowData,
   flexRender,
   getCoreRowModel,
   useReactTable,
-  type ColumnDef,
-  type RowData,
 } from "@tanstack/react-table"
 import { HiStar } from "react-icons/hi"
 import { Table } from "."

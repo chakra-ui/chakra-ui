@@ -6,12 +6,12 @@ import {
 } from "@chakra-ui/hooks/use-focus-effect"
 import { useFocusOnPointerDown } from "@chakra-ui/hooks/use-focus-on-pointer-down"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { contains } from "@chakra-ui/utils"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { LazyMode, lazyDisclosure } from "@chakra-ui/utils/lazy"
 import { DOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
-import { contains } from "@chakra-ui/utils"
 
 const TRIGGER = {
   click: "click",

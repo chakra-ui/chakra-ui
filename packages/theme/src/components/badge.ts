@@ -1,9 +1,9 @@
+import { transparentize } from "@chakra-ui/theme-tools"
 import {
   defineCssVars,
   defineStyle,
   defineStyleConfig,
-} from "@chakra-ui/styled-system"
-import { transparentize } from "@chakra-ui/theme-tools"
+} from "../../../components/src/styled-system"
 
 const vars = defineCssVars("badge", ["bg", "color", "shadow"])
 

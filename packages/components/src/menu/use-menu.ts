@@ -1,8 +1,8 @@
 import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import {
-  useDisclosure,
   UseDisclosureProps,
+  useDisclosure,
 } from "@chakra-ui/hooks/use-disclosure"
 import { useFocusOnHide } from "@chakra-ui/hooks/use-focus-effect"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
@@ -11,7 +11,7 @@ import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { getValidChildren } from "@chakra-ui/utils/children"
-import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
+import { LazyMode, lazyDisclosure } from "@chakra-ui/utils/lazy"
 import {
   cloneElement,
   useCallback,
@@ -22,7 +22,7 @@ import {
   useState,
 } from "react"
 import { useClickable } from "../clickable"
-import { usePopper, UsePopperProps } from "../popper"
+import { UsePopperProps, usePopper } from "../popper"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
 import {
   useMenuContext,

@@ -1,6 +1,6 @@
 import { useQuery } from "./media-query"
-import { Visibility } from "./visibility"
 import { ShowProps } from "./show"
+import { Visibility } from "./visibility"
 
 export type HideProps = ShowProps
 

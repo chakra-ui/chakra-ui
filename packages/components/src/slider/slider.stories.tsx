@@ -1,12 +1,12 @@
-import { chakra } from "../system"
 import * as React from "react"
 import {
   Slider,
+  SliderFilledTrack,
   SliderMark,
   SliderThumb,
   SliderTrack,
-  SliderFilledTrack,
 } from "."
+import { chakra } from "../system"
 
 export default {
   title: "Forms / Slider",

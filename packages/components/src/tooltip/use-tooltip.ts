@@ -5,11 +5,11 @@ import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { getScrollParent } from "@chakra-ui/utils/scroll-parent"
 import React, {
+  type RefObject,
   useCallback,
   useEffect,
   useId,
   useRef,
-  type RefObject,
 } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
 import { useTheme } from "../system"

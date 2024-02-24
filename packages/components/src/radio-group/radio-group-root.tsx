@@ -1,13 +1,13 @@
-import { ThemingProps } from "@chakra-ui/styled-system"
 import { splitProps } from "@chakra-ui/utils"
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { ThemingProps } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import {
   RadioGroupContextProvider,
   RadioThemingContextProvider,
 } from "./radio-group-context"
 import { splitRadioGroupProps } from "./radio-group-props"
-import { useRadioGroup, UseRadioGroupProps } from "./use-radio-group"
+import { UseRadioGroupProps, useRadioGroup } from "./use-radio-group"
 
 type Omitted =
   | "onChange"

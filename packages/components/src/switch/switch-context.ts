@@ -1,6 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
 import { UseCheckboxReturn } from "../checkbox"
+import { SystemStyleObject } from "../styled-system"
 
 export const [SwitchStylesProvider, useSwitchStyles] = createContext<
   Record<string, SystemStyleObject>

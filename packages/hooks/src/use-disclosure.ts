@@ -1,5 +1,5 @@
+import React, { useCallback, useId, useState } from "react"
 import { useCallbackRef } from "./use-callback-ref"
-import React, { useCallback, useState, useId } from "react"
 
 export interface UseDisclosureProps {
   isOpen?: boolean

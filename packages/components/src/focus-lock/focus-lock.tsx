@@ -1,6 +1,6 @@
-import ReactFocusLock from "react-focus-lock"
 import { getAllFocusable } from "@chakra-ui/utils/focusable"
 import { useCallback } from "react"
+import ReactFocusLock from "react-focus-lock"
 
 const FocusTrap: typeof ReactFocusLock =
   (ReactFocusLock as any).default ?? ReactFocusLock

@@ -1,4 +1,4 @@
-import { Renderer, ProjectAnnotations } from "@storybook/types"
+import { ProjectAnnotations, Renderer } from "@storybook/types"
 import { Provider } from "./utils/provider"
 
 const preview: ProjectAnnotations<Renderer> = {

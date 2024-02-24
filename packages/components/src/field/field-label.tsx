@@ -1,6 +1,6 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
+import { ThemingProps, omitThemingProps } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 import { useFieldContext } from "./field-context"
 import { RequiredIndicator } from "./field-indicator"
 

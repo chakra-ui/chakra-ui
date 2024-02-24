@@ -7,7 +7,7 @@ import {
   useStyleConfig,
 } from "@chakra-ui/react"
 import NextLink, { LinkProps as NextLinkProps } from "next/link"
-import { forwardRef, type FC, type RefAttributes } from "react"
+import { type FC, type RefAttributes, forwardRef } from "react"
 import { interopDefault } from "./interop"
 
 const LinkEl = interopDefault(NextLink)

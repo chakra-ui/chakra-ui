@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface FieldHelpTextProps extends HTMLChakraProps<"div"> {}

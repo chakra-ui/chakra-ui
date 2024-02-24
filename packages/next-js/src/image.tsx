@@ -1,4 +1,4 @@
-import { chakra, ChakraComponent, HTMLChakraProps } from "@chakra-ui/react"
+import { ChakraComponent, HTMLChakraProps, chakra } from "@chakra-ui/react"
 import NextImage, { ImageProps as NextImageProps } from "next/image"
 import { interopDefault } from "./interop"
 

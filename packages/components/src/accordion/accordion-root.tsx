@@ -1,10 +1,10 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
 import {
@@ -13,7 +13,7 @@ import {
   AccordionStylesProvider,
 } from "./accordion-context"
 import { splitAccordionProps } from "./accordion-props"
-import { useAccordion, UseAccordionProps } from "./use-accordion"
+import { UseAccordionProps, useAccordion } from "./use-accordion"
 
 export interface AccordionRootProps
   extends UseAccordionProps,

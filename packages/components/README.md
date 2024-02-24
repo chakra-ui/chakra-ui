@@ -35,7 +35,7 @@ To start using the components, please follow these steps:
 1. Wrap your application in a `ThemeProvider` provided by **@chakra-ui/react**
 
 ```jsx
-import { ThemeProvider, ColorModeProvider } from "@chakra-ui/react"
+import { ColorModeProvider, ThemeProvider } from "@chakra-ui/react"
 
 const App = ({ children }) => (
   <ThemeProvider>

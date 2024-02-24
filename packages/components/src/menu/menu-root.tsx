@@ -1,13 +1,13 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { useMemo } from "react"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import { useMultiStyleConfig, useTheme } from "../system"
 import {
   MenuDescendantsProvider,
   MenuProvider,
   MenuStylesProvider,
 } from "./menu-context"
-import { useMenu, UseMenuProps } from "./use-menu"
+import { UseMenuProps, useMenu } from "./use-menu"
 
 type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 

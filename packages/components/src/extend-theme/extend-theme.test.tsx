@@ -1,4 +1,4 @@
-import { extendTheme, ThemeOverride } from "./extend-theme"
+import { ThemeOverride, extendTheme } from "./extend-theme"
 
 describe("extendTheme", () => {
   it("should override a color", () => {

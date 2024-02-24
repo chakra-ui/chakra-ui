@@ -1,5 +1,5 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx, dataAttr } from "@chakra-ui/utils"
+import { defineStyle } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useProgressContext, useProgressStyles } from "./progress-context"
 import { progressAnim, stripeAnim } from "./progress-utils"

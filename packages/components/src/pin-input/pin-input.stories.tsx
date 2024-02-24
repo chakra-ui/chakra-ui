@@ -1,10 +1,10 @@
 import * as React from "react"
 import {
   PinInput,
+  PinInputDescendantsProvider,
+  PinInputProvider,
   usePinInput,
   usePinInputField,
-  PinInputProvider,
-  PinInputDescendantsProvider,
 } from "."
 import { For } from ".."
 

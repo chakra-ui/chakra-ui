@@ -1,5 +1,8 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
 import { cssVar } from "@chakra-ui/theme-tools"
+import {
+  defineStyle,
+  defineStyleConfig,
+} from "../../../components/src/styled-system"
 
 const $bg = cssVar("tooltip-bg")
 const $fg = cssVar("tooltip-fg")

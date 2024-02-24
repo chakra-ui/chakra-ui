@@ -1,11 +1,11 @@
-import { SystemProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { ComponentProps, HTMLAttributes, ReactElement } from "react"
+import { SystemProps } from "../styled-system"
 import { forwardRef } from "../system"
 import { MenuIcon } from "./menu-icon"
 import { MenuItemProps } from "./menu-item"
 import { StyledMenuItem } from "./styled-menu-item"
-import { useMenuOption, UseMenuOptionOptions } from "./use-menu"
+import { UseMenuOptionOptions, useMenuOption } from "./use-menu"
 
 const CheckIcon = (props: ComponentProps<"svg">) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>

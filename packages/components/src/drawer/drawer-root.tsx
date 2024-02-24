@@ -1,5 +1,5 @@
-import { ThemingProps } from "@chakra-ui/styled-system"
 import { DialogRoot, DialogRootProps } from "../dialog/dialog-root"
+import { ThemingProps } from "../styled-system"
 import { useTheme } from "../system"
 import { DrawerContextProvider, DrawerOptions } from "./drawer-context"
 import { getDrawerPlacement } from "./get-placement"

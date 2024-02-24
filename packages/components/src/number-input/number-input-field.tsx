@@ -1,8 +1,8 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import {
-  useNumberInputStyles,
   useNumberInputContext,
+  useNumberInputStyles,
 } from "./number-input-context"
 
 export interface NumberInputFieldProps extends HTMLChakraProps<"input"> {}

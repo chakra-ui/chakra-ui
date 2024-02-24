@@ -1370,9 +1370,9 @@
   import {
     extendTheme,
     withDefaultColorScheme,
+    withDefaultProps,
     withDefaultSize,
     withDefaultVariant,
-    withDefaultProps,
   } from "@chakra-ui/react"
 
   const customTheme = extendTheme(

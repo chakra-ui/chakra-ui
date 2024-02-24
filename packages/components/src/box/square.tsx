@@ -1,4 +1,4 @@
-import { defineStyle } from "@chakra-ui/styled-system"
+import { defineStyle } from "../styled-system"
 import { forwardRef } from "../system"
 import { Box, BoxProps } from "./box"
 

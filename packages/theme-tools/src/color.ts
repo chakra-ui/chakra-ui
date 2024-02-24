@@ -1,17 +1,17 @@
-import { getCSSVar } from "@chakra-ui/styled-system"
 import {
-  toHex,
-  parseToRgba,
-  transparentize as setTransparency,
-  mix,
-  darken as reduceLightness,
-  lighten as increaseLightness,
   getContrast,
-  parseToHsla,
-  hsla,
   getLuminance,
+  hsla,
+  lighten as increaseLightness,
+  mix,
+  parseToHsla,
+  parseToRgba,
+  darken as reduceLightness,
+  transparentize as setTransparency,
+  toHex,
 } from "color2k"
 import get from "dlv"
+import { getCSSVar } from "../../components/src/styled-system"
 
 type Dict = { [key: string]: any }
 const isEmptyObject = (obj: any) => Object.keys(obj).length === 0

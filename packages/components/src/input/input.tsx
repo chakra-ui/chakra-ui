@@ -1,12 +1,12 @@
-import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
+import { cx } from "@chakra-ui/utils/cx"
+import { FieldOptions, useField } from "../field"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { cx } from "@chakra-ui/utils/cx"
-import { FieldOptions, useField } from "../field"
 
 interface InputOptions {
   /**

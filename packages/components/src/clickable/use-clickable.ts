@@ -1,7 +1,7 @@
-import { dataAttr } from "@chakra-ui/utils/attr"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { useEventListeners } from "./use-event-listeners"
+import { dataAttr } from "@chakra-ui/utils/attr"
 import { useCallback, useState } from "react"
+import { useEventListeners } from "./use-event-listeners"
 
 export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
   /**

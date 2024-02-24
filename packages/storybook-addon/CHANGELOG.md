@@ -314,8 +314,8 @@
 
   ```tsx
   // button.stories.tsx
-  import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
   import { theme } from "<your-theme>"
+  import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
 
   export default {
     title: "Components / Forms / Button",
@@ -405,8 +405,8 @@
 
   ```tsx
   // button.stories.tsx
-  import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
   import { theme } from "<your-theme>"
+  import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
 
   export default {
     title: "Components / Forms / Button",

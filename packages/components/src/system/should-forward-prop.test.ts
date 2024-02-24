@@ -1,4 +1,4 @@
-import { getPropNames } from "@chakra-ui/styled-system"
+import { getPropNames } from "../styled-system"
 import { shouldForwardProp } from "./should-forward-prop"
 
 const propNames = getPropNames({})

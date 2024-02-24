@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import Frame from "react-frame-component"
-
-import { useEnvironment, EnvironmentProvider } from "."
+import { EnvironmentProvider, useEnvironment } from "."
 
 export default {
   title: "System / Environment",

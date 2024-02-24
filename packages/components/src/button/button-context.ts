@@ -1,5 +1,5 @@
-import { ThemingProps } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
+import { ThemingProps } from "../styled-system"
 
 export interface ButtonGroupContext extends ThemingProps<"Button"> {
   /**

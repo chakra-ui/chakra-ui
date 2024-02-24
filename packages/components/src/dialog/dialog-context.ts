@@ -1,5 +1,5 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
+import { SystemStyleObject } from "../styled-system"
 import { DialogMotionPreset, DialogOptions } from "./dialog-types"
 import { UseDialogReturn } from "./use-dialog"
 

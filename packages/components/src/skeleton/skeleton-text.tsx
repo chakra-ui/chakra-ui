@@ -1,6 +1,6 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra } from "../system"
 import { useBreakpointValue } from "../media-query"
+import { chakra } from "../system"
 import { Skeleton, SkeletonProps } from "./skeleton"
 
 function range(count: number) {

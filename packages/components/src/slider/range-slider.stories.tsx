@@ -1,12 +1,12 @@
-import { chakra, useTheme } from "../system"
 import * as React from "react"
 import {
-  useRangeSlider,
   RangeSlider,
   RangeSliderFilledTrack,
-  RangeSliderTrack,
   RangeSliderThumb,
+  RangeSliderTrack,
+  useRangeSlider,
 } from "."
+import { chakra, useTheme } from "../system"
 
 export default {
   title: "Forms / Range Slider",

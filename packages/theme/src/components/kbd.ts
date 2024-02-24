@@ -2,7 +2,7 @@ import {
   cssVar,
   defineStyle,
   defineStyleConfig,
-} from "@chakra-ui/styled-system"
+} from "../../../components/src/styled-system"
 
 const $bg = cssVar("kbd-bg")
 

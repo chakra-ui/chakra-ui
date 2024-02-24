@@ -1,6 +1,6 @@
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { useClickable, UseClickableProps } from "../clickable"
+import { UseClickableProps, useClickable } from "../clickable"
 import { useTabsContext, useTabsDescendant } from "./tabs-context"
 import { makeTabId, makeTabPanelId } from "./use-tabs"
 

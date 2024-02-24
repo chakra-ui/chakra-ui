@@ -3,7 +3,7 @@ import {
   createMultiStyleConfigHelpers,
   cssVar,
   defineStyle,
-} from "@chakra-ui/styled-system"
+} from "../../../components/src/styled-system"
 import { badgeTheme, badgeVars } from "./badge"
 
 const { defineMultiStyleConfig, definePartsStyle } =

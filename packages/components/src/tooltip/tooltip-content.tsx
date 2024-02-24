@@ -1,6 +1,6 @@
-import { getCSSVar } from "@chakra-ui/styled-system"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { popperCSSVars } from "../popper"
+import { getCSSVar } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef, useTheme } from "../system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
 import { scale } from "./tooltip-transition"

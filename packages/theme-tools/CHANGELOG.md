@@ -464,7 +464,7 @@
   Creating a CSS variable in the theme
 
   ```jsx
-  import { cssVar, calc } from "@chakra-ui/theme-tools"
+  import { calc, cssVar } from "@chakra-ui/theme-tools"
 
   const $width = cssVar("slider-width")
   const $height = cssVar("slider-height")

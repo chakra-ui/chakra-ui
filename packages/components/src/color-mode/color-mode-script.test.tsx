@@ -1,4 +1,4 @@
-import { getScriptSrc, ConfigColorMode, cookieStorageManager } from "."
+import { ConfigColorMode, cookieStorageManager, getScriptSrc } from "."
 import { mockMatchMedia } from "./test.fixture"
 
 describe.skip("localStorage: color-mode-script", () => {

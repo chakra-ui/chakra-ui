@@ -1,5 +1,5 @@
-import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps<"Kbd"> {}

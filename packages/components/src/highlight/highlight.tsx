@@ -1,9 +1,9 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { Fragment } from "react"
-import { Chunk } from "./highlight-words"
-import { Mark } from "../typography/mark"
-import { useHighlight } from "./use-highlight"
 import { For } from "../for"
+import { SystemStyleObject } from "../styled-system"
+import { Mark } from "../typography/mark"
+import { Chunk } from "./highlight-words"
+import { useHighlight } from "./use-highlight"
 
 export interface HighlightProps {
   query: string | string[]

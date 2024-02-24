@@ -1,7 +1,7 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
 import { UseMenuReturn } from "."
 import { createDescendantContext } from "../descendant"
+import { SystemStyleObject } from "../styled-system"
 
 export const [MenuProvider, useMenuContext] = createContext<
   Omit<UseMenuReturn, "descendants">

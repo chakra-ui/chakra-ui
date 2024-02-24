@@ -1,9 +1,9 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
+  HTMLChakraProps,
   chakra,
   forwardRef,
-  HTMLChakraProps,
   useMultiStyleConfig,
 } from "../system"
 import {
@@ -11,7 +11,7 @@ import {
   NumberInputStylesProvider,
 } from "./number-input-context"
 import { splitNumberInputProps } from "./number-input-props"
-import { useNumberInput, UseNumberInputProps } from "./use-number-input"
+import { UseNumberInputProps, useNumberInput } from "./use-number-input"
 
 interface InputOptions {
   /**

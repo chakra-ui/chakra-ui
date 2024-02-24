@@ -1,5 +1,5 @@
 import { Progress } from "."
-import { chakra, For, Stack } from ".."
+import { For, Stack, chakra } from ".."
 
 export default {
   title: "Feedback / Linear Progress",

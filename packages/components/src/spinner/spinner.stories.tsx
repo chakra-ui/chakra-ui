@@ -1,6 +1,6 @@
-import { ThemeProvider, useTheme } from "../system"
 import { mergeWith } from "@chakra-ui/utils"
 import { Spinner } from "."
+import { ThemeProvider, useTheme } from "../system"
 
 export default {
   title: "Feedback / Spinner",

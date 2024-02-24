@@ -1,6 +1,6 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils"
 import { getProgressProps } from "../progress/progress-utils"
+import { defineStyle } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { CircularProgressContextProvider } from "./circular-progress-context"
 import { CircularProgressOptions } from "./circular-progress-types"

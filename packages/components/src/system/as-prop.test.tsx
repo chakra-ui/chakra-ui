@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { chakra, ChakraComponent } from "."
+import { ChakraComponent, chakra } from "."
 
 /**
  * These tests should fail while type checking

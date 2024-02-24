@@ -1,11 +1,11 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import { useStyleConfig } from "../system"
 import {
   PinInputDescendantsProvider,
   PinInputProvider,
   PinInputStylesProvider,
 } from "./pin-input-context"
-import { usePinInput, UsePinInputProps } from "./use-pin-input"
+import { UsePinInputProps, usePinInput } from "./use-pin-input"
 
 interface InputOptions {
   /**

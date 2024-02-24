@@ -1,10 +1,10 @@
 import { checkboxAnatomy as parts } from "@chakra-ui/anatomy"
+import { mode } from "@chakra-ui/theme-tools"
 import {
   createMultiStyleConfigHelpers,
   cssVar,
   defineStyle,
-} from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
+} from "../../../components/src/styled-system"
 import { runIfFn } from "../utils/run-if-fn"
 
 const { definePartsStyle, defineMultiStyleConfig } =

@@ -1,4 +1,4 @@
-import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import { useStyleConfig } from "../system"
 import {
   TooltipContextProvider,

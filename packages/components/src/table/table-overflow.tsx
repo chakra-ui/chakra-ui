@@ -1,5 +1,5 @@
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 
 export interface TableOverflowProps extends HTMLChakraProps<"div"> {}
 

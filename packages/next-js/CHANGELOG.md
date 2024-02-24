@@ -131,7 +131,14 @@
   ```jsx live=false
   // app/page.tsx
   "use client"
+
   import { Link } from "@chakra-ui/next-js"
+
+  // app/page.tsx
+
+  // app/page.tsx
+
+  // app/page.tsx
 
   export default function Page() {
     return (

@@ -1,4 +1,4 @@
-import { HTMLChakraProps, ChakraComponent, chakra } from "../system"
+import { ChakraComponent, HTMLChakraProps, chakra } from "../system"
 
 export interface StackDividerProps extends HTMLChakraProps<"div"> {}
 

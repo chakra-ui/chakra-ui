@@ -1,9 +1,9 @@
 import { tableAnatomy as parts } from "@chakra-ui/anatomy"
+import { mode } from "@chakra-ui/theme-tools"
 import {
   createMultiStyleConfigHelpers,
   defineStyle,
-} from "@chakra-ui/styled-system"
-import { mode } from "@chakra-ui/theme-tools"
+} from "../../../components/src/styled-system"
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)

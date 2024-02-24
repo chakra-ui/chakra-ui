@@ -1,11 +1,5 @@
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import {
-  css,
-  isStylePropFn,
-  StyleProps,
-  SystemStyleObject,
-} from "@chakra-ui/styled-system"
-import {
   assignAfter,
   compact,
   interopDefault,
@@ -16,13 +10,19 @@ import { Dict } from "@chakra-ui/utils/types"
 import createStyled, { CSSObject, FunctionInterpolation } from "@emotion/styled"
 import {
   Children,
-  createElement,
   ElementType,
+  createElement,
   forwardRef,
   isValidElement,
   useMemo,
 } from "react"
 import { useColorMode } from "../color-mode"
+import {
+  StyleProps,
+  SystemStyleObject,
+  css,
+  isStylePropFn,
+} from "../styled-system"
 import { mergeProps } from "./merge-props"
 import { shouldForwardProp } from "./should-forward-prop"
 import {

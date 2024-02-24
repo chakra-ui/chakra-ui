@@ -1,8 +1,8 @@
-import { ResponsiveValue } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { mapResponsive } from "@chakra-ui/utils/responsive"
 import { Children } from "react"
+import { ResponsiveValue } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 
 interface AspectRatioOptions {
   /**

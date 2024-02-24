@@ -1,5 +1,5 @@
-import { ThemingProps } from "@chakra-ui/styled-system"
 import { useMemo } from "react"
+import { ThemingProps } from "../styled-system"
 import { CheckboxGroupProvider } from "./checkbox-context"
 import { UseCheckboxGroupProps } from "./checkbox-types"
 import { useCheckboxGroup } from "./use-checkbox-group"

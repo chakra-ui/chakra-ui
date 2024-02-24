@@ -1,4 +1,4 @@
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverPositionerProps extends HTMLChakraProps<"div"> {}

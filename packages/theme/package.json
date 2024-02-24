@@ -34,12 +34,8 @@
     "@chakra-ui/theme-tools": "workspace:*",
     "@chakra-ui/utils": "workspace:*"
   },
-  "peerDependencies": {
-    "@chakra-ui/styled-system": ">=2.8.0"
-  },
   "devDependencies": {
-    "@chakra-ui/cli": "workspace:*",
-    "@chakra-ui/styled-system": "workspace:*"
+    "@chakra-ui/cli": "workspace:*"
   },
   "scripts": {
     "build": "tsup src --dts",

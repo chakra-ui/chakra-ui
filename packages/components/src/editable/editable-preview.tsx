@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useEditableContext, useEditableStyles } from "./editable-context"
 
 export interface EditablePreviewProps extends HTMLChakraProps<"div"> {}

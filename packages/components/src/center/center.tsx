@@ -1,4 +1,4 @@
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 
 export interface CenterProps extends HTMLChakraProps<"div"> {}
 

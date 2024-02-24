@@ -1,5 +1,5 @@
-import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps, useStyleConfig } from "../system"
+import { ThemingProps, omitThemingProps } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 export interface MarkProps
   extends ThemingProps<"Mark">,

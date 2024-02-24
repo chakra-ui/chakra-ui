@@ -1,7 +1,7 @@
-import { SystemProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { Children, useMemo } from "react"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { SystemProps } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 
 export interface WrapProps extends HTMLChakraProps<"div"> {
   /**

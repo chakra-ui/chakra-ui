@@ -1,5 +1,5 @@
-import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
 import { FieldOptions, splitFieldProps, useField } from "../field"
+import { ThemingProps, omitThemingProps } from "../styled-system"
 import { chakra, forwardRef, useMultiStyleConfig } from "../system"
 import { SelectContextProvider, SelectStylesProvider } from "./select-context"
 import { NativeSelectFieldProps } from "./select-field"

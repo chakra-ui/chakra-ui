@@ -1,4 +1,4 @@
-import { SystemProps } from "@chakra-ui/styled-system"
+import { SystemProps } from "../styled-system"
 
 export interface AvatarOptions {
   /**

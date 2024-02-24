@@ -1,6 +1,6 @@
-import { SystemProps, ThemingProps } from "@chakra-ui/styled-system"
 import { useMemo } from "react"
 import type { AlertStatus } from "../alert"
+import { SystemProps, ThemingProps } from "../styled-system"
 import { useChakra } from "../system"
 import { CreateToastFnReturn, createToastFn } from "./create-toast-fn"
 import { ToastPosition } from "./toast.placement"

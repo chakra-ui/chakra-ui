@@ -1,5 +1,5 @@
 import { createContext } from "@chakra-ui/utils/context"
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { SystemStyleObject } from "../styled-system"
 import { UsePopoverReturn } from "./use-popover"
 
 export const [PopoverProvider, usePopoverContext] =

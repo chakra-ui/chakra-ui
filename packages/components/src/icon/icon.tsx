@@ -1,6 +1,6 @@
-import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, ChakraProps, forwardRef, useStyleConfig } from "../system"
+import { defineStyle } from "../styled-system"
+import { ChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 
 const fallbackIcon = {
   path: (

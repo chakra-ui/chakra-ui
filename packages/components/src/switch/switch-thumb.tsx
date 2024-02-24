@@ -1,4 +1,4 @@
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useSwitchContext, useSwitchStyles } from "./switch-context"
 
 export interface SwitchThumbProps extends HTMLChakraProps<"span"> {}

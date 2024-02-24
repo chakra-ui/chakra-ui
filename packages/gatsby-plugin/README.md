@@ -30,8 +30,8 @@ module.exports = {
 
 ```jsx
 // src/pages/index.js
-import React from "react"
 import { Box, Text } from "@chakra-ui/react"
+import React from "react"
 
 function IndexPage() {
   return (
@@ -93,6 +93,7 @@ To use customize the theme in your Gatsby site, you can shadow the plugin's
 ```js
 // src/@chakra-ui/gatsby-plugin/theme.js
 import { extendTheme } from "@chakra-ui/react"
+
 const theme = {
   colors: {
     primary: "rebeccapurple",

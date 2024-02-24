@@ -1,8 +1,8 @@
-import { ResponsiveValue, SystemProps } from "@chakra-ui/styled-system"
-import { chakra, forwardRef } from "../system"
 import { compact } from "@chakra-ui/utils/compact"
 import { mapResponsive } from "@chakra-ui/utils/responsive"
 import { BoxProps } from "../box/box"
+import { ResponsiveValue, SystemProps } from "../styled-system"
+import { chakra, forwardRef } from "../system"
 
 export interface GridItemProps extends BoxProps {
   /**

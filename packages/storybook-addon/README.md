@@ -73,9 +73,9 @@ Get controls for the theming props `variant`, `size` and `colorScheme` in your
 stories with `getThemingArgTypes(theme, componentName)`.
 
 ```tsx
-import { Meta, StoryFn } from "@storybook/react"
-import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
 import { theme } from "<your-theme>"
+import { getThemingArgTypes } from "@chakra-ui/storybook-addon"
+import { Meta, StoryFn } from "@storybook/react"
 
 export default {
   title: "Components / Forms / Button",

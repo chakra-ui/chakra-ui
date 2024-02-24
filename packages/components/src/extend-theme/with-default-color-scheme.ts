@@ -1,6 +1,6 @@
-import { ThemingProps } from "@chakra-ui/styled-system"
 import { isObject } from "@chakra-ui/utils/is"
-import { mergeThemeOverride, ThemeExtension } from "./extend-theme"
+import { ThemingProps } from "../styled-system"
+import { ThemeExtension, mergeThemeOverride } from "./extend-theme"
 
 export function withDefaultColorScheme({
   colorScheme,

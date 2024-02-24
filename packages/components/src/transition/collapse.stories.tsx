@@ -1,5 +1,4 @@
 import { useBoolean } from "@chakra-ui/hooks"
-
 import { Collapse, CollapseProps } from "."
 
 export default {

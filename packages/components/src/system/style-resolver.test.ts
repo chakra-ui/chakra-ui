@@ -1,5 +1,5 @@
-import { toCSSVar } from "@chakra-ui/styled-system"
 import { theme as defaultTheme } from "@chakra-ui/theme"
+import { toCSSVar } from "../styled-system"
 import { toCSSObject } from "./system"
 
 const theme = toCSSVar({

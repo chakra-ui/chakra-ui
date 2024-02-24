@@ -1,5 +1,4 @@
-import { css, SystemStyleObject, toCSSVar } from "@chakra-ui/styled-system"
-import { createContext, CreateContextReturn } from "@chakra-ui/utils/context"
+import { CreateContextReturn, createContext } from "@chakra-ui/utils/context"
 import { memoizedGet as get } from "@chakra-ui/utils/get"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import {
@@ -10,6 +9,7 @@ import {
 } from "@emotion/react"
 import { useMemo } from "react"
 import { useColorMode } from "../color-mode"
+import { SystemStyleObject, css, toCSSVar } from "../styled-system"
 
 export interface ThemeProviderProps extends EmotionThemeProviderProps {
   cssVarsRoot?: string
