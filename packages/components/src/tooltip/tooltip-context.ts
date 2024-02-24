@@ -5,7 +5,7 @@ import { UseTooltipReturn } from "./use-tooltip"
 export const [TooltipStylesProvider, useTooltipStyles] =
   createContext<SystemStyleObject>({
     name: `TooltipStylesContext`,
-    errorMessage: `useTooltipStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Tooltip />" `,
+    errorMessage: `useTooltipStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Tooltip.Root />" `,
   })
 
 interface TooltipContext extends UseTooltipReturn {
@@ -15,5 +15,5 @@ interface TooltipContext extends UseTooltipReturn {
 export const [TooltipContextProvider, useTooltipContext] =
   createContext<TooltipContext>({
     name: `TooltipContext`,
-    errorMessage: `useTooltipContext: 'context' is undefined`,
+    errorMessage: `useTooltipContext: 'context' is undefined. Seems you forgot to wrap the components in "<Tooltip.Root />`,
   })

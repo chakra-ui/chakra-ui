@@ -1,25 +1,16 @@
 import { getCSSVar } from "@chakra-ui/styled-system"
-import { cx } from "@chakra-ui/utils"
-import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
+import { HTMLMotionProps, motion } from "framer-motion"
 import { popperCSSVars } from "../popper"
-import { Portal, PortalProps } from "../portal"
 import { HTMLChakraProps, chakra, forwardRef, useTheme } from "../system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
-import { TooltipPositioner } from "./tooltip-positioner"
 import { scale } from "./tooltip-transition"
 
 export interface TooltipContentProps extends HTMLChakraProps<"div"> {
-  /**
-   * Props to be forwarded to the portal component
-   */
-  portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
   /**
    * The motion props for the tooltip
    */
   motionProps?: HTMLMotionProps<"div">
 }
-
-const StyledDiv = chakra(motion.div)
 
 export const TooltipContent = forwardRef<TooltipContentProps, "div">(
   function TooltipContent(props, ref) {
@@ -29,46 +20,38 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
     const theme = useTheme()
 
     const {
-      children,
       bg,
-      portalProps,
       motionProps,
       background,
       backgroundColor,
       bgColor,
-      ...ownProps
+      ...restProps
     } = props
 
-    const userDefinedBg = background ?? backgroundColor ?? bg ?? bgColor
+    const _bg = background ?? backgroundColor ?? bg ?? bgColor
 
-    if (userDefinedBg) {
-      styles.bg = userDefinedBg
-      const bgVar = getCSSVar(theme, "colors", userDefinedBg)
+    if (_bg) {
+      styles.bg = _bg
+      const bgVar = getCSSVar(theme, "colors", _bg)
       ;(styles as any)[popperCSSVars.arrowBg.var] = bgVar
     }
 
     return (
-      <AnimatePresence>
-        {api.isOpen && (
-          <Portal {...portalProps}>
-            <TooltipPositioner>
-              <StyledDiv
-                ref={ref}
-                variants={scale}
-                initial="exit"
-                animate="enter"
-                exit="exit"
-                {...motionProps}
-                {...(api.getContentProps(ownProps, ref) as any)}
-                __css={styles}
-                className={cx("chakra-tooltip__content", props.className)}
-              >
-                {children}
-              </StyledDiv>
-            </TooltipPositioner>
-          </Portal>
-        )}
-      </AnimatePresence>
+      <chakra.div
+        asChild
+        __css={styles}
+        {...api.getContentProps(restProps, ref)}
+      >
+        <motion.div
+          variants={scale}
+          initial="exit"
+          animate="enter"
+          exit="exit"
+          {...motionProps}
+        >
+          {props.children}
+        </motion.div>
+      </chakra.div>
     )
   },
 )

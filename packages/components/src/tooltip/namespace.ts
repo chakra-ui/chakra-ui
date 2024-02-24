@@ -11,3 +11,6 @@ export { splitTooltipProps as splitProps } from "./tooltip-props"
 
 export { TooltipArrow as Arrow } from "./tooltip-arrow"
 export type { TooltipArrowProps as ArrowProps } from "./tooltip-arrow"
+
+export { TooltipPositioner as Positioner } from "./tooltip-positioner"
+export type { TooltipPositionerProps as PositionerProps } from "./tooltip-positioner"

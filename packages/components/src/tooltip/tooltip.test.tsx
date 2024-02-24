@@ -12,7 +12,9 @@ const DummyComponent = (
   return (
     <Tooltip.Root {...rootProps}>
       <Tooltip.Trigger disabled={disabled || false}>{label}</Tooltip.Trigger>
-      <Tooltip.Content>{content}</Tooltip.Content>
+      <Tooltip.Positioner>
+        <Tooltip.Content>{content}</Tooltip.Content>
+      </Tooltip.Positioner>
     </Tooltip.Root>
   )
 }

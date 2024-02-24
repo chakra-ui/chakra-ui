@@ -152,6 +152,8 @@ After:
 
 ### Tooltip
 
+- Move `portalProps` to `Tooltip.Positioner`
+
 Before:
 
 ```tsx
@@ -167,10 +169,12 @@ After:
   <Tooltip.Trigger asChild>
     <Button>Hover me</Button>
   </Tooltip.Trigger>
-  <Tooltip.Content>
-    <Tooltip.Arrow />
-    Hey there
-  </Tooltip.Content>
+  <Tooltip.Positioner>
+    <Tooltip.Content>
+      <Tooltip.Arrow />
+      Hey there
+    </Tooltip.Content>
+  </Tooltip.Positioner>
 </Tooltip.Root>
 ```
 

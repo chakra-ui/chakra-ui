@@ -10,6 +10,9 @@ export type { TooltipContentProps } from "./tooltip-content"
 export { TooltipArrow } from "./tooltip-arrow"
 export type { TooltipArrowProps } from "./tooltip-arrow"
 
+export { TooltipPositioner } from "./tooltip-positioner"
+export type { TooltipPositionerProps } from "./tooltip-positioner"
+
 export * as Tooltip from "./namespace"
 
 export { useTooltip } from "./use-tooltip"

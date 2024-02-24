@@ -33,10 +33,12 @@ const DemoTooltip = (props: DemoTooltipProps) => {
       <Tooltip.Trigger asChild>
         {React.isValidElement(children) ? children : <span>{children}</span>}
       </Tooltip.Trigger>
-      <Tooltip.Content {...contentProps}>
-        {hasArrow && <Tooltip.Arrow />}
-        {label}
-      </Tooltip.Content>
+      <Tooltip.Positioner>
+        <Tooltip.Content {...contentProps}>
+          {hasArrow && <Tooltip.Arrow />}
+          {label}
+        </Tooltip.Content>
+      </Tooltip.Positioner>
     </Tooltip.Root>
   )
 }
@@ -50,10 +52,12 @@ export const Basic = () => (
     <Tooltip.Trigger asChild>
       <Button>Hover me</Button>
     </Tooltip.Trigger>
-    <Tooltip.Content>
-      <Tooltip.Arrow />
-      This is a chakra tooltip
-    </Tooltip.Content>
+    <Tooltip.Positioner>
+      <Tooltip.Content>
+        <Tooltip.Arrow />
+        This is a chakra tooltip
+      </Tooltip.Content>
+    </Tooltip.Positioner>
   </Tooltip.Root>
 )
 
@@ -67,10 +71,13 @@ export const WithAriaLabel = () => (
         <span>3</span>
       </Button>
     </Tooltip.Trigger>
-    <Tooltip.Content bg="tomato" color="white">
-      <Tooltip.Arrow />
-      Notifications
-    </Tooltip.Content>
+
+    <Tooltip.Positioner>
+      <Tooltip.Content bg="tomato" color="white">
+        <Tooltip.Arrow />
+        Notifications
+      </Tooltip.Content>
+    </Tooltip.Positioner>
   </Tooltip.Root>
 )
 
@@ -137,7 +144,9 @@ export const WithDisabledButton = () => (
     <Tooltip.Trigger asChild>
       <Button isDisabled>Can't Touch This</Button>
     </Tooltip.Trigger>
-    <Tooltip.Content>Oh oh oh, oh oh</Tooltip.Content>
+    <Tooltip.Positioner>
+      <Tooltip.Content>Oh oh oh, oh oh</Tooltip.Content>
+    </Tooltip.Positioner>
   </Tooltip.Root>
 )
 
