@@ -1,10 +1,11 @@
-import { defineStyle, getCSSVar } from "@chakra-ui/styled-system"
+import { getCSSVar } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils"
 import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion"
 import { popperCSSVars } from "../popper"
 import { Portal, PortalProps } from "../portal"
 import { HTMLChakraProps, chakra, forwardRef, useTheme } from "../system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
+import { TooltipPositioner } from "./tooltip-positioner"
 import { scale } from "./tooltip-transition"
 
 export interface TooltipContentProps extends HTMLChakraProps<"div"> {
@@ -18,7 +19,7 @@ export interface TooltipContentProps extends HTMLChakraProps<"div"> {
   motionProps?: HTMLMotionProps<"div">
 }
 
-const StyledContent = chakra(motion.div)
+const StyledDiv = chakra(motion.div)
 
 export const TooltipContent = forwardRef<TooltipContentProps, "div">(
   function TooltipContent(props, ref) {
@@ -46,21 +47,12 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
       ;(styles as any)[popperCSSVars.arrowBg.var] = bgVar
     }
 
-    const positionerStyles = defineStyle({
-      zIndex: styles.zIndex,
-      pointerEvents: "none",
-    })
-
     return (
       <AnimatePresence>
         {api.isOpen && (
           <Portal {...portalProps}>
-            <chakra.div
-              {...api.getPositionerProps()}
-              className="chakra-tooltip__positioner"
-              __css={positionerStyles}
-            >
-              <StyledContent
+            <TooltipPositioner>
+              <StyledDiv
                 ref={ref}
                 variants={scale}
                 initial="exit"
@@ -72,8 +64,8 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
                 className={cx("chakra-tooltip__content", props.className)}
               >
                 {children}
-              </StyledContent>
-            </chakra.div>
+              </StyledDiv>
+            </TooltipPositioner>
           </Portal>
         )}
       </AnimatePresence>
