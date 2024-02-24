@@ -147,8 +147,8 @@ After:
 
 ### Tag
 
-- `TagLeftIcon` and `TagRightIcon` are now assigned to `Tag.StartIcon` and
-  `Tag.EndIcon` respectively
+- `TagLeftIcon` and `TagRightIcon` are removed in favor of rendering the icon
+  directly inside the `Tag` component.
 
 ### Tooltip
 
