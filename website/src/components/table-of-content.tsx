@@ -2,8 +2,7 @@ import {
   Box,
   BoxProps,
   chakra,
-  ListItem,
-  OrderedList,
+  List,
   useColorModeValue,
 } from '@chakra-ui/react'
 import { useScrollSpy } from 'hooks/use-scrollspy'
@@ -17,19 +16,24 @@ interface TableOfContentProps extends BoxProps {
 
 function TableOfContent(props: TableOfContentProps) {
   const { headings, ...rest } = props
+
   const activeId = useScrollSpy(
     headings.map(({ id }) => `[id="${id}"]`),
-    {
-      rootMargin: '-10% 0% -24% 0%',
-    },
+    { rootMargin: '-10% 0% -24% 0%' },
   )
+
   const linkColor = useColorModeValue('gray.600', 'gray.400')
   const linkHoverColor = useColorModeValue('gray.900', 'gray.600')
+
   return (
     <TocNav title='On this page' {...rest}>
-      <OrderedList spacing={1} ml='0' mt='4' styleType='none'>
+      <List gap='1' ml='0' mt='4' styleType='none'>
         {headings.map(({ id, text, level }) => (
-          <ListItem key={id} title={text} ml={level === 'h3' ? '4' : undefined}>
+          <List.Item
+            key={id}
+            title={text}
+            ms={level === 'h3' ? '4' : undefined}
+          >
             <chakra.a
               py='1'
               display='block'
@@ -43,9 +47,9 @@ function TableOfContent(props: TableOfContentProps) {
             >
               {text}
             </chakra.a>
-          </ListItem>
+          </List.Item>
         ))}
-      </OrderedList>
+      </List>
 
       <Box my='10'>
         <FigmaPluginAd medium='sidebar-ad' />
