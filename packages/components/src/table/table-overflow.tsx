@@ -1,10 +1,10 @@
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 
-export interface TableContainerProps extends HTMLChakraProps<"div"> {}
+export interface TableOverflowProps extends HTMLChakraProps<"div"> {}
 
-export const TableContainer = forwardRef<TableContainerProps, "div">(
-  (props: HTMLChakraProps<"div">, ref) => {
+export const TableOverflow = forwardRef<TableOverflowProps, "div">(
+  function TableOverflow(props: HTMLChakraProps<"div">, ref) {
     const { overflow, overflowX, className, ...rest } = props
     return (
       <chakra.div

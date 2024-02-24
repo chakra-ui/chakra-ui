@@ -1,15 +1,18 @@
+import { dataAttr } from "@chakra-ui/utils"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
-import { useTableStyles } from "./table"
+import { useTableStyles } from "./table-context"
 
 export interface TableCellProps extends HTMLChakraProps<"td"> {
   /**
    * Aligns the cell content to the right
    * @default false
    */
-  isNumeric?: boolean
+  numeric?: boolean
 }
-export const Td = forwardRef<TableCellProps, "td">(
-  ({ isNumeric, ...rest }, ref) => {
+
+export const TableCell = forwardRef<TableCellProps, "td">(
+  function TableCell(props, ref) {
+    const { numeric, ...rest } = props
     const styles = useTableStyles()
 
     return (
@@ -17,7 +20,7 @@ export const Td = forwardRef<TableCellProps, "td">(
         {...rest}
         ref={ref}
         __css={styles.td}
-        data-is-numeric={isNumeric}
+        data-is-numeric={dataAttr(numeric)}
       />
     )
   },

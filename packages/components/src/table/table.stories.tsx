@@ -1,94 +1,86 @@
-import {
-  Table,
-  TableCaption,
-  TableContainer,
-  TableProps,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "."
+import { Table } from "."
 
 export default {
   title: "Data Display / Table / Simple",
 }
 
-const SimpleTable = (props: TableProps) => (
-  <Table {...props}>
-    <TableCaption>Imperial to metric conversion factors</TableCaption>
-    <Thead>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td isNumeric>25.4</Td>
-      </Tr>
-      <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td isNumeric>30.48</Td>
-      </Tr>
-      <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td isNumeric>0.91444</Td>
-      </Tr>
-      <Tr>
-        <Td>miles</Td>
-        <Td>kilometres (km)</Td>
-        <Td isNumeric>1.61</Td>
-      </Tr>
-      <Tr>
-        <Td>square inches</Td>
-        <Td>sq. millimetres (mm²)</Td>
-        <Td isNumeric>645</Td>
-      </Tr>
-      <Tr>
-        <Td>square feet</Td>
-        <Td>square metres (m²)</Td>
-        <Td isNumeric>0.0929</Td>
-      </Tr>
-      <Tr>
-        <Td>square yards</Td>
-        <Td>square metres (m²)</Td>
-        <Td isNumeric>0.836</Td>
-      </Tr>
-      <Tr>
-        <Td>acres</Td>
-        <Td>hectares</Td>
-        <Td isNumeric>2.47</Td>
-      </Tr>
-      <Tr>
-        <Td>cubic inches</Td>
-        <Td>millilitres (ml)</Td>
-        <Td isNumeric>16.4</Td>
-      </Tr>
-      <Tr>
-        <Td>cubic feet</Td>
-        <Td>litres</Td>
-        <Td isNumeric>28.3</Td>
-      </Tr>
-      <Tr>
-        <Td>imperial gallons</Td>
-        <Td>litres</Td>
-        <Td isNumeric>4.55</Td>
-      </Tr>
-      <Tr>
-        <Td>
+const SimpleTable = (props: Table.RootProps) => (
+  <Table.Root {...props}>
+    <Table.Caption>Imperial to metric conversion factors</Table.Caption>
+
+    <Table.Header>
+      <Table.Row>
+        <Table.ColumnHeader>To convert</Table.ColumnHeader>
+        <Table.ColumnHeader>into</Table.ColumnHeader>
+        <Table.ColumnHeader numeric>multiply by</Table.ColumnHeader>
+      </Table.Row>
+    </Table.Header>
+
+    <Table.Body>
+      <Table.Row>
+        <Table.Cell>inches</Table.Cell>
+        <Table.Cell>millimetres (mm)</Table.Cell>
+        <Table.Cell numeric>25.4</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>feet</Table.Cell>
+        <Table.Cell>centimetres (cm)</Table.Cell>
+        <Table.Cell numeric>30.48</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>yards</Table.Cell>
+        <Table.Cell>metres (m)</Table.Cell>
+        <Table.Cell numeric>0.91444</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>miles</Table.Cell>
+        <Table.Cell>kilometres (km)</Table.Cell>
+        <Table.Cell numeric>1.61</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>square inches</Table.Cell>
+        <Table.Cell>sq. millimetres (mm²)</Table.Cell>
+        <Table.Cell numeric>645</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>square feet</Table.Cell>
+        <Table.Cell>square metres (m²)</Table.Cell>
+        <Table.Cell numeric>0.0929</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>square yards</Table.Cell>
+        <Table.Cell>square metres (m²)</Table.Cell>
+        <Table.Cell numeric>0.836</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>acres</Table.Cell>
+        <Table.Cell>hectares</Table.Cell>
+        <Table.Cell numeric>2.47</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>cubic inches</Table.Cell>
+        <Table.Cell>millilitres (ml)</Table.Cell>
+        <Table.Cell numeric>16.4</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>cubic feet</Table.Cell>
+        <Table.Cell>litres</Table.Cell>
+        <Table.Cell numeric>28.3</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>imperial gallons</Table.Cell>
+        <Table.Cell>litres</Table.Cell>
+        <Table.Cell numeric>4.55</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>
           <abbr>US</abbr> barrels
-        </Td>
-        <Td>cubic metres (m³)</Td>
-        <Td isNumeric>0.159</Td>
-      </Tr>
-    </Tbody>
-  </Table>
+        </Table.Cell>
+        <Table.Cell>cubic metres (m³)</Table.Cell>
+        <Table.Cell numeric>0.159</Table.Cell>
+      </Table.Row>
+    </Table.Body>
+  </Table.Root>
 )
 
 export const simpleSM = () => <SimpleTable size="sm" />
@@ -102,7 +94,7 @@ export const stripedLG = () => <SimpleTable variant="striped" size="lg" />
 export const unstyled = () => <SimpleTable variant="unstyled" size="none" />
 
 export const withOverflow = () => (
-  <TableContainer maxW={{ base: "400px", lg: "unset" }}>
+  <Table.Overflow maxW={{ base: "400px", lg: "unset" }}>
     <SimpleTable />
-  </TableContainer>
+  </Table.Overflow>
 )
