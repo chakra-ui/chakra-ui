@@ -72,7 +72,7 @@ test("indeterminate state", () => {
   expect(checkbox).toHaveAttribute("data-indeterminate")
 })
 
-test("Controlled - should check and uncheck", () => {
+test("Controlled - should check and uncheck", async () => {
   const onChange = vi.fn()
 
   const Component = () => {
@@ -80,20 +80,21 @@ test("Controlled - should check and uncheck", () => {
     return (
       <HookCheckbox
         isChecked={isChecked}
-        onChange={(e) => setIsChecked(e.target.checked)}
+        onChange={(e) => {
+          setIsChecked(e.target.checked)
+          onChange(e)
+        }}
       />
     )
   }
 
-  render(<Component />)
+  const { user } = render(<Component />)
 
-  const input = screen.getByTestId("input")
-  const checkbox = screen.getByText("Checkbox")
+  const inputEl = screen.getByRole("checkbox")
+  expect(inputEl).not.toBeChecked()
 
-  expect(checkbox).not.toHaveAttribute("data-checked")
-  fireEvent.click(input)
-
-  expect(checkbox).toHaveAttribute("data-checked")
+  await user.click(screen.getByRole("checkbox"))
+  expect(inputEl).toBeChecked()
   expect(onChange).toHaveBeenCalled()
 })
 

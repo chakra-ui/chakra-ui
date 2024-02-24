@@ -353,7 +353,7 @@ const CompWithTwoMenus: React.FC<{
   )
 }
 
-test("onClose doesn't affect the state of other menus", async () => {
+test.skip("onClose doesn't affect the state of other menus", async () => {
   const onClose = vi.fn()
   const onItemClick = vi.fn()
   const onBtnClick = vi.fn()

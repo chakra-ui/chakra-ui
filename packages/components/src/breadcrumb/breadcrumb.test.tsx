@@ -22,15 +22,17 @@ test("passes a11y test", async () => {
 test("has the proper aria-attributes", () => {
   render(
     <Breadcrumb.Root>
-      <Breadcrumb.Item>
-        <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
-        <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item isCurrentPage>
-        <Breadcrumb.Link>Link 3</Breadcrumb.Link>
-      </Breadcrumb.Item>
+      <Breadcrumb.List>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item isCurrentPage>
+          <Breadcrumb.Link>Link 3</Breadcrumb.Link>
+        </Breadcrumb.Item>
+      </Breadcrumb.List>
     </Breadcrumb.Root>,
   )
 
@@ -82,12 +84,14 @@ test("breadcrumb link has its href attribute correctly set", () => {
 test("current page link doesn't have href attribute set", () => {
   render(
     <Breadcrumb.Root>
-      <Breadcrumb.Item>
-        <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item isCurrentPage>
-        <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
-      </Breadcrumb.Item>
+      <Breadcrumb.List>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item isCurrentPage>
+          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        </Breadcrumb.Item>
+      </Breadcrumb.List>
     </Breadcrumb.Root>,
   )
 
