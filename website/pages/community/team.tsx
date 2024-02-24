@@ -56,7 +56,7 @@ function Member(props: { member: IMember }) {
       <Stack spacing={3} maxW='320px'>
         <Text fontWeight='bold'>{name}</Text>
 
-        <Stack isInline align='center' spacing={2}>
+        <Stack direction='row' align='center' spacing={2}>
           <SocialLink
             href={url}
             icon={IoLogoGithub}

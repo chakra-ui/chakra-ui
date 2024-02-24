@@ -7,6 +7,7 @@ import {
   Divider,
   Flex,
   Grid,
+  HStack,
   Heading,
   Icon,
   LightMode,
@@ -110,10 +111,10 @@ const StatBox = (props: StatBoxProps) => {
       <Box fontSize={{ base: '4rem', md: '6rem' }} lineHeight='1em' mb='20px'>
         {title}
       </Box>
-      <Stack isInline align='center'>
+      <HStack>
         <StatIcon size='24px' />
         <Text>{description}</Text>
-      </Stack>
+      </HStack>
     </Flex>
   )
 }
@@ -532,7 +533,12 @@ const HomePage = ({
               rounded='lg'
               p='6'
             >
-              <Stack flex='1' isInline spacing='6' pr={{ base: 0, md: '4' }}>
+              <Stack
+                flex='1'
+                direction='row'
+                spacing='6'
+                pr={{ base: 0, md: '4' }}
+              >
                 <Icon w='40px' h='40px' viewBox='0 0 569 546'>
                   <g>
                     <circle
