@@ -27,7 +27,7 @@ function TableOfContent(props: TableOfContentProps) {
 
   return (
     <TocNav title='On this page' {...rest}>
-      <List gap='1' ml='0' mt='4' styleType='none'>
+      <List.Root gap='1' ml='0' mt='4' styleType='none'>
         {headings.map(({ id, text, level }) => (
           <List.Item
             key={id}
@@ -49,7 +49,7 @@ function TableOfContent(props: TableOfContentProps) {
             </chakra.a>
           </List.Item>
         ))}
-      </List>
+      </List.Root>
 
       <Box my='10'>
         <FigmaPluginAd medium='sidebar-ad' />

@@ -52772,13 +52772,6 @@
     "hierarchy": { "lvl1": "Icon", "lvl2": "Usage", "lvl3": null }
   },
   {
-    "content": "All icons",
-    "id": "//docs/components/icon/usage",
-    "type": "lvl3",
-    "url": "/docs/components/icon/usage#all-icons",
-    "hierarchy": { "lvl1": "Icon", "lvl2": "Usage", "lvl3": "All icons" }
-  },
-  {
     "content": "Using a third-party icon library",
     "id": "//docs/components/icon/usage",
     "type": "lvl2",
