@@ -1,10 +1,9 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { createContext } from "@chakra-ui/utils/context"
-import { warn } from "@chakra-ui/utils/warn"
+import { callAllHandlers, warn } from "@chakra-ui/utils"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
 import {
+  useAccordionContext,
   useAccordionDescendant,
   useAccordionDescendants,
 } from "./accordion-context"
@@ -13,37 +12,31 @@ import {
  * useAccordion - The root react hook that manages all accordion items
  * -----------------------------------------------------------------------------------------------*/
 
-/**
- * @deprecated - This will be removed in future versions.
- * Please use `number | number[]` instead.
- */
-export type ExpandedIndex = number | number[]
-
 export interface UseAccordionProps {
   /**
    * If `true`, multiple accordion items can be expanded at once.
    *
    * @default false
    */
-  allowMultiple?: boolean
+  multiple?: boolean
   /**
    * If `true`, any expanded accordion item can be collapsed again.
    *
    * @default false
    */
-  allowToggle?: boolean
+  collapsible?: boolean
   /**
    * The index(es) of the expanded accordion item
    */
-  index?: ExpandedIndex
+  index?: number | number[]
   /**
    * The initial index(es) of the expanded accordion item
    */
-  defaultIndex?: ExpandedIndex
+  defaultIndex?: number | number[]
   /**
    * The callback invoked when accordion items are expanded or collapsed.
    */
-  onChange?(expandedIndex: ExpandedIndex): void
+  onChange?(expandedIndex: number | number[]): void
 }
 
 /**
@@ -57,14 +50,13 @@ export function useAccordion(props: UseAccordionProps) {
     onChange,
     defaultIndex,
     index: indexProp,
-    allowMultiple,
-    allowToggle,
-    ...htmlProps
+    multiple,
+    collapsible,
   } = props
 
   // validate the props and `warn` if used incorrectly
-  allowMultipleWarning(props)
-  allowMultipleAndAllowToggleWarning(props)
+  multipleWarning(props)
+  multipleAndcollapsibleWarning(props)
 
   /**
    * Think of this as the register to each accordion item.
@@ -98,7 +90,7 @@ export function useAccordion(props: UseAccordionProps) {
   const [index, setIndex] = useControllableState({
     value: indexProp,
     defaultValue() {
-      if (allowMultiple) return defaultIndex ?? []
+      if (multiple) return defaultIndex ?? []
       return defaultIndex ?? -1
     },
     onChange,
@@ -120,7 +112,7 @@ export function useAccordion(props: UseAccordionProps) {
     const onChange = (isOpen: boolean) => {
       if (idx === null) return
 
-      if (allowMultiple && Array.isArray(index)) {
+      if (multiple && Array.isArray(index)) {
         //
         const nextState = isOpen
           ? index.concat(idx)
@@ -130,7 +122,7 @@ export function useAccordion(props: UseAccordionProps) {
         //
       } else if (isOpen) {
         setIndex(idx)
-      } else if (allowToggle) {
+      } else if (collapsible) {
         setIndex(-1)
       }
     }
@@ -141,7 +133,6 @@ export function useAccordion(props: UseAccordionProps) {
   return {
     index,
     setIndex,
-    htmlProps,
     getAccordionItemProps,
     focusedIndex,
     setFocusedIndex,
@@ -150,22 +141,6 @@ export function useAccordion(props: UseAccordionProps) {
 }
 
 export type UseAccordionReturn = ReturnType<typeof useAccordion>
-
-/* -------------------------------------------------------------------------------------------------
- * Create context for the root accordion logic
- * -----------------------------------------------------------------------------------------------*/
-
-interface AccordionContext
-  extends Omit<UseAccordionReturn, "htmlProps" | "descendants"> {
-  reduceMotion: boolean
-}
-
-export const [AccordionProvider, useAccordionContext] =
-  createContext<AccordionContext>({
-    name: "AccordionContext",
-    hookName: "useAccordionContext",
-    providerName: "Accordion",
-  })
 
 /* -------------------------------------------------------------------------------------------------
  * Hook for a single accordion item
@@ -197,7 +172,7 @@ export interface UseAccordionItemProps {
  * for an accordion item and its children
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
-  const { isDisabled, isFocusable, id, ...htmlProps } = props
+  const { isDisabled, isFocusable, id } = props
   const { getAccordionItemProps, setFocusedIndex } = useAccordionContext()
 
   const buttonRef = useRef<HTMLElement>(null)
@@ -285,8 +260,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     setFocusedIndex(index)
   }, [setFocusedIndex, index])
 
-  const getButtonProps = useCallback(
-    function getButtonProps(
+  const getTriggerProps = useCallback(
+    function getTriggerProps(
       props: Omit<React.HTMLAttributes<HTMLElement>, "color"> = {},
       ref: React.Ref<HTMLButtonElement> | null = null,
     ): React.ComponentProps<"button"> {
@@ -315,8 +290,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     ],
   )
 
-  const getPanelProps = useCallback(
-    function getPanelProps<T>(
+  const getContentProps = useCallback(
+    function getContentProps<T>(
       props: Omit<React.HTMLAttributes<T>, "color"> = {},
       ref: React.Ref<T> | null = null,
     ): React.HTMLAttributes<T> & React.RefAttributes<T> {
@@ -338,9 +313,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     isFocusable,
     onOpen,
     onClose,
-    getButtonProps,
-    getPanelProps,
-    htmlProps,
+    getTriggerProps,
+    getContentProps,
   }
 }
 
@@ -350,21 +324,20 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
  * Validate accordion and accordion item props, and emit warnings.
  * -----------------------------------------------------------------------------------------------*/
 
-function allowMultipleWarning(props: UseAccordionProps) {
+function multipleWarning(props: UseAccordionProps) {
   const index = props.index || props.defaultIndex
-  const condition =
-    index != null && !Array.isArray(index) && props.allowMultiple
+  const condition = index != null && !Array.isArray(index) && props.multiple
 
   warn({
     condition: !!condition,
-    message: `If 'allowMultiple' is passed, then 'index' or 'defaultIndex' must be an array. You passed: ${typeof index},`,
+    message: `If 'multiple' is passed, then 'index' or 'defaultIndex' must be an array. You passed: ${typeof index},`,
   })
 }
 
-function allowMultipleAndAllowToggleWarning(props: UseAccordionProps) {
+function multipleAndcollapsibleWarning(props: UseAccordionProps) {
   warn({
-    condition: !!(props.allowMultiple && props.allowToggle),
-    message: `If 'allowMultiple' is passed, 'allowToggle' will be ignored. Either remove 'allowToggle' or 'allowMultiple' depending on whether you want multiple accordions visible or not`,
+    condition: !!(props.multiple && props.collapsible),
+    message: `If 'multiple' is passed, 'collapsible' will be ignored. Either remove 'collapsible' or 'multiple' depending on whether you want multiple accordions visible or not`,
   })
 }
 

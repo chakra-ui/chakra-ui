@@ -27,7 +27,6 @@ import mainPackageJson from 'package.json'
 import * as React from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Frontmatter } from 'src/types/frontmatter'
-import { t } from 'utils/i18n'
 
 function useHeadingFocusOnRouteChange() {
   const router = useRouter()
@@ -82,9 +81,7 @@ function TutorialContainer({
   return (
     <Box minH='100vh'>
       <SEO title={title} description={description} />
-      <SkipNavLink zIndex={20}>
-        {t('component.page-container.skip-to-content')}
-      </SkipNavLink>
+      <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <Header maxWidth={'full'} />
       <Box as='main' w='full'>
         <SkipNavContent />
@@ -99,12 +96,14 @@ function TutorialContainer({
                   mt={['20', null, '40']}
                   textAlign='center'
                 >
-                  <Heading>{t('tutorialError.heading')}</Heading>
+                  <Heading>Ooops something broke</Heading>
                   <Text fontSize={{ md: 'xl' }}>
-                    {t('tutorialError.message')}
+                    You just found a really nasty issue. We are aware of it.
+                    Just hit 'Reload' and code on!
                   </Text>
                   <Text fontSize={{ md: 'lg' }}>
-                    {t('tutorialError.submessage')}
+                    Try to have no code selected in the sandbox before copying
+                    new code 😉
                   </Text>
                   <Button
                     aria-label='Reload'
@@ -112,7 +111,7 @@ function TutorialContainer({
                     size='lg'
                     onClick={() => window.location.reload()}
                   >
-                    {t('tutorialError.reload')}
+                    Reload
                   </Button>
                 </VStack>
               </Center>

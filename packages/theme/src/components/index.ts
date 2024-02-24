@@ -12,7 +12,7 @@ import { containerTheme } from "./container"
 import { dividerTheme } from "./divider"
 import { drawerTheme } from "./drawer"
 import { editableTheme } from "./editable"
-import { formTheme } from "./form-control"
+import { fieldTheme } from "./field"
 import { formErrorTheme } from "./form-error"
 import { formLabelTheme } from "./form-label"
 import { headingTheme } from "./heading"
@@ -20,6 +20,7 @@ import { inputTheme } from "./input"
 import { kbdTheme } from "./kbd"
 import { linkTheme } from "./link"
 import { listTheme } from "./list"
+import { markTheme } from "./mark"
 import { menuTheme } from "./menu"
 import { modalTheme } from "./modal"
 import { numberInputTheme } from "./number-input"
@@ -54,7 +55,7 @@ export { containerTheme as Container } from "./container"
 export { dividerTheme as Divider } from "./divider"
 export { drawerTheme as Drawer } from "./drawer"
 export { editableTheme as Editable } from "./editable"
-export { formTheme as Form } from "./form-control"
+export { fieldTheme as Field } from "./field"
 export { formErrorTheme as FormError } from "./form-error"
 export { formLabelTheme as FormLabel } from "./form-label"
 export { headingTheme as Heading } from "./heading"
@@ -97,7 +98,7 @@ export const components = {
   Divider: dividerTheme,
   Drawer: drawerTheme,
   Editable: editableTheme,
-  Form: formTheme,
+  Field: fieldTheme,
   FormError: formErrorTheme,
   FormLabel: formLabelTheme,
   Heading: headingTheme,
@@ -105,6 +106,7 @@ export const components = {
   Kbd: kbdTheme,
   Link: linkTheme,
   List: listTheme,
+  Mark: markTheme,
   Menu: menuTheme,
   Modal: modalTheme,
   NumberInput: numberInputTheme,

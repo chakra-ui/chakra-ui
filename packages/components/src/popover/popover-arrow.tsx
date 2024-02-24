@@ -15,18 +15,21 @@ const resolveVar = (scale: string, value: unknown) =>
 
 export function PopoverArrow(props: PopoverArrowProps) {
   const { bg, bgColor, backgroundColor, shadow, boxShadow, shadowColor } = props
-  const { getArrowProps, getArrowInnerProps } = usePopoverContext()
+
+  const api = usePopoverContext()
   const styles = usePopoverStyles()
+
   const arrowBg = bg ?? bgColor ?? backgroundColor
   const arrowShadow = shadow ?? boxShadow
+
   return (
     <chakra.div
-      {...getArrowProps()}
-      className="chakra-popover__arrow-positioner"
+      {...api.getArrowProps()}
+      className={cx("chakra-popover__arrow", props.className)}
     >
       <chakra.div
-        className={cx("chakra-popover__arrow", props.className)}
-        {...getArrowInnerProps(props)}
+        className={cx("chakra-popover__arrow-inner", props.className)}
+        {...api.getArrowInnerProps(props)}
         __css={{
           "--popper-arrow-shadow-color": resolveVar("colors", shadowColor),
           "--popper-arrow-bg": resolveVar("colors", arrowBg),

@@ -1,9 +1,17 @@
-import { defineStyle } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
 import { cx } from "@chakra-ui/utils/cx"
-import { useMemo } from "react"
-import { AccordionItemProvider, useAccordionStyles } from "./accordion-context"
-import { useAccordionItem, UseAccordionItemProps } from "./use-accordion"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  AccordionItemContextProvider,
+  useAccordionStyles,
+} from "./accordion-context"
+import { splitAccordionItemProps } from "./accordion-props"
+import { UseAccordionItemProps, useAccordionItem } from "./use-accordion"
+
+interface AccordionItemState {
+  isExpanded: boolean
+  isDisabled: boolean
+}
 
 export interface AccordionItemProps
   extends Omit<
@@ -11,9 +19,7 @@ export interface AccordionItemProps
       keyof UseAccordionItemProps | "children"
     >,
     UseAccordionItemProps {
-  children?:
-    | React.ReactNode
-    | ((props: { isExpanded: boolean; isDisabled: boolean }) => React.ReactNode)
+  children?: MaybeRenderProp<AccordionItemState>
 }
 /**
  * AccordionItem is a single accordion that provides the open-close
@@ -21,37 +27,31 @@ export interface AccordionItemProps
  *
  * It also provides context for the accordion button and panel.
  */
-
 export const AccordionItem = forwardRef<AccordionItemProps, "div">(
   function AccordionItem(props, ref) {
     const { children, className } = props
-    const { htmlProps, ...context } = useAccordionItem(props)
 
+    const [itemProps, localProps] = splitAccordionItemProps(props)
+
+    const itemApi = useAccordionItem(itemProps)
     const styles = useAccordionStyles()
 
-    const containerStyles = defineStyle({
-      ...styles.container,
-      overflowAnchor: "none",
-    })
-
-    const ctx = useMemo(() => context, [context])
+    const itemState = {
+      isExpanded: !!itemApi.isOpen,
+      isDisabled: !!itemApi.isDisabled,
+    }
 
     return (
-      <AccordionItemProvider value={ctx}>
+      <AccordionItemContextProvider value={itemApi}>
         <chakra.div
           ref={ref}
-          {...htmlProps}
+          {...localProps}
           className={cx("chakra-accordion__item", className)}
-          __css={containerStyles}
+          __css={styles.item}
         >
-          {typeof children === "function"
-            ? children({
-                isExpanded: !!context.isOpen,
-                isDisabled: !!context.isDisabled,
-              })
-            : children}
+          {runIfFn(children, itemState)}
         </chakra.div>
-      </AccordionItemProvider>
+      </AccordionItemContextProvider>
     )
   },
 )

@@ -1,27 +1,25 @@
-import { defineStyle } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra } from "../system"
-import { useProgressStyles } from "./progress"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { useProgressStyles } from "./progress-context"
 
 export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
 
 /**
- * ProgressLabel is used to show the numeric value of the progress.
+ * ProgressLabel is used provide a label for the `Progress` component
  * @see Docs https://chakra-ui.com/progress
  */
-export const ProgressLabel: React.FC<ProgressLabelProps> = (props) => {
-  const styles = useProgressStyles()
-
-  const labelStyles = defineStyle({
-    top: "50%",
-    left: "50%",
-    width: "100%",
-    textAlign: "center",
-    position: "absolute",
-    transform: "translate(-50%, -50%)",
-    ...styles.label,
-  })
-
-  return <chakra.div {...props} __css={labelStyles} />
-}
+export const ProgressLabel = forwardRef<ProgressLabelProps, "div">(
+  function ProgressLabel(props, ref) {
+    const styles = useProgressStyles()
+    return (
+      <chakra.div
+        ref={ref}
+        {...props}
+        __css={styles.label}
+        className={cx("chakra-progress__label", props.className)}
+      />
+    )
+  },
+)
 
 ProgressLabel.displayName = "ProgressLabel"

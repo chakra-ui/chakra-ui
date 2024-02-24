@@ -1,43 +1,29 @@
-import { FormControl, FormHelperText, FormLabel } from "../form-control"
 import {
-  focus,
-  testA11y,
   fireEvent,
-  render,
+  focus,
   hooks,
+  render,
   screen,
+  testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import {
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputProps,
-  NumberInputStepper,
-  useNumberInput,
-} from "."
+import { NumberInput, useNumberInput } from "."
+import { Field } from "../field"
 
-function renderComponent(props: NumberInputProps = {}) {
+function renderComponent(props: NumberInput.RootProps = {}) {
   return render(
     <>
       <label htmlFor="input">Select number:</label>
-      <NumberInput id="input" data-testid="root" {...props}>
-        <NumberInputField data-testid="input" />
-        <NumberInputStepper data-testid="group">
-          <NumberIncrementStepper children="+" data-testid="up-btn" />
-          <NumberDecrementStepper children="-" data-testid="down-btn" />
-        </NumberInputStepper>
-      </NumberInput>
+      <NumberInput.Root id="input" data-testid="root" {...props}>
+        <NumberInput.Field data-testid="input" />
+        <NumberInput.Stepper data-testid="group">
+          <NumberInput.IncrementStepper children="+" data-testid="up-btn" />
+          <NumberInput.DecrementStepper children="-" data-testid="down-btn" />
+        </NumberInput.Stepper>
+      </NumberInput.Root>
     </>,
   )
 }
-
-/**
- * Get some inspiration here
- * https://github.com/palantir/blueprint/blob/3aa56473d253f5287e0960759bee367a9ff3e045/packages/core/test/controls/numericInputTests.tsx
- * https://github.com/deberoppa7/react-numeric-input/blob/master/src/index.test.js
- */
 
 test("passes a11y test", async () => {
   const { container } = renderComponent()
@@ -185,9 +171,6 @@ test("should focus input on spin", async () => {
 
   await user.click(upBtn)
   expect(input).toHaveValue("1")
-
-  // for some reason, .toHaveFocus assertion doesn't work
-  // expect(tools.getByTestId("input")).toEqual(document.activeElement)
 })
 
 test("should derive values from surrounding FormControl", () => {
@@ -195,7 +178,7 @@ test("should derive values from surrounding FormControl", () => {
   const onBlur = vi.fn()
 
   render(
-    <FormControl
+    <Field.Root
       id="input"
       isRequired
       isInvalid
@@ -204,16 +187,16 @@ test("should derive values from surrounding FormControl", () => {
       onFocus={onFocus}
       onBlur={onBlur}
     >
-      <FormLabel>Number</FormLabel>
-      <NumberInput data-testid="root">
-        <NumberInputField data-testid="input" />
-        <NumberInputStepper data-testid="group">
-          <NumberIncrementStepper children="+" data-testid="up-btn" />
-          <NumberDecrementStepper children="-" data-testid="down-btn" />
-        </NumberInputStepper>
-      </NumberInput>
-      <FormHelperText>Select a number</FormHelperText>
-    </FormControl>,
+      <Field.Label>Number</Field.Label>
+      <NumberInput.Root data-testid="root">
+        <NumberInput.Field data-testid="input" />
+        <NumberInput.Stepper data-testid="group">
+          <NumberInput.IncrementStepper children="+" data-testid="up-btn" />
+          <NumberInput.DecrementStepper children="-" data-testid="down-btn" />
+        </NumberInput.Stepper>
+      </NumberInput.Root>
+      <Field.HelpText>Select a number</Field.HelpText>
+    </Field.Root>,
   )
 
   const input = screen.getByTestId("input")
@@ -234,8 +217,10 @@ test("should derive values from surrounding FormControl", () => {
 
 test("should reset value if `e` is typed", async () => {
   const { getByTestId, user } = renderComponent({ max: 30, min: 1 })
+
   const input = getByTestId("input")
   await user.type(input, "e")
+
   // value is beyond max, so it should reset to `max`
   fireEvent.blur(input)
   expect(input).toHaveValue("")

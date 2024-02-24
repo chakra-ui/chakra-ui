@@ -1,6 +1,6 @@
 import {
-  SystemStyleObject,
   ThemingProps,
+  defineStyle,
   omitThemingProps,
 } from "@chakra-ui/styled-system"
 import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
@@ -11,8 +11,8 @@ export interface SkipNavLinkProps
 
 const fallbackId = "chakra-skip-nav"
 
-function getStyles(styles: any): SystemStyleObject {
-  return {
+function getStyles(styles: any) {
+  return defineStyle({
     userSelect: "none",
     border: "0",
     height: "1px",
@@ -30,7 +30,7 @@ function getStyles(styles: any): SystemStyleObject {
       height: "auto",
       ...styles["_focus"],
     },
-  }
+  })
 }
 
 /**

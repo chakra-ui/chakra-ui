@@ -16,14 +16,23 @@ const { defineMultiStyleConfig, definePartsStyle } =
 const baseStyleRoot = defineStyle((props) => {
   const { orientation } = props
   return {
+    position: "relative",
     display: orientation === "vertical" ? "flex" : "block",
   }
 })
 
-const baseStyleTab = defineStyle((props) => {
+const baseStyleContentGroup = defineStyle({
+  width: "100%",
+})
+
+const baseStyleTrigger = defineStyle((props) => {
   const { isFitted } = props
 
   return {
+    outline: "0",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     flex: isFitted ? 1 : undefined,
     transitionProperty: "common",
     transitionDuration: "normal",
@@ -38,7 +47,7 @@ const baseStyleTab = defineStyle((props) => {
   }
 })
 
-const baseStyleTablist = defineStyle((props) => {
+const baseStyleList = defineStyle((props) => {
   const { align = "start", orientation } = props
 
   const alignments: Record<string, string> = {
@@ -48,39 +57,42 @@ const baseStyleTablist = defineStyle((props) => {
   }
 
   return {
+    display: "flex",
     justifyContent: alignments[align],
     flexDirection: orientation === "vertical" ? "column" : "row",
   }
 })
 
-const baseStyleTabpanel = defineStyle({
+const baseStyleContent = defineStyle({
   p: 4,
+  outline: "0",
 })
 
 const baseStyle = definePartsStyle((props) => ({
   root: baseStyleRoot(props),
-  tab: baseStyleTab(props),
-  tablist: baseStyleTablist(props),
-  tabpanel: baseStyleTabpanel,
+  trigger: baseStyleTrigger(props),
+  list: baseStyleList(props),
+  content: baseStyleContent,
+  contentGroup: baseStyleContentGroup,
 }))
 
 const sizes = {
   sm: definePartsStyle({
-    tab: {
+    trigger: {
       py: 1,
       px: 4,
       fontSize: "sm",
     },
   }),
   md: definePartsStyle({
-    tab: {
+    trigger: {
       fontSize: "md",
       py: 2,
       px: 4,
     },
   }),
   lg: definePartsStyle({
-    tab: {
+    trigger: {
       fontSize: "lg",
       py: 3,
       px: 4,
@@ -95,11 +107,11 @@ const variantLine = definePartsStyle((props) => {
   const marginProp = isVertical ? "marginStart" : "marginBottom"
 
   return {
-    tablist: {
+    list: {
       [borderProp]: "2px solid",
       borderColor: "inherit",
     },
-    tab: {
+    trigger: {
       [borderProp]: "2px solid",
       borderColor: "transparent",
       [marginProp]: "-2px",
@@ -128,7 +140,7 @@ const variantLine = definePartsStyle((props) => {
 const variantEnclosed = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
-    tab: {
+    trigger: {
       borderTopRadius: "md",
       border: "1px solid",
       borderColor: "transparent",
@@ -146,7 +158,7 @@ const variantEnclosed = definePartsStyle((props) => {
       },
       color: $fg.reference,
     },
-    tablist: {
+    list: {
       mb: "-1px",
       borderBottom: "1px solid",
       borderColor: "inherit",
@@ -157,7 +169,7 @@ const variantEnclosed = definePartsStyle((props) => {
 const variantEnclosedColored = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
-    tab: {
+    trigger: {
       border: "1px solid",
       borderColor: "inherit",
       [$bg.variable]: "colors.gray.50",
@@ -182,7 +194,7 @@ const variantEnclosedColored = definePartsStyle((props) => {
       color: $fg.reference,
       bg: $bg.reference,
     },
-    tablist: {
+    list: {
       mb: "-1px",
       borderBottom: "1px solid",
       borderColor: "inherit",
@@ -193,7 +205,7 @@ const variantEnclosedColored = definePartsStyle((props) => {
 const variantSoftRounded = definePartsStyle((props) => {
   const { colorScheme: c, theme } = props
   return {
-    tab: {
+    trigger: {
       borderRadius: "full",
       fontWeight: "semibold",
       color: "gray.600",
@@ -208,7 +220,7 @@ const variantSoftRounded = definePartsStyle((props) => {
 const variantSolidRounded = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
-    tab: {
+    trigger: {
       borderRadius: "full",
       fontWeight: "semibold",
       [$fg.variable]: "colors.gray.600",

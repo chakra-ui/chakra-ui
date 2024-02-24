@@ -1,34 +1,40 @@
-import { FormControl, FormLabel } from "../form-control"
-import { Icon } from "../icon"
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import * as React from "react"
-import {
-  Checkbox,
-  CheckboxGroup,
-  CheckboxGroupProps,
-  useCheckbox,
-  useCheckboxGroup,
-  UseCheckboxProps,
-} from "."
+import { Checkbox, UseCheckboxProps, useCheckbox, useCheckboxGroup } from "."
+import { Field } from "../field"
+import { Icon } from "../icon"
+
+const HookCheckbox = (
+  props: UseCheckboxProps & { children?: React.ReactNode },
+) => {
+  const { children, ...restProps } = props
+  const { getInputProps, getCheckboxProps } = useCheckbox(restProps)
+
+  return (
+    <label>
+      <input data-testid="input" {...getInputProps()} />
+      <div data-testid="checkbox" {...getCheckboxProps()}>
+        {children}
+      </div>
+    </label>
+  )
+}
+
+const DemoCheckbox = (props: Checkbox.RootProps) => {
+  return (
+    <Checkbox.Root {...props}>
+      <Checkbox.Control />
+      <Checkbox.Label>{props.children}</Checkbox.Label>
+    </Checkbox.Root>
+  )
+}
 
 test("passes a11y test", async () => {
-  await testA11y(<Checkbox>label</Checkbox>)
+  await testA11y(<DemoCheckbox>label</DemoCheckbox>)
 })
 
 test("Uncontrolled - should check and uncheck", () => {
-  const Component = () => {
-    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox()
-
-    return (
-      <label {...htmlProps}>
-        <input data-testid="input" {...getInputProps()} />
-        <div data-testid="checkbox" {...getCheckboxProps()}>
-          Checkbox
-        </div>
-      </label>
-    )
-  }
-  render(<Component />)
+  render(<HookCheckbox>Checkbox</HookCheckbox>)
 
   const input = screen.getByTestId("input")
   const checkbox = screen.getByTestId("checkbox")
@@ -45,19 +51,7 @@ test("Uncontrolled - should check and uncheck", () => {
 })
 
 test("Uncontrolled - should not check if disabled", () => {
-  const Component = () => {
-    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox({
-      isDisabled: true,
-    })
-
-    return (
-      <label {...htmlProps}>
-        <input data-testid="input" {...getInputProps()} />
-        <div {...getCheckboxProps()}>Checkbox</div>
-      </label>
-    )
-  }
-  render(<Component />)
+  render(<HookCheckbox isDisabled>Checkbox</HookCheckbox>)
 
   const input = screen.getByTestId("input")
   const checkbox = screen.getByText("Checkbox")
@@ -72,64 +66,45 @@ test("Uncontrolled - should not check if disabled", () => {
 })
 
 test("indeterminate state", () => {
-  const Component = () => {
-    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox({
-      isIndeterminate: true,
-    })
-
-    return (
-      <label {...htmlProps}>
-        <input data-testid="input" {...getInputProps()} />
-        <div {...getCheckboxProps()}>Checkbox</div>
-      </label>
-    )
-  }
-  render(<Component />)
+  render(<HookCheckbox isIndeterminate>Checkbox</HookCheckbox>)
 
   const checkbox = screen.getByText("Checkbox")
   expect(checkbox).toHaveAttribute("data-indeterminate")
 })
 
-test("Controlled - should check and uncheck", () => {
+test("Controlled - should check and uncheck", async () => {
   const onChange = vi.fn()
 
-  const Component = (props: UseCheckboxProps) => {
+  const Component = () => {
     const [isChecked, setIsChecked] = React.useState(false)
-    const { htmlProps, getInputProps, getCheckboxProps } = useCheckbox({
-      isChecked,
-      onChange: (event) => {
-        setIsChecked(event.target.checked)
-        props.onChange?.(event)
-      },
-    })
-
     return (
-      <label {...htmlProps}>
-        <input data-testid="input" {...getInputProps()} />
-        <div {...getCheckboxProps()}>Checkbox</div>
-      </label>
+      <HookCheckbox
+        isChecked={isChecked}
+        onChange={(e) => {
+          setIsChecked(e.target.checked)
+          onChange(e)
+        }}
+      />
     )
   }
 
-  render(<Component onChange={onChange} />)
+  const { user } = render(<Component />)
 
-  const input = screen.getByTestId("input")
-  const checkbox = screen.getByText("Checkbox")
+  const inputEl = screen.getByRole("checkbox")
+  expect(inputEl).not.toBeChecked()
 
-  expect(checkbox).not.toHaveAttribute("data-checked")
-
-  fireEvent.click(input)
-  expect(checkbox).toHaveAttribute("data-checked")
+  await user.click(screen.getByRole("checkbox"))
+  expect(inputEl).toBeChecked()
   expect(onChange).toHaveBeenCalled()
 })
 
-test("CheckboxGroup Uncontrolled - default values should be check", () => {
+test("Checkbox.Group Uncontrolled - default values should be check", () => {
   const Component = () => (
-    <CheckboxGroup defaultValue={["one", "two"]}>
-      <Checkbox value="one">One</Checkbox>
-      <Checkbox value="two">Two</Checkbox>
-      <Checkbox value="three">Three</Checkbox>
-    </CheckboxGroup>
+    <Checkbox.Group defaultValue={["one", "two"]}>
+      <DemoCheckbox value="one">One</DemoCheckbox>
+      <DemoCheckbox value="two">Two</DemoCheckbox>
+      <DemoCheckbox value="three">Three</DemoCheckbox>
+    </Checkbox.Group>
   )
   const { container } = render(<Component />)
   const checkboxOne = container.querySelectorAll("input")[0]
@@ -147,18 +122,18 @@ test("CheckboxGroup Uncontrolled - default values should be check", () => {
   expect(checkboxThree).toBeChecked()
 })
 
-test("Controlled CheckboxGroup", () => {
+test("Controlled Checkbox.Group", () => {
   let checked = ["one", "two"]
   const onChange = vi.fn((value) => {
     checked = value
   })
 
-  const Component = (props: CheckboxGroupProps) => (
-    <CheckboxGroup {...props}>
-      <Checkbox value="one">One</Checkbox>
-      <Checkbox value="two">Two</Checkbox>
-      <Checkbox value="three">Three</Checkbox>
-    </CheckboxGroup>
+  const Component = (props: Checkbox.GroupProps) => (
+    <Checkbox.Group {...props}>
+      <DemoCheckbox value="one">One</DemoCheckbox>
+      <DemoCheckbox value="two">Two</DemoCheckbox>
+      <DemoCheckbox value="three">Three</DemoCheckbox>
+    </Checkbox.Group>
   )
   const { container, rerender } = render(
     <Component value={checked} onChange={onChange} />,
@@ -180,17 +155,17 @@ test("Controlled CheckboxGroup", () => {
   expect(checked).toEqual(["one", "two", "three"])
 })
 
-test("Uncontrolled CheckboxGroup - should not check if group disabled", () => {
+test("Uncontrolled Checkbox.Group - should not check if group disabled", () => {
   const Component = () => (
-    <CheckboxGroup isDisabled>
-      <Checkbox value="one">One</Checkbox>
-      <Checkbox value="two" isDisabled>
+    <Checkbox.Group isDisabled>
+      <DemoCheckbox value="one">One</DemoCheckbox>
+      <DemoCheckbox value="two" isDisabled>
         Two
-      </Checkbox>
-      <Checkbox value="three" isDisabled={false}>
+      </DemoCheckbox>
+      <DemoCheckbox value="three" isDisabled={false}>
         Three
-      </Checkbox>
-    </CheckboxGroup>
+      </DemoCheckbox>
+    </Checkbox.Group>
   )
   const { container } = render(<Component />)
   const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
@@ -210,14 +185,14 @@ test("Uncontrolled CheckboxGroup - should not check if group disabled", () => {
   expect(checkboxThree).toBeChecked()
 })
 
-test("uncontrolled CheckboxGroup handles change", () => {
+test("uncontrolled Checkbox.Group handles change", () => {
   const onChange = vi.fn()
   render(
-    <CheckboxGroup defaultValue={["A", "C"]} onChange={onChange}>
-      <Checkbox value="A">A</Checkbox>
-      <Checkbox value="B">B</Checkbox>
-      <Checkbox value="C">C</Checkbox>
-    </CheckboxGroup>,
+    <Checkbox.Group defaultValue={["A", "C"]} onChange={onChange}>
+      <DemoCheckbox value="A">A</DemoCheckbox>
+      <DemoCheckbox value="B">B</DemoCheckbox>
+      <DemoCheckbox value="C">C</DemoCheckbox>
+    </Checkbox.Group>,
   )
 
   fireEvent.click(screen.getByLabelText("B"))
@@ -227,7 +202,7 @@ test("uncontrolled CheckboxGroup handles change", () => {
 })
 
 test("accepts custom icon", () => {
-  const CustomIcon = (props: any) => {
+  const IconSvg = (props: any) => {
     const { isIndeterminate, isChecked, ...rest } = props
 
     const d = isIndeterminate
@@ -242,9 +217,10 @@ test("accepts custom icon", () => {
   }
 
   render(
-    <Checkbox defaultChecked icon={<CustomIcon data-testid="custom-icon" />}>
-      hello world
-    </Checkbox>,
+    <Checkbox.Root defaultChecked>
+      <Checkbox.Control icon={<IconSvg data-testid="custom-icon" />} />
+      <Checkbox.Label>hello world</Checkbox.Label>
+    </Checkbox.Root>,
   )
 
   expect(screen.getByTestId("custom-icon")).toBeInTheDocument()
@@ -253,10 +229,10 @@ test("accepts custom icon", () => {
 test("can pass tabIndex directly to input component", () => {
   const { container } = render(
     <>
-      <Checkbox tabIndex={-1} isFocusable={false}>
+      <DemoCheckbox tabIndex={-1} isFocusable={false}>
         Not Focusable with provided tabIndex
-      </Checkbox>
-      <Checkbox isFocusable={false}>Not Focusable</Checkbox>
+      </DemoCheckbox>
+      <DemoCheckbox isFocusable={false}>Not Focusable</DemoCheckbox>
     </>,
   )
   const [checkboxOne, checkboxTwo] = Array.from(
@@ -276,9 +252,9 @@ test("useCheckboxGroup can handle both strings and numbers", () => {
     return (
       <div>
         <p id="value">{value.sort().join(", ")}</p>
-        <Checkbox {...getCheckboxProps({ value: 1 })} />
-        <Checkbox {...getCheckboxProps({ value: "2" })} />
-        <Checkbox {...getCheckboxProps({ value: 3 })} />
+        <DemoCheckbox {...getCheckboxProps({ value: 1 })} />
+        <DemoCheckbox {...getCheckboxProps({ value: "2" })} />
+        <DemoCheckbox {...getCheckboxProps({ value: 3 })} />
       </div>
     )
   }
@@ -316,29 +292,29 @@ test("useCheckboxGroup can handle both strings and numbers", () => {
   expect(checkboxThree).not.toBeChecked()
 })
 
-test("Uncontrolled FormControl - should not check if form-control disabled", () => {
+test("Uncontrolled Form.Control - should not check if form-control disabled", () => {
   const { container } = render(
-    <FormControl isDisabled mt={4}>
-      <FormLabel>Disabled Opt-in Example</FormLabel>
-      <CheckboxGroup>
-        <Checkbox value="1">Disabled Opt-in 1</Checkbox>
-        <Checkbox value="2" isDisabled>
+    <Field.Root isDisabled mt={4}>
+      <Field.Label>Disabled Opt-in Example</Field.Label>
+      <Checkbox.Group>
+        <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
+        <DemoCheckbox value="2" isDisabled>
           Disabled Opt-in 2
-        </Checkbox>
-        <Checkbox value="3" isDisabled={false}>
+        </DemoCheckbox>
+        <DemoCheckbox value="3" isDisabled={false}>
           Disabled Opt-in 3
-        </Checkbox>
-      </CheckboxGroup>
-      <CheckboxGroup isDisabled={false}>
-        <Checkbox value="1">Disabled Opt-in 1</Checkbox>
-        <Checkbox value="2" isDisabled>
+        </DemoCheckbox>
+      </Checkbox.Group>
+      <Checkbox.Group isDisabled={false}>
+        <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
+        <DemoCheckbox value="2" isDisabled>
           Disabled Opt-in 2
-        </Checkbox>
-        <Checkbox value="3" isDisabled={false}>
+        </DemoCheckbox>
+        <DemoCheckbox value="3" isDisabled={false}>
           Disabled Opt-in 3
-        </Checkbox>
-      </CheckboxGroup>
-    </FormControl>,
+        </DemoCheckbox>
+      </Checkbox.Group>
+    </Field.Root>,
   )
 
   const [
@@ -375,20 +351,20 @@ test("Uncontrolled FormControl - should not check if form-control disabled", () 
   expect(checkboxSix).toBeChecked()
 })
 
-test("Uncontrolled FormControl - mark label as invalid", () => {
+test("Uncontrolled Form.Control - mark label as invalid", () => {
   const { container } = render(
-    <FormControl isInvalid mt={4}>
-      <FormLabel>Invalid Opt-in Example</FormLabel>
-      <CheckboxGroup>
-        <Checkbox value="1">Invalid Opt-in 1</Checkbox>
-        <Checkbox value="2" isInvalid>
+    <Field.Root isInvalid mt={4}>
+      <Field.Label>Invalid Opt-in Example</Field.Label>
+      <Checkbox.Group>
+        <DemoCheckbox value="1">Invalid Opt-in 1</DemoCheckbox>
+        <DemoCheckbox value="2" isInvalid>
           Invalid Opt-in 2
-        </Checkbox>
-        <Checkbox value="3" isInvalid={false}>
+        </DemoCheckbox>
+        <DemoCheckbox value="3" isInvalid={false}>
           Invalid Opt-in 3
-        </Checkbox>
-      </CheckboxGroup>
-    </FormControl>,
+        </DemoCheckbox>
+      </Checkbox.Group>
+    </Field.Root>,
   )
 
   const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
@@ -416,20 +392,20 @@ test("Uncontrolled FormControl - mark label as invalid", () => {
   expect(controlThree).not.toHaveAttribute("data-invalid")
 })
 
-test("Uncontrolled FormControl - mark label required", () => {
+test("Uncontrolled Form.Control - mark label required", () => {
   const { container } = render(
-    <FormControl isRequired mt={4}>
-      <FormLabel>Required Opt-in Example</FormLabel>
-      <CheckboxGroup>
-        <Checkbox value="1">Required Opt-in 1</Checkbox>
-        <Checkbox value="2" isRequired>
+    <Field.Root isRequired mt={4}>
+      <Field.Label>Required Opt-in Example</Field.Label>
+      <Checkbox.Group>
+        <DemoCheckbox value="1">Required Opt-in 1</DemoCheckbox>
+        <DemoCheckbox value="2" isRequired>
           Required Opt-in 2
-        </Checkbox>
-        <Checkbox value="3" isRequired={false}>
+        </DemoCheckbox>
+        <DemoCheckbox value="3" isRequired={false}>
           Required Opt-in 3
-        </Checkbox>
-      </CheckboxGroup>
-    </FormControl>,
+        </DemoCheckbox>
+      </Checkbox.Group>
+    </Field.Root>,
   )
 
   const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
@@ -441,20 +417,20 @@ test("Uncontrolled FormControl - mark label required", () => {
   expect(checkboxThree).not.toBeRequired()
 })
 
-test("Uncontrolled FormControl - mark readonly", () => {
+test("Uncontrolled Form.Control - mark readonly", () => {
   const { container } = render(
-    <FormControl isReadOnly mt={4}>
-      <FormLabel>ReadOnly Opt-in Example</FormLabel>
-      <CheckboxGroup>
-        <Checkbox value="1">ReadOnly Opt-in 1</Checkbox>
-        <Checkbox value="2" isReadOnly>
+    <Field.Root isReadOnly mt={4}>
+      <Field.Label>ReadOnly Opt-in Example</Field.Label>
+      <Checkbox.Group>
+        <DemoCheckbox value="1">ReadOnly Opt-in 1</DemoCheckbox>
+        <DemoCheckbox value="2" isReadOnly>
           ReadOnly Opt-in 2
-        </Checkbox>
-        <Checkbox value="3" isReadOnly={false}>
+        </DemoCheckbox>
+        <DemoCheckbox value="3" isReadOnly={false}>
           ReadOnly Opt-in 3
-        </Checkbox>
-      </CheckboxGroup>
-    </FormControl>,
+        </DemoCheckbox>
+      </Checkbox.Group>
+    </Field.Root>,
   )
 
   const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
@@ -474,19 +450,19 @@ test("Uncontrolled FormControl - mark readonly", () => {
   expect(controlThree).not.toHaveAttribute("data-readonly")
 })
 
-test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
+test("Uncontrolled Form.Control - calls all onFocus EventHandler", () => {
   const formControlOnFocusMock = vi.fn()
   const checkboxOnFocusMock = vi.fn()
 
   const { container } = render(
-    <FormControl mt={4} onFocus={formControlOnFocusMock}>
-      <FormLabel>onFocus example</FormLabel>
-      <CheckboxGroup>
-        <Checkbox value="1" onFocus={checkboxOnFocusMock}>
+    <Field.Root mt={4} onFocus={formControlOnFocusMock}>
+      <Field.Label>onFocus example</Field.Label>
+      <Checkbox.Group>
+        <DemoCheckbox value="1" onFocus={checkboxOnFocusMock}>
           onFocus Opt-in 1
-        </Checkbox>
-      </CheckboxGroup>
-    </FormControl>,
+        </DemoCheckbox>
+      </Checkbox.Group>
+    </Field.Root>,
   )
 
   const [checkboxOne] = Array.from(container.querySelectorAll("input"))
@@ -495,19 +471,19 @@ test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
   expect(checkboxOnFocusMock).toHaveBeenCalled()
 })
 
-test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
+test("Uncontrolled Form.Control - calls all onBlur EventHandler", () => {
   const formControlOnBlurMock = vi.fn()
   const checkboxOnBlurMock = vi.fn()
 
   const { container } = render(
-    <FormControl mt={4} onBlur={formControlOnBlurMock}>
-      <FormLabel>onBlur Example</FormLabel>
-      <CheckboxGroup>
-        <Checkbox value="1" onBlur={checkboxOnBlurMock}>
+    <Field.Root mt={4} onBlur={formControlOnBlurMock}>
+      <Field.Label>onBlur Example</Field.Label>
+      <Checkbox.Group>
+        <DemoCheckbox value="1" onBlur={checkboxOnBlurMock}>
           onBlur EOpt-in 1
-        </Checkbox>
-      </CheckboxGroup>
-    </FormControl>,
+        </DemoCheckbox>
+      </Checkbox.Group>
+    </Field.Root>,
   )
 
   const [checkboxOne] = Array.from(container.querySelectorAll("input"))
@@ -521,17 +497,20 @@ test("On resetting form, all checkboxes in the form should reset to its default 
   const { getByRole, getAllByRole } = render(
     <form>
       <label htmlFor="myCheckbox">My Checkbox</label>
-      <Checkbox id="myCheckbox" defaultChecked />
+      <DemoCheckbox id="myCheckbox" defaultChecked />
       <label htmlFor="myCheckbox2">My Checkbox2</label>
-      <Checkbox id="myCheckbox2" />
+      <DemoCheckbox id="myCheckbox2" />
       <button type="reset">Reset</button>
     </form>,
   )
+
   const resetBtn = getByRole("button")
   const [checkbox1, checkbox2] = getAllByRole("checkbox")
+
   fireEvent.click(checkbox1)
   fireEvent.click(checkbox2)
   fireEvent.click(resetBtn)
+
   expect(checkbox1).toBeChecked()
   expect(checkbox2).not.toBeChecked()
 })

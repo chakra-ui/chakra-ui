@@ -1,21 +1,20 @@
+import { List } from '@chakra-ui/react'
 import PageContainer from 'components/page-container'
 import Sidebar from 'components/sidebar/sidebar'
+import SidebarLink from 'components/sidebar/sidebar-link'
+import TocNav from 'components/toc-nav'
+import communitySidebar from 'configs/community.sidebar.json'
 import componentsSidebar from 'configs/components.sidebar.json'
+import figmaSidebar from 'configs/figma.sidebar.json'
 import gettingStartedSidebar from 'configs/getting-started.sidebar.json'
 import hooksSidebar from 'configs/hooks.sidebar.json'
 import styledSystemSidebar from 'configs/styled-system.sidebar.json'
 import tutorialSidebar from 'configs/tutorial.sidebar.json'
-import communitySidebar from 'configs/community.sidebar.json'
-import figmaSidebar from 'configs/figma.sidebar.json'
-import semverRSort from 'semver/functions/rsort'
-import { ReactNode } from 'react'
-import { RouteItem } from 'utils/get-route-context'
-import { Frontmatter } from 'src/types/frontmatter'
-import { List, ListItem } from '@chakra-ui/react'
-import SidebarLink from 'components/sidebar/sidebar-link'
 import { allChangelogs } from 'contentlayer/generated'
-import TocNav from 'components/toc-nav'
-import { t } from 'utils/i18n'
+import { ReactNode } from 'react'
+import semverRSort from 'semver/functions/rsort'
+import { Frontmatter } from 'src/types/frontmatter'
+import { RouteItem } from 'utils/get-route-context'
 
 export function getRoutes(slug: string): RouteItem[] {
   // for home page, use docs sidebar
@@ -70,14 +69,14 @@ export default function MDXLayout(props: MDXLayoutProps) {
       frontmatter={frontmatter}
       leftSidebar={<Sidebar routes={routes} />}
       rightSidebar={
-        <TocNav title={t('component.table-of-content.versions')}>
-          <List mt={2}>
+        <TocNav title='Versions'>
+          <List.Root ms='1rem' mt='2'>
             {versions.map(({ title, path }) => (
-              <ListItem key={path}>
+              <List.Item key={path}>
                 <SidebarLink href={path}>{title}</SidebarLink>
-              </ListItem>
+              </List.Item>
             ))}
-          </List>
+          </List.Root>
         </TocNav>
       }
     >

@@ -13,15 +13,25 @@ const $bg = cssVar("modal-bg")
 const $shadow = cssVar("modal-shadow")
 
 const baseStyleOverlay = defineStyle({
+  pos: "fixed",
+  left: "0",
+  top: "0",
+  w: "100vw",
+  h: "100vh",
   bg: "blackAlpha.600",
   zIndex: "modal",
 })
 
-const baseStyleDialogContainer = defineStyle((props) => {
+const baseStylePositioner = defineStyle((props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
     display: "flex",
+    width: "100vw",
+    height: "$100vh",
+    position: "fixed",
+    left: 0,
+    top: 0,
     zIndex: "modal",
     justifyContent: "center",
     alignItems: isCentered ? "center" : "flex-start",
@@ -30,10 +40,15 @@ const baseStyleDialogContainer = defineStyle((props) => {
   }
 })
 
-const baseStyleDialog = defineStyle((props) => {
+const baseStyleContent = defineStyle((props) => {
   const { isCentered, scrollBehavior } = props
 
   return {
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    width: "100%",
+    outline: 0,
     borderRadius: "md",
     color: "inherit",
     my: isCentered ? "auto" : "16",
@@ -52,6 +67,7 @@ const baseStyleDialog = defineStyle((props) => {
 })
 
 const baseStyleHeader = defineStyle({
+  flex: 0,
   px: "6",
   py: "4",
   fontSize: "xl",
@@ -75,14 +91,17 @@ const baseStyleBody = defineStyle((props) => {
 })
 
 const baseStyleFooter = defineStyle({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
   px: "6",
   py: "4",
 })
 
 const baseStyle = definePartsStyle((props) => ({
   overlay: baseStyleOverlay,
-  dialogContainer: runIfFn(baseStyleDialogContainer, props),
-  dialog: runIfFn(baseStyleDialog, props),
+  positioner: runIfFn(baseStylePositioner, props),
+  content: runIfFn(baseStyleContent, props),
   header: baseStyleHeader,
   closeButton: baseStyleCloseButton,
   body: runIfFn(baseStyleBody, props),
@@ -96,7 +115,7 @@ const baseStyle = definePartsStyle((props) => ({
 function getSize(value: string) {
   if (value === "full") {
     return definePartsStyle({
-      dialog: {
+      content: {
         maxW: "100vw",
         minH: "$100vh",
         my: "0",
@@ -105,7 +124,7 @@ function getSize(value: string) {
     })
   }
   return definePartsStyle({
-    dialog: { maxW: value },
+    content: { maxW: value },
   })
 }
 
@@ -126,5 +145,7 @@ const sizes = {
 export const modalTheme = defineMultiStyleConfig({
   baseStyle,
   sizes,
-  defaultProps: { size: "md" },
+  defaultProps: {
+    size: "md",
+  },
 })

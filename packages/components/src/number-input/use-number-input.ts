@@ -8,6 +8,7 @@ import { ariaAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { InputDOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useMemo, useRef, useState } from "react"
+import { splitFieldProps, useFieldProps } from "../field"
 import { useAttributeObserver } from "./use-attr-observer"
 import { useSpinner } from "./use-spinner"
 
@@ -138,6 +139,19 @@ type InputSelection = { start: number | null; end: number | null }
  * @see WHATWG   https://html.spec.whatwg.org/multipage/input.html#number-state-(type=number)
  */
 export function useNumberInput(props: UseNumberInputProps = {}) {
+  const [fieldProps, restProps] = splitFieldProps(props)
+
+  const {
+    id,
+    disabled: isDisabled,
+    readOnly: isReadOnly,
+    required: isRequired,
+    "aria-describedby": ariaDescBy,
+    invalid: isInvalid,
+    onFocus: onFocusProp,
+    onBlur: onBlurProp,
+  } = useFieldProps(fieldProps)
+
   const {
     focusInputOnChange = true,
     clampValueOnBlur = true,
@@ -145,29 +159,18 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     min = Number.MIN_SAFE_INTEGER,
     max = Number.MAX_SAFE_INTEGER,
     step: stepProp = 1,
-    isReadOnly,
-    isDisabled,
-    isRequired,
-    isInvalid,
     pattern = "[0-9]*(.[0-9]+)?",
     inputMode = "decimal",
     allowMouseWheel,
-    id,
-    onChange: _,
-    precision,
     name,
-    "aria-describedby": ariaDescBy,
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
-    onFocus: onFocusProp,
-    onBlur: onBlurProp,
     onInvalid: onInvalidProp,
     getAriaValueText: getAriaValueTextProp,
     isValidCharacter: isValidCharacterProp,
     format: formatValue,
     parse: parseValue,
-    ...htmlProps
-  } = props
+  } = restProps
 
   const onFocus = useCallbackRef(onFocusProp)
   const onBlur = useCallbackRef(onBlurProp)
@@ -571,7 +574,6 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     getIncrementButtonProps,
     getDecrementButtonProps,
     getInputProps,
-    htmlProps,
   }
 }
 

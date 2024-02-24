@@ -5,8 +5,9 @@ import {
   Flex,
   HStack,
   Image,
+  Icon,
 } from "@chakra-ui/react"
-import { StarIcon } from "@chakra-ui/icons"
+import { FaStar } from "react-icons/fa"
 import { Property } from "../interfaces/Property"
 
 export const PropertySummary = ({ property }: { property: Property }) => {
@@ -54,7 +55,8 @@ export const PropertySummary = ({ property }: { property: Property }) => {
             {Array(5)
               .fill("")
               .map((_, i) => (
-                <StarIcon
+                <Icon
+                  as={FaStar}
                   key={i}
                   color={i < property.rating ? "teal.500" : "gray.300"}
                 />

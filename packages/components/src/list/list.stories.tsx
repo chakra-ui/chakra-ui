@@ -1,90 +1,66 @@
 import { FaAccessibleIcon, FaCheck, FaPhone } from "react-icons/fa"
-import {
-  Box,
-  List,
-  ListIcon,
-  ListItem,
-  OrderedList,
-  Text,
-  UnorderedList,
-} from ".."
+import { Box, List, Text } from ".."
 
 export default {
-  title: "Components / Data Display / List",
+  title: "Data Display / List",
 }
 
-export const Default = () => (
-  <Box mt={6}>
+export const Basic = () => (
+  <Box mt="6">
     <Text fontSize="sm" color="gray.600">
       .list-disc
     </Text>
-    <UnorderedList spacing="2px">
-      <ListItem>
+    <List.Root gap="2px">
+      <List.Item>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit
-      </ListItem>
-      <ListItem>
+      </List.Item>
+      <List.Item>
         Assumenda, quia temporibus eveniet a libero incidunt suscipit
-      </ListItem>
-      <ListItem>
+      </List.Item>
+      <List.Item>
         Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-      </ListItem>
-    </UnorderedList>
+      </List.Item>
+    </List.Root>
   </Box>
 )
 
 export const Ordered = () => (
-  <OrderedList>
-    <ListItem>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit
-    </ListItem>
-    <ListItem>
-      Assumenda, quia temporibus eveniet a libero incidunt suscipit
-    </ListItem>
-    <ListItem>
-      Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-    </ListItem>
-  </OrderedList>
-)
-
-export const unstyledWithIcon = () => (
-  <Box mb={6}>
+  <Box mt="6">
     <Text fontSize="sm" color="gray.600">
-      .list-none
+      .list-decimal
     </Text>
-    <List spacing={3}>
-      <ListItem>
-        <ListIcon as={FaCheck} color="green.500" />
+    <List.Root as="ol" styleType="decimal">
+      <List.Item>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit
-      </ListItem>
-      <ListItem>
-        <ListIcon as={FaPhone} color="green.500" />
+      </List.Item>
+      <List.Item>
         Assumenda, quia temporibus eveniet a libero incidunt suscipit
-      </ListItem>
-      <ListItem>
-        <ListIcon as={FaAccessibleIcon} color="green.500" />
+      </List.Item>
+      <List.Item>
         Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-      </ListItem>
-    </List>
+      </List.Item>
+    </List.Root>
   </Box>
 )
 
-export const withFragment = () => (
-  <Box mb={6}>
-    <List spacing={3}>
-      <ListItem>
-        <ListIcon as={FaCheck} color="green.500" />
+export const WithIcon = () => (
+  <Box mb="6">
+    <Text fontSize="sm" color="gray.600">
+      .list-none
+    </Text>
+    <List.Root gap="2" styleType="none">
+      <List.Item>
+        <List.Icon as={FaCheck} color="green.500" />
         Lorem ipsum dolor sit amet, consectetur adipisicing elit
-      </ListItem>
-      <>
-        <ListItem>
-          <ListIcon as={FaPhone} color="green.500" />
-          Assumenda, quia temporibus eveniet a libero incidunt suscipit
-        </ListItem>
-      </>
-      <ListItem>
-        <ListIcon as={FaAccessibleIcon} color="green.500" />
+      </List.Item>
+      <List.Item>
+        <List.Icon as={FaPhone} color="green.500" />
+        Assumenda, quia temporibus eveniet a libero incidunt suscipit
+      </List.Item>
+      <List.Item>
+        <List.Icon as={FaAccessibleIcon} color="green.500" />
         Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-      </ListItem>
-    </List>
+      </List.Item>
+    </List.Root>
   </Box>
 )
