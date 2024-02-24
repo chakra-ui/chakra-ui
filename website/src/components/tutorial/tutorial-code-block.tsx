@@ -1,10 +1,10 @@
 import {
   Button,
-  Stack,
-  Icon,
-  HStack,
-  Text,
   ButtonGroup,
+  HStack,
+  Icon,
+  Stack,
+  Text,
 } from '@chakra-ui/react'
 import {
   SandpackCodeViewer,
@@ -13,9 +13,8 @@ import {
   useSandpackTheme,
 } from '@codesandbox/sandpack-react'
 import { nightOwl } from '@codesandbox/sandpack-themes'
-import * as React from 'react'
 import { RiFileEditLine, RiFileTransferLine } from 'react-icons/ri'
-import { formatFilePath, SandpackLanguageSupport } from './utils'
+import { SandpackLanguageSupport, formatFilePath } from './utils'
 
 interface CodeBlockProps {
   path: string
@@ -38,23 +37,23 @@ const CodeBlock = ({ path, code, showLineNumbers = false }: CodeBlockProps) => {
               size='xs'
               textTransform='uppercase'
               colorScheme='teal'
-              leftIcon={<Icon as={RiFileEditLine} />}
               onClick={() => {
                 sandpack.openFile(path)
                 sandpack.updateFile(path, code)
               }}
             >
+              <Icon as={RiFileEditLine} />
               Copy to Sandbox
             </Button>
             <Button
               size='xs'
               textTransform='uppercase'
               colorScheme='teal'
-              leftIcon={<Icon as={RiFileTransferLine} />}
               onClick={() => {
                 sandpack.openFile(path)
               }}
             >
+              <Icon as={RiFileTransferLine} />
               Open File
             </Button>
           </ButtonGroup>

@@ -1,8 +1,6 @@
 import { Box, BoxProps, Icon } from '@chakra-ui/react'
-import React from 'react'
+import json from 'configs/site-config.json'
 import { FaHeart } from 'react-icons/fa'
-import siteConfig from 'configs/site-config.json'
-import { t } from 'utils/i18n'
 
 const SponsorButton = (props: BoxProps) => (
   <Box
@@ -10,7 +8,7 @@ const SponsorButton = (props: BoxProps) => (
     alignItems='center'
     as='a'
     aria-label='Sponsor Chakra UI on Open Collective'
-    href={siteConfig.openCollective.url}
+    href={json.openCollective.url}
     target='_blank'
     rel='noopener noreferrer'
     bg='gray.50'
@@ -37,7 +35,7 @@ const SponsorButton = (props: BoxProps) => (
   >
     <Icon as={FaHeart} w='4' h='4' color='red.500' mr='2' />
     <Box as='strong' lineHeight='inherit' fontWeight='semibold'>
-      {t('component.sponsor-button.sponsor')}
+      Sponsor
     </Box>
   </Box>
 )

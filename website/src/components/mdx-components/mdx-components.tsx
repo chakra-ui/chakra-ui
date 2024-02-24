@@ -92,7 +92,7 @@ export const MDXComponents = {
   ol: (props) => <chakra.ol apply='mdx.ul' {...props} />,
   li: (props) => <chakra.li pb='4px' {...props} />,
   blockquote: (props) => (
-    <Alert
+    <Alert.Root
       mt='4'
       role='none'
       status='warning'

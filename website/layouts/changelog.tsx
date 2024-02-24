@@ -15,7 +15,6 @@ import { List, ListItem } from '@chakra-ui/react'
 import SidebarLink from 'components/sidebar/sidebar-link'
 import { allChangelogs } from 'contentlayer/generated'
 import TocNav from 'components/toc-nav'
-import { t } from 'utils/i18n'
 
 export function getRoutes(slug: string): RouteItem[] {
   // for home page, use docs sidebar
@@ -70,7 +69,7 @@ export default function MDXLayout(props: MDXLayoutProps) {
       frontmatter={frontmatter}
       leftSidebar={<Sidebar routes={routes} />}
       rightSidebar={
-        <TocNav title={t('component.table-of-content.versions')}>
+        <TocNav title='Versions'>
           <List mt={2}>
             {versions.map(({ title, path }) => (
               <ListItem key={path}>

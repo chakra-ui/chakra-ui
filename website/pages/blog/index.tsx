@@ -51,9 +51,9 @@ function Blog() {
                 mt='8'
                 variant='outline'
                 colorScheme='teal'
-                rightIcon={<ArrowForwardIcon />}
               >
                 Read more
+                <ArrowForwardIcon />
               </Button>
             </NextLink>
           </Box>
