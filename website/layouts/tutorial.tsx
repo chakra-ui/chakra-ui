@@ -33,7 +33,7 @@ const TutorialMenu = (props: Props) => {
         aria-label='Tutorial menu'
         variant='outline'
       />
-      <Menu.List>
+      <Menu.Content>
         {routes.map((route) => {
           if (route.path === asPath) {
             return (
@@ -67,7 +67,7 @@ const TutorialMenu = (props: Props) => {
             </Link>
           )
         })}
-      </Menu.List>
+      </Menu.Content>
     </Menu.Root>
   )
 }
