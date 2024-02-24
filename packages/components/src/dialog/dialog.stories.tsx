@@ -37,7 +37,7 @@ export function Basic() {
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.CloseButton />
+            <Dialog.CloseTrigger />
             <Dialog.Header>Welcome Home</Dialog.Header>
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
@@ -78,7 +78,7 @@ export function FinalFocusRef() {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog. Title</Dialog.Header>
-            <Dialog.CloseButton />
+            <Dialog.CloseTrigger />
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
@@ -150,7 +150,7 @@ export const InsideScroll = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog. Title</Dialog.Header>
-            <Dialog.CloseButton />
+            <Dialog.CloseTrigger />
             <Dialog.Body>
               <Lorem size={5} />
             </Dialog.Body>
@@ -174,7 +174,7 @@ export const AnimationDisabled = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog. Title</Dialog.Header>
-            <Dialog.CloseButton />
+            <Dialog.CloseTrigger />
             <Dialog.Body>
               <Lorem size={5} />
             </Dialog.Body>
@@ -198,7 +198,7 @@ export const FullWithLongContent = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog. Title2</Dialog.Header>
-            <Dialog.CloseButton />
+            <Dialog.CloseTrigger />
             <Dialog.Body>
               <Lorem count={30} />
             </Dialog.Body>
@@ -231,7 +231,7 @@ export function WithCustomMotionProps() {
               },
             }}
           >
-            <Dialog.CloseButton />
+            <Dialog.CloseTrigger />
             <Dialog.Header>Welcome Home</Dialog.Header>
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
@@ -264,7 +264,7 @@ export function WithInitialFocus() {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog. Title</Dialog.Header>
-            <Dialog.CloseButton />
+            <Dialog.CloseTrigger />
             <Dialog.Body>
               <p>With just the text it's awesome</p>
               <input

@@ -14,8 +14,8 @@ export type { DialogBodyProps } from "./dialog-body"
 export { DialogPositioner } from "./dialog-positioner"
 export type { DialogPositionerProps } from "./dialog-positioner"
 
-export { DialogCloseButton } from "./dialog-close-button"
-export type { DialogCloseButtonProps } from "./dialog-close-button"
+export { DialogCloseTrigger } from "./dialog-close-trigger"
+export type { DialogCloseTriggerProps } from "./dialog-close-trigger"
 
 export { DialogContent } from "./dialog-content"
 export type { DialogContentProps } from "./dialog-content"

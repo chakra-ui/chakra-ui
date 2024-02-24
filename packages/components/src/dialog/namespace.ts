@@ -4,8 +4,8 @@ export type { DialogRootProps as RootProps } from "./dialog-root"
 export { DialogBody as Body } from "./dialog-body"
 export type { DialogBodyProps as BodyProps } from "./dialog-body"
 
-export { DialogCloseButton as CloseButton } from "./dialog-close-button"
-export type { DialogCloseButtonProps as CloseButtonProps } from "./dialog-close-button"
+export { DialogCloseTrigger as CloseTrigger } from "./dialog-close-trigger"
+export type { DialogCloseTriggerProps as CloseTriggerProps } from "./dialog-close-trigger"
 
 export { DialogContent as Content } from "./dialog-content"
 export type { DialogContentProps as ContentProps } from "./dialog-content"

@@ -5,7 +5,7 @@ export { DrawerContent as Content } from "../drawer/drawer-content"
 export type { DrawerContentProps as ContentProps } from "../drawer/drawer-content"
 
 export { DialogBody as Body } from "../dialog/dialog-body"
-export { DialogCloseButton as CloseButton } from "../dialog/dialog-close-button"
+export { DialogCloseTrigger as CloseTrigger } from "../dialog/dialog-close-trigger"
 export { DialogFooter as Footer } from "../dialog/dialog-footer"
 export { DialogHeader as Header } from "../dialog/dialog-header"
 export { DialogOverlay as Overlay } from "../dialog/dialog-overlay"

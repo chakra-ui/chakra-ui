@@ -219,7 +219,7 @@ export const FocusBug = () => {
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>
-            <Drawer.CloseButton />
+            <Drawer.CloseTrigger />
             <Drawer.Header>Create your account</Drawer.Header>
 
             <Drawer.Body>

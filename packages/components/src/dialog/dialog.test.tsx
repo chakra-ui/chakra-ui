@@ -8,7 +8,7 @@ const DemoDialog = (props: Omit<Dialog.RootProps, "children">) => {
       <Dialog.Overlay data-testid="overlay" />
       <Dialog.Content data-testid="content">
         <Dialog.Header>Dialog header</Dialog.Header>
-        <Dialog.CloseButton data-testid="close" />
+        <Dialog.CloseTrigger data-testid="close" />
         <Dialog.Body>Dialog body</Dialog.Body>
         <Dialog.Footer>Dialog footer</Dialog.Footer>
       </Dialog.Content>
@@ -137,7 +137,7 @@ test("should return focus to button when closed", async () => {
           <Dialog.Overlay />
           <Dialog.Content>
             <Dialog.Header>Dialog. header</Dialog.Header>
-            <Dialog.CloseButton data-testid="close" />
+            <Dialog.CloseTrigger data-testid="close" />
             <Dialog.Body>Dialog. body</Dialog.Body>
           </Dialog.Content>
         </Dialog.Root>

@@ -8,7 +8,7 @@ export * as Drawer from "./namespace"
 
 export { DialogBody as DrawerBody } from "../dialog/dialog-body"
 export { DialogPositioner as DrawerPositioner } from "../dialog/dialog-positioner"
-export { DialogCloseButton as DrawerCloseButton } from "../dialog/dialog-close-button"
+export { DialogCloseTrigger as DrawerCloseTrigger } from "../dialog/dialog-close-trigger"
 export { DialogFooter as DrawerFooter } from "../dialog/dialog-footer"
 export { DialogHeader as DrawerHeader } from "../dialog/dialog-header"
 export { DialogOverlay as DrawerOverlay } from "../dialog/dialog-overlay"

@@ -282,7 +282,7 @@ After:
   <Dialog.Positioner>
     <Dialog.Content>
       <Dialog.Header>Dialog Title</Dialog.Header>
-      <Dialog.CloseButton />
+      <Dialog.CloseTrigger />
       <Dialog.Body />
       <Dialog.Footer />
     </Dialog.Content>
@@ -335,7 +335,7 @@ After:
   <Popover.Positioner>
     <Popover.Content>
       <Popover.Arrow />
-      <Popover.CloseButton />
+      <Popover.CloseTrigger />
       <Popover.Header>Confirmation!</Popover.Header>
       <Popover.Body>
         <p>Are you sure you want to have that milkshake?</p>

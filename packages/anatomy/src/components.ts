@@ -85,7 +85,7 @@ export const modalAnatomy = anatomy("modal").parts(
   "positioner",
   "content",
   "header",
-  "closeButton",
+  "closeTrigger",
   "body",
   "footer",
 )
@@ -95,7 +95,7 @@ export const drawerAnatomy = anatomy("drawer").parts(
   "positioner",
   "content",
   "header",
-  "closeButton",
+  "closeTrigger",
   "body",
   "footer",
 )

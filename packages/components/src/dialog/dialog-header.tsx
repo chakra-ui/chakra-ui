@@ -10,9 +10,7 @@ export interface DialogHeaderProps extends HTMLChakraProps<"header"> {}
  * @see Docs https://chakra-ui.com/dialog
  */
 export const DialogHeader = forwardRef<DialogHeaderProps, "header">(
-  (props, ref) => {
-    const { className, ...rest } = props
-
+  function DialogHeader(props, ref) {
     const { headerId, setHeaderMounted } = useDialogContext()
 
     useEffect(() => {
@@ -26,8 +24,8 @@ export const DialogHeader = forwardRef<DialogHeaderProps, "header">(
       <chakra.header
         ref={ref}
         id={headerId}
-        {...rest}
-        className={cx("chakra-dialog__header", className)}
+        {...props}
+        className={cx("chakra-dialog__header", props.className)}
         __css={styles.header}
       />
     )

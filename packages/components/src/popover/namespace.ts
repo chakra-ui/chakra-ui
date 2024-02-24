@@ -9,8 +9,8 @@ export type { PopoverArrowProps as ArrowProps } from "./popover-arrow"
 export { PopoverBody as Body } from "./popover-body"
 export type { PopoverBodyProps as BodyProps } from "./popover-body"
 
-export { PopoverCloseButton as CloseButton } from "./popover-close-button"
-export { type PopoverCloseButtonProps as CloseButtonProps } from "./popover-close-button"
+export { PopoverCloseTrigger as CloseTrigger } from "./popover-close-trigger"
+export { type PopoverCloseTriggerProps as CloseTriggerProps } from "./popover-close-trigger"
 
 export { PopoverContent as Content } from "./popover-content"
 export type { PopoverContentProps as ContentProps } from "./popover-content"

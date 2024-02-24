@@ -57,7 +57,7 @@ export const simple = () => (
     <Popover.Positioner>
       <Popover.Content>
         <Popover.Arrow />
-        <Popover.CloseButton />
+        <Popover.CloseTrigger />
         <Popover.Header>Confirmation!</Popover.Header>
         <Popover.Body>
           <p>Are you sure you want to have that milkshake?</p>
@@ -92,7 +92,7 @@ export const basic = () => (
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Arrow />
-        <Popover.CloseButton />
+        <Popover.CloseTrigger />
         <Popover.Header>Submit now</Popover.Header>
         <Popover.Body>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -149,7 +149,7 @@ export const Controlled = () => {
           <Popover.Content>
             <Popover.Header fontWeight="semibold">Confirmation</Popover.Header>
             <Popover.Arrow />
-            <Popover.CloseButton />
+            <Popover.CloseTrigger />
             <Popover.Body>
               Are you sure you want to continue with your action?
             </Popover.Body>

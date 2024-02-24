@@ -9,37 +9,28 @@ const StyledDiv = chakra(motion.div)
 export interface DialogOverlayProps
   extends Omit<HTMLMotionProps<"div">, "color" | "transition">,
     ChakraProps {
-  children?: React.ReactNode
   motionProps?: HTMLMotionProps<"div">
 }
 
-/**
- * Renders a backdrop behind the dialog.
- * It is also used as a wrapper for the dialog content for better positioning.
- *
- * @see Docs https://chakra-ui.com/dialog
- */
 export const DialogOverlay = forwardRef<DialogOverlayProps, "div">(
-  (props, ref) => {
-    const { className, transition, motionProps: _motionProps, ...rest } = props
-    const _className = cx("chakra-dialog__overlay", className)
+  function DialogOverlay(props, ref) {
+    const { transition, motionProps: _motionProps, ...rest } = props
 
     const styles = useDialogStyles()
-
-    const { motionPreset } = useDialogContext()
+    const api = useDialogContext()
 
     const defaultMotionProps: HTMLMotionProps<"div"> =
-      motionPreset === "none" ? {} : fadeConfig
+      api.motionPreset === "none" ? {} : fadeConfig
 
     const motionProps: any = _motionProps || defaultMotionProps
 
     return (
       <StyledDiv
         {...motionProps}
+        {...rest}
         __css={styles.overlay}
         ref={ref}
-        className={_className}
-        {...rest}
+        className={cx("chakra-dialog__overlay", props.className)}
       />
     )
   },
