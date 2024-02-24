@@ -20,6 +20,7 @@ import { inputTheme } from "./input"
 import { kbdTheme } from "./kbd"
 import { linkTheme } from "./link"
 import { listTheme } from "./list"
+import { markTheme } from "./mark"
 import { menuTheme } from "./menu"
 import { modalTheme } from "./modal"
 import { numberInputTheme } from "./number-input"
@@ -105,6 +106,7 @@ export const components = {
   Kbd: kbdTheme,
   Link: linkTheme,
   List: listTheme,
+  Mark: markTheme,
   Menu: menuTheme,
   Modal: modalTheme,
   NumberInput: numberInputTheme,

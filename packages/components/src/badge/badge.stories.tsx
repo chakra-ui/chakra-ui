@@ -1,51 +1,41 @@
-import { Badge } from ".."
+import { Badge, For, HStack } from ".."
 
 export default {
   title: "Data Display / Badge",
 }
 
+const colorSchemes = ["gray", "green", "red", "orange", "purple", "teal"]
+
 export const Basic = () => <Badge>Success</Badge>
 
-export const SolidBadge = () => {
-  return (
-    <>
-      {["gray", "green", "red", "orange", "purple", "teal"].map(
-        (colorScheme) => (
-          <Badge
-            key={colorScheme}
-            colorScheme={colorScheme}
-            variant="solid"
-            mr={2}
-          >
-            {colorScheme}
-          </Badge>
-        ),
+export const WithSolidVariant = () => (
+  <HStack>
+    <For each={colorSchemes}>
+      {(colorScheme) => (
+        <Badge colorScheme={colorScheme} variant="solid">
+          {colorScheme}
+        </Badge>
       )}
-    </>
-  )
-}
-
-export const SubtleBadges = () => (
-  <>
-    {["gray", "green", "red", "orange", "purple", "teal"].map((colorScheme) => (
-      <Badge key={colorScheme} colorScheme={colorScheme} mr={2}>
-        {colorScheme}
-      </Badge>
-    ))}
-  </>
+    </For>
+  </HStack>
 )
 
-export const OutlineBadges = () => (
-  <>
-    {["gray", "green", "red", "orange", "purple", "teal"].map((colorScheme) => (
-      <Badge
-        key={colorScheme}
-        colorScheme={colorScheme}
-        variant="outline"
-        mr={2}
-      >
-        {colorScheme}
-      </Badge>
-    ))}
-  </>
+export const WithSubtleVariant = () => (
+  <HStack>
+    <For each={colorSchemes}>
+      {(colorScheme) => <Badge colorScheme={colorScheme}>{colorScheme}</Badge>}
+    </For>
+  </HStack>
+)
+
+export const WithOutlineVariant = () => (
+  <HStack>
+    <For each={colorSchemes}>
+      {(colorScheme) => (
+        <Badge colorScheme={colorScheme} variant="outline">
+          {colorScheme}
+        </Badge>
+      )}
+    </For>
+  </HStack>
 )

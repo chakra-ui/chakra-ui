@@ -51,7 +51,7 @@ export const Readonly = () => <DemoCheckbox isReadOnly>Readonly</DemoCheckbox>
 export const Invalid = () => <DemoCheckbox isInvalid>Invalid</DemoCheckbox>
 
 export const NotFocusable = () => (
-  <>
+  <Stack>
     <DemoCheckbox isFocusable={false}>not focusable</DemoCheckbox>
     <DemoCheckbox isFocusable={false} isDisabled>
       disabled and not focusable (truly disabled)
@@ -59,7 +59,7 @@ export const NotFocusable = () => (
     <DemoCheckbox tabIndex={-1} isFocusable={false}>
       Not Focusable with provided tabIndex
     </DemoCheckbox>
-  </>
+  </Stack>
 )
 
 export const WithIconColor = () => {
@@ -143,17 +143,15 @@ export const WithCustomIcon = () => {
   )
 }
 
-export const Sizes = () => {
-  const sizes = ["sm", "md", "lg"]
+const sizes = ["sm", "md", "lg"]
 
-  return (
-    <Stack direction="row">
-      {sizes.map((size) => (
-        <DemoCheckbox key={size} size={size} />
-      ))}
-    </Stack>
-  )
-}
+export const WithSizes = () => (
+  <Stack direction="row">
+    {sizes.map((size) => (
+      <DemoCheckbox key={size} size={size} />
+    ))}
+  </Stack>
+)
 
 export const Indeterminate = () => {
   const [checkedItems, setCheckedItems] = React.useState([false, false])
@@ -305,7 +303,7 @@ export const CustomCheckboxGroup = () => {
 }
 export const WithFormControl = () => {
   return (
-    <>
+    <Stack>
       <Field.Root id="optIn">
         <Field.Label>Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["1", "3"]}>
@@ -360,6 +358,6 @@ export const WithFormControl = () => {
           </Stack>
         </Checkbox.Group>
       </Field.Root>
-    </>
+    </Stack>
   )
 }

@@ -1,4 +1,4 @@
-import { Alert, Container, chakra } from ".."
+import { Alert, Box, Container } from ".."
 
 export default {
   title: "Feedback / Alert",
@@ -6,6 +6,16 @@ export default {
 }
 
 export const Basic = () => (
+  <Alert.Root>
+    <Alert.Icon />
+    <Alert.Title mr={2}>Outdated</Alert.Title>
+    <Alert.Description>
+      Your Chakra experience may be degraded.
+    </Alert.Description>
+  </Alert.Root>
+)
+
+export const WithSolidVariant = () => (
   <Alert.Root status="error" variant="solid" borderRadius="md">
     <Alert.Icon />
     <Alert.Title mr={2}>Outdated</Alert.Title>
@@ -15,23 +25,23 @@ export const Basic = () => (
   </Alert.Root>
 )
 
-export const Subtle = () => (
+export const WithSubtleVariant = () => (
   <Alert.Root status="success" mx="auto" alignItems="start">
     <Alert.Icon />
-    <chakra.div flex="1">
+    <Box flex="1">
       <Alert.Title>Holy Smokes</Alert.Title>
       <Alert.Description>Something just happened!</Alert.Description>
-    </chakra.div>
+    </Box>
   </Alert.Root>
 )
 
-export const LeftAccent = () => (
+export const WithLeftAccent = () => (
   <Alert.Root variant="left-accent" mx="auto" alignItems="start">
     <Alert.Icon />
-    <chakra.div flex="1">
+    <Box flex="1">
       <Alert.Title>Holy Smokes</Alert.Title>
       <Alert.Description>Something just happened!</Alert.Description>
-    </chakra.div>
+    </Box>
   </Alert.Root>
 )
 
@@ -44,33 +54,29 @@ export const TopAccent = () => (
     rounded="md"
   >
     <Alert.Icon />
-    <chakra.div flex="1">
+    <Box flex="1">
       <Alert.Title display="block" mr="2">
         Holy Smokes
       </Alert.Title>
       <Alert.Description>Something just happened!</Alert.Description>
-    </chakra.div>
+    </Box>
   </Alert.Root>
 )
 
-export const DocsExample = () => {
+export const WithErrorStatus = () => {
   return (
-    <div>
-      <Alert.Root status="error">
-        <Alert.Icon />
-        There was an error processing your request
-      </Alert.Root>
-    </div>
+    <Alert.Root status="error">
+      <Alert.Icon />
+      There was an error processing your request
+    </Alert.Root>
   )
 }
 
-export const LoadingExample = () => {
+export const WithLoadingStatus = () => {
   return (
-    <div>
-      <Alert.Root status="loading">
-        <Alert.Icon />
-        We are loading something
-      </Alert.Root>
-    </div>
+    <Alert.Root status="loading">
+      <Alert.Icon />
+      We are loading something
+    </Alert.Root>
   )
 }

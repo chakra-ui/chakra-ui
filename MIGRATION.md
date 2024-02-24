@@ -438,6 +438,14 @@ the theme keys.
 - Removed `rootProps` in favor of rendering the `Menu.Positioner` component
 - Renamed `MenuButton` to `Menu.Trigger`
 
+### List
+
+- Removed `OrderedList` and `UnorderedList` in favor of using the `List`
+  component with the `as` prop.
+
+- To change the list style type, you can use the `styleType` prop on the `List`
+  component.
+
 ## Added
 
 ### Typography components

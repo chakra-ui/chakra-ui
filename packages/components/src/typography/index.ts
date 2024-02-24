@@ -9,3 +9,6 @@ export type { EmProps } from "./em"
 
 export { Strong } from "./strong"
 export type { StrongProps } from "./strong"
+
+export { Mark } from "./mark"
+export type { MarkProps } from "./mark"
