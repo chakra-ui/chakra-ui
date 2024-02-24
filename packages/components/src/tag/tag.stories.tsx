@@ -1,9 +1,8 @@
 import { HiPlus } from "react-icons/hi"
-import { MdSettings } from "react-icons/md"
 import { Tag } from "."
+import { For, HStack, Icon } from ".."
 import { Avatar } from "../avatar"
 import { chakra } from "../system"
-import { For, HStack } from ".."
 
 export default {
   title: "Data Display / Tag",
@@ -44,51 +43,40 @@ export const colorSchemes = () => (
   </HStack>
 )
 
-export const withLeftIcon = () => (
+export const WithStartIcon = () => (
   <Tag.Root colorScheme="cyan">
-    <Tag.StartIcon w="12px" h="12px" asChild>
-      <HiPlus />
-    </Tag.StartIcon>
+    <Icon as={HiPlus} w="12px" h="12px" />
     <Tag.Label>Green</Tag.Label>
   </Tag.Root>
 )
 
-export const withRightIcon = () => (
-  <>
-    <Tag.Root colorScheme="cyan">
-      <Tag.Label>Green</Tag.Label>
-      <Tag.EndIcon w="12px" h="12px" asChild>
-        <HiPlus />
-      </Tag.EndIcon>
-    </Tag.Root>
-
-    <Tag.Root variant="solid" colorScheme="teal">
-      <Tag.Label>Teal</Tag.Label>
-      <Tag.EndIcon as={MdSettings} />
-    </Tag.Root>
-  </>
+export const WithEndIcon = () => (
+  <Tag.Root colorScheme="cyan">
+    <Tag.Label>Green</Tag.Label>
+    <Icon as={HiPlus} w="12px" h="12px" />
+  </Tag.Root>
 )
 
-export const withCloseButton = () => (
+export const WithCloseTrigger = () => (
   <>
     <Tag.Root variant="solid" size="sm" colorScheme="cyan">
       <Tag.Label>Tab Label</Tag.Label>
-      <Tag.CloseButton />
+      <Tag.CloseTrigger />
     </Tag.Root>
 
     <Tag.Root variant="solid" size="md" colorScheme="cyan">
       <Tag.Label>Tab Label</Tag.Label>
-      <Tag.CloseButton />
+      <Tag.CloseTrigger />
     </Tag.Root>
 
     <Tag.Root variant="solid" size="lg" colorScheme="cyan">
       <Tag.Label>Tab Label</Tag.Label>
-      <Tag.CloseButton />
+      <Tag.CloseTrigger />
     </Tag.Root>
   </>
 )
 
-export const withCustomElement = () => (
+export const WithCustomElement = () => (
   <Tag.Root size="lg" colorScheme="red" borderRadius="full">
     <Avatar.Root
       src="https://bit.ly/sage-adebayo"
@@ -101,6 +89,6 @@ export const withCustomElement = () => (
       <Avatar.Fallback />
     </Avatar.Root>
     <Tag.Label>Segun</Tag.Label>
-    <Tag.CloseButton />
+    <Tag.CloseTrigger />
   </Tag.Root>
 )

@@ -116,7 +116,7 @@ export const popoverAnatomy = anatomy("popover").parts(
   "footer",
   "positioner",
   "arrow",
-  "closeButton",
+  "closeTrigger",
 )
 
 export const progressAnatomy = anatomy("progress").parts(
@@ -172,7 +172,7 @@ export const tabsAnatomy = anatomy("tabs").parts(
   "indicator",
 )
 
-export const tagAnatomy = anatomy("tag").parts("root", "label", "closeButton")
+export const tagAnatomy = anatomy("tag").parts("root", "label", "closeTrigger")
 
 export const cardAnatomy = anatomy("card").parts(
   "root",

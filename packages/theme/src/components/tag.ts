@@ -23,6 +23,7 @@ const baseStyleRoot = defineStyle({
   outline: 0,
   display: "inline-flex",
   verticalAlign: "top",
+  gap: "0.5rem",
   alignItems: "center",
   maxWidth: "100%",
   [$color.variable]: badgeVars.color.reference,
@@ -46,7 +47,11 @@ const baseStyleLabel = defineStyle({
   overflow: "visible",
 })
 
-const baseStyleCloseButton = defineStyle({
+const baseStyleCloseTrigger = defineStyle({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  outline: "0",
   fontSize: "lg",
   w: "5",
   h: "5",
@@ -74,7 +79,7 @@ const baseStyleCloseButton = defineStyle({
 const baseStyle = definePartsStyle({
   root: baseStyleRoot,
   label: baseStyleLabel,
-  closeButton: baseStyleCloseButton,
+  closeTrigger: baseStyleCloseTrigger,
 })
 
 const sizes = {
@@ -85,7 +90,7 @@ const sizes = {
       [$fontSize.variable]: "fontSizes.xs",
       [$paddingX.variable]: "space.2",
     },
-    closeButton: {
+    closeTrigger: {
       marginEnd: "-2px",
       marginStart: "0.35rem",
     },
