@@ -1,11 +1,17 @@
+import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import {
   AccordionItemContextProvider,
   useAccordionStyles,
 } from "./accordion-context"
 import { splitAccordionItemProps } from "./accordion-props"
-import { useAccordionItem, UseAccordionItemProps } from "./use-accordion"
+import { UseAccordionItemProps, useAccordionItem } from "./use-accordion"
+
+interface AccordionItemState {
+  isExpanded: boolean
+  isDisabled: boolean
+}
 
 export interface AccordionItemProps
   extends Omit<
@@ -13,9 +19,7 @@ export interface AccordionItemProps
       keyof UseAccordionItemProps | "children"
     >,
     UseAccordionItemProps {
-  children?:
-    | React.ReactNode
-    | ((props: { isExpanded: boolean; isDisabled: boolean }) => React.ReactNode)
+  children?: MaybeRenderProp<AccordionItemState>
 }
 /**
  * AccordionItem is a single accordion that provides the open-close
@@ -28,24 +32,24 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
     const { children, className } = props
 
     const [itemProps, localProps] = splitAccordionItemProps(props)
-    const context = useAccordionItem(itemProps)
 
+    const itemApi = useAccordionItem(itemProps)
     const styles = useAccordionStyles()
 
+    const itemState = {
+      isExpanded: !!itemApi.isOpen,
+      isDisabled: !!itemApi.isDisabled,
+    }
+
     return (
-      <AccordionItemContextProvider value={context}>
+      <AccordionItemContextProvider value={itemApi}>
         <chakra.div
           ref={ref}
           {...localProps}
           className={cx("chakra-accordion__item", className)}
           __css={styles.item}
         >
-          {typeof children === "function"
-            ? children({
-                isExpanded: !!context.isOpen,
-                isDisabled: !!context.isDisabled,
-              })
-            : children}
+          {runIfFn(children, itemState)}
         </chakra.div>
       </AccordionItemContextProvider>
     )

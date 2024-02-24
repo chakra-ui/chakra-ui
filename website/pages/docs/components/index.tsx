@@ -53,7 +53,7 @@ export const ComponentsOverview = ({ categories, headings }: Props) => {
           placeholder='Search overview'
           onChange={(e) => filterComponentsByTitle(e.target.value)}
         />
-        <List.Root w='full' spacing={12}>
+        <List.Root w='full' gap='12'>
           {filteredCategories.map(({ title, components, id }) => (
             <List.Item
               key={title}

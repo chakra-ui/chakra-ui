@@ -144,6 +144,17 @@
         "default": "./dist/cjs/badge/index.cjs"
       }
     },
+    "./bleed": {
+      "source": "./src/bleed/index.ts",
+      "import": {
+        "types": "./dist/types/bleed/index.d.mts",
+        "default": "./dist/esm/bleed/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/bleed/index.d.ts",
+        "default": "./dist/cjs/bleed/index.cjs"
+      }
+    },
     "./box": {
       "source": "./src/box/index.ts",
       "import": {
