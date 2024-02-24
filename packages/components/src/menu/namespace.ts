@@ -1,5 +1,5 @@
-export { MenuButton as Button } from "./menu-button"
-export type { MenuButtonProps as ButtonProps } from "./menu-button"
+export { MenuTrigger as Trigger } from "./menu-trigger"
+export type { MenuTriggerProps as TriggerProps } from "./menu-trigger"
 
 export { MenuCommand as Command } from "./menu-command"
 export type { MenuCommandProps as CommandProps } from "./menu-command"
@@ -18,11 +18,14 @@ export type { MenuItemProps as ItemProps } from "./menu-item"
 export { MenuItemOption as ItemOption } from "./menu-item-option"
 export type { MenuItemOptionProps as ItemOptionProps } from "./menu-item-option"
 
-export { MenuList as List } from "./menu-list"
-export type { MenuListProps as ListProps } from "./menu-list"
+export { MenuContent as Content } from "./menu-content"
+export type { MenuContentProps as ContentProps } from "./menu-content"
 
 export { MenuOptionGroup as OptionGroup } from "./menu-option-group"
 export type { MenuOptionGroupProps as OptionGroupProps } from "./menu-option-group"
 
 export { MenuRoot as Root } from "./menu-root"
 export type { MenuRootProps as RootProps } from "./menu-root"
+
+export { MenuPositioner as Positioner } from "./menu-positioner"
+export type { MenuPositionerProps as PositionerProps } from "./menu-positioner"

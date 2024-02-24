@@ -71,8 +71,8 @@ export const inputAnatomy = anatomy("input").parts(
 export const listAnatomy = anatomy("list").parts("container", "item", "icon")
 
 export const menuAnatomy = anatomy("menu").parts(
-  "button",
-  "list",
+  "trigger",
+  "content",
   "item",
   "groupTitle",
   "icon",

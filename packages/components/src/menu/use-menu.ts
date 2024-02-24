@@ -316,21 +316,11 @@ export function useMenu(props: UseMenuProps = {}) {
 
 export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
 
-/* -------------------------------------------------------------------------------------------------
- * useMenuButton hook
- * -----------------------------------------------------------------------------------------------*/
-export interface UseMenuButtonProps
+export interface UseMenuTriggerProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
-/**
- * React Hook to manage a menu button.
- *
- * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree, and its return value
- * is passed as `context` to this hook.
- */
-export function useMenuButton(
-  props: UseMenuButtonProps = {},
+export function useMenuTrigger(
+  props: UseMenuTriggerProps = {},
   externalRef: React.Ref<any> = null,
 ) {
   const menu = useMenuContext()
@@ -379,21 +369,14 @@ function isTargetMenuItem(target: EventTarget | null) {
 }
 
 /* -------------------------------------------------------------------------------------------------
- * useMenuList
+ * useMenuContent
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseMenuListProps
+export interface UseMenuContentProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
-/**
- * React Hook to manage a menu list.
- *
- * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree, and its return value
- * is passed as `context` to this hook.
- */
-export function useMenuList(
-  props: UseMenuListProps = {},
+export function useMenuContent(
+  props: UseMenuContentProps = {},
   ref: React.Ref<any> = null,
 ): React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement> {
   const menu = useMenuContext()
@@ -517,15 +500,18 @@ export function useMenuList(
  * useMenuPosition: Composes usePopper to position the menu
  * -----------------------------------------------------------------------------------------------*/
 
-export function useMenuPositioner(props: any = {}) {
+export function useMenuPositioner(props: any = {}, ref: React.Ref<any> = null) {
   const { popper, isOpen } = useMenuContext()
-  return popper.getPopperProps({
-    ...props,
-    style: {
-      visibility: isOpen ? "visible" : "hidden",
-      ...props.style,
+  return popper.getPopperProps(
+    {
+      ...props,
+      style: {
+        visibility: isOpen ? "visible" : "hidden",
+        ...props.style,
+      },
     },
-  })
+    ref,
+  )
 }
 
 /* -------------------------------------------------------------------------------------------------

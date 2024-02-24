@@ -26,22 +26,24 @@ const words = [
 test("passes a11y test", async () => {
   await testA11y(
     <Menu.Root>
-      <Menu.Button as={Button} variant="solid" colorScheme="teal" size="sm">
+      <Menu.Trigger as={Button} variant="solid" colorScheme="teal" size="sm">
         Open Wakanda menu
-      </Menu.Button>
-      <Menu.List>
-        {words.map((word) => (
-          <Menu.Item key={word}>{word}</Menu.Item>
-        ))}
-      </Menu.List>
+      </Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          {words.map((word) => (
+            <Menu.Item key={word}>{word}</Menu.Item>
+          ))}
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 })
 
-test("does not render Menu.List Items if Menu isLazy", () => {
+test("does not render Menu.Content Items if Menu isLazy", () => {
   render(
     <Menu.Root isLazy>
-      <Menu.Button
+      <Menu.Trigger
         as={Button}
         variant="solid"
         colorScheme="teal"
@@ -49,12 +51,14 @@ test("does not render Menu.List Items if Menu isLazy", () => {
         // rightIcon={<FaUnlink />}
       >
         Open Wakanda menu
-      </Menu.Button>
-      <Menu.List>
-        {words.map((word) => (
-          <Menu.Item key={word}>{word}</Menu.Item>
-        ))}
-      </Menu.List>
+      </Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          {words.map((word) => (
+            <Menu.Item key={word}>{word}</Menu.Item>
+          ))}
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -64,17 +68,19 @@ test("does not render Menu.List Items if Menu isLazy", () => {
 test("sets correct aria attributes on disabled Menu.Items", () => {
   render(
     <Menu.Root>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
-      <Menu.List>
-        <Menu.Item icon={<FaSearch />} command="⌥T">
-          Search
-        </Menu.Item>
-        <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-        <Menu.Item isDisabled icon={<FaTruck />}>
-          Delivery
-        </Menu.Item>
-        <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
-      </Menu.List>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item icon={<FaSearch />} command="⌥T">
+            Search
+          </Menu.Item>
+          <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
+          <Menu.Item isDisabled icon={<FaTruck />}>
+            Delivery
+          </Menu.Item>
+          <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -86,17 +92,19 @@ test("does not fire onClick on disabled Menu.Item", () => {
 
   render(
     <Menu.Root>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
-      <Menu.List>
-        <Menu.Item icon={<FaSearch />} command="⌥T">
-          Search
-        </Menu.Item>
-        <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-        <Menu.Item isDisabled icon={<FaTruck />} onClick={onClick}>
-          Delivery
-        </Menu.Item>
-        <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
-      </Menu.List>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item icon={<FaSearch />} command="⌥T">
+            Search
+          </Menu.Item>
+          <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
+          <Menu.Item isDisabled icon={<FaTruck />} onClick={onClick}>
+            Delivery
+          </Menu.Item>
+          <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -116,12 +124,14 @@ test("does not fire onClick on disabled Menu.Item", () => {
 test.skip("allows focusing disabled Menu.Items given isFocusable", async () => {
   render(
     <Menu.Root>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
-      <Menu.List>
-        <Menu.Item isDisabled isFocusable icon={<FaTruck />}>
-          Delivery
-        </Menu.Item>
-      </Menu.List>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item isDisabled isFocusable icon={<FaTruck />}>
+            Delivery
+          </Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -133,17 +143,19 @@ test.skip("allows focusing disabled Menu.Items given isFocusable", async () => {
   await waitFor(() => expect(button).toHaveFocus())
 })
 
-test("allows using a Portal to render the Menu.List", async () => {
+test("allows using a Portal to render the Menu.Content", async () => {
   render(
     <Menu.Root>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
       <Portal>
-        <Menu.List>
-          <Menu.Item>Menu 1</Menu.Item>
-          <Menu.Item>Menu 2</Menu.Item>
-          <Menu.Item>Menu 3</Menu.Item>
-          <Menu.Item>Menu 4</Menu.Item>
-        </Menu.List>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item>Menu 1</Menu.Item>
+            <Menu.Item>Menu 2</Menu.Item>
+            <Menu.Item>Menu 3</Menu.Item>
+            <Menu.Item>Menu 4</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
       </Portal>
     </Menu.Root>,
   )
@@ -160,17 +172,19 @@ test("allows using a Portal to render the Menu.List", async () => {
 test("MenuGroup has correct role ", async () => {
   render(
     <Menu.Root>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
-      <Menu.List minWidth="240px">
-        <Menu.Group title="Group 1">
-          <Menu.Item>Share...</Menu.Item>
-          <Menu.Item>Move...</Menu.Item>
-        </Menu.Group>
-        <Menu.Group title="Group 2">
-          <Menu.Item>Rename...</Menu.Item>
-          <Menu.Item>Delete...</Menu.Item>
-        </Menu.Group>
-      </Menu.List>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.Group title="Group 1">
+            <Menu.Item>Share...</Menu.Item>
+            <Menu.Item>Move...</Menu.Item>
+          </Menu.Group>
+          <Menu.Group title="Group 2">
+            <Menu.Item>Rename...</Menu.Item>
+            <Menu.Item>Delete...</Menu.Item>
+          </Menu.Group>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -187,16 +201,18 @@ test("MenuGroup has correct role ", async () => {
 test("Menu.OptionGroup radio", async () => {
   render(
     <Menu.Root>
-      <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </Menu.Button>
+      </Menu.Trigger>
 
-      <Menu.List minWidth="240px">
-        <Menu.OptionGroup defaultValue="val1" title="Order" type="radio">
-          <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
-          <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
-        </Menu.OptionGroup>
-      </Menu.List>
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup defaultValue="val1" title="Order" type="radio">
+            <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
+            <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -213,16 +229,18 @@ test("Menu.OptionGroup radio", async () => {
 test("Menu.OptionGroup radio defaultValue checked", async () => {
   render(
     <Menu.Root closeOnSelect={false}>
-      <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </Menu.Button>
+      </Menu.Trigger>
 
-      <Menu.List minWidth="240px">
-        <Menu.OptionGroup defaultValue="val-1" title="Order" type="radio">
-          <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
-          <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
-        </Menu.OptionGroup>
-      </Menu.List>
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup defaultValue="val-1" title="Order" type="radio">
+            <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
+            <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -235,17 +253,19 @@ test("Menu.OptionGroup radio defaultValue checked", async () => {
 test("Menu.OptionGroup checkbox defaultValue single checked", async () => {
   render(
     <Menu.Root closeOnSelect={false}>
-      <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </Menu.Button>
+      </Menu.Trigger>
 
-      <Menu.List minWidth="240px">
-        <Menu.OptionGroup defaultValue="email" title="Info" type="checkbox">
-          <Menu.ItemOption value="email">Email</Menu.ItemOption>
-          <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
-          <Menu.ItemOption value="country">Country</Menu.ItemOption>
-        </Menu.OptionGroup>
-      </Menu.List>
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup defaultValue="email" title="Info" type="checkbox">
+            <Menu.ItemOption value="email">Email</Menu.ItemOption>
+            <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
+            <Menu.ItemOption value="country">Country</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -267,21 +287,23 @@ test("Menu.OptionGroup checkbox defaultValue single checked", async () => {
 test("Menu.OptionGroup checkbox defaultValue multiple checked", () => {
   render(
     <Menu.Root closeOnSelect={false}>
-      <Menu.Button as={Button} variant="solid" colorScheme="green" size="sm">
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </Menu.Button>
+      </Menu.Trigger>
 
-      <Menu.List minWidth="240px">
-        <Menu.OptionGroup
-          defaultValue={["email", "phone"]}
-          title="Info"
-          type="checkbox"
-        >
-          <Menu.ItemOption value="email">Email</Menu.ItemOption>
-          <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
-          <Menu.ItemOption value="country">Country</Menu.ItemOption>
-        </Menu.OptionGroup>
-      </Menu.List>
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup
+            defaultValue={["email", "phone"]}
+            title="Info"
+            type="checkbox"
+          >
+            <Menu.ItemOption value="email">Email</Menu.ItemOption>
+            <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
+            <Menu.ItemOption value="country">Country</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -299,13 +321,17 @@ test("exposes internal state as render prop", () => {
     <Menu.Root>
       {(api) => (
         <>
-          <Menu.Button as={Button}>{api.isOpen ? "Close" : "Open"}</Menu.Button>
-          <Menu.List>
-            <Menu.Item>Download</Menu.Item>
-            <Menu.Item onClick={() => alert("Kagebunshin")}>
-              Create a Copy
-            </Menu.Item>
-          </Menu.List>
+          <Menu.Trigger as={Button}>
+            {api.isOpen ? "Close" : "Open"}
+          </Menu.Trigger>
+          <Menu.Positioner>
+            <Menu.Content>
+              <Menu.Item>Download</Menu.Item>
+              <Menu.Item onClick={() => alert("Kagebunshin")}>
+                Create a Copy
+              </Menu.Item>
+            </Menu.Content>
+          </Menu.Positioner>
         </>
       )}
     </Menu.Root>,
@@ -316,7 +342,6 @@ test("exposes internal state as render prop", () => {
   const button = screen.getByRole("button")
 
   fireEvent.click(button)
-
   expect(screen.getByText("Close")).toBeInTheDocument()
 })
 
@@ -330,12 +355,14 @@ const CompWithTwoMenus: React.FC<{
   return (
     <>
       <Menu.Root isOpen={active === "1"}>
-        <Menu.Button onClick={props.onBtnClick} as={Button}>
+        <Menu.Trigger onClick={props.onBtnClick} as={Button}>
           No 1
-        </Menu.Button>
-        <Menu.List>
-          <Menu.Item onClick={props.onItemClick}>1–A</Menu.Item>
-        </Menu.List>
+        </Menu.Trigger>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item onClick={props.onItemClick}>1–A</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
       </Menu.Root>
       <Menu.Root
         isOpen={active === "2"}
@@ -344,10 +371,12 @@ const CompWithTwoMenus: React.FC<{
           props.onClose()
         }}
       >
-        <Menu.Button as={Button}>No 2</Menu.Button>
-        <Menu.List>
-          <Menu.Item>2-A</Menu.Item>
-        </Menu.List>
+        <Menu.Trigger as={Button}>No 2</Menu.Trigger>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item>2-A</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
       </Menu.Root>
     </>
   )
@@ -392,11 +421,13 @@ test("Menu.Item can override its parent menu's `closeOnSelect` and keep the menu
   const onClose = vi.fn()
   render(
     <Menu.Root onClose={onClose}>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
-      <Menu.List>
-        <Menu.Item closeOnSelect={false}>I do not close the menu</Menu.Item>
-        <Menu.Item>I close the menu</Menu.Item>
-      </Menu.List>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item closeOnSelect={false}>I do not close the menu</Menu.Item>
+          <Menu.Item>I close the menu</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -416,11 +447,13 @@ test("Menu.Item can override its parent menu's `closeOnSelect` and close the men
   const onClose = vi.fn()
   render(
     <Menu.Root onClose={onClose} closeOnSelect={false}>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
-      <Menu.List>
-        <Menu.Item>I do not close the menu</Menu.Item>
-        <Menu.Item closeOnSelect>I close the menu</Menu.Item>
-      </Menu.List>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item>I do not close the menu</Menu.Item>
+          <Menu.Item closeOnSelect>I close the menu</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 
@@ -436,15 +469,17 @@ test("Menu.Item can override its parent menu's `closeOnSelect` and close the men
   expect(onClose).toHaveBeenCalled()
 })
 
-test("Menu.List direction flips in rtl", () => {
+test("Menu.Content direction flips in rtl", () => {
   render(
     <ChakraProvider theme={{ ...theme, direction: "rtl" }}>
       <Menu.Root placement="top-end" isOpen>
-        <Menu.Button as={Button}>Open menu</Menu.Button>
-        <Menu.List>
-          <Menu.Item>Pick me</Menu.Item>
-          <Menu.Item>No no, pick me</Menu.Item>
-        </Menu.List>
+        <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item>Pick me</Menu.Item>
+            <Menu.Item>No no, pick me</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
       </Menu.Root>
     </ChakraProvider>,
   )
@@ -458,11 +493,13 @@ test("Menu.List direction flips in rtl", () => {
 test("can override menu item type", async () => {
   render(
     <Menu.Root>
-      <Menu.Button as={Button}>Open menu</Menu.Button>
-      <Menu.List>
-        <Menu.Item type="submit">Submit</Menu.Item>
-        <Menu.Item as={Button}>Button</Menu.Item>
-      </Menu.List>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item type="submit">Submit</Menu.Item>
+          <Menu.Item as={Button}>Button</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>,
   )
 

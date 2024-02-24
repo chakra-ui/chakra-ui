@@ -420,13 +420,19 @@ After:
 Renamed all table components to better reflect their purpose. This also affects
 the theme keys.
 
-- Renamed `TableContainer` to `TableOverflow`
-- Renamed `Td` to `TableCell`
-- Renamed `Th` to `TableColumnHeader`
-- Renamed `Tr` to `TableRow`
-- Renamed `Thead` to `TableHeader`
-- Renamed `Tbody` to `TableBody`
-- Renamed `Tfoot` to `TableFooter`
+- Renamed `TableContainer` to `Table.Overflow`
+- Renamed `Td` to `Table.Cell`
+- Renamed `Th` to `Table.ColumnHeader`
+- Renamed `Tr` to `Table.Row`
+- Renamed `Thead` to `Table.Header`
+- Renamed `Tbody` to `Table.Body`
+- Renamed `Tfoot` to `Table.Footer`
+- Renamed `isNumeric` to `numeric`
+
+### Menu
+
+- Removed `rootProps` in favor of rendering the `Menu.Positioner` component
+- Renamed `MenuButton` to `Menu.Trigger`
 
 ## Added
 
