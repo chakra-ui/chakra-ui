@@ -1,7 +1,7 @@
 import { Table } from "."
 
 export default {
-  title: "Data Display / Table / Simple",
+  title: "Data Display / Table",
 }
 
 const SimpleTable = (props: Table.RootProps) => (
@@ -84,11 +84,15 @@ const SimpleTable = (props: Table.RootProps) => (
 )
 
 export const simpleSM = () => <SimpleTable size="sm" />
+
 export const simpleMD = () => <SimpleTable size="md" />
+
 export const simpleLG = () => <SimpleTable size="lg" />
 
 export const stripedSM = () => <SimpleTable variant="striped" size="sm" />
+
 export const stripedMD = () => <SimpleTable variant="striped" size="md" />
+
 export const stripedLG = () => <SimpleTable variant="striped" size="lg" />
 
 export const unstyled = () => <SimpleTable variant="unstyled" size="none" />

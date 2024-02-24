@@ -19,7 +19,7 @@ export const TableCell = forwardRef<TableCellProps, "td">(
       <chakra.td
         {...rest}
         ref={ref}
-        __css={styles.td}
+        __css={styles.cell}
         data-is-numeric={dataAttr(numeric)}
       />
     )

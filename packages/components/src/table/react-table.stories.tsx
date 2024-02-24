@@ -19,7 +19,7 @@ declare module "@tanstack/react-table" {
 }
 
 export default {
-  title: "Data Display / Table / React Table",
+  title: "Data Display / Table",
 }
 
 interface Data {
@@ -60,7 +60,7 @@ const columns: ColumnDef<Data>[] = [
   },
 ]
 
-export const ReactTable = () => {
+export const WithReactTable = () => {
   const { getHeaderGroups, getRowModel } = useReactTable({
     data,
     columns,

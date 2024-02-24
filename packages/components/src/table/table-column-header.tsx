@@ -19,7 +19,7 @@ export const TableColumnHeader = forwardRef<TableColumnHeaderProps, "th">(
       <chakra.th
         {...rest}
         ref={ref}
-        __css={styles.th}
+        __css={styles.columnHeader}
         data-is-numeric={dataAttr(numeric)}
       />
     )

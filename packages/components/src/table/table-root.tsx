@@ -30,19 +30,19 @@ export interface TableRootProps
 export const TableRoot = forwardRef<TableRootProps, "table">(
   function TableRoot(props, ref) {
     const styles = useMultiStyleConfig("Table", props)
-    const { className, layout, ...tableProps } = omitThemingProps(props)
+    const { layout, ...rootProps } = omitThemingProps(props)
 
     return (
       <TableStylesProvider value={styles}>
         <chakra.table
           ref={ref}
-          __css={{ tableLayout: layout, ...styles.table }}
-          className={cx("chakra-table", className)}
-          {...tableProps}
+          {...rootProps}
+          __css={{ tableLayout: layout, ...styles.root }}
+          className={cx("chakra-table", props.className)}
         />
       </TableStylesProvider>
     )
   },
 )
 
-TableRoot.displayName = "Table"
+TableRoot.displayName = "TableRoot"

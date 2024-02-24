@@ -6,6 +6,6 @@ export interface TableBodyProps extends HTMLChakraProps<"tbody"> {}
 export const TableBody = forwardRef<TableBodyProps, "tbody">(
   function TableBody(props, ref) {
     const styles = useTableStyles()
-    return <chakra.tbody {...props} ref={ref} __css={styles.tbody} />
+    return <chakra.tbody {...props} ref={ref} __css={styles.body} />
   },
 )

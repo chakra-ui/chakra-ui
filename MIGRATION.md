@@ -415,6 +415,19 @@ After:
 </Button>
 ```
 
+### Table
+
+Renamed all table components to better reflect their purpose. This also affects
+the theme keys.
+
+- Renamed `TableContainer` to `TableOverflow`
+- Renamed `Td` to `TableCell`
+- Renamed `Th` to `TableColumnHeader`
+- Renamed `Tr` to `TableRow`
+- Renamed `Thead` to `TableHeader`
+- Renamed `Tbody` to `TableBody`
+- Renamed `Tfoot` to `TableFooter`
+
 ## Added
 
 ### Typography components

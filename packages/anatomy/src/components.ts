@@ -153,13 +153,13 @@ export const switchAnatomy = anatomy("switch").parts(
 )
 
 export const tableAnatomy = anatomy("table").parts(
-  "table",
-  "thead",
-  "tbody",
-  "tr",
-  "th",
-  "td",
-  "tfoot",
+  "root",
+  "header",
+  "body",
+  "row",
+  "columnHeader",
+  "cell",
+  "footer",
   "caption",
 )
 
