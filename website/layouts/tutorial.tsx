@@ -1,4 +1,4 @@
-import { IconButton, Menu, MenuItem } from '@chakra-ui/react'
+import { IconButton, Menu } from '@chakra-ui/react'
 import Pagination from 'components/pagination'
 import TutorialContainer from 'components/tutorial/tutorial-container'
 import { TutorialApp, packageJson } from 'configs/sandpack-contents/tutorial'
@@ -27,7 +27,7 @@ const TutorialMenu = (props: Props) => {
 
   return (
     <Menu.Root>
-      <Menu.Button
+      <Menu.Trigger
         as={IconButton}
         icon={<AiOutlineMenu />}
         aria-label='Tutorial menu'
@@ -45,14 +45,14 @@ const TutorialMenu = (props: Props) => {
                   color='teal.500'
                 >
                   {headings.map((heading) => (
-                    <MenuItem
+                    <Menu.Item
                       as='a'
                       key={heading.id}
                       href={`#${heading.id}`}
                       fontSize='sm'
                     >
                       {heading.text}
-                    </MenuItem>
+                    </Menu.Item>
                   ))}
                 </Menu.Group>
                 <Menu.Divider key={'2'} />
