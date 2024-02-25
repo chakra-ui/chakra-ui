@@ -16,7 +16,7 @@ need to apply specific styles to each part, size or variant of the Card.
 The `Card` component is a multipart component and consists of the following
 parts:
 
-- A: `container`
+- A: `root`
 - B: `header`
 - C: `body`
 - D: `footer`
@@ -218,7 +218,7 @@ const sizes = {
 export const cardTheme = defineMultiStyleConfig({ sizes });
 
 // now we can use the new `xl` size
-<Card size="xl" ... />
+<Card.Root size="xl" ... />
 ```
 
 ## Adding a custom variant
@@ -247,7 +247,7 @@ const { definePartsStyle, defineMultiStyleConfig } =
 export const cardTheme = defineMultiStyleConfig({ variants });
 
 // now we can use the new funky variant
-<Card variant="funky" ... />
+<Card.Root variant="funky" ... />
 ```
 
 ## Changing the default properties
