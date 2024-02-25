@@ -131,7 +131,7 @@ function DrawerExample() {
           <Drawer.Body>
             <Stack spacing='24px'>
               <Box>
-                <FormLabel htmlFor='username'>Name</FormLabel>
+                <Field.Label htmlFor='username'>Name</Field.Label>
                 <Input
                   ref={firstField}
                   id='username'
@@ -140,7 +140,7 @@ function DrawerExample() {
               </Box>
 
               <Box>
-                <FormLabel htmlFor='url'>Url</FormLabel>
+                <Field.Label htmlFor='url'>Url</Field.Label>
                 <InputGroup>
                   <InputLeftAddon>http://</InputLeftAddon>
                   <Input
@@ -153,7 +153,7 @@ function DrawerExample() {
               </Box>
 
               <Box>
-                <FormLabel htmlFor='owner'>Select Owner</FormLabel>
+                <Field.Label htmlFor='owner'>Select Owner</Field.Label>
                 <Select id='owner' defaultValue='segun'>
                   <option value='segun'>Segun Adebayo</option>
                   <option value='kola'>Kola Tioluwani</option>
@@ -161,7 +161,7 @@ function DrawerExample() {
               </Box>
 
               <Box>
-                <FormLabel htmlFor='desc'>Description</FormLabel>
+                <Field.Label htmlFor='desc'>Description</Field.Label>
                 <Textarea id='desc' />
               </Box>
             </Stack>

@@ -152,10 +152,10 @@ within the `PopoverContent`.
 // 1. Create a text input component
 const TextInput = React.forwardRef((props, ref) => {
   return (
-    <FormControl>
-      <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
+    <Field.Root>
+      <Field.Label htmlFor={props.id}>{props.label}</Field.Label>
       <Input ref={ref} id={props.id} {...props} />
-    </FormControl>
+    </Field.Root>
   )
 })
 

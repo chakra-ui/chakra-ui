@@ -25,12 +25,12 @@ import { Switch } from '@chakra-ui/react'
 ## Usage
 
 ```jsx
-<FormControl display='flex' alignItems='center'>
-  <FormLabel htmlFor='email-alerts' mb='0'>
+<Field.Root display='flex' alignItems='center'>
+  <Field.Label htmlFor='email-alerts' mb='0'>
     Enable email alerts?
-  </FormLabel>
+  </Field.Label>
   <Switch id='email-alerts' />
-</FormControl>
+</Field.Root>
 ```
 
 ## Sizes
@@ -63,23 +63,23 @@ States like `isDisabled` have an impact on the usability of a `Switch` and on
 the styles, except for the `isInvalid` and the `isRequired` prop.
 
 ```jsx
-<FormControl as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
-  <FormLabel htmlFor='isChecked'>isChecked:</FormLabel>
+<Field.Root as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
+  <Field.Label htmlFor='isChecked'>isChecked:</Field.Label>
   <Switch id='isChecked' isChecked />
 
-  <FormLabel htmlFor='isDisabled'>isDisabled:</FormLabel>
+  <Field.Label htmlFor='isDisabled'>isDisabled:</Field.Label>
   <Switch id='isDisabled' isDisabled defaultChecked />
 
-  <FormLabel htmlFor='isFocusable'>isFocusable:</FormLabel>
+  <Field.Label htmlFor='isFocusable'>isFocusable:</Field.Label>
   <Switch id='isFocusable' isFocusable isDisabled />
 
-  <FormLabel htmlFor='isInvalid'>isInvalid:</FormLabel>
+  <Field.Label htmlFor='isInvalid'>isInvalid:</Field.Label>
   <Switch id='isInvalid' isInvalid />
 
-  <FormLabel htmlFor='isReadOnly'>isReadOnly:</FormLabel>
+  <Field.Label htmlFor='isReadOnly'>isReadOnly:</Field.Label>
   <Switch id='isReadOnly' isReadOnly />
 
-  <FormLabel htmlFor='isRequired'>isRequired:</FormLabel>
+  <Field.Label htmlFor='isRequired'>isRequired:</Field.Label>
   <Switch id='isRequired' isRequired />
-</FormControl>
+</Field.Root>
 ```

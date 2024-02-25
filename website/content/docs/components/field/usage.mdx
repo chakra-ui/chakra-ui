@@ -1,50 +1,45 @@
 ---
-id: form-control
+id: field
 category: form
-title: Form Control
-package: '@chakra-ui/form-control'
+title: Field
+package: '@chakra-ui/field'
 description:
-  Form Control provides context such as `isInvalid`, `isDisabled`, and
-  `isRequired` to form elements
+  Field provides context such as `isInvalid`, `isDisabled`, and `isRequired` to
+  form elements
 ---
 
 ## Import
 
-Chakra UI exports 4 components for Form Control:
+Chakra UI exports 4 components for Field:
 
-- **`FormControl`**: The wrapper that provides context and functionality for all
+- **`Field.Root`**: The wrapper that provides context and functionality for all
   children.
-- **`FormLabel`**: The label of a form section. The usage is similar to
+- **`Field.Label`**: The label of a form section. The usage is similar to
   [html label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label).
   `htmlFor` is set by default for children input.
-- **`FormHelperText`**: The message that tells users more details about the form
-  section.
-- **`FormErrorMessage`**: The message that shows up when an error occurs.
+- **`Field.HelperText`**: The message that tells users more details about the
+  form section.
+- **`Field.ErrorMessage`**: The message that shows up when an error occurs.
 
 ```js
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from '@chakra-ui/react'
+import { Field } from '@chakra-ui/react'
 ```
 
 ## Usage
 
 ```jsx
-<FormControl>
-  <FormLabel>Email address</FormLabel>
+<Field.Root>
+  <Field.Label>Email address</Field.Label>
   <Input type='email' />
-  <FormHelperText>We'll never share your email.</FormHelperText>
-</FormControl>
+  <Field.HelperText>We'll never share your email.</Field.HelperText>
+</Field.Root>
 ```
 
 ### Sample usage for a radio or checkbox group
 
 ```jsx
-<FormControl as='fieldset'>
-  <FormLabel as='legend'>Favorite Naruto Character</FormLabel>
+<Field.Root as='fieldset'>
+  <Field.Label as='legend'>Favorite Naruto Character</Field.Label>
   <RadioGroup defaultValue='Itachi'>
     <HStack spacing='24px'>
       <Radio value='Sasuke'>Sasuke</Radio>
@@ -53,14 +48,14 @@ import {
       <Radio value='Sage of the six Paths'>Sage of the six Paths</Radio>
     </HStack>
   </RadioGroup>
-  <FormHelperText>Select only if you're a fan.</FormHelperText>
-</FormControl>
+  <Field.HelperText>Select only if you're a fan.</Field.HelperText>
+</Field.Root>
 ```
 
 ### Error message
 
-`FormErrorMessage` will only show up when the property `isInvalid` in
-`FormControl` is true.
+`Field.ErrorMessage` will only show up when the property `isInvalid` in
+`Field.Root` is true.
 
 ```jsx
 function errorMessageExample() {
@@ -71,17 +66,17 @@ function errorMessageExample() {
   const isError = input === ''
 
   return (
-    <FormControl isInvalid={isError}>
-      <FormLabel>Email</FormLabel>
+    <Field.Root isInvalid={isError}>
+      <Field.Label>Email</Field.Label>
       <Input type='email' value={input} onChange={handleInputChange} />
       {!isError ? (
-        <FormHelperText>
+        <Field.HelperText>
           Enter the email you'd like to receive the newsletter on.
-        </FormHelperText>
+        </Field.HelperText>
       ) : (
-        <FormErrorMessage>Email is required.</FormErrorMessage>
+        <Field.ErrorMessage>Email is required.</Field.ErrorMessage>
       )}
-    </FormControl>
+    </Field.Root>
   )
 }
 ```
@@ -89,35 +84,35 @@ function errorMessageExample() {
 ### Making a field required
 
 By passing the `isRequired` props, the `Input` field has `aria-required` set to
-`true`, and the `FormLabel` will show a red asterisk. This red asterisk can be
-overwritten by passing `requiredIndicator` to the `FormLabel`. If you want to
+`true`, and the `Field.Label` will show a red asterisk. This red asterisk can be
+overwritten by passing `requiredIndicator` to the `Field.Label`. If you want to
 indicate that a field is optional you can add `optionalIndicator` to the
-`FormLabel`
+`Field.Label`
 
 ```jsx
-<FormControl isRequired>
-  <FormLabel>First name</FormLabel>
+<Field.Root isRequired>
+  <Field.Label>First name</Field.Label>
   <Input placeholder='First name' />
-</FormControl>
+</Field.Root>
 ```
 
 ### Select Example
 
 ```jsx
-<FormControl>
-  <FormLabel>Country</FormLabel>
+<Field.Root>
+  <Field.Label>Country</Field.Label>
   <Select placeholder='Select country'>
     <option>United Arab Emirates</option>
     <option>Nigeria</option>
   </Select>
-</FormControl>
+</Field.Root>
 ```
 
 ### Number Input Example
 
 ```jsx
-<FormControl>
-  <FormLabel>Amount</FormLabel>
+<Field.Root>
+  <Field.Label>Amount</Field.Label>
   <NumberInput max={50} min={10}>
     <NumberInputField />
     <NumberInputStepper>
@@ -125,7 +120,7 @@ indicate that a field is optional you can add `optionalIndicator` to the
       <NumberDecrementStepper />
     </NumberInputStepper>
   </NumberInput>
-</FormControl>
+</Field.Root>
 ```
 
 ### Usage with Form Libraries
@@ -160,15 +155,15 @@ function FormikExample() {
     >
       {(props) => (
         <Form>
-          <Field name='name' validate={validateName}>
+          <Field.Root name='name' validate={validateName}>
             {({ field, form }) => (
-              <FormControl isInvalid={form.errors.name && form.touched.name}>
-                <FormLabel>First name</FormLabel>
+              <Field.Root isInvalid={form.errors.name && form.touched.name}>
+                <Field.Label>First name</Field.Label>
                 <Input {...field} placeholder='name' />
-                <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-              </FormControl>
+                <Field.ErrorMessage>{form.errors.name}</Field.ErrorMessage>
+              </Field.Root>
             )}
-          </Field>
+          </Field.Root>
           <Button
             mt={4}
             colorScheme='teal'
@@ -186,25 +181,26 @@ function FormikExample() {
 
 ## Improvements from v1
 
-- We've improved the accessibility of the `FormControl` component. Here are the
+- We've improved the accessibility of the `Field.Root` component. Here are the
   changes:
 
-  - `id` passed to the form control will be passed to the form input directly.
-  - `FormLabel` will have `htmlFor` that points to the `id` of the form input.
-  - `FormErrorMessage` adds `aria-describedby` and `aria-invalid` pointing to
+  - `id` passed to the field will be passed to the form input directly.
+  - `Field.Label` will have `htmlFor` that points to the `id` of the form input.
+  - `Field.ErrorMessage` adds `aria-describedby` and `aria-invalid` pointing to
     the form input.
-  - `FormHelperText` adds/extends `aria-describedby` pointing to the form input.
-  - `isDisabled`, `isRequired`, `isReadOnly` props passed to `FormControl` will
+  - `Field.HelperText` adds/extends `aria-describedby` pointing to the form
+    input.
+  - `isDisabled`, `isRequired`, `isReadOnly` props passed to `Field.Root` will
     cascade across all related components.
 
-- `FormLabel` is now aware of the `disabled`, `focused` and `error` state of the
-  form input. This helps you style the label accordingly using the `_disabled`,
-  `_focus`, and `_invalid` style props.
+- `Field.Label` is now aware of the `disabled`, `focused` and `error` state of
+  the form input. This helps you style the label accordingly using the
+  `_disabled`, `_focus`, and `_invalid` style props.
 
-- If you render `FormErrorMessage` and `isInvalid` is `false` or `undefined`,
-  `FormErrorMessage` won't be visible. The only way to make it visible is by
+- If you render `Field.ErrorMessage` and `isInvalid` is `false` or `undefined`,
+  `Field.ErrorMessage` won't be visible. The only way to make it visible is by
   passing `isInvalid` and setting it to `true`.
-- You can still supply an `id` prop to `FormControl` that will override the
+- You can still supply an `id` prop to `Field.Root` that will override the
   randomly generated `id` and attach to the `for` attribute of the label and the
   `id` of the form element. (It also affects the `id` attribute of the label)
 

@@ -191,15 +191,15 @@ function InitialFocus() {
           <ModalHeader>Create your account</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>First name</FormLabel>
+            <Field.Root>
+              <Field.Label>First name</Field.Label>
               <Input ref={initialRef} placeholder='First name' />
-            </FormControl>
+            </Field.Root>
 
-            <FormControl mt={4}>
-              <FormLabel>Last name</FormLabel>
+            <Field.Root mt={4}>
+              <Field.Label>Last name</Field.Label>
               <Input placeholder='Last name' />
-            </FormControl>
+            </Field.Root>
           </ModalBody>
 
           <ModalFooter>
