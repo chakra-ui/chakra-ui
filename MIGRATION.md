@@ -30,6 +30,11 @@ or `<X>Root`
 - Rename `AccordionButton` to `Accordion.Trigger`
 - Rename `AccordionPanel` to `Accordion.Content`
 
+### Alert Dialog
+
+We've removed the `AlertDialog` component in favor of passing the
+`role="alertdialog"` to the `Dialog` component.
+
 ### Avatar
 
 Before:
@@ -293,11 +298,6 @@ After:
   </Dialog.Positioner>
 </Dialog.Root>
 ```
-
-### Alert Dialog
-
-We've removed the `AlertDialog` component in favor of passing the
-`role="alertdialog"` to the `Dialog` component.
 
 ### Popover
 
