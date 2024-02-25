@@ -10,63 +10,57 @@ description:
 ## Import
 
 ```js
-import {
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
-} from '@chakra-ui/react'
+import { List } from '@chakra-ui/react'
 ```
 
 ## Unordered List
 
 ```jsx
-<UnorderedList>
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</UnorderedList>
+<List.Root>
+  <List.Item>Lorem ipsum dolor sit amet</List.Item>
+  <List.Item>Consectetur adipiscing elit</List.Item>
+  <List.Item>Integer molestie lorem at massa</List.Item>
+  <List.Item>Facilisis in pretium nisl aliquet</List.Item>
+</List.Root>
 ```
 
 ## Ordered List
 
 ```jsx
-<OrderedList>
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</OrderedList>
+<List.Root as='ol' styleType='decimal'>
+  <List.Item>Lorem ipsum dolor sit amet</List.Item>
+  <List.Item>Consectetur adipiscing elit</List.Item>
+  <List.Item>Integer molestie lorem at massa</List.Item>
+  <List.Item>Facilisis in pretium nisl aliquet</List.Item>
+</List.Root>
 ```
 
 ## Unstyled List with icon
 
-Add icons to the list items by using the `ListIcon` component. You can pass the
+Add icons to the list items by using the `List.Icon` component. You can pass the
 name of the icon or use custom icons. The size of the icon is relative to the
 font size of the list item.
 
 ```jsx
-<List spacing={3}>
-  <ListItem>
-    <ListIcon as={MdCheckCircle} color='green.500' />
+<List.Root spacing={3}>
+  <List.Item>
+    <List.Icon as={MdCheckCircle} color='green.500' />
     Lorem ipsum dolor sit amet, consectetur adipisicing elit
-  </ListItem>
-  <ListItem>
-    <ListIcon as={MdCheckCircle} color='green.500' />
+  </List.Item>
+  <List.Item>
+    <List.Icon as={MdCheckCircle} color='green.500' />
     Assumenda, quia temporibus eveniet a libero incidunt suscipit
-  </ListItem>
-  <ListItem>
-    <ListIcon as={MdCheckCircle} color='green.500' />
+  </List.Item>
+  <List.Item>
+    <List.Icon as={MdCheckCircle} color='green.500' />
     Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-  </ListItem>
+  </List.Item>
   {/* You can also use custom icons from react-icons */}
-  <ListItem>
-    <ListIcon as={MdSettings} color='green.500' />
+  <List.Item>
+    <List.Icon as={MdSettings} color='green.500' />
     Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-  </ListItem>
-</List>
+  </List.Item>
+</List.Root>
 ```
 
 ## Custom style type
@@ -80,12 +74,12 @@ To do the same in `List`, you can use the prop `styleType`.
 For example:
 
 ```jsx
-<UnorderedList styleType='lower-roman'>
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</UnorderedList>
+<List.Root styleType='lower-roman'>
+  <List.Item>Lorem ipsum dolor sit amet</List.Item>
+  <List.Item>Consectetur adipiscing elit</List.Item>
+  <List.Item>Integer molestie lorem at massa</List.Item>
+  <List.Item>Facilisis in pretium nisl aliquet</List.Item>
+</List.Root>
 ```
 
 In fact, the content that you pass to `styleType` will become the value of the
@@ -98,13 +92,10 @@ If you need to make a custom marker from a string, for example `-`, this can be
 done as follows:
 
 ```jsx
-<UnorderedList styleType="'-'">
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</UnorderedList>
+<List.Root styleType="'-'">
+  <List.Item>Lorem ipsum dolor sit amet</List.Item>
+  <List.Item>Consectetur adipiscing elit</List.Item>
+  <List.Item>Integer molestie lorem at massa</List.Item>
+  <List.Item>Facilisis in pretium nisl aliquet</List.Item>
+</List.Root>
 ```
-
-It is important to understand that `UnorderedList`, `OrderedList` and `List`
-work the same in this case.

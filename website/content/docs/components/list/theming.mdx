@@ -12,7 +12,7 @@ to each part specifically.
 
 ## Anatomy
 
-- A: `container`
+- A: `root`
 - B: `item`
 - C: `icon`
 
@@ -901,7 +901,7 @@ const sizes = {
 }
 export const listTheme = defineMultiStyleConfig({ sizes })
 // Now we can use the new `xl` size
-<List size="xl">...</List>
+<List.Root size="xl">...</List.Root>
 ```
 
 ## Creating a custom variant
@@ -933,7 +933,7 @@ const variants = {
 
 export const listTheme = defineMultiStyleConfig({ variants })
 // Now we can use the new `custom` variant
-<List varint="custom">...</List>
+<List.Root varint="custom">...</List.Root>
 ```
 
 ## Changing the default properties
@@ -957,7 +957,7 @@ export const listTheme = defineMultiStyleConfig({
   },
 })
 // This saves you time, instead of manually setting the size and variant every time you use a list:
-<List size="xl" variant="custom"></List>
+<List.Root size="xl" variant="custom"></List.Root>
 ```
 
 ## Showcase
