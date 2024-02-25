@@ -53,8 +53,8 @@ Change the separator used in the breadcrumb by passing a string, like `-` or an
 icon.
 
 ```jsx
-<Breadcrumb.Root separator='-'>
-  <Breadcrumb.List>
+<Breadcrumb.Root>
+  <Breadcrumb.List separator='-'>
     <Breadcrumb.Item>
       <Breadcrumb.Link href='#'>Home</Breadcrumb.Link>
     </Breadcrumb.Item>
@@ -73,11 +73,11 @@ icon.
 ### Using an icon as the separator
 
 ```jsx
-<Breadcrumb.Root
-  spacing='8px'
-  separator={<ChevronRightIcon color='gray.500' />}
->
-  <Breadcrumb.List>
+<Breadcrumb.Root>
+  <Breadcrumb.List
+    spacing='8px'
+    separator={<ChevronRightIcon color='gray.500' />}
+  >
     <Breadcrumb.Item>
       <Breadcrumb.Link href='#'>Home</Breadcrumb.Link>
     </Breadcrumb.Item>
@@ -96,9 +96,9 @@ icon.
 ### Using a separator in last item
 
 If you want to have a `Breadcrumb.Separator` in the last item of the
-`Breadcrumb.Root` you have different ways to achieve it. But to avoid the
+`Breadcrumb.List` you have different ways to achieve it. But to avoid the
 _'React does not recognize the `isLastChild` prop on a DOM element.'_ error you
-can not simply add the separator directly in the `Breadcrumb`.
+can not simply add the separator directly in the `Breadcrumb.List`.
 
 The clean way to achieve it is to put the separator in the last
 `Breadcrumb.Item`. Feel free to also inspect the example below with the browsers
