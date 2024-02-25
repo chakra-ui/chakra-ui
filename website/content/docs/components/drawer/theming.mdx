@@ -796,7 +796,7 @@ export const drawerTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `xl` size
-<Drawer size="xl" ... />
+<Drawer.Root size="xl" ... />
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -832,7 +832,7 @@ export const drawerTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `purple` variant
-<Drawer variant='purple' ... />
+<Drawer.Root variant='purple' ... />
 ```
 
 ### Changing the default properties
@@ -854,7 +854,7 @@ export const drawerTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use a Drawer:
-<Drawer size="xl" variant="purple" ... />
+<Drawer.Root size="xl" variant="purple" ... />
 ```
 
 ### Showcase

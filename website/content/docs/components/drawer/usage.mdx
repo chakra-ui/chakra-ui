@@ -12,15 +12,7 @@ description:
 ## Import
 
 ```js
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-} from '@chakra-ui/react'
+import { Drawer } from '@chakra-ui/react'
 ```
 
 ## Usage
@@ -37,29 +29,29 @@ function DrawerExample() {
       <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
         Open
       </Button>
-      <Drawer
+      <Drawer.Root
         isOpen={isOpen}
         placement='right'
         onClose={onClose}
         finalFocusRef={btnRef}
       >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
+        <Drawer.Overlay />
+        <Drawer.Content>
+          <Drawer.CloseButton />
+          <Drawer.Header>Create your account</Drawer.Header>
 
-          <DrawerBody>
+          <Drawer.Body>
             <Input placeholder='Type here...' />
-          </DrawerBody>
+          </Drawer.Body>
 
-          <DrawerFooter>
+          <Drawer.Footer>
             <Button variant='outline' mr={3} onClick={onClose}>
               Cancel
             </Button>
             <Button colorScheme='blue'>Save</Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+          </Drawer.Footer>
+        </Drawer.Content>
+      </Drawer.Root>
     </>
   )
 }
@@ -88,17 +80,17 @@ function PlacementExample() {
       <Button colorScheme='blue' onClick={onOpen}>
         Open
       </Button>
-      <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
-          <DrawerBody>
+      <Drawer.Root placement={placement} onClose={onClose} isOpen={isOpen}>
+        <Drawer.Overlay />
+        <Drawer.Content>
+          <Drawer.Header borderBottomWidth='1px'>Basic Drawer</Drawer.Header>
+          <Drawer.Body>
             <p>Some contents...</p>
             <p>Some contents...</p>
             <p>Some contents...</p>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+          </Drawer.Body>
+        </Drawer.Content>
+      </Drawer.Root>
     </>
   )
 }
@@ -122,20 +114,20 @@ function DrawerExample() {
       <Button leftIcon={<AddIcon />} colorScheme='teal' onClick={onOpen}>
         Create user
       </Button>
-      <Drawer
+      <Drawer.Root
         isOpen={isOpen}
         placement='right'
         initialFocusRef={firstField}
         onClose={onClose}
       >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth='1px'>
+        <Drawer.Overlay />
+        <Drawer.Content>
+          <Drawer.CloseButton />
+          <Drawer.Header borderBottomWidth='1px'>
             Create a new account
-          </DrawerHeader>
+          </Drawer.Header>
 
-          <DrawerBody>
+          <Drawer.Body>
             <Stack spacing='24px'>
               <Box>
                 <FormLabel htmlFor='username'>Name</FormLabel>
@@ -172,16 +164,16 @@ function DrawerExample() {
                 <Textarea id='desc' />
               </Box>
             </Stack>
-          </DrawerBody>
+          </Drawer.Body>
 
-          <DrawerFooter borderTopWidth='1px'>
+          <Drawer.Footer borderTopWidth='1px'>
             <Button variant='outline' mr={3} onClick={onClose}>
               Cancel
             </Button>
             <Button colorScheme='blue'>Submit</Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+          </Drawer.Footer>
+        </Drawer.Content>
+      </Drawer.Root>
     </>
   )
 }
@@ -214,12 +206,12 @@ function SizeExample() {
         >{`Open ${size} Drawer`}</Button>
       ))}
 
-      <Drawer onClose={onClose} isOpen={isOpen} size={size}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>{`${size} drawer contents`}</DrawerHeader>
-          <DrawerBody>
+      <Drawer.Root onClose={onClose} isOpen={isOpen} size={size}>
+        <Drawer.Overlay />
+        <Drawer.Content>
+          <Drawer.CloseButton />
+          <Drawer.Header>{`${size} drawer contents`}</Drawer.Header>
+          <Drawer.Body>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -229,9 +221,9 @@ function SizeExample() {
               magna eget est lorem. Erat imperdiet sed euismod nisi porta.
               Lectus vestibulum mattis ullamcorper velit.
             </p>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+          </Drawer.Body>
+        </Drawer.Content>
+      </Drawer.Root>
     </>
   )
 }
@@ -252,13 +244,13 @@ export const App = () => {
   return (
     <>
       <Button onClick={onOpen}>Open</Button>
-      <Drawer isOpen={isOpen} onClose={onClose}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
+      <Drawer.Root isOpen={isOpen} onClose={onClose}>
+        <Drawer.Overlay />
+        <Drawer.Content>
+          <Drawer.CloseButton />
+          <Drawer.Header>Create your account</Drawer.Header>
 
-          <DrawerBody>
+          <Drawer.Body>
             <form
               id='my-form'
               onSubmit={(e) => {
@@ -268,15 +260,15 @@ export const App = () => {
             >
               <Input name='nickname' placeholder='Type here...' />
             </form>
-          </DrawerBody>
+          </Drawer.Body>
 
-          <DrawerFooter>
+          <Drawer.Footer>
             <Button type='submit' form='my-form'>
               Save
             </Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+          </Drawer.Footer>
+        </Drawer.Content>
+      </Drawer.Root>
     </>
   )
 }
