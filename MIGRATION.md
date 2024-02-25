@@ -277,6 +277,39 @@ element that represents a form field.
 
 - Removed `rootProps` in favor of rendering the `Menu.Positioner` component
 - Renamed `MenuButton` to `Menu.Trigger`
+- Renamed `MenuList` to `Menu.Content`
+
+Before:
+
+```tsx
+<Menu>
+  <MenuButton as={Button}>
+    Actions
+    <ChevronDownIcon />
+  </MenuButton>
+  <MenuList>
+    <MenuItem>Download</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+After:
+
+```tsx
+<Menu.Root>
+  <Menu.Trigger asChild>
+    <Button>
+      Actions
+      <ChevronDownIcon />
+    </Button>
+  </Menu.Trigger>
+  <Menu.Positioner>
+    <Menu.Content>
+      <Menu.Item>Download</Menu.Item>
+    </Menu.Content>
+  </Menu.Positioner>
+</Menu.Root>
+```
 
 ### Modal -> Dialog
 

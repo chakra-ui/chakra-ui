@@ -12,7 +12,7 @@ to each part specifically.
 
 ## Anatomy
 
-- A: `button`
+- A: `trigger`
 - B: `list`
 - C: `item`
 - D: `groupTitle`
@@ -318,8 +318,8 @@ const { definePartsStyle, defineMultiStyleConfig } =
 // define the base component styles
 const baseStyle = definePartsStyle({
   // define the part you're going to style
-  button: {
-    // this will style the MenuButton component
+  trigger: {
+    // this will style the Menu.Trigger component
     fontWeight: 'medium',
     bg: 'teal.500',
     color: 'gray.200',
@@ -329,14 +329,14 @@ const baseStyle = definePartsStyle({
     },
   },
   list: {
-    // this will style the MenuList component
+    // this will style the Menu.List component
     py: '4',
     borderRadius: 'xl',
     border: 'none',
     bg: 'teal.500',
   },
   item: {
-    // this will style the MenuItem and MenuItemOption components
+    // this will style the Menu.Item and Menu.ItemOption components
     color: 'gray.200',
     _hover: {
       bg: 'teal.600',
@@ -347,7 +347,7 @@ const baseStyle = definePartsStyle({
   },
   groupTitle: {
     // this will style the text defined by the title prop
-    // in the MenuGroup and MenuOptionGroup components
+    // in the Menu.Group and Menu.OptionGroup components
     textTransform: 'uppercase',
     color: 'white',
     textAlign: 'center',
@@ -356,7 +356,7 @@ const baseStyle = definePartsStyle({
   },
   command: {
     // this will style the text defined by the command
-    // prop in the MenuItem and MenuItemOption components
+    // prop in the Menu.Item and Menu.ItemOption components
     opacity: '0.8',
     fontFamily: 'mono',
     fontSize: 'sm',
@@ -420,14 +420,14 @@ const xl = defineStyle({
 // define custom sizes
 const sizes = {
   // apply custom styles to parts
-  xl: definePartsStyle({ button: xl, item: xl, groupTitle: lg, command: xl }),
+  xl: definePartsStyle({ trigger: xl, item: xl, groupTitle: lg, command: xl }),
 }
 
 // export the sizes in the component theme
 export const menuTheme = defineMultiStyleConfig({ sizes })
 
 // now we can use the new `xl` size
-<Menu size="xl" ... />
+<Menu.Root size="xl" ... />
 
 ```
 
@@ -450,13 +450,13 @@ const { definePartsStyle, defineMultiStyleConfig } =
 // define custom variants
 const variants = {
   roundLeft: {
-    button: {
+    trigger: {
       borderLeftRadius: 'full',
       pl: '6',
     },
   },
   roundRight: {
-    button: {
+    trigger: {
       borderRightRadius: 'full',
       pr: '6',
     },
@@ -467,8 +467,8 @@ const variants = {
 export const menuTheme = defineMultiStyleConfig({ variants })
 
 // now we can use the new `roundLeft` and `roundRight` variants
-<Menu variant="roundLeft" ... />
-<Menu variant="roundRight" ... />
+<Menu.Root variant="roundLeft" ... />
+<Menu.Root variant="roundRight" ... />
 ```
 
 ## Changing the default properties
