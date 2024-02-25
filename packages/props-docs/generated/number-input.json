@@ -1,8 +1,5 @@
 {
-  "NumberDecrementStepper": {},
-  "NumberIncrementStepper": {},
-  "NumberInputField": {},
-  "NumberInput": {
+  "NumberInputRoot": {
     "allowMouseWheel": {
       "type": "boolean",
       "required": false,
@@ -16,11 +13,6 @@
       "defaultValue": true,
       "required": false,
       "description": "This controls the value update when you blur out of the input.\n- If `true` and the value is greater than `max`, the value will be reset to `max`\n- Else, the value remains the same."
-    },
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-      "required": false,
-      "description": "The visual color appearance of the component"
     },
     "defaultValue": {
       "type": "string | number",
@@ -145,12 +137,6 @@
       "required": false,
       "description": "The number of decimal points used to round the value"
     },
-    "size": {
-      "defaultValue": "md",
-      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
-      "required": false,
-      "description": "The size of the NumberInput"
-    },
     "step": {
       "type": "number",
       "defaultValue": "1",
@@ -161,14 +147,11 @@
       "type": "string | number",
       "required": false,
       "description": "The value of the counter. Should be less than `max` and greater than `min`"
-    },
-    "variant": {
-      "defaultValue": "outline",
-      "type": "\"outline\" | \"filled\" | \"flushed\" | \"unstyled\"",
-      "required": false,
-      "description": "The variant of the NumberInput"
     }
   },
+  "NumberInputDecrementStepper": {},
+  "NumberInputIncrementStepper": {},
+  "NumberInputField": {},
   "NumberInputStepper": {},
   "UseNumberInput": {
     "allowMouseWheel": {

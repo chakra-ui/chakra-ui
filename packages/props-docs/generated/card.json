@@ -1,14 +1,14 @@
 {
-  "Card": {
+  "CardBody": {},
+  "CardFooter": {
+    "justify": { "type": "ResponsiveValue<JustifyContent>", "required": false }
+  },
+  "CardHeader": {},
+  "CardRoot": {
     "align": {
       "type": "ResponsiveValue<AlignItems>",
       "required": false,
       "description": "The flex alignment of the card"
-    },
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-      "required": false,
-      "description": "The visual color appearance of the component"
     },
     "direction": {
       "type": "ResponsiveValue<FlexDirection>",
@@ -19,23 +19,6 @@
       "type": "ResponsiveValue<JustifyContent>",
       "required": false,
       "description": "The flex distribution of the card"
-    },
-    "size": {
-      "defaultValue": "md",
-      "type": "\"sm\" | \"md\" | \"lg\"",
-      "required": false,
-      "description": "The size of the Card"
-    },
-    "variant": {
-      "defaultValue": "elevated",
-      "type": "\"elevated\" | \"outline\" | \"filled\" | \"unstyled\"",
-      "required": false,
-      "description": "The variant of the Card"
     }
-  },
-  "CardBody": {},
-  "CardFooter": {
-    "justify": { "type": "ResponsiveValue<JustifyContent>", "required": false }
-  },
-  "CardHeader": {}
+  }
 }

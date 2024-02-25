@@ -1,5 +1,48 @@
 {
-  "Checkbox": {
+  "CheckboxControl": {},
+  "CheckboxGroup": {
+    "defaultValue": {
+      "type": "(string | number)[]",
+      "required": false,
+      "description": "The initial value of the checkbox group"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, all wrapped checkbox inputs will be disabled"
+    },
+    "isNative": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
+    },
+    "onChange": {
+      "type": "(value: (string | number)[]) => void",
+      "required": false,
+      "description": "The callback fired when any children Checkbox is checked or unchecked"
+    },
+    "value": {
+      "type": "(string | number)[]",
+      "required": false,
+      "description": "The value of the checkbox group"
+    }
+  },
+  "CheckboxIcon": {
+    "isChecked": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    },
+    "isIndeterminate": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false
+    }
+  },
+  "CheckboxLabel": {},
+  "CheckboxRoot": {
     "aria-describedby": { "type": "string", "required": false },
     "aria-invalid": { "type": "true", "required": false },
     "aria-label": {
@@ -11,28 +54,6 @@
       "type": "string",
       "required": false,
       "description": "Refers to the `id` of the element that labels the checkbox element."
-    },
-    "colorScheme": {
-      "defaultValue": "blue",
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-      "required": false,
-      "description": "The visual color appearance of the component"
-    },
-    "icon": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-      "defaultValue": "CheckboxIcon",
-      "required": false,
-      "description": "The checked icon to use"
-    },
-    "iconColor": {
-      "type": "string",
-      "required": false,
-      "description": "The color of the checkbox icon when checked or indeterminate"
-    },
-    "iconSize": {
-      "type": "string | number",
-      "required": false,
-      "description": "The size of the checkbox icon when checked or indeterminate"
     },
     "id": {
       "type": "string",
@@ -101,12 +122,6 @@
       "required": false,
       "description": "The callback invoked when the checkbox is focused"
     },
-    "size": {
-      "defaultValue": "md",
-      "type": "\"sm\" | \"md\" | \"lg\"",
-      "required": false,
-      "description": "The size of the Checkbox"
-    },
     "spacing": {
       "type": "ResponsiveValue<string | number | (string & {})>",
       "defaultValue": "0.5rem",
@@ -122,52 +137,6 @@
       "type": "string | number",
       "required": false,
       "description": "The value to be used in the checkbox input.\nThis is the value that will be returned on form submission."
-    },
-    "variant": {
-      "type": "string",
-      "required": false,
-      "description": "The variant of the Checkbox"
-    }
-  },
-  "CheckboxGroup": {
-    "defaultValue": {
-      "type": "(string | number)[]",
-      "required": false,
-      "description": "The initial value of the checkbox group"
-    },
-    "isDisabled": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, all wrapped checkbox inputs will be disabled"
-    },
-    "isNative": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, input elements will receive\n`checked` attribute instead of `isChecked`.\n\nThis assumes, you're using native radio inputs"
-    },
-    "onChange": {
-      "type": "(value: (string | number)[]) => void",
-      "required": false,
-      "description": "The callback fired when any children Checkbox is checked or unchecked"
-    },
-    "value": {
-      "type": "(string | number)[]",
-      "required": false,
-      "description": "The value of the checkbox group"
-    }
-  },
-  "CheckboxIcon": {
-    "isChecked": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
-    },
-    "isIndeterminate": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
     }
   },
   "UseCheckboxGroup": {

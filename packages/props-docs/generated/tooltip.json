@@ -1,10 +1,5 @@
 {
-  "Tooltip": {
-    "aria-label": {
-      "type": "string",
-      "required": false,
-      "description": "The accessible, human friendly label to use for\nscreen readers.\n\nIf passed, tooltip will show the content `label`\nbut expose only `aria-label` to assistive technologies"
-    },
+  "TooltipRoot": {
     "arrowPadding": {
       "type": "number",
       "defaultValue": "8",
@@ -30,11 +25,6 @@
       "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide on pressing Esc key"
-    },
-    "closeOnMouseDown": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the tooltip will hide while the mouse is down"
     },
     "closeOnPointerDown": {
       "type": "boolean",
@@ -65,11 +55,10 @@
       "required": false,
       "description": "The distance or margin between the reference and popper.\nIt is used internally to create an `offset` modifier.\n\nNB: If you define `offset` prop, it'll override the gutter."
     },
-    "hasArrow": {
-      "type": "boolean",
-      "defaultValue": false,
+    "id": {
+      "type": "string",
       "required": false,
-      "description": "If `true`, the tooltip will show an arrow tip"
+      "description": "Custom `id` to use in place of `uuid`"
     },
     "isDisabled": {
       "type": "boolean",
@@ -82,17 +71,11 @@
       "required": false,
       "description": "If `true`, the tooltip will be shown (in controlled mode)"
     },
-    "label": {
-      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | Iterable<ReactNode>\n  | ReactPortal\n  | PromiseLikeOfReactNode",
-      "required": false,
-      "description": "The label of the tooltip"
-    },
     "modifiers": {
       "type": "Partial<Modifier<string, any>>[]",
       "required": false,
       "description": "Array of popper.js modifiers. Check the docs to see\nthe list of possible modifiers you can pass."
     },
-    "motionProps": { "type": "HTMLMotionProps<\"div\">", "required": false },
     "offset": {
       "type": "[number, number]",
       "required": false,
@@ -119,17 +102,22 @@
       "defaultValue": "bottom",
       "required": false,
       "description": "The placement of the popper relative to its reference."
-    },
+    }
+  },
+  "TooltipTrigger": {},
+  "TooltipContent": {
+    "motionProps": {
+      "type": "HTMLMotionProps<\"div\">",
+      "required": false,
+      "description": "The motion props for the tooltip"
+    }
+  },
+  "TooltipArrow": {},
+  "TooltipPositioner": {
     "portalProps": {
       "type": "Pick<\n  PortalProps,\n  \"appendToParentPortal\" | \"containerRef\"\n>",
       "required": false,
       "description": "Props to be forwarded to the portal component"
-    },
-    "shouldWrapChildren": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the tooltip will wrap its children\nin a `<span/>` with `tabIndex=0`"
     }
   },
   "UseTooltip": {
@@ -158,11 +146,6 @@
       "defaultValue": true,
       "required": false,
       "description": "If `true`, the tooltip will hide on pressing Esc key"
-    },
-    "closeOnMouseDown": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the tooltip will hide while the mouse is down"
     },
     "closeOnPointerDown": {
       "type": "boolean",

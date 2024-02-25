@@ -1,15 +1,9 @@
 {
-  "PinInputField": {},
-  "PinInput": {
+  "PinInputRoot": {
     "autoFocus": {
       "type": "boolean",
       "required": false,
       "description": "If `true`, the pin input receives focus on mount"
-    },
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-      "required": false,
-      "description": "The visual color appearance of the component"
     },
     "defaultValue": {
       "type": "string",
@@ -72,12 +66,6 @@
       "required": false,
       "description": "The placeholder for the pin input"
     },
-    "size": {
-      "defaultValue": "md",
-      "type": "\"lg\" | \"md\" | \"sm\" | \"xs\"",
-      "required": false,
-      "description": "The size of the PinInput"
-    },
     "type": {
       "type": "\"number\" | \"alphanumeric\"",
       "required": false,
@@ -87,20 +75,9 @@
       "type": "string",
       "required": false,
       "description": "The value of the pin input. This is the value\nthat will be returned when the pin input is filled"
-    },
-    "variant": {
-      "defaultValue": "outline",
-      "type": "\"outline\" | \"flushed\" | \"filled\" | \"unstyled\"",
-      "required": false,
-      "description": "The variant of the PinInput"
     }
   },
-  "UsePinInputField": {
-    "ref": {
-      "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLInputElement | null) => void)\n  | RefObject<HTMLInputElement>",
-      "required": false
-    }
-  },
+  "PinInputField": {},
   "UsePinInput": {
     "autoFocus": {
       "type": "boolean",
@@ -168,5 +145,6 @@
       "required": false,
       "description": "The value of the pin input. This is the value\nthat will be returned when the pin input is filled"
     }
-  }
+  },
+  "UsePinInputField": {}
 }

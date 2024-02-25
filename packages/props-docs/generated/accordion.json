@@ -1,40 +1,5 @@
 {
-  "Accordion": {
-    "allowMultiple": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, multiple accordion items can be expanded at once."
-    },
-    "allowToggle": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, any expanded accordion item can be collapsed again."
-    },
-    "defaultIndex": {
-      "type": "ExpandedIndex",
-      "required": false,
-      "description": "The initial index(es) of the expanded accordion item"
-    },
-    "index": {
-      "type": "ExpandedIndex",
-      "required": false,
-      "description": "The index(es) of the expanded accordion item"
-    },
-    "onChange": {
-      "type": "(expandedIndex: ExpandedIndex) => void",
-      "required": false,
-      "description": "The callback invoked when accordion items are expanded or collapsed."
-    },
-    "reduceMotion": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, height animation and transitions will be disabled."
-    }
-  },
-  "AccordionButton": {},
+  "AccordionTrigger": {},
   "AccordionIcon": { "orientation": { "type": "any", "required": false } },
   "AccordionItem": {
     "id": {
@@ -55,11 +20,46 @@
       "description": "If `true`, the accordion item will be focusable."
     }
   },
-  "AccordionPanel": {
+  "AccordionContent": {
     "motionProps": {
       "type": "CollapseProps",
       "required": false,
       "description": "The properties passed to the underlying `Collapse` component."
+    }
+  },
+  "AccordionRoot": {
+    "collapsible": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, any expanded accordion item can be collapsed again."
+    },
+    "defaultIndex": {
+      "type": "number | number[]",
+      "required": false,
+      "description": "The initial index(es) of the expanded accordion item"
+    },
+    "index": {
+      "type": "number | number[]",
+      "required": false,
+      "description": "The index(es) of the expanded accordion item"
+    },
+    "multiple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, multiple accordion items can be expanded at once."
+    },
+    "onChange": {
+      "type": "(expandedIndex: number | number[]) => void",
+      "required": false,
+      "description": "The callback invoked when accordion items are expanded or collapsed."
+    },
+    "reduceMotion": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, height animation and transitions will be disabled."
     }
   },
   "UseAccordionItem": {
@@ -82,30 +82,30 @@
     }
   },
   "UseAccordion": {
-    "allowMultiple": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, multiple accordion items can be expanded at once."
-    },
-    "allowToggle": {
+    "collapsible": {
       "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, any expanded accordion item can be collapsed again."
     },
     "defaultIndex": {
-      "type": "ExpandedIndex",
+      "type": "number | number[]",
       "required": false,
       "description": "The initial index(es) of the expanded accordion item"
     },
     "index": {
-      "type": "ExpandedIndex",
+      "type": "number | number[]",
       "required": false,
       "description": "The index(es) of the expanded accordion item"
     },
+    "multiple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, multiple accordion items can be expanded at once."
+    },
     "onChange": {
-      "type": "(expandedIndex: ExpandedIndex) => void",
+      "type": "(expandedIndex: number | number[]) => void",
       "required": false,
       "description": "The callback invoked when accordion items are expanded or collapsed."
     }

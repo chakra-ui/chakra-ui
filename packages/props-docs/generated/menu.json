@@ -1,5 +1,101 @@
 {
-  "Menu": {
+  "MenuTrigger": {},
+  "MenuCommand": {},
+  "MenuDivider": {},
+  "MenuGroup": {},
+  "MenuItem": {
+    "closeOnSelect": {
+      "type": "boolean",
+      "required": false,
+      "description": "Overrides the parent menu's `closeOnSelect` prop."
+    },
+    "command": {
+      "type": "string",
+      "required": false,
+      "description": "Right-aligned label text content, useful for displaying hotkeys."
+    },
+    "commandSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the command and menu item's label."
+    },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "The icon to render before the menu item's label."
+    },
+    "iconSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the icon and menu item's label."
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the menuitem will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
+    }
+  },
+  "MenuItemOption": {
+    "closeOnSelect": {
+      "type": "boolean",
+      "required": false,
+      "description": "Overrides the parent menu's `closeOnSelect` prop."
+    },
+    "command": {
+      "type": "string",
+      "required": false,
+      "description": "Right-aligned label text content, useful for displaying hotkeys."
+    },
+    "commandSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the command and menu item's label."
+    },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false
+    },
+    "iconSpacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The spacing between the icon and menu item's label."
+    },
+    "isChecked": { "type": "boolean", "required": false },
+    "isDisabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the menuitem will be disabled"
+    },
+    "isFocusable": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
+    },
+    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
+    "value": { "type": "string", "required": false }
+  },
+  "MenuContent": {
+    "motionProps": {
+      "type": "HTMLMotionProps<\"div\">",
+      "required": false,
+      "description": "The framer-motion props to animate the menu list"
+    }
+  },
+  "MenuOptionGroup": {
+    "defaultValue": { "type": "string | string[]", "required": false },
+    "onChange": {
+      "type": "(value: string | string[]) => void",
+      "required": false
+    },
+    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
+    "value": { "type": "string | string[]", "required": false }
+  },
+  "MenuRoot": {
     "arrowPadding": {
       "type": "number",
       "defaultValue": "8",
@@ -111,108 +207,7 @@
       "description": "The CSS positioning strategy to use."
     }
   },
-  "MenuButton": {},
-  "MenuCommand": {},
-  "MenuDivider": {},
-  "MenuGroup": {},
-  "MenuItem": {
-    "closeOnSelect": {
-      "type": "boolean",
-      "required": false,
-      "description": "Overrides the parent menu's `closeOnSelect` prop."
-    },
-    "command": {
-      "type": "string",
-      "required": false,
-      "description": "Right-aligned label text content, useful for displaying hotkeys."
-    },
-    "commandSpacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "The spacing between the command and menu item's label."
-    },
-    "icon": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-      "required": false,
-      "description": "The icon to render before the menu item's label."
-    },
-    "iconSpacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "The spacing between the icon and menu item's label."
-    },
-    "isDisabled": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the menuitem will be disabled"
-    },
-    "isFocusable": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
-    }
-  },
-  "MenuItemOption": {
-    "closeOnSelect": {
-      "type": "boolean",
-      "required": false,
-      "description": "Overrides the parent menu's `closeOnSelect` prop."
-    },
-    "command": {
-      "type": "string",
-      "required": false,
-      "description": "Right-aligned label text content, useful for displaying hotkeys."
-    },
-    "commandSpacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "The spacing between the command and menu item's label."
-    },
-    "icon": {
-      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
-      "required": false
-    },
-    "iconSpacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "The spacing between the icon and menu item's label."
-    },
-    "isChecked": { "type": "boolean", "required": false },
-    "isDisabled": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the menuitem will be disabled"
-    },
-    "isFocusable": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
-    },
-    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
-    "value": { "type": "string", "required": false }
-  },
-  "MenuList": {
-    "motionProps": {
-      "type": "HTMLMotionProps<\"div\">",
-      "required": false,
-      "description": "The framer-motion props to animate the menu list"
-    },
-    "rootProps": {
-      "type": "HTMLChakraProps<\"div\">",
-      "required": false,
-      "description": "Props for the root element that positions the menu."
-    }
-  },
-  "MenuOptionGroup": {
-    "defaultValue": { "type": "string | string[]", "required": false },
-    "onChange": {
-      "type": "(value: string | string[]) => void",
-      "required": false
-    },
-    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
-    "value": { "type": "string | string[]", "required": false }
-  },
-  "UseMenuButton": {},
+  "MenuPositioner": {},
   "UseMenuItem": {
     "closeOnSelect": {
       "type": "boolean",
@@ -235,14 +230,14 @@
       "description": "The type of the menuitem."
     }
   },
-  "UseMenuList": {},
+  "UseMenuContent": {},
   "UseMenuOptionGroup": {
     "defaultValue": { "type": "string | string[]", "required": false },
     "onChange": {
       "type": "(value: string | string[]) => void",
       "required": false
     },
-    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
+    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
     "value": { "type": "string | string[]", "required": false }
   },
   "UseMenuOption": {
@@ -262,7 +257,7 @@
       "required": false,
       "description": "If `true` and the menuitem is disabled, it'll\nremain keyboard-focusable"
     },
-    "type": { "type": "\"checkbox\" | \"radio\"", "required": false },
+    "type": { "type": "\"radio\" | \"checkbox\"", "required": false },
     "value": { "type": "string", "required": false }
   },
   "UseMenu": {
@@ -376,5 +371,6 @@
       "required": false,
       "description": "The CSS positioning strategy to use."
     }
-  }
+  },
+  "UseMenuTrigger": {}
 }

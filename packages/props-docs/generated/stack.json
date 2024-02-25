@@ -16,12 +16,6 @@
       "required": false,
       "description": "If `true`, each stack item will show a divider"
     },
-    "isInline": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true` the items will be stacked horizontally."
-    },
     "justify": {
       "type": "ResponsiveValue<JustifyContent>",
       "required": false,
