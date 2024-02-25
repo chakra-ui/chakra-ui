@@ -13,7 +13,7 @@ to each part specifically.
 ## Anatomy
 
 - A: `badge`
-- B: `container`
+- B: `root`
 - C: `excessLabel`
 - D: `group`
 
@@ -330,9 +330,9 @@ const sizes = {
 export const avatarTheme = defineMultiStyleConfig({ sizes })
 
 // Now we can use the new `superLg` size
-<Avatar size="superLg" ... />
+<Avatar.Root size="superLg" ... />
 // or
-<AvatarGroup size="superLg">...</AvatarGroup>
+<Avatar.Group size="superLg">...</Avatar.Group>
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -378,9 +378,9 @@ export const avatarTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `roundedSquare` variant
-<Avatar variant="roundedSquare" ... />
+<Avatar.Root variant="roundedSquare" ... />
 // or
-<AvatarGroup variant="roundedSquare">...</AvatarGroup>
+<Avatar.Group variant="roundedSquare">...</Avatar.Group>
 ```
 
 ## Changing the default properties
@@ -404,9 +404,9 @@ export const avatarTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use an avatar:
-<Avatar variant="roundedSquare" size="superLg" ... />
+<Avatar.Root variant="roundedSquare" size="superLg" ... />
 // or
-<AvatarGroup variant="roundedSquare" size="superLg">...</AvatarGroup>
+<Avatar.Group variant="roundedSquare" size="superLg">...</Avatar.Group>
 ```
 
 ## Showcase

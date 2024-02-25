@@ -163,7 +163,10 @@ more for a more advanced layout.
   <CardHeader>
     <Flex spacing='4'>
       <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-        <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+        <Avatar.Root name='Segun Adebayo' src='https://bit.ly/sage-adebayo'>
+          <Avatar.Image />
+          <Avatar.Fallback />
+        </Avatar.Root>
 
         <Box>
           <Heading size='sm'>Segun Adebayo</Heading>

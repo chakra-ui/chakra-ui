@@ -57,7 +57,10 @@ get a different style.
 
 ```jsx
 <Flex>
-  <Avatar src='https://bit.ly/sage-adebayo' />
+  <Avatar.Root src='https://bit.ly/sage-adebayo'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
   <Box ml='3'>
     <Text fontWeight='bold'>
       Segun Adebayo
