@@ -75,10 +75,10 @@ the theme.
 </CircularProgress.Root>
 ```
 
-### Adding label
+### Adding value text
 
-Chakra exports a `CircularProgress.Label` to help you add a label. Pass this
-component as `children` prop and you'll be able to render the value.
+Chakra exports a `CircularProgress.ValueText` to help you add a value text. Pass
+this component as `children` prop and you'll be able to render the value.
 
 ```jsx
 <CircularProgress.Root value={40} color='green.400'>
@@ -86,7 +86,7 @@ component as `children` prop and you'll be able to render the value.
     <CircularProgress.Track />
     <CircularProgress.FilledTrack />
   </CircularProgress.Circle>
-  <CircularProgress.Label>40%</CircularProgress.Label>
+  <CircularProgress.ValueText>40%</CircularProgress.ValueText>
 </CircularProgress.Root>
 ```
 
