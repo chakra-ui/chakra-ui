@@ -130,19 +130,18 @@ the value to any of the color scales from your design system, like `whiteAlpha`,
 
 ### Button with icon
 
-You can add left and right icons to the Button component using the `leftIcon`
-and `rightIcon` props respectively.
-
-> Note: The `leftIcon` and `rightIcon` prop values should be react elements NOT
-> strings.
+You can add icons to the Button component by rendering them inside button
+content.
 
 ```jsx
 <Stack direction='row' spacing={4}>
-  <Button leftIcon={<EmailIcon />} colorScheme='teal' variant='solid'>
+  <Button colorScheme='teal' variant='solid'>
+    <EmailIcon />
     Email
   </Button>
-  <Button rightIcon={<ArrowForwardIcon />} colorScheme='teal' variant='outline'>
+  <Button colorScheme='teal' variant='outline'>
     Call us
+    <ArrowForwardIcon />
   </Button>
 </Stack>
 ```
@@ -166,64 +165,31 @@ button.
 
 ### Button loading state
 
-Pass the `isLoading` prop to show its loading state. By default, the button will
-show a spinner and leave the button's width unchanged.
+Render the `Spinner` component inside the `Button` to show its loading state.
 
-You can also pass the `loadingText` prop to show a spinner and the loading text.
+To show a loading text, update the button content directly.
 
 ```jsx
 <Stack direction='row' spacing={4}>
-  <Button isLoading colorScheme='teal' variant='solid'>
+  <Button isDisabled colorScheme='teal' variant='solid'>
+    <Spinner boxSize='1em' />
     Email
   </Button>
-  <Button
-    isLoading
-    loadingText='Submitting'
-    colorScheme='teal'
-    variant='outline'
-  >
-    Submit
+  <Button isDisabled colorScheme='teal' variant='outline'>
+    <Spinner boxSize='1em' />
+    {isDisabled ? 'Submitting' : 'Submit'}
   </Button>
 </Stack>
 ```
 
 You can change the spinner element to use custom loaders as per your design
-requirements. Pass the `spinner` prop and set it to a custom react element.
+requirements. Render your own compononent in the `Button`.
 
 ```jsx
-<Button
-  isLoading
-  colorScheme='blue'
-  spinner={<BeatLoader size={8} color='white' />}
->
+<Button isDisabled colorScheme='blue'>
+  <BeatLoader size={8} color='white' />
   Click me
 </Button>
-```
-
-When a `loadingText` is present, you can change the placement of the spinner
-element to either `start` or `end`. It is `start` by default.
-
-```jsx
-<Stack direction='row' spacing={4} align='center'>
-  <Button
-    isLoading
-    loadingText='Loading'
-    colorScheme='teal'
-    variant='outline'
-    spinnerPlacement='start'
-  >
-    Submit
-  </Button>
-  <Button
-    isLoading
-    loadingText='Loading'
-    colorScheme='teal'
-    variant='outline'
-    spinnerPlacement='end'
-  >
-    Continue
-  </Button>
-</Stack>
 ```
 
 ### Grouping Buttons

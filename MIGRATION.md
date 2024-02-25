@@ -153,6 +153,35 @@ After:
 </Button>
 ```
 
+**spinner**
+
+Removed `spinner` prop in favor of rendering custom component
+
+Before:
+
+```tsx
+<Button
+  isLoading
+  colorScheme="blue"
+  spinner={<BeatLoader size={8} color="white" />}
+>
+  Click me
+</Button>
+```
+
+After:
+
+```tsx
+<Button isDisabled colorScheme="blue">
+  <BeatLoader size={8} color="white" />
+  Click me
+</Button>
+```
+
+**spinnerPlacement**
+
+Removed `spinnerPlacement` prop in favor of user decision
+
 ### Checkbox
 
 Before:
