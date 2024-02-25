@@ -8,47 +8,16 @@ description:
   project'
 ---
 
-## Installation
-
-Chakra provides a set of commonly used interface icons you can use them in your
-project.
-
-These icons are published into a separate package that is not part of
-`@chakra-ui/react` by default.
-
-<PackageManagers
-  command={{
-    npm: 'npm i @chakra-ui/icons',
-    yarn: 'yarn add @chakra-ui/icons',
-    pnpm: 'pnpm add @chakra-ui/icons',
-    bun: 'bun add @chakra-ui/icons',
-  }}
-/>
-
 ## Usage
 
 Chakra provides multiple ways to use icons in your project:
 
-- [Using Chakra UI icon library](#using-chakra-ui-icons)
 - [Using a third-party icon library](#using-a-third-party-icon-library)
 - [Creating your own icons](#creating-your-custom-icons)
 
 > 🚨 Avoid passing `onClick` handlers to icon components. If you need a
 > clickable icon, use the [IconButton](/docs/components/form/icon-button)
 > instead.
-
-```jsx live=false
-import { PhoneIcon, AddIcon, WarningIcon } from '@chakra-ui/icons'
-
-// The default icon size is 1em (16px)
-<PhoneIcon />
-
-// Use the `boxSize` prop to change the icon size
-<AddIcon boxSize={6} />
-
-// Use the `color` prop to change the icon color
-<WarningIcon w={8} h={8} color="red.500" />
-```
 
 ## Using a third-party icon library
 
