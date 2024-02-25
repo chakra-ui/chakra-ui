@@ -263,7 +263,7 @@ element that represents a form field.
 </Field.Root>
 ```
 
-HelperText has been renamed to `Field.HelpText` for brevity.
+`HelperText` has been renamed to `Field.HelpText` for brevity.
 
 ### List
 

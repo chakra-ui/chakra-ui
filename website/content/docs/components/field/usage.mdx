@@ -17,8 +17,8 @@ Chakra UI exports 4 components for Field:
 - **`Field.Label`**: The label of a form section. The usage is similar to
   [html label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label).
   `htmlFor` is set by default for children input.
-- **`Field.HelperText`**: The message that tells users more details about the
-  form section.
+- **`Field.HelpText`**: The message that tells users more details about the form
+  section.
 - **`Field.ErrorMessage`**: The message that shows up when an error occurs.
 
 ```js
@@ -31,7 +31,7 @@ import { Field } from '@chakra-ui/react'
 <Field.Root>
   <Field.Label>Email address</Field.Label>
   <Input type='email' />
-  <Field.HelperText>We'll never share your email.</Field.HelperText>
+  <Field.HelpText>We'll never share your email.</Field.HelpText>
 </Field.Root>
 ```
 
@@ -48,7 +48,7 @@ import { Field } from '@chakra-ui/react'
       <Radio value='Sage of the six Paths'>Sage of the six Paths</Radio>
     </HStack>
   </RadioGroup>
-  <Field.HelperText>Select only if you're a fan.</Field.HelperText>
+  <Field.HelpText>Select only if you're a fan.</Field.HelpText>
 </Field.Root>
 ```
 
@@ -70,9 +70,9 @@ function errorMessageExample() {
       <Field.Label>Email</Field.Label>
       <Input type='email' value={input} onChange={handleInputChange} />
       {!isError ? (
-        <Field.HelperText>
+        <Field.HelpText>
           Enter the email you'd like to receive the newsletter on.
-        </Field.HelperText>
+        </Field.HelpText>
       ) : (
         <Field.ErrorMessage>Email is required.</Field.ErrorMessage>
       )}
@@ -188,8 +188,7 @@ function FormikExample() {
   - `Field.Label` will have `htmlFor` that points to the `id` of the form input.
   - `Field.ErrorMessage` adds `aria-describedby` and `aria-invalid` pointing to
     the form input.
-  - `Field.HelperText` adds/extends `aria-describedby` pointing to the form
-    input.
+  - `Field.HelpText` adds/extends `aria-describedby` pointing to the form input.
   - `isDisabled`, `isRequired`, `isReadOnly` props passed to `Field.Root` will
     cascade across all related components.
 
