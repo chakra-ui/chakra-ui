@@ -16,8 +16,8 @@ applied to each part specifically.
 
 - A: `root`
 - B: `container`
-- C: `button`
-- D: `panel`
+- C: `trigger`
+- D: `content`
 - E: `icon`
 
 <AspectRatio ratio={16 / 9}>
@@ -1119,7 +1119,7 @@ const sizes = {
 export const accordionTheme = defineMultiStyleConfig({ sizes })
 
 // Now we can use the new `xl` size
-<Accordion size="xl"> ... </Accordion>
+<Accordion.Root size="xl"> ... </Accordion.Root>
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -1171,7 +1171,7 @@ export const accordionTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `custom` variant
-<Accordion variant="custom"> ... </Accordion>
+<Accordion.Root variant="custom"> ... </Accordion.Root>
 ```
 
 ### Changing the default properties
@@ -1196,7 +1196,7 @@ export const accordionTheme = defineMultiStyleConfig({
 
 // This saves you time, instead of manually setting the size and
 // variant every time you use an accordion:
-<Accordion size="xl" variant="custom"> ... </Accordion>
+<Accordion.Root size="xl" variant="custom"> ... </Accordion.Root>
 ```
 
 ### Showcase

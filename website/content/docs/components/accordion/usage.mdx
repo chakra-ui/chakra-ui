@@ -12,23 +12,17 @@ description:
 
 Chakra UI exports 5 accordion-related components.
 
-- `Accordion`: The wrapper that uses cloneElement to pass props to
-  `AccordionItem` children.
-- `AccordionItem`: A single accordion item.
-- `AccordionButton`: The button that toggles the expand/collapse state of the
+- `Accordion.Root`: The wrapper that uses cloneElement to pass props to
+  `Accordion.Item` children.
+- `Accordion.Item`: A single accordion item.
+- `Accordion.Trigger`: The button that toggles the expand/collapse state of the
   accordion item. This button must be wrapped in an element with role `heading`.
-- `AccordionPanel`: The container for the details to be revealed.
-- `AccordionIcon`: A `chevron-down` icon that rotates based on the
+- `Accordion.Content`: The container for the details to be revealed.
+- `Accordion.Icon`: A `chevron-down` icon that rotates based on the
   expanded/collapsed state
 
 ```js
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from '@chakra-ui/react'
+import { Accordion } from '@chakra-ui/react'
 ```
 
 ## Usage
@@ -40,155 +34,155 @@ expanding another.
 the `up` and `down` arrow keys will move focus between accordion buttons.
 
 ```jsx
-<Accordion>
-  <AccordionItem>
+<Accordion.Root>
+  <Accordion.Item>
     <h2>
-      <AccordionButton>
+      <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
           Section 1 title
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel pb={4}>
+    <Accordion.Content pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 
-  <AccordionItem>
+  <Accordion.Item>
     <h2>
-      <AccordionButton>
+      <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
           Section 2 title
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel pb={4}>
+    <Accordion.Content pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 </Accordion>
 ```
 
 ### Expand multiple items at once
 
-If you set `allowMultiple` to `true` then the accordion will permit multiple
-items to be expanded at once.
+If you set `multiple` to `true` then the accordion will permit multiple items to
+be expanded at once.
 
 > If you pass this prop, ensure that the `index` or `defaultIndex` prop is an
 > array.
 
 ```jsx
-<Accordion defaultIndex={[0]} allowMultiple>
-  <AccordionItem>
+<Accordion.Root defaultIndex={[0]} multiple>
+  <Accordion.Item>
     <h2>
-      <AccordionButton>
+      <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
           Section 1 title
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel pb={4}>
+    <Accordion.Content pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 
-  <AccordionItem>
+  <Accordion.Item>
     <h2>
-      <AccordionButton>
+      <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
           Section 2 title
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel pb={4}>
+    <Accordion.Content pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 </Accordion>
 ```
 
 ### Toggle each accordion item
 
-If you set `allowToggle` to `true`, any expanded item may be collapsed again.
+If you set `collapsible` to `true`, any expanded item may be collapsed again.
 
 ```jsx
-<Accordion allowToggle>
-  <AccordionItem>
+<Accordion.Root collapsible>
+  <Accordion.Item>
     <h2>
-      <AccordionButton>
+      <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
           Section 1 title
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel pb={4}>
+    <Accordion.Content pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 
-  <AccordionItem>
+  <Accordion.Item>
     <h2>
-      <AccordionButton>
+      <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
           Section 2 title
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel pb={4}>
+    <Accordion.Content pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 </Accordion>
 ```
 
 ### Styling the expanded state
 
-The `AccordionButton` component has `aria-expanded` set to `true` or `false`
-depending on the state of the `AccordionItem`. Use the style prop `_expanded` to
-style this state.
+The `Accordion.Trigger` component has `aria-expanded` set to `true` or `false`
+depending on the state of the `Accordion.Item`. Use the style prop `_expanded`
+to style this state.
 
 ```jsx
-<Accordion>
-  <AccordionItem>
+<Accordion.Root>
+  <Accordion.Item>
     <h2>
-      <AccordionButton _expanded={{ bg: 'tomato', color: 'white' }}>
+      <Accordion.Trigger _expanded={{ bg: 'tomato', color: 'white' }}>
         <Box as='span' flex='1' textAlign='left'>
           Click me to see a different style
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel>
+    <Accordion.Content>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 </Accordion>
 ```
 
@@ -198,29 +192,29 @@ If you need access to the internal state of each accordion item, you can use a
 render prop. It provides 2 internal state props: `isExpanded` and `isDisabled`.
 
 ```jsx
-<Accordion allowMultiple>
-  <AccordionItem>
+<Accordion.Root multiple>
+  <Accordion.Item>
     <h2>
-      <AccordionButton>
+      <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
           Section 1 title
         </Box>
-        <AccordionIcon />
-      </AccordionButton>
+        <Accordion.Icon />
+      </Accordion.Trigger>
     </h2>
-    <AccordionPanel pb={4}>
+    <Accordion.Content pb={4}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
-    </AccordionPanel>
-  </AccordionItem>
+    </Accordion.Content>
+  </Accordion.Item>
 
-  <AccordionItem>
+  <Accordion.Item>
     {({ isExpanded }) => (
       <>
         <h2>
-          <AccordionButton>
+          <Accordion.Trigger>
             <Box as='span' flex='1' textAlign='left'>
               Section 2 title
             </Box>
@@ -229,17 +223,17 @@ render prop. It provides 2 internal state props: `isExpanded` and `isDisabled`.
             ) : (
               <AddIcon fontSize='12px' />
             )}
-          </AccordionButton>
+          </Accordion.Trigger>
         </h2>
-        <AccordionPanel pb={4}>
+        <Accordion.Content pb={4}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat.
-        </AccordionPanel>
+        </Accordion.Content>
       </>
     )}
-  </AccordionItem>
+  </Accordion.Item>
 </Accordion>
 ```
 
