@@ -199,6 +199,32 @@ After:
 </Checkbox.Root>
 ```
 
+**icon, iconColor and iconSize**
+
+Moved `icon`, `iconColor`, and `iconSize` from the `Checkbox.Root` component to
+the `Checkbox.Control` component.
+
+Before:
+
+```tsx
+<Checkbox icon={<CustomIcon />} iconColor="blue.400" iconSize="1rem">
+  Option
+</Checkbox>
+```
+
+After:
+
+```tsx
+<Checkbox.Root>
+  <Checkbox.Control
+    icon={<CustomIcon />}
+    iconColor="blue.400"
+    iconSize="1rem"
+  />
+  <Checkbox.Label>Option</Checkbox.Label>
+</Checkbox.Root>
+```
+
 ### Circular Progress
 
 Before:
