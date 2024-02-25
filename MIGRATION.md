@@ -86,6 +86,73 @@ After:
 - Move `spacing` and `separator` props to `Breadcrumb.List`
 - `listProps` has been removed. Pass props directly to `Breadcrumb.List`
 
+### Button
+
+The `Button` component has been simplified to remove internal complexity.
+
+**isLoading**
+
+Removed `isLoading` prop in favor of rendering `Spinner` component
+
+Before:
+
+```tsx
+<Button isLoading colorScheme="blue">
+  Click me
+</Button>
+```
+
+After:
+
+```tsx
+<Button isDisabled colorScheme="blue">
+  <Spinner boxSize="1em" />
+  Click me
+</Button>
+```
+
+**leftIcon and rightIcon**
+
+Removed `leftIcon` and `rightIcon` in favor of rendering an icon component
+inlined with the button content.
+
+> To implement `iconSpacing`, you can use the `gap` prop on the `Button`
+> component.
+
+Before:
+
+```tsx
+<Button leftIcon={<AddIcon />}>Click me</Button>
+```
+
+After:
+
+```tsx
+<Button>
+  <AddIcon />
+  Click me
+</Button>
+```
+
+Removed `loadingText` in favor of updating the button content directly.
+
+Before:
+
+```tsx
+<Button isLoading loadingText="Submitting">
+  Click me
+</Button>
+```
+
+After:
+
+```tsx
+<Button isDisabled>
+  <Spinner boxSize="1em" />
+  Submitting
+</Button>
+```
+
 ### Checkbox
 
 Before:
@@ -102,30 +169,6 @@ After:
   <Checkbox.Label>My Checkbox</Checkbox.Label>
 </Checkbox.Root>
 ```
-
-### Progress
-
-Before:
-
-```tsx
-<Progress value={50} />
-```
-
-After:
-
-```tsx
-<Progress.Root value={50}>
-  <Progress.Track>
-    <Progress.FilledTrack />
-  </Progress.Track>
-  <Progress.ValueText />
-</Progress.Root>
-```
-
-- `ProgressLabel` is now assigned to `Progress.ValueText`. This means the theme
-  key for the label is now `valueText`
-
-- `ProgressLabel` should now be used to provide a label for the progress bar
 
 ### Circular Progress
 
@@ -151,71 +194,6 @@ After:
 - `CircularProgressLabel` should now be used to provide a label for the progress
   bar
 
-### Tag
-
-- `TagLeftIcon` and `TagRightIcon` are removed in favor of rendering the icon
-  directly inside the `Tag` component.
-
-### Tooltip
-
-- Move `portalProps` to `Tooltip.Positioner`
-
-Before:
-
-```tsx
-<Tooltip label="Hey there" hasArrow>
-  <Button>Hover me</Button>
-</Tooltip>
-```
-
-After:
-
-```tsx
-<Tooltip.Root placement="bottom">
-  <Tooltip.Trigger asChild>
-    <Button>Hover me</Button>
-  </Tooltip.Trigger>
-  <Tooltip.Positioner>
-    <Tooltip.Content>
-      <Tooltip.Arrow />
-      Hey there
-    </Tooltip.Content>
-  </Tooltip.Positioner>
-</Tooltip.Root>
-```
-
-However, you can still get back to the legacy API by creating a custom
-component.
-
-```tsx
-import { Tooltip } from "@chakra-ui/react"
-
-export type CustomTooltipProps = Tooltip.RootProps & {
-  label?: string
-  hasArrow?: boolean
-}
-
-const CustomTooltip = (props: Props) => {
-  const { label, children, hasArrow, ...localProps } = props
-  const [rootProps, contentProps] = Tooltip.splitProps(localProps)
-
-  return (
-    <Tooltip.Root placement="bottom" {...rootProps}>
-      <Tooltip.Trigger asChild>
-        {isValidElement(children) ? children : <span>{children}</span>}
-      </Tooltip.Trigger>
-      <Tooltip.Content {...contentProps}>
-        {hasArrow && <Tooltip.Arrow />}
-        {label}
-      </Tooltip.Content>
-    </Tooltip.Root>
-  )
-}
-```
-
-- Remove `closeOnMouseDown`, use `closeOnPointerDown` instead
-- Remove all `arrow*` props in favor of rendering the `Tooltip.Arrow` component
-
 ### FormControl -> Field
 
 Form control has now been renamed to `Field` to better reflect its purpose as an
@@ -232,35 +210,18 @@ element that represents a form field.
 
 HelperText has been renamed to `Field.HelpText` for brevity.
 
-### Select -> NativeSelect
+### List
 
-The `Select` component has been renamed to `NativeSelect` to better reflect its
-purpose as a native select element, and give room for a custom select component.
+- Removed `OrderedList` and `UnorderedList` in favor of using the `List`
+  component with the `as` prop.
 
-The API has also changed significantly to make it more modular.
+- To change the list style type, you can use the `styleType` prop on the `List`
+  component.
 
-Before:
+### Menu
 
-```tsx
-<Select color="red.400">
-  <option value="option1">Option 1</option>
-  <option value="option2">Option 2</option>
-  <option value="option3">Option 3</option>
-</Select>
-```
-
-After:
-
-```tsx
-<NativeSelect.Root>
-  <NativeSelect.Field color="pink.500" placeholder="Select option">
-    <option value="Option 1">Option 1</option>
-    <option value="Option 2">Option 2</option>
-    <option value="Option 3">Option 3</option>
-  </NativeSelect.Field>
-  <NativeSelect.Icon />
-</NativeSelect.Root>
-```
+- Removed `rootProps` in favor of rendering the `Menu.Positioner` component
+- Renamed `MenuButton` to `Menu.Trigger`
 
 ### Modal -> Dialog
 
@@ -353,71 +314,58 @@ After:
 </Popover.Root>
 ```
 
-### Button
-
-The `Button` component has been simplified to remove internal complexity.
-
-**isLoading**
-
-Removed `isLoading` prop in favor of rendering `Spinner` component
+### Progress
 
 Before:
 
 ```tsx
-<Button isLoading colorScheme="blue">
-  Click me
-</Button>
+<Progress value={50} />
 ```
 
 After:
 
 ```tsx
-<Button isDisabled colorScheme="blue">
-  <Spinner boxSize="1em" />
-  Click me
-</Button>
+<Progress.Root value={50}>
+  <Progress.Track>
+    <Progress.FilledTrack />
+  </Progress.Track>
+  <Progress.ValueText />
+</Progress.Root>
 ```
 
-**leftIcon and rightIcon**
+- `ProgressLabel` is now assigned to `Progress.ValueText`. This means the theme
+  key for the label is now `valueText`
 
-Removed `leftIcon` and `rightIcon` in favor of rendering an icon component
-inlined with the button content.
+- `ProgressLabel` should now be used to provide a label for the progress bar
 
-> To implement `iconSpacing`, you can use the `gap` prop on the `Button`
-> component.
+### Select -> NativeSelect
+
+The `Select` component has been renamed to `NativeSelect` to better reflect its
+purpose as a native select element, and give room for a custom select component.
+
+The API has also changed significantly to make it more modular.
 
 Before:
 
 ```tsx
-<Button leftIcon={<AddIcon />}>Click me</Button>
+<Select color="red.400">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+</Select>
 ```
 
 After:
 
 ```tsx
-<Button>
-  <AddIcon />
-  Click me
-</Button>
-```
-
-Removed `loadingText` in favor of updating the button content directly.
-
-Before:
-
-```tsx
-<Button isLoading loadingText="Submitting">
-  Click me
-</Button>
-```
-
-After:
-
-```tsx
-<Button isDisabled>
-  <Spinner boxSize="1em" />
-  Submitting
-</Button>
+<NativeSelect.Root>
+  <NativeSelect.Field color="pink.500" placeholder="Select option">
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+  </NativeSelect.Field>
+  <NativeSelect.Icon />
+</NativeSelect.Root>
 ```
 
 ### Table
@@ -434,18 +382,70 @@ the theme keys.
 - Renamed `Tfoot` to `Table.Footer`
 - Renamed `isNumeric` to `numeric`
 
-### Menu
+### Tag
 
-- Removed `rootProps` in favor of rendering the `Menu.Positioner` component
-- Renamed `MenuButton` to `Menu.Trigger`
+- `TagLeftIcon` and `TagRightIcon` are removed in favor of rendering the icon
+  directly inside the `Tag` component.
 
-### List
+### Tooltip
 
-- Removed `OrderedList` and `UnorderedList` in favor of using the `List`
-  component with the `as` prop.
+- Move `portalProps` to `Tooltip.Positioner`
 
-- To change the list style type, you can use the `styleType` prop on the `List`
-  component.
+Before:
+
+```tsx
+<Tooltip label="Hey there" hasArrow>
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
+After:
+
+```tsx
+<Tooltip.Root placement="bottom">
+  <Tooltip.Trigger asChild>
+    <Button>Hover me</Button>
+  </Tooltip.Trigger>
+  <Tooltip.Positioner>
+    <Tooltip.Content>
+      <Tooltip.Arrow />
+      Hey there
+    </Tooltip.Content>
+  </Tooltip.Positioner>
+</Tooltip.Root>
+```
+
+However, you can still get back to the legacy API by creating a custom
+component.
+
+```tsx
+import { Tooltip } from "@chakra-ui/react"
+
+export type CustomTooltipProps = Tooltip.RootProps & {
+  label?: string
+  hasArrow?: boolean
+}
+
+const CustomTooltip = (props: Props) => {
+  const { label, children, hasArrow, ...localProps } = props
+  const [rootProps, contentProps] = Tooltip.splitProps(localProps)
+
+  return (
+    <Tooltip.Root placement="bottom" {...rootProps}>
+      <Tooltip.Trigger asChild>
+        {isValidElement(children) ? children : <span>{children}</span>}
+      </Tooltip.Trigger>
+      <Tooltip.Content {...contentProps}>
+        {hasArrow && <Tooltip.Arrow />}
+        {label}
+      </Tooltip.Content>
+    </Tooltip.Root>
+  )
+}
+```
+
+- Remove `closeOnMouseDown`, use `closeOnPointerDown` instead
+- Remove all `arrow*` props in favor of rendering the `Tooltip.Arrow` component
 
 ## Added
 
