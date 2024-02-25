@@ -492,7 +492,7 @@ const sizes = {
 export const alertTheme = defineMultiStyleConfig({ sizes })
 
 // Now we can use the new `xl` size
-<Alert size="xl" ... />
+<Alert.Root size="xl" ... />
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -535,7 +535,7 @@ export const alertTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `custom` variant
-<Alert variant="custom" ... />
+<Alert.Root variant="custom" ... />
 ```
 
 ## Changing the default properties
@@ -559,7 +559,7 @@ export const alertTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use an input:
-<Alert size="xl" variant="custom" ... />
+<Alert.Root size="xl" variant="custom" ... />
 ```
 
 ## Showcase
