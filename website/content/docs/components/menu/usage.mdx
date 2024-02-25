@@ -40,8 +40,9 @@ import {
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+  <MenuButton as={Button}>
     Actions
+    <ChevronDownIcon />
   </MenuButton>
   <MenuList>
     <MenuItem>Download</MenuItem>
@@ -63,8 +64,9 @@ To access the internal state of the `Menu`, use a function as `children`
 <Menu>
   {({ isOpen }) => (
     <>
-      <MenuButton isActive={isOpen} as={Button} rightIcon={<ChevronDownIcon />}>
+      <MenuButton isActive={isOpen} as={Button}>
         {isOpen ? 'Close' : 'Open'}
+        <ChevronDownIcon />
       </MenuButton>
       <MenuList>
         <MenuItem>Download</MenuItem>
@@ -129,8 +131,9 @@ the letter you typed.
 
 ```jsx
 <Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+  <MenuButton as={Button}>
     Your Cats
+    <ChevronDownIcon />
   </MenuButton>
   <MenuList>
     <MenuItem minH='48px'>

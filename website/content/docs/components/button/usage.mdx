@@ -154,11 +154,13 @@ button.
 // import { MdBuild , MdCall } from "react-icons/md"
 
 <Stack direction='row' spacing={4}>
-  <Button leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
+  <Button colorScheme='pink' variant='solid'>
+    <MdBuild />
     Settings
   </Button>
-  <Button rightIcon={<MdCall />} colorScheme='blue' variant='outline'>
+  <Button colorScheme='blue' variant='outline'>
     Call us
+    <MdCall />
   </Button>
 </Stack>
 ```
