@@ -205,7 +205,15 @@ function shouldIgnoreProperty(property: ts.Symbol) {
   const isExternal = /(node_modules|styled-system|system|@types\/react)/.test(
     sourceFileName ?? "",
   )
-  const isExcludedByName = ["children"].includes(property.getName())
+  const isExcludedByName = /(^_|^children$)/.test(property.getName())
+
+  if (!isExternal) {
+    if (sourceFileName === undefined) console.log("property should not exist:")
+    console.log("sourceFileName", sourceFileName)
+    console.log("property", property.getName())
+    console.log("\n")
+  }
+
   return isExternal || isExcludedByName
 }
 
@@ -229,7 +237,9 @@ const main = async () => {
   //
   const themeProps = extractThemeProps(theme)
 
-  const dirs = await readdir(join("packages", "components", "src"))
+  // const dirs = await readdir(join("packages", "components", "src"))
+  // console.log(dirs)
+  const dirs = ["accordion"]
 
   for (const dir of dirs) {
     const typeExports = await extractDirectory(dir)
