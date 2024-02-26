@@ -10,7 +10,6 @@ description: Link is an accessible element for navigation.
 
 ```js
 import { Link } from '@chakra-ui/react'
-import { ExternalLinkIcon } from '@chakra-ui/icons'
 ```
 
 ## Usage
@@ -47,7 +46,6 @@ Reach's `Link`.
 ```jsx live=false
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Link as ChakraLink, LinkProps } from '@chakra-ui/react'
-
 ;<ChakraLink as={ReactRouterLink} to='/home'>
   Home
 </ChakraLink>
@@ -63,7 +61,6 @@ example using the `Link` component:
 ```jsx live=false
 import NextLink from 'next/link'
 import { Link } from '@chakra-ui/react'
-
 ;<Link as={NextLink} href='/home'>
   Home
 </Link>
@@ -87,7 +84,6 @@ Chakra UI `Link` this way:
 
 ```jsx live=false
 import NextLink from 'next/link'
-
 ;<NextLink href='/home' passHref>
   <Link>Home</Link>
 </NextLink>
