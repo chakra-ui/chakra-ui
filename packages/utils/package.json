@@ -294,6 +294,17 @@
         "default": "./dist/cjs/map-object.cjs"
       }
     },
+    "./memo": {
+      "source": "./src/memo.ts",
+      "import": {
+        "types": "./dist/types/memo.d.mts",
+        "default": "./dist/esm/memo.mjs"
+      },
+      "require": {
+        "types": "./dist/types/memo.d.ts",
+        "default": "./dist/cjs/memo.cjs"
+      }
+    },
     "./merge": {
       "source": "./src/merge.ts",
       "import": {
@@ -435,6 +446,17 @@
       "require": {
         "types": "./dist/types/types.d.ts",
         "default": "./dist/cjs/types.cjs"
+      }
+    },
+    "./uniq": {
+      "source": "./src/uniq.ts",
+      "import": {
+        "types": "./dist/types/uniq.d.mts",
+        "default": "./dist/esm/uniq.mjs"
+      },
+      "require": {
+        "types": "./dist/types/uniq.d.ts",
+        "default": "./dist/cjs/uniq.cjs"
       }
     },
     "./unit": {
