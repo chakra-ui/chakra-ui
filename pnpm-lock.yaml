@@ -773,7 +773,7 @@ importers:
         version: link:../styled-system
       '@types/dlv':
         specifier: ^1.1.2
-        version: 1.1.2
+        version: 1.1.4
 
   packages/utils:
     dependencies:
@@ -3649,10 +3649,6 @@ packages:
     peerDependencies:
       '@effect-ts/otel-node': '*'
     peerDependenciesMeta:
-      '@effect-ts/core':
-        optional: true
-      '@effect-ts/otel':
-        optional: true
       '@effect-ts/otel-node':
         optional: true
     dependencies:
@@ -10923,8 +10919,8 @@ packages:
     resolution: {integrity: sha512-bV/jQlAJ/nPY3XqSatkGpu+nGzou+uSwrH1cROhn+jBFg47yaNH+blW4C7p9KhopC7QxCv/6M86s37k8dMk0Yg==}
     dev: false
 
-  /@types/dlv@1.1.2:
-    resolution: {integrity: sha512-OyiZ3jEKu7RtGO1yp9oOdK0cTwZ/10oE9PDJ6fyN3r9T5wkyOcvr6awdugjYdqF6KVO5eUvt7jx7rk2Eylufow==}
+  /@types/dlv@1.1.4:
+    resolution: {integrity: sha512-m8KmImw4Jt+4rIgupwfivrWEOnj1LzkmKkqbh075uG13eTQ1ZxHWT6T0vIdSQhLIjQCiR0n0lZdtyDOPO1x2Mw==}
     dev: true
 
   /@types/doctrine@0.0.3:
