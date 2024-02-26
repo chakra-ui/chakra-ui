@@ -330,14 +330,19 @@ function Example() {
           </Step>
         ))}
       </Stepper>
-      <Progress
+      <Progress.Root
         value={progressPercent}
         position='absolute'
         height='3px'
         width='full'
         top='10px'
         zIndex={-1}
-      />
+      >
+        <Progress.Track>
+          <Progress.FilledTrack />
+        </Progress.Track>
+        <Progress.ValueText />
+      </Progress.Root>
     </Box>
   )
 }

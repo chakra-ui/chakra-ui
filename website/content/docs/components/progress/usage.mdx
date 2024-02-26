@@ -17,7 +17,12 @@ import { Progress } from '@chakra-ui/react'
 ## Usage
 
 ```jsx
-<Progress value={80} />
+<Progress.Root value={80}>
+  <Progress.Track>
+    <Progress.FilledTrack />
+  </Progress.Track>
+  <Progress.ValueText />
+</Progress.Root>
 ```
 
 ### Progress with Stripe
@@ -26,7 +31,12 @@ You can add `hasStripe` prop to any progress bar to apply a stripe via a CSS
 gradient over the progress bar’s background color.
 
 ```jsx
-<Progress hasStripe value={64} />
+<Progress.Root hasStripe value={64}>
+  <Progress.Track>
+    <Progress.FilledTrack />
+  </Progress.Track>
+  <Progress.ValueText />
+</Progress.Root>
 ```
 
 ### Progress sizes
@@ -38,10 +48,30 @@ There are two ways you can increase the height of the progress bar:
 
 ```jsx
 <Stack spacing={5}>
-  <Progress colorScheme='green' size='sm' value={20} />
-  <Progress colorScheme='green' size='md' value={20} />
-  <Progress colorScheme='green' size='lg' value={20} />
-  <Progress colorScheme='green' height='32px' value={20} />
+  <Progress.Root colorScheme='green' size='sm' value={20}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+    <Progress.ValueText />
+  </Progress.Root>
+  <Progress.Root colorScheme='green' size='md' value={20}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+    <Progress.ValueText />
+  </Progress.Root>
+  <Progress.Root colorScheme='green' size='lg' value={20}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+    <Progress.ValueText />
+  </Progress.Root>
+  <Progress.Root colorScheme='green' height='32px' value={20}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+    <Progress.ValueText />
+  </Progress.Root>
 </Stack>
 ```
 
@@ -51,7 +81,12 @@ You can add `colorScheme` prop to any progress bar to apply any color that
 exists in the `theme`.
 
 ```jsx
-<Progress value={20} size='xs' colorScheme='pink' />
+<Progress.Root value={20} size='xs' colorScheme='pink'>
+  <Progress.Track>
+    <Progress.FilledTrack />
+  </Progress.Track>
+  <Progress.ValueText />
+</Progress.Root>
 ```
 
 ### Animated Progress
@@ -59,11 +94,18 @@ exists in the `theme`.
 To show an animated progress, pass the `isIndeterminate` prop.
 
 ```jsx
-<Progress size='xs' isIndeterminate />
+<Progress.Root size='xs' isIndeterminate>
+  <Progress.Track>
+    <Progress.FilledTrack />
+  </Progress.Track>
+  <Progress.ValueText />
+</Progress.Root>
 ```
 
 ## Accessibility
 
-- `Progress` has a `role` set to `progressbar` to denote that it is a progress.
-- `Progress` has `aria-valuenow` set to the percentage completion value passed
-  to the component, to ensure the progress percent is visible to screen readers.
+- `Progress.FilledTrack` has a `role` set to `progressbar` to denote that it is
+  a progress.
+- `Progress.FilledTrack` has `aria-valuenow` set to the percentage completion
+  value passed to the component, to ensure the progress percent is visible to
+  screen readers.
