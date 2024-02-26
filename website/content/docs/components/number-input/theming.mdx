@@ -240,7 +240,7 @@ const sizes = {
 export const numberInputTheme = defineMultiStyleConfig({ sizes });
 
 // Now we can use the new `xl` size
-<NumberInput size="xl" ... />
+<NumberInput.Root size="xl" ... />
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -285,7 +285,7 @@ export const numberInputTheme = defineMultiStyleConfig({
 });
 
 // Now we can use the new `pill` variant
-<NumberInput variant="primary" ... />
+<NumberInput.Root variant="primary" ... />
 ```
 
 ## Changing the default properties
@@ -309,7 +309,7 @@ export const numberInputTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use an input:
-<NumberInput size="xl" variant="primary" ... />
+<NumberInput.Root size="xl" variant="primary" ... />
 ```
 
 ## Showcase

@@ -113,13 +113,13 @@ indicate that a field is optional you can add `optionalIndicator` to the
 ```jsx
 <Field.Root>
   <Field.Label>Amount</Field.Label>
-  <NumberInput max={50} min={10}>
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
+  <NumberInput.Root max={50} min={10}>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
 </Field.Root>
 ```
 
