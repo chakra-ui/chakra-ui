@@ -251,6 +251,8 @@ export interface Conditions {
   "@/7xl": string
   /** `@container  (min-width: 90em)` */
   "@/8xl": string
+  /** No selector */
+  base: string
 }
 
 export type Condition = keyof Conditions

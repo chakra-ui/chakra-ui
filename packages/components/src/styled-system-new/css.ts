@@ -8,6 +8,7 @@ import {
   walkObject,
 } from "@chakra-ui/utils"
 import { normalize } from "./normalize"
+import { SystemStyleObject } from "./system"
 import { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
@@ -22,7 +23,7 @@ export function createCssFn(context: SystemContext) {
   const { utility, conditions } = context
   const mergeFn = mergeCss(context)
 
-  return memo((...styleArgs) => {
+  return memo((...styleArgs: SystemStyleObject[]) => {
     const styles = mergeFn(...styleArgs)
 
     const normalized = normalize(styles, context)
