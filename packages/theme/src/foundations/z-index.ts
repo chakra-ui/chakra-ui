@@ -7,7 +7,9 @@ const zIndices = {
   sticky: 1100,
   banner: 1200,
   overlay: 1300,
+  // TODO: remove modal in favor of dialog
   modal: 1400,
+  dialog: 1400,
   popover: 1500,
   skipLink: 1600,
   toast: 1700,
