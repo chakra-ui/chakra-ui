@@ -1,4 +1,3 @@
-import { SearchIcon } from '@chakra-ui/icons'
 import {
   HStack,
   HTMLChakraProps,
@@ -17,8 +16,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import * as React from 'react'
+import { FaSearch } from 'react-icons/fa'
 import SearchStyle from './search.styles'
-import { t } from 'utils/i18n'
+
+const SearchIcon = chakra(FaSearch)
 
 const ACTION_KEY_DEFAULT = ['Ctrl', 'Control']
 const ACTION_KEY_APPLE = ['⌘', 'Command']
@@ -74,12 +75,10 @@ export const SearchButton = React.forwardRef(function SearchButton(
       <SearchIcon />
       <HStack w='full' ml='3' spacing='4px'>
         <Text textAlign='left' flex='1'>
-          {t('component.algolia-search.search-the-docs')}
+          Search the docs
         </Text>
         <HStack spacing='4px'>
-          <VisuallyHidden>
-            {t('component.algolia-search.press')}{' '}
-          </VisuallyHidden>
+          <VisuallyHidden>Press</VisuallyHidden>
           <Kbd rounded='2px'>
             <chakra.div
               as='abbr'
@@ -89,12 +88,9 @@ export const SearchButton = React.forwardRef(function SearchButton(
               {actionKey[0]}
             </chakra.div>
           </Kbd>
-          <VisuallyHidden> {t('component.algolia-search.and')} </VisuallyHidden>
+          <VisuallyHidden> and </VisuallyHidden>
           <Kbd rounded='2px'>K</Kbd>
-          <VisuallyHidden>
-            {' '}
-            {t('component.algolia-search.to-search')}
-          </VisuallyHidden>
+          <VisuallyHidden> to search</VisuallyHidden>
         </HStack>
       </HStack>
     </chakra.button>

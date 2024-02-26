@@ -1,7 +1,7 @@
 import { VisuallyHidden, VisuallyHiddenInput } from "."
 
 export default {
-  title: "Components / Disclosure / Visually Hidden",
+  title: "Disclosure / Visually Hidden",
 }
 
 export const hiddenSpan = () => (

@@ -1,47 +1,9 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { ariaAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { createContext } from "@chakra-ui/utils/context"
 import { useCallback, useEffect, useId, useState } from "react"
-import { createDescendantContext } from "../descendant"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track descendants and their indices
- * -----------------------------------------------------------------------------------------------*/
-
-export const [
-  PinInputDescendantsProvider,
-  usePinInputDescendantsContext,
-  usePinInputDescendants,
-  usePinInputDescendant,
-] = createDescendantContext<HTMLInputElement>()
-
-/* -------------------------------------------------------------------------------------------------
- * Create context that stores pin-input logic
- * -----------------------------------------------------------------------------------------------*/
-
-export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
-  /**
-   * Sets the pin input component to the disabled state
-   */
-  isDisabled?: boolean
-  /**
-   * Sets the pin input component to the invalid state
-   */
-  isInvalid?: boolean
-}
-
-export const [PinInputProvider, usePinInputContext] =
-  createContext<PinInputContext>({
-    name: "PinInputContext",
-    errorMessage:
-      "usePinInputContext: `context` is undefined. Seems you forgot to place all pin input fields within `<PinInput />`",
-  })
-
-/* -------------------------------------------------------------------------------------------------
- * usePinInput hook
- * -----------------------------------------------------------------------------------------------*/
+import { usePinInputDescendants } from "./pin-input-context"
+import { InputProps } from "./use-pin-input-field"
 
 export interface UsePinInputProps {
   /**
@@ -340,30 +302,3 @@ export function usePinInput(props: UsePinInputProps = {}) {
 }
 
 export type UsePinInputReturn = ReturnType<typeof usePinInput>
-
-export interface UsePinInputFieldProps extends InputProps {
-  ref?: React.Ref<HTMLInputElement>
-}
-
-/**
- * @internal
- */
-export function usePinInputField(
-  props: UsePinInputFieldProps = {},
-  ref: React.Ref<any> = null,
-) {
-  const { getInputProps } = usePinInputContext()
-  const { index, register } = usePinInputDescendant()
-
-  return getInputProps({
-    ...props,
-    ref: mergeRefs(register, ref),
-    index,
-  })
-}
-
-interface InputProps
-  extends Omit<
-    React.ComponentPropsWithRef<"input">,
-    "color" | "height" | "width"
-  > {}

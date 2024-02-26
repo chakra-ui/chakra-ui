@@ -1,65 +1,22 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { ImageProps } from "../image"
 import { chakra } from "../system"
-import { cloneElement } from "react"
-import { ImageProps, useImage } from "../image"
-import { AvatarName } from "./avatar-name"
-import { GenericAvatarIcon } from "./generic-avatar-icon"
+import { useAvatarContext } from "./avatar-context"
 
-type AvatarImageProps = ImageProps & {
-  getInitials?: (name: string) => string
-  borderRadius?: SystemStyleObject["borderRadius"]
-  icon: React.ReactElement
-  iconLabel?: string
-  name?: string
-}
+export interface AvatarImageProps extends ImageProps {}
 
 export function AvatarImage(props: AvatarImageProps) {
   const {
-    src,
-    srcSet,
-    onError,
-    onLoad,
-    getInitials,
-    name,
     borderRadius,
+    src,
+    name,
+    srcSet,
     loading,
-    iconLabel,
-    icon = <GenericAvatarIcon />,
-    ignoreFallback,
     referrerPolicy,
     crossOrigin,
-  } = props
+    showFallback,
+  } = useAvatarContext()
 
-  /**
-   * use the image hook to only show the image when it has loaded
-   */
-  const status = useImage({ src, onError, crossOrigin, ignoreFallback })
-
-  const hasLoaded = status === "loaded"
-
-  /**
-   * Fallback avatar applies under 2 conditions:
-   * - If `src` was passed and the image has not loaded or failed to load
-   * - If `src` wasn't passed
-   *
-   * In this case, we'll show either the name avatar or default avatar
-   */
-  const showFallback = !src || !hasLoaded
-
-  if (showFallback) {
-    return name ? (
-      <AvatarName
-        className="chakra-avatar__initials"
-        getInitials={getInitials}
-        name={name}
-      />
-    ) : (
-      cloneElement(icon, {
-        role: "img",
-        "aria-label": iconLabel,
-      })
-    )
-  }
+  if (showFallback) return null
 
   /**
    * If `src` was passed and the image has loaded, we'll show it
@@ -69,9 +26,8 @@ export function AvatarImage(props: AvatarImageProps) {
       src={src}
       srcSet={srcSet}
       alt={name}
-      onLoad={onLoad}
       referrerPolicy={referrerPolicy}
-      crossOrigin={crossOrigin ?? undefined}
+      crossOrigin={crossOrigin}
       className="chakra-avatar__img"
       loading={loading}
       __css={{
@@ -80,6 +36,7 @@ export function AvatarImage(props: AvatarImageProps) {
         objectFit: "cover",
         borderRadius,
       }}
+      {...props}
     />
   )
 }

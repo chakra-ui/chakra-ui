@@ -1,51 +1,44 @@
 import { render, testA11y } from "@chakra-ui/test-utils"
-import {
-  Stat,
-  StatArrow,
-  StatGroup,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
-} from "."
+import { Stat } from "."
 
 describe("<StatGroup />", () => {
   test("should renders correctly", () => {
     const { getByTestId } = render(
-      <StatGroup data-testid="group">
-        <Stat>
-          <StatLabel>Sent</StatLabel>
-          <StatNumber>345,670</StatNumber>
-          <StatHelpText>
-            <StatArrow type="increase" />
+      <Stat.Group data-testid="group">
+        <Stat.Root>
+          <Stat.Label>Sent</Stat.Label>
+          <Stat.Number>345,670</Stat.Number>
+          <Stat.HelpText>
+            <Stat.Arrow type="increase" />
             23.36%
-          </StatHelpText>
-        </Stat>
+          </Stat.HelpText>
+        </Stat.Root>
 
-        <Stat>
-          <StatLabel>Clicked</StatLabel>
-          <StatNumber>45</StatNumber>
-          <StatHelpText>
-            <StatArrow type="decrease" />
+        <Stat.Root>
+          <Stat.Label>Clicked</Stat.Label>
+          <Stat.Number>45</Stat.Number>
+          <Stat.HelpText>
+            <Stat.Arrow type="decrease" />
             9.05%
-          </StatHelpText>
-        </Stat>
-      </StatGroup>,
+          </Stat.HelpText>
+        </Stat.Root>
+      </Stat.Group>,
     )
     expect(getByTestId("group")).toBeTruthy()
   })
 
   test("should passes a11y test", async () => {
     await testA11y(
-      <StatGroup data-testid="group">
-        <Stat>
-          <StatLabel>Sent</StatLabel>
-          <StatNumber>345,670</StatNumber>
-          <StatHelpText>
-            <StatArrow type="increase" />
+      <Stat.Group data-testid="group">
+        <Stat.Root>
+          <Stat.Label>Sent</Stat.Label>
+          <Stat.Number>345,670</Stat.Number>
+          <Stat.HelpText>
+            <Stat.Arrow type="increase" />
             23.36%
-          </StatHelpText>
-        </Stat>
-      </StatGroup>,
+          </Stat.HelpText>
+        </Stat.Root>
+      </Stat.Group>,
     )
   })
 })

@@ -1,29 +1,23 @@
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
-import {
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputProps,
-  NumberInputStepper,
-} from "."
+import { NumberInput } from "."
 
-function renderComponent(props: NumberInputProps = {}) {
+function renderComponent(props: NumberInput.RootProps = {}) {
   return render(
     <>
       <label htmlFor="input">Select number:</label>
-      <NumberInput id="input" data-testid="root" {...props}>
-        <NumberInputField data-testid="input" />
-        <NumberInputStepper data-testid="group">
-          <NumberIncrementStepper children="+" data-testid="up-btn" />
-          <NumberDecrementStepper children="-" data-testid="down-btn" />
-        </NumberInputStepper>
-      </NumberInput>
+      <NumberInput.Root id="input" data-testid="root" {...props}>
+        <NumberInput.Field data-testid="input" />
+        <NumberInput.Stepper data-testid="group">
+          <NumberInput.IncrementStepper children="+" data-testid="up-btn" />
+          <NumberInput.DecrementStepper children="-" data-testid="down-btn" />
+        </NumberInput.Stepper>
+      </NumberInput.Root>
     </>,
   )
 }
 
 const CUSTOM_FLOATING_POINT_REGEX = /^[Ee0-9+\-.,]$/
+
 const options = {
   isValidCharacter: (v: string) => CUSTOM_FLOATING_POINT_REGEX.test(v),
   parse: (value: string) => value?.replace(",", "."),

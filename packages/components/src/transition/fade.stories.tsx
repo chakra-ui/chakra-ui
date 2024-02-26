@@ -2,7 +2,7 @@ import { useBoolean } from "@chakra-ui/hooks"
 import { Fade, FadeProps } from "./fade"
 
 export default {
-  title: "Components / Transition / Fade",
+  title: "Transition / Fade",
 }
 
 const Example = (props: FadeProps) => {

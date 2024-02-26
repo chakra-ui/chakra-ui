@@ -1,18 +1,30 @@
-export { Table, useTableStyles } from "./table"
-export type { TableOptions, TableProps } from "./table"
+export { TableRoot } from "./table-root"
+export type { TableRootProps } from "./table-root"
+
 export { TableCaption } from "./table-caption"
 export type { TableCaptionProps } from "./table-caption"
-export { TableContainer } from "./table-container"
-export type { TableContainerProps } from "./table-container"
-export { Tbody } from "./tbody"
-export type { TableBodyProps } from "./tbody"
-export { Td } from "./td"
-export type { TableCellProps } from "./td"
-export { Tfoot } from "./tfooter"
-export type { TableFooterProps } from "./tfooter"
-export { Th } from "./th"
-export type { TableColumnHeaderProps } from "./th"
-export { Thead } from "./thead"
-export type { TableHeadProps } from "./thead"
-export { Tr } from "./tr"
-export type { TableRowProps } from "./tr"
+
+export { TableOverflow } from "./table-overflow"
+export type { TableOverflowProps } from "./table-overflow"
+
+export { TableBody as Tbody } from "./table-body"
+export type { TableBodyProps } from "./table-body"
+
+export { TableCell } from "./table-cell"
+export type { TableCellProps } from "./table-cell"
+
+export { TableFooter } from "./table-footer"
+export type { TableFooterProps } from "./table-footer"
+
+export { TableColumnHeader } from "./table-column-header"
+export type { TableColumnHeaderProps } from "./table-column-header"
+
+export { TableHeader } from "./table-header"
+export type { TableHeaderProps } from "./table-header"
+
+export { TableRow } from "./table-row"
+export type { TableRowProps } from "./table-row"
+
+export { useTableStyles } from "./table-context"
+
+export * as Table from "./namespace"

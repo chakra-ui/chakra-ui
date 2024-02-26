@@ -1,9 +1,8 @@
-import { chakra } from "../system"
-import * as React from "react"
-import { Progress, ProgressLabel } from "."
+import { Progress } from "."
+import { chakra, For, Stack } from ".."
 
 export default {
-  title: "Components / Feedback / Linear Progress",
+  title: "Feedback / Linear Progress",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="500px" mt="40px" mx="auto">
@@ -13,38 +12,74 @@ export default {
   ],
 }
 
-export const basic = () => <Progress value={50} />
+export const basic = () => (
+  <Progress.Root value={50}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+  </Progress.Root>
+)
 
-export const withColorScheme = () => <Progress colorScheme="pink" value={20} />
+export const withColorScheme = () => (
+  <Progress.Root colorScheme="pink" value={20}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+  </Progress.Root>
+)
 
 export const indeterminate = () => (
-  <Progress margin="20px" colorScheme="cyan" size="xs" isIndeterminate />
+  <Progress.Root margin="20px" colorScheme="cyan" size="xs" isIndeterminate>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+  </Progress.Root>
 )
 
 export const withLabel = () => (
-  <Progress value={60}>
-    <ProgressLabel>60%</ProgressLabel>
-  </Progress>
-)
-
-export const withStripe = () => (
-  <Progress colorScheme="green" hasStripe value={20} />
-)
-
-export const withSizes = () => (
-  <div>
-    <Progress colorScheme="green" size="sm" value={20} />
-    <br />
-    <Progress colorScheme="green" size="md" value={20} />
-    <br />
-    <Progress colorScheme="green" size="lg" value={20} />
-  </div>
+  <Progress.Root value={60}>
+    <Progress.Track>
+      <Progress.FilledTrack>
+        <Progress.ValueText>60%</Progress.ValueText>
+      </Progress.FilledTrack>
+    </Progress.Track>
+  </Progress.Root>
 )
 
 export const withAnimation = () => (
-  <Progress colorScheme="green" hasStripe isAnimated value={20} />
+  <Progress.Root colorScheme="green" hasStripe isAnimated value={20}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+  </Progress.Root>
+)
+
+export const withStripe = () => (
+  <Progress.Root colorScheme="green" hasStripe value={20}>
+    <Progress.Track>
+      <Progress.FilledTrack />
+    </Progress.Track>
+  </Progress.Root>
+)
+
+export const withSizes = () => (
+  <Stack>
+    <For each={["xs", "sm", "md", "lg"]}>
+      {(size) => (
+        <Progress.Root key={size} size={size} value={20}>
+          <Progress.Track>
+            <Progress.FilledTrack />
+          </Progress.Track>
+        </Progress.Root>
+      )}
+    </For>
+  </Stack>
 )
 
 export const withCustomBorderRadius = () => (
-  <Progress value={20} borderRadius="4px" />
+  <Progress.Root value={20}>
+    <Progress.Track borderRadius="4px">
+      <Progress.FilledTrack borderRadius="4px" />
+    </Progress.Track>
+  </Progress.Root>
 )

@@ -1,17 +1,8 @@
-import {
-  Step,
-  StepDescription,
-  StepIndicator,
-  StepIndicatorContent,
-  StepSeparator,
-  StepTitle,
-  Stepper,
-  useSteps,
-} from "."
+import { Step, Stepper, useSteps } from "."
 import { Box, HStack } from ".."
 
 export default {
-  title: "Components / Navigation / Stepper",
+  title: "Navigation / Stepper",
 }
 
 const steps = [
@@ -30,18 +21,18 @@ export const Horizontal = () => {
     <>
       <Stepper index={activeStep}>
         {steps.map((step, index) => (
-          <Step key={index} onClick={() => setActiveStep(index)}>
-            <StepIndicator>
-              <StepIndicatorContent />
-            </StepIndicator>
+          <Step.Root key={index} onClick={() => setActiveStep(index)}>
+            <Step.Indicator>
+              <Step.IndicatorContent />
+            </Step.Indicator>
 
             <Box flexShrink="0">
-              <StepTitle>{step.title}</StepTitle>
-              <StepDescription>{step.description}</StepDescription>
+              <Step.Title>{step.title}</Step.Title>
+              <Step.Description>{step.description}</Step.Description>
             </Box>
 
-            <StepSeparator />
-          </Step>
+            <Step.Separator />
+          </Step.Root>
         ))}
       </Stepper>
 
@@ -63,18 +54,18 @@ export const Vertical = () => {
     <>
       <Stepper index={activeStep} orientation="vertical" height="400px" gap="0">
         {steps.map((step, index) => (
-          <Step key={index}>
-            <StepIndicator>
-              <StepIndicatorContent />
-            </StepIndicator>
+          <Step.Root key={index}>
+            <Step.Indicator>
+              <Step.IndicatorContent />
+            </Step.Indicator>
 
             <Box flexShrink="0">
-              <StepTitle>{step.title}</StepTitle>
-              <StepDescription>{step.description}</StepDescription>
+              <Step.Title>{step.title}</Step.Title>
+              <Step.Description>{step.description}</Step.Description>
             </Box>
 
-            <StepSeparator />
-          </Step>
+            <Step.Separator />
+          </Step.Root>
         ))}
       </Stepper>
 

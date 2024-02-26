@@ -16,6 +16,11 @@ const baseStyleControl = defineStyle((props) => {
   const { colorScheme: c } = props
 
   return {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    userSelect: "none",
     w: $size.reference,
     h: $size.reference,
     transitionProperty: "box-shadow",
@@ -24,6 +29,7 @@ const baseStyleControl = defineStyle((props) => {
     borderRadius: "sm",
     borderColor: "inherit",
     color: "white",
+    verticalAlign: "top",
 
     _checked: {
       bg: mode(`${c}.500`, `${c}.200`)(props),
@@ -63,8 +69,16 @@ const baseStyleControl = defineStyle((props) => {
   }
 })
 
-const baseStyleContainer = defineStyle({
-  _disabled: { cursor: "not-allowed" },
+const baseStyleRoot = defineStyle({
+  display: "inline-flex",
+  gap: "0.5rem",
+  alignItems: "center",
+  verticalAlign: "top",
+  cursor: "pointer",
+  position: "relative",
+  _disabled: {
+    cursor: "not-allowed",
+  },
 })
 
 const baseStyleLabel = defineStyle({
@@ -79,7 +93,7 @@ const baseStyleIcon = defineStyle({
 
 const baseStyle = definePartsStyle((props) => ({
   icon: baseStyleIcon,
-  container: baseStyleContainer,
+  root: baseStyleRoot,
   control: runIfFn(baseStyleControl, props),
   label: baseStyleLabel,
 }))

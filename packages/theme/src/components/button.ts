@@ -3,11 +3,24 @@ import { mode, transparentize } from "@chakra-ui/theme-tools"
 import { runIfFn } from "../utils/run-if-fn"
 
 const baseStyle = defineStyle({
+  display: "inline-flex",
+  appearance: "none",
+  alignItems: "center",
+  justifyContent: "center",
+  userSelect: "none",
+  position: "relative",
+  whiteSpace: "nowrap",
+  verticalAlign: "middle",
+  outline: "none",
   lineHeight: "1.2",
+  gap: "0.5rem",
   borderRadius: "md",
   fontWeight: "semibold",
   transitionProperty: "common",
   transitionDuration: "normal",
+  _focus: {
+    "&[data-in-group]": { zIndex: 1 },
+  },
   _focusVisible: {
     boxShadow: "outline",
   },

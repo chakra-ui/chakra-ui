@@ -4,7 +4,7 @@ import { useStepContext, useStepperStyles } from "./step-context"
 
 export interface StepSeparatorProps extends HTMLChakraProps<"div"> {}
 
-export const StepSeparator = forwardRef<{}, "div">(
+export const StepSeparator = forwardRef<StepSeparatorProps, "div">(
   function StepSeparator(props, ref) {
     const { orientation, status, isLast, showLastSeparator } = useStepContext()
     const styles = useStepperStyles()

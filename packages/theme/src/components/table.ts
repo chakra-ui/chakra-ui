@@ -9,19 +9,19 @@ const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const baseStyle = definePartsStyle({
-  table: {
+  root: {
     fontVariantNumeric: "lining-nums tabular-nums",
     borderCollapse: "collapse",
     width: "full",
   },
-  th: {
+  columnHeader: {
     fontFamily: "heading",
     fontWeight: "bold",
     textTransform: "uppercase",
     letterSpacing: "wider",
     textAlign: "start",
   },
-  td: {
+  cell: {
     textAlign: "start",
   },
   caption: {
@@ -33,7 +33,7 @@ const baseStyle = definePartsStyle({
 })
 
 const numericStyles = defineStyle({
-  "&[data-is-numeric=true]": {
+  "&[data-is-numeric]": {
     textAlign: "end",
   },
 })
@@ -42,21 +42,21 @@ const variantSimple = definePartsStyle((props) => {
   const { colorScheme: c } = props
 
   return {
-    th: {
+    columnHeader: {
       color: mode("gray.600", "gray.400")(props),
-      borderBottom: "1px",
+      borderBottomWidth: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
     },
-    td: {
-      borderBottom: "1px",
+    cell: {
+      borderBottomWidth: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
     },
     caption: {
       color: mode("gray.600", "gray.100")(props),
     },
-    tfoot: {
+    footer: {
       tr: {
         "&:last-of-type": {
           th: { borderBottomWidth: 0 },
@@ -70,21 +70,21 @@ const variantStripe = definePartsStyle((props) => {
   const { colorScheme: c } = props
 
   return {
-    th: {
+    columnHeader: {
       color: mode("gray.600", "gray.400")(props),
-      borderBottom: "1px",
+      borderBottomWidth: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
     },
-    td: {
-      borderBottom: "1px",
+    cell: {
+      borderBottomWidth: "1px",
       borderColor: mode(`${c}.100`, `${c}.700`)(props),
       ...numericStyles,
     },
     caption: {
       color: mode("gray.600", "gray.100")(props),
     },
-    tbody: {
+    body: {
       tr: {
         "&:nth-of-type(odd)": {
           "th, td": {
@@ -97,7 +97,7 @@ const variantStripe = definePartsStyle((props) => {
         },
       },
     },
-    tfoot: {
+    footer: {
       tr: {
         "&:last-of-type": {
           th: { borderBottomWidth: 0 },
@@ -115,13 +115,13 @@ const variants = {
 
 const sizes = {
   sm: definePartsStyle({
-    th: {
+    columnHeader: {
       px: "4",
       py: "1",
       lineHeight: "4",
       fontSize: "xs",
     },
-    td: {
+    cell: {
       px: "4",
       py: "2",
       fontSize: "sm",
@@ -134,13 +134,13 @@ const sizes = {
     },
   }),
   md: definePartsStyle({
-    th: {
+    columnHeader: {
       px: "6",
       py: "3",
       lineHeight: "4",
       fontSize: "xs",
     },
-    td: {
+    cell: {
       px: "6",
       py: "4",
       lineHeight: "5",
@@ -152,13 +152,13 @@ const sizes = {
     },
   }),
   lg: definePartsStyle({
-    th: {
+    columnHeader: {
       px: "8",
       py: "4",
       lineHeight: "5",
       fontSize: "sm",
     },
-    td: {
+    cell: {
       px: "8",
       py: "5",
       lineHeight: "6",

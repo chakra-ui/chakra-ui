@@ -1,8 +1,6 @@
-import { defineStyle } from "@chakra-ui/styled-system"
-import { chakra, forwardRef, HTMLChakraProps } from "../system"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx, getValidChildren } from "@chakra-ui/utils"
 import { cloneElement } from "react"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 import { BreadcrumbLink } from "./breadcrumb-link"
 import { BreadcrumbSeparator } from "./breadcrumb-separator"
@@ -52,16 +50,13 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
 
     const styles = useBreadcrumbStyles()
 
-    const itemStyles = defineStyle({
-      display: "inline-flex",
-      alignItems: "center",
-      ...styles.item,
-    })
-
-    const _className = cx("chakra-breadcrumb__list-item", className)
-
     return (
-      <chakra.li ref={ref} className={_className} {...rest} __css={itemStyles}>
+      <chakra.li
+        ref={ref}
+        className={cx("chakra-breadcrumb__list-item", className)}
+        {...rest}
+        __css={styles.item}
+      >
         {clones}
         {!isLastChild && (
           <BreadcrumbSeparator spacing={spacing}>
@@ -72,4 +67,5 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
     )
   },
 )
+
 BreadcrumbItem.displayName = "BreadcrumbItem"

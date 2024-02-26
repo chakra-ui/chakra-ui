@@ -1,11 +1,11 @@
 import { useInterval } from "@chakra-ui/hooks/use-interval"
-import { Drawer, DrawerBody, DrawerContent, DrawerOverlay } from "../modal"
-import { chakra } from "../system"
 import * as React from "react"
-import { Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs } from "."
+import { Tabs } from "."
+import { Drawer } from "../drawer"
+import { chakra } from "../system"
 
 export default {
-  title: "Components / Disclosure / Tabs",
+  title: "Disclosure / Tabs",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="500px" mt="100px" mx="auto">
@@ -27,16 +27,16 @@ export const Variants = () =>
   variants.map((variant) => (
     <chakra.div key={variant} my="10">
       <pre>variant = {variant}</pre>
-      <Tabs variant={variant} mt="3">
-        <TabList>
-          <Tab>Settings</Tab>
-          <Tab>Billings</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>Settings</TabPanel>
-          <TabPanel>Billings</TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Tabs.Root variant={variant} mt="3">
+        <Tabs.List>
+          <Tabs.Trigger>Settings</Tabs.Trigger>
+          <Tabs.Trigger>Billings</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.ContentGroup>
+          <Tabs.Content>Settings</Tabs.Content>
+          <Tabs.Content>Billings</Tabs.Content>
+        </Tabs.ContentGroup>
+      </Tabs.Root>
     </chakra.div>
   ))
 
@@ -46,129 +46,126 @@ export const Sizes = () =>
   sizes.map((size) => (
     <chakra.div key={size} my="10">
       <pre>size = {size}</pre>
-      <Tabs size={size} mt="3">
-        <TabList>
-          <Tab>Settings</Tab>
-          <Tab>Billings</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>Settings</TabPanel>
-          <TabPanel>Billings</TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Tabs.Root size={size} mt="3">
+        <Tabs.List>
+          <Tabs.Trigger>Settings</Tabs.Trigger>
+          <Tabs.Trigger>Billings</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.ContentGroup>
+          <Tabs.Content>Settings</Tabs.Content>
+          <Tabs.Content>Billings</Tabs.Content>
+        </Tabs.ContentGroup>
+      </Tabs.Root>
     </chakra.div>
   ))
 
 export const automatic = () => (
   <>
     <p>manual</p>
-    <Tabs isManual>
-      <TabList>
-        <Tab>Settings</Tab>
-        <Tab isDisabled>Billings</Tab>
-        <Tab isDisabled>Preferences</Tab>
-        <Tab>Shut Down</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>Settings</TabPanel>
-        <TabPanel>Billings</TabPanel>
-        <TabPanel>Preferences</TabPanel>
-        <TabPanel>Shut Down</TabPanel>
-      </TabPanels>
-    </Tabs>
+    <Tabs.Root isManual>
+      <Tabs.List>
+        <Tabs.Trigger>Settings</Tabs.Trigger>
+        <Tabs.Trigger isDisabled>Billings</Tabs.Trigger>
+        <Tabs.Trigger isDisabled>Preferences</Tabs.Trigger>
+        <Tabs.Trigger>Shut Down</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.ContentGroup>
+        <Tabs.Content>Settings</Tabs.Content>
+        <Tabs.Content>Billings</Tabs.Content>
+        <Tabs.Content>Preferences</Tabs.Content>
+        <Tabs.Content>Shut Down</Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>
     <br />
     <p>auto</p>
-    <Tabs>
-      <TabList>
-        <Tab>Settings</Tab>
-        <Tab isDisabled>Billings</Tab>
-        <Tab isDisabled>Preferences</Tab>
-        <Tab>Shut Down</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>Settings</TabPanel>
-        <TabPanel>Billings</TabPanel>
-        <TabPanel>Preferences</TabPanel>
-        <TabPanel>Shut Down</TabPanel>
-      </TabPanels>
-    </Tabs>
+    <Tabs.Root>
+      <Tabs.List>
+        <Tabs.Trigger>Settings</Tabs.Trigger>
+        <Tabs.Trigger isDisabled>Billings</Tabs.Trigger>
+        <Tabs.Trigger isDisabled>Preferences</Tabs.Trigger>
+        <Tabs.Trigger>Shut Down</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.ContentGroup>
+        <Tabs.Content>Settings</Tabs.Content>
+        <Tabs.Content>Billings</Tabs.Content>
+        <Tabs.Content>Preferences</Tabs.Content>
+        <Tabs.Content>Shut Down</Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>
   </>
 )
 
 export const manual = () => (
-  <Tabs isManual>
-    <TabList>
-      <Tab>Settings</Tab>
-      <Tab>Billings</Tab>
-      <Tab isDisabled>Preferences</Tab>
-      <Tab>Shut Down</Tab>
-    </TabList>
-    <TabPanels>
-      <TabPanel>Settings</TabPanel>
-      <TabPanel>Billings</TabPanel>
-      <TabPanel>Preferences</TabPanel>
-      <TabPanel>Shut Down</TabPanel>
-    </TabPanels>
-  </Tabs>
+  <Tabs.Root isManual>
+    <Tabs.List>
+      <Tabs.Trigger>Settings</Tabs.Trigger>
+      <Tabs.Trigger>Billings</Tabs.Trigger>
+      <Tabs.Trigger isDisabled>Preferences</Tabs.Trigger>
+      <Tabs.Trigger>Shut Down</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.ContentGroup>
+      <Tabs.Content>Settings</Tabs.Content>
+      <Tabs.Content>Billings</Tabs.Content>
+      <Tabs.Content>Preferences</Tabs.Content>
+      <Tabs.Content>Shut Down</Tabs.Content>
+    </Tabs.ContentGroup>
+  </Tabs.Root>
 )
 
 export const withIndicator = () => (
-  <Tabs variant="unstyled" isManual>
-    <TabList>
-      <Tab>Settings</Tab>
-      <Tab _disabled={{ color: "gray.400" }} isDisabled>
+  <Tabs.Root variant="unstyled" isManual>
+    <Tabs.List>
+      <Tabs.Trigger>Settings</Tabs.Trigger>
+      <Tabs.Trigger _disabled={{ color: "gray.400" }} isDisabled>
         Billings
-      </Tab>
-      <Tab>Preferences</Tab>
-      <Tab>Shut Down</Tab>
-    </TabList>
+      </Tabs.Trigger>
+      <Tabs.Trigger>Preferences</Tabs.Trigger>
+      <Tabs.Trigger>Shut Down</Tabs.Trigger>
+      <Tabs.Indicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
+    </Tabs.List>
 
-    <TabIndicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
-
-    <TabPanels>
-      <TabPanel>Settings</TabPanel>
-      <TabPanel>Billings</TabPanel>
-      <TabPanel>Preferences</TabPanel>
-      <TabPanel>Shut Down</TabPanel>
-    </TabPanels>
-  </Tabs>
+    <Tabs.ContentGroup>
+      <Tabs.Content>Settings</Tabs.Content>
+      <Tabs.Content>Billings</Tabs.Content>
+      <Tabs.Content>Preferences</Tabs.Content>
+      <Tabs.Content>Shut Down</Tabs.Content>
+    </Tabs.ContentGroup>
+  </Tabs.Root>
 )
 
 export const withIndicatorAndLongTabText = () => (
-  <>
-    <Tabs variant="unstyled" isManual>
-      <TabList>
-        <Tab>Tab with long text</Tab>
-        <Tab>Billings</Tab>
-        <Tab>Preferences</Tab>
-        <Tab>Shut Down</Tab>
-      </TabList>
-      <TabIndicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
-      <TabPanels>
-        <TabPanel>Tab with long text</TabPanel>
-        <TabPanel>Billings</TabPanel>
-        <TabPanel>Preferences</TabPanel>
-        <TabPanel>Shut Down</TabPanel>
-      </TabPanels>
-    </Tabs>
-  </>
+  <Tabs.Root variant="unstyled" isManual>
+    <Tabs.List>
+      <Tabs.Trigger>Tab with long text</Tabs.Trigger>
+      <Tabs.Trigger>Billings</Tabs.Trigger>
+      <Tabs.Trigger>Preferences</Tabs.Trigger>
+      <Tabs.Trigger>Shut Down</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.Indicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
+    <Tabs.ContentGroup>
+      <Tabs.Content>Tab with long text</Tabs.Content>
+      <Tabs.Content>Billings</Tabs.Content>
+      <Tabs.Content>Preferences</Tabs.Content>
+      <Tabs.Content>Shut Down</Tabs.Content>
+    </Tabs.ContentGroup>
+  </Tabs.Root>
 )
 
 export const withVerticalTabs = () => (
-  <Tabs orientation="vertical">
-    <TabList>
-      <Tab>Settings</Tab>
-      <Tab>Billings</Tab>
-      <Tab isDisabled>Preferences</Tab>
-      <Tab>Shut Down</Tab>
-    </TabList>
-    <TabPanels bg="red.200">
-      <TabPanel>Settings</TabPanel>
-      <TabPanel>Billings</TabPanel>
-      <TabPanel>Preferences</TabPanel>
-      <TabPanel>Shut Down</TabPanel>
-    </TabPanels>
-  </Tabs>
+  <Tabs.Root orientation="vertical">
+    <Tabs.List>
+      <Tabs.Trigger>Settings</Tabs.Trigger>
+      <Tabs.Trigger>Billings</Tabs.Trigger>
+      <Tabs.Trigger isDisabled>Preferences</Tabs.Trigger>
+      <Tabs.Trigger>Shut Down</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.ContentGroup bg="red.200">
+      <Tabs.Content>Settings</Tabs.Content>
+      <Tabs.Content>Billings</Tabs.Content>
+      <Tabs.Content>Preferences</Tabs.Content>
+      <Tabs.Content>Shut Down</Tabs.Content>
+    </Tabs.ContentGroup>
+  </Tabs.Root>
 )
 
 const Interval = () => {
@@ -182,41 +179,41 @@ const Interval = () => {
 }
 
 export const withLazyTabs = () => (
-  <Tabs isLazy>
-    <TabList>
-      <Tab>Interval 1</Tab>
-      <Tab>Interval 2</Tab>
-    </TabList>
-    <TabPanels>
-      <TabPanel>
+  <Tabs.Root isLazy>
+    <Tabs.List>
+      <Tabs.Trigger>Interval 1</Tabs.Trigger>
+      <Tabs.Trigger>Interval 2</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.ContentGroup>
+      <Tabs.Content>
         Interval 1:
         <Interval />
-      </TabPanel>
-      <TabPanel>
+      </Tabs.Content>
+      <Tabs.Content>
         Interval 2:
         <Interval />
-      </TabPanel>
-    </TabPanels>
-  </Tabs>
+      </Tabs.Content>
+    </Tabs.ContentGroup>
+  </Tabs.Root>
 )
 
 export const withLazyTabsMounted = () => (
-  <Tabs isLazy lazyBehavior="keepMounted">
-    <TabList>
-      <Tab>Interval 1</Tab>
-      <Tab>Interval 2</Tab>
-    </TabList>
-    <TabPanels>
-      <TabPanel>
+  <Tabs.Root isLazy lazyBehavior="keepMounted">
+    <Tabs.List>
+      <Tabs.Trigger>Interval 1</Tabs.Trigger>
+      <Tabs.Trigger>Interval 2</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.ContentGroup>
+      <Tabs.Content>
         Interval 1:
         <Interval />
-      </TabPanel>
-      <TabPanel>
+      </Tabs.Content>
+      <Tabs.Content>
         Interval 2:
         <Interval />
-      </TabPanel>
-    </TabPanels>
-  </Tabs>
+      </Tabs.Content>
+    </Tabs.ContentGroup>
+  </Tabs.Root>
 )
 
 export const WithSwappedTabs = () => {
@@ -243,27 +240,27 @@ export const WithSwappedTabs = () => {
     }
 
     return (
-      <Tabs
+      <Tabs.Root
         index={tabIndex}
         onChange={onTabChange}
         orientation="vertical"
         variant="enclosed-colored"
       >
-        <TabList minW="100px">
-          {items.map((x) => (
-            <Tab key={x.id}>
-              {x.id}: {x.value}
-            </Tab>
+        <Tabs.List minW="100px">
+          {items.map((item) => (
+            <Tabs.Trigger key={item.id}>
+              {item.id}: {item.value}
+            </Tabs.Trigger>
           ))}
-        </TabList>
-        <TabPanels>
-          {items.map((x) => (
-            <TabPanel key={x.id}>
-              {x.id}: {x.value}
-            </TabPanel>
+        </Tabs.List>
+        <Tabs.ContentGroup>
+          {items.map((item) => (
+            <Tabs.Content key={item.id}>
+              {item.id}: {item.value}
+            </Tabs.Content>
           ))}
-        </TabPanels>
-      </Tabs>
+        </Tabs.ContentGroup>
+      </Tabs.Root>
     )
   }
 
@@ -294,49 +291,50 @@ export const WithSwappedTabs = () => {
   )
 }
 
-export const withinDrawer = () => (
-  <Drawer isOpen onClose={console.log}>
-    <DrawerOverlay>
-      <DrawerContent>
-        <DrawerBody>
-          <Tabs variant="unstyled" isManual>
-            <TabList>
-              <Tab>Settings</Tab>
-              <Tab>Billings</Tab>
-              <Tab>Preferences</Tab>
-            </TabList>
+export const WithinDrawer = () => (
+  <Drawer.Root isOpen onClose={console.log}>
+    <Drawer.Overlay />
+    <Drawer.Positioner>
+      <Drawer.Content>
+        <Drawer.Body>
+          <Tabs.Root variant="unstyled" isManual>
+            <Tabs.List>
+              <Tabs.Trigger>Settings</Tabs.Trigger>
+              <Tabs.Trigger>Billings</Tabs.Trigger>
+              <Tabs.Trigger>Preferences</Tabs.Trigger>
+            </Tabs.List>
 
-            <TabIndicator zIndex={-1} height="4px" bg="green.200" />
+            <Tabs.Indicator zIndex={-1} height="4px" bg="green.200" />
 
-            <TabPanels>
-              <TabPanel>Settings</TabPanel>
-              <TabPanel>Billings</TabPanel>
-              <TabPanel>Preferences</TabPanel>
-            </TabPanels>
-          </Tabs>
-        </DrawerBody>
-      </DrawerContent>
-    </DrawerOverlay>
-  </Drawer>
+            <Tabs.ContentGroup>
+              <Tabs.Content>Settings</Tabs.Content>
+              <Tabs.Content>Billings</Tabs.Content>
+              <Tabs.Content>Preferences</Tabs.Content>
+            </Tabs.ContentGroup>
+          </Tabs.Root>
+        </Drawer.Body>
+      </Drawer.Content>
+    </Drawer.Positioner>
+  </Drawer.Root>
 )
 
 export const WithTabPanelWrapper = () => (
-  <Tabs>
-    <TabList>
-      <Tab>FIrst Tab</Tab>
-      <Tab>Second Tab</Tab>
-      <Tab>Third Tab</Tab>
-    </TabList>
-    <TabPanels>
+  <Tabs.Root>
+    <Tabs.List>
+      <Tabs.Trigger>FIrst Tab</Tabs.Trigger>
+      <Tabs.Trigger>Second Tab</Tabs.Trigger>
+      <Tabs.Trigger>Third Tab</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.ContentGroup>
       <div>
-        <TabPanel>Tab panel 1</TabPanel>
+        <Tabs.Content>Tab panel 1</Tabs.Content>
       </div>
       <div>
-        <TabPanel>Tab panel 2</TabPanel>
+        <Tabs.Content>Tab panel 2</Tabs.Content>
       </div>
       <div>
-        <TabPanel>Tab panel 3</TabPanel>
+        <Tabs.Content>Tab panel 3</Tabs.Content>
       </div>
-    </TabPanels>
-  </Tabs>
+    </Tabs.ContentGroup>
+  </Tabs.Root>
 )

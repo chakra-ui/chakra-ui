@@ -4,11 +4,10 @@ import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { omit } from "@chakra-ui/utils/omit"
 import type { PropGetter } from "@chakra-ui/utils/prop-types"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
-import { useFormControlProps } from "../form-control"
+import { useFieldProps } from "../field"
 import { visuallyHiddenStyle } from "../visually-hidden"
 import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 
@@ -20,12 +19,12 @@ import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
 export function useCheckbox(props: UseCheckboxProps = {}) {
-  const formControlProps = useFormControlProps(props)
+  const formControlProps = useFieldProps(props)
   const {
-    isDisabled,
-    isReadOnly,
-    isRequired,
-    isInvalid,
+    disabled: isDisabled,
+    readOnly: isReadOnly,
+    required: isRequired,
+    invalid: isInvalid,
     id,
     onBlur,
     onFocus,
@@ -44,19 +43,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
-    ...rest
   } = props
-
-  const htmlProps = omit(rest, [
-    "isDisabled",
-    "isReadOnly",
-    "isRequired",
-    "isInvalid",
-    "id",
-    "onBlur",
-    "onFocus",
-    "aria-describedby",
-  ])
 
   const onChangeProp = useCallbackRef(onChange)
   const onBlurProp = useCallbackRef(onBlur)
@@ -246,7 +233,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const getRootProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => ({
-      ...htmlProps,
       ...props,
       ref: mergeRefs(forwardedRef, (node: HTMLElement) => {
         if (!node) return
@@ -274,7 +260,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
     }),
-    [htmlProps, isDisabled, isChecked, isInvalid, rootIsLabelElement],
+    [isDisabled, isChecked, isInvalid, rootIsLabelElement],
   )
 
   const getInputProps: PropGetter = useCallback(
@@ -362,7 +348,6 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     getIndicatorProps,
     getInputProps,
     getLabelProps,
-    htmlProps,
   }
 }
 
