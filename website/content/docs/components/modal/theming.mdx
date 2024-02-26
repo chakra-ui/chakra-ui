@@ -1,11 +1,11 @@
 ---
-id: modal
+id: dialog
 scope: theming
 ---
 
 ## Theming
 
-The `Modal` component is a multipart component.
+The `Dialog` component is a multipart component.
 
 > To learn more about styling multipart components, visit the
 > [Component Style](/docs/styled-system/component-style#styling-multipart-components)
@@ -704,14 +704,14 @@ The `Modal` component is a multipart component.
 </AspectRatio>
 
 You can find more information in the source
-[here](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/modal.ts).
+[here](https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/dialog.ts).
 
 ### Theming properties
 
-The properties that affect the theming of the `Modal` component are:
+The properties that affect the theming of the `Dialog` component are:
 
-- `variant`: The visual variant of the `Modal`. Defaults to baseStyle.
-- `size`: The size of the `Modal`. Defaults to md.
+- `variant`: The visual variant of the `Dialog`. Defaults to baseStyle.
+- `size`: The size of the `Dialog`. Defaults to md.
 
 ### Theming utilities
 
@@ -725,7 +725,7 @@ The properties that affect the theming of the `Modal` component are:
 ### Customizing the default theme
 
 ```jsx live=false
-import { modalAnatomy as parts } from '@chakra-ui/anatomy'
+import { dialogAnatomy as parts } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
 
 const { definePartsStyle, defineMultiStyleConfig } =
@@ -742,32 +742,32 @@ const baseStyle = definePartsStyle({
   },
 })
 
-export const modalTheme = defineMultiStyleConfig({
+export const dialogTheme = defineMultiStyleConfig({
   baseStyle,
 })
 ```
 
-After customizing the modal theme, we can import it in our theme file and add it
-in the components property:
+After customizing the dialog theme, we can import it in our theme file and add
+it in the components property:
 
 ```jsx live=false
 import { extendTheme } from '@chakra-ui/react'
-import { modalTheme } from './components/theme/modal'
+import { dialogTheme } from './components/theme/dialog'
 
 export const theme = extendTheme({
-  components: { Modal: modalTheme },
+  components: { Dialog: dialogTheme },
 })
 ```
 
 > This is a crucial step to make sure that any changes that we make to the
-> `Modal` theme are applied.
+> `Dialog` theme are applied.
 
 ### Adding a custom size
 
 Let's assume we want to change the font size of both header and dialog.
 
 ```jsx live=false
-import { modalAnatomy as parts } from '@chakra-ui/anatomy'
+import { dialogAnatomy as parts } from '@chakra-ui/anatomy'
 import {
   createMultiStyleConfigHelpers,
   defineStyle,
@@ -791,12 +791,12 @@ const sizes = {
   xl: definePartsStyle({ header: sm, dialog: xl }),
 }
 
-export const modalTheme = defineMultiStyleConfig({
+export const dialogTheme = defineMultiStyleConfig({
   sizes,
 })
 
 // Now we can use the new `xl` size
-<Modal size="xl" ... />
+<Dialog size="xl" ... />
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -808,7 +808,7 @@ tool [here](/docs/styled-system/cli).
 Let's assume we want to include a custom variant. Here's how we can do that:
 
 ```jsx live=false
-import { modalAnatomy as parts } from '@chakra-ui/anatomy'
+import { dialogAnatomy as parts } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
 
 const { definePartsStyle, defineMultiStyleConfig } =
@@ -827,34 +827,34 @@ const purple = definePartsStyle({
   },
 })
 
-export const modalTheme = defineMultiStyleConfig({
+export const dialogTheme = defineMultiStyleConfig({
   variants: { purple },
 })
 
 // Now we can use the new `purple` variant
-<Modal variant='purple' ... />
+<Dialog variant='purple' ... />
 ```
 
 ### Changing the default properties
 
-Let's assume we want to change the default size and variant of every `Modal` in
+Let's assume we want to change the default size and variant of every `Dialog` in
 our app.
 
 ```jsx live=false
-import { modalAnatomy as parts } from '@chakra-ui/anatomy'
+import { dialogAnatomy as parts } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
 
 const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys)
 
-export const modalTheme = defineMultiStyleConfig({
+export const dialogTheme = defineMultiStyleConfig({
   defaultProps: {
     size: 'xl',
     variant: 'purple',
   },
 })
 
-// This saves you time, instead of manually setting the size and variant every time you use an Modal:
-<Modal size="xl" variant="purple" ... />
+// This saves you time, instead of manually setting the size and variant every time you use an Dialog:
+<Dialog size="xl" variant="purple" ... />
 ```
 
 ### Showcase
@@ -862,12 +862,12 @@ export const modalTheme = defineMultiStyleConfig({
 import {
   App,
   Index,
-  ModalTheme,
-} from 'configs/sandpack-contents/component-theming/modal.js'
+  DialogTheme,
+} from 'configs/sandpack-contents/component-theming/dialog.js'
 
 <SandpackEmbed
   files={{
-    '/theme/components/modal.ts': ModalTheme,
+    '/theme/components/dialog.ts': DialogTheme,
     '/App.tsx': App,
     '/index.tsx': {
       code: Index,

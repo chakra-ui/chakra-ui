@@ -1,35 +1,29 @@
 ---
-id: modal
+id: dialog
 category: overlay
-title: Modal
+title: Dialog
 package: '@chakra-ui/modal'
 description:
-  A modal is a dialog that focuses the user's attention exclusively on an
-  information via a window that is overlaid on primary content.
+  Dialog that focuses the user's attention exclusively on an information via a
+  window that is overlaid on primary content.
 ---
 
 ## Import
 
 Chakra exports 7 components to help you create any modal dialog.
 
-- `Modal`: The wrapper that provides context for its children.
-- `ModalOverlay`: The dimmed overlay behind the modal dialog.
-- `ModalContent`: The container for the modal dialog's content.
-- `ModalHeader`: The header that labels the modal dialog.
-- `ModalFooter`: The footer that houses the modal actions.
-- `ModalBody`: The wrapper that houses the modal's main content.
-- `ModalCloseButton`: The button that closes the modal.
+- `Dialog.Root`: The wrapper that provides context for its children.
+- `Dialog.Overlay`: The dimmed overlay behind the modal dialog.
+- `Dialog.Positioner`: The wrapper for the dialog content. Must be a direct
+  child of `Dialog.Root`.
+- `Dialog.Content`: The container for the modal dialog's content.
+- `Dialog.Header`: The header that labels the modal dialog.
+- `Dialog.Footer`: The footer that houses the modal actions.
+- `Dialog.Body`: The wrapper that houses the modal's main content.
+- `Dialog.CloseButton`: The button that closes the modal.
 
 ```js
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from '@chakra-ui/react'
+import { Dialog } from '@chakra-ui/react'
 ```
 
 ## Usage
@@ -45,31 +39,33 @@ function BasicUsage() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>Open Dialog</Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Lorem count={2} />
-          </ModalBody>
+      <Dialog.Root isOpen={isOpen} onClose={onClose}>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem count={2} />
+            </Dialog.Body>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <Dialog.Footer>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant='ghost'>Secondary Action</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
 ```
 
-### Control Focus when Modal closes
+### Control Focus when Dialog closes
 
 When the dialog closes, it returns focus to the element that triggered it. Set
 `finalFocusRef` to change the element that should receive focus when the modal
@@ -87,31 +83,33 @@ function ReturnFocus() {
       </Box>
 
       <Button mt={4} onClick={onOpen}>
-        Open Modal
+        Open Dialog
       </Button>
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Lorem count={2} />
-          </ModalBody>
+      <Dialog.Root finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem count={2} />
+            </Dialog.Body>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <Dialog.Footer>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant='ghost'>Secondary Action</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
 ```
 
-### Block Scrolling when Modal opens
+### Block Scrolling when Dialog opens
 
 For accessibility, it is recommended to block scrolling on the main document
 behind the modal. Chakra does this by default but you can set
@@ -123,28 +121,30 @@ function BasicUsage() {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>Open Dialog</Button>
 
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text fontWeight='bold' mb='1rem'>
-              You can scroll the content behind the modal
-            </Text>
-            <Lorem count={2} />
-          </ModalBody>
+      <Dialog.Root blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Text fontWeight='bold' mb='1rem'>
+                You can scroll the content behind the modal
+              </Text>
+              <Lorem count={2} />
+            </Dialog.Body>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <Dialog.Footer>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant='ghost'>Secondary Action</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
@@ -175,47 +175,49 @@ function InitialFocus() {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>Open Dialog</Button>
       <Button ml={4} ref={finalRef}>
         I'll receive focus on close
       </Button>
 
-      <Modal
+      <Dialog.Root
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <Field.Root>
-              <Field.Label>First name</Field.Label>
-              <Input ref={initialRef} placeholder='First name' />
-            </Field.Root>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Create your account</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body pb={6}>
+              <Field.Root>
+                <Field.Label>First name</Field.Label>
+                <Input ref={initialRef} placeholder='First name' />
+              </Field.Root>
 
-            <Field.Root mt={4}>
-              <Field.Label>Last name</Field.Label>
-              <Input placeholder='Last name' />
-            </Field.Root>
-          </ModalBody>
+              <Field.Root mt={4}>
+                <Field.Label>Last name</Field.Label>
+                <Input placeholder='Last name' />
+              </Field.Root>
+            </Dialog.Body>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3}>
-              Save
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <Dialog.Footer>
+              <Button colorScheme='blue' mr={3}>
+                Save
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
 ```
 
-### Close Modal on Overlay Click
+### Close Dialog on Overlay Click
 
 By default, the modal closes when you click its overlay. You can set
 `closeOnOverlayClick` to `false` if you want the modal to stay visible.
@@ -226,25 +228,31 @@ function ManualClose() {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button onClick={onOpen}>Open Dialog</Button>
 
-      <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <Lorem count={2} />
-          </ModalBody>
+      <Dialog.Root
+        closeOnOverlayClick={false}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Create your account</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body pb={6}>
+              <Lorem count={2} />
+            </Dialog.Body>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3}>
-              Save
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+            <Dialog.Footer>
+              <Button colorScheme='blue' mr={3}>
+                Save
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
@@ -253,8 +261,8 @@ function ManualClose() {
 ### Make modal vertically centered
 
 By default the modal has a vertical offset of `3.75rem` which you can change by
-passing `top` to the `ModalContent`. If you need to vertically center the modal,
-pass the `isCentered` prop.
+passing `top` to the `Dialog.Content`. If you need to vertically center the
+modal, pass the `isCentered` prop.
 
 > If the content within the modal overflows beyond the viewport, don't use this
 > prop. Try setting the [overflow behavior](#modal-overflow-behavior) instead.
@@ -267,19 +275,21 @@ function VerticallyCenter() {
     <>
       <Button onClick={onOpen}>Trigger modal</Button>
 
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Lorem count={2} />
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <Dialog.Root onClose={onClose} isOpen={isOpen} isCentered>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem count={2} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
@@ -287,7 +297,7 @@ function VerticallyCenter() {
 
 ### Changing the transition
 
-The `Modal` comes with a scale transition by default but you can change it by
+The `Dialog` comes with a scale transition by default but you can change it by
 passing a `motionPreset` prop, and setting its value to either `slideInBottom`,
 `slideInRight`, `scale` or `none`.
 
@@ -296,40 +306,42 @@ function TransitionExample() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Modal
+      <Button onClick={onOpen}>Open Dialog</Button>
+      <Dialog.Root
         isCentered
         onClose={onClose}
         isOpen={isOpen}
         motionPreset='slideInBottom'
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Lorem count={2} />
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem count={2} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button colorScheme='blue' mr={3} onClick={onClose}>
+                Close
+              </Button>
+              <Button variant='ghost'>Secondary Action</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
 ```
 
-### Modal overflow behavior
+### Dialog overflow behavior
 
 If the content within the modal overflows beyond the viewport, you can use the
 `scrollBehavior` to control how scrolling should happen.
 
-- If set to `inside`, scroll only occurs within the `ModalBody`.
-- If set to `outside`, the entire `ModalContent` will scroll within the
+- If set to `inside`, scroll only occurs within the `Dialog.Body`.
+- If set to `outside`, the entire `Dialog.Content` will scroll within the
   viewport.
 
 ```jsx
@@ -351,30 +363,32 @@ function ScrollingExample() {
         Trigger modal
       </Button>
 
-      <Modal
+      <Dialog.Root
         onClose={onClose}
         finalFocusRef={btnRef}
         isOpen={isOpen}
         scrollBehavior={scrollBehavior}
       >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Lorem count={15} />
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem count={15} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
 ```
 
-### Modal Sizes
+### Dialog Sizes
 
 Pass the `size` prop if you need to adjust the size of the modal. Values can be
 `xs`, `sm`, `md`, `lg`, `xl`, or `full`.
@@ -398,22 +412,24 @@ function SizeExample() {
           onClick={() => handleSizeClick(size)}
           key={size}
           m={4}
-        >{`Open ${size} Modal`}</Button>
+        >{`Open ${size} Dialog`}</Button>
       ))}
 
-      <Modal onClose={onClose} size={size} isOpen={isOpen}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Lorem count={2} />
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <Dialog.Root onClose={onClose} size={size} isOpen={isOpen}>
+        <Dialog.Overlay />
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Lorem count={2} />
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
@@ -447,21 +463,21 @@ to set the `backdropFilter` prop to `auto`.
 > [backdrop-filter](https://caniuse.com/css-backdrop-filter) CSS property, the
 > example below included.
 
-The `filter` property will have no effect on the background because the Modal is
-rendered within a `Portal`. This means you can only style components within the
-Modal by using this property.
+The `filter` property will have no effect on the background because the Dialog
+is rendered within a `Portal`. This means you can only style components within
+the Dialog by using this property.
 
 ```jsx
 function BackdropExample() {
   const OverlayOne = () => (
-    <ModalOverlay
+    <Dialog.Overlay
       bg='blackAlpha.300'
       backdropFilter='blur(10px) hue-rotate(90deg)'
     />
   )
 
   const OverlayTwo = () => (
-    <ModalOverlay
+    <Dialog.Overlay
       bg='none'
       backdropFilter='auto'
       backdropInvert='80%'
@@ -491,19 +507,21 @@ function BackdropExample() {
       >
         Use Overlay two
       </Button>
-      <Modal isCentered isOpen={isOpen} onClose={onClose}>
+      <Dialog.Root isCentered isOpen={isOpen} onClose={onClose}>
         {overlay}
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>Custom backdrop filters!</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={onClose}>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+        <Dialog.Positioner>
+          <Dialog.Content>
+            <Dialog.Header>Dialog Title</Dialog.Header>
+            <Dialog.CloseButton />
+            <Dialog.Body>
+              <Text>Custom backdrop filters!</Text>
+            </Dialog.Body>
+            <Dialog.Footer>
+              <Button onClick={onClose}>Close</Button>
+            </Dialog.Footer>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Dialog.Root>
     </>
   )
 }
@@ -518,8 +536,8 @@ function BackdropExample() {
   or the element from `initialFocusRef`.
 - When the modal closes, focus returns to the element that was focused before
   the modal activated, or the element from `finalFocusRef`.
-- Clicking on the overlay closes the Modal.
-- Pressing <kbd>Esc</kbd> closes the Modal.
+- Clicking on the overlay closes the Dialog.
+- Pressing <kbd>Esc</kbd> closes the Dialog.
 - Scrolling is blocked on the elements behind the modal.
 - The modal is rendered in a portal attached to the end of `document.body` to
   break it out of the source order and make it easy to add `aria-hidden` to its
@@ -527,6 +545,8 @@ function BackdropExample() {
 
 ### ARIA
 
-- The `ModalContent` has `aria-modal` set to `true`.
-- The `ModalContent` has `aria-labelledby` set to the `id` of the `ModalHeader`.
-- The `ModalContent` has `aria-describedby` set to the `id` of the `ModalBody`.
+- The `Dialog.Content` has `aria-modal` set to `true`.
+- The `Dialog.Content` has `aria-labelledby` set to the `id` of the
+  `Dialog.Header`.
+- The `Dialog.Content` has `aria-describedby` set to the `id` of the
+  `Dialog.Body`.
