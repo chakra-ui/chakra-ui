@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion"
-import { Portal, PortalProps } from ".."
+import { Portal, PortalProps } from "../portal"
 import { defineStyle } from "../styled-system"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"

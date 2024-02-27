@@ -1,5 +1,3 @@
-import { extendTheme } from "../packages/components"
-
 export const parameters = {
   options: {
     storySort: (a, b) => {
@@ -8,19 +6,7 @@ export const parameters = {
         : a.id.localeCompare(b.id, undefined, { numeric: true })
     },
   },
-  chakra: {
-    theme: extendTheme({
-      semanticTokens: {
-        colors: {
-          semantic: {
-            default: "red.500",
-            _light: "red.500",
-            _dark: "blue.400",
-          },
-        },
-      },
-    }),
-  },
+  chakra: {},
 }
 
 export const decorators = []

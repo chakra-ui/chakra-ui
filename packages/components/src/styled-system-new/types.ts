@@ -1,4 +1,4 @@
-import { Dict } from "@chakra-ui/utils"
+import { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
 import { SystemStyleObject } from "./csstype"
 import { ConditionalValue, Nested } from "./generated/conditions.gen"
@@ -232,6 +232,9 @@ export interface SystemContext {
   tokens: TokenDictionary
   properties: Set<string>
   isValidProperty(prop: string): boolean
+  splitCssProps<T extends SystemStyleObject>(
+    props: T,
+  ): [SystemStyleObject, DistributiveOmit<T, keyof SystemStyleObject>]
   getTokenCss(): Dict
   getGlobalCss(): Dict
   css(...args: SystemStyleObject[]): SystemStyleObject

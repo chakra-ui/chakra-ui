@@ -5,6 +5,7 @@ import {
   isObject,
   memo,
   mergeWith,
+  splitProps,
 } from "@chakra-ui/utils"
 import { createConditions } from "./conditions"
 import { createCssFn } from "./css"
@@ -99,12 +100,17 @@ export function createSystem(options: SystemConfig): SystemContext {
     return Object.assign({}, keyframes, css(serialize(globalCss)))
   }
 
+  function splitCssProps(props: any) {
+    return splitProps(props, isValidProperty as any)
+  }
+
   const context: SystemContext = {
     tokens,
     conditions,
     utility,
     properties,
     isValidProperty,
+    splitCssProps: splitCssProps as any,
     getTokenCss,
     getGlobalCss,
     css,
