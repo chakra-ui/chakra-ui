@@ -121,7 +121,7 @@ export interface TokenExtensions {
   conditions?: Dict
   cssVar?: TokenCssVar
   colorPalette?: ColorPaletteExtension
-  references?: Dict
+  references?: Dict<Token>
 }
 
 export interface Token<T = any> {
@@ -241,6 +241,5 @@ export interface SystemConfig {
   globalCss?: Record<string, SystemStyleObject>
   theme?: ThemingConfig
   utilities?: UtilityConfig
-  breakpoints?: Dict
   conditions?: Dict
 }

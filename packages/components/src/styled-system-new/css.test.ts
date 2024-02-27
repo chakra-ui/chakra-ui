@@ -1,49 +1,30 @@
-import { createConditions } from "./conditions"
-import { createCssFn } from "./css"
-import { createTokenDictionary } from "./token-dictionary"
-import { SystemContext } from "./types"
-import { createUtilty } from "./utility"
+import { createSystem } from "./system"
 
-const conditions = createConditions({
-  breakpoints: {
-    sm: "@media (min-width: 30em)",
-    md: "@media (min-width: 48em)",
-    lg: "@media (min-width: 62em)",
-    xl: "@media (min-width: 80em)",
-  },
+const { css } = createSystem({
   conditions: {
     hover: "&:hover",
     focus: "&:focus",
     active: "&:active",
   },
-})
-
-const tokens = createTokenDictionary({
-  tokens: {
-    colors: {
-      pink: {
-        400: { value: "#pink400" },
-      },
-    },
-  },
-  semanticTokens: {},
-})
-
-const utility = createUtilty({
-  tokens,
-  config: {
+  utilities: {
     marginTop: { shorthand: "mt", values: "spacing" },
     color: { values: "colors" },
   },
+  theme: {
+    breakpoints: {
+      sm: "@media (min-width: 30em)",
+      md: "@media (min-width: 48em)",
+      lg: "@media (min-width: 62em)",
+      xl: "@media (min-width: 80em)",
+    },
+    tokens: {
+      colors: {
+        pink: { 400: { value: "#pink400" } },
+      },
+    },
+    semanticTokens: {},
+  },
 })
-
-const context: SystemContext = {
-  tokens,
-  utility,
-  conditions,
-}
-
-const css = createCssFn(context)
 
 describe("create css", () => {
   test("works", () => {
