@@ -115,12 +115,16 @@ export function createUtilty(options: Options) {
     const normalizeProp = resolveShorthand(prop)
 
     const config = configs[prop]
-    if (!config) return defaultTransform(normalizeProp, raw)
+    if (!config) {
+      return defaultTransform(normalizeProp, raw)
+    }
 
     const value = propValues.get(normalizeProp)?.[raw]
-    if (!config.transform) return defaultTransform(prop, value ?? raw)
+    if (!config.transform) {
+      return defaultTransform(prop, value ?? raw)
+    }
 
-    return config.transform(value, { raw, token: tokenFn })
+    return config.transform(value ?? raw, { raw, token: tokenFn })
   })
 
   function build() {

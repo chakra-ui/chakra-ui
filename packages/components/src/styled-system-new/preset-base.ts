@@ -2,13 +2,126 @@ import { defineSystem } from "./theming"
 
 const isCssVar = (v: string) => /^var\(--.+\)$/.test(v)
 
-const toDeg = (v: any) => {
+const wrap = (str: string, v: any) => (v != null ? `${str}(${v})` : v)
+
+const deg = (v: any) => {
   if (isCssVar(v) || v == null) return v
   const unitless = typeof v === "string" && !v.endsWith("deg")
   return typeof v === "number" || unitless ? `${v}deg` : v
 }
 
 export const presetBase = defineSystem({
+  conditions: {
+    hover: "&:is(:hover, [data-hover])",
+    focus: "&:is(:focus, [data-focus])",
+    focusWithin: "&:focus-within",
+    focusVisible: "&:is(:focus-visible, [data-focus-visible])",
+    disabled: "&:is(:disabled, [disabled], [data-disabled])",
+    active: "&:is(:active, [data-active])",
+    visited: "&:visited",
+    target: "&:target",
+    readOnly: "&:is(:read-only, [data-read-only])",
+    readWrite: "&:read-write",
+    empty: "&:is(:empty, [data-empty])",
+    checked:
+      '&:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"])',
+    enabled: "&:enabled",
+    expanded:
+      '&:is([aria-expanded=true], [data-expanded], [data-state="expanded"])',
+    highlighted: "&[data-highlighted]",
+
+    before: "&::before",
+    after: "&::after",
+    firstLetter: "&::first-letter",
+    firstLine: "&::first-line",
+    marker: "&::marker",
+    selection: "&::selection",
+    file: "&::file-selector-button",
+    backdrop: "&::backdrop",
+
+    first: "&:first-child",
+    last: "&:last-child",
+    only: "&:only-child",
+    even: "&:nth-child(even)",
+    odd: "&:nth-child(odd)",
+
+    firstOfType: "&:first-of-type",
+    lastOfType: "&:last-of-type",
+    onlyOfType: "&:only-of-type",
+
+    peerFocus: ".peer:is(:focus, [data-focus]) ~ &",
+    peerHover: ".peer:is(:hover, [data-hover]) ~ &",
+    peerActive: ".peer:is(:active, [data-active]) ~ &",
+    peerFocusWithin: ".peer:focus-within ~ &",
+    peerFocusVisible: ".peer:is(:focus-visible, [data-focus-visible]) ~ &",
+    peerDisabled: ".peer:is(:disabled, [disabled], [data-disabled]) ~ &",
+    peerChecked:
+      '.peer:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) ~ &',
+    peerInvalid: ".peer:is(:invalid, [data-invalid], [aria-invalid=true]) ~ &",
+    peerExpanded:
+      '.peer:is([aria-expanded=true], [data-expanded], [data-state="expanded"]) ~ &',
+    peerPlaceholderShown: ".peer:placeholder-shown ~ &",
+
+    groupFocus: ".group:is(:focus, [data-focus]) &",
+    groupHover: ".group:is(:hover, [data-hover]) &",
+    groupActive: ".group:is(:active, [data-active]) &",
+    groupFocusWithin: ".group:focus-within &",
+    groupFocusVisible: ".group:is(:focus-visible, [data-focus-visible]) &",
+    groupDisabled: ".group:is(:disabled, [disabled], [data-disabled]) &",
+    groupChecked:
+      '.group:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) &',
+    groupExpanded:
+      '.group:is([aria-expanded=true], [data-expanded], [data-state="expanded"]) &',
+    groupInvalid: ".group:invalid &",
+
+    indeterminate:
+      '&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state="indeterminate"])',
+    required: "&:is(:required, [data-required], [aria-required=true])",
+    valid: "&:is(:valid, [data-valid])",
+    invalid: "&:is(:invalid, [data-invalid])",
+    autofill: "&:autofill",
+    inRange: "&:in-range",
+    outOfRange: "&:out-of-range",
+    placeholder: "&::placeholder, &[data-placeholder]",
+    placeholderShown: "&:is(:placeholder-shown, [data-placeholder-shown])",
+    pressed: "&:is([aria-pressed=true], [data-pressed])",
+    selected: "&:is([aria-selected=true], [data-selected])",
+
+    default: "&:default",
+    optional: "&:optional",
+    open: '&:is([open], [data-open], [data-state="open"])',
+    closed: '&:is([closed], [data-closed], [data-state="closed"])',
+    fullscreen: "&:fullscreen",
+    loading: "&:is([data-loading], [aria-busy=true])",
+
+    currentPage: "&[aria-current=page]",
+    currentStep: "&[aria-current=step]",
+
+    motionReduce: "@media (prefers-reduced-motion: reduce)",
+    motionSafe: "@media (prefers-reduced-motion: no-preference)",
+    print: "@media print",
+    landscape: "@media (orientation: landscape)",
+    portrait: "@media (orientation: portrait)",
+
+    dark: " &.dark, .dark &",
+    light: " &.light, .light &",
+    osDark: "@media (prefers-color-scheme: dark)",
+    osLight: "@media (prefers-color-scheme: light)",
+
+    highContrast: "@media (forced-colors: active)",
+    lessContrast: "@media (prefers-contrast: less)",
+    moreContrast: "@media (prefers-contrast: more)",
+
+    ltr: "[dir=ltr] &",
+    rtl: "[dir=rtl] &",
+
+    scrollbar: "&::-webkit-scrollbar",
+    scrollbarThumb: "&::-webkit-scrollbar-thumb",
+    scrollbarTrack: "&::-webkit-scrollbar-track",
+
+    horizontal: "&[data-orientation=horizontal]",
+    vertical: "&[data-orientation=vertical]",
+  },
   utilities: {
     // background
     background: { values: "colors", shorthand: ["bg"] },
@@ -159,45 +272,80 @@ export const presetBase = defineSystem({
     // filters
     filter: {
       transform(v) {
-        if (v !== "auto") return v
-        return `var(--chakra-blur) var(--chakra-brightness) var(--chakra-contrast) var(--chakra-grayscale) var(--chakra-hue-rotate) var(--chakra-invert) var(--chakra-saturate) var(--chakra-sepia) var(--chakra-drop-shadow)`
+        if (v !== "auto") {
+          return { filter: v }
+        }
+        return {
+          filter: `var(--blur) var(--brightness) var(--contrast) var(--grayscale) var(--hue-rotate) var(--invert) var(--saturate) var(--sepia) var(--drop-shadow)`,
+        }
       },
     },
-    blur: { transform: (v) => ({ "--chakra-blur": v }) },
-    brightness: { transform: (v) => ({ "--chakra-brightness": v }) },
-    contrast: { transform: (v) => ({ "--chakra-contrast": v }) },
-    grayscale: { transform: (v) => ({ "--chakra-grayscale": v }) },
-    hueRotate: { transform: (v) => ({ "--chakra-hue-rotate": v }) },
-    invert: { transform: (v) => ({ "--chakra-invert": v }) },
-    saturate: { transform: (v) => ({ "--chakra-saturate": v }) },
-    sepia: { transform: (v) => ({ "--chakra-sepia": v }) },
-    dropShadow: { transform: (v) => ({ "--chakra-drop-shadow": v }) },
+    blur: { transform: (v) => ({ "--blur": wrap("blur", v) }) },
+    brightness: {
+      transform: (v) => ({ "--brightness": wrap("brightness", v) }),
+    },
+    contrast: {
+      transform: (v) => ({ "--contrast": wrap("contrast", v) }),
+    },
+    grayscale: {
+      transform: (v) => ({ "--grayscale": wrap("grayscale", v) }),
+    },
+    hueRotate: {
+      transform: (v) => ({ "--hue-rotate": wrap("hue-rotate", deg(v)) }),
+    },
+    invert: { transform: (v) => ({ "--invert": wrap("invert", v) }) },
+    saturate: {
+      transform: (v) => ({ "--saturate": wrap("saturate", v) }),
+    },
+    sepia: { transform: (v) => ({ "--sepia": wrap("sepia", v) }) },
+    dropShadow: {
+      transform: (v) => ({ "--drop-shadow": wrap("drop-shadow", v) }),
+    },
     // backdrop filters
     backdropFilter: {
       transform(v) {
-        if (v !== "auto") return v
-        return `var(--chakra-backdrop-blur) var(--chakra-backdrop-brightness) var(--chakra-backdrop-contrast) var(--chakra-backdrop-grayscale) var(--chakra-backdrop-hue-rotate) var(--chakra-backdrop-invert) var(--chakra-backdrop-opacity) var(--chakra-backdrop-saturate) var(--chakra-backdrop-sepia)`
+        if (v !== "auto") {
+          return { backdropFilter: v }
+        }
+        return {
+          backdropFilter: `var(--backdrop-blur) var(--backdrop-brightness) var(--backdrop-contrast) var(--backdrop-grayscale) var(--backdrop-hue-rotate) var(--backdrop-invert) var(--backdrop-opacity) var(--backdrop-saturate) var(--backdrop-sepia)`,
+        }
       },
     },
-    backdropBlur: { transform: (v) => ({ "--chakra-backdrop-blur": v }) },
+    backdropBlur: {
+      values: "blurs",
+      transform: (v) => ({ "--backdrop-blur": wrap("blur", v) }),
+    },
     backdropBrightness: {
-      transform: (v) => ({ "--chakra-backdrop-brightness": v }),
+      transform: (v) => ({
+        "--backdrop-brightness": wrap("brightness", v),
+      }),
     },
     backdropContrast: {
-      transform: (v) => ({ "--chakra-backdrop-contrast": v }),
+      transform: (v) => ({ "--backdrop-contrast": wrap("contrast", v) }),
     },
     backdropGrayscale: {
-      transform: (v) => ({ "--chakra-backdrop-grayscale": v }),
+      transform: (v) => ({
+        "--backdrop-grayscale": wrap("grayscale", v),
+      }),
     },
     backdropHueRotate: {
-      transform: (v) => ({ "--chakra-backdrop-hue-rotate": v }),
+      transform: (v) => ({
+        "--backdrop-hue-rotate": wrap("hue-rotate", deg(v)),
+      }),
     },
-    backdropInvert: { transform: (v) => ({ "--chakra-backdrop-invert": v }) },
-    backdropOpacity: { transform: (v) => ({ "--chakra-backdrop-opacity": v }) },
+    backdropInvert: {
+      transform: (v) => ({ "--backdrop-invert": wrap("invert", v) }),
+    },
+    backdropOpacity: {
+      transform: (v) => ({ "--backdrop-opacity": wrap("opacity", v) }),
+    },
     backdropSaturate: {
-      transform: (v) => ({ "--chakra-backdrop-saturate": v }),
+      transform: (v) => ({ "--backdrop-saturate": wrap("saturate", v) }),
     },
-    backdropSepia: { transform: (v) => ({ "--chakra-backdrop-sepia": v }) },
+    backdropSepia: {
+      transform: (v) => ({ "--backdrop-sepia": wrap("sepia", v) }),
+    },
     // flexbox
     flexBasis: { values: "sizes" },
     gap: { values: "spacing" },
@@ -290,26 +438,26 @@ export const presetBase = defineSystem({
     ring: {
       transform(value) {
         return {
-          "--chakra-ring-offset-shadow": `var(--chakra-ring-inset) 0 0 0 var(--chakra-ring-offset-width) var(--chakra-ring-offset-color)`,
-          "--chakra-ring-shadow": `var(--chakra-ring-inset) 0 0 0 calc(var(--chakra-ring-width) + var(--chakra-ring-offset-width)) var(--chakra-ring-color)`,
-          "--chakra-ring-width": value,
-          boxShadow: `var(--chakra-ring-offset-shadow), var(--chakra-ring-shadow), var(--chakra-shadow, 0 0 #0000)`,
+          "--ring-offset-shadow": `var(--ring-inset) 0 0 0 var(--ring-offset-width) var(--ring-offset-color)`,
+          "--ring-shadow": `var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset-width)) var(--ring-color)`,
+          "--ring-width": value,
+          boxShadow: `var(--ring-offset-shadow), var(--ring-shadow), var(--shadow, 0 0 #0000)`,
         }
       },
     },
     ringColor: {
       values: "colors",
-      transform: (value) => ({ "--chakra-ring-color": value }),
+      transform: (value) => ({ "--ring-color": value }),
     },
     ringOffset: {
-      transform: (value) => ({ "--chakra-ring-offset-width": value }),
+      transform: (value) => ({ "--ring-offset-width": value }),
     },
     ringOffsetColor: {
       values: "colors",
-      transform: (v) => ({ "--chakra-ring-offset-color": v }),
+      transform: (v) => ({ "--ring-offset-color": v }),
     },
     ringInset: {
-      transform: (v) => ({ "--chakra-ring-inset": v }),
+      transform: (v) => ({ "--ring-inset": v }),
     },
     // margin
     margin: { values: "spacing", shorthand: ["m"] },
@@ -347,29 +495,29 @@ export const presetBase = defineSystem({
       transform: (value) => {
         let v = value
         if (value === "auto") {
-          v = `translateX(var(--chakra-translate-x, 0)) translateY(var(--chakra-translate-y, 0)) rotate(var(--chakra-rotate, 0)) scaleX(var(--chakra-scale-x, 1)) scaleY(var(--chakra-scale-y, 1)) skewX(var(--chakra-skew-x, 0)) skewY(var(--chakra-skew-y, 0))`
+          v = `translateX(var(--translate-x, 0)) translateY(var(--translate-y, 0)) rotate(var(--rotate, 0)) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1)) skewX(var(--skew-x, 0)) skewY(var(--skew-y, 0))`
         }
         if (value === "auto-gpu") {
-          v = `translate3d(var(--chakra-translate-x, 0), var(--chakra-translate-y, 0), 0) rotate(var(--chakra-rotate, 0)) scaleX(var(--chakra-scale-x, 1)) scaleY(var(--chakra-scale-y, 1)) skewX(var(--chakra-skew-x, 0)) skewY(var(--chakra-skew-y, 0))`
+          v = `translate3d(var(--translate-x, 0), var(--translate-y, 0), 0) rotate(var(--rotate, 0)) scaleX(var(--scale-x, 1)) scaleY(var(--scale-y, 1)) skewX(var(--skew-x, 0)) skewY(var(--skew-y, 0))`
         }
         return { transform: v }
       },
     },
-    skewX: { transform: (v) => ({ "--chakra-skew-x": toDeg(v) }) },
-    skewY: { transform: (v) => ({ "--chakra-skew-y": toDeg(v) }) },
-    scaleX: { transform: (v) => ({ "--chakra-scale-x": v }) },
-    scaleY: { transform: (v) => ({ "--chakra-scale-y": v }) },
+    skewX: { transform: (v) => ({ "--skew-x": deg(v) }) },
+    skewY: { transform: (v) => ({ "--skew-y": deg(v) }) },
+    scaleX: { transform: (v) => ({ "--scale-x": v }) },
+    scaleY: { transform: (v) => ({ "--scale-y": v }) },
     scale: {
       transform(value) {
         if (value !== "auto") return { scale: value }
         return {
-          scale: `var(--chakra-scale-x, 1) var(--chakra-scale-y, 1)`,
+          scale: `var(--scale-x, 1) var(--scale-y, 1)`,
         }
       },
     },
     rotate: {
       transform(value) {
-        if (value !== "auto") return { rotate: toDeg(value) }
+        if (value !== "auto") return { rotate: deg(value) }
         return {
           rotate: `var(--rotate-x, 0) var(--rotate-y, 0) var(--rotate-z, 0)`,
         }
@@ -380,17 +528,17 @@ export const presetBase = defineSystem({
       transform(value) {
         if (value !== "auto") return { transform: value }
         return {
-          transform: `var(--chakra-translate-x) var(--chakra-translate-y)`,
+          transform: `var(--translate-x) var(--translate-y)`,
         }
       },
     },
     translateX: {
       values: "spacing",
-      transform: (v) => ({ "--chakra-translate-x": v }),
+      transform: (v) => ({ "--translate-x": v }),
     },
     translateY: {
       values: "spacing",
-      transform: (v) => ({ "--chakra-translate-y": v }),
+      transform: (v) => ({ "--translate-y": v }),
     },
     // transition
     transitionDuration: { values: "durations" },
@@ -430,8 +578,8 @@ export const presetBase = defineSystem({
         return {
           display: "-webkit-box",
           WebkitBoxOrient: "vertical",
-          WebkitLineClamp: "var(--chakra-line-clamp)",
-          "--chakra-line-clamp": value,
+          WebkitLineClamp: "var(--line-clamp)",
+          "--line-clamp": value,
           overflow: "hidden",
           textOverflow: "ellipsis",
         }

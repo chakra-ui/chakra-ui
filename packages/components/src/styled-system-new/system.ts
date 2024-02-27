@@ -1,4 +1,11 @@
-import { Dict, compact, flatten, memo, mergeWith } from "@chakra-ui/utils"
+import {
+  Dict,
+  compact,
+  flatten,
+  isObject,
+  memo,
+  mergeWith,
+} from "@chakra-ui/utils"
 import { createConditions } from "./conditions"
 import { createCssFn } from "./css"
 import { isCssProperty } from "./is-valid-prop"
@@ -11,7 +18,6 @@ import { createUtilty } from "./utility"
 export function createSystem(options: SystemConfig): SystemContext {
   const {
     theme = {},
-    conditions: _conds = {},
     utilities = {},
     globalCss = {},
     cssVarsRoot = ":where(:root, :host)",
@@ -20,7 +26,7 @@ export function createSystem(options: SystemConfig): SystemContext {
   const tokens = createTokenDictionary(theme)
 
   const conditions = createConditions({
-    conditions: _conds,
+    conditions: options.conditions,
     breakpoints: theme.breakpoints,
   })
 
@@ -38,11 +44,15 @@ export function createSystem(options: SystemConfig): SystemContext {
     })
 
     for (const [key, values] of Object.entries(compositions)) {
-      const flatValues = flatten(values ?? {})
+      const flatValues = flatten(
+        values ?? {},
+        (v) => isObject(v) && "value" in v,
+      )
+
       utility.register(key, {
         values: Object.keys(flatValues),
         transform(value) {
-          return flatValues[value]
+          return { "@layer compositions": css(flatValues[value]) }
         },
       })
     }
