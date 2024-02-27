@@ -1,6 +1,6 @@
 import type { PropertiesFallback } from "csstype"
-import { Conditions, Nested } from "./conditions.gen"
-import { SystemProperties } from "./system.gen"
+import { Conditions, Nested } from "./generated/conditions.gen"
+import { SystemProperties } from "./generated/system.gen"
 import { CssVarProperties } from "./types"
 
 type String = string & {}

@@ -1,4 +1,4 @@
-import type { AnySelector, Selectors } from "./selectors"
+import type { AnySelector, Selectors } from "../selectors"
 
 export interface Conditions {
   /** `&:is(:hover, [data-hover])` */

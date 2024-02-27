@@ -1,7 +1,7 @@
 import { Dict } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
-import { ConditionalValue, Nested } from "./conditions.gen"
 import { SystemStyleObject } from "./csstype"
+import { ConditionalValue, Nested } from "./generated/conditions.gen"
 import { RecipeCreatorFn } from "./recipe.types"
 
 export type CssProperty = keyof PropertiesFallback
