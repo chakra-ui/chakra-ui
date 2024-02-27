@@ -782,6 +782,17 @@
         "default": "./dist/cjs/styled-system/index.cjs"
       }
     },
+    "./styled-system-new": {
+      "source": "./src/styled-system-new/index.ts",
+      "import": {
+        "types": "./dist/types/styled-system-new/index.d.mts",
+        "default": "./dist/esm/styled-system-new/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/styled-system-new/index.d.ts",
+        "default": "./dist/cjs/styled-system-new/index.cjs"
+      }
+    },
     "./switch": {
       "source": "./src/switch/index.ts",
       "import": {

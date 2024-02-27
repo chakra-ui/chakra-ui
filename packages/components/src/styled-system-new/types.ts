@@ -1,4 +1,4 @@
-import { Dict, LiteralUnion } from "@chakra-ui/utils"
+import { Dict } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
 import { ConditionalValue, Nested } from "./conditions.gen"
 
@@ -41,6 +41,9 @@ export type TokenCategory =
   | "gradients"
   | "assets"
   | "borderWidths"
+  | "properties"
+  | "breakpoints"
+  | "borderStyles"
   | "aspectRatios"
 
 export interface TokenSchema<T = any> {
@@ -150,22 +153,13 @@ type PropertyTransform = (
 ) => Nested<CssProperties> | undefined
 
 export type PropertyValues =
-  | LiteralUnion<TokenCategory>
+  | TokenCategory
   | string[]
   | { type: string }
   | Record<string, string>
   | ThemeFn
 
 export interface UtilityPropertyConfig {
-  /**
-   * @internal
-   * The cascade layer to which the property belongs
-   */
-  layer?: string
-  /**
-   * The classname this property will generate.
-   */
-  className?: string
   /**
    * The css style object this property will generate.
    */
@@ -185,7 +179,9 @@ export interface UtilityPropertyConfig {
 }
 
 export type UtilityConfig = {
-  [property in LiteralUnion<CssProperty>]?: UtilityPropertyConfig
+  [property in CssProperty]?: UtilityPropertyConfig
+} & {
+  [property: string]: UtilityPropertyConfig
 }
 
 export interface Utility {
@@ -208,6 +204,10 @@ interface Condition {
   breakpoints: string[]
 }
 
+interface ConditionConfig {
+  [key: string]: string
+}
+
 /* -----------------------------------------------------------------------------
  * System Context
  * -----------------------------------------------------------------------------*/
@@ -216,4 +216,17 @@ export interface SystemContext {
   utility: Utility
   conditions: Condition
   tokens: TokenDictionary
+}
+
+export interface ThemingConfig {
+  tokens?: TokenDefinition
+  semanticTokens?: SemanticTokenDefinition
+  textStyles?: Record<string, Dict>
+  layerStyles?: Record<string, Dict>
+}
+
+export interface SystemConfig {
+  theme?: ThemingConfig
+  utilities?: UtilityConfig
+  conditions?: ConditionConfig
 }
