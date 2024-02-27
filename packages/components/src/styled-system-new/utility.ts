@@ -62,10 +62,10 @@ export function createUtilty(options: Options) {
 
   const assignColorPaletteProperty = () => {
     const values = mapToJson(tokens.colorPaletteMap) as Record<string, any>
-    configs.colorPalette = {
+    register("colorPalette", {
       values: Object.keys(values),
       transform: memo((value) => values[value]),
-    }
+    })
   }
 
   const getPropertyValues = (

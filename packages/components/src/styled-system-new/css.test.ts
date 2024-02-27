@@ -284,4 +284,31 @@ describe("create css", () => {
       }
     `)
   })
+
+  test("color mix", () => {
+    const result = css({
+      bg: "red.300/30",
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "--mix-background": "color-mix(in srgb, var(--colors-red-300) 30%, transparent)",
+        "background": "var(--mix-background, var(--colors-red-300))",
+      }
+    `)
+  })
+
+  test("color palette", () => {
+    const result = css({
+      bg: "colorPalette.300",
+      colorPalette: "red",
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "--colors-color-palette-300": "var(--colors-color-palette-300)",
+        "background": "var(--colors-color-palette-300)",
+      }
+    `)
+  })
 })

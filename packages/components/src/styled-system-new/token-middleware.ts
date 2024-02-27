@@ -86,6 +86,7 @@ export const addVirtualPalette: TokenMiddleware = {
     keys.forEach((segments) => {
       const path = ["colors", "colorPalette", ...segments].filter(Boolean)
       const name = formatTokenName(path)
+      const prop = formatTokenName(path.slice(1))
 
       const token: Token = {
         name,
@@ -96,7 +97,7 @@ export const addVirtualPalette: TokenMiddleware = {
           condition: "base",
           originalPath: path,
           category: "colors",
-          prop: name,
+          prop,
           virtual: true,
         },
       }
