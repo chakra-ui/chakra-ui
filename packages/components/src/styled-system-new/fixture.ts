@@ -18,6 +18,11 @@ export const systemBase = createSystem({
     },
     tokens: {
       colors: {
+        green: {
+          300: { value: "#68D391" },
+          400: { value: "#48BB78" },
+          500: { value: "#38A169" },
+        },
         red: { 300: { value: "#red300" } },
         pink: { 400: { value: "#pink400" } },
         primary: { value: "tomato" },

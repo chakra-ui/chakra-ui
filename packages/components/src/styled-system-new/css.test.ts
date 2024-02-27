@@ -306,7 +306,7 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "--colors-color-palette-300": "var(--colors-color-palette-300)",
+        "--colors-color-palette-300": "var(--colors-red-300)",
         "background": "var(--colors-color-palette-300)",
       }
     `)

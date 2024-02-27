@@ -194,20 +194,43 @@ export const presetBase = defineSystem({
     borderInline: { values: "borders", shorthand: ["borderX"] },
     borderBlock: { values: "borders", shorthand: ["borderY"] },
     // border colors
-    borderColor: { values: "colors" },
-    borderTopColor: { values: "colors" },
-    borderBlockStartColor: { values: "colors" },
-    borderBottomColor: { values: "colors" },
-    borderBlockEndColor: { values: "colors" },
-    borderLeftColor: { values: "colors" },
+    borderColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderColor"),
+    },
+    borderTopColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderTopColor"),
+    },
+    borderBlockStartColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderBlockStartColor"),
+    },
+    borderBottomColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderBottomColor"),
+    },
+    borderBlockEndColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderBlockEndColor"),
+    },
+    borderLeftColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderLeftColor"),
+    },
     borderInlineStartColor: {
       values: "colors",
       shorthand: ["borderStartColor"],
+      transform: createColorMixTransform("borderInlineStartColor"),
     },
-    borderRightColor: { values: "colors" },
+    borderRightColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderRightColor"),
+    },
     borderInlineEndColor: {
       values: "colors",
       shorthand: ["borderEndColor"],
+      transform: createColorMixTransform("borderInlineEndColor"),
     },
     // border styles
     borderStyle: { values: "borderStyles" },
@@ -269,10 +292,22 @@ export const presetBase = defineSystem({
     },
     borderLeftWidth: { values: "borderWidths" },
     // colors
-    color: { values: "colors" },
-    fill: { values: "colors" },
-    stroke: { values: "colors" },
-    accentColor: { values: "colors" },
+    color: {
+      values: "colors",
+      transform: createColorMixTransform("color"),
+    },
+    fill: {
+      values: "colors",
+      transform: createColorMixTransform("fill"),
+    },
+    stroke: {
+      values: "colors",
+      transform: createColorMixTransform("stroke"),
+    },
+    accentColor: {
+      values: "colors",
+      transform: createColorMixTransform("accentColor"),
+    },
     // effects
     boxShadow: { values: "shadows", shorthand: ["shadow"] },
     mixBlendMode: { shorthand: ["blendMode"] },
@@ -366,7 +401,10 @@ export const presetBase = defineSystem({
     gridColumnGap: { values: "spacing" },
     gridRowGap: { values: "spacing" },
     // interactivity
-    outlineColor: { values: "colors" },
+    outlineColor: {
+      values: "colors",
+      transform: createColorMixTransform("borderColor"),
+    },
     // layout
     aspectRatio: { values: "aspectRatios" },
     width: { values: "sizes", shorthand: ["w"] },
@@ -456,14 +494,14 @@ export const presetBase = defineSystem({
     },
     ringColor: {
       values: "colors",
-      transform: (value) => ({ "--ring-color": value }),
+      transform: createColorMixTransform("--ring-color"),
     },
     ringOffset: {
       transform: (value) => ({ "--ring-offset-width": value }),
     },
     ringOffsetColor: {
       values: "colors",
-      transform: (v) => ({ "--ring-offset-color": v }),
+      transform: createColorMixTransform("--ring-offset-color"),
     },
     ringInset: {
       transform: (v) => ({ "--ring-inset": v }),
@@ -497,7 +535,10 @@ export const presetBase = defineSystem({
     paddingBlock: { values: "spacing", shorthand: ["py", "paddingY"] },
     // text decoration
     textDecoration: { shorthand: ["textDecor"] },
-    textDecorationColor: { values: "colors" },
+    textDecorationColor: {
+      values: "colors",
+      transform: createColorMixTransform("textDecorationColor"),
+    },
     textShadow: { values: "shadows" },
     // transform
     transform: {
@@ -612,6 +653,10 @@ export const presetBase = defineSystem({
           },
         }
       },
+    },
+    caretColor: {
+      values: "colors",
+      transform: createColorMixTransform("caretColor"),
     },
   },
 })

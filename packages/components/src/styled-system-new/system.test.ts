@@ -92,4 +92,40 @@ describe("system", () => {
       }
     `)
   })
+
+  test("should resolve color palette", () => {
+    const { tokens } = createSystem({
+      theme: {
+        tokens: {
+          colors: {
+            green: { 300: { value: "#68D391" } },
+            red: { 300: { value: "#red300" } },
+            pink: { 400: { value: "#pink400" } },
+            primary: { value: "tomato" },
+            secondary: { value: "cyan" },
+          },
+        },
+      },
+    })
+
+    expect(tokens.colorPaletteMap).toMatchInlineSnapshot(`
+      Map {
+        "green" => Map {
+          "--colors-color-palette-300" => "var(--colors-green-300)",
+        },
+        "red" => Map {
+          "--colors-color-palette-300" => "var(--colors-red-300)",
+        },
+        "pink" => Map {
+          "--colors-color-palette-400" => "var(--colors-pink-400)",
+        },
+        "primary" => Map {
+          "--colors-color-palette" => "var(--colors-primary)",
+        },
+        "secondary" => Map {
+          "--colors-color-palette" => "var(--colors-secondary)",
+        },
+      }
+    `)
+  })
 })

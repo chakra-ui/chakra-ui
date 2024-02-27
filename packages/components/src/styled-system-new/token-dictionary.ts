@@ -207,10 +207,9 @@ export function createTokenDictionary(options: Options): TokenDictionary {
       const virtualToken = getByName(virtualName)
       if (!virtualToken || !virtualToken.extensions.cssVar) return
 
-      const { var: virtualVar, ref: virtualRef } =
-        virtualToken.extensions.cssVar
+      const { var: virtualVar } = virtualToken.extensions.cssVar
 
-      colorPaletteMap.get(name)!.set(virtualVar, virtualRef)
+      colorPaletteMap.get(name)!.set(virtualVar, token.extensions.cssVar!.ref)
 
       if (isDefault && root.length === 1) {
         const colorPaletteName = formatTokenName(["colors", "colorPalette"])
