@@ -34,7 +34,7 @@ export const Basic = () => {
       <Box
         w="40px"
         h="40px"
-        bg="white"
+        bg="white/20"
         display="inline-flex"
         alignItems="center"
         justifyContent="center"
