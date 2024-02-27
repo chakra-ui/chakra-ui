@@ -5,10 +5,10 @@ const { css } = createSystem({
   ...presetBase,
   theme: {
     breakpoints: {
-      sm: "@media (min-width: 40em)",
-      md: "@media (min-width: 52em)",
-      lg: "@media (min-width: 64em)",
-      xl: "@media (min-width: 80em)",
+      sm: "@media screen and (min-width: 40em)",
+      md: "@media screen and (min-width: 52em)",
+      lg: "@media screen and (min-width: 64em)",
+      xl: "@media screen and (min-width: 80em)",
     },
     tokens: {
       colors: {
@@ -86,10 +86,10 @@ describe("create css", () => {
           "color": "pink !important",
         },
         "--bg": "var(--colors-pink-400)",
-        "@media (min-width: 40em)": {
+        "@media screen and (min-width: 40em)": {
           "padding": "20px",
         },
-        "@media (min-width: 52em)": {
+        "@media screen and (min-width: 52em)": {
           "marginBlockStart": "20px",
         },
         "color": "red",
@@ -107,10 +107,10 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "@media (min-width: 40em)": {
+        "@media screen and (min-width: 40em)": {
           "fontSize": "var(--font-sizes-3)",
         },
-        "@media (min-width: 52em)": {
+        "@media screen and (min-width: 52em)": {
           "fontSize": "var(--font-sizes-4)",
         },
         "color": "var(--colors-primary)",
@@ -148,7 +148,7 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "& h1": {
-          "@media (min-width: 40em)": {
+          "@media screen and (min-width: 40em)": {
             "paddingBlock": "var(--spacing-4)",
           },
           "paddingBlock": "var(--spacing-3)",
@@ -179,7 +179,7 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "@media (min-width: 52em)": {
+        "@media screen and (min-width: 52em)": {
           "width": "50%",
         },
         "width": "100%",
@@ -199,11 +199,11 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "&::before": {
-          "@media (min-width: 40em)": {
+          "@media screen and (min-width: 40em)": {
             "paddingLeft": "var(--spacing-3)",
             "paddingRight": "var(--spacing-2)",
           },
-          "@media (min-width: 52em)": {
+          "@media screen and (min-width: 52em)": {
             "paddingLeft": "var(--spacing-4)",
           },
           "paddingBottom": "var(--spacing-2)",
@@ -242,7 +242,7 @@ describe("create css", () => {
           "letterSpacing": "wide",
           "textTransform": "uppercase",
         },
-        "@media (min-width: 40em)": {
+        "@media screen and (min-width: 40em)": {
           "@layer compositions": {
             "fontSize": "sm",
             "letterSpacing": "0.2px",
@@ -277,6 +277,78 @@ describe("create css", () => {
       {
         "background": "#fff !important",
         "color": "#fff !important",
+      }
+    `)
+  })
+
+  test("expand css var token", () => {
+    const result = css({
+      "--banner-height": "sizes.small",
+      "--checkbox-disabled-color": "colors.red.300",
+      "&:disabled": {
+        color: "var(--checkbox-disabled-color)",
+      },
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "&:disabled": {
+          "color": "var(--checkbox-disabled-color)",
+        },
+        "--banner-height": "var(--sizes-small)",
+        "--checkbox-disabled-color": "var(--colors-red-300)",
+      }
+    `)
+  })
+
+  test("expand responsive css var token", () => {
+    const result = css({
+      "--checkbox-disabled-color": ["colors.pinkish", "colors.redish"],
+      "&:disabled": {
+        color: "var(--checkbox-disabled-color)",
+      },
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "&:disabled": {
+          "color": "var(--checkbox-disabled-color)",
+        },
+        "--checkbox-disabled-color": "colors.pinkish",
+        "@media screen and (min-width: 40em)": {
+          "--checkbox-disabled-color": "colors.redish",
+        },
+      }
+    `)
+  })
+
+  test("resolve peer selectors", () => {
+    const result = css({
+      bg: "red.300",
+      _peerChecked: {
+        bg: "transparent",
+      },
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        ".peer:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) ~ &": {
+          "background": "transparent",
+        },
+        "background": "var(--colors-red-300)",
+      }
+    `)
+  })
+
+  test("color mix", () => {
+    const result = css({
+      bg: "red.300/30",
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "--mix-background": "color-mix(in srgb, var(--colors-red-300) 30%, transparent)",
+        "background": "var(--mix-background, var(--colors-red-300))",
       }
     `)
   })

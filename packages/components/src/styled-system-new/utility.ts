@@ -1,4 +1,5 @@
 import { Dict, isFunction, isString, memo } from "@chakra-ui/utils"
+import { colorMix } from "./color-mix"
 import { mapToJson } from "./map-to-json"
 import {
   TokenDictionary,
@@ -97,34 +98,35 @@ export function createUtilty(options: Options) {
   }
 
   const defaultTransform = memo((prop: string, value: string) => {
-    const isCssVar = prop.startsWith("--")
-
-    if (isCssVar) {
-      const tokenValue = tokens.getVar(value)
-      value = typeof tokenValue === "string" ? tokenValue : value
+    return {
+      [prop]: prop.startsWith("--") ? tokens.getVar(value, value) : value,
     }
-
-    return { [prop]: value }
   })
 
-  const tokenFn = Object.assign({}, tokens.getVar, {
+  const tokenFn = Object.assign(tokens.getVar, {
     raw: (path: string) => tokens.getByName(path),
   })
 
   const transform = memo((prop: string, raw: any) => {
-    const normalizeProp = resolveShorthand(prop)
+    const key = resolveShorthand(prop)
 
-    const config = configs[prop]
+    const config = configs[key]
     if (!config) {
-      return defaultTransform(normalizeProp, raw)
+      return defaultTransform(key, raw)
     }
 
-    const value = propValues.get(normalizeProp)?.[raw]
+    const value = propValues.get(key)?.[raw]
     if (!config.transform) {
       return defaultTransform(prop, value ?? raw)
     }
 
-    return config.transform(value ?? raw, { raw, token: tokenFn })
+    const _colorMix = (value: string) => colorMix(value, tokenFn)
+
+    return config.transform(value ?? raw, {
+      raw,
+      token: tokenFn,
+      utils: { colorMix: _colorMix },
+    })
   })
 
   function build() {

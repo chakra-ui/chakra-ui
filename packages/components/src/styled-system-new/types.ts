@@ -144,12 +144,23 @@ interface TokenFn {
   raw: (path: string) => Token | undefined
 }
 
+export interface ColorMixResult {
+  invalid: boolean
+  value: string
+  color?: string
+}
+
+export interface TransformUtils {
+  colorMix(value: string): ColorMixResult
+}
+
 export interface TransformArgs<T = any> {
   token: TokenFn
   raw: T
+  utils: TransformUtils
 }
 
-type PropertyTransform = (
+export type PropertyTransform = (
   value: any,
   args: TransformArgs,
 ) => Nested<CssProperties> | undefined

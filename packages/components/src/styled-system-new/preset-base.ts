@@ -1,3 +1,4 @@
+import { createColorMixTransform } from "./color-mix"
 import { defineSystem } from "./theming"
 
 const isCssVar = (v: string) => /^var\(--.+\)$/.test(v)
@@ -124,8 +125,16 @@ export const presetBase = defineSystem({
   },
   utilities: {
     // background
-    background: { values: "colors", shorthand: ["bg"] },
-    backgroundColor: { values: "colors", shorthand: ["bgColor"] },
+    background: {
+      values: "colors",
+      shorthand: ["bg"],
+      transform: createColorMixTransform("background"),
+    },
+    backgroundColor: {
+      values: "colors",
+      shorthand: ["bgColor"],
+      transform: createColorMixTransform("backgroundColor"),
+    },
     backgroundSize: { shorthand: ["bgSize"] },
     backgroundPosition: { shorthand: ["bgPos"] },
     backgroundRepeat: { shorthand: ["bgRepeat"] },
