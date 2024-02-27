@@ -1,6 +1,8 @@
 import { Dict } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
 import { ConditionalValue, Nested } from "./conditions.gen"
+import { SystemStyleObject } from "./csstype"
+import { RecipeCreatorFn } from "./recipe.types"
 
 export type CssProperty = keyof PropertiesFallback
 
@@ -196,7 +198,7 @@ export interface Utility {
  * Condition
  * -----------------------------------------------------------------------------*/
 
-interface Condition {
+export interface Condition {
   keys(): string[]
   sort(paths: string[]): string[]
   has(key: string): boolean
@@ -204,8 +206,9 @@ interface Condition {
   breakpoints: string[]
 }
 
-interface ConditionConfig {
-  [key: string]: string
+export interface ConditionConfig {
+  breakpoints?: Dict
+  conditions?: Dict
 }
 
 /* -----------------------------------------------------------------------------
@@ -216,9 +219,17 @@ export interface SystemContext {
   utility: Utility
   conditions: Condition
   tokens: TokenDictionary
+  properties: Set<string>
+  isValidProperty(prop: string): boolean
+  getTokenCss(): Dict
+  getGlobalCss(): Dict
+  css(...args: SystemStyleObject[]): SystemStyleObject
+  cva: RecipeCreatorFn
 }
 
 export interface ThemingConfig {
+  breakpoints?: Record<string, string>
+  keyframes?: Record<string, Dict>
   tokens?: TokenDefinition
   semanticTokens?: SemanticTokenDefinition
   textStyles?: Record<string, Dict>
@@ -226,7 +237,10 @@ export interface ThemingConfig {
 }
 
 export interface SystemConfig {
+  cssVarsRoot?: string
+  globalCss?: Record<string, SystemStyleObject>
   theme?: ThemingConfig
   utilities?: UtilityConfig
-  conditions?: ConditionConfig
+  breakpoints?: Dict
+  conditions?: Dict
 }

@@ -1,5 +1,5 @@
 import type { ConditionalValue } from "./conditions.gen"
-import type { CssProperties } from "./system"
+import type { CssProperties } from "./csstype"
 import type { Tokens } from "./token.gen"
 
 interface PropertyValueTypes {

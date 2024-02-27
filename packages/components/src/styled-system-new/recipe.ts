@@ -6,8 +6,8 @@ import {
   splitProps,
   uniq,
 } from "@chakra-ui/utils"
+import { SystemStyleObject } from "./csstype"
 import { RecipeConfig, RecipeCreatorFn } from "./recipe.types"
-import { SystemStyleObject } from "./system"
 
 const defaults = (conf: any): Required<RecipeConfig> => ({
   base: {},

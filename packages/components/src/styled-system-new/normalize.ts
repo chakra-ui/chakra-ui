@@ -9,7 +9,10 @@ function toResponsiveObject(values: any[], breakpoints: string[]) {
   }, {})
 }
 
-export function normalize(styles: Dict, context: SystemContext) {
+export function normalize(
+  styles: Dict,
+  context: Pick<SystemContext, "utility" | "conditions">,
+) {
   const { utility, conditions } = context
 
   const { hasShorthand, resolveShorthand } = utility

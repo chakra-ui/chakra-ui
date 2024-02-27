@@ -7,8 +7,8 @@ import {
   mergeWith,
   walkObject,
 } from "@chakra-ui/utils"
+import { SystemStyleObject } from "./csstype"
 import { normalize } from "./normalize"
-import { SystemStyleObject } from "./system"
 import { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
@@ -19,7 +19,9 @@ const isImportant = (v: unknown) =>
 const withoutImportant = (v: unknown) =>
   isString(v) ? v.replace(importantRegex, "").trim() : v
 
-export function createCssFn(context: SystemContext) {
+export function createCssFn(
+  context: Pick<SystemContext, "utility" | "conditions">,
+) {
   const { utility, conditions } = context
   const mergeFn = mergeCss(context)
 
@@ -74,7 +76,7 @@ function compactFn(...styles: Dict[]) {
   )
 }
 
-function mergeCss(context: SystemContext) {
+function mergeCss(context: Pick<SystemContext, "utility" | "conditions">) {
   function resolve(styles: Dict[]) {
     const comp = compactFn(...styles)
     if (comp.length === 1) return comp

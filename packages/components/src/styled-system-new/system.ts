@@ -1,63 +1,105 @@
-import type { PropertiesFallback } from "csstype"
-import { Conditions, Nested } from "./conditions.gen"
-import { SystemProperties } from "./system.gen"
-import { CssVarProperties } from "./types"
+import { Dict, compact, flatten, memo, mergeWith } from "@chakra-ui/utils"
+import { createConditions } from "./conditions"
+import { createCssFn } from "./css"
+import { isCssProperty } from "./is-valid-prop"
+import { createRecipeFn } from "./recipe"
+import { createSerializeFn } from "./serialize"
+import { createTokenDictionary } from "./token-dictionary"
+import { SystemConfig, SystemContext } from "./types"
+import { createUtilty } from "./utility"
 
-type String = string & {}
-type Number = number & {}
+export function createSystem(options: SystemConfig): SystemContext {
+  const {
+    theme = {},
+    conditions: _conds = {},
+    utilities = {},
+    globalCss = {},
+    cssVarsRoot = ":where(:root, :host)",
+  } = options
 
-/* -----------------------------------------------------------------------------
- * Native css properties
- * -----------------------------------------------------------------------------*/
+  const tokens = createTokenDictionary(theme)
 
-export type CssProperty = keyof PropertiesFallback
+  const conditions = createConditions({
+    conditions: _conds,
+    breakpoints: theme.breakpoints,
+  })
 
-export interface CssProperties
-  extends PropertiesFallback<String | Number>,
-    CssVarProperties {}
+  const utility = createUtilty({
+    config: utilities,
+    tokens,
+  })
 
-export interface CssKeyframes {
-  [name: string]: {
-    [time: string]: CssProperties
+  function assignComposition() {
+    const { textStyles, layerStyles } = theme
+
+    const compositions = compact({
+      textStyle: textStyles,
+      layerStyle: layerStyles,
+    })
+
+    for (const [key, values] of Object.entries(compositions)) {
+      const flatValues = flatten(values ?? {})
+      utility.register(key, {
+        values: Object.keys(flatValues),
+        transform(value) {
+          return flatValues[value]
+        },
+      })
+    }
   }
+
+  assignComposition()
+
+  const properties = new Set(["css", ...utility.keys(), ...conditions.keys()])
+
+  const isValidProperty = memo(
+    (prop: string) => properties.has(prop) || isCssProperty(prop),
+  )
+
+  const css = createCssFn({ utility, conditions })
+  const cva = createRecipeFn({ css })
+  const serialize = createSerializeFn({ conditions, isValidProperty })
+
+  function getTokenCss() {
+    const result: Dict = {}
+
+    for (const [key, values] of tokens.cssVarMap.entries()) {
+      const varsObj = Object.fromEntries(values) as any
+      if (Object.keys(varsObj).length === 0) continue
+
+      if (key === "base") {
+        const cssObj = css(serialize({ [cssVarsRoot]: varsObj }))
+        mergeWith(result, cssObj)
+      } else {
+        const cssObject = css(serialize({ [key]: varsObj }))
+        mergeWith(result, cssObject)
+      }
+    }
+
+    return result
+  }
+
+  function getGlobalCss() {
+    const keyframes = Object.fromEntries(
+      Object.entries(theme.keyframes ?? {}).map(([key, value]) => [
+        `@keyframes ${key}`,
+        value,
+      ]),
+    )
+    return Object.assign({}, keyframes, css(serialize(globalCss)))
+  }
+
+  const context: SystemContext = {
+    tokens,
+    conditions,
+    utility,
+    properties,
+    isValidProperty,
+    getTokenCss,
+    getGlobalCss,
+    css,
+    cva,
+  }
+
+  return context
 }
-
-/* -----------------------------------------------------------------------------
- * Conditional css properties
- * -----------------------------------------------------------------------------*/
-
-type MinimalNested<P> = {
-  [K in keyof Conditions]?: Nested<P>
-}
-
-/* -----------------------------------------------------------------------------
- * Native css props
- * -----------------------------------------------------------------------------*/
-
-export type NestedCssProperties = Nested<CssProperties>
-
-export type SystemStyleObject = Nested<SystemProperties & CssVarProperties>
-
-export interface GlobalStyleObject {
-  [selector: string]: SystemStyleObject
-}
-
-type FilterStyleObject<P extends string> = {
-  [K in P]?: K extends keyof SystemStyleObject ? SystemStyleObject[K] : unknown
-}
-
-export type CompositionStyleObject<Property extends string> = Nested<
-  FilterStyleObject<Property> & CssVarProperties
->
-
-/* -----------------------------------------------------------------------------
- * Jsx style props
- * -----------------------------------------------------------------------------*/
-
-interface WithCss {
-  css?: SystemStyleObject
-}
-
-type StyleProps = SystemProperties & MinimalNested<SystemStyleObject>
-
-export type JsxStyleProps = StyleProps & WithCss

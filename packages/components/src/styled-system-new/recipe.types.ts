@@ -1,5 +1,5 @@
 import { DistributiveOmit, Pretty } from "@chakra-ui/utils"
-import type { SystemStyleObject } from "./system"
+import type { SystemStyleObject } from "./csstype"
 
 type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 

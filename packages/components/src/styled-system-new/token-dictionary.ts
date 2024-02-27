@@ -1,4 +1,11 @@
-import { Dict, isFunction, isString, memo, walkObject } from "@chakra-ui/utils"
+import {
+  Dict,
+  isFunction,
+  isObject,
+  isString,
+  memo,
+  walkObject,
+} from "@chakra-ui/utils"
 import { cssVar } from "./css-var"
 import { mapToJson } from "./map-to-json"
 import { expandReferences, getReferences, hasReference } from "./references"
@@ -21,7 +28,7 @@ interface Options {
 }
 
 const isToken = (value: any) => {
-  return Reflect.has(value, "value")
+  return isObject(value) && Object.prototype.hasOwnProperty.call(value, "value")
 }
 
 export function createTokenDictionary(options: Options): TokenDictionary {
@@ -30,7 +37,7 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   const formatTokenName = (path: string[]) => path.join(".")
 
   const formatCssVar = (path: string[], prefix: string) =>
-    cssVar(path.join("."), { prefix })
+    cssVar(path.join("-"), { prefix })
 
   const allTokens: Token[] = []
   const tokenNameMap: Map<string, Token> = new Map()
@@ -58,16 +65,18 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   function registerTokens() {
     walkObject(
       tokens,
-      (value, path) => {
+      (entry, path) => {
         const isDefault = path.includes("DEFAULT")
         path = filterDefault(path)
 
         const category = path[0]
         const name = formatTokenName(path)
 
+        const t = isString(entry) ? { value: entry } : entry
+
         const token: Token = {
-          value,
-          originalValue: value,
+          value: t.value,
+          originalValue: t.value,
           name,
           path,
           extensions: {
@@ -89,24 +98,24 @@ export function createTokenDictionary(options: Options): TokenDictionary {
 
     walkObject(
       semanticTokens,
-      (value, path) => {
+      (entry, path) => {
         const isDefault = path.includes("DEFAULT")
         path = filterBaseCondition(filterDefault(path))
 
         const category = path[0]
 
         const name = formatTokenName(path)
-        const tokenValue = isString(value) ? { base: value } : value
+        const t = isString(entry) ? { value: { base: entry } } : entry
 
         const token: Token = {
-          value: tokenValue.base || "",
-          originalValue: tokenValue.base || "",
+          value: t.value.base || "",
+          originalValue: t.value.base || "",
           name,
           path,
           extensions: {
             originalPath: path,
             category,
-            conditions: tokenValue,
+            conditions: t.value,
             condition: "base",
             prop: formatTokenName(path.slice(1)),
           },

@@ -1,10 +1,5 @@
 import { Dict } from "@chakra-ui/utils"
-import { SystemContext } from "./types"
-
-interface Options {
-  breakpoints: Dict
-  conditions: Dict
-}
+import { Condition, ConditionConfig } from "./types"
 
 const mapEntries = <T extends Dict, R extends Dict>(
   obj: T,
@@ -15,15 +10,13 @@ const mapEntries = <T extends Dict, R extends Dict>(
   ) as R
 }
 
-export const createConditions = (
-  options: Options,
-): SystemContext["conditions"] => {
-  const conditions = mapEntries(options.conditions, (key, value) => [
+export const createConditions = (options: ConditionConfig): Condition => {
+  const conditions = mapEntries(options.conditions ?? {}, (key, value) => [
     `_${key}`,
     value,
   ])
 
-  const breakpoints = options.breakpoints
+  const breakpoints = options.breakpoints ?? {}
 
   const values = Object.assign({}, conditions, breakpoints)
 
@@ -51,7 +44,7 @@ export const createConditions = (
     return Reflect.get(values, key) || key
   }
 
-  const breakpointsKeys = ["base", ...Object.keys(options.breakpoints)]
+  const breakpointsKeys = ["base", ...Object.keys(breakpoints)]
 
   return {
     keys,
