@@ -22,7 +22,7 @@ export const TabTrigger = forwardRef<TabTriggerProps, "button">(
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      ...styles.tab,
+      ...styles.trigger,
     })
 
     return (
