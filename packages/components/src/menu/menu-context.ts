@@ -1,7 +1,6 @@
 import { createContext } from "@chakra-ui/utils/context"
-import { UseMenuReturn } from "."
-import { createDescendantContext } from "../descendant"
 import { SystemStyleObject } from "../styled-system"
+import { UseMenuReturn } from "./use-menu"
 
 export const [MenuProvider, useMenuContext] = createContext<
   Omit<UseMenuReturn, "descendants">
@@ -9,13 +8,6 @@ export const [MenuProvider, useMenuContext] = createContext<
   strict: false,
   name: "MenuContext",
 })
-
-export const [
-  MenuDescendantsProvider,
-  useMenuDescendantsContext,
-  useMenuDescendants,
-  useMenuDescendant,
-] = createDescendantContext<HTMLElement>()
 
 export const [MenuStylesProvider, useMenuStyles] = createContext<
   Record<string, SystemStyleObject>

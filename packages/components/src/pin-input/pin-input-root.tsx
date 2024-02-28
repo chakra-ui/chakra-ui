@@ -1,10 +1,10 @@
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { useStyleConfig } from "../system"
-import {
-  PinInputDescendantsProvider,
-  PinInputProvider,
-  PinInputStylesProvider,
-} from "./pin-input-context"
+import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { getValidChildren } from "@chakra-ui/utils/children"
+import { cx } from "@chakra-ui/utils/cx"
+import { cloneElement } from "react"
+import { SystemProps, ThemingProps, omitThemingProps } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { PinInputProvider } from "./pin-input-context"
 import { UsePinInputProps, usePinInput } from "./use-pin-input"
 
 interface InputOptions {
@@ -24,12 +24,19 @@ interface InputOptions {
 
 export interface PinInputRootProps
   extends UsePinInputProps,
+    Omit<HTMLChakraProps<"div">, keyof UsePinInputProps>,
     ThemingProps<"PinInput">,
     InputOptions {
   /**
    * The children of the pin input component
    */
   children: React.ReactNode
+  /**
+   * Spacing between each of the input fields
+   * @type SystemProps["margin"]
+   * @default "0.5rem"
+   */
+  spacing?: SystemProps["margin"]
 }
 
 /**
@@ -37,19 +44,37 @@ export interface PinInputRootProps
  *
  * @see Docs https://chakra-ui.com/docs/components/pin-input
  */
-export function PinInputRoot(props: PinInputRootProps) {
-  const styles = useStyleConfig("PinInput", props)
+export const PinInputRoot = forwardRef<PinInputRootProps, "div">(
+  function PinInput(props, ref) {
+    const styles = useStyleConfig("PinInput", props)
 
-  const { children, ...rest } = omitThemingProps(props)
-  const { descendants, ...context } = usePinInput(rest)
+    const { children, ...rest } = omitThemingProps(props)
+    const { spacing = "0.5rem", onChange, value, ...containerProps } = rest
+    const context = usePinInput(rest)
 
-  return (
-    <PinInputDescendantsProvider value={descendants}>
-      <PinInputStylesProvider value={styles}>
-        <PinInputProvider value={context}>{children}</PinInputProvider>
-      </PinInputStylesProvider>
-    </PinInputDescendantsProvider>
-  )
-}
+    const clones = getValidChildren(children).map((child, index) =>
+      cloneElement(child, { __css: styles, index: index }),
+    )
 
-PinInputRoot.displayName = "PinInput"
+    const containerStyles = {
+      display: "inline-flex",
+      alignItems: "center",
+    }
+
+    return (
+      <PinInputProvider value={context}>
+        <chakra.div
+          ref={useMergeRefs(ref, context.containerRef)}
+          {...containerProps}
+          className={cx("chakra-pin-input", props.className)}
+          gap={spacing}
+          __css={containerStyles}
+        >
+          {clones}
+        </chakra.div>
+      </PinInputProvider>
+    )
+  },
+)
+
+PinInputRoot.displayName = "PinInputRoot"

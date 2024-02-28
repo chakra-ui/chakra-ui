@@ -663,9 +663,11 @@ export const ProgrammaticFocusMenuItem = () => {
       <Menu.Trigger>Welcome</Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
-          <Menu.Item>Menu 1</Menu.Item>
-          <Menu.Item ref={item}>Menu 2</Menu.Item>
-          <Menu.Item>Menu 3</Menu.Item>
+          <Menu.Item id="menu-1">Menu 1</Menu.Item>
+          <Menu.Item id="menu-2" ref={item}>
+            Menu 2
+          </Menu.Item>
+          <Menu.Item id="menu-3">Menu 3</Menu.Item>
         </Menu.Content>
       </Menu.Positioner>
     </Menu.Root>

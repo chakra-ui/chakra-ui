@@ -1,10 +1,13 @@
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { UseClickableProps, useClickable } from "../clickable"
-import { useTabsContext, useTabsDescendant } from "./tabs-context"
+import { useTabsContext } from "./tabs-context"
 import { makeTabId, makeTabPanelId } from "./use-tabs"
 
 export interface UseTabOptions {
+  /**
+   * The value of the tab
+   */
+  value: string
   /**
    * If `true`, the `Tab` won't be toggleable
    * @default false
@@ -21,34 +24,36 @@ export interface UseTabProps
   extends Omit<UseClickableProps, "color">,
     UseTabOptions {}
 
+/**
+ * Tabs hook to manage each tab button.
+ *
+ * A tab can be disabled and focusable, or both,
+ * hence the use of `useClickable` to handle this scenario
+ */
 export function useTab<P extends UseTabProps>(props: P) {
-  const { isDisabled = false, isFocusable = false, ...htmlProps } = props
+  const { isDisabled, isFocusable, value, ref, ...htmlProps } = props
 
-  const { setSelectedIndex, isManual, id, setFocusedIndex, selectedIndex } =
+  const { setSelectedValue, isManual, id, setFocusedValue, selectedValue } =
     useTabsContext()
 
-  const { index, register } = useTabsDescendant({
-    disabled: isDisabled && !isFocusable,
-  })
-
-  const isSelected = index === selectedIndex
+  const isSelected = value === selectedValue
 
   const onClick = () => {
-    setSelectedIndex(index)
+    setSelectedValue(value)
   }
 
   const onFocus = () => {
-    setFocusedIndex(index)
+    setFocusedValue(value)
     const isDisabledButFocusable = isDisabled && isFocusable
     const shouldSelect = !isManual && !isDisabledButFocusable
     if (shouldSelect) {
-      setSelectedIndex(index)
+      setSelectedValue(value)
     }
   }
 
   const clickableProps = useClickable({
     ...htmlProps,
-    ref: mergeRefs(register, props.ref),
+    ref,
     isDisabled,
     isFocusable,
     onClick: callAllHandlers(props.onClick, onClick),
@@ -58,12 +63,12 @@ export function useTab<P extends UseTabProps>(props: P) {
 
   return {
     ...clickableProps,
-    id: makeTabId(id, index),
+    id: makeTabId(id, value),
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
     type,
     "aria-selected": isSelected,
-    "aria-controls": makeTabPanelId(id, index),
+    "aria-controls": makeTabPanelId(id, value),
     onFocus: isDisabled ? undefined : callAllHandlers(props.onFocus, onFocus),
   }
 }
