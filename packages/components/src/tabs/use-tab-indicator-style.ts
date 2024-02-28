@@ -1,12 +1,19 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
 import { useState } from "react"
-import { useTabsContext, useTabsDescendantsContext } from "./tabs-context"
+import { useTabsContext } from "./tabs-context"
+import { makeTabId } from "./use-tabs"
 
+/**
+ * Tabs hook to show an animated indicators that
+ * follows the active tab.
+ *
+ * The way we do it is by measuring the DOM Rect (or dimensions)
+ * of the active tab, and return that as CSS style for
+ * the indicator.
+ */
 export function useTabIndicatorStyle(): React.CSSProperties {
   const context = useTabsContext()
-  const descendants = useTabsDescendantsContext()
-
-  const { selectedIndex, orientation } = context
+  const { selectedValue, orientation, id, rootRef } = context
 
   const isHorizontal = orientation === "horizontal"
   const isVertical = orientation === "vertical"
@@ -22,33 +29,35 @@ export function useTabIndicatorStyle(): React.CSSProperties {
 
   // Update the selected tab rect when the selectedIndex changes
   useSafeLayoutEffect(() => {
-    if (selectedIndex == null) return
+    if (selectedValue == null) return
 
-    const tab = descendants.item(selectedIndex)
+    const tab = rootRef.current?.ownerDocument.getElementById(
+      `${makeTabId(id, selectedValue)}`,
+    )
     if (tab == null) return
 
     // Horizontal Tab: Calculate width and left distance
     if (isHorizontal) {
-      setRect({ left: tab.node.offsetLeft, width: tab.node.offsetWidth })
+      setRect({ left: tab.offsetLeft, width: tab.offsetWidth })
     }
 
     // Vertical Tab: Calculate height and top distance
     if (isVertical) {
-      setRect({ top: tab.node.offsetTop, height: tab.node.offsetHeight })
+      setRect({ top: tab.offsetTop, height: tab.offsetHeight })
     }
 
     // Prevent unwanted transition from 0 to measured rect
     // by setting the measured state in the next tick
-    const id = requestAnimationFrame(() => {
+    const aid = requestAnimationFrame(() => {
       setHasMeasured(true)
     })
 
     return () => {
-      if (id) {
-        cancelAnimationFrame(id)
+      if (aid) {
+        cancelAnimationFrame(aid)
       }
     }
-  }, [selectedIndex, isHorizontal, isVertical, descendants])
+  }, [id, selectedValue, isHorizontal, isVertical])
 
   return {
     position: "absolute",
