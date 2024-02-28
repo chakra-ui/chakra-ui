@@ -4,6 +4,8 @@ import { PreflightConfig } from "./types"
 
 export function createPreflight(options: PreflightConfig) {
   const { preflight } = options
+  if (!preflight) return {}
+
   const { scope = "", level = "parent" } = isObject(preflight) ? preflight : {}
 
   let selector = ""
