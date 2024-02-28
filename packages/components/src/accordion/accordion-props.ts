@@ -5,15 +5,17 @@ const accordionItemProps = createProps<UseAccordionItemProps>()([
   "isDisabled",
   "id",
   "isFocusable",
+  "value",
 ])
 
 export const splitAccordionItemProps =
   createSplitProps<UseAccordionItemProps>(accordionItemProps)
 
 const accordionProps = createProps<UseAccordionProps>()([
+  "id",
   "multiple",
-  "defaultIndex",
-  "index",
+  "defaultValue",
+  "value",
   "onChange",
   "collapsible",
 ])

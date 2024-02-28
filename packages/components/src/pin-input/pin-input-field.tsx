@@ -10,7 +10,7 @@ export const PinInputField = forwardRef<PinInputFieldProps, "input">(
     return (
       <chakra.input
         {...inputProps}
-        className={cx("chakra-pin-input", props.className)}
+        className={cx("chakra-pin-input__field", props.className)}
       />
     )
   },

@@ -1,35 +1,52 @@
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { useCallback } from "react"
-import { useTabsContext, useTabsDescendantsContext } from "./tabs-context"
+import { useCallback, useRef } from "react"
+import { useTabsContext } from "./tabs-context"
+import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
+import { makeTabId } from "./use-tabs"
+import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 
 export interface UseTabListProps {
   children?: React.ReactNode
   onKeyDown?: React.KeyboardEventHandler
-  ref?: React.Ref<any>
+  ref: React.ForwardedRef<HTMLDivElement>
 }
 
+/**
+ * Tabs hook to manage multiple tab buttons,
+ * and ensures only one tab is selected per time.
+ *
+ * @param props props object for the tablist
+ */
 export function useTabList<P extends UseTabListProps>(props: P) {
-  const { focusedIndex, orientation, direction } = useTabsContext()
+  const { id, focusedValue, orientation, direction } = useTabsContext()
 
-  const descendants = useTabsDescendantsContext()
+  const tabListRef = useRef<HTMLDivElement>(null)
+
+  const allTabNodes = useCallback(() => {
+    return queryAll(tabListRef.current, `[role='tab']:not([disabled])`)
+  }, [])
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const nextTab = () => {
-        const next = descendants.nextEnabled(focusedIndex)
-        if (next) next.node?.focus()
+        const next = nextById(allTabNodes(), makeTabId(id, focusedValue), true)
+        if (next) next?.focus()
       }
       const prevTab = () => {
-        const prev = descendants.prevEnabled(focusedIndex)
-        if (prev) prev.node?.focus()
+        const prev = prevById(allTabNodes(), makeTabId(id, focusedValue), true)
+        if (prev) prev?.focus()
       }
       const firstTab = () => {
-        const first = descendants.firstEnabled()
-        if (first) first.node?.focus()
+        const first = tabListRef.current?.querySelector<HTMLDivElement>(
+          `[role=tab]:not([disabled]):first-of-type`,
+        )
+        if (first) first.focus()
       }
       const lastTab = () => {
-        const last = descendants.lastEnabled()
-        if (last) last.node?.focus()
+        const last = tabListRef.current?.querySelector<HTMLDivElement>(
+          `[role=tab]:not([disabled]):last-of-type`,
+        )
+        if (last) last.focus()
       }
 
       const isHorizontal = orientation === "horizontal"
@@ -56,11 +73,12 @@ export function useTabList<P extends UseTabListProps>(props: P) {
         action(event)
       }
     },
-    [descendants, focusedIndex, orientation, direction],
+    [allTabNodes, focusedValue, id, orientation, direction],
   )
 
   return {
     ...props,
+    ref: mergeRefs(props.ref, tabListRef),
     role: "tablist",
     "aria-orientation": orientation,
     onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),

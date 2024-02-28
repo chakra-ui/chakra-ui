@@ -1,16 +1,12 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { createContext } from "@chakra-ui/utils/context"
-import { createDescendantContext } from "../descendant"
 import { UsePinInputReturn } from "./use-pin-input"
 
-export const [
-  PinInputDescendantsProvider,
-  usePinInputDescendantsContext,
-  usePinInputDescendants,
-  usePinInputDescendant,
-] = createDescendantContext<HTMLInputElement>()
+/* -------------------------------------------------------------------------------------------------
+ * Create context that stores pin-input logic
+ * -----------------------------------------------------------------------------------------------*/
 
-export type PinInputContext = Omit<UsePinInputReturn, "descendants"> & {
+export type PinInputContext = UsePinInputReturn & {
   /**
    * Sets the pin input component to the disabled state
    */

@@ -1,7 +1,10 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { LazyMode } from "@chakra-ui/utils/lazy"
-import { useEffect, useId, useState } from "react"
-import { useTabsDescendants } from "./tabs-context"
+import { useId, useRef, useState } from "react"
+
+/* -------------------------------------------------------------------------------------------------
+ * useTabs - The root react hook that manages all tab items
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface UseTabsProps {
   /**
@@ -20,17 +23,17 @@ export interface UseTabsProps {
    */
   isManual?: boolean
   /**
-   * Callback when the index (controlled or un-controlled) changes.
+   * Callback when the tab (controlled or un-controlled) changes.
    */
-  onChange?: (index: number) => void
+  onChange?: (index: string) => void
   /**
-   * The index of the selected tab (in controlled mode)
+   * The id of the selected tab (in controlled mode)
    */
-  index?: number
+  value?: string
   /**
-   * The initial index of the selected tab (in uncontrolled mode)
+   * The initially selected tab (in uncontrolled mode)
    */
-  defaultIndex?: number
+  defaultValue?: string
   /**
    * The id of the tab
    */
@@ -74,9 +77,9 @@ export interface UseTabsProps {
  */
 export function useTabs(props: UseTabsProps) {
   const {
-    defaultIndex,
+    defaultValue,
     onChange,
-    index,
+    value,
     isManual,
     isLazy,
     lazyBehavior = "unmount",
@@ -84,53 +87,56 @@ export function useTabs(props: UseTabsProps) {
     direction = "ltr",
   } = props
 
-  const [focusedIndex, setFocusedIndex] = useState(defaultIndex ?? 0)
+  /**
+   * We use this to keep track of the index of the focused tab.
+   *
+   * Tabs can be automatically activated, this means selection follows focus.
+   * When we navigate with the arrow keys, we move focus and selection to next/prev tab
+   *
+   * Tabs can also be manually activated, this means selection does not follow focus.
+   * When we navigate with the arrow keys, we only move focus NOT selection. The user
+   * will need not manually activate the tab using `Enter` or `Space`.
+   *
+   * This is why we need to keep track of the `focusedIndex` and `selectedIndex`
+   */
+  const [focusedValue, setFocusedValue] = useState(defaultValue ?? "")
 
-  const [selectedIndex, setSelectedIndex] = useControllableState({
-    defaultValue: defaultIndex ?? 0,
-    value: index,
+  const [selectedValue, setSelectedValue] = useControllableState({
+    defaultValue,
+    value,
     onChange,
   })
 
   /**
-   * Sync focused `index` with controlled `selectedIndex` (which is the `props.index`)
+   * Generate a unique id or use user-provided id for the tabs widget
    */
-  useEffect(() => {
-    if (index != null) {
-      setFocusedIndex(index)
-    }
-  }, [index])
-
-  const descendants = useTabsDescendants()
-
   const uuid = useId()
   const uid = props.id ?? uuid
   const id = `tabs-${uid}`
 
+  const rootRef = useRef<HTMLDivElement>(null)
+
   return {
     id,
-    selectedIndex,
-    focusedIndex,
-    setSelectedIndex,
-    setFocusedIndex,
+    focusedValue,
+    setFocusedValue,
+    selectedValue,
+    setSelectedValue,
     isManual,
     isLazy,
     lazyBehavior,
     orientation,
-    descendants,
     direction,
+    rootRef,
   }
 }
 
-export type UseTabsReturn = Omit<
-  ReturnType<typeof useTabs>,
-  "htmlProps" | "descendants"
->
+export type UseTabsReturn = Omit<ReturnType<typeof useTabs>, "htmlProps">
 
-export function makeTabId(id: string, index: number) {
-  return `${id}--tab-${index}`
+export function makeTabId(id: string, value: string) {
+  return `${id}--tab-${value}`
 }
 
-export function makeTabPanelId(id: string, index: number) {
-  return `${id}--tabpanel-${index}`
+export function makeTabPanelId(id: string, value: string) {
+  return `${id}--tabpanel-${value}`
 }
