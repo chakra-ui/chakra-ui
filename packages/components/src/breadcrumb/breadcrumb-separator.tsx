@@ -8,9 +8,6 @@ export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
    */
   spacing?: SystemStyleObject["mx"]
 }
-/**
- * React component that separates each breadcrumb link
- */
 
 export const BreadcrumbSeparator = forwardRef<BreadcrumbSeparatorProps, "span">(
   function BreadcrumbSeparator(props, ref) {

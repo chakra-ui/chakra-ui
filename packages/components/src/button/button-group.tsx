@@ -1,7 +1,7 @@
-import { SystemStyleObject, ThemingProps } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { ThemingProps, defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { useMemo } from "react"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { ButtonGroupContext, ButtonGroupProvider } from "./button-context"
 import { ButtonGroupOptions } from "./button-types"
 
@@ -10,26 +10,28 @@ export interface ButtonGroupProps
     ThemingProps<"Button">,
     ButtonGroupOptions {}
 
-const attachedStyles: Record<string, SystemStyleObject> = {
-  horizontal: {
+const attachedStyles = {
+  horizontal: defineStyle({
     "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
     "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
     "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
-  },
-  vertical: {
+  }),
+  vertical: defineStyle({
     "> *:first-of-type:not(:last-of-type)": { borderBottomRadius: 0 },
     "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
     "> *:not(:first-of-type):last-of-type": { borderTopRadius: 0 },
-  },
+  }),
 }
 
 const gapStyles = {
-  horizontal: (spacing: any): SystemStyleObject => ({
-    "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
-  }),
-  vertical: (spacing: any): SystemStyleObject => ({
-    "& > *:not(style) ~ *:not(style)": { marginTop: spacing },
-  }),
+  horizontal: (spacing: any) =>
+    defineStyle({
+      "& > *:not(style) ~ *:not(style)": { marginStart: spacing },
+    }),
+  vertical: (spacing: any) =>
+    defineStyle({
+      "& > *:not(style) ~ *:not(style)": { marginTop: spacing },
+    }),
 }
 
 export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
@@ -53,12 +55,12 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
       [size, colorScheme, variant, isDisabled],
     )
 
-    let groupStyles: SystemStyleObject = {
+    let groupStyles = defineStyle({
       display: "inline-flex",
       ...(isAttached
         ? attachedStyles[orientation]
         : gapStyles[orientation](spacing)),
-    }
+    })
 
     const isVertical = orientation === "vertical"
 

@@ -1,5 +1,5 @@
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
-import { useMenuStyles } from "./menu"
+import { useMenuStyles } from "./menu-context"
 
 export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
 

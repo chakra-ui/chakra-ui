@@ -2,16 +2,16 @@ import { anatomy } from "./create-anatomy"
 
 export const accordionAnatomy = anatomy("accordion").parts(
   "root",
-  "container",
-  "button",
-  "panel",
+  "item",
+  "trigger",
+  "content",
   "icon",
 )
 
 export const alertAnatomy = anatomy("alert").parts(
   "title",
   "description",
-  "container",
+  "root",
   "icon",
   "spinner",
 )
@@ -19,7 +19,7 @@ export const alertAnatomy = anatomy("alert").parts(
 export const avatarAnatomy = anatomy("avatar").parts(
   "label",
   "badge",
-  "container",
+  "root",
   "excessLabel",
   "group",
 )
@@ -27,7 +27,7 @@ export const avatarAnatomy = anatomy("avatar").parts(
 export const breadcrumbAnatomy = anatomy("breadcrumb").parts(
   "link",
   "item",
-  "container",
+  "root",
   "separator",
 )
 
@@ -36,7 +36,7 @@ export const buttonAnatomy = anatomy("button").parts()
 export const checkboxAnatomy = anatomy("checkbox").parts(
   "control",
   "icon",
-  "container",
+  "root",
   "label",
 )
 
@@ -46,26 +46,17 @@ export const circularProgressAnatomy = anatomy("progress").parts(
   "label",
 )
 
-export const drawerAnatomy = anatomy("drawer").parts(
-  "overlay",
-  "dialogContainer",
-  "dialog",
-  "header",
-  "closeButton",
-  "body",
-  "footer",
-)
-
 export const editableAnatomy = anatomy("editable").parts(
+  "root",
   "preview",
   "input",
   "textarea",
 )
 
-export const formAnatomy = anatomy("form").parts(
-  "container",
+export const fieldAnatomy = anatomy("form").parts(
+  "root",
   "requiredIndicator",
-  "helperText",
+  "helpText",
 )
 
 export const formErrorAnatomy = anatomy("formError").parts("text", "icon")
@@ -77,11 +68,11 @@ export const inputAnatomy = anatomy("input").parts(
   "group",
 )
 
-export const listAnatomy = anatomy("list").parts("container", "item", "icon")
+export const listAnatomy = anatomy("list").parts("root", "item", "icon")
 
 export const menuAnatomy = anatomy("menu").parts(
-  "button",
-  "list",
+  "trigger",
+  "content",
   "item",
   "groupTitle",
   "icon",
@@ -91,10 +82,20 @@ export const menuAnatomy = anatomy("menu").parts(
 
 export const modalAnatomy = anatomy("modal").parts(
   "overlay",
-  "dialogContainer",
-  "dialog",
+  "positioner",
+  "content",
   "header",
-  "closeButton",
+  "closeTrigger",
+  "body",
+  "footer",
+)
+
+export const drawerAnatomy = anatomy("drawer").parts(
+  "overlay",
+  "positioner",
+  "content",
+  "header",
+  "closeTrigger",
   "body",
   "footer",
 )
@@ -113,9 +114,9 @@ export const popoverAnatomy = anatomy("popover").parts(
   "header",
   "body",
   "footer",
-  "popper",
+  "positioner",
   "arrow",
-  "closeButton",
+  "closeTrigger",
 )
 
 export const progressAnatomy = anatomy("progress").parts(
@@ -124,16 +125,12 @@ export const progressAnatomy = anatomy("progress").parts(
   "track",
 )
 
-export const radioAnatomy = anatomy("radio").parts(
-  "container",
-  "control",
-  "label",
-)
+export const radioAnatomy = anatomy("radio").parts("root", "control", "label")
 
-export const selectAnatomy = anatomy("select").parts("field", "icon")
+export const selectAnatomy = anatomy("select").parts("root", "field", "icon")
 
 export const sliderAnatomy = anatomy("slider").parts(
-  "container",
+  "root",
   "track",
   "thumb",
   "filledTrack",
@@ -141,7 +138,7 @@ export const sliderAnatomy = anatomy("slider").parts(
 )
 
 export const statAnatomy = anatomy("stat").parts(
-  "container",
+  "root",
   "label",
   "helpText",
   "number",
@@ -149,46 +146,36 @@ export const statAnatomy = anatomy("stat").parts(
 )
 
 export const switchAnatomy = anatomy("switch").parts(
-  "container",
+  "root",
   "track",
   "thumb",
   "label",
 )
 
 export const tableAnatomy = anatomy("table").parts(
-  "table",
-  "thead",
-  "tbody",
-  "tr",
-  "th",
-  "td",
-  "tfoot",
+  "root",
+  "header",
+  "body",
+  "row",
+  "columnHeader",
+  "cell",
+  "footer",
   "caption",
 )
 
 export const tabsAnatomy = anatomy("tabs").parts(
   "root",
-  "tab",
-  "tablist",
-  "tabpanel",
-  "tabpanels",
+  "trigger",
+  "list",
+  "content",
+  "contentGroup",
   "indicator",
 )
 
-/**
- * **Tag anatomy**
- * - Container: the container for the tag
- * - Label: the text content of the tag
- * - closeButton: the close button for the tag
- */
-export const tagAnatomy = anatomy("tag").parts(
-  "container",
-  "label",
-  "closeButton",
-)
+export const tagAnatomy = anatomy("tag").parts("root", "label", "closeTrigger")
 
 export const cardAnatomy = anatomy("card").parts(
-  "container",
+  "root",
   "header",
   "body",
   "footer",

@@ -1,12 +1,18 @@
-export { CircularProgress } from "./circular-progress"
-export type { CircularProgressProps } from "./circular-progress"
-export { Progress, useProgressStyles } from "./progress"
-export type {
-  ProgressFilledTrackProps,
-  ProgressProps,
-  ProgressTrackProps,
-} from "./progress"
+export { useProgressStyles } from "./progress-context"
+
+export { ProgressFilledTrack } from "./progress-filled-track"
+export type { ProgressFilledTrackProps } from "./progress-filled-track"
+
 export { ProgressLabel } from "./progress-label"
 export type { ProgressLabelProps } from "./progress-label"
-export { CircularProgressLabel } from "./circular-progress-label"
-export type { CircularProgressLabelProps } from "./circular-progress-label"
+
+export { ProgressRoot } from "./progress-root"
+export type { ProgressRootProps } from "./progress-root"
+
+export { ProgressTrack } from "./progress-track"
+export type { ProgressTrackProps } from "./progress-track"
+
+export { ProgressValueText } from "./progress-value-text"
+export type { ProgressValueTextProps } from "./progress-value-text"
+
+export * as Progress from "./namespace"

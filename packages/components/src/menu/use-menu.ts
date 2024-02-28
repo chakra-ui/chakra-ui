@@ -11,11 +11,8 @@ import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
 import { dataAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
 import { getValidChildren } from "@chakra-ui/utils/children"
-import { createContext } from "@chakra-ui/utils/context"
 import { lazyDisclosure, LazyMode } from "@chakra-ui/utils/lazy"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
-import { useClickable } from "../clickable"
-import { usePopper, UsePopperProps } from "../popper"
 import {
   cloneElement,
   useCallback,
@@ -25,19 +22,11 @@ import {
   useRef,
   useState,
 } from "react"
+import { useClickable } from "../clickable"
+import { usePopper, UsePopperProps } from "../popper"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
+import { useMenuContext } from "./menu-context"
 import { useShortcut } from "./use-shortcut"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context to track menu state and logic
- * -----------------------------------------------------------------------------------------------*/
-
-export const [MenuProvider, useMenuContext] = createContext<
-  Omit<UseMenuReturn, "descendants">
->({
-  strict: false,
-  name: "MenuContext",
-})
 
 /* -------------------------------------------------------------------------------------------------
  * useMenu hook
@@ -327,21 +316,11 @@ export function useMenu(props: UseMenuProps = {}) {
 
 export interface UseMenuReturn extends ReturnType<typeof useMenu> {}
 
-/* -------------------------------------------------------------------------------------------------
- * useMenuButton hook
- * -----------------------------------------------------------------------------------------------*/
-export interface UseMenuButtonProps
+export interface UseMenuTriggerProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
-/**
- * React Hook to manage a menu button.
- *
- * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree, and its return value
- * is passed as `context` to this hook.
- */
-export function useMenuButton(
-  props: UseMenuButtonProps = {},
+export function useMenuTrigger(
+  props: UseMenuTriggerProps = {},
   externalRef: React.Ref<any> = null,
 ) {
   const menu = useMenuContext()
@@ -394,21 +373,14 @@ function queryAllMenuItems(root: HTMLElement | null) {
 }
 
 /* -------------------------------------------------------------------------------------------------
- * useMenuList
+ * useMenuContent
  * -----------------------------------------------------------------------------------------------*/
 
-export interface UseMenuListProps
+export interface UseMenuContentProps
   extends Omit<React.HTMLAttributes<Element>, "color"> {}
 
-/**
- * React Hook to manage a menu list.
- *
- * The assumption here is that the `useMenu` hook is used
- * in a component higher up the tree, and its return value
- * is passed as `context` to this hook.
- */
-export function useMenuList(
-  props: UseMenuListProps = {},
+export function useMenuContent(
+  props: UseMenuContentProps = {},
   ref: React.Ref<any> = null,
 ): React.HTMLAttributes<HTMLElement> & React.RefAttributes<HTMLElement> {
   const menu = useMenuContext()
@@ -531,15 +503,18 @@ export function useMenuList(
  * useMenuPosition: Composes usePopper to position the menu
  * -----------------------------------------------------------------------------------------------*/
 
-export function useMenuPositioner(props: any = {}) {
+export function useMenuPositioner(props: any = {}, ref: React.Ref<any> = null) {
   const { popper, isOpen } = useMenuContext()
-  return popper.getPopperProps({
-    ...props,
-    style: {
-      visibility: isOpen ? "visible" : "hidden",
-      ...props.style,
+  return popper.getPopperProps(
+    {
+      ...props,
+      style: {
+        visibility: isOpen ? "visible" : "hidden",
+        ...props.style,
+      },
     },
-  })
+    ref,
+  )
 }
 
 /* -------------------------------------------------------------------------------------------------

@@ -1,10 +1,9 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { createContext } from "@chakra-ui/utils/context"
-import { warn } from "@chakra-ui/utils/warn"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useId, useRef, useState } from "react"
+import { callAllHandlers, warn } from "@chakra-ui/utils"
+import { useAccordionContext } from "./accordion-context"
 
 /* -------------------------------------------------------------------------------------------------
  * useAccordion - The root react hook that manages all accordion items
@@ -16,13 +15,13 @@ export interface UseAccordionProps {
    *
    * @default false
    */
-  allowMultiple?: boolean
+  multiple?: boolean
   /**
    * If `true`, any expanded accordion item can be collapsed again.
    *
    * @default false
    */
-  allowToggle?: boolean
+  collapsible?: boolean
   /**
    * The id(s) of the expanded accordion item(s)
    */
@@ -52,15 +51,15 @@ export function useAccordion(props: UseAccordionProps) {
     onChange,
     defaultValue,
     value: valueProp,
-    allowMultiple,
-    allowToggle,
+    multiple,
+    collapsible,
     id: idProp,
     ...htmlProps
   } = props
 
   // validate the props and `warn` if used incorrectly
-  allowMultipleWarning(props)
-  allowMultipleAndAllowToggleWarning(props)
+  multipleWarning(props)
+  multipleAndcollapsibleWarning(props)
 
   const reactId = useId()
   const id = `accordion-${idProp ?? reactId}`
@@ -102,7 +101,8 @@ export function useAccordion(props: UseAccordionProps) {
     const onChange = (isOpen: boolean) => {
       if (itemValue === null) return
 
-      if (allowMultiple) {
+      if (multiple) {
+        //
         const nextState = isOpen
           ? value.concat(itemValue)
           : value.filter((i) => i !== itemValue)
@@ -110,7 +110,7 @@ export function useAccordion(props: UseAccordionProps) {
         setValue(nextState)
       } else if (isOpen) {
         setValue([itemValue])
-      } else if (allowToggle) {
+      } else if (collapsible) {
         setValue([])
       }
     }
@@ -131,22 +131,6 @@ export function useAccordion(props: UseAccordionProps) {
 }
 
 export type UseAccordionReturn = ReturnType<typeof useAccordion>
-
-/* -------------------------------------------------------------------------------------------------
- * Create context for the root accordion logic
- * -----------------------------------------------------------------------------------------------*/
-
-interface AccordionContext
-  extends Omit<UseAccordionReturn, "htmlProps" | "descendants"> {
-  reduceMotion: boolean
-}
-
-export const [AccordionProvider, useAccordionContext] =
-  createContext<AccordionContext>({
-    name: "AccordionContext",
-    hookName: "useAccordionContext",
-    providerName: "Accordion",
-  })
 
 /* -------------------------------------------------------------------------------------------------
  * Hook for a single accordion item
@@ -190,7 +174,7 @@ function makeId(type: string, id: string, value: string) {
  * for an accordion item and its children
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
-  const { isDisabled, isFocusable, value, ...htmlProps } = props
+  const { isDisabled, isFocusable, value } = props
   const { getAccordionItemProps, setFocusedId, rootRef, id } =
     useAccordionContext()
 
@@ -270,8 +254,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     setFocusedId(buttonId)
   }, [setFocusedId, buttonId])
 
-  const getButtonProps = useCallback(
-    function getButtonProps(
+  const getTriggerProps = useCallback(
+    function getTriggerProps(
       props: Omit<React.HTMLAttributes<HTMLElement>, "color"> = {},
       ref: React.Ref<HTMLButtonElement> | null = null,
     ): React.ComponentProps<"button"> {
@@ -291,8 +275,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     [buttonId, isDisabled, isOpen, onClick, onFocus, onKeyDown, panelId],
   )
 
-  const getPanelProps = useCallback(
-    function getPanelProps<T>(
+  const getContentProps = useCallback(
+    function getContentProps<T>(
       props: Omit<React.HTMLAttributes<T>, "color"> = {},
       ref: React.Ref<T> | null = null,
     ): React.HTMLAttributes<T> & React.RefAttributes<T> {
@@ -314,9 +298,8 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     isFocusable,
     onOpen,
     onClose,
-    getButtonProps,
-    getPanelProps,
-    htmlProps,
+    getTriggerProps,
+    getContentProps,
   }
 }
 
@@ -326,10 +309,9 @@ export type UseAccordionItemReturn = ReturnType<typeof useAccordionItem>
  * Validate accordion and accordion item props, and emit warnings.
  * -----------------------------------------------------------------------------------------------*/
 
-function allowMultipleWarning(props: UseAccordionProps) {
+function multipleWarning(props: UseAccordionProps) {
   const value = props.value || props.defaultValue
-  const condition =
-    value != null && !Array.isArray(value) && props.allowMultiple
+  const condition = value != null && !Array.isArray(value) && props.multiple
 
   warn({
     condition: !!condition,
@@ -337,10 +319,10 @@ function allowMultipleWarning(props: UseAccordionProps) {
   })
 }
 
-function allowMultipleAndAllowToggleWarning(props: UseAccordionProps) {
+function multipleAndcollapsibleWarning(props: UseAccordionProps) {
   warn({
-    condition: !!(props.allowMultiple && props.allowToggle),
-    message: `If 'allowMultiple' is passed, 'allowToggle' will be ignored. Either remove 'allowToggle' or 'allowMultiple' depending on whether you want multiple accordions visible or not`,
+    condition: !!(props.multiple && props.collapsible),
+    message: `If 'multiple' is passed, 'collapsible' will be ignored. Either remove 'collapsible' or 'multiple' depending on whether you want multiple accordions visible or not`,
   })
 }
 

@@ -1,8 +1,7 @@
-import { HTMLChakraProps, chakra } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-
 import { Children, cloneElement, isValidElement } from "react"
-import { useMenuStyles } from "./menu"
+import { HTMLChakraProps, chakra } from "../system"
+import { useMenuStyles } from "./menu-context"
 
 export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const { className, children, ...rest } = props

@@ -1,31 +1,9 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { ariaAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { createContext } from "@chakra-ui/utils/context"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context that stores pin-input logic
- * -----------------------------------------------------------------------------------------------*/
-
-export type PinInputContext = UsePinInputReturn & {
-  /**
-   * Sets the pin input component to the disabled state
-   */
-  isDisabled?: boolean
-  /**
-   * Sets the pin input component to the invalid state
-   */
-  isInvalid?: boolean
-}
-
-export const [PinInputProvider, usePinInputContext] =
-  createContext<PinInputContext>({
-    name: "PinInputContext",
-    errorMessage:
-      "usePinInputContext: `context` is undefined. Seems you forgot to place all pin input fields within `<PinInput />`",
-  })
+import { InputProps } from "./use-pin-input-field"
 
 /* -------------------------------------------------------------------------------------------------
  * usePinInput hook
@@ -341,29 +319,3 @@ export function usePinInput(props: UsePinInputProps = {}) {
 }
 
 export type UsePinInputReturn = ReturnType<typeof usePinInput>
-
-export interface UsePinInputFieldProps extends InputProps {
-  ref?: React.Ref<HTMLInputElement>
-}
-
-/**
- * @internal
- */
-export function usePinInputField(
-  props: UsePinInputFieldProps = {},
-  ref: React.Ref<any> = null,
-) {
-  const { getInputProps } = usePinInputContext()
-
-  return getInputProps({
-    ...props,
-    ref,
-    index: (props as any).index, // this is passed to the cloned children in PinInput
-  })
-}
-
-interface InputProps
-  extends Omit<
-    React.ComponentPropsWithRef<"input">,
-    "color" | "height" | "width"
-  > {}

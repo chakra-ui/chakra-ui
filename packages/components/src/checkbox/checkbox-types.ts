@@ -1,5 +1,6 @@
 import { SystemProps, ThemingProps } from "@chakra-ui/styled-system"
 import { UseCheckboxGroupReturn } from "./use-checkbox-group"
+import { UseCheckboxReturn } from "."
 
 export interface UseCheckboxGroupProps {
   /**
@@ -130,28 +131,13 @@ export interface UseCheckboxProps {
   tabIndex?: number
 }
 
-export type CheckboxOptions = {
+export interface CheckboxOptions {
   /**
    * The spacing between the checkbox and its label text
    * @default 0.5rem
    * @type SystemProps["marginLeft"]
    */
   spacing?: SystemProps["marginLeft"]
-  /**
-   * The color of the checkbox icon when checked or indeterminate
-   */
-  iconColor?: string
-  /**
-   * The size of the checkbox icon when checked or indeterminate
-   */
-  iconSize?: string | number
-  /**
-   * The checked icon to use
-   *
-   * @type React.ReactElement
-   * @default CheckboxIcon
-   */
-  icon?: React.ReactElement
   /**
    * Additional props to be forwarded to the `input` element
    */
@@ -172,4 +158,8 @@ export interface CheckboxState {
   isDisabled?: boolean
   isReadOnly?: boolean
   isRequired?: boolean
+}
+
+export interface CheckboxContext extends UseCheckboxReturn {
+  spacing: any
 }

@@ -13,7 +13,12 @@ const $fg = cssVar("alert-fg")
 const $bg = cssVar("alert-bg")
 
 const baseStyle = definePartsStyle({
-  container: {
+  root: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+    overflow: "hidden",
     bg: $bg.reference,
     px: "4",
     py: "3",
@@ -24,6 +29,7 @@ const baseStyle = definePartsStyle({
     marginEnd: "2",
   },
   description: {
+    display: "inline",
     lineHeight: "6",
   },
   icon: {
@@ -55,7 +61,7 @@ const variantSubtle = definePartsStyle((props) => {
   const { colorScheme: c } = props
   const bg = getBg(props)
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
@@ -70,7 +76,7 @@ const variantLeftAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
   const bg = getBg(props)
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
@@ -88,7 +94,7 @@ const variantTopAccent = definePartsStyle((props) => {
   const { colorScheme: c } = props
   const bg = getBg(props)
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.${c}.600`,
       [$bg.variable]: bg.light,
       _dark: {
@@ -105,7 +111,7 @@ const variantTopAccent = definePartsStyle((props) => {
 const variantSolid = definePartsStyle((props) => {
   const { colorScheme: c } = props
   return {
-    container: {
+    root: {
       [$fg.variable]: `colors.white`,
       [$bg.variable]: `colors.${c}.600`,
       _dark: {

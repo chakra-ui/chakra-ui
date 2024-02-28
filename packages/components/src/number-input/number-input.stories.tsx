@@ -4,23 +4,16 @@ import { useForm } from "react-hook-form"
 import Lorem from "react-lorem-component"
 import {
   Button,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
+  Field,
   Input,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
   NumberInput,
-  NumberInputField,
-  NumberInputStepper,
   Stack,
   chakra,
   useNumberInput,
 } from ".."
 
 export default {
-  title: "Components / Forms / NumberInput",
+  title: "Forms / NumberInput",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">
@@ -31,13 +24,13 @@ export default {
 }
 
 export const Basic = () => (
-  <NumberInput max={50} min={10}>
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
+  <NumberInput.Root max={50} min={10}>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
 )
 
 const sizes = ["xs", "sm", "md", "lg"] as const
@@ -47,13 +40,13 @@ export const Sizes = () => (
     {sizes.map((size) => (
       <chakra.div key={size}>
         <pre>size = {size}</pre>
-        <NumberInput mt="2" size={size} defaultValue={15} min={10}>
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
+        <NumberInput.Root mt="2" size={size} defaultValue={15} min={10}>
+          <NumberInput.Field />
+          <NumberInput.Stepper>
+            <NumberInput.IncrementStepper />
+            <NumberInput.DecrementStepper />
+          </NumberInput.Stepper>
+        </NumberInput.Root>
       </chakra.div>
     ))}
   </Stack>
@@ -121,58 +114,58 @@ export const FormatAndParse = () => {
 }
 
 export const withMinAndMax = () => (
-  <NumberInput defaultValue={15} min={10} max={20}>
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
+  <NumberInput.Root defaultValue={15} min={10} max={20}>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
 )
 
 export const withStep = () => (
-  <NumberInput step={5} defaultValue={15} min={10} max={30}>
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
+  <NumberInput.Root step={5} defaultValue={15} min={10} max={30}>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
 )
 
 export const withPrecision = () => (
-  <NumberInput defaultValue={15} precision={2} step={0.2}>
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
+  <NumberInput.Root defaultValue={15} precision={2} step={0.2}>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
 )
 
 export const withClampValueDisabled = () => (
-  <NumberInput defaultValue={15} max={30} clampValueOnBlur={false}>
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
+  <NumberInput.Root defaultValue={15} max={30} clampValueOnBlur={false}>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
 )
 
 export const allowOutOfRange = () => (
-  <NumberInput
+  <NumberInput.Root
     defaultValue={15}
     max={10}
     keepWithinRange={false}
     clampValueOnBlur={false}
   >
-    <NumberInputField />
-    <NumberInputStepper>
-      <NumberIncrementStepper />
-      <NumberDecrementStepper />
-    </NumberInputStepper>
-  </NumberInput>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
 )
 
 export const WithReactHookForm = () => {
@@ -186,30 +179,16 @@ export const WithReactHookForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <NumberInput name="sales">
-        <NumberInputField {...register("sales")} />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
+      <NumberInput.Root name="sales">
+        <NumberInput.Field {...register("sales")} />
+        <NumberInput.Stepper>
+          <NumberInput.IncrementStepper />
+          <NumberInput.DecrementStepper />
+        </NumberInput.Stepper>
+      </NumberInput.Root>
 
       <button>Submit</button>
     </form>
-  )
-}
-
-function FormError(props: any) {
-  return (
-    <FormErrorMessage
-      mt="0"
-      bg="red.500"
-      color="white"
-      px="1"
-      lineHeight="1em"
-      borderRadius="sm"
-      {...props}
-    />
   )
 }
 
@@ -218,14 +197,24 @@ export const WithFormControl = () => {
 
   return (
     <Stack align="start">
-      <FormControl id="first-name" isInvalid={isError}>
+      <Field.Root id="first-name" isInvalid={isError}>
         <chakra.div display="flex" mb="2">
-          <FormLabel mb="0" lineHeight="1em">
+          <Field.Label mb="0" lineHeight="1em">
             Amount
-          </FormLabel>
-          <FormError>is invalid!</FormError>
+          </Field.Label>
+          <Field.ErrorMessage
+            mt="0"
+            bg="red.500"
+            color="white"
+            px="1"
+            lineHeight="1em"
+            borderRadius="sm"
+          >
+            is invalid!
+          </Field.ErrorMessage>
         </chakra.div>
-        <NumberInput
+
+        <NumberInput.Root
           max={50}
           min={10}
           defaultValue={20}
@@ -233,14 +222,14 @@ export const WithFormControl = () => {
             console.log("blurred")
           }}
         >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-        <FormHelperText>Keep it very short and sweet!</FormHelperText>
-      </FormControl>
+          <NumberInput.Field />
+          <NumberInput.Stepper>
+            <NumberInput.IncrementStepper />
+            <NumberInput.DecrementStepper />
+          </NumberInput.Stepper>
+        </NumberInput.Root>
+        <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+      </Field.Root>
       <Button onClick={() => setIsError((s) => !s)}>Toggle Invalid</Button>
     </Stack>
   )

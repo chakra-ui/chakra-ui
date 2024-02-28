@@ -1,14 +1,9 @@
 import * as React from "react"
-import {
-  PinInput,
-  PinInputField,
-  usePinInput,
-  usePinInputField,
-  PinInputProvider,
-} from "."
+import { PinInput, usePinInput, usePinInputField, PinInputProvider } from "."
+import { For } from ".."
 
 export default {
-  title: "Components / Forms / PinInput",
+  title: "Forms / PinInput",
 }
 
 const style: React.CSSProperties = {
@@ -44,54 +39,56 @@ export function HookExample() {
   )
 }
 
-export function ComponentExample() {
+export function Basic() {
   return (
-    <PinInput>
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
+    <PinInput.Root>
+      <PinInput.Field />
+      <PinInput.Field />
+      <PinInput.Field />
+    </PinInput.Root>
   )
 }
 
 export const Sizes = () => (
-  <>
-    {["xs", "sm", "md", "lg"].map((size) => (
-      <PinInput key="size" size={size} mb="1rem">
-        <PinInputField />
-        <PinInputField />
-        <PinInputField />
-      </PinInput>
-    ))}
-  </>
+  <For each={["xs", "sm", "md", "lg"]}>
+    {(size) => (
+      <div key={size} style={{ marginBottom: "1rem" }}>
+        <PinInput.Root size={size}>
+          <PinInput.Field />
+          <PinInput.Field />
+          <PinInput.Field />
+        </PinInput.Root>
+      </div>
+    )}
+  </For>
 )
 
 export const Controlled = () => {
   const [value, setValue] = React.useState("")
 
-  const handleChange = (value: string) => {
-    setValue(value)
-  }
+  const handleChange = (value: string) => setValue(value)
 
-  const handleComplete = (value: string) => {
-    console.log(value)
-  }
+  const handleComplete = (value: string) => console.log(value)
 
   return (
-    <PinInput value={value} onChange={handleChange} onComplete={handleComplete}>
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
+    <PinInput.Root
+      value={value}
+      onChange={handleChange}
+      onComplete={handleComplete}
+    >
+      <PinInput.Field />
+      <PinInput.Field />
+      <PinInput.Field />
+    </PinInput.Root>
   )
 }
 
 export function AutoFocus() {
   return (
-    <PinInput autoFocus>
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
+    <PinInput.Root autoFocus>
+      <PinInput.Field />
+      <PinInput.Field />
+      <PinInput.Field />
+    </PinInput.Root>
   )
 }

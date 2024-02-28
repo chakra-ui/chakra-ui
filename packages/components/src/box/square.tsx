@@ -1,6 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle } from "@chakra-ui/styled-system"
 import { forwardRef } from "../system"
-import { BoxProps, Box } from "./box"
+import { Box, BoxProps } from "./box"
 
 /**
  * As a constraint, you can't pass size related props
@@ -25,8 +25,12 @@ export const Square = forwardRef<SquareProps, "div">(
   function Square(props, ref) {
     const { size, centerContent = true, ...rest } = props
 
-    const styles: SystemStyleObject = centerContent
-      ? { display: "flex", alignItems: "center", justifyContent: "center" }
+    const styles = centerContent
+      ? defineStyle({
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        })
       : {}
 
     return (

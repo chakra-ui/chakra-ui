@@ -1,8 +1,9 @@
 import { SystemStyleObject } from "@chakra-ui/styled-system"
 import { Fragment } from "react"
 import { Chunk } from "./highlight-words"
-import { Mark } from "./mark"
+import { Mark } from "../typography/mark"
 import { useHighlight } from "./use-highlight"
+import { For } from "../for"
 
 export interface HighlightProps {
   query: string | string[]
@@ -25,8 +26,8 @@ export function Highlight(props: HighlightProps): JSX.Element {
   const chunks = useHighlight({ query, text: children })
 
   return (
-    <>
-      {chunks.map((chunk, index) => {
+    <For each={chunks}>
+      {(chunk, index) => {
         return chunk.match ? (
           <Mark key={index} sx={styles}>
             {chunk.text}
@@ -34,7 +35,7 @@ export function Highlight(props: HighlightProps): JSX.Element {
         ) : (
           <Fragment key={index}>{chunk.text}</Fragment>
         )
-      })}
-    </>
+      }}
+    </For>
   )
 }

@@ -5,7 +5,7 @@ import { ToastId, createStandaloneToast, useToast } from "."
 import { Alert, Button, ButtonGroup, Text, chakra, useColorMode } from ".."
 
 export default {
-  title: "Components / Feedback / Toast",
+  title: "Feedback / Toast",
 }
 
 export function ToastExample() {
@@ -190,7 +190,7 @@ export const ColorModeBug = () => {
         onClick={() =>
           toast({
             render() {
-              return <Alert>test</Alert>
+              return <Alert.Root>test</Alert.Root>
             },
           })
         }

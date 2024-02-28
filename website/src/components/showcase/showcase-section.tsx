@@ -3,17 +3,15 @@ import {
   Button,
   Container,
   SimpleGrid,
-  chakra,
   VStack,
+  chakra,
 } from '@chakra-ui/react'
+import json from 'configs/showcase.json'
 import NextLink from 'next/link'
 import { FaArrowRight } from 'react-icons/fa'
-
-import showcaseJson from 'configs/showcase.json'
-import { t } from 'utils/i18n'
 import { ShowcaseItem } from './showcase-item'
 
-const websites = showcaseJson.data.slice(0, 8)
+const websites = json.data.slice(0, 8)
 
 const ShowcaseSection = () => {
   return (
@@ -21,10 +19,11 @@ const ShowcaseSection = () => {
       <VStack w='full' spacing='7.5rem'>
         <Box maxW='760px' mx='auto' textAlign='center'>
           <chakra.h2 textStyle='heading' mb={4}>
-            {t('homepage.built-with-chakra-section.title')}
+            Built with Chakra UI ⚡️
           </chakra.h2>
           <chakra.p opacity={0.7} fontSize='lg' mb={8}>
-            {t('homepage.built-with-chakra-section.description')}
+            Your project can look as good as these! Check them out, get
+            inspired!
           </chakra.p>
           <NextLink href='/showcase' passHref>
             <Button
@@ -34,9 +33,9 @@ const ShowcaseSection = () => {
               as='a'
               size='lg'
               colorScheme='teal'
-              rightIcon={<FaArrowRight fontSize='0.8em' />}
             >
-              {t('homepage.built-with-chakra-section.see-showcase')}
+              See showcase
+              <FaArrowRight fontSize='0.8em' />
             </Button>
           </NextLink>
         </Box>

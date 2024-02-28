@@ -34,7 +34,7 @@ export function JoinCommunityCards() {
         Join the Discord
       </CommunityCardItem>
       <CommunityCardItem
-        accentColor='twitter.500'
+        accentColor='blue.300'
         icon={<FaTwitter />}
         href='https://twitter.com/chakra_ui'
       >
