@@ -237,6 +237,7 @@ export interface SystemContext {
   ): [SystemStyleObject, DistributiveOmit<T, keyof SystemStyleObject>]
   getTokenCss(): Dict
   getGlobalCss(): Dict
+  getPreflightCss(): Dict
   css(...args: SystemStyleObject[]): SystemStyleObject
   cva: RecipeCreatorFn
 }
@@ -250,7 +251,11 @@ export interface ThemingConfig {
   layerStyles?: Record<string, Dict>
 }
 
-export interface SystemConfig {
+export interface PreflightConfig {
+  preflight?: boolean | { scope?: string; level?: "parent" | "element" }
+}
+
+export interface SystemConfig extends PreflightConfig {
   cssVarsRoot?: string
   cssVarsPrefix?: string
   globalCss?: Record<string, SystemStyleObject>

@@ -10,6 +10,7 @@ import {
 import { createConditions } from "./conditions"
 import { createCssFn } from "./css"
 import { isCssProperty } from "./is-valid-prop"
+import { createPreflight } from "./preflight"
 import { createRecipeFn } from "./recipe"
 import { createSerializeFn } from "./serialize"
 import { createTokenDictionary } from "./token-dictionary"
@@ -23,6 +24,7 @@ export function createSystem(options: SystemConfig): SystemContext {
     globalCss = {},
     cssVarsRoot = ":where(:root, :host)",
     cssVarsPrefix = "chakra",
+    preflight,
   } = options
 
   const tokens = createTokenDictionary({
@@ -109,6 +111,10 @@ export function createSystem(options: SystemConfig): SystemContext {
     return splitProps(props, isValidProperty as any)
   }
 
+  function getPreflightCss() {
+    return createPreflight({ preflight })
+  }
+
   const context: SystemContext = {
     tokens,
     conditions,
@@ -118,6 +124,7 @@ export function createSystem(options: SystemConfig): SystemContext {
     splitCssProps: splitCssProps as any,
     getTokenCss,
     getGlobalCss,
+    getPreflightCss,
     css,
     cva,
   }
