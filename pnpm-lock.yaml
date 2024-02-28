@@ -656,6 +656,18 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
 
+  packages/preset-base:
+    devDependencies:
+      '@chakra-ui/react':
+        specifier: workspace:*
+        version: link:../components
+
+  packages/preset-theme:
+    devDependencies:
+      '@chakra-ui/react':
+        specifier: workspace:*
+        version: link:../components
+
   packages/props-docs:
     dependencies:
       glob:

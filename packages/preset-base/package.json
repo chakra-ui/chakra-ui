@@ -1,0 +1,47 @@
+{
+  "name": "@chakra-ui/preset-base",
+  "version": "2.1.2",
+  "description": "The base preset for the Chakra UI System",
+  "keywords": [
+    "preset",
+    "theme",
+    "theming",
+    "color",
+    "utilities",
+    "chakra-ui"
+  ],
+  "sideEffects": false,
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
+  "license": "MIT",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chakra-ui/chakra-ui.git",
+    "directory": "packages/components/theme-tools"
+  },
+  "bugs": {
+    "url": "https://github.com/chakra-ui/chakra-ui/issues"
+  },
+  "devDependencies": {
+    "@chakra-ui/react": "workspace:*"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=2.8.0"
+  },
+  "scripts": {
+    "build": "tsup src --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typecheck": "tsc --noEmit",
+    "build:fast": "tsup src"
+  }
+}

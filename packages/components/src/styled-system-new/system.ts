@@ -22,9 +22,14 @@ export function createSystem(options: SystemConfig): SystemContext {
     utilities = {},
     globalCss = {},
     cssVarsRoot = ":where(:root, :host)",
+    cssVarsPrefix = "chakra",
   } = options
 
-  const tokens = createTokenDictionary(theme)
+  const tokens = createTokenDictionary({
+    tokens: theme.tokens,
+    semanticTokens: theme.semanticTokens,
+    prefix: cssVarsPrefix,
+  })
 
   const conditions = createConditions({
     conditions: options.conditions,

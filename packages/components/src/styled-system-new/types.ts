@@ -252,6 +252,7 @@ export interface ThemingConfig {
 
 export interface SystemConfig {
   cssVarsRoot?: string
+  cssVarsPrefix?: string
   globalCss?: Record<string, SystemStyleObject>
   theme?: ThemingConfig
   utilities?: UtilityConfig
