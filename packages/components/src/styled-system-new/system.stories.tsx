@@ -2,7 +2,7 @@ import { Meta } from "@storybook/react"
 import { motion } from "framer-motion"
 import { chakra } from "./factory"
 import { systemBase as sys } from "./fixture"
-import { SystemProvider, useRecipe } from "./provider"
+import { SystemProvider, useRecipe, useSlotRecipe } from "./provider"
 
 export default {
   title: "System / v3",
@@ -131,5 +131,15 @@ export const WithRecipe = () => {
         Welcome
       </chakra.button>
     </Flex>
+  )
+}
+
+export const WithSlotRecipe = () => {
+  const alert = useSlotRecipe("Alert")
+  const styles = alert({ status: "info" })
+  return (
+    <chakra.button className="reset" css={styles.root}>
+      Welcome
+    </chakra.button>
   )
 }

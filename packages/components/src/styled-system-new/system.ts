@@ -12,10 +12,10 @@ import { createCssFn } from "./css"
 import { isCssProperty } from "./is-valid-prop"
 import { createPreflight } from "./preflight"
 import { createRecipeFn } from "./recipe"
-import { createRecipes } from "./recipes"
 import { createSerializeFn } from "./serialize"
+import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
-import { SystemConfig, SystemContext } from "./types"
+import { SystemConfig, SystemContext, TokenDictionary, TokenFn } from "./types"
 import { createUtilty } from "./utility"
 
 export function createSystem(options: SystemConfig): SystemContext {
@@ -78,6 +78,7 @@ export function createSystem(options: SystemConfig): SystemContext {
   const serialize = createSerializeFn({ conditions, isValidProperty })
   const css = createCssFn({ utility, conditions })
   const cva = createRecipeFn({ css })
+  const sva = createSlotRecipeFn({ cva })
 
   function getTokenCss() {
     const result: Dict = {}
@@ -116,12 +117,29 @@ export function createSystem(options: SystemConfig): SystemContext {
     return createPreflight({ preflight })
   }
 
-  const getRecipe = createRecipes({ css, theme })
+  const tokenMap = getTokenMap(tokens)
+
+  const tokenFn: TokenFn = (path: string, fallback?: any) => {
+    return tokenMap.get(path)?.value || fallback
+  }
+
+  tokenFn.var = (path: string, fallback?: any) => {
+    return tokenMap.get(path)?.variable || fallback
+  }
+
+  function getRecipe(key: string, fallback?: any) {
+    return theme.recipes?.[key] ?? fallback
+  }
+
+  function getSlotRecipe(key: string, fallback?: any) {
+    return theme.slotRecipes?.[key] ?? fallback
+  }
 
   return {
     tokens,
     conditions,
     utility,
+    token: tokenFn,
     properties,
     isValidProperty,
     splitCssProps: splitCssProps as any,
@@ -130,6 +148,20 @@ export function createSystem(options: SystemConfig): SystemContext {
     getPreflightCss,
     css,
     cva,
+    sva,
     getRecipe,
+    getSlotRecipe,
   }
+}
+
+function getTokenMap(tokens: TokenDictionary) {
+  const map = new Map<string, { value: string; variable: string }>()
+
+  tokens.allTokens.forEach((token) => {
+    const { cssVar, virtual, conditions } = token.extensions
+    const value = !!conditions || virtual ? cssVar!.ref : token.value
+    map.set(token.name, { value, variable: cssVar!.ref })
+  })
+
+  return map
 }

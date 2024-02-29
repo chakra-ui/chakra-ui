@@ -17,8 +17,7 @@ export interface AlertVariants {
 }
 
 export interface ConfigSlotRecipes {
-  Alert: SlotRecipFn<"icon" | "title" | "description" | "action", AlertVariants>
-  [key: string]: any
+  Alert: SlotRecipFn<"root" | "title", AlertVariants>
 }
 
 interface ConfigRecipeFn<T> {
@@ -33,7 +32,7 @@ interface ConfigRecipeFn<T> {
 }
 
 interface SlotRecipFn<S extends string, T> {
-  (props?: T): Record<S, SystemStyleObject>
+  (props?: Partial<T>): Record<S, SystemStyleObject>
   variantMap: {
     [key in keyof T]: Array<T[key]>
   }

@@ -1,8 +1,8 @@
 import { createContext } from "@chakra-ui/utils"
 import { Global } from "@emotion/react"
 import { useMemo } from "react"
-import { ConfigRecipes } from "./generated/recipes.gen"
-import { RecipeConfig } from "./recipe.types"
+import { ConfigRecipes, ConfigSlotRecipes } from "./generated/recipes.gen"
+import { RecipeConfig, SlotRecipeConfig } from "./recipe.types"
 import { SystemContext } from "./types"
 
 const [SystemContextProvider, useSystemContext] = createContext<SystemContext>({
@@ -16,7 +16,7 @@ export interface SystemProviderProps {
   children: React.ReactNode
 }
 
-const SystemProvider = (props: SystemProviderProps) => {
+function SystemProvider(props: SystemProviderProps) {
   const { value: sys, children } = props
 
   return (
@@ -40,9 +40,15 @@ export function useRecipe<K extends keyof ConfigRecipes>(
   }, [key, fallback, sys])
 }
 
-// export function useSlotRecipe(key: string, fallback?: SlotRecipeConfig) {
-//   const sys = useSystemContext()
-//   return useMemo(() => sys.getSlotRecipe(key, fallback), [key, fallback, sys])
-// }
+export function useSlotRecipe<K extends keyof ConfigSlotRecipes>(
+  key: string,
+  fallback?: SlotRecipeConfig,
+) {
+  const sys = useSystemContext()
+  return useMemo(() => {
+    const recipe = sys.getSlotRecipe(key, fallback)
+    return sys.sva(recipe) as unknown as ConfigSlotRecipes[K]
+  }, [key, fallback, sys])
+}
 
 export { SystemProvider, useSystemContext }

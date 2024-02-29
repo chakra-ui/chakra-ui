@@ -108,5 +108,46 @@ export const systemBase = createSystem({
         },
       },
     },
+    slotRecipes: {
+      Alert: {
+        slots: ["root", "title"],
+        base: {
+          root: {
+            fontSize: "2",
+            borderWidth: "1px",
+            padding: "16px",
+          },
+          title: {
+            fontWeight: "400",
+            lineHeight: "1",
+          },
+        },
+        variants: {
+          status: {
+            info: {
+              root: {
+                borderColor: "blue",
+                bg: "lightblue",
+              },
+              title: {
+                color: "blue",
+              },
+            },
+            warning: {
+              root: {
+                borderColor: "orange",
+                bg: "darkorange",
+              },
+              title: {
+                color: "orange",
+              },
+            },
+          },
+        },
+        defaultVariants: {
+          status: "info",
+        },
+      },
+    },
   },
 })

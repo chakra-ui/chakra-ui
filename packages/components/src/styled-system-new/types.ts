@@ -2,7 +2,12 @@ import { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
 import { SystemStyleObject } from "./css.types"
 import { ConditionalValue, Nested } from "./generated/conditions.gen"
-import { RecipeConfig, RecipeCreatorFn, SlotRecipeConfig } from "./recipe.types"
+import {
+  RecipeConfig,
+  RecipeCreatorFn,
+  SlotRecipeConfig,
+  SlotRecipeCreatorFn,
+} from "./recipe.types"
 
 export type CssProperty = keyof PropertiesFallback
 
@@ -139,7 +144,7 @@ export interface Token<T = any> {
 
 type ThemeFn = (token: (path: string) => any) => Record<string, string>
 
-interface TokenFn {
+interface UtilityTokenFn {
   (path: string): string | undefined
   raw: (path: string) => Token | undefined
 }
@@ -155,7 +160,7 @@ export interface TransformUtils {
 }
 
 export interface TransformArgs<T = any> {
-  token: TokenFn
+  token: UtilityTokenFn
   raw: T
   utils: TransformUtils
 }
@@ -226,6 +231,11 @@ export interface ConditionConfig {
  * System Context
  * -----------------------------------------------------------------------------*/
 
+export interface TokenFn {
+  (path: string, fallback?: any): any
+  var(path: string, fallback?: any): any
+}
+
 export interface SystemContext {
   utility: Utility
   conditions: Condition
@@ -240,7 +250,10 @@ export interface SystemContext {
   getPreflightCss(): Dict
   css(...args: SystemStyleObject[]): SystemStyleObject
   cva: RecipeCreatorFn
+  sva: SlotRecipeCreatorFn
   getRecipe(key: string, fallback?: any): any
+  getSlotRecipe(key: string, fallback?: any): any
+  token: TokenFn
 }
 
 export interface ThemingConfig {
