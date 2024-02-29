@@ -1,0 +1,170 @@
+import { splitProps } from "@chakra-ui/utils"
+import styled from "@emotion/styled"
+import {
+  Children,
+  createElement,
+  forwardRef,
+  isValidElement,
+  memo,
+  useMemo,
+} from "react"
+import { StyledFactoryFn } from "./factory.types"
+import { mergeProps } from "./merge-props"
+import { mergeRefs } from "./merge-refs"
+import { useSystemContext } from "./provider"
+
+const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
+  const Comp = forwardRef<any, any>(function Comp(props, ref) {
+    const { css, cva, isValidProperty } = useSystemContext()
+
+    const cvaFn = configOrCva.__cva__ ? configOrCva : cva(configOrCva)
+
+    const defaultShouldForwardProp = (prop: string, variantKeys: string[]) =>
+      !variantKeys.includes(prop) && !isValidProperty(prop)
+    const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
+
+    const __cva__ = composeCvaFn(Dynamic.__cva__, cvaFn)
+    const __shouldForwardProps__ = composeShouldForwardProps(Dynamic, forwardFn)
+
+    const {
+      asChild,
+      as: Element = Dynamic.__base__ || Dynamic,
+      children,
+      ...restProps
+    } = props
+
+    const combinedProps = useMemo(
+      () => Object.assign({}, options.defaultProps, restProps),
+      [restProps],
+    )
+
+    const res = useMemo(() => {
+      const [htmlProps, _a] = splitProps(combinedProps, [
+        "htmlWidth",
+        "htmlHeight",
+        "htmlSize",
+        "htmlTranslate",
+      ])
+      const [forwardedProps, _b] = splitProps(_a, (key) =>
+        __shouldForwardProps__(key, __cva__.variantKeys),
+      )
+      const [variantProps, _c] = splitProps(_b, __cva__.variantKeys)
+      const [styleProps, elementProps] = splitProps(_c, isValidProperty)
+      return {
+        htmlProps: normalizeHTMLProps(htmlProps),
+        forwardedProps,
+        variantProps,
+        styleProps,
+        elementProps,
+      }
+    }, [
+      __cva__.variantKeys,
+      __shouldForwardProps__,
+      combinedProps,
+      isValidProperty,
+    ])
+
+    const { css: cssStyles, ...propStyles } = res.styleProps
+    const cvaStyles = __cva__(res.variantProps)
+
+    const _children = combinedProps.children ?? children
+
+    if (!asChild) {
+      // eslint-disable-next-line
+      const element = useMemo(
+        () =>
+          styled(Element)(
+            css(cvaStyles, propStyles, ...toArray(cssStyles)) as any,
+          ),
+        [Element, css, cvaStyles, propStyles, cssStyles],
+      )
+
+      return createElement(
+        element,
+        { ref, ...res.forwardedProps, ...res.elementProps, ...res.htmlProps },
+        _children,
+      )
+    }
+
+    const onlyChild = Children.only(_children)
+
+    if (!isValidElement(onlyChild)) return onlyChild
+
+    const composedProps = mergeProps(restProps, onlyChild.props ?? {})
+
+    const composedRef = ref
+      ? mergeRefs(ref, (onlyChild as any).ref)
+      : (onlyChild as any).ref
+
+    // eslint-disable-next-line
+    const element = useMemo(
+      () =>
+        styled(onlyChild.type as any)(
+          css(cvaStyles, propStyles, ...toArray(cssStyles)) as any,
+        ),
+      [onlyChild.type, css, cvaStyles, propStyles, cssStyles],
+    )
+
+    return createElement(element, {
+      ref: composedRef,
+      ...composedProps,
+    })
+  })
+
+  // Object.assign(Comp, {
+  //   displayName: `chakra.${getDisplayName(Dynamic)}`,
+  //   __cva__: __cva__,
+  //   __base__: Dynamic,
+  //   __shouldForwardProps__,
+  // })
+
+  return memo(Comp)
+}
+
+const cache = new Map()
+
+const chakraImpl = new Proxy(styledFn, {
+  apply(_, __, args) {
+    // @ts-ignore
+    return styledFn(...args)
+  },
+  get(_, el) {
+    if (!cache.has(el)) {
+      cache.set(el, styledFn(el))
+    }
+    return cache.get(el)
+  },
+})
+
+export const chakra = chakraImpl as unknown as StyledFactoryFn
+
+const getDisplayName = (Component: any) => {
+  if (typeof Component === "string") return Component
+  return Component?.displayName || Component?.name || "Component"
+}
+
+const composeShouldForwardProps = (tag: any, shouldForwardProp: any) =>
+  tag.__shouldForwardProps__ && shouldForwardProp
+    ? (propName: string) =>
+        tag.__shouldForwardProps__(propName) && shouldForwardProp(propName)
+    : shouldForwardProp
+
+const composeCvaFn = (cvaA: any, cvaB: any) => {
+  if (cvaA && !cvaB) return cvaA
+  if (!cvaA && cvaB) return cvaB
+  return cvaA.merge(cvaB)
+}
+
+const normalizeHTMLProps = (props: any) => {
+  const htmlProps: any = {}
+  for (const key in props) {
+    if (key.startsWith("html")) {
+      htmlProps[key.replace("html", "").toLowerCase()] = props[key]
+    }
+  }
+  return htmlProps
+}
+
+const toArray = (val: any) => {
+  return Array.isArray(val) ? val : [val]
+}

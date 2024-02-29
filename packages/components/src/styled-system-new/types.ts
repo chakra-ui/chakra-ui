@@ -1,6 +1,6 @@
 import { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
-import { SystemStyleObject } from "./csstype"
+import { SystemStyleObject } from "./css.types"
 import { ConditionalValue, Nested } from "./generated/conditions.gen"
 import { RecipeCreatorFn } from "./recipe.types"
 

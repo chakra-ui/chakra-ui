@@ -2,6 +2,22 @@
 
 ## Changed
 
+### Loosened `as` prop
+
+We no longer infer the props from element passed via the `as` prop. This caused
+a lot of slow typing issues and complexity in the codebase.
+
+Prefer to use the `asChild` prop which offers better flexibility.
+
+> The `asChild` pattern is inspired by Radix UI.
+
+### Removed `forwardRef`
+
+Due to the simplification of the `as` prop, we no longer provide a custom
+`forwardRef`.
+
+Prefer to use `forwardRef` from React directly.
+
 ### Theming
 
 Renamed all `container` parts to `root`. Kindly update your theme to reflect

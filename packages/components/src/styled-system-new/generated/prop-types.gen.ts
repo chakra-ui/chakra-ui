@@ -1,4 +1,4 @@
-import type { CssProperties } from "../csstype"
+import type { CssProperties } from "../css.types"
 import type { ConditionalValue } from "./conditions.gen"
 import type { Tokens } from "./token.gen"
 

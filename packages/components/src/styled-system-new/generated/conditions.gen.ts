@@ -273,3 +273,7 @@ export type Nested<P> = P & {
 } & {
   [K in keyof Conditions]?: Nested<P>
 }
+
+export type MinimalNested<P> = {
+  [K in keyof Conditions]?: Nested<P>
+}

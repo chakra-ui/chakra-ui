@@ -7,7 +7,7 @@ import {
   mergeWith,
   walkObject,
 } from "@chakra-ui/utils"
-import { SystemStyleObject } from "./csstype"
+import { SystemStyleObject } from "./css.types"
 import { normalize } from "./normalize"
 import { SystemContext } from "./types"
 

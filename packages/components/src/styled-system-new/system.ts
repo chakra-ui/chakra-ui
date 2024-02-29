@@ -74,9 +74,9 @@ export function createSystem(options: SystemConfig): SystemContext {
     (prop: string) => properties.has(prop) || isCssProperty(prop),
   )
 
+  const serialize = createSerializeFn({ conditions, isValidProperty })
   const css = createCssFn({ utility, conditions })
   const cva = createRecipeFn({ css })
-  const serialize = createSerializeFn({ conditions, isValidProperty })
 
   function getTokenCss() {
     const result: Dict = {}
