@@ -1,5 +1,5 @@
 import { createColorMixTransform } from "./color-mix"
-import { defineSystem } from "./theming"
+import { defineSystem } from "./config"
 
 const isCssVar = (v: string) => /^var\(--.+\)$/.test(v)
 

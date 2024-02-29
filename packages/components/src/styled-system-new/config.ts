@@ -1,3 +1,4 @@
+import { mergeWith } from "@chakra-ui/utils"
 import {
   GlobalStyleIdentityFn,
   KeyframeIdentityFn,
@@ -17,3 +18,15 @@ export const defineGlobalStyles: GlobalStyleIdentityFn = (v) => v
 export const defineStyle: SystemStyleIdentityFn = (v) => v
 
 export const defineSystem = (v: SystemConfig) => v
+
+export const mergeSystem = (
+  config: SystemConfig,
+  ...configs: SystemConfig[]
+) => {
+  mergeWith(config, ...configs, (srcValue: any, newValue: any) => {
+    if (newValue === undefined) return srcValue ?? []
+    if (srcValue === undefined) return [newValue]
+    if (Array.isArray(srcValue)) return [newValue, ...srcValue]
+    return [newValue, srcValue]
+  })
+}

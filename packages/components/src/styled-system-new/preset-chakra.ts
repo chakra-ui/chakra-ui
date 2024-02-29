@@ -1,4 +1,4 @@
-import { defineSystem } from "./theming"
+import { defineSystem } from "./config"
 
 export const presetChakra = defineSystem({
   theme: {
