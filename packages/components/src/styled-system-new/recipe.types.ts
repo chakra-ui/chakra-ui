@@ -77,6 +77,10 @@ export type RecipeCreatorFn = <T extends RecipeVariantRecord>(
   config: RecipeConfig<T>,
 ) => RecipeRuntimeFn<T>
 
+export type RecipeIdentityFn = <T extends RecipeVariantRecord>(
+  config: RecipeConfig<T>,
+) => RecipeConfig<T>
+
 /* -----------------------------------------------------------------------------
  * Recipe / Slot
  * -----------------------------------------------------------------------------*/
@@ -143,6 +147,13 @@ export type SlotRecipeCreatorFn = <
 >(
   config: SlotRecipeDefinition<S, T>,
 ) => SlotRecipeRuntimeFn<S, T>
+
+export type SlotRecipeIdentityFn = <
+  S extends string,
+  T extends SlotRecipeVariantRecord<S>,
+>(
+  config: SlotRecipeDefinition<S, T>,
+) => SlotRecipeDefinition<S, T>
 
 export type SlotRecipeConfig<
   S extends string = string,

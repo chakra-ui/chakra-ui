@@ -1,6 +1,6 @@
 import { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
-import { SystemStyleObject } from "./css.types"
+import { CssKeyframes, SystemStyleObject } from "./css.types"
 import { ConditionalValue, Nested } from "./generated/conditions.gen"
 import {
   RecipeConfig,
@@ -258,7 +258,7 @@ export interface SystemContext {
 
 export interface ThemingConfig {
   breakpoints?: Record<string, string>
-  keyframes?: Record<string, Dict>
+  keyframes?: CssKeyframes
   tokens?: TokenDefinition
   semanticTokens?: SemanticTokenDefinition
   textStyles?: Record<string, Dict>

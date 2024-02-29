@@ -22,6 +22,8 @@ export interface CssKeyframes {
   }
 }
 
+export type KeyframeIdentityFn = (keyframes: CssKeyframes) => CssKeyframes
+
 /* -----------------------------------------------------------------------------
  * Conditional css properties
  * -----------------------------------------------------------------------------*/
@@ -38,9 +40,17 @@ export type NestedCssProperties = Nested<CssProperties>
 
 export type SystemStyleObject = Nested<SystemProperties & CssVarProperties>
 
+export type SystemStyleIdentityFn = (
+  style: SystemStyleObject,
+) => SystemStyleObject
+
 export interface GlobalStyleObject {
   [selector: string]: SystemStyleObject
 }
+
+export type GlobalStyleIdentityFn = (
+  global: GlobalStyleObject,
+) => GlobalStyleObject
 
 type FilterStyleObject<P extends string> = {
   [K in P]?: K extends keyof SystemStyleObject ? SystemStyleObject[K] : unknown
