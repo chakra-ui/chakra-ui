@@ -1,5 +1,3 @@
-import type { AnySelector, Selectors } from "../selectors"
-
 export interface Conditions {
   /** `&:is(:hover, [data-hover])` */
   _hover: string
@@ -253,27 +251,4 @@ export interface Conditions {
   "@/8xl": string
   /** No selector */
   base: string
-}
-
-export type Condition = keyof Conditions
-
-export type Conditional<V> =
-  | V
-  | Array<V | null>
-  | {
-      [K in keyof Conditions]?: Conditional<V>
-    }
-
-export type ConditionalValue<T> = Conditional<T>
-
-export type Nested<P> = P & {
-  [K in Selectors]?: Nested<P>
-} & {
-  [K in AnySelector]?: Nested<P>
-} & {
-  [K in keyof Conditions]?: Nested<P>
-}
-
-export type MinimalNested<P> = {
-  [K in keyof Conditions]?: Nested<P>
 }

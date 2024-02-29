@@ -136,6 +136,7 @@ export function createSystem(options: SystemConfig): SystemContext {
   }
 
   return {
+    _theme: theme,
     tokens,
     conditions,
     utility,

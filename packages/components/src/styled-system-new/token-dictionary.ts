@@ -1,5 +1,6 @@
 import {
   Dict,
+  createProps,
   isFunction,
   isObject,
   isString,
@@ -14,6 +15,7 @@ import { tokenTransforms } from "./token-transforms"
 import {
   SemanticTokenDefinition,
   Token,
+  TokenCategory,
   TokenDefinition,
   TokenDictionary,
   TokenEnforcePhase,
@@ -429,3 +431,31 @@ function replaceRootWithColorPalette(path: string[], roots: string[]) {
 
   return path
 }
+
+export const tokenCategories = createProps<Record<TokenCategory, any>>()([
+  "aspectRatios",
+  "zIndex",
+  "opacity",
+  "colors",
+  "fonts",
+  "fontSizes",
+  "fontWeights",
+  "lineHeights",
+  "letterSpacings",
+  "sizes",
+  "shadows",
+  "spacing",
+  "radii",
+  "borders",
+  "borderWidths",
+  "borderStyles",
+  "durations",
+  "easings",
+  "animations",
+  "blurs",
+  // consider removing (it belongs to transition property)
+  "properties",
+  "gradients",
+  "breakpoints",
+  "assets",
+])

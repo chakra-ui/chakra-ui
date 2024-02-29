@@ -1,7 +1,11 @@
 import { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
-import { CssKeyframes, SystemStyleObject } from "./css.types"
-import { ConditionalValue, Nested } from "./generated/conditions.gen"
+import {
+  ConditionalValue,
+  CssKeyframes,
+  Nested,
+  SystemStyleObject,
+} from "./css.types"
 import {
   RecipeConfig,
   RecipeCreatorFn,
@@ -208,6 +212,7 @@ export interface Utility {
   resolveShorthand(key: string): string
   transform(key: string, value: any): Dict | undefined
   register(property: string, config: UtilityPropertyConfig): void
+  getTypes(): Map<string, string[]>
 }
 
 /* -----------------------------------------------------------------------------
@@ -237,6 +242,7 @@ export interface TokenFn {
 }
 
 export interface SystemContext {
+  _theme: ThemingConfig
   utility: Utility
   conditions: Condition
   tokens: TokenDictionary

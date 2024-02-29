@@ -159,3 +159,29 @@ export type SlotRecipeConfig<
   S extends string = string,
   T extends SlotRecipeVariantRecord<S> = SlotRecipeVariantRecord<S>,
 > = SlotRecipeDefinition<S, T>
+
+/* -----------------------------------------------------------------------------
+ * Config / Codegen
+ * -----------------------------------------------------------------------------*/
+
+export interface ConfigRecipeFn<T> {
+  (props?: Partial<T>): SystemStyleObject
+  variantMap: {
+    [key in keyof T]: Array<T[key]>
+  }
+  variantKeys: Array<keyof T>
+  splitVariantProps<P extends T>(
+    props: P,
+  ): [T, Pretty<DistributiveOmit<P, keyof T>>]
+}
+
+export interface ConfigSlotRecipeFn<S extends string, T> {
+  (props?: Partial<T>): Record<S, SystemStyleObject>
+  variantMap: {
+    [key in keyof T]: Array<T[key]>
+  }
+  variantKeys: Array<keyof T>
+  splitVariantProps<P extends T>(
+    props: P,
+  ): [T, Pretty<DistributiveOmit<P, keyof T>>]
+}

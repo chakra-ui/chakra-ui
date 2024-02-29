@@ -1,6 +1,7 @@
 import type { PropertiesFallback } from "csstype"
-import { Conditions, Nested } from "./generated/conditions.gen"
+import { Conditions } from "./generated/conditions.gen"
 import { SystemProperties } from "./generated/system.gen"
+import { AnySelector, Selectors } from "./selectors"
 import { CssVarProperties } from "./types"
 
 type String = string & {}
@@ -28,7 +29,26 @@ export type KeyframeIdentityFn = (keyframes: CssKeyframes) => CssKeyframes
  * Conditional css properties
  * -----------------------------------------------------------------------------*/
 
-type MinimalNested<P> = {
+export type Condition = keyof Conditions
+
+export type Conditional<V> =
+  | V
+  | Array<V | null>
+  | {
+      [K in keyof Conditions]?: Conditional<V>
+    }
+
+export type ConditionalValue<T> = Conditional<T>
+
+export type Nested<P> = P & {
+  [K in Selectors]?: Nested<P>
+} & {
+  [K in AnySelector]?: Nested<P>
+} & {
+  [K in keyof Conditions]?: Nested<P>
+}
+
+export type MinimalNested<P> = {
   [K in keyof Conditions]?: Nested<P>
 }
 

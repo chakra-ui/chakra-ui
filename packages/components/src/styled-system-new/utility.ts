@@ -68,6 +68,62 @@ export function createUtilty(options: Options) {
     })
   }
 
+  const propTypes = new Map<string, Set<string>>()
+
+  const assignPropertyType = (
+    property: string,
+    config: UtilityPropertyConfig | undefined,
+  ) => {
+    if (!config) return
+
+    const values = getPropertyValues(config, (key) => `type:Tokens["${key}"]`)
+
+    if (typeof values === "object" && values.type) {
+      propTypes.set(property, new Set([`type:${values.type}`]))
+      return
+    }
+
+    if (values) {
+      const keys = new Set(Object.keys(values))
+      propTypes.set(property, keys)
+    }
+
+    const set = propTypes.get(property) ?? new Set()
+
+    if (config.property) {
+      propTypes.set(property, set.add(`CssProperties["${config.property}"]`))
+    }
+  }
+
+  const assignPropertyTypes = () => {
+    for (const [property, propertyConfig] of Object.entries(configs)) {
+      if (!propertyConfig) continue
+      assignPropertyType(property, propertyConfig)
+    }
+  }
+
+  const getTypes = () => {
+    const map = new Map<string, string[]>()
+
+    for (const [prop, values] of propTypes.entries()) {
+      // When tokens does not exist in the config
+      if (values.size === 0) {
+        map.set(prop, ["string"])
+        continue
+      }
+
+      const typeValues = Array.from(values).map((key) => {
+        if (key.startsWith("CssProperties")) return key
+        if (key.startsWith("type:")) return key.replace("type:", "")
+        return JSON.stringify(key)
+      })
+
+      map.set(prop, typeValues)
+    }
+
+    return map
+  }
+
   const getPropertyValues = (
     config: UtilityPropertyConfig,
     resolveFn?: (key: string) => string,
@@ -133,6 +189,7 @@ export function createUtilty(options: Options) {
     assignShorthands()
     assignColorPaletteProperty()
     assignProperties()
+    assignPropertyTypes()
   }
 
   build()
@@ -153,6 +210,7 @@ export function createUtilty(options: Options) {
     transform,
     resolveShorthand,
     register,
+    getTypes,
   }
 
   return instance

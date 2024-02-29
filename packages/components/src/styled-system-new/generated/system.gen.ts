@@ -1,4 +1,4 @@
-import { ConditionalValue } from "./conditions.gen"
+import { ConditionalValue } from "../css.types"
 import { PropertyValue } from "./prop-types.gen"
 import { Token } from "./token.gen"
 

@@ -141,6 +141,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: 6.18.1
         version: 6.18.1(eslint@8.56.0)(typescript@5.1.6)
+      bundle-n-require:
+        specifier: ^1.1.1
+        version: 1.1.1
       dotenv:
         specifier: 16.3.1
         version: 16.3.1
@@ -13630,6 +13633,13 @@ packages:
     resolution: {integrity: sha512-gItLuU8M0uI7bcHim+wM+Y1bY9eG7j3XbGcU3ZCqsrJLj4ZIHhchHWQ1luL9c4P8yPNLC9Jkwbct/EgR0u/dzQ==}
     dependencies:
       esbuild: 0.17.19
+      node-eval: 2.0.0
+    dev: false
+
+  /bundle-n-require@1.1.1:
+    resolution: {integrity: sha512-EB2wFjXF106LQLe/CYnKCMCdLeTW47AtcEtUfiqAOgr2a08k0+YgRklur2aLfEYHlhz6baMskZ8L2U92Hh0vyA==}
+    dependencies:
+      esbuild: 0.20.1
       node-eval: 2.0.0
     dev: false
 
