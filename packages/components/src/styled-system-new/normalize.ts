@@ -14,7 +14,6 @@ export function normalize(
   context: Pick<SystemContext, "utility" | "conditions">,
 ) {
   const { utility, conditions } = context
-
   const { hasShorthand, resolveShorthand } = utility
   const { breakpoints } = conditions
 

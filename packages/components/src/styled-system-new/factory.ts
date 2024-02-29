@@ -21,6 +21,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
 
     const defaultShouldForwardProp = (prop: string, variantKeys: string[]) =>
       !variantKeys.includes(prop) && !isValidProperty(prop)
+
     const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
 
     const __cva__ = composeCvaFn(Dynamic.__cva__, cvaFn)

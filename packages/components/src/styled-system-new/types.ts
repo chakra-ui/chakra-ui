@@ -2,7 +2,7 @@ import { Dict, DistributiveOmit } from "@chakra-ui/utils"
 import { PropertiesFallback } from "csstype"
 import { SystemStyleObject } from "./css.types"
 import { ConditionalValue, Nested } from "./generated/conditions.gen"
-import { RecipeCreatorFn } from "./recipe.types"
+import { RecipeConfig, RecipeCreatorFn, SlotRecipeConfig } from "./recipe.types"
 
 export type CssProperty = keyof PropertiesFallback
 
@@ -240,6 +240,7 @@ export interface SystemContext {
   getPreflightCss(): Dict
   css(...args: SystemStyleObject[]): SystemStyleObject
   cva: RecipeCreatorFn
+  getRecipe(key: string, fallback?: any): any
 }
 
 export interface ThemingConfig {
@@ -249,6 +250,8 @@ export interface ThemingConfig {
   semanticTokens?: SemanticTokenDefinition
   textStyles?: Record<string, Dict>
   layerStyles?: Record<string, Dict>
+  recipes?: Record<string, RecipeConfig>
+  slotRecipes?: Record<string, SlotRecipeConfig>
 }
 
 export interface PreflightConfig {

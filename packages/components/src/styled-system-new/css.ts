@@ -80,9 +80,24 @@ function mergeCss(context: Pick<SystemContext, "utility" | "conditions">) {
   function resolve(styles: Dict[]) {
     const comp = compactFn(...styles)
     if (comp.length === 1) return comp
-    return comp.map((style) => normalize(style, context))
+    return comp.map((style) => {
+      if (isProcessed(style)) return style
+      return normalize(style, context)
+    })
   }
   return memo((...styles) => {
     return mergeWith({}, ...resolve(styles))
   })
+}
+
+export const markAsProcessed = (styles: SystemStyleObject) => {
+  Object.defineProperty(styles, "$$processed", {
+    enumerable: false,
+    value: true,
+  })
+  return styles
+}
+
+export const isProcessed = (styles: SystemStyleObject) => {
+  return Reflect.has(styles, "$$processed")
 }

@@ -1,7 +1,8 @@
 import { Meta } from "@storybook/react"
+import { motion } from "framer-motion"
 import { chakra } from "./factory"
 import { systemBase as sys } from "./fixture"
-import { SystemProvider } from "./provider"
+import { SystemProvider, useRecipe } from "./provider"
 
 export default {
   title: "System / v3",
@@ -74,5 +75,61 @@ export const Basic = () => {
         </Box>
       </Box>
     </Box>
+  )
+}
+
+export const WithAsChild = () => {
+  return (
+    <chakra.button bg="red" padding="20px" asChild>
+      <a href="dfd">sdfsd</a>
+    </chakra.button>
+  )
+}
+
+export const WithFramerMotion = () => {
+  return (
+    <chakra.div mt="40px" w="40px" h="40px" bg="red" ml="60px" asChild>
+      <motion.div
+        animate={{
+          scale: [1, 2, 2, 1, 1],
+          rotate: [0, 0, 270, 270, 0],
+          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+      />
+    </chakra.div>
+  )
+}
+
+const Flex = chakra("div", {
+  base: {
+    display: "flex",
+  },
+  variants: {
+    direction: {
+      row: { flexDirection: "row" },
+      column: { flexDirection: "column" },
+    },
+    align: {
+      start: { alignItems: "flex-start" },
+      center: { alignItems: "center" },
+      end: { alignItems: "flex-end" },
+    },
+    justify: {
+      start: { justifyContent: "flex-start" },
+      center: { justifyContent: "center" },
+      end: { justifyContent: "flex-end" },
+    },
+  },
+})
+
+export const WithRecipe = () => {
+  const button = useRecipe("Button")
+  return (
+    <Flex align="center" gap="40px">
+      <button>Welcome</button>
+      <chakra.button className="reset" css={button({ size: "md" })}>
+        Welcome
+      </chakra.button>
+    </Flex>
   )
 }

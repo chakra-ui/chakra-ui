@@ -12,6 +12,7 @@ import { createCssFn } from "./css"
 import { isCssProperty } from "./is-valid-prop"
 import { createPreflight } from "./preflight"
 import { createRecipeFn } from "./recipe"
+import { createRecipes } from "./recipes"
 import { createSerializeFn } from "./serialize"
 import { createTokenDictionary } from "./token-dictionary"
 import { SystemConfig, SystemContext } from "./types"
@@ -115,7 +116,9 @@ export function createSystem(options: SystemConfig): SystemContext {
     return createPreflight({ preflight })
   }
 
-  const context: SystemContext = {
+  const getRecipe = createRecipes({ css, theme })
+
+  return {
     tokens,
     conditions,
     utility,
@@ -127,7 +130,6 @@ export function createSystem(options: SystemConfig): SystemContext {
     getPreflightCss,
     css,
     cva,
+    getRecipe,
   }
-
-  return context
 }

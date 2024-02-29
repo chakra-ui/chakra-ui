@@ -78,5 +78,35 @@ export const systemBase = createSystem({
         },
       },
     },
+    recipes: {
+      Button: {
+        base: {
+          paddingX: 3,
+          paddingY: 2,
+          borderRadius: "6px",
+          fontSize: "2",
+          fontWeight: "500",
+          fontFamily: "Inter",
+        },
+        variants: {
+          size: {
+            sm: { paddingX: 2, paddingY: 1 },
+            md: { paddingX: 3, paddingY: 2 },
+            lg: { paddingX: 4, paddingY: 3 },
+          },
+          variant: {
+            solid: { bg: "primary", color: "white" },
+            outline: { bg: "transparent", color: "primary" },
+            ghost: { bg: "transparent", color: "primary" },
+            link: { bg: "transparent", color: "primary" },
+          },
+          shape: {
+            rounded: { borderRadius: "md" },
+            pill: { borderRadius: "full" },
+            square: { borderRadius: "none" },
+          },
+        },
+      },
+    },
   },
 })
