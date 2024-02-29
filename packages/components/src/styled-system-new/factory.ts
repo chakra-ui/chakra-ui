@@ -24,8 +24,8 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
 
     const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
 
-    const __cva__ = composeCvaFn(Dynamic.__cva__, cvaFn)
-    const __shouldForwardProps__ = composeShouldForwardProps(Dynamic, forwardFn)
+    const __cva__ = mergeCva(Dynamic.__cva__, cvaFn)
+    const __shouldForwardProps__ = mergeShouldForwardProps(Dynamic, forwardFn)
 
     const {
       asChild,
@@ -33,6 +33,15 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       children,
       ...restProps
     } = props
+
+    const assign = (el: any) => {
+      Object.assign(el, {
+        displayName: `chakra.${getDisplayName(Dynamic)}`,
+        __cva__: __cva__,
+        __base__: Dynamic,
+        __shouldForwardProps__,
+      })
+    }
 
     const combinedProps = useMemo(
       () => Object.assign({}, options.defaultProps, restProps),
@@ -52,7 +61,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       const [variantProps, _c] = splitProps(_b, __cva__.variantKeys)
       const [styleProps, elementProps] = splitProps(_c, isValidProperty)
       return {
-        htmlProps: normalizeHTMLProps(htmlProps),
+        htmlProps: getHTMLProps(htmlProps),
         forwardedProps,
         variantProps,
         styleProps,
@@ -80,6 +89,8 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
         [Element, css, cvaStyles, propStyles, cssStyles],
       )
 
+      assign(element)
+
       return createElement(
         element,
         { ref, ...res.forwardedProps, ...res.elementProps, ...res.htmlProps },
@@ -106,18 +117,13 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       [onlyChild.type, css, cvaStyles, propStyles, cssStyles],
     )
 
+    assign(element)
+
     return createElement(element, {
       ref: composedRef,
       ...composedProps,
     })
   })
-
-  // Object.assign(Comp, {
-  //   displayName: `chakra.${getDisplayName(Dynamic)}`,
-  //   __cva__: __cva__,
-  //   __base__: Dynamic,
-  //   __shouldForwardProps__,
-  // })
 
   return memo(Comp)
 }
@@ -144,19 +150,19 @@ const getDisplayName = (Component: any) => {
   return Component?.displayName || Component?.name || "Component"
 }
 
-const composeShouldForwardProps = (tag: any, shouldForwardProp: any) =>
+const mergeShouldForwardProps = (tag: any, shouldForwardProp: any) =>
   tag.__shouldForwardProps__ && shouldForwardProp
     ? (propName: string) =>
         tag.__shouldForwardProps__(propName) && shouldForwardProp(propName)
     : shouldForwardProp
 
-const composeCvaFn = (cvaA: any, cvaB: any) => {
+const mergeCva = (cvaA: any, cvaB: any) => {
   if (cvaA && !cvaB) return cvaA
   if (!cvaA && cvaB) return cvaB
   return cvaA.merge(cvaB)
 }
 
-const normalizeHTMLProps = (props: any) => {
+const getHTMLProps = (props: any) => {
   const htmlProps: any = {}
   for (const key in props) {
     if (key.startsWith("html")) {
