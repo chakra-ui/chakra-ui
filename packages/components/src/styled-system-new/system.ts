@@ -152,6 +152,7 @@ export function createSystem(config: SystemConfig): SystemContext {
   }
 
   return {
+    $$typeof: "SystemContext",
     _config: config,
     breakpoints,
     tokens,

@@ -2,12 +2,16 @@ import type { SystemContext } from "@chakra-ui/react"
 import { pretty } from "./shared.js"
 
 export function generateCondition(sys: SystemContext) {
-  const conditions = sys._config.conditions ?? {}
+  const keys = sys.conditions.keys().concat("base")
   const result = `
       export interface Conditions {
-        ${Object.entries(conditions)
-          .map(([key, value]) => {
-            return `/** \`${value}\` */\n_${key}: string`
+        ${keys
+          .map((key) => {
+            if (key === "base") {
+              return `/** The base (=no conditions) styles to apply  */\n${key}: string`
+            }
+            const value = sys.conditions.resolve(key)
+            return `/** \`${value}\` */\n'${key}': string`
           })
           .join("\n")}
       }

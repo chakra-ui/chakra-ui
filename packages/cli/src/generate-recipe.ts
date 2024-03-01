@@ -26,19 +26,26 @@ export async function generateRecipe(sys: SystemContext) {
     return str
   })
 
+  const recipeKeys = Object.keys(sysRecipes)
   const recipeRecord = `
      export interface ConfigRecipes {
-      ${Object.keys(sysRecipes)
-        .map(
-          (key) => `${key}: ConfigRecipeFn<${capitalize(key)}RecipeVariants>`,
-        )
-        .join("\n")}
+      ${
+        recipeKeys.length
+          ? Object.keys(sysRecipes)
+              .map(
+                (key) =>
+                  `${key}: ConfigRecipeFn<${capitalize(key)}RecipeVariants>`,
+              )
+              .join("\n")
+          : "[key: string]: ConfigRecipeFn<any>"
+      }
      }
     `
 
   const recipeResult = [recipes.join("\n"), recipeRecord].join("\n")
 
-  const slotRecipes = Object.keys(sysSlotRecipes).map((key) => {
+  const slotRecipeKeys = Object.keys(sysSlotRecipes)
+  const slotRecipes = slotRecipeKeys.map((key) => {
     const recipe = sysSlotRecipes[key]
     const variantKeyMap = sys.sva(recipe).variantMap
     const upperName = capitalize(key)
@@ -63,14 +70,18 @@ export async function generateRecipe(sys: SystemContext) {
 
   const slotRecipeRecord = `
      export interface ConfigSlotRecipes {
-      ${Object.keys(sysSlotRecipes)
-        .map(
-          (key) =>
-            `${key}: ConfigSlotRecipeFn<${capitalize(key)}Slot, ${capitalize(
-              key,
-            )}Variants>`,
-        )
-        .join("\n")}
+      ${
+        slotRecipeKeys.length
+          ? slotRecipeKeys
+              .map(
+                (key) =>
+                  `${key}: ConfigSlotRecipeFn<${capitalize(
+                    key,
+                  )}Slot, ${capitalize(key)}Variants>`,
+              )
+              .join("\n")
+          : "[key: string]: ConfigSlotRecipeFn<string, any>"
+      }
      }
     `
 

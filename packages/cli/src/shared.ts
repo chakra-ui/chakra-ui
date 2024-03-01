@@ -42,7 +42,12 @@ export const tasks = async (tasks: Task[]) => {
 
     const s = spinner()
     s.start(task.title)
-    const result = await task.task(s.message)
-    s.stop(result || task.title)
+    try {
+      const result = await task.task(s.message)
+      s.stop(result || task.title)
+    } catch (error) {
+      s.stop(`${task.title}\n` + String(error))
+      throw error
+    }
   }
 }

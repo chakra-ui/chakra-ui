@@ -1,5 +1,10 @@
-import { mergeSystem } from "./config"
 import { presetBase } from "./preset-base"
 import { presetChakra } from "./preset-chakra"
+import { createSystem } from "./system"
 
-export const preset = mergeSystem(presetBase, presetChakra)
+export const preset = createSystem({
+  ...presetBase,
+  ...presetChakra,
+})
+
+export default preset

@@ -257,6 +257,7 @@ export interface TokenFn {
 export type CssFn = (...styles: SystemStyleObject[]) => SystemStyleObject
 
 export interface SystemContext {
+  $$typeof: "SystemContext"
   _config: SystemConfig
   utility: Utility
   conditions: Condition

@@ -11,10 +11,23 @@ interface ReadResult {
   dependencies: string[]
 }
 
+const isValidSystemContext = (mod: any): mod is SystemContext => {
+  return Reflect.get(mod, "$$typeof") === "SystemContext"
+}
+
 export const read = async (file: string): Promise<ReadResult> => {
   const filePath = resolve(file)
   const { mod, dependencies } = await bundleNRequire(filePath)
-  return { mod: mod.default || mod.theme || mod, dependencies }
+
+  const resolvedMod = mod.default || mod.preset || mod.system || mod
+
+  if (!isValidSystemContext(resolvedMod)) {
+    throw new Error(
+      `No default export found in ${file}. Did you forget to provide an export default?`,
+    )
+  }
+
+  return { mod: resolvedMod, dependencies }
 }
 
 export const basePath = join(
