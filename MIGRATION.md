@@ -559,3 +559,120 @@ const Demo = () => {
   )
 }
 ```
+
+## Theming
+
+### chakra factory
+
+The `chakra` factory has been recipes to make it easier to style components
+using recipes. Its API is inspired by Panda CSS and Stitches.
+
+- Renamed `baseStyle` to `base`
+- Removed `variants` and `sizes` in favor of defining them directly in the
+  `variants` object
+- Removed `sx` and `__css` in favor of using the `css` prop which can now take
+  an array of styles, which will be merged together.
+
+```tsx
+import { chakra } from "@chakra-ui/react"
+
+const Alert = chakra("div", {
+  base: {
+    lineHeight: "1",
+    fontSize: "sm",
+    rounded: 4,
+    fontFamily: "Inter",
+    color: "white",
+  },
+  variants: {
+    variant: {
+      default: { bg: "gray" },
+      error: { bg: "red" },
+      success: { bg: "green" },
+      warning: { bg: "orange" },
+    },
+    sizes: {
+      sm: { paddingX: 10, paddingY: 5 },
+      md: { paddingX: 20, paddingY: 10 },
+      lg: { paddingX: 30, paddingY: 15 },
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
+  },
+})
+```
+
+We've also removed support for functions in the theme object due to the
+performance implications.
+
+Consider the following approach instead:
+
+- Use the `data-*` attribute to store dynamic values and style them using CSS
+- Design the dynamic property/value in the recipe
+- Leverage `compoundVariants` to create complex variants overrides
+
+### Style Config
+
+We've renamed `useStyleConfig` to `useRecipe`, and `useMultiStyleConfig` to
+`useSlotRecipe`
+
+Before:
+
+```tsx
+import { chakra, useStyleConfig } from "@chakra-ui/react"
+
+function Alert(props) {
+  const elementProps = omitThemingProps(props)
+  const styles = useStyleConfig("Alert", props)
+  return <chakra.div {...elementProps} __css={styles} />
+}
+```
+
+After:
+
+```tsx
+import { chakra, useRecipe } from "@chakra-ui/react"
+
+function Alert(props) {
+  const recipe = useRecipe("Alert", props.recipe)
+  const [variantProps, elementProps] = recipe.splitVariantProps(props)
+  return <chakra.div {...elementProps} css={recipe(variantProps)} />
+}
+```
+
+### Multi Style Config
+
+Before:
+
+```tsx
+import { chakra, useMultiStyleConfig } from "@chakra-ui/react"
+
+function Alert(props) {
+  const elementProps = omitThemingProps(props)
+  const styles = useMultiStyleConfig("Alert", props)
+  return (
+    <chakra.div __css={styles.root}>
+      <chakra.p __css={styles.title}>Welcome</chakra.p>
+    </chakra.div>
+  )
+}
+```
+
+After:
+
+```tsx
+import { chakra, useSlotRecipe } from "@chakra-ui/react"
+
+function Alert(props) {
+  const recipe = useSlotRecipe("Alert", props.recipe)
+  const [variantProps, elementProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
+  return (
+    <chakra.div css={styles.root}>
+      <chakra.p css={styles.title}>Welcome</chakra.p>
+    </chakra.div>
+  )
+}
+```

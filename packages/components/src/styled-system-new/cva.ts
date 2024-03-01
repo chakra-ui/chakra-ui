@@ -60,7 +60,11 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
 
     const cvaFn = memo((props) => css(resolve(props)))
     const variantKeys = Object.keys(variants)
-    const splitVariantProps = (props: Dict) => splitProps(props, variantKeys)
+
+    const splitVariantProps = (props: Dict) => {
+      const { recipe: _, ...restProps } = props
+      return splitProps(restProps, variantKeys)
+    }
 
     const variantMap = Object.fromEntries(
       Object.entries(variants).map(([key, value]) => [
