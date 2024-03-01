@@ -8,10 +8,10 @@ const { cva } = createSystem({
   },
   theme: {
     breakpoints: {
-      sm: "@media (min-width: 30em)",
-      md: "@media (min-width: 48em)",
-      lg: "@media (min-width: 62em)",
-      xl: "@media (min-width: 80em)",
+      sm: "30em",
+      md: "48em",
+      lg: "62em",
+      xl: "80em",
     },
     tokens: {
       colors: {
@@ -28,7 +28,7 @@ const { cva } = createSystem({
   },
 })
 
-describe("recipe", () => {
+describe("cva", () => {
   test("it works", () => {
     const result = cva({
       base: {
@@ -60,8 +60,43 @@ describe("recipe", () => {
 
     expect(result({ size: "sm" })).toMatchInlineSnapshot(`
       {
-        "color": "pink.400",
+        "color": "var(--chakra-colors-pink-400)",
         "marginTop": "md",
+      }
+    `)
+  })
+
+  test("responsive", () => {
+    const result = cva({
+      base: {
+        color: "pink.400",
+        marginTop: "100px",
+      },
+      variants: {
+        size: {
+          sm: {
+            mt: "20px",
+          },
+          md: {
+            mt: "30px",
+          },
+        },
+        caps: {
+          true: {
+            textTransform: "uppercase",
+          },
+        },
+      },
+    })
+
+    expect(result({ size: ["sm", "md"], caps: true })).toMatchInlineSnapshot(`
+      {
+        "@media screen and (min-width: 30rem)": {
+          "marginTop": "30px",
+        },
+        "color": "var(--chakra-colors-pink-400)",
+        "marginTop": "20px",
+        "textTransform": "uppercase",
       }
     `)
   })

@@ -8,7 +8,6 @@ import {
   walkObject,
 } from "@chakra-ui/utils"
 import { SystemStyleObject } from "./css.types"
-import { normalize } from "./normalize"
 import { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
@@ -19,16 +18,19 @@ const isImportant = (v: unknown) =>
 const withoutImportant = (v: unknown) =>
   isString(v) ? v.replace(importantRegex, "").trim() : v
 
-export function createCssFn(
-  context: Pick<SystemContext, "utility" | "conditions">,
-) {
-  const { utility, conditions } = context
+type CssFnOptions = Pick<SystemContext, "conditions"> & {
+  normalize: (styles: Dict) => Dict
+  transform: (prop: string, value: any) => Dict | undefined
+}
+
+export function createCssFn(context: CssFnOptions) {
+  const { transform, conditions, normalize } = context
   const mergeFn = mergeCss(context)
 
   return memo((...styleArgs: SystemStyleObject[]) => {
     const styles = mergeFn(...styleArgs)
 
-    const normalized = normalize(styles, context)
+    const normalized = normalize(styles)
     const result: Dict = Object.create(null)
 
     walkObject(normalized, (value, paths) => {
@@ -43,7 +45,7 @@ export function createCssFn(
         value = withoutImportant(value)
       }
 
-      let transformed = utility.transform(prop, value) ?? Object.create(null)
+      let transformed = transform(prop, value) ?? Object.create(null)
 
       if (important) {
         transformed = imp(transformed)
@@ -76,28 +78,13 @@ function compactFn(...styles: Dict[]) {
   )
 }
 
-function mergeCss(context: Pick<SystemContext, "utility" | "conditions">) {
+function mergeCss(ctx: CssFnOptions) {
   function resolve(styles: Dict[]) {
     const comp = compactFn(...styles)
     if (comp.length === 1) return comp
-    return comp.map((style) => {
-      if (isProcessed(style)) return style
-      return normalize(style, context)
-    })
+    return comp.map((style) => ctx.normalize(style))
   }
   return memo((...styles) => {
     return mergeWith({}, ...resolve(styles))
   })
-}
-
-export const markAsProcessed = (styles: SystemStyleObject) => {
-  Object.defineProperty(styles, "$$processed", {
-    enumerable: false,
-    value: true,
-  })
-  return styles
-}
-
-export const isProcessed = (styles: SystemStyleObject) => {
-  return Reflect.has(styles, "$$processed")
 }

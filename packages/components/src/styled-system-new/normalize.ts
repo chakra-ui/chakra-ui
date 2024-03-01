@@ -9,21 +9,22 @@ function toResponsiveObject(values: any[], breakpoints: string[]) {
   }, {})
 }
 
-export function normalize(
-  styles: Dict,
+export function createNormalizeFn(
   context: Pick<SystemContext, "utility" | "conditions">,
 ) {
   const { utility, conditions } = context
   const { hasShorthand, resolveShorthand } = utility
   const { breakpoints } = conditions
 
-  return walkObject(
-    styles,
-    (value) =>
-      isArray(value) ? toResponsiveObject(value, breakpoints) : value,
-    {
-      stop: (value) => isArray(value),
-      getKey: hasShorthand ? resolveShorthand : undefined,
-    },
-  )
+  return function (styles: Dict) {
+    return walkObject(
+      styles,
+      (value) =>
+        isArray(value) ? toResponsiveObject(value, breakpoints) : value,
+      {
+        stop: (value) => isArray(value),
+        getKey: hasShorthand ? resolveShorthand : undefined,
+      },
+    )
+  }
 }

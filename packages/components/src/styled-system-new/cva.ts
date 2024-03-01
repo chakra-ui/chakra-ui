@@ -3,11 +3,13 @@ import {
   compact,
   memo,
   mergeWith as mergeProps,
+  mergeWith,
   splitProps,
   uniq,
 } from "@chakra-ui/utils"
-import { SystemStyleObject } from "./css.types"
+import { createCssFn } from "./css"
 import { RecipeConfig, RecipeCreatorFn } from "./recipe.types"
+import { Condition, CssFn } from "./types"
 
 const defaults = (conf: any): Required<RecipeConfig> => ({
   base: {},
@@ -18,25 +20,35 @@ const defaults = (conf: any): Required<RecipeConfig> => ({
 })
 
 interface Options {
-  css(...styles: SystemStyleObject[]): SystemStyleObject
+  normalize: (styles: Dict) => Dict
+  css: CssFn
+  conditions: Condition
 }
 
 export function createRecipeFn(options: Options): RecipeCreatorFn {
-  const { css } = options
+  const { css, conditions, normalize } = options
+
   function cva(config: any) {
     const { base, variants, defaultVariants, compoundVariants } =
       defaults(config)
 
+    const processor = createCssFn({
+      conditions,
+      normalize,
+      transform(prop, value) {
+        return variants[prop]?.[value]
+      },
+    })
+
     const resolve = (props = {}) => {
-      const variantSelections: Dict = { ...defaultVariants, ...compact(props) }
+      const variantSelections: Dict = normalize({
+        ...defaultVariants,
+        ...compact(props),
+      })
 
       let variantCss = { ...base }
 
-      for (const [key, value] of Object.entries(variantSelections)) {
-        if (variants[key]?.[value]) {
-          variantCss = css(variantCss, variants[key][value])
-        }
-      }
+      mergeWith(variantCss, processor(variantSelections))
 
       const compoundVariantCss = getCompoundVariantCss(
         compoundVariants,
@@ -71,7 +83,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
   }
 
   function getCompoundVariantCss(cvs: any[], vm: any) {
-    let res = {}
+    let result = {}
     cvs.forEach((cv) => {
       const isMatching = Object.entries(cv).every(([key, value]) => {
         if (key === "css") return true
@@ -79,11 +91,11 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
         return values.some((value) => vm[key] === value)
       })
       if (isMatching) {
-        res = css(res, cv.css)
+        result = css(result, cv.css)
       }
     })
 
-    return res
+    return result
   }
 
   //@ts-expect-error

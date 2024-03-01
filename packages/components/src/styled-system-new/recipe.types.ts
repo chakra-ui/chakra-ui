@@ -1,5 +1,5 @@
 import { DistributiveOmit, Pretty } from "@chakra-ui/utils"
-import type { SystemStyleObject } from "./css.types"
+import type { ConditionalValue, SystemStyleObject } from "./css.types"
 
 type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 
@@ -9,7 +9,9 @@ export type RecipeSelection<T extends RecipeVariantRecord> =
   keyof any extends keyof T
     ? {}
     : {
-        [K in keyof T]?: StringToBoolean<keyof T[K]> | undefined
+        [K in keyof T]?: ConditionalValue<
+          StringToBoolean<keyof T[K]> | undefined
+        >
       }
 
 export type RecipeVariantFn<T extends RecipeVariantRecord> = (
@@ -101,7 +103,6 @@ export interface SlotRecipeRuntimeFn<
   S extends string,
   T extends SlotRecipeVariantRecord<S>,
 > extends SlotRecipeVariantFn<S, T> {
-  raw: (props?: RecipeSelection<T>) => Record<S, SystemStyleObject>
   variantKeys: (keyof T)[]
   variantMap: RecipeVariantMap<T>
   splitVariantProps<Props extends RecipeSelection<T>>(

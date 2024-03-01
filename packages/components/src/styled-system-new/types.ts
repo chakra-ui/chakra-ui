@@ -254,6 +254,8 @@ export interface TokenFn {
   var(path: string, fallback?: any): any
 }
 
+export type CssFn = (...styles: SystemStyleObject[]) => SystemStyleObject
+
 export interface SystemContext {
   _config: SystemConfig
   utility: Utility
@@ -268,7 +270,7 @@ export interface SystemContext {
   getTokenCss(): Dict
   getGlobalCss(): Dict
   getPreflightCss(): Dict
-  css(...args: SystemStyleObject[]): SystemStyleObject
+  css: CssFn
   cva: RecipeCreatorFn
   sva: SlotRecipeCreatorFn
   getRecipe(key: string, fallback?: any): any

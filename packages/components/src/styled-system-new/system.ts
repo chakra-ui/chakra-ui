@@ -10,9 +10,10 @@ import {
 import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"
 import { createCssFn } from "./css"
+import { createRecipeFn } from "./cva"
 import { isCssProperty } from "./is-valid-prop"
+import { createNormalizeFn } from "./normalize"
 import { createPreflight } from "./preflight"
-import { createRecipeFn } from "./recipe"
 import { createSerializeFn } from "./serialize"
 import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
@@ -78,9 +79,21 @@ export function createSystem(config: SystemConfig): SystemContext {
     (prop: string) => properties.has(prop) || isCssProperty(prop),
   )
 
+  const normalizeFn = createNormalizeFn({ utility, conditions })
   const serialize = createSerializeFn({ conditions, isValidProperty })
-  const css = createCssFn({ utility, conditions })
-  const cva = createRecipeFn({ css })
+
+  const css = createCssFn({
+    transform: utility.transform,
+    conditions,
+    normalize: normalizeFn,
+  })
+
+  const cva = createRecipeFn({
+    css,
+    conditions,
+    normalize: normalizeFn,
+  })
+
   const sva = createSlotRecipeFn({ cva })
 
   function getTokenCss() {
