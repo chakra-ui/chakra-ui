@@ -7,6 +7,7 @@ import {
   mergeWith,
   splitProps,
 } from "@chakra-ui/utils"
+import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"
 import { createCssFn } from "./css"
 import { isCssProperty } from "./is-valid-prop"
@@ -34,9 +35,11 @@ export function createSystem(config: SystemConfig): SystemContext {
     prefix: cssVarsPrefix,
   })
 
+  const breakpoints = createBreakpoints(theme.breakpoints ?? {})
+
   const conditions = createConditions({
-    conditions: config.conditions,
-    breakpoints: theme.breakpoints,
+    conditions: config.conditions ?? {},
+    breakpoints,
   })
 
   const utility = createUtilty({
@@ -137,6 +140,7 @@ export function createSystem(config: SystemConfig): SystemContext {
 
   return {
     _config: config,
+    breakpoints,
     tokens,
     conditions,
     utility,

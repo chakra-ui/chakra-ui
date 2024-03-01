@@ -217,6 +217,18 @@ export interface Utility {
 }
 
 /* -----------------------------------------------------------------------------
+ * Breakpoints
+ * -----------------------------------------------------------------------------*/
+
+export interface Breakpoint {
+  up(key: string): string
+  down(key: string): string
+  only(key: string): string
+  keys(): string[]
+  toConditions(): Dict
+}
+
+/* -----------------------------------------------------------------------------
  * Condition
  * -----------------------------------------------------------------------------*/
 
@@ -229,8 +241,8 @@ export interface Condition {
 }
 
 export interface ConditionConfig {
-  breakpoints?: Dict
-  conditions?: Dict
+  breakpoints: Breakpoint
+  conditions: Dict
 }
 
 /* -----------------------------------------------------------------------------
@@ -247,6 +259,7 @@ export interface SystemContext {
   utility: Utility
   conditions: Condition
   tokens: TokenDictionary
+  breakpoints: Breakpoint
   properties: Set<string>
   isValidProperty(prop: string): boolean
   splitCssProps<T extends SystemStyleObject>(

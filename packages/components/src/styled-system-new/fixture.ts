@@ -11,10 +11,10 @@ export const systemBase = createSystem({
       },
     },
     breakpoints: {
-      sm: "@media screen and (min-width: 40em)",
-      md: "@media screen and (min-width: 52em)",
-      lg: "@media screen and (min-width: 64em)",
-      xl: "@media screen and (min-width: 80em)",
+      sm: "40em",
+      md: "52em",
+      lg: "64em",
+      xl: "80em",
     },
     tokens: {
       colors: {
@@ -105,6 +105,10 @@ export const systemBase = createSystem({
             pill: { borderRadius: "full" },
             square: { borderRadius: "none" },
           },
+        },
+        defaultVariants: {
+          size: "sm",
+          shape: "rounded",
         },
       },
     },

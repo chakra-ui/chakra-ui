@@ -17,11 +17,11 @@ describe("create css", () => {
         "&:is(:hover, [data-hover])": {
           "color": "pink !important",
         },
-        "--bg": "var(--colors-pink-400)",
-        "@media screen and (min-width: 40em)": {
+        "--bg": "var(--chakra-colors-pink-400)",
+        "@media screen and (min-width: 40rem)": {
           "padding": "20px",
         },
-        "@media screen and (min-width: 52em)": {
+        "@media screen and (min-width: 52rem)": {
           "marginBlockStart": "20px",
         },
         "color": "red",
@@ -39,14 +39,14 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "@media screen and (min-width: 40em)": {
-          "fontSize": "var(--font-sizes-3)",
+        "@media screen and (min-width: 40rem)": {
+          "fontSize": "var(--chakra-font-sizes-3)",
         },
-        "@media screen and (min-width: 52em)": {
-          "fontSize": "var(--font-sizes-4)",
+        "@media screen and (min-width: 52rem)": {
+          "fontSize": "var(--chakra-font-sizes-4)",
         },
-        "color": "var(--colors-primary)",
-        "fontSize": "var(--font-sizes-2)",
+        "color": "var(--chakra-colors-primary)",
+        "fontSize": "var(--chakra-font-sizes-2)",
       }
     `)
   })
@@ -62,9 +62,9 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "&:hover": {
-          "color": "var(--colors-secondary)",
+          "color": "var(--chakra-colors-secondary)",
         },
-        "color": "var(--colors-primary)",
+        "color": "var(--chakra-colors-primary)",
       }
     `)
   })
@@ -80,12 +80,12 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "& h1": {
-          "@media screen and (min-width: 40em)": {
-            "paddingBlock": "var(--spacing-4)",
+          "@media screen and (min-width: 40rem)": {
+            "paddingBlock": "var(--chakra-spacing-4)",
           },
-          "paddingBlock": "var(--spacing-3)",
+          "paddingBlock": "var(--chakra-spacing-3)",
         },
-        "color": "var(--colors-primary)",
+        "color": "var(--chakra-colors-primary)",
       }
     `)
   })
@@ -98,8 +98,8 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "marginBlockStart": "calc(var(--spacing-3) * -1)",
-        "marginInline": "calc(var(--spacing-4) * -1)",
+        "marginBlockStart": "calc(var(--chakra-spacing-3) * -1)",
+        "marginInline": "calc(var(--chakra-spacing-4) * -1)",
       }
     `)
   })
@@ -111,7 +111,7 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "@media screen and (min-width: 52em)": {
+        "@media screen and (min-width: 52rem)": {
           "width": "50%",
         },
         "width": "100%",
@@ -131,16 +131,16 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "&::before": {
-          "@media screen and (min-width: 40em)": {
-            "paddingLeft": "var(--spacing-3)",
-            "paddingRight": "var(--spacing-2)",
+          "@media screen and (min-width: 40rem)": {
+            "paddingLeft": "var(--chakra-spacing-3)",
+            "paddingRight": "var(--chakra-spacing-2)",
           },
-          "@media screen and (min-width: 52em)": {
-            "paddingLeft": "var(--spacing-4)",
+          "@media screen and (min-width: 52rem)": {
+            "paddingLeft": "var(--chakra-spacing-4)",
           },
-          "paddingBottom": "var(--spacing-2)",
-          "paddingLeft": "var(--spacing-2)",
-          "paddingRight": "var(--spacing-1)",
+          "paddingBottom": "var(--chakra-spacing-2)",
+          "paddingLeft": "var(--chakra-spacing-2)",
+          "paddingRight": "var(--chakra-spacing-1)",
         },
       }
     `)
@@ -156,7 +156,7 @@ describe("create css", () => {
       {
         "@layer compositions": {
           "background": "tomato",
-          "color": "var(--colors-red-300)",
+          "color": "var(--chakra-colors-red-300)",
         },
       }
     `)
@@ -174,7 +174,7 @@ describe("create css", () => {
           "letterSpacing": "wide",
           "textTransform": "uppercase",
         },
-        "@media screen and (min-width: 40em)": {
+        "@media screen and (min-width: 40rem)": {
           "@layer compositions": {
             "fontSize": "sm",
             "letterSpacing": "0.2px",
@@ -227,8 +227,8 @@ describe("create css", () => {
         "&:disabled": {
           "color": "var(--checkbox-disabled-color)",
         },
-        "--banner-height": "var(--sizes-small)",
-        "--checkbox-disabled-color": "var(--colors-red-300)",
+        "--banner-height": "var(--chakra-sizes-small)",
+        "--checkbox-disabled-color": "var(--chakra-colors-red-300)",
       }
     `)
   })
@@ -247,7 +247,7 @@ describe("create css", () => {
           "color": "var(--checkbox-disabled-color)",
         },
         "--checkbox-disabled-color": "colors.pinkish",
-        "@media screen and (min-width: 40em)": {
+        "@media screen and (min-width: 40rem)": {
           "--checkbox-disabled-color": "colors.redish",
         },
       }
@@ -267,7 +267,7 @@ describe("create css", () => {
         ".peer:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) ~ &": {
           "background": "transparent",
         },
-        "background": "var(--colors-red-300)",
+        "background": "var(--chakra-colors-red-300)",
       }
     `)
   })
@@ -279,8 +279,8 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "--mix-background": "color-mix(in srgb, var(--colors-red-300) 30%, transparent)",
-        "background": "var(--mix-background, var(--colors-red-300))",
+        "--mix-background": "color-mix(in srgb, var(--chakra-colors-red-300) 30%, transparent)",
+        "background": "var(--mix-background, var(--chakra-colors-red-300))",
       }
     `)
   })
@@ -292,8 +292,8 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "--mix-background": "color-mix(in srgb, var(--colors-red-300) 30%, transparent)",
-        "background": "var(--mix-background, var(--colors-red-300))",
+        "--mix-background": "color-mix(in srgb, var(--chakra-colors-red-300) 30%, transparent)",
+        "background": "var(--mix-background, var(--chakra-colors-red-300))",
       }
     `)
   })
@@ -306,8 +306,8 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "--colors-color-palette-300": "var(--colors-red-300)",
-        "background": "var(--colors-color-palette-300)",
+        "--chakra-colors-color-palette-300": "var(--chakra-colors-red-300)",
+        "background": "var(--chakra-colors-color-palette-300)",
       }
     `)
   })

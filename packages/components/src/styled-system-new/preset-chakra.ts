@@ -3,11 +3,11 @@ import { defineSystem } from "./config"
 export const presetChakra = defineSystem({
   theme: {
     breakpoints: {
-      sm: "@media screen and (min-width: 30em)",
-      md: "@media screen and (min-width: 48em)",
-      lg: "@media screen and (min-width: 62em)",
-      xl: "@media screen and (min-width: 80em)",
-      "2xl": "@media screen and (min-width: 96em)",
+      sm: "30em",
+      md: "48em",
+      lg: "62em",
+      xl: "80em",
+      "2xl": "96em",
     },
     tokens: {
       blurs: {
