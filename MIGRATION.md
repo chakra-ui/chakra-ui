@@ -2,6 +2,28 @@
 
 ## Changed
 
+### Removed `@chakra-ui/next-js` package
+
+We've removed the `@chakra-ui/next-js` package in favor of using the `asChild`
+prop for better flexibility.
+
+To style the Next.js image component, you can use the `asChild` prop on the
+`Box` component.
+
+```jsx
+<Box asChild>
+  <NextImage />
+</Box>
+```
+
+To style the Next.js link component, you can use the `asChild` prop on the
+
+```jsx
+<Link isExternal asChild>
+  <NextLink />
+</Link>
+```
+
 ### Loosened `as` prop
 
 We no longer infer the props from element passed via the `as` prop. This caused

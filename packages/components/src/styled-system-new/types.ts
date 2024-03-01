@@ -208,6 +208,7 @@ export type UtilityConfig = {
 
 export interface Utility {
   keys(): string[]
+  shorthands: Map<string, string>
   hasShorthand: boolean
   resolveShorthand(key: string): string
   transform(key: string, value: any): Dict | undefined
@@ -242,7 +243,7 @@ export interface TokenFn {
 }
 
 export interface SystemContext {
-  _theme: ThemingConfig
+  _config: SystemConfig
   utility: Utility
   conditions: Condition
   tokens: TokenDictionary

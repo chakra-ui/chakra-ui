@@ -208,6 +208,7 @@ export function createUtilty(options: Options) {
     keys,
     hasShorthand,
     transform,
+    shorthands,
     resolveShorthand,
     register,
     getTypes,

@@ -18,7 +18,7 @@ import { createTokenDictionary } from "./token-dictionary"
 import { SystemConfig, SystemContext, TokenDictionary, TokenFn } from "./types"
 import { createUtilty } from "./utility"
 
-export function createSystem(options: SystemConfig): SystemContext {
+export function createSystem(config: SystemConfig): SystemContext {
   const {
     theme = {},
     utilities = {},
@@ -26,7 +26,7 @@ export function createSystem(options: SystemConfig): SystemContext {
     cssVarsRoot = ":where(:root, :host)",
     cssVarsPrefix = "chakra",
     preflight,
-  } = options
+  } = config
 
   const tokens = createTokenDictionary({
     tokens: theme.tokens,
@@ -35,7 +35,7 @@ export function createSystem(options: SystemConfig): SystemContext {
   })
 
   const conditions = createConditions({
-    conditions: options.conditions,
+    conditions: config.conditions,
     breakpoints: theme.breakpoints,
   })
 
@@ -136,7 +136,7 @@ export function createSystem(options: SystemConfig): SystemContext {
   }
 
   return {
-    _theme: theme,
+    _config: config,
     tokens,
     conditions,
     utility,

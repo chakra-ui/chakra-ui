@@ -151,3 +151,5 @@ export const systemBase = createSystem({
     },
   },
 })
+
+export default systemBase

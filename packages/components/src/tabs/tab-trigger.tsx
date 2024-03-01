@@ -1,6 +1,6 @@
-import { defineStyle } from "@chakra-ui/styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
+import { defineStyle } from "../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useTabsStyles } from "./tabs-context"
 import { UseTabOptions, useTab } from "./use-tab"
 
