@@ -72,11 +72,11 @@
     "react-spinners": "^0.13.8"
   },
   "scripts": {
-    "build": "tsup --dts",
+    "build": "tsup src --dts",
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
     "typecheck": "tsc --noEmit",
-    "build:fast": "tsup"
+    "build:fast": "tsup src"
   },
   "exports": {
     ".": {

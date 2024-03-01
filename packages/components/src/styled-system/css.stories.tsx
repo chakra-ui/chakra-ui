@@ -1,6 +1,6 @@
 import { Global, ThemeProvider, useTheme } from "@emotion/react"
 import styled from "@emotion/styled"
-import { SystemProps, css, toCSSVar } from "./src."
+import { SystemProps, css, toCSSVar } from "./src"
 
 export default {
   title: "System / Styled System",
