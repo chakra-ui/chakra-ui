@@ -16,7 +16,7 @@ export interface FieldOptions {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the form control will be invalid. This has 2 side effects:
    * - The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`

@@ -44,7 +44,7 @@ export const WithHooks = () => {
 
 export const Basic = () => <DemoCheckbox colorScheme="red">Hello</DemoCheckbox>
 
-export const Disabled = () => <DemoCheckbox isDisabled>Disabled</DemoCheckbox>
+export const Disabled = () => <DemoCheckbox disabled>Disabled</DemoCheckbox>
 
 export const Readonly = () => <DemoCheckbox isReadOnly>Readonly</DemoCheckbox>
 
@@ -53,7 +53,7 @@ export const Invalid = () => <DemoCheckbox isInvalid>Invalid</DemoCheckbox>
 export const NotFocusable = () => (
   <Stack>
     <DemoCheckbox isFocusable={false}>not focusable</DemoCheckbox>
-    <DemoCheckbox isFocusable={false} isDisabled>
+    <DemoCheckbox isFocusable={false} disabled>
       disabled and not focusable (truly disabled)
     </DemoCheckbox>
     <DemoCheckbox tabIndex={-1} isFocusable={false}>
@@ -326,7 +326,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInDisabled" isDisabled mt={4}>
+      <Field.Root id="optInDisabled" disabled mt={4}>
         <Field.Label>Disabled Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>

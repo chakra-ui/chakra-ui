@@ -318,11 +318,11 @@ export const FocusBug = () => {
 export const WithDisabledItem = () => {
   return (
     <Accordion.Root value={["1"]}>
-      <Accordion.Item value="1" isDisabled>
+      <Accordion.Item value="1" disabled>
         <Accordion.Trigger>Button 1</Accordion.Trigger>
         <Accordion.Content>One Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item value="2" isDisabled>
+      <Accordion.Item value="2" disabled>
         <Accordion.Trigger>Button 2</Accordion.Trigger>
         <Accordion.Content>Two Content</Accordion.Content>
       </Accordion.Item>
@@ -330,7 +330,7 @@ export const WithDisabledItem = () => {
         <Accordion.Trigger>Button 3</Accordion.Trigger>
         <Accordion.Content>Three Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item value="4" isDisabled>
+      <Accordion.Item value="4" disabled>
         <Accordion.Trigger>Button 4</Accordion.Trigger>
         <Accordion.Content>Four Content</Accordion.Content>
       </Accordion.Item>

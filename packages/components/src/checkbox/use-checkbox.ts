@@ -21,7 +21,7 @@ import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const formControlProps = useFieldProps(props)
   const {
-    disabled: isDisabled,
+    disabled: disabled,
     readOnly: isReadOnly,
     required: isRequired,
     invalid: isInvalid,
@@ -68,7 +68,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (isReadOnly || isDisabled) {
+      if (isReadOnly || disabled) {
         event.preventDefault()
         return
       }
@@ -85,7 +85,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     },
     [
       isReadOnly,
-      isDisabled,
+      disabled,
       isChecked,
       isControlled,
       isIndeterminate,
@@ -100,10 +100,10 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   }, [isIndeterminate])
 
   useUpdateEffect(() => {
-    if (isDisabled) {
+    if (disabled) {
       setFocused(false)
     }
-  }, [isDisabled, setFocused])
+  }, [disabled, setFocused])
 
   /**
    * HTMLFormElement.reset() should reset the checkbox state
@@ -118,7 +118,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     return () => el.form?.removeEventListener("reset", formResetListener)
   }, [])
 
-  const trulyDisabled = isDisabled && !isFocusable
+  const trulyDisabled = disabled && !isFocusable
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -177,7 +177,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "data-focus": dataAttr(isFocused),
         "data-focus-visible": dataAttr(isFocused && isFocusVisible),
         "data-indeterminate": dataAttr(isIndeterminate),
-        "data-disabled": dataAttr(isDisabled),
+        "data-disabled": dataAttr(disabled),
         "data-invalid": dataAttr(isInvalid),
         "data-readonly": dataAttr(isReadOnly),
         "aria-hidden": true,
@@ -194,7 +194,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     [
       isActive,
       isChecked,
-      isDisabled,
+      disabled,
       isFocused,
       isFocusVisible,
       isHovered,
@@ -214,14 +214,14 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-focus": dataAttr(isFocused),
       "data-focus-visible": dataAttr(isFocused && isFocusVisible),
       "data-indeterminate": dataAttr(isIndeterminate),
-      "data-disabled": dataAttr(isDisabled),
+      "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(isInvalid),
       "data-readonly": dataAttr(isReadOnly),
     }),
     [
       isActive,
       isChecked,
-      isDisabled,
+      disabled,
       isFocused,
       isFocusVisible,
       isHovered,
@@ -256,11 +256,11 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
           })
         }
       }),
-      "data-disabled": dataAttr(isDisabled),
+      "data-disabled": dataAttr(disabled),
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
     }),
-    [isDisabled, isChecked, isInvalid, rootIsLabelElement],
+    [disabled, isChecked, isInvalid, rootIsLabelElement],
   )
 
   const getInputProps: PropGetter = useCallback(
@@ -290,7 +290,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "aria-labelledby": ariaLabelledBy,
         "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : isInvalid,
         "aria-describedby": ariaDescribedBy,
-        "aria-disabled": isDisabled,
+        "aria-disabled": disabled,
         style: visuallyHiddenStyle,
       }
     },
@@ -312,7 +312,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       ariaInvalid,
       isInvalid,
       ariaDescribedBy,
-      isDisabled,
+      disabled,
       tabIndex,
     ],
   )
@@ -322,11 +322,11 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       ...props,
       ref: forwardedRef,
       onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-      "data-disabled": dataAttr(isDisabled),
+      "data-disabled": dataAttr(disabled),
       "data-checked": dataAttr(isChecked),
       "data-invalid": dataAttr(isInvalid),
     }),
-    [isChecked, isDisabled, isInvalid],
+    [isChecked, disabled, isInvalid],
   )
 
   const state: CheckboxState = {
@@ -336,7 +336,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     isActive,
     isHovered,
     isIndeterminate,
-    isDisabled,
+    disabled,
     isReadOnly,
     isRequired,
   }

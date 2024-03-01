@@ -24,7 +24,7 @@ export interface UseEditableProps {
   /**
    * If `true`, the Editable will be disabled.
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the Editable will start with edit mode by default.
    */
@@ -89,7 +89,7 @@ export function useEditable(props: UseEditableProps = {}) {
     onSubmit: onSubmitProp,
     onBlur: onBlurProp,
     value: valueProp,
-    isDisabled,
+    disabled,
     defaultValue,
     startWithEditView,
     isPreviewFocusable = true,
@@ -102,7 +102,7 @@ export function useEditable(props: UseEditableProps = {}) {
 
   const onEditProp = useCallbackRef(onEditCallback)
 
-  const defaultIsEditing = Boolean(startWithEditView && !isDisabled)
+  const defaultIsEditing = Boolean(startWithEditView && !disabled)
 
   const [isEditing, setIsEditing] = useState(defaultIsEditing)
 
@@ -134,7 +134,7 @@ export function useEditable(props: UseEditableProps = {}) {
     elements: [cancelButtonRef, submitButtonRef],
   })
 
-  const isInteractive = !isEditing && !isDisabled
+  const isInteractive = !isEditing && !disabled
 
   useSafeLayoutEffect(() => {
     if (isEditing) {
@@ -274,13 +274,13 @@ export function useEditable(props: UseEditableProps = {}) {
         ref: mergeRefs(ref, previewRef),
         children: isValueEmpty ? placeholder : value,
         hidden: isEditing,
-        "aria-disabled": ariaAttr(isDisabled),
+        "aria-disabled": ariaAttr(disabled),
         tabIndex,
         onFocus: callAllHandlers(props.onFocus, onEdit, onUpdatePrevValue),
       }
     },
     [
-      isDisabled,
+      disabled,
       isEditing,
       isInteractive,
       isPreviewFocusable,
@@ -298,8 +298,8 @@ export function useEditable(props: UseEditableProps = {}) {
       hidden: !isEditing,
       placeholder,
       ref: mergeRefs(ref, inputRef),
-      disabled: isDisabled,
-      "aria-disabled": ariaAttr(isDisabled),
+      disabled: disabled,
+      "aria-disabled": ariaAttr(disabled),
       value,
       onBlur: callAllHandlers(props.onBlur, onBlur),
       onChange: callAllHandlers(props.onChange, onChange),
@@ -307,7 +307,7 @@ export function useEditable(props: UseEditableProps = {}) {
       onFocus: callAllHandlers(props.onFocus, onUpdatePrevValue),
     }),
     [
-      isDisabled,
+      disabled,
       isEditing,
       onBlur,
       onChange,
@@ -324,8 +324,8 @@ export function useEditable(props: UseEditableProps = {}) {
       hidden: !isEditing,
       placeholder,
       ref: mergeRefs(ref, inputRef),
-      disabled: isDisabled,
-      "aria-disabled": ariaAttr(isDisabled),
+      disabled: disabled,
+      "aria-disabled": ariaAttr(disabled),
       value,
       onBlur: callAllHandlers(props.onBlur, onBlur),
       onChange: callAllHandlers(props.onChange, onChange),
@@ -333,7 +333,7 @@ export function useEditable(props: UseEditableProps = {}) {
       onFocus: callAllHandlers(props.onFocus, onUpdatePrevValue),
     }),
     [
-      isDisabled,
+      disabled,
       isEditing,
       onBlur,
       onChange,
@@ -351,9 +351,9 @@ export function useEditable(props: UseEditableProps = {}) {
       type: "button",
       onClick: callAllHandlers(props.onClick, onEdit),
       ref: mergeRefs(ref, editButtonRef),
-      disabled: isDisabled,
+      disabled: disabled,
     }),
-    [onEdit, isDisabled],
+    [onEdit, disabled],
   )
 
   const getSubmitButtonProps: PropGetter = useCallback(
@@ -363,9 +363,9 @@ export function useEditable(props: UseEditableProps = {}) {
       ref: mergeRefs(submitButtonRef, ref),
       type: "button",
       onClick: callAllHandlers(props.onClick, onSubmit),
-      disabled: isDisabled,
+      disabled: disabled,
     }),
-    [onSubmit, isDisabled],
+    [onSubmit, disabled],
   )
 
   const getCancelButtonProps: PropGetter = useCallback(
@@ -376,14 +376,14 @@ export function useEditable(props: UseEditableProps = {}) {
       ref: mergeRefs(cancelButtonRef, ref),
       type: "button",
       onClick: callAllHandlers(props.onClick, onCancel),
-      disabled: isDisabled,
+      disabled: disabled,
     }),
-    [onCancel, isDisabled],
+    [onCancel, disabled],
   )
 
   return {
     isEditing,
-    isDisabled,
+    disabled,
     isValueEmpty,
     value,
     onEdit,

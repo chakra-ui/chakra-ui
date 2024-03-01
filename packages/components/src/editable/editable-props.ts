@@ -4,7 +4,7 @@ import { UseEditableProps } from "./use-editable"
 export const editableProps = createProps<UseEditableProps>()([
   "defaultValue",
   "finalFocusRef",
-  "isDisabled",
+  "disabled",
   "isPreviewFocusable",
   "onBlur",
   "onCancel",

@@ -10,7 +10,7 @@ const DummyComponent = (
 ) => {
   const { disabled, label, content, ...rootProps } = props
   return (
-    <Tooltip.Root {...rootProps}>
+    <Tooltip.Root disabled={disabled} {...rootProps}>
       <Tooltip.Trigger disabled={disabled || false}>{label}</Tooltip.Trigger>
       <Tooltip.Positioner>
         <Tooltip.Content>{content}</Tooltip.Content>
@@ -53,9 +53,9 @@ test("shows on pointerover and closes on pointerleave", async () => {
   )
 })
 
-test("should not show on pointerover if isDisabled is true", async () => {
+test("should not show on pointerover if disabled is true", async () => {
   const { user } = render(
-    <DummyComponent isDisabled label={buttonLabel} content={tooltipLabel} />,
+    <DummyComponent disabled label={buttonLabel} content={tooltipLabel} />,
   )
 
   await user.hover(screen.getByText(buttonLabel))
@@ -81,10 +81,10 @@ test("should close on pointerleave if openDelay is set", async () => {
   )
 })
 
-test("should show on pointerover if isDisabled has a falsy value", async () => {
+test("should show on pointerover if disabled has a falsy value", async () => {
   const { user } = render(
     <DummyComponent
-      isDisabled={false}
+      disabled={false}
       label={buttonLabel}
       content={tooltipLabel}
     />,
@@ -96,11 +96,11 @@ test("should show on pointerover if isDisabled has a falsy value", async () => {
   expect(screen.getByText(buttonLabel)).toBeInTheDocument()
 })
 
-test("does not show tooltip after delay when `isDisabled` prop changes to `true`", async () => {
+test("does not show tooltip after delay when `disabled` prop changes to `true`", async () => {
   const { user, rerender } = render(
     <DummyComponent
       openDelay={100}
-      isDisabled={false}
+      disabled={false}
       label={buttonLabel}
       content={tooltipLabel}
     />,
@@ -111,7 +111,7 @@ test("does not show tooltip after delay when `isDisabled` prop changes to `true`
   rerender(
     <DummyComponent
       openDelay={100}
-      isDisabled={true}
+      disabled={true}
       label={buttonLabel}
       content={tooltipLabel}
     />,

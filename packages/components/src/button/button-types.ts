@@ -13,7 +13,7 @@ export interface ButtonGroupOptions {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * The spacing between the buttons
    * @default '0.5rem'
@@ -32,7 +32,7 @@ export interface ButtonOptions {
    * If `true`, the button will be disabled.
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
 }
 
 export interface ButtonSpinnerOptions {

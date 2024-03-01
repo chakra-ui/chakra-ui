@@ -78,7 +78,7 @@ export interface UseSliderProps {
    * If `true`, the slider will be disabled
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the slider will be in `read-only` state
    * @default false
@@ -149,7 +149,7 @@ export function useSlider(props: UseSliderProps) {
     direction = "ltr",
     orientation = "horizontal",
     id: idProp,
-    isDisabled,
+    disabled,
     isReadOnly,
     onChangeStart: onChangeStartProp,
     onChangeEnd: onChangeEndProp,
@@ -184,7 +184,7 @@ export function useSlider(props: UseSliderProps) {
 
   const [isDragging, setDragging] = useState(false)
   const [isFocused, setFocused] = useState(false)
-  const isInteractive = !(isDisabled || isReadOnly)
+  const isInteractive = !(disabled || isReadOnly)
 
   const tenSteps = (max - min) / 10
   const oneStep = step || (max - min) / 100
@@ -204,7 +204,7 @@ export function useSlider(props: UseSliderProps) {
     min,
     max,
     step,
-    isDisabled,
+    disabled,
     value,
     isInteractive,
     isReversed,
@@ -412,7 +412,7 @@ export function useSlider(props: UseSliderProps) {
         ...htmlProps,
         ref: mergeRefs(ref, rootRef),
         tabIndex: -1,
-        "aria-disabled": ariaAttr(isDisabled),
+        "aria-disabled": ariaAttr(disabled),
         "data-focused": dataAttr(isFocused),
         style: {
           ...props.style,
@@ -420,7 +420,7 @@ export function useSlider(props: UseSliderProps) {
         },
       }
     },
-    [htmlProps, isDisabled, isFocused, rootStyle],
+    [htmlProps, disabled, isFocused, rootStyle],
   )
 
   const getTrackProps: PropGetter = useCallback(
@@ -429,14 +429,14 @@ export function useSlider(props: UseSliderProps) {
         ...props,
         ref: mergeRefs(ref, trackRef),
         id: trackId,
-        "data-disabled": dataAttr(isDisabled),
+        "data-disabled": dataAttr(disabled),
         style: {
           ...props.style,
           ...trackStyle,
         },
       }
     },
-    [isDisabled, trackId, trackStyle],
+    [disabled, trackId, trackStyle],
   )
 
   const getInnerTrackProps: PropGetter = useCallback(
@@ -467,7 +467,7 @@ export function useSlider(props: UseSliderProps) {
         "aria-valuemax": max,
         "aria-valuenow": value,
         "aria-orientation": orientation,
-        "aria-disabled": ariaAttr(isDisabled),
+        "aria-disabled": ariaAttr(disabled),
         "aria-readonly": ariaAttr(isReadOnly),
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
@@ -489,7 +489,7 @@ export function useSlider(props: UseSliderProps) {
       max,
       value,
       orientation,
-      isDisabled,
+      disabled,
       isReadOnly,
       ariaLabel,
       ariaLabelledBy,
@@ -525,7 +525,7 @@ export function useSlider(props: UseSliderProps) {
         ref,
         role: "presentation",
         "aria-hidden": true,
-        "data-disabled": dataAttr(isDisabled),
+        "data-disabled": dataAttr(disabled),
         "data-invalid": dataAttr(!isInRange),
         "data-highlighted": dataAttr(isHighlighted),
         style: {
@@ -534,7 +534,7 @@ export function useSlider(props: UseSliderProps) {
         },
       }
     },
-    [isDisabled, isReversed, max, min, orientation, value],
+    [disabled, isReversed, max, min, orientation, value],
   )
 
   const getInputProps: PropGetter = useCallback(

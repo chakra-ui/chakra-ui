@@ -75,7 +75,7 @@ test("sets correct aria attributes on disabled Menu.Items", () => {
             Search
           </Menu.Item>
           <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-          <Menu.Item isDisabled icon={<FaTruck />}>
+          <Menu.Item disabled icon={<FaTruck />}>
             Delivery
           </Menu.Item>
           <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
@@ -99,7 +99,7 @@ test("does not fire onClick on disabled Menu.Item", () => {
             Search
           </Menu.Item>
           <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-          <Menu.Item isDisabled icon={<FaTruck />} onClick={onClick}>
+          <Menu.Item disabled icon={<FaTruck />} onClick={onClick}>
             Delivery
           </Menu.Item>
           <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
@@ -127,7 +127,7 @@ test.skip("allows focusing disabled Menu.Items given isFocusable", async () => {
       <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
-          <Menu.Item isDisabled isFocusable icon={<FaTruck />}>
+          <Menu.Item disabled isFocusable icon={<FaTruck />}>
             Delivery
           </Menu.Item>
         </Menu.Content>

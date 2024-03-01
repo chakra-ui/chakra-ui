@@ -50,7 +50,7 @@ test("uncontrolled: correctly manages state", () => {
 
 test("Uncontrolled RadioGroup - should not check if group disabled", async () => {
   render(
-    <RadioGroup.Root isDisabled>
+    <RadioGroup.Root disabled>
       <DemoRadio value="one">One</DemoRadio>
     </RadioGroup.Root>,
   )

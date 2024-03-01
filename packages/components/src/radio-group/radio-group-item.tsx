@@ -49,8 +49,8 @@ export const RadioGroupItem = forwardRef<RadioGroupItemProps, "input">(
       itemProps.name = api.name
     }
 
-    if (api?.isDisabled) {
-      itemProps.isDisabled = api.isDisabled
+    if (api?.disabled) {
+      itemProps.disabled = api.disabled
     }
 
     if (api?.isFocusable) {

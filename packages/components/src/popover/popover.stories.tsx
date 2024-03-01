@@ -234,7 +234,7 @@ export function WithPopoverAnchor() {
           color={color}
           w="auto"
           display="inline-flex"
-          isDisabled={!isEditing}
+          disabled={!isEditing}
           defaultValue="Popover Anchor"
         />
       </Popover.Anchor>

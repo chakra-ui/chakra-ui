@@ -14,7 +14,7 @@ export const tooltipProps = createProps<UseTooltipProps>()([
   "direction",
   "gutter",
   "id",
-  "isDisabled",
+  "disabled",
   "isOpen",
   "modifiers",
   "offset",

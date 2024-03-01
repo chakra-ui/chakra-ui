@@ -43,7 +43,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
       className,
       spacing = "0.5rem",
       isAttached,
-      isDisabled,
+      disabled,
       orientation = "horizontal",
       ...rest
     } = props
@@ -51,8 +51,8 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
     const _className = cx("chakra-button__group", className)
 
     const context: ButtonGroupContext = useMemo(
-      () => ({ size, colorScheme, variant, isDisabled }),
-      [size, colorScheme, variant, isDisabled],
+      () => ({ size, colorScheme, variant, disabled }),
+      [size, colorScheme, variant, disabled],
     )
 
     let groupStyles = defineStyle({

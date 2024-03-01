@@ -10,7 +10,7 @@ import { UseAccordionItemProps, useAccordionItem } from "./use-accordion"
 
 interface AccordionItemState {
   isExpanded: boolean
-  isDisabled: boolean
+  disabled: boolean
 }
 
 export interface AccordionItemProps
@@ -38,7 +38,7 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
 
     const itemState = {
       isExpanded: !!itemApi.isOpen,
-      isDisabled: !!itemApi.isDisabled,
+      disabled: !!itemApi.disabled,
     }
 
     return (

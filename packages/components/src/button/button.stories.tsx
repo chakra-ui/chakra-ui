@@ -125,11 +125,11 @@ export const WithReactIcons = () => (
 
 export const WithLoading = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button isDisabled colorScheme="teal">
+    <Button disabled colorScheme="teal">
       <Spinner boxSize="1em" />
     </Button>
 
-    <Button isDisabled colorScheme="blue">
+    <Button disabled colorScheme="blue">
       <AbsoluteCenter>
         <BeatLoader size={8} color="white" />
       </AbsoluteCenter>
@@ -140,10 +140,10 @@ export const WithLoading = () => (
 
 export const WithSpinnerPlacements = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button isDisabled colorScheme="teal" variant="outline">
+    <Button disabled colorScheme="teal" variant="outline">
       <Spinner boxSize="1em" /> Loading
     </Button>
-    <Button isDisabled colorScheme="teal" variant="outline">
+    <Button disabled colorScheme="teal" variant="outline">
       Loading <Spinner boxSize="1em" />
     </Button>
   </Stack>
@@ -153,7 +153,7 @@ export const WithDisabled = () => (
   <HStack spacing="24px">
     <For each={buttonVariants}>
       {(variant) => (
-        <Button isDisabled colorScheme="teal" variant={variant}>
+        <Button disabled colorScheme="teal" variant={variant}>
           Button
         </Button>
       )}

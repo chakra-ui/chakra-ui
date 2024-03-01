@@ -10,7 +10,7 @@ export type PinInputContext = UsePinInputReturn & {
   /**
    * Sets the pin input component to the disabled state
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * Sets the pin input component to the invalid state
    */

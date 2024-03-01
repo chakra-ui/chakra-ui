@@ -27,7 +27,7 @@ const DemoSwitch = (props: Switch.RootProps) => {
 export const Base = () => <DemoSwitch colorScheme="green" />
 
 export const Disabled = () => (
-  <DemoSwitch isDisabled size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch disabled size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Readonly = () => (
@@ -117,7 +117,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInDisabled" isDisabled mt={4}>
+      <Field.Root id="optInDisabled" disabled mt={4}>
         <Field.Label>Disabled Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Disabled Opt-in 1</DemoSwitch>

@@ -26,7 +26,7 @@ test("Uncontrolled - should check and uncheck", async () => {
 })
 
 test("Uncontrolled - should not check if disabled", async () => {
-  const { container, user } = render(<DemoSwitch isDisabled />)
+  const { container, user } = render(<DemoSwitch disabled />)
   const input = container.querySelector("input") as HTMLInputElement
 
   expect(input).toBeDisabled()
@@ -70,11 +70,11 @@ test("Controlled - should check and uncheck", async () => {
 
 test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
   const { container, user } = render(
-    <Field.Root isDisabled mt={4}>
+    <Field.Root disabled mt={4}>
       <Field.Label>Disabled Opt-in Example</Field.Label>
       <DemoSwitch />
-      <DemoSwitch isDisabled />
-      <DemoSwitch isDisabled={false} />
+      <DemoSwitch disabled />
+      <DemoSwitch disabled={false} />
     </Field.Root>,
   )
 

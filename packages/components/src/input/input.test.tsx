@@ -34,7 +34,7 @@ test("Invalid input renders correctly", () => {
 })
 
 test("Disabled input renders correctly", () => {
-  render(<Input isDisabled />)
+  render(<Input disabled />)
 
   expect(screen.getByRole("textbox")).toHaveAttribute("disabled")
 })

@@ -5,7 +5,7 @@ export const fieldProps = createProps<UseFieldProps>()([
   "aria-describedby",
   "disabled",
   "id",
-  "isDisabled",
+  "disabled",
   "isInvalid",
   "isReadOnly",
   "isRequired",

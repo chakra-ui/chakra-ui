@@ -40,9 +40,9 @@ export interface UseRadioProps {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
-   * If `true` and `isDisabled` is true, the radio will remain
+   * If `true` and `disabled` is true, the radio will remain
    * focusable but not interactive.
    *
    * @default false
@@ -86,7 +86,7 @@ export interface RadioState {
   isChecked: boolean
   isActive: boolean
   isHovered: boolean
-  isDisabled: boolean | undefined
+  disabled: boolean | undefined
   isReadOnly: boolean | undefined
   isRequired: boolean | undefined
 }
@@ -101,7 +101,7 @@ export function useRadio(props: UseRadioProps = {}) {
     defaultChecked,
     isChecked: isCheckedProp,
     isFocusable,
-    isDisabled: isDisabledProp,
+    disabled: disabledProp,
     isReadOnly: isReadOnlyProp,
     isRequired: isRequiredProp,
     onChange,
@@ -124,7 +124,7 @@ export function useRadio(props: UseRadioProps = {}) {
   let id = isWithinFormControl && !isWithinRadioGroup ? formControl.id : uuid
   id = idProp ?? id
 
-  const isDisabled = isDisabledProp ?? formControl?.isDisabled
+  const disabled = disabledProp ?? formControl?.disabled
   const isReadOnly = isReadOnlyProp ?? formControl?.isReadOnly
   const isRequired = isRequiredProp ?? formControl?.isRequired
   const isInvalid = isInvalidProp ?? formControl?.isInvalid
@@ -145,7 +145,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (isReadOnly || isDisabled) {
+      if (isReadOnly || disabled) {
         event.preventDefault()
         return
       }
@@ -156,7 +156,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
       onChange?.(event)
     },
-    [isControlled, isDisabled, isReadOnly, onChange],
+    [isControlled, disabled, isReadOnly, onChange],
   )
 
   const onKeyDown = useCallback(
@@ -183,7 +183,7 @@ export function useRadio(props: UseRadioProps = {}) {
       ref,
       "data-active": dataAttr(isActive),
       "data-hover": dataAttr(isHovered),
-      "data-disabled": dataAttr(isDisabled),
+      "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(isInvalid),
       "data-checked": dataAttr(isChecked),
       "data-focus": dataAttr(isFocused),
@@ -202,7 +202,7 @@ export function useRadio(props: UseRadioProps = {}) {
     [
       isActive,
       isHovered,
-      isDisabled,
+      disabled,
       isInvalid,
       isChecked,
       isFocused,
@@ -216,7 +216,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const getInputProps: PropGetter<InputDOMAttributes, InputDOMAttributes> =
     useCallback(
       (props = {}, ref = null) => {
-        const trulyDisabled = isDisabled && !isFocusable
+        const trulyDisabled = disabled && !isFocusable
 
         return {
           ...props,
@@ -247,7 +247,7 @@ export function useRadio(props: UseRadioProps = {}) {
         }
       },
       [
-        isDisabled,
+        disabled,
         isFocusable,
         id,
         name,
@@ -269,7 +269,7 @@ export function useRadio(props: UseRadioProps = {}) {
     ...props,
     ref,
     onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-    "data-disabled": dataAttr(isDisabled),
+    "data-disabled": dataAttr(disabled),
     "data-checked": dataAttr(isChecked),
     "data-invalid": dataAttr(isInvalid),
   })
@@ -277,7 +277,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const getRootProps: PropGetter = (props, ref = null) => ({
     ...props,
     ref,
-    "data-disabled": dataAttr(isDisabled),
+    "data-disabled": dataAttr(disabled),
     "data-checked": dataAttr(isChecked),
     "data-invalid": dataAttr(isInvalid),
   })
@@ -288,7 +288,7 @@ export function useRadio(props: UseRadioProps = {}) {
     isChecked,
     isActive,
     isHovered,
-    isDisabled,
+    disabled,
     isReadOnly,
     isRequired,
   }

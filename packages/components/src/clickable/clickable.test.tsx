@@ -9,7 +9,7 @@ const Clickable = forwardRef((props: any, ref) => {
 
 test("should render when disabled and focusable", () => {
   render(
-    <Clickable isDisabled isFocusable>
+    <Clickable disabled isFocusable>
       clickable
     </Clickable>,
   )
@@ -30,7 +30,7 @@ test("should not click if disabled", () => {
   const fn = vi.fn()
 
   render(
-    <Clickable onClick={fn} isDisabled>
+    <Clickable onClick={fn} disabled>
       clickable
     </Clickable>,
   )
@@ -41,7 +41,7 @@ test("should not click if disabled", () => {
 })
 
 test("should not focus if disabled", () => {
-  render(<Clickable isDisabled>clickable</Clickable>)
+  render(<Clickable disabled>clickable</Clickable>)
   const clickable = screen.getByText("clickable")
 
   expect(clickable).not.toHaveFocus()

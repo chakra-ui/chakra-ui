@@ -51,7 +51,7 @@ test("Uncontrolled - should check and uncheck", () => {
 })
 
 test("Uncontrolled - should not check if disabled", () => {
-  render(<HookCheckbox isDisabled>Checkbox</HookCheckbox>)
+  render(<HookCheckbox disabled>Checkbox</HookCheckbox>)
 
   const input = screen.getByTestId("input")
   const checkbox = screen.getByText("Checkbox")
@@ -157,12 +157,12 @@ test("Controlled Checkbox.Group", () => {
 
 test("Uncontrolled Checkbox.Group - should not check if group disabled", () => {
   const Component = () => (
-    <Checkbox.Group isDisabled>
+    <Checkbox.Group disabled>
       <DemoCheckbox value="one">One</DemoCheckbox>
-      <DemoCheckbox value="two" isDisabled>
+      <DemoCheckbox value="two" disabled>
         Two
       </DemoCheckbox>
-      <DemoCheckbox value="three" isDisabled={false}>
+      <DemoCheckbox value="three" disabled={false}>
         Three
       </DemoCheckbox>
     </Checkbox.Group>
@@ -294,23 +294,23 @@ test("useCheckboxGroup can handle both strings and numbers", () => {
 
 test("Uncontrolled Form.Control - should not check if form-control disabled", () => {
   const { container } = render(
-    <Field.Root isDisabled mt={4}>
+    <Field.Root disabled mt={4}>
       <Field.Label>Disabled Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isDisabled>
+        <DemoCheckbox value="2" disabled>
           Disabled Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isDisabled={false}>
+        <DemoCheckbox value="3" disabled={false}>
           Disabled Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
-      <Checkbox.Group isDisabled={false}>
+      <Checkbox.Group disabled={false}>
         <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isDisabled>
+        <DemoCheckbox value="2" disabled>
           Disabled Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isDisabled={false}>
+        <DemoCheckbox value="3" disabled={false}>
           Disabled Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>

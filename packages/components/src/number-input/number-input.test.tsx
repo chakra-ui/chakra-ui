@@ -182,7 +182,7 @@ test("should derive values from surrounding FormControl", () => {
       id="input"
       isRequired
       isInvalid
-      isDisabled
+      disabled
       isReadOnly
       onFocus={onFocus}
       onBlur={onBlur}

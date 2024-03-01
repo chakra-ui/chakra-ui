@@ -1,6 +1,6 @@
 import {
   isContentEditableElement,
-  isDisabledElement,
+  disabledElement,
   isHTMLElement,
   isHiddenElement,
 } from "./is-element"
@@ -23,7 +23,7 @@ export function isFocusable(element: HTMLElement) {
   if (
     !isHTMLElement(element) ||
     isHiddenElement(element) ||
-    isDisabledElement(element)
+    disabledElement(element)
   ) {
     return false
   }

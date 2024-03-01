@@ -67,7 +67,7 @@ export interface UseNumberInputProps extends UseCounterProps {
   /**
    * Whether the input should be disabled
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * Whether the input is required
    */
@@ -143,7 +143,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const {
     id,
-    disabled: isDisabled,
+    disabled,
     readOnly: isReadOnly,
     required: isRequired,
     "aria-describedby": ariaDescBy,
@@ -199,7 +199,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * `spinners`, maybe :)
    */
   const [isFocused, setFocused] = useState(false)
-  const isInteractive = !(isReadOnly || isDisabled)
+  const isInteractive = !(isReadOnly || disabled)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const inputSelectionRef = useRef<InputSelection | null>(null)
@@ -462,7 +462,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const getIncrementButtonProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
-      const disabled = isDisabled || (keepWithinRange && counter.isAtMax)
+      const isDisabled = disabled || (keepWithinRange && counter.isAtMax)
       return {
         ...props,
         ref: mergeRefs(ref, incrementButtonRef),
@@ -474,16 +474,16 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
-        disabled,
-        "aria-disabled": ariaAttr(disabled),
+        disabled: isDisabled,
+        "aria-disabled": ariaAttr(isDisabled),
       }
     },
-    [counter.isAtMax, keepWithinRange, spinUp, spinner.stop, isDisabled],
+    [counter.isAtMax, keepWithinRange, spinUp, spinner.stop, disabled],
   )
 
   const getDecrementButtonProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
-      const disabled = isDisabled || (keepWithinRange && counter.isAtMin)
+      const isDisabled = disabled || (keepWithinRange && counter.isAtMin)
       return {
         ...props,
         ref: mergeRefs(ref, decrementButtonRef),
@@ -495,11 +495,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
-        disabled,
-        "aria-disabled": ariaAttr(disabled),
+        disabled: isDisabled,
+        "aria-disabled": ariaAttr(isDisabled),
       }
     },
-    [counter.isAtMin, keepWithinRange, spinDown, spinner.stop, isDisabled],
+    [counter.isAtMin, keepWithinRange, spinDown, spinner.stop, disabled],
   )
 
   const getInputProps: PropGetter<InputDOMAttributes, InputDOMAttributes> =
@@ -513,7 +513,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-label": ariaLabel,
         "aria-describedby": ariaDescBy,
         id,
-        disabled: isDisabled,
+        disabled: disabled,
         ...props,
         readOnly: props.readOnly ?? isReadOnly,
         "aria-readonly": props.readOnly ?? isReadOnly,
@@ -547,7 +547,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         format,
         ariaDescBy,
         id,
-        isDisabled,
+        disabled,
         isRequired,
         isReadOnly,
         isInvalid,
@@ -569,7 +569,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     value: format(counter.value),
     valueAsNumber: counter.valueAsNumber,
     isFocused,
-    isDisabled,
+    disabled,
     isReadOnly,
     getIncrementButtonProps,
     getDecrementButtonProps,

@@ -20,7 +20,7 @@ export interface UseCheckboxGroupProps {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, input elements will receive
    * `checked` attribute instead of `isChecked`.
@@ -55,9 +55,9 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
-   * If `true` and `isDisabled` is passed, the checkbox will
+   * If `true` and `disabled` is passed, the checkbox will
    * remain tabbable but not interactive
    *
    * @default false
@@ -145,7 +145,7 @@ export interface CheckboxOptions {
 }
 
 export interface CheckboxGroupContext
-  extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "isDisabled">,
+  extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "disabled">,
     Omit<ThemingProps<"Checkbox">, "orientation"> {}
 
 export interface CheckboxState {
@@ -155,7 +155,7 @@ export interface CheckboxState {
   isActive: boolean
   isHovered: boolean
   isIndeterminate?: boolean
-  isDisabled?: boolean
+  disabled?: boolean
   isReadOnly?: boolean
   isRequired?: boolean
 }

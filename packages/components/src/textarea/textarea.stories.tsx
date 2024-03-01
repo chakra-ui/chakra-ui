@@ -20,7 +20,7 @@ export const rows = () => (
 )
 
 export const disabled = () => (
-  <Textarea isDisabled placeholder="A disabled textarea" />
+  <Textarea disabled placeholder="A disabled textarea" />
 )
 
 export const invalid = () => (

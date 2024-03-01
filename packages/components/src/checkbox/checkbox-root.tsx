@@ -44,7 +44,7 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
       className,
       children,
       isChecked: isCheckedProp,
-      isDisabled = group?.isDisabled,
+      disabled = group?.disabled,
       onChange: onChangeProp,
       inputProps,
       ...rest
@@ -64,7 +64,7 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
 
     const checkboxState = useCheckbox({
       ...checkboxProps,
-      isDisabled,
+      disabled,
       isChecked,
       onChange,
     })

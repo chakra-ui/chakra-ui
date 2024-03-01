@@ -12,7 +12,7 @@ export const numberInputProps = createProps<UseNumberInputProps>()([
   "getAriaValueText",
   "id",
   "inputMode",
-  "isDisabled",
+  "disabled",
   "isInvalid",
   "isReadOnly",
   "isRequired",

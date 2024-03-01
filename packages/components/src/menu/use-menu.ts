@@ -527,7 +527,7 @@ export interface UseMenuItemProps
   /**
    * If `true`, the menuitem will be disabled
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true` and the menuitem is disabled, it'll
    * remain keyboard-focusable
@@ -553,7 +553,7 @@ export function useMenuItem(
     onMouseLeave: onMouseLeaveProp,
     onClick: onClickProp,
     onFocus: onFocusProp,
-    isDisabled,
+    disabled,
     isFocusable,
     closeOnSelect,
     type: typeProp,
@@ -582,10 +582,10 @@ export function useMenuItem(
   const onMouseEnter = useCallback(
     (event: any) => {
       onMouseEnterProp?.(event)
-      if (isDisabled) return
+      if (disabled) return
       setFocusedId(id)
     },
-    [setFocusedId, id, isDisabled, onMouseEnterProp],
+    [setFocusedId, id, disabled, onMouseEnterProp],
   )
 
   const onMouseMove = useCallback(
@@ -601,10 +601,10 @@ export function useMenuItem(
   const onMouseLeave = useCallback(
     (event: any) => {
       onMouseLeaveProp?.(event)
-      if (isDisabled) return
+      if (disabled) return
       setFocusedId(null)
     },
-    [setFocusedId, isDisabled, onMouseLeaveProp],
+    [setFocusedId, disabled, onMouseLeaveProp],
   )
 
   const onClick = useCallback(
@@ -632,7 +632,7 @@ export function useMenuItem(
 
   const isFocused = id === focusedId
 
-  const trulyDisabled = isDisabled && !isFocusable
+  const trulyDisabled = disabled && !isFocusable
 
   useUpdateEffect(() => {
     if (!isOpen) return
@@ -663,7 +663,7 @@ export function useMenuItem(
     onMouseMove,
     onMouseLeave,
     ref: mergeRefs(ref, externalRef),
-    isDisabled,
+    disabled,
     isFocusable,
   })
 

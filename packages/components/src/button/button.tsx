@@ -20,7 +20,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
   const styles = useStyleConfig("Button", { ...group, ...props })
 
   const {
-    isDisabled = group?.isDisabled,
+    disabled = group?.disabled,
     isActive,
     type,
     className,
@@ -36,7 +36,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       data-in-group={dataAttr(!!group)}
       data-active={dataAttr(isActive)}
       __css={styles}
-      disabled={isDisabled}
+      disabled={disabled}
       {...rest}
       className={cx("chakra-button", className)}
     />

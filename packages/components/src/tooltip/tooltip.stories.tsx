@@ -142,7 +142,7 @@ export const WithDialog = () => {
 export const WithDisabledButton = () => (
   <Tooltip.Root>
     <Tooltip.Trigger asChild>
-      <Button isDisabled>Can't Touch This</Button>
+      <Button disabled>Can't Touch This</Button>
     </Tooltip.Trigger>
     <Tooltip.Positioner>
       <Tooltip.Content>Oh oh oh, oh oh</Tooltip.Content>
@@ -187,15 +187,15 @@ export const WithScrollWithin = () => (
 )
 
 export const WithDynamicDisabled = () => {
-  const [isDisabled, setIsDisabled] = React.useState(false)
-  const handleDisabled = () => setIsDisabled(true)
-  const handleEnabled = () => setIsDisabled(false)
+  const [disabled, setdisabled] = React.useState(false)
+  const handleDisabled = () => setdisabled(true)
+  const handleEnabled = () => setdisabled(false)
   return (
     <DemoTooltip
       label="Disabled after being triggered"
       placement="bottom"
       openDelay={500}
-      isDisabled={isDisabled}
+      disabled={disabled}
       hasArrow
     >
       <chakra.span

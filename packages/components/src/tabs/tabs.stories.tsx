@@ -65,10 +65,10 @@ export const automatic = () => (
     <Tabs.Root defaultValue="settings" isManual>
       <Tabs.List>
         <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-        <Tabs.Trigger value="billing" isDisabled>
+        <Tabs.Trigger value="billing" disabled>
           Billing
         </Tabs.Trigger>
-        <Tabs.Trigger value="preferences" isDisabled>
+        <Tabs.Trigger value="preferences" disabled>
           Preferences
         </Tabs.Trigger>
         <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -85,10 +85,10 @@ export const automatic = () => (
     <Tabs.Root defaultValue="settings">
       <Tabs.List>
         <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-        <Tabs.Trigger value="billing" isDisabled>
+        <Tabs.Trigger value="billing" disabled>
           Billing
         </Tabs.Trigger>
-        <Tabs.Trigger value="preferences" isDisabled>
+        <Tabs.Trigger value="preferences" disabled>
           Preferences
         </Tabs.Trigger>
         <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -108,7 +108,7 @@ export const manual = () => (
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
       <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-      <Tabs.Trigger value="preferences" isDisabled>
+      <Tabs.Trigger value="preferences" disabled>
         Preferences
       </Tabs.Trigger>
       <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -126,11 +126,7 @@ export const withIndicator = () => (
   <Tabs.Root defaultValue="settings" variant="unstyled" isManual>
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-      <Tabs.Trigger
-        value="billing"
-        _disabled={{ color: "gray.400" }}
-        isDisabled
-      >
+      <Tabs.Trigger value="billing" _disabled={{ color: "gray.400" }} disabled>
         Billing
       </Tabs.Trigger>
       <Tabs.Trigger value="preferences">Preferences</Tabs.Trigger>
@@ -173,7 +169,7 @@ export const withVerticalTabs = () => (
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
       <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-      <Tabs.Trigger value="preferences" isDisabled>
+      <Tabs.Trigger value="preferences" disabled>
         Preferences
       </Tabs.Trigger>
       <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>

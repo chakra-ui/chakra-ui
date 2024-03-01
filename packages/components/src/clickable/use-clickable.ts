@@ -10,9 +10,9 @@ export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
-   * If `true` and isDisabled, the element will
+   * If `true` and disabled, the element will
    * have only `aria-disabled` set to `true`
    *
    * @default false
@@ -53,7 +53,7 @@ function isValidElement(event: KeyboardEvent): boolean {
 export function useClickable(props: UseClickableProps = {}) {
   const {
     ref: htmlRef,
-    isDisabled,
+    disabled,
     isFocusable,
     clickOnEnter = true,
     clickOnSpace = true,
@@ -91,11 +91,11 @@ export function useClickable(props: UseClickableProps = {}) {
   }
 
   const tabIndex = isButton ? tabIndexProp : tabIndexProp || 0
-  const trulyDisabled = isDisabled && !isFocusable
+  const trulyDisabled = disabled && !isFocusable
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (isDisabled) {
+      if (disabled) {
         event.stopPropagation()
         event.preventDefault()
         return
@@ -105,7 +105,7 @@ export function useClickable(props: UseClickableProps = {}) {
       self.focus()
       onClick?.(event)
     },
-    [isDisabled, onClick],
+    [disabled, onClick],
   )
 
   const onDocumentKeyUp = useCallback(
@@ -126,7 +126,7 @@ export function useClickable(props: UseClickableProps = {}) {
     (event: React.KeyboardEvent<HTMLElement>) => {
       onKeyDown?.(event)
 
-      if (isDisabled || event.defaultPrevented || event.metaKey) {
+      if (disabled || event.defaultPrevented || event.metaKey) {
         return
       }
 
@@ -149,7 +149,7 @@ export function useClickable(props: UseClickableProps = {}) {
       listeners.add(document, "keyup", onDocumentKeyUp, false)
     },
     [
-      isDisabled,
+      disabled,
       isButton,
       onKeyDown,
       clickOnEnter,
@@ -163,7 +163,7 @@ export function useClickable(props: UseClickableProps = {}) {
     (event: React.KeyboardEvent<HTMLElement>) => {
       onKeyUp?.(event)
 
-      if (isDisabled || event.defaultPrevented || event.metaKey) return
+      if (disabled || event.defaultPrevented || event.metaKey) return
 
       if (!isValidElement(event.nativeEvent) || isButton) return
 
@@ -177,7 +177,7 @@ export function useClickable(props: UseClickableProps = {}) {
         self.click()
       }
     },
-    [clickOnSpace, isButton, isDisabled, onKeyUp],
+    [clickOnSpace, isButton, disabled, onKeyUp],
   )
 
   const onDocumentMouseUp = useCallback(
@@ -193,7 +193,7 @@ export function useClickable(props: UseClickableProps = {}) {
     (event: React.MouseEvent<HTMLElement>) => {
       if (event.button !== 0) return
 
-      if (isDisabled) {
+      if (disabled) {
         event.stopPropagation()
         event.preventDefault()
         return
@@ -210,7 +210,7 @@ export function useClickable(props: UseClickableProps = {}) {
 
       onMouseDown?.(event)
     },
-    [isDisabled, isButton, onMouseDown, listeners, onDocumentMouseUp],
+    [disabled, isButton, onMouseDown, listeners, onDocumentMouseUp],
   )
 
   const handleMouseUp = useCallback(
@@ -228,14 +228,14 @@ export function useClickable(props: UseClickableProps = {}) {
 
   const handleMouseOver = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
-      if (isDisabled) {
+      if (disabled) {
         event.preventDefault()
         return
       }
 
       onMouseOver?.(event)
     },
-    [isDisabled, onMouseOver],
+    [disabled, onMouseOver],
   )
 
   const handleMouseLeave = useCallback(
@@ -256,7 +256,7 @@ export function useClickable(props: UseClickableProps = {}) {
       ...htmlProps,
       ref,
       type: "button" as React.ButtonHTMLAttributes<any>["type"],
-      "aria-disabled": trulyDisabled ? undefined : isDisabled,
+      "aria-disabled": trulyDisabled ? undefined : disabled,
       disabled: trulyDisabled,
       onClick: handleClick,
       onMouseDown,
@@ -273,7 +273,7 @@ export function useClickable(props: UseClickableProps = {}) {
     ref,
     role: "button",
     "data-active": dataAttr(isPressed),
-    "aria-disabled": isDisabled ? ("true" as const) : undefined,
+    "aria-disabled": disabled ? ("true" as const) : undefined,
     tabIndex: trulyDisabled ? undefined : tabIndex,
     onClick: handleClick,
     onMouseDown: handleMouseDown,

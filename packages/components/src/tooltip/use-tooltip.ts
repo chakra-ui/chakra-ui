@@ -74,7 +74,7 @@ export interface UseTooltipProps
   /**
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * @default false
    */
@@ -112,7 +112,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     arrowShadowColor,
     arrowPadding,
     modifiers,
-    isDisabled,
+    disabled,
     gutter,
     offset,
     direction = theme.direction,
@@ -166,12 +166,12 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   const dispatchCloseEvent = useCloseEvent(ref, closeNow)
 
   const openWithDelay = useCallback(() => {
-    if (!isDisabled && !enterTimeout.current) {
+    if (!disabled && !enterTimeout.current) {
       if (isOpen) dispatchCloseEvent()
       const win = getWin(ref)
       enterTimeout.current = win.setTimeout(onOpen, openDelay)
     }
-  }, [dispatchCloseEvent, isDisabled, isOpen, onOpen, openDelay])
+  }, [dispatchCloseEvent, disabled, isOpen, onOpen, openDelay])
 
   const closeWithDelay = useCallback(() => {
     clearEnterTimeout()
@@ -224,10 +224,10 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   )
 
   useEffect(() => {
-    if (!isDisabled) return
+    if (!disabled) return
     clearEnterTimeout()
     if (isOpen) onClose()
-  }, [isDisabled, isOpen, onClose, clearEnterTimeout])
+  }, [disabled, isOpen, onClose, clearEnterTimeout])
 
   useEffect(() => {
     return () => {

@@ -18,13 +18,7 @@ function isInputEvent(value: any): value is { target: HTMLInputElement } {
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
 export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
-  const {
-    defaultValue,
-    value: valueProp,
-    onChange,
-    isDisabled,
-    isNative,
-  } = props
+  const { defaultValue, value: valueProp, onChange, disabled, isNative } = props
 
   const onChangeProp = useCallbackRef(onChange)
 
@@ -69,7 +63,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
 
   return {
     value,
-    isDisabled,
+    disabled,
     onChange: handleChange,
     setValue,
     getCheckboxProps,

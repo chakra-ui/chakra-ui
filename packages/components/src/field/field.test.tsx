@@ -174,7 +174,7 @@ test("has the correct data attributes", async () => {
       id="name"
       isRequired
       isInvalid
-      isDisabled
+      disabled
       isReadOnly
     >
       <Field.Label data-testid="label">Name</Field.Label>

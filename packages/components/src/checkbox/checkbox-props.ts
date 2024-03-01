@@ -9,7 +9,7 @@ export const checkboxProps = createProps<UseCheckboxProps>()([
   "defaultChecked",
   "id",
   "isChecked",
-  "isDisabled",
+  "disabled",
   "isFocusable",
   "isIndeterminate",
   "isInvalid",
