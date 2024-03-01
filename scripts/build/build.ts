@@ -35,9 +35,9 @@ export async function buildProject(
 
   const config = await getConfig(project, aliases)
 
-  if (!project.manifest.bin) {
-    await prepareProject(project, !prod && ignoreDirs.test(project.dir))
-  }
+  // if (!project.manifest.bin) {
+  //   await prepareProject(project, !prod && ignoreDirs.test(project.dir))
+  // }
 
   if (watch) {
     //
