@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 
 export interface TooltipArrowProps extends HTMLChakraProps<"div"> {}
 
@@ -14,7 +14,7 @@ export const TooltipArrow = forwardRef<TooltipArrowProps, "div">(
         <chakra.div
           data-popper-arrow-inner
           className="chakra-tooltip__arrow-inner"
-          __css={{ bg: "inherit" }}
+          css={{ bg: "inherit" }}
         />
       </chakra.div>
     )

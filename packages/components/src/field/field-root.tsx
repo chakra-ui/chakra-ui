@@ -1,11 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { FieldContextProvider, FieldStylesProvider } from "./field-context"
 import { splitFieldProps } from "./field-props"
 import { FieldContext } from "./types"
@@ -13,7 +13,7 @@ import { useFieldProvider } from "./use-field-provider"
 
 export interface FieldRootProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"FormControl">,
+    SystemRecipeProps<"FormControl">,
     FieldContext {}
 
 /**
@@ -27,8 +27,9 @@ export interface FieldRootProps
  */
 export const FieldRoot = forwardRef<FieldRootProps, "div">(
   function FieldRoot(props, ref) {
-    const styles = useMultiStyleConfig("Field", props)
-    const localProps = omitThemingProps(props)
+    const recipe = useSlotRecipe("Field")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
     const [formControlProps, rootProps] = splitFieldProps(localProps)
     const api = useFieldProvider(formControlProps)
@@ -39,7 +40,7 @@ export const FieldRoot = forwardRef<FieldRootProps, "div">(
           <chakra.div
             {...api.getRootProps(rootProps, ref)}
             className={cx("chakra-form-control", props.className)}
-            __css={styles.root}
+            css={styles.root}
           />
         </FieldStylesProvider>
       </FieldContextProvider>

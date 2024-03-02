@@ -5,7 +5,7 @@ export default {
 }
 
 export const basic = () => (
-  <Wrap spacing={["5", "8", "56px"]}>
+  <Wrap gap={["5", "8", "56px"]}>
     <WrapItem>
       <Badge>Badge 1</Badge>
     </WrapItem>
@@ -34,7 +34,7 @@ const Placeholder = (props: any) => (
 )
 
 export const placeholder = () => (
-  <Wrap bg="pink" spacing={5}>
+  <Wrap bg="pink" gap={5}>
     <Placeholder />
     <Placeholder />
     <Placeholder />
@@ -50,7 +50,7 @@ export const placeholder = () => (
 )
 
 export const responsive = () => (
-  <Wrap spacing={["12px", "24px"]} justify={["center", "flex-start"]}>
+  <Wrap gap={["12px", "24px"]} justify={["center", "flex-start"]}>
     <Placeholder />
     <Placeholder />
     <Placeholder />
@@ -66,7 +66,7 @@ export const responsive = () => (
 )
 
 export const horizontalAndVertical = () => (
-  <Wrap bg="pink" spacingY={["0px", "24px"]} spacingX={["4px", "12px"]}>
+  <Wrap bg="pink" rowGap={["0px", "24px"]} columnGap={["4px", "12px"]}>
     <Placeholder />
     <Placeholder />
     <Placeholder />
@@ -85,7 +85,7 @@ export const withZeroXSpacing = () => (
   <Box>
     <Text>Welcome</Text>
     <Box bg="pink">
-      <Wrap maxW="200px" spacingX="0" spacingY="4">
+      <Wrap maxW="200px" columnGap="0" rowGap="4">
         <Placeholder />
         <Placeholder />
         <Placeholder />

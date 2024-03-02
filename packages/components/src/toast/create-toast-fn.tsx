@@ -1,4 +1,4 @@
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
+import { runIfFn } from "@chakra-ui/utils"
 import {
   MaybeFunction,
   UseToastPromiseOption,

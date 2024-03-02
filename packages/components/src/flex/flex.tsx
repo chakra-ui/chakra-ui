@@ -1,52 +1,56 @@
-import { SystemProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+} from "../styled-system"
 
 export interface FlexOptions {
   /**
    * Shorthand for `alignItems` style prop
-   * @type SystemProps["alignItems"]
+   * @type SystemStyleObject["alignItems"]
    */
-  align?: SystemProps["alignItems"]
+  align?: SystemStyleObject["alignItems"]
 
   /**
    * Shorthand for `justifyContent` style prop
-   * @type SystemProps["justifyContent"]
+   * @type SystemStyleObject["justifyContent"]
    */
-  justify?: SystemProps["justifyContent"]
+  justify?: SystemStyleObject["justifyContent"]
 
   /**
    * Shorthand for `flexWrap` style prop
-   * @type SystemProps["flexWrap"]
+   * @type SystemStyleObject["flexWrap"]
    */
-  wrap?: SystemProps["flexWrap"]
+  wrap?: SystemStyleObject["flexWrap"]
 
   /**
    * Shorthand for `flexDirection` style prop
-   * @type SystemProps["flexDirection"]
+   * @type SystemStyleObject["flexDirection"]
    * @default "row"
    */
-  direction?: SystemProps["flexDirection"]
+  direction?: SystemStyleObject["flexDirection"]
 
   /**
    * Shorthand for `flexBasis` style prop
-   * @type SystemProps["flexBasis"]
+   * @type SystemStyleObject["flexBasis"]
    */
-  basis?: SystemProps["flexBasis"]
+  basis?: SystemStyleObject["flexBasis"]
 
   /**
    * Shorthand for `flexGrow` style prop
-   * @type SystemProps["flexGrow"]
+   * @type SystemStyleObject["flexGrow"]
    */
-  grow?: SystemProps["flexGrow"]
+  grow?: SystemStyleObject["flexGrow"]
 
   /**
    * Shorthand for `flexShrink` style prop
-   * @type SystemProps["flexShrink"]
+   * @type SystemStyleObject["flexShrink"]
    */
-  shrink?: SystemProps["flexShrink"]
+  shrink?: SystemStyleObject["flexShrink"]
 }
 
-export interface FlexProps extends HTMLChakraProps<"div">, FlexOptions {}
+export interface FlexProps extends HTMLChakraProps<"div", FlexOptions> {}
 
 /**
  * React component used to create flexbox layouts.
@@ -71,7 +75,7 @@ export const Flex = forwardRef<FlexProps, "div">(function Flex(props, ref) {
     flexShrink: shrink,
   }
 
-  return <chakra.div ref={ref} __css={styles} {...rest} />
+  return <chakra.div ref={ref} css={styles} {...rest} />
 })
 
 Flex.displayName = "Flex"

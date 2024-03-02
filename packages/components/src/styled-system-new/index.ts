@@ -1,7 +1,0 @@
-export * from "./config"
-export type { JsxStyleProps, SystemStyleObject } from "./css.types"
-export { chakra } from "./factory"
-export * from "./provider"
-export type * from "./recipe.types"
-export { createSystem } from "./system"
-export type { SystemConfig, SystemContext } from "./types"

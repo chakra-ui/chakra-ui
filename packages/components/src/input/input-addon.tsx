@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useInputGroupStyles } from "./input-group"
 
 type Placement = "left" | "right"
@@ -46,7 +46,7 @@ export const InputAddon = forwardRef<InputAddonProps, "div">(
       <StyledAddon
         ref={ref}
         {...rest}
-        __css={{
+        css={{
           ...styles.addon,
           ...placementStyles,
         }}

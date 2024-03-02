@@ -3,7 +3,11 @@ import { ColorModeProvider, ColorModeProviderProps } from "../color-mode"
 import { CSSPolyfill, CSSReset } from "../css-reset"
 import { EnvironmentProvider, EnvironmentProviderProps } from "../env"
 import { PortalManager } from "../portal"
-import { GlobalStyle, ThemeProvider, ThemeProviderProps } from "../system"
+import {
+  GlobalStyle,
+  ThemeProvider,
+  ThemeProviderProps,
+} from "../styled-system"
 
 export interface ProviderProps extends Pick<ThemeProviderProps, "cssVarsRoot"> {
   /**

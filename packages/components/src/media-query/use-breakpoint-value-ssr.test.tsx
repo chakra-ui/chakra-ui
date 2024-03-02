@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server"
 import { useBreakpointValue } from "."
-import { ThemeProvider } from "../system"
+import { ThemeProvider } from "../styled-system"
 import { theme } from "./breakpoint.fixture"
 
 beforeEach(() => {

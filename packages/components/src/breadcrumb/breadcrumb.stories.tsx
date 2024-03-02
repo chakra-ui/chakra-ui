@@ -11,8 +11,10 @@ export const Basic = () => (
     <Breadcrumb.Root>
       <Breadcrumb.List spacing="4">
         <Breadcrumb.Item>
-          <Breadcrumb.Link as={Link} to="/home" replace>
-            Breadcrumb 1
+          <Breadcrumb.Link asChild>
+            <Link to="/home" replace>
+              Breadcrumb 1
+            </Link>
           </Breadcrumb.Link>
         </Breadcrumb.Item>
 

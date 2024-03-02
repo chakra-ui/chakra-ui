@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 
 export interface EmProps extends HTMLChakraProps<"em"> {}
 

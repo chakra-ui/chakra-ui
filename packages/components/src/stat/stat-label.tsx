@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useStatStyles } from "./stat-context"
 
 export interface StatLabelProps extends HTMLChakraProps<"dt"> {}
@@ -12,7 +12,7 @@ export const StatLabel = forwardRef<StatLabelProps, "dt">(
         ref={ref}
         {...props}
         className={cx("chakra-stat__label", props.className)}
-        __css={styles.label}
+        css={[styles.label, props.css]}
       />
     )
   },

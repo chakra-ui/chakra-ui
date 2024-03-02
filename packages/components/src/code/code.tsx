@@ -1,10 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 export interface CodeProps
   extends HTMLChakraProps<"code">,
-    ThemingProps<"Code"> {}
+    SystemRecipeProps<"Code"> {}
 
 /**
  * React component to render inline code snippets.
@@ -12,18 +17,16 @@ export interface CodeProps
  * @see Docs https://chakra-ui.com/code
  */
 export const Code = forwardRef<CodeProps, "code">(function Code(props, ref) {
-  const styles = useStyleConfig("Code", props)
-  const { className, ...rest } = omitThemingProps(props)
+  const recipe = useRecipe("Code")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
 
   return (
     <chakra.code
       ref={ref}
-      className={cx("chakra-code", props.className)}
-      {...rest}
-      __css={{
-        display: "inline-block",
-        ...styles,
-      }}
+      {...localProps}
+      className={cx("chakra-code", localProps.className)}
+      css={{ display: "inline-block", ...styles }}
     />
   )
 })

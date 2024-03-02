@@ -1,25 +1,30 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { useMemo } from "react"
-import { ThemingProps, defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  defineStyle,
+  forwardRef,
+} from "../styled-system"
 import { ButtonGroupContext, ButtonGroupProvider } from "./button-context"
 import { ButtonGroupOptions } from "./button-types"
 
 export interface ButtonGroupProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Button">,
+    SystemRecipeProps<"Button">,
     ButtonGroupOptions {}
 
 const attachedStyles = {
   horizontal: defineStyle({
-    "> *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
-    "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-    "> *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
+    "& > *:first-of-type:not(:last-of-type)": { borderEndRadius: 0 },
+    "& > *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+    "& > *:not(:first-of-type):last-of-type": { borderStartRadius: 0 },
   }),
   vertical: defineStyle({
-    "> *:first-of-type:not(:last-of-type)": { borderBottomRadius: 0 },
-    "> *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
-    "> *:not(:first-of-type):last-of-type": { borderTopRadius: 0 },
+    "& > *:first-of-type:not(:last-of-type)": { borderBottomRadius: 0 },
+    "& > *:not(:first-of-type):not(:last-of-type)": { borderRadius: 0 },
+    "& > *:not(:first-of-type):last-of-type": { borderTopRadius: 0 },
   }),
 }
 
@@ -69,7 +74,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
         <chakra.div
           ref={ref}
           role="group"
-          __css={groupStyles}
+          css={groupStyles}
           className={_className}
           data-attached={isAttached ? "" : undefined}
           data-orientation={orientation}

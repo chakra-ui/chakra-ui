@@ -1,6 +1,11 @@
 import { Icon, IconProps } from "../icon"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 function CloseIcon(props: IconProps) {
   return (
@@ -15,7 +20,7 @@ function CloseIcon(props: IconProps) {
 
 export interface CloseButtonProps
   extends HTMLChakraProps<"button">,
-    ThemingProps<"CloseButton"> {
+    SystemRecipeProps<"CloseButton"> {
   /**
    * If `true`, the close button will be disabled.
    * @default false
@@ -33,8 +38,11 @@ export interface CloseButtonProps
  */
 export const CloseButton = forwardRef<CloseButtonProps, "button">(
   function CloseButton(props, ref) {
-    const styles = useStyleConfig("CloseButton", props)
-    const { children, isDisabled, __css, ...rest } = omitThemingProps(props)
+    const recipe = useRecipe("CloseButton")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
+    const { children, isDisabled, css, ...rest } = localProps
 
     return (
       <chakra.button
@@ -42,9 +50,9 @@ export const CloseButton = forwardRef<CloseButtonProps, "button">(
         aria-label="Close"
         ref={ref}
         disabled={isDisabled}
-        __css={{
+        css={{
           ...styles,
-          ...__css,
+          ...css,
         }}
         {...rest}
       >

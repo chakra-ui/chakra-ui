@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/utils/context"
+import { createContext } from "@chakra-ui/utils"
 import { SystemStyleObject } from "../styled-system"
 import { DialogMotionPreset, DialogOptions } from "./dialog-types"
 import { UseDialogReturn } from "./use-dialog"

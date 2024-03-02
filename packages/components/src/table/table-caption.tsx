@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useTableStyles } from "./table-context"
 
 export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
@@ -17,7 +17,7 @@ export const TableCaption = forwardRef<TableCaptionProps, "caption">(
       <chakra.caption
         {...rest}
         ref={ref}
-        __css={{
+        css={{
           ...styles.caption,
           captionSide: placement,
         }}

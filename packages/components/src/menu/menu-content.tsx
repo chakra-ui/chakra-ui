@@ -1,7 +1,7 @@
-import { callAll } from "@chakra-ui/utils/call-all"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
+import { callAll } from "@chakra-ui/utils"
 import { HTMLMotionProps, Variants, motion } from "framer-motion"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useMenuContext, useMenuStyles } from "./menu-context"
 import { useMenuContent } from "./use-menu"
 
@@ -51,7 +51,7 @@ export const MenuContent = forwardRef<MenuContentProps, "div">(
         variants={motionVariants}
         initial={false}
         animate={api.isOpen ? "enter" : "exit"}
-        __css={styles.content}
+        css={styles.content}
         {...motionProps}
         {...contentProps}
         className={cx("chakra-menu__menu-list", props.className)}

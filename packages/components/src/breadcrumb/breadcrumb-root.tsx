@@ -1,16 +1,16 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { BreadcrumbStylesProvider } from "./breadcrumb-context"
 
 export interface BreadcrumbRootProps
   extends HTMLChakraProps<"nav">,
-    ThemingProps<"Breadcrumb"> {}
+    SystemRecipeProps<"Breadcrumb"> {}
 
 /**
  * Breadcrumb is used to render a breadcrumb navigation landmark.
@@ -21,21 +21,20 @@ export interface BreadcrumbRootProps
  */
 export const BreadcrumbRoot = forwardRef<BreadcrumbRootProps, "nav">(
   function BreadcrumbRoot(props, ref) {
-    const styles = useMultiStyleConfig("Breadcrumb", props)
-    const ownProps = omitThemingProps(props)
-
-    const { children, ...rest } = ownProps
+    const recipe = useSlotRecipe("Breadcrumb")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
     return (
       <chakra.nav
         ref={ref}
         aria-label="breadcrumb"
-        {...rest}
+        {...localProps}
         className={cx("chakra-breadcrumb", props.className)}
-        __css={styles.root}
+        css={styles.root}
       >
         <BreadcrumbStylesProvider value={styles}>
-          {children}
+          {localProps.children}
         </BreadcrumbStylesProvider>
       </chakra.nav>
     )

@@ -22,7 +22,7 @@ export type PropsTableProps = {
 
 const PropsTable = ({
   of,
-  omit = ['layerStyle', 'noOfLines', 'textStyle', 'orientation', 'styleConfig'],
+  omit = ['layerStyle', 'noOfLines', 'textStyle', 'orientation', 'recipe'],
   only,
 }: PropsTableProps) => {
   const propList = React.useMemo(

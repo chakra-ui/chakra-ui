@@ -1,4 +1,4 @@
-import { forwardRef } from "../system"
+import { forwardRef } from "../styled-system"
 import { Square, SquareProps } from "./square"
 
 export interface CircleProps extends SquareProps {}

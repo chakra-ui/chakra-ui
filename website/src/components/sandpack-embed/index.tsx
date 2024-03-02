@@ -58,7 +58,7 @@ const SandpackEmbed = ({
     >
       <Box
         as={SandpackLayout}
-        sx={{
+        css={{
           '--sp-layout-height': 'auto',
         }}
         style={{ flexDirection: isHorizontal ? 'row' : 'column-reverse' }}
@@ -75,7 +75,7 @@ const SandpackEmbed = ({
         <Box
           as={SandpackPreview}
           minHeight='350px'
-          sx={{ '& iframe': { flex: 'initial', flexGrow: 1 } }}
+          css={{ '& iframe': { flex: 'initial', flexGrow: 1 } }}
           {...previewOptions}
         />
       </Box>

@@ -1,16 +1,16 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { StatStylesProvider } from "./stat-context"
 
 export interface StatRootProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Stat"> {}
+    SystemRecipeProps<"Stat"> {}
 
 /**
  * The `Stat` component is used to display some statistics.
@@ -19,17 +19,19 @@ export interface StatRootProps
  */
 export const StatRoot = forwardRef<StatRootProps, "div">(
   function StatRoot(props, ref) {
-    const styles = useMultiStyleConfig("Stat", props)
-    const rootProps = omitThemingProps(props)
+    const recipe = useSlotRecipe("Stat")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
     return (
       <StatStylesProvider value={styles}>
         <chakra.div
           ref={ref}
-          {...rootProps}
-          className={cx("chakra-stat", rootProps.className)}
-          __css={styles.root}
+          {...localProps}
+          className={cx("chakra-stat", localProps.className)}
+          css={styles.root}
         >
-          <dl>{rootProps.children}</dl>
+          <dl>{localProps.children}</dl>
         </chakra.div>
       </StatStylesProvider>
     )

@@ -1,44 +1,46 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { SystemProps, ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
+  SystemStyleObject,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { CardStylesProvider } from "./card-context"
 
 export interface CardOptions {
   /**
    * The flex direction of the card
    */
-  direction?: SystemProps["flexDirection"]
+  direction?: SystemStyleObject["flexDirection"]
   /**
    * The flex alignment of the card
    */
-  align?: SystemProps["alignItems"]
+  align?: SystemStyleObject["alignItems"]
   /**
    * The flex distribution of the card
    */
-  justify?: SystemProps["justifyContent"]
+  justify?: SystemStyleObject["justifyContent"]
 }
 
 export interface CardRootProps
-  extends HTMLChakraProps<"div">,
-    CardOptions,
-    ThemingProps<"Card"> {}
+  extends HTMLChakraProps<"div", CardOptions>,
+    SystemRecipeProps<"Card"> {}
 
 export const CardRoot = forwardRef<CardRootProps, "div">(
   function CardRoot(props, ref) {
+    const recipe = useSlotRecipe("Card")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
     const {
       children,
       direction = "column",
       justify,
       align,
       ...rest
-    } = omitThemingProps(props)
-
-    const styles = useMultiStyleConfig("Card", props)
+    } = localProps
 
     return (
       <CardStylesProvider value={styles}>
@@ -49,7 +51,7 @@ export const CardRoot = forwardRef<CardRootProps, "div">(
           flexDirection={direction}
           justifyContent={justify}
           alignItems={align}
-          __css={styles.root}
+          css={styles.root}
         >
           {children}
         </chakra.div>

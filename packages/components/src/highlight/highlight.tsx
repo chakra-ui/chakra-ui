@@ -29,7 +29,7 @@ export function Highlight(props: HighlightProps): JSX.Element {
     <For each={chunks}>
       {(chunk, index) => {
         return chunk.match ? (
-          <Mark key={index} sx={styles}>
+          <Mark key={index} css={styles}>
             {chunk.text}
           </Mark>
         ) : (

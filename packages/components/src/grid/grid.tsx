@@ -1,62 +1,66 @@
-import { SystemProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+} from "../styled-system"
 
 export interface GridOptions {
   /**
    * Shorthand prop for `gridTemplateColumns`
-   * @type SystemProps["gridTemplateColumns"]
+   * @type SystemStyleObject["gridTemplateColumns"]
    */
-  templateColumns?: SystemProps["gridTemplateColumns"]
+  templateColumns?: SystemStyleObject["gridTemplateColumns"]
   /**
    * Shorthand prop for `gridGap`
-   * @type SystemProps["gridGap"]
+   * @type SystemStyleObject["gridGap"]
    */
-  gap?: SystemProps["gridGap"]
+  gap?: SystemStyleObject["gridGap"]
   /**
    * Shorthand prop for `gridRowGap`
-   * @type SystemProps["gridRowGap"]
+   * @type SystemStyleObject["gridRowGap"]
    */
-  rowGap?: SystemProps["gridRowGap"]
+  rowGap?: SystemStyleObject["gridRowGap"]
   /**
    * Shorthand prop for `gridColumnGap`
-   * @type SystemProps["gridColumnGap"]
+   * @type SystemStyleObject["gridColumnGap"]
    */
-  columnGap?: SystemProps["gridColumnGap"]
+  columnGap?: SystemStyleObject["gridColumnGap"]
   /**
    * Shorthand prop for `gridAutoFlow`
-   * @type SystemProps["gridAutoFlow"]
+   * @type SystemStyleObject["gridAutoFlow"]
    */
-  autoFlow?: SystemProps["gridAutoFlow"]
+  autoFlow?: SystemStyleObject["gridAutoFlow"]
   /**
    * Shorthand prop for `gridAutoRows`
-   * @type SystemProps["gridAutoRows"]
+   * @type SystemStyleObject["gridAutoRows"]
    */
-  autoRows?: SystemProps["gridAutoRows"]
+  autoRows?: SystemStyleObject["gridAutoRows"]
   /**
    * Shorthand prop for `gridAutoColumns`
-   * @type SystemProps["gridAutoColumns"]
+   * @type SystemStyleObject["gridAutoColumns"]
    */
-  autoColumns?: SystemProps["gridAutoColumns"]
+  autoColumns?: SystemStyleObject["gridAutoColumns"]
   /**
    * Shorthand prop for `gridTemplateRows`
-   * @type SystemProps["gridTemplateRows"]
+   * @type SystemStyleObject["gridTemplateRows"]
    */
-  templateRows?: SystemProps["gridTemplateRows"]
+  templateRows?: SystemStyleObject["gridTemplateRows"]
   /**
    * Shorthand prop for `gridTemplateAreas`
-   * @type SystemProps["gridTemplateAreas"]
+   * @type SystemStyleObject["gridTemplateAreas"]
    */
-  templateAreas?: SystemProps["gridTemplateAreas"]
+  templateAreas?: SystemStyleObject["gridTemplateAreas"]
   /**
    * Shorthand prop for `gridColumn`
-   * @type SystemProps["gridColumn"]
+   * @type SystemStyleObject["gridColumn"]
    */
-  column?: SystemProps["gridColumn"]
+  column?: SystemStyleObject["gridColumn"]
   /**
    * Shorthand prop for `gridRow`
-   * @type SystemProps["gridRow"]
+   * @type SystemStyleObject["gridRow"]
    */
-  row?: SystemProps["gridRow"]
+  row?: SystemStyleObject["gridRow"]
 }
 
 export interface GridProps
@@ -102,7 +106,7 @@ export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
     gridTemplateColumns: templateColumns,
   }
 
-  return <chakra.div ref={ref} __css={styles} {...rest} />
+  return <chakra.div ref={ref} css={styles} {...rest} />
 })
 
 Grid.displayName = "Grid"

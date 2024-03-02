@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Textarea } from "."
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Forms / Textarea",

@@ -1,6 +1,6 @@
 import { cx, getValidChildren } from "@chakra-ui/utils"
 import { cloneElement } from "react"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 import { BreadcrumbLink } from "./breadcrumb-link"
 import { BreadcrumbSeparator } from "./breadcrumb-separator"
@@ -55,7 +55,7 @@ export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
         ref={ref}
         className={cx("chakra-breadcrumb__list-item", className)}
         {...rest}
-        __css={styles.item}
+        css={styles.item}
       >
         {clones}
         {!isLastChild && (

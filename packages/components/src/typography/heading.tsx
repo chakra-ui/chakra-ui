@@ -1,10 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 export interface HeadingProps
   extends HTMLChakraProps<"h2">,
-    ThemingProps<"Heading"> {}
+    SystemRecipeProps<"Heading"> {}
 
 /**
  * `Heading` is used to render semantic HTML heading elements.
@@ -15,15 +20,14 @@ export interface HeadingProps
  */
 export const Heading = forwardRef<HeadingProps, "h2">(
   function Heading(props, ref) {
-    const styles = useStyleConfig("Heading", props)
-    const { className, ...rest } = omitThemingProps(props)
-
+    const recipe = useRecipe("Heading")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
       <chakra.h2
         ref={ref}
         className={cx("chakra-heading", props.className)}
-        {...rest}
-        __css={styles}
+        {...localProps}
+        css={[recipe(variantProps), localProps.css]}
       />
     )
   },

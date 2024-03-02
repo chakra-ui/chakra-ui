@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import { Field, RequiredIndicator, useField } from "."
-import { chakra, forwardRef } from "../system"
+import { chakra, forwardRef } from "../styled-system"
 
 const Input = forwardRef((props: any, ref) => {
   // @ts-ignore

@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 
 export interface SpacerProps extends HTMLChakraProps<"div"> {}
 
@@ -9,7 +9,7 @@ export interface SpacerProps extends HTMLChakraProps<"div"> {}
  * @see Docs https://chakra-ui.com/flex#using-the-spacer
  */
 export const Spacer = chakra("div", {
-  baseStyle: {
+  base: {
     flex: 1,
     justifySelf: "stretch",
     alignSelf: "stretch",

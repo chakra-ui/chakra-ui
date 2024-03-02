@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverPositionerProps extends HTMLChakraProps<"div"> {}
@@ -11,7 +11,7 @@ export const PopoverPositioner = forwardRef<PopoverPositionerProps, "div">(
     return (
       <chakra.div
         {...api.getPositionerProps(props, ref)}
-        __css={styles.positioner}
+        css={styles.positioner}
         className="chakra-popover__positioner"
       />
     )

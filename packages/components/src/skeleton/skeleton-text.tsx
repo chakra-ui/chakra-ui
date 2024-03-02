@@ -1,6 +1,6 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { useBreakpointValue } from "../media-query"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 import { Skeleton, SkeletonProps } from "./skeleton"
 
 function range(count: number) {
@@ -16,6 +16,7 @@ export interface SkeletonTextProps extends SkeletonProps {
   endColor?: SkeletonProps["endColor"]
   isLoaded?: SkeletonProps["isLoaded"]
 }
+
 const defaultNoOfLines = 3
 /**
  * `SkeletonText` is used to display the loading state in the form of text.
@@ -45,6 +46,7 @@ export const SkeletonText: React.FC<SkeletonTextProps> = (props) => {
     useBreakpointValue(
       typeof noOfLines === "number" ? [noOfLines] : noOfLines,
     ) || defaultNoOfLines
+
   const numbers = range(noOfLinesValue)
 
   const getWidth = (index: number) => {

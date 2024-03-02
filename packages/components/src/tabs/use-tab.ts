@@ -1,9 +1,7 @@
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { UseClickableProps, useClickable } from "../clickable"
 import { useTabsContext } from "./tabs-context"
 import { makeTabId, makeTabPanelId } from "./use-tabs"
 
-export interface UseTabOptions {
+export interface UseTabProps {
   /**
    * The value of the tab
    */
@@ -20,10 +18,6 @@ export interface UseTabOptions {
   isFocusable?: boolean
 }
 
-export interface UseTabProps
-  extends Omit<UseClickableProps, "color">,
-    UseTabOptions {}
-
 /**
  * Tabs hook to manage each tab button.
  *
@@ -31,7 +25,7 @@ export interface UseTabProps
  * hence the use of `useClickable` to handle this scenario
  */
 export function useTab<P extends UseTabProps>(props: P) {
-  const { isDisabled, isFocusable, value, ref, ...htmlProps } = props
+  const { isDisabled, isFocusable, value } = props
 
   const { setSelectedValue, isManual, id, setFocusedValue, selectedValue } =
     useTabsContext()
@@ -51,24 +45,14 @@ export function useTab<P extends UseTabProps>(props: P) {
     }
   }
 
-  const clickableProps = useClickable({
-    ...htmlProps,
-    ref,
-    isDisabled,
-    isFocusable,
-    onClick: callAllHandlers(props.onClick, onClick),
-  })
-
-  const type: "button" | "submit" | "reset" = "button"
-
   return {
-    ...clickableProps,
+    onClick,
     id: makeTabId(id, value),
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
-    type,
+    type: "button",
     "aria-selected": isSelected,
     "aria-controls": makeTabPanelId(id, value),
-    onFocus: isDisabled ? undefined : callAllHandlers(props.onFocus, onFocus),
+    onFocus: isDisabled ? undefined : onFocus,
   }
 }

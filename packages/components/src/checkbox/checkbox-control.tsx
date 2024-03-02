@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react"
 import { cloneElement, useMemo } from "react"
 import { defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 import { CheckboxIcon } from "./checkbox-icon"
 import { useInitialAnimationState } from "./use-initial-animation-state"
@@ -89,7 +89,7 @@ export const CheckboxControl = forwardRef<CheckboxControlProps, "span">(
       <chakra.span
         ref={ref}
         {...restProps}
-        __css={styles.control}
+        css={styles.control}
         className="chakra-checkbox__control"
         {...getCheckboxProps()}
       >

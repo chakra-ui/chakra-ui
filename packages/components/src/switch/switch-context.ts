@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/utils/context"
+import { createContext } from "@chakra-ui/utils"
 import { UseCheckboxReturn } from "../checkbox"
 import { SystemStyleObject } from "../styled-system"
 

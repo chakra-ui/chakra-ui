@@ -1,6 +1,5 @@
-import { mapResponsive } from "@chakra-ui/utils/responsive"
-import { ResponsiveValue } from "../styled-system"
-import { forwardRef, getToken, useTheme } from "../system"
+import { mapResponsive } from "@chakra-ui/utils"
+import { ConditionalValue, forwardRef } from "../styled-system"
 import { Grid, GridProps } from "./grid"
 
 interface SimpleGridOptions {
@@ -11,7 +10,7 @@ interface SimpleGridOptions {
   /**
    * The number of columns
    */
-  columns?: ResponsiveValue<number>
+  columns?: ConditionalValue<number>
   /**
    * The gap between the grid items
    */

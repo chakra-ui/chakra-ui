@@ -1,19 +1,18 @@
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { compact } from "@chakra-ui/utils/compact"
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
+import {
+  createContext,
+  cx,
+  getValidChildren,
+  mergeWith,
+} from "@chakra-ui/utils"
 import { cloneElement } from "react"
 import {
-  SystemStyleObject,
-  ThemingProps,
-  omitThemingProps,
-} from "../styled-system"
-import {
   HTMLChakraProps,
+  SystemRecipeProps,
+  SystemStyleObject,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 
 const [InputGroupStylesProvider, useInputGroupStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -26,15 +25,18 @@ export { useInputGroupStyles }
 
 export interface InputGroupProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Input"> {}
+    SystemRecipeProps<"Input"> {}
 
 export const InputGroup = forwardRef<InputGroupProps, "div">(
   function InputGroup(props, ref) {
-    const styles = useMultiStyleConfig("Input", props)
-    const { children, className, ...rest } = omitThemingProps(props)
+    const recipe = useSlotRecipe("Input")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
+    const { children, className, ...rest } = localProps
 
     const _className = cx("chakra-input__group", className)
-    const groupStyles: InputGroupProps = {}
+    const groupStyles: any = {}
 
     const validChildren = getValidChildren(children)
 
@@ -61,25 +63,21 @@ export const InputGroup = forwardRef<InputGroupProps, "div">(
     })
 
     const clones = validChildren.map((child: any) => {
-      /**
-       * Make it possible to override the size and variant from `Input`
-       */
-
-      const theming = compact({
-        size: child.props?.size || props.size,
-        variant: child.props?.variant || props.variant,
-      })
-
+      const [childVariantProps] = recipe.splitVariantProps(child.props)
+      const _variantProps = mergeWith({}, variantProps, childVariantProps)
       return child.type.id !== "Input"
-        ? cloneElement(child, theming)
-        : cloneElement(child, Object.assign(theming, groupStyles, child.props))
+        ? cloneElement(child, _variantProps)
+        : cloneElement(
+            child,
+            Object.assign(_variantProps, groupStyles, child.props),
+          )
     })
 
     return (
       <chakra.div
         className={_className}
         ref={ref}
-        __css={{
+        css={{
           width: "100%",
           display: "flex",
           position: "relative",

@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}
@@ -18,7 +18,7 @@ export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
       <chakra.header
         {...getHeaderProps(props, ref)}
         className={cx("chakra-popover__header", props.className)}
-        __css={styles.header}
+        css={styles.header}
       />
     )
   },

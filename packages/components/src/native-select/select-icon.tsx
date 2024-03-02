@@ -1,5 +1,5 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 import { useSelectContext, useSelectStyles } from "./select-context"
 
 const Icon = (props: HTMLChakraProps<"svg">) => (
@@ -36,7 +36,7 @@ export const NativeSelectIcon: React.FC<NativeSelectIconProps> = (props) => {
       {...rest}
       data-disabled={dataAttr(fieldProps.disabled)}
       className={cx("chakra-select__icon-wrapper", props.className)}
-      __css={styles.icon}
+      css={styles.icon}
     >
       <Icon />
     </chakra.div>

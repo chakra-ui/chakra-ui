@@ -1,13 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ComponentProps, HTMLAttributes, ReactElement } from "react"
-import { SystemProps } from "../styled-system"
-import { forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { SystemStyleObject, forwardRef } from "../styled-system"
 import { MenuIcon } from "./menu-icon"
 import { MenuItemProps } from "./menu-item"
 import { StyledMenuItem } from "./styled-menu-item"
 import { UseMenuOptionOptions, useMenuOption } from "./use-menu"
 
-const CheckIcon = (props: ComponentProps<"svg">) => (
+const CheckIcon = (props: React.ComponentProps<"svg">) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
       fill="currentColor"
@@ -22,24 +20,24 @@ export interface MenuItemOptionProps
   /**
    * @type React.ReactElement
    */
-  icon?: ReactElement | null
+  icon?: React.ReactElement | null
   /**
-   * @type SystemProps["mr"]
+   * @type SystemStyleObject["mr"]
    */
-  iconSpacing?: SystemProps["mr"]
+  iconSpacing?: SystemStyleObject["mr"]
 }
 
 export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
-  (props, ref) => {
+  function MenuItemOption(props, ref) {
     // menu option item should always be `type=button`, so we omit `type`
-    const { icon, iconSpacing = "0.75rem", ...rest } = props
+    const { icon, iconSpacing = "0.75rem", ...restProps } = props
 
-    const optionProps = useMenuOption(rest, ref) as HTMLAttributes<HTMLElement>
+    const optionProps = useMenuOption(restProps, ref)
 
     return (
       <StyledMenuItem
         {...optionProps}
-        className={cx("chakra-menu__menuitem-option", rest.className)}
+        className={cx("chakra-menu__menuitem-option", restProps.className)}
       >
         {icon !== null && (
           <MenuIcon
@@ -56,6 +54,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
   },
 )
 
+// @ts-ignore
 MenuItemOption.id = "MenuItemOption"
 
 MenuItemOption.displayName = "MenuItemOption"

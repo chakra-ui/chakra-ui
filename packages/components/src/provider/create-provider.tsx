@@ -1,5 +1,5 @@
 import { Theme } from "@chakra-ui/theme"
-import { Dict } from "@chakra-ui/utils/types"
+import { Dict } from "@chakra-ui/utils"
 import {
   ToastOptionProvider,
   ToastProvider,

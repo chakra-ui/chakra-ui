@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useSwitchContext, useSwitchStyles } from "./switch-context"
 
 export interface SwitchThumbProps extends HTMLChakraProps<"span"> {}
@@ -10,7 +10,7 @@ export const SwitchThumb = forwardRef<SwitchThumbProps, "span">(
 
     return (
       <chakra.span
-        __css={styles.thumb}
+        css={styles.thumb}
         className="chakra-switch__thumb"
         {...getIndicatorProps(props, ref)}
       />

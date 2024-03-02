@@ -33,7 +33,7 @@ function ComponentLink(props: ComponentLinkProps) {
         transform: 'translateY(-2px)',
         textDecor: 'none',
       }}
-      sx={{
+      css={{
         '& span': {
           width: iconSize,
         },

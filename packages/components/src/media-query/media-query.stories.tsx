@@ -1,7 +1,7 @@
 import Frame from "react-frame-component"
 import { Hide, Show, useBreakpoint, useBreakpointValue } from "."
 import { EnvironmentProvider } from "../env"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "System / Breakpoints",

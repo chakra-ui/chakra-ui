@@ -1,5 +1,5 @@
-import { createContext } from "@chakra-ui/utils/context"
-import { createStylesContext } from "../system"
+import { createContext } from "@chakra-ui/utils"
+import { SystemStyleObject } from "../styled-system"
 
 export type StepStatusType = "active" | "complete" | "incomplete"
 
@@ -41,5 +41,9 @@ export const [StepContextProvider, useStepContext] = createContext<StepContext>(
   { name: "StepContext" },
 )
 
-export const [StepperStylesProvider, useStepperStyles] =
-  createStylesContext("Stepper")
+export const [StepperStylesProvider, useStepperStyles] = createContext<
+  Record<string, SystemStyleObject>
+>({
+  name: `StepperStylesContext`,
+  errorMessage: `useStepperStyles returned is 'undefined'. Seems you forgot to wrap the components in "<Stepper />" `,
+})

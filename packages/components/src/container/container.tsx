@@ -1,10 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 export interface ContainerProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Container"> {
+    SystemRecipeProps<"Container"> {
   /**
    * If `true`, container will center its children
    * regardless of their width.
@@ -26,16 +31,18 @@ export interface ContainerProps
  */
 export const Container = forwardRef<ContainerProps, "div">(
   function Container(props, ref) {
-    const { className, centerContent, ...rest } = omitThemingProps(props)
+    const recipe = useRecipe("Container")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-    const styles = useStyleConfig("Container", props)
+    const { className, centerContent, ...rest } = localProps
 
     return (
       <chakra.div
         ref={ref}
         className={cx("chakra-container", className)}
         {...rest}
-        __css={{
+        css={{
           ...styles,
           ...(centerContent && {
             display: "flex",

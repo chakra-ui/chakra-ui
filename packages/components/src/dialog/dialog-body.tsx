@@ -1,6 +1,6 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { useEffect } from "react"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useDialogContext, useDialogStyles } from "./dialog-context"
 
 export interface DialogBodyProps extends HTMLChakraProps<"div"> {}
@@ -23,7 +23,7 @@ export const DialogBody = forwardRef<DialogBodyProps, "div">((props, ref) => {
       className={_className}
       id={bodyId}
       {...rest}
-      __css={styles.body}
+      css={styles.body}
     />
   )
 })

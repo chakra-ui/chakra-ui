@@ -3,7 +3,6 @@ import { VisuallyHidden } from "."
 
 test("should render correctly", async () => {
   const { getByText } = render(<VisuallyHidden>Click me</VisuallyHidden>)
-
   expect(getByText(/Click me/i)).toBeInTheDocument()
 })
 
@@ -18,12 +17,9 @@ test("should have no accessibility violations", async () => {
 
 test("should render a visually hidden input", async () => {
   const { getByTestId } = render(
-    <VisuallyHidden
-      data-testid="input"
-      as="input"
-      type="checkbox"
-      defaultChecked
-    />,
+    <VisuallyHidden asChild>
+      <input type="checkbox" defaultChecked />
+    </VisuallyHidden>,
   )
 
   const input = getByTestId("input")

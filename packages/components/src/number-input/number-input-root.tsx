@@ -1,11 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import {
   NumberInputContextProvider,
   NumberInputStylesProvider,
@@ -30,7 +30,7 @@ interface InputOptions {
 
 export interface NumberInputRootProps
   extends UseNumberInputProps,
-    ThemingProps<"NumberInput">,
+    SystemRecipeProps<"NumberInput">,
     InputOptions,
     Omit<HTMLChakraProps<"div">, keyof UseNumberInputProps> {}
 
@@ -46,11 +46,11 @@ export interface NumberInputRootProps
  */
 export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
   function NumberInputRoot(props, ref) {
-    const styles = useMultiStyleConfig("NumberInput", props)
+    const recipe = useSlotRecipe("NumberInput")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-    const ownProps = omitThemingProps(props)
-    const [hookProps, rootProps] = splitNumberInputProps(ownProps)
-
+    const [hookProps, rootProps] = splitNumberInputProps(localProps)
     const api = useNumberInput(hookProps)
 
     return (
@@ -60,7 +60,7 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
             {...rootProps}
             ref={ref}
             className={cx("chakra-numberinput", props.className)}
-            __css={styles.root}
+            css={styles.root}
           />
         </NumberInputStylesProvider>
       </NumberInputContextProvider>

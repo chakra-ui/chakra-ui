@@ -1,12 +1,13 @@
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
-import { ChakraProps, chakra } from "../system"
+import { JsxStyleProps, chakra } from "../styled-system"
+import { HtmlProp } from "../styled-system/factory.types"
 import { scaleFadeConfig, slideFadeConfig } from "../transition"
 import { DialogMotionPreset } from "./dialog-types"
 
 export interface DialogTransitionProps
-  extends Omit<HTMLMotionProps<"section">, "color" | "transition">,
-    ChakraProps {
+  extends Omit<HTMLMotionProps<"section">, HtmlProp>,
+    JsxStyleProps {
   preset?: DialogMotionPreset
   motionProps?: HTMLMotionProps<"section">
 }

@@ -1,50 +1,22 @@
 import { cx } from "@chakra-ui/utils"
-import { createContext } from "@chakra-ui/utils/context"
-import { useMemo } from "react"
-import {
-  SystemStyleObject,
-  ThemingProps,
-  omitThemingProps,
-} from "../styled-system"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-  useTheme,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import {
-  UseRangeSliderProps,
-  UseRangeSliderReturn,
-  useRangeSlider,
-} from "./use-range-slider"
-
-interface RangeSliderContext
-  extends Omit<UseRangeSliderReturn, "getRootProps"> {
-  name?: string | string[]
-}
-
-const [RangeSliderProvider, useRangeSliderContext] =
-  createContext<RangeSliderContext>({
-    name: "SliderContext",
-    errorMessage:
-      "useSliderContext: `context` is undefined. Seems you forgot to wrap all slider components within <RangeSlider />",
-  })
-
-const [RangeSliderStylesProvider, useRangeSliderStyles] = createContext<
-  Record<string, SystemStyleObject>
->({
-  name: `RangeSliderStylesContext`,
-  errorMessage: `useRangeSliderStyles returned is 'undefined'. Seems you forgot to wrap the components in "<RangeSlider />" `,
-})
-
-export { useRangeSliderStyles }
-
-export { RangeSliderProvider, useRangeSliderContext }
+  RangeSliderProvider,
+  RangeSliderStylesProvider,
+  useRangeSliderContext,
+  useRangeSliderStyles,
+} from "./slider-context"
+import { UseRangeSliderProps, useRangeSlider } from "./use-range-slider"
 
 export interface RangeSliderProps
   extends UseRangeSliderProps,
-    ThemingProps<"Slider">,
+    SystemRecipeProps<"Slider">,
     Omit<HTMLChakraProps<"div">, keyof UseRangeSliderProps> {}
 
 /**
@@ -61,25 +33,23 @@ export const RangeSlider = forwardRef<RangeSliderProps, "div">(
       ...props,
     }
 
-    const styles = useMultiStyleConfig("Slider", sliderProps)
-    const ownProps = omitThemingProps(sliderProps)
+    const recipe = useSlotRecipe("Slider")
+    const [variantProps, localProps] = recipe.splitVariantProps(sliderProps)
+    const styles = recipe(variantProps)
 
-    const { direction } = useTheme()
-    ownProps.direction = direction
+    // const { direction } = useTheme()
+    // ownProps.direction = direction
 
-    const { getRootProps, ...context } = useRangeSlider(ownProps)
-    const ctx = useMemo(
-      () => ({ ...context, name: sliderProps.name }),
-      [context, sliderProps.name],
-    )
+    const api = useRangeSlider(localProps)
+    const context = { ...api, name: localProps.name }
 
     return (
-      <RangeSliderProvider value={ctx}>
+      <RangeSliderProvider value={context}>
         <RangeSliderStylesProvider value={styles}>
           <chakra.div
-            {...getRootProps({}, ref)}
+            {...api.getRootProps({}, ref)}
             className="chakra-slider"
-            __css={styles.root}
+            css={styles.root}
           >
             {sliderProps.children}
           </chakra.div>
@@ -101,18 +71,18 @@ export interface RangeSliderThumbProps extends HTMLChakraProps<"div"> {
  */
 export const RangeSliderThumb = forwardRef<RangeSliderThumbProps, "div">(
   function RangeSliderThumb(props, ref) {
-    const { getThumbProps, getInputProps, name } = useRangeSliderContext()
+    const api = useRangeSliderContext()
     const styles = useRangeSliderStyles()
-    const thumbProps = getThumbProps(props, ref)
+    const thumbProps = api.getThumbProps(props, ref)
 
     return (
       <chakra.div
         {...thumbProps}
         className={cx("chakra-slider__thumb", props.className)}
-        __css={styles.thumb}
+        css={styles.thumb}
       >
         {thumbProps.children}
-        {name && <input {...getInputProps({ index: props.index })} />}
+        {api.name && <input {...api.getInputProps({ index: props.index })} />}
       </chakra.div>
     )
   },
@@ -124,15 +94,15 @@ export interface RangeSliderTrackProps extends HTMLChakraProps<"div"> {}
 
 export const RangeSliderTrack = forwardRef<RangeSliderTrackProps, "div">(
   function RangeSliderTrack(props, ref) {
-    const { getTrackProps } = useRangeSliderContext()
+    const api = useRangeSliderContext()
     const styles = useRangeSliderStyles()
-    const trackProps = getTrackProps(props, ref)
+    const trackProps = api.getTrackProps(props, ref)
 
     return (
       <chakra.div
         {...trackProps}
         className={cx("chakra-slider__track", props.className)}
-        __css={styles.track}
+        css={styles.track}
         data-testid="chakra-range-slider-track"
       />
     )
@@ -147,15 +117,15 @@ export const RangeSliderFilledTrack = forwardRef<
   RangeSliderInnerTrackProps,
   "div"
 >(function RangeSliderFilledTrack(props, ref) {
-  const { getInnerTrackProps } = useRangeSliderContext()
+  const api = useRangeSliderContext()
   const styles = useRangeSliderStyles()
-  const trackProps = getInnerTrackProps(props, ref)
+  const trackProps = api.getInnerTrackProps(props, ref)
 
   return (
     <chakra.div
       {...trackProps}
       className="chakra-slider__filled-track"
-      __css={styles.filledTrack}
+      css={styles.filledTrack}
     />
   )
 })
@@ -174,14 +144,14 @@ export interface RangeSliderMarkProps extends HTMLChakraProps<"div"> {
  */
 export const RangeSliderMark = forwardRef<RangeSliderMarkProps, "div">(
   function RangeSliderMark(props, ref) {
-    const { getMarkerProps } = useRangeSliderContext()
+    const api = useRangeSliderContext()
     const styles = useRangeSliderStyles()
-    const markProps = getMarkerProps(props, ref)
+    const markProps = api.getMarkerProps(props, ref)
     return (
       <chakra.div
         {...markProps}
         className={cx("chakra-slider__marker", props.className)}
-        __css={styles.mark}
+        css={styles.mark}
       />
     )
   },

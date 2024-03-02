@@ -1,12 +1,11 @@
 import { callAll, cx } from "@chakra-ui/utils"
-import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
-  PropsOf,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import {
   CheckboxContextProvider,
   CheckboxStylesProvider,
@@ -19,14 +18,14 @@ import { useCheckbox } from "./use-checkbox"
 type CheckboxControlProps = Omit<HTMLChakraProps<"div">, keyof UseCheckboxProps>
 
 type BaseInputProps = Pick<
-  PropsOf<"input">,
+  React.ComponentPropsWithoutRef<"input">,
   "onBlur" | "checked" | "defaultChecked"
 >
 
 export interface CheckboxRootProps
   extends CheckboxControlProps,
     BaseInputProps,
-    ThemingProps<"Checkbox">,
+    SystemRecipeProps<"Checkbox">,
     UseCheckboxProps,
     CheckboxOptions {}
 
@@ -36,8 +35,9 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
 
     const mergedProps = { ...group, ...props } as CheckboxRootProps
 
-    const styles = useMultiStyleConfig("Checkbox", mergedProps)
-    const ownProps = omitThemingProps(props)
+    const recipe = useSlotRecipe("Checkbox")
+    const [variantProps, ownProps] = recipe.splitVariantProps(mergedProps)
+    const styles = recipe(variantProps)
 
     const {
       spacing = "0.5rem",
@@ -76,7 +76,7 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
         <CheckboxContextProvider value={{ ...checkboxState, spacing }}>
           <chakra.label
             {...getRootProps(localProps)}
-            __css={styles.root}
+            css={styles.root}
             className={cx("chakra-checkbox", className)}
           >
             <input

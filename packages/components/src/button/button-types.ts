@@ -1,4 +1,4 @@
-import { SystemProps } from "../styled-system"
+import { SystemStyleObject } from "../styled-system"
 
 export interface ButtonGroupOptions {
   /**
@@ -17,9 +17,9 @@ export interface ButtonGroupOptions {
   /**
    * The spacing between the buttons
    * @default '0.5rem'
-   * @type SystemProps["marginRight"]
+   * @type SystemStyleObject["marginRight"]
    */
-  spacing?: SystemProps["marginRight"]
+  spacing?: SystemStyleObject["marginRight"]
 }
 
 export interface ButtonOptions {
@@ -38,8 +38,8 @@ export interface ButtonOptions {
 export interface ButtonSpinnerOptions {
   label?: React.ReactNode
   /**
-   * @type SystemProps["margin"]
+   * @type SystemStyleObject["margin"]
    */
-  spacing?: SystemProps["margin"]
+  spacing?: SystemStyleObject["margin"]
   placement?: "start" | "end"
 }

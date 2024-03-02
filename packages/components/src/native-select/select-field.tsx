@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useSelectContext, useSelectStyles } from "./select-context"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -25,7 +25,7 @@ export const NativeSelectField = forwardRef<NativeSelectFieldProps, "select">(
         {...fieldProps}
         ref={ref}
         className={cx("chakra-select__field", className)}
-        __css={styles.field}
+        css={styles.field}
       >
         {placeholder && <option value="">{placeholder}</option>}
         {children}

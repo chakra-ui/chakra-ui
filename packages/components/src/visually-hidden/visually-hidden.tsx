@@ -1,5 +1,16 @@
-import { chakra } from "../system"
-import { visuallyHiddenStyle } from "./visually-hidden.style"
+import { chakra } from "../styled-system"
+
+export const visuallyHiddenStyle = {
+  border: "0",
+  clip: "rect(0, 0, 0, 0)",
+  height: "1px",
+  width: "1px",
+  margin: "-1px",
+  padding: "0",
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  position: "absolute",
+}
 
 /**
  * Visually hidden component used to hide
@@ -8,20 +19,7 @@ import { visuallyHiddenStyle } from "./visually-hidden.style"
  * @see Docs https://chakra-ui.com/docs/components/visually-hidden
  */
 export const VisuallyHidden = chakra("span", {
-  baseStyle: visuallyHiddenStyle,
+  base: visuallyHiddenStyle,
 })
 
 VisuallyHidden.displayName = "VisuallyHidden"
-
-/**
- * Visually hidden input component for designing
- * custom input components using the html `input`
- * as a proxy
- *
- * @see Docs https://chakra-ui.com/docs/components/visually-hidden#visually-hidden-input
- */
-export const VisuallyHiddenInput = chakra("input", {
-  baseStyle: visuallyHiddenStyle,
-})
-
-VisuallyHiddenInput.displayName = "VisuallyHiddenInput"

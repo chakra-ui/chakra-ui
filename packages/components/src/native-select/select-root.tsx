@@ -1,6 +1,10 @@
 import { FieldOptions, splitFieldProps, useField } from "../field"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { chakra, forwardRef, useMultiStyleConfig } from "../system"
+import {
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useSlotRecipe,
+} from "../styled-system"
 import { SelectContextProvider, SelectStylesProvider } from "./select-context"
 import { NativeSelectFieldProps } from "./select-field"
 
@@ -21,7 +25,7 @@ interface NativeSelectOptions extends FieldOptions {
 
 export interface NativeSelectRootProps
   extends NativeSelectFieldProps,
-    ThemingProps<"Select">,
+    SystemRecipeProps<"Select">,
     NativeSelectOptions {}
 
 /**
@@ -31,11 +35,12 @@ export interface NativeSelectRootProps
  */
 export const NativeSelectRoot = forwardRef<NativeSelectRootProps, "select">(
   function NativeSelectRoot(props, ref) {
-    const styles = useMultiStyleConfig("Select", props)
+    const recipe = useSlotRecipe("Select")
 
-    const ownProps = omitThemingProps(props)
-    const [fieldProps, localProps] = splitFieldProps(ownProps)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
+    const [fieldProps, rootProps] = splitFieldProps(localProps)
     const field = useField(fieldProps)
 
     return (
@@ -44,8 +49,8 @@ export const NativeSelectRoot = forwardRef<NativeSelectRootProps, "select">(
           <chakra.div
             ref={ref}
             className="chakra-select"
-            __css={styles.root}
-            {...localProps}
+            css={styles.root}
+            {...rootProps}
           >
             {props.children}
           </chakra.div>

@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 export interface CircularProgressValueTextProps
@@ -15,7 +15,7 @@ export const CircularProgressValueText = forwardRef<
     <chakra.span
       ref={ref}
       {...props}
-      __css={{
+      css={{
         fontSize: `calc(${size} * 0.2)`,
         top: "50%",
         lineHeight: "1em",

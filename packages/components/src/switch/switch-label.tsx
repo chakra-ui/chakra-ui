@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useSwitchContext, useSwitchStyles } from "./switch-context"
 
 export interface SwitchLabelProps extends HTMLChakraProps<"label"> {}
@@ -12,7 +12,7 @@ export const SwitchLabel = forwardRef<SwitchLabelProps, "span">(
       <chakra.span
         className="chakra-switch__label"
         {...api.getLabelProps(props, ref)}
-        __css={styles.label}
+        css={styles.label}
       />
     )
   },

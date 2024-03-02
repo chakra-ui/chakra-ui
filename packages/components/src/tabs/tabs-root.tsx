@@ -1,17 +1,14 @@
 import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { cx } from "@chakra-ui/utils/cx"
-import { useMemo } from "react"
-import {
-  SystemStyleObject,
-  ThemingProps,
-  omitThemingProps,
-} from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
+  defineStyle,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
+import { splitTabsProps } from "./tab-props"
 import { TabsProvider, TabsStylesProvider } from "./tabs-context"
 import { UseTabsProps, useTabs } from "./use-tabs"
 
@@ -28,9 +25,8 @@ interface TabsRootOptions {
 }
 
 export interface TabsRootProps
-  extends UseTabsProps,
-    ThemingProps<"Tabs">,
-    Omit<HTMLChakraProps<"div">, "onChange" | "defaultValue">,
+  extends HTMLChakraProps<"div", UseTabsProps>,
+    SystemRecipeProps<"Tabs">,
     TabsRootOptions {
   children: React.ReactNode
 }
@@ -45,28 +41,28 @@ export interface TabsRootProps
  */
 export const TabsRoot = forwardRef<TabsRootProps, "div">(
   function TabsRoot(props, ref) {
-    const styles = useMultiStyleConfig("Tabs", props)
-    const { children, className, ...rest } = omitThemingProps(props)
+    const recipe = useSlotRecipe("Tabs")
 
-    const ctx = useTabs(rest)
-    const context = useMemo(() => ctx, [ctx])
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-    const tabsStyles: SystemStyleObject = {
+    const [useTabsProps, elementProps] = splitTabsProps(localProps)
+    const api = useTabs(useTabsProps)
+
+    const tabsStyles = defineStyle({
       position: "relative",
       ...styles.root,
-    }
+    })
 
     return (
-      <TabsProvider value={context}>
+      <TabsProvider value={api}>
         <TabsStylesProvider value={styles}>
           <chakra.div
-            className={cx("chakra-tabs", className)}
-            ref={useMergeRefs(ref, context.rootRef)}
-            {...rest}
-            __css={tabsStyles}
-          >
-            {children}
-          </chakra.div>
+            className={cx("chakra-tabs", props.className)}
+            ref={useMergeRefs(ref, api.rootRef)}
+            {...elementProps}
+            css={[tabsStyles, props.css]}
+          />
         </TabsStylesProvider>
       </TabsProvider>
     )

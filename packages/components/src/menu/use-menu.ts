@@ -8,10 +8,13 @@ import { useFocusOnHide } from "@chakra-ui/hooks/use-focus-effect"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useOutsideClick } from "@chakra-ui/hooks/use-outside-click"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { LazyMode, lazyDisclosure } from "@chakra-ui/utils/lazy"
+import {
+  LazyMode,
+  callAllHandlers,
+  dataAttr,
+  getValidChildren,
+  lazyDisclosure,
+} from "@chakra-ui/utils"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import {
   cloneElement,

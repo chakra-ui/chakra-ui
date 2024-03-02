@@ -1,9 +1,9 @@
-import { HTMLChakraProps, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 
 export interface QuoteProps extends HTMLChakraProps<"q"> {}
 
 export const Quote = chakra("q", {
-  baseStyle: {
+  base: {
     fontWeight: "bold",
     lineHeight: "1.2",
   },

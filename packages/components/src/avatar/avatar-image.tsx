@@ -1,5 +1,5 @@
 import { ImageProps } from "../image"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 import { useAvatarContext } from "./avatar-context"
 
 export interface AvatarImageProps extends ImageProps {}
@@ -30,7 +30,7 @@ export function AvatarImage(props: AvatarImageProps) {
       crossOrigin={crossOrigin}
       className="chakra-avatar__img"
       loading={loading}
-      __css={{
+      css={{
         width: "100%",
         height: "100%",
         objectFit: "cover",

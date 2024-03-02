@@ -1,5 +1,4 @@
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { useStyleConfig } from "../system"
+import { SystemRecipeProps, useRecipe } from "../styled-system"
 import {
   TooltipContextProvider,
   TooltipStylesProvider,
@@ -7,7 +6,7 @@ import {
 import { UseTooltipProps, useTooltip } from "./use-tooltip"
 
 export interface TooltipRootProps
-  extends ThemingProps<"Tooltip">,
+  extends SystemRecipeProps<"Tooltip">,
     Partial<UseTooltipProps> {
   /**
    * The React component to use as the
@@ -23,9 +22,11 @@ export interface TooltipRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
  */
 export const TooltipRoot = (props: TooltipRootProps) => {
-  const styles = useStyleConfig("Tooltip", props)
-  const ownProps = omitThemingProps(props)
-  const api = useTooltip(ownProps)
+  const recipe = useRecipe("Tooltip")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
+
+  const api = useTooltip(localProps)
 
   return (
     <TooltipStylesProvider value={styles}>

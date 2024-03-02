@@ -1,4 +1,4 @@
-import { SystemProps } from "../styled-system"
+import { SystemStyleObject } from "../styled-system"
 
 export interface AvatarOptions {
   /**
@@ -34,9 +34,9 @@ export interface AvatarOptions {
   loading?: "eager" | "lazy"
   /**
    * The border color of the avatar
-   * @type SystemProps["borderColor"]
+   * @type SystemStyleObject["borderColor"]
    */
-  borderColor?: SystemProps["borderColor"]
+  borderColor?: SystemStyleObject["borderColor"]
   /**
    * Function called when image failed to load
    */

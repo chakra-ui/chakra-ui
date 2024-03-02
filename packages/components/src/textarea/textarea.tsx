@@ -1,9 +1,13 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { omit } from "@chakra-ui/utils/omit"
+import { cx, omit } from "@chakra-ui/utils"
 import { FieldOptions, useField } from "../field"
 import { splitFieldProps } from "../field/field-props"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 interface TextareaOptions {
   /**
@@ -22,36 +26,36 @@ interface TextareaOptions {
 
 type Omitted = "disabled" | "required" | "readOnly"
 
-const omitted = ["h", "minH", "height", "minHeight"]
+const omitted = ["h", "minH", "height", "minHeight"] as const
 
 export interface TextareaProps
   extends Omit<HTMLChakraProps<"textarea">, Omitted>,
     TextareaOptions,
     FieldOptions,
-    ThemingProps<"Textarea"> {}
+    SystemRecipeProps<"Textarea"> {}
 
 /**
  * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/textarea
  */
 export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
-  const styles = useStyleConfig("Textarea", props)
-  const { className, rows, ...rest } = omitThemingProps(props)
+  const recipe = useRecipe("Textarea")
 
-  const [_controlProps, localProps] = splitFieldProps(rest)
-  const formProps = useField<HTMLTextAreaElement>(_controlProps)
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
 
-  //@ts-ignore
-  const textareaStyles = rows ? omit(styles, omitted) : styles
+  const [useFieldProps, elementProps] = splitFieldProps(localProps)
+  const fieldProps = useField<HTMLTextAreaElement>(useFieldProps)
+
+  const textareaStyles = localProps.rows ? omit(styles, omitted) : styles
 
   return (
     <chakra.textarea
       ref={ref}
-      rows={rows}
-      {...localProps}
-      {...formProps}
-      className={cx("chakra-textarea", className)}
-      __css={textareaStyles}
+      {...elementProps}
+      {...fieldProps}
+      className={cx("chakra-textarea", localProps.className)}
+      css={textareaStyles}
     />
   )
 })

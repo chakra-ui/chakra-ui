@@ -1,4 +1,4 @@
-import { isBrowser } from "@chakra-ui/utils/is-element"
+import { isBrowser } from ""@chakra-ui/utils"-element"
 import {
   useCallback,
   useEffect,

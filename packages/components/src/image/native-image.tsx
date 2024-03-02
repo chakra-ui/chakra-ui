@@ -1,4 +1,5 @@
-import { PropsOf, forwardRef } from "../system"
+import React from "react"
+import { forwardRef } from "../styled-system"
 
 export interface NativeImageOptions {
   /**
@@ -11,7 +12,9 @@ export interface NativeImageOptions {
   htmlHeight?: string | number
 }
 
-interface NativeImageProps extends PropsOf<"img">, NativeImageOptions {}
+interface NativeImageProps
+  extends React.ComponentProps<"img">,
+    NativeImageOptions {}
 
 export const NativeImage = forwardRef(function NativeImage(
   props: NativeImageProps,

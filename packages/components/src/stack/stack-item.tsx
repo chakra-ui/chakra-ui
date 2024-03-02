@@ -1,16 +1,19 @@
-import { ChakraComponent, chakra } from "../system"
+import { chakra } from "../styled-system"
 
-export const StackItem: ChakraComponent<"div"> = (props) => (
-  <chakra.div
-    className="chakra-stack__item"
-    {...props}
-    __css={{
+export const StackItem = chakra(
+  "div",
+  {
+    base: {
       display: "inline-block",
       flex: "0 0 auto",
       minWidth: 0,
-      ...props["__css"],
-    }}
-  />
+    },
+  },
+  {
+    defaultProps: {
+      className: "chakra-stack__item",
+    },
+  },
 )
 
 StackItem.displayName = "StackItem"

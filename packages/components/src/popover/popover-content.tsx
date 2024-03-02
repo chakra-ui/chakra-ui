@@ -1,6 +1,6 @@
 import { callAll, cx } from "@chakra-ui/utils"
 import { HTMLMotionProps } from "framer-motion"
-import { HTMLChakraProps, forwardRef } from "../system"
+import { HTMLChakraProps, forwardRef } from "../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 import { PopoverTransition, PopoverTransitionProps } from "./popover-transition"
 
@@ -25,7 +25,7 @@ export const PopoverContent = forwardRef<PopoverContentProps, "section">(
           contentProps.onAnimationComplete,
         )}
         className={cx("chakra-popover__content", props.className)}
-        __css={styles.content}
+        css={styles.content}
       />
     )
   },

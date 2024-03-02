@@ -1,16 +1,16 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { FieldErrorStylesProvider, useFieldContext } from "./field-context"
 
 export interface FieldErrorMessageProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"FieldErrorMessage"> {}
+    SystemRecipeProps<"FieldErrorMessage"> {}
 
 /**
  * Used to provide feedback about an invalid input,
@@ -18,8 +18,10 @@ export interface FieldErrorMessageProps
  */
 export const FieldErrorMessage = forwardRef<FieldErrorMessageProps, "div">(
   function FieldErrorMessage(props, ref) {
-    const styles = useMultiStyleConfig("FormError", props)
-    const ownProps = omitThemingProps(props)
+    const recipe = useSlotRecipe("FieldErrorMessage")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
     const field = useFieldContext()
 
     if (!field?.isInvalid) return null
@@ -27,9 +29,9 @@ export const FieldErrorMessage = forwardRef<FieldErrorMessageProps, "div">(
     return (
       <FieldErrorStylesProvider value={styles}>
         <chakra.div
-          {...field?.getErrorMessageProps(ownProps, ref)}
+          {...field?.getErrorMessageProps(localProps, ref)}
           className={cx("chakra-form__error-message", props.className)}
-          __css={{
+          css={{
             display: "flex",
             alignItems: "center",
             ...styles.text,

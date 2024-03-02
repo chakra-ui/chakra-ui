@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { NativeImage, NativeImageOptions } from "./native-image"
 
 export interface ImgProps extends HTMLChakraProps<"img">, NativeImageOptions {}

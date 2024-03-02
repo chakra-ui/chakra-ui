@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useTooltipContext } from "./tooltip-context"
 
 export interface TooltipTriggerProps extends HTMLChakraProps<"button"> {}

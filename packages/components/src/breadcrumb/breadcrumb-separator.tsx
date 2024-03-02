@@ -1,5 +1,10 @@
-import { SystemStyleObject, defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  chakra,
+  defineStyle,
+  forwardRef,
+} from "../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"div"> {
@@ -24,7 +29,7 @@ export const BreadcrumbSeparator = forwardRef<BreadcrumbSeparatorProps, "span">(
         ref={ref}
         role="presentation"
         {...rest}
-        __css={separatorStyles}
+        css={separatorStyles}
       />
     )
   },

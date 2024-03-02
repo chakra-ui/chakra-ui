@@ -1,10 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 export interface BadgeProps
   extends HTMLChakraProps<"span">,
-    ThemingProps<"Badge"> {}
+    SystemRecipeProps<"Badge"> {}
 
 /**
  * React component used to display notifications, messages, or
@@ -13,15 +18,16 @@ export interface BadgeProps
  * @see Docs https://chakra-ui.com/badge
  */
 export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
-  const styles = useStyleConfig("Badge", props)
-  const { className, ...rest } = omitThemingProps(props)
+  const recipe = useRecipe("Badge")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
 
   return (
     <chakra.span
       ref={ref}
-      className={cx("chakra-badge", props.className)}
-      {...rest}
-      __css={{
+      {...localProps}
+      className={cx("chakra-badge", localProps.className)}
+      css={{
         display: "inline-block",
         whiteSpace: "nowrap",
         verticalAlign: "middle",

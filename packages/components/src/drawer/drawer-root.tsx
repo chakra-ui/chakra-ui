@@ -1,15 +1,17 @@
 import { DialogRoot, DialogRootProps } from "../dialog/dialog-root"
-import { ThemingProps } from "../styled-system"
-import { useTheme } from "../system"
+import { SystemRecipeProps, useSlotRecipe } from "../styled-system"
 import { DrawerContextProvider, DrawerOptions } from "./drawer-context"
 import { getDrawerPlacement } from "./get-placement"
 
 export interface DrawerRootProps
   extends DrawerOptions,
-    ThemingProps<"Drawer">,
+    SystemRecipeProps<"Drawer">,
     Omit<
       DialogRootProps,
-      "scrollBehavior" | "motionPreset" | "isCentered" | keyof ThemingProps
+      | "scrollBehavior"
+      | "motionPreset"
+      | "isCentered"
+      | keyof SystemRecipeProps<"Drawer">
     > {}
 
 /**
@@ -28,17 +30,12 @@ export function DrawerRoot(props: DrawerRootProps) {
   } = props
 
   const theme = useTheme()
-  const drawerStyleConfig = theme.components?.Drawer
+  const recipe = useSlotRecipe("Drawer")
   const placement = getDrawerPlacement(placementProp, theme.direction)
 
   return (
     <DrawerContextProvider value={{ placement }}>
-      <DialogRoot
-        isOpen={isOpen}
-        onClose={onClose}
-        styleConfig={drawerStyleConfig}
-        {...rest}
-      >
+      <DialogRoot isOpen={isOpen} onClose={onClose} recipe={recipe} {...rest}>
         {children}
       </DialogRoot>
     </DrawerContextProvider>

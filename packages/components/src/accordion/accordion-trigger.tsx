@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import {
   useAccordionItemContext,
   useAccordionStyles,
@@ -14,7 +14,6 @@ export interface AccordionTriggerProps extends HTMLChakraProps<"button"> {}
  * Note 🚨: Each accordion button must be wrapped in a heading tag,
  * that is appropriate for the information architecture of the page.
  */
-
 export const AccordionTrigger = forwardRef<AccordionTriggerProps, "button">(
   function AccordionTrigger(props, ref) {
     const api = useAccordionItemContext()
@@ -26,7 +25,7 @@ export const AccordionTrigger = forwardRef<AccordionTriggerProps, "button">(
       <chakra.button
         {...triggerProps}
         className={cx("chakra-accordion__trigger", props.className)}
-        __css={styles.trigger}
+        css={styles.trigger}
       />
     )
   },

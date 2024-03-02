@@ -1,6 +1,6 @@
-import { HTMLChakraProps, PropsOf, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 
-function CheckIcon(props: PropsOf<typeof chakra.svg>) {
+function CheckIcon(props: HTMLChakraProps<"svg">) {
   return (
     <chakra.svg
       width="1.2em"
@@ -18,7 +18,7 @@ function CheckIcon(props: PropsOf<typeof chakra.svg>) {
   )
 }
 
-function IndeterminateIcon(props: PropsOf<typeof chakra.svg>) {
+function IndeterminateIcon(props: HTMLChakraProps<"svg">) {
   return (
     <chakra.svg
       width="1.2em"

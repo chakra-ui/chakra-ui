@@ -1,8 +1,7 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
-import { ariaAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { useCallback, useEffect, useId, useRef, useState } from "react"
+import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { InputProps } from "./use-pin-input-field"
 
 /* -------------------------------------------------------------------------------------------------

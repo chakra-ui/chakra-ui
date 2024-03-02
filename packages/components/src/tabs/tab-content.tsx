@@ -1,7 +1,8 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
-import { useTabsStyles } from "./tabs-context"
-import { useTabContent } from "./use-tab-content"
+import { cx } from "@chakra-ui/utils"
+import { useRenderStrategy } from "../render-strategy"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
+import { useTabsContext, useTabsStyles } from "./tabs-context"
+import { makeTabId, makeTabPanelId } from "./use-tabs"
 
 export interface TabContentProps extends HTMLChakraProps<"div"> {
   /**
@@ -13,15 +14,34 @@ export interface TabContentProps extends HTMLChakraProps<"div"> {
 
 export const TabContent = forwardRef<TabContentProps, "div">(
   function TabContent(props, ref) {
-    const panelProps = useTabContent({ ...props, ref })
+    const api = useTabsContext()
     const styles = useTabsStyles()
+
+    const isSelected = props.value === api.selectedValue
+
+    const contentId = makeTabPanelId(api.id, props.value)
+    const triggerId = makeTabId(api.id, props.value)
+
+    const render = useRenderStrategy({
+      isLazy: api.isLazy,
+      lazyBehavior: api.lazyBehavior,
+      visible: isSelected,
+    })
 
     return (
       <chakra.div
-        {...panelProps}
+        {...props}
+        ref={ref}
+        id={contentId}
+        tabIndex={0}
+        role="tabpanel"
+        aria-labelledby={triggerId}
+        hidden={render.hidden}
         className={cx("chakra-tabs__content", props.className)}
-        __css={styles.content}
-      />
+        css={[styles.content, props.css]}
+      >
+        {render.unmounted ? null : props.children}
+      </chakra.div>
     )
   },
 )

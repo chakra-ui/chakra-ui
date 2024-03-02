@@ -6,9 +6,8 @@ import { Skeleton, SkeletonProps } from "./skeleton"
  * @see Docs https://chakra-ui.com/docs/components/skeleton
  */
 
-export const SkeletonCircle: React.FC<SkeletonProps> = ({
-  size = "2rem",
-  ...rest
-}) => <Skeleton borderRadius="full" boxSize={size} {...rest} />
+export const SkeletonCircle: React.FC<SkeletonProps> = (props) => (
+  <Skeleton borderRadius="full" boxSize="2rem" {...props} />
+)
 
 SkeletonCircle.displayName = "SkeletonCircle"

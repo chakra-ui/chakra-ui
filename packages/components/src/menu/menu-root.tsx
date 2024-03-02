@@ -1,13 +1,9 @@
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
-import { useMemo } from "react"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { useMultiStyleConfig, useTheme } from "../system"
+import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
+import { SystemRecipeProps, useSlotRecipe } from "../styled-system"
 import { MenuProvider, MenuStylesProvider } from "./menu-context"
 import { UseMenuProps, useMenu } from "./use-menu"
 
-type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
-
-export interface MenuRootProps extends UseMenuProps, ThemingProps<"Menu"> {
+export interface MenuRootProps extends UseMenuProps, SystemRecipeProps<"Menu"> {
   children: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void
@@ -22,20 +18,22 @@ export interface MenuRootProps extends UseMenuProps, ThemingProps<"Menu"> {
  * @see Docs https://chakra-ui.com/docs/components/menu
  */
 export const MenuRoot: React.FC<MenuRootProps> = (props) => {
-  const { children } = props
+  const recipe = useSlotRecipe("Menu")
 
-  const styles = useMultiStyleConfig("Menu", props)
-  const ownProps = omitThemingProps(props)
-  const { direction } = useTheme()
-  const ctx = useMenu({ ...ownProps, direction })
-  const context = useMemo(() => ctx, [ctx])
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
+
+  // const { direction } = useTheme()
+  // const ctx = useMenu({ ...ownProps, direction })
+
+  const context = useMenu(localProps)
 
   const { isOpen, onClose, forceUpdate } = context
 
   return (
     <MenuProvider value={context}>
       <MenuStylesProvider value={styles}>
-        {runIfFn(children, { isOpen, onClose, forceUpdate })}
+        {runIfFn(props.children, { isOpen, onClose, forceUpdate })}
       </MenuStylesProvider>
     </MenuProvider>
   )

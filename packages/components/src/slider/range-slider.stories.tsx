@@ -6,39 +6,37 @@ import {
   RangeSliderTrack,
   useRangeSlider,
 } from "."
-import { chakra, useTheme } from "../system"
+import { Box } from ".."
+import { chakra } from "../styled-system"
 
 export default {
   title: "Forms / Range Slider",
   decorators: [
     (story: Function) => (
-      <chakra.div maxWidth="400px" height="300px" mx="auto" mt="40px">
+      <Box maxWidth="400px" height="300px" mx="auto" mt="40px">
         {story()}
-      </chakra.div>
+      </Box>
     ),
   ],
 }
 
 export const HookUsage = () => {
-  const {
-    state,
-    getThumbProps,
-    getInnerTrackProps,
-    getRootProps,
-    getTrackProps,
-  } = useRangeSlider({
-    direction: useTheme().direction,
+  const api = useRangeSlider({
     defaultValue: [10, 40],
     minStepsBetweenThumbs: 5,
   })
 
   return (
     <>
-      <chakra.div width="full" {...getRootProps()}>
-        <chakra.div height="4px" bg="gray.300" {...getTrackProps()}>
-          <chakra.div bg="blue.400" height="full" {...getInnerTrackProps()} />
+      <chakra.div width="full" {...api.getRootProps()}>
+        <chakra.div height="4px" bg="gray.300" {...api.getTrackProps()}>
+          <chakra.div
+            bg="blue.400"
+            height="full"
+            {...api.getInnerTrackProps()}
+          />
         </chakra.div>
-        {state.value.map((v, i) => (
+        {api.state.value.map((v, i) => (
           <chakra.div
             w="4"
             h="4"
@@ -46,11 +44,11 @@ export const HookUsage = () => {
             rounded="full"
             transform="translateY(-50%)"
             key={i}
-            {...getThumbProps({ index: i })}
+            {...api.getThumbProps({ index: i })}
           />
         ))}
       </chakra.div>
-      <pre>{JSON.stringify(state.value)}</pre>
+      <pre>{JSON.stringify(api.state.value)}</pre>
     </>
   )
 }

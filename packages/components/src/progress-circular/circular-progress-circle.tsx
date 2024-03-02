@@ -1,6 +1,6 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
 import { rotateAnim } from "../progress/progress-utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 export interface CircularProgressCircleProps extends HTMLChakraProps<"svg"> {}
@@ -18,7 +18,7 @@ export const CircularProgressCircle = forwardRef<
       {...props}
       className={cx("chakra-progress__circle", props.className)}
       data-indeterminate={dataAttr(isIndeterminate)}
-      __css={{
+      css={{
         width: size,
         height: size,
         "&[data-indeterminate]": {

@@ -1,6 +1,6 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useInputGroupStyles } from "./input-group"
 
 export interface InputElementProps extends HTMLChakraProps<"div"> {
@@ -35,7 +35,7 @@ const InputElement = forwardRef<InputElementProps, "div">(
       ...styles.element,
     })
 
-    return <StyledInputElement ref={ref} __css={elementStyles} {...rest} />
+    return <StyledInputElement ref={ref} css={elementStyles} {...rest} />
   },
 )
 

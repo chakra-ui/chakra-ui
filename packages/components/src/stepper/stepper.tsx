@@ -1,12 +1,12 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { Children } from "react"
-import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import {
   Orientation,
   StepContextProvider,
@@ -16,7 +16,7 @@ import {
 
 export interface StepperProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Stepper"> {
+    SystemRecipeProps<"Stepper"> {
   /**
    * The active step index
    */
@@ -35,57 +35,59 @@ export interface StepperProps
   children: React.ReactNode
 }
 
-export const Stepper = forwardRef<StepperProps, "div">(function Stepper(
-  props: StepperProps,
-  ref,
-) {
-  const styles = useMultiStyleConfig("Stepper", props)
+export const Stepper = forwardRef<StepperProps, "div">(
+  function Stepper(props, ref) {
+    const recipe = useSlotRecipe("Stepper")
 
-  const {
-    children,
-    index,
-    orientation = "horizontal",
-    showLastSeparator = false,
-    ...restProps
-  } = omitThemingProps(props)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-  const stepElements = Children.toArray(children)
+    const {
+      children,
+      index,
+      orientation = "horizontal",
+      showLastSeparator = false,
+      ...restProps
+    } = localProps
 
-  const stepCount = stepElements.length
+    const stepElements = Children.toArray(children)
 
-  function getStatus(step: number): StepStatusType {
-    if (step < index) return "complete"
-    if (step > index) return "incomplete"
-    return "active"
-  }
+    const stepCount = stepElements.length
 
-  return (
-    <chakra.div
-      ref={ref}
-      aria-label="Progress"
-      data-orientation={orientation}
-      {...restProps}
-      __css={styles.stepper}
-      className={cx("chakra-stepper", props.className)}
-    >
-      <StepperStylesProvider value={styles}>
-        {stepElements.map((child, index) => (
-          <StepContextProvider
-            key={index}
-            value={{
-              index,
-              status: getStatus(index),
-              orientation,
-              showLastSeparator,
-              count: stepCount,
-              isFirst: index === 0,
-              isLast: index === stepCount - 1,
-            }}
-          >
-            {child}
-          </StepContextProvider>
-        ))}
-      </StepperStylesProvider>
-    </chakra.div>
-  )
-})
+    function getStatus(step: number): StepStatusType {
+      if (step < index) return "complete"
+      if (step > index) return "incomplete"
+      return "active"
+    }
+
+    return (
+      <chakra.div
+        ref={ref}
+        aria-label="Progress"
+        data-orientation={orientation}
+        {...restProps}
+        css={styles.stepper}
+        className={cx("chakra-stepper", props.className)}
+      >
+        <StepperStylesProvider value={styles}>
+          {stepElements.map((child, index) => (
+            <StepContextProvider
+              key={index}
+              value={{
+                index,
+                status: getStatus(index),
+                orientation,
+                showLastSeparator,
+                count: stepCount,
+                isFirst: index === 0,
+                isLast: index === stepCount - 1,
+              }}
+            >
+              {child}
+            </StepContextProvider>
+          ))}
+        </StepperStylesProvider>
+      </chakra.div>
+    )
+  },
+)

@@ -2,9 +2,8 @@ import { useCallbackRef } from "@chakra-ui/hooks/use-callback-ref"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { dataAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import type { PropGetter } from "@chakra-ui/utils/prop-types"
+import type { PropGetter } from "@chakra-ui/utils"
+import { callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useFieldProps } from "../field"
@@ -263,6 +262,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     [isDisabled, isChecked, isInvalid, rootIsLabelElement],
   )
 
+  // @ts-ignore
   const getInputProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
       return {

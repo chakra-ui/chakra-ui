@@ -2,7 +2,7 @@ import * as React from "react"
 import { Tooltip } from "."
 import { Button } from "../button"
 import { Dialog } from "../dialog"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Overlay / Tooltip",

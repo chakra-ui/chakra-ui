@@ -1,11 +1,11 @@
 import { cx } from "@chakra-ui/utils"
-import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import {
   ProgressContextProvider,
   ProgressStylesProvider,
@@ -18,7 +18,7 @@ export interface ProgressTrackProps extends HTMLChakraProps<"div"> {}
 
 export interface ProgressRootProps
   extends ProgressOptions,
-    ThemingProps<"Progress">,
+    SystemRecipeProps<"Progress">,
     HTMLChakraProps<"div"> {}
 
 /**
@@ -34,17 +34,18 @@ export interface ProgressRootProps
  */
 export const ProgressRoot = forwardRef<ProgressRootProps, "div">(
   function ProgressRoot(props, ref) {
-    const ownProps = omitThemingProps(props)
-    const styles = useMultiStyleConfig("Progress", props)
+    const recipe = useSlotRecipe("Progress")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-    const [progressProps, restProps] = splitProgressProps(ownProps)
+    const [progressProps, restProps] = splitProgressProps(localProps)
     const computed = getProgressProps(progressProps)
 
     return (
       <chakra.div
         ref={ref}
         {...restProps}
-        __css={styles.root}
+        css={styles.root}
         className={cx("chakra-progress", props.className)}
       >
         <ProgressStylesProvider value={styles}>

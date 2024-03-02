@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useProgressStyles } from "./progress-context"
 
 export interface ProgressLabelProps extends HTMLChakraProps<"div"> {}
@@ -15,7 +15,7 @@ export const ProgressLabel = forwardRef<ProgressLabelProps, "div">(
       <chakra.div
         ref={ref}
         {...props}
-        __css={styles.label}
+        css={styles.label}
         className={cx("chakra-progress__label", props.className)}
       />
     )

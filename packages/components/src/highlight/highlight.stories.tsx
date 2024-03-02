@@ -67,7 +67,11 @@ export const MarketingExample = () => {
         return chunk.match ? (
           <Mark
             key={index}
-            sx={{ fontStyle: "italic", color: "red.500", position: "relative" }}
+            css={{
+              fontStyle: "italic",
+              color: "red.500",
+              position: "relative",
+            }}
           >
             {chunk.text}
             <img

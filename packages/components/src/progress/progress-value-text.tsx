@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useProgressContext, useProgressStyles } from "./progress-context"
 
 export interface ProgressValueTextProps extends HTMLChakraProps<"span"> {}
@@ -12,7 +12,7 @@ export const ProgressValueText = forwardRef<ProgressValueTextProps, "span">(
     return (
       <chakra.span
         ref={ref}
-        __css={styles.valueText}
+        css={styles.valueText}
         {...props}
         className={cx("chakra-progress__value-text", props.className)}
       >

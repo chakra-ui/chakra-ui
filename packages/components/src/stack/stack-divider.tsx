@@ -1,20 +1,23 @@
-import { ChakraComponent, HTMLChakraProps, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 
 export interface StackDividerProps extends HTMLChakraProps<"div"> {}
 
-export const StackDivider: ChakraComponent<"div"> = (props) => (
-  <chakra.div
-    className="chakra-stack__divider"
-    {...props}
-    __css={{
-      ...props["__css"],
+export const StackDivider = chakra(
+  "div",
+  {
+    base: {
       borderWidth: 0,
       alignSelf: "stretch",
       borderColor: "inherit",
       width: "auto",
       height: "auto",
-    }}
-  />
+    },
+  },
+  {
+    defaultProps: {
+      className: "chakra-stack__divider",
+    },
+  },
 )
 
 StackDivider.displayName = "StackDivider"

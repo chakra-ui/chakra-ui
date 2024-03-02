@@ -2,6 +2,16 @@
 
 ## Changed
 
+### Wrap
+
+- Changed `spacing` to `gap`
+- Changed `spacingX` to `rowGap`
+- Changed `spacingY` to `columnGap`
+
+### Stack
+
+- Change `spacing` to `gap`
+
 ### Removed `@chakra-ui/next-js` package
 
 We've removed the `@chakra-ui/next-js` package in favor of using the `asChild`
@@ -676,3 +686,14 @@ function Alert(props) {
   )
 }
 ```
+
+### useTheme
+
+TODO
+
+Prefer to use `useSystemContext` instead of `useTheme` to access the theme and
+much more.
+
+### ThemingProps
+
+Changed to `SystemRecipeProps`

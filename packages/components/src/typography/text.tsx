@@ -1,25 +1,34 @@
-import { compact } from "@chakra-ui/utils/compact"
-import { cx } from "@chakra-ui/utils/cx"
-import { SystemProps, ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { compact, cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
-export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {
+interface TextOptions {
   /**
    * The CSS `text-align` property
-   * @type SystemProps["textAlign"]
+   * @type SystemStyleObject["textAlign"]
    */
-  align?: SystemProps["textAlign"]
+  align?: SystemStyleObject["textAlign"]
   /**
    * The CSS `text-decoration` property
-   * @type SystemProps["textDecoration"]
+   * @type SystemStyleObject["textDecoration"]
    */
-  decoration?: SystemProps["textDecoration"]
+  decoration?: SystemStyleObject["textDecoration"]
   /**
    * The CSS `text-transform` property
-   * @type SystemProps["textTransform"]
+   * @type SystemStyleObject["textTransform"]
    */
-  casing?: SystemProps["textTransform"]
+  casing?: SystemStyleObject["textTransform"]
 }
+
+export interface TextProps
+  extends HTMLChakraProps<"p", TextOptions>,
+    SystemRecipeProps<"Text"> {}
 
 /**
  * Used to render texts or paragraphs.
@@ -27,14 +36,13 @@ export interface TextProps extends HTMLChakraProps<"p">, ThemingProps<"Text"> {
  * @see Docs https://chakra-ui.com/text
  */
 export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
-  const styles = useStyleConfig("Text", props)
-  const { className, align, decoration, casing, ...rest } =
-    omitThemingProps(props)
+  const recipe = useRecipe("Text")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
 
   const aliasedProps = compact({
-    textAlign: props.align,
-    textDecoration: props.decoration,
-    textTransform: props.casing,
+    textAlign: localProps.align,
+    textDecoration: localProps.decoration,
+    textTransform: localProps.casing,
   })
 
   return (
@@ -42,8 +50,8 @@ export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
       ref={ref}
       className={cx("chakra-text", props.className)}
       {...aliasedProps}
-      {...rest}
-      __css={styles}
+      {...localProps}
+      css={[recipe(variantProps), localProps.css]}
     />
   )
 })

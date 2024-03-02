@@ -1,5 +1,5 @@
 import type { SystemContext } from "@chakra-ui/react"
-import { allCssProperties } from "../../components/src/styled-system-new/is-valid-prop.js"
+import { allCssProperties } from "../../components/src/styled-system/is-valid-prop.js"
 import { pretty } from "./shared.js"
 
 export async function generateSystemTypes(sys: SystemContext) {

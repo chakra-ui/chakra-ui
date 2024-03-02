@@ -1,15 +1,12 @@
-import { cx } from "@chakra-ui/utils/cx"
-import {
-  SystemStyleObject,
-  ThemingProps,
-  omitThemingProps,
-} from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
+  SystemStyleObject,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { TableStylesProvider } from "./table-context"
 
 export interface TableOptions {
@@ -19,7 +16,7 @@ export interface TableOptions {
 export interface TableRootProps
   extends HTMLChakraProps<"table">,
     TableOptions,
-    ThemingProps<"Table"> {}
+    SystemRecipeProps<"Table"> {}
 
 /**
  * The `Table` component is used to organize and display data efficiently. It renders a `<table>` element by default.
@@ -29,15 +26,19 @@ export interface TableRootProps
  */
 export const TableRoot = forwardRef<TableRootProps, "table">(
   function TableRoot(props, ref) {
-    const styles = useMultiStyleConfig("Table", props)
-    const { layout, ...rootProps } = omitThemingProps(props)
+    const recipe = useSlotRecipe("Table")
+
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
+    const { layout, ...rootProps } = localProps
 
     return (
       <TableStylesProvider value={styles}>
         <chakra.table
           ref={ref}
           {...rootProps}
-          __css={{ tableLayout: layout, ...styles.root }}
+          css={{ tableLayout: layout, ...styles.root }}
           className={cx("chakra-table", props.className)}
         />
       </TableStylesProvider>

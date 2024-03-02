@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 export interface CircularProgressTrackProps extends HTMLChakraProps<"circle"> {}

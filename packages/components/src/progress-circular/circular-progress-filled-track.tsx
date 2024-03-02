@@ -1,6 +1,6 @@
 import { dataAttr } from "@chakra-ui/utils"
 import { spinAnim } from "../progress/progress-utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 export interface CircularProgressFilledTrackProps
@@ -34,7 +34,7 @@ export const CircularProgressFilledTrack = forwardRef<
       opacity={computed.value === 0 && !isIndeterminate ? 0 : undefined}
       data-indeterminate={dataAttr(isIndeterminate)}
       {...props}
-      __css={{
+      css={{
         strokeDashoffset: 66,
         strokeDasharray,
         transitionProperty: "stroke-dasharray, stroke",

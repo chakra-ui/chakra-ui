@@ -1,6 +1,6 @@
 import { callAllHandlers, cx } from "@chakra-ui/utils"
 import { CloseButton, CloseButtonProps } from "../close-button"
-import { forwardRef } from "../system"
+import { forwardRef } from "../styled-system"
 import { useDialogContext, useDialogStyles } from "./dialog-context"
 
 export interface DialogCloseTriggerProps extends CloseButtonProps {}
@@ -13,7 +13,7 @@ export const DialogCloseTrigger = forwardRef<DialogCloseTriggerProps, "button">(
     return (
       <CloseButton
         ref={ref}
-        __css={styles.closeTrigger}
+        css={styles.closeTrigger}
         {...props}
         className={cx("chakra-dialog__close-btn", props.className)}
         onClick={callAllHandlers(props.onClick, (event: React.MouseEvent) => {

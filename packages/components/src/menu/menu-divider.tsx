@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra } from "../styled-system"
 import { useMenuStyles } from "./menu-context"
 
 export interface MenuDividerProps extends HTMLChakraProps<"hr"> {}
@@ -12,7 +12,7 @@ export const MenuDivider: React.FC<MenuDividerProps> = (props) => {
       aria-orientation="horizontal"
       className={cx("chakra-menu__divider", className)}
       {...rest}
-      __css={styles.divider}
+      css={styles.divider}
     />
   )
 }

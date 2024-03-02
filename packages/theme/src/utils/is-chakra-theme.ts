@@ -1,4 +1,4 @@
-import { isObject } from "@chakra-ui/utils/is"
+import { isObject } from "@chakra-ui/utils"
 import type { ChakraTheme } from "../theme.types"
 
 export const requiredChakraThemeKeys: (keyof ChakraTheme)[] = [

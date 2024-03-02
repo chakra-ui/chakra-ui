@@ -1,4 +1,4 @@
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export const StyledStepper = chakra("div", {
   baseStyle: {

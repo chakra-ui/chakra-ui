@@ -1,23 +1,23 @@
 import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { cx } from "@chakra-ui/utils/cx"
-import { useMemo } from "react"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
-  forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import {
   AccordionContextProvider,
   AccordionStylesProvider,
 } from "./accordion-context"
+import { splitAccordionProps } from "./accordion-props"
 import { UseAccordionProps, useAccordion } from "./use-accordion"
 
 export interface AccordionRootProps
   extends UseAccordionProps,
-    Omit<HTMLChakraProps<"div">, keyof UseAccordionProps>,
-    ThemingProps<"Accordion"> {
+    HTMLChakraProps<"div", UseAccordionProps>,
+    SystemRecipeProps<"Accordion"> {
   /**
    * If `true`, height animation and transitions will be disabled.
    *
@@ -34,29 +34,28 @@ export interface AccordionRootProps
  * @see Docs https://chakra-ui.com/accordion
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
  */
-export const AccordionRoot = forwardRef<AccordionRootProps, "div">(
-  function AccordionRoot({ children, reduceMotion, ...props }, ref) {
-    const styles = useMultiStyleConfig("Accordion", props)
-    const ownProps = omitThemingProps(props)
+export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(
+  function AccordionRoot(props, ref) {
+    const { reduceMotion, ...restProps } = props
+    const recipe = useSlotRecipe("Accordion")
 
-    const { htmlProps, ...context } = useAccordion(ownProps)
+    const [variantProps, ownProps] = recipe.splitVariantProps(restProps)
+    const styles = recipe(variantProps)
 
-    const ctx = useMemo(
-      () => ({ ...context, reduceMotion: !!reduceMotion }),
-      [context, reduceMotion],
-    )
+    const [accordionProps, htmlProps] = splitAccordionProps(ownProps)
+    const context = useAccordion(accordionProps)
 
     return (
-      <AccordionContextProvider value={ctx}>
+      <AccordionContextProvider
+        value={{ ...context, reduceMotion: !!reduceMotion }}
+      >
         <AccordionStylesProvider value={styles}>
           <chakra.div
             ref={useMergeRefs(ref, context.rootRef)}
             {...htmlProps}
             className={cx("chakra-accordion", props.className)}
-            __css={styles.root}
-          >
-            {children}
-          </chakra.div>
+            css={styles.root}
+          />
         </AccordionStylesProvider>
       </AccordionContextProvider>
     )

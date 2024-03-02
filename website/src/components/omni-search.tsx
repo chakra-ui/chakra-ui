@@ -259,7 +259,7 @@ function OmniSearch() {
                 autoCorrect='off'
                 spellCheck='false'
                 maxLength={64}
-                sx={{
+                css={{
                   w: '100%',
                   h: '68px',
                   pl: '68px',
@@ -284,7 +284,7 @@ function OmniSearch() {
             <Dialog.Body maxH='66vh' p='0' ref={menuRef}>
               {open && (
                 <Box
-                  sx={{
+                  css={{
                     px: 4,
                     bg: 'white',
                     '.chakra-ui-dark &': { bg: 'gray.700' },
@@ -320,7 +320,7 @@ function OmniSearch() {
                               ref={menuNodes.ref(index)}
                               role='option'
                               key={item.url}
-                              sx={{
+                              css={{
                                 display: 'flex',
                                 alignItems: 'center',
                                 minH: 16,

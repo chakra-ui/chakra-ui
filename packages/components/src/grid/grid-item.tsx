@@ -1,44 +1,47 @@
-import { compact } from "@chakra-ui/utils/compact"
-import { mapResponsive } from "@chakra-ui/utils/responsive"
+import { compact, mapResponsive } from "@chakra-ui/utils"
 import { BoxProps } from "../box/box"
-import { ResponsiveValue, SystemProps } from "../styled-system"
-import { chakra, forwardRef } from "../system"
+import {
+  ConditionalValue,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+} from "../styled-system"
 
 export interface GridItemProps extends BoxProps {
   /**
    * Shorthand prop for `gridArea`
-   * @type SystemProps["gridArea"]
+   * @type SystemStyleObject["gridArea"]
    */
-  area?: SystemProps["gridArea"]
+  area?: SystemStyleObject["gridArea"]
   /**
    * The number of columns the grid item should `span`.
-   * @type ResponsiveValue<number | "auto">
+   * @type ConditionalValue<number | "auto">
    */
-  colSpan?: ResponsiveValue<number | "auto">
+  colSpan?: ConditionalValue<number | "auto">
   /**
    * The column number the grid item should start.
-   * @type ResponsiveValue<number | "auto">
+   * @type ConditionalValue<number | "auto">
    */
-  colStart?: ResponsiveValue<number | "auto">
+  colStart?: ConditionalValue<number | "auto">
   /**
-   * @type ResponsiveValue<number | "auto">
+   * @type ConditionalValue<number | "auto">
    */
-  colEnd?: ResponsiveValue<number | "auto">
+  colEnd?: ConditionalValue<number | "auto">
   /**
-   * @type ResponsiveValue<number | "auto">
+   * @type ConditionalValue<number | "auto">
    */
-  rowStart?: ResponsiveValue<number | "auto">
+  rowStart?: ConditionalValue<number | "auto">
   /**
-   * @type ResponsiveValue<number | "auto">
+   * @type ConditionalValue<number | "auto">
    */
-  rowEnd?: ResponsiveValue<number | "auto">
+  rowEnd?: ConditionalValue<number | "auto">
   /**
-   * @type ResponsiveValue<number | "auto">
+   * @type ConditionalValue<number | "auto">
    */
-  rowSpan?: ResponsiveValue<number | "auto">
+  rowSpan?: ConditionalValue<number | "auto">
 }
 
-function spanFn(span?: ResponsiveValue<number | "auto">) {
+function spanFn(span?: ConditionalValue<number | "auto">) {
   return mapResponsive(span, (value) =>
     value === "auto" ? "auto" : `span ${value}/span ${value}`,
   )
@@ -67,7 +70,7 @@ export const GridItem = forwardRef<GridItemProps, "div">(
       gridRowEnd: rowEnd,
     })
 
-    return <chakra.div ref={ref} __css={styles} {...rest} />
+    return <chakra.div ref={ref} css={styles} {...rest} />
   },
 )
 

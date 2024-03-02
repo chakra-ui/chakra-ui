@@ -1,19 +1,14 @@
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { compact } from "@chakra-ui/utils/compact"
-import { cx } from "@chakra-ui/utils/cx"
+import { compact, cx, getValidChildren } from "@chakra-ui/utils"
 import { cloneElement } from "react"
 import {
-  SystemProps,
-  ThemingProps,
-  defineStyle,
-  omitThemingProps,
-} from "../styled-system"
-import {
   HTMLChakraProps,
+  SystemRecipeProps,
+  SystemStyleObject,
   chakra,
+  defineStyle,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 
 interface AvatarGroupOptions {
   /**
@@ -25,9 +20,9 @@ interface AvatarGroupOptions {
   /**
    * The space between the avatars in the group.
    * @default "-0.75rem"
-   * @type SystemProps["margin"]
+   * @type SystemStyleObject["margin"]
    */
-  spacing?: SystemProps["margin"]
+  spacing?: SystemStyleObject["margin"]
   /**
    * The maximum number of visible avatars
    */
@@ -37,14 +32,16 @@ interface AvatarGroupOptions {
 export interface AvatarGroupProps
   extends AvatarGroupOptions,
     Omit<HTMLChakraProps<"div">, "children">,
-    ThemingProps<"Avatar"> {}
+    SystemRecipeProps<"Avatar"> {}
 
 /**
  * AvatarGroup displays a number of avatars grouped together in a stack.
  */
 export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
   function AvatarGroup(props, ref) {
-    const styles = useMultiStyleConfig("Avatar", props)
+    const recipe = useSlotRecipe("Avatar")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
     const {
       children,
@@ -53,7 +50,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
       spacing = "-0.75rem",
       borderRadius = "full",
       ...rest
-    } = omitThemingProps(props)
+    } = localProps
 
     const validChildren = getValidChildren(children)
 
@@ -97,12 +94,12 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
       <chakra.div
         ref={ref}
         role="group"
-        __css={styles.group}
+        css={styles.group}
         {...rest}
         className={cx("chakra-avatar__group", props.className)}
       >
         {excess > 0 && (
-          <chakra.span className="chakra-avatar__excess" __css={excessStyles}>
+          <chakra.span className="chakra-avatar__excess" css={excessStyles}>
             {`+${excess}`}
           </chakra.span>
         )}

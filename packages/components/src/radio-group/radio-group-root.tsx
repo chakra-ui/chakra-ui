@@ -1,7 +1,11 @@
-import { splitProps } from "@chakra-ui/utils"
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useSlotRecipe,
+} from "../styled-system"
 import {
   RadioGroupContextProvider,
   RadioThemingContextProvider,
@@ -19,7 +23,7 @@ type Omitted =
 export interface RadioGroupRootProps
   extends UseRadioGroupProps,
     Omit<HTMLChakraProps<"div">, Omitted>,
-    Omit<ThemingProps<"Radio">, "orientation"> {}
+    Omit<SystemRecipeProps<"Radio">, "orientation"> {}
 
 /**
  * Used for multiple radios which are bound in one group,
@@ -29,18 +33,15 @@ export interface RadioGroupRootProps
  */
 export const RadioGroupRoot = forwardRef<RadioGroupRootProps, "div">(
   function RadioGroupRoot(props, ref) {
-    const [themingProps, restProps] = splitProps(props, [
-      "variant",
-      "size",
-      "colorScheme",
-    ])
+    const recipe = useSlotRecipe("Radio")
 
+    const [variantProps, restProps] = recipe.splitVariantProps(props)
     const [groupProps, localProps] = splitRadioGroupProps(restProps)
 
     const api = useRadioGroup(groupProps)
 
     return (
-      <RadioThemingContextProvider value={themingProps}>
+      <RadioThemingContextProvider value={variantProps}>
         <RadioGroupContextProvider value={api}>
           <chakra.div
             {...api.getRootProps(localProps, ref)}

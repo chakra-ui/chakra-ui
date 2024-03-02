@@ -1,5 +1,5 @@
 import { Children } from "react"
-import { forwardRef } from "../system"
+import { forwardRef } from "../styled-system"
 import { Icon, IconProps } from "./icon"
 
 interface CreateIconOptions {

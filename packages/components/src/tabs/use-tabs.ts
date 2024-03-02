@@ -1,5 +1,5 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
-import { LazyMode } from "@chakra-ui/utils/lazy"
+import { LazyMode } from "@chakra-ui/utils"
 import { useId, useRef, useState } from "react"
 
 /* -------------------------------------------------------------------------------------------------

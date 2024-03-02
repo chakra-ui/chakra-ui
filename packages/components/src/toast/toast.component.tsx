@@ -1,9 +1,9 @@
 import { useTimeout } from "@chakra-ui/hooks/use-timeout"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
+import { runIfFn } from "@chakra-ui/utils"
 import { Variants, motion, useIsPresent } from "framer-motion"
 import { memo, useEffect, useMemo, useState } from "react"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 import { ToastProviderProps } from "./toast.provider"
 import type { ToastOptions } from "./toast.types"
 import { getToastStyle } from "./toast.utils"
@@ -118,7 +118,7 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
         role="status"
         aria-atomic="true"
         className="chakra-toast__inner"
-        __css={containerStyles}
+        css={containerStyles}
       >
         {runIfFn(message, { id, onClose: close })}
       </chakra.div>

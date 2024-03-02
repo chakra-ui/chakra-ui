@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useEditableContext, useEditableStyles } from "./editable-context"
 
 export interface EditablePreviewProps extends HTMLChakraProps<"div"> {}
@@ -14,7 +14,7 @@ export const EditablePreview = forwardRef<EditablePreviewProps, "span">(
     return (
       <chakra.span
         {...previewProps}
-        __css={styles.preview}
+        css={styles.preview}
         className={cx("chakra-editable__preview", props.className)}
       />
     )

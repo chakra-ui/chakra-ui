@@ -35,7 +35,7 @@ export const basePath = join(
   "packages",
   "components",
   "src",
-  "styled-system-new",
+  "styled-system",
   "_generated",
 )
 

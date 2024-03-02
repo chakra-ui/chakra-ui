@@ -1,7 +1,13 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  defineStyle,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 const spin = keyframes({
   "0%": {
@@ -49,9 +55,8 @@ interface SpinnerOptions {
 }
 
 export interface SpinnerProps
-  extends Omit<HTMLChakraProps<"div">, keyof SpinnerOptions>,
-    SpinnerOptions,
-    ThemingProps<"Spinner"> {}
+  extends HTMLChakraProps<"div", SpinnerOptions>,
+    SystemRecipeProps<"Spinner"> {}
 
 /**
  * Spinner is used to indicate the loading state of a page or a component,
@@ -59,42 +64,45 @@ export interface SpinnerProps
  *
  * @see Docs https://chakra-ui.com/spinner
  */
-export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
-  const styles = useStyleConfig("Spinner", props)
+export const Spinner = forwardRef<SpinnerProps, "div">(
+  function Spinner(props, ref) {
+    const recipe = useRecipe("Spinner")
 
-  const {
-    label = "Loading...",
-    thickness = "2px",
-    speed = "0.45s",
-    emptyColor = "transparent",
-    className,
-    ...rest
-  } = omitThemingProps(props)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-  const _className = cx("chakra-spinner", className)
+    const {
+      label = "Loading...",
+      thickness = "2px",
+      speed = "0.45s",
+      emptyColor = "transparent",
+      className,
+      ...rest
+    } = localProps
 
-  const spinnerStyles = {
-    display: "inline-block",
-    borderColor: "currentColor",
-    borderStyle: "solid",
-    borderRadius: "99999px",
-    borderWidth: thickness,
-    borderBottomColor: emptyColor,
-    borderLeftColor: emptyColor,
-    animation: `${spin} ${speed} linear infinite`,
-    ...styles,
-  }
+    const spinnerStyles = defineStyle({
+      display: "inline-block",
+      borderColor: "currentColor",
+      borderStyle: "solid",
+      borderRadius: "99999px",
+      borderWidth: thickness,
+      borderBottomColor: emptyColor,
+      borderLeftColor: emptyColor,
+      animation: `${spin} ${speed} linear infinite`,
+      ...styles,
+    })
 
-  return (
-    <chakra.div
-      ref={ref}
-      __css={spinnerStyles}
-      className={_className}
-      {...rest}
-    >
-      {label && <chakra.span srOnly>{label}</chakra.span>}
-    </chakra.div>
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        css={spinnerStyles}
+        className={cx("chakra-spinner", className)}
+        {...rest}
+      >
+        {label && <chakra.span srOnly>{label}</chakra.span>}
+      </chakra.div>
+    )
+  },
+)
 
 Spinner.displayName = "Spinner"

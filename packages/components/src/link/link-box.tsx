@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 
 export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
   /**
@@ -20,7 +20,7 @@ export const LinkOverlay = forwardRef<LinkOverlayProps, "a">(
         className={cx("chakra-linkbox__overlay", className)}
         rel={isExternal ? "noopener noreferrer" : rel}
         target={isExternal ? "_blank" : target}
-        __css={{
+        css={{
           position: "static",
           "&::before": {
             content: "''",
@@ -57,7 +57,7 @@ export const LinkBox = forwardRef<LinkBoxProps, "div">(
         position="relative"
         {...rest}
         className={cx("chakra-linkbox", className)}
-        __css={{
+        css={{
           /* Elevate the links and abbreviations up */
           "a[href]:not(.chakra-linkbox__overlay), abbr[title]": {
             position: "relative",

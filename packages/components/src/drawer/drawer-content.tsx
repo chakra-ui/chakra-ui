@@ -1,8 +1,8 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import type { HTMLMotionProps } from "framer-motion"
 import { useDialogContext, useDialogStyles } from "../dialog/dialog-context"
 import { DialogFocusScope } from "../dialog/dialog-focus-scope"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { Slide } from "../transition"
 import { useDrawerContext } from "./drawer-context"
 
@@ -35,7 +35,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
           in={api.isOpen}
           {...(api.getContentProps(rest, ref) as any)}
           className={cx("chakra-dialog__content", className)}
-          __css={styles.content}
+          css={styles.content}
         >
           {children}
         </StyledContent>

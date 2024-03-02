@@ -1,6 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { defineStyle } from "../styled-system"
-import { ChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  chakra,
+  defineStyle,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 const fallbackIcon = {
   path: (
@@ -23,9 +28,7 @@ const fallbackIcon = {
 
 type Orientation = "vertical" | "horizontal"
 
-export interface IconProps
-  extends Omit<React.SVGAttributes<SVGElement>, keyof ChakraProps>,
-    ChakraProps {
+export interface IconProps extends HTMLChakraProps<"svg"> {
   orientation?: Orientation
 }
 
@@ -34,7 +37,7 @@ export interface IconProps
  *
  * @see Docs https://chakra-ui.com/docs/components/icon#using-the-icon-component
  */
-export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
+export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
   const {
     as: element,
     viewBox,
@@ -42,12 +45,13 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
     focusable = false,
     children,
     className,
-    __css,
-    ...rest
+    css: cssProp,
+    ...restProps
   } = props
 
-  const _className = cx("chakra-icon", className)
-  const themeStyles = useStyleConfig("Icon", props)
+  const iconRecipe = useRecipe("Icon")
+
+  const [variantProps, localProps] = iconRecipe.splitVariantProps(restProps)
 
   const styles = defineStyle({
     w: "1em",
@@ -56,15 +60,15 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
     lineHeight: "1em",
     flexShrink: 0,
     color,
-    ...__css,
-    ...themeStyles,
+    ...iconRecipe(variantProps),
+    ...cssProp,
   })
 
-  const shared: any = {
+  const sharedProps: any = {
     ref,
     focusable,
-    className: _className,
-    __css: styles,
+    className: cx("chakra-icon", className),
+    css: styles,
   }
 
   const _viewBox = viewBox ?? fallbackIcon.viewBox
@@ -73,14 +77,19 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
    * If you're using an icon library like `react-icons`.
    * Note: anyone passing the `as` prop, should manage the `viewBox` from the external component
    */
-  if (element && typeof element !== "string") {
-    return <chakra.svg as={element} {...shared} {...rest} />
+  if (typeof element !== "string") {
+    return <chakra.svg as={element} {...sharedProps} {...localProps} />
   }
 
   const iconPath = (children ?? fallbackIcon.path) as React.ReactNode
 
   return (
-    <chakra.svg verticalAlign="middle" viewBox={_viewBox} {...shared} {...rest}>
+    <chakra.svg
+      verticalAlign="middle"
+      viewBox={_viewBox}
+      {...sharedProps}
+      {...localProps}
+    >
       {iconPath}
     </chakra.svg>
   )

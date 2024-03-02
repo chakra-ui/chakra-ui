@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra } from "../styled-system"
 import { getStatusIcon, useAlertContext, useAlertStyles } from "./alert-context"
 
 export interface AlertIconProps extends HTMLChakraProps<"span"> {}
@@ -16,7 +16,7 @@ export function AlertIcon(props: AlertIconProps) {
       data-status={status}
       {...props}
       className={cx("chakra-alert__icon", props.className)}
-      __css={css}
+      css={[css, props.css]}
     >
       {props.children || <BaseIcon h="100%" w="100%" />}
     </chakra.span>

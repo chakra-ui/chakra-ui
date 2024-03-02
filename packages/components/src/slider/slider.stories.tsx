@@ -6,7 +6,7 @@ import {
   SliderThumb,
   SliderTrack,
 } from "."
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Forms / Slider",

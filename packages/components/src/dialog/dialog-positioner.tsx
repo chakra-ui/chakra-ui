@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useDialogContext, useDialogStyles } from "./dialog-context"
 
 export interface DialogPositionerProps extends HTMLChakraProps<"div"> {}
@@ -14,7 +14,7 @@ export const DialogPositioner = forwardRef<DialogPositionerProps, "div">(
         {...api.getPositionerProps(props, ref)}
         className={cx("chakra-dialog__positioner", props.className)}
         tabIndex={-1}
-        __css={styles.positioner}
+        css={styles.positioner}
       />
     )
   },

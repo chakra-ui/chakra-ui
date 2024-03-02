@@ -1,152 +1,90 @@
-import { isObject } from "@chakra-ui/utils/is"
-import { mergeWith } from "@chakra-ui/utils/merge"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
-import * as CSS from "csstype"
-import { getPseudoSelectors } from "./pseudos"
-import { systemProps as systemPropConfigs } from "./system"
-import { StyleObjectOrFn } from "./system.types"
-import { expandResponsive } from "./utils/expand-responsive"
-import { Config, PropConfig } from "./utils/prop-config"
-import { splitByComma } from "./utils/split-by-comma"
-import { CssTheme } from "./utils/types"
+import {
+  Dict,
+  compact,
+  isObject,
+  isString,
+  memo,
+  mergeWith,
+  walkObject,
+} from "@chakra-ui/utils"
+import { SystemStyleObject } from "./css.types"
+import { SystemContext } from "./types"
 
-function isCssVar(value: string): boolean {
-  return /^var\(--.+\)$/.test(value)
+const importantRegex = /\s*!(important)?/i
+
+const isImportant = (v: unknown) =>
+  isString(v) ? importantRegex.test(v) : false
+
+const withoutImportant = (v: unknown) =>
+  isString(v) ? v.replace(importantRegex, "").trim() : v
+
+type CssFnOptions = Pick<SystemContext, "conditions"> & {
+  normalize: (styles: Dict) => Dict
+  transform: (prop: string, value: any) => Dict | undefined
 }
 
-const isCSSVariableTokenValue = (key: string, value: any): value is string =>
-  key.startsWith("--") && typeof value === "string" && !isCssVar(value)
+export function createCssFn(context: CssFnOptions) {
+  const { transform, conditions, normalize } = context
+  const mergeFn = mergeCss(context)
 
-const resolveTokenValue = (theme: Record<string, any>, value: string) => {
-  if (value == null) return value
+  return memo((...styleArgs: SystemStyleObject[]) => {
+    const styles = mergeFn(...styleArgs)
 
-  const getVar = (val: string) => theme.__cssMap?.[val]?.varRef
-  const getValue = (val: string) => getVar(val) ?? val
+    const normalized = normalize(styles)
+    const result: Dict = Object.create(null)
 
-  const [tokenValue, fallbackValue] = splitByComma(value)
-  value = getVar(tokenValue) ?? getValue(fallbackValue) ?? getValue(value)
+    walkObject(normalized, (value, paths) => {
+      const important = isImportant(value)
+      if (value == null) return
 
-  return value
-}
+      const [prop, ...selectors] = conditions
+        .sort(paths)
+        .map(conditions.resolve)
 
-interface GetCSSOptions {
-  theme: CssTheme
-  configs?: Config
-  pseudos?: Record<string, CSS.Pseudos | (string & {})>
-}
-
-export function getCss(options: GetCSSOptions) {
-  const { configs = {}, pseudos = {}, theme } = options
-
-  const css = (stylesOrFn: Record<string, any>, nested = false) => {
-    const _styles = runIfFn(stylesOrFn, theme)
-    const styles = expandResponsive(_styles)(theme)
-
-    let computedStyles: Record<string, any> = {}
-
-    for (let key in styles) {
-      const valueOrFn = styles[key]
-
-      /**
-       * allows the user to pass functional values
-       * boxShadow: theme => `0 2px 2px ${theme.colors.red}`
-       */
-      let value = runIfFn(valueOrFn, theme)
-
-      /**
-       * converts pseudo shorthands to valid selector
-       * "_hover" => "&:hover"
-       */
-      if (key in pseudos) {
-        key = pseudos[key]
+      if (important) {
+        value = withoutImportant(value)
       }
 
-      /**
-       * allows the user to use theme tokens in css vars
-       * { --banner-height: "sizes.md" } => { --banner-height: "var(--chakra-sizes-md)" }
-       *
-       * You can also provide fallback values
-       * { --banner-height: "sizes.no-exist, 40px" } => { --banner-height: "40px" }
-       */
-      if (isCSSVariableTokenValue(key, value)) {
-        value = resolveTokenValue(theme, value)
+      let transformed = transform(prop, value) ?? Object.create(null)
+
+      if (important) {
+        transformed = imp(transformed)
       }
 
-      let config = configs[key]
+      mergeByPath(result, selectors, transformed)
+    })
 
-      if (config === true) {
-        config = { property: key } as PropConfig
-      }
-      if (isObject(value)) {
-        computedStyles[key] = computedStyles[key] ?? {}
-        computedStyles[key] = mergeWith(
-          {},
-          computedStyles[key],
-          css(value, true),
-        )
-        continue
-      }
-
-      let rawValue = config?.transform?.(value, theme, _styles) ?? value
-
-      /**
-       * Used for `layerStyle`, `textStyle` and `apply`. After getting the
-       * styles in the theme, we need to process them since they might
-       * contain theme tokens.
-       *
-       * `processResult` is the config property we pass to `layerStyle`, `textStyle` and `apply`
-       */
-      rawValue = config?.processResult ? css(rawValue, true) : rawValue
-
-      /**
-       * allows us to define css properties for RTL and LTR.
-       *
-       * const marginStart = {
-       *   property: theme => theme.direction === "rtl" ? "marginRight": "marginLeft",
-       * }
-       */
-      const configProperty = runIfFn(config?.property, theme)
-
-      if (!nested && config?.static) {
-        const staticStyles = runIfFn(config.static, theme)
-        computedStyles = mergeWith({}, computedStyles, staticStyles)
-      }
-
-      if (configProperty && Array.isArray(configProperty)) {
-        for (const property of configProperty) {
-          computedStyles[property] = rawValue
-        }
-        continue
-      }
-
-      if (configProperty) {
-        if (configProperty === "&" && isObject(rawValue)) {
-          computedStyles = mergeWith({}, computedStyles, rawValue)
-        } else {
-          computedStyles[configProperty as string] = rawValue
-        }
-        continue
-      }
-
-      if (isObject(rawValue)) {
-        computedStyles = mergeWith({}, computedStyles, rawValue)
-        continue
-      }
-
-      computedStyles[key] = rawValue
-    }
-
-    return computedStyles
-  }
-
-  return css
-}
-
-export const css = (styles: StyleObjectOrFn) => (theme: any) => {
-  const cssFn = getCss({
-    theme,
-    pseudos: getPseudoSelectors(theme),
-    configs: systemPropConfigs,
+    return result
   })
-  return cssFn(styles)
+}
+
+function mergeByPath(target: Dict, paths: string[], value: Dict) {
+  let acc = target
+  for (const path of paths) {
+    if (!path) continue
+    if (!acc[path]) acc[path] = Object.create(null)
+    acc = acc[path]
+  }
+  mergeWith(acc, value)
+}
+
+function imp(value: Dict) {
+  return walkObject(value, (v) => (isString(v) ? `${v} !important` : v))
+}
+
+function compactFn(...styles: Dict[]) {
+  return styles.filter(
+    (style) => isObject(style) && Object.keys(compact(style)).length > 0,
+  )
+}
+
+function mergeCss(ctx: CssFnOptions) {
+  function resolve(styles: Dict[]) {
+    const comp = compactFn(...styles)
+    if (comp.length === 1) return comp
+    return comp.map((style) => ctx.normalize(style))
+  }
+  return memo((...styles) => {
+    return mergeWith({}, ...resolve(styles))
+  })
 }

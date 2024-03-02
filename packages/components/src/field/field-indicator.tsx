@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface RequiredIndicatorProps extends HTMLChakraProps<"span"> {}
@@ -20,7 +20,7 @@ export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
     return (
       <chakra.span
         {...field?.getRequiredIndicatorProps(props, ref)}
-        __css={styles.requiredIndicator}
+        css={styles.requiredIndicator}
         className={className}
       />
     )

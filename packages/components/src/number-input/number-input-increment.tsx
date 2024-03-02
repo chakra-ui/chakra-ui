@@ -1,4 +1,4 @@
-import { HTMLChakraProps, forwardRef } from "../system"
+import { HTMLChakraProps, forwardRef } from "../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
@@ -25,7 +25,7 @@ export const NumberInputIncrementStepper = forwardRef<
   const styles = useNumberInputStyles()
 
   return (
-    <StyledStepper {...increment} __css={styles.stepper}>
+    <StyledStepper {...increment} css={styles.stepper}>
       {props.children ?? <TriangleUpIcon />}
     </StyledStepper>
   )

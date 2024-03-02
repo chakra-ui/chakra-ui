@@ -1,6 +1,6 @@
 import { HTMLMotionProps, Variant, motion } from "framer-motion"
 import React from "react"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { usePopoverContext } from "./popover-context"
 
 type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<

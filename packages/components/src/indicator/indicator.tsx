@@ -1,7 +1,12 @@
-import { mapResponsive } from "@chakra-ui/utils/responsive"
+import { mapResponsive } from "@chakra-ui/utils"
 import { useMemo } from "react"
-import { ResponsiveValue, SystemStyleObject } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  ConditionalValue,
+  HTMLChakraProps,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+} from "../styled-system"
 
 type Dict = Record<string, any>
 
@@ -22,7 +27,7 @@ export interface IndicatorOptions {
    * The placement of the indicator
    * @default "top-end"
    */
-  placement?: ResponsiveValue<
+  placement?: ConditionalValue<
     | "bottom-end"
     | "bottom-start"
     | "top-end"
@@ -101,6 +106,6 @@ export const Indicator = forwardRef<IndicatorProps, "div">(
       [offset, offsetX, offsetY, placement],
     )
 
-    return <chakra.div ref={ref} __css={styles} {...rest} />
+    return <chakra.div ref={ref} css={styles} {...rest} />
   },
 )

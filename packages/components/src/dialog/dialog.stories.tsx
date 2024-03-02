@@ -4,7 +4,7 @@ import * as React from "react"
 import Lorem from "react-lorem-component"
 import { Dialog } from "."
 import { PortalManager } from "../portal"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Overlay / Dialog",

@@ -1,12 +1,17 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  chakra,
+  defineStyle,
+  forwardRef,
+} from "../styled-system"
+import { mergeProps } from "../styled-system/merge-props"
+import { splitTabProps } from "./tab-props"
 import { useTabsStyles } from "./tabs-context"
-import { UseTabOptions, useTab } from "./use-tab"
+import { UseTabProps, useTab } from "./use-tab"
 
 export interface TabTriggerProps
-  extends UseTabOptions,
-    Omit<HTMLChakraProps<"button">, "value"> {}
+  extends HTMLChakraProps<"button", UseTabProps> {}
 
 /**
  * Tab button used to activate a specific tab panel. It renders a `button`,
@@ -15,7 +20,9 @@ export interface TabTriggerProps
 export const TabTrigger = forwardRef<TabTriggerProps, "button">(
   function Tab(props, ref) {
     const styles = useTabsStyles()
-    const tabProps = useTab({ ...props, ref })
+
+    const [useTabProps, localProps] = splitTabProps(props)
+    const tabProps = useTab(useTabProps)
 
     const tabStyles = defineStyle({
       outline: "0",
@@ -25,11 +32,14 @@ export const TabTrigger = forwardRef<TabTriggerProps, "button">(
       ...styles.trigger,
     })
 
+    const combinedProps = mergeProps<any>(tabProps, localProps)
+
     return (
       <chakra.button
-        {...tabProps}
+        ref={ref}
+        {...combinedProps}
         className={cx("chakra-tabs__tab", props.className)}
-        __css={tabStyles}
+        css={[tabStyles, props.css]}
       />
     )
   },

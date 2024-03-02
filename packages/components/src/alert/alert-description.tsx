@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useAlertContext, useAlertStyles } from "./alert-context"
 
 export interface AlertDescriptionProps extends HTMLChakraProps<"div"> {}
@@ -15,7 +15,7 @@ export const AlertDescription = forwardRef<AlertDescriptionProps, "div">(
         data-status={api.status}
         {...props}
         className={cx("chakra-alert__desc", props.className)}
-        __css={styles.description}
+        css={[styles.description, props.css]}
       />
     )
   },

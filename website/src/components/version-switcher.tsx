@@ -33,7 +33,7 @@ function VersionSwitcher(props: Select.RootProps) {
         color='gray.600'
         _dark={{ color: 'whiteAlpha.600' }}
         background='chakra-body-bg'
-        sx={{ '--select-bg': 'colors.chakra-body-bg' }}
+        css={{ '--select-bg': 'colors.chakra-body-bg' }}
         aria-label={`Select the Chakra UI Docs version. You're currently viewing the version ${currentVerion} docs`}
       >
         {versions.map(({ label, url }) => (

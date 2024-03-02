@@ -1,5 +1,5 @@
-import { UseCheckboxReturn } from "."
-import { SystemProps, ThemingProps } from "../styled-system"
+import { SystemRecipeProps, SystemStyleObject } from "../styled-system"
+import { UseCheckboxReturn } from "./use-checkbox"
 import { UseCheckboxGroupReturn } from "./use-checkbox-group"
 
 export interface UseCheckboxGroupProps {
@@ -135,9 +135,9 @@ export interface CheckboxOptions {
   /**
    * The spacing between the checkbox and its label text
    * @default 0.5rem
-   * @type SystemProps["marginLeft"]
+   * @type SystemStyleObject["marginLeft"]
    */
-  spacing?: SystemProps["marginLeft"]
+  spacing?: SystemStyleObject["marginLeft"]
   /**
    * Additional props to be forwarded to the `input` element
    */
@@ -146,7 +146,7 @@ export interface CheckboxOptions {
 
 export interface CheckboxGroupContext
   extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "isDisabled">,
-    Omit<ThemingProps<"Checkbox">, "orientation"> {}
+    Omit<SystemRecipeProps<"Checkbox">, "orientation"> {}
 
 export interface CheckboxState {
   isInvalid?: boolean

@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement } from "react"
-import { forwardRef } from "../system"
+import { forwardRef } from "../styled-system"
 import { Button, ButtonProps } from "./button"
 
 type OmittedProps =

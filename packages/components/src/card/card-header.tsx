@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useCardStyles } from "./card-context"
 
 export interface CardHeaderProps extends HTMLChakraProps<"div"> {}
@@ -12,7 +12,7 @@ export const CardHeader = forwardRef<CardHeaderProps, "div">(
       <chakra.div
         ref={ref}
         className={cx("chakra-card__header", className)}
-        __css={styles.header}
+        css={styles.header}
         {...rest}
       />
     )

@@ -1,19 +1,18 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { UseCheckboxProps, useCheckbox } from "../checkbox"
 import { splitCheckboxProps } from "../checkbox/checkbox-props"
-import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"
 
 export interface SwitchRootProps
-  extends Omit<UseCheckboxProps, "isIndeterminate">,
-    Omit<HTMLChakraProps<"label">, keyof UseCheckboxProps>,
-    ThemingProps<"Switch"> {}
+  extends HTMLChakraProps<"label", UseCheckboxProps>,
+    SystemRecipeProps<"Switch"> {}
 
 /**
  * The `Switch` component is used as an alternative for the checkbox component for switching between "enabled" and "disabled" states.
@@ -23,19 +22,21 @@ export interface SwitchRootProps
  */
 export const SwitchRoot = forwardRef<SwitchRootProps, "input">(
   function SwitchRoot(props, ref) {
-    const styles = useMultiStyleConfig("Switch", props)
-    const ownProps = omitThemingProps(props)
+    const recipe = useSlotRecipe("Switch")
 
-    const [checkboxProps, localProps] = splitCheckboxProps(ownProps)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
+    const [checkboxProps, elementProps] = splitCheckboxProps(localProps)
     const api = useCheckbox(checkboxProps)
 
     return (
       <SwitchStylesProvider value={styles}>
         <SwitchContextProvider value={api}>
           <chakra.label
-            {...api.getRootProps(localProps)}
+            {...api.getRootProps(elementProps)}
             className={cx("chakra-switch", props.className)}
-            __css={styles.root}
+            css={styles.root}
           >
             <input
               className="chakra-switch__input"

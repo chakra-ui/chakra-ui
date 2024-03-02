@@ -2,7 +2,7 @@ import { useInterval } from "@chakra-ui/hooks/use-interval"
 import { useState } from "react"
 import { Tabs } from "."
 import { Drawer } from "../drawer"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Disclosure / Tabs",

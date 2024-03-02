@@ -1,6 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -10,6 +15,10 @@ import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
  */
 export const Divider = forwardRef<DividerProps, "hr">(
   function Divider(props, ref) {
+    const recipe = useRecipe("Divider")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const variantStyles = recipe(variantProps)
+
     const {
       borderLeftWidth,
       borderBottomWidth,
@@ -19,13 +28,9 @@ export const Divider = forwardRef<DividerProps, "hr">(
       borderStyle,
       borderColor,
       ...styles
-    } = useStyleConfig("Divider", props)
-    const {
-      className,
-      orientation = "horizontal",
-      __css,
-      ...rest
-    } = omitThemingProps(props)
+    } = variantStyles
+
+    const { className, orientation = "horizontal", css, ...rest } = localProps
 
     const dividerStyles = {
       vertical: {
@@ -45,14 +50,14 @@ export const Divider = forwardRef<DividerProps, "hr">(
         ref={ref}
         aria-orientation={orientation}
         {...rest}
-        __css={{
+        css={{
           ...styles,
           border: "0",
 
           borderColor,
           borderStyle,
           ...dividerStyles[orientation],
-          ...__css,
+          ...css,
         }}
         className={cx("chakra-divider", className)}
       />
@@ -62,7 +67,7 @@ export const Divider = forwardRef<DividerProps, "hr">(
 
 export interface DividerProps
   extends HTMLChakraProps<"div">,
-    ThemingProps<"Divider"> {
+    SystemRecipeProps<"Divider"> {
   orientation?: "horizontal" | "vertical"
 }
 

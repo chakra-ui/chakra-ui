@@ -1,6 +1,6 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { Icon, type IconProps } from "../icon"
-import { forwardRef } from "../system"
+import { forwardRef } from "../styled-system"
 import { useFieldContext, useFieldErrorStyles } from "./field-context"
 
 export interface FieldErrorIconProps extends IconProps {}
@@ -23,7 +23,7 @@ export const FieldErrorIcon = forwardRef<FieldErrorIconProps, "svg">(
         ref={ref}
         aria-hidden
         {...props}
-        __css={styles.icon}
+        css={styles.icon}
         className={_className}
       >
         <path

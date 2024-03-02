@@ -1,45 +1,36 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { Children, useMemo } from "react"
-import { SystemProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+} from "../styled-system"
 
-export interface WrapProps extends HTMLChakraProps<"div"> {
-  /**
-   * The space between each child (even if it wraps)
-   * @type SystemProps["margin"]
-   */
-  spacing?: SystemProps["margin"]
-  /**
-   * The horizontal space between the each child (even if it wraps). Defaults to `spacing` if not defined.
-   * @type SystemProps["margin"]
-   */
-  spacingX?: SystemProps["margin"]
-  /**
-   * The vertical space between the each child (even if it wraps). Defaults to `spacing` if not defined.
-   * @type SystemProps["margin"]
-   */
-  spacingY?: SystemProps["margin"]
+interface WrapOptions {
   /**
    * The `justify-content` value (for cross-axis alignment)
-   * @type SystemProps["justifyContent"]
+   * @type SystemStyleObject["justifyContent"]
    */
-  justify?: SystemProps["justifyContent"]
+  justify?: SystemStyleObject["justifyContent"]
   /**
    * The `align-items` value (for main axis alignment)
-   * @type SystemProps["alignItems"]
+   * @type SystemStyleObject["alignItems"]
    */
-  align?: SystemProps["alignItems"]
+  align?: SystemStyleObject["alignItems"]
   /**
    * The `flex-direction` value
-   * @type SystemProps["flexDirection"]
+   * @type SystemStyleObject["flexDirection"]
    */
-  direction?: SystemProps["flexDirection"]
+  direction?: SystemStyleObject["flexDirection"]
   /**
    * If `true`, the children will be wrapped in a `WrapItem`
    * @default false
    */
   shouldWrapChildren?: boolean
 }
+
+export interface WrapProps extends HTMLChakraProps<"div", WrapOptions> {}
 
 /**
  * Layout component used to stack elements that differ in length
@@ -53,9 +44,9 @@ export interface WrapProps extends HTMLChakraProps<"div"> {
  */
 export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
   const {
-    spacing = "0.5rem",
-    spacingX,
-    spacingY,
+    gap = "0.5rem",
+    columnGap,
+    rowGap,
     children,
     justify,
     direction,
@@ -79,16 +70,16 @@ export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
     <chakra.div ref={ref} className={cx("chakra-wrap", className)} {...rest}>
       <chakra.ul
         className="chakra-wrap__list"
-        __css={{
+        css={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: justify,
           alignItems: align,
           flexDirection: direction,
           listStyleType: "none",
-          gap: spacing,
-          columnGap: spacingX,
-          rowGap: spacingY,
+          gap,
+          columnGap,
+          rowGap,
           padding: "0",
         }}
       >
@@ -108,7 +99,7 @@ export const WrapItem = forwardRef<WrapItemProps, "li">(
     return (
       <chakra.li
         ref={ref}
-        __css={{ display: "flex", alignItems: "flex-start" }}
+        css={{ display: "flex", alignItems: "flex-start" }}
         className={cx("chakra-wrap__listitem", className)}
         {...rest}
       />

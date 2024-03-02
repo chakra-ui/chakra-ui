@@ -1,5 +1,5 @@
 import { dataAttr } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useTableStyles } from "./table-context"
 
 export interface TableCellProps extends HTMLChakraProps<"td"> {
@@ -19,7 +19,7 @@ export const TableCell = forwardRef<TableCellProps, "td">(
       <chakra.td
         {...rest}
         ref={ref}
-        __css={styles.cell}
+        css={styles.cell}
         data-is-numeric={dataAttr(numeric)}
       />
     )

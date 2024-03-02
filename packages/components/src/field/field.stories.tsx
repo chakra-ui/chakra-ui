@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Field, FieldOptions, useField } from "."
-import { PropsOf, chakra, useMultiStyleConfig } from "../system"
+import { chakra, useSlotRecipe } from "../styled-system"
 
 export default {
   title: "Forms / Field",
@@ -19,7 +19,7 @@ export default {
 
 type OmittedTypes = "disabled" | "required" | "readOnly" | "size"
 
-type InputProps = Omit<PropsOf<"input">, OmittedTypes> &
+type InputProps = Omit<React.ComponentProps<"input">, OmittedTypes> &
   FieldOptions & {
     // Input component as `size` by default, so it resolves to `never`
     // Omitted it from types in Line 16 and added back here.
@@ -34,33 +34,41 @@ interface Props {
 
 const Input = React.forwardRef<HTMLInputElement, InputProps & Props>(
   function Input(props, ref) {
-    const styles = useMultiStyleConfig("Input", props)
-    const inputProps = useField(props)
-    return <chakra.input ref={ref} __css={styles.field} {...inputProps} />
+    const recipe = useSlotRecipe("Input")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+    const inputProps = useField(localProps)
+    return <chakra.input ref={ref} css={styles.field} {...inputProps} />
   },
 )
 
 // ------------------
 
-type TextAreaProps = Omit<PropsOf<"textarea">, OmittedTypes> & FieldOptions
+type TextAreaProps = Omit<React.ComponentProps<"textarea">, OmittedTypes> &
+  FieldOptions
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function Textarea(props, ref) {
-    const styles = useMultiStyleConfig("Textarea", props)
-    const inputProps = useField<HTMLTextAreaElement>(props)
-    return <chakra.textarea ref={ref} __css={styles} {...inputProps} />
+    const recipe = useSlotRecipe("Textarea")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+    const inputProps = useField<HTMLTextAreaElement>(localProps)
+    return <chakra.textarea ref={ref} css={styles} {...inputProps} />
   },
 )
 
 // ------------------
 
-type SelectProps = Omit<PropsOf<"select">, OmittedTypes> & FieldOptions
+type SelectProps = Omit<React.ComponentProps<"select">, OmittedTypes> &
+  FieldOptions
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   function Select(props, ref) {
-    const styles = useMultiStyleConfig("Select", props)
-    const inputProps = useField<HTMLSelectElement>(props)
-    return <chakra.select ref={ref} __css={styles.field} {...inputProps} />
+    const recipe = useSlotRecipe("Select")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+    const inputProps = useField<HTMLSelectElement>(localProps)
+    return <chakra.select ref={ref} css={styles.field} {...inputProps} />
   },
 )
 

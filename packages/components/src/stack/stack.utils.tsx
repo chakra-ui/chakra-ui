@@ -1,12 +1,12 @@
-import { mapResponsive } from "@chakra-ui/utils/responsive"
-import { ResponsiveValue, SystemProps } from "../styled-system"
+import { mapResponsive } from "@chakra-ui/utils"
+import { ConditionalValue, SystemStyleObject } from "../styled-system"
 
-export type StackDirection = ResponsiveValue<
+export type StackDirection = ConditionalValue<
   "row" | "column" | "row-reverse" | "column-reverse"
 >
 
 interface Options {
-  spacing: SystemProps["margin"]
+  spacing: SystemStyleObject["margin"]
   direction: StackDirection
 }
 

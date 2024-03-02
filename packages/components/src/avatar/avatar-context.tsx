@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/utils/context"
+import { createContext } from "@chakra-ui/utils"
 import { ImageLoadStatus } from "../image/use-image"
 import { SystemStyleObject } from "../styled-system"
 

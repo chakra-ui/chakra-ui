@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 
 export interface StatGroupProps extends HTMLChakraProps<"div"> {}
 
@@ -11,11 +11,12 @@ export const StatGroup = forwardRef<StatGroupProps, "div">(
         ref={ref}
         role="group"
         className={cx("chakra-stat__group", props.className)}
-        __css={{
+        css={{
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-around",
           alignItems: "flex-start",
+          ...props.css,
         }}
       />
     )

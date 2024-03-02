@@ -2,12 +2,17 @@ export {
   RangeSlider,
   RangeSliderFilledTrack,
   RangeSliderMark,
-  RangeSliderProvider,
   RangeSliderThumb,
   RangeSliderTrack,
+} from "./range-slider"
+export {
+  RangeSliderProvider,
   useRangeSliderContext,
   useRangeSliderStyles,
-} from "./range-slider"
+  SliderProvider,
+  useSliderContext,
+  useSliderStyles,
+} from "./slider-context"
 export type {
   RangeSliderInnerTrackProps,
   RangeSliderMarkProps,
@@ -19,11 +24,8 @@ export {
   Slider,
   SliderFilledTrack,
   SliderMark,
-  SliderProvider,
   SliderThumb,
   SliderTrack,
-  useSliderContext,
-  useSliderStyles,
 } from "./slider"
 export type {
   SliderInnerTrackProps,

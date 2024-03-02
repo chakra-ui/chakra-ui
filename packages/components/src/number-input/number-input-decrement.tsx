@@ -1,4 +1,4 @@
-import { HTMLChakraProps, forwardRef } from "../system"
+import { HTMLChakraProps, forwardRef } from "../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
@@ -26,7 +26,7 @@ export const NumberInputDecrementStepper = forwardRef<
   const decrement = getDecrementButtonProps(props, ref)
 
   return (
-    <StyledStepper {...decrement} __css={styles.stepper}>
+    <StyledStepper {...decrement} css={styles.stepper}>
       {props.children ?? <TriangleDownIcon />}
     </StyledStepper>
   )

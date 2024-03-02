@@ -1,6 +1,6 @@
-import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { MaybeRenderProp, cx, runIfFn } from "@chakra-ui/utils"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../styled-system"
 import {
   AccordionItemContextProvider,
   useAccordionStyles,
@@ -27,7 +27,7 @@ export interface AccordionItemProps
  *
  * It also provides context for the accordion button and panel.
  */
-export const AccordionItem = forwardRef<AccordionItemProps, "div">(
+export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
   function AccordionItem(props, ref) {
     const { children, className } = props
 
@@ -47,7 +47,7 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
           ref={ref}
           {...localProps}
           className={cx("chakra-accordion__item", className)}
-          __css={styles.item}
+          css={[styles.item, localProps.css]}
         >
           {runIfFn(children, itemState)}
         </chakra.div>

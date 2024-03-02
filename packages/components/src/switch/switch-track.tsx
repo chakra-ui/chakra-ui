@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useSwitchContext, useSwitchStyles } from "./switch-context"
 
 export interface SwitchTrackProps extends HTMLChakraProps<"span"> {}
@@ -12,7 +12,7 @@ export const SwitchTrack = forwardRef<SwitchTrackProps, "span">(
       <chakra.span
         {...api.getLabelProps(props, ref)}
         className={cx("chakra-switch__track", props.className)}
-        __css={styles.track}
+        css={styles.track}
       />
     )
   },

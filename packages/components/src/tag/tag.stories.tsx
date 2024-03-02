@@ -2,7 +2,7 @@ import { HiPlus } from "react-icons/hi"
 import { Tag } from "."
 import { For, HStack, Icon } from ".."
 import { Avatar } from "../avatar"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Data Display / Tag",

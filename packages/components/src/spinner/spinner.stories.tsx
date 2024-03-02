@@ -1,6 +1,4 @@
-import { mergeWith } from "@chakra-ui/utils"
 import { Spinner } from "."
-import { ThemeProvider, useTheme } from "../system"
 
 export default {
   title: "Feedback / Spinner",
@@ -25,22 +23,3 @@ export const speed = () => (
 export const emptyColor = () => (
   <Spinner color="red.500" emptyColor="gray.200" />
 )
-
-export const WithCustomStyleConfig = () => {
-  const theme = useTheme()
-  return (
-    <ThemeProvider
-      theme={mergeWith(theme, {
-        components: {
-          Spinner: {
-            baseStyle: {
-              color: "blue.300",
-            },
-          },
-        },
-      })}
-    >
-      <Spinner color="red.500" />
-    </ThemeProvider>
-  )
-}

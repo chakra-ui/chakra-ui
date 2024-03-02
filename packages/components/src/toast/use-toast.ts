@@ -1,13 +1,16 @@
 import { useMemo } from "react"
 import type { AlertStatus } from "../alert"
-import { SystemProps, ThemingProps } from "../styled-system"
-import { useChakra } from "../system"
+import {
+  SystemRecipeProps,
+  SystemStyleObject,
+  useChakra,
+} from "../styled-system"
 import { CreateToastFnReturn, createToastFn } from "./create-toast-fn"
 import { ToastPosition } from "./toast.placement"
 import { useToastOptionContext } from "./toast.provider"
 import type { RenderProps, ToastId, ToastOptions } from "./toast.types"
 
-export interface UseToastOptions extends ThemingProps<"Alert"> {
+export interface UseToastOptions extends SystemRecipeProps<"Alert"> {
   /**
    * The placement of the toast
    *
@@ -61,7 +64,7 @@ export interface UseToastOptions extends ThemingProps<"Alert"> {
   /**
    * Optional style overrides for the container wrapping the toast component.
    */
-  containerStyle?: SystemProps
+  containerStyle?: SystemStyleObject
 }
 
 /**

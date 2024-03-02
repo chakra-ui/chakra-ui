@@ -1,23 +1,9 @@
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useRef } from "react"
 import { useTabsContext } from "./tabs-context"
-import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { makeTabId } from "./use-tabs"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 
-export interface UseTabListProps {
-  children?: React.ReactNode
-  onKeyDown?: React.KeyboardEventHandler
-  ref: React.ForwardedRef<HTMLDivElement>
-}
-
-/**
- * Tabs hook to manage multiple tab buttons,
- * and ensures only one tab is selected per time.
- *
- * @param props props object for the tablist
- */
-export function useTabList<P extends UseTabListProps>(props: P) {
+export function useTabList() {
   const { id, focusedValue, orientation, direction } = useTabsContext()
 
   const tabListRef = useRef<HTMLDivElement>(null)
@@ -77,11 +63,10 @@ export function useTabList<P extends UseTabListProps>(props: P) {
   )
 
   return {
-    ...props,
-    ref: mergeRefs(props.ref, tabListRef),
+    ref: tabListRef,
     role: "tablist",
     "aria-orientation": orientation,
-    onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
+    onKeyDown,
   }
 }
 

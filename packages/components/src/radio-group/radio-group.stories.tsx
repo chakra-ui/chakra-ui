@@ -10,7 +10,7 @@ import {
   Wrap,
   WrapItem,
 } from ".."
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Form / Radio Group",

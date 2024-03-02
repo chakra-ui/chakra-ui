@@ -1,4 +1,4 @@
-import { VisuallyHidden, VisuallyHiddenInput } from "."
+import { VisuallyHidden } from "."
 
 export default {
   title: "Disclosure / Visually Hidden",
@@ -9,10 +9,7 @@ export const hiddenSpan = () => (
 )
 
 export const hiddenInput = () => (
-  <VisuallyHiddenInput
-    defaultChecked
-    onChange={(event) => {
-      console.log(event.target.checked)
-    }}
-  />
+  <VisuallyHidden asChild>
+    <input type="checkbox" defaultChecked />
+  </VisuallyHidden>
 )

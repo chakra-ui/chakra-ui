@@ -1,5 +1,5 @@
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { callAllHandlers } from "@chakra-ui/utils"
 import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useRef, useState } from "react"
 import { dialogManager, useDialogManager } from "./dialog-manager"

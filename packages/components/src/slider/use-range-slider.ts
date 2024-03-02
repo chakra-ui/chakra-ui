@@ -4,8 +4,8 @@ import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { usePanEvent } from "@chakra-ui/hooks/use-pan-event"
 import { useSizes } from "@chakra-ui/hooks/use-size"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { ariaAttr, dataAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { callAllHandlers } from "@chakra-ui/utils"
+import { ariaAttr, dataAttr } from "@chakra-ui/utils"
 import {
   clampValue,
   percentToValue,

@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useMenuStyles } from "./menu-context"
 import { useMenuTrigger } from "./use-menu"
 
@@ -14,7 +14,7 @@ export const MenuTrigger = forwardRef<MenuTriggerProps, "button">(
       <chakra.button
         {...triggerProps}
         className={cx("chakra-menu__trigger", props.className)}
-        __css={styles.trigger}
+        css={styles.trigger}
       />
     )
   },

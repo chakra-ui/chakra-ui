@@ -1,8 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
-export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps<"Kbd"> {}
+export interface KbdProps
+  extends HTMLChakraProps<"kbd">,
+    SystemRecipeProps<"Kbd"> {}
 
 /**
  * Semantic component to render a keyboard shortcut
@@ -17,15 +24,16 @@ export interface KbdProps extends HTMLChakraProps<"kbd">, ThemingProps<"Kbd"> {}
  * @see Docs https://chakra-ui.com/kbd
  */
 export const Kbd = forwardRef<KbdProps, "kbd">(function Kbd(props, ref) {
-  const styles = useStyleConfig("Kbd", props)
-  const { className, ...rest } = omitThemingProps(props)
+  const recipe = useRecipe("Kbd")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
 
   return (
     <chakra.kbd
       ref={ref}
-      className={cx("chakra-kbd", className)}
-      {...rest}
-      __css={{
+      {...localProps}
+      className={cx("chakra-kbd", localProps.className)}
+      css={{
         fontFamily: "mono",
         ...styles,
       }}

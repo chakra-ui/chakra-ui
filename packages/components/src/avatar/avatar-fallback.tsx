@@ -1,5 +1,5 @@
 import { cloneElement, forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 import { useAvatarContext, useAvatarStyles } from "./avatar-context"
 
 export interface AvatarFallbackProps extends HTMLChakraProps<"div"> {}
@@ -20,7 +20,7 @@ export const AvatarFallback = forwardRef<HTMLSpanElement, any>(
           role="img"
           aria-label={name}
           {...props}
-          __css={styles.label}
+          css={styles.label}
         >
           {getInitials(name)}
         </chakra.div>

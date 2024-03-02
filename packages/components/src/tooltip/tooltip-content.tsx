@@ -1,7 +1,11 @@
 import { HTMLMotionProps, motion } from "framer-motion"
 import { popperCSSVars } from "../popper"
-import { getCSSVar } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useTheme } from "../system"
+import {
+  HTMLChakraProps,
+  chakra,
+  forwardRef,
+  useSystemContext,
+} from "../styled-system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
 import { scale } from "./tooltip-transition"
 
@@ -16,8 +20,7 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
   function TooltipContent(props, ref) {
     const styles = useTooltipStyles()
     const api = useTooltipContext()
-
-    const theme = useTheme()
+    const sys = useSystemContext()
 
     const {
       bg,
@@ -32,16 +35,12 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
 
     if (_bg) {
       styles.bg = _bg
-      const bgVar = getCSSVar(theme, "colors", _bg)
+      const bgVar = sys.token(`colors.${_bg}`, _bg)
       ;(styles as any)[popperCSSVars.arrowBg.var] = bgVar
     }
 
     return (
-      <chakra.div
-        asChild
-        __css={styles}
-        {...api.getContentProps(restProps, ref)}
-      >
+      <chakra.div asChild css={styles} {...api.getContentProps(restProps, ref)}>
         <motion.div
           variants={scale}
           initial="exit"

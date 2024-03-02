@@ -1,6 +1,9 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { SystemProps } from "../styled-system"
-import { HTMLChakraProps, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  forwardRef,
+} from "../styled-system"
 import { MenuCommand } from "./menu-command"
 import { MenuIcon } from "./menu-icon"
 import { StyledMenuItem } from "./styled-menu-item"
@@ -20,18 +23,18 @@ interface MenuItemOptions
   icon?: React.ReactElement
   /**
    * The spacing between the icon and menu item's label.
-   * @type SystemProps["mr"]
+   * @type SystemStyleObject["mr"]
    */
-  iconSpacing?: SystemProps["mr"]
+  iconSpacing?: SystemStyleObject["mr"]
   /**
    * Right-aligned label text content, useful for displaying hotkeys.
    */
   command?: string
   /**
    * The spacing between the command and menu item's label.
-   * @type SystemProps["ml"]
+   * @type SystemStyleObject["ml"]
    */
-  commandSpacing?: SystemProps["ml"]
+  commandSpacing?: SystemStyleObject["ml"]
 }
 
 type HTMLAttributes = React.HTMLAttributes<HTMLElement>

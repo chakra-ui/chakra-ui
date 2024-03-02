@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 
 export interface CenterProps extends HTMLChakraProps<"div"> {}
 
@@ -9,7 +9,7 @@ export interface CenterProps extends HTMLChakraProps<"div"> {}
  * @see Docs https://chakra-ui.com/center
  */
 export const Center = chakra("div", {
-  baseStyle: {
+  base: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -53,7 +53,7 @@ export const AbsoluteCenter = forwardRef<AbsoluteCenterProps, "div">(
     return (
       <chakra.div
         ref={ref}
-        __css={centerStyles[axis]}
+        css={centerStyles[axis]}
         {...rest}
         position="absolute"
       />

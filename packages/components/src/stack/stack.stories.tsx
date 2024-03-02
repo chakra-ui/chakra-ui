@@ -21,7 +21,7 @@ export const Horizontal = () => (
 )
 
 export const WithCustomDivider = () => (
-  <Stack spacing="40px" divider={<Divider sx={{ borderColor: "red.200" }} />}>
+  <Stack spacing="40px" divider={<Divider css={{ borderColor: "red.200" }} />}>
     <Box>1</Box>
     <Box>2</Box>
     <Box>3</Box>

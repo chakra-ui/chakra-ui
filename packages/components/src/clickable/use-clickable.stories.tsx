@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useClickable } from "."
-import { chakra, forwardRef } from "../system"
+import { chakra, forwardRef } from "../styled-system"
 
 const Clickable: React.FC<any> = forwardRef((props, ref) => {
   const clickable = useClickable({ ...props, ref })

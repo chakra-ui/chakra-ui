@@ -1,7 +1,11 @@
 import { AnimatePresence } from "framer-motion"
 import { Portal, PortalProps } from "../portal"
-import { defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  HTMLChakraProps,
+  chakra,
+  defineStyle,
+  forwardRef,
+} from "../styled-system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
 
 export interface TooltipPositionerProps extends HTMLChakraProps<"div"> {
@@ -30,7 +34,7 @@ export const TooltipPositioner = forwardRef<TooltipPositionerProps, "div">(
             <chakra.div
               {...api.getPositionerProps(restProps, ref)}
               className="chakra-tooltip__positioner"
-              __css={positionerStyles}
+              css={positionerStyles}
             />
           </Portal>
         )}

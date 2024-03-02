@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
@@ -28,7 +28,7 @@ export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
       <chakra.input
         {...getInputProps(props, ref)}
         className={cx("chakra-numberinput__field", props.className)}
-        __css={{
+        css={{
           width: "100%",
           ...styles.field,
         }}

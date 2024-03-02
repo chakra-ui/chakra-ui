@@ -32,7 +32,9 @@ export function TwitterEx() {
         </Link>
       </Popover.Trigger>
       <Popover.Positioner>
-        <Popover.Content sx={{ bg: "#15202b", color: "white", width: "400px" }}>
+        <Popover.Content
+          css={{ bg: "#15202b", color: "white", width: "400px" }}
+        >
           <Card />
         </Popover.Content>
       </Popover.Positioner>

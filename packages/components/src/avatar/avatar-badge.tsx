@@ -1,6 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { SystemStyleObject, defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  chakra,
+  defineStyle,
+  forwardRef,
+} from "../styled-system"
 import { useAvatarStyles } from "./avatar-context"
 
 type BadgePlacement = "top-start" | "top-end" | "bottom-start" | "bottom-end"
@@ -57,7 +62,7 @@ export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">(
         ref={ref}
         {...rest}
         className={cx("chakra-avatar__badge", className)}
-        __css={badgeStyles}
+        css={badgeStyles}
       />
     )
   },

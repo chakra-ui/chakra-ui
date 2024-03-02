@@ -1,15 +1,15 @@
-import { ThemingProps, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { TagStylesProvider } from "./tag-context"
 
 export interface TagRootProps
   extends HTMLChakraProps<"span">,
-    ThemingProps<"Tag"> {}
+    SystemRecipeProps<"Tag"> {}
 
 /**
  * The tag component is used to label or categorize UI elements.
@@ -18,12 +18,18 @@ export interface TagRootProps
  */
 export const TagRoot = forwardRef<TagRootProps, "span">(
   function TagRoot(props, ref) {
-    const styles = useMultiStyleConfig("Tag", props)
-    const rootProps = omitThemingProps(props)
+    const recipe = useSlotRecipe("Tag")
+
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
     return (
       <TagStylesProvider value={styles}>
-        <chakra.span ref={ref} {...rootProps} __css={styles.root} />
+        <chakra.span
+          ref={ref}
+          {...localProps}
+          css={[styles.root, localProps.css]}
+        />
       </TagStylesProvider>
     )
   },

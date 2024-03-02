@@ -117,7 +117,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
             >
               <Box>
                 <Flex justify='space-between' px='6' pt='5' pb='4'>
-                  <Logo sx={{ rect: { fill: 'teal.300' } }} />
+                  <Logo css={{ rect: { fill: 'teal.300' } }} />
                   <HStack spacing='5'>
                     <SponsorButton display='flex' />
                     <CloseButton ref={closeBtnRef} onClick={onClose} />

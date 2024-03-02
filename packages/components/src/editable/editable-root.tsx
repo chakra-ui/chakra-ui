@@ -1,11 +1,11 @@
-import { cx, pick, runIfFn } from "@chakra-ui/utils"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { MaybeRenderProp, cx, pick, runIfFn } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"
 import { splitEditableProps } from "./editable-props"
 import {
@@ -19,8 +19,6 @@ export type EditableState = Pick<
   "isEditing" | "onSubmit" | "onCancel" | "onEdit"
 >
 
-type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
-
 interface BaseEditableProps
   extends Omit<
     HTMLChakraProps<"div">,
@@ -30,7 +28,7 @@ interface BaseEditableProps
 export interface EditableRootProps
   extends UseEditableProps,
     Omit<BaseEditableProps, "children">,
-    ThemingProps<"Editable"> {
+    SystemRecipeProps<"Editable"> {
   children?: MaybeRenderProp<EditableState>
 }
 
@@ -44,11 +42,11 @@ export interface EditableRootProps
  */
 export const EditableRoot = forwardRef<EditableRootProps, "div">(
   function Editable(props, ref) {
-    const styles = useMultiStyleConfig("Editable", props)
+    const recipe = useSlotRecipe("Editable")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-    const ownProps = omitThemingProps(props)
-    const [hookProps, rootProps] = splitEditableProps(ownProps)
-
+    const [hookProps, rootProps] = splitEditableProps(localProps)
     const api = useEditable(hookProps)
 
     const editableState = pick(api, [
@@ -66,7 +64,7 @@ export const EditableRoot = forwardRef<EditableRootProps, "div">(
           <chakra.div
             ref={ref}
             {...rootProps}
-            __css={styles.root}
+            css={styles.root}
             className={cx("chakra-editable", props.className)}
           >
             {children}

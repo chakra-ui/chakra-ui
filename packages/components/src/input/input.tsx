@@ -1,12 +1,12 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { FieldOptions, useField } from "../field"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
+import { FieldOptions, splitFieldProps, useField } from "../field"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 
 interface InputOptions {
   /**
@@ -32,7 +32,7 @@ type Omitted = "disabled" | "required" | "readOnly" | "size"
 export interface InputProps
   extends Omit<HTMLChakraProps<"input">, Omitted>,
     InputOptions,
-    ThemingProps<"Input">,
+    SystemRecipeProps<"Input">,
     FieldOptions {}
 
 /**
@@ -46,17 +46,20 @@ export const Input = forwardRef<InputProps, "input">(
   function Input(props, ref) {
     const { htmlSize, ...restProps } = props
 
-    const styles = useMultiStyleConfig("Input", restProps)
-    const _restProps = omitThemingProps(restProps)
+    const recipe = useSlotRecipe("Input")
+    const [variantProps, localProps] = recipe.splitVariantProps(restProps)
+    const styles = recipe(variantProps)
 
-    const inputProps = useField<HTMLInputElement>(_restProps)
+    const [fieldProps, elementProps] = splitFieldProps(localProps)
+    const inputProps = useField<HTMLInputElement>(fieldProps)
     const _className = cx("chakra-input", props.className)
 
     return (
       <chakra.input
         size={htmlSize}
+        {...elementProps}
         {...inputProps}
-        __css={styles.field}
+        css={styles.field}
         ref={ref}
         className={_className}
       />
@@ -67,4 +70,5 @@ export const Input = forwardRef<InputProps, "input">(
 Input.displayName = "Input"
 
 // This is used in `input-group.tsx`
+//@ts-ignore
 Input.id = "Input"

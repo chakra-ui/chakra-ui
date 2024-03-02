@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {
@@ -29,11 +29,11 @@ export const BreadcrumbLink = forwardRef<BreadcrumbLinkProps, "a">(
 
     if (isCurrentPage) {
       return (
-        <chakra.span aria-current="page" __css={styles.link} {...sharedProps} />
+        <chakra.span aria-current="page" css={styles.link} {...sharedProps} />
       )
     }
 
-    return <chakra.a __css={styles.link} href={href} {...sharedProps} />
+    return <chakra.a css={styles.link} href={href} {...sharedProps} />
   },
 )
 BreadcrumbLink.displayName = "BreadcrumbLink"

@@ -1,9 +1,7 @@
-import { HTMLChakraProps, chakra } from "../system"
+import { HTMLChakraProps, chakra } from "../styled-system"
 
 export interface StrongProps extends HTMLChakraProps<"em"> {}
 
 export const Strong = chakra("strong", {
-  baseStyle: {
-    fontWeight: "bold",
-  },
+  base: { fontWeight: "bold" },
 })

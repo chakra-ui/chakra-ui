@@ -1,12 +1,17 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 import { useFieldContext } from "./field-context"
 import { RequiredIndicator } from "./field-indicator"
 
 export interface FieldLabelProps
   extends HTMLChakraProps<"label">,
-    ThemingProps<"FormLabel"> {
+    SystemRecipeProps<"FormLabel"> {
   /**
    * @type React.ReactNode
    */
@@ -27,8 +32,9 @@ export interface FieldLabelProps
  */
 export const FieldLabel = forwardRef<FieldLabelProps, "label">(
   function FormLabel(passedProps, ref) {
-    const styles = useStyleConfig("FormLabel", passedProps)
-    const props = omitThemingProps(passedProps)
+    const recipe = useRecipe("FormLabel")
+    const [variantProps, localProps] = recipe.splitVariantProps(passedProps)
+    const styles = recipe(variantProps)
 
     const {
       className,
@@ -36,7 +42,7 @@ export const FieldLabel = forwardRef<FieldLabelProps, "label">(
       requiredIndicator = <RequiredIndicator />,
       optionalIndicator = null,
       ...rest
-    } = props
+    } = localProps
 
     const field = useFieldContext()
     const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
@@ -44,8 +50,8 @@ export const FieldLabel = forwardRef<FieldLabelProps, "label">(
     return (
       <chakra.label
         {...ownProps}
-        className={cx("chakra-form__label", props.className)}
-        __css={{
+        className={cx("chakra-form__label", localProps.className)}
+        css={{
           display: "block",
           textAlign: "start",
           ...styles,

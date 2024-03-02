@@ -1,5 +1,5 @@
 import { Icon, type IconProps } from "../icon"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 import { useStatStyles } from "./stat-context"
 
 export const StatDownArrow: React.FC<IconProps> = (props) => (
@@ -41,7 +41,7 @@ export function StatArrow(props: StatArrowProps) {
   return (
     <>
       <chakra.span srOnly>{label}</chakra.span>
-      <BaseIcon aria-hidden {...rest} __css={styles.icon} />
+      <BaseIcon aria-hidden {...rest} css={styles.icon} />
     </>
   )
 }

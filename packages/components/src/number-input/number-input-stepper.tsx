@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useNumberInputStyles } from "./number-input-context"
 
 export interface NumberInputStepperProps extends HTMLChakraProps<"div"> {}
@@ -21,7 +21,7 @@ export const NumberInputStepper = forwardRef<NumberInputStepperProps, "div">(
         aria-hidden
         ref={ref}
         {...props}
-        __css={{
+        css={{
           display: "flex",
           flexDirection: "column",
           position: "absolute",

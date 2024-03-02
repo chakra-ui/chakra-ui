@@ -1,33 +1,35 @@
-import { ThemingProps, defineStyle, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  defineStyle,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
 export interface SkipNavLinkProps
   extends HTMLChakraProps<"a">,
-    ThemingProps<"SkipNavLink"> {}
+    SystemRecipeProps<"SkipNavLink"> {}
 
 const fallbackId = "chakra-skip-nav"
 
-function getStyles(styles: any) {
-  return defineStyle({
-    userSelect: "none",
-    border: "0",
-    height: "1px",
-    width: "1px",
-    margin: "-1px",
-    padding: "0",
-    outline: "0",
-    overflow: "hidden",
-    position: "absolute",
-    clip: "rect(0 0 0 0)",
-    ...styles,
-    _focus: {
-      clip: "auto",
-      width: "auto",
-      height: "auto",
-      ...styles["_focus"],
-    },
-  })
-}
+const baseStyle = defineStyle({
+  userSelect: "none",
+  border: "0",
+  height: "1px",
+  width: "1px",
+  margin: "-1px",
+  padding: "0",
+  outline: "0",
+  overflow: "hidden",
+  position: "absolute",
+  clip: "rect(0 0 0 0)",
+  _focus: {
+    clip: "auto",
+    width: "auto",
+    height: "auto",
+  },
+})
 
 /**
  * Renders a link that remains hidden until focused to skip to the main content.
@@ -36,10 +38,19 @@ function getStyles(styles: any) {
  */
 export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
   function SkipNavLink(props, ref) {
-    const styles = useStyleConfig("SkipLink", props)
-    const { id = fallbackId, ...rest } = omitThemingProps(props)
+    const recipe = useRecipe("SkipLink")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
+
+    localProps.id ||= fallbackId
+
     return (
-      <chakra.a {...rest} ref={ref} href={`#${id}`} __css={getStyles(styles)} />
+      <chakra.a
+        {...localProps}
+        ref={ref}
+        href={`#${localProps.id}`}
+        css={[baseStyle, styles]}
+      />
     )
   },
 )

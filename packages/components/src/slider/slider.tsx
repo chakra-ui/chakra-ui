@@ -1,42 +1,23 @@
-import { createContext } from "@chakra-ui/utils/context"
-import { cx } from "@chakra-ui/utils/cx"
-import {
-  SystemStyleObject,
-  ThemingProps,
-  omitThemingProps,
-} from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-  useTheme,
-} from "../system"
-import { UseSliderProps, UseSliderReturn, useSlider } from "./use-slider"
-
-interface SliderContext
-  extends Omit<UseSliderReturn, "getInputProps" | "getRootProps"> {}
-
-const [SliderProvider, useSliderContext] = createContext<SliderContext>({
-  name: "SliderContext",
-  hookName: "useSliderContext",
-  providerName: "<Slider />",
-})
-
-const [SliderStylesProvider, useSliderStyles] = createContext<
-  Record<string, SystemStyleObject>
->({
-  name: `SliderStylesContext`,
-  hookName: `useSliderStyles`,
-  providerName: "<Slider />",
-})
-
-export { SliderProvider, useSliderContext, useSliderStyles }
+  useSlotRecipe,
+} from "../styled-system"
+import {
+  SliderProvider,
+  SliderStylesProvider,
+  useSliderContext,
+  useSliderStyles,
+} from "./slider-context"
+import { splitSliderProps } from "./slider-props"
+import { UseSliderProps, useSlider } from "./use-slider"
 
 export interface SliderProps
-  extends UseSliderProps,
-    ThemingProps<"Slider">,
-    Omit<HTMLChakraProps<"div">, keyof UseSliderProps> {}
+  extends SystemRecipeProps<"Slider">,
+    HTMLChakraProps<"div", UseSliderProps> {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.
@@ -51,27 +32,26 @@ export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
     orientation: props?.orientation ?? "horizontal",
   }
 
-  const styles = useMultiStyleConfig("Slider", sliderProps)
-  const ownProps = omitThemingProps(sliderProps)
+  const recipe = useSlotRecipe("Slider")
+  const [variantProps, localProps] = recipe.splitVariantProps(sliderProps)
+  const styles = recipe(variantProps)
 
-  const { direction } = useTheme()
-  ownProps.direction = direction
+  // const { direction } = useTheme()
+  // ownProps.direction = direction
 
-  const { getInputProps, getRootProps, ...context } = useSlider(ownProps)
-
-  const rootProps = getRootProps()
-  const inputProps = getInputProps({}, ref)
+  const [useSliderProps, elementProps] = splitSliderProps(localProps)
+  const api = useSlider(useSliderProps)
 
   return (
-    <SliderProvider value={context}>
+    <SliderProvider value={api}>
       <SliderStylesProvider value={styles}>
         <chakra.div
-          {...rootProps}
+          {...elementProps}
           className={cx("chakra-slider", sliderProps.className)}
-          __css={styles.root}
+          css={styles.root}
         >
           {sliderProps.children}
-          <input {...inputProps} />
+          <input {...api.getInputProps({}, ref)} />
         </chakra.div>
       </SliderStylesProvider>
     </SliderProvider>
@@ -86,53 +66,51 @@ export interface SliderThumbProps extends HTMLChakraProps<"div"> {}
  * Slider component that acts as the handle used to select predefined
  * values by dragging its handle along the track
  */
-export const SliderThumb = forwardRef<SliderThumbProps, "div">((props, ref) => {
-  const { getThumbProps } = useSliderContext()
-  const styles = useSliderStyles()
-  const thumbProps = getThumbProps(props, ref)
-
-  return (
-    <chakra.div
-      {...thumbProps}
-      className={cx("chakra-slider__thumb", props.className)}
-      __css={styles.thumb}
-    />
-  )
-})
+export const SliderThumb = forwardRef<SliderThumbProps, "div">(
+  function SliderThumb(props, ref) {
+    const api = useSliderContext()
+    const styles = useSliderStyles()
+    return (
+      <chakra.div
+        {...api.getThumbProps(props, ref)}
+        className={cx("chakra-slider__thumb", props.className)}
+        css={styles.thumb}
+      />
+    )
+  },
+)
 
 SliderThumb.displayName = "SliderThumb"
 
 export interface SliderTrackProps extends HTMLChakraProps<"div"> {}
 
-export const SliderTrack = forwardRef<SliderTrackProps, "div">((props, ref) => {
-  const { getTrackProps } = useSliderContext()
-  const styles = useSliderStyles()
-  const trackProps = getTrackProps(props, ref)
-
-  return (
-    <chakra.div
-      {...trackProps}
-      className={cx("chakra-slider__track", props.className)}
-      __css={styles.track}
-    />
-  )
-})
+export const SliderTrack = forwardRef<SliderTrackProps, "div">(
+  function SliderTrack(props, ref) {
+    const api = useSliderContext()
+    const styles = useSliderStyles()
+    return (
+      <chakra.div
+        {...api.getTrackProps(props, ref)}
+        className={cx("chakra-slider__track", props.className)}
+        css={styles.track}
+      />
+    )
+  },
+)
 
 SliderTrack.displayName = "SliderTrack"
 
 export interface SliderInnerTrackProps extends HTMLChakraProps<"div"> {}
 
 export const SliderFilledTrack = forwardRef<SliderInnerTrackProps, "div">(
-  (props, ref) => {
-    const { getInnerTrackProps } = useSliderContext()
+  function SliderFilledTrack(props, ref) {
+    const api = useSliderContext()
     const styles = useSliderStyles()
-    const trackProps = getInnerTrackProps(props, ref)
-
     return (
       <chakra.div
-        {...trackProps}
+        {...api.getInnerTrackProps(props, ref)}
         className={cx("chakra-slider__filled-track", props.className)}
-        __css={styles.filledTrack}
+        css={styles.filledTrack}
       />
     )
   },
@@ -158,7 +136,7 @@ export const SliderMark = forwardRef<SliderMarkProps, "div">((props, ref) => {
     <chakra.div
       {...markProps}
       className={cx("chakra-slider__marker", props.className)}
-      __css={styles.mark}
+      css={styles.mark}
     />
   )
 })

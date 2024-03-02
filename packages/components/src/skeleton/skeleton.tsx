@@ -1,14 +1,15 @@
 import { usePrevious } from "@chakra-ui/hooks/use-previous"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx, dataAttr } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
-import { ThemingProps, cssVar, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useStyleConfig,
+  useRecipe,
   useToken,
-} from "../system"
+} from "../styled-system"
+import { cssVar } from "../styled-system/css-var"
 import { useIsFirstRender } from "./use-is-first-render"
 
 export interface SkeletonOptions {
@@ -46,15 +47,19 @@ export interface SkeletonOptions {
 }
 
 const StyledSkeleton = chakra("div", {
-  baseStyle: {
+  base: {
     boxShadow: "none",
     backgroundClip: "padding-box",
     cursor: "default",
     color: "transparent",
     pointerEvents: "none",
     userSelect: "none",
+    animation: "var(--name) var(--speed) linear infinite alternate",
     "&::before, &::after, *": {
       visibility: "hidden",
+    },
+    "&[data-fit-content]": {
+      width: "fit-content",
     },
   },
 })
@@ -65,9 +70,8 @@ const $endColor = cssVar("skeleton-end-color")
 export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
-  extends HTMLChakraProps<"div">,
-    SkeletonOptions,
-    ThemingProps<"Skeleton"> {}
+  extends HTMLChakraProps<"div", SkeletonOptions>,
+    SystemRecipeProps<"Skeleton"> {}
 
 const fade = keyframes({
   from: { opacity: 0 },
@@ -76,12 +80,12 @@ const fade = keyframes({
 
 const bgFade = keyframes({
   from: {
-    borderColor: $startColor.reference,
-    background: $startColor.reference,
+    borderColor: $startColor.ref,
+    background: $startColor.ref,
   },
   to: {
-    borderColor: $endColor.reference,
-    background: $endColor.reference,
+    borderColor: $endColor.ref,
+    background: $endColor.ref,
   },
 })
 
@@ -97,7 +101,11 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
       typeof props.fadeDuration === "number" ? props.fadeDuration : 0.4,
     speed: typeof props.speed === "number" ? props.speed : 0.8,
   }
-  const styles = useStyleConfig("Skeleton", skeletonProps)
+
+  const recipe = useRecipe("Skeleton")
+  const [variantProps, localProps] = recipe.splitVariantProps(skeletonProps)
+  const styles = recipe(variantProps)
+
   const isFirstRender = useIsFirstRender()
 
   const {
@@ -109,31 +117,26 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
     className,
     fitContent,
     ...rest
-  } = omitThemingProps(skeletonProps)
+  } = localProps
 
   const [startColorVar, endColorVar] = useToken("colors", [
     startColor,
     endColor,
   ])
 
-  const wasPreviouslyLoaded = usePrevious(isLoaded)
+  const wasLoaded = usePrevious(isLoaded)
 
   const _className = cx("chakra-skeleton", className)
 
-  const cssVarStyles = {
-    ...(startColorVar && { [$startColor.variable]: startColorVar }),
-    ...(endColorVar && { [$endColor.variable]: endColorVar }),
-  }
-
   if (isLoaded) {
     const animation =
-      isFirstRender || wasPreviouslyLoaded ? "none" : `${fade} ${fadeDuration}s`
+      isFirstRender || wasLoaded ? "none" : `${fade} ${fadeDuration}s`
 
     return (
       <chakra.div
         ref={ref}
         className={_className}
-        __css={{ animation }}
+        css={{ animation }}
         {...rest}
       />
     )
@@ -143,14 +146,17 @@ export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
     <StyledSkeleton
       ref={ref}
       className={_className}
+      data-fit-content={dataAttr(fitContent)}
       {...rest}
-      __css={{
-        width: fitContent ? "fit-content" : undefined,
-        ...styles,
-        ...cssVarStyles,
-        _dark: { ...(styles as any)["_dark"], ...cssVarStyles },
-        animation: `${speed}s linear infinite alternate ${bgFade}`,
-      }}
+      css={[
+        {
+          "--speed": `${speed}s`,
+          "--name": `${bgFade}`,
+          [$startColor.var]: startColorVar,
+          [$endColor.var]: endColorVar,
+        },
+        styles,
+      ]}
     />
   )
 })

@@ -526,6 +526,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@chakra-ui/anatomy':
+        specifier: workspace:*
+        version: link:../anatomy
       '@chakra-ui/hooks':
         specifier: workspace:*
         version: link:../hooks

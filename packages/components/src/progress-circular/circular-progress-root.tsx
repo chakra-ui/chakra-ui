@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import { getProgressProps } from "../progress/progress-utils"
 import { defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { CircularProgressContextProvider } from "./circular-progress-context"
 import { CircularProgressOptions } from "./circular-progress-types"
 
@@ -73,7 +73,7 @@ export const CircularProgressRoot = forwardRef<
         aria-valuenow={isIndeterminate ? undefined : computed.value}
         aria-valuetext={computed.valueText}
         className={cx("chakra-progress", rest.className)}
-        __css={rootStyles}
+        css={rootStyles}
       >
         {children}
       </chakra.div>

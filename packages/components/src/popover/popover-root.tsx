@@ -1,13 +1,11 @@
-import { MaybeRenderProp } from "@chakra-ui/utils/prop-types"
-import { runIfFn } from "@chakra-ui/utils/run-if-fn"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { useMultiStyleConfig, useTheme } from "../system"
+import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
+import { SystemRecipeProps, useSlotRecipe, useTheme } from "../styled-system"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { UsePopoverProps, usePopover } from "./use-popover"
 
 export interface PopoverRootProps
   extends UsePopoverProps,
-    ThemingProps<"Popover"> {
+    SystemRecipeProps<"Popover"> {
   /**
    * The content of the popover. It is usually the `PopoverTrigger`,
    * and `PopoverContent`
@@ -26,9 +24,12 @@ export interface PopoverRootProps
  * @see Docs https://chakra-ui.com/docs/components/popover
  */
 export function PopoverRoot(props: PopoverRootProps) {
-  const styles = useMultiStyleConfig("Popover", props)
+  const recipe = useSlotRecipe("Popover")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
 
-  const { children, ...rest } = omitThemingProps(props)
+  const { children, ...rest } = localProps
+
   const theme = useTheme()
   const context = usePopover({ ...rest, direction: theme.direction })
 

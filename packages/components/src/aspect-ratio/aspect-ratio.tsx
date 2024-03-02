@@ -1,21 +1,21 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { mapResponsive } from "@chakra-ui/utils/responsive"
+import { cx, mapResponsive } from "@chakra-ui/utils"
 import { Children } from "react"
-import { ResponsiveValue } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  ConditionalValue,
+  HTMLChakraProps,
+  chakra,
+  forwardRef,
+} from "../styled-system"
 
-interface AspectRatioOptions {
+export interface AspectRatioProps
+  extends Omit<HTMLChakraProps<"div">, "aspectRatio"> {
   /**
    * The aspect ratio of the Box. Common values are:
    *
    * `21/9`, `16/9`, `9/16`, `4/3`, `1.85/1`
    */
-  ratio?: ResponsiveValue<number>
+  ratio?: ConditionalValue<number>
 }
-
-export interface AspectRatioProps
-  extends Omit<HTMLChakraProps<"div">, "aspectRatio">,
-    AspectRatioOptions {}
 
 /**
  * React component used to cropping media (videos, images and maps)
@@ -43,7 +43,7 @@ export const AspectRatio = forwardRef<AspectRatioProps, "div">(
           display: "block",
           paddingBottom: mapResponsive(ratio, (r) => `${(1 / r) * 100}%`),
         }}
-        __css={{
+        css={{
           "& > *:not(style)": {
             overflow: "hidden",
             position: "absolute",

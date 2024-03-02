@@ -28,16 +28,16 @@ export async function generateRecipe(sys: SystemContext) {
 
   const recipeKeys = Object.keys(sysRecipes)
   const recipeRecord = `
-     export interface ConfigRecipes {
+     export interface SystemRecipes {
       ${
         recipeKeys.length
           ? Object.keys(sysRecipes)
               .map(
                 (key) =>
-                  `${key}: ConfigRecipeFn<${capitalize(key)}RecipeVariants>`,
+                  `${key}: SystemRecipeFn<${capitalize(key)}RecipeVariants>`,
               )
               .join("\n")
-          : "[key: string]: ConfigRecipeFn<any>"
+          : "[key: string]: SystemRecipeFn<any>"
       }
      }
     `
@@ -69,18 +69,18 @@ export async function generateRecipe(sys: SystemContext) {
   })
 
   const slotRecipeRecord = `
-     export interface ConfigSlotRecipes {
+     export interface SystemSlotRecipes {
       ${
         slotRecipeKeys.length
           ? slotRecipeKeys
               .map(
                 (key) =>
-                  `${key}: ConfigSlotRecipeFn<${capitalize(
+                  `${key}: SystemSlotRecipeFn<${capitalize(
                     key,
                   )}Slot, ${capitalize(key)}Variants>`,
               )
               .join("\n")
-          : "[key: string]: ConfigSlotRecipeFn<string, any>"
+          : "[key: string]: SystemSlotRecipeFn<string, any>"
       }
      }
     `
@@ -89,9 +89,18 @@ export async function generateRecipe(sys: SystemContext) {
 
   return pretty(
     [
-      'import type { ConfigRecipeFn, ConfigSlotRecipeFn } from "../recipe.types"',
+      'import type { SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"',
       recipeResult,
       slotRecipeResult,
+      `
+      
+      export type SystemRecipeProps<T> = T extends keyof SystemRecipes
+        ? SystemRecipes[T]["__type"]
+        : T extends keyof SystemSlotRecipes
+        ? SystemSlotRecipes[T]["__type"]
+        : {}
+      
+      `,
     ].join("\n"),
   )
 }

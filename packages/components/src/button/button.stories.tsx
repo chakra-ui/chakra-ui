@@ -20,7 +20,7 @@ import {
   Spinner,
   Stack,
 } from ".."
-import { ThemingProps } from "../styled-system"
+import { SystemRecipeProps } from "../styled-system"
 
 export default {
   title: "Form / Button",
@@ -39,7 +39,7 @@ export default {
   },
 } satisfies Meta
 
-interface StoryProps extends ThemingProps<"Button"> {
+interface StoryProps extends SystemRecipeProps<"Button"> {
   children?: React.ReactNode
 }
 

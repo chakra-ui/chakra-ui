@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useTooltip } from "."
 import { Button } from "../button"
 import { Portal } from "../portal"
-import { chakra } from "../system"
+import { chakra } from "../styled-system"
 
 export default {
   title: "Overlay / Tooltip - useTooltip",

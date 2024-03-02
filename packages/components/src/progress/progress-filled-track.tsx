@@ -1,6 +1,6 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
 import { defineStyle } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useProgressContext, useProgressStyles } from "./progress-context"
 import { progressAnim, stripeAnim } from "./progress-utils"
 
@@ -41,7 +41,7 @@ export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
         aria-valuenow={api.isIndeterminate ? undefined : api.computed.value}
         aria-valuetext={api.computed.valueText}
         {...rest}
-        __css={trackStyles}
+        css={trackStyles}
         className={cx("chakra-progress__filled-track", props.className)}
       />
     )

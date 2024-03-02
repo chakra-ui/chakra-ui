@@ -1,5 +1,5 @@
-import { createContext } from "@chakra-ui/utils/context"
-import { SystemStyleObject, ThemingProps } from "../styled-system"
+import { createContext } from "@chakra-ui/utils"
+import { SystemRecipeProps, SystemStyleObject } from "../styled-system"
 import { UseRadioReturn } from "./use-radio"
 import { UseRadioGroupReturn } from "./use-radio-group"
 
@@ -8,7 +8,7 @@ export interface RadioGroupContext
       UseRadioGroupReturn,
       "onChange" | "value" | "name" | "isDisabled" | "isFocusable"
     >,
-    Omit<ThemingProps<"Radio">, "orientation"> {}
+    Omit<SystemRecipeProps<"Radio">, "orientation"> {}
 
 export const [RadioGroupContextProvider, useRadioGroupContext] =
   createContext<RadioGroupContext>({
@@ -23,7 +23,7 @@ export const [RadioItemContextProvider, useRadioItemContext] =
   })
 
 export const [RadioThemingContextProvider, useRadioThemingContext] =
-  createContext<ThemingProps>({
+  createContext<SystemRecipeProps<"Radio">>({
     name: "RadioGroupContext",
     strict: false,
   })

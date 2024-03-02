@@ -1,4 +1,4 @@
-import { cx } from "@chakra-ui/utils/cx"
+import { cx } from "@chakra-ui/utils"
 import { warn } from "@chakra-ui/utils/warn"
 import {
   AnimatePresence,

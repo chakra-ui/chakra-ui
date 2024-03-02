@@ -1,5 +1,4 @@
-import { defineStyle } from "../styled-system"
-import { forwardRef } from "../system"
+import { defineStyle, forwardRef } from "../styled-system"
 import { Box, BoxProps } from "./box"
 
 /**
@@ -37,7 +36,7 @@ export const Square = forwardRef<SquareProps, "div">(
       <Box
         ref={ref}
         boxSize={size}
-        __css={{
+        css={{
           ...styles,
           flexShrink: 0,
           flexGrow: 0,

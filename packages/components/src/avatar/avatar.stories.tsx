@@ -1,5 +1,5 @@
 import { Avatar, AvatarBadge, AvatarGroup, Box, Stack } from ".."
-import { PropsOf } from "../system"
+import { PropsOf } from "../styled-system"
 
 export default {
   title: "Media and Icons / Avatar",

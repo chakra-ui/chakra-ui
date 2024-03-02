@@ -1,8 +1,11 @@
-import { getValidChildren } from "@chakra-ui/utils/children"
-import { cx } from "@chakra-ui/utils/cx"
+import { cx, getValidChildren } from "@chakra-ui/utils"
 import { Fragment, cloneElement, useMemo } from "react"
-import { SystemProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import {
+  HTMLChakraProps,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+} from "../styled-system"
 import { StackItem } from "./stack-item"
 import type { StackDirection } from "./stack.utils"
 import { getDividerStyles } from "./stack.utils"
@@ -12,25 +15,25 @@ export type { StackDirection }
 interface StackOptions {
   /**
    * Shorthand for `alignItems` style prop
-   * @type SystemProps["alignItems"]
+   * @type SystemStyleObject["alignItems"]
    */
-  align?: SystemProps["alignItems"]
+  align?: SystemStyleObject["alignItems"]
   /**
    * Shorthand for `justifyContent` style prop
-   * @type SystemProps["justifyContent"]
+   * @type SystemStyleObject["justifyContent"]
    */
-  justify?: SystemProps["justifyContent"]
+  justify?: SystemStyleObject["justifyContent"]
   /**
    * Shorthand for `flexWrap` style prop
-   * @type SystemProps["flexWrap"]
+   * @type SystemStyleObject["flexWrap"]
    */
-  wrap?: SystemProps["flexWrap"]
+  wrap?: SystemStyleObject["flexWrap"]
   /**
    * The space between each stack item
-   * @type SystemProps["margin"]
+   * @type SystemStyleObject["margin"]
    * @default "0.5rem"
    */
-  spacing?: SystemProps["margin"]
+  spacing?: SystemStyleObject["margin"]
   /**
    * The direction to stack the items.
    * @default "column"
@@ -50,7 +53,7 @@ interface StackOptions {
   shouldWrapChildren?: boolean
 }
 
-export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
+export interface StackProps extends HTMLChakraProps<"div", StackOptions> {}
 
 /**
  * Stacks help you easily create flexible and automatically distributed layouts
@@ -63,7 +66,7 @@ export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
  * @see Docs https://chakra-ui.com/stack
  *
  */
-export const Stack = forwardRef<StackProps, "div">((props, ref) => {
+export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
   const {
     direction = "column",
     align,

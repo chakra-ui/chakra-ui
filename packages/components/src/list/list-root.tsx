@@ -1,24 +1,29 @@
-import { SystemProps, ThemingProps, omitThemingProps } from "../styled-system"
-import type { HTMLChakraProps } from "../system"
-import { chakra, forwardRef, useMultiStyleConfig } from "../system"
+import type { HTMLChakraProps } from "../styled-system"
+import {
+  SystemRecipeProps,
+  SystemStyleObject,
+  chakra,
+  forwardRef,
+  useSlotRecipe,
+} from "../styled-system"
 import { ListStylesProvider } from "./list-context"
 
 interface ListOptions {
   /**
    * Shorthand prop for `listStyleType`
-   * @type SystemProps["listStyleType"]
+   * @type SystemStyleObject["listStyleType"]
    */
-  styleType?: SystemProps["listStyleType"]
+  styleType?: SystemStyleObject["listStyleType"]
   /**
    * Shorthand prop for `listStylePosition`
-   * @type SystemProps["listStylePosition"]
+   * @type SystemStyleObject["listStylePosition"]
    */
-  stylePosition?: SystemProps["listStylePosition"]
+  stylePosition?: SystemStyleObject["listStylePosition"]
 }
 
 export interface ListRootProps
   extends HTMLChakraProps<"ul">,
-    ThemingProps<"List">,
+    SystemRecipeProps<"List">,
     ListOptions {}
 
 /**
@@ -28,19 +33,23 @@ export interface ListRootProps
  */
 export const ListRoot = forwardRef<ListRootProps, "ul">(
   function ListRoot(props, ref) {
-    const styles = useMultiStyleConfig("List", props)
-    const { styleType, stylePosition, ...rest } = omitThemingProps(props)
+    const recipe = useSlotRecipe("List")
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+
+    const styles = recipe(variantProps)
+    const { styleType, stylePosition, ...rest } = localProps
+
     return (
       <ListStylesProvider value={styles}>
         <chakra.ul
+          {...rest}
           ref={ref}
           role="list"
-          __css={{
+          css={{
             listStyleType: styleType,
             listStylePosition: stylePosition,
             ...styles.root,
           }}
-          {...rest}
         />
       </ListStylesProvider>
     )

@@ -1,5 +1,5 @@
-import { isObject } from "@chakra-ui/utils/is"
-import { useTheme } from "../system"
+import { isObject } from "@chakra-ui/utils"
+import { useTheme } from "../styled-system"
 import { useMediaQuery } from "./use-media-query"
 
 export type UseBreakpointOptions = {

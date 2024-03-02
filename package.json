@@ -12,7 +12,7 @@
     "prepare": "husky install",
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
     "postinstall": "pnpm clean:emotion-types",
-    "build:tokens": "chakra-cli tokens packages/components/src/styled-system-new/preset.ts",
+    "build:tokens": "chakra-cli tokens packages/components/src/styled-system/preset.ts",
     "build:prop-docs": "pnpm typedocs && pnpm --filter=*props-docs build",
     "build": "pnpm tsx scripts/build/main.ts --prod --dts",
     "build:fast": "pnpm tsx scripts/build/main.ts --prod",

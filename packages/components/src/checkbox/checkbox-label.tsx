@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 
 export interface CheckboxLabelProps extends HTMLChakraProps<"span"> {}
@@ -12,7 +12,7 @@ export const CheckboxLabel = forwardRef<CheckboxLabelProps, "span">(
       <chakra.span
         className="chakra-checkbox__label"
         {...getLabelProps(props, ref)}
-        __css={{
+        css={{
           marginStart: spacing,
           ...styles.label,
         }}

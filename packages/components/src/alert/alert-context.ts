@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/utils/context"
+import { createContext } from "@chakra-ui/utils"
 import { Spinner } from "../spinner"
 import { SystemStyleObject } from "../styled-system"
 import { CheckIcon, InfoIcon, WarningIcon } from "./alert-icons"

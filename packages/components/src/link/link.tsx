@@ -1,8 +1,15 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
-import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
+import { cx } from "@chakra-ui/utils"
+import {
+  HTMLChakraProps,
+  SystemRecipeProps,
+  chakra,
+  forwardRef,
+  useRecipe,
+} from "../styled-system"
 
-export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps<"Link"> {
+export interface LinkProps
+  extends HTMLChakraProps<"a">,
+    SystemRecipeProps<"Link"> {
   /**
    *  If `true`, the link will open in new tab
    *
@@ -13,21 +20,13 @@ export interface LinkProps extends HTMLChakraProps<"a">, ThemingProps<"Link"> {
 
 /**
  * Links are accessible elements used primarily for navigation.
- *
- * It integrates well with other routing libraries like
- * React Router, Reach Router and Next.js Link.
- *
- * @example
- *
- * ```jsx
- * <Link as={ReactRouterLink} to="/home">Home</Link>
- * ```
- *
  * @see Docs https://chakra-ui.com/link
  */
 export const Link = forwardRef<LinkProps, "a">(function Link(props, ref) {
-  const styles = useStyleConfig("Link", props)
-  const { className, isExternal, ...rest } = omitThemingProps(props)
+  const recipe = useRecipe("Link")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
+  const { className, isExternal, ...rest } = localProps
 
   return (
     <chakra.a
@@ -36,7 +35,7 @@ export const Link = forwardRef<LinkProps, "a">(function Link(props, ref) {
       ref={ref}
       className={cx("chakra-link", className)}
       {...rest}
-      __css={styles}
+      css={styles}
     />
   )
 })

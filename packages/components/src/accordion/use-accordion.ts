@@ -1,8 +1,9 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { callAllHandlers, warn } from "@chakra-ui/utils"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useId, useRef, useState } from "react"
-import { callAllHandlers, warn } from "@chakra-ui/utils"
+import { HtmlProp } from "../styled-system/factory.types"
 import { useAccordionContext } from "./accordion-context"
 
 /* -------------------------------------------------------------------------------------------------
@@ -258,7 +259,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     function getTriggerProps(
       props: Omit<React.HTMLAttributes<HTMLElement>, "color"> = {},
       ref: React.Ref<HTMLButtonElement> | null = null,
-    ): React.ComponentProps<"button"> {
+    ): React.ComponentPropsWithRef<"button"> {
       return {
         ...props,
         type: "button",
@@ -277,7 +278,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
   const getContentProps = useCallback(
     function getContentProps<T>(
-      props: Omit<React.HTMLAttributes<T>, "color"> = {},
+      props: Omit<React.HTMLAttributes<T>, HtmlProp> = {},
       ref: React.Ref<T> | null = null,
     ): React.HTMLAttributes<T> & React.RefAttributes<T> {
       return {

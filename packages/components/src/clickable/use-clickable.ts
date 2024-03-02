@@ -1,9 +1,9 @@
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { dataAttr } from "@chakra-ui/utils/attr"
+import { dataAttr } from "@chakra-ui/utils"
 import { useCallback, useState } from "react"
 import { useEventListeners } from "./use-event-listeners"
 
-export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
+export interface UseClickableProps {
   /**
    * If `true`, the element will be disabled.
    * It will set the `disabled` HTML attribute
@@ -34,6 +34,7 @@ export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
    * The ref for the element
    */
   ref?: React.Ref<HTMLElement>
+  [key: string]: any
 }
 
 function isValidElement(event: KeyboardEvent): boolean {
@@ -65,7 +66,6 @@ export function useClickable(props: UseClickableProps = {}) {
     tabIndex: tabIndexProp,
     onMouseOver,
     onMouseLeave,
-    ...htmlProps
   } = props
   /**
    * We'll use this to track if the element is a button element
@@ -253,7 +253,6 @@ export function useClickable(props: UseClickableProps = {}) {
 
   if (isButton) {
     return {
-      ...htmlProps,
       ref,
       type: "button" as React.ButtonHTMLAttributes<any>["type"],
       "aria-disabled": trulyDisabled ? undefined : isDisabled,
@@ -269,7 +268,6 @@ export function useClickable(props: UseClickableProps = {}) {
   }
 
   return {
-    ...htmlProps,
     ref,
     role: "button",
     "data-active": dataAttr(isPressed),

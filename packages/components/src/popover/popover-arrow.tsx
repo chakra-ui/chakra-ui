@@ -1,13 +1,12 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { SystemProps } from "../styled-system"
-import { HTMLChakraProps, chakra } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, SystemStyleObject, chakra } from "../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverArrowProps extends HTMLChakraProps<"div"> {
   /**
    * The color of the arrow's shadow
    */
-  shadowColor?: SystemProps["color"]
+  shadowColor?: SystemStyleObject["color"]
 }
 
 const resolveVar = (scale: string, value: unknown) =>
@@ -30,7 +29,7 @@ export function PopoverArrow(props: PopoverArrowProps) {
       <chakra.div
         className={cx("chakra-popover__arrow-inner", props.className)}
         {...api.getArrowInnerProps(props)}
-        __css={{
+        css={{
           "--popper-arrow-shadow-color": resolveVar("colors", shadowColor),
           "--popper-arrow-bg": resolveVar("colors", arrowBg),
           "--popper-arrow-shadow": resolveVar("shadows", arrowShadow),

@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { TagCloseIcon } from "./tag-close-icon"
 import { useTagStyles } from "./tag-context"
 
@@ -24,7 +24,7 @@ export const TagCloseTrigger = forwardRef<TagCloseTriggerProps, "button">(
         {...rest}
         type="button"
         disabled={isDisabled}
-        __css={styles.closeTrigger}
+        css={styles.closeTrigger}
       >
         {children}
       </chakra.button>

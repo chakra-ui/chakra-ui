@@ -1,12 +1,12 @@
 import { useMemo } from "react"
-import { ThemingProps } from "../styled-system"
+import { SystemRecipeProps } from "../styled-system"
 import { CheckboxGroupProvider } from "./checkbox-context"
 import { UseCheckboxGroupProps } from "./checkbox-types"
 import { useCheckboxGroup } from "./use-checkbox-group"
 
 export interface CheckboxGroupProps
   extends UseCheckboxGroupProps,
-    Omit<ThemingProps<"Checkbox">, "orientation"> {
+    Omit<SystemRecipeProps<"Checkbox">, "orientation"> {
   children?: React.ReactNode
 }
 

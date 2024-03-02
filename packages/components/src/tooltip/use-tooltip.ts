@@ -1,7 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
 import { useEventListener } from "@chakra-ui/hooks/use-event-listener"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { callAllHandlers } from "@chakra-ui/utils"
 import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { getScrollParent } from "@chakra-ui/utils/scroll-parent"
 import React, {
@@ -12,7 +12,7 @@ import React, {
   useRef,
 } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
-import { useTheme } from "../system"
+import { useTheme } from "../styled-system"
 
 export interface UseTooltipProps
   extends Pick<

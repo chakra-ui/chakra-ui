@@ -1,5 +1,5 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../styled-system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
 export interface StepSeparatorProps extends HTMLChakraProps<"div"> {}
@@ -17,7 +17,7 @@ export const StepSeparator = forwardRef<StepSeparatorProps, "div">(
         role="separator"
         data-orientation={orientation}
         data-status={status}
-        __css={styles.separator}
+        css={styles.separator}
         {...props}
         className={cx("chakra-step__separator", props.className)}
       />

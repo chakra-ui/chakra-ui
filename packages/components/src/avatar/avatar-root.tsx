@@ -1,13 +1,14 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
 import { useState } from "react"
 import { useImage } from "../image"
-import { ThemingProps, defineStyle, omitThemingProps } from "../styled-system"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
+  defineStyle,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import { AvatarProvider, AvatarStylesProvider } from "./avatar-context"
 import { AvatarIcon } from "./avatar-icon"
 import { AvatarOptions } from "./avatar-types"
@@ -16,7 +17,7 @@ import { getInitials as getInitialsFn } from "./get-initials"
 export interface AvatarRootProps
   extends Omit<HTMLChakraProps<"span">, "onError">,
     AvatarOptions,
-    ThemingProps<"Avatar"> {
+    SystemRecipeProps<"Avatar"> {
   crossOrigin?: HTMLChakraProps<"img">["crossOrigin"]
   iconLabel?: string
   /**
@@ -32,83 +33,88 @@ export interface AvatarRootProps
  * Avatar component that renders an user avatar with
  * support for fallback avatar and name-only avatars
  */
-export const AvatarRoot = forwardRef<AvatarRootProps, "span">((props, ref) => {
-  const styles = useMultiStyleConfig("Avatar", props)
+export const AvatarRoot = forwardRef<AvatarRootProps, "span">(
+  function AvatarRoot(props, ref) {
+    const recipe = useSlotRecipe("Avatar")
 
-  const {
-    src,
-    srcSet,
-    name,
-    showBorder,
-    borderRadius = "full",
-    onError,
-    onLoad: onLoadProp,
-    getInitials = getInitialsFn,
-    icon = <AvatarIcon />,
-    iconLabel = " avatar",
-    loading,
-    children,
-    borderColor,
-    ignoreFallback,
-    crossOrigin,
-    referrerPolicy,
-    ...rest
-  } = omitThemingProps(props)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-  const [isLoaded, setIsLoaded] = useState(false)
+    const {
+      src,
+      srcSet,
+      name,
+      showBorder,
+      borderRadius = "full",
+      onError,
+      onLoad: onLoadProp,
+      getInitials = getInitialsFn,
+      icon = <AvatarIcon />,
+      iconLabel = " avatar",
+      loading,
+      children,
+      borderColor,
+      ignoreFallback,
+      crossOrigin,
+      referrerPolicy,
+      ...rest
+    } = localProps
 
-  const status = useImage({
-    src,
-    onError,
-    crossOrigin,
-    ignoreFallback,
-    onLoad(event) {
-      setIsLoaded(true)
-      onLoadProp?.(event)
-    },
-  })
+    const [isLoaded, setIsLoaded] = useState(false)
 
-  const avatarStyles = defineStyle({
-    borderRadius,
-    borderWidth: showBorder ? "2px" : undefined,
-    ...styles.root,
-  })
+    const status = useImage({
+      src,
+      onError,
+      crossOrigin,
+      ignoreFallback,
+      onLoad(event) {
+        setIsLoaded(true)
+        onLoadProp?.(event)
+      },
+    })
 
-  if (borderColor) {
-    avatarStyles.borderColor = borderColor
-  }
+    const avatarStyles = defineStyle({
+      borderRadius,
+      borderWidth: showBorder ? "2px" : undefined,
+      ...styles.root,
+    })
 
-  return (
-    <AvatarStylesProvider value={styles}>
-      <AvatarProvider
-        value={{
-          src,
-          borderRadius,
-          crossOrigin,
-          status,
-          loading,
-          srcSet,
-          referrerPolicy,
-          isLoaded,
-          getInitials,
-          icon,
-          iconLabel,
-          showFallback: !src || !isLoaded,
-          name,
-        }}
-      >
-        <chakra.span
-          ref={ref}
-          {...rest}
-          className={cx("chakra-avatar", props.className)}
-          data-loaded={dataAttr(isLoaded)}
-          __css={avatarStyles}
+    if (borderColor) {
+      avatarStyles.borderColor = borderColor
+    }
+
+    return (
+      <AvatarStylesProvider value={styles}>
+        <AvatarProvider
+          value={{
+            src,
+            borderRadius,
+            crossOrigin,
+            status,
+            loading,
+            srcSet,
+            referrerPolicy,
+            isLoaded,
+            getInitials,
+            icon,
+            iconLabel,
+            showFallback: !src || !isLoaded,
+            name,
+          }}
         >
-          {children}
-        </chakra.span>
-      </AvatarProvider>
-    </AvatarStylesProvider>
-  )
-})
+          <chakra.span
+            {...rest}
+            ref={ref}
+            className={cx("chakra-avatar", props.className)}
+            data-loaded={dataAttr(isLoaded)}
+            css={avatarStyles}
+          >
+            {children}
+          </chakra.span>
+        </AvatarProvider>
+      </AvatarStylesProvider>
+    )
+  },
+)
 
 AvatarRoot.displayName = "Avatar"

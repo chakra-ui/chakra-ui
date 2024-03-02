@@ -1,11 +1,11 @@
-import { cx } from "@chakra-ui/utils/cx"
-import { ThemingProps, omitThemingProps } from "../styled-system"
+import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
-  useMultiStyleConfig,
-} from "../system"
+  useSlotRecipe,
+} from "../styled-system"
 import {
   AlertProvider,
   AlertStatus,
@@ -22,9 +22,8 @@ interface AlertOptions {
 }
 
 export interface AlertRootProps
-  extends HTMLChakraProps<"div">,
-    AlertOptions,
-    ThemingProps<"Alert"> {
+  extends HTMLChakraProps<"div", AlertOptions>,
+    SystemRecipeProps<"Alert"> {
   /**
    * @default false
    */
@@ -40,10 +39,14 @@ export interface AlertRootProps
  */
 export const AlertRoot = forwardRef<AlertRootProps, "div">(
   function AlertRoot(props, ref) {
-    const { status = "info", addRole = true, ...rest } = omitThemingProps(props)
+    const { status = "info", addRole = true, ...rest } = props
     const colorScheme = props.colorScheme ?? getStatusColorScheme(status)
 
-    const styles = useMultiStyleConfig("Alert", { ...props, colorScheme })
+    const recipe = useSlotRecipe("Alert")
+    const [variantProps, localProps] = recipe.splitVariantProps(rest)
+
+    const styles = recipe(variantProps)
+    // { ...props, colorScheme }
 
     return (
       <AlertProvider value={{ status }}>
@@ -54,7 +57,7 @@ export const AlertRoot = forwardRef<AlertRootProps, "div">(
             ref={ref}
             {...rest}
             className={cx("chakra-alert", props.className)}
-            __css={styles.root}
+            css={styles.root}
           />
         </AlertStylesProvider>
       </AlertProvider>
