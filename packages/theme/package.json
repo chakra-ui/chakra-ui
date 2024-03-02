@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
-    "@chakra-ui/theme-tools": "workspace:*",
     "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {
