@@ -34,7 +34,10 @@
     "@chakra-ui/utils": "workspace:*"
   },
   "devDependencies": {
-    "@chakra-ui/cli": "workspace:*"
+    "@chakra-ui/react": "workspace:*"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=3"
   },
   "scripts": {
     "build": "tsup src --dts",

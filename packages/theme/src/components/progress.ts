@@ -1,101 +1,97 @@
 import { progressAnatomy as parts } from "@chakra-ui/anatomy"
-import { generateStripe, getColor, mode } from "@chakra-ui/theme-tools"
-import {
-  createMultiStyleConfigHelpers,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { defineMultiStyleConfig, definePartsStyle } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const filledStyle = defineStyle((props) => {
-  const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props
-
-  const stripeStyle = mode(
-    generateStripe(),
-    generateStripe("1rem", "rgba(0,0,0,0.1)"),
-  )(props)
-
-  const bgColor = mode(`${c}.500`, `${c}.200`)(props)
-
-  const gradient = `linear-gradient(
-    to right,
-    transparent 0%,
-    ${getColor(t, bgColor)} 50%,
-    transparent 100%
-  )`
-
-  const addStripe = !isIndeterminate && hasStripe
-
-  return {
-    ...(addStripe && stripeStyle),
-    ...(isIndeterminate ? { bgImage: gradient } : { bgColor }),
-  }
-})
-
-const baseStyleValueText = defineStyle({
-  lineHeight: "1",
-  fontSize: "0.25em",
-  fontWeight: "bold",
-  color: "white",
-})
-
-const baseStyleTrack = defineStyle((props) => {
-  return {
-    overflow: "hidden",
-    position: "relative",
-    bg: mode("gray.100", "whiteAlpha.300")(props),
-  }
-})
-
-const baseStyleFilledTrack = defineStyle((props) => {
-  return {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    transitionProperty: "common",
-    transitionDuration: "slow",
-    height: "100%",
-    ...filledStyle(props),
-    "&[data-animated]": {
-      animation: "var(--stripe-animation) 1s linear infinite",
+export const progressRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    root: {
+      colorPalette: "blue",
     },
-    "&[data-indeterminate]": {
-      position: "absolute",
-      willChange: "left",
-      minWidth: "50%",
-      animation:
-        "var(--progress-animation) 1s ease infinite normal none running",
+    track: {
+      overflow: "hidden",
+      position: "relative",
+      bg: { base: "gray.100", _dark: "whiteAlpha.300" },
     },
-  }
-})
-
-const baseStyle = definePartsStyle((props) => ({
-  valueText: baseStyleValueText,
-  filledTrack: baseStyleFilledTrack(props),
-  track: baseStyleTrack(props),
-}))
-
-const sizes = {
-  xs: definePartsStyle({
-    track: { h: "1" },
-  }),
-  sm: definePartsStyle({
-    track: { h: "2" },
-  }),
-  md: definePartsStyle({
-    track: { h: "3" },
-  }),
-  lg: definePartsStyle({
-    track: { h: "4" },
-  }),
-}
-
-export const progressTheme = defineMultiStyleConfig({
-  sizes,
-  baseStyle,
-  defaultProps: {
+    filledTrack: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transitionProperty: "common",
+      transitionDuration: "slow",
+      height: "100%",
+      "--track-color": {
+        base: "color.colorPalette.500",
+        _dark: "color.colorPalette.200",
+      },
+    },
+    valueText: {
+      lineHeight: "1",
+      fontSize: "0.25em",
+      fontWeight: "bold",
+      color: "white",
+    },
+  },
+  variants: {
+    isIndeterminate: {
+      true: {
+        filledTrack: {
+          position: "absolute",
+          willChange: "left",
+          minWidth: "50%",
+          animation:
+            "var(--progress-animation) 1s ease infinite normal none running",
+          backgroundImage: `linear-gradient(to right, transparent 0%, var(--track-color) 50%, transparent 100%)`,
+        },
+      },
+      false: {
+        filledTrack: {
+          bgColor: "var(--track-color)",
+        },
+      },
+    },
+    hasStripe: {
+      true: {},
+    },
+    isAnimated: {
+      true: {
+        filledTrack: {
+          animation: "var(--stripe-animation) 1s linear infinite",
+        },
+      },
+    },
+    size: {
+      xs: {
+        track: { h: "1" },
+      },
+      sm: {
+        track: { h: "2" },
+      },
+      md: {
+        track: { h: "3" },
+      },
+      lg: {
+        track: { h: "4" },
+      },
+    },
+  },
+  compoundVariants: [
+    {
+      isIndeterminate: false,
+      hasStripe: true,
+      css: {
+        filledTrack: {
+          backgroundImage: `linear-gradient(45deg, var(--stripe-color) 25%, transparent 25%, transparent 50%, var(--stripe-color) 50%, var(--stripe-color) 75%, transparent 75%, transparent)`,
+          backgroundSize: `var(--stripe-size) var(--stripe-size)`,
+          "--stripe-size": "1rem",
+          "--stripe-color": {
+            base: "rgba(255, 255, 255, 0.15)",
+            _dark: "rgba(0, 0, 0, 0.15)",
+          },
+        },
+      },
+    },
+  ],
+  defaultVariants: {
     size: "md",
-    colorScheme: "blue",
   },
 })

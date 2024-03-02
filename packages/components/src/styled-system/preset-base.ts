@@ -45,6 +45,8 @@ export const presetBase = defineSystem({
     only: "&:only-child",
     even: "&:nth-child(even)",
     odd: "&:nth-child(odd)",
+    notFirst: "&:not(:first-of-type)",
+    notLast: "&:not(:last-of-type)",
 
     firstOfType: "&:first-of-type",
     lastOfType: "&:last-of-type",

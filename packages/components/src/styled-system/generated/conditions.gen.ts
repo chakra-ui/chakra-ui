@@ -55,6 +55,10 @@ export interface Conditions {
   _even: string
   /** `&:nth-child(odd)` */
   _odd: string
+  /** `&:not(:first-of-type)` */
+  _notFirst: string
+  /** `&:not(:last-of-type)` */
+  _notLast: string
   /** `&:first-of-type` */
   _firstOfType: string
   /** `&:last-of-type` */
@@ -175,80 +179,56 @@ export interface Conditions {
   _horizontal: string
   /** `&[data-orientation=vertical]` */
   _vertical: string
-  /** `@media screen and (min-width: 40em)` */
+  /** `@media screen and (min-width: 30rem)` */
   sm: string
-  /** `@media screen and (min-width: 40em) and (max-width: 47.9975em)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 2.9975rem)` */
   smOnly: string
-  /** `@media screen and (max-width: 39.9975em)` */
+  /** `@media screen and (max-width: 1.8725rem)` */
   smDown: string
-  /** `@media screen and (min-width: 48em)` */
+  /** `@media screen and (min-width: 48rem)` */
   md: string
-  /** `@media screen and (min-width: 48em) and (max-width: 63.9975em)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 3.8725rem)` */
   mdOnly: string
-  /** `@media screen and (max-width: 47.9975em)` */
+  /** `@media screen and (max-width: 2.9975rem)` */
   mdDown: string
-  /** `@media screen and (min-width: 64em)` */
+  /** `@media screen and (min-width: 62rem)` */
   lg: string
-  /** `@media screen and (min-width: 64em) and (max-width: 79.9975em)` */
+  /** `@media screen and (min-width: 62rem) and (max-width: 4.9975rem)` */
   lgOnly: string
-  /** `@media screen and (max-width: 63.9975em)` */
+  /** `@media screen and (max-width: 3.8725rem)` */
   lgDown: string
-  /** `@media screen and (min-width: 80em)` */
+  /** `@media screen and (min-width: 80rem)` */
   xl: string
-  /** `@media screen and (min-width: 80em) and (max-width: 95.9975em)` */
+  /** `@media screen and (min-width: 80rem) and (max-width: 5.9975rem)` */
   xlOnly: string
-  /** `@media screen and (max-width: 79.9975em)` */
+  /** `@media screen and (max-width: 4.9975rem)` */
   xlDown: string
-  /** `@media screen and (min-width: 96em)` */
+  /** `@media screen and (min-width: 96rem)` */
   "2xl": string
-  /** `@media screen and (min-width: 96em)` */
+  /** `@media screen and (min-width: 96rem)` */
   "2xlOnly": string
-  /** `@media screen and (max-width: 95.9975em)` */
+  /** `@media screen and (max-width: 5.9975rem)` */
   "2xlDown": string
-  /** `@media screen and (min-width: 40em) and (max-width: 47.9975em)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 2.9975rem)` */
   smToMd: string
-  /** `@media screen and (min-width: 40em) and (max-width: 63.9975em)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 3.8725rem)` */
   smToLg: string
-  /** `@media screen and (min-width: 40em) and (max-width: 79.9975em)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 4.9975rem)` */
   smToXl: string
-  /** `@media screen and (min-width: 40em) and (max-width: 95.9975em)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 5.9975rem)` */
   smTo2xl: string
-  /** `@media screen and (min-width: 48em) and (max-width: 63.9975em)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 3.8725rem)` */
   mdToLg: string
-  /** `@media screen and (min-width: 48em) and (max-width: 79.9975em)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 4.9975rem)` */
   mdToXl: string
-  /** `@media screen and (min-width: 48em) and (max-width: 95.9975em)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 5.9975rem)` */
   mdTo2xl: string
-  /** `@media screen and (min-width: 64em) and (max-width: 79.9975em)` */
+  /** `@media screen and (min-width: 62rem) and (max-width: 4.9975rem)` */
   lgToXl: string
-  /** `@media screen and (min-width: 64em) and (max-width: 95.9975em)` */
+  /** `@media screen and (min-width: 62rem) and (max-width: 5.9975rem)` */
   lgTo2xl: string
-  /** `@media screen and (min-width: 80em) and (max-width: 95.9975em)` */
+  /** `@media screen and (min-width: 80rem) and (max-width: 5.9975rem)` */
   xlTo2xl: string
-  /** `@container  (min-width: 20em)` */
-  "@/xs": string
-  /** `@container  (min-width: 24em)` */
-  "@/sm": string
-  /** `@container  (min-width: 28em)` */
-  "@/md": string
-  /** `@container  (min-width: 32em)` */
-  "@/lg": string
-  /** `@container  (min-width: 36em)` */
-  "@/xl": string
-  /** `@container  (min-width: 42em)` */
-  "@/2xl": string
-  /** `@container  (min-width: 48em)` */
-  "@/3xl": string
-  /** `@container  (min-width: 56em)` */
-  "@/4xl": string
-  /** `@container  (min-width: 64em)` */
-  "@/5xl": string
-  /** `@container  (min-width: 72em)` */
-  "@/6xl": string
-  /** `@container  (min-width: 80em)` */
-  "@/7xl": string
-  /** `@container  (min-width: 90em)` */
-  "@/8xl": string
-  /** No selector */
+  /** The base (=no conditions) styles to apply  */
   base: string
 }

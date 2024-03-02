@@ -1,115 +1,84 @@
 import { drawerAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  createMultiStyleConfigHelpers,
-  cssVar,
-  defineStyle,
-} from "../../../components/src/styled-system"
-import { runIfFn } from "../utils/run-if-fn"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const $bg = cssVar("drawer-bg")
-const $bs = cssVar("drawer-box-shadow")
-
-/**
- * Since the `maxWidth` prop references theme.sizes internally,
- * we can leverage that to size our modals.
- */
-function getSize(value: string) {
-  if (value === "full") {
-    return definePartsStyle({
-      content: { maxW: "100vw", h: "100vh" },
-    })
-  }
-  return definePartsStyle({
-    content: { maxW: value },
-  })
-}
-
-const baseStyleOverlay = defineStyle({
-  bg: "blackAlpha.600",
-  zIndex: "modal",
-})
-
-const baseStylePositioner = defineStyle({
-  display: "flex",
-  zIndex: "modal",
-  justifyContent: "center",
-})
-
-const baseStyleContent = defineStyle((props) => {
-  const { isFullHeight } = props
-
-  return {
-    display: "flex",
-    flexDirection: "column",
-    position: "relative",
-    width: "100%",
-    outline: 0,
-    ...(isFullHeight && { height: "100vh" }),
-    zIndex: "modal",
-    maxH: "100vh",
-    color: "inherit",
-    [$bg.variable]: "colors.white",
-    [$bs.variable]: "shadows.lg",
-    _dark: {
-      [$bg.variable]: "colors.gray.700",
-      [$bs.variable]: "shadows.dark-lg",
+export const drawerRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    overlay: {
+      bg: "blackAlpha.600",
+      zIndex: "modal",
     },
-    bg: $bg.reference,
-    boxShadow: $bs.reference,
-  }
-})
-
-const baseStyleHeader = defineStyle({
-  px: "6",
-  py: "4",
-  fontSize: "xl",
-  fontWeight: "semibold",
-})
-
-const baseStyleCloseButton = defineStyle({
-  position: "absolute",
-  top: "2",
-  insetEnd: "3",
-})
-
-const baseStyleBody = defineStyle({
-  px: "6",
-  py: "2",
-  flex: "1",
-  overflow: "auto",
-})
-
-const baseStyleFooter = defineStyle({
-  px: "6",
-  py: "4",
-})
-
-const baseStyle = definePartsStyle((props) => ({
-  overlay: baseStyleOverlay,
-  positioner: baseStylePositioner,
-  content: runIfFn(baseStyleContent, props),
-  header: baseStyleHeader,
-  closeButton: baseStyleCloseButton,
-  body: baseStyleBody,
-  footer: baseStyleFooter,
-}))
-
-const sizes = {
-  xs: getSize("xs"),
-  sm: getSize("md"),
-  md: getSize("lg"),
-  lg: getSize("2xl"),
-  xl: getSize("4xl"),
-  full: getSize("full"),
-}
-
-export const drawerTheme = defineMultiStyleConfig({
-  baseStyle,
-  sizes,
-  defaultProps: {
+    positioner: {
+      display: "flex",
+      zIndex: "modal",
+      justifyContent: "center",
+    },
+    content: {
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      width: "100%",
+      outline: 0,
+      zIndex: "modal",
+      maxH: "100vh",
+      color: "inherit",
+      bg: "white",
+      boxShadow: "lg",
+      _dark: {
+        bg: "gray.700",
+        boxShadow: "dark-lg",
+      },
+    },
+    header: {
+      px: "6",
+      py: "4",
+      fontSize: "xl",
+      fontWeight: "semibold",
+    },
+    closeTrigger: {
+      position: "absolute",
+      top: "2",
+      insetEnd: "3",
+    },
+    body: {
+      px: "6",
+      py: "2",
+      flex: "1",
+      overflow: "auto",
+    },
+    footer: {
+      px: "6",
+      py: "4",
+    },
+  },
+  variants: {
+    size: {
+      xs: {
+        content: { maxW: "xs" },
+      },
+      sm: {
+        content: { maxW: "md" },
+      },
+      md: {
+        content: { maxW: "lg" },
+      },
+      lg: {
+        content: { maxW: "2xl" },
+      },
+      xl: {
+        content: { maxW: "4xl" },
+      },
+      full: {
+        content: { maxW: "100vw", h: "100vh" },
+      },
+    },
+    isFullHeight: {
+      true: {
+        content: { height: "100vh" },
+      },
+    },
+  },
+  defaultVariants: {
     size: "xs",
   },
 })

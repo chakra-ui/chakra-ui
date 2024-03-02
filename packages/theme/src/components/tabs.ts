@@ -1,264 +1,190 @@
 import { tabsAnatomy as parts } from "@chakra-ui/anatomy"
-import { getColor } from "@chakra-ui/theme-tools"
-import {
-  createMultiStyleConfigHelpers,
-  cssVar,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const $fg = cssVar("tabs-color")
-const $bg = cssVar("tabs-bg")
-const $border = cssVar("tabs-border-color")
-
-const { defineMultiStyleConfig, definePartsStyle } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const baseStyleRoot = defineStyle((props) => {
-  const { orientation } = props
-  return {
-    position: "relative",
-    display: orientation === "vertical" ? "flex" : "block",
-  }
-})
-
-const baseStyleContentGroup = defineStyle({
-  width: "100%",
-})
-
-const baseStyleTrigger = defineStyle((props) => {
-  const { isFitted } = props
-
-  return {
-    outline: "0",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flex: isFitted ? 1 : undefined,
-    transitionProperty: "common",
-    transitionDuration: "normal",
-    _focusVisible: {
-      zIndex: 1,
-      boxShadow: "outline",
-    },
-    _disabled: {
-      cursor: "not-allowed",
-      opacity: 0.4,
-    },
-  }
-})
-
-const baseStyleList = defineStyle((props) => {
-  const { align = "start", orientation } = props
-
-  const alignments: Record<string, string> = {
-    end: "flex-end",
-    center: "center",
-    start: "flex-start",
-  }
-
-  return {
-    display: "flex",
-    justifyContent: alignments[align],
-    flexDirection: orientation === "vertical" ? "column" : "row",
-  }
-})
-
-const baseStyleContent = defineStyle({
-  p: 4,
-  outline: "0",
-})
-
-const baseStyle = definePartsStyle((props) => ({
-  root: baseStyleRoot(props),
-  trigger: baseStyleTrigger(props),
-  list: baseStyleList(props),
-  content: baseStyleContent,
-  contentGroup: baseStyleContentGroup,
-}))
-
-const sizes = {
-  sm: definePartsStyle({
-    trigger: {
-      py: 1,
-      px: 4,
-      fontSize: "sm",
-    },
-  }),
-  md: definePartsStyle({
-    trigger: {
-      fontSize: "md",
-      py: 2,
-      px: 4,
-    },
-  }),
-  lg: definePartsStyle({
-    trigger: {
-      fontSize: "lg",
-      py: 3,
-      px: 4,
-    },
-  }),
-}
-
-const variantLine = definePartsStyle((props) => {
-  const { colorScheme: c, orientation } = props
-  const isVertical = orientation === "vertical"
-  const borderProp = isVertical ? "borderStart" : "borderBottom"
-  const marginProp = isVertical ? "marginStart" : "marginBottom"
-
-  return {
-    list: {
-      [borderProp]: "2px solid",
-      borderColor: "inherit",
+export const tabsRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    root: {
+      position: "relative",
+      colorPalette: "blue",
     },
     trigger: {
-      [borderProp]: "2px solid",
-      borderColor: "transparent",
-      [marginProp]: "-2px",
-      _selected: {
-        [$fg.variable]: `colors.${c}.600`,
-        _dark: {
-          [$fg.variable]: `colors.${c}.300`,
-        },
-        borderColor: "currentColor",
-      },
-      _active: {
-        [$bg.variable]: "colors.gray.200",
-        _dark: {
-          [$bg.variable]: "colors.whiteAlpha.300",
-        },
+      outline: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transitionProperty: "common",
+      transitionDuration: "normal",
+      _focusVisible: {
+        zIndex: 1,
+        boxShadow: "outline",
       },
       _disabled: {
-        _active: { bg: "none" },
+        cursor: "not-allowed",
+        opacity: 0.4,
       },
-      color: $fg.reference,
-      bg: $bg.reference,
-    },
-  }
-})
-
-const variantEnclosed = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-  return {
-    trigger: {
-      borderTopRadius: "md",
-      border: "1px solid",
-      borderColor: "transparent",
-      mb: "-1px",
-      [$border.variable]: "transparent",
-      _selected: {
-        [$fg.variable]: `colors.${c}.600`,
-        [$border.variable]: `colors.white`,
-        _dark: {
-          [$fg.variable]: `colors.${c}.300`,
-          [$border.variable]: `colors.gray.800`,
-        },
-        borderColor: "inherit",
-        borderBottomColor: $border.reference,
-      },
-      color: $fg.reference,
     },
     list: {
-      mb: "-1px",
-      borderBottom: "1px solid",
-      borderColor: "inherit",
+      display: "flex",
     },
-  }
-})
-
-const variantEnclosedColored = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-  return {
-    trigger: {
-      border: "1px solid",
-      borderColor: "inherit",
-      [$bg.variable]: "colors.gray.50",
-      _dark: {
-        [$bg.variable]: "colors.whiteAlpha.50",
-      },
-      mb: "-1px",
-      _notLast: {
-        marginEnd: "-1px",
-      },
-      _selected: {
-        [$bg.variable]: "colors.white",
-        [$fg.variable]: `colors.${c}.600`,
-        _dark: {
-          [$bg.variable]: "colors.gray.800",
-          [$fg.variable]: `colors.${c}.300`,
-        },
-        borderColor: "inherit",
-        borderTopColor: "currentColor",
-        borderBottomColor: "transparent",
-      },
-      color: $fg.reference,
-      bg: $bg.reference,
+    content: {
+      p: 4,
+      outline: 0,
     },
-    list: {
-      mb: "-1px",
-      borderBottom: "1px solid",
-      borderColor: "inherit",
-    },
-  }
-})
-
-const variantSoftRounded = definePartsStyle((props) => {
-  const { colorScheme: c, theme } = props
-  return {
-    trigger: {
-      borderRadius: "full",
-      fontWeight: "semibold",
-      color: "gray.600",
-      _selected: {
-        color: getColor(theme, `${c}.700`),
-        bg: getColor(theme, `${c}.100`),
+  },
+  variants: {
+    orientation: {
+      vertical: {
+        root: { display: "flex" },
+        contentGroup: { height: "100%" },
+        list: { flexDirection: "column" },
+      },
+      horizontal: {
+        root: { display: "block" },
+        contentGroup: { width: "100%" },
+        list: { flexDirection: "row" },
       },
     },
-  }
-})
-
-const variantSolidRounded = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-  return {
-    trigger: {
-      borderRadius: "full",
-      fontWeight: "semibold",
-      [$fg.variable]: "colors.gray.600",
-      _dark: {
-        [$fg.variable]: "inherit",
+    isFitted: {
+      true: {
+        trigger: { flex: 1 },
       },
-      _selected: {
-        [$fg.variable]: "colors.white",
-        [$bg.variable]: `colors.${c}.600`,
-        _dark: {
-          [$fg.variable]: "colors.gray.800",
-          [$bg.variable]: `colors.${c}.300`,
+    },
+    align: {
+      start: {
+        list: { justifyContent: "flex-start" },
+      },
+      center: {
+        list: { justifyContent: "center" },
+      },
+      end: {
+        list: { justifyContent: "flex-end" },
+      },
+    },
+    size: {
+      sm: {
+        trigger: {
+          py: 1,
+          px: 4,
+          fontSize: "sm",
         },
       },
-      color: $fg.reference,
-      bg: $bg.reference,
+      md: {
+        trigger: {
+          fontSize: "md",
+          py: 2,
+          px: 4,
+        },
+      },
+      lg: {
+        trigger: {
+          fontSize: "lg",
+          py: 3,
+          px: 4,
+        },
+      },
     },
-  }
-})
-
-const variantUnstyled = definePartsStyle({})
-
-const variants = {
-  line: variantLine,
-  enclosed: variantEnclosed,
-  "enclosed-colored": variantEnclosedColored,
-  "soft-rounded": variantSoftRounded,
-  "solid-rounded": variantSolidRounded,
-  unstyled: variantUnstyled,
-}
-
-export const tabsTheme = defineMultiStyleConfig({
-  baseStyle,
-  sizes,
-  variants,
-  defaultProps: {
+    variant: {
+      line: {
+        list: {
+          borderColor: "inherit",
+        },
+        trigger: {
+          borderColor: "transparent",
+          _selected: {
+            color: { base: "colorPalette.600", _dark: "colorPalette.300" },
+            borderColor: "currentColor",
+          },
+          _active: {
+            bg: { base: "gray.200", _dark: "whiteAlpha.300" },
+          },
+          _disabled: { _active: { bg: "none" } },
+        },
+      },
+      enclosed: {
+        list: {
+          mb: "-1px",
+          borderBottom: "1px solid",
+          borderColor: "inherit",
+        },
+        trigger: {
+          borderTopRadius: "md",
+          border: "1px solid",
+          borderColor: "transparent",
+          mb: "-1px",
+          _selected: {
+            color: { base: "colorPalette.600", _dark: "colorPalette.300" },
+            borderBottomColor: { base: "white", _dark: "gray.800" },
+          },
+        },
+      },
+      "enclosed-colored": {
+        list: {
+          mb: "-1px",
+          borderBottom: "1px solid",
+          borderColor: "inherit",
+        },
+        trigger: {
+          border: "1px solid",
+          borderColor: "inherit",
+          marginBottom: "-1px",
+          marginEnd: { _notLast: "-1px" },
+          bg: { base: "gray.50", _dark: "whiteAlpha.50" },
+          _selected: {
+            bg: { base: "white", _dark: "gray.800" },
+            color: { base: "colorPalette.600", _dark: "colorPalette.300" },
+            borderColor: "inherit",
+            borderTopColor: "currentColor",
+            borderBottomColor: "transparent",
+          },
+        },
+      },
+      "soft-rounded": {
+        trigger: {
+          borderRadius: "full",
+          fontWeight: "semibold",
+          color: "gray.600",
+          _selected: {
+            color: "colorPalette.600",
+            bg: "colorPalette.100",
+          },
+        },
+      },
+      "solid-rounded": {
+        trigger: {
+          borderRadius: "full",
+          fontWeight: "semibold",
+          color: { base: "gray.600", _dark: "inherit" },
+          bg: { base: "gray.50", _dark: "whiteAlpha.50" },
+          _selected: {
+            color: { base: "white", _dark: "gray.800" },
+            bg: { base: "colorPalette.600", _dark: "colorPalette.300" },
+          },
+        },
+      },
+    },
+  },
+  compoundVariants: [
+    {
+      orientation: "horizontal",
+      variant: "line",
+      css: {
+        list: { borderBottom: "2px solid" },
+        trigger: { borderBottom: "2px solid" },
+      },
+    },
+    {
+      orientation: "vertical",
+      variant: "line",
+      css: {
+        list: { borderStart: "2px solid" },
+        trigger: { borderStart: "2px solid" },
+      },
+    },
+  ],
+  defaultVariants: {
     size: "md",
     variant: "line",
-    colorScheme: "blue",
+    orientation: "horizontal",
   },
 })

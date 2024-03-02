@@ -696,9 +696,9 @@ importers:
         specifier: workspace:*
         version: link:../utils
     devDependencies:
-      '@chakra-ui/cli':
+      '@chakra-ui/react':
         specifier: workspace:*
-        version: link:../cli
+        version: link:../components
 
   packages/utils:
     dependencies:

@@ -1,39 +1,25 @@
 import { listAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  createMultiStyleConfigHelpers,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { defineMultiStyleConfig, definePartsStyle } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const baseStyleIcon = defineStyle({
-  marginEnd: "2",
-  display: "inline",
-  verticalAlign: "text-bottom",
-})
-
-const baseStyleRoot = defineStyle({
-  display: "flex",
-  flexDirection: "column",
-})
-
-const baseStyleItem = defineStyle({
-  "--align": "flex-start",
-  display: "inline-flex",
-  alignItems: "var(--align)",
-  whiteSpace: "normal",
-  "&:has(svg)": {
-    "--align": "center",
+export const listRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    root: {
+      display: "flex",
+      flexDirection: "column",
+    },
+    item: {
+      alignItems: "flex-start",
+      display: "inline-flex",
+      whiteSpace: "normal",
+      "&:has(svg)": {
+        alignItems: "center",
+      },
+    },
+    icon: {
+      marginEnd: "2",
+      display: "inline",
+      verticalAlign: "text-bottom",
+    },
   },
-})
-
-const baseStyle = definePartsStyle({
-  root: baseStyleRoot,
-  icon: baseStyleIcon,
-  item: baseStyleItem,
-})
-
-export const listTheme = defineMultiStyleConfig({
-  baseStyle,
 })

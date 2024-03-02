@@ -39,7 +39,6 @@
   "dependencies": {
     "@chakra-ui/anatomy": "workspace:*",
     "@chakra-ui/hooks": "workspace:*",
-    "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",
     "@zag-js/dom-utils": "^0.2.4",

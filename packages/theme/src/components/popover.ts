@@ -1,77 +1,49 @@
 import { popoverAnatomy as parts } from "@chakra-ui/anatomy"
-import { cssVar } from "@chakra-ui/theme-tools"
-import {
-  createMultiStyleConfigHelpers,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { defineMultiStyleConfig, definePartsStyle } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const $popperBg = cssVar("popper-bg")
-const $arrowBg = cssVar("popper-arrow-bg")
-const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
-
-const baseStylePopper = defineStyle({ zIndex: 10 })
-
-const baseStyleContent = defineStyle({
-  position: "relative",
-  display: "flex",
-  flexDirection: "column",
-  [$popperBg.variable]: `colors.white`,
-  bg: $popperBg.reference,
-  [$arrowBg.variable]: $popperBg.reference,
-  [$arrowShadowColor.variable]: `colors.gray.200`,
-  _dark: {
-    [$popperBg.variable]: `colors.gray.700`,
-    [$arrowShadowColor.variable]: `colors.whiteAlpha.300`,
+export const popoverRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    content: {
+      "--popper-bg": { base: "colors.white", _dark: "colors.gray.700" },
+      "--popper-arrow-bg": "var(--popper-bg)",
+      "--popper-arrow-shadow-color": {
+        base: "colors.gray.200",
+        _dark: "colors.whiteAlpha.300",
+      },
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+      bg: "white",
+      width: "xs",
+      border: "1px solid inherit",
+      borderRadius: "md",
+      boxShadow: { base: "sm", _focusVisible: "outline" },
+      zIndex: "inherit",
+      _focusVisible: {
+        outline: 0,
+      },
+    },
+    header: {
+      px: 3,
+      py: 2,
+      borderBottomWidth: "1px",
+    },
+    body: {
+      px: 3,
+      py: 2,
+    },
+    footer: {
+      px: 3,
+      py: 2,
+      borderTopWidth: "1px",
+    },
+    closeTrigger: {
+      position: "absolute",
+      borderRadius: "md",
+      top: 1,
+      insetEnd: 2,
+      padding: 2,
+    },
   },
-  width: "xs",
-  border: "1px solid",
-  borderColor: "inherit",
-  borderRadius: "md",
-  boxShadow: "sm",
-  zIndex: "inherit",
-  _focusVisible: {
-    outline: 0,
-    boxShadow: "outline",
-  },
-})
-
-const baseStyleHeader = defineStyle({
-  px: 3,
-  py: 2,
-  borderBottomWidth: "1px",
-})
-
-const baseStyleBody = defineStyle({
-  px: 3,
-  py: 2,
-})
-
-const baseStyleFooter = defineStyle({
-  px: 3,
-  py: 2,
-  borderTopWidth: "1px",
-})
-
-const baseStyleCloseButton = defineStyle({
-  position: "absolute",
-  borderRadius: "md",
-  top: 1,
-  insetEnd: 2,
-  padding: 2,
-})
-
-const baseStyle = definePartsStyle({
-  popper: baseStylePopper,
-  content: baseStyleContent,
-  header: baseStyleHeader,
-  body: baseStyleBody,
-  footer: baseStyleFooter,
-  closeButton: baseStyleCloseButton,
-})
-
-export const popoverTheme = defineMultiStyleConfig({
-  baseStyle,
 })

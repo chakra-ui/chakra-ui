@@ -1,30 +1,5 @@
 import { avatarAnatomy as parts } from "@chakra-ui/anatomy"
-import { isDark, randomColor } from "@chakra-ui/theme-tools"
-import {
-  createMultiStyleConfigHelpers,
-  cssVar,
-  defineStyle,
-} from "../../../components/src/styled-system"
-import themeSizes from "../foundations/sizes"
-import { runIfFn } from "../utils/run-if-fn"
-
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const $border = cssVar("avatar-border-color")
-const $bg = cssVar("avatar-bg")
-const $fs = cssVar("avatar-font-size")
-const $size = cssVar("avatar-size")
-
-const baseStyleBadge = defineStyle({
-  borderRadius: "full",
-  border: "0.2em solid",
-  borderColor: $border.reference,
-  [$border.variable]: "white",
-  _dark: {
-    [$border.variable]: "colors.gray.800",
-  },
-})
+import { defineSlotRecipe, defineStyle } from "@chakra-ui/react"
 
 const sharedStyles = defineStyle({
   display: "inline-flex",
@@ -37,95 +12,69 @@ const sharedStyles = defineStyle({
   flexShrink: 0,
 })
 
-const baseStyleExcessLabel = defineStyle({
-  ...sharedStyles,
-  bg: $bg.reference,
-  fontSize: $fs.reference,
-  width: $size.reference,
-  height: $size.reference,
-  lineHeight: "1",
-  [$bg.variable]: "colors.gray.200",
-  _dark: {
-    [$bg.variable]: "colors.whiteAlpha.400",
-  },
-})
-
-const baseStyleRoot = defineStyle((props) => {
-  const { name, theme } = props
-  const bg = name ? randomColor({ string: name }) : "colors.gray.400"
-  const isBgDark = isDark(bg)(theme)
-
-  let color = "white"
-  if (!isBgDark) color = "gray.800"
-
-  return {
-    ...sharedStyles,
-    bg: $bg.reference,
-    fontSize: $fs.reference,
-    color,
-    borderColor: $border.reference,
-    verticalAlign: "top",
-    width: $size.reference,
-    height: $size.reference,
-    "&:not([data-loaded])": {
-      [$bg.variable]: bg,
+export const avatarTheme = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    group: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      flexDirection: "row-reverse",
     },
-    [$border.variable]: "colors.white",
-    _dark: {
-      [$border.variable]: "colors.gray.800",
+    root: {
+      ...sharedStyles,
+      bg: "gray.400",
+      verticalAlign: "top",
+      width: "var(--size)",
+      height: "var(--size)",
+      "--fs": "calc(var(--size) / 2.5)",
+      fontSize: "var(--fs)",
     },
-  }
-})
-
-const baseStyleLabel = defineStyle({
-  fontSize: $fs.reference,
-  lineHeight: "1",
-})
-
-const baseStyleGroup = defineStyle({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  flexDirection: "row-reverse",
-})
-
-const baseStyle = definePartsStyle((props) => ({
-  group: baseStyleGroup,
-  badge: runIfFn(baseStyleBadge, props),
-  excessLabel: runIfFn(baseStyleExcessLabel, props),
-  container: runIfFn(baseStyleRoot, props),
-  label: baseStyleLabel,
-}))
-
-function getSize(size: keyof typeof themeSizes | "100%") {
-  const themeSize = size !== "100%" ? themeSizes[size] : undefined
-  return definePartsStyle({
-    container: {
-      [$size.variable]: themeSize ?? size,
-      [$fs.variable]: `calc(${themeSize ?? size} / 2.5)`,
+    badge: {
+      borderRadius: "full",
+      border: "0.2em solid",
+      borderColor: { base: "white", _dark: "gray.800" },
     },
     excessLabel: {
-      [$size.variable]: themeSize ?? size,
-      [$fs.variable]: `calc(${themeSize ?? size} / 2.5)`,
+      ...sharedStyles,
+      lineHeight: "1",
+      bg: { base: "gray.200", _dark: "whiteAlpha.400" },
+      fontSize: "var(--fs)",
     },
-  })
-}
-
-const sizes = {
-  "2xs": getSize(4),
-  xs: getSize(6),
-  sm: getSize(8),
-  md: getSize(12),
-  lg: getSize(16),
-  xl: getSize(24),
-  "2xl": getSize(32),
-  full: getSize("100%"),
-}
-
-export const avatarTheme = defineMultiStyleConfig({
-  baseStyle,
-  sizes,
-  defaultProps: {
+    label: {
+      lineHeight: "1",
+      fontSize: "var(--fs)",
+    },
+  },
+  variants: {
+    size: {
+      "2xs": {
+        root: { "--size": "sizes.4" },
+      },
+      xs: {
+        root: { "--size": "sizes.6" },
+      },
+      sm: {
+        root: { "--size": "sizes.8" },
+      },
+      md: {
+        root: { "--size": "sizes.12" },
+      },
+      lg: {
+        root: { "--size": "sizes.16" },
+      },
+      xl: {
+        root: { "--size": "sizes.24" },
+      },
+      "2xl": {
+        root: { "--size": "sizes.32" },
+      },
+      full: {
+        root: { "--size": "100%" },
+      },
+    },
+  },
+  defaultVariants: {
     size: "md",
   },
 })

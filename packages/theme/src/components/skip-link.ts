@@ -1,28 +1,16 @@
-import {
-  cssVar,
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const $bg = cssVar("skip-link-bg")
-
-const baseStyle = defineStyle({
-  borderRadius: "md",
-  fontWeight: "semibold",
-  _focusVisible: {
-    boxShadow: "outline",
-    padding: "4",
-    position: "fixed",
-    top: "6",
-    insetStart: "6",
-    [$bg.variable]: "colors.white",
-    _dark: {
-      [$bg.variable]: "colors.gray.700",
+export const skipLinkRecipe = defineRecipe({
+  base: {
+    borderRadius: "md",
+    fontWeight: "semibold",
+    _focusVisible: {
+      boxShadow: "outline",
+      padding: "4",
+      position: "fixed",
+      top: "6",
+      insetStart: "6",
+      bg: { base: "white", _dark: "gray.700" },
     },
-    bg: $bg.reference,
   },
-})
-
-export const skipLinkTheme = defineStyleConfig({
-  baseStyle,
 })

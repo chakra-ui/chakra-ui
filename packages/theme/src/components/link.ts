@@ -1,24 +1,16 @@
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const baseStyle = defineStyle({
-  transitionProperty: "common",
-  transitionDuration: "fast",
-  transitionTimingFunction: "ease-out",
-  cursor: "pointer",
-  textDecoration: "none",
-  outline: "none",
-  color: "inherit",
-  _hover: {
-    textDecoration: "underline",
+export const linkRecipe = defineRecipe({
+  base: {
+    transitionProperty: "common",
+    transitionDuration: "fast",
+    transitionTimingFunction: "ease-out",
+    cursor: "pointer",
+    textDecoration: { base: "none", _hover: "underline" },
+    outline: "none",
+    color: "inherit",
+    _focusVisible: {
+      boxShadow: "outline",
+    },
   },
-  _focusVisible: {
-    boxShadow: "outline",
-  },
-})
-
-export const linkTheme = defineStyleConfig({
-  baseStyle,
 })

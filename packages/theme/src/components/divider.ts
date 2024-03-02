@@ -1,30 +1,21 @@
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const baseStyle = defineStyle({
-  opacity: 0.6,
-  borderColor: "inherit",
-})
-
-const variantSolid = defineStyle({
-  borderStyle: "solid",
-})
-
-const variantDashed = defineStyle({
-  borderStyle: "dashed",
-})
-
-const variants = {
-  solid: variantSolid,
-  dashed: variantDashed,
-}
-
-export const dividerTheme = defineStyleConfig({
-  baseStyle,
-  variants,
-  defaultProps: {
+export const dividerRecipe = defineRecipe({
+  base: {
+    opacity: 0.6,
+    borderColor: "inherit",
+  },
+  variants: {
+    variant: {
+      solid: {
+        borderStyle: "solid",
+      },
+      dashed: {
+        borderStyle: "dashed",
+      },
+    },
+  },
+  defaultVariants: {
     variant: "solid",
   },
 })

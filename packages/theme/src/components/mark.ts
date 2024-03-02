@@ -1,13 +1,8 @@
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const baseStyle = defineStyle({
-  bg: "transparent",
-  whiteSpace: "nowrap",
-})
-
-export const markTheme = defineStyleConfig({
-  baseStyle,
+export const markRecipe = defineRecipe({
+  base: {
+    bg: "transparent",
+    whiteSpace: "nowrap",
+  },
 })

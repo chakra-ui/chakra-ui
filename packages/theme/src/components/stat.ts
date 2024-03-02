@@ -1,58 +1,41 @@
 import { statAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  createMultiStyleConfigHelpers,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { defineMultiStyleConfig, definePartsStyle } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const baseStyleLabel = defineStyle({
-  fontWeight: "medium",
-})
-
-const baseStyleHelpText = defineStyle({
-  opacity: 0.8,
-  marginBottom: "2",
-})
-
-const baseStyleNumber = defineStyle({
-  verticalAlign: "baseline",
-  fontWeight: "semibold",
-})
-
-const baseStyleIcon = defineStyle({
-  marginEnd: 1,
-  w: "3.5",
-  h: "3.5",
-  verticalAlign: "middle",
-})
-
-const baseStyleRoot = defineStyle({
-  position: "relative",
-  flex: "1 1 0%",
-})
-
-const baseStyle = definePartsStyle({
-  root: baseStyleRoot,
-  label: baseStyleLabel,
-  helpText: baseStyleHelpText,
-  number: baseStyleNumber,
-  icon: baseStyleIcon,
-})
-
-const sizes = {
-  md: definePartsStyle({
-    label: { fontSize: "sm" },
-    helpText: { fontSize: "sm" },
-    number: { fontSize: "2xl" },
-  }),
-}
-
-export const statTheme = defineMultiStyleConfig({
-  baseStyle,
-  sizes,
-  defaultProps: {
+export const statTheme = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    root: {
+      position: "relative",
+      flex: "1 1 0%",
+    },
+    label: {
+      fontWeight: "medium",
+    },
+    helpText: {
+      opacity: 0.8,
+      marginBottom: "2",
+    },
+    number: {
+      verticalAlign: "baseline",
+      fontWeight: "semibold",
+    },
+    icon: {
+      marginEnd: 1,
+      w: "3.5",
+      h: "3.5",
+      verticalAlign: "middle",
+    },
+  },
+  variants: {
+    size: {
+      md: {
+        label: { fontSize: "sm" },
+        helpText: { fontSize: "sm" },
+        number: { fontSize: "2xl" },
+      },
+    },
+  },
+  defaultVariants: {
     size: "md",
   },
 })

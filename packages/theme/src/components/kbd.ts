@@ -1,27 +1,15 @@
-import {
-  cssVar,
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const $bg = cssVar("kbd-bg")
-
-const baseStyle = defineStyle({
-  [$bg.variable]: "colors.gray.100",
-  _dark: {
-    [$bg.variable]: "colors.whiteAlpha.100",
+export const kbdRecipe = defineRecipe({
+  base: {
+    bg: { base: "gray.100", _dark: "whiteAlpha.100" },
+    borderRadius: "md",
+    borderWidth: "1px",
+    borderBottomWidth: "3px",
+    fontSize: "0.8em",
+    fontWeight: "bold",
+    lineHeight: "normal",
+    px: "0.4em",
+    whiteSpace: "nowrap",
   },
-  bg: $bg.reference,
-  borderRadius: "md",
-  borderWidth: "1px",
-  borderBottomWidth: "3px",
-  fontSize: "0.8em",
-  fontWeight: "bold",
-  lineHeight: "normal",
-  px: "0.4em",
-  whiteSpace: "nowrap",
-})
-
-export const kbdTheme = defineStyleConfig({
-  baseStyle,
 })

@@ -1,15 +1,10 @@
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const baseStyle = defineStyle({
-  w: "100%",
-  mx: "auto",
-  maxW: "prose",
-  px: "4",
-})
-
-export const containerTheme = defineStyleConfig({
-  baseStyle,
+export const containerRecipe = defineRecipe({
+  base: {
+    w: "100%",
+    mx: "auto",
+    maxW: "prose",
+    px: "4",
+  },
 })

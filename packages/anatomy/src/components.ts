@@ -120,9 +120,11 @@ export const popoverAnatomy = anatomy("popover").parts(
 )
 
 export const progressAnatomy = anatomy("progress").parts(
+  "root",
   "label",
   "filledTrack",
   "track",
+  "valueText",
 )
 
 export const radioAnatomy = anatomy("radio").parts("root", "control", "label")

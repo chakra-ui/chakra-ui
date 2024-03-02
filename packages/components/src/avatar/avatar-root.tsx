@@ -73,6 +73,12 @@ export const AvatarRoot = forwardRef<AvatarRootProps, "span">(
       },
     })
 
+    //   const bg = name ? randomColor({ string: name }) : "colors.gray.400"
+    //   const isBgDark = isDark(bg)(theme)
+
+    //   let color = "white"
+    //   if (!isBgDark) color = "gray.800"
+
     const avatarStyles = defineStyle({
       borderRadius,
       borderWidth: showBorder ? "2px" : undefined,

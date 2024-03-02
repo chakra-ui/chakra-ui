@@ -22,6 +22,10 @@ export interface CardOptions {
    * The flex distribution of the card
    */
   justify?: SystemStyleObject["justifyContent"]
+  /**
+   * If `true`, the card will not have any styles
+   */
+  unstyled?: boolean
 }
 
 export interface CardRootProps
@@ -39,6 +43,7 @@ export const CardRoot = forwardRef<CardRootProps, "div">(
       direction = "column",
       justify,
       align,
+      unstyled,
       ...rest
     } = localProps
 
@@ -51,7 +56,7 @@ export const CardRoot = forwardRef<CardRootProps, "div">(
           flexDirection={direction}
           justifyContent={justify}
           alignItems={align}
-          css={styles.root}
+          css={[!unstyled && styles.root, props.css]}
         >
           {children}
         </chakra.div>

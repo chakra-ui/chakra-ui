@@ -1,58 +1,45 @@
 import { accordionAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  createMultiStyleConfigHelpers,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const baseStyleItem = defineStyle({
-  borderTopWidth: "1px",
-  borderColor: "inherit",
-  overflowAnchor: "none",
-  _last: {
-    borderBottomWidth: "1px",
+export const accordionRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    item: {
+      borderTopWidth: "1px",
+      borderColor: "inherit",
+      overflowAnchor: "none",
+      _last: {
+        borderBottomWidth: "1px",
+      },
+    },
+    trigger: {
+      display: "flex",
+      alignItems: "center",
+      width: "100%",
+      outline: 0,
+      transitionProperty: "common",
+      transitionDuration: "normal",
+      fontSize: "md",
+      _focusVisible: {
+        boxShadow: "outline",
+      },
+      _hover: {
+        bg: "blackAlpha.50",
+      },
+      _disabled: {
+        opacity: 0.4,
+        cursor: "not-allowed",
+      },
+      px: "4",
+      py: "2",
+    },
+    content: {
+      pt: "2",
+      px: "4",
+      pb: "5",
+    },
+    icon: {
+      fontSize: "1.25em",
+    },
   },
 })
-
-const baseStyleTrigger = defineStyle({
-  display: "flex",
-  alignItems: "center",
-  width: "100%",
-  outline: 0,
-  transitionProperty: "common",
-  transitionDuration: "normal",
-  fontSize: "md",
-  _focusVisible: {
-    boxShadow: "outline",
-  },
-  _hover: {
-    bg: "blackAlpha.50",
-  },
-  _disabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-  },
-  px: "4",
-  py: "2",
-})
-
-const baseStyleContent = defineStyle({
-  pt: "2",
-  px: "4",
-  pb: "5",
-})
-
-const baseStyleIcon = defineStyle({
-  fontSize: "1.25em",
-})
-
-const baseStyle = definePartsStyle({
-  item: baseStyleItem,
-  trigger: baseStyleTrigger,
-  content: baseStyleContent,
-  icon: baseStyleIcon,
-})
-
-export const accordionTheme = defineMultiStyleConfig({ baseStyle })

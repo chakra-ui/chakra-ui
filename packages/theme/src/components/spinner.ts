@@ -1,38 +1,24 @@
-import { cssVar } from "@chakra-ui/theme-tools"
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const $size = cssVar("spinner-size")
-
-const baseStyle = defineStyle({
-  width: [$size.reference],
-  height: [$size.reference],
-})
-
-const sizes = {
-  xs: defineStyle({
-    [$size.variable]: "sizes.3",
-  }),
-  sm: defineStyle({
-    [$size.variable]: "sizes.4",
-  }),
-  md: defineStyle({
-    [$size.variable]: "sizes.6",
-  }),
-  lg: defineStyle({
-    [$size.variable]: "sizes.8",
-  }),
-  xl: defineStyle({
-    [$size.variable]: "sizes.12",
-  }),
-}
-
-export const spinnerTheme = defineStyleConfig({
-  baseStyle,
-  sizes,
-  defaultProps: {
+export const spinnerRecipe = defineRecipe({
+  base: {
+    display: "inline-block",
+    borderColor: "currentColor",
+    borderStyle: "solid",
+    borderRadius: "full",
+    width: "var(--size)",
+    height: "var(--size)",
+  },
+  variants: {
+    size: {
+      xs: { "--size": "sizes.3" },
+      sm: { "--size": "sizes.4" },
+      md: { "--size": "sizes.6" },
+      lg: { "--size": "sizes.8" },
+      xl: { "--size": "sizes.12" },
+    },
+  },
+  defaultVariants: {
     size: "md",
   },
 })

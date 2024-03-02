@@ -1,104 +1,74 @@
 import { cardAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  createMultiStyleConfigHelpers,
-  cssVar,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const $bg = cssVar("card-bg")
-const $padding = cssVar("card-padding")
-const $shadow = cssVar("card-shadow")
-const $radius = cssVar("card-radius")
-const $border = cssVar("card-border-width", "0")
-const $borderColor = cssVar("card-border-color")
-
-const baseStyle = definePartsStyle({
-  root: {
-    display: "flex",
-    position: "relative",
-    minWidth: 0,
-    wordWrap: "break-word",
-    [$bg.variable]: "colors.chakra-body-bg",
-    backgroundColor: $bg.reference,
-    boxShadow: $shadow.reference,
-    borderRadius: $radius.reference,
-    color: "chakra-body-text",
-    borderWidth: $border.reference,
-    borderColor: $borderColor.reference,
-  },
-  body: {
-    padding: $padding.reference,
-    flex: "1 1 0%",
-  },
-  header: {
-    padding: $padding.reference,
-  },
-  footer: {
-    padding: $padding.reference,
-  },
-})
-
-const sizes = {
-  sm: definePartsStyle({
+export const cardRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
     root: {
-      [$radius.variable]: "radii.base",
-      [$padding.variable]: "space.3",
+      display: "flex",
+      position: "relative",
+      minWidth: 0,
+      wordWrap: "break-word",
+      bg: "var(--bg)",
+      boxShadow: "var(--shadow)",
+      borderRadius: "var(--radius)",
+      color: "text",
+      borderWidth: "var(--border-width, 0)",
+      borderColor: "var(--border-color)",
     },
-  }),
-  md: definePartsStyle({
-    root: {
-      [$radius.variable]: "radii.md",
-      [$padding.variable]: "space.5",
-    },
-  }),
-  lg: definePartsStyle({
-    root: {
-      [$radius.variable]: "radii.xl",
-      [$padding.variable]: "space.7",
-    },
-  }),
-}
-
-const variants = {
-  elevated: definePartsStyle({
-    root: {
-      [$shadow.variable]: "shadows.base",
-      _dark: {
-        [$bg.variable]: "colors.gray.700",
-      },
-    },
-  }),
-  outline: definePartsStyle({
-    root: {
-      [$border.variable]: "1px",
-      [$borderColor.variable]: "colors.chakra-border-color",
-    },
-  }),
-  filled: definePartsStyle({
-    root: {
-      [$bg.variable]: "colors.chakra-subtle-bg",
-    },
-  }),
-  unstyled: {
     body: {
-      [$padding.variable]: 0,
+      padding: "var(--padding)",
+      flex: "1 1 0%",
     },
     header: {
-      [$padding.variable]: 0,
+      padding: "var(--padding)",
     },
     footer: {
-      [$padding.variable]: 0,
+      padding: "var(--padding)",
     },
   },
-}
-
-export const cardTheme = defineMultiStyleConfig({
-  baseStyle,
-  variants,
-  sizes,
-  defaultProps: {
+  variants: {
+    size: {
+      sm: {
+        root: {
+          "--radius": "radii.base",
+          "--padding": "space.3",
+        },
+      },
+      md: {
+        root: {
+          "--radius": "radii.md",
+          "--padding": "space.5",
+        },
+      },
+      lg: {
+        root: {
+          "--radius": "radii.xl",
+          "--padding": "space.7",
+        },
+      },
+    },
+    variant: {
+      elevated: {
+        root: {
+          "--bg": { base: "colors.bg", _dark: "colors.gray.700" },
+          "--shadow": "shadows.base",
+        },
+      },
+      outline: {
+        root: {
+          "--border-width": "1px",
+          "--border-color": "colors.border",
+        },
+      },
+      filled: {
+        root: {
+          "--bg": "colors.bg.subtle",
+        },
+      },
+    },
+  },
+  defaultVariants: {
     variant: "elevated",
     size: "md",
   },

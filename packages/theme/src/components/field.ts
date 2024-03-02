@@ -1,46 +1,22 @@
 import { fieldAnatomy as parts } from "@chakra-ui/anatomy"
-import {
-  createMultiStyleConfigHelpers,
-  cssVar,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const $fg = cssVar("form-control-color")
-
-const baseStyleRequiredIndicator = defineStyle({
-  marginStart: "1",
-  [$fg.variable]: "colors.red.500",
-  _dark: {
-    [$fg.variable]: "colors.red.300",
+export const fieldRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    root: {
+      width: "100%",
+      position: "relative",
+    },
+    requiredIndicator: {
+      marginStart: "1",
+      color: { base: "red.500", _dark: "red.300" },
+    },
+    helpText: {
+      mt: "2",
+      color: { base: "gray.600", _dark: "whiteAlpha.600" },
+      lineHeight: "normal",
+      fontSize: "sm",
+    },
   },
-  color: $fg.reference,
-})
-
-const baseStyleHelpText = defineStyle({
-  mt: "2",
-  [$fg.variable]: "colors.gray.600",
-  _dark: {
-    [$fg.variable]: "colors.whiteAlpha.600",
-  },
-  color: $fg.reference,
-  lineHeight: "normal",
-  fontSize: "sm",
-})
-
-const baseStyleRoot = defineStyle({
-  width: "100%",
-  position: "relative",
-})
-
-const baseStyle = definePartsStyle({
-  root: baseStyleRoot,
-  requiredIndicator: baseStyleRequiredIndicator,
-  helpText: baseStyleHelpText,
-})
-
-export const fieldTheme = defineMultiStyleConfig({
-  baseStyle,
 })

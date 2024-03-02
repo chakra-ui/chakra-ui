@@ -1,65 +1,45 @@
-import { cssVar } from "@chakra-ui/theme-tools"
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const $size = cssVar("close-button-size")
-const $bg = cssVar("close-button-bg")
-
-const baseStyle = defineStyle({
-  outline: 0,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  flexShrink: 0,
-  w: [$size.reference],
-  h: [$size.reference],
-  borderRadius: "md",
-  transitionProperty: "common",
-  transitionDuration: "normal",
-  _disabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-    boxShadow: "none",
-  },
-  _hover: {
-    [$bg.variable]: "colors.blackAlpha.100",
-    _dark: {
-      [$bg.variable]: "colors.whiteAlpha.100",
+export const closeButtonRecipe = defineRecipe({
+  base: {
+    outline: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    width: "var(--size)",
+    height: "var(--size)",
+    borderRadius: "md",
+    transitionProperty: "common",
+    transitionDuration: "normal",
+    boxShadow: { _disabled: "none", _focusVisible: "outline" },
+    opacity: { _disabled: 0.4 },
+    cursor: { _disabled: "not-allowed" },
+    bg: "var(--bg)",
+    _hover: {
+      "--bg": { base: "colors.blackAlpha.100", _dark: "colors.whiteAlpha.100" },
+    },
+    _active: {
+      "--bg": { base: "colors.blackAlpha.200", _dark: "colors.whiteAlpha.200" },
     },
   },
-  _active: {
-    [$bg.variable]: "colors.blackAlpha.200",
-    _dark: {
-      [$bg.variable]: "colors.whiteAlpha.200",
+  variants: {
+    size: {
+      lg: {
+        "--size": "sizes.10",
+        fontSize: "md",
+      },
+      md: {
+        "--size": "sizes.8",
+        fontSize: "xs",
+      },
+      sm: {
+        "--size": "sizes.6",
+        fontSize: "2xs",
+      },
     },
   },
-  _focusVisible: {
-    boxShadow: "outline",
-  },
-  bg: $bg.reference,
-})
-
-const sizes = {
-  lg: defineStyle({
-    [$size.variable]: "sizes.10",
-    fontSize: "md",
-  }),
-  md: defineStyle({
-    [$size.variable]: "sizes.8",
-    fontSize: "xs",
-  }),
-  sm: defineStyle({
-    [$size.variable]: "sizes.6",
-    fontSize: "2xs",
-  }),
-}
-
-export const closeButtonTheme = defineStyleConfig({
-  baseStyle,
-  sizes,
-  defaultProps: {
+  defaultVariants: {
     size: "md",
   },
 })

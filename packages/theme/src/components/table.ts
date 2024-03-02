@@ -1,183 +1,152 @@
 import { tableAnatomy as parts } from "@chakra-ui/anatomy"
-import { mode } from "@chakra-ui/theme-tools"
-import {
-  createMultiStyleConfigHelpers,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { defineMultiStyleConfig, definePartsStyle } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const baseStyle = definePartsStyle({
-  root: {
-    fontVariantNumeric: "lining-nums tabular-nums",
-    borderCollapse: "collapse",
-    width: "full",
-  },
-  columnHeader: {
-    fontFamily: "heading",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    letterSpacing: "wider",
-    textAlign: "start",
-  },
-  cell: {
-    textAlign: "start",
-  },
-  caption: {
-    mt: 4,
-    fontFamily: "heading",
-    textAlign: "center",
-    fontWeight: "medium",
-  },
-})
-
-const numericStyles = defineStyle({
-  "&[data-is-numeric]": {
-    textAlign: "end",
-  },
-})
-
-const variantSimple = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-
-  return {
+export const tableRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    root: {
+      fontVariantNumeric: "lining-nums tabular-nums",
+      borderCollapse: "collapse",
+      width: "full",
+    },
     columnHeader: {
-      color: mode("gray.600", "gray.400")(props),
-      borderBottomWidth: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...numericStyles,
+      fontFamily: "heading",
+      fontWeight: "bold",
+      textTransform: "uppercase",
+      letterSpacing: "wider",
+      textAlign: "start",
     },
     cell: {
-      borderBottomWidth: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...numericStyles,
+      textAlign: "start",
     },
     caption: {
-      color: mode("gray.600", "gray.100")(props),
+      mt: 4,
+      fontFamily: "heading",
+      textAlign: "center",
+      fontWeight: "medium",
     },
-    footer: {
-      tr: {
-        "&:last-of-type": {
-          th: { borderBottomWidth: 0 },
-        },
+  },
+  variants: {
+    numeric: {
+      true: {
+        columnHeader: { textAlign: "end" },
+        cell: { textAlign: "end" },
       },
     },
-  }
-})
-
-const variantStripe = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-
-  return {
-    columnHeader: {
-      color: mode("gray.600", "gray.400")(props),
-      borderBottomWidth: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...numericStyles,
-    },
-    cell: {
-      borderBottomWidth: "1px",
-      borderColor: mode(`${c}.100`, `${c}.700`)(props),
-      ...numericStyles,
-    },
-    caption: {
-      color: mode("gray.600", "gray.100")(props),
-    },
-    body: {
-      tr: {
-        "&:nth-of-type(odd)": {
-          "th, td": {
-            borderBottomWidth: "1px",
-            borderColor: mode(`${c}.100`, `${c}.700`)(props),
+    variant: {
+      simple: {
+        columnHeader: {
+          color: { base: "gray.600", _dark: "gray.400" },
+          borderBottomWidth: "1px",
+          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
+        },
+        cell: {
+          borderBottomWidth: "1px",
+          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
+        },
+        caption: {
+          color: { base: "gray.600", _dark: "gray.100" },
+        },
+        footer: {
+          "& tr:last-of-type th": {
+            borderBottomWidth: 0,
           },
-          td: {
-            background: mode(`${c}.100`, `${c}.700`)(props),
+        },
+      },
+      stripe: {
+        columnHeader: {
+          color: { base: "gray.600", _dark: "gray.400" },
+          borderBottomWidth: "1px",
+          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
+        },
+        cell: {
+          borderBottomWidth: "1px",
+          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
+        },
+        caption: {
+          color: { base: "gray.600", _dark: "gray.100" },
+        },
+        body: {
+          "& tr:nth-of-type(odd)": {
+            "& :where(th, td)": {
+              borderBottomWidth: "1px",
+              borderColor: {
+                base: "colorPalette.100",
+                _dark: "colorPalette.700",
+              },
+            },
+            "& td": {
+              bg: { base: "colorPalette.100", _dark: "colorPalette.700" },
+            },
+          },
+        },
+        footer: {
+          "& tr:last-of-type th": {
+            borderBottomWidth: 0,
           },
         },
       },
     },
-    footer: {
-      tr: {
-        "&:last-of-type": {
-          th: { borderBottomWidth: 0 },
+    size: {
+      sm: {
+        columnHeader: {
+          px: "4",
+          py: "1",
+          lineHeight: "4",
+          fontSize: "xs",
+        },
+        cell: {
+          px: "4",
+          py: "2",
+          fontSize: "sm",
+          lineHeight: "4",
+        },
+        caption: {
+          px: "4",
+          py: "2",
+          fontSize: "xs",
+        },
+      },
+      md: {
+        columnHeader: {
+          px: "6",
+          py: "3",
+          lineHeight: "4",
+          fontSize: "xs",
+        },
+        cell: {
+          px: "6",
+          py: "4",
+          lineHeight: "5",
+        },
+        caption: {
+          px: "6",
+          py: "2",
+          fontSize: "sm",
+        },
+      },
+      lg: {
+        columnHeader: {
+          px: "8",
+          py: "4",
+          lineHeight: "5",
+          fontSize: "sm",
+        },
+        cell: {
+          px: "8",
+          py: "5",
+          lineHeight: "6",
+        },
+        caption: {
+          px: "6",
+          py: "2",
+          fontSize: "md",
         },
       },
     },
-  }
-})
-
-const variants = {
-  simple: variantSimple,
-  striped: variantStripe,
-  unstyled: defineStyle({}),
-}
-
-const sizes = {
-  sm: definePartsStyle({
-    columnHeader: {
-      px: "4",
-      py: "1",
-      lineHeight: "4",
-      fontSize: "xs",
-    },
-    cell: {
-      px: "4",
-      py: "2",
-      fontSize: "sm",
-      lineHeight: "4",
-    },
-    caption: {
-      px: "4",
-      py: "2",
-      fontSize: "xs",
-    },
-  }),
-  md: definePartsStyle({
-    columnHeader: {
-      px: "6",
-      py: "3",
-      lineHeight: "4",
-      fontSize: "xs",
-    },
-    cell: {
-      px: "6",
-      py: "4",
-      lineHeight: "5",
-    },
-    caption: {
-      px: "6",
-      py: "2",
-      fontSize: "sm",
-    },
-  }),
-  lg: definePartsStyle({
-    columnHeader: {
-      px: "8",
-      py: "4",
-      lineHeight: "5",
-      fontSize: "sm",
-    },
-    cell: {
-      px: "8",
-      py: "5",
-      lineHeight: "6",
-    },
-    caption: {
-      px: "6",
-      py: "2",
-      fontSize: "md",
-    },
-  }),
-}
-
-export const tableTheme = defineMultiStyleConfig({
-  baseStyle,
-  variants,
-  sizes,
-  defaultProps: {
+  },
+  defaultVariants: {
     variant: "simple",
     size: "md",
-    colorScheme: "gray",
   },
 })

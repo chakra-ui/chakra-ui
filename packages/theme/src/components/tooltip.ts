@@ -1,33 +1,18 @@
-import { cssVar } from "@chakra-ui/theme-tools"
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const $bg = cssVar("tooltip-bg")
-const $fg = cssVar("tooltip-fg")
-const $arrowBg = cssVar("popper-arrow-bg")
-
-const baseStyle = defineStyle({
-  bg: $bg.reference,
-  color: $fg.reference,
-  [$bg.variable]: "colors.gray.700",
-  [$fg.variable]: "colors.whiteAlpha.900",
-  _dark: {
-    [$bg.variable]: "colors.gray.300",
-    [$fg.variable]: "colors.gray.900",
+export const tooltipRecipe = defineRecipe({
+  base: {
+    "--bg": { base: "colors.gray.700", _dark: "colors.gray.300" },
+    "--popper-arrow-bg": "var(--bg)",
+    bg: "var(--bg)",
+    color: { base: "whiteAlpha.900", _dark: "gray.900" },
+    px: "2",
+    py: "0.5",
+    borderRadius: "sm",
+    fontWeight: "medium",
+    fontSize: "sm",
+    boxShadow: "md",
+    maxW: "xs",
+    zIndex: "tooltip",
   },
-  [$arrowBg.variable]: $bg.reference,
-  px: "2",
-  py: "0.5",
-  borderRadius: "sm",
-  fontWeight: "medium",
-  fontSize: "sm",
-  boxShadow: "md",
-  maxW: "xs",
-  zIndex: "tooltip",
-})
-
-export const tooltipTheme = defineStyleConfig({
-  baseStyle,
 })

@@ -1,7 +1,4 @@
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 import { badgeTheme, badgeVars as vars } from "./badge"
 
 const { variants, defaultProps } = badgeTheme

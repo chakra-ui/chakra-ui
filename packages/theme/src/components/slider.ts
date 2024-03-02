@@ -1,162 +1,99 @@
 import { sliderAnatomy as parts } from "@chakra-ui/anatomy"
-import { orient } from "@chakra-ui/theme-tools"
-import {
-  createMultiStyleConfigHelpers,
-  cssVar,
-  defineStyle,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { defineMultiStyleConfig, definePartsStyle } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const $thumbSize = cssVar("slider-thumb-size")
-const $trackSize = cssVar("slider-track-size")
-const $bg = cssVar("slider-bg")
-
-const baseStyleRoot = defineStyle((props) => {
-  const { orientation } = props
-
-  return {
-    display: "inline-block",
-    position: "relative",
-    cursor: "pointer",
-    _disabled: {
-      opacity: 0.6,
-      cursor: "default",
-      pointerEvents: "none",
-    },
-    ...orient({
-      orientation,
-      vertical: { h: "100%" },
-      horizontal: { w: "100%" },
-    }),
-  }
-})
-
-const baseStyleTrack = defineStyle((props) => {
-  const orientationStyles = orient({
-    orientation: props.orientation,
-    horizontal: { h: $trackSize.reference },
-    vertical: { w: $trackSize.reference },
-  })
-
-  return {
-    ...orientationStyles,
-    overflow: "hidden",
-    borderRadius: "sm",
-    [$bg.variable]: "colors.gray.200",
-    _dark: {
-      [$bg.variable]: "colors.whiteAlpha.200",
-    },
-    _disabled: {
-      [$bg.variable]: "colors.gray.300",
-      _dark: {
-        [$bg.variable]: "colors.whiteAlpha.300",
+export const sliderRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
+    root: {
+      display: "inline-block",
+      position: "relative",
+      colorPalette: "blue",
+      cursor: { base: "pointer", _disabled: "default" },
+      _disabled: {
+        opacity: 0.6,
+        pointerEvents: "none",
       },
     },
-    bg: $bg.reference,
-  }
-})
-
-const baseStyleThumb = defineStyle((props) => {
-  const { orientation } = props
-  const orientationStyle = orient({
-    orientation,
-    vertical: {
-      left: "50%",
-      transform: `translateX(-50%)`,
-      _active: {
-        transform: `translateX(-50%) scale(1.15)`,
+    track: {
+      overflow: "hidden",
+      borderRadius: "sm",
+      bg: { base: "gray.200", _dark: "whiteAlpha.200" },
+      _disabled: {
+        bg: { base: "gray.300", _dark: "whiteAlpha.300" },
       },
     },
-    horizontal: {
-      top: "50%",
-      transform: `translateY(-50%)`,
-      _active: {
-        transform: `translateY(-50%) scale(1.15)`,
+    filledTrack: {
+      width: "inherit",
+      height: "inherit",
+      bg: { base: "colorPalette.500", _dark: "colorPalette.200" },
+    },
+    thumb: {
+      width: "var(--thumb-size)",
+      height: "var(--thumb-size)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "absolute",
+      outline: 0,
+      zIndex: 1,
+      borderRadius: "full",
+      bg: { base: "white", _disabled: "gray.300" },
+      boxShadow: "base",
+      border: "1px solid",
+      borderColor: "transparent",
+      transitionProperty: "transform",
+      transitionDuration: "normal",
+      _focusVisible: {
+        boxShadow: "outline",
       },
     },
-  })
-
-  return {
-    ...orientationStyle,
-    w: $thumbSize.reference,
-    h: $thumbSize.reference,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    outline: 0,
-    zIndex: 1,
-    borderRadius: "full",
-    bg: "white",
-    boxShadow: "base",
-    border: "1px solid",
-    borderColor: "transparent",
-    transitionProperty: "transform",
-    transitionDuration: "normal",
-    _focusVisible: {
-      boxShadow: "outline",
-    },
-    _disabled: {
-      bg: "gray.300",
-    },
-  }
-})
-
-const baseStyleFilledTrack = defineStyle((props) => {
-  const { colorScheme: c } = props
-
-  return {
-    width: "inherit",
-    height: "inherit",
-    [$bg.variable]: `colors.${c}.500`,
-    _dark: {
-      [$bg.variable]: `colors.${c}.200`,
-    },
-    bg: $bg.reference,
-  }
-})
-
-const baseStyle = definePartsStyle((props) => ({
-  root: baseStyleRoot(props),
-  track: baseStyleTrack(props),
-  thumb: baseStyleThumb(props),
-  filledTrack: baseStyleFilledTrack(props),
-}))
-
-const sizeLg = definePartsStyle({
-  root: {
-    [$thumbSize.variable]: `sizes.4`,
-    [$trackSize.variable]: `sizes.1`,
   },
-})
-
-const sizeMd = definePartsStyle({
-  root: {
-    [$thumbSize.variable]: `sizes.3.5`,
-    [$trackSize.variable]: `sizes.1`,
+  variants: {
+    size: {
+      sm: {
+        root: {
+          "--thumb-size": "sizes.2.5",
+          "--track-size": "sizes.0.5",
+        },
+      },
+      md: {
+        root: {
+          "--thumb-size": "sizes.3.5",
+          "--track-size": "sizes.1",
+        },
+      },
+      lg: {
+        root: {
+          "--thumb-size": "sizes.4",
+          "--track-size": "sizes.1",
+        },
+      },
+    },
+    orientation: {
+      vertical: {
+        root: {
+          height: "100%",
+        },
+        track: {
+          width: "var(--track-size)",
+        },
+        thumb: {
+          left: "50%",
+          translate: "-50% 0",
+          scale: { base: 1, _active: 1.15 },
+        },
+      },
+      horizontal: {
+        root: {
+          width: "100%",
+        },
+        track: {
+          height: "var(--track-size)",
+        },
+      },
+    },
   },
-})
-
-const sizeSm = definePartsStyle({
-  root: {
-    [$thumbSize.variable]: `sizes.2.5`,
-    [$trackSize.variable]: `sizes.0.5`,
-  },
-})
-
-const sizes = {
-  lg: sizeLg,
-  md: sizeMd,
-  sm: sizeSm,
-}
-
-export const sliderTheme = defineMultiStyleConfig({
-  baseStyle,
-  sizes,
-  defaultProps: {
+  defaultVariants: {
     size: "md",
-    colorScheme: "blue",
   },
 })

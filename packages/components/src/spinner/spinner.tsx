@@ -81,10 +81,6 @@ export const Spinner = forwardRef<SpinnerProps, "div">(
     } = localProps
 
     const spinnerStyles = defineStyle({
-      display: "inline-block",
-      borderColor: "currentColor",
-      borderStyle: "solid",
-      borderRadius: "99999px",
       borderWidth: thickness,
       borderBottomColor: emptyColor,
       borderLeftColor: emptyColor,

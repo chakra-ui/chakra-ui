@@ -1,25 +1,12 @@
-import {
-  cssVar,
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const $startColor = cssVar("skeleton-start-color")
-const $endColor = cssVar("skeleton-end-color")
-
-const baseStyle = defineStyle({
-  [$startColor.variable]: "colors.gray.100",
-  [$endColor.variable]: "colors.gray.400",
-  _dark: {
-    [$startColor.variable]: "colors.gray.800",
-    [$endColor.variable]: "colors.gray.600",
+export const skeletonRecipe = defineRecipe({
+  base: {
+    "--start-color": { base: "colors.gray.100", _dark: "colors.gray.800" },
+    "--end-color": { base: "colors.gray.400", _dark: "colors.gray.600" },
+    background: "var(--start-color)",
+    borderColor: "var(--end-color)",
+    opacity: 0.7,
+    borderRadius: "sm",
   },
-  background: $startColor.reference,
-  borderColor: $endColor.reference,
-  opacity: 0.7,
-  borderRadius: "sm",
-})
-
-export const skeletonTheme = defineStyleConfig({
-  baseStyle,
 })

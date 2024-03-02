@@ -1,140 +1,84 @@
 import { alertAnatomy as parts } from "@chakra-ui/anatomy"
-import { transparentize } from "@chakra-ui/theme-tools"
-import {
-  StyleFunctionProps,
-  createMultiStyleConfigHelpers,
-  cssVar,
-} from "../../../components/src/styled-system"
+import { defineSlotRecipe } from "@chakra-ui/react"
 
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(parts.keys)
-
-const $fg = cssVar("alert-fg")
-const $bg = cssVar("alert-bg")
-
-const baseStyle = definePartsStyle({
-  root: {
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    position: "relative",
-    overflow: "hidden",
-    bg: $bg.reference,
-    px: "4",
-    py: "3",
-  },
-  title: {
-    fontWeight: "bold",
-    lineHeight: "6",
-    marginEnd: "2",
-  },
-  description: {
-    display: "inline",
-    lineHeight: "6",
-  },
-  icon: {
-    color: $fg.reference,
-    flexShrink: 0,
-    marginEnd: "3",
-    w: "5",
-    h: "6",
-  },
-  spinner: {
-    color: $fg.reference,
-    flexShrink: 0,
-    marginEnd: "3",
-    w: "5",
-    h: "5",
-  },
-})
-
-function getBg(props: StyleFunctionProps) {
-  const { theme, colorScheme: c } = props
-  const darkBg = transparentize(`${c}.200`, 0.16)(theme)
-  return {
-    light: `colors.${c}.100`,
-    dark: darkBg,
-  }
-}
-
-const variantSubtle = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-  const bg = getBg(props)
-  return {
+export const alertRecipe = defineSlotRecipe({
+  slots: parts.keys,
+  base: {
     root: {
-      [$fg.variable]: `colors.${c}.600`,
-      [$bg.variable]: bg.light,
-      _dark: {
-        [$fg.variable]: `colors.${c}.200`,
-        [$bg.variable]: bg.dark,
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      position: "relative",
+      overflow: "hidden",
+      px: "4",
+      py: "3",
+      colorScheme: "blue",
+    },
+    title: {
+      fontWeight: "bold",
+      lineHeight: "6",
+      marginEnd: "2",
+    },
+    description: {
+      display: "inline",
+      lineHeight: "6",
+    },
+    icon: {
+      flexShrink: 0,
+      marginEnd: "3",
+      w: "5",
+      h: "6",
+    },
+  },
+  variants: {
+    variant: {
+      subtle: {
+        root: {
+          bg: { base: "colorPalette.100", _dark: "colorPalette.200/16" },
+        },
+        icon: {
+          color: { base: "colorPalette.600", _dark: "colorPalette.200" },
+        },
+      },
+      "left-accent": {
+        root: {
+          bg: { base: "colorPalette.100", _dark: "colorPalette.200/16" },
+          paddingStart: "3",
+          borderStartWidth: "4px",
+          borderStartColor: {
+            base: "colorPalette.600",
+            _dark: "colorPalette.200",
+          },
+        },
+        icon: {
+          color: { base: "colorPalette.600", _dark: "colorPalette.200" },
+        },
+      },
+      "top-accent": {
+        root: {
+          bg: { base: "colorPalette.100", _dark: "colorPalette.200/16" },
+          pt: "2",
+          borderTopWidth: "4px",
+          borderTopColor: {
+            base: "colorPalette.600",
+            _dark: "colorPalette.200",
+          },
+        },
+        icon: {
+          color: { base: "colorPalette.600", _dark: "colorPalette.200" },
+        },
+      },
+      solid: {
+        root: {
+          bg: { base: "colorPalette.600", _dark: "colorPalette.200" },
+        },
+        icon: {
+          color: { base: "white", _dark: "gray.900" },
+        },
       },
     },
-  }
-})
-
-const variantLeftAccent = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-  const bg = getBg(props)
-  return {
-    root: {
-      [$fg.variable]: `colors.${c}.600`,
-      [$bg.variable]: bg.light,
-      _dark: {
-        [$fg.variable]: `colors.${c}.200`,
-        [$bg.variable]: bg.dark,
-      },
-      paddingStart: "3",
-      borderStartWidth: "4px",
-      borderStartColor: $fg.reference,
-    },
-  }
-})
-
-const variantTopAccent = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-  const bg = getBg(props)
-  return {
-    root: {
-      [$fg.variable]: `colors.${c}.600`,
-      [$bg.variable]: bg.light,
-      _dark: {
-        [$fg.variable]: `colors.${c}.200`,
-        [$bg.variable]: bg.dark,
-      },
-      pt: "2",
-      borderTopWidth: "4px",
-      borderTopColor: $fg.reference,
-    },
-  }
-})
-
-const variantSolid = definePartsStyle((props) => {
-  const { colorScheme: c } = props
-  return {
-    root: {
-      [$fg.variable]: `colors.white`,
-      [$bg.variable]: `colors.${c}.600`,
-      _dark: {
-        [$fg.variable]: `colors.gray.900`,
-        [$bg.variable]: `colors.${c}.200`,
-      },
-      color: $fg.reference,
-    },
-  }
-})
-
-const variants = {
-  subtle: variantSubtle,
-  "left-accent": variantLeftAccent,
-  "top-accent": variantTopAccent,
-  solid: variantSolid,
-}
-
-export const alertTheme = defineMultiStyleConfig({
-  baseStyle,
-  variants,
-  defaultProps: {
+  },
+  defaultVariants: {
     variant: "subtle",
-    colorScheme: "blue",
   },
 })

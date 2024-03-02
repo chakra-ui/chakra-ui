@@ -1,52 +1,47 @@
-import {
-  defineStyle,
-  defineStyleConfig,
-} from "../../../components/src/styled-system"
+import { defineRecipe } from "@chakra-ui/react"
 
-const baseStyle = defineStyle({
-  fontFamily: "heading",
-  fontWeight: "bold",
-})
-
-const sizes = {
-  "4xl": defineStyle({
-    fontSize: ["6xl", null, "7xl"],
-    lineHeight: 1,
-  }),
-  "3xl": defineStyle({
-    fontSize: ["5xl", null, "6xl"],
-    lineHeight: 1,
-  }),
-  "2xl": defineStyle({
-    fontSize: ["4xl", null, "5xl"],
-    lineHeight: [1.2, null, 1],
-  }),
-  xl: defineStyle({
-    fontSize: ["3xl", null, "4xl"],
-    lineHeight: [1.33, null, 1.2],
-  }),
-  lg: defineStyle({
-    fontSize: ["2xl", null, "3xl"],
-    lineHeight: [1.33, null, 1.2],
-  }),
-  md: defineStyle({
-    fontSize: "xl",
-    lineHeight: 1.2,
-  }),
-  sm: defineStyle({
-    fontSize: "md",
-    lineHeight: 1.2,
-  }),
-  xs: defineStyle({
-    fontSize: "sm",
-    lineHeight: 1.2,
-  }),
-}
-
-export const headingTheme = defineStyleConfig({
-  baseStyle,
-  sizes,
-  defaultProps: {
+export const headingRecipe = defineRecipe({
+  base: {
+    fontFamily: "heading",
+    fontWeight: "bold",
+  },
+  variants: {
+    size: {
+      "4xl": {
+        fontSize: { base: "6xl", md: "7xl" },
+        lineHeight: 1,
+      },
+      "3xl": {
+        fontSize: { base: "5xl", md: "6xl" },
+        lineHeight: 1,
+      },
+      "2xl": {
+        fontSize: { base: "4xl", md: "5xl" },
+        lineHeight: { base: 1.2, md: 1 },
+      },
+      xl: {
+        fontSize: { base: "3xl", md: "4xl" },
+        lineHeight: { base: 1.33, md: 1.2 },
+      },
+      lg: {
+        fontSize: { base: "2xl", md: "3xl" },
+        lineHeight: { base: 1.33, md: 1.2 },
+      },
+      md: {
+        fontSize: "xl",
+        lineHeight: 1.2,
+      },
+      sm: {
+        fontSize: "md",
+        lineHeight: 1.2,
+      },
+      xs: {
+        fontSize: "sm",
+        lineHeight: 1.2,
+      },
+    },
+  },
+  defaultVariants: {
     size: "xl",
   },
 })
