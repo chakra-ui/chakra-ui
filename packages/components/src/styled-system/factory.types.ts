@@ -14,7 +14,7 @@ import {
 import { MinimalNested, SystemStyleObject } from "./css.types"
 import { SystemProperties } from "./generated/system.gen"
 import {
-  RecipeConfig,
+  RecipeDefinition,
   RecipeSelection,
   RecipeVariantRecord,
 } from "./recipe.types"
@@ -70,7 +70,7 @@ export interface JsxFactory {
   <T extends ElementType>(component: T): ChakraComponent<T, {}>
   <T extends ElementType, P extends RecipeVariantRecord>(
     component: T,
-    recipe: RecipeConfig<P>,
+    recipe: RecipeDefinition<P>,
     options?: JsxFactoryOptions<Assign<ComponentProps<T>, RecipeSelection<P>>>,
   ): JsxElement<T, RecipeSelection<P>>
 }

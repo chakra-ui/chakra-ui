@@ -37,7 +37,7 @@ export interface RecipeRuntimeFn<T extends RecipeVariantRecord>
   __type: RecipeSelection<T>
   variantKeys: (keyof T)[]
   variantMap: RecipeVariantMap<T>
-  config: RecipeConfig<T>
+  config: RecipeDefinition<T>
   splitVariantProps<Props extends RecipeSelection<T>>(
     props: Props,
   ): [RecipeSelection<T>, Pretty<DistributiveOmit<Props, keyof T>>]
@@ -54,7 +54,7 @@ export type RecipeCompoundVariant<T> = T & {
   css: SystemStyleObject
 }
 
-export interface RecipeConfig<
+export interface RecipeDefinition<
   T extends RecipeVariantRecord = RecipeVariantRecord,
 > {
   /**
@@ -76,12 +76,12 @@ export interface RecipeConfig<
 }
 
 export type RecipeCreatorFn = <T extends RecipeVariantRecord>(
-  config: RecipeConfig<T>,
+  config: RecipeDefinition<T>,
 ) => RecipeRuntimeFn<T>
 
 export type RecipeIdentityFn = <T extends RecipeVariantRecord>(
-  config: RecipeConfig<T>,
-) => RecipeConfig<T>
+  config: RecipeDefinition<T>,
+) => RecipeDefinition<T>
 
 /* -----------------------------------------------------------------------------
  * Recipe / Slot

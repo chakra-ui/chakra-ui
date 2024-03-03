@@ -3,7 +3,7 @@ import { Global } from "@emotion/react"
 import { useMemo } from "react"
 import { SystemRecipes, SystemSlotRecipes } from "./generated/recipes.gen"
 import {
-  RecipeConfig,
+  RecipeDefinition,
   SlotRecipeConfig,
   SystemRecipeFn,
   SystemSlotRecipeFn,
@@ -38,7 +38,7 @@ type RecipeKey = keyof SystemRecipes | (string & {})
 
 export function useRecipe<K extends RecipeKey>(
   key: K,
-  fallback?: RecipeConfig,
+  fallback?: RecipeDefinition,
 ): K extends keyof SystemRecipes ? SystemRecipes[K] : SystemRecipeFn<{}> {
   const sys = useSystemContext()
   return useMemo((): any => {

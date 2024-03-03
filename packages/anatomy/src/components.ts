@@ -55,6 +55,7 @@ export const editableAnatomy = anatomy("editable").parts(
 
 export const fieldAnatomy = anatomy("form").parts(
   "root",
+  "label",
   "requiredIndicator",
   "helpText",
 )

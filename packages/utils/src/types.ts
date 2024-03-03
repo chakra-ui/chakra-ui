@@ -25,7 +25,3 @@ export type DistributiveUnion<T, U> = {
 export type Assign<T, U> = {
   [K in keyof T]: K extends keyof U ? U[K] : T[K]
 } & U
-
-export type MaybeRenderProp<P> =
-  | React.ReactNode
-  | ((props: P) => React.ReactNode)

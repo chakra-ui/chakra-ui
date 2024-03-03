@@ -8,10 +8,10 @@ import {
   uniq,
 } from "@chakra-ui/utils"
 import { createCssFn } from "./css"
-import { RecipeConfig, RecipeCreatorFn } from "./recipe.types"
+import { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
 import { Condition, CssFn } from "./types"
 
-const defaults = (conf: any): Required<RecipeConfig> => ({
+const defaults = (conf: any): Required<RecipeDefinition> => ({
   base: {},
   variants: {},
   defaultVariants: {},

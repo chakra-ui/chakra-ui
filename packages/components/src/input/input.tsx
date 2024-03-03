@@ -25,6 +25,10 @@ interface InputOptions {
    * The native HTML `size` attribute to be passed to the `input`
    */
   htmlSize?: number
+  /**
+   * If `true`, the input will be unstyled
+   */
+  unstyled?: boolean
 }
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
@@ -44,7 +48,7 @@ export interface InputProps
  */
 export const Input = forwardRef<InputProps, "input">(
   function Input(props, ref) {
-    const { htmlSize, ...restProps } = props
+    const { htmlSize, unstyled, ...restProps } = props
 
     const recipe = useSlotRecipe("Input")
     const [variantProps, localProps] = recipe.splitVariantProps(restProps)
@@ -59,7 +63,7 @@ export const Input = forwardRef<InputProps, "input">(
         size={htmlSize}
         {...elementProps}
         {...inputProps}
-        css={styles.field}
+        css={[!unstyled && styles.field, props.css]}
         ref={ref}
         className={_className}
       />

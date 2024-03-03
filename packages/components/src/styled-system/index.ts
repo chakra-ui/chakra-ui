@@ -3,6 +3,7 @@ export type {
   ConditionalValue,
   JsxStyleProps,
   SystemStyleObject,
+  GlobalStyleObject,
 } from "./css.types"
 export { chakra, forwardRef } from "./factory"
 export type { HTMLChakraProps } from "./factory.types"

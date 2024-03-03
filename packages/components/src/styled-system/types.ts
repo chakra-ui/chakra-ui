@@ -7,8 +7,8 @@ import {
   SystemStyleObject,
 } from "./css.types"
 import {
-  RecipeConfig,
   RecipeCreatorFn,
+  RecipeDefinition,
   SlotRecipeConfig,
   SlotRecipeCreatorFn,
 } from "./recipe.types"
@@ -288,7 +288,7 @@ export interface ThemingConfig {
   semanticTokens?: SemanticTokenDefinition
   textStyles?: Record<string, Dict>
   layerStyles?: Record<string, Dict>
-  recipes?: Record<string, RecipeConfig>
+  recipes?: Record<string, RecipeDefinition>
   slotRecipes?: Record<string, SlotRecipeConfig>
 }
 
