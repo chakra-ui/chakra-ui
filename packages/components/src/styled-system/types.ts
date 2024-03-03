@@ -111,6 +111,7 @@ export interface TokenDictionary extends TokenFormatOptions {
   getVar(value: string, fallback?: string): string | undefined
   getCategoryValues(category: string): Dict
   getByName(name: string): Token | undefined
+  expandReferenceInValue(value: string): string
 }
 
 interface ColorPaletteExtension {

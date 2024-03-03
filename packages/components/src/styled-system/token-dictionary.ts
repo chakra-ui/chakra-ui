@@ -9,7 +9,12 @@ import {
 } from "@chakra-ui/utils"
 import { cssVar } from "./css-var"
 import { mapToJson } from "./map-to-json"
-import { expandReferences, getReferences, hasReference } from "./references"
+import {
+  expandReferences,
+  getReferences,
+  hasReference,
+  transformReferences,
+} from "./references"
 import { tokenMiddlewares } from "./token-middleware"
 import { tokenTransforms } from "./token-transforms"
 import {
@@ -265,6 +270,10 @@ export function createTokenDictionary(options: Options): TokenDictionary {
     return byCategoryJson[category] || null
   })
 
+  const expandReferenceInValue = memo((value: string) => {
+    return transformReferences(value, (path) => getVar(path))
+  })
+
   const dictionary: TokenDictionary = {
     prefix,
     allTokens,
@@ -279,6 +288,7 @@ export function createTokenDictionary(options: Options): TokenDictionary {
     colorPaletteMap,
     getVar,
     getCategoryValues,
+    expandReferenceInValue,
   }
 
   function registerTransform(...fns: TokenTransformer[]) {

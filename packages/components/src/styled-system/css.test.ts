@@ -164,6 +164,7 @@ describe("create css", () => {
 
   test("responsive text styles", () => {
     const result = css({
+      //@ts-expect-error
       textStyle: ["caps", "lower"],
     })
 
@@ -308,6 +309,24 @@ describe("create css", () => {
       {
         "--chakra-colors-color-palette-300": "var(--chakra-colors-red-300)",
         "background": "var(--chakra-colors-color-palette-300)",
+      }
+    `)
+  })
+
+  test("token reference", () => {
+    const result = css({
+      border: {
+        base: "1px solid {colors.primary}",
+        _dark: "2px solid {colors.green.300}",
+      },
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        " &.dark, .dark &": {
+          "border": "2px solid var(--chakra-colors-green-300)",
+        },
+        "border": "1px solid var(--chakra-colors-primary)",
       }
     `)
   })

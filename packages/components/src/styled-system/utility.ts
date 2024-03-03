@@ -166,6 +166,10 @@ export function createUtilty(options: Options) {
   const transform = memo((prop: string, raw: any) => {
     const key = resolveShorthand(prop)
 
+    if (isString(raw)) {
+      raw = tokens.expandReferenceInValue(raw)
+    }
+
     const config = configs[key]
     if (!config) {
       return defaultTransform(key, raw)
