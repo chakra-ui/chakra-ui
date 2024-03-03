@@ -2,6 +2,17 @@
 
 ## Changed
 
+### Changes to `Show` and `Hide`
+
+We've removed the `Hide` component in favor of hidding elements using the
+`hideFrom` media queries or explicitly setting `display: none` on the element.
+
+The `Show` component is now used to explicitly render an element based on the
+condition set it `when` property. It doesn't rely on media queries.
+
+You can combine the `useMediaQuery()` hook and `Show` to achieve the previous
+`Show` and `Hide` components.
+
 ### Wrap
 
 - Changed `spacing` to `gap`

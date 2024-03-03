@@ -1,8 +1,8 @@
 import { Provider as ChakraProvider } from "@chakra-ui/react/provider"
-import { theme } from "@chakra-ui/theme"
 import "@testing-library/jest-dom/vitest"
 import { RenderOptions, render as rtlRender } from "@testing-library/react"
 import user from "@testing-library/user-event"
+import { theme } from "../../react/src/theme"
 
 const Provider = (props: any) => <ChakraProvider {...props} theme={theme} />
 

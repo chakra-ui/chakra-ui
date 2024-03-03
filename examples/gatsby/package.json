@@ -5,7 +5,6 @@
   "version": "1.0.14",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@chakra-ui/gatsby-plugin": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
