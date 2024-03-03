@@ -418,17 +418,4 @@ export const presetChakra = defineSystem({
       },
     },
   },
-  globalCss: {
-    body: {
-      fontFamily: "body",
-      color: "text",
-      bg: "bg",
-    },
-    "*::placeholder": {
-      color: "placeholder-color",
-    },
-    "*, *::before, &::after": {
-      borderColor: "border-color",
-    },
-  },
 })
