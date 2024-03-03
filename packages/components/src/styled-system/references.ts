@@ -28,7 +28,7 @@ export function expandReferences(token: Token) {
     const referenceToken = references[key]
 
     // If a conditional token is referenced, we'll keep the reference
-    if (referenceToken.extensions.condition) {
+    if (referenceToken.extensions.conditions) {
       return valueStr
     }
 

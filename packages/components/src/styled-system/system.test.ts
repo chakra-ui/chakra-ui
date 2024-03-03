@@ -24,11 +24,11 @@ describe("system", () => {
     expect(sys.getTokenCss()).toMatchInlineSnapshot(`
       {
         "&:where(html)": {
-          "--colors-primary": "#000",
-          "--colors-test": "",
+          "--chakra-colors-primary": "#000",
+          "--chakra-colors-test": "",
         },
         ".dark &": {
-          "--colors-test": "pink",
+          "--chakra-colors-test": "pink",
         },
       }
     `)
@@ -71,7 +71,7 @@ describe("system", () => {
     expect(sys.getGlobalCss()).toMatchInlineSnapshot(`
       {
         "&body": {
-          "background": "var(--colors-primary)",
+          "background": "var(--chakra-colors-primary)",
         },
         "@keyframes pulse": {
           "from": {
@@ -111,19 +111,43 @@ describe("system", () => {
     expect(tokens.colorPaletteMap).toMatchInlineSnapshot(`
       Map {
         "green" => Map {
-          "--colors-color-palette-300" => "var(--colors-green-300)",
+          "--chakra-colors-color-palette-300" => "var(--chakra-colors-green-300)",
         },
         "red" => Map {
-          "--colors-color-palette-300" => "var(--colors-red-300)",
+          "--chakra-colors-color-palette-300" => "var(--chakra-colors-red-300)",
         },
         "pink" => Map {
-          "--colors-color-palette-400" => "var(--colors-pink-400)",
+          "--chakra-colors-color-palette-400" => "var(--chakra-colors-pink-400)",
         },
         "primary" => Map {
-          "--colors-color-palette" => "var(--colors-primary)",
+          "--chakra-colors-color-palette" => "var(--chakra-colors-primary)",
         },
         "secondary" => Map {
-          "--colors-color-palette" => "var(--colors-secondary)",
+          "--chakra-colors-color-palette" => "var(--chakra-colors-secondary)",
+        },
+      }
+    `)
+  })
+
+  test("should resolve token references", () => {
+    const sys = createSystem({
+      theme: {
+        tokens: {
+          colors: {
+            primary: { value: "tomato" },
+          },
+          borders: {
+            initial: { value: "1px solid {colors.primary}" },
+          },
+        },
+      },
+    })
+
+    expect(sys.getTokenCss()).toMatchInlineSnapshot(`
+      {
+        "&:where(:root, :host)": {
+          "--chakra-borders-initial": "1px solid var(--chakra-colors-primary)",
+          "--chakra-colors-primary": "tomato",
         },
       }
     `)
