@@ -6,7 +6,7 @@ export type {
   GlobalStyleObject,
 } from "./css.types"
 export { chakra, forwardRef } from "./factory"
-export type { HTMLChakraProps } from "./factory.types"
+export type { HTMLChakraProps, ChakraComponent } from "./factory.types"
 export type { SystemRecipeProps } from "./generated/recipes.gen"
 export { mergeProps } from "./merge-props"
 export { mergeRefs } from "./merge-refs"

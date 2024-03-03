@@ -1,10 +1,15 @@
-import { PropsOf, chakra, useColorModeValue, Flex } from '@chakra-ui/react'
+import {
+  chakra,
+  useColorModeValue,
+  Flex,
+  HTMLChakraProps,
+} from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef, Ref, useEffect, useRef } from 'react'
 
 const StyledLink = forwardRef(function StyledLink(
-  props: PropsOf<typeof chakra.a> & {
+  props: HTMLChakraProps<'a'> & {
     isActive?: boolean
     isExternal?: boolean
   },
@@ -35,7 +40,7 @@ const StyledLink = forwardRef(function StyledLink(
   )
 })
 
-type SidebarLinkProps = PropsOf<typeof chakra.div> & {
+type SidebarLinkProps = HTMLChakraProps<'div'> & {
   href?: string
   icon?: React.ReactElement
   isExternal?: boolean

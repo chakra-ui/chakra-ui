@@ -1,5 +1,4 @@
 import { Avatar, AvatarBadge, AvatarGroup, Box, Stack } from ".."
-import { PropsOf } from "../styled-system"
 
 export default {
   title: "Media and Icons / Avatar",
@@ -31,7 +30,7 @@ export const Basic = () => (
   </Stack>
 )
 
-const AvatarSvg = (props: PropsOf<"svg">) => (
+const AvatarSvg = (props: React.ComponentProps<"svg">) => (
   <svg
     color="#fff"
     viewBox="0 0 30 31"
