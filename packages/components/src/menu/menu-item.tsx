@@ -1,5 +1,5 @@
 import { SystemProps } from "@chakra-ui/styled-system"
-import { forwardRef, HTMLChakraProps } from "../system"
+import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { MenuCommand } from "./menu-command"
 import { MenuIcon } from "./menu-icon"
@@ -60,7 +60,9 @@ export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {
   const shouldWrap = icon || command
 
   const _children = shouldWrap ? (
-    <span style={{ pointerEvents: "none", flex: 1 }}>{children}</span>
+    <chakra.span pointerEvents="none" flex={1}>
+      {children}
+    </chakra.span>
   ) : (
     children
   )

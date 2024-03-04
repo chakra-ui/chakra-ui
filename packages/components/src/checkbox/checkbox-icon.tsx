@@ -5,12 +5,10 @@ function CheckIcon(props: PropsOf<typeof chakra.svg>) {
     <chakra.svg
       width="1.2em"
       viewBox="0 0 12 10"
-      style={{
-        fill: "none",
-        strokeWidth: 2,
-        stroke: "currentColor",
-        strokeDasharray: 16,
-      }}
+      fill="none"
+      stroke="currentColor"
+      strokeDasharray={16}
+      strokeWidth={2}
       {...props}
     >
       <polyline points="1.5 6 4.5 9 10.5 1" />
@@ -23,7 +21,8 @@ function IndeterminateIcon(props: PropsOf<typeof chakra.svg>) {
     <chakra.svg
       width="1.2em"
       viewBox="0 0 24 24"
-      style={{ stroke: "currentColor", strokeWidth: 4 }}
+      stroke="currentColor"
+      strokeWidth={4}
       {...props}
     >
       <line x1="21" x2="3" y1="12" y2="12" />
@@ -54,12 +53,10 @@ export function CheckboxIcon(props: CheckboxIconProps) {
 
   return isChecked || isIndeterminate ? (
     <chakra.div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-      }}
+      alignItems="center"
+      display="flex"
+      height="100%"
+      justifyContent="center"
     >
       <BaseIcon {...rest} />
     </chakra.div>

@@ -16,7 +16,7 @@ export interface ProgressFilledTrackProps extends HTMLChakraProps<"div"> {}
  */
 export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
   function ProgressFilledTrack(props, ref) {
-    const { role, style, ...rest } = props
+    const { role, ...rest } = props
 
     const styles = useProgressStyles()
     const api = useProgressContext()
@@ -32,7 +32,7 @@ export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
     return (
       <chakra.div
         ref={ref}
-        style={{ width: `${api.computed.percent}%`, ...style }}
+        width={`${api.computed.percent}%`}
         data-animated={dataAttr(shouldAddStripe && api.isAnimated)}
         role="progressbar"
         data-indeterminate={dataAttr(api.isIndeterminate)}
@@ -41,7 +41,7 @@ export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
         aria-valuenow={api.isIndeterminate ? undefined : api.computed.value}
         aria-valuetext={api.computed.valueText}
         {...rest}
-        __css={trackStyles}
+        __css={{ ...trackStyles, ...style }}
         className={cx("chakra-progress__filled-track", props.className)}
       />
     )

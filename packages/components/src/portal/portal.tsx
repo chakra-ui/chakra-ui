@@ -3,6 +3,7 @@ import { createContext } from "@chakra-ui/utils/context"
 import { createPortal } from "react-dom"
 import { usePortalManager } from "./portal-manager"
 import { useEffect, useMemo, useRef, useState } from "react"
+import { chakra } from "../system"
 
 type PortalContext = HTMLDivElement | null
 
@@ -15,20 +16,18 @@ const PORTAL_CLASSNAME = "chakra-portal"
 const PORTAL_SELECTOR = `.chakra-portal`
 
 const Container = (props: React.PropsWithChildren<{ zIndex: number }>) => (
-  <div
+  <chakra.div
     className="chakra-portal-zIndex"
-    style={{
-      position: "absolute",
-      zIndex: props.zIndex,
-      top: 0,
-      left: 0,
-      right: 0,
-      // NB: Don't add `bottom: 0`, it makes the entire app unusable
-      // @see https://github.com/chakra-ui/chakra-ui/issues/3201
-    }}
+    position="absolute"
+    zIndex={props.zIndex}
+    top={0}
+    left={0}
+    right={0}
+    // NB: Don't add `bottom: 0`, it makes the entire app unusable
+    // @see https://github.com/chakra-ui/chakra-ui/issues/3201
   >
     {props.children}
-  </div>
+  </chakra.div>
 )
 
 /**

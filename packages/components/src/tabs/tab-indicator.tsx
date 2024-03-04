@@ -21,8 +21,7 @@ export const TabIndicator = forwardRef<TabIndicatorProps, "div">(
         ref={ref}
         {...props}
         className={cx("chakra-tabs__tab-indicator", props.className)}
-        style={{ ...props.style, ...indicatorStyle }}
-        __css={styles.indicator}
+        __css={{ ...props.style, ...indicatorStyle, ...styles.indicator }}
       />
     )
   },

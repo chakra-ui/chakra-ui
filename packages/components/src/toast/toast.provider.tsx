@@ -12,6 +12,7 @@ import type {
 } from "./toast.types"
 import { getToastListStyle } from "./toast.utils"
 import type { UseToastOptions } from "./use-toast"
+import { chakra } from "../system"
 
 export interface ToastMethods {
   /**
@@ -122,13 +123,13 @@ export const ToastProvider = (props: ToastProviderProps) => {
     const toasts = state[position]
 
     return (
-      <div
+      <chakra.div
         role="region"
         aria-live="polite"
         aria-label={`Notifications-${position}`}
         key={position}
         id={`chakra-toast-manager-${position}`}
-        style={getToastListStyle(position)}
+        __css={getToastListStyle(position)}
       >
         <AnimatePresence initial={false}>
           {toasts.map((toast) => (
@@ -139,7 +140,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
             />
           ))}
         </AnimatePresence>
-      </div>
+      </chakra.div>
     )
   })
 
