@@ -1,4 +1,4 @@
-import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { useMergeRefs } from "@chakra-ui/hooks"
 import { cx, getValidChildren } from "@chakra-ui/utils"
 import { cloneElement } from "react"
 import {

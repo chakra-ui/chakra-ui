@@ -22,19 +22,20 @@ export interface ButtonProps
  */
 export const Button = forwardRef<ButtonProps, "button">(
   function Button(props, ref) {
-    const group = useButtonGroup()
+    const groupProps = useButtonGroup()
 
     const recipe = useRecipe("Button")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe({ ...group, ...variantProps })
+
+    const styles = recipe({ ...groupProps, ...variantProps })
 
     const {
-      isDisabled = group?.isDisabled,
+      isDisabled = groupProps?.isDisabled,
       isActive,
       type,
       className,
       as,
-      ...rest
+      ...restProps
     } = localProps
 
     return (
@@ -42,11 +43,11 @@ export const Button = forwardRef<ButtonProps, "button">(
         ref={ref}
         as={as}
         type="button"
-        data-in-group={dataAttr(!!group)}
+        data-in-group={dataAttr(!!groupProps)}
         data-active={dataAttr(isActive)}
-        css={styles}
+        {...restProps}
+        css={[styles, props.css]}
         disabled={isDisabled}
-        {...rest}
         className={cx("chakra-button", className)}
       />
     )

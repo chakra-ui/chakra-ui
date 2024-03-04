@@ -5,6 +5,7 @@ import { containerRecipe } from "./recipes/container"
 import { dividerRecipe } from "./recipes/divider"
 import { fieldLabelRecipe } from "./recipes/field-label"
 import { headingRecipe } from "./recipes/heading"
+import { iconRecipe } from "./recipes/icon"
 import { inputRecipe } from "./recipes/input"
 import { kbdRecipe } from "./recipes/kbd"
 import { linkRecipe } from "./recipes/link"
@@ -36,4 +37,5 @@ export const recipes = {
   Switch: switchSlotRecipe,
   Tooltip: tooltipRecipe,
   Textarea: textareaRecipe,
+  Icon: iconRecipe,
 }

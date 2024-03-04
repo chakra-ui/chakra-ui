@@ -1,5 +1,5 @@
-import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { useControllableState } from "@chakra-ui/hooks"
+import { mergeRefs } from "@chakra-ui/hooks"
 import { callAllHandlers, warn } from "@chakra-ui/utils"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useId, useRef, useState } from "react"

@@ -1,8 +1,8 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
-  defineStyle,
   forwardRef,
   useRecipe,
 } from "../../styled-system"
@@ -23,14 +23,11 @@ const fallbackIcon = {
       <circle fill="none" strokeMiterlimit="10" cx="12" cy="12" r="11.25" />
     </g>
   ),
-  viewBox: "0 0 24 24",
 }
 
-type Orientation = "vertical" | "horizontal"
-
-export interface IconProps extends HTMLChakraProps<"svg"> {
-  orientation?: Orientation
-}
+export interface IconProps
+  extends HTMLChakraProps<"svg">,
+    SystemRecipeProps<"Icon"> {}
 
 /**
  * The Icon component renders as an svg element to help define your own custom components.
@@ -38,59 +35,20 @@ export interface IconProps extends HTMLChakraProps<"svg"> {
  * @see Docs https://chakra-ui.com/docs/components/icon#using-the-icon-component
  */
 export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
-  const {
-    as: element,
-    viewBox,
-    color = "currentColor",
-    focusable = false,
-    children,
-    className,
-    css: cssProp,
-    ...restProps
-  } = props
-
-  const iconRecipe = useRecipe("Icon")
-
-  const [variantProps, localProps] = iconRecipe.splitVariantProps(restProps)
-
-  const styles = defineStyle({
-    w: "1em",
-    h: "1em",
-    display: "inline-block",
-    lineHeight: "1em",
-    flexShrink: 0,
-    color,
-    ...iconRecipe(variantProps),
-    ...cssProp,
-  })
-
-  const sharedProps: any = {
-    ref,
-    focusable,
-    className: cx("chakra-icon", className),
-    css: styles,
-  }
-
-  const _viewBox = viewBox ?? fallbackIcon.viewBox
-
-  /**
-   * If you're using an icon library like `react-icons`.
-   * Note: anyone passing the `as` prop, should manage the `viewBox` from the external component
-   */
-  if (typeof element !== "string") {
-    return <chakra.svg as={element} {...sharedProps} {...localProps} />
-  }
-
-  const iconPath = (children ?? fallbackIcon.path) as React.ReactNode
+  const recipe = useRecipe("Icon")
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
 
   return (
     <chakra.svg
       verticalAlign="middle"
-      viewBox={_viewBox}
-      {...sharedProps}
+      viewBox="0 0 24 24"
+      ref={ref}
       {...localProps}
+      css={[styles, props.css]}
+      className={cx("chakra-icon", props.className)}
     >
-      {iconPath}
+      {props.children ?? fallbackIcon.path}
     </chakra.svg>
   )
 })

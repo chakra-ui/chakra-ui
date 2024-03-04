@@ -36,10 +36,10 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@storybook/components": "^7.5.3",
-    "@storybook/manager-api": "^7.5.3",
-    "@storybook/preview-api": "^7.5.3",
-    "@storybook/types": "^7.3.2",
+    "@storybook/components": "^7.6.17",
+    "@storybook/manager-api": "^7.6.17",
+    "@storybook/preview-api": "^7.6.17",
+    "@storybook/types": "^7.6.17",
     "react": "^18.2.0"
   },
   "peerDependencies": {

@@ -1,5 +1,5 @@
 export interface ForProps<T> {
-  each: T[] | readonly T[]
+  each: T[] | readonly T[] | undefined
   fallback?: React.ReactNode
   children: (item: T, index: number) => React.ReactNode
 }
@@ -7,9 +7,9 @@ export interface ForProps<T> {
 export function For<T>(props: ForProps<T>): React.ReactNode {
   const { each, fallback, children } = props
 
-  if (each.length === 0) {
+  if (each?.length === 0) {
     return fallback || null
   }
 
-  return each.map(children)
+  return each?.map(children)
 }

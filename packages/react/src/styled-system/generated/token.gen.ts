@@ -293,6 +293,12 @@ export type Token =
   | "sizes.container.md"
   | "sizes.container.lg"
   | "sizes.container.xl"
+  | "colors.bg"
+  | "colors.bg.subtle"
+  | "colors.bg.muted"
+  | "colors.fg"
+  | "colors.fg.subtle"
+  | "colors.fg.muted"
   | "shadows.xs"
   | "shadows.sm"
   | "shadows.md"
@@ -345,6 +351,8 @@ export type Token =
   | "colors.colorPalette.700"
   | "colors.colorPalette.800"
   | "colors.colorPalette.900"
+  | "colors.colorPalette.subtle"
+  | "colors.colorPalette.muted"
 
 export type ColorPalette =
   | "transparent"
@@ -363,6 +371,8 @@ export type ColorPalette =
   | "cyan"
   | "purple"
   | "pink"
+  | "bg"
+  | "fg"
 
 export type AnimationsToken = "spin" | "ping" | "pulse" | "bounce"
 
@@ -495,6 +505,12 @@ export type ColorsToken =
   | "pink.700"
   | "pink.800"
   | "pink.900"
+  | "bg"
+  | "bg.subtle"
+  | "bg.muted"
+  | "fg"
+  | "fg.subtle"
+  | "fg.muted"
   | "colorPalette"
   | "colorPalette.50"
   | "colorPalette.100"
@@ -506,6 +522,8 @@ export type ColorsToken =
   | "colorPalette.700"
   | "colorPalette.800"
   | "colorPalette.900"
+  | "colorPalette.subtle"
+  | "colorPalette.muted"
 
 export type DurationsToken =
   | "ultra-fast"

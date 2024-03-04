@@ -1,5 +1,4 @@
 import { cx } from "@chakra-ui/utils"
-import { keyframes } from "@emotion/react"
 import {
   HTMLChakraProps,
   SystemRecipeProps,
@@ -8,15 +7,6 @@ import {
   forwardRef,
   useRecipe,
 } from "../../styled-system"
-
-const spin = keyframes({
-  "0%": {
-    transform: "rotate(0deg)",
-  },
-  "100%": {
-    transform: "rotate(360deg)",
-  },
-})
 
 interface SpinnerOptions {
   /**
@@ -81,11 +71,11 @@ export const Spinner = forwardRef<SpinnerProps, "div">(
     } = localProps
 
     const spinnerStyles = defineStyle({
+      ...styles,
       borderWidth: thickness,
       borderBottomColor: emptyColor,
       borderLeftColor: emptyColor,
-      animation: `${spin} ${speed} linear infinite`,
-      ...styles,
+      animationDuration: speed,
     })
 
     return (

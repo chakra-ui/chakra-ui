@@ -1,4 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
+import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { useState } from "react"
 import { useTabsContext } from "./tabs-context"
 import { makeTabId } from "./use-tabs"

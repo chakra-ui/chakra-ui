@@ -1,4 +1,4 @@
-import { usePrevious } from "@chakra-ui/hooks/use-previous"
+import { usePrevious } from "@chakra-ui/hooks"
 import { cx, dataAttr } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
 import {

@@ -271,12 +271,50 @@ export const defaultBaseConfig = defineConfig({
       values: "radii",
       shorthand: ["roundedBottomRight"],
     },
-    borderInlineStartRadius: { values: "radii", shorthand: ["roundedStart"] },
-    borderInlineEndRadius: { values: "radii", shorthand: ["roundedEnd"] },
-    borderTopRadius: { values: "radii", shorthand: ["roundedTop"] },
-    borderBottomRadius: { values: "radii", shorthand: ["roundedBottom"] },
-    borderLeftRadius: { values: "radii", shorthand: ["roundedLeft"] },
-    borderRightRadius: { values: "radii", shorthand: ["roundedRight"] },
+    borderInlineStartRadius: {
+      values: "radii",
+      shorthand: ["roundedStart", "borderStartRadius"],
+    },
+    borderInlineEndRadius: {
+      values: "radii",
+      shorthand: ["roundedEnd", "borderEndRadius"],
+    },
+    borderTopRadius: {
+      values: "radii",
+      property: "borderRadius",
+      shorthand: ["roundedTop"],
+      transform: (value) => ({
+        borderTopLeftRadius: value,
+        borderTopRightRadius: value,
+      }),
+    },
+    borderBottomRadius: {
+      values: "radii",
+      property: "borderRadius",
+      shorthand: ["roundedBottom"],
+      transform: (value) => ({
+        borderBottomLeftRadius: value,
+        borderBottomRightRadius: value,
+      }),
+    },
+    borderLeftRadius: {
+      values: "radii",
+      property: "borderRadius",
+      shorthand: ["roundedLeft"],
+      transform: (value) => ({
+        borderTopLeftRadius: value,
+        borderBottomLeftRadius: value,
+      }),
+    },
+    borderRightRadius: {
+      values: "radii",
+      property: "borderRadius",
+      shorthand: ["roundedRight"],
+      transform: (value) => ({
+        borderTopRightRadius: value,
+        borderBottomRightRadius: value,
+      }),
+    },
 
     borderWidth: { values: "borderWidths" },
     borderBlockStartWidth: { values: "borderWidths" },

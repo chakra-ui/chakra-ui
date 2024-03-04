@@ -3,11 +3,14 @@ import { defineRecipe } from "../../styled-system"
 export const spinnerRecipe = defineRecipe({
   base: {
     display: "inline-block",
+    borderWidth: "2px",
     borderColor: "currentColor",
     borderStyle: "solid",
     borderRadius: "full",
     width: "var(--size)",
     height: "var(--size)",
+    animation: "spin",
+    animationDuration: "fast",
   },
   variants: {
     size: {

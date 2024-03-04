@@ -5,16 +5,16 @@
   "keywords": [
     "hooks",
     "react",
-    "chakra ui",
+    "chakra-ui",
     "utilities"
   ],
   "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -52,232 +52,12 @@
     ".": {
       "source": "./src/index.ts",
       "import": {
-        "types": "./dist/types/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
       },
       "require": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    },
-    "./use-animation-state": {
-      "source": "./src/use-animation-state.ts",
-      "import": {
-        "types": "./dist/types/use-animation-state.d.mts",
-        "default": "./dist/esm/use-animation-state.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-animation-state.d.ts",
-        "default": "./dist/cjs/use-animation-state.cjs"
-      }
-    },
-    "./use-boolean": {
-      "source": "./src/use-boolean.ts",
-      "import": {
-        "types": "./dist/types/use-boolean.d.mts",
-        "default": "./dist/esm/use-boolean.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-boolean.d.ts",
-        "default": "./dist/cjs/use-boolean.cjs"
-      }
-    },
-    "./use-callback-ref": {
-      "source": "./src/use-callback-ref.ts",
-      "import": {
-        "types": "./dist/types/use-callback-ref.d.mts",
-        "default": "./dist/esm/use-callback-ref.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-callback-ref.d.ts",
-        "default": "./dist/cjs/use-callback-ref.cjs"
-      }
-    },
-    "./use-clipboard": {
-      "source": "./src/use-clipboard.ts",
-      "import": {
-        "types": "./dist/types/use-clipboard.d.mts",
-        "default": "./dist/esm/use-clipboard.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-clipboard.d.ts",
-        "default": "./dist/cjs/use-clipboard.cjs"
-      }
-    },
-    "./use-controllable-state": {
-      "source": "./src/use-controllable-state.ts",
-      "import": {
-        "types": "./dist/types/use-controllable-state.d.mts",
-        "default": "./dist/esm/use-controllable-state.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-controllable-state.d.ts",
-        "default": "./dist/cjs/use-controllable-state.cjs"
-      }
-    },
-    "./use-counter": {
-      "source": "./src/use-counter.ts",
-      "import": {
-        "types": "./dist/types/use-counter.d.mts",
-        "default": "./dist/esm/use-counter.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-counter.d.ts",
-        "default": "./dist/cjs/use-counter.cjs"
-      }
-    },
-    "./use-disclosure": {
-      "source": "./src/use-disclosure.ts",
-      "import": {
-        "types": "./dist/types/use-disclosure.d.mts",
-        "default": "./dist/esm/use-disclosure.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-disclosure.d.ts",
-        "default": "./dist/cjs/use-disclosure.cjs"
-      }
-    },
-    "./use-event-listener": {
-      "source": "./src/use-event-listener.ts",
-      "import": {
-        "types": "./dist/types/use-event-listener.d.mts",
-        "default": "./dist/esm/use-event-listener.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-event-listener.d.ts",
-        "default": "./dist/cjs/use-event-listener.cjs"
-      }
-    },
-    "./use-focus-effect": {
-      "source": "./src/use-focus-effect.ts",
-      "import": {
-        "types": "./dist/types/use-focus-effect.d.mts",
-        "default": "./dist/esm/use-focus-effect.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-focus-effect.d.ts",
-        "default": "./dist/cjs/use-focus-effect.cjs"
-      }
-    },
-    "./use-focus-on-pointer-down": {
-      "source": "./src/use-focus-on-pointer-down.ts",
-      "import": {
-        "types": "./dist/types/use-focus-on-pointer-down.d.mts",
-        "default": "./dist/esm/use-focus-on-pointer-down.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-focus-on-pointer-down.d.ts",
-        "default": "./dist/cjs/use-focus-on-pointer-down.cjs"
-      }
-    },
-    "./use-interval": {
-      "source": "./src/use-interval.ts",
-      "import": {
-        "types": "./dist/types/use-interval.d.mts",
-        "default": "./dist/esm/use-interval.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-interval.d.ts",
-        "default": "./dist/cjs/use-interval.cjs"
-      }
-    },
-    "./use-latest-ref": {
-      "source": "./src/use-latest-ref.ts",
-      "import": {
-        "types": "./dist/types/use-latest-ref.d.mts",
-        "default": "./dist/esm/use-latest-ref.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-latest-ref.d.ts",
-        "default": "./dist/cjs/use-latest-ref.cjs"
-      }
-    },
-    "./use-merge-refs": {
-      "source": "./src/use-merge-refs.ts",
-      "import": {
-        "types": "./dist/types/use-merge-refs.d.mts",
-        "default": "./dist/esm/use-merge-refs.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-merge-refs.d.ts",
-        "default": "./dist/cjs/use-merge-refs.cjs"
-      }
-    },
-    "./use-outside-click": {
-      "source": "./src/use-outside-click.ts",
-      "import": {
-        "types": "./dist/types/use-outside-click.d.mts",
-        "default": "./dist/esm/use-outside-click.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-outside-click.d.ts",
-        "default": "./dist/cjs/use-outside-click.cjs"
-      }
-    },
-    "./use-pan-event": {
-      "source": "./src/use-pan-event/index.ts",
-      "import": {
-        "types": "./dist/types/use-pan-event/index.d.mts",
-        "default": "./dist/esm/use-pan-event/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-pan-event/index.d.ts",
-        "default": "./dist/cjs/use-pan-event/index.cjs"
-      }
-    },
-    "./use-previous": {
-      "source": "./src/use-previous.ts",
-      "import": {
-        "types": "./dist/types/use-previous.d.mts",
-        "default": "./dist/esm/use-previous.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-previous.d.ts",
-        "default": "./dist/cjs/use-previous.cjs"
-      }
-    },
-    "./use-safe-layout-effect": {
-      "source": "./src/use-safe-layout-effect.ts",
-      "import": {
-        "types": "./dist/types/use-safe-layout-effect.d.mts",
-        "default": "./dist/esm/use-safe-layout-effect.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-safe-layout-effect.d.ts",
-        "default": "./dist/cjs/use-safe-layout-effect.cjs"
-      }
-    },
-    "./use-size": {
-      "source": "./src/use-size.ts",
-      "import": {
-        "types": "./dist/types/use-size.d.mts",
-        "default": "./dist/esm/use-size.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-size.d.ts",
-        "default": "./dist/cjs/use-size.cjs"
-      }
-    },
-    "./use-timeout": {
-      "source": "./src/use-timeout.ts",
-      "import": {
-        "types": "./dist/types/use-timeout.d.mts",
-        "default": "./dist/esm/use-timeout.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-timeout.d.ts",
-        "default": "./dist/cjs/use-timeout.cjs"
-      }
-    },
-    "./use-update-effect": {
-      "source": "./src/use-update-effect.ts",
-      "import": {
-        "types": "./dist/types/use-update-effect.d.mts",
-        "default": "./dist/esm/use-update-effect.mjs"
-      },
-      "require": {
-        "types": "./dist/types/use-update-effect.d.ts",
-        "default": "./dist/cjs/use-update-effect.cjs"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     },
     "./package.json": "./package.json"

@@ -3,11 +3,13 @@ import { readFileSync, unlinkSync } from "fs"
 import { defineConfig } from "tsup"
 
 export default defineConfig({
-  entry: glob.sync(["src/**/!(*.test|*.stories).ts"]),
+  entry: ["src"],
   format: ["esm"],
   clean: true,
   splitting: true,
   treeshake: "smallest",
+  minifySyntax: true,
+  minifyIdentifiers: true,
   outExtension(ctx) {
     return { js: ctx.format === "cjs" ? ".js" : ".mjs" }
   },

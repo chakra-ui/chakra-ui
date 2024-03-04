@@ -1,11 +1,8 @@
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
-import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
-import {
-  useFocusOnHide,
-  useFocusOnShow,
-} from "@chakra-ui/hooks/use-focus-effect"
-import { useFocusOnPointerDown } from "@chakra-ui/hooks/use-focus-on-pointer-down"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { useAnimationState } from "@chakra-ui/hooks"
+import { useDisclosure } from "@chakra-ui/hooks"
+import { useFocusOnHide, useFocusOnShow } from "@chakra-ui/hooks"
+import { useFocusOnPointerDown } from "@chakra-ui/hooks"
+import { mergeRefs } from "@chakra-ui/hooks"
 import {
   DOMAttributes,
   LazyMode,

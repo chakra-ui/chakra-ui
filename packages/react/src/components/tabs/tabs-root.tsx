@@ -1,4 +1,4 @@
-import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { useMergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,

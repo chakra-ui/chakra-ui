@@ -1,6 +1,5 @@
 import { createContext } from "@chakra-ui/utils"
 import { SystemStyleObject } from "../../styled-system"
-import { Spinner } from "../spinner"
 import { CheckIcon, InfoIcon, WarningIcon } from "./alert-icons"
 
 export const [AlertProvider, useAlertContext] = createContext<AlertContext>({
@@ -17,23 +16,18 @@ export const [AlertStylesProvider, useAlertStyles] = createContext<
   providerName: "<Alert />",
 })
 
-const STATUSES = {
-  info: { icon: InfoIcon, colorScheme: "blue" },
-  warning: { icon: WarningIcon, colorScheme: "orange" },
-  success: { icon: CheckIcon, colorScheme: "green" },
-  error: { icon: WarningIcon, colorScheme: "red" },
-  loading: { icon: Spinner, colorScheme: "blue" },
-}
-
-export function getStatusColorScheme(status: AlertStatus) {
-  return STATUSES[status].colorScheme
+const statusIconMap = {
+  info: InfoIcon,
+  warning: WarningIcon,
+  success: CheckIcon,
+  error: WarningIcon,
 }
 
 export function getStatusIcon(status: AlertStatus) {
-  return STATUSES[status].icon
+  return statusIconMap[status]
 }
 
-export type AlertStatus = keyof typeof STATUSES
+export type AlertStatus = keyof typeof statusIconMap
 
 export interface AlertContext {
   status: AlertStatus

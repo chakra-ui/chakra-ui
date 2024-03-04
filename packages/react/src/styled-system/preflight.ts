@@ -34,7 +34,9 @@ export function createPreflight(options: PreflightConfig) {
       borderTopWidth: "1px",
     },
     body: {
-      height: "100%",
+      minHeight: "100dvh",
+      position: "relative",
+      fontFeatureSettings: "'kern'",
     },
     img: {
       borderStyle: "none",
@@ -145,6 +147,8 @@ export function createPreflight(options: PreflightConfig) {
       WebkitTextSizeAdjust: "100%",
       WebkitFontSmoothing: "antialiased",
       MozOsxFontSmoothing: "grayscale",
+      textRendering: "optimizeLegibility",
+      touchAction: "manipulation",
       MozTabSize: "4",
       tabSize: "4",
       fontFamily: "var(--global-font-body, var(--font-fallback))",

@@ -1,5 +1,5 @@
-import { useTimeout } from "@chakra-ui/hooks/use-timeout"
-import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
+import { useTimeout } from "@chakra-ui/hooks"
+import { useUpdateEffect } from "@chakra-ui/hooks"
 import { runIfFn } from "@chakra-ui/utils"
 import { Variants, motion, useIsPresent } from "framer-motion"
 import { memo, useEffect, useMemo, useState } from "react"

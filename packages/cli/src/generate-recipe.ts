@@ -13,12 +13,12 @@ export async function generateRecipe(sys: SystemContext) {
     const upperName = capitalize(key)
 
     const str = `
-        interface ${upperName}RecipeVariants {
+        export interface ${upperName}VariantProps {
           ${Object.keys(variantKeyMap)
             .map((key) => {
               const values = variantKeyMap[key]
-              if (values.every(isBooleanValue)) return `${key}: boolean`
-              return `${key}: ${unionType(values)}`
+              if (values.every(isBooleanValue)) return `${key}?: boolean`
+              return `${key}?: ${unionType(values)}`
             })
             .join("\n")}
         }
@@ -34,7 +34,7 @@ export async function generateRecipe(sys: SystemContext) {
           ? Object.keys(sysRecipes)
               .map(
                 (key) =>
-                  `${key}: SystemRecipeFn<${capitalize(key)}RecipeVariants>`,
+                  `${key}: SystemRecipeFn<${capitalize(key)}VariantProps>`,
               )
               .join("\n")
           : "[key: string]: SystemRecipeFn<any>"
@@ -53,14 +53,14 @@ export async function generateRecipe(sys: SystemContext) {
     const str = `
         // ${upperName}
         
-        type ${upperName}Slot = ${unionType(recipe.slots ?? [])}
+        export type ${upperName}Slot = ${unionType(recipe.slots ?? [])}
         
-        interface ${upperName}Variants {
+        export interface ${upperName}VariantProps {
           ${Object.keys(variantKeyMap)
             .map((key) => {
               const values = variantKeyMap[key]
-              if (values.every(isBooleanValue)) return `${key}: boolean`
-              return `${key}: ${unionType(values)}`
+              if (values.every(isBooleanValue)) return `${key}?: boolean`
+              return `${key}?: ${unionType(values)}`
             })
             .join("\n")}
         }
@@ -77,7 +77,7 @@ export async function generateRecipe(sys: SystemContext) {
                 (key) =>
                   `${key}: SystemSlotRecipeFn<${capitalize(
                     key,
-                  )}Slot, ${capitalize(key)}Variants>`,
+                  )}Slot, ${capitalize(key)}VariantProps>`,
               )
               .join("\n")
           : "[key: string]: SystemSlotRecipeFn<string, any>"

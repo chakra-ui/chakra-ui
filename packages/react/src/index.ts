@@ -1,5 +1,5 @@
 export * from "./components"
 export * from "./popper"
-export { defaultSystem as defaultConfig } from "./preset"
+export { defaultSystem, defaultConfig } from "./preset"
 export { defaultBaseConfig } from "./preset-base"
 export * from "./styled-system"

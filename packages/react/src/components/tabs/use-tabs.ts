@@ -1,4 +1,4 @@
-import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
+import { useControllableState } from "@chakra-ui/hooks"
 import { LazyMode } from "@chakra-ui/utils"
 import { useId, useRef, useState } from "react"
 

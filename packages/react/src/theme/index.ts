@@ -22,6 +22,7 @@ import { sizes } from "./tokens/sizes"
 import { spacing } from "./tokens/spacing"
 
 export const defaultThemeConfig = defineConfig({
+  preflight: true,
   cssVarsPrefix: "chakra",
   cssVarsRoot: ":where(:root, :host)",
   globalCss: globalCss,

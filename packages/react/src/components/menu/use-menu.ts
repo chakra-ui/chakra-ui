@@ -1,13 +1,13 @@
-import { useAnimationState } from "@chakra-ui/hooks/use-animation-state"
-import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import {
   UseDisclosureProps,
+  mergeRefs,
+  useAnimationState,
+  useControllableState,
   useDisclosure,
-} from "@chakra-ui/hooks/use-disclosure"
-import { useFocusOnHide } from "@chakra-ui/hooks/use-focus-effect"
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { useOutsideClick } from "@chakra-ui/hooks/use-outside-click"
-import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
+  useFocusOnHide,
+  useOutsideClick,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
 import {
   LazyMode,
   callAllHandlers,

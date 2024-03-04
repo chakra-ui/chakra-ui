@@ -1,4 +1,4 @@
-import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
+import { useControllableState } from "@chakra-ui/hooks"
 import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useEffect, useId, useRef, useState } from "react"

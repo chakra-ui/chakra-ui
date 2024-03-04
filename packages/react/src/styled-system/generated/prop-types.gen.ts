@@ -58,10 +58,10 @@ interface PropertyValueTypes {
   borderBottomRightRadius: Tokens["radii"]
   borderInlineStartRadius: Tokens["radii"]
   borderInlineEndRadius: Tokens["radii"]
-  borderTopRadius: Tokens["radii"]
-  borderBottomRadius: Tokens["radii"]
-  borderLeftRadius: Tokens["radii"]
-  borderRightRadius: Tokens["radii"]
+  borderTopRadius: Tokens["radii"] | CssProperties["borderRadius"]
+  borderBottomRadius: Tokens["radii"] | CssProperties["borderRadius"]
+  borderLeftRadius: Tokens["radii"] | CssProperties["borderRadius"]
+  borderRightRadius: Tokens["radii"] | CssProperties["borderRadius"]
   borderWidth: Tokens["borderWidths"]
   borderBlockStartWidth: Tokens["borderWidths"]
   borderTopWidth: Tokens["borderWidths"]
@@ -193,6 +193,8 @@ interface PropertyValueTypes {
     | "cyan"
     | "purple"
     | "pink"
+    | "bg"
+    | "fg"
 }
 
 type PropOrCondition<Key, Value> = ConditionalValue<Value | (string & {})>
@@ -230,7 +232,9 @@ export interface PropertyTypes extends PropertyValueTypes {
   roundedBottomLeft: Shorthand<"borderBottomLeftRadius">
   roundedBottomRight: Shorthand<"borderBottomRightRadius">
   roundedStart: Shorthand<"borderInlineStartRadius">
+  borderStartRadius: Shorthand<"borderInlineStartRadius">
   roundedEnd: Shorthand<"borderInlineEndRadius">
+  borderEndRadius: Shorthand<"borderInlineEndRadius">
   roundedTop: Shorthand<"borderTopRadius">
   roundedBottom: Shorthand<"borderBottomRadius">
   roundedLeft: Shorthand<"borderLeftRadius">

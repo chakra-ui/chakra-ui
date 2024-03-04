@@ -10,13 +10,13 @@ export const alertSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       position: "relative",
       overflow: "hidden",
+      gap: "3",
       px: "4",
-      py: "3",
-      colorScheme: "blue",
+      py: "4",
     },
     title: {
       fontWeight: "bold",
-      lineHeight: "6",
+      lineHeight: "1",
       marginEnd: "2",
     },
     description: {
@@ -25,12 +25,24 @@ export const alertSlotRecipe = defineSlotRecipe({
     },
     icon: {
       flexShrink: 0,
-      marginEnd: "3",
-      w: "5",
-      h: "6",
+      fontSize: "lg",
     },
   },
   variants: {
+    status: {
+      info: {
+        root: { colorPalette: "blue" },
+      },
+      warning: {
+        root: { colorPalette: "orange" },
+      },
+      success: {
+        root: { colorPalette: "green" },
+      },
+      error: {
+        root: { colorPalette: "red" },
+      },
+    },
     variant: {
       subtle: {
         root: {
@@ -71,6 +83,7 @@ export const alertSlotRecipe = defineSlotRecipe({
       solid: {
         root: {
           bg: { base: "colorPalette.600", _dark: "colorPalette.200" },
+          color: { base: "white", _dark: "gray.900" },
         },
         icon: {
           color: { base: "white", _dark: "gray.900" },
@@ -79,6 +92,7 @@ export const alertSlotRecipe = defineSlotRecipe({
     },
   },
   defaultVariants: {
+    status: "info",
     variant: "subtle",
   },
 })

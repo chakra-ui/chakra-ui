@@ -86,7 +86,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       const element = useMemo(
         () =>
           styled(Element)(
-            css(cvaStyles, propStyles, ...toArray(cssStyles)) as any,
+            css(cvaStyles, ...toArray(cssStyles), propStyles) as any,
           ),
         [Element, css, cvaStyles, propStyles, cssStyles],
       )

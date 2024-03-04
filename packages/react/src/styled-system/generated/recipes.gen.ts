@@ -1,139 +1,143 @@
 import type { SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
 
-interface BadgeRecipeVariants {
-  colorScheme: "gray"
-  variant: "solid" | "subtle" | "outline"
+export interface BadgeVariantProps {
+  colorScheme?: "gray"
+  variant?: "solid" | "subtle" | "outline"
 }
 
-interface CodeRecipeVariants {
-  colorScheme: "gray"
-  variant: "solid" | "subtle" | "outline"
+export interface CodeVariantProps {
+  colorScheme?: "gray"
+  variant?: "solid" | "subtle" | "outline"
 }
 
-interface ContainerRecipeVariants {}
+export interface ContainerVariantProps {}
 
-interface CloseButtonRecipeVariants {
-  size: "lg" | "md" | "sm"
+export interface CloseButtonVariantProps {
+  size?: "lg" | "md" | "sm"
 }
 
-interface DividerRecipeVariants {
-  variant: "solid" | "dashed"
+export interface DividerVariantProps {
+  variant?: "solid" | "dashed"
 }
 
-interface FieldLabelRecipeVariants {}
+export interface FieldLabelVariantProps {}
 
-interface HeadingRecipeVariants {
-  size: "4xl" | "3xl" | "2xl" | "xl" | "lg" | "md" | "sm" | "xs"
+export interface HeadingVariantProps {
+  size?: "4xl" | "3xl" | "2xl" | "xl" | "lg" | "md" | "sm" | "xs"
 }
 
-interface InputRecipeVariants {
-  size: "lg" | "md" | "sm" | "xs"
-  variant: "outline" | "field" | "flushed"
+export interface InputVariantProps {
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "outline" | "field" | "flushed"
 }
 
-interface KbdRecipeVariants {}
+export interface KbdVariantProps {}
 
-interface LinkRecipeVariants {}
+export interface LinkVariantProps {}
 
-interface MarkRecipeVariants {}
+export interface MarkVariantProps {}
 
-interface PinInputRecipeVariants {
-  size: "lg" | "md" | "sm" | "xs"
-  variant: "outline" | "field" | "flushed"
+export interface PinInputVariantProps {
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "outline" | "field" | "flushed"
 }
 
-interface SkeletonRecipeVariants {}
+export interface SkeletonVariantProps {}
 
-interface SkipLinkRecipeVariants {}
+export interface SkipLinkVariantProps {}
 
-interface SpinnerRecipeVariants {
-  size: "xs" | "sm" | "md" | "lg" | "xl"
+export interface SpinnerVariantProps {
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
-interface SwitchRecipeVariants {
-  size: "sm" | "md" | "lg"
+export interface SwitchVariantProps {
+  size?: "sm" | "md" | "lg"
 }
 
-interface TooltipRecipeVariants {}
+export interface TooltipVariantProps {}
 
-interface TextareaRecipeVariants {
-  size: "lg" | "md" | "sm" | "xs"
-  variant: "outline" | "field" | "flushed"
+export interface TextareaVariantProps {
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "outline" | "field" | "flushed"
 }
+
+export interface IconVariantProps {}
 
 export interface SystemRecipes {
-  Badge: SystemRecipeFn<BadgeRecipeVariants>
-  Code: SystemRecipeFn<CodeRecipeVariants>
-  Container: SystemRecipeFn<ContainerRecipeVariants>
-  CloseButton: SystemRecipeFn<CloseButtonRecipeVariants>
-  Divider: SystemRecipeFn<DividerRecipeVariants>
-  FieldLabel: SystemRecipeFn<FieldLabelRecipeVariants>
-  Heading: SystemRecipeFn<HeadingRecipeVariants>
-  Input: SystemRecipeFn<InputRecipeVariants>
-  Kbd: SystemRecipeFn<KbdRecipeVariants>
-  Link: SystemRecipeFn<LinkRecipeVariants>
-  Mark: SystemRecipeFn<MarkRecipeVariants>
-  PinInput: SystemRecipeFn<PinInputRecipeVariants>
-  Skeleton: SystemRecipeFn<SkeletonRecipeVariants>
-  SkipLink: SystemRecipeFn<SkipLinkRecipeVariants>
-  Spinner: SystemRecipeFn<SpinnerRecipeVariants>
-  Switch: SystemRecipeFn<SwitchRecipeVariants>
-  Tooltip: SystemRecipeFn<TooltipRecipeVariants>
-  Textarea: SystemRecipeFn<TextareaRecipeVariants>
+  Badge: SystemRecipeFn<BadgeVariantProps>
+  Code: SystemRecipeFn<CodeVariantProps>
+  Container: SystemRecipeFn<ContainerVariantProps>
+  CloseButton: SystemRecipeFn<CloseButtonVariantProps>
+  Divider: SystemRecipeFn<DividerVariantProps>
+  FieldLabel: SystemRecipeFn<FieldLabelVariantProps>
+  Heading: SystemRecipeFn<HeadingVariantProps>
+  Input: SystemRecipeFn<InputVariantProps>
+  Kbd: SystemRecipeFn<KbdVariantProps>
+  Link: SystemRecipeFn<LinkVariantProps>
+  Mark: SystemRecipeFn<MarkVariantProps>
+  PinInput: SystemRecipeFn<PinInputVariantProps>
+  Skeleton: SystemRecipeFn<SkeletonVariantProps>
+  SkipLink: SystemRecipeFn<SkipLinkVariantProps>
+  Spinner: SystemRecipeFn<SpinnerVariantProps>
+  Switch: SystemRecipeFn<SwitchVariantProps>
+  Tooltip: SystemRecipeFn<TooltipVariantProps>
+  Textarea: SystemRecipeFn<TextareaVariantProps>
+  Icon: SystemRecipeFn<IconVariantProps>
 }
 
 // Accordion
 
-type AccordionSlot = "root" | "item" | "trigger" | "content" | "icon"
+export type AccordionSlot = "root" | "item" | "trigger" | "content" | "icon"
 
-interface AccordionVariants {}
+export interface AccordionVariantProps {}
 
 // Alert
 
-type AlertSlot = "title" | "description" | "root" | "icon" | "spinner"
+export type AlertSlot = "title" | "description" | "root" | "icon" | "spinner"
 
-interface AlertVariants {
-  variant: "subtle" | "left-accent" | "top-accent" | "solid"
+export interface AlertVariantProps {
+  status?: "info" | "warning" | "success" | "error"
+  variant?: "subtle" | "left-accent" | "top-accent" | "solid"
 }
 
 // Avatar
 
-type AvatarSlot = "label" | "badge" | "root" | "excessLabel" | "group"
+export type AvatarSlot = "label" | "badge" | "root" | "excessLabel" | "group"
 
-interface AvatarVariants {
-  size: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
+export interface AvatarVariantProps {
+  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
 }
 
 // Breadcrumb
 
-type BreadcrumbSlot = "link" | "item" | "root" | "separator"
+export type BreadcrumbSlot = "link" | "item" | "root" | "separator"
 
-interface BreadcrumbVariants {
-  current: boolean
+export interface BreadcrumbVariantProps {
+  current?: boolean
 }
 
 // Card
 
-type CardSlot = "root" | "header" | "body" | "footer"
+export type CardSlot = "root" | "header" | "body" | "footer"
 
-interface CardVariants {
-  size: "sm" | "md" | "lg"
-  variant: "elevated" | "outline" | "filled"
+export interface CardVariantProps {
+  size?: "sm" | "md" | "lg"
+  variant?: "elevated" | "outline" | "filled"
 }
 
 // Checkbox
 
-type CheckboxSlot = "control" | "icon" | "root" | "label"
+export type CheckboxSlot = "control" | "icon" | "root" | "label"
 
-interface CheckboxVariants {
-  isChecked: boolean
-  isIndeterminate: boolean
-  size: "sm" | "md" | "lg"
+export interface CheckboxVariantProps {
+  isChecked?: boolean
+  isIndeterminate?: boolean
+  size?: "sm" | "md" | "lg"
 }
 
 // Dialog
 
-type DialogSlot =
+export type DialogSlot =
   | "overlay"
   | "positioner"
   | "content"
@@ -142,10 +146,10 @@ type DialogSlot =
   | "body"
   | "footer"
 
-interface DialogVariants {
-  isCentered: boolean
-  scrollBehavior: "inside" | "outside"
-  size:
+export interface DialogVariantProps {
+  isCentered?: boolean
+  scrollBehavior?: "inside" | "outside"
+  size?:
     | "xs"
     | "sm"
     | "md"
@@ -161,7 +165,7 @@ interface DialogVariants {
 
 // Drawer
 
-type DrawerSlot =
+export type DrawerSlot =
   | "overlay"
   | "positioner"
   | "content"
@@ -170,38 +174,38 @@ type DrawerSlot =
   | "body"
   | "footer"
 
-interface DrawerVariants {
-  size: "xs" | "sm" | "md" | "lg" | "xl" | "full"
-  isFullHeight: boolean
+export interface DrawerVariantProps {
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
+  isFullHeight?: boolean
 }
 
 // Editable
 
-type EditableSlot = "root" | "preview" | "input" | "textarea"
+export type EditableSlot = "root" | "preview" | "input" | "textarea"
 
-interface EditableVariants {}
+export interface EditableVariantProps {}
 
 // Field
 
-type FieldSlot = "root" | "label" | "requiredIndicator" | "helpText"
+export type FieldSlot = "root" | "label" | "requiredIndicator" | "helpText"
 
-interface FieldVariants {}
+export interface FieldVariantProps {}
 
 // FieldError
 
-type FieldErrorSlot = "text" | "icon"
+export type FieldErrorSlot = "text" | "icon"
 
-interface FieldErrorVariants {}
+export interface FieldErrorVariantProps {}
 
 // List
 
-type ListSlot = "root" | "item" | "icon"
+export type ListSlot = "root" | "item" | "icon"
 
-interface ListVariants {}
+export interface ListVariantProps {}
 
 // Menu
 
-type MenuSlot =
+export type MenuSlot =
   | "trigger"
   | "content"
   | "item"
@@ -210,29 +214,29 @@ type MenuSlot =
   | "command"
   | "divider"
 
-interface MenuVariants {}
+export interface MenuVariantProps {}
 
 // NativeSelect
 
-type NativeSelectSlot = "root" | "field" | "icon"
+export type NativeSelectSlot = "root" | "field" | "icon"
 
-interface NativeSelectVariants {
-  variant: "outline" | "field" | "flushed"
-  size: "lg" | "md" | "sm" | "xs"
+export interface NativeSelectVariantProps {
+  variant?: "outline" | "field" | "flushed"
+  size?: "lg" | "md" | "sm" | "xs"
 }
 
 // NumberInput
 
-type NumberInputSlot = "root" | "field" | "stepperGroup" | "stepper"
+export type NumberInputSlot = "root" | "field" | "stepperGroup" | "stepper"
 
-interface NumberInputVariants {
-  size: "xs" | "sm" | "md" | "lg"
-  variant: "outline" | "field" | "flushed"
+export interface NumberInputVariantProps {
+  size?: "xs" | "sm" | "md" | "lg"
+  variant?: "outline" | "field" | "flushed"
 }
 
 // Popover
 
-type PopoverSlot =
+export type PopoverSlot =
   | "content"
   | "header"
   | "body"
@@ -241,48 +245,53 @@ type PopoverSlot =
   | "arrow"
   | "closeTrigger"
 
-interface PopoverVariants {}
+export interface PopoverVariantProps {}
 
 // Progress
 
-type ProgressSlot = "root" | "label" | "filledTrack" | "track" | "valueText"
+export type ProgressSlot =
+  | "root"
+  | "label"
+  | "filledTrack"
+  | "track"
+  | "valueText"
 
-interface ProgressVariants {
-  isIndeterminate: boolean
-  hasStripe: boolean
-  isAnimated: boolean
-  size: "xs" | "sm" | "md" | "lg"
+export interface ProgressVariantProps {
+  isIndeterminate?: boolean
+  hasStripe?: boolean
+  isAnimated?: boolean
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // Radio
 
-type RadioSlot = "root" | "control" | "label"
+export type RadioSlot = "root" | "control" | "label"
 
-interface RadioVariants {
-  isChecked: boolean
-  size: "sm" | "md" | "lg"
+export interface RadioVariantProps {
+  isChecked?: boolean
+  size?: "sm" | "md" | "lg"
 }
 
 // Slider
 
-type SliderSlot = "root" | "track" | "thumb" | "filledTrack" | "mark"
+export type SliderSlot = "root" | "track" | "thumb" | "filledTrack" | "mark"
 
-interface SliderVariants {
-  size: "sm" | "md" | "lg"
-  orientation: "vertical" | "horizontal"
+export interface SliderVariantProps {
+  size?: "sm" | "md" | "lg"
+  orientation?: "vertical" | "horizontal"
 }
 
 // Stat
 
-type StatSlot = "root" | "label" | "helpText" | "number" | "icon"
+export type StatSlot = "root" | "label" | "helpText" | "number" | "icon"
 
-interface StatVariants {
-  size: "md"
+export interface StatVariantProps {
+  size?: "md"
 }
 
 // Stepper
 
-type StepperSlot =
+export type StepperSlot =
   | "stepper"
   | "step"
   | "title"
@@ -292,15 +301,15 @@ type StepperSlot =
   | "icon"
   | "number"
 
-interface StepperVariants {
-  orientation: "vertical" | "horizontal"
-  status: "active" | "complete" | "incomplete"
-  size: "xs" | "sm" | "md" | "lg"
+export interface StepperVariantProps {
+  orientation?: "vertical" | "horizontal"
+  status?: "active" | "complete" | "incomplete"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // Table
 
-type TableSlot =
+export type TableSlot =
   | "root"
   | "header"
   | "body"
@@ -310,15 +319,15 @@ type TableSlot =
   | "footer"
   | "caption"
 
-interface TableVariants {
-  numeric: boolean
-  variant: "simple" | "stripe"
-  size: "sm" | "md" | "lg"
+export interface TableVariantProps {
+  numeric?: boolean
+  variant?: "simple" | "stripe"
+  size?: "sm" | "md" | "lg"
 }
 
 // Tabs
 
-type TabsSlot =
+export type TabsSlot =
   | "root"
   | "trigger"
   | "list"
@@ -326,12 +335,12 @@ type TabsSlot =
   | "contentGroup"
   | "indicator"
 
-interface TabsVariants {
-  orientation: "vertical" | "horizontal"
-  isFitted: boolean
-  align: "start" | "center" | "end"
-  size: "sm" | "md" | "lg"
-  variant:
+export interface TabsVariantProps {
+  orientation?: "vertical" | "horizontal"
+  isFitted?: boolean
+  align?: "start" | "center" | "end"
+  size?: "sm" | "md" | "lg"
+  variant?:
     | "line"
     | "enclosed"
     | "enclosed-colored"
@@ -341,38 +350,38 @@ interface TabsVariants {
 
 // Tag
 
-type TagSlot = "root" | "label" | "closeTrigger"
+export type TagSlot = "root" | "label" | "closeTrigger"
 
-interface TagVariants {
-  size: "sm" | "md" | "lg"
-  variant: "subtle" | "solid" | "outline"
+export interface TagVariantProps {
+  size?: "sm" | "md" | "lg"
+  variant?: "subtle" | "solid" | "outline"
 }
 
 export interface SystemSlotRecipes {
-  Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariants>
-  Alert: SystemSlotRecipeFn<AlertSlot, AlertVariants>
-  Avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariants>
-  Breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariants>
-  Card: SystemSlotRecipeFn<CardSlot, CardVariants>
-  Checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariants>
-  Dialog: SystemSlotRecipeFn<DialogSlot, DialogVariants>
-  Drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariants>
-  Editable: SystemSlotRecipeFn<EditableSlot, EditableVariants>
-  Field: SystemSlotRecipeFn<FieldSlot, FieldVariants>
-  FieldError: SystemSlotRecipeFn<FieldErrorSlot, FieldErrorVariants>
-  List: SystemSlotRecipeFn<ListSlot, ListVariants>
-  Menu: SystemSlotRecipeFn<MenuSlot, MenuVariants>
-  NativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariants>
-  NumberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariants>
-  Popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariants>
-  Progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariants>
-  Radio: SystemSlotRecipeFn<RadioSlot, RadioVariants>
-  Slider: SystemSlotRecipeFn<SliderSlot, SliderVariants>
-  Stat: SystemSlotRecipeFn<StatSlot, StatVariants>
-  Stepper: SystemSlotRecipeFn<StepperSlot, StepperVariants>
-  Table: SystemSlotRecipeFn<TableSlot, TableVariants>
-  Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariants>
-  Tag: SystemSlotRecipeFn<TagSlot, TagVariants>
+  Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
+  Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
+  Avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariantProps>
+  Breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps>
+  Card: SystemSlotRecipeFn<CardSlot, CardVariantProps>
+  Checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps>
+  Dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>
+  Drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
+  Editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
+  Field: SystemSlotRecipeFn<FieldSlot, FieldVariantProps>
+  FieldError: SystemSlotRecipeFn<FieldErrorSlot, FieldErrorVariantProps>
+  List: SystemSlotRecipeFn<ListSlot, ListVariantProps>
+  Menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
+  NativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>
+  NumberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariantProps>
+  Popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
+  Progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
+  Radio: SystemSlotRecipeFn<RadioSlot, RadioVariantProps>
+  Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
+  Stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
+  Stepper: SystemSlotRecipeFn<StepperSlot, StepperVariantProps>
+  Table: SystemSlotRecipeFn<TableSlot, TableVariantProps>
+  Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
+  Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
 }
 
 export type SystemRecipeProps<T> = T extends keyof SystemRecipes

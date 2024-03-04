@@ -6,29 +6,11 @@ import {
   forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
-import {
-  AlertProvider,
-  AlertStatus,
-  AlertStylesProvider,
-  getStatusColorScheme,
-} from "./alert-context"
-
-interface AlertOptions {
-  /**
-   * The status of the alert
-   * @default "info"
-   */
-  status?: AlertStatus
-}
+import { AlertProvider, AlertStylesProvider } from "./alert-context"
 
 export interface AlertRootProps
-  extends HTMLChakraProps<"div", AlertOptions>,
-    SystemRecipeProps<"Alert"> {
-  /**
-   * @default false
-   */
-  addRole?: boolean
-}
+  extends HTMLChakraProps<"div">,
+    SystemRecipeProps<"Alert"> {}
 
 /**
  * Alert is used to communicate the state or status of a
@@ -39,23 +21,17 @@ export interface AlertRootProps
  */
 export const AlertRoot = forwardRef<AlertRootProps, "div">(
   function AlertRoot(props, ref) {
-    const { status = "info", addRole = true, ...rest } = props
-    const colorScheme = props.colorScheme ?? getStatusColorScheme(status)
-
     const recipe = useSlotRecipe("Alert")
-    const [variantProps, localProps] = recipe.splitVariantProps(rest)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
 
     const styles = recipe(variantProps)
-    // { ...props, colorScheme }
 
     return (
-      <AlertProvider value={{ status }}>
+      <AlertProvider value={{ status: variantProps.status || "info" }}>
         <AlertStylesProvider value={styles}>
           <chakra.div
-            data-status={status}
-            role={addRole ? "alert" : undefined}
             ref={ref}
-            {...rest}
+            {...localProps}
             className={cx("chakra-alert", props.className)}
             css={styles.root}
           />
@@ -65,4 +41,4 @@ export const AlertRoot = forwardRef<AlertRootProps, "div">(
   },
 )
 
-AlertRoot.displayName = "Alert"
+AlertRoot.displayName = "AlertRoot"

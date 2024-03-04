@@ -42,14 +42,14 @@ const gapStyles = {
 export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
   function ButtonGroup(props, ref) {
     const {
-      size,
       colorScheme,
+      size,
       variant,
+      orientation = "horizontal",
       className,
       spacing = "0.5rem",
       isAttached,
       isDisabled,
-      orientation = "horizontal",
       ...rest
     } = props
 

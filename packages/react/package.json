@@ -2,9 +2,9 @@
   "name": "@chakra-ui/react",
   "version": "2.8.2",
   "description": "Responsive and accessible React UI components built with React and Emotion",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -18,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/chakra-ui/chakra-ui",
-    "directory": "packages/components/react"
+    "directory": "packages/react"
   },
   "keywords": [
     "react",
@@ -81,23 +81,23 @@
     ".": {
       "source": "./src/index.ts",
       "import": {
-        "types": "./dist/types/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
       },
       "require": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.cjs"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     },
     "./system": {
       "source": "./src/system/index.ts",
       "import": {
-        "types": "./dist/types/system/index.d.mts",
-        "default": "./dist/esm/system/index.mjs"
+        "types": "./dist/system/index.d.mts",
+        "default": "./dist/system/index.mjs"
       },
       "require": {
-        "types": "./dist/types/system/index.d.ts",
-        "default": "./dist/cjs/system/index.cjs"
+        "types": "./dist/system/index.d.ts",
+        "default": "./dist/index.js"
       }
     },
     "./package.json": "./package.json"

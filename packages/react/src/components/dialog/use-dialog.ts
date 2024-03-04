@@ -1,4 +1,4 @@
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { mergeRefs } from "@chakra-ui/hooks"
 import { callAllHandlers } from "@chakra-ui/utils"
 import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { useCallback, useRef, useState } from "react"
