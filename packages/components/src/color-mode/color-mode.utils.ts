@@ -6,6 +6,7 @@ const classNames = {
 }
 
 type UtilOptions = {
+  nonce?: string
   preventTransition?: boolean
 }
 
@@ -14,7 +15,9 @@ export function getColorModeUtils(options: UtilOptions = {}) {
 
   const utils = {
     setDataset: (value: ColorMode) => {
-      const cleanup = preventTransition ? utils.preventTransition() : undefined
+      const cleanup = preventTransition
+        ? utils.preventTransition(options.nonce)
+        : undefined
       document.documentElement.dataset.theme = value
       document.documentElement.style.colorScheme = value
       cleanup?.()
@@ -45,8 +48,9 @@ export function getColorModeUtils(options: UtilOptions = {}) {
         else mql.removeEventListener("change", listener)
       }
     },
-    preventTransition() {
+    preventTransition(nonce?: string) {
       const css = document.createElement("style")
+      css.nonce = nonce
       css.appendChild(
         document.createTextNode(
           `*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
