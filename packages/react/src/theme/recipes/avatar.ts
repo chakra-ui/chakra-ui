@@ -1,5 +1,5 @@
-import { defineSlotRecipe, defineStyle } from "@chakra-ui/react"
 import { avatarAnatomy as parts } from "../../anatomy"
+import { defineSlotRecipe, defineStyle } from "../../styled-system"
 
 const sharedStyles = defineStyle({
   display: "inline-flex",

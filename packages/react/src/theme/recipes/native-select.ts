@@ -1,6 +1,6 @@
-import { defineSlotRecipe } from "@chakra-ui/react"
 import { mapEntries } from "@chakra-ui/utils"
 import { selectAnatomy as parts } from "../../anatomy"
+import { defineSlotRecipe } from "../../styled-system"
 import { inputRecipe } from "./input"
 
 export const nativeSelectSlotRecipe = defineSlotRecipe({

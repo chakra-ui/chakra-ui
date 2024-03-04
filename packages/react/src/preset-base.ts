@@ -1,5 +1,5 @@
-import { createColorMixTransform } from "./color-mix"
-import { defineSystem } from "./config"
+import { createColorMixTransform } from "./styled-system/color-mix"
+import { defineConfig } from "./styled-system/config"
 
 const isCssVar = (v: string) => /^var\(--.+\)$/.test(v)
 
@@ -11,7 +11,7 @@ const deg = (v: any) => {
   return typeof v === "number" || unitless ? `${v}deg` : v
 }
 
-export const presetBase = defineSystem({
+export const defaultBaseConfig = defineConfig({
   conditions: {
     hover: "&:is(:hover, [data-hover])",
     focus: "&:is(:focus, [data-focus])",
@@ -595,8 +595,14 @@ export const presetBase = defineSystem({
     // transition
     transitionDuration: { values: "durations" },
     transitionProperty: {
-      values: "properties",
-      shorthand: ["transition"],
+      values: {
+        common:
+          "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+        colors: "background-color, border-color, color, fill, stroke",
+        dimensions: "width, height",
+        position: "left, right, top, bottom",
+        background: "background-color, background-image, background-position",
+      },
     },
     transitionTimingFunction: {
       values: "easings",

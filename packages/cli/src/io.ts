@@ -1,4 +1,4 @@
-import { SystemContext } from "@chakra-ui/react"
+import type { SystemContext } from "@chakra-ui/react"
 import { log } from "@clack/prompts"
 import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
@@ -33,7 +33,7 @@ export const read = async (file: string): Promise<ReadResult> => {
 export const basePath = join(
   process.cwd(),
   "packages",
-  "components",
+  "react",
   "src",
   "styled-system",
   "_generated",

@@ -1,5 +1,5 @@
-import { defineSlotRecipe } from "@chakra-ui/react"
 import { progressAnatomy as parts } from "../../anatomy"
+import { defineSlotRecipe } from "../../styled-system"
 
 export const progressSlotRecipe = defineSlotRecipe({
   slots: parts.keys,

@@ -1,8 +1,8 @@
-import { presetBase } from "./preset-base"
+import { defaultBaseConfig } from "../preset-base"
 import { createSystem } from "./system"
 
 export const systemBase = createSystem({
-  ...presetBase,
+  ...defaultBaseConfig,
   theme: {
     keyframes: {
       spin: {

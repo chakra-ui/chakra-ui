@@ -1,9 +1,9 @@
-const borders = {
-  none: 0,
-  "1px": "1px solid",
-  "2px": "2px solid",
-  "4px": "4px solid",
-  "8px": "8px solid",
-}
+import { defineTokens } from "../../styled-system"
 
-export default borders
+export const borders = defineTokens.borders({
+  xs: { value: "0.5px solid" },
+  sm: { value: "1px solid" },
+  md: { value: "2px solid" },
+  lg: { value: "4px solid" },
+  xl: { value: "8px solid" },
+})

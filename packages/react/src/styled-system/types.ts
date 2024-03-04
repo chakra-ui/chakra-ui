@@ -52,7 +52,6 @@ export type TokenCategory =
   | "gradients"
   | "assets"
   | "borderWidths"
-  | "properties"
   | "breakpoints"
   | "borderStyles"
   | "aspectRatios"

@@ -1,13 +1,12 @@
-const radii = {
-  none: "0",
-  sm: "0.125rem",
-  base: "0.25rem",
-  md: "0.375rem",
-  lg: "0.5rem",
-  xl: "0.75rem",
-  "2xl": "1rem",
-  "3xl": "1.5rem",
-  full: "9999px",
-}
+import { defineTokens } from "../../styled-system"
 
-export default radii
+export const radii = defineTokens.radii({
+  sm: { value: "0.125rem" },
+  base: { value: "0.25rem" },
+  md: { value: "0.375rem" },
+  lg: { value: "0.5rem" },
+  xl: { value: "0.75rem" },
+  "2xl": { value: "1rem" },
+  "3xl": { value: "1.5rem" },
+  full: { value: "9999px" },
+})

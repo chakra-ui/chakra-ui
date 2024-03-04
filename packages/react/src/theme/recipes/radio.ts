@@ -1,5 +1,5 @@
-import { defineSlotRecipe } from "@chakra-ui/react"
 import { radioAnatomy as parts } from "../../anatomy"
+import { defineSlotRecipe } from "../../styled-system"
 import { checkboxSlotRecipe } from "./checkbox"
 
 export const radioSlotRecipe = defineSlotRecipe({

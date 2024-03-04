@@ -5,7 +5,11 @@ import {
   SystemStyleIdentityFn,
 } from "./css.types"
 import { RecipeIdentityFn, SlotRecipeIdentityFn } from "./recipe.types"
-import { SystemConfig } from "./types"
+import { SemanticTokenDefinition, SystemConfig, TokenDefinition } from "./types"
+
+/* -----------------------------------------------------------------------------
+ * Core creators
+ * -----------------------------------------------------------------------------*/
 
 export const defineRecipe: RecipeIdentityFn = (v) => v
 
@@ -17,16 +21,40 @@ export const defineGlobalStyles: GlobalStyleIdentityFn = (v) => v
 
 export const defineStyle: SystemStyleIdentityFn = (v) => v
 
-export const defineSystem = (v: SystemConfig) => v
+/* -----------------------------------------------------------------------------
+ * Token creators
+ * -----------------------------------------------------------------------------*/
 
-export const mergeSystem = (
+type ProxyValue<T> = {
+  <Value>(definition: Value extends T ? Value : T): Value
+} & {
+  [K in keyof Required<T>]: <Value>(
+    definition: Value extends T[K] ? Value : T[K],
+  ) => Value
+}
+
+function createProxy<T>(): ProxyValue<T> {
+  const identity = (v: unknown) => v
+  return new Proxy(identity as any, {
+    get() {
+      return identity
+    },
+  })
+}
+
+export const defineTokens = /* @__PURE__ */ createProxy<TokenDefinition>()
+export const defineSemanticTokens =
+  /* @__PURE__ */ createProxy<SemanticTokenDefinition>()
+
+/* -----------------------------------------------------------------------------
+ * System creators
+ * -----------------------------------------------------------------------------*/
+
+export const defineConfig = (v: SystemConfig) => v
+
+export const mergeConfigs = (
   config: SystemConfig,
   ...configs: SystemConfig[]
 ): SystemConfig => {
-  return mergeWith(config, ...configs, (srcValue: any, newValue: any) => {
-    if (newValue === undefined) return srcValue ?? []
-    if (srcValue === undefined) return [newValue]
-    if (Array.isArray(srcValue)) return [newValue, ...srcValue]
-    return [newValue, srcValue]
-  })
+  return mergeWith({}, config, ...configs)
 }

@@ -1,5 +1,5 @@
-import { defineSlotRecipe } from "@chakra-ui/react"
 import { tagAnatomy as parts } from "../../anatomy"
+import { defineSlotRecipe } from "../../styled-system"
 import { badgeRecipe } from "./badge"
 
 const badgeVariant = badgeRecipe.variants?.variant

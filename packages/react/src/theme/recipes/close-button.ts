@@ -1,4 +1,4 @@
-import { defineRecipe } from "@chakra-ui/react"
+import { defineRecipe } from "../../styled-system"
 
 export const closeButtonRecipe = defineRecipe({
   base: {
