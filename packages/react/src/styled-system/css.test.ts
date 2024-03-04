@@ -1,6 +1,6 @@
-import { systemBase } from "./fixture"
+import { fixtureConfig } from "./fixture"
 
-const { css } = systemBase
+const { css } = fixtureConfig
 
 describe("create css", () => {
   test("works", () => {

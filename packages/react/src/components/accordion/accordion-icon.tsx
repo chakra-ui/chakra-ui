@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { css } from "../../styled-system"
+import { defineStyle } from "../../styled-system"
 import { Icon } from "../icon"
 import {
   useAccordionContext,
@@ -18,15 +18,13 @@ export function AccordionIcon(props: AccordionIconProps) {
 
   const styles = useAccordionStyles()
 
-  const iconStyles = css(
-    {
-      opacity: itemApi.isDisabled ? 0.4 : 1,
-      transform: itemApi.isOpen ? "rotate(-180deg)" : undefined,
-      transition: api.reduceMotion ? undefined : "transform 0.2s",
-      transformOrigin: "center",
-    },
-    styles.icon,
-  )
+  const iconStyles = defineStyle({
+    opacity: itemApi.isDisabled ? 0.4 : 1,
+    transform: itemApi.isOpen ? "rotate(-180deg)" : undefined,
+    transition: api.reduceMotion ? undefined : "transform 0.2s",
+    transformOrigin: "center",
+    ...styles.icon,
+  })
 
   return (
     <Icon

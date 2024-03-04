@@ -1,9 +1,7 @@
 import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
 import { useEventListener } from "@chakra-ui/hooks/use-event-listener"
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { callAllHandlers } from "@chakra-ui/utils"
-import { PropGetter } from "@chakra-ui/utils/prop-types"
-import { getScrollParent } from "@chakra-ui/utils/scroll-parent"
+import { PropGetter, callAllHandlers, getScrollParent } from "@chakra-ui/utils"
 import React, {
   type RefObject,
   useCallback,
@@ -12,7 +10,8 @@ import React, {
   useRef,
 } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../../popper"
-import { useTheme } from "../../styled-system"
+
+// import { useTheme } from "../../styled-system"
 
 export interface UseTooltipProps
   extends Pick<
@@ -93,7 +92,7 @@ const getWin = (ref: React.RefObject<Element | null>) =>
   ref.current?.ownerDocument?.defaultView || window
 
 export function useTooltip(props: Partial<UseTooltipProps> = {}) {
-  const theme = useTheme()
+  // const theme = useTheme()
 
   const {
     openDelay = 0,
@@ -115,7 +114,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     isDisabled,
     gutter,
     offset,
-    direction = theme.direction,
+    direction = "ltr",
   } = props
 
   const { isOpen, onOpen, onClose } = useDisclosure({

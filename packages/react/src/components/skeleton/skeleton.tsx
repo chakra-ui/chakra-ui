@@ -94,71 +94,74 @@ const bgFade = keyframes({
  *
  * @see Docs https://chakra-ui.com/docs/components/skeleton
  */
-export const Skeleton = forwardRef<SkeletonProps, "div">((props, ref) => {
-  const skeletonProps: SkeletonProps = {
-    ...props,
-    fadeDuration:
-      typeof props.fadeDuration === "number" ? props.fadeDuration : 0.4,
-    speed: typeof props.speed === "number" ? props.speed : 0.8,
-  }
+export const Skeleton = forwardRef<SkeletonProps, "div">(
+  function Skeleton(props, ref) {
+    const skeletonProps: SkeletonProps = {
+      ...props,
+      fadeDuration:
+        typeof props.fadeDuration === "number" ? props.fadeDuration : 0.4,
+      speed: typeof props.speed === "number" ? props.speed : 0.8,
+    }
 
-  const recipe = useRecipe("Skeleton")
-  const [variantProps, localProps] = recipe.splitVariantProps(skeletonProps)
-  const styles = recipe(variantProps)
+    const recipe = useRecipe("Skeleton")
 
-  const isFirstRender = useIsFirstRender()
+    const [variantProps, localProps] = recipe.splitVariantProps(skeletonProps)
+    const styles = recipe(variantProps)
 
-  const {
-    startColor = "",
-    endColor = "",
-    isLoaded,
-    fadeDuration,
-    speed,
-    className,
-    fitContent,
-    ...rest
-  } = localProps
+    const isFirstRender = useIsFirstRender()
 
-  const [startColorVar, endColorVar] = useToken("colors", [
-    startColor,
-    endColor,
-  ])
+    const {
+      startColor = "",
+      endColor = "",
+      isLoaded,
+      fadeDuration,
+      speed,
+      className,
+      fitContent,
+      ...rest
+    } = localProps
 
-  const wasLoaded = usePrevious(isLoaded)
+    const [startColorVar, endColorVar] = useToken("colors", [
+      startColor,
+      endColor,
+    ])
 
-  const _className = cx("chakra-skeleton", className)
+    const wasLoaded = usePrevious(isLoaded)
 
-  if (isLoaded) {
-    const animation =
-      isFirstRender || wasLoaded ? "none" : `${fade} ${fadeDuration}s`
+    const _className = cx("chakra-skeleton", className)
+
+    if (isLoaded) {
+      const animation =
+        isFirstRender || wasLoaded ? "none" : `${fade} ${fadeDuration}s`
+
+      return (
+        <chakra.div
+          ref={ref}
+          className={_className}
+          css={{ animation }}
+          {...rest}
+        />
+      )
+    }
 
     return (
-      <chakra.div
+      <StyledSkeleton
         ref={ref}
         className={_className}
-        css={{ animation }}
+        data-fit-content={dataAttr(fitContent)}
         {...rest}
+        css={[
+          {
+            "--speed": `${speed}s`,
+            "--name": `${bgFade}`,
+            [$startColor.var]: startColorVar,
+            [$endColor.var]: endColorVar,
+          },
+          styles,
+        ]}
       />
     )
-  }
-
-  return (
-    <StyledSkeleton
-      ref={ref}
-      className={_className}
-      data-fit-content={dataAttr(fitContent)}
-      {...rest}
-      css={[
-        {
-          "--speed": `${speed}s`,
-          "--name": `${bgFade}`,
-          [$startColor.var]: startColorVar,
-          [$endColor.var]: endColorVar,
-        },
-        styles,
-      ]}
-    />
-  )
-})
+  },
+)
 
 Skeleton.displayName = "Skeleton"

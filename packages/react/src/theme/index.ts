@@ -18,6 +18,8 @@ import { keyframes } from "./tokens/keyframes"
 import { letterSpacings } from "./tokens/letter-spacing"
 import { lineHeights } from "./tokens/line-heights"
 import { radii } from "./tokens/radius"
+import { sizes } from "./tokens/sizes"
+import { spacing } from "./tokens/spacing"
 
 export const defaultThemeConfig = defineConfig({
   cssVarsPrefix: "chakra",
@@ -39,6 +41,8 @@ export const defaultThemeConfig = defineConfig({
       letterSpacings,
       lineHeights,
       radii,
+      spacing,
+      sizes,
     },
     semanticTokens: {
       colors: semanticColors,

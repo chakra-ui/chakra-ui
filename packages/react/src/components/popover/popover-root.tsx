@@ -30,8 +30,8 @@ export function PopoverRoot(props: PopoverRootProps) {
 
   const { children, ...rest } = localProps
 
-  const theme = useTheme()
-  const context = usePopover({ ...rest, direction: theme.direction })
+  // const theme = useTheme()
+  const context = usePopover({ ...rest, direction: "ltr" })
 
   return (
     <PopoverProvider value={context}>

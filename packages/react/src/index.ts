@@ -1,5 +1,3 @@
-export * from "./breakpoint"
-export * from "./color-mode"
 export * from "./components"
 export * from "./popper"
 export { defaultSystem as defaultConfig } from "./preset"

@@ -1,37 +1,36 @@
+import { defineTokens } from "../../styled-system"
 import { spacing } from "./spacing"
 
-const largeSizes = {
-  max: "max-content",
-  min: "min-content",
-  full: "100%",
-  "3xs": "14rem",
-  "2xs": "16rem",
-  xs: "20rem",
-  sm: "24rem",
-  md: "28rem",
-  lg: "32rem",
-  xl: "36rem",
-  "2xl": "42rem",
-  "3xl": "48rem",
-  "4xl": "56rem",
-  "5xl": "64rem",
-  "6xl": "72rem",
-  "7xl": "80rem",
-  "8xl": "90rem",
-  prose: "60ch",
-}
+const largeSizes = defineTokens.sizes({
+  max: { value: "max-content" },
+  min: { value: "min-content" },
+  full: { value: "100%" },
+  "3xs": { value: "14rem" },
+  "2xs": { value: "16rem" },
+  xs: { value: "20rem" },
+  sm: { value: "24rem" },
+  md: { value: "28rem" },
+  lg: { value: "32rem" },
+  xl: { value: "36rem" },
+  "2xl": { value: "42rem" },
+  "3xl": { value: "48rem" },
+  "4xl": { value: "56rem" },
+  "5xl": { value: "64rem" },
+  "6xl": { value: "72rem" },
+  "7xl": { value: "80rem" },
+  "8xl": { value: "90rem" },
+  prose: { value: "60ch" },
+})
 
-const container = {
-  sm: "640px",
-  md: "768px",
-  lg: "1024px",
-  xl: "1280px",
-}
+const container = defineTokens.sizes({
+  sm: { value: "640px" },
+  md: { value: "768px" },
+  lg: { value: "1024px" },
+  xl: { value: "1280px" },
+})
 
-const sizes = {
+export const sizes = defineTokens.sizes({
   ...spacing,
   ...largeSizes,
   container,
-}
-
-export default sizes
+})

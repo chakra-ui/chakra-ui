@@ -1,6 +1,6 @@
 import { useMediaQuery } from "@chakra-ui/hooks"
 import { Dict, arrayToObjectNotation, isArray } from "@chakra-ui/utils"
-import { useSystemContext } from "./styled-system"
+import { useSystemContext } from "../styled-system"
 
 /* -----------------------------------------------------------------------------
  * useBreakpoint
