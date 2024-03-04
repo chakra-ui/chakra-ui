@@ -30,14 +30,22 @@ export const read = async (file: string): Promise<ReadResult> => {
   return { mod: resolvedMod, dependencies }
 }
 
-export const basePath = join(
-  process.cwd(),
-  "packages",
-  "react",
-  "src",
-  "styled-system",
-  "_generated",
-)
+const getBasePath = () => {
+  if (!process.env.LOCAL) {
+    const root = require.resolve("@chakra-ui/react")
+    return join(dirname(root), "dist", "styled-system", "generated")
+  }
+
+  const root = join(process.cwd(), "packages", "react", "src")
+  return join(root, "styled-system", "generated")
+}
+
+export const basePath = getBasePath()
+
+const outPath = (file: string) => {
+  const ext = process.env.LOCAL ? "ts" : "d.ts"
+  return join(basePath, `${file}.${ext}`)
+}
 
 export function ensureDir(dirPath: string): void {
   if (existsSync(dirPath)) return
@@ -47,7 +55,7 @@ export function ensureDir(dirPath: string): void {
 
 export const write = async (file: string, content: Promise<string>) => {
   try {
-    await writeFile(join(basePath, file), await content)
+    await writeFile(outPath(file), await content)
   } catch (error) {
     console.log(error)
   }

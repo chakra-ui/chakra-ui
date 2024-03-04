@@ -2,486 +2,9 @@ import type { ConditionalValue, CssProperties } from "../css.types"
 import type { Tokens } from "./token.gen"
 
 interface PropertyValueTypes {
-  aspectRatio: Tokens["aspectRatios"]
-  zIndex: Tokens["zIndices"]
-  top: Tokens["spacing"]
-  left: Tokens["spacing"]
-  insetInline: Tokens["spacing"]
-  insetBlock: Tokens["spacing"]
-  inset: "auto" | Tokens["spacing"]
-  insetBlockEnd: Tokens["spacing"]
-  insetBlockStart: Tokens["spacing"]
-  insetInlineEnd: Tokens["spacing"]
-  insetInlineStart: Tokens["spacing"]
-  right: Tokens["spacing"]
-  bottom: Tokens["spacing"]
-  insetX: Tokens["spacing"] | CssProperties["insetInline"]
-  insetY: Tokens["spacing"] | CssProperties["insetBlock"]
-  float: "left" | "right" | "start" | "end"
-  hideFrom: Tokens["breakpoints"]
-  hideBelow: Tokens["breakpoints"]
-  flexBasis:
-    | Tokens["spacing"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-    | "1/12"
-    | "2/12"
-    | "3/12"
-    | "4/12"
-    | "5/12"
-    | "6/12"
-    | "7/12"
-    | "8/12"
-    | "9/12"
-    | "10/12"
-    | "11/12"
-    | "full"
-  flex: "1" | "auto" | "initial" | "none"
-  gridTemplateColumns:
-    | "1"
-    | "2"
-    | "3"
-    | "4"
-    | "5"
-    | "6"
-    | "7"
-    | "8"
-    | "9"
-    | "10"
-    | "11"
-    | "12"
-  gridTemplateRows:
-    | "1"
-    | "2"
-    | "3"
-    | "4"
-    | "5"
-    | "6"
-    | "7"
-    | "8"
-    | "9"
-    | "10"
-    | "11"
-    | "12"
-  gridColumn:
-    | "1"
-    | "2"
-    | "3"
-    | "4"
-    | "5"
-    | "6"
-    | "7"
-    | "8"
-    | "9"
-    | "10"
-    | "11"
-    | "12"
-    | "full"
-  gridRow:
-    | "1"
-    | "2"
-    | "3"
-    | "4"
-    | "5"
-    | "6"
-    | "7"
-    | "8"
-    | "9"
-    | "10"
-    | "11"
-    | "12"
-    | "full"
-  gridAutoColumns: "min" | "max" | "fr"
-  gridAutoRows: "min" | "max" | "fr"
-  gap: Tokens["spacing"]
-  gridGap: Tokens["spacing"]
-  gridRowGap: Tokens["spacing"]
-  gridColumnGap: Tokens["spacing"]
-  rowGap: Tokens["spacing"]
-  columnGap: Tokens["spacing"]
-  padding: Tokens["spacing"]
-  paddingLeft: Tokens["spacing"]
-  paddingRight: Tokens["spacing"]
-  paddingTop: Tokens["spacing"]
-  paddingBottom: Tokens["spacing"]
-  paddingBlock: Tokens["spacing"]
-  paddingBlockEnd: Tokens["spacing"]
-  paddingBlockStart: Tokens["spacing"]
-  paddingInline: Tokens["spacing"]
-  paddingInlineEnd: Tokens["spacing"]
-  paddingInlineStart: Tokens["spacing"]
-  marginLeft: "auto" | Tokens["spacing"]
-  marginRight: "auto" | Tokens["spacing"]
-  marginTop: "auto" | Tokens["spacing"]
-  marginBottom: "auto" | Tokens["spacing"]
-  margin: "auto" | Tokens["spacing"]
-  marginBlock: "auto" | Tokens["spacing"]
-  marginBlockEnd: "auto" | Tokens["spacing"]
-  marginBlockStart: "auto" | Tokens["spacing"]
-  marginInline: "auto" | Tokens["spacing"]
-  marginInlineEnd: "auto" | Tokens["spacing"]
-  marginInlineStart: "auto" | Tokens["spacing"]
-  outlineWidth: Tokens["borderWidths"]
-  outlineColor: Tokens["colors"]
-  outline: Tokens["borders"]
-  outlineOffset: Tokens["spacing"]
-  divideX: string
-  divideY: string
-  divideColor: Tokens["colors"]
-  divideStyle: CssProperties["borderStyle"]
-  width:
-    | "auto"
-    | Tokens["sizes"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-    | "1/12"
-    | "2/12"
-    | "3/12"
-    | "4/12"
-    | "5/12"
-    | "6/12"
-    | "7/12"
-    | "8/12"
-    | "9/12"
-    | "10/12"
-    | "11/12"
-    | "screen"
-  inlineSize:
-    | "auto"
-    | Tokens["sizes"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-    | "1/12"
-    | "2/12"
-    | "3/12"
-    | "4/12"
-    | "5/12"
-    | "6/12"
-    | "7/12"
-    | "8/12"
-    | "9/12"
-    | "10/12"
-    | "11/12"
-    | "screen"
-  minWidth:
-    | "auto"
-    | Tokens["sizes"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-    | "1/12"
-    | "2/12"
-    | "3/12"
-    | "4/12"
-    | "5/12"
-    | "6/12"
-    | "7/12"
-    | "8/12"
-    | "9/12"
-    | "10/12"
-    | "11/12"
-    | "screen"
-  minInlineSize:
-    | "auto"
-    | Tokens["sizes"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-    | "1/12"
-    | "2/12"
-    | "3/12"
-    | "4/12"
-    | "5/12"
-    | "6/12"
-    | "7/12"
-    | "8/12"
-    | "9/12"
-    | "10/12"
-    | "11/12"
-    | "screen"
-  maxWidth:
-    | "auto"
-    | Tokens["sizes"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-    | "1/12"
-    | "2/12"
-    | "3/12"
-    | "4/12"
-    | "5/12"
-    | "6/12"
-    | "7/12"
-    | "8/12"
-    | "9/12"
-    | "10/12"
-    | "11/12"
-    | "screen"
-  maxInlineSize:
-    | "auto"
-    | Tokens["sizes"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-    | "1/12"
-    | "2/12"
-    | "3/12"
-    | "4/12"
-    | "5/12"
-    | "6/12"
-    | "7/12"
-    | "8/12"
-    | "9/12"
-    | "10/12"
-    | "11/12"
-    | "screen"
-  height:
-    | "auto"
-    | Tokens["sizes"]
-    | "svh"
-    | "lvh"
-    | "dvh"
-    | "screen"
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-  blockSize:
-    | "auto"
-    | Tokens["sizes"]
-    | "svh"
-    | "lvh"
-    | "dvh"
-    | "screen"
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-  minHeight:
-    | "auto"
-    | Tokens["sizes"]
-    | "svh"
-    | "lvh"
-    | "dvh"
-    | "screen"
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-  minBlockSize:
-    | "auto"
-    | Tokens["sizes"]
-    | "svh"
-    | "lvh"
-    | "dvh"
-    | "screen"
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-  maxHeight:
-    | "auto"
-    | Tokens["sizes"]
-    | "svh"
-    | "lvh"
-    | "dvh"
-    | "screen"
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-  maxBlockSize:
-    | "auto"
-    | Tokens["sizes"]
-    | "svh"
-    | "lvh"
-    | "dvh"
-    | "screen"
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "1/5"
-    | "2/5"
-    | "3/5"
-    | "4/5"
-    | "1/6"
-    | "2/6"
-    | "3/6"
-    | "4/6"
-    | "5/6"
-  color: Tokens["colors"]
-  fontFamily: Tokens["fonts"]
-  fontSize: Tokens["fontSizes"]
-  fontWeight: Tokens["fontWeights"]
-  fontSmoothing: "antialiased" | "subpixel-antialiased"
-  letterSpacing: Tokens["letterSpacings"]
-  lineHeight: Tokens["lineHeights"]
-  textDecorationColor: Tokens["colors"]
-  textEmphasisColor: Tokens["colors"]
-  textIndent: Tokens["spacing"]
-  textShadow: Tokens["shadows"]
-  textWrap: "wrap" | "balance" | "nowrap"
-  truncate: boolean
-  listStyleImage: Tokens["assets"]
   background: Tokens["colors"]
   backgroundColor: Tokens["colors"]
-  backgroundImage: Tokens["assets"]
   backgroundGradient:
-    | Tokens["gradients"]
-    | "to-t"
-    | "to-tr"
-    | "to-r"
-    | "to-br"
-    | "to-b"
-    | "to-bl"
-    | "to-l"
-    | "to-tl"
-  textGradient:
     | Tokens["gradients"]
     | "to-t"
     | "to-tr"
@@ -494,196 +17,185 @@ interface PropertyValueTypes {
   gradientFrom: Tokens["colors"]
   gradientTo: Tokens["colors"]
   gradientVia: Tokens["colors"]
+  backgroundImage: Tokens["gradients"]
+  border: Tokens["borders"]
+  borderTop: Tokens["borders"]
+  borderLeft: Tokens["borders"]
+  borderBlockStart: Tokens["borders"]
+  borderRight: Tokens["borders"]
+  borderInlineEnd: Tokens["borders"]
+  borderBottom: Tokens["borders"]
+  borderBlockEnd: Tokens["borders"]
+  borderInlineStart: Tokens["borders"]
+  borderInline: Tokens["borders"]
+  borderBlock: Tokens["borders"]
+  borderColor: Tokens["colors"]
+  borderTopColor: Tokens["colors"]
+  borderBlockStartColor: Tokens["colors"]
+  borderBottomColor: Tokens["colors"]
+  borderBlockEndColor: Tokens["colors"]
+  borderLeftColor: Tokens["colors"]
+  borderInlineStartColor: Tokens["colors"]
+  borderRightColor: Tokens["colors"]
+  borderInlineEndColor: Tokens["colors"]
+  borderStyle: Tokens["borderStyles"]
+  borderTopStyle: Tokens["borderStyles"]
+  borderBlockStartStyle: Tokens["borderStyles"]
+  borderBottomStyle: Tokens["borderStyles"]
+  borderBlockEndStyle: Tokens["borderStyles"]
+  borderInlineStartStyle: Tokens["borderStyles"]
+  borderInlineEndStyle: Tokens["borderStyles"]
+  borderLeftStyle: Tokens["borderStyles"]
+  borderRightStyle: Tokens["borderStyles"]
   borderRadius: Tokens["radii"]
   borderTopLeftRadius: Tokens["radii"]
-  borderTopRightRadius: Tokens["radii"]
-  borderBottomRightRadius: Tokens["radii"]
-  borderBottomLeftRadius: Tokens["radii"]
-  borderTopRadius: Tokens["radii"] | CssProperties["borderRadius"]
-  borderRightRadius: Tokens["radii"] | CssProperties["borderRadius"]
-  borderBottomRadius: Tokens["radii"] | CssProperties["borderRadius"]
-  borderLeftRadius: Tokens["radii"] | CssProperties["borderRadius"]
   borderStartStartRadius: Tokens["radii"]
-  borderStartEndRadius: Tokens["radii"]
-  borderStartRadius: Tokens["radii"] | CssProperties["borderRadius"]
   borderEndStartRadius: Tokens["radii"]
+  borderTopRightRadius: Tokens["radii"]
+  borderStartEndRadius: Tokens["radii"]
   borderEndEndRadius: Tokens["radii"]
-  borderEndRadius: Tokens["radii"] | CssProperties["borderRadius"]
-  border: Tokens["borders"]
+  borderBottomLeftRadius: Tokens["radii"]
+  borderBottomRightRadius: Tokens["radii"]
+  borderInlineStartRadius: Tokens["radii"]
+  borderInlineEndRadius: Tokens["radii"]
+  borderTopRadius: Tokens["radii"]
+  borderBottomRadius: Tokens["radii"]
+  borderLeftRadius: Tokens["radii"]
+  borderRightRadius: Tokens["radii"]
   borderWidth: Tokens["borderWidths"]
+  borderBlockStartWidth: Tokens["borderWidths"]
   borderTopWidth: Tokens["borderWidths"]
-  borderLeftWidth: Tokens["borderWidths"]
-  borderRightWidth: Tokens["borderWidths"]
   borderBottomWidth: Tokens["borderWidths"]
-  borderColor: Tokens["colors"]
-  borderInline: Tokens["borders"]
-  borderInlineWidth: Tokens["borderWidths"]
-  borderInlineColor: Tokens["colors"]
-  borderBlock: Tokens["borders"]
-  borderBlockWidth: Tokens["borderWidths"]
-  borderBlockColor: Tokens["colors"]
-  borderLeft: Tokens["borders"]
-  borderLeftColor: Tokens["colors"]
-  borderInlineStart: Tokens["borders"]
+  borderBlockEndWidth: Tokens["borderWidths"]
+  borderRightWidth: Tokens["borderWidths"]
   borderInlineStartWidth: Tokens["borderWidths"]
-  borderInlineStartColor: Tokens["colors"]
-  borderRight: Tokens["borders"]
-  borderRightColor: Tokens["colors"]
-  borderInlineEnd: Tokens["borders"]
   borderInlineEndWidth: Tokens["borderWidths"]
-  borderInlineEndColor: Tokens["colors"]
-  borderTop: Tokens["borders"]
-  borderTopColor: Tokens["colors"]
-  borderBottom: Tokens["borders"]
-  borderBottomColor: Tokens["colors"]
-  borderBlockEnd: Tokens["borders"]
-  borderBlockEndColor: Tokens["colors"]
-  borderBlockStart: Tokens["borders"]
-  borderBlockStartColor: Tokens["colors"]
-  opacity: Tokens["opacity"]
-  boxShadow: Tokens["shadows"]
-  boxShadowColor: Tokens["colors"]
-  filter: "auto"
-  dropShadow: Tokens["dropShadows"]
-  blur: Tokens["blurs"]
-  backdropFilter: "auto"
-  backdropBlur: Tokens["blurs"]
-  borderSpacing: Tokens["spacing"]
-  borderSpacingX: Tokens["spacing"]
-  borderSpacingY: Tokens["spacing"]
-  transitionTimingFunction: Tokens["easings"]
-  transitionDelay: Tokens["durations"]
-  transitionDuration: Tokens["durations"]
-  transition:
-    | "all"
-    | "common"
-    | "background"
-    | "colors"
-    | "opacity"
-    | "shadow"
-    | "transform"
-  animation: Tokens["animations"]
-  animationName: Tokens["animationName"]
-  animationDelay: Tokens["durations"]
-  scale: "auto" | CssProperties["scale"]
-  translate: "auto" | CssProperties["translate"]
-  translateX:
-    | Tokens["spacing"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "full"
-    | "-1/2"
-    | "-1/3"
-    | "-2/3"
-    | "-1/4"
-    | "-2/4"
-    | "-3/4"
-    | "-full"
-  translateY:
-    | Tokens["spacing"]
-    | "1/2"
-    | "1/3"
-    | "2/3"
-    | "1/4"
-    | "2/4"
-    | "3/4"
-    | "full"
-    | "-1/2"
-    | "-1/3"
-    | "-2/3"
-    | "-1/4"
-    | "-2/4"
-    | "-3/4"
-    | "-full"
-  accentColor: Tokens["colors"]
-  caretColor: Tokens["colors"]
-  scrollbar: "visible" | "hidden"
-  scrollMargin: Tokens["spacing"]
-  scrollMarginX: Tokens["spacing"] | CssProperties["scrollMarginInline"]
-  scrollMarginY: Tokens["spacing"] | CssProperties["scrollMarginBlock"]
-  scrollMarginLeft: Tokens["spacing"]
-  scrollMarginRight: Tokens["spacing"]
-  scrollMarginTop: Tokens["spacing"]
-  scrollMarginBottom: Tokens["spacing"]
-  scrollMarginBlock: Tokens["spacing"]
-  scrollMarginBlockEnd: Tokens["spacing"]
-  scrollMarginBlockStart: Tokens["spacing"]
-  scrollMarginInline: Tokens["spacing"]
-  scrollMarginInlineEnd: Tokens["spacing"]
-  scrollMarginInlineStart: Tokens["spacing"]
-  scrollPadding: Tokens["spacing"]
-  scrollPaddingBlock: Tokens["spacing"]
-  scrollPaddingBlockStart: Tokens["spacing"]
-  scrollPaddingBlockEnd: Tokens["spacing"]
-  scrollPaddingInline: Tokens["spacing"]
-  scrollPaddingInlineEnd: Tokens["spacing"]
-  scrollPaddingInlineStart: Tokens["spacing"]
-  scrollPaddingX: Tokens["spacing"] | CssProperties["scrollPaddingInline"]
-  scrollPaddingY: Tokens["spacing"] | CssProperties["scrollPaddingBlock"]
-  scrollPaddingLeft: Tokens["spacing"]
-  scrollPaddingRight: Tokens["spacing"]
-  scrollPaddingTop: Tokens["spacing"]
-  scrollPaddingBottom: Tokens["spacing"]
-  scrollSnapType: "none" | "x" | "y" | "both"
-  scrollSnapStrictness: "mandatory" | "proximity"
-  scrollSnapMargin: Tokens["spacing"]
-  scrollSnapMarginTop: Tokens["spacing"]
-  scrollSnapMarginBottom: Tokens["spacing"]
-  scrollSnapMarginLeft: Tokens["spacing"]
-  scrollSnapMarginRight: Tokens["spacing"]
+  borderLeftWidth: Tokens["borderWidths"]
+  color: Tokens["colors"]
   fill: Tokens["colors"]
   stroke: Tokens["colors"]
-  strokeWidth: Tokens["borderWidths"]
+  accentColor: Tokens["colors"]
+  boxShadow: Tokens["shadows"]
+  opacity: Tokens["opacity"]
+  backdropBlur: Tokens["blurs"]
+  flexBasis: Tokens["sizes"]
+  gap: Tokens["spacing"]
+  rowGap: Tokens["spacing"]
+  columnGap: Tokens["spacing"]
+  gridGap: Tokens["spacing"]
+  gridColumnGap: Tokens["spacing"]
+  gridRowGap: Tokens["spacing"]
+  outlineColor: Tokens["colors"]
+  aspectRatio: Tokens["aspectRatios"]
+  width: Tokens["sizes"]
+  inlineSize: Tokens["sizes"]
+  height: Tokens["sizes"]
+  blockSize: Tokens["sizes"]
+  boxSize: Tokens["sizes"]
+  minWidth: Tokens["sizes"]
+  minInlineSize: Tokens["sizes"]
+  minHeight: Tokens["sizes"]
+  minBlockSize: Tokens["sizes"]
+  maxWidth: Tokens["sizes"]
+  maxInlineSize: Tokens["sizes"]
+  maxHeight: Tokens["sizes"]
+  maxBlockSize: Tokens["sizes"]
+  hideFrom: Tokens["breakpoints"]
+  hideBelow: Tokens["breakpoints"]
+  scrollMargin: Tokens["spacing"]
+  scrollMarginTop: Tokens["spacing"]
+  scrollMarginBottom: Tokens["spacing"]
+  scrollMarginLeft: Tokens["spacing"]
+  scrollMarginRight: Tokens["spacing"]
+  scrollMarginX: Tokens["spacing"]
+  scrollMarginY: Tokens["spacing"]
+  scrollPadding: Tokens["spacing"]
+  scrollPaddingTop: Tokens["spacing"]
+  scrollPaddingBottom: Tokens["spacing"]
+  scrollPaddingLeft: Tokens["spacing"]
+  scrollPaddingRight: Tokens["spacing"]
+  scrollPaddingX: Tokens["spacing"]
+  scrollPaddingY: Tokens["spacing"]
+  zIndex: Tokens["zIndex"]
+  inset: Tokens["spacing"]
+  insetInline: Tokens["spacing"]
+  insetBlock: Tokens["spacing"]
+  top: Tokens["spacing"]
+  insetBlockStart: Tokens["spacing"]
+  bottom: Tokens["spacing"]
+  insetBlockEnd: Tokens["spacing"]
+  left: Tokens["spacing"]
+  right: Tokens["spacing"]
+  insetInlineStart: Tokens["spacing"]
+  insetInlineEnd: Tokens["spacing"]
+  ringColor: Tokens["colors"]
+  ringOffsetColor: Tokens["colors"]
+  margin: Tokens["spacing"]
+  marginTop: Tokens["spacing"]
+  marginBlockStart: Tokens["spacing"]
+  marginRight: Tokens["spacing"]
+  marginBottom: Tokens["spacing"]
+  marginBlockEnd: Tokens["spacing"]
+  marginLeft: Tokens["spacing"]
+  marginInlineStart: Tokens["spacing"]
+  marginInlineEnd: Tokens["spacing"]
+  marginInline: Tokens["spacing"]
+  marginBlock: Tokens["spacing"]
+  padding: Tokens["spacing"]
+  paddingTop: Tokens["spacing"]
+  paddingRight: Tokens["spacing"]
+  paddingBottom: Tokens["spacing"]
+  paddingBlockStart: Tokens["spacing"]
+  paddingBlockEnd: Tokens["spacing"]
+  paddingLeft: Tokens["spacing"]
+  paddingInlineStart: Tokens["spacing"]
+  paddingInlineEnd: Tokens["spacing"]
+  paddingInline: Tokens["spacing"]
+  paddingBlock: Tokens["spacing"]
+  textDecorationColor: Tokens["colors"]
+  textShadow: Tokens["shadows"]
+  translateX: Tokens["spacing"]
+  translateY: Tokens["spacing"]
+  transitionDuration: Tokens["durations"]
+  transitionProperty:
+    | "common"
+    | "colors"
+    | "dimensions"
+    | "position"
+    | "background"
+  transitionTimingFunction: Tokens["easings"]
+  animation: Tokens["animations"]
+  animationDuration: Tokens["durations"]
+  animationDelay: Tokens["durations"]
+  fontFamily: Tokens["fonts"]
+  fontSize: Tokens["fontSizes"]
+  fontWeight: Tokens["fontWeights"]
+  lineHeight: Tokens["lineHeights"]
+  letterSpacing: Tokens["letterSpacings"]
+  truncated: boolean
   srOnly: boolean
   debug: boolean
-  containerName: Tokens["containerNames"] | CssProperties["containerName"]
+  caretColor: Tokens["colors"]
   colorPalette:
+    | "transparent"
     | "current"
     | "black"
     | "white"
-    | "transparent"
-    | "rose"
-    | "pink"
-    | "fuchsia"
-    | "purple"
-    | "violet"
-    | "indigo"
-    | "blue"
-    | "sky"
-    | "cyan"
-    | "teal"
-    | "emerald"
-    | "green"
-    | "lime"
-    | "yellow"
-    | "amber"
-    | "orange"
-    | "red"
-    | "neutral"
-    | "stone"
-    | "zinc"
+    | "whiteAlpha"
+    | "blackAlpha"
     | "gray"
-    | "slate"
-    | "text"
-  textStyle:
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl"
-    | "7xl"
-    | "8xl"
-    | "9xl"
+    | "red"
+    | "orange"
+    | "yellow"
+    | "green"
+    | "teal"
+    | "blue"
+    | "cyan"
+    | "purple"
+    | "pink"
 }
+
+type PropOrCondition<Key, Value> = ConditionalValue<Value | (string & {})>
 
 type CssValue<T> = T extends keyof CssProperties ? CssProperties[T] : never
 
@@ -692,106 +204,98 @@ type Shorthand<T> = T extends keyof PropertyValueTypes
   : CssValue<T>
 
 export interface PropertyTypes extends PropertyValueTypes {
-  pos: Shorthand<"position">
-  insetEnd: Shorthand<"insetInlineEnd">
-  end: Shorthand<"insetInlineEnd">
-  insetStart: Shorthand<"insetInlineStart">
-  start: Shorthand<"insetInlineStart">
-  flexDir: Shorthand<"flexDirection">
-  p: Shorthand<"padding">
-  pl: Shorthand<"paddingLeft">
-  pr: Shorthand<"paddingRight">
-  pt: Shorthand<"paddingTop">
-  pb: Shorthand<"paddingBottom">
-  py: Shorthand<"paddingBlock">
-  paddingY: Shorthand<"paddingBlock">
-  paddingX: Shorthand<"paddingInline">
-  px: Shorthand<"paddingInline">
-  pe: Shorthand<"paddingInlineEnd">
-  paddingEnd: Shorthand<"paddingInlineEnd">
-  ps: Shorthand<"paddingInlineStart">
-  paddingStart: Shorthand<"paddingInlineStart">
-  ml: Shorthand<"marginLeft">
-  mr: Shorthand<"marginRight">
-  mt: Shorthand<"marginTop">
-  mb: Shorthand<"marginBottom">
-  m: Shorthand<"margin">
-  my: Shorthand<"marginBlock">
-  marginY: Shorthand<"marginBlock">
-  mx: Shorthand<"marginInline">
-  marginX: Shorthand<"marginInline">
-  me: Shorthand<"marginInlineEnd">
-  marginEnd: Shorthand<"marginInlineEnd">
-  ms: Shorthand<"marginInlineStart">
-  marginStart: Shorthand<"marginInlineStart">
-  ringWidth: Shorthand<"outlineWidth">
-  ringColor: Shorthand<"outlineColor">
-  ring: Shorthand<"outline">
-  ringOffset: Shorthand<"outlineOffset">
-  w: Shorthand<"width">
-  minW: Shorthand<"minWidth">
-  maxW: Shorthand<"maxWidth">
-  h: Shorthand<"height">
-  minH: Shorthand<"minHeight">
-  maxH: Shorthand<"maxHeight">
-  bgPosition: Shorthand<"backgroundPosition">
-  bgPositionX: Shorthand<"backgroundPositionX">
-  bgPositionY: Shorthand<"backgroundPositionY">
-  bgAttachment: Shorthand<"backgroundAttachment">
-  bgClip: Shorthand<"backgroundClip">
   bg: Shorthand<"background">
   bgColor: Shorthand<"backgroundColor">
-  bgOrigin: Shorthand<"backgroundOrigin">
-  bgImage: Shorthand<"backgroundImage">
-  bgRepeat: Shorthand<"backgroundRepeat">
-  bgBlendMode: Shorthand<"backgroundBlendMode">
   bgSize: Shorthand<"backgroundSize">
+  bgPos: Shorthand<"backgroundPosition">
+  bgRepeat: Shorthand<"backgroundRepeat">
+  bgAttachment: Shorthand<"backgroundAttachment">
   bgGradient: Shorthand<"backgroundGradient">
+  bgImg: Shorthand<"backgroundImage">
+  bgImage: Shorthand<"backgroundImage">
+  borderStart: Shorthand<"borderInlineStart">
+  borderX: Shorthand<"borderInline">
+  borderY: Shorthand<"borderBlock">
+  borderStartColor: Shorthand<"borderInlineStartColor">
+  borderEndColor: Shorthand<"borderInlineEndColor">
+  borderStartStyle: Shorthand<"borderInlineStartStyle">
+  borderEndStyle: Shorthand<"borderInlineEndStyle">
   rounded: Shorthand<"borderRadius">
   roundedTopLeft: Shorthand<"borderTopLeftRadius">
+  roundedStartStart: Shorthand<"borderStartStartRadius">
+  roundedEndStart: Shorthand<"borderEndStartRadius">
   roundedTopRight: Shorthand<"borderTopRightRadius">
-  roundedBottomRight: Shorthand<"borderBottomRightRadius">
+  roundedStartEnd: Shorthand<"borderStartEndRadius">
+  roundedEndEnd: Shorthand<"borderEndEndRadius">
   roundedBottomLeft: Shorthand<"borderBottomLeftRadius">
+  roundedBottomRight: Shorthand<"borderBottomRightRadius">
+  roundedStart: Shorthand<"borderInlineStartRadius">
+  roundedEnd: Shorthand<"borderInlineEndRadius">
   roundedTop: Shorthand<"borderTopRadius">
-  roundedRight: Shorthand<"borderRightRadius">
   roundedBottom: Shorthand<"borderBottomRadius">
   roundedLeft: Shorthand<"borderLeftRadius">
-  roundedStartStart: Shorthand<"borderStartStartRadius">
-  roundedStartEnd: Shorthand<"borderStartEndRadius">
-  roundedStart: Shorthand<"borderStartRadius">
-  roundedEndStart: Shorthand<"borderEndStartRadius">
-  roundedEndEnd: Shorthand<"borderEndEndRadius">
-  roundedEnd: Shorthand<"borderEndRadius">
-  borderX: Shorthand<"borderInline">
-  borderXWidth: Shorthand<"borderInlineWidth">
-  borderXColor: Shorthand<"borderInlineColor">
-  borderY: Shorthand<"borderBlock">
-  borderYWidth: Shorthand<"borderBlockWidth">
-  borderYColor: Shorthand<"borderBlockColor">
-  borderStart: Shorthand<"borderInlineStart">
+  roundedRight: Shorthand<"borderRightRadius">
   borderStartWidth: Shorthand<"borderInlineStartWidth">
-  borderStartColor: Shorthand<"borderInlineStartColor">
-  borderEnd: Shorthand<"borderInlineEnd">
   borderEndWidth: Shorthand<"borderInlineEndWidth">
-  borderEndColor: Shorthand<"borderInlineEndColor">
   shadow: Shorthand<"boxShadow">
-  shadowColor: Shorthand<"boxShadowColor">
-  x: Shorthand<"translateX">
-  y: Shorthand<"translateY">
+  blendMode: Shorthand<"mixBlendMode">
+  bgBlendMode: Shorthand<"backgroundBlendMode">
+  flexDir: Shorthand<"flexDirection">
+  w: Shorthand<"width">
+  h: Shorthand<"height">
+  minW: Shorthand<"minWidth">
+  minH: Shorthand<"minHeight">
+  maxW: Shorthand<"maxWidth">
+  maxH: Shorthand<"maxHeight">
+  overscroll: Shorthand<"overscrollBehavior">
+  overscrollX: Shorthand<"overscrollBehaviorX">
+  overscrollY: Shorthand<"overscrollBehaviorY">
+  listStylePos: Shorthand<"listStylePosition">
+  listStyleImg: Shorthand<"listStyleImage">
+  pos: Shorthand<"position">
+  insetX: Shorthand<"insetInline">
+  insetY: Shorthand<"insetBlock">
+  insetStart: Shorthand<"insetInlineStart">
+  insetEnd: Shorthand<"insetInlineEnd">
+  m: Shorthand<"margin">
+  mt: Shorthand<"marginBlockStart">
+  mr: Shorthand<"marginRight">
+  mb: Shorthand<"marginBottom">
+  ml: Shorthand<"marginLeft">
+  ms: Shorthand<"marginInlineEnd">
+  marginStart: Shorthand<"marginInlineStart">
+  marginEnd: Shorthand<"marginInlineEnd">
+  mx: Shorthand<"marginInline">
+  marginX: Shorthand<"marginInline">
+  my: Shorthand<"marginBlock">
+  marginY: Shorthand<"marginBlock">
+  p: Shorthand<"padding">
+  pt: Shorthand<"paddingTop">
+  pr: Shorthand<"paddingRight">
+  pb: Shorthand<"paddingBottom">
+  pl: Shorthand<"paddingLeft">
+  ps: Shorthand<"paddingInlineStart">
+  paddingStart: Shorthand<"paddingInlineStart">
+  pe: Shorthand<"paddingInlineEnd">
+  paddingEnd: Shorthand<"paddingInlineEnd">
+  px: Shorthand<"paddingInline">
+  paddingX: Shorthand<"paddingInline">
+  py: Shorthand<"paddingBlock">
+  paddingY: Shorthand<"paddingBlock">
+  textDecor: Shorthand<"textDecoration">
+  transitionTiming: Shorthand<"transitionTimingFunction">
 }
 
-type PropOrCondition<Value> = ConditionalValue<Value | (string & {})>
-
 type PropertyTypeValue<T extends string> = T extends keyof PropertyTypes
-  ? PropOrCondition<PropertyTypes[T] | CssValue<T>>
+  ? PropOrCondition<T, PropertyTypes[T] | CssValue<T>>
   : never
 
 type CssPropertyValue<T extends string> = T extends keyof CssProperties
-  ? PropOrCondition<CssProperties[T]>
+  ? PropOrCondition<T, CssProperties[T]>
   : never
 
 export type PropertyValue<T extends string> = T extends keyof PropertyTypes
   ? PropertyTypeValue<T>
   : T extends keyof CssProperties
   ? CssPropertyValue<T>
-  : PropOrCondition<string | number>
+  : PropOrCondition<T, string | number>

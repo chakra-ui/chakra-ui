@@ -415,7 +415,7 @@ export const defaultBaseConfig = defineConfig({
     blockSize: { values: "sizes" },
     boxSize: { values: "sizes", transform: (v) => ({ width: v, height: v }) },
     minWidth: { values: "sizes", shorthand: ["minW"] },
-    minInlineSize: { values: "sizes", shorthand: ["minInlineSize"] },
+    minInlineSize: { values: "sizes" },
     minHeight: { values: "sizes", shorthand: ["minH"] },
     minBlockSize: { values: "sizes" },
     maxWidth: { values: "sizes", shorthand: ["maxW"] },
