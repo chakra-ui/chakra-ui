@@ -4,6 +4,9 @@ export interface ForProps<T> {
   children: (item: T, index: number) => React.ReactNode
 }
 
+export function For<T extends string | number>(
+  props: ForProps<T>,
+): React.ReactNode
 export function For<T>(props: ForProps<T>): React.ReactNode {
   const { each, fallback, children } = props
 
