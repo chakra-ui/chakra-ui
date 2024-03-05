@@ -214,6 +214,7 @@ export interface PropertyTypes extends PropertyValueTypes {
   bgPos: Shorthand<"backgroundPosition">
   bgRepeat: Shorthand<"backgroundRepeat">
   bgAttachment: Shorthand<"backgroundAttachment">
+  bgClip: Shorthand<"backgroundClip">
   bgGradient: Shorthand<"backgroundGradient">
   bgImg: Shorthand<"backgroundImage">
   bgImage: Shorthand<"backgroundImage">

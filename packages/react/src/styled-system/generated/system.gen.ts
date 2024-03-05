@@ -509,6 +509,7 @@ export interface SystemProperties {
   bgPos?: PropertyValue<"bgPos">
   bgRepeat?: PropertyValue<"bgRepeat">
   bgAttachment?: PropertyValue<"bgAttachment">
+  bgClip?: PropertyValue<"bgClip">
   bgGradient?: PropertyValue<"bgGradient">
   bgImg?: PropertyValue<"bgImg">
   bgImage?: PropertyValue<"bgImage">

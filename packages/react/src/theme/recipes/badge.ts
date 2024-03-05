@@ -20,12 +20,12 @@ export const badgeRecipe = defineRecipe({
         color: "white",
       },
       subtle: {
-        bg: { base: "colorPalette.100", _dark: "colorPalette.200/16" },
-        color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+        bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+        color: { base: "colorPalette.800", _dark: "colorPalette.400" },
       },
       outline: {
         shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
-        color: { base: "colorPalette.800", _dark: "colorPalette.200/80" },
+        color: { base: "colorPalette.800", _dark: "colorPalette.400/80" },
         shadow: {
           base: "inset 0 0 0px 1px var(--shadow-color)",
         },

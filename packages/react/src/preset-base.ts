@@ -145,6 +145,7 @@ export const defaultBaseConfig = defineConfig({
     backgroundPosition: { shorthand: ["bgPos"] },
     backgroundRepeat: { shorthand: ["bgRepeat"] },
     backgroundAttachment: { shorthand: ["bgAttachment"] },
+    backgroundClip: { shorthand: ["bgClip"] },
     backgroundGradient: {
       shorthand: ["bgGradient"],
       values(theme) {
