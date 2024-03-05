@@ -56,8 +56,8 @@ interface PropertyValueTypes {
   borderEndEndRadius: Tokens["radii"]
   borderBottomLeftRadius: Tokens["radii"]
   borderBottomRightRadius: Tokens["radii"]
-  borderInlineStartRadius: Tokens["radii"]
-  borderInlineEndRadius: Tokens["radii"]
+  borderInlineStartRadius: Tokens["radii"] | CssProperties["borderRadius"]
+  borderInlineEndRadius: Tokens["radii"] | CssProperties["borderRadius"]
   borderTopRadius: Tokens["radii"] | CssProperties["borderRadius"]
   borderBottomRadius: Tokens["radii"] | CssProperties["borderRadius"]
   borderLeftRadius: Tokens["radii"] | CssProperties["borderRadius"]
@@ -195,6 +195,7 @@ interface PropertyValueTypes {
     | "pink"
     | "bg"
     | "fg"
+    | "border"
 }
 
 type PropOrCondition<Key, Value> = ConditionalValue<Value | (string & {})>

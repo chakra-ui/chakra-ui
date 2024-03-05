@@ -5,6 +5,12 @@ export interface BadgeVariantProps {
   variant?: "solid" | "subtle" | "outline"
 }
 
+export interface ButtonVariantProps {
+  shape?: "square" | "rounded" | "rounded-start" | "rounded-end" | "pill"
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "solid" | "subtle" | "outline" | "ghost"
+}
+
 export interface CodeVariantProps {
   colorScheme?: "gray"
   variant?: "solid" | "subtle" | "outline"
@@ -65,6 +71,7 @@ export interface IconVariantProps {}
 
 export interface SystemRecipes {
   Badge: SystemRecipeFn<BadgeVariantProps>
+  Button: SystemRecipeFn<ButtonVariantProps>
   Code: SystemRecipeFn<CodeVariantProps>
   Container: SystemRecipeFn<ContainerVariantProps>
   CloseButton: SystemRecipeFn<CloseButtonVariantProps>
@@ -115,6 +122,12 @@ export type BreadcrumbSlot = "link" | "item" | "root" | "separator"
 export interface BreadcrumbVariantProps {
   current?: boolean
 }
+
+// Blockquote
+
+export type BlockquoteSlot = "root" | "content" | "caption"
+
+export interface BlockquoteVariantProps {}
 
 // Card
 
@@ -362,6 +375,7 @@ export interface SystemSlotRecipes {
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
   Avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariantProps>
   Breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps>
+  Blockquote: SystemSlotRecipeFn<BlockquoteSlot, BlockquoteVariantProps>
   Card: SystemSlotRecipeFn<CardSlot, CardVariantProps>
   Checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps>
   Dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>

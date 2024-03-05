@@ -708,3 +708,19 @@ much more.
 ### ThemingProps
 
 Changed to `SystemRecipeProps`
+
+### Group
+
+- No more `ButtonGroup`, prefer to use the generic `Group` component instead
+- No more `InputGroup`, prefer generic `Group` and `Addon` components
+- No more `InputLeftAddon` and `InputRightAddon`, prefer to use `Addon`
+  component with `placement` prop
+
+- IconButton:
+  - Remove isRound in favor of passing `shape=pill`
+  - Prefer to use `children` over `icon` prop
+
+## Blockquote
+
+- Added new `Blockquote` component
+- Docs: https://designsystem.utah.gov/library/components/textLayout/blockQuote

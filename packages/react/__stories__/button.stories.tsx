@@ -1,5 +1,4 @@
-import { Meta, StoryFn } from "@storybook/react"
-import * as React from "react"
+import { Meta } from "@storybook/react"
 import {
   FaArrowRight,
   FaChevronDown,
@@ -7,20 +6,21 @@ import {
   FaPhone,
   FaSearch,
 } from "react-icons/fa"
-import { MdBuild, MdCall } from "react-icons/md"
+import { HiArrowRight } from "react-icons/hi"
 import { BeatLoader } from "react-spinners"
 import {
   AbsoluteCenter,
   Container,
   For,
+  Group,
   HStack,
   IconButton,
   Span,
   Spinner,
   Stack,
 } from "../src"
-import { Button, ButtonGroup } from "../src/components/button"
-import { SystemRecipeProps } from "../src/styled-system"
+import { Button } from "../src/components/button"
+import { chakra, useRecipe } from "../src/styled-system"
 
 export default {
   title: "Form / Button",
@@ -39,13 +39,8 @@ export default {
   },
 } satisfies Meta
 
-interface StoryProps extends SystemRecipeProps<"Button"> {
-  children?: React.ReactNode
-}
-
-export const Basic: StoryFn<StoryProps> = (props) => <Button {...props} />
-
-const colorSchemes = [
+const colorPalettes = [
+  "gray",
   "red",
   "green",
   "blue",
@@ -57,108 +52,140 @@ const colorSchemes = [
   "yellow",
 ] as const
 
-const buttonVariants = [
-  "solid",
-  "outline",
-  "ghost",
-  "link",
-  "unstyled",
-] as const
+const DocHeader = chakra("div", {
+  base: {
+    display: "flex",
+    alignItems: "center",
+    gap: "3",
+    "& > *": {
+      flex: "1",
+      fontSize: "sm",
+      ps: "4",
+    },
+  },
+  variants: {
+    align: {
+      center: {
+        "& > *": { textAlign: "center" },
+      },
+      start: {
+        "& > *": { textAlign: "start" },
+      },
+    },
+  },
+  defaultVariants: {
+    align: "center",
+  },
+})
 
-const buttonSizes = ["xs", "sm", "md", "lg"] as const
+export const Variants = () => {
+  return (
+    <Stack spacing="8">
+      <DocHeader>
+        <span />
+        <span>Solid</span>
+        <span>Subtle</span>
+        <span>Outline</span>
+        <span>Ghost</span>
+      </DocHeader>
+      <Stack spacing="5">
+        <For each={colorPalettes}>
+          {(c) => (
+            <HStack spacing="20">
+              <Span fontSize="sm" color="fg.muted" minW="8ch">
+                {c}
+              </Span>
+              <HStack spacing="4">
+                <Button colorPalette={c} variant="solid">
+                  Next <HiArrowRight />
+                </Button>
+                <Button colorPalette={c} variant="subtle">
+                  Next <HiArrowRight />
+                </Button>
+                <Button colorPalette={c} variant="outline">
+                  Next <HiArrowRight />
+                </Button>
+                <Button colorPalette={c} variant="ghost">
+                  Next <HiArrowRight />
+                </Button>
+              </HStack>
+            </HStack>
+          )}
+        </For>
+      </Stack>
+    </Stack>
+  )
+}
 
-export const OutlineVariants: StoryFn<StoryProps> = (props) => (
-  <For each={colorSchemes}>
-    {(colorScheme) => (
-      <Button {...props} variant="outline" colorScheme={colorScheme} />
-    )}
-  </For>
-)
+export const Shapes = () => {
+  const recipe = useRecipe("Button")
+  return (
+    <HStack spacing="24px">
+      <For each={recipe.variantMap.shape}>
+        {(shape) => (
+          <Stack spacing="4">
+            <Button shape={shape}>Button</Button>
+            <Button shape={shape} variant="solid">
+              Button
+            </Button>
+          </Stack>
+        )}
+      </For>
+    </HStack>
+  )
+}
 
-export const WithVariants = () => (
-  <HStack spacing="24px">
-    <For each={buttonVariants}>
-      {(variant) => (
-        <Button colorScheme="teal" variant={variant}>
-          Button
-        </Button>
-      )}
-    </For>
-  </HStack>
-)
-
-export const WithSizes = () => (
-  <HStack>
-    <For each={buttonSizes}>
-      {(size) => (
-        <Button colorScheme="blue" size={size}>
-          Button
-        </Button>
-      )}
-    </For>
-  </HStack>
-)
+export const Sizes = () => {
+  const recipe = useRecipe("Button")
+  return (
+    <Stack spacing="24px">
+      <DocHeader align="start">
+        <For each={recipe.variantMap.size}>{(size) => <Span>{size}</Span>}</For>
+      </DocHeader>
+      <HStack spacing="4">
+        <For each={recipe.variantMap.size}>
+          {(size) => (
+            <Stack spacing="4">
+              <Button colorPalette="blue" size={size}>
+                Button
+              </Button>
+              <Button colorPalette="blue" variant="solid" size={size}>
+                Button
+              </Button>
+            </Stack>
+          )}
+        </For>
+      </HStack>
+    </Stack>
+  )
+}
 
 export const WithIcon = () => (
   <Stack direction="row" spacing={4}>
-    <Button colorScheme="teal" variant="solid">
+    <Button colorPalette="teal" variant="solid">
       <FaEnvelope />
       Email
     </Button>
-    <Button colorScheme="teal" variant="outline">
+    <Button colorPalette="teal" variant="outline">
       Call us
       <FaArrowRight />
     </Button>
   </Stack>
 )
 
-export const WithReactIcons = () => (
-  <Stack direction="row" spacing={4} align="center">
-    <Button colorScheme="pink" variant="solid">
-      <MdBuild /> Settings
-    </Button>
-    <Button colorScheme="blue" variant="outline">
-      <MdCall /> Call us
-    </Button>
-  </Stack>
-)
-
 export const WithLoading = () => (
   <Stack direction="row" spacing={4} align="center">
-    <Button isDisabled colorScheme="teal">
-      <Spinner boxSize="1em" />
+    <Button isDisabled>
+      <Spinner boxSize="1em" /> Loading...
     </Button>
 
-    <Button isDisabled colorScheme="blue">
+    <Button isDisabled variant="solid" colorPalette="blue">
       <AbsoluteCenter>
         <BeatLoader size={8} color="white" />
       </AbsoluteCenter>
       <Span opacity="0">Click me</Span>
     </Button>
   </Stack>
-)
-
-export const WithSpinnerPlacements = () => (
-  <Stack direction="row" spacing={4} align="center">
-    <Button isDisabled colorScheme="teal" variant="outline">
-      <Spinner boxSize="1em" /> Loading
-    </Button>
-    <Button isDisabled colorScheme="teal" variant="outline">
-      Loading <Spinner boxSize="1em" />
-    </Button>
-  </Stack>
-)
-
-export const WithDisabled = () => (
-  <HStack spacing="24px">
-    <For each={buttonVariants}>
-      {(variant) => (
-        <Button isDisabled colorScheme="teal" variant={variant}>
-          Button
-        </Button>
-      )}
-    </For>
-  </HStack>
 )
 
 export const WithStyleOverrides = () => (
@@ -173,53 +200,47 @@ export const WithStyleOverrides = () => (
   </Button>
 )
 
-export const WithButtonGroup = () => (
-  <ButtonGroup variant="outline">
-    <Button colorScheme="blue">Save</Button>
-    <Button>Cancel</Button>
-  </ButtonGroup>
+export const WithGroup = () => (
+  <Group>
+    <Button variant="solid" colorPalette="blue">
+      Save
+    </Button>
+    <Button variant="solid">Cancel</Button>
+  </Group>
 )
 
-export const WithHorizontalAttachedButtons = () => (
-  <ButtonGroup size="sm" isAttached variant="outline">
-    <Button>Save</Button>
-    <Button>Cancel</Button>
-    <IconButton
-      fontSize="2xl"
-      aria-label="Add to friends"
-      icon={<FaChevronDown />}
-    />
-  </ButtonGroup>
+export const WithHorizontalAttached = () => (
+  <Group attached>
+    <Button size="sm">Save</Button>
+    <Button size="sm">Cancel</Button>
+    <IconButton size="sm" aria-label="Add to friends">
+      <FaChevronDown />
+    </IconButton>
+  </Group>
 )
 
-export const iconButton = () => (
+export const WithVerticalAttached = () => (
+  <Group orientation="vertical" attached>
+    <Button size="sm">Save</Button>
+    <Button size="sm">Cancel</Button>
+    <IconButton size="sm" aria-label="Add to friends">
+      <FaChevronDown />
+    </IconButton>
+  </Group>
+)
+
+export const _IconButton = () => (
   <Stack direction="row">
-    <IconButton aria-label="Search database" icon={<FaSearch />} />
+    <IconButton aria-label="Search database">
+      <FaSearch />
+    </IconButton>
 
-    <IconButton
-      colorScheme="blue"
-      aria-label="Search database"
-      icon={<FaSearch />}
-    />
+    <IconButton colorPalette="blue" aria-label="Search database">
+      <FaSearch />
+    </IconButton>
 
-    <IconButton colorScheme="teal" aria-label="Call Segun" size="lg">
+    <IconButton colorPalette="teal" aria-label="Call Segun" size="lg">
       <FaPhone />
     </IconButton>
   </Stack>
-)
-
-export const WithVerticalAttachedButtons = () => (
-  <ButtonGroup size="lg" orientation="vertical" isAttached variant="outline">
-    <IconButton fontSize="2xl" aria-label="Email Santa" icon={<FaEnvelope />} />
-    <IconButton
-      fontSize="2xl"
-      aria-label="Call the Grinch"
-      icon={<FaPhone />}
-    />
-    <IconButton
-      fontSize="2xl"
-      aria-label="Add to friends"
-      icon={<FaChevronDown />}
-    />
-  </ButtonGroup>
 )

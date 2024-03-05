@@ -1,6 +1,9 @@
 import { defineGlobalStyles } from "../styled-system"
 
 export const globalCss = defineGlobalStyles({
+  "*": {
+    fontFeatureSettings: '"cv11"',
+  },
   body: {
     fontFamily: "body",
     color: "fg",

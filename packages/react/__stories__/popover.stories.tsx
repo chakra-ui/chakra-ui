@@ -2,7 +2,7 @@ import { useBoolean, useInterval } from "@chakra-ui/hooks"
 import * as React from "react"
 import {
   Button,
-  ButtonGroup,
+  HStack,
   Input,
   Popover,
   RadioGroup,
@@ -154,10 +154,14 @@ export const Controlled = () => {
               Are you sure you want to continue with your action?
             </Popover.Body>
             <Popover.Footer display="flex" justifyContent="flex-end">
-              <ButtonGroup size="sm">
-                <Button variant="outline">Cancel</Button>
-                <Button colorScheme="red">Apply</Button>
-              </ButtonGroup>
+              <HStack>
+                <Button size="sm" variant="outline">
+                  Cancel
+                </Button>
+                <Button size="sm" colorScheme="red">
+                  Apply
+                </Button>
+              </HStack>
             </Popover.Footer>
           </Popover.Content>
         </Popover.Positioner>

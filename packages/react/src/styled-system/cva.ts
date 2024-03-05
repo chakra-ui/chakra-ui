@@ -1,7 +1,6 @@
 import {
   Dict,
   compact,
-  memo,
   mergeWith as mergeProps,
   mergeWith,
   splitProps,
@@ -58,7 +57,6 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       return css(variantCss, compoundVariantCss)
     }
 
-    const cvaFn = memo((props) => css(resolve(props)))
     const variantKeys = Object.keys(variants)
 
     const splitVariantProps = (props: Dict) => {
@@ -73,6 +71,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
       ]),
     )
 
+    const cvaFn = (props: any) => css(resolve(props))
     return Object.assign(cvaFn, {
       __cva__: true,
       variantMap,

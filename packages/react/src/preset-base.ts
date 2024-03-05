@@ -13,12 +13,12 @@ const deg = (v: any) => {
 
 export const defaultBaseConfig = defineConfig({
   conditions: {
-    hover: "&:is(:hover, [data-hover])",
+    hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
+    active: "&:is(:active, [data-active]):not(:disabled, [data-disabled])",
     focus: "&:is(:focus, [data-focus])",
     focusWithin: "&:focus-within",
     focusVisible: "&:is(:focus-visible, [data-focus-visible])",
     disabled: "&:is(:disabled, [disabled], [data-disabled])",
-    active: "&:is(:active, [data-active])",
     visited: "&:visited",
     target: "&:target",
     readOnly: "&:is(:read-only, [data-read-only])",
@@ -53,8 +53,10 @@ export const defaultBaseConfig = defineConfig({
     onlyOfType: "&:only-of-type",
 
     peerFocus: ".peer:is(:focus, [data-focus]) ~ &",
-    peerHover: ".peer:is(:hover, [data-hover]) ~ &",
-    peerActive: ".peer:is(:active, [data-active]) ~ &",
+    peerHover:
+      ".peer:is(:hover, [data-hover]):not(:disabled, [data-disabled]) ~ &",
+    peerActive:
+      ".peer:is(:active, [data-active]):not(:disabled, [data-disabled]) ~ &",
     peerFocusWithin: ".peer:focus-within ~ &",
     peerFocusVisible: ".peer:is(:focus-visible, [data-focus-visible]) ~ &",
     peerDisabled: ".peer:is(:disabled, [disabled], [data-disabled]) ~ &",
@@ -66,8 +68,10 @@ export const defaultBaseConfig = defineConfig({
     peerPlaceholderShown: ".peer:placeholder-shown ~ &",
 
     groupFocus: ".group:is(:focus, [data-focus]) &",
-    groupHover: ".group:is(:hover, [data-hover]) &",
-    groupActive: ".group:is(:active, [data-active]) &",
+    groupHover:
+      ".group:is(:hover, [data-hover]):not(:disabled, [data-disabled]) &",
+    groupActive:
+      ".group:is(:active, [data-active]):not(:disabled, [data-disabled]) &",
     groupFocusWithin: ".group:focus-within &",
     groupFocusVisible: ".group:is(:focus-visible, [data-focus-visible]) &",
     groupDisabled: ".group:is(:disabled, [disabled], [data-disabled]) &",
@@ -273,11 +277,21 @@ export const defaultBaseConfig = defineConfig({
     },
     borderInlineStartRadius: {
       values: "radii",
+      property: "borderRadius",
       shorthand: ["roundedStart", "borderStartRadius"],
+      transform: (value) => ({
+        borderStartStartRadius: value,
+        borderEndStartRadius: value,
+      }),
     },
     borderInlineEndRadius: {
       values: "radii",
+      property: "borderRadius",
       shorthand: ["roundedEnd", "borderEndRadius"],
+      transform: (value) => ({
+        borderStartEndRadius: value,
+        borderEndEndRadius: value,
+      }),
     },
     borderTopRadius: {
       values: "radii",
@@ -443,7 +457,7 @@ export const defaultBaseConfig = defineConfig({
     // interactivity
     outlineColor: {
       values: "colors",
-      transform: createColorMixTransform("borderColor"),
+      transform: createColorMixTransform("outlineColor"),
     },
     // layout
     aspectRatio: { values: "aspectRatios" },
@@ -514,12 +528,10 @@ export const defaultBaseConfig = defineConfig({
     insetInlineStart: {
       values: "spacing",
       shorthand: ["insetStart"],
-      transform: (value) => ({ left: value, "&:dir(rtl)": { right: value } }),
     },
     insetInlineEnd: {
       values: "spacing",
       shorthand: ["insetEnd"],
-      transform: (value) => ({ right: value, "&:dir(rtl)": { left: value } }),
     },
     // shadow / ring
     ring: {
@@ -528,7 +540,8 @@ export const defaultBaseConfig = defineConfig({
           "--ring-offset-shadow": `var(--ring-inset) 0 0 0 var(--ring-offset-width) var(--ring-offset-color)`,
           "--ring-shadow": `var(--ring-inset) 0 0 0 calc(var(--ring-width) + var(--ring-offset-width)) var(--ring-color)`,
           "--ring-width": value,
-          boxShadow: `var(--ring-offset-shadow), var(--ring-shadow), var(--shadow, 0 0 #0000)`,
+          boxShadow:
+            "var(--ring-offset-shadow), var(--ring-shadow), var(--shadow, 0 0 #0000)",
         }
       },
     },

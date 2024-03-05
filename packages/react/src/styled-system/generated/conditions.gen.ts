@@ -1,6 +1,8 @@
 export interface Conditions {
-  /** `&:is(:hover, [data-hover])` */
+  /** `&:is(:hover, [data-hover]):not(:disabled, [data-disabled])` */
   _hover: string
+  /** `&:is(:active, [data-active]):not(:disabled, [data-disabled])` */
+  _active: string
   /** `&:is(:focus, [data-focus])` */
   _focus: string
   /** `&:focus-within` */
@@ -9,8 +11,6 @@ export interface Conditions {
   _focusVisible: string
   /** `&:is(:disabled, [disabled], [data-disabled])` */
   _disabled: string
-  /** `&:is(:active, [data-active])` */
-  _active: string
   /** `&:visited` */
   _visited: string
   /** `&:target` */
@@ -67,9 +67,9 @@ export interface Conditions {
   _onlyOfType: string
   /** `.peer:is(:focus, [data-focus]) ~ &` */
   _peerFocus: string
-  /** `.peer:is(:hover, [data-hover]) ~ &` */
+  /** `.peer:is(:hover, [data-hover]):not(:disabled, [data-disabled]) ~ &` */
   _peerHover: string
-  /** `.peer:is(:active, [data-active]) ~ &` */
+  /** `.peer:is(:active, [data-active]):not(:disabled, [data-disabled]) ~ &` */
   _peerActive: string
   /** `.peer:focus-within ~ &` */
   _peerFocusWithin: string
@@ -87,9 +87,9 @@ export interface Conditions {
   _peerPlaceholderShown: string
   /** `.group:is(:focus, [data-focus]) &` */
   _groupFocus: string
-  /** `.group:is(:hover, [data-hover]) &` */
+  /** `.group:is(:hover, [data-hover]):not(:disabled, [data-disabled]) &` */
   _groupHover: string
-  /** `.group:is(:active, [data-active]) &` */
+  /** `.group:is(:active, [data-active]):not(:disabled, [data-disabled]) &` */
   _groupActive: string
   /** `.group:focus-within &` */
   _groupFocusWithin: string

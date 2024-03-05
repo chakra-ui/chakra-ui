@@ -1,6 +1,7 @@
 import { accordionSlotRecipe } from "./recipes/accordion"
 import { alertSlotRecipe } from "./recipes/alert"
 import { avatarSlotRecipe } from "./recipes/avatar"
+import { blockquoteSlotRecipe } from "./recipes/blockquote"
 import { breadcrumbSlotRecipe } from "./recipes/breadcrumb"
 import { cardSlotRecipe } from "./recipes/card"
 import { checkboxSlotRecipe } from "./recipes/checkbox"
@@ -28,6 +29,7 @@ export const slotRecipes = {
   Alert: alertSlotRecipe,
   Avatar: avatarSlotRecipe,
   Breadcrumb: breadcrumbSlotRecipe,
+  Blockquote: blockquoteSlotRecipe,
   Card: cardSlotRecipe,
   Checkbox: checkboxSlotRecipe,
   Dialog: dialogSlotRecipe,

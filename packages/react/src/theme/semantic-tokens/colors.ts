@@ -2,7 +2,7 @@ import { defineSemanticTokens } from "../../styled-system"
 
 export const semanticColors = defineSemanticTokens.colors({
   bg: {
-    DEFAULT: { value: { base: "{colors.white}", _dark: "{colors.gray.800}" } },
+    DEFAULT: { value: { base: "{colors.white}", _dark: "{colors.gray.900}" } },
     subtle: { value: { base: "{colors.gray.50}", _dark: "{colors.gray.700}" } },
     muted: { value: { base: "{colors.gray.100}", _dark: "{colors.gray.600}" } },
     disabled: {},
@@ -32,7 +32,9 @@ export const semanticColors = defineSemanticTokens.colors({
     emphasis: {},
   },
   border: {
-    DEFAULT: {},
+    DEFAULT: {
+      value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" },
+    },
     muted: {},
     subtle: {},
     accent: {},

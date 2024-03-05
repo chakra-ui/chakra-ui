@@ -13,10 +13,12 @@ export const alertSlotRecipe = defineSlotRecipe({
       gap: "3",
       px: "4",
       py: "4",
+      rounded: "md",
+      fontSize: "sm",
     },
     title: {
       fontWeight: "bold",
-      lineHeight: "1",
+      lineHeight: "1.2",
       marginEnd: "2",
     },
     description: {

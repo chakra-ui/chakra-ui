@@ -1,4 +1,5 @@
 import { badgeRecipe } from "./recipes/badge"
+import { buttonRecipe } from "./recipes/button"
 import { closeButtonRecipe } from "./recipes/close-button"
 import { codeRecipe } from "./recipes/code"
 import { containerRecipe } from "./recipes/container"
@@ -20,6 +21,7 @@ import { tooltipRecipe } from "./recipes/tooltip"
 
 export const recipes = {
   Badge: badgeRecipe,
+  Button: buttonRecipe,
   Code: codeRecipe,
   Container: containerRecipe,
   CloseButton: closeButtonRecipe,

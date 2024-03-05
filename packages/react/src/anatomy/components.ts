@@ -31,6 +31,12 @@ export const breadcrumbAnatomy = anatomy("breadcrumb").parts(
   "separator",
 )
 
+export const blockquoteAnatomy = anatomy("blockquote").parts(
+  "root",
+  "content",
+  "caption",
+)
+
 export const buttonAnatomy = anatomy("button").parts()
 
 export const checkboxAnatomy = anatomy("checkbox").parts(

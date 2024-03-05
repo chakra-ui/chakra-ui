@@ -7,7 +7,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 import { HiStar } from "react-icons/hi"
-import { Button, ButtonGroup, IconButton } from "../src/components/button"
+import { Group } from "../src"
+import { Button, IconButton } from "../src/components/button"
 import { Icon } from "../src/components/icon"
 import { Table } from "../src/components/table"
 
@@ -46,16 +47,17 @@ const columns: ColumnDef<Data>[] = [
   {
     header: "Action",
     cell: ({ row }) => (
-      <ButtonGroup size="sm" isAttached>
-        <Button minW="15ch" justifyContent="flex-start">
+      <Group attached>
+        <Button size="sm" minW="15ch" justifyContent="flex-start">
           Open {row.original["col1"]}
         </Button>
         <IconButton
+          size="sm"
           icon={<Icon as={HiStar} color="yellow.500" />}
           aria-label="Add to favorites"
           variant="outline"
         />
-      </ButtonGroup>
+      </Group>
     ),
   },
 ]
