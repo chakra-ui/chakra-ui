@@ -44,13 +44,7 @@
   "dependencies": {
     "@babel/core": "^7.22.10",
     "@babel/eslint-parser": "^7.22.10",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.22.10",
-    "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.5",
-    "@babel/runtime": "^7.22.10",
     "@chakra-ui/cli": "workspace:*",
-    "@chakra-ui/storybook-addon": "workspace:*",
     "@chakra-ui/test-utils": "workspace:*",
     "@changesets/changelog-github": "0.5.0",
     "@changesets/cli": "2.27.1",

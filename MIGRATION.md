@@ -716,9 +716,10 @@ Changed to `SystemRecipeProps`
 - No more `InputLeftAddon` and `InputRightAddon`, prefer to use `Addon`
   component with `placement` prop
 
-- IconButton:
-  - Remove isRound in favor of passing `shape=pill`
-  - Prefer to use `children` over `icon` prop
+## IconButton
+
+- Remove isRound in favor of passing `shape=pill`
+- Prefer to use `children` over `icon` prop
 
 ## Blockquote
 
@@ -732,3 +733,8 @@ Changed to `SystemRecipeProps`
 - Move image related props to `Avatar.Image` component
 - Move fallback icon to `Avatar.Fallback` component
 - Move `name` prop to `Avatar.Fallback` component
+
+## Storybook Addon
+
+We're removed the storybook addon in favor of using `@storybook/addon-themes`
+and `withThemeByClassName` helper.
