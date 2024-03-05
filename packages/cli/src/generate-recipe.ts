@@ -83,6 +83,15 @@ export async function generateRecipe(sys: SystemContext) {
           : "[key: string]: SystemSlotRecipeFn<string, any>"
       }
      }
+
+     export interface SystemRecipeSlot<T> {
+       ${
+         slotRecipeKeys.length
+           ? slotRecipeKeys
+               .map((key) => `${key}: ${capitalize(key)}Slot`)
+               .join("\n")
+           : "[key: string]: string"
+       }
     `
 
   const slotRecipeResult = [slotRecipes.join("\n"), slotRecipeRecord].join("\n")

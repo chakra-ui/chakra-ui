@@ -17,11 +17,10 @@ export const alertAnatomy = anatomy("alert").parts(
 )
 
 export const avatarAnatomy = anatomy("avatar").parts(
-  "label",
-  "badge",
   "root",
-  "excessLabel",
-  "group",
+  "image",
+  "fallback",
+  "badge",
 )
 
 export const breadcrumbAnatomy = anatomy("breadcrumb").parts(

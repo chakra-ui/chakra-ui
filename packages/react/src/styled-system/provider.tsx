@@ -1,7 +1,11 @@
 import { createContext } from "@chakra-ui/utils"
 import { Global } from "@emotion/react"
 import { useMemo } from "react"
-import { SystemRecipes, SystemSlotRecipes } from "./generated/recipes.gen"
+import {
+  SystemRecipeProps,
+  SystemRecipes,
+  SystemSlotRecipes,
+} from "./generated/recipes.gen"
 import {
   RecipeDefinition,
   SlotRecipeConfig,
@@ -68,4 +72,22 @@ export function useToken(category: string, token: string | string[]): string[] {
   return arr.map((t) => sys.token(`${category}.${t}`, t))
 }
 
-export { SystemProvider, useSystemContext }
+const [ParentRecipePropsProvider, useParentRecipeProps] = createContext<
+  SystemRecipeProps<string>
+>({
+  name: "ParentRecipeProps",
+  strict: false,
+  providerName: "ParentRecipePropsProvider",
+})
+
+export function RecipePropsProvider<
+  T extends RecipeKey | SlotRecipeKey,
+>(props: { children: React.ReactNode; value: SystemRecipeProps<T> }) {
+  return (
+    <ParentRecipePropsProvider value={props.value}>
+      {props.children}
+    </ParentRecipePropsProvider>
+  )
+}
+
+export { SystemProvider, useSystemContext, useParentRecipeProps }

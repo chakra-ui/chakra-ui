@@ -1,80 +1,81 @@
 import { avatarAnatomy as parts } from "../../anatomy"
-import { defineSlotRecipe, defineStyle } from "../../styled-system"
-
-const sharedStyles = defineStyle({
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  textAlign: "center",
-  textTransform: "uppercase",
-  fontWeight: "medium",
-  position: "relative",
-  flexShrink: 0,
-})
+import { defineSlotRecipe } from "../../styled-system"
 
 export const avatarSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
-    group: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      flexDirection: "row-reverse",
-    },
     root: {
-      ...sharedStyles,
-      bg: "gray.400",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontWeight: "medium",
+      position: "relative",
       verticalAlign: "top",
-      width: "var(--size)",
-      height: "var(--size)",
-      "--fs": "calc(var(--size) / 2.5)",
-      fontSize: "var(--fs)",
+      flexShrink: 0,
+      userSelect: "none",
+      bg: "gray.400",
+      width: "var(--avatar-size)",
+      height: "var(--avatar-size)",
+      "--avatar-font-size": "calc(var(--avatar-size) / 2.5)",
+      fontSize: "var(--avatar-font-size)",
+      borderRadius: "var(--avatar-radius)",
+      "&[data-in-group]": {
+        borderWidth: "2px",
+        borderColor: "bg",
+      },
     },
     badge: {
       borderRadius: "full",
       border: "0.2em solid",
       borderColor: { base: "white", _dark: "gray.800" },
     },
-    excessLabel: {
-      ...sharedStyles,
-      lineHeight: "1",
-      bg: { base: "gray.200", _dark: "whiteAlpha.400" },
-      fontSize: "var(--fs)",
+    image: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      borderRadius: "var(--avatar-radius)",
     },
-    label: {
+    fallback: {
       lineHeight: "1",
-      fontSize: "var(--fs)",
+      textTransform: "uppercase",
+      fontWeight: "medium",
+      fontSize: "var(--avatar-font-size)",
+      borderRadius: "var(--avatar-radius)",
     },
   },
   variants: {
     size: {
-      "2xs": {
-        root: { "--size": "sizes.4" },
-      },
       xs: {
-        root: { "--size": "sizes.6" },
+        root: { "--avatar-size": "sizes.6" },
       },
       sm: {
-        root: { "--size": "sizes.8" },
+        root: { "--avatar-size": "sizes.8" },
       },
       md: {
-        root: { "--size": "sizes.12" },
+        root: { "--avatar-size": "sizes.12" },
       },
       lg: {
-        root: { "--size": "sizes.16" },
+        root: { "--avatar-size": "sizes.16" },
       },
       xl: {
-        root: { "--size": "sizes.24" },
+        root: { "--avatar-size": "sizes.24" },
       },
       "2xl": {
-        root: { "--size": "sizes.32" },
+        root: { "--avatar-size": "sizes.32" },
+      },
+    },
+    shape: {
+      square: {},
+      rounded: {
+        root: { "--avatar-radius": "radii.md" },
       },
       full: {
-        root: { "--size": "100%" },
+        root: { "--avatar-radius": "radii.full" },
       },
     },
   },
   defaultVariants: {
     size: "md",
+    shape: "full",
   },
 })

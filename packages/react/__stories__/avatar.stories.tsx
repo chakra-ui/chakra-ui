@@ -1,4 +1,4 @@
-import { Avatar, AvatarBadge, AvatarGroup, Box, Stack } from "../src"
+import { Avatar, AvatarGroup, Box, For, Stack, useSlotRecipe } from "../src"
 
 export default {
   title: "Media and Icons / Avatar",
@@ -13,19 +13,19 @@ export default {
 
 export const Basic = () => (
   <Stack direction="row">
-    <Avatar.Root name="Dan Abrahmov" src="https://bit.ly/dan-abramov">
-      <Avatar.Image />
-      <Avatar.Fallback />
+    <Avatar.Root>
+      <Avatar.Image src="https://bit.ly/dan-abramov" />
+      <Avatar.Fallback name="Dan Abrahmov" />
     </Avatar.Root>
 
-    <Avatar.Root name="Christian Nwamba" src="https://bit.ly/code-beast">
-      <Avatar.Image />
-      <Avatar.Fallback />
+    <Avatar.Root>
+      <Avatar.Image src="https://bit.ly/code-beast" />
+      <Avatar.Fallback name="Christian Nwamba" />
     </Avatar.Root>
 
-    <Avatar.Root name="Segun Adebayo" src="https://bit.ly/sage-adebayo">
-      <Avatar.Image />
-      <Avatar.Fallback />
+    <Avatar.Root>
+      <Avatar.Image src="https://bit.ly/sage-adebayo" />
+      <Avatar.Fallback name="Segun Adebayo" />
     </Avatar.Root>
   </Stack>
 )
@@ -46,82 +46,56 @@ const AvatarSvg = (props: React.ComponentProps<"svg">) => (
 )
 
 export const WithCustomIcon = () => (
-  <AvatarGroup>
-    <Avatar.Root icon={<AvatarSvg />}>
-      <Avatar.Image />
-      <Avatar.Fallback />
-    </Avatar.Root>
-
-    <Avatar.Root>
-      <Avatar.Image />
-      <Avatar.Fallback />
-    </Avatar.Root>
-  </AvatarGroup>
+  <Avatar.Root>
+    <AvatarSvg />
+  </Avatar.Root>
 )
 
-export const WithSizes = () => (
-  <Stack direction="row" spacing="24px">
-    {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
-      <Avatar.Root
-        key={size}
-        size={size}
-        name="Uchiha Itachi"
-        src="https://uinames.com/api/photos/female/18.jpg"
-      >
-        <Avatar.Image />
-        <Avatar.Fallback />
-        <AvatarBadge boxSize="1.25em" bg="green.500" />
-      </Avatar.Root>
-    ))}
-  </Stack>
-)
-
-export const WithSrcSet = () => {
-  const small =
-    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_300.jpg"
-  const medium =
-    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_768.jpg"
-  const large =
-    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_1280.jpg"
-  const xlarge =
-    "https://accelerated.atoms.crystallize.digital/snowball/images/PalmaSpeedJusterteBilder-15/_resized_3200.jpg"
-
+export const WithSizes = () => {
+  const recipe = useSlotRecipe("Avatar")
   return (
-    <Avatar.Root
-      name="Uchiha Itachi"
-      src={small}
-      srcSet={`${small} 300w, ${medium} 768w, ${large} 1280w, ${xlarge} 3200w`}
-    >
-      <Avatar.Image />
-      <Avatar.Fallback />
-    </Avatar.Root>
+    <Stack direction="row" spacing="24px">
+      <For each={recipe.variantMap.size} fallback="No size found!">
+        {(size) => (
+          <Avatar.Root key={size} size={size}>
+            <Avatar.Image src="https://uinames.com/api/photos/female/18.jpg" />
+            <Avatar.Fallback name="Uchiha Itachi" />
+            <Avatar.Badge boxSize="1.25em" bg="green.500" />
+          </Avatar.Root>
+        )}
+      </For>
+    </Stack>
   )
 }
 
-export const WithAvatarGroup = () => (
-  <Stack spacing="24px">
-    {["xs", "sm", "md", "lg", "xl", "2xl"].map((size) => (
-      <AvatarGroup size={size} max={3} key={size}>
-        <Avatar.Root name="Ryan Florence" src="https://bit.ly/ryan-florence">
-          <Avatar.Image />
-          <Avatar.Fallback />
-        </Avatar.Root>
+export const WithAvatarGroup = () => {
+  const recipe = useSlotRecipe("Avatar")
+  return (
+    <Stack spacing="24px">
+      <For each={recipe.variantMap.size}>
+        {(size) => (
+          <AvatarGroup size={size} key={size}>
+            <Avatar.Root>
+              <Avatar.Image src="https://cdn.myanimelist.net/r/84x124/images/characters/9/131317.webp?s=d4b03c7291407bde303bc0758047f6bd" />
+              <Avatar.Fallback name="Uchica Sasuke" />
+            </Avatar.Root>
 
-        <Avatar.Root name="Kent Dodds" src="https://bit.ly/kent-c-dodds">
-          <Avatar.Image />
-          <Avatar.Fallback />
-        </Avatar.Root>
+            <Avatar.Root>
+              <Avatar.Image src="https://cdn.myanimelist.net/r/84x124/images/characters/7/284129.webp?s=a8998bf668767de58b33740886ca571c" />
+              <Avatar.Fallback name="User B" />
+            </Avatar.Root>
 
-        <Avatar.Root name="Prosper Otemuyiwa" src="https://bit.ly/prosper-baba">
-          <Avatar.Image />
-          <Avatar.Fallback />
-        </Avatar.Root>
+            <Avatar.Root>
+              <Avatar.Image src="https://cdn.myanimelist.net/r/84x124/images/characters/9/105421.webp?s=269ff1b2bb9abe3ac1bc443d3a76e863" />
+              <Avatar.Fallback name="User C" />
+            </Avatar.Root>
 
-        <Avatar.Root name="Christian Nwamba" src="https://bit.ly/code-beast">
-          <Avatar.Image />
-          <Avatar.Fallback />
-        </Avatar.Root>
-      </AvatarGroup>
-    ))}
-  </Stack>
-)
+            <Avatar.Root>
+              <Avatar.Fallback>+3</Avatar.Fallback>
+            </Avatar.Root>
+          </AvatarGroup>
+        )}
+      </For>
+    </Stack>
+  )
+}

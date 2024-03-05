@@ -724,3 +724,11 @@ Changed to `SystemRecipeProps`
 
 - Added new `Blockquote` component
 - Docs: https://designsystem.utah.gov/library/components/textLayout/blockQuote
+
+## Avatar
+
+- Remove `max` prop in favor of userland control
+- Remove excess label part
+- Move image related props to `Avatar.Image` component
+- Move fallback icon to `Avatar.Fallback` component
+- Move `name` prop to `Avatar.Fallback` component

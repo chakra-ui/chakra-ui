@@ -109,10 +109,11 @@ export interface AlertVariantProps {
 
 // Avatar
 
-export type AvatarSlot = "label" | "badge" | "root" | "excessLabel" | "group"
+export type AvatarSlot = "root" | "image" | "fallback" | "badge"
 
 export interface AvatarVariantProps {
-  size?: "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  shape?: "square" | "rounded" | "full"
 }
 
 // Breadcrumb

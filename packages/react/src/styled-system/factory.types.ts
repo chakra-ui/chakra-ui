@@ -94,3 +94,7 @@ export interface JsxStyleProps
     | undefined
     | Omit<(SystemStyleObject | undefined)[], keyof any[]>
 }
+
+export type InferRecipeProps<T> = T extends ChakraComponent<any, infer P>
+  ? P
+  : {}

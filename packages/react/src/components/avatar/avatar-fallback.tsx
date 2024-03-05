@@ -1,37 +1,34 @@
-import { cloneElement, forwardRef } from "react"
+import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useAvatarContext, useAvatarStyles } from "./avatar-context"
+import { getInitials } from "./get-initials"
 
-export interface AvatarFallbackProps extends HTMLChakraProps<"div"> {}
+export interface AvatarFallbackProps extends HTMLChakraProps<"div"> {
+  name?: string
+}
 
-export const AvatarFallback = forwardRef<HTMLSpanElement, any>(
+export const AvatarFallback = forwardRef<HTMLSpanElement, AvatarFallbackProps>(
   function AvatarFallback(props, ref) {
-    const { icon, iconLabel, name, showFallback, getInitials } =
-      useAvatarContext()
-
     const styles = useAvatarStyles()
+    const api = useAvatarContext()
 
-    if (!showFallback) return null
+    const { name, ...restProps } = props
+    const initials = props.name ? getInitials(props.name) : null
 
-    if (name != null) {
-      return (
-        <chakra.div
-          ref={ref}
-          role="img"
-          aria-label={name}
-          {...props}
-          css={styles.label}
-        >
-          {getInitials(name)}
-        </chakra.div>
-      )
-    }
-
-    return cloneElement(icon, {
-      ref,
-      role: "img",
-      "aria-label": iconLabel,
-    })
+    return (
+      <chakra.div
+        ref={ref}
+        role="img"
+        aria-label={name}
+        hidden={api.isLoaded}
+        {...restProps}
+        className={cx("chakra-avatar__fallback", props.className)}
+        css={styles.fallback}
+      >
+        {props.children || initials}
+      </chakra.div>
+    )
   },
 )
 

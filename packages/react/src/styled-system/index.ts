@@ -1,12 +1,16 @@
 export * from "./config"
 export type {
   ConditionalValue,
+  GlobalStyleObject,
   JsxStyleProps,
   SystemStyleObject,
-  GlobalStyleObject,
 } from "./css.types"
 export { chakra, forwardRef } from "./factory"
-export type { HTMLChakraProps, ChakraComponent } from "./factory.types"
+export type {
+  ChakraComponent,
+  HTMLChakraProps,
+  InferRecipeProps,
+} from "./factory.types"
 export type { SystemRecipeProps } from "./generated/recipes.gen"
 export { mergeProps } from "./merge-props"
 export { mergeRefs } from "./merge-refs"

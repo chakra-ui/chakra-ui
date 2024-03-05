@@ -1,17 +1,15 @@
+import { cx } from "@chakra-ui/utils"
 import { ChakraComponent, chakra } from "../../styled-system"
 
-/**
- * Fallback avatar react component.
- * This should be a generic svg used to represent an avatar
- */
 export const AvatarIcon: ChakraComponent<"svg"> = (props) => (
   <chakra.svg
+    role="img"
     viewBox="0 0 128 128"
     color="#fff"
     width="100%"
     height="100%"
-    className="chakra-avatar__svg"
     {...props}
+    className={cx("chakra-avatar__icon", props.className)}
   >
     <path
       fill="currentColor"
