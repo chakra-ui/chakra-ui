@@ -364,6 +364,11 @@ export const defaultBaseConfig = defineConfig({
     },
     // effects
     boxShadow: { values: "shadows", shorthand: ["shadow"] },
+    boxShadowColor: {
+      values: "colors",
+      transform: createColorMixTransform("--shadow-color"),
+      shorthand: ["shadowColor"],
+    },
     mixBlendMode: { shorthand: ["blendMode"] },
     backgroundBlendMode: { shorthand: ["bgBlendMode"] },
     opacity: { values: "opacity" },

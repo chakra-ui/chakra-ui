@@ -1,5 +1,10 @@
 import { mapResponsive } from "@chakra-ui/utils"
-import { ConditionalValue, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import {
+  ConditionalValue,
+  SystemContext,
+  useSystemContext,
+} from "../../styled-system"
 import { Grid, GridProps } from "./grid"
 
 interface SimpleGridOptions {
@@ -11,21 +16,11 @@ interface SimpleGridOptions {
    * The number of columns
    */
   columns?: ConditionalValue<number>
-  /**
-   * The gap between the grid items
-   */
-  spacing?: GridProps["gridGap"]
-  /**
-   * The column gap between the grid items
-   */
-  spacingX?: GridProps["gridGap"]
-  /**
-   * The row gap between the grid items
-   */
-  spacingY?: GridProps["gridGap"]
 }
 
-export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
+export interface SimpleGridProps
+  extends Omit<GridProps, "columns">,
+    SimpleGridOptions {}
 
 /**
  * SimpleGrid
@@ -37,26 +32,16 @@ export interface SimpleGridProps extends GridProps, SimpleGridOptions {}
  *
  * @see Docs https://chakra-ui.com/simplegrid
  */
-export const SimpleGrid = forwardRef<SimpleGridProps, "div">(
+export const SimpleGrid = forwardRef<HTMLDivElement, SimpleGridProps>(
   function SimpleGrid(props, ref) {
-    const { columns, spacingX, spacingY, spacing, minChildWidth, ...rest } =
-      props
+    const { columns, minChildWidth, ...rest } = props
 
-    const theme = useTheme()
+    const sys = useSystemContext()
     const templateColumns = minChildWidth
-      ? widthToColumns(minChildWidth, theme)
+      ? widthToColumns(minChildWidth, sys)
       : countToColumns(columns)
 
-    return (
-      <Grid
-        ref={ref}
-        gap={spacing}
-        columnGap={spacingX}
-        rowGap={spacingY}
-        templateColumns={templateColumns}
-        {...rest}
-      />
-    )
+    return <Grid ref={ref} templateColumns={templateColumns} {...rest} />
   },
 )
 
@@ -66,9 +51,9 @@ function toPx(n: string | number) {
   return typeof n === "number" ? `${n}px` : n
 }
 
-function widthToColumns(width: any, theme: Record<string, any>) {
+function widthToColumns(width: any, sys: SystemContext) {
   return mapResponsive(width, (value) => {
-    const _value = getToken("sizes", value, toPx(value))(theme)
+    const _value = sys.tokens.getVar(`sizes.${value}`, toPx(value))
     return value === null ? null : `repeat(auto-fit, minmax(${_value}, 1fr))`
   })
 }

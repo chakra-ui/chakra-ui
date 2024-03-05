@@ -27,12 +27,7 @@ export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
       ref={ref}
       {...localProps}
       className={cx("chakra-badge", localProps.className)}
-      css={{
-        display: "inline-block",
-        whiteSpace: "nowrap",
-        verticalAlign: "middle",
-        ...styles,
-      }}
+      css={[styles, localProps.css]}
     />
   )
 })

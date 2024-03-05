@@ -76,6 +76,7 @@ interface PropertyValueTypes {
   stroke: Tokens["colors"]
   accentColor: Tokens["colors"]
   boxShadow: Tokens["shadows"]
+  boxShadowColor: Tokens["colors"]
   opacity: Tokens["opacity"]
   backdropBlur: Tokens["blurs"]
   flexBasis: Tokens["sizes"]
@@ -243,6 +244,7 @@ export interface PropertyTypes extends PropertyValueTypes {
   borderStartWidth: Shorthand<"borderInlineStartWidth">
   borderEndWidth: Shorthand<"borderInlineEndWidth">
   shadow: Shorthand<"boxShadow">
+  shadowColor: Shorthand<"boxShadowColor">
   blendMode: Shorthand<"mixBlendMode">
   bgBlendMode: Shorthand<"backgroundBlendMode">
   flexDir: Shorthand<"flexDirection">

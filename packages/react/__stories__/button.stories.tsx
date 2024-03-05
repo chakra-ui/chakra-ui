@@ -20,7 +20,9 @@ import {
   Stack,
 } from "../src"
 import { Button } from "../src/components/button"
-import { chakra, useRecipe } from "../src/styled-system"
+import { useRecipe } from "../src/styled-system"
+import { colorPalettes } from "./shared/color-palettes"
+import { DocHeader } from "./shared/doc-header"
 
 export default {
   title: "Form / Button",
@@ -38,45 +40,6 @@ export default {
     children: "Button",
   },
 } satisfies Meta
-
-const colorPalettes = [
-  "gray",
-  "red",
-  "green",
-  "blue",
-  "teal",
-  "pink",
-  "purple",
-  "cyan",
-  "orange",
-  "yellow",
-] as const
-
-const DocHeader = chakra("div", {
-  base: {
-    display: "flex",
-    alignItems: "center",
-    gap: "3",
-    "& > *": {
-      flex: "1",
-      fontSize: "sm",
-      ps: "4",
-    },
-  },
-  variants: {
-    align: {
-      center: {
-        "& > *": { textAlign: "center" },
-      },
-      start: {
-        "& > *": { textAlign: "start" },
-      },
-    },
-  },
-  defaultVariants: {
-    align: "center",
-  },
-})
 
 export const Variants = () => {
   return (

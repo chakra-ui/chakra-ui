@@ -539,6 +539,7 @@ export interface SystemProperties {
   borderStartWidth?: PropertyValue<"borderStartWidth">
   borderEndWidth?: PropertyValue<"borderEndWidth">
   shadow?: PropertyValue<"shadow">
+  shadowColor?: PropertyValue<"shadowColor">
   blendMode?: PropertyValue<"blendMode">
   bgBlendMode?: PropertyValue<"bgBlendMode">
   flexDir?: PropertyValue<"flexDir">
@@ -595,6 +596,7 @@ export interface SystemProperties {
   borderBottomRadius?: PropertyValue<"borderBottomRadius">
   borderLeftRadius?: PropertyValue<"borderLeftRadius">
   borderRightRadius?: PropertyValue<"borderRightRadius">
+  boxShadowColor?: PropertyValue<"boxShadowColor">
   blur?: PropertyValue<"blur">
   brightness?: PropertyValue<"brightness">
   contrast?: PropertyValue<"contrast">

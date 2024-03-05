@@ -2,34 +2,53 @@ import { defineRecipe } from "../../styled-system"
 
 export const badgeRecipe = defineRecipe({
   base: {
-    px: 1,
-    textTransform: "uppercase",
-    fontSize: "xs",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "0.5",
+    fontWeight: "medium",
+    fontVariationSettings: "'tnum'",
+    fontVariantNumeric: "tabular-nums",
     borderRadius: "sm",
-    fontWeight: "bold",
+    colorPalette: "gray",
+    whiteSpace: "nowrap",
+    verticalAlign: "middle",
   },
   variants: {
-    colorScheme: {
-      gray: { colorPalette: "gray" },
-    },
     variant: {
       solid: {
-        bg: { base: "colorPalette.500", _dark: "colorPalette.500/60" },
-        color: { base: "white", _dark: "whiteAlpha.800" },
+        bg: "colorPalette.600",
+        color: "white",
       },
       subtle: {
         bg: { base: "colorPalette.100", _dark: "colorPalette.200/16" },
         color: { base: "colorPalette.800", _dark: "colorPalette.200" },
       },
       outline: {
-        "--shadow": "colors.colorPalette.500",
-        color: { base: "colorPalette.500", _dark: "colorPalette.200/80" },
-        shadow: { base: "inset 0 0 0px 1px var(--shadow)" },
+        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
+        color: { base: "colorPalette.800", _dark: "colorPalette.200/80" },
+        shadow: {
+          base: "inset 0 0 0px 1px var(--shadow-color)",
+        },
+      },
+    },
+    size: {
+      sm: {
+        fontSize: "xs",
+        px: "1",
+      },
+      md: {
+        fontSize: "sm",
+        px: "2",
+      },
+      lg: {
+        fontSize: "sm",
+        px: "2",
+        py: "1",
       },
     },
   },
   defaultVariants: {
     variant: "subtle",
-    colorScheme: "gray",
+    size: "sm",
   },
 })

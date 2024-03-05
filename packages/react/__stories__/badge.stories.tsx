@@ -1,41 +1,108 @@
-import { Badge, For, HStack } from "../src"
+import { HiAtSymbol, HiStar } from "react-icons/hi"
+import { Badge, For, Group, Span, Stack, useRecipe } from "../src"
+import { colorPalettes } from "./shared/color-palettes"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Data Display / Badge",
 }
 
-const colorSchemes = ["gray", "green", "red", "orange", "purple", "teal"]
+export const Variants = () => {
+  const recipe = useRecipe("Badge")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={colorPalettes}>
+          {(c) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.variant}>
+                {(v) => (
+                  <td>
+                    <Badge variant={v} colorPalette={c}>
+                      New
+                    </Badge>
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
 
-export const Basic = () => <Badge>Success</Badge>
+export const Sizes = () => {
+  const recipe = useRecipe("Badge")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={colorPalettes}>
+          {(c) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.size}>
+                {(v) => (
+                  <td>
+                    <Badge size={v} colorPalette={c} variant="solid">
+                      New
+                    </Badge>
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
 
-export const WithSolidVariant = () => (
-  <HStack>
-    <For each={colorSchemes}>
-      {(colorScheme) => (
-        <Badge colorScheme={colorScheme} variant="solid">
-          {colorScheme}
-        </Badge>
-      )}
-    </For>
-  </HStack>
-)
+export const WithIcon = () => {
+  return (
+    <Stack align="flex-start">
+      <Badge variant="solid" colorPalette="purple" size="md">
+        <HiStar />
+        New
+      </Badge>
+      <Badge variant="solid" colorPalette="green" size="md">
+        New
+        <HiAtSymbol />
+      </Badge>
+    </Stack>
+  )
+}
 
-export const WithSubtleVariant = () => (
-  <HStack>
-    <For each={colorSchemes}>
-      {(colorScheme) => <Badge colorScheme={colorScheme}>{colorScheme}</Badge>}
-    </For>
-  </HStack>
-)
-
-export const WithOutlineVariant = () => (
-  <HStack>
-    <For each={colorSchemes}>
-      {(colorScheme) => (
-        <Badge colorScheme={colorScheme} variant="outline">
-          {colorScheme}
-        </Badge>
-      )}
-    </For>
-  </HStack>
-)
+export const WithGroup = () => {
+  return (
+    <Group attached>
+      <Badge variant="solid" colorPalette="purple">
+        Commit status
+      </Badge>
+      <Badge variant="solid" colorPalette="green">
+        90+
+      </Badge>
+    </Group>
+  )
+}

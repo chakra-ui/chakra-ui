@@ -1,8 +1,8 @@
 import type { SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
 
 export interface BadgeVariantProps {
-  colorScheme?: "gray"
   variant?: "solid" | "subtle" | "outline"
+  size?: "sm" | "md" | "lg"
 }
 
 export interface ButtonVariantProps {
@@ -12,8 +12,8 @@ export interface ButtonVariantProps {
 }
 
 export interface CodeVariantProps {
-  colorScheme?: "gray"
   variant?: "solid" | "subtle" | "outline"
+  size?: "sm" | "md" | "lg"
 }
 
 export interface ContainerVariantProps {}
