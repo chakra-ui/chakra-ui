@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -30,7 +30,7 @@ interface InputOptions {
 
 export interface NumberInputRootProps
   extends UseNumberInputProps,
-    SystemRecipeProps<"NumberInput">,
+    SlotRecipeProps<"NumberInput">,
     InputOptions,
     Omit<HTMLChakraProps<"div">, keyof UseNumberInputProps> {}
 

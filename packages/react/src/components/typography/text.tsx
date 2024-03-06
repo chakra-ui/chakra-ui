@@ -1,7 +1,7 @@
 import { compact, cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   SystemStyleObject,
   chakra,
   forwardRef,
@@ -28,7 +28,7 @@ interface TextOptions {
 
 export interface TextProps
   extends HTMLChakraProps<"p", TextOptions>,
-    SystemRecipeProps<"Text"> {}
+    RecipeProps<"Text"> {}
 
 /**
  * Used to render texts or paragraphs.
@@ -36,7 +36,7 @@ export interface TextProps
  * @see Docs https://chakra-ui.com/text
  */
 export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
-  const recipe = useRecipe("Text")
+  const recipe = useRecipe("Text", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
 
   const aliasedProps = compact({

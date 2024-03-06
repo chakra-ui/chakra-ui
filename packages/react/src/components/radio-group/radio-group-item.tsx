@@ -1,7 +1,7 @@
 import { callAll } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -16,7 +16,7 @@ import { UseRadioProps, useRadio } from "./use-radio"
 
 export interface RadioGroupItemProps
   extends HTMLChakraProps<"label", UseRadioProps>,
-    SystemRecipeProps<"Radio"> {
+    SlotRecipeProps<"Radio"> {
   /**
    * Additional props to be forwarded to the `input` element
    */

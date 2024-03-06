@@ -2,7 +2,7 @@ import { cx } from "@chakra-ui/utils"
 import { Children } from "react"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -16,7 +16,7 @@ import {
 
 export interface StepperProps
   extends HTMLChakraProps<"div">,
-    SystemRecipeProps<"Stepper"> {
+    SlotRecipeProps<"Stepper"> {
   /**
    * The active step index
    */
@@ -37,14 +37,14 @@ export interface StepperProps
 
 export const Stepper = forwardRef<StepperProps, "div">(
   function Stepper(props, ref) {
-    const recipe = useSlotRecipe("Stepper")
-
+    const recipe = useSlotRecipe("Stepper", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 
     const {
       children,
       index,
+      //@ts-ignore
       orientation = "horizontal",
       showLastSeparator = false,
       ...restProps

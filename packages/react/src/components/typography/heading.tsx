@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -9,7 +9,7 @@ import {
 
 export interface HeadingProps
   extends HTMLChakraProps<"h2">,
-    SystemRecipeProps<"Heading"> {}
+    RecipeProps<"Heading"> {}
 
 /**
  * `Heading` is used to render semantic HTML heading elements.
@@ -20,7 +20,7 @@ export interface HeadingProps
  */
 export const Heading = forwardRef<HeadingProps, "h2">(
   function Heading(props, ref) {
-    const recipe = useRecipe("Heading")
+    const recipe = useRecipe("Heading", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
       <chakra.h2

@@ -2,7 +2,7 @@ import { useMergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -13,7 +13,7 @@ import { UseTabsProps, useTabs } from "./use-tabs"
 
 export interface TabsRootProps
   extends HTMLChakraProps<"div", UseTabsProps>,
-    SystemRecipeProps<"Tabs"> {
+    SlotRecipeProps<"Tabs"> {
   /**
    * If `true`, the tabs will be unstyled.
    */
@@ -31,8 +31,8 @@ export interface TabsRootProps
 export const TabsRoot = forwardRef<TabsRootProps, "div">(
   function TabsRoot(props, ref) {
     const { unstyled, ...restProps } = props
-    const recipe = useSlotRecipe("Tabs")
 
+    const recipe = useSlotRecipe("Tabs", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(restProps)
     const styles = recipe(variantProps)
 

@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   SystemStyleObject,
   chakra,
   forwardRef,
@@ -16,7 +16,7 @@ export interface TableOptions {
 export interface TableRootProps
   extends HTMLChakraProps<"table">,
     TableOptions,
-    SystemRecipeProps<"Table"> {}
+    SlotRecipeProps<"Table"> {}
 
 /**
  * The `Table` component is used to organize and display data efficiently. It renders a `<table>` element by default.
@@ -26,7 +26,7 @@ export interface TableRootProps
  */
 export const TableRoot = forwardRef<TableRootProps, "table">(
   function TableRoot(props, ref) {
-    const recipe = useSlotRecipe("Table")
+    const recipe = useSlotRecipe("Table", props.recipe)
 
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)

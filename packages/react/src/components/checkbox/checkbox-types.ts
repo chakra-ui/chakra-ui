@@ -1,4 +1,4 @@
-import { SystemRecipeProps, SystemStyleObject } from "../../styled-system"
+import { SlotRecipeProps, SystemStyleObject } from "../../styled-system"
 import { UseCheckboxReturn } from "./use-checkbox"
 import { UseCheckboxGroupReturn } from "./use-checkbox-group"
 
@@ -146,7 +146,7 @@ export interface CheckboxOptions {
 
 export interface CheckboxGroupContext
   extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "isDisabled">,
-    Omit<SystemRecipeProps<"Checkbox">, "orientation"> {}
+    Omit<SlotRecipeProps<"Checkbox">, "orientation"> {}
 
 export interface CheckboxState {
   isInvalid?: boolean

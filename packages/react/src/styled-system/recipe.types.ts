@@ -184,7 +184,7 @@ export interface SystemSlotRecipeFn<S extends string, T> {
     [key in keyof T]: Array<T[key]>
   }
   variantKeys: Array<keyof T>
-  splitVariantProps<P extends T>(
+  splitVariantProps<P extends T & { recipe?: any }>(
     props: P,
-  ): [T, Pretty<DistributiveOmit<P, keyof T>>]
+  ): [T, Pretty<DistributiveOmit<P, keyof T | "recipe">>]
 }

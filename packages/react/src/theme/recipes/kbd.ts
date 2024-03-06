@@ -9,6 +9,7 @@ export const kbdRecipe = defineRecipe({
     fontSize: "0.8em",
     fontWeight: "bold",
     lineHeight: "normal",
+    fontFamily: "mono",
     px: "0.4em",
     whiteSpace: "nowrap",
   },

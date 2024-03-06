@@ -3,7 +3,7 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -17,7 +17,7 @@ import { UseAccordionProps, useAccordion } from "./use-accordion"
 export interface AccordionRootProps
   extends UseAccordionProps,
     HTMLChakraProps<"div", UseAccordionProps>,
-    SystemRecipeProps<"Accordion"> {
+    SlotRecipeProps<"Accordion"> {
   /**
    * If `true`, height animation and transitions will be disabled.
    *
@@ -37,7 +37,7 @@ export interface AccordionRootProps
 export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(
   function AccordionRoot(props, ref) {
     const { reduceMotion, ...restProps } = props
-    const recipe = useSlotRecipe("Accordion")
+    const recipe = useSlotRecipe("Accordion", props.recipe)
 
     const [variantProps, ownProps] = recipe.splitVariantProps(restProps)
     const styles = recipe(variantProps)

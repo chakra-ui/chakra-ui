@@ -1,11 +1,11 @@
 import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
-import { SystemRecipeProps, useSlotRecipe, useTheme } from "../../styled-system"
+import { SlotRecipeProps, useSlotRecipe, useTheme } from "../../styled-system"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { UsePopoverProps, usePopover } from "./use-popover"
 
 export interface PopoverRootProps
   extends UsePopoverProps,
-    SystemRecipeProps<"Popover"> {
+    SlotRecipeProps<"Popover"> {
   /**
    * The content of the popover. It is usually the `PopoverTrigger`,
    * and `PopoverContent`

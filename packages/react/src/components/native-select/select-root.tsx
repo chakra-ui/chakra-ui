@@ -1,5 +1,5 @@
 import {
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -8,25 +8,10 @@ import { FieldOptions, splitFieldProps, useField } from "../field"
 import { SelectContextProvider, SelectStylesProvider } from "./select-context"
 import { NativeSelectFieldProps } from "./select-field"
 
-interface NativeSelectOptions extends FieldOptions {
-  /**
-   * The border color when the select is focused. Use color keys in `theme.colors`
-   * @example
-   * focusBorderColor = "blue.500"
-   */
-  focusBorderColor?: string
-  /**
-   * The border color when the select is invalid. Use color keys in `theme.colors`
-   * @example
-   * errorBorderColor = "red.500"
-   */
-  errorBorderColor?: string
-}
-
 export interface NativeSelectRootProps
   extends NativeSelectFieldProps,
-    SystemRecipeProps<"Select">,
-    NativeSelectOptions {}
+    SlotRecipeProps<"Select">,
+    FieldOptions {}
 
 /**
  * React component used to select one item from a list of options.
@@ -36,7 +21,6 @@ export interface NativeSelectRootProps
 export const NativeSelectRoot = forwardRef<NativeSelectRootProps, "select">(
   function NativeSelectRoot(props, ref) {
     const recipe = useSlotRecipe("Select")
-
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

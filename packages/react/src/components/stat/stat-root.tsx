@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -10,7 +10,7 @@ import { StatStylesProvider } from "./stat-context"
 
 export interface StatRootProps
   extends HTMLChakraProps<"div">,
-    SystemRecipeProps<"Stat"> {}
+    SlotRecipeProps<"Stat"> {}
 
 /**
  * The `Stat` component is used to display some statistics.
@@ -19,7 +19,7 @@ export interface StatRootProps
  */
 export const StatRoot = forwardRef<StatRootProps, "div">(
   function StatRoot(props, ref) {
-    const recipe = useSlotRecipe("Stat")
+    const recipe = useSlotRecipe("Stat", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

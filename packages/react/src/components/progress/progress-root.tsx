@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -18,7 +18,7 @@ export interface ProgressTrackProps extends HTMLChakraProps<"div"> {}
 
 export interface ProgressRootProps
   extends ProgressOptions,
-    SystemRecipeProps<"Progress">,
+    SlotRecipeProps<"Progress">,
     HTMLChakraProps<"div"> {}
 
 /**

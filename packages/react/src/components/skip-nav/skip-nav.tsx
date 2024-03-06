@@ -1,6 +1,6 @@
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   defineStyle,
   forwardRef,
@@ -9,7 +9,7 @@ import {
 
 export interface SkipNavLinkProps
   extends HTMLChakraProps<"a">,
-    SystemRecipeProps<"SkipNavLink"> {}
+    RecipeProps<"SkipNavLink"> {}
 
 const fallbackId = "chakra-skip-nav"
 
@@ -38,7 +38,7 @@ const baseStyle = defineStyle({
  */
 export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
   function SkipNavLink(props, ref) {
-    const recipe = useRecipe("SkipLink")
+    const recipe = useRecipe("SkipLink", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

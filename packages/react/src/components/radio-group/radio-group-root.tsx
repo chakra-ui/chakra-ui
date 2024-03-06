@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -23,7 +23,7 @@ type Omitted =
 export interface RadioGroupRootProps
   extends UseRadioGroupProps,
     Omit<HTMLChakraProps<"div">, Omitted>,
-    Omit<SystemRecipeProps<"Radio">, "orientation"> {}
+    Omit<SlotRecipeProps<"Radio">, "orientation"> {}
 
 /**
  * Used for multiple radios which are bound in one group,

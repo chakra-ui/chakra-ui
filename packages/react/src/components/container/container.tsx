@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -9,7 +9,7 @@ import {
 
 export interface ContainerProps
   extends HTMLChakraProps<"div">,
-    SystemRecipeProps<"Container"> {
+    RecipeProps<"Container"> {
   /**
    * If `true`, container will center its children
    * regardless of their width.
@@ -31,7 +31,7 @@ export interface ContainerProps
  */
 export const Container = forwardRef<ContainerProps, "div">(
   function Container(props, ref) {
-    const recipe = useRecipe("Container")
+    const recipe = useRecipe("Container", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

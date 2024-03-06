@@ -2,9 +2,9 @@ import { createContext } from "@chakra-ui/utils"
 import { Global } from "@emotion/react"
 import { useMemo } from "react"
 import {
-  SystemRecipeProps,
-  SystemRecipes,
-  SystemSlotRecipes,
+  ConfigRecipes,
+  ConfigSlotRecipes,
+  RecipeProps,
 } from "./generated/recipes.gen"
 import {
   RecipeDefinition,
@@ -38,12 +38,12 @@ function SystemProvider(props: SystemProviderProps) {
   )
 }
 
-type RecipeKey = keyof SystemRecipes | (string & {})
+type RecipeKey = keyof ConfigRecipes | (string & {})
 
 export function useRecipe<K extends RecipeKey>(
   key: K,
   fallback?: RecipeDefinition,
-): K extends keyof SystemRecipes ? SystemRecipes[K] : SystemRecipeFn<{}> {
+): K extends keyof ConfigRecipes ? ConfigRecipes[K] : SystemRecipeFn<{}> {
   const sys = useSystemContext()
   return useMemo((): any => {
     const recipe = sys.getRecipe(key as string, fallback)
@@ -51,13 +51,13 @@ export function useRecipe<K extends RecipeKey>(
   }, [key, fallback, sys])
 }
 
-type SlotRecipeKey = keyof SystemSlotRecipes | (string & {})
+type SlotRecipeKey = keyof ConfigSlotRecipes | (string & {})
 
 export function useSlotRecipe<K extends SlotRecipeKey>(
   key: K,
   fallback?: SlotRecipeConfig,
-): K extends keyof SystemSlotRecipes
-  ? SystemSlotRecipes[K]
+): K extends keyof ConfigSlotRecipes
+  ? ConfigSlotRecipes[K]
   : SystemSlotRecipeFn<string, {}> {
   const sys = useSystemContext()
   return useMemo((): any => {
@@ -73,7 +73,7 @@ export function useToken(category: string, token: string | string[]): string[] {
 }
 
 const [ParentRecipePropsProvider, useParentRecipeProps] = createContext<
-  SystemRecipeProps<string>
+  RecipeProps<string>
 >({
   name: "ParentRecipeProps",
   strict: false,
@@ -82,7 +82,7 @@ const [ParentRecipePropsProvider, useParentRecipeProps] = createContext<
 
 export function RecipePropsProvider<
   T extends RecipeKey | SlotRecipeKey,
->(props: { children: React.ReactNode; value: SystemRecipeProps<T> }) {
+>(props: { children: React.ReactNode; value: RecipeProps<T> }) {
   return (
     <ParentRecipePropsProvider value={props.value}>
       {props.children}

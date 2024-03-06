@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -16,7 +16,7 @@ import { splitSliderProps } from "./slider-props"
 import { UseSliderProps, useSlider } from "./use-slider"
 
 export interface SliderProps
-  extends SystemRecipeProps<"Slider">,
+  extends SlotRecipeProps<"Slider">,
     HTMLChakraProps<"div", UseSliderProps> {}
 
 /**

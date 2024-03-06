@@ -1,9 +1,9 @@
 import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
-import { SystemRecipeProps, useSlotRecipe } from "../../styled-system"
+import { SlotRecipeProps, useSlotRecipe } from "../../styled-system"
 import { MenuProvider, MenuStylesProvider } from "./menu-context"
 import { UseMenuProps, useMenu } from "./use-menu"
 
-export interface MenuRootProps extends UseMenuProps, SystemRecipeProps<"Menu"> {
+export interface MenuRootProps extends UseMenuProps, SlotRecipeProps<"Menu"> {
   children: MaybeRenderProp<{
     isOpen: boolean
     onClose: () => void

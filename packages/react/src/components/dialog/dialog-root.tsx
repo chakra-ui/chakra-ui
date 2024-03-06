@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion"
-import { SystemRecipeProps, useSlotRecipe } from "../../styled-system"
+import { SlotRecipeProps, useSlotRecipe } from "../../styled-system"
 import { Portal, PortalProps } from "../portal"
 import { DialogContextProvider, DialogStylesProvider } from "./dialog-context"
 import { DialogMotionPreset, DialogOptions } from "./dialog-types"
@@ -8,7 +8,7 @@ import { UseDialogProps, useDialog } from "./use-dialog"
 export interface DialogRootProps
   extends UseDialogProps,
     DialogOptions,
-    SystemRecipeProps<"Dialog"> {
+    SlotRecipeProps<"Dialog"> {
   /**
    * The children of the dialog component
    */
@@ -67,7 +67,7 @@ export const DialogRoot: React.FC<DialogRootProps> = (props) => {
     onCloseComplete,
   } = modalProps
 
-  const recipe = useSlotRecipe("Dialog")
+  const recipe = useSlotRecipe("Dialog", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(modalProps)
   const styles = recipe(variantProps)
 

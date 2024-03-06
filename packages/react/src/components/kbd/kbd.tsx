@@ -1,15 +1,13 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
 } from "../../styled-system"
 
-export interface KbdProps
-  extends HTMLChakraProps<"kbd">,
-    SystemRecipeProps<"Kbd"> {}
+export interface KbdProps extends HTMLChakraProps<"kbd">, RecipeProps<"Kbd"> {}
 
 /**
  * Semantic component to render a keyboard shortcut
@@ -24,7 +22,7 @@ export interface KbdProps
  * @see Docs https://chakra-ui.com/kbd
  */
 export const Kbd = forwardRef<KbdProps, "kbd">(function Kbd(props, ref) {
-  const recipe = useRecipe("Kbd")
+  const recipe = useRecipe("Kbd", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
 
@@ -33,10 +31,7 @@ export const Kbd = forwardRef<KbdProps, "kbd">(function Kbd(props, ref) {
       ref={ref}
       {...localProps}
       className={cx("chakra-kbd", localProps.className)}
-      css={{
-        fontFamily: "mono",
-        ...styles,
-      }}
+      css={[styles, props.css]}
     />
   )
 })

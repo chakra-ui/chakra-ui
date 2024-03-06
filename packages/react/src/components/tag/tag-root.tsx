@@ -1,6 +1,6 @@
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -9,7 +9,7 @@ import { TagStylesProvider } from "./tag-context"
 
 export interface TagRootProps
   extends HTMLChakraProps<"span">,
-    SystemRecipeProps<"Tag"> {}
+    SlotRecipeProps<"Tag"> {}
 
 /**
  * The tag component is used to label or categorize UI elements.
@@ -18,8 +18,7 @@ export interface TagRootProps
  */
 export const TagRoot = forwardRef<TagRootProps, "span">(
   function TagRoot(props, ref) {
-    const recipe = useSlotRecipe("Tag")
-
+    const recipe = useSlotRecipe("Tag", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

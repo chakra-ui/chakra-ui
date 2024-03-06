@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -16,7 +16,7 @@ import { UseRangeSliderProps, useRangeSlider } from "./use-range-slider"
 
 export interface RangeSliderProps
   extends UseRangeSliderProps,
-    SystemRecipeProps<"Slider">,
+    SlotRecipeProps<"Slider">,
     Omit<HTMLChakraProps<"div">, keyof UseRangeSliderProps> {}
 
 /**

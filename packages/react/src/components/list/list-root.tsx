@@ -1,6 +1,6 @@
 import type { HTMLChakraProps } from "../../styled-system"
 import {
-  SystemRecipeProps,
+  SlotRecipeProps,
   SystemStyleObject,
   chakra,
   forwardRef,
@@ -23,7 +23,7 @@ interface ListOptions {
 
 export interface ListRootProps
   extends HTMLChakraProps<"ul">,
-    SystemRecipeProps<"List">,
+    SlotRecipeProps<"List">,
     ListOptions {}
 
 /**
@@ -33,7 +33,7 @@ export interface ListRootProps
  */
 export const ListRoot = forwardRef<ListRootProps, "ul">(
   function ListRoot(props, ref) {
-    const recipe = useSlotRecipe("List")
+    const recipe = useSlotRecipe("List", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
 
     const styles = recipe(variantProps)

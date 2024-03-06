@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -13,7 +13,7 @@ import { useFieldProvider } from "./use-field-provider"
 
 export interface FieldRootProps
   extends HTMLChakraProps<"div">,
-    SystemRecipeProps<"FormControl">,
+    SlotRecipeProps<"Field">,
     FieldContext {}
 
 /**
@@ -27,7 +27,7 @@ export interface FieldRootProps
  */
 export const FieldRoot = forwardRef<FieldRootProps, "div">(
   function FieldRoot(props, ref) {
-    const recipe = useSlotRecipe("Field")
+    const recipe = useSlotRecipe("Field", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

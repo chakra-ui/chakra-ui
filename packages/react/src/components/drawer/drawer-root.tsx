@@ -1,17 +1,17 @@
-import { SystemRecipeProps, useSlotRecipe } from "../../styled-system"
+import { SlotRecipeProps, useSlotRecipe } from "../../styled-system"
 import { DialogRoot, DialogRootProps } from "../dialog/dialog-root"
 import { DrawerContextProvider, DrawerOptions } from "./drawer-context"
 import { getDrawerPlacement } from "./get-placement"
 
 export interface DrawerRootProps
   extends DrawerOptions,
-    SystemRecipeProps<"Drawer">,
+    SlotRecipeProps<"Drawer">,
     Omit<
       DialogRootProps,
       | "scrollBehavior"
       | "motionPreset"
       | "isCentered"
-      | keyof SystemRecipeProps<"Drawer">
+      | keyof SlotRecipeProps<"Drawer">
     > {}
 
 /**

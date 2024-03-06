@@ -1,7 +1,7 @@
 import { callAll, cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -25,7 +25,7 @@ type BaseInputProps = Pick<
 export interface CheckboxRootProps
   extends CheckboxControlProps,
     BaseInputProps,
-    SystemRecipeProps<"Checkbox">,
+    SlotRecipeProps<"Checkbox">,
     UseCheckboxProps,
     CheckboxOptions {}
 
@@ -35,7 +35,7 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
 
     const mergedProps = { ...group, ...props } as CheckboxRootProps
 
-    const recipe = useSlotRecipe("Checkbox")
+    const recipe = useSlotRecipe("Checkbox", mergedProps.recipe)
     const [variantProps, ownProps] = recipe.splitVariantProps(mergedProps)
     const styles = recipe(variantProps)
 
@@ -43,6 +43,7 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
       spacing = "0.5rem",
       className,
       children,
+      // @ts-ignore
       isChecked: isCheckedProp,
       isDisabled = group?.isDisabled,
       onChange: onChangeProp,

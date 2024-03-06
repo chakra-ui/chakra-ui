@@ -3,7 +3,7 @@ import { cx, getValidChildren } from "@chakra-ui/utils"
 import { cloneElement } from "react"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   SystemStyleObject,
   chakra,
   forwardRef,
@@ -30,7 +30,7 @@ interface InputOptions {
 
 export interface PinInputRootProps
   extends HTMLChakraProps<"div", UsePinInputProps>,
-    SystemRecipeProps<"PinInput">,
+    RecipeProps<"PinInput">,
     InputOptions {
   /**
    * Spacing between each of the input fields
@@ -47,8 +47,7 @@ export interface PinInputRootProps
  */
 export const PinInputRoot = forwardRef<PinInputRootProps, "div">(
   function PinInput(props, ref) {
-    const recipe = useRecipe("PinInput")
-
+    const recipe = useRecipe("PinInput", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

@@ -2,7 +2,7 @@ import { cx, dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   useRecipe,
 } from "../../styled-system"
@@ -11,7 +11,7 @@ import { ButtonOptions } from "./button-types"
 export interface ButtonProps
   extends HTMLChakraProps<"button">,
     ButtonOptions,
-    SystemRecipeProps<"Button"> {
+    RecipeProps<"Button"> {
   unstyled?: boolean
 }
 
@@ -25,7 +25,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(passedProps, ref) {
     const { unstyled, ...props } = passedProps
 
-    const recipe = useRecipe("Button")
+    const recipe = useRecipe("Button", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
 
     const styles = recipe({

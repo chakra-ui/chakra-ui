@@ -3,7 +3,7 @@ import { cx, dataAttr } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -71,7 +71,7 @@ export type ISkeleton = SkeletonOptions
 
 export interface SkeletonProps
   extends HTMLChakraProps<"div", SkeletonOptions>,
-    SystemRecipeProps<"Skeleton"> {}
+    RecipeProps<"Skeleton"> {}
 
 const fade = keyframes({
   from: { opacity: 0 },
@@ -103,7 +103,7 @@ export const Skeleton = forwardRef<SkeletonProps, "div">(
       speed: typeof props.speed === "number" ? props.speed : 0.8,
     }
 
-    const recipe = useRecipe("Skeleton")
+    const recipe = useRecipe("Skeleton", skeletonProps.recipe)
 
     const [variantProps, localProps] = recipe.splitVariantProps(skeletonProps)
     const styles = recipe(variantProps)

@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   defineStyle,
   forwardRef,
@@ -46,7 +46,7 @@ interface SpinnerOptions {
 
 export interface SpinnerProps
   extends HTMLChakraProps<"div", SpinnerOptions>,
-    SystemRecipeProps<"Spinner"> {}
+    RecipeProps<"Spinner"> {}
 
 /**
  * Spinner is used to indicate the loading state of a page or a component,
@@ -56,7 +56,7 @@ export interface SpinnerProps
  */
 export const Spinner = forwardRef<SpinnerProps, "div">(
   function Spinner(props, ref) {
-    const recipe = useRecipe("Spinner")
+    const recipe = useRecipe("Spinner", props.recipe)
 
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)

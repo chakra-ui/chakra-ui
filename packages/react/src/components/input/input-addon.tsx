@@ -1,6 +1,6 @@
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -8,11 +8,11 @@ import {
 
 export interface InputAddonProps
   extends HTMLChakraProps<"div">,
-    SystemRecipeProps<"InputAddon"> {}
+    RecipeProps<"InputAddon"> {}
 
 export const InputAddon = forwardRef<InputAddonProps, "div">(
   function InputAddon(props, ref) {
-    const recipe = useRecipe("InputAddon")
+    const recipe = useRecipe("InputAddon", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
     return <chakra.div ref={ref} {...localProps} css={[styles, props.css]} />

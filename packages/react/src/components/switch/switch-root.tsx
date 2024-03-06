@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -12,7 +12,7 @@ import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"
 
 export interface SwitchRootProps
   extends HTMLChakraProps<"label", UseCheckboxProps>,
-    SystemRecipeProps<"Switch"> {}
+    SlotRecipeProps<"Switch"> {}
 
 /**
  * The `Switch` component is used as an alternative for the checkbox component for switching between "enabled" and "disabled" states.
@@ -22,8 +22,7 @@ export interface SwitchRootProps
  */
 export const SwitchRoot = forwardRef<SwitchRootProps, "input">(
   function SwitchRoot(props, ref) {
-    const recipe = useSlotRecipe("Switch")
-
+    const recipe = useSlotRecipe("Switch", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

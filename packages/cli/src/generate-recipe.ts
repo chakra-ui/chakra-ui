@@ -28,7 +28,7 @@ export async function generateRecipe(sys: SystemContext) {
 
   const recipeKeys = Object.keys(sysRecipes)
   const recipeRecord = `
-     export interface SystemRecipes {
+     export interface ConfigRecipes {
       ${
         recipeKeys.length
           ? Object.keys(sysRecipes)
@@ -69,7 +69,7 @@ export async function generateRecipe(sys: SystemContext) {
   })
 
   const slotRecipeRecord = `
-     export interface SystemSlotRecipes {
+     export interface ConfigSlotRecipes {
       ${
         slotRecipeKeys.length
           ? slotRecipeKeys
@@ -84,7 +84,7 @@ export async function generateRecipe(sys: SystemContext) {
       }
      }
 
-     export interface SystemRecipeSlot<T> {
+     export interface ConfigRecipeSlots {
        ${
          slotRecipeKeys.length
            ? slotRecipeKeys
@@ -92,23 +92,29 @@ export async function generateRecipe(sys: SystemContext) {
                .join("\n")
            : "[key: string]: string"
        }
+    }
     `
 
   const slotRecipeResult = [slotRecipes.join("\n"), slotRecipeRecord].join("\n")
 
   return pretty(
     [
-      'import type { SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"',
+      'import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"',
       recipeResult,
       slotRecipeResult,
       `
-      
-      export type SystemRecipeProps<T> = T extends keyof SystemRecipes
-        ? SystemRecipes[T]["__type"]
-        : T extends keyof SystemSlotRecipes
-        ? SystemSlotRecipes[T]["__type"]
-        : {}
-      
+
+      export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
+        ? Record<ConfigRecipeSlots[T], K>
+        : Record<string, K>
+
+      export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
+        ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition }
+        : { recipe?: SlotRecipeDefinition }
+
+      export type RecipeProps<T> = T extends keyof ConfigRecipes
+        ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition }
+        : { recipe?: RecipeDefinition }
       `,
     ].join("\n"),
   )

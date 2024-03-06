@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -10,7 +10,7 @@ import { AlertProvider, AlertStylesProvider } from "./alert-context"
 
 export interface AlertRootProps
   extends HTMLChakraProps<"div">,
-    SystemRecipeProps<"Alert"> {}
+    SlotRecipeProps<"Alert"> {}
 
 /**
  * Alert is used to communicate the state or status of a
@@ -21,7 +21,7 @@ export interface AlertRootProps
  */
 export const AlertRoot = forwardRef<AlertRootProps, "div">(
   function AlertRoot(props, ref) {
-    const recipe = useSlotRecipe("Alert")
+    const recipe = useSlotRecipe("Alert", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
 
     const styles = recipe(variantProps)

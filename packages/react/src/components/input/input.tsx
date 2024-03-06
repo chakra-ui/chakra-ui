@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -24,7 +24,7 @@ type Omitted = "disabled" | "required" | "readOnly" | "size"
 export interface InputProps
   extends Omit<HTMLChakraProps<"input">, Omitted>,
     InputOptions,
-    SystemRecipeProps<"Input">,
+    RecipeProps<"Input">,
     FieldOptions {}
 
 /**
@@ -38,7 +38,7 @@ export const Input = forwardRef<InputProps, "input">(
   function Input(props, ref) {
     const { htmlSize, unstyled, ...restProps } = props
 
-    const recipe = useRecipe("Input")
+    const recipe = useRecipe("Input", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(restProps)
     const styles = recipe(variantProps)
 

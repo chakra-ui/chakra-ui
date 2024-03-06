@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -9,7 +9,7 @@ import {
 
 export interface BadgeProps
   extends HTMLChakraProps<"span">,
-    SystemRecipeProps<"Badge"> {}
+    RecipeProps<"Badge"> {}
 
 /**
  * React component used to display notifications, messages, or
@@ -18,7 +18,7 @@ export interface BadgeProps
  * @see Docs https://chakra-ui.com/badge
  */
 export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
-  const recipe = useRecipe("Badge")
+  const recipe = useRecipe("Badge", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
 

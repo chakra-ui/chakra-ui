@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -9,7 +9,7 @@ import {
 
 export interface CodeProps
   extends HTMLChakraProps<"code">,
-    SystemRecipeProps<"Code"> {}
+    RecipeProps<"Code"> {}
 
 /**
  * React component to render inline code snippets.
@@ -17,7 +17,7 @@ export interface CodeProps
  * @see Docs https://chakra-ui.com/code
  */
 export const Code = forwardRef<CodeProps, "code">(function Code(props, ref) {
-  const recipe = useRecipe("Code")
+  const recipe = useRecipe("Code", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
 

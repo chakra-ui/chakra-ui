@@ -2,7 +2,7 @@ import { compact, cx, dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   mergeRefs,
   useParentRecipeProps,
@@ -13,7 +13,7 @@ import { useAvatar } from "./use-avatar"
 
 export interface AvatarRootProps
   extends HTMLChakraProps<"span">,
-    SystemRecipeProps<"Avatar"> {}
+    SlotRecipeProps<"Avatar"> {}
 
 /**
  * Avatar component that renders an user avatar with
@@ -21,7 +21,7 @@ export interface AvatarRootProps
  */
 export const AvatarRoot = forwardRef<HTMLSpanElement, AvatarRootProps>(
   function AvatarRoot(props, ref) {
-    const recipe = useSlotRecipe("Avatar")
+    const recipe = useSlotRecipe("Avatar", props.recipe)
     const parentVariantProps = useParentRecipeProps()
 
     const [variantProps, localProps] = recipe.splitVariantProps(props)

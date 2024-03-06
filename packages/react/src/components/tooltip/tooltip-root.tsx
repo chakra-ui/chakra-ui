@@ -1,4 +1,4 @@
-import { SystemRecipeProps, useRecipe } from "../../styled-system"
+import { SlotRecipeProps, useRecipe } from "../../styled-system"
 import {
   TooltipContextProvider,
   TooltipStylesProvider,
@@ -6,7 +6,7 @@ import {
 import { UseTooltipProps, useTooltip } from "./use-tooltip"
 
 export interface TooltipRootProps
-  extends SystemRecipeProps<"Tooltip">,
+  extends SlotRecipeProps<"Tooltip">,
     Partial<UseTooltipProps> {
   /**
    * The React component to use as the
@@ -22,7 +22,7 @@ export interface TooltipRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
  */
 export const TooltipRoot = (props: TooltipRootProps) => {
-  const recipe = useRecipe("Tooltip")
+  const recipe = useRecipe("Tooltip", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
 

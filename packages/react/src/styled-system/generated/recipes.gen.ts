@@ -1,4 +1,9 @@
-import type { SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
+import type {
+  RecipeDefinition,
+  SlotRecipeDefinition,
+  SystemRecipeFn,
+  SystemSlotRecipeFn,
+} from "../recipe.types"
 
 export interface BadgeVariantProps {
   variant?: "solid" | "subtle" | "outline"
@@ -72,7 +77,7 @@ export interface TextareaVariantProps {
 
 export interface IconVariantProps {}
 
-export interface SystemRecipes {
+export interface ConfigRecipes {
   Badge: SystemRecipeFn<BadgeVariantProps>
   Button: SystemRecipeFn<ButtonVariantProps>
   Code: SystemRecipeFn<CodeVariantProps>
@@ -369,7 +374,7 @@ export interface TagVariantProps {
   variant?: "subtle" | "solid" | "outline"
 }
 
-export interface SystemSlotRecipes {
+export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
   Avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariantProps>
@@ -396,8 +401,41 @@ export interface SystemSlotRecipes {
   Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
 }
 
-export type SystemRecipeProps<T> = T extends keyof SystemRecipes
-  ? SystemRecipes[T]["__type"]
-  : T extends keyof SystemSlotRecipes
-  ? SystemSlotRecipes[T]["__type"]
-  : {}
+export interface ConfigRecipeSlots {
+  Accordion: AccordionSlot
+  Alert: AlertSlot
+  Avatar: AvatarSlot
+  Breadcrumb: BreadcrumbSlot
+  Blockquote: BlockquoteSlot
+  Card: CardSlot
+  Checkbox: CheckboxSlot
+  Dialog: DialogSlot
+  Drawer: DrawerSlot
+  Editable: EditableSlot
+  Field: FieldSlot
+  List: ListSlot
+  Menu: MenuSlot
+  NativeSelect: NativeSelectSlot
+  NumberInput: NumberInputSlot
+  Popover: PopoverSlot
+  Progress: ProgressSlot
+  Radio: RadioSlot
+  Slider: SliderSlot
+  Stat: StatSlot
+  Stepper: StepperSlot
+  Table: TableSlot
+  Tabs: TabsSlot
+  Tag: TagSlot
+}
+
+export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
+  ? Record<ConfigRecipeSlots[T], K>
+  : Record<string, K>
+
+export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
+  ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition }
+  : { recipe?: SlotRecipeDefinition }
+
+export type RecipeProps<T> = T extends keyof ConfigRecipes
+  ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition }
+  : { recipe?: RecipeDefinition }

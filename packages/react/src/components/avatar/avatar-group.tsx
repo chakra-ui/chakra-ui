@@ -2,7 +2,7 @@ import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
   RecipePropsProvider,
-  SystemRecipeProps,
+  SlotRecipeProps,
   SystemStyleObject,
   chakra,
   forwardRef,
@@ -21,7 +21,7 @@ interface AvatarGroupOptions {
 export interface AvatarGroupProps
   extends AvatarGroupOptions,
     HTMLChakraProps<"div">,
-    SystemRecipeProps<"Avatar"> {}
+    SlotRecipeProps<"Avatar"> {}
 
 /**
  * AvatarGroup displays a number of avatars grouped together in a stack.

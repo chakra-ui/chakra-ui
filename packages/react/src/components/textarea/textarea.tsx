@@ -1,7 +1,7 @@
 import { cx, omit } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -32,32 +32,33 @@ export interface TextareaProps
   extends Omit<HTMLChakraProps<"textarea">, Omitted>,
     TextareaOptions,
     FieldOptions,
-    SystemRecipeProps<"Textarea"> {}
+    RecipeProps<"Textarea"> {}
 
 /**
  * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/textarea
  */
-export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
-  const recipe = useRecipe("Textarea")
+export const Textarea = forwardRef<TextareaProps, "textarea">(
+  function Textarea(props, ref) {
+    const recipe = useRecipe("Textarea", props.recipe)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-  const [variantProps, localProps] = recipe.splitVariantProps(props)
-  const styles = recipe(variantProps)
+    const [useFieldProps, elementProps] = splitFieldProps(localProps)
+    const fieldProps = useField<HTMLTextAreaElement>(useFieldProps)
 
-  const [useFieldProps, elementProps] = splitFieldProps(localProps)
-  const fieldProps = useField<HTMLTextAreaElement>(useFieldProps)
+    const textareaStyles = localProps.rows ? omit(styles, omitted) : styles
 
-  const textareaStyles = localProps.rows ? omit(styles, omitted) : styles
-
-  return (
-    <chakra.textarea
-      ref={ref}
-      {...elementProps}
-      {...fieldProps}
-      className={cx("chakra-textarea", localProps.className)}
-      css={textareaStyles}
-    />
-  )
-})
+    return (
+      <chakra.textarea
+        ref={ref}
+        {...elementProps}
+        {...fieldProps}
+        className={cx("chakra-textarea", localProps.className)}
+        css={textareaStyles}
+      />
+    )
+  },
+)
 
 Textarea.displayName = "Textarea"

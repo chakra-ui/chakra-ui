@@ -61,7 +61,8 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
     const variantKeys = Object.keys(variants)
 
     function splitVariantProps(props: Dict) {
-      return splitProps(props, variantKeys)
+      const { recipe: _, ...restProps } = props
+      return splitProps(restProps, variantKeys)
     }
 
     const variantMap = Object.fromEntries(

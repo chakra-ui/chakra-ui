@@ -1,15 +1,13 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
 } from "../../styled-system"
 
-export interface LinkProps
-  extends HTMLChakraProps<"a">,
-    SystemRecipeProps<"Link"> {
+export interface LinkProps extends HTMLChakraProps<"a">, RecipeProps<"Link"> {
   /**
    *  If `true`, the link will open in new tab
    *
@@ -23,7 +21,7 @@ export interface LinkProps
  * @see Docs https://chakra-ui.com/link
  */
 export const Link = forwardRef<LinkProps, "a">(function Link(props, ref) {
-  const recipe = useRecipe("Link")
+  const recipe = useRecipe("Link", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
   const { className, isExternal, ...rest } = localProps

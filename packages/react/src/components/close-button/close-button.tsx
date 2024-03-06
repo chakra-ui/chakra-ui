@@ -1,6 +1,6 @@
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  RecipeProps,
   chakra,
   forwardRef,
   useRecipe,
@@ -20,7 +20,7 @@ function CloseIcon(props: IconProps) {
 
 export interface CloseButtonProps
   extends HTMLChakraProps<"button">,
-    SystemRecipeProps<"CloseButton"> {
+    RecipeProps<"CloseButton"> {
   /**
    * If `true`, the close button will be disabled.
    * @default false
@@ -38,7 +38,7 @@ export interface CloseButtonProps
  */
 export const CloseButton = forwardRef<CloseButtonProps, "button">(
   function CloseButton(props, ref) {
-    const recipe = useRecipe("CloseButton")
+    const recipe = useRecipe("CloseButton", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

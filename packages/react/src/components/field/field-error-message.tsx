@@ -1,19 +1,12 @@
 import { cx } from "@chakra-ui/utils"
-import {
-  HTMLChakraProps,
-  SystemRecipeProps,
-  chakra,
-  forwardRef,
-} from "../../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import {
   FieldErrorStylesProvider,
   useFieldContext,
   useFieldStyles,
 } from "./field-context"
 
-export interface FieldErrorMessageProps
-  extends HTMLChakraProps<"div">,
-    SystemRecipeProps<"FieldErrorMessage"> {}
+export interface FieldErrorMessageProps extends HTMLChakraProps<"div"> {}
 
 /**
  * Used to provide feedback about an invalid input,

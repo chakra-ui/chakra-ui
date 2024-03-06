@@ -1,7 +1,7 @@
 import { MaybeRenderProp, cx, pick, runIfFn } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
-  SystemRecipeProps,
+  SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
@@ -28,7 +28,7 @@ interface BaseEditableProps
 export interface EditableRootProps
   extends UseEditableProps,
     Omit<BaseEditableProps, "children">,
-    SystemRecipeProps<"Editable"> {
+    SlotRecipeProps<"Editable"> {
   children?: MaybeRenderProp<EditableState>
 }
 
@@ -42,7 +42,7 @@ export interface EditableRootProps
  */
 export const EditableRoot = forwardRef<EditableRootProps, "div">(
   function Editable(props, ref) {
-    const recipe = useSlotRecipe("Editable")
+    const recipe = useSlotRecipe("Editable", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

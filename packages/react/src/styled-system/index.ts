@@ -11,7 +11,11 @@ export type {
   HTMLChakraProps,
   InferRecipeProps,
 } from "./factory.types"
-export type { SystemRecipeProps } from "./generated/recipes.gen"
+export type {
+  RecipeProps,
+  SlotRecipeProps,
+  SlotRecipeRecord,
+} from "./generated/recipes.gen"
 export { mergeProps } from "./merge-props"
 export { mergeRefs } from "./merge-refs"
 export * from "./provider"
