@@ -1,13 +1,14 @@
 import { useState } from "react"
-import { HiEye, HiEyeOff } from "react-icons/hi"
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi"
 import {
+  Badge,
   Button,
-  Center,
   Field,
   For,
   Group,
   Input,
   InputAddon,
+  InputElement,
   Span,
   Stack,
   chakra,
@@ -91,7 +92,10 @@ export const WithButton = () => {
   return (
     <Stack maxW="sm" spacing="4">
       <Field.Root>
-        <Field.Label>First Name</Field.Label>
+        <Field.Label>
+          First Name
+          <Field.RequiredIndicator fallback={<Badge>Optional</Badge>} />
+        </Field.Label>
         <Input />
       </Field.Root>
       <Field.Root>
@@ -106,11 +110,9 @@ export const WithButton = () => {
 }
 
 export const WithAddon = () => (
-  <Stack align="start" spacing="10">
-    <Group gap="0" isolation="isolate">
-      <Center pos="absolute" color="fg.subtle" zIndex="1" px="3" h="full">
-        $
-      </Center>
+  <Stack spacing="10">
+    <Group>
+      <InputElement>$</InputElement>
       <Input ps="8" placeholder="Phone number..." />
     </Group>
 
@@ -132,16 +134,11 @@ export const PasswordInput = () => {
         type={show ? "text" : "password"}
         placeholder="Enter password"
       />
-      <Center
-        pos="absolute"
-        right="0"
-        color="fg.muted"
-        zIndex="1"
-        px="3"
-        h="full"
-      >
-        <button onClick={handleClick}>{show ? <HiEyeOff /> : <HiEye />}</button>
-      </Center>
+      <InputElement placement="end">
+        <button onClick={handleClick}>
+          {show ? <HiOutlineEyeOff /> : <HiOutlineEye />}
+        </button>
+      </InputElement>
     </Group>
   )
 }

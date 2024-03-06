@@ -20,6 +20,9 @@ export const fieldSlotRecipe = defineSlotRecipe({
       marginEnd: "3",
       opacity: { _disabled: 0.4 },
     },
+    requiredIndicator: {
+      marginStart: "2",
+    },
     helpText: {
       color: "fg.subtle",
       lineHeight: "normal",

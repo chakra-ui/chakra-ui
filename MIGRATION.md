@@ -744,6 +744,15 @@ and `withThemeByClassName` helper.
 - No more `InputLeftAddon` and `InputRightAddon`, prefer to use `InputAddon`
   component with the `Group` component
 
+## InputElement
+
+- No more `InputLeftElement` and `InputRightElement`, prefer to use
+  `InputElement` component with the `Group` component and `placement` prop.
+
+## InputGroup
+
+- No more `InputGroup`, prefer generic `Group` component
+
 ## FormLabel
 
 - Removed `requiredIndicator` and `optionalIndicator` in favor of using the

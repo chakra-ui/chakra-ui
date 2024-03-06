@@ -1,11 +1,14 @@
 import {
   HTMLChakraProps,
+  SystemRecipeProps,
   chakra,
   forwardRef,
   useRecipe,
 } from "../../styled-system"
 
-export interface InputAddonProps extends HTMLChakraProps<"div"> {}
+export interface InputAddonProps
+  extends HTMLChakraProps<"div">,
+    SystemRecipeProps<"InputAddon"> {}
 
 export const InputAddon = forwardRef<InputAddonProps, "div">(
   function InputAddon(props, ref) {
