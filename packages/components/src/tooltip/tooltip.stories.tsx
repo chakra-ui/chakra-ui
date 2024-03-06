@@ -99,7 +99,7 @@ export const WithDialog = () => {
   return (
     <div>
       <Button onClick={() => setShowDialog(true)}>Show Dialog</Button>
-      <Dialog.Root isOpen={showDialog} onClose={() => setShowDialog(false)}>
+      <Dialog.Root open={showDialog} onClose={() => setShowDialog(false)}>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content height="300px">
@@ -151,13 +151,13 @@ export const WithDisabledButton = () => (
 )
 
 export const WithIsOpenProp = () => (
-  <DemoTooltip label="Hello world" isOpen hasArrow>
+  <DemoTooltip label="Hello world" open hasArrow>
     <Button disabled>Can't Touch This</Button>
   </DemoTooltip>
 )
 
 export const WithDefaultIsOpenProp = () => (
-  <DemoTooltip label="Hello world" defaultIsOpen>
+  <DemoTooltip label="Hello world" defaultOpen>
     <Button>Can't Touch This</Button>
   </DemoTooltip>
 )

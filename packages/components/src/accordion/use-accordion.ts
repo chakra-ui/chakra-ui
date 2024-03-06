@@ -86,36 +86,36 @@ export function useAccordion(props: UseAccordionProps) {
   })
 
   /**
-   * Gets the `isOpen` and `onChange` props for a child accordion item based on
+   * Gets the `open` and `onChange` props for a child accordion item based on
    * the child's index.
    *
    * @param itemValue {string} The value of the child accordion item
    */
   const getAccordionItemProps = (itemValue: string | null) => {
-    let isOpen = false
+    let open = false
 
     if (itemValue) {
-      isOpen = value.includes(itemValue)
+      open = value.includes(itemValue)
     }
 
-    const onChange = (isOpen: boolean) => {
+    const onChange = (open: boolean) => {
       if (itemValue === null) return
 
       if (multiple) {
         //
-        const nextState = isOpen
+        const nextState = open
           ? value.concat(itemValue)
           : value.filter((i) => i !== itemValue)
 
         setValue(nextState)
-      } else if (isOpen) {
+      } else if (open) {
         setValue([itemValue])
       } else if (collapsible) {
         setValue([])
       }
     }
 
-    return { isOpen, onChange }
+    return { open, onChange }
   }
 
   return {
@@ -191,9 +191,9 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
   focusableNotDisabledWarning(props)
 
-  const { isOpen, onChange } = getAccordionItemProps(uid)
+  const { open, onChange } = getAccordionItemProps(uid)
 
-  warnIfOpenAndDisabled({ isOpen, disabled })
+  warnIfOpenAndDisabled({ open, disabled })
 
   const onOpen = () => {
     onChange?.(true)
@@ -207,9 +207,9 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    * Toggle the visibility of the accordion item
    */
   const onClick = useCallback(() => {
-    onChange?.(!isOpen)
+    onChange?.(!open)
     setFocusedId(buttonId)
-  }, [isOpen, onChange, setFocusedId, buttonId])
+  }, [open, onChange, setFocusedId, buttonId])
 
   /**
    * Manage keyboard navigation between accordion items.
@@ -265,14 +265,14 @@ export function useAccordionItem(props: UseAccordionItemProps) {
         ref: mergeRefs(buttonRef, ref),
         id: buttonId,
         disabled: !!disabled,
-        "aria-expanded": !!isOpen,
+        "aria-expanded": !!open,
         "aria-controls": panelId,
         onClick: callAllHandlers(props.onClick, onClick),
         onFocus: callAllHandlers(props.onFocus, onFocus),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       }
     },
-    [buttonId, disabled, isOpen, onClick, onFocus, onKeyDown, panelId],
+    [buttonId, disabled, open, onClick, onFocus, onKeyDown, panelId],
   )
 
   const getContentProps = useCallback(
@@ -286,14 +286,14 @@ export function useAccordionItem(props: UseAccordionItemProps) {
         role: "region",
         id: panelId,
         "aria-labelledby": buttonId,
-        hidden: !isOpen,
+        hidden: !open,
       }
     },
-    [buttonId, isOpen, panelId],
+    [buttonId, open, panelId],
   )
 
   return {
-    isOpen,
+    open,
     disabled,
     focusable,
     onOpen,
@@ -334,9 +334,9 @@ function focusableNotDisabledWarning(props: UseAccordionItemProps) {
   })
 }
 
-function warnIfOpenAndDisabled(props: { isOpen: boolean; disabled?: boolean }) {
+function warnIfOpenAndDisabled(props: { open: boolean; disabled?: boolean }) {
   warn({
-    condition: props.isOpen && !!props.disabled,
+    condition: props.open && !!props.disabled,
     message: "Cannot open a disabled accordion item",
   })
 }

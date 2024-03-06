@@ -5,7 +5,7 @@ export const dialogProps = createProps<UseDialogProps>()([
   "closeOnEsc",
   "closeOnOverlayClick",
   "id",
-  "isOpen",
+  "open",
   "onClose",
   "onEsc",
   "onOverlayClick",

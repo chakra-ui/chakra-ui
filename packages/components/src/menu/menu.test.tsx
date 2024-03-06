@@ -40,9 +40,9 @@ test("passes a11y test", async () => {
   )
 })
 
-test("does not render Menu.Content Items if Menu isLazy", () => {
+test("does not render Menu.Content Items if Menu lazyMount", () => {
   render(
-    <Menu.Root isLazy>
+    <Menu.Root lazyMount>
       <Menu.Trigger
         as={Button}
         variant="solid"
@@ -321,9 +321,7 @@ test("exposes internal state as render prop", () => {
     <Menu.Root>
       {(api) => (
         <>
-          <Menu.Trigger as={Button}>
-            {api.isOpen ? "Close" : "Open"}
-          </Menu.Trigger>
+          <Menu.Trigger as={Button}>{api.open ? "Close" : "Open"}</Menu.Trigger>
           <Menu.Positioner>
             <Menu.Content>
               <Menu.Item>Download</Menu.Item>
@@ -354,7 +352,7 @@ const CompWithTwoMenus: React.FC<{
 
   return (
     <>
-      <Menu.Root isOpen={active === "1"}>
+      <Menu.Root open={active === "1"}>
         <Menu.Trigger onClick={props.onBtnClick} as={Button}>
           No 1
         </Menu.Trigger>
@@ -365,7 +363,7 @@ const CompWithTwoMenus: React.FC<{
         </Menu.Positioner>
       </Menu.Root>
       <Menu.Root
-        isOpen={active === "2"}
+        open={active === "2"}
         onClose={() => {
           setActive(undefined)
           props.onClose()
@@ -472,7 +470,7 @@ test("Menu.Item can override its parent menu's `closeOnSelect` and close the men
 test("Menu.Content direction flips in rtl", () => {
   render(
     <ChakraProvider theme={{ ...theme, direction: "rtl" }}>
-      <Menu.Root placement="top-end" isOpen>
+      <Menu.Root placement="top-end" open>
         <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
         <Menu.Positioner>
           <Menu.Content>

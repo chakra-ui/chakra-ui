@@ -35,7 +35,7 @@ function HeaderContent() {
 
   useUpdateEffect(() => {
     mobileNavBtnRef.current?.focus()
-  }, [mobileNav.isOpen])
+  }, [mobileNav.open])
 
   return (
     <>
@@ -129,7 +129,7 @@ function HeaderContent() {
           </HStack>
         </Flex>
       </Flex>
-      <MobileNavContent isOpen={mobileNav.isOpen} onClose={mobileNav.onClose} />
+      <MobileNavContent open={mobileNav.open} onClose={mobileNav.onClose} />
     </>
   )
 }

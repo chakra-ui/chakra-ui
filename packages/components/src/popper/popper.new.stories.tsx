@@ -7,7 +7,7 @@ export default {
 }
 
 export const ExamplePopper = () => {
-  const [isOpen, setIsOpen] = React.useState(true)
+  const [open, setIsOpen] = React.useState(true)
   const { referenceRef, popperRef } = usePopper({
     gutter: 16,
     placement: "right-end",
@@ -22,10 +22,10 @@ export const ExamplePopper = () => {
   })
   return (
     <div style={{ minHeight: "200vh", paddingTop: "100vh" }}>
-      <button onClick={() => setIsOpen(!isOpen)} ref={referenceRef}>
+      <button onClick={() => setIsOpen(!open)} ref={referenceRef}>
         Testing
       </button>
-      {isOpen && (
+      {open && (
         <div ref={popperRef} style={{ padding: 20, background: "red" }}>
           <div
             data-popper-arrow=""
@@ -100,7 +100,7 @@ export const VirtualElement = () => {
 }
 
 export const WithAnimation = () => {
-  const [isOpen, setIsOpen] = React.useState(true)
+  const [open, setIsOpen] = React.useState(true)
   const {
     getPopperProps,
     referenceRef,
@@ -112,7 +112,7 @@ export const WithAnimation = () => {
   })
   return (
     <div style={{ minHeight: "200vh", paddingTop: "100vh" }}>
-      <button ref={referenceRef} onClick={() => setIsOpen(!isOpen)}>
+      <button ref={referenceRef} onClick={() => setIsOpen(!open)}>
         Trigger
       </button>
       <div {...getPopperProps()}>
@@ -125,7 +125,7 @@ export const WithAnimation = () => {
           transition={{ duration: 0.15 }}
           initial={false}
           animate={
-            isOpen ? { scale: 1, opacity: 1 } : { scale: 0.85, opacity: 0.01 }
+            open ? { scale: 1, opacity: 1 } : { scale: 0.85, opacity: 0.01 }
           }
         >
           <div

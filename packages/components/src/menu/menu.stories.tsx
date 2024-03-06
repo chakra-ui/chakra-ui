@@ -61,7 +61,7 @@ export const Basic = () => (
 )
 
 export const LazyMenu = () => (
-  <Menu.Root isLazy>
+  <Menu.Root lazyMount>
     <Menu.Trigger asChild>
       <Button>Open Wakanda menu</Button>
     </Menu.Trigger>
@@ -317,7 +317,7 @@ export const WithInternalState = () => (
     {(api) => (
       <>
         <Menu.Trigger asChild>
-          <Button>{api.isOpen ? "Close" : "Open"}</Button>
+          <Button>{api.open ? "Close" : "Open"}</Button>
         </Menu.Trigger>
         <Menu.Positioner>
           <Menu.Content>
@@ -585,7 +585,7 @@ export const MenuPerformanceTest = () => {
 }
 
 export const WithoutMenuButton = () => {
-  const [isOpen, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
   const open = () => setOpen(true)
   const close = () => setOpen(false)
 
@@ -604,7 +604,7 @@ export const WithoutMenuButton = () => {
     <>
       <Dialog.Root
         onClose={close}
-        isOpen={isOpen}
+        open={open}
         isCentered
         motionPreset="slideInBottom"
       >
@@ -616,7 +616,7 @@ export const WithoutMenuButton = () => {
               justifyContent="center"
               alignItems="center"
             >
-              <Menu.Root isOpen closeOnSelect onClose={close}>
+              <Menu.Root open closeOnSelect onClose={close}>
                 <Menu.Content paddingY={5}>
                   <Menu.Item>
                     Saves or updates the code in Stately Registry

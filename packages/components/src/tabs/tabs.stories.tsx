@@ -194,7 +194,7 @@ const Interval = () => {
 }
 
 export const withLazyTabs = () => (
-  <Tabs.Root defaultValue="1" isLazy>
+  <Tabs.Root defaultValue="1" lazyMount>
     <Tabs.List>
       <Tabs.Trigger value="1">Interval 1</Tabs.Trigger>
       <Tabs.Trigger value="2">Interval 2</Tabs.Trigger>
@@ -213,7 +213,7 @@ export const withLazyTabs = () => (
 )
 
 export const withLazyTabsMounted = () => (
-  <Tabs.Root defaultValue="1" isLazy lazyBehavior="keepMounted">
+  <Tabs.Root defaultValue="1" lazyMount lazyBehavior="keepMounted">
     <Tabs.List>
       <Tabs.Trigger value="1">Interval 1</Tabs.Trigger>
       <Tabs.Trigger value="2">Interval 2</Tabs.Trigger>
@@ -307,7 +307,7 @@ export const WithSwappedTabs = () => {
 }
 
 export const withinDrawer = () => (
-  <Drawer.Root isOpen onClose={console.log}>
+  <Drawer.Root open onClose={console.log}>
     <Drawer.Overlay>
       <Drawer.Positioner>
         <Drawer.Content>

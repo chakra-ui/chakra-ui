@@ -240,14 +240,14 @@ export function WithSearchFilter() {
 }
 
 export const FocusBug = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
 
   return (
     <Box textAlign="center" fontSize="xl">
       <Button colorScheme="teal" onClick={onOpen}>
         Open
       </Button>
-      <Drawer.Root isOpen={isOpen} placement="right" onClose={onClose}>
+      <Drawer.Root open={open} placement="right" onClose={onClose}>
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>

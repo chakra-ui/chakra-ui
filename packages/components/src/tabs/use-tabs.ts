@@ -43,11 +43,11 @@ export interface UseTabsProps {
    * If `true`, rendering of the tab panel's will be deferred until it is selected.
    * @default false
    */
-  isLazy?: boolean
+  lazyMount?: boolean
   /**
    * Performance 🚀:
    * The lazy behavior of tab panels' content when not active.
-   * Only works when `isLazy={true}`
+   * Only works when `lazyMount={true}`
    *
    * - "unmount": The content of inactive tab panels are always unmounted.
    * - "keepMounted": The content of inactive tab panels is initially unmounted,
@@ -81,7 +81,7 @@ export function useTabs(props: UseTabsProps) {
     onChange,
     value,
     isManual,
-    isLazy,
+    lazyMount,
     lazyBehavior = "unmount",
     orientation = "horizontal",
     direction = "ltr",
@@ -123,7 +123,7 @@ export function useTabs(props: UseTabsProps) {
     selectedValue,
     setSelectedValue,
     isManual,
-    isLazy,
+    lazyMount,
     lazyBehavior,
     orientation,
     direction,

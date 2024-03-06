@@ -124,9 +124,9 @@ export const Arrow = () => (
 )
 
 export const Controlled = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [open, setIsOpen] = React.useState(false)
 
-  const open = () => setIsOpen(!isOpen)
+  const open = () => setIsOpen(!open)
   const close = () => setIsOpen(false)
 
   return (
@@ -137,7 +137,7 @@ export const Controlled = () => {
 
       <Popover.Root
         returnFocusOnClose={false}
-        isOpen={isOpen}
+        open={open}
         onClose={close}
         placement="right"
         closeOnBlur={false}
@@ -178,7 +178,7 @@ const Interval = () => {
 
 export function WithLazyPopover() {
   return (
-    <Popover.Root isLazy>
+    <Popover.Root lazyMount>
       <Popover.Trigger asChild>
         <Button colorScheme="pink">Popover Target</Button>
       </Popover.Trigger>
@@ -198,7 +198,7 @@ export function WithLazyPopover() {
 
 export function WithLazyPopoverMounted() {
   return (
-    <Popover.Root isLazy lazyBehavior="keepMounted">
+    <Popover.Root lazyMount lazyBehavior="keepMounted">
       <Popover.Trigger asChild>
         <Button colorScheme="pink">Popover Target</Button>
       </Popover.Trigger>
@@ -222,11 +222,11 @@ export function WithPopoverAnchor() {
 
   return (
     <Popover.Root
-      isOpen={isEditing}
+      open={isEditing}
       onOpen={setIsEditing.on}
       onClose={setIsEditing.off}
       closeOnBlur={false}
-      isLazy
+      lazyMount
       lazyBehavior="keepMounted"
     >
       <Popover.Anchor asChild>

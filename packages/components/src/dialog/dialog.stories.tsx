@@ -29,11 +29,11 @@ const Button = chakra("button", {
 })
 
 export function Basic() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button onClick={onOpen}>Open</Button>
-      <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
+      <Dialog.Root open={open} onClose={onClose} isCentered>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -56,7 +56,7 @@ export function Basic() {
 }
 
 export function FinalFocusRef() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef<any>()
 
   return (
@@ -73,7 +73,7 @@ export function FinalFocusRef() {
         Open Dialog.
       </Button>
 
-      <Dialog.Root finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+      <Dialog.Root finalFocusRef={finalRef} open={open} onClose={onClose}>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -104,7 +104,7 @@ export function NestedDialogs() {
   return (
     <>
       <button onClick={first.onOpen}>Open</button>
-      <Dialog.Root isOpen={first.isOpen} onClose={first.onClose}>
+      <Dialog.Root open={first.open} onClose={first.onClose}>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -121,7 +121,7 @@ export function NestedDialogs() {
               <Button onClick={second.onOpen}>Open Nested</Button>
             </Dialog.Footer>
 
-            <Dialog.Root isOpen={second.isOpen} onClose={second.onClose}>
+            <Dialog.Root open={second.open} onClose={second.onClose}>
               <Dialog.Overlay />
               <Dialog.Positioner>
                 <Dialog.Content>
@@ -141,11 +141,11 @@ export function NestedDialogs() {
 }
 
 export const InsideScroll = () => {
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { open, onClose, onOpen } = useDisclosure()
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Dialog.Root onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
+      <Dialog.Root onClose={onClose} open={open} scrollBehavior="inside">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -165,11 +165,11 @@ export const InsideScroll = () => {
 }
 
 export const AnimationDisabled = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Dialog.Root onClose={onClose} isOpen={isOpen} motionPreset="none">
+      <Dialog.Root onClose={onClose} open={open} motionPreset="none">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -189,11 +189,11 @@ export const AnimationDisabled = () => {
 }
 
 export const FullWithLongContent = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Dialog.Root onClose={onClose} isOpen={isOpen} size="full">
+      <Dialog.Root onClose={onClose} open={open} size="full">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -213,11 +213,11 @@ export const FullWithLongContent = () => {
 }
 
 export function WithCustomMotionProps() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button onClick={onOpen}>Open</Button>
-      <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
+      <Dialog.Root open={open} onClose={onClose} isCentered>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content
@@ -250,13 +250,13 @@ export function WithCustomMotionProps() {
 }
 
 export function WithInitialFocus() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   const initialFocusRef = React.useRef(null)
   return (
     <>
       <Button onClick={onOpen}>Open Dialog.</Button>
       <Dialog.Root
-        isOpen={isOpen}
+        open={open}
         onClose={onClose}
         initialFocusRef={initialFocusRef}
       >
@@ -285,7 +285,7 @@ export function WithInitialFocus() {
 }
 
 export const InitialFocusRef = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [open, setIsOpen] = React.useState(false)
   const inputRef = React.useRef<any>()
   return (
     <>
@@ -293,7 +293,7 @@ export const InitialFocusRef = () => {
         Open
       </button>
       <Dialog.Root
-        isOpen={isOpen}
+        open={open}
         initialFocusRef={inputRef}
         onClose={() => setIsOpen(false)}
       >

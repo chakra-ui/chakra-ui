@@ -134,9 +134,9 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
   expect(panel2).not.toBeVisible()
 })
 
-test("renders only the currently active tab panel if isLazy", async () => {
+test("renders only the currently active tab panel if lazyMount", async () => {
   const { user } = render(
-    <Tabs.Root defaultValue="1" isLazy>
+    <Tabs.Root defaultValue="1" lazyMount>
       <Tabs.List>
         <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
         <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
@@ -161,9 +161,9 @@ test("renders only the currently active tab panel if isLazy", async () => {
   expect(screen.getByText("Panel 2")).toBeInTheDocument()
 })
 
-test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", async () => {
+test("renders the currently active tab panel and previously-selected tabs if lazyMount and lazy behavior is keepMounted", async () => {
   const { user } = render(
-    <Tabs.Root defaultValue="1" isLazy lazyBehavior="keepMounted">
+    <Tabs.Root defaultValue="1" lazyMount lazyBehavior="keepMounted">
       <Tabs.List>
         <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
         <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>

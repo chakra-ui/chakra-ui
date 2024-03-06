@@ -13,7 +13,7 @@ export interface UseDialogProps {
   /**
    * If `true`, the dialog will be open.
    */
-  isOpen: boolean
+  open: boolean
   /**
    * The `id` of the dialog
    */
@@ -53,7 +53,7 @@ export interface UseDialogProps {
 
 export function useDialog(props: UseDialogProps) {
   const {
-    isOpen,
+    open,
     onClose,
     id,
     closeOnOverlayClick = true,
@@ -74,9 +74,9 @@ export function useDialog(props: UseDialogProps) {
     `chakra-dialog--body`,
   )
 
-  const index = useDialogManager(contentRef, isOpen)
+  const index = useDialogManager(contentRef, open)
 
-  useAriaHidden(contentRef, isOpen && useInert)
+  useAriaHidden(contentRef, open && useInert)
 
   const mouseDownTarget = useRef<EventTarget | null>(null)
 
@@ -158,7 +158,7 @@ export function useDialog(props: UseDialogProps) {
   )
 
   return {
-    isOpen,
+    open,
     onClose,
     headerId,
     bodyId,

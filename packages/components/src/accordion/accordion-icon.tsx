@@ -16,7 +16,7 @@ export type AccordionIconProps = PropsOf<typeof Icon>
  */
 
 export function AccordionIcon(props: AccordionIconProps) {
-  const { isOpen, disabled } = useAccordionItemContext()
+  const { open, disabled } = useAccordionItemContext()
   const { reduceMotion } = useAccordionContext()
 
   const _className = cx("chakra-accordion__icon", props.className)
@@ -24,7 +24,7 @@ export function AccordionIcon(props: AccordionIconProps) {
 
   const iconStyles = defineStyle({
     opacity: disabled ? 0.4 : 1,
-    transform: isOpen ? "rotate(-180deg)" : undefined,
+    transform: open ? "rotate(-180deg)" : undefined,
     transition: reduceMotion ? undefined : "transform 0.2s",
     transformOrigin: "center",
     ...styles.icon,

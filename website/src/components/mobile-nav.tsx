@@ -59,12 +59,12 @@ function NavLink({ href, children }: NavLinkProps) {
 }
 
 interface MobileNavContentProps {
-  isOpen?: boolean
+  open?: boolean
   onClose?: () => void
 }
 
 export function MobileNavContent(props: MobileNavContentProps) {
-  const { isOpen, onClose } = props
+  const { open, onClose } = props
   const closeBtnRef = useRef<HTMLButtonElement>()
   const { pathname, asPath } = useRouter()
   const bgColor = useColorModeValue('white', 'gray.800')
@@ -84,18 +84,18 @@ export function MobileNavContent(props: MobileNavContentProps) {
   }, [showOnBreakpoint, onClose])
 
   useUpdateEffect(() => {
-    if (isOpen) {
+    if (open) {
       requestAnimationFrame(() => {
         closeBtnRef.current?.focus()
       })
     }
-  }, [isOpen])
+  }, [open])
 
   const [shadow, setShadow] = useState<string>()
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {open && (
         <RemoveScroll forwardProps>
           <motion.div
             transition={{ duration: 0.08 }}

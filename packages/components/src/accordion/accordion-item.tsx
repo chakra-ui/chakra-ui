@@ -37,7 +37,7 @@ export const AccordionItem = forwardRef<AccordionItemProps, "div">(
     const styles = useAccordionStyles()
 
     const itemState = {
-      isExpanded: !!itemApi.isOpen,
+      isExpanded: !!itemApi.open,
       disabled: !!itemApi.disabled,
     }
 

@@ -23,10 +23,7 @@ class DialogManager {
 
 export const dialogManager = new DialogManager()
 
-export function useDialogManager(
-  ref: RefObject<HTMLElement>,
-  isOpen?: boolean,
-) {
+export function useDialogManager(ref: RefObject<HTMLElement>, open?: boolean) {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -34,7 +31,7 @@ export function useDialogManager(
 
     if (!node) return
 
-    if (isOpen) {
+    if (open) {
       const index = dialogManager.add(node)
       setIndex(index)
     }
@@ -43,7 +40,7 @@ export function useDialogManager(
       dialogManager.remove(node)
       setIndex(0)
     }
-  }, [isOpen, ref])
+  }, [open, ref])
 
   return index
 }
