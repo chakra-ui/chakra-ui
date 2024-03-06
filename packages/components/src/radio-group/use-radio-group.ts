@@ -38,7 +38,7 @@ export interface UseRadioGroupProps {
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * The `name` attribute forwarded to each `radio` element
    */
@@ -66,7 +66,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     defaultValue,
     name: nameProp,
     disabled,
-    isFocusable,
+    focusable,
     isNative,
   } = props
 
@@ -153,7 +153,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     value,
     onChange,
     disabled,
-    isFocusable,
+    focusable,
   }
 }
 

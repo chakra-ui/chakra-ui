@@ -121,13 +121,13 @@ test("does not fire onClick on disabled Menu.Item", () => {
  *
  * @see https://github.com/chakra-ui/chakra-ui/issues/1651
  */
-test.skip("allows focusing disabled Menu.Items given isFocusable", async () => {
+test.skip("allows focusing disabled Menu.Items given focusable", async () => {
   render(
     <Menu.Root>
       <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
-          <Menu.Item disabled isFocusable icon={<FaTruck />}>
+          <Menu.Item disabled focusable icon={<FaTruck />}>
             Delivery
           </Menu.Item>
         </Menu.Content>

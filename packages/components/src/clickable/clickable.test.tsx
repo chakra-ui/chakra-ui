@@ -9,7 +9,7 @@ const Clickable = forwardRef((props: any, ref) => {
 
 test("should render when disabled and focusable", () => {
   render(
-    <Clickable disabled isFocusable>
+    <Clickable disabled focusable>
       clickable
     </Clickable>,
   )

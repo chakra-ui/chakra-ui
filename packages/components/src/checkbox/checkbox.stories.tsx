@@ -52,11 +52,11 @@ export const Invalid = () => <DemoCheckbox invalid>Invalid</DemoCheckbox>
 
 export const NotFocusable = () => (
   <Stack>
-    <DemoCheckbox isFocusable={false}>not focusable</DemoCheckbox>
-    <DemoCheckbox isFocusable={false} disabled>
+    <DemoCheckbox focusable={false}>not focusable</DemoCheckbox>
+    <DemoCheckbox focusable={false} disabled>
       disabled and not focusable (truly disabled)
     </DemoCheckbox>
-    <DemoCheckbox tabIndex={-1} isFocusable={false}>
+    <DemoCheckbox tabIndex={-1} focusable={false}>
       Not Focusable with provided tabIndex
     </DemoCheckbox>
   </Stack>

@@ -148,7 +148,7 @@ export interface UseAccordionItemProps {
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * The unique id of the accordion item.
    */
@@ -174,7 +174,7 @@ function makeId(type: string, id: string, value: string) {
  * for an accordion item and its children
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
-  const { disabled, isFocusable, value } = props
+  const { disabled, focusable, value } = props
   const { getAccordionItemProps, setFocusedId, rootRef, id } =
     useAccordionContext()
 
@@ -295,7 +295,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   return {
     isOpen,
     disabled,
-    isFocusable,
+    focusable,
     onOpen,
     onClose,
     getTriggerProps,
@@ -328,8 +328,8 @@ function multipleAndcollapsibleWarning(props: UseAccordionProps) {
 
 function focusableNotDisabledWarning(props: UseAccordionItemProps) {
   warn({
-    condition: !!(props.isFocusable && !props.disabled),
-    message: `Using only 'isFocusable', this prop is reserved for situations where you pass 'disabled' but you still want the element to receive focus (A11y). Either remove it or pass 'disabled' as well.
+    condition: !!(props.focusable && !props.disabled),
+    message: `Using only 'focusable', this prop is reserved for situations where you pass 'disabled' but you still want the element to receive focus (A11y). Either remove it or pass 'disabled' as well.
     `,
   })
 }

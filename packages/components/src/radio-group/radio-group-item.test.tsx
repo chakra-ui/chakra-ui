@@ -53,7 +53,7 @@ test("has proper aria and data attributes", async () => {
   expect(container).toHaveAttribute("data-disabled")
 
   // input is not truly disabled if focusable
-  utils.rerender(<Component disabled isFocusable />)
+  utils.rerender(<Component disabled focusable />)
 
   input = utils.getByTestId("input")
 

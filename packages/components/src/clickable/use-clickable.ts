@@ -17,7 +17,7 @@ export interface UseClickableProps extends React.HTMLAttributes<HTMLElement> {
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * Whether or not trigger click on pressing `Enter`.
    *
@@ -54,7 +54,7 @@ export function useClickable(props: UseClickableProps = {}) {
   const {
     ref: htmlRef,
     disabled,
-    isFocusable,
+    focusable,
     clickOnEnter = true,
     clickOnSpace = true,
     onMouseDown,
@@ -91,7 +91,7 @@ export function useClickable(props: UseClickableProps = {}) {
   }
 
   const tabIndex = isButton ? tabIndexProp : tabIndexProp || 0
-  const trulyDisabled = disabled && !isFocusable
+  const trulyDisabled = disabled && !focusable
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {

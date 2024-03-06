@@ -5,7 +5,7 @@ import { UseRadioGroupProps } from "./use-radio-group"
 const radioGroupProps = createProps<UseRadioGroupProps>()([
   "defaultValue",
   "disabled",
-  "isFocusable",
+  "focusable",
   "isNative",
   "name",
   "onChange",
@@ -22,7 +22,7 @@ const radioItemProps = createProps<UseRadioProps>()([
   "id",
   "checked",
   "disabled",
-  "isFocusable",
+  "focusable",
   "invalid",
   "readOnly",
   "required",

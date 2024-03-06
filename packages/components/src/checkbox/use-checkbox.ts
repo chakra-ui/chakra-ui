@@ -34,7 +34,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const {
     defaultChecked,
     checked: checkedProp,
-    isFocusable,
+    focusable,
     onChange,
     indeterminate,
     name,
@@ -111,7 +111,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     return () => el.form?.removeEventListener("reset", formResetListener)
   }, [])
 
-  const trulyDisabled = disabled && !isFocusable
+  const trulyDisabled = disabled && !focusable
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {

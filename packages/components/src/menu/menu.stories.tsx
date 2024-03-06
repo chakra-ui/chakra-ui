@@ -133,7 +133,7 @@ export const WithDisabledButFocusableItem = () => (
       <Menu.Content>
         <Menu.Item>Menu 1</Menu.Item>
         <Menu.Item>Menu 2</Menu.Item>
-        <Menu.Item disabled isFocusable>
+        <Menu.Item disabled focusable>
           Menu 3
         </Menu.Item>
         <Menu.Item>Menu 4</Menu.Item>

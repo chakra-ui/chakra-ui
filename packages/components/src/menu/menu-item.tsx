@@ -9,7 +9,7 @@ import { useMenuItem, UseMenuItemProps } from "./use-menu"
 export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 interface MenuItemOptions
-  extends Pick<UseMenuItemProps, "disabled" | "isFocusable" | "closeOnSelect"> {
+  extends Pick<UseMenuItemProps, "disabled" | "focusable" | "closeOnSelect"> {
   /**
    * The icon to render before the menu item's label.
    * @type React.ReactElement

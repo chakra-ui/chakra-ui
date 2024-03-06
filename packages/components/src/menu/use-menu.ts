@@ -532,7 +532,7 @@ export interface UseMenuItemProps
    * If `true` and the menuitem is disabled, it'll
    * remain keyboard-focusable
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * Overrides the parent menu's `closeOnSelect` prop.
    */
@@ -554,7 +554,7 @@ export function useMenuItem(
     onClick: onClickProp,
     onFocus: onFocusProp,
     disabled,
-    isFocusable,
+    focusable,
     closeOnSelect,
     type: typeProp,
     id: idProp,
@@ -632,7 +632,7 @@ export function useMenuItem(
 
   const isFocused = id === focusedId
 
-  const trulyDisabled = disabled && !isFocusable
+  const trulyDisabled = disabled && !focusable
 
   useUpdateEffect(() => {
     if (!isOpen) return
@@ -664,7 +664,7 @@ export function useMenuItem(
     onMouseLeave,
     ref: mergeRefs(ref, externalRef),
     disabled,
-    isFocusable,
+    focusable,
   })
 
   return {

@@ -62,7 +62,7 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * If `true`, the checkbox will be readonly
    *

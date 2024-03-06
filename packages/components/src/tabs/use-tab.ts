@@ -17,7 +17,7 @@ export interface UseTabOptions {
    * If `true` and `disabled`, the `Tab` will be focusable but not interactive.
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
 }
 
 export interface UseTabProps
@@ -31,7 +31,7 @@ export interface UseTabProps
  * hence the use of `useClickable` to handle this scenario
  */
 export function useTab<P extends UseTabProps>(props: P) {
-  const { disabled, isFocusable, value, ref, ...htmlProps } = props
+  const { disabled, focusable, value, ref, ...htmlProps } = props
 
   const { setSelectedValue, isManual, id, setFocusedValue, selectedValue } =
     useTabsContext()
@@ -44,7 +44,7 @@ export function useTab<P extends UseTabProps>(props: P) {
 
   const onFocus = () => {
     setFocusedValue(value)
-    const disabledButFocusable = disabled && isFocusable
+    const disabledButFocusable = disabled && focusable
     const shouldSelect = !isManual && !disabledButFocusable
     if (shouldSelect) {
       setSelectedValue(value)
@@ -55,7 +55,7 @@ export function useTab<P extends UseTabProps>(props: P) {
     ...htmlProps,
     ref,
     disabled,
-    isFocusable,
+    focusable,
     onClick: callAllHandlers(props.onClick, onClick),
   })
 

@@ -229,10 +229,10 @@ test("accepts custom icon", () => {
 test("can pass tabIndex directly to input component", () => {
   const { container } = render(
     <>
-      <DemoCheckbox tabIndex={-1} isFocusable={false}>
+      <DemoCheckbox tabIndex={-1} focusable={false}>
         Not Focusable with provided tabIndex
       </DemoCheckbox>
-      <DemoCheckbox isFocusable={false}>Not Focusable</DemoCheckbox>
+      <DemoCheckbox focusable={false}>Not Focusable</DemoCheckbox>
     </>,
   )
   const [checkboxOne, checkboxTwo] = Array.from(

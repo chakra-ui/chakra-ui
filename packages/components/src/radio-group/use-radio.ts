@@ -47,7 +47,7 @@ export interface UseRadioProps {
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * If `true`, the radio will be read-only
    *
@@ -100,7 +100,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultChecked,
     checked: checkedProp,
-    isFocusable,
+    focusable,
     disabled: disabledProp,
     readOnly: readOnlyProp,
     required: requiredProp,
@@ -216,7 +216,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const getInputProps: PropGetter<InputDOMAttributes, InputDOMAttributes> =
     useCallback(
       (props = {}, ref = null) => {
-        const trulyDisabled = disabled && !isFocusable
+        const trulyDisabled = disabled && !focusable
 
         return {
           ...props,
@@ -248,7 +248,7 @@ export function useRadio(props: UseRadioProps = {}) {
       },
       [
         disabled,
-        isFocusable,
+        focusable,
         id,
         name,
         value,
