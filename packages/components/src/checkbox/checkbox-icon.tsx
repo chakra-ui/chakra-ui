@@ -35,7 +35,7 @@ export interface CheckboxIconProps extends HTMLChakraProps<"svg"> {
   /**
    * @default false
    */
-  isIndeterminate?: boolean
+  indeterminate?: boolean
   /**
    * @default false
    */
@@ -49,10 +49,10 @@ export interface CheckboxIconProps extends HTMLChakraProps<"svg"> {
  * @todo allow users pass their own icon svgs
  */
 export function CheckboxIcon(props: CheckboxIconProps) {
-  const { isIndeterminate, checked, ...rest } = props
-  const BaseIcon = isIndeterminate ? IndeterminateIcon : CheckIcon
+  const { indeterminate, checked, ...rest } = props
+  const BaseIcon = indeterminate ? IndeterminateIcon : CheckIcon
 
-  return checked || isIndeterminate ? (
+  return checked || indeterminate ? (
     <chakra.div
       style={{
         display: "flex",

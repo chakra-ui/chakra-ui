@@ -36,7 +36,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     checked: checkedProp,
     isFocusable,
     onChange,
-    isIndeterminate,
+    indeterminate,
     name,
     value,
     tabIndex = undefined,
@@ -77,20 +77,20 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         if (checked) {
           setCheckedState(event.target.checked)
         } else {
-          setCheckedState(isIndeterminate ? true : event.target.checked)
+          setCheckedState(indeterminate ? true : event.target.checked)
         }
       }
 
       onChangeProp?.(event)
     },
-    [readOnly, disabled, checked, isControlled, isIndeterminate, onChangeProp],
+    [readOnly, disabled, checked, isControlled, indeterminate, onChangeProp],
   )
 
   useSafeLayoutEffect(() => {
     if (inputRef.current) {
-      inputRef.current.indeterminate = Boolean(isIndeterminate)
+      inputRef.current.indeterminate = Boolean(indeterminate)
     }
-  }, [isIndeterminate])
+  }, [indeterminate])
 
   useUpdateEffect(() => {
     if (disabled) {
@@ -169,7 +169,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "data-checked": dataAttr(checked),
         "data-focus": dataAttr(isFocused),
         "data-focus-visible": dataAttr(isFocused && isFocusVisible),
-        "data-indeterminate": dataAttr(isIndeterminate),
+        "data-indeterminate": dataAttr(indeterminate),
         "data-disabled": dataAttr(disabled),
         "data-invalid": dataAttr(invalid),
         "data-readonly": dataAttr(readOnly),
@@ -191,7 +191,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isFocused,
       isFocusVisible,
       isHovered,
-      isIndeterminate,
+      indeterminate,
       invalid,
       readOnly,
     ],
@@ -206,7 +206,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-checked": dataAttr(checked),
       "data-focus": dataAttr(isFocused),
       "data-focus-visible": dataAttr(isFocused && isFocusVisible),
-      "data-indeterminate": dataAttr(isIndeterminate),
+      "data-indeterminate": dataAttr(indeterminate),
       "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(invalid),
       "data-readonly": dataAttr(readOnly),
@@ -218,7 +218,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isFocused,
       isFocusVisible,
       isHovered,
-      isIndeterminate,
+      indeterminate,
       invalid,
       readOnly,
     ],
@@ -328,7 +328,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     checked,
     isActive,
     isHovered,
-    isIndeterminate,
+    indeterminate,
     disabled,
     readOnly,
     required,

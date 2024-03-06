@@ -21,7 +21,7 @@ export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
     const styles = useProgressStyles()
     const api = useProgressContext()
 
-    const shouldAddStripe = !api.isIndeterminate && api.hasStripe
+    const shouldAddStripe = !api.indeterminate && api.hasStripe
 
     const trackStyles = defineStyle({
       "--stripe-animation": `${stripeAnim}`,
@@ -35,10 +35,10 @@ export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
         style={{ width: `${api.computed.percent}%`, ...style }}
         data-animated={dataAttr(shouldAddStripe && api.isAnimated)}
         role="progressbar"
-        data-indeterminate={dataAttr(api.isIndeterminate)}
+        data-indeterminate={dataAttr(api.indeterminate)}
         aria-valuemax={api.computed.max}
         aria-valuemin={api.computed.min}
-        aria-valuenow={api.isIndeterminate ? undefined : api.computed.value}
+        aria-valuenow={api.indeterminate ? undefined : api.computed.value}
         aria-valuetext={api.computed.valueText}
         {...rest}
         __css={trackStyles}

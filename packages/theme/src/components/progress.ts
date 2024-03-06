@@ -9,7 +9,7 @@ const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys)
 
 const filledStyle = defineStyle((props) => {
-  const { colorScheme: c, theme: t, isIndeterminate, hasStripe } = props
+  const { colorScheme: c, theme: t, indeterminate, hasStripe } = props
 
   const stripeStyle = mode(
     generateStripe(),
@@ -25,11 +25,11 @@ const filledStyle = defineStyle((props) => {
     transparent 100%
   )`
 
-  const addStripe = !isIndeterminate && hasStripe
+  const addStripe = !indeterminate && hasStripe
 
   return {
     ...(addStripe && stripeStyle),
-    ...(isIndeterminate ? { bgImage: gradient } : { bgColor }),
+    ...(indeterminate ? { bgImage: gradient } : { bgColor }),
   }
 })
 

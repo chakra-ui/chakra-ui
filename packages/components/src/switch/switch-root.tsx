@@ -11,7 +11,7 @@ import {
 import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"
 
 export interface SwitchRootProps
-  extends Omit<UseCheckboxProps, "isIndeterminate">,
+  extends Omit<UseCheckboxProps, "indeterminate">,
     Omit<HTMLChakraProps<"label">, keyof UseCheckboxProps>,
     ThemingProps<"Switch"> {}
 

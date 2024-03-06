@@ -49,7 +49,7 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isIndeterminate?: boolean
+  indeterminate?: boolean
   /**
    * If `true`, the checkbox will be disabled
    *
@@ -154,7 +154,7 @@ export interface CheckboxState {
   checked: boolean
   isActive: boolean
   isHovered: boolean
-  isIndeterminate?: boolean
+  indeterminate?: boolean
   disabled?: boolean
   readOnly?: boolean
   required?: boolean

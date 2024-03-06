@@ -69,19 +69,19 @@ export const CheckboxControl = forwardRef<CheckboxControlProps, "span">(
         defineStyle({
           animation: !shouldAnimate
             ? undefined
-            : state.isIndeterminate
+            : state.indeterminate
             ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
             : `${checkAnim} 200ms linear`,
           fontSize: iconSize,
           color: iconColor,
           ...styles.icon,
         }),
-      [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
+      [iconColor, iconSize, shouldAnimate, state.indeterminate, styles.icon],
     )
 
     const clonedIcon = cloneElement(icon, {
       __css: iconStyles,
-      isIndeterminate: state.isIndeterminate,
+      indeterminate: state.indeterminate,
       checked: state.checked,
     })
 
