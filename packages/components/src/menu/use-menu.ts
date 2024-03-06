@@ -683,7 +683,7 @@ export function useMenuItem(
 
 export interface UseMenuOptionOptions {
   value?: string
-  isChecked?: boolean
+  checked?: boolean
   type?: "radio" | "checkbox"
   children?: React.ReactNode
 }
@@ -696,12 +696,12 @@ export function useMenuOption(
   props: UseMenuOptionProps = {},
   ref: React.Ref<any> = null,
 ) {
-  const { type = "radio", isChecked, ...rest } = props
+  const { type = "radio", checked, ...rest } = props
   const ownProps = useMenuItem(rest, ref)
   return {
     ...ownProps,
     role: `menuitem${type}`,
-    "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
+    "aria-checked": checked as React.AriaAttributes["aria-checked"],
   }
 }
 
@@ -771,7 +771,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
       child.props.onClick?.(event)
     }
 
-    const isChecked =
+    const checked =
       type === "radio"
         ? child.props.value === value
         : value.includes(child.props.value)
@@ -779,7 +779,7 @@ export function useMenuOptionGroup(props: UseMenuOptionGroupProps = {}) {
     return cloneElement(child, {
       type,
       onClick,
-      isChecked,
+      checked,
     })
   })
 

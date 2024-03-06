@@ -8,7 +8,7 @@ export const checkboxProps = createProps<UseCheckboxProps>()([
   "aria-labelledby",
   "defaultChecked",
   "id",
-  "isChecked",
+  "checked",
   "disabled",
   "isFocusable",
   "isIndeterminate",

@@ -32,7 +32,7 @@ export const Basic = () => <RadioDemo>Hello</RadioDemo>
 export const Disabled = () => <RadioDemo disabled>Disabled</RadioDemo>
 
 export const Readonly = () => (
-  <RadioDemo mt="40px" isChecked readOnly size="lg" colorScheme="green">
+  <RadioDemo mt="40px" checked readOnly size="lg" colorScheme="green">
     I'm a readonly radio
   </RadioDemo>
 )

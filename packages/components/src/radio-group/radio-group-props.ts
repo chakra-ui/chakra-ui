@@ -20,7 +20,7 @@ const radioItemProps = createProps<UseRadioProps>()([
   "data-radiogroup",
   "defaultChecked",
   "id",
-  "isChecked",
+  "checked",
   "disabled",
   "isFocusable",
   "invalid",

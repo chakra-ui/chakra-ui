@@ -45,7 +45,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
           <MenuIcon
             fontSize="0.8em"
             marginEnd={iconSpacing}
-            opacity={props.isChecked ? 1 : 0}
+            opacity={props.checked ? 1 : 0}
           >
             {icon || <CheckIcon />}
           </MenuIcon>

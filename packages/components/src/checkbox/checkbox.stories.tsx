@@ -116,7 +116,7 @@ export const WithCustomIcon = () => {
       <Heading>Indeterminate</Heading>
 
       <Checkbox.Root
-        isChecked={allChecked}
+        checked={allChecked}
         isIndeterminate={isIndeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
         colorScheme="red"
@@ -127,13 +127,13 @@ export const WithCustomIcon = () => {
 
       <Stack ml="6" mt="2" align="start">
         <DemoCheckbox
-          isChecked={checkedItems[0]}
+          checked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
         >
           Child Checkbox 1
         </DemoCheckbox>
         <DemoCheckbox
-          isChecked={checkedItems[1]}
+          checked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
         >
           Child Checkbox 2
@@ -162,7 +162,7 @@ export const Indeterminate = () => {
   return (
     <>
       <DemoCheckbox
-        isChecked={allChecked}
+        checked={allChecked}
         isIndeterminate={isIndeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
       >
@@ -170,13 +170,13 @@ export const Indeterminate = () => {
       </DemoCheckbox>
       <Stack ml="6" mt="2" align="start">
         <DemoCheckbox
-          isChecked={checkedItems[0]}
+          checked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
         >
           Child Checkbox 1
         </DemoCheckbox>
         <DemoCheckbox
-          isChecked={checkedItems[1]}
+          checked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
         >
           Child Checkbox 2
@@ -193,7 +193,7 @@ export const Controlled = () => {
     setValue(e.target.checked)
   }
 
-  return <DemoCheckbox isChecked={value} onChange={handleChange} />
+  return <DemoCheckbox checked={value} onChange={handleChange} />
 }
 
 export const CheckboxGroupExample = () => {
@@ -281,7 +281,7 @@ export const CustomCheckboxGroup = () => {
           h={4}
           {...getCheckboxProps()}
         >
-          {state.isChecked && <Box w={2} h={2} bg="green.500" />}
+          {state.checked && <Box w={2} h={2} bg="green.500" />}
         </Flex>
         <Text {...getLabelProps()}>Click me for {props.value}</Text>
       </chakra.label>

@@ -64,7 +64,7 @@ export const Controlled = () => {
     <>
       {checked ? "Checked" : "Unchecked"}
       <DemoSwitch
-        isChecked={checked}
+        checked={checked}
         colorScheme="blue"
         onChange={(e) => setChecked(e.target.checked)}
       />

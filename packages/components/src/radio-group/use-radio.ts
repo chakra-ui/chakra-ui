@@ -28,7 +28,7 @@ export interface UseRadioProps {
    *
    * @default false
    */
-  isChecked?: boolean
+  checked?: boolean
   /**
    * If `true`, the radio will be initially checked.
    *
@@ -83,7 +83,7 @@ export interface UseRadioProps {
 export interface RadioState {
   invalid: boolean | undefined
   isFocused: boolean
-  isChecked: boolean
+  checked: boolean
   isActive: boolean
   isHovered: boolean
   disabled: boolean | undefined
@@ -99,7 +99,7 @@ export interface RadioState {
 export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultChecked,
-    isChecked: isCheckedProp,
+    checked: checkedProp,
     isFocusable,
     disabled: disabledProp,
     readOnly: readOnlyProp,
@@ -134,10 +134,10 @@ export function useRadio(props: UseRadioProps = {}) {
   const [isHovered, setHovering] = useState(false)
   const [isActive, setActive] = useState(false)
 
-  const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
+  const [checkedState, setChecked] = useState(Boolean(defaultChecked))
 
-  const isControlled = typeof isCheckedProp !== "undefined"
-  const isChecked = isControlled ? isCheckedProp : isCheckedState
+  const isControlled = typeof checkedProp !== "undefined"
+  const checked = isControlled ? checkedProp : checkedState
 
   useEffect(() => {
     return trackFocusVisible(setIsFocusVisible)
@@ -185,7 +185,7 @@ export function useRadio(props: UseRadioProps = {}) {
       "data-hover": dataAttr(isHovered),
       "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(invalid),
-      "data-checked": dataAttr(isChecked),
+      "data-checked": dataAttr(checked),
       "data-focus": dataAttr(isFocused),
       "data-focus-visible": dataAttr(isFocused && isFocusVisible),
       "data-readonly": dataAttr(readOnly),
@@ -204,7 +204,7 @@ export function useRadio(props: UseRadioProps = {}) {
       isHovered,
       disabled,
       invalid,
-      isChecked,
+      checked,
       isFocused,
       readOnly,
       isFocusVisible,
@@ -234,7 +234,7 @@ export function useRadio(props: UseRadioProps = {}) {
           ),
           onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
           onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-          checked: isChecked,
+          checked: checked,
           disabled: trulyDisabled,
           readOnly,
           required,
@@ -257,7 +257,7 @@ export function useRadio(props: UseRadioProps = {}) {
         onFocus,
         onKeyDown,
         onKeyUp,
-        isChecked,
+        checked,
         readOnly,
         required,
         invalid,
@@ -270,7 +270,7 @@ export function useRadio(props: UseRadioProps = {}) {
     ref,
     onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
     "data-disabled": dataAttr(disabled),
-    "data-checked": dataAttr(isChecked),
+    "data-checked": dataAttr(checked),
     "data-invalid": dataAttr(invalid),
   })
 
@@ -278,14 +278,14 @@ export function useRadio(props: UseRadioProps = {}) {
     ...props,
     ref,
     "data-disabled": dataAttr(disabled),
-    "data-checked": dataAttr(isChecked),
+    "data-checked": dataAttr(checked),
     "data-invalid": dataAttr(invalid),
   })
 
   const state: RadioState = {
     invalid,
     isFocused,
-    isChecked,
+    checked,
     isActive,
     isHovered,
     disabled,

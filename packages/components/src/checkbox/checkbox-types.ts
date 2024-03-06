@@ -23,7 +23,7 @@ export interface UseCheckboxGroupProps {
   disabled?: boolean
   /**
    * If `true`, input elements will receive
-   * `checked` attribute instead of `isChecked`.
+   * `checked` attribute instead of `checked`.
    *
    * This assumes, you're using native radio inputs
    *
@@ -41,11 +41,11 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isChecked?: boolean
+  checked?: boolean
   /**
    * If `true`, the checkbox will be indeterminate.
    * This only affects the icon shown inside checkbox
-   * and does not modify the isChecked property.
+   * and does not modify the checked property.
    *
    * @default false
    */
@@ -151,7 +151,7 @@ export interface CheckboxGroupContext
 export interface CheckboxState {
   invalid?: boolean
   isFocused: boolean
-  isChecked: boolean
+  checked: boolean
   isActive: boolean
   isHovered: boolean
   isIndeterminate?: boolean

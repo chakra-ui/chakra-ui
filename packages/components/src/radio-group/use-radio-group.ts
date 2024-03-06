@@ -45,7 +45,7 @@ export interface UseRadioGroupProps {
   name?: string
   /**
    * If `true`, input elements will receive
-   * `checked` attribute instead of `isChecked`.
+   * `checked` attribute instead of `checked`.
    *
    * This assumes, you're using native radio inputs
    *
@@ -130,7 +130,7 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   //@ts-expect-error
   const getItemProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
-      const checkedKey = isNative ? "checked" : "isChecked"
+      const checkedKey = isNative ? "checked" : "checked"
       return {
         ...props,
         ref,

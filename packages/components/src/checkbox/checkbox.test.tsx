@@ -76,10 +76,10 @@ test("Controlled - should check and uncheck", async () => {
   const onChange = vi.fn()
 
   const Component = () => {
-    const [isChecked, setIsChecked] = React.useState(false)
+    const [checked, setIsChecked] = React.useState(false)
     return (
       <HookCheckbox
-        isChecked={isChecked}
+        checked={checked}
         onChange={(e) => {
           setIsChecked(e.target.checked)
           onChange(e)
@@ -203,7 +203,7 @@ test("uncontrolled Checkbox.Group handles change", () => {
 
 test("accepts custom icon", () => {
   const IconSvg = (props: any) => {
-    const { isIndeterminate, isChecked, ...rest } = props
+    const { isIndeterminate, checked, ...rest } = props
 
     const d = isIndeterminate
       ? "M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,19a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,12,19Zm1.6-6.08a1,1,0,0,0-.6.917,1,1,0,1,1-2,0,3,3,0,0,1,1.8-2.75A2,2,0,1,0,10,9.255a1,1,0,1,1-2,0,4,4,0,1,1,5.6,3.666Z"

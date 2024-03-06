@@ -40,7 +40,7 @@ test("Controlled - should check and uncheck", async () => {
     const [checked, setChecked] = React.useState(false)
     return (
       <DemoSwitch
-        isChecked={checked}
+        checked={checked}
         onChange={(e) => {
           onChange?.()
           setChecked(e.target.checked)

@@ -32,7 +32,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
     (eventOrValue: EventOrValue) => {
       if (!value) return
 
-      const isChecked = isInputEvent(eventOrValue)
+      const checked = isInputEvent(eventOrValue)
         ? eventOrValue.target.checked
         : !value.includes(eventOrValue)
 
@@ -40,7 +40,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
         ? eventOrValue.target.value
         : eventOrValue
 
-      const nextValue = isChecked
+      const nextValue = checked
         ? [...value, selectedValue]
         : value.filter((v) => String(v) !== String(selectedValue))
 
@@ -51,7 +51,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
 
   const getCheckboxProps = useCallback(
     (props: Record<string, any> = {}) => {
-      const checkedKey = isNative ? "checked" : "isChecked"
+      const checkedKey = isNative ? "checked" : "checked"
       return {
         ...props,
         [checkedKey]: value.some((val) => String(props.value) === String(val)),
