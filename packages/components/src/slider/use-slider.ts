@@ -83,7 +83,7 @@ export interface UseSliderProps {
    * If `true`, the slider will be in `read-only` state
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * Function that returns the `aria-valuetext` for screen readers.
    * It is mostly used to generate a more human-readable
@@ -150,7 +150,7 @@ export function useSlider(props: UseSliderProps) {
     orientation = "horizontal",
     id: idProp,
     disabled,
-    isReadOnly,
+    readOnly,
     onChangeStart: onChangeStartProp,
     onChangeEnd: onChangeEndProp,
     step = 1,
@@ -184,7 +184,7 @@ export function useSlider(props: UseSliderProps) {
 
   const [isDragging, setDragging] = useState(false)
   const [isFocused, setFocused] = useState(false)
-  const isInteractive = !(disabled || isReadOnly)
+  const isInteractive = !(disabled || readOnly)
 
   const tenSteps = (max - min) / 10
   const oneStep = step || (max - min) / 100
@@ -468,7 +468,7 @@ export function useSlider(props: UseSliderProps) {
         "aria-valuenow": value,
         "aria-orientation": orientation,
         "aria-disabled": ariaAttr(disabled),
-        "aria-readonly": ariaAttr(isReadOnly),
+        "aria-readonly": ariaAttr(readOnly),
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
         style: {
@@ -490,7 +490,7 @@ export function useSlider(props: UseSliderProps) {
       value,
       orientation,
       disabled,
-      isReadOnly,
+      readOnly,
       ariaLabel,
       ariaLabelledBy,
       getThumbStyle,

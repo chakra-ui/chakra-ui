@@ -419,14 +419,14 @@ test("Uncontrolled Form.Control - mark label required", () => {
 
 test("Uncontrolled Form.Control - mark readonly", () => {
   const { container } = render(
-    <Field.Root isReadOnly mt={4}>
+    <Field.Root readOnly mt={4}>
       <Field.Label>ReadOnly Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">ReadOnly Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isReadOnly>
+        <DemoCheckbox value="2" readOnly>
           ReadOnly Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isReadOnly={false}>
+        <DemoCheckbox value="3" readOnly={false}>
           ReadOnly Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>

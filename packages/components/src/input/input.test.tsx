@@ -40,7 +40,7 @@ test("Disabled input renders correctly", () => {
 })
 
 test("Readonly input renders correctly", () => {
-  render(<Input isReadOnly />)
+  render(<Input readOnly />)
 
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-readonly", "true")
 })

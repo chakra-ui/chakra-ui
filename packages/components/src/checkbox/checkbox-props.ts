@@ -13,7 +13,7 @@ export const checkboxProps = createProps<UseCheckboxProps>()([
   "isFocusable",
   "isIndeterminate",
   "isInvalid",
-  "isReadOnly",
+  "readOnly",
   "isRequired",
   "name",
   "onBlur",

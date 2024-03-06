@@ -21,8 +21,8 @@ import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const formControlProps = useFieldProps(props)
   const {
-    disabled: disabled,
-    readOnly: isReadOnly,
+    disabled,
+    readOnly,
     required: isRequired,
     invalid: isInvalid,
     id,
@@ -68,7 +68,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (isReadOnly || disabled) {
+      if (readOnly || disabled) {
         event.preventDefault()
         return
       }
@@ -84,7 +84,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       onChangeProp?.(event)
     },
     [
-      isReadOnly,
+      readOnly,
       disabled,
       isChecked,
       isControlled,
@@ -179,7 +179,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "data-indeterminate": dataAttr(isIndeterminate),
         "data-disabled": dataAttr(disabled),
         "data-invalid": dataAttr(isInvalid),
-        "data-readonly": dataAttr(isReadOnly),
+        "data-readonly": dataAttr(readOnly),
         "aria-hidden": true,
         onMouseDown: callAllHandlers(props.onMouseDown, onPressDown),
         onMouseUp: callAllHandlers(props.onMouseUp, () => setActive(false)),
@@ -200,7 +200,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isHovered,
       isIndeterminate,
       isInvalid,
-      isReadOnly,
+      readOnly,
     ],
   )
 
@@ -216,7 +216,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       "data-indeterminate": dataAttr(isIndeterminate),
       "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(isInvalid),
-      "data-readonly": dataAttr(isReadOnly),
+      "data-readonly": dataAttr(readOnly),
     }),
     [
       isActive,
@@ -227,7 +227,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isHovered,
       isIndeterminate,
       isInvalid,
-      isReadOnly,
+      readOnly,
     ],
   )
 
@@ -285,7 +285,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         required: isRequired,
         checked: isChecked,
         disabled: trulyDisabled,
-        readOnly: isReadOnly,
+        readOnly: readOnly,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
         "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : isInvalid,
@@ -306,7 +306,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       isRequired,
       isChecked,
       trulyDisabled,
-      isReadOnly,
+      readOnly,
       ariaLabel,
       ariaLabelledBy,
       ariaInvalid,
@@ -337,7 +337,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     isHovered,
     isIndeterminate,
     disabled,
-    isReadOnly,
+    readOnly,
     isRequired,
   }
 

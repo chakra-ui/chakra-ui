@@ -46,7 +46,7 @@ export const Basic = () => <DemoCheckbox colorScheme="red">Hello</DemoCheckbox>
 
 export const Disabled = () => <DemoCheckbox disabled>Disabled</DemoCheckbox>
 
-export const Readonly = () => <DemoCheckbox isReadOnly>Readonly</DemoCheckbox>
+export const Readonly = () => <DemoCheckbox readOnly>Readonly</DemoCheckbox>
 
 export const Invalid = () => <DemoCheckbox isInvalid>Invalid</DemoCheckbox>
 
@@ -337,7 +337,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInReadonly" isReadOnly mt={4}>
+      <Field.Root id="optInReadonly" readOnly mt={4}>
         <Field.Label>Readonly Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>

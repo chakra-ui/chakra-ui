@@ -68,7 +68,7 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * If `true`, the checkbox is marked as invalid.
    * Changes style of unchecked state.
@@ -156,7 +156,7 @@ export interface CheckboxState {
   isHovered: boolean
   isIndeterminate?: boolean
   disabled?: boolean
-  isReadOnly?: boolean
+  readOnly?: boolean
   isRequired?: boolean
 }
 

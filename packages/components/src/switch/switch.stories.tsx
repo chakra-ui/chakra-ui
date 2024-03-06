@@ -31,7 +31,7 @@ export const Disabled = () => (
 )
 
 export const Readonly = () => (
-  <DemoSwitch isReadOnly size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch readOnly size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Invalid = () => (
@@ -126,7 +126,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInReadonly" isReadOnly mt={4}>
+      <Field.Root id="optInReadonly" readOnly mt={4}>
         <Field.Label>Readonly Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Readonly Opt-in 1</DemoSwitch>

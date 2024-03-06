@@ -53,7 +53,7 @@ export interface UseRadioProps {
    *
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`.
    *
@@ -87,7 +87,7 @@ export interface RadioState {
   isActive: boolean
   isHovered: boolean
   disabled: boolean | undefined
-  isReadOnly: boolean | undefined
+  readOnly: boolean | undefined
   isRequired: boolean | undefined
 }
 
@@ -102,7 +102,7 @@ export function useRadio(props: UseRadioProps = {}) {
     isChecked: isCheckedProp,
     isFocusable,
     disabled: disabledProp,
-    isReadOnly: isReadOnlyProp,
+    readOnly: readOnlyProp,
     isRequired: isRequiredProp,
     onChange,
     isInvalid: isInvalidProp,
@@ -125,7 +125,7 @@ export function useRadio(props: UseRadioProps = {}) {
   id = idProp ?? id
 
   const disabled = disabledProp ?? formControl?.disabled
-  const isReadOnly = isReadOnlyProp ?? formControl?.isReadOnly
+  const readOnly = readOnlyProp ?? formControl?.readOnly
   const isRequired = isRequiredProp ?? formControl?.isRequired
   const isInvalid = isInvalidProp ?? formControl?.isInvalid
 
@@ -145,7 +145,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (isReadOnly || disabled) {
+      if (readOnly || disabled) {
         event.preventDefault()
         return
       }
@@ -156,7 +156,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
       onChange?.(event)
     },
-    [isControlled, disabled, isReadOnly, onChange],
+    [isControlled, disabled, readOnly, onChange],
   )
 
   const onKeyDown = useCallback(
@@ -188,7 +188,7 @@ export function useRadio(props: UseRadioProps = {}) {
       "data-checked": dataAttr(isChecked),
       "data-focus": dataAttr(isFocused),
       "data-focus-visible": dataAttr(isFocused && isFocusVisible),
-      "data-readonly": dataAttr(isReadOnly),
+      "data-readonly": dataAttr(readOnly),
       "aria-hidden": true,
       onMouseDown: callAllHandlers(props.onMouseDown, () => setActive(true)),
       onMouseUp: callAllHandlers(props.onMouseUp, () => setActive(false)),
@@ -206,7 +206,7 @@ export function useRadio(props: UseRadioProps = {}) {
       isInvalid,
       isChecked,
       isFocused,
-      isReadOnly,
+      readOnly,
       isFocusVisible,
     ],
   )
@@ -236,12 +236,12 @@ export function useRadio(props: UseRadioProps = {}) {
           onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
           checked: isChecked,
           disabled: trulyDisabled,
-          readOnly: isReadOnly,
+          readOnly: readOnly,
           required: isRequired,
           "aria-invalid": ariaAttr(isInvalid),
           "aria-disabled": ariaAttr(trulyDisabled),
           "aria-required": ariaAttr(isRequired),
-          "data-readonly": dataAttr(isReadOnly),
+          "data-readonly": dataAttr(readOnly),
           "aria-describedby": ariaDescribedBy,
           style: visuallyHiddenStyle,
         }
@@ -258,7 +258,7 @@ export function useRadio(props: UseRadioProps = {}) {
         onKeyDown,
         onKeyUp,
         isChecked,
-        isReadOnly,
+        readOnly,
         isRequired,
         isInvalid,
         ariaDescribedBy,
@@ -289,7 +289,7 @@ export function useRadio(props: UseRadioProps = {}) {
     isActive,
     isHovered,
     disabled,
-    isReadOnly,
+    readOnly,
     isRequired,
   }
 

@@ -30,7 +30,7 @@ export interface FieldOptions {
    *
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
 }
 
 export interface UseFieldProps<T extends HTMLElement = HTMLElement>

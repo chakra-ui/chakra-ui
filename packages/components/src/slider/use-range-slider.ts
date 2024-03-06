@@ -87,7 +87,7 @@ export interface UseRangeSliderProps {
    * If `true`, the slider will be in `read-only` state
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
 
   /**
    * Function that returns the `aria-valuetext` for screen readers.
@@ -166,7 +166,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     orientation = "horizontal",
     id: idProp,
     disabled,
-    isReadOnly,
+    readOnly,
     onChangeStart: onChangeStartProp,
     onChangeEnd: onChangeEndProp,
     step = 1,
@@ -206,7 +206,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const [isFocused, setFocused] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
 
-  const isInteractive = !(disabled || isReadOnly)
+  const isInteractive = !(disabled || readOnly)
 
   const initialValue = useRef(valueState)
   const value = valueState.map((val) => clampValue(val, min, max))
@@ -492,7 +492,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         "aria-valuenow": valueAtIndex,
         "aria-orientation": orientation,
         "aria-disabled": ariaAttr(disabled),
-        "aria-readonly": ariaAttr(isReadOnly),
+        "aria-readonly": ariaAttr(readOnly),
         "aria-label": ariaLabel?.[index],
         "aria-labelledby": ariaLabel?.[index]
           ? undefined
@@ -520,7 +520,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       ariaValueText,
       orientation,
       disabled,
-      isReadOnly,
+      readOnly,
       ariaLabel,
       ariaLabelledBy,
       getThumbStyle,

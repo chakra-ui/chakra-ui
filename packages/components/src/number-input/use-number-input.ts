@@ -59,7 +59,7 @@ export interface UseNumberInputProps extends UseCounterProps {
   /**
    * If `true`, the input will be in readonly mode
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * If `true`, the input will have `aria-invalid` set to `true`
    */
@@ -71,7 +71,7 @@ export interface UseNumberInputProps extends UseCounterProps {
   /**
    * Whether the input is required
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * The `id` to use for the number input field.
    */
@@ -144,8 +144,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   const {
     id,
     disabled,
-    readOnly: isReadOnly,
-    required: isRequired,
+    readOnly,
+    required,
     "aria-describedby": ariaDescBy,
     invalid: isInvalid,
     onFocus: onFocusProp,
@@ -199,7 +199,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * `spinners`, maybe :)
    */
   const [isFocused, setFocused] = useState(false)
-  const isInteractive = !(isReadOnly || disabled)
+  const isInteractive = !(readOnly || disabled)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const inputSelectionRef = useRef<InputSelection | null>(null)
@@ -513,12 +513,12 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-label": ariaLabel,
         "aria-describedby": ariaDescBy,
         id,
-        disabled: disabled,
+        disabled,
         ...props,
-        readOnly: props.readOnly ?? isReadOnly,
-        "aria-readonly": props.readOnly ?? isReadOnly,
-        "aria-required": props.required ?? isRequired,
-        required: props.required ?? isRequired,
+        readOnly: props.readOnly ?? readOnly,
+        "aria-readonly": props.readOnly ?? readOnly,
+        "aria-required": props.required ?? required,
+        required: props.required ?? required,
         ref: mergeRefs(inputRef, ref),
         value: format(counter.value),
         role: "spinbutton",
@@ -548,8 +548,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         ariaDescBy,
         id,
         disabled,
-        isRequired,
-        isReadOnly,
+        required,
+        readOnly,
         isInvalid,
         counter.value,
         counter.valueAsNumber,
@@ -570,7 +570,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     valueAsNumber: counter.valueAsNumber,
     isFocused,
     disabled,
-    isReadOnly,
+    readOnly,
     getIncrementButtonProps,
     getDecrementButtonProps,
     getInputProps,

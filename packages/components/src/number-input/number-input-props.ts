@@ -14,7 +14,7 @@ export const numberInputProps = createProps<UseNumberInputProps>()([
   "inputMode",
   "disabled",
   "isInvalid",
-  "isReadOnly",
+  "readOnly",
   "isRequired",
   "isValidCharacter",
   "keepWithinRange",

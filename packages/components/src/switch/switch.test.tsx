@@ -151,7 +151,7 @@ test("Uncontrolled FormControl - mark required", () => {
 
 test("Uncontrolled FormControl - mark readonly", () => {
   render(
-    <Field.Root isReadOnly mt={4}>
+    <Field.Root readOnly mt={4}>
       <Field.Label>ReadOnly Opt-in Example</Field.Label>
       <DemoSwitch />
     </Field.Root>,
