@@ -175,7 +175,7 @@ function makeId(type: string, id: string, value: string) {
  */
 export function useAccordionItem(props: UseAccordionItemProps) {
   const { disabled, focusable, value } = props
-  const { getAccordionItemProps, setFocusedId, rootRef, id } =
+  const { getAccordionItemProps, setFocusedId, focusedId, rootRef, id } =
     useAccordionContext()
 
   /**
@@ -296,6 +296,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
     open,
     disabled,
     focusable,
+    focused: focusedId === buttonId,
     onOpen,
     onClose,
     getTriggerProps,

@@ -126,19 +126,19 @@ export const Arrow = () => (
 export const Controlled = () => {
   const [open, setIsOpen] = React.useState(false)
 
-  const open = () => setIsOpen(!open)
-  const close = () => setIsOpen(false)
+  const onOpen = () => setIsOpen(!open)
+  const onClose = () => setIsOpen(false)
 
   return (
     <>
-      <Button mr={5} onClick={open}>
+      <Button mr={5} onClick={onOpen}>
         Trigger
       </Button>
 
       <Popover.Root
         returnFocusOnClose={false}
         open={open}
-        onClose={close}
+        onClose={onClose}
         placement="right"
         closeOnBlur={false}
       >

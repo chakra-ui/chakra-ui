@@ -586,14 +586,14 @@ export const MenuPerformanceTest = () => {
 
 export const WithoutMenuButton = () => {
   const [open, setOpen] = React.useState(false)
-  const open = () => setOpen(true)
-  const close = () => setOpen(false)
+  const onOpen = () => setOpen(true)
+  const onClose = () => setOpen(false)
 
   React.useEffect(() => {
     const listener = (ev: KeyboardEvent) => {
       if ((ev.metaKey || ev.ctrlKey) && ev.code === "KeyK") {
         ev.preventDefault()
-        open()
+        onOpen()
       }
     }
     window.addEventListener("keydown", listener)
@@ -603,7 +603,7 @@ export const WithoutMenuButton = () => {
   return (
     <>
       <Dialog.Root
-        onClose={close}
+        onClose={onClose}
         open={open}
         isCentered
         motionPreset="slideInBottom"

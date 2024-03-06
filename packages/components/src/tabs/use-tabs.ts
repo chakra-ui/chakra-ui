@@ -19,9 +19,9 @@ export interface UseTabsProps {
    * If `false`, the tabs will be automatically activated
    * and their panel is displayed when they receive focus.
    *
-   * @default false
+   * @default "automatic"
    */
-  isManual?: boolean
+  activationMode?: "manual" | "automatic"
   /**
    * Callback when the tab (controlled or un-controlled) changes.
    */
@@ -80,7 +80,7 @@ export function useTabs(props: UseTabsProps) {
     defaultValue,
     onChange,
     value,
-    isManual,
+    activationMode = "automatic",
     lazyMount,
     lazyBehavior = "unmount",
     orientation = "horizontal",
@@ -122,7 +122,7 @@ export function useTabs(props: UseTabsProps) {
     setFocusedValue,
     selectedValue,
     setSelectedValue,
-    isManual,
+    activationMode,
     lazyMount,
     lazyBehavior,
     orientation,

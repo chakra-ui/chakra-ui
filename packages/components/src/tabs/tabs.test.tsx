@@ -92,7 +92,7 @@ test("selects the correct tab with keyboard navigation", async () => {
 
 test("focuses the correct tab with manual keyboard navigation", async () => {
   const { user } = render(
-    <Tabs.Root defaultValue="1" isManual>
+    <Tabs.Root defaultValue="1" activationMode="manual">
       <Tabs.List>
         <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
         <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>

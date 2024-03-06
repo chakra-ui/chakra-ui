@@ -7,7 +7,7 @@ export const tabsProps = createProps<UseTabsProps>()([
   "id",
   "value",
   "lazyMount",
-  "isManual",
+  "activationMode",
   "lazyBehavior",
   "onChange",
   "orientation",

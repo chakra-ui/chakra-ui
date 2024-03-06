@@ -33,10 +33,16 @@ export interface UseTabProps
 export function useTab<P extends UseTabProps>(props: P) {
   const { disabled, focusable, value, ref, ...htmlProps } = props
 
-  const { setSelectedValue, isManual, id, setFocusedValue, selectedValue } =
-    useTabsContext()
+  const {
+    setSelectedValue,
+    activationMode,
+    id,
+    setFocusedValue,
+    selectedValue,
+  } = useTabsContext()
 
   const isSelected = value === selectedValue
+  const isManual = activationMode === "manual"
 
   const onClick = () => {
     setSelectedValue(value)

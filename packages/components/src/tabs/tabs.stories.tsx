@@ -62,7 +62,7 @@ export const Sizes = () =>
 export const automatic = () => (
   <>
     <p>manual</p>
-    <Tabs.Root defaultValue="settings" isManual>
+    <Tabs.Root defaultValue="settings" activationMode="manual">
       <Tabs.List>
         <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
         <Tabs.Trigger value="billing" disabled>
@@ -104,7 +104,7 @@ export const automatic = () => (
 )
 
 export const manual = () => (
-  <Tabs.Root defaultValue="settings" isManual>
+  <Tabs.Root defaultValue="settings" activationMode="manual">
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
       <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
@@ -123,7 +123,7 @@ export const manual = () => (
 )
 
 export const withIndicator = () => (
-  <Tabs.Root defaultValue="settings" variant="unstyled" isManual>
+  <Tabs.Root defaultValue="settings" variant="unstyled" activationMode="manual">
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
       <Tabs.Trigger value="billing" _disabled={{ color: "gray.400" }} disabled>
@@ -146,7 +146,7 @@ export const withIndicator = () => (
 
 export const withIndicatorAndLongTabText = () => (
   <>
-    <Tabs.Root defaultValue="long" variant="unstyled" isManual>
+    <Tabs.Root defaultValue="long" variant="unstyled" activationMode="manual">
       <Tabs.List>
         <Tabs.Trigger value="long">Tab with long text</Tabs.Trigger>
         <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
@@ -311,7 +311,11 @@ export const withinDrawer = () => (
     <Drawer.Overlay>
       <Drawer.Positioner>
         <Drawer.Content>
-          <Tabs.Root defaultValue="settings" variant="unstyled" isManual>
+          <Tabs.Root
+            defaultValue="settings"
+            variant="unstyled"
+            activationMode="manual"
+          >
             <Tabs.List>
               <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
               <Tabs.Trigger value="billing">Billing</Tabs.Trigger>

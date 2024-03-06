@@ -317,7 +317,7 @@ export const FocusBug = () => {
 
 export const WithDisabledItem = () => {
   return (
-    <Accordion.Root value={["1"]}>
+    <Accordion.Root defaultValue={["1"]}>
       <Accordion.Item value="1" disabled>
         <Accordion.Trigger>Button 1</Accordion.Trigger>
         <Accordion.Content>One Content</Accordion.Content>
@@ -341,3 +341,39 @@ export const WithDisabledItem = () => {
     </Accordion.Root>
   )
 }
+
+export const ItemApi = () => (
+  <Accordion.Root>
+    <Accordion.Item>
+      {({ isOpen }) => (
+        <>
+          <h2>
+            <Accordion.Trigger>
+              <chakra.div flex="1" textAlign="left">
+                Section 1 title {isOpen ? "open" : "closed"}
+              </chakra.div>
+              <Accordion.Icon />
+            </Accordion.Trigger>
+          </h2>
+          <Accordion.Content>Panel 1</Accordion.Content>
+        </>
+      )}
+    </Accordion.Item>
+
+    <Accordion.Item>
+      {({ isOpen }) => (
+        <>
+          <h2>
+            <Accordion.Trigger>
+              <chakra.div flex="1" textAlign="left">
+                Section 2 title {isOpen ? "open" : "closed"}
+              </chakra.div>
+              <Accordion.Icon />
+            </Accordion.Trigger>
+          </h2>
+          <Accordion.Content>Panel 2</Accordion.Content>
+        </>
+      )}
+    </Accordion.Item>
+  </Accordion.Root>
+)
