@@ -135,7 +135,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInRequired" isRequired mt={4}>
+      <Field.Root id="optInRequired" required mt={4}>
         <Field.Label>Required Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Required Opt-in 1</DemoSwitch>

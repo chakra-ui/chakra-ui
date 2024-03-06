@@ -132,11 +132,11 @@ test("Uncontrolled FormControl - mark label as invalid", () => {
 
 test("Uncontrolled FormControl - mark required", () => {
   const { container } = render(
-    <Field.Root isRequired mt={4}>
+    <Field.Root required mt={4}>
       <Field.Label>Required Opt-in Example</Field.Label>
       <DemoSwitch />
-      <DemoSwitch isRequired />
-      <DemoSwitch isRequired={false} />
+      <DemoSwitch required />
+      <DemoSwitch required={false} />
     </Field.Root>,
   )
 

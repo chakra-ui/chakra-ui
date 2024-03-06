@@ -23,7 +23,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const {
     disabled,
     readOnly,
-    required: isRequired,
+    required,
     invalid: isInvalid,
     id,
     onBlur,
@@ -282,7 +282,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         ),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-        required: isRequired,
+        required,
         checked: isChecked,
         disabled: trulyDisabled,
         readOnly: readOnly,
@@ -303,7 +303,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       onFocusProp,
       onKeyDown,
       onKeyUp,
-      isRequired,
+      required,
       isChecked,
       trulyDisabled,
       readOnly,
@@ -338,7 +338,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     isIndeterminate,
     disabled,
     readOnly,
-    isRequired,
+    required,
   }
 
   return {

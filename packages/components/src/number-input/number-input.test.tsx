@@ -180,7 +180,7 @@ test("should derive values from surrounding FormControl", () => {
   render(
     <Field.Root
       id="input"
-      isRequired
+      required
       isInvalid
       disabled
       readOnly

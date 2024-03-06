@@ -18,7 +18,7 @@ export interface FieldRootProps
 
 /**
  * FormControl provides context such as
- * `isInvalid`, `disabled`, and `isRequired` to form elements.
+ * `isInvalid`, `disabled`, and `required` to form elements.
  *
  * This is commonly used in form elements such as `input`,
  * `select`, `textarea`, etc.

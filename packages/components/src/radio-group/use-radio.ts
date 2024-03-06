@@ -65,7 +65,7 @@ export interface UseRadioProps {
    *
    * @default false
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * Function called when checked state of the `input` changes
    */
@@ -88,7 +88,7 @@ export interface RadioState {
   isHovered: boolean
   disabled: boolean | undefined
   readOnly: boolean | undefined
-  isRequired: boolean | undefined
+  required: boolean | undefined
 }
 
 /**
@@ -103,7 +103,7 @@ export function useRadio(props: UseRadioProps = {}) {
     isFocusable,
     disabled: disabledProp,
     readOnly: readOnlyProp,
-    isRequired: isRequiredProp,
+    required: requiredProp,
     onChange,
     isInvalid: isInvalidProp,
     name,
@@ -126,7 +126,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const disabled = disabledProp ?? formControl?.disabled
   const readOnly = readOnlyProp ?? formControl?.readOnly
-  const isRequired = isRequiredProp ?? formControl?.isRequired
+  const required = requiredProp ?? formControl?.required
   const isInvalid = isInvalidProp ?? formControl?.isInvalid
 
   const [isFocusVisible, setIsFocusVisible] = useState(false)
@@ -236,11 +236,11 @@ export function useRadio(props: UseRadioProps = {}) {
           onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
           checked: isChecked,
           disabled: trulyDisabled,
-          readOnly: readOnly,
-          required: isRequired,
+          readOnly,
+          required,
           "aria-invalid": ariaAttr(isInvalid),
           "aria-disabled": ariaAttr(trulyDisabled),
-          "aria-required": ariaAttr(isRequired),
+          "aria-required": ariaAttr(required),
           "data-readonly": dataAttr(readOnly),
           "aria-describedby": ariaDescribedBy,
           style: visuallyHiddenStyle,
@@ -259,7 +259,7 @@ export function useRadio(props: UseRadioProps = {}) {
         onKeyUp,
         isChecked,
         readOnly,
-        isRequired,
+        required,
         isInvalid,
         ariaDescribedBy,
       ],
@@ -290,7 +290,7 @@ export function useRadio(props: UseRadioProps = {}) {
     isHovered,
     disabled,
     readOnly,
-    isRequired,
+    required,
   }
 
   return {

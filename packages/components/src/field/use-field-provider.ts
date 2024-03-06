@@ -7,7 +7,7 @@ import { FieldContext } from "./types"
 export function useFieldProvider(props: FieldContext) {
   const {
     id: idProp,
-    isRequired,
+    required,
     isInvalid,
     disabled,
     readOnly,
@@ -110,7 +110,7 @@ export function useFieldProvider(props: FieldContext) {
   )
 
   return {
-    isRequired: !!isRequired,
+    required: !!required,
     isInvalid: !!isInvalid,
     readOnly: !!readOnly,
     disabled: !!disabled,

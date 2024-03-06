@@ -348,7 +348,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInRequired" isRequired mt={4}>
+      <Field.Root id="optInRequired" required mt={4}>
         <Field.Label>Required Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>

@@ -8,7 +8,7 @@ export interface FieldOptions {
    *
    * @default false
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * If `true`, the form control will be disabled. This has 2 side effects:
    * - The `FormLabel` will have `data-disabled` attribute

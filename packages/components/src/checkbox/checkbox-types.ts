@@ -82,7 +82,7 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * If `true`, the checkbox will be initially checked.
    *
@@ -157,7 +157,7 @@ export interface CheckboxState {
   isIndeterminate?: boolean
   disabled?: boolean
   readOnly?: boolean
-  isRequired?: boolean
+  required?: boolean
 }
 
 export interface CheckboxContext extends UseCheckboxReturn {

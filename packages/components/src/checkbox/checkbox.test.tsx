@@ -394,14 +394,14 @@ test("Uncontrolled Form.Control - mark label as invalid", () => {
 
 test("Uncontrolled Form.Control - mark label required", () => {
   const { container } = render(
-    <Field.Root isRequired mt={4}>
+    <Field.Root required mt={4}>
       <Field.Label>Required Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Required Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isRequired>
+        <DemoCheckbox value="2" required>
           Required Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isRequired={false}>
+        <DemoCheckbox value="3" required={false}>
           Required Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>

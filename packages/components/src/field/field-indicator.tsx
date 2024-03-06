@@ -13,7 +13,7 @@ export const RequiredIndicator = forwardRef<RequiredIndicatorProps, "span">(
     const field = useFieldContext()
     const styles = useFieldStyles()
 
-    if (!field?.isRequired) return null
+    if (!field?.required) return null
 
     const className = cx("chakra-form__required-indicator", props.className)
 

@@ -14,7 +14,7 @@ export const checkboxProps = createProps<UseCheckboxProps>()([
   "isIndeterminate",
   "isInvalid",
   "readOnly",
-  "isRequired",
+  "required",
   "name",
   "onBlur",
   "onChange",

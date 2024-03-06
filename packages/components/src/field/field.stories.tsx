@@ -69,7 +69,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
  * -----------------------------------------------------------------------------*/
 
 export const WithInput = () => (
-  <Field.Root id="first-name" isRequired isInvalid>
+  <Field.Root id="first-name" required isInvalid>
     <Field.Label>First name</Field.Label>
     <Input placeholder="First Name" />
     <Field.HelpText>Keep it very short and sweet!</Field.HelpText>

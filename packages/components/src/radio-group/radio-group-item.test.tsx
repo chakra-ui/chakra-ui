@@ -37,7 +37,7 @@ test("has proper aria and data attributes", async () => {
   expect(container).not.toHaveAttribute("data-disabled")
 
   // render with various flags enabled
-  utils.rerender(<Component disabled isInvalid readOnly isRequired />)
+  utils.rerender(<Component disabled isInvalid readOnly required />)
 
   input = utils.getByTestId("input")
   checkbox = utils.getByTestId("checkbox")
@@ -133,7 +133,7 @@ test("should derive values from surrounding FormControl", () => {
   render(
     <Field.Root
       id="radio"
-      isRequired
+      required
       isInvalid
       disabled
       readOnly

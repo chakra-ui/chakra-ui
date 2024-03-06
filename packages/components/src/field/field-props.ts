@@ -7,10 +7,9 @@ export const fieldProps = createProps<UseFieldProps>()([
   "id",
   "isInvalid",
   "readOnly",
-  "isRequired",
+  "required",
   "onBlur",
   "onFocus",
-  "required",
 ])
 
 export const splitFieldProps = <T extends UseFieldProps>(props: T) =>
