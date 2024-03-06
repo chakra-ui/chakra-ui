@@ -2,6 +2,7 @@ import { useDisclosure } from "@chakra-ui/hooks"
 import * as React from "react"
 //@ts-ignore
 import Lorem from "react-lorem-component"
+import { Box, Button, Input } from "../src"
 import { Dialog } from "../src/components/dialog"
 import { PortalManager } from "../src/components/portal"
 import { chakra } from "../src/styled-system"
@@ -17,23 +18,14 @@ export default {
   ],
 }
 
-const Button = chakra("button", {
-  baseStyle: {
-    px: "3",
-    py: "2",
-    bg: "gray.100",
-    rounded: "md",
-    transitionProperty: "color, box-shadow",
-    transitionDuration: "normal",
-  },
-})
-
 export function Basic() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Button onClick={onOpen}>Open</Button>
-      <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
+      <Button variant="solid" onClick={onOpen}>
+        Open
+      </Button>
+      <Dialog.Root isOpen={isOpen} onClose={onClose} centered>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -46,7 +38,7 @@ export function Basic() {
             </Dialog.Body>
             <Dialog.Footer>
               <Button onClick={onClose}>Cancel</Button>
-              <Button>Save</Button>
+              <Button variant="solid">Save</Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
@@ -57,17 +49,13 @@ export function Basic() {
 
 export function FinalFocusRef() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const finalRef = React.useRef<any>()
+  const finalRef = React.useRef<HTMLDivElement>(null)
 
   return (
     <>
-      <chakra.div
-        ref={finalRef}
-        tabIndex={-1}
-        aria-label="Focus moved to this box"
-      >
+      <Box ref={finalRef} tabIndex={-1} aria-label="Focus moved to this box">
         Some other content that'll receive focus on close.
-      </chakra.div>
+      </Box>
 
       <Button mt={4} onClick={onOpen}>
         Open Dialog.
@@ -77,7 +65,7 @@ export function FinalFocusRef() {
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.Header>Dialog Title</Dialog.Header>
             <Dialog.CloseTrigger />
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
@@ -103,12 +91,12 @@ export function NestedDialogs() {
 
   return (
     <>
-      <button onClick={first.onOpen}>Open</button>
+      <Button onClick={first.onOpen}>Open</Button>
       <Dialog.Root isOpen={first.isOpen} onClose={first.onClose}>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.Header>Dialog Title</Dialog.Header>
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
@@ -144,12 +132,14 @@ export const InsideScroll = () => {
   const { isOpen, onClose, onOpen } = useDisclosure()
   return (
     <>
-      <button onClick={onOpen}>Open</button>
+      <Button variant="solid" onClick={onOpen}>
+        Open
+      </Button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.Header>Dialog Title</Dialog.Header>
             <Dialog.CloseTrigger />
             <Dialog.Body>
               <Lorem size={5} />
@@ -168,12 +158,14 @@ export const AnimationDisabled = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <button onClick={onOpen}>Open</button>
+      <Button variant="solid" onClick={onOpen}>
+        Open
+      </Button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} motionPreset="none">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.Header>Dialog. Title</Dialog.Header>
+            <Dialog.Header>Dialog Title</Dialog.Header>
             <Dialog.CloseTrigger />
             <Dialog.Body>
               <Lorem size={5} />
@@ -188,16 +180,18 @@ export const AnimationDisabled = () => {
   )
 }
 
-export const FullWithLongContent = () => {
+export const WithContentOverflow = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <button onClick={onOpen}>Open</button>
+      <Button variant="solid" onClick={onOpen}>
+        Open
+      </Button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} size="full">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.Header>Dialog. Title2</Dialog.Header>
+            <Dialog.Header>Dialog Title</Dialog.Header>
             <Dialog.CloseTrigger />
             <Dialog.Body>
               <Lorem count={30} />
@@ -216,8 +210,10 @@ export function WithCustomMotionProps() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Button onClick={onOpen}>Open</Button>
-      <Dialog.Root isOpen={isOpen} onClose={onClose} isCentered>
+      <Button variant="solid" onClick={onOpen}>
+        Open
+      </Button>
+      <Dialog.Root isOpen={isOpen} onClose={onClose} centered>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content
@@ -249,49 +245,12 @@ export function WithCustomMotionProps() {
   )
 }
 
-export function WithInitialFocus() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialFocusRef = React.useRef(null)
-  return (
-    <>
-      <Button onClick={onOpen}>Open Dialog.</Button>
-      <Dialog.Root
-        isOpen={isOpen}
-        onClose={onClose}
-        initialFocusRef={initialFocusRef}
-      >
-        <Dialog.Overlay />
-        <Dialog.Positioner>
-          <Dialog.Content>
-            <Dialog.Header>Dialog. Title</Dialog.Header>
-            <Dialog.CloseTrigger />
-            <Dialog.Body>
-              <p>With just the text it's awesome</p>
-              <input
-                defaultValue="But with a focussed input it breaks"
-                name="name"
-                ref={initialFocusRef}
-              />
-            </Dialog.Body>
-
-            <Dialog.Footer>
-              <Button>Close</Button>
-            </Dialog.Footer>
-          </Dialog.Content>
-        </Dialog.Positioner>
-      </Dialog.Root>
-    </>
-  )
-}
-
-export const InitialFocusRef = () => {
+export const WithInitialFocus = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const inputRef = React.useRef<any>()
   return (
     <>
-      <button data-testid="button" onClick={() => setIsOpen(true)}>
-        Open
-      </button>
+      <Button onClick={() => setIsOpen(true)}>Open</Button>
       <Dialog.Root
         isOpen={isOpen}
         initialFocusRef={inputRef}
@@ -302,9 +261,9 @@ export const InitialFocusRef = () => {
           <Dialog.Content>
             <Dialog.Header>Dialog. header</Dialog.Header>
             <Dialog.Body>
-              <input />
-              <input />
-              <input ref={inputRef} />
+              <Input placeholder="First Name" />
+              <Input placeholder="Last Name" />
+              <Input ref={inputRef} placeholder="Focus First" />
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>

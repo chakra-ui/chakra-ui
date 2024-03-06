@@ -1,3 +1,4 @@
+import { raf } from "@zag-js/dom-utils"
 import { RefObject, useEffect, useState } from "react"
 
 class DialogManager {
@@ -30,18 +31,27 @@ export function useDialogManager(
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    const node = ref.current
+    let cleanup: VoidFunction
 
-    if (!node) return
+    const rafCleanup = raf(() => {
+      const node = ref.current
 
-    if (isOpen) {
-      const index = dialogManager.add(node)
-      setIndex(index)
-    }
+      if (!node) return
+
+      if (isOpen) {
+        const index = dialogManager.add(node)
+        setIndex(index)
+      }
+
+      cleanup = () => {
+        dialogManager.remove(node)
+        setIndex(0)
+      }
+    })
 
     return () => {
-      dialogManager.remove(node)
-      setIndex(0)
+      rafCleanup()
+      cleanup?.()
     }
   }, [isOpen, ref])
 

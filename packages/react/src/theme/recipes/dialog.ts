@@ -5,7 +5,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
     overlay: {
-      bg: "blackAlpha.600",
+      bg: "blackAlpha.800",
       pos: "fixed",
       left: 0,
       top: 0,
@@ -32,8 +32,8 @@ export const dialogSlotRecipe = defineSlotRecipe({
       outline: 0,
       borderRadius: "md",
       zIndex: "modal",
-      bg: { base: "white", _dark: "gray.700" },
-      shadow: { base: "lg", _dark: "dark-lg" },
+      bg: "bg",
+      shadow: "lg",
     },
     header: {
       flex: 0,
@@ -51,17 +51,19 @@ export const dialogSlotRecipe = defineSlotRecipe({
       px: "6",
       py: "2",
       flex: "1",
+      color: "fg.muted",
     },
     footer: {
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
+      gap: "3",
       px: "6",
       py: "4",
     },
   },
   variants: {
-    isCentered: {
+    centered: {
       true: {
         positioner: { alignItems: "center" },
         content: { my: "auto", mx: "auto" },
@@ -105,6 +107,6 @@ export const dialogSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     scrollBehavior: "outside",
-    isCentered: false,
+    centered: false,
   },
 })

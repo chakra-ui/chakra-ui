@@ -2,34 +2,17 @@ import { AnimatePresence } from "framer-motion"
 import { SystemRecipeProps, useSlotRecipe } from "../../styled-system"
 import { Portal, PortalProps } from "../portal"
 import { DialogContextProvider, DialogStylesProvider } from "./dialog-context"
-import {
-  DialogMotionPreset,
-  DialogOptions,
-  DialogScrollBehavior,
-} from "./dialog-types"
+import { DialogMotionPreset, DialogOptions } from "./dialog-types"
 import { UseDialogProps, useDialog } from "./use-dialog"
 
 export interface DialogRootProps
   extends UseDialogProps,
     DialogOptions,
-    SystemRecipeProps<"Modal"> {
+    SystemRecipeProps<"Dialog"> {
   /**
    * The children of the dialog component
    */
   children: React.ReactNode
-  /**
-   *  If `true`, the dialog will be centered on screen.
-   * @default false
-   */
-  isCentered?: boolean
-  /**
-   * Where scroll behavior should originate.
-   * - If set to `inside`, scroll only occurs within the `DialogBody`.
-   * - If set to `outside`, the entire `DialogContent` will scroll within the viewport.
-   *
-   * @default "outside"
-   */
-  scrollBehavior?: DialogScrollBehavior
   /**
    * Props to be forwarded to the portal component
    */
@@ -84,7 +67,7 @@ export const DialogRoot: React.FC<DialogRootProps> = (props) => {
     onCloseComplete,
   } = modalProps
 
-  const recipe = useSlotRecipe("Modal")
+  const recipe = useSlotRecipe("Dialog")
   const [variantProps, localProps] = recipe.splitVariantProps(modalProps)
   const styles = recipe(variantProps)
 

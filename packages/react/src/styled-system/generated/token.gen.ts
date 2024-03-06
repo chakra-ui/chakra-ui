@@ -305,6 +305,19 @@ export type Token =
   | "sizes.container.md"
   | "sizes.container.lg"
   | "sizes.container.xl"
+  | "zIndex.hide"
+  | "zIndex.base"
+  | "zIndex.docked"
+  | "zIndex.dropdown"
+  | "zIndex.sticky"
+  | "zIndex.banner"
+  | "zIndex.overlay"
+  | "zIndex.modal"
+  | "zIndex.popover"
+  | "zIndex.skipLink"
+  | "zIndex.toast"
+  | "zIndex.tooltip"
+  | "zIndex.max"
   | "colors.bg"
   | "colors.bg.subtle"
   | "colors.bg.muted"
@@ -801,6 +814,21 @@ export type SizesToken =
   | "container.lg"
   | "container.xl"
 
+export type ZIndexToken =
+  | "hide"
+  | "base"
+  | "docked"
+  | "dropdown"
+  | "sticky"
+  | "banner"
+  | "overlay"
+  | "modal"
+  | "popover"
+  | "skipLink"
+  | "toast"
+  | "tooltip"
+  | "max"
+
 export type ShadowsToken =
   | "xs"
   | "sm"
@@ -838,6 +866,7 @@ export type Tokens = {
   radii: RadiiToken
   spacing: SpacingToken
   sizes: SizesToken
+  zIndex: ZIndexToken
   shadows: ShadowsToken
   animationName: AnimationName
 } & { [token: string]: never }

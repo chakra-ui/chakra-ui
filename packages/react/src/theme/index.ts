@@ -20,6 +20,7 @@ import { lineHeights } from "./tokens/line-heights"
 import { radii } from "./tokens/radius"
 import { sizes } from "./tokens/sizes"
 import { spacing } from "./tokens/spacing"
+import { zIndices } from "./tokens/z-indices"
 
 export const defaultThemeConfig = defineConfig({
   preflight: true,
@@ -44,6 +45,7 @@ export const defaultThemeConfig = defineConfig({
       radii,
       spacing,
       sizes,
+      zIndex: zIndices,
     },
     semanticTokens: {
       colors: semanticColors,

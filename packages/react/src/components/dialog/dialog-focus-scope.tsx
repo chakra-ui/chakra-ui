@@ -1,12 +1,9 @@
-import { usePresence } from "framer-motion"
-import { useEffect } from "react"
 import { RemoveScroll } from "react-remove-scroll"
 import { FocusLock } from "../focus-lock"
 import { useDialogContext } from "./dialog-context"
-import { useDialogManager } from "./dialog-manager"
 
 interface DialogFocusScopeProps {
-  children: any
+  children: React.ReactNode
 }
 
 export function DialogFocusScope(props: DialogFocusScopeProps) {
@@ -21,18 +18,8 @@ export function DialogFocusScope(props: DialogFocusScopeProps) {
     returnFocusOnClose,
     preserveScrollBarGap,
     lockFocusAcrossFrames,
-    isOpen,
+    index,
   } = useDialogContext()
-
-  const [isPresent, safeToRemove] = usePresence()
-
-  useEffect(() => {
-    if (!isPresent && safeToRemove) {
-      setTimeout(safeToRemove)
-    }
-  }, [isPresent, safeToRemove])
-
-  const index = useDialogManager(contentRef, isOpen)
 
   return (
     <FocusLock

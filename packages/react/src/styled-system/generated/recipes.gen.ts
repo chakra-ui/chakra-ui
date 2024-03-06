@@ -165,7 +165,7 @@ export type DialogSlot =
   | "footer"
 
 export interface DialogVariantProps {
-  isCentered?: boolean
+  centered?: boolean
   scrollBehavior?: "inside" | "outside"
   size?:
     | "xs"
