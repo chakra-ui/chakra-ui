@@ -738,3 +738,26 @@ Changed to `SystemRecipeProps`
 
 We're removed the storybook addon in favor of using `@storybook/addon-themes`
 and `withThemeByClassName` helper.
+
+## InputAddon
+
+- No more `InputLeftAddon` and `InputRightAddon`, prefer to use `InputAddon`
+  component with the `Group` component
+
+## FormLabel
+
+- Removed `requiredIndicator` and `optionalIndicator` in favor of using the
+  `FormLabel.RequiredIndicator` with the `fallback` prop if needed
+
+## Props
+
+- `_activeLink` is now `_currentPage`
+- `_activeStep` is now `_currentStep`
+- No more `focusBorderColor` and `errorBorderColor`, consider setting the
+  `--focus-color` and `--error-color` css variables instead
+
+## Alert
+
+- Remove `top-accent` and `left-accent` in favor adding `borderLeft` and
+  `borderTop` directly to the `Alert` component
+- Added new outline variant

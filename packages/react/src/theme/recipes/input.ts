@@ -7,30 +7,30 @@ export const inputRecipe = defineRecipe({
     outline: 0,
     position: "relative",
     appearance: "none",
-    transitionProperty: "common",
-    transitionDuration: "normal",
     _disabled: {
-      opacity: 0.4,
+      opacity: 0.5,
       cursor: "not-allowed",
     },
     _readOnly: {
       boxShadow: "none !important",
       userSelect: "all",
     },
-    "--focus-color": { base: "colors.blue.500", _dark: "colors.blue.300" },
-    "--error-color": { base: "colors.red.500", _dark: "colors.red.300" },
+    "--focus-color": "colors.blue.500",
+    "--error-color": "colors.red.500",
   },
   variants: {
     size: {
       lg: {
-        fontSize: "lg",
-        padding: "4",
+        fontSize: "md",
+        px: "4",
+        py: "3",
         borderRadius: "md",
         height: "12",
       },
       md: {
-        fontSize: "md",
-        padding: "4",
+        fontSize: "sm",
+        px: "3",
+        py: "2",
         borderRadius: "md",
         height: "10",
       },
@@ -51,32 +51,24 @@ export const inputRecipe = defineRecipe({
       outline: {
         border: "1px solid",
         borderColor: "inherit",
-        bg: "inherit",
-        _hover: {
-          borderColor: { base: "gray.300", _dark: "whiteAlpha.400" },
-        },
+        bg: "bg",
         _invalid: {
           borderColor: "var(--error-color)",
-          boxShadow: `0 0 0 1px var(--error-color)`,
         },
         _focusVisible: {
-          zIndex: 1,
+          outline: "1px solid var(--focus-color)",
           borderColor: "var(--focus-color)",
-          boxShadow: `0 0 0 1px var(--focus-color)`,
         },
       },
-      field: {
-        border: "2px solid",
+      filled: {
+        border: "1px solid",
         borderColor: "transparent",
-        bg: { base: "gray.100", _dark: "whiteAlpha.50" },
-        _hover: {
-          bg: { base: "gray.200", _dark: "whiteAlpha.100" },
-        },
+        bg: { base: "gray.100", _dark: "gray.800" },
         _invalid: {
           borderColor: "var(--error-color)",
         },
         _focusVisible: {
-          bg: "transparent",
+          bg: "bg",
           borderColor: "var(--focus-color)",
         },
       },
@@ -85,14 +77,13 @@ export const inputRecipe = defineRecipe({
         borderColor: "inherit",
         borderRadius: "0",
         px: "0",
-        bg: "transparent",
+        bg: "bg",
         _invalid: {
           borderColor: "var(--error-color)",
-          boxShadow: `0px 1px 0px 0px var(--error-color)`,
         },
         _focusVisible: {
           borderColor: "var(--focus-color)",
-          boxShadow: `0px 1px 0px 0px var(--focus-color)`,
+          boxShadow: "0px 1px 0px 0px var(--focus-color)",
         },
       },
     },

@@ -7,8 +7,8 @@ export type { FieldErrorMessageProps as ErrorMessageProps } from "./field-error-
 export { FieldHelpText as HelpText } from "./field-help-text"
 export type { FieldHelpTextProps as HelpTextProps } from "./field-help-text"
 
-export { RequiredIndicator } from "./field-indicator"
-export type { RequiredIndicatorProps } from "./field-indicator"
+export { FieldRequiredIndicator as RequiredIndicator } from "./field-required-indicator"
+export type { FieldRequiredIndicatorProps as RequiredIndicatorProps } from "./field-required-indicator"
 
 export { FieldLabel as Label } from "./field-label"
 export type { FieldLabelProps as LabelProps } from "./field-label"

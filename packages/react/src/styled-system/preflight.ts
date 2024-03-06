@@ -61,9 +61,9 @@ export function createPreflight(options: PreflightConfig) {
       borderColor: "inherit",
       borderCollapse: "collapse",
     },
-    "input::placeholder, textarea::placeholder": {
+    "*::placeholder": {
       opacity: 1,
-      color: "var(--global-color-placeholder, #9ca3af)",
+      color: "#9ca3af",
     },
     textarea: {
       resize: "vertical",

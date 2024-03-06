@@ -13,8 +13,8 @@ export type { FieldErrorMessageProps } from "./field-error-message"
 export { FieldHelpText } from "./field-help-text"
 export type { FieldHelpTextProps } from "./field-help-text"
 
-export { RequiredIndicator } from "./field-indicator"
-export type { RequiredIndicatorProps } from "./field-indicator"
+export { FieldRequiredIndicator } from "./field-required-indicator"
+export type { FieldRequiredIndicatorProps } from "./field-required-indicator"
 
 export { FieldLabel } from "./field-label"
 export type { FieldLabelProps } from "./field-label"

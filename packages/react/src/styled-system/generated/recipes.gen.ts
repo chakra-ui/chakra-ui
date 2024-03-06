@@ -26,15 +26,18 @@ export interface DividerVariantProps {
   variant?: "solid" | "dashed"
 }
 
-export interface FieldLabelVariantProps {}
-
 export interface HeadingVariantProps {
   size?: "4xl" | "3xl" | "2xl" | "xl" | "lg" | "md" | "sm" | "xs"
 }
 
 export interface InputVariantProps {
   size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "field" | "flushed"
+  variant?: "outline" | "filled" | "flushed"
+}
+
+export interface InputAddonVariantProps {
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "outline" | "filled" | "flushed"
 }
 
 export interface KbdVariantProps {}
@@ -45,7 +48,7 @@ export interface MarkVariantProps {}
 
 export interface PinInputVariantProps {
   size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "field" | "flushed"
+  variant?: "outline" | "filled" | "flushed"
 }
 
 export interface SkeletonVariantProps {}
@@ -64,7 +67,7 @@ export interface TooltipVariantProps {}
 
 export interface TextareaVariantProps {
   size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "field" | "flushed"
+  variant?: "outline" | "filled" | "flushed"
 }
 
 export interface IconVariantProps {}
@@ -76,9 +79,9 @@ export interface SystemRecipes {
   Container: SystemRecipeFn<ContainerVariantProps>
   CloseButton: SystemRecipeFn<CloseButtonVariantProps>
   Divider: SystemRecipeFn<DividerVariantProps>
-  FieldLabel: SystemRecipeFn<FieldLabelVariantProps>
   Heading: SystemRecipeFn<HeadingVariantProps>
   Input: SystemRecipeFn<InputVariantProps>
+  InputAddon: SystemRecipeFn<InputAddonVariantProps>
   Kbd: SystemRecipeFn<KbdVariantProps>
   Link: SystemRecipeFn<LinkVariantProps>
   Mark: SystemRecipeFn<MarkVariantProps>
@@ -104,7 +107,8 @@ export type AlertSlot = "title" | "description" | "root" | "icon" | "spinner"
 
 export interface AlertVariantProps {
   status?: "info" | "warning" | "success" | "error"
-  variant?: "subtle" | "left-accent" | "top-accent" | "solid"
+  variant?: "subtle" | "outline" | "solid"
+  size?: "sm" | "md" | "lg"
 }
 
 // Avatar
@@ -201,15 +205,14 @@ export interface EditableVariantProps {}
 
 // Field
 
-export type FieldSlot = "root" | "label" | "requiredIndicator" | "helpText"
+export type FieldSlot =
+  | "root"
+  | "label"
+  | "requiredIndicator"
+  | "helpText"
+  | "errorMessage"
 
 export interface FieldVariantProps {}
-
-// FieldError
-
-export type FieldErrorSlot = "text" | "icon"
-
-export interface FieldErrorVariantProps {}
 
 // List
 
@@ -235,7 +238,7 @@ export interface MenuVariantProps {}
 export type NativeSelectSlot = "root" | "field" | "icon"
 
 export interface NativeSelectVariantProps {
-  variant?: "outline" | "field" | "flushed"
+  variant?: "outline" | "filled" | "flushed"
   size?: "lg" | "md" | "sm" | "xs"
 }
 
@@ -245,7 +248,7 @@ export type NumberInputSlot = "root" | "field" | "stepperGroup" | "stepper"
 
 export interface NumberInputVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
-  variant?: "outline" | "field" | "flushed"
+  variant?: "outline" | "filled" | "flushed"
 }
 
 // Popover
@@ -383,7 +386,6 @@ export interface SystemSlotRecipes {
   Drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
   Editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
   Field: SystemSlotRecipeFn<FieldSlot, FieldVariantProps>
-  FieldError: SystemSlotRecipeFn<FieldErrorSlot, FieldErrorVariantProps>
   List: SystemSlotRecipeFn<ListSlot, ListVariantProps>
   Menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
   NativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>

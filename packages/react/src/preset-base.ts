@@ -16,19 +16,20 @@ export const defaultBaseConfig = defineConfig({
     hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
     active: "&:is(:active, [data-active]):not(:disabled, [data-disabled])",
     focus: "&:is(:focus, [data-focus])",
-    focusWithin: "&:focus-within",
+    focusWithin: "&:is(:focus-within, [data-focus-within])",
     focusVisible: "&:is(:focus-visible, [data-focus-visible])",
-    disabled: "&:is(:disabled, [disabled], [data-disabled])",
+    disabled:
+      "&:is(:disabled, [disabled], [data-disabled], [aria-disabled=true])",
     visited: "&:visited",
     target: "&:target",
-    readOnly: "&:is(:read-only, [data-read-only])",
+    readOnly: "&:is([data-readonly], [aria-readonly=true], [readonly])",
     readWrite: "&:read-write",
     empty: "&:is(:empty, [data-empty])",
     checked:
-      '&:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"])',
+      '&:is(:checked, [data-checked], [aria-checked=true], [data-state=checked"])',
     enabled: "&:enabled",
     expanded:
-      '&:is([aria-expanded=true], [data-expanded], [data-state="expanded"])',
+      '&:is([aria-expanded=true], [data-expanded], [data-state=expanded"])',
     highlighted: "&[data-highlighted]",
 
     before: "&::before",
@@ -40,17 +41,13 @@ export const defaultBaseConfig = defineConfig({
     file: "&::file-selector-button",
     backdrop: "&::backdrop",
 
-    first: "&:first-child",
-    last: "&:last-child",
-    only: "&:only-child",
-    even: "&:nth-child(even)",
-    odd: "&:nth-child(odd)",
+    first: "&:first-of-type",
+    last: "&:last-of-type",
     notFirst: "&:not(:first-of-type)",
     notLast: "&:not(:last-of-type)",
-
-    firstOfType: "&:first-of-type",
-    lastOfType: "&:last-of-type",
-    onlyOfType: "&:only-of-type",
+    only: "&:only-child",
+    even: "&:nth-of-type(even)",
+    odd: "&:nth-of-type(odd)",
 
     peerFocus: ".peer:is(:focus, [data-focus]) ~ &",
     peerHover:
@@ -61,10 +58,10 @@ export const defaultBaseConfig = defineConfig({
     peerFocusVisible: ".peer:is(:focus-visible, [data-focus-visible]) ~ &",
     peerDisabled: ".peer:is(:disabled, [disabled], [data-disabled]) ~ &",
     peerChecked:
-      '.peer:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) ~ &',
+      ".peer:is(:checked, [data-checked], [aria-checked=true], [data-state=checked]) ~ &",
     peerInvalid: ".peer:is(:invalid, [data-invalid], [aria-invalid=true]) ~ &",
     peerExpanded:
-      '.peer:is([aria-expanded=true], [data-expanded], [data-state="expanded"]) ~ &',
+      ".peer:is([aria-expanded=true], [data-expanded], [data-state=expanded]) ~ &",
     peerPlaceholderShown: ".peer:placeholder-shown ~ &",
 
     groupFocus: ".group:is(:focus, [data-focus]) &",
@@ -76,16 +73,16 @@ export const defaultBaseConfig = defineConfig({
     groupFocusVisible: ".group:is(:focus-visible, [data-focus-visible]) &",
     groupDisabled: ".group:is(:disabled, [disabled], [data-disabled]) &",
     groupChecked:
-      '.group:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) &',
+      ".group:is(:checked, [data-checked], [aria-checked=true], [data-state=checked]) &",
     groupExpanded:
-      '.group:is([aria-expanded=true], [data-expanded], [data-state="expanded"]) &',
+      ".group:is([aria-expanded=true], [data-expanded], [data-state=expanded]) &",
     groupInvalid: ".group:invalid &",
 
     indeterminate:
-      '&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state="indeterminate"])',
-    required: "&:is(:required, [data-required], [aria-required=true])",
-    valid: "&:is(:valid, [data-valid])",
-    invalid: "&:is(:invalid, [data-invalid])",
+      "&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state=indeterminate])",
+    required: "&:is([data-required], [aria-required=true])",
+    valid: "&:is([data-valid], [data-state=valid])",
+    invalid: "&:is([data-invalid], [aria-invalid=true], [data-state=invalid])",
     autofill: "&:autofill",
     inRange: "&:in-range",
     outOfRange: "&:out-of-range",
@@ -93,13 +90,15 @@ export const defaultBaseConfig = defineConfig({
     placeholderShown: "&:is(:placeholder-shown, [data-placeholder-shown])",
     pressed: "&:is([aria-pressed=true], [data-pressed])",
     selected: "&:is([aria-selected=true], [data-selected])",
+    grabbed: "&:is([aria-grabbed=true], [data-grabbed])",
 
     default: "&:default",
     optional: "&:optional",
-    open: '&:is([open], [data-open], [data-state="open"])',
-    closed: '&:is([closed], [data-closed], [data-state="closed"])',
-    fullscreen: "&:fullscreen",
+    open: "&:is([open], [data-open], [data-state=open])",
+    closed: "&:is([closed], [data-closed], [data-state=closed])",
+    fullscreen: "&is(:fullscreen, [data-fullscreen])",
     loading: "&:is([data-loading], [aria-busy=true])",
+    hidden: "&:is([hidden], [data-hidden])",
 
     currentPage: "&[aria-current=page]",
     currentStep: "&[aria-current=step]",
@@ -112,8 +111,8 @@ export const defaultBaseConfig = defineConfig({
 
     dark: " &.dark, .dark &",
     light: " &.light, .light &",
-    osDark: "@media (prefers-color-scheme: dark)",
-    osLight: "@media (prefers-color-scheme: light)",
+    mediaDark: "@media (prefers-color-scheme: dark)",
+    mediaLight: "@media (prefers-color-scheme: light)",
 
     highContrast: "@media (forced-colors: active)",
     lessContrast: "@media (prefers-contrast: less)",

@@ -4,10 +4,10 @@ import { closeButtonRecipe } from "./recipes/close-button"
 import { codeRecipe } from "./recipes/code"
 import { containerRecipe } from "./recipes/container"
 import { dividerRecipe } from "./recipes/divider"
-import { fieldLabelRecipe } from "./recipes/field-label"
 import { headingRecipe } from "./recipes/heading"
 import { iconRecipe } from "./recipes/icon"
 import { inputRecipe } from "./recipes/input"
+import { inputAddonRecipe } from "./recipes/input-addon"
 import { kbdRecipe } from "./recipes/kbd"
 import { linkRecipe } from "./recipes/link"
 import { markRecipe } from "./recipes/mark"
@@ -26,9 +26,9 @@ export const recipes = {
   Container: containerRecipe,
   CloseButton: closeButtonRecipe,
   Divider: dividerRecipe,
-  FieldLabel: fieldLabelRecipe,
   Heading: headingRecipe,
   Input: inputRecipe,
+  InputAddon: inputAddonRecipe,
   Kbd: kbdRecipe,
   Link: linkRecipe,
   Mark: markRecipe,

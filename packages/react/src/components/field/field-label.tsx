@@ -1,26 +1,8 @@
 import { cx } from "@chakra-ui/utils"
-import {
-  HTMLChakraProps,
-  SystemRecipeProps,
-  chakra,
-  forwardRef,
-  useRecipe,
-} from "../../styled-system"
-import { useFieldContext } from "./field-context"
-import { RequiredIndicator } from "./field-indicator"
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { useFieldContext, useFieldStyles } from "./field-context"
 
-export interface FieldLabelProps
-  extends HTMLChakraProps<"label">,
-    SystemRecipeProps<"FormLabel"> {
-  /**
-   * @type React.ReactNode
-   */
-  requiredIndicator?: React.ReactNode
-  /**
-   * @type React.ReactNode
-   */
-  optionalIndicator?: React.ReactNode
-}
+export interface FieldLabelProps extends HTMLChakraProps<"label"> {}
 
 /**
  * Used to enhance the usability of form controls.
@@ -32,17 +14,8 @@ export interface FieldLabelProps
  */
 export const FieldLabel = forwardRef<FieldLabelProps, "label">(
   function FormLabel(passedProps, ref) {
-    const recipe = useRecipe("FormLabel")
-    const [variantProps, localProps] = recipe.splitVariantProps(passedProps)
-    const styles = recipe(variantProps)
-
-    const {
-      className,
-      children,
-      requiredIndicator = <RequiredIndicator />,
-      optionalIndicator = null,
-      ...rest
-    } = localProps
+    const styles = useFieldStyles()
+    const { className, children, ...rest } = passedProps
 
     const field = useFieldContext()
     const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }
@@ -50,15 +23,10 @@ export const FieldLabel = forwardRef<FieldLabelProps, "label">(
     return (
       <chakra.label
         {...ownProps}
-        className={cx("chakra-form__label", localProps.className)}
-        css={{
-          display: "block",
-          textAlign: "start",
-          ...styles,
-        }}
+        className={cx("chakra-field__label", className)}
+        css={[styles.label, rest.css]}
       >
         {children}
-        {field?.isRequired ? requiredIndicator : optionalIndicator}
       </chakra.label>
     )
   },

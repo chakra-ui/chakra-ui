@@ -1,57 +1,150 @@
-import * as React from "react"
-import { FaCheck, FaPhone } from "react-icons/fa"
+import { useState } from "react"
+import { HiEye, HiEyeOff } from "react-icons/hi"
 import {
+  Button,
+  Center,
   Field,
-  Icon,
+  For,
+  Group,
   Input,
-  InputGroup,
-  InputLeftAddon,
-  InputLeftElement,
-  InputRightAddon,
-  InputRightElement,
+  InputAddon,
+  Span,
   Stack,
   chakra,
+  useRecipe,
 } from "../src"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Forms / Input",
   decorators: [
-    (story: Function) => (
+    (Story: React.ElementType) => (
       <chakra.div maxW="560px" mx="auto" mt="40px">
-        {story()}
+        <Story />
       </chakra.div>
     ),
   ],
 }
 
-export const Basic = () => <Input placeholder="Basic input" />
-
-export const Controlled = () => {
-  const [value, setValue] = React.useState("Starting...")
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setValue(event.target.value)
-
+export const Variants = () => {
+  const recipe = useRecipe("Input")
   return (
-    <>
-      <Input
-        value={value}
-        onChange={handleChange}
-        placeholder="Controlled input"
-      />
-      <pre>{JSON.stringify(value, null, 2)}</pre>
-    </>
+    <PlaygroundTable>
+      <tbody>
+        <For each={recipe.variantMap.variant}>
+          {(v) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {v}
+                </Span>
+              </td>
+              <td>
+                <Input variant={v} placeholder="Placeholder" />
+              </td>
+            </tr>
+          )}
+        </For>
+        <tr>
+          <td>
+            <Span fontSize="sm" color="fg.muted" minW="8ch">
+              unstyled
+            </Span>
+          </td>
+          <td>
+            <Input unstyled placeholder="Placeholder" />
+          </td>
+        </tr>
+      </tbody>
+    </PlaygroundTable>
   )
 }
 
-export const WithSizes = () => (
-  <Stack align="start">
-    {["xs", "sm", "md", "lg"].map((size) => (
-      <Input key={size} size={size} placeholder="This is an input component" />
-    ))}
+export const Sizes = () => {
+  const recipe = useRecipe("Input")
+  return (
+    <PlaygroundTable>
+      <tbody>
+        <For each={recipe.variantMap.size}>
+          {(v) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {v}
+                </Span>
+              </td>
+              <td>
+                <Stack>
+                  <Input size={v} placeholder="Placeholder" />
+                  <Input variant="filled" size={v} placeholder="Placeholder" />
+                </Stack>
+              </td>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
+
+export const WithButton = () => {
+  return (
+    <Stack maxW="sm" spacing="4">
+      <Field.Root>
+        <Field.Label>First Name</Field.Label>
+        <Input />
+      </Field.Root>
+      <Field.Root>
+        <Field.Label>Last Name</Field.Label>
+        <Input />
+      </Field.Root>
+      <Button alignSelf="flex-start" variant="solid" mt="3">
+        Submit
+      </Button>
+    </Stack>
+  )
+}
+
+export const WithAddon = () => (
+  <Stack align="start" spacing="10">
+    <Group gap="0" isolation="isolate">
+      <Center pos="absolute" color="fg.subtle" zIndex="1" px="3" h="full">
+        $
+      </Center>
+      <Input ps="8" placeholder="Phone number..." />
+    </Group>
+
+    <Group attached>
+      <Input placeholder="Placeholder" />
+      <InputAddon>.com</InputAddon>
+    </Group>
   </Stack>
 )
 
-export const WithNativeSize = () => <Input htmlSize={4} width="auto" p="0" />
+export const PasswordInput = () => {
+  const [show, setShow] = useState(false)
+  const handleClick = () => setShow(!show)
+
+  return (
+    <Group>
+      <Input
+        paddingEnd="4.5rem"
+        type={show ? "text" : "password"}
+        placeholder="Enter password"
+      />
+      <Center
+        pos="absolute"
+        right="0"
+        color="fg.muted"
+        zIndex="1"
+        px="3"
+        h="full"
+      >
+        <button onClick={handleClick}>{show ? <HiEyeOff /> : <HiEye />}</button>
+      </Center>
+    </Group>
+  )
+}
 
 export const WithStates = () => (
   <Stack align="start">
@@ -62,134 +155,14 @@ export const WithStates = () => (
   </Stack>
 )
 
-export const WithVariants = () => (
-  <Stack align="start">
-    <Input variant="outline" placeholder="Outline" />
-    <Input variant="filled" placeholder="Filled" />
-    <Input variant="flushed" placeholder="Flushed" />
-    <Input variant="unstyled" placeholder="Unstyled" />
-  </Stack>
-)
-
-export const WithInputAddon = () => (
-  <Stack align="start">
-    <InputGroup>
-      <InputLeftAddon children="+234" />
-      <Input placeholder="Phone number..." />
-    </InputGroup>
-
-    <InputGroup size="sm">
-      <InputLeftAddon children="https://" />
-      <Input placeholder="website.com" />
-      <InputRightAddon children=".com" />
-    </InputGroup>
-  </Stack>
-)
-
-export const WithInputAddonResponsive = () => (
-  <InputGroup size={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}>
-    <InputLeftAddon children="https://" />
-    <Input placeholder="website.com" />
-    <InputRightAddon children=".com" />
-  </InputGroup>
-)
-
-export const WithInputElement = () => (
-  <Stack align="start">
-    <InputGroup>
-      <InputLeftElement children={<Icon as={FaPhone} color="gray.300" />} />
-      <Input paddingStart="60px" type="tel" placeholder="Phone number" />
-    </InputGroup>
-
-    <InputGroup size="sm">
-      <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
+export const WithLabel = () => {
+  return (
+    <Field.Root id="first-name" isRequired>
+      <Field.Label>
+        Amount <Field.RequiredIndicator color="fg.error" />
+      </Field.Label>
       <Input placeholder="Enter amount" />
-      <InputRightElement children={<Icon as={FaCheck} color="green.500" />} />
-    </InputGroup>
-  </Stack>
-)
-
-export const WithInputElementResponsive = () => (
-  <InputGroup size={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}>
-    <InputLeftElement color="gray.300" fontSize="1.2em" children="$" />
-    <Input placeholder="Enter amount" />
-    <InputRightElement children={<Icon as={FaCheck} color="green.500" />} />
-  </InputGroup>
-)
-
-export function PasswordInput() {
-  const [show, setShow] = React.useState(false)
-  const handleClick = () => setShow(!show)
-
-  return (
-    <InputGroup size="md">
-      <Input
-        paddingEnd="4.5rem"
-        type={show ? "text" : "password"}
-        placeholder="Enter password"
-      />
-      <InputRightElement width="4.5rem">
-        <chakra.button onClick={handleClick}>
-          {show ? "Hide" : "Show"}
-        </chakra.button>
-      </InputRightElement>
-    </InputGroup>
-  )
-}
-
-export const WithFocusAndErrorColors = () => (
-  <Stack align="start" spacing="10">
-    <Input focusBorderColor="lime" placeholder="Here is a sample placeholder" />
-
-    <Input
-      focusBorderColor="pink.400"
-      placeholder="Here is a sample placeholder"
-    />
-
-    <Input
-      isInvalid
-      errorBorderColor="red.300"
-      placeholder="Here is a sample placeholder"
-    />
-
-    <Input
-      isInvalid
-      errorBorderColor="crimson"
-      placeholder="Here is a sample placeholder"
-    />
-  </Stack>
-)
-
-export const WithField = () => {
-  const [isError, setIsError] = React.useState(false)
-  return (
-    <Stack align="start">
-      <Field.Root id="first-name" isInvalid={isError}>
-        <chakra.div display="flex" mb="2">
-          <Field.Label mb="0" lineHeight="1em">
-            Amount
-          </Field.Label>
-          <Field.ErrorMessage
-            mt="0"
-            bg="red.500"
-            color="white"
-            px="1"
-            lineHeight="1em"
-            borderRadius="sm"
-          >
-            is invalid!
-          </Field.ErrorMessage>
-        </chakra.div>
-
-        <InputGroup size="sm">
-          <InputLeftElement children="$" />
-          <Input placeholder="Enter amount" />
-          <InputRightAddon children=".com" />
-        </InputGroup>
-        <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
-      </Field.Root>
-
-      <button onClick={() => setIsError((s) => !s)}>Toggle Invalid</button>
-    </Stack>
+      <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+    </Field.Root>
   )
 }

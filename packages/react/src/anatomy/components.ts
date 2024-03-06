@@ -63,6 +63,7 @@ export const fieldAnatomy = anatomy("form").parts(
   "label",
   "requiredIndicator",
   "helpText",
+  "errorMessage",
 )
 
 export const formErrorAnatomy = anatomy("formError").parts("text", "icon")

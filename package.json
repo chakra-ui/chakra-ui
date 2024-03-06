@@ -60,7 +60,6 @@
     "@rollup/plugin-replace": "5.0.5",
     "@storybook/addon-a11y": "^7.6.17",
     "@storybook/addon-essentials": "^7.6.17",
-    "@storybook/addon-storysource": "^7.6.17",
     "@storybook/addon-themes": "^7.6.17",
     "@storybook/addons": "^7.6.17",
     "@storybook/cli": "^7.6.17",

@@ -97,17 +97,6 @@ export function useFieldProvider(props: FieldContext) {
     [rootProps, isDisabled, isFocused, isInvalid, isReadOnly],
   )
 
-  const getRequiredIndicatorProps = useCallback<PropGetter>(
-    (props = {}, _ref = null) => ({
-      ...props,
-      ref: _ref,
-      role: "presentation",
-      "aria-hidden": true,
-      children: props.children || "*",
-    }),
-    [],
-  )
-
   return {
     isRequired: !!isRequired,
     isInvalid: !!isInvalid,
@@ -128,7 +117,6 @@ export function useFieldProvider(props: FieldContext) {
     getErrorMessageProps,
     getRootProps,
     getLabelProps,
-    getRequiredIndicatorProps,
   }
 }
 

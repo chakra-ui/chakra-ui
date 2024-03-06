@@ -40,7 +40,7 @@ export const FieldRoot = forwardRef<FieldRootProps, "div">(
           <chakra.div
             {...api.getRootProps(rootProps, ref)}
             className={cx("chakra-form-control", props.className)}
-            css={styles.root}
+            css={[styles.root, props.css]}
           />
         </FieldStylesProvider>
       </FieldContextProvider>

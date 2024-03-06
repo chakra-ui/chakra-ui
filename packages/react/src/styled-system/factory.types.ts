@@ -19,7 +19,7 @@ import {
   RecipeVariantRecord,
 } from "./recipe.types"
 
-interface PolymorphicProps {
+export interface PolymorphicProps {
   as?: ElementType
   asChild?: boolean
 }

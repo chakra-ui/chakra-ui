@@ -15,12 +15,11 @@ export const FieldHelpText = forwardRef<FieldHelpTextProps, "div">(
   function FieldHelpText(props, ref) {
     const field = useFieldContext()
     const styles = useFieldStyles()
-    const className = cx("chakra-form__helper-text", props.className)
     return (
       <chakra.div
         {...field?.getHelpTextProps(props, ref)}
-        css={styles.helperText}
-        className={className}
+        css={[styles.helpText, props.css]}
+        className={cx("chakra-field__help-text", props.className)}
       />
     )
   },

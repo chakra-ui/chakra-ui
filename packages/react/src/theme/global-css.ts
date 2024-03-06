@@ -11,7 +11,7 @@ export const globalCss = defineGlobalStyles({
     lineHeight: "1.5",
   },
   "*::placeholder": {
-    color: "text.placeholder",
+    color: "fg.subtle",
   },
   "*, *::before, &::after": {
     borderColor: "border",

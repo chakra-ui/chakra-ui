@@ -7,7 +7,6 @@ interface Options {
 
 const getSlotRecipes = (v: Record<string, any> = {}): Record<string, any> => {
   const init = (slot: string) => ({
-    className: [v.className, slot].filter(Boolean).join("__"),
     base: v.base?.[slot] ?? {},
     variants: {},
     defaultVariants: v.defaultVariants ?? {},
@@ -24,6 +23,7 @@ const getSlotRecipes = (v: Record<string, any> = {}): Record<string, any> => {
       variantsSpec as Record<string, any>,
     )) {
       entries.forEach(([slot, slotRecipe]) => {
+        slotRecipe.variants ??= {}
         slotRecipe.variants[variantsKey] ??= {}
         slotRecipe.variants[variantsKey][variantKey] = variantSpec[slot] ?? {}
       })

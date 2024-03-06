@@ -26,12 +26,12 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
 
     const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
 
-    const __cva__ = mergeCva(Dynamic.__cva__, cvaFn)
-    const __shouldForwardProps__ = mergeShouldForwardProps(Dynamic, forwardFn)
+    const __cva = mergeCva(Dynamic.__cva, cvaFn)
+    const __sfp = mergeShouldForwardProps(Dynamic, forwardFn)
 
     const {
       asChild,
-      as: Element = Dynamic.__base__ || Dynamic,
+      as: Element = Dynamic.__el || Dynamic,
       children,
       ...restProps
     } = props
@@ -39,9 +39,9 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
     const assign = (el: any) => {
       Object.assign(el, {
         displayName: `chakra.${getDisplayName(Dynamic)}`,
-        __cva__: __cva__,
-        __base__: Dynamic,
-        __shouldForwardProps__,
+        __cva: __cva,
+        __el: Dynamic,
+        __sfp,
       })
     }
 
@@ -58,9 +58,9 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
         "htmlTranslate",
       ])
       const [forwardedProps, _b] = splitProps(_a, (key) =>
-        __shouldForwardProps__(key, __cva__.variantKeys),
+        __sfp(key, __cva.variantKeys),
       )
-      const [variantProps, _c] = splitProps(_b, __cva__.variantKeys)
+      const [variantProps, _c] = splitProps(_b, __cva.variantKeys)
       const [styleProps, elementProps] = splitProps(_c, isValidProperty)
       return {
         htmlProps: getHTMLProps(htmlProps),
@@ -69,33 +69,35 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
         styleProps,
         elementProps,
       }
-    }, [
-      __cva__.variantKeys,
-      __shouldForwardProps__,
-      combinedProps,
-      isValidProperty,
-    ])
+    }, [__cva.variantKeys, __sfp, combinedProps, isValidProperty])
 
     const { css: cssStyles, ...propStyles } = res.styleProps
-    const cvaStyles = __cva__(res.variantProps)
+    const cvaStyles = useMemo(
+      () => __cva(res.variantProps),
+      // eslint-disable-next-line
+      [res.variantProps],
+    )
 
     const _children = combinedProps.children ?? children
 
+    const styles = useMemo((): any => {
+      return css(cvaStyles, ...toArray(cssStyles), propStyles)
+    }, [css, cvaStyles, cssStyles, propStyles])
+
     if (!asChild) {
       // eslint-disable-next-line
-      const element = useMemo(
-        () =>
-          styled(Element)(
-            css(cvaStyles, ...toArray(cssStyles), propStyles) as any,
-          ),
-        [Element, css, cvaStyles, propStyles, cssStyles],
-      )
+      const element = useMemo(() => styled(Element)(styles), [Element, styles])
 
       assign(element)
 
       return createElement(
         element,
-        { ref, ...res.forwardedProps, ...res.elementProps, ...res.htmlProps },
+        {
+          ref,
+          ...res.forwardedProps,
+          ...res.elementProps,
+          ...res.htmlProps,
+        },
         _children,
       )
     }
@@ -112,11 +114,8 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
 
     // eslint-disable-next-line
     const element = useMemo(
-      () =>
-        styled(onlyChild.type as any)(
-          css(cvaStyles, propStyles, ...toArray(cssStyles)) as any,
-        ),
-      [onlyChild.type, css, cvaStyles, propStyles, cssStyles],
+      () => styled(onlyChild.type as any)(styles),
+      [onlyChild.type, styles],
     )
 
     assign(element)
@@ -152,10 +151,9 @@ const getDisplayName = (Component: any) => {
   return Component?.displayName || Component?.name || "Component"
 }
 
-const mergeShouldForwardProps = (tag: any, shouldForwardProp: any) =>
-  tag.__shouldForwardProps__ && shouldForwardProp
-    ? (propName: string) =>
-        tag.__shouldForwardProps__(propName) && shouldForwardProp(propName)
+const mergeShouldForwardProps = (el: any, shouldForwardProp: any) =>
+  el.__sfp && shouldForwardProp
+    ? (propName: string) => el.__sfp(propName) && shouldForwardProp(propName)
     : shouldForwardProp
 
 const mergeCva = (cvaA: any, cvaB: any) => {

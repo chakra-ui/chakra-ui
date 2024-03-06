@@ -5,27 +5,27 @@ export interface Conditions {
   _active: string
   /** `&:is(:focus, [data-focus])` */
   _focus: string
-  /** `&:focus-within` */
+  /** `&:is(:focus-within, [data-focus-within])` */
   _focusWithin: string
   /** `&:is(:focus-visible, [data-focus-visible])` */
   _focusVisible: string
-  /** `&:is(:disabled, [disabled], [data-disabled])` */
+  /** `&:is(:disabled, [disabled], [data-disabled], [aria-disabled=true])` */
   _disabled: string
   /** `&:visited` */
   _visited: string
   /** `&:target` */
   _target: string
-  /** `&:is(:read-only, [data-read-only])` */
+  /** `&:is([data-readonly], [aria-readonly=true], [readonly])` */
   _readOnly: string
   /** `&:read-write` */
   _readWrite: string
   /** `&:is(:empty, [data-empty])` */
   _empty: string
-  /** `&:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"])` */
+  /** `&:is(:checked, [data-checked], [aria-checked=true], [data-state=checked"])` */
   _checked: string
   /** `&:enabled` */
   _enabled: string
-  /** `&:is([aria-expanded=true], [data-expanded], [data-state="expanded"])` */
+  /** `&:is([aria-expanded=true], [data-expanded], [data-state=expanded"])` */
   _expanded: string
   /** `&[data-highlighted]` */
   _highlighted: string
@@ -45,26 +45,20 @@ export interface Conditions {
   _file: string
   /** `&::backdrop` */
   _backdrop: string
-  /** `&:first-child` */
+  /** `&:first-of-type` */
   _first: string
-  /** `&:last-child` */
+  /** `&:last-of-type` */
   _last: string
-  /** `&:only-child` */
-  _only: string
-  /** `&:nth-child(even)` */
-  _even: string
-  /** `&:nth-child(odd)` */
-  _odd: string
   /** `&:not(:first-of-type)` */
   _notFirst: string
   /** `&:not(:last-of-type)` */
   _notLast: string
-  /** `&:first-of-type` */
-  _firstOfType: string
-  /** `&:last-of-type` */
-  _lastOfType: string
-  /** `&:only-of-type` */
-  _onlyOfType: string
+  /** `&:only-child` */
+  _only: string
+  /** `&:nth-of-type(even)` */
+  _even: string
+  /** `&:nth-of-type(odd)` */
+  _odd: string
   /** `.peer:is(:focus, [data-focus]) ~ &` */
   _peerFocus: string
   /** `.peer:is(:hover, [data-hover]):not(:disabled, [data-disabled]) ~ &` */
@@ -77,11 +71,11 @@ export interface Conditions {
   _peerFocusVisible: string
   /** `.peer:is(:disabled, [disabled], [data-disabled]) ~ &` */
   _peerDisabled: string
-  /** `.peer:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) ~ &` */
+  /** `.peer:is(:checked, [data-checked], [aria-checked=true], [data-state=checked]) ~ &` */
   _peerChecked: string
   /** `.peer:is(:invalid, [data-invalid], [aria-invalid=true]) ~ &` */
   _peerInvalid: string
-  /** `.peer:is([aria-expanded=true], [data-expanded], [data-state="expanded"]) ~ &` */
+  /** `.peer:is([aria-expanded=true], [data-expanded], [data-state=expanded]) ~ &` */
   _peerExpanded: string
   /** `.peer:placeholder-shown ~ &` */
   _peerPlaceholderShown: string
@@ -97,19 +91,19 @@ export interface Conditions {
   _groupFocusVisible: string
   /** `.group:is(:disabled, [disabled], [data-disabled]) &` */
   _groupDisabled: string
-  /** `.group:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) &` */
+  /** `.group:is(:checked, [data-checked], [aria-checked=true], [data-state=checked]) &` */
   _groupChecked: string
-  /** `.group:is([aria-expanded=true], [data-expanded], [data-state="expanded"]) &` */
+  /** `.group:is([aria-expanded=true], [data-expanded], [data-state=expanded]) &` */
   _groupExpanded: string
   /** `.group:invalid &` */
   _groupInvalid: string
-  /** `&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state="indeterminate"])` */
+  /** `&:is(:indeterminate, [data-indeterminate], [aria-checked=mixed], [data-state=indeterminate])` */
   _indeterminate: string
-  /** `&:is(:required, [data-required], [aria-required=true])` */
+  /** `&:is([data-required], [aria-required=true])` */
   _required: string
-  /** `&:is(:valid, [data-valid])` */
+  /** `&:is([data-valid], [data-state=valid])` */
   _valid: string
-  /** `&:is(:invalid, [data-invalid])` */
+  /** `&:is([data-invalid], [aria-invalid=true], [data-state=invalid])` */
   _invalid: string
   /** `&:autofill` */
   _autofill: string
@@ -125,18 +119,22 @@ export interface Conditions {
   _pressed: string
   /** `&:is([aria-selected=true], [data-selected])` */
   _selected: string
+  /** `&:is([aria-grabbed=true], [data-grabbed])` */
+  _grabbed: string
   /** `&:default` */
   _default: string
   /** `&:optional` */
   _optional: string
-  /** `&:is([open], [data-open], [data-state="open"])` */
+  /** `&:is([open], [data-open], [data-state=open])` */
   _open: string
-  /** `&:is([closed], [data-closed], [data-state="closed"])` */
+  /** `&:is([closed], [data-closed], [data-state=closed])` */
   _closed: string
-  /** `&:fullscreen` */
+  /** `&is(:fullscreen, [data-fullscreen])` */
   _fullscreen: string
   /** `&:is([data-loading], [aria-busy=true])` */
   _loading: string
+  /** `&:is([hidden], [data-hidden])` */
+  _hidden: string
   /** `&[aria-current=page]` */
   _currentPage: string
   /** `&[aria-current=step]` */
@@ -156,9 +154,9 @@ export interface Conditions {
   /** ` &.light, .light &` */
   _light: string
   /** `@media (prefers-color-scheme: dark)` */
-  _osDark: string
+  _mediaDark: string
   /** `@media (prefers-color-scheme: light)` */
-  _osLight: string
+  _mediaLight: string
   /** `@media (forced-colors: active)` */
   _highContrast: string
   /** `@media (prefers-contrast: less)` */

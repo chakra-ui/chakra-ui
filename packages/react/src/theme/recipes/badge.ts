@@ -6,7 +6,6 @@ export const badgeRecipe = defineRecipe({
     alignItems: "center",
     gap: "0.5",
     fontWeight: "medium",
-    fontVariationSettings: "'tnum'",
     fontVariantNumeric: "tabular-nums",
     borderRadius: "sm",
     colorPalette: "gray",
@@ -26,9 +25,7 @@ export const badgeRecipe = defineRecipe({
       outline: {
         shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
         color: { base: "colorPalette.800", _dark: "colorPalette.400/80" },
-        shadow: {
-          base: "inset 0 0 0px 1px var(--shadow-color)",
-        },
+        shadow: "inset 0 0 0px 1px var(--shadow-color)",
       },
     },
     size: {
