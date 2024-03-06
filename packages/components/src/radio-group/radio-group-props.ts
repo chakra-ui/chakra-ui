@@ -6,7 +6,6 @@ const radioGroupProps = createProps<UseRadioGroupProps>()([
   "defaultValue",
   "disabled",
   "focusable",
-  "isNative",
   "name",
   "onChange",
   "value",

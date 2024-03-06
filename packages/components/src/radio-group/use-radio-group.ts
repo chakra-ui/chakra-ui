@@ -43,15 +43,6 @@ export interface UseRadioGroupProps {
    * The `name` attribute forwarded to each `radio` element
    */
   name?: string
-  /**
-   * If `true`, input elements will receive
-   * `checked` attribute instead of `checked`.
-   *
-   * This assumes, you're using native radio inputs
-   *
-   * @default false
-   */
-  isNative?: boolean
 }
 
 /**
@@ -67,7 +58,6 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     name: nameProp,
     disabled,
     focusable,
-    isNative,
   } = props
 
   const [valueState, setValue] = useState<string | number>(defaultValue || "")
@@ -130,17 +120,16 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   //@ts-expect-error
   const getItemProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
-      const checkedKey = isNative ? "checked" : "checked"
       return {
         ...props,
         ref,
         name,
-        [checkedKey]: value != null ? props.value === value : undefined,
+        checked: value != null ? props.value === value : undefined,
         onChange: onChange,
         "data-radiogroup": true,
       }
     },
-    [isNative, name, onChange, value],
+    [name, onChange, value],
   )
 
   return {

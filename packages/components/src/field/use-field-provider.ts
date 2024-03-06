@@ -35,7 +35,7 @@ export function useFieldProvider(props: FieldContext) {
   const [hasHelpText, setHasHelpText] = useState(false)
 
   // Track whether the form element (e.g, `input`) has focus.
-  const [isFocused, setFocus] = useState(false)
+  const [focused, setFocus] = useState(false)
 
   const getHelpTextProps = useCallback<PropGetter>(
     (props = {}, _ref = null) => ({
@@ -57,14 +57,14 @@ export function useFieldProvider(props: FieldContext) {
     (props = {}, _ref = null) => ({
       ...props,
       ref: _ref,
-      "data-focus": dataAttr(isFocused),
+      "data-focus": dataAttr(focused),
       "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(invalid),
       "data-readonly": dataAttr(readOnly),
       id: props.id || labelId,
       htmlFor: props.htmlFor || id,
     }),
-    [id, disabled, isFocused, invalid, readOnly, labelId],
+    [id, disabled, focused, invalid, readOnly, labelId],
   )
 
   const getErrorMessageProps = useCallback<PropGetter>(
@@ -90,12 +90,12 @@ export function useFieldProvider(props: FieldContext) {
       ...rootProps,
       ref: _ref,
       role: "group",
-      "data-focus": dataAttr(isFocused),
+      "data-focus": dataAttr(focused),
       "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(invalid),
       "data-readonly": dataAttr(readOnly),
     }),
-    [rootProps, disabled, isFocused, invalid, readOnly],
+    [rootProps, disabled, focused, invalid, readOnly],
   )
 
   const getRequiredIndicatorProps = useCallback<PropGetter>(
@@ -114,7 +114,7 @@ export function useFieldProvider(props: FieldContext) {
     invalid: !!invalid,
     readOnly: !!readOnly,
     disabled: !!disabled,
-    isFocused: !!isFocused,
+    focused: !!focused,
     onFocus: () => setFocus(true),
     onBlur: () => setFocus(false),
     hasFeedbackText,

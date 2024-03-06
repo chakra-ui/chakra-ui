@@ -630,13 +630,13 @@ export function useMenuItem(
     [setFocusedId, onFocusProp, id],
   )
 
-  const isFocused = id === focusedId
+  const focused = id === focusedId
 
   const trulyDisabled = disabled && !focusable
 
   useUpdateEffect(() => {
     if (!isOpen) return
-    if (isFocused && !trulyDisabled && ref.current) {
+    if (focused && !trulyDisabled && ref.current) {
       // Cancel any pending animations
       if (rafId.current) {
         cancelAnimationFrame(rafId.current)
@@ -654,7 +654,7 @@ export function useMenuItem(
         cancelAnimationFrame(rafId.current)
       }
     }
-  }, [isFocused, trulyDisabled, menuRef, isOpen])
+  }, [focused, trulyDisabled, menuRef, isOpen])
 
   const clickableProps = useClickable({
     onClick,
@@ -673,7 +673,7 @@ export function useMenuItem(
     type: typeProp ?? (clickableProps as any).type,
     id,
     role: "menuitem",
-    tabIndex: isFocused ? 0 : -1,
+    tabIndex: focused ? 0 : -1,
   }
 }
 

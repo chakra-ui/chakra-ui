@@ -21,15 +21,6 @@ export interface UseCheckboxGroupProps {
    * @default false
    */
   disabled?: boolean
-  /**
-   * If `true`, input elements will receive
-   * `checked` attribute instead of `checked`.
-   *
-   * This assumes, you're using native radio inputs
-   *
-   * @default false
-   */
-  isNative?: boolean
 }
 
 export type EventOrValue = React.ChangeEvent<HTMLInputElement> | string | number
@@ -150,9 +141,9 @@ export interface CheckboxGroupContext
 
 export interface CheckboxState {
   invalid?: boolean
-  isFocused: boolean
+  focused: boolean
   checked: boolean
-  isActive: boolean
+  active: boolean
   isHovered: boolean
   indeterminate?: boolean
   disabled?: boolean

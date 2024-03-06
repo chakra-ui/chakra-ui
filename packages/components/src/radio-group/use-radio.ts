@@ -82,9 +82,9 @@ export interface UseRadioProps {
 
 export interface RadioState {
   invalid: boolean | undefined
-  isFocused: boolean
+  focused: boolean
   checked: boolean
-  isActive: boolean
+  active: boolean
   isHovered: boolean
   disabled: boolean | undefined
   readOnly: boolean | undefined
@@ -129,10 +129,10 @@ export function useRadio(props: UseRadioProps = {}) {
   const required = requiredProp ?? formControl?.required
   const invalid = invalidProp ?? formControl?.invalid
 
-  const [isFocusVisible, setIsFocusVisible] = useState(false)
-  const [isFocused, setFocused] = useState(false)
+  const [focusVisible, setIsFocusVisible] = useState(false)
+  const [focused, setFocused] = useState(false)
   const [isHovered, setHovering] = useState(false)
-  const [isActive, setActive] = useState(false)
+  const [active, setActive] = useState(false)
 
   const [checkedState, setChecked] = useState(Boolean(defaultChecked))
 
@@ -181,13 +181,13 @@ export function useRadio(props: UseRadioProps = {}) {
     (props = {}, ref = null) => ({
       ...props,
       ref,
-      "data-active": dataAttr(isActive),
+      "data-active": dataAttr(active),
       "data-hover": dataAttr(isHovered),
       "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(invalid),
       "data-checked": dataAttr(checked),
-      "data-focus": dataAttr(isFocused),
-      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+      "data-focus": dataAttr(focused),
+      "data-focus-visible": dataAttr(focused && focusVisible),
       "data-readonly": dataAttr(readOnly),
       "aria-hidden": true,
       onMouseDown: callAllHandlers(props.onMouseDown, () => setActive(true)),
@@ -200,14 +200,14 @@ export function useRadio(props: UseRadioProps = {}) {
       ),
     }),
     [
-      isActive,
+      active,
       isHovered,
       disabled,
       invalid,
       checked,
-      isFocused,
+      focused,
       readOnly,
-      isFocusVisible,
+      focusVisible,
     ],
   )
 
@@ -284,9 +284,9 @@ export function useRadio(props: UseRadioProps = {}) {
 
   const state: RadioState = {
     invalid,
-    isFocused,
+    focused,
     checked,
-    isActive,
+    active,
     isHovered,
     disabled,
     readOnly,

@@ -21,7 +21,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
 
   const {
     disabled = group?.disabled,
-    isActive,
+    active,
     type,
     className,
     as,
@@ -34,7 +34,7 @@ export const Button = forwardRef<ButtonProps, "button">((props, ref) => {
       as={as}
       type="button"
       data-in-group={dataAttr(!!group)}
-      data-active={dataAttr(isActive)}
+      data-active={dataAttr(active)}
       __css={styles}
       disabled={disabled}
       {...rest}

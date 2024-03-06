@@ -49,10 +49,10 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const onBlurProp = useCallbackRef(onBlur)
   const onFocusProp = useCallbackRef(onFocus)
 
-  const [isFocusVisible, setIsFocusVisible] = useState(false)
-  const [isFocused, setFocused] = useState(false)
+  const [focusVisible, setIsFocusVisible] = useState(false)
+  const [focused, setFocused] = useState(false)
   const [isHovered, setHovered] = useState(false)
-  const [isActive, setActive] = useState(false)
+  const [active, setActive] = useState(false)
 
   useEffect(() => {
     return trackFocusVisible(setIsFocusVisible)
@@ -155,7 +155,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       const onPressDown = (event: React.MouseEvent) => {
         // On mousedown, the input blurs and returns focus to the `body`,
         // we need to prevent this. Native checkboxes keeps focus on `input`
-        if (isFocused) {
+        if (focused) {
           event.preventDefault()
         }
         setActive(true)
@@ -164,11 +164,11 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       return {
         ...props,
         ref: forwardedRef,
-        "data-active": dataAttr(isActive),
+        "data-active": dataAttr(active),
         "data-hover": dataAttr(isHovered),
         "data-checked": dataAttr(checked),
-        "data-focus": dataAttr(isFocused),
-        "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+        "data-focus": dataAttr(focused),
+        "data-focus-visible": dataAttr(focused && focusVisible),
         "data-indeterminate": dataAttr(indeterminate),
         "data-disabled": dataAttr(disabled),
         "data-invalid": dataAttr(invalid),
@@ -185,11 +185,11 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       }
     },
     [
-      isActive,
+      active,
       checked,
       disabled,
-      isFocused,
-      isFocusVisible,
+      focused,
+      focusVisible,
       isHovered,
       indeterminate,
       invalid,
@@ -201,22 +201,22 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     (props = {}, forwardedRef = null) => ({
       ...props,
       ref: forwardedRef,
-      "data-active": dataAttr(isActive),
+      "data-active": dataAttr(active),
       "data-hover": dataAttr(isHovered),
       "data-checked": dataAttr(checked),
-      "data-focus": dataAttr(isFocused),
-      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+      "data-focus": dataAttr(focused),
+      "data-focus-visible": dataAttr(focused && focusVisible),
       "data-indeterminate": dataAttr(indeterminate),
       "data-disabled": dataAttr(disabled),
       "data-invalid": dataAttr(invalid),
       "data-readonly": dataAttr(readOnly),
     }),
     [
-      isActive,
+      active,
       checked,
       disabled,
-      isFocused,
-      isFocusVisible,
+      focused,
+      focusVisible,
       isHovered,
       indeterminate,
       invalid,
@@ -324,9 +324,9 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const state: CheckboxState = {
     invalid,
-    isFocused,
+    focused,
     checked,
-    isActive,
+    active,
     isHovered,
     indeterminate,
     disabled,

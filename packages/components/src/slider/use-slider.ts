@@ -118,7 +118,7 @@ export interface UseSliderProps {
 
 export interface SliderState {
   value: number
-  isFocused: boolean
+  focused: boolean
   isDragging: boolean
 }
 
@@ -183,7 +183,7 @@ export function useSlider(props: UseSliderProps) {
   })
 
   const [isDragging, setDragging] = useState(false)
-  const [isFocused, setFocused] = useState(false)
+  const [focused, setFocused] = useState(false)
   const isInteractive = !(disabled || readOnly)
 
   const tenSteps = (max - min) / 10
@@ -413,14 +413,14 @@ export function useSlider(props: UseSliderProps) {
         ref: mergeRefs(ref, rootRef),
         tabIndex: -1,
         "aria-disabled": ariaAttr(disabled),
-        "data-focused": dataAttr(isFocused),
+        "data-focused": dataAttr(focused),
         style: {
           ...props.style,
           ...rootStyle,
         },
       }
     },
-    [htmlProps, disabled, isFocused, rootStyle],
+    [htmlProps, disabled, focused, rootStyle],
   )
 
   const getTrackProps: PropGetter = useCallback(
@@ -550,7 +550,7 @@ export function useSlider(props: UseSliderProps) {
     [name, value],
   )
 
-  const state: SliderState = { value, isFocused, isDragging }
+  const state: SliderState = { value, focused, isDragging }
 
   return {
     state,

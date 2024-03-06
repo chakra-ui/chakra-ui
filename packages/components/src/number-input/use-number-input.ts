@@ -198,7 +198,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * so user can this to change the styles of the
    * `spinners`, maybe :)
    */
-  const [isFocused, setFocused] = useState(false)
+  const [focused, setFocused] = useState(false)
   const isInteractive = !(readOnly || disabled)
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -568,7 +568,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   return {
     value: format(counter.value),
     valueAsNumber: counter.valueAsNumber,
-    isFocused,
+    focused,
     disabled,
     readOnly,
     getIncrementButtonProps,

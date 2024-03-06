@@ -101,10 +101,7 @@ test("setValue action allows setting specific value", () => {
 
 describe("focus action", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
-    const { getRootProps, getItemProps, focus } = useRadioGroup({
-      isNative: true,
-      ...props,
-    })
+    const { getRootProps, getItemProps, focus } = useRadioGroup(props)
 
     return (
       <>
