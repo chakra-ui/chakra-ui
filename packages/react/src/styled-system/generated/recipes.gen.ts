@@ -140,7 +140,7 @@ export type CardSlot = "root" | "header" | "body" | "footer"
 
 export interface CardVariantProps {
   size?: "sm" | "md" | "lg"
-  variant?: "elevated" | "outline" | "filled"
+  variant?: "elevated" | "outline" | "subtle"
 }
 
 // Checkbox
@@ -354,15 +354,10 @@ export type TabsSlot =
 
 export interface TabsVariantProps {
   orientation?: "vertical" | "horizontal"
-  isFitted?: boolean
-  align?: "start" | "center" | "end"
+  fitted?: boolean
+  justify?: "start" | "center" | "end"
   size?: "sm" | "md" | "lg"
-  variant?:
-    | "line"
-    | "enclosed"
-    | "enclosed-colored"
-    | "soft-rounded"
-    | "solid-rounded"
+  variant?: "line" | "enclosed" | "outline" | "plain"
 }
 
 // Tag

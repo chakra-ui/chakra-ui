@@ -1,3 +1,4 @@
+import { dataAttr } from "@chakra-ui/utils"
 import { useTabsContext } from "./tabs-context"
 import { makeTabId, makeTabPanelId } from "./use-tabs"
 
@@ -33,6 +34,7 @@ export function useTab<P extends UseTabProps>(props: P) {
   const isSelected = value === selectedValue
 
   const onClick = () => {
+    if (isDisabled) return
     setSelectedValue(value)
   }
 
@@ -51,6 +53,8 @@ export function useTab<P extends UseTabProps>(props: P) {
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
     type: "button",
+    disabled: isDisabled,
+    "data-disabled": dataAttr(isDisabled),
     "aria-selected": isSelected,
     "aria-controls": makeTabPanelId(id, value),
     onFocus: isDisabled ? undefined : onFocus,

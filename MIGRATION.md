@@ -770,3 +770,9 @@ and `withThemeByClassName` helper.
 - Remove `top-accent` and `left-accent` in favor adding `borderLeft` and
   `borderTop` directly to the `Alert` component
 - Added new outline variant
+
+## Tabs
+
+- No more `soft-rounded` and `solid-rounded` variants
+- The `enclosed` variant has been modified
+- Added `plain` variant for usage with `Tabs.Indicator`

@@ -1,171 +1,158 @@
 import { useInterval } from "@chakra-ui/hooks"
 import { useState } from "react"
-import { Drawer } from "../src/components/drawer"
-import { Tabs } from "../src/components/tabs"
-import { chakra } from "../src/styled-system"
+import { Box, For, Span, Tabs, Text } from "../src"
+import { useSlotRecipe } from "../src/styled-system"
+import { colorPalettes } from "./shared/color-palettes"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Disclosure / Tabs",
   decorators: [
     (story: Function) => (
-      <chakra.div maxWidth="500px" mt="100px" mx="auto">
+      <Box mx="auto" padding="40px">
         {story()}
-      </chakra.div>
+      </Box>
     ),
   ],
 }
 
-const variants = [
-  "line",
-  "enclosed",
-  "enclosed-colored",
-  "soft-rounded",
-  "solid-rounded",
-] as const
+export const Variants = () => {
+  const recipe = useSlotRecipe("Tabs")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={colorPalettes}>
+          {(c) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.variant}>
+                {(v) => (
+                  <td>
+                    <Tabs.Root
+                      defaultValue="settings"
+                      variant={v}
+                      colorPalette={c}
+                      mt="3"
+                      minW="300px"
+                    >
+                      <Tabs.List>
+                        <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
+                        <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
+                      </Tabs.List>
+                      <Tabs.ContentGroup>
+                        <Tabs.Content value="settings" padding="2">
+                          <Text fontSize="sm">
+                            Settings - Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit.
+                          </Text>
+                        </Tabs.Content>
+                        <Tabs.Content value="billing" padding="2">
+                          <Text fontSize="sm">
+                            Billing - Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit.
+                          </Text>
+                        </Tabs.Content>
+                      </Tabs.ContentGroup>
+                    </Tabs.Root>
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
 
-export const Variants = () =>
-  variants.map((variant) => (
-    <chakra.div key={variant} my="10">
-      <pre>variant = {variant}</pre>
-      <Tabs.Root defaultValue="settings" variant={variant} mt="3">
-        <Tabs.List>
-          <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-          <Tabs.Trigger value="billing">Billings</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.ContentGroup>
-          <Tabs.Content value="settings">Settings</Tabs.Content>
-          <Tabs.Content value="billing">Billings</Tabs.Content>
-        </Tabs.ContentGroup>
-      </Tabs.Root>
-    </chakra.div>
-  ))
-
-const sizes = ["sm", "md", "lg"] as const
-
-export const Sizes = () =>
-  sizes.map((size) => (
-    <chakra.div key={size} my="10">
-      <pre>size = {size}</pre>
-      <Tabs.Root defaultValue="settings" size={size} mt="3">
-        <Tabs.List>
-          <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-          <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-        </Tabs.List>
-        <Tabs.ContentGroup>
-          <Tabs.Content value="settings">Settings</Tabs.Content>
-          <Tabs.Content value="billing">Billing</Tabs.Content>
-        </Tabs.ContentGroup>
-      </Tabs.Root>
-    </chakra.div>
-  ))
-
-export const automatic = () => (
-  <>
-    <p>manual</p>
-    <Tabs.Root defaultValue="settings" isManual>
-      <Tabs.List>
-        <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-        <Tabs.Trigger value="billing" isDisabled>
-          Billing
-        </Tabs.Trigger>
-        <Tabs.Trigger value="preferences" isDisabled>
-          Preferences
-        </Tabs.Trigger>
-        <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.ContentGroup>
-        <Tabs.Content value="settings">Settings</Tabs.Content>
-        <Tabs.Content value="billing">Billing</Tabs.Content>
-        <Tabs.Content value="preferences">Preferences</Tabs.Content>
-        <Tabs.Content value="shutdown">Shut Down</Tabs.Content>
-      </Tabs.ContentGroup>
-    </Tabs.Root>
-    <br />
-    <p>auto</p>
-    <Tabs.Root defaultValue="settings">
-      <Tabs.List>
-        <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-        <Tabs.Trigger value="billing" isDisabled>
-          Billing
-        </Tabs.Trigger>
-        <Tabs.Trigger value="preferences" isDisabled>
-          Preferences
-        </Tabs.Trigger>
-        <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.ContentGroup>
-        <Tabs.Content value="settings">Settings</Tabs.Content>
-        <Tabs.Content value="billing">Billing</Tabs.Content>
-        <Tabs.Content value="preferences">Preferences</Tabs.Content>
-        <Tabs.Content value="shutdown">Shut Down</Tabs.Content>
-      </Tabs.ContentGroup>
-    </Tabs.Root>
-  </>
-)
-
-export const manual = () => (
-  <Tabs.Root defaultValue="settings" isManual>
-    <Tabs.List>
-      <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-      <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-      <Tabs.Trigger value="preferences" isDisabled>
-        Preferences
-      </Tabs.Trigger>
-      <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
-    </Tabs.List>
-    <Tabs.ContentGroup>
-      <Tabs.Content value="settings">Settings</Tabs.Content>
-      <Tabs.Content value="billing">Billing</Tabs.Content>
-      <Tabs.Content value="prefereces">Preferences</Tabs.Content>
-      <Tabs.Content value="shutdown">Shut Down</Tabs.Content>
-    </Tabs.ContentGroup>
-  </Tabs.Root>
-)
+export const Sizes = () => {
+  const recipe = useSlotRecipe("Tabs")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={recipe.variantMap.variant}>
+          {(c) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.size}>
+                {(v) => (
+                  <td>
+                    <Tabs.Root
+                      defaultValue="settings"
+                      size={v}
+                      variant={c}
+                      mt="3"
+                      minW="300px"
+                    >
+                      <Tabs.List>
+                        <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
+                        <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
+                      </Tabs.List>
+                      <Tabs.ContentGroup>
+                        <Tabs.Content value="settings" padding="2">
+                          <Text fontSize="sm">
+                            Settings - Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit.
+                          </Text>
+                        </Tabs.Content>
+                        <Tabs.Content value="billing" padding="2">
+                          <Text fontSize="sm">
+                            Billing - Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit.
+                          </Text>
+                        </Tabs.Content>
+                      </Tabs.ContentGroup>
+                    </Tabs.Root>
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
 
 export const withIndicator = () => (
-  <Tabs.Root defaultValue="settings" variant="unstyled" isManual>
+  <Tabs.Root defaultValue="settings" variant="plain" isManual>
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-      <Tabs.Trigger
-        value="billing"
-        _disabled={{ color: "gray.400" }}
-        isDisabled
-      >
+      <Tabs.Trigger value="billing" isDisabled>
         Billing
       </Tabs.Trigger>
       <Tabs.Trigger value="preferences">Preferences</Tabs.Trigger>
       <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
+      <Tabs.Indicator zIndex={-1} height="34px" bg="bg.muted" />
     </Tabs.List>
 
-    <Tabs.Indicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
-
-    <Tabs.ContentGroup>
+    <Tabs.ContentGroup paddingY="4" fontSize="sm">
       <Tabs.Content value="settings">Settings</Tabs.Content>
       <Tabs.Content value="billing">Billing</Tabs.Content>
       <Tabs.Content value="preferences">Preferences</Tabs.Content>
       <Tabs.Content value="shutdown">Shut Down</Tabs.Content>
     </Tabs.ContentGroup>
   </Tabs.Root>
-)
-
-export const withIndicatorAndLongTabText = () => (
-  <>
-    <Tabs.Root defaultValue="long" variant="unstyled" isManual>
-      <Tabs.List>
-        <Tabs.Trigger value="long">Tab with long text</Tabs.Trigger>
-        <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-        <Tabs.Trigger value="preferences">Preferences</Tabs.Trigger>
-        <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Indicator mt="-36px" zIndex={-1} height="34px" bg="green.200" />
-      <Tabs.ContentGroup>
-        <Tabs.Content value="long">Tab with long text</Tabs.Content>
-        <Tabs.Content value="billing">Billing</Tabs.Content>
-        <Tabs.Content value="preferences">Preferences</Tabs.Content>
-        <Tabs.Content value="shutdown">Shut Down</Tabs.Content>
-      </Tabs.ContentGroup>
-    </Tabs.Root>
-  </>
 )
 
 export const withVerticalTabs = () => (
@@ -178,7 +165,7 @@ export const withVerticalTabs = () => (
       </Tabs.Trigger>
       <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
     </Tabs.List>
-    <Tabs.ContentGroup bg="red.200">
+    <Tabs.ContentGroup paddingX="4">
       <Tabs.Content value="settings">Settings</Tabs.Content>
       <Tabs.Content value="billing">Billing</Tabs.Content>
       <Tabs.Content value="preferences">Preferences</Tabs.Content>
@@ -203,7 +190,7 @@ export const withLazyTabs = () => (
       <Tabs.Trigger value="1">Interval 1</Tabs.Trigger>
       <Tabs.Trigger value="2">Interval 2</Tabs.Trigger>
     </Tabs.List>
-    <Tabs.ContentGroup>
+    <Tabs.ContentGroup paddingY="4">
       <Tabs.Content value="1">
         Interval 1:
         <Interval />
@@ -212,147 +199,6 @@ export const withLazyTabs = () => (
         Interval 2:
         <Interval />
       </Tabs.Content>
-    </Tabs.ContentGroup>
-  </Tabs.Root>
-)
-
-export const withLazyTabsMounted = () => (
-  <Tabs.Root defaultValue="1" isLazy lazyBehavior="keepMounted">
-    <Tabs.List>
-      <Tabs.Trigger value="1">Interval 1</Tabs.Trigger>
-      <Tabs.Trigger value="2">Interval 2</Tabs.Trigger>
-    </Tabs.List>
-    <Tabs.ContentGroup>
-      <Tabs.Content value="1">
-        Interval 1:
-        <Interval />
-      </Tabs.Content>
-      <Tabs.Content value="2">
-        Interval 2:
-        <Interval />
-      </Tabs.Content>
-    </Tabs.ContentGroup>
-  </Tabs.Root>
-)
-
-export const WithSwappedTabs = () => {
-  const initialData: { id: string; value: number }[] = [
-    {
-      id: "a",
-      value: 1,
-    },
-    {
-      id: "b",
-      value: 5,
-    },
-  ]
-
-  const TabView: React.FC<{
-    items: typeof initialData
-    selectedItemId: string
-    setSelectedItemId: (id: string) => void
-  }> = ({ items, selectedItemId, setSelectedItemId }) => {
-    // Update current selected item id
-    const onTabChange = (idx: string) => {
-      console.log("onTabChange", idx)
-      setSelectedItemId(idx)
-    }
-
-    return (
-      <Tabs.Root
-        value={selectedItemId}
-        onChange={onTabChange}
-        orientation="vertical"
-        variant="enclosed-colored"
-      >
-        <Tabs.List minW="100px">
-          {items.map(({ id, value }) => (
-            <Tabs.Trigger value={id} key={id}>
-              {id}: {value}
-            </Tabs.Trigger>
-          ))}
-        </Tabs.List>
-        <Tabs.ContentGroup>
-          {items.map(({ id, value }) => (
-            <Tabs.Content value={id} key={id}>
-              {id}: {value}
-            </Tabs.Content>
-          ))}
-        </Tabs.ContentGroup>
-      </Tabs.Root>
-    )
-  }
-
-  const [items, setItems] = useState(initialData)
-  const [selectedItemId, setSelectedItemId] = useState("a")
-
-  const swapData = () => {
-    setItems((items) => {
-      const [a, b] = items
-      return [b, a]
-    })
-  }
-
-  console.log(
-    { selectedItemId },
-    items.map((x) => x.id),
-  )
-
-  return (
-    <chakra.div m={4}>
-      <button onClick={swapData}>Swap tab order</button>
-      <TabView
-        items={items}
-        selectedItemId={selectedItemId}
-        setSelectedItemId={setSelectedItemId}
-      />
-    </chakra.div>
-  )
-}
-
-export const withinDrawer = () => (
-  <Drawer.Root isOpen onClose={console.log}>
-    <Drawer.Overlay>
-      <Drawer.Positioner>
-        <Drawer.Content>
-          <Tabs.Root defaultValue="settings" variant="unstyled" isManual>
-            <Tabs.List>
-              <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-              <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-              <Tabs.Trigger value="preferences">Preferences</Tabs.Trigger>
-            </Tabs.List>
-
-            <Tabs.Indicator zIndex={-1} height="4px" bg="green.200" />
-
-            <Tabs.ContentGroup>
-              <Tabs.Content value="settings">Settings</Tabs.Content>
-              <Tabs.Content value="billing">Billing</Tabs.Content>
-              <Tabs.Content value="preferences">Preferences</Tabs.Content>
-            </Tabs.ContentGroup>
-          </Tabs.Root>
-        </Drawer.Content>
-      </Drawer.Positioner>
-    </Drawer.Overlay>
-  </Drawer.Root>
-)
-
-export const WithTabPanelWrapper = () => (
-  <Tabs.Root defaultValue="first">
-    <Tabs.List>
-      <Tabs.Trigger value="first">First Tab</Tabs.Trigger>
-      <Tabs.Trigger value="second">Second Tab</Tabs.Trigger>
-      <Tabs.Trigger value="third">Third Tab</Tabs.Trigger>
-    </Tabs.List>
-    <Tabs.ContentGroup>
-      <div>
-        <Tabs.Content value="first">Tab panel 1</Tabs.Content>
-      </div>
-      <div>
-        <Tabs.Content value="second">Tab panel 2</Tabs.Content>
-      </div>
-      <div>
-        <Tabs.Content value="third">Tab panel 3</Tabs.Content>
-      </div>
     </Tabs.ContentGroup>
   </Tabs.Root>
 )

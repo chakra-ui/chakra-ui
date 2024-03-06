@@ -1,5 +1,4 @@
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useTabsContext } from "./tabs-context"
 import { makeTabId } from "./use-tabs"
 
@@ -28,7 +27,7 @@ export function useTabIndicatorStyle(): React.CSSProperties {
   const [hasMeasured, setHasMeasured] = useState(false)
 
   // Update the selected tab rect when the selectedIndex changes
-  useSafeLayoutEffect(() => {
+  useEffect(() => {
     if (selectedValue == null) return
 
     const tab = rootRef.current?.ownerDocument.getElementById(
@@ -57,7 +56,7 @@ export function useTabIndicatorStyle(): React.CSSProperties {
         cancelAnimationFrame(aid)
       }
     }
-  }, [id, selectedValue, isHorizontal, isVertical])
+  }, [rootRef, id, selectedValue, isHorizontal, isVertical])
 
   return {
     position: "absolute",

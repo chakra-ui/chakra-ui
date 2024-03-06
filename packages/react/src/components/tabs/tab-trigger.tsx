@@ -1,10 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import {
-  HTMLChakraProps,
-  chakra,
-  defineStyle,
-  forwardRef,
-} from "../../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import { mergeProps } from "../../styled-system/merge-props"
 import { splitTabProps } from "./tab-props"
 import { useTabsStyles } from "./tabs-context"
@@ -24,14 +19,6 @@ export const TabTrigger = forwardRef<TabTriggerProps, "button">(
     const [useTabProps, localProps] = splitTabProps(props)
     const tabProps = useTab(useTabProps)
 
-    const tabStyles = defineStyle({
-      outline: "0",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      ...styles.trigger,
-    })
-
     const combinedProps = mergeProps<any>(tabProps, localProps)
 
     return (
@@ -39,7 +26,7 @@ export const TabTrigger = forwardRef<TabTriggerProps, "button">(
         ref={ref}
         {...combinedProps}
         className={cx("chakra-tabs__tab", props.className)}
-        css={[tabStyles, props.css]}
+        css={[styles.trigger, props.css]}
       />
     )
   },
