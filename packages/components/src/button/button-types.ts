@@ -7,7 +7,7 @@ export interface ButtonGroupOptions {
    *
    * @default false
    */
-  isAttached?: boolean
+  attached?: boolean
   /**
    * If `true`, all wrapped button will be disabled
    *

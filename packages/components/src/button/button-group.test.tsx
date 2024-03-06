@@ -23,7 +23,7 @@ test("Should apply spacing", () => {
 })
 test("Should flush button", () => {
   const { getByText } = render(
-    <ButtonGroup isAttached>
+    <ButtonGroup attached>
       <Button>Button 1</Button>
       <Button>Button 2</Button>
       <Button>Button 3</Button>
@@ -48,7 +48,7 @@ test("Should flush button", () => {
 
 test("Should flush outline button", () => {
   const { getByText } = render(
-    <ButtonGroup isAttached variant="outline">
+    <ButtonGroup attached variant="outline">
       <Button>Button 1</Button>
       <Button>Button 2</Button>
       <Button>Button 3</Button>
@@ -71,7 +71,7 @@ test("Should flush outline button", () => {
 
 test("Should flush vertical button", () => {
   const { getByText } = render(
-    <ButtonGroup isAttached orientation="vertical" variant="outline">
+    <ButtonGroup attached orientation="vertical" variant="outline">
       <Button>Button 1</Button>
       <Button>Button 2</Button>
       <Button>Button 3</Button>

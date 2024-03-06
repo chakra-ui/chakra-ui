@@ -42,7 +42,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
       variant,
       className,
       spacing = "0.5rem",
-      isAttached,
+      attached,
       disabled,
       orientation = "horizontal",
       ...rest
@@ -57,7 +57,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
 
     let groupStyles = defineStyle({
       display: "inline-flex",
-      ...(isAttached
+      ...(attached
         ? attachedStyles[orientation]
         : gapStyles[orientation](spacing)),
     })
@@ -71,7 +71,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
           role="group"
           __css={groupStyles}
           className={_className}
-          data-attached={isAttached ? "" : undefined}
+          data-attached={attached ? "" : undefined}
           data-orientation={orientation}
           flexDir={isVertical ? "column" : undefined}
           {...rest}

@@ -181,7 +181,7 @@ export const WithButtonGroup = () => (
 )
 
 export const WithHorizontalAttachedButtons = () => (
-  <ButtonGroup size="sm" isAttached variant="outline">
+  <ButtonGroup size="sm" attached variant="outline">
     <Button>Save</Button>
     <Button>Cancel</Button>
     <IconButton
@@ -209,7 +209,7 @@ export const iconButton = () => (
 )
 
 export const WithVerticalAttachedButtons = () => (
-  <ButtonGroup size="lg" orientation="vertical" isAttached variant="outline">
+  <ButtonGroup size="lg" orientation="vertical" attached variant="outline">
     <IconButton fontSize="2xl" aria-label="Email Santa" icon={<FaEnvelope />} />
     <IconButton
       fontSize="2xl"
