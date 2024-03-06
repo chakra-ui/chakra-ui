@@ -1,4 +1,4 @@
-import { Box, For, Span, Stack } from "../src"
+import { Box, Button, Field, For, Span, Stack } from "../src"
 import { Textarea } from "../src/components/textarea"
 import { useRecipe } from "../src/styled-system"
 import { PlaygroundTable } from "./shared/playground-table"
@@ -70,5 +70,22 @@ export const Sizes = () => {
         </For>
       </tbody>
     </PlaygroundTable>
+  )
+}
+
+export const WithLabel = () => {
+  return (
+    <Stack maxW="sm" spacing="4">
+      <Field.Root>
+        <Field.Label>Issue Details</Field.Label>
+        <Textarea placeholder="Type your message here..." />
+        <Field.HelpText>
+          You can @mention people and refer to issues and pull requests.
+        </Field.HelpText>
+      </Field.Root>
+      <Button alignSelf="flex-start" variant="solid" mt="3">
+        Submit
+      </Button>
+    </Stack>
   )
 }

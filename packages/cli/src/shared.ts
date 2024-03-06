@@ -7,8 +7,18 @@ export function unionType(values: Iterable<any>) {
     .join(" | ")
 }
 
-export function pretty(value: any) {
-  return format(value, { parser: "typescript" })
+export async function pretty(value: any) {
+  return format(value, {
+    parser: "typescript",
+    bracketSpacing: true,
+    jsxSingleQuote: false,
+    printWidth: 80,
+    proseWrap: "always",
+    semi: false,
+    singleQuote: false,
+    tabWidth: 2,
+    trailingComma: "all",
+  })
 }
 
 export function capitalize(value: string) {
