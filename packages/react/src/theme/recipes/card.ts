@@ -5,71 +5,73 @@ export const cardSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
     root: {
-      display: "flex",
+      display: "inline-flex",
       position: "relative",
       minWidth: 0,
       wordWrap: "break-word",
-      bg: "var(--bg)",
-      boxShadow: "var(--shadow)",
-      borderRadius: "var(--radius)",
+      bg: "var(--card-bg)",
+      boxShadow: "var(--card-shadow)",
+      borderRadius: "var(--card-radius)",
       color: "text",
-      borderWidth: "var(--border-width, 0)",
-      borderColor: "var(--border-color)",
+      borderWidth: "var(--card-border-width, 0)",
+      borderColor: "var(--card-border)",
     },
     body: {
-      padding: "var(--padding)",
+      padding: "var(--card-padding)",
       flex: "1 1 0%",
     },
     header: {
-      padding: "var(--padding)",
+      paddingInline: "var(--card-padding)",
+      paddingTop: "var(--card-padding)",
     },
     footer: {
-      padding: "var(--padding)",
+      paddingInline: "var(--card-padding)",
+      paddingBottom: "var(--card-padding)",
     },
   },
   variants: {
     size: {
       sm: {
         root: {
-          "--radius": "radii.base",
-          "--padding": "space.3",
+          "--card-radius": "radii.sm",
+          "--card-padding": "spacing.4",
         },
       },
       md: {
         root: {
-          "--radius": "radii.md",
-          "--padding": "space.5",
+          "--card-radius": "radii.md",
+          "--card-padding": "spacing.6",
         },
       },
       lg: {
         root: {
-          "--radius": "radii.xl",
-          "--padding": "space.7",
+          "--card-radius": "radii.xl",
+          "--card-padding": "spacing.7",
         },
       },
     },
     variant: {
       elevated: {
         root: {
-          "--bg": { base: "colors.bg", _dark: "colors.gray.700" },
-          "--shadow": "shadows.base",
+          "--card-bg": { base: "white", _dark: "colors.gray.800" },
+          "--card-shadow": "shadows.xs",
         },
       },
       outline: {
         root: {
-          "--border-width": "1px",
-          "--border-color": "colors.border",
+          "--card-border-width": "1px",
+          "--card-border": "colors.border",
         },
       },
-      filled: {
+      subtle: {
         root: {
-          "--bg": "colors.bg.subtle",
+          "--card-bg": "colors.bg.muted",
         },
       },
     },
   },
   defaultVariants: {
-    variant: "elevated",
+    variant: "outline",
     size: "md",
   },
 })

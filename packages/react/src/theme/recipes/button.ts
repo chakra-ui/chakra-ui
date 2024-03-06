@@ -14,8 +14,6 @@ export const buttonRecipe = defineRecipe({
     lineHeight: "1.2",
     isolation: "isolate",
     fontWeight: "medium",
-    transitionProperty: "common",
-    transitionDuration: "normal",
     colorPalette: "gray",
     _focusVisible: {
       outline: "2px solid",
@@ -116,6 +114,7 @@ export const buttonRecipe = defineRecipe({
         },
       },
       outline: {
+        bg: "bg",
         borderWidth: "1px",
         borderColor: { base: "colorPalette.200", _dark: "colorPalette.200/10" },
         color: { base: "colorPalette.700", _dark: "colorPalette.200" },

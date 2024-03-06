@@ -2,8 +2,7 @@ import { defineRecipe } from "../../styled-system"
 
 export const dividerRecipe = defineRecipe({
   base: {
-    opacity: 0.6,
-    borderColor: "inherit",
+    borderColor: "border.muted",
   },
   variants: {
     variant: {

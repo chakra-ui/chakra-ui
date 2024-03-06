@@ -3,7 +3,7 @@ import { defineRecipe } from "../../styled-system"
 export const headingRecipe = defineRecipe({
   base: {
     fontFamily: "heading",
-    fontWeight: "bold",
+    fontWeight: "semibold",
   },
   variants: {
     size: {

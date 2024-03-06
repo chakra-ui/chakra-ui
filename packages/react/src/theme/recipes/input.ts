@@ -69,6 +69,7 @@ export const inputRecipe = defineRecipe({
         },
         _focusVisible: {
           bg: "bg",
+          outline: "1px solid var(--focus-color)",
           borderColor: "var(--focus-color)",
         },
       },
