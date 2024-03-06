@@ -2,7 +2,7 @@ import { StorybookConfig } from "@storybook/react-vite"
 
 const config: StorybookConfig = {
   stories: [
-    "../packages/react/__stories__/{tokens,alert,avatar,input,card,dialog,badge,spinner,button,blockquote,tabs}.stories.tsx",
+    "../packages/react/__stories__/{tokens,alert,textarea,progress,avatar,input,card,dialog,badge,spinner,button,blockquote,tabs}.stories.tsx",
   ],
   addons: [
     "@storybook/addon-a11y",

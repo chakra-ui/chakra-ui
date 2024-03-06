@@ -1,76 +1,74 @@
-import * as React from "react"
+import { Box, For, Span, Stack } from "../src"
 import { Textarea } from "../src/components/textarea"
-import { chakra } from "../src/styled-system"
+import { useRecipe } from "../src/styled-system"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Forms / Textarea",
-  decorators: [
-    (story: Function) => (
-      <chakra.div maxW="500px" mt="40px" mx="auto">
-        {story()}
-      </chakra.div>
-    ),
-  ],
+  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-export const basic = () => <Textarea defaultValue="This is a textarea" />
-
-export const rows = () => (
-  <Textarea defaultValue="This is a textarea" rows={12} />
-)
-
-export const disabled = () => (
-  <Textarea isDisabled placeholder="A disabled textarea" />
-)
-
-export const invalid = () => (
-  <Textarea isInvalid placeholder="An invalid textarea" />
-)
-
-export const withSizes = () => (
-  <>
-    <Textarea
-      size="xs"
-      placeholder="A sample placeholder"
-      defaultValue="This is a x-small textarea"
-    />
-    <Textarea
-      size="sm"
-      placeholder="A sample placeholder"
-      defaultValue="This is a small textarea"
-    />
-    <Textarea
-      placeholder="A sample placeholder"
-      defaultValue="This is a default textarea"
-    />
-    <Textarea
-      size="lg"
-      placeholder="A sample placeholder"
-      defaultValue="This is a large textarea"
-    />
-  </>
-)
-
-export const Controlled = () => {
-  const [value, setValue] = React.useState("")
-
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value)
-  }
-
+export const Variants = () => {
+  const recipe = useRecipe("Input")
   return (
-    <>
-      <p>Value: {value}</p>
-      <Textarea
-        mt="8px"
-        value={value}
-        placeholder="Enter value"
-        onChange={onChange}
-      />
-    </>
+    <PlaygroundTable>
+      <tbody>
+        <For each={recipe.variantMap.variant}>
+          {(v) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {v}
+                </Span>
+              </td>
+              <td>
+                <Textarea variant={v} placeholder="Placeholder" />
+              </td>
+            </tr>
+          )}
+        </For>
+        <tr>
+          <td>
+            <Span fontSize="sm" color="fg.muted" minW="8ch">
+              unstyled
+            </Span>
+          </td>
+          <td>
+            <Textarea minW="320px" placeholder="Placeholder" />
+          </td>
+        </tr>
+      </tbody>
+    </PlaygroundTable>
   )
 }
 
-export const withResize = () => (
-  <Textarea placeholder="Here is a sample placeholder" resize="horizontal" />
-)
+export const Sizes = () => {
+  const recipe = useRecipe("Input")
+  return (
+    <PlaygroundTable>
+      <tbody>
+        <For each={recipe.variantMap.size}>
+          {(v) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {v}
+                </Span>
+              </td>
+              <td>
+                <Stack minW="320px">
+                  <Textarea size={v} placeholder="Placeholder" />
+                  <Textarea
+                    variant="filled"
+                    size={v}
+                    placeholder="Placeholder"
+                  />
+                </Stack>
+              </td>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
