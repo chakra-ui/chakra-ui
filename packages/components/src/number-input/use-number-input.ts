@@ -63,7 +63,7 @@ export interface UseNumberInputProps extends UseCounterProps {
   /**
    * If `true`, the input will have `aria-invalid` set to `true`
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * Whether the input should be disabled
    */
@@ -147,7 +147,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     readOnly,
     required,
     "aria-describedby": ariaDescBy,
-    invalid: isInvalid,
+    invalid,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
   } = useFieldProps(fieldProps)
@@ -527,7 +527,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-valuenow": Number.isNaN(counter.valueAsNumber)
           ? undefined
           : counter.valueAsNumber,
-        "aria-invalid": ariaAttr(isInvalid ?? counter.isOutOfRange),
+        "aria-invalid": ariaAttr(invalid ?? counter.isOutOfRange),
         "aria-valuetext": ariaValueText,
         autoComplete: "off",
         autoCorrect: "off",
@@ -550,7 +550,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         disabled,
         required,
         readOnly,
-        isInvalid,
+        invalid,
         counter.value,
         counter.valueAsNumber,
         counter.isOutOfRange,

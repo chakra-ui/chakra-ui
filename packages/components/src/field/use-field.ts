@@ -12,7 +12,7 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
     disabled,
     readOnly,
     required,
-    isInvalid,
+    invalid,
     onFocus,
     onBlur,
     "aria-describedby": ariaDescribedby,
@@ -22,7 +22,7 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
   const labelIds: string[] = ariaDescribedby ? [ariaDescribedby] : []
 
   // Error message must be described first in all scenarios.
-  if (field?.hasFeedbackText && field?.isInvalid) {
+  if (field?.hasFeedbackText && field?.invalid) {
     labelIds.push(field.feedbackId)
   }
 
@@ -33,14 +33,14 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
   return {
     ...restProps,
     "aria-describedby": labelIds.join(" ") || undefined,
-    "aria-invalid": ariaAttr(isInvalid),
+    "aria-invalid": ariaAttr(invalid),
     "aria-required": ariaAttr(required),
     "aria-readonly": ariaAttr(readOnly),
     id: id ?? field?.id,
     disabled: disabled ?? field?.disabled,
     readOnly: readOnly ?? field?.readOnly,
     required: required ?? field?.required,
-    invalid: isInvalid ?? field?.isInvalid,
+    invalid: invalid ?? field?.invalid,
     onFocus: callAllHandlers(field?.onFocus, onFocus),
     onBlur: callAllHandlers(field?.onBlur, onBlur),
   }

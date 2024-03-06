@@ -75,7 +75,7 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * If `true`, the checkbox input is marked as required,
    * and `required` attribute will be added
@@ -149,7 +149,7 @@ export interface CheckboxGroupContext
     Omit<ThemingProps<"Checkbox">, "orientation"> {}
 
 export interface CheckboxState {
-  isInvalid?: boolean
+  invalid?: boolean
   isFocused: boolean
   isChecked: boolean
   isActive: boolean

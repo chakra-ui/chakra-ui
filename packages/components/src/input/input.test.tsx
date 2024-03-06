@@ -28,7 +28,7 @@ test("Elements inside input render correctly", () => {
 })
 
 test("Invalid input renders correctly", () => {
-  render(<Input isInvalid />)
+  render(<Input invalid />)
 
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true")
 })

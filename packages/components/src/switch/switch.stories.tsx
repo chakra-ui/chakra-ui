@@ -35,7 +35,7 @@ export const Readonly = () => (
 )
 
 export const Invalid = () => (
-  <DemoSwitch isInvalid size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch invalid size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Usage = () => (
@@ -108,7 +108,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInInvalid" isInvalid mt={4}>
+      <Field.Root id="optInInvalid" invalid mt={4}>
         <Field.Label>Invalid Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Invalid Opt-in 1</DemoSwitch>

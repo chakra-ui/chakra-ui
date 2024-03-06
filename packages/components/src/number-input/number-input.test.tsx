@@ -181,7 +181,7 @@ test("should derive values from surrounding FormControl", () => {
     <Field.Root
       id="input"
       required
-      isInvalid
+      invalid
       disabled
       readOnly
       onFocus={onFocus}

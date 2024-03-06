@@ -25,7 +25,7 @@ export const Basic = () => (
 )
 
 export const Invalid = () => (
-  <Select.Root isInvalid>
+  <Select.Root invalid>
     <Select.Field placeholder="Select option">
       <option value="Option 1">Option 1</option>
       <option value="Option 2">Option 2</option>
@@ -135,12 +135,12 @@ export const WithFocusBorderColor = () => (
 
 export const WithErrorBorderColor = () => (
   <Stack>
-    <Select.Root isInvalid errorBorderColor="red.300">
+    <Select.Root invalid errorBorderColor="red.300">
       <Select.Field placeholder="Here is a sample placeholder" />
       <Select.Icon />
     </Select.Root>
 
-    <Select.Root isInvalid errorBorderColor="crimson">
+    <Select.Root invalid errorBorderColor="crimson">
       <Select.Field placeholder="Here is a sample placeholder" />
       <Select.Icon />
     </Select.Root>

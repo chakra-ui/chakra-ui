@@ -24,7 +24,7 @@ export interface FieldOptions {
    *
    * @default false
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * If `true`, the form control will be readonly
    *

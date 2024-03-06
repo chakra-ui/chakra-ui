@@ -23,7 +23,7 @@ const radioItemProps = createProps<UseRadioProps>()([
   "isChecked",
   "disabled",
   "isFocusable",
-  "isInvalid",
+  "invalid",
   "readOnly",
   "required",
   "name",

@@ -69,7 +69,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
  * -----------------------------------------------------------------------------*/
 
 export const WithInput = () => (
-  <Field.Root id="first-name" required isInvalid>
+  <Field.Root id="first-name" required invalid>
     <Field.Label>First name</Field.Label>
     <Input placeholder="First Name" />
     <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
@@ -78,7 +78,7 @@ export const WithInput = () => (
 )
 
 export const WithTextarea = () => (
-  <Field.Root id="first-name" isInvalid>
+  <Field.Root id="first-name" invalid>
     <Field.Label>First name</Field.Label>
     <Textarea placeholder="First Name" />
     <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
@@ -90,7 +90,7 @@ export const WithTextarea = () => (
 )
 
 export const WithSelect = () => (
-  <Field.Root id="first-name" isInvalid>
+  <Field.Root id="first-name" invalid>
     <Field.Label>First name</Field.Label>
     <Select>
       <option>Option 1</option>

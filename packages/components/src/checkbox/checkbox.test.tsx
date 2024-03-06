@@ -353,14 +353,14 @@ test("Uncontrolled Form.Control - should not check if form-control disabled", ()
 
 test("Uncontrolled Form.Control - mark label as invalid", () => {
   const { container } = render(
-    <Field.Root isInvalid mt={4}>
+    <Field.Root invalid mt={4}>
       <Field.Label>Invalid Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Invalid Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isInvalid>
+        <DemoCheckbox value="2" invalid>
           Invalid Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isInvalid={false}>
+        <DemoCheckbox value="3" invalid={false}>
           Invalid Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>

@@ -8,7 +8,7 @@ export function useFieldProvider(props: FieldContext) {
   const {
     id: idProp,
     required,
-    isInvalid,
+    invalid,
     disabled,
     readOnly,
     ...rootProps
@@ -59,12 +59,12 @@ export function useFieldProvider(props: FieldContext) {
       ref: _ref,
       "data-focus": dataAttr(isFocused),
       "data-disabled": dataAttr(disabled),
-      "data-invalid": dataAttr(isInvalid),
+      "data-invalid": dataAttr(invalid),
       "data-readonly": dataAttr(readOnly),
       id: props.id || labelId,
       htmlFor: props.htmlFor || id,
     }),
-    [id, disabled, isFocused, isInvalid, readOnly, labelId],
+    [id, disabled, isFocused, invalid, readOnly, labelId],
   )
 
   const getErrorMessageProps = useCallback<PropGetter>(
@@ -92,10 +92,10 @@ export function useFieldProvider(props: FieldContext) {
       role: "group",
       "data-focus": dataAttr(isFocused),
       "data-disabled": dataAttr(disabled),
-      "data-invalid": dataAttr(isInvalid),
+      "data-invalid": dataAttr(invalid),
       "data-readonly": dataAttr(readOnly),
     }),
-    [rootProps, disabled, isFocused, isInvalid, readOnly],
+    [rootProps, disabled, isFocused, invalid, readOnly],
   )
 
   const getRequiredIndicatorProps = useCallback<PropGetter>(
@@ -111,7 +111,7 @@ export function useFieldProvider(props: FieldContext) {
 
   return {
     required: !!required,
-    isInvalid: !!isInvalid,
+    invalid: !!invalid,
     readOnly: !!readOnly,
     disabled: !!disabled,
     isFocused: !!isFocused,

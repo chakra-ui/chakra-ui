@@ -97,11 +97,11 @@ test("Uncontrolled FormControl - should not check if form-control disabled", asy
 
 test("Uncontrolled FormControl - mark label as invalid", () => {
   const { container } = render(
-    <Field.Root isInvalid mt={4}>
+    <Field.Root invalid mt={4}>
       <Field.Label>Invalid Opt-in Example</Field.Label>
       <DemoSwitch>Invalid Opt-in 1</DemoSwitch>
-      <DemoSwitch isInvalid>Invalid Opt-in 2</DemoSwitch>
-      <DemoSwitch isInvalid={false}>Invalid Opt-in 3</DemoSwitch>
+      <DemoSwitch invalid>Invalid Opt-in 2</DemoSwitch>
+      <DemoSwitch invalid={false}>Invalid Opt-in 3</DemoSwitch>
     </Field.Root>,
   )
 

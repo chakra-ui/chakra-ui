@@ -14,7 +14,7 @@ export type PinInputContext = UsePinInputReturn & {
   /**
    * Sets the pin input component to the invalid state
    */
-  isInvalid?: boolean
+  invalid?: boolean
 }
 
 export const [PinInputProvider, usePinInputContext] =

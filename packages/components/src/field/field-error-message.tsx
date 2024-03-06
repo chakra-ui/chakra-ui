@@ -22,7 +22,7 @@ export const FieldErrorMessage = forwardRef<FieldErrorMessageProps, "div">(
     const ownProps = omitThemingProps(props)
     const field = useFieldContext()
 
-    if (!field?.isInvalid) return null
+    if (!field?.invalid) return null
 
     return (
       <FieldErrorStylesProvider value={styles}>

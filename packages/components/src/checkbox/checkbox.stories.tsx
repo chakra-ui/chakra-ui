@@ -48,7 +48,7 @@ export const Disabled = () => <DemoCheckbox disabled>Disabled</DemoCheckbox>
 
 export const Readonly = () => <DemoCheckbox readOnly>Readonly</DemoCheckbox>
 
-export const Invalid = () => <DemoCheckbox isInvalid>Invalid</DemoCheckbox>
+export const Invalid = () => <DemoCheckbox invalid>Invalid</DemoCheckbox>
 
 export const NotFocusable = () => (
   <Stack>
@@ -315,7 +315,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInInvalid" isInvalid mt={4}>
+      <Field.Root id="optInInvalid" invalid mt={4}>
         <Field.Label>Invalid Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>

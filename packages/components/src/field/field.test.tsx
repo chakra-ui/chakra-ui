@@ -32,7 +32,7 @@ test("passes a11y test in when required", async () => {
 
 test("passes a11y test in when invalid", async () => {
   await testA11y(
-    <Field.Root id="name" isInvalid>
+    <Field.Root id="name" invalid>
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
@@ -43,7 +43,7 @@ test("passes a11y test in when invalid", async () => {
 
 test("only displays error icon and message when invalid", () => {
   const { rerender } = render(
-    <Field.Root id="name" isInvalid>
+    <Field.Root id="name" invalid>
       <Field.Label>Name</Field.Label>
       <RequiredIndicator />
       <Input placeholder="Name" />
@@ -173,7 +173,7 @@ test("has the correct data attributes", async () => {
       data-testid="control"
       id="name"
       required
-      isInvalid
+      invalid
       disabled
       readOnly
     >

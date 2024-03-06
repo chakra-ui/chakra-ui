@@ -24,7 +24,7 @@ export const disabled = () => (
 )
 
 export const invalid = () => (
-  <Textarea isInvalid placeholder="An invalid textarea" />
+  <Textarea invalid placeholder="An invalid textarea" />
 )
 
 export const withSizes = () => (
