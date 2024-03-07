@@ -266,7 +266,9 @@ export type PopoverSlot =
   | "arrow"
   | "closeTrigger"
 
-export interface PopoverVariantProps {}
+export interface PopoverVariantProps {
+  size?: "xs" | "sm" | "md" | "lg"
+}
 
 // Progress
 

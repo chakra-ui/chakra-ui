@@ -1,5 +1,5 @@
 import { mergeRefs } from "@chakra-ui/hooks"
-import { PropGetter } from "@chakra-ui/utils/prop-types"
+import { PropGetter } from "@chakra-ui/utils"
 import {
   Instance,
   Modifier,

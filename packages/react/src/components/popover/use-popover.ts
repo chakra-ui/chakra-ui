@@ -1,8 +1,11 @@
-import { useAnimationState } from "@chakra-ui/hooks"
-import { useDisclosure } from "@chakra-ui/hooks"
-import { useFocusOnHide, useFocusOnShow } from "@chakra-ui/hooks"
-import { useFocusOnPointerDown } from "@chakra-ui/hooks"
-import { mergeRefs } from "@chakra-ui/hooks"
+import {
+  mergeRefs,
+  useAnimationState,
+  useDisclosure,
+  useFocusOnHide,
+  useFocusOnPointerDown,
+  useFocusOnShow,
+} from "@chakra-ui/hooks"
 import {
   DOMAttributes,
   LazyMode,
@@ -241,6 +244,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         }),
         onBlur: callAllHandlers(props.onBlur, (event) => {
           const relatedTarget = getRelatedTarget(event)
+
           const targetIsPopover = contains(popoverRef.current, relatedTarget)
           const targetIsTrigger = contains(triggerRef.current, relatedTarget)
 

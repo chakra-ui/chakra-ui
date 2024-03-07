@@ -7,6 +7,7 @@ export const inputRecipe = defineRecipe({
     outline: 0,
     position: "relative",
     appearance: "none",
+    colorPalette: "gray",
     _disabled: {
       opacity: 0.5,
       cursor: "not-allowed",
@@ -15,7 +16,7 @@ export const inputRecipe = defineRecipe({
       boxShadow: "none !important",
       userSelect: "all",
     },
-    "--focus-color": "colors.blue.500",
+    "--focus-color": "colors.colorPalette.400",
     "--error-color": "colors.red.500",
   },
   variants: {

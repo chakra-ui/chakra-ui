@@ -7,7 +7,7 @@ export default {
 export const Shadows = () => {
   return (
     <Stack spacing="6" padding="10">
-      <For each={["xs", "sm", "lg", "xl", "2xl"]}>
+      <For each={["xs", "sm", "md", "lg", "xl", "2xl"]}>
         {(shadow) => (
           <Center
             shadow={shadow}

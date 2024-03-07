@@ -82,16 +82,10 @@ export const buttonRecipe = defineRecipe({
         bg: "colorPalette.600",
         color: "white",
         _hover: {
-          bg: {
-            base: "colorPalette.600",
-            _dark: "colorPalette.300",
-          },
+          bg: "colorPalette.700",
         },
         _active: {
-          bg: {
-            base: "colorPalette.700",
-            _dark: "colorPalette.400",
-          },
+          bg: "colorPalette.800",
         },
       },
       subtle: {
