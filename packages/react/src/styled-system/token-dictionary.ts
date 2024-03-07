@@ -463,8 +463,6 @@ export const tokenCategories = createProps<Record<TokenCategory, any>>()([
   "easings",
   "animations",
   "blurs",
-  // consider removing (it belongs to transition property)
-  "properties",
   "gradients",
   "breakpoints",
   "assets",

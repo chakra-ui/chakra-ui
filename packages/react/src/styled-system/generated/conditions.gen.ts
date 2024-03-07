@@ -21,11 +21,11 @@ export interface Conditions {
   _readWrite: string
   /** `&:is(:empty, [data-empty])` */
   _empty: string
-  /** `&:is(:checked, [data-checked], [aria-checked=true], [data-state=checked"])` */
+  /** `&:is(:checked, [data-checked], [aria-checked=true], [data-state=checked])` */
   _checked: string
   /** `&:enabled` */
   _enabled: string
-  /** `&:is([aria-expanded=true], [data-expanded], [data-state=expanded"])` */
+  /** `&:is([aria-expanded=true], [data-expanded], [data-state=expanded])` */
   _expanded: string
   /** `&[data-highlighted]` */
   _highlighted: string

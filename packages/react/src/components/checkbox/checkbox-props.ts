@@ -1,4 +1,4 @@
-import { createProps, splitProps } from "@chakra-ui/utils"
+import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseCheckboxProps } from "./checkbox-types"
 
 export const checkboxProps = createProps<UseCheckboxProps>()([
@@ -23,9 +23,5 @@ export const checkboxProps = createProps<UseCheckboxProps>()([
   "value",
 ])
 
-export const splitCheckboxProps = <T extends UseCheckboxProps>(props: T) => {
-  return splitProps(props, checkboxProps) as [
-    UseCheckboxProps,
-    Omit<T, keyof UseCheckboxProps>,
-  ]
-}
+export const splitCheckboxProps =
+  createSplitProps<UseCheckboxProps>(checkboxProps)

@@ -72,10 +72,10 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
     }, [__cva.variantKeys, __sfp, combinedProps, isValidProperty])
 
     const { css: cssStyles, ...propStyles } = res.styleProps
+
     const cvaStyles = useMemo(
       () => __cva(res.variantProps),
-      // eslint-disable-next-line
-      [res.variantProps],
+      [__cva, res.variantProps],
     )
 
     const _children = combinedProps.children ?? children

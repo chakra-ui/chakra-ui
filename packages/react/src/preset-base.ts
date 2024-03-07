@@ -26,10 +26,10 @@ export const defaultBaseConfig = defineConfig({
     readWrite: "&:read-write",
     empty: "&:is(:empty, [data-empty])",
     checked:
-      '&:is(:checked, [data-checked], [aria-checked=true], [data-state=checked"])',
+      "&:is(:checked, [data-checked], [aria-checked=true], [data-state=checked])",
     enabled: "&:enabled",
     expanded:
-      '&:is([aria-expanded=true], [data-expanded], [data-state=expanded"])',
+      "&:is([aria-expanded=true], [data-expanded], [data-state=expanded])",
     highlighted: "&[data-highlighted]",
 
     before: "&::before",

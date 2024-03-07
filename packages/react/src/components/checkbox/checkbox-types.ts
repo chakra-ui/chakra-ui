@@ -1,4 +1,4 @@
-import { SlotRecipeProps, SystemStyleObject } from "../../styled-system"
+import { SlotRecipeProps } from "../../styled-system"
 import { UseCheckboxReturn } from "./use-checkbox"
 import { UseCheckboxGroupReturn } from "./use-checkbox-group"
 
@@ -133,12 +133,6 @@ export interface UseCheckboxProps {
 
 export interface CheckboxOptions {
   /**
-   * The spacing between the checkbox and its label text
-   * @default 0.5rem
-   * @type SystemStyleObject["marginLeft"]
-   */
-  spacing?: SystemStyleObject["marginLeft"]
-  /**
    * Additional props to be forwarded to the `input` element
    */
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
@@ -160,6 +154,4 @@ export interface CheckboxState {
   isRequired?: boolean
 }
 
-export interface CheckboxContext extends UseCheckboxReturn {
-  spacing: any
-}
+export interface CheckboxContext extends UseCheckboxReturn {}

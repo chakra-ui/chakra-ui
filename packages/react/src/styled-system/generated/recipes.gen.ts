@@ -153,9 +153,8 @@ export interface CardVariantProps {
 export type CheckboxSlot = "control" | "icon" | "root" | "label"
 
 export interface CheckboxVariantProps {
-  isChecked?: boolean
-  isIndeterminate?: boolean
   size?: "sm" | "md" | "lg"
+  variant?: "outline" | "subtle"
 }
 
 // Dialog

@@ -11,7 +11,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       verticalAlign: "top",
       cursor: "pointer",
       position: "relative",
-      colorPalette: "blue",
+      colorPalette: "gray",
       _disabled: {
         cursor: "not-allowed",
       },
@@ -21,26 +21,30 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       flexShrink: 0,
-      userSelect: "none",
-      w: "var(--size)",
-      h: "var(--size)",
-      transitionProperty: "box-shadow",
-      transitionDuration: "normal",
-      border: "2px solid",
-      borderRadius: "sm",
-      borderColor: "inherit",
-      color: "white",
       verticalAlign: "top",
+      color: "white",
+      borderWidth: "1px",
+      borderColor: "transparent",
       _focusVisible: {
-        boxShadow: "outline",
+        outline: "2px solid",
+        outlineColor: "colorPalette.500",
+        outlineOffset: "2px",
       },
       _invalid: {
-        borderColor: { base: "red.500", _dark: "red.300" },
+        colorPalette: "red",
+        borderColor: "red.500",
+      },
+      _disabled: {
+        bg: "bg.muted!",
+        borderColor: "border.subtle!",
+        color: "fg.subtle/80!",
       },
     },
     label: {
       userSelect: "none",
-      _disabled: { opacity: 0.4 },
+      _disabled: {
+        opacity: "0.5",
+      },
     },
     icon: {
       transitionProperty: "transform",
@@ -48,55 +52,63 @@ export const checkboxSlotRecipe = defineSlotRecipe({
     },
   },
   variants: {
-    isChecked: {
-      true: {
-        control: {
-          bg: { base: "colorPalette.500", _dark: "colorPalette.200" },
-          borderColor: { base: "colorPalette.500", _dark: "colorPalette.200" },
-          color: { base: "white", _dark: "gray.900" },
-          _hover: {
-            bg: { base: "colorPalette.600", _dark: "colorPalette.300" },
-            borderColor: {
-              base: "colorPalette.600",
-              _dark: "colorPalette.300",
-            },
-          },
-          _disabled: {
-            borderColor: { base: "gray.200", _dark: "transparent" },
-            bg: { base: "gray.200", _dark: "whiteAlpha.300" },
-            color: { base: "gray.500", _dark: "whiteAlpha.500" },
-          },
-        },
-      },
-    },
-    isIndeterminate: {
-      true: {
-        control: {
-          bg: { base: "colorPalette.500", _dark: "colorPalette.200" },
-          borderColor: { base: "colorPalette.500", _dark: "colorPalette.200" },
-          color: { base: "white", _dark: "gray.900" },
-        },
-      },
-    },
     size: {
       sm: {
-        control: { "--size": "sizes.3" },
-        label: { fontSize: "sm" },
+        control: {
+          boxSize: "3",
+          borderRadius: "xs",
+        },
+        label: { fontSize: "xs" },
         icon: { fontSize: "3xs" },
       },
       md: {
-        control: { "--size": "sizes.4" },
-        label: { fontSize: "md" },
+        control: {
+          boxSize: "4",
+          borderRadius: "xs",
+        },
+        label: { fontSize: "sm" },
         icon: { fontSize: "2xs" },
       },
       lg: {
-        control: { "--size": "sizes.5" },
-        label: { fontSize: "lg" },
-        icon: { fontSize: "2xs" },
+        control: {
+          boxSize: "5",
+          borderRadius: "sm",
+        },
+        label: { fontSize: "md" },
+        icon: { fontSize: "xs" },
+      },
+    },
+    variant: {
+      outline: {
+        control: {
+          borderWidth: "1px",
+          borderColor: "inherit",
+          _checked: {
+            bg: "colorPalette.600",
+            borderColor: "colorPalette.600",
+          },
+        },
+      },
+      subtle: {
+        control: {
+          borderWidth: "1px",
+          bg: {
+            base: "colorPalette.100",
+            _dark: "colorPalette.200/20",
+          },
+          borderColor: {
+            base: "colorPalette.200",
+            _dark: "colorPalette.200/10",
+          },
+          _checked: {
+            color: { base: "colorPalette.700", _dark: "colorPalette.200" },
+          },
+        },
       },
     },
   },
   defaultVariants: {
+    variant: "outline",
     size: "md",
   },
 })

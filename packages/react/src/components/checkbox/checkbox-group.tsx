@@ -1,12 +1,15 @@
-import { useMemo } from "react"
-import { SlotRecipeProps } from "../../styled-system"
+import {
+  RecipePropsProvider,
+  SlotRecipeProps,
+  useSlotRecipe,
+} from "../../styled-system"
 import { CheckboxGroupProvider } from "./checkbox-context"
 import { UseCheckboxGroupProps } from "./checkbox-types"
 import { useCheckboxGroup } from "./use-checkbox-group"
 
 export interface CheckboxGroupProps
   extends UseCheckboxGroupProps,
-    Omit<SlotRecipeProps<"Checkbox">, "orientation"> {
+    SlotRecipeProps<"Checkbox"> {
   children?: React.ReactNode
 }
 
@@ -17,22 +20,17 @@ export interface CheckboxGroupProps
  * @see Docs https://chakra-ui.com/checkbox
  */
 export function CheckboxGroup(props: CheckboxGroupProps) {
-  const { colorScheme, size, variant, children, isDisabled } = props
-  const { value, onChange } = useCheckboxGroup(props)
+  const recipe = useSlotRecipe("Checkbox", props.recipe)
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
 
-  const group = useMemo(
-    () => ({
-      size,
-      onChange,
-      colorScheme,
-      value,
-      variant,
-      isDisabled,
-    }),
-    [size, onChange, colorScheme, value, variant, isDisabled],
+  const { children, ...hookProps } = localProps
+  const groupApi = useCheckboxGroup(hookProps)
+
+  return (
+    <CheckboxGroupProvider value={groupApi}>
+      <RecipePropsProvider value={variantProps}>{children}</RecipePropsProvider>
+    </CheckboxGroupProvider>
   )
-
-  return <CheckboxGroupProvider value={group} children={children} />
 }
 
 CheckboxGroup.displayName = "CheckboxGroup"

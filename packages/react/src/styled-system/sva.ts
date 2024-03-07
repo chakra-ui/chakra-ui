@@ -1,4 +1,4 @@
-import { Dict, memo, splitProps } from "@chakra-ui/utils"
+import { Dict, splitProps } from "@chakra-ui/utils"
 import { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
 
 interface Options {
@@ -69,8 +69,7 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       Object.entries(variants).map(([key, value]) => [key, Object.keys(value)]),
     )
 
-    return Object.assign(memo(svaFn), {
-      __cva__: false,
+    return Object.assign(svaFn, {
       variantMap,
       variantKeys,
       splitVariantProps,

@@ -32,23 +32,20 @@ export interface CheckboxRootProps
 export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
   function Checkbox(props, ref) {
     const group = useCheckboxGroupContext()
-
     const mergedProps = { ...group, ...props } as CheckboxRootProps
 
-    const recipe = useSlotRecipe("Checkbox", mergedProps.recipe)
+    const recipe = useSlotRecipe("Checkbox", props.recipe)
     const [variantProps, ownProps] = recipe.splitVariantProps(mergedProps)
     const styles = recipe(variantProps)
+    console.log(styles)
 
     const {
-      spacing = "0.5rem",
-      className,
       children,
-      // @ts-ignore
       isChecked: isCheckedProp,
       isDisabled = group?.isDisabled,
       onChange: onChangeProp,
       inputProps,
-      ...rest
+      ...restProps
     } = ownProps
 
     let isChecked = isCheckedProp
@@ -61,27 +58,25 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
       onChange = callAll(group.onChange, onChangeProp)
     }
 
-    const [checkboxProps, localProps] = splitCheckboxProps(rest)
+    const [checkboxProps, localProps] = splitCheckboxProps(restProps)
 
-    const checkboxState = useCheckbox({
+    const api = useCheckbox({
       ...checkboxProps,
       isDisabled,
       isChecked,
       onChange,
     })
 
-    const { getRootProps, getInputProps } = checkboxState
-
     return (
       <CheckboxStylesProvider value={styles}>
-        <CheckboxContextProvider value={{ ...checkboxState, spacing }}>
+        <CheckboxContextProvider value={api}>
           <chakra.label
-            {...getRootProps(localProps)}
-            css={styles.root}
-            className={cx("chakra-checkbox", className)}
+            {...api.getRootProps(localProps)}
+            css={[styles.root, props.css]}
+            className={cx("chakra-checkbox", props.className)}
           >
             <input
-              {...getInputProps(inputProps, ref)}
+              {...api.getInputProps(inputProps, ref)}
               className="chakra-checkbox__input"
             />
             {children}

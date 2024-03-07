@@ -14,14 +14,14 @@ describe("create css", () => {
       }),
     ).toMatchInlineSnapshot(`
       {
-        "&:is(:hover, [data-hover])": {
+        "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])": {
           "color": "pink !important",
         },
         "--bg": "var(--chakra-colors-pink-400)",
-        "@media screen and (min-width: 40rem)": {
+        "@media screen and (min-width: 30rem)": {
           "padding": "20px",
         },
-        "@media screen and (min-width: 52rem)": {
+        "@media screen and (min-width: 48rem)": {
           "marginBlockStart": "20px",
         },
         "color": "red",
@@ -39,14 +39,14 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "@media screen and (min-width: 40rem)": {
-          "fontSize": "var(--chakra-font-sizes-3)",
+        "@media screen and (min-width: 30rem)": {
+          "fontSize": 3,
         },
-        "@media screen and (min-width: 52rem)": {
-          "fontSize": "var(--chakra-font-sizes-4)",
+        "@media screen and (min-width: 48rem)": {
+          "fontSize": 4,
         },
-        "color": "var(--chakra-colors-primary)",
-        "fontSize": "var(--chakra-font-sizes-2)",
+        "color": "primary",
+        "fontSize": 2,
       }
     `)
   })
@@ -62,9 +62,9 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "&:hover": {
-          "color": "var(--chakra-colors-secondary)",
+          "color": "secondary",
         },
-        "color": "var(--chakra-colors-primary)",
+        "color": "primary",
       }
     `)
   })
@@ -80,12 +80,12 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "& h1": {
-          "@media screen and (min-width: 40rem)": {
+          "@media screen and (min-width: 30rem)": {
             "paddingBlock": "var(--chakra-spacing-4)",
           },
           "paddingBlock": "var(--chakra-spacing-3)",
         },
-        "color": "var(--chakra-colors-primary)",
+        "color": "primary",
       }
     `)
   })
@@ -111,7 +111,7 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "@media screen and (min-width: 52rem)": {
+        "@media screen and (min-width: 48rem)": {
           "width": "50%",
         },
         "width": "100%",
@@ -131,11 +131,11 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "&::before": {
-          "@media screen and (min-width: 40rem)": {
+          "@media screen and (min-width: 30rem)": {
             "paddingLeft": "var(--chakra-spacing-3)",
             "paddingRight": "var(--chakra-spacing-2)",
           },
-          "@media screen and (min-width: 52rem)": {
+          "@media screen and (min-width: 48rem)": {
             "paddingLeft": "var(--chakra-spacing-4)",
           },
           "paddingBottom": "var(--chakra-spacing-2)",
@@ -171,13 +171,13 @@ describe("create css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "@layer compositions": {
-          "fontSize": "lg",
-          "letterSpacing": "wide",
+          "fontSize": "var(--chakra-font-sizes-lg)",
+          "letterSpacing": "var(--chakra-letter-spacings-wide)",
           "textTransform": "uppercase",
         },
-        "@media screen and (min-width: 40rem)": {
+        "@media screen and (min-width: 30rem)": {
           "@layer compositions": {
-            "fontSize": "sm",
+            "fontSize": "var(--chakra-font-sizes-sm)",
             "letterSpacing": "0.2px",
             "textTransform": "lowercase",
           },
@@ -228,7 +228,7 @@ describe("create css", () => {
         "&:disabled": {
           "color": "var(--checkbox-disabled-color)",
         },
-        "--banner-height": "var(--chakra-sizes-small)",
+        "--banner-height": "sizes.small",
         "--checkbox-disabled-color": "var(--chakra-colors-red-300)",
       }
     `)
@@ -248,7 +248,7 @@ describe("create css", () => {
           "color": "var(--checkbox-disabled-color)",
         },
         "--checkbox-disabled-color": "colors.pinkish",
-        "@media screen and (min-width: 40rem)": {
+        "@media screen and (min-width: 30rem)": {
           "--checkbox-disabled-color": "colors.redish",
         },
       }
@@ -265,8 +265,8 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        ".peer:is(:checked, [data-checked], [aria-checked=true], [data-state="checked"]) ~ &": {
-          "background": "transparent",
+        ".peer:is(:checked, [data-checked], [aria-checked=true], [data-state=checked]) ~ &": {
+          "background": "var(--chakra-colors-transparent)",
         },
         "background": "var(--chakra-colors-red-300)",
       }
@@ -307,7 +307,17 @@ describe("create css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
+        "--chakra-colors-color-palette-100": "var(--chakra-colors-red-100)",
+        "--chakra-colors-color-palette-200": "var(--chakra-colors-red-200)",
         "--chakra-colors-color-palette-300": "var(--chakra-colors-red-300)",
+        "--chakra-colors-color-palette-400": "var(--chakra-colors-red-400)",
+        "--chakra-colors-color-palette-50": "var(--chakra-colors-red-50)",
+        "--chakra-colors-color-palette-500": "var(--chakra-colors-red-500)",
+        "--chakra-colors-color-palette-600": "var(--chakra-colors-red-600)",
+        "--chakra-colors-color-palette-700": "var(--chakra-colors-red-700)",
+        "--chakra-colors-color-palette-800": "var(--chakra-colors-red-800)",
+        "--chakra-colors-color-palette-900": "var(--chakra-colors-red-900)",
+        "--chakra-colors-color-palette-950": "var(--chakra-colors-red-950)",
         "background": "var(--chakra-colors-color-palette-300)",
       }
     `)
@@ -326,7 +336,23 @@ describe("create css", () => {
         " &.dark, .dark &": {
           "border": "2px solid var(--chakra-colors-green-300)",
         },
-        "border": "1px solid var(--chakra-colors-primary)",
+        "border": "1px solid var(--colors.primary)",
+      }
+    `)
+  })
+
+  test("width and height", () => {
+    const result = css({
+      "--size": "sizes.3",
+      w: "3",
+      h: "3",
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "--size": "var(--chakra-sizes-3)",
+        "height": "var(--chakra-sizes-3)",
+        "width": "var(--chakra-sizes-3)",
       }
     `)
   })
