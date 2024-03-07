@@ -25,7 +25,7 @@ import { colorPalettes } from "./shared/color-palettes"
 import { DocHeader } from "./shared/doc-header"
 
 export default {
-  title: "Form / Button",
+  title: "Forms / Button",
   decorators: [
     (Story: any) => (
       <Container mt="40px" display="flex" flexWrap="wrap" gap="4">

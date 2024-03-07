@@ -4,8 +4,8 @@ export type { CheckboxControlProps } from "./checkbox-control"
 export { CheckboxGroup } from "./checkbox-group"
 export type { CheckboxGroupProps } from "./checkbox-group"
 
-export { CheckboxIcon } from "./checkbox-icon"
-export type { CheckboxIconProps } from "./checkbox-icon"
+export { CheckboxIndicator } from "./checkbox-indicator"
+export type { CheckboxIndicatorProps } from "./checkbox-indicator"
 
 export { CheckboxLabel } from "./checkbox-label"
 export type { CheckboxLabelProps } from "./checkbox-label"

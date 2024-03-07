@@ -5,7 +5,8 @@ export const progressSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
     root: {
-      colorPalette: "blue",
+      colorPalette: "gray",
+      fontSize: "sm",
     },
     track: {
       overflow: "hidden",
@@ -16,30 +17,41 @@ export const progressSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      transitionProperty: "common",
+      transitionProperty: "width, height",
       transitionDuration: "slow",
       height: "100%",
-      "--track-color": {
-        base: "color.colorPalette.500",
-        _dark: "color.colorPalette.200",
-      },
     },
     valueText: {
+      fontSize: "xs",
       lineHeight: "1",
-      fontSize: "0.25em",
-      fontWeight: "bold",
-      color: "white",
+      fontWeight: "semibold",
     },
   },
   variants: {
+    variant: {
+      outline: {
+        track: {
+          shadow: "inset",
+        },
+        filledTrack: {
+          bg: "colorPalette.600",
+        },
+      },
+      subtle: {
+        filledTrack: {
+          bg: { base: "colorPalette.400", _dark: "colorPalette.400/20" },
+        },
+      },
+    },
     isIndeterminate: {
       true: {
         filledTrack: {
+          "--animate-from-x": "-40%",
+          "--animate-to-x": "100%",
           position: "absolute",
           willChange: "left",
           minWidth: "50%",
-          animation:
-            "var(--progress-animation) 1s ease infinite normal none running",
+          animation: "position 1s ease infinite normal none running",
           backgroundImage: `linear-gradient(to right, transparent 0%, var(--track-color) 50%, transparent 100%)`,
         },
       },
@@ -49,13 +61,37 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
       },
     },
+    shape: {
+      square: {},
+      rounded: {
+        track: {
+          borderRadius: "sm",
+        },
+      },
+      pill: {
+        track: {
+          borderRadius: "full",
+        },
+      },
+    },
     hasStripe: {
-      true: {},
+      true: {
+        filledTrack: {
+          backgroundImage: `linear-gradient(45deg, var(--stripe-color) 25%, transparent 25%, transparent 50%, var(--stripe-color) 50%, var(--stripe-color) 75%, transparent 75%, transparent)`,
+          backgroundSize: `var(--stripe-size) var(--stripe-size)`,
+          "--stripe-size": "1rem",
+          "--stripe-color": {
+            base: "rgba(255, 255, 255, 0.3)",
+            _dark: "rgba(0, 0, 0, 0.3)",
+          },
+        },
+      },
     },
     isAnimated: {
       true: {
         filledTrack: {
-          animation: "var(--stripe-animation) 1s linear infinite",
+          "--animated-from": "var(--stripe-size)",
+          animation: "bg-position 1s linear infinite",
         },
       },
     },
@@ -64,34 +100,31 @@ export const progressSlotRecipe = defineSlotRecipe({
         track: { h: "1" },
       },
       sm: {
-        track: { h: "2" },
+        track: { h: "1.5" },
       },
       md: {
-        track: { h: "3" },
+        track: { h: "2" },
       },
       lg: {
-        track: { h: "4" },
+        track: { h: "2.5" },
       },
     },
   },
   compoundVariants: [
     {
-      isIndeterminate: false,
-      hasStripe: true,
+      variant: "outline",
+      //@ts-expect-error
+      colorPalette: "gray",
       css: {
         filledTrack: {
-          backgroundImage: `linear-gradient(45deg, var(--stripe-color) 25%, transparent 25%, transparent 50%, var(--stripe-color) 50%, var(--stripe-color) 75%, transparent 75%, transparent)`,
-          backgroundSize: `var(--stripe-size) var(--stripe-size)`,
-          "--stripe-size": "1rem",
-          "--stripe-color": {
-            base: "rgba(255, 255, 255, 0.15)",
-            _dark: "rgba(0, 0, 0, 0.15)",
-          },
+          bg: { base: "colorPalette.800", _dark: "colorPalette.200" },
         },
       },
     },
   ],
   defaultVariants: {
+    variant: "outline",
     size: "md",
+    shape: "rounded",
   },
 })

@@ -1,4 +1,5 @@
 import { cx } from "@chakra-ui/utils"
+import { RadioGroupItemIndicator } from "."
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import { useRadioItemContext, useRadioItemStyles } from "./radio-group-context"
 
@@ -16,7 +17,9 @@ export const RadioGroupItemControl = forwardRef<
       {...api.getRadioProps(props, ref)}
       className={cx("chakra-radio__control", props.className)}
       css={styles.control}
-    />
+    >
+      {props.children || <RadioGroupItemIndicator />}
+    </chakra.span>
   )
 })
 

@@ -46,10 +46,6 @@ export const checkboxSlotRecipe = defineSlotRecipe({
         opacity: "0.5",
       },
     },
-    icon: {
-      transitionProperty: "transform",
-      transitionDuration: "normal",
-    },
   },
   variants: {
     size: {
@@ -59,7 +55,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
           borderRadius: "xs",
         },
         label: { fontSize: "xs" },
-        icon: { fontSize: "3xs" },
+        indicator: { fontSize: "3xs" },
       },
       md: {
         control: {
@@ -67,7 +63,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
           borderRadius: "xs",
         },
         label: { fontSize: "sm" },
-        icon: { fontSize: "2xs" },
+        indicator: { fontSize: "2xs" },
       },
       lg: {
         control: {
@@ -75,7 +71,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
           borderRadius: "sm",
         },
         label: { fontSize: "md" },
-        icon: { fontSize: "xs" },
+        indicator: { fontSize: "xs" },
       },
     },
     variant: {

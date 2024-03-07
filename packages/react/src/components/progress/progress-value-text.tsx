@@ -6,17 +6,17 @@ export interface ProgressValueTextProps extends HTMLChakraProps<"span"> {}
 
 export const ProgressValueText = forwardRef<ProgressValueTextProps, "span">(
   function ProgressValueText(props, ref) {
-    const { computed } = useProgressContext()
+    const api = useProgressContext()
     const styles = useProgressStyles()
 
     return (
       <chakra.span
         ref={ref}
-        css={styles.valueText}
         {...props}
+        css={[styles.valueText, props.css]}
         className={cx("chakra-progress__value-text", props.className)}
       >
-        {props.children ?? computed.value}
+        {props.children ?? api.computed.value}
       </chakra.span>
     )
   },

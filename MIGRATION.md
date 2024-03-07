@@ -141,6 +141,9 @@ After:
 
 ### Checkbox
 
+- Checkbox icon is now `Checkbox.Indicator` and can be used to customize the
+  checkbox icon in the checked and indeterminate state.
+
 Before:
 
 ```tsx
@@ -776,3 +779,15 @@ and `withThemeByClassName` helper.
 - No more `soft-rounded` and `solid-rounded` variants
 - The `enclosed` variant has been modified
 - Added `plain` variant for usage with `Tabs.Indicator`
+
+## General
+
+- Default color palette is now gray for all components but you can configure
+  this in your theme.
+
+## Progress
+
+- Move `hasStripe` and `isAnimated` to the `decoration` variant in recipe. Value
+  can be either `striped` or `striped-animated`
+- label or valueText no longer comes with a color by default, you can style
+  yourself

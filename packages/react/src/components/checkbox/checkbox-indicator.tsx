@@ -41,12 +41,12 @@ function IndeterminateIcon(props: HTMLChakraProps<"svg">) {
   )
 }
 
-export interface CheckboxIconProps extends HTMLChakraProps<"svg"> {
+export interface CheckboxIndicatorProps extends HTMLChakraProps<"svg"> {
   checked?: React.ReactElement
   indeterminate?: React.ReactElement
 }
 
-export function CheckboxIcon(props: CheckboxIconProps) {
+export function CheckboxIndicator(props: CheckboxIndicatorProps) {
   const { checked, indeterminate, ...restProps } = props
 
   const api = useCheckboxContext()
@@ -57,7 +57,7 @@ export function CheckboxIcon(props: CheckboxIconProps) {
       <CheckIcon
         asChild={!!checked}
         {...restProps}
-        css={[styles.icon, restProps.css]}
+        css={[styles.indicator, restProps.css]}
       >
         {checked}
       </CheckIcon>
@@ -69,7 +69,7 @@ export function CheckboxIcon(props: CheckboxIconProps) {
       <IndeterminateIcon
         asChild={!!indeterminate}
         {...restProps}
-        css={[styles.icon, restProps.css]}
+        css={[styles.indicator, restProps.css]}
       >
         {indeterminate}
       </IndeterminateIcon>

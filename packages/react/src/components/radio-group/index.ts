@@ -18,4 +18,7 @@ export type { RadioGroupItemControlProps } from "./radio-group-item-control"
 export { RadioGroupItemText } from "./radio-group-item-text"
 export type { RadioGroupItemTextProps } from "./radio-group-item-text"
 
+export { RadioGroupItemIndicator } from "./radio-group-item-indicator"
+export type { RadioGroupItemIndicatorProps } from "./radio-group-item-indicator"
+
 export * as RadioGroup from "./namespace"

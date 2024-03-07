@@ -5,8 +5,22 @@ export const keyframes = defineKeyframes({
     "0%": { transform: "rotate(0deg)" },
     "100%": { transform: "rotate(360deg)" },
   },
+  "bg-position": {
+    from: { backgroundPosition: "var(--animate-from, 1rem) 0" },
+    to: { backgroundPosition: "var(--animate-to, 0) 0" },
+  },
+  position: {
+    from: {
+      insetInlineStart: "var(--animate-from-x)",
+      insetBlockStart: "var(--animate-from-y)",
+    },
+    to: {
+      insetInlineStart: "var(--animate-to-x)",
+      insetBlockStart: "var(--animate-to-y)",
+    },
+  },
   pulse: {
-    "50%": { opacity: ".5" },
+    "50%": { opacity: "0.5" },
   },
   "fade-in": {
     from: { opacity: 0 },

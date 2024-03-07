@@ -40,7 +40,7 @@ export const buttonAnatomy = anatomy("button").parts()
 
 export const checkboxAnatomy = anatomy("checkbox").parts(
   "control",
-  "icon",
+  "indicator",
   "root",
   "label",
 )
@@ -134,7 +134,12 @@ export const progressAnatomy = anatomy("progress").parts(
   "valueText",
 )
 
-export const radioAnatomy = anatomy("radio").parts("root", "control", "label")
+export const radioAnatomy = anatomy("radio").parts(
+  "root",
+  "control",
+  "indicator",
+  "label",
+)
 
 export const selectAnatomy = anatomy("select").parts("root", "field", "icon")
 

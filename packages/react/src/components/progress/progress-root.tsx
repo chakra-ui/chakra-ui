@@ -36,24 +36,25 @@ export const ProgressRoot = forwardRef<ProgressRootProps, "div">(
   function ProgressRoot(props, ref) {
     const recipe = useSlotRecipe("Progress")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = recipe({
+      ...variantProps, //@ts-expect-error
+      colorPalette: props.colorPalette || "gray",
+    })
 
     const [progressProps, restProps] = splitProgressProps(localProps)
     const computed = getProgressProps(progressProps)
 
     return (
-      <chakra.div
-        ref={ref}
-        {...restProps}
-        css={styles.root}
-        className={cx("chakra-progress", props.className)}
-      >
-        <ProgressStylesProvider value={styles}>
-          <ProgressContextProvider value={{ computed, ...progressProps }}>
-            {restProps.children}
-          </ProgressContextProvider>
-        </ProgressStylesProvider>
-      </chakra.div>
+      <ProgressStylesProvider value={styles}>
+        <ProgressContextProvider value={{ computed, ...progressProps }}>
+          <chakra.div
+            ref={ref}
+            {...restProps}
+            css={[styles.root, props.css]}
+            className={cx("chakra-progress", props.className)}
+          />
+        </ProgressContextProvider>
+      </ProgressStylesProvider>
     )
   },
 )

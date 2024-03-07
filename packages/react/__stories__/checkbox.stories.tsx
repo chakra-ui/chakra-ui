@@ -129,7 +129,7 @@ export const WithCustomIcon = () => {
   return (
     <Checkbox.Root>
       <Checkbox.Control>
-        <Checkbox.Icon checked={<HiCheck />} />
+        <Checkbox.Indicator checked={<HiCheck />} />
       </Checkbox.Control>
       <Checkbox.Label>Checkbox</Checkbox.Label>
     </Checkbox.Root>

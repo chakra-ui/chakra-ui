@@ -43,6 +43,10 @@ export const semanticShadows = defineSemanticTokens.shadows({
         "0px 24px 40px {colors.blackAlpha.700}, 0px 0px 1px inset {colors.whiteAlpha.400}",
     },
   },
-  outline: { value: "0 0 0 3px rgba(66, 153, 225, 0.6)" },
-  inner: { value: "inset 0 2px 4px 0 rgba(0,0,0,0.06)" },
+  inset: {
+    value: {
+      base: "inset 0 0 0 1px {colors.blackAlpha.100}",
+      _dark: "inset 0 0 0 1px {colors.whiteAlpha.100}",
+    },
+  },
 })

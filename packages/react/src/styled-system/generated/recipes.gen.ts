@@ -6,7 +6,7 @@ import type {
 } from "../recipe.types"
 
 export interface BadgeVariantProps {
-  variant?: "solid" | "subtle" | "outline"
+  variant?: "solid" | "subtle" | "outline" | "plain"
   size?: "sm" | "md" | "lg"
 }
 
@@ -17,7 +17,7 @@ export interface ButtonVariantProps {
 }
 
 export interface CodeVariantProps {
-  variant?: "solid" | "subtle" | "outline"
+  variant?: "solid" | "subtle" | "outline" | "plain"
   size?: "sm" | "md" | "lg"
 }
 
@@ -150,7 +150,7 @@ export interface CardVariantProps {
 
 // Checkbox
 
-export type CheckboxSlot = "control" | "icon" | "root" | "label"
+export type CheckboxSlot = "control" | "indicator" | "root" | "label"
 
 export interface CheckboxVariantProps {
   size?: "sm" | "md" | "lg"
@@ -278,7 +278,9 @@ export type ProgressSlot =
   | "valueText"
 
 export interface ProgressVariantProps {
+  variant?: "outline" | "subtle"
   isIndeterminate?: boolean
+  shape?: "square" | "rounded" | "pill"
   hasStripe?: boolean
   isAnimated?: boolean
   size?: "xs" | "sm" | "md" | "lg"
@@ -286,10 +288,10 @@ export interface ProgressVariantProps {
 
 // Radio
 
-export type RadioSlot = "root" | "control" | "label"
+export type RadioSlot = "root" | "control" | "indicator" | "label"
 
 export interface RadioVariantProps {
-  isChecked?: boolean
+  variant?: "outline" | "subtle"
   size?: "sm" | "md" | "lg"
 }
 

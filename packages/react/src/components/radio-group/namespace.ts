@@ -9,3 +9,6 @@ export type { RadioGroupItemControlProps } from "./radio-group-item-control"
 
 export { RadioGroupItemText as ItemText } from "./radio-group-item-text"
 export type { RadioGroupItemTextProps as ItemTextProps } from "./radio-group-item-text"
+
+export { RadioGroupItemIndicator as ItemIndicator } from "./radio-group-item-indicator"
+export type { RadioGroupItemIndicatorProps as ItemIndicatorProps } from "./radio-group-item-indicator"

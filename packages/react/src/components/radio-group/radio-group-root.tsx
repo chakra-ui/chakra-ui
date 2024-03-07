@@ -1,29 +1,19 @@
 import { cx } from "@chakra-ui/utils"
 import {
   HTMLChakraProps,
+  RecipePropsProvider,
   SlotRecipeProps,
   chakra,
   forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
-import {
-  RadioGroupContextProvider,
-  RadioThemingContextProvider,
-} from "./radio-group-context"
+import { RadioGroupContextProvider } from "./radio-group-context"
 import { splitRadioGroupProps } from "./radio-group-props"
 import { UseRadioGroupProps, useRadioGroup } from "./use-radio-group"
 
-type Omitted =
-  | "onChange"
-  | "value"
-  | "defaultValue"
-  | "defaultChecked"
-  | "children"
-
 export interface RadioGroupRootProps
-  extends UseRadioGroupProps,
-    Omit<HTMLChakraProps<"div">, Omitted>,
-    Omit<SlotRecipeProps<"Radio">, "orientation"> {}
+  extends HTMLChakraProps<"div", UseRadioGroupProps>,
+    SlotRecipeProps<"Radio"> {}
 
 /**
  * Used for multiple radios which are bound in one group,
@@ -41,14 +31,14 @@ export const RadioGroupRoot = forwardRef<RadioGroupRootProps, "div">(
     const api = useRadioGroup(groupProps)
 
     return (
-      <RadioThemingContextProvider value={variantProps}>
+      <RecipePropsProvider value={variantProps}>
         <RadioGroupContextProvider value={api}>
           <chakra.div
             {...api.getRootProps(localProps, ref)}
             className={cx("chakra-radio-group", localProps.className)}
           />
         </RadioGroupContextProvider>
-      </RadioThemingContextProvider>
+      </RecipePropsProvider>
     )
   },
 )

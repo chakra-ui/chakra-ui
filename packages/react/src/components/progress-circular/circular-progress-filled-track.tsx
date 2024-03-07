@@ -1,7 +1,22 @@
 import { dataAttr } from "@chakra-ui/utils"
+import { keyframes } from "@emotion/react"
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
-import { spinAnim } from "../progress/progress-utils"
 import { useCircularProgressContext } from "./circular-progress-context"
+
+const spinAnim = keyframes({
+  "0%": {
+    strokeDasharray: "1, 400",
+    strokeDashoffset: "0",
+  },
+  "50%": {
+    strokeDasharray: "400, 400",
+    strokeDashoffset: "-100",
+  },
+  "100%": {
+    strokeDasharray: "400, 400",
+    strokeDashoffset: "-260",
+  },
+})
 
 export interface CircularProgressFilledTrackProps
   extends HTMLChakraProps<"circle"> {}

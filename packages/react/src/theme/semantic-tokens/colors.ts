@@ -11,6 +11,9 @@ export const semanticColors = defineSemanticTokens.colors({
     muted: {
       value: { base: "{colors.gray.100}", _dark: "{colors.gray.700}" },
     },
+    inverse: {
+      value: { base: "{colors.gray.800}", _dark: "white" },
+    },
     accent: {
       value: { base: "{colors.teal.50}", _dark: "{colors.teal.800}" },
     },
@@ -39,6 +42,9 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     accent: {
       value: { base: "{colors.teal.600}", _dark: "{colors.teal.300}" },
+    },
+    inverse: {
+      value: { base: "white", _dark: "{colors.gray.800}" },
     },
     error: {
       value: { base: "{colors.red.600}", _dark: "{colors.red.300}" },

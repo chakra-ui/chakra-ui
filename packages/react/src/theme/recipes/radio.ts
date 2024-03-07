@@ -11,40 +11,33 @@ export const radioSlotRecipe = defineSlotRecipe({
       ...checkboxSlotRecipe.base!.control,
       borderRadius: "full",
     },
+    indicator: {
+      height: "100%",
+      width: "100%",
+      borderRadius: "full",
+      bg: "currentColor",
+      scale: "0.4",
+    },
   },
   variants: {
-    isChecked: {
-      true: {
-        control: {
-          ...checkboxSlotRecipe.variants?.isChecked?.true.control,
-          _before: {
-            content: `""`,
-            display: "inline-block",
-            pos: "relative",
-            w: "50%",
-            h: "50%",
-            borderRadius: "50%",
-            bg: "currentColor",
-          },
-        },
-      },
-    },
+    variant: checkboxSlotRecipe.variants!.variant,
     size: {
       sm: {
-        control: { w: "3", h: "3" },
-        label: { fontSize: "sm" },
+        control: { boxSize: "3" },
+        label: { fontSize: "xs" },
       },
       md: {
-        control: { w: "4", h: "4" },
-        label: { fontSize: "md" },
+        control: { boxSize: "4" },
+        label: { fontSize: "sm" },
       },
       lg: {
-        control: { w: "5", h: "5" },
-        label: { fontSize: "lg" },
+        control: { boxSize: "5" },
+        label: { fontSize: "md" },
       },
     },
   },
   defaultVariants: {
     size: "md",
+    variant: "outline",
   },
 })
