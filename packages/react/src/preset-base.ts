@@ -634,9 +634,9 @@ export const defaultBaseConfig = defineConfig({
     // transform / translate
     translate: {
       transform(value) {
-        if (value !== "auto") return { transform: value }
+        if (value !== "auto") return { translate: value }
         return {
-          transform: `var(--translate-x) var(--translate-y)`,
+          translate: `var(--translate-x) var(--translate-y)`,
         }
       },
     },

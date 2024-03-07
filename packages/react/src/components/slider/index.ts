@@ -1,43 +1,26 @@
+export { SliderRoot } from "./slider-root"
+export type { SliderRootProps } from "./slider-root"
+
+export { SliderMark } from "./slider-mark"
+export type { SliderMarkProps } from "./slider-mark"
+
+export { SliderThumb } from "./slider-thumb"
+export type { SliderThumbProps } from "./slider-thumb"
+
+export { SliderTrack } from "./slider-track"
+export type { SliderTrackProps } from "./slider-track"
+
+export { SliderFilledTrack } from "./slider-filled-track"
+export type { SliderFilledTrackProps } from "./slider-filled-track"
+
 export {
-  RangeSlider,
-  RangeSliderFilledTrack,
-  RangeSliderMark,
-  RangeSliderThumb,
-  RangeSliderTrack,
-} from "./range-slider"
-export {
-  RangeSliderProvider,
-  useRangeSliderContext,
-  useRangeSliderStyles,
   SliderProvider,
   useSliderContext,
   useSliderStyles,
 } from "./slider-context"
-export type {
-  RangeSliderInnerTrackProps,
-  RangeSliderMarkProps,
-  RangeSliderProps,
-  RangeSliderTrackProps,
-  RangeSliderThumbProps,
-} from "./range-slider"
-export {
-  Slider,
-  SliderFilledTrack,
-  SliderMark,
-  SliderThumb,
-  SliderTrack,
-} from "./slider"
-export type {
-  SliderInnerTrackProps,
-  SliderMarkProps,
-  SliderProps,
-  SliderThumbProps,
-  SliderTrackProps,
-} from "./slider"
-export { useRangeSlider } from "./use-range-slider"
-export type {
-  UseRangeSliderProps,
-  UseRangeSliderReturn,
-} from "./use-range-slider"
+
 export { useSlider } from "./use-slider"
+
 export type { UseSliderProps, UseSliderReturn } from "./use-slider"
+
+export * as Slider from "./namespace"

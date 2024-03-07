@@ -849,6 +849,8 @@ export type AnimationName =
   | "slide-right"
   | "slide-up"
   | "slide-down"
+  | "enter"
+  | "exit"
 
 export type Tokens = {
   animations: AnimationsToken

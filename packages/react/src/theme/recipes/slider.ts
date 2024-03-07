@@ -7,65 +7,87 @@ export const sliderSlotRecipe = defineSlotRecipe({
     root: {
       display: "inline-block",
       position: "relative",
-      colorPalette: "blue",
-      cursor: { base: "pointer", _disabled: "default" },
-      _disabled: {
-        opacity: 0.6,
-        pointerEvents: "none",
-      },
+      colorPalette: "gray",
+      fontSize: "sm",
+      minHeight: "var(--slider-thumb-size)",
     },
     track: {
       overflow: "hidden",
       borderRadius: "sm",
-      bg: { base: "gray.200", _dark: "whiteAlpha.200" },
-      _disabled: {
-        bg: { base: "gray.300", _dark: "whiteAlpha.300" },
-      },
     },
     filledTrack: {
       width: "inherit",
       height: "inherit",
-      bg: { base: "colorPalette.500", _dark: "colorPalette.200" },
+      _disabled: {
+        bg: { base: "gray.300!", _dark: "gray.500!" },
+      },
     },
     thumb: {
-      width: "var(--thumb-size)",
-      height: "var(--thumb-size)",
+      width: "var(--slider-thumb-size)",
+      height: "var(--slider-thumb-size)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      position: "absolute",
       outline: 0,
       zIndex: 1,
       borderRadius: "full",
-      bg: { base: "white", _disabled: "gray.300" },
-      boxShadow: "base",
-      border: "1px solid",
-      borderColor: "transparent",
-      transitionProperty: "transform",
-      transitionDuration: "normal",
+      bg: "white",
+      borderWidth: "1px",
+      borderColor: "gray.400/40",
+      _disabled: {
+        bg: { base: "gray.300", _dark: "gray.400" },
+      },
       _focusVisible: {
-        boxShadow: "outline",
+        ring: "2px",
+        ringColor: "colorPalette.500",
+        ringOffset: "2px",
+        ringOffsetColor: "bg",
       },
     },
   },
   variants: {
     size: {
+      xs: {
+        root: {
+          "--slider-thumb-size": "sizes.2.5",
+          "--slider-track-size": "sizes.0.5",
+        },
+      },
       sm: {
         root: {
-          "--thumb-size": "sizes.2.5",
-          "--track-size": "sizes.0.5",
+          "--slider-thumb-size": "sizes.3",
+          "--slider-track-size": "sizes.1",
         },
       },
       md: {
         root: {
-          "--thumb-size": "sizes.3.5",
-          "--track-size": "sizes.1",
+          "--slider-thumb-size": "sizes.4",
+          "--slider-track-size": "sizes.1.5",
         },
       },
       lg: {
         root: {
-          "--thumb-size": "sizes.4",
-          "--track-size": "sizes.1",
+          "--slider-thumb-size": "sizes.5",
+          "--slider-track-size": "sizes.2",
+        },
+      },
+    },
+    variant: {
+      outline: {
+        track: {
+          shadow: "inset",
+          bg: "bg.muted",
+        },
+        filledTrack: {
+          bg: "colorPalette.600",
+        },
+      },
+      subtle: {
+        track: {
+          bg: "bg.muted",
+        },
+        filledTrack: {
+          bg: { base: "colorPalette.600", _dark: "colorPalette.600/40" },
         },
       },
     },
@@ -75,12 +97,11 @@ export const sliderSlotRecipe = defineSlotRecipe({
           height: "100%",
         },
         track: {
-          width: "var(--track-size)",
+          width: "var(--slider-track-size)",
         },
         thumb: {
           left: "50%",
           translate: "-50% 0",
-          scale: { base: 1, _active: 1.15 },
         },
       },
       horizontal: {
@@ -88,12 +109,40 @@ export const sliderSlotRecipe = defineSlotRecipe({
           width: "100%",
         },
         track: {
-          height: "var(--track-size)",
+          height: "var(--slider-track-size)",
+        },
+        thumb: {
+          top: "50%",
+          translate: "0 -50%",
         },
       },
     },
   },
+  compoundVariants: [
+    {
+      variant: "outline",
+      //@ts-expect-error
+      colorPalette: "gray",
+      css: {
+        filledTrack: {
+          bg: { base: "gray.800", _dark: "gray.200" },
+        },
+      },
+    },
+    {
+      variant: "subtle",
+      //@ts-expect-error
+      colorPalette: "gray",
+      css: {
+        filledTrack: {
+          bg: { base: "gray.600", _dark: "gray.200/64" },
+        },
+      },
+    },
+  ],
   defaultVariants: {
     size: "md",
+    variant: "outline",
+    orientation: "horizontal",
   },
 })

@@ -17,7 +17,12 @@ import {
 } from "@chakra-ui/utils"
 import type { PropGetter, RequiredPropGetter } from "@chakra-ui/utils"
 import { useCallback, useId, useMemo, useRef, useState } from "react"
-import { getIds, getIsReversed, getStyles, orient } from "./slider-utils"
+import {
+  getIds,
+  getIsReversed,
+  getStyles,
+  orient,
+} from "../slider/slider-utils"
 
 export interface UseRangeSliderProps {
   /**

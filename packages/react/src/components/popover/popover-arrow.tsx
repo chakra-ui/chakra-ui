@@ -1,13 +1,8 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
-export interface PopoverArrowProps extends HTMLChakraProps<"div"> {
-  /**
-   * The color of the arrow's shadow
-   */
-  shadowColor?: SystemStyleObject["color"]
-}
+export interface PopoverArrowProps extends HTMLChakraProps<"div"> {}
 
 const resolveVar = (scale: string, value: unknown) =>
   value ? `${scale}.${value}, ${value}` : undefined

@@ -414,6 +414,7 @@ export function useSlider(props: UseSliderProps) {
         tabIndex: -1,
         "aria-disabled": ariaAttr(isDisabled),
         "data-focused": dataAttr(isFocused),
+        "data-disabled": dataAttr(isDisabled),
         style: {
           ...props.style,
           ...rootStyle,
@@ -429,6 +430,7 @@ export function useSlider(props: UseSliderProps) {
         ...props,
         ref: mergeRefs(ref, trackRef),
         id: trackId,
+        "data-focused": dataAttr(isFocused),
         "data-disabled": dataAttr(isDisabled),
         style: {
           ...props.style,
@@ -436,7 +438,7 @@ export function useSlider(props: UseSliderProps) {
         },
       }
     },
-    [isDisabled, trackId, trackStyle],
+    [isDisabled, isFocused, trackId, trackStyle],
   )
 
   const getInnerTrackProps: PropGetter = useCallback(
@@ -444,13 +446,15 @@ export function useSlider(props: UseSliderProps) {
       return {
         ...props,
         ref,
+        "data-focused": dataAttr(isFocused),
+        "data-disabled": dataAttr(isDisabled),
         style: {
           ...props.style,
           ...innerTrackStyle,
         },
       }
     },
-    [innerTrackStyle],
+    [innerTrackStyle, isDisabled, isFocused],
   )
 
   const getThumbProps: PropGetter = useCallback(
@@ -462,6 +466,7 @@ export function useSlider(props: UseSliderProps) {
         tabIndex: isInteractive ? 0 : undefined,
         id: thumbId,
         "data-active": dataAttr(isDragging),
+        "data-disabled": dataAttr(isDisabled),
         "aria-valuetext": valueText,
         "aria-valuemin": min,
         "aria-valuemax": max,

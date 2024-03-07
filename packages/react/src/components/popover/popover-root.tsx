@@ -1,5 +1,5 @@
 import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
-import { SlotRecipeProps, useSlotRecipe, useTheme } from "../../styled-system"
+import { SlotRecipeProps, useSlotRecipe } from "../../styled-system"
 import { PopoverProvider, PopoverStylesProvider } from "./popover-context"
 import { UsePopoverProps, usePopover } from "./use-popover"
 
@@ -28,10 +28,8 @@ export function PopoverRoot(props: PopoverRootProps) {
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
 
-  const { children, ...rest } = localProps
-
-  // const theme = useTheme()
-  const context = usePopover({ ...rest, direction: "ltr" })
+  const { children, ...restProps } = localProps
+  const context = usePopover(restProps)
 
   return (
     <PopoverProvider value={context}>

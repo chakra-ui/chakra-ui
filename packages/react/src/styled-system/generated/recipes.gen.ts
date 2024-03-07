@@ -300,7 +300,8 @@ export interface RadioVariantProps {
 export type SliderSlot = "root" | "track" | "thumb" | "filledTrack" | "mark"
 
 export interface SliderVariantProps {
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
+  variant?: "outline" | "subtle"
   orientation?: "vertical" | "horizontal"
 }
 

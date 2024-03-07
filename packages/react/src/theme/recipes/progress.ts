@@ -11,7 +11,6 @@ export const progressSlotRecipe = defineSlotRecipe({
     track: {
       overflow: "hidden",
       position: "relative",
-      bg: { base: "gray.100", _dark: "whiteAlpha.300" },
     },
     filledTrack: {
       display: "flex",
@@ -32,12 +31,16 @@ export const progressSlotRecipe = defineSlotRecipe({
       outline: {
         track: {
           shadow: "inset",
+          bg: { base: "gray.100", _dark: "whiteAlpha.300" },
         },
         filledTrack: {
           bg: "colorPalette.600",
         },
       },
       subtle: {
+        track: {
+          bg: { base: "gray.100", _dark: "whiteAlpha.300" },
+        },
         filledTrack: {
           bg: { base: "colorPalette.400", _dark: "colorPalette.400/20" },
         },
