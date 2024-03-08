@@ -10,6 +10,7 @@ import { HiArrowRight } from "react-icons/hi"
 import { BeatLoader } from "react-spinners"
 import {
   AbsoluteCenter,
+  Button,
   Container,
   For,
   Group,
@@ -20,7 +21,6 @@ import {
   Stack,
   useRecipe,
 } from "../src"
-import { Button } from "../src/components/button"
 import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
