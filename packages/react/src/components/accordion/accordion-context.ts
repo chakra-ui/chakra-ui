@@ -1,6 +1,7 @@
 import { createContext } from "@chakra-ui/utils"
 import { SystemStyleObject } from "../../styled-system"
-import { UseAccordionItemReturn, UseAccordionReturn } from "./use-accordion"
+import { UseAccordionReturn } from "./use-accordion"
+import { UseAccordionItemReturn } from "./use-accordion-item"
 
 export const [AccordionStylesProvider, useAccordionStyles] = createContext<
   Record<string, SystemStyleObject>
@@ -10,8 +11,7 @@ export const [AccordionStylesProvider, useAccordionStyles] = createContext<
   providerName: "<Accordion.Root />",
 })
 
-interface AccordionContext
-  extends Omit<UseAccordionReturn, "htmlProps" | "descendants"> {
+interface AccordionContext extends UseAccordionReturn {
   reduceMotion: boolean
 }
 

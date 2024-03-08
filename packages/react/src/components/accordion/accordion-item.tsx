@@ -6,7 +6,7 @@ import {
   useAccordionStyles,
 } from "./accordion-context"
 import { splitAccordionItemProps } from "./accordion-props"
-import { UseAccordionItemProps, useAccordionItem } from "./use-accordion"
+import { UseAccordionItemProps, useAccordionItem } from "./use-accordion-item"
 
 interface AccordionItemState {
   isExpanded: boolean
@@ -29,9 +29,9 @@ export interface AccordionItemProps
  */
 export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
   function AccordionItem(props, ref) {
-    const { children, className } = props
+    const { children, ...restProps } = props
 
-    const [itemProps, localProps] = splitAccordionItemProps(props)
+    const [itemProps, localProps] = splitAccordionItemProps(restProps)
 
     const itemApi = useAccordionItem(itemProps)
     const styles = useAccordionStyles()
@@ -44,9 +44,8 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
     return (
       <AccordionItemContextProvider value={itemApi}>
         <chakra.div
-          ref={ref}
-          {...localProps}
-          className={cx("chakra-accordion__item", className)}
+          {...itemApi.getItemProps(localProps, ref)}
+          className={cx("chakra-accordion__item", props.className)}
           css={[styles.item, localProps.css]}
         >
           {runIfFn(children, itemState)}

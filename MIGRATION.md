@@ -88,6 +88,46 @@ or `<X>Root`
 - Rename `allowToggle` to `collapsible`
 - Rename `AccordionButton` to `Accordion.Trigger`
 - Rename `AccordionPanel` to `Accordion.Content`
+- Rename `AccordionIcon` to `Accordion.Indicator`. To render a custom icon, you
+  can use the `Accordion.Indicator` component and pass the icon as children.
+
+Before:
+
+```tsx
+<Accordion>
+  <AccordionItem>
+    <AccordionButton>
+      <AccordionIcon />
+    </AccordionButton>
+
+    <AccordionPanel pb={4}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </AccordionPanel>
+  </AccordionItem>
+</Accordion>
+```
+
+After:
+
+```tsx
+<Accordion.Root>
+  <Accordion.Item>
+    <Accordion.Trigger>
+      <Accordion.Indicator />
+    </Accordion.Trigger>
+
+    <Accordion.Content pb={4}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </Accordion.Content>
+  </Accordion.Item>
+</Accordion.Root>
+```
 
 ### Avatar
 

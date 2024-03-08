@@ -23,10 +23,6 @@ export const buttonRecipe = defineRecipe({
     _disabled: {
       opacity: 0.6,
       cursor: "not-allowed",
-      boxShadow: "none",
-    },
-    _hover: {
-      _disabled: { bg: "initial" },
     },
   },
   variants: {

@@ -5,7 +5,7 @@ export const accordionAnatomy = anatomy("accordion").parts(
   "item",
   "trigger",
   "content",
-  "icon",
+  "indicator",
 )
 
 export const alertAnatomy = anatomy("alert").parts(

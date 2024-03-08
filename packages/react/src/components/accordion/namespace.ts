@@ -4,8 +4,8 @@ export type { AccordionRootProps as RootProps } from "./accordion-root"
 export { AccordionTrigger as Trigger } from "./accordion-trigger"
 export type { AccordionTrigger as TriggerProps } from "./accordion-trigger"
 
-export { AccordionIcon as Icon } from "./accordion-icon"
-export type { AccordionIconProps as AccordionIcon } from "./accordion-icon"
+export { AccordionIndicator as Indicator } from "./accordion-indicator"
+export type { AccordionIndicatorProps as IndicatorProps } from "./accordion-indicator"
 
 export { AccordionItem as Item } from "./accordion-item"
 export type { AccordionItemProps as ItemProps } from "./accordion-item"

@@ -102,9 +102,17 @@ export interface ConfigRecipes {
 
 // Accordion
 
-export type AccordionSlot = "root" | "item" | "trigger" | "content" | "icon"
+export type AccordionSlot =
+  | "root"
+  | "item"
+  | "trigger"
+  | "content"
+  | "indicator"
 
-export interface AccordionVariantProps {}
+export interface AccordionVariantProps {
+  variant?: "outline" | "elevated" | "contained" | "plain"
+  size?: "sm" | "md" | "lg"
+}
 
 // Alert
 

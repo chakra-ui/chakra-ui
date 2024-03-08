@@ -98,3 +98,10 @@ export interface JsxStyleProps
 export type InferRecipeProps<T> = T extends ChakraComponent<any, infer P>
   ? P
   : {}
+
+export type PropGetterFn<T extends keyof JSX.IntrinsicElements> = (
+  props?: Omit<JSX.IntrinsicElements[T], HtmlProp>,
+  ref?: any,
+) => JSX.IntrinsicElements[T] & { ref?: any } & {
+  [key in `data-${string}`]?: any
+}

@@ -3,8 +3,8 @@ export type { AccordionTriggerProps } from "./accordion-trigger"
 
 export { useAccordionStyles } from "./accordion-context"
 
-export { AccordionIcon } from "./accordion-icon"
-export type { AccordionIconProps } from "./accordion-icon"
+export { AccordionIndicator } from "./accordion-indicator"
+export type { AccordionIndicatorProps } from "./accordion-indicator"
 
 export { AccordionItem } from "./accordion-item"
 export type { AccordionItemProps } from "./accordion-item"
@@ -17,18 +17,18 @@ export type { AccordionRootProps } from "./accordion-root"
 
 export * as Accordion from "./namespace"
 
-export { useAccordion, useAccordionItem } from "./use-accordion"
+export { useAccordion } from "./use-accordion"
+export { useAccordionItem } from "./use-accordion-item"
 
 export {
   AccordionContextProvider,
   useAccordionContext,
 } from "./accordion-context"
 
+export type { UseAccordionProps, UseAccordionReturn } from "./use-accordion"
 export type {
   UseAccordionItemProps,
   UseAccordionItemReturn,
-  UseAccordionProps,
-  UseAccordionReturn,
-} from "./use-accordion"
+} from "./use-accordion-item"
 
 export { useAccordionItemState } from "./use-accordion-item-state"
