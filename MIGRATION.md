@@ -108,6 +108,13 @@ After:
 
 ### Breadcrumb
 
+- Explicitly render the `separator` via `Breadcrumb.Separator`.
+- Pass custom separator as children to the `Breadcrumb.Separator` component
+- Explicitly render list via `Breadcrumb.List`
+- Explicitly render the ellipsis via `Breadcrumb.Ellipsis`
+- To add `spacing`, set the `gap` on the list element
+- `listProps` has been removed. Pass props directly to `Breadcrumb.List`
+
 Before:
 
 ```tsx
@@ -132,12 +139,10 @@ After:
         </Link>
       </Breadcrumb.Link>
     </Breadcrumb.Item>
+    <Breadcrumb.Separator />
   </Breadcrumb.List>
 </Breadcrumb.Root>
 ```
-
-- Move `spacing` and `separator` props to `Breadcrumb.List`
-- `listProps` has been removed. Pass props directly to `Breadcrumb.List`
 
 ### Checkbox
 
