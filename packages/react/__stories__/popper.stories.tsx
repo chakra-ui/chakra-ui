@@ -3,7 +3,7 @@ import { Variants, motion } from "framer-motion"
 import { usePopper } from "../src/popper"
 
 export default {
-  title: "System / Popper",
+  title: "Components / Popper",
 }
 
 export const Basic = () => {

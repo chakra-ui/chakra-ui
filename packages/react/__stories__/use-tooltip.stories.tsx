@@ -5,7 +5,7 @@ import { useTooltip } from "../src/components/tooltip"
 import { chakra } from "../src/styled-system"
 
 export default {
-  title: "Overlay / Tooltip - useTooltip",
+  title: "Components / Tooltip - useTooltip",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" mx="auto" mt="200px">

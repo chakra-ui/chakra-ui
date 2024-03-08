@@ -9,7 +9,7 @@ import {
 } from "../src"
 
 export default {
-  title: "Forms / Editable",
+  title: "Components / Editable",
   decorators: [
     (Story: StoryFn) => (
       <chakra.div maxW="400px" mt="40px" mx="auto">

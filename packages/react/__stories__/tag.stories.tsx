@@ -5,7 +5,7 @@ import { Tag } from "../src/components/tag"
 import { chakra } from "../src/styled-system"
 
 export default {
-  title: "Data Display / Tag",
+  title: "Tag",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="600px" mx="auto" mt="40px">

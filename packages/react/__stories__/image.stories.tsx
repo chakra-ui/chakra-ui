@@ -2,7 +2,7 @@ import * as React from "react"
 import { Image, Img } from "../src/components/image"
 
 export default {
-  title: "Media and Icons / Image",
+  title: "Components / Image",
 }
 
 export const Basic = () => (

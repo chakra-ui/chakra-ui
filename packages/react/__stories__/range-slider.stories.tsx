@@ -10,7 +10,7 @@ import {
 import { chakra } from "../src/styled-system"
 
 export default {
-  title: "Forms / Range Slider",
+  title: "Components / Range Slider",
   decorators: [
     (story: Function) => (
       <Box maxWidth="400px" height="300px" mx="auto" mt="40px">

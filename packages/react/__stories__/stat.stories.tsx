@@ -1,7 +1,7 @@
 import { Stat } from "../src/components/stat"
 
 export default {
-  title: "Data Display / Stat",
+  title: "Components / Stat",
 }
 
 export const Basic = () => {

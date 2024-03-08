@@ -4,7 +4,7 @@ import { useRecipe } from "../src/styled-system"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Forms / Textarea",
+  title: "Components / Textarea",
   decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 

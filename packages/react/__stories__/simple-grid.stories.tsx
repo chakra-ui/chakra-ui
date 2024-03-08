@@ -5,7 +5,7 @@ export default {
 }
 
 export const WithColumns = () => (
-  <SimpleGrid columns={[2, null, 3]} spacing="40px">
+  <SimpleGrid columns={[2, null, 3]} gap="40px">
     <Box bg="tomato" height="200px" />
     <Box bg="tomato" height="200px" />
     <Box bg="tomato" height="200px" />
@@ -15,7 +15,7 @@ export const WithColumns = () => (
 )
 
 export const WithAutofit = () => (
-  <SimpleGrid minChildWidth="sm" spacing="40px">
+  <SimpleGrid minChildWidth="sm" gap="40px">
     <Box bg="tomato" height="200px" />
     <Box bg="tomato" height="200px" />
     <Box bg="tomato" height="200px" />
@@ -25,10 +25,7 @@ export const WithAutofit = () => (
 )
 
 export const WithColSpan = () => (
-  <SimpleGrid
-    columns={{ base: 2, md: 4 }}
-    spacing={{ base: "24px", md: "40px" }}
-  >
+  <SimpleGrid columns={{ base: 2, md: 4 }} gap={{ base: "24px", md: "40px" }}>
     <GridItem bg="green.500" colSpan={{ base: 1, md: 3 }}>
       Column 1
     </GridItem>

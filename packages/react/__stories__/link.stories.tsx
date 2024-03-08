@@ -2,7 +2,7 @@ import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
 import { Link, LinkBox, LinkOverlay } from "../src"
 
 export default {
-  title: "Navigation / Link",
+  title: "Components / Link",
 }
 
 export const Basic = () => <Link href="https://google.com">This is a link</Link>

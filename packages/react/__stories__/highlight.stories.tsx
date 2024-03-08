@@ -2,7 +2,7 @@ import * as React from "react"
 import { Box, Heading, Highlight, Mark, Text, useHighlight } from "../src"
 
 export default {
-  title: "Layout / Highlight",
+  title: "Typography / Highlight",
 }
 
 export const WithSymbol = () => (

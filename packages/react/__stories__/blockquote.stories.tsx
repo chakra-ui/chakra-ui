@@ -1,7 +1,7 @@
 import { Blockquote, For, Stack } from "../src"
 
 export default {
-  title: "Typography / Blockquote",
+  title: "Components / Blockquote",
 }
 
 export const Basic = () => (

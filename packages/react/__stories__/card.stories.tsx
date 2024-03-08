@@ -16,7 +16,7 @@ import {
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Data Display / Card",
+  title: "Components / Card",
   decorators: [
     (Story: any) => (
       <Box mx="auto" padding="10">

@@ -1,7 +1,7 @@
 import { Box, Circle, Indicator, Stack } from "../src"
 
 export default {
-  title: "Layout / Indicator",
+  title: "Components / Indicator",
 }
 
 const placements = [

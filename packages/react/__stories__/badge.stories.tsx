@@ -4,7 +4,7 @@ import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Data Display / Badge",
+  title: "Components / Badge",
 }
 
 export const Variants = () => {

@@ -1,7 +1,7 @@
 import { Em, Strong, Text } from "../src"
 
 export default {
-  title: "Typography / Text",
+  title: "Text",
 }
 
 export const Basic = () => (

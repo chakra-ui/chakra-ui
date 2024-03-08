@@ -3,7 +3,7 @@ import { Field, FieldOptions, useField } from "../src/components/field"
 import { chakra, useSlotRecipe } from "../src/styled-system"
 
 export default {
-  title: "Forms / Field",
+  title: "Components / Field",
   decorators: [
     (story: Function) => (
       <chakra.div mx="auto" mt="40px" maxW="400px">

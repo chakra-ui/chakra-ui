@@ -2,7 +2,7 @@ import { FaAccessibleIcon, FaCheck, FaPhone } from "react-icons/fa"
 import { Box, List, Text } from "../src"
 
 export default {
-  title: "Data Display / List",
+  title: "Components / List",
 }
 
 export const Basic = () => (

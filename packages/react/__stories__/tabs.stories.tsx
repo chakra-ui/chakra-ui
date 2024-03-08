@@ -6,7 +6,7 @@ import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Disclosure / Tabs",
+  title: "Components / Tabs",
   decorators: [
     (story: Function) => (
       <Box mx="auto" padding="40px">

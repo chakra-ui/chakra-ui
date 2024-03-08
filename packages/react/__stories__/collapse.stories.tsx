@@ -2,7 +2,7 @@ import { useBoolean } from "@chakra-ui/hooks"
 import { Collapse, CollapseProps } from "../src/components/transition"
 
 export default {
-  title: "Transition / Collapse",
+  title: "Components / Collapse",
 }
 
 const CollapseExample = (props: CollapseProps) => {

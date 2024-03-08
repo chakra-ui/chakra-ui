@@ -1,7 +1,7 @@
 import { Code } from "../src"
 
 export default {
-  title: "Data Display / Code",
+  title: "Components / Code",
 }
 
 export const Basic = () => (

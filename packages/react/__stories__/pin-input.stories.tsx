@@ -8,7 +8,7 @@ import {
 } from "../src/components/pin-input"
 
 export default {
-  title: "Forms / PinInput",
+  title: "Components / PinInput",
 }
 
 const style: React.CSSProperties = {

@@ -8,7 +8,7 @@ import { PortalManager } from "../src/components/portal"
 import { chakra } from "../src/styled-system"
 
 export default {
-  title: "Overlay / Dialog",
+  title: "Components / Dialog",
   decorators: [
     (StoryFn: any) => (
       <PortalManager>

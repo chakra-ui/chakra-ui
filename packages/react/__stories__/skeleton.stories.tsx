@@ -1,5 +1,5 @@
 import * as React from "react"
-import { DarkMode, Stack, chakra } from "../src"
+import { Stack, chakra } from "../src"
 import {
   Skeleton,
   SkeletonCircle,
@@ -7,7 +7,7 @@ import {
 } from "../src/components/skeleton"
 
 export default {
-  title: "Feedback / Skeleton",
+  title: "Components / Skeleton",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="md" mt="40px" mx="auto">
@@ -130,14 +130,12 @@ export const WithCustomSpeed = () => (
 )
 
 export const WithDarkMode = () => (
-  <DarkMode>
-    <Stack>
-      <chakra.p>Some text</chakra.p>
-      <Skeleton boxSize="100px" />
-      <Skeleton boxSize="100px" />
-      <Skeleton boxSize="100px" />
-    </Stack>
-  </DarkMode>
+  <Stack className="dark">
+    <chakra.p>Some text</chakra.p>
+    <Skeleton boxSize="100px" />
+    <Skeleton boxSize="100px" />
+    <Skeleton boxSize="100px" />
+  </Stack>
 )
 
 export const WithStartAndEndColor = () => (

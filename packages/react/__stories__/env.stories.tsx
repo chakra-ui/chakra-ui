@@ -4,7 +4,7 @@ import Frame from "react-frame-component"
 import { EnvironmentProvider, useEnvironment } from "../src/components/env"
 
 export default {
-  title: "System / Environment",
+  title: "Components / Environment",
 }
 
 const Portal = ({ children }: React.PropsWithChildren<{}>) => {

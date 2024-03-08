@@ -1,7 +1,7 @@
 import { Avatar, AvatarGroup, Box, For, Stack, useSlotRecipe } from "../src"
 
 export default {
-  title: "Media and Icons / Avatar",
+  title: "Components / Avatar",
   decorators: [
     (Story: any) => (
       <Box mx="auto" maxW="500px" mt="40px">

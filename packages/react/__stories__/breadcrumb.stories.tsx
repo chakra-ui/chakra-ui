@@ -3,7 +3,7 @@ import { BrowserRouter, Link } from "react-router-dom"
 import { Breadcrumb } from "../src/components/breadcrumb"
 
 export default {
-  title: "Navigation / Breadcrumb",
+  title: "Components / Breadcrumb",
 }
 
 export const Basic = () => (

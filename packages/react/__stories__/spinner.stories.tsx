@@ -2,7 +2,7 @@ import { For, useRecipe } from "../src"
 import { Spinner } from "../src/components/spinner"
 
 export default {
-  title: "Feedback / Spinner",
+  title: "Components / Spinner",
 }
 
 export const Basic = () => <Spinner />

@@ -4,7 +4,7 @@ import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Forms / Slider",
+  title: "Components / Slider",
   decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 

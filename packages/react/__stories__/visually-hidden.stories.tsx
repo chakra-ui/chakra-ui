@@ -1,7 +1,7 @@
 import { VisuallyHidden } from "../src/components/visually-hidden"
 
 export default {
-  title: "Disclosure / Visually Hidden",
+  title: "Layout / Visually Hidden",
 }
 
 export const hiddenSpan = () => (

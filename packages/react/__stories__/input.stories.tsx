@@ -17,7 +17,7 @@ import {
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Forms / Input",
+  title: "Components / Input",
   decorators: [
     (Story: React.ElementType) => (
       <chakra.div maxW="560px" mx="auto" mt="40px">

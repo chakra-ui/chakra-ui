@@ -1,7 +1,7 @@
 import { Center, For, Stack } from "../src"
 
 export default {
-  title: "Tokens",
+  title: "Foundations / Tokens",
 }
 
 export const Shadows = () => {

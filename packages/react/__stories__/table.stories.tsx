@@ -1,7 +1,7 @@
 import { Table } from "../src/components/table"
 
 export default {
-  title: "Data Display / Table",
+  title: "Components / Table",
 }
 
 const SimpleTable = (props: Table.RootProps) => (

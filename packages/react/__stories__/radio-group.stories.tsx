@@ -14,7 +14,7 @@ import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Forms / Radio Group",
+  title: "Components / Radio Group",
   decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 

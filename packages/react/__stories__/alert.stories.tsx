@@ -3,7 +3,7 @@ import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Feedback / Alert",
+  title: "Components / Alert",
   decorators: [(story: Function) => <Box padding="4">{story()}</Box>],
 }
 

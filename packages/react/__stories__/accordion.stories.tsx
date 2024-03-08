@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import { Accordion, Box, Button, Container, Drawer, chakra } from "../src"
 
 export default {
-  title: "Disclosure / Accordion",
+  title: "Components / Accordion",
   decorators: [(story: Function) => <Container>{story()}</Container>],
 }
 

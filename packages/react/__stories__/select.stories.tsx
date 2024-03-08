@@ -3,7 +3,7 @@ import { Container, For, Stack } from "../src"
 import { NativeSelect as Select } from "../src/components/native-select"
 
 export default {
-  title: "Forms / Select",
+  title: "Components / Select",
   decorators: [
     (story: Function) => (
       <Container maxWidth="400px" mt="40px">
