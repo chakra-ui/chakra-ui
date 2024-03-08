@@ -50,7 +50,7 @@ export const Variants = () => {
               <For each={recipe.variantMap.variant}>
                 {(v) => (
                   <td>
-                    <RadioGroup.Root defaultValue="1">
+                    <RadioGroup.Root defaultValue="1" minWidth="200px">
                       <HStack spacing="4">
                         <DemoRadio colorPalette={c} variant={v} value="1">
                           Radio
@@ -93,7 +93,7 @@ export const Sizes = () => {
               <For each={recipe.variantMap.size}>
                 {(v) => (
                   <td>
-                    <RadioGroup.Root defaultValue="1">
+                    <RadioGroup.Root defaultValue="1" minWidth="200px">
                       <HStack spacing="4">
                         <DemoRadio colorPalette={c} size={v} value="1">
                           Radio

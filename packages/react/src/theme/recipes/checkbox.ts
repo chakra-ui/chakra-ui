@@ -106,5 +106,6 @@ export const checkboxSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "outline",
     size: "md",
+    colorPalette: "gray",
   },
 })

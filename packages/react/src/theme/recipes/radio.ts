@@ -2,13 +2,15 @@ import { radioAnatomy as parts } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { checkboxSlotRecipe } from "./checkbox"
 
+const { base, variants } = checkboxSlotRecipe
+
 export const radioSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
-    root: checkboxSlotRecipe.base!.root,
-    label: checkboxSlotRecipe.base!.label,
+    root: base!.root,
+    label: base!.label,
     control: {
-      ...checkboxSlotRecipe.base!.control,
+      ...base!.control,
       borderRadius: "full",
     },
     indicator: {
@@ -20,7 +22,22 @@ export const radioSlotRecipe = defineSlotRecipe({
     },
   },
   variants: {
-    variant: checkboxSlotRecipe.variants!.variant,
+    variant: {
+      ...variants!.variant,
+      classic: {
+        control: {
+          borderWidth: "1px",
+          borderColor: "inherit",
+          _checked: {
+            color: "colorPalette.600",
+            borderColor: "currentcolor",
+          },
+        },
+        indicator: {
+          scale: "0.6",
+        },
+      },
+    },
     size: {
       sm: {
         control: { boxSize: "3" },
@@ -36,8 +53,23 @@ export const radioSlotRecipe = defineSlotRecipe({
       },
     },
   },
+  compoundVariants: [
+    {
+      variant: "classic",
+      css: {
+        control: {
+          borderWidth: "1px",
+          borderColor: "inherit",
+          _checked: {
+            color: { base: "colorPalette.600", _dark: "colorPalette.300" },
+          },
+        },
+      },
+    },
+  ],
   defaultVariants: {
     size: "md",
     variant: "outline",
+    colorPalette: "gray",
   },
 })

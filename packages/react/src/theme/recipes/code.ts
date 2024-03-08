@@ -5,6 +5,7 @@ const { variants, defaultVariants } = badgeRecipe
 
 export const codeRecipe = defineRecipe({
   base: {
+    display: "inline-block",
     fontFamily: "mono",
   },
   variants,

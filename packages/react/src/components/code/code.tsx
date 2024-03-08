@@ -26,7 +26,7 @@ export const Code = forwardRef<CodeProps, "code">(function Code(props, ref) {
       ref={ref}
       {...localProps}
       className={cx("chakra-code", localProps.className)}
-      css={{ display: "inline-block", ...styles }}
+      css={[styles, props.css]}
     />
   )
 })

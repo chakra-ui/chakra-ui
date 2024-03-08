@@ -40,7 +40,10 @@ export interface InputAddonVariantProps {
   variant?: "outline" | "filled" | "flushed"
 }
 
-export interface KbdVariantProps {}
+export interface KbdVariantProps {
+  variant?: "outline" | "subtle" | "solid"
+  size?: "sm" | "md" | "lg"
+}
 
 export interface LinkVariantProps {}
 
@@ -303,7 +306,7 @@ export interface ProgressVariantProps {
 export type RadioSlot = "root" | "control" | "indicator" | "label"
 
 export interface RadioVariantProps {
-  variant?: "outline" | "subtle"
+  variant?: "outline" | "subtle" | "classic"
   size?: "sm" | "md" | "lg"
 }
 
