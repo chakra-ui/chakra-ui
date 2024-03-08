@@ -15,7 +15,7 @@ import {
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Components / Popover - Click",
+  title: "Components / Popover",
   decorators: [(story: Function) => <Box padding="100px">{story()}</Box>],
 }
 

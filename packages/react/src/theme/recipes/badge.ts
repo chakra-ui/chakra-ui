@@ -7,7 +7,6 @@ export const badgeRecipe = defineRecipe({
     gap: "0.5",
     fontWeight: "medium",
     fontVariantNumeric: "tabular-nums",
-    borderRadius: "sm",
     colorPalette: "gray",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
@@ -20,28 +19,42 @@ export const badgeRecipe = defineRecipe({
       },
       subtle: {
         bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-        color: { base: "colorPalette.800", _dark: "colorPalette.400" },
+        color: { base: "colorPalette.800", _dark: "colorPalette.300" },
       },
       outline: {
         shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
-        color: { base: "colorPalette.800", _dark: "colorPalette.400/80" },
+        color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+        shadow: "inset 0 0 0px 1px var(--shadow-color)",
+      },
+      surface: {
+        bg: { base: "colorPalette.50", _dark: "colorPalette.300/20" },
+        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
+        color: { base: "colorPalette.800", _dark: "colorPalette.200" },
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
       },
       plain: {
-        color: { base: "colorPalette.800", _dark: "colorPalette.400/80" },
+        color: { base: "colorPalette.800", _dark: "colorPalette.200" },
       },
     },
     size: {
+      xs: {
+        fontSize: "2xs",
+        borderRadius: "xs",
+        px: "0.5",
+      },
       sm: {
         fontSize: "xs",
+        borderRadius: "sm",
         px: "1",
       },
       md: {
         fontSize: "sm",
+        borderRadius: "sm",
         px: "2",
       },
       lg: {
         fontSize: "sm",
+        borderRadius: "sm",
         px: "2",
         py: "1",
       },

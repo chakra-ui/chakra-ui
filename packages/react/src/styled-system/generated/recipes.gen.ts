@@ -6,8 +6,8 @@ import type {
 } from "../recipe.types"
 
 export interface BadgeVariantProps {
-  variant?: "solid" | "subtle" | "outline" | "plain"
-  size?: "sm" | "md" | "lg"
+  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export interface ButtonVariantProps {
@@ -16,8 +16,8 @@ export interface ButtonVariantProps {
 }
 
 export interface CodeVariantProps {
-  variant?: "solid" | "subtle" | "outline" | "plain"
-  size?: "sm" | "md" | "lg"
+  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export interface ContainerVariantProps {}
