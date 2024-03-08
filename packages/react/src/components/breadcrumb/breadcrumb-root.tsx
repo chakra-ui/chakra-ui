@@ -26,17 +26,17 @@ export const BreadcrumbRoot = forwardRef<BreadcrumbRootProps, "nav">(
     const styles = recipe(variantProps)
 
     return (
-      <chakra.nav
-        ref={ref}
-        aria-label="breadcrumb"
-        {...localProps}
-        className={cx("chakra-breadcrumb", props.className)}
-        css={styles.root}
-      >
-        <BreadcrumbStylesProvider value={styles}>
+      <BreadcrumbStylesProvider value={styles}>
+        <chakra.nav
+          ref={ref}
+          aria-label="breadcrumb"
+          {...localProps}
+          className={cx("chakra-breadcrumb", props.className)}
+          css={[styles.root, props.css]}
+        >
           {localProps.children}
-        </BreadcrumbStylesProvider>
-      </chakra.nav>
+        </chakra.nav>
+      </BreadcrumbStylesProvider>
     )
   },
 )

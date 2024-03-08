@@ -32,11 +32,7 @@ export const RangeSliderRoot = forwardRef<RangeSliderRootProps, "div">(
 
     const recipe = useSlotRecipe("Slider")
     const [variantProps, localProps] = recipe.splitVariantProps(sliderProps)
-    const styles = recipe({
-      ...variantProps,
-      //@ts-expect-error
-      colorPalette: localProps.colorPalette || "gray",
-    })
+    const styles = recipe(variantProps)
 
     const api = useRangeSlider(localProps)
     const context = { ...api, name: localProps.name }

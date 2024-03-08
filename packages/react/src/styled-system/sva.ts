@@ -1,4 +1,4 @@
-import { Dict, splitProps } from "@chakra-ui/utils"
+import { Dict, omit, splitProps } from "@chakra-ui/utils"
 import { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
 
 interface Options {
@@ -61,8 +61,15 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
     const variantKeys = Object.keys(variants)
 
     function splitVariantProps(props: Dict) {
-      const { recipe: _, ...restProps } = props
-      return splitProps(restProps, variantKeys)
+      const restProps = omit(props, ["recipe"])
+      const [recipeProps, localProps] = splitProps(restProps, variantKeys)
+
+      if (!variantKeys.includes("colorPalette")) {
+        recipeProps.colorPalette =
+          props.colorPalette || config.defaultVariants?.colorPalette
+      }
+
+      return [recipeProps, localProps]
     }
 
     const variantMap = Object.fromEntries(

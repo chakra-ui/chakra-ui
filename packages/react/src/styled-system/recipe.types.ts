@@ -1,5 +1,6 @@
 import { DistributiveOmit, Pretty } from "@chakra-ui/utils"
 import type { ConditionalValue, SystemStyleObject } from "./css.types"
+import { ColorPalette } from "./generated/token.gen"
 
 type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 
@@ -48,6 +49,8 @@ type OneOrMore<T> = T | Array<T>
 
 export type RecipeCompoundSelection<T> = {
   [K in keyof T]?: OneOrMore<StringToBoolean<keyof T[K]>> | undefined
+} & {
+  colorPalette?: OneOrMore<ColorPalette> | undefined
 }
 
 export type RecipeCompoundVariant<T> = T & {
@@ -68,7 +71,7 @@ export interface RecipeDefinition<
   /**
    * The default variants of the recipe.
    */
-  defaultVariants?: RecipeSelection<T>
+  defaultVariants?: RecipeSelection<T> & { colorPalette?: ColorPalette }
   /**
    * The styles to apply when a combination of variants is selected.
    */
@@ -133,7 +136,7 @@ export interface SlotRecipeDefinition<
   /**
    * The default variants of the recipe.
    */
-  defaultVariants?: RecipeSelection<T>
+  defaultVariants?: RecipeSelection<T> & { colorPalette?: ColorPalette }
   /**
    * The styles to apply when a combination of variants is selected.
    */

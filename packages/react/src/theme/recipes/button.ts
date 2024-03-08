@@ -137,7 +137,6 @@ export const buttonRecipe = defineRecipe({
   compoundVariants: [
     {
       variant: "solid",
-      //@ts-expect-error
       colorPalette: "gray",
       css: {
         bg: {
@@ -164,5 +163,6 @@ export const buttonRecipe = defineRecipe({
     size: "md",
     shape: "rounded",
     variant: "outline",
+    colorPalette: "gray",
   },
 })

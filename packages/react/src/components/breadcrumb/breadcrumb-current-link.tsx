@@ -1,0 +1,24 @@
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { useBreadcrumbStyles } from "./breadcrumb-context"
+
+export interface BreadcrumbCurrentLinkProps extends HTMLChakraProps<"span"> {}
+
+export const BreadcrumbCurrentLink = forwardRef<
+  BreadcrumbCurrentLinkProps,
+  "span"
+>(function BreadcrumbCurrentLink(props, ref) {
+  const styles = useBreadcrumbStyles()
+
+  return (
+    <chakra.span
+      ref={ref}
+      role="link"
+      aria-current="page"
+      aria-disabled="true"
+      {...props}
+      css={[styles.currentLink, props.css]}
+    />
+  )
+})
+
+BreadcrumbCurrentLink.displayName = "BreadcrumbCurrentLink"

@@ -27,12 +27,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const recipe = useRecipe("Button", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-
-    const styles = recipe({
-      ...variantProps,
-      //@ts-expect-error
-      colorPalette: props.colorPalette || "gray",
-    })
+    const styles = recipe(variantProps)
 
     const { isDisabled, isActive, type, className, as, ...restProps } =
       localProps

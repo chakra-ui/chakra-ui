@@ -36,10 +36,7 @@ export const ProgressRoot = forwardRef<ProgressRootProps, "div">(
   function ProgressRoot(props, ref) {
     const recipe = useSlotRecipe("Progress")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe({
-      ...variantProps, //@ts-expect-error
-      colorPalette: props.colorPalette || "gray",
-    })
+    const styles = recipe(variantProps)
 
     const [progressProps, restProps] = splitProgressProps(localProps)
     const computed = getProgressProps(progressProps)

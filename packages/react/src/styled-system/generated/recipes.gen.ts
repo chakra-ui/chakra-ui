@@ -127,10 +127,18 @@ export interface AvatarVariantProps {
 
 // Breadcrumb
 
-export type BreadcrumbSlot = "link" | "item" | "root" | "separator"
+export type BreadcrumbSlot =
+  | "link"
+  | "currentLink"
+  | "item"
+  | "list"
+  | "root"
+  | "ellipsis"
+  | "separator"
 
 export interface BreadcrumbVariantProps {
-  current?: boolean
+  variant?: "underline" | "plain"
+  size?: "sm" | "md" | "lg"
 }
 
 // Blockquote

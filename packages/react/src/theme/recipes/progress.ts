@@ -116,7 +116,6 @@ export const progressSlotRecipe = defineSlotRecipe({
   compoundVariants: [
     {
       variant: "outline",
-      //@ts-expect-error
       colorPalette: "gray",
       css: {
         filledTrack: {
@@ -129,5 +128,6 @@ export const progressSlotRecipe = defineSlotRecipe({
     variant: "outline",
     size: "md",
     shape: "rounded",
+    colorPalette: "gray",
   },
 })

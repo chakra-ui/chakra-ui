@@ -121,7 +121,6 @@ export const sliderSlotRecipe = defineSlotRecipe({
   compoundVariants: [
     {
       variant: "outline",
-      //@ts-expect-error
       colorPalette: "gray",
       css: {
         filledTrack: {
@@ -131,7 +130,6 @@ export const sliderSlotRecipe = defineSlotRecipe({
     },
     {
       variant: "subtle",
-      //@ts-expect-error
       colorPalette: "gray",
       css: {
         filledTrack: {
@@ -144,5 +142,6 @@ export const sliderSlotRecipe = defineSlotRecipe({
     size: "md",
     variant: "outline",
     orientation: "horizontal",
+    colorPalette: "gray",
   },
 })

@@ -25,8 +25,11 @@ export const avatarAnatomy = anatomy("avatar").parts(
 
 export const breadcrumbAnatomy = anatomy("breadcrumb").parts(
   "link",
+  "currentLink",
   "item",
+  "list",
   "root",
+  "ellipsis",
   "separator",
 )
 

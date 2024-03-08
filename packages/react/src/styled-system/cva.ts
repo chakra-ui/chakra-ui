@@ -3,6 +3,7 @@ import {
   compact,
   mergeWith as mergeProps,
   mergeWith,
+  omit,
   splitProps,
   uniq,
 } from "@chakra-ui/utils"
@@ -60,8 +61,15 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
     const variantKeys = Object.keys(variants)
 
     const splitVariantProps = (props: Dict) => {
-      const { recipe: _, ...restProps } = props
-      return splitProps(restProps, variantKeys)
+      const restProps = omit(props, ["recipe"])
+      const [recipeProps, localProps] = splitProps(restProps, variantKeys)
+
+      if (!variantKeys.includes("colorPalette")) {
+        recipeProps.colorPalette =
+          props.colorPalette || defaultVariants.colorPalette
+      }
+
+      return [recipeProps, localProps]
     }
 
     const variantMap = Object.fromEntries(

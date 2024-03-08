@@ -30,12 +30,7 @@ export const SliderRoot = forwardRef<SliderRootProps, "div">(
 
     const recipe = useSlotRecipe("Slider")
     const [variantProps, localProps] = recipe.splitVariantProps(sliderProps)
-
-    const styles = recipe({
-      ...variantProps,
-      //@ts-expect-error
-      colorPalette: localProps.colorPalette || "gray",
-    })
+    const styles = recipe(variantProps)
 
     const [hookProps, elementProps] = splitSliderProps(localProps)
     hookProps.orientation = sliderProps.orientation
