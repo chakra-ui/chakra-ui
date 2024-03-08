@@ -1,7 +1,7 @@
 import { AspectRatio, Box } from "../src"
 
 export default {
-  title: "Components / AspectRatio",
+  title: "Layout / AspectRatio",
 }
 
 /**
