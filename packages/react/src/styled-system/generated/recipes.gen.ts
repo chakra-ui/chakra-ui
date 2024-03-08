@@ -41,11 +41,13 @@ export interface InputAddonVariantProps {
 }
 
 export interface KbdVariantProps {
-  variant?: "outline" | "subtle" | "solid"
+  variant?: "raised" | "outline" | "subtle" | "plain"
   size?: "sm" | "md" | "lg"
 }
 
-export interface LinkVariantProps {}
+export interface LinkVariantProps {
+  variant?: "underline" | "plain"
+}
 
 export interface MarkVariantProps {}
 

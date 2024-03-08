@@ -1,41 +1,43 @@
-import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
-import { Link, LinkBox, LinkOverlay } from "../src"
+import { For, Link, Span, useRecipe } from "../src"
+import { colorPalettes } from "./shared/color-palettes"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Components / Link",
+  title: "Typography / Link",
 }
 
-export const Basic = () => <Link href="https://google.com">This is a link</Link>
-
-export const WithExternal = () => (
-  <Link isExternal href="https://google.com">
-    This is a link
-  </Link>
-)
-
-export const WithRoutingLibrary = () => (
-  <BrowserRouter>
-    <Link as={ReactRouterLink} to="/home" replace>
-      Click me
-    </Link>
-  </BrowserRouter>
-)
-
-export const WithLinkOverlay = () => (
-  <LinkBox
-    borderWidth="1px"
-    bg="white"
-    p="4"
-    rounded="lg"
-    as="article"
-    _hover={{ shadow: "lg" }}
-  >
-    <h2>
-      <LinkOverlay href="google.com">Some blog post</LinkOverlay>
-    </h2>
-    <p>
-      As a side note, using quotation marks around an attribute value is
-      required only if this value is not a valid identifier.
-    </p>
-  </LinkBox>
-)
+export const Variants = () => {
+  const recipe = useRecipe("Link")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={colorPalettes}>
+          {(c) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.variant}>
+                {(v) => (
+                  <td>
+                    <Link variant={v} colorPalette={c}>
+                      Open in new tab
+                    </Link>
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
