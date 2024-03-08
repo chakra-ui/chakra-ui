@@ -1,6 +1,7 @@
 import { defineTokens } from "../../styled-system"
 
 export const radii = defineTokens.radii({
+  "2xs": { value: "0.0625rem" },
   xs: { value: "0.125rem" },
   sm: { value: "0.25rem" },
   md: { value: "0.375rem" },

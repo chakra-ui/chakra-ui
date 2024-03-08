@@ -11,7 +11,6 @@ export interface BadgeVariantProps {
 }
 
 export interface ButtonVariantProps {
-  shape?: "square" | "rounded" | "rounded-start" | "rounded-end" | "pill"
   size?: "lg" | "md" | "sm" | "xs"
   variant?: "solid" | "subtle" | "outline" | "ghost"
 }
@@ -22,10 +21,6 @@ export interface CodeVariantProps {
 }
 
 export interface ContainerVariantProps {}
-
-export interface CloseButtonVariantProps {
-  size?: "lg" | "md" | "sm"
-}
 
 export interface DividerVariantProps {
   variant?: "solid" | "dashed"
@@ -82,7 +77,6 @@ export interface ConfigRecipes {
   Button: SystemRecipeFn<ButtonVariantProps>
   Code: SystemRecipeFn<CodeVariantProps>
   Container: SystemRecipeFn<ContainerVariantProps>
-  CloseButton: SystemRecipeFn<CloseButtonVariantProps>
   Divider: SystemRecipeFn<DividerVariantProps>
   Heading: SystemRecipeFn<HeadingVariantProps>
   Input: SystemRecipeFn<InputVariantProps>

@@ -2,7 +2,6 @@ import {
   Box,
   BoxProps,
   Center,
-  CloseButton,
   Flex,
   Grid,
   GridItem,
@@ -14,16 +13,17 @@ import {
   useUpdateEffect,
 } from '@chakra-ui/react'
 import { AnimatePresence, motion, useElementScroll } from 'framer-motion'
-import NextLink from 'next/link'
-import { useRouter } from 'next/router'
-import { forwardRef, ReactNode, Ref, useEffect, useRef, useState } from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
-import { RemoveScroll } from 'react-remove-scroll'
-import Logo from './logo'
-import { mainNavLinks, SidebarContent } from './sidebar/sidebar'
-import SponsorButton from './sponsor-button'
 import useRouteChanged from 'hooks/use-route-changed'
 import { getRoutes } from 'layouts/mdx'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { ReactNode, Ref, forwardRef, useEffect, useRef, useState } from 'react'
+import { AiOutlineMenu } from 'react-icons/ai'
+import { BsX } from 'react-icons/bs'
+import { RemoveScroll } from 'react-remove-scroll'
+import Logo from './logo'
+import { SidebarContent, mainNavLinks } from './sidebar/sidebar'
+import SponsorButton from './sponsor-button'
 
 type NavLinkProps = {
   href: string
@@ -120,7 +120,13 @@ export function MobileNavContent(props: MobileNavContentProps) {
                   <Logo css={{ rect: { fill: 'teal.300' } }} />
                   <HStack spacing='5'>
                     <SponsorButton display='flex' />
-                    <CloseButton ref={closeBtnRef} onClick={onClose} />
+                    <IconButton
+                      aria-label='Close'
+                      ref={closeBtnRef}
+                      onClick={onClose}
+                    >
+                      <BsX />
+                    </IconButton>
                   </HStack>
                 </Flex>
                 <Grid

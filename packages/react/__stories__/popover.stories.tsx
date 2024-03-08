@@ -1,11 +1,12 @@
 import { useInterval } from "@chakra-ui/hooks"
 import { useState } from "react"
-import { HiChat } from "react-icons/hi"
+import { HiChat, HiX } from "react-icons/hi"
 import {
   Box,
   Button,
   For,
   Heading,
+  IconButton,
   Popover,
   Textarea,
   chakra,
@@ -30,7 +31,12 @@ export const Basic = () => {
       <Popover.Positioner>
         <Popover.Content>
           <Popover.Arrow />
-          <Popover.CloseTrigger />
+
+          <Popover.CloseTrigger asChild>
+            <IconButton aria-label="Close" variant="ghost">
+              <HiX />
+            </IconButton>
+          </Popover.CloseTrigger>
 
           <Popover.Header>
             <Heading size="sm">Confirmation!</Heading>
@@ -74,7 +80,11 @@ export const Sizes = () => {
                   <Popover.Positioner>
                     <Popover.Content>
                       <Popover.Arrow />
-                      <Popover.CloseTrigger />
+                      <Popover.CloseTrigger asChild>
+                        <IconButton aria-label="Close" variant="ghost" size={v}>
+                          <HiX />
+                        </IconButton>
+                      </Popover.CloseTrigger>
 
                       <Popover.Header>
                         <Heading size="sm">Confirmation!</Heading>

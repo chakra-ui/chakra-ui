@@ -4,7 +4,7 @@ export default {
   title: "Components / Blockquote",
 }
 
-export const Basic = () => (
+export const Variants = () => (
   <Stack spacing="8">
     <For each={["gray", "red", "blue", "pink", "yellow"] as const}>
       {(color) => (

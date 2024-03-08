@@ -24,30 +24,17 @@ export const buttonRecipe = defineRecipe({
       opacity: 0.6,
       cursor: "not-allowed",
     },
+    "& svg": {
+      fontSize: "1.25em",
+    },
   },
   variants: {
-    shape: {
-      square: {
-        borderRadius: "none",
-      },
-      rounded: {
-        borderRadius: "md",
-      },
-      "rounded-start": {
-        borderStartRadius: "md",
-      },
-      "rounded-end": {
-        borderEndRadius: "md",
-      },
-      pill: {
-        borderRadius: "full",
-      },
-    },
     size: {
       lg: {
         gap: "3",
         h: "12",
         minW: "12",
+        borderRadius: "lg",
         fontSize: "md",
         px: "6",
       },
@@ -55,6 +42,7 @@ export const buttonRecipe = defineRecipe({
         gap: "2",
         h: "10",
         minW: "10",
+        borderRadius: "md",
         fontSize: "sm",
         px: "4",
       },
@@ -63,6 +51,7 @@ export const buttonRecipe = defineRecipe({
         h: "8",
         minW: "8",
         fontSize: "sm",
+        borderRadius: "sm",
         px: "3",
       },
       xs: {
@@ -70,6 +59,7 @@ export const buttonRecipe = defineRecipe({
         h: "6",
         minW: "6",
         fontSize: "xs",
+        borderRadius: "xs",
         px: "2",
       },
     },
@@ -157,7 +147,6 @@ export const buttonRecipe = defineRecipe({
   ],
   defaultVariants: {
     size: "md",
-    shape: "rounded",
     variant: "outline",
     colorPalette: "gray",
   },

@@ -836,3 +836,7 @@ and `withThemeByClassName` helper.
   can be either `striped` or `striped-animated`
 - label or valueText no longer comes with a color by default, you can style
   yourself
+
+## CloseButton
+
+No longer exists. Prefer to use the `IconButton` component with your own icon.

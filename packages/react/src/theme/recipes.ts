@@ -1,6 +1,5 @@
 import { badgeRecipe } from "./recipes/badge"
 import { buttonRecipe } from "./recipes/button"
-import { closeButtonRecipe } from "./recipes/close-button"
 import { codeRecipe } from "./recipes/code"
 import { containerRecipe } from "./recipes/container"
 import { dividerRecipe } from "./recipes/divider"
@@ -24,7 +23,6 @@ export const recipes = {
   Button: buttonRecipe,
   Code: codeRecipe,
   Container: containerRecipe,
-  CloseButton: closeButtonRecipe,
   Divider: dividerRecipe,
   Heading: headingRecipe,
   Input: inputRecipe,

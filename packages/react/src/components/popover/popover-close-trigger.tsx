@@ -1,9 +1,8 @@
-import { cx } from "@chakra-ui/utils"
-import { forwardRef } from "../../styled-system"
-import { CloseButton, CloseButtonProps } from "../close-button"
+import { callAllHandlers, cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
-export interface PopoverCloseTriggerProps extends CloseButtonProps {}
+export interface PopoverCloseTriggerProps extends HTMLChakraProps<"button"> {}
 
 export const PopoverCloseTrigger = forwardRef<
   PopoverCloseTriggerProps,
@@ -12,13 +11,12 @@ export const PopoverCloseTrigger = forwardRef<
   const api = usePopoverContext()
   const styles = usePopoverStyles()
   return (
-    <CloseButton
-      size="sm"
-      onClick={api.onClose}
+    <chakra.button
       ref={ref}
       {...props}
-      className={cx("chakra-popover__close-trigger", props.className)}
-      css={styles.closeTrigger}
+      css={[styles.closeTrigger, props.css]}
+      onClick={callAllHandlers(api.onClose, props.onClick)}
+      className={cx("chakra-popover__close", props.className)}
     />
   )
 })

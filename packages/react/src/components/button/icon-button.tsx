@@ -14,7 +14,7 @@ export interface IconButtonProps extends ButtonProps {
  * @see Docs https://chakra-ui.com/docs/components/icon-button
  */
 export const IconButton = forwardRef<IconButtonProps, "button">(
-  (props, ref) => {
+  function IconButton(props, ref) {
     return <Button padding="0" ref={ref} {...props} />
   },
 )

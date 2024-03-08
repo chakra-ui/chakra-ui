@@ -43,10 +43,8 @@ export const popoverSlotRecipe = defineSlotRecipe({
     },
     closeTrigger: {
       position: "absolute",
-      borderRadius: "md",
-      top: 1,
-      insetEnd: 2,
-      padding: 2,
+      top: "1",
+      insetEnd: "1",
     },
   },
   variants: {

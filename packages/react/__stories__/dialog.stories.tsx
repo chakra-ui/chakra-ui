@@ -1,8 +1,9 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import * as React from "react"
+import { HiX } from "react-icons/hi"
 //@ts-ignore
 import Lorem from "react-lorem-component"
-import { Box, Button, Input } from "../src"
+import { Box, Button, IconButton, Input } from "../src"
 import { Dialog } from "../src/components/dialog"
 import { PortalManager } from "../src/components/portal"
 import { chakra } from "../src/styled-system"
@@ -29,7 +30,11 @@ export function Basic() {
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <IconButton variant="ghost" aria-label="Close">
+                <HiX />
+              </IconButton>
+            </Dialog.CloseTrigger>
             <Dialog.Header>Welcome Home</Dialog.Header>
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
@@ -66,7 +71,11 @@ export function FinalFocusRef() {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <IconButton variant="ghost" aria-label="Close">
+                <HiX />
+              </IconButton>
+            </Dialog.CloseTrigger>
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
               ullamco deserunt aute id consequat veniam incididunt duis in sint
@@ -140,7 +149,11 @@ export const InsideScroll = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <IconButton variant="ghost" aria-label="Close">
+                <HiX />
+              </IconButton>
+            </Dialog.CloseTrigger>
             <Dialog.Body>
               <Lorem size={5} />
             </Dialog.Body>
@@ -166,7 +179,11 @@ export const AnimationDisabled = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <IconButton variant="ghost" aria-label="Close">
+                <HiX />
+              </IconButton>
+            </Dialog.CloseTrigger>
             <Dialog.Body>
               <Lorem size={5} />
             </Dialog.Body>
@@ -192,7 +209,11 @@ export const WithContentOverflow = () => {
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <IconButton variant="ghost" aria-label="Close">
+                <HiX />
+              </IconButton>
+            </Dialog.CloseTrigger>
             <Dialog.Body>
               <Lorem count={30} />
             </Dialog.Body>
@@ -227,7 +248,11 @@ export function WithCustomMotionProps() {
               },
             }}
           >
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <IconButton variant="ghost" aria-label="Close">
+                <HiX />
+              </IconButton>
+            </Dialog.CloseTrigger>
             <Dialog.Header>Welcome Home</Dialog.Header>
             <Dialog.Body>
               Sit nulla est ex deserunt exercitation anim occaecat. Nostrud

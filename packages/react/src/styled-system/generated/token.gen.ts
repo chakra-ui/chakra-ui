@@ -209,6 +209,7 @@ export type Token =
   | "lineHeights.base"
   | "lineHeights.tall"
   | "lineHeights.taller"
+  | "radii.2xs"
   | "radii.xs"
   | "radii.sm"
   | "radii.md"
@@ -689,6 +690,7 @@ export type LineHeightsToken =
   | "taller"
 
 export type RadiiToken =
+  | "2xs"
   | "xs"
   | "sm"
   | "md"

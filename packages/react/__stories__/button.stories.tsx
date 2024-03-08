@@ -14,7 +14,6 @@ import {
   Container,
   For,
   Group,
-  HStack,
   IconButton,
   Span,
   Spinner,
@@ -110,24 +109,6 @@ export const Sizes = () => {
         </For>
       </tbody>
     </PlaygroundTable>
-  )
-}
-
-export const Shapes = () => {
-  const recipe = useRecipe("Button")
-  return (
-    <HStack spacing="24px">
-      <For each={recipe.variantMap.shape}>
-        {(shape) => (
-          <Stack spacing="4">
-            <Button shape={shape}>Button</Button>
-            <Button shape={shape} variant="solid">
-              Button
-            </Button>
-          </Stack>
-        )}
-      </For>
-    </HStack>
   )
 }
 
