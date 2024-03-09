@@ -10,8 +10,8 @@ import { HiArrowRight } from "react-icons/hi"
 import { BeatLoader } from "react-spinners"
 import {
   AbsoluteCenter,
+  Box,
   Button,
-  Container,
   For,
   Group,
   IconButton,
@@ -27,9 +27,9 @@ export default {
   title: "Components / Button",
   decorators: [
     (Story: any) => (
-      <Container mt="40px" display="flex" flexWrap="wrap" gap="4">
+      <Box padding="40px">
         <Story />
-      </Container>
+      </Box>
     ),
   ],
   argTypes: {

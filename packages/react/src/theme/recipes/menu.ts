@@ -7,7 +7,7 @@ export const menuSlotRecipe = defineSlotRecipe({
     content: {
       outline: 0,
       bg: { base: "white", _dark: "gray.700" },
-      boxShadow: { base: "sm", _dark: "dark-lg" },
+      boxShadow: "sm",
       color: "inherit",
       minW: "3xs",
       py: "2",
@@ -25,11 +25,12 @@ export const menuSlotRecipe = defineSlotRecipe({
       textAlign: "start",
       flex: "0 0 auto",
       outline: 0,
+      fontSize: "sm",
       py: "1.5",
       px: "3",
-      transitionProperty: "background",
-      transitionDuration: "ultra-fast",
-      transitionTimingFunction: "ease-in",
+      _hover: {
+        bg: { base: "gray.100", _dark: "whiteAlpha.100" },
+      },
       _focus: {
         bg: { base: "gray.100", _dark: "whiteAlpha.100" },
       },
@@ -65,14 +66,6 @@ export const menuSlotRecipe = defineSlotRecipe({
       borderColor: "inherit",
       my: "2",
       opacity: 0.6,
-    },
-    trigger: {
-      transitionProperty: "common",
-      transitionDuration: "normal",
-      display: "inline-flex",
-      appearance: "none",
-      alignItems: "center",
-      outline: 0,
     },
   },
 })
