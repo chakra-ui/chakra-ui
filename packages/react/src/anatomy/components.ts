@@ -85,7 +85,7 @@ export const menuAnatomy = anatomy("menu").parts(
   "content",
   "item",
   "groupTitle",
-  "icon",
+  "indicator",
   "command",
   "separator",
 )

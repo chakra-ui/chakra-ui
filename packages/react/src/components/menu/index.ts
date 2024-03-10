@@ -21,6 +21,9 @@ export type { MenuItemProps } from "./menu-item"
 export { MenuOptionItem } from "./menu-option-item"
 export type { MenuOptionItemProps } from "./menu-option-item"
 
+export { MenuOptionItemIndicator } from "./menu-option-item-indicator"
+export type { MenuOptionItemIndicatorProps } from "./menu-option-item-indicator"
+
 export { MenuContent } from "./menu-content"
 export type { MenuContentProps } from "./menu-content"
 

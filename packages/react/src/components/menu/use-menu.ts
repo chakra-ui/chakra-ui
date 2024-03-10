@@ -393,7 +393,7 @@ export function useMenu(props: UseMenuProps = {}) {
       "data-focus": dataAttr(isFocused),
       disabled: trulyDisabled,
       "data-disabled": dataAttr(isDisabled),
-      onPointerMove: callAllHandlers(props.onClick, () => {
+      onPointerMove: callAllHandlers(props.onPointerMove, () => {
         if (itemProps.isDisabled) return
         setFocusedId(id)
       }),

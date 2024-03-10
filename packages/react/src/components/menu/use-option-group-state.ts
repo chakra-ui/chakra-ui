@@ -20,27 +20,27 @@ export function useOptionGroupState(props: UseMenuOptionGroupProps = {}) {
 
   const fallback = isRadio ? "" : []
 
-  const [value, setValue] = useControllableState({
+  const [value, setValueFn] = useControllableState({
     defaultValue: defaultValue ?? fallback,
     value: valueProp,
     onChange: onChangeProp,
   })
 
-  const onChange = useCallback(
-    (selectedValue: string) => {
+  const setValue = useCallback(
+    (itemValue: string) => {
       if (type === "radio" && typeof value === "string") {
-        setValue(selectedValue)
+        setValueFn(itemValue)
       }
 
       if (type === "checkbox" && Array.isArray(value)) {
-        const nextValue = value.includes(selectedValue)
-          ? value.filter((item) => item !== selectedValue)
-          : value.concat(selectedValue)
+        const nextValue = value.includes(itemValue)
+          ? value.filter((item) => item !== itemValue)
+          : value.concat(itemValue)
 
-        setValue(nextValue)
+        setValueFn(nextValue)
       }
     },
-    [value, setValue, type],
+    [setValueFn, type, value],
   )
 
   const isChecked = (itemValue: string) => {
@@ -51,7 +51,7 @@ export function useOptionGroupState(props: UseMenuOptionGroupProps = {}) {
     type,
     value,
     isChecked,
-    onChange,
+    setValue,
   }
 }
 

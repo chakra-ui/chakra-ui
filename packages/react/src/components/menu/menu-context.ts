@@ -25,3 +25,13 @@ export const [AnimationStateProvider, useAnimationStateContext] =
   createContext<UseAnimationStateReturn>({
     name: "AnimationStateContext",
   })
+
+export interface OptionItemContext {
+  type: "radio" | "checkbox"
+  isChecked?: boolean
+}
+
+export const [OptionItemStateProvider, useOptionItemStateContext] =
+  createContext<OptionItemContext>({
+    name: "OptionItemValueContext",
+  })

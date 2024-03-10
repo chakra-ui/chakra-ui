@@ -6,14 +6,13 @@ export const menuSlotRecipe = defineSlotRecipe({
   base: {
     content: {
       outline: 0,
-      bg: { base: "white", _dark: "gray.700" },
+      bg: "bg.panel",
       boxShadow: "sm",
       color: "inherit",
       minW: "8rem",
       padding: "1",
       zIndex: "dropdown",
       borderRadius: "md",
-      borderWidth: "1px",
       overflow: "hidden",
       colorPalette: "gray",
     },
@@ -42,18 +41,24 @@ export const menuSlotRecipe = defineSlotRecipe({
       fontWeight: "semibold",
       fontSize: "sm",
     },
-    icon: {
+    indicator: {
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
       flexShrink: "0",
+      opacity: "0",
+      _checked: {
+        opacity: "1",
+      },
     },
     command: {
       opacity: "0.6",
+      marginLeft: "auto",
     },
     separator: {
+      height: "1px",
       bg: "bg.muted",
-      my: "2",
+      my: "1",
       mx: "-1",
     },
   },

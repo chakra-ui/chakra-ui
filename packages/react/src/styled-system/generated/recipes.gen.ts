@@ -246,7 +246,7 @@ export type MenuSlot =
   | "content"
   | "item"
   | "groupTitle"
-  | "icon"
+  | "indicator"
   | "command"
   | "separator"
 

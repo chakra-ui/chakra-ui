@@ -1,44 +1,19 @@
 import { cx } from "@chakra-ui/utils"
-import { useId } from "react"
+import { useCallback, useId, useMemo } from "react"
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "../../styled-system"
-import {
+  OptionItemStateProvider,
   useMenuContext,
   useMenuGroupContext,
   useMenuStyles,
 } from "./menu-context"
-import { MenuIcon } from "./menu-icon"
 import { UseMenuOptionItemProps } from "./use-menu"
 
-const CheckIcon = (props: React.ComponentProps<"svg">) => (
-  <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
-    <polygon
-      fill="currentColor"
-      points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"
-    />
-  </svg>
-)
-
 export interface MenuOptionItemProps
-  extends HTMLChakraProps<"button", UseMenuOptionItemProps> {
-  /**
-   * @type React.ReactElement
-   */
-  icon?: React.ReactElement | null
-  /**
-   * @type SystemStyleObject["mr"]
-   */
-  iconSpacing?: SystemStyleObject["mr"]
-}
+  extends HTMLChakraProps<"button", UseMenuOptionItemProps> {}
 
 export const MenuOptionItem = forwardRef<MenuOptionItemProps, "button">(
   function MenuOptionItem(props, ref) {
-    const { icon, iconSpacing = "0.75rem", ...restProps } = props
-
     const api = useMenuContext()
     const group = useMenuGroupContext()
     const styles = useMenuStyles()
@@ -46,33 +21,31 @@ export const MenuOptionItem = forwardRef<MenuOptionItemProps, "button">(
     const uid = useId()
     const id = props.id ?? `menuitem-${uid}`
 
-    const optionProps = api.getOptionItemProps(
-      {
-        ...restProps,
-        id,
-        type: group.type,
-        onClick: () => group.onChange(props.value!),
-      },
-      ref,
+    const optionProps = useMemo(
+      () =>
+        api.getOptionItemProps(
+          {
+            ...props,
+            id,
+            type: group.type,
+            isChecked: group.isChecked(props.value!),
+            onClick: () => group.setValue(props.value!),
+          },
+          ref,
+        ),
+      [],
     )
 
     return (
-      <chakra.button
-        {...optionProps}
-        className={cx("chakra-menu__menuitem-option", restProps.className)}
-        css={[styles.item, props.css]}
+      <OptionItemStateProvider
+        value={{ isChecked: group.isChecked(props.value!), type: group.type }}
       >
-        {icon !== null && (
-          <MenuIcon
-            fontSize="0.8em"
-            marginEnd={iconSpacing}
-            opacity={props.isChecked ? 1 : 0}
-          >
-            {icon || <CheckIcon />}
-          </MenuIcon>
-        )}
-        <span style={{ flex: 1 }}>{props.children}</span>
-      </chakra.button>
+        <chakra.button
+          {...optionProps}
+          className={cx("chakra-menu__menuitem-option", props.className)}
+          css={[styles.item, props.css]}
+        />
+      </OptionItemStateProvider>
     )
   },
 )

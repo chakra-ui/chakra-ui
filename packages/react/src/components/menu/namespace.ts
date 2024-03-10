@@ -21,6 +21,9 @@ export type { MenuGroupLabelProps as GroupLabelProps } from "./menu-group-label"
 export { MenuOptionItem as OptionItem } from "./menu-option-item"
 export type { MenuOptionItemProps as OptionItemProps } from "./menu-option-item"
 
+export { MenuOptionItemIndicator as OptionItemIndicator } from "./menu-option-item-indicator"
+export type { MenuOptionItemIndicatorProps as OptionItemIndicatorProps } from "./menu-option-item-indicator"
+
 export { MenuContent as Content } from "./menu-content"
 export type { MenuContentProps as ContentProps } from "./menu-content"
 
