@@ -1,5 +1,8 @@
 export { useAnimationState } from "./use-animation-state"
-export type { UseAnimationStateProps } from "./use-animation-state"
+export type {
+  UseAnimationStateProps,
+  UseAnimationStateReturn,
+} from "./use-animation-state"
 export { useBoolean } from "./use-boolean"
 export { useCallbackRef } from "./use-callback-ref"
 export { useClipboard } from "./use-clipboard"

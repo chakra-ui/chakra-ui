@@ -9,45 +9,36 @@ export const menuSlotRecipe = defineSlotRecipe({
       bg: { base: "white", _dark: "gray.700" },
       boxShadow: "sm",
       color: "inherit",
-      minW: "3xs",
-      py: "2",
+      minW: "8rem",
+      padding: "1",
       zIndex: "dropdown",
       borderRadius: "md",
       borderWidth: "1px",
+      overflow: "hidden",
+      colorPalette: "gray",
     },
     item: {
       textDecoration: "none",
       color: "inherit",
       userSelect: "none",
-      display: "flex",
       width: "100%",
+      display: "flex",
       alignItems: "center",
       textAlign: "start",
+      gap: "2",
       flex: "0 0 auto",
       outline: 0,
       fontSize: "sm",
+      borderRadius: "sm",
       py: "1.5",
-      px: "3",
-      _hover: {
-        bg: { base: "gray.100", _dark: "whiteAlpha.100" },
-      },
-      _focus: {
-        bg: { base: "gray.100", _dark: "whiteAlpha.100" },
-      },
-      _active: {
-        bg: { base: "gray.200", _dark: "whiteAlpha.200" },
-      },
-      _expanded: {
-        bg: { base: "gray.100", _dark: "whiteAlpha.100" },
-      },
+      px: "2",
       _disabled: {
-        opacity: 0.4,
-        cursor: "not-allowed",
+        opacity: "0.5",
       },
     },
     groupTitle: {
-      mx: 4,
-      my: 2,
+      px: "2",
+      py: "1.5",
       fontWeight: "semibold",
       fontSize: "sm",
     },
@@ -55,17 +46,42 @@ export const menuSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      flexShrink: 0,
+      flexShrink: "0",
     },
     command: {
-      opacity: 0.6,
+      opacity: "0.6",
     },
-    divider: {
-      border: 0,
-      borderBottom: "1px solid",
-      borderColor: "inherit",
+    separator: {
+      bg: "bg.muted",
       my: "2",
-      opacity: 0.6,
+      mx: "-1",
     },
+  },
+  variants: {
+    variant: {
+      subtle: {
+        item: {
+          _focus: {
+            bg: { base: "gray.100", _dark: "whiteAlpha.100" },
+          },
+        },
+      },
+      solid: {
+        item: {
+          _focus: {
+            bg: "colorPalette.600",
+            color: "white",
+          },
+        },
+      },
+    },
+    size: {
+      sm: {},
+      md: {},
+    },
+  },
+  defaultVariants: {
+    variant: "subtle",
+    colorPalette: "gray",
   },
 })

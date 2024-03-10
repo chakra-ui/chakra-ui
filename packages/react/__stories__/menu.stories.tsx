@@ -19,48 +19,48 @@ export default {
 export const Basic = () => (
   <Menu.Root>
     <Menu.Trigger asChild>
-      <Button variant="solid" colorScheme="green" size="sm">
+      <Button variant="solid" colorPalette="green" size="sm">
         Open menu
       </Button>
     </Menu.Trigger>
     <Menu.Positioner>
       <Menu.Content minWidth="240px">
-        <Menu.Group title="Group 1">
-          <Menu.Item>Share...</Menu.Item>
-          <Menu.Item>Move...</Menu.Item>
-        </Menu.Group>
-        <Menu.Group title="Group 2">
-          <Menu.Item isDisabled>Rename...</Menu.Item>
-          <Menu.Item>Delete...</Menu.Item>
-        </Menu.Group>
+        <Menu.Item>Share...</Menu.Item>
+        <Menu.Item>Move...</Menu.Item>
+        <Menu.Item isDisabled>Rename...</Menu.Item>
+        <Menu.Item>Delete...</Menu.Item>
       </Menu.Content>
     </Menu.Positioner>
   </Menu.Root>
 )
 
 export const WithRadioItems = () => (
-  <Menu.Root closeOnSelect={false}>
+  <Menu.Root closeOnSelect={false} variant="solid">
     <Menu.Trigger asChild>
-      <Button variant="solid" colorScheme="green" size="sm">
+      <Button variant="solid" colorPalette="green" size="sm">
         Open menu
       </Button>
     </Menu.Trigger>
 
     <Menu.Positioner>
       <Menu.Content minWidth="240px">
-        <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-        <Menu.Divider />
+        <Menu.Item>
+          <FaUndoAlt /> Undo
+        </Menu.Item>
+        <Menu.Separator />
 
-        <Menu.OptionGroup defaultValue="val-1" title="Order" type="radio">
-          <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
-          <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
+        <Menu.OptionGroup defaultValue="val-1" type="radio">
+          <Menu.GroupLabel>Order</Menu.GroupLabel>
+          <Menu.OptionItem value="val-1">Option 1</Menu.OptionItem>
+          <Menu.OptionItem value="val-2">Option 2</Menu.OptionItem>
         </Menu.OptionGroup>
 
-        <Menu.Divider />
-        <Menu.OptionGroup title="Country" type="checkbox">
-          <Menu.ItemOption value="email">Email</Menu.ItemOption>
-          <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
-          <Menu.ItemOption value="country">Country</Menu.ItemOption>
+        <Menu.Separator />
+        <Menu.OptionGroup type="checkbox">
+          <Menu.GroupLabel>Country</Menu.GroupLabel>
+          <Menu.OptionItem value="email">Email</Menu.OptionItem>
+          <Menu.OptionItem value="phone">Phone</Menu.OptionItem>
+          <Menu.OptionItem value="country">Country</Menu.OptionItem>
         </Menu.OptionGroup>
       </Menu.Content>
     </Menu.Positioner>

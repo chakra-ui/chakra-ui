@@ -1,20 +1,26 @@
 import { cx } from "@chakra-ui/utils"
+import { MenuGroupContextProvider } from "./menu-context"
 import { MenuGroup, type MenuGroupProps } from "./menu-group"
-import { UseMenuOptionGroupProps, useMenuOptionGroup } from "./use-menu"
+import { splitMenuOptionGroupProps } from "./menu-props"
+import {
+  UseMenuOptionGroupProps,
+  useOptionGroupState,
+} from "./use-option-group-state"
 
 export interface MenuOptionGroupProps
   extends UseMenuOptionGroupProps,
     Omit<MenuGroupProps, "value" | "defaultValue" | "onChange"> {}
 
 export const MenuOptionGroup: React.FC<MenuOptionGroupProps> = (props) => {
-  const { className, title, ...rest } = props
-  const ownProps = useMenuOptionGroup(rest)
+  const [hookProps, localProps] = splitMenuOptionGroupProps(props)
+  const state = useOptionGroupState(hookProps)
   return (
-    <MenuGroup
-      title={title}
-      className={cx("chakra-menu__option-group", className)}
-      {...ownProps}
-    />
+    <MenuGroupContextProvider value={state}>
+      <MenuGroup
+        {...localProps}
+        className={cx("chakra-menu__option-group", props.className)}
+      />
+    </MenuGroupContextProvider>
   )
 }
 

@@ -39,3 +39,5 @@ export function useAnimationState(props: UseAnimationStateProps) {
     },
   }
 }
+
+export type UseAnimationStateReturn = ReturnType<typeof useAnimationState>

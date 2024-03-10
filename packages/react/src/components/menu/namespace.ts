@@ -4,8 +4,8 @@ export type { MenuTriggerProps as TriggerProps } from "./menu-trigger"
 export { MenuCommand as Command } from "./menu-command"
 export type { MenuCommandProps as CommandProps } from "./menu-command"
 
-export { MenuDivider as Divider } from "./menu-divider"
-export type { MenuDividerProps as DividerProps } from "./menu-divider"
+export { MenuSeparator as Separator } from "./menu-separator"
+export type { MenuSeparatorProps as SeparatorProps } from "./menu-separator"
 
 export { MenuGroup as Group } from "./menu-group"
 export type { MenuGroupProps as GroupProps } from "./menu-group"
@@ -15,8 +15,11 @@ export { MenuIcon as Icon } from "./menu-icon"
 export { MenuItem as Item } from "./menu-item"
 export type { MenuItemProps as ItemProps } from "./menu-item"
 
-export { MenuItemOption as ItemOption } from "./menu-item-option"
-export type { MenuItemOptionProps as ItemOptionProps } from "./menu-item-option"
+export { MenuGroupLabel as GroupLabel } from "./menu-group-label"
+export type { MenuGroupLabelProps as GroupLabelProps } from "./menu-group-label"
+
+export { MenuOptionItem as OptionItem } from "./menu-option-item"
+export type { MenuOptionItemProps as OptionItemProps } from "./menu-option-item"
 
 export { MenuContent as Content } from "./menu-content"
 export type { MenuContentProps as ContentProps } from "./menu-content"

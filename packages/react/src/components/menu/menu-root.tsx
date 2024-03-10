@@ -1,14 +1,23 @@
-import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
+import { useAnimationState } from "@chakra-ui/hooks"
+import { MaybeRenderProp, pick, runIfFn } from "@chakra-ui/utils"
 import { SlotRecipeProps, useSlotRecipe } from "../../styled-system"
-import { MenuProvider, MenuStylesProvider } from "./menu-context"
+import {
+  RenderStrategyProps,
+  RenderStrategyProvider,
+  useRenderStrategy,
+} from "../render-strategy"
+import {
+  AnimationStateProvider,
+  MenuProvider,
+  MenuStylesProvider,
+} from "./menu-context"
 import { UseMenuProps, useMenu } from "./use-menu"
 
-export interface MenuRootProps extends UseMenuProps, SlotRecipeProps<"Menu"> {
-  children: MaybeRenderProp<{
-    isOpen: boolean
-    onClose: () => void
-    forceUpdate: (() => void) | undefined
-  }>
+export interface MenuRootProps
+  extends UseMenuProps,
+    SlotRecipeProps<"Menu">,
+    Omit<RenderStrategyProps, "visible"> {
+  children: MaybeRenderProp<any>
 }
 
 /**
@@ -23,20 +32,33 @@ export const MenuRoot: React.FC<MenuRootProps> = (props) => {
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
 
-  // const { direction } = useTheme()
-  // const ctx = useMenu({ ...ownProps, direction })
+  const { isLazy, lazyBehavior = "unmount", ...restProps } = localProps
+  const api = useMenu(restProps)
 
-  const context = useMenu(localProps)
+  const menuState = pick(api, ["isOpen", "onClose", "forceUpdate"])
 
-  const { isOpen, onClose, forceUpdate } = context
+  const animationState = useAnimationState({
+    isOpen: api.isOpen,
+    ref: api.contentRef,
+  })
+
+  const renderApi = useRenderStrategy({
+    isLazy,
+    lazyBehavior,
+    visible: animationState.present,
+  })
 
   return (
-    <MenuProvider value={context}>
-      <MenuStylesProvider value={styles}>
-        {runIfFn(props.children, { isOpen, onClose, forceUpdate })}
-      </MenuStylesProvider>
+    <MenuProvider value={api}>
+      <RenderStrategyProvider value={renderApi}>
+        <MenuStylesProvider value={styles}>
+          <AnimationStateProvider value={animationState}>
+            {runIfFn(props.children, menuState)}
+          </AnimationStateProvider>
+        </MenuStylesProvider>
+      </RenderStrategyProvider>
     </MenuProvider>
   )
 }
 
-MenuRoot.displayName = "Menu"
+MenuRoot.displayName = "MenuRoot"

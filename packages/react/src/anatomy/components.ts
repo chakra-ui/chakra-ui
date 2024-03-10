@@ -87,7 +87,7 @@ export const menuAnatomy = anatomy("menu").parts(
   "groupTitle",
   "icon",
   "command",
-  "divider",
+  "separator",
 )
 
 export const modalAnatomy = anatomy("modal").parts(

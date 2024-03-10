@@ -81,12 +81,6 @@ export interface UsePopperProps {
    * @see Docs https://popper.js.org/docs/v2/modifiers/
    */
   modifiers?: Array<Partial<Modifier<string, any>>>
-  /**
-   * Theme direction `ltr` or `rtl`. Popper's placement will
-   * be set accordingly
-   * @default "ltr"
-   */
-  direction?: "ltr" | "rtl"
 }
 
 export type ArrowCSSVarProps = {
@@ -121,18 +115,19 @@ export function usePopper(props: UsePopperProps = {}) {
     boundary = "clippingParents",
     preventOverflow = true,
     matchWidth,
-    direction = "ltr",
   } = props
 
   const reference = useRef<Element | VirtualElement | null>(null)
   const popper = useRef<HTMLElement | null>(null)
   const instance = useRef<Instance | null>(null)
-  const placement = getPopperPlacement(placementProp, direction)
 
   const cleanup = useRef(() => {})
 
   const setupPopper = useCallback(() => {
     if (!enabled || !reference.current || !popper.current) return
+
+    const direction = popper.current.dir as "ltr" | "rtl"
+    const placement = getPopperPlacement(placementProp, direction)
 
     // If popper instance exists, destroy it, so we can create a new one
     cleanup.current?.()
@@ -182,9 +177,8 @@ export function usePopper(props: UsePopperProps = {}) {
 
     cleanup.current = instance.current.destroy
   }, [
-    placement,
     enabled,
-    modifiers,
+    placementProp,
     matchWidth,
     eventListeners,
     arrowPadding,
@@ -193,6 +187,7 @@ export function usePopper(props: UsePopperProps = {}) {
     flip,
     preventOverflow,
     boundary,
+    modifiers,
     strategy,
   ])
 

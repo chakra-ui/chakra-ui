@@ -248,9 +248,12 @@ export type MenuSlot =
   | "groupTitle"
   | "icon"
   | "command"
-  | "divider"
+  | "separator"
 
-export interface MenuVariantProps {}
+export interface MenuVariantProps {
+  variant?: "subtle" | "solid"
+  size?: "sm" | "md"
+}
 
 // NativeSelect
 

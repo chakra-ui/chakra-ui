@@ -1,9 +1,12 @@
-import { cx } from "@chakra-ui/utils"
-import { callAll } from "@chakra-ui/utils"
+import { callAll, cx } from "@chakra-ui/utils"
 import { HTMLMotionProps, Variants, motion } from "framer-motion"
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
-import { useMenuContext, useMenuStyles } from "./menu-context"
-import { useMenuContent } from "./use-menu"
+import { useRenderStrategyContext } from "../render-strategy"
+import {
+  useAnimationStateContext,
+  useMenuContext,
+  useMenuStyles,
+} from "./menu-context"
 
 export interface MenuContentProps extends HTMLChakraProps<"div"> {
   /**
@@ -18,8 +21,8 @@ const motionVariants: Variants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.2,
-      ease: [0.4, 0, 0.2, 1],
+      duration: 0.1,
+      easings: "easeOut",
     },
   },
   exit: {
@@ -29,8 +32,8 @@ const motionVariants: Variants = {
     opacity: 0,
     scale: 0.8,
     transition: {
-      duration: 0.1,
-      easings: "easeOut",
+      duration: 0.05,
+      easings: "easeIn",
     },
   },
 }
@@ -39,28 +42,30 @@ const StyledDiv = chakra(motion.div)
 
 export const MenuContent = forwardRef<MenuContentProps, "div">(
   function MenuContent(props, ref) {
-    const { motionProps, ...restProps } = props
+    const { motionProps = {}, ...restProps } = props
 
     const api = useMenuContext()
     const styles = useMenuStyles()
+    const render = useRenderStrategyContext()
 
-    const contentProps = useMenuContent(restProps, ref) as any
+    const animationState = useAnimationStateContext()
 
     return (
       <StyledDiv
         variants={motionVariants}
         initial={false}
         animate={api.isOpen ? "enter" : "exit"}
-        css={styles.content}
-        {...motionProps}
-        {...contentProps}
-        className={cx("chakra-menu__menu-list", props.className)}
-        onUpdate={api.onTransitionEnd}
+        {...(motionProps as any)}
+        {...api.getContentProps(restProps, ref)}
+        css={[styles.content, props.css]}
+        className={cx("chakra-menu__content", props.className)}
         onAnimationComplete={callAll(
-          api.unstable__animationState.onComplete,
-          contentProps.onAnimationComplete,
+          motionProps.onAnimationComplete,
+          animationState.onComplete,
         )}
-      />
+      >
+        {render.unmounted ? null : props.children}
+      </StyledDiv>
     )
   },
 )
