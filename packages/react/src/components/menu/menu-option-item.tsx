@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { useCallback, useId, useMemo } from "react"
+import { useId } from "react"
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import {
   OptionItemStateProvider,
@@ -21,19 +21,15 @@ export const MenuOptionItem = forwardRef<MenuOptionItemProps, "button">(
     const uid = useId()
     const id = props.id ?? `menuitem-${uid}`
 
-    const optionProps = useMemo(
-      () =>
-        api.getOptionItemProps(
-          {
-            ...props,
-            id,
-            type: group.type,
-            isChecked: group.isChecked(props.value!),
-            onClick: () => group.setValue(props.value!),
-          },
-          ref,
-        ),
-      [],
+    const optionProps = api.getOptionItemProps(
+      {
+        ...props,
+        id,
+        type: group.type,
+        isChecked: group.isChecked(props.value!),
+        onClick: () => group.setValue(props.value!),
+      },
+      ref,
     )
 
     return (
