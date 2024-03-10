@@ -64,10 +64,6 @@ export interface SpinnerVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
-export interface SwitchVariantProps {
-  size?: "sm" | "md" | "lg"
-}
-
 export interface TooltipVariantProps {}
 
 export interface TextareaVariantProps {
@@ -93,7 +89,6 @@ export interface ConfigRecipes {
   Skeleton: SystemRecipeFn<SkeletonVariantProps>
   SkipLink: SystemRecipeFn<SkipLinkVariantProps>
   Spinner: SystemRecipeFn<SpinnerVariantProps>
-  Switch: SystemRecipeFn<SwitchVariantProps>
   Tooltip: SystemRecipeFn<TooltipVariantProps>
   Textarea: SystemRecipeFn<TextareaVariantProps>
   Icon: SystemRecipeFn<IconVariantProps>
@@ -352,6 +347,14 @@ export interface StepperVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
+// Switch
+
+export type SwitchSlot = "root" | "track" | "thumb" | "label"
+
+export interface SwitchVariantProps {
+  size?: "sm" | "md" | "lg"
+}
+
 // Table
 
 export type TableSlot =
@@ -419,6 +422,7 @@ export interface ConfigSlotRecipes {
   Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
   Stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
   Stepper: SystemSlotRecipeFn<StepperSlot, StepperVariantProps>
+  Switch: SystemSlotRecipeFn<SwitchSlot, SwitchVariantProps>
   Table: SystemSlotRecipeFn<TableSlot, TableVariantProps>
   Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
   Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
@@ -446,6 +450,7 @@ export interface ConfigRecipeSlots {
   Slider: SliderSlot
   Stat: StatSlot
   Stepper: StepperSlot
+  Switch: SwitchSlot
   Table: TableSlot
   Tabs: TabsSlot
   Tag: TagSlot

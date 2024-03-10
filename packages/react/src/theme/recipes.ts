@@ -14,7 +14,6 @@ import { pinInputRecipe } from "./recipes/pin-input"
 import { skeletonRecipe } from "./recipes/skeleton"
 import { skipLinkRecipe } from "./recipes/skip-link"
 import { spinnerRecipe } from "./recipes/spinner"
-import { switchSlotRecipe } from "./recipes/switch"
 import { textareaRecipe } from "./recipes/textarea"
 import { tooltipRecipe } from "./recipes/tooltip"
 
@@ -34,7 +33,6 @@ export const recipes = {
   Skeleton: skeletonRecipe,
   SkipLink: skipLinkRecipe,
   Spinner: spinnerRecipe,
-  Switch: switchSlotRecipe,
   Tooltip: tooltipRecipe,
   Textarea: textareaRecipe,
   Icon: iconRecipe,

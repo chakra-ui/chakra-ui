@@ -19,6 +19,7 @@ import { radioSlotRecipe } from "./recipes/radio"
 import { sliderSlotRecipe } from "./recipes/slider"
 import { statSlotRecipe } from "./recipes/stat"
 import { stepperSlotRecipe } from "./recipes/stepper"
+import { switchSlotRecipe } from "./recipes/switch"
 import { tableSlotRecipe } from "./recipes/table"
 import { tabSlotRecipe } from "./recipes/tabs"
 import { tagSlotRecipe } from "./recipes/tag"
@@ -45,6 +46,7 @@ export const slotRecipes = {
   Slider: sliderSlotRecipe,
   Stat: statSlotRecipe,
   Stepper: stepperSlotRecipe,
+  Switch: switchSlotRecipe,
   Table: tableSlotRecipe,
   Tabs: tabSlotRecipe,
   Tag: tagSlotRecipe,
