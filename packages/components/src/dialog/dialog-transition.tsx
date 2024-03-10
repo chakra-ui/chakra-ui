@@ -1,4 +1,4 @@
-import { HTMLMotionProps, motion } from "framer-motion"
+import { HTMLMotionProps, LazyMotion, domAnimation, m } from "framer-motion"
 import { forwardRef } from "react"
 import { ChakraProps, chakra } from "../system"
 import { scaleFadeConfig, slideFadeConfig } from "../transition"
@@ -35,7 +35,7 @@ const transitions = {
   none: {},
 }
 
-const StyledSection = chakra(motion.section)
+const StyledSection = chakra(m.section)
 
 const getMotionProps = (preset: DialogTransitionProps["preset"]) => {
   return transitions[preset || "none"]
@@ -44,7 +44,11 @@ const getMotionProps = (preset: DialogTransitionProps["preset"]) => {
 export const DialogTransition = forwardRef(
   (props: DialogTransitionProps, ref: React.Ref<any>) => {
     const { preset, motionProps = getMotionProps(preset), ...restProps } = props
-    return <StyledSection ref={ref} {...(motionProps as any)} {...restProps} />
+    return (
+      <LazyMotion features={domAnimation}>
+        <StyledSection ref={ref} {...(motionProps as any)} {...restProps} />
+      </LazyMotion>
+    )
   },
 )
 

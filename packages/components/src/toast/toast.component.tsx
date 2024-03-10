@@ -2,7 +2,7 @@ import { useTimeout } from "@chakra-ui/hooks/use-timeout"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
 import { chakra } from "../system"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
-import { motion, useIsPresent, Variants } from "framer-motion"
+import { m, domMax, LazyMotion, useIsPresent, Variants } from "framer-motion"
 import { memo, useEffect, useMemo, useState } from "react"
 import { ToastProviderProps } from "./toast.provider"
 import type { ToastOptions } from "./toast.types"
@@ -102,27 +102,29 @@ export const ToastComponent = memo((props: ToastComponentProps) => {
   const toastStyle = useMemo(() => getToastStyle(position), [position])
 
   return (
-    <motion.div
-      layout
-      className="chakra-toast"
-      variants={motionVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      onHoverStart={onMouseEnter}
-      onHoverEnd={onMouseLeave}
-      custom={{ position }}
-      style={toastStyle}
-    >
-      <chakra.div
-        role="status"
-        aria-atomic="true"
-        className="chakra-toast__inner"
-        __css={containerStyles}
+    <LazyMotion features={domMax}>
+      <m.div
+        layout
+        className="chakra-toast"
+        variants={motionVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        onHoverStart={onMouseEnter}
+        onHoverEnd={onMouseLeave}
+        custom={{ position }}
+        style={toastStyle}
       >
-        {runIfFn(message, { id, onClose: close })}
-      </chakra.div>
-    </motion.div>
+        <chakra.div
+          role="status"
+          aria-atomic="true"
+          className="chakra-toast__inner"
+          __css={containerStyles}
+        >
+          {runIfFn(message, { id, onClose: close })}
+        </chakra.div>
+      </m.div>
+    </LazyMotion>
   )
 })
 
