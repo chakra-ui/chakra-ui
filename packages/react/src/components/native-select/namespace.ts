@@ -4,5 +4,5 @@ export type { NativeSelectRootProps as RootProps } from "./select-root"
 export { NativeSelectField as Field } from "./select-field"
 export type { NativeSelectFieldProps as FieldProps } from "./select-field"
 
-export { NativeSelectIcon as Icon } from "./select-icon"
-export type { NativeSelectIconProps as IconProps } from "./select-icon"
+export { NativeSelectIndicator as Indicator } from "./select-indicator"
+export type { NativeSelectIndicatorProps as IndicatorProps } from "./select-indicator"

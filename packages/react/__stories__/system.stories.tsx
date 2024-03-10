@@ -9,7 +9,7 @@ import {
 } from "../src/styled-system/provider"
 
 export default {
-  title: "System / v3",
+  title: "Foundations / System",
   decorators: [
     (Story: any) => (
       <SystemProvider value={sys}>

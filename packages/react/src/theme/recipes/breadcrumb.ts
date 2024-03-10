@@ -106,6 +106,9 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
             color: { base: "colorPalette.700", _dark: "colorPalette.300" },
           },
         },
+        currentLink: {
+          color: { base: "colorPalette.800", _dark: "colorPalette.300" },
+        },
       },
     },
   ],

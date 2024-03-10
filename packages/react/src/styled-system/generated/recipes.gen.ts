@@ -253,7 +253,7 @@ export interface MenuVariantProps {
 
 // NativeSelect
 
-export type NativeSelectSlot = "root" | "field" | "icon"
+export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariantProps {
   variant?: "outline" | "filled" | "flushed"

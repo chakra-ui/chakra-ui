@@ -2,6 +2,7 @@ import { useState } from "react"
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi"
 import {
   Badge,
+  Box,
   Button,
   Field,
   For,
@@ -11,7 +12,6 @@ import {
   InputElement,
   Span,
   Stack,
-  chakra,
   useRecipe,
 } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
@@ -20,9 +20,9 @@ export default {
   title: "Components / Input",
   decorators: [
     (Story: React.ElementType) => (
-      <chakra.div maxW="560px" mx="auto" mt="40px">
+      <Box padding="40px">
         <Story />
-      </chakra.div>
+      </Box>
     ),
   ],
 }

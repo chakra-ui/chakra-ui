@@ -335,6 +335,11 @@ HelperText has been renamed to `Field.HelpText` for brevity.
 
 ### Select -> NativeSelect
 
+- Removed `focusBorderColor` and `errorBorderColor`, consider setting the
+  `--focus-color` and `--error-color` css variables instead
+
+- Renamed `SelectIcon` to `Select.Indicator`
+
 The `Select` component has been renamed to `NativeSelect` to better reflect its
 purpose as a native select element, and give room for a custom select component.
 

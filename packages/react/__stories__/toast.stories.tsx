@@ -4,9 +4,9 @@
 // import { Alert, Button, ButtonGroup, Text, chakra, useColorMode } from "../.."
 // import { theme as base } from "../../theme"
 
-// export default {
-//   title: "Feedback / Toast",
-// }
+export default {
+  title: "Feedback / Toast",
+}
 
 // export function ToastExample() {
 //   const toast = useToast()

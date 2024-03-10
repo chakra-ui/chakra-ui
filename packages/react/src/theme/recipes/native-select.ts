@@ -7,38 +7,36 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
     root: {
-      width: "100%",
       height: "fit-content",
+      display: "flex",
       position: "relative",
     },
     field: {
       ...inputRecipe.base,
-      paddingEnd: "2rem",
+      width: "100%",
       appearance: "none",
-      paddingBottom: "1px",
       lineHeight: "normal",
-      bg: { base: "white", _dark: "gray.700" },
-      _focus: {
-        zIndex: "unset",
-      },
+      bg: "bg",
       "& > option, & > optgroup": {
         bg: "inherit",
       },
     },
-    icon: {
+    indicator: {
       position: "absolute",
+      insetEnd: "0",
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
       pointerEvents: "none",
       top: "50%",
       transform: "translateY(-50%)",
-      width: "6",
       height: "100%",
-      color: "currentColor",
-      fontSize: "xl",
+      color: "fg.subtle",
       _disabled: {
         opacity: 0.5,
+      },
+      "& svg": {
+        boxSize: "1em",
       },
     },
   },
@@ -50,8 +48,12 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
     size: mapEntries(inputRecipe.variants!.size, (size, styles) => [
       size,
       {
-        field: { ...styles, paddingEnd: "8" },
-        icon: {
+        field: {
+          ...styles,
+          paddingEnd: "8",
+          paddingBlock: "0",
+        },
+        indicator: {
           insetEnd: size === "sm" ? "1" : "2",
         },
       },
