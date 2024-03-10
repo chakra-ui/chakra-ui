@@ -9,7 +9,12 @@ import { TagStylesProvider } from "./tag-context"
 
 export interface TagRootProps
   extends HTMLChakraProps<"span">,
-    SlotRecipeProps<"Tag"> {}
+    SlotRecipeProps<"Tag"> {
+  /**
+   * If `true`, the tag will be interactive
+   */
+  interactive?: boolean
+}
 
 /**
  * The tag component is used to label or categorize UI elements.
@@ -22,11 +27,15 @@ export const TagRoot = forwardRef<TagRootProps, "span">(
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 
+    const { interactive, ...restProps } = localProps
+
     return (
       <TagStylesProvider value={styles}>
-        <chakra.span
+        <chakra.div
+          tabIndex={interactive ? 0 : undefined}
+          role={interactive ? "button" : undefined}
           ref={ref}
-          {...localProps}
+          {...restProps}
           css={[styles.root, localProps.css]}
         />
       </TagStylesProvider>

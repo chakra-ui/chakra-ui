@@ -17,6 +17,7 @@ export const alertAnatomy = anatomy("alert").parts(
 )
 
 export const avatarAnatomy = anatomy("avatar").parts(
+  "group",
   "root",
   "image",
   "fallback",

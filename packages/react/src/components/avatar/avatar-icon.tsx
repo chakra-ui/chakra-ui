@@ -5,7 +5,6 @@ export const AvatarIcon: ChakraComponent<"svg"> = (props) => (
   <chakra.svg
     role="img"
     viewBox="0 0 128 128"
-    color="#fff"
     width="100%"
     height="100%"
     {...props}

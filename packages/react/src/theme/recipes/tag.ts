@@ -11,42 +11,39 @@ export const tagSlotRecipe = defineSlotRecipe({
       colorPalette: "gray",
       display: "inline-flex",
       verticalAlign: "top",
-      gap: "0.5rem",
       alignItems: "center",
       maxWidth: "100%",
-      color: "tag-color",
-      bg: "tag-bg",
-      boxShadow: "tag-shadow",
+      userSelect: "none",
       borderRadius: "md",
-      minH: "tag-min-height",
-      minW: "tag-min-width",
-      fontSize: "tag-font-size",
-      px: "tag-padding-inline",
+      "& svg": {
+        fontSize: "md",
+      },
+      "& > svg:first-of-type": {
+        marginStart: "0.2em",
+      },
       _focusVisible: {
-        boxShadow: "shadows.outline",
+        outline: "2px solid",
+        outlineColor: "colorPalette.500",
+        outlineOffset: "2px",
       },
     },
     label: {
-      lineHeight: 1.2,
-      overflow: "visible",
+      display: "inline-flex",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
     },
     closeTrigger: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       outline: "0",
-      fontSize: "lg",
-      w: "5",
-      h: "5",
-      transitionProperty: "common",
-      transitionDuration: "normal",
-      borderRadius: "full",
-      marginStart: "1.5",
-      marginEnd: "-1",
-      opacity: { base: 0.5, _hover: 0.8, _active: 1, _disabled: 0.4 },
+      borderRadius: "xs",
+      color: "currentColor/60",
       _focusVisible: {
-        boxShadow: "outline",
-        bg: "rgba(0, 0, 0, 0.14)",
+        outline: "2px solid",
+        outlineColor: "colorPalette.500",
+        outlineOffset: "2px",
       },
     },
   },
@@ -54,30 +51,44 @@ export const tagSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          minH: "sizes.5",
-          minW: "sizes.5",
-          fontSize: "fontSizes.xs",
-          px: "space.2",
+          minH: "5",
+          minW: "5",
+          fontSize: "xs",
+          px: "0.5",
+        },
+        label: {
+          px: "1",
         },
         closeTrigger: {
-          marginEnd: "-2px",
-          marginStart: "0.35rem",
+          marginEnd: "0.5",
         },
       },
       md: {
         root: {
-          minH: "sizes.6",
-          minW: "sizes.6",
-          fontSize: "fontSizes.sm",
-          px: "space.2",
+          minH: "6",
+          minW: "6",
+          fontSize: "sm",
+          px: "0.5",
+        },
+        label: {
+          px: "1.5",
+        },
+        closeTrigger: {
+          marginEnd: "0.5",
         },
       },
       lg: {
         root: {
-          minH: "sizes.8",
-          minW: "sizes.8",
-          fontSize: "fontSizes.md",
-          px: "space.3",
+          minH: "8",
+          minW: "8",
+          fontSize: "md",
+          px: "0.5",
+        },
+        label: {
+          px: "1.5",
+        },
+        closeTrigger: {
+          marginEnd: "1",
         },
       },
     },
@@ -91,10 +102,21 @@ export const tagSlotRecipe = defineSlotRecipe({
       outline: {
         root: badgeVariant?.outline,
       },
+      surface: {
+        root: badgeVariant?.surface,
+      },
+      raised: {
+        root: {
+          bg: "bg.panel",
+          color: { base: "colorPalette.800", _dark: "colorPalette.300" },
+          boxShadow: "sm",
+        },
+      },
     },
   },
   defaultVariants: {
     size: "md",
     variant: "subtle",
+    colorPalette: "gray",
   },
 })

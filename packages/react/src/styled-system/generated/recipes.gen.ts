@@ -125,10 +125,11 @@ export interface AlertVariantProps {
 
 // Avatar
 
-export type AvatarSlot = "root" | "image" | "fallback" | "badge"
+export type AvatarSlot = "group" | "root" | "image" | "fallback" | "badge"
 
 export interface AvatarVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  variant?: "solid" | "subtle"
   shape?: "square" | "rounded" | "full"
 }
 
@@ -393,7 +394,7 @@ export type TagSlot = "root" | "label" | "closeTrigger"
 
 export interface TagVariantProps {
   size?: "sm" | "md" | "lg"
-  variant?: "subtle" | "solid" | "outline"
+  variant?: "subtle" | "solid" | "outline" | "surface" | "raised"
 }
 
 export interface ConfigSlotRecipes {

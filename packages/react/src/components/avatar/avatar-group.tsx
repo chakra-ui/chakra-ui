@@ -3,24 +3,13 @@ import {
   HTMLChakraProps,
   RecipePropsProvider,
   SlotRecipeProps,
-  SystemStyleObject,
   chakra,
   forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 
-interface AvatarGroupOptions {
-  /**
-   * The space between the avatars in the group.
-   * @default "-0.75rem"
-   * @type SystemStyleObject["margin"]
-   */
-  spacing?: SystemStyleObject["margin"]
-}
-
 export interface AvatarGroupProps
-  extends AvatarGroupOptions,
-    HTMLChakraProps<"div">,
+  extends HTMLChakraProps<"div">,
     SlotRecipeProps<"Avatar"> {}
 
 /**
@@ -29,8 +18,8 @@ export interface AvatarGroupProps
 export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
   function AvatarGroup(props, ref) {
     const recipe = useSlotRecipe("Avatar")
-    const [variantProps, { spacing = "-0.75rem", ...localProps }] =
-      recipe.splitVariantProps(props)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
     return (
       <RecipePropsProvider value={variantProps}>
@@ -38,15 +27,7 @@ export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
           ref={ref}
           role="group"
           {...localProps}
-          css={{
-            display: "inline-flex",
-            alignItems: "center",
-            position: "relative",
-            flexDirection: "row",
-            "& > *:not(style) ~ *:not(style)": {
-              marginInlineStart: spacing,
-            },
-          }}
+          css={[styles.group, localProps.css]}
           className={cx("chakra-avatar__group", props.className)}
         />
       </RecipePropsProvider>

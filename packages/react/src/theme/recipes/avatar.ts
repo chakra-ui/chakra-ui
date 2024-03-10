@@ -4,6 +4,15 @@ import { defineSlotRecipe } from "../../styled-system"
 export const avatarSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
+    group: {
+      display: "inline-flex",
+      alignItems: "center",
+      position: "relative",
+      flexDirection: "row",
+      "& > *:not(style) ~ *:not(style)": {
+        marginInlineStart: "var(--avatar-margin)",
+      },
+    },
     root: {
       display: "inline-flex",
       alignItems: "center",
@@ -43,25 +52,58 @@ export const avatarSlotRecipe = defineSlotRecipe({
       borderRadius: "var(--avatar-radius)",
     },
   },
+
   variants: {
     size: {
       xs: {
-        root: { "--avatar-size": "sizes.6" },
+        root: {
+          "--avatar-size": "sizes.5",
+          "--avatar-margin": "-0.45rem",
+        },
       },
       sm: {
-        root: { "--avatar-size": "sizes.8" },
+        root: {
+          "--avatar-size": "sizes.6",
+          "--avatar-margin": "-0.5rem",
+        },
       },
       md: {
-        root: { "--avatar-size": "sizes.12" },
+        root: {
+          "--avatar-size": "sizes.8",
+          "--avatar-margin": "-0.65rem",
+        },
       },
       lg: {
-        root: { "--avatar-size": "sizes.16" },
+        root: {
+          "--avatar-size": "sizes.12",
+          "--avatar-margin": "-0.8rem",
+        },
       },
       xl: {
-        root: { "--avatar-size": "sizes.24" },
+        root: {
+          "--avatar-size": "sizes.16",
+          "--avatar-margin": "-0.85rem",
+        },
       },
       "2xl": {
-        root: { "--avatar-size": "sizes.32" },
+        root: {
+          "--avatar-size": "sizes.24",
+          "--avatar-margin": "-1rem",
+        },
+      },
+    },
+    variant: {
+      solid: {
+        root: {
+          bg: "colorPalette.600",
+          color: "white",
+        },
+      },
+      subtle: {
+        root: {
+          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+          color: { base: "colorPalette.800", _dark: "colorPalette.300" },
+        },
       },
     },
     shape: {
