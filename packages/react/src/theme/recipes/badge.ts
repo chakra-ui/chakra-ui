@@ -41,22 +41,34 @@ export const badgeRecipe = defineRecipe({
         fontSize: "2xs",
         borderRadius: "xs",
         px: "0.5",
+        _empty: {
+          height: "1",
+        },
       },
       sm: {
         fontSize: "xs",
         borderRadius: "sm",
         px: "1",
+        _empty: {
+          height: "2",
+        },
       },
       md: {
         fontSize: "sm",
         borderRadius: "sm",
         px: "2",
+        _empty: {
+          height: "4",
+        },
       },
       lg: {
         fontSize: "sm",
         borderRadius: "sm",
         px: "2",
-        py: "1",
+        py: "0.5",
+        _empty: {
+          height: "4",
+        },
       },
     },
   },
