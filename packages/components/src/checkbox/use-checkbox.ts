@@ -55,12 +55,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const [isActive, setActive] = useState(false)
 
   useEffect(() => {
-    if (!isFocused) {
-      setIsFocusVisible(false)
-      return
-    }
-
-    return trackFocusVisible(setIsFocusVisible)
+    return trackFocusVisible((value) => setIsFocusVisible(value && isFocused))
   }, [isFocused])
 
   const inputRef = useRef<HTMLInputElement>(null)

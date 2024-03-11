@@ -140,12 +140,7 @@ export function useRadio(props: UseRadioProps = {}) {
   const isChecked = isControlled ? isCheckedProp : isCheckedState
 
   useEffect(() => {
-    if (!isFocused) {
-      setIsFocusVisible(false)
-      return
-    }
-
-    return trackFocusVisible(setIsFocusVisible)
+    return trackFocusVisible((value) => setIsFocusVisible(value && isFocused))
   }, [isFocused])
 
   const handleChange = useCallback(
