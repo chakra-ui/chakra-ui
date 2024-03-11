@@ -35,7 +35,7 @@ export const splitProps: SplitPropsFn = (props: any, keys: any) => {
 }
 
 export const createSplitProps = <T>(keys: (keyof T)[]) => {
-  return function split<Props extends T>(
+  return function split<Props extends Partial<T>>(
     props: Props,
   ): [T, Omit<Props, keyof T>] {
     // @ts-expect-error
