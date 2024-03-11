@@ -5,25 +5,28 @@ interface Options {
   cva: RecipeCreatorFn
 }
 
-const getSlotRecipes = (v: Record<string, any> = {}): Record<string, any> => {
+const getSlotRecipes = (
+  config: Record<string, any> = {},
+): Record<string, any> => {
   const init = (slot: string) => ({
-    base: v.base?.[slot] ?? {},
+    base: config.base?.[slot] ?? {},
     variants: {},
-    defaultVariants: v.defaultVariants ?? {},
-    compoundVariants: v.compoundVariants
-      ? getSlotCompoundVariant(v.compoundVariants, slot)
+    defaultVariants: config.defaultVariants ?? {},
+    compoundVariants: config.compoundVariants
+      ? getSlotCompoundVariant(config.compoundVariants, slot)
       : [],
   })
 
-  const slots = v.slots ?? []
+  const slots = config.slots ?? []
   const entries: [string, any] = slots.map((slot: any) => [slot, init(slot)])
 
-  for (const [variantsKey, variantsSpec] of Object.entries(v.variants ?? {})) {
+  for (const [variantsKey, variantsSpec] of Object.entries(
+    config.variants ?? {},
+  )) {
     for (const [variantKey, variantSpec] of Object.entries(
       variantsSpec as Record<string, any>,
     )) {
       entries.forEach(([slot, slotRecipe]) => {
-        slotRecipe.variants ??= {}
         slotRecipe.variants[variantsKey] ??= {}
         slotRecipe.variants[variantsKey][variantKey] = variantSpec[slot] ?? {}
       })

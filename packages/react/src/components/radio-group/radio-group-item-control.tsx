@@ -14,9 +14,9 @@ export const RadioGroupItemControl = forwardRef<
 
   return (
     <chakra.span
-      {...api.getRadioProps(props, ref)}
+      {...api.getControlProps(props, ref)}
       className={cx("chakra-radio__control", props.className)}
-      css={styles.control}
+      css={[styles.control, props.css]}
     >
       {props.children || <RadioGroupItemIndicator />}
     </chakra.span>

@@ -35,7 +35,7 @@ export const SwitchRoot = forwardRef<SwitchRootProps, "input">(
           <chakra.label
             {...api.getRootProps(elementProps)}
             className={cx("chakra-switch", props.className)}
-            css={styles.root}
+            css={[styles.root, props.css]}
           >
             <input
               className="chakra-switch__input"

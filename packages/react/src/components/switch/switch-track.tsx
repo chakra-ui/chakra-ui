@@ -10,7 +10,7 @@ export const SwitchTrack = forwardRef<SwitchTrackProps, "span">(
     const api = useSwitchContext()
     return (
       <chakra.span
-        {...api.getLabelProps(props, ref)}
+        {...api.getControlProps(props, ref)}
         className={cx("chakra-switch__track", props.className)}
         css={styles.track}
       />

@@ -18,7 +18,10 @@ export const fieldSlotRecipe = defineSlotRecipe({
       fontSize: "sm",
       fontWeight: "medium",
       marginEnd: "3",
-      opacity: { _disabled: 0.4 },
+      userSelect: "none",
+      _disabled: {
+        opacity: "0.5",
+      },
     },
     requiredIndicator: {
       marginStart: "2",

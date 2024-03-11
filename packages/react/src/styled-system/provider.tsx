@@ -47,7 +47,7 @@ export function useRecipe<K extends RecipeKey>(
   const sys = useSystemContext()
   return useMemo((): any => {
     const recipe = sys.getRecipe(key as string, fallback)
-    return sys.cva(recipe)
+    return sys.cva(structuredClone(recipe))
   }, [key, fallback, sys])
 }
 
@@ -62,7 +62,7 @@ export function useSlotRecipe<K extends SlotRecipeKey>(
   const sys = useSystemContext()
   return useMemo((): any => {
     const recipe = sys.getSlotRecipe(key, fallback)
-    return sys.sva(recipe)
+    return sys.sva(structuredClone(recipe))
   }, [key, fallback, sys])
 }
 

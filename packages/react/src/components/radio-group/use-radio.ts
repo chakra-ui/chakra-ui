@@ -181,7 +181,7 @@ export function useRadio(props: UseRadioProps = {}) {
     [setActive],
   )
 
-  const getRadioProps: PropGetter = useCallback(
+  const getControlProps: PropGetter = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       ref,
@@ -297,7 +297,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
   return {
     state,
-    getRadioProps,
+    getControlProps,
     getInputProps,
     getLabelProps,
     getRootProps,

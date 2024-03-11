@@ -158,7 +158,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     }
   }, [inputRef.current])
 
-  const getCheckboxProps: PropGetter = useCallback(
+  const getControlProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) => {
       const onPressDown = (event: React.MouseEvent) => {
         // On mousedown, the input blurs and returns focus to the `body`,
@@ -346,7 +346,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   return {
     state,
     getRootProps,
-    getCheckboxProps,
+    getControlProps,
     getIndicatorProps,
     getInputProps,
     getLabelProps,

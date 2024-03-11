@@ -14,7 +14,7 @@ export const CheckboxControl = forwardRef<CheckboxControlProps, "span">(
 
     return (
       <chakra.span
-        {...api.getCheckboxProps(restProps, ref)}
+        {...api.getControlProps(restProps, ref)}
         css={[styles.control, props.css]}
         className={cx("chakra-checkbox__control", props.className)}
       >

@@ -1,3 +1,4 @@
+import { cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import { useRadioItemContext, useRadioItemStyles } from "./radio-group-context"
 
@@ -11,8 +12,8 @@ export const RadioGroupItemText = forwardRef<RadioGroupItemTextProps, "input">(
     return (
       <chakra.span
         {...api.getLabelProps(props, ref)}
-        className={"chakra-radio__label"}
-        css={styles.label}
+        className={cx("chakra-radio__label", props.className)}
+        css={[styles.label, props.css]}
       />
     )
   },

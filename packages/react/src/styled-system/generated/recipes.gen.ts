@@ -355,7 +355,8 @@ export interface StepperVariantProps {
 export type SwitchSlot = "root" | "track" | "thumb" | "label"
 
 export interface SwitchVariantProps {
-  size?: "sm" | "md" | "lg"
+  variant?: "solid" | "outline" | "raised"
+  size?: "sm" | "md" | "lg" | "xl"
 }
 
 // Table
