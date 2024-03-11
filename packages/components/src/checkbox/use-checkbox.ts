@@ -55,8 +55,13 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const [isActive, setActive] = useState(false)
 
   useEffect(() => {
+    if (!isFocused) {
+      setIsFocusVisible(false)
+      return
+    }
+
     return trackFocusVisible(setIsFocusVisible)
-  }, [])
+  }, [isFocused])
 
   const inputRef = useRef<HTMLInputElement>(null)
   const [rootIsLabelElement, setRootIsLabelElement] = useState(true)
@@ -175,7 +180,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         "data-hover": dataAttr(isHovered),
         "data-checked": dataAttr(isChecked),
         "data-focus": dataAttr(isFocused),
-        "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+        "data-focus-visible": dataAttr(isFocusVisible),
         "data-indeterminate": dataAttr(isIndeterminate),
         "data-disabled": dataAttr(isDisabled),
         "data-invalid": dataAttr(isInvalid),

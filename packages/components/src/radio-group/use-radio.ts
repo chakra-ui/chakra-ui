@@ -140,8 +140,13 @@ export function useRadio(props: UseRadioProps = {}) {
   const isChecked = isControlled ? isCheckedProp : isCheckedState
 
   useEffect(() => {
+    if (!isFocused) {
+      setIsFocusVisible(false)
+      return
+    }
+
     return trackFocusVisible(setIsFocusVisible)
-  }, [])
+  }, [isFocused])
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -187,7 +192,7 @@ export function useRadio(props: UseRadioProps = {}) {
       "data-invalid": dataAttr(isInvalid),
       "data-checked": dataAttr(isChecked),
       "data-focus": dataAttr(isFocused),
-      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
+      "data-focus-visible": dataAttr(isFocusVisible),
       "data-readonly": dataAttr(isReadOnly),
       "aria-hidden": true,
       onMouseDown: callAllHandlers(props.onMouseDown, () => setActive(true)),
