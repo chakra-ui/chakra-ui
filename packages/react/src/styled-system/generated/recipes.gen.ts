@@ -56,7 +56,10 @@ export interface PinInputVariantProps {
   variant?: "outline" | "filled" | "flushed"
 }
 
-export interface SkeletonVariantProps {}
+export interface SkeletonVariantProps {
+  isLoaded?: boolean
+  variant?: "pulse" | "shine" | "none"
+}
 
 export interface SkipLinkVariantProps {}
 

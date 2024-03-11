@@ -1,12 +1,46 @@
 import { defineRecipe } from "../../styled-system"
 
 export const skeletonRecipe = defineRecipe({
-  base: {
-    "--start-color": { base: "colors.gray.100", _dark: "colors.gray.800" },
-    "--end-color": { base: "colors.gray.400", _dark: "colors.gray.600" },
-    background: "var(--start-color)",
-    borderColor: "var(--end-color)",
-    opacity: 0.7,
-    borderRadius: "sm",
+  base: {},
+  variants: {
+    isLoaded: {
+      true: {
+        animation: "fade-in var(--fade-duration, 0.3s) ease-out !important",
+      },
+      false: {
+        background: "bg.muted",
+        borderRadius: "sm",
+        boxShadow: "none",
+        backgroundClip: "padding-box",
+        cursor: "default",
+        color: "transparent",
+        pointerEvents: "none",
+        userSelect: "none",
+        flexShrink: "0",
+        "&::before, &::after, *": {
+          visibility: "hidden",
+        },
+      },
+    },
+    variant: {
+      pulse: {
+        animation: "pulse var(--duration, 2s) infinite",
+      },
+      shine: {
+        "--animate-from": "200%",
+        "--animate-to": "-200%",
+        backgroundImage:
+          "linear-gradient(90deg, {colors.blackAlpha.300}, {colors.blackAlpha.50}, {colors.blackAlpha.300})",
+        backgroundSize: "400% 100%",
+        animation: "bg-position var(--duration, 5s) ease-in-out infinite",
+      },
+      none: {
+        animation: "none",
+      },
+    },
+  },
+  defaultVariants: {
+    variant: "pulse",
+    isLoaded: false,
   },
 })

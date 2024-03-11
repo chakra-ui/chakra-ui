@@ -1,143 +1,69 @@
-import * as React from "react"
-import { Stack, chakra } from "../src"
-import {
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
-} from "../src/components/skeleton"
+import { useEffect, useState } from "react"
+import { Box, Circle, For, HStack, Span, Stack, useRecipe } from "../src"
+import { Skeleton } from "../src/components/skeleton"
+import { colorPalettes } from "./shared/color-palettes"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / Skeleton",
-  decorators: [
-    (story: Function) => (
-      <chakra.div maxW="md" mt="40px" mx="auto">
-        {story()}
-      </chakra.div>
-    ),
-  ],
+  decorators: [(Story: any) => <Box padding="40px">{<Story />}</Box>],
 }
 
-export const Basic = () => <Skeleton h="20px" />
-
-export const Text = () => (
-  <SkeletonText
-    padding="20px"
-    borderWidth="1px"
-    borderRadius="lg"
-    noOfLines={[3, 4, 5, 6, 7]}
-  />
-)
-
-export const AsContainer = () => (
-  <Skeleton>
-    <span>Chakra ui is cool</span>
-  </Skeleton>
-)
-
-export const WithFitContent = () => (
-  <Skeleton fitContent>
-    <span>Chakra ui is cool</span>
-  </Skeleton>
-)
+export const Variants = () => {
+  const recipe = useRecipe("Skeleton")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.variant}>
+            {(v) => <td key={v}>{v}</td>}
+          </For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={colorPalettes}>
+          {(c) => (
+            <tr key={c}>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.variant}>
+                {(v) => (
+                  <td key={v}>
+                    <HStack gap="4" minW="320px">
+                      <Skeleton variant={v} borderRadius="full">
+                        <Circle size="20" />
+                      </Skeleton>
+                      <Stack gap="3.5" width="full">
+                        <Skeleton variant={v} h="4" />
+                        <Skeleton variant={v} h="4" width="80%" />
+                        <Skeleton variant={v} h="4" width="60%" />
+                      </Stack>
+                    </HStack>
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
 
 export const WithFade = () => {
-  const [hasLoaded, setHasLoaded] = React.useState(false)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => setHasLoaded(true), 1000)
   }, [])
 
   return (
-    <Skeleton isLoaded={hasLoaded}>
+    <Skeleton isLoaded={hasLoaded} width="fit-content">
       <span>Chakra ui is cool</span>
     </Skeleton>
   )
 }
-
-export const WithFadeText = () => {
-  const [hasLoaded, setHasLoaded] = React.useState(false)
-
-  React.useEffect(() => {
-    setTimeout(() => setHasLoaded(true), 1000)
-  }, [])
-
-  return (
-    <SkeletonText isLoaded={hasLoaded}>
-      <span>Chakra ui is cool</span>
-    </SkeletonText>
-  )
-}
-
-export const WithFadeAlreadyLoaded = () => {
-  return (
-    <Skeleton isLoaded>
-      <span>This should not fade in</span>
-    </Skeleton>
-  )
-}
-
-export const WithNoFade = () => {
-  const [hasLoaded, setHasLoaded] = React.useState(false)
-
-  React.useEffect(() => {
-    setTimeout(() => setHasLoaded(true), 1000)
-  }, [])
-
-  return (
-    <Skeleton fadeDuration={0} isLoaded={hasLoaded}>
-      <span>Chakra ui is cool</span>
-    </Skeleton>
-  )
-}
-
-export const Circle = () => <SkeletonCircle />
-
-export const Combined = () => (
-  <chakra.div padding="6" boxShadow="lg" bg="white">
-    <SkeletonCircle size="10" />
-    <SkeletonText mt="4" noOfLines={4} spacing="4" />
-  </chakra.div>
-)
-
-export const WithIsLoaded = () => {
-  const [hasLoaded, setHasLoaded] = React.useState(false)
-
-  React.useEffect(() => {
-    const intervalId = setInterval(() => setHasLoaded((x) => !x), 1000)
-    return () => clearInterval(intervalId)
-  }, [])
-
-  return (
-    <chakra.div>
-      <chakra.div h="100px" borderWidth="1px">
-        Content
-      </chakra.div>
-      <Skeleton w="100px" isLoaded={hasLoaded} mt={2}>
-        <span>Chakra ui is cool</span>
-      </Skeleton>
-      <SkeletonText isLoaded={hasLoaded} mt={2}>
-        <p>Chakra ui is cool</p>
-      </SkeletonText>
-      <chakra.div h="100px" borderWidth="1px" mt={2}>
-        Content
-      </chakra.div>
-    </chakra.div>
-  )
-}
-
-export const WithCustomSpeed = () => (
-  <Skeleton boxSize="100px" speed={2.4} borderRadius="100px" />
-)
-
-export const WithDarkMode = () => (
-  <Stack className="dark">
-    <chakra.p>Some text</chakra.p>
-    <Skeleton boxSize="100px" />
-    <Skeleton boxSize="100px" />
-    <Skeleton boxSize="100px" />
-  </Stack>
-)
-
-export const WithStartAndEndColor = () => (
-  <Skeleton h="20px" startColor="red.200" endColor="green.200" />
-)

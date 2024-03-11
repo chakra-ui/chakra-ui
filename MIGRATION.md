@@ -489,6 +489,17 @@ After:
 </Button>
 ```
 
+Alternative approach to keep the content width but center the spinner:
+
+```tsx
+<Button isDisabled variant="solid" colorPalette="blue">
+  <AbsoluteCenter>
+    <BeatLoader size={8} color="white" />
+  </AbsoluteCenter>
+  <Span opacity="0">Click me</Span>
+</Button>
+```
+
 **leftIcon and rightIcon**
 
 Removed `leftIcon` and `rightIcon` in favor of rendering an icon component
@@ -845,3 +856,43 @@ and `withThemeByClassName` helper.
 ## CloseButton
 
 No longer exists. Prefer to use the `IconButton` component with your own icon.
+
+## Skeleton
+
+- Remove `SkeletonText` and `SkeletonCircle` in favor of using the `Skeleton`
+  component and styling as needed
+- Remove `fitContent` prop in favor of passing `width="fit-content"` directly to
+  the `Skeleton` component
+- Remove `startColor` and `endColor` prop in favor of using css variables
+
+**Skeleton Text**
+
+Before:
+
+```tsx
+<SkeletonText />
+```
+
+After:
+
+```tsx
+<Stack>
+  <Skeleton height="40px" />
+  <Skeleton height="40px" />
+  <Skeleton width="40%" height="40px" />
+</Stack>
+```
+
+**Skeleton Circle**
+
+Before:
+
+```tsx
+<SkeletonCircle />
+```
+
+After:
+
+```tsx
+<Skeleton width="40px" height="40px" rounded="full" />
+```
