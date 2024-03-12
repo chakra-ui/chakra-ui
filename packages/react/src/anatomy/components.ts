@@ -36,6 +36,7 @@ export const breadcrumbAnatomy = anatomy("breadcrumb").parts(
 
 export const blockquoteAnatomy = anatomy("blockquote").parts(
   "root",
+  "icon",
   "content",
   "caption",
 )

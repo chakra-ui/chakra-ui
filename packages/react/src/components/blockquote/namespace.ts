@@ -6,3 +6,6 @@ export type { BlockquoteContentProps as ContentProps } from "./blockquote-conten
 
 export { BlockquoteCaption as Caption } from "./blockquote-caption"
 export type { BlockquoteCaptionProps as CaptionProps } from "./blockquote-caption"
+
+export { BlockquoteIcon as Icon } from "./blockquote-icon"
+export type { BlockquoteIconProps as IconProps } from "./blockquote-icon"

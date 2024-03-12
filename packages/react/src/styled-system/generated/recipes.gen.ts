@@ -149,9 +149,12 @@ export interface BreadcrumbVariantProps {
 
 // Blockquote
 
-export type BlockquoteSlot = "root" | "content" | "caption"
+export type BlockquoteSlot = "root" | "icon" | "content" | "caption"
 
-export interface BlockquoteVariantProps {}
+export interface BlockquoteVariantProps {
+  justify?: "start" | "center" | "end"
+  variant?: "subtle" | "solid" | "plain"
+}
 
 // Card
 
