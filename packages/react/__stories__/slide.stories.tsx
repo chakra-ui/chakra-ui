@@ -1,5 +1,4 @@
 import { useBoolean } from "@chakra-ui/hooks"
-import * as React from "react"
 import { Slide } from "../src/components/transition/slide"
 
 export default {

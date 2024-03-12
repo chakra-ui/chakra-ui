@@ -1,47 +1,9 @@
 import * as React from "react"
 import { For } from "../src"
-import {
-  PinInput,
-  PinInputProvider,
-  usePinInput,
-  usePinInputField,
-} from "../src/components/pin-input"
+import { PinInput } from "../src/components/pin-input"
 
 export default {
   title: "Components / PinInput",
-}
-
-const style: React.CSSProperties = {
-  width: 40,
-  height: 40,
-  textAlign: "center",
-  color: "black",
-  margin: 4,
-}
-
-function Input(props: any) {
-  const inputProps = usePinInputField(props)
-  console.log(inputProps)
-  return <input {...inputProps} />
-}
-
-export function HookExample() {
-  const context = usePinInput({
-    autoFocus: true,
-    mask: true,
-    onComplete: alert,
-    type: "number",
-  })
-  return (
-    <PinInputProvider value={context}>
-      <div ref={context.containerRef} id={context.id}>
-        <Input style={style} index="0" />
-        <Input style={style} index="1" />
-        <Input style={style} index="2" />
-        <Input style={style} index="3" />
-      </div>
-    </PinInputProvider>
-  )
 }
 
 export function Basic() {
