@@ -174,7 +174,7 @@ const getHTMLProps = (props: any) => {
 
 const toArray = (val: any) => {
   const res = Array.isArray(val) ? val : [val]
-  return res.filter(Boolean)
+  return res.filter(Boolean).flat()
 }
 
 function _forwardRef<P, T extends ElementType>(

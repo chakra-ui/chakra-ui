@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
+import { Container, Flex, HStack, Heading } from "@chakra-ui/react"
 import Head from "next/head"
-import { Container, Flex, Heading, HStack } from "@chakra-ui/react"
+import { ReactNode } from "react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { Logo } from "./Logo"
 import { NextChakraLink } from "./NextChakraLink"
@@ -25,7 +25,7 @@ export const Layout = ({
         <Flex py={4} justifyContent="space-between" alignItems="center" mb={8}>
           <Flex justifyContent="space-between" alignItems="center">
             <nav>
-              <HStack spacing={12}>
+              <HStack gap={12}>
                 <NextChakraLink
                   href="/"
                   display="flex"

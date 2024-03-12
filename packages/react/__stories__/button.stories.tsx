@@ -113,7 +113,7 @@ export const Sizes = () => {
 }
 
 export const WithIcon = () => (
-  <Stack direction="row" spacing={4}>
+  <Stack direction="row" gap="4">
     <Button colorPalette="teal" variant="solid">
       <FaEnvelope />
       Email
@@ -126,7 +126,7 @@ export const WithIcon = () => (
 )
 
 export const WithLoading = () => (
-  <Stack direction="row" spacing={4} align="center">
+  <Stack direction="row" gap="4" align="center">
     <Button isDisabled>
       <Spinner boxSize="1em" /> Loading...
     </Button>

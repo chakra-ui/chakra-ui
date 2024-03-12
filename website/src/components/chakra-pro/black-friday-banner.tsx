@@ -14,7 +14,7 @@ export const BlackFridayBanner = () => (
       >
         <Stack
           direction={{ base: 'column', md: 'row' }}
-          spacing={{ base: '0', md: '1' }}
+          gap={{ base: '0', md: '1' }}
         >
           <Text fontWeight='semibold'>Black Friday Sale:</Text>
           <Text>

@@ -30,7 +30,7 @@ export const Separator = forwardRef<SeparatorProps, "div">(
         aria-orientation={variantProps.orientation || "horizontal"}
         {...localProps}
         css={[styles, props.css]}
-        className={cx("chakra-divider", props.className)}
+        className={cx("chakra-separator", props.className)}
       />
     )
   },

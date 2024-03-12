@@ -121,7 +121,7 @@ export const WithImage = () => (
         alt="Green double couch with wooden legs"
         borderRadius="lg"
       />
-      <Stack mt="6" spacing="3">
+      <Stack mt="6" gap="3">
         <Heading size="md" fontWeight="semibold">
           Living room Sofa
         </Heading>
@@ -136,7 +136,7 @@ export const WithImage = () => (
       </Stack>
     </Card.Body>
     <Card.Footer>
-      <HStack spacing="2">
+      <HStack gap="2">
         <Button variant="solid" colorScheme="blue">
           Buy now
         </Button>
@@ -182,7 +182,7 @@ export const WithForm = () => (
       <Text color="fg.muted">Fill in the form below to create an account</Text>
     </Card.Header>
     <Card.Body>
-      <Stack maxW="sm" spacing="4">
+      <Stack maxW="sm" gap="4">
         <Field.Root>
           <Field.Label>First Name</Field.Label>
           <Input />

@@ -36,7 +36,7 @@ export const Basic = () => (
 const sizes = ["xs", "sm", "md", "lg"] as const
 
 export const Sizes = () => (
-  <Stack spacing="6">
+  <Stack gap="6">
     {sizes.map((size) => (
       <chakra.div key={size}>
         <pre>size = {size}</pre>

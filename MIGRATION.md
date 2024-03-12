@@ -18,6 +18,8 @@ You can combine the `useMediaQuery()` hook and `Show` to achieve the previous
 - Changed `spacing` to `gap`
 - Changed `spacingX` to `rowGap`
 - Changed `spacingY` to `columnGap`
+- Remove `shouldWrapChildren` in favor of using the `WrapItem` component
+  explicitly
 
 ### Stack
 
@@ -964,3 +966,9 @@ After:
 - Simplify component to rely on `borderTopWidth` and `borderInlineStartWidth`
 - To change the thickness reliably, set the `--divider-border-width` css
   variable
+
+## Stack
+
+- Remove `shouldWrapChildren` in favor of using the `StackItem` explicitly
+- Rename `spacing` to `gap`
+- Rename `divider` prop to `separator`

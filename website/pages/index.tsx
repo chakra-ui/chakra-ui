@@ -445,7 +445,7 @@ const HomePage = ({
             </chakra.h2>
             <SimpleGrid spacing='32px' columns={{ base: 1, md: 3 }}>
               {chunk(tweets.tweets, 3).map((tweetList, idx) => (
-                <Stack spacing='6' key={idx}>
+                <Stack gap='6' key={idx}>
                   {tweetList.map((tweet: Tweet, idx) => (
                     <TweetCard key={idx} {...tweet} />
                   ))}
@@ -479,12 +479,7 @@ const HomePage = ({
               rounded='lg'
               p='6'
             >
-              <Stack
-                flex='1'
-                direction='row'
-                spacing='6'
-                pr={{ base: 0, md: '4' }}
-              >
+              <Stack flex='1' direction='row' gap='6' pr={{ base: 0, md: '4' }}>
                 <Icon h='40px' w='40px' viewBox='0 0 32 32'>
                   <path
                     fillRule='evenodd'

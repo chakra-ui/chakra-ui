@@ -51,7 +51,7 @@ export const Variants = () => {
                 {(v) => (
                   <td>
                     <RadioGroup.Root defaultValue="1" minWidth="200px">
-                      <HStack spacing="4">
+                      <HStack gap="4">
                         <DemoRadio colorPalette={c} variant={v} value="1">
                           Radio
                         </DemoRadio>
@@ -94,7 +94,7 @@ export const Sizes = () => {
                 {(v) => (
                   <td>
                     <RadioGroup.Root defaultValue="1" minWidth="200px">
-                      <HStack spacing="4">
+                      <HStack gap="4">
                         <DemoRadio colorPalette={c} size={v} value="1">
                           Radio
                         </DemoRadio>
@@ -116,7 +116,7 @@ export const Sizes = () => {
 
 export const WithForm = () => {
   return (
-    <Stack maxW="sm" spacing="4">
+    <Stack maxW="sm" gap="4">
       <Field.Root>
         <Field.Label>Name</Field.Label>
         <Input />
@@ -125,7 +125,7 @@ export const WithForm = () => {
       <Field.Root>
         <Field.Label>What's your favorite Anime?</Field.Label>
         <RadioGroup.Root defaultValue="1">
-          <Stack spacing="2">
+          <Stack gap="2">
             <DemoRadio value="1">Naruto</DemoRadio>
             <DemoRadio value="2">Dragon Ball</DemoRadio>
             <DemoRadio value="3">One Piece</DemoRadio>

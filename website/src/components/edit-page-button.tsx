@@ -9,7 +9,7 @@ const EditPageLink = ({ href }: { href?: string }) => {
         textAlign='right'
         display='inline-flex'
         direction='row'
-        spacing={1}
+        gap={1}
         align='center'
         opacity={0.7}
       >

@@ -28,7 +28,7 @@ export default function ComponentDocsLayout({
   return (
     <MDXLayout frontmatter={frontmatter}>
       {id && (
-        <Stack spacing='5'>
+        <Stack gap='5'>
           <MDXComponents.p>{frontmatter.description}</MDXComponents.p>
           <MDXComponents.ComponentLinks
             theme={hasTheme && { componentName: id }}

@@ -1,19 +1,13 @@
-import { chakra } from "../../styled-system"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 
-export const StackItem = chakra(
-  "div",
-  {
-    base: {
-      display: "inline-block",
-      flex: "0 0 auto",
-      minWidth: 0,
-    },
+export interface StackItemProps extends HTMLChakraProps<"div"> {}
+
+export const StackItem = chakra("div", {
+  base: {
+    display: "inline-block",
+    flex: "0 0 auto",
+    minWidth: 0,
   },
-  {
-    defaultProps: {
-      className: "chakra-stack__item",
-    },
-  },
-)
+})
 
 StackItem.displayName = "StackItem"

@@ -106,7 +106,7 @@ export const Sizes = () => {
 export const WithAvatarGroup = () => {
   const recipe = useSlotRecipe("Avatar")
   return (
-    <Stack spacing="24px">
+    <Stack gap="24px">
       <For each={recipe.variantMap.size}>
         {(size) => (
           <Avatar.Group size={size} key={size}>

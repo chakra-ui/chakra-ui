@@ -43,7 +43,7 @@ function ResourceCard(props: ResourceCardProps) {
         boxShadow: 'var(--chakra-shadows-md)',
       }}
     >
-      <VStack spacing={2} align='stretch'>
+      <VStack gap={2} align='stretch'>
         <Wrap className='algolia-exclude' spacing='3' mb='2' align='center'>
           {tags?.map((tag, index) => (
             <WrapItem key={index} overflow='hidden'>
@@ -64,7 +64,7 @@ function ResourceCard(props: ResourceCardProps) {
         </Wrap>
 
         <LinkOverlay isExternal href={url}>
-          <VStack spacing={2} align='stretch'>
+          <VStack gap={2} align='stretch'>
             <Heading as='h3' size='sm'>
               <span className='content'>{heading}</span>
             </Heading>

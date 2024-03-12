@@ -131,7 +131,7 @@ function TutorialContainer({
               }}
             >
               <div>
-                <HStack spacing={0}>
+                <HStack gap={0}>
                   <Box
                     overflowY={'auto'}
                     minW={{ base: '40%', xl: '35%' }}
@@ -146,7 +146,7 @@ function TutorialContainer({
                       pb='4'
                       pt='1'
                       pl='6'
-                      spacing={4}
+                      gap={4}
                     >
                       {sidebar}
                       <chakra.h1 tabIndex={-1} outline={0} apply='mdx.h1'>

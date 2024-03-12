@@ -1,9 +1,9 @@
-import { Box, Code, Text, Link, VStack, Grid } from "@chakra-ui/react"
+import { Box, Code, Grid, Link, Text, VStack } from "@chakra-ui/react"
+import { Suspense } from "react"
 import { Chakra } from "../Chakra"
 import { Layout } from "../components/Layout"
 import { Logo } from "../components/Logo"
 import { NextChakraLink } from "../components/NextChakraLink"
-import { Suspense } from "react"
 
 interface IndexProps {
   cookies?: string
@@ -15,7 +15,7 @@ const IndexPage = ({ cookies }: IndexProps) => (
       <Suspense fallback="Loading...">
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh" p={3}>
-            <VStack spacing={8}>
+            <VStack gap={8}>
               <Logo h="40vmin" pointerEvents="none" />
               <Text>
                 Edit <Code fontSize="xl">pages/index.tsx</Code> and save to

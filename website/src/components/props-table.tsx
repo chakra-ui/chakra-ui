@@ -33,7 +33,7 @@ const PropsTable = ({
   if (!propList.length) return null
 
   return (
-    <Stack overflowX='auto' spacing='16' my='10'>
+    <Stack overflowX='auto' gap='16' my='10'>
       {propList.map((prop) => (
         <chakra.div
           key={prop.name}

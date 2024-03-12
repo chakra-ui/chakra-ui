@@ -75,7 +75,7 @@ export const Sizes = () => {
 
 export const WithLabel = () => {
   return (
-    <Stack maxW="sm" spacing="4">
+    <Stack maxW="sm" gap="4">
       <Field.Root>
         <Field.Label>Issue Details</Field.Label>
         <Textarea placeholder="Type your message here..." />

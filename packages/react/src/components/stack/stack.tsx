@@ -6,11 +6,8 @@ import {
   chakra,
   forwardRef,
 } from "../../styled-system"
-import { StackItem } from "./stack-item"
-import type { StackDirection } from "./stack.utils"
-import { getDividerStyles } from "./stack.utils"
-
-export type { StackDirection }
+import type { StackDirection } from "./get-separator-style"
+import { getSeparatorStyles } from "./get-separator-style"
 
 interface StackOptions {
   /**
@@ -29,28 +26,15 @@ interface StackOptions {
    */
   wrap?: SystemStyleObject["flexWrap"]
   /**
-   * The space between each stack item
-   * @type SystemStyleObject["margin"]
-   * @default "0.5rem"
-   */
-  spacing?: SystemStyleObject["margin"]
-  /**
    * The direction to stack the items.
    * @default "column"
    */
   direction?: StackDirection
   /**
-   * If `true`, each stack item will show a divider
+   * If `true`, each stack item will show a separator
    * @type React.ReactElement
    */
-  divider?: React.ReactElement
-  /**
-   * If `true`, the children will be wrapped in a `Box` with
-   * `display: inline-block`, and the `Box` will take the spacing props
-   *
-   * @default false
-   */
-  shouldWrapChildren?: boolean
+  separator?: React.ReactElement
 }
 
 export interface StackProps extends HTMLChakraProps<"div", StackOptions> {}
@@ -59,7 +43,7 @@ export interface StackProps extends HTMLChakraProps<"div", StackOptions> {}
  * Stacks help you easily create flexible and automatically distributed layouts
  *
  * You can stack elements in the horizontal or vertical direction,
- * and apply a space or/and divider between each element.
+ * and apply a space or/and separator between each element.
  *
  * It uses `display: flex` internally and renders a `div`.
  *
@@ -71,62 +55,34 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
     direction = "column",
     align,
     justify,
-    spacing = "0.5rem",
+    gap = "0.5rem",
     wrap,
     children,
-    divider,
+    separator,
     className,
-    shouldWrapChildren,
     ...rest
   } = props
 
-  const dividerStyle = useMemo(
-    () => getDividerStyles({ spacing, direction }),
-    [spacing, direction],
+  const separatorStyle = useMemo(
+    () => getSeparatorStyles({ gap, direction }),
+    [gap, direction],
   )
 
-  const hasDivider = !!divider
-  const shouldUseChildren = !shouldWrapChildren && !hasDivider
-
   const clones = useMemo(() => {
-    const validChildren = getValidChildren(children)
-    return shouldUseChildren
-      ? validChildren
-      : validChildren.map((child, index) => {
-          // Prefer provided child key, fallback to index
-          const key = typeof child.key !== "undefined" ? child.key : index
-          const isLast = index + 1 === validChildren.length
-          const wrappedChild = <StackItem key={key}>{child}</StackItem>
-          const _child = shouldWrapChildren ? wrappedChild : child
-
-          if (!hasDivider) return _child
-
-          const clonedDivider = cloneElement(
-            divider as React.ReactElement<any>,
-            {
-              __css: dividerStyle,
-            },
-          )
-
-          const _divider = isLast ? null : clonedDivider
-
-          return (
-            <Fragment key={key}>
-              {_child}
-              {_divider}
-            </Fragment>
-          )
-        })
-  }, [
-    divider,
-    dividerStyle,
-    hasDivider,
-    shouldUseChildren,
-    shouldWrapChildren,
-    children,
-  ])
-
-  const _className = cx("chakra-stack", className)
+    if (!separator) return children
+    return getValidChildren(children).map((child, index, arr) => {
+      const key = typeof child.key !== "undefined" ? child.key : index
+      const sep = cloneElement(separator, {
+        css: [separatorStyle, separator.props.css],
+      })
+      return (
+        <Fragment key={key}>
+          {child}
+          {index === arr.length - 1 ? null : sep}
+        </Fragment>
+      )
+    })
+  }, [children, separator, separatorStyle])
 
   return (
     <chakra.div
@@ -136,8 +92,8 @@ export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
       justifyContent={justify}
       flexDirection={direction}
       flexWrap={wrap}
-      gap={hasDivider ? undefined : spacing}
-      className={_className}
+      gap={separator ? undefined : gap}
+      className={cx("chakra-stack", className)}
       {...rest}
     >
       {clones}

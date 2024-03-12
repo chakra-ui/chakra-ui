@@ -42,7 +42,7 @@ export const ComponentsOverview = ({ categories, headings }: Props) => {
         headings,
       }}
     >
-      <VStack w='full' mt={5} alignItems='stretch' spacing={12}>
+      <VStack w='full' mt={5} alignItems='stretch' gap={12}>
         <Text lineHeight='tall'>
           Chakra UI provides prebuilt components to help you build your projects
           faster. Here is an overview of the component categories:
@@ -64,7 +64,7 @@ export const ComponentsOverview = ({ categories, headings }: Props) => {
               <Heading as='h2' size='md' id={id} scrollMarginTop={24}>
                 {title}
               </Heading>
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+              <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={6}>
                 {components.map(({ title: componentTitle, url, id }) => (
                   <GridItem key={id}>
                     <ComponentOverviewItem

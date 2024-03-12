@@ -90,7 +90,7 @@ export const Sizes = () => {
 
 export const WithButton = () => {
   return (
-    <Stack maxW="sm" spacing="4">
+    <Stack maxW="sm" gap="4">
       <Field.Root>
         <Field.Label>
           First Name
@@ -110,7 +110,7 @@ export const WithButton = () => {
 }
 
 export const WithAddon = () => (
-  <Stack spacing="10">
+  <Stack gap="10">
     <Group>
       <InputElement>$</InputElement>
       <Input ps="8" placeholder="Phone number..." />

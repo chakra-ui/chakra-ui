@@ -44,7 +44,7 @@ export const FeaturesCourses = () => {
     <SimpleGrid
       mt='10'
       columns={{ base: 1, lg: 2 }}
-      spacing={{ base: '4', md: '8' }}
+      gap={{ base: '4', md: '8' }}
     >
       <CourseBanner
         image='/course-banners/egghead-course.png'

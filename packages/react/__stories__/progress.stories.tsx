@@ -127,7 +127,7 @@ interface FeatureUsageProps {
 const FeatureUsage = (props: FeatureUsageProps) => {
   const { min, max, value, label, icon } = props
   return (
-    <HStack spacing="4">
+    <HStack gap="4">
       <Square borderRadius="sm" bg="bg.muted" size="10">
         {icon}
       </Square>
@@ -148,7 +148,7 @@ const FeatureUsage = (props: FeatureUsageProps) => {
 
 export const WithIcon = () => {
   return (
-    <Stack spacing="8" maxW="300px">
+    <Stack gap="8" maxW="300px">
       <Heading size="sm">Features</Heading>
       <FeatureUsage
         max={100}

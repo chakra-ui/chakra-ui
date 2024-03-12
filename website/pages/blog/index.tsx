@@ -4,7 +4,7 @@ import {
   Heading,
   Link,
   Stack,
-  StackDivider,
+  StackSeparator,
   Text,
   chakra,
 } from '@chakra-ui/react'
@@ -24,7 +24,7 @@ function Blog() {
         slug: '/blog',
       }}
     >
-      <Stack divider={<StackDivider />} my='12' spacing='20'>
+      <Stack separator={<StackSeparator />} my='12' gap='20'>
         {allBlogs.map((item) => (
           <Box key={item._id}>
             <NextLink href={item.slug} passHref>

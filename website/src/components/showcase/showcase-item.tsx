@@ -9,7 +9,7 @@ import { ChakraNextUnwrappedImage } from 'components/chakra-next-image'
 
 export const ShowcaseItem = ({ name, image, url }) => {
   return (
-    <VStack key={url} alignItems='flex-start' spacing={3}>
+    <VStack key={url} alignItems='flex-start' gap={3}>
       <LinkBox
         w='full'
         borderWidth='1px'

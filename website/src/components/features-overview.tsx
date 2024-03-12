@@ -32,7 +32,7 @@ const Feature = ({ title, icon, children, ...props }) => {
       bg='white'
       rounded='12px'
       shadow='base'
-      spacing={4}
+      gap={4}
       p='6'
       cursor='pointer'
       _dark={{ bg: 'gray.700' }}

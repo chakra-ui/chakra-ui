@@ -153,7 +153,7 @@ export const WithGroup = () => {
 
 export const WithForm = () => {
   return (
-    <Stack maxW="sm" spacing="4">
+    <Stack maxW="sm" gap="4">
       <Field.Root>
         <Field.Label>User name</Field.Label>
         <Input />

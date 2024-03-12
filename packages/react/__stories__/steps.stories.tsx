@@ -164,7 +164,7 @@ export const Sizes = () => {
 
 export const WithVertical = () => {
   return (
-    <HStack spacing="10">
+    <HStack gap="10">
       <For each={colorPalettes}>
         {(c) => (
           <VerticalSteps

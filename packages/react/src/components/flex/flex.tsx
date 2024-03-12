@@ -64,18 +64,23 @@ export const Flex = forwardRef<FlexProps, "div">(function Flex(props, ref) {
   const { direction, align, justify, wrap, basis, grow, shrink, ...rest } =
     props
 
-  const styles = {
-    display: "flex",
-    flexDirection: direction,
-    alignItems: align,
-    justifyContent: justify,
-    flexWrap: wrap,
-    flexBasis: basis,
-    flexGrow: grow,
-    flexShrink: shrink,
-  }
-
-  return <chakra.div ref={ref} css={styles} {...rest} />
+  return (
+    <chakra.div
+      ref={ref}
+      {...rest}
+      css={{
+        display: "flex",
+        flexDirection: direction,
+        alignItems: align,
+        justifyContent: justify,
+        flexWrap: wrap,
+        flexBasis: basis,
+        flexGrow: grow,
+        flexShrink: shrink,
+        ...props.css,
+      }}
+    />
+  )
 })
 
 Flex.displayName = "Flex"
