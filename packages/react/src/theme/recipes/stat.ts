@@ -18,6 +18,8 @@ export const statSlotRecipe = defineSlotRecipe({
     number: {
       verticalAlign: "baseline",
       fontWeight: "semibold",
+      fontFeatureSettings: "pnum",
+      fontVariantNumeric: "proportional-nums",
     },
     icon: {
       marginEnd: 1,

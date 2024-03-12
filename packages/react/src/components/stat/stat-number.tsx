@@ -12,11 +12,7 @@ export const StatNumber = forwardRef<StatNumberProps, "dd">(
         ref={ref}
         {...props}
         className={cx("chakra-stat__number", props.className)}
-        css={{
-          ...styles.number,
-          fontFeatureSettings: "pnum",
-          fontVariantNumeric: "proportional-nums",
-        }}
+        css={[styles.number, props.css]}
       />
     )
   },

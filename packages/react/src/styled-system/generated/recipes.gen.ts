@@ -326,7 +326,13 @@ export interface SliderVariantProps {
 
 // Stat
 
-export type StatSlot = "root" | "label" | "helpText" | "number" | "icon"
+export type StatSlot =
+  | "group"
+  | "root"
+  | "label"
+  | "helpText"
+  | "number"
+  | "icon"
 
 export interface StatVariantProps {
   size?: "md"

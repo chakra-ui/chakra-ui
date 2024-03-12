@@ -29,7 +29,7 @@ export const StatRoot = forwardRef<StatRootProps, "div">(
           ref={ref}
           {...localProps}
           className={cx("chakra-stat", localProps.className)}
-          css={styles.root}
+          css={[styles.root, localProps.css]}
         >
           <dl>{localProps.children}</dl>
         </chakra.div>

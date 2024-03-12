@@ -160,6 +160,7 @@ export const sliderAnatomy = anatomy("slider").parts(
 )
 
 export const statAnatomy = anatomy("stat").parts(
+  "group",
   "root",
   "label",
   "helpText",
