@@ -2,9 +2,11 @@ import { cx } from "@chakra-ui/utils/cx"
 import {
   AnimatePresence,
   HTMLMotionProps,
-  motion,
+  m,
   MotionStyle,
   Variants as TVariants,
+  domAnimation,
+  LazyMotion,
 } from "framer-motion"
 import { forwardRef } from "react"
 import {
@@ -95,18 +97,20 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(
     return (
       <AnimatePresence custom={custom}>
         {show && (
-          <motion.div
-            {...rest}
-            ref={ref}
-            initial="exit"
-            className={cx("chakra-slide", className)}
-            animate={animate}
-            exit="exit"
-            custom={custom}
-            variants={variants as TVariants}
-            style={computedStyle}
-            {...motionProps}
-          />
+          <LazyMotion features={domAnimation}>
+            <m.div
+              {...rest}
+              ref={ref}
+              initial="exit"
+              className={cx("chakra-slide", className)}
+              animate={animate}
+              exit="exit"
+              custom={custom}
+              variants={variants as TVariants}
+              style={computedStyle}
+              {...motionProps}
+            />
+          </LazyMotion>
         )}
       </AnimatePresence>
     )

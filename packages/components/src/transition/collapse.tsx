@@ -4,7 +4,9 @@ import {
   AnimatePresence,
   HTMLMotionProps,
   Variants as _Variants,
-  motion,
+  m,
+  domAnimation,
+  LazyMotion,
 } from "framer-motion"
 import { forwardRef, useEffect, useState } from "react"
 import {
@@ -139,21 +141,23 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
     return (
       <AnimatePresence initial={false} custom={custom}>
         {show && (
-          <motion.div
-            ref={ref}
-            {...rest}
-            className={cx("chakra-collapse", className)}
-            style={{
-              overflow: "hidden",
-              display: "block",
-              ...style,
-            }}
-            custom={custom}
-            variants={variants as _Variants}
-            initial={unmountOnExit ? "exit" : false}
-            animate={animate}
-            exit="exit"
-          />
+          <LazyMotion features={domAnimation}>
+            <m.div
+              ref={ref}
+              {...rest}
+              className={cx("chakra-collapse", className)}
+              style={{
+                overflow: "hidden",
+                display: "block",
+                ...style,
+              }}
+              custom={custom}
+              variants={variants as _Variants}
+              initial={unmountOnExit ? "exit" : false}
+              animate={animate}
+              exit="exit"
+            />
+          </LazyMotion>
         )}
       </AnimatePresence>
     )

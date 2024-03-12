@@ -1,5 +1,5 @@
 import { getCSSVar } from "@chakra-ui/styled-system"
-import { HTMLMotionProps, motion } from "framer-motion"
+import { HTMLMotionProps, m, LazyMotion, domAnimation } from "framer-motion"
 import { popperCSSVars } from "../popper"
 import { HTMLChakraProps, chakra, forwardRef, useTheme } from "../system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
@@ -42,15 +42,17 @@ export const TooltipContent = forwardRef<TooltipContentProps, "div">(
         __css={styles}
         {...api.getContentProps(restProps, ref)}
       >
-        <motion.div
-          variants={scale}
-          initial="exit"
-          animate="enter"
-          exit="exit"
-          {...motionProps}
-        >
-          {props.children}
-        </motion.div>
+        <LazyMotion features={domAnimation}>
+          <m.div
+            variants={scale}
+            initial="exit"
+            animate="enter"
+            exit="exit"
+            {...motionProps}
+          >
+            {props.children}
+          </m.div>
+        </LazyMotion>
       </chakra.div>
     )
   },

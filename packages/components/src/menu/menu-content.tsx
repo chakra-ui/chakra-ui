@@ -1,6 +1,12 @@
 import { callAll } from "@chakra-ui/utils/call-all"
 import { cx } from "@chakra-ui/utils/cx"
-import { HTMLMotionProps, motion, Variants } from "framer-motion"
+import {
+  domAnimation,
+  HTMLMotionProps,
+  LazyMotion,
+  m,
+  Variants,
+} from "framer-motion"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { useMenuContext, useMenuStyles } from "./menu-context"
 import { useMenuContent } from "./use-menu"
@@ -35,7 +41,7 @@ const motionVariants: Variants = {
   },
 }
 
-const StyledDiv = chakra(motion.div)
+const StyledDiv = chakra(m.div)
 
 export const MenuContent = forwardRef<MenuContentProps, "div">(
   function MenuContent(props, ref) {
@@ -47,20 +53,22 @@ export const MenuContent = forwardRef<MenuContentProps, "div">(
     const contentProps = useMenuContent(restProps, ref) as any
 
     return (
-      <StyledDiv
-        variants={motionVariants}
-        initial={false}
-        animate={api.isOpen ? "enter" : "exit"}
-        __css={styles.content}
-        {...motionProps}
-        {...contentProps}
-        className={cx("chakra-menu__menu-list", props.className)}
-        onUpdate={api.onTransitionEnd}
-        onAnimationComplete={callAll(
-          api.unstable__animationState.onComplete,
-          contentProps.onAnimationComplete,
-        )}
-      />
+      <LazyMotion features={domAnimation}>
+        <StyledDiv
+          variants={motionVariants}
+          initial={false}
+          animate={api.isOpen ? "enter" : "exit"}
+          __css={styles.content}
+          {...motionProps}
+          {...contentProps}
+          className={cx("chakra-menu__menu-list", props.className)}
+          onUpdate={api.onTransitionEnd}
+          onAnimationComplete={callAll(
+            api.unstable__animationState.onComplete,
+            contentProps.onAnimationComplete,
+          )}
+        />
+      </LazyMotion>
     )
   },
 )
