@@ -31,6 +31,8 @@ export const defaultBaseConfig = defineConfig({
     expanded:
       "&:is([aria-expanded=true], [data-expanded], [data-state=expanded])",
     highlighted: "&[data-highlighted]",
+    complete: "&[data-complete]",
+    incomplete: "&[data-incomplete]",
 
     before: "&::before",
     after: "&::after",
@@ -100,6 +102,7 @@ export const defaultBaseConfig = defineConfig({
     loading: "&:is([data-loading], [aria-busy=true])",
     hidden: "&:is([hidden], [data-hidden])",
 
+    current: "&[data-current]",
     currentPage: "&[aria-current=page]",
     currentStep: "&[aria-current=step]",
 
@@ -653,9 +656,9 @@ export const defaultBaseConfig = defineConfig({
     transitionProperty: {
       values: {
         common:
-          "background-color, border-color, color, fill, stroke, opacity, box-shadow, transform",
+          "background-color, border-color, color, fill, stroke, opacity, box-shadow, translate, transform",
         colors: "background-color, border-color, color, fill, stroke",
-        dimensions: "width, height",
+        size: "width, height",
         position: "left, right, top, bottom",
         background: "background-color, background-image, background-position",
       },

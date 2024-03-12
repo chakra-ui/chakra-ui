@@ -204,9 +204,9 @@ export const cardAnatomy = anatomy("card").parts(
   "footer",
 )
 
-export const stepperAnatomy = anatomy("stepper").parts(
-  "stepper",
-  "step",
+export const stepsAnatomy = anatomy("stepper").parts(
+  "root",
+  "item",
   "title",
   "description",
   "indicator",

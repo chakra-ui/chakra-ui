@@ -29,6 +29,10 @@ export interface Conditions {
   _expanded: string
   /** `&[data-highlighted]` */
   _highlighted: string
+  /** `&[data-complete]` */
+  _complete: string
+  /** `&[data-incomplete]` */
+  _incomplete: string
   /** `&::before` */
   _before: string
   /** `&::after` */
@@ -135,6 +139,8 @@ export interface Conditions {
   _loading: string
   /** `&:is([hidden], [data-hidden])` */
   _hidden: string
+  /** `&[data-current]` */
+  _current: string
   /** `&[aria-current=page]` */
   _currentPage: string
   /** `&[aria-current=step]` */

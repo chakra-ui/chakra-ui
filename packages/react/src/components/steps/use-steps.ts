@@ -1,11 +1,10 @@
 import { useState } from "react"
+import { StepItemStatus } from "./step-context"
 
 export interface UseStepsProps {
   index?: number
   count?: number
 }
-
-export type StepStatus = "complete" | "active" | "incomplete"
 
 export function useSteps(props: UseStepsProps = {}) {
   const { index = 0, count } = props
@@ -19,10 +18,10 @@ export function useSteps(props: UseStepsProps = {}) {
   const isCompleteStep = (step: number) => step < activeStep
   const isIncompleteStep = (step: number) => step > activeStep
 
-  const getStatus = (step: number): StepStatus => {
-    if (step < activeStep) return "complete"
+  const getStatus = (step: number): StepItemStatus => {
+    if (step < activeStep) return "completed"
     if (step > activeStep) return "incomplete"
-    return "active"
+    return "current"
   }
 
   const goToNext = () => {

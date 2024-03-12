@@ -6,20 +6,18 @@ export interface StepNumberProps extends HTMLChakraProps<"div"> {}
 
 export const StepNumber = forwardRef<StepNumberProps, "div">(
   function StepNumber(props, ref) {
-    const { status, index } = useStepContext()
+    const api = useStepContext()
     const styles = useStepperStyles()
-
-    const { children = index + 1, ...restProps } = props
 
     return (
       <chakra.div
         ref={ref}
-        data-status={status}
-        css={styles.number}
-        {...restProps}
+        {...api.dataAttrs}
+        {...props}
+        css={[styles.number, props.css]}
         className={cx("chakra-step__number", props.className)}
       >
-        {children}
+        {props.children ?? api.index + 1}
       </chakra.div>
     )
   },

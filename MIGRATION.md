@@ -896,3 +896,63 @@ After:
 ```tsx
 <Skeleton width="40px" height="40px" rounded="full" />
 ```
+
+## Stepper
+
+- Renamed `Stepper` to `Steps`
+- Changed data attribute format
+  - `data-status=complete` -> `data-complete` and style with `_complete`
+  - `data-status=active` -> `data-current` and style with `_current`
+  - `data-status=incomplete` -> `data-incomplete` and style with `_incomplete`
+- Removed `StepIndicatorContent`, use the `Steps.Status` component to render a
+  component based on status
+
+Before:
+
+```tsx
+<Stepper index={activeStep}>
+  {steps.map((step, index) => (
+    <Step key={index}>
+      <StepIndicator>
+        <StepStatus
+          complete={<StepIcon />}
+          incomplete={<StepNumber />}
+          active={<StepNumber />}
+        />
+      </StepIndicator>
+
+      <Box flexShrink="0">
+        <StepTitle>{step.title}</StepTitle>
+        <StepDescription>{step.description}</StepDescription>
+      </Box>
+
+      <StepSeparator />
+    </Step>
+  ))}
+</Stepper>
+```
+
+After:
+
+```tsx
+<Steps.Root index={activeStep}>
+  {steps.map((step, index) => (
+    <Steps.Item key={index}>
+      <Steps.Indicator>
+        <Steps.Status
+          complete={<StepIcon />}
+          incomplete={<StepNumber />}
+          active={<StepNumber />}
+        />
+      </Steps.Indicator>
+
+      <Box flexShrink="0">
+        <Steps.Title>{step.title}</Steps.Title>
+        <Steps.Description>{step.description}</Steps.Description>
+      </Box>
+
+      <Steps.Separator />
+    </Steps.Item>
+  ))}
+</Stepper>
+```

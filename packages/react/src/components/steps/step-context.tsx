@@ -1,16 +1,14 @@
 import { createContext } from "@chakra-ui/utils"
 import { SystemStyleObject } from "../../styled-system"
 
-export type StepStatusType = "active" | "complete" | "incomplete"
-
-export type Orientation = "horizontal" | "vertical"
+export type StepItemStatus = "current" | "completed" | "incomplete"
 
 export interface StepContext {
   /**
    * The status of the step
    * @type "active" | "complete" | "incomplete"
    */
-  status: StepStatusType
+  status: StepItemStatus
   /**
    * The total number of steps
    */
@@ -20,10 +18,6 @@ export interface StepContext {
    */
   index: number
   /**
-   * The orientation of the stepper
-   */
-  orientation: Orientation
-  /**
    * Whether the step is the last step
    */
   isLast: boolean
@@ -32,9 +26,9 @@ export interface StepContext {
    */
   isFirst: boolean
   /**
-   * Whether to show or not the last separator while in vertical orientation
+   * The data attributes for the step
    */
-  showLastSeparator?: boolean
+  dataAttrs: Record<`data-${string}`, any>
 }
 
 export const [StepContextProvider, useStepContext] = createContext<StepContext>(

@@ -8,24 +8,22 @@ import { StepStatus } from "./step-status"
 export interface StepIndicatorProps extends HTMLChakraProps<"div"> {}
 
 export function StepIndicator(props: StepIndicatorProps) {
-  const { status } = useStepContext()
+  const api = useStepContext()
   const styles = useStepperStyles()
   return (
     <chakra.div
-      data-status={status}
+      {...api.dataAttrs}
       {...props}
-      css={styles.indicator}
+      css={[styles.indicator, props.css]}
       className={cx("chakra-step__indicator", props.className)}
-    />
-  )
-}
-
-export function StepIndicatorContent() {
-  return (
-    <StepStatus
-      complete={<StepIcon />}
-      incomplete={<StepNumber />}
-      active={<StepNumber />}
-    />
+    >
+      {props.children ?? (
+        <StepStatus
+          completed={<StepIcon />}
+          incomplete={<StepNumber />}
+          current={<StepNumber />}
+        />
+      )}
+    </chakra.div>
   )
 }

@@ -2,18 +2,18 @@ import { cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
-export interface StepTitleProps extends HTMLChakraProps<"h3"> {}
+export interface StepTitleProps extends HTMLChakraProps<"div"> {}
 
-export const StepTitle = forwardRef<StepTitleProps, "h3">(
+export const StepTitle = forwardRef<StepTitleProps, "div">(
   function StepTitle(props, ref) {
-    const { status } = useStepContext()
+    const api = useStepContext()
     const styles = useStepperStyles()
     return (
-      <chakra.h3
+      <chakra.div
         ref={ref}
-        data-status={status}
+        {...api.dataAttrs}
         {...props}
-        css={styles.title}
+        css={[styles.title, props.css]}
         className={cx("chakra-step__title", props.className)}
       />
     )

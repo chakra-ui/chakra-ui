@@ -22,15 +22,15 @@ export const badgeRecipe = defineRecipe({
         color: { base: "colorPalette.800", _dark: "colorPalette.300" },
       },
       outline: {
-        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
         color: { base: "colorPalette.800", _dark: "colorPalette.200" },
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
+        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
       },
       surface: {
         bg: { base: "colorPalette.50", _dark: "colorPalette.300/20" },
-        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
         color: { base: "colorPalette.800", _dark: "colorPalette.200" },
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
+        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
       },
       plain: {
         color: { base: "colorPalette.800", _dark: "colorPalette.200" },

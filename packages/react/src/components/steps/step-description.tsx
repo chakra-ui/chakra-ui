@@ -2,19 +2,19 @@ import { cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
-export interface StepDescriptionProps extends HTMLChakraProps<"p"> {}
+export interface StepDescriptionProps extends HTMLChakraProps<"div"> {}
 
-export const StepDescription = forwardRef<StepDescriptionProps, "p">(
+export const StepDescription = forwardRef<StepDescriptionProps, "div">(
   function StepDescription(props: StepDescriptionProps, ref) {
-    const { status } = useStepContext()
+    const api = useStepContext()
     const styles = useStepperStyles()
     return (
-      <chakra.p
+      <chakra.div
         ref={ref}
-        data-status={status}
+        {...api.dataAttrs}
         {...props}
         className={cx("chakra-step__description", props.className)}
-        css={styles.description}
+        css={[styles.description, props.css]}
       />
     )
   },

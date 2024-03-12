@@ -6,19 +6,16 @@ export interface StepSeparatorProps extends HTMLChakraProps<"div"> {}
 
 export const StepSeparator = forwardRef<StepSeparatorProps, "div">(
   function StepSeparator(props, ref) {
-    const { orientation, status, isLast, showLastSeparator } = useStepContext()
+    const api = useStepContext()
     const styles = useStepperStyles()
-
-    if (isLast && !showLastSeparator) return null
 
     return (
       <chakra.div
         ref={ref}
         role="separator"
-        data-orientation={orientation}
-        data-status={status}
-        css={styles.separator}
+        {...api.dataAttrs}
         {...props}
+        css={[styles.separator, props.css]}
         className={cx("chakra-step__separator", props.className)}
       />
     )

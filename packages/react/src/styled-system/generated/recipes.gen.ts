@@ -338,11 +338,11 @@ export interface StatVariantProps {
   size?: "md"
 }
 
-// Stepper
+// Steps
 
-export type StepperSlot =
-  | "stepper"
-  | "step"
+export type StepsSlot =
+  | "root"
+  | "item"
   | "title"
   | "description"
   | "indicator"
@@ -350,10 +350,10 @@ export type StepperSlot =
   | "icon"
   | "number"
 
-export interface StepperVariantProps {
+export interface StepsVariantProps {
   orientation?: "vertical" | "horizontal"
-  status?: "active" | "complete" | "incomplete"
-  size?: "xs" | "sm" | "md" | "lg"
+  variant?: "solid" | "subtle"
+  size?: "sm" | "md" | "lg"
 }
 
 // Switch
@@ -434,7 +434,7 @@ export interface ConfigSlotRecipes {
   Radio: SystemSlotRecipeFn<RadioSlot, RadioVariantProps>
   Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
   Stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
-  Stepper: SystemSlotRecipeFn<StepperSlot, StepperVariantProps>
+  Steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps>
   Switch: SystemSlotRecipeFn<SwitchSlot, SwitchVariantProps>
   Table: SystemSlotRecipeFn<TableSlot, TableVariantProps>
   Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
@@ -462,7 +462,7 @@ export interface ConfigRecipeSlots {
   Radio: RadioSlot
   Slider: SliderSlot
   Stat: StatSlot
-  Stepper: StepperSlot
+  Steps: StepsSlot
   Switch: SwitchSlot
   Table: TableSlot
   Tabs: TabsSlot

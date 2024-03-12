@@ -1,19 +1,16 @@
-export { StepRoot as Root } from "./step-root"
-export type { StepRootProps as RootProps } from "./step-root"
+export { StepsRoot as Root } from "./steps-root"
+export type { StepsRootProps as RootProps } from "./steps-root"
 
-export { useStepContext, useStepperStyles } from "./step-context"
-export type { StepStatusType } from "./step-context"
+export { StepItem as Item } from "./step-item"
+export type { StepItemProps as ItemProps } from "./step-item"
 
 export { StepDescription as Description } from "./step-description"
 export type { StepDescriptionProps as DescriptionProps } from "./step-description"
 
 export { StepIcon as Icon } from "./step-icon"
 
-export {
-  StepIndicator as Indicator,
-  StepIndicatorContent as IndicatorContent,
-} from "./step-indicator"
-export type { StepIndicatorProps } from "./step-indicator"
+export { StepIndicator as Indicator } from "./step-indicator"
+export type { StepIndicatorProps as IndicatorProps } from "./step-indicator"
 
 export { StepNumber as Number } from "./step-number"
 export type { StepNumberProps as NumberProps } from "./step-number"

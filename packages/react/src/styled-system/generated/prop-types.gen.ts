@@ -158,12 +158,7 @@ interface PropertyValueTypes {
   translateX: Tokens["spacing"]
   translateY: Tokens["spacing"]
   transitionDuration: Tokens["durations"]
-  transitionProperty:
-    | "common"
-    | "colors"
-    | "dimensions"
-    | "position"
-    | "background"
+  transitionProperty: "common" | "colors" | "size" | "position" | "background"
   transitionTimingFunction: Tokens["easings"]
   animation: Tokens["animations"]
   animationDuration: Tokens["durations"]

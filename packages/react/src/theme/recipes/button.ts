@@ -75,22 +75,13 @@ export const buttonRecipe = defineRecipe({
         },
       },
       subtle: {
-        bg: {
-          base: "colorPalette.100",
-          _dark: "colorPalette.200/20",
-        },
+        bg: { base: "colorPalette.100", _dark: "colorPalette.400/10" },
         color: { base: "colorPalette.700", _dark: "colorPalette.200" },
         _hover: {
-          bg: {
-            base: "colorPalette.200",
-            _dark: "colorPalette.200/28",
-          },
+          bg: { base: "colorPalette.200", _dark: "colorPalette.400/20" },
         },
         _active: {
-          bg: {
-            base: "colorPalette.300",
-            _dark: "colorPalette.200/30",
-          },
+          bg: { base: "colorPalette.300", _dark: "colorPalette.400/30" },
         },
       },
       outline: {
@@ -99,23 +90,19 @@ export const buttonRecipe = defineRecipe({
         borderColor: { base: "colorPalette.200", _dark: "colorPalette.200/10" },
         color: { base: "colorPalette.700", _dark: "colorPalette.200" },
         _hover: {
-          bg: { base: "colorPalette.50", _dark: "colorPalette.200/20" },
+          bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
         },
         _active: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.200/40" },
-          borderColor: {
-            base: "colorPalette.300",
-            _dark: "colorPalette.300/10",
-          },
+          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
         },
       },
       ghost: {
         color: { base: "colorPalette.700", _dark: "colorPalette.200" },
         _hover: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.200/20" },
+          bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
         },
         _active: {
-          bg: { base: "colorPalette.200", _dark: "colorPalette.200/30" },
+          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
         },
       },
     },
@@ -125,22 +112,13 @@ export const buttonRecipe = defineRecipe({
       variant: "solid",
       colorPalette: "gray",
       css: {
-        bg: {
-          base: "colorPalette.800",
-          _dark: "colorPalette.200",
-        },
+        bg: { base: "gray.800", _dark: "gray.200" },
         color: { base: "white", _dark: "gray.800" },
         _hover: {
-          bg: {
-            base: "colorPalette.700",
-            _dark: "colorPalette.300",
-          },
+          bg: { base: "gray.700", _dark: "gray.300" },
         },
         _active: {
-          bg: {
-            base: "colorPalette.600",
-            _dark: "colorPalette.400",
-          },
+          bg: { base: "gray.600", _dark: "gray.400" },
         },
       },
     },
