@@ -373,7 +373,10 @@ export type TableSlot =
 
 export interface TableVariantProps {
   numeric?: boolean
-  variant?: "simple" | "stripe"
+  interactive?: boolean
+  striped?: boolean
+  showColumnBorder?: boolean
+  variant?: "line" | "outline"
   size?: "sm" | "md" | "lg"
 }
 

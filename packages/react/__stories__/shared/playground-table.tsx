@@ -4,11 +4,15 @@ export const PlaygroundTable = chakra("table", {
   base: {
     marginBottom: "32px",
     borderCollapse: "collapse",
-    "& td": {
+    "& td:not(.chakra-table__cell)": {
       paddingRight: "8",
       paddingBottom: "8",
     },
-    "& th, & thead td": {
+    "& th:not(.chakra-table__column-header)": {
+      fontSize: "sm",
+      color: "fg.muted",
+    },
+    "& thead td:not(.chakra-table__cell)": {
       fontSize: "sm",
       color: "fg.muted",
     },

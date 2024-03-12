@@ -1,104 +1,111 @@
+import { For, Span, useSlotRecipe } from "../src"
 import { Table } from "../src/components/table"
+import { colorPalettes } from "./shared/color-palettes"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / Table",
 }
 
-const SimpleTable = (props: Table.RootProps) => (
+const DemoTable = (props: Table.RootProps) => (
   <Table.Root {...props}>
-    <Table.Caption>Imperial to metric conversion factors</Table.Caption>
-
     <Table.Header>
       <Table.Row>
-        <Table.ColumnHeader>To convert</Table.ColumnHeader>
-        <Table.ColumnHeader>into</Table.ColumnHeader>
-        <Table.ColumnHeader numeric>multiply by</Table.ColumnHeader>
+        <Table.ColumnHeader>Name</Table.ColumnHeader>
+        <Table.ColumnHeader>Email</Table.ColumnHeader>
+        <Table.ColumnHeader numeric>Award Count</Table.ColumnHeader>
       </Table.Row>
     </Table.Header>
-
     <Table.Body>
       <Table.Row>
-        <Table.Cell>inches</Table.Cell>
-        <Table.Cell>millimetres (mm)</Table.Cell>
-        <Table.Cell numeric>25.4</Table.Cell>
+        <Table.Cell>John Doe</Table.Cell>
+        <Table.Cell>johndoe@gmail.com</Table.Cell>
+        <Table.Cell numeric>10</Table.Cell>
       </Table.Row>
       <Table.Row>
-        <Table.Cell>feet</Table.Cell>
-        <Table.Cell>centimetres (cm)</Table.Cell>
-        <Table.Cell numeric>30.48</Table.Cell>
+        <Table.Cell>Jane Doe</Table.Cell>
+        <Table.Cell>janedoe@gmail.com</Table.Cell>
+        <Table.Cell numeric>2</Table.Cell>
       </Table.Row>
-      <Table.Row>
-        <Table.Cell>yards</Table.Cell>
-        <Table.Cell>metres (m)</Table.Cell>
-        <Table.Cell numeric>0.91444</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>miles</Table.Cell>
-        <Table.Cell>kilometres (km)</Table.Cell>
-        <Table.Cell numeric>1.61</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>square inches</Table.Cell>
-        <Table.Cell>sq. millimetres (mm²)</Table.Cell>
-        <Table.Cell numeric>645</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>square feet</Table.Cell>
-        <Table.Cell>square metres (m²)</Table.Cell>
-        <Table.Cell numeric>0.0929</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>square yards</Table.Cell>
-        <Table.Cell>square metres (m²)</Table.Cell>
-        <Table.Cell numeric>0.836</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>acres</Table.Cell>
-        <Table.Cell>hectares</Table.Cell>
-        <Table.Cell numeric>2.47</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cubic inches</Table.Cell>
-        <Table.Cell>millilitres (ml)</Table.Cell>
-        <Table.Cell numeric>16.4</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cubic feet</Table.Cell>
-        <Table.Cell>litres</Table.Cell>
-        <Table.Cell numeric>28.3</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>imperial gallons</Table.Cell>
-        <Table.Cell>litres</Table.Cell>
-        <Table.Cell numeric>4.55</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
-          <abbr>US</abbr> barrels
-        </Table.Cell>
-        <Table.Cell>cubic metres (m³)</Table.Cell>
-        <Table.Cell numeric>0.159</Table.Cell>
+      <Table.Row data-selected="">
+        <Table.Cell>Jack Doe</Table.Cell>
+        <Table.Cell>jackdoe@gmail.com</Table.Cell>
+        <Table.Cell numeric>9</Table.Cell>
       </Table.Row>
     </Table.Body>
+    <Table.Footer>
+      <Table.Row>
+        <Table.Cell colSpan={2}>Total</Table.Cell>
+        <Table.Cell>15</Table.Cell>
+      </Table.Row>
+    </Table.Footer>
   </Table.Root>
 )
 
-export const simpleSM = () => <SimpleTable size="sm" />
+export const Variants = () => {
+  const recipe = useSlotRecipe("Table")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={colorPalettes}>
+          {(c) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.variant}>
+                {(v) => (
+                  <td>
+                    <DemoTable showColumnBorder variant={v} colorPalette={c} />
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}
 
-export const simpleMD = () => <SimpleTable size="md" />
-
-export const simpleLG = () => <SimpleTable size="lg" />
-
-export const stripedSM = () => <SimpleTable variant="striped" size="sm" />
-
-export const stripedMD = () => <SimpleTable variant="striped" size="md" />
-
-export const stripedLG = () => <SimpleTable variant="striped" size="lg" />
-
-export const unstyled = () => <SimpleTable variant="unstyled" size="none" />
-
-export const withOverflow = () => (
-  <Table.Overflow maxW={{ base: "400px", lg: "unset" }}>
-    <SimpleTable />
-  </Table.Overflow>
-)
+export const Sizes = () => {
+  const recipe = useSlotRecipe("Table")
+  return (
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <td />
+          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <For each={recipe.variantMap.variant}>
+          {(c) => (
+            <tr>
+              <td>
+                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                  {c}
+                </Span>
+              </td>
+              <For each={recipe.variantMap.size}>
+                {(v) => (
+                  <td>
+                    <DemoTable size={v} variant={c} striped />
+                  </td>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </PlaygroundTable>
+  )
+}

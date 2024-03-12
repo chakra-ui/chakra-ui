@@ -1,4 +1,4 @@
-import { dataAttr } from "@chakra-ui/utils"
+import { cx, dataAttr } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import { useTableStyles } from "./table-context"
 
@@ -19,7 +19,8 @@ export const TableColumnHeader = forwardRef<TableColumnHeaderProps, "th">(
       <chakra.th
         {...rest}
         ref={ref}
-        css={styles.columnHeader}
+        css={[styles.columnHeader, props.css]}
+        className={cx("chakra-table__column-header", props.className)}
         data-is-numeric={dataAttr(numeric)}
       />
     )

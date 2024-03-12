@@ -8,21 +8,28 @@ export const tableSlotRecipe = defineSlotRecipe({
       fontVariantNumeric: "lining-nums tabular-nums",
       borderCollapse: "collapse",
       width: "full",
-    },
-    columnHeader: {
-      fontFamily: "heading",
-      fontWeight: "bold",
-      textTransform: "uppercase",
-      letterSpacing: "wider",
       textAlign: "start",
+      verticalAlign: "top",
+    },
+    row: {
+      _selected: {
+        bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+        shadowColor: "colorPalette.600",
+        boxShadow: "inset 2px 0 0px 0px var(--shadow-color)",
+      },
     },
     cell: {
       textAlign: "start",
     },
+    columnHeader: {
+      fontWeight: "semibold",
+      textAlign: "start",
+    },
     caption: {
-      mt: 4,
-      fontFamily: "heading",
-      textAlign: "center",
+      fontWeight: "medium",
+      fontSize: "xs",
+    },
+    footer: {
       fontWeight: "medium",
     },
   },
@@ -33,120 +40,120 @@ export const tableSlotRecipe = defineSlotRecipe({
         cell: { textAlign: "end" },
       },
     },
-    variant: {
-      simple: {
-        columnHeader: {
-          color: { base: "gray.600", _dark: "gray.400" },
-          borderBottomWidth: "1px",
-          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
-        },
-        cell: {
-          borderBottomWidth: "1px",
-          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
-        },
-        caption: {
-          color: { base: "gray.600", _dark: "gray.100" },
-        },
-        footer: {
-          "& tr:last-of-type th": {
-            borderBottomWidth: 0,
+    interactive: {
+      true: {
+        row: {
+          _hover: {
+            bg: { base: "colorPalette.100", _dark: "colorPalette.700" },
           },
         },
       },
-      stripe: {
+    },
+
+    striped: {
+      true: {
+        row: {
+          "&:nth-of-type(even)": {
+            bg: "bg.subtle",
+          },
+        },
+      },
+    },
+
+    showColumnBorder: {
+      true: {
         columnHeader: {
-          color: { base: "gray.600", _dark: "gray.400" },
+          "&:not(:last-of-type)": {
+            borderInlineEndWidth: "1px",
+          },
+        },
+        cell: {
+          "&:not(:last-of-type)": {
+            borderInlineEndWidth: "1px",
+          },
+        },
+      },
+    },
+
+    variant: {
+      line: {
+        columnHeader: {
           borderBottomWidth: "1px",
-          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
         },
         cell: {
           borderBottomWidth: "1px",
-          borderColor: { base: "colorPalette.100", _dark: "colorPalette.700" },
         },
-        caption: {
-          color: { base: "gray.600", _dark: "gray.100" },
+      },
+
+      outline: {
+        root: {
+          boxShadow: "0 0 0 1px {colors.border}",
+          borderRadius: "var(--table-radius)",
+          overflow: "hidden",
         },
-        body: {
-          "& tr:nth-of-type(odd)": {
-            "& :where(th, td)": {
-              borderBottomWidth: "1px",
-              borderColor: {
-                base: "colorPalette.100",
-                _dark: "colorPalette.700",
-              },
-            },
-            "& td": {
-              bg: { base: "colorPalette.100", _dark: "colorPalette.700" },
-            },
+        columnHeader: {
+          borderBottomWidth: "1px",
+        },
+        header: {
+          bg: "bg.subtle",
+        },
+        row: {
+          "&:not(:last-of-type)": {
+            borderBottomWidth: "1px",
           },
         },
         footer: {
-          "& tr:last-of-type th": {
-            borderBottomWidth: 0,
-          },
+          borderTopWidth: "1px",
         },
       },
     },
     size: {
       sm: {
+        root: {
+          "--table-radius": "radii.sm",
+          fontSize: "sm",
+        },
         columnHeader: {
-          px: "4",
-          py: "1",
-          lineHeight: "4",
-          fontSize: "xs",
+          px: "2",
+          py: "2",
         },
         cell: {
-          px: "4",
+          px: "2",
           py: "2",
-          fontSize: "sm",
-          lineHeight: "4",
-        },
-        caption: {
-          px: "4",
-          py: "2",
-          fontSize: "xs",
         },
       },
       md: {
+        root: {
+          "--table-radius": "radii.md",
+          fontSize: "sm",
+        },
         columnHeader: {
-          px: "6",
+          px: "3",
           py: "3",
-          lineHeight: "4",
-          fontSize: "xs",
         },
         cell: {
-          px: "6",
-          py: "4",
-          lineHeight: "5",
-        },
-        caption: {
-          px: "6",
-          py: "2",
-          fontSize: "sm",
+          px: "3",
+          py: "3",
         },
       },
       lg: {
+        root: {
+          "--table-radius": "radii.md",
+          fontSize: "md",
+        },
         columnHeader: {
-          px: "8",
-          py: "4",
-          lineHeight: "5",
-          fontSize: "sm",
+          px: "4",
+          py: "3",
         },
         cell: {
-          px: "8",
-          py: "5",
-          lineHeight: "6",
-        },
-        caption: {
-          px: "6",
-          py: "2",
-          fontSize: "md",
+          px: "4",
+          py: "3",
         },
       },
     },
   },
   defaultVariants: {
-    variant: "simple",
+    variant: "line",
     size: "md",
   },
 })
