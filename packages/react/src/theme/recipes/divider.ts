@@ -1,8 +1,9 @@
 import { defineRecipe } from "../../styled-system"
 
-export const dividerRecipe = defineRecipe({
+export const separatorRecipe = defineRecipe({
   base: {
-    borderColor: "border.muted",
+    borderColor: "border",
+    "--divider-border-width": "1px",
   },
   variants: {
     variant: {
@@ -13,8 +14,19 @@ export const dividerRecipe = defineRecipe({
         borderStyle: "dashed",
       },
     },
+    orientation: {
+      vertical: {
+        height: "100%",
+        borderInlineStartWidth: "var(--divider-border-width)",
+      },
+      horizontal: {
+        width: "100%",
+        borderTopWidth: "var(--divider-border-width)",
+      },
+    },
   },
   defaultVariants: {
     variant: "solid",
+    orientation: "horizontal",
   },
 })

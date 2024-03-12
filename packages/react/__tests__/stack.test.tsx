@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import { useEffect, useState } from "react"
-import { Box, Divider, Flex, Stack } from "../src"
+import { Box, Flex, Separator, Stack } from "../src"
 
 const data = [
   { id: "apple" },
@@ -58,7 +58,7 @@ describe("Stack", () => {
           >
             delete first
           </Box>
-          <Stack divider={<Divider />}>
+          <Stack divider={<Separator />}>
             {fruits.map((i) => (
               <Fruit key={i.id} name={i.id} onUnmount={unMountMock} />
             ))}

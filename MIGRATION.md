@@ -956,3 +956,11 @@ After:
   ))}
 </Stepper>
 ```
+
+## Divider
+
+- Rename to `Separator`
+- Switch to `div` element for better layout control
+- Simplify component to rely on `borderTopWidth` and `borderInlineStartWidth`
+- To change the thickness reliably, set the `--divider-border-width` css
+  variable

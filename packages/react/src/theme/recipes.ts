@@ -2,7 +2,7 @@ import { badgeRecipe } from "./recipes/badge"
 import { buttonRecipe } from "./recipes/button"
 import { codeRecipe } from "./recipes/code"
 import { containerRecipe } from "./recipes/container"
-import { dividerRecipe } from "./recipes/divider"
+import { separatorRecipe } from "./recipes/divider"
 import { headingRecipe } from "./recipes/heading"
 import { iconRecipe } from "./recipes/icon"
 import { inputRecipe } from "./recipes/input"
@@ -22,7 +22,6 @@ export const recipes = {
   Button: buttonRecipe,
   Code: codeRecipe,
   Container: containerRecipe,
-  Divider: dividerRecipe,
   Heading: headingRecipe,
   Input: inputRecipe,
   InputAddon: inputAddonRecipe,
@@ -30,6 +29,7 @@ export const recipes = {
   Link: linkRecipe,
   Mark: markRecipe,
   PinInput: pinInputRecipe,
+  Separator: separatorRecipe,
   Skeleton: skeletonRecipe,
   SkipLink: skipLinkRecipe,
   Spinner: spinnerRecipe,

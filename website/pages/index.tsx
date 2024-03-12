@@ -4,7 +4,7 @@ import {
   Button,
   Center,
   Circle,
-  Divider,
+  Separator,
   Flex,
   Grid,
   HStack,
@@ -234,7 +234,7 @@ const HomePage = ({
           </Container>
         </Box>
 
-        <Divider />
+        <Separator />
 
         <Box as='section' pt='48px' pb='32px'>
           <Container textAlign='center'>

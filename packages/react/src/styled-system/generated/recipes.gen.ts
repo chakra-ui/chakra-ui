@@ -22,10 +22,6 @@ export interface CodeVariantProps {
 
 export interface ContainerVariantProps {}
 
-export interface DividerVariantProps {
-  variant?: "solid" | "dashed"
-}
-
 export interface HeadingVariantProps {
   size?: "4xl" | "3xl" | "2xl" | "xl" | "lg" | "md" | "sm" | "xs"
 }
@@ -56,6 +52,11 @@ export interface PinInputVariantProps {
   variant?: "outline" | "filled" | "flushed"
 }
 
+export interface SeparatorVariantProps {
+  variant?: "solid" | "dashed"
+  orientation?: "vertical" | "horizontal"
+}
+
 export interface SkeletonVariantProps {
   isLoaded?: boolean
   variant?: "pulse" | "shine" | "none"
@@ -81,7 +82,6 @@ export interface ConfigRecipes {
   Button: SystemRecipeFn<ButtonVariantProps>
   Code: SystemRecipeFn<CodeVariantProps>
   Container: SystemRecipeFn<ContainerVariantProps>
-  Divider: SystemRecipeFn<DividerVariantProps>
   Heading: SystemRecipeFn<HeadingVariantProps>
   Input: SystemRecipeFn<InputVariantProps>
   InputAddon: SystemRecipeFn<InputAddonVariantProps>
@@ -89,6 +89,7 @@ export interface ConfigRecipes {
   Link: SystemRecipeFn<LinkVariantProps>
   Mark: SystemRecipeFn<MarkVariantProps>
   PinInput: SystemRecipeFn<PinInputVariantProps>
+  Separator: SystemRecipeFn<SeparatorVariantProps>
   Skeleton: SystemRecipeFn<SkeletonVariantProps>
   SkipLink: SystemRecipeFn<SkipLinkVariantProps>
   Spinner: SystemRecipeFn<SpinnerVariantProps>
