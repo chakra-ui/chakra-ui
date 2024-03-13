@@ -232,7 +232,8 @@ export interface Breakpoint {
   only(key: string): string
   keys(): string[]
   values: BreakpointEntry[]
-  toConditions(): Dict
+  conditions: Dict
+  getCondition(key: string): string
 }
 
 /* -----------------------------------------------------------------------------
@@ -245,6 +246,7 @@ export interface Condition {
   has(key: string): boolean
   resolve(key: string): string
   breakpoints: string[]
+  expandAtRule(key: string): string
 }
 
 export interface ConditionConfig {

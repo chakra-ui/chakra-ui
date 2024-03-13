@@ -55,6 +55,12 @@ export function createBreakpoints(
     return Object.fromEntries(Object.entries(ranges))
   }
 
+  const conditions = toConditions()
+
+  const getCondition = (key: string) => {
+    return conditions[key]
+  }
+
   function keys() {
     return ["base", ...Object.keys(values)]
   }
@@ -71,7 +77,8 @@ export function createBreakpoints(
     values: Object.values(values),
     only,
     keys,
-    toConditions,
+    conditions,
+    getCondition,
     up,
     down,
   }

@@ -47,9 +47,11 @@ export function createCssFn(context: CssFnOptions) {
 
       let transformed = transform(prop, value) ?? Object.create(null)
 
-      if (important) {
-        transformed = imp(transformed)
-      }
+      transformed = walkObject(
+        transformed,
+        (v) => (isString(v) && important ? `${v} !important` : v),
+        { getKey: (prop) => conditions.expandAtRule(prop) },
+      )
 
       mergeByPath(result, selectors, transformed)
     })
@@ -66,10 +68,6 @@ function mergeByPath(target: Dict, paths: string[], value: Dict) {
     acc = acc[path]
   }
   mergeWith(acc, value)
-}
-
-function imp(value: Dict) {
-  return walkObject(value, (v) => (isString(v) ? `${v} !important` : v))
 }
 
 function compactFn(...styles: Dict[]) {

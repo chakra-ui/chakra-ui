@@ -14,7 +14,7 @@ export const createConditions = (options: ConditionConfig): Condition => {
   const { breakpoints, conditions: conds = {} } = options
 
   const conditions = mapEntries(conds, (key, value) => [`_${key}`, value])
-  const values = Object.assign({}, conditions, breakpoints.toConditions())
+  const values = Object.assign({}, conditions, breakpoints.conditions)
 
   function keys() {
     return Object.keys(values)
@@ -36,6 +36,11 @@ export const createConditions = (options: ConditionConfig): Condition => {
       })
   }
 
+  function expandAtRule(key: string) {
+    if (!key.startsWith("@breakpoint")) return key
+    return breakpoints.getCondition(key.replace("@breakpoint ", ""))
+  }
+
   function resolve(key: string) {
     return Reflect.get(values, key) || key
   }
@@ -46,5 +51,6 @@ export const createConditions = (options: ConditionConfig): Condition => {
     has,
     resolve,
     breakpoints: breakpoints.keys(),
+    expandAtRule,
   }
 }

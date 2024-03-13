@@ -356,4 +356,30 @@ describe("create css", () => {
       }
     `)
   })
+
+  test("should expand hideFrom and showFrom", () => {
+    const result = css({
+      hideFrom: "md",
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "@media screen and (min-width: 48rem)": {
+          "display": "none",
+        },
+      }
+    `)
+
+    const result2 = css({
+      hideBelow: "md",
+    })
+
+    expect(result2).toMatchInlineSnapshot(`
+      {
+        "@media screen and (max-width: 2.9975rem)": {
+          "display": "none",
+        },
+      }
+    `)
+  })
 })

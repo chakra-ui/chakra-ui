@@ -1,4 +1,5 @@
-import { Box, Circle, Flex, Kbd, Spacer, Square } from "../src"
+import { Box, Circle, Flex, HStack, Kbd, Spacer, Square } from "../src"
+import { DecorativeBox } from "./shared/decorative-box"
 
 export default {
   title: "Layout / Box",
@@ -47,13 +48,16 @@ export const square = () => (
   </Square>
 )
 
-export const hideShow = () => (
-  <Box>
-    <Box hideBelow="md">
-      <p>This text should hide below md</p>
-    </Box>
-    <Box hideFrom="md">
-      <p>This text should hide from md</p>
-    </Box>
-  </Box>
+export const HideBelow = () => (
+  <HStack>
+    <DecorativeBox bg="green.300" hideBelow="md" height="40px" flex="1" />
+    <DecorativeBox height="40px" flex="1" />
+  </HStack>
+)
+
+export const HideFrom = () => (
+  <HStack>
+    <DecorativeBox bg="green.300" hideFrom="md" height="40px" flex="1" />
+    <DecorativeBox height="40px" flex="1" />
+  </HStack>
 )

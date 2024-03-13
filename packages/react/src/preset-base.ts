@@ -485,12 +485,12 @@ export const defaultBaseConfig = defineConfig({
     hideFrom: {
       values: "breakpoints",
       //@ts-ignore
-      transform: (v) => ({ [`@screen min:${v}`]: { display: "none" } }),
+      transform: (v) => ({ [`@breakpoint ${v}`]: { display: "none" } }),
     },
     hideBelow: {
       values: "breakpoints",
       //@ts-ignore
-      transform: (v) => ({ [`@screen max:${v}`]: { display: "none" } }),
+      transform: (v) => ({ [`@breakpoint ${v}Down`]: { display: "none" } }),
     },
     // scroll
     overscrollBehavior: { shorthand: ["overscroll"] },
