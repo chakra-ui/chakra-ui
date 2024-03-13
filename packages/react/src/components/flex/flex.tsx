@@ -1,9 +1,5 @@
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
 
 export interface FlexOptions {
   /**
@@ -60,27 +56,29 @@ export interface FlexProps extends HTMLChakraProps<"div", FlexOptions> {}
  *
  * @see Docs https://chakra-ui.com/flex
  */
-export const Flex = forwardRef<FlexProps, "div">(function Flex(props, ref) {
-  const { direction, align, justify, wrap, basis, grow, shrink, ...rest } =
-    props
+export const Flex = forwardRef<HTMLDivElement, FlexProps>(
+  function Flex(props, ref) {
+    const { direction, align, justify, wrap, basis, grow, shrink, ...rest } =
+      props
 
-  return (
-    <chakra.div
-      ref={ref}
-      {...rest}
-      css={{
-        display: "flex",
-        flexDirection: direction,
-        alignItems: align,
-        justifyContent: justify,
-        flexWrap: wrap,
-        flexBasis: basis,
-        flexGrow: grow,
-        flexShrink: shrink,
-        ...props.css,
-      }}
-    />
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        {...rest}
+        css={{
+          display: "flex",
+          flexDirection: direction,
+          alignItems: align,
+          justifyContent: justify,
+          flexWrap: wrap,
+          flexBasis: basis,
+          flexGrow: grow,
+          flexShrink: shrink,
+          ...props.css,
+        }}
+      />
+    )
+  },
+)
 
 Flex.displayName = "Flex"

@@ -1,10 +1,10 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   SystemStyleObject,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { CardStylesProvider } from "./card-context"
@@ -32,7 +32,7 @@ export interface CardRootProps
   extends HTMLChakraProps<"div", CardOptions>,
     SlotRecipeProps<"Card"> {}
 
-export const CardRoot = forwardRef<CardRootProps, "div">(
+export const CardRoot = forwardRef<HTMLDivElement, CardRootProps>(
   function CardRoot(props, ref) {
     const recipe = useSlotRecipe("Card", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

@@ -1,11 +1,6 @@
 import { cx, getValidChildren } from "@chakra-ui/utils"
-import { Fragment, cloneElement, useMemo } from "react"
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "../../styled-system"
+import { Fragment, cloneElement, forwardRef, useMemo } from "react"
+import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
 import type { StackDirection } from "./get-separator-style"
 import { getSeparatorStyles } from "./get-separator-style"
 
@@ -50,55 +45,57 @@ export interface StackProps extends HTMLChakraProps<"div", StackOptions> {}
  * @see Docs https://chakra-ui.com/stack
  *
  */
-export const Stack = forwardRef<StackProps, "div">(function Stack(props, ref) {
-  const {
-    direction = "column",
-    align,
-    justify,
-    gap = "0.5rem",
-    wrap,
-    children,
-    separator,
-    className,
-    ...rest
-  } = props
+export const Stack = forwardRef<HTMLDivElement, StackProps>(
+  function Stack(props, ref) {
+    const {
+      direction = "column",
+      align,
+      justify,
+      gap = "0.5rem",
+      wrap,
+      children,
+      separator,
+      className,
+      ...rest
+    } = props
 
-  const separatorStyle = useMemo(
-    () => getSeparatorStyles({ gap, direction }),
-    [gap, direction],
-  )
+    const separatorStyle = useMemo(
+      () => getSeparatorStyles({ gap, direction }),
+      [gap, direction],
+    )
 
-  const clones = useMemo(() => {
-    if (!separator) return children
-    return getValidChildren(children).map((child, index, arr) => {
-      const key = typeof child.key !== "undefined" ? child.key : index
-      const sep = cloneElement(separator, {
-        css: [separatorStyle, separator.props.css],
+    const clones = useMemo(() => {
+      if (!separator) return children
+      return getValidChildren(children).map((child, index, arr) => {
+        const key = typeof child.key !== "undefined" ? child.key : index
+        const sep = cloneElement(separator, {
+          css: [separatorStyle, separator.props.css],
+        })
+        return (
+          <Fragment key={key}>
+            {child}
+            {index === arr.length - 1 ? null : sep}
+          </Fragment>
+        )
       })
-      return (
-        <Fragment key={key}>
-          {child}
-          {index === arr.length - 1 ? null : sep}
-        </Fragment>
-      )
-    })
-  }, [children, separator, separatorStyle])
+    }, [children, separator, separatorStyle])
 
-  return (
-    <chakra.div
-      ref={ref}
-      display="flex"
-      alignItems={align}
-      justifyContent={justify}
-      flexDirection={direction}
-      flexWrap={wrap}
-      gap={separator ? undefined : gap}
-      className={cx("chakra-stack", className)}
-      {...rest}
-    >
-      {clones}
-    </chakra.div>
-  )
-})
+    return (
+      <chakra.div
+        ref={ref}
+        display="flex"
+        alignItems={align}
+        justifyContent={justify}
+        flexDirection={direction}
+        flexWrap={wrap}
+        gap={separator ? undefined : gap}
+        className={cx("chakra-stack", className)}
+        {...rest}
+      >
+        {clones}
+      </chakra.div>
+    )
+  },
+)
 
 Stack.displayName = "Stack"

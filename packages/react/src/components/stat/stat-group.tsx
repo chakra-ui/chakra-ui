@@ -1,9 +1,10 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface StatGroupProps extends HTMLChakraProps<"div"> {}
 
-export const StatGroup = forwardRef<StatGroupProps, "div">(
+export const StatGroup = forwardRef<HTMLDivElement, StatGroupProps>(
   function StatGroup(props, ref) {
     return (
       <chakra.div

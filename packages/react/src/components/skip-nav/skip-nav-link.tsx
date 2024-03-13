@@ -1,9 +1,9 @@
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
   defineStyle,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -11,7 +11,7 @@ export interface SkipNavLinkProps
   extends HTMLChakraProps<"a">,
     RecipeProps<"SkipNavLink"> {}
 
-const fallbackId = "chakra-skip-nav"
+export const fallbackId = "chakra-skip-nav"
 
 const baseStyle = defineStyle({
   userSelect: "none",
@@ -36,7 +36,7 @@ const baseStyle = defineStyle({
  *
  * @see Docs https://chakra-ui.com/docs/components/skip-nav
  */
-export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
+export const SkipNavLink = forwardRef<HTMLAnchorElement, SkipNavLinkProps>(
   function SkipNavLink(props, ref) {
     const recipe = useRecipe("SkipLink", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
@@ -56,27 +56,3 @@ export const SkipNavLink = forwardRef<SkipNavLinkProps, "a">(
 )
 
 SkipNavLink.displayName = "SkipNavLink"
-
-export interface SkipNavContentProps extends HTMLChakraProps<"div"> {}
-
-/**
- * Renders a div as the target for the `SkipNavLink`.
- *
- * @see Docs https://chakra-ui.com/docs/components/skip-nav
- */
-export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
-  function SkipNavContent(props, ref) {
-    const { id = fallbackId, ...rest } = props
-    return (
-      <chakra.div
-        ref={ref}
-        id={id}
-        tabIndex={-1}
-        style={{ outline: 0 }}
-        {...rest}
-      />
-    )
-  },
-)
-
-SkipNavContent.displayName = "SkipNavContent"

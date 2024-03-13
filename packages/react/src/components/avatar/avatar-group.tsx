@@ -1,10 +1,10 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipePropsProvider,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 
@@ -15,7 +15,7 @@ export interface AvatarGroupProps
 /**
  * AvatarGroup displays a number of avatars grouped together in a stack.
  */
-export const AvatarGroup = forwardRef<AvatarGroupProps, "div">(
+export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
   function AvatarGroup(props, ref) {
     const recipe = useSlotRecipe("Avatar")
     const [variantProps, localProps] = recipe.splitVariantProps(props)

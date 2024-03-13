@@ -1,11 +1,7 @@
 import { HTMLMotionProps, motion } from "framer-motion"
+import { forwardRef } from "react"
 import { popperCSSVars } from "../../popper"
-import {
-  HTMLChakraProps,
-  chakra,
-  forwardRef,
-  useSystemContext,
-} from "../../styled-system"
+import { HTMLChakraProps, chakra, useSystemContext } from "../../styled-system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
 import { scale } from "./tooltip-transition"
 
@@ -16,7 +12,7 @@ export interface TooltipContentProps extends HTMLChakraProps<"div"> {
   motionProps?: HTMLMotionProps<"div">
 }
 
-export const TooltipContent = forwardRef<TooltipContentProps, "div">(
+export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   function TooltipContent(props, ref) {
     const styles = useTooltipStyles()
     const api = useTooltipContext()

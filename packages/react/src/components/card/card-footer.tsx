@@ -1,30 +1,27 @@
 import { cx } from "@chakra-ui/utils"
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
 import { useCardStyles } from "./card-context"
 
 export interface CardFooterProps extends HTMLChakraProps<"div"> {
+  /**
+   * The justify-content CSS property defines the alignment along the main axis.
+   */
   justify?: SystemStyleObject["justifyContent"]
 }
 
-export const CardFooter = forwardRef<CardFooterProps, "div">(
+export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   function CardFooter(props, ref) {
-    const { className, justify, ...rest } = props
+    const { justify, ...rest } = props
     const styles = useCardStyles()
     return (
       <chakra.div
         ref={ref}
-        className={cx("chakra-card__footer", className)}
-        css={{
-          display: "flex",
-          justifyContent: justify,
-          ...styles.footer,
-        }}
+        display="flex"
+        justifyContent={justify}
         {...rest}
+        className={cx("chakra-card__footer", props.className)}
+        css={[styles.footer, props.css]}
       />
     )
   },

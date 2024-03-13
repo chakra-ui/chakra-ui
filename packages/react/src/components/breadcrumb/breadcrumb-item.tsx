@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbItemProps extends HTMLChakraProps<"li"> {}
@@ -11,7 +12,7 @@ export interface BreadcrumbItemProps extends HTMLChakraProps<"li"> {}
  * @see Docs https://chakra-ui.com/breadcrumb
  */
 
-export const BreadcrumbItem = forwardRef<BreadcrumbItemProps, "li">(
+export const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
   function BreadcrumbItem(props, ref) {
     const styles = useBreadcrumbStyles()
     return (

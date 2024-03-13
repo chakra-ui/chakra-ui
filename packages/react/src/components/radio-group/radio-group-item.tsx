@@ -1,9 +1,9 @@
 import { callAll, cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import {
@@ -23,11 +23,11 @@ export interface RadioGroupItemProps
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
 }
 
-export const RadioGroupItem = forwardRef<RadioGroupItemProps, "input">(
+export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
   function RadioGroupItem(props, ref) {
     const api = useRadioGroupContext()
-    const recipe = useSlotRecipe("Radio")
 
+    const recipe = useSlotRecipe("Radio")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

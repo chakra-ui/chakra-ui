@@ -1,11 +1,6 @@
 import { cx, mapResponsive } from "@chakra-ui/utils"
-import { Children } from "react"
-import {
-  ConditionalValue,
-  HTMLChakraProps,
-  chakra,
-  forwardRef,
-} from "../../styled-system"
+import { Children, forwardRef } from "react"
+import { ConditionalValue, HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface AspectRatioProps
   extends Omit<HTMLChakraProps<"div">, "aspectRatio"> {
@@ -23,8 +18,8 @@ export interface AspectRatioProps
  *
  * @see Docs https://chakra-ui.com/aspectratiobox
  */
-export const AspectRatio = forwardRef<AspectRatioProps, "div">(
-  function (props, ref) {
+export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
+  function AspectRatio(props, ref) {
     const { ratio = 4 / 3, children, className, ...rest } = props
 
     // enforce single child

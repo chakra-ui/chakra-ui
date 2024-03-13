@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useDialogStyles } from "./dialog-context"
 
 export interface DialogFooterProps extends HTMLChakraProps<"footer"> {}
@@ -8,7 +9,7 @@ export interface DialogFooterProps extends HTMLChakraProps<"footer"> {}
  * Houses the action buttons of the dialog.
  * @see Docs https://chakra-ui.com/dialog
  */
-export const DialogFooter = forwardRef<DialogFooterProps, "footer">(
+export const DialogFooter = forwardRef<HTMLElement, DialogFooterProps>(
   function DialogFooter(props, ref) {
     const styles = useDialogStyles()
 
@@ -16,7 +17,7 @@ export const DialogFooter = forwardRef<DialogFooterProps, "footer">(
       <chakra.footer
         ref={ref}
         {...props}
-        css={styles.footer}
+        css={[styles.footer, props.css]}
         className={cx("chakra-dialog__footer", props.className)}
       />
     )

@@ -1,5 +1,5 @@
 import { mergeRefs, useDisclosure, useEventListener } from "@chakra-ui/hooks"
-import { PropGetter, callAllHandlers, getScrollParent } from "@chakra-ui/utils"
+import { callAllHandlers, getScrollParent } from "@chakra-ui/utils"
 import React, {
   type RefObject,
   useCallback,
@@ -8,6 +8,7 @@ import React, {
   useRef,
 } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../../popper"
+import { PropGetterFn } from "../../styled-system"
 
 export interface UseTooltipProps
   extends Pick<
@@ -232,7 +233,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
    */
   useEventListener(() => ref.current, "pointerleave", closeWithDelay)
 
-  const getTriggerProps: PropGetter = useCallback(
+  const getTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, _ref = null) => {
       const triggerProps = {
         ...props,
@@ -261,7 +262,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     ],
   )
 
-  const getPositionerProps: PropGetter = useCallback(
+  const getPositionerProps: PropGetterFn<"div"> = useCallback(
     (props = {}, forwardedRef = null) =>
       getPopperProps(
         {
@@ -279,7 +280,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     [getPopperProps, arrowSize, arrowShadowColor],
   )
 
-  const getContentProps: PropGetter = useCallback(
+  const getContentProps: PropGetterFn<"div"> = useCallback(
     (props = {}, ref = null) => {
       const styles: React.CSSProperties = {
         ...props.style,

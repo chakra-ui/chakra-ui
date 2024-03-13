@@ -2,8 +2,6 @@ import { splitProps } from "@chakra-ui/utils"
 import styled from "@emotion/styled"
 import {
   Children,
-  ElementRef,
-  ElementType,
   createElement,
   forwardRef,
   isValidElement,
@@ -176,13 +174,3 @@ const toArray = (val: any) => {
   const res = Array.isArray(val) ? val : [val]
   return res.filter(Boolean).flat()
 }
-
-function _forwardRef<P, T extends ElementType>(
-  component: React.ForwardRefRenderFunction<ElementRef<T>, P>,
-) {
-  return forwardRef(component) as React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<P> & React.RefAttributes<T>
-  >
-}
-
-export { _forwardRef as forwardRef }

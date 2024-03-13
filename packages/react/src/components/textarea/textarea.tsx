@@ -1,13 +1,12 @@
 import { cx, omit } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
-import { FieldOptions, useField } from "../field"
-import { splitFieldProps } from "../field/field-props"
+import { FieldOptions, splitFieldProps, useField } from "../field"
 
 interface TextareaOptions {
   /**
@@ -38,7 +37,7 @@ export interface TextareaProps
  * Textarea is used to enter an amount of text that's longer than a single line
  * @see Docs https://chakra-ui.com/textarea
  */
-export const Textarea = forwardRef<TextareaProps, "textarea">(
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   function Textarea(props, ref) {
     const recipe = useRecipe("Textarea", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
@@ -55,7 +54,7 @@ export const Textarea = forwardRef<TextareaProps, "textarea">(
         {...elementProps}
         {...fieldProps}
         className={cx("chakra-textarea", localProps.className)}
-        css={textareaStyles}
+        css={[textareaStyles, localProps.css]}
       />
     )
   },

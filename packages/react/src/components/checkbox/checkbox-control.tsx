@@ -1,11 +1,12 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 import { CheckboxIndicator } from "./checkbox-indicator"
 
 export interface CheckboxControlProps extends HTMLChakraProps<"span"> {}
 
-export const CheckboxControl = forwardRef<CheckboxControlProps, "span">(
+export const CheckboxControl = forwardRef<HTMLElement, CheckboxControlProps>(
   function CheckboxControl(props, ref) {
     const { children = <CheckboxIndicator />, ...restProps } = props
 

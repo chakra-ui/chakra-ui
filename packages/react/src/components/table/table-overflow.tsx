@@ -1,9 +1,10 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface TableOverflowProps extends HTMLChakraProps<"div"> {}
 
-export const TableOverflow = forwardRef<TableOverflowProps, "div">(
+export const TableOverflow = forwardRef<HTMLDivElement, TableOverflowProps>(
   function TableOverflow(props: HTMLChakraProps<"div">, ref) {
     const { overflow, overflowX, className, ...rest } = props
     return (
@@ -18,6 +19,7 @@ export const TableOverflow = forwardRef<TableOverflowProps, "div">(
           overflowX: overflow ?? overflowX ?? "auto",
           overflowY: "hidden",
           maxWidth: "100%",
+          ...props.css,
         }}
       />
     )

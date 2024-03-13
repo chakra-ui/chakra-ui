@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import {
   useRangeSliderContext,
   useRangeSliderStyles,
@@ -15,16 +16,15 @@ export interface RangeSliderMarkProps extends HTMLChakraProps<"div"> {
  *
  * @see Docs https://chakra-ui.com/slider
  */
-export const RangeSliderMark = forwardRef<RangeSliderMarkProps, "div">(
+export const RangeSliderMark = forwardRef<HTMLDivElement, RangeSliderMarkProps>(
   function RangeSliderMark(props, ref) {
     const api = useRangeSliderContext()
     const styles = useRangeSliderStyles()
-    const markProps = api.getMarkerProps(props, ref)
     return (
       <chakra.div
-        {...markProps}
+        {...api.getMarkerProps(props, ref)}
         className={cx("chakra-slider__marker", props.className)}
-        css={styles.mark}
+        css={[styles.mark, props.css]}
       />
     )
   },

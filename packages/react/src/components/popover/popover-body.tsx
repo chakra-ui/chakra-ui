@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverBodyProps extends HTMLChakraProps<"div"> {}
@@ -8,17 +9,16 @@ export interface PopoverBodyProps extends HTMLChakraProps<"div"> {}
  * at least one interactive element.
  */
 
-export const PopoverBody = forwardRef<PopoverBodyProps, "div">(
+export const PopoverBody = forwardRef<HTMLDivElement, PopoverBodyProps>(
   function PopoverBody(props, ref) {
-    const { getBodyProps } = usePopoverContext()
-
+    const api = usePopoverContext()
     const styles = usePopoverStyles()
 
     return (
       <chakra.div
-        {...getBodyProps(props, ref)}
+        {...api.getBodyProps(props, ref)}
         className={cx("chakra-popover__body", props.className)}
-        css={styles.body}
+        css={[styles.body, props.css]}
       />
     )
   },

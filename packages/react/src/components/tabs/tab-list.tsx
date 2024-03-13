@@ -1,8 +1,8 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   chakra,
-  forwardRef,
   mergeProps,
   mergeRefs,
 } from "../../styled-system"
@@ -11,7 +11,7 @@ import { useTabList } from "./use-tab-list"
 
 export interface TabListProps extends HTMLChakraProps<"div"> {}
 
-export const TabList = forwardRef<TabListProps, "div">(
+export const TabList = forwardRef<HTMLDivElement, TabListProps>(
   function TabList(props, ref) {
     const listProps = useTabList()
     const styles = useTabsStyles()

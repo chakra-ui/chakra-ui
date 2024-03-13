@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { StatStylesProvider } from "./stat-context"
@@ -17,7 +17,7 @@ export interface StatRootProps
  *
  * @see Docs https://chakra-ui.com/docs/components/stat
  */
-export const StatRoot = forwardRef<StatRootProps, "div">(
+export const StatRoot = forwardRef<HTMLDivElement, StatRootProps>(
   function StatRoot(props, ref) {
     const recipe = useSlotRecipe("Stat", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

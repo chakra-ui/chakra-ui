@@ -1,4 +1,6 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import {
   useRangeSliderContext,
   useRangeSliderStyles,
@@ -7,8 +9,8 @@ import {
 export interface RangeSliderFilledTrackProps extends HTMLChakraProps<"div"> {}
 
 export const RangeSliderFilledTrack = forwardRef<
-  RangeSliderFilledTrackProps,
-  "div"
+  HTMLDivElement,
+  RangeSliderFilledTrackProps
 >(function RangeSliderFilledTrack(props, ref) {
   const api = useRangeSliderContext()
   const styles = useRangeSliderStyles()
@@ -17,8 +19,8 @@ export const RangeSliderFilledTrack = forwardRef<
   return (
     <chakra.div
       {...trackProps}
-      className="chakra-slider__filled-track"
-      css={styles.filledTrack}
+      className={cx("chakra-slider__filled-track", props.className)}
+      css={[styles.filledTrack, props.css]}
     />
   )
 })

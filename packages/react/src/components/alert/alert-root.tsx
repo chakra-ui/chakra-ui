@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { AlertProvider, AlertStylesProvider } from "./alert-context"
@@ -19,7 +19,7 @@ export interface AlertRootProps
  * @see Docs https://chakra-ui.com/docs/components/alert
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/alert/
  */
-export const AlertRoot = forwardRef<AlertRootProps, "div">(
+export const AlertRoot = forwardRef<HTMLDivElement, AlertRootProps>(
   function AlertRoot(props, ref) {
     const recipe = useSlotRecipe("Alert", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

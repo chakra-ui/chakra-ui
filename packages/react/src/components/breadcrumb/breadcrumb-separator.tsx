@@ -1,10 +1,9 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
-export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"li"> {}
-
-const DefaultIcon = (props: HTMLChakraProps<"svg">) => (
+const RightIcon = (props: HTMLChakraProps<"svg">) => (
   <chakra.svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -21,21 +20,24 @@ const DefaultIcon = (props: HTMLChakraProps<"svg">) => (
   </chakra.svg>
 )
 
-export const BreadcrumbSeparator = forwardRef<BreadcrumbSeparatorProps, "li">(
-  function BreadcrumbSeparator(props, ref) {
-    const styles = useBreadcrumbStyles()
+export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"li"> {}
 
-    return (
-      <chakra.li
-        ref={ref}
-        {...props}
-        css={[styles.separator, props.css]}
-        className={cx("chakra-breadcrumb__separator", props.className)}
-      >
-        {props.children || <DefaultIcon />}
-      </chakra.li>
-    )
-  },
-)
+export const BreadcrumbSeparator = forwardRef<
+  HTMLLIElement,
+  BreadcrumbSeparatorProps
+>(function BreadcrumbSeparator(props, ref) {
+  const styles = useBreadcrumbStyles()
+
+  return (
+    <chakra.li
+      ref={ref}
+      {...props}
+      css={[styles.separator, props.css]}
+      className={cx("chakra-breadcrumb__separator", props.className)}
+    >
+      {props.children || <RightIcon />}
+    </chakra.li>
+  )
+})
 
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator"

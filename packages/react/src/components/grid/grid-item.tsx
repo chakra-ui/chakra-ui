@@ -1,9 +1,9 @@
 import { compact, mapResponsive } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   ConditionalValue,
   SystemStyleObject,
   chakra,
-  forwardRef,
 } from "../../styled-system"
 import { BoxProps } from "../box/box"
 
@@ -47,7 +47,7 @@ function spanFn(span?: ConditionalValue<number | "auto">) {
   )
 }
 
-export const GridItem = forwardRef<GridItemProps, "div">(
+export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
   function GridItem(props, ref) {
     const {
       area,

@@ -1,10 +1,11 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useAlertStyles } from "./alert-context"
 
 export interface AlertTitleProps extends HTMLChakraProps<"div"> {}
 
-export const AlertTitle = forwardRef<AlertTitleProps, "div">(
+export const AlertTitle = forwardRef<HTMLDivElement, AlertTitleProps>(
   function AlertTitle(props, ref) {
     const styles = useAlertStyles()
 

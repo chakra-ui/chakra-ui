@@ -1,8 +1,12 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useSliderContext, useSliderStyles } from "./slider-context"
 
 export interface SliderMarkProps extends HTMLChakraProps<"div"> {
+  /**
+   * The value of the slider mark
+   */
   value: number
 }
 
@@ -13,7 +17,7 @@ export interface SliderMarkProps extends HTMLChakraProps<"div"> {
  * @see Docs https://chakra-ui.com/slider
  */
 
-export const SliderMark = forwardRef<SliderMarkProps, "div">(
+export const SliderMark = forwardRef<HTMLDivElement, SliderMarkProps>(
   function SliderMark(props, ref) {
     const api = useSliderContext()
     const styles = useSliderStyles()

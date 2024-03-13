@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePopoverContext, usePopoverStyles } from "./popover-context"
 
 export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}
@@ -8,7 +9,7 @@ export interface PopoverHeaderProps extends HTMLChakraProps<"header"> {}
  * PopoverHeader is the accessible header or label
  * for the popover's content, and it is first announced by screenreaders.
  */
-export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
+export const PopoverHeader = forwardRef<HTMLElement, PopoverHeaderProps>(
   function PopoverHeader(props, ref) {
     const { getHeaderProps } = usePopoverContext()
 
@@ -18,7 +19,7 @@ export const PopoverHeader = forwardRef<PopoverHeaderProps, "header">(
       <chakra.header
         {...getHeaderProps(props, ref)}
         className={cx("chakra-popover__header", props.className)}
-        css={styles.header}
+        css={[styles.header, props.css]}
       />
     )
   },

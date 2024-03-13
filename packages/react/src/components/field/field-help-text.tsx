@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface FieldHelpTextProps extends HTMLChakraProps<"div"> {}
@@ -11,7 +12,7 @@ export interface FieldHelpTextProps extends HTMLChakraProps<"div"> {}
  * about the field, such as how it will be used and what
  * types in values should be provided.
  */
-export const FieldHelpText = forwardRef<FieldHelpTextProps, "div">(
+export const FieldHelpText = forwardRef<HTMLDivElement, FieldHelpTextProps>(
   function FieldHelpText(props, ref) {
     const field = useFieldContext()
     const styles = useFieldStyles()

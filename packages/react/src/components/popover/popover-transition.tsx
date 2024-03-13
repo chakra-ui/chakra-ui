@@ -1,6 +1,6 @@
 import { HTMLMotionProps, Variant, motion } from "framer-motion"
-import React from "react"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import React, { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePopoverContext } from "./popover-context"
 
 type HTMLMotionChakraProps<T extends keyof React.ReactHTML> = Omit<
@@ -63,10 +63,10 @@ const MotionSection = chakra(motion.section)
 export interface PopoverTransitionProps
   extends HTMLMotionChakraProps<"section"> {}
 
-export const PopoverTransition = forwardRef(function PopoverTransition(
-  props: PopoverTransitionProps,
-  ref: React.Ref<any>,
-) {
+export const PopoverTransition = forwardRef<
+  HTMLElement,
+  PopoverTransitionProps
+>(function PopoverTransition(props, ref) {
   const { variants = scaleFade, ...rest } = props
   const { isOpen } = usePopoverContext()
   return (

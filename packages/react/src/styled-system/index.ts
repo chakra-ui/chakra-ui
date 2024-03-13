@@ -5,11 +5,12 @@ export type {
   JsxStyleProps,
   SystemStyleObject,
 } from "./css.types"
-export { chakra, forwardRef } from "./factory"
+export { chakra } from "./factory"
 export type {
   ChakraComponent,
   HTMLChakraProps,
   InferRecipeProps,
+  PropGetterFn,
 } from "./factory.types"
 export type {
   RecipeProps,

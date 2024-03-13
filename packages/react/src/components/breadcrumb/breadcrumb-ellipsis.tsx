@@ -1,4 +1,5 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { Span } from "../box"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
@@ -23,23 +24,24 @@ const EllpsisIcon = (props: HTMLChakraProps<"svg">) => (
   </chakra.svg>
 )
 
-export const BreadcrumbEllipsis = forwardRef<BreadcrumbEllipsisProps, "span">(
-  function BreadcrumbEllipsis(props, ref) {
-    const styles = useBreadcrumbStyles()
+export const BreadcrumbEllipsis = forwardRef<
+  HTMLElement,
+  BreadcrumbEllipsisProps
+>(function BreadcrumbEllipsis(props, ref) {
+  const styles = useBreadcrumbStyles()
 
-    return (
-      <chakra.span
-        ref={ref}
-        role="presentation"
-        aria-hidden="true"
-        {...props}
-        css={[styles.ellipsis, props.css]}
-      >
-        {props.children || <EllpsisIcon />}
-        <Span srOnly>More</Span>
-      </chakra.span>
-    )
-  },
-)
+  return (
+    <chakra.span
+      ref={ref}
+      role="presentation"
+      aria-hidden="true"
+      {...props}
+      css={[styles.ellipsis, props.css]}
+    >
+      {props.children || <EllpsisIcon />}
+      <Span srOnly>More</Span>
+    </chakra.span>
+  )
+})
 
 BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis"

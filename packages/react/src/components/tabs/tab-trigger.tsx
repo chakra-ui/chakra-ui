@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { mergeProps } from "../../styled-system/merge-props"
 import { splitTabProps } from "./tab-props"
 import { useTabsStyles } from "./tabs-context"
@@ -12,12 +13,12 @@ export interface TabTriggerProps
  * Tab button used to activate a specific tab panel. It renders a `button`,
  * and is responsible for automatic and manual selection modes.
  */
-export const TabTrigger = forwardRef<TabTriggerProps, "button">(
+export const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
   function Tab(props, ref) {
     const styles = useTabsStyles()
 
-    const [useTabProps, localProps] = splitTabProps(props)
-    const tabProps = useTab(useTabProps)
+    const [hookProps, localProps] = splitTabProps(props)
+    const tabProps = useTab(hookProps)
 
     const combinedProps = mergeProps<any>(tabProps, localProps)
 

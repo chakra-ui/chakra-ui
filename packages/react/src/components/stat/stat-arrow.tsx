@@ -1,4 +1,3 @@
-import { chakra } from "../../styled-system"
 import { Icon, type IconProps } from "../icon"
 import { useStatStyles } from "./stat-context"
 
@@ -11,8 +10,6 @@ export const StatDownArrow: React.FC<IconProps> = (props) => (
   </Icon>
 )
 
-StatDownArrow.displayName = "StatDownArrow"
-
 export function StatUpArrow(props: IconProps) {
   return (
     <Icon color="fg.success" {...props}>
@@ -24,26 +21,13 @@ export function StatUpArrow(props: IconProps) {
   )
 }
 
-StatUpArrow.displayName = "StatUpArrow"
-
 export interface StatArrowProps extends IconProps {
   type?: "increase" | "decrease"
 }
 
 export function StatArrow(props: StatArrowProps) {
-  const { type, "aria-label": ariaLabel, ...rest } = props
+  const { type, ...rest } = props
   const styles = useStatStyles()
-
-  const BaseIcon = type === "increase" ? StatUpArrow : StatDownArrow
-  const defaultAriaLabel = type === "increase" ? "increased by" : "decreased by"
-  const label = ariaLabel || defaultAriaLabel
-
-  return (
-    <>
-      <chakra.span srOnly>{label}</chakra.span>
-      <BaseIcon aria-hidden {...rest} css={styles.icon} />
-    </>
-  )
+  const Comp = type === "increase" ? StatUpArrow : StatDownArrow
+  return <Comp aria-hidden {...rest} css={styles.icon} />
 }
-
-StatArrow.displayName = "StatArrow"

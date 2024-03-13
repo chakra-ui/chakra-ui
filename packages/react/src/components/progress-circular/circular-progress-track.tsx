@@ -1,12 +1,13 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 export interface CircularProgressTrackProps extends HTMLChakraProps<"circle"> {}
 
 export const CircularProgressTrack = forwardRef<
-  CircularProgressTrackProps,
-  "circle"
+  SVGCircleElement,
+  CircularProgressTrackProps
 >(function CircularProgressTrack(props, ref) {
   const { trackColor, thickness } = useCircularProgressContext()
 

@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useRenderStrategy } from "../render-strategy"
 import { useTabsContext, useTabsStyles } from "./tabs-context"
 import { makeTabId, makeTabPanelId } from "./use-tabs"
@@ -12,7 +13,7 @@ export interface TabContentProps extends HTMLChakraProps<"div"> {
   value: string
 }
 
-export const TabContent = forwardRef<TabContentProps, "div">(
+export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
   function TabContent(props, ref) {
     const api = useTabsContext()
     const styles = useTabsStyles()

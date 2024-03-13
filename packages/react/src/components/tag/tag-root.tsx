@@ -1,8 +1,9 @@
+import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { TagStylesProvider } from "./tag-context"
@@ -21,7 +22,7 @@ export interface TagRootProps
  * To style the tag globally, change the styles in `theme.components.Tag`
  * @see Docs https://chakra-ui.com/tag
  */
-export const TagRoot = forwardRef<TagRootProps, "span">(
+export const TagRoot = forwardRef<HTMLSpanElement, TagRootProps>(
   function TagRoot(props, ref) {
     const recipe = useSlotRecipe("Tag", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
@@ -37,6 +38,7 @@ export const TagRoot = forwardRef<TagRootProps, "span">(
           ref={ref}
           {...restProps}
           css={[styles.root, localProps.css]}
+          className={cx("chakra-tag", localProps.className)}
         />
       </TagStylesProvider>
     )

@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { FieldContextProvider, FieldStylesProvider } from "./field-context"
@@ -25,7 +25,7 @@ export interface FieldRootProps
  *
  * @see Docs https://chakra-ui.com/docs/components/form-control
  */
-export const FieldRoot = forwardRef<FieldRootProps, "div">(
+export const FieldRoot = forwardRef<HTMLDivElement, FieldRootProps>(
   function FieldRoot(props, ref) {
     const recipe = useSlotRecipe("Field", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

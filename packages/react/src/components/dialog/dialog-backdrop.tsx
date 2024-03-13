@@ -1,6 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import { HTMLMotionProps, motion } from "framer-motion"
-import { JsxStyleProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { JsxStyleProps, chakra } from "../../styled-system"
 import { HtmlProp } from "../../styled-system/factory.types"
 import { fadeConfig } from "../transition"
 import { useDialogContext, useDialogStyles } from "./dialog-context"
@@ -13,7 +14,7 @@ export interface DialogBackdropProps
   motionProps?: HTMLMotionProps<"div">
 }
 
-export const DialogBackdrop = forwardRef<DialogBackdropProps, "div">(
+export const DialogBackdrop = forwardRef<HTMLDivElement, DialogBackdropProps>(
   function DialogBackdrop(props, ref) {
     const { transition, motionProps: _motionProps, ...rest } = props
 

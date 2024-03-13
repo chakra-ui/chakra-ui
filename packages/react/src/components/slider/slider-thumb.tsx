@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useSliderContext, useSliderStyles } from "./slider-context"
 
 export interface SliderThumbProps extends HTMLChakraProps<"div"> {}
@@ -8,7 +9,7 @@ export interface SliderThumbProps extends HTMLChakraProps<"div"> {}
  * Slider component that acts as the handle used to select predefined
  * values by dragging its handle along the track
  */
-export const SliderThumb = forwardRef<SliderThumbProps, "div">(
+export const SliderThumb = forwardRef<HTMLDivElement, SliderThumbProps>(
   function SliderThumb(props, ref) {
     const api = useSliderContext()
     const styles = useSliderStyles()

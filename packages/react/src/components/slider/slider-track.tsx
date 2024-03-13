@@ -1,10 +1,11 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useSliderContext, useSliderStyles } from "./slider-context"
 
 export interface SliderTrackProps extends HTMLChakraProps<"div"> {}
 
-export const SliderTrack = forwardRef<SliderTrackProps, "div">(
+export const SliderTrack = forwardRef<HTMLDivElement, SliderTrackProps>(
   function SliderTrack(props, ref) {
     const api = useSliderContext()
     const styles = useSliderStyles()
@@ -12,7 +13,7 @@ export const SliderTrack = forwardRef<SliderTrackProps, "div">(
       <chakra.div
         {...api.getTrackProps(props, ref)}
         className={cx("chakra-slider__track", props.className)}
-        css={styles.track}
+        css={[styles.track, props.css]}
       />
     )
   },

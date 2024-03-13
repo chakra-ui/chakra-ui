@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { SliderProvider, SliderStylesProvider } from "./slider-context"
@@ -21,7 +21,7 @@ export interface SliderRootProps
  * @see Docs     https://chakra-ui.com/docs/form/slider
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slider/
  */
-export const SliderRoot = forwardRef<SliderRootProps, "div">(
+export const SliderRoot = forwardRef<HTMLDivElement, SliderRootProps>(
   function SliderRoot(props, ref) {
     const sliderProps: SliderRootProps = {
       ...props,

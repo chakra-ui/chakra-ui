@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface CircularProgressLabelProps extends HTMLChakraProps<"div"> {}
 
@@ -8,8 +9,8 @@ export interface CircularProgressLabelProps extends HTMLChakraProps<"div"> {}
  * of the circular progress component's value
  */
 export const CircularProgressLabel = forwardRef<
-  CircularProgressLabelProps,
-  "div"
+  HTMLDivElement,
+  CircularProgressLabelProps
 >(function CircularProgressLabel(props, ref) {
   return (
     <chakra.div

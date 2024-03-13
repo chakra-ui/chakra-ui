@@ -6,7 +6,19 @@ import {
   chakra,
   useRecipe,
 } from "../../styled-system"
-import { ButtonOptions } from "./button-types"
+
+interface ButtonOptions {
+  /**
+   * If `true`, the button will be styled in its active state.
+   * @default false
+   */
+  isActive?: boolean
+  /**
+   * If `true`, the button will be disabled.
+   * @default false
+   */
+  isDisabled?: boolean
+}
 
 export interface ButtonProps
   extends HTMLChakraProps<"button">,

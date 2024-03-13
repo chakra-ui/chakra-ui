@@ -1,13 +1,14 @@
 import { cx } from "@chakra-ui/utils"
-import { RadioGroupItemIndicator } from "."
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useRadioItemContext, useRadioItemStyles } from "./radio-group-context"
+import { RadioGroupItemIndicator } from "./radio-group-item-indicator"
 
 export interface RadioGroupItemControlProps extends HTMLChakraProps<"span"> {}
 
 export const RadioGroupItemControl = forwardRef<
-  RadioGroupItemControlProps,
-  "input"
+  HTMLSpanElement,
+  RadioGroupItemControlProps
 >(function RadioGroupItem(props, ref) {
   const api = useRadioItemContext()
   const styles = useRadioItemStyles()

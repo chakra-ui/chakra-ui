@@ -1,5 +1,6 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useTableStyles } from "./table-context"
 
 export interface TableCellProps extends HTMLChakraProps<"td"> {
@@ -10,7 +11,7 @@ export interface TableCellProps extends HTMLChakraProps<"td"> {
   numeric?: boolean
 }
 
-export const TableCell = forwardRef<TableCellProps, "td">(
+export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
   function TableCell(props, ref) {
     const { numeric, ...rest } = props
     const styles = useTableStyles()

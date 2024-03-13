@@ -1,9 +1,9 @@
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import { forwardRef } from "react"
 import { Field, useField } from "../src/components/field"
-import { chakra, forwardRef } from "../src/styled-system"
+import { chakra } from "../src/styled-system"
 
-const Input = forwardRef((props: any, ref) => {
-  // @ts-ignore
+const Input = forwardRef<HTMLInputElement, any>(function Input(props, ref) {
   const { invalid: _, ...inputProps } = useField<HTMLInputElement>(props)
   return <chakra.input ref={ref} {...inputProps} />
 })

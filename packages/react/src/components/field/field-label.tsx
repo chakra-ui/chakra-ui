@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface FieldLabelProps extends HTMLChakraProps<"label"> {}
@@ -12,10 +13,10 @@ export interface FieldLabelProps extends HTMLChakraProps<"label"> {}
  *
  * ♿️ Accessibility: Every form field should have a form label.
  */
-export const FieldLabel = forwardRef<FieldLabelProps, "label">(
-  function FormLabel(passedProps, ref) {
+export const FieldLabel = forwardRef<HTMLLabelElement, FieldLabelProps>(
+  function FormLabel(localProps, ref) {
     const styles = useFieldStyles()
-    const { className, children, ...rest } = passedProps
+    const { className, children, ...rest } = localProps
 
     const field = useFieldContext()
     const ownProps = field?.getLabelProps(rest, ref) ?? { ref, ...rest }

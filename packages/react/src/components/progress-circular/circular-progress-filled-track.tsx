@@ -1,6 +1,7 @@
 import { dataAttr } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 const spinAnim = keyframes({
@@ -22,8 +23,8 @@ export interface CircularProgressFilledTrackProps
   extends HTMLChakraProps<"circle"> {}
 
 export const CircularProgressFilledTrack = forwardRef<
-  CircularProgressFilledTrackProps,
-  "circle"
+  SVGCircleElement,
+  CircularProgressFilledTrackProps
 >(function CircularProgressFilledTrack(props, ref) {
   const { computed, color, thickness, capIsRound, isIndeterminate } =
     useCircularProgressContext()

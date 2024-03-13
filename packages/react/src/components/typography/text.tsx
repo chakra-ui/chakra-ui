@@ -1,10 +1,10 @@
 import { compact, cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   SystemStyleObject,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -35,25 +35,27 @@ export interface TextProps
  *
  * @see Docs https://chakra-ui.com/text
  */
-export const Text = forwardRef<TextProps, "p">(function Text(props, ref) {
-  const recipe = useRecipe("Text", props.recipe)
-  const [variantProps, localProps] = recipe.splitVariantProps(props)
+export const Text = forwardRef<HTMLParagraphElement, TextProps>(
+  function Text(props, ref) {
+    const recipe = useRecipe("Text", props.recipe)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
 
-  const aliasedProps = compact({
-    textAlign: localProps.align,
-    textDecoration: localProps.decoration,
-    textTransform: localProps.casing,
-  })
+    const aliasedProps = compact({
+      textAlign: localProps.align,
+      textDecoration: localProps.decoration,
+      textTransform: localProps.casing,
+    })
 
-  return (
-    <chakra.p
-      ref={ref}
-      className={cx("chakra-text", props.className)}
-      {...aliasedProps}
-      {...localProps}
-      css={[recipe(variantProps), localProps.css]}
-    />
-  )
-})
+    return (
+      <chakra.p
+        ref={ref}
+        className={cx("chakra-text", props.className)}
+        {...aliasedProps}
+        {...localProps}
+        css={[recipe(variantProps), localProps.css]}
+      />
+    )
+  },
+)
 
 Text.displayName = "Text"

@@ -1,9 +1,5 @@
-import {
-  HTMLChakraProps,
-  SystemStyleObject,
-  chakra,
-  forwardRef,
-} from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
 
 export interface GridOptions {
   /**
@@ -75,38 +71,40 @@ export interface GridProps
  *
  * @see Docs https://chakra-ui.com/grid
  */
-export const Grid = forwardRef<GridProps, "div">(function Grid(props, ref) {
-  const {
-    templateAreas,
-    gap,
-    rowGap,
-    columnGap,
-    column,
-    row,
-    autoFlow,
-    autoRows,
-    templateRows,
-    autoColumns,
-    templateColumns,
-    ...rest
-  } = props
+export const Grid = forwardRef<HTMLDivElement, GridProps>(
+  function Grid(props, ref) {
+    const {
+      templateAreas,
+      gap,
+      rowGap,
+      columnGap,
+      column,
+      row,
+      autoFlow,
+      autoRows,
+      templateRows,
+      autoColumns,
+      templateColumns,
+      ...rest
+    } = props
 
-  const styles = {
-    display: "grid",
-    gridTemplateAreas: templateAreas,
-    gridGap: gap,
-    gridRowGap: rowGap,
-    gridColumnGap: columnGap,
-    gridAutoColumns: autoColumns,
-    gridColumn: column,
-    gridRow: row,
-    gridAutoFlow: autoFlow,
-    gridAutoRows: autoRows,
-    gridTemplateRows: templateRows,
-    gridTemplateColumns: templateColumns,
-  }
+    const styles = {
+      display: "grid",
+      gridTemplateAreas: templateAreas,
+      gridGap: gap,
+      gridRowGap: rowGap,
+      gridColumnGap: columnGap,
+      gridAutoColumns: autoColumns,
+      gridColumn: column,
+      gridRow: row,
+      gridAutoFlow: autoFlow,
+      gridAutoRows: autoRows,
+      gridTemplateRows: templateRows,
+      gridTemplateColumns: templateColumns,
+    }
 
-  return <chakra.div ref={ref} css={styles} {...rest} />
-})
+    return <chakra.div {...rest} ref={ref} css={[styles, props.css]} />
+  },
+)
 
 Grid.displayName = "Grid"

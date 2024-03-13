@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -18,15 +18,15 @@ export interface HeadingProps
  *
  * @see Docs https://chakra-ui.com/docs/components/heading
  */
-export const Heading = forwardRef<HeadingProps, "h2">(
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   function Heading(props, ref) {
     const recipe = useRecipe("Heading", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
       <chakra.h2
         ref={ref}
-        className={cx("chakra-heading", props.className)}
         {...localProps}
+        className={cx("chakra-heading", props.className)}
         css={[recipe(variantProps), localProps.css]}
       />
     )

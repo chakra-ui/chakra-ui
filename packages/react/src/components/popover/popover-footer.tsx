@@ -10,7 +10,7 @@ export function PopoverFooter(props: PopoverFooterProps) {
     <chakra.footer
       {...props}
       className={cx("chakra-popover__footer", props.className)}
-      css={styles.footer}
+      css={[styles.footer, props.css]}
     />
   )
 }

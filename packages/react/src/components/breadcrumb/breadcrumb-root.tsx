@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { BreadcrumbStylesProvider } from "./breadcrumb-context"
@@ -19,7 +19,7 @@ export interface BreadcrumbRootProps
  * @see Docs https://chakra-ui.com/breadcrumb
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
  */
-export const BreadcrumbRoot = forwardRef<BreadcrumbRootProps, "nav">(
+export const BreadcrumbRoot = forwardRef<HTMLElement, BreadcrumbRootProps>(
   function BreadcrumbRoot(props, ref) {
     const recipe = useSlotRecipe("Breadcrumb", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

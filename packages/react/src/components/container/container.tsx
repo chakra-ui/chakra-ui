@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -29,7 +29,7 @@ export interface ContainerProps
  *
  * @see Docs https://chakra-ui.com/docs/components/container
  */
-export const Container = forwardRef<ContainerProps, "div">(
+export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   function Container(props, ref) {
     const recipe = useRecipe("Container", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

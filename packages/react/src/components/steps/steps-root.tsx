@@ -1,10 +1,9 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
-import { Children } from "react"
+import { Children, forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import {
@@ -25,7 +24,7 @@ export interface StepsRootProps
   children: React.ReactNode
 }
 
-export const StepsRoot = forwardRef<StepsRootProps, "div">(
+export const StepsRoot = forwardRef<HTMLDivElement, StepsRootProps>(
   function StepsRoot(props, ref) {
     const recipe = useSlotRecipe("Steps", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

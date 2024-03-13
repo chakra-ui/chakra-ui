@@ -1,6 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import type { HTMLMotionProps } from "framer-motion"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useDialogContext, useDialogStyles } from "../dialog/dialog-context"
 import { DialogFocusScope } from "../dialog/dialog-focus-scope"
 import { Slide } from "../transition"
@@ -19,7 +20,7 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {
  * Used to group dialog's content. It has all the
  * necessary `aria-*` properties to indicate that it is a dialog
  */
-export const DrawerContent = forwardRef<DrawerContentProps, "section">(
+export const DrawerContent = forwardRef<HTMLElement, DrawerContentProps>(
   function DrawerContent(props, ref) {
     const { children, motionProps, ...rest } = props
 

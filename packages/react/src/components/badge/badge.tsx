@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -17,19 +17,21 @@ export interface BadgeProps
  *
  * @see Docs https://chakra-ui.com/badge
  */
-export const Badge = forwardRef<BadgeProps, "span">(function Badge(props, ref) {
-  const recipe = useRecipe("Badge", props.recipe)
-  const [variantProps, localProps] = recipe.splitVariantProps(props)
-  const styles = recipe(variantProps)
+export const Badge = forwardRef<HTMLElement, BadgeProps>(
+  function Badge(props, ref) {
+    const recipe = useRecipe("Badge", props.recipe)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-  return (
-    <chakra.span
-      ref={ref}
-      {...localProps}
-      className={cx("chakra-badge", localProps.className)}
-      css={[styles, localProps.css]}
-    />
-  )
-})
+    return (
+      <chakra.span
+        ref={ref}
+        {...localProps}
+        className={cx("chakra-badge", localProps.className)}
+        css={[styles, localProps.css]}
+      />
+    )
+  },
+)
 
 Badge.displayName = "Badge"

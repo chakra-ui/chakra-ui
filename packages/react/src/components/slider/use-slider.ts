@@ -7,7 +7,6 @@ import {
   useSize,
   useUpdateEffect,
 } from "@chakra-ui/hooks"
-import type { PropGetter, RequiredPropGetter } from "@chakra-ui/utils"
 import {
   ariaAttr,
   callAllHandlers,
@@ -18,6 +17,7 @@ import {
   valueToPercent,
 } from "@chakra-ui/utils"
 import { useCallback, useId, useMemo, useRef, useState } from "react"
+import { PropGetterFn } from "../../styled-system/factory.types"
 import { getIsReversed, getStyles } from "./slider-utils"
 
 export interface UseSliderProps {
@@ -405,7 +405,7 @@ export function useSlider(props: UseSliderProps) {
     },
   })
 
-  const getRootProps: PropGetter = useCallback(
+  const getRootProps: PropGetterFn<"div"> = useCallback(
     (props = {}, ref = null) => {
       return {
         ...props,
@@ -424,7 +424,7 @@ export function useSlider(props: UseSliderProps) {
     [htmlProps, isDisabled, isFocused, rootStyle],
   )
 
-  const getTrackProps: PropGetter = useCallback(
+  const getTrackProps: PropGetterFn<"div"> = useCallback(
     (props = {}, ref = null) => {
       return {
         ...props,
@@ -441,7 +441,7 @@ export function useSlider(props: UseSliderProps) {
     [isDisabled, isFocused, trackId, trackStyle],
   )
 
-  const getInnerTrackProps: PropGetter = useCallback(
+  const getInnerTrackProps: PropGetterFn<"div"> = useCallback(
     (props = {}, ref = null) => {
       return {
         ...props,
@@ -457,7 +457,7 @@ export function useSlider(props: UseSliderProps) {
     [innerTrackStyle, isDisabled, isFocused],
   )
 
-  const getThumbProps: PropGetter = useCallback(
+  const getThumbProps: PropGetterFn<"div"> = useCallback(
     (props = {}, ref = null) => {
       return {
         ...props,
@@ -503,7 +503,7 @@ export function useSlider(props: UseSliderProps) {
     ],
   )
 
-  const getMarkerProps: RequiredPropGetter<{ value: number }> = useCallback(
+  const getMarkerProps: PropGetterFn<"div", { value: number }> = useCallback(
     (props, ref = null) => {
       const isInRange = !(props.value < min || props.value > max)
       const isHighlighted = value >= props.value
@@ -542,7 +542,7 @@ export function useSlider(props: UseSliderProps) {
     [isDisabled, isReversed, max, min, orientation, value],
   )
 
-  const getInputProps: PropGetter = useCallback(
+  const getInputProps: PropGetterFn<"input"> = useCallback(
     (props = {}, ref = null) => {
       return {
         ...props,
@@ -555,7 +555,11 @@ export function useSlider(props: UseSliderProps) {
     [name, value],
   )
 
-  const state: SliderState = { value, isFocused, isDragging }
+  const state: SliderState = {
+    value,
+    isFocused,
+    isDragging,
+  }
 
   return {
     state,

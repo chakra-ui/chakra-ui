@@ -1,10 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import {
-  HTMLChakraProps,
-  chakra,
-  defineStyle,
-  forwardRef,
-} from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra, defineStyle } from "../../styled-system"
 import { getProgressProps } from "../progress/progress-utils"
 import { CircularProgressContextProvider } from "./circular-progress-context"
 import { CircularProgressOptions } from "./circular-progress-types"
@@ -22,8 +18,8 @@ export interface CircularProgressRootProps
  * @todo add theming support for circular progress
  */
 export const CircularProgressRoot = forwardRef<
-  CircularProgressRootProps,
-  "div"
+  HTMLDivElement,
+  CircularProgressRootProps
 >(function CircularProgressRoot(props, ref) {
   const {
     size = "48px",

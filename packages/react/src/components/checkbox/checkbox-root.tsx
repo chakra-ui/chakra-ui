@@ -1,9 +1,9 @@
 import { callAll, cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import {
@@ -29,7 +29,7 @@ export interface CheckboxRootProps
     UseCheckboxProps,
     CheckboxOptions {}
 
-export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
+export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
   function Checkbox(props, ref) {
     const group = useCheckboxGroupContext()
     const mergedProps = { ...group, ...props } as CheckboxRootProps

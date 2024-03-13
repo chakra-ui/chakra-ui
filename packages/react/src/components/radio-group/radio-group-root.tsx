@@ -1,10 +1,10 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipePropsProvider,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { RadioGroupContextProvider } from "./radio-group-context"
@@ -21,10 +21,9 @@ export interface RadioGroupRootProps
  *
  * @see Docs https://chakra-ui.com/radio
  */
-export const RadioGroupRoot = forwardRef<RadioGroupRootProps, "div">(
+export const RadioGroupRoot = forwardRef<HTMLDivElement, RadioGroupRootProps>(
   function RadioGroupRoot(props, ref) {
     const recipe = useSlotRecipe("Radio")
-
     const [variantProps, restProps] = recipe.splitVariantProps(props)
     const [groupProps, localProps] = splitRadioGroupProps(restProps)
 

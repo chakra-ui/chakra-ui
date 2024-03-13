@@ -1,10 +1,10 @@
 import { useMergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { splitTabsProps } from "./tab-props"
@@ -28,7 +28,7 @@ export interface TabsRootProps
  * @see Docs https://chakra-ui.com/docs/components/tabs
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
  */
-export const TabsRoot = forwardRef<TabsRootProps, "div">(
+export const TabsRoot = forwardRef<HTMLDivElement, TabsRootProps>(
   function TabsRoot(props, ref) {
     const { unstyled, ...restProps } = props
 
@@ -43,9 +43,9 @@ export const TabsRoot = forwardRef<TabsRootProps, "div">(
       <TabsProvider value={api}>
         <TabsStylesProvider value={styles}>
           <chakra.div
-            className={cx("chakra-tabs", props.className)}
             ref={useMergeRefs(ref, api.rootRef)}
             {...elementProps}
+            className={cx("chakra-tabs", props.className)}
             css={[styles.root, props.css]}
           />
         </TabsStylesProvider>

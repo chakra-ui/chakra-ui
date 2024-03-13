@@ -1,8 +1,9 @@
+import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import {
@@ -12,8 +13,7 @@ import {
 import { UseRangeSliderProps, useRangeSlider } from "./use-range-slider"
 
 export interface RangeSliderRootProps
-  extends UseRangeSliderProps,
-    SlotRecipeProps<"Slider">,
+  extends SlotRecipeProps<"Slider">,
     HTMLChakraProps<"div", UseRangeSliderProps> {}
 
 /**
@@ -23,7 +23,7 @@ export interface RangeSliderRootProps
  * @see Docs     https://chakra-ui.com/docs/form/slider
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
  */
-export const RangeSliderRoot = forwardRef<RangeSliderRootProps, "div">(
+export const RangeSliderRoot = forwardRef<HTMLDivElement, RangeSliderRootProps>(
   function RangeSlider(props, ref) {
     const sliderProps: RangeSliderRootProps = {
       orientation: "horizontal",
@@ -42,8 +42,8 @@ export const RangeSliderRoot = forwardRef<RangeSliderRootProps, "div">(
         <RangeSliderStylesProvider value={styles}>
           <chakra.div
             {...api.getRootProps({}, ref)}
-            className="chakra-slider"
-            css={styles.root}
+            className={cx("chakra-slider", props.className)}
+            css={[styles.root, props.css]}
           >
             {sliderProps.children}
           </chakra.div>

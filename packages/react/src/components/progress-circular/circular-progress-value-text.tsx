@@ -1,13 +1,14 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 export interface CircularProgressValueTextProps
   extends HTMLChakraProps<"span"> {}
 
 export const CircularProgressValueText = forwardRef<
-  CircularProgressValueTextProps,
-  "span"
+  HTMLElement,
+  CircularProgressValueTextProps
 >(function CircularProgressValueText(props, ref) {
   const { size, computed } = useCircularProgressContext()
 
@@ -15,8 +16,12 @@ export const CircularProgressValueText = forwardRef<
     <chakra.span
       ref={ref}
       {...props}
+      style={{
+        // @ts-ignore
+        "--size": size,
+      }}
       css={{
-        fontSize: `calc(${size} * 0.2)`,
+        fontSize: `calc(var(--size) * 0.2)`,
         top: "50%",
         lineHeight: "1em",
         left: "50%",
@@ -24,6 +29,7 @@ export const CircularProgressValueText = forwardRef<
         position: "absolute",
         transform: "translate(-50%, -50%)",
         fontVariantNumeric: "tabular-nums",
+        ...props.css,
       }}
       className={cx("chakra-progress__value-text", props.className)}
     >

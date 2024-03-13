@@ -1,10 +1,10 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SystemStyleObject,
   chakra,
   defineStyle,
-  forwardRef,
 } from "../../styled-system"
 import { useAvatarStyles } from "./avatar-context"
 
@@ -41,9 +41,9 @@ export interface AvatarBadgeProps extends HTMLChakraProps<"div"> {
  * AvatarBadge used to show extra badge to the top-right
  * or bottom-right corner of an avatar.
  */
-export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">(
+export const AvatarBadge = forwardRef<HTMLDivElement, AvatarBadgeProps>(
   function AvatarBadge(props, ref) {
-    const { placement = "bottom-end", className, ...rest } = props
+    const { placement = "bottom-end", ...rest } = props
     const styles = useAvatarStyles()
 
     const placementStyles = placementMap[placement]
@@ -61,8 +61,8 @@ export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">(
       <chakra.div
         ref={ref}
         {...rest}
-        className={cx("chakra-avatar__badge", className)}
-        css={badgeStyles}
+        className={cx("chakra-avatar__badge", props.className)}
+        css={[badgeStyles, props.css]}
       />
     )
   },

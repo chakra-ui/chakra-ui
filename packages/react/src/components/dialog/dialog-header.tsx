@@ -1,6 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { useEffect } from "react"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef, useEffect } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useDialogContext, useDialogStyles } from "./dialog-context"
 
 export interface DialogHeaderProps extends HTMLChakraProps<"header"> {}
@@ -9,7 +9,7 @@ export interface DialogHeaderProps extends HTMLChakraProps<"header"> {}
  * React component that houses the title of the dialog.
  * @see Docs https://chakra-ui.com/dialog
  */
-export const DialogHeader = forwardRef<DialogHeaderProps, "header">(
+export const DialogHeader = forwardRef<HTMLElement, DialogHeaderProps>(
   function DialogHeader(props, ref) {
     const { headerId, setHeaderMounted } = useDialogContext()
 
@@ -26,7 +26,7 @@ export const DialogHeader = forwardRef<DialogHeaderProps, "header">(
         id={headerId}
         {...props}
         className={cx("chakra-dialog__header", props.className)}
-        css={styles.header}
+        css={[styles.header, props.css]}
       />
     )
   },

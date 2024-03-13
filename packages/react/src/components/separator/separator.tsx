@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -17,7 +17,7 @@ export interface SeparatorProps
  *
  * @see Docs https://chakra-ui.com/divider
  */
-export const Separator = forwardRef<SeparatorProps, "div">(
+export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
   function Separator(props, ref) {
     const recipe = useRecipe("Separator", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

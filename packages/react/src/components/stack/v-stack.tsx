@@ -1,4 +1,4 @@
-import { forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
 import { Stack, StackProps } from "./stack"
 
 /**
@@ -6,7 +6,7 @@ import { Stack, StackProps } from "./stack"
  *
  * @see Docs https://chakra-ui.com/docs/components/stack
  */
-export const VStack = forwardRef<StackProps, "div">(
+export const VStack = forwardRef<HTMLDivElement, StackProps>(
   function VStack(props, ref) {
     return <Stack align="center" {...props} direction="column" ref={ref} />
   },

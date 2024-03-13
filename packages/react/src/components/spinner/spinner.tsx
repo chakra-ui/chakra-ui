@@ -1,10 +1,10 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
   defineStyle,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -54,7 +54,7 @@ export interface SpinnerProps
  *
  * @see Docs https://chakra-ui.com/spinner
  */
-export const Spinner = forwardRef<SpinnerProps, "div">(
+export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   function Spinner(props, ref) {
     const recipe = useRecipe("Spinner", props.recipe)
 
@@ -81,9 +81,9 @@ export const Spinner = forwardRef<SpinnerProps, "div">(
     return (
       <chakra.div
         ref={ref}
-        css={spinnerStyles}
-        className={cx("chakra-spinner", className)}
         {...rest}
+        css={[spinnerStyles, props.css]}
+        className={cx("chakra-spinner", className)}
       >
         {label && <chakra.span srOnly>{label}</chakra.span>}
       </chakra.div>
