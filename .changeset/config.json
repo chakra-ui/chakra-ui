@@ -17,7 +17,6 @@
     "gatsby-starter-default",
     "chakra-next-app",
     "chakra-next-pages",
-    "chakra-storybook-addon",
     "vite-ts"
   ]
 }
