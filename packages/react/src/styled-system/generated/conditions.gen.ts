@@ -185,53 +185,53 @@ export interface Conditions {
   _vertical: string
   /** `@media screen and (min-width: 30rem)` */
   sm: string
-  /** `@media screen and (min-width: 30rem) and (max-width: 2.9975rem)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 47.9975rem)` */
   smOnly: string
-  /** `@media screen and (max-width: 1.8725rem)` */
+  /** `@media screen and (max-width: 29.9975rem)` */
   smDown: string
   /** `@media screen and (min-width: 48rem)` */
   md: string
-  /** `@media screen and (min-width: 48rem) and (max-width: 3.8725rem)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 61.9975rem)` */
   mdOnly: string
-  /** `@media screen and (max-width: 2.9975rem)` */
+  /** `@media screen and (max-width: 47.9975rem)` */
   mdDown: string
   /** `@media screen and (min-width: 62rem)` */
   lg: string
-  /** `@media screen and (min-width: 62rem) and (max-width: 4.9975rem)` */
+  /** `@media screen and (min-width: 62rem) and (max-width: 79.9975rem)` */
   lgOnly: string
-  /** `@media screen and (max-width: 3.8725rem)` */
+  /** `@media screen and (max-width: 61.9975rem)` */
   lgDown: string
   /** `@media screen and (min-width: 80rem)` */
   xl: string
-  /** `@media screen and (min-width: 80rem) and (max-width: 5.9975rem)` */
+  /** `@media screen and (min-width: 80rem) and (max-width: 95.9975rem)` */
   xlOnly: string
-  /** `@media screen and (max-width: 4.9975rem)` */
+  /** `@media screen and (max-width: 79.9975rem)` */
   xlDown: string
   /** `@media screen and (min-width: 96rem)` */
   "2xl": string
   /** `@media screen and (min-width: 96rem)` */
   "2xlOnly": string
-  /** `@media screen and (max-width: 5.9975rem)` */
+  /** `@media screen and (max-width: 95.9975rem)` */
   "2xlDown": string
-  /** `@media screen and (min-width: 30rem) and (max-width: 2.9975rem)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 47.9975rem)` */
   smToMd: string
-  /** `@media screen and (min-width: 30rem) and (max-width: 3.8725rem)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 61.9975rem)` */
   smToLg: string
-  /** `@media screen and (min-width: 30rem) and (max-width: 4.9975rem)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 79.9975rem)` */
   smToXl: string
-  /** `@media screen and (min-width: 30rem) and (max-width: 5.9975rem)` */
+  /** `@media screen and (min-width: 30rem) and (max-width: 95.9975rem)` */
   smTo2xl: string
-  /** `@media screen and (min-width: 48rem) and (max-width: 3.8725rem)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 61.9975rem)` */
   mdToLg: string
-  /** `@media screen and (min-width: 48rem) and (max-width: 4.9975rem)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 79.9975rem)` */
   mdToXl: string
-  /** `@media screen and (min-width: 48rem) and (max-width: 5.9975rem)` */
+  /** `@media screen and (min-width: 48rem) and (max-width: 95.9975rem)` */
   mdTo2xl: string
-  /** `@media screen and (min-width: 62rem) and (max-width: 4.9975rem)` */
+  /** `@media screen and (min-width: 62rem) and (max-width: 79.9975rem)` */
   lgToXl: string
-  /** `@media screen and (min-width: 62rem) and (max-width: 5.9975rem)` */
+  /** `@media screen and (min-width: 62rem) and (max-width: 95.9975rem)` */
   lgTo2xl: string
-  /** `@media screen and (min-width: 80rem) and (max-width: 5.9975rem)` */
+  /** `@media screen and (min-width: 80rem) and (max-width: 95.9975rem)` */
   xlTo2xl: string
   /** The base (=no conditions) styles to apply  */
   base: string

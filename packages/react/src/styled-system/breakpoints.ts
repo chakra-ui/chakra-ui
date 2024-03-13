@@ -1,5 +1,5 @@
 import { BreakpointEntry, SystemContext } from "./types"
-import { toRem } from "./unit-conversion"
+import { toPx, toRem } from "./unit-conversion"
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
@@ -92,23 +92,23 @@ function adjust(value: string | null | undefined) {
 }
 
 function sort(breakpoints: Record<string, string>): Entries {
-  return Object.entries(breakpoints)
-    .sort(([, minA], [, minB]) => {
-      return parseInt(minA, 10) < parseInt(minB, 10) ? -1 : 1
-    })
-    .map(([name, min], index, entries) => {
-      let max: string | null = null
+  const entries = Object.entries(breakpoints).sort(([, minA], [, minB]) => {
+    return parseInt(minA, 10) < parseInt(minB, 10) ? -1 : 1
+  })
 
-      if (index <= entries.length - 1) {
-        max = entries[index + 1]?.[1]
-      }
+  return entries.map(([name, min], index, entries) => {
+    let max: string | null = null
 
-      if (max != null) {
-        max = adjust(max)
-      }
+    if (index <= entries.length - 1) {
+      max = entries[index + 1]?.[1]
+    }
 
-      return [name, { name, min: toRem(min), max }]
-    })
+    if (max != null) {
+      max = adjust(max)
+    }
+
+    return [name, { name, min: toRem(min), max }]
+  })
 }
 
 function getPermutations(values: string[]) {
@@ -138,8 +138,4 @@ function build({ min, max }: { min?: string | null; max?: string | null }) {
   ]
     .filter(Boolean)
     .join(" and ")
-}
-
-function toPx(value: string) {
-  return value.endsWith("px") ? value : `${value}px`
 }

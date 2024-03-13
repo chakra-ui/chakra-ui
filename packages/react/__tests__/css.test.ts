@@ -376,7 +376,7 @@ describe("create css", () => {
 
     expect(result2).toMatchInlineSnapshot(`
       {
-        "@media screen and (max-width: 2.9975rem)": {
+        "@media screen and (max-width: 47.9975rem)": {
           "display": "none",
         },
       }
