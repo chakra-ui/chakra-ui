@@ -1,10 +1,17 @@
 import { HiAtSymbol, HiStar } from "react-icons/hi"
-import { Badge, For, Group, Span, Stack, useRecipe } from "../src"
+import { Badge, Box, For, Group, Span, Stack, useRecipe } from "../src"
 import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / Badge",
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
 export const Variants = () => {

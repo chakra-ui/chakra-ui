@@ -8,6 +8,11 @@ const StyledGroup = chakra("div", {
     gap: "0.5rem",
     isolation: "isolate",
     position: "relative",
+    "& *": {
+      _focusVisible: {
+        zIndex: 1,
+      },
+    },
   },
   variants: {
     orientation: {

@@ -1,61 +1,79 @@
-import * as React from "react"
-import { For } from "../src"
-import { PinInput } from "../src/components/pin-input"
+import { Box, Field, For, Group, PinInput, useRecipe } from "../src"
+import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / PinInput",
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
-export function Basic() {
+const DemoPinInput = (props: PinInput.RootProps) => {
   return (
-    <PinInput.Root>
-      <PinInput.Field />
-      <PinInput.Field />
-      <PinInput.Field />
+    <PinInput.Root {...props}>
+      <PinInput.Control asChild>
+        <Group attached>
+          {[0, 1, 2].map((id, index) => (
+            <PinInput.Field key={id} index={index} />
+          ))}
+        </Group>
+      </PinInput.Control>
     </PinInput.Root>
   )
 }
 
-export const Sizes = () => (
-  <For each={["xs", "sm", "md", "lg"]}>
-    {(size) => (
-      <div key={size} style={{ marginBottom: "1rem" }}>
-        <PinInput.Root size={size}>
-          <PinInput.Field />
-          <PinInput.Field />
-          <PinInput.Field />
-        </PinInput.Root>
-      </div>
-    )}
-  </For>
-)
+export const Basic = () => {
+  return <DemoPinInput />
+}
 
-export const Controlled = () => {
-  const [value, setValue] = React.useState("")
-
-  const handleChange = (value: string) => setValue(value)
-
-  const handleComplete = (value: string) => console.log(value)
-
+export const Sizes = () => {
+  const recipe = useRecipe("Badge")
   return (
-    <PinInput.Root
-      value={value}
-      onChange={handleChange}
-      onComplete={handleComplete}
-    >
-      <PinInput.Field />
-      <PinInput.Field />
-      <PinInput.Field />
-    </PinInput.Root>
+    <PlaygroundTable>
+      <thead>
+        <tr>
+          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <For each={recipe.variantMap.size}>
+            {(v) => (
+              <td>
+                <DemoPinInput size={v} />
+              </td>
+            )}
+          </For>
+        </tr>
+      </tbody>
+    </PlaygroundTable>
   )
 }
 
-export function AutoFocus() {
+export const WithCompleteFn = () => {
+  const handleComplete = (value: string[]) => console.log(value)
+  return <DemoPinInput onComplete={handleComplete} />
+}
+
+export const WithField = () => {
   return (
-    <PinInput.Root autoFocus>
-      <PinInput.Field />
-      <PinInput.Field />
-      <PinInput.Field />
-    </PinInput.Root>
+    <Field.Root>
+      <PinInput.Root>
+        <Field.Label asChild>
+          <PinInput.Label>Enter your pin</PinInput.Label>
+        </Field.Label>
+        <PinInput.Control mt="2" asChild>
+          <Group gap="3">
+            {[0, 1, 2].map((id, index) => (
+              <PinInput.Field key={id} index={index} />
+            ))}
+          </Group>
+        </PinInput.Control>
+      </PinInput.Root>
+    </Field.Root>
   )
 }

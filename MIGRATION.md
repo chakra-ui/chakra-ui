@@ -1009,3 +1009,11 @@ After:
   </NumberInput.Control>
 </NumberInput.Root>
 ```
+
+## PinInput
+
+- Changed `value`, `defaultValue` and `onChange` to use `string[]` instead of
+  `string`
+- Add new `PinInput.Control` and `PinInput.Label` component parts
+- `PinInput.Root` now renders a `div` element by default. Consider combining
+  with `Stack` or `Group` for better layout control
