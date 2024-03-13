@@ -1,13 +1,14 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import { usePinInputContext } from "."
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePinInputStyles } from "./pin-input-context"
 
 export interface PinInputFieldProps extends HTMLChakraProps<"input"> {
   index: number
 }
 
-export const PinInputField = forwardRef<PinInputFieldProps, "input">(
+export const PinInputField = forwardRef<HTMLInputElement, PinInputFieldProps>(
   function PinInputField(props, ref) {
     const api = usePinInputContext()
     const styles = usePinInputStyles()

@@ -1,11 +1,12 @@
 import { mergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePinInputContext } from "./pin-input-context"
 
 export interface PinInputControlProps extends HTMLChakraProps<"div"> {}
 
-export const PinInputControl = forwardRef<PinInputControlProps, "div">(
+export const PinInputControl = forwardRef<HTMLDivElement, PinInputControlProps>(
   function PinInputControl(props, ref) {
     const api = usePinInputContext()
     return (

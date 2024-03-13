@@ -1,11 +1,10 @@
 import { mapResponsive } from "@chakra-ui/utils"
-import { useMemo } from "react"
+import { forwardRef, useMemo } from "react"
 import {
   ConditionalValue,
   HTMLChakraProps,
   SystemStyleObject,
   chakra,
-  forwardRef,
 } from "../../styled-system"
 
 type Dict = Record<string, any>
@@ -44,7 +43,7 @@ export interface IndicatorProps
   extends Omit<HTMLChakraProps<"div">, keyof IndicatorOptions>,
     IndicatorOptions {}
 
-export const Indicator = forwardRef<IndicatorProps, "div">(
+export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
   function Indicator(props, ref) {
     const {
       offsetX,

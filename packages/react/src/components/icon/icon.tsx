@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -34,23 +34,25 @@ export interface IconProps
  *
  * @see Docs https://chakra-ui.com/docs/components/icon#using-the-icon-component
  */
-export const Icon = forwardRef<IconProps, "svg">(function Icon(props, ref) {
-  const recipe = useRecipe("Icon", props.recipe)
-  const [variantProps, localProps] = recipe.splitVariantProps(props)
-  const styles = recipe(variantProps)
+export const Icon = forwardRef<SVGElement, IconProps>(
+  function Icon(props, ref) {
+    const recipe = useRecipe("Icon", props.recipe)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = recipe(variantProps)
 
-  return (
-    <chakra.svg
-      verticalAlign="middle"
-      viewBox="0 0 24 24"
-      ref={ref}
-      {...localProps}
-      css={[styles, props.css]}
-      className={cx("chakra-icon", props.className)}
-    >
-      {props.children ?? fallbackIcon.path}
-    </chakra.svg>
-  )
-})
+    return (
+      <chakra.svg
+        verticalAlign="middle"
+        viewBox="0 0 24 24"
+        ref={ref}
+        {...localProps}
+        css={[styles, props.css]}
+        className={cx("chakra-icon", props.className)}
+      >
+        {props.children ?? fallbackIcon.path}
+      </chakra.svg>
+    )
+  },
+)
 
 Icon.displayName = "Icon"

@@ -1,9 +1,9 @@
+import { forwardRef } from "react"
 import type { HTMLChakraProps } from "../../styled-system"
 import {
   SlotRecipeProps,
   SystemStyleObject,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { ListStylesProvider } from "./list-context"
@@ -31,7 +31,7 @@ export interface ListRootProps
  *
  * @see Docs https://chakra-ui.com/list
  */
-export const ListRoot = forwardRef<ListRootProps, "ul">(
+export const ListRoot = forwardRef<HTMLUListElement, ListRootProps>(
   function ListRoot(props, ref) {
     const recipe = useSlotRecipe("List", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
@@ -49,6 +49,7 @@ export const ListRoot = forwardRef<ListRootProps, "ul">(
             listStyleType: styleType,
             listStylePosition: stylePosition,
             ...styles.root,
+            ...props.css,
           }}
         />
       </ListStylesProvider>

@@ -1,10 +1,11 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuStyles } from "./menu-context"
 
 export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
 
-export const MenuCommand = forwardRef<MenuCommandProps, "span">(
+export const MenuCommand = forwardRef<HTMLSpanElement, MenuCommandProps>(
   function MenuCommand(props, ref) {
     const styles = useMenuStyles()
     return (

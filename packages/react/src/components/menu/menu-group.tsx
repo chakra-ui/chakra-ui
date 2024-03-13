@@ -1,10 +1,11 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuStyles } from "./menu-context"
 
 export interface MenuGroupProps extends HTMLChakraProps<"div"> {}
 
-export const MenuGroup = forwardRef<MenuGroupProps, "div">(
+export const MenuGroup = forwardRef<HTMLDivElement, MenuGroupProps>(
   function MenuGroup(props, ref) {
     const styles = useMenuStyles()
     return (

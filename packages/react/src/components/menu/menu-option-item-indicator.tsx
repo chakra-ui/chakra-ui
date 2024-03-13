@@ -1,8 +1,9 @@
 import { dataAttr } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuStyles, useOptionItemStateContext } from "./menu-context"
 
-const DefaultIcon = (props: HTMLChakraProps<"svg">) => (
+const CheckIcon = (props: HTMLChakraProps<"svg">) => (
   <chakra.svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
       fill="currentColor"
@@ -14,8 +15,8 @@ const DefaultIcon = (props: HTMLChakraProps<"svg">) => (
 export interface MenuOptionItemIndicatorProps extends HTMLChakraProps<"div"> {}
 
 export const MenuOptionItemIndicator = forwardRef<
-  MenuOptionItemIndicatorProps,
-  "div"
+  HTMLDivElement,
+  MenuOptionItemIndicatorProps
 >(function MenuOptionItemIndicator(props, ref) {
   const item = useOptionItemStateContext()
   const styles = useMenuStyles()
@@ -28,7 +29,7 @@ export const MenuOptionItemIndicator = forwardRef<
       data-checked={dataAttr(item.isChecked)}
       css={[styles.indicator, props.css]}
     >
-      {props.children ?? <DefaultIcon />}
+      {props.children ?? <CheckIcon />}
     </chakra.div>
   )
 })

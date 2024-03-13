@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 
@@ -21,7 +21,7 @@ export interface KbdProps extends HTMLChakraProps<"kbd">, RecipeProps<"Kbd"> {}
  *
  * @see Docs https://chakra-ui.com/kbd
  */
-export const Kbd = forwardRef<KbdProps, "kbd">(function Kbd(props, ref) {
+export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(props, ref) {
   const recipe = useRecipe("Kbd", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)

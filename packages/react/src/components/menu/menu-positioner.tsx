@@ -1,9 +1,10 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuContext, useMenuStyles } from "./menu-context"
 
 export interface MenuPositionerProps extends HTMLChakraProps<"div"> {}
 
-export const MenuPositioner = forwardRef<MenuPositionerProps, "div">(
+export const MenuPositioner = forwardRef<HTMLDivElement, MenuPositionerProps>(
   function MenuPositioner(props, ref) {
     const api = useMenuContext()
     const styles = useMenuStyles()
@@ -11,7 +12,7 @@ export const MenuPositioner = forwardRef<MenuPositionerProps, "div">(
     return (
       <chakra.div
         {...api.getPositionerProps(props, ref)}
-        css={{ zIndex: props.zIndex ?? styles.content?.zIndex }}
+        css={[{ zIndex: props.zIndex ?? styles.content?.zIndex }, props.css]}
       />
     )
   },

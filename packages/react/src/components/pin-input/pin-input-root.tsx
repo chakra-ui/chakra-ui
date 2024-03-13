@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 import { PinInputProvider, PinInputStylesProvider } from "./pin-input-context"
@@ -19,7 +19,7 @@ export interface PinInputRootProps
  *
  * @see Docs https://chakra-ui.com/docs/components/pin-input
  */
-export const PinInputRoot = forwardRef<PinInputRootProps, "div">(
+export const PinInputRoot = forwardRef<HTMLDivElement, PinInputRootProps>(
   function PinInput(props, ref) {
     const recipe = useRecipe("PinInput", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)

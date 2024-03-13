@@ -1,6 +1,7 @@
 import { callAll, cx } from "@chakra-ui/utils"
 import { HTMLMotionProps, Variants, motion } from "framer-motion"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useRenderStrategyContext } from "../render-strategy"
 import {
   useAnimationStateContext,
@@ -40,7 +41,7 @@ const motionVariants: Variants = {
 
 const StyledDiv = chakra(motion.div)
 
-export const MenuContent = forwardRef<MenuContentProps, "div">(
+export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
     const { motionProps = {}, ...restProps } = props
 

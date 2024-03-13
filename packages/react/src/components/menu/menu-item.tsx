@@ -1,6 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { useId } from "react"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef, useId } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuContext, useMenuStyles } from "./menu-context"
 import { UseMenuItemProps } from "./use-menu"
 
@@ -12,7 +12,7 @@ export interface MenuItemProps
   extends Omit<HTMLChakraProps<"button">, DisabledProps>,
     UseMenuItemProps {}
 
-export const MenuItem = forwardRef<MenuItemProps, "button">(
+export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
   function MenuItem(props, ref) {
     const styles = useMenuStyles()
     const api = useMenuContext()
