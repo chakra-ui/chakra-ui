@@ -46,7 +46,7 @@ export function useRecipe<K extends RecipeKey>(
 ): K extends keyof ConfigRecipes ? ConfigRecipes[K] : SystemRecipeFn<{}> {
   const sys = useSystemContext()
   return useMemo((): any => {
-    const recipe = sys.getRecipe(key as string, fallback)
+    const recipe = fallback || sys.getRecipe(key)
     return sys.cva(structuredClone(recipe))
   }, [key, fallback, sys])
 }
@@ -61,7 +61,7 @@ export function useSlotRecipe<K extends SlotRecipeKey>(
   : SystemSlotRecipeFn<string, {}> {
   const sys = useSystemContext()
   return useMemo((): any => {
-    const recipe = sys.getSlotRecipe(key, fallback)
+    const recipe = fallback || sys.getSlotRecipe(key)
     return sys.sva(structuredClone(recipe))
   }, [key, fallback, sys])
 }
@@ -72,21 +72,21 @@ export function useToken(category: string, token: string | string[]): string[] {
   return arr.map((t) => sys.token(`${category}.${t}`, t))
 }
 
-const [ParentRecipePropsProvider, useParentRecipeProps] = createContext<
+const [RecipePropsContextProvider, useParentRecipeProps] = createContext<
   RecipeProps<string>
 >({
   name: "ParentRecipeProps",
   strict: false,
-  providerName: "ParentRecipePropsProvider",
+  providerName: "RecipePropsContextProvider",
 })
 
 export function RecipePropsProvider<
   T extends RecipeKey | SlotRecipeKey,
 >(props: { children: React.ReactNode; value: RecipeProps<T> }) {
   return (
-    <ParentRecipePropsProvider value={props.value}>
+    <RecipePropsContextProvider value={props.value}>
       {props.children}
-    </ParentRecipePropsProvider>
+    </RecipePropsContextProvider>
   )
 }
 

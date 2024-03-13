@@ -1,22 +1,36 @@
 import { useDisclosure } from "@chakra-ui/hooks"
 import React from "react"
-import { Drawer } from "../src/components/drawer"
+import { Box, Button, Drawer } from "../src"
 
 export default {
   title: "Components / Drawer",
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
-export const DrawerExample = () => {
+export const Basic = () => {
   const [open, setOpen] = React.useState(false)
   return (
     <>
-      <button onClick={() => setOpen(!open)}>Open</button>
+      <Button variant="solid" onClick={() => setOpen(!open)}>
+        Open
+      </Button>
       <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>
-            <div>This is the drawer content</div>
-            <button>This is a button</button>
+            <Drawer.Header>Drawer Header</Drawer.Header>
+            <Drawer.Body>
+              <div>This is the drawer content</div>
+              <Button variant="solid" mt="6">
+                This is a button
+              </Button>
+            </Drawer.Body>
           </Drawer.Content>
         </Drawer.Positioner>
       </Drawer.Root>
@@ -28,26 +42,27 @@ export const WithCustomMotion = () => {
   const [open, setOpen] = React.useState(false)
   return (
     <>
-      <button onClick={() => setOpen(!open)}>Open</button>
+      <Button variant="solid" onClick={() => setOpen(!open)}>
+        Open
+      </Button>
       <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content
             motionProps={{
               variants: {
-                enter: {
-                  x: "0%",
-                  transition: { duration: 0.2 },
-                },
-                exit: {
-                  x: "100%",
-                  transition: { duration: 0.1 },
-                },
+                enter: { x: "0%", transition: { duration: 0.2 } },
+                exit: { x: "100%", transition: { duration: 0.1 } },
               },
             }}
           >
-            <div>This is the drawer content</div>
-            <button>This is a button</button>
+            <Drawer.Header>Drawer Header</Drawer.Header>
+            <Drawer.Body>
+              <div>This is the drawer content</div>
+              <Button variant="solid" mt="6">
+                This is a button
+              </Button>
+            </Drawer.Body>
           </Drawer.Content>
         </Drawer.Positioner>
       </Drawer.Root>
@@ -60,7 +75,9 @@ export const WithLongContent = () => {
 
   return (
     <>
-      <button onClick={onOpen}>Open</button>
+      <Button variant="solid" onClick={onOpen}>
+        Open
+      </Button>
       <Drawer.Root
         placement="bottom"
         onClose={onClose}

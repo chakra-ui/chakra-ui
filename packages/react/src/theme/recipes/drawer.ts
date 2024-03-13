@@ -1,18 +1,12 @@
 import { drawerAnatomy as parts } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
+import { dialogSlotRecipe } from "./dialog"
 
 export const drawerSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
-    overlay: {
-      bg: "blackAlpha.600",
-      zIndex: "modal",
-    },
-    positioner: {
-      display: "flex",
-      zIndex: "modal",
-      justifyContent: "center",
-    },
+    overlay: dialogSlotRecipe.base!.overlay,
+    positioner: dialogSlotRecipe.base!.positioner,
     content: {
       display: "flex",
       flexDirection: "column",
@@ -29,27 +23,15 @@ export const drawerSlotRecipe = defineSlotRecipe({
         boxShadow: "dark-lg",
       },
     },
-    header: {
-      px: "6",
-      py: "4",
-      fontSize: "xl",
-      fontWeight: "semibold",
-    },
-    closeTrigger: {
-      position: "absolute",
-      top: "2",
-      insetEnd: "3",
-    },
+    header: dialogSlotRecipe.base!.header,
+    closeTrigger: dialogSlotRecipe.base!.closeTrigger,
     body: {
       px: "6",
       py: "2",
       flex: "1",
       overflow: "auto",
     },
-    footer: {
-      px: "6",
-      py: "4",
-    },
+    footer: dialogSlotRecipe.base!.footer,
   },
   variants: {
     size: {

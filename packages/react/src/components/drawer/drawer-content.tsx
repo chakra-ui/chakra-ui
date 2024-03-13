@@ -21,21 +21,22 @@ export interface DrawerContentProps extends HTMLChakraProps<"section"> {
  */
 export const DrawerContent = forwardRef<DrawerContentProps, "section">(
   function DrawerContent(props, ref) {
-    const { className, children, motionProps, ...rest } = props
+    const { children, motionProps, ...rest } = props
 
     const api = useDialogContext()
-    const { placement } = useDrawerContext()
+    const drawerApi = useDrawerContext()
+
     const styles = useDialogStyles()
 
     return (
       <DialogFocusScope>
         <StyledContent
           motionProps={motionProps}
-          direction={placement}
+          direction={drawerApi.placement}
           in={api.isOpen}
           {...(api.getContentProps(rest, ref) as any)}
-          className={cx("chakra-dialog__content", className)}
-          css={styles.content}
+          className={cx("chakra-dialog__content", props.className)}
+          css={[styles.content, props.css]}
         >
           {children}
         </StyledContent>

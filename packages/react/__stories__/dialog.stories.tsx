@@ -19,7 +19,7 @@ export default {
   ],
 }
 
-export function Basic() {
+export const Basic = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
@@ -52,7 +52,7 @@ export function Basic() {
   )
 }
 
-export function FinalFocusRef() {
+export const FinalFocusRef = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef<HTMLDivElement>(null)
 
@@ -94,7 +94,7 @@ export function FinalFocusRef() {
   )
 }
 
-export function NestedDialogs() {
+export const NestedDialogs = () => {
   const first = useDisclosure()
   const second = useDisclosure()
 
