@@ -14,8 +14,14 @@ import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Components / Linear Progress",
-  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
+  title: "Components / Progress - Linear",
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
 const DemoProgress = (props: Progress.RootProps) => {

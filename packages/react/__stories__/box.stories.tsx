@@ -1,4 +1,4 @@
-import { Box, Circle, Flex, HStack, Kbd, Spacer, Square } from "../src"
+import { Box, Circle, HStack, Square } from "../src"
 import { DecorativeBox } from "./shared/decorative-box"
 
 export default {
@@ -21,23 +21,6 @@ export const basic = () => (
       }}
     />
   </Box>
-)
-
-export const kbd = () => <Kbd>Ctrl + L</Kbd>
-
-export const spacer = () => (
-  <Flex
-    color={["green.400", "tomato"]}
-    direction={{ base: "column", md: "row" }}
-  >
-    <Box bg="pink.500" boxSize="100px">
-      Box 1
-    </Box>
-    <Spacer />
-    <Box bg="green.500" boxSize="100px">
-      Box 2
-    </Box>
-  </Flex>
 )
 
 export const square = () => (

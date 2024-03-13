@@ -2,7 +2,7 @@ import { CircularProgress } from "../src/components/progress-circular"
 import { chakra } from "../src/styled-system"
 
 export default {
-  title: "Components / Circular Progress",
+  title: "Components / Progress - Circular",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="500px" mt="40px" mx="auto">

@@ -4,7 +4,13 @@ import React from "react"
 import { SystemProvider, defaultSystem } from "../packages/react/src"
 
 const preview: Preview = {
-  parameters: {},
+  parameters: {
+    options: {
+      storySort: {
+        method: "alphabetical",
+      },
+    },
+  },
   decorators: [
     withThemeByClassName<ReactRenderer>({
       defaultTheme: "light",
