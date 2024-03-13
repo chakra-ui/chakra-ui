@@ -1,12 +1,14 @@
-import { useCallbackRef } from "@chakra-ui/hooks"
-import { useControllableState } from "@chakra-ui/hooks"
-import { useFocusOnPointerDown } from "@chakra-ui/hooks"
-import { mergeRefs } from "@chakra-ui/hooks"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { useUpdateEffect } from "@chakra-ui/hooks"
+import {
+  mergeRefs,
+  useCallbackRef,
+  useControllableState,
+  useFocusOnPointerDown,
+  useSafeLayoutEffect,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
 import { ariaAttr, callAllHandlers, contains } from "@chakra-ui/utils"
-import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { RefObject, useCallback, useEffect, useRef, useState } from "react"
+import { PropGetterFn } from "../../styled-system/factory.types"
 
 interface FocusableElement {
   focus(options?: FocusOptions): void
@@ -266,7 +268,7 @@ export function useEditable(props: UseEditableProps = {}) {
     [submitOnBlur, onSubmit, onCancel, isEditing],
   )
 
-  const getPreviewProps: PropGetter = useCallback(
+  const getPreviewProps: PropGetterFn<"div"> = useCallback(
     (props = {}, ref = null) => {
       const tabIndex = isInteractive && isPreviewFocusable ? 0 : undefined
       return {
@@ -292,7 +294,7 @@ export function useEditable(props: UseEditableProps = {}) {
     ],
   )
 
-  const getInputProps: PropGetter = useCallback(
+  const getInputProps: PropGetterFn<"input"> = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       hidden: !isEditing,
@@ -318,7 +320,7 @@ export function useEditable(props: UseEditableProps = {}) {
     ],
   )
 
-  const getTextareaProps: PropGetter = useCallback(
+  const getTextareaProps: PropGetterFn<"textarea"> = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       hidden: !isEditing,
@@ -344,7 +346,7 @@ export function useEditable(props: UseEditableProps = {}) {
     ],
   )
 
-  const getEditButtonProps: PropGetter = useCallback(
+  const getEditButtonProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => ({
       "aria-label": "Edit",
       ...props,
@@ -356,7 +358,7 @@ export function useEditable(props: UseEditableProps = {}) {
     [onEdit, isDisabled],
   )
 
-  const getSubmitButtonProps: PropGetter = useCallback(
+  const getSubmitButtonProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => ({
       ...props,
       "aria-label": "Submit",
@@ -368,7 +370,7 @@ export function useEditable(props: UseEditableProps = {}) {
     [onSubmit, isDisabled],
   )
 
-  const getCancelButtonProps: PropGetter = useCallback(
+  const getCancelButtonProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => ({
       "aria-label": "Cancel",
       id: "cancel",

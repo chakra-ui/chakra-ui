@@ -1017,3 +1017,10 @@ After:
 - Add new `PinInput.Control` and `PinInput.Label` component parts
 - `PinInput.Root` now renders a `div` element by default. Consider combining
   with `Stack` or `Group` for better layout control
+
+## Image
+
+- Now renders a native `img` without any fallback
+- Remove `fallbackSrc` due to the SSR issues it causes
+- Remove `useImage` hook
+- Remove `Img` in favor of using the `Image` component directly

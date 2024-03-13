@@ -5,40 +5,35 @@ import {
   screen,
   testA11y,
 } from "@chakra-ui/test-utils"
-import {
-  RangeSlider,
-  RangeSliderFilledTrack,
-  RangeSliderThumb,
-  RangeSliderTrack,
-} from "../src/components/slider"
+import { RangeSlider } from "../src"
 
 const HorizontalSlider = () => {
   return (
-    <RangeSlider
+    <RangeSlider.Root
       aria-label={["leftThumb", "rightThumb"]}
       min={1}
       max={100}
       defaultValue={[40, 80]}
     >
-      <RangeSliderTrack>
-        <RangeSliderFilledTrack />
-      </RangeSliderTrack>
-      <RangeSliderThumb index={0} />
-      <RangeSliderThumb index={1} />
-    </RangeSlider>
+      <RangeSlider.Track>
+        <RangeSlider.FilledTrack />
+      </RangeSlider.Track>
+      <RangeSlider.Thumb index={0} />
+      <RangeSlider.Thumb index={1} />
+    </RangeSlider.Root>
   )
 }
 
 const HorizontalSliderWithStackedThumbs = () => {
   return (
-    <RangeSlider min={0} max={100} defaultValue={[0, 0, 100]}>
-      <RangeSliderTrack>
-        <RangeSliderFilledTrack />
-      </RangeSliderTrack>
-      <RangeSliderThumb index={0} />
-      <RangeSliderThumb index={1} />
-      <RangeSliderThumb index={2} />
-    </RangeSlider>
+    <RangeSlider.Root min={0} max={100} defaultValue={[0, 0, 100]}>
+      <RangeSlider.Track>
+        <RangeSlider.FilledTrack />
+      </RangeSlider.Track>
+      <RangeSlider.Thumb index={0} />
+      <RangeSlider.Thumb index={1} />
+      <RangeSlider.Thumb index={2} />
+    </RangeSlider.Root>
   )
 }
 
@@ -118,11 +113,11 @@ test("should set a thumb to its maximum value when pressing the end key", async 
 test.skip("should move the correct thumb when user clicks the track in case of stacked thumbs", () => {
   render(<HorizontalSliderWithStackedThumbs />)
 
-  const rangeSliderTrack = screen.getByTestId("chakra-range-slider-track")
+  const track = screen.getByTestId("chakra-range-slider-track")
 
   // getBoundingClientRect is not supported by JSDOM
   // its implementation needs to be mocked
-  vi.spyOn(rangeSliderTrack, "getBoundingClientRect").mockImplementation(
+  vi.spyOn(track, "getBoundingClientRect").mockImplementation(
     () =>
       ({
         left: 0,
@@ -134,7 +129,7 @@ test.skip("should move the correct thumb when user clicks the track in case of s
 
   const clickCoordinates = { clientX: 20, clientY: 10 }
 
-  fireEvent.pointerDown(rangeSliderTrack, clickCoordinates)
+  fireEvent.pointerDown(track, clickCoordinates)
 
   const [firstThumb, secondThumb, thirdThumb] = getThumbs()
 

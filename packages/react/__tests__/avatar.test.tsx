@@ -1,11 +1,14 @@
 import { act, mocks, render, testA11y } from "@chakra-ui/test-utils"
 import { Avatar, AvatarBadge } from "../src/components/avatar"
 
-const AvatarComp = (props: Avatar.RootProps) => {
+const AvatarComp = (
+  props: Avatar.RootProps & { src?: string; name?: string },
+) => {
+  const { src, name, ...rest } = props
   return (
-    <Avatar.Root {...props}>
-      <Avatar.Image />
-      <Avatar.Fallback />
+    <Avatar.Root {...rest}>
+      <Avatar.Image src={src} />
+      <Avatar.Fallback name={name} />
       {props.children}
     </Avatar.Root>
   )

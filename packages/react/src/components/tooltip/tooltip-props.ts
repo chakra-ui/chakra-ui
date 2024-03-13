@@ -11,7 +11,6 @@ export const tooltipProps = createProps<UseTooltipProps>()([
   "closeOnPointerDown",
   "closeOnScroll",
   "defaultIsOpen",
-  "direction",
   "gutter",
   "id",
   "isDisabled",

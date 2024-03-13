@@ -1,4 +1,4 @@
-import { createProps, splitProps } from "@chakra-ui/utils"
+import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseFieldProps } from "./types"
 
 export const fieldProps = createProps<UseFieldProps>()([
@@ -15,8 +15,4 @@ export const fieldProps = createProps<UseFieldProps>()([
   "required",
 ])
 
-export const splitFieldProps = <T extends UseFieldProps>(props: T) =>
-  splitProps(props as any, fieldProps) as [
-    UseFieldProps,
-    Omit<T, keyof UseFieldProps>,
-  ]
+export const splitFieldProps = createSplitProps<UseFieldProps>(fieldProps)

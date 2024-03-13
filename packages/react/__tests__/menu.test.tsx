@@ -25,7 +25,7 @@ test("passes a11y test", async () => {
   await testA11y(
     <Menu.Root>
       <Menu.Trigger asChild>
-        <Button variant="solid" colorScheme="teal" size="sm">
+        <Button variant="solid" colorPalette="teal" size="sm">
           Open Wakanda menu
         </Button>
       </Menu.Trigger>
@@ -44,7 +44,7 @@ test("does not render Menu.Content Items if Menu isLazy", () => {
   render(
     <Menu.Root isLazy>
       <Menu.Trigger asChild>
-        <Button variant="solid" colorScheme="teal" size="sm">
+        <Button variant="solid" colorPalette="teal" size="sm">
           Open Wakanda menu
         </Button>
       </Menu.Trigger>
@@ -67,14 +67,23 @@ test("sets correct aria attributes on disabled Menu.Items", () => {
       <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
-          <Menu.Item icon={<FaSearch />} command="⌥T">
+          <Menu.Item>
+            <FaSearch />
             Search
+            <Menu.Command>⌥T</Menu.Command>
           </Menu.Item>
-          <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-          <Menu.Item isDisabled icon={<FaTruck />}>
+          <Menu.Item>
+            <FaUndoAlt />
+            Undo
+          </Menu.Item>
+          <Menu.Item isDisabled>
+            <FaTruck />
             Delivery
           </Menu.Item>
-          <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
+          <Menu.Item>
+            <FaUnlink />
+            Unlink
+          </Menu.Item>
         </Menu.Content>
       </Menu.Positioner>
     </Menu.Root>,
@@ -91,14 +100,23 @@ test("does not fire onClick on disabled Menu.Item", () => {
       <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
-          <Menu.Item icon={<FaSearch />} command="⌥T">
+          <Menu.Item>
+            <FaSearch />
             Search
+            <Menu.Command>⌥T</Menu.Command>
           </Menu.Item>
-          <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-          <Menu.Item isDisabled icon={<FaTruck />} onClick={onClick}>
+          <Menu.Item>
+            <FaUndoAlt />
+            Undo
+          </Menu.Item>
+          <Menu.Item isDisabled onClick={onClick}>
+            <FaTruck />
             Delivery
           </Menu.Item>
-          <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
+          <Menu.Item>
+            <FaUnlink />
+            Unlink
+          </Menu.Item>
         </Menu.Content>
       </Menu.Positioner>
     </Menu.Root>,
@@ -110,33 +128,6 @@ test("does not fire onClick on disabled Menu.Item", () => {
   fireEvent.click(button)
 
   expect(onClick).not.toHaveBeenCalled()
-})
-
-/**
- * skipped because broken
- *
- * @see https://github.com/chakra-ui/chakra-ui/issues/1651
- */
-test.skip("allows focusing disabled Menu.Items given isFocusable", async () => {
-  render(
-    <Menu.Root>
-      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
-      <Menu.Positioner>
-        <Menu.Content>
-          <Menu.Item isDisabled isFocusable icon={<FaTruck />}>
-            Delivery
-          </Menu.Item>
-        </Menu.Content>
-      </Menu.Positioner>
-    </Menu.Root>,
-  )
-
-  const span = screen.getByText("Delivery")
-  const button = span.parentNode!
-
-  fireEvent.click(button)
-
-  await waitFor(() => expect(button).toHaveFocus())
 })
 
 test("allows using a Portal to render the Menu.Content", async () => {
@@ -197,15 +188,17 @@ test("MenuGroup has correct role ", async () => {
 test("Menu.OptionGroup radio", async () => {
   render(
     <Menu.Root>
-      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
-        Open menu
+      <Menu.Trigger as={Button}>
+        <Button variant="solid" colorPalette="green" size="sm">
+          Open menu
+        </Button>
       </Menu.Trigger>
 
       <Menu.Positioner>
         <Menu.Content minWidth="240px">
           <Menu.OptionGroup defaultValue="val1" title="Order" type="radio">
-            <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
-            <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
+            <Menu.OptionItem value="val-1">Option 1</Menu.OptionItem>
+            <Menu.OptionItem value="val-2">Option 2</Menu.OptionItem>
           </Menu.OptionGroup>
         </Menu.Content>
       </Menu.Positioner>
@@ -226,7 +219,7 @@ test("Menu.OptionGroup radio defaultValue checked", async () => {
   render(
     <Menu.Root closeOnSelect={false}>
       <Menu.Trigger asChild>
-        <Button variant="solid" colorScheme="green" size="sm">
+        <Button variant="solid" colorPalette="green" size="sm">
           Open menu
         </Button>
       </Menu.Trigger>
@@ -234,8 +227,8 @@ test("Menu.OptionGroup radio defaultValue checked", async () => {
       <Menu.Positioner>
         <Menu.Content minWidth="240px">
           <Menu.OptionGroup defaultValue="val-1" title="Order" type="radio">
-            <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
-            <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
+            <Menu.OptionItem value="val-1">Option 1</Menu.OptionItem>
+            <Menu.OptionItem value="val-2">Option 2</Menu.OptionItem>
           </Menu.OptionGroup>
         </Menu.Content>
       </Menu.Positioner>
@@ -252,7 +245,7 @@ test("Menu.OptionGroup checkbox defaultValue single checked", async () => {
   render(
     <Menu.Root closeOnSelect={false}>
       <Menu.Trigger asChild>
-        <Button variant="solid" colorScheme="green" size="sm">
+        <Button variant="solid" colorPalette="green" size="sm">
           Open menu
         </Button>
       </Menu.Trigger>
@@ -260,9 +253,9 @@ test("Menu.OptionGroup checkbox defaultValue single checked", async () => {
       <Menu.Positioner>
         <Menu.Content minWidth="240px">
           <Menu.OptionGroup defaultValue="email" title="Info" type="checkbox">
-            <Menu.ItemOption value="email">Email</Menu.ItemOption>
-            <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
-            <Menu.ItemOption value="country">Country</Menu.ItemOption>
+            <Menu.OptionItem value="email">Email</Menu.OptionItem>
+            <Menu.OptionItem value="phone">Phone</Menu.OptionItem>
+            <Menu.OptionItem value="country">Country</Menu.OptionItem>
           </Menu.OptionGroup>
         </Menu.Content>
       </Menu.Positioner>
@@ -288,7 +281,7 @@ test("Menu.OptionGroup checkbox defaultValue multiple checked", () => {
   render(
     <Menu.Root closeOnSelect={false}>
       <Menu.Trigger asChild>
-        <Button variant="solid" colorScheme="green" size="sm">
+        <Button variant="solid" colorPalette="green" size="sm">
           Open menu
         </Button>
       </Menu.Trigger>
@@ -300,9 +293,9 @@ test("Menu.OptionGroup checkbox defaultValue multiple checked", () => {
             title="Info"
             type="checkbox"
           >
-            <Menu.ItemOption value="email">Email</Menu.ItemOption>
-            <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
-            <Menu.ItemOption value="country">Country</Menu.ItemOption>
+            <Menu.OptionItem value="email">Email</Menu.OptionItem>
+            <Menu.OptionItem value="phone">Phone</Menu.OptionItem>
+            <Menu.OptionItem value="country">Country</Menu.OptionItem>
           </Menu.OptionGroup>
         </Menu.Content>
       </Menu.Positioner>
@@ -449,7 +442,9 @@ test("Menu.Item can override its parent menu's `closeOnSelect` and close the men
   const onClose = vi.fn()
   render(
     <Menu.Root onClose={onClose} closeOnSelect={false}>
-      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Trigger asChild>
+        <Button>Open menu</Button>
+      </Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
           <Menu.Item>I do not close the menu</Menu.Item>
@@ -470,27 +465,6 @@ test("Menu.Item can override its parent menu's `closeOnSelect` and close the men
   fireEvent.click(menuItemThatCloses)
   expect(onClose).toHaveBeenCalled()
 })
-
-// test("Menu.Content direction flips in rtl", () => {
-//   render(
-//     <ChakraProvider theme={{ ...theme, direction: "rtl" }}>
-//       <Menu.Root placement="top-end" isOpen>
-//         <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
-//         <Menu.Positioner>
-//           <Menu.Content>
-//             <Menu.Item>Pick me</Menu.Item>
-//             <Menu.Item>No no, pick me</Menu.Item>
-//           </Menu.Content>
-//         </Menu.Positioner>
-//       </Menu.Root>
-//     </ChakraProvider>,
-//   )
-
-//   const menuList = screen.getByRole("menu")
-//   expect(menuList.parentElement!.getAttribute("data-popper-placement")).toEqual(
-//     "top-start",
-//   )
-// })
 
 test("can override menu item type", async () => {
   render(

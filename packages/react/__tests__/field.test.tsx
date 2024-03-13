@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
-import { Field, RequiredIndicator, useField } from "../src/components/field"
+import { Field, useField } from "../src/components/field"
 import { chakra, forwardRef } from "../src/styled-system"
 
 const Input = forwardRef((props: any, ref) => {
@@ -45,7 +45,7 @@ test("only displays error icon and message when invalid", () => {
   const { rerender } = render(
     <Field.Root id="name" isInvalid>
       <Field.Label>Name</Field.Label>
-      <RequiredIndicator />
+      <Field.RequiredIndicator />
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
       <Field.ErrorMessage data-testid="message">
@@ -61,7 +61,7 @@ test("only displays error icon and message when invalid", () => {
   rerender(
     <Field.Root id="name">
       <Field.Label>Name</Field.Label>
-      <RequiredIndicator />
+      <Field.RequiredIndicator />
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
       <Field.ErrorMessage data-testid="message">
@@ -178,7 +178,7 @@ test("has the correct data attributes", async () => {
       isReadOnly
     >
       <Field.Label data-testid="label">Name</Field.Label>
-      <RequiredIndicator data-testid="indicator" />
+      <Field.RequiredIndicator data-testid="indicator" />
       <Input placeholder="Name" />
       <Field.HelpText data-testid="helper-text">
         Please enter your name!
@@ -232,7 +232,10 @@ test("should respect form control aria-describedby", () => {
 test("it renders the optionalIndicator in Form.Label if it is provided", () => {
   render(
     <Field.Root isRequired={false}>
-      <Field.Label optionalIndicator=" (optional)">Test</Field.Label>
+      <Field.Label>
+        Test
+        <Field.RequiredIndicator fallback=" (optional)" />
+      </Field.Label>
       <Input />
     </Field.Root>,
   )

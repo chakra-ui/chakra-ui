@@ -13,12 +13,12 @@ const HookCheckbox = (
   props: UseCheckboxProps & { children?: React.ReactNode },
 ) => {
   const { children, ...restProps } = props
-  const { getInputProps, getCheckboxProps } = useCheckbox(restProps)
+  const { getInputProps, getControlProps } = useCheckbox(restProps)
 
   return (
     <label>
       <input data-testid="input" {...getInputProps()} />
-      <div data-testid="checkbox" {...getCheckboxProps()}>
+      <div data-testid="control" {...getControlProps()}>
         {children}
       </div>
     </label>
@@ -42,7 +42,7 @@ test("Uncontrolled - should check and uncheck", () => {
   render(<HookCheckbox>Checkbox</HookCheckbox>)
 
   const input = screen.getByTestId("input")
-  const checkbox = screen.getByTestId("checkbox")
+  const checkbox = screen.getByTestId("control")
 
   // click the first time, it is checked
   fireEvent.click(input)
@@ -59,7 +59,7 @@ test("Uncontrolled - should not check if disabled", () => {
   render(<HookCheckbox isDisabled>Checkbox</HookCheckbox>)
 
   const input = screen.getByTestId("input")
-  const checkbox = screen.getByText("Checkbox")
+  const checkbox = screen.getByText("control")
 
   expect(input).toBeDisabled()
   expect(checkbox).toHaveAttribute("data-disabled")
@@ -73,7 +73,7 @@ test("Uncontrolled - should not check if disabled", () => {
 test("indeterminate state", () => {
   render(<HookCheckbox isIndeterminate>Checkbox</HookCheckbox>)
 
-  const checkbox = screen.getByText("Checkbox")
+  const checkbox = screen.getByText("control")
   expect(checkbox).toHaveAttribute("data-indeterminate")
 })
 
@@ -95,10 +95,10 @@ test("Controlled - should check and uncheck", async () => {
 
   const { user } = render(<Component />)
 
-  const inputEl = screen.getByRole("checkbox")
+  const inputEl = screen.getByRole("control")
   expect(inputEl).not.toBeChecked()
 
-  await user.click(screen.getByRole("checkbox"))
+  await user.click(screen.getByRole("control"))
   expect(inputEl).toBeChecked()
   expect(onChange).toHaveBeenCalled()
 })
@@ -223,7 +223,9 @@ test("accepts custom icon", () => {
 
   render(
     <Checkbox.Root defaultChecked>
-      <Checkbox.Control icon={<IconSvg data-testid="custom-icon" />} />
+      <Checkbox.Control>
+        <IconSvg data-testid="custom-icon" />
+      </Checkbox.Control>
       <Checkbox.Label>hello world</Checkbox.Label>
     </Checkbox.Root>,
   )
@@ -510,7 +512,7 @@ test("On resetting form, all checkboxes in the form should reset to its default 
   )
 
   const resetBtn = getByRole("button")
-  const [checkbox1, checkbox2] = getAllByRole("checkbox")
+  const [checkbox1, checkbox2] = getAllByRole("control")
 
   fireEvent.click(checkbox1)
   fireEvent.click(checkbox2)

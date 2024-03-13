@@ -1,6 +1,4 @@
-import { useDisclosure } from "@chakra-ui/hooks"
-import { useEventListener } from "@chakra-ui/hooks"
-import { mergeRefs } from "@chakra-ui/hooks"
+import { mergeRefs, useDisclosure, useEventListener } from "@chakra-ui/hooks"
 import { PropGetter, callAllHandlers, getScrollParent } from "@chakra-ui/utils"
 import React, {
   type RefObject,
@@ -11,17 +9,10 @@ import React, {
 } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../../popper"
 
-// import { useTheme } from "../../styled-system"
-
 export interface UseTooltipProps
   extends Pick<
     UsePopperProps,
-    | "modifiers"
-    | "gutter"
-    | "offset"
-    | "arrowPadding"
-    | "direction"
-    | "placement"
+    "modifiers" | "gutter" | "offset" | "arrowPadding" | "placement"
   > {
   /**
    * Delay (in ms) before showing the tooltip
@@ -114,7 +105,6 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     isDisabled,
     gutter,
     offset,
-    direction = "ltr",
   } = props
 
   const { isOpen, onOpen, onClose } = useDisclosure({
@@ -132,7 +122,6 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
       modifiers,
       gutter,
       offset,
-      direction,
     })
 
   const uuid = useId()

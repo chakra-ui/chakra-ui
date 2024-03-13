@@ -16,10 +16,10 @@ function renderComponent(props: NumberInput.RootProps = {}) {
       <label htmlFor="input">Select number:</label>
       <NumberInput.Root id="input" data-testid="root" {...props}>
         <NumberInput.Field data-testid="input" />
-        <NumberInput.Stepper data-testid="group">
-          <NumberInput.IncrementStepper children="+" data-testid="up-btn" />
-          <NumberInput.DecrementStepper children="-" data-testid="down-btn" />
-        </NumberInput.Stepper>
+        <NumberInput.Control data-testid="group">
+          <NumberInput.IncrementTrigger children="+" data-testid="up-btn" />
+          <NumberInput.DecrementTrigger children="-" data-testid="down-btn" />
+        </NumberInput.Control>
       </NumberInput.Root>
     </>,
   )
@@ -190,10 +190,10 @@ test("should derive values from surrounding FormControl", () => {
       <Field.Label>Number</Field.Label>
       <NumberInput.Root data-testid="root">
         <NumberInput.Field data-testid="input" />
-        <NumberInput.Stepper data-testid="group">
-          <NumberInput.IncrementStepper children="+" data-testid="up-btn" />
-          <NumberInput.DecrementStepper children="-" data-testid="down-btn" />
-        </NumberInput.Stepper>
+        <NumberInput.Control data-testid="group">
+          <NumberInput.IncrementTrigger children="+" data-testid="up-btn" />
+          <NumberInput.DecrementTrigger children="-" data-testid="down-btn" />
+        </NumberInput.Control>
       </NumberInput.Root>
       <Field.HelpText>Select a number</Field.HelpText>
     </Field.Root>,

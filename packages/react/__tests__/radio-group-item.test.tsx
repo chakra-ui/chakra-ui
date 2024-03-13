@@ -1,26 +1,21 @@
 import { fireEvent, render, screen } from "@chakra-ui/test-utils"
-import { Field } from "../src/components/field"
-import {
-  RadioGroup,
-  UseRadioProps,
-  useRadio,
-} from "../src/components/radio-group"
+import { Field, RadioGroup, UseRadioProps, useRadio } from "../src"
+
+const Component = (props: UseRadioProps = {}) => {
+  const { getControlProps, getInputProps, getRootProps } = useRadio(props)
+  return (
+    <label data-testid="container" {...getRootProps()}>
+      <input data-testid="input" {...getInputProps()} />
+      <div data-testid="control" {...getControlProps()} />
+    </label>
+  )
+}
 
 test("has proper aria and data attributes", async () => {
-  const Component = (props: UseRadioProps = {}) => {
-    const { getRadioProps, getInputProps, getRootProps } = useRadio(props)
-
-    return (
-      <label data-testid="container" {...getRootProps()}>
-        <input data-testid="input" {...getInputProps()} />
-        <div data-testid="checkbox" {...getRadioProps()} />
-      </label>
-    )
-  }
   const utils = render(<Component name="name" value="" id="id" />)
 
   let input = utils.getByTestId("input")
-  let checkbox = utils.getByTestId("checkbox")
+  let checkbox = utils.getByTestId("control")
   let container = utils.getByTestId("container")
 
   expect(input).toHaveAttribute("name", "name")
@@ -44,7 +39,7 @@ test("has proper aria and data attributes", async () => {
   utils.rerender(<Component isDisabled isInvalid isReadOnly isRequired />)
 
   input = utils.getByTestId("input")
-  checkbox = utils.getByTestId("checkbox")
+  checkbox = utils.getByTestId("control")
   container = utils.getByTestId("container")
 
   expect(input).toHaveAttribute("aria-required")
@@ -77,19 +72,10 @@ test("handles events and callbacks correctly", () => {
     onKeyDown: vi.fn(),
     onKeyUp: vi.fn(),
   }
-  const Component = () => {
-    const { getRadioProps, getInputProps, getRootProps } = useRadio(hookProps)
 
-    return (
-      <label data-testid="container" {...getRootProps()}>
-        <input data-testid="input" {...getInputProps(inputProps)} />
-        <div data-testid="checkbox" {...getRadioProps(checkboxProps)} />
-      </label>
-    )
-  }
   const utils = render(<Component />)
   const input = utils.getByTestId("input")
-  const checkbox = utils.getByTestId("checkbox")
+  const checkbox = utils.getByTestId("control")
   const container = utils.getByTestId("container")
   expect(checkbox).not.toHaveAttribute("data-checked")
   expect(container).not.toHaveAttribute("data-checked")

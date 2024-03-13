@@ -1,5 +1,5 @@
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
-import { Breadcrumb } from "../src/components/breadcrumb"
+import { Breadcrumb } from "../src"
 
 test("passes a11y test", async () => {
   await testA11y(
@@ -8,11 +8,13 @@ test("passes a11y test", async () => {
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
         </Breadcrumb.Item>
+        <Breadcrumb.Separator />
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item isCurrentPage>
-          <Breadcrumb.Link>Link 3</Breadcrumb.Link>
+        <Breadcrumb.Separator />
+        <Breadcrumb.Item>
+          <Breadcrumb.CurrentLink>Link 3</Breadcrumb.CurrentLink>
         </Breadcrumb.Item>
       </Breadcrumb.List>
     </Breadcrumb.Root>,
@@ -26,11 +28,13 @@ test("has the proper aria-attributes", () => {
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
         </Breadcrumb.Item>
+        <Breadcrumb.Separator />
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item isCurrentPage>
-          <Breadcrumb.Link>Link 3</Breadcrumb.Link>
+        <Breadcrumb.Separator />
+        <Breadcrumb.Item>
+          <Breadcrumb.CurrentLink>Link 3</Breadcrumb.CurrentLink>
         </Breadcrumb.Item>
       </Breadcrumb.List>
     </Breadcrumb.Root>,
@@ -50,10 +54,11 @@ test("has the proper aria-attributes", () => {
 test("separator can be changed", () => {
   render(
     <Breadcrumb.Root>
-      <Breadcrumb.List separator="-">
+      <Breadcrumb.List>
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
         </Breadcrumb.Item>
+        <Breadcrumb.Separator>-</Breadcrumb.Separator>
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
         </Breadcrumb.Item>
@@ -70,8 +75,8 @@ test("breadcrumb link has its href attribute correctly set", () => {
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item isCurrentPage>
-          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        <Breadcrumb.Item>
+          <Breadcrumb.CurrentLink>Link 2</Breadcrumb.CurrentLink>
         </Breadcrumb.Item>
       </Breadcrumb.List>
     </Breadcrumb.Root>,
@@ -88,8 +93,8 @@ test("current page link doesn't have href attribute set", () => {
         <Breadcrumb.Item>
           <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item isCurrentPage>
-          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        <Breadcrumb.Item>
+          <Breadcrumb.CurrentLink>Link 2</Breadcrumb.CurrentLink>
         </Breadcrumb.Item>
       </Breadcrumb.List>
     </Breadcrumb.Root>,

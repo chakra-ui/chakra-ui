@@ -14,7 +14,7 @@ import { UseRangeSliderProps, useRangeSlider } from "./use-range-slider"
 export interface RangeSliderRootProps
   extends UseRangeSliderProps,
     SlotRecipeProps<"Slider">,
-    Omit<HTMLChakraProps<"div">, keyof UseRangeSliderProps> {}
+    HTMLChakraProps<"div", UseRangeSliderProps> {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.

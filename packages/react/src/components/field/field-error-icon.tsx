@@ -1,22 +1,16 @@
 import { cx } from "@chakra-ui/utils"
-import { forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
 import { Icon, type IconProps } from "../icon"
 import { useFieldContext, useFieldErrorStyles } from "./field-context"
 
 export interface FieldErrorIconProps extends IconProps {}
 
-/**
- * Used as the visual indicator that a field is invalid or
- * a field has incorrect values.
- */
-export const FieldErrorIcon = forwardRef<FieldErrorIconProps, "svg">(
+export const FieldErrorIcon = forwardRef<SVGElement, FieldErrorIconProps>(
   function FieldErrorIcon(props, ref) {
     const styles = useFieldErrorStyles()
     const field = useFieldContext()
 
     if (!field?.isInvalid) return null
-
-    const _className = cx("chakra-form__error-icon", props.className)
 
     return (
       <Icon
@@ -24,7 +18,7 @@ export const FieldErrorIcon = forwardRef<FieldErrorIconProps, "svg">(
         aria-hidden
         {...props}
         css={styles.icon}
-        className={_className}
+        className={cx("chakra-form__error-icon", props.className)}
       >
         <path
           fill="currentColor"

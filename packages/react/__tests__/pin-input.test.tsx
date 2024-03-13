@@ -1,36 +1,17 @@
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
-import {
-  PinInputProvider,
-  UsePinInputProps,
-  usePinInput,
-  usePinInputField,
-} from "../src/components/pin-input"
+import { PinInput } from "../src"
 
-function Input(props: any) {
-  const inputProps = usePinInputField(props)
-  return <input {...inputProps} />
-}
-
-const Component = (props: UsePinInputProps = {}) => {
-  const context = usePinInput(props)
+const Component = (props: PinInput.RootProps = {}) => {
   return (
-    <PinInputProvider value={context}>
-      <div ref={context.containerRef}>
-        <Input data-testid="1" index="0" />
-        <Input data-testid="2" index="1" />
-        <Input data-testid="3" index="2" />
-      </div>
-      <button onClick={() => context.clear()}>Clear</button>
-    </PinInputProvider>
+    <PinInput.Root {...props}>
+      <PinInput.Control>
+        <PinInput.Field index={0} />
+        <PinInput.Field index={1} />
+        <PinInput.Field index={2} />
+      </PinInput.Control>
+    </PinInput.Root>
   )
 }
-
-test("has the proper aria attributes", async () => {
-  render(<Component />)
-  expect(screen.queryAllByLabelText("Please enter your pin code")).toHaveLength(
-    3,
-  )
-})
 
 test("can autofocus the first field", async () => {
   render(<Component autoFocus />)

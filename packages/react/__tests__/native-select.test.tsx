@@ -15,7 +15,7 @@ const DemoSelect = (props: NativeSelect.RootProps) => {
         <option value="Option 2">Option 2</option>
         <option value="Option 3">Option 3</option>
       </NativeSelect.Field>
-      <NativeSelect.Icon />
+      <NativeSelect.Indicator />
     </NativeSelect.Root>
   )
 }

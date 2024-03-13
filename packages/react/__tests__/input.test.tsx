@@ -1,10 +1,5 @@
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
-import {
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-} from "../src/components/input"
+import { Group, Input, InputElement } from "../src"
 
 test("passes a11y test", async () => {
   await testA11y(<Input />, {
@@ -18,15 +13,15 @@ test("passes a11y test", async () => {
 
 test("Elements inside input render correctly", () => {
   const { getByText } = render(
-    <InputGroup>
-      <InputLeftElement>
+    <Group>
+      <InputElement placement="start">
         <span>Hello</span>
-      </InputLeftElement>
+      </InputElement>
       <Input />
-      <InputRightElement>
+      <InputElement placement="end">
         <span>World</span>
-      </InputRightElement>
-    </InputGroup>,
+      </InputElement>
+    </Group>,
   )
   expect(getByText("Hello")).toBeInTheDocument()
   expect(getByText("World")).toBeInTheDocument()
@@ -34,24 +29,20 @@ test("Elements inside input render correctly", () => {
 
 test("Invalid input renders correctly", () => {
   render(<Input isInvalid />)
-
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true")
 })
 
 test("Disabled input renders correctly", () => {
   render(<Input isDisabled />)
-
   expect(screen.getByRole("textbox")).toHaveAttribute("disabled")
 })
 
 test("Readonly input renders correctly", () => {
   render(<Input isReadOnly />)
-
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-readonly", "true")
 })
 
 test("Input with native size renders correctly", () => {
   render(<Input htmlSize={4} />)
-
   expect(screen.getByRole("textbox")).toHaveAttribute("size", "4")
 })

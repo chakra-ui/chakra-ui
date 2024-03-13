@@ -1,4 +1,4 @@
-import { createProps, splitProps } from "@chakra-ui/utils"
+import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseEditableProps } from "./use-editable"
 
 export const editableProps = createProps<UseEditableProps>()([
@@ -18,9 +18,5 @@ export const editableProps = createProps<UseEditableProps>()([
   "value",
 ])
 
-export const splitEditableProps = <T extends UseEditableProps>(props: T) => {
-  return splitProps(props, editableProps) as [
-    UseEditableProps,
-    Omit<T, keyof UseEditableProps>,
-  ]
-}
+export const splitEditableProps =
+  createSplitProps<UseEditableProps>(editableProps)

@@ -1,4 +1,4 @@
-import { createProps, splitProps } from "@chakra-ui/utils"
+import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseDialogProps } from "./use-dialog"
 
 export const dialogProps = createProps<UseDialogProps>()([
@@ -13,9 +13,4 @@ export const dialogProps = createProps<UseDialogProps>()([
   "useInert",
 ])
 
-export const splitDialogProps = <T extends UseDialogProps>(props: T) => {
-  return splitProps(props, dialogProps) as [
-    UseDialogProps,
-    Omit<T, keyof UseDialogProps>,
-  ]
-}
+export const splitDialogProps = createSplitProps<UseDialogProps>(dialogProps)
