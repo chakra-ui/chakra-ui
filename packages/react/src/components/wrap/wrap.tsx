@@ -24,7 +24,7 @@ interface WrapOptions {
   direction?: SystemStyleObject["flexDirection"]
 }
 
-export interface WrapProps extends HTMLChakraProps<"ul", WrapOptions> {}
+export interface WrapProps extends HTMLChakraProps<"div", WrapOptions> {}
 
 /**
  * Layout component used to stack elements that differ in length
@@ -36,7 +36,7 @@ export interface WrapProps extends HTMLChakraProps<"ul", WrapOptions> {}
  *
  * @see Docs https://chakra-ui.com/wrap
  */
-export const Wrap = forwardRef<WrapProps, "ul">(function Wrap(props, ref) {
+export const Wrap = forwardRef<WrapProps, "div">(function Wrap(props, ref) {
   const {
     gap = "0.5rem",
     columnGap,
@@ -44,12 +44,11 @@ export const Wrap = forwardRef<WrapProps, "ul">(function Wrap(props, ref) {
     justify,
     direction,
     align,
-
     ...rest
   } = props
 
   return (
-    <chakra.ul
+    <chakra.div
       ref={ref}
       {...rest}
       className={cx("chakra-wrap", props.className)}

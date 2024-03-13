@@ -1,4 +1,5 @@
 import { Grid, GridItem } from "../src"
+import { DecorativeBox } from "./shared/decorative-box"
 
 export default {
   title: "Layout / Grid",
@@ -6,31 +7,31 @@ export default {
 
 export const WithTemplateColumns = () => (
   <Grid templateColumns="repeat(5, 1fr)" gap={4}>
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
   </Grid>
 )
 
 export const WithTemplateRows = () => (
   <Grid templateRows="repeat(2, 1fr)" gap={4}>
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
   </Grid>
 )
 
 export const WithTemplateRowsAndColumns = () => (
   <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(3, 1fr)" gap={4}>
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
-    <GridItem bg="tomato" height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
   </Grid>
 )
 

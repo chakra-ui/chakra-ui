@@ -1,104 +1,31 @@
-import { Badge, Box, Text, Wrap, WrapItem } from "../src"
+import { Badge, Wrap } from "../src"
+import { DecorativeBox } from "./shared/decorative-box"
 
 export default {
   title: "Layout / Wrap",
 }
 
-export const basic = () => (
-  <Wrap gap={["5", "8", "56px"]}>
-    <WrapItem>
-      <Badge>Badge 1</Badge>
-    </WrapItem>
-    <WrapItem>
-      <Badge>Badge 2</Badge>
-    </WrapItem>
-    <WrapItem>
-      <Badge>Badge 3</Badge>
-    </WrapItem>
-    <WrapItem>
-      <Badge>Badge 4</Badge>
-    </WrapItem>
-  </Wrap>
-)
-const Placeholder = (props: any) => (
-  <WrapItem>
-    <div
-      style={{
-        height: 48,
-        width: props.width || 48,
-        background: "red",
-      }}
-      {...props}
-    />
-  </WrapItem>
-)
-
-export const placeholder = () => (
-  <Wrap bg="pink" gap={5}>
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
+export const Basic = () => (
+  <Wrap gap="2" maxW="200px">
+    <Badge>Badge 1</Badge>
+    <Badge>Badge 2</Badge>
+    <Badge>Badge 3</Badge>
+    <Badge>Badge 4</Badge>
   </Wrap>
 )
 
-export const responsive = () => (
+export const Placeholder = () => (
+  <Wrap gap="5">
+    {Array.from({ length: 12 }).map((_, index) => (
+      <DecorativeBox boxSize="12" key={index} />
+    ))}
+  </Wrap>
+)
+
+export const Responsive = () => (
   <Wrap gap={["12px", "24px"]} justify={["center", "flex-start"]}>
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
+    {Array.from({ length: 12 }).map((_, index) => (
+      <DecorativeBox boxSize="12" key={index} />
+    ))}
   </Wrap>
-)
-
-export const horizontalAndVertical = () => (
-  <Wrap bg="pink" rowGap={["0px", "24px"]} columnGap={["4px", "12px"]}>
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-    <Placeholder />
-  </Wrap>
-)
-
-export const withZeroXSpacing = () => (
-  <Box>
-    <Text>Welcome</Text>
-    <Box bg="pink">
-      <Wrap maxW="200px" columnGap="0" rowGap="4">
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-        <Placeholder />
-      </Wrap>
-    </Box>
-    <Text>Welcome</Text>
-  </Box>
 )

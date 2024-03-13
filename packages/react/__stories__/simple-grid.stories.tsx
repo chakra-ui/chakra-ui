@@ -1,4 +1,5 @@
-import { Box, GridItem, SimpleGrid } from "../src"
+import { GridItem, SimpleGrid } from "../src"
+import { DecorativeBox } from "./shared/decorative-box"
 
 export default {
   title: "Layout / SimpleGrid",
@@ -6,21 +7,21 @@ export default {
 
 export const WithColumns = () => (
   <SimpleGrid columns={[2, null, 3]} gap="40px">
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
+    <DecorativeBox height="200px" />
   </SimpleGrid>
 )
 
 export const WithAutofit = () => (
   <SimpleGrid minChildWidth="sm" gap="40px">
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
-    <Box bg="tomato" height="200px" />
+    <DecorativeBox bg="tomato" height="200px" />
+    <DecorativeBox bg="tomato" height="200px" />
+    <DecorativeBox bg="tomato" height="200px" />
+    <DecorativeBox bg="tomato" height="200px" />
+    <DecorativeBox bg="tomato" height="200px" />
   </SimpleGrid>
 )
 
