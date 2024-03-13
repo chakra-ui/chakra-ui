@@ -1,34 +1,42 @@
-import { HTMLChakraProps, forwardRef } from "../../styled-system"
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
 } from "./number-input-context"
-import { TriangleUpIcon } from "./number-input-icons"
-import { StyledStepper } from "./styled-stepper"
 
-export interface NumberInputIncrementStepperProps
-  extends HTMLChakraProps<"div"> {}
+const UpIcon = (props: HTMLChakraProps<"svg">) => (
+  <chakra.svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="m18 15-6-6-6 6" />
+  </chakra.svg>
+)
 
-/**
- * NumberIncrementStepper
- *
- * React component used to increment the number input's value
- *
- * It renders a `div` with `role=button` by default
- */
-export const NumberInputIncrementStepper = forwardRef<
-  NumberInputIncrementStepperProps,
-  "div"
+export interface NumberInputIncrementTriggerProps
+  extends HTMLChakraProps<"button"> {}
+
+export const NumberInputIncrementTrigger = forwardRef<
+  NumberInputIncrementTriggerProps,
+  "button"
 >(function NumberIncrementStepper(props, ref) {
-  const { getIncrementButtonProps } = useNumberInputContext()
-  const increment = getIncrementButtonProps(props, ref)
+  const api = useNumberInputContext()
   const styles = useNumberInputStyles()
-
   return (
-    <StyledStepper {...increment} css={styles.stepper}>
-      {props.children ?? <TriangleUpIcon />}
-    </StyledStepper>
+    <chakra.button
+      {...api.getIncrementTriggerProps(props, ref)}
+      css={[styles.incrementTrigger, props.css]}
+    >
+      {props.children ?? <UpIcon />}
+    </chakra.button>
   )
 })
 
-NumberInputIncrementStepper.displayName = "NumberInputIncrementStepperProps"
+NumberInputIncrementTrigger.displayName = "NumberInputIncrementTriggerProps"

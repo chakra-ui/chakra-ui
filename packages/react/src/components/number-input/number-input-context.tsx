@@ -9,7 +9,7 @@ export const [NumberInputStylesProvider, useNumberInputStyles] = createContext<
   errorMessage: `useNumberInputStyles returned is 'undefined'. Seems you forgot to wrap the components in "<NumberInput />" `,
 })
 
-interface NumberInputContext extends Omit<UseNumberInputReturn, "htmlProps"> {}
+interface NumberInputContext extends UseNumberInputReturn {}
 
 export const [NumberInputContextProvider, useNumberInputContext] =
   createContext<NumberInputContext>({

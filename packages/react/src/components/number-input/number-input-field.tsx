@@ -7,31 +7,16 @@ import {
 
 export interface NumberInputFieldProps extends HTMLChakraProps<"input"> {}
 
-/**
- * NumberInputField
- *
- * React component that represents the actual `input` field
- * where users can type to edit numeric values.
- *
- * It renders an `input` by default and ensures only numeric
- * values can be typed.
- *
- * @see Docs http://chakra-ui.com/numberinput
- */
 export const NumberInputField = forwardRef<NumberInputFieldProps, "input">(
   function NumberInputField(props, ref) {
-    const { getInputProps } = useNumberInputContext()
-
+    const api = useNumberInputContext()
     const styles = useNumberInputStyles()
 
     return (
       <chakra.input
-        {...getInputProps(props, ref)}
+        {...api.getInputProps(props, ref)}
         className={cx("chakra-numberinput__field", props.className)}
-        css={{
-          width: "100%",
-          ...styles.field,
-        }}
+        css={[styles.field, props.css]}
       />
     )
   },

@@ -269,7 +269,12 @@ export interface NativeSelectVariantProps {
 
 // NumberInput
 
-export type NumberInputSlot = "root" | "field" | "stepperGroup" | "stepper"
+export type NumberInputSlot =
+  | "root"
+  | "field"
+  | "control"
+  | "incrementTrigger"
+  | "decrementTrigger"
 
 export interface NumberInputVariantProps {
   size?: "xs" | "sm" | "md" | "lg"

@@ -523,10 +523,14 @@ export interface SystemProperties {
   rounded?: PropertyValue<"rounded">
   roundedTopLeft?: PropertyValue<"roundedTopLeft">
   roundedStartStart?: PropertyValue<"roundedStartStart">
+  borderTopStartRadius?: PropertyValue<"borderTopStartRadius">
   roundedEndStart?: PropertyValue<"roundedEndStart">
+  borderBottomStartRadius?: PropertyValue<"borderBottomStartRadius">
   roundedTopRight?: PropertyValue<"roundedTopRight">
   roundedStartEnd?: PropertyValue<"roundedStartEnd">
+  borderTopEndRadius?: PropertyValue<"borderTopEndRadius">
   roundedEndEnd?: PropertyValue<"roundedEndEnd">
+  borderBottomEndRadius?: PropertyValue<"borderBottomEndRadius">
   roundedBottomLeft?: PropertyValue<"roundedBottomLeft">
   roundedBottomRight?: PropertyValue<"roundedBottomRight">
   roundedStart?: PropertyValue<"roundedStart">
@@ -597,6 +601,10 @@ export interface SystemProperties {
   borderBottomRadius?: PropertyValue<"borderBottomRadius">
   borderLeftRadius?: PropertyValue<"borderLeftRadius">
   borderRightRadius?: PropertyValue<"borderRightRadius">
+  divideX?: PropertyValue<"divideX">
+  divideY?: PropertyValue<"divideY">
+  divideColor?: PropertyValue<"divideColor">
+  divideStyle?: PropertyValue<"divideStyle">
   boxShadowColor?: PropertyValue<"boxShadowColor">
   blur?: PropertyValue<"blur">
   brightness?: PropertyValue<"brightness">

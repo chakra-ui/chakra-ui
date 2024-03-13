@@ -1,4 +1,4 @@
-import { createProps, splitProps } from "@chakra-ui/utils"
+import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseNumberInputProps } from "./use-number-input"
 
 export const numberInputProps = createProps<UseNumberInputProps>()([
@@ -33,10 +33,5 @@ export const numberInputProps = createProps<UseNumberInputProps>()([
   "focusInputOnChange",
 ])
 
-export const splitNumberInputProps = <T extends UseNumberInputProps>(
-  props: T,
-) =>
-  splitProps(props, numberInputProps) as [
-    UseNumberInputProps,
-    Omit<T, keyof UseNumberInputProps>,
-  ]
+export const splitNumberInputProps =
+  createSplitProps<UseNumberInputProps>(numberInputProps)

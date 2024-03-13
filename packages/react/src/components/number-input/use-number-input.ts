@@ -1,13 +1,20 @@
-import { useCallbackRef } from "@chakra-ui/hooks"
-import { UseCounterProps, useCounter } from "@chakra-ui/hooks"
-import { useEventListener } from "@chakra-ui/hooks"
-import { mergeRefs } from "@chakra-ui/hooks"
-import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { useUpdateEffect } from "@chakra-ui/hooks"
-import { callAllHandlers } from "@chakra-ui/utils"
-import { ariaAttr } from "@chakra-ui/utils"
-import { InputDOMAttributes, PropGetter } from "@chakra-ui/utils/prop-types"
+import {
+  UseCounterProps,
+  mergeRefs,
+  useCallbackRef,
+  useCounter,
+  useEventListener,
+  useSafeLayoutEffect,
+  useUpdateEffect,
+} from "@chakra-ui/hooks"
+import {
+  InputDOMAttributes,
+  PropGetter,
+  ariaAttr,
+  callAllHandlers,
+} from "@chakra-ui/utils"
 import { useCallback, useMemo, useRef, useState } from "react"
+import { PropGetterFn } from "../../styled-system/factory.types"
 import { splitFieldProps, useFieldProps } from "../field"
 import { useAttributeObserver } from "./use-attr-observer"
 import { useSpinner } from "./use-spinner"
@@ -125,6 +132,7 @@ export interface UseNumberInputProps extends UseCounterProps {
 }
 
 type ValidityState = "rangeUnderflow" | "rangeOverflow"
+
 type InputSelection = { start: number | null; end: number | null }
 
 /**
@@ -460,13 +468,13 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     { passive: false },
   )
 
-  const getIncrementButtonProps: PropGetter = useCallback(
+  const getIncrementTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => {
       const disabled = isDisabled || (keepWithinRange && counter.isAtMax)
       return {
         ...props,
         ref: mergeRefs(ref, incrementButtonRef),
-        role: "button",
+        type: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
           if (event.button !== 0 || disabled) return
@@ -481,13 +489,13 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     [counter.isAtMax, keepWithinRange, spinUp, spinner.stop, isDisabled],
   )
 
-  const getDecrementButtonProps: PropGetter = useCallback(
+  const getDecrementTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => {
       const disabled = isDisabled || (keepWithinRange && counter.isAtMin)
       return {
         ...props,
         ref: mergeRefs(ref, decrementButtonRef),
-        role: "button",
+        type: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
           if (event.button !== 0 || disabled) return
@@ -571,8 +579,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
     isFocused,
     isDisabled,
     isReadOnly,
-    getIncrementButtonProps,
-    getDecrementButtonProps,
+    getIncrementTriggerProps,
+    getDecrementTriggerProps,
     getInputProps,
   }
 }

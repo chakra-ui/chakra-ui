@@ -2,7 +2,7 @@ import { Box } from "../src"
 import { RangeSlider } from "../src/components/range-slider"
 
 export default {
-  title: "Components / Range Slider",
+  title: "Components / Slider - Range",
   decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 

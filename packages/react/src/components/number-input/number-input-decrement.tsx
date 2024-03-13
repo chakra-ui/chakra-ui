@@ -1,35 +1,45 @@
-import { HTMLChakraProps, forwardRef } from "../../styled-system"
+import { cx } from "@chakra-ui/utils"
+import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
 } from "./number-input-context"
-import { TriangleDownIcon } from "./number-input-icons"
-import { StyledStepper } from "./styled-stepper"
 
-export interface NumberInputDecrementStepperProps
-  extends HTMLChakraProps<"div"> {}
+const DownIcon = (props: HTMLChakraProps<"svg">) => (
+  <chakra.svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="m6 9 6 6 6-6" />
+  </chakra.svg>
+)
 
-/**
- * NumberDecrementStepper
- *
- * React component used to decrement the number input's value
- *
- * It renders a `div` with `role=button` by default
- */
-export const NumberInputDecrementStepper = forwardRef<
-  NumberInputDecrementStepperProps,
-  "div"
->(function NumberDecrementStepper(props, ref) {
+export interface NumberInputDecrementTriggerProps
+  extends HTMLChakraProps<"button"> {}
+
+export const NumberInputDecrementTrigger = forwardRef<
+  NumberInputDecrementTriggerProps,
+  "button"
+>(function NumberInputDecrementTrigger(props, ref) {
   const styles = useNumberInputStyles()
-
-  const { getDecrementButtonProps } = useNumberInputContext()
-  const decrement = getDecrementButtonProps(props, ref)
+  const api = useNumberInputContext()
 
   return (
-    <StyledStepper {...decrement} css={styles.stepper}>
-      {props.children ?? <TriangleDownIcon />}
-    </StyledStepper>
+    <chakra.button
+      {...api.getDecrementTriggerProps(props, ref)}
+      css={[styles.decrementTrigger, props.css]}
+      className={cx("chakra-number-input__stepper", props.className)}
+    >
+      {props.children ?? <DownIcon />}
+    </chakra.button>
   )
 })
 
-NumberInputDecrementStepper.displayName = "NumberInputDecrementStepper"
+NumberInputDecrementTrigger.displayName = "NumberInputDecrementTrigger"

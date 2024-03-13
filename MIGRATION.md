@@ -977,3 +977,35 @@ After:
 - Remove `shouldWrapChildren` in favor of using the `StackItem` explicitly
 - Rename `spacing` to `gap`
 - Rename `divider` prop to `separator`
+
+## NumberInput
+
+- Rename `NumberInputStepper` to `NumberInput.Control`
+- Rename `NumberInputStepperIncrement` to `NumberInput.IncrementTrigger`
+- Rename `NumberInputStepperDecrement` to `NumberInput.DecrementTrigger`
+- Remove `focusBorderColor` and `errorBorderColor`, consider setting the
+  `--focus-color` and `--error-color` css variables instead
+
+Before:
+
+```tsx
+<NumberInput>
+  <NumberInputField />
+  <NumberInputStepper>
+    <NumberIncrementStepper />
+    <NumberDecrementStepper />
+  </NumberInputStepper>
+</NumberInput>
+```
+
+After:
+
+```tsx
+<NumberInput.Root>
+  <NumberInput.Field />
+  <NumberInput.Control>
+    <NumberInput.IncrementTrigger />
+    <NumberInput.DecrementTrigger />
+  </NumberInput.Control>
+</NumberInput.Root>
+```

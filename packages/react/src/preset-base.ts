@@ -11,6 +11,8 @@ const deg = (v: any) => {
   return typeof v === "number" || unitless ? `${v}deg` : v
 }
 
+const divideColor = createColorMixTransform("borderColor")
+
 export const defaultBaseConfig = defineConfig({
   conditions: {
     hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
@@ -264,12 +266,24 @@ export const defaultBaseConfig = defineConfig({
     borderTopLeftRadius: { values: "radii", shorthand: ["roundedTopLeft"] },
     borderStartStartRadius: {
       values: "radii",
-      shorthand: ["roundedStartStart"],
+      shorthand: ["roundedStartStart", "borderTopStartRadius"],
     },
-    borderEndStartRadius: { values: "radii", shorthand: ["roundedEndStart"] },
-    borderTopRightRadius: { values: "radii", shorthand: ["roundedTopRight"] },
-    borderStartEndRadius: { values: "radii", shorthand: ["roundedStartEnd"] },
-    borderEndEndRadius: { values: "radii", shorthand: ["roundedEndEnd"] },
+    borderEndStartRadius: {
+      values: "radii",
+      shorthand: ["roundedEndStart", "borderBottomStartRadius"],
+    },
+    borderTopRightRadius: {
+      values: "radii",
+      shorthand: ["roundedTopRight"],
+    },
+    borderStartEndRadius: {
+      values: "radii",
+      shorthand: ["roundedStartEnd", "borderTopEndRadius"],
+    },
+    borderEndEndRadius: {
+      values: "radii",
+      shorthand: ["roundedEndEnd", "borderBottomEndRadius"],
+    },
     borderBottomLeftRadius: {
       values: "radii",
       shorthand: ["roundedBottomLeft"],
@@ -364,6 +378,50 @@ export const defaultBaseConfig = defineConfig({
     accentColor: {
       values: "colors",
       transform: createColorMixTransform("accentColor"),
+    },
+    // divide
+    divideX: {
+      values: { type: "string" },
+      transform(value) {
+        return {
+          "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+            borderInlineStartWidth: value,
+            borderInlineEndWidth: "0px",
+          },
+        }
+      },
+    },
+    divideY: {
+      values: { type: "string" },
+      transform(value) {
+        return {
+          "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+            borderTopWidth: value,
+            borderBottomWidth: "0px",
+          },
+        }
+      },
+    },
+    divideColor: {
+      values: "colors",
+      transform(value, args) {
+        return {
+          "& > :not(style, [hidden]) ~ :not(style, [hidden])": divideColor(
+            value,
+            args,
+          ),
+        }
+      },
+    },
+    divideStyle: {
+      property: "borderStyle",
+      transform(value) {
+        return {
+          "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+            borderStyle: value,
+          },
+        }
+      },
     },
     // effects
     boxShadow: { values: "shadows", shorthand: ["shadow"] },

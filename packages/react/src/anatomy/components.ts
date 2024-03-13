@@ -115,8 +115,9 @@ export const drawerAnatomy = anatomy("drawer").parts(
 export const numberInputAnatomy = anatomy("numberinput").parts(
   "root",
   "field",
-  "stepperGroup",
-  "stepper",
+  "control",
+  "incrementTrigger",
+  "decrementTrigger",
 )
 
 export const pinInputAnatomy = anatomy("pininput").parts("field")

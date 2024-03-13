@@ -75,6 +75,10 @@ interface PropertyValueTypes {
   fill: Tokens["colors"]
   stroke: Tokens["colors"]
   accentColor: Tokens["colors"]
+  divideX: string
+  divideY: string
+  divideColor: Tokens["colors"]
+  divideStyle: CssProperties["borderStyle"]
   boxShadow: Tokens["shadows"]
   boxShadowColor: Tokens["colors"]
   opacity: Tokens["opacity"]
@@ -223,10 +227,14 @@ export interface PropertyTypes extends PropertyValueTypes {
   rounded: Shorthand<"borderRadius">
   roundedTopLeft: Shorthand<"borderTopLeftRadius">
   roundedStartStart: Shorthand<"borderStartStartRadius">
+  borderTopStartRadius: Shorthand<"borderStartStartRadius">
   roundedEndStart: Shorthand<"borderEndStartRadius">
+  borderBottomStartRadius: Shorthand<"borderEndStartRadius">
   roundedTopRight: Shorthand<"borderTopRightRadius">
   roundedStartEnd: Shorthand<"borderStartEndRadius">
+  borderTopEndRadius: Shorthand<"borderStartEndRadius">
   roundedEndEnd: Shorthand<"borderEndEndRadius">
+  borderBottomEndRadius: Shorthand<"borderEndEndRadius">
   roundedBottomLeft: Shorthand<"borderBottomLeftRadius">
   roundedBottomRight: Shorthand<"borderBottomRightRadius">
   roundedStart: Shorthand<"borderInlineStartRadius">

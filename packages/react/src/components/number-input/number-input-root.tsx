@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import {
@@ -13,26 +13,9 @@ import {
 import { splitNumberInputProps } from "./number-input-props"
 import { UseNumberInputProps, useNumberInput } from "./use-number-input"
 
-interface InputOptions {
-  /**
-   * The border color when the input is focused. Use color keys in `theme.colors`
-   * @example
-   * focusBorderColor = "blue.500"
-   */
-  focusBorderColor?: string
-  /**
-   * The border color when the input is invalid. Use color keys in `theme.colors`
-   * @example
-   * errorBorderColor = "red.500"
-   */
-  errorBorderColor?: string
-}
-
 export interface NumberInputRootProps
-  extends UseNumberInputProps,
-    SlotRecipeProps<"NumberInput">,
-    InputOptions,
-    Omit<HTMLChakraProps<"div">, keyof UseNumberInputProps> {}
+  extends SlotRecipeProps<"NumberInput">,
+    HTMLChakraProps<"div", UseNumberInputProps> {}
 
 /**
  * NumberInput
@@ -44,7 +27,7 @@ export interface NumberInputRootProps
  *
  * @see Docs http://chakra-ui.com/numberinput
  */
-export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
+export const NumberInputRoot = forwardRef<HTMLDivElement, NumberInputRootProps>(
   function NumberInputRoot(props, ref) {
     const recipe = useSlotRecipe("NumberInput")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
@@ -60,7 +43,7 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
             {...rootProps}
             ref={ref}
             className={cx("chakra-numberinput", props.className)}
-            css={styles.root}
+            css={[styles.root, props.css]}
           />
         </NumberInputStylesProvider>
       </NumberInputContextProvider>
@@ -68,4 +51,4 @@ export const NumberInputRoot = forwardRef<NumberInputRootProps, "div">(
   },
 )
 
-NumberInputRoot.displayName = "NumberInput"
+NumberInputRoot.displayName = "NumberInputRoot"
