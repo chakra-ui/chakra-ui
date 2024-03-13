@@ -11,6 +11,6 @@ export { DialogPositioner as DrawerPositioner } from "../dialog/dialog-positione
 export { DialogCloseTrigger as DrawerCloseTrigger } from "../dialog/dialog-close-trigger"
 export { DialogFooter as DrawerFooter } from "../dialog/dialog-footer"
 export { DialogHeader as DrawerHeader } from "../dialog/dialog-header"
-export { DialogOverlay as DrawerOverlay } from "../dialog/dialog-overlay"
+export { DialogBackdrop as DrawerBackdrop } from "../dialog/dialog-backdrop"
 
 export { useDrawerContext } from "./drawer-context"

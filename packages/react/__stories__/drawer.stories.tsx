@@ -21,7 +21,7 @@ export const Basic = () => {
         Open
       </Button>
       <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
-        <Drawer.Overlay />
+        <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content>
             <Drawer.Header>Drawer Header</Drawer.Header>
@@ -46,7 +46,7 @@ export const WithCustomMotion = () => {
         Open
       </Button>
       <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
-        <Drawer.Overlay />
+        <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content
             motionProps={{
@@ -84,7 +84,7 @@ export const WithLongContent = () => {
         isOpen={isOpen}
         size="md"
       >
-        <Drawer.Overlay />
+        <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content>
             <Drawer.Header borderBottomWidth="1px">Basic Drawer</Drawer.Header>

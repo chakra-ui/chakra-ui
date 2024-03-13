@@ -372,11 +372,11 @@ After:
 
 ### Modal -> Dialog
 
-The `Modal` component has been renamed to `Dialog` to better reflect its purpose
-as a dialog element.
-
-Removed `containerProps` in favor of rendering the `Dialog.Positioner` component
-to better control this element.
+- The `Modal` component has been renamed to `Dialog` to better reflect its
+  purpose as a dialog element.
+- Removed `containerProps` in favor of rendering the `Dialog.Positioner`
+  component to better control this element.
+- Renamed `ModalOverlay` to `Dialog.Backdrop`
 
 Before:
 
@@ -396,7 +396,7 @@ After:
 
 ```tsx
 <Dialog.Root>
-  <Dialog.Overlay />
+  <Dialog.Backdrop />
   <Dialog.Positioner>
     <Dialog.Content>
       <Dialog.Header>Dialog Title</Dialog.Header>
@@ -407,6 +407,11 @@ After:
   </Dialog.Positioner>
 </Dialog.Root>
 ```
+
+### Drawer
+
+- Same changes as `Dialog` above
+- Renamed `DrawerOverlay` to `Drawer.Backdrop`
 
 ### Alert Dialog
 

@@ -100,7 +100,7 @@ export const WithDialog = () => {
     <div>
       <Button onClick={() => setShowDialog(true)}>Show Dialog</Button>
       <Dialog.Root isOpen={showDialog} onClose={() => setShowDialog(false)}>
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content height="300px">
             <div>

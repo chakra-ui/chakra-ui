@@ -7,14 +7,14 @@ import { useDialogContext, useDialogStyles } from "./dialog-context"
 
 const StyledDiv = chakra(motion.div)
 
-export interface DialogOverlayProps
+export interface DialogBackdropProps
   extends Omit<HTMLMotionProps<"div">, HtmlProp>,
     JsxStyleProps {
   motionProps?: HTMLMotionProps<"div">
 }
 
-export const DialogOverlay = forwardRef<DialogOverlayProps, "div">(
-  function DialogOverlay(props, ref) {
+export const DialogBackdrop = forwardRef<DialogBackdropProps, "div">(
+  function DialogBackdrop(props, ref) {
     const { transition, motionProps: _motionProps, ...rest } = props
 
     const styles = useDialogStyles()
@@ -37,4 +37,4 @@ export const DialogOverlay = forwardRef<DialogOverlayProps, "div">(
   },
 )
 
-DialogOverlay.displayName = "DialogOverlay"
+DialogBackdrop.displayName = "DialogBackdrop"

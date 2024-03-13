@@ -28,8 +28,8 @@ export type { DialogFooterProps } from "./dialog-footer"
 export { DialogHeader } from "./dialog-header"
 export type { DialogHeaderProps } from "./dialog-header"
 
-export { DialogOverlay } from "./dialog-overlay"
-export type { DialogOverlayProps } from "./dialog-overlay"
+export { DialogBackdrop } from "./dialog-backdrop"
+export type { DialogBackdropProps } from "./dialog-backdrop"
 
 export { useDialog } from "./use-dialog"
 export type { UseDialogProps, UseDialogReturn } from "./use-dialog"

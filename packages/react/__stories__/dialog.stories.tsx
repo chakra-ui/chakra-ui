@@ -27,7 +27,7 @@ export const Basic = () => {
         Open
       </Button>
       <Dialog.Root isOpen={isOpen} onClose={onClose} centered>
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.CloseTrigger asChild>
@@ -67,7 +67,7 @@ export const FinalFocusRef = () => {
       </Button>
 
       <Dialog.Root finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
@@ -102,7 +102,7 @@ export const NestedDialogs = () => {
     <>
       <Button onClick={first.onOpen}>Open</Button>
       <Dialog.Root isOpen={first.isOpen} onClose={first.onClose}>
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
@@ -119,7 +119,7 @@ export const NestedDialogs = () => {
             </Dialog.Footer>
 
             <Dialog.Root isOpen={second.isOpen} onClose={second.onClose}>
-              <Dialog.Overlay />
+              <Dialog.Backdrop />
               <Dialog.Positioner>
                 <Dialog.Content>
                   <Dialog.Header>Dialog. 2 Title</Dialog.Header>
@@ -145,7 +145,7 @@ export const InsideScroll = () => {
         Open
       </Button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
@@ -175,7 +175,7 @@ export const AnimationDisabled = () => {
         Open
       </Button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} motionPreset="none">
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
@@ -205,7 +205,7 @@ export const WithContentOverflow = () => {
         Open
       </Button>
       <Dialog.Root onClose={onClose} isOpen={isOpen} size="full">
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog Title</Dialog.Header>
@@ -235,7 +235,7 @@ export function WithCustomMotionProps() {
         Open
       </Button>
       <Dialog.Root isOpen={isOpen} onClose={onClose} centered>
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content
             motionProps={{
@@ -281,7 +281,7 @@ export const WithInitialFocus = () => {
         initialFocusRef={inputRef}
         onClose={() => setIsOpen(false)}
       >
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>Dialog. header</Dialog.Header>

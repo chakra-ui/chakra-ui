@@ -8,7 +8,7 @@ const DrawerDemo = (props: Partial<Drawer.RootProps>) => {
 
   return (
     <Drawer.Root placement={props.placement} onClose={onClose} isOpen={isOpen}>
-      <Drawer.Overlay />
+      <Drawer.Backdrop />
       <Drawer.Positioner>
         <Drawer.Content>
           <Drawer.Header borderBottomWidth="1px">Basic Drawer</Drawer.Header>

@@ -5,13 +5,15 @@ import { Dialog } from "../src/components/dialog"
 const DemoDialog = (props: Omit<Dialog.RootProps, "children">) => {
   return (
     <Dialog.Root {...props}>
-      <Dialog.Overlay data-testid="overlay" />
-      <Dialog.Content data-testid="content">
-        <Dialog.Header>Dialog header</Dialog.Header>
-        <Dialog.CloseTrigger data-testid="close" />
-        <Dialog.Body>Dialog body</Dialog.Body>
-        <Dialog.Footer>Dialog footer</Dialog.Footer>
-      </Dialog.Content>
+      <Dialog.Backdrop data-testid="overlay" />
+      <Dialog.Positioner>
+        <Dialog.Content data-testid="content">
+          <Dialog.Header>Dialog header</Dialog.Header>
+          <Dialog.CloseTrigger data-testid="close" />
+          <Dialog.Body>Dialog body</Dialog.Body>
+          <Dialog.Footer>Dialog footer</Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Positioner>
     </Dialog.Root>
   )
 }
@@ -94,7 +96,7 @@ test("focus initial element when opened", () => {
           initialFocusRef={inputRef}
           onClose={vi.fn()}
         >
-          <Dialog.Overlay />
+          <Dialog.Backdrop />
           <Dialog.Content>
             <Dialog.Header>Dialog. header</Dialog.Header>
             <Dialog.Body>
@@ -134,7 +136,7 @@ test("should return focus to button when closed", async () => {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          <Dialog.Overlay />
+          <Dialog.Backdrop />
           <Dialog.Content>
             <Dialog.Header>Dialog. header</Dialog.Header>
             <Dialog.CloseTrigger data-testid="close" />

@@ -16,8 +16,8 @@ export type { DialogFooterProps as FooterProps } from "./dialog-footer"
 export { DialogHeader as Header } from "./dialog-header"
 export type { DialogHeaderProps as HeaderProps } from "./dialog-header"
 
-export { DialogOverlay as Overlay } from "./dialog-overlay"
-export type { DialogOverlayProps as OverlayProps } from "./dialog-overlay"
+export { DialogBackdrop as Backdrop } from "./dialog-backdrop"
+export type { DialogBackdropProps as BackdropProps } from "./dialog-backdrop"
 
 export { DialogPositioner as Positioner } from "./dialog-positioner"
 export type { DialogPositionerProps as PositionerProps } from "./dialog-positioner"
