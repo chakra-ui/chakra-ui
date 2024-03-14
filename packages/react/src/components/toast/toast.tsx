@@ -38,7 +38,6 @@ export const Toast: React.FC<ToastProps> = (props) => {
 
   return (
     <Alert.Root
-      addRole={false}
       status={status}
       variant={variant}
       id={ids?.root}

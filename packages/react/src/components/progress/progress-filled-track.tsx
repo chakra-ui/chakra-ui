@@ -1,5 +1,6 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useProgressContext, useProgressStyles } from "./progress-context"
 
 export interface ProgressFilledTrackProps extends HTMLChakraProps<"div"> {}
@@ -12,27 +13,28 @@ export interface ProgressFilledTrackProps extends HTMLChakraProps<"div"> {}
  *
  * @see Docs https://chakra-ui.com/progress
  */
-export const ProgressFilledTrack = forwardRef<ProgressFilledTrackProps, "div">(
-  function ProgressFilledTrack(props, ref) {
-    const { role, style, ...rest } = props
+export const ProgressFilledTrack = forwardRef<
+  HTMLDivElement,
+  ProgressFilledTrackProps
+>(function ProgressFilledTrack(props, ref) {
+  const { style, ...rest } = props
 
-    const styles = useProgressStyles()
-    const api = useProgressContext()
+  const styles = useProgressStyles()
+  const api = useProgressContext()
 
-    return (
-      <chakra.div
-        ref={ref}
-        style={{ width: `${api.computed.percent}%`, ...style }}
-        role="progressbar"
-        data-indeterminate={dataAttr(api.isIndeterminate)}
-        aria-valuemax={api.computed.max}
-        aria-valuemin={api.computed.min}
-        aria-valuenow={api.isIndeterminate ? undefined : api.computed.value}
-        aria-valuetext={api.computed.valueText}
-        {...rest}
-        css={[styles.filledTrack, props.css]}
-        className={cx("chakra-progress__filled-track", props.className)}
-      />
-    )
-  },
-)
+  return (
+    <chakra.div
+      ref={ref}
+      style={{ width: `${api.computed.percent}%`, ...style }}
+      role="progressbar"
+      data-indeterminate={dataAttr(api.isIndeterminate)}
+      aria-valuemax={api.computed.max}
+      aria-valuemin={api.computed.min}
+      aria-valuenow={api.isIndeterminate ? undefined : api.computed.value}
+      aria-valuetext={api.computed.valueText}
+      {...rest}
+      css={[styles.filledTrack, props.css]}
+      className={cx("chakra-progress__filled-track", props.className)}
+    />
+  )
+})

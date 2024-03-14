@@ -1,5 +1,4 @@
-import { Children } from "react"
-import { forwardRef } from "../../styled-system"
+import { Children, forwardRef } from "react"
 import { Icon, IconProps } from "./icon"
 
 interface CreateIconOptions {
@@ -36,7 +35,7 @@ export function createIcon(options: CreateIconOptions) {
   } = options
   const path = Children.toArray(options.path)
 
-  const Comp = forwardRef<IconProps, "svg">((props, ref) => (
+  const Comp = forwardRef<SVGElement, IconProps>((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
       {path.length ? path : <path fill="currentColor" d={pathDefinition} />}
     </Icon>

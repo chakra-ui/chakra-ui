@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
-  forwardRef,
   useRecipe,
 } from "../../styled-system"
 import { FieldOptions, splitFieldProps, useField } from "../field"
@@ -34,7 +34,7 @@ export interface InputProps
  *
  * @see Docs https://chakra-ui.com/docs/components/input
  */
-export const Input = forwardRef<InputProps, "input">(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input(props, ref) {
     const { htmlSize, unstyled, ...restProps } = props
 

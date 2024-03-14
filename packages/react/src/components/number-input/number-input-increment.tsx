@@ -1,4 +1,6 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
@@ -24,8 +26,8 @@ export interface NumberInputIncrementTriggerProps
   extends HTMLChakraProps<"button"> {}
 
 export const NumberInputIncrementTrigger = forwardRef<
-  NumberInputIncrementTriggerProps,
-  "button"
+  HTMLButtonElement,
+  NumberInputIncrementTriggerProps
 >(function NumberIncrementStepper(props, ref) {
   const api = useNumberInputContext()
   const styles = useNumberInputStyles()
@@ -33,6 +35,7 @@ export const NumberInputIncrementTrigger = forwardRef<
     <chakra.button
       {...api.getIncrementTriggerProps(props, ref)}
       css={[styles.incrementTrigger, props.css]}
+      className={cx("chakra-number-input__stepper", props.className)}
     >
       {props.children ?? <UpIcon />}
     </chakra.button>

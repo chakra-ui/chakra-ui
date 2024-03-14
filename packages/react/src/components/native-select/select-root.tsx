@@ -1,8 +1,9 @@
+import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import { FieldOptions, splitFieldProps, useField } from "../field"
@@ -18,30 +19,31 @@ export interface NativeSelectRootProps
  *
  * @see Docs https://chakra-ui.com/docs/components/select
  */
-export const NativeSelectRoot = forwardRef<NativeSelectRootProps, "select">(
-  function NativeSelectRoot(props, ref) {
-    const recipe = useSlotRecipe("NativeSelect", props.recipe)
-    const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+export const NativeSelectRoot = forwardRef<
+  HTMLDivElement,
+  NativeSelectRootProps
+>(function NativeSelectRoot(props, ref) {
+  const recipe = useSlotRecipe("NativeSelect", props.recipe)
+  const [variantProps, localProps] = recipe.splitVariantProps(props)
+  const styles = recipe(variantProps)
 
-    const [fieldProps, rootProps] = splitFieldProps(localProps)
-    const field = useField(fieldProps)
+  const [fieldProps, rootProps] = splitFieldProps(localProps)
+  const field = useField(fieldProps)
 
-    return (
-      <SelectContextProvider value={field}>
-        <SelectStylesProvider value={styles}>
-          <chakra.div
-            ref={ref}
-            className="chakra-select"
-            css={styles.root}
-            {...rootProps}
-          >
-            {props.children}
-          </chakra.div>
-        </SelectStylesProvider>
-      </SelectContextProvider>
-    )
-  },
-)
+  return (
+    <SelectContextProvider value={field}>
+      <SelectStylesProvider value={styles}>
+        <chakra.div
+          ref={ref}
+          {...rootProps}
+          className={cx("chakra-select", props.className)}
+          css={[styles.root, props.css]}
+        >
+          {props.children}
+        </chakra.div>
+      </SelectStylesProvider>
+    </SelectContextProvider>
+  )
+})
 
 NativeSelectRoot.displayName = "Select"

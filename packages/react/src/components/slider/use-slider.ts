@@ -504,7 +504,7 @@ export function useSlider(props: UseSliderProps) {
   )
 
   const getMarkerProps: PropGetterFn<"div", { value: number }> = useCallback(
-    (props, ref = null) => {
+    (props = { value: 0 }, ref = null) => {
       const isInRange = !(props.value < min || props.value > max)
       const isHighlighted = value >= props.value
       const markerPercent = valueToPercent(props.value, min, max)

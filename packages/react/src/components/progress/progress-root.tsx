@@ -1,9 +1,9 @@
 import { cx } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
-  forwardRef,
   useSlotRecipe,
 } from "../../styled-system"
 import {
@@ -32,7 +32,7 @@ export interface ProgressRootProps
  *
  * @see Docs https://chakra-ui.com/progress
  */
-export const ProgressRoot = forwardRef<ProgressRootProps, "div">(
+export const ProgressRoot = forwardRef<HTMLDivElement, ProgressRootProps>(
   function ProgressRoot(props, ref) {
     const recipe = useSlotRecipe("Progress")
     const [variantProps, localProps] = recipe.splitVariantProps(props)

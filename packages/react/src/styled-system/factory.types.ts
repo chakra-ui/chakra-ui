@@ -100,7 +100,7 @@ export type InferRecipeProps<T> = T extends ChakraComponent<any, infer P>
   : {}
 
 export type PropGetterFn<T extends keyof JSX.IntrinsicElements, P = unknown> = (
-  props: Omit<JSX.IntrinsicElements[T], HtmlProp | keyof P> & P,
+  props?: Partial<Omit<JSX.IntrinsicElements[T], HtmlProp | keyof P>> & P,
   ref?: any,
 ) => JSX.IntrinsicElements[T] & { ref?: any } & {
   [key in `data-${string}`]?: any

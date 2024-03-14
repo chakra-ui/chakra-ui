@@ -1,5 +1,6 @@
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra, forwardRef } from "../../styled-system"
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
@@ -25,8 +26,8 @@ export interface NumberInputDecrementTriggerProps
   extends HTMLChakraProps<"button"> {}
 
 export const NumberInputDecrementTrigger = forwardRef<
-  NumberInputDecrementTriggerProps,
-  "button"
+  HTMLButtonElement,
+  NumberInputDecrementTriggerProps
 >(function NumberInputDecrementTrigger(props, ref) {
   const styles = useNumberInputStyles()
   const api = useNumberInputContext()
