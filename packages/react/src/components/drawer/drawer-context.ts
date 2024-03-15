@@ -1,5 +1,5 @@
-import { createContext } from "@chakra-ui/utils"
-import { SlideOptions } from "../.."
+import { createContext } from "../../create-context"
+import { SlideOptions } from "../transition/slide"
 
 export type LogicalPlacement = "start" | "end"
 

@@ -1,7 +1,7 @@
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
-import { createContext } from "@chakra-ui/utils"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom"
+import { createContext } from "../../create-context"
 import { usePortalManager } from "./portal-manager"
 
 type PortalContext = HTMLDivElement | null

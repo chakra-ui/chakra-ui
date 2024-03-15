@@ -14,7 +14,7 @@
     "postinstall": "pnpm clean:emotion-types",
     "build:tokens": "cross-env LOCAL=true chakra-cli tokens packages/react/src/preset.ts",
     "build:prop-docs": "pnpm typedocs && pnpm --filter=*props-docs build",
-    "build": "pnpm --filter./packages/* --filter '!packages/test-utils' build",
+    "build": "pnpm --filter=./packages/* build",
     "build:fast": "pnpm tsx scripts/build/main.ts --prod",
     "dev": "tsx scripts/build/main.ts --watch --prod",
     "postbuild": "pnpm build:tokens",

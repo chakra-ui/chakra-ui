@@ -1,6 +1,6 @@
-import { createContext } from "@chakra-ui/utils"
 import { Global } from "@emotion/react"
 import { useMemo } from "react"
+import { createContext } from "../create-context"
 import {
   ConfigRecipes,
   ConfigSlotRecipes,
@@ -90,4 +90,4 @@ export function RecipePropsProvider<
   )
 }
 
-export { SystemProvider, useSystemContext, useParentRecipeProps }
+export { SystemProvider, useParentRecipeProps, useSystemContext }

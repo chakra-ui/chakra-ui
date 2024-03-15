@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src"],
-  "exclude": ["src/**/*.test.ts"],
   "compilerOptions": {
     "emitDeclarationOnly": true,
     "declaration": true,

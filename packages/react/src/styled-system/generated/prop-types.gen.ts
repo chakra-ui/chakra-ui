@@ -198,6 +198,7 @@ interface PropertyValueTypes {
     | "border"
 }
 
+// eslint-disable-next-line
 type PropOrCondition<Key, Value> = ConditionalValue<Value | (string & {})>
 
 type CssValue<T> = T extends keyof CssProperties ? CssProperties[T] : never

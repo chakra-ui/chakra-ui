@@ -1,5 +1,5 @@
-import { createContext } from "@chakra-ui/utils"
 import { SystemStyleObject } from "../.."
+import { createContext } from "../../create-context"
 import { ToastOptions } from "./toast.types"
 import { UseToastReturn, useToast } from "./use-toast"
 

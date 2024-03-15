@@ -1,5 +1,5 @@
 import { UseAnimationStateReturn } from "@chakra-ui/hooks"
-import { createContext } from "@chakra-ui/utils"
+import { createContext } from "../../create-context"
 import { SystemStyleObject } from "../../styled-system"
 import { UseMenuReturn } from "./use-menu"
 import { UseOptionGroupStateReturn } from "./use-option-group-state"

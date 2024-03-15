@@ -1,5 +1,6 @@
-import { createContext, lazyDisclosure } from "@chakra-ui/utils"
+import { lazyDisclosure } from "@chakra-ui/utils"
 import { useRef } from "react"
+import { createContext } from "../create-context"
 
 export interface RenderStrategyProps {
   /**

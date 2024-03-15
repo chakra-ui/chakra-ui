@@ -1,4 +1,4 @@
-import { createContext } from "@chakra-ui/utils"
+import { createContext } from "../../create-context"
 import { CircularProgressContext } from "./circular-progress-types"
 
 export const [CircularProgressContextProvider, useCircularProgressContext] =
