@@ -9,7 +9,7 @@ const DemoDialog = (props: Omit<Dialog.RootProps, "children">) => {
       <Dialog.Positioner>
         <Dialog.Content data-testid="content">
           <Dialog.Header>Dialog header</Dialog.Header>
-          <Dialog.CloseTrigger data-testid="close" />
+          <Dialog.CloseTrigger data-testid="close">Close</Dialog.CloseTrigger>
           <Dialog.Body>Dialog body</Dialog.Body>
           <Dialog.Footer>Dialog footer</Dialog.Footer>
         </Dialog.Content>

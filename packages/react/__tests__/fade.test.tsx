@@ -21,10 +21,6 @@ describe("<Fade />", () => {
             Test
           </button>
         </div>
-        <span
-          hidden=""
-          id="__chakra_env"
-        />
       </DocumentFragment>
     `)
   })

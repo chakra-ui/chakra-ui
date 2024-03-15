@@ -20,7 +20,7 @@ export const AvatarFallback = forwardRef<HTMLSpanElement, AvatarFallbackProps>(
       <chakra.div
         ref={ref}
         role="img"
-        aria-label={name}
+        aria-label={name || "avatar"}
         hidden={api.isLoaded}
         {...restProps}
         className={cx("chakra-avatar__fallback", props.className)}

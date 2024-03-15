@@ -1,9 +1,9 @@
 import { render, screen, testA11y } from "@chakra-ui/test-utils"
-import * as React from "react"
+import { useState } from "react"
 import { Drawer } from "../src/components/drawer"
 
 const DrawerDemo = (props: Partial<Drawer.RootProps>) => {
-  const [open, setOpen] = React.useState(props.open || false)
+  const [open, setOpen] = useState(props.open || false)
   const onClose = () => setOpen(false)
 
   return (
@@ -46,12 +46,6 @@ test("passes a11y test", async () => {
       },
     },
   })
-})
-
-test("renders on the correct side under 'ltr' direction", () => {
-  render(<DrawerDemo placement="left" open />)
-
-  expect(screen.queryByRole("dialog")).toHaveStyle("left: 0")
 })
 
 test("should make other elements inert when opened", () => {

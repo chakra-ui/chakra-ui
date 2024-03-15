@@ -8,16 +8,16 @@ const Provider = (props: any) => (
 )
 
 export interface ChakraRenderOptions extends RenderOptions {
-  withChakraProvider?: boolean
+  provider?: boolean
 }
 
 export function render(
   ui: React.ReactElement,
-  { withChakraProvider, ...options }: ChakraRenderOptions = {
-    withChakraProvider: true,
-  },
+  opts: ChakraRenderOptions = {},
 ): ReturnType<typeof rtlRender> & { user: typeof user } {
-  if (withChakraProvider) {
+  const { provider = true, ...options } = opts
+
+  if (provider) {
     options.wrapper = Provider
   }
 
