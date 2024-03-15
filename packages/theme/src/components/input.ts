@@ -4,15 +4,23 @@ import {
   cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system"
-import { getColor, mode } from "@chakra-ui/theme-tools"
+import { type CSSVar, getColor, mode } from "@chakra-ui/theme-tools"
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
-const $height = cssVar("input-height")
-const $fontSize = cssVar("input-font-size")
-const $padding = cssVar("input-padding")
-const $borderRadius = cssVar("input-border-radius")
+const $fieldHeight = cssVar("input-field-height")
+const $fieldFontSize = cssVar("input-field-font-size")
+const $fieldPadding = cssVar("input-field-padding")
+const $fieldBorderRadius = cssVar("input-field-border-radius")
+
+const $height = cssVar("input-height", $fieldHeight.reference)
+const $fontSize = cssVar("input-font-size", $fieldFontSize.reference)
+const $padding = cssVar("input-padding", $fieldPadding.reference)
+const $borderRadius = cssVar(
+  "input-border-radius",
+  $fieldBorderRadius.reference,
+)
 
 const baseStyle = definePartsStyle({
   addon: {
@@ -40,49 +48,71 @@ const baseStyle = definePartsStyle({
   },
 })
 
+const toPartStyle = ({
+  $fontSize,
+  $padding,
+  $borderRadius,
+  $height,
+}: {
+  $fontSize: CSSVar
+  $padding: CSSVar
+  $borderRadius: CSSVar
+  $height: CSSVar
+}) => {
+  return {
+    lg: defineStyle({
+      [$fontSize.variable]: "fontSizes.lg",
+      [$padding.variable]: "space.4",
+      [$borderRadius.variable]: "radii.md",
+      [$height.variable]: "sizes.12",
+    }),
+    md: defineStyle({
+      [$fontSize.variable]: "fontSizes.md",
+      [$padding.variable]: "space.4",
+      [$borderRadius.variable]: "radii.md",
+      [$height.variable]: "sizes.10",
+    }),
+    sm: defineStyle({
+      [$fontSize.variable]: "fontSizes.sm",
+      [$padding.variable]: "space.3",
+      [$borderRadius.variable]: "radii.sm",
+      [$height.variable]: "sizes.8",
+    }),
+    xs: defineStyle({
+      [$fontSize.variable]: "fontSizes.xs",
+      [$padding.variable]: "space.2",
+      [$borderRadius.variable]: "radii.sm",
+      [$height.variable]: "sizes.6",
+    }),
+  }
+}
+
 const size = {
-  lg: defineStyle({
-    [$fontSize.variable]: "fontSizes.lg",
-    [$padding.variable]: "space.4",
-    [$borderRadius.variable]: "radii.md",
-    [$height.variable]: "sizes.12",
-  }),
-  md: defineStyle({
-    [$fontSize.variable]: "fontSizes.md",
-    [$padding.variable]: "space.4",
-    [$borderRadius.variable]: "radii.md",
-    [$height.variable]: "sizes.10",
-  }),
-  sm: defineStyle({
-    [$fontSize.variable]: "fontSizes.sm",
-    [$padding.variable]: "space.3",
-    [$borderRadius.variable]: "radii.sm",
-    [$height.variable]: "sizes.8",
-  }),
-  xs: defineStyle({
-    [$fontSize.variable]: "fontSizes.xs",
-    [$padding.variable]: "space.2",
-    [$borderRadius.variable]: "radii.sm",
-    [$height.variable]: "sizes.6",
+  group: toPartStyle({ $fontSize, $padding, $borderRadius, $height }),
+  field: toPartStyle({
+    $fontSize: $fieldFontSize,
+    $padding: $fieldPadding,
+    $borderRadius: $fieldBorderRadius,
+    $height: $fieldHeight,
   }),
 }
 
 const sizes = {
   lg: definePartsStyle({
-    field: size.lg,
-    group: size.lg,
+    field: size.field.lg,
+    group: size.group.lg,
   }),
   md: definePartsStyle({
-    field: size.md,
-    group: size.md,
+    field: size.field.md,
+    group: size.group.md,
   }),
   sm: definePartsStyle({
-    field: size.sm,
-    group: size.sm,
+    field: size.field.sm,
+    group: size.group.sm,
   }),
   xs: definePartsStyle({
-    field: size.xs,
-    group: size.xs,
+    field: size.field.xs,
+    group: size.group.xs,
   }),
 }
 
