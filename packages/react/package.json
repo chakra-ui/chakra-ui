@@ -61,7 +61,7 @@
     "@emotion/styled": "^11.11.0",
     "@tanstack/react-table": "^8.10.7",
     "@testing-library/react": "^14.0.0",
-    "framer-motion": "10.16.15",
+    "framer-motion": "11.0.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.6",
