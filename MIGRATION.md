@@ -1024,3 +1024,57 @@ After:
 - Remove `fallbackSrc` due to the SSR issues it causes
 - Remove `useImage` hook
 - Remove `Img` in favor of using the `Image` component directly
+
+## Toast
+
+There's been a significant change to the `Toast` component to make it more
+flexible and easier to style.
+
+- Removed `createStandaloneToasts`, `useToast` in favor of using `createToaster`
+  to spawn toast in a specific position.
+- With the `toast` returned from `createToaster`, you can now create toasts
+  outside of the React tree.
+- Toast now reads from its own recipe and all parts can be styled directly
+
+Before:
+
+```jsx
+import { useToast } from "@chakra-ui/react"
+
+const toast = useToast()
+
+toast({
+  title: "Account created.",
+  description: "We've created your account for you.",
+  status: "success",
+})
+```
+
+After:
+
+```jsx
+const [ToastContainer, toast] = createToaster({
+  placement: "bottom",
+  render(toast) {
+    return (
+      <Toast.Transition>
+        <Toast.Root status={toast.status}>
+          <Toast.Title>{toast.title}</Toast.Title>
+          <Toast.Description>{toast.description}</Toast.Description>
+          <Box pos="absolute" top="1" insetEnd="1">
+            <Toast.CloseTrigger asChild>
+              <HiX />
+            </Toast.CloseTrigger>
+          </Box>
+        </Toast.Root>
+      </Toast.Transition>
+    )
+  },
+})
+
+toast({
+  title: "Account created.",
+  description: "We've created your account for you.",
+  status: "success",
+})
+```

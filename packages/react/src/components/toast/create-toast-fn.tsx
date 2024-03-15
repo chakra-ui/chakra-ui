@@ -1,43 +1,35 @@
 import { runIfFn } from "@chakra-ui/utils"
-import {
-  MaybeFunction,
-  UseToastPromiseOption,
-  createRenderToast,
-} from "./toast"
-import { getToastPlacement } from "./toast.placement"
 import { toastStore } from "./toast.store"
-import type { ToastId } from "./toast.types"
-import type { UseToastOptions } from "./use-toast"
+import type { ToastId, ToastOptions, ToastPublicOptions } from "./toast.types"
 
-export function createToastFn(
-  dir: "ltr" | "rtl",
-  defaultOptions?: UseToastOptions,
-) {
-  const normalizeToastOptions = (options?: UseToastOptions) => ({
+type ToastPromiseOptions = Omit<ToastOptions, "status">
+type MaybeFunction<T, Args extends unknown[] = []> = T | ((...args: Args) => T)
+
+export function createToastFn(defaultOptions?: ToastOptions) {
+  const normalize = (options?: Partial<ToastOptions>): ToastOptions => ({
+    placement: "bottom",
     ...defaultOptions,
     ...options,
-    position: getToastPlacement(
-      options?.position ?? defaultOptions?.position,
-      dir,
-    ),
   })
 
-  const toast = (options?: UseToastOptions) => {
-    const normalizedToastOptions = normalizeToastOptions(options)
-    const Message = createRenderToast(normalizedToastOptions)
-    return toastStore.notify(Message, normalizedToastOptions)
+  const toast = (options?: ToastPublicOptions) => {
+    const opts = normalize(options)
+    return toastStore.create(opts)
   }
 
-  toast.update = (id: ToastId, options: Omit<UseToastOptions, "id">) => {
-    toastStore.update(id, normalizeToastOptions(options))
+  toast.update = (
+    id: ToastId,
+    options: Omit<ToastOptions, "id" | "placement">,
+  ) => {
+    toastStore.update(id, normalize(options))
   }
 
   toast.promise = <Result extends any, Err extends Error = Error>(
     promise: Promise<Result>,
     options: {
-      success: MaybeFunction<UseToastPromiseOption, [Result]>
-      error: MaybeFunction<UseToastPromiseOption, [Err]>
-      loading: UseToastPromiseOption
+      success: MaybeFunction<ToastPromiseOptions, [Result]>
+      error: MaybeFunction<ToastPromiseOptions, [Err]>
+      loading: ToastPromiseOptions
     },
   ) => {
     const id = toast({

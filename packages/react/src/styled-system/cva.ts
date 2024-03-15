@@ -28,7 +28,7 @@ interface Options {
 export function createRecipeFn(options: Options): RecipeCreatorFn {
   const { css, conditions, normalize } = options
 
-  function cva(config: any) {
+  function cva(config: Dict = {}) {
     const { base, variants, defaultVariants, compoundVariants } =
       defaults(config)
 

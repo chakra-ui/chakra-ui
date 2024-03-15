@@ -1,26 +1,31 @@
-import { createRenderToast } from "./toast"
-import { ToastPosition } from "./toast.placement"
-import { CreateToastOptions, ToastMethods } from "./toast.provider"
-import type { ToastId, ToastMessage, ToastState } from "./toast.types"
-import { findToast, getToastPosition } from "./toast.utils"
+import type {
+  ToastId,
+  ToastMethods,
+  ToastOptions,
+  ToastPlacement,
+  ToastPlacementMap,
+  ToastState,
+} from "./toast.types"
 
-type ToastStore = ToastMethods & {
-  getState: () => ToastState
-  subscribe: (onStoreChange: () => void) => () => void
-  removeToast: (id: ToastId, position: ToastPosition) => void
+interface ToastStore extends ToastMethods {
+  getState(): ToastState
+  subscribe(onStoreChange: VoidFunction): VoidFunction
+  removeToast(id: ToastId, placement: ToastPlacement): void
 }
 
-const initialState = {
+const initialState: ToastPlacementMap<ToastOptions[]> = {
   top: [],
-  "top-left": [],
-  "top-right": [],
-  "bottom-left": [],
+  "top-start": [],
+  "top-end": [],
+  "bottom-start": [],
   bottom: [],
-  "bottom-right": [],
+  "bottom-end": [],
 }
+
+const allPlacements = Object.keys(initialState) as ToastPlacement[]
 
 /**
- * Store to track all the toast across all positions
+ * Store to track all the toast across all placements
  */
 export const toastStore = createStore(initialState)
 
@@ -28,9 +33,9 @@ function createStore(initialState: ToastState): ToastStore {
   let state = initialState
   const listeners = new Set<() => void>()
 
-  const setState = (setStateFn: (values: ToastState) => ToastState) => {
+  const setState = (setStateFn: (_state: ToastState) => ToastState) => {
     state = setStateFn(state)
-    listeners.forEach((l) => l())
+    listeners.forEach((fn) => fn())
   }
 
   return {
@@ -46,42 +51,42 @@ function createStore(initialState: ToastState): ToastStore {
     },
 
     /**
-     * Delete a toast record at its position
+     * Delete a toast record at its placement
      */
-    removeToast: (id, position) => {
+    removeToast: (id, placement) => {
       setState((prevState) => ({
         ...prevState,
         // id may be string or number
         // eslint-disable-next-line eqeqeq
-        [position]: prevState[position].filter((toast) => toast.id != id),
+        [placement]: prevState[placement].filter((toast) => toast.id != id),
       }))
     },
 
-    notify: (message, options) => {
-      const toast = createToast(message, options)
-      const { position, id } = toast
+    create(options) {
+      const toast = createToast(options)
+      const { placement, id } = toast
 
       setState((prevToasts) => {
-        const isTop = position.includes("top")
+        const isTop = placement!.includes("top")
 
         /**
-         * - If the toast is positioned at the top edges, the
+         * - If the toast is placed at the top edges, the
          * recent toast stacks on top of the other toasts.
          *
-         * - If the toast is positioned at the bottom edges, the recent
+         * - If the toast is placed at the bottom edges, the recent
          * toast stacks below the other toasts.
          */
         const toasts = isTop
-          ? [toast, ...(prevToasts[position] ?? [])]
-          : [...(prevToasts[position] ?? []), toast]
+          ? [toast, ...(prevToasts[placement] ?? [])]
+          : [...(prevToasts[placement] ?? []), toast]
 
         return {
           ...prevToasts,
-          [position]: toasts,
+          [placement]: toasts,
         }
       })
 
-      return id
+      return id!
     },
 
     update: (id, options) => {
@@ -89,13 +94,12 @@ function createStore(initialState: ToastState): ToastStore {
 
       setState((prevState) => {
         const nextState = { ...prevState }
-        const { position, index } = findToast(nextState, id)
+        const { placement, index } = findToast(nextState, id)
 
-        if (position && index !== -1) {
-          nextState[position][index] = {
-            ...nextState[position][index],
+        if (placement && index !== -1) {
+          nextState[placement][index] = {
+            ...nextState[placement][index],
             ...options,
-            message: createRenderToast(options),
           }
         }
 
@@ -103,24 +107,15 @@ function createStore(initialState: ToastState): ToastStore {
       })
     },
 
-    closeAll: ({ positions } = {}) => {
+    closeAll(placements) {
       // only one setState here for perf reasons
       // instead of spamming this.closeToast
       setState((prev) => {
-        const allPositions: ToastPosition[] = [
-          "bottom",
-          "bottom-right",
-          "bottom-left",
-          "top",
-          "top-left",
-          "top-right",
-        ]
+        const placementsToClose = placements ?? allPlacements
 
-        const positionsToClose = positions ?? allPositions
-
-        return positionsToClose.reduce(
-          (acc, position) => {
-            acc[position] = prev[position].map((toast) => ({
+        return placementsToClose.reduce(
+          (acc, placement) => {
+            acc[placement] = prev[placement].map((toast) => ({
               ...toast,
               requestClose: true,
             }))
@@ -134,13 +129,13 @@ function createStore(initialState: ToastState): ToastStore {
 
     close: (id) => {
       setState((prevState) => {
-        const position = getToastPosition(prevState, id)
+        const placement = getToastPlacement(prevState, id)
 
-        if (!position) return prevState
+        if (!placement) return prevState
 
         return {
           ...prevState,
-          [position]: prevState[position].map((toast) => {
+          [placement]: prevState[placement].map((toast) => {
             // id may be string or number
             // eslint-disable-next-line eqeqeq
             if (toast.id == id) {
@@ -156,7 +151,7 @@ function createStore(initialState: ToastState): ToastStore {
       })
     },
 
-    isActive: (id) => Boolean(findToast(toastStore.getState(), id).position),
+    isActive: (id) => Boolean(findToast(toastStore.getState(), id).placement),
   }
 }
 
@@ -169,21 +164,43 @@ let counter = 0
 /**
  * Create properties for a new toast
  */
-function createToast(message: ToastMessage, options: CreateToastOptions = {}) {
+function createToast(options: ToastOptions): ToastOptions {
   counter += 1
   const id = options.id ?? counter
-
-  const position = options.position ?? "bottom"
-
+  const placement = options.placement ?? "bottom"
   return {
     id,
-    message,
-    position,
+    status: "info",
+    ...options,
+    placement,
     duration: options.duration,
-    onCloseComplete: options.onCloseComplete,
-    onRequestRemove: () => toastStore.removeToast(String(id), position),
-    status: options.status,
+    onRequestRemove() {
+      return toastStore.removeToast(String(id), placement)
+    },
     requestClose: false,
-    containerStyle: options.containerStyle,
+  }
+}
+
+const findById = (arr: ToastOptions[], id: ToastId) =>
+  arr.find((toast) => toast.id === id)
+
+function findToast(toasts: ToastState, id: ToastId) {
+  const placement = getToastPlacement(toasts, id)
+
+  const index = placement
+    ? toasts[placement].findIndex((toast) => toast.id === id)
+    : -1
+
+  return {
+    placement,
+    index,
+  }
+}
+
+function getToastPlacement(toasts: ToastState, id: ToastId) {
+  for (const [placement, values] of Object.entries(toasts)) {
+    if (findById(values, id)) {
+      return placement as ToastPlacement
+    }
   }
 }

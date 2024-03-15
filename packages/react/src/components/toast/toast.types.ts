@@ -1,65 +1,80 @@
-import type { SystemStyleObject } from "../../styled-system"
-import type { ToastPosition } from "./toast.placement"
-import { UseToastOptions } from "./use-toast"
-
-export interface RenderProps extends UseToastOptions {
-  /**
-   * Function to close the toast
-   */
-  onClose(): void
-}
-
-export type ToastMessage = (props: RenderProps) => React.ReactNode
-
 export type ToastId = string | number
 
-export interface ToastOptions {
+export interface ToastPrivateOptions {
   /**
-   * The element or component type to render.
-   * The component will be passed `id` and `onClose`
+   * @internal
+   * Whether the toast should close
    */
-  message: ToastMessage
+  requestClose?: boolean
+  /**
+   * @internal
+   * The position of the toast
+   */
+  placement: ToastPlacement
+}
+
+export interface ToastPublicOptions {
+  /**
+   * The title of the toast
+   */
+  title?: React.ReactNode
+  /**
+   * The description of the toast
+   */
+  description?: React.ReactNode
   /**
    * The toast's id
    */
-  id: ToastId
+  id?: ToastId
   /**
    * The duration of the toast
    */
-  duration: number | null
+  duration?: number | null
   /**
    * The status of the toast's alert component.
    */
-  status: ToastStatus
-
+  status?: ToastStatus
   /**
    * Function that removes the toast from manager's state.
    */
-  onRequestRemove(): void
-
-  /**
-   * The position of the toast
-   */
-  position: ToastPosition
+  onRequestRemove?(): void
 
   /**
    * Callback function to run side effects after the toast has closed.
    */
   onCloseComplete?(): void
-
-  /**
-   * Internally used to queue closing a toast. Should probably not be used by
-   * anyone else, but documented regardless.
-   */
-  requestClose?: boolean
-  /**
-   * Optional style overrides for the toast component.
-   */
-  containerStyle?: SystemStyleObject
 }
 
+export interface ToastOptions extends ToastPrivateOptions, ToastPublicOptions {}
+
 export type ToastState = {
-  [K in ToastPosition]: ToastOptions[]
+  [K in ToastPlacement]: ToastOptions[]
+}
+
+export interface ToastMethods {
+  /**
+   * Function to actually create a toast and add it
+   * to state at the specified position
+   */
+  create: (options: ToastOptions) => ToastId
+  /**
+   * Close all toasts at once.
+   * If given positions, will only close those.
+   */
+  closeAll: (placements?: ToastPlacement[]) => void
+  /**
+   * Requests to close a toast based on its id and position
+   */
+  close: (id: ToastId) => void
+  /**
+   * Update a specific toast with new options based on the
+   * passed `id`
+   */
+  update: (id: ToastId, options: Omit<ToastOptions, "id">) => void
+  /**
+   * Check if a toast is visible based on its id
+   */
+  isActive: (id: ToastId) => boolean
 }
 
 export type ToastStatus =
@@ -70,10 +85,14 @@ export type ToastStatus =
   | "info"
   | "loading"
 
-export type UpdateFn = (state: ToastState) => void
+export type ToastUpdateFn = (state: ToastState) => void
 
-export type CloseAllToastsOptions = {
-  positions?: ToastPosition[]
-}
+export type ToastPlacement =
+  | "top-start"
+  | "top-end"
+  | "bottom-start"
+  | "bottom-end"
+  | "top"
+  | "bottom"
 
-export {}
+export type ToastPlacementMap<T> = Record<ToastPlacement, T>

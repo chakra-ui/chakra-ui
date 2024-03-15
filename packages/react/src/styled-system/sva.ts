@@ -49,7 +49,7 @@ export const getSlotCompoundVariant = <T extends { css: any }>(
 
 export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
   const { cva } = options
-  return function sva(config: any): any {
+  return function sva(config: Dict = {}): any {
     const slots = Object.entries(getSlotRecipes(config)).map(
       ([slot, slotCva]) => [slot, cva(slotCva)],
     )

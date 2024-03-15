@@ -16,6 +16,14 @@ export const alertAnatomy = anatomy("alert").parts(
   "spinner",
 )
 
+export const toastAnatomy = anatomy("toast").parts(
+  "root",
+  "title",
+  "description",
+  "icon",
+  "closeTrigger",
+)
+
 export const avatarAnatomy = anatomy("avatar").parts(
   "group",
   "root",

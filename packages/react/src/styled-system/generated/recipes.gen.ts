@@ -422,6 +422,20 @@ export interface TagVariantProps {
   variant?: "subtle" | "solid" | "outline" | "surface" | "raised"
 }
 
+// Toast
+
+export type ToastSlot =
+  | "root"
+  | "title"
+  | "description"
+  | "icon"
+  | "closeTrigger"
+
+export interface ToastVariantProps {
+  status?: "default" | "info" | "warning" | "success" | "error" | "loading"
+  variant?: "solid" | "raised"
+}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -448,6 +462,7 @@ export interface ConfigSlotRecipes {
   Table: SystemSlotRecipeFn<TableSlot, TableVariantProps>
   Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
   Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
+  Toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -476,6 +491,7 @@ export interface ConfigRecipeSlots {
   Table: TableSlot
   Tabs: TabsSlot
   Tag: TagSlot
+  Toast: ToastSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
