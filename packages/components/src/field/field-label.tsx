@@ -52,7 +52,7 @@ export const FieldLabel = forwardRef<FieldLabelProps, "label">(
         }}
       >
         {children}
-        {field?.isRequired ? requiredIndicator : optionalIndicator}
+        {field?.required ? requiredIndicator : optionalIndicator}
       </chakra.label>
     )
   },

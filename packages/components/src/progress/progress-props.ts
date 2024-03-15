@@ -4,7 +4,7 @@ import { ProgressOptions } from "./progress-types"
 export const progressProps = createProps<ProgressOptions>()([
   "hasStripe",
   "isAnimated",
-  "isIndeterminate",
+  "indeterminate",
   "max",
   "min",
   "value",

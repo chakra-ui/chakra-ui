@@ -9,7 +9,7 @@ type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 
 export interface MenuRootProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
-    isOpen: boolean
+    open: boolean
     onClose: () => void
     forceUpdate: (() => void) | undefined
   }>
@@ -30,12 +30,12 @@ export const MenuRoot: React.FC<MenuRootProps> = (props) => {
   const ctx = useMenu({ ...ownProps, direction })
   const context = useMemo(() => ctx, [ctx])
 
-  const { isOpen, onClose, forceUpdate } = context
+  const { open, onClose, forceUpdate } = context
 
   return (
     <MenuProvider value={context}>
       <MenuStylesProvider value={styles}>
-        {runIfFn(children, { isOpen, onClose, forceUpdate })}
+        {runIfFn(children, { open, onClose, forceUpdate })}
       </MenuStylesProvider>
     </MenuProvider>
   )

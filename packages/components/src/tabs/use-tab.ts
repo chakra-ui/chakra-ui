@@ -12,12 +12,12 @@ export interface UseTabOptions {
    * If `true`, the `Tab` won't be toggleable
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
-   * If `true` and `isDisabled`, the `Tab` will be focusable but not interactive.
+   * If `true` and `disabled`, the `Tab` will be focusable but not interactive.
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
 }
 
 export interface UseTabProps
@@ -31,12 +31,18 @@ export interface UseTabProps
  * hence the use of `useClickable` to handle this scenario
  */
 export function useTab<P extends UseTabProps>(props: P) {
-  const { isDisabled, isFocusable, value, ref, ...htmlProps } = props
+  const { disabled, focusable, value, ref, ...htmlProps } = props
 
-  const { setSelectedValue, isManual, id, setFocusedValue, selectedValue } =
-    useTabsContext()
+  const {
+    setSelectedValue,
+    activationMode,
+    id,
+    setFocusedValue,
+    selectedValue,
+  } = useTabsContext()
 
   const isSelected = value === selectedValue
+  const isManual = activationMode === "manual"
 
   const onClick = () => {
     setSelectedValue(value)
@@ -44,8 +50,8 @@ export function useTab<P extends UseTabProps>(props: P) {
 
   const onFocus = () => {
     setFocusedValue(value)
-    const isDisabledButFocusable = isDisabled && isFocusable
-    const shouldSelect = !isManual && !isDisabledButFocusable
+    const disabledButFocusable = disabled && focusable
+    const shouldSelect = !isManual && !disabledButFocusable
     if (shouldSelect) {
       setSelectedValue(value)
     }
@@ -54,8 +60,8 @@ export function useTab<P extends UseTabProps>(props: P) {
   const clickableProps = useClickable({
     ...htmlProps,
     ref,
-    isDisabled,
-    isFocusable,
+    disabled,
+    focusable,
     onClick: callAllHandlers(props.onClick, onClick),
   })
 
@@ -69,6 +75,6 @@ export function useTab<P extends UseTabProps>(props: P) {
     type,
     "aria-selected": isSelected,
     "aria-controls": makeTabPanelId(id, value),
-    onFocus: isDisabled ? undefined : callAllHandlers(props.onFocus, onFocus),
+    onFocus: disabled ? undefined : callAllHandlers(props.onFocus, onFocus),
   }
 }

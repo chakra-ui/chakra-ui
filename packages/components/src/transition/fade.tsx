@@ -42,7 +42,7 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(
   function Fade(props, ref) {
     const {
       unmountOnExit,
-      in: isOpen,
+      in: open,
       className,
       transition,
       transitionEnd,
@@ -50,8 +50,8 @@ export const Fade = forwardRef<HTMLDivElement, FadeProps>(
       ...rest
     } = props
 
-    const animate = isOpen || unmountOnExit ? "enter" : "exit"
-    const show = unmountOnExit ? isOpen && unmountOnExit : true
+    const animate = open || unmountOnExit ? "enter" : "exit"
+    const show = unmountOnExit ? open && unmountOnExit : true
 
     const custom = { transition, transitionEnd, delay }
 

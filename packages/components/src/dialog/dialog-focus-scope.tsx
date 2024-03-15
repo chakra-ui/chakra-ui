@@ -21,7 +21,7 @@ export function DialogFocusScope(props: DialogFocusScopeProps) {
     returnFocusOnClose,
     preserveScrollBarGap,
     lockFocusAcrossFrames,
-    isOpen,
+    open,
   } = useDialogContext()
 
   const [isPresent, safeToRemove] = usePresence()
@@ -32,12 +32,12 @@ export function DialogFocusScope(props: DialogFocusScopeProps) {
     }
   }, [isPresent, safeToRemove])
 
-  const index = useDialogManager(contentRef, isOpen)
+  const index = useDialogManager(contentRef, open)
 
   return (
     <FocusLock
       autoFocus={autoFocus}
-      isDisabled={!trapFocus}
+      disabled={!trapFocus}
       initialFocusRef={initialFocusRef}
       finalFocusRef={finalFocusRef}
       restoreFocus={returnFocusOnClose}

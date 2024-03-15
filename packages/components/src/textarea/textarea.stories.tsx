@@ -20,11 +20,11 @@ export const rows = () => (
 )
 
 export const disabled = () => (
-  <Textarea isDisabled placeholder="A disabled textarea" />
+  <Textarea disabled placeholder="A disabled textarea" />
 )
 
 export const invalid = () => (
-  <Textarea isInvalid placeholder="An invalid textarea" />
+  <Textarea invalid placeholder="An invalid textarea" />
 )
 
 export const withSizes = () => (

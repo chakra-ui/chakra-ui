@@ -29,10 +29,10 @@ const RadioDemo = (props: RadioGroup.ItemProps) => {
 
 export const Basic = () => <RadioDemo>Hello</RadioDemo>
 
-export const Disabled = () => <RadioDemo isDisabled>Disabled</RadioDemo>
+export const Disabled = () => <RadioDemo disabled>Disabled</RadioDemo>
 
 export const Readonly = () => (
-  <RadioDemo mt="40px" isChecked isReadOnly size="lg" colorScheme="green">
+  <RadioDemo mt="40px" checked readOnly size="lg" colorScheme="green">
     I'm a readonly radio
   </RadioDemo>
 )
@@ -175,13 +175,13 @@ export function CustomRadioCard() {
 
 export const DisabledRadioGroup = () => {
   return (
-    <RadioGroup.Root asChild isDisabled>
+    <RadioGroup.Root asChild disabled>
       <HStack gap="4">
         <RadioDemo value="one">One</RadioDemo>
-        <RadioDemo value="two" isDisabled>
+        <RadioDemo value="two" disabled>
           Two
         </RadioDemo>
-        <RadioDemo value="three" isDisabled={false}>
+        <RadioDemo value="three" disabled={false}>
           Three
         </RadioDemo>
       </HStack>

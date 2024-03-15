@@ -5,7 +5,7 @@ export interface ButtonGroupContext extends ThemingProps<"Button"> {
   /**
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
 }
 
 export const [ButtonGroupProvider, useButtonGroup] =

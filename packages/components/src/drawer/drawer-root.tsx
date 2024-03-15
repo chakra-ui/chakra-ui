@@ -20,7 +20,7 @@ export interface DrawerRootProps
  */
 export function DrawerRoot(props: DrawerRootProps) {
   const {
-    isOpen,
+    open,
     onClose,
     placement: placementProp = "right",
     children,
@@ -34,7 +34,7 @@ export function DrawerRoot(props: DrawerRootProps) {
   return (
     <DrawerContextProvider value={{ placement }}>
       <DialogRoot
-        isOpen={isOpen}
+        open={open}
         onClose={onClose}
         styleConfig={drawerStyleConfig}
         {...rest}

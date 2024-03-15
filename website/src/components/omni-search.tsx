@@ -139,16 +139,16 @@ function OmniSearch() {
     const hotkey = isMac ? 'metaKey' : 'ctrlKey'
     if (event?.key?.toLowerCase() === 'k' && event[hotkey]) {
       event.preventDefault()
-      modal.isOpen ? modal.onClose() : modal.onOpen()
+      modal.open ? modal.onClose() : modal.onOpen()
     }
   })
 
   React.useEffect(() => {
-    if (modal.isOpen && query.length > 0) {
+    if (modal.open && query.length > 0) {
       setQuery('')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [modal.isOpen])
+  }, [modal.open])
 
   const results = React.useMemo(
     function getResults() {
@@ -229,14 +229,14 @@ function OmniSearch() {
     })
   }, [active])
 
-  const open = menu.isOpen && results.length > 0
+  const open = menu.open && results.length > 0
 
   return (
     <>
       <SearchButton onClick={modal.onOpen} />
       <Dialog.Root
         scrollBehavior='inside'
-        isOpen={modal.isOpen}
+        open={modal.open}
         onClose={modal.onClose}
       >
         <Dialog.Overlay />

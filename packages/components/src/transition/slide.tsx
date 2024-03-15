@@ -71,7 +71,7 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(
       direction = "right",
       style,
       unmountOnExit,
-      in: isOpen,
+      in: open,
       className,
       transition,
       transitionEnd,
@@ -87,8 +87,8 @@ export const Slide = forwardRef<HTMLDivElement, SlideProps>(
       style,
     )
 
-    const show = unmountOnExit ? isOpen && unmountOnExit : true
-    const animate = isOpen || unmountOnExit ? "enter" : "exit"
+    const show = unmountOnExit ? open && unmountOnExit : true
+    const animate = open || unmountOnExit ? "enter" : "exit"
 
     const custom = { transitionEnd, transition, direction, delay }
 

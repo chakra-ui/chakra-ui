@@ -17,7 +17,7 @@ export interface CheckboxGroupProps
  * @see Docs https://chakra-ui.com/checkbox
  */
 export function CheckboxGroup(props: CheckboxGroupProps) {
-  const { colorScheme, size, variant, children, isDisabled } = props
+  const { colorScheme, size, variant, children, disabled } = props
   const { value, onChange } = useCheckboxGroup(props)
 
   const group = useMemo(
@@ -27,9 +27,9 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
       colorScheme,
       value,
       variant,
-      isDisabled,
+      disabled,
     }),
-    [size, onChange, colorScheme, value, variant, isDisabled],
+    [size, onChange, colorScheme, value, variant, disabled],
   )
 
   return <CheckboxGroupProvider value={group} children={children} />

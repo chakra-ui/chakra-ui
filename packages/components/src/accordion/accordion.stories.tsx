@@ -240,14 +240,14 @@ export function WithSearchFilter() {
 }
 
 export const FocusBug = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
 
   return (
     <Box textAlign="center" fontSize="xl">
       <Button colorScheme="teal" onClick={onOpen}>
         Open
       </Button>
-      <Drawer.Root isOpen={isOpen} placement="right" onClose={onClose}>
+      <Drawer.Root open={open} placement="right" onClose={onClose}>
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>
@@ -317,12 +317,12 @@ export const FocusBug = () => {
 
 export const WithDisabledItem = () => {
   return (
-    <Accordion.Root value={["1"]}>
-      <Accordion.Item value="1" isDisabled>
+    <Accordion.Root defaultValue={["1"]}>
+      <Accordion.Item value="1" disabled>
         <Accordion.Trigger>Button 1</Accordion.Trigger>
         <Accordion.Content>One Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item value="2" isDisabled>
+      <Accordion.Item value="2" disabled>
         <Accordion.Trigger>Button 2</Accordion.Trigger>
         <Accordion.Content>Two Content</Accordion.Content>
       </Accordion.Item>
@@ -330,7 +330,7 @@ export const WithDisabledItem = () => {
         <Accordion.Trigger>Button 3</Accordion.Trigger>
         <Accordion.Content>Three Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item value="4" isDisabled>
+      <Accordion.Item value="4" disabled>
         <Accordion.Trigger>Button 4</Accordion.Trigger>
         <Accordion.Content>Four Content</Accordion.Content>
       </Accordion.Item>
@@ -341,3 +341,39 @@ export const WithDisabledItem = () => {
     </Accordion.Root>
   )
 }
+
+export const ItemApi = () => (
+  <Accordion.Root>
+    <Accordion.Item>
+      {({ isOpen }) => (
+        <>
+          <h2>
+            <Accordion.Trigger>
+              <chakra.div flex="1" textAlign="left">
+                Section 1 title {isOpen ? "open" : "closed"}
+              </chakra.div>
+              <Accordion.Icon />
+            </Accordion.Trigger>
+          </h2>
+          <Accordion.Content>Panel 1</Accordion.Content>
+        </>
+      )}
+    </Accordion.Item>
+
+    <Accordion.Item>
+      {({ isOpen }) => (
+        <>
+          <h2>
+            <Accordion.Trigger>
+              <chakra.div flex="1" textAlign="left">
+                Section 2 title {isOpen ? "open" : "closed"}
+              </chakra.div>
+              <Accordion.Icon />
+            </Accordion.Trigger>
+          </h2>
+          <Accordion.Content>Panel 2</Accordion.Content>
+        </>
+      )}
+    </Accordion.Item>
+  </Accordion.Root>
+)

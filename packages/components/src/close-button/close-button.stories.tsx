@@ -11,10 +11,10 @@ export default {
 export const Default = () => <CloseButton />
 
 /**
- * Pass the `isDisabled` prop to put the close button component in a disabled state.
+ * Pass the `disabled` prop to put the close button component in a disabled state.
  */
 
-export const State = () => <CloseButton isDisabled />
+export const State = () => <CloseButton disabled />
 
 /**
  * Pass the size prop to adjust the size of the close button.

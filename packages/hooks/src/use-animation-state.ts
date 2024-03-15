@@ -3,32 +3,32 @@ import { useEffect, useState } from "react"
 import { useEventListener } from "./use-event-listener"
 
 export interface UseAnimationStateProps {
-  isOpen: boolean
+  open: boolean
   ref: React.RefObject<HTMLElement>
 }
 
 export function useAnimationState(props: UseAnimationStateProps) {
-  const { isOpen, ref } = props
+  const { open, ref } = props
 
-  const [mounted, setMounted] = useState(isOpen)
+  const [mounted, setMounted] = useState(open)
   const [once, setOnce] = useState(false)
 
   useEffect(() => {
     if (!once) {
-      setMounted(isOpen)
+      setMounted(open)
       setOnce(true)
     }
-  }, [isOpen, once, mounted])
+  }, [open, once, mounted])
 
   useEventListener(
     () => ref.current,
     "animationend",
     () => {
-      setMounted(isOpen)
+      setMounted(open)
     },
   )
 
-  const hidden = isOpen ? false : !mounted
+  const hidden = open ? false : !mounted
 
   return {
     present: !hidden,

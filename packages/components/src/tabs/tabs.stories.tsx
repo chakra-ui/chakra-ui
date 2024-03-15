@@ -62,13 +62,13 @@ export const Sizes = () =>
 export const automatic = () => (
   <>
     <p>manual</p>
-    <Tabs.Root defaultValue="settings" isManual>
+    <Tabs.Root defaultValue="settings" activationMode="manual">
       <Tabs.List>
         <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-        <Tabs.Trigger value="billing" isDisabled>
+        <Tabs.Trigger value="billing" disabled>
           Billing
         </Tabs.Trigger>
-        <Tabs.Trigger value="preferences" isDisabled>
+        <Tabs.Trigger value="preferences" disabled>
           Preferences
         </Tabs.Trigger>
         <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -85,10 +85,10 @@ export const automatic = () => (
     <Tabs.Root defaultValue="settings">
       <Tabs.List>
         <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-        <Tabs.Trigger value="billing" isDisabled>
+        <Tabs.Trigger value="billing" disabled>
           Billing
         </Tabs.Trigger>
-        <Tabs.Trigger value="preferences" isDisabled>
+        <Tabs.Trigger value="preferences" disabled>
           Preferences
         </Tabs.Trigger>
         <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -104,11 +104,11 @@ export const automatic = () => (
 )
 
 export const manual = () => (
-  <Tabs.Root defaultValue="settings" isManual>
+  <Tabs.Root defaultValue="settings" activationMode="manual">
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
       <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-      <Tabs.Trigger value="preferences" isDisabled>
+      <Tabs.Trigger value="preferences" disabled>
         Preferences
       </Tabs.Trigger>
       <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -123,14 +123,10 @@ export const manual = () => (
 )
 
 export const withIndicator = () => (
-  <Tabs.Root defaultValue="settings" variant="unstyled" isManual>
+  <Tabs.Root defaultValue="settings" variant="unstyled" activationMode="manual">
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-      <Tabs.Trigger
-        value="billing"
-        _disabled={{ color: "gray.400" }}
-        isDisabled
-      >
+      <Tabs.Trigger value="billing" _disabled={{ color: "gray.400" }} disabled>
         Billing
       </Tabs.Trigger>
       <Tabs.Trigger value="preferences">Preferences</Tabs.Trigger>
@@ -150,7 +146,7 @@ export const withIndicator = () => (
 
 export const withIndicatorAndLongTabText = () => (
   <>
-    <Tabs.Root defaultValue="long" variant="unstyled" isManual>
+    <Tabs.Root defaultValue="long" variant="unstyled" activationMode="manual">
       <Tabs.List>
         <Tabs.Trigger value="long">Tab with long text</Tabs.Trigger>
         <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
@@ -173,7 +169,7 @@ export const withVerticalTabs = () => (
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
       <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-      <Tabs.Trigger value="preferences" isDisabled>
+      <Tabs.Trigger value="preferences" disabled>
         Preferences
       </Tabs.Trigger>
       <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -198,7 +194,7 @@ const Interval = () => {
 }
 
 export const withLazyTabs = () => (
-  <Tabs.Root defaultValue="1" isLazy>
+  <Tabs.Root defaultValue="1" lazyMount>
     <Tabs.List>
       <Tabs.Trigger value="1">Interval 1</Tabs.Trigger>
       <Tabs.Trigger value="2">Interval 2</Tabs.Trigger>
@@ -217,7 +213,7 @@ export const withLazyTabs = () => (
 )
 
 export const withLazyTabsMounted = () => (
-  <Tabs.Root defaultValue="1" isLazy lazyBehavior="keepMounted">
+  <Tabs.Root defaultValue="1" lazyMount lazyBehavior="keepMounted">
     <Tabs.List>
       <Tabs.Trigger value="1">Interval 1</Tabs.Trigger>
       <Tabs.Trigger value="2">Interval 2</Tabs.Trigger>
@@ -311,11 +307,15 @@ export const WithSwappedTabs = () => {
 }
 
 export const withinDrawer = () => (
-  <Drawer.Root isOpen onClose={console.log}>
+  <Drawer.Root open onClose={console.log}>
     <Drawer.Overlay>
       <Drawer.Positioner>
         <Drawer.Content>
-          <Tabs.Root defaultValue="settings" variant="unstyled" isManual>
+          <Tabs.Root
+            defaultValue="settings"
+            variant="unstyled"
+            activationMode="manual"
+          >
             <Tabs.List>
               <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
               <Tabs.Trigger value="billing">Billing</Tabs.Trigger>

@@ -43,16 +43,16 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
       spacing = "0.5rem",
       className,
       children,
-      isChecked: isCheckedProp,
-      isDisabled = group?.isDisabled,
+      checked: checkedProp,
+      disabled = group?.disabled,
       onChange: onChangeProp,
       inputProps,
       ...rest
     } = ownProps
 
-    let isChecked = isCheckedProp
+    let checked = checkedProp
     if (group?.value && ownProps.value) {
-      isChecked = group.value.includes(ownProps.value)
+      checked = group.value.includes(ownProps.value)
     }
 
     let onChange = onChangeProp
@@ -64,8 +64,8 @@ export const CheckboxRoot = forwardRef<CheckboxRootProps, "input">(
 
     const checkboxState = useCheckbox({
       ...checkboxProps,
-      isDisabled,
-      isChecked,
+      disabled,
+      checked,
       onChange,
     })
 

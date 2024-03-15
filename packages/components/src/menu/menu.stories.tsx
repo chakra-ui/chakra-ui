@@ -61,7 +61,7 @@ export const Basic = () => (
 )
 
 export const LazyMenu = () => (
-  <Menu.Root isLazy>
+  <Menu.Root lazyMount>
     <Menu.Trigger asChild>
       <Button>Open Wakanda menu</Button>
     </Menu.Trigger>
@@ -87,12 +87,12 @@ export const WithDisabledItem = () => (
       </Menu.Trigger>
       <Menu.Positioner>
         <Menu.Content>
-          <Menu.Item isDisabled icon={<FaSearch />} command="⌥T">
+          <Menu.Item disabled icon={<FaSearch />} command="⌥T">
             Search
           </Menu.Item>
           <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
           <Menu.Item icon={<FaTruck />}>Delivery</Menu.Item>
-          <Menu.Item isDisabled icon={<FaUnlink />}>
+          <Menu.Item disabled icon={<FaUnlink />}>
             Unlink
           </Menu.Item>
         </Menu.Content>
@@ -111,7 +111,7 @@ export const WithDisabledItem = () => (
             Search
           </Menu.Item>
           <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
-          <Menu.Item isDisabled icon={<FaTruck />}>
+          <Menu.Item disabled icon={<FaTruck />}>
             Delivery
           </Menu.Item>
           <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
@@ -133,7 +133,7 @@ export const WithDisabledButFocusableItem = () => (
       <Menu.Content>
         <Menu.Item>Menu 1</Menu.Item>
         <Menu.Item>Menu 2</Menu.Item>
-        <Menu.Item isDisabled isFocusable>
+        <Menu.Item disabled focusable>
           Menu 3
         </Menu.Item>
         <Menu.Item>Menu 4</Menu.Item>
@@ -147,14 +147,14 @@ export const WithToggleableMenuItems = () => {
     {
       content: string
       icon: React.ReactElement
-      isDisabled?: boolean
+      disabled?: boolean
       command?: string
     }[]
   >([
     {
       content: "Search",
       icon: <FaSearch />,
-      isDisabled: true,
+      disabled: true,
       command: "⌥T",
     },
     {
@@ -164,7 +164,7 @@ export const WithToggleableMenuItems = () => {
     {
       content: "Unlink",
       icon: <FaUnlink />,
-      isDisabled: true,
+      disabled: true,
     },
   ])
 
@@ -176,7 +176,7 @@ export const WithToggleableMenuItems = () => {
             {
               content: "Search",
               icon: <FaSearch />,
-              isDisabled: false,
+              disabled: false,
               command: "⌥T",
             },
             {
@@ -186,7 +186,7 @@ export const WithToggleableMenuItems = () => {
             {
               content: "Unlink",
               icon: <FaUnlink />,
-              isDisabled: true,
+              disabled: true,
             },
           ])
         }}
@@ -202,10 +202,10 @@ export const WithToggleableMenuItems = () => {
         </Menu.Trigger>
         <Menu.Positioner>
           <Menu.Content>
-            {items.map(({ content, icon, isDisabled, command }) => (
+            {items.map(({ content, icon, disabled, command }) => (
               <Menu.Item
                 key={content}
-                isDisabled={isDisabled}
+                disabled={disabled}
                 icon={icon}
                 command={command}
               >
@@ -252,7 +252,7 @@ export const withGroupedItems = () => (
         <Menu.Item>Move...</Menu.Item>
       </Menu.Group>
       <Menu.Group title="Group 2">
-        <Menu.Item isDisabled>Rename...</Menu.Item>
+        <Menu.Item disabled>Rename...</Menu.Item>
         <Menu.Item>Delete...</Menu.Item>
       </Menu.Group>
     </Menu.Content>
@@ -317,7 +317,7 @@ export const WithInternalState = () => (
     {(api) => (
       <>
         <Menu.Trigger asChild>
-          <Button>{api.isOpen ? "Close" : "Open"}</Button>
+          <Button>{api.open ? "Close" : "Open"}</Button>
         </Menu.Trigger>
         <Menu.Positioner>
           <Menu.Content>
@@ -463,7 +463,7 @@ export const WithinForm = () => {
           </Menu.Trigger>
           <Menu.Positioner>
             <Menu.Content>
-              <Menu.Item isDisabled>Download</Menu.Item>
+              <Menu.Item disabled>Download</Menu.Item>
               <Menu.Item>Create a Copy</Menu.Item>
               <Menu.Item>Mark as Draft</Menu.Item>
               <Menu.Item>Delete</Menu.Item>
@@ -585,15 +585,15 @@ export const MenuPerformanceTest = () => {
 }
 
 export const WithoutMenuButton = () => {
-  const [isOpen, setOpen] = React.useState(false)
-  const open = () => setOpen(true)
-  const close = () => setOpen(false)
+  const [open, setOpen] = React.useState(false)
+  const onOpen = () => setOpen(true)
+  const onClose = () => setOpen(false)
 
   React.useEffect(() => {
     const listener = (ev: KeyboardEvent) => {
       if ((ev.metaKey || ev.ctrlKey) && ev.code === "KeyK") {
         ev.preventDefault()
-        open()
+        onOpen()
       }
     }
     window.addEventListener("keydown", listener)
@@ -603,8 +603,8 @@ export const WithoutMenuButton = () => {
   return (
     <>
       <Dialog.Root
-        onClose={close}
-        isOpen={isOpen}
+        onClose={onClose}
+        open={open}
         isCentered
         motionPreset="slideInBottom"
       >
@@ -616,7 +616,7 @@ export const WithoutMenuButton = () => {
               justifyContent="center"
               alignItems="center"
             >
-              <Menu.Root isOpen closeOnSelect onClose={close}>
+              <Menu.Root open closeOnSelect onClose={close}>
                 <Menu.Content paddingY={5}>
                   <Menu.Item>
                     Saves or updates the code in Stately Registry

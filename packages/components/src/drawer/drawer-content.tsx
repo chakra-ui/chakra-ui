@@ -32,7 +32,7 @@ export const DrawerContent = forwardRef<DrawerContentProps, "section">(
         <StyledContent
           motionProps={motionProps}
           direction={placement}
-          in={api.isOpen}
+          in={api.open}
           {...(api.getContentProps(rest, ref) as any)}
           className={cx("chakra-dialog__content", className)}
           __css={styles.content}

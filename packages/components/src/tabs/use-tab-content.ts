@@ -10,7 +10,7 @@ import { useTabContentContext, useTabsContext } from "./tabs-context"
  */
 export function useTabContent(props: Record<string, any>) {
   const { children, value, ...htmlProps } = props
-  const { isLazy, lazyBehavior } = useTabsContext()
+  const { lazyMount, lazyBehavior } = useTabsContext()
   const { isSelected, id, tabId } = useTabContentContext()
 
   const hasBeenSelected = useRef(false)
@@ -21,7 +21,7 @@ export function useTabContent(props: Record<string, any>) {
   const shouldRenderChildren = lazyDisclosure({
     wasSelected: hasBeenSelected.current,
     isSelected,
-    enabled: isLazy,
+    enabled: lazyMount,
     mode: lazyBehavior,
   })
 

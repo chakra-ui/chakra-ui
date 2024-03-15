@@ -38,7 +38,7 @@ export const RadioGroupItem = forwardRef<RadioGroupItemProps, "input">(
     // assign properties from the radio group to the radio item
 
     if (api?.value != null && itemProps.value != null) {
-      itemProps.isChecked = api.value === itemProps.value
+      itemProps.checked = api.value === itemProps.value
     }
 
     if (api?.onChange && itemProps.value != null) {
@@ -49,12 +49,12 @@ export const RadioGroupItem = forwardRef<RadioGroupItemProps, "input">(
       itemProps.name = api.name
     }
 
-    if (api?.isDisabled) {
-      itemProps.isDisabled = api.isDisabled
+    if (api?.disabled) {
+      itemProps.disabled = api.disabled
     }
 
-    if (api?.isFocusable) {
-      itemProps.isFocusable = api.isFocusable
+    if (api?.focusable) {
+      itemProps.focusable = api.focusable
     }
 
     const itemApi = useRadio(itemProps)

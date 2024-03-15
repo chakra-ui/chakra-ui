@@ -42,8 +42,8 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
       variant,
       className,
       spacing = "0.5rem",
-      isAttached,
-      isDisabled,
+      attached,
+      disabled,
       orientation = "horizontal",
       ...rest
     } = props
@@ -51,13 +51,13 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
     const _className = cx("chakra-button__group", className)
 
     const context: ButtonGroupContext = useMemo(
-      () => ({ size, colorScheme, variant, isDisabled }),
-      [size, colorScheme, variant, isDisabled],
+      () => ({ size, colorScheme, variant, disabled }),
+      [size, colorScheme, variant, disabled],
     )
 
     let groupStyles = defineStyle({
       display: "inline-flex",
-      ...(isAttached
+      ...(attached
         ? attachedStyles[orientation]
         : gapStyles[orientation](spacing)),
     })
@@ -71,7 +71,7 @@ export const ButtonGroup = forwardRef<ButtonGroupProps, "div">(
           role="group"
           __css={groupStyles}
           className={_className}
-          data-attached={isAttached ? "" : undefined}
+          data-attached={attached ? "" : undefined}
           data-orientation={orientation}
           flexDir={isVertical ? "column" : undefined}
           {...rest}
