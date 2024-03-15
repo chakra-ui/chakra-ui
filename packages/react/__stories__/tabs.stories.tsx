@@ -135,10 +135,10 @@ export const Sizes = () => {
 }
 
 export const withIndicator = () => (
-  <Tabs.Root defaultValue="settings" variant="plain" isManual>
+  <Tabs.Root defaultValue="settings" variant="plain" activationMode="manual">
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
-      <Tabs.Trigger value="billing" isDisabled>
+      <Tabs.Trigger value="billing" disabled>
         Billing
       </Tabs.Trigger>
       <Tabs.Trigger value="preferences">Preferences</Tabs.Trigger>
@@ -160,7 +160,7 @@ export const withVerticalTabs = () => (
     <Tabs.List>
       <Tabs.Trigger value="settings">Settings</Tabs.Trigger>
       <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-      <Tabs.Trigger value="preferences" isDisabled>
+      <Tabs.Trigger value="preferences" disabled>
         Preferences
       </Tabs.Trigger>
       <Tabs.Trigger value="shutdown">Shut Down</Tabs.Trigger>
@@ -185,7 +185,7 @@ const Interval = () => {
 }
 
 export const withLazyTabs = () => (
-  <Tabs.Root defaultValue="1" isLazy>
+  <Tabs.Root defaultValue="1" lazyMount>
     <Tabs.List>
       <Tabs.Trigger value="1">Interval 1</Tabs.Trigger>
       <Tabs.Trigger value="2">Interval 2</Tabs.Trigger>

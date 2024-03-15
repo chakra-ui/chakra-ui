@@ -21,7 +21,7 @@ export default {
 
 export const Basic = () => {
   return (
-    <Popover.Root defaultIsOpen closeOnBlur={false}>
+    <Popover.Root defaultOpen closeOnBlur={false}>
       <Popover.Trigger asChild>
         <Button variant="solid">
           <HiChat />
@@ -70,7 +70,7 @@ export const Sizes = () => {
           <For each={recipe.variantMap.size}>
             {(v) => (
               <chakra.td key={v} minW="400px">
-                <Popover.Root size={v} isOpen>
+                <Popover.Root size={v} open>
                   <Popover.Trigger asChild>
                     <Button size={v} variant="solid">
                       <HiChat />
@@ -127,7 +127,7 @@ const Interval = () => {
 
 export function WithLazyPopover() {
   return (
-    <Popover.Root isLazy>
+    <Popover.Root lazyMount>
       <Popover.Trigger asChild>
         <Button variant="solid">Popover Target</Button>
       </Popover.Trigger>

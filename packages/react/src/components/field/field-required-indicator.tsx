@@ -30,7 +30,7 @@ export const FieldRequiredIndicator = forwardRef<
       css={[styles.requiredIndicator, restProps.css]}
       className={cx("chakra-form__required-indicator", restProps.className)}
     >
-      {field.isRequired ? children : fallback}
+      {field.required ? children : fallback}
     </chakra.span>
   )
 })

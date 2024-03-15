@@ -17,7 +17,7 @@ export const RadioGroupItemIndicator = forwardRef<
       {...props}
       ref={ref}
       aria-hidden="true"
-      hidden={!api.state.isChecked}
+      hidden={!api.state.checked}
       className={cx("chakra-radio__indicator", props.className)}
       css={[styles.indicator, props.css]}
     />

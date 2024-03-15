@@ -19,13 +19,13 @@ export interface UseAccordionItemProps {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the accordion item will be focusable.
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * The unique id of the accordion item.
    */
@@ -49,7 +49,7 @@ function makeId(type: string, id: string, value: string) {
  */
 
 export function useAccordionItem(props: UseAccordionItemProps) {
-  const { isDisabled, isFocusable, value } = props
+  const { disabled, focusable, value } = props
   const api = useAccordionContext()
 
   /**
@@ -65,9 +65,9 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
   focusableNotDisabledWarning(props)
 
-  const { isOpen, onChange } = api.getItemState(uid)
+  const { open, onChange } = api.getItemState(uid)
 
-  warnIfOpenAndDisabled({ isOpen, isDisabled })
+  warnIfOpenAndDisabled({ open, disabled })
 
   const onOpen = () => {
     onChange?.(true)
@@ -81,9 +81,9 @@ export function useAccordionItem(props: UseAccordionItemProps) {
    * Toggle the visibility of the accordion item
    */
   const onClick = useCallback(() => {
-    onChange?.(!isOpen)
+    onChange?.(!open)
     api.setFocusedId(buttonId)
-  }, [onChange, isOpen, api, buttonId])
+  }, [onChange, open, api, buttonId])
 
   /**
    * Manage keyboard navigation between accordion items.
@@ -136,16 +136,16 @@ export function useAccordionItem(props: UseAccordionItemProps) {
         type: "button",
         ref: mergeRefs(buttonRef, ref),
         id: buttonId,
-        disabled: !!isDisabled,
-        "data-expanded": dataAttr(isOpen),
-        "aria-expanded": !!isOpen,
+        disabled: !!disabled,
+        "data-expanded": dataAttr(open),
+        "aria-expanded": !!open,
         "aria-controls": panelId,
         onClick: callAllHandlers(props.onClick, onClick),
         onFocus: callAllHandlers(props.onFocus, onFocus),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
       }
     },
-    [buttonId, isDisabled, isOpen, onClick, onFocus, onKeyDown, panelId],
+    [buttonId, disabled, open, onClick, onFocus, onKeyDown, panelId],
   )
 
   const getItemProps: PropGetterFn<"div"> = useCallback(
@@ -153,11 +153,11 @@ export function useAccordionItem(props: UseAccordionItemProps) {
       return {
         ...props,
         ref,
-        "data-expanded": dataAttr(isOpen),
-        "data-disabled": dataAttr(isDisabled),
+        "data-expanded": dataAttr(open),
+        "data-disabled": dataAttr(disabled),
       }
     },
-    [isOpen, isDisabled],
+    [open, disabled],
   )
 
   const getContentProps: PropGetterFn<"div"> = useCallback(
@@ -168,11 +168,11 @@ export function useAccordionItem(props: UseAccordionItemProps) {
         role: "region",
         id: panelId,
         "aria-labelledby": buttonId,
-        "data-expanded": dataAttr(isOpen),
-        hidden: !isOpen,
+        "data-expanded": dataAttr(open),
+        hidden: !open,
       }
     },
-    [buttonId, isOpen, panelId],
+    [buttonId, open, panelId],
   )
 
   const getIndicatorProps: PropGetterFn<"div"> = useCallback(
@@ -181,17 +181,17 @@ export function useAccordionItem(props: UseAccordionItemProps) {
         ...props,
         ref,
         "aria-hidden": true,
-        "data-expanded": dataAttr(isOpen),
-        "data-disabled": dataAttr(isDisabled),
+        "data-expanded": dataAttr(open),
+        "data-disabled": dataAttr(disabled),
       }
     },
-    [isDisabled, isOpen],
+    [disabled, open],
   )
 
   return {
-    isOpen,
-    isDisabled,
-    isFocusable,
+    open,
+    disabled,
+    focusable,
     onOpen,
     onClose,
     getItemProps,

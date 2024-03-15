@@ -59,7 +59,7 @@ export const Variants = () => {
                       <DemoCheckbox
                         colorPalette={c}
                         variant={v}
-                        isDisabled
+                        disabled
                         defaultChecked
                       >
                         Checkbox
@@ -119,9 +119,9 @@ export const Sizes = () => {
 
 export const WithStates = () => (
   <Stack align="start">
-    <DemoCheckbox isDisabled>Disabled</DemoCheckbox>
-    <DemoCheckbox isReadOnly>Readonly</DemoCheckbox>
-    <DemoCheckbox isInvalid>Invalid</DemoCheckbox>
+    <DemoCheckbox disabled>Disabled</DemoCheckbox>
+    <DemoCheckbox readOnly>Readonly</DemoCheckbox>
+    <DemoCheckbox invalid>Invalid</DemoCheckbox>
   </Stack>
 )
 

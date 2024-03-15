@@ -8,10 +8,10 @@ export interface RenderStrategyProps {
    *
    * @default false
    */
-  isLazy?: boolean
+  lazyMount?: boolean
   /**
    * Performance 🚀:
-   * The lazy behavior when not visible. only works when `isLazy={true}`
+   * The lazy behavior when not visible. only works when `lazyMount={true}`
    * - "unmount": The menu's content is always unmounted when not open.
    * - "keepMounted": The menu's content initially unmounted,
    * but stays mounted when menu is open.
@@ -26,7 +26,7 @@ export interface RenderStrategyProps {
 }
 
 export function useRenderStrategy(props: RenderStrategyProps) {
-  const { isLazy, lazyBehavior, visible } = props
+  const { lazyMount, lazyBehavior, visible } = props
 
   const wasVisible = useRef(false)
 
@@ -37,7 +37,7 @@ export function useRenderStrategy(props: RenderStrategyProps) {
   const shouldRenderChildren = lazyDisclosure({
     wasSelected: wasVisible.current,
     isSelected: visible,
-    enabled: isLazy,
+    enabled: lazyMount,
     mode: lazyBehavior,
   })
 

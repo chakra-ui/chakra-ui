@@ -43,14 +43,14 @@ export function useOptionGroupState(props: UseMenuOptionGroupProps = {}) {
     [setValueFn, type, value],
   )
 
-  const isChecked = (itemValue: string) => {
+  const checked = (itemValue: string) => {
     return type === "radio" ? itemValue === value : value.includes(itemValue)
   }
 
   return {
     type,
     value,
-    isChecked,
+    checked,
     setValue,
   }
 }

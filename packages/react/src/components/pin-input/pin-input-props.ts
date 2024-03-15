@@ -11,8 +11,8 @@ const pinInputProps = createProps<UsePinInputProps>()([
   "manageFocus",
   "otp",
   "id",
-  "isDisabled",
-  "isInvalid",
+  "disabled",
+  "invalid",
   "type",
   "mask",
 ])

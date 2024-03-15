@@ -46,7 +46,7 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
       },
     },
-    isIndeterminate: {
+    indeterminate: {
       true: {
         filledTrack: {
           "--animate-from-x": "-40%",

@@ -127,11 +127,11 @@ export const WithIcon = () => (
 
 export const WithLoading = () => (
   <Stack direction="row" gap="4" align="center">
-    <Button isDisabled>
+    <Button disabled>
       <Spinner boxSize="1em" /> Loading...
     </Button>
 
-    <Button isDisabled variant="solid" colorPalette="blue">
+    <Button disabled variant="solid" colorPalette="blue">
       <AbsoluteCenter>
         <BeatLoader size={8} color="white" />
       </AbsoluteCenter>

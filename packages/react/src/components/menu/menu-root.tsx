@@ -32,18 +32,18 @@ export const MenuRoot: React.FC<MenuRootProps> = (props) => {
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
 
-  const { isLazy, lazyBehavior = "unmount", ...restProps } = localProps
+  const { lazyMount, lazyBehavior = "unmount", ...restProps } = localProps
   const api = useMenu(restProps)
 
-  const menuState = pick(api, ["isOpen", "onClose", "forceUpdate"])
+  const menuState = pick(api, ["open", "onClose", "forceUpdate"])
 
   const animationState = useAnimationState({
-    isOpen: api.isOpen,
+    open: api.open,
     ref: api.contentRef,
   })
 
   const renderApi = useRenderStrategy({
-    isLazy,
+    lazyMount,
     lazyBehavior,
     visible: animationState.present,
   })

@@ -25,7 +25,7 @@ import { useShortcut } from "./use-shortcut"
 
 export interface UseMenuOptionItemProps extends UseMenuItemProps {
   value?: string
-  isChecked?: boolean
+  checked?: boolean
   type?: "radio" | "checkbox"
 }
 
@@ -37,12 +37,12 @@ export interface UseMenuItemProps {
   /**
    * If `true`, the menuitem will be disabled
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true` and the menuitem is disabled, it'll
    * remain keyboard-focusable
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * Overrides the parent menu's `closeOnSelect` prop.
    */
@@ -124,8 +124,8 @@ export function useMenu(props: UseMenuProps = {}) {
     closeOnBlur = true,
     initialFocusRef,
     autoSelect = true,
-    isOpen: isOpenProp,
-    defaultIsOpen,
+    open: openProp,
+    defaultOpen,
     onClose: onCloseProp,
     onOpen: onOpenProp,
     placement = "bottom-start",
@@ -177,15 +177,15 @@ export function useMenu(props: UseMenuProps = {}) {
     }
   }, [autoSelect, focusFirstItem, focusContent, onOpenProp])
 
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure({
-    isOpen: isOpenProp,
-    defaultIsOpen,
+  const { open, onOpen, onClose, onToggle } = useDisclosure({
+    open: openProp,
+    defaultOpen,
     onClose: onCloseProp,
     onOpen: onOpenInternal,
   })
 
   useOutsideClick({
-    enabled: isOpen && closeOnBlur,
+    enabled: open && closeOnBlur,
     ref: contentRef,
     handler: (event) => {
       const target = getEventTarget(event)
@@ -197,7 +197,7 @@ export function useMenu(props: UseMenuProps = {}) {
 
   const popper = usePopper({
     ...popperProps,
-    enabled: isOpen || computePositionOnMount,
+    enabled: open || computePositionOnMount,
     placement,
   })
 
@@ -207,26 +207,26 @@ export function useMenu(props: UseMenuProps = {}) {
    * Focus the button when we close the menu
    */
   useUpdateEffect(() => {
-    if (!isOpen) {
+    if (!open) {
       setFocusedId(null)
     }
-  }, [isOpen])
+  }, [open])
 
   useFocusOnHide(contentRef, {
     focusRef: triggerRef,
-    visible: isOpen,
+    visible: open,
     shouldFocus: true,
   })
 
   useUpdateEffect(() => {
-    if (!isOpen) return
+    if (!open) return
     return raf(() => {
       const item = contentRef.current?.querySelector<HTMLElement>(
         `[role^=menuitem][id="${focusedId}"]`,
       )
       item?.focus({ preventScroll: true })
     })
-  }, [focusedId, isOpen])
+  }, [focusedId, open])
 
   const [buttonId, menuId] = useIds(id, `menu-button`, `menu-list`)
 
@@ -268,8 +268,8 @@ export function useMenu(props: UseMenuProps = {}) {
       ...props,
       ref: mergeRefs(triggerRef, ref, popper.referenceRef),
       id: buttonId,
-      "data-active": dataAttr(isOpen),
-      "aria-expanded": isOpen,
+      "data-active": dataAttr(open),
+      "aria-expanded": open,
       "aria-haspopup": "menu",
       "aria-controls": menuId,
       onClick: callAllHandlers(props.onClick, onToggle),
@@ -365,7 +365,7 @@ export function useMenu(props: UseMenuProps = {}) {
     return popper.getPopperProps(
       {
         ...props,
-        style: { ...props.style, visibility: isOpen ? "visible" : "hidden" },
+        style: { ...props.style, visibility: open ? "visible" : "hidden" },
       },
       ref,
     )
@@ -377,8 +377,8 @@ export function useMenu(props: UseMenuProps = {}) {
   ) => {
     const [itemProps, localProps] = splitMenuItemProps(props)
 
-    const { isDisabled, isFocusable } = itemProps
-    const trulyDisabled = isDisabled && !isFocusable
+    const { disabled, focusable } = itemProps
+    const trulyDisabled = disabled && !focusable
 
     const id = itemProps.id!
     const isFocused = id === focusedId
@@ -392,13 +392,13 @@ export function useMenu(props: UseMenuProps = {}) {
       tabIndex: isFocused ? 0 : -1,
       "data-focus": dataAttr(isFocused),
       disabled: trulyDisabled,
-      "data-disabled": dataAttr(isDisabled),
+      "data-disabled": dataAttr(disabled),
       onPointerMove: callAllHandlers(props.onPointerMove, () => {
-        if (itemProps.isDisabled) return
+        if (itemProps.disabled) return
         setFocusedId(id)
       }),
       onPointerLeave: callAllHandlers(props.onPointerLeave, () => {
-        if (isDisabled) return
+        if (disabled) return
         setFocusedId(null)
       }),
       onClick: callAllHandlers(props.onClick, () => {
@@ -416,17 +416,17 @@ export function useMenu(props: UseMenuProps = {}) {
     props = {},
     ref = null,
   ) => {
-    const { isChecked, type = "radio", value, ...restProps } = props
+    const { checked, type = "radio", value, ...restProps } = props
     return {
       ...getItemProps(restProps, ref),
       role: `menuitem${type}`,
-      "aria-checked": isChecked as React.AriaAttributes["aria-checked"],
+      "aria-checked": checked as React.AriaAttributes["aria-checked"],
     }
   }
 
   return {
     contentRef,
-    isOpen,
+    open,
     onClose,
     onOpen,
     focusedId,
@@ -449,6 +449,6 @@ export function isTargetMenuItem(target: EventTarget | null) {
 }
 
 export function useMenuState() {
-  const { isOpen, onClose } = useMenuContext()
-  return { isOpen, onClose }
+  const { open, onClose } = useMenuContext()
+  return { open, onClose }
 }

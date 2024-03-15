@@ -26,7 +26,7 @@ export const MenuOptionItemIndicator = forwardRef<
       {...props}
       aria-hidden
       data-type={item.type}
-      data-checked={dataAttr(item.isChecked)}
+      data-checked={dataAttr(item.checked)}
       css={[styles.indicator, props.css]}
     >
       {props.children ?? <CheckIcon />}

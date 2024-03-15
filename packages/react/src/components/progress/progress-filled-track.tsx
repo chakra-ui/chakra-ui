@@ -27,10 +27,10 @@ export const ProgressFilledTrack = forwardRef<
       ref={ref}
       style={{ width: `${api.computed.percent}%`, ...style }}
       role="progressbar"
-      data-indeterminate={dataAttr(api.isIndeterminate)}
+      data-indeterminate={dataAttr(api.indeterminate)}
       aria-valuemax={api.computed.max}
       aria-valuemin={api.computed.min}
-      aria-valuenow={api.isIndeterminate ? undefined : api.computed.value}
+      aria-valuenow={api.indeterminate ? undefined : api.computed.value}
       aria-valuetext={api.computed.valueText}
       {...rest}
       css={[styles.filledTrack, props.css]}

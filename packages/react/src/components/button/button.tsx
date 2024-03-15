@@ -12,12 +12,7 @@ interface ButtonOptions {
    * If `true`, the button will be styled in its active state.
    * @default false
    */
-  isActive?: boolean
-  /**
-   * If `true`, the button will be disabled.
-   * @default false
-   */
-  isDisabled?: boolean
+  active?: boolean
 }
 
 export interface ButtonProps
@@ -41,18 +36,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 
-    const { isDisabled, isActive, type, className, as, ...restProps } =
-      localProps
+    const { disabled, active, type, className, as, ...restProps } = localProps
 
     return (
       <chakra.button
         ref={ref}
         as={as}
         type="button"
-        data-active={dataAttr(isActive)}
+        data-active={dataAttr(active)}
         {...restProps}
         css={[!unstyled && styles, props.css]}
-        disabled={isDisabled}
+        disabled={disabled}
         className={cx("chakra-button", className)}
       />
     )

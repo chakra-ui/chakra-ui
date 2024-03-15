@@ -24,7 +24,7 @@ export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
     const triggerId = makeTabId(api.id, props.value)
 
     const render = useRenderStrategy({
-      isLazy: api.isLazy,
+      lazyMount: api.lazyMount,
       lazyBehavior: api.lazyBehavior,
       visible: isSelected,
     })

@@ -146,15 +146,15 @@ export const PasswordInput = () => {
 export const WithStates = () => (
   <Stack align="start">
     <Input placeholder="Idle" />
-    <Input isInvalid placeholder="isInvalid" />
-    <Input isDisabled placeholder="isDisabled" />
-    <Input isReadOnly placeholder="isReadonly" />
+    <Input invalid placeholder="invalid" />
+    <Input disabled placeholder="disabled" />
+    <Input readOnly placeholder="readOnly" />
   </Stack>
 )
 
 export const WithLabel = () => {
   return (
-    <Field.Root id="first-name" isRequired>
+    <Field.Root id="first-name" required>
       <Field.Label>
         Amount <Field.RequiredIndicator color="fg.error" />
       </Field.Label>

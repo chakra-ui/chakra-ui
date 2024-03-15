@@ -28,7 +28,7 @@ export const [AnimationStateProvider, useAnimationStateContext] =
 
 export interface OptionItemContext {
   type: "radio" | "checkbox"
-  isChecked?: boolean
+  checked?: boolean
 }
 
 export const [OptionItemStateProvider, useOptionItemStateContext] =

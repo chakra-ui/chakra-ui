@@ -5,8 +5,8 @@ import { UseMenuOptionGroupProps } from "./use-option-group-state"
 const menuItemProps = createProps<UseMenuItemProps>()([
   "closeOnSelect",
   "id",
-  "isDisabled",
-  "isFocusable",
+  "disabled",
+  "focusable",
 ])
 
 export const splitMenuItemProps =

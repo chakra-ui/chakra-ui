@@ -307,7 +307,7 @@ export type ProgressSlot =
 
 export interface ProgressVariantProps {
   variant?: "outline" | "subtle"
-  isIndeterminate?: boolean
+  indeterminate?: boolean
   shape?: "square" | "rounded" | "pill"
   hasStripe?: boolean
   isAnimated?: boolean

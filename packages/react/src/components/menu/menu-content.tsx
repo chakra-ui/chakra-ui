@@ -55,7 +55,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
       <StyledDiv
         variants={motionVariants}
         initial={false}
-        animate={api.isOpen ? "enter" : "exit"}
+        animate={api.open ? "enter" : "exit"}
         {...(motionProps as any)}
         {...api.getContentProps(restProps, ref)}
         css={[styles.content, props.css]}

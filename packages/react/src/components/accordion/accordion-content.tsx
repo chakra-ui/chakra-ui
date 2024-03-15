@@ -43,7 +43,7 @@ export const AccordionContent = forwardRef<
 
   if (!rootApi.reduceMotion) {
     return (
-      <Collapse in={api.isOpen} {...motionProps}>
+      <Collapse in={api.open} {...motionProps}>
         {child}
       </Collapse>
     )

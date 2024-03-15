@@ -81,12 +81,12 @@ test("Controlled - should check and uncheck", async () => {
   const onChange = vi.fn()
 
   const Component = () => {
-    const [checked, setIsChecked] = React.useState(false)
+    const [checked, setchecked] = React.useState(false)
     return (
       <HookCheckbox
         checked={checked}
         onChange={(e) => {
-          setIsChecked(e.target.checked)
+          setchecked(e.target.checked)
           onChange(e)
         }}
       />

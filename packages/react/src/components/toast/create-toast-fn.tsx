@@ -2,7 +2,7 @@ import { runIfFn } from "@chakra-ui/utils"
 import { toastStore } from "./toast.store"
 import type { ToastId, ToastOptions, ToastPublicOptions } from "./toast.types"
 
-type ToastPromiseOptions = Omit<ToastOptions, "status">
+type ToastPromiseOptions = Omit<ToastOptions, "status" | "placement">
 type MaybeFunction<T, Args extends unknown[] = []> = T | ((...args: Args) => T)
 
 export function createToastFn(defaultOptions?: ToastOptions) {

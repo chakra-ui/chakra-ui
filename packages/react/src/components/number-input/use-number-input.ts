@@ -470,20 +470,20 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const getIncrementTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => {
-      const isDisabled = disabled || (keepWithinRange && counter.isAtMax)
+      const isIncDisabled = disabled || (keepWithinRange && counter.isAtMax)
       return {
         ...props,
         ref: mergeRefs(ref, incrementButtonRef),
         type: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
-          if (event.button !== 0 || disabled) return
+          if (event.button !== 0 || isIncDisabled) return
           spinUp(event)
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
-        disabled: isDisabled,
-        "aria-disabled": ariaAttr(isDisabled),
+        disabled: isIncDisabled,
+        "aria-disabled": ariaAttr(isIncDisabled),
       }
     },
     [counter.isAtMax, keepWithinRange, spinUp, spinner.stop, disabled],
@@ -491,20 +491,20 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const getDecrementTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => {
-      const isDisabled = disabled || (keepWithinRange && counter.isAtMin)
+      const isDecDisabled = disabled || (keepWithinRange && counter.isAtMin)
       return {
         ...props,
         ref: mergeRefs(ref, decrementButtonRef),
         type: "button",
         tabIndex: -1,
         onPointerDown: callAllHandlers(props.onPointerDown, (event) => {
-          if (event.button !== 0 || disabled) return
+          if (event.button !== 0 || isDecDisabled) return
           spinDown(event)
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
-        disabled: isDisabled,
-        "aria-disabled": ariaAttr(isDisabled),
+        disabled: isDecDisabled,
+        "aria-disabled": ariaAttr(isDecDisabled),
       }
     },
     [counter.isAtMin, keepWithinRange, spinDown, spinner.stop, disabled],

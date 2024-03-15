@@ -20,7 +20,7 @@ export const FieldErrorMessage = forwardRef<
   const styles = useFieldStyles()
   const field = useFieldContext()
 
-  if (!field?.isInvalid) return null
+  if (!field?.invalid) return null
 
   return (
     <FieldErrorStylesProvider value={styles}>

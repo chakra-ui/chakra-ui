@@ -52,7 +52,7 @@ export function CheckboxIndicator(props: CheckboxIndicatorProps) {
   const api = useCheckboxContext()
   const styles = useCheckboxStyles()
 
-  if (api.state.isChecked) {
+  if (api.state.checked) {
     return (
       <CheckIcon
         asChild={!!checked}
@@ -64,7 +64,7 @@ export function CheckboxIndicator(props: CheckboxIndicatorProps) {
     )
   }
 
-  if (api.state.isIndeterminate) {
+  if (api.state.indeterminate) {
     return (
       <IndeterminateIcon
         asChild={!!indeterminate}

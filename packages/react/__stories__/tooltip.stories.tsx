@@ -150,13 +150,13 @@ export const WithDisabledButton = () => (
   </Tooltip.Root>
 )
 
-export const WithIsOpenProp = () => (
+export const WithopenProp = () => (
   <DemoTooltip label="Hello world" open hasArrow>
     <Button disabled>Can't Touch This</Button>
   </DemoTooltip>
 )
 
-export const WithDefaultIsOpenProp = () => (
+export const WithdefaultOpenProp = () => (
   <DemoTooltip label="Hello world" defaultOpen>
     <Button>Can't Touch This</Button>
   </DemoTooltip>

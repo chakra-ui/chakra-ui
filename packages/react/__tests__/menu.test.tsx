@@ -42,7 +42,7 @@ test("passes a11y test", async () => {
 
 test("does not render Menu.Content Items if Menu lazyMount", () => {
   render(
-    <Menu.Root isLazy>
+    <Menu.Root lazyMount>
       <Menu.Trigger asChild>
         <Button variant="solid" colorPalette="teal" size="sm">
           Open Wakanda menu

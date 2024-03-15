@@ -40,7 +40,7 @@ export const Variants = () => {
                       colorPalette={c}
                       variant={v}
                       minW="200px"
-                      isDisabled
+                      disabled
                     >
                       <Slider.Track>
                         <Slider.FilledTrack />

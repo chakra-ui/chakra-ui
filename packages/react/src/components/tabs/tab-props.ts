@@ -17,10 +17,6 @@ const tabsProps = createProps<UseTabsProps>()([
 
 export const splitTabsProps = createSplitProps<UseTabsProps>(tabsProps)
 
-const tabProps = createProps<UseTabProps>()([
-  "isDisabled",
-  "isFocusable",
-  "value",
-])
+const tabProps = createProps<UseTabProps>()(["disabled", "focusable", "value"])
 
 export const splitTabProps = createSplitProps<UseTabProps>(tabProps)

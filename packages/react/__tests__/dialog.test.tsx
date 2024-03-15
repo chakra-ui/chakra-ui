@@ -112,7 +112,7 @@ test("focus initial element when opened", () => {
 
 test("should return focus to button when closed", async () => {
   const Component = () => {
-    const [open, setIsOpen] = React.useState(false)
+    const [open, setopen] = React.useState(false)
     const buttonRef = React.useRef(null)
     return (
       <>
@@ -120,7 +120,7 @@ test("should return focus to button when closed", async () => {
           type="button"
           ref={buttonRef}
           data-testid="button"
-          onClick={() => setIsOpen(true)}
+          onClick={() => setopen(true)}
         >
           Open
         </button>
@@ -128,7 +128,7 @@ test("should return focus to button when closed", async () => {
         <Dialog.Root
           finalFocusRef={buttonRef}
           open={open}
-          onClose={() => setIsOpen(false)}
+          onClose={() => setopen(false)}
         >
           <Dialog.Backdrop />
           <Dialog.Content>

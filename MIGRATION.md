@@ -2,6 +2,15 @@
 
 ## Changed
 
+### General
+
+- Changed Naming convention for boolean properties from `is<X>` to `<x>`
+  - isOpen -> open
+  - defaultIsOpen -> defaultOpen
+  - isDisabled -> disabled
+  - isInvalid -> invalid
+  - isRequired -> required
+
 ### Changes to `Show` and `Hide`
 
 We've removed the `Hide` component in favor of hidding elements using the
@@ -847,6 +856,7 @@ and `withThemeByClassName` helper.
 - No more `soft-rounded` and `solid-rounded` variants
 - The `enclosed` variant has been modified
 - Added `plain` variant for usage with `Tabs.Indicator`
+- Changed `isManual` to `activationMode=manual`
 
 ## General
 

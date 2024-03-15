@@ -83,36 +83,36 @@ export function useAccordion(props: UseAccordionProps) {
   })
 
   /**
-   * Gets the `isOpen` and `onChange` props for a child accordion item based on
+   * Gets the `open` and `onChange` props for a child accordion item based on
    * the child's index.
    *
    * @param itemValue {string} The value of the child accordion item
    */
   const getItemState = (itemValue: string | null) => {
-    let isOpen = false
+    let open = false
 
     if (itemValue) {
-      isOpen = value.includes(itemValue)
+      open = value.includes(itemValue)
     }
 
-    const onChange = (isOpen: boolean) => {
+    const onChange = (open: boolean) => {
       if (itemValue === null) return
 
       if (multiple) {
         //
-        const nextState = isOpen
+        const nextState = open
           ? value.concat(itemValue)
           : value.filter((i) => i !== itemValue)
 
         setValue(nextState)
-      } else if (isOpen) {
+      } else if (open) {
         setValue([itemValue])
       } else if (collapsible) {
         setValue([])
       }
     }
 
-    return { isOpen, onChange }
+    return { open, onChange }
   }
 
   return {
@@ -151,18 +151,18 @@ function multipleAndcollapsibleWarning(props: UseAccordionProps) {
 
 export function focusableNotDisabledWarning(props: UseAccordionItemProps) {
   warn({
-    condition: !!(props.isFocusable && !props.isDisabled),
-    message: `Using only 'isFocusable', this prop is reserved for situations where you pass 'isDisabled' but you still want the element to receive focus (A11y). Either remove it or pass 'isDisabled' as well.
+    condition: !!(props.focusable && !props.disabled),
+    message: `Using only 'focusable', this prop is reserved for situations where you pass 'disabled' but you still want the element to receive focus (A11y). Either remove it or pass 'disabled' as well.
     `,
   })
 }
 
 export function warnIfOpenAndDisabled(props: {
-  isOpen: boolean
-  isDisabled?: boolean
+  open: boolean
+  disabled?: boolean
 }) {
   warn({
-    condition: props.isOpen && !!props.isDisabled,
+    condition: props.open && !!props.disabled,
     message: "Cannot open a disabled accordion item",
   })
 }

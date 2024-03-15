@@ -99,24 +99,24 @@ export const SearchButton = React.forwardRef(function SearchButton(
 
 function AlgoliaSearch() {
   const router = useRouter()
-  const [open, setIsOpen] = React.useState(false)
+  const [open, setopen] = React.useState(false)
   const searchButtonRef = React.useRef()
   const [initialQuery, setInitialQuery] = React.useState(null)
 
   const onOpen = React.useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+    setopen(true)
+  }, [setopen])
 
   const onClose = React.useCallback(() => {
-    setIsOpen(false)
-  }, [setIsOpen])
+    setopen(false)
+  }, [setopen])
 
   const onInput = React.useCallback(
     (e) => {
-      setIsOpen(true)
+      setopen(true)
       setInitialQuery(e.key)
     },
-    [setIsOpen, setInitialQuery],
+    [setopen, setInitialQuery],
   )
 
   useDocSearchKeyboardEvents({
@@ -151,7 +151,7 @@ function AlgoliaSearch() {
             //@ts-expect-error we allow this error because we don't need what is missing here.
             navigator={{
               navigate({ suggestionUrl }) {
-                setIsOpen(false)
+                setopen(false)
                 router.push(suggestionUrl)
               },
             }}

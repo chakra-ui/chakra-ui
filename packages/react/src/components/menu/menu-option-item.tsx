@@ -28,7 +28,7 @@ export const MenuOptionItem = forwardRef<
       ...props,
       id,
       type: group.type,
-      isChecked: group.isChecked(props.value!),
+      checked: group.checked(props.value!),
       onClick: () => group.setValue(props.value!),
     },
     ref,
@@ -36,7 +36,7 @@ export const MenuOptionItem = forwardRef<
 
   return (
     <OptionItemStateProvider
-      value={{ isChecked: group.isChecked(props.value!), type: group.type }}
+      value={{ checked: group.checked(props.value!), type: group.type }}
     >
       <chakra.button
         {...optionProps}

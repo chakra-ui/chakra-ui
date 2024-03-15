@@ -24,7 +24,7 @@ export const Basic = () => (
       <Menu.Content minWidth="240px">
         <Menu.Item>Share...</Menu.Item>
         <Menu.Item>Move...</Menu.Item>
-        <Menu.Item isDisabled>Rename...</Menu.Item>
+        <Menu.Item disabled>Rename...</Menu.Item>
         <Menu.Item>Delete...</Menu.Item>
       </Menu.Content>
     </Menu.Positioner>
