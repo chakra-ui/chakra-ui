@@ -32,8 +32,8 @@ export const read = async (file: string): Promise<ReadResult> => {
 
 const getBasePath = () => {
   if (!process.env.LOCAL) {
-    const root = require.resolve("@chakra-ui/react")
-    return join(dirname(root), "dist", "styled-system", "generated")
+    const root = import.meta.resolve("@chakra-ui/react")
+    return resolve(dirname(root), "..", "types", "styled-system", "generated")
   }
 
   const root = join(process.cwd(), "packages", "react", "src")

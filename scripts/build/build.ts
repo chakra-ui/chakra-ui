@@ -33,8 +33,12 @@ export async function buildProject(options: BuildOptions) {
       chokidar: { ignoreInitial: true },
     }
 
-    rollup.watch(config)
+    const watcher = rollup.watch(config)
     console.log(`[${name}][JS] Watching source files...`)
+
+    watcher.on("change", () => {
+      console.log(`[${name}][JS] File changed, rebuilding...`)
+    })
 
     //
   } else {
