@@ -77,7 +77,7 @@ export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
   function SlideFade(props, ref) {
     const {
       unmountOnExit,
-      in: isOpen,
+      in: open,
       reverse = true,
       className,
       offsetX = 0,
@@ -88,8 +88,8 @@ export const SlideFade = forwardRef<HTMLDivElement, SlideFadeProps>(
       ...rest
     } = props
 
-    const show = unmountOnExit ? isOpen && unmountOnExit : true
-    const animate = isOpen || unmountOnExit ? "enter" : "exit"
+    const show = unmountOnExit ? open && unmountOnExit : true
+    const animate = open || unmountOnExit ? "enter" : "exit"
 
     const custom = {
       offsetX,

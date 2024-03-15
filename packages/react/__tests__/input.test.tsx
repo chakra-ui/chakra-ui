@@ -28,17 +28,20 @@ test("Elements inside input render correctly", () => {
 })
 
 test("Invalid input renders correctly", () => {
-  render(<Input isInvalid />)
+  render(<Input invalid />)
+
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true")
 })
 
 test("Disabled input renders correctly", () => {
-  render(<Input isDisabled />)
+  render(<Input disabled />)
+
   expect(screen.getByRole("textbox")).toHaveAttribute("disabled")
 })
 
 test("Readonly input renders correctly", () => {
-  render(<Input isReadOnly />)
+  render(<Input readOnly />)
+
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-readonly", "true")
 })
 

@@ -59,7 +59,7 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
   function ScaleFade(props, ref) {
     const {
       unmountOnExit,
-      in: isOpen,
+      in: open,
       reverse = true,
       initialScale = 0.95,
       className,
@@ -69,8 +69,8 @@ export const ScaleFade = forwardRef<HTMLDivElement, ScaleFadeProps>(
       ...rest
     } = props
 
-    const show = unmountOnExit ? isOpen && unmountOnExit : true
-    const animate = isOpen || unmountOnExit ? "enter" : "exit"
+    const show = unmountOnExit ? open && unmountOnExit : true
+    const animate = open || unmountOnExit ? "enter" : "exit"
 
     const custom = { initialScale, reverse, transition, transitionEnd, delay }
 

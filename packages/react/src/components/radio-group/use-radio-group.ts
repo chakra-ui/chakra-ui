@@ -29,28 +29,19 @@ export interface UseRadioGroupProps {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
 
   /**
-   * If `true` and `isDisabled` is true, all wrapped radio inputs will remain
+   * If `true` and `disabled` is true, all wrapped radio inputs will remain
    * focusable but not interactive.
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * The `name` attribute forwarded to each `radio` element
    */
   name?: string
-  /**
-   * If `true`, input elements will receive
-   * `checked` attribute instead of `isChecked`.
-   *
-   * This assumes, you're using native radio inputs
-   *
-   * @default false
-   */
-  isNative?: boolean
 }
 
 /**
@@ -64,9 +55,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     value: valueProp,
     defaultValue,
     name: nameProp,
-    isDisabled,
-    isFocusable,
-    isNative,
+    disabled,
+    focusable,
   } = props
 
   const [valueState, setValue] = useState<string | number>(defaultValue || "")
@@ -129,17 +119,16 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
   //@ts-expect-error
   const getItemProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
-      const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,
         ref,
         name,
-        [checkedKey]: value != null ? props.value === value : undefined,
+        checked: value != null ? props.value === value : undefined,
         onChange: onChange,
         "data-radiogroup": true,
       }
     },
-    [isNative, name, onChange, value],
+    [name, onChange, value],
   )
 
   return {
@@ -151,8 +140,8 @@ export function useRadioGroup(props: UseRadioGroupProps = {}) {
     setValue,
     value,
     onChange,
-    isDisabled,
-    isFocusable,
+    disabled,
+    focusable,
   }
 }
 

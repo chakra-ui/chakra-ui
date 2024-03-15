@@ -20,13 +20,13 @@ export default {
 }
 
 export const Basic = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button variant="solid" onClick={onOpen}>
         Open
       </Button>
-      <Dialog.Root isOpen={isOpen} onClose={onClose} centered>
+      <Dialog.Root open={open} onClose={onClose} centered>
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -53,7 +53,7 @@ export const Basic = () => {
 }
 
 export const FinalFocusRef = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   const finalRef = React.useRef<HTMLDivElement>(null)
 
   return (
@@ -66,7 +66,7 @@ export const FinalFocusRef = () => {
         Open Dialog.
       </Button>
 
-      <Dialog.Root finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+      <Dialog.Root finalFocusRef={finalRef} open={open} onClose={onClose}>
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -101,7 +101,7 @@ export const NestedDialogs = () => {
   return (
     <>
       <Button onClick={first.onOpen}>Open</Button>
-      <Dialog.Root isOpen={first.isOpen} onClose={first.onClose}>
+      <Dialog.Root open={first.open} onClose={first.onClose}>
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -118,7 +118,7 @@ export const NestedDialogs = () => {
               <Button onClick={second.onOpen}>Open Nested</Button>
             </Dialog.Footer>
 
-            <Dialog.Root isOpen={second.isOpen} onClose={second.onClose}>
+            <Dialog.Root open={second.open} onClose={second.onClose}>
               <Dialog.Backdrop />
               <Dialog.Positioner>
                 <Dialog.Content>
@@ -138,13 +138,13 @@ export const NestedDialogs = () => {
 }
 
 export const InsideScroll = () => {
-  const { isOpen, onClose, onOpen } = useDisclosure()
+  const { open, onClose, onOpen } = useDisclosure()
   return (
     <>
       <Button variant="solid" onClick={onOpen}>
         Open
       </Button>
-      <Dialog.Root onClose={onClose} isOpen={isOpen} scrollBehavior="inside">
+      <Dialog.Root onClose={onClose} open={open} scrollBehavior="inside">
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -168,13 +168,13 @@ export const InsideScroll = () => {
 }
 
 export const AnimationDisabled = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button variant="solid" onClick={onOpen}>
         Open
       </Button>
-      <Dialog.Root onClose={onClose} isOpen={isOpen} motionPreset="none">
+      <Dialog.Root onClose={onClose} open={open} motionPreset="none">
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -198,13 +198,13 @@ export const AnimationDisabled = () => {
 }
 
 export const WithContentOverflow = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button variant="solid" onClick={onOpen}>
         Open
       </Button>
-      <Dialog.Root onClose={onClose} isOpen={isOpen} size="full">
+      <Dialog.Root onClose={onClose} open={open} size="full">
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -228,13 +228,13 @@ export const WithContentOverflow = () => {
 }
 
 export function WithCustomMotionProps() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button variant="solid" onClick={onOpen}>
         Open
       </Button>
-      <Dialog.Root isOpen={isOpen} onClose={onClose} centered>
+      <Dialog.Root open={open} onClose={onClose} centered>
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content
@@ -271,15 +271,15 @@ export function WithCustomMotionProps() {
 }
 
 export const WithInitialFocus = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [open, setopen] = React.useState(false)
   const inputRef = React.useRef<any>()
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>Open</Button>
+      <Button onClick={() => setopen(true)}>Open</Button>
       <Dialog.Root
-        isOpen={isOpen}
+        open={open}
         initialFocusRef={inputRef}
-        onClose={() => setIsOpen(false)}
+        onClose={() => setopen(false)}
       >
         <Dialog.Backdrop />
         <Dialog.Positioner>

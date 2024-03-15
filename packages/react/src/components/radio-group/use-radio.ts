@@ -32,7 +32,7 @@ export interface UseRadioProps {
    *
    * @default false
    */
-  isChecked?: boolean
+  checked?: boolean
   /**
    * If `true`, the radio will be initially checked.
    *
@@ -44,32 +44,32 @@ export interface UseRadioProps {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
-   * If `true` and `isDisabled` is true, the radio will remain
+   * If `true` and `disabled` is true, the radio will remain
    * focusable but not interactive.
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * If `true`, the radio will be read-only
    *
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * If `true`, the radio button will be invalid. This also sets `aria-invalid` to `true`.
    *
    * @default false
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * If `true`, the radio button will be required. This also sets `aria-required` to `true`.
    *
    * @default false
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * Function called when checked state of the `input` changes
    */
@@ -85,14 +85,14 @@ export interface UseRadioProps {
 }
 
 export interface RadioState {
-  isInvalid: boolean | undefined
-  isFocused: boolean
-  isChecked: boolean
-  isActive: boolean
+  invalid: boolean | undefined
+  focused: boolean
+  checked: boolean
+  active: boolean
   isHovered: boolean
-  isDisabled: boolean | undefined
-  isReadOnly: boolean | undefined
-  isRequired: boolean | undefined
+  disabled: boolean | undefined
+  readOnly: boolean | undefined
+  required: boolean | undefined
 }
 
 /**
@@ -103,13 +103,13 @@ export interface RadioState {
 export function useRadio(props: UseRadioProps = {}) {
   const {
     defaultChecked,
-    isChecked: isCheckedProp,
-    isFocusable,
-    isDisabled: isDisabledProp,
-    isReadOnly: isReadOnlyProp,
-    isRequired: isRequiredProp,
+    checked: checkedProp,
+    focusable,
+    disabled: disabledProp,
+    readOnly: readOnlyProp,
+    required: requiredProp,
     onChange,
-    isInvalid: isInvalidProp,
+    invalid: invalidProp,
     name,
     value,
     id: idProp,
@@ -128,28 +128,28 @@ export function useRadio(props: UseRadioProps = {}) {
   let id = isWithinFormControl && !isWithinRadioGroup ? formControl.id : uuid
   id = idProp ?? id
 
-  const isDisabled = isDisabledProp ?? formControl?.isDisabled
-  const isReadOnly = isReadOnlyProp ?? formControl?.isReadOnly
-  const isRequired = isRequiredProp ?? formControl?.isRequired
-  const isInvalid = isInvalidProp ?? formControl?.isInvalid
+  const disabled = disabledProp ?? formControl?.disabled
+  const readOnly = readOnlyProp ?? formControl?.readOnly
+  const required = requiredProp ?? formControl?.required
+  const invalid = invalidProp ?? formControl?.invalid
 
-  const [isFocusVisible, setIsFocusVisible] = useState(false)
-  const [isFocused, setFocused] = useState(false)
+  const [focusVisible, setIsFocusVisible] = useState(false)
+  const [focused, setFocused] = useState(false)
   const [isHovered, setHovering] = useState(false)
-  const [isActive, setActive] = useState(false)
+  const [active, setActive] = useState(false)
 
-  const [isCheckedState, setChecked] = useState(Boolean(defaultChecked))
+  const [checkedState, setChecked] = useState(Boolean(defaultChecked))
 
-  const isControlled = typeof isCheckedProp !== "undefined"
-  const isChecked = isControlled ? isCheckedProp : isCheckedState
+  const isControlled = typeof checkedProp !== "undefined"
+  const checked = isControlled ? checkedProp : checkedState
 
   useEffect(() => {
-    return trackFocusVisible((value) => setIsFocusVisible(value && isFocused))
-  }, [isFocused])
+    return trackFocusVisible((value) => setIsFocusVisible(value && focused))
+  }, [focused])
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (isReadOnly || isDisabled) {
+      if (readOnly || disabled) {
         event.preventDefault()
         return
       }
@@ -160,7 +160,7 @@ export function useRadio(props: UseRadioProps = {}) {
 
       onChange?.(event)
     },
-    [isControlled, isDisabled, isReadOnly, onChange],
+    [isControlled, disabled, readOnly, onChange],
   )
 
   const onKeyDown = useCallback(
@@ -185,14 +185,14 @@ export function useRadio(props: UseRadioProps = {}) {
     (props = {}, ref = null) => ({
       ...props,
       ref,
-      "data-active": dataAttr(isActive),
+      "data-active": dataAttr(active),
       "data-hover": dataAttr(isHovered),
-      "data-disabled": dataAttr(isDisabled),
-      "data-invalid": dataAttr(isInvalid),
-      "data-checked": dataAttr(isChecked),
-      "data-focus": dataAttr(isFocused),
-      "data-focus-visible": dataAttr(isFocusVisible),
-      "data-readonly": dataAttr(isReadOnly),
+      "data-disabled": dataAttr(disabled),
+      "data-invalid": dataAttr(invalid),
+      "data-checked": dataAttr(checked),
+      "data-focus": dataAttr(focused),
+      "data-focus-visible": dataAttr(focusVisible),
+      "data-readonly": dataAttr(readOnly),
       "aria-hidden": true,
       onMouseDown: callAllHandlers(props.onMouseDown, () => setActive(true)),
       onMouseUp: callAllHandlers(props.onMouseUp, () => setActive(false)),
@@ -204,14 +204,14 @@ export function useRadio(props: UseRadioProps = {}) {
       ),
     }),
     [
-      isActive,
+      active,
       isHovered,
-      isDisabled,
-      isInvalid,
-      isChecked,
-      isFocused,
-      isReadOnly,
-      isFocusVisible,
+      disabled,
+      invalid,
+      checked,
+      focused,
+      readOnly,
+      focusVisible,
     ],
   )
 
@@ -220,7 +220,7 @@ export function useRadio(props: UseRadioProps = {}) {
   //@ts-ignore
   const getInputProps: PropGetter<{}, InputDOMAttributes> = useCallback(
     (props = {}, ref: React.Ref<any> = null) => {
-      const trulyDisabled = isDisabled && !isFocusable
+      const trulyDisabled = disabled && !focusable
 
       return {
         ...props,
@@ -236,21 +236,21 @@ export function useRadio(props: UseRadioProps = {}) {
         ),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-        checked: isChecked,
+        checked: checked,
         disabled: trulyDisabled,
-        readOnly: isReadOnly,
-        required: isRequired,
-        "aria-invalid": ariaAttr(isInvalid),
+        readOnly: readOnly,
+        required: required,
+        "aria-invalid": ariaAttr(invalid),
         "aria-disabled": ariaAttr(trulyDisabled),
-        "aria-required": ariaAttr(isRequired),
-        "data-readonly": dataAttr(isReadOnly),
+        "aria-required": ariaAttr(required),
+        "data-readonly": dataAttr(readOnly),
         "aria-describedby": ariaDescribedBy,
         style: visuallyHiddenStyle,
       }
     },
     [
-      isDisabled,
-      isFocusable,
+      disabled,
+      focusable,
       id,
       name,
       value,
@@ -259,10 +259,10 @@ export function useRadio(props: UseRadioProps = {}) {
       onFocus,
       onKeyDown,
       onKeyUp,
-      isChecked,
-      isReadOnly,
-      isRequired,
-      isInvalid,
+      checked,
+      readOnly,
+      required,
+      invalid,
       ariaDescribedBy,
     ],
   )
@@ -271,28 +271,28 @@ export function useRadio(props: UseRadioProps = {}) {
     ...props,
     ref,
     onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-    "data-disabled": dataAttr(isDisabled),
-    "data-checked": dataAttr(isChecked),
-    "data-invalid": dataAttr(isInvalid),
+    "data-disabled": dataAttr(disabled),
+    "data-checked": dataAttr(checked),
+    "data-invalid": dataAttr(invalid),
   })
 
   const getRootProps: PropGetter = (props, ref = null) => ({
     ...props,
     ref,
-    "data-disabled": dataAttr(isDisabled),
-    "data-checked": dataAttr(isChecked),
-    "data-invalid": dataAttr(isInvalid),
+    "data-disabled": dataAttr(disabled),
+    "data-checked": dataAttr(checked),
+    "data-invalid": dataAttr(invalid),
   })
 
   const state: RadioState = {
-    isInvalid,
-    isFocused,
-    isChecked,
-    isActive,
+    invalid,
+    focused,
+    checked,
+    active,
     isHovered,
-    isDisabled,
-    isReadOnly,
-    isRequired,
+    disabled,
+    readOnly,
+    required,
   }
 
   return {

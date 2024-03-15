@@ -57,7 +57,7 @@ export const circularIndeterminate = () => (
     capIsRound
     trackColor="transparent"
     size="50px"
-    isIndeterminate
+    indeterminate
     value={3}
   >
     <CircularProgress.Circle>

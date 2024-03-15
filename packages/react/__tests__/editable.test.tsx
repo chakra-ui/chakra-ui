@@ -188,7 +188,7 @@ describe("editable", () => {
     expect(input).not.toHaveAttribute("aria-disabled")
 
     rerender(
-      <Editable.Root isDisabled defaultValue="">
+      <Editable.Root disabled defaultValue="">
         <Editable.Preview data-testid="preview" />
         <Editable.Input data-testid="input" />
       </Editable.Root>,
@@ -289,7 +289,7 @@ describe("editable", () => {
 
   test("should not be interactive when disabled", async () => {
     const { user } = render(
-      <Editable.Root defaultValue="editable" isDisabled>
+      <Editable.Root defaultValue="editable" disabled>
         <Editable.Preview data-testid="preview" />
         <Editable.Input data-testid="input" />
       </Editable.Root>,

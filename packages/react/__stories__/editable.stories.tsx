@@ -150,7 +150,7 @@ export const EditableEventHandler = () => {
 }
 
 export const Disabled = () => (
-  <Editable.Root isDisabled defaultValue="Rasengan ⚡️" fontSize="xl">
+  <Editable.Root disabled defaultValue="Rasengan ⚡️" fontSize="xl">
     <Editable.Preview />
     <Editable.Input />
     <Actions />

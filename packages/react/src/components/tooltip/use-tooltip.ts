@@ -56,16 +56,16 @@ export interface UseTooltipProps
    * If `true`, the tooltip will be shown (in controlled mode)
    * @default false
    */
-  isOpen?: boolean
+  open?: boolean
   /**
    * If `true`, the tooltip will be initially shown
    * @default false
    */
-  defaultIsOpen?: boolean
+  defaultOpen?: boolean
   /**
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * @default false
    */
@@ -97,27 +97,27 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     onClose: onCloseProp,
     placement,
     id,
-    isOpen: isOpenProp,
-    defaultIsOpen,
+    open: openProp,
+    defaultOpen,
     arrowSize = 10,
     arrowShadowColor,
     arrowPadding,
     modifiers,
-    isDisabled,
+    disabled,
     gutter,
     offset,
   } = props
 
-  const { isOpen, onOpen, onClose } = useDisclosure({
-    isOpen: isOpenProp,
-    defaultIsOpen,
+  const { open, onOpen, onClose } = useDisclosure({
+    open: openProp,
+    defaultOpen,
     onOpen: onOpenProp,
     onClose: onCloseProp,
   })
 
   const { referenceRef, getPopperProps, getArrowInnerProps, getArrowProps } =
     usePopper({
-      enabled: isOpen,
+      enabled: open,
       placement,
       arrowPadding,
       modifiers,
@@ -155,12 +155,12 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   const dispatchCloseEvent = useCloseEvent(ref, closeNow)
 
   const openWithDelay = useCallback(() => {
-    if (!isDisabled && !enterTimeout.current) {
-      if (isOpen) dispatchCloseEvent()
+    if (!disabled && !enterTimeout.current) {
+      if (open) dispatchCloseEvent()
       const win = getWin(ref)
       enterTimeout.current = win.setTimeout(onOpen, openDelay)
     }
-  }, [dispatchCloseEvent, isDisabled, isOpen, onOpen, openDelay])
+  }, [dispatchCloseEvent, disabled, open, onOpen, openDelay])
 
   const closeWithDelay = useCallback(() => {
     clearEnterTimeout()
@@ -169,24 +169,24 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   }, [closeDelay, closeNow, clearEnterTimeout])
 
   const onClick = useCallback(() => {
-    if (isOpen && closeOnClick) {
+    if (open && closeOnClick) {
       closeWithDelay()
     }
-  }, [closeOnClick, closeWithDelay, isOpen])
+  }, [closeOnClick, closeWithDelay, open])
 
   const onPointerDown = useCallback(() => {
-    if (isOpen && closeOnPointerDown) {
+    if (open && closeOnPointerDown) {
       closeWithDelay()
     }
-  }, [closeOnPointerDown, closeWithDelay, isOpen])
+  }, [closeOnPointerDown, closeWithDelay, open])
 
   const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (isOpen && event.key === "Escape") {
+      if (open && event.key === "Escape") {
         closeWithDelay()
       }
     },
-    [isOpen, closeWithDelay],
+    [open, closeWithDelay],
   )
 
   useEventListener(
@@ -205,7 +205,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     },
     "scroll",
     () => {
-      if (isOpen && closeOnScroll) {
+      if (open && closeOnScroll) {
         closeNow()
       }
     },
@@ -213,10 +213,10 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   )
 
   useEffect(() => {
-    if (!isDisabled) return
+    if (!disabled) return
     clearEnterTimeout()
-    if (isOpen) onClose()
-  }, [isDisabled, isOpen, onClose, clearEnterTimeout])
+    if (open) onClose()
+  }, [disabled, open, onClose, clearEnterTimeout])
 
   useEffect(() => {
     return () => {
@@ -246,7 +246,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
         onPointerDown: callAllHandlers(props.onPointerDown, onPointerDown),
         onFocus: callAllHandlers(props.onFocus, openWithDelay),
         onBlur: callAllHandlers(props.onBlur, closeWithDelay),
-        "aria-describedby": isOpen ? tooltipId : undefined,
+        "aria-describedby": open ? tooltipId : undefined,
       }
 
       return triggerProps
@@ -255,7 +255,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
       openWithDelay,
       closeWithDelay,
       onPointerDown,
-      isOpen,
+      open,
       tooltipId,
       onClick,
       referenceRef,
@@ -300,7 +300,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   )
 
   return {
-    isOpen,
+    open,
     show: openWithDelay,
     hide: closeWithDelay,
     getTriggerProps,

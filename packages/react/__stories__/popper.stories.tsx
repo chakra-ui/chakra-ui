@@ -7,7 +7,7 @@ export default {
 }
 
 export const Basic = () => {
-  const { isOpen, onToggle } = useDisclosure()
+  const { open, onToggle } = useDisclosure()
 
   const { referenceRef, popperRef } = usePopper({
     placement: "bottom-start",
@@ -20,7 +20,7 @@ export const Basic = () => {
         Reference Tooltip Trigger
       </button>
 
-      {isOpen && (
+      {open && (
         <div
           ref={popperRef}
           style={{
@@ -42,7 +42,7 @@ export const Basic = () => {
 }
 
 export const WithTransition = () => {
-  const { isOpen, onToggle } = useDisclosure()
+  const { open, onToggle } = useDisclosure()
 
   const { referenceRef, popperRef } = usePopper({
     placement: "bottom-start",
@@ -68,7 +68,7 @@ export const WithTransition = () => {
           }}
           variants={slide}
           initial={false}
-          animate={isOpen ? "enter" : "exit"}
+          animate={open ? "enter" : "exit"}
           style={{
             background: bg,
             width: 200,

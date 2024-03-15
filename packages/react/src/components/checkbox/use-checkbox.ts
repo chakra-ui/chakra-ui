@@ -22,10 +22,10 @@ import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 export function useCheckbox(props: UseCheckboxProps = {}) {
   const formControlProps = useFieldProps(props)
   const {
-    disabled: isDisabled,
-    readOnly: isReadOnly,
-    required: isRequired,
-    invalid: isInvalid,
+    disabled,
+    readOnly,
+    required,
+    invalid,
     id,
     onBlur,
     onFocus,
@@ -34,10 +34,10 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const {
     defaultChecked,
-    isChecked: checkedProp,
-    isFocusable,
+    checked: checkedProp,
+    focusable,
     onChange,
-    isIndeterminate,
+    indeterminate,
     name,
     value,
     tabIndex = undefined,
@@ -50,14 +50,14 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const onBlurProp = useCallbackRef(onBlur)
   const onFocusProp = useCallbackRef(onFocus)
 
-  const [isFocusVisible, setIsFocusVisible] = useState(false)
-  const [isFocused, setFocused] = useState(false)
-  const [isHovered, setHovered] = useState(false)
-  const [isActive, setActive] = useState(false)
+  const [focusVisible, setIsFocusVisible] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const [hovered, setHovered] = useState(false)
+  const [active, setActive] = useState(false)
 
   useEffect(() => {
-    return trackFocusVisible((value) => setIsFocusVisible(value && isFocused))
-  }, [isFocused])
+    return trackFocusVisible((value) => setIsFocusVisible(value && focused))
+  }, [focused])
 
   const inputRef = useRef<HTMLInputElement>(null)
   const [rootIsLabelElement, setRootIsLabelElement] = useState(true)
@@ -65,46 +65,39 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   const [checkedState, setCheckedState] = useState(!!defaultChecked)
 
   const isControlled = checkedProp !== undefined
-  const isChecked = isControlled ? checkedProp : checkedState
+  const checked = isControlled ? checkedProp : checkedState
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (isReadOnly || isDisabled) {
+      if (readOnly || disabled) {
         event.preventDefault()
         return
       }
 
       if (!isControlled) {
-        if (isChecked) {
+        if (checked) {
           setCheckedState(event.target.checked)
         } else {
-          setCheckedState(isIndeterminate ? true : event.target.checked)
+          setCheckedState(indeterminate ? true : event.target.checked)
         }
       }
 
       onChangeProp?.(event)
     },
-    [
-      isReadOnly,
-      isDisabled,
-      isChecked,
-      isControlled,
-      isIndeterminate,
-      onChangeProp,
-    ],
+    [readOnly, disabled, checked, isControlled, indeterminate, onChangeProp],
   )
 
   useSafeLayoutEffect(() => {
     if (inputRef.current) {
-      inputRef.current.indeterminate = Boolean(isIndeterminate)
+      inputRef.current.indeterminate = Boolean(indeterminate)
     }
-  }, [isIndeterminate])
+  }, [indeterminate])
 
   useUpdateEffect(() => {
-    if (isDisabled) {
+    if (disabled) {
       setFocused(false)
     }
-  }, [isDisabled, setFocused])
+  }, [disabled, setFocused])
 
   /**
    * HTMLFormElement.reset() should reset the checkbox state
@@ -119,7 +112,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     return () => el.form?.removeEventListener("reset", formResetListener)
   }, [])
 
-  const trulyDisabled = isDisabled && !isFocusable
+  const trulyDisabled = disabled && !focusable
 
   const onKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -145,14 +138,14 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
    * These libraries set the checked value for input fields
    * using their refs. For the checkbox, it sets `ref.current.checked = true | false` directly.
    *
-   * This means the `isChecked` state will get out of sync with `ref.current.checked`,
+   * This means the `checked` state will get out of sync with `ref.current.checked`,
    * even though the input validation with work, the UI will not be up to date.
    *
    * Let's correct that by checking and syncing the state accordingly.
    */
   useSafeLayoutEffect(() => {
     if (!inputRef.current) return
-    const notInSync = inputRef.current.checked !== isChecked
+    const notInSync = inputRef.current.checked !== checked
     if (notInSync) {
       setCheckedState(inputRef.current.checked)
     }
@@ -163,7 +156,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       const onPressDown = (event: React.MouseEvent) => {
         // On mousedown, the input blurs and returns focus to the `body`,
         // we need to prevent this. Native checkboxes keeps focus on `input`
-        if (isFocused) {
+        if (focused) {
           event.preventDefault()
         }
         setActive(true)
@@ -172,15 +165,15 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       return {
         ...props,
         ref: forwardedRef,
-        "data-active": dataAttr(isActive),
-        "data-hover": dataAttr(isHovered),
-        "data-checked": dataAttr(isChecked),
-        "data-focus": dataAttr(isFocused),
-        "data-focus-visible": dataAttr(isFocusVisible),
-        "data-indeterminate": dataAttr(isIndeterminate),
-        "data-disabled": dataAttr(isDisabled),
-        "data-invalid": dataAttr(isInvalid),
-        "data-readonly": dataAttr(isReadOnly),
+        "data-active": dataAttr(active),
+        "data-hover": dataAttr(hovered),
+        "data-checked": dataAttr(checked),
+        "data-focus": dataAttr(focused),
+        "data-focus-visible": dataAttr(focusVisible),
+        "data-indeterminate": dataAttr(indeterminate),
+        "data-disabled": dataAttr(disabled),
+        "data-invalid": dataAttr(invalid),
+        "data-readonly": dataAttr(readOnly),
         "aria-hidden": true,
         onMouseDown: callAllHandlers(props.onMouseDown, onPressDown),
         onMouseUp: callAllHandlers(props.onMouseUp, () => setActive(false)),
@@ -193,15 +186,15 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       }
     },
     [
-      isActive,
-      isChecked,
-      isDisabled,
-      isFocused,
-      isFocusVisible,
-      isHovered,
-      isIndeterminate,
-      isInvalid,
-      isReadOnly,
+      active,
+      checked,
+      disabled,
+      focused,
+      focusVisible,
+      hovered,
+      indeterminate,
+      invalid,
+      readOnly,
     ],
   )
 
@@ -209,26 +202,26 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
     (props = {}, forwardedRef = null) => ({
       ...props,
       ref: forwardedRef,
-      "data-active": dataAttr(isActive),
-      "data-hover": dataAttr(isHovered),
-      "data-checked": dataAttr(isChecked),
-      "data-focus": dataAttr(isFocused),
-      "data-focus-visible": dataAttr(isFocused && isFocusVisible),
-      "data-indeterminate": dataAttr(isIndeterminate),
-      "data-disabled": dataAttr(isDisabled),
-      "data-invalid": dataAttr(isInvalid),
-      "data-readonly": dataAttr(isReadOnly),
+      "data-active": dataAttr(active),
+      "data-hover": dataAttr(hovered),
+      "data-checked": dataAttr(checked),
+      "data-focus": dataAttr(focused),
+      "data-focus-visible": dataAttr(focused && focusVisible),
+      "data-indeterminate": dataAttr(indeterminate),
+      "data-disabled": dataAttr(disabled),
+      "data-invalid": dataAttr(invalid),
+      "data-readonly": dataAttr(readOnly),
     }),
     [
-      isActive,
-      isChecked,
-      isDisabled,
-      isFocused,
-      isFocusVisible,
-      isHovered,
-      isIndeterminate,
-      isInvalid,
-      isReadOnly,
+      active,
+      checked,
+      disabled,
+      focused,
+      focusVisible,
+      hovered,
+      indeterminate,
+      invalid,
+      readOnly,
     ],
   )
 
@@ -257,11 +250,11 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
           })
         }
       }),
-      "data-disabled": dataAttr(isDisabled),
-      "data-checked": dataAttr(isChecked),
-      "data-invalid": dataAttr(isInvalid),
+      "data-disabled": dataAttr(disabled),
+      "data-checked": dataAttr(checked),
+      "data-invalid": dataAttr(invalid),
     }),
-    [isDisabled, isChecked, isInvalid, rootIsLabelElement],
+    [disabled, checked, invalid, rootIsLabelElement],
   )
 
   // @ts-ignore
@@ -284,15 +277,15 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         ),
         onKeyDown: callAllHandlers(props.onKeyDown, onKeyDown),
         onKeyUp: callAllHandlers(props.onKeyUp, onKeyUp),
-        required: isRequired,
-        checked: isChecked,
+        required,
+        checked,
         disabled: trulyDisabled,
-        readOnly: isReadOnly,
+        readOnly,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
-        "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : isInvalid,
+        "aria-invalid": ariaInvalid ? Boolean(ariaInvalid) : invalid,
         "aria-describedby": ariaDescribedBy,
-        "aria-disabled": isDisabled,
+        "aria-disabled": disabled,
         style: visuallyHiddenStyle,
       }
     },
@@ -305,16 +298,16 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       onFocusProp,
       onKeyDown,
       onKeyUp,
-      isRequired,
-      isChecked,
+      required,
+      checked,
       trulyDisabled,
-      isReadOnly,
+      readOnly,
       ariaLabel,
       ariaLabelledBy,
       ariaInvalid,
-      isInvalid,
+      invalid,
       ariaDescribedBy,
-      isDisabled,
+      disabled,
       tabIndex,
     ],
   )
@@ -324,23 +317,23 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
       ...props,
       ref: forwardedRef,
       onMouseDown: callAllHandlers(props.onMouseDown, stopEvent),
-      "data-disabled": dataAttr(isDisabled),
-      "data-checked": dataAttr(isChecked),
-      "data-invalid": dataAttr(isInvalid),
+      "data-disabled": dataAttr(disabled),
+      "data-checked": dataAttr(checked),
+      "data-invalid": dataAttr(invalid),
     }),
-    [isChecked, isDisabled, isInvalid],
+    [checked, disabled, invalid],
   )
 
   const state: CheckboxState = {
-    isInvalid,
-    isFocused,
-    isChecked,
-    isActive,
-    isHovered,
-    isIndeterminate,
-    isDisabled,
-    isReadOnly,
-    isRequired,
+    invalid,
+    focused,
+    checked,
+    active,
+    hovered,
+    indeterminate,
+    disabled,
+    readOnly,
+    required,
   }
 
   return {

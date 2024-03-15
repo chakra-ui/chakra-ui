@@ -5,14 +5,11 @@ export const fieldProps = createProps<UseFieldProps>()([
   "aria-describedby",
   "disabled",
   "id",
-  "isDisabled",
-  "isInvalid",
-  "isReadOnly",
-  "isRequired",
-  "onBlur",
-  "onFocus",
+  "invalid",
   "readOnly",
   "required",
+  "onBlur",
+  "onFocus",
 ])
 
 export const splitFieldProps = createSplitProps<UseFieldProps>(fieldProps)

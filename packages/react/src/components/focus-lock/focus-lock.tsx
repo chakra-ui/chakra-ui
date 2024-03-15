@@ -34,7 +34,7 @@ export interface FocusLockProps {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the first focusable element within the `children`
    * will auto-focused once `FocusLock` mounts
@@ -69,7 +69,7 @@ export function FocusLock(props: Props) {
     contentRef,
     restoreFocus,
     children,
-    isDisabled,
+    disabled,
     autoFocus,
     persistentFocus,
     lockFocusAcrossFrames,
@@ -99,7 +99,7 @@ export function FocusLock(props: Props) {
       crossFrame={lockFocusAcrossFrames}
       persistentFocus={persistentFocus}
       autoFocus={autoFocus}
-      disabled={isDisabled}
+      disabled={disabled}
       onActivation={onActivation}
       onDeactivation={onDeactivation}
       returnFocus={returnFocus}

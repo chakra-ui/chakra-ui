@@ -33,7 +33,7 @@ export const CircularProgressRoot = forwardRef<
     thickness = "10px",
     color = "#0078d4",
     trackColor = "#edebe9",
-    isIndeterminate,
+    indeterminate,
     ...rest
   } = props
 
@@ -58,7 +58,7 @@ export const CircularProgressRoot = forwardRef<
         thickness,
         trackColor,
         color,
-        isIndeterminate,
+        indeterminate,
         capIsRound,
         size,
       }}
@@ -67,10 +67,10 @@ export const CircularProgressRoot = forwardRef<
         ref={ref}
         role="progressbar"
         {...rest}
-        data-indeterminate={isIndeterminate ? "" : undefined}
+        data-indeterminate={indeterminate ? "" : undefined}
         aria-valuemax={computed.max}
         aria-valuemin={computed.min}
-        aria-valuenow={isIndeterminate ? undefined : computed.value}
+        aria-valuenow={indeterminate ? undefined : computed.value}
         aria-valuetext={computed.valueText}
         className={cx("chakra-progress", rest.className)}
         css={rootStyles}

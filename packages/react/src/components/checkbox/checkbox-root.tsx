@@ -41,16 +41,16 @@ export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
 
     const {
       children,
-      isChecked: isCheckedProp,
-      isDisabled = group?.isDisabled,
+      checked: checkedProp,
+      disabled = group?.disabled,
       onChange: onChangeProp,
       inputProps,
       ...restProps
     } = ownProps
 
-    let isChecked = isCheckedProp
+    let checked = checkedProp
     if (group?.value && ownProps.value) {
-      isChecked = group.value.includes(ownProps.value)
+      checked = group.value.includes(ownProps.value)
     }
 
     let onChange = onChangeProp
@@ -62,8 +62,8 @@ export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
 
     const api = useCheckbox({
       ...checkboxProps,
-      isDisabled,
-      isChecked,
+      disabled,
+      checked,
       onChange,
     })
 

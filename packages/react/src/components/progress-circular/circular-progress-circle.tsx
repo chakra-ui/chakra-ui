@@ -9,7 +9,7 @@ export const CircularProgressCircle = forwardRef<
   SVGElement,
   CircularProgressCircleProps
 >(function CircularProgressCircle(props, ref) {
-  const { size, isIndeterminate } = useCircularProgressContext()
+  const api = useCircularProgressContext()
 
   return (
     <chakra.svg
@@ -17,11 +17,11 @@ export const CircularProgressCircle = forwardRef<
       viewBox="0 0 100 100"
       {...props}
       className={cx("chakra-progress__circle", props.className)}
-      data-indeterminate={dataAttr(isIndeterminate)}
+      data-indeterminate={dataAttr(api.indeterminate)}
       css={[
         {
-          width: size,
-          height: size,
+          width: api.size,
+          height: api.size,
           "&[data-indeterminate]": {
             animation: "spin 2s linear infinite",
           },

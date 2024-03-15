@@ -20,7 +20,7 @@ export const Basic = () => {
       <Button variant="solid" onClick={() => setOpen(!open)}>
         Open
       </Button>
-      <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
+      <Drawer.Root open={open} onClose={() => setOpen(false)}>
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content>
@@ -45,7 +45,7 @@ export const WithCustomMotion = () => {
       <Button variant="solid" onClick={() => setOpen(!open)}>
         Open
       </Button>
-      <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
+      <Drawer.Root open={open} onClose={() => setOpen(false)}>
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content
@@ -71,19 +71,14 @@ export const WithCustomMotion = () => {
 }
 
 export const WithLongContent = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
 
   return (
     <>
       <Button variant="solid" onClick={onOpen}>
         Open
       </Button>
-      <Drawer.Root
-        placement="bottom"
-        onClose={onClose}
-        isOpen={isOpen}
-        size="md"
-      >
+      <Drawer.Root placement="bottom" onClose={onClose} open={open} size="md">
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content>

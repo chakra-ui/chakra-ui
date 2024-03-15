@@ -194,7 +194,7 @@ describe("editable-textares", () => {
     expect(textarea).not.toHaveAttribute("aria-disabled")
 
     rerender(
-      <Editable.Root isDisabled defaultValue="">
+      <Editable.Root disabled defaultValue="">
         <Editable.Textarea data-testid="textarea" />
       </Editable.Root>,
     )

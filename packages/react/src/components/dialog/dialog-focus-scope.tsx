@@ -24,7 +24,7 @@ export function DialogFocusScope(props: DialogFocusScopeProps) {
   return (
     <FocusLock
       autoFocus={autoFocus}
-      isDisabled={!trapFocus}
+      disabled={!trapFocus}
       initialFocusRef={initialFocusRef}
       finalFocusRef={finalFocusRef}
       restoreFocus={returnFocusOnClose}

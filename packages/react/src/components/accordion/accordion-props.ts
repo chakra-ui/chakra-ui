@@ -3,9 +3,9 @@ import { UseAccordionProps } from "./use-accordion"
 import { UseAccordionItemProps } from "./use-accordion-item"
 
 const accordionItemProps = createProps<UseAccordionItemProps>()([
-  "isDisabled",
+  "disabled",
   "id",
-  "isFocusable",
+  "focusable",
   "value",
 ])
 

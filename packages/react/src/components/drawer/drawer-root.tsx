@@ -6,13 +6,7 @@ import { getDrawerPlacement } from "./get-placement"
 export interface DrawerRootProps
   extends DrawerOptions,
     SlotRecipeProps<"Drawer">,
-    Omit<
-      DialogRootProps,
-      | "scrollBehavior"
-      | "motionPreset"
-      | "isCentered"
-      | keyof SlotRecipeProps<"Drawer">
-    > {}
+    Omit<DialogRootProps, "motionPreset" | keyof SlotRecipeProps<"Drawer">> {}
 
 /**
  * The Drawer component is a panel that slides out from the edge of the screen.
@@ -22,7 +16,7 @@ export interface DrawerRootProps
  */
 export function DrawerRoot(props: DrawerRootProps) {
   const {
-    isOpen,
+    open,
     onClose,
     placement: placementProp = "right",
     children,
@@ -35,7 +29,7 @@ export function DrawerRoot(props: DrawerRootProps) {
 
   return (
     <DrawerContextProvider value={{ placement }}>
-      <DialogRoot isOpen={isOpen} onClose={onClose} recipe={recipe} {...rest}>
+      <DialogRoot open={open} onClose={onClose} recipe={recipe} {...rest}>
         {children}
       </DialogRoot>
     </DrawerContextProvider>

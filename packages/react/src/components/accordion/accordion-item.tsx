@@ -9,7 +9,7 @@ import { splitAccordionItemProps } from "./accordion-props"
 import { UseAccordionItemProps, useAccordionItem } from "./use-accordion-item"
 
 interface AccordionItemState {
-  isExpanded: boolean
+  isOpen: boolean
   isDisabled: boolean
 }
 
@@ -37,8 +37,9 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
     const styles = useAccordionStyles()
 
     const itemState = {
-      isExpanded: !!itemApi.isOpen,
-      isDisabled: !!itemApi.isDisabled,
+      isOpen: !!itemApi.open,
+      isDisabled: !!itemApi.disabled,
+      isFocused: !!itemApi.focused,
     }
 
     return (

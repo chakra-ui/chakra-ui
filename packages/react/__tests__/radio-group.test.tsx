@@ -54,7 +54,7 @@ test("uncontrolled: correctly manages state", () => {
 
 test("Uncontrolled RadioGroup - should not check if group disabled", async () => {
   render(
-    <RadioGroup.Root isDisabled>
+    <RadioGroup.Root disabled>
       <DemoRadio value="one">One</DemoRadio>
     </RadioGroup.Root>,
   )
@@ -105,10 +105,7 @@ test("setValue action allows setting specific value", () => {
 
 describe("focus action", () => {
   const Component = (props: UseRadioGroupProps = {}) => {
-    const { getRootProps, getItemProps, focus } = useRadioGroup({
-      isNative: true,
-      ...props,
-    })
+    const { getRootProps, getItemProps, focus } = useRadioGroup(props)
 
     return (
       <>

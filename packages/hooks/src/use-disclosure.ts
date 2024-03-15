@@ -2,8 +2,8 @@ import React, { useCallback, useId, useState } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 
 export interface UseDisclosureProps {
-  isOpen?: boolean
-  defaultIsOpen?: boolean
+  open?: boolean
+  defaultOpen?: boolean
   onClose?(): void
   onOpen?(): void
   id?: string
@@ -21,18 +21,18 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
   const {
     onClose: onCloseProp,
     onOpen: onOpenProp,
-    isOpen: isOpenProp,
+    open: openProp,
     id: idProp,
   } = props
 
   const handleOpen = useCallbackRef(onOpenProp)
   const handleClose = useCallbackRef(onCloseProp)
 
-  const [isOpenState, setIsOpen] = useState(props.defaultIsOpen || false)
+  const [openState, setIsOpen] = useState(props.defaultOpen || false)
 
-  const isOpen = isOpenProp !== undefined ? isOpenProp : isOpenState
+  const open = openProp !== undefined ? openProp : openState
 
-  const isControlled = isOpenProp !== undefined
+  const isControlled = openProp !== undefined
 
   const uid = useId()
   const id = idProp ?? `disclosure-${uid}`
@@ -52,17 +52,17 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
   }, [isControlled, handleOpen])
 
   const onToggle = useCallback(() => {
-    if (isOpen) {
+    if (open) {
       onClose()
     } else {
       onOpen()
     }
-  }, [isOpen, onOpen, onClose])
+  }, [open, onOpen, onClose])
 
   function getButtonProps(props: HTMLProps = {}): HTMLProps {
     return {
       ...props,
-      "aria-expanded": isOpen,
+      "aria-expanded": open,
       "aria-controls": id,
       onClick(event) {
         props.onClick?.(event)
@@ -74,13 +74,13 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
   function getDisclosureProps(props: HTMLProps = {}): HTMLProps {
     return {
       ...props,
-      hidden: !isOpen,
+      hidden: !open,
       id,
     }
   }
 
   return {
-    isOpen,
+    open,
     onOpen,
     onClose,
     onToggle,

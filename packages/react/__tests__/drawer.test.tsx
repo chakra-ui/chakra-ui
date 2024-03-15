@@ -3,11 +3,11 @@ import * as React from "react"
 import { Drawer } from "../src/components/drawer"
 
 const DrawerDemo = (props: Partial<Drawer.RootProps>) => {
-  const [isOpen, setIsOpen] = React.useState(props.isOpen || false)
-  const onClose = () => setIsOpen(false)
+  const [open, setOpen] = React.useState(props.open || false)
+  const onClose = () => setOpen(false)
 
   return (
-    <Drawer.Root placement={props.placement} onClose={onClose} isOpen={isOpen}>
+    <Drawer.Root placement={props.placement} onClose={onClose} open={open}>
       <Drawer.Backdrop />
       <Drawer.Positioner>
         <Drawer.Content>
@@ -23,20 +23,20 @@ const DrawerDemo = (props: Partial<Drawer.RootProps>) => {
   )
 }
 
-test("does not render when isOpen is false", () => {
-  render(<DrawerDemo placement="left" isOpen={false} />)
+test("does not render when open is false", () => {
+  render(<DrawerDemo placement="left" open={false} />)
 
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
 })
 
-test("does renders when isOpen is true", () => {
-  render(<DrawerDemo placement="left" isOpen />)
+test("does renders when open is true", () => {
+  render(<DrawerDemo placement="left" open />)
 
   expect(screen.queryByRole("dialog")).toBeInTheDocument()
 })
 
 test("passes a11y test", async () => {
-  const { baseElement } = render(<DrawerDemo placement="left" isOpen />)
+  const { baseElement } = render(<DrawerDemo placement="left" open />)
   // Test baseElement because we're in a portal
   await testA11y(baseElement, {
     axeOptions: {
@@ -49,13 +49,13 @@ test("passes a11y test", async () => {
 })
 
 test("renders on the correct side under 'ltr' direction", () => {
-  render(<DrawerDemo placement="left" isOpen />)
+  render(<DrawerDemo placement="left" open />)
 
   expect(screen.queryByRole("dialog")).toHaveStyle("left: 0")
 })
 
 test("should make other elements inert when opened", () => {
-  const { container } = render(<DrawerDemo placement="right" isOpen />)
+  const { container } = render(<DrawerDemo placement="right" open />)
 
   expect(container).toHaveAttribute("data-aria-hidden", "true")
   expect(container).toHaveAttribute("aria-hidden", "true")

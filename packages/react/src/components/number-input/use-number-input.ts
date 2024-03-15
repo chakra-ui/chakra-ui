@@ -66,19 +66,19 @@ export interface UseNumberInputProps extends UseCounterProps {
   /**
    * If `true`, the input will be in readonly mode
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * If `true`, the input will have `aria-invalid` set to `true`
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * Whether the input should be disabled
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * Whether the input is required
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * The `id` to use for the number input field.
    */
@@ -151,11 +151,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const {
     id,
-    disabled: isDisabled,
-    readOnly: isReadOnly,
-    required: isRequired,
+    disabled,
+    readOnly,
+    required,
     "aria-describedby": ariaDescBy,
-    invalid: isInvalid,
+    invalid,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
   } = useFieldProps(fieldProps)
@@ -206,8 +206,8 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
    * so user can this to change the styles of the
    * `spinners`, maybe :)
    */
-  const [isFocused, setFocused] = useState(false)
-  const isInteractive = !(isReadOnly || isDisabled)
+  const [focused, setFocused] = useState(false)
+  const isInteractive = !(readOnly || disabled)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const inputSelectionRef = useRef<InputSelection | null>(null)
@@ -470,7 +470,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
 
   const getIncrementTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => {
-      const disabled = isDisabled || (keepWithinRange && counter.isAtMax)
+      const isDisabled = disabled || (keepWithinRange && counter.isAtMax)
       return {
         ...props,
         ref: mergeRefs(ref, incrementButtonRef),
@@ -482,16 +482,16 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
-        disabled,
-        "aria-disabled": ariaAttr(disabled),
+        disabled: isDisabled,
+        "aria-disabled": ariaAttr(isDisabled),
       }
     },
-    [counter.isAtMax, keepWithinRange, spinUp, spinner.stop, isDisabled],
+    [counter.isAtMax, keepWithinRange, spinUp, spinner.stop, disabled],
   )
 
   const getDecrementTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, ref = null) => {
-      const disabled = isDisabled || (keepWithinRange && counter.isAtMin)
+      const isDisabled = disabled || (keepWithinRange && counter.isAtMin)
       return {
         ...props,
         ref: mergeRefs(ref, decrementButtonRef),
@@ -503,11 +503,11 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         }),
         onPointerLeave: callAllHandlers(props.onPointerLeave, spinner.stop),
         onPointerUp: callAllHandlers(props.onPointerUp, spinner.stop),
-        disabled,
-        "aria-disabled": ariaAttr(disabled),
+        disabled: isDisabled,
+        "aria-disabled": ariaAttr(isDisabled),
       }
     },
-    [counter.isAtMin, keepWithinRange, spinDown, spinner.stop, isDisabled],
+    [counter.isAtMin, keepWithinRange, spinDown, spinner.stop, disabled],
   )
 
   const getInputProps: PropGetter<InputDOMAttributes, InputDOMAttributes> =
@@ -521,12 +521,12 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-label": ariaLabel,
         "aria-describedby": ariaDescBy,
         id,
-        disabled: isDisabled,
+        disabled,
         ...props,
-        readOnly: props.readOnly ?? isReadOnly,
-        "aria-readonly": props.readOnly ?? isReadOnly,
-        "aria-required": props.required ?? isRequired,
-        required: props.required ?? isRequired,
+        readOnly: props.readOnly ?? readOnly,
+        "aria-readonly": props.readOnly ?? readOnly,
+        "aria-required": props.required ?? required,
+        required: props.required ?? required,
         ref: mergeRefs(inputRef, ref),
         value: format(counter.value),
         role: "spinbutton",
@@ -535,7 +535,7 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         "aria-valuenow": Number.isNaN(counter.valueAsNumber)
           ? undefined
           : counter.valueAsNumber,
-        "aria-invalid": ariaAttr(isInvalid ?? counter.isOutOfRange),
+        "aria-invalid": ariaAttr(invalid ?? counter.isOutOfRange),
         "aria-valuetext": ariaValueText,
         autoComplete: "off",
         autoCorrect: "off",
@@ -555,10 +555,10 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
         format,
         ariaDescBy,
         id,
-        isDisabled,
-        isRequired,
-        isReadOnly,
-        isInvalid,
+        disabled,
+        required,
+        readOnly,
+        invalid,
         counter.value,
         counter.valueAsNumber,
         counter.isOutOfRange,
@@ -576,9 +576,9 @@ export function useNumberInput(props: UseNumberInputProps = {}) {
   return {
     value: format(counter.value),
     valueAsNumber: counter.valueAsNumber,
-    isFocused,
-    isDisabled,
-    isReadOnly,
+    focused,
+    disabled,
+    readOnly,
     getIncrementTriggerProps,
     getDecrementTriggerProps,
     getInputProps,

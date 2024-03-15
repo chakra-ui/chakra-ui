@@ -51,11 +51,11 @@ export interface UsePinInputProps {
   /**
    * If `true`, the pin input component is put in the disabled state
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the pin input component is put in the invalid state
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * The type of values the pin-input should allow
    */
@@ -95,8 +95,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
     manageFocus = true,
     otp = false,
     id: idProp,
-    isDisabled,
-    isInvalid,
+    disabled,
+    invalid,
     type = "number",
     mask,
   } = props
@@ -288,8 +288,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
         ...rest,
         id: `${id}-${index}`,
         "data-ownedby": id,
-        disabled: isDisabled,
-        "aria-invalid": ariaAttr(isInvalid),
+        disabled: disabled,
+        "aria-invalid": ariaAttr(invalid),
         onChange: callAllHandlers(rest.onChange, onChange),
         onKeyDown: callAllHandlers(rest.onKeyDown, onKeyDown),
         onFocus: callAllHandlers(rest.onFocus, onFocus),
@@ -303,9 +303,9 @@ export function usePinInput(props: UsePinInputProps = {}) {
       focusedIndex,
       getNextValue,
       id,
-      isDisabled,
+      disabled,
       mask,
-      isInvalid,
+      invalid,
       manageFocus,
       otp,
       placeholder,

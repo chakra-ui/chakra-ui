@@ -40,7 +40,7 @@ test("passes a11y test", async () => {
   )
 })
 
-test("does not render Menu.Content Items if Menu isLazy", () => {
+test("does not render Menu.Content Items if Menu lazyMount", () => {
   render(
     <Menu.Root isLazy>
       <Menu.Trigger asChild>
@@ -76,7 +76,7 @@ test("sets correct aria attributes on disabled Menu.Items", () => {
             <FaUndoAlt />
             Undo
           </Menu.Item>
-          <Menu.Item isDisabled>
+          <Menu.Item disabled>
             <FaTruck />
             Delivery
           </Menu.Item>
@@ -109,7 +109,7 @@ test("does not fire onClick on disabled Menu.Item", () => {
             <FaUndoAlt />
             Undo
           </Menu.Item>
-          <Menu.Item isDisabled onClick={onClick}>
+          <Menu.Item disabled onClick={onClick}>
             <FaTruck />
             Delivery
           </Menu.Item>
@@ -316,9 +316,7 @@ test("exposes internal state as render prop", () => {
     <Menu.Root>
       {(api) => (
         <>
-          <Menu.Trigger as={Button}>
-            {api.isOpen ? "Close" : "Open"}
-          </Menu.Trigger>
+          <Menu.Trigger as={Button}>{api.open ? "Close" : "Open"}</Menu.Trigger>
           <Menu.Positioner>
             <Menu.Content>
               <Menu.Item>Download</Menu.Item>
@@ -349,7 +347,7 @@ const CompWithTwoMenus: React.FC<{
 
   return (
     <>
-      <Menu.Root isOpen={active === "1"}>
+      <Menu.Root open={active === "1"}>
         <Menu.Trigger onClick={props.onBtnClick} as={Button}>
           No 1
         </Menu.Trigger>
@@ -360,7 +358,7 @@ const CompWithTwoMenus: React.FC<{
         </Menu.Positioner>
       </Menu.Root>
       <Menu.Root
-        isOpen={active === "2"}
+        open={active === "2"}
         onClose={() => {
           setActive(undefined)
           props.onClose()

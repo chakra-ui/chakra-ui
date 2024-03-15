@@ -11,12 +11,12 @@ export interface UseTabProps {
    * If `true`, the `Tab` won't be toggleable
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
-   * If `true` and `isDisabled`, the `Tab` will be focusable but not interactive.
+   * If `true` and `disabled`, the `Tab` will be focusable but not interactive.
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
 }
 
 /**
@@ -26,22 +26,28 @@ export interface UseTabProps {
  * hence the use of `useClickable` to handle this scenario
  */
 export function useTab<P extends UseTabProps>(props: P) {
-  const { isDisabled, isFocusable, value } = props
+  const { disabled, focusable, value } = props
 
-  const { setSelectedValue, isManual, id, setFocusedValue, selectedValue } =
-    useTabsContext()
+  const {
+    setSelectedValue,
+    activationMode,
+    id,
+    setFocusedValue,
+    selectedValue,
+  } = useTabsContext()
 
   const isSelected = value === selectedValue
+  const isManual = activationMode === "manual"
 
   const onClick = () => {
-    if (isDisabled) return
+    if (disabled) return
     setSelectedValue(value)
   }
 
   const onFocus = () => {
     setFocusedValue(value)
-    const isDisabledButFocusable = isDisabled && isFocusable
-    const shouldSelect = !isManual && !isDisabledButFocusable
+    const disabledButFocusable = disabled && focusable
+    const shouldSelect = !isManual && !disabledButFocusable
     if (shouldSelect) {
       setSelectedValue(value)
     }
@@ -53,10 +59,10 @@ export function useTab<P extends UseTabProps>(props: P) {
     role: "tab",
     tabIndex: isSelected ? 0 : -1,
     type: "button",
-    disabled: isDisabled,
-    "data-disabled": dataAttr(isDisabled),
+    disabled: disabled,
+    "data-disabled": dataAttr(disabled),
     "aria-selected": isSelected,
     "aria-controls": makeTabPanelId(id, value),
-    onFocus: isDisabled ? undefined : onFocus,
+    onFocus: disabled ? undefined : onFocus,
   }
 }

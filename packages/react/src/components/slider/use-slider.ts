@@ -78,12 +78,12 @@ export interface UseSliderProps {
    * If `true`, the slider will be disabled
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the slider will be in `read-only` state
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * Function that returns the `aria-valuetext` for screen readers.
    * It is mostly used to generate a more human-readable
@@ -118,8 +118,8 @@ export interface UseSliderProps {
 
 export interface SliderState {
   value: number
-  isFocused: boolean
-  isDragging: boolean
+  focused: boolean
+  dragging: boolean
 }
 
 export interface SliderActions {
@@ -149,8 +149,8 @@ export function useSlider(props: UseSliderProps) {
     direction = "ltr",
     orientation = "horizontal",
     id: idProp,
-    isDisabled,
-    isReadOnly,
+    disabled,
+    readOnly,
     onChangeStart: onChangeStartProp,
     onChangeEnd: onChangeEndProp,
     step = 1,
@@ -182,9 +182,9 @@ export function useSlider(props: UseSliderProps) {
     onChange,
   })
 
-  const [isDragging, setDragging] = useState(false)
-  const [isFocused, setFocused] = useState(false)
-  const isInteractive = !(isDisabled || isReadOnly)
+  const [dragging, setDragging] = useState(false)
+  const [focused, setFocused] = useState(false)
+  const isInteractive = !(disabled || readOnly)
 
   const tenSteps = (max - min) / 10
   const oneStep = step || (max - min) / 100
@@ -204,7 +204,7 @@ export function useSlider(props: UseSliderProps) {
     min,
     max,
     step,
-    isDisabled,
+    disabled,
     value,
     isInteractive,
     isReversed,
@@ -412,16 +412,16 @@ export function useSlider(props: UseSliderProps) {
         ...htmlProps,
         ref: mergeRefs(ref, rootRef),
         tabIndex: -1,
-        "aria-disabled": ariaAttr(isDisabled),
-        "data-focused": dataAttr(isFocused),
-        "data-disabled": dataAttr(isDisabled),
+        "aria-disabled": ariaAttr(disabled),
+        "data-focused": dataAttr(focused),
+        "data-disabled": dataAttr(disabled),
         style: {
           ...props.style,
           ...rootStyle,
         },
       }
     },
-    [htmlProps, isDisabled, isFocused, rootStyle],
+    [htmlProps, disabled, focused, rootStyle],
   )
 
   const getTrackProps: PropGetterFn<"div"> = useCallback(
@@ -430,15 +430,15 @@ export function useSlider(props: UseSliderProps) {
         ...props,
         ref: mergeRefs(ref, trackRef),
         id: trackId,
-        "data-focused": dataAttr(isFocused),
-        "data-disabled": dataAttr(isDisabled),
+        "data-focused": dataAttr(focused),
+        "data-disabled": dataAttr(disabled),
         style: {
           ...props.style,
           ...trackStyle,
         },
       }
     },
-    [isDisabled, isFocused, trackId, trackStyle],
+    [disabled, focused, trackId, trackStyle],
   )
 
   const getInnerTrackProps: PropGetterFn<"div"> = useCallback(
@@ -446,15 +446,15 @@ export function useSlider(props: UseSliderProps) {
       return {
         ...props,
         ref,
-        "data-focused": dataAttr(isFocused),
-        "data-disabled": dataAttr(isDisabled),
+        "data-focused": dataAttr(focused),
+        "data-disabled": dataAttr(disabled),
         style: {
           ...props.style,
           ...innerTrackStyle,
         },
       }
     },
-    [innerTrackStyle, isDisabled, isFocused],
+    [innerTrackStyle, disabled, focused],
   )
 
   const getThumbProps: PropGetterFn<"div"> = useCallback(
@@ -465,15 +465,15 @@ export function useSlider(props: UseSliderProps) {
         role: "slider",
         tabIndex: isInteractive ? 0 : undefined,
         id: thumbId,
-        "data-active": dataAttr(isDragging),
-        "data-disabled": dataAttr(isDisabled),
+        "data-active": dataAttr(dragging),
+        "data-disabled": dataAttr(disabled),
         "aria-valuetext": valueText,
         "aria-valuemin": min,
         "aria-valuemax": max,
         "aria-valuenow": value,
         "aria-orientation": orientation,
-        "aria-disabled": ariaAttr(isDisabled),
-        "aria-readonly": ariaAttr(isReadOnly),
+        "aria-disabled": ariaAttr(disabled),
+        "aria-readonly": ariaAttr(readOnly),
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabel ? undefined : ariaLabelledBy,
         style: {
@@ -488,14 +488,14 @@ export function useSlider(props: UseSliderProps) {
     [
       isInteractive,
       thumbId,
-      isDragging,
+      dragging,
       valueText,
       min,
       max,
       value,
       orientation,
-      isDisabled,
-      isReadOnly,
+      disabled,
+      readOnly,
       ariaLabel,
       ariaLabelledBy,
       getThumbStyle,
@@ -530,7 +530,7 @@ export function useSlider(props: UseSliderProps) {
         ref,
         role: "presentation",
         "aria-hidden": true,
-        "data-disabled": dataAttr(isDisabled),
+        "data-disabled": dataAttr(disabled),
         "data-invalid": dataAttr(!isInRange),
         "data-highlighted": dataAttr(isHighlighted),
         style: {
@@ -539,7 +539,7 @@ export function useSlider(props: UseSliderProps) {
         },
       }
     },
-    [isDisabled, isReversed, max, min, orientation, value],
+    [disabled, isReversed, max, min, orientation, value],
   )
 
   const getInputProps: PropGetterFn<"input"> = useCallback(
@@ -557,8 +557,8 @@ export function useSlider(props: UseSliderProps) {
 
   const state: SliderState = {
     value,
-    isFocused,
-    isDragging,
+    focused,
+    dragging,
   }
 
   return {

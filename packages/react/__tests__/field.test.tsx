@@ -21,7 +21,7 @@ test("passes a11y test in default state", async () => {
 
 test("passes a11y test in when required", async () => {
   await testA11y(
-    <Field.Root id="name" isRequired>
+    <Field.Root id="name" required>
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
@@ -32,7 +32,7 @@ test("passes a11y test in when required", async () => {
 
 test("passes a11y test in when invalid", async () => {
   await testA11y(
-    <Field.Root id="name" isInvalid>
+    <Field.Root id="name" invalid>
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
@@ -43,7 +43,7 @@ test("passes a11y test in when invalid", async () => {
 
 test("only displays error icon and message when invalid", () => {
   const { rerender } = render(
-    <Field.Root id="name" isInvalid>
+    <Field.Root id="name" invalid>
       <Field.Label>Name</Field.Label>
       <Field.RequiredIndicator />
       <Input placeholder="Name" />
@@ -77,7 +77,7 @@ test("only displays error icon and message when invalid", () => {
 
 test("only displays required indicator when required", () => {
   const { rerender } = render(
-    <Field.Root id="name" isRequired>
+    <Field.Root id="name" required>
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
@@ -143,7 +143,7 @@ test("has the proper aria attributes", async () => {
 
 test("inherit required attribute", async () => {
   render(
-    <Field.Root id="name" isRequired>
+    <Field.Root id="name" required>
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
@@ -156,7 +156,7 @@ test("inherit required attribute", async () => {
 
 test("has the correct role attributes", () => {
   render(
-    <Field.Root data-testid="control" id="name" isRequired>
+    <Field.Root data-testid="control" id="name" required>
       <Field.Label>Name</Field.Label>
       <Input placeholder="Name" />
     </Field.Root>,
@@ -172,10 +172,10 @@ test("has the correct data attributes", async () => {
     <Field.Root
       data-testid="control"
       id="name"
-      isRequired
-      isInvalid
-      isDisabled
-      isReadOnly
+      required
+      invalid
+      disabled
+      readOnly
     >
       <Field.Label data-testid="label">Name</Field.Label>
       <Field.RequiredIndicator data-testid="indicator" />
@@ -229,9 +229,9 @@ test("should respect form control aria-describedby", () => {
   )
 })
 
-test("it renders the optionalIndicator in Form.Label if it is provided", () => {
+test("it renders the optionalIndicator in Field.Label if it is provided", () => {
   render(
-    <Field.Root isRequired={false}>
+    <Field.Root required={false}>
       <Field.Label>
         Test
         <Field.RequiredIndicator fallback=" (optional)" />

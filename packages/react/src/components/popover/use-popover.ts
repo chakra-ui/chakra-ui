@@ -34,11 +34,11 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
   /**
    * If `true`, the popover will be opened in controlled mode.
    */
-  isOpen?: boolean
+  open?: boolean
   /**
    * If `true`, the popover will be initially opened.
    */
-  defaultIsOpen?: boolean
+  defaultOpen?: boolean
   /**
    * The `ref` of the element that should receive focus when the popover opens.
    */
@@ -113,11 +113,11 @@ export interface UsePopoverProps extends Omit<UsePopperProps, "enabled"> {
    * If `true`, the PopoverContent rendering will be deferred
    * until the popover is open.
    */
-  isLazy?: boolean
+  lazyMount?: boolean
   /**
    * Performance 🚀:
    * The lazy behavior of popover's content when not visible.
-   * Only works when `isLazy={true}`
+   * Only works when `lazyMount={true}`
    *
    * - "unmount": The popover's content is always unmounted when not open.
    * - "keepMounted": The popover's content initially unmounted,
@@ -152,13 +152,13 @@ export function usePopover(props: UsePopoverProps = {}) {
     trigger = TRIGGER.click,
     openDelay = 200,
     closeDelay = 200,
-    isLazy,
+    lazyMount,
     lazyBehavior = "unmount",
     computePositionOnMount,
     ...popperProps
   } = props
 
-  const { isOpen, onClose, onOpen, onToggle } = useDisclosure(props)
+  const { open, onClose, onOpen, onToggle } = useDisclosure(props)
 
   const anchorRef = useRef<HTMLElement>(null)
   const triggerRef = useRef<HTMLElement>(null)
@@ -167,7 +167,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   const isHoveringRef = useRef(false)
 
   const hasBeenOpened = useRef(false)
-  if (isOpen) {
+  if (open) {
     hasBeenOpened.current = true
   }
 
@@ -191,31 +191,31 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate,
   } = usePopper({
     ...popperProps,
-    enabled: isOpen || !!computePositionOnMount,
+    enabled: open || !!computePositionOnMount,
   })
 
-  const animated = useAnimationState({ isOpen, ref: popoverRef })
+  const animated = useAnimationState({ open, ref: popoverRef })
 
   useFocusOnPointerDown({
-    enabled: isOpen,
+    enabled: open,
     ref: triggerRef,
   })
 
   useFocusOnHide(popoverRef, {
     focusRef: triggerRef,
-    visible: isOpen,
+    visible: open,
     shouldFocus: returnFocusOnClose && trigger === TRIGGER.click,
   })
 
   useFocusOnShow(popoverRef, {
     focusRef: initialFocusRef,
-    visible: isOpen,
+    visible: open,
     shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
   const shouldRenderChildren = lazyDisclosure({
     wasSelected: hasBeenOpened.current,
-    enabled: isLazy,
+    enabled: lazyMount,
     mode: lazyBehavior,
     isSelected: animated.present,
   })
@@ -250,7 +250,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
           const isValidBlur = !targetIsPopover && !targetIsTrigger
 
-          if (isOpen && closeOnBlur && isValidBlur) {
+          if (open && closeOnBlur && isValidBlur) {
             onClose()
           }
         }),
@@ -288,7 +288,7 @@ export function usePopover(props: UsePopoverProps = {}) {
       trigger,
       closeOnEsc,
       onClose,
-      isOpen,
+      open,
       closeOnBlur,
       closeDelay,
       arrowShadowColor,
@@ -302,13 +302,13 @@ export function usePopover(props: UsePopoverProps = {}) {
         {
           ...props,
           style: {
-            visibility: isOpen ? "visible" : "hidden",
+            visibility: open ? "visible" : "hidden",
             ...props.style,
           },
         },
         forwardedRef,
       ),
-    [isOpen, getPopperProps],
+    [open, getPopperProps],
   )
 
   const getAnchorProps: PropGetter = useCallback(
@@ -342,7 +342,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         ref: mergeRefs(triggerRef, _ref, maybeReferenceRef),
         id: triggerId,
         "aria-haspopup": "dialog",
-        "aria-expanded": isOpen,
+        "aria-expanded": open,
         "aria-controls": popoverId,
       }
 
@@ -367,7 +367,7 @@ export function usePopover(props: UsePopoverProps = {}) {
           const relatedTarget = getRelatedTarget(event)
           const isValidBlur = !contains(popoverRef.current, relatedTarget)
 
-          if (isOpen && closeOnBlur && isValidBlur) {
+          if (open && closeOnBlur && isValidBlur) {
             onClose()
           }
         })
@@ -407,7 +407,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     },
     [
       triggerId,
-      isOpen,
+      open,
       popoverId,
       trigger,
       maybeReferenceRef,
@@ -455,7 +455,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   return {
     forceUpdate,
-    isOpen,
+    open,
     onAnimationComplete: animated.onComplete,
     onClose,
     getAnchorProps,
