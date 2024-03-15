@@ -1,7 +1,7 @@
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
 import { popperCSSVars } from "../../popper"
-import { HTMLChakraProps, chakra, useSystemContext } from "../../styled-system"
+import { HTMLChakraProps, chakra, useChakraContext } from "../../styled-system"
 import { useTooltipContext, useTooltipStyles } from "./tooltip-context"
 import { scale } from "./tooltip-transition"
 
@@ -16,7 +16,7 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   function TooltipContent(props, ref) {
     const styles = useTooltipStyles()
     const api = useTooltipContext()
-    const sys = useSystemContext()
+    const sys = useChakraContext()
 
     const {
       bg,

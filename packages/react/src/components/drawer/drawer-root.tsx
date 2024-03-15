@@ -1,4 +1,4 @@
-import { SlotRecipeProps, useSystemContext } from "../../styled-system"
+import { SlotRecipeProps, useChakraContext } from "../../styled-system"
 import { DialogRoot, DialogRootProps } from "../dialog/dialog-root"
 import { DrawerContextProvider, DrawerOptions } from "./drawer-context"
 import { getDrawerPlacement } from "./get-placement"
@@ -23,7 +23,7 @@ export function DrawerRoot(props: DrawerRootProps) {
     ...rest
   } = props
 
-  const sys = useSystemContext()
+  const sys = useChakraContext()
   const recipe = sys.getSlotRecipe("Drawer", props.recipe)
   const placement = getDrawerPlacement(placementProp, "ltr")
 

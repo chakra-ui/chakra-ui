@@ -1,20 +1,20 @@
 import { Meta } from "@storybook/react"
 import { motion } from "framer-motion"
 import { fixtureConfig as sys } from "../__fixtures__/system"
-import { chakra } from "../src/styled-system/factory"
 import {
-  SystemProvider,
+  ChakraProvider,
+  chakra,
   useRecipe,
   useSlotRecipe,
-} from "../src/styled-system/provider"
+} from "../src/styled-system"
 
 export default {
   title: "Foundations / System",
   decorators: [
     (Story: any) => (
-      <SystemProvider value={sys}>
+      <ChakraProvider value={sys}>
         <Story />
-      </SystemProvider>
+      </ChakraProvider>
     ),
   ],
 } satisfies Meta

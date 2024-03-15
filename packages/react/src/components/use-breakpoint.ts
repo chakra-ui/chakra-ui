@@ -1,6 +1,6 @@
 import { useMediaQuery } from "@chakra-ui/hooks"
 import { Dict, arrayToObjectNotation, isArray } from "@chakra-ui/utils"
-import { useSystemContext } from "../styled-system"
+import { useChakraContext } from "../styled-system"
 
 /* -----------------------------------------------------------------------------
  * useBreakpoint
@@ -15,7 +15,7 @@ export interface UseBreakpointOptions {
 
 export function useBreakpoint(options: UseBreakpointOptions = {}) {
   options.fallback ||= "base"
-  const sys = useSystemContext()
+  const sys = useChakraContext()
 
   let fallbackPassed = false
   const allBreakpoints = sys.breakpoints.values
@@ -64,7 +64,7 @@ export function useBreakpointValue<T = any>(
   value: Value<T>,
   opts?: UseBreakpointValueOptions,
 ): T | undefined {
-  const sys = useSystemContext()
+  const sys = useChakraContext()
   const breakpointKeys = sys.breakpoints.keys()
 
   const normalized = isArray(value)

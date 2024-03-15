@@ -3,7 +3,7 @@ import { forwardRef } from "react"
 import {
   ConditionalValue,
   SystemContext,
-  useSystemContext,
+  useChakraContext,
 } from "../../styled-system"
 import { Grid, GridProps } from "./grid"
 
@@ -36,7 +36,7 @@ export const SimpleGrid = forwardRef<HTMLDivElement, SimpleGridProps>(
   function SimpleGrid(props, ref) {
     const { columns, minChildWidth, ...rest } = props
 
-    const sys = useSystemContext()
+    const sys = useChakraContext()
     const templateColumns = minChildWidth
       ? widthToColumns(minChildWidth, sys)
       : countToColumns(columns)

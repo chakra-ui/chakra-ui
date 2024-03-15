@@ -1,7 +1,7 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
 import { Preview, ReactRenderer } from "@storybook/react"
 import React from "react"
-import { SystemProvider, defaultSystem } from "../packages/react/src"
+import { ChakraProvider, defaultSystem } from "../packages/react/src"
 
 const preview: Preview = {
   parameters: {
@@ -20,9 +20,9 @@ const preview: Preview = {
       },
     }),
     (Story) => (
-      <SystemProvider value={defaultSystem}>
+      <ChakraProvider value={defaultSystem}>
         <Story />
-      </SystemProvider>
+      </ChakraProvider>
     ),
   ],
 }

@@ -782,12 +782,12 @@ function Alert(props) {
 
 TODO
 
-Prefer to use `useSystemContext` instead of `useTheme` to access the theme and
+Prefer to use `useChakraContext` instead of `useTheme` to access the theme and
 much more.
 
 ### ThemingProps
 
-Changed to `SystemRecipeProps`
+- Changed to `RecipeProps` and `SlotRecipeProps` for better clarity
 
 ### Group
 
