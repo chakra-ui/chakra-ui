@@ -1,7 +1,7 @@
 import { Meta } from "@storybook/react"
 import { motion } from "framer-motion"
+import { fixtureConfig as sys } from "../__fixtures__/system"
 import { chakra } from "../src/styled-system/factory"
-import { fixtureConfig as sys } from "../src/styled-system/fixture"
 import {
   SystemProvider,
   useRecipe,

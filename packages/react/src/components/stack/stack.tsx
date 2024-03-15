@@ -1,8 +1,21 @@
-import { cx, getValidChildren } from "@chakra-ui/utils"
-import { Fragment, cloneElement, forwardRef, useMemo } from "react"
+import { cx } from "@chakra-ui/utils"
+import {
+  Children,
+  Fragment,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  useMemo,
+} from "react"
 import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
 import type { StackDirection } from "./get-separator-style"
 import { getSeparatorStyles } from "./get-separator-style"
+
+function getValidChildren(children: React.ReactNode) {
+  return Children.toArray(children).filter((child) =>
+    isValidElement(child),
+  ) as React.ReactElement[]
+}
 
 interface StackOptions {
   /**

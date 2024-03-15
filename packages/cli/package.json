@@ -11,13 +11,13 @@
     "ui mode",
     "ui"
   ],
-  "author": "Tim Kolberger <tim@kolberger.eu>",
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/esm/index.mjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
@@ -38,8 +38,8 @@
   },
   "scripts": {
     "clean": "rimraf dist .turbo",
-    "build:fast": "tsup src --format esm",
-    "build": "tsup src --format esm",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
     "typecheck": " tsc --noEmit"
   },
@@ -60,8 +60,8 @@
     ".": {
       "source": "./src/index.ts",
       "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.mjs"
       }
     },
     "./package.json": "./package.json"

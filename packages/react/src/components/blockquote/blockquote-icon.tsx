@@ -1,7 +1,7 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { useBlockquoteStyles } from "."
 import { HTMLChakraProps, chakra } from "../../styled-system"
+import { useBlockquoteStyles } from "./blockquote-context"
 
 export interface BlockquoteIconProps extends HTMLChakraProps<"svg"> {}
 

@@ -6,4 +6,4 @@ export const defaultConfig = mergeConfigs(defaultBaseConfig, defaultThemeConfig)
 
 export const defaultSystem = createSystem(defaultConfig)
 
-export default defaultSystem
+export { defaultSystem as system }

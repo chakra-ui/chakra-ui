@@ -21,6 +21,7 @@ export async function generatePropTypes(sys: SystemContext, strict = false) {
   result.push("}", "\n")
 
   result.push(`
+    // eslint-disable-next-line
     type PropOrCondition<Key, Value> = ConditionalValue<Value | (string & {})>
   `)
 

@@ -17,6 +17,7 @@ export type {
   SlotRecipeProps,
   SlotRecipeRecord,
 } from "./generated/recipes.gen"
+export { allCssProperties, isCssProperty } from "./is-valid-prop"
 export { mergeProps } from "./merge-props"
 export { mergeRefs } from "./merge-refs"
 export * from "./provider"

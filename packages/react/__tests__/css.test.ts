@@ -1,6 +1,6 @@
-import { fixtureConfig } from "../src/styled-system/fixture"
+import fixtureSystem from "../__fixtures__/system"
 
-const { css } = fixtureConfig
+const { css } = fixtureSystem
 
 describe("create css", () => {
   test("works", () => {

@@ -6,9 +6,9 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -24,32 +24,26 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "scripts": {
-    "build": "tsup --dts",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist",
-    "typecheck": "tsc --noEmit",
-    "build:fast": "tsup"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@types/lodash.mergewith": "4.6.9",
     "lodash.mergewith": "4.6.2"
   },
-  "devDependencies": {
-    "react": "^18.2.0"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0"
-  },
   "exports": {
     ".": {
       "source": "./src/index.ts",
       "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.mjs"
       },
       "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
       }
     },
     "./package.json": "./package.json"

@@ -1,5 +1,5 @@
-import { defaultConfig } from "../preset"
-import { createSystem } from "./system"
+import { createSystem } from "../src"
+import { defaultConfig } from "../src/preset"
 
 export const fixtureConfig = createSystem({
   ...defaultConfig,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useCallbackRef } from "."
+import { useCallbackRef } from "./use-callback-ref"
 
 type MediaQueryCallback = (event: MediaQueryListEvent) => void
 
