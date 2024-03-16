@@ -12,7 +12,7 @@ test("passes a11y test", async () => {
 })
 
 test("Elements inside input render correctly", () => {
-  const { getByText } = render(
+  render(
     <Group>
       <InputElement placement="start">
         <span>Hello</span>
@@ -23,25 +23,22 @@ test("Elements inside input render correctly", () => {
       </InputElement>
     </Group>,
   )
-  expect(getByText("Hello")).toBeInTheDocument()
-  expect(getByText("World")).toBeInTheDocument()
+  expect(screen.getByText("Hello")).toBeInTheDocument()
+  expect(screen.getByText("World")).toBeInTheDocument()
 })
 
 test("Invalid input renders correctly", () => {
   render(<Input invalid />)
-
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true")
 })
 
 test("Disabled input renders correctly", () => {
   render(<Input disabled />)
-
   expect(screen.getByRole("textbox")).toHaveAttribute("disabled")
 })
 
 test("Readonly input renders correctly", () => {
   render(<Input readOnly />)
-
   expect(screen.getByRole("textbox")).toHaveAttribute("aria-readonly", "true")
 })
 

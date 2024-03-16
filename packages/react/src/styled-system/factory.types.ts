@@ -25,6 +25,7 @@ export interface PolymorphicProps {
 }
 
 interface HtmlProps {
+  htmlSize?: number
   htmlWidth?: string | number
   htmlHeight?: string | number
   htmlTranslate?: "yes" | "no" | undefined
@@ -33,6 +34,7 @@ interface HtmlProps {
 
 export type HtmlProp =
   | "color"
+  | "size"
   | "translate"
   | "transition"
   | "width"

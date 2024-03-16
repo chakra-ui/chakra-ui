@@ -4,28 +4,22 @@ import {
   HTMLChakraProps,
   RecipeProps,
   chakra,
+  mergeProps,
   useRecipe,
 } from "../../styled-system"
 import { FieldOptions, splitFieldProps, useField } from "../field"
-
-interface InputOptions {
-  /**
-   * The native HTML `size` attribute to be passed to the `input`
-   */
-  htmlSize?: number
-  /**
-   * If `true`, the input will be unstyled
-   */
-  unstyled?: boolean
-}
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface InputProps
   extends Omit<HTMLChakraProps<"input">, Omitted>,
-    InputOptions,
     RecipeProps<"Input">,
-    FieldOptions {}
+    FieldOptions {
+  /**
+   * If `true`, the input will be unstyled
+   */
+  unstyled?: boolean
+}
 
 /**
  * Input
@@ -36,7 +30,7 @@ export interface InputProps
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input(props, ref) {
-    const { htmlSize, unstyled, ...restProps } = props
+    const { unstyled, ...restProps } = props
 
     const recipe = useRecipe("Input", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(restProps)
@@ -47,9 +41,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <chakra.input
-        size={htmlSize}
-        {...elementProps}
-        {...inputProps}
+        {...mergeProps(elementProps, inputProps)}
         css={[!unstyled ? styles : { bg: "inherit" }, props.css]}
         ref={ref}
         className={cx("chakra-input", props.className)}

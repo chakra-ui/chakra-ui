@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@chakra-ui/test-utils"
 import { useEffect, useRef, useState } from "react"
-import { Editable } from "../src/components/editable"
+import { Editable } from "../src"
 
 describe("editable", () => {
   test("matches snapshot", () => {

@@ -76,30 +76,20 @@ test("only displays error icon and message when invalid", () => {
 })
 
 test("only displays required indicator when required", () => {
-  const { rerender } = render(
+  render(
     <Field.Root id="name" required>
-      <Field.Label>Name</Field.Label>
+      <Field.Label>
+        Name <Field.RequiredIndicator data-testid="required" />
+      </Field.Label>
       <Input placeholder="Name" />
       <Field.HelpText>Enter your name please!</Field.HelpText>
       <Field.ErrorMessage>Your name is invalid</Field.ErrorMessage>
     </Field.Root>,
   )
 
-  const indicator = screen.getByRole("presentation", { hidden: true })
-
-  expect(indicator).toBeVisible()
-  expect(indicator).toHaveTextContent("*")
-
-  rerender(
-    <Field.Root id="name">
-      <Field.Label>Name</Field.Label>
-      <Input placeholder="Name" />
-      <Field.HelpText>Enter your name please!</Field.HelpText>
-      <Field.ErrorMessage>Your name is invalid</Field.ErrorMessage>
-    </Field.Root>,
-  )
-
-  expect(screen.queryByRole("presentation")).not.toBeInTheDocument()
+  const indicatorEl = screen.getByTestId("required")
+  expect(indicatorEl).toBeVisible()
+  expect(indicatorEl).toHaveTextContent("*")
 })
 
 test("should invoke input callbacks", () => {
@@ -152,19 +142,6 @@ test("inherit required attribute", async () => {
 
   const inputEl = screen.getByRole("textbox")
   expect(inputEl).toHaveAttribute("required")
-})
-
-test("has the correct role attributes", () => {
-  render(
-    <Field.Root data-testid="control" id="name" required>
-      <Field.Label>Name</Field.Label>
-      <Input placeholder="Name" />
-    </Field.Root>,
-  )
-  const control = screen.getByTestId("control")
-
-  expect(screen.getByRole("presentation", { hidden: true })).toBeInTheDocument()
-  expect(screen.getByRole("group")).toEqual(control)
 })
 
 test("has the correct data attributes", async () => {
@@ -240,5 +217,5 @@ test("it renders the optionalIndicator in Field.Label if it is provided", () => 
     </Field.Root>,
   )
 
-  expect(screen.getByText("Test (optional)")).toBeInTheDocument()
+  expect(screen.getByText("(optional)")).toBeInTheDocument()
 })

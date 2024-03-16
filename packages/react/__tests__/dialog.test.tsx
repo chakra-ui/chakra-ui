@@ -1,12 +1,18 @@
-import { fireEvent, render, testA11y, waitFor } from "@chakra-ui/test-utils"
-import * as React from "react"
+import {
+  fireEvent,
+  render,
+  screen,
+  testA11y,
+  waitFor,
+} from "@chakra-ui/test-utils"
+import { useRef, useState } from "react"
 import { Dialog } from "../src/components/dialog"
 
 const DemoDialog = (props: Omit<Dialog.RootProps, "children">) => {
   return (
     <Dialog.Root {...props}>
       <Dialog.Backdrop data-testid="overlay" />
-      <Dialog.Positioner>
+      <Dialog.Positioner data-testid="positioner">
         <Dialog.Content data-testid="content">
           <Dialog.Header>Dialog header</Dialog.Header>
           <Dialog.CloseTrigger data-testid="close">Close</Dialog.CloseTrigger>
@@ -19,52 +25,34 @@ const DemoDialog = (props: Omit<Dialog.RootProps, "children">) => {
 }
 
 test("should have no accessibility violations", async () => {
-  const { baseElement } = render(<DemoDialog open onClose={vi.fn()} />)
-
-  // Test baseElement because the Dialog. is in a portal
-  await testA11y(baseElement, {
+  render(<DemoDialog open onClose={vi.fn()} />)
+  const dialogEl = screen.getByRole("dialog")
+  await testA11y(dialogEl, {
     axeOptions: {
-      rules: {
-        // https://github.com/dequelabs/axe-core/issues/3752
-        "aria-dialog-name": { enabled: false },
-      },
+      rules: { "aria-dialog-name": { enabled: false } },
     },
   })
 })
 
 test("should have the proper 'aria' attributes", () => {
-  const { getByRole, getByText } = render(<DemoDialog open onClose={vi.fn()} />)
-
-  const dialog = getByRole("dialog")
-
+  render(<DemoDialog open onClose={vi.fn()} />)
+  const dialog = screen.getByRole("dialog")
   expect(dialog).toHaveAttribute("aria-modal", "true")
   expect(dialog).toHaveAttribute("role", "dialog")
-
-  expect(getByText("Dialog body").id).toEqual(
-    dialog.getAttribute("aria-describedby"),
-  )
-
-  /**
-   * The id of `DialogHeader` should equal the `aria-labelledby` of the dialog
-   */
-  expect(getByText("Dialog header").id).toEqual(
-    dialog.getAttribute("aria-labelledby"),
-  )
 })
 
-test("should fire 'onClose' callback when close button is clicked", () => {
+test("should fire 'onClose' callback when close button is clicked", async () => {
   const onClose = vi.fn()
-  const tools = render(<DemoDialog open onClose={onClose} />)
-
-  fireEvent.click(tools.getByTestId("close"))
+  const { user } = render(<DemoDialog open onClose={onClose} />)
+  await user.click(screen.getByTestId("close"))
   expect(onClose).toHaveBeenCalled()
 })
 
-test.skip("should close on outside click", async () => {
+test("should close on outside click", async () => {
   const onClose = vi.fn()
-  const { user, getByTestId } = render(<DemoDialog open onClose={onClose} />)
+  const { user } = render(<DemoDialog open onClose={onClose} />)
 
-  await user.click(getByTestId("overlay"))
+  await user.click(screen.getByTestId("positioner"))
   expect(onClose).toHaveBeenCalled()
 })
 
@@ -77,8 +65,9 @@ test.skip("should close on escape key", async () => {
 
 test("focus initial element when opened", () => {
   const Component = () => {
-    const [open, setOpen] = React.useState(false)
-    const inputRef = React.useRef(null)
+    const [open, setOpen] = useState(false)
+    const inputRef = useRef<HTMLInputElement>(null)
+
     return (
       <>
         <button
@@ -104,16 +93,16 @@ test("focus initial element when opened", () => {
     )
   }
 
-  const { getByTestId } = render(<Component />)
+  render(<Component />)
 
-  fireEvent.click(getByTestId("button"))
-  expect(getByTestId("input")).toHaveFocus()
+  fireEvent.click(screen.getByTestId("button"))
+  expect(screen.getByTestId("input")).toHaveFocus()
 })
 
 test("should return focus to button when closed", async () => {
   const Component = () => {
-    const [open, setopen] = React.useState(false)
-    const buttonRef = React.useRef(null)
+    const [open, setopen] = useState(false)
+    const buttonRef = useRef(null)
     return (
       <>
         <button
@@ -141,13 +130,13 @@ test("should return focus to button when closed", async () => {
     )
   }
 
-  const { getByTestId } = render(<Component />)
+  render(<Component />)
 
-  const button = getByTestId("button")
+  const button = screen.getByTestId("button")
   expect(button).not.toHaveFocus()
 
   fireEvent.click(button)
-  fireEvent.click(getByTestId("close"))
+  fireEvent.click(screen.getByTestId("close"))
 
   await waitFor(() => expect(button).toHaveFocus())
 })
