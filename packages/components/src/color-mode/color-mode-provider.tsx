@@ -44,6 +44,7 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
       useSystemColorMode,
       initialColorMode,
       disableTransitionOnChange,
+      nonce,
     } = {},
     colorModeManager = localStorageManager,
   } = props
@@ -59,7 +60,11 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
   )
 
   const { getSystemTheme, setClassName, setDataset, addListener } = useMemo(
-    () => getColorModeUtils({ preventTransition: disableTransitionOnChange }),
+    () =>
+      getColorModeUtils({
+        nonce,
+        preventTransition: disableTransitionOnChange,
+      }),
     [disableTransitionOnChange],
   )
 

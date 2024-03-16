@@ -9,12 +9,10 @@ const Icon = (props: HTMLChakraProps<"svg">) => (
     className="chakra-select__icon"
     focusable="false"
     aria-hidden="true"
+    color="currentColor"
+    height="1em"
+    width="1em"
     {...props}
-    style={{
-      width: "1em",
-      height: "1em",
-      color: "currentColor",
-    }}
   >
     <path
       fill="currentColor"

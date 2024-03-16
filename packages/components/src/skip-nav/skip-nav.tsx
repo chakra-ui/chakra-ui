@@ -60,15 +60,7 @@ export interface SkipNavContentProps extends HTMLChakraProps<"div"> {}
 export const SkipNavContent = forwardRef<SkipNavContentProps, "div">(
   function SkipNavContent(props, ref) {
     const { id = fallbackId, ...rest } = props
-    return (
-      <chakra.div
-        ref={ref}
-        id={id}
-        tabIndex={-1}
-        style={{ outline: 0 }}
-        {...rest}
-      />
-    )
+    return <chakra.div ref={ref} id={id} tabIndex={-1} outline={0} {...rest} />
   },
 )
 

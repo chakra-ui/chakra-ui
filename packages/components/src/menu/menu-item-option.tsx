@@ -1,7 +1,7 @@
 import { SystemProps } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { ComponentProps, HTMLAttributes, ReactElement } from "react"
-import { forwardRef } from "../system"
+import { chakra, forwardRef } from "../system"
 import { MenuIcon } from "./menu-icon"
 import { MenuItemProps } from "./menu-item"
 import { StyledMenuItem } from "./styled-menu-item"
@@ -50,7 +50,7 @@ export const MenuItemOption = forwardRef<MenuItemOptionProps, "button">(
             {icon || <CheckIcon />}
           </MenuIcon>
         )}
-        <span style={{ flex: 1 }}>{optionProps.children}</span>
+        <chakra.span flex={1}>{optionProps.children}</chakra.span>
       </StyledMenuItem>
     )
   },
