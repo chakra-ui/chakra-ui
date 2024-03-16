@@ -50,7 +50,7 @@ function Blog() {
                 as='a'
                 mt='8'
                 variant='outline'
-                colorScheme='teal'
+                colorPalette='teal'
               >
                 Read more
                 <ArrowForwardIcon />

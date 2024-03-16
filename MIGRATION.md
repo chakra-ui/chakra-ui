@@ -350,6 +350,7 @@ HelperText has been renamed to `Field.HelpText` for brevity.
   `--focus-color` and `--error-color` css variables instead
 
 - Renamed `SelectIcon` to `Select.Indicator`
+- Move `value` and `onChange` to the `NativeSelect.Field` component
 
 The `Select` component has been renamed to `NativeSelect` to better reflect its
 purpose as a native select element, and give room for a custom select component.
@@ -1094,3 +1095,19 @@ toast({
 - Remove `appendToParentPortal` prop in favor of using the `containerRef`
 - Simplify the `Portal` component
 - Remove `PortalManager` component
+
+### Color Mode
+
+- We've removed the `ColorModeProvider` and `useColorMode` in favor of using
+  `next-themes` or similar libraries.
+- Removed `LightMode`, `DarkMode` and `ColorModeScript` components
+- Removed `useColorModeValue` in favor of using `useTheme` from `next-themes`
+
+// TODO: Provide snippets
+
+### Style Prop Changes
+
+- `_activeLink` -> `_currentPage`
+- `_activeStep` -> `_currentStep`
+- `apply` is no longer supported, prefer creating a recipe using the `chakra`
+  factory instead

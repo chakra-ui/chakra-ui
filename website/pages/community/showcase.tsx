@@ -15,7 +15,7 @@ const Showcase = () => {
         slug: '/community/showcase',
       }}
     >
-      <Stack align='flex-start' mt='5' spacing='8'>
+      <Stack align='flex-start' mt='5' gap='8'>
         <Text color='fg-subtle' fontSize={{ base: 'lg', lg: 'xl' }}>
           A collection of beautiful websites that are built in Chakra UI
         </Text>

@@ -1,20 +1,17 @@
-import { Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, SimpleGrid, Text, chakra } from '@chakra-ui/react'
 import NextImage from 'next/image'
 
-const CourseBanner = ({
-  href,
-  image,
-  title,
-}: {
+interface Props {
   image: string
   title: string
   description: string
   href: string
-}) => {
+}
+
+const CourseBanner = ({ href, image, title }: Props) => {
   return (
-    <Box
+    <chakra.a
       display='block'
-      as='a'
       borderWidth='1px'
       target='_blank'
       transition='box-shadow 0.1s ease-out'
@@ -35,7 +32,7 @@ const CourseBanner = ({
           {title}
         </Text>
       </Box>
-    </Box>
+    </chakra.a>
   )
 }
 

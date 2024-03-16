@@ -634,7 +634,7 @@ export const defaultBaseConfig = defineConfig({
     marginBlockEnd: { values: "spacing" },
     marginLeft: { values: "spacing", shorthand: ["ml"] },
     marginInlineStart: { values: "spacing", shorthand: ["ms", "marginStart"] },
-    marginInlineEnd: { values: "spacing", shorthand: ["ms", "marginEnd"] },
+    marginInlineEnd: { values: "spacing", shorthand: ["me", "marginEnd"] },
     marginInline: { values: "spacing", shorthand: ["mx", "marginX"] },
     marginBlock: { values: "spacing", shorthand: ["my", "marginY"] },
     // padding

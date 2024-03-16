@@ -7,7 +7,7 @@ import scope from './react-live-scope'
 import { liveEditorStyle, liveErrorStyle } from './styles'
 
 const LiveCodePreview = chakra(LivePreview, {
-  baseStyle: {
+  base: {
     fontFamily: 'body',
     mt: 5,
     p: 3,

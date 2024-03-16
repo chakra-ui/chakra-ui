@@ -1,13 +1,9 @@
+import { Box, Center, Dialog, Flex, chakra } from '@chakra-ui/react'
 import {
-  Box,
-  Center,
-  Dialog,
-  Flex,
-  chakra,
   useDisclosure,
   useEventListener,
   useUpdateEffect,
-} from '@chakra-ui/react'
+} from '@chakra-ui/hooks'
 import searchData from 'configs/search-meta.json'
 import { findAll } from 'highlight-words-core'
 import { matchSorter } from 'match-sorter'
@@ -239,7 +235,7 @@ function OmniSearch() {
         open={modal.open}
         onClose={modal.onClose}
       >
-        <Dialog.Overlay />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content
             role='combobox'

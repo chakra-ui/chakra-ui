@@ -1,3 +1,4 @@
+import { HiHeart } from "react-icons/hi"
 import { Md3DRotation } from "react-icons/md"
 import { Icon, IconProps, createIcon } from "../src/components/icon"
 
@@ -5,7 +6,11 @@ export default {
   title: "Components / Icon",
 }
 
-export const Basic = () => <Icon fontSize="24px" />
+export const Basic = () => (
+  <Icon asChild fontSize="100px" color="pink.700">
+    <HiHeart />
+  </Icon>
+)
 
 const ArrowIcon = (props: IconProps) => (
   <Icon viewBox="0 0 32 32" {...props}>

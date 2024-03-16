@@ -2,18 +2,18 @@ import {
   Button,
   ButtonProps,
   Link,
-  useColorModeValue,
+  SystemStyleObject,
   Wrap,
 } from '@chakra-ui/react'
 import React from 'react'
 import { FaGithub, FaNpm, FaYoutube } from 'react-icons/fa'
 import StorybookIcon from '../storybook-icon'
 
-type ComponentLinkProps = ButtonProps & {
+interface ComponentLinkProps extends ButtonProps {
   icon: React.ElementType
   url: string
   iconSize?: string
-  iconColor?: string
+  iconColor?: SystemStyleObject['color']
 }
 
 function ComponentLink(props: ComponentLinkProps) {
@@ -21,14 +21,12 @@ function ComponentLink(props: ComponentLinkProps) {
   return (
     <Button
       as={Link}
-      href={url}
-      isExternal
       size='sm'
       fontWeight='normal'
       variant='outline'
-      color={useColorModeValue('gray.600', 'whiteAlpha.700')}
+      color={{ base: 'gray.600', _dark: 'whiteAlpha.700' }}
       _hover={{
-        color: useColorModeValue('gray.700', 'whiteAlpha.900'),
+        color: { base: 'gray.700', _dark: 'whiteAlpha.900' },
         boxShadow: 'sm',
         transform: 'translateY(-2px)',
         textDecor: 'none',
@@ -45,8 +43,10 @@ function ComponentLink(props: ComponentLinkProps) {
       }}
       {...rest}
     >
-      <BtnIcon />
-      {children}
+      <Link href={url} isExternal>
+        <BtnIcon />
+        {children}
+      </Link>
     </Button>
   )
 }
@@ -60,10 +60,8 @@ export type ComponentLinksProps = {
 }
 function ComponentLinks(props: ComponentLinksProps) {
   const { theme, github, npm, storybook, video, ...rest } = props
-  const iconColor = useColorModeValue('gray.600', 'inherit')
 
   const githubRepoUrl = 'https://github.com/chakra-ui/chakra-ui'
-
   const githubLink = (github?.url || github?.package) && (
     <ComponentLink
       url={
@@ -71,7 +69,7 @@ function ComponentLinks(props: ComponentLinksProps) {
         `${githubRepoUrl}/tree/main/packages/components/src/${github.package}`
       }
       icon={FaGithub}
-      iconColor={iconColor}
+      iconColor={{ base: 'gray.600', _dark: 'inherit' }}
       iconSize='1rem'
     >
       Source
@@ -117,7 +115,7 @@ function ComponentLinks(props: ComponentLinksProps) {
     <ComponentLink
       url={`${githubRepoUrl}/tree/main/packages/theme/src/components/${theme.componentName}.ts`}
       icon={FaGithub}
-      iconColor={iconColor}
+      iconColor={{ base: 'gray.600', _dark: 'inherit' }}
       iconSize='1rem'
     >
       Theme Source
@@ -125,7 +123,7 @@ function ComponentLinks(props: ComponentLinksProps) {
   )
 
   return (
-    <Wrap spacing='3' flexWrap='wrap' overflow='visible' {...rest}>
+    <Wrap gap='3' flexWrap='wrap' overflow='visible' {...rest}>
       {githubLink}
       {themeComponentLink}
       {npmLink}

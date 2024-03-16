@@ -67,8 +67,8 @@ const PropsTable = ({
               }}
             >
               <HStack>
-                <Code colorScheme='purple'>{prop.name}</Code>
-                {prop.required && <Code colorScheme='red'>Required</Code>}
+                <Code colorPalette='purple'>{prop.name}</Code>
+                {prop.required && <Code colorPalette='red'>Required</Code>}
               </HStack>
             </chakra.h3>
           </chakra.div>

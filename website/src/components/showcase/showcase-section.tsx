@@ -6,6 +6,7 @@ import {
   VStack,
   chakra,
 } from '@chakra-ui/react'
+import { PageHeading } from 'components/heading'
 import json from 'configs/showcase.json'
 import NextLink from 'next/link'
 import { FaArrowRight } from 'react-icons/fa'
@@ -16,11 +17,9 @@ const websites = json.data.slice(0, 8)
 const ShowcaseSection = () => {
   return (
     <Container py='7.5rem' maxW='1280px' as='section' mb={12}>
-      <VStack w='full' spacing='7.5rem'>
+      <VStack w='full' gap='7.5rem'>
         <Box maxW='760px' mx='auto' textAlign='center'>
-          <chakra.h2 textStyle='heading' mb={4}>
-            Built with Chakra UI ⚡️
-          </chakra.h2>
+          <PageHeading mb={4}>Built with Chakra UI ⚡️</PageHeading>
           <chakra.p opacity={0.7} fontSize='lg' mb={8}>
             Your project can look as good as these! Check them out, get
             inspired!
@@ -32,7 +31,7 @@ const ShowcaseSection = () => {
               fontSize='1.2rem'
               as='a'
               size='lg'
-              colorScheme='teal'
+              colorPalette='teal'
             >
               See showcase
               <FaArrowRight fontSize='0.8em' />

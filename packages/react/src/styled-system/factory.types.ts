@@ -61,12 +61,10 @@ export type HTMLChakraProps<
   Assign<JsxStyleProps, P> & PolymorphicProps
 >
 
-export type JsxElement<
-  T extends ElementType,
-  P extends Dict,
-> = T extends ChakraComponent<infer A, infer B>
-  ? ChakraComponent<A, Pretty<DistributiveUnion<P, B>>>
-  : ChakraComponent<T, P>
+export type JsxElement<T extends ElementType, P extends Dict> =
+  T extends ChakraComponent<infer A, infer B>
+    ? ChakraComponent<A, Pretty<DistributiveUnion<P, B>>>
+    : ChakraComponent<T, P>
 
 export interface JsxFactory {
   <T extends ElementType>(component: T): ChakraComponent<T, {}>
@@ -97,9 +95,8 @@ export interface JsxStyleProps
     | Omit<(SystemStyleObject | undefined)[], keyof any[]>
 }
 
-export type InferRecipeProps<T> = T extends ChakraComponent<any, infer P>
-  ? P
-  : {}
+export type InferRecipeProps<T> =
+  T extends ChakraComponent<any, infer P> ? P : {}
 
 export type PropGetterFn<T extends keyof JSX.IntrinsicElements, P = unknown> = (
   props?: Partial<Omit<JSX.IntrinsicElements[T], HtmlProp | keyof P>> & P,

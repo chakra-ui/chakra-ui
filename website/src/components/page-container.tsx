@@ -1,11 +1,4 @@
-import {
-  Badge,
-  Box,
-  Flex,
-  SkipNavContent,
-  SkipNavLink,
-  chakra,
-} from '@chakra-ui/react'
+import { Badge, Box, Flex, SkipNavContent, SkipNavLink } from '@chakra-ui/react'
 import EditPageLink from 'components/edit-page-button'
 import Footer from 'components/footer'
 import Header from 'components/header'
@@ -16,6 +9,7 @@ import * as React from 'react'
 import { FrontmatterHeading } from 'src/types/frontmatter'
 import { convertBackticksToInlineCode } from 'utils/convert-backticks-to-inline-code'
 import { AdBanner } from './chakra-pro/ad-banner'
+import { PageHeading } from './heading'
 
 function useHeadingFocusOnRouteChange() {
   const router = useRouter()
@@ -86,11 +80,11 @@ function PageContainer(props: PageContainerProps) {
                   pt='10'
                 >
                   <Box maxW={maxWidth}>
-                    <chakra.h1 tabIndex={-1} outline={0} apply='mdx.h1'>
+                    <PageHeading as='h1' tabIndex={-1} outline={0}>
                       {convertBackticksToInlineCode(title)}
-                    </chakra.h1>
+                    </PageHeading>
                     {version && (
-                      <Badge colorScheme='teal' letterSpacing='wider'>
+                      <Badge colorPalette='teal' letterSpacing='wider'>
                         v{version}
                       </Badge>
                     )}

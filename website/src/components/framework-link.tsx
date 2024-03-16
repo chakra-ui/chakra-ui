@@ -40,7 +40,7 @@ const FrameworkLink = (props) => {
 
 export const FrameworkLinks = () => {
   return (
-    <SimpleGrid mt='12' minChildWidth='160px' spacing='40px' fontSize='6xl'>
+    <SimpleGrid mt='12' minChildWidth='160px' gap='40px' fontSize='6xl'>
       <FrameworkLink
         href='/getting-started/nextjs-app-guide'
         accentColor='black'

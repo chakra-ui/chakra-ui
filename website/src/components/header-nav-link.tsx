@@ -1,7 +1,6 @@
-import { HTMLChakraProps, chakra, useColorModeValue } from '@chakra-ui/react'
-import NextLink from 'next/link'
+import { HTMLChakraProps, chakra } from '@chakra-ui/react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
 
 function NavLink(props: HTMLChakraProps<'a'>) {
   const { href, ...rest } = props
@@ -11,7 +10,7 @@ function NavLink(props: HTMLChakraProps<'a'>) {
   const isActive = pathname.includes(group)
 
   return (
-    <NextLink href={href} passHref>
+    <Link href={href} passHref>
       <chakra.a
         aria-current={isActive ? 'page' : undefined}
         display='block'
@@ -19,16 +18,16 @@ function NavLink(props: HTMLChakraProps<'a'>) {
         px='3'
         borderRadius='full'
         transition='all 0.3s'
-        color={useColorModeValue('gray.600', 'whiteAlpha.800')}
+        color={{ base: 'gray.600', _dark: 'whiteAlpha.800' }}
         fontWeight='normal'
-        _hover={{ bg: useColorModeValue('gray.100', 'whiteAlpha.100') }}
-        _activeLink={{
+        _hover={{ bg: { base: 'gray.100', _dark: 'whiteAlpha.100' } }}
+        _currentPage={{
           fontWeight: 'semibold',
           color: 'teal.500',
         }}
         {...rest}
       />
-    </NextLink>
+    </Link>
   )
 }
 

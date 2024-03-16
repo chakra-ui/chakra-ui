@@ -1,9 +1,4 @@
-import {
-  chakra,
-  useColorModeValue,
-  Flex,
-  HTMLChakraProps,
-} from '@chakra-ui/react'
+import { chakra, Flex, FlexProps, HTMLChakraProps } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef, Ref, useEffect, useRef } from 'react'
@@ -30,8 +25,8 @@ const StyledLink = forwardRef(function StyledLink(
       fontWeight='500'
       color='fg'
       transition='all 0.2s'
-      _activeLink={{
-        bg: useColorModeValue('teal.50', 'rgba(48, 140, 122, 0.3)'),
+      _currentPage={{
+        bg: { base: 'teal.50', _dark: 'rgba(48, 140, 122, 0.3)' },
         color: 'accent-emphasis',
         fontWeight: '600',
       }}
@@ -40,17 +35,17 @@ const StyledLink = forwardRef(function StyledLink(
   )
 })
 
-type SidebarLinkProps = HTMLChakraProps<'div'> & {
-  href?: string
-  icon?: React.ReactElement
-  isExternal?: boolean
-}
-
 function checkHref(href: string, slug: string | string[]) {
   const _slug = Array.isArray(slug) ? slug : [slug]
   const path = href.split('/')
   const pathSlug = path[path.length - 1]
   return _slug.includes(pathSlug)
+}
+
+type SidebarLinkProps = FlexProps & {
+  href?: string
+  icon?: React.ReactElement
+  isExternal?: boolean
 }
 
 const SidebarLink = ({

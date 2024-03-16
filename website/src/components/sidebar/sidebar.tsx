@@ -31,7 +31,7 @@ function NewBadge() {
       lineHeight='tall'
       fontSize='10px'
       variant='solid'
-      colorScheme='purple'
+      colorPalette='purple'
     >
       New
     </Badge>
@@ -126,11 +126,10 @@ const MainNavLink = ({
   const active = router.asPath.startsWith(href) || !!isActive
 
   return (
-    <NextLink href={href} passHref>
+    <NextLink target={isExternal ? '_blank' : undefined} href={href} passHref>
       <HStack
-        target={isExternal ? '_blank' : undefined}
         as='a'
-        spacing='3'
+        gap='3'
         fontSize='sm'
         fontWeight={active ? 'semibold' : 'medium'}
         color={active ? 'accent' : 'fg-muted'}
@@ -142,7 +141,7 @@ const MainNavLink = ({
           borderWidth='1px'
           bg={active ? 'accent-static' : 'transparent'}
           borderColor={active ? 'accent-static' : undefined}
-          rounded='base'
+          rounded='sm'
           color={active ? 'white' : 'accent'}
         >
           {icon}
@@ -206,7 +205,7 @@ export const MainNavLinkGroup = (props: List.RootProps) => {
   const router = useRouter()
 
   return (
-    <List.Root spacing='4' styleType='none' {...props}>
+    <List.Root gap='4' styleType='none' {...props}>
       {mainNavLinks.map((item) => (
         <List.Item key={item.label}>
           <MainNavLink

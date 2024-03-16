@@ -16,7 +16,7 @@ import { PackageManagers } from 'components/package-managers'
 import SandpackEmbed from 'components/sandpack-embed'
 import { TutorialCodeBlock } from 'components/tutorial/tutorial-code-block'
 import { TutorialFileAction } from 'components/tutorial/tutorial-file-action'
-import NextImage from 'next/image'
+import Image from 'next/image'
 import { FiFigma } from 'react-icons/fi'
 import PropsTable from '../props-table'
 import CarbonAd from './carbon-ad'
@@ -37,13 +37,7 @@ export const MDXComponents = {
       borderWidth={border ? '1px' : undefined}
       ratio={ratio}
     >
-      <NextImage
-        src={src}
-        alt=''
-        layout='fill'
-        objectFit='contain'
-        {...props}
-      />
+      <Image src={src} alt='' fill objectFit='contain' {...props} />
     </AspectRatio>
   ),
   LinkedImage: ({ href, ...props }) => (

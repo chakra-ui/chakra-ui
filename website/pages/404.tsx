@@ -1,9 +1,8 @@
 import { Button, Heading, Text, VStack } from '@chakra-ui/react'
-import NextLink from 'next/link'
-import * as React from 'react'
-import { FaHome } from 'react-icons/fa'
 import Header from 'components/header'
 import SEO from 'components/seo'
+import NextLink from 'next/link'
+import { FaHome } from 'react-icons/fa'
 // import { AdBanner } from 'components/chakra-pro/ad-banner'
 
 const NotFoundPage = () => {
@@ -14,7 +13,7 @@ const NotFoundPage = () => {
       <Header />
       <VStack
         justify='center'
-        spacing='4'
+        gap='4'
         as='section'
         mt={['20', null, '40']}
         textAlign='center'
@@ -24,7 +23,7 @@ const NotFoundPage = () => {
           You just hit a route that doesn't exist... the sadness.😢
         </Text>
         <NextLink href='/' passHref>
-          <Button as='a' colorScheme='teal' size='lg'>
+          <Button as='a' colorPalette='teal' size='lg'>
             <FaHome />
             Back to Home
           </Button>

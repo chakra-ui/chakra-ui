@@ -19,21 +19,14 @@ function VersionSwitcher(props: Select.RootProps) {
   const currentVersionUrl = versions[0].url
 
   return (
-    <Select.Root
-      marginEnd='0rem'
-      variant='outline'
-      value={currentVersionUrl}
-      onChange={(e) => {
-        router.push(e.target.value)
-      }}
-      {...props}
-    >
+    <Select.Root marginEnd='0rem' variant='outline' {...props}>
       <Select.Field
+        value={currentVersionUrl}
+        onChange={(e) => {
+          router.push(e.target.value)
+        }}
+        color='fg.muted'
         fontWeight='semibold'
-        color='gray.600'
-        _dark={{ color: 'whiteAlpha.600' }}
-        background='chakra-body-bg'
-        css={{ '--select-bg': 'colors.chakra-body-bg' }}
         aria-label={`Select the Chakra UI Docs version. You're currently viewing the version ${currentVerion} docs`}
       >
         {versions.map(({ label, url }) => (
@@ -42,6 +35,7 @@ function VersionSwitcher(props: Select.RootProps) {
           </option>
         ))}
       </Select.Field>
+      <Select.Indicator />
     </Select.Root>
   )
 }

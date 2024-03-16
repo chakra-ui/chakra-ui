@@ -29,7 +29,7 @@ const CodeBlock = ({ path, code, showLineNumbers = false }: CodeBlockProps) => {
             <Button
               size='xs'
               textTransform='uppercase'
-              colorScheme='teal'
+              colorPalette='teal'
               onClick={() => {
                 sandpack.openFile(path)
                 sandpack.updateFile(path, code)
@@ -41,7 +41,7 @@ const CodeBlock = ({ path, code, showLineNumbers = false }: CodeBlockProps) => {
             <Button
               size='xs'
               textTransform='uppercase'
-              colorScheme='teal'
+              colorPalette='teal'
               onClick={() => {
                 sandpack.openFile(path)
               }}

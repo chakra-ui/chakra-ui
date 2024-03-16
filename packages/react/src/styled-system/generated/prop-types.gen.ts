@@ -309,5 +309,5 @@ type CssPropertyValue<T extends string> = T extends keyof CssProperties
 export type PropertyValue<T extends string> = T extends keyof PropertyTypes
   ? PropertyTypeValue<T>
   : T extends keyof CssProperties
-  ? CssPropertyValue<T>
-  : PropOrCondition<T, string | number>
+    ? CssPropertyValue<T>
+    : PropOrCondition<T, string | number>

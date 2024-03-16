@@ -47,26 +47,26 @@ function Resources() {
         how Chakra UI works.
       </Text>
       <ShowcaseBanner />
-      <Tabs.Root colorScheme='teal' variant='line' mt='6'>
+      <Tabs.Root colorPalette='teal' variant='line' mt='6'>
         <Tabs.List>
-          <Tabs.Trigger>
+          <Tabs.Trigger value='talks'>
             <ResourcesTabContent icon={FaMicrophone} text='Talks' />
           </Tabs.Trigger>
-          <Tabs.Trigger>
+          <Tabs.Trigger value='videos'>
             <ResourcesTabContent icon={FaVideo} text='Videos' />
           </Tabs.Trigger>
-          <Tabs.Trigger>
+          <Tabs.Trigger value='blogs'>
             <ResourcesTabContent icon={FaPenSquare} text='Blogs' />
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.ContentGroup>
-          <Tabs.Content>
+          <Tabs.Content value='talks'>
             <ResourceSection title='Talks' resources={groups.talk} />
           </Tabs.Content>
-          <Tabs.Content>
+          <Tabs.Content value='videos'>
             <ResourceSection title='Videos' resources={groups.video} />
           </Tabs.Content>
-          <Tabs.Content>
+          <Tabs.Content value='blogs'>
             <ResourceSection title='Blogs' resources={groups.blog} />
           </Tabs.Content>
         </Tabs.ContentGroup>

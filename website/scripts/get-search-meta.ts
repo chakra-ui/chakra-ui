@@ -1,8 +1,9 @@
 import {
   fileToPath,
-  parseMarkdownString,
+  parseMarkdownFile,
   posixPath,
   removePrefix,
+  DEFAULT_PARSE_FRONT_MATTER,
 } from '@docusaurus/utils'
 import fs from 'fs'
 import toc from 'markdown-toc'
@@ -39,8 +40,12 @@ async function getMDXMeta(file: string) {
 
   const markdownString = fs.readFileSync(file).toString()
 
-  const { content, frontMatter: _frontMatter } =
-    await parseMarkdownString(markdownString)
+  const { content, frontMatter: _frontMatter } = await parseMarkdownFile({
+    filePath: file,
+    fileContent: markdownString,
+    parseFrontMatter: DEFAULT_PARSE_FRONT_MATTER,
+  })
+
   const frontMatter = _frontMatter as Record<string, any>
   const tableOfContent = toc(content)
   const json = tableOfContent.json as TOCResultItem[]

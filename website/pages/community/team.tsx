@@ -123,26 +123,26 @@ function Team({ members, contributors }: TeamProps) {
         <Heading size='lg'>Our Sponsors 💰</Heading>
 
         <Box>
-          <Text textStyle='caps' mb='4' textTransform='uppercase' opacity='0.7'>
+          <Text mb='4' textTransform='uppercase' opacity='0.7'>
             Organizations
           </Text>
           <Wrap>
             {new Array(9).fill('').map((_, idx) => (
-              <WrapItem
-                as='a'
-                key={idx}
-                href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
-              >
-                <img
-                  alt='Open collective Organizations'
-                  src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
-                />
+              <WrapItem key={idx} asChild>
+                <a
+                  href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
+                >
+                  <img
+                    alt='Open collective Organizations'
+                    src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
+                  />
+                </a>
               </WrapItem>
             ))}
           </Wrap>
         </Box>
         <Box>
-          <Text textStyle='caps' mb='4' textTransform='uppercase' opacity='0.7'>
+          <Text mb='4' textTransform='uppercase' opacity='0.7'>
             Individuals
           </Text>
           <a href='https://opencollective.com/chakra-ui'>

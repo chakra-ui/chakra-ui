@@ -31,10 +31,11 @@ export function useMediaQuery(
   const fallback = _fallback?.filter((v) => v != null) as boolean[]
 
   const [value, setValue] = useState(() => {
-    const win = getWin() ?? window
     return queries.map((query, index) => ({
       media: query,
-      matches: win.matchMedia?.(query)?.matches ?? (ssr && !!fallback[index]),
+      matches: !ssr
+        ? (getWin() ?? window).matchMedia?.(query)?.matches
+        : !!fallback[index],
     }))
   })
 

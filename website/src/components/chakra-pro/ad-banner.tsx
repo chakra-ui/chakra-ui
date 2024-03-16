@@ -6,7 +6,9 @@ export const AdBanner = () => {
     <Center
       py='2'
       px='3'
-      bgGradient='linear(to-r,cyan.700, purple.500)'
+      bgGradient='to-r'
+      gradientFrom='cyan.700'
+      gradientTo='purple.500'
       color='white'
       textAlign='center'
     >
@@ -23,7 +25,7 @@ export const AdBanner = () => {
           fontWeight='semibold'
           px='3'
           py='1'
-          rounded='base'
+          rounded='sm'
         >
           Learn more
         </chakra.a>

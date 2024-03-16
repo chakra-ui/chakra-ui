@@ -21,21 +21,23 @@ export const LinkOverlay = forwardRef<HTMLAnchorElement, LinkOverlayProps>(
         className={cx("chakra-linkbox__overlay", className)}
         rel={isExternal ? "noopener noreferrer" : rel}
         target={isExternal ? "_blank" : target}
-        css={{
-          position: "static",
-          "&::before": {
-            content: "''",
-            cursor: "inherit",
-            display: "block",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 0,
-            width: "100%",
-            height: "100%",
+        css={[
+          {
+            position: "static",
+            "&::before": {
+              content: "''",
+              cursor: "inherit",
+              display: "block",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              zIndex: 0,
+              width: "100%",
+              height: "100%",
+            },
           },
-          ...props.css,
-        }}
+          props.css,
+        ]}
       />
     )
   },
@@ -62,7 +64,7 @@ export const LinkBox = forwardRef<HTMLDivElement, LinkBoxProps>(
         css={[
           {
             /* Elevate the links and abbreviations up */
-            "a[href]:not(.chakra-linkbox__overlay), abbr[title]": {
+            "& a[href]:not(.chakra-linkbox__overlay), abbr[title]": {
               position: "relative",
               zIndex: 1,
             },

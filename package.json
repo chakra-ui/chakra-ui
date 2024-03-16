@@ -58,7 +58,7 @@
     "@storybook/addon-a11y": "^8.0.0",
     "@storybook/addon-essentials": "^8.0.0",
     "@storybook/addon-themes": "^8.0.0",
-    "@storybook/addons": "^7.6.17",
+    "@storybook/manager-api": "^8.0.0",
     "@storybook/cli": "^8.0.0",
     "@storybook/react": "^8.0.0",
     "@storybook/react-vite": "^8.0.0",

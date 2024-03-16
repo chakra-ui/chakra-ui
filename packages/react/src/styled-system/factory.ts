@@ -104,7 +104,11 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
 
     if (!isValidElement(onlyChild)) return onlyChild
 
-    const composedProps = mergeProps(restProps, onlyChild.props ?? {})
+    const composedProps = mergeProps(
+      res.forwardedProps,
+      res.elementProps,
+      onlyChild.props ?? {},
+    )
 
     const composedRef = ref
       ? mergeRefs(ref, (onlyChild as any).ref)
@@ -120,7 +124,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
 
     return createElement(element, {
       ref: composedRef,
-      ...composedProps,
+      ...(composedProps as any),
     })
   })
 

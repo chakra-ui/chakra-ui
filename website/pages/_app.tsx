@@ -1,9 +1,8 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
+import { FontFace } from 'components/font-face'
 import { DefaultSeo } from 'next-seo'
+import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
-import React from 'react'
-import FontFace from 'components/font-face'
-import theme from 'theme'
 import { getSeo } from 'utils/seo'
 
 const App = ({ Component, pageProps }) => {
@@ -28,8 +27,14 @@ const App = ({ Component, pageProps }) => {
         )}
       </Head>
       <DefaultSeo {...seo} />
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
+      <ChakraProvider value={defaultSystem}>
+        <ThemeProvider
+          attribute='class'
+          disableTransitionOnChange
+          forcedTheme={Component.theme || null}
+        >
+          <Component {...pageProps} />
+        </ThemeProvider>
       </ChakraProvider>
       <FontFace />
     </>

@@ -68,16 +68,16 @@ export const SearchButton = React.forwardRef(function SearchButton(
       px='4'
       outline='0'
       _focus={{ shadow: 'outline' }}
-      shadow='base'
+      shadow='xs'
       rounded='md'
       {...props}
     >
       <SearchIcon />
-      <HStack w='full' ml='3' spacing='4px'>
+      <HStack w='full' ml='3' gap='4px'>
         <Text textAlign='left' flex='1'>
           Search the docs
         </Text>
-        <HStack spacing='4px'>
+        <HStack gap='4px'>
           <VisuallyHidden>Press</VisuallyHidden>
           <Kbd rounded='2px'>
             <chakra.div
@@ -120,7 +120,7 @@ function AlgoliaSearch() {
   )
 
   useDocSearchKeyboardEvents({
-    open,
+    isOpen: open,
     onOpen,
     onClose,
     onInput,
@@ -148,11 +148,10 @@ function AlgoliaSearch() {
             indexName='chakra-ui'
             apiKey='df1dcc41f7b8e5d68e73dd56d1e19701'
             appId='BH4D9OD16A'
-            //@ts-expect-error we allow this error because we don't need what is missing here.
             navigator={{
-              navigate({ suggestionUrl }) {
+              navigate({ itemUrl }) {
                 setopen(false)
-                router.push(suggestionUrl)
+                router.push(itemUrl)
               },
             }}
             hitComponent={Hit}

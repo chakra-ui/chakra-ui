@@ -31,7 +31,7 @@ const Feature = ({ title, icon, children, ...props }) => {
       direction='row'
       bg='white'
       rounded='12px'
-      shadow='base'
+      shadow='xs'
       gap={4}
       p='6'
       cursor='pointer'
@@ -97,7 +97,7 @@ export const FeaturesOverview = () => {
   }
 
   return (
-    <SimpleGrid mt='12' minChildWidth='15.625rem' spacing='8'>
+    <SimpleGrid mt='12' minChildWidth='15.625rem' gap='8'>
       {features.map((feature) => (
         <Link
           key={feature.title}

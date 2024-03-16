@@ -15,8 +15,8 @@ export default function BlogLayout(props: BlogLayoutProps) {
   return (
     <MDXLayout frontmatter={frontmatter}>
       <HStack mt='8' mb='4'>
-        <Avatar.Root size='md' src={data.avatar_url}>
-          <Avatar.Image />
+        <Avatar.Root size='md'>
+          <Avatar.Image src={data.avatar_url} />
           <Avatar.Fallback />
         </Avatar.Root>
         <Box>
@@ -28,14 +28,8 @@ export default function BlogLayout(props: BlogLayoutProps) {
           </Text>
         </Box>
       </HStack>
-      <Box
-        as='time'
-        dateTime={publishedDate.iso}
-        color='gray.500'
-        fontSize='sm'
-        display='block'
-        mb='16'
-      >
+      <Box asChild color='gray.500' fontSize='sm' display='block' mb='16'>
+        <time dateTime={publishedDate.iso}></time>
         {publishedDate.text}
       </Box>
 

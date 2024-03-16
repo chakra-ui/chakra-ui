@@ -2,7 +2,7 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 10
+    "ecmaVersion": 10,
   },
   "extends": [
     "plugin:import/recommended",
@@ -10,17 +10,17 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "airbnb-typescript",
-    "prettier"
+    "prettier",
   ],
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
   },
   "settings": {
     "react": {
-      "version": "detect"
-    }
+      "version": "detect",
+    },
   },
   "plugins": ["@typescript-eslint/eslint-plugin", "testing-library"],
   "rules": {
@@ -59,7 +59,7 @@
     "no-alert": "off",
     "react/jsx-filename-extension": [
       "error",
-      { "extensions": [".js", ".tsx"] }
+      { "extensions": [".js", ".tsx"] },
     ],
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
@@ -71,25 +71,6 @@
     "import/no-named-as-default": "off",
     "prefer-object-spread": "off",
     "arrow-body-style": "off",
-    "react/sort-comp": "off"
+    "react/sort-comp": "off",
   },
-  "overrides": [
-    {
-      "files": [
-        "packages/**/*.ts",
-        "packages/**/*.tsx",
-        "tooling/**/*/*.ts",
-        "scripts/**/*.ts"
-      ],
-      "parserOptions": {
-        "project": ["tsconfig.json"]
-      }
-    },
-    {
-      "files": ["scripts/**/*.ts"],
-      "parserOptions": {
-        "project": ["scripts/tsconfig.json"]
-      }
-    }
-  ]
 }
