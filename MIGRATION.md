@@ -1088,3 +1088,9 @@ toast({
   status: "success",
 })
 ```
+
+### Portal
+
+- Remove `appendToParentPortal` prop in favor of using the `containerRef`
+- Simplify the `Portal` component
+- Remove `PortalManager` component

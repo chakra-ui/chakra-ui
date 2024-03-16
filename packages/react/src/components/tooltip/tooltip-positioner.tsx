@@ -9,7 +9,7 @@ export interface TooltipPositionerProps extends HTMLChakraProps<"div"> {
   /**
    * Props to be forwarded to the portal component
    */
-  portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
+  portalProps?: Pick<PortalProps, "containerRef">
 }
 
 export const TooltipPositioner = forwardRef<

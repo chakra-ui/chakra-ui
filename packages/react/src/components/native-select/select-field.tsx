@@ -6,7 +6,9 @@ import { useSelectContext, useSelectStyles } from "./select-context"
 type Omitted = "disabled" | "required" | "readOnly" | "size"
 
 export interface NativeSelectFieldProps
-  extends Omit<HTMLChakraProps<"select">, Omitted> {}
+  extends Omit<HTMLChakraProps<"select">, Omitted> {
+  placeholder?: string
+}
 
 export const NativeSelectField = forwardRef<
   HTMLSelectElement,

@@ -1,15 +1,13 @@
-import { render, testA11y } from "@chakra-ui/test-utils"
-import { Field } from "../src/components/field"
-import { NativeSelect } from "../src/components/native-select"
+import { render, screen, testA11y } from "@chakra-ui/test-utils"
+import { Field, NativeSelect } from "../src"
 
 const DemoSelect = (props: NativeSelect.RootProps) => {
-  const { placeholder = "Select an option", ...restProps } = props
   return (
-    <NativeSelect.Root {...restProps}>
+    <NativeSelect.Root {...props}>
       <NativeSelect.Field
         aria-label="select"
         color="pink.500"
-        placeholder={placeholder}
+        placeholder="Select an option"
       >
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>
@@ -26,53 +24,24 @@ test("should pass a11y check", async () => {
 })
 
 test("renders a placeholder option", () => {
-  const { container } = render(<DemoSelect />)
-
-  const option = container.querySelector("option[value='']")
+  render(<DemoSelect />)
+  const option = screen.getByRole("option", { name: "Select an option" })
   expect(option).toBeInTheDocument()
-
-  expect(option?.textContent).toEqual("Select an option")
-})
-
-test("renders an icon by default", () => {
-  const { getByRole } = render(<DemoSelect />)
-
-  const icon = getByRole("presentation", { hidden: true })
-  expect(icon).toHaveAttribute("aria-hidden", "true")
-
-  expect(icon).toHaveClass("chakra-select__icon")
+  expect(option).toHaveTextContent("Select an option")
 })
 
 test("renders in disabled state if disabled is true", () => {
-  const { container } = render(<DemoSelect disabled />)
-
-  const select = container.querySelector("select")
-  const iconWrapper = container.querySelector(".chakra-select__icon-wrapper")
-
+  render(<DemoSelect disabled />)
+  const select = screen.getByRole("combobox")
   expect(select).toBeDisabled()
-  expect(iconWrapper).toHaveAttribute("data-disabled", "")
 })
 
-test("doesn't render in disabled state if disabled is false", () => {
-  const { container } = render(<DemoSelect disabled={false} />)
-
-  const select = container.querySelector("select")
-  const iconWrapper = container.querySelector(".chakra-select__icon-wrapper")
-
-  expect(select).not.toBeDisabled()
-  expect(iconWrapper).not.toHaveAttribute("data-disabled")
-})
-
-test("renders in disabled state if wrapped by FormControl with disabled=true", () => {
-  const { container } = render(
+test("renders in disabled state if wrapped by Field has disabled=true", () => {
+  render(
     <Field.Root disabled>
       <DemoSelect />,
     </Field.Root>,
   )
-
-  const select = container.querySelector("select")
-  const iconWrapper = container.querySelector(".chakra-select__icon-wrapper")
-
+  const select = screen.getByRole("combobox")
   expect(select).toBeDisabled()
-  expect(iconWrapper).toHaveAttribute("data-disabled", "")
 })

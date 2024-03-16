@@ -1,3 +1,4 @@
+import { cx } from "@chakra-ui/utils"
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
 import { popperCSSVars } from "../../popper"
@@ -11,6 +12,8 @@ export interface TooltipContentProps extends HTMLChakraProps<"div"> {
    */
   motionProps?: HTMLMotionProps<"div">
 }
+
+const StyledDiv = chakra(motion.div)
 
 export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
   function TooltipContent(props, ref) {
@@ -36,17 +39,16 @@ export const TooltipContent = forwardRef<HTMLDivElement, TooltipContentProps>(
     }
 
     return (
-      <chakra.div asChild css={styles} {...api.getContentProps(restProps, ref)}>
-        <motion.div
-          variants={scale}
-          initial="exit"
-          animate="enter"
-          exit="exit"
-          {...motionProps}
-        >
-          {props.children}
-        </motion.div>
-      </chakra.div>
+      <StyledDiv
+        {...api.getContentProps(restProps, ref)}
+        variants={scale}
+        initial="exit"
+        animate="enter"
+        exit="exit"
+        {...(motionProps as any)}
+        className={cx("chakra-tooltip__content", props.className)}
+        css={[styles, props.css]}
+      />
     )
   },
 )

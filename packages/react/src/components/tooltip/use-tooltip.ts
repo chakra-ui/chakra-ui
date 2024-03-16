@@ -235,8 +235,9 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
 
   const getTriggerProps: PropGetterFn<"button"> = useCallback(
     (props = {}, _ref = null) => {
-      const triggerProps = {
+      return {
         ...props,
+        type: "button",
         ref: mergeRefs(ref, _ref, referenceRef),
         onPointerEnter: callAllHandlers(props.onPointerEnter, (e) => {
           if (e.pointerType === "touch") return
@@ -248,8 +249,6 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
         onBlur: callAllHandlers(props.onBlur, closeWithDelay),
         "aria-describedby": open ? tooltipId : undefined,
       }
-
-      return triggerProps
     },
     [
       openWithDelay,
