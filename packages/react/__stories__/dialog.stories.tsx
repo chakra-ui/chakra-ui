@@ -5,18 +5,10 @@ import { HiX } from "react-icons/hi"
 import Lorem from "react-lorem-component"
 import { Box, Button, IconButton, Input } from "../src"
 import { Dialog } from "../src/components/dialog"
-import { PortalManager } from "../src/components/portal"
 import { chakra } from "../src/styled-system"
 
 export default {
   title: "Components / Dialog",
-  decorators: [
-    (StoryFn: any) => (
-      <PortalManager>
-        <StoryFn />
-      </PortalManager>
-    ),
-  ],
 }
 
 export const Basic = () => {

@@ -14,7 +14,7 @@ const AvatarComp = (
   )
 }
 
-describe("accessibility", () => {
+describe("Avatar", () => {
   test("passes a11y test", async () => {
     await testA11y(<AvatarComp />, {
       axeOptions: {

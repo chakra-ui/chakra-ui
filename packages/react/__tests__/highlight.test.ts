@@ -1,7 +1,7 @@
 import { hooks } from "@chakra-ui/test-utils"
 import { useHighlight } from "../src/components/highlight/use-highlight"
 
-describe("useHighlight", () => {
+describe("Highlight", () => {
   test.each([[], ""])(
     "useHighlight returns no matches if queries is empty but returns original value",
     (query) => {

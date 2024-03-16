@@ -13,162 +13,164 @@ const DemoSwitch = (props: Switch.RootProps) => {
   )
 }
 
-test("Uncontrolled - should check and uncheck", async () => {
-  const { user } = render(<DemoSwitch />)
-  const input = screen.getByRole("checkbox")
+describe("Switch", () => {
+  test("Uncontrolled - should check and uncheck", async () => {
+    const { user } = render(<DemoSwitch />)
+    const input = screen.getByRole("checkbox")
 
-  await act(() => user.click(input))
-  expect(input).toBeChecked()
+    await act(() => user.click(input))
+    expect(input).toBeChecked()
 
-  await act(() => user.click(input))
-  expect(input).not.toBeChecked()
-})
+    await act(() => user.click(input))
+    expect(input).not.toBeChecked()
+  })
 
-test("Uncontrolled - should not check if disabled", async () => {
-  const { user } = render(<DemoSwitch disabled />)
-  const input = screen.getByRole("checkbox")
-  expect(input).toBeDisabled()
+  test("Uncontrolled - should not check if disabled", async () => {
+    const { user } = render(<DemoSwitch disabled />)
+    const input = screen.getByRole("checkbox")
+    expect(input).toBeDisabled()
 
-  await act(() => user.click(input))
-  expect(input).not.toBeChecked()
-})
+    await act(() => user.click(input))
+    expect(input).not.toBeChecked()
+  })
 
-test("Controlled - should check and uncheck", async () => {
-  const onChange = vi.fn()
+  test("Controlled - should check and uncheck", async () => {
+    const onChange = vi.fn()
 
-  const ControlledSwitch = () => {
-    const [checked, setChecked] = useState(false)
-    return (
-      <DemoSwitch
-        checked={checked}
-        onChange={(e) => {
-          onChange()
-          setChecked(e.target.checked)
-        }}
-      />
+    const ControlledSwitch = () => {
+      const [checked, setChecked] = useState(false)
+      return (
+        <DemoSwitch
+          checked={checked}
+          onChange={(e) => {
+            onChange()
+            setChecked(e.target.checked)
+          }}
+        />
+      )
+    }
+
+    const { user } = render(<ControlledSwitch />)
+    const input = screen.getByRole("checkbox")
+    expect(input).not.toBeChecked()
+
+    await act(() => user.click(input))
+
+    expect(input).toBeChecked()
+    expect(onChange).toHaveBeenCalled()
+
+    await act(() => user.click(input))
+
+    expect(input).not.toBeChecked()
+    expect(onChange).toHaveBeenCalled()
+  })
+
+  test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
+    const { user } = render(
+      <Field.Root disabled mt="4">
+        <Field.Label>Disabled Opt-in Example</Field.Label>
+        <DemoSwitch />
+        <DemoSwitch disabled />
+        <DemoSwitch disabled={false} />
+      </Field.Root>,
     )
-  }
 
-  const { user } = render(<ControlledSwitch />)
-  const input = screen.getByRole("checkbox")
-  expect(input).not.toBeChecked()
+    const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
 
-  await act(() => user.click(input))
+    expect(inputA).toBeDisabled()
+    expect(inputB).toBeDisabled()
+    expect(inputC).not.toBeDisabled()
 
-  expect(input).toBeChecked()
-  expect(onChange).toHaveBeenCalled()
+    await act(() => user.click(inputA))
+    await act(() => user.click(inputB))
+    await act(() => user.click(inputC))
 
-  await act(() => user.click(input))
+    expect(inputA).not.toBeChecked()
+    expect(inputB).not.toBeChecked()
+    expect(inputC).toBeChecked()
+  })
 
-  expect(input).not.toBeChecked()
-  expect(onChange).toHaveBeenCalled()
-})
+  test("Uncontrolled FormControl - mark label as invalid", () => {
+    render(
+      <Field.Root invalid mt="4">
+        <Field.Label>Invalid Opt-in Example</Field.Label>
+        <DemoSwitch>Invalid Opt-in 1</DemoSwitch>
+        <DemoSwitch invalid>Invalid Opt-in 2</DemoSwitch>
+        <DemoSwitch invalid={false}>Invalid Opt-in 3</DemoSwitch>
+      </Field.Root>,
+    )
 
-test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
-  const { user } = render(
-    <Field.Root disabled mt="4">
-      <Field.Label>Disabled Opt-in Example</Field.Label>
-      <DemoSwitch />
-      <DemoSwitch disabled />
-      <DemoSwitch disabled={false} />
-    </Field.Root>,
-  )
+    const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
 
-  const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
+    expect(inputA).toHaveAttribute("aria-invalid", "true")
+    expect(inputB).toHaveAttribute("aria-invalid", "true")
+    expect(inputC).toHaveAttribute("aria-invalid", "false")
+  })
 
-  expect(inputA).toBeDisabled()
-  expect(inputB).toBeDisabled()
-  expect(inputC).not.toBeDisabled()
+  test("Uncontrolled FormControl - mark required", () => {
+    render(
+      <Field.Root required mt="4">
+        <Field.Label>Required Opt-in Example</Field.Label>
+        <DemoSwitch />
+        <DemoSwitch required />
+        <DemoSwitch required={false} />
+      </Field.Root>,
+    )
 
-  await act(() => user.click(inputA))
-  await act(() => user.click(inputB))
-  await act(() => user.click(inputC))
+    const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
 
-  expect(inputA).not.toBeChecked()
-  expect(inputB).not.toBeChecked()
-  expect(inputC).toBeChecked()
-})
+    expect(inputA).toBeRequired()
+    expect(inputB).toBeRequired()
+    expect(inputC).not.toBeRequired()
+  })
 
-test("Uncontrolled FormControl - mark label as invalid", () => {
-  render(
-    <Field.Root invalid mt="4">
-      <Field.Label>Invalid Opt-in Example</Field.Label>
-      <DemoSwitch>Invalid Opt-in 1</DemoSwitch>
-      <DemoSwitch invalid>Invalid Opt-in 2</DemoSwitch>
-      <DemoSwitch invalid={false}>Invalid Opt-in 3</DemoSwitch>
-    </Field.Root>,
-  )
+  test("Uncontrolled FormControl - mark readonly", () => {
+    render(
+      <Field.Root readOnly mt="4">
+        <Field.Label>ReadOnly Opt-in Example</Field.Label>
+        <DemoSwitch />
+      </Field.Root>,
+    )
 
-  const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
+    const inputEl = screen.getByRole("checkbox")
+    expect(inputEl).toHaveAttribute("readonly")
+  })
 
-  expect(inputA).toHaveAttribute("aria-invalid", "true")
-  expect(inputB).toHaveAttribute("aria-invalid", "true")
-  expect(inputC).toHaveAttribute("aria-invalid", "false")
-})
+  test("Uncontrolled FormControl - calls all onFocus EventHandler", async () => {
+    const onFocus = vi.fn()
+    const _onFocus = vi.fn()
 
-test("Uncontrolled FormControl - mark required", () => {
-  render(
-    <Field.Root required mt="4">
-      <Field.Label>Required Opt-in Example</Field.Label>
-      <DemoSwitch />
-      <DemoSwitch required />
-      <DemoSwitch required={false} />
-    </Field.Root>,
-  )
+    const { user } = render(
+      <Field.Root mt="4" onFocus={onFocus}>
+        <Field.Label>onFocus Example</Field.Label>
+        <DemoSwitch onFocus={_onFocus} />
+      </Field.Root>,
+    )
 
-  const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
+    const inputEl = screen.getByRole("checkbox")
+    await act(() => user.click(inputEl))
 
-  expect(inputA).toBeRequired()
-  expect(inputB).toBeRequired()
-  expect(inputC).not.toBeRequired()
-})
+    expect(onFocus).toHaveBeenCalled()
+    expect(_onFocus).toHaveBeenCalled()
+  })
 
-test("Uncontrolled FormControl - mark readonly", () => {
-  render(
-    <Field.Root readOnly mt="4">
-      <Field.Label>ReadOnly Opt-in Example</Field.Label>
-      <DemoSwitch />
-    </Field.Root>,
-  )
+  test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
+    const onBlur = vi.fn()
+    const _onBlur = vi.fn()
 
-  const inputEl = screen.getByRole("checkbox")
-  expect(inputEl).toHaveAttribute("readonly")
-})
+    render(
+      <Field.Root mt="4" onBlur={onBlur}>
+        <Field.Label>onBlur Example</Field.Label>
+        <DemoSwitch onBlur={_onBlur} />
+      </Field.Root>,
+    )
 
-test("Uncontrolled FormControl - calls all onFocus EventHandler", async () => {
-  const onFocus = vi.fn()
-  const _onFocus = vi.fn()
+    const inputEl = screen.getByRole("checkbox")
 
-  const { user } = render(
-    <Field.Root mt="4" onFocus={onFocus}>
-      <Field.Label>onFocus Example</Field.Label>
-      <DemoSwitch onFocus={_onFocus} />
-    </Field.Root>,
-  )
+    fireEvent.focus(inputEl)
+    fireEvent.blur(inputEl)
 
-  const inputEl = screen.getByRole("checkbox")
-  await act(() => user.click(inputEl))
-
-  expect(onFocus).toHaveBeenCalled()
-  expect(_onFocus).toHaveBeenCalled()
-})
-
-test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
-  const onBlur = vi.fn()
-  const _onBlur = vi.fn()
-
-  render(
-    <Field.Root mt="4" onBlur={onBlur}>
-      <Field.Label>onBlur Example</Field.Label>
-      <DemoSwitch onBlur={_onBlur} />
-    </Field.Root>,
-  )
-
-  const inputEl = screen.getByRole("checkbox")
-
-  fireEvent.focus(inputEl)
-  fireEvent.blur(inputEl)
-
-  expect(onBlur).toHaveBeenCalled()
-  expect(_onBlur).toHaveBeenCalled()
+    expect(onBlur).toHaveBeenCalled()
+    expect(_onBlur).toHaveBeenCalled()
+  })
 })

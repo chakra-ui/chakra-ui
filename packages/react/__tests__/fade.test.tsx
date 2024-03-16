@@ -2,7 +2,7 @@ import { render } from "@chakra-ui/test-utils"
 import { MotionGlobalConfig } from "framer-motion"
 import { Fade } from "../src"
 
-describe("<Fade />", () => {
+describe("Fade", () => {
   test("shouldn't fade in its children when skipAnimations enabled", async () => {
     MotionGlobalConfig.skipAnimations = true
     const component = render(

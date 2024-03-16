@@ -12,7 +12,7 @@ const sliderProps = createProps<UseRangeSliderProps>()([
   "id",
   "disabled",
   "readOnly",
-  "isReversed",
+  "reversed",
   "max",
   "min",
   "minStepsBetweenThumbs",

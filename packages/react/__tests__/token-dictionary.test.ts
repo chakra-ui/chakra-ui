@@ -20,15 +20,11 @@ describe("token dictionary", () => {
       [
         {
           "name": "colors.pink",
-          "value": {
-            "value": "#ff00ff",
-          },
+          "value": "#ff00ff",
         },
         {
           "name": "colors.red.300",
-          "value": {
-            "value": "#ff0000",
-          },
+          "value": "#ff0000",
         },
         {
           "name": "colors.colorPalette",
@@ -62,16 +58,16 @@ describe("token dictionary", () => {
           "value": "#fff",
         },
         {
+          "name": "colors.button.primary",
+          "value": "red",
+        },
+        {
           "name": "colors.disabled",
           "value": "#333",
         },
         {
           "name": "colors.disabled",
           "value": "#222",
-        },
-        {
-          "name": "colors.button.primary",
-          "value": "red",
         },
         {
           "name": "colors.colorPalette",
@@ -121,8 +117,8 @@ describe("token dictionary", () => {
             },
             "condition": "base",
             "cssVar": {
-              "ref": "var(--colors\\.red)",
-              "var": "--colors\\.red",
+              "ref": "var(--colors-red)",
+              "var": "--colors-red",
             },
             "default": true,
             "originalPath": [
@@ -132,68 +128,26 @@ describe("token dictionary", () => {
             "prop": "red",
           },
           "name": "colors.red",
-          "originalValue": {
-            "value": "#red",
-          },
+          "originalValue": "#red",
           "path": [
             "colors",
             "red",
           ],
-          "value": {
-            "value": "#red",
-          },
-        },
-        {
-          "extensions": {
-            "category": "colors",
-            "colorPalette": {
-              "keys": [
-                [
-                  "",
-                ],
-              ],
-              "roots": [
-                [
-                  "error",
-                ],
-              ],
-              "value": "error",
-            },
-            "condition": "value",
-            "conditions": {
-              "value": "{colors.red}",
-            },
-            "cssVar": {
-              "ref": "var(--colors\\.error)",
-              "var": "--colors\\.error",
-            },
-            "originalPath": [
-              "colors",
-              "error",
-            ],
-            "prop": "error",
-          },
-          "name": "colors.error",
-          "originalValue": "",
-          "path": [
-            "colors",
-            "error",
-          ],
-          "value": "var(--colors\\.red)",
+          "value": "#red",
         },
         {
           "extensions": {
             "category": "colors",
             "condition": "base",
             "cssVar": {
-              "ref": "var(--colors\\.color-palette)",
-              "var": "--colors\\.color-palette",
+              "ref": "var(--colors-color-palette)",
+              "var": "--colors-color-palette",
             },
             "originalPath": [
               "colors",
               "colorPalette",
             ],
-            "prop": "colors.colorPalette",
+            "prop": "colorPalette",
             "virtual": true,
           },
           "name": "colors.colorPalette",

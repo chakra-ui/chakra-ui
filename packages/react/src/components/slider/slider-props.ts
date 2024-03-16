@@ -12,7 +12,7 @@ const sliderProps = createProps<UseSliderProps>()([
   "id",
   "disabled",
   "readOnly",
-  "isReversed",
+  "reversed",
   "max",
   "min",
   "name",

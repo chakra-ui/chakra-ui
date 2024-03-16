@@ -30,7 +30,7 @@ const [Toaster, toast] = createToaster({
   },
 })
 
-describe("toast", () => {
+describe("Toast", () => {
   test("should accept default options", async () => {
     const title = "Yay!"
     const description = "Something awesome happened"

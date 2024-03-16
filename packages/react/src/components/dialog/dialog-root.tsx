@@ -16,7 +16,7 @@ export interface DialogRootProps
   /**
    * Props to be forwarded to the portal component
    */
-  portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
+  portalProps?: PortalProps
   /**
    * The transition that should be used for the dialog
    * @default "scale"

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
+import { act, fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { UsePopoverProps, usePopover } from "../src/components/popover"
 
@@ -209,22 +209,21 @@ describe("Popover", () => {
 
     expect(document.body).toHaveFocus()
 
-    await user.tab()
-
+    await act(() => user.tab())
     expect(openButton).toHaveFocus()
 
     // open the popover, and it will have focus and be visible.
-    await user.tab()
+    await act(() => user.tab())
     expect(content).toHaveFocus()
     expect(content).toBeVisible()
 
     // move focus to next focusable element. Popover should be visible still.
-    await user.tab()
+    await act(() => user.tab())
     expect(innerButton).toHaveFocus()
     expect(innerButton).toBeVisible()
 
     // Close the popover. This should make Popover invisible.
-    await user.tab()
+    await act(() => user.tab())
     expect(closeButton).toHaveFocus()
     expect(content).not.toBeVisible()
   })

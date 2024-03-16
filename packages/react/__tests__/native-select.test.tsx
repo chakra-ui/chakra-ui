@@ -18,30 +18,32 @@ const DemoSelect = (props: NativeSelect.RootProps) => {
   )
 }
 
-test("should pass a11y check", async () => {
-  const { container } = render(<DemoSelect />)
-  await testA11y(container)
-})
+describe("NativeSelect", () => {
+  test("should pass a11y check", async () => {
+    const { container } = render(<DemoSelect />)
+    await testA11y(container)
+  })
 
-test("renders a placeholder option", () => {
-  render(<DemoSelect />)
-  const option = screen.getByRole("option", { name: "Select an option" })
-  expect(option).toBeInTheDocument()
-  expect(option).toHaveTextContent("Select an option")
-})
+  test("renders a placeholder option", () => {
+    render(<DemoSelect />)
+    const option = screen.getByRole("option", { name: "Select an option" })
+    expect(option).toBeInTheDocument()
+    expect(option).toHaveTextContent("Select an option")
+  })
 
-test("renders in disabled state if disabled is true", () => {
-  render(<DemoSelect disabled />)
-  const select = screen.getByRole("combobox")
-  expect(select).toBeDisabled()
-})
+  test("renders in disabled state if disabled is true", () => {
+    render(<DemoSelect disabled />)
+    const select = screen.getByRole("combobox")
+    expect(select).toBeDisabled()
+  })
 
-test("renders in disabled state if wrapped by Field has disabled=true", () => {
-  render(
-    <Field.Root disabled>
-      <DemoSelect />,
-    </Field.Root>,
-  )
-  const select = screen.getByRole("combobox")
-  expect(select).toBeDisabled()
+  test("renders in disabled state if wrapped by Field has disabled=true", () => {
+    render(
+      <Field.Root disabled>
+        <DemoSelect />,
+      </Field.Root>,
+    )
+    const select = screen.getByRole("combobox")
+    expect(select).toBeDisabled()
+  })
 })

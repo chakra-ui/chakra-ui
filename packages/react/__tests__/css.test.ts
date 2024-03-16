@@ -2,7 +2,7 @@ import fixtureSystem from "../__fixtures__/system"
 
 const { css } = fixtureSystem
 
-describe("create css", () => {
+describe("css", () => {
   test("works", () => {
     expect(
       css({
