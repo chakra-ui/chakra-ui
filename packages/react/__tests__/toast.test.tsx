@@ -1,4 +1,4 @@
-import { render, screen } from "@chakra-ui/test-utils"
+import { act, render, screen } from "@chakra-ui/test-utils"
 import { HiX } from "react-icons/hi"
 import { Box, IconButton, Stack, Toast, createToaster } from "../src"
 
@@ -30,7 +30,7 @@ const [Toaster, toast] = createToaster({
   },
 })
 
-describe("useToast", () => {
+describe("toast", () => {
   test("should accept default options", async () => {
     const title = "Yay!"
     const description = "Something awesome happened"
@@ -43,7 +43,7 @@ describe("useToast", () => {
     )
 
     const button = await screen.findByText("Toast")
-    await user.click(button)
+    await act(() => user.click(button))
 
     const allByTitle = await screen.findAllByText(title)
     const allByDescription = await screen.findAllByText(description)
@@ -80,7 +80,7 @@ describe("useToast", () => {
     )
 
     const button = screen.getByText("Toast")
-    await user.click(button)
+    await act(() => user.click(button))
 
     const loadingText = await screen.findByText(loadingTitle)
     expect(loadingText).toBeInTheDocument()

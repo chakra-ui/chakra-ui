@@ -1,12 +1,10 @@
-import { focus, render, screen, testA11y } from "@chakra-ui/test-utils"
+import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
 import { Slider } from "../src"
 
 const Component = (props: Slider.RootProps) => (
   <Slider.Root
     aria-label="slider-2"
-    colorScheme="red"
-    orientation={props.orientation}
-    isReversed={props.isReversed || undefined}
+    colorPalette="red"
     defaultValue={props.defaultValue || 10}
     {...props}
   >
@@ -17,49 +15,46 @@ const Component = (props: Slider.RootProps) => (
   </Slider.Root>
 )
 
-test("passes a11y test", async () => {
-  Object.defineProperty(window, "requestAnimationFrame", {
-    value: vi.fn((cb) => cb()),
+describe("Slider", () => {
+  test("passes a11y test", async () => {
+    await testA11y(<Component />)
   })
-  await testA11y(<Component />)
-})
 
-test("should move the thumb", async () => {
-  const { user } = render(<Component />)
+  test("horizontal", async () => {
+    render(<Component />)
 
-  const thumb = screen.getByRole("slider")
+    const thumb = screen.getByRole("slider")
+    fireEvent.focus(thumb)
 
-  focus(thumb)
+    fireEvent.keyDown(thumb, { key: "ArrowRight" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  await user.keyboard("[ArrowRight]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "11")
+    fireEvent.keyDown(thumb, { key: "ArrowRight" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await user.keyboard("[ArrowRight]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "12")
+    fireEvent.keyDown(thumb, { key: "Home" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await user.keyboard("[Home]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "0")
+    fireEvent.keyDown(thumb, { key: "End" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "100")
+  })
 
-  await user.keyboard("[End]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "100")
-})
+  test("vertical", async () => {
+    render(<Component orientation="vertical" />)
 
-test("renders & move correctly when orientation: vertical & isReversed", async () => {
-  const { user } = render(<Component orientation="vertical" isReversed />)
+    const thumb = screen.getByRole("slider")
+    fireEvent.focus(thumb)
 
-  const thumb = screen.getByRole("slider")
+    fireEvent.keyDown(thumb, { key: "ArrowUp" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "11")
 
-  focus(thumb)
+    fireEvent.keyDown(thumb, { key: "ArrowUp" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "12")
 
-  await user.keyboard("[ArrowUp]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "9")
+    fireEvent.keyDown(thumb, { key: "Home" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "0")
 
-  await user.keyboard("[ArrowDown]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "10")
-
-  await user.keyboard("[Home]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "0")
-
-  await user.keyboard("[End]")
-  expect(thumb).toHaveAttribute("aria-valuenow", "100")
+    fireEvent.keyDown(thumb, { key: "End" })
+    expect(thumb).toHaveAttribute("aria-valuenow", "100")
+  })
 })

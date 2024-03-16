@@ -17,12 +17,7 @@ import {
 } from "@chakra-ui/utils"
 import type { PropGetter, RequiredPropGetter } from "@chakra-ui/utils"
 import { useCallback, useId, useMemo, useRef, useState } from "react"
-import {
-  getIds,
-  getIsReversed,
-  getStyles,
-  orient,
-} from "../slider/slider-utils"
+import { getIds, getReversed, getStyles, orient } from "../slider/slider-utils"
 
 export interface UseRangeSliderProps {
   /**
@@ -57,7 +52,7 @@ export interface UseRangeSliderProps {
    * If `true`, the value will be incremented or decremented in reverse.
    * @default false
    */
-  isReversed?: boolean
+  reversed?: boolean
 
   /**
    * Function called when the user starts selecting a new value (by dragging or clicking)
@@ -166,7 +161,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     onChange,
     value: valueProp,
     defaultValue,
-    isReversed: isReversedProp,
+    reversed: reversedProp,
     direction = "ltr",
     orientation = "horizontal",
     id: idProp,
@@ -189,8 +184,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
 
-  const isReversed = getIsReversed({
-    isReversed: isReversedProp,
+  const reversed = getReversed({
+    reversed: reversedProp,
     direction,
     orientation,
   })
@@ -233,7 +228,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   stateRef.current.valueBounds = valueBounds
 
   const reversedValue = value.map((val) => max - val + min)
-  const thumbValues = isReversed ? reversedValue : value
+  const thumbValues = reversed ? reversedValue : value
   const thumbPercents = thumbValues.map((val) => valueToPercent(val, min, max))
 
   const isVertical = orientation === "vertical"
@@ -265,11 +260,11 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       const length = isVertical ? rect.height : rect.width
 
       let percent = diff / length
-      if (isReversed) percent = 1 - percent
+      if (reversed) percent = 1 - percent
 
       return percentToValue(percent, min, max)
     },
-    [isVertical, isReversed, max, min],
+    [isVertical, reversed, max, min],
   )
 
   const tenSteps = (max - min) / 10
@@ -289,19 +284,19 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       setActiveIndex,
       stepUp(index: number, step = oneStep) {
         const valueAtIndex = stateRef.current.value[index]
-        const next = isReversed ? valueAtIndex - step : valueAtIndex + step
+        const next = reversed ? valueAtIndex - step : valueAtIndex + step
         actions.setValueAtIndex(index, next)
       },
       stepDown(index: number, step = oneStep) {
         const valueAtIndex = stateRef.current.value[index]
-        const next = isReversed ? valueAtIndex + step : valueAtIndex - step
+        const next = reversed ? valueAtIndex + step : valueAtIndex - step
         actions.setValueAtIndex(index, next)
       },
       reset() {
         setValue(initialValue.current)
       },
     }),
-    [oneStep, isReversed, setValue, isInteractive],
+    [oneStep, reversed, setValue, isInteractive],
   )
 
   /**
@@ -346,12 +341,12 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } = useMemo(
     () =>
       getStyles({
-        isReversed,
+        reversed,
         orientation,
         thumbRects,
         thumbPercents,
       }),
-    [isReversed, orientation, thumbPercents, thumbRects],
+    [reversed, orientation, thumbPercents, thumbRects],
   )
 
   const focusThumb = useCallback(
@@ -555,7 +550,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       const isHighlighted = v >= value[0] && v <= value[value.length - 1]
 
       let percent = valueToPercent(v, min, max)
-      percent = isReversed ? 100 - percent : percent
+      percent = reversed ? 100 - percent : percent
 
       const markerStyle: React.CSSProperties = {
         position: "absolute",
@@ -582,7 +577,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         },
       }
     },
-    [disabled, isReversed, max, min, orientation, value, ids],
+    [disabled, reversed, max, min, orientation, value, ids],
   )
 
   const getInputProps: RequiredPropGetter<{ index: number }> = useCallback(

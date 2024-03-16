@@ -150,7 +150,7 @@ describe("focus action", () => {
   })
 })
 
-test("should use unique id when wrapped in FormControl", () => {
+test("should use unique id when wrapped in Field", () => {
   const Component = () => {
     const { getRootProps, getItemProps, setValue } = useRadioGroup()
 
