@@ -4,6 +4,8 @@ import {
   HTMLChakraProps,
   SlotRecipeProps,
   chakra,
+  mergeProps,
+  useParentRecipeProps,
   useSlotRecipe,
 } from "../../styled-system"
 import {
@@ -12,66 +14,54 @@ import {
   useCheckboxGroupContext,
 } from "./checkbox-context"
 import { splitCheckboxProps } from "./checkbox-props"
-import { CheckboxOptions, UseCheckboxProps } from "./checkbox-types"
+import { UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
 
-type CheckboxControlProps = Omit<HTMLChakraProps<"div">, keyof UseCheckboxProps>
-
-type BaseInputProps = Pick<
-  React.ComponentPropsWithoutRef<"input">,
-  "onBlur" | "checked" | "defaultChecked"
->
-
 export interface CheckboxRootProps
-  extends CheckboxControlProps,
-    BaseInputProps,
-    SlotRecipeProps<"Checkbox">,
-    UseCheckboxProps,
-    CheckboxOptions {}
+  extends HTMLChakraProps<"label", UseCheckboxProps>,
+    SlotRecipeProps<"Checkbox"> {
+  /**
+   * Additional props to be forwarded to the `input` element
+   */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+}
 
 export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
   function Checkbox(props, ref) {
     const group = useCheckboxGroupContext()
-    const mergedProps = { ...group, ...props } as CheckboxRootProps
+    const groupVariantProps = useParentRecipeProps()
+
+    const mergedProps = mergeProps(
+      groupVariantProps,
+      props,
+    ) as CheckboxRootProps
 
     const recipe = useSlotRecipe("Checkbox", props.recipe)
     const [variantProps, ownProps] = recipe.splitVariantProps(mergedProps)
     const styles = recipe(variantProps)
-    console.log(styles)
 
-    const {
-      children,
-      checked: checkedProp,
-      disabled = group?.disabled,
-      onChange: onChangeProp,
-      inputProps,
-      ...restProps
-    } = ownProps
-
-    let checked = checkedProp
     if (group?.value && ownProps.value) {
-      checked = group.value.includes(ownProps.value)
+      ownProps.checked = group.value.includes(ownProps.value)
     }
 
-    let onChange = onChangeProp
     if (group?.onChange && ownProps.value) {
-      onChange = callAll(group.onChange, onChangeProp)
+      ownProps.onChange = callAll(group.onChange, ownProps.onChange)
     }
 
-    const [checkboxProps, localProps] = splitCheckboxProps(restProps)
+    if (group?.disabled && ownProps.disabled == null) {
+      ownProps.disabled = group.disabled
+    }
 
-    const api = useCheckbox({
-      ...checkboxProps,
-      disabled,
-      checked,
-      onChange,
-    })
+    const [checkboxProps, localProps] = splitCheckboxProps(ownProps)
+    const api = useCheckbox(checkboxProps)
+
+    const { inputProps, ...elementProps } = localProps
 
     return (
       <CheckboxStylesProvider value={styles}>
         <CheckboxContextProvider value={api}>
           <chakra.label
-            {...api.getRootProps(localProps)}
+            {...api.getRootProps(elementProps)}
             css={[styles.root, props.css]}
             className={cx("chakra-checkbox", props.className)}
           >
@@ -79,7 +69,7 @@ export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
               {...api.getInputProps(inputProps, ref)}
               className="chakra-checkbox__input"
             />
-            {children}
+            {props.children}
           </chakra.label>
         </CheckboxContextProvider>
       </CheckboxStylesProvider>

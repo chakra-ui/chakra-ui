@@ -122,13 +122,6 @@ export interface UseCheckboxProps {
   tabIndex?: number
 }
 
-export interface CheckboxOptions {
-  /**
-   * Additional props to be forwarded to the `input` element
-   */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-}
-
 export interface CheckboxGroupContext
   extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "disabled">,
     Omit<SlotRecipeProps<"Checkbox">, "orientation"> {}

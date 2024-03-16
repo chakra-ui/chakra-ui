@@ -71,7 +71,6 @@ export const addVirtualPalette: TokenMiddleware = {
         const colorPaletteList = colorPalettes.get(name) || []
         colorPaletteList.push(token)
         colorPalettes.set(name, colorPaletteList)
-        // console.log(colorPalettes)
 
         if (token.extensions.default && colorPaletteRoot.length === 1) {
           const keyPath = colorPalette.keys[0]?.filter(Boolean)

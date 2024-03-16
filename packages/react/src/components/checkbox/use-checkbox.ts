@@ -6,6 +6,7 @@ import {
 } from "@chakra-ui/hooks"
 import type { PropGetter } from "@chakra-ui/utils"
 import { callAllHandlers, dataAttr } from "@chakra-ui/utils"
+import { getEventTarget } from "@zag-js/dom-utils"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useFieldProps } from "../field"
@@ -64,8 +65,8 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
 
   const [checkedState, setCheckedState] = useState(!!defaultChecked)
 
-  const isControlled = checkedProp !== undefined
-  const checked = isControlled ? checkedProp : checkedState
+  const controlled = checkedProp !== undefined
+  const checked = controlled ? checkedProp : checkedState
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,17 +75,16 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         return
       }
 
-      if (!isControlled) {
+      if (!controlled) {
         if (checked) {
-          setCheckedState(event.target.checked)
+          setCheckedState(event.currentTarget.checked)
         } else {
-          setCheckedState(indeterminate ? true : event.target.checked)
+          setCheckedState(indeterminate ? true : event.currentTarget.checked)
         }
       }
-
       onChangeProp?.(event)
     },
-    [readOnly, disabled, checked, isControlled, indeterminate, onChangeProp],
+    [readOnly, disabled, checked, controlled, indeterminate, onChangeProp],
   )
 
   useSafeLayoutEffect(() => {
@@ -105,9 +105,7 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
   useSafeLayoutEffect(() => {
     const el = inputRef.current
     if (!el?.form) return
-    const formResetListener = () => {
-      setCheckedState(!!defaultChecked)
-    }
+    const formResetListener = () => setCheckedState(!!defaultChecked)
     el.form.addEventListener("reset", formResetListener)
     return () => el.form?.removeEventListener("reset", formResetListener)
   }, [])
@@ -183,6 +181,12 @@ export function useCheckbox(props: UseCheckboxProps = {}) {
         onMouseLeave: callAllHandlers(props.onMouseLeave, () =>
           setHovered(false),
         ),
+        onClick(event) {
+          const target = getEventTarget(event.nativeEvent)
+          if (target === inputRef.current) {
+            event.stopPropagation()
+          }
+        },
       }
     },
     [

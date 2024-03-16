@@ -1,5 +1,5 @@
 import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
-import { isObject } from "@chakra-ui/utils"
+import { callAll, isObject } from "@chakra-ui/utils"
 import { useCallback } from "react"
 import { EventOrValue, UseCheckboxGroupProps } from "./checkbox-types"
 
@@ -48,12 +48,12 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
     [setValue, value],
   )
 
-  const getCheckboxProps = useCallback(
+  const getInputProps = useCallback(
     (props: Record<string, any> = {}) => {
       return {
         ...props,
         checked: value.some((val) => String(props.value) === String(val)),
-        onChange: handleChange,
+        onChange: callAll(handleChange, props.onChange),
       }
     },
     [handleChange, value],
@@ -61,10 +61,10 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
 
   return {
     value,
+    setValue,
     disabled,
     onChange: handleChange,
-    setValue,
-    getCheckboxProps,
+    getInputProps,
   }
 }
 
