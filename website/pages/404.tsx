@@ -22,12 +22,12 @@ const NotFoundPage = () => {
         <Text fontSize={{ md: 'xl' }}>
           You just hit a route that doesn't exist... the sadness.😢
         </Text>
-        <NextLink href='/' passHref>
-          <Button as='a' colorPalette='teal' size='lg'>
+        <Button asChild colorPalette='teal' size='lg'>
+          <NextLink href='/'>
             <FaHome />
             Back to Home
-          </Button>
-        </NextLink>
+          </NextLink>
+        </Button>
       </VStack>
     </>
   )

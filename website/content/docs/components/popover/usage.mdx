@@ -78,7 +78,7 @@ portal, wrap the `PopoverContent` in a `Portal`
       <PopoverHeader>Header</PopoverHeader>
       <PopoverCloseButton />
       <PopoverBody>
-        <Button colorScheme='blue'>Button</Button>
+        <Button colorPalette='blue'>Button</Button>
       </PopoverBody>
       <PopoverFooter>This is the footer</PopoverFooter>
     </PopoverContent>
@@ -125,8 +125,8 @@ function WalkthroughPopover() {
         >
           <Box fontSize='sm'>Step 2 of 4</Box>
           <ButtonGroup size='sm'>
-            <Button colorScheme='green'>Setup Email</Button>
-            <Button colorScheme='blue' ref={initialFocusRef}>
+            <Button colorPalette='green'>Setup Email</Button>
+            <Button colorPalette='blue' ref={initialFocusRef}>
               Next
             </Button>
           </ButtonGroup>
@@ -162,7 +162,7 @@ const TextInput = React.forwardRef((props, ref) => {
 // 2. Create the form
 const Form = ({ firstFieldRef, onCancel }) => {
   return (
-    <Stack spacing={4}>
+    <Stack gap={4}>
       <TextInput
         label='First name'
         id='first-name'
@@ -174,7 +174,7 @@ const Form = ({ firstFieldRef, onCancel }) => {
         <Button variant='outline' onClick={onCancel}>
           Cancel
         </Button>
-        <Button isDisabled colorScheme='teal'>
+        <Button isDisabled colorPalette='teal'>
           Save
         </Button>
       </ButtonGroup>
@@ -244,7 +244,7 @@ function ControlledUsage() {
         closeOnBlur={false}
       >
         <PopoverTrigger>
-          <Button colorScheme='pink'>Popover Target</Button>
+          <Button colorPalette='pink'>Popover Target</Button>
         </PopoverTrigger>
         <PopoverContent>
           <PopoverHeader fontWeight='semibold'>Confirmation</PopoverHeader>
@@ -256,7 +256,7 @@ function ControlledUsage() {
           <PopoverFooter display='flex' justifyContent='flex-end'>
             <ButtonGroup size='sm'>
               <Button variant='outline'>Cancel</Button>
-              <Button colorScheme='red'>Apply</Button>
+              <Button colorPalette='red'>Apply</Button>
             </ButtonGroup>
           </PopoverFooter>
         </PopoverContent>
@@ -307,7 +307,7 @@ function WithPopoverAnchor() {
         </PopoverAnchor>
 
         <PopoverTrigger>
-          <Button h='40px' colorScheme='pink'>
+          <Button h='40px' colorPalette='pink'>
             {isEditing ? 'Save' : 'Edit'}
           </Button>
         </PopoverTrigger>
@@ -354,7 +354,7 @@ function InternalStateEx() {
                 </Box>
                 <Button
                   mt={4}
-                  colorScheme='blue'
+                  colorPalette='blue'
                   onClick={onClose}
                   ref={initRef}
                 >

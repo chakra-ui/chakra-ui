@@ -50,7 +50,7 @@ or applying image filters.
 ### Changing the slider color scheme
 
 ```jsx
-<Slider aria-label='slider-ex-2' colorScheme='pink' defaultValue={30}>
+<Slider aria-label='slider-ex-2' colorPalette='pink' defaultValue={30}>
   <SliderTrack>
     <SliderFilledTrack />
   </SliderTrack>
@@ -163,7 +163,7 @@ function SliderThumbWithTooltip() {
       defaultValue={5}
       min={0}
       max={100}
-      colorScheme='teal'
+      colorPalette='teal'
       onChange={(v) => setSliderValue(v)}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}

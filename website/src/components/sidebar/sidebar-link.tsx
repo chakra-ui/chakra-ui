@@ -72,9 +72,7 @@ const SidebarLink = ({
         ref={link}
         isExternal={isExternal}
       >
-        <NextLink href={href} passHref>
-          {children}
-        </NextLink>
+        <NextLink href={href}>{children}</NextLink>
       </StyledLink>
     </Flex>
   )

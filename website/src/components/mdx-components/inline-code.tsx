@@ -11,8 +11,8 @@ export const InlineCode = (props: HTMLChakraProps<'code'>) => {
 
   return (
     <Code
-      variant='subtle'
-      colorPalette='teal'
+      variant='plain'
+      colorPalette='purple'
       fontSize='0.9em'
       ref={codeRef}
       whiteSpace={shouldWrap ? undefined : 'nowrap'}

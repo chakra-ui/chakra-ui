@@ -185,20 +185,20 @@ const HomePage = ({
                 justify='center'
                 direction={{ base: 'column', sm: 'row' }}
               >
-                <NextLink href='/getting-started' passHref>
-                  <Button
-                    h='4rem'
-                    px='40px'
-                    fontSize='1.2rem'
-                    as='a'
-                    size='lg'
-                    colorPalette='teal'
-                    variant='solid'
-                  >
+                <Button
+                  asChild
+                  h='4rem'
+                  px='40px'
+                  fontSize='1.2rem'
+                  size='lg'
+                  colorPalette='teal'
+                  variant='solid'
+                >
+                  <NextLink href='/getting-started'>
                     Get Started
                     <FaArrowRight fontSize='0.8em' />
-                  </Button>
-                </NextLink>
+                  </NextLink>
+                </Button>
                 <Button asChild size='lg' h='4rem' px='40px' fontSize='1.2rem'>
                   <a
                     href='https://github.com/chakra-ui/chakra-ui/'

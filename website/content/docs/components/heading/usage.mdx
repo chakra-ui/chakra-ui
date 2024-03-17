@@ -2,7 +2,7 @@
 id: heading
 category: typography
 title: Heading
-package: '@chakra-ui/layout'
+package: '@chakra-ui/react'
 description: Heading is used to render semantic HTML heading elements.
 ---
 
@@ -27,7 +27,7 @@ To increase the visual size of the heading, use the `size` props. This property
 ensures that the heading size automatically adjusts for smaller screens.
 
 ```jsx
-<Stack spacing={6}>
+<Stack gap={6}>
   <Heading as='h1' size='4xl' noOfLines={1}>
     (4xl) In love with React & Next
   </Heading>
@@ -82,12 +82,12 @@ prop. No need to write `css` or `styled()`.
 
 ```jsx
 <Box maxW='32rem'>
-  <Heading mb={4}>Modern online and offline payments for Africa</Heading>
+  <Heading mb='4'>Modern online and offline payments for Africa</Heading>
   <Text fontSize='xl'>
     Paystack helps businesses in Africa get paid by anyone, anywhere in the
     world
   </Text>
-  <Button size='lg' colorScheme='green' mt='24px'>
+  <Button size='lg' colorPalette='green' mt='24px'>
     Create a free account
   </Button>
 </Box>

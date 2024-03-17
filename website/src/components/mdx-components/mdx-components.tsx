@@ -17,7 +17,7 @@ import SandpackEmbed from 'components/sandpack-embed'
 import { TutorialCodeBlock } from 'components/tutorial/tutorial-code-block'
 import { TutorialFileAction } from 'components/tutorial/tutorial-file-action'
 import Image from 'next/image'
-import { FiFigma } from 'react-icons/fi'
+import { FiFigma, FiMinus, FiPlus } from 'react-icons/fi'
 import PropsTable from '../props-table'
 import CarbonAd from './carbon-ad'
 import CodeBlock from './codeblock/codeblock'
@@ -27,8 +27,21 @@ import { VideoPlayer } from './video-player'
 
 const { Alert, AspectRatio, Box, chakra, Kbd, Link } = Chakra
 
+const MdxList = chakra('ul', {
+  base: {
+    mt: '0.5rem',
+    ml: '1.25rem',
+    'blockquote &': { mt: 0 },
+    '& > * + *': {
+      mt: '0.25rem',
+    },
+  },
+})
+
 export const MDXComponents = {
   ...Chakra,
+  FiMinus,
+  FiPlus,
   FiFigma,
   Image: ({ ratio, border, src, ...props }: any) => (
     <AspectRatio
@@ -49,7 +62,7 @@ export const MDXComponents = {
   h2: (props) => <LinkedHeading as='h2' size='h2' {...props} />,
   h3: (props) => <LinkedHeading as='h3' size='h3' {...props} />,
   h4: (props) => <LinkedHeading as='h4' size='h4' {...props} />,
-  hr: (props) => <chakra.hr apply='mdx.hr' {...props} />,
+  hr: (props) => <chakra.hr my='4rem' {...props} />,
   strong: (props) => <Box as='strong' fontWeight='semibold' {...props} />,
   code: InlineCode,
   pre: (props) => {
@@ -81,19 +94,33 @@ export const MDXComponents = {
   th: THead,
   td: TData,
   a: Anchor,
-  p: (props) => <chakra.p apply='mdx.p' {...props} />,
-  ul: (props) => <chakra.ul apply='mdx.ul' {...props} />,
-  ol: (props) => <chakra.ol apply='mdx.ul' {...props} />,
-  li: (props) => <chakra.li pb='4px' {...props} />,
+  p: (props) => (
+    <chakra.p
+      css={{
+        mt: '1.25rem',
+        lineHeight: 1.7,
+        'blockquote &': { mt: 0 },
+      }}
+      {...props}
+    />
+  ),
+  ul: (props) => <MdxList {...props} />,
+  ol: (props) => <MdxList as='ol' {...props} />,
+  li: (props) => <chakra.li pb='4px' listStyleType='disc' {...props} />,
   blockquote: (props) => (
     <Alert.Root
+      as='blockquote'
       mt='4'
       role='none'
+      fontSize='md'
       status='warning'
+      borderWidth='1px'
+      borderColor='orange.200'
       variant='subtle'
-      as='blockquote'
-      rounded='4px'
+      rounded='lg'
       my='1.5rem'
+      px='1.25rem'
+      py='1rem'
       {...props}
     />
   ),

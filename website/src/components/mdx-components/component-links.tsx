@@ -20,7 +20,7 @@ function ComponentLink(props: ComponentLinkProps) {
   const { icon: BtnIcon, url, children, iconSize, iconColor, ...rest } = props
   return (
     <Button
-      as={Link}
+      asChild
       size='sm'
       fontWeight='normal'
       variant='outline'

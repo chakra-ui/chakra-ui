@@ -21,7 +21,7 @@ import { Button, ButtonGroup } from '@chakra-ui/react'
 ## Usage
 
 ```jsx
-<Button colorScheme='blue'>Button</Button>
+<Button colorPalette='blue'>Button</Button>
 ```
 
 ### Button Sizes
@@ -30,17 +30,17 @@ Use the `size` prop to change the size of the button. You can set the value to
 `xs`, `sm`, `md`, or `lg`.
 
 ```jsx
-<Stack spacing={4} direction='row' align='center'>
-  <Button colorScheme='teal' size='xs'>
+<Stack gap={4} direction='row' align='center'>
+  <Button colorPalette='teal' size='xs'>
     Button
   </Button>
-  <Button colorScheme='teal' size='sm'>
+  <Button colorPalette='teal' size='sm'>
     Button
   </Button>
-  <Button colorScheme='teal' size='md'>
+  <Button colorPalette='teal' size='md'>
     Button
   </Button>
-  <Button colorScheme='teal' size='lg'>
+  <Button colorPalette='teal' size='lg'>
     Button
   </Button>
 </Stack>
@@ -52,17 +52,17 @@ Use the `variant` prop to change the visual style of the Button. You can set the
 value to `solid`, `outline`, `ghost`, or `link`.
 
 ```jsx
-<Stack direction='row' spacing={4} align='center'>
-  <Button colorScheme='teal' variant='solid'>
+<Stack direction='row' gap={4} align='center'>
+  <Button colorPalette='teal' variant='solid'>
     Button
   </Button>
-  <Button colorScheme='teal' variant='outline'>
+  <Button colorPalette='teal' variant='outline'>
     Button
   </Button>
-  <Button colorScheme='teal' variant='ghost'>
+  <Button colorPalette='teal' variant='ghost'>
     Button
   </Button>
-  <Button colorScheme='teal' variant='link'>
+  <Button colorPalette='teal' variant='link'>
     Button
   </Button>
 </Stack>
@@ -88,41 +88,41 @@ the value to any of the color scales from your design system, like `whiteAlpha`,
     mb={2}
   >
     <ButtonGroup gap='4'>
-      <Button colorScheme='whiteAlpha'>WhiteAlpha</Button>
-      <Button colorScheme='blackAlpha'>BlackAlpha</Button>
+      <Button colorPalette='whiteAlpha'>WhiteAlpha</Button>
+      <Button colorPalette='blackAlpha'>BlackAlpha</Button>
     </ButtonGroup>
   </Box>
 
-  <Wrap spacing={4}>
+  <Wrap gap={4}>
     <WrapItem>
-      <Button colorScheme='gray'>Gray</Button>
+      <Button colorPalette='gray'>Gray</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='red'>Red</Button>
+      <Button colorPalette='red'>Red</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='orange'>Orange</Button>
+      <Button colorPalette='orange'>Orange</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='yellow'>Yellow</Button>
+      <Button colorPalette='yellow'>Yellow</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='green'>Green</Button>
+      <Button colorPalette='green'>Green</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='teal'>Teal</Button>
+      <Button colorPalette='teal'>Teal</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='blue'>Blue</Button>
+      <Button colorPalette='blue'>Blue</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='cyan'>Cyan</Button>
+      <Button colorPalette='cyan'>Cyan</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='purple'>Purple</Button>
+      <Button colorPalette='purple'>Purple</Button>
     </WrapItem>
     <WrapItem>
-      <Button colorScheme='pink'>Pink</Button>
+      <Button colorPalette='pink'>Pink</Button>
     </WrapItem>
   </Wrap>
 </Stack>
@@ -137,11 +137,15 @@ and `rightIcon` props respectively.
 > strings.
 
 ```jsx
-<Stack direction='row' spacing={4}>
-  <Button leftIcon={<EmailIcon />} colorScheme='teal' variant='solid'>
+<Stack direction='row' gap={4}>
+  <Button leftIcon={<EmailIcon />} colorPalette='teal' variant='solid'>
     Email
   </Button>
-  <Button rightIcon={<ArrowForwardIcon />} colorScheme='teal' variant='outline'>
+  <Button
+    rightIcon={<ArrowForwardIcon />}
+    colorPalette='teal'
+    variant='outline'
+  >
     Call us
   </Button>
 </Stack>
@@ -154,11 +158,11 @@ button.
 ```jsx
 // import { MdBuild , MdCall } from "react-icons/md"
 
-<Stack direction='row' spacing={4}>
-  <Button leftIcon={<MdBuild />} colorScheme='pink' variant='solid'>
+<Stack direction='row' gap={4}>
+  <Button leftIcon={<MdBuild />} colorPalette='pink' variant='solid'>
     Settings
   </Button>
-  <Button rightIcon={<MdCall />} colorScheme='blue' variant='outline'>
+  <Button rightIcon={<MdCall />} colorPalette='blue' variant='outline'>
     Call us
   </Button>
 </Stack>
@@ -172,14 +176,14 @@ show a spinner and leave the button's width unchanged.
 You can also pass the `loadingText` prop to show a spinner and the loading text.
 
 ```jsx
-<Stack direction='row' spacing={4}>
-  <Button isLoading colorScheme='teal' variant='solid'>
+<Stack direction='row' gap={4}>
+  <Button isLoading colorPalette='teal' variant='solid'>
     Email
   </Button>
   <Button
     isLoading
     loadingText='Submitting'
-    colorScheme='teal'
+    colorPalette='teal'
     variant='outline'
   >
     Submit
@@ -193,7 +197,7 @@ requirements. Pass the `spinner` prop and set it to a custom react element.
 ```jsx
 <Button
   isLoading
-  colorScheme='blue'
+  colorPalette='blue'
   spinner={<BeatLoader size={8} color='white' />}
 >
   Click me
@@ -204,11 +208,11 @@ When a `loadingText` is present, you can change the placement of the spinner
 element to either `start` or `end`. It is `start` by default.
 
 ```jsx
-<Stack direction='row' spacing={4} align='center'>
+<Stack direction='row' gap={4} align='center'>
   <Button
     isLoading
     loadingText='Loading'
-    colorScheme='teal'
+    colorPalette='teal'
     variant='outline'
     spinnerPlacement='start'
   >
@@ -217,7 +221,7 @@ element to either `start` or `end`. It is `start` by default.
   <Button
     isLoading
     loadingText='Loading'
-    colorScheme='teal'
+    colorPalette='teal'
     variant='outline'
     spinnerPlacement='end'
   >
@@ -237,8 +241,8 @@ use the `ButtonGroup` component, it allows you to:
   needed.
 
 ```jsx
-<ButtonGroup variant='outline' spacing='6'>
-  <Button colorScheme='blue'>Save</Button>
+<ButtonGroup variant='outline' gap='6'>
+  <Button colorPalette='blue'>Save</Button>
   <Button>Cancel</Button>
 </ButtonGroup>
 ```

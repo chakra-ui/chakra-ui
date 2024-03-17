@@ -298,7 +298,7 @@ function OmniSearch() {
                       const isLvl1 = item.type === 'lvl1'
 
                       return (
-                        <Link key={item.url} href={item.url} passHref>
+                        <Link key={item.url} href={item.url}>
                           <a>
                             <Box
                               id={`search-item-${index}`}

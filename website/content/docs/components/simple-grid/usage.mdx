@@ -19,7 +19,7 @@ import { SimpleGrid } from '@chakra-ui/react'
 Specifying the number of columns for the grid layout.
 
 ```jsx
-<SimpleGrid columns={2} spacing={10}>
+<SimpleGrid columns={2} gap={10}>
   <Box bg='tomato' height='80px'></Box>
   <Box bg='tomato' height='80px'></Box>
   <Box bg='tomato' height='80px'></Box>
@@ -35,7 +35,7 @@ You can also make it responsive by passing array or object values into the
 // Passing `columns={[2, null, 3]}` and `columns={{sm: 2, md: 3}}`
 // will have the same effect.
 
-<SimpleGrid columns={[2, null, 3]} spacing='40px'>
+<SimpleGrid columns={[2, null, 3]} gap='40px'>
   <Box bg='tomato' height='80px'></Box>
   <Box bg='tomato' height='80px'></Box>
   <Box bg='tomato' height='80px'></Box>
@@ -53,7 +53,7 @@ have before adjusting the layout.
 This uses css grid `auto-fit` and `minmax()` internally.
 
 ```jsx
-<SimpleGrid minChildWidth='120px' spacing='40px'>
+<SimpleGrid minChildWidth='120px' gap='40px'>
   <Box bg='tomato' height='80px'></Box>
   <Box bg='tomato' height='80px'></Box>
   <Box bg='tomato' height='80px'></Box>

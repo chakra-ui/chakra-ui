@@ -54,11 +54,15 @@ const TutorialMenu = (props: Props) => {
             )
           }
           return (
-            <Link key={route.path} href={route.path} passHref>
-              <Menu.Item fontSize='sm' fontWeight='semibold' color='teal.500'>
-                {route.title}
-              </Menu.Item>
-            </Link>
+            <Menu.Item
+              key={route.path}
+              asChild
+              fontSize='sm'
+              fontWeight='semibold'
+              color='teal.500'
+            >
+              <Link href={route.path}>{route.title}</Link>
+            </Menu.Item>
           )
         })}
       </Menu.Content>

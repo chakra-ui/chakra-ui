@@ -28,9 +28,9 @@ can be any **color key** that exists in `theme.colors`.
 ```jsx
 <Stack direction='row'>
   <Badge>Default</Badge>
-  <Badge colorScheme='green'>Success</Badge>
-  <Badge colorScheme='red'>Removed</Badge>
-  <Badge colorScheme='purple'>New</Badge>
+  <Badge colorPalette='green'>Success</Badge>
+  <Badge colorPalette='red'>Removed</Badge>
+  <Badge colorPalette='purple'>New</Badge>
 </Stack>
 ```
 
@@ -41,13 +41,13 @@ get a different style.
 
 ```jsx
 <Stack direction='row'>
-  <Badge variant='outline' colorScheme='green'>
+  <Badge variant='outline' colorPalette='green'>
     Default
   </Badge>
-  <Badge variant='solid' colorScheme='green'>
+  <Badge variant='solid' colorPalette='green'>
     Success
   </Badge>
-  <Badge variant='subtle' colorScheme='green'>
+  <Badge variant='subtle' colorPalette='green'>
     Removed
   </Badge>
 </Stack>
@@ -61,7 +61,7 @@ get a different style.
   <Box ml='3'>
     <Text fontWeight='bold'>
       Segun Adebayo
-      <Badge ml='1' colorScheme='green'>
+      <Badge ml='1' colorPalette='green'>
         New
       </Badge>
     </Text>
@@ -75,7 +75,7 @@ You can also change the size of the badge by passing the `fontSize` prop.
 ```jsx
 <Text fontSize='xl' fontWeight='bold'>
   Segun Adebayo
-  <Badge ml='1' fontSize='0.8em' colorScheme='green'>
+  <Badge ml='1' fontSize='0.8em' colorPalette='green'>
     New
   </Badge>
 </Text>

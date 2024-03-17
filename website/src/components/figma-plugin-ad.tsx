@@ -14,6 +14,7 @@ export function FigmaPluginAd({ medium }: { medium: string }) {
       >
         <AspectRatio ratio={2} rounded='xl' overflow='hidden'>
           <Image
+            priority
             src='/figma/ad.png'
             style={{ objectFit: 'contain' }}
             fill

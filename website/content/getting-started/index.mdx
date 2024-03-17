@@ -1,7 +1,6 @@
 ---
 title: Installation
 description: How to install and set up Chakra UI in your project
-tags: ['principles']
 ---
 
 To use Chakra UI in your project, run one of the following commands in your
@@ -35,46 +34,6 @@ function App() {
   )
 }
 ```
-
-> Version 2 of Chakra UI is only compatible with React 18. If you are still
-> needing to use React 17 or earlier, please use
-> [version 1 of Chakra UI](https://v1.chakra-ui.com/guides/first-steps).
-
-### ChakraBaseProvider
-
-As of `v2.4.2` there is now the addition of `ChakraBaseProvider`. This is a
-minimal version of `ChakraProvider` that only supplies theme tokens and not the
-default component theming.
-
-One of the biggest causes of the large initial JS payload is the size of the
-component themes. With the following approach, you get to apply the default
-themes for just the components you need by using `extendBaseTheme`.
-
-```jsx live=false
-import {
-  ChakraBaseProvider,
-  extendBaseTheme,
-  theme as chakraTheme,
-} from '@chakra-ui/react'
-
-const { Button } = chakraTheme.components
-
-const theme = extendBaseTheme({
-  components: {
-    Button,
-  },
-})
-
-function App() {
-  return (
-    <ChakraBaseProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraBaseProvider>
-  )
-}
-```
-
-> 🚨 You must use `extendBaseTheme` for this to work
 
 ## Framework Guide
 

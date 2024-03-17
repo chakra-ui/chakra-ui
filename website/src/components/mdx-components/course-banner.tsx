@@ -8,7 +8,8 @@ interface Props {
   href: string
 }
 
-const CourseBanner = ({ href, image, title }: Props) => {
+const CourseBanner = (props: Props) => {
+  const { href, image, title } = props
   return (
     <chakra.a
       display='block'
@@ -20,13 +21,7 @@ const CourseBanner = ({ href, image, title }: Props) => {
       overflow='hidden'
       _hover={{ shadow: 'md' }}
     >
-      <NextImage
-        src={image}
-        alt='Egghead Logo'
-        layout='responsive'
-        width='400'
-        height='200'
-      />
+      <NextImage src={image} alt='Egghead Logo' width='400' height='200' />
       <Box py='3' px='4'>
         <Text as='h3' fontWeight='semibold'>
           {title}

@@ -33,13 +33,13 @@ export function ComponentOverviewItem(props: Props) {
         />
       </Flex>
 
-      <Link href={url} passHref>
-        <LinkOverlay>
+      <LinkOverlay asChild>
+        <Link href={url}>
           <Text fontSize='sm' fontWeight='semibold' px='4' py='3'>
             {title}
           </Text>
-        </LinkOverlay>
-      </Link>
+        </Link>
+      </LinkOverlay>
     </LinkBox>
   )
 }

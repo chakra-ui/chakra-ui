@@ -35,9 +35,9 @@ import {
 ```
 
 ```jsx
-<HStack spacing={4}>
+<HStack gap={4}>
   {['sm', 'md', 'lg'].map((size) => (
-    <Tag size={size} key={size} variant='solid' colorScheme='teal'>
+    <Tag size={size} key={size} variant='solid' colorPalette='teal'>
       Teal
     </Tag>
   ))}
@@ -47,9 +47,9 @@ import {
 ## With left icon
 
 ```jsx
-<HStack spacing={4}>
+<HStack gap={4}>
   {['sm', 'md', 'lg'].map((size) => (
-    <Tag size={size} key={size} variant='subtle' colorScheme='cyan'>
+    <Tag size={size} key={size} variant='subtle' colorPalette='cyan'>
       <TagLeftIcon boxSize='12px' as={AddIcon} />
       <TagLabel>Cyan</TagLabel>
     </Tag>
@@ -60,9 +60,9 @@ import {
 ## With right icon
 
 ```jsx
-<HStack spacing={4}>
+<HStack gap={4}>
   {['sm', 'md', 'lg'].map((size) => (
-    <Tag size={size} key={size} variant='outline' colorScheme='blue'>
+    <Tag size={size} key={size} variant='outline' colorPalette='blue'>
       <TagLabel>Blue</TagLabel>
       <TagRightIcon as={MdSettings} />
     </Tag>
@@ -73,14 +73,14 @@ import {
 ## With close button
 
 ```jsx
-<HStack spacing={4}>
+<HStack gap={4}>
   {['sm', 'md', 'lg'].map((size) => (
     <Tag
       size={size}
       key={size}
       borderRadius='full'
       variant='solid'
-      colorScheme='green'
+      colorPalette='green'
     >
       <TagLabel>Green</TagLabel>
       <TagCloseButton />
@@ -92,7 +92,7 @@ import {
 ## With custom element
 
 ```jsx
-<Tag size='lg' colorScheme='red' borderRadius='full'>
+<Tag size='lg' colorPalette='red' borderRadius='full'>
   <Avatar
     src='https://bit.ly/sage-adebayo'
     size='xs'

@@ -48,7 +48,7 @@ and you may want to add dividers between them.
   </CardHeader>
 
   <CardBody>
-    <Stack divider={<StackDivider />} spacing='4'>
+    <Stack divider={<StackDivider />} gap='4'>
       <Box>
         <Heading size='xs' textTransform='uppercase'>
           Summary
@@ -90,7 +90,7 @@ Place the content within the `CardBody` to get a nice padding around.
       alt='Green double couch with wooden legs'
       borderRadius='lg'
     />
-    <Stack mt='6' spacing='3'>
+    <Stack mt='6' gap='3'>
       <Heading size='md'>Living room Sofa</Heading>
       <Text>
         This sofa is perfect for modern tropical spaces, baroque inspired
@@ -104,11 +104,11 @@ Place the content within the `CardBody` to get a nice padding around.
   </CardBody>
   <Separator />
   <CardFooter>
-    <ButtonGroup spacing='2'>
-      <Button variant='solid' colorScheme='blue'>
+    <ButtonGroup gap='2'>
+      <Button variant='solid' colorPalette='blue'>
         Buy now
       </Button>
-      <Button variant='ghost' colorScheme='blue'>
+      <Button variant='ghost' colorPalette='blue'>
         Add to cart
       </Button>
     </ButtonGroup>
@@ -145,7 +145,7 @@ content in a horizontal direction by passing `direction="row"`.
     </CardBody>
 
     <CardFooter>
-      <Button variant='solid' colorScheme='blue'>
+      <Button variant='solid' colorPalette='blue'>
         Buy Latte
       </Button>
     </CardFooter>
@@ -161,7 +161,7 @@ more for a more advanced layout.
 ```jsx
 <Card maxW='md'>
   <CardHeader>
-    <Flex spacing='4'>
+    <Flex gap='4'>
       <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
         <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
 
@@ -172,7 +172,7 @@ more for a more advanced layout.
       </Flex>
       <IconButton
         variant='ghost'
-        colorScheme='gray'
+        colorPalette='gray'
         aria-label='See menu'
         icon={<BsThreeDotsVertical />}
       />
@@ -219,7 +219,7 @@ Render multiple cards to display content by using the `SimpleGrid` or your
 preferred layout method.
 
 ```jsx
-<SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+<SimpleGrid gap={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
   <Card>
     <CardHeader>
       <Heading size='md'> Customer dashboard</Heading>
@@ -271,7 +271,7 @@ the Card.
     <Text>View a summary of all your customers over the last month.</Text>
   </CardBody>
   <CardFooter>
-    <Button colorScheme='blue'>View here</Button>
+    <Button colorPalette='blue'>View here</Button>
   </CardFooter>
 </Card>
 ```
@@ -283,7 +283,7 @@ Chakra UI provides 4 card variants - `elevated`, `outline`, `filled`, and
 `variant` prop is not passed, the default variant, `elevated` is used.
 
 ```jsx
-<Stack spacing='4'>
+<Stack gap='4'>
   {['elevated', 'outline', 'filled', 'unstyled'].map((variant) => (
     <Card key={variant} variant={variant}>
       <CardHeader>
@@ -303,7 +303,7 @@ Chakra UI provides 3 Card sizes. Use the `size` prop to change the size and se
 the value to `sm`, `md`, or `lg`.
 
 ```jsx
-<Stack spacing='4'>
+<Stack gap='4'>
   {['sm', 'md', 'lg'].map((size) => (
     <Card key={size} size={size}>
       <CardHeader>

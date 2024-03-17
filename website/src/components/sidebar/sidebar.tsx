@@ -129,7 +129,7 @@ const MainNavLink = (props: MainNavLinkProps) => {
       color={active ? 'accent' : 'fg-muted'}
       _hover={{ color: active ? undefined : 'fg' }}
     >
-      <NextLink target={isExternal ? '_blank' : undefined} href={href} passHref>
+      <NextLink target={isExternal ? '_blank' : undefined} href={href}>
         <Center
           w='6'
           h='6'

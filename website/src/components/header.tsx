@@ -58,7 +58,7 @@ function HeaderContent() {
             display='block'
             aria-label='Chakra UI, Back to homepage'
           >
-            <NextLink href='/' passHref>
+            <NextLink href='/'>
               <Logo display={{ base: 'none', md: 'block' }} />
               <Box minW='3rem' display={{ base: 'block', md: 'none' }}>
                 <LogoIcon />

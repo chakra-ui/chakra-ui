@@ -220,10 +220,6 @@
           "summarize": true,
           "routes": [
             {
-              "title": "Alert Dialog",
-              "path": "/docs/components/alert-dialog"
-            },
-            {
               "title": "Drawer",
               "path": "/docs/components/drawer"
             },
@@ -290,7 +286,6 @@
               "path": "/docs/components/skip-nav"
             },
             {
-              "new": true,
               "title": "Stepper",
               "path": "/docs/components/stepper"
             }

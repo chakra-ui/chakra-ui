@@ -46,7 +46,7 @@ import {
 <FormControl as='fieldset'>
   <FormLabel as='legend'>Favorite Naruto Character</FormLabel>
   <RadioGroup defaultValue='Itachi'>
-    <HStack spacing='24px'>
+    <HStack gap='24px'>
       <Radio value='Sasuke'>Sasuke</Radio>
       <Radio value='Nagato'>Nagato</Radio>
       <Radio value='Itachi'>Itachi</Radio>
@@ -171,7 +171,7 @@ function FormikExample() {
           </Field>
           <Button
             mt={4}
-            colorScheme='teal'
+            colorPalette='teal'
             isLoading={props.isSubmitting}
             type='submit'
           >

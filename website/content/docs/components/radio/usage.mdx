@@ -37,11 +37,11 @@ You can override the `colorScheme` of the Radio to any color key specified in
 
 ```jsx
 <RadioGroup defaultValue='2'>
-  <Stack spacing={5} direction='row'>
-    <Radio colorScheme='red' value='1'>
+  <Stack gap={5} direction='row'>
+    <Radio colorPalette='red' value='1'>
       Radio
     </Radio>
-    <Radio colorScheme='green' value='2'>
+    <Radio colorPalette='green' value='2'>
       Radio
     </Radio>
   </Stack>
@@ -54,13 +54,13 @@ The checkbox comes with 3 sizes.
 
 ```jsx
 <Stack>
-  <Radio size='sm' name='1' colorScheme='red'>
+  <Radio size='sm' name='1' colorPalette='red'>
     Radio
   </Radio>
-  <Radio size='md' name='1' colorScheme='green'>
+  <Radio size='md' name='1' colorPalette='green'>
     Radio
   </Radio>
-  <Radio size='lg' name='1' colorScheme='orange' defaultChecked>
+  <Radio size='lg' name='1' colorPalette='orange' defaultChecked>
     Radio
   </Radio>
 </Stack>
@@ -84,7 +84,7 @@ The checkbox comes with 3 sizes.
 
 ```jsx
 <RadioGroup defaultValue='1'>
-  <Stack spacing={4} direction='row'>
+  <Stack gap={4} direction='row'>
     <Radio value='1' isDisabled>
       Radio 1
     </Radio>

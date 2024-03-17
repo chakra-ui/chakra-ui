@@ -30,11 +30,7 @@ interface HitProps {
 }
 
 function Hit({ hit, children }: HitProps) {
-  return (
-    <Link href={hit.url} passHref>
-      <a>{children}</a>
-    </Link>
-  )
+  return <Link href={hit.url}>{children}</Link>
 }
 
 export const SearchButton = React.forwardRef(function SearchButton(

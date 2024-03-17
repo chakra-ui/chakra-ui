@@ -164,14 +164,14 @@ const ShowcaseBanner = () => (
   <LinkBox role='group' mt='6'>
     <Flex align='center' rounded='3xl' bg='gray.900' padding='8'>
       <Box>
-        <NextLink href='/showcase' passHref>
-          <LinkOverlay color='white'>
+        <LinkOverlay color='white' asChild>
+          <NextLink href='/showcase'>
             <Flex align='center' mb='4'>
               <Heading size='md'>Visit the Showcase</Heading>
               <ShowcaseIcon w='8' h='8' ml='1' />
             </Flex>
-          </LinkOverlay>
-        </NextLink>
+          </NextLink>
+        </LinkOverlay>
         <Text color='gray.400'>
           See what other Devs made with Chakra UI. Those are community projects,
           websites, libraries, tools, articles and videos that you can use to

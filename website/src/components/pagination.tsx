@@ -22,7 +22,7 @@ export const PaginationLink = (props) => {
         <Text fontSize='sm' px='2'>
           {label}
         </Text>
-        <HStack mt='1' fontSize='lg' fontWeight='bold' color='teal.400'>
+        <HStack mt='1' fontWeight='semibold' color='teal.600'>
           {children}
         </HStack>
       </NextLink>

@@ -36,7 +36,6 @@ export function createPreflight(options: PreflightConfig) {
     body: {
       minHeight: "100dvh",
       position: "relative",
-      fontFeatureSettings: "'kern'",
     },
     img: {
       borderStyle: "none",
