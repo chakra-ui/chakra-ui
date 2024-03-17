@@ -10,96 +10,67 @@ description:
 
 ## Import
 
-Chakra UI exports 5 Tag related components:
-
-- **Tag**: The wrapper for all the tag elements.
-- **TagLabel**: The label for tag's text content.
-- **TagLeftIcon**: The icon placed on the left side of the tag.
-- **TagRightIcon**: The icon placed on the right side of the tag.
-- **TagCloseButton**: The close button for the tag.
-
 ```js
-import {
-  Tag,
-  TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
-} from '@chakra-ui/react'
+import { Tag } from '@chakra-ui/react'
 ```
 
 ## Usage
 
 ```jsx
-<Tag>Sample Tag</Tag>
+<Tag.Root>
+  <Tag.Label>Sample Tag</Tag.Label>
+</Tag.Root>
 ```
+
+## Sizes
+
+Set the `size` prop to change the size of the tag.
 
 ```jsx
 <HStack gap={4}>
   {['sm', 'md', 'lg'].map((size) => (
-    <Tag size={size} key={size} variant='solid' colorPalette='teal'>
-      Teal
-    </Tag>
+    <Tag.Root size={size} key={size} variant='solid' colorPalette='teal'>
+      <Tag.Label>Teal</Tag.Label>
+    </Tag.Root>
   ))}
 </HStack>
 ```
 
-## With left icon
+## Rendering an icon
 
 ```jsx
 <HStack gap={4}>
   {['sm', 'md', 'lg'].map((size) => (
-    <Tag size={size} key={size} variant='subtle' colorPalette='cyan'>
-      <TagLeftIcon boxSize='12px' as={AddIcon} />
-      <TagLabel>Cyan</TagLabel>
-    </Tag>
+    <Tag.Root size={size} key={size} variant='subtle' colorPalette='cyan'>
+      <FiPlus />
+      <Tag.Label>Cyan</Tag.Label>
+    </Tag.Root>
   ))}
 </HStack>
 ```
 
-## With right icon
+## Rendering the close button
 
 ```jsx
 <HStack gap={4}>
   {['sm', 'md', 'lg'].map((size) => (
-    <Tag size={size} key={size} variant='outline' colorPalette='blue'>
-      <TagLabel>Blue</TagLabel>
-      <TagRightIcon as={MdSettings} />
-    </Tag>
+    <Tag.Root size={size} key={size} colorPalette='green'>
+      <Tag.Label>Green</Tag.Label>
+      <Tag.CloseTrigger />
+    </Tag.Root>
   ))}
 </HStack>
 ```
 
-## With close button
+## Usage with avatar
 
 ```jsx
-<HStack gap={4}>
-  {['sm', 'md', 'lg'].map((size) => (
-    <Tag
-      size={size}
-      key={size}
-      borderRadius='full'
-      variant='solid'
-      colorPalette='green'
-    >
-      <TagLabel>Green</TagLabel>
-      <TagCloseButton />
-    </Tag>
-  ))}
-</HStack>
-```
-
-## With custom element
-
-```jsx
-<Tag size='lg' colorPalette='red' borderRadius='full'>
-  <Avatar
-    src='https://bit.ly/sage-adebayo'
-    size='xs'
-    name='Segun Adebayo'
-    ml={-1}
-    mr={2}
-  />
-  <TagLabel>Segun</TagLabel>
-</Tag>
+<Tag.Root variant='outline' borderRadius='full'>
+  <Avatar.Root size='xs'>
+    <Avatar.Image src='https://bit.ly/dan-abramov' />
+    <Avatar.Fallback name='Dan Abrahmov' />
+  </Avatar.Root>
+  <Tag.Label> Dan Abramov</Tag.Label>
+  <Tag.CloseTrigger />
+</Tag.Root>
 ```
