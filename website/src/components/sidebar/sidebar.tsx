@@ -115,40 +115,35 @@ type MainNavLinkProps = {
   isExternal?: boolean
 }
 
-const MainNavLink = ({
-  href,
-  icon,
-  children,
-  isActive,
-  isExternal,
-}: MainNavLinkProps) => {
+const MainNavLink = (props: MainNavLinkProps) => {
+  const { href, icon, children, isActive, isExternal } = props
   const router = useRouter()
   const active = router.asPath.startsWith(href) || !!isActive
 
   return (
-    <NextLink target={isExternal ? '_blank' : undefined} href={href} passHref>
-      <HStack
-        as='a'
-        gap='3'
-        fontSize='sm'
-        fontWeight={active ? 'semibold' : 'medium'}
-        color={active ? 'accent' : 'fg-muted'}
-        _hover={{ color: active ? undefined : 'fg' }}
-      >
+    <HStack
+      asChild
+      gap='3'
+      fontSize='sm'
+      fontWeight={active ? 'semibold' : 'medium'}
+      color={active ? 'accent' : 'fg-muted'}
+      _hover={{ color: active ? undefined : 'fg' }}
+    >
+      <NextLink target={isExternal ? '_blank' : undefined} href={href} passHref>
         <Center
           w='6'
           h='6'
           borderWidth='1px'
-          bg={active ? 'accent-static' : 'transparent'}
-          borderColor={active ? 'accent-static' : undefined}
+          bg={active ? 'teal.600' : 'transparent'}
+          borderColor={active ? 'teal.600' : undefined}
           rounded='sm'
-          color={active ? 'white' : 'accent'}
+          color={active ? 'white' : 'fg.muted'}
         >
           {icon}
         </Center>
         <span>{children}</span>
-      </HStack>
-    </NextLink>
+      </NextLink>
+    </HStack>
   )
 }
 

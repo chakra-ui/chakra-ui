@@ -45,10 +45,10 @@ export const MDXComponents = {
       <MDXComponents.Image {...props} />
     </Link>
   ),
-  h1: (props) => <chakra.h1 apply='mdx.h1' {...props} />,
-  h2: (props) => <LinkedHeading apply='mdx.h2' {...props} />,
-  h3: (props) => <LinkedHeading as='h3' apply='mdx.h3' {...props} />,
-  h4: (props) => <LinkedHeading as='h4' apply='mdx.h4' {...props} />,
+  h1: (props) => <LinkedHeading as='h1' size='h1' {...props} />,
+  h2: (props) => <LinkedHeading as='h2' size='h2' {...props} />,
+  h3: (props) => <LinkedHeading as='h3' size='h3' {...props} />,
+  h4: (props) => <LinkedHeading as='h4' size='h4' {...props} />,
   hr: (props) => <chakra.hr apply='mdx.hr' {...props} />,
   strong: (props) => <Box as='strong' fontWeight='semibold' {...props} />,
   code: InlineCode,
@@ -90,7 +90,7 @@ export const MDXComponents = {
       mt='4'
       role='none'
       status='warning'
-      variant='left-accent'
+      variant='subtle'
       as='blockquote'
       rounded='4px'
       my='1.5rem'

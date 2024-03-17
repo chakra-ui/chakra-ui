@@ -125,7 +125,7 @@ export const buttonRecipe = defineRecipe({
   ],
   defaultVariants: {
     size: "md",
-    variant: "outline",
+    variant: "solid",
     colorPalette: "gray",
   },
 })

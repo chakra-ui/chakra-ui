@@ -1,9 +1,10 @@
 import { chakra } from '@chakra-ui/react'
 import React from 'react'
 
-const MdxHeading = chakra('h2', {
+export const MdxHeading = chakra('h2', {
   base: {
     scrollMarginBlock: '6.875rem',
+    mb: '1.25em',
     '& a': {
       marginStart: '0.375rem',
       color: 'teal.500',
@@ -18,15 +19,13 @@ const MdxHeading = chakra('h2', {
     size: {
       h1: {
         mt: '2rem',
-        mb: '.25rem',
         lineHeight: 1.2,
-        fontWeight: 'bold',
+        fontWeight: 'semibold',
         fontSize: '1.875rem',
         letterSpacing: '-.025em',
       },
       h2: {
         mt: '4rem',
-        mb: '0.5rem',
         lineHeight: 1.3,
         fontWeight: 'semibold',
         fontSize: '1.5rem',

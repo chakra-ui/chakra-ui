@@ -42,7 +42,7 @@ export function PackageManagers(props: {
 }) {
   const { command } = props
   return (
-    <Tabs.Root mt='6' mb='10'>
+    <Tabs.Root mt='6' mb='10' defaultValue={packageManagers[0].name}>
       <Tabs.List>
         {packageManagers.map(({ name, icon, color }) => {
           if (!command[name]) return null

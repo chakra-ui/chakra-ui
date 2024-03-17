@@ -26,9 +26,8 @@ const StyledLink = forwardRef(function StyledLink(
       color='fg'
       transition='all 0.2s'
       _currentPage={{
-        bg: { base: 'teal.50', _dark: 'rgba(48, 140, 122, 0.3)' },
-        color: 'accent-emphasis',
-        fontWeight: '600',
+        bg: { base: 'teal.100', _dark: 'rgba(48, 140, 122, 0.3)' },
+        color: 'teal.800',
       }}
       {...rest}
     />
@@ -67,11 +66,16 @@ const SidebarLink = ({
 
   return (
     <Flex align='center' userSelect='none' lineHeight='tall' {...rest}>
-      <NextLink href={href} passHref>
-        <StyledLink isActive={isActive} ref={link} isExternal={isExternal}>
+      <StyledLink
+        asChild
+        isActive={isActive}
+        ref={link}
+        isExternal={isExternal}
+      >
+        <NextLink href={href} passHref>
           {children}
-        </StyledLink>
-      </NextLink>
+        </NextLink>
+      </StyledLink>
     </Flex>
   )
 }

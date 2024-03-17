@@ -1,7 +1,7 @@
 import { useBoolean } from '@chakra-ui/hooks'
 import { Box } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
-// import theme from 'prism-react-renderer/themes/nightOwl'
+import { themes } from 'prism-react-renderer'
 import { useEffect } from 'react'
 import CodeContainer from './code-container'
 import CopyButton from './copy-button'
@@ -58,8 +58,7 @@ function CodeBlock(props) {
         <Highlight
           codeString={rawCode}
           language={language}
-          //@ts-expect-error Fix later
-          theme={{}}
+          theme={themes.nightOwl}
           metastring={ln}
           showLines={viewlines}
         />

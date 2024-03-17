@@ -9,7 +9,7 @@ import * as React from 'react'
 import { FrontmatterHeading } from 'src/types/frontmatter'
 import { convertBackticksToInlineCode } from 'utils/convert-backticks-to-inline-code'
 import { AdBanner } from './chakra-pro/ad-banner'
-import { PageHeading } from './heading'
+import { MdxHeading } from './mdx-components/linked-heading'
 
 function useHeadingFocusOnRouteChange() {
   const router = useRouter()
@@ -80,9 +80,9 @@ function PageContainer(props: PageContainerProps) {
                   pt='10'
                 >
                   <Box maxW={maxWidth}>
-                    <PageHeading as='h1' tabIndex={-1} outline={0}>
+                    <MdxHeading size='h1' as='h1' tabIndex={-1} outline={0}>
                       {convertBackticksToInlineCode(title)}
-                    </PageHeading>
+                    </MdxHeading>
                     {version && (
                       <Badge colorPalette='teal' letterSpacing='wider'>
                         v{version}

@@ -8,7 +8,6 @@ import {
   Icon,
   IconButton,
   Link,
-  Span,
   Square,
   chakra,
 } from '@chakra-ui/react'
@@ -30,15 +29,21 @@ import Search from './omni-search'
 import SponsorButton from './sponsor-button'
 import VersionSwitcher from './version-switcher'
 
+function ColorModeIcon() {
+  const { theme } = useTheme()
+  const SwitchIcon = theme === 'light' ? BsMoonFill : BsSunFill
+  return (
+    <ClientOnly fallback={<Square size='1em' />}>
+      <SwitchIcon />
+    </ClientOnly>
+  )
+}
+
 function HeaderContent() {
   const mobileNav = useDisclosure()
+  const mobileNavBtnRef = useRef<HTMLButtonElement>()
 
   const { setTheme, theme } = useTheme()
-
-  const text = theme === 'light' ? 'dark' : 'light'
-  const SwitchIcon = theme === 'light' ? BsMoonFill : BsSunFill
-
-  const mobileNavBtnRef = useRef<HTMLButtonElement>()
 
   useUpdateEffect(() => {
     mobileNavBtnRef.current?.focus()
@@ -48,14 +53,18 @@ function HeaderContent() {
     <>
       <Flex w='100%' h='100%' px='6' align='center' justify='space-between'>
         <Flex align='center'>
-          <NextLink href='/' passHref>
-            <chakra.a display='block' aria-label='Chakra UI, Back to homepage'>
+          <chakra.a
+            asChild
+            display='block'
+            aria-label='Chakra UI, Back to homepage'
+          >
+            <NextLink href='/' passHref>
               <Logo display={{ base: 'none', md: 'block' }} />
               <Box minW='3rem' display={{ base: 'block', md: 'none' }}>
                 <LogoIcon />
               </Box>
-            </chakra.a>
-          </NextLink>
+            </NextLink>
+          </chakra.a>
         </Flex>
 
         <Flex
@@ -116,7 +125,7 @@ function HeaderContent() {
           <HStack gap='5'>
             <IconButton
               size='md'
-              aria-label={`Switch to ${text} mode`}
+              aria-label='toggle color mode'
               variant='ghost'
               color='current'
               ml={{ base: '0', md: '3' }}
@@ -124,9 +133,7 @@ function HeaderContent() {
                 setTheme(theme === 'light' ? 'dark' : 'light')
               }}
             >
-              <ClientOnly fallback={<Square size='1em' />}>
-                <SwitchIcon />
-              </ClientOnly>
+              <ColorModeIcon />
             </IconButton>
             <SponsorButton ml='5' />
             <MobileNavButton
