@@ -11,13 +11,12 @@ import { Anchor } from 'components/mdx-components/anchor'
 import { InlineCode } from 'components/mdx-components/inline-code'
 import { LinkedHeading } from 'components/mdx-components/linked-heading'
 import { Pre } from 'components/mdx-components/pre'
-import { Table, TData, THead } from 'components/mdx-components/table'
+import { TData, THead, Table } from 'components/mdx-components/table'
 import { PackageManagers } from 'components/package-managers'
 import SandpackEmbed from 'components/sandpack-embed'
 import { TutorialCodeBlock } from 'components/tutorial/tutorial-code-block'
 import { TutorialFileAction } from 'components/tutorial/tutorial-file-action'
 import Image from 'next/image'
-import { FiFigma, FiMinus, FiPlus } from 'react-icons/fi'
 import PropsTable from '../props-table'
 import CarbonAd from './carbon-ad'
 import CodeBlock from './codeblock/codeblock'
@@ -40,9 +39,6 @@ const MdxList = chakra('ul', {
 
 export const MDXComponents = {
   ...Chakra,
-  FiMinus,
-  FiPlus,
-  FiFigma,
   Image: ({ ratio, border, src, ...props }: any) => (
     <AspectRatio
       my='5'

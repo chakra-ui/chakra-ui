@@ -59,27 +59,27 @@ You can change the checked background color of the `Switch` by passing the
 
 ## State depending behavior
 
-States like `isDisabled` have an impact on the usability of a `Switch` and on
-the styles, except for the `isInvalid` and the `isRequired` prop.
+States like `disabled` have an impact on the usability of a `Switch` and on the
+styles, except for the `invalid` and the `required` prop.
 
 ```jsx
 <FormControl as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
   <FormLabel htmlFor='isChecked'>isChecked:</FormLabel>
   <Switch id='isChecked' isChecked />
 
-  <FormLabel htmlFor='isDisabled'>isDisabled:</FormLabel>
-  <Switch id='isDisabled' isDisabled defaultChecked />
+  <FormLabel htmlFor='disabled'>disabled:</FormLabel>
+  <Switch id='disabled' disabled defaultChecked />
 
   <FormLabel htmlFor='isFocusable'>isFocusable:</FormLabel>
-  <Switch id='isFocusable' isFocusable isDisabled />
+  <Switch id='isFocusable' isFocusable disabled />
 
-  <FormLabel htmlFor='isInvalid'>isInvalid:</FormLabel>
-  <Switch id='isInvalid' isInvalid />
+  <FormLabel htmlFor='invalid'>invalid:</FormLabel>
+  <Switch id='invalid' invalid />
 
-  <FormLabel htmlFor='isReadOnly'>isReadOnly:</FormLabel>
-  <Switch id='isReadOnly' isReadOnly />
+  <FormLabel htmlFor='readOnly'>readOnly:</FormLabel>
+  <Switch id='readOnly' readOnly />
 
-  <FormLabel htmlFor='isRequired'>isRequired:</FormLabel>
-  <Switch id='isRequired' isRequired />
+  <FormLabel htmlFor='required'>required:</FormLabel>
+  <Switch id='required' required />
 </FormControl>
 ```

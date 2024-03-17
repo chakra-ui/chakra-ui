@@ -11,17 +11,13 @@ description:
 ## Import
 
 ```js
-import { Button, ButtonGroup } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 ```
-
-- **Button:** The button component with support for custom icons, spinners, etc.
-- **ButtonGroup:** Used to group buttons whose actions are related, with an
-  option to flush them together.
 
 ## Usage
 
 ```jsx
-<Button colorPalette='blue'>Button</Button>
+<Button colorPalette='teal'>Button</Button>
 ```
 
 ### Button Sizes
@@ -49,7 +45,7 @@ Use the `size` prop to change the size of the button. You can set the value to
 ### Button variants
 
 Use the `variant` prop to change the visual style of the Button. You can set the
-value to `solid`, `outline`, `ghost`, or `link`.
+value to `solid`, `outline`, or `ghost`
 
 ```jsx
 <Stack direction='row' gap={4} align='center'>
@@ -62,91 +58,37 @@ value to `solid`, `outline`, `ghost`, or `link`.
   <Button colorPalette='teal' variant='ghost'>
     Button
   </Button>
-  <Button colorPalette='teal' variant='link'>
-    Button
-  </Button>
 </Stack>
 ```
 
-### Button Colors
+### Changing the color palette
 
-Use the colorScheme prop to change the color scheme of the Button. You can set
-the value to any of the color scales from your design system, like `whiteAlpha`,
-`blackAlpha`, `gray`, `red`, `blue`, or your custom color scale.
+Use the `colorPalette` prop to change the color palette of the Button. You can
+set the value to any of the color scales from your design system, like
+`whiteAlpha`, `blackAlpha`, `gray`, `red`, `blue`, or your custom color scale.
 
 ```jsx
-<Stack direction='column'>
-  <Box
-    display='flex'
-    alignItems='center'
-    justifyContent='center'
-    width='100%'
-    py={12}
-    bgImage="url('https://bit.ly/2Z4KKcF')"
-    bgPosition='center'
-    bgRepeat='no-repeat'
-    mb={2}
-  >
-    <ButtonGroup gap='4'>
-      <Button colorPalette='whiteAlpha'>WhiteAlpha</Button>
-      <Button colorPalette='blackAlpha'>BlackAlpha</Button>
-    </ButtonGroup>
-  </Box>
-
-  <Wrap gap={4}>
-    <WrapItem>
-      <Button colorPalette='gray'>Gray</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='red'>Red</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='orange'>Orange</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='yellow'>Yellow</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='green'>Green</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='teal'>Teal</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='blue'>Blue</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='cyan'>Cyan</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='purple'>Purple</Button>
-    </WrapItem>
-    <WrapItem>
-      <Button colorPalette='pink'>Pink</Button>
-    </WrapItem>
-  </Wrap>
-</Stack>
+<Wrap gap={4}>
+  <Button colorPalette='gray'>Gray</Button>
+  <Button colorPalette='red'>Red</Button>
+  <Button colorPalette='orange'>Orange</Button>
+  <Button colorPalette='yellow'>Yellow</Button>
+  <Button colorPalette='green'>Green</Button>
+  <Button colorPalette='teal'>Teal</Button>
+</Wrap>
 ```
 
-### Button with icon
-
-You can add left and right icons to the Button component using the `leftIcon`
-and `rightIcon` props respectively.
-
-> Note: The `leftIcon` and `rightIcon` prop values should be react elements NOT
-> strings.
+### Using icons
 
 ```jsx
 <Stack direction='row' gap={4}>
-  <Button leftIcon={<EmailIcon />} colorPalette='teal' variant='solid'>
+  <Button colorPalette='teal'>
+    <FiMail />
     Email
   </Button>
-  <Button
-    rightIcon={<ArrowForwardIcon />}
-    colorPalette='teal'
-    variant='outline'
-  >
+  <Button colorPalette='teal' variant='outline'>
     Call us
+    <MdArrowForward />
   </Button>
 </Stack>
 ```
@@ -159,161 +101,41 @@ button.
 // import { MdBuild , MdCall } from "react-icons/md"
 
 <Stack direction='row' gap={4}>
-  <Button leftIcon={<MdBuild />} colorPalette='pink' variant='solid'>
+  <Button colorPalette='pink'>
+    <MdBuild />
     Settings
   </Button>
-  <Button rightIcon={<MdCall />} colorPalette='blue' variant='outline'>
+  <Button colorPalette='blue' variant='outline'>
     Call us
+    <MdCall />
   </Button>
 </Stack>
 ```
 
-### Button loading state
+### Showing loading state
 
-Pass the `isLoading` prop to show its loading state. By default, the button will
-show a spinner and leave the button's width unchanged.
-
-You can also pass the `loadingText` prop to show a spinner and the loading text.
+To show a loading state, set the `disabled` prop to `true` and use the `Spinner`
+component.
 
 ```jsx
-<Stack direction='row' gap={4}>
-  <Button isLoading colorPalette='teal' variant='solid'>
-    Email
-  </Button>
-  <Button
-    isLoading
-    loadingText='Submitting'
-    colorPalette='teal'
-    variant='outline'
-  >
-    Submit
-  </Button>
-</Stack>
-```
-
-You can change the spinner element to use custom loaders as per your design
-requirements. Pass the `spinner` prop and set it to a custom react element.
-
-```jsx
-<Button
-  isLoading
-  colorPalette='blue'
-  spinner={<BeatLoader size={8} color='white' />}
->
-  Click me
+<Button disabled colorPalette='teal'>
+  <Spinner size='sm' /> Loading
 </Button>
 ```
 
-When a `loadingText` is present, you can change the placement of the spinner
-element to either `start` or `end`. It is `start` by default.
+To ensure the width of the button does not change when the loading state is
+active, use the `AbsoluteCenter` component.
 
 ```jsx
-<Stack direction='row' gap={4} align='center'>
-  <Button
-    isLoading
-    loadingText='Loading'
-    colorPalette='teal'
-    variant='outline'
-    spinnerPlacement='start'
-  >
-    Submit
-  </Button>
-  <Button
-    isLoading
-    loadingText='Loading'
-    colorPalette='teal'
-    variant='outline'
-    spinnerPlacement='end'
-  >
-    Continue
-  </Button>
-</Stack>
-```
-
-### Grouping Buttons
-
-You can use the `Stack` or `ButtonGroup` component to group buttons. When you
-use the `ButtonGroup` component, it allows you to:
-
-- Set the `size` and `variant` of all buttons within it.
-- Add `spacing` between the buttons.
-- Flush the buttons together by removing the border radius of their children as
-  needed.
-
-```jsx
-<ButtonGroup variant='outline' gap='6'>
-  <Button colorPalette='blue'>Save</Button>
-  <Button>Cancel</Button>
-</ButtonGroup>
-```
-
-To flush the buttons, pass the `isAttached` prop.
-
-```jsx
-<ButtonGroup size='sm' isAttached variant='outline'>
-  <Button>Save</Button>
-  <IconButton aria-label='Add to friends' icon={<AddIcon />} />
-</ButtonGroup>
+<Button disabled colorPalette='teal'>
+  <AbsoluteCenter>
+    <BeatLoader size={8} color='white' />
+  </AbsoluteCenter>
+  <Span opacity='0'>Submitting</Span>
+</Button>
 ```
 
 ## Accessibility
 
 - Button has `role` of `button`.
 - When Button has focus, <kbd>Space</kbd> or <kbd>Enter</kbd> activates it.
-
-## Composition
-
-All props you pass (`variant`, `colorScheme`, etc.) are converted to style
-props. This means you can override any style of the Button via props.
-
-```jsx
-// The size prop affects the height of the button
-// It can still be overridden by passing a custom height
-<Button
-  size='md'
-  height='48px'
-  width='200px'
-  border='2px'
-  borderColor='green.500'
->
-  Button
-</Button>
-```
-
----
-
-## Custom Button
-
-In the event that you need to make your own custom button, you can leverage the
-`Box` component. It provides the `hover`, `focus`, `active` and `disabled` style
-props to style the button.
-
-```jsx
-// Button from facebook.com
-<Box
-  as='button'
-  height='24px'
-  lineHeight='1.2'
-  transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-  border='1px'
-  px='8px'
-  borderRadius='2px'
-  fontSize='14px'
-  fontWeight='semibold'
-  bg='#f5f6f7'
-  borderColor='#ccd0d5'
-  color='#4b4f56'
-  _hover={{ bg: '#ebedf0' }}
-  _active={{
-    bg: '#dddfe2',
-    transform: 'scale(0.98)',
-    borderColor: '#bec3c9',
-  }}
-  _focus={{
-    boxShadow:
-      '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
-  }}
->
-  Join Group
-</Box>
-```

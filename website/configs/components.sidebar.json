@@ -228,8 +228,8 @@
               "path": "/docs/components/menu"
             },
             {
-              "title": "Modal",
-              "path": "/docs/components/modal"
+              "title": "Dialog",
+              "path": "/docs/components/dialog"
             },
             {
               "title": "Popover",
