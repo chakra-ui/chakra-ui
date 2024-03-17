@@ -177,15 +177,15 @@ function InitialFocus() {
             <Dialog.Header>Create your account</Dialog.Header>
             <Dialog.CloseTrigger />
             <Dialog.Body pb={6}>
-              <FormControl>
-                <FormLabel>First name</FormLabel>
+              <Field.Root>
+                <Field.Label>First name</Field.Label>
                 <Input ref={initialRef} placeholder='First name' />
-              </FormControl>
+              </Field.Root>
 
-              <FormControl mt={4}>
-                <FormLabel>Last name</FormLabel>
+              <Field.Root mt={4}>
+                <Field.Label>Last name</Field.Label>
                 <Input placeholder='Last name' />
-              </FormControl>
+              </Field.Root>
             </Dialog.Body>
 
             <Dialog.Footer>

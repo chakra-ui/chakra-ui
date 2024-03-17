@@ -25,61 +25,38 @@ import { Switch } from '@chakra-ui/react'
 ## Usage
 
 ```jsx
-<FormControl display='flex' alignItems='center'>
-  <FormLabel htmlFor='email-alerts' mb='0'>
+<Field.Root display='flex' alignItems='center'>
+  <Field.Label htmlFor='email-alerts' mb='0'>
     Enable email alerts?
-  </FormLabel>
-  <Switch id='email-alerts' />
-</FormControl>
+  </Field.Label>
+  <Switch.Root id='email-alerts'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+</Field.Root>
 ```
 
-## Sizes
+## Changing the size
 
 Pass the `size` prop to change the size of the `Switch`.
 
 ```jsx
-<Stack align='center' direction='row'>
-  <Switch size='sm' />
-  <Switch size='md' />
-  <Switch size='lg' />
-</Stack>
+<Switch.Root size='sm'>
+  <Switch.Track>
+    <Switch.Thumb />
+  </Switch.Track>
+</Switch.Root>
 ```
 
-## Switch background color
+## Changing the color palette
 
-You can change the checked background color of the `Switch` by passing the
-`colorScheme` prop.
-
-```jsx
-<Stack direction='row'>
-  <Switch colorPalette='red' />
-  <Switch colorPalette='teal' size='lg' />
-</Stack>
-```
-
-## State depending behavior
-
-States like `disabled` have an impact on the usability of a `Switch` and on the
-styles, except for the `invalid` and the `required` prop.
+Set the `colorPalette` prop to change the color of the `Switch`.
 
 ```jsx
-<FormControl as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
-  <FormLabel htmlFor='isChecked'>isChecked:</FormLabel>
-  <Switch id='isChecked' isChecked />
-
-  <FormLabel htmlFor='disabled'>disabled:</FormLabel>
-  <Switch id='disabled' disabled defaultChecked />
-
-  <FormLabel htmlFor='isFocusable'>isFocusable:</FormLabel>
-  <Switch id='isFocusable' isFocusable disabled />
-
-  <FormLabel htmlFor='invalid'>invalid:</FormLabel>
-  <Switch id='invalid' invalid />
-
-  <FormLabel htmlFor='readOnly'>readOnly:</FormLabel>
-  <Switch id='readOnly' readOnly />
-
-  <FormLabel htmlFor='required'>required:</FormLabel>
-  <Switch id='required' required />
-</FormControl>
+<Switch.Root size='sm' colorPalette='teal'>
+  <Switch.Track>
+    <Switch.Thumb />
+  </Switch.Track>
+</Switch.Root>
 ```
