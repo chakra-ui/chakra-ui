@@ -2,7 +2,7 @@
 id: breadcrumb
 category: navigation
 title: Breadcrumb
-package: '@chakra-ui/breadcrumb'
+package: '@chakra-ui/react'
 description:
   Breadcrumbs is a navigation pattern that helps users understand the hierarchy
   of a website.
@@ -10,190 +10,107 @@ description:
 
 ## Import
 
-Chakra UI exports 4 breadcrumb-related components:
-
-- `Breadcrumb`: The parent container for breadcrumbs.
-- `BreadcrumbItem`: Individual breadcrumb element containing a link and a
-  divider.
-- `BreadcrumbLink`: The breadcrumb link.
-- `BreadcrumbSeparator`: The visual separator between each breadcrumb.
-
 ```js
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from '@chakra-ui/react'
+import { Breadcrumb } from '@chakra-ui/react'
 ```
 
 ## Usage
 
-Add `isCurrentPage` prop to the `BreadcrumbItem` that matches the current path.
-When this prop is present, the `BreadcrumbLink` renders a `span` with
-`aria-current` set to `page` instead of an anchor element.
-
 ```jsx
-<Breadcrumb>
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Home</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Docs</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href='#'>Breadcrumb</BreadcrumbLink>
-  </BreadcrumbItem>
-</Breadcrumb>
+<Breadcrumb.Root>
+  <Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href='#'>Home</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href='#'>Docs</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item>
+      <Breadcrumb.CurrentLink>Breadcrumb</Breadcrumb.CurrentLink>
+    </Breadcrumb.Item>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
 ```
 
-### Separators
+### Changing the separator
 
-Change the separator used in the breadcrumb by passing a string, like `-` or an
-icon.
+Render a custom children into the `Breadcrumb.Separator` component to change the
+separator. You can set to to a string like "-" or an icon.
 
 ```jsx
-<Breadcrumb separator='-'>
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Home</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>About</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href='#'>Contact</BreadcrumbLink>
-  </BreadcrumbItem>
-</Breadcrumb>
+<Breadcrumb.Root>
+  <Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href='#'>Home</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator>-</Breadcrumb.Separator>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href='#'>About</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator>-</Breadcrumb.Separator>
+    <BreadcrumbItem>
+      <Breadcrumb.CurrentLink>Contact</Breadcrumb.CurrentLink>
+    </BreadcrumbItem>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
 ```
 
-### Using an icon as the separator
+Here's an example using an icon as a separator:
 
 ```jsx
-<Breadcrumb gap='8px' separator={<ChevronRightIcon color='gray.500' />}>
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Home</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>About</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href='#'>Contact</BreadcrumbLink>
-  </BreadcrumbItem>
-</Breadcrumb>
-```
-
-### Using a separator in last item
-
-If you want to have a `BreadcrumbSeparator` in the last item of the `Breadcrumb`
-you have different ways to achieve it. But to avoid the _'React does not
-recognize the `isLastChild` prop on a DOM element.'_ error you can not simply
-add the separator directly in the `Breadcrumb`.
-
-The clean way to achieve it is to put the separator in the last
-`BreadcrumbItem`. Feel free to also inspect the example below with the browsers
-dev tools.
-
-```jsx
-<Box>
-  <Breadcrumb>
+<Breadcrumb.Root>
+  <Breadcrumb.List gap='8px'>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href='#'>Home</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator>
+      <FiArrowRight />
+    </Breadcrumb.Separator>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href='#'>About</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator>
+      <FiArrowRight />
+    </Breadcrumb.Separator>
     <BreadcrumbItem>
-      <BreadcrumbLink href=''>Page 1</BreadcrumbLink>
+      <Breadcrumb.CurrentLink href='#'>Contact</Breadcrumb.CurrentLink>
     </BreadcrumbItem>
-    <BreadcrumbItem>
-      <BreadcrumbLink href=''>Page 2</BreadcrumbLink>
-    </BreadcrumbItem>
-    {/* this will generate a span in the ol HTML tag which causes the error: */}
-    {/* <BreadcrumbSeparator /> */}
-  </Breadcrumb>
-
-  {/* preferred solution: */}
-  <Breadcrumb pt='3'>
-    <BreadcrumbItem>
-      <BreadcrumbLink href=''>Page 1</BreadcrumbLink>
-    </BreadcrumbItem>
-    {/* this creates the exact same HTML as for page 1 */}
-    <BreadcrumbItem>
-      <BreadcrumbLink href=''>Page 2</BreadcrumbLink>
-      <BreadcrumbSeparator />
-    </BreadcrumbItem>
-  </Breadcrumb>
-
-  <Breadcrumb pt='3'>
-    <BreadcrumbItem>
-      <BreadcrumbLink href=''>Page 1</BreadcrumbLink>
-    </BreadcrumbItem>
-    <BreadcrumbItem>
-      <BreadcrumbLink href=''>Page 2</BreadcrumbLink>
-    </BreadcrumbItem>
-    {/* this works too, but creates an additional empty li HTML tag */}
-    <BreadcrumbItem />
-  </Breadcrumb>
-</Box>
-```
-
-## Composition
-
-Breadcrumb composes [Box](/docs/components/layout/box) so you can pass all `Box`
-props to change the style of the breadcrumbs. Let's say we need to reduce the
-`fontSize` of the breadcrumbs.
-
-```jsx
-<Breadcrumb fontWeight='medium' fontSize='sm'>
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>Home</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem>
-    <BreadcrumbLink href='#'>About</BreadcrumbLink>
-  </BreadcrumbItem>
-
-  <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink href='#'>Current</BreadcrumbLink>
-  </BreadcrumbItem>
-</Breadcrumb>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
 ```
 
 ## Usage with Routing Library
 
-To use the Breadcrumb with a routing Library like Reach Router or React Router,
-all you need to do is to pass the `as` prop to the `BreadcrumbLink` component.
-
-It'll replace the rendered `a` tag with Reach's Link.
+To use the Breadcrumb with a routing Library like Next.js Router or React
+Router, all you need to do is to pass the `asChild` prop to the
+`Breadcrumb.Link` component.
 
 ```jsx live=false
-// import { Link } from "@reach/router"
+// import Link from "next/link"
 
 <Breadcrumb>
+  <Breadcrumb.Item>
+    <Breadcrumb.Link asChild>
+      <Link href='#'>Home</Link>
+    </Breadcrumb.Link>
+  </Breadcrumb.Item>
+  <Breadcrumb.Separator />
+  <Breadcrumb.Item>
+    <Breadcrumb.Link asChild>
+      <Link href='#'>About</Link>
+    </Breadcrumb.Link>
+  </Breadcrumb.Item>
+  <Breadcrumb.Separator />
   <BreadcrumbItem>
-    <BreadcrumbLink as={Link} to='#'>
-      Home
-    </BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbItem>
-    <BreadcrumbLink as={Link} to='#'>
-      About
-    </BreadcrumbLink>
-  </BreadcrumbItem>
-  <BreadcrumbItem isCurrentPage>
-    <BreadcrumbLink>Contact</BreadcrumbLink>
+    <Breadcrumb.CurrentLink>Contact</Breadcrumb.CurrentLink>
   </BreadcrumbItem>
 </Breadcrumb>
 ```
 
 ## Accessibility
 
-- The Breadcrumbs are rendered in a `nav` to denote that it is a navigation
-  landmark.
-- The Breadcrumb `nav` has `aria-label` set to `breadcrumb`.
-- The BreadcrumbItem with `isCurrentPage` prop adds the `aria-current=page` to
-  the BreadcrumbLink.
-- The separator has `role` set to `presentation` to denote that its for
-  presentation purposes.
-
----
+- The breadcrumb is rendered in a `nav` to denote that it is a navigation
+  landmark, with a label of `breadcrumb`.
+- The current link has the `aria-current=page` and `role=link`
