@@ -5,11 +5,15 @@
 ### General
 
 - Changed Naming convention for boolean properties from `is<X>` to `<x>`
+
   - isOpen -> open
   - defaultIsOpen -> defaultOpen
   - isDisabled -> disabled
   - isInvalid -> invalid
   - isRequired -> required
+
+- Introduce new `unstyled` prop to every component to allow for unstyled
+  rendering of the component or its parts
 
 ### Changes to `Show` and `Hide`
 

@@ -14,6 +14,7 @@ export const FieldErrorIcon = forwardRef<SVGElement, FieldErrorIconProps>(
 
     return (
       <Icon
+        viewBox="0 0 24 24"
         ref={ref}
         aria-hidden
         {...props}

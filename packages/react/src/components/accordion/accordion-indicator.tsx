@@ -7,7 +7,7 @@ import {
   useAccordionStyles,
 } from "./accordion-context"
 
-const DefaultIcon = (props: HTMLChakraProps<"svg">) => (
+const ChevronIcon = (props: HTMLChakraProps<"svg">) => (
   <Icon viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -31,7 +31,7 @@ export const AccordionIndicator = forwardRef<
       css={[styles.indicator, props.css]}
       className={cx("chakra-accordion__indicator", props.className)}
     >
-      {props.children || <DefaultIcon />}
+      {props.children || <ChevronIcon />}
     </chakra.div>
   )
 })
