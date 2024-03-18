@@ -59,12 +59,12 @@ const StarIcon = (props) => (
 const ReactLiveScope = {
   React,
   ...React,
-  ...Chakra,
   ...Formik,
   ...ReactTable,
   ...Loaders,
   ...reactIcons,
   ...ChakraHooks,
+  ...Chakra,
   StarIcon,
   FocusLock,
   Lorem,

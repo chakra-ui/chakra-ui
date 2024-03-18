@@ -1,5 +1,5 @@
 import { cx } from "@chakra-ui/utils"
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import {
   EMPTY_SLOT_STYLES,
   HTMLChakraProps,
@@ -19,7 +19,12 @@ export interface TableRootProps
   extends HTMLChakraProps<"table">,
     TableOptions,
     UnstyledProp,
-    SlotRecipeProps<"Table"> {}
+    SlotRecipeProps<"Table"> {
+  /**
+   * If `true`, the table will style its descendants with nested selectors
+   */
+  native?: boolean
+}
 
 /**
  * The `Table` component is used to organize and display data efficiently. It renders a `<table>` element by default.
@@ -28,7 +33,7 @@ export interface TableRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/table/
  */
 export const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(
-  function TableRoot({ unstyled, ...props }, ref) {
+  function TableRoot({ unstyled, native, ...props }, ref) {
     const recipe = useSlotRecipe("Table", props.recipe)
 
     const [variantProps, localProps] = recipe.splitVariantProps(props)
@@ -36,13 +41,39 @@ export const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(
 
     const { layout, ...rootProps } = localProps
 
+    const rootCss = useMemo((): SystemStyleObject => {
+      if (!native) return styles.root
+      return {
+        ...styles.root,
+        "& thead": styles.header,
+        "& tbody": styles.body,
+        "& tfoot": styles.footer,
+        "& thead th": styles.columnHeader,
+        "& tr": styles.row,
+        "& td": styles.cell,
+        "& caption": styles.caption,
+      }
+    }, [styles, native])
+
+    if (native) {
+      return (
+        <chakra.table
+          ref={ref}
+          {...rootProps}
+          tableLayout={layout}
+          css={[rootCss, props.css]}
+          className={cx("chakra-table", props.className)}
+        />
+      )
+    }
+
     return (
       <TableStylesProvider value={styles}>
         <chakra.table
           ref={ref}
           {...rootProps}
           tableLayout={layout}
-          css={[styles.root, props.css]}
+          css={[rootCss, props.css]}
           className={cx("chakra-table", props.className)}
         />
       </TableStylesProvider>

@@ -13,9 +13,6 @@ enabled or disabled states.
 
 <carbon-ad></carbon-ad>
 
-`Switch` must always be accompanied by a label, and follows the same keyboard
-workflow as a `Checkbox`.
-
 ## Import
 
 ```js
@@ -25,15 +22,17 @@ import { Switch } from '@chakra-ui/react'
 ## Usage
 
 ```jsx
-<Field.Root display='flex' alignItems='center'>
-  <Field.Label htmlFor='email-alerts' mb='0'>
-    Enable email alerts?
-  </Field.Label>
-  <Switch.Root id='email-alerts'>
-    <Switch.Track>
-      <Switch.Thumb />
-    </Switch.Track>
-  </Switch.Root>
+<Field.Root>
+  <HStack>
+    <Field.Label htmlFor='email-alerts' mb='0'>
+      Enable email alerts?
+    </Field.Label>
+    <Switch.Root id='email-alerts'>
+      <Switch.Track>
+        <Switch.Thumb />
+      </Switch.Track>
+    </Switch.Root>
+  </HStack>
 </Field.Root>
 ```
 
@@ -42,11 +41,17 @@ import { Switch } from '@chakra-ui/react'
 Pass the `size` prop to change the size of the `Switch`.
 
 ```jsx
-<Switch.Root size='sm'>
-  <Switch.Track>
-    <Switch.Thumb />
-  </Switch.Track>
-</Switch.Root>
+<HStack>
+  <For each={['sm', 'md', 'lg']}>
+    {(size) => (
+      <Switch.Root size={size} key={size}>
+        <Switch.Track>
+          <Switch.Thumb />
+        </Switch.Track>
+      </Switch.Root>
+    )}
+  </For>
+</HStack>
 ```
 
 ## Changing the color palette
@@ -54,7 +59,7 @@ Pass the `size` prop to change the size of the `Switch`.
 Set the `colorPalette` prop to change the color of the `Switch`.
 
 ```jsx
-<Switch.Root size='sm' colorPalette='teal'>
+<Switch.Root defaultChecked colorPalette='teal'>
   <Switch.Track>
     <Switch.Thumb />
   </Switch.Track>
