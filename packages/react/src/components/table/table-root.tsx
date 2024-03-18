@@ -1,9 +1,11 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
   SystemStyleObject,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -16,6 +18,7 @@ export interface TableOptions {
 export interface TableRootProps
   extends HTMLChakraProps<"table">,
     TableOptions,
+    UnstyledProp,
     SlotRecipeProps<"Table"> {}
 
 /**
@@ -25,11 +28,11 @@ export interface TableRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/table/
  */
 export const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(
-  function TableRoot(props, ref) {
+  function TableRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Table", props.recipe)
 
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const { layout, ...rootProps } = localProps
 

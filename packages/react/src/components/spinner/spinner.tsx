@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_STYLES,
   HTMLChakraProps,
   RecipeProps,
+  UnstyledProp,
   chakra,
   defineStyle,
   useRecipe,
@@ -46,6 +48,7 @@ interface SpinnerOptions {
 
 export interface SpinnerProps
   extends HTMLChakraProps<"div", SpinnerOptions>,
+    UnstyledProp,
     RecipeProps<"Spinner"> {}
 
 /**
@@ -55,11 +58,10 @@ export interface SpinnerProps
  * @see Docs https://chakra-ui.com/spinner
  */
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
-  function Spinner(props, ref) {
+  function Spinner({ unstyled, ...props }, ref) {
     const recipe = useRecipe("Spinner", props.recipe)
-
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 
     const {
       label = "Loading...",

@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -10,14 +12,14 @@ import { BlockquoteStylesProvider } from "./blockquote-context"
 
 export interface BlockquoteRootProps
   extends HTMLChakraProps<"figure">,
-    SlotRecipeProps<"Blockquote"> {}
+    SlotRecipeProps<"Blockquote">,
+    UnstyledProp {}
 
 export const BlockquoteRoot = forwardRef<HTMLElement, BlockquoteRootProps>(
-  function BlockquoteRoot(props, ref) {
+  function BlockquoteRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Blockquote", props.recipe)
-
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     return (
       <BlockquoteStylesProvider value={styles}>

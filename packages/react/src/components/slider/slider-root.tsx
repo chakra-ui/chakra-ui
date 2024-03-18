@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -12,7 +14,8 @@ import { UseSliderProps, useSlider } from "./use-slider"
 
 export interface SliderRootProps
   extends SlotRecipeProps<"Slider">,
-    HTMLChakraProps<"div", UseSliderProps> {}
+    HTMLChakraProps<"div", UseSliderProps>,
+    UnstyledProp {}
 
 /**
  * The Slider is used to allow users to make selections from a range of values.
@@ -22,7 +25,7 @@ export interface SliderRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/slider/
  */
 export const SliderRoot = forwardRef<HTMLDivElement, SliderRootProps>(
-  function SliderRoot(props, ref) {
+  function SliderRoot({ unstyled, ...props }, ref) {
     const sliderProps: SliderRootProps = {
       ...props,
       orientation: props?.orientation ?? "horizontal",
@@ -30,7 +33,7 @@ export const SliderRoot = forwardRef<HTMLDivElement, SliderRootProps>(
 
     const recipe = useSlotRecipe("Slider")
     const [variantProps, localProps] = recipe.splitVariantProps(sliderProps)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const [hookProps, elementProps] = splitSliderProps(localProps)
     hookProps.orientation = sliderProps.orientation

@@ -150,6 +150,7 @@ export const progressAnatomy = anatomy("progress").parts(
 
 export const radioAnatomy = anatomy("radio").parts(
   "root",
+  "item",
   "control",
   "indicator",
   "label",

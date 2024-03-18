@@ -1,4 +1,8 @@
-import { SlotRecipeProps, useChakraContext } from "../../styled-system"
+import {
+  SlotRecipeProps,
+  UnstyledProp,
+  useChakraContext,
+} from "../../styled-system"
 import { DialogRoot, DialogRootProps } from "../dialog/dialog-root"
 import { DrawerContextProvider, DrawerOptions } from "./drawer-context"
 import { getDrawerPlacement } from "./get-placement"
@@ -6,6 +10,7 @@ import { getDrawerPlacement } from "./get-placement"
 export interface DrawerRootProps
   extends DrawerOptions,
     SlotRecipeProps<"Drawer">,
+    UnstyledProp,
     Omit<DialogRootProps, "motionPreset" | keyof SlotRecipeProps<"Drawer">> {}
 
 /**

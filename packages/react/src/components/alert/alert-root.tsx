@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -10,7 +12,8 @@ import { AlertProvider, AlertStylesProvider } from "./alert-context"
 
 export interface AlertRootProps
   extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"Alert"> {}
+    SlotRecipeProps<"Alert">,
+    UnstyledProp {}
 
 /**
  * Alert is used to communicate the state or status of a
@@ -20,11 +23,10 @@ export interface AlertRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/alert/
  */
 export const AlertRoot = forwardRef<HTMLDivElement, AlertRootProps>(
-  function AlertRoot(props, ref) {
+  function AlertRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Alert", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     return (
       <AlertProvider value={{ status: variantProps.status || "info" }}>
@@ -33,7 +35,7 @@ export const AlertRoot = forwardRef<HTMLDivElement, AlertRootProps>(
             ref={ref}
             {...localProps}
             className={cx("chakra-alert", props.className)}
-            css={styles.root}
+            css={[styles.root, props.css]}
           />
         </AlertStylesProvider>
       </AlertProvider>

@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -10,7 +12,8 @@ import { TagStylesProvider } from "./tag-context"
 
 export interface TagRootProps
   extends HTMLChakraProps<"span">,
-    SlotRecipeProps<"Tag"> {
+    SlotRecipeProps<"Tag">,
+    UnstyledProp {
   /**
    * If `true`, the tag will be interactive
    */
@@ -23,12 +26,10 @@ export interface TagRootProps
  * @see Docs https://chakra-ui.com/tag
  */
 export const TagRoot = forwardRef<HTMLSpanElement, TagRootProps>(
-  function TagRoot(props, ref) {
+  function TagRoot({ unstyled, interactive, ...props }, ref) {
     const recipe = useSlotRecipe("Tag", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
-
-    const { interactive, ...restProps } = localProps
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     return (
       <TagStylesProvider value={styles}>
@@ -36,7 +37,7 @@ export const TagRoot = forwardRef<HTMLSpanElement, TagRootProps>(
           tabIndex={interactive ? 0 : undefined}
           role={interactive ? "button" : undefined}
           ref={ref}
-          {...restProps}
+          {...localProps}
           css={[styles.root, localProps.css]}
           className={cx("chakra-tag", localProps.className)}
         />

@@ -1,15 +1,10 @@
 import { callAll, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import {
-  HTMLChakraProps,
-  SlotRecipeProps,
-  chakra,
-  useSlotRecipe,
-} from "../../styled-system"
+import { HTMLChakraProps, SlotRecipeProps, chakra } from "../../styled-system"
 import {
   RadioItemContextProvider,
-  RadioItemStylesProvider,
   useRadioGroupContext,
+  useRadioGroupStyles,
 } from "./radio-group-context"
 import { splitRadioItemProps } from "./radio-group-props"
 import { UseRadioProps, useRadio } from "./use-radio"
@@ -26,12 +21,9 @@ export interface RadioGroupItemProps
 export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
   function RadioGroupItem(props, ref) {
     const api = useRadioGroupContext()
+    const styles = useRadioGroupStyles()
 
-    const recipe = useSlotRecipe("Radio")
-    const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
-
-    const { children, inputProps, ...restProps } = localProps
+    const { children, inputProps, ...restProps } = props
 
     const [itemProps, rootProps] = splitRadioItemProps(restProps)
 
@@ -60,21 +52,19 @@ export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
     const itemApi = useRadio(itemProps)
 
     return (
-      <RadioItemStylesProvider value={styles}>
-        <RadioItemContextProvider value={itemApi}>
-          <chakra.label
-            {...rootProps}
-            className={cx("chakra-radio", rootProps.className)}
-            css={[styles.root, props.css]}
-          >
-            <input
-              className="chakra-radio__input"
-              {...(itemApi.getInputProps(inputProps, ref) as any)}
-            />
-            {children}
-          </chakra.label>
-        </RadioItemContextProvider>
-      </RadioItemStylesProvider>
+      <RadioItemContextProvider value={itemApi}>
+        <chakra.label
+          {...rootProps}
+          className={cx("chakra-radio", rootProps.className)}
+          css={[styles.item, props.css]}
+        >
+          <input
+            className="chakra-radio__input"
+            {...(itemApi.getInputProps(inputProps, ref) as any)}
+          />
+          {children}
+        </chakra.label>
+      </RadioItemContextProvider>
     )
   },
 )

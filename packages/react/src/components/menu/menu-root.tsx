@@ -1,6 +1,11 @@
 import { useAnimationState } from "@chakra-ui/hooks"
 import { MaybeRenderProp, pick, runIfFn } from "@chakra-ui/utils"
-import { SlotRecipeProps, useSlotRecipe } from "../../styled-system"
+import {
+  EMPTY_SLOT_STYLES,
+  SlotRecipeProps,
+  UnstyledProp,
+  useSlotRecipe,
+} from "../../styled-system"
 import {
   RenderStrategyProps,
   RenderStrategyProvider,
@@ -16,7 +21,8 @@ import { UseMenuProps, useMenu } from "./use-menu"
 export interface MenuRootProps
   extends UseMenuProps,
     SlotRecipeProps<"Menu">,
-    Omit<RenderStrategyProps, "visible"> {
+    Omit<RenderStrategyProps, "visible">,
+    UnstyledProp {
   children: MaybeRenderProp<any>
 }
 
@@ -26,11 +32,10 @@ export interface MenuRootProps
  *
  * @see Docs https://chakra-ui.com/docs/components/menu
  */
-export const MenuRoot: React.FC<MenuRootProps> = (props) => {
+export function MenuRoot({ unstyled, ...props }: MenuRootProps) {
   const recipe = useSlotRecipe("Menu")
-
   const [variantProps, localProps] = recipe.splitVariantProps(props)
-  const styles = recipe(variantProps)
+  const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
   const { lazyMount, lazyBehavior = "unmount", ...restProps } = localProps
   const api = useMenu(restProps)

@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   RecipeProps,
+  UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
@@ -12,7 +14,8 @@ import { UsePinInputProps, usePinInput } from "./use-pin-input"
 
 export interface PinInputRootProps
   extends HTMLChakraProps<"div", UsePinInputProps>,
-    RecipeProps<"PinInput"> {}
+    RecipeProps<"PinInput">,
+    UnstyledProp {}
 
 /**
  * The `PinInput` component is similar to the Input component, but is optimized for entering sequences of digits quickly.
@@ -20,10 +23,10 @@ export interface PinInputRootProps
  * @see Docs https://chakra-ui.com/docs/components/pin-input
  */
 export const PinInputRoot = forwardRef<HTMLDivElement, PinInputRootProps>(
-  function PinInput(props, ref) {
+  function PinInput({ unstyled, ...props }, ref) {
     const recipe = useRecipe("PinInput", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const [hookProps, restProps] = splitPinInputProps(localProps)
     const api = usePinInput(hookProps)

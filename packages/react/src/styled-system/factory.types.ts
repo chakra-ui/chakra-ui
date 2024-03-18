@@ -98,6 +98,13 @@ export interface JsxStyleProps
 export type InferRecipeProps<T> =
   T extends ChakraComponent<any, infer P> ? P : {}
 
+export interface UnstyledProp {
+  /**
+   * If `true`, the element will opt out of the theme styles.
+   */
+  unstyled?: boolean
+}
+
 export type PropGetterFn<T extends keyof JSX.IntrinsicElements, P = unknown> = (
   props?: Partial<Omit<JSX.IntrinsicElements[T], HtmlProp | keyof P>> & P,
   ref?: any,

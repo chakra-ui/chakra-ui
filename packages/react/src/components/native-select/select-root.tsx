@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -12,7 +14,8 @@ import { SelectContextProvider, SelectStylesProvider } from "./select-context"
 export interface NativeSelectRootProps
   extends HTMLChakraProps<"div">,
     SlotRecipeProps<"NativeSelect">,
-    FieldOptions {}
+    FieldOptions,
+    UnstyledProp {}
 
 /**
  * React component used to select one item from a list of options.
@@ -22,10 +25,10 @@ export interface NativeSelectRootProps
 export const NativeSelectRoot = forwardRef<
   HTMLDivElement,
   NativeSelectRootProps
->(function NativeSelectRoot(props, ref) {
+>(function NativeSelectRoot({ unstyled, ...props }, ref) {
   const recipe = useSlotRecipe("NativeSelect", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
-  const styles = recipe(variantProps)
+  const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
   const [fieldProps, rootProps] = splitFieldProps(localProps)
   const field = useField(fieldProps)

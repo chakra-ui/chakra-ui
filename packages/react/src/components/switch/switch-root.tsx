@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -12,6 +14,7 @@ import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"
 
 export interface SwitchRootProps
   extends HTMLChakraProps<"label", UseCheckboxProps>,
+    UnstyledProp,
     SlotRecipeProps<"Switch"> {}
 
 /**
@@ -21,10 +24,10 @@ export interface SwitchRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/switch/
  */
 export const SwitchRoot = forwardRef<HTMLInputElement, SwitchRootProps>(
-  function SwitchRoot(props, ref) {
+  function SwitchRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Switch", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const [checkboxProps, elementProps] = splitCheckboxProps(localProps)
     const api = useCheckbox(checkboxProps)

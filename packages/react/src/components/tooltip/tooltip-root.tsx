@@ -1,4 +1,9 @@
-import { SlotRecipeProps, useRecipe } from "../../styled-system"
+import {
+  EMPTY_SLOT_STYLES,
+  SlotRecipeProps,
+  UnstyledProp,
+  useRecipe,
+} from "../../styled-system"
 import {
   TooltipContextProvider,
   TooltipStylesProvider,
@@ -7,6 +12,7 @@ import { UseTooltipProps, useTooltip } from "./use-tooltip"
 
 export interface TooltipRootProps
   extends SlotRecipeProps<"Tooltip">,
+    UnstyledProp,
     Partial<UseTooltipProps> {
   /**
    * The React component to use as the
@@ -21,10 +27,10 @@ export interface TooltipRootProps
  * @see Docs     https://chakra-ui.com/docs/overlay/tooltip
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
  */
-export const TooltipRoot = (props: TooltipRootProps) => {
+export function TooltipRoot({ unstyled, ...props }: TooltipRootProps) {
   const recipe = useRecipe("Tooltip", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
-  const styles = recipe(variantProps)
+  const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
   const api = useTooltip(localProps)
 

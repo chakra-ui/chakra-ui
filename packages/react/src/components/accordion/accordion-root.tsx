@@ -2,8 +2,10 @@ import { useMergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -17,7 +19,8 @@ import { UseAccordionProps, useAccordion } from "./use-accordion"
 export interface AccordionRootProps
   extends UseAccordionProps,
     HTMLChakraProps<"div", UseAccordionProps>,
-    SlotRecipeProps<"Accordion"> {
+    SlotRecipeProps<"Accordion">,
+    UnstyledProp {
   /**
    * If `true`, height animation and transitions will be disabled.
    *
@@ -36,11 +39,11 @@ export interface AccordionRootProps
  */
 export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(
   function AccordionRoot(props, ref) {
-    const { reduceMotion, ...restProps } = props
+    const { reduceMotion, unstyled, ...restProps } = props
     const recipe = useSlotRecipe("Accordion", props.recipe)
 
     const [variantProps, ownProps] = recipe.splitVariantProps(restProps)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const [accordionProps, htmlProps] = splitAccordionProps(ownProps)
     const context = useAccordion(accordionProps)
@@ -54,7 +57,7 @@ export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(
             ref={useMergeRefs(ref, context.rootRef)}
             {...htmlProps}
             className={cx("chakra-accordion", props.className)}
-            css={styles.root}
+            css={[styles.root, props.css]}
           />
         </AccordionStylesProvider>
       </AccordionContextProvider>

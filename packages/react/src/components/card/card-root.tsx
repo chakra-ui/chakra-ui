@@ -1,9 +1,11 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
   SystemStyleObject,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -22,28 +24,24 @@ export interface CardOptions {
    * The flex distribution of the card
    */
   justify?: SystemStyleObject["justifyContent"]
-  /**
-   * If `true`, the card will not have any styles
-   */
-  unstyled?: boolean
 }
 
 export interface CardRootProps
   extends HTMLChakraProps<"div", CardOptions>,
-    SlotRecipeProps<"Card"> {}
+    SlotRecipeProps<"Card">,
+    UnstyledProp {}
 
 export const CardRoot = forwardRef<HTMLDivElement, CardRootProps>(
-  function CardRoot(props, ref) {
+  function CardRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Card", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const {
       children,
       direction = "column",
       justify,
       align,
-      unstyled,
       ...rest
     } = localProps
 
@@ -56,7 +54,7 @@ export const CardRoot = forwardRef<HTMLDivElement, CardRootProps>(
           flexDirection={direction}
           justifyContent={justify}
           alignItems={align}
-          css={[!unstyled && styles.root, props.css]}
+          css={[styles.root, props.css]}
         >
           {children}
         </chakra.div>

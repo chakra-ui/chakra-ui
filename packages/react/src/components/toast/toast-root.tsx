@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -10,15 +12,16 @@ import { ToastStylesProvider, useToastContext } from "./toast-context"
 
 export interface ToastRootProps
   extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"Toast"> {}
+    SlotRecipeProps<"Toast">,
+    UnstyledProp {}
 
 export const ToastRoot = forwardRef<HTMLDivElement, ToastRootProps>(
-  function _ToastRoot(props, ref) {
+  function _ToastRoot({ unstyled, ...props }, ref) {
     const api = useToastContext()
 
     const recipe = useSlotRecipe("Toast", props.recipe)
     const [variantProps, restProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     return (
       <ToastStylesProvider value={styles}>

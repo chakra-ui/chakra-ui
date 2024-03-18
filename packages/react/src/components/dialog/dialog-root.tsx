@@ -1,5 +1,10 @@
 import { AnimatePresence } from "framer-motion"
-import { SlotRecipeProps, useSlotRecipe } from "../../styled-system"
+import {
+  EMPTY_SLOT_STYLES,
+  SlotRecipeProps,
+  UnstyledProp,
+  useSlotRecipe,
+} from "../../styled-system"
 import { Portal, PortalProps } from "../portal"
 import { DialogContextProvider, DialogStylesProvider } from "./dialog-context"
 import { DialogMotionPreset, DialogOptions } from "./dialog-types"
@@ -8,7 +13,8 @@ import { UseDialogProps, useDialog } from "./use-dialog"
 export interface DialogRootProps
   extends UseDialogProps,
     DialogOptions,
-    SlotRecipeProps<"Dialog"> {
+    SlotRecipeProps<"Dialog">,
+    UnstyledProp {
   /**
    * The children of the dialog component
    */
@@ -37,7 +43,7 @@ export interface DialogRootProps
  * @see Docs https://chakra-ui.com/docs/components/dialog
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
  */
-export const DialogRoot: React.FC<DialogRootProps> = (props) => {
+export function DialogRoot({ unstyled, ...props }: DialogRootProps) {
   const modalProps: DialogRootProps = {
     scrollBehavior: "outside",
     autoFocus: true,
@@ -69,7 +75,7 @@ export const DialogRoot: React.FC<DialogRootProps> = (props) => {
 
   const recipe = useSlotRecipe("Dialog", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(modalProps)
-  const styles = recipe(variantProps)
+  const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
   const api = useDialog(localProps)
 

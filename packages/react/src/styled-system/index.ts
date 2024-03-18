@@ -11,7 +11,9 @@ export type {
   HTMLChakraProps,
   InferRecipeProps,
   PropGetterFn,
+  UnstyledProp,
 } from "./factory.types"
+export * from "./empty"
 export type {
   RecipeProps,
   SlotRecipeProps,

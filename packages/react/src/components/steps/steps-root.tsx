@@ -1,8 +1,10 @@
 import { cx, dataAttr } from "@chakra-ui/utils"
 import { Children, forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -14,21 +16,19 @@ import {
 
 export interface StepsRootProps
   extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"Steps"> {
+    SlotRecipeProps<"Steps">,
+    UnstyledProp {
   /**
    * The active step index
    */
   index: number
-  /**
-   */
-  children: React.ReactNode
 }
 
 export const StepsRoot = forwardRef<HTMLDivElement, StepsRootProps>(
-  function StepsRoot(props, ref) {
+  function StepsRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Steps", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const { children, index, ...restProps } = localProps
 

@@ -7,7 +7,7 @@ const { base, variants } = checkboxSlotRecipe
 export const radioSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
-    root: base!.root,
+    item: base!.root,
     label: base!.label,
     control: {
       ...base!.control,

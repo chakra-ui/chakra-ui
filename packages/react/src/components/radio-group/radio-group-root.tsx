@@ -1,19 +1,24 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
-  RecipePropsProvider,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
-import { RadioGroupContextProvider } from "./radio-group-context"
+import {
+  RadioGroupContextProvider,
+  RadioGroupStylesProvider,
+} from "./radio-group-context"
 import { splitRadioGroupProps } from "./radio-group-props"
 import { UseRadioGroupProps, useRadioGroup } from "./use-radio-group"
 
 export interface RadioGroupRootProps
   extends HTMLChakraProps<"div", UseRadioGroupProps>,
-    SlotRecipeProps<"Radio"> {}
+    SlotRecipeProps<"Radio">,
+    UnstyledProp {}
 
 /**
  * Used for multiple radios which are bound in one group,
@@ -22,22 +27,24 @@ export interface RadioGroupRootProps
  * @see Docs https://chakra-ui.com/radio
  */
 export const RadioGroupRoot = forwardRef<HTMLDivElement, RadioGroupRootProps>(
-  function RadioGroupRoot(props, ref) {
+  function RadioGroupRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Radio")
     const [variantProps, restProps] = recipe.splitVariantProps(props)
-    const [groupProps, localProps] = splitRadioGroupProps(restProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
+    const [groupProps, localProps] = splitRadioGroupProps(restProps)
     const api = useRadioGroup(groupProps)
 
     return (
-      <RecipePropsProvider value={variantProps}>
+      <RadioGroupStylesProvider value={styles}>
         <RadioGroupContextProvider value={api}>
           <chakra.div
             {...api.getRootProps(localProps, ref)}
+            css={[styles.root, props.css]}
             className={cx("chakra-radio-group", localProps.className)}
           />
         </RadioGroupContextProvider>
-      </RecipePropsProvider>
+      </RadioGroupStylesProvider>
     )
   },
 )

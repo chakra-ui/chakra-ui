@@ -1,8 +1,10 @@
 import { callAll, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   mergeProps,
   useParentRecipeProps,
@@ -19,7 +21,8 @@ import { useCheckbox } from "./use-checkbox"
 
 export interface CheckboxRootProps
   extends HTMLChakraProps<"label", UseCheckboxProps>,
-    SlotRecipeProps<"Checkbox"> {
+    SlotRecipeProps<"Checkbox">,
+    UnstyledProp {
   /**
    * Additional props to be forwarded to the `input` element
    */
@@ -27,18 +30,16 @@ export interface CheckboxRootProps
 }
 
 export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
-  function Checkbox(props, ref) {
-    const group = useCheckboxGroupContext()
-    const groupVariantProps = useParentRecipeProps()
-
-    const mergedProps = mergeProps(
-      groupVariantProps,
-      props,
-    ) as CheckboxRootProps
+  function Checkbox({ unstyled, ...props }, ref) {
+    const parentVariantProps = useParentRecipeProps()
 
     const recipe = useSlotRecipe("Checkbox", props.recipe)
-    const [variantProps, ownProps] = recipe.splitVariantProps(mergedProps)
-    const styles = recipe(variantProps)
+    const [variantProps, ownProps] = recipe.splitVariantProps(props)
+    const _variantProps = mergeProps<any>(parentVariantProps, variantProps)
+
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(_variantProps)
+
+    const group = useCheckboxGroupContext()
 
     if (group?.value && ownProps.value) {
       ownProps.checked = group.value.includes(ownProps.value)

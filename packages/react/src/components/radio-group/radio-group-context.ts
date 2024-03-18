@@ -15,10 +15,10 @@ export const [RadioItemContextProvider, useRadioItemContext] =
     strict: false,
   })
 
-export const [RadioItemStylesProvider, useRadioItemStyles] = createContext<
+export const [RadioGroupStylesProvider, useRadioGroupStyles] = createContext<
   Record<string, SystemStyleObject>
 >({
-  name: "RadioItemStylesContext",
-  hookName: "useRadioItemStyles",
-  providerName: "<RadioGroup.Item />",
+  name: "RadioGroupStylesContext",
+  hookName: "useRadioGroupStyles",
+  providerName: "<RadioGroup.Root />",
 })

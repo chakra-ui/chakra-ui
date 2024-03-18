@@ -1,19 +1,20 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_STYLES,
   HTMLChakraProps,
   RecipeProps,
+  UnstyledProp,
   chakra,
   mergeProps,
   useRecipe,
 } from "../../styled-system"
 import { FieldOptions, splitFieldProps, useField } from "../field"
 
-type Omitted = "disabled" | "required" | "readOnly" | "size"
-
 export interface InputProps
-  extends Omit<HTMLChakraProps<"input">, Omitted>,
+  extends HTMLChakraProps<"input">,
     RecipeProps<"Input">,
+    UnstyledProp,
     FieldOptions {
   /**
    * If `true`, the input will be unstyled
@@ -34,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const recipe = useRecipe("Input", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(restProps)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 
     const [fieldProps, elementProps] = splitFieldProps(localProps)
     const inputProps = useField<HTMLInputElement>(fieldProps)
@@ -42,7 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <chakra.input
         {...mergeProps(elementProps, inputProps)}
-        css={[!unstyled ? styles : { bg: "inherit" }, props.css]}
+        css={[styles, props.css]}
         ref={ref}
         className={cx("chakra-input", props.className)}
       />

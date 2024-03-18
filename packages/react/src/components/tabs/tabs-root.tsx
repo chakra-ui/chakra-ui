@@ -2,8 +2,10 @@ import { useMergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -13,12 +15,8 @@ import { UseTabsProps, useTabs } from "./use-tabs"
 
 export interface TabsRootProps
   extends HTMLChakraProps<"div", UseTabsProps>,
-    SlotRecipeProps<"Tabs"> {
-  /**
-   * If `true`, the tabs will be unstyled.
-   */
-  unstyled?: boolean
-}
+    SlotRecipeProps<"Tabs">,
+    UnstyledProp {}
 
 /**
  * Tabs
@@ -29,15 +27,13 @@ export interface TabsRootProps
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
  */
 export const TabsRoot = forwardRef<HTMLDivElement, TabsRootProps>(
-  function TabsRoot(props, ref) {
-    const { unstyled, ...restProps } = props
-
+  function TabsRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Tabs", props.recipe)
-    const [variantProps, localProps] = recipe.splitVariantProps(restProps)
-    const styles = recipe(variantProps)
+    const [variantProps, localProps] = recipe.splitVariantProps(props)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
-    const [useTabsProps, elementProps] = splitTabsProps(localProps)
-    const api = useTabs(useTabsProps)
+    const [hookProps, elementProps] = splitTabsProps(localProps)
+    const api = useTabs(hookProps)
 
     return (
       <TabsProvider value={api}>

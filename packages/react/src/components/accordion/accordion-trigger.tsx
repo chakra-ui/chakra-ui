@@ -26,7 +26,7 @@ export const AccordionTrigger = forwardRef<
     <chakra.button
       {...api.getTriggerProps(props, ref)}
       className={cx("chakra-accordion__trigger", props.className)}
-      css={styles.trigger}
+      css={[styles.trigger, props.css]}
     />
   )
 })

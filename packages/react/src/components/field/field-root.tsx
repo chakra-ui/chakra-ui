@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -14,7 +16,8 @@ import { useFieldProvider } from "./use-field-provider"
 export interface FieldRootProps
   extends HTMLChakraProps<"div">,
     SlotRecipeProps<"Field">,
-    FieldContext {}
+    FieldContext,
+    UnstyledProp {}
 
 /**
  * FormControl provides context such as
@@ -26,10 +29,10 @@ export interface FieldRootProps
  * @see Docs https://chakra-ui.com/docs/components/form-control
  */
 export const FieldRoot = forwardRef<HTMLDivElement, FieldRootProps>(
-  function FieldRoot(props, ref) {
+  function FieldRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Field", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const [formControlProps, rootProps] = splitFieldProps(localProps)
     const api = useFieldProvider(formControlProps)

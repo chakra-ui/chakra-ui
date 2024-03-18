@@ -1,15 +1,18 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   RecipeProps,
+  UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
 
 export interface SeparatorProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Separator"> {}
+    RecipeProps<"Separator">,
+    UnstyledProp {}
 
 /**
  * Layout component used to visually separate content in a list or group.
@@ -18,10 +21,10 @@ export interface SeparatorProps
  * @see Docs https://chakra-ui.com/divider
  */
 export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
-  function Separator(props, ref) {
+  function Separator({ unstyled, ...props }, ref) {
     const recipe = useRecipe("Separator", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     return (
       <chakra.div

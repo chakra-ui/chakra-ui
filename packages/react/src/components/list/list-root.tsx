@@ -1,6 +1,7 @@
 import { forwardRef } from "react"
-import type { HTMLChakraProps } from "../../styled-system"
+import type { HTMLChakraProps, UnstyledProp } from "../../styled-system"
 import {
+  EMPTY_SLOT_STYLES,
   SlotRecipeProps,
   SystemStyleObject,
   chakra,
@@ -24,6 +25,7 @@ interface ListOptions {
 export interface ListRootProps
   extends HTMLChakraProps<"ul">,
     SlotRecipeProps<"List">,
+    UnstyledProp,
     ListOptions {}
 
 /**
@@ -32,11 +34,10 @@ export interface ListRootProps
  * @see Docs https://chakra-ui.com/list
  */
 export const ListRoot = forwardRef<HTMLUListElement, ListRootProps>(
-  function ListRoot(props, ref) {
+  function ListRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("List", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
     const { styleType, stylePosition, ...rest } = localProps
 
     return (
@@ -45,12 +46,9 @@ export const ListRoot = forwardRef<HTMLUListElement, ListRootProps>(
           {...rest}
           ref={ref}
           role="list"
-          css={{
-            listStyleType: styleType,
-            listStylePosition: stylePosition,
-            ...styles.root,
-            ...props.css,
-          }}
+          listStyleType={styleType}
+          listStylePosition={stylePosition}
+          css={[styles.root, props.css]}
         />
       </ListStylesProvider>
     )

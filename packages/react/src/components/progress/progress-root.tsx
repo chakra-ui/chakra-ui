@@ -1,8 +1,10 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
+  EMPTY_SLOT_STYLES,
   HTMLChakraProps,
   SlotRecipeProps,
+  UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -19,7 +21,8 @@ export interface ProgressTrackProps extends HTMLChakraProps<"div"> {}
 export interface ProgressRootProps
   extends ProgressOptions,
     SlotRecipeProps<"Progress">,
-    HTMLChakraProps<"div"> {}
+    HTMLChakraProps<"div">,
+    UnstyledProp {}
 
 /**
  * Progress (Linear)
@@ -33,10 +36,10 @@ export interface ProgressRootProps
  * @see Docs https://chakra-ui.com/progress
  */
 export const ProgressRoot = forwardRef<HTMLDivElement, ProgressRootProps>(
-  function ProgressRoot(props, ref) {
+  function ProgressRoot({ unstyled, ...props }, ref) {
     const recipe = useSlotRecipe("Progress")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = recipe(variantProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     const [progressProps, restProps] = splitProgressProps(localProps)
     const computed = getProgressProps(progressProps)
