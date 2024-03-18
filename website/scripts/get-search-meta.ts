@@ -1,15 +1,15 @@
 import {
+  DEFAULT_PARSE_FRONT_MATTER,
   fileToPath,
   parseMarkdownFile,
   posixPath,
   removePrefix,
-  DEFAULT_PARSE_FRONT_MATTER,
 } from '@docusaurus/utils'
-import fs from 'fs'
+import { globSync } from 'fast-glob'
+import { readFileSync, writeFileSync } from 'fs'
 import toc from 'markdown-toc'
-import path from 'path'
+import { join } from 'path'
 import prettier from 'prettier'
-import shell from 'shelljs'
 
 interface ResultType {
   content: string
@@ -34,11 +34,10 @@ interface TOCResultItem {
 const websiteRoot = 'content'
 
 async function getMDXMeta(file: string) {
-  // For Windows: convert backslashes to forwards slashes with `posixPath()` for consistency
   const filePath = posixPath(file)
   const processCWD = posixPath(process.cwd())
 
-  const markdownString = fs.readFileSync(file).toString()
+  const markdownString = readFileSync(file).toString()
 
   const { content, frontMatter: _frontMatter } = await parseMarkdownFile({
     filePath: file,
@@ -82,43 +81,22 @@ async function getMDXMeta(file: string) {
   return result
 }
 
-async function getSearchMeta() {
-  let json: any = []
+async function main() {
+  const files = globSync('content/**/*.mdx', {
+    cwd: process.cwd(),
+    ignore: ['/tutorial'],
+  })
 
-  const files = shell
-    .ls('-R', websiteRoot)
-    .map((file) => path.join(process.cwd(), websiteRoot, file))
-    .filter((file) => file.endsWith('.mdx'))
+  const json = await Promise.all(files.map((file) => getMDXMeta(file)))
 
-  /**
-   * File paths to not be included in the search meta.
-   *
-   * This can be overall page sections (i.e. "/docs", "/tutorial", etc.) or specific files. (i.e. "/guides/first-steps")
-   */
-  const excludedSlugs = ['/tutorial']
+  const content = await prettier.format(JSON.stringify(json), {
+    parser: 'json',
+  })
 
-  for (const file of files) {
-    let result: any[] = []
+  const outPath = join(process.cwd(), 'configs', 'search-meta.json')
 
-    // Windows OS: ensure file paths have forward slashes.
-    const fileToPosixPath = posixPath(file)
-
-    const isExcluded = !!excludedSlugs.find((excludedSlug) =>
-      fileToPosixPath.includes(excludedSlug),
-    )
-
-    try {
-      result = isExcluded ? [] : await getMDXMeta(file)
-      json.push(...result)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  json = prettier.format(JSON.stringify(json), { parser: 'json' })
-  const outPath = path.join(process.cwd(), 'configs', 'search-meta.json')
-  fs.writeFileSync(outPath, json)
+  writeFileSync(outPath, content)
   console.log('Search meta is ready ✅')
 }
 
-getSearchMeta()
+main()
