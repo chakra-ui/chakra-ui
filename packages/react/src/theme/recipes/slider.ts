@@ -5,10 +5,13 @@ export const sliderSlotRecipe = defineSlotRecipe({
   slots: parts.keys,
   base: {
     root: {
-      display: "inline-block",
+      fontSize: "sm",
       position: "relative",
       colorPalette: "gray",
-      fontSize: "sm",
+    },
+    control: {
+      display: "inline-block",
+      position: "relative",
       minHeight: "var(--slider-thumb-size)",
     },
     track: {
@@ -93,7 +96,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
     },
     orientation: {
       vertical: {
-        root: {
+        control: {
           height: "100%",
         },
         track: {
@@ -105,7 +108,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
         },
       },
       horizontal: {
-        root: {
+        control: {
           width: "100%",
         },
         track: {

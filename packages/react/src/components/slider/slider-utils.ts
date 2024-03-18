@@ -1,6 +1,7 @@
 export function getIds(id: string | number) {
   return {
     root: `slider-root-${id}`,
+    control: `slider-control-${id}`,
     getThumb: (i: number) => `slider-thumb-${id}-${i}`,
     getInput: (i: number) => `slider-input-${id}-${i}`,
     track: `slider-track-${id}`,
@@ -69,7 +70,7 @@ export function getStyles(options: StyleOptions) {
           zeroSize,
         )
 
-  const rootStyle: React.CSSProperties = {
+  const controlStyle: React.CSSProperties = {
     position: "relative",
     touchAction: "none",
     WebkitTapHighlightColor: "rgba(0,0,0,0)",
@@ -132,7 +133,7 @@ export function getStyles(options: StyleOptions) {
     }),
   }
 
-  return { trackStyle, innerTrackStyle, rootStyle, getThumbStyle }
+  return { trackStyle, innerTrackStyle, controlStyle, getThumbStyle }
 }
 
 export function getReversed(options: {

@@ -3,6 +3,19 @@ import { Slider } from "../src/components/slider"
 import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
+const DemoSlider = (props: Slider.RootProps) => {
+  return (
+    <Slider.Root {...props}>
+      <Slider.Control>
+        <Slider.Track>
+          <Slider.FilledTrack />
+        </Slider.Track>
+        <Slider.Thumb />
+      </Slider.Control>
+    </Slider.Root>
+  )
+}
+
 export default {
   title: "Components / Slider",
   decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
@@ -30,23 +43,13 @@ export const Variants = () => {
               <For each={recipe.variantMap.variant}>
                 {(v) => (
                   <td>
-                    <Slider.Root colorPalette={c} variant={v} minW="200px">
-                      <Slider.Track>
-                        <Slider.FilledTrack />
-                      </Slider.Track>
-                      <Slider.Thumb />
-                    </Slider.Root>
-                    <Slider.Root
+                    <DemoSlider colorPalette={c} variant={v} minW="200px" />
+                    <DemoSlider
                       colorPalette={c}
                       variant={v}
                       minW="200px"
                       disabled
-                    >
-                      <Slider.Track>
-                        <Slider.FilledTrack />
-                      </Slider.Track>
-                      <Slider.Thumb />
-                    </Slider.Root>
+                    />
                   </td>
                 )}
               </For>
@@ -80,12 +83,7 @@ export const Sizes = () => {
               <For each={recipe.variantMap.size}>
                 {(v) => (
                   <td>
-                    <Slider.Root colorPalette={c} size={v} minW="160px">
-                      <Slider.Track>
-                        <Slider.FilledTrack />
-                      </Slider.Track>
-                      <Slider.Thumb />
-                    </Slider.Root>
+                    <DemoSlider colorPalette={c} size={v} minW="160px" />
                   </td>
                 )}
               </For>

@@ -1,5 +1,4 @@
-import { Box } from "../src"
-import { RangeSlider } from "../src/components/range-slider"
+import { Box, RangeSlider } from "../src"
 
 export default {
   title: "Components / Slider - Range",
@@ -9,11 +8,13 @@ export default {
 export function HorizontalSlider() {
   return (
     <RangeSlider.Root maxW="300px">
-      <RangeSlider.Track>
-        <RangeSlider.FilledTrack />
-      </RangeSlider.Track>
-      <RangeSlider.Thumb index={0} />
-      <RangeSlider.Thumb index={1} />
+      <RangeSlider.Control>
+        <RangeSlider.Track>
+          <RangeSlider.FilledTrack />
+        </RangeSlider.Track>
+        <RangeSlider.Thumb index={0} />
+        <RangeSlider.Thumb index={1} />
+      </RangeSlider.Control>
     </RangeSlider.Root>
   )
 }

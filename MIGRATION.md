@@ -1120,3 +1120,8 @@ toast({
 
 - Rename `StatArrow` to `Stat.Indicator`
 - Rename `StatNumber` to `Stat.Value`
+
+### Slider
+
+- Now requires the `Slider.Control` to work properly
+- Added new `Slider.ValueText` and `Slider.Label` components

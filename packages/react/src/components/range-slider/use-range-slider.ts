@@ -11,12 +11,15 @@ import {
   callAllHandlers,
   clampValue,
   dataAttr,
+  getOwnerDocument,
   percentToValue,
   roundValueToStep,
   valueToPercent,
 } from "@chakra-ui/utils"
 import type { PropGetter, RequiredPropGetter } from "@chakra-ui/utils"
+import { query, raf } from "@zag-js/dom-utils"
 import { useCallback, useId, useMemo, useRef, useState } from "react"
+import { PropGetterFn } from "../../styled-system"
 import { getIds, getReversed, getStyles, orient } from "../slider/slider-utils"
 
 export interface UseRangeSliderProps {
@@ -177,7 +180,6 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     name,
     focusThumbOnChange = true,
     minStepsBetweenThumbs = 0,
-    ...htmlProps
   } = props
 
   const onChangeStart = useCallbackRef(onChangeStartProp)
@@ -234,13 +236,12 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   const isVertical = orientation === "vertical"
 
   const trackRef = useRef<HTMLElement>(null)
-  const rootRef = useRef<HTMLElement>(null)
+  const controlRef = useRef<HTMLElement>(null)
 
   const thumbRects = useSizes({
     getNodes() {
-      const rootNode = rootRef.current
-      const thumbNodes =
-        rootNode?.querySelectorAll<HTMLElement>("[role=slider]")
+      const node = controlRef.current
+      const thumbNodes = node?.querySelectorAll<HTMLElement>("[role=slider]")
       return thumbNodes ? Array.from(thumbNodes) : []
     },
   })
@@ -338,7 +339,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   /**
    * Compute styles for all component parts.
    */
-  const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } = useMemo(
+  const { getThumbStyle, controlStyle, trackStyle, innerTrackStyle } = useMemo(
     () =>
       getStyles({
         reversed,
@@ -354,7 +355,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       const idx = index ?? activeIndex
       if (idx !== -1 && focusThumbOnChange) {
         const id = ids.getThumb(idx)
-        const thumb = rootRef.current?.ownerDocument.getElementById(id)
+        const doc = getOwnerDocument(controlRef.current)
+        const thumb = doc.getElementById(id)
         if (thumb) {
           setTimeout(() => thumb.focus())
         }
@@ -403,7 +405,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     focusThumb(activeIndex)
   }
 
-  usePanEvent(rootRef, {
+  usePanEvent(controlRef, {
     onPanSessionStart(event) {
       if (!isInteractive) return
       setDragging(true)
@@ -421,20 +423,60 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     },
   })
 
-  const getRootProps: PropGetter = useCallback(
+  const getRootProps: PropGetterFn<"div"> = useCallback(
     (props = {}, ref = null) => {
       return {
         ...props,
-        ...htmlProps,
         id: ids.root,
-        ref: mergeRefs(ref, rootRef),
+        ref,
         tabIndex: -1,
-        "aria-disabled": ariaAttr(disabled),
         "data-focused": dataAttr(focused),
-        style: { ...props.style, ...rootStyle },
+        "data-disabled": dataAttr(disabled),
+        "data-orientation": orientation,
       }
     },
-    [htmlProps, disabled, focused, rootStyle, ids],
+    [ids.root, focused, disabled, orientation],
+  )
+
+  const getLabelProps: PropGetterFn<"label"> = useCallback(
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ref,
+        htmlFor: ids.getInput(0),
+        "data-focused": dataAttr(focused),
+        "data-disabled": dataAttr(disabled),
+        onClick: callAllHandlers(props.onClick, (event) => {
+          if (isInteractive) {
+            event.preventDefault()
+            raf(() => {
+              const firstThumb = query(controlRef.current, "[role=slider]")
+              firstThumb?.focus({ preventScroll: true })
+            })
+          }
+        }),
+      }
+    },
+    [disabled, focused, ids, isInteractive],
+  )
+
+  const getControlProps: PropGetterFn<"div"> = useCallback(
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        id: ids.control,
+        ref: mergeRefs(ref, controlRef),
+        tabIndex: -1,
+        "data-orientation": orientation,
+        "data-focused": dataAttr(focused),
+        "data-disabled": dataAttr(disabled),
+        style: {
+          ...props.style,
+          ...controlStyle,
+        },
+      }
+    },
+    [controlStyle, disabled, focused, ids.control, orientation],
   )
 
   const getTrackProps: PropGetter = useCallback(
@@ -614,6 +656,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     getMarkerProps,
     getInputProps,
     getOutputProps,
+    getControlProps,
+    getLabelProps,
   }
 }
 

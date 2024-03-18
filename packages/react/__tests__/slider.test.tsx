@@ -8,10 +8,12 @@ const Component = (props: Slider.RootProps) => (
     defaultValue={props.defaultValue || 10}
     {...props}
   >
-    <Slider.Track>
-      <Slider.FilledTrack />
-    </Slider.Track>
-    <Slider.Thumb />
+    <Slider.Control>
+      <Slider.Track>
+        <Slider.FilledTrack />
+      </Slider.Track>
+      <Slider.Thumb />
+    </Slider.Control>
   </Slider.Root>
 )
 

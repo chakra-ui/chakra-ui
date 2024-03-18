@@ -164,10 +164,13 @@ export const selectAnatomy = anatomy("select").parts(
 
 export const sliderAnatomy = anatomy("slider").parts(
   "root",
+  "control",
   "track",
   "thumb",
+  "label",
   "filledTrack",
   "mark",
+  "valueText",
 )
 
 export const statAnatomy = anatomy("stat").parts(

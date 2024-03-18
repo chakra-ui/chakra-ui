@@ -9,11 +9,13 @@ const DemoSlider = () => {
       max={100}
       defaultValue={[40, 80]}
     >
-      <RangeSlider.Track>
-        <RangeSlider.FilledTrack />
-      </RangeSlider.Track>
-      <RangeSlider.Thumb index={0} />
-      <RangeSlider.Thumb index={1} />
+      <RangeSlider.Control>
+        <RangeSlider.Track>
+          <RangeSlider.FilledTrack />
+        </RangeSlider.Track>
+        <RangeSlider.Thumb index={0} />
+        <RangeSlider.Thumb index={1} />
+      </RangeSlider.Control>
     </RangeSlider.Root>
   )
 }

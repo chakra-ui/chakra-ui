@@ -13,6 +13,15 @@ export type { SliderTrackProps } from "./slider-track"
 export { SliderFilledTrack } from "./slider-filled-track"
 export type { SliderFilledTrackProps } from "./slider-filled-track"
 
+export { SliderControl } from "./slider-control"
+export type { SliderControlProps } from "./slider-control"
+
+export { SliderValueText } from "./slider-value-text"
+export type { SliderValueTextProps } from "./slider-value-text"
+
+export { SliderLabel } from "./slider-label"
+export type { SliderLabelProps } from "./slider-label"
+
 export {
   SliderProvider,
   useSliderContext,

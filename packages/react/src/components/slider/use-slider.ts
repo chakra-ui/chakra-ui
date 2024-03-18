@@ -160,7 +160,6 @@ export function useSlider(props: UseSliderProps) {
     "aria-labelledby": ariaLabelledBy,
     name,
     focusThumbOnChange = true,
-    ...htmlProps
   } = props
 
   const onChangeStart = useCallbackRef(onChangeStartProp)
@@ -219,14 +218,18 @@ export function useSlider(props: UseSliderProps) {
    */
   const trackRef = useRef<HTMLElement>(null)
   const thumbRef = useRef<HTMLElement>(null)
-  const rootRef = useRef<HTMLElement>(null)
+  const controlRef = useRef<HTMLElement>(null)
 
   /**
    * Generate unique ids for component parts
    */
   const reactId = useId()
   const uuid = idProp ?? reactId
-  const [thumbId, trackId] = [`slider-thumb-${uuid}`, `slider-track-${uuid}`]
+  const [thumbId, trackId, inputId] = [
+    `slider-thumb-${uuid}`,
+    `slider-track-${uuid}`,
+    `slider-input-${uuid}`,
+  ]
 
   /**
    * Get relative value of slider from the event by tracking
@@ -344,7 +347,7 @@ export function useSlider(props: UseSliderProps) {
   /**
    * Compute styles for all component parts.
    */
-  const { getThumbStyle, rootStyle, trackStyle, innerTrackStyle } =
+  const { getThumbStyle, controlStyle, trackStyle, innerTrackStyle } =
     useMemo(() => {
       const state = stateRef.current
 
@@ -379,7 +382,7 @@ export function useSlider(props: UseSliderProps) {
     }
   }
 
-  usePanEvent(rootRef, {
+  usePanEvent(controlRef, {
     onPanSessionStart(event) {
       const state = stateRef.current
       if (!state.isInteractive) return
@@ -405,19 +408,49 @@ export function useSlider(props: UseSliderProps) {
     (props = {}, ref = null) => {
       return {
         ...props,
-        ...htmlProps,
-        ref: mergeRefs(ref, rootRef),
-        tabIndex: -1,
+        ref,
         "aria-disabled": ariaAttr(disabled),
+        "data-focused": dataAttr(focused),
+        "data-disabled": dataAttr(disabled),
+      }
+    },
+    [disabled, focused],
+  )
+
+  const getLabelProps: PropGetterFn<"label"> = useCallback(
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ref,
+        htmlFor: inputId,
+        "data-focused": dataAttr(focused),
+        "data-disabled": dataAttr(disabled),
+        onClick: callAllHandlers(props.onClick, (event) => {
+          if (isInteractive) {
+            event.preventDefault()
+            thumbRef.current?.focus()
+          }
+        }),
+      }
+    },
+    [disabled, focused, isInteractive, inputId],
+  )
+
+  const getControlProps: PropGetterFn<"div"> = useCallback(
+    (props = {}, ref = null) => {
+      return {
+        ...props,
+        ref: mergeRefs(ref, controlRef),
+        tabIndex: -1,
         "data-focused": dataAttr(focused),
         "data-disabled": dataAttr(disabled),
         style: {
           ...props.style,
-          ...rootStyle,
+          ...controlStyle,
         },
       }
     },
-    [htmlProps, disabled, focused, rootStyle],
+    [controlStyle, disabled, focused],
   )
 
   const getTrackProps: PropGetterFn<"div"> = useCallback(
@@ -542,13 +575,14 @@ export function useSlider(props: UseSliderProps) {
     (props = {}, ref = null) => {
       return {
         ...props,
+        id: inputId,
         ref,
         type: "hidden",
         value,
         name,
       }
     },
-    [name, value],
+    [name, value, inputId],
   )
 
   const state: SliderState = {
@@ -561,11 +595,13 @@ export function useSlider(props: UseSliderProps) {
     state,
     actions,
     getRootProps,
+    getControlProps,
     getTrackProps,
     getInnerTrackProps,
     getThumbProps,
     getMarkerProps,
     getInputProps,
+    getLabelProps,
   }
 }
 
