@@ -1,5 +1,5 @@
-export { StatArrow, StatDownArrow, StatUpArrow } from "./stat-arrow"
-export type { StatArrowProps } from "./stat-arrow"
+export { StatIndicator } from "./stat-indicator"
+export type { StatIndicatorProps } from "./stat-indicator"
 
 export { useStatStyles } from "./stat-context"
 
@@ -12,8 +12,8 @@ export type { StatHelpTextProps } from "./stat-help-text"
 export { StatLabel } from "./stat-label"
 export type { StatLabelProps } from "./stat-label"
 
-export { StatNumber } from "./stat-number"
-export type { StatNumberProps } from "./stat-number"
+export { StatValue } from "./stat-value"
+export type { StatValueProps } from "./stat-value"
 
 export { StatRoot } from "./stat-root"
 export type { StatRootProps } from "./stat-root"

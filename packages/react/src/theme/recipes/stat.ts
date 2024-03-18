@@ -21,11 +21,13 @@ export const statSlotRecipe = defineSlotRecipe({
       fontFeatureSettings: "pnum",
       fontVariantNumeric: "proportional-nums",
     },
-    icon: {
+    indicator: {
       marginEnd: 1,
-      w: "3.5",
-      h: "3.5",
-      verticalAlign: "middle",
+      "& svg": {
+        w: "3.5",
+        h: "3.5",
+        verticalAlign: "middle",
+      },
     },
   },
   variants: {

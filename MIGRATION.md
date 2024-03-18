@@ -1115,3 +1115,8 @@ toast({
 - `_activeStep` -> `_currentStep`
 - `apply` is no longer supported, prefer creating a recipe using the `chakra`
   factory instead
+
+### Stats
+
+- Rename `StatArrow` to `Stat.Indicator`
+- Rename `StatNumber` to `Stat.Value`

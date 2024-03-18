@@ -1,7 +1,9 @@
+import { forwardRef } from "react"
+import { HTMLChakraProps, chakra } from "../../styled-system"
 import { Icon, type IconProps } from "../icon"
 import { useStatStyles } from "./stat-context"
 
-export const StatDownArrow: React.FC<IconProps> = (props) => (
+const StatDownArrow: React.FC<IconProps> = (props) => (
   <Icon viewBox="0 0 24 24" color="fg.error" {...props}>
     <path
       fill="currentColor"
@@ -10,7 +12,7 @@ export const StatDownArrow: React.FC<IconProps> = (props) => (
   </Icon>
 )
 
-export function StatUpArrow(props: IconProps) {
+function StatUpArrow(props: IconProps) {
   return (
     <Icon viewBox="0 0 24 24" color="fg.success" {...props}>
       <path
@@ -21,13 +23,19 @@ export function StatUpArrow(props: IconProps) {
   )
 }
 
-export interface StatArrowProps extends IconProps {
+export interface StatIndicatorProps extends HTMLChakraProps<"span"> {
   type?: "increase" | "decrease"
 }
 
-export function StatArrow(props: StatArrowProps) {
-  const { type, ...rest } = props
-  const styles = useStatStyles()
-  const Comp = type === "increase" ? StatUpArrow : StatDownArrow
-  return <Comp aria-hidden {...rest} css={styles.icon} />
-}
+export const StatIndicator = forwardRef<HTMLSpanElement, StatIndicatorProps>(
+  function StatIndicator(props, ref) {
+    const { type, ...rest } = props
+    const styles = useStatStyles()
+    const IconEl = type === "increase" ? StatUpArrow : StatDownArrow
+    return (
+      <chakra.span {...rest} css={[styles.indicator, props.css]} ref={ref}>
+        {props.children ?? <IconEl aria-hidden />}
+      </chakra.span>
+    )
+  },
+)

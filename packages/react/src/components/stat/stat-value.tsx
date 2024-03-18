@@ -3,10 +3,10 @@ import { forwardRef } from "react"
 import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useStatStyles } from "./stat-context"
 
-export interface StatNumberProps extends HTMLChakraProps<"dd"> {}
+export interface StatValueProps extends HTMLChakraProps<"dd"> {}
 
-export const StatNumber = forwardRef<HTMLElement, StatNumberProps>(
-  function StatNumber(props, ref) {
+export const StatValue = forwardRef<HTMLElement, StatValueProps>(
+  function StatValue(props, ref) {
     const styles = useStatStyles()
     return (
       <chakra.dd
@@ -19,4 +19,4 @@ export const StatNumber = forwardRef<HTMLElement, StatNumberProps>(
   },
 )
 
-StatNumber.displayName = "StatNumber"
+StatValue.displayName = "StatValue"

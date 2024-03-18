@@ -176,7 +176,7 @@ export const statAnatomy = anatomy("stat").parts(
   "label",
   "helpText",
   "number",
-  "icon",
+  "indicator",
 )
 
 export const switchAnatomy = anatomy("switch").parts(
