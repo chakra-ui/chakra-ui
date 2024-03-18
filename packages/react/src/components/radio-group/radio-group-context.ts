@@ -18,6 +18,8 @@ export const [RadioItemContextProvider, useRadioItemContext] =
 export const [RadioGroupStylesProvider, useRadioGroupStyles] = createContext<
   Record<string, SystemStyleObject>
 >({
+  strict: false,
+  defaultValue: {},
   name: "RadioGroupStylesContext",
   hookName: "useRadioGroupStyles",
   providerName: "<RadioGroup.Root />",
