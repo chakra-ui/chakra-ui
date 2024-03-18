@@ -134,8 +134,8 @@
               "path": "/docs/components/code"
             },
             {
-              "title": "Divider",
-              "path": "/docs/components/divider"
+              "title": "Separator",
+              "path": "/docs/components/separator"
             },
             {
               "title": "Kbd",
@@ -319,10 +319,6 @@
           "sort": true,
           "summarize": true,
           "routes": [
-            {
-              "title": "Close Button",
-              "path": "/docs/components/close-button"
-            },
             {
               "title": "Portal",
               "path": "/docs/components/portal"

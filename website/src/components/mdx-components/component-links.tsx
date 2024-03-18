@@ -43,7 +43,7 @@ function ComponentLink(props: ComponentLinkProps) {
       }}
       {...rest}
     >
-      <Link href={url} isExternal>
+      <Link href={url} external>
         <BtnIcon />
         {children}
       </Link>

@@ -21,7 +21,7 @@ type FooterLinkProps = {
 }
 
 const FooterLink = ({ icon, href, label }: FooterLinkProps) => (
-  <Link display='inline-block' href={href} aria-label={label} isExternal>
+  <Link display='inline-block' href={href} aria-label={label} external>
     <Icon as={icon} fontSize='xl' color='gray.400' />
   </Link>
 )

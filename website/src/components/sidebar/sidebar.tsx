@@ -68,7 +68,7 @@ export function SidebarContent({
                     mt='2'
                     key={lvl2.path}
                     href={lvl2.path}
-                    isExternal={lvl2.external}
+                    external={lvl2.external}
                   >
                     {lvl2.title}
                   </SidebarLink>
@@ -112,11 +112,11 @@ type MainNavLinkProps = {
   children: ReactNode
   label?: string
   isActive?: boolean
-  isExternal?: boolean
+  external?: boolean
 }
 
 const MainNavLink = (props: MainNavLinkProps) => {
-  const { href, icon, children, isActive, isExternal } = props
+  const { href, icon, children, isActive, external } = props
   const router = useRouter()
   const active = router.asPath.startsWith(href) || !!isActive
 
@@ -129,7 +129,7 @@ const MainNavLink = (props: MainNavLinkProps) => {
       color={active ? 'accent' : 'fg-muted'}
       _hover={{ color: active ? undefined : 'fg' }}
     >
-      <NextLink target={isExternal ? '_blank' : undefined} href={href}>
+      <NextLink target={external ? '_blank' : undefined} href={href}>
         <Center
           w='6'
           h='6'
@@ -208,7 +208,7 @@ export const MainNavLinkGroup = (props: List.RootProps) => {
             href={item.href}
             label={item.label}
             isActive={item.match?.(router.asPath, item.href)}
-            isExternal={item.external}
+            external={item.external}
           >
             {item.label} {item.new && <NewBadge />}
           </MainNavLink>

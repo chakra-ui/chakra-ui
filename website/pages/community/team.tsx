@@ -17,11 +17,13 @@ import NextImage from 'next/image'
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from 'react-icons/io'
 import { Contributor, Member as IMember } from 'src/types/github'
 
-function SocialLink(props: {
+type Props = {
   icon: React.ElementType
   href: string
   label: string
-}) {
+}
+
+function SocialLink(props: Props) {
   const { icon, href, label } = props
   return (
     <Link
@@ -30,7 +32,7 @@ function SocialLink(props: {
       justifyContent='center'
       rounded='full'
       href={href}
-      isExternal
+      external
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       <Icon as={icon} fontSize='xl' color='accent' />

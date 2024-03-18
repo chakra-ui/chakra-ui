@@ -63,7 +63,7 @@ function ResourceCard(props: ResourceCardProps) {
           ))}
         </Wrap>
 
-        <LinkOverlay isExternal href={url}>
+        <LinkOverlay external href={url}>
           <VStack gap={2} align='stretch'>
             <Heading as='h3' size='sm'>
               <span className='content'>{heading}</span>

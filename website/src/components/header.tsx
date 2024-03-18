@@ -83,7 +83,7 @@ function HeaderContent() {
           />
           <HStack gap='5' display={{ base: 'none', md: 'flex' }}>
             <Link
-              isExternal
+              external
               aria-label='Go to Chakra UI GitHub page'
               href={siteConfig.repo.url}
             >
@@ -96,7 +96,7 @@ function HeaderContent() {
               />
             </Link>
             <Link
-              isExternal
+              external
               aria-label='Go to Chakra UI Discord page'
               href='/discord'
             >
@@ -109,7 +109,7 @@ function HeaderContent() {
               />
             </Link>
             <Link
-              isExternal
+              external
               aria-label='Go to Chakra UI YouTube channel'
               href={siteConfig.youtube}
             >

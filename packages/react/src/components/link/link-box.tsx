@@ -8,19 +8,19 @@ export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
    *
    * @default false
    */
-  isExternal?: boolean
+  external?: boolean
 }
 
 export const LinkOverlay = forwardRef<HTMLAnchorElement, LinkOverlayProps>(
   function LinkOverlay(props, ref) {
-    const { isExternal, target, rel, className, ...rest } = props
+    const { external, target, rel, className, ...rest } = props
     return (
       <chakra.a
         {...rest}
         ref={ref}
         className={cx("chakra-linkbox__overlay", className)}
-        rel={isExternal ? "noopener noreferrer" : rel}
-        target={isExternal ? "_blank" : target}
+        rel={external ? "noopener noreferrer" : rel}
+        target={external ? "_blank" : target}
         css={[
           {
             position: "static",

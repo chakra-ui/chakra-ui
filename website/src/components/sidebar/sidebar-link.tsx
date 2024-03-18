@@ -6,15 +6,15 @@ import { forwardRef, Ref, useEffect, useRef } from 'react'
 const StyledLink = forwardRef(function StyledLink(
   props: HTMLChakraProps<'a'> & {
     isActive?: boolean
-    isExternal?: boolean
+    external?: boolean
   },
   ref: Ref<any>,
 ) {
-  const { isActive, isExternal = false, ...rest } = props
+  const { isActive, external = false, ...rest } = props
 
   return (
     <chakra.a
-      target={isExternal ? '_blank' : undefined}
+      target={external ? '_blank' : undefined}
       aria-current={isActive ? 'page' : undefined}
       width='100%'
       px='3'
@@ -44,13 +44,13 @@ function checkHref(href: string, slug: string | string[]) {
 type SidebarLinkProps = FlexProps & {
   href?: string
   icon?: React.ReactElement
-  isExternal?: boolean
+  external?: boolean
 }
 
 const SidebarLink = ({
   href,
   children,
-  isExternal = false,
+  external = false,
   ...rest
 }: SidebarLinkProps) => {
   const router = useRouter()
@@ -66,12 +66,7 @@ const SidebarLink = ({
 
   return (
     <Flex align='center' userSelect='none' lineHeight='tall' {...rest}>
-      <StyledLink
-        asChild
-        isActive={isActive}
-        ref={link}
-        isExternal={isExternal}
-      >
+      <StyledLink asChild isActive={isActive} ref={link} external={external}>
         <NextLink href={href}>{children}</NextLink>
       </StyledLink>
     </Flex>

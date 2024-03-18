@@ -19,7 +19,7 @@ export default function HackathonBanner() {
         _hover={{ transform: 'scale(1.05, 1.05)' }}
       >
         <Stack direction={{ base: 'column', md: 'row' }} gap={1}>
-          <LinkOverlay href='https://hackathon.chakra-ui.com' isExternal>
+          <LinkOverlay href='https://hackathon.chakra-ui.com' external>
             <Text fontWeight='bold'>Ready, Set, Build! 🚀</Text>
           </LinkOverlay>
           <Text>Join the Chakra Hackathon!</Text>

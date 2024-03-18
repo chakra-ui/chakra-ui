@@ -34,7 +34,7 @@ export const ShowcaseItem = ({ name, image, url }) => {
             }
           />
         </AspectRatio>
-        <LinkOverlay href={url} isExternal>
+        <LinkOverlay href={url} external>
           <Text
             px={4}
             py={3}

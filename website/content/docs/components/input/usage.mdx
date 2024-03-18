@@ -65,22 +65,22 @@ The input component comes in 4 variants: `outline`, `unstyled`, `flushed`, and
 ### Left and Right Addons
 
 Like bootstrap, you can add addons to the left and right of the `Input`
-component. Chakra UI exports `InputGroup`, `InputLeftAddon`, and
-`InputRightAddon` to help with this use case.
+component. Chakra UI exports `Group` and `InputAddon` to help with this use
+case.
 
 ```jsx
 <Stack gap={4}>
-  <InputGroup>
-    <InputLeftAddon>+234</InputLeftAddon>
+  <Group>
+    <InputAddon>+234</InputAddon>
     <Input type='tel' placeholder='phone number' />
-  </InputGroup>
+  </Group>
 
-  {/* If you add the size prop to `InputGroup`, it'll pass it to all its children. */}
-  <InputGroup size='sm'>
-    <InputLeftAddon>https://</InputLeftAddon>
+  {/* If you add the size prop to `Group`, it'll pass it to all its children. */}
+  <Group size='sm'>
+    <InputAddon>https://</InputAddon>
     <Input placeholder='mysite' />
-    <InputRightAddon>.com</InputRightAddon>
-  </InputGroup>
+    <InputAddon placement='end'>.com</InputAddon>
+  </Group>
 </Stack>
 ```
 
@@ -96,14 +96,14 @@ focused the input.
 
 ```jsx
 <Stack gap={4}>
-  <InputGroup>
+  <Group>
     <InputLeftElement pointerEvents='none'>
       <PhoneIcon color='gray.300' />
     </InputLeftElement>
     <Input type='tel' placeholder='Phone number' />
-  </InputGroup>
+  </Group>
 
-  <InputGroup>
+  <Group>
     <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em'>
       $
     </InputLeftElement>
@@ -111,7 +111,7 @@ focused the input.
     <InputRightElement>
       <CheckIcon color='green.500' />
     </InputRightElement>
-  </InputGroup>
+  </Group>
 </Stack>
 ```
 
@@ -126,7 +126,7 @@ function PasswordInput() {
   const handleClick = () => setShow(!show)
 
   return (
-    <InputGroup size='md'>
+    <Group>
       <Input
         pr='4.5rem'
         type={show ? 'text' : 'password'}
@@ -137,7 +137,7 @@ function PasswordInput() {
           {show ? 'Hide' : 'Show'}
         </Button>
       </InputRightElement>
-    </InputGroup>
+    </Group>
   )
 }
 ```
@@ -167,27 +167,12 @@ function Example() {
 
 You can change the border color that shows when the input receives focus
 (`focusBorderColor`) and when `invalid` is set to `true` (`errorBorderColor`).
-The value can be set to a color in the theme object, like `teal.400`, or a raw
-CSS value.
 
 ```jsx
-<Stack gap={3}>
-  <Input focusBorderColor='lime' placeholder='Here is a sample placeholder' />
-  <Input
-    focusBorderColor='pink.400'
-    placeholder='Here is a sample placeholder'
-  />
-  <Input
-    invalid
-    errorBorderColor='red.300'
-    placeholder='Here is a sample placeholder'
-  />
-  <Input
-    invalid
-    errorBorderColor='crimson'
-    placeholder='Here is a sample placeholder'
-  />
-</Stack>
+<Input
+  placeholder='Here is a sample placeholder'
+  css={{ '--focus-color': 'lime', '--error-color': 'red' }}
+/>
 ```
 
 ### Styling the placeholder
@@ -215,17 +200,3 @@ opacity to 1 if you want the placeholder to have a specific color.
   />
 </Stack>
 ```
-
-### Input Methods other than Text
-
-You can use different types with `Input` such as dateTime, color, search, file
-etc.
-
-Date and Time Picker
-
-```jsx
-<Input placeholder='Select Date and Time' size='md' type='datetime-local' />
-```
-
-Check for different input types available :
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types

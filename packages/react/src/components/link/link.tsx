@@ -18,7 +18,7 @@ export interface LinkProps
    *
    * @default false
    */
-  isExternal?: boolean
+  external?: boolean
 }
 
 /**
@@ -26,7 +26,7 @@ export interface LinkProps
  * @see Docs https://chakra-ui.com/link
  */
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
-  { unstyled, isExternal, ...props },
+  { unstyled, external, ...props },
   ref,
 ) {
   const recipe = useRecipe("Link", props.recipe)
@@ -35,8 +35,8 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 
   return (
     <chakra.a
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener" : undefined}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener" : undefined}
       ref={ref}
       {...localProps}
       className={cx("chakra-link", props.className)}

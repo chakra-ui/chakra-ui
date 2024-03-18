@@ -3,7 +3,7 @@ import { MdEdit } from 'react-icons/md'
 
 const EditPageLink = ({ href }: { href?: string }) => {
   return (
-    <Link href={href} isExternal>
+    <Link href={href} external>
       <Stack
         fontSize='sm'
         textAlign='right'

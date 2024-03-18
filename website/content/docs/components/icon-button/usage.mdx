@@ -14,42 +14,33 @@ import { IconButton } from '@chakra-ui/react'
 
 ## Usage
 
-IconButton composes the `Button` component except that it renders only an icon.
-Since `IconButton` only renders an icon, you must pass the `aria-label` prop, so
-screen readers can give meaning to the button.
-
 ```jsx
-<IconButton aria-label='Search database' icon={<SearchIcon />} />
+<IconButton aria-label='Search database'>
+  <SearchIcon />
+</IconButton>
 ```
 
-### Button Colors
+### Changing the color
 
-The `IconButton` component accepts most of the props from the `Button`
-component, so we can use `colorScheme` prop to change the color of the button.
-
-```jsx
-<IconButton
-  colorPalette='blue'
-  aria-label='Search database'
-  icon={<SearchIcon />}
-/>
-```
-
-### Button Sizes
-
-Like the `Button component`, pass the `size` prop to change the size of the
-button.
+Pass the `colorPalette` prop to change the color of the button.
 
 ```jsx
-<IconButton
-  colorPalette='teal'
-  aria-label='Call Segun'
-  size='lg'
-  icon={<PhoneIcon />}
-/>
+<IconButton colorPalette='blue' aria-label='Search database'>
+  <SearchIcon />
+</IconButton>
 ```
 
-### Button Variants
+### Changing the size
+
+Pass the `size` prop to change the size of the button.
+
+```jsx
+<IconButton colorPalette='teal' aria-label='Call Segun' size='lg'>
+  <PhoneIcon />
+</IconButton>
+```
+
+### Changing the variant
 
 Like the `Button` component, pass the `variant` prop to change the style of the
 button.
@@ -63,33 +54,14 @@ button.
 />
 ```
 
-### With custom icon
+### Using a custom icon
 
 You can also use icons from popular libraries like
 [react-icons](https://react-icons.github.io/react-icons/) and just pass it into
 the button.
 
 ```jsx
-<IconButton
-  variant='outline'
-  colorPalette='teal'
-  aria-label='Call Sage'
-  fontSize='20px'
-  icon={<MdPhone />}
-/>
-```
-
-### With perfectly round button
-
-You can pass the `isRound` prop to make the button perfectly round
-
-```jsx
-<IconButton
-  isRound={true}
-  variant='solid'
-  colorPalette='teal'
-  aria-label='Done'
-  fontSize='20px'
-  icon={<CheckIcon />}
-/>
+<IconButton variant='outline' aria-label='Call Sage' fontSize='20px'>
+  <MdPhone />
+</IconButton>
 ```

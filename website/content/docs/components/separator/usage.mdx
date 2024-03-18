@@ -1,0 +1,54 @@
+---
+id: Separator
+title: Separator
+category: 'data-display'
+package: '@chakra-ui/layout'
+description:
+  Separators are used to visually separate content in a list or group.
+---
+
+## Import
+
+```js
+import { Separator } from '@chakra-ui/react'
+```
+
+## Usage
+
+The `Separator` displays a thin horizontal or vertical line, and renders an `hr`
+tag.
+
+```jsx
+<Separator />
+```
+
+### Changing the orientation
+
+Pass the `orientation` prop and set it to either `horizontal` or `vertical`.
+
+```jsx
+<Separator orientation='horizontal' />
+```
+
+If the vertical orientation is used, make sure that the parent element is
+assigned a height.
+
+```jsx
+<Center height='50px'>
+  <Separator orientation='vertical' />
+</Center>
+```
+
+### Adding content within the separator
+
+In some cases, you might want to add content within a Separator. To do this, you
+can compose the Separator and AbsoluteCenter components.
+
+```jsx
+<Box position='relative' padding='10'>
+  <Separator />
+  <AbsoluteCenter bg='white' px='4'>
+    Content
+  </AbsoluteCenter>
+</Box>
+```
