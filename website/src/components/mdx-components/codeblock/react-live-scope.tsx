@@ -8,7 +8,17 @@ import { AiOutlineUser } from 'react-icons/ai'
 import { BiChat, BiLike, BiShare } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { FaFacebook, FaTwitter } from 'react-icons/fa'
-import { FiMinus, FiPlus, FiFigma, FiMail, FiArrowRight } from 'react-icons/fi'
+import {
+  FiMinus,
+  FiPlus,
+  FiFigma,
+  FiMail,
+  FiArrowRight,
+  FiChevronDown,
+  FiChevronUp,
+  FiMenu,
+  FiExternalLink,
+} from 'react-icons/fi'
 import {
   MdArrowDropDown,
   MdBuild,
@@ -49,6 +59,10 @@ const reactIcons = {
   FiPlus,
   FiFigma,
   FiArrowRight,
+  FiChevronDown,
+  FiChevronUp,
+  FiMenu,
+  FiExternalLink,
 }
 
 const StarIcon = (props) => (
