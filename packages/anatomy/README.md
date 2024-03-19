@@ -2,7 +2,7 @@
 
 This package declares the anatomy for the Chakra UI components.
 
-It was inspired the `::part()` selector from the
+It was inspired by the `::part()` selector from the
 [W3C CSS Shadow Parts Draft](https://www.w3.org/TR/css-shadow-parts-1/) with
 data-attributes.
 
