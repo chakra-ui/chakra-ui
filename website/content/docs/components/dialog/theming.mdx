@@ -708,7 +708,7 @@ You can find more information in the source
 
 ### Theming properties
 
-The properties that affect the theming of the `Dialog` component are:
+The properties that affect the theming of the `Dialog.Root` component are:
 
 - `variant`: The visual variant of the `Dialog`. Defaults to baseStyle.
 - `size`: The size of the `Dialog`. Defaults to md.
@@ -796,7 +796,7 @@ export const dialogTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `xl` size
-<Dialog size="xl" ... />
+<Dialog.Root size="xl" ... />
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -832,7 +832,7 @@ export const dialogTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `purple` variant
-<Dialog variant='purple' ... />
+<Dialog.Root variant='purple' ... />
 ```
 
 ### Changing the default properties
@@ -854,7 +854,7 @@ export const dialogTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use an Dialog:
-<Dialog size="xl" variant="purple" ... />
+<Dialog.Root size="xl" variant="purple" ... />
 ```
 
 ### Showcase
