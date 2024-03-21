@@ -40,12 +40,12 @@ import { Field } from '@chakra-ui/react'
 ```jsx
 <Field.Root as='fieldset'>
   <Field.Label as='legend'>Favorite Naruto Character</Field.Label>
-  <RadioGroup defaultValue='Itachi'>
+  <RadioGroup.Root defaultValue='Itachi'>
     <HStack spacing='24px'>
-      <Radio value='Sasuke'>Sasuke</Radio>
-      <Radio value='Nagato'>Nagato</Radio>
-      <Radio value='Itachi'>Itachi</Radio>
-      <Radio value='Sage of the six Paths'>Sage of the six Paths</Radio>
+      <RadioGroup.Item value='Sasuke'>Sasuke</RadioGroup.Item>
+      <RadioGroup.Item value='Nagato'>Nagato</RadioGroup.Item>
+      <RadioGroup.Item value='Itachi'>Itachi</RadioGroup.Item>
+      <RadioGroup.Item value='Sage of the six Paths'>Sage of the six Paths</RadioGroup.Item>
     </HStack>
   </RadioGroup>
   <Field.HelpText>Select only if you're a fan.</Field.HelpText>

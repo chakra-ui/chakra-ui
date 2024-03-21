@@ -126,7 +126,7 @@ to each part specifically.
 
 ## Theming properties
 
-The properties that affect the theming of the `Radio` component are:
+The properties that affect the theming of the `RadioGroup.Item` component are:
 
 - `variant`: The visual variant of the radio. The color scheme defaults to
   `blue`.
@@ -208,7 +208,7 @@ const sizes = {
 export const radioTheme = defineMultiStyleConfig({ sizes })
 
 // Now we can use the new `xl` size
-<Radio size="xl">This is a radio</Radio>
+<RadioGroup.Item size="xl">This is a radio</RadioGroup.Item>
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -245,7 +245,7 @@ export const radioTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `outline` variant
-<Radio variant="outline" ... />
+<RadioGroup.Item variant="outline" ... />
 ```
 
 ## Changing the default properties
@@ -269,7 +269,7 @@ export const radioTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use a radio:
-<Radio size="xl" variant="outline">This is a radio</Radio>
+<RadioGroup.Item size="xl" variant="outline">This is a radio</RadioGroup.Item>
 ```
 
 ## Showcase

@@ -69,12 +69,12 @@ function PlacementExample() {
 
   return (
     <>
-      <RadioGroup defaultValue={placement} onChange={setPlacement}>
+      <RadioGroup.Root defaultValue={placement} onChange={setPlacement}>
         <Stack direction='row' mb='4'>
-          <Radio value='top'>Top</Radio>
-          <Radio value='right'>Right</Radio>
-          <Radio value='bottom'>Bottom</Radio>
-          <Radio value='left'>Left</Radio>
+          <RadioGroup.Item value='top'>Top</RadioGroup.Item>
+          <RadioGroup.Item value='right'>Right</RadioGroup.Item>
+          <RadioGroup.Item value='bottom'>Bottom</RadioGroup.Item>
+          <RadioGroup.Item value='left'>Left</RadioGroup.Item>
         </Stack>
       </RadioGroup>
       <Button colorScheme='blue' onClick={onOpen}>

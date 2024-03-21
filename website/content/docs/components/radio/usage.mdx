@@ -10,7 +10,7 @@ description:
 ## Import
 
 ```js
-import { Radio, RadioGroup } from '@chakra-ui/react'
+import { RadioGroup } from '@chakra-ui/react'
 ```
 
 ### Usage
@@ -19,33 +19,44 @@ import { Radio, RadioGroup } from '@chakra-ui/react'
 function RadioExample() {
   const [value, setValue] = React.useState('1')
   return (
-    <RadioGroup onChange={setValue} value={value}>
+    <RadioGroup.Root onChange={setValue} value={value}>
       <Stack direction='row'>
-        <Radio value='1'>First</Radio>
-        <Radio value='2'>Second</Radio>
-        <Radio value='3'>Third</Radio>
+        <RadioGroup.Item value='1'>
+          <RadioGroup.ItemControl />
+          <RadioGroup.ItemText>First</RadioGroup.ItemText>
+        </RadioGroup.Item>
+        <RadioGroup.Item value='2'>
+          <RadioGroup.ItemControl />
+          <RadioGroup.ItemText>Second</RadioGroup.ItemText>
+        </RadioGroup.Item>
+        <RadioGroup.Item value='3'>
+          <RadioGroup.ItemControl />
+          <RadioGroup.ItemText>Third</RadioGroup.ItemText>
+        </RadioGroup.Item>
       </Stack>
-    </RadioGroup>
+    </RadioGroup.Root>
   )
 }
 ```
 
 ### Radio with custom color
 
-You can override the `colorScheme` of the Radio to any color key specified in
-`theme.colors`.
+You can override the `colorScheme` of the `RadioGroup.Item` to any color key
+specified in `theme.colors`.
 
 ```jsx
-<RadioGroup defaultValue='2'>
+<RadioGroup.Root defaultValue='2'>
   <Stack spacing={5} direction='row'>
-    <Radio colorScheme='red' value='1'>
-      Radio
-    </Radio>
-    <Radio colorScheme='green' value='2'>
-      Radio
-    </Radio>
+    <RadioGroup.Item colorScheme='red' value='1'>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Radio</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item colorScheme='green' value='2'>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Radio</RadioGroup.ItemText>
+    </RadioGroup.Item>
   </Stack>
-</RadioGroup>
+</RadioGroup.Root>
 ```
 
 ### Radio sizes
@@ -54,50 +65,67 @@ The checkbox comes with 3 sizes.
 
 ```jsx
 <Stack>
-  <Radio size='sm' name='1' colorScheme='red'>
-    Radio
-  </Radio>
-  <Radio size='md' name='1' colorScheme='green'>
-    Radio
-  </Radio>
-  <Radio size='lg' name='1' colorScheme='orange' defaultChecked>
-    Radio
-  </Radio>
+  <RadioGroup.Item size='sm' name='1' colorScheme='red'>
+    <RadioGroup.ItemControl />
+    <RadioGroup.ItemText>Radio</RadioGroup.ItemText>
+  </RadioGroup.Item>
+  <RadioGroup.Item size='md' name='1' colorScheme='green'>
+    <RadioGroup.ItemControl />
+    <RadioGroup.ItemText>Radio</RadioGroup.ItemText>
+  </RadioGroup.Item>
+  <RadioGroup.Item size='lg' name='1' colorScheme='orange' defaultChecked>
+    <RadioGroup.ItemControl />
+    <RadioGroup.ItemText>Radio</RadioGroup.ItemText>
+  </RadioGroup.Item>
 </Stack>
 ```
 
 ### Disabled radios
 
 ```jsx
-<RadioGroup defaultValue='1'>
+<RadioGroup.Root defaultValue='1'>
   <Stack>
-    <Radio value='1' isDisabled>
-      Checked
-    </Radio>
-    <Radio value='2'>Unchecked</Radio>
-    <Radio value='3'>Unchecked</Radio>
+    <RadioGroup.Item value='1' disabled>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Checked</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value='2'>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Unchecked</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value='3'>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Unchecked</RadioGroup.ItemText>
+    </RadioGroup.Item>
   </Stack>
-</RadioGroup>
+</RadioGroup.Root>
 ```
 
 ### Horizontal alignment
 
 ```jsx
-<RadioGroup defaultValue='1'>
+<RadioGroup.Root defaultValue='1'>
   <Stack spacing={4} direction='row'>
-    <Radio value='1' isDisabled>
-      Radio 1
-    </Radio>
-    <Radio value='2'>Radio 2</Radio>
-    <Radio value='3'>Radio 3</Radio>
+    <RadioGroup.Item value='1' disabled>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText> Radio 1</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value='2'>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Radio 2</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value='3'>
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Radio 3</RadioGroup.ItemText>
+    </RadioGroup.Item>
   </Stack>
-</RadioGroup>
+</RadioGroup.Root>
 ```
 
 ### Invalid Radio
 
 ```jsx
-<Radio isInvalid>Radio</Radio>
+<RadioGroup.Item invalid>Radio</RadioGroup.Item>
 ```
 
 ### Custom Radio Buttons
@@ -184,20 +212,20 @@ render(<Example />)
 
 ### Note about `name` prop
 
-We recommend passing the `name` prop to the `RadioGroup` component, instead of
-passing it to each `Radio` component. By default, the `name` prop of the
-RadioGroup takes precedence.
+We recommend passing the `name` prop to the `RadioGroup.Root` component, instead
+of passing it to each `RadioGroup.Item` component. By default, the `name` prop
+of the RadioGroup takes precedence.
 
 ```jsx live=false
 // Do this ✅
-<RadioGroup name="form-name">
-  <Radio>Radio 1</Radio>
-  <Radio>Radio 2</Radio>
-</RadioGroup>
+<RadioGroup.Root name="form-name">
+  <RadioGroup.Item>Radio 1</RadioGroup.Item>
+  <RadioGroup.Item>Radio 2</RadioGroup.Item>
+</RadioGroup.Root>
 
 // Don't do this ❌
-<RadioGroup >
-  <Radio name="form-name">Radio 1</Radio>
-  <Radio name="form-name">Radio 2</Radio>
-</RadioGroup>
+<RadioGroup.Root >
+  <RadioGroup.Item name="form-name">Radio 1</RadioGroup.Item>
+  <RadioGroup.Item name="form-name">Radio 2</RadioGroup.Item>
+</RadioGroup.Root>
 ```

@@ -352,10 +352,10 @@ function ScrollingExample() {
   const btnRef = React.useRef(null)
   return (
     <>
-      <RadioGroup value={scrollBehavior} onChange={setScrollBehavior}>
+      <RadioGroup.Root value={scrollBehavior} onChange={setScrollBehavior}>
         <Stack direction='row'>
-          <Radio value='inside'>inside</Radio>
-          <Radio value='outside'>outside</Radio>
+          <RadioGroup.Item value='inside'>inside</RadioGroup.Item>
+          <RadioGroup.Item value='outside'>outside</RadioGroup.Item>
         </Stack>
       </RadioGroup>
 

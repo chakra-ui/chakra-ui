@@ -319,10 +319,10 @@ function WithPopoverAnchor() {
               value={color}
               onChange={(newColor) => setColor(newColor)}
             >
-              <Radio value='red'>red</Radio>
-              <Radio value='blue'>blue</Radio>
-              <Radio value='green'>green</Radio>
-              <Radio value='purple'>purple</Radio>
+              <RadioGroup.Item value='red'>red</RadioGroup.Item>
+              <RadioGroup.Item value='blue'>blue</RadioGroup.Item>
+              <RadioGroup.Item value='green'>green</RadioGroup.Item>
+              <RadioGroup.Item value='purple'>purple</RadioGroup.Item>
             </RadioGroup>
           </Popover.Body>
         </Popover.Content>

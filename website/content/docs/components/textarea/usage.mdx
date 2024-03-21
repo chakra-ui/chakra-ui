@@ -55,11 +55,11 @@ function ResizeExample() {
 
   return (
     <>
-      <RadioGroup defaultValue={resize} onChange={setResize} mb={6}>
+      <RadioGroup.Root defaultValue={resize} onChange={setResize} mb={6}>
         <Stack direction='row' spacing={5}>
-          <Radio value='horizontal'>Horizontal</Radio>
-          <Radio value='vertical'>Vertical</Radio>
-          <Radio value='none'>None</Radio>
+          <RadioGroup.Item value='horizontal'>Horizontal</RadioGroup.Item>
+          <RadioGroup.Item value='vertical'>Vertical</RadioGroup.Item>
+          <RadioGroup.Item value='none'>None</RadioGroup.Item>
         </Stack>
       </RadioGroup>
 

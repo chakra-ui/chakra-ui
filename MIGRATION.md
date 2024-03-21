@@ -10,7 +10,8 @@ Renamed all `container` parts to `root`. Kindly update your theme to reflect
 
 - Removed `AlertDialog` component (see below)
 - Removed `ControlBox` component
-- Removed `@chakra-ui/icons` package. Prefer to use [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
+- Removed `@chakra-ui/icons` package. Prefer to use
+  [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
   `react-icons` instead.
 
 ### Root component and types
@@ -425,6 +426,43 @@ After:
   key for the label is now `valueText`
 
 - `ProgressLabel` should now be used to provide a label for the progress bar
+
+### Radio -> RadioGroup
+
+The `Radio` component and the `RadioGroup` component have been merged into one.
+
+Before:
+
+```tsx
+<RadioGroup onChange={setValue} value={value}>
+  <Stack direction="row">
+    <Radio value="1">First</Radio>
+    <Radio value="2">Second</Radio>
+    <Radio value="3">Third</Radio>
+  </Stack>
+</RadioGroup>
+```
+
+After:
+
+```tsx
+<RadioGroup.Root onChange={setValue} value={value}>
+  <Stack direction="row">
+    <RadioGroup.Item value="1">
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>First</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value="2">
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Second</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value="3">
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Third</RadioGroup.ItemText>
+    </RadioGroup.Item>
+  </Stack>
+</RadioGroup.Root>
+```
 
 ### Select -> NativeSelect
 
