@@ -52,7 +52,7 @@ export interface UseSliderProps {
   /**
    * If `true`, the value will be incremented or decremented in reverse.
    */
-  isReversed?: boolean
+  reversed?: boolean
   /**
    * Function called when the user starts selecting a new value (by dragging or clicking)
    */
@@ -145,7 +145,7 @@ export function useSlider(props: UseSliderProps) {
     onChange,
     value: valueProp,
     defaultValue,
-    isReversed: isReversedProp,
+    reversed: reversedProp,
     direction = "ltr",
     orientation = "horizontal",
     id: idProp,
@@ -167,8 +167,8 @@ export function useSlider(props: UseSliderProps) {
   const onChangeEnd = useCallbackRef(onChangeEndProp)
   const getAriaValueText = useCallbackRef(getAriaValueTextProp)
 
-  const isReversed = getIsReversed({
-    isReversed: isReversedProp,
+  const reversed = getIsReversed({
+    reversed: reversedProp,
     direction,
     orientation,
   })
@@ -195,7 +195,7 @@ export function useSlider(props: UseSliderProps) {
    */
   const value = clampValue(computedValue, min, max)
   const reversedValue = max - value + min
-  const trackValue = isReversed ? reversedValue : value
+  const trackValue = reversed ? reversedValue : value
   const thumbPercent = valueToPercent(trackValue, min, max)
 
   const isVertical = orientation === "vertical"
@@ -207,7 +207,7 @@ export function useSlider(props: UseSliderProps) {
     disabled,
     value,
     isInteractive,
-    isReversed,
+    reversed,
     isVertical,
     eventSource: null as "pointer" | "keyboard" | null,
     focusThumbOnChange,
@@ -252,7 +252,7 @@ export function useSlider(props: UseSliderProps) {
       const length = isVertical ? trackRect.height : trackRect.width
       let percent = diff / length
 
-      if (isReversed) {
+      if (reversed) {
         percent = 1 - percent
       }
 
@@ -268,7 +268,7 @@ export function useSlider(props: UseSliderProps) {
 
       return nextValue
     },
-    [isVertical, isReversed, stateRef],
+    [isVertical, reversed, stateRef],
   )
 
   const constrain = useCallback(
@@ -285,11 +285,11 @@ export function useSlider(props: UseSliderProps) {
   const actions: SliderActions = useMemo(
     () => ({
       stepUp(step = oneStep) {
-        const next = isReversed ? value - step : value + step
+        const next = reversed ? value - step : value + step
         constrain(next)
       },
       stepDown(step = oneStep) {
-        const next = isReversed ? value + step : value - step
+        const next = reversed ? value + step : value - step
         constrain(next)
       },
       reset() {
@@ -299,7 +299,7 @@ export function useSlider(props: UseSliderProps) {
         constrain(value)
       },
     }),
-    [constrain, isReversed, value, oneStep, defaultValue],
+    [constrain, reversed, value, oneStep, defaultValue],
   )
 
   /**
@@ -354,12 +354,12 @@ export function useSlider(props: UseSliderProps) {
 
       const thumbRect = thumbSize ?? { width: 0, height: 0 }
       return getStyles({
-        isReversed,
+        reversed,
         orientation: state.orientation,
         thumbRects: [thumbRect],
         thumbPercents: [thumbPercent],
       })
-    }, [isReversed, thumbSize, thumbPercent, stateRef])
+    }, [reversed, thumbSize, thumbPercent, stateRef])
 
   const focusThumb = useCallback(() => {
     const state = stateRef.current
@@ -510,12 +510,10 @@ export function useSlider(props: UseSliderProps) {
         ...orient({
           orientation: orientation,
           vertical: {
-            bottom: isReversed
-              ? `${100 - markerPercent}%`
-              : `${markerPercent}%`,
+            bottom: reversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
           },
           horizontal: {
-            left: isReversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
+            left: reversed ? `${100 - markerPercent}%` : `${markerPercent}%`,
           },
         }),
       }
@@ -534,7 +532,7 @@ export function useSlider(props: UseSliderProps) {
         },
       }
     },
-    [disabled, isReversed, max, min, orientation, value],
+    [disabled, reversed, max, min, orientation, value],
   )
 
   const getInputProps: PropGetter = useCallback(

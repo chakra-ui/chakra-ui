@@ -16,14 +16,14 @@ const themeRtl = { ...baseTheme, direction: "rtl" }
 
 const SimpleSlider = (props: {
   defaultValue?: number
-  isReversed?: boolean
+  reversed?: boolean
   orientation?: UseSliderProps["orientation"]
 }) => (
   <Slider
     aria-label="slider-2"
     colorScheme="red"
     orientation={props.orientation}
-    isReversed={props.isReversed || undefined}
+    reversed={props.reversed || undefined}
     defaultValue={props.defaultValue || defaultValue}
   >
     <SliderTrack>
@@ -54,7 +54,7 @@ const StyledSliderThumb = styled(SliderThumb)`
 
 const SimpleStyledSlider = (props: {
   defaultValue?: number
-  isReversed?: boolean
+  reversed?: boolean
   orientation?: UseSliderProps["orientation"]
 }) => (
   <StyledSlider
@@ -62,7 +62,7 @@ const SimpleStyledSlider = (props: {
     aria-label="slider-2"
     colorScheme="red"
     orientation={props.orientation}
-    isReversed={props.isReversed || undefined}
+    reversed={props.reversed || undefined}
     defaultValue={props.defaultValue || defaultValue}
   >
     <StyledSliderTrack data-testid="slider-track">
@@ -99,8 +99,8 @@ test("should move the thumb", async () => {
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders & move correctly when orientation: vertical & isReversed", async () => {
-  const { user } = render(<SimpleSlider orientation="vertical" isReversed />)
+test("renders & move correctly when orientation: vertical & reversed", async () => {
+  const { user } = render(<SimpleSlider orientation="vertical" reversed />)
 
   const thumb = screen.getByRole("slider")
 
@@ -143,10 +143,10 @@ test("renders with the correct direction under 'rtl'", async () => {
   expect(thumb).toHaveAttribute("aria-valuenow", "100")
 })
 
-test("renders with the correct direction under 'rtl' & isReversed", async () => {
+test("renders with the correct direction under 'rtl' & reversed", async () => {
   const { user } = render(
     <ChakraProvider theme={themeRtl}>
-      <SimpleSlider isReversed />
+      <SimpleSlider reversed />
     </ChakraProvider>,
   )
 

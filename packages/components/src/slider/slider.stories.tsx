@@ -81,7 +81,7 @@ export function HorizontalSlider() {
 
 export function VerticalSlider() {
   return (
-    <Slider colorScheme="red" isReversed orientation="vertical">
+    <Slider colorScheme="red" reversed orientation="vertical">
       <SliderTrack>
         <SliderFilledTrack />
       </SliderTrack>

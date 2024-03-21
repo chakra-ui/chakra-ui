@@ -31,9 +31,9 @@ export function getStyles(options: {
   orientation: Orientation
   thumbPercents: number[]
   thumbRects: Array<Size | undefined>
-  isReversed?: boolean
+  reversed?: boolean
 }) {
-  const { orientation, thumbPercents, thumbRects, isReversed } = options
+  const { orientation, thumbPercents, thumbRects, reversed } = options
 
   const getThumbStyle = (i: number): React.CSSProperties => {
     const rect = thumbRects[i] ?? zeroSize
@@ -108,11 +108,11 @@ export function getStyles(options: {
   }
 
   const isSingleThumb = thumbPercents.length === 1
-  const fallback = [0, isReversed ? 100 - thumbPercents[0] : thumbPercents[0]]
+  const fallback = [0, reversed ? 100 - thumbPercents[0] : thumbPercents[0]]
   const range = isSingleThumb ? fallback : thumbPercents
 
   let start = range[0]
-  if (!isSingleThumb && isReversed) {
+  if (!isSingleThumb && reversed) {
     start = 100 - start
   }
   const percent = Math.abs(range[range.length - 1] - range[0])
@@ -121,10 +121,10 @@ export function getStyles(options: {
     ...trackStyle,
     ...orient({
       orientation,
-      vertical: isReversed
+      vertical: reversed
         ? { height: `${percent}%`, top: `${start}%` }
         : { height: `${percent}%`, bottom: `${start}%` },
-      horizontal: isReversed
+      horizontal: reversed
         ? { width: `${percent}%`, right: `${start}%` }
         : { width: `${percent}%`, left: `${start}%` },
     }),
@@ -134,16 +134,16 @@ export function getStyles(options: {
 }
 
 export function getIsReversed(options: {
-  isReversed?: boolean
+  reversed?: boolean
   direction: "ltr" | "rtl"
   orientation?: "horizontal" | "vertical"
 }) {
-  const { isReversed, direction, orientation } = options
+  const { reversed, direction, orientation } = options
 
   if (direction === "ltr" || orientation === "vertical") {
-    return isReversed
+    return reversed
   }
   // only flip for horizontal RTL
   // if isReserved 🔜  otherwise  🔚
-  return !isReversed
+  return !reversed
 }
