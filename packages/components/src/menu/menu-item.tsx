@@ -9,10 +9,7 @@ import { useMenuItem, UseMenuItemProps } from "./use-menu"
 export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
 interface MenuItemOptions
-  extends Pick<
-    UseMenuItemProps,
-    "isDisabled" | "isFocusable" | "closeOnSelect"
-  > {
+  extends Pick<UseMenuItemProps, "disabled" | "focusable" | "closeOnSelect"> {
   /**
    * The icon to render before the menu item's label.
    * @type React.ReactElement
@@ -37,12 +34,12 @@ interface MenuItemOptions
 type HTMLAttributes = React.HTMLAttributes<HTMLElement>
 
 /**
- * Use prop `isDisabled` instead
+ * Use prop `disabled` instead
  */
-type IsDisabledProps = "disabled" | "aria-disabled"
+type disabledProps = "disabled" | "aria-disabled"
 
 export interface MenuItemProps
-  extends Omit<HTMLChakraProps<"button">, IsDisabledProps>,
+  extends Omit<HTMLChakraProps<"button">, disabledProps>,
     MenuItemOptions {}
 
 export const MenuItem = forwardRef<MenuItemProps, "button">((props, ref) => {

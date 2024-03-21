@@ -28,8 +28,8 @@ export const button = () => (
     </Clickable>
 
     <Clickable
-      isDisabled
-      isFocusable
+      disabled
+      focusable
       _disabled={{ opacity: 0.4, pointerEvents: "none" }}
     >
       Clickable

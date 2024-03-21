@@ -17,7 +17,7 @@ const DemoDialog = (props: Omit<Dialog.RootProps, "children">) => {
 }
 
 test("should have no accessibility violations", async () => {
-  const { baseElement } = render(<DemoDialog isOpen onClose={vi.fn()} />)
+  const { baseElement } = render(<DemoDialog open onClose={vi.fn()} />)
 
   // Test baseElement because the Dialog. is in a portal
   await testA11y(baseElement, {
@@ -31,9 +31,7 @@ test("should have no accessibility violations", async () => {
 })
 
 test("should have the proper 'aria' attributes", () => {
-  const { getByRole, getByText } = render(
-    <DemoDialog isOpen onClose={vi.fn()} />,
-  )
+  const { getByRole, getByText } = render(<DemoDialog open onClose={vi.fn()} />)
 
   const dialog = getByRole("dialog")
 
@@ -54,7 +52,7 @@ test("should have the proper 'aria' attributes", () => {
 
 test("should fire 'onClose' callback when close button is clicked", () => {
   const onClose = vi.fn()
-  const tools = render(<DemoDialog isOpen onClose={onClose} />)
+  const tools = render(<DemoDialog open onClose={onClose} />)
 
   fireEvent.click(tools.getByTestId("close"))
   expect(onClose).toHaveBeenCalled()
@@ -62,7 +60,7 @@ test("should fire 'onClose' callback when close button is clicked", () => {
 
 test.skip("should close on outside click", async () => {
   const onClose = vi.fn()
-  const { user, getByTestId } = render(<DemoDialog isOpen onClose={onClose} />)
+  const { user, getByTestId } = render(<DemoDialog open onClose={onClose} />)
 
   await user.click(getByTestId("overlay"))
   expect(onClose).toHaveBeenCalled()
@@ -70,14 +68,14 @@ test.skip("should close on outside click", async () => {
 
 test.skip("should close on escape key", async () => {
   const onClose = vi.fn()
-  const { user } = render(<DemoDialog isOpen onClose={onClose} />)
+  const { user } = render(<DemoDialog open onClose={onClose} />)
   await user.keyboard("[Escape]")
   expect(onClose).toHaveBeenCalled()
 })
 
 test("focus initial element when opened", () => {
   const Component = () => {
-    const [isOpen, setIsOpen] = React.useState(false)
+    const [open, setIsOpen] = React.useState(false)
     const inputRef = React.useRef(null)
     return (
       <>
@@ -89,11 +87,7 @@ test("focus initial element when opened", () => {
           Open
         </button>
 
-        <Dialog.Root
-          isOpen={isOpen}
-          initialFocusRef={inputRef}
-          onClose={vi.fn()}
-        >
+        <Dialog.Root open={open} initialFocusRef={inputRef} onClose={vi.fn()}>
           <Dialog.Overlay />
           <Dialog.Content>
             <Dialog.Header>Dialog. header</Dialog.Header>
@@ -116,7 +110,7 @@ test("focus initial element when opened", () => {
 
 test("should return focus to button when closed", async () => {
   const Component = () => {
-    const [isOpen, setIsOpen] = React.useState(false)
+    const [open, setIsOpen] = React.useState(false)
     const buttonRef = React.useRef(null)
     return (
       <>
@@ -131,7 +125,7 @@ test("should return focus to button when closed", async () => {
 
         <Dialog.Root
           finalFocusRef={buttonRef}
-          isOpen={isOpen}
+          open={open}
           onClose={() => setIsOpen(false)}
         >
           <Dialog.Overlay />

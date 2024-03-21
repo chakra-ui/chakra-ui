@@ -4,11 +4,7 @@ export type { PinInputRootProps } from "./pin-input-root"
 export { PinInputField } from "./pin-input-field"
 export type { PinInputFieldProps } from "./pin-input-field"
 
-export {
-  PinInputDescendantsProvider,
-  PinInputProvider,
-  usePinInputContext,
-} from "./pin-input-context"
+export { PinInputProvider, usePinInputContext } from "./pin-input-context"
 
 export { usePinInput } from "./use-pin-input"
 export type { UsePinInputProps, UsePinInputReturn } from "./use-pin-input"

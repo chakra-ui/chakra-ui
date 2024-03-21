@@ -23,12 +23,12 @@ const DEFAULT_MAX_VALUE = 40
 
 export const WithPropsUpdate = () => {
   const [count, setCount] = React.useState(0)
-  const [isDisabled, setIsDisabled] = React.useState(true)
+  const [disabled, setdisabled] = React.useState(true)
   const [max, setMax] = React.useState(DEFAULT_MAX_VALUE)
 
   React.useEffect(() => {
     const id = setTimeout(() => {
-      setIsDisabled(false)
+      setdisabled(false)
       setMax(150)
     }, 1000)
 
@@ -40,13 +40,13 @@ export const WithPropsUpdate = () => {
   return (
     <chakra.div display="flex" flexDirection="column" gap="8">
       <h1>
-        Slide max value: {max}, isDisabled: {String(isDisabled)}
+        Slide max value: {max}, disabled: {String(disabled)}
       </h1>
       <Slider
         aria-label="Player Progress"
         min={0}
         max={max}
-        isDisabled={isDisabled}
+        disabled={disabled}
         defaultValue={0}
         value={count}
         onChange={setCount}

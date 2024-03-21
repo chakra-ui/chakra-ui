@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks/use-disclosure"
-import * as React from "react"
+import { useRef, useState, useEffect } from "react"
 import { Accordion, Box, Button, Container, Drawer, chakra } from ".."
 
 export default {
@@ -132,6 +132,46 @@ export const stylingExpanded = () => (
   </Accordion.Root>
 )
 
+export const Controlled = () => {
+  const [value, setValue] = useState(["1"])
+  return (
+    <Accordion.Root value={value} onChange={setValue}>
+      <Accordion.Item value="1">
+        <h2>
+          <Accordion.Trigger>
+            <chakra.div flex="1" textAlign="left">
+              Item 1
+            </chakra.div>
+            <Accordion.Icon />
+          </Accordion.Trigger>
+        </h2>
+        <Accordion.Content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Accordion.Content>
+      </Accordion.Item>
+      <Accordion.Item value="2">
+        <h2>
+          <Accordion.Trigger>
+            <chakra.div flex="1" textAlign="left">
+              Item 2
+            </chakra.div>
+            <Accordion.Icon />
+          </Accordion.Trigger>
+        </h2>
+        <Accordion.Content>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Accordion.Content>
+      </Accordion.Item>
+    </Accordion.Root>
+  )
+}
+
 const data = [
   { title: "First Item", text: "Some value 1..." },
   { title: "Second Item", text: "Some value 2..." },
@@ -143,12 +183,12 @@ const data = [
 ]
 
 export function WithSearchFilter() {
-  const inputRef = React.useRef<HTMLInputElement>(null)
-  const [displayData, setDisplayData] = React.useState(data)
-  const [filter, setFilter] = React.useState("")
-  const [index, setIndex] = React.useState(-1)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [displayData, setDisplayData] = useState(data)
+  const [filter, setFilter] = useState("")
+  const [value, setValue] = useState<string[]>([])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!filter || filter === "") {
       setDisplayData(data)
     }
@@ -159,13 +199,13 @@ export function WithSearchFilter() {
     setDisplayData(filteredData)
   }, [filter])
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputRef.current?.focus()
   }, [displayData])
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFilter(e.target.value)
-    setIndex(-1)
+    setValue([])
   }
 
   return (
@@ -179,15 +219,7 @@ export function WithSearchFilter() {
         />
       </chakra.div>
       {displayData.length > 0 && (
-        <Accordion.Root
-          collapsible
-          index={index}
-          onChange={(index) => {
-            if (!Array.isArray(index)) {
-              setIndex(index)
-            }
-          }}
-        >
+        <Accordion.Root collapsible value={value} onChange={setValue}>
           {displayData.map((item, i) => (
             <Accordion.Item key={`accordion-item-${i}`}>
               <h2>
@@ -208,14 +240,14 @@ export function WithSearchFilter() {
 }
 
 export const FocusBug = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
 
   return (
     <Box textAlign="center" fontSize="xl">
       <Button colorScheme="teal" onClick={onOpen}>
         Open
       </Button>
-      <Drawer.Root isOpen={isOpen} placement="right" onClose={onClose}>
+      <Drawer.Root open={open} placement="right" onClose={onClose}>
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>
@@ -285,27 +317,63 @@ export const FocusBug = () => {
 
 export const WithDisabledItem = () => {
   return (
-    <Accordion.Root index={1}>
-      <Accordion.Item isDisabled>
+    <Accordion.Root defaultValue={["1"]}>
+      <Accordion.Item value="1" disabled>
         <Accordion.Trigger>Button 1</Accordion.Trigger>
         <Accordion.Content>One Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item isDisabled>
+      <Accordion.Item value="2" disabled>
         <Accordion.Trigger>Button 2</Accordion.Trigger>
         <Accordion.Content>Two Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item>
+      <Accordion.Item value="3">
         <Accordion.Trigger>Button 3</Accordion.Trigger>
         <Accordion.Content>Three Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item isDisabled>
+      <Accordion.Item value="4" disabled>
         <Accordion.Trigger>Button 4</Accordion.Trigger>
         <Accordion.Content>Four Content</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item>
+      <Accordion.Item value="5">
         <Accordion.Trigger>Button 5</Accordion.Trigger>
         <Accordion.Content>Five Content</Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>
   )
 }
+
+export const ItemApi = () => (
+  <Accordion.Root>
+    <Accordion.Item>
+      {({ isOpen }) => (
+        <>
+          <h2>
+            <Accordion.Trigger>
+              <chakra.div flex="1" textAlign="left">
+                Section 1 title {isOpen ? "open" : "closed"}
+              </chakra.div>
+              <Accordion.Icon />
+            </Accordion.Trigger>
+          </h2>
+          <Accordion.Content>Panel 1</Accordion.Content>
+        </>
+      )}
+    </Accordion.Item>
+
+    <Accordion.Item>
+      {({ isOpen }) => (
+        <>
+          <h2>
+            <Accordion.Trigger>
+              <chakra.div flex="1" textAlign="left">
+                Section 2 title {isOpen ? "open" : "closed"}
+              </chakra.div>
+              <Accordion.Icon />
+            </Accordion.Trigger>
+          </h2>
+          <Accordion.Content>Panel 2</Accordion.Content>
+        </>
+      )}
+    </Accordion.Item>
+  </Accordion.Root>
+)

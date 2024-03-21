@@ -9,7 +9,7 @@ export interface NativeSelectFieldProps
   /**
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
 }
 
 export const NativeSelectField = forwardRef<NativeSelectFieldProps, "select">(

@@ -4,7 +4,7 @@ import { useTagStyles } from "./tag-context"
 
 export interface TagCloseTriggerProps
   extends Omit<HTMLChakraProps<"button">, "disabled"> {
-  isDisabled?: boolean
+  disabled?: boolean
 }
 
 /**
@@ -14,7 +14,7 @@ export interface TagCloseTriggerProps
 
 export const TagCloseTrigger = forwardRef<TagCloseTriggerProps, "button">(
   function TagCloseTrigger(props, ref) {
-    const { isDisabled, children = <TagCloseIcon />, ...rest } = props
+    const { disabled, children = <TagCloseIcon />, ...rest } = props
     const styles = useTagStyles()
 
     return (
@@ -23,7 +23,7 @@ export const TagCloseTrigger = forwardRef<TagCloseTriggerProps, "button">(
         aria-label="close"
         {...rest}
         type="button"
-        disabled={isDisabled}
+        disabled={disabled}
         __css={styles.closeTrigger}
       >
         {children}

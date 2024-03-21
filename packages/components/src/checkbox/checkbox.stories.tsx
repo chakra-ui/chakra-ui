@@ -44,19 +44,19 @@ export const WithHooks = () => {
 
 export const Basic = () => <DemoCheckbox colorScheme="red">Hello</DemoCheckbox>
 
-export const Disabled = () => <DemoCheckbox isDisabled>Disabled</DemoCheckbox>
+export const Disabled = () => <DemoCheckbox disabled>Disabled</DemoCheckbox>
 
-export const Readonly = () => <DemoCheckbox isReadOnly>Readonly</DemoCheckbox>
+export const Readonly = () => <DemoCheckbox readOnly>Readonly</DemoCheckbox>
 
-export const Invalid = () => <DemoCheckbox isInvalid>Invalid</DemoCheckbox>
+export const Invalid = () => <DemoCheckbox invalid>Invalid</DemoCheckbox>
 
 export const NotFocusable = () => (
   <Stack>
-    <DemoCheckbox isFocusable={false}>not focusable</DemoCheckbox>
-    <DemoCheckbox isFocusable={false} isDisabled>
+    <DemoCheckbox focusable={false}>not focusable</DemoCheckbox>
+    <DemoCheckbox focusable={false} disabled>
       disabled and not focusable (truly disabled)
     </DemoCheckbox>
-    <DemoCheckbox tabIndex={-1} isFocusable={false}>
+    <DemoCheckbox tabIndex={-1} focusable={false}>
       Not Focusable with provided tabIndex
     </DemoCheckbox>
   </Stack>
@@ -83,9 +83,9 @@ export const WithColorScheme = () => {
 }
 
 const CustomIcon = (props: any) => {
-  const { isIndeterminate, ...rest } = props
+  const { indeterminate, ...rest } = props
 
-  const d = isIndeterminate
+  const d = indeterminate
     ? "M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,19a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,12,19Zm1.6-6.08a1,1,0,0,0-.6.917,1,1,0,1,1-2,0,3,3,0,0,1,1.8-2.75A2,2,0,1,0,10,9.255a1,1,0,1,1-2,0,4,4,0,1,1,5.6,3.666Z"
     : "M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
 
@@ -100,7 +100,7 @@ export const WithCustomIcon = () => {
   const [checkedItems, setCheckedItems] = React.useState([false, false])
 
   const allChecked = checkedItems.every(Boolean)
-  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+  const indeterminate = checkedItems.some(Boolean) && !allChecked
 
   return (
     <>
@@ -116,8 +116,8 @@ export const WithCustomIcon = () => {
       <Heading>Indeterminate</Heading>
 
       <Checkbox.Root
-        isChecked={allChecked}
-        isIndeterminate={isIndeterminate}
+        checked={allChecked}
+        indeterminate={indeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
         colorScheme="red"
       >
@@ -127,13 +127,13 @@ export const WithCustomIcon = () => {
 
       <Stack ml="6" mt="2" align="start">
         <DemoCheckbox
-          isChecked={checkedItems[0]}
+          checked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
         >
           Child Checkbox 1
         </DemoCheckbox>
         <DemoCheckbox
-          isChecked={checkedItems[1]}
+          checked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
         >
           Child Checkbox 2
@@ -157,26 +157,26 @@ export const Indeterminate = () => {
   const [checkedItems, setCheckedItems] = React.useState([false, false])
 
   const allChecked = checkedItems.every(Boolean)
-  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+  const indeterminate = checkedItems.some(Boolean) && !allChecked
 
   return (
     <>
       <DemoCheckbox
-        isChecked={allChecked}
-        isIndeterminate={isIndeterminate}
+        checked={allChecked}
+        indeterminate={indeterminate}
         onChange={(e) => setCheckedItems([e.target.checked, e.target.checked])}
       >
         Parent Checkbox
       </DemoCheckbox>
       <Stack ml="6" mt="2" align="start">
         <DemoCheckbox
-          isChecked={checkedItems[0]}
+          checked={checkedItems[0]}
           onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1]])}
         >
           Child Checkbox 1
         </DemoCheckbox>
         <DemoCheckbox
-          isChecked={checkedItems[1]}
+          checked={checkedItems[1]}
           onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked])}
         >
           Child Checkbox 2
@@ -193,7 +193,7 @@ export const Controlled = () => {
     setValue(e.target.checked)
   }
 
-  return <DemoCheckbox isChecked={value} onChange={handleChange} />
+  return <DemoCheckbox checked={value} onChange={handleChange} />
 }
 
 export const CheckboxGroupExample = () => {
@@ -281,7 +281,7 @@ export const CustomCheckboxGroup = () => {
           h={4}
           {...getCheckboxProps()}
         >
-          {state.isChecked && <Box w={2} h={2} bg="green.500" />}
+          {state.checked && <Box w={2} h={2} bg="green.500" />}
         </Flex>
         <Text {...getLabelProps()}>Click me for {props.value}</Text>
       </chakra.label>
@@ -315,7 +315,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInInvalid" isInvalid mt={4}>
+      <Field.Root id="optInInvalid" invalid mt={4}>
         <Field.Label>Invalid Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
@@ -326,7 +326,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInDisabled" isDisabled mt={4}>
+      <Field.Root id="optInDisabled" disabled mt={4}>
         <Field.Label>Disabled Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
@@ -337,7 +337,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInReadonly" isReadOnly mt={4}>
+      <Field.Root id="optInReadonly" readOnly mt={4}>
         <Field.Label>Readonly Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>
@@ -348,7 +348,7 @@ export const WithFormControl = () => {
         </Checkbox.Group>
       </Field.Root>
 
-      <Field.Root id="optInRequired" isRequired mt={4}>
+      <Field.Root id="optInRequired" required mt={4}>
         <Field.Label>Required Opt-in Example</Field.Label>
         <Checkbox.Group defaultValue={["2", "3"]}>
           <Stack spacing={2}>

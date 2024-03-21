@@ -10,12 +10,10 @@ export const CircularProgressFilledTrack = forwardRef<
   CircularProgressFilledTrackProps,
   "circle"
 >(function CircularProgressFilledTrack(props, ref) {
-  const { computed, color, thickness, capIsRound, isIndeterminate } =
+  const { computed, color, thickness, capIsRound, indeterminate } =
     useCircularProgressContext()
 
-  const determinant = isIndeterminate
-    ? undefined
-    : (computed.percent ?? 0) * 2.64
+  const determinant = indeterminate ? undefined : (computed.percent ?? 0) * 2.64
 
   const strokeDasharray =
     determinant == null ? undefined : `${determinant} ${264 - determinant}`
@@ -31,8 +29,8 @@ export const CircularProgressFilledTrack = forwardRef<
       strokeWidth={thickness}
       className="chakra-progress__indicator"
       strokeLinecap={capIsRound ? "round" : undefined}
-      opacity={computed.value === 0 && !isIndeterminate ? 0 : undefined}
-      data-indeterminate={dataAttr(isIndeterminate)}
+      opacity={computed.value === 0 && !indeterminate ? 0 : undefined}
+      data-indeterminate={dataAttr(indeterminate)}
       {...props}
       __css={{
         strokeDashoffset: 66,

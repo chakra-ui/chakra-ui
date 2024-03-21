@@ -76,12 +76,9 @@ the `up` and `down` arrow keys will move focus between accordion buttons.
 If you set `multiple` to `true` then the accordion will permit multiple items to
 be expanded at once.
 
-> If you pass this prop, ensure that the `index` or `defaultIndex` prop is an
-> array.
-
 ```jsx
-<Accordion.Root defaultIndex={[0]} multiple>
-  <Accordion.Item>
+<Accordion.Root defaultValue={['section-1']} allowMultiple>
+  <Accordion.Item value='section-1'>
     <h2>
       <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>
@@ -98,7 +95,7 @@ be expanded at once.
     </Accordion.Content>
   </Accordion.Item>
 
-  <Accordion.Item>
+  <Accordion.Item value='section-2'>
     <h2>
       <Accordion.Trigger>
         <Box as='span' flex='1' textAlign='left'>

@@ -46,7 +46,7 @@ const columns: ColumnDef<Data>[] = [
   {
     header: "Action",
     cell: ({ row }) => (
-      <ButtonGroup size="sm" isAttached>
+      <ButtonGroup size="sm" attached>
         <Button minW="15ch" justifyContent="flex-start">
           Open {row.original["col1"]}
         </Button>

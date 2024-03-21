@@ -34,7 +34,7 @@ export interface ProgressOptions {
    *
    * @default false
    */
-  isIndeterminate?: boolean
+  indeterminate?: boolean
 }
 
 export interface ProgressContext extends ProgressOptions {

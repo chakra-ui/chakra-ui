@@ -26,7 +26,7 @@ test("Uncontrolled - should check and uncheck", async () => {
 })
 
 test("Uncontrolled - should not check if disabled", async () => {
-  const { container, user } = render(<DemoSwitch isDisabled />)
+  const { container, user } = render(<DemoSwitch disabled />)
   const input = container.querySelector("input") as HTMLInputElement
 
   expect(input).toBeDisabled()
@@ -40,7 +40,7 @@ test("Controlled - should check and uncheck", async () => {
     const [checked, setChecked] = React.useState(false)
     return (
       <DemoSwitch
-        isChecked={checked}
+        checked={checked}
         onChange={(e) => {
           onChange?.()
           setChecked(e.target.checked)
@@ -70,11 +70,11 @@ test("Controlled - should check and uncheck", async () => {
 
 test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
   const { container, user } = render(
-    <Field.Root isDisabled mt={4}>
+    <Field.Root disabled mt={4}>
       <Field.Label>Disabled Opt-in Example</Field.Label>
       <DemoSwitch />
-      <DemoSwitch isDisabled />
-      <DemoSwitch isDisabled={false} />
+      <DemoSwitch disabled />
+      <DemoSwitch disabled={false} />
     </Field.Root>,
   )
 
@@ -97,11 +97,11 @@ test("Uncontrolled FormControl - should not check if form-control disabled", asy
 
 test("Uncontrolled FormControl - mark label as invalid", () => {
   const { container } = render(
-    <Field.Root isInvalid mt={4}>
+    <Field.Root invalid mt={4}>
       <Field.Label>Invalid Opt-in Example</Field.Label>
       <DemoSwitch>Invalid Opt-in 1</DemoSwitch>
-      <DemoSwitch isInvalid>Invalid Opt-in 2</DemoSwitch>
-      <DemoSwitch isInvalid={false}>Invalid Opt-in 3</DemoSwitch>
+      <DemoSwitch invalid>Invalid Opt-in 2</DemoSwitch>
+      <DemoSwitch invalid={false}>Invalid Opt-in 3</DemoSwitch>
     </Field.Root>,
   )
 
@@ -132,11 +132,11 @@ test("Uncontrolled FormControl - mark label as invalid", () => {
 
 test("Uncontrolled FormControl - mark required", () => {
   const { container } = render(
-    <Field.Root isRequired mt={4}>
+    <Field.Root required mt={4}>
       <Field.Label>Required Opt-in Example</Field.Label>
       <DemoSwitch />
-      <DemoSwitch isRequired />
-      <DemoSwitch isRequired={false} />
+      <DemoSwitch required />
+      <DemoSwitch required={false} />
     </Field.Root>,
   )
 
@@ -151,7 +151,7 @@ test("Uncontrolled FormControl - mark required", () => {
 
 test("Uncontrolled FormControl - mark readonly", () => {
   render(
-    <Field.Root isReadOnly mt={4}>
+    <Field.Root readOnly mt={4}>
       <Field.Label>ReadOnly Opt-in Example</Field.Label>
       <DemoSwitch />
     </Field.Root>,

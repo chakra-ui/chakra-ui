@@ -197,7 +197,7 @@ export const WithFormControl = () => {
 
   return (
     <Stack align="start">
-      <Field.Root id="first-name" isInvalid={isError}>
+      <Field.Root id="first-name" invalid={isError}>
         <chakra.div display="flex" mb="2">
           <Field.Label mb="0" lineHeight="1em">
             Amount

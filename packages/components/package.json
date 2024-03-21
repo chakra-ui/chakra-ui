@@ -42,6 +42,7 @@
     "@chakra-ui/theme": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",
+    "@zag-js/dom-utils": "^0.2.4",
     "@zag-js/focus-visible": "^0.31.1",
     "aria-hidden": "^1.2.3",
     "react-fast-compare": "3.2.2",
@@ -61,7 +62,7 @@
     "@emotion/styled": "^11.11.0",
     "@tanstack/react-table": "^8.10.7",
     "@testing-library/react": "^14.0.0",
-    "framer-motion": "10.16.15",
+    "framer-motion": "11.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.6",
@@ -318,17 +319,6 @@
       "require": {
         "types": "./dist/types/css-reset/index.d.ts",
         "default": "./dist/cjs/css-reset/index.cjs"
-      }
-    },
-    "./descendant": {
-      "source": "./src/descendant/index.ts",
-      "import": {
-        "types": "./dist/types/descendant/index.d.mts",
-        "default": "./dist/esm/descendant/index.mjs"
-      },
-      "require": {
-        "types": "./dist/types/descendant/index.d.ts",
-        "default": "./dist/cjs/descendant/index.cjs"
       }
     },
     "./dialog": {

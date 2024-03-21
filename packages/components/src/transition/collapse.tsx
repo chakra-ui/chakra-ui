@@ -84,7 +84,7 @@ export interface CollapseProps
 export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
   (props, ref) => {
     const {
-      in: isOpen,
+      in: open,
       unmountOnExit,
       animateOpacity = true,
       startingHeight = 0,
@@ -133,8 +133,8 @@ export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
       },
     }
 
-    const show = unmountOnExit ? isOpen : true
-    const animate = isOpen || unmountOnExit ? "enter" : "exit"
+    const show = unmountOnExit ? open : true
+    const animate = open || unmountOnExit ? "enter" : "exit"
 
     return (
       <AnimatePresence initial={false} custom={custom}>

@@ -112,7 +112,7 @@ const LazyPopover = (props: UsePopoverProps & LazyPopoverContentProps) => {
 
 test("loads content lazily and unmounts the component from the DOM", async () => {
   const mock = vi.fn()
-  const utils = render(<LazyPopover isLazy mockFn={mock} />)
+  const utils = render(<LazyPopover lazyMount mockFn={mock} />)
 
   // by default, content should not be visible
   let content = screen.queryByTestId("content")
@@ -149,7 +149,7 @@ test("loads content lazily and unmounts the component from the DOM", async () =>
 test("loads content lazily and persists the component in the DOM", async () => {
   const mock = vi.fn()
   const utils = render(
-    <LazyPopover isLazy lazyBehavior="keepMounted" mockFn={mock} />,
+    <LazyPopover lazyMount lazyBehavior="keepMounted" mockFn={mock} />,
   )
 
   // by default, content should not be visible

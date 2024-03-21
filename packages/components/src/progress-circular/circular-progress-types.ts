@@ -56,7 +56,7 @@ export interface CircularProgressOptions {
    *
    * @default false
    */
-  isIndeterminate?: boolean
+  indeterminate?: boolean
 }
 
 export interface CircularProgressContext extends CircularProgressOptions {

@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import {
-  PinInputDescendantsProvider,
   PinInputProvider,
   UsePinInputProps,
   usePinInput,
@@ -13,16 +12,16 @@ function Input(props: any) {
 }
 
 const Component = (props: UsePinInputProps = {}) => {
-  const { descendants, ...context } = usePinInput(props)
+  const context = usePinInput(props)
   return (
-    <PinInputDescendantsProvider value={descendants}>
-      <PinInputProvider value={context}>
-        <Input data-testid="1" />
-        <Input data-testid="2" />
-        <Input data-testid="3" />
-        <button onClick={() => context.clear()}>Clear</button>
-      </PinInputProvider>
-    </PinInputDescendantsProvider>
+    <PinInputProvider value={context}>
+      <div ref={context.containerRef}>
+        <Input data-testid="1" index="0" />
+        <Input data-testid="2" index="1" />
+        <Input data-testid="3" index="2" />
+      </div>
+      <button onClick={() => context.clear()}>Clear</button>
+    </PinInputProvider>
   )
 }
 

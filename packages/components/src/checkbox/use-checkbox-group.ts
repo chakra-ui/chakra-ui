@@ -18,13 +18,7 @@ function isInputEvent(value: any): value is { target: HTMLInputElement } {
  * @see WAI-ARIA https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
  */
 export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
-  const {
-    defaultValue,
-    value: valueProp,
-    onChange,
-    isDisabled,
-    isNative,
-  } = props
+  const { defaultValue, value: valueProp, onChange, disabled } = props
 
   const onChangeProp = useCallbackRef(onChange)
 
@@ -38,7 +32,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
     (eventOrValue: EventOrValue) => {
       if (!value) return
 
-      const isChecked = isInputEvent(eventOrValue)
+      const checked = isInputEvent(eventOrValue)
         ? eventOrValue.target.checked
         : !value.includes(eventOrValue)
 
@@ -46,7 +40,7 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
         ? eventOrValue.target.value
         : eventOrValue
 
-      const nextValue = isChecked
+      const nextValue = checked
         ? [...value, selectedValue]
         : value.filter((v) => String(v) !== String(selectedValue))
 
@@ -57,19 +51,18 @@ export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
 
   const getCheckboxProps = useCallback(
     (props: Record<string, any> = {}) => {
-      const checkedKey = isNative ? "checked" : "isChecked"
       return {
         ...props,
-        [checkedKey]: value.some((val) => String(props.value) === String(val)),
+        checked: value.some((val) => String(props.value) === String(val)),
         onChange: handleChange,
       }
     },
-    [handleChange, isNative, value],
+    [handleChange, value],
   )
 
   return {
     value,
-    isDisabled,
+    disabled,
     onChange: handleChange,
     setValue,
     getCheckboxProps,

@@ -124,21 +124,21 @@ export const Arrow = () => (
 )
 
 export const Controlled = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [open, setIsOpen] = React.useState(false)
 
-  const open = () => setIsOpen(!isOpen)
-  const close = () => setIsOpen(false)
+  const onOpen = () => setIsOpen(!open)
+  const onClose = () => setIsOpen(false)
 
   return (
     <>
-      <Button mr={5} onClick={open}>
+      <Button mr={5} onClick={onOpen}>
         Trigger
       </Button>
 
       <Popover.Root
         returnFocusOnClose={false}
-        isOpen={isOpen}
-        onClose={close}
+        open={open}
+        onClose={onClose}
         placement="right"
         closeOnBlur={false}
       >
@@ -178,7 +178,7 @@ const Interval = () => {
 
 export function WithLazyPopover() {
   return (
-    <Popover.Root isLazy>
+    <Popover.Root lazyMount>
       <Popover.Trigger asChild>
         <Button colorScheme="pink">Popover Target</Button>
       </Popover.Trigger>
@@ -198,7 +198,7 @@ export function WithLazyPopover() {
 
 export function WithLazyPopoverMounted() {
   return (
-    <Popover.Root isLazy lazyBehavior="keepMounted">
+    <Popover.Root lazyMount lazyBehavior="keepMounted">
       <Popover.Trigger asChild>
         <Button colorScheme="pink">Popover Target</Button>
       </Popover.Trigger>
@@ -222,11 +222,11 @@ export function WithPopoverAnchor() {
 
   return (
     <Popover.Root
-      isOpen={isEditing}
+      open={isEditing}
       onOpen={setIsEditing.on}
       onClose={setIsEditing.off}
       closeOnBlur={false}
-      isLazy
+      lazyMount
       lazyBehavior="keepMounted"
     >
       <Popover.Anchor asChild>
@@ -234,7 +234,7 @@ export function WithPopoverAnchor() {
           color={color}
           w="auto"
           display="inline-flex"
-          isDisabled={!isEditing}
+          disabled={!isEditing}
           defaultValue="Popover Anchor"
         />
       </Popover.Anchor>

@@ -1,20 +1,22 @@
-import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
-import { usePinInputContext, usePinInputDescendant } from "./pin-input-context"
+import { usePinInputContext } from "./pin-input-context"
 
-export interface UsePinInputFieldProps extends InputProps {}
+export interface UsePinInputFieldProps extends InputProps {
+  ref?: React.Ref<HTMLInputElement>
+}
 
+/**
+ * @internal
+ */
 export function usePinInputField(
   props: UsePinInputFieldProps = {},
   ref: React.Ref<any> = null,
 ) {
   const { getInputProps } = usePinInputContext()
 
-  const { index, register } = usePinInputDescendant()
-
   return getInputProps({
     ...props,
-    ref: mergeRefs(register, ref),
-    index,
+    ref,
+    index: (props as any).index, // this is passed to the cloned children in PinInput
   })
 }
 

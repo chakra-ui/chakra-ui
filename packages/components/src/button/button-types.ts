@@ -7,13 +7,13 @@ export interface ButtonGroupOptions {
    *
    * @default false
    */
-  isAttached?: boolean
+  attached?: boolean
   /**
    * If `true`, all wrapped button will be disabled
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * The spacing between the buttons
    * @default '0.5rem'
@@ -27,12 +27,12 @@ export interface ButtonOptions {
    * If `true`, the button will be styled in its active state.
    * @default false
    */
-  isActive?: boolean
+  active?: boolean
   /**
    * If `true`, the button will be disabled.
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
 }
 
 export interface ButtonSpinnerOptions {

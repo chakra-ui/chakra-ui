@@ -82,12 +82,12 @@ export interface UseRangeSliderProps {
    * If `true`, the slider will be disabled
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the slider will be in `read-only` state
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
 
   /**
    * Function that returns the `aria-valuetext` for screen readers.
@@ -130,7 +130,7 @@ export interface UseRangeSliderProps {
 
 export interface RangeSliderState {
   value: number[]
-  isFocused: boolean
+  focused: boolean
   isDragging: boolean
   getThumbPercent: (index: number) => number
   getThumbMinValue: (index: number) => number
@@ -165,8 +165,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
     direction = "ltr",
     orientation = "horizontal",
     id: idProp,
-    isDisabled,
-    isReadOnly,
+    disabled,
+    readOnly,
     onChangeStart: onChangeStartProp,
     onChangeEnd: onChangeEndProp,
     step = 1,
@@ -203,10 +203,10 @@ export function useRangeSlider(props: UseRangeSliderProps) {
   }
 
   const [isDragging, setDragging] = useState(false)
-  const [isFocused, setFocused] = useState(false)
+  const [focused, setFocused] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
 
-  const isInteractive = !(isDisabled || isReadOnly)
+  const isInteractive = !(disabled || readOnly)
 
   const initialValue = useRef(valueState)
   const value = valueState.map((val) => clampValue(val, min, max))
@@ -429,12 +429,12 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         id: ids.root,
         ref: mergeRefs(ref, rootRef),
         tabIndex: -1,
-        "aria-disabled": ariaAttr(isDisabled),
-        "data-focused": dataAttr(isFocused),
+        "aria-disabled": ariaAttr(disabled),
+        "data-focused": dataAttr(focused),
         style: { ...props.style, ...rootStyle },
       }
     },
-    [htmlProps, isDisabled, isFocused, rootStyle, ids],
+    [htmlProps, disabled, focused, rootStyle, ids],
   )
 
   const getTrackProps: PropGetter = useCallback(
@@ -443,11 +443,11 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         ...props,
         ref: mergeRefs(ref, trackRef),
         id: ids.track,
-        "data-disabled": dataAttr(isDisabled),
+        "data-disabled": dataAttr(disabled),
         style: { ...props.style, ...trackStyle },
       }
     },
-    [isDisabled, trackStyle, ids],
+    [disabled, trackStyle, ids],
   )
 
   const getInnerTrackProps: PropGetter = useCallback(
@@ -491,8 +491,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         "aria-valuemax": bounds.max,
         "aria-valuenow": valueAtIndex,
         "aria-orientation": orientation,
-        "aria-disabled": ariaAttr(isDisabled),
-        "aria-readonly": ariaAttr(isReadOnly),
+        "aria-disabled": ariaAttr(disabled),
+        "aria-readonly": ariaAttr(readOnly),
         "aria-label": ariaLabel?.[index],
         "aria-labelledby": ariaLabel?.[index]
           ? undefined
@@ -519,8 +519,8 @@ export function useRangeSlider(props: UseRangeSliderProps) {
       getAriaValueText,
       ariaValueText,
       orientation,
-      isDisabled,
-      isReadOnly,
+      disabled,
+      readOnly,
       ariaLabel,
       ariaLabelledBy,
       getThumbStyle,
@@ -568,7 +568,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         id: ids.getMarker(props.value),
         role: "presentation",
         "aria-hidden": true,
-        "data-disabled": dataAttr(isDisabled),
+        "data-disabled": dataAttr(disabled),
         "data-invalid": dataAttr(!isInRange),
         "data-highlighted": dataAttr(isHighlighted),
         style: {
@@ -577,7 +577,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
         },
       }
     },
-    [isDisabled, isReversed, max, min, orientation, value, ids],
+    [disabled, isReversed, max, min, orientation, value, ids],
   )
 
   const getInputProps: RequiredPropGetter<{ index: number }> = useCallback(
@@ -597,7 +597,7 @@ export function useRangeSlider(props: UseRangeSliderProps) {
 
   const state: RangeSliderState = {
     value,
-    isFocused,
+    focused,
     isDragging,
     getThumbPercent: (index: number) => thumbPercents[index],
     getThumbMinValue: (index: number) => valueBounds[index].min,

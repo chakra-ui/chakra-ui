@@ -10,7 +10,7 @@ Renamed all `container` parts to `root`. Kindly update your theme to reflect
 
 - Removed `AlertDialog` component (see below)
 - Removed `ControlBox` component
-- Removed `@chakra-ui/icons` package. Prefer to use `lucide-react` or
+- Removed `@chakra-ui/icons` package. Prefer to use [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
   `react-icons` instead.
 
 ### Root component and types

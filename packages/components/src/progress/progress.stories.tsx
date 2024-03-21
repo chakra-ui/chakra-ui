@@ -29,7 +29,7 @@ export const withColorScheme = () => (
 )
 
 export const indeterminate = () => (
-  <Progress.Root margin="20px" colorScheme="cyan" size="xs" isIndeterminate>
+  <Progress.Root margin="20px" colorScheme="cyan" size="xs" indeterminate>
     <Progress.Track>
       <Progress.FilledTrack />
     </Progress.Track>
