@@ -431,6 +431,28 @@ After:
 
 The `Radio` component and the `RadioGroup` component have been merged into one.
 
+**parts**
+
+- Rename `RadioGroup` to `RadioGroup.Root`
+- Rename `Radio` to `RadioGroup.Item`
+- Added `RadioGroup.ItemControl`
+- Added `RadioGroup.ItemText`
+
+**RadioGroup.Root**
+
+- Rename `isDisabled` to `disabled`
+- Rename `isFocusable` to `focusable`
+- Removed `isNative`
+
+**RadioGroup.Item**
+
+- Rename `isChecked` to `checked`
+- Rename `isDisabled` to `disabled`
+- Rename `isFocusable` to `focusable`
+- Rename `isInvalid` to `invalid`
+- Rename `isReadOnly` to `readOnly`
+- Rename `isRequired` to `required`
+
 Before:
 
 ```tsx
