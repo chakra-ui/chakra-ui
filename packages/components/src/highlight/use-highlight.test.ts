@@ -43,4 +43,31 @@ describe("useHighlight", () => {
   ]
   `)
   })
+
+  test("useHighlight matches case-sensitively correctly", () => {
+    const query = ["", "text"]
+    const { result } = hooks.render(() =>
+      useHighlight({
+        query: query,
+        text: "Text: this is an ordinary text which should have one match ",
+        caseSensitive: true,
+      }),
+    )
+    expect(result.current).toMatchInlineSnapshot(`
+  [
+    {
+      "match": false,
+      "text": "Text: this is an ordinary ",
+    },
+    {
+      "match": true,
+      "text": "text",
+    },
+    {
+      "match": false,
+      "text": " which should have one match ",
+    },
+  ]
+  `)
+  })
 })

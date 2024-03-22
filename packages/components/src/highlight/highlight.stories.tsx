@@ -84,3 +84,16 @@ export const MarketingExample = () => {
     </Heading>
   )
 }
+
+export const CaseSensitivity = () => (
+  <Text fontWeight="semibold">
+    <Highlight
+      query={["Human", "Dogs"]}
+      styles={{ px: "2", py: "1", rounded: "full", bg: "green.100" }}
+      caseSensitive
+    >
+      Human beings have many kinds of pets, of which dogs are one. Dogs are
+      often called human's best friends.
+    </Highlight>
+  </Text>
+)
