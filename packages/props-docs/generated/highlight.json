@@ -1,11 +1,13 @@
 {
   "Highlight": {
     "query": { "type": "string | string[]", "required": true },
+    "caseSensitive": { "type": "boolean", "required": false },
     "styles": { "type": "SystemStyleObject", "required": false }
   },
   "Mark": {},
   "UseHighlight": {
     "query": { "type": "string | string[]", "required": true },
-    "text": { "type": "string", "required": true }
+    "text": { "type": "string", "required": true },
+    "caseSensitive": { "type": "boolean", "required": false }
   }
 }

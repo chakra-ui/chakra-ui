@@ -5,12 +5,13 @@ export interface Chunk {
 export interface HighlightOptions {
   text: string
   query: string | string[]
+  caseSensitive?: boolean
 }
 
 const escapeRegexp = (term: string): string =>
   term.replace(/[|\\{}()[\]^$+*?.-]/g, (char: string) => `\\${char}`)
 
-function buildRegex(query: string[]) {
+function buildRegex(query: string[], caseSensitive: boolean) {
   const _query = query
     .filter((text) => text.length !== 0)
     .map((text) => escapeRegexp(text.trim()))
@@ -18,11 +19,18 @@ function buildRegex(query: string[]) {
     return null
   }
 
-  return new RegExp(`(${_query.join("|")})`, "ig")
+  return new RegExp(`(${_query.join("|")})`, `${caseSensitive ? "" : "i"}g`)
 }
 
-export function highlightWords({ text, query }: HighlightOptions): Chunk[] {
-  const regex = buildRegex(Array.isArray(query) ? query : [query])
+export function highlightWords({
+  text,
+  query,
+  caseSensitive = false,
+}: HighlightOptions): Chunk[] {
+  const regex = buildRegex(
+    Array.isArray(query) ? query : [query],
+    caseSensitive,
+  )
   if (!regex) {
     return [{ text, match: false }]
   }
