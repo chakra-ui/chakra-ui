@@ -3,8 +3,8 @@ id: native-select
 scope: theming
 ---
 
-The `Select` component is a multipart component. The styling needs to be applied
-to each part specifically.
+The `NativeSelect` component is a multipart component. The styling needs to be
+applied to each part specifically.
 
 > To learn more about styling multipart components, visit the
 > [Component Style](/docs/styled-system/component-style#styling-multipart-components)
@@ -100,7 +100,7 @@ to each part specifically.
 
 ## Theming properties
 
-The properties that affect the theming of the `Select` component are:
+The properties that affect the theming of the `NativeSelect` component are:
 
 - `variant`: The visual variant of the button. Defaults to `outline`.
 - `size`: The size of the button. Defaults to `md`.
@@ -184,7 +184,7 @@ const sizes = {
 export const selectTheme = defineMultiStyleConfig({ sizes })
 
 // Now we can use the new `xl` size
-<Select size="xl" ... />
+<NativeSelect.Root size="xl" ... />
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -220,7 +220,7 @@ export const selectTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `brandPrimary` variant
-<Select variant="brandPrimary" ... />
+<NativeSelect.Root variant="brandPrimary" ... />
 ```
 
 ## Changing the default properties
@@ -244,7 +244,7 @@ export const selectTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use a select:
-<Select size="xl" variant="pill" ... />
+<NativeSelect.Root size="xl" variant="pill" ... />
 ```
 
 ## Showcase

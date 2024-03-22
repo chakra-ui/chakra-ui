@@ -8,16 +8,16 @@ description:
   options.
 ---
 
-`Select` component is a component that allows users pick a value from predefined
-options. Ideally, it should be used when there are more than 5 options,
-otherwise you might consider using a radio group instead.
+`NativeSelect.Root` component is a component that allows users pick a value from
+predefined options. Ideally, it should be used when there are more than 5
+options, otherwise you might consider using a radio group instead.
 
 <carbon-ad></carbon-ad>
 
 ## Import
 
 ```js
-import { Select } from '@chakra-ui/react'
+import { NativeSelect } from '@chakra-ui/react'
 ```
 
 ## Usage
@@ -25,14 +25,17 @@ import { Select } from '@chakra-ui/react'
 The Select components is used when there are more than 5 options for users to
 pick from, otherwise consider using a radio group instead.
 
-Here is a basic usage of the `Select` component.
+Here is a basic usage of the `NativeSelect` component.
 
 ```jsx
-<Select placeholder='Select option'>
-  <option value='option1'>Option 1</option>
-  <option value='option2'>Option 2</option>
-  <option value='option3'>Option 3</option>
-</Select>
+<NativeSelect.Root>
+  <NativeSelect.Field placeholder='Select option'>
+    <option value='option1'>Option 1</option>
+    <option value='option2'>Option 2</option>
+    <option value='option3'>Option 3</option>
+  </NativeSelect.Field>
+  <NativeSelect.Icon />
+</NativeSelect.Root>
 ```
 
 ### Changing the size
@@ -46,10 +49,10 @@ The `Select` component comes in four sizes. The default is `md`.
 
 ```jsx
 <Stack spacing={3}>
-  <Select placeholder='extra small size' size='xs' />
-  <Select placeholder='small size' size='sm' />
-  <Select placeholder='medium size' size='md' />
-  <Select placeholder='large size' size='lg' />
+  <NativeSelect.Root placeholder='extra small size' size='xs' />
+  <NativeSelect.Root placeholder='small size' size='sm' />
+  <NativeSelect.Root placeholder='medium size' size='md' />
+  <NativeSelect.Root placeholder='large size' size='lg' />
 </Stack>
 ```
 
@@ -61,23 +64,22 @@ either of these values.
 
 ```jsx
 <Stack spacing={3}>
-  <Select variant='outline' placeholder='Outline' />
-  <Select variant='filled' placeholder='Filled' />
-  <Select variant='flushed' placeholder='Flushed' />
-  <Select variant='unstyled' placeholder='Unstyled' />
+  <NativeSelect.Root variant='outline' placeholder='Outline' />
+  <NativeSelect.Root variant='filled' placeholder='Filled' />
+  <NativeSelect.Root variant='flushed' placeholder='Flushed' />
+  <NativeSelect.Root variant='unstyled' placeholder='Unstyled' />
 </Stack>
 ```
 
 ### Changing the icon
 
 As with most Chakra components, you can change the arrow icon used in the
-select. Simply pass the `icon` prop.
-
-In case the custom icon size doesn't look right, you can pass the `iconSize`
-prop to change it.
+select. Simply render the icon of your choice.
 
 ```jsx
-<Select icon={<MdArrowDropDown />} placeholder='Woohoo! A new icon' />
+<NativeSelect.Root placeholder='Woohoo! A new icon'>
+  <CustomIcon />
+</NativeSelect.Root>
 ```
 
 ### Overriding the styles
@@ -86,7 +88,7 @@ Even though the select comes with predefined styles, you can override pretty
 much any property. Here we'll override the background color.
 
 ```jsx
-<Select
+<NativeSelect.Root
   bg='tomato'
   borderColor='tomato'
   color='white'
