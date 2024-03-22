@@ -12,18 +12,7 @@ description:
 Chakra UI exports the followings components:
 
 ```js
-import {
-  Step,
-  StepDescription,
-  StepIcon,
-  StepIndicator,
-  StepNumber,
-  StepSeparator,
-  StepStatus,
-  StepTitle,
-  Stepper,
-  useSteps,
-} from '@chakra-ui/react'
+import { Step, Stepper, useSteps } from '@chakra-ui/react'
 ```
 
 ## Usage
@@ -53,22 +42,22 @@ function Example() {
   return (
     <Stepper index={activeStep}>
       {steps.map((step, index) => (
-        <Step key={index}>
-          <StepIndicator>
-            <StepStatus
-              complete={<StepIcon />}
-              incomplete={<StepNumber />}
-              active={<StepNumber />}
+        <Step.Root key={index}>
+          <Step.Indicator>
+            <Step.Status
+              complete={<Step.Icon />}
+              incomplete={<Step.Number />}
+              active={<Step.Number />}
             />
-          </StepIndicator>
+          </Step.Indicator>
 
           <Box flexShrink='0'>
-            <StepTitle>{step.title}</StepTitle>
-            <StepDescription>{step.description}</StepDescription>
+            <Step.Title>{step.title}</Step.Title>
+            <Step.Description>{step.description}</Step.Description>
           </Box>
 
-          <StepSeparator />
-        </Step>
+          <Step.Separator />
+        </Step.Root>
       ))}
     </Stepper>
   )
@@ -95,22 +84,22 @@ function Example() {
   return (
     <Stepper index={activeStep} orientation='vertical' height='400px' gap='0'>
       {steps.map((step, index) => (
-        <Step key={index}>
-          <StepIndicator>
-            <StepStatus
-              complete={<StepIcon />}
-              incomplete={<StepNumber />}
-              active={<StepNumber />}
+        <Step.Root key={index}>
+          <Step.Indicator>
+            <Step.Status
+              complete={<Step.Icon />}
+              incomplete={<Step.Number />}
+              active={<Step.Number />}
             />
-          </StepIndicator>
+          </Step.Indicator>
 
           <Box flexShrink='0'>
-            <StepTitle>{step.title}</StepTitle>
-            <StepDescription>{step.description}</StepDescription>
+            <Step.Title>{step.title}</Step.Title>
+            <Step.Description>{step.description}</Step.Description>
           </Box>
 
-          <StepSeparator />
-        </Step>
+          <Step.Separator />
+        </Step.Root>
       ))}
     </Stepper>
   )
@@ -140,22 +129,22 @@ function Example() {
   return (
     <Stepper size='lg' index={activeStep}>
       {steps.map((step, index) => (
-        <Step key={index}>
-          <StepIndicator>
-            <StepStatus
-              complete={<StepIcon />}
-              incomplete={<StepNumber />}
-              active={<StepNumber />}
+        <Step.Root key={index}>
+          <Step.Indicator>
+            <Step.Status
+              complete={<Step.Icon />}
+              incomplete={<Step.Number />}
+              active={<Step.Number />}
             />
-          </StepIndicator>
+          </Step.Indicator>
 
           <Box flexShrink='0'>
-            <StepTitle>{step.title}</StepTitle>
-            <StepDescription>{step.description}</StepDescription>
+            <Step.Title>{step.title}</Step.Title>
+            <Step.Description>{step.description}</Step.Description>
           </Box>
 
-          <StepSeparator />
-        </Step>
+          <Step.Separator />
+        </Step.Root>
       ))}
     </Stepper>
   )
@@ -186,22 +175,22 @@ function Example() {
   return (
     <Stepper size='lg' colorScheme='red' index={activeStep}>
       {steps.map((step, index) => (
-        <Step key={index}>
-          <StepIndicator>
-            <StepStatus
-              complete={<StepIcon />}
-              incomplete={<StepNumber />}
-              active={<StepNumber />}
+        <Step.Root key={index}>
+          <Step.Indicator>
+            <Step.Status
+              complete={<Step.Icon />}
+              incomplete={<Step.Number />}
+              active={<Step.Number />}
             />
-          </StepIndicator>
+          </Step.Indicator>
 
           <Box flexShrink='0'>
-            <StepTitle>{step.title}</StepTitle>
-            <StepDescription>{step.description}</StepDescription>
+            <Step.Title>{step.title}</Step.Title>
+            <Step.Description>{step.description}</Step.Description>
           </Box>
 
-          <StepSeparator />
-        </Step>
+          <Step.Separator />
+        </Step.Root>
       ))}
     </Stepper>
   )
@@ -234,18 +223,18 @@ function Example() {
   return (
     <Stepper size='lg' colorScheme='yellow' index={activeStep}>
       {steps.map((step, index) => (
-        <Step key={index}>
-          <StepIndicator>
-            <StepStatus complete={`✅`} incomplete={`😅`} active={`📍`} />
-          </StepIndicator>
+        <Step.Root key={index}>
+          <Step.Indicator>
+            <Step.Status complete={`✅`} incomplete={`😅`} active={`📍`} />
+          </Step.Indicator>
 
           <Box flexShrink='0'>
-            <StepTitle>{step.title}</StepTitle>
-            <StepDescription>{step.description}</StepDescription>
+            <Step.Title>{step.title}</Step.Title>
+            <Step.Description>{step.description}</Step.Description>
           </Box>
 
-          <StepSeparator />
-        </Step>
+          <Step.Separator />
+        </Step.Root>
       ))}
     </Stepper>
   )
@@ -272,22 +261,22 @@ function Example() {
   return (
     <Stepper size='lg' index={activeStep}>
       {steps.map((step, index) => (
-        <Step key={index} onClick={() => setActiveStep(index)}>
-          <StepIndicator>
-            <StepStatus
-              complete={<StepIcon />}
-              incomplete={<StepNumber />}
-              active={<StepNumber />}
+        <Step.Root key={index} onClick={() => setActiveStep(index)}>
+          <Step.Indicator>
+            <Step.Status
+              complete={<Step.Icon />}
+              incomplete={<Step.Number />}
+              active={<Step.Number />}
             />
-          </StepIndicator>
+          </Step.Indicator>
 
           <Box flexShrink='0'>
-            <StepTitle>{step.title}</StepTitle>
-            <StepDescription>{step.description}</StepDescription>
+            <Step.Title>{step.title}</Step.Title>
+            <Step.Description>{step.description}</Step.Description>
           </Box>
 
-          <StepSeparator />
-        </Step>
+          <Step.Separator />
+        </Step.Root>
       ))}
     </Stepper>
   )
@@ -323,11 +312,11 @@ function Example() {
     <Box position='relative'>
       <Stepper size='sm' index={activeStep} gap='0'>
         {steps.map((step, index) => (
-          <Step key={index} gap='0'>
-            <StepIndicator bg='white'>
-              <StepStatus complete={<StepIcon />} />
-            </StepIndicator>
-          </Step>
+          <Step.Root key={index} gap='0'>
+            <Step.Indicator bg='white'>
+              <Step.Status complete={<Step.Icon />} />
+            </Step.Indicator>
+          </Step.Root>
         ))}
       </Stepper>
       <Progress.Root
@@ -375,12 +364,12 @@ function Example() {
     <Stack>
       <Stepper size='sm' index={activeStep} gap='0'>
         {steps.map((step, index) => (
-          <Step key={index} gap='0'>
-            <StepIndicator>
-              <StepStatus complete={<StepIcon />} />
-            </StepIndicator>
-            <StepSeparator _horizontal={{ ml: '0' }} />
-          </Step>
+          <Step.Root key={index} gap='0'>
+            <Step.Indicator>
+              <Step.Status complete={<Step.Icon />} />
+            </Step.Indicator>
+            <Step.Separator _horizontal={{ ml: '0' }} />
+          </Step.Root>
         ))}
       </Stepper>
       <Text>
