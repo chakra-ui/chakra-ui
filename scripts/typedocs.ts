@@ -205,7 +205,8 @@ function shouldIgnoreProperty(property: ts.Symbol) {
   const isExternal = /(node_modules|styled-system|system|@types\/react)/.test(
     sourceFileName ?? "",
   )
-  const isExcludedByName = ["children"].includes(property.getName())
+  const isExcludedByName = /(^_|^children$)/.test(property.getName())
+
   return isExternal || isExcludedByName
 }
 

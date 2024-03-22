@@ -11,11 +11,11 @@ description:
 ## Import
 
 ```js
-import { PinInput, PinInputField } from '@chakra-ui/react'
+import { PinInput } from '@chakra-ui/react'
 ```
 
-- **PinInput:** The component that provides context to all the pin-input fields.
-- **PinInputField:** The text field that user types in - must be a direct child
+- `PinInput`: The component that provides context to all the pin-input fields.
+- `PinInput.Field`: The text field that user types in - must be a direct child
   of `PinInput`.
 
 ## Usage
@@ -27,12 +27,12 @@ moved automatically to the next input, until all fields are filled.
 
 ```jsx
 <HStack>
-  <PinInput>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
@@ -44,28 +44,28 @@ alphanumeric values, pass the `type` prop and set its value to either
 
 ```jsx
 <HStack>
-  <PinInput type='alphanumeric'>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root type='alphanumeric'>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
 ### Using fields as a one time password (OTP)
 
 Use the `otp` prop on `PinInput` to set `autocomplete="one-time-code"` for all
-children `PinInputField` components.
+children `PinInput.Field` components.
 
 ```jsx
 <HStack>
-  <PinInput otp>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root otp>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
@@ -78,12 +78,12 @@ Pass the `mask` prop to `PinInput` to achieve this.
 
 ```jsx
 <HStack>
-  <PinInput type='alphanumeric' mask>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root type='alphanumeric' mask>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
@@ -99,35 +99,35 @@ The `PinInput` component comes in four sizes. The default is `md`.
 ```jsx
 <Stack>
   <HStack>
-    <PinInput size='xs'>
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
+    <PinInput.Root size='xs'>
+      <PinInput.Field />
+      <PinInput.Field />
+      <PinInput.Field />
+    </PinInput.Root>
   </HStack>
 
   <HStack>
-    <PinInput size='sm'>
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
+    <PinInput.Root size='sm'>
+      <PinInput.Field />
+      <PinInput.Field />
+      <PinInput.Field />
+    </PinInput.Root>
   </HStack>
 
   <HStack>
-    <PinInput size='md'>
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
+    <PinInput.Root size='md'>
+      <PinInput.Field />
+      <PinInput.Field />
+      <PinInput.Field />
+    </PinInput.Root>
   </HStack>
 
   <HStack>
-    <PinInput size='lg'>
-      <PinInputField />
-      <PinInputField />
-      <PinInputField />
-    </PinInput>
+    <PinInput.Root size='lg'>
+      <PinInput.Field />
+      <PinInput.Field />
+      <PinInput.Field />
+    </PinInput.Root>
   </HStack>
 </Stack>
 ```
@@ -138,11 +138,11 @@ You can set the `defaultValue` of the PinInput if you wish:
 
 ```jsx
 <HStack>
-  <PinInput defaultValue='234'>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root defaultValue='234'>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
@@ -150,11 +150,11 @@ Or even a partial defaultValue:
 
 ```jsx
 <HStack>
-  <PinInput defaultValue='23'>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root defaultValue='23'>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
@@ -165,11 +165,11 @@ and set it to your desired placeholder.
 
 ```jsx
 <HStack>
-  <PinInput placeholder='🥳'>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root placeholder='🥳'>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
@@ -183,11 +183,11 @@ To disable this behavior, set `manageFocus` to `false`
 
 ```jsx
 <HStack>
-  <PinInput manageFocus={false}>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root manageFocus={false}>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```
 
@@ -201,10 +201,10 @@ validate the string and fill the other inputs.
 
 ```jsx
 <HStack>
-  <PinInput>
-    <PinInputField />
-    <PinInputField />
-    <PinInputField />
-  </PinInput>
+  <PinInput.Root>
+    <PinInput.Field />
+    <PinInput.Field />
+    <PinInput.Field />
+  </PinInput.Root>
 </HStack>
 ```

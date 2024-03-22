@@ -18,7 +18,7 @@ applied to each part specifically.
 - D: `footer`
 - E: `popper`
 - F: `arrow`
-- G: `closeButton`
+- G: `closeTrigger`
 
 <AspectRatio ratio={16 / 9}>
   <svg
@@ -599,7 +599,7 @@ const sizes = {
 }
 export const popoverTheme = defineMultiStyleConfig({ sizes })
 // Now we can use the new `xl` size
-<Popover size="xl">...</Popover>
+<Popover.Root size="xl">...</Popover.Root>
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -628,7 +628,7 @@ export const popoverTheme = defineMultiStyleConfig({
   variants: { custom },
 })
 // Now we can use the new `custom` variant
-<Popover variant="custom">...</Popover>
+<Popover.Root variant="custom">...</Popover.Root>
 ```
 
 ## Creating the default properties

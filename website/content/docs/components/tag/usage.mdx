@@ -93,13 +93,16 @@ import {
 
 ```jsx
 <Tag size='lg' colorScheme='red' borderRadius='full'>
-  <Avatar
+  <Avatar.Root
     src='https://bit.ly/sage-adebayo'
     size='xs'
     name='Segun Adebayo'
     ml={-1}
     mr={2}
-  />
+  >
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
   <TagLabel>Segun</TagLabel>
 </Tag>
 ```

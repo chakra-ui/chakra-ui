@@ -1,5 +1,7 @@
 {
-  "Editable": {
+  "EditableInput": {},
+  "EditablePreview": {},
+  "EditableRoot": {
     "defaultValue": {
       "type": "string",
       "required": false,
@@ -74,8 +76,6 @@
       "description": "The value of the Editable in both edit & preview mode"
     }
   },
-  "EditableInput": {},
-  "EditablePreview": {},
   "EditableTextarea": {},
   "UseEditable": {
     "defaultValue": {

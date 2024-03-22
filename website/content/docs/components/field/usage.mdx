@@ -1,0 +1,207 @@
+---
+id: field
+category: form
+title: Field
+package: '@chakra-ui/field'
+description:
+  Field provides context such as `isInvalid`, `isDisabled`, and `isRequired` to
+  form elements
+---
+
+## Import
+
+Chakra UI exports 4 components for Field:
+
+- **`Field.Root`**: The wrapper that provides context and functionality for all
+  children.
+- **`Field.Label`**: The label of a form section. The usage is similar to
+  [html label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label).
+  `htmlFor` is set by default for children input.
+- **`Field.HelpText`**: The message that tells users more details about the form
+  section.
+- **`Field.ErrorMessage`**: The message that shows up when an error occurs.
+
+```js
+import { Field } from '@chakra-ui/react'
+```
+
+## Usage
+
+```jsx
+<Field.Root>
+  <Field.Label>Email address</Field.Label>
+  <Input type='email' />
+  <Field.HelpText>We'll never share your email.</Field.HelpText>
+</Field.Root>
+```
+
+### Sample usage for a radio or checkbox group
+
+```jsx
+<Field.Root as='fieldset'>
+  <Field.Label as='legend'>Favorite Naruto Character</Field.Label>
+  <RadioGroup.Root defaultValue='Itachi'>
+    <HStack spacing='24px'>
+      <RadioGroup.Item value='Sasuke'>Sasuke</RadioGroup.Item>
+      <RadioGroup.Item value='Nagato'>Nagato</RadioGroup.Item>
+      <RadioGroup.Item value='Itachi'>Itachi</RadioGroup.Item>
+      <RadioGroup.Item value='Sage of the six Paths'>Sage of the six Paths</RadioGroup.Item>
+    </HStack>
+  </RadioGroup>
+  <Field.HelpText>Select only if you're a fan.</Field.HelpText>
+</Field.Root>
+```
+
+### Error message
+
+`Field.ErrorMessage` will only show up when the property `isInvalid` in
+`Field.Root` is true.
+
+```jsx
+function errorMessageExample() {
+  const [input, setInput] = useState('')
+
+  const handleInputChange = (e) => setInput(e.target.value)
+
+  const isError = input === ''
+
+  return (
+    <Field.Root isInvalid={isError}>
+      <Field.Label>Email</Field.Label>
+      <Input type='email' value={input} onChange={handleInputChange} />
+      {!isError ? (
+        <Field.HelpText>
+          Enter the email you'd like to receive the newsletter on.
+        </Field.HelpText>
+      ) : (
+        <Field.ErrorMessage>Email is required.</Field.ErrorMessage>
+      )}
+    </Field.Root>
+  )
+}
+```
+
+### Making a field required
+
+By passing the `isRequired` props, the `Input` field has `aria-required` set to
+`true`, and the `Field.Label` will show a red asterisk. This red asterisk can be
+overwritten by passing `requiredIndicator` to the `Field.Label`. If you want to
+indicate that a field is optional you can add `optionalIndicator` to the
+`Field.Label`
+
+```jsx
+<Field.Root isRequired>
+  <Field.Label>First name</Field.Label>
+  <Input placeholder='First name' />
+</Field.Root>
+```
+
+### Select Example
+
+```jsx
+<Field.Root>
+  <Field.Label>Country</Field.Label>
+  <NativeSelect.Root placeholder='Select country'>
+    <option>United Arab Emirates</option>
+    <option>Nigeria</option>
+  </NativeSelect.Root>
+</Field.Root>
+```
+
+### Number Input Example
+
+```jsx
+<Field.Root>
+  <Field.Label>Amount</Field.Label>
+  <NumberInput.Root max={50} min={10}>
+    <NumberInput.Field />
+    <NumberInput.Stepper>
+      <NumberInput.IncrementStepper />
+      <NumberInput.DecrementStepper />
+    </NumberInput.Stepper>
+  </NumberInput.Root>
+</Field.Root>
+```
+
+### Usage with Form Libraries
+
+Form Libraries like [Formik](https://jaredpalmer.com/formik/) make it so easy to
+manage form state and validation.
+
+```jsx
+// The below import defines which components come from formik
+// import { Field, Form, Formik } from 'formik';
+
+function FormikExample() {
+  function validateName(value) {
+    let error
+    if (!value) {
+      error = 'Name is required'
+    } else if (value.toLowerCase() !== 'naruto') {
+      error = "Jeez! You're not a fan 😱"
+    }
+    return error
+  }
+
+  return (
+    <Formik
+      initialValues={{ name: 'Sasuke' }}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2))
+          actions.setSubmitting(false)
+        }, 1000)
+      }}
+    >
+      {(props) => (
+        <Form>
+          <Field.Root name='name' validate={validateName}>
+            {({ field, form }) => (
+              <Field.Root isInvalid={form.errors.name && form.touched.name}>
+                <Field.Label>First name</Field.Label>
+                <Input {...field} placeholder='name' />
+                <Field.ErrorMessage>{form.errors.name}</Field.ErrorMessage>
+              </Field.Root>
+            )}
+          </Field.Root>
+          <Button
+            mt={4}
+            colorScheme='teal'
+            isLoading={props.isSubmitting}
+            type='submit'
+          >
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
+  )
+}
+```
+
+## Improvements from v1
+
+- We've improved the accessibility of the `Field.Root` component. Here are the
+  changes:
+
+  - `id` passed to the field will be passed to the form input directly.
+  - `Field.Label` will have `htmlFor` that points to the `id` of the form input.
+  - `Field.ErrorMessage` adds `aria-describedby` and `aria-invalid` pointing to
+    the form input.
+  - `Field.HelpText` adds/extends `aria-describedby` pointing to the form input.
+  - `isDisabled`, `isRequired`, `isReadOnly` props passed to `Field.Root` will
+    cascade across all related components.
+
+- `Field.Label` is now aware of the `disabled`, `focused` and `error` state of
+  the form input. This helps you style the label accordingly using the
+  `_disabled`, `_focus`, and `_invalid` style props.
+
+- If you render `Field.ErrorMessage` and `isInvalid` is `false` or `undefined`,
+  `Field.ErrorMessage` won't be visible. The only way to make it visible is by
+  passing `isInvalid` and setting it to `true`.
+- You can still supply an `id` prop to `Field.Root` that will override the
+  randomly generated `id` and attach to the `for` attribute of the label and the
+  `id` of the form element. (It also affects the `id` attribute of the label)
+
+- The combination of `htmlFor` and `id` are optional in which adding both will
+  also override the generated `id` sent to the provider.

@@ -14,7 +14,7 @@ applied to each part specifically.
 
 - A: `control`
 - B: `icon`
-- C: `container`
+- C: `root`
 - D: `label`
 
 <AspectRatio ratio={16 / 9}>
@@ -252,7 +252,7 @@ const sizes = {
 export const checkboxTheme = defineMultiStyleConfig({ sizes })
 
 // Now we can use the new `xl` size
-<Checkbox size="xl">...</Checkbox>
+<Checkbox.Root size="xl">...</Checkbox.Root>
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -282,7 +282,7 @@ export const checkboxTheme = defineMultiStyleConfig({
 })
 
 // Now we can use the new `circular` variant
-<Checkbox variant="circular">...</Checkbox>
+<Checkbox.Root variant="circular">...</Checkbox.Root>
 ```
 
 ## Changing the default properties
@@ -306,7 +306,7 @@ export const checkboxTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use a checkbox:
-<Checkbox size="xl" variant="circular">...</Checkbox>
+<Checkbox.Root size="xl" variant="circular">...</Checkbox.Root>
 ```
 
 ## Showcase

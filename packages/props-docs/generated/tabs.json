@@ -1,5 +1,5 @@
 {
-  "Tab": {
+  "TabTrigger": {
     "isDisabled": {
       "type": "boolean",
       "defaultValue": false,
@@ -21,68 +21,14 @@
       "required": false
     }
   },
-  "TabPanel": {},
-  "TabPanels": {},
-  "Tabs": {
-    "colorScheme": {
-      "defaultValue": "blue",
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+  "TabContent": {},
+  "TabContentGroup": {},
+  "TabsRoot": {
+    "align": {
+      "type": "\"center\" | \"start\" | \"end\"",
       "required": false,
-      "description": "The visual color appearance of the component"
+      "description": "The alignment of the tabs"
     },
-    "size": {
-      "defaultValue": "md",
-      "type": "\"sm\" | \"md\" | \"lg\"",
-      "required": false,
-      "description": "The size of the Tabs"
-    },
-    "variant": {
-      "defaultValue": "line",
-      "type": "\"line\" | \"enclosed\" | \"enclosed-colored\" | \"soft-rounded\" | \"solid-rounded\" | \"unstyled\"",
-      "required": false,
-      "description": "The variant of the Tabs"
-    }
-  },
-  "UseTabList": {
-    "onKeyDown": { "type": "KeyboardEventHandler<Element>", "required": false },
-    "ref": {
-      "type": "((instance: any) => void) | RefObject<any>",
-      "required": false
-    }
-  },
-  "UseTabPanels": {},
-  "UseTab": {
-    "clickOnEnter": {
-      "type": "boolean",
-      "defaultValue": true,
-      "required": false,
-      "description": "Whether or not trigger click on pressing `Enter`."
-    },
-    "clickOnSpace": {
-      "type": "boolean",
-      "defaultValue": true,
-      "required": false,
-      "description": "Whether or not trigger click on pressing `Space`."
-    },
-    "isDisabled": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the element will be disabled.\nIt will set the `disabled` HTML attribute"
-    },
-    "isFocusable": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true` and isDisabled, the element will\nhave only `aria-disabled` set to `true`"
-    },
-    "ref": {
-      "type": "type ONLY_FOR_FORMAT =\n  | ((instance: HTMLElement | null) => void)\n  | RefObject<HTMLElement>",
-      "required": false,
-      "description": "The ref for the element"
-    }
-  },
-  "UseTabs": {
     "defaultIndex": {
       "type": "number",
       "required": false,
@@ -103,6 +49,12 @@
       "type": "number",
       "required": false,
       "description": "The index of the selected tab (in controlled mode)"
+    },
+    "isFitted": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, tabs will stretch to width of the tablist."
     },
     "isLazy": {
       "type": "boolean",
@@ -128,7 +80,7 @@
       "description": "Callback when the index (controlled or un-controlled) changes."
     },
     "orientation": {
-      "type": "\"horizontal\" | \"vertical\"",
+      "type": "\"vertical\" | \"horizontal\"",
       "defaultValue": "horizontal",
       "required": false,
       "description": "The orientation of the tab list."

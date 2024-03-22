@@ -12,13 +12,13 @@ description:
 
 Chakra UI exports 3 avatar-related components:
 
-- `Avatar`: The image that represents the user.
-- `AvatarBadge`: A wrapper that displays its content on the right corner of the
+- `Avatar.Root`: The image that represents the user.
+- `Avatar.Badge`: A wrapper that displays its content on the right corner of the
   avatar.
-- `AvatarGroup`: A wrapper to stack multiple Avatars together.
+- `Avatar.Group`: A wrapper to stack multiple Avatars together.
 
 ```js
-import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+import { Avatar } from '@chakra-ui/react'
 ```
 
 ## Usage
@@ -26,25 +26,46 @@ import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 ```jsx
 <Wrap>
   <WrapItem>
-    <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+    <Avatar.Root name='Dan Abrahmov' src='https://bit.ly/dan-abramov'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
   <WrapItem>
-    <Avatar name='Kola Tioluwani' src='https://bit.ly/tioluwani-kolawole' />
+    <Avatar.Root name='Kola Tioluwani' src='https://bit.ly/tioluwani-kolawole'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
   <WrapItem>
-    <Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />
+    <Avatar.Root name='Kent Dodds' src='https://bit.ly/kent-c-dodds'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
   <WrapItem>
-    <Avatar name='Ryan Florence' src='https://bit.ly/ryan-florence' />
+    <Avatar.Root name='Ryan Florence' src='https://bit.ly/ryan-florence'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
   <WrapItem>
-    <Avatar name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba' />
+    <Avatar.Root name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
   <WrapItem>
-    <Avatar name='Christian Nwamba' src='https://bit.ly/code-beast' />
+    <Avatar.Root name='Christian Nwamba' src='https://bit.ly/code-beast'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
   <WrapItem>
-    <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+    <Avatar.Root name='Segun Adebayo' src='https://bit.ly/sage-adebayo'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
 </Wrap>
 ```
@@ -56,33 +77,70 @@ The `Avatar` component comes in 7 sizes.
 ```jsx
 <Wrap>
   <WrapItem>
-    <Avatar size='2xs' name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+    <Avatar.Root
+      size='2xs'
+      name='Dan Abrahmov'
+      src='https://bit.ly/dan-abramov'
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>
   </WrapItem>
   <WrapItem>
-    <Avatar
+    <Avatar.Root
       size='xs'
       name='Kola Tioluwani'
       src='https://bit.ly/tioluwani-kolawole'
-    />{' '}
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>{' '}
   </WrapItem>
   <WrapItem>
-    <Avatar size='sm' name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />{' '}
+    <Avatar.Root size='sm' name='Kent Dodds' src='https://bit.ly/kent-c-dodds'>
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>{' '}
   </WrapItem>
   <WrapItem>
-    <Avatar size='md' name='Ryan Florence' src='https://bit.ly/ryan-florence' />{' '}
+    <Avatar.Root
+      size='md'
+      name='Ryan Florence'
+      src='https://bit.ly/ryan-florence'
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>{' '}
   </WrapItem>
   <WrapItem>
-    <Avatar
+    <Avatar.Root
       size='lg'
       name='Prosper Otemuyiwa'
       src='https://bit.ly/prosper-baba'
-    />{' '}
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>{' '}
   </WrapItem>
   <WrapItem>
-    <Avatar size='xl' name='Christian Nwamba' src='https://bit.ly/code-beast' />{' '}
+    <Avatar.Root
+      size='xl'
+      name='Christian Nwamba'
+      src='https://bit.ly/code-beast'
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>{' '}
   </WrapItem>
   <WrapItem>
-    <Avatar size='2xl' name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />{' '}
+    <Avatar.Root
+      size='2xl'
+      name='Segun Adebayo'
+      src='https://bit.ly/sage-adebayo'
+    >
+      <Avatar.Image />
+      <Avatar.Fallback />
+    </Avatar.Root>{' '}
   </WrapItem>
 </Wrap>
 ```
@@ -97,9 +155,18 @@ If there is an error loading the `src` of the avatar, there are 2 fallbacks:
 
 ```jsx
 <Stack direction='row'>
-  <Avatar name='Oshigaki Kisame' src='https://bit.ly/broken-link' />
-  <Avatar name='Sasuke Uchiha' src='https://bit.ly/broken-link' />
-  <Avatar src='https://bit.ly/broken-link' />
+  <Avatar.Root name='Oshigaki Kisame' src='https://bit.ly/broken-link'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+  <Avatar.Root name='Sasuke Uchiha' src='https://bit.ly/broken-link'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+  <Avatar.Root src='https://bit.ly/broken-link'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
 </Stack>
 ```
 
@@ -112,10 +179,16 @@ match your design requirements.
 - To update the icon svg, pass the `icon` prop.
 
 ```jsx
-<AvatarGroup spacing='1rem'>
-  <Avatar bg='red.500' icon={<AiOutlineUser fontSize='1.5rem' />} />
-  <Avatar bg='teal.500' />
-</AvatarGroup>
+<Avatar.Group spacing='1rem'>
+  <Avatar.Root bg='red.500' icon={<AiOutlineUser fontSize='1.5rem' />}>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+  <Avatar.Root bg='teal.500'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+</Avatar.Group>
 ```
 
 ### Avatar with badge
@@ -126,24 +199,28 @@ online:
 
 ```jsx
 <Stack direction='row' spacing={4}>
-  <Avatar>
-    <AvatarBadge boxSize='1.25em' bg='green.500' />
-  </Avatar>
+  <Avatar.Root>
+    <Avatar.Image />
+    <Avatar.Fallback />
+    <Avatar.Badge boxSize='1.25em' bg='green.500' />
+  </Avatar.Root>
 
   {/* You can also change the borderColor and bg of the badge */}
-  <Avatar>
-    <AvatarBadge borderColor='papayawhip' bg='tomato' boxSize='1.25em' />
-  </Avatar>
+  <Avatar.Root>
+    <Avatar.Image />
+    <Avatar.Fallback />
+    <Avatar.Badge borderColor='papayawhip' bg='tomato' boxSize='1.25em' />
+  </Avatar.Root>
 </Stack>
 ```
 
-> Note the use of `em` for the size of the `AvatarBadge`. This is useful to size
-> the badge relative to the avatar font size.
+> Note the use of `em` for the size of the `Avatar.Badge`. This is useful to
+> size the badge relative to the avatar font size.
 
-### AvatarGroup
+### Avatar.Group
 
-In some cases, you might need to stack avatars as a group. Use the `AvatarGroup`
-component.
+In some cases, you might need to stack avatars as a group. Use the
+`Avatar.Group` component.
 
 - To limit the amount of avatars to show, use the `max` prop. It'll truncate the
   avatars and show a "+X" label (where X is the remaining avatars).
@@ -151,13 +228,28 @@ component.
 - To adjust the spacing between the avatars, pass the `spacing` prop.
 
 ```jsx
-<AvatarGroup size='md' max={2}>
-  <Avatar name='Ryan Florence' src='https://bit.ly/ryan-florence' />
-  <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
-  <Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />
-  <Avatar name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba' />
-  <Avatar name='Christian Nwamba' src='https://bit.ly/code-beast' />
-</AvatarGroup>
+<Avatar.Group size='md' max={2}>
+  <Avatar.Root name='Ryan Florence' src='https://bit.ly/ryan-florence'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+  <Avatar.Root name='Segun Adebayo' src='https://bit.ly/sage-adebayo'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+  <Avatar.Root name='Kent Dodds' src='https://bit.ly/kent-c-dodds'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+  <Avatar.Root name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+  <Avatar.Root name='Christian Nwamba' src='https://bit.ly/code-beast'>
+    <Avatar.Image />
+    <Avatar.Fallback />
+  </Avatar.Root>
+</Avatar.Group>
 ```
 
 ### Changing the initials logic

@@ -1,1 +1,16 @@
-{ "ListItem": {}, "List": {} }
+{
+  "ListRoot": {
+    "stylePosition": {
+      "type": "ResponsiveValue<ListStylePosition>",
+      "required": false,
+      "description": "Shorthand prop for `listStylePosition`"
+    },
+    "styleType": {
+      "type": "ResponsiveValue<ListStyleType>",
+      "required": false,
+      "description": "Shorthand prop for `listStyleType`"
+    }
+  },
+  "ListItem": {},
+  "ListIcon": { "orientation": { "type": "Orientation", "required": false } }
+}

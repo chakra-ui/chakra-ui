@@ -80,7 +80,18 @@ export const menuAnatomy = anatomy("menu").parts(
   "divider",
 )
 
+// TODO: remove this in favor of dialogAnatomy
 export const modalAnatomy = anatomy("modal").parts(
+  "overlay",
+  "positioner",
+  "content",
+  "header",
+  "closeTrigger",
+  "body",
+  "footer",
+)
+
+export const dialogAnatomy = anatomy("dialog").parts(
   "overlay",
   "positioner",
   "content",

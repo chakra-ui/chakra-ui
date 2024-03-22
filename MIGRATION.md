@@ -8,8 +8,10 @@ Renamed all `container` parts to `root`. Kindly update your theme to reflect
 
 ### Removed Components and Packages
 
+- Removed `AlertDialog` component (see below)
 - Removed `ControlBox` component
-- Removed `@chakra-ui/icons` package. Prefer to use [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
+- Removed `@chakra-ui/icons` package. Prefer to use
+  [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
   `react-icons` instead.
 
 ### Root component and types
@@ -29,6 +31,11 @@ or `<X>Root`
 - Rename `allowToggle` to `collapsible`
 - Rename `AccordionButton` to `Accordion.Trigger`
 - Rename `AccordionPanel` to `Accordion.Content`
+
+### Alert Dialog
+
+We've removed the `AlertDialog` component in favor of passing the
+`role="alertdialog"` to the `Dialog` component.
 
 ### Avatar
 
@@ -79,278 +86,6 @@ After:
 
 - Move `spacing` and `separator` props to `Breadcrumb.List`
 - `listProps` has been removed. Pass props directly to `Breadcrumb.List`
-
-### Checkbox
-
-Before:
-
-```tsx
-<Checkbox defaultChecked>My Checkbox</Checkbox>
-```
-
-After:
-
-```tsx
-<Checkbox.Root defaultChecked>
-  <Checkbox.Control />
-  <Checkbox.Label>My Checkbox</Checkbox.Label>
-</Checkbox.Root>
-```
-
-### Progress
-
-Before:
-
-```tsx
-<Progress value={50} />
-```
-
-After:
-
-```tsx
-<Progress.Root value={50}>
-  <Progress.Track>
-    <Progress.FilledTrack />
-  </Progress.Track>
-  <Progress.ValueText />
-</Progress.Root>
-```
-
-- `ProgressLabel` is now assigned to `Progress.ValueText`. This means the theme
-  key for the label is now `valueText`
-
-- `ProgressLabel` should now be used to provide a label for the progress bar
-
-### Circular Progress
-
-Before:
-
-```tsx
-<CircularProgress value={50} />
-```
-
-After:
-
-```tsx
-<CircularProgress.Root value={50}>
-  <CircularProgress.Circle>
-    <CircularProgress.Track />
-    <CircularProgress.FilledTrack />
-  </CircularProgress.Circle>
-</CircularProgress.Root>
-```
-
-- `CircularProgressLabel` is now assigned to `CircularProgress.ValueText`
-
-- `CircularProgressLabel` should now be used to provide a label for the progress
-  bar
-
-### Tag
-
-- `TagLeftIcon` and `TagRightIcon` are removed in favor of rendering the icon
-  directly inside the `Tag` component.
-
-### Tooltip
-
-- Move `portalProps` to `Tooltip.Positioner`
-
-Before:
-
-```tsx
-<Tooltip label="Hey there" hasArrow>
-  <Button>Hover me</Button>
-</Tooltip>
-```
-
-After:
-
-```tsx
-<Tooltip.Root placement="bottom">
-  <Tooltip.Trigger asChild>
-    <Button>Hover me</Button>
-  </Tooltip.Trigger>
-  <Tooltip.Positioner>
-    <Tooltip.Content>
-      <Tooltip.Arrow />
-      Hey there
-    </Tooltip.Content>
-  </Tooltip.Positioner>
-</Tooltip.Root>
-```
-
-However, you can still get back to the legacy API by creating a custom
-component.
-
-```tsx
-import { Tooltip } from "@chakra-ui/react"
-
-export type CustomTooltipProps = Tooltip.RootProps & {
-  label?: string
-  hasArrow?: boolean
-}
-
-const CustomTooltip = (props: Props) => {
-  const { label, children, hasArrow, ...localProps } = props
-  const [rootProps, contentProps] = Tooltip.splitProps(localProps)
-
-  return (
-    <Tooltip.Root placement="bottom" {...rootProps}>
-      <Tooltip.Trigger asChild>
-        {isValidElement(children) ? children : <span>{children}</span>}
-      </Tooltip.Trigger>
-      <Tooltip.Content {...contentProps}>
-        {hasArrow && <Tooltip.Arrow />}
-        {label}
-      </Tooltip.Content>
-    </Tooltip.Root>
-  )
-}
-```
-
-- Remove `closeOnMouseDown`, use `closeOnPointerDown` instead
-- Remove all `arrow*` props in favor of rendering the `Tooltip.Arrow` component
-
-### FormControl -> Field
-
-Form control has now been renamed to `Field` to better reflect its purpose as an
-element that represents a form field.
-
-```tsx
-<Field.Root id="first-name" isRequired isInvalid>
-  <Field.Label>First name</Field.Label>
-  <Input placeholder="First Name" />
-  <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
-  <Field.ErrorMessage>Your First name is invalid</Field.ErrorMessage>
-</Field.Root>
-```
-
-HelperText has been renamed to `Field.HelpText` for brevity.
-
-### Select -> NativeSelect
-
-The `Select` component has been renamed to `NativeSelect` to better reflect its
-purpose as a native select element, and give room for a custom select component.
-
-The API has also changed significantly to make it more modular.
-
-Before:
-
-```tsx
-<Select color="red.400">
-  <option value="option1">Option 1</option>
-  <option value="option2">Option 2</option>
-  <option value="option3">Option 3</option>
-</Select>
-```
-
-After:
-
-```tsx
-<NativeSelect.Root>
-  <NativeSelect.Field color="pink.500" placeholder="Select option">
-    <option value="Option 1">Option 1</option>
-    <option value="Option 2">Option 2</option>
-    <option value="Option 3">Option 3</option>
-  </NativeSelect.Field>
-  <NativeSelect.Icon />
-</NativeSelect.Root>
-```
-
-### Modal -> Dialog
-
-The `Modal` component has been renamed to `Dialog` to better reflect its purpose
-as a dialog element.
-
-Removed `containerProps` in favor of rendering the `Dialog.Positioner` component
-to better control this element.
-
-Before:
-
-```tsx
-<Modal>
-  <ModalOverlay />
-  <ModalContent>
-    <ModalHeader>Modal Title</ModalHeader>
-    <ModalCloseButton />
-    <ModalBody />
-    <ModalFooter />
-  </ModalContent>
-</Modal>
-```
-
-After:
-
-```tsx
-<Dialog.Root>
-  <Dialog.Overlay />
-  <Dialog.Positioner>
-    <Dialog.Content>
-      <Dialog.Header>Dialog Title</Dialog.Header>
-      <Dialog.CloseTrigger />
-      <Dialog.Body />
-      <Dialog.Footer />
-    </Dialog.Content>
-  </Dialog.Positioner>
-</Dialog.Root>
-```
-
-### Alert Dialog
-
-We've removed the `AlertDialog` component in favor of passing the
-`role="alertdialog"` to the `Dialog` component.
-
-### Popover
-
-- `PopoverTrigger` now renders a `button` by default. Use the `asChild` to
-  switch the trigger to a different element.
-
-- `PopoverAnchor` now renders a `span` by default. Use the `asChild` to switch
-  the anchor to a different element.
-
-- Popover now requires the `Popover.Positioner` component to control the
-  position of the popover.
-
-- Removed `containerProps` in favor of rendering the `Popover.Positioner`
-  component
-
-Before:
-
-```tsx
-<Popover>
-  <PopoverTrigger>
-    <Button>Trigger</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverHeader>Confirmation!</PopoverHeader>
-    <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
-  </PopoverContent>
-</Popover>
-```
-
-After:
-
-```tsx
-<Popover.Root>
-  <Popover.Trigger asChild>
-    <Button>Trigger</Button>
-  </Popover.Trigger>
-  <Popover.Positioner>
-    <Popover.Content>
-      <Popover.Arrow />
-      <Popover.CloseTrigger />
-      <Popover.Header>Confirmation!</Popover.Header>
-      <Popover.Body>
-        <p>Are you sure you want to have that milkshake?</p>
-        <br />
-        <button>Yes</button>
-        <button>No</button>
-      </Popover.Body>
-    </Popover.Content>
-  </Popover.Positioner>
-</Popover.Root>
-```
 
 ### Button
 
@@ -419,6 +154,368 @@ After:
 </Button>
 ```
 
+**spinner**
+
+Removed `spinner` prop in favor of rendering custom component
+
+Before:
+
+```tsx
+<Button
+  isLoading
+  colorScheme="blue"
+  spinner={<BeatLoader size={8} color="white" />}
+>
+  Click me
+</Button>
+```
+
+After:
+
+```tsx
+<Button isDisabled colorScheme="blue">
+  <BeatLoader size={8} color="white" />
+  Click me
+</Button>
+```
+
+**spinnerPlacement**
+
+Removed `spinnerPlacement` prop in favor of user decision
+
+### Checkbox
+
+Before:
+
+```tsx
+<Checkbox defaultChecked>My Checkbox</Checkbox>
+```
+
+After:
+
+```tsx
+<Checkbox.Root defaultChecked>
+  <Checkbox.Control />
+  <Checkbox.Label>My Checkbox</Checkbox.Label>
+</Checkbox.Root>
+```
+
+**icon, iconColor and iconSize**
+
+Moved `icon`, `iconColor`, and `iconSize` from the `Checkbox.Root` component to
+the `Checkbox.Control` component.
+
+Before:
+
+```tsx
+<Checkbox icon={<CustomIcon />} iconColor="blue.400" iconSize="1rem">
+  Option
+</Checkbox>
+```
+
+After:
+
+```tsx
+<Checkbox.Root>
+  <Checkbox.Control
+    icon={<CustomIcon />}
+    iconColor="blue.400"
+    iconSize="1rem"
+  />
+  <Checkbox.Label>Option</Checkbox.Label>
+</Checkbox.Root>
+```
+
+### Circular Progress
+
+Before:
+
+```tsx
+<CircularProgress value={50} />
+```
+
+After:
+
+```tsx
+<CircularProgress.Root value={50}>
+  <CircularProgress.Circle>
+    <CircularProgress.Track />
+    <CircularProgress.FilledTrack />
+  </CircularProgress.Circle>
+</CircularProgress.Root>
+```
+
+- `CircularProgressLabel` is now assigned to `CircularProgress.ValueText`
+
+- `CircularProgressLabel` should now be used to provide a label for the progress
+  bar
+
+### FormControl -> Field
+
+Form control has now been renamed to `Field` to better reflect its purpose as an
+element that represents a form field.
+
+```tsx
+<Field.Root id="first-name" isRequired isInvalid>
+  <Field.Label>First name</Field.Label>
+  <Input placeholder="First Name" />
+  <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
+  <Field.ErrorMessage>Your First name is invalid</Field.ErrorMessage>
+</Field.Root>
+```
+
+`HelperText` has been renamed to `Field.HelpText` for brevity.
+
+### List
+
+- Removed `OrderedList` and `UnorderedList` in favor of using the `List`
+  component with the `as` prop.
+
+- To change the list style type, you can use the `styleType` prop on the `List`
+  component.
+
+### Menu
+
+- Removed `rootProps` in favor of rendering the `Menu.Positioner` component
+- Renamed `MenuButton` to `Menu.Trigger`
+- Renamed `MenuList` to `Menu.Content`
+
+Before:
+
+```tsx
+<Menu>
+  <MenuButton as={Button}>
+    Actions
+    <ChevronDownIcon />
+  </MenuButton>
+  <MenuList>
+    <MenuItem>Download</MenuItem>
+  </MenuList>
+</Menu>
+```
+
+After:
+
+```tsx
+<Menu.Root>
+  <Menu.Trigger asChild>
+    <Button>
+      Actions
+      <ChevronDownIcon />
+    </Button>
+  </Menu.Trigger>
+  <Menu.Positioner>
+    <Menu.Content>
+      <Menu.Item>Download</Menu.Item>
+    </Menu.Content>
+  </Menu.Positioner>
+</Menu.Root>
+```
+
+### Modal -> Dialog
+
+The `Modal` component has been renamed to `Dialog` to better reflect its purpose
+as a dialog element.
+
+Removed `containerProps` in favor of rendering the `Dialog.Positioner` component
+to better control this element.
+
+Before:
+
+```tsx
+<Modal>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader>Modal Title</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody />
+    <ModalFooter />
+  </ModalContent>
+</Modal>
+```
+
+After:
+
+```tsx
+<Dialog.Root>
+  <Dialog.Overlay />
+  <Dialog.Positioner>
+    <Dialog.Content>
+      <Dialog.Header>Dialog Title</Dialog.Header>
+      <Dialog.CloseTrigger />
+      <Dialog.Body />
+      <Dialog.Footer />
+    </Dialog.Content>
+  </Dialog.Positioner>
+</Dialog.Root>
+```
+
+### Popover
+
+- `PopoverTrigger` now renders a `button` by default. Use the `asChild` to
+  switch the trigger to a different element.
+
+- `PopoverAnchor` now renders a `span` by default. Use the `asChild` to switch
+  the anchor to a different element.
+
+- Popover now requires the `Popover.Positioner` component to control the
+  position of the popover.
+
+- Removed `containerProps` in favor of rendering the `Popover.Positioner`
+  component
+
+Before:
+
+```tsx
+<Popover>
+  <PopoverTrigger>
+    <Button>Trigger</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <PopoverArrow />
+    <PopoverCloseButton />
+    <PopoverHeader>Confirmation!</PopoverHeader>
+    <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
+  </PopoverContent>
+</Popover>
+```
+
+After:
+
+```tsx
+<Popover.Root>
+  <Popover.Trigger asChild>
+    <Button>Trigger</Button>
+  </Popover.Trigger>
+  <Popover.Positioner>
+    <Popover.Content>
+      <Popover.Arrow />
+      <Popover.CloseTrigger />
+      <Popover.Header>Confirmation!</Popover.Header>
+      <Popover.Body>
+        <p>Are you sure you want to have that milkshake?</p>
+        <br />
+        <button>Yes</button>
+        <button>No</button>
+      </Popover.Body>
+    </Popover.Content>
+  </Popover.Positioner>
+</Popover.Root>
+```
+
+### Progress
+
+Before:
+
+```tsx
+<Progress value={50} />
+```
+
+After:
+
+```tsx
+<Progress.Root value={50}>
+  <Progress.Track>
+    <Progress.FilledTrack />
+  </Progress.Track>
+  <Progress.ValueText />
+</Progress.Root>
+```
+
+- `ProgressLabel` is now assigned to `Progress.ValueText`. This means the theme
+  key for the label is now `valueText`
+
+- `ProgressLabel` should now be used to provide a label for the progress bar
+
+### Radio -> RadioGroup
+
+The `Radio` component and the `RadioGroup` component have been merged into one.
+
+**parts**
+
+- Rename `RadioGroup` to `RadioGroup.Root`
+- Rename `Radio` to `RadioGroup.Item`
+- Added `RadioGroup.ItemControl`
+- Added `RadioGroup.ItemText`
+
+**RadioGroup.Root**
+
+- Rename `isDisabled` to `disabled`
+- Rename `isFocusable` to `focusable`
+- Removed `isNative`
+
+**RadioGroup.Item**
+
+- Rename `isChecked` to `checked`
+- Rename `isDisabled` to `disabled`
+- Rename `isFocusable` to `focusable`
+- Rename `isInvalid` to `invalid`
+- Rename `isReadOnly` to `readOnly`
+- Rename `isRequired` to `required`
+
+Before:
+
+```tsx
+<RadioGroup onChange={setValue} value={value}>
+  <Stack direction="row">
+    <Radio value="1">First</Radio>
+    <Radio value="2">Second</Radio>
+    <Radio value="3">Third</Radio>
+  </Stack>
+</RadioGroup>
+```
+
+After:
+
+```tsx
+<RadioGroup.Root onChange={setValue} value={value}>
+  <Stack direction="row">
+    <RadioGroup.Item value="1">
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>First</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value="2">
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Second</RadioGroup.ItemText>
+    </RadioGroup.Item>
+    <RadioGroup.Item value="3">
+      <RadioGroup.ItemControl />
+      <RadioGroup.ItemText>Third</RadioGroup.ItemText>
+    </RadioGroup.Item>
+  </Stack>
+</RadioGroup.Root>
+```
+
+### Select -> NativeSelect
+
+The `Select` component has been renamed to `NativeSelect` to better reflect its
+purpose as a native select element, and give room for a custom select component.
+
+The API has also changed significantly to make it more modular.
+
+Before:
+
+```tsx
+<Select color="red.400">
+  <option value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+</Select>
+```
+
+After:
+
+```tsx
+<NativeSelect.Root>
+  <NativeSelect.Field color="pink.500" placeholder="Select option">
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+  </NativeSelect.Field>
+  <NativeSelect.Icon />
+</NativeSelect.Root>
+```
+
 ### Table
 
 Renamed all table components to better reflect their purpose. This also affects
@@ -433,18 +530,70 @@ the theme keys.
 - Renamed `Tfoot` to `Table.Footer`
 - Renamed `isNumeric` to `numeric`
 
-### Menu
+### Tag
 
-- Removed `rootProps` in favor of rendering the `Menu.Positioner` component
-- Renamed `MenuButton` to `Menu.Trigger`
+- `TagLeftIcon` and `TagRightIcon` are removed in favor of rendering the icon
+  directly inside the `Tag` component.
 
-### List
+### Tooltip
 
-- Removed `OrderedList` and `UnorderedList` in favor of using the `List`
-  component with the `as` prop.
+- Move `portalProps` to `Tooltip.Positioner`
 
-- To change the list style type, you can use the `styleType` prop on the `List`
-  component.
+Before:
+
+```tsx
+<Tooltip label="Hey there" hasArrow>
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
+After:
+
+```tsx
+<Tooltip.Root placement="bottom">
+  <Tooltip.Trigger asChild>
+    <Button>Hover me</Button>
+  </Tooltip.Trigger>
+  <Tooltip.Positioner>
+    <Tooltip.Content>
+      <Tooltip.Arrow />
+      Hey there
+    </Tooltip.Content>
+  </Tooltip.Positioner>
+</Tooltip.Root>
+```
+
+However, you can still get back to the legacy API by creating a custom
+component.
+
+```tsx
+import { Tooltip } from "@chakra-ui/react"
+
+export type CustomTooltipProps = Tooltip.RootProps & {
+  label?: string
+  hasArrow?: boolean
+}
+
+const CustomTooltip = (props: Props) => {
+  const { label, children, hasArrow, ...localProps } = props
+  const [rootProps, contentProps] = Tooltip.splitProps(localProps)
+
+  return (
+    <Tooltip.Root placement="bottom" {...rootProps}>
+      <Tooltip.Trigger asChild>
+        {isValidElement(children) ? children : <span>{children}</span>}
+      </Tooltip.Trigger>
+      <Tooltip.Content {...contentProps}>
+        {hasArrow && <Tooltip.Arrow />}
+        {label}
+      </Tooltip.Content>
+    </Tooltip.Root>
+  )
+}
+```
+
+- Remove `closeOnMouseDown`, use `closeOnPointerDown` instead
+- Remove all `arrow*` props in favor of rendering the `Tooltip.Arrow` component
 
 ## Added
 

@@ -1,5 +1,5 @@
 {
-  "Switch": {
+  "SwitchRoot": {
     "aria-describedby": { "type": "string", "required": false },
     "aria-invalid": { "type": "true", "required": false },
     "aria-label": {
@@ -11,12 +11,6 @@
       "type": "string",
       "required": false,
       "description": "Refers to the `id` of the element that labels the checkbox element."
-    },
-    "colorScheme": {
-      "defaultValue": "blue",
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-      "required": false,
-      "description": "The visual color appearance of the component"
     },
     "defaultChecked": {
       "type": "boolean",
@@ -85,18 +79,6 @@
       "required": false,
       "description": "The callback invoked when the checkbox is focused"
     },
-    "size": {
-      "defaultValue": "md",
-      "type": "\"sm\" | \"md\" | \"lg\"",
-      "required": false,
-      "description": "The size of the Switch"
-    },
-    "spacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "defaultValue": "0.5rem",
-      "required": false,
-      "description": "The spacing between the switch and its label text"
-    },
     "tabIndex": {
       "type": "number",
       "required": false,
@@ -106,11 +88,9 @@
       "type": "string | number",
       "required": false,
       "description": "The value to be used in the checkbox input.\nThis is the value that will be returned on form submission."
-    },
-    "variant": {
-      "type": "string",
-      "required": false,
-      "description": "The variant of the Switch"
     }
-  }
+  },
+  "SwitchTrack": {},
+  "SwitchLabel": {},
+  "SwitchThumb": {}
 }

@@ -25,12 +25,16 @@ import { Switch } from '@chakra-ui/react'
 ## Usage
 
 ```jsx
-<FormControl display='flex' alignItems='center'>
-  <FormLabel htmlFor='email-alerts' mb='0'>
+<Field.Root display='flex' alignItems='center'>
+  <Field.Label htmlFor='email-alerts' mb='0'>
     Enable email alerts?
-  </FormLabel>
-  <Switch id='email-alerts' />
-</FormControl>
+  </Field.Label>
+  <Switch.Root id='email-alerts'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+</Field.Root>
 ```
 
 ## Sizes
@@ -39,9 +43,21 @@ Pass the `size` prop to change the size of the `Switch`.
 
 ```jsx
 <Stack align='center' direction='row'>
-  <Switch size='sm' />
-  <Switch size='md' />
-  <Switch size='lg' />
+  <Switch.Root size='sm'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+  <Switch.Root size='md'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+  <Switch.Root size='lg'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 </Stack>
 ```
 
@@ -52,34 +68,66 @@ You can change the checked background color of the `Switch` by passing the
 
 ```jsx
 <Stack direction='row'>
-  <Switch colorScheme='red' />
-  <Switch colorScheme='teal' size='lg' />
+  <Switch.Root colorScheme='red'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+  <Switch.Root colorScheme='teal' size='lg'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 </Stack>
 ```
 
 ## State depending behavior
 
-States like `isDisabled` have an impact on the usability of a `Switch` and on
-the styles, except for the `isInvalid` and the `isRequired` prop.
+States like `disabled` have an impact on the usability of a `Switch` and on the
+styles, except for the `invalid` and the `required` prop.
 
 ```jsx
-<FormControl as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
-  <FormLabel htmlFor='isChecked'>isChecked:</FormLabel>
-  <Switch id='isChecked' isChecked />
+<Field.Root as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
+  <Field.Label htmlFor='checked'>checked:</Field.Label>
+  <Switch.Root id='checked' checked>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <FormLabel htmlFor='isDisabled'>isDisabled:</FormLabel>
-  <Switch id='isDisabled' isDisabled defaultChecked />
+  <Field.Label htmlFor='disabled'>disabled:</Field.Label>
+  <Switch.Root id='disabled' disabled defaultChecked>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <FormLabel htmlFor='isFocusable'>isFocusable:</FormLabel>
-  <Switch id='isFocusable' isFocusable isDisabled />
+  <Field.Label htmlFor='focusable'>focusable:</Field.Label>
+  <Switch.Root id='focusable' focusable disabled>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <FormLabel htmlFor='isInvalid'>isInvalid:</FormLabel>
-  <Switch id='isInvalid' isInvalid />
+  <Field.Label htmlFor='invalid'>invalid:</Field.Label>
+  <Switch.Root id='invalid' invalid>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <FormLabel htmlFor='isReadOnly'>isReadOnly:</FormLabel>
-  <Switch id='isReadOnly' isReadOnly />
+  <Field.Label htmlFor='readOnly'>readOnly:</Field.Label>
+  <Switch.Root id='readOnly' readOnly>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <FormLabel htmlFor='isRequired'>isRequired:</FormLabel>
-  <Switch id='isRequired' isRequired />
-</FormControl>
+  <Field.Label htmlFor='required'>required:</Field.Label>
+  <Switch.Root id='required' required>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+</Field.Root>
 ```
