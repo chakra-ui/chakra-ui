@@ -195,7 +195,7 @@ export const theme = extendTheme({
 Then, we can use the custom color scale as the color scheme for the button:
 
 ```jsx live=false
-<Switch colorScheme='brand' />
+<Switch.Root colorScheme='brand' />
 ```
 
 Every time you're adding anything new to the theme, you'd need to run the CLI
@@ -224,7 +224,7 @@ const boxy = definePartsStyle({
 export const switchTheme = defineMultiStyleConfig({ variants: { boxy }})
 
 // Now we can use the new `boxy` variant
-<Switch variant="boxy"/>
+<Switch.Root variant="boxy"/>
 ```
 
 ## Changing the default properties
@@ -248,7 +248,7 @@ export const switchTheme = defineMultiStyleConfig({
 })
 
 // This saves you time, instead of manually setting the size and variant every time you use an input:
-<Switch size="xl" colorScheme="brand" ... />
+<Switch.Root size="xl" colorScheme="brand" ... />
 ```
 
 ## Showcase

@@ -29,7 +29,11 @@ import { Switch } from '@chakra-ui/react'
   <Field.Label htmlFor='email-alerts' mb='0'>
     Enable email alerts?
   </Field.Label>
-  <Switch id='email-alerts' />
+  <Switch.Root id='email-alerts'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 </Field.Root>
 ```
 
@@ -39,9 +43,21 @@ Pass the `size` prop to change the size of the `Switch`.
 
 ```jsx
 <Stack align='center' direction='row'>
-  <Switch size='sm' />
-  <Switch size='md' />
-  <Switch size='lg' />
+  <Switch.Root size='sm'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+  <Switch.Root size='md'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+  <Switch.Root size='lg'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 </Stack>
 ```
 
@@ -52,34 +68,66 @@ You can change the checked background color of the `Switch` by passing the
 
 ```jsx
 <Stack direction='row'>
-  <Switch colorScheme='red' />
-  <Switch colorScheme='teal' size='lg' />
+  <Switch.Root colorScheme='red'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
+  <Switch.Root colorScheme='teal' size='lg'>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 </Stack>
 ```
 
 ## State depending behavior
 
-States like `isDisabled` have an impact on the usability of a `Switch` and on
-the styles, except for the `isInvalid` and the `isRequired` prop.
+States like `disabled` have an impact on the usability of a `Switch` and on the
+styles, except for the `invalid` and the `required` prop.
 
 ```jsx
 <Field.Root as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
-  <Field.Label htmlFor='isChecked'>isChecked:</Field.Label>
-  <Switch id='isChecked' isChecked />
+  <Field.Label htmlFor='checked'>checked:</Field.Label>
+  <Switch.Root id='checked' checked>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <Field.Label htmlFor='isDisabled'>isDisabled:</Field.Label>
-  <Switch id='isDisabled' isDisabled defaultChecked />
+  <Field.Label htmlFor='disabled'>disabled:</Field.Label>
+  <Switch.Root id='disabled' disabled defaultChecked>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <Field.Label htmlFor='isFocusable'>isFocusable:</Field.Label>
-  <Switch id='isFocusable' isFocusable isDisabled />
+  <Field.Label htmlFor='focusable'>focusable:</Field.Label>
+  <Switch.Root id='focusable' focusable disabled>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <Field.Label htmlFor='isInvalid'>isInvalid:</Field.Label>
-  <Switch id='isInvalid' isInvalid />
+  <Field.Label htmlFor='invalid'>invalid:</Field.Label>
+  <Switch.Root id='invalid' invalid>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <Field.Label htmlFor='isReadOnly'>isReadOnly:</Field.Label>
-  <Switch id='isReadOnly' isReadOnly />
+  <Field.Label htmlFor='readOnly'>readOnly:</Field.Label>
+  <Switch.Root id='readOnly' readOnly>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 
-  <Field.Label htmlFor='isRequired'>isRequired:</Field.Label>
-  <Switch id='isRequired' isRequired />
+  <Field.Label htmlFor='required'>required:</Field.Label>
+  <Switch.Root id='required' required>
+    <Switch.Track>
+      <Switch.Thumb />
+    </Switch.Track>
+  </Switch.Root>
 </Field.Root>
 ```
