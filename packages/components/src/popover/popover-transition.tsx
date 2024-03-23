@@ -68,13 +68,13 @@ export const PopoverTransition = forwardRef(function PopoverTransition(
   ref: React.Ref<any>,
 ) {
   const { variants = scaleFade, ...rest } = props
-  const { open } = usePopoverContext()
+  const { opened } = usePopoverContext()
   return (
     <MotionSection
       ref={ref}
       variants={mergeVariants(variants)}
       initial={false}
-      animate={open ? "enter" : "exit"}
+      animate={opened ? "enter" : "exit"}
       {...rest}
     />
   )

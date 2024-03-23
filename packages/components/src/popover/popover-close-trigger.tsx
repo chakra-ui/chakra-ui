@@ -14,7 +14,7 @@ export const PopoverCloseTrigger = forwardRef<
   return (
     <CloseButton
       size="sm"
-      onClick={api.onClose}
+      onClick={api.close}
       ref={ref}
       {...props}
       className={cx("chakra-popover__close-trigger", props.className)}

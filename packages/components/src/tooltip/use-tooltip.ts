@@ -118,7 +118,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     direction = theme.direction,
   } = props
 
-  const { open, onOpen, onClose } = useDisclosure({
+  const [opened, { open, close }] = useDisclosure({
     open: openProp,
     defaultOpen,
     onOpen: onOpenProp,
@@ -127,7 +127,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
 
   const { referenceRef, getPopperProps, getArrowInnerProps, getArrowProps } =
     usePopper({
-      enabled: open,
+      enabled: opened,
       placement,
       arrowPadding,
       modifiers,
@@ -160,18 +160,18 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
 
   const closeNow = useCallback(() => {
     clearExitTimeout()
-    onClose()
-  }, [onClose, clearExitTimeout])
+    close()
+  }, [close, clearExitTimeout])
 
   const dispatchCloseEvent = useCloseEvent(ref, closeNow)
 
   const openWithDelay = useCallback(() => {
     if (!disabled && !enterTimeout.current) {
-      if (open) dispatchCloseEvent()
+      if (opened) dispatchCloseEvent()
       const win = getWin(ref)
-      enterTimeout.current = win.setTimeout(onOpen, openDelay)
+      enterTimeout.current = win.setTimeout(open, openDelay)
     }
-  }, [dispatchCloseEvent, disabled, open, onOpen, openDelay])
+  }, [dispatchCloseEvent, disabled, opened, open, openDelay])
 
   const closeWithDelay = useCallback(() => {
     clearEnterTimeout()
@@ -180,24 +180,24 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   }, [closeDelay, closeNow, clearEnterTimeout])
 
   const onClick = useCallback(() => {
-    if (open && closeOnClick) {
+    if (opened && closeOnClick) {
       closeWithDelay()
     }
-  }, [closeOnClick, closeWithDelay, open])
+  }, [closeOnClick, closeWithDelay, opened])
 
   const onPointerDown = useCallback(() => {
-    if (open && closeOnPointerDown) {
+    if (opened && closeOnPointerDown) {
       closeWithDelay()
     }
-  }, [closeOnPointerDown, closeWithDelay, open])
+  }, [closeOnPointerDown, closeWithDelay, opened])
 
   const onKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (open && event.key === "Escape") {
+      if (opened && event.key === "Escape") {
         closeWithDelay()
       }
     },
-    [open, closeWithDelay],
+    [opened, closeWithDelay],
   )
 
   useEventListener(
@@ -216,7 +216,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     },
     "scroll",
     () => {
-      if (open && closeOnScroll) {
+      if (opened && closeOnScroll) {
         closeNow()
       }
     },
@@ -226,8 +226,8 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   useEffect(() => {
     if (!disabled) return
     clearEnterTimeout()
-    if (open) onClose()
-  }, [disabled, open, onClose, clearEnterTimeout])
+    if (opened) close()
+  }, [disabled, opened, close, clearEnterTimeout])
 
   useEffect(() => {
     return () => {
@@ -257,7 +257,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
         onPointerDown: callAllHandlers(props.onPointerDown, onPointerDown),
         onFocus: callAllHandlers(props.onFocus, openWithDelay),
         onBlur: callAllHandlers(props.onBlur, closeWithDelay),
-        "aria-describedby": open ? tooltipId : undefined,
+        "aria-describedby": opened ? tooltipId : undefined,
       }
 
       return triggerProps
@@ -266,7 +266,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
       openWithDelay,
       closeWithDelay,
       onPointerDown,
-      open,
+      opened,
       tooltipId,
       onClick,
       referenceRef,
@@ -311,7 +311,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
   )
 
   return {
-    open,
+    opened,
     show: openWithDelay,
     hide: closeWithDelay,
     getTriggerProps,

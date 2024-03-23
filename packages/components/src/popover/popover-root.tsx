@@ -13,8 +13,8 @@ export interface PopoverRootProps
    * and `PopoverContent`
    */
   children?: MaybeRenderProp<{
-    open: boolean
-    onClose: () => void
+    opened: boolean
+    close: () => void
     forceUpdate: (() => void) | undefined
   }>
 }
@@ -36,8 +36,8 @@ export function PopoverRoot(props: PopoverRootProps) {
     <PopoverProvider value={context}>
       <PopoverStylesProvider value={styles}>
         {runIfFn(children, {
-          open: context.open,
-          onClose: context.onClose,
+          opened: context.opened,
+          close: context.close,
           forceUpdate: context.forceUpdate,
         })}
       </PopoverStylesProvider>

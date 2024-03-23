@@ -7,7 +7,7 @@ export default {
 }
 
 export const Basic = () => {
-  const { open, onToggle } = useDisclosure()
+  const [opened, { toggle }] = useDisclosure()
 
   const { referenceRef, popperRef } = usePopper({
     placement: "bottom-start",
@@ -16,11 +16,11 @@ export const Basic = () => {
 
   return (
     <>
-      <button ref={referenceRef} style={{ margin: 400 }} onClick={onToggle}>
+      <button ref={referenceRef} style={{ margin: 400 }} onClick={toggle}>
         Reference Tooltip Trigger
       </button>
 
-      {open && (
+      {opened && (
         <div
           ref={popperRef}
           style={{
@@ -42,7 +42,7 @@ export const Basic = () => {
 }
 
 export const WithTransition = () => {
-  const { open, onToggle } = useDisclosure()
+  const [opened, { toggle }] = useDisclosure()
 
   const { referenceRef, popperRef } = usePopper({
     placement: "bottom-start",
@@ -57,7 +57,7 @@ export const WithTransition = () => {
 
   return (
     <>
-      <button ref={referenceRef} onClick={onToggle}>
+      <button ref={referenceRef} onClick={toggle}>
         Toggle
       </button>
       <div ref={popperRef} style={{ ["--popper-arrow-bg" as string]: "red" }}>
@@ -68,7 +68,7 @@ export const WithTransition = () => {
           }}
           variants={slide}
           initial={false}
-          animate={open ? "enter" : "exit"}
+          animate={opened ? "enter" : "exit"}
           style={{
             background: bg,
             width: 200,
@@ -87,7 +87,7 @@ export const WithTransition = () => {
 }
 
 export const WithMatchWidth = () => {
-  const { onToggle } = useDisclosure()
+  const [, { toggle }] = useDisclosure()
 
   const { getPopperProps, getReferenceProps } = usePopper({
     placement: "bottom-start",
@@ -100,7 +100,7 @@ export const WithMatchWidth = () => {
     <>
       <button
         {...getReferenceProps()}
-        onClick={onToggle}
+        onClick={toggle}
         style={{ width: "400px", margin: 400 }}
       >
         Toggle
