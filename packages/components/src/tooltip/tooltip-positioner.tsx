@@ -25,7 +25,7 @@ export const TooltipPositioner = forwardRef<TooltipPositionerProps, "div">(
 
     return (
       <AnimatePresence>
-        {api.open && (
+        {api.opened && (
           <Portal {...portalProps}>
             <chakra.div
               {...api.getPositionerProps(restProps, ref)}

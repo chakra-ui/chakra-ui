@@ -119,16 +119,16 @@ function OmniSearch() {
   const [query, setQuery] = React.useState('')
   const [active, setActive] = React.useState(0)
   const [shouldCloseModal, setShouldCloseModal] = React.useState(true)
-  const menu = useDisclosure()
-  const modal = useDisclosure()
+  const [menuOpened, menu] = useDisclosure()
+  const [modalOpened, modal] = useDisclosure()
   const [menuNodes] = React.useState(() => new MultiRef<number, HTMLElement>())
   const menuRef = React.useRef<HTMLDivElement>(null)
   const eventRef = React.useRef<'mouse' | 'keyboard'>(null)
 
   React.useEffect(() => {
-    router.events.on('routeChangeComplete', modal.onClose)
+    router.events.on('routeChangeComplete', modal.close)
     return () => {
-      router.events.off('routeChangeComplete', modal.onClose)
+      router.events.off('routeChangeComplete', modal.close)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -139,16 +139,16 @@ function OmniSearch() {
     const hotkey = isMac ? 'metaKey' : 'ctrlKey'
     if (event?.key?.toLowerCase() === 'k' && event[hotkey]) {
       event.preventDefault()
-      modal.open ? modal.onClose() : modal.onOpen()
+      modalOpened ? modal.close() : modal.open()
     }
   })
 
   React.useEffect(() => {
-    if (modal.open && query.length > 0) {
+    if (modalOpened && query.length > 0) {
       setQuery('')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [modal.open])
+  }, [modalOpened])
 
   const results = React.useMemo(
     function getResults() {
@@ -190,7 +190,7 @@ function OmniSearch() {
             break
           }
 
-          modal.onClose()
+          modal.close()
           router.push(results[active].url)
           break
         }
@@ -229,15 +229,15 @@ function OmniSearch() {
     })
   }, [active])
 
-  const open = menu.open && results.length > 0
+  const open = menuOpened && results.length > 0
 
   return (
     <>
-      <SearchButton onClick={modal.onOpen} />
+      <SearchButton onClick={modal.open} />
       <Dialog.Root
         scrollBehavior='inside'
-        open={modal.open}
-        onClose={modal.onClose}
+        open={modalOpened}
+        onClose={modal.close}
       >
         <Dialog.Overlay />
         <Dialog.Positioner>
@@ -272,7 +272,7 @@ function OmniSearch() {
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value)
-                  menu.onOpen()
+                  menu.open()
                 }}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
@@ -314,7 +314,7 @@ function OmniSearch() {
                               }}
                               onClick={() => {
                                 if (shouldCloseModal) {
-                                  modal.onClose()
+                                  modal.close()
                                 }
                               }}
                               ref={menuNodes.ref(index)}

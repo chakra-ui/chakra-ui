@@ -56,12 +56,17 @@ export const WithCustomMotion = () => {
 }
 
 export const WithLongContent = () => {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, handlers] = useDisclosure()
 
   return (
     <>
-      <button onClick={onOpen}>Open</button>
-      <Drawer.Root placement="bottom" onClose={onClose} open={open} size="md">
+      <button onClick={handlers.open}>Open</button>
+      <Drawer.Root
+        placement="bottom"
+        onClose={handlers.close}
+        open={open}
+        size="md"
+      >
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>

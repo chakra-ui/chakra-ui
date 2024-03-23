@@ -25,7 +25,7 @@ import { DiscordIcon, GithubIcon } from 'components/icons'
 import siteConfig from 'configs/site-config.json'
 
 function HeaderContent() {
-  const mobileNav = useDisclosure()
+  const [opened, mobileNav] = useDisclosure()
 
   const { toggleColorMode: toggleMode } = useColorMode()
 
@@ -124,12 +124,12 @@ function HeaderContent() {
             <MobileNavButton
               ref={mobileNavBtnRef}
               aria-label='Open Menu'
-              onClick={mobileNav.onOpen}
+              onClick={mobileNav.open}
             />
           </HStack>
         </Flex>
       </Flex>
-      <MobileNavContent open={mobileNav.open} onClose={mobileNav.onClose} />
+      <MobileNavContent open={opened} onClose={mobileNav.close} />
     </>
   )
 }

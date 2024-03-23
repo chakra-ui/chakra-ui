@@ -154,7 +154,7 @@ export function usePopover(props: UsePopoverProps = {}) {
     ...popperProps
   } = props
 
-  const { open, onClose, onOpen, onToggle } = useDisclosure(props)
+  const [opened, { close, open, toggle }] = useDisclosure(props)
 
   const anchorRef = useRef<HTMLElement>(null)
   const triggerRef = useRef<HTMLElement>(null)
@@ -163,7 +163,7 @@ export function usePopover(props: UsePopoverProps = {}) {
   const isHoveringRef = useRef(false)
 
   const hasBeenOpened = useRef(false)
-  if (open) {
+  if (opened) {
     hasBeenOpened.current = true
   }
 
@@ -187,25 +187,25 @@ export function usePopover(props: UsePopoverProps = {}) {
     forceUpdate,
   } = usePopper({
     ...popperProps,
-    enabled: open || !!computePositionOnMount,
+    enabled: opened || !!computePositionOnMount,
   })
 
-  const animated = useAnimationState({ open, ref: popoverRef })
+  const animated = useAnimationState({ open: opened, ref: popoverRef })
 
   useFocusOnPointerDown({
-    enabled: open,
+    enabled: opened,
     ref: triggerRef,
   })
 
   useFocusOnHide(popoverRef, {
     focusRef: triggerRef,
-    visible: open,
+    visible: opened,
     shouldFocus: returnFocusOnClose && trigger === TRIGGER.click,
   })
 
   useFocusOnShow(popoverRef, {
     focusRef: initialFocusRef,
-    visible: open,
+    visible: opened,
     shouldFocus: autoFocus && trigger === TRIGGER.click,
   })
 
@@ -235,7 +235,7 @@ export function usePopover(props: UsePopoverProps = {}) {
         role: "dialog",
         onKeyDown: callAllHandlers(props.onKeyDown, (event) => {
           if (closeOnEsc && event.key === "Escape") {
-            onClose()
+            close()
           }
         }),
         onBlur: callAllHandlers(props.onBlur, (event) => {
@@ -245,8 +245,8 @@ export function usePopover(props: UsePopoverProps = {}) {
 
           const isValidBlur = !targetIsPopover && !targetIsTrigger
 
-          if (open && closeOnBlur && isValidBlur) {
-            onClose()
+          if (opened && closeOnBlur && isValidBlur) {
+            close()
           }
         }),
         "aria-labelledby": hasHeader ? headerId : undefined,
@@ -266,7 +266,7 @@ export function usePopover(props: UsePopoverProps = {}) {
               return
             }
             isHoveringRef.current = false
-            setTimeout(() => onClose(), closeDelay)
+            setTimeout(() => close(), closeDelay)
           },
         )
       }
@@ -282,8 +282,8 @@ export function usePopover(props: UsePopoverProps = {}) {
       bodyId,
       trigger,
       closeOnEsc,
-      onClose,
-      open,
+      close,
+      opened,
       closeOnBlur,
       closeDelay,
       arrowShadowColor,
@@ -297,13 +297,13 @@ export function usePopover(props: UsePopoverProps = {}) {
         {
           ...props,
           style: {
-            visibility: open ? "visible" : "hidden",
+            visibility: opened ? "visible" : "hidden",
             ...props.style,
           },
         },
         forwardedRef,
       ),
-    [open, getPopperProps],
+    [opened, getPopperProps],
   )
 
   const getAnchorProps: PropGetter = useCallback(
@@ -337,12 +337,12 @@ export function usePopover(props: UsePopoverProps = {}) {
         ref: mergeRefs(triggerRef, _ref, maybeReferenceRef),
         id: triggerId,
         "aria-haspopup": "dialog",
-        "aria-expanded": open,
+        "aria-expanded": opened,
         "aria-controls": popoverId,
       }
 
       if (trigger === TRIGGER.click) {
-        triggerProps.onClick = callAllHandlers(props.onClick, onToggle)
+        triggerProps.onClick = callAllHandlers(props.onClick, toggle)
       }
 
       if (trigger === TRIGGER.hover) {
@@ -355,15 +355,15 @@ export function usePopover(props: UsePopoverProps = {}) {
         triggerProps.onFocus = callAllHandlers(props.onFocus, () => {
           // If openTimeout.current does not exist, the user is using keyboard focus (not mouse hover/click)
           if (openTimeout.current === undefined) {
-            onOpen()
+            open()
           }
         })
         triggerProps.onBlur = callAllHandlers(props.onBlur, (event) => {
           const relatedTarget = getRelatedTarget(event)
           const isValidBlur = !contains(popoverRef.current, relatedTarget)
 
-          if (open && closeOnBlur && isValidBlur) {
-            onClose()
+          if (opened && closeOnBlur && isValidBlur) {
+            close()
           }
         })
 
@@ -373,13 +373,13 @@ export function usePopover(props: UsePopoverProps = {}) {
          */
         triggerProps.onKeyDown = callAllHandlers(props.onKeyDown, (event) => {
           if (event.key === "Escape") {
-            onClose()
+            close()
           }
         })
 
         triggerProps.onMouseEnter = callAllHandlers(props.onMouseEnter, () => {
           isHoveringRef.current = true
-          openTimeout.current = window.setTimeout(() => onOpen(), openDelay)
+          openTimeout.current = window.setTimeout(() => open(), openDelay)
         })
 
         triggerProps.onMouseLeave = callAllHandlers(props.onMouseLeave, () => {
@@ -392,7 +392,7 @@ export function usePopover(props: UsePopoverProps = {}) {
 
           closeTimeout.current = window.setTimeout(() => {
             if (isHoveringRef.current === false) {
-              onClose()
+              close()
             }
           }, closeDelay)
         })
@@ -402,14 +402,14 @@ export function usePopover(props: UsePopoverProps = {}) {
     },
     [
       triggerId,
-      open,
+      opened,
       popoverId,
       trigger,
       maybeReferenceRef,
-      onToggle,
-      onOpen,
+      toggle,
+      open,
       closeOnBlur,
-      onClose,
+      close,
       openDelay,
       closeDelay,
     ],
@@ -450,9 +450,9 @@ export function usePopover(props: UsePopoverProps = {}) {
 
   return {
     forceUpdate,
-    open,
+    opened,
     onAnimationComplete: animated.onComplete,
-    onClose,
+    close,
     getAnchorProps,
     getArrowProps,
     getArrowInnerProps,

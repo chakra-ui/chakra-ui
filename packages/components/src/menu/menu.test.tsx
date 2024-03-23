@@ -321,7 +321,9 @@ test("exposes internal state as render prop", () => {
     <Menu.Root>
       {(api) => (
         <>
-          <Menu.Trigger as={Button}>{api.open ? "Close" : "Open"}</Menu.Trigger>
+          <Menu.Trigger as={Button}>
+            {api.opened ? "Close" : "Open"}
+          </Menu.Trigger>
           <Menu.Positioner>
             <Menu.Content>
               <Menu.Item>Download</Menu.Item>

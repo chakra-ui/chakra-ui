@@ -79,15 +79,17 @@ export function useDisclosure(props: UseDisclosureProps = {}) {
     }
   }
 
-  return {
+  return [
     open,
-    onOpen,
-    onClose,
-    onToggle,
-    isControlled,
-    getButtonProps,
-    getDisclosureProps,
-  }
+    {
+      open: onOpen,
+      close: onClose,
+      toggle: onToggle,
+      controlled: isControlled,
+      getButtonProps,
+      getDisclosureProps,
+    },
+  ] as const
 }
 
 export type UseDisclosureReturn = ReturnType<typeof useDisclosure>

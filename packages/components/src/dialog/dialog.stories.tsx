@@ -29,11 +29,11 @@ const Button = chakra("button", {
 })
 
 export function Basic() {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, handlers] = useDisclosure()
   return (
     <>
-      <Button onClick={onOpen}>Open</Button>
-      <Dialog.Root open={open} onClose={onClose} isCentered>
+      <Button onClick={handlers.open}>Open</Button>
+      <Dialog.Root open={open} onClose={handlers.close} isCentered>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -45,7 +45,7 @@ export function Basic() {
               irure nisi.
             </Dialog.Body>
             <Dialog.Footer>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={handlers.close}>Cancel</Button>
               <Button>Save</Button>
             </Dialog.Footer>
           </Dialog.Content>
@@ -56,7 +56,7 @@ export function Basic() {
 }
 
 export function FinalFocusRef() {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, handlers] = useDisclosure()
   const finalRef = React.useRef<any>()
 
   return (
@@ -69,11 +69,15 @@ export function FinalFocusRef() {
         Some other content that'll receive focus on close.
       </chakra.div>
 
-      <Button mt={4} onClick={onOpen}>
+      <Button mt={4} onClick={handlers.open}>
         Open Dialog.
       </Button>
 
-      <Dialog.Root finalFocusRef={finalRef} open={open} onClose={onClose}>
+      <Dialog.Root
+        finalFocusRef={finalRef}
+        open={open}
+        onClose={handlers.close}
+      >
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -87,7 +91,7 @@ export function FinalFocusRef() {
             </Dialog.Body>
 
             <Dialog.Footer>
-              <Button onClick={onClose}>Close</Button>
+              <Button onClick={handlers.close}>Close</Button>
               <Button>Secondary Action</Button>
             </Dialog.Footer>
           </Dialog.Content>
@@ -98,13 +102,13 @@ export function FinalFocusRef() {
 }
 
 export function NestedDialogs() {
-  const first = useDisclosure()
-  const second = useDisclosure()
+  const [firstOpen, first] = useDisclosure()
+  const [secondOpen, second] = useDisclosure()
 
   return (
     <>
-      <button onClick={first.onOpen}>Open</button>
-      <Dialog.Root open={first.open} onClose={first.onClose}>
+      <button onClick={first.open}>Open</button>
+      <Dialog.Root open={firstOpen} onClose={first.close}>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -118,10 +122,10 @@ export function NestedDialogs() {
             <Dialog.Footer>
               <chakra.div flex="1" />
               <Button>Button 2</Button>
-              <Button onClick={second.onOpen}>Open Nested</Button>
+              <Button onClick={second.open}>Open Nested</Button>
             </Dialog.Footer>
 
-            <Dialog.Root open={second.open} onClose={second.onClose}>
+            <Dialog.Root open={secondOpen} onClose={second.close}>
               <Dialog.Overlay />
               <Dialog.Positioner>
                 <Dialog.Content>
@@ -141,11 +145,11 @@ export function NestedDialogs() {
 }
 
 export const InsideScroll = () => {
-  const { open, onClose, onOpen } = useDisclosure()
+  const [open, handlers] = useDisclosure()
   return (
     <>
-      <button onClick={onOpen}>Open</button>
-      <Dialog.Root onClose={onClose} open={open} scrollBehavior="inside">
+      <button onClick={handlers.open}>Open</button>
+      <Dialog.Root onClose={handlers.close} open={open} scrollBehavior="inside">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -155,7 +159,7 @@ export const InsideScroll = () => {
               <Lorem size={5} />
             </Dialog.Body>
             <Dialog.Footer>
-              <Button onClick={onClose}>Close</Button>
+              <Button onClick={handlers.close}>Close</Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
@@ -165,11 +169,11 @@ export const InsideScroll = () => {
 }
 
 export const AnimationDisabled = () => {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, handlers] = useDisclosure()
   return (
     <>
-      <button onClick={onOpen}>Open</button>
-      <Dialog.Root onClose={onClose} open={open} motionPreset="none">
+      <button onClick={handlers.open}>Open</button>
+      <Dialog.Root onClose={handlers.close} open={open} motionPreset="none">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -179,7 +183,7 @@ export const AnimationDisabled = () => {
               <Lorem size={5} />
             </Dialog.Body>
             <Dialog.Footer>
-              <Button onClick={onClose}>Close</Button>
+              <Button onClick={handlers.close}>Close</Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
@@ -189,11 +193,11 @@ export const AnimationDisabled = () => {
 }
 
 export const FullWithLongContent = () => {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, handlers] = useDisclosure()
   return (
     <>
-      <button onClick={onOpen}>Open</button>
-      <Dialog.Root onClose={onClose} open={open} size="full">
+      <button onClick={handlers.open}>Open</button>
+      <Dialog.Root onClose={handlers.close} open={open} size="full">
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content>
@@ -203,7 +207,7 @@ export const FullWithLongContent = () => {
               <Lorem count={30} />
             </Dialog.Body>
             <Dialog.Footer>
-              <Button onClick={onClose}>Close</Button>
+              <Button onClick={handlers.close}>Close</Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
@@ -213,11 +217,11 @@ export const FullWithLongContent = () => {
 }
 
 export function WithCustomMotionProps() {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, handlers] = useDisclosure()
   return (
     <>
-      <Button onClick={onOpen}>Open</Button>
-      <Dialog.Root open={open} onClose={onClose} isCentered>
+      <Button onClick={handlers.open}>Open</Button>
+      <Dialog.Root open={open} onClose={handlers.close} isCentered>
         <Dialog.Overlay />
         <Dialog.Positioner>
           <Dialog.Content
@@ -239,7 +243,7 @@ export function WithCustomMotionProps() {
               irure nisi.
             </Dialog.Body>
             <Dialog.Footer>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={handlers.close}>Cancel</Button>
               <Button>Save</Button>
             </Dialog.Footer>
           </Dialog.Content>
@@ -250,14 +254,14 @@ export function WithCustomMotionProps() {
 }
 
 export function WithInitialFocus() {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, handlers] = useDisclosure()
   const initialFocusRef = React.useRef(null)
   return (
     <>
-      <Button onClick={onOpen}>Open Dialog.</Button>
+      <Button onClick={handlers.open}>Open Dialog.</Button>
       <Dialog.Root
         open={open}
-        onClose={onClose}
+        onClose={handlers.close}
         initialFocusRef={initialFocusRef}
       >
         <Dialog.Overlay />
