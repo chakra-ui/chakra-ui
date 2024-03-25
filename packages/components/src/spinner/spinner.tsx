@@ -46,6 +46,15 @@ interface SpinnerOptions {
    * @default "Loading..."
    */
   label?: string
+  /**
+   * The state of the spinner animation.
+   * @default "running"
+   * @example
+   * ```jsx
+   * <Spinner animationPlayState="paused" />
+   * ```
+   */
+  animationPlayState?: "running" | "paused"
 }
 
 export interface SpinnerProps
@@ -68,6 +77,7 @@ export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
     speed = "0.45s",
     emptyColor = "transparent",
     className,
+    animationPlayState = "running",
     ...rest
   } = omitThemingProps(props)
 
@@ -81,7 +91,7 @@ export const Spinner = forwardRef<SpinnerProps, "div">((props, ref) => {
     borderWidth: thickness,
     borderBottomColor: emptyColor,
     borderLeftColor: emptyColor,
-    animation: `${spin} ${speed} linear infinite`,
+    animation: `${spin} ${speed} linear infinite ${animationPlayState}`,
     ...styles,
   }
 
