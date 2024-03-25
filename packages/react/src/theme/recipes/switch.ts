@@ -32,6 +32,8 @@ export const switchSlotRecipe = defineSlotRecipe({
       position: "relative",
       width: "var(--switch-width)",
       height: "var(--switch-height)",
+      transitionProperty: "common",
+      transitionDuration: "fast",
       _disabled: {
         opacity: "0.5",
         cursor: "not-allowed",

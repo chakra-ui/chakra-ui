@@ -14,6 +14,8 @@ export const buttonRecipe = defineRecipe({
     lineHeight: "1.2",
     isolation: "isolate",
     fontWeight: "medium",
+    transitionProperty: "common",
+    transitionDuration: "normal",
     colorPalette: "gray",
     _focusVisible: {
       outline: "2px solid",
