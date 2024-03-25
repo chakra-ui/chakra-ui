@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "prebuild": "pnpm build:search-meta && pnpm build:packages && pnpm build:props-docs",
-    "build": "next build",
+    "build": "pnpm contentlayer build --clearCache && next build",
     "lint": "next lint",
     "gen:theme-typings": "chakra-cli tokens theme.ts",
     "avatars:gen": "tsx scripts/avatars.ts",
