@@ -33,7 +33,7 @@ const HookTooltip = ({ children }: any) => {
               color: "white",
               borderRadius: "4px",
               padding: "0.5em 1em",
-              visibility: api.isOpen ? "visible" : "hidden",
+              visibility: api.open ? "visible" : "hidden",
               ["--popper-arrow-bg" as string]: "tomato",
             },
           })}
@@ -66,7 +66,7 @@ export const WithTransition = () => {
     <>
       <Button {...api.getTriggerProps()}>Hover me</Button>
       <AnimatePresence>
-        {api.isOpen && (
+        {api.open && (
           <Portal>
             <div {...api.getPositionerProps()}>
               <motion.div

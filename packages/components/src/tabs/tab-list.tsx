@@ -4,7 +4,7 @@ import { useTabsStyles } from "./tabs-context"
 import { UseTabListProps, useTabList } from "./use-tab-list"
 
 export interface TabListProps
-  extends UseTabListProps,
+  extends Omit<UseTabListProps, "ref">,
     Omit<HTMLChakraProps<"div">, "onKeyDown" | "ref"> {}
 
 export const TabList = forwardRef<TabListProps, "div">(

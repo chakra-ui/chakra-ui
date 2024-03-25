@@ -16,8 +16,8 @@ test("passes a11y test", async () => {
 
 test("uncontrolled: It opens the accordion panel", async () => {
   render(
-    <Accordion.Root defaultIndex={0}>
-      <Accordion.Item>
+    <Accordion.Root defaultValue={["panel-1"]}>
+      <Accordion.Item value="panel-1">
         <h2>
           <Accordion.Trigger data-testid="button">
             Section 1 title
@@ -287,14 +287,14 @@ test("aria-controls for button is same as id for panel", async () => {
 // test that aria-expanded is true/false when accordion is open/closed
 test("aria-expanded is true/false when accordion is open/closed", async () => {
   render(
-    <Accordion.Root defaultIndex={0}>
-      <Accordion.Item>
+    <Accordion.Root defaultValue={["1"]}>
+      <Accordion.Item value="1">
         <h2>
           <Accordion.Trigger>Section 1 title</Accordion.Trigger>
         </h2>
         <Accordion.Content>Panel 1</Accordion.Content>
       </Accordion.Item>
-      <Accordion.Item>
+      <Accordion.Item value="2">
         <h2>
           <Accordion.Trigger>Section 2 title</Accordion.Trigger>
         </h2>

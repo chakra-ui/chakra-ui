@@ -11,7 +11,7 @@ export const DrawerExample = () => {
   return (
     <>
       <button onClick={() => setOpen(!open)}>Open</button>
-      <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
+      <Drawer.Root open={open} onClose={() => setOpen(false)}>
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>
@@ -29,7 +29,7 @@ export const WithCustomMotion = () => {
   return (
     <>
       <button onClick={() => setOpen(!open)}>Open</button>
-      <Drawer.Root isOpen={open} onClose={() => setOpen(false)}>
+      <Drawer.Root open={open} onClose={() => setOpen(false)}>
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content
@@ -56,17 +56,12 @@ export const WithCustomMotion = () => {
 }
 
 export const WithLongContent = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { open, onOpen, onClose } = useDisclosure()
 
   return (
     <>
       <button onClick={onOpen}>Open</button>
-      <Drawer.Root
-        placement="bottom"
-        onClose={onClose}
-        isOpen={isOpen}
-        size="md"
-      >
+      <Drawer.Root placement="bottom" onClose={onClose} open={open} size="md">
         <Drawer.Overlay />
         <Drawer.Positioner>
           <Drawer.Content>

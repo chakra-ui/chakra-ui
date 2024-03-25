@@ -9,7 +9,7 @@ export const CircularProgressCircle = forwardRef<
   CircularProgressCircleProps,
   "svg"
 >(function CircularProgressCircle(props, ref) {
-  const { size, isIndeterminate } = useCircularProgressContext()
+  const { size, indeterminate } = useCircularProgressContext()
 
   return (
     <chakra.svg
@@ -17,7 +17,7 @@ export const CircularProgressCircle = forwardRef<
       viewBox="0 0 100 100"
       {...props}
       className={cx("chakra-progress__circle", props.className)}
-      data-indeterminate={dataAttr(isIndeterminate)}
+      data-indeterminate={dataAttr(indeterminate)}
       __css={{
         width: size,
         height: size,

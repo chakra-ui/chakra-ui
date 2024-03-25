@@ -1,9 +1,13 @@
 import { useControllableState } from "@chakra-ui/hooks/use-controllable-state"
 import { ariaAttr } from "@chakra-ui/utils/attr"
 import { callAllHandlers } from "@chakra-ui/utils/call-all"
-import { useCallback, useEffect, useId, useState } from "react"
-import { usePinInputDescendants } from "./pin-input-context"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
+import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { InputProps } from "./use-pin-input-field"
+
+/* -------------------------------------------------------------------------------------------------
+ * usePinInput hook
+ * -----------------------------------------------------------------------------------------------*/
 
 export interface UsePinInputProps {
   /**
@@ -52,11 +56,11 @@ export interface UsePinInputProps {
   /**
    * If `true`, the pin input component is put in the disabled state
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the pin input component is put in the invalid state
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * The type of values the pin-input should allow
    */
@@ -74,6 +78,10 @@ function validate(value: string, type: UsePinInputProps["type"]) {
   const ALPHA_NUMERIC_REGEX = /^[a-zA-Z0-9]+$/i
   const regex = type === "alphanumeric" ? ALPHA_NUMERIC_REGEX : NUMERIC_REGEX
   return regex.test(value)
+}
+
+function getAllItems(root: HTMLElement | null) {
+  return queryAll(root, "input")
 }
 
 /* -------------------------------------------------------------------------------------------------
@@ -94,8 +102,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
     manageFocus = true,
     otp = false,
     id: idProp,
-    isDisabled,
-    isInvalid,
+    disabled,
+    invalid,
     type = "number",
     mask,
   } = props
@@ -103,10 +111,10 @@ export function usePinInput(props: UsePinInputProps = {}) {
   const uuid = useId()
   const id = idProp ?? `pin-input-${uuid}`
 
-  const descendants = usePinInputDescendants()
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const [moveFocus, setMoveFocus] = useState(true)
-  const [focusedIndex, setFocusedIndex] = useState(-1)
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1)
 
   const [values, setValues] = useControllableState<string[]>({
     defaultValue: toArray(defaultValue) || [],
@@ -116,39 +124,44 @@ export function usePinInput(props: UsePinInputProps = {}) {
 
   useEffect(() => {
     if (autoFocus) {
-      const first = descendants.first()
+      const first = getAllItems(containerRef.current)[0]
       if (first) {
         requestAnimationFrame(() => {
-          first.node.focus()
+          first.focus()
         })
       }
     }
     // We don't want to listen for updates to `autoFocus` since it only runs initially
     // eslint-disable-next-line
-  }, [descendants])
+  }, [])
 
   const focusNext = useCallback(
     (index: number) => {
       if (!moveFocus || !manageFocus) return
-      const next = descendants.next(index, false)
+      const next = nextById(
+        getAllItems(containerRef.current),
+        `${id}-${index}`,
+        false,
+      )
       if (next) {
         requestAnimationFrame(() => {
-          next.node.focus()
+          next.focus()
         })
       }
     },
-    [descendants, moveFocus, manageFocus],
+    [moveFocus, manageFocus, id],
   )
 
   const setValue = useCallback(
     (value: string, index: number, handleFocus: boolean = true) => {
+      const allItems = getAllItems(containerRef.current)
       const nextValues = [...values]
       nextValues[index] = value
       setValues(nextValues)
 
       const isComplete =
         value !== "" &&
-        nextValues.length === descendants.count() &&
+        nextValues.length === allItems.length &&
         nextValues.every(
           (inputValue) => inputValue != null && inputValue !== "",
         )
@@ -159,15 +172,16 @@ export function usePinInput(props: UsePinInputProps = {}) {
         if (handleFocus) focusNext(index)
       }
     },
-    [values, setValues, focusNext, onComplete, descendants],
+    [values, setValues, focusNext, onComplete],
   )
 
   const clear = useCallback(() => {
-    const values: string[] = Array(descendants.count()).fill("")
+    const allItems = getAllItems(containerRef.current)
+    const values: string[] = Array(allItems.length).fill("")
     setValues(values)
-    const first = descendants.first()
-    first?.node?.focus()
-  }, [descendants, setValues])
+    const first = allItems[0]
+    first?.focus()
+  }, [setValues])
 
   const getNextValue = useCallback((value: string, eventValue: string) => {
     let nextValue = eventValue
@@ -192,6 +206,7 @@ export function usePinInput(props: UsePinInputProps = {}) {
         const eventValue = event.target.value
         const currentValue = values[index]
         const nextValue = getNextValue(currentValue, eventValue)
+        const allItems = getAllItems(containerRef.current)
 
         // if the value was removed using backspace
         if (nextValue === "") {
@@ -206,12 +221,11 @@ export function usePinInput(props: UsePinInputProps = {}) {
             // Ensure the value matches the number of inputs
             const nextValue = eventValue
               .split("")
-              .filter((_, index) => index < descendants.count())
+              .filter((_, index) => index < allItems.length)
 
             setValues(nextValue)
-
             // if pasting fills the entire input fields, trigger `onComplete`
-            if (nextValue.length === descendants.count()) {
+            if (nextValue.length === allItems.length) {
               onComplete?.(nextValue.join(""))
             }
           }
@@ -228,10 +242,14 @@ export function usePinInput(props: UsePinInputProps = {}) {
       const onKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === "Backspace" && manageFocus) {
           if ((event.target as HTMLInputElement).value === "") {
-            const prevInput = descendants.prev(index, false)
+            const prevInput = prevById(
+              getAllItems(containerRef.current),
+              `${id}-${index}`,
+              false,
+            )
             if (prevInput) {
               setValue("", index - 1, false)
-              prevInput.node?.focus()
+              prevInput?.focus()
               setMoveFocus(true)
             }
           } else {
@@ -257,8 +275,8 @@ export function usePinInput(props: UsePinInputProps = {}) {
         type: mask ? "password" : inputType,
         ...rest,
         id: `${id}-${index}`,
-        disabled: isDisabled,
-        "aria-invalid": ariaAttr(isInvalid),
+        disabled,
+        "aria-invalid": ariaAttr(invalid),
         onChange: callAllHandlers(rest.onChange, onChange),
         onKeyDown: callAllHandlers(rest.onKeyDown, onKeyDown),
         onFocus: callAllHandlers(rest.onFocus, onFocus),
@@ -269,30 +287,29 @@ export function usePinInput(props: UsePinInputProps = {}) {
       }
     },
     [
-      descendants,
       focusedIndex,
       getNextValue,
       id,
-      isDisabled,
+      disabled,
       mask,
-      isInvalid,
+      invalid,
       manageFocus,
-      onComplete,
       otp,
       placeholder,
       setValue,
-      setValues,
       type,
       values,
+      setValues,
+      onComplete,
     ],
   )
 
   return {
+    containerRef,
     // prop getter
     getInputProps,
     // state
     id,
-    descendants,
     values,
     // actions
     setValue,

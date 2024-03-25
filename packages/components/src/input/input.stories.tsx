@@ -56,9 +56,9 @@ export const WithNativeSize = () => <Input htmlSize={4} width="auto" p="0" />
 export const WithStates = () => (
   <Stack align="start">
     <Input placeholder="Idle" />
-    <Input isInvalid placeholder="isInvalid" />
-    <Input isDisabled placeholder="isDisabled" />
-    <Input isReadOnly placeholder="isReadonly" />
+    <Input invalid placeholder="invalid" />
+    <Input disabled placeholder="disabled" />
+    <Input readOnly placeholder="readOnly" />
   </Stack>
 )
 
@@ -147,13 +147,13 @@ export const WithFocusAndErrorColors = () => (
     />
 
     <Input
-      isInvalid
+      invalid
       errorBorderColor="red.300"
       placeholder="Here is a sample placeholder"
     />
 
     <Input
-      isInvalid
+      invalid
       errorBorderColor="crimson"
       placeholder="Here is a sample placeholder"
     />
@@ -164,7 +164,7 @@ export const WithField = () => {
   const [isError, setIsError] = React.useState(false)
   return (
     <Stack align="start">
-      <Field.Root id="first-name" isInvalid={isError}>
+      <Field.Root id="first-name" invalid={isError}>
         <chakra.div display="flex" mb="2">
           <Field.Label mb="0" lineHeight="1em">
             Amount

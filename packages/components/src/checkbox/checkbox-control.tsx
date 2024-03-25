@@ -62,27 +62,27 @@ export const CheckboxControl = forwardRef<CheckboxControlProps, "span">(
     const { getCheckboxProps, state } = useCheckboxContext()
     const styles = useCheckboxStyles()
 
-    const shouldAnimate = useInitialAnimationState(state.isChecked)
+    const shouldAnimate = useInitialAnimationState(state.checked)
 
     const iconStyles = useMemo(
       () =>
         defineStyle({
           animation: !shouldAnimate
             ? undefined
-            : state.isIndeterminate
+            : state.indeterminate
             ? `${indeterminateOpacityAnim} 20ms linear, ${indeterminateScaleAnim} 200ms linear`
             : `${checkAnim} 200ms linear`,
           fontSize: iconSize,
           color: iconColor,
           ...styles.icon,
         }),
-      [iconColor, iconSize, shouldAnimate, state.isIndeterminate, styles.icon],
+      [iconColor, iconSize, shouldAnimate, state.indeterminate, styles.icon],
     )
 
     const clonedIcon = cloneElement(icon, {
       __css: iconStyles,
-      isIndeterminate: state.isIndeterminate,
-      isChecked: state.isChecked,
+      indeterminate: state.indeterminate,
+      checked: state.checked,
     })
 
     return (

@@ -20,7 +20,7 @@ export interface CloseButtonProps
    * If `true`, the close button will be disabled.
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
 }
 
 /**
@@ -34,14 +34,14 @@ export interface CloseButtonProps
 export const CloseButton = forwardRef<CloseButtonProps, "button">(
   function CloseButton(props, ref) {
     const styles = useStyleConfig("CloseButton", props)
-    const { children, isDisabled, __css, ...rest } = omitThemingProps(props)
+    const { children, disabled, __css, ...rest } = omitThemingProps(props)
 
     return (
       <chakra.button
         type="button"
         aria-label="Close"
         ref={ref}
-        disabled={isDisabled}
+        disabled={disabled}
         __css={{
           ...styles,
           ...__css,

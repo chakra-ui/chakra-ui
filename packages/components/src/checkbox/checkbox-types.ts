@@ -20,16 +20,7 @@ export interface UseCheckboxGroupProps {
    *
    * @default false
    */
-  isDisabled?: boolean
-  /**
-   * If `true`, input elements will receive
-   * `checked` attribute instead of `isChecked`.
-   *
-   * This assumes, you're using native radio inputs
-   *
-   * @default false
-   */
-  isNative?: boolean
+  disabled?: boolean
 }
 
 export type EventOrValue = React.ChangeEvent<HTMLInputElement> | string | number
@@ -41,48 +32,48 @@ export interface UseCheckboxProps {
    *
    * @default false
    */
-  isChecked?: boolean
+  checked?: boolean
   /**
    * If `true`, the checkbox will be indeterminate.
    * This only affects the icon shown inside checkbox
-   * and does not modify the isChecked property.
+   * and does not modify the checked property.
    *
    * @default false
    */
-  isIndeterminate?: boolean
+  indeterminate?: boolean
   /**
    * If `true`, the checkbox will be disabled
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
-   * If `true` and `isDisabled` is passed, the checkbox will
+   * If `true` and `disabled` is passed, the checkbox will
    * remain tabbable but not interactive
    *
    * @default false
    */
-  isFocusable?: boolean
+  focusable?: boolean
   /**
    * If `true`, the checkbox will be readonly
    *
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
   /**
    * If `true`, the checkbox is marked as invalid.
    * Changes style of unchecked state.
    *
    * @default false
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * If `true`, the checkbox input is marked as required,
    * and `required` attribute will be added
    *
    * @default false
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * If `true`, the checkbox will be initially checked.
    *
@@ -145,19 +136,19 @@ export interface CheckboxOptions {
 }
 
 export interface CheckboxGroupContext
-  extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "isDisabled">,
+  extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "disabled">,
     Omit<ThemingProps<"Checkbox">, "orientation"> {}
 
 export interface CheckboxState {
-  isInvalid?: boolean
-  isFocused: boolean
-  isChecked: boolean
-  isActive: boolean
+  invalid?: boolean
+  focused: boolean
+  checked: boolean
+  active: boolean
   isHovered: boolean
-  isIndeterminate?: boolean
-  isDisabled?: boolean
-  isReadOnly?: boolean
-  isRequired?: boolean
+  indeterminate?: boolean
+  disabled?: boolean
+  readOnly?: boolean
+  required?: boolean
 }
 
 export interface CheckboxContext extends UseCheckboxReturn {

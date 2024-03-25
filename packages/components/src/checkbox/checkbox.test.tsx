@@ -51,7 +51,7 @@ test("Uncontrolled - should check and uncheck", () => {
 })
 
 test("Uncontrolled - should not check if disabled", () => {
-  render(<HookCheckbox isDisabled>Checkbox</HookCheckbox>)
+  render(<HookCheckbox disabled>Checkbox</HookCheckbox>)
 
   const input = screen.getByTestId("input")
   const checkbox = screen.getByText("Checkbox")
@@ -66,7 +66,7 @@ test("Uncontrolled - should not check if disabled", () => {
 })
 
 test("indeterminate state", () => {
-  render(<HookCheckbox isIndeterminate>Checkbox</HookCheckbox>)
+  render(<HookCheckbox indeterminate>Checkbox</HookCheckbox>)
 
   const checkbox = screen.getByText("Checkbox")
   expect(checkbox).toHaveAttribute("data-indeterminate")
@@ -76,10 +76,10 @@ test("Controlled - should check and uncheck", async () => {
   const onChange = vi.fn()
 
   const Component = () => {
-    const [isChecked, setIsChecked] = React.useState(false)
+    const [checked, setIsChecked] = React.useState(false)
     return (
       <HookCheckbox
-        isChecked={isChecked}
+        checked={checked}
         onChange={(e) => {
           setIsChecked(e.target.checked)
           onChange(e)
@@ -157,12 +157,12 @@ test("Controlled Checkbox.Group", () => {
 
 test("Uncontrolled Checkbox.Group - should not check if group disabled", () => {
   const Component = () => (
-    <Checkbox.Group isDisabled>
+    <Checkbox.Group disabled>
       <DemoCheckbox value="one">One</DemoCheckbox>
-      <DemoCheckbox value="two" isDisabled>
+      <DemoCheckbox value="two" disabled>
         Two
       </DemoCheckbox>
-      <DemoCheckbox value="three" isDisabled={false}>
+      <DemoCheckbox value="three" disabled={false}>
         Three
       </DemoCheckbox>
     </Checkbox.Group>
@@ -203,9 +203,9 @@ test("uncontrolled Checkbox.Group handles change", () => {
 
 test("accepts custom icon", () => {
   const IconSvg = (props: any) => {
-    const { isIndeterminate, isChecked, ...rest } = props
+    const { indeterminate, checked, ...rest } = props
 
-    const d = isIndeterminate
+    const d = indeterminate
       ? "M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,19a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,12,19Zm1.6-6.08a1,1,0,0,0-.6.917,1,1,0,1,1-2,0,3,3,0,0,1,1.8-2.75A2,2,0,1,0,10,9.255a1,1,0,1,1-2,0,4,4,0,1,1,5.6,3.666Z"
       : "M0,12a1.5,1.5,0,0,0,1.5,1.5h8.75a.25.25,0,0,1,.25.25V22.5a1.5,1.5,0,0,0,3,0V13.75a.25.25,0,0,1,.25-.25H22.5a1.5,1.5,0,0,0,0-3H13.75a.25.25,0,0,1-.25-.25V1.5a1.5,1.5,0,0,0-3,0v8.75a.25.25,0,0,1-.25.25H1.5A1.5,1.5,0,0,0,0,12Z"
 
@@ -229,10 +229,10 @@ test("accepts custom icon", () => {
 test("can pass tabIndex directly to input component", () => {
   const { container } = render(
     <>
-      <DemoCheckbox tabIndex={-1} isFocusable={false}>
+      <DemoCheckbox tabIndex={-1} focusable={false}>
         Not Focusable with provided tabIndex
       </DemoCheckbox>
-      <DemoCheckbox isFocusable={false}>Not Focusable</DemoCheckbox>
+      <DemoCheckbox focusable={false}>Not Focusable</DemoCheckbox>
     </>,
   )
   const [checkboxOne, checkboxTwo] = Array.from(
@@ -294,23 +294,23 @@ test("useCheckboxGroup can handle both strings and numbers", () => {
 
 test("Uncontrolled Form.Control - should not check if form-control disabled", () => {
   const { container } = render(
-    <Field.Root isDisabled mt={4}>
+    <Field.Root disabled mt={4}>
       <Field.Label>Disabled Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isDisabled>
+        <DemoCheckbox value="2" disabled>
           Disabled Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isDisabled={false}>
+        <DemoCheckbox value="3" disabled={false}>
           Disabled Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
-      <Checkbox.Group isDisabled={false}>
+      <Checkbox.Group disabled={false}>
         <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isDisabled>
+        <DemoCheckbox value="2" disabled>
           Disabled Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isDisabled={false}>
+        <DemoCheckbox value="3" disabled={false}>
           Disabled Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
@@ -353,14 +353,14 @@ test("Uncontrolled Form.Control - should not check if form-control disabled", ()
 
 test("Uncontrolled Form.Control - mark label as invalid", () => {
   const { container } = render(
-    <Field.Root isInvalid mt={4}>
+    <Field.Root invalid mt={4}>
       <Field.Label>Invalid Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Invalid Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isInvalid>
+        <DemoCheckbox value="2" invalid>
           Invalid Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isInvalid={false}>
+        <DemoCheckbox value="3" invalid={false}>
           Invalid Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
@@ -394,14 +394,14 @@ test("Uncontrolled Form.Control - mark label as invalid", () => {
 
 test("Uncontrolled Form.Control - mark label required", () => {
   const { container } = render(
-    <Field.Root isRequired mt={4}>
+    <Field.Root required mt={4}>
       <Field.Label>Required Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">Required Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isRequired>
+        <DemoCheckbox value="2" required>
           Required Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isRequired={false}>
+        <DemoCheckbox value="3" required={false}>
           Required Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>
@@ -419,14 +419,14 @@ test("Uncontrolled Form.Control - mark label required", () => {
 
 test("Uncontrolled Form.Control - mark readonly", () => {
   const { container } = render(
-    <Field.Root isReadOnly mt={4}>
+    <Field.Root readOnly mt={4}>
       <Field.Label>ReadOnly Opt-in Example</Field.Label>
       <Checkbox.Group>
         <DemoCheckbox value="1">ReadOnly Opt-in 1</DemoCheckbox>
-        <DemoCheckbox value="2" isReadOnly>
+        <DemoCheckbox value="2" readOnly>
           ReadOnly Opt-in 2
         </DemoCheckbox>
-        <DemoCheckbox value="3" isReadOnly={false}>
+        <DemoCheckbox value="3" readOnly={false}>
           ReadOnly Opt-in 3
         </DemoCheckbox>
       </Checkbox.Group>

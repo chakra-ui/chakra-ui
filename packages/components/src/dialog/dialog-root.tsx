@@ -107,7 +107,7 @@ export const DialogRoot: React.FC<DialogRootProps> = (props) => {
     <DialogContextProvider value={context}>
       <DialogStylesProvider value={styles}>
         <AnimatePresence onExitComplete={onCloseComplete}>
-          {context.isOpen && <Portal {...portalProps}>{children}</Portal>}
+          {context.open && <Portal {...portalProps}>{children}</Portal>}
         </AnimatePresence>
       </DialogStylesProvider>
     </DialogContextProvider>

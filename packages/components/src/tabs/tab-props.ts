@@ -2,12 +2,12 @@ import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseTabsProps } from "./use-tabs"
 
 export const tabsProps = createProps<UseTabsProps>()([
-  "defaultIndex",
+  "defaultValue",
   "direction",
   "id",
-  "index",
-  "isLazy",
-  "isManual",
+  "value",
+  "lazyMount",
+  "activationMode",
   "lazyBehavior",
   "onChange",
   "orientation",

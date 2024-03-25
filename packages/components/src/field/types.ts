@@ -8,7 +8,7 @@ export interface FieldOptions {
    *
    * @default false
    */
-  isRequired?: boolean
+  required?: boolean
   /**
    * If `true`, the form control will be disabled. This has 2 side effects:
    * - The `FormLabel` will have `data-disabled` attribute
@@ -16,7 +16,7 @@ export interface FieldOptions {
    *
    * @default false
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * If `true`, the form control will be invalid. This has 2 side effects:
    * - The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`
@@ -24,13 +24,13 @@ export interface FieldOptions {
    *
    * @default false
    */
-  isInvalid?: boolean
+  invalid?: boolean
   /**
    * If `true`, the form control will be readonly
    *
    * @default false
    */
-  isReadOnly?: boolean
+  readOnly?: boolean
 }
 
 export interface UseFieldProps<T extends HTMLElement = HTMLElement>

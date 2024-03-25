@@ -1,12 +1,12 @@
 import { useState } from "react"
 
-export function useInitialAnimationState(isChecked: boolean) {
-  const [previousIsChecked, setPreviousIsChecked] = useState(isChecked)
+export function useInitialAnimationState(checked: boolean) {
+  const [previousIsChecked, setPreviousIsChecked] = useState(checked)
   const [shouldAnimate, setShouldAnimate] = useState(false)
 
-  if (isChecked !== previousIsChecked) {
+  if (checked !== previousIsChecked) {
     setShouldAnimate(true)
-    setPreviousIsChecked(isChecked)
+    setPreviousIsChecked(checked)
   }
 
   return shouldAnimate

@@ -27,15 +27,15 @@ const DemoSwitch = (props: Switch.RootProps) => {
 export const Base = () => <DemoSwitch colorScheme="green" />
 
 export const Disabled = () => (
-  <DemoSwitch isDisabled size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch disabled size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Readonly = () => (
-  <DemoSwitch isReadOnly size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch readOnly size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Invalid = () => (
-  <DemoSwitch isInvalid size="md" colorScheme="blue" margin="20px" />
+  <DemoSwitch invalid size="md" colorScheme="blue" margin="20px" />
 )
 
 export const Usage = () => (
@@ -64,7 +64,7 @@ export const Controlled = () => {
     <>
       {checked ? "Checked" : "Unchecked"}
       <DemoSwitch
-        isChecked={checked}
+        checked={checked}
         colorScheme="blue"
         onChange={(e) => setChecked(e.target.checked)}
       />
@@ -108,7 +108,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInInvalid" isInvalid mt={4}>
+      <Field.Root id="optInInvalid" invalid mt={4}>
         <Field.Label>Invalid Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Invalid Opt-in 1</DemoSwitch>
@@ -117,7 +117,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInDisabled" isDisabled mt={4}>
+      <Field.Root id="optInDisabled" disabled mt={4}>
         <Field.Label>Disabled Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Disabled Opt-in 1</DemoSwitch>
@@ -126,7 +126,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInReadonly" isReadOnly mt={4}>
+      <Field.Root id="optInReadonly" readOnly mt={4}>
         <Field.Label>Readonly Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Readonly Opt-in 1</DemoSwitch>
@@ -135,7 +135,7 @@ export const WithFormControl = () => {
         </Stack>
       </Field.Root>
 
-      <Field.Root id="optInRequired" isRequired mt={4}>
+      <Field.Root id="optInRequired" required mt={4}>
         <Field.Label>Required Opt-in Example</Field.Label>
         <Stack spacing={2}>
           <DemoSwitch value="1">Required Opt-in 1</DemoSwitch>

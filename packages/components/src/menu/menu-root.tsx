@@ -2,18 +2,14 @@ import { omitThemingProps, ThemingProps } from "@chakra-ui/styled-system"
 import { runIfFn } from "@chakra-ui/utils/run-if-fn"
 import { useMemo } from "react"
 import { useMultiStyleConfig, useTheme } from "../system"
-import {
-  MenuDescendantsProvider,
-  MenuProvider,
-  MenuStylesProvider,
-} from "./menu-context"
+import { MenuProvider, MenuStylesProvider } from "./menu-context"
 import { useMenu, UseMenuProps } from "./use-menu"
 
 type MaybeRenderProp<P> = React.ReactNode | ((props: P) => React.ReactNode)
 
 export interface MenuRootProps extends UseMenuProps, ThemingProps<"Menu"> {
   children: MaybeRenderProp<{
-    isOpen: boolean
+    open: boolean
     onClose: () => void
     forceUpdate: (() => void) | undefined
   }>
@@ -31,19 +27,17 @@ export const MenuRoot: React.FC<MenuRootProps> = (props) => {
   const styles = useMultiStyleConfig("Menu", props)
   const ownProps = omitThemingProps(props)
   const { direction } = useTheme()
-  const { descendants, ...ctx } = useMenu({ ...ownProps, direction })
+  const ctx = useMenu({ ...ownProps, direction })
   const context = useMemo(() => ctx, [ctx])
 
-  const { isOpen, onClose, forceUpdate } = context
+  const { open, onClose, forceUpdate } = context
 
   return (
-    <MenuDescendantsProvider value={descendants}>
-      <MenuProvider value={context}>
-        <MenuStylesProvider value={styles}>
-          {runIfFn(children, { isOpen, onClose, forceUpdate })}
-        </MenuStylesProvider>
-      </MenuProvider>
-    </MenuDescendantsProvider>
+    <MenuProvider value={context}>
+      <MenuStylesProvider value={styles}>
+        {runIfFn(children, { open, onClose, forceUpdate })}
+      </MenuStylesProvider>
+    </MenuProvider>
   )
 }
 

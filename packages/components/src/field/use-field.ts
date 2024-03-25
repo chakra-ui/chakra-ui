@@ -12,10 +12,7 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
     disabled,
     readOnly,
     required,
-    isRequired,
-    isInvalid,
-    isReadOnly,
-    isDisabled,
+    invalid,
     onFocus,
     onBlur,
     "aria-describedby": ariaDescribedby,
@@ -25,7 +22,7 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
   const labelIds: string[] = ariaDescribedby ? [ariaDescribedby] : []
 
   // Error message must be described first in all scenarios.
-  if (field?.hasFeedbackText && field?.isInvalid) {
+  if (field?.hasFeedbackText && field?.invalid) {
     labelIds.push(field.feedbackId)
   }
 
@@ -36,14 +33,14 @@ export function useField<T extends HTMLElement = HTMLInputElement>(
   return {
     ...restProps,
     "aria-describedby": labelIds.join(" ") || undefined,
-    "aria-invalid": ariaAttr(isInvalid),
-    "aria-required": ariaAttr(isRequired),
-    "aria-readonly": ariaAttr(isReadOnly),
+    "aria-invalid": ariaAttr(invalid),
+    "aria-required": ariaAttr(required),
+    "aria-readonly": ariaAttr(readOnly),
     id: id ?? field?.id,
-    disabled: disabled ?? isDisabled ?? field?.isDisabled,
-    readOnly: readOnly ?? isReadOnly ?? field?.isReadOnly,
-    required: required ?? isRequired ?? field?.isRequired,
-    invalid: isInvalid ?? field?.isInvalid,
+    disabled: disabled ?? field?.disabled,
+    readOnly: readOnly ?? field?.readOnly,
+    required: required ?? field?.required,
+    invalid: invalid ?? field?.invalid,
     onFocus: callAllHandlers(field?.onFocus, onFocus),
     onBlur: callAllHandlers(field?.onBlur, onBlur),
   }

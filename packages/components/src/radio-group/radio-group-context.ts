@@ -6,7 +6,7 @@ import { UseRadioGroupReturn } from "./use-radio-group"
 export interface RadioGroupContext
   extends Pick<
       UseRadioGroupReturn,
-      "onChange" | "value" | "name" | "isDisabled" | "isFocusable"
+      "onChange" | "value" | "name" | "disabled" | "focusable"
     >,
     Omit<ThemingProps<"Radio">, "orientation"> {}
 

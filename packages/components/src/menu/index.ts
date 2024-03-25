@@ -33,16 +33,6 @@ export type { MenuPositionerProps } from "./menu-positioner"
 export * as Menu from "./namespace"
 
 export {
-  MenuDescendantsProvider,
-  MenuProvider,
-  useMenuContext,
-  useMenuDescendant,
-  useMenuDescendants,
-  useMenuDescendantsContext,
-  useMenuStyles,
-} from "./menu-context"
-
-export {
   useMenu,
   useMenuItem,
   useMenuContent,

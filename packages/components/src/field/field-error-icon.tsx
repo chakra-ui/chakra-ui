@@ -14,7 +14,7 @@ export const FieldErrorIcon = forwardRef<FieldErrorIconProps, "svg">(
     const styles = useFieldErrorStyles()
     const field = useFieldContext()
 
-    if (!field?.isInvalid) return null
+    if (!field?.invalid) return null
 
     const _className = cx("chakra-form__error-icon", props.className)
 

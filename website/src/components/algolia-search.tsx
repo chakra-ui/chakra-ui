@@ -99,7 +99,7 @@ export const SearchButton = React.forwardRef(function SearchButton(
 
 function AlgoliaSearch() {
   const router = useRouter()
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [open, setIsOpen] = React.useState(false)
   const searchButtonRef = React.useRef()
   const [initialQuery, setInitialQuery] = React.useState(null)
 
@@ -120,7 +120,7 @@ function AlgoliaSearch() {
   )
 
   useDocSearchKeyboardEvents({
-    isOpen,
+    open,
     onOpen,
     onClose,
     onInput,
@@ -138,7 +138,7 @@ function AlgoliaSearch() {
       </Head>
       <SearchStyle />
       <SearchButton onClick={onOpen} ref={searchButtonRef} />
-      {isOpen && (
+      {open && (
         <Portal>
           <DocSearchModal
             placeholder='Search the docs'

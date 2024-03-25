@@ -2,18 +2,20 @@ import { createProps, createSplitProps } from "@chakra-ui/utils"
 import { UseAccordionItemProps, UseAccordionProps } from "./use-accordion"
 
 const accordionItemProps = createProps<UseAccordionItemProps>()([
-  "isDisabled",
+  "disabled",
   "id",
-  "isFocusable",
+  "focusable",
+  "value",
 ])
 
 export const splitAccordionItemProps =
   createSplitProps<UseAccordionItemProps>(accordionItemProps)
 
 const accordionProps = createProps<UseAccordionProps>()([
+  "id",
   "multiple",
-  "defaultIndex",
-  "index",
+  "defaultValue",
+  "value",
   "onChange",
   "collapsible",
 ])

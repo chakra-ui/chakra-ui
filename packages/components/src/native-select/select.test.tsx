@@ -43,8 +43,8 @@ test("renders an icon by default", () => {
   expect(icon).toHaveClass("chakra-select__icon")
 })
 
-test("renders in disabled state if isDisabled is true", () => {
-  const { container } = render(<DemoSelect isDisabled />)
+test("renders in disabled state if disabled is true", () => {
+  const { container } = render(<DemoSelect disabled />)
 
   const select = container.querySelector("select")
   const iconWrapper = container.querySelector(".chakra-select__icon-wrapper")
@@ -53,8 +53,8 @@ test("renders in disabled state if isDisabled is true", () => {
   expect(iconWrapper).toHaveAttribute("data-disabled", "")
 })
 
-test("doesn't render in disabled state if isDisabled is false", () => {
-  const { container } = render(<DemoSelect isDisabled={false} />)
+test("doesn't render in disabled state if disabled is false", () => {
+  const { container } = render(<DemoSelect disabled={false} />)
 
   const select = container.querySelector("select")
   const iconWrapper = container.querySelector(".chakra-select__icon-wrapper")
@@ -63,9 +63,9 @@ test("doesn't render in disabled state if isDisabled is false", () => {
   expect(iconWrapper).not.toHaveAttribute("data-disabled")
 })
 
-test("renders in disabled state if wrapped by FormControl with isDisabled=true", () => {
+test("renders in disabled state if wrapped by FormControl with disabled=true", () => {
   const { container } = render(
-    <Field.Root isDisabled>
+    <Field.Root disabled>
       <DemoSelect />,
     </Field.Root>,
   )

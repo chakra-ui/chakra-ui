@@ -1,22 +1,22 @@
-import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import { testA11y, render, screen, fireEvent } from "@chakra-ui/test-utils"
 import { Tabs } from "."
 
 test("should no accessibility issues", async () => {
   await testA11y(
-    <Tabs.Root>
+    <Tabs.Root defaultValue="1">
       <Tabs.List>
-        <Tabs.Trigger>Tab 1</Tabs.Trigger>
-        <Tabs.Trigger>Tab 2</Tabs.Trigger>
-        <Tabs.Trigger>Tab 3</Tabs.Trigger>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="3">Tab 3</Tabs.Trigger>
       </Tabs.List>
       <Tabs.ContentGroup>
-        <Tabs.Content>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="3">
           <p>Panel 3</p>
         </Tabs.Content>
       </Tabs.ContentGroup>
@@ -26,20 +26,20 @@ test("should no accessibility issues", async () => {
 
 test("selects the correct tab with keyboard navigation", async () => {
   const { user } = render(
-    <Tabs.Root>
+    <Tabs.Root defaultValue="1">
       <Tabs.List>
-        <Tabs.Trigger>Tab 1</Tabs.Trigger>
-        <Tabs.Trigger>Tab 2</Tabs.Trigger>
-        <Tabs.Trigger>Tab 3</Tabs.Trigger>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="3">Tab 3</Tabs.Trigger>
       </Tabs.List>
       <Tabs.ContentGroup>
-        <Tabs.Content>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="3">
           <p>Panel 3</p>
         </Tabs.Content>
       </Tabs.ContentGroup>
@@ -92,20 +92,20 @@ test("selects the correct tab with keyboard navigation", async () => {
 
 test("focuses the correct tab with manual keyboard navigation", async () => {
   const { user } = render(
-    <Tabs.Root isManual>
+    <Tabs.Root defaultValue="1" activationMode="manual">
       <Tabs.List>
-        <Tabs.Trigger>Tab 1</Tabs.Trigger>
-        <Tabs.Trigger>Tab 2</Tabs.Trigger>
-        <Tabs.Trigger>Tab 3</Tabs.Trigger>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="3">Tab 3</Tabs.Trigger>
       </Tabs.List>
       <Tabs.ContentGroup>
-        <Tabs.Content>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="3">
           <p>Panel 3</p>
         </Tabs.Content>
       </Tabs.ContentGroup>
@@ -134,18 +134,18 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
   expect(panel2).not.toBeVisible()
 })
 
-test("renders only the currently active tab panel if isLazy", async () => {
+test("renders only the currently active tab panel if lazyMount", async () => {
   const { user } = render(
-    <Tabs.Root isLazy>
+    <Tabs.Root defaultValue="1" lazyMount>
       <Tabs.List>
-        <Tabs.Trigger>Tab 1</Tabs.Trigger>
-        <Tabs.Trigger>Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
       </Tabs.List>
       <Tabs.ContentGroup>
-        <Tabs.Content>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
         </Tabs.Content>
       </Tabs.ContentGroup>
@@ -161,18 +161,18 @@ test("renders only the currently active tab panel if isLazy", async () => {
   expect(screen.getByText("Panel 2")).toBeInTheDocument()
 })
 
-test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", async () => {
+test("renders the currently active tab panel and previously-selected tabs if lazyMount and lazy behavior is keepMounted", async () => {
   const { user } = render(
-    <Tabs.Root isLazy lazyBehavior="keepMounted">
+    <Tabs.Root defaultValue="1" lazyMount lazyBehavior="keepMounted">
       <Tabs.List>
-        <Tabs.Trigger>Tab 1</Tabs.Trigger>
-        <Tabs.Trigger>Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
       </Tabs.List>
       <Tabs.ContentGroup>
-        <Tabs.Content>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
         </Tabs.Content>
-        <Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
         </Tabs.Content>
       </Tabs.ContentGroup>

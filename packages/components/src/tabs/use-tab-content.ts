@@ -2,25 +2,31 @@ import { lazyDisclosure } from "@chakra-ui/utils/lazy"
 import { useRef } from "react"
 import { useTabContentContext, useTabsContext } from "./tabs-context"
 
+/**
+ * Tabs hook for managing the visible/hidden states
+ * of the tab panel.
+ *
+ * @param props props object for the tab panel
+ */
 export function useTabContent(props: Record<string, any>) {
-  const { children, ...htmlProps } = props
-  const { isLazy, lazyBehavior } = useTabsContext()
+  const { children, value, ...htmlProps } = props
+  const { lazyMount, lazyBehavior } = useTabsContext()
   const { isSelected, id, tabId } = useTabContentContext()
 
-  const wasEverSelected = useRef(false)
-
+  const hasBeenSelected = useRef(false)
   if (isSelected) {
-    wasEverSelected.current = true
+    hasBeenSelected.current = true
   }
 
   const shouldRenderChildren = lazyDisclosure({
-    wasSelected: wasEverSelected.current,
+    wasSelected: hasBeenSelected.current,
     isSelected,
-    enabled: isLazy,
+    enabled: lazyMount,
     mode: lazyBehavior,
   })
 
   return {
+    // Puts the tabpanel in the page `Tab` sequence.
     tabIndex: 0,
     ...htmlProps,
     children: shouldRenderChildren ? children : null,

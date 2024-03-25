@@ -6,7 +6,7 @@ const focusLockProps = createProps<FocusLockProps>()([
   "finalFocusRef",
   "contentRef",
   "restoreFocus",
-  "isDisabled",
+  "disabled",
   "autoFocus",
   "persistentFocus",
   "lockFocusAcrossFrames",

@@ -1,20 +1,21 @@
-import { ThemingProps, omitThemingProps } from "@chakra-ui/styled-system"
-import { cx } from "@chakra-ui/utils/cx"
+import {
+  SystemStyleObject,
+  ThemingProps,
+  omitThemingProps,
+} from "@chakra-ui/styled-system"
 import {
   HTMLChakraProps,
   chakra,
   forwardRef,
   useMultiStyleConfig,
 } from "../system"
-import { splitTabsProps } from "./tab-props"
-import {
-  TabsContextProvider,
-  TabsDescendantsProvider,
-  TabsStylesProvider,
-} from "./tabs-context"
+import { cx } from "@chakra-ui/utils/cx"
+import { useMemo } from "react"
 import { UseTabsProps, useTabs } from "./use-tabs"
+import { useMergeRefs } from "@chakra-ui/hooks/use-merge-refs"
+import { TabsProvider, TabsStylesProvider } from "./tabs-context"
 
-interface TabsOptions {
+interface TabsRootOptions {
   /**
    * If `true`, tabs will stretch to width of the tablist.
    * @default false
@@ -29,8 +30,8 @@ interface TabsOptions {
 export interface TabsRootProps
   extends UseTabsProps,
     ThemingProps<"Tabs">,
-    Omit<HTMLChakraProps<"div">, "onChange">,
-    TabsOptions {
+    Omit<HTMLChakraProps<"div">, "onChange" | "defaultValue">,
+    TabsRootOptions {
   children: React.ReactNode
 }
 
@@ -47,24 +48,27 @@ export const TabsRoot = forwardRef<TabsRootProps, "div">(
     const styles = useMultiStyleConfig("Tabs", props)
     const { children, className, ...rest } = omitThemingProps(props)
 
-    const [useTabsProps, rootProps] = splitTabsProps(rest)
-    const { descendants, ...context } = useTabs(useTabsProps)
+    const ctx = useTabs(rest)
+    const context = useMemo(() => ctx, [ctx])
+
+    const tabsStyles: SystemStyleObject = {
+      position: "relative",
+      ...styles.root,
+    }
 
     return (
-      <TabsDescendantsProvider value={descendants}>
-        <TabsContextProvider value={context}>
-          <TabsStylesProvider value={styles}>
-            <chakra.div
-              className={cx("chakra-tabs", className)}
-              ref={ref}
-              {...rootProps}
-              __css={styles.root}
-            >
-              {children}
-            </chakra.div>
-          </TabsStylesProvider>
-        </TabsContextProvider>
-      </TabsDescendantsProvider>
+      <TabsProvider value={context}>
+        <TabsStylesProvider value={styles}>
+          <chakra.div
+            className={cx("chakra-tabs", className)}
+            ref={useMergeRefs(ref, context.rootRef)}
+            {...rest}
+            __css={tabsStyles}
+          >
+            {children}
+          </chakra.div>
+        </TabsStylesProvider>
+      </TabsProvider>
     )
   },
 )
