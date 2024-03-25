@@ -2,7 +2,6 @@ import alias, { Alias } from "@rollup/plugin-alias"
 import { nodeResolve } from "@rollup/plugin-node-resolve"
 import replace from "@rollup/plugin-replace"
 import glob from "fast-glob"
-import { Project } from "find-packages"
 import { resolve } from "node:path"
 import { Plugin, RollupOptions } from "rollup"
 import banner from "rollup-plugin-banner2"
@@ -14,17 +13,21 @@ const useClientFileExclude = ["index"].reduce<string[]>((acc, name) => {
 }, [])
 
 const useClientDirInclude = [
-  "packages/hooks",
-  "packages/components",
-  "packages/system",
-  "packages/color-mode",
+  "packages/hooks/src",
+  "packages/react/src/components",
 ]
 
-export async function getConfig(
-  project: Project,
-  aliases: Alias[],
-): Promise<RollupOptions> {
-  const { manifest, dir } = project
+interface Options {
+  dir: string
+  aliases: Alias[]
+}
+
+export async function getConfig(options: Options): Promise<RollupOptions> {
+  const { dir, aliases } = options
+
+  const packageJson = await import(resolve(dir, "package.json"))
+
+  const isCli = packageJson.bin !== undefined
 
   const plugins: Plugin[] = [
     nodeResolve({ extensions: [".ts", ".tsx", ".js", ".jsx"] }),
@@ -32,18 +35,18 @@ export async function getConfig(
     esbuild({
       sourceMap: true,
       tsconfig: resolve(dir, "tsconfig.json"),
-      platform: manifest.bin ? "node" : "browser",
+      platform: isCli ? "node" : "browser",
     }),
     replace({ preventAssignment: true }),
-    banner((chunk) => {
-      const skip =
-        useClientFileExclude.includes(chunk.fileName) ||
-        !useClientDirInclude.includes(dir)
+    // banner((chunk) => {
+    //   const skip =
+    //     useClientFileExclude.includes(chunk.fileName) ||
+    //     !useClientDirInclude.includes(dir)
 
-      if (skip) return
+    //   if (skip) return
 
-      return "'use client';\n"
-    }),
+    //   return "'use client';\n"
+    // }),
     {
       name: "@rollup-plugin/remove-empty-chunks",
       generateBundle(_, bundle) {
@@ -57,24 +60,31 @@ export async function getConfig(
   ]
 
   const deps = [
-    ...Object.keys(manifest.dependencies ?? {}),
-    ...Object.keys(manifest.peerDependencies ?? {}),
-    "react/jsx-runtime",
-    "next/image",
+    ...Object.keys(packageJson.dependencies ?? {}),
+    ...Object.keys(packageJson.peerDependencies ?? {}),
   ]
 
   const external = new RegExp(`^(${deps.join("|")})`)
 
-  const entries = await glob("src/**/*.{ts,tsx}", {
-    cwd: project.dir,
-    absolute: true,
-    ignore: [
-      "**/*.d.ts",
-      "**/*.test.{ts,tsx}",
-      "**/*.stories.tsx",
-      "**/*.fixture.{ts,tsx}",
-    ],
-  })
+  const entries = await glob("src/**/*.{ts,tsx}")
+
+  const outputs: RollupOptions["output"] = [
+    {
+      format: "es",
+      entryFileNames: "[name].mjs",
+      dir: resolve(dir, "dist/esm"),
+      preserveModules: true,
+    },
+  ]
+
+  if (!isCli) {
+    outputs.push({
+      format: "cjs",
+      entryFileNames: "[name].cjs",
+      dir: resolve(dir, "dist/cjs"),
+      preserveModules: true,
+    })
+  }
 
   return {
     input: entries,
@@ -82,20 +92,7 @@ export async function getConfig(
       if (log.code === "EMPTY_BUNDLE") return
       return handler(level, log)
     },
-    output: [
-      {
-        format: "es",
-        entryFileNames: "[name].mjs",
-        dir: resolve(dir, "dist/esm"),
-        preserveModules: true,
-      },
-      {
-        format: "cjs",
-        entryFileNames: "[name].cjs",
-        dir: resolve(dir, "dist/cjs"),
-        preserveModules: true,
-      },
-    ],
+    output: outputs,
     external,
     plugins,
   }

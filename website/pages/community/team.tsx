@@ -17,11 +17,13 @@ import NextImage from 'next/image'
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from 'react-icons/io'
 import { Contributor, Member as IMember } from 'src/types/github'
 
-function SocialLink(props: {
+type Props = {
   icon: React.ElementType
   href: string
   label: string
-}) {
+}
+
+function SocialLink(props: Props) {
   const { icon, href, label } = props
   return (
     <Link
@@ -30,7 +32,7 @@ function SocialLink(props: {
       justifyContent='center'
       rounded='full'
       href={href}
-      isExternal
+      external
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       <Icon as={icon} fontSize='xl' color='accent' />
@@ -49,14 +51,14 @@ function Member(props: { member: IMember }) {
   } = props.member
 
   return (
-    <Stack direction='row' spacing={6} align='flex-start'>
+    <Stack direction='row' gap={6} align='flex-start'>
       <Circle overflow='hidden' bg='gray.50'>
         <NextImage src={avatarUrl} width='96' height='96' alt={name} />
       </Circle>
-      <Stack spacing={3} maxW='320px'>
+      <Stack gap={3} maxW='320px'>
         <Text fontWeight='bold'>{name}</Text>
 
-        <Stack direction='row' align='center' spacing={2}>
+        <Stack direction='row' align='center' gap={2}>
           <SocialLink
             href={url}
             icon={IoLogoGithub}
@@ -110,39 +112,39 @@ function Team({ members, contributors }: TeamProps) {
         Chakra UI. Without them, this project would not be possible.
       </Text>
 
-      <Stack spacing={8} mt='20'>
+      <Stack gap={8} mt='20'>
         <Heading size='lg'>Core Team 🤝</Heading>
-        <SimpleGrid columns={[1, 1, 2]} spacing='40px' pt='3'>
+        <SimpleGrid columns={[1, 1, 2]} gap='40px' pt='3'>
           {members.map((member) => (
             <Member key={member.login} member={member} />
           ))}
         </SimpleGrid>
       </Stack>
 
-      <Stack py='12' spacing={8}>
+      <Stack py='12' gap={8}>
         <Heading size='lg'>Our Sponsors 💰</Heading>
 
         <Box>
-          <Text textStyle='caps' mb='4' textTransform='uppercase' opacity='0.7'>
+          <Text mb='4' textTransform='uppercase' opacity='0.7'>
             Organizations
           </Text>
           <Wrap>
             {new Array(9).fill('').map((_, idx) => (
-              <WrapItem
-                as='a'
-                key={idx}
-                href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
-              >
-                <img
-                  alt='Open collective Organizations'
-                  src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
-                />
+              <WrapItem key={idx} asChild>
+                <a
+                  href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
+                >
+                  <img
+                    alt='Open collective Organizations'
+                    src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
+                  />
+                </a>
               </WrapItem>
             ))}
           </Wrap>
         </Box>
         <Box>
-          <Text textStyle='caps' mb='4' textTransform='uppercase' opacity='0.7'>
+          <Text mb='4' textTransform='uppercase' opacity='0.7'>
             Individuals
           </Text>
           <a href='https://opencollective.com/chakra-ui'>
@@ -154,9 +156,9 @@ function Team({ members, contributors }: TeamProps) {
         </Box>
       </Stack>
 
-      <Stack spacing={8} mt={{ base: '10', md: '24' }}>
+      <Stack gap={8} mt={{ base: '10', md: '24' }}>
         <Heading size='lg'>Project Contributors 💖</Heading>
-        <Wrap spacing='3'>
+        <Wrap gap='3'>
           {contributorsWithoutTeam.map((contributor) => (
             <Circle overflow='hidden' key={contributor.login}>
               <NextImage

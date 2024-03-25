@@ -1,6 +1,6 @@
 import {
   isContentEditableElement,
-  disabledElement,
+  isDisabledElement,
   isHTMLElement,
   isHiddenElement,
 } from "./is-element"
@@ -19,11 +19,11 @@ export function hasFocusWithin(element: HTMLElement) {
   return element.contains(document.activeElement)
 }
 
-export function focusable(element: HTMLElement) {
+export function isFocusable(element: HTMLElement) {
   if (
     !isHTMLElement(element) ||
     isHiddenElement(element) ||
-    disabledElement(element)
+    isDisabledElement(element)
   ) {
     return false
   }
@@ -51,7 +51,7 @@ export function isTabbable(element?: HTMLElement | null) {
   if (!element) return false
   return (
     isHTMLElement(element) &&
-    focusable(element) &&
+    isFocusable(element) &&
     !hasNegativeTabIndex(element)
   )
 }

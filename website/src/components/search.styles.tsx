@@ -1,9 +1,8 @@
-import { Theme } from '@chakra-ui/react'
 import { Global, css } from '@emotion/react'
 
 const SearchStyle = () => (
   <Global
-    styles={(theme: Theme) => css`
+    styles={(theme: any) => css`
       .DocSearch--active {
         overflow: hidden !important;
       }

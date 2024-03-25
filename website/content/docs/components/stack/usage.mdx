@@ -30,7 +30,7 @@ To stack elements in horizontal or vertical direction only, use the `HStack` or
 `direction` prop.
 
 ```jsx
-<HStack spacing='24px'>
+<HStack gap='24px'>
   <Box w='40px' h='40px' bg='yellow.200'>
     1
   </Box>
@@ -49,7 +49,7 @@ You can pass responsive values to the `Stack` component to change stack
 direction and/or spacing between elements.
 
 ```jsx
-<Stack direction={['column', 'row']} spacing='24px'>
+<Stack direction={['column', 'row']} gap='24px'>
   <Box w='40px' h='40px' bg='yellow.200'>
     1
   </Box>
@@ -71,7 +71,7 @@ element.
 ```jsx
 <VStack
   divider={<StackDivider borderColor='gray.200' />}
-  spacing={4}
+  gap={4}
   align='stretch'
 >
   <Box h='40px' bg='yellow.200'>
@@ -105,7 +105,7 @@ function Feature({ title, desc, ...rest }) {
 
 function StackEx() {
   return (
-    <Stack spacing={8} direction='row'>
+    <Stack gap={8} direction='row'>
       <Feature
         title='Plan Money'
         desc='The future can be even brighter but a goal without a plan is just a wish'
@@ -139,7 +139,7 @@ function Feature({ title, desc, ...rest }) {
 
 function StackEx() {
   return (
-    <HStack spacing={8}>
+    <HStack gap={8}>
       <Feature
         title='Plan Money'
         desc='The future can be even brighter but a goal without a plan is just a wish'

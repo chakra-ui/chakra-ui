@@ -1,0 +1,152 @@
+---
+id: divider
+scope: theming
+---
+
+The `Divider` component is a single part component. All of the styling is
+applied directly to the `chakra.hr` element.
+
+> To learn more about styling single part components, visit the
+> [Component Style](/docs/styled-system/component-style#styling-single-part-components)
+> page
+
+## Theming properties
+
+The properties that affect the theming of the `Divider` component are:
+
+- `variant`: The visual variant of the divider. Defaults to `solid`.
+- `colorScheme`: The color scheme of the divider. No default value.
+- `size`: The size of the divider. No default value.
+
+## Theming utilities
+
+- `defineStyle`: a function used to create style objects.
+- `defineStyleConfig`: a function used to define the style configuration for a
+  single part component.
+
+```js
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+```
+
+## Customizing the default theme
+
+```js
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const thick = defineStyle({
+  borderWidth: '5px', // change the width of the border
+  borderStyle: 'solid', // change the style of the border
+  borderRadius: 10, // set border radius to 10
+})
+
+export const dividerTheme = defineStyleConfig({
+  variants: { thick },
+})
+```
+
+After customizing the divider theme, we can import it in our theme file and add
+it in the components property:
+
+```js
+import { extendTheme } from '@chakra-ui/react'
+import { dividerTheme } from './components/divider'
+
+export const theme = extendTheme({
+  components: { Divider: dividerTheme },
+})
+```
+
+> This is a crucial step to make sure that any changes that we make to the
+> divider theme are applied.
+
+## Adding a custom size
+
+Let's assume we want to include an extra large divider size. Here's how we can
+do that:
+
+```js
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const xl = defineStyle({
+    border: "10px solid",
+    borderRadius: 'lg',
+})
+
+export const dividerTheme = defineStyleConfig({
+    sizes: { xl },
+})
+
+// Now we can use the new `xl` size
+<Divider size="xl" />
+```
+
+Every time you're adding anything new to the theme, you'd need to run the cli
+command to get proper autocomplete in your IDE. You can learn more about the CLI
+tool [here](/docs/styled-system/cli).
+
+## Adding a custom variant
+
+Let's assume we want to include a custom branded variant. Here's how we can do
+that:
+
+```js
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
+
+const brandPrimary = defineStyle({
+    borderWidth: '3px',
+    borderStyle: 'dashed',
+    borderColor: 'orange.500',
+
+    // let's also provide dark mode alternatives
+    _dark: {
+        borderColor: 'orange.300',
+    }
+})
+
+export const dividerTheme = defineStyleConfig({
+    variants: { brandPrimary },
+})
+
+// Now we can use the new `brandPrimary` variant
+<Divider variant="brandPrimary" />
+```
+
+## Changing the default properties
+
+```js
+import { defineStyleConfig } from '@chakra-ui/react'
+
+export const dividerTheme = defineStyleConfig({
+    defaultProps: {
+        size: 'xl',
+        variant: 'thick',
+        colorScheme: 'brand',
+    },
+})
+
+// This saves you time, instead of manually setting the size,
+// variant and color scheme every time you use a divider:
+<Divider size="xl" variant="thick" colorPalette="brand" />
+```
+
+## Showcase
+
+import {
+  App,
+  Index,
+  DividerTheme,
+} from 'configs/sandpack-contents/component-theming/divider'
+
+<SandpackEmbed
+  files={{
+    '/theme/components/Divider.ts': DividerTheme,
+    '/App.tsx': App,
+    '/index.tsx': {
+      code: Index,
+      hidden: true,
+    },
+  }}
+  dependencies={{
+    'react-icons': '^4.4.0',
+  }}
+/>

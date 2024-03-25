@@ -1,15 +1,30 @@
-import { chakra } from '@chakra-ui/react'
+import * as ChakraHooks from '@chakra-ui/hooks'
 import * as Chakra from '@chakra-ui/react'
+import { chakra } from '@chakra-ui/react'
 import * as Formik from 'formik'
 import React from 'react'
 import FocusLock from 'react-focus-lock'
 import { AiOutlineUser } from 'react-icons/ai'
+import { BiChat, BiLike, BiShare } from 'react-icons/bi'
+import { BsThreeDotsVertical } from 'react-icons/bs'
 import { FaFacebook, FaTwitter } from 'react-icons/fa'
+import {
+  FiMinus,
+  FiPlus,
+  FiFigma,
+  FiMail,
+  FiArrowRight,
+  FiChevronDown,
+  FiChevronUp,
+  FiMenu,
+  FiExternalLink,
+} from 'react-icons/fi'
 import {
   MdArrowDropDown,
   MdBuild,
   MdCall,
   MdCheckCircle,
+  MdArrowForward,
   MdGraphicEq,
   MdGroupWork,
   MdPhone,
@@ -20,8 +35,6 @@ import Lorem from 'react-lorem-component'
 import * as Loaders from 'react-spinners'
 import * as ReactTable from 'react-table'
 import CircleIcon from '../../docs/icon'
-import { BiLike, BiChat, BiShare } from 'react-icons/bi'
-import { BsThreeDotsVertical } from 'react-icons/bs'
 
 const reactIcons = {
   MdSettings,
@@ -32,6 +45,7 @@ const reactIcons = {
   MdBuild,
   MdCall,
   MdPhone,
+  MdArrowForward,
   MdArrowDropDown,
   AiOutlineUser,
   FaFacebook,
@@ -40,6 +54,15 @@ const reactIcons = {
   BiLike,
   BiShare,
   BiChat,
+  FiMail,
+  FiMinus,
+  FiPlus,
+  FiFigma,
+  FiArrowRight,
+  FiChevronDown,
+  FiChevronUp,
+  FiMenu,
+  FiExternalLink,
 }
 
 const StarIcon = (props) => (
@@ -51,11 +74,12 @@ const StarIcon = (props) => (
 const ReactLiveScope = {
   React,
   ...React,
-  ...Chakra,
   ...Formik,
   ...ReactTable,
   ...Loaders,
   ...reactIcons,
+  ...ChakraHooks,
+  ...Chakra,
   StarIcon,
   FocusLock,
   Lorem,

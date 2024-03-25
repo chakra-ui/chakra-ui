@@ -21,7 +21,7 @@ import { Textarea } from '@chakra-ui/react'
 <Textarea placeholder='Here is a sample placeholder' />
 ```
 
-### Controlled Textarea
+### Controlling the textarea
 
 ```jsx
 function Example() {
@@ -45,7 +45,7 @@ function Example() {
 }
 ```
 
-### Resize behavior
+### Changing the resize behavior
 
 You can add `resize` prop to change the `Textarea` resize behavior.
 
@@ -56,7 +56,7 @@ function ResizeExample() {
   return (
     <>
       <RadioGroup defaultValue={resize} onChange={setResize} mb={6}>
-        <Stack direction='row' spacing={5}>
+        <Stack direction='row' gap={5}>
           <Radio value='horizontal'>Horizontal</Radio>
           <Radio value='vertical'>Vertical</Radio>
           <Radio value='none'>None</Radio>
@@ -73,14 +73,14 @@ function ResizeExample() {
 }
 ```
 
-### Disabled Textarea
+### Disabling the Textarea
 
 ```jsx
-<Textarea isDisabled placeholder='Here is a sample placeholder' />
+<Textarea disabled placeholder='Here is a sample placeholder' />
 ```
 
-### Invalid Textarea
+### Setting the validation state
 
 ```jsx
-<Textarea isInvalid placeholder='Here is a sample placeholder' />
+<Textarea invalid placeholder='Here is a sample placeholder' />
 ```

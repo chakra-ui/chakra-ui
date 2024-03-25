@@ -7,18 +7,15 @@ import {
 import { JoinCommunityCards } from 'components/community-card'
 import { FeaturesOverview } from 'components/features-overview'
 import { FrameworkLinks } from 'components/framework-link'
-import { Anchor } from 'components/mdx-components/anchor'
 import { InlineCode } from 'components/mdx-components/inline-code'
 import { LinkedHeading } from 'components/mdx-components/linked-heading'
 import { Pre } from 'components/mdx-components/pre'
-import { Table, TData, THead } from 'components/mdx-components/table'
+import { TData, THead, Table } from 'components/mdx-components/table'
 import { PackageManagers } from 'components/package-managers'
 import SandpackEmbed from 'components/sandpack-embed'
 import { TutorialCodeBlock } from 'components/tutorial/tutorial-code-block'
 import { TutorialFileAction } from 'components/tutorial/tutorial-file-action'
-import NextImage from 'next/image'
-import { FiFigma } from 'react-icons/fi'
-import PropsTable from '../props-table'
+import Image from 'next/image'
 import CarbonAd from './carbon-ad'
 import CodeBlock from './codeblock/codeblock'
 import ComponentLinks from './component-links'
@@ -27,9 +24,19 @@ import { VideoPlayer } from './video-player'
 
 const { Alert, AspectRatio, Box, chakra, Kbd, Link } = Chakra
 
+const MdxList = chakra('ul', {
+  base: {
+    mt: '0.5rem',
+    ml: '1.25rem',
+    'blockquote &': { mt: 0 },
+    '& > * + *': {
+      mt: '0.25rem',
+    },
+  },
+})
+
 export const MDXComponents = {
   ...Chakra,
-  FiFigma,
   Image: ({ ratio, border, src, ...props }: any) => (
     <AspectRatio
       my='5'
@@ -37,25 +44,19 @@ export const MDXComponents = {
       borderWidth={border ? '1px' : undefined}
       ratio={ratio}
     >
-      <NextImage
-        src={src}
-        alt=''
-        layout='fill'
-        objectFit='contain'
-        {...props}
-      />
+      <Image src={src} alt='' fill objectFit='contain' {...props} />
     </AspectRatio>
   ),
   LinkedImage: ({ href, ...props }) => (
-    <Link display='block' my='10' href={href} isExternal>
+    <Link display='block' my='10' href={href} external>
       <MDXComponents.Image {...props} />
     </Link>
   ),
-  h1: (props) => <chakra.h1 apply='mdx.h1' {...props} />,
-  h2: (props) => <LinkedHeading apply='mdx.h2' {...props} />,
-  h3: (props) => <LinkedHeading as='h3' apply='mdx.h3' {...props} />,
-  h4: (props) => <LinkedHeading as='h4' apply='mdx.h4' {...props} />,
-  hr: (props) => <chakra.hr apply='mdx.hr' {...props} />,
+  h1: (props) => <LinkedHeading as='h1' size='h1' {...props} />,
+  h2: (props) => <LinkedHeading as='h2' size='h2' {...props} />,
+  h3: (props) => <LinkedHeading as='h3' size='h3' {...props} />,
+  h4: (props) => <LinkedHeading as='h4' size='h4' {...props} />,
+  hr: (props) => <chakra.hr my='4rem' {...props} />,
   strong: (props) => <Box as='strong' fontWeight='semibold' {...props} />,
   code: InlineCode,
   pre: (props) => {
@@ -86,27 +87,41 @@ export const MDXComponents = {
   table: Table,
   th: THead,
   td: TData,
-  a: Anchor,
-  p: (props) => <chakra.p apply='mdx.p' {...props} />,
-  ul: (props) => <chakra.ul apply='mdx.ul' {...props} />,
-  ol: (props) => <chakra.ol apply='mdx.ul' {...props} />,
-  li: (props) => <chakra.li pb='4px' {...props} />,
+  a: (props) => <Link variant='underline' colorPalette='purple' {...props} />,
+  p: (props) => (
+    <chakra.p
+      css={{
+        mt: '1.25rem',
+        lineHeight: 1.7,
+        'blockquote &': { mt: 0 },
+      }}
+      {...props}
+    />
+  ),
+  ul: (props) => <MdxList {...props} />,
+  ol: (props) => <MdxList as='ol' {...props} />,
+  li: (props) => <chakra.li pb='4px' listStyleType='disc' {...props} />,
   blockquote: (props) => (
     <Alert.Root
+      as='blockquote'
       mt='4'
       role='none'
+      fontSize='md'
       status='warning'
-      variant='left-accent'
-      as='blockquote'
-      rounded='4px'
+      borderWidth='1px'
+      borderColor='orange.200'
+      variant='subtle'
+      rounded='lg'
       my='1.5rem'
+      px='1.25rem'
+      py='1rem'
       {...props}
     />
   ),
   'carbon-ad': CarbonAd,
   ComponentLinks,
   IconsList: null,
-  PropsTable,
+  PropsTable: () => null,
   FrameworkLinks,
   VideoPlayer,
   AspectRatio,

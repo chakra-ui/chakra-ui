@@ -1,8 +1,8 @@
 import { Flex, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
-import NextImage from 'next/image'
-import NextLink from 'next/link'
+import Image from 'next/image'
+import Link from 'next/link'
 
-type Props = {
+interface Props {
   url: string
   title: string
   slug: string
@@ -24,16 +24,22 @@ export function ComponentOverviewItem(props: Props) {
       _hover={{ shadow: 'md' }}
     >
       <Flex overflow='hidden' bg='gray.100'>
-        <NextImage src={imageUrl} width={400} height={300} objectFit='cover' />
+        <Image
+          alt=''
+          src={imageUrl}
+          width={400}
+          height={300}
+          objectFit='cover'
+        />
       </Flex>
 
-      <NextLink href={url} passHref>
-        <LinkOverlay>
+      <LinkOverlay asChild>
+        <Link href={url}>
           <Text fontSize='sm' fontWeight='semibold' px='4' py='3'>
             {title}
           </Text>
-        </LinkOverlay>
-      </NextLink>
+        </Link>
+      </LinkOverlay>
     </LinkBox>
   )
 }

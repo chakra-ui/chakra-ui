@@ -1,20 +1,20 @@
-import { PropsOf, chakra, useColorModeValue, Flex } from '@chakra-ui/react'
+import { chakra, Flex, FlexProps, HTMLChakraProps } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef, Ref, useEffect, useRef } from 'react'
 
 const StyledLink = forwardRef(function StyledLink(
-  props: PropsOf<typeof chakra.a> & {
+  props: HTMLChakraProps<'a'> & {
     isActive?: boolean
-    isExternal?: boolean
+    external?: boolean
   },
   ref: Ref<any>,
 ) {
-  const { isActive, isExternal = false, ...rest } = props
+  const { isActive, external = false, ...rest } = props
 
   return (
     <chakra.a
-      target={isExternal ? '_blank' : undefined}
+      target={external ? '_blank' : undefined}
       aria-current={isActive ? 'page' : undefined}
       width='100%'
       px='3'
@@ -25,21 +25,14 @@ const StyledLink = forwardRef(function StyledLink(
       fontWeight='500'
       color='fg'
       transition='all 0.2s'
-      _activeLink={{
-        bg: useColorModeValue('teal.50', 'rgba(48, 140, 122, 0.3)'),
-        color: 'accent-emphasis',
-        fontWeight: '600',
+      _currentPage={{
+        bg: { base: 'teal.100', _dark: 'rgba(48, 140, 122, 0.3)' },
+        color: 'teal.800',
       }}
       {...rest}
     />
   )
 })
-
-type SidebarLinkProps = PropsOf<typeof chakra.div> & {
-  href?: string
-  icon?: React.ReactElement
-  isExternal?: boolean
-}
 
 function checkHref(href: string, slug: string | string[]) {
   const _slug = Array.isArray(slug) ? slug : [slug]
@@ -48,10 +41,16 @@ function checkHref(href: string, slug: string | string[]) {
   return _slug.includes(pathSlug)
 }
 
+type SidebarLinkProps = FlexProps & {
+  href?: string
+  icon?: React.ReactElement
+  external?: boolean
+}
+
 const SidebarLink = ({
   href,
   children,
-  isExternal = false,
+  external = false,
   ...rest
 }: SidebarLinkProps) => {
   const router = useRouter()
@@ -67,11 +66,9 @@ const SidebarLink = ({
 
   return (
     <Flex align='center' userSelect='none' lineHeight='tall' {...rest}>
-      <NextLink href={href} passHref>
-        <StyledLink isActive={isActive} ref={link} isExternal={isExternal}>
-          {children}
-        </StyledLink>
-      </NextLink>
+      <StyledLink asChild isActive={isActive} ref={link} external={external}>
+        <NextLink href={href}>{children}</NextLink>
+      </StyledLink>
     </Flex>
   )
 }

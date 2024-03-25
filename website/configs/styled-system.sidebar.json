@@ -17,10 +17,6 @@
               "path": "/docs/styled-system/gradient"
             },
             {
-              "title": "Color Mode",
-              "path": "/docs/styled-system/color-mode"
-            },
-            {
               "title": "CSS Variables",
               "path": "/docs/styled-system/css-variables"
             },
@@ -49,8 +45,8 @@
               "path": "/docs/styled-system/text-and-layer-styles"
             },
             {
-              "title": "The `sx` Prop",
-              "path": "/docs/styled-system/the-sx-prop"
+              "title": "The `css` Prop",
+              "path": "/docs/styled-system/the-css-prop"
             },
             {
               "title": "RTL Support",

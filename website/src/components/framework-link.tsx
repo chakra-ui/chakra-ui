@@ -10,37 +10,45 @@ import {
   ViteSvg,
 } from './framework-svg'
 
-const FrameworkLink = (props) => {
+type FrameworkLinkProps = {
+  accentColor: string
+  href: string
+  name: string
+  children: React.ReactNode
+}
+
+const FrameworkLink = (props: FrameworkLinkProps) => {
   const { accentColor, href, children, name } = props
   return (
-    <Link passHref href={href}>
-      <ChakraLink
-        bg='white'
-        display='block'
-        shadow='md'
-        textDecoration='none'
-        borderRadius='xl'
-        overflow='hidden'
-        transform='auto'
-        transition='all 0.1s ease-in-out'
-        _hover={{ textDecoration: 'none', translateY: '-2px', shadow: 'md' }}
-      >
-        <Box pt='4'>
+    <ChakraLink
+      asChild
+      bg='white'
+      display='block'
+      shadow='md'
+      textDecoration='none'
+      borderRadius='xl'
+      overflow='hidden'
+      transform='auto'
+      transition='all 0.1s ease-in-out'
+      _hover={{ textDecoration: 'none', translateY: '-2px', shadow: 'md' }}
+    >
+      <Box pt='4' asChild>
+        <Link href={href}>
           {children}
           <Box bg={accentColor} mt='4' py='1' color='white'>
             <Text textAlign='center' fontSize='sm' fontWeight='bold'>
               {name}
             </Text>
           </Box>
-        </Box>
-      </ChakraLink>
-    </Link>
+        </Link>
+      </Box>
+    </ChakraLink>
   )
 }
 
 export const FrameworkLinks = () => {
   return (
-    <SimpleGrid mt='12' minChildWidth='160px' spacing='40px' fontSize='6xl'>
+    <SimpleGrid mt='12' minChildWidth='160px' gap='40px' fontSize='6xl'>
       <FrameworkLink
         href='/getting-started/nextjs-app-guide'
         accentColor='black'

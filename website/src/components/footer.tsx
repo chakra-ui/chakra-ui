@@ -21,7 +21,7 @@ type FooterLinkProps = {
 }
 
 const FooterLink = ({ icon, href, label }: FooterLinkProps) => (
-  <Link display='inline-block' href={href} aria-label={label} isExternal>
+  <Link display='inline-block' href={href} aria-label={label} external>
     <Icon as={icon} fontSize='xl' color='gray.400' />
   </Link>
 )
@@ -80,7 +80,7 @@ const NigeriaFlag = (props) => (
 )
 
 export const Footer = (props: StackProps) => (
-  <VStack as='footer' spacing={4} mt={12} textAlign='center' {...props}>
+  <VStack as='footer' gap={4} mt={12} textAlign='center' {...props}>
     <Text fontSize='sm'>
       <span>
         Proudly made in
@@ -88,7 +88,7 @@ export const Footer = (props: StackProps) => (
       </span>
       <span>by Segun Adebayo</span>
     </Text>
-    <Stack mt={4} direction='row' spacing='12px' justify='center'>
+    <Stack mt={4} direction='row' gap='12px' justify='center'>
       {links.map((link) => (
         <FooterLink key={link.href} {...link} />
       ))}

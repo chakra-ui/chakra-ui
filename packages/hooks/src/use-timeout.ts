@@ -9,7 +9,7 @@ import { useCallbackRef } from "./use-callback-ref"
  */
 export function useTimeout(
   callback: (...args: any[]) => void,
-  delay: number | null,
+  delay: number | null | undefined,
 ) {
   const fn = useCallbackRef(callback)
 

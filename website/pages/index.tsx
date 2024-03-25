@@ -1,17 +1,16 @@
 import {
   Box,
-  BoxProps,
   Button,
   Center,
   Circle,
-  Divider,
   Flex,
+  FlexProps,
   Grid,
   HStack,
   Heading,
   Icon,
-  LightMode,
   Link,
+  Separator,
   SimpleGrid,
   Span,
   Stack,
@@ -21,19 +20,20 @@ import {
   chakra,
 } from '@chakra-ui/react'
 import users from 'chakra-users'
-import ChakraNextImage from 'components/chakra-next-image'
 import { AdBanner } from 'components/chakra-pro/ad-banner'
 import { ChakraProAd } from 'components/chakra-pro/home-page-ad'
 import Container from 'components/container'
 import { DiscordStrip } from 'components/discord-strip'
 import { Footer } from 'components/footer'
 import Header from 'components/header'
+import { PageHeading } from 'components/heading'
 import SandpackEmbed from 'components/sandpack-embed'
 import SEO from 'components/seo'
 import ShowcaseSection from 'components/showcase/showcase-section'
 import TweetCard from 'components/tweet-card'
 import { App, Index } from 'configs/sandpack-contents/homepage/files'
 import tweets from 'configs/tweets.json'
+import Image from 'next/image'
 import NextLink from 'next/link'
 import * as React from 'react'
 import { AiFillThunderbolt } from 'react-icons/ai'
@@ -57,7 +57,7 @@ const Feature = ({ title, icon, children, ...props }) => {
     <Box
       bg='white'
       rounded='12px'
-      shadow='base'
+      shadow='xs'
       p='40px'
       _dark={{ bg: 'gray.700' }}
       {...props}
@@ -91,7 +91,7 @@ interface Tweet {
   url: string
 }
 
-interface StatBoxProps extends BoxProps {
+interface StatBoxProps extends FlexProps {
   icon?: React.ElementType
   title: string
   description: string
@@ -181,34 +181,32 @@ const HomePage = ({
 
               <Stack
                 mt='10'
-                spacing='4'
+                gap='4'
                 justify='center'
                 direction={{ base: 'column', sm: 'row' }}
               >
-                <NextLink href='/getting-started' passHref>
-                  <Button
-                    h='4rem'
-                    px='40px'
-                    fontSize='1.2rem'
-                    as='a'
-                    size='lg'
-                    colorScheme='teal'
-                  >
-                    Get Started
-                    <FaArrowRight fontSize='0.8em' />
-                  </Button>
-                </NextLink>
                 <Button
-                  as='a'
-                  size='lg'
+                  asChild
                   h='4rem'
                   px='40px'
                   fontSize='1.2rem'
-                  href='https://github.com/chakra-ui/chakra-ui/'
-                  target='__blank'
+                  size='lg'
+                  colorPalette='teal'
+                  variant='solid'
                 >
-                  <DiGithubBadge size='1.5em' />
-                  GitHub
+                  <NextLink href='/getting-started'>
+                    Get Started
+                    <FaArrowRight fontSize='0.8em' />
+                  </NextLink>
+                </Button>
+                <Button asChild size='lg' h='4rem' px='40px' fontSize='1.2rem'>
+                  <a
+                    href='https://github.com/chakra-ui/chakra-ui/'
+                    target='__blank'
+                  >
+                    <DiGithubBadge size='1.5em' />
+                    GitHub
+                  </a>
                 </Button>
               </Stack>
             </Box>
@@ -219,11 +217,11 @@ const HomePage = ({
                 mt='70px'
                 rounded='xl'
                 bg='green.50'
-                shadow='base'
+                shadow='xs'
                 px='6'
                 py='4'
               >
-                <ChakraNextImage
+                <Image
                   height={55}
                   width={240}
                   src='/git-nation-badge.png'
@@ -234,15 +232,14 @@ const HomePage = ({
           </Container>
         </Box>
 
-        <Divider />
+        <Separator />
 
         <Box as='section' pt='48px' pb='32px'>
           <Container textAlign='center'>
             <chakra.p
               fontWeight='500'
-              textStyle='caps'
-              color='teal.600'
-              _dark={{ color: 'teal.300' }}
+              textTransform='uppercase'
+              color={{ base: 'teal.600', _dark: 'teal.300' }}
               mb='48px'
             >
               Supported and Backed by
@@ -252,20 +249,19 @@ const HomePage = ({
               mx='auto'
               justify='center'
               align='center'
-              spacing='24px'
+              gap='24px'
             >
               {users
                 .filter((user) => user.image.includes('.'))
                 .slice(0, 7)
                 .map((user) => (
                   <WrapItem key={user.name} bg='white' rounded='md'>
-                    <Link href={user.url}>
-                      <ChakraNextImage
+                    <Link p='5' href={user.url}>
+                      <Image
                         src={user.image}
                         alt={user.name}
                         width={120}
                         height={32}
-                        p='5'
                         loading='lazy'
                       />
                     </Link>
@@ -273,12 +269,9 @@ const HomePage = ({
                 ))}
               <WrapItem>
                 <Button
-                  as='a'
+                  asChild
                   w='40'
                   h='16'
-                  href={`${openCollectiveLink}/contribute`}
-                  rel='noopener'
-                  target='_blank'
                   border='1px dashed'
                   borderColor='teal.200'
                   bg='teal.50'
@@ -290,10 +283,16 @@ const HomePage = ({
                   }}
                   rounded='md'
                 >
-                  <Box as='span' mr='1' role='img'>
-                    💖
-                  </Box>{' '}
-                  Your company
+                  <a
+                    href={`${openCollectiveLink}/contribute`}
+                    rel='noopener'
+                    target='_blank'
+                  >
+                    <Box as='span' mr='1' role='img'>
+                      💖
+                    </Box>{' '}
+                    Your company
+                  </a>
                 </Button>
               </WrapItem>
             </Wrap>
@@ -303,7 +302,7 @@ const HomePage = ({
         <Box as='section'>
           <Container py='80px'>
             <Box mb='3em' textAlign='center'>
-              <chakra.h2 textStyle='heading'>Less code. More speed</chakra.h2>
+              <PageHeading>Less code. More speed</PageHeading>
               <Text opacity={0.7} fontSize='lg' mt='3' mx='auto' maxW='600px'>
                 Spend less time writing UI code and more time building a great
                 experience for your customers.
@@ -333,9 +332,9 @@ const HomePage = ({
         <Box as='section' pt='240px' bg='gray.50' _dark={{ bg: 'gray.900' }}>
           <Container py='120px' maxW='1280px'>
             <Box maxW='760px' mx='auto' textAlign='center' mb='56px'>
-              <chakra.h2 textStyle='heading' mb='5'>
+              <PageHeading mb='5'>
                 An experience you'd expect from a design system
-              </chakra.h2>
+              </PageHeading>
               <chakra.p opacity={0.7} fontSize='lg'>
                 Opinionated and designed for daily use.
               </chakra.p>
@@ -377,9 +376,7 @@ const HomePage = ({
         <Box as='section' bg='teal.500'>
           <Container py='7.5rem' maxW='1280px' color='white'>
             <Box maxW='760px' mx='auto' textAlign='center' mb='56px'>
-              <chakra.h2 textStyle='heading' mb='5'>
-                Chakra is growing quickly
-              </chakra.h2>
+              <PageHeading mb='5'>Chakra is growing quickly</PageHeading>
               <chakra.p opacity={0.7} fontSize='lg'>
                 We're dedicated to improving the experience and performance of
                 Chakra UI.
@@ -389,7 +386,7 @@ const HomePage = ({
               columns={{ base: 1, md: 2 }}
               maxW='880px'
               mx='auto'
-              spacing='4rem'
+              gap='4rem'
               px={{ md: 12 }}
             >
               <StatBox
@@ -415,21 +412,22 @@ const HomePage = ({
             </SimpleGrid>
 
             <Box mt='5rem' textAlign='center'>
-              <chakra.p mb='48px' textStyle='caps'>
+              <chakra.p mb='48px' textTransform='uppercase'>
                 Chakra Heroes 🥇
               </chakra.p>
-              <Wrap spacing='4' justify='center' maxW='660px' mx='auto'>
+              <Wrap gap='4' justify='center' maxW='660px' mx='auto'>
                 {members.map((i) => (
                   <WrapItem key={i.login}>
                     <Link href={i.url}>
-                      <ChakraNextImage
-                        alt={i.name}
-                        src={i.avatar_url}
-                        width={80}
-                        height={80}
-                        rounded='full'
-                        loading='lazy'
-                      />
+                      <Box rounded='full' overflow='hidden' asChild>
+                        <Image
+                          alt={i.name}
+                          src={i.avatar_url}
+                          width={80}
+                          height={80}
+                          loading='lazy'
+                        />
+                      </Box>
                     </Link>
                   </WrapItem>
                 ))}
@@ -440,12 +438,12 @@ const HomePage = ({
 
         <Box>
           <Container py='120px' maxW='1200px' px='32px'>
-            <chakra.h2 textStyle='heading-2' mb='48px'>
+            <PageHeading size='sm' mb='48px'>
               Loved by product people like you
-            </chakra.h2>
-            <SimpleGrid spacing='32px' columns={{ base: 1, md: 3 }}>
+            </PageHeading>
+            <SimpleGrid gap='32px' columns={{ base: 1, md: 3 }}>
               {chunk(tweets.tweets, 3).map((tweetList, idx) => (
-                <Stack spacing='6' key={idx}>
+                <Stack gap='6' key={idx}>
                   {tweetList.map((tweet: Tweet, idx) => (
                     <TweetCard key={idx} {...tweet} />
                   ))}
@@ -458,9 +456,9 @@ const HomePage = ({
         <Box bg='teal.500'>
           <Container py='120px' maxW='1200px' px='32px' color='white'>
             <Box maxW='560px' mx='auto' textAlign='center' mb='56px'>
-              <chakra.h2 textStyle='heading-2' mb='4'>
+              <PageHeading size='sm' mb='4'>
                 Support Chakra UI 💖
-              </chakra.h2>
+              </PageHeading>
               <Text fontSize='lg' opacity={0.7}>
                 Our maintainers devote their time, effort, and heart to ensure
                 Chakra UI keeps getting better. Support us by donating to our
@@ -470,7 +468,7 @@ const HomePage = ({
 
             <Stack
               direction={{ base: 'column', md: 'row' }}
-              spacing='6'
+              gap='6'
               maxW='600px'
               mx='auto'
               bg='white'
@@ -479,12 +477,7 @@ const HomePage = ({
               rounded='lg'
               p='6'
             >
-              <Stack
-                flex='1'
-                direction='row'
-                spacing='6'
-                pr={{ base: 0, md: '4' }}
-              >
+              <Stack flex='1' direction='row' gap='6' pr={{ base: 0, md: '4' }}>
                 <Icon h='40px' w='40px' viewBox='0 0 32 32'>
                   <path
                     fillRule='evenodd'
@@ -506,20 +499,17 @@ const HomePage = ({
                   <Text opacity={0.7}>Sponsor the Chakra UI maintainers</Text>
                 </Box>
               </Stack>
-              <LightMode>
-                <Button
-                  w={{ base: '100%', md: 'auto' }}
-                  alignSelf='center'
-                  as='a'
-                  minW='7rem'
-                  colorScheme='teal'
-                  href={openCollectiveLink}
-                  rel='noopener'
-                  target='_blank'
-                >
+              <Button
+                w={{ base: '100%', md: 'auto' }}
+                alignSelf='center'
+                asChild
+                minW='7rem'
+                colorPalette='teal'
+              >
+                <a href={openCollectiveLink} rel='noopener' target='_blank'>
                   Sponsor
-                </Button>
-              </LightMode>
+                </a>
+              </Button>
             </Stack>
 
             <Stack
@@ -533,12 +523,7 @@ const HomePage = ({
               rounded='lg'
               p='6'
             >
-              <Stack
-                flex='1'
-                direction='row'
-                spacing='6'
-                pr={{ base: 0, md: '4' }}
-              >
+              <Stack flex='1' direction='row' gap='6' pr={{ base: 0, md: '4' }}>
                 <Icon w='40px' h='40px' viewBox='0 0 569 546'>
                   <g>
                     <circle
@@ -563,24 +548,26 @@ const HomePage = ({
                   <Text opacity={0.7}>Sponsor the creator, Segun Adebayo</Text>
                 </Box>
               </Stack>
-              <LightMode>
-                <Button
-                  w={{ base: '100%', md: 'auto' }}
-                  alignSelf='center'
-                  as='a'
-                  minW='7rem'
-                  colorScheme='teal'
+
+              <Button
+                w={{ base: '100%', md: 'auto' }}
+                alignSelf='center'
+                asChild
+                minW='7rem'
+                colorPalette='teal'
+              >
+                <a
                   href='https://www.patreon.com/segunadebayo'
                   rel='noopener'
                   target='_blank'
                 >
                   Sponsor
-                </Button>
-              </LightMode>
+                </a>
+              </Button>
             </Stack>
 
             <Box maxW='600px' mx='auto' textAlign='center'>
-              <chakra.p textStyle='caps' mb='8' mt='4rem'>
+              <chakra.p textTransform='uppercase' mb='8' mt='4rem'>
                 Organization Sponsors 🏦
               </chakra.p>
               <Wrap justify='center'>
@@ -597,36 +584,41 @@ const HomePage = ({
                         rel: 'noopener',
                       })}
                     >
-                      <ChakraNextImage
+                      <Box
+                        asChild
                         rounded='full'
-                        width={56}
-                        height={56}
-                        alt={i.name}
-                        key={i.MemberId}
-                        src={i.image}
-                        loading='lazy'
                         cursor={i.website ? 'pointer' : 'auto'}
-                      />
+                      >
+                        <Image
+                          width={56}
+                          height={56}
+                          alt={i.name}
+                          key={i.MemberId}
+                          src={i.image}
+                          loading='lazy'
+                        />
+                      </Box>
                     </Circle>
                   </WrapItem>
                 ))}
               </Wrap>
 
-              <chakra.p mb='8' mt='4rem' textStyle='caps'>
+              <chakra.p mb='8' mt='4rem' textTransform='uppercase'>
                 Individual Sponsors 🥇
               </chakra.p>
               <Wrap justify='center'>
                 {sponsors.individuals.map((i) => (
                   <WrapItem key={i.MemberId}>
                     <Link href={i.profile}>
-                      <ChakraNextImage
-                        src={i.image}
-                        alt={i.name}
-                        width={40}
-                        height={40}
-                        loading='lazy'
-                        rounded='full'
-                      />
+                      <Box rounded='full' asChild>
+                        <Image
+                          src={i.image}
+                          alt={i.name}
+                          width={40}
+                          height={40}
+                          loading='lazy'
+                        />
+                      </Box>
                     </Link>
                   </WrapItem>
                 ))}
@@ -654,9 +646,9 @@ const HomePage = ({
               <Circle size='80px' bg='blackAlpha.200' color='teal.400'>
                 <FaMicrophone size='40px' />
               </Circle>
-              <chakra.h2 textStyle='heading' mt='6' mb='6'>
+              <PageHeading mt='6' mb='6'>
                 Invite us to speak at your next event
-              </chakra.h2>
+              </PageHeading>
               <Text mb='40px' fontSize='lg' opacity={0.7}>
                 Want a Chakra UI core team member to speak at your next event?
                 Invite us to create a memorable and engaging experience for your
@@ -667,13 +659,14 @@ const HomePage = ({
               h='4rem'
               px='40px'
               fontSize='1.2rem'
-              as='a'
-              href='mailto:sage@adebayosegun.com?subject=Invitation to Speak!'
+              asChild
               size='lg'
-              colorScheme='teal'
+              colorPalette='teal'
             >
-              Invite us to speak
-              <FaArrowRight fontSize='0.8em' />
+              <a href='mailto:sage@adebayosegun.com?subject=Invitation to Speak!'>
+                Invite us to speak
+                <FaArrowRight fontSize='0.8em' />
+              </a>
             </Button>
           </Container>
         </Box>

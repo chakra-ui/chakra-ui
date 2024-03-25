@@ -1,4 +1,6 @@
 import { Flex, Heading, Icon, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import componentsSidebar from 'configs/components.sidebar.json'
+import styledSystemSidebar from 'configs/styled-system.sidebar.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -17,8 +19,6 @@ import {
   RiPictureInPictureExitFill,
   RiRepeat2Fill,
 } from 'react-icons/ri'
-import componentsSidebar from 'configs/components.sidebar.json'
-import styledSystemSidebar from 'configs/styled-system.sidebar.json'
 
 const featureSidebar = {
   '/docs/styled-system': styledSystemSidebar,
@@ -31,8 +31,8 @@ const Feature = ({ title, icon, children, ...props }) => {
       direction='row'
       bg='white'
       rounded='12px'
-      shadow='base'
-      spacing={4}
+      shadow='xs'
+      gap={4}
       p='6'
       cursor='pointer'
       _dark={{ bg: 'gray.700' }}
@@ -97,11 +97,10 @@ export const FeaturesOverview = () => {
   }
 
   return (
-    <SimpleGrid mt='12' minChildWidth='15.625rem' spacing='8'>
+    <SimpleGrid mt='12' minChildWidth='15.625rem' gap='8'>
       {features.map((feature) => (
         <Link
           key={feature.title}
-          passHref
           href={`${feature.routes?.[0].path}?scroll=true`}
         >
           <Feature icon={icons[feature.title] ?? null} title={feature.title}>

@@ -69,8 +69,8 @@
               "path": "/docs/components/editable"
             },
             {
-              "title": "Form Control",
-              "path": "/docs/components/form-control"
+              "title": "Field",
+              "path": "/docs/components/field"
             },
             {
               "title": "Icon Button",
@@ -134,8 +134,8 @@
               "path": "/docs/components/code"
             },
             {
-              "title": "Divider",
-              "path": "/docs/components/divider"
+              "title": "Separator",
+              "path": "/docs/components/separator"
             },
             {
               "title": "Kbd",
@@ -220,10 +220,6 @@
           "summarize": true,
           "routes": [
             {
-              "title": "Alert Dialog",
-              "path": "/docs/components/alert-dialog"
-            },
-            {
               "title": "Drawer",
               "path": "/docs/components/drawer"
             },
@@ -232,8 +228,8 @@
               "path": "/docs/components/menu"
             },
             {
-              "title": "Modal",
-              "path": "/docs/components/modal"
+              "title": "Dialog",
+              "path": "/docs/components/dialog"
             },
             {
               "title": "Popover",
@@ -290,7 +286,6 @@
               "path": "/docs/components/skip-nav"
             },
             {
-              "new": true,
               "title": "Stepper",
               "path": "/docs/components/stepper"
             }
@@ -324,10 +319,6 @@
           "sort": true,
           "summarize": true,
           "routes": [
-            {
-              "title": "Close Button",
-              "path": "/docs/components/close-button"
-            },
             {
               "title": "Portal",
               "path": "/docs/components/portal"

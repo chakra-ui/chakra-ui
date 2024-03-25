@@ -1,11 +1,4 @@
-import {
-  Button,
-  ButtonGroup,
-  HStack,
-  Icon,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import { Button, HStack, Icon, Stack, Text } from '@chakra-ui/react'
 import {
   SandpackCodeViewer,
   SandpackThemeProvider,
@@ -32,11 +25,11 @@ const CodeBlock = ({ path, code, showLineNumbers = false }: CodeBlockProps) => {
       {path && (
         <HStack px={4} pt={2} justifyContent='space-between'>
           <Text color='purple.300'>{formatFilePath(path)}</Text>
-          <ButtonGroup>
+          <HStack>
             <Button
               size='xs'
               textTransform='uppercase'
-              colorScheme='teal'
+              colorPalette='teal'
               onClick={() => {
                 sandpack.openFile(path)
                 sandpack.updateFile(path, code)
@@ -48,7 +41,7 @@ const CodeBlock = ({ path, code, showLineNumbers = false }: CodeBlockProps) => {
             <Button
               size='xs'
               textTransform='uppercase'
-              colorScheme='teal'
+              colorPalette='teal'
               onClick={() => {
                 sandpack.openFile(path)
               }}
@@ -56,7 +49,7 @@ const CodeBlock = ({ path, code, showLineNumbers = false }: CodeBlockProps) => {
               <Icon as={RiFileTransferLine} />
               Open File
             </Button>
-          </ButtonGroup>
+          </HStack>
         </HStack>
       )}
       <SandpackCodeViewer

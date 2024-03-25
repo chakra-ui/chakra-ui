@@ -13,7 +13,14 @@ export function FigmaPluginAd({ medium }: { medium: string }) {
         _dark={{ bg: 'teal.800' }}
       >
         <AspectRatio ratio={2} rounded='xl' overflow='hidden'>
-          <Image src='/figma/ad.png' objectFit='contain' layout='fill' alt='' />
+          <Image
+            priority
+            src='/figma/ad.png'
+            style={{ objectFit: 'contain' }}
+            fill
+            sizes='100%'
+            alt='figma plugin'
+          />
         </AspectRatio>
         <Box fontWeight='medium' px='2'>
           <LinkOverlay href={getUrl(medium)}>

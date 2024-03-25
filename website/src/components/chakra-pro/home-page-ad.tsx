@@ -1,6 +1,6 @@
 import { Badge, Box, Flex, HStack, Heading, Span, Text } from '@chakra-ui/react'
 import Container from 'components/container'
-import NextImage from 'next/image'
+import Image from 'next/image'
 import { FiArrowRight } from 'react-icons/fi'
 import { getUrl } from './get-url'
 
@@ -11,7 +11,7 @@ export const ChakraProAd = () => (
         <Text casing='uppercase' letterSpacing='wide' fontWeight='bold'>
           Premium components{' '}
           <Badge
-            colorScheme='yellow'
+            colorPalette='yellow'
             variant='solid'
             color='gray.800'
             mt='-1'
@@ -39,24 +39,25 @@ export const ChakraProAd = () => (
         </Text>
         <HStack
           mt='6'
-          as='a'
+          asChild
           bg='whiteAlpha.300'
           rounded='md'
           px='8'
           py='3'
-          href={getUrl('homepage-ad')}
           color='white'
           fontSize='lg'
           fontWeight='semibold'
           transition='all 0.2s'
           _hover={{ bg: 'whiteAlpha.400' }}
         >
-          <Text>Learn more</Text>
-          <Box as={FiArrowRight} display='inline-block' ml='2' />
+          <a href={getUrl('homepage-ad')}>
+            <Text>Learn more</Text>
+            <Box as={FiArrowRight} display='inline-block' ml='2' />
+          </a>
         </HStack>
       </Flex>
       <Box position='relative' top='3'>
-        <NextImage
+        <Image
           src='/chakra-ui-ad.png'
           alt='Chakra UI Pro Image'
           layout='responsive'

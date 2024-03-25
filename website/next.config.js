@@ -4,15 +4,15 @@ const { withContentlayer } = require('next-contentlayer')
 module.exports = withContentlayer({
   optimizeFonts: true,
   images: {
-    domains: [
-      'img.youtube.com',
-      'avatars.githubusercontent.com',
-      'github.com',
-      'avatars0.githubusercontent.com',
-      'avatars1.githubusercontent.com',
-      'avatars2.githubusercontent.com',
-      'avatars3.githubusercontent.com',
-      'res.cloudinary.com',
+    remotePatterns: [
+      { hostname: 'img.youtube.com' },
+      { hostname: 'res.cloudinary.com' },
+      { hostname: 'github.com' },
+      { hostname: 'avatars.githubusercontent.com' },
+      { hostname: 'avatars0.githubusercontent.com' },
+      { hostname: 'avatars1.githubusercontent.com' },
+      { hostname: 'avatars2.githubusercontent.com' },
+      { hostname: 'avatars3.githubusercontent.com' },
     ],
   },
   productionBrowserSourceMaps: true,

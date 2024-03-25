@@ -37,11 +37,11 @@ There are two ways you can increase the height of the progress bar:
 - You can also use the `height` prop to manually set a height.
 
 ```jsx
-<Stack spacing={5}>
-  <Progress colorScheme='green' size='sm' value={20} />
-  <Progress colorScheme='green' size='md' value={20} />
-  <Progress colorScheme='green' size='lg' value={20} />
-  <Progress colorScheme='green' height='32px' value={20} />
+<Stack gap={5}>
+  <Progress colorPalette='green' size='sm' value={20} />
+  <Progress colorPalette='green' size='md' value={20} />
+  <Progress colorPalette='green' size='lg' value={20} />
+  <Progress colorPalette='green' height='32px' value={20} />
 </Stack>
 ```
 
@@ -51,7 +51,7 @@ You can add `colorScheme` prop to any progress bar to apply any color that
 exists in the `theme`.
 
 ```jsx
-<Progress value={20} size='xs' colorScheme='pink' />
+<Progress value={20} size='xs' colorPalette='pink' />
 ```
 
 ### Animated Progress

@@ -6,7 +6,7 @@ function CodeContainer(props: BoxProps) {
       rounded='8px'
       my='8'
       bg='#011627'
-      sx={{ '& > div': { paddingBlock: '5', paddingEnd: '4' } }}
+      css={{ '& > div': { paddingBlock: '5', paddingEnd: '4' } }}
       {...props}
     />
   )

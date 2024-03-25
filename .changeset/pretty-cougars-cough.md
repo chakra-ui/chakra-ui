@@ -1,7 +1,5 @@
 ---
-"@chakra-ui/styled-system": minor
 "@chakra-ui/react": minor
-"@chakra-ui/theme": minor
 ---
 
 Add support for custom theme conditions or pseudo props via `theme.conditions`

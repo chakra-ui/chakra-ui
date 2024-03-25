@@ -1,11 +1,11 @@
 import {
-  useColorModeValue,
-  Box,
   Badge,
+  Box,
   Flex,
   HStack,
-  Image,
   Icon,
+  Image,
+  useColorModeValue,
 } from "@chakra-ui/react"
 import { FaStar } from "react-icons/fa"
 import { Property } from "../interfaces/Property"
@@ -50,8 +50,8 @@ export const PropertySummary = ({ property }: { property: Property }) => {
           </Box>
         </Box>
 
-        <Flex mt="2" alignItems="center">
-          <HStack spacing={1}>
+        <Flex mt="2" align="center">
+          <HStack gap={1}>
             {Array(5)
               .fill("")
               .map((_, i) => (

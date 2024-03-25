@@ -1,7 +1,8 @@
-import { Box, useBoolean } from '@chakra-ui/react'
+import { useBoolean } from '@chakra-ui/hooks'
+import { Box } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
-import theme from 'prism-react-renderer/themes/nightOwl'
-import React, { useEffect } from 'react'
+import { themes } from 'prism-react-renderer'
+import { useEffect } from 'react'
 import CodeContainer from './code-container'
 import CopyButton from './copy-button'
 import Highlight from './highlight'
@@ -10,13 +11,8 @@ const ReactLiveBlock = dynamic(() => import('./react-live-block'))
 
 function CodeBlock(props) {
   const [isMounted, { on }] = useBoolean()
-  useEffect(
-    /**
-     * Lazily-load <ReactLiveBlock /> to save bundle size.
-     */
-    on,
-    [on],
-  )
+  useEffect(on, [on])
+
   const {
     className,
     live = true,
@@ -36,7 +32,7 @@ function CodeBlock(props) {
   const reactLiveBlockProps = {
     rawCode,
     language,
-    theme,
+    // theme,
     noInline: manual,
     mountStylesheet,
   }
@@ -62,7 +58,7 @@ function CodeBlock(props) {
         <Highlight
           codeString={rawCode}
           language={language}
-          theme={theme}
+          theme={themes.nightOwl}
           metastring={ln}
           showLines={viewlines}
         />

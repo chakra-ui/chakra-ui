@@ -1,4 +1,4 @@
-import { Link, SimpleGrid, Text, chakra } from '@chakra-ui/react'
+import { HStack, Link, SimpleGrid, Text, chakra } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
@@ -9,23 +9,24 @@ export const PaginationLink = (props) => {
   const { label, href, children, ...rest } = props
 
   return (
-    <NextLink href={href} passHref>
-      <Link
-        _hover={{
-          textDecor: 'none',
-        }}
-        flex='1'
-        borderRadius='md'
-        {...rest}
-      >
+    <Link
+      display='flex'
+      flexDirection='column'
+      asChild
+      _hover={{ textDecor: 'none' }}
+      flex='1'
+      borderRadius='md'
+      {...rest}
+    >
+      <NextLink href={href}>
         <Text fontSize='sm' px='2'>
           {label}
         </Text>
-        <Text mt='1' fontSize='lg' fontWeight='bold' color='teal.400'>
+        <HStack mt='1' fontWeight='semibold' color='teal.600'>
           {children}
-        </Text>
-      </Link>
-    </NextLink>
+        </HStack>
+      </NextLink>
+    </Link>
   )
 }
 
@@ -34,19 +35,19 @@ export const Pagination = ({ previous, next, ...rest }) => {
     <SimpleGrid
       as='nav'
       aria-label='Pagination'
-      spacing='40px'
+      gap='40px'
       my='64px'
       columns={2}
       {...rest}
     >
       {previous ? (
         <PaginationLink
-          textAlign='left'
+          alignItems='flex-start'
           label='Previous'
           href={previous.path}
           rel='prev'
         >
-          <ChevronLeftIcon mr='1' fontSize='1.2em' />
+          <ChevronLeftIcon mr='1' />
           {previous.title}
         </PaginationLink>
       ) : (
@@ -54,13 +55,13 @@ export const Pagination = ({ previous, next, ...rest }) => {
       )}
       {next ? (
         <PaginationLink
-          textAlign='right'
+          alignItems='flex-end'
           label='Next'
           href={next.path}
           rel='next'
         >
           {next.title}
-          <ChevronRightIcon ml='1' fontSize='1.2em' />
+          <ChevronRightIcon ml='1' />
         </PaginationLink>
       ) : (
         <div />

@@ -1,12 +1,11 @@
-import { Box, BoxProps, Icon } from '@chakra-ui/react'
+import { Box, HTMLChakraProps, Icon, chakra } from '@chakra-ui/react'
 import json from 'configs/site-config.json'
 import { FaHeart } from 'react-icons/fa'
 
-const SponsorButton = (props: BoxProps) => (
-  <Box
+const SponsorButton = (props: HTMLChakraProps<'a'>) => (
+  <chakra.a
     display={{ base: 'none', lg: 'flex' }}
     alignItems='center'
-    as='a'
     aria-label='Sponsor Chakra UI on Open Collective'
     href={json.openCollective.url}
     target='_blank'
@@ -37,7 +36,7 @@ const SponsorButton = (props: BoxProps) => (
     <Box as='strong' lineHeight='inherit' fontWeight='semibold'>
       Sponsor
     </Box>
-  </Box>
+  </chakra.a>
 )
 
 export default SponsorButton

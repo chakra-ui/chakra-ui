@@ -1,4 +1,4 @@
-const FontFace = () => (
+export const FontFace = () => (
   <style jsx global>
     {`
       @font-face {
@@ -75,5 +75,3 @@ const FontFace = () => (
     `}
   </style>
 )
-
-export default FontFace
