@@ -12,11 +12,5 @@
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   },
-  "ignore": [
-    "create-react-app-ts",
-    "gatsby-starter-default",
-    "chakra-next-app",
-    "chakra-next-pages",
-    "vite-ts"
-  ]
+  "ignore": ["chakra-next-app", "chakra-next-pages", "vite-ts"]
 }
