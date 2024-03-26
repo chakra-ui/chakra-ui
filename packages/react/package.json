@@ -41,11 +41,11 @@
     "@chakra-ui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",
     "@zag-js/dom-utils": "^0.2.4",
-    "@zag-js/focus-visible": "^0.38.1",
-    "aria-hidden": "^1.2.3",
+    "@zag-js/focus-visible": "^0.40.0",
+    "aria-hidden": "^1.2.4",
     "csstype": "^3.1.3",
     "react-focus-lock": "^2.11.2",
-    "react-remove-scroll": "^2.5.7"
+    "react-remove-scroll": "^2.5.9"
   },
   "peerDependencies": {
     "@emotion/react": ">=11",
@@ -57,14 +57,14 @@
   "devDependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
-    "@tanstack/react-table": "^8.13.2",
-    "@testing-library/react": "^14.2.1",
-    "framer-motion": "11.0.14",
+    "@tanstack/react-table": "^8.15.0",
+    "@testing-library/react": "^14.2.2",
+    "framer-motion": "11.0.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.6",
     "react-lorem-component": "^0.13.0",
-    "react-hook-form": "^7.51.0",
+    "react-hook-form": "^7.51.2",
     "react-icons": "^5.0.1",
     "react-spinners": "^0.13.8"
   },

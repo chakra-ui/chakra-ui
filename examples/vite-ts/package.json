@@ -13,10 +13,10 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "workspace:*",
-    "@types/react": "^18.2.66",
+    "@types/react": "^18.2.72",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6"
   }
 }
