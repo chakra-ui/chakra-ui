@@ -1,20 +1,20 @@
 {
-  "Badge": {
+  "Separator": {
     "colorPalette": {
       "defaultValue": "gray",
       "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
       "required": false,
       "description": "The color palette of the component"
     },
-    "size": {
-      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
-      "defaultValue": "sm",
+    "orientation": {
+      "type": "\"vertical\" | \"horizontal\"",
+      "defaultValue": "horizontal",
       "required": false,
-      "description": "The size of the component"
+      "description": "The orientation of the component"
     },
     "variant": {
-      "type": "\"solid\" | \"subtle\" | \"outline\" | \"surface\" | \"plain\"",
-      "defaultValue": "subtle",
+      "type": "\"solid\" | \"dashed\"",
+      "defaultValue": "solid",
       "required": false,
       "description": "The variant of the component"
     }

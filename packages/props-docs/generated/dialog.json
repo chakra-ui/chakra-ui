@@ -1,7 +1,158 @@
 {
-  "PopoverArrow": {},
-  "PopoverBody": {},
-  "PopoverContent": {
+  "DialogRoot": {
+    "onClose": {
+      "type": "void",
+      "required": true,
+      "description": "Callback invoked to close the dialog."
+    },
+    "open": {
+      "type": "boolean",
+      "required": true,
+      "description": "If `true`, the dialog will be open."
+    },
+    "allowPinchZoom": {
+      "type": "boolean",
+      "defaultValue": "false.",
+      "required": false,
+      "description": "Handle zoom/pinch gestures on iOS devices when scroll locking is enabled."
+    },
+    "autoFocus": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will autofocus the first enabled and interactive\nelement within the `DialogContent`"
+    },
+    "blockScrollOnMount": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, scrolling will be disabled on the `body` when the dialog opens."
+    },
+    "centered": {
+      "type": "\"true\" | \"false\"",
+      "defaultValue": false,
+      "required": false,
+      "description": "The centered of the component"
+    },
+    "closeOnEsc": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will close when the `Esc` key is pressed"
+    },
+    "closeOnOverlayClick": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will close when the overlay is clicked"
+    },
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
+    "finalFocusRef": {
+      "type": "React.RefObject<FocusableElement>",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the dialog closes."
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "The `id` of the dialog"
+    },
+    "initialFocusRef": {
+      "type": "React.RefObject<FocusableElement>",
+      "required": false,
+      "description": "The `ref` of element to receive focus when the dialog opens."
+    },
+    "lockFocusAcrossFrames": {
+      "defaultValue": false,
+      "required": false,
+      "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
+    },
+    "motionPreset": {
+      "type": "DialogMotionPreset",
+      "defaultValue": "scale",
+      "required": false,
+      "description": "The transition that should be used for the dialog"
+    },
+    "onCloseComplete": {
+      "type": "VoidFunction",
+      "required": false,
+      "description": "Fires when all exiting nodes have completed animating out"
+    },
+    "onEsc": {
+      "type": "void",
+      "required": false,
+      "description": "Callback fired when the escape key is pressed and focus is within dialog"
+    },
+    "onOverlayClick": {
+      "type": "void",
+      "required": false,
+      "description": "Callback fired when the overlay is clicked."
+    },
+    "portalProps": {
+      "type": "PortalProps",
+      "required": false,
+      "description": "Props to be forwarded to the portal component"
+    },
+    "preserveScrollBarGap": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, a `padding-right` will be applied to the body element\nthat's equal to the width of the scrollbar.\n\nThis can help prevent some unpleasant flickering effect\nand content adjustment when the dialog opens"
+    },
+    "returnFocusOnClose": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will return focus to the element that triggered it when it closes."
+    },
+    "role": {
+      "type": "\"dialog\" | \"alertdialog\"",
+      "required": false,
+      "description": "The `role` attribute of the dialog"
+    },
+    "scrollBehavior": {
+      "type": "\"inside\" | \"outside\"",
+      "defaultValue": "outside",
+      "required": false,
+      "description": "The scrollBehavior of the component"
+    },
+    "size": {
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\" | \"6xl\" | \"full\"",
+      "defaultValue": "md",
+      "required": false,
+      "description": "The size of the component"
+    },
+    "trapFocus": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, focus lock will be disabled completely.\n\nThis is useful in situations where you still need to interact with\nother surrounding elements.\n\n🚨Warning: We don't recommend doing this because it hurts the\naccessibility of the dialog, based on WAI-ARIA specifications."
+    },
+    "useInert": {
+      "type": "boolean",
+      "defaultValue": true,
+      "required": false,
+      "description": "A11y: If `true`, the siblings of the `dialog` will have `aria-hidden`\nset to `true` so that screen readers can only see the `dialog`.\n\nThis is commonly known as making the other elements **inert**"
+    }
+  },
+  "DialogBody": {},
+  "DialogPositioner": {},
+  "DialogCloseTrigger": {},
+  "DialogContent": {
+    "motionProps": {
+      "type": "HTMLMotionProps<\"section\">",
+      "required": false,
+      "description": "The custom framer-motion transition to use for the dialog"
+    }
+  },
+  "DialogFooter": {},
+  "DialogHeader": {},
+  "DialogBackdrop": {
     "about": { "required": false },
     "accessKey": { "required": false },
     "aria-activedescendant": { "required": false },
@@ -62,8 +213,6 @@
     "autoFocus": { "required": false },
     "autoSave": { "required": false },
     "className": { "required": false },
-    "color": { "required": false },
-    "content": { "required": false },
     "contentEditable": { "required": false },
     "contextMenu": { "required": false },
     "dangerouslySetInnerHTML": { "required": false },
@@ -83,10 +232,7 @@
     "itemScope": { "required": false },
     "itemType": { "required": false },
     "lang": { "required": false },
-    "motionProps": {
-      "type": "HTMLMotionProps<\"section\">",
-      "required": false
-    },
+    "motionProps": { "type": "HTMLMotionProps<\"div\">", "required": false },
     "nonce": { "required": false },
     "onAbort": { "required": false },
     "onAbortCapture": { "required": false },
@@ -252,7 +398,6 @@
     "results": { "required": false },
     "rev": { "required": false },
     "role": { "required": false },
-    "rootProps": { "type": "HTMLChakraProps<\"div\">", "required": false },
     "security": { "required": false },
     "slot": { "required": false },
     "spellCheck": { "required": false },
@@ -260,178 +405,58 @@
     "suppressHydrationWarning": { "required": false },
     "tabIndex": { "required": false },
     "title": { "required": false },
-    "translate": { "required": false },
     "typeof": { "required": false },
     "unselectable": { "required": false },
-    "variants": { "type": "MotionVariants", "required": false },
     "vocab": { "required": false }
   },
-  "PopoverFooter": {},
-  "PopoverHeader": {},
-  "PopoverRoot": {
-    "arrowPadding": {
-      "defaultValue": "8",
-      "required": false,
-      "description": "The padding required to prevent the arrow from\nreaching the very edge of the popper."
+  "UseDialog": {
+    "onClose": {
+      "type": "void",
+      "required": true,
+      "description": "Callback invoked to close the dialog."
     },
-    "arrowShadowColor": {
-      "type": "string",
-      "required": false,
-      "description": "The `box-shadow` of the popover arrow"
-    },
-    "arrowSize": {
-      "type": "number",
-      "required": false,
-      "description": "The size of the popover arrow"
-    },
-    "autoFocus": {
+    "open": {
       "type": "boolean",
-      "defaultValue": true,
-      "required": false,
-      "description": "If `true`, focus will be transferred to the first interactive element\nwhen the popover opens"
-    },
-    "boundary": {
-      "defaultValue": "clippingParents",
-      "required": false,
-      "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
-    },
-    "closeDelay": {
-      "type": "number",
-      "defaultValue": "200",
-      "required": false,
-      "description": "Delay in milliseconds before the popover closes after a trigger event.\nOnly works when `trigger=\"hover\"`"
-    },
-    "closeOnBlur": {
-      "type": "boolean",
-      "defaultValue": true,
-      "required": false,
-      "description": "If `true`, the popover will close when you blur out it by\nclicking outside or tabbing out"
+      "required": true,
+      "description": "If `true`, the dialog will be open."
     },
     "closeOnEsc": {
       "type": "boolean",
       "defaultValue": true,
       "required": false,
-      "description": "If `true`, the popover will close when you hit the `Esc` key"
+      "description": "If `true`, the dialog will close when the `Esc` key is pressed"
     },
-    "colorPalette": {
-      "defaultValue": "gray",
-      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-      "required": false,
-      "description": "The color palette of the component"
-    },
-    "computePositionOnMount": {
+    "closeOnOverlayClick": {
       "type": "boolean",
-      "required": false,
-      "description": "If `true`, the popover will be positioned when it mounts\n(even if it's not open)\n\nNote 🚨: We don't recommend using this in a popover/menu intensive UI or page\nas it might affect scrolling performance."
-    },
-    "defaultOpen": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the popover will be initially opened."
-    },
-    "eventListeners": {
       "defaultValue": true,
       "required": false,
-      "description": "If provided, determines whether the popper will reposition itself on `scroll`\nand `resize` of the window."
-    },
-    "flip": {
-      "defaultValue": true,
-      "required": false,
-      "description": "If `true`, the popper will change its placement and flip when it's\nabout to overflow its boundary area."
-    },
-    "gutter": {
-      "defaultValue": "8",
-      "required": false,
-      "description": "The distance or margin between the reference and popper.\nIt is used internally to create an `offset` modifier.\n\nNB: If you define `offset` prop, it'll override the gutter."
+      "description": "If `true`, the dialog will close when the overlay is clicked"
     },
     "id": {
       "type": "string",
       "required": false,
-      "description": "The html `id` attribute of the popover.\nIf not provided, we generate a unique id.\n\nThis `id` is also used to auto-generate the `aria-labelledby`\nand `aria-describedby` attributes that points to the `PopoverHeader` and `PopoverBody`"
+      "description": "The `id` of the dialog"
     },
-    "initialFocusRef": {
-      "type": "React.RefObject<{ focus()",
+    "onEsc": {
+      "type": "void",
       "required": false,
-      "description": "The `ref` of the element that should receive focus when the popover opens."
+      "description": "Callback fired when the escape key is pressed and focus is within dialog"
     },
-    "lazyBehavior": {
-      "type": "LazyMode",
-      "defaultValue": "unmount",
+    "onOverlayClick": {
+      "type": "void",
       "required": false,
-      "description": "Performance 🚀:\nThe lazy behavior of popover's content when not visible.\nOnly works when `lazyMount={true}`\n\n- \"unmount\": The popover's content is always unmounted when not open.\n- \"keepMounted\": The popover's content initially unmounted,\nbut stays mounted when popover is open."
+      "description": "Callback fired when the overlay is clicked."
     },
-    "lazyMount": {
-      "type": "boolean",
+    "role": {
+      "type": "\"dialog\" | \"alertdialog\"",
       "required": false,
-      "description": "Performance 🚀:\nIf `true`, the PopoverContent rendering will be deferred\nuntil the popover is open."
+      "description": "The `role` attribute of the dialog"
     },
-    "matchWidth": {
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the popper will match the width of the reference at all times.\nIt's useful for `autocomplete`, `date-picker` and `select` patterns."
-    },
-    "modifiers": {
-      "required": false,
-      "description": "Array of popper.js modifiers. Check the docs to see\nthe list of possible modifiers you can pass."
-    },
-    "offset": {
-      "required": false,
-      "description": "The main and cross-axis offset to displace popper element\nfrom its reference element."
-    },
-    "onClose": {
-      "type": "() => void",
-      "required": false,
-      "description": "Callback fired when the popover closes"
-    },
-    "onOpen": {
-      "type": "() => void",
-      "required": false,
-      "description": "Callback fired when the popover opens"
-    },
-    "open": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the popover will be opened in controlled mode."
-    },
-    "openDelay": {
-      "type": "number",
-      "defaultValue": "200",
-      "required": false,
-      "description": "Delay in milliseconds before the popover opens after a trigger event.\nOnly works when `trigger=\"hover\"`"
-    },
-    "placement": {
-      "defaultValue": "bottom",
-      "required": false,
-      "description": "The placement of the popper relative to its reference."
-    },
-    "preventOverflow": {
-      "defaultValue": true,
-      "required": false,
-      "description": "If `true`, will prevent the popper from being cut off and ensure\nit's visible within the boundary area."
-    },
-    "returnFocusOnClose": {
+    "useInert": {
       "type": "boolean",
       "defaultValue": true,
       "required": false,
-      "description": "If `true`, focus will be returned to the element that triggers the popover\nwhen it closes"
-    },
-    "size": {
-      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
-      "defaultValue": "md",
-      "required": false,
-      "description": "The size of the component"
-    },
-    "strategy": {
-      "defaultValue": "absolute",
-      "required": false,
-      "description": "The CSS positioning strategy to use."
-    },
-    "trigger": {
-      "type": "keyof typeof TRIGGER",
-      "defaultValue": "click",
-      "required": false,
-      "description": "The interaction that triggers the popover.\n\n`hover` - means the popover will open when you hover with mouse or\nfocus with keyboard on the popover trigger\n\n`click` - means the popover will open on click or\npress `Enter` to `Space` on keyboard"
+      "description": "A11y: If `true`, the siblings of the `dialog` will have `aria-hidden`\nset to `true` so that screen readers can only see the `dialog`.\n\nThis is commonly known as making the other elements **inert**"
     }
-  },
-  "PopoverPositioner": {}
+  }
 }

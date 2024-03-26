@@ -73,6 +73,7 @@
     "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
     "clean": "rimraf dist .turbo",
+    "typedocs": "tsx scripts/typedocs.ts",
     "typecheck": "tsc --noEmit"
   },
   "exports": {

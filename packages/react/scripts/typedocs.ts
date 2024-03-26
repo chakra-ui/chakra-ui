@@ -1,11 +1,11 @@
-import { theme } from "@chakra-ui/theme"
 import { existsSync } from "node:fs"
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { join } from "node:path/posix"
 import prettier from "prettier"
 import ts from "typescript"
-import { extractThemeProps } from "./extract-theme-props.js"
+import { defaultSystem } from "../src"
+import { extractRecipeProps } from "./extract-recipe-props"
 
 interface ComponentTypeInfo {
   type: string
@@ -20,19 +20,6 @@ interface ComponentTypeProperties {
 
 interface TypeSearchOptions {
   shouldIgnoreProperty?: (property: ts.Symbol) => boolean | undefined
-}
-
-async function tryPrettier(typeName: string) {
-  try {
-    const prefix = "type ONLY_FOR_FORMAT = "
-    const prettyType = await prettier.format(prefix + typeName, {
-      parser: "typescript",
-      semi: false,
-    })
-    return prettyType.replace(prefix, "").trim()
-  } catch {
-    return typeName
-  }
 }
 
 function formatValue(value: string | undefined) {
@@ -82,6 +69,9 @@ async function extractPropertiesOfTypeName(
       const propertyName = property.getName()
       const type = typeChecker.getTypeOfSymbolAtLocation(property, sourceFile)
 
+      let [, typeString] = property.valueDeclaration?.getText().split(":") ?? []
+      typeString = typeString?.trim().replace(";", "")
+
       const docTags = property.getJsDocTags()
 
       const defaultValue =
@@ -95,10 +85,10 @@ async function extractPropertiesOfTypeName(
       const typeName = typeChecker.typeToString(nonNullableType)
       const required = nonNullableType === type && typeName !== "any"
 
-      const prettyType = await tryPrettier(typeName)
+      // const prettyType = await tryPrettier(typeName)
 
       properties[propertyName] = {
-        type: prettyType,
+        type: typeString,
         defaultValue: formatValue(defaultValue),
         required,
         description:
@@ -210,7 +200,7 @@ function shouldIgnoreProperty(property: ts.Symbol) {
 }
 
 async function extractDirectory(dir: string) {
-  const file = join("packages", "components", "src", dir, "index.ts")
+  const file = join("src", "components", dir, "index.ts")
   if (!existsSync(file)) return {}
 
   const content = await readFile(file, "utf8")
@@ -227,9 +217,10 @@ async function extractDirectory(dir: string) {
 
 const main = async () => {
   //
-  const themeProps = extractThemeProps(theme)
+  const recipeProps = extractRecipeProps(defaultSystem)
+  console.log(recipeProps)
 
-  const dirs = await readdir(join("packages", "components", "src"))
+  const dirs = await readdir(join("src", "components"))
 
   for (const dir of dirs) {
     const typeExports = await extractDirectory(dir)
@@ -239,18 +230,16 @@ const main = async () => {
     for (const [name, values] of Object.entries(typeExports)) {
       propMap[name] = sortByRequiredProperties({
         ...values,
-        ...themeProps[name],
+        ...recipeProps[name],
       })
     }
 
     const isEmpty = Object.keys(propMap).length === 0
 
     if (!isEmpty) {
-      await mkdir(join("packages", "props-docs", "generated"), {
-        recursive: true,
-      })
+      await mkdir(join("..", "props-docs", "generated"), { recursive: true })
 
-      const outPath = join("packages", "props-docs", "generated", `${dir}.json`)
+      const outPath = join("..", "props-docs", "generated", `${dir}.json`)
 
       const formatted = await prettier.format(JSON.stringify(propMap), {
         parser: "json",

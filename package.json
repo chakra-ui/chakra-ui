@@ -18,7 +18,7 @@
     "build:fast": "pnpm --filter=./packages/* build:fast",
     "dev": "pnpm --filter=./packages/* dev",
     "postbuild": "pnpm build:tokens",
-    "typedocs": "tsx scripts/typedocs.ts",
+    "typedocs": "pnpm react typedocs",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "react": "pnpm --filter=@chakra-ui/react",

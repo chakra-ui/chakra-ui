@@ -1,0 +1,121 @@
+{
+  "DrawerRoot": {
+    "onClose": {
+      "required": true,
+      "description": "Callback invoked to close the dialog."
+    },
+    "open": {
+      "required": true,
+      "description": "If `true`, the dialog will be open."
+    },
+    "allowPinchZoom": {
+      "defaultValue": "false.",
+      "required": false,
+      "description": "Handle zoom/pinch gestures on iOS devices when scroll locking is enabled."
+    },
+    "autoFocus": {
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will autofocus the first enabled and interactive\nelement within the `DialogContent`"
+    },
+    "blockScrollOnMount": {
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, scrolling will be disabled on the `body` when the dialog opens."
+    },
+    "closeOnEsc": {
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will close when the `Esc` key is pressed"
+    },
+    "closeOnOverlayClick": {
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will close when the overlay is clicked"
+    },
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
+    "finalFocusRef": {
+      "required": false,
+      "description": "The `ref` of element to receive focus when the dialog closes."
+    },
+    "id": { "required": false, "description": "The `id` of the dialog" },
+    "initialFocusRef": {
+      "required": false,
+      "description": "The `ref` of element to receive focus when the dialog opens."
+    },
+    "isFullHeight": {
+      "type": "\"true\"",
+      "required": false,
+      "description": "The isFullHeight of the component"
+    },
+    "lockFocusAcrossFrames": {
+      "defaultValue": false,
+      "required": false,
+      "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
+    },
+    "onCloseComplete": {
+      "required": false,
+      "description": "Fires when all exiting nodes have completed animating out"
+    },
+    "onEsc": {
+      "required": false,
+      "description": "Callback fired when the escape key is pressed and focus is within dialog"
+    },
+    "onOverlayClick": {
+      "required": false,
+      "description": "Callback fired when the overlay is clicked."
+    },
+    "placement": {
+      "type": "DrawerPlacement",
+      "defaultValue": "right",
+      "required": false,
+      "description": "The placement of the drawer"
+    },
+    "portalProps": {
+      "required": false,
+      "description": "Props to be forwarded to the portal component"
+    },
+    "preserveScrollBarGap": {
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, a `padding-right` will be applied to the body element\nthat's equal to the width of the scrollbar.\n\nThis can help prevent some unpleasant flickering effect\nand content adjustment when the dialog opens"
+    },
+    "returnFocusOnClose": {
+      "defaultValue": true,
+      "required": false,
+      "description": "If `true`, the dialog will return focus to the element that triggered it when it closes."
+    },
+    "role": {
+      "required": false,
+      "description": "The `role` attribute of the dialog"
+    },
+    "size": {
+      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"full\"",
+      "defaultValue": "xs",
+      "required": false,
+      "description": "The size of the component"
+    },
+    "trapFocus": {
+      "defaultValue": true,
+      "required": false,
+      "description": "If `false`, focus lock will be disabled completely.\n\nThis is useful in situations where you still need to interact with\nother surrounding elements.\n\n🚨Warning: We don't recommend doing this because it hurts the\naccessibility of the dialog, based on WAI-ARIA specifications."
+    },
+    "useInert": {
+      "defaultValue": true,
+      "required": false,
+      "description": "A11y: If `true`, the siblings of the `dialog` will have `aria-hidden`\nset to `true` so that screen readers can only see the `dialog`.\n\nThis is commonly known as making the other elements **inert**"
+    }
+  },
+  "DrawerContent": {
+    "motionProps": {
+      "type": "HTMLMotionProps<\"section\">",
+      "required": false,
+      "description": "The custom framer-motion transition to use for the dialog"
+    }
+  }
+}

@@ -1,37 +1,43 @@
 {
   "Heading": {
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
       "required": false,
-      "description": "The visual color appearance of the component"
+      "description": "The color palette of the component"
     },
     "size": {
-      "defaultValue": "xl",
       "type": "\"4xl\" | \"3xl\" | \"2xl\" | \"xl\" | \"lg\" | \"md\" | \"sm\" | \"xs\"",
+      "defaultValue": "xl",
       "required": false,
-      "description": "The size of the Heading"
-    },
-    "variant": {
-      "type": "string",
-      "required": false,
-      "description": "The variant of the Heading"
+      "description": "The size of the component"
     }
   },
   "Text": {
     "align": {
-      "type": "ResponsiveValue<TextAlign>",
+      "type": "SystemStyleObject[\"textAlign\"]",
       "required": false,
       "description": "The CSS `text-align` property"
     },
     "casing": {
-      "type": "ResponsiveValue<TextTransform>",
+      "type": "SystemStyleObject[\"textTransform\"]",
       "required": false,
       "description": "The CSS `text-transform` property"
     },
     "decoration": {
-      "type": "ResponsiveValue<number | \"blink\" | (string & {}) | \"-moz-initial\" | \"inherit\" | \"initial\" | \"revert\" | \"revert-layer\" | \"unset\" | \"aliceblue\" | \"antiquewhite\" | \"aqua\" | \"aquamarine\" | \"azure\" | ... 185 more ... | \"wavy\">",
+      "type": "SystemStyleObject[\"textDecoration\"]",
       "required": false,
       "description": "The CSS `text-decoration` property"
+    }
+  },
+  "Em": {},
+  "Strong": {},
+  "Mark": {
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
     }
   }
 }

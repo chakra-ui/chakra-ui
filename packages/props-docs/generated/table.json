@@ -1,40 +1,65 @@
 {
-  "Table": {
-    "colorScheme": {
+  "TableRoot": {
+    "colorPalette": {
       "defaultValue": "gray",
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
       "required": false,
-      "description": "The visual color appearance of the component"
+      "description": "The color palette of the component"
+    },
+    "interactive": {
+      "type": "\"true\"",
+      "required": false,
+      "description": "The interactive of the component"
     },
     "layout": {
-      "type": "string | number | boolean | ResponsiveArray<string | number | boolean | undefined> | Partial<Record<string, string | number | boolean | undefined>> | ((theme: Record<...>) => ResponsiveValue<...>)",
+      "type": "SystemStyleObject[\"tableLayout\"]",
       "required": false
     },
-    "size": {
-      "defaultValue": "md",
-      "type": "\"sm\" | \"md\" | \"lg\"",
+    "native": {
+      "type": "boolean",
       "required": false,
-      "description": "The size of the Table"
+      "description": "If `true`, the table will style its descendants with nested selectors"
+    },
+    "numeric": {
+      "type": "\"true\"",
+      "required": false,
+      "description": "The numeric of the component"
+    },
+    "showColumnBorder": {
+      "type": "\"true\"",
+      "required": false,
+      "description": "The showColumnBorder of the component"
+    },
+    "size": {
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "defaultValue": "md",
+      "required": false,
+      "description": "The size of the component"
+    },
+    "striped": {
+      "type": "\"true\"",
+      "required": false,
+      "description": "The striped of the component"
     },
     "variant": {
-      "defaultValue": "simple",
-      "type": "\"simple\" | \"striped\" | \"unstyled\"",
+      "type": "\"line\" | \"outline\"",
+      "defaultValue": "line",
       "required": false,
-      "description": "The variant of the Table"
+      "description": "The variant of the component"
     }
   },
   "TableCaption": {
     "placement": {
-      "type": "\"bottom\" | \"top\"",
+      "type": "\"top\" | \"bottom\"",
       "defaultValue": "bottom",
       "required": false,
       "description": "The placement of the table caption. This sets the `caption-side` CSS attribute."
     }
   },
-  "TableContainer": {},
+  "TableOverflow": {},
   "TableBody": {},
   "TableCell": {
-    "isNumeric": {
+    "numeric": {
       "type": "boolean",
       "defaultValue": false,
       "required": false,
@@ -43,13 +68,13 @@
   },
   "TableFooter": {},
   "TableColumnHeader": {
-    "isNumeric": {
+    "numeric": {
       "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "Aligns the cell content to the right"
     }
   },
-  "TableHead": {},
+  "TableHeader": {},
   "TableRow": {}
 }

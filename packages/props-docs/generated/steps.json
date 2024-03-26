@@ -1,0 +1,49 @@
+{
+  "StepItem": {},
+  "StepDescription": {},
+  "StepIcon": {},
+  "StepIndicator": {},
+  "StepNumber": {},
+  "StepSeparator": {},
+  "StepStatus": {
+    "completed": { "required": false },
+    "current": { "required": false },
+    "incomplete": { "required": false }
+  },
+  "StepTitle": {},
+  "StepsRoot": {
+    "index": {
+      "type": "number",
+      "required": true,
+      "description": "The active step index"
+    },
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
+    "orientation": {
+      "type": "\"vertical\" | \"horizontal\"",
+      "defaultValue": "horizontal",
+      "required": false,
+      "description": "The orientation of the component"
+    },
+    "size": {
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "defaultValue": "md",
+      "required": false,
+      "description": "The size of the component"
+    },
+    "variant": {
+      "type": "\"solid\" | \"subtle\"",
+      "defaultValue": "solid",
+      "required": false,
+      "description": "The variant of the component"
+    }
+  },
+  "UseSteps": {
+    "count": { "type": "number", "required": false },
+    "index": { "type": "number", "required": false }
+  }
+}

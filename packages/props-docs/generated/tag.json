@@ -1,30 +1,29 @@
 {
-  "TagCloseButton": {
-    "isDisabled": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
-    }
-  },
-  "TagLabel": {},
-  "Tag": {
-    "colorScheme": {
+  "TagRoot": {
+    "colorPalette": {
       "defaultValue": "gray",
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
       "required": false,
-      "description": "The visual color appearance of the component"
+      "description": "The color palette of the component"
+    },
+    "interactive": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the tag will be interactive"
     },
     "size": {
-      "defaultValue": "md",
       "type": "\"sm\" | \"md\" | \"lg\"",
+      "defaultValue": "md",
       "required": false,
-      "description": "The size of the Tag"
+      "description": "The size of the component"
     },
     "variant": {
+      "type": "\"subtle\" | \"solid\" | \"outline\" | \"surface\" | \"raised\"",
       "defaultValue": "subtle",
-      "type": "\"subtle\" | \"solid\" | \"outline\"",
       "required": false,
-      "description": "The variant of the Tag"
+      "description": "The variant of the component"
     }
-  }
+  },
+  "TagCloseTrigger": { "disabled": { "type": "boolean", "required": false } },
+  "TagLabel": {}
 }

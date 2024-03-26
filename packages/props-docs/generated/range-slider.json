@@ -1,11 +1,5 @@
 {
-  "SliderRoot": {
-    "colorPalette": {
-      "defaultValue": "gray",
-      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
-      "required": false,
-      "description": "The color palette of the component"
-    },
+  "RangeSliderRoot": {
     "disabled": {
       "type": "boolean",
       "defaultValue": false,
@@ -35,26 +29,26 @@
       "required": false,
       "description": "The minimum allowed value of the slider. Cannot be greater than max."
     },
+    "minStepsBetweenThumbs": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum distance between slider thumbs. Useful for preventing\nthe thumbs from being too close together."
+    },
     "name": {
-      "type": "string",
+      "type": "string | string[]",
       "required": false,
       "description": "The name attribute of the hidden `input` field.\nThis is particularly useful in forms"
     },
     "onChangeEnd": {
-      "type": "number)",
+      "type": "number[])",
       "required": false,
       "description": "Function called when the user is done selecting a new value (by dragging or clicking)"
     },
     "onChangeStart": {
-      "type": "number)",
+      "type": "number[])",
       "required": false,
       "description": "Function called when the user starts selecting a new value (by dragging or clicking)"
-    },
-    "orientation": {
-      "type": "\"vertical\" | \"horizontal\"",
-      "defaultValue": "horizontal",
-      "required": false,
-      "description": "The orientation of the component"
     },
     "readOnly": {
       "type": "boolean",
@@ -64,14 +58,9 @@
     },
     "reversed": {
       "type": "boolean",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the value will be incremented or decremented in reverse."
-    },
-    "size": {
-      "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
-      "defaultValue": "md",
-      "required": false,
-      "description": "The size of the component"
     },
     "step": {
       "type": "number",
@@ -80,48 +69,36 @@
       "description": "The step in which increments/decrements have to be made"
     },
     "value": {
-      "type": "number",
+      "type": "number[]",
       "required": false,
       "description": "The value of the slider in controlled mode"
-    },
-    "variant": {
-      "type": "\"outline\" | \"subtle\"",
-      "defaultValue": "outline",
-      "required": false,
-      "description": "The variant of the component"
     }
   },
-  "SliderMark": {
-    "value": {
-      "type": "number",
-      "required": true,
-      "description": "The value of the slider mark"
-    }
-  },
-  "SliderThumb": {},
-  "SliderTrack": {},
-  "SliderFilledTrack": {},
-  "SliderControl": {},
-  "SliderValueText": {},
-  "SliderLabel": {},
-  "UseSlider": {
+  "RangeSliderMark": { "value": { "type": "number", "required": true } },
+  "RangeSliderThumb": { "index": { "type": "number", "required": true } },
+  "RangeSliderTrack": {},
+  "RangeSliderFilledTrack": {},
+  "RangeSliderLabel": {},
+  "RangeSliderControl": {},
+  "RangeSliderValueText": {},
+  "UseRangeSlider": {
     "aria-label": {
-      "type": "string",
+      "type": "string[]",
       "required": false,
       "description": "The static string to use used for `aria-label`\nif no visible label is used."
     },
     "aria-labelledby": {
-      "type": "string",
+      "type": "string[]",
       "required": false,
       "description": "The static string `aria-labelledby` that points to the\nID of the element that serves as label for the slider"
     },
     "aria-valuetext": {
-      "type": "string",
+      "type": "string[]",
       "required": false,
       "description": "The static string to use used for `aria-valuetext`"
     },
     "defaultValue": {
-      "type": "number",
+      "type": "number[]",
       "required": false,
       "description": "The initial value of the slider in uncontrolled mode"
     },
@@ -165,23 +142,29 @@
       "required": false,
       "description": "The minimum allowed value of the slider. Cannot be greater than max."
     },
+    "minStepsBetweenThumbs": {
+      "type": "number",
+      "defaultValue": "0",
+      "required": false,
+      "description": "The minimum distance between slider thumbs. Useful for preventing\nthe thumbs from being too close together."
+    },
     "name": {
-      "type": "string",
+      "type": "string | string[]",
       "required": false,
       "description": "The name attribute of the hidden `input` field.\nThis is particularly useful in forms"
     },
     "onChange": {
-      "type": "number)",
+      "type": "number[])",
       "required": false,
       "description": "Function called whenever the slider value changes  (by dragging or clicking)"
     },
     "onChangeEnd": {
-      "type": "number)",
+      "type": "number[])",
       "required": false,
       "description": "Function called when the user is done selecting a new value (by dragging or clicking)"
     },
     "onChangeStart": {
-      "type": "number)",
+      "type": "number[])",
       "required": false,
       "description": "Function called when the user starts selecting a new value (by dragging or clicking)"
     },
@@ -199,6 +182,7 @@
     },
     "reversed": {
       "type": "boolean",
+      "defaultValue": false,
       "required": false,
       "description": "If `true`, the value will be incremented or decremented in reverse."
     },
@@ -209,7 +193,7 @@
       "description": "The step in which increments/decrements have to be made"
     },
     "value": {
-      "type": "number",
+      "type": "number[]",
       "required": false,
       "description": "The value of the slider in controlled mode"
     }
