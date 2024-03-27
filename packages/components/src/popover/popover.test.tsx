@@ -2,27 +2,22 @@ import { fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { UsePopoverProps, usePopover } from "."
 
-const Component = (props: UsePopoverProps) => {
-  const {
-    getTriggerProps,
-    getPopoverProps,
-    getPopoverPositionerProps,
-    onClose,
-  } = usePopover(props)
+const PopoverDemo = (props: UsePopoverProps) => {
+  const api = usePopover(props)
 
   return (
     <div>
-      <button type="button" {...getTriggerProps()}>
+      <button type="button" {...api.getTriggerProps()}>
         Open
       </button>
-      <div {...getPopoverPositionerProps()}>
+      <div {...api.getPositionerProps()}>
         <div
-          {...getPopoverProps({
-            children: <div data-testid="content">Popover content</div>,
+          {...api.getContentProps({
+            children: <div>Popover content</div>,
           })}
-        />
+        ></div>
       </div>
-      <button type="button" onClick={onClose}>
+      <button type="button" onClick={api.onClose}>
         Close
       </button>
     </div>
@@ -30,7 +25,7 @@ const Component = (props: UsePopoverProps) => {
 }
 
 test("has proper aria attributes", async () => {
-  const utils = render(<Component />)
+  const utils = render(<PopoverDemo />)
   const trigger = utils.getByText(/open/i)
 
   expect(trigger).toHaveAttribute("aria-expanded", "false")
@@ -50,7 +45,7 @@ test("has proper aria attributes", async () => {
 })
 
 test("can open and close the popover", async () => {
-  const utils = render(<Component />)
+  const utils = render(<PopoverDemo />)
 
   // open the popover
   fireEvent.click(utils.getByText(/open/i))
@@ -64,7 +59,7 @@ test("can open and close the popover", async () => {
 })
 
 test("can close the popover by pressing escape", async () => {
-  const utils = render(<Component />)
+  const utils = render(<PopoverDemo />)
 
   // open the popover
   fireEvent.click(utils.getByText(/open/i))
@@ -73,50 +68,42 @@ test("can close the popover by pressing escape", async () => {
 
   // close the popover with escape
   fireEvent.keyDown(dialog, { key: "Escape" })
-
-  // verify popover is hidden
-  // utils.getByRole("dialog", { hidden: true })
 })
 
 type LazyPopoverContentProps = {
   mockFn: () => any | Promise<any>
 }
 
-const LazyPopoverContent = (props: LazyPopoverContentProps) => {
+const LazyPopoverDemo = (props: LazyPopoverContentProps) => {
   const { mockFn } = props
+
   React.useEffect(() => {
     mockFn()
   }, [mockFn])
+
   return <p data-testid="lazy-content">Lazy content</p>
 }
 
-const LazyPopoverComponent = (
-  props: UsePopoverProps & LazyPopoverContentProps,
-) => {
-  const {
-    getTriggerProps,
-    getPopoverProps,
-    getPopoverPositionerProps,
-    onClose,
-  } = usePopover(props)
+const LazyPopover = (props: UsePopoverProps & LazyPopoverContentProps) => {
+  const api = usePopover(props)
 
   return (
     <div>
-      <button type="button" {...getTriggerProps()}>
+      <button type="button" {...api.getTriggerProps()}>
         Open
       </button>
-      <div {...getPopoverPositionerProps()}>
+      <div {...api.getPositionerProps()}>
         <div
-          {...getPopoverProps({
+          {...api.getContentProps({
             children: (
               <div data-testid="content" tabIndex={0}>
-                <LazyPopoverContent mockFn={props.mockFn} />
+                <LazyPopoverDemo mockFn={props.mockFn} />
               </div>
             ),
           })}
-        />
+        ></div>
       </div>
-      <button type="button" onClick={onClose}>
+      <button type="button" onClick={api.onClose}>
         Close
       </button>
     </div>
@@ -125,7 +112,7 @@ const LazyPopoverComponent = (
 
 test("loads content lazily and unmounts the component from the DOM", async () => {
   const mock = vi.fn()
-  const utils = render(<LazyPopoverComponent isLazy mockFn={mock} />)
+  const utils = render(<LazyPopover isLazy mockFn={mock} />)
 
   // by default, content should not be visible
   let content = screen.queryByTestId("content")
@@ -162,7 +149,7 @@ test("loads content lazily and unmounts the component from the DOM", async () =>
 test("loads content lazily and persists the component in the DOM", async () => {
   const mock = vi.fn()
   const utils = render(
-    <LazyPopoverComponent isLazy lazyBehavior="keepMounted" mockFn={mock} />,
+    <LazyPopover isLazy lazyBehavior="keepMounted" mockFn={mock} />,
   )
 
   // by default, content should not be visible
@@ -196,22 +183,17 @@ test("loads content lazily and persists the component in the DOM", async () => {
 })
 
 // For testing focus interaction, use another component with a focusable element inside.
-const FocusTestComponent = (props: UsePopoverProps) => {
-  const {
-    getTriggerProps,
-    getPopoverProps,
-    getPopoverPositionerProps,
-    onClose,
-  } = usePopover(props)
+const FocusDemo = (props: UsePopoverProps) => {
+  const api = usePopover(props)
 
   return (
     <div>
-      <button type="button" {...getTriggerProps()}>
+      <button type="button" {...api.getTriggerProps()}>
         Open
       </button>
-      <div {...getPopoverPositionerProps()}>
+      <div {...api.getPositionerProps()}>
         <div
-          {...getPopoverProps({
+          {...api.getContentProps({
             children: (
               <div data-testid="content" tabIndex={0}>
                 Popover content
@@ -223,7 +205,7 @@ const FocusTestComponent = (props: UsePopoverProps) => {
           })}
         />
       </div>
-      <button type="button" onClick={onClose}>
+      <button type="button" onClick={api.onClose}>
         Close
       </button>
     </div>
@@ -231,7 +213,7 @@ const FocusTestComponent = (props: UsePopoverProps) => {
 }
 
 test("when 'trigger'='hover', keep content visible while the tab focus is inside a popover", async () => {
-  const { user } = render(<FocusTestComponent trigger="hover" />)
+  const { user } = render(<FocusDemo trigger="hover" />)
 
   const openButton = await screen.findByText(/open/i)
   const content = await screen.findByText(/content/i)

@@ -1,34 +1,27 @@
 import {
   Box,
+  Field,
   Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
   HTMLChakraProps,
   Heading,
   Input,
   LinkBox,
   LinkOverlay,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
   Tabs,
   Text,
   chakra,
 } from '@chakra-ui/react'
-import { useFormik } from 'formik'
-import NextLink from 'next/link'
-import * as React from 'react'
-import { FaMicrophone, FaPenSquare, FaVideo } from 'react-icons/fa'
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import PageContainer from 'components/page-container'
 import ResourceCard, { Resource } from 'components/resource-card'
 import Sidebar from 'components/sidebar/sidebar'
 import resources from 'configs/resources.json'
+import { useFormik } from 'formik'
 import { getRoutes } from 'layouts/mdx'
+import NextLink from 'next/link'
+import * as React from 'react'
+import { FaMicrophone, FaPenSquare, FaVideo } from 'react-icons/fa'
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import { filterResources } from 'utils/filter-resources'
-import { t } from 'utils/i18n'
 import { groupBy } from 'utils/js-utils'
 
 function Resources() {
@@ -40,44 +33,44 @@ function Resources() {
   const data = resources.data as Resource[]
   const groups = groupBy(data, 'type')
 
-  const BLOGS = t('resources.blogs.title')
-  const TALKS = t('resources.talks.title')
-  const VIDEOS = t('resources.videos.title')
-
   return (
     <PageContainer
       leftSidebar={<Sidebar routes={routes} />}
       frontmatter={{
-        title: t('resources.title'),
-        description: t('resources.description'),
+        title: 'Community Resources',
+        description:
+          'A rich compilation of technical descriptions and detailed information of how Chakra UI works.',
       }}
     >
-      <Text mt='2'>{t('resources.message')}</Text>
+      <Text mt='2'>
+        A rich compilation of technical descriptions and detailed information of
+        how Chakra UI works.
+      </Text>
       <ShowcaseBanner />
-      <Tabs colorScheme='teal' variant='line' mt='6'>
-        <TabList>
-          <Tab>
-            <ResourcesTabContent icon={FaMicrophone} text={TALKS} />
-          </Tab>
-          <Tab>
-            <ResourcesTabContent icon={FaVideo} text={VIDEOS} />
-          </Tab>
-          <Tab>
-            <ResourcesTabContent icon={FaPenSquare} text={BLOGS} />
-          </Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <ResourceSection title={TALKS} resources={groups.talk} />
-          </TabPanel>
-          <TabPanel>
-            <ResourceSection title={VIDEOS} resources={groups.video} />
-          </TabPanel>
-          <TabPanel>
-            <ResourceSection title={BLOGS} resources={groups.blog} />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+      <Tabs.Root colorScheme='teal' variant='line' mt='6'>
+        <Tabs.List>
+          <Tabs.Trigger>
+            <ResourcesTabContent icon={FaMicrophone} text='Talks' />
+          </Tabs.Trigger>
+          <Tabs.Trigger>
+            <ResourcesTabContent icon={FaVideo} text='Videos' />
+          </Tabs.Trigger>
+          <Tabs.Trigger>
+            <ResourcesTabContent icon={FaPenSquare} text='Blogs' />
+          </Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.ContentGroup>
+          <Tabs.Content>
+            <ResourceSection title='Talks' resources={groups.talk} />
+          </Tabs.Content>
+          <Tabs.Content>
+            <ResourceSection title='Videos' resources={groups.video} />
+          </Tabs.Content>
+          <Tabs.Content>
+            <ResourceSection title='Blogs' resources={groups.blog} />
+          </Tabs.Content>
+        </Tabs.ContentGroup>
+      </Tabs.Root>
     </PageContainer>
   )
 }
@@ -110,18 +103,16 @@ function ResourceSection(props: ResourceSectionProps) {
 
   return (
     <Box as='section' mt='8'>
-      <FormControl id={filterInputId} mt='8' mb='8'>
-        <FormLabel>{t('resources.searchFilter.label')}</FormLabel>
+      <Field.Root id={filterInputId} mt='8' mb='8'>
+        <Field.Label>Search</Field.Label>
         <Input
           name={filterInputId}
           onChange={formik.handleChange}
-          placeholder={t('resources.searchFilter.placeholder')}
+          placeholder='react'
           value={formik.values[filterInputId]}
         />
-        <FormHelperText>
-          {t('resources.searchFilter.helperText')}
-        </FormHelperText>
-      </FormControl>
+        <Field.HelpText>Filter by title</Field.HelpText>
+      </Field.Root>
       <ResponsiveMasonry columnsCountBreakPoints={masonryGridBreakpoints}>
         <Masonry gutter='16px'>
           {filteredResources.map((item, index) => (
@@ -176,12 +167,16 @@ const ShowcaseBanner = () => (
         <NextLink href='/showcase' passHref>
           <LinkOverlay color='white'>
             <Flex align='center' mb='4'>
-              <Heading size='md'>{t('resources.showcaseBannerTitle')}</Heading>
+              <Heading size='md'>Visit the Showcase</Heading>
               <ShowcaseIcon w='8' h='8' ml='1' />
             </Flex>
           </LinkOverlay>
         </NextLink>
-        <Text color='gray.400'>{t('resources.showcaseBannerDescription')}</Text>
+        <Text color='gray.400'>
+          See what other Devs made with Chakra UI. Those are community projects,
+          websites, libraries, tools, articles and videos that you can use to
+          get inspired, implement a feature, or learn Chakra UI.
+        </Text>
       </Box>
     </Flex>
   </LinkBox>

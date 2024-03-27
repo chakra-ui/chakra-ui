@@ -12,6 +12,7 @@ import React, {
   type RefObject,
 } from "react"
 import { UsePopperProps, popperCSSVars, usePopper } from "../popper"
+import { useTheme } from "../system"
 
 export interface UseTooltipProps
   extends Pick<
@@ -38,11 +39,6 @@ export interface UseTooltipProps
    * @default true
    */
   closeOnClick?: boolean
-  /**
-   * If `true`, the tooltip will hide while the mouse is down
-   * @deprecated - use `closeOnPointerDown` instead
-   */
-  closeOnMouseDown?: boolean
   /**
    * If `true`, the tooltip will hide while the pointer is down
    * @default true
@@ -97,13 +93,14 @@ const getWin = (ref: React.RefObject<Element | null>) =>
   ref.current?.ownerDocument?.defaultView || window
 
 export function useTooltip(props: Partial<UseTooltipProps> = {}) {
+  const theme = useTheme()
+
   const {
     openDelay = 0,
     closeDelay = 0,
     closeOnClick = true,
-    closeOnMouseDown,
     closeOnScroll,
-    closeOnPointerDown = closeOnMouseDown,
+    closeOnPointerDown,
     closeOnEsc = true,
     onOpen: onOpenProp,
     onClose: onCloseProp,
@@ -118,8 +115,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     isDisabled,
     gutter,
     offset,
-    direction,
-    ...htmlProps
+    direction = theme.direction,
   } = props
 
   const { isOpen, onOpen, onClose } = useDisclosure({
@@ -277,7 +273,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     ],
   )
 
-  const getTooltipPositionerProps: PropGetter = useCallback(
+  const getPositionerProps: PropGetter = useCallback(
     (props = {}, forwardedRef = null) =>
       getPopperProps(
         {
@@ -295,7 +291,7 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     [getPopperProps, arrowSize, arrowShadowColor],
   )
 
-  const getTooltipProps: PropGetter = useCallback(
+  const getContentProps: PropGetter = useCallback(
     (props = {}, ref = null) => {
       const styles: React.CSSProperties = {
         ...props.style,
@@ -305,14 +301,13 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
 
       return {
         ref,
-        ...htmlProps,
         ...props,
         id: tooltipId,
         role: "tooltip",
         style: styles,
       }
     },
-    [htmlProps, tooltipId],
+    [tooltipId],
   )
 
   return {
@@ -320,8 +315,8 @@ export function useTooltip(props: Partial<UseTooltipProps> = {}) {
     show: openWithDelay,
     hide: closeWithDelay,
     getTriggerProps,
-    getTooltipProps,
-    getTooltipPositionerProps,
+    getContentProps,
+    getPositionerProps,
     getArrowProps,
     getArrowInnerProps,
   }

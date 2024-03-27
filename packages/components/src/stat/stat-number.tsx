@@ -1,6 +1,6 @@
 import { cx } from "@chakra-ui/utils/cx"
 import { HTMLChakraProps, chakra, forwardRef } from "../system"
-import { useStatStyles } from "./stat"
+import { useStatStyles } from "./stat-context"
 
 export interface StatNumberProps extends HTMLChakraProps<"dd"> {}
 

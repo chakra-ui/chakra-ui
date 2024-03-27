@@ -6,15 +6,15 @@ import {
   waitFor,
 } from "@chakra-ui/test-utils"
 import { useEffect, useRef, useState } from "react"
-import { Editable, EditableInput, EditablePreview } from "."
+import { Editable } from "."
 
 describe("editable", () => {
   test("matches snapshot", () => {
     render(
-      <Editable defaultValue="testing">
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
+      <Editable.Root defaultValue="testing">
+        <Editable.Preview data-testid="preview" />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
 
     const preview = screen.getByTestId("preview")
@@ -26,10 +26,10 @@ describe("editable", () => {
 
   test("passes a11y test", async () => {
     await testA11y(
-      <Editable defaultValue="testing">
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
+      <Editable.Root defaultValue="testing">
+        <Editable.Preview data-testid="preview" />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
   })
 
@@ -40,16 +40,16 @@ describe("editable", () => {
     const onEdit = vi.fn()
 
     const { user } = render(
-      <Editable
+      <Editable.Root
         onChange={onChange}
         onCancel={onCancel}
         onSubmit={onSubmit}
         onEdit={onEdit}
         defaultValue="Hello "
       >
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
+        <Editable.Preview data-testid="preview" />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
     const preview = screen.getByTestId("preview")
     const input = screen.getByTestId("input")
@@ -87,7 +87,7 @@ describe("editable", () => {
     const Component = () => {
       const [value, setValue] = useState("")
       return (
-        <Editable
+        <Editable.Root
           onChange={(val) => {
             setValue(val)
             onChange(val)
@@ -98,9 +98,9 @@ describe("editable", () => {
           onEdit={onEdit}
           value={value}
         >
-          <EditablePreview data-testid="preview" />
-          <EditableInput data-testid="input" />
-        </Editable>
+          <Editable.Preview data-testid="preview" />
+          <Editable.Input data-testid="input" />
+        </Editable.Root>
       )
     }
 
@@ -145,15 +145,15 @@ describe("editable", () => {
     const onKeyDown = vi.fn()
 
     const { user } = render(
-      <Editable defaultValue="Hello ">
-        <EditablePreview onFocus={onFocus} data-testid="preview" />
-        <EditableInput
+      <Editable.Root defaultValue="Hello ">
+        <Editable.Preview onFocus={onFocus} data-testid="preview" />
+        <Editable.Input
           onBlur={onBlur}
           onChange={onChange}
           onKeyDown={onKeyDown}
           data-testid="input"
         />
-      </Editable>,
+      </Editable.Root>,
     )
     const preview = screen.getByTestId("preview")
     const input = screen.getByTestId("input")
@@ -175,10 +175,10 @@ describe("editable", () => {
 
   test("has the proper aria attributes", () => {
     const { rerender } = render(
-      <Editable defaultValue="">
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
+      <Editable.Root defaultValue="">
+        <Editable.Preview data-testid="preview" />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
     let preview = screen.getByTestId("preview")
     let input = screen.getByTestId("input")
@@ -188,10 +188,10 @@ describe("editable", () => {
     expect(input).not.toHaveAttribute("aria-disabled")
 
     rerender(
-      <Editable isDisabled defaultValue="">
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
+      <Editable.Root isDisabled defaultValue="">
+        <Editable.Preview data-testid="preview" />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
 
     preview = screen.getByTestId("preview")
@@ -206,10 +206,10 @@ describe("editable", () => {
     const onSubmit = vi.fn()
 
     const { user } = render(
-      <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
+      <Editable.Root submitOnBlur onSubmit={onSubmit} defaultValue="testing">
+        <Editable.Preview data-testid="preview" />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
 
     const preview = screen.getByTestId("preview")
@@ -222,10 +222,10 @@ describe("editable", () => {
 
   test("startWithEditView when true focuses on the input ", () => {
     render(
-      <Editable startWithEditView defaultValue="Chakra testing">
-        <EditablePreview />
-        <EditableInput data-testid="input" />
-      </Editable>,
+      <Editable.Root startWithEditView defaultValue="Chakra testing">
+        <Editable.Preview />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
 
     const input = screen.getByTestId("input")
@@ -249,7 +249,7 @@ describe("editable", () => {
         }, [])
 
         return (
-          <Editable
+          <Editable.Root
             value={name}
             startWithEditView={startWithEditView}
             onChange={(value) => {
@@ -263,9 +263,9 @@ describe("editable", () => {
             }}
             placeholder="Enter your name"
           >
-            <EditablePreview data-testid="preview" />
-            <EditableInput data-testid="input" />
-          </Editable>
+            <Editable.Preview data-testid="preview" />
+            <Editable.Input data-testid="input" />
+          </Editable.Root>
         )
       }
 
@@ -289,10 +289,10 @@ describe("editable", () => {
 
   test("should not be interactive when disabled", async () => {
     const { user } = render(
-      <Editable defaultValue="editable" isDisabled>
-        <EditablePreview data-testid="preview" />
-        <EditableInput data-testid="input" />
-      </Editable>,
+      <Editable.Root defaultValue="editable" isDisabled>
+        <Editable.Preview data-testid="preview" />
+        <Editable.Input data-testid="input" />
+      </Editable.Root>,
     )
 
     await user.click(screen.getByText(/editable/))
@@ -307,10 +307,10 @@ describe("editable", () => {
           <button type="button" ref={buttonRef} data-testid="button">
             Open
           </button>
-          <Editable finalFocusRef={buttonRef} defaultValue="editable">
-            <EditablePreview data-testid="preview" />
-            <EditableInput data-testid="input" />
-          </Editable>
+          <Editable.Root finalFocusRef={buttonRef} defaultValue="editable">
+            <Editable.Preview data-testid="preview" />
+            <Editable.Input data-testid="input" />
+          </Editable.Root>
           ,
         </>
       )

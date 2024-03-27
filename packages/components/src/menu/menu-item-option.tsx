@@ -1,13 +1,13 @@
 import { SystemProps } from "@chakra-ui/styled-system"
-import { forwardRef, PropsOf } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-import { HTMLAttributes, ReactElement } from "react"
+import { ComponentProps, HTMLAttributes, ReactElement } from "react"
+import { forwardRef } from "../system"
 import { MenuIcon } from "./menu-icon"
 import { MenuItemProps } from "./menu-item"
 import { StyledMenuItem } from "./styled-menu-item"
 import { useMenuOption, UseMenuOptionOptions } from "./use-menu"
 
-const CheckIcon: React.FC<PropsOf<"svg">> = (props) => (
+const CheckIcon = (props: ComponentProps<"svg">) => (
   <svg viewBox="0 0 14 14" width="1em" height="1em" {...props}>
     <polygon
       fill="currentColor"

@@ -13,7 +13,7 @@ const $thumbSize = cssVar("slider-thumb-size")
 const $trackSize = cssVar("slider-track-size")
 const $bg = cssVar("slider-bg")
 
-const baseStyleContainer = defineStyle((props) => {
+const baseStyleRoot = defineStyle((props) => {
   const { orientation } = props
 
   return {
@@ -119,28 +119,28 @@ const baseStyleFilledTrack = defineStyle((props) => {
 })
 
 const baseStyle = definePartsStyle((props) => ({
-  container: baseStyleContainer(props),
+  root: baseStyleRoot(props),
   track: baseStyleTrack(props),
   thumb: baseStyleThumb(props),
   filledTrack: baseStyleFilledTrack(props),
 }))
 
 const sizeLg = definePartsStyle({
-  container: {
+  root: {
     [$thumbSize.variable]: `sizes.4`,
     [$trackSize.variable]: `sizes.1`,
   },
 })
 
 const sizeMd = definePartsStyle({
-  container: {
+  root: {
     [$thumbSize.variable]: `sizes.3.5`,
     [$trackSize.variable]: `sizes.1`,
   },
 })
 
 const sizeSm = definePartsStyle({
-  container: {
+  root: {
     [$thumbSize.variable]: `sizes.2.5`,
     [$trackSize.variable]: `sizes.0.5`,
   },

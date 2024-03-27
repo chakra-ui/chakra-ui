@@ -7,15 +7,27 @@ import {
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys)
 
+const sharedStyles = defineStyle({
+  fontSize: "inherit",
+  fontWeight: "inherit",
+  textAlign: "inherit",
+  bg: "transparent",
+})
+
 const baseStylePreview = defineStyle({
+  ...sharedStyles,
   borderRadius: "md",
   py: "1",
   transitionProperty: "common",
   transitionDuration: "normal",
+  cursor: "text",
+  display: "inline-block",
 })
 
 const baseStyleInput = defineStyle({
+  ...sharedStyles,
   borderRadius: "md",
+  outline: 0,
   py: "1",
   transitionProperty: "common",
   transitionDuration: "normal",
@@ -25,6 +37,8 @@ const baseStyleInput = defineStyle({
 })
 
 const baseStyleTextarea = defineStyle({
+  ...sharedStyles,
+  outline: 0,
   borderRadius: "md",
   py: "1",
   transitionProperty: "common",

@@ -1,7 +1,7 @@
 import { Grid, GridItem } from ".."
 
 export default {
-  title: "Components / Layout / Grid",
+  title: "Layout / Grid",
 }
 
 export const WithTemplateColumns = () => (

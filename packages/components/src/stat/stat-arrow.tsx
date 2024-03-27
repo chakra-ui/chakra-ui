@@ -1,7 +1,6 @@
-import { type IconProps, Icon } from "../icon"
+import { useStatStyles } from "."
+import { Icon, type IconProps } from "../icon"
 import { chakra } from "../system"
-
-import { useStatStyles } from "./stat"
 
 export const StatDownArrow: React.FC<IconProps> = (props) => (
   <Icon color="red.400" {...props}>

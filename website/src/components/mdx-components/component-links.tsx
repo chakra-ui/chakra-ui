@@ -7,7 +7,6 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { FaGithub, FaNpm, FaYoutube } from 'react-icons/fa'
-import { t } from 'utils/i18n'
 import StorybookIcon from '../storybook-icon'
 
 type ComponentLinkProps = ButtonProps & {
@@ -34,7 +33,6 @@ function ComponentLink(props: ComponentLinkProps) {
         transform: 'translateY(-2px)',
         textDecor: 'none',
       }}
-      leftIcon={<BtnIcon />}
       sx={{
         '& span': {
           width: iconSize,
@@ -47,6 +45,7 @@ function ComponentLink(props: ComponentLinkProps) {
       }}
       {...rest}
     >
+      <BtnIcon />
       {children}
     </Button>
   )
@@ -75,7 +74,7 @@ function ComponentLinks(props: ComponentLinksProps) {
       iconColor={iconColor}
       iconSize='1rem'
     >
-      {t('component.mdx-components.component-links.view-source')}
+      Source
     </ComponentLink>
   )
 
@@ -98,7 +97,7 @@ function ComponentLinks(props: ComponentLinksProps) {
       iconSize='1.25rem'
       iconColor='pink.500'
     >
-      {t('component.mdx-components.component-links.view-storybook')}
+      Storybook
     </ComponentLink>
   )
 
@@ -110,7 +109,7 @@ function ComponentLinks(props: ComponentLinksProps) {
       iconSize='1.2rem'
       iconColor='red.500'
     >
-      {t('component.mdx-components.component-links.view-video')}
+      Video
     </ComponentLink>
   )
 
@@ -121,7 +120,7 @@ function ComponentLinks(props: ComponentLinksProps) {
       iconColor={iconColor}
       iconSize='1rem'
     >
-      {t('component.mdx-components.component-links.view-theme-source')}
+      Theme Source
     </ComponentLink>
   )
 

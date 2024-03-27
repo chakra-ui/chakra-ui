@@ -1,6 +1,8 @@
 import { cx } from "@chakra-ui/utils/cx"
-import { chakra, forwardRef } from "../system"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { useStepContext, useStepperStyles } from "./step-context"
+
+export interface StepNumberProps extends HTMLChakraProps<"div"> {}
 
 export const StepNumber = forwardRef<{}, "div">(
   function StepNumber(props, ref) {

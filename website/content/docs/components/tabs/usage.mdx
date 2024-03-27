@@ -212,29 +212,29 @@ In the event that you need to create custom styles for individual tabs, use the
 
 ### Tabs onChange
 
-The `onChange` callback returns the active tab's index whenever the user changes
+The `onChange` callback returns the active tab's value whenever the user changes
 tabs. If you intend to control the tabs programmatically, use this with the
-`index` prop.
+`value` prop.
 
 ```jsx
 function Example() {
   const colors = useColorModeValue(
-    ['red.50', 'teal.50', 'blue.50'],
-    ['red.900', 'teal.900', 'blue.900'],
+    { red: 'red.50', teal: 'teal.50', blue: 'blue.50' },
+    { red: 'red.900', teal: 'teal.900', blue: 'blue.900' },
   )
-  const [tabIndex, setTabIndex] = useState(0)
-  const bg = colors[tabIndex]
+  const [value, setValue] = useState('red')
+  const bg = colors[value]
   return (
-    <Tabs onChange={(index) => setTabIndex(index)} bg={bg}>
+    <Tabs defaultValue='red' onChange={(value) => setValue(value)} bg={bg}>
       <TabList>
-        <Tab>Red</Tab>
-        <Tab>Teal</Tab>
-        <Tab>Blue</Tab>
+        <Tab value='red'>Red</Tab>
+        <Tab value='teal'>Teal</Tab>
+        <Tab value='blue'>Blue</Tab>
       </TabList>
       <TabPanels p='2rem'>
-        <TabPanel>The Primary Colors</TabPanel>
-        <TabPanel>Are 1, 2, 3</TabPanel>
-        <TabPanel>Red, yellow and blue.</TabPanel>
+        <TabPanel value='red'>The Primary Colors</TabPanel>
+        <TabPanel value='teal'>Are 1, 2, 3</TabPanel>
+        <TabPanel value='blue'>Red, yellow and blue.</TabPanel>
       </TabPanels>
     </Tabs>
   )
@@ -243,20 +243,20 @@ function Example() {
 
 ### Make a tab initially active
 
-If you want a tab to be initially active, simply pass the `defaultIndex` prop
+If you want a tab to be initially active, simply pass the `defaultValue` prop
 and set it to the index of that tab.
 
 ```jsx
-<Tabs defaultIndex={1}>
+<Tabs defaultValue='naruto'>
   <TabPanels>
-    <TabPanel>
+    <TabPanel value='naruto'>
       <Image
         boxSize='200px'
         fit='cover'
         src='https://www.freepnglogos.com/uploads/naruto-png/image-kunai-naruto-fictional-battle-omniverse-23.png'
       />
     </TabPanel>
-    <TabPanel>
+    <TabPanel value='sasuke'>
       <Image
         boxSize='200px'
         fit='cover'
@@ -265,8 +265,8 @@ and set it to the index of that tab.
     </TabPanel>
   </TabPanels>
   <TabList>
-    <Tab>Naruto</Tab>
-    <Tab>Sasuke</Tab>
+    <Tab value='naruto'>Naruto</Tab>
+    <Tab value='sasuke'>Sasuke</Tab>
   </TabList>
 </Tabs>
 ```
@@ -362,14 +362,16 @@ onChange as well, or else the tabs will not be interactive.
 
 ```jsx
 function ControlledExample() {
-  const [tabIndex, setTabIndex] = useState(0)
+  const tabs = ['one', 'two', 'three']
+
+  const [value, setValue] = useState('one')
 
   const handleSliderChange = (event) => {
-    setTabIndex(parseInt(event.target.value, 10))
+    setValue(tabs[parseInt(event.target.value, 10)])
   }
 
-  const handleTabsChange = (index) => {
-    setTabIndex(index)
+  const handleTabsChange = (value) => {
+    setValue(value)
   }
 
   return (
@@ -382,20 +384,20 @@ function ControlledExample() {
         onChange={handleSliderChange}
       />
 
-      <Tabs index={tabIndex} onChange={handleTabsChange}>
+      <Tabs value={value} onChange={handleTabsChange}>
         <TabList>
-          <Tab>One</Tab>
-          <Tab>Two</Tab>
-          <Tab>Three</Tab>
+          <Tab value='one'>One</Tab>
+          <Tab value='two'>Two</Tab>
+          <Tab value='three'>Three</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
+          <TabPanel value='one'>
             <p>Click the tabs or pull the slider around</p>
           </TabPanel>
-          <TabPanel>
+          <TabPanel value='two'>
             <p>Yeah yeah. What's up?</p>
           </TabPanel>
-          <TabPanel>
+          <TabPanel value='three'>
             <p>Oh, hello there.</p>
           </TabPanel>
         </TabPanels>

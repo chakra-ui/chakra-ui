@@ -162,6 +162,17 @@
         "default": "./dist/cjs/context.cjs"
       }
     },
+    "./create-props": {
+      "source": "./src/create-props.ts",
+      "import": {
+        "types": "./dist/types/create-props.d.mts",
+        "default": "./dist/esm/create-props.mjs"
+      },
+      "require": {
+        "types": "./dist/types/create-props.d.ts",
+        "default": "./dist/cjs/create-props.cjs"
+      }
+    },
     "./cx": {
       "source": "./src/cx.ts",
       "import": {
@@ -424,6 +435,17 @@
       "require": {
         "types": "./dist/types/types.d.ts",
         "default": "./dist/cjs/types.cjs"
+      }
+    },
+    "./unit": {
+      "source": "./src/unit.ts",
+      "import": {
+        "types": "./dist/types/unit.d.mts",
+        "default": "./dist/esm/unit.mjs"
+      },
+      "require": {
+        "types": "./dist/types/unit.d.ts",
+        "default": "./dist/cjs/unit.cjs"
       }
     },
     "./walk-object": {

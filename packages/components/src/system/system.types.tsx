@@ -4,6 +4,7 @@ import type {
   SystemStyleObject,
 } from "@chakra-ui/styled-system"
 import type { Interpolation } from "@emotion/react"
+import { ElementType } from "react"
 
 export interface ChakraProps extends SystemProps {
   /**
@@ -26,14 +27,23 @@ export interface ChakraProps extends SystemProps {
   css?: Interpolation<{}>
 }
 
-export type As = React.ElementType
+export interface AsChildProps {
+  asChild?: boolean
+}
+
+export interface AsProps<T extends ElementType = ElementType> {
+  /**
+   * @deprecated - This prop is deprecated and will be removed in a future release
+   * Switch to the `asChild` prop instead
+   */
+  as?: T
+}
 
 /**
  * Extract the props of a React element or component
  */
-export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
-  as?: As
-}
+export type PropsOf<T extends ElementType> = React.ComponentPropsWithoutRef<T> &
+  AsProps
 
 export type OmitCommonProps<
   Target,
@@ -56,7 +66,7 @@ export type MergeWithAs<
   ComponentProps extends object,
   AsProps extends object,
   AdditionalProps extends object = {},
-  AsComponent extends As = As,
+  AsComponent extends ElementType = ElementType,
 > = (
   | RightJoinProps<ComponentProps, AdditionalProps>
   | RightJoinProps<AsProps, AdditionalProps>
@@ -64,10 +74,13 @@ export type MergeWithAs<
   as?: AsComponent
 }
 
-export type ComponentWithAs<Component extends As, Props extends object = {}> = {
-  <AsComponent extends As = Component>(
+export type ComponentWithAs<
+  Component extends ElementType,
+  Props extends object = {},
+> = {
+  <AsComponent extends ElementType = Component>(
     props: MergeWithAs<
-      React.ComponentProps<Component>,
+      React.ComponentProps<Component> & AsChildProps,
       React.ComponentProps<AsComponent>,
       Props,
       AsComponent
@@ -81,5 +94,5 @@ export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   id?: string
 }
 
-export interface ChakraComponent<T extends As, P extends object = {}>
+export interface ChakraComponent<T extends ElementType, P extends object = {}>
   extends ComponentWithAs<T, Assign<ChakraProps, P>> {}

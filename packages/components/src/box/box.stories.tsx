@@ -1,7 +1,7 @@
 import { Box, Circle, Flex, Kbd, Spacer, Square } from ".."
 
 export default {
-  title: "Components / Layout / Box",
+  title: "Layout / Box",
 }
 
 export const basic = () => (

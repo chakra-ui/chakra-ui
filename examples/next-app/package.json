@@ -9,7 +9,6 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@chakra-ui/icons": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/theme-tools": "workspace:*",
     "@chakra-ui/next-js": "workspace:*",

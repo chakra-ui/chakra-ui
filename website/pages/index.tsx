@@ -7,11 +7,13 @@ import {
   Divider,
   Flex,
   Grid,
+  HStack,
   Heading,
   Icon,
   LightMode,
   Link,
   SimpleGrid,
+  Span,
   Stack,
   Text,
   Wrap,
@@ -47,7 +49,6 @@ import { getAllSponsors } from 'utils/get-all-sponsors'
 import { getDiscordMembers } from 'utils/get-discord-members'
 import { getGithubStars } from 'utils/get-github-stars'
 import { getNpmDownloads } from 'utils/get-npm-downloads'
-import { t } from 'utils/i18n'
 
 const openCollectiveLink = 'https://opencollective.com/chakra-ui'
 
@@ -110,10 +111,10 @@ const StatBox = (props: StatBoxProps) => {
       <Box fontSize={{ base: '4rem', md: '6rem' }} lineHeight='1em' mb='20px'>
         {title}
       </Box>
-      <Stack isInline align='center'>
+      <HStack>
         <StatIcon size='24px' />
         <Text>{description}</Text>
-      </Stack>
+      </HStack>
     </Flex>
   )
 }
@@ -139,8 +140,8 @@ const HomePage = ({
   return (
     <>
       <SEO
-        title={t('homepage.seo.title')}
-        description={t('homepage.seo.description')}
+        title='Chakra UI - A simple, modular and accessible component library that gives you the building blocks you need to build your React applications.'
+        description='Simple, Modular and Accessible UI Components for your React Applications. Built with Styled System'
       />
       <AdBanner />
       <Header />
@@ -158,11 +159,11 @@ const HomePage = ({
                 mb='16px'
                 lineHeight='1.2'
               >
-                {t('homepage.title.main')}
-                <Box as='span' color='teal.500' _dark={{ color: 'teal.300' }}>
+                Create accessible React apps
+                <Span color='teal.500' _dark={{ color: 'teal.300' }}>
                   {' '}
-                  {t('homepage.title.highlighted')}
-                </Box>
+                  with speed
+                </Span>
               </chakra.h1>
 
               <Text
@@ -173,7 +174,9 @@ const HomePage = ({
                 fontSize={{ base: 'lg', lg: 'xl' }}
                 mt='6'
               >
-                {t('homepage.message')}
+                Chakra UI is a simple, modular and accessible component library
+                that gives you the building blocks you need to build your React
+                applications.
               </Text>
 
               <Stack
@@ -190,9 +193,9 @@ const HomePage = ({
                     as='a'
                     size='lg'
                     colorScheme='teal'
-                    rightIcon={<FaArrowRight fontSize='0.8em' />}
                   >
-                    {t('homepage.get-started')}
+                    Get Started
+                    <FaArrowRight fontSize='0.8em' />
                   </Button>
                 </NextLink>
                 <Button
@@ -203,8 +206,8 @@ const HomePage = ({
                   fontSize='1.2rem'
                   href='https://github.com/chakra-ui/chakra-ui/'
                   target='__blank'
-                  leftIcon={<DiGithubBadge size='1.5em' />}
                 >
+                  <DiGithubBadge size='1.5em' />
                   GitHub
                 </Button>
               </Stack>
@@ -242,7 +245,7 @@ const HomePage = ({
               _dark={{ color: 'teal.300' }}
               mb='48px'
             >
-              {t('homepage.supported-and-backed-by')}
+              Supported and Backed by
             </chakra.p>
             <Wrap
               maxW='800px'
@@ -290,7 +293,7 @@ const HomePage = ({
                   <Box as='span' mr='1' role='img'>
                     💖
                   </Box>{' '}
-                  {t('homepage.your-company')}
+                  Your company
                 </Button>
               </WrapItem>
             </Wrap>
@@ -300,11 +303,10 @@ const HomePage = ({
         <Box as='section'>
           <Container py='80px'>
             <Box mb='3em' textAlign='center'>
-              <chakra.h2 textStyle='heading'>
-                {t('homepage.less-code-more-speed')}
-              </chakra.h2>
+              <chakra.h2 textStyle='heading'>Less code. More speed</chakra.h2>
               <Text opacity={0.7} fontSize='lg' mt='3' mx='auto' maxW='600px'>
-                {t('homepage.less-code-description')}
+                Spend less time writing UI code and more time building a great
+                experience for your customers.
               </Text>
             </Box>
             <Box
@@ -332,10 +334,10 @@ const HomePage = ({
           <Container py='120px' maxW='1280px'>
             <Box maxW='760px' mx='auto' textAlign='center' mb='56px'>
               <chakra.h2 textStyle='heading' mb='5'>
-                {t('homepage.feature-section.title')}
+                An experience you'd expect from a design system
               </chakra.h2>
               <chakra.p opacity={0.7} fontSize='lg'>
-                {t('homepage.feature-section.description')}
+                Opinionated and designed for daily use.
               </chakra.p>
             </Box>
             <Grid
@@ -343,41 +345,28 @@ const HomePage = ({
               gap={10}
               px={{ md: 12 }}
             >
-              <Feature
-                icon={MdAccessibility}
-                title={t('homepage.feature-section.accessible.title')}
-              >
-                {t('homepage.feature-section.accessible.description')}
+              <Feature icon={MdAccessibility} title='Accessible'>
+                Chakra UI strictly follows WAI-ARIA standards for all
+                components.
               </Feature>
-              <Feature
-                icon={MdPalette}
-                title={t('homepage.feature-section.themeable.title')}
-              >
-                {t('homepage.feature-section.themeable.description')}
+              <Feature icon={MdPalette} title='Themeable'>
+                Customize any part of our components to match your design needs.
               </Feature>
-              <Feature
-                icon={MdGrain}
-                title={t('homepage.feature-section.composable.title')}
-              >
-                {t('homepage.feature-section.composable.description')}
+              <Feature icon={MdGrain} title='Composable'>
+                Designed with composition in mind. Compose new components with
+                ease.
               </Feature>
-              <Feature
-                icon={IoMdMoon}
-                title={t('homepage.feature-section.light-and-dark-ui.title')}
-              >
-                {t('homepage.feature-section.light-and-dark-ui.description')}
+              <Feature icon={IoMdMoon} title='Light and Dark UI'>
+                Optimized for multiple color modes. Use light or dark, your
+                choice.
               </Feature>
-              <Feature
-                icon={AiFillThunderbolt}
-                title={t('homepage.feature-section.developer-experience.title')}
-              >
-                {t('homepage.feature-section.developer-experience.description')}
+              <Feature icon={AiFillThunderbolt} title='Developer Experience'>
+                Guaranteed to boost your productivity when building your app or
+                website.
               </Feature>
-              <Feature
-                icon={FaDiscord}
-                title={t('homepage.feature-section.active-community.title')}
-              >
-                {t('homepage.feature-section.active-community.description')}
+              <Feature icon={FaDiscord} title='Active Community'>
+                We're a team of active maintainers ready to help you whenever
+                you need.
               </Feature>
             </Grid>
           </Container>
@@ -389,10 +378,11 @@ const HomePage = ({
           <Container py='7.5rem' maxW='1280px' color='white'>
             <Box maxW='760px' mx='auto' textAlign='center' mb='56px'>
               <chakra.h2 textStyle='heading' mb='5'>
-                {t('homepage.growing-section.title')}
+                Chakra is growing quickly
               </chakra.h2>
               <chakra.p opacity={0.7} fontSize='lg'>
-                {t('homepage.growing-section.description')}
+                We're dedicated to improving the experience and performance of
+                Chakra UI.
               </chakra.p>
             </Box>
             <SimpleGrid
@@ -405,28 +395,28 @@ const HomePage = ({
               <StatBox
                 icon={FiDownload}
                 title={npmDownloads}
-                description={t('homepage.growing-section.downloads-per-month')}
+                description='Downloads per month'
               />
               <StatBox
                 icon={FiGithub}
                 title={githubStars}
-                description={t('homepage.growing-section.github-stars')}
+                description='Github stars'
               />
               <StatBox
                 icon={FiUsers}
                 title={members.length.toString()}
-                description={t('homepage.growing-section.core-contributors')}
+                description='Core contributors'
               />
               <StatBox
                 icon={FaDiscord}
                 title={discordMembers}
-                description={t('homepage.growing-section.discord-members')}
+                description='Discord members'
               />
             </SimpleGrid>
 
             <Box mt='5rem' textAlign='center'>
               <chakra.p mb='48px' textStyle='caps'>
-                {t('homepage.growing-section.chakra-heroes')}
+                Chakra Heroes 🥇
               </chakra.p>
               <Wrap spacing='4' justify='center' maxW='660px' mx='auto'>
                 {members.map((i) => (
@@ -451,7 +441,7 @@ const HomePage = ({
         <Box>
           <Container py='120px' maxW='1200px' px='32px'>
             <chakra.h2 textStyle='heading-2' mb='48px'>
-              {t('homepage.loved-by-product-people-section.title')}
+              Loved by product people like you
             </chakra.h2>
             <SimpleGrid spacing='32px' columns={{ base: 1, md: 3 }}>
               {chunk(tweets.tweets, 3).map((tweetList, idx) => (
@@ -469,10 +459,12 @@ const HomePage = ({
           <Container py='120px' maxW='1200px' px='32px' color='white'>
             <Box maxW='560px' mx='auto' textAlign='center' mb='56px'>
               <chakra.h2 textStyle='heading-2' mb='4'>
-                {t('homepage.support-chakra-ui-section.title')}
+                Support Chakra UI 💖
               </chakra.h2>
               <Text fontSize='lg' opacity={0.7}>
-                {t('homepage.support-chakra-ui-section.description')}
+                Our maintainers devote their time, effort, and heart to ensure
+                Chakra UI keeps getting better. Support us by donating to our
+                collective 🙏
               </Text>
             </Box>
 
@@ -487,7 +479,12 @@ const HomePage = ({
               rounded='lg'
               p='6'
             >
-              <Stack flex='1' isInline spacing='6' pr={{ base: 0, md: '4' }}>
+              <Stack
+                flex='1'
+                direction='row'
+                spacing='6'
+                pr={{ base: 0, md: '4' }}
+              >
                 <Icon h='40px' w='40px' viewBox='0 0 32 32'>
                   <path
                     fillRule='evenodd'
@@ -506,11 +503,7 @@ const HomePage = ({
                   <Text fontSize='lg' fontWeight='bold' mt='-1'>
                     Open Collective
                   </Text>
-                  <Text opacity={0.7}>
-                    {t(
-                      'homepage.support-chakra-ui-section.sponsor-the-chakra-ui-maintainers',
-                    )}
-                  </Text>
+                  <Text opacity={0.7}>Sponsor the Chakra UI maintainers</Text>
                 </Box>
               </Stack>
               <LightMode>
@@ -540,7 +533,12 @@ const HomePage = ({
               rounded='lg'
               p='6'
             >
-              <Stack flex='1' isInline spacing='6' pr={{ base: 0, md: '4' }}>
+              <Stack
+                flex='1'
+                direction='row'
+                spacing='6'
+                pr={{ base: 0, md: '4' }}
+              >
                 <Icon w='40px' h='40px' viewBox='0 0 569 546'>
                   <g>
                     <circle
@@ -562,11 +560,7 @@ const HomePage = ({
                   <Text fontSize='lg' fontWeight='bold' mt='-1'>
                     Patreon
                   </Text>
-                  <Text opacity={0.7}>
-                    {t(
-                      'homepage.support-chakra-ui-section.sponsor-the-creator',
-                    )}
-                  </Text>
+                  <Text opacity={0.7}>Sponsor the creator, Segun Adebayo</Text>
                 </Box>
               </Stack>
               <LightMode>
@@ -587,7 +581,7 @@ const HomePage = ({
 
             <Box maxW='600px' mx='auto' textAlign='center'>
               <chakra.p textStyle='caps' mb='8' mt='4rem'>
-                {t('homepage.support-chakra-ui-section.organization-sponsors')}
+                Organization Sponsors 🏦
               </chakra.p>
               <Wrap justify='center'>
                 {sponsors.companies.map((i) => (
@@ -619,7 +613,7 @@ const HomePage = ({
               </Wrap>
 
               <chakra.p mb='8' mt='4rem' textStyle='caps'>
-                {t('homepage.support-chakra-ui-section.individual-sponsors')}
+                Individual Sponsors 🥇
               </chakra.p>
               <Wrap justify='center'>
                 {sponsors.individuals.map((i) => (
@@ -661,10 +655,12 @@ const HomePage = ({
                 <FaMicrophone size='40px' />
               </Circle>
               <chakra.h2 textStyle='heading' mt='6' mb='6'>
-                {t('homepage.event-section.title')}
+                Invite us to speak at your next event
               </chakra.h2>
               <Text mb='40px' fontSize='lg' opacity={0.7}>
-                {t('homepage.event-section.description')}
+                Want a Chakra UI core team member to speak at your next event?
+                Invite us to create a memorable and engaging experience for your
+                attendees.
               </Text>
             </Flex>
             <Button
@@ -675,9 +671,9 @@ const HomePage = ({
               href='mailto:sage@adebayosegun.com?subject=Invitation to Speak!'
               size='lg'
               colorScheme='teal'
-              rightIcon={<FaArrowRight fontSize='0.8em' />}
             >
-              {t('homepage.event-section.invite-us-to-speak')}
+              Invite us to speak
+              <FaArrowRight fontSize='0.8em' />
             </Button>
           </Container>
         </Box>

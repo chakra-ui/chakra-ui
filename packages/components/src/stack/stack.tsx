@@ -48,14 +48,6 @@ interface StackOptions {
    * @default false
    */
   shouldWrapChildren?: boolean
-  /**
-   * If `true` the items will be stacked horizontally.
-   *
-   * @default false
-   *
-   * @deprecated - Use `direction="row"` or `HStack` instead
-   */
-  isInline?: boolean
 }
 
 export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
@@ -73,8 +65,7 @@ export interface StackProps extends HTMLChakraProps<"div">, StackOptions {}
  */
 export const Stack = forwardRef<StackProps, "div">((props, ref) => {
   const {
-    isInline,
-    direction: directionProp,
+    direction = "column",
     align,
     justify,
     spacing = "0.5rem",
@@ -85,8 +76,6 @@ export const Stack = forwardRef<StackProps, "div">((props, ref) => {
     shouldWrapChildren,
     ...rest
   } = props
-
-  const direction = isInline ? "row" : directionProp ?? "column"
 
   const dividerStyle = useMemo(
     () => getDividerStyles({ spacing, direction }),

@@ -1,7 +1,7 @@
 import { Box, Flex } from ".."
 
 export default {
-  title: "Components / Layout / Flex",
+  title: "Layout / Flex",
 }
 
 export const Vertical = () => (

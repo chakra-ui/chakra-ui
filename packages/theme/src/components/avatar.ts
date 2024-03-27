@@ -26,7 +26,19 @@ const baseStyleBadge = defineStyle({
   },
 })
 
+const sharedStyles = defineStyle({
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  textAlign: "center",
+  textTransform: "uppercase",
+  fontWeight: "medium",
+  position: "relative",
+  flexShrink: 0,
+})
+
 const baseStyleExcessLabel = defineStyle({
+  ...sharedStyles,
   bg: $bg.reference,
   fontSize: $fs.reference,
   width: $size.reference,
@@ -38,7 +50,7 @@ const baseStyleExcessLabel = defineStyle({
   },
 })
 
-const baseStyleContainer = defineStyle((props) => {
+const baseStyleRoot = defineStyle((props) => {
   const { name, theme } = props
   const bg = name ? randomColor({ string: name }) : "colors.gray.400"
   const isBgDark = isDark(bg)(theme)
@@ -47,6 +59,7 @@ const baseStyleContainer = defineStyle((props) => {
   if (!isBgDark) color = "gray.800"
 
   return {
+    ...sharedStyles,
     bg: $bg.reference,
     fontSize: $fs.reference,
     color,
@@ -69,10 +82,18 @@ const baseStyleLabel = defineStyle({
   lineHeight: "1",
 })
 
+const baseStyleGroup = defineStyle({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  flexDirection: "row-reverse",
+})
+
 const baseStyle = definePartsStyle((props) => ({
+  group: baseStyleGroup,
   badge: runIfFn(baseStyleBadge, props),
   excessLabel: runIfFn(baseStyleExcessLabel, props),
-  container: runIfFn(baseStyleContainer, props),
+  container: runIfFn(baseStyleRoot, props),
   label: baseStyleLabel,
 }))
 

@@ -68,7 +68,7 @@ export const Slider = forwardRef<SliderProps, "div">((props, ref) => {
         <chakra.div
           {...rootProps}
           className={cx("chakra-slider", sliderProps.className)}
-          __css={styles.container}
+          __css={styles.root}
         >
           {sliderProps.children}
           <input {...inputProps} />

@@ -1,6 +1,12 @@
+import { ThemeTypings } from "./theming.types"
+
 type AnyFunction<T = any> = (...args: T[]) => any
 
 const state = {
+  open: (str: string, post: string) =>
+    `${str}[data-open], ${str}[open], ${str}[data-state=open] ${post}`,
+  closed: (str: string, post: string) =>
+    `${str}[data-closed], ${str}[data-state=closed] ${post}`,
   hover: (str: string, post: string) =>
     `${str}:hover ${post}, ${str}[data-hover] ${post}`,
   focus: (str: string, post: string) =>
@@ -34,7 +40,7 @@ const toPeer = (fn: AnyFunction) =>
 const merge = (fn: AnyFunction, ...selectors: string[]) =>
   selectors.map(fn).join(", ")
 
-export const pseudoSelectors = {
+const pseudoSelectors = {
   /**
    * Styles for CSS selector `&:hover`
    */
@@ -56,7 +62,7 @@ export const pseudoSelectors = {
    * Styles to apply when a child of this element has received focus
    * - CSS Selector `&:focus-within`
    */
-  _focusWithin: "&:focus-within",
+  _focusWithin: "&:focus-within, &[data-focus-within]",
   /**
    * Styles to apply when this element has received focus via tabbing
    * - CSS Selector `&:focus-visible`
@@ -97,17 +103,17 @@ export const pseudoSelectors = {
   /**
    * Styles for CSS selector `&:empty`
    */
-  _empty: "&:empty",
+  _empty: "&:empty, &[data-empty]",
   /**
    * Styles to apply when the ARIA attribute `aria-expanded` is `true`
    * - CSS selector `&[aria-expanded=true]`
    */
-  _expanded: "&[aria-expanded=true], &[data-expanded]",
+  _expanded: "&[aria-expanded=true], &[data-expanded], &[data-state=expanded]",
   /**
    * Styles to apply when the ARIA attribute `aria-checked` is `true`
    * - CSS selector `&[aria-checked=true]`
    */
-  _checked: "&[aria-checked=true], &[data-checked]",
+  _checked: "&[aria-checked=true], &[data-checked], &[data-state=checked]",
   /**
    * Styles to apply when the ARIA attribute `aria-grabbed` is `true`
    * - CSS selector `&[aria-grabbed=true]`
@@ -200,7 +206,15 @@ export const pseudoSelectors = {
    * - CSS selector `&[aria-checked=mixed]`
    */
   _indeterminate:
-    "&:indeterminate, &[aria-checked=mixed], &[data-indeterminate]",
+    "&:indeterminate, &[aria-checked=mixed], &[data-indeterminate], &[data-state=indeterminate]",
+  /**
+   * Styles to apply when a parent element with `.group`, `data-group` or `role=group` is open
+   */
+  _groupOpen: toGroup(state.open),
+  /**
+   * Styles to apply when a parent element with `.group`, `data-group` or `role=group` is closed
+   */
+  _groupClosed: toGroup(state.closed),
   /**
    * Styles to apply when a parent element with `.group`, `data-group` or `role=group` is hovered
    */
@@ -272,15 +286,15 @@ export const pseudoSelectors = {
   /**
    * Styles for CSS Selector `&::placeholder`.
    */
-  _placeholder: "&::placeholder",
+  _placeholder: "&::placeholder, &[data-placeholder]",
   /**
    * Styles for CSS Selector `&:placeholder-shown`.
    */
-  _placeholderShown: "&:placeholder-shown",
+  _placeholderShown: "&:placeholder-shown, &[data-placeholder-shown]",
   /**
    * Styles for CSS Selector `&:fullscreen`.
    */
-  _fullScreen: "&:fullscreen",
+  _fullScreen: "&:fullscreen, &[data-fullscreen]",
   /**
    * Styles for CSS Selector `&::selection`
    */
@@ -329,10 +343,29 @@ export const pseudoSelectors = {
    * Styles for the CSS Selector `&[data-orientation=vertical]`
    */
   _vertical: "&[data-orientation=vertical]",
+  /**
+   * Styles for the CSS Selector `&[data-open], &[open], &[data-state=open]`
+   */
+  _open: "&[data-open], &[open], &[data-state=open]",
+  /**
+   * Styles for the CSS Selector `&[data-closed], &[data-state=closed]`
+   */
+  _closed: "&[data-closed], &[data-state=closed]",
 }
 
-export type Pseudos = typeof pseudoSelectors
+export type Pseudos = typeof pseudoSelectors &
+  Record<ThemeTypings["conditions"], string>
 
-export const pseudoPropNames = Object.keys(
-  pseudoSelectors,
-) as (keyof typeof pseudoSelectors)[]
+export type PseudoKey = keyof Pseudos
+
+export function getPseudoSelectors(theme: any) {
+  const __conds = theme.conditions ?? {}
+  const conditions = Object.fromEntries(
+    Object.entries(__conds).map(([key, value]) => [`_${key}`, value]),
+  )
+  return { ...pseudoSelectors, ...conditions }
+}
+
+export function getPseudoPropNames(theme: any) {
+  return Object.keys(getPseudoSelectors(theme))
+}

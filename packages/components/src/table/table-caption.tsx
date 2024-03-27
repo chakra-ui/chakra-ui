@@ -1,5 +1,5 @@
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
-import { useTableStyles } from "./table"
+import { useTableStyles } from "./table-context"
 
 export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
   /**
@@ -10,7 +10,7 @@ export interface TableCaptionProps extends HTMLChakraProps<"caption"> {
 }
 
 export const TableCaption = forwardRef<TableCaptionProps, "caption">(
-  (props, ref) => {
+  function TableCaption(props, ref) {
     const { placement = "bottom", ...rest } = props
     const styles = useTableStyles()
     return (

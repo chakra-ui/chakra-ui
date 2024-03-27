@@ -3,7 +3,7 @@ import { Skeleton, SkeletonCircle, SkeletonText } from "."
 import { DarkMode, Stack, chakra } from ".."
 
 export default {
-  title: "Components / Feedback / Skeleton",
+  title: "Feedback / Skeleton",
   decorators: [
     (story: Function) => (
       <chakra.div maxW="md" mt="40px" mx="auto">

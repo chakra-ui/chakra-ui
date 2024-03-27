@@ -1,7 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
 import NextImage from 'next/image'
-import * as React from 'react'
-import { t } from 'utils/i18n'
 import { getUrl } from './get-url'
 
 const DocsPageChakraProAd = () => (
@@ -28,11 +26,11 @@ const DocsPageChakraProAd = () => (
     </Box>
     <Flex direction='column'>
       <Box flex='1' fontSize='sm'>
-        <b>{t('component.chakra-pro.docs-page-ad.message-bold')}</b>{' '}
-        {t('component.chakra-pro.docs-page-ad.message')}
+        <b>Chakra UI Pro:</b> Start your application or marketing site with a
+        growing collection of beautiful and responsive UI components.
       </Box>
       <Box fontWeight='medium' fontSize='xs' opacity={0.7}>
-        {t('component.chakra-pro.docs-page-ad.ads-via-chakra-ui')}
+        Ads via Chakra UI
       </Box>
     </Flex>
   </Flex>

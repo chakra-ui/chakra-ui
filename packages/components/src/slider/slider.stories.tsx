@@ -9,7 +9,7 @@ import {
 } from "."
 
 export default {
-  title: "Components / Forms / Slider",
+  title: "Forms / Slider",
   decorators: [
     (story: Function) => (
       <chakra.div maxWidth="400px" height="300px" mx="auto" mt="40px">

@@ -7,22 +7,22 @@ import {
   type RowData,
 } from "@tanstack/react-table"
 import { HiStar } from "react-icons/hi"
-import { Table, Tbody, Td, Th, Thead, Tr } from "."
+import { Table } from "."
 import { Button, ButtonGroup, IconButton } from "../button"
 import { Icon } from "../icon"
 
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
-    isNumeric: boolean
+    numeric: boolean
   }
 }
 
 export default {
-  title: "Components / Data Display / Table / React Table",
+  title: "Data Display / Table",
 }
 
-type Data = {
+interface Data {
   col1: string
   col2: number
 }
@@ -41,7 +41,7 @@ const columns: ColumnDef<Data>[] = [
   {
     accessorKey: "col2",
     header: "Column 2",
-    meta: { isNumeric: true },
+    meta: { numeric: true },
   },
   {
     header: "Action",
@@ -60,7 +60,7 @@ const columns: ColumnDef<Data>[] = [
   },
 ]
 
-export const ReactTable = () => {
+export const WithReactTable = () => {
   const { getHeaderGroups, getRowModel } = useReactTable({
     data,
     columns,
@@ -68,36 +68,36 @@ export const ReactTable = () => {
   })
 
   return (
-    <Table>
-      <Thead>
+    <Table.Root>
+      <Table.Header>
         {getHeaderGroups().map((headerGroup) => (
-          <Tr key={headerGroup.id}>
+          <Table.Row key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <Th key={header.id} colSpan={header.colSpan}>
+              <Table.ColumnHeader key={header.id} colSpan={header.colSpan}>
                 {flexRender(
                   header.column.columnDef.header,
                   header.getContext(),
                 )}
-              </Th>
+              </Table.ColumnHeader>
             ))}
-          </Tr>
+          </Table.Row>
         ))}
-      </Thead>
+      </Table.Header>
 
-      <Tbody>
+      <Table.Body>
         {getRowModel().rows.map((row) => (
-          <Tr key={row.id}>
+          <Table.Row key={row.id}>
             {row.getVisibleCells().map((cell) => (
-              <Td
+              <Table.Cell
                 key={cell.id}
-                isNumeric={cell.column.columnDef.meta?.isNumeric}
+                numeric={cell.column.columnDef.meta?.numeric}
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </Td>
+              </Table.Cell>
             ))}
-          </Tr>
+          </Table.Row>
         ))}
-      </Tbody>
-    </Table>
+      </Table.Body>
+    </Table.Root>
   )
 }

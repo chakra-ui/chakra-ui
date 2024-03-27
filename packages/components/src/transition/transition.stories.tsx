@@ -3,7 +3,7 @@ import * as React from "react"
 import { SlideFade, ScaleFade } from "."
 
 export default {
-  title: "Components / Others / Transition / Offset Slide",
+  title: "Others / Transition / Offset Slide",
 }
 
 export const _SlideFade = () => {

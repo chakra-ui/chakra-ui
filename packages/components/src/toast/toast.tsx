@@ -1,18 +1,12 @@
 import { chakra } from "../system"
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertProps,
-  AlertTitle,
-} from "../alert"
+import { Alert } from "../alert"
 import { CloseButton } from "../close-button"
 import type { RenderProps } from "./toast.types"
 import type { UseToastOptions } from "./use-toast"
 
 export interface ToastProps
   extends UseToastOptions,
-    Omit<AlertProps, keyof UseToastOptions> {
+    Omit<Alert.RootProps, keyof UseToastOptions> {
   onClose?: () => void
 }
 
@@ -43,7 +37,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
     : undefined
 
   return (
-    <Alert
+    <Alert.Root
       addRole={false}
       status={status}
       variant={variant}
@@ -56,13 +50,13 @@ export const Toast: React.FC<ToastProps> = (props) => {
       width="auto"
       colorScheme={colorScheme}
     >
-      <AlertIcon>{icon}</AlertIcon>
+      <Alert.Icon>{icon}</Alert.Icon>
       <chakra.div flex="1" maxWidth="100%">
-        {title && <AlertTitle id={ids?.title}>{title}</AlertTitle>}
+        {title && <Alert.Title id={ids?.title}>{title}</Alert.Title>}
         {description && (
-          <AlertDescription id={ids?.description} display="block">
+          <Alert.Description id={ids?.description} display="block">
             {description}
-          </AlertDescription>
+          </Alert.Description>
         )}
       </chakra.div>
       {isClosable && (
@@ -74,7 +68,7 @@ export const Toast: React.FC<ToastProps> = (props) => {
           top={1}
         />
       )}
-    </Alert>
+    </Alert.Root>
   )
 }
 

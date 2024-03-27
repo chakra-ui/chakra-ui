@@ -1,9 +1,10 @@
+import { ElementType } from "react"
 import { ChakraStyledOptions, HTMLChakraComponents, styled } from "./system"
-import { As, ChakraComponent } from "./system.types"
+import { ChakraComponent } from "./system.types"
 import { DOMElements } from "./system.utils"
 
-type ChakraFactory = {
-  <T extends As, P extends object = {}>(
+interface ChakraFactory {
+  <T extends ElementType, P extends object = {}>(
     component: T,
     options?: ChakraStyledOptions,
   ): ChakraComponent<T, P>

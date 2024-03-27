@@ -4,8 +4,7 @@ import { useFocusOnPointerDown } from "@chakra-ui/hooks/use-focus-on-pointer-dow
 import { mergeRefs } from "@chakra-ui/hooks/use-merge-refs"
 import { useSafeLayoutEffect } from "@chakra-ui/hooks/use-safe-layout-effect"
 import { useUpdateEffect } from "@chakra-ui/hooks/use-update-effect"
-import { ariaAttr } from "@chakra-ui/utils/attr"
-import { callAllHandlers } from "@chakra-ui/utils/call-all"
+import { ariaAttr, callAllHandlers, contains } from "@chakra-ui/utils"
 import { PropGetter } from "@chakra-ui/utils/prop-types"
 import { RefObject, useCallback, useEffect, useRef, useState } from "react"
 
@@ -78,11 +77,6 @@ export interface UseEditableProps {
   finalFocusRef?: RefObject<FocusableElement>
 }
 
-function contains(parent: HTMLElement | null, child: HTMLElement) {
-  if (!parent) return false
-  return parent === child || parent.contains(child)
-}
-
 /**
  * React hook for managing the inline renaming of some text.
  *
@@ -104,7 +98,6 @@ export function useEditable(props: UseEditableProps = {}) {
     placeholder,
     onEdit: onEditCallback,
     finalFocusRef,
-    ...htmlProps
   } = props
 
   const onEditProp = useCallbackRef(onEditCallback)
@@ -402,7 +395,6 @@ export function useEditable(props: UseEditableProps = {}) {
     getEditButtonProps,
     getSubmitButtonProps,
     getCancelButtonProps,
-    htmlProps,
   }
 }
 

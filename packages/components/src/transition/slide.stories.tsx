@@ -3,7 +3,7 @@ import * as React from "react"
 import { Slide } from "./slide"
 
 export default {
-  title: "Components / Transition / Slide",
+  title: "Transition / Slide",
 }
 
 const SlideExample = (props: any) => {

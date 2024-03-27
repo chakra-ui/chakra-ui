@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
+import { defineStyle, SystemStyleObject } from "@chakra-ui/styled-system"
 import { chakra, forwardRef, HTMLChakraProps } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { useAvatarStyles } from "./avatar-context"
@@ -43,14 +43,14 @@ export const AvatarBadge = forwardRef<AvatarBadgeProps, "div">(
 
     const placementStyles = placementMap[placement]
 
-    const badgeStyles: SystemStyleObject = {
+    const badgeStyles = defineStyle({
       position: "absolute",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       ...placementStyles,
       ...styles.badge,
-    }
+    })
 
     return (
       <chakra.div

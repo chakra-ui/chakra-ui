@@ -6,7 +6,7 @@ import {
   useMultiStyleConfig,
 } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-import { FormControlOptions, useFormControl } from "../form-control"
+import { FieldOptions, useField } from "../field"
 
 interface InputOptions {
   /**
@@ -33,7 +33,7 @@ export interface InputProps
   extends Omit<HTMLChakraProps<"input">, Omitted>,
     InputOptions,
     ThemingProps<"Input">,
-    FormControlOptions {}
+    FieldOptions {}
 
 /**
  * Input
@@ -44,17 +44,18 @@ export interface InputProps
  */
 export const Input = forwardRef<InputProps, "input">(
   function Input(props, ref) {
-    const { htmlSize, ...rest } = props
+    const { htmlSize, ...restProps } = props
 
-    const styles = useMultiStyleConfig("Input", rest)
-    const ownProps = omitThemingProps(rest)
-    const input = useFormControl<HTMLInputElement>(ownProps)
+    const styles = useMultiStyleConfig("Input", restProps)
+    const _restProps = omitThemingProps(restProps)
+
+    const inputProps = useField<HTMLInputElement>(_restProps)
     const _className = cx("chakra-input", props.className)
 
     return (
       <chakra.input
         size={htmlSize}
-        {...input}
+        {...inputProps}
         __css={styles.field}
         ref={ref}
         className={_className}

@@ -1,6 +1,6 @@
-import { SystemStyleObject } from "@chakra-ui/styled-system"
-import { chakra, ChakraProps, forwardRef, useStyleConfig } from "../system"
+import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
+import { chakra, ChakraProps, forwardRef, useStyleConfig } from "../system"
 
 const fallbackIcon = {
   path: (
@@ -47,9 +47,9 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
   } = props
 
   const _className = cx("chakra-icon", className)
-  const customStyles = useStyleConfig("Icon", props)
+  const themeStyles = useStyleConfig("Icon", props)
 
-  const styles: SystemStyleObject = {
+  const styles = defineStyle({
     w: "1em",
     h: "1em",
     display: "inline-block",
@@ -57,8 +57,8 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
     flexShrink: 0,
     color,
     ...__css,
-    ...customStyles,
-  }
+    ...themeStyles,
+  })
 
   const shared: any = {
     ref,
@@ -77,11 +77,11 @@ export const Icon = forwardRef<IconProps, "svg">((props, ref) => {
     return <chakra.svg as={element} {...shared} {...rest} />
   }
 
-  const _path = (children ?? fallbackIcon.path) as React.ReactNode
+  const iconPath = (children ?? fallbackIcon.path) as React.ReactNode
 
   return (
     <chakra.svg verticalAlign="middle" viewBox={_viewBox} {...shared} {...rest}>
-      {_path}
+      {iconPath}
     </chakra.svg>
   )
 })

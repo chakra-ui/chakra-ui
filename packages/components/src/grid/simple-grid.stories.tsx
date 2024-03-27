@@ -1,7 +1,7 @@
 import { Box, GridItem, SimpleGrid } from ".."
 
 export default {
-  title: "Components / Layout / SimpleGrid",
+  title: "Layout / SimpleGrid",
 }
 
 export const WithColumns = () => (

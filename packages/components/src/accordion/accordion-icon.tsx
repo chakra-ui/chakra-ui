@@ -1,12 +1,12 @@
-import type { SystemStyleObject } from "@chakra-ui/styled-system"
-import type { PropsOf } from "../system"
+import { defineStyle } from "@chakra-ui/styled-system"
 import { cx } from "@chakra-ui/utils/cx"
 import { Icon } from "../icon"
+import type { PropsOf } from "../system"
 import {
+  useAccordionContext,
   useAccordionItemContext,
   useAccordionStyles,
 } from "./accordion-context"
-import { useAccordionContext } from "./use-accordion"
 
 export type AccordionIconProps = PropsOf<typeof Icon>
 
@@ -22,13 +22,13 @@ export function AccordionIcon(props: AccordionIconProps) {
   const _className = cx("chakra-accordion__icon", props.className)
   const styles = useAccordionStyles()
 
-  const iconStyles: SystemStyleObject = {
+  const iconStyles = defineStyle({
     opacity: isDisabled ? 0.4 : 1,
     transform: isOpen ? "rotate(-180deg)" : undefined,
     transition: reduceMotion ? undefined : "transform 0.2s",
     transformOrigin: "center",
     ...styles.icon,
-  }
+  })
 
   return (
     <Icon

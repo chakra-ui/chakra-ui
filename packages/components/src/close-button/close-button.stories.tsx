@@ -1,7 +1,7 @@
 import { CloseButton } from "."
 
 export default {
-  title: "Components / Data Display / CloseButton",
+  title: "Data Display / CloseButton",
 }
 
 /**

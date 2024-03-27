@@ -40,7 +40,7 @@ export interface AvatarOptions {
   /**
    * Function called when image failed to load
    */
-  onError?: () => void
+  onError?: VoidFunction
   /**
    * The default avatar used as fallback when `name`, and `src`
    * is not specified.

@@ -1,17 +1,17 @@
-import { Children, cloneElement } from "react"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { usePopoverContext } from "./popover-context"
+
+export interface PopoverAnchorProps extends HTMLChakraProps<"span"> {}
 
 /**
  * PopoverAnchor is element that is used as the positioning reference
  * for the popover.
  */
-
-export function PopoverAnchor(props: React.PropsWithChildren<{}>) {
-  // enforce a single child
-  const child: any = Children.only(props.children)
-  const { getAnchorProps } = usePopoverContext()
-
-  return <>{cloneElement(child, getAnchorProps(child.props, child.ref))}</>
-}
+export const PopoverAnchor = forwardRef<PopoverAnchorProps, "span">(
+  function PopoverAnchor(props, ref) {
+    const api = usePopoverContext()
+    return <chakra.span {...api.getAnchorProps(props, ref)} />
+  },
+)
 
 PopoverAnchor.displayName = "PopoverAnchor"

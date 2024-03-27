@@ -18,4 +18,5 @@ export const themeKeyConfiguration: ThemeKeyOptions[] = [
   { key: "space", flatMap: (value) => [value, `-${value}`] },
   { key: "transition" },
   { key: "zIndices" },
+  { key: "conditions", flatMap: (value) => [`_${value}`] },
 ]

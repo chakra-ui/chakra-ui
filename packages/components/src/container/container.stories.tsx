@@ -1,7 +1,7 @@
 import { Container } from ".."
 
 export default {
-  title: "Components / Layout / Container",
+  title: "Layout / Container",
 }
 
 export const basic = () => (

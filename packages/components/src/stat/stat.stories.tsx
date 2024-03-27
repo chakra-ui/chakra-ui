@@ -1,54 +1,39 @@
-import {
-  Stat,
-  StatArrow,
-  StatGroup,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
-} from "."
+import { Stat } from "."
 
 export default {
-  title: "Components / Data Display / Stat",
+  title: "Data Display / Stat",
 }
 
-/**
- * Default Stat component
- */
-
-export const Default = () => {
+export const Basic = () => {
   return (
-    <Stat>
-      <StatLabel>Collected Fees</StatLabel>
-      <StatNumber>£0.00</StatNumber>
-      <StatHelpText>Feb 12 - Feb 28</StatHelpText>
-    </Stat>
+    <Stat.Root>
+      <Stat.Label>Collected Fees</Stat.Label>
+      <Stat.Number>£0.00</Stat.Number>
+      <Stat.HelpText>Feb 12 - Feb 28</Stat.HelpText>
+    </Stat.Root>
   )
 }
 
-/**
- * Stat component with indicators
- */
-
 export const WithIndicators = () => {
   return (
-    <StatGroup>
-      <Stat>
-        <StatLabel>Sent</StatLabel>
-        <StatNumber>345,670</StatNumber>
-        <StatHelpText>
-          <StatArrow type="increase" />
+    <Stat.Group>
+      <Stat.Root>
+        <Stat.Label>Sent</Stat.Label>
+        <Stat.Number>345,670</Stat.Number>
+        <Stat.HelpText>
+          <Stat.Arrow type="increase" />
           23.36%
-        </StatHelpText>
-      </Stat>
+        </Stat.HelpText>
+      </Stat.Root>
 
-      <Stat>
-        <StatLabel>Clicked</StatLabel>
-        <StatNumber>45</StatNumber>
-        <StatHelpText>
-          <StatArrow type="decrease" />
+      <Stat.Root>
+        <Stat.Label>Clicked</Stat.Label>
+        <Stat.Number>45</Stat.Number>
+        <Stat.HelpText>
+          <Stat.Arrow type="decrease" />
           9.05%
-        </StatHelpText>
-      </Stat>
-    </StatGroup>
+        </Stat.HelpText>
+      </Stat.Root>
+    </Stat.Group>
   )
 }

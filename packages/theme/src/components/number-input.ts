@@ -21,6 +21,8 @@ const $fg = cssVar("number-input-color")
 const $border = cssVar("number-input-border-color")
 
 const baseStyleRoot = defineStyle({
+  position: "relative",
+  zIndex: 0,
   [$stepperWidth.variable]: "sizes.6",
   [$inputPadding.variable]: inputPaddingValue,
 })

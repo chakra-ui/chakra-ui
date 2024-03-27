@@ -1,5 +1,4 @@
 import { Avatar, Box, HStack, Text } from '@chakra-ui/react'
-import * as React from 'react'
 import MDXLayout from './mdx'
 
 interface BlogLayoutProps {
@@ -16,7 +15,10 @@ export default function BlogLayout(props: BlogLayoutProps) {
   return (
     <MDXLayout frontmatter={frontmatter}>
       <HStack mt='8' mb='4'>
-        <Avatar size='md' src={data.avatar_url} />
+        <Avatar.Root size='md' src={data.avatar_url}>
+          <Avatar.Image />
+          <Avatar.Fallback />
+        </Avatar.Root>
         <Box>
           <Text fontWeight='bold' fontSize='sm'>
             {data.name}

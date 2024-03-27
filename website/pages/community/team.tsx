@@ -16,7 +16,6 @@ import MDXLayout from 'layouts/mdx'
 import NextImage from 'next/image'
 import { IoIosGlobe, IoLogoGithub, IoLogoTwitter } from 'react-icons/io'
 import { Contributor, Member as IMember } from 'src/types/github'
-import { t } from 'utils/i18n'
 
 function SocialLink(props: {
   icon: React.ElementType
@@ -57,7 +56,7 @@ function Member(props: { member: IMember }) {
       <Stack spacing={3} maxW='320px'>
         <Text fontWeight='bold'>{name}</Text>
 
-        <Stack isInline align='center' spacing={2}>
+        <Stack direction='row' align='center' spacing={2}>
           <SocialLink
             href={url}
             icon={IoLogoGithub}
@@ -100,17 +99,19 @@ function Team({ members, contributors }: TeamProps) {
   return (
     <MDXLayout
       frontmatter={{
-        title: t('team.seo.title'),
-        description: t('team.seo.description'),
+        title: 'Chakra UI Team',
+        description:
+          'Amazing engineers who have contributed time, effort, and thought to Chakra UI. Without them, this project would not be possible.',
         slug: '/community/team',
       }}
     >
       <Text lineHeight='tall' mt='5'>
-        {t('team.message')}
+        Amazing engineers who have contributed time, effort, and thought to
+        Chakra UI. Without them, this project would not be possible.
       </Text>
 
       <Stack spacing={8} mt='20'>
-        <Heading size='lg'>{t('team.core-team')}</Heading>
+        <Heading size='lg'>Core Team 🤝</Heading>
         <SimpleGrid columns={[1, 1, 2]} spacing='40px' pt='3'>
           {members.map((member) => (
             <Member key={member.login} member={member} />
@@ -119,11 +120,11 @@ function Team({ members, contributors }: TeamProps) {
       </Stack>
 
       <Stack py='12' spacing={8}>
-        <Heading size='lg'>{t('team.our-sponsors')}</Heading>
+        <Heading size='lg'>Our Sponsors 💰</Heading>
 
         <Box>
           <Text textStyle='caps' mb='4' textTransform='uppercase' opacity='0.7'>
-            {t('team.organizations')}
+            Organizations
           </Text>
           <Wrap>
             {new Array(9).fill('').map((_, idx) => (
@@ -142,7 +143,7 @@ function Team({ members, contributors }: TeamProps) {
         </Box>
         <Box>
           <Text textStyle='caps' mb='4' textTransform='uppercase' opacity='0.7'>
-            {t('team.individuals')}
+            Individuals
           </Text>
           <a href='https://opencollective.com/chakra-ui'>
             <img
@@ -154,7 +155,7 @@ function Team({ members, contributors }: TeamProps) {
       </Stack>
 
       <Stack spacing={8} mt={{ base: '10', md: '24' }}>
-        <Heading size='lg'>{t('team.project-contributors')}</Heading>
+        <Heading size='lg'>Project Contributors 💖</Heading>
         <Wrap spacing='3'>
           {contributorsWithoutTeam.map((contributor) => (
             <Circle overflow='hidden' key={contributor.login}>

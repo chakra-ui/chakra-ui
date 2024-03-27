@@ -1,5 +1,4 @@
 import { Box } from '@chakra-ui/react'
-import { t } from 'utils/i18n'
 
 export const VercelCallout = () => (
   <Box
@@ -13,7 +12,7 @@ export const VercelCallout = () => (
     py='2'
     rounded='lg'
   >
-    {t('component.vercel-callout.deployed-by')}{' '}
+    Deployed by{' '}
     <span role='img' aria-label='Vercel logo'>
       ▲
     </span>{' '}

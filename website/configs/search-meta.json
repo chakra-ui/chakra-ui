@@ -50788,24 +50788,13 @@
     }
   },
   {
-    "content": "Social Buttons",
-    "id": "//docs/components/button/usage",
-    "type": "lvl3",
-    "url": "/docs/components/button/usage#social-buttons",
-    "hierarchy": {
-      "lvl1": "Button",
-      "lvl2": "Button loading state",
-      "lvl3": "Social Buttons"
-    }
-  },
-  {
     "content": "Grouping Buttons",
     "id": "//docs/components/button/usage",
     "type": "lvl3",
     "url": "/docs/components/button/usage#grouping-buttons",
     "hierarchy": {
       "lvl1": "Button",
-      "lvl2": "Social Buttons",
+      "lvl2": "Button loading state",
       "lvl3": "Grouping Buttons"
     }
   },
@@ -52783,13 +52772,6 @@
     "hierarchy": { "lvl1": "Icon", "lvl2": "Usage", "lvl3": null }
   },
   {
-    "content": "All icons",
-    "id": "//docs/components/icon/usage",
-    "type": "lvl3",
-    "url": "/docs/components/icon/usage#all-icons",
-    "hierarchy": { "lvl1": "Icon", "lvl2": "Usage", "lvl3": "All icons" }
-  },
-  {
     "content": "Using a third-party icon library",
     "id": "//docs/components/icon/usage",
     "type": "lvl2",
@@ -53545,6 +53527,13 @@
       "lvl2": "Unstyled List with icon",
       "lvl3": null
     }
+  },
+  {
+    "content": "Custom style type",
+    "id": "//docs/components/list/usage",
+    "type": "lvl2",
+    "url": "/docs/components/list/usage#custom-style-type",
+    "hierarchy": { "lvl1": "List", "lvl2": "Custom style type", "lvl3": null }
   },
   {
     "id": "//docs/components/menu/props",

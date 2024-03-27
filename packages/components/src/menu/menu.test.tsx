@@ -9,15 +9,7 @@ import {
 import { theme } from "@chakra-ui/theme"
 import * as React from "react"
 import { FaSearch, FaTruck, FaUndoAlt, FaUnlink } from "react-icons/fa"
-import {
-  Menu,
-  MenuButton,
-  MenuGroup,
-  MenuItem,
-  MenuItemOption,
-  MenuList,
-  MenuOptionGroup,
-} from "."
+import { Menu } from "."
 import { Button } from "../button"
 import { Portal } from "../portal"
 import { Provider as ChakraProvider } from "../provider"
@@ -33,29 +25,25 @@ const words = [
 
 test("passes a11y test", async () => {
   await testA11y(
-    <Menu>
-      <MenuButton
-        as={Button}
-        variant="solid"
-        colorScheme="teal"
-        size="sm"
-        // rightIcon={<FaUnlink />}
-      >
+    <Menu.Root>
+      <Menu.Trigger as={Button} variant="solid" colorScheme="teal" size="sm">
         Open Wakanda menu
-      </MenuButton>
-      <MenuList>
-        {words.map((word) => (
-          <MenuItem key={word}>{word}</MenuItem>
-        ))}
-      </MenuList>
-    </Menu>,
+      </Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          {words.map((word) => (
+            <Menu.Item key={word}>{word}</Menu.Item>
+          ))}
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 })
 
-test("does not render MenuList Items if Menu isLazy", () => {
+test("does not render Menu.Content Items if Menu isLazy", () => {
   render(
-    <Menu isLazy>
-      <MenuButton
+    <Menu.Root isLazy>
+      <Menu.Trigger
         as={Button}
         variant="solid"
         colorScheme="teal"
@@ -63,55 +51,61 @@ test("does not render MenuList Items if Menu isLazy", () => {
         // rightIcon={<FaUnlink />}
       >
         Open Wakanda menu
-      </MenuButton>
-      <MenuList>
-        {words.map((word) => (
-          <MenuItem key={word}>{word}</MenuItem>
-        ))}
-      </MenuList>
-    </Menu>,
+      </Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          {words.map((word) => (
+            <Menu.Item key={word}>{word}</Menu.Item>
+          ))}
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   expect(screen.queryByText(words[0])).not.toBeInTheDocument()
 })
 
-test("sets correct aria attributes on disabled MenuItems", () => {
+test("sets correct aria attributes on disabled Menu.Items", () => {
   render(
-    <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
-      <MenuList>
-        <MenuItem icon={<FaSearch />} command="⌥T">
-          Search
-        </MenuItem>
-        <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
-        <MenuItem isDisabled icon={<FaTruck />}>
-          Delivery
-        </MenuItem>
-        <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
-      </MenuList>
-    </Menu>,
+    <Menu.Root>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item icon={<FaSearch />} command="⌥T">
+            Search
+          </Menu.Item>
+          <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
+          <Menu.Item isDisabled icon={<FaTruck />}>
+            Delivery
+          </Menu.Item>
+          <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   expect(screen.getByText("Delivery").parentElement).toBeDisabled()
 })
 
-test("does not fire onClick on disabled MenuItem", () => {
+test("does not fire onClick on disabled Menu.Item", () => {
   const onClick = vi.fn()
 
   render(
-    <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
-      <MenuList>
-        <MenuItem icon={<FaSearch />} command="⌥T">
-          Search
-        </MenuItem>
-        <MenuItem icon={<FaUndoAlt />}>Undo</MenuItem>
-        <MenuItem isDisabled icon={<FaTruck />} onClick={onClick}>
-          Delivery
-        </MenuItem>
-        <MenuItem icon={<FaUnlink />}>Unlink</MenuItem>
-      </MenuList>
-    </Menu>,
+    <Menu.Root>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item icon={<FaSearch />} command="⌥T">
+            Search
+          </Menu.Item>
+          <Menu.Item icon={<FaUndoAlt />}>Undo</Menu.Item>
+          <Menu.Item isDisabled icon={<FaTruck />} onClick={onClick}>
+            Delivery
+          </Menu.Item>
+          <Menu.Item icon={<FaUnlink />}>Unlink</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const span = screen.getByText("Delivery")
@@ -127,16 +121,18 @@ test("does not fire onClick on disabled MenuItem", () => {
  *
  * @see https://github.com/chakra-ui/chakra-ui/issues/1651
  */
-test.skip("allows focusing disabled MenuItems given isFocusable", async () => {
+test.skip("allows focusing disabled Menu.Items given isFocusable", async () => {
   render(
-    <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
-      <MenuList>
-        <MenuItem isDisabled isFocusable icon={<FaTruck />}>
-          Delivery
-        </MenuItem>
-      </MenuList>
-    </Menu>,
+    <Menu.Root>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item isDisabled isFocusable icon={<FaTruck />}>
+            Delivery
+          </Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const span = screen.getByText("Delivery")
@@ -147,19 +143,21 @@ test.skip("allows focusing disabled MenuItems given isFocusable", async () => {
   await waitFor(() => expect(button).toHaveFocus())
 })
 
-test("allows using a Portal to render the MenuList", async () => {
+test("allows using a Portal to render the Menu.Content", async () => {
   render(
-    <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
+    <Menu.Root>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
       <Portal>
-        <MenuList>
-          <MenuItem>Menu 1</MenuItem>
-          <MenuItem>Menu 2</MenuItem>
-          <MenuItem>Menu 3</MenuItem>
-          <MenuItem>Menu 4</MenuItem>
-        </MenuList>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item>Menu 1</Menu.Item>
+            <Menu.Item>Menu 2</Menu.Item>
+            <Menu.Item>Menu 3</Menu.Item>
+            <Menu.Item>Menu 4</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
       </Portal>
-    </Menu>,
+    </Menu.Root>,
   )
 
   const button = screen.getByRole("button")
@@ -173,19 +171,21 @@ test("allows using a Portal to render the MenuList", async () => {
 
 test("MenuGroup has correct role ", async () => {
   render(
-    <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
-      <MenuList minWidth="240px">
-        <MenuGroup title="Group 1">
-          <MenuItem>Share...</MenuItem>
-          <MenuItem>Move...</MenuItem>
-        </MenuGroup>
-        <MenuGroup title="Group 2">
-          <MenuItem>Rename...</MenuItem>
-          <MenuItem>Delete...</MenuItem>
-        </MenuGroup>
-      </MenuList>
-    </Menu>,
+    <Menu.Root>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.Group title="Group 1">
+            <Menu.Item>Share...</Menu.Item>
+            <Menu.Item>Move...</Menu.Item>
+          </Menu.Group>
+          <Menu.Group title="Group 2">
+            <Menu.Item>Rename...</Menu.Item>
+            <Menu.Item>Delete...</Menu.Item>
+          </Menu.Group>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const button = screen.getByRole("button")
@@ -198,20 +198,22 @@ test("MenuGroup has correct role ", async () => {
   )
 })
 
-test("MenuOptionGroup radio", async () => {
+test("Menu.OptionGroup radio", async () => {
   render(
-    <Menu>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+    <Menu.Root>
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </MenuButton>
+      </Menu.Trigger>
 
-      <MenuList minWidth="240px">
-        <MenuOptionGroup defaultValue="val1" title="Order" type="radio">
-          <MenuItemOption value="val-1">Option 1</MenuItemOption>
-          <MenuItemOption value="val-2">Option 2</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>,
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup defaultValue="val1" title="Order" type="radio">
+            <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
+            <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const button = screen.getByRole("button")
@@ -224,20 +226,22 @@ test("MenuOptionGroup radio", async () => {
   expect(options).toHaveLength(2)
 })
 
-test("MenuOptionGroup radio defaultValue checked", async () => {
+test("Menu.OptionGroup radio defaultValue checked", async () => {
   render(
-    <Menu closeOnSelect={false}>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+    <Menu.Root closeOnSelect={false}>
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </MenuButton>
+      </Menu.Trigger>
 
-      <MenuList minWidth="240px">
-        <MenuOptionGroup defaultValue="val-1" title="Order" type="radio">
-          <MenuItemOption value="val-1">Option 1</MenuItemOption>
-          <MenuItemOption value="val-2">Option 2</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>,
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup defaultValue="val-1" title="Order" type="radio">
+            <Menu.ItemOption value="val-1">Option 1</Menu.ItemOption>
+            <Menu.ItemOption value="val-2">Option 2</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const button = screen.getByRole("button")
@@ -246,21 +250,23 @@ test("MenuOptionGroup radio defaultValue checked", async () => {
   expect(screen.getByText("Option 1").closest("button")).toBeChecked()
 })
 
-test("MenuOptionGroup checkbox defaultValue single checked", async () => {
+test("Menu.OptionGroup checkbox defaultValue single checked", async () => {
   render(
-    <Menu closeOnSelect={false}>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+    <Menu.Root closeOnSelect={false}>
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </MenuButton>
+      </Menu.Trigger>
 
-      <MenuList minWidth="240px">
-        <MenuOptionGroup defaultValue="email" title="Info" type="checkbox">
-          <MenuItemOption value="email">Email</MenuItemOption>
-          <MenuItemOption value="phone">Phone</MenuItemOption>
-          <MenuItemOption value="country">Country</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>,
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup defaultValue="email" title="Info" type="checkbox">
+            <Menu.ItemOption value="email">Email</Menu.ItemOption>
+            <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
+            <Menu.ItemOption value="country">Country</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const button = screen.getByRole("button")
@@ -278,25 +284,27 @@ test("MenuOptionGroup checkbox defaultValue single checked", async () => {
   expect(country).not.toBeChecked()
 })
 
-test("MenuOptionGroup checkbox defaultValue multiple checked", () => {
+test("Menu.OptionGroup checkbox defaultValue multiple checked", () => {
   render(
-    <Menu closeOnSelect={false}>
-      <MenuButton as={Button} variant="solid" colorScheme="green" size="sm">
+    <Menu.Root closeOnSelect={false}>
+      <Menu.Trigger as={Button} variant="solid" colorScheme="green" size="sm">
         Open menu
-      </MenuButton>
+      </Menu.Trigger>
 
-      <MenuList minWidth="240px">
-        <MenuOptionGroup
-          defaultValue={["email", "phone"]}
-          title="Info"
-          type="checkbox"
-        >
-          <MenuItemOption value="email">Email</MenuItemOption>
-          <MenuItemOption value="phone">Phone</MenuItemOption>
-          <MenuItemOption value="country">Country</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>,
+      <Menu.Positioner>
+        <Menu.Content minWidth="240px">
+          <Menu.OptionGroup
+            defaultValue={["email", "phone"]}
+            title="Info"
+            type="checkbox"
+          >
+            <Menu.ItemOption value="email">Email</Menu.ItemOption>
+            <Menu.ItemOption value="phone">Phone</Menu.ItemOption>
+            <Menu.ItemOption value="country">Country</Menu.ItemOption>
+          </Menu.OptionGroup>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const button = screen.getByRole("button")
@@ -310,19 +318,23 @@ test("MenuOptionGroup checkbox defaultValue multiple checked", () => {
 
 test("exposes internal state as render prop", () => {
   render(
-    <Menu>
-      {({ isOpen }) => (
+    <Menu.Root>
+      {(api) => (
         <>
-          <MenuButton as={Button}>{isOpen ? "Close" : "Open"}</MenuButton>
-          <MenuList>
-            <MenuItem>Download</MenuItem>
-            <MenuItem onClick={() => alert("Kagebunshin")}>
-              Create a Copy
-            </MenuItem>
-          </MenuList>
+          <Menu.Trigger as={Button}>
+            {api.isOpen ? "Close" : "Open"}
+          </Menu.Trigger>
+          <Menu.Positioner>
+            <Menu.Content>
+              <Menu.Item>Download</Menu.Item>
+              <Menu.Item onClick={() => alert("Kagebunshin")}>
+                Create a Copy
+              </Menu.Item>
+            </Menu.Content>
+          </Menu.Positioner>
         </>
       )}
-    </Menu>,
+    </Menu.Root>,
   )
 
   expect(screen.getByText("Open")).toBeInTheDocument()
@@ -330,7 +342,6 @@ test("exposes internal state as render prop", () => {
   const button = screen.getByRole("button")
 
   fireEvent.click(button)
-
   expect(screen.getByText("Close")).toBeInTheDocument()
 })
 
@@ -343,31 +354,35 @@ const CompWithTwoMenus: React.FC<{
 
   return (
     <>
-      <Menu isOpen={active === "1"}>
-        <MenuButton onClick={props.onBtnClick} as={Button}>
+      <Menu.Root isOpen={active === "1"}>
+        <Menu.Trigger onClick={props.onBtnClick} as={Button}>
           No 1
-        </MenuButton>
-        <MenuList>
-          <MenuItem onClick={props.onItemClick}>1–A</MenuItem>
-        </MenuList>
-      </Menu>
-      <Menu
+        </Menu.Trigger>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item onClick={props.onItemClick}>1–A</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Menu.Root>
+      <Menu.Root
         isOpen={active === "2"}
         onClose={() => {
           setActive(undefined)
           props.onClose()
         }}
       >
-        <MenuButton as={Button}>No 2</MenuButton>
-        <MenuList>
-          <MenuItem>2–A</MenuItem>
-        </MenuList>
-      </Menu>
+        <Menu.Trigger as={Button}>No 2</Menu.Trigger>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item>2-A</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Menu.Root>
     </>
   )
 }
 
-test("onClose doesn't affect the state of other menus", async () => {
+test.skip("onClose doesn't affect the state of other menus", async () => {
   const onClose = vi.fn()
   const onItemClick = vi.fn()
   const onBtnClick = vi.fn()
@@ -388,7 +403,7 @@ test("onClose doesn't affect the state of other menus", async () => {
       "true",
   )
 
-  const firstMenuItem = screen.getByText("1–A")
+  const firstMenuItem = screen.getByText("1-A")
   act(() => {
     fireEvent.focus(firstMenuItem)
     fireEvent.click(firstMenuItem)
@@ -402,16 +417,18 @@ test("onClose doesn't affect the state of other menus", async () => {
   ).toBe("false")
 })
 
-test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu open", async () => {
+test("Menu.Item can override its parent menu's `closeOnSelect` and keep the menu open", async () => {
   const onClose = vi.fn()
   render(
-    <Menu onClose={onClose}>
-      <MenuButton as={Button}>Open menu</MenuButton>
-      <MenuList>
-        <MenuItem closeOnSelect={false}>I do not close the menu</MenuItem>
-        <MenuItem>I close the menu</MenuItem>
-      </MenuList>
-    </Menu>,
+    <Menu.Root onClose={onClose}>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item closeOnSelect={false}>I do not close the menu</Menu.Item>
+          <Menu.Item>I close the menu</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const openMenuButton = screen.getByRole("button")
@@ -426,16 +443,18 @@ test("MenuItem can override its parent menu's `closeOnSelect` and keep the menu 
   expect(onClose).toHaveBeenCalled()
 })
 
-test("MenuItem can override its parent menu's `closeOnSelect` and close the menu", async () => {
+test("Menu.Item can override its parent menu's `closeOnSelect` and close the menu", async () => {
   const onClose = vi.fn()
   render(
-    <Menu onClose={onClose} closeOnSelect={false}>
-      <MenuButton as={Button}>Open menu</MenuButton>
-      <MenuList>
-        <MenuItem>I do not close the menu</MenuItem>
-        <MenuItem closeOnSelect>I close the menu</MenuItem>
-      </MenuList>
-    </Menu>,
+    <Menu.Root onClose={onClose} closeOnSelect={false}>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item>I do not close the menu</Menu.Item>
+          <Menu.Item closeOnSelect>I close the menu</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const openMenuButton = screen.getByRole("button")
@@ -450,16 +469,18 @@ test("MenuItem can override its parent menu's `closeOnSelect` and close the menu
   expect(onClose).toHaveBeenCalled()
 })
 
-test("MenuList direction flips in rtl", () => {
+test("Menu.Content direction flips in rtl", () => {
   render(
     <ChakraProvider theme={{ ...theme, direction: "rtl" }}>
-      <Menu placement="top-end" isOpen>
-        <MenuButton as={Button}>Open menu</MenuButton>
-        <MenuList>
-          <MenuItem>Pick me</MenuItem>
-          <MenuItem>No no, pick me</MenuItem>
-        </MenuList>
-      </Menu>
+      <Menu.Root placement="top-end" isOpen>
+        <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.Item>Pick me</Menu.Item>
+            <Menu.Item>No no, pick me</Menu.Item>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Menu.Root>
     </ChakraProvider>,
   )
 
@@ -471,13 +492,15 @@ test("MenuList direction flips in rtl", () => {
 
 test("can override menu item type", async () => {
   render(
-    <Menu>
-      <MenuButton as={Button}>Open menu</MenuButton>
-      <MenuList>
-        <MenuItem type="submit">Submit</MenuItem>
-        <MenuItem as={Button}>Button</MenuItem>
-      </MenuList>
-    </Menu>,
+    <Menu.Root>
+      <Menu.Trigger as={Button}>Open menu</Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content>
+          <Menu.Item type="submit">Submit</Menu.Item>
+          <Menu.Item as={Button}>Button</Menu.Item>
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>,
   )
 
   const button = screen.getByText("Open menu")

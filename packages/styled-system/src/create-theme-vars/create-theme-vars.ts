@@ -1,13 +1,9 @@
 import { isObject } from "@chakra-ui/utils/is"
 import { mergeWith } from "@chakra-ui/utils/merge"
-import { pseudoSelectors } from "../pseudos"
+import { getPseudoSelectors } from "../pseudos"
 import { calc, Operand } from "./calc"
 import { cssVar } from "./css-var"
-import { FlatToken, FlatTokens } from "./flatten-tokens"
-
-export interface CreateThemeVarsOptions {
-  cssVarPrefix?: string
-}
+import { flattenTokens, FlatToken } from "./flatten-tokens"
 
 export interface ThemeVars {
   cssVars: Record<string, any>
@@ -28,16 +24,30 @@ function tokenToCssVar(token: string | number, prefix?: string) {
   return cssVar(String(token).replace(/\./g, "-"), undefined, prefix)
 }
 
-export function createThemeVars(
-  flatTokens: FlatTokens,
-  options: CreateThemeVarsOptions,
-) {
+export function createThemeVars(theme: Record<string, any>) {
+  const flatTokens = flattenTokens(theme)
+
+  const cssVarPrefix = theme.config?.cssVarPrefix
+  const pseudoSelectors = getPseudoSelectors(theme)
+
   let cssVars: Record<string, any> = {}
   const cssMap: Record<string, any> = {}
 
+  function lookupToken(token: string, maybeToken: string) {
+    const scale = String(token).split(".")[0]
+    const withScale = [scale, maybeToken].join(".")
+
+    /** @example flatTokens['space.4'] === '16px' */
+    const resolvedTokenValue = flatTokens[withScale]
+    if (!resolvedTokenValue) return maybeToken
+
+    const { reference } = tokenToCssVar(withScale, cssVarPrefix)
+    return reference
+  }
+
   for (const [token, tokenValue] of Object.entries<FlatToken>(flatTokens)) {
     const { isSemantic, value } = tokenValue
-    const { variable, reference } = tokenToCssVar(token, options?.cssVarPrefix)
+    const { variable, reference } = tokenToCssVar(token, cssVarPrefix)
 
     if (!isSemantic) {
       if (token.startsWith("space")) {
@@ -65,18 +75,6 @@ export function createThemeVars(
       continue
     }
 
-    const lookupToken = (maybeToken: string) => {
-      const scale = String(token).split(".")[0]
-      const withScale = [scale, maybeToken].join(".")
-
-      /** @example flatTokens['space.4'] === '16px' */
-      const resolvedTokenValue = flatTokens[withScale]
-      if (!resolvedTokenValue) return maybeToken
-
-      const { reference } = tokenToCssVar(withScale, options?.cssVarPrefix)
-      return reference
-    }
-
     const normalizedValue = isObject(value) ? value : { default: value }
 
     cssVars = mergeWith(
@@ -84,7 +82,7 @@ export function createThemeVars(
       Object.entries(normalizedValue).reduce(
         (acc, [conditionAlias, conditionValue]) => {
           if (!conditionValue) return acc
-          const tokenReference = lookupToken(`${conditionValue}`)
+          const tokenReference = lookupToken(token, `${conditionValue}`)
 
           if (conditionAlias === "default") {
             acc[variable] = tokenReference

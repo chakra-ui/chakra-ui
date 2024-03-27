@@ -1,7 +1,7 @@
 import { Box, Divider, Heading, Stack, StackDivider, Text } from ".."
 
 export default {
-  title: "Components / Layout / Stack",
+  title: "Layout / Stack",
 }
 
 export const Vertical = () => (

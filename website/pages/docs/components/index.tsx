@@ -3,7 +3,6 @@ import {
   Heading,
   Input,
   List,
-  ListItem,
   SimpleGrid,
   Text,
   VStack,
@@ -54,9 +53,9 @@ export const ComponentsOverview = ({ categories, headings }: Props) => {
           placeholder='Search overview'
           onChange={(e) => filterComponentsByTitle(e.target.value)}
         />
-        <List w='full' spacing={12}>
+        <List.Root w='full' gap='12'>
           {filteredCategories.map(({ title, components, id }) => (
-            <ListItem
+            <List.Item
               key={title}
               display='flex'
               flexDirection='column'
@@ -76,9 +75,9 @@ export const ComponentsOverview = ({ categories, headings }: Props) => {
                   </GridItem>
                 ))}
               </SimpleGrid>
-            </ListItem>
+            </List.Item>
           ))}
-        </List>
+        </List.Root>
       </VStack>
     </MDXLayout>
   )

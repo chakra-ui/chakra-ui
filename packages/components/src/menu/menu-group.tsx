@@ -1,7 +1,6 @@
-import { HTMLChakraProps, chakra, forwardRef } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
-
-import { useMenuStyles } from "./menu"
+import { HTMLChakraProps, chakra, forwardRef } from "../system"
+import { useMenuStyles } from "./menu-context"
 
 export interface MenuGroupProps extends HTMLChakraProps<"div"> {}
 

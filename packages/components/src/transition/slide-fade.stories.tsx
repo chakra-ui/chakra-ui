@@ -2,7 +2,7 @@ import { useBoolean } from "@chakra-ui/hooks"
 import { SlideFade, SlideFadeProps } from "."
 
 export default {
-  title: "Components / Transition / Slide Fade",
+  title: "Transition / Slide Fade",
 }
 
 const Example = (props: SlideFadeProps) => {

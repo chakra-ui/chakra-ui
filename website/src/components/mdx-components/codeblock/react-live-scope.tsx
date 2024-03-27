@@ -1,4 +1,3 @@
-import * as Icons from '@chakra-ui/icons'
 import { chakra } from '@chakra-ui/react'
 import * as Chakra from '@chakra-ui/react'
 import * as Formik from 'formik'
@@ -55,7 +54,6 @@ const ReactLiveScope = {
   ...Chakra,
   ...Formik,
   ...ReactTable,
-  ...Icons,
   ...Loaders,
   ...reactIcons,
   StarIcon,

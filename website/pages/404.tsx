@@ -4,16 +4,12 @@ import * as React from 'react'
 import { FaHome } from 'react-icons/fa'
 import Header from 'components/header'
 import SEO from 'components/seo'
-import { t } from 'utils/i18n'
 // import { AdBanner } from 'components/chakra-pro/ad-banner'
 
 const NotFoundPage = () => {
   return (
     <>
-      <SEO
-        title={t('notfound.title')}
-        description={t('notfound.description')}
-      />
+      <SEO title='404: Not found' description='Page not found' />
       {/* <AdBanner /> */}
       <Header />
       <VStack
@@ -23,17 +19,14 @@ const NotFoundPage = () => {
         mt={['20', null, '40']}
         textAlign='center'
       >
-        <Heading>{t('notfound.heading')}</Heading>
-        <Text fontSize={{ md: 'xl' }}>{t('notfound.message')}</Text>
+        <Heading>404 | Page Not Found</Heading>
+        <Text fontSize={{ md: 'xl' }}>
+          You just hit a route that doesn't exist... the sadness.😢
+        </Text>
         <NextLink href='/' passHref>
-          <Button
-            as='a'
-            aria-label='Back to Home'
-            leftIcon={<FaHome />}
-            colorScheme='teal'
-            size='lg'
-          >
-            {t('notfound.back-to-home')}
+          <Button as='a' colorScheme='teal' size='lg'>
+            <FaHome />
+            Back to Home
           </Button>
         </NextLink>
       </VStack>

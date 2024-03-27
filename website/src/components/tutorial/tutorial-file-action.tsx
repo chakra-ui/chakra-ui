@@ -34,7 +34,6 @@ export const TutorialFileAction = ({
   return (
     <Button
       as={InlineCode}
-      leftIcon={<Icon as={icons[type]} />}
       size='xs'
       fontSize='sm'
       cursor='pointer'
@@ -59,6 +58,7 @@ export const TutorialFileAction = ({
         }
       }}
     >
+      <Icon as={icons[type]} />
       {label || formatFilePath(path)}
     </Button>
   )

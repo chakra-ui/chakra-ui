@@ -1,14 +1,6 @@
-import {
-  Box,
-  Icon,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from '@chakra-ui/react'
-import { ImNpm } from 'react-icons/im'
+import { Box, Icon, Tabs } from '@chakra-ui/react'
 import { FaYarn } from 'react-icons/fa'
+import { ImNpm } from 'react-icons/im'
 import { SiPnpm } from 'react-icons/si'
 import { BunIcon } from './icons/bun'
 
@@ -50,12 +42,12 @@ export function PackageManagers(props: {
 }) {
   const { command } = props
   return (
-    <Tabs mt='6' mb='10'>
-      <TabList>
+    <Tabs.Root mt='6' mb='10'>
+      <Tabs.List>
         {packageManagers.map(({ name, icon, color }) => {
           if (!command[name]) return null
           return (
-            <Tab
+            <Tabs.Trigger
               key={name}
               gap='2'
               _selected={{
@@ -66,22 +58,22 @@ export function PackageManagers(props: {
             >
               {icon}
               {name}
-            </Tab>
+            </Tabs.Trigger>
           )
         })}
-      </TabList>
-      <TabPanels>
+      </Tabs.List>
+      <Tabs.ContentGroup>
         {packageManagers.map(({ name }) => {
           if (!command[name]) return null
           return (
-            <TabPanel key={name} p='0' mt='-4'>
+            <Tabs.Content key={name} p='0' mt='-4'>
               <CodeBlock>
                 <Box className='language-bash'>{command[name]}</Box>
               </CodeBlock>
-            </TabPanel>
+            </Tabs.Content>
           )
         })}
-      </TabPanels>
-    </Tabs>
+      </Tabs.ContentGroup>
+    </Tabs.Root>
   )
 }

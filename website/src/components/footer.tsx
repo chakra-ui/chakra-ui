@@ -2,10 +2,10 @@ import {
   Icon,
   Link,
   Stack,
+  StackProps,
   Text,
   VStack,
   chakra,
-  StackProps,
 } from '@chakra-ui/react'
 import React from 'react'
 import { DiGithubBadge } from 'react-icons/di'
@@ -13,7 +13,6 @@ import { FaYoutube } from 'react-icons/fa'
 import { IoLogoLinkedin, IoLogoTwitter } from 'react-icons/io'
 import { MdEmail } from 'react-icons/md'
 import { VercelCallout } from './vercel-callout'
-import { t } from 'utils/i18n'
 
 type FooterLinkProps = {
   icon?: React.ElementType
@@ -65,7 +64,7 @@ const NigeriaFlag = (props) => (
     verticalAlign='middle'
     {...props}
   >
-    <title>{t('component.footer.title')}</title>
+    <title>Nigeria</title>
     <g>
       <rect x='16' y='6' fill='#E6E6E6' width='16' height='36'></rect>{' '}
       <path
@@ -84,7 +83,7 @@ export const Footer = (props: StackProps) => (
   <VStack as='footer' spacing={4} mt={12} textAlign='center' {...props}>
     <Text fontSize='sm'>
       <span>
-        {t('component.footer.proudly-made-in')}
+        Proudly made in
         <NigeriaFlag />
       </span>
       <span>by Segun Adebayo</span>

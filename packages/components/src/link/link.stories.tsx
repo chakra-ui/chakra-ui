@@ -2,27 +2,17 @@ import { BrowserRouter, Link as ReactRouterLink } from "react-router-dom"
 import { Link, LinkOverlay, LinkBox } from ".."
 
 export default {
-  title: "Components / Navigation / Link",
+  title: "Navigation / Link",
 }
 
-/**
- * Here's a basic link component
- * in Chakra.
- */
-export const Default = () => (
+export const Basic = () => <Link href="https://google.com">This is a link</Link>
+
+export const WithExternal = () => (
   <Link isExternal href="https://google.com">
     This is a link
   </Link>
 )
 
-/**
- * Chakra components supports can infer types
- * from the `as` prop.
- *
- * In this example, we're using Chakra Link with
- * React Router DOM and its types are inferred
- * correctly.
- */
 export const WithRoutingLibrary = () => (
   <BrowserRouter>
     <Link as={ReactRouterLink} to="/home" replace>

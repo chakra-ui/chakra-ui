@@ -3,7 +3,6 @@ import { chakra, Code, Flex, HStack, Stack } from '@chakra-ui/react'
 import { InlineCode } from 'components/mdx-components/inline-code'
 import * as React from 'react'
 import { convertBackticksToInlineCode } from 'utils/convert-backticks-to-inline-code'
-import { t } from 'utils/i18n'
 
 export type PropsTableProps = {
   /**
@@ -69,27 +68,21 @@ const PropsTable = ({
             >
               <HStack>
                 <Code colorScheme='purple'>{prop.name}</Code>
-                {prop.required && (
-                  <Code colorScheme='red'>
-                    {t('component.props-table.required')}
-                  </Code>
-                )}
+                {prop.required && <Code colorScheme='red'>Required</Code>}
               </HStack>
             </chakra.h3>
           </chakra.div>
           <div>
             {prop.description && (
               <Flex>
-                <div className='row'>
-                  {t('component.props-table.description')}
-                </div>
+                <div className='row'>Description</div>
                 <div className='cell'>
                   <p>{convertBackticksToInlineCode(prop.description)}</p>
                 </div>
               </Flex>
             )}
             <Flex>
-              <div className='row'>{t('component.props-table.type')}</div>
+              <div className='row'>Type</div>
               <div className='cell'>
                 <InlineCode whiteSpace='normal' fontSize='0.8em'>
                   {prop.type}
@@ -98,7 +91,7 @@ const PropsTable = ({
             </Flex>
             {prop.defaultValue && (
               <Flex>
-                <div className='row'>{t('component.props-table.default')}</div>
+                <div className='row'>Default</div>
                 <div className='cell'>
                   <InlineCode whiteSpace='normal' fontSize='0.8em'>
                     {prop.defaultValue}

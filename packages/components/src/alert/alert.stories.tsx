@@ -1,81 +1,82 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Container,
-  chakra,
-} from ".."
+import { Alert, Box, Container } from ".."
 
 export default {
-  title: "Components / Feedback / Alert",
+  title: "Feedback / Alert",
   decorators: [(story: Function) => <Container mt={4}>{story()}</Container>],
 }
 
 export const Basic = () => (
-  <Alert status="error" variant="solid" borderRadius="md">
-    <AlertIcon />
-    <AlertTitle mr={2}>Outdated</AlertTitle>
-    <AlertDescription>Your Chakra experience may be degraded.</AlertDescription>
-  </Alert>
+  <Alert.Root>
+    <Alert.Icon />
+    <Alert.Title mr={2}>Outdated</Alert.Title>
+    <Alert.Description>
+      Your Chakra experience may be degraded.
+    </Alert.Description>
+  </Alert.Root>
 )
 
-export const Subtle = () => (
-  <Alert status="success" mx="auto" alignItems="start">
-    <AlertIcon />
-    <chakra.div flex="1">
-      <AlertTitle>Holy Smokes</AlertTitle>
-      <AlertDescription>Something just happened!</AlertDescription>
-    </chakra.div>
-  </Alert>
+export const WithSolidVariant = () => (
+  <Alert.Root status="error" variant="solid" borderRadius="md">
+    <Alert.Icon />
+    <Alert.Title mr={2}>Outdated</Alert.Title>
+    <Alert.Description>
+      Your Chakra experience may be degraded.
+    </Alert.Description>
+  </Alert.Root>
 )
 
-export const LeftAccent = () => (
-  <Alert variant="left-accent" mx="auto" alignItems="start">
-    <AlertIcon />
-    <chakra.div flex="1">
-      <AlertTitle>Holy Smokes</AlertTitle>
-      <AlertDescription>Something just happened!</AlertDescription>
-    </chakra.div>
-  </Alert>
+export const WithSubtleVariant = () => (
+  <Alert.Root status="success" mx="auto" alignItems="start">
+    <Alert.Icon />
+    <Box flex="1">
+      <Alert.Title>Holy Smokes</Alert.Title>
+      <Alert.Description>Something just happened!</Alert.Description>
+    </Box>
+  </Alert.Root>
+)
+
+export const WithLeftAccent = () => (
+  <Alert.Root variant="left-accent" mx="auto" alignItems="start">
+    <Alert.Icon />
+    <Box flex="1">
+      <Alert.Title>Holy Smokes</Alert.Title>
+      <Alert.Description>Something just happened!</Alert.Description>
+    </Box>
+  </Alert.Root>
 )
 
 export const TopAccent = () => (
-  <Alert
+  <Alert.Root
     variant="top-accent"
     mx="auto"
     alignItems="flex-start"
     pt="3"
     rounded="md"
   >
-    <AlertIcon />
-    <chakra.div flex="1">
-      <AlertTitle display="block" mr="2">
+    <Alert.Icon />
+    <Box flex="1">
+      <Alert.Title display="block" mr="2">
         Holy Smokes
-      </AlertTitle>
-      <AlertDescription>Something just happened!</AlertDescription>
-    </chakra.div>
-  </Alert>
+      </Alert.Title>
+      <Alert.Description>Something just happened!</Alert.Description>
+    </Box>
+  </Alert.Root>
 )
 
-export const DocsExample = () => {
+export const WithErrorStatus = () => {
   return (
-    <div>
-      <Alert status="error">
-        <AlertIcon />
-        There was an error processing your request
-      </Alert>
-    </div>
+    <Alert.Root status="error">
+      <Alert.Icon />
+      There was an error processing your request
+    </Alert.Root>
   )
 }
 
-export const LoadingExample = () => {
+export const WithLoadingStatus = () => {
   return (
-    <div>
-      <Alert status="loading">
-        <AlertIcon />
-        We are loading something
-      </Alert>
-    </div>
+    <Alert.Root status="loading">
+      <Alert.Icon />
+      We are loading something
+    </Alert.Root>
   )
 }

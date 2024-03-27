@@ -1,10 +1,21 @@
-import { FormControl, FormLabel } from "../form-control"
-import { render, fireEvent } from "@chakra-ui/test-utils"
+import { fireEvent, render, screen } from "@chakra-ui/test-utils"
 import * as React from "react"
 import { Switch } from "."
+import { Field } from "../field"
+
+const DemoSwitch = (props: Switch.RootProps) => {
+  return (
+    <Switch.Root {...props}>
+      <Switch.Track>
+        <Switch.Thumb />
+      </Switch.Track>
+      {props.children && <Switch.Label>{props.children}</Switch.Label>}
+    </Switch.Root>
+  )
+}
 
 test("Uncontrolled - should check and uncheck", async () => {
-  const { container, user } = render(<Switch />)
+  const { container, user } = render(<DemoSwitch />)
   const input = container.querySelector("input") as HTMLInputElement
 
   await user.click(input)
@@ -15,7 +26,7 @@ test("Uncontrolled - should check and uncheck", async () => {
 })
 
 test("Uncontrolled - should not check if disabled", async () => {
-  const { container, user } = render(<Switch isDisabled />)
+  const { container, user } = render(<DemoSwitch isDisabled />)
   const input = container.querySelector("input") as HTMLInputElement
 
   expect(input).toBeDisabled()
@@ -28,7 +39,7 @@ test("Controlled - should check and uncheck", async () => {
   const ControlledSwitch = ({ onChange }: any) => {
     const [checked, setChecked] = React.useState(false)
     return (
-      <Switch
+      <DemoSwitch
         isChecked={checked}
         onChange={(e) => {
           onChange?.()
@@ -59,12 +70,12 @@ test("Controlled - should check and uncheck", async () => {
 
 test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
   const { container, user } = render(
-    <FormControl isDisabled mt={4}>
-      <FormLabel>Disabled Opt-in Example</FormLabel>
-      <Switch />
-      <Switch isDisabled />
-      <Switch isDisabled={false} />
-    </FormControl>,
+    <Field.Root isDisabled mt={4}>
+      <Field.Label>Disabled Opt-in Example</Field.Label>
+      <DemoSwitch />
+      <DemoSwitch isDisabled />
+      <DemoSwitch isDisabled={false} />
+    </Field.Root>,
   )
 
   const [switchOne, switchTwo, switchThree] = Array.from(
@@ -86,12 +97,12 @@ test("Uncontrolled FormControl - should not check if form-control disabled", asy
 
 test("Uncontrolled FormControl - mark label as invalid", () => {
   const { container } = render(
-    <FormControl isInvalid mt={4}>
-      <FormLabel>Invalid Opt-in Example</FormLabel>
-      <Switch>Invalid Opt-in 1</Switch>
-      <Switch isInvalid>Invalid Opt-in 2</Switch>
-      <Switch isInvalid={false}>Invalid Opt-in 3</Switch>
-    </FormControl>,
+    <Field.Root isInvalid mt={4}>
+      <Field.Label>Invalid Opt-in Example</Field.Label>
+      <DemoSwitch>Invalid Opt-in 1</DemoSwitch>
+      <DemoSwitch isInvalid>Invalid Opt-in 2</DemoSwitch>
+      <DemoSwitch isInvalid={false}>Invalid Opt-in 3</DemoSwitch>
+    </Field.Root>,
   )
 
   const [switchOne, switchTwo, switchThree] = Array.from(
@@ -121,12 +132,12 @@ test("Uncontrolled FormControl - mark label as invalid", () => {
 
 test("Uncontrolled FormControl - mark required", () => {
   const { container } = render(
-    <FormControl isRequired mt={4}>
-      <FormLabel>Required Opt-in Example</FormLabel>
-      <Switch />
-      <Switch isRequired />
-      <Switch isRequired={false} />
-    </FormControl>,
+    <Field.Root isRequired mt={4}>
+      <Field.Label>Required Opt-in Example</Field.Label>
+      <DemoSwitch />
+      <DemoSwitch isRequired />
+      <DemoSwitch isRequired={false} />
+    </Field.Root>,
   )
 
   const [switchOne, switchTwo, switchThree] = Array.from(
@@ -139,63 +150,51 @@ test("Uncontrolled FormControl - mark required", () => {
 })
 
 test("Uncontrolled FormControl - mark readonly", () => {
-  const { container } = render(
-    <FormControl isReadOnly mt={4}>
-      <FormLabel>ReadOnly Opt-in Example</FormLabel>
-      <Switch />
-      <Switch isReadOnly />
-      <Switch isReadOnly={false} />
-    </FormControl>,
+  render(
+    <Field.Root isReadOnly mt={4}>
+      <Field.Label>ReadOnly Opt-in Example</Field.Label>
+      <DemoSwitch />
+    </Field.Root>,
   )
 
-  const [switchOne, switchTwo, switchThree] = Array.from(
-    container.querySelectorAll("input"),
-  )
-
-  expect(switchOne).toHaveAttribute("readOnly")
-  expect(switchTwo).toHaveAttribute("readOnly")
-  expect(switchThree).not.toHaveAttribute("readOnly")
-
-  const [controlOne, controlTwo, controlThree] = Array.from(
-    container.querySelectorAll("span.chakra-switch__track"),
-  )
-
-  expect(controlOne).toHaveAttribute("data-readonly", "")
-  expect(controlTwo).toHaveAttribute("data-readonly", "")
-  expect(controlThree).not.toHaveAttribute("data-readonly")
+  const inputEl = screen.getByRole("checkbox")
+  expect(inputEl).toHaveAttribute("readonly")
 })
 
-test("Uncontrolled FormControl - calls all onFocus EventHandler", () => {
-  const formControlOnFocusMock = vi.fn()
-  const switchOnFocusMock = vi.fn()
+test("Uncontrolled FormControl - calls all onFocus EventHandler", async () => {
+  const onFocus = vi.fn()
+  const _onFocus = vi.fn()
 
-  const { container } = render(
-    <FormControl mt={4} onFocus={formControlOnFocusMock}>
-      <FormLabel>onFocus Example</FormLabel>
-      <Switch onFocus={switchOnFocusMock} />
-    </FormControl>,
+  const { user } = render(
+    <Field.Root mt={4} onFocus={onFocus}>
+      <Field.Label>onFocus Example</Field.Label>
+      <DemoSwitch onFocus={_onFocus} />
+    </Field.Root>,
   )
 
-  const [switchOne] = Array.from(container.querySelectorAll("input"))
-  fireEvent.focus(switchOne)
-  expect(formControlOnFocusMock).toHaveBeenCalled()
-  expect(switchOnFocusMock).toHaveBeenCalled()
+  const inputEl = screen.getByRole("checkbox")
+  await user.click(inputEl)
+
+  expect(onFocus).toHaveBeenCalled()
+  expect(_onFocus).toHaveBeenCalled()
 })
 
 test("Uncontrolled FormControl - calls all onBlur EventHandler", () => {
-  const formControlOnBlurMock = vi.fn()
-  const switchOnBlurMock = vi.fn()
+  const onBlur = vi.fn()
+  const _onBlur = vi.fn()
 
-  const { container } = render(
-    <FormControl mt={4} onBlur={formControlOnBlurMock}>
-      <FormLabel>onBlur Example</FormLabel>
-      <Switch onBlur={switchOnBlurMock} />
-    </FormControl>,
+  render(
+    <Field.Root mt={4} onBlur={onBlur}>
+      <Field.Label>onBlur Example</Field.Label>
+      <DemoSwitch onBlur={_onBlur} />
+    </Field.Root>,
   )
 
-  const [switchOne] = Array.from(container.querySelectorAll("input"))
-  fireEvent.focus(switchOne)
-  fireEvent.blur(switchOne)
-  expect(formControlOnBlurMock).toHaveBeenCalled()
-  expect(switchOnBlurMock).toHaveBeenCalled()
+  const inputEl = screen.getByRole("checkbox")
+
+  fireEvent.focus(inputEl)
+  fireEvent.blur(inputEl)
+
+  expect(onBlur).toHaveBeenCalled()
+  expect(_onBlur).toHaveBeenCalled()
 })

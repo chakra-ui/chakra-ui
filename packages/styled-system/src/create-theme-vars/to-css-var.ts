@@ -1,8 +1,7 @@
 import { analyzeBreakpoints } from "@chakra-ui/utils/breakpoint"
 import type { WithCSSVar } from "../utils"
 import { createThemeVars } from "./create-theme-vars"
-import { flattenTokens } from "./flatten-tokens"
-import { extractSemanticTokens, extractTokens, omitVars } from "./theme-tokens"
+import { omitVars } from "./theme-tokens"
 
 export function toCSSVar<T extends Record<string, any>>(rawTheme: T) {
   /**
@@ -10,13 +9,6 @@ export function toCSSVar<T extends Record<string, any>>(rawTheme: T) {
    * we can omit the computed css vars and recompute it for the extended theme.
    */
   const theme = omitVars(rawTheme)
-
-  // omit components and breakpoints from css variable map
-  const tokens = extractTokens(theme)
-  const semanticTokens = extractSemanticTokens(theme)
-  const flatTokens = flattenTokens({ tokens, semanticTokens })
-
-  const cssVarPrefix = theme.config?.cssVarPrefix
 
   const {
     /**
@@ -29,7 +21,7 @@ export function toCSSVar<T extends Record<string, any>>(rawTheme: T) {
      * the emotion's <Global/> component to attach variables to `:root`
      */
     cssVars,
-  } = createThemeVars(flatTokens, { cssVarPrefix })
+  } = createThemeVars(theme)
 
   const defaultCssVars: Record<string, any> = {
     "--chakra-ring-inset": "var(--chakra-empty,/*!*/ /*!*/)",

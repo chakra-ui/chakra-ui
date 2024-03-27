@@ -2,7 +2,7 @@ import { StoryFn } from "@storybook/react"
 import { Container, Divider } from ".."
 
 export default {
-  title: "Components / Data Display / Divider",
+  title: "Data Display / Divider",
   decorators: [
     (Story: StoryFn) => (
       <Container p={4} height="300px">

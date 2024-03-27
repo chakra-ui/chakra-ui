@@ -68,3 +68,43 @@ font size of the list item.
   </ListItem>
 </List>
 ```
+
+## Custom style type
+
+Sometimes we need to specify our own marker in lists using the built-in
+capabilities of the browser. In css this can be done using the CSS property
+`list-style-type`.
+
+To do the same in `List`, you can use the prop `styleType`.
+
+For example:
+
+```jsx
+<UnorderedList styleType='lower-roman'>
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</UnorderedList>
+```
+
+In fact, the content that you pass to `styleType` will become the value of the
+`list-style-type` property.
+
+That is, you can represent `styleType='lower-roman'` as
+`list-style-type: lower-roman;`.
+
+If you need to make a custom marker from a string, for example `-`, this can be
+done as follows:
+
+```jsx
+<UnorderedList styleType="'-'">
+  <ListItem>Lorem ipsum dolor sit amet</ListItem>
+  <ListItem>Consectetur adipiscing elit</ListItem>
+  <ListItem>Integer molestie lorem at massa</ListItem>
+  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+</UnorderedList>
+```
+
+It is important to understand that `UnorderedList`, `OrderedList` and `List`
+work the same in this case.

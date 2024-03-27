@@ -2,7 +2,7 @@ import { FaPhone } from "react-icons/fa"
 import { Box, Center } from ".."
 
 export default {
-  title: "Components / Layout / Center",
+  title: "Layout / Center",
 }
 
 export const basic = () => (

@@ -15,6 +15,9 @@ const $arrowShadowColor = cssVar("popper-arrow-shadow-color")
 const baseStylePopper = defineStyle({ zIndex: 10 })
 
 const baseStyleContent = defineStyle({
+  position: "relative",
+  display: "flex",
+  flexDirection: "column",
   [$popperBg.variable]: `colors.white`,
   bg: $popperBg.reference,
   [$arrowBg.variable]: $popperBg.reference,

@@ -5,15 +5,15 @@ import {
   testA11y,
   waitFor,
 } from "@chakra-ui/test-utils"
-import { Editable, EditablePreview, EditableTextarea } from "."
 import { useEffect, useState } from "react"
+import { Editable } from "."
 
 describe("editable-textares", () => {
   test("matches snapshot", () => {
     render(
-      <Editable defaultValue="testing">
-        <EditableTextarea data-testid="textarea" />
-      </Editable>,
+      <Editable.Root defaultValue="testing">
+        <Editable.Textarea data-testid="textarea" />
+      </Editable.Root>,
     )
 
     const textarea = screen.getByTestId("textarea")
@@ -23,9 +23,9 @@ describe("editable-textares", () => {
 
   test("passes a11y test", async () => {
     await testA11y(
-      <Editable defaultValue="testing">
-        <EditableTextarea data-testid="textarea" />
-      </Editable>,
+      <Editable.Root defaultValue="testing">
+        <Editable.Textarea data-testid="textarea" />
+      </Editable.Root>,
     )
   })
 
@@ -36,16 +36,16 @@ describe("editable-textares", () => {
     const onEdit = vi.fn()
 
     const { user } = render(
-      <Editable
+      <Editable.Root
         onChange={onChange}
         onCancel={onCancel}
         onSubmit={onSubmit}
         onEdit={onEdit}
         defaultValue="Hello "
       >
-        <EditablePreview data-testid="preview" />
-        <EditableTextarea data-testid="textarea" />
-      </Editable>,
+        <Editable.Preview data-testid="preview" />
+        <Editable.Textarea data-testid="textarea" />
+      </Editable.Root>,
     )
     const preview = screen.getByTestId("preview")
     const textarea = screen.getByTestId("textarea")
@@ -92,7 +92,7 @@ describe("editable-textares", () => {
     const Component = () => {
       const [value, setValue] = useState("Hello ")
       return (
-        <Editable
+        <Editable.Root
           onChange={(val) => {
             setValue(val)
             onChange(val)
@@ -102,9 +102,9 @@ describe("editable-textares", () => {
           onEdit={onEdit}
           value={value}
         >
-          <EditablePreview data-testid="preview" />
-          <EditableTextarea data-testid="textarea" />
-        </Editable>
+          <Editable.Preview data-testid="preview" />
+          <Editable.Textarea data-testid="textarea" />
+        </Editable.Root>
       )
     }
 
@@ -154,15 +154,15 @@ describe("editable-textares", () => {
     const onKeyDown = vi.fn()
 
     const { user } = render(
-      <Editable defaultValue="Hello ">
-        <EditablePreview onFocus={onFocus} data-testid="preview" />
-        <EditableTextarea
+      <Editable.Root defaultValue="Hello ">
+        <Editable.Preview onFocus={onFocus} data-testid="preview" />
+        <Editable.Textarea
           onBlur={onBlur}
           onChange={onChange}
           onKeyDown={onKeyDown}
           data-testid="textarea"
         />
-      </Editable>,
+      </Editable.Root>,
     )
     const preview = screen.getByTestId("preview")
     const textarea = screen.getByTestId("textarea")
@@ -184,9 +184,9 @@ describe("editable-textares", () => {
 
   test("has the proper aria attributes", () => {
     const { rerender } = render(
-      <Editable defaultValue="">
-        <EditableTextarea data-testid="textarea" />
-      </Editable>,
+      <Editable.Root defaultValue="">
+        <Editable.Textarea data-testid="textarea" />
+      </Editable.Root>,
     )
     let textarea = screen.getByTestId("textarea")
 
@@ -194,9 +194,9 @@ describe("editable-textares", () => {
     expect(textarea).not.toHaveAttribute("aria-disabled")
 
     rerender(
-      <Editable isDisabled defaultValue="">
-        <EditableTextarea data-testid="textarea" />
-      </Editable>,
+      <Editable.Root isDisabled defaultValue="">
+        <Editable.Textarea data-testid="textarea" />
+      </Editable.Root>,
     )
 
     textarea = screen.getByTestId("textarea")
@@ -209,10 +209,10 @@ describe("editable-textares", () => {
     const onSubmit = vi.fn()
 
     const { user } = render(
-      <Editable submitOnBlur onSubmit={onSubmit} defaultValue="testing">
-        <EditablePreview data-testid="preview" />
-        <EditableTextarea data-testid="textarea" />
-      </Editable>,
+      <Editable.Root submitOnBlur onSubmit={onSubmit} defaultValue="testing">
+        <Editable.Preview data-testid="preview" />
+        <Editable.Textarea data-testid="textarea" />
+      </Editable.Root>,
     )
 
     const preview = screen.getByTestId("preview")
@@ -238,7 +238,7 @@ describe("editable-textares", () => {
         }, [])
 
         return (
-          <Editable
+          <Editable.Root
             value={name}
             startWithEditView={startWithEditView}
             onChange={(value) => {
@@ -252,9 +252,9 @@ describe("editable-textares", () => {
             }}
             placeholder="Enter your name"
           >
-            <EditablePreview data-testid="preview" />
-            <EditableTextarea data-testid="input" />
-          </Editable>
+            <Editable.Preview data-testid="preview" />
+            <Editable.Textarea data-testid="input" />
+          </Editable.Root>
         )
       }
 

@@ -1,49 +1,49 @@
-import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "."
+import { testA11y, render, screen, fireEvent } from "@chakra-ui/test-utils"
+import { Tabs } from "."
 
 test("should no accessibility issues", async () => {
   await testA11y(
-    <Tabs>
-      <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
+    <Tabs.Root defaultValue="1">
+      <Tabs.List>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="3">Tab 3</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.ContentGroup>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="3">
           <p>Panel 3</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>,
+        </Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>,
   )
 })
 
 test("selects the correct tab with keyboard navigation", async () => {
   const { user } = render(
-    <Tabs>
-      <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
+    <Tabs.Root defaultValue="1">
+      <Tabs.List>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="3">Tab 3</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.ContentGroup>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="3">
           <p>Panel 3</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>,
+        </Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>,
   )
 
   const tabList = screen.getByRole("tablist")
@@ -92,24 +92,24 @@ test("selects the correct tab with keyboard navigation", async () => {
 
 test("focuses the correct tab with manual keyboard navigation", async () => {
   const { user } = render(
-    <Tabs isManual>
-      <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-        <Tab>Tab 3</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
+    <Tabs.Root defaultValue="1" isManual>
+      <Tabs.List>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+        <Tabs.Trigger value="3">Tab 3</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.ContentGroup>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="3">
           <p>Panel 3</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>,
+        </Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>,
   )
 
   const tabList = screen.getByRole("tablist")
@@ -136,20 +136,20 @@ test("focuses the correct tab with manual keyboard navigation", async () => {
 
 test("renders only the currently active tab panel if isLazy", async () => {
   const { user } = render(
-    <Tabs isLazy>
-      <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
+    <Tabs.Root defaultValue="1" isLazy>
+      <Tabs.List>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.ContentGroup>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>,
+        </Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>,
   )
 
   expect(screen.getByText("Panel 1")).toBeInTheDocument()
@@ -163,20 +163,20 @@ test("renders only the currently active tab panel if isLazy", async () => {
 
 test("renders the currently active tab panel and previously-selected tabs if isLazy and lazy behavior is keepMounted", async () => {
   const { user } = render(
-    <Tabs isLazy lazyBehavior="keepMounted">
-      <TabList>
-        <Tab>Tab 1</Tab>
-        <Tab>Tab 2</Tab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
+    <Tabs.Root defaultValue="1" isLazy lazyBehavior="keepMounted">
+      <Tabs.List>
+        <Tabs.Trigger value="1">Tab 1</Tabs.Trigger>
+        <Tabs.Trigger value="2">Tab 2</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.ContentGroup>
+        <Tabs.Content value="1">
           <p>Panel 1</p>
-        </TabPanel>
-        <TabPanel>
+        </Tabs.Content>
+        <Tabs.Content value="2">
           <p>Panel 2</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>,
+        </Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>,
   )
 
   expect(screen.getByText("Panel 1")).toBeInTheDocument()

@@ -19,6 +19,12 @@ const baseStyleTrack = defineStyle((props) => {
   const { colorScheme: c } = props
 
   return {
+    display: "inline-flex",
+    gap: "0.5rem",
+    flexShrink: 0,
+    justifyContent: "flex-start",
+    boxSizing: "content-box",
+    cursor: "pointer",
     borderRadius: "full",
     p: "0.5",
     width: [$width.reference],
@@ -58,33 +64,44 @@ const baseStyleThumb = defineStyle({
   },
 })
 
-const baseStyle = definePartsStyle((props) => ({
-  container: {
-    [$diff.variable]: diffValue,
-    [$translateX.variable]: $diff.reference,
-    _rtl: {
-      [$translateX.variable]: calc($diff).negate().toString(),
-    },
+const baseStyleRoot = defineStyle({
+  display: "inline-block",
+  position: "relative",
+  verticalAlign: "middle",
+  lineHeight: 0,
+  [$diff.variable]: diffValue,
+  [$translateX.variable]: $diff.reference,
+  _rtl: {
+    [$translateX.variable]: calc($diff).negate().toString(),
   },
+})
+
+const baseStyleLabel = defineStyle({
+  userSelect: "none",
+})
+
+const baseStyle = definePartsStyle((props) => ({
+  root: baseStyleRoot,
   track: baseStyleTrack(props),
   thumb: baseStyleThumb,
+  label: baseStyleLabel,
 }))
 
 const sizes = {
   sm: definePartsStyle({
-    container: {
+    root: {
       [$width.variable]: "1.375rem",
       [$height.variable]: "sizes.3",
     },
   }),
   md: definePartsStyle({
-    container: {
+    root: {
       [$width.variable]: "1.875rem",
       [$height.variable]: "sizes.4",
     },
   }),
   lg: definePartsStyle({
-    container: {
+    root: {
       [$width.variable]: "2.875rem",
       [$height.variable]: "sizes.6",
     },

@@ -1,7 +1,7 @@
 import { Badge, Box, Text, Wrap, WrapItem } from ".."
 
 export default {
-  title: "Components / Layout / Wrap",
+  title: "Layout / Wrap",
 }
 
 export const basic = () => (

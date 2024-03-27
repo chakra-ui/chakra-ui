@@ -15,7 +15,6 @@ import { useRouter } from 'next/router'
 import * as React from 'react'
 import { FrontmatterHeading } from 'src/types/frontmatter'
 import { convertBackticksToInlineCode } from 'utils/convert-backticks-to-inline-code'
-import { t } from 'utils/i18n'
 import { AdBanner } from './chakra-pro/ad-banner'
 
 function useHeadingFocusOnRouteChange() {
@@ -70,9 +69,7 @@ function PageContainer(props: PageContainerProps) {
   return (
     <>
       <SEO title={title} description={description} />
-      <SkipNavLink zIndex={20}>
-        {t('component.page-container.skip-to-content')}
-      </SkipNavLink>
+      <SkipNavLink zIndex={20}>Skip to Content</SkipNavLink>
       <AdBanner />
       <Header />
       <Box as='main' className='main-content' w='full' maxW='8xl' mx='auto'>

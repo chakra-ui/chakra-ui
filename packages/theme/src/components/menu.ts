@@ -11,7 +11,8 @@ const { defineMultiStyleConfig, definePartsStyle } =
 const $bg = cssVar("menu-bg")
 const $shadow = cssVar("menu-shadow")
 
-const baseStyleList = defineStyle({
+const baseStyleContent = defineStyle({
+  outline: 0,
   [$bg.variable]: "#fff",
   [$shadow.variable]: "shadows.sm",
   _dark: {
@@ -29,6 +30,15 @@ const baseStyleList = defineStyle({
 })
 
 const baseStyleItem = defineStyle({
+  textDecoration: "none",
+  color: "inherit",
+  userSelect: "none",
+  display: "flex",
+  width: "100%",
+  alignItems: "center",
+  textAlign: "start",
+  flex: "0 0 auto",
+  outline: 0,
   py: "1.5",
   px: "3",
   transitionProperty: "background",
@@ -85,14 +95,18 @@ const baseStyleDivider = defineStyle({
   opacity: 0.6,
 })
 
-const baseStyleButton = defineStyle({
+const baseStyleTrigger = defineStyle({
   transitionProperty: "common",
   transitionDuration: "normal",
+  display: "inline-flex",
+  appearance: "none",
+  alignItems: "center",
+  outline: 0,
 })
 
 const baseStyle = definePartsStyle({
-  button: baseStyleButton,
-  list: baseStyleList,
+  trigger: baseStyleTrigger,
+  content: baseStyleContent,
   item: baseStyleItem,
   groupTitle: baseStyleGroupTitle,
   icon: baseStyleIcon,

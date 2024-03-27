@@ -30,10 +30,6 @@ export interface FocusLockProps {
    */
   restoreFocus?: boolean
   /**
-   * The component to render
-   */
-  children: React.ReactNode
-  /**
    * If `true`, focus trapping will be disabled
    *
    * @default false
@@ -62,7 +58,11 @@ export interface FocusLockProps {
   lockFocusAcrossFrames?: boolean
 }
 
-export const FocusLock: React.FC<FocusLockProps> = (props) => {
+type Props = FocusLockProps & {
+  children?: React.ReactNode
+}
+
+export function FocusLock(props: Props) {
   const {
     initialFocusRef,
     finalFocusRef,
