@@ -18,7 +18,10 @@
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
     "incremental": true,
-    "customConditions": ["source"]
+    "customConditions": ["source"],
+    "paths": {
+      "@chakra-ui/react": ["../../packages/react/src"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx"]
