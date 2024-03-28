@@ -27,10 +27,8 @@ export const splitProps: SplitPropsFn = (props: any, keys: any[]) => {
     }
     return clone
   }
-
   const fn = (key: any) => split(Array.isArray(key) ? key : dKeys.filter(key))
-
-  return fn(keys).concat(split(dKeys))
+  return [keys].map(fn).concat(split(dKeys)) as any
 }
 
 export const createSplitProps = <T>(keys: (keyof T)[]) => {
