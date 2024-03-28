@@ -3,12 +3,7 @@
 import { forwardRef } from "react"
 import { Button, ButtonProps } from "./button"
 
-export interface IconButtonProps extends ButtonProps {
-  /**
-   * A11y: A label that describes the button
-   */
-  "aria-label": string
-}
+export interface IconButtonProps extends ButtonProps {}
 
 /**
  * Icon button renders an icon within a button.

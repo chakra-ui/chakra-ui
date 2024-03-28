@@ -37,6 +37,7 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
+    "@ark-ui/anatomy": "^2.3.1",
     "@ark-ui/react": "^2.2.3",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
@@ -64,9 +65,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.6",
-    "react-lorem-component": "^0.13.0",
     "react-hook-form": "^7.51.2",
     "react-icons": "^5.0.1",
+    "react-lorem-component": "^0.13.0",
     "react-spinners": "^0.13.8"
   },
   "scripts": {

@@ -24,7 +24,7 @@ export interface PolymorphicProps {
   asChild?: boolean
 }
 
-interface HtmlProps {
+export interface HtmlProps {
   htmlSize?: number
   htmlWidth?: string | number
   htmlHeight?: string | number

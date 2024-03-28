@@ -1,10 +1,12 @@
 export * from "./config"
+export { createStyleContext } from "./create-style-context"
 export type {
   ConditionalValue,
   GlobalStyleObject,
   JsxStyleProps,
   SystemStyleObject,
 } from "./css.types"
+export * from "./empty"
 export { chakra } from "./factory"
 export type {
   ChakraComponent,
@@ -13,7 +15,6 @@ export type {
   PropGetterFn,
   UnstyledProp,
 } from "./factory.types"
-export * from "./empty"
 export type {
   RecipeProps,
   SlotRecipeProps,
