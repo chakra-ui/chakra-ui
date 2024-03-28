@@ -37,6 +37,7 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
+    "@ark-ui/react": "^2.2.3",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@popperjs/core": "^2.11.8",
