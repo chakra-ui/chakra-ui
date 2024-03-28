@@ -1,6 +1,6 @@
-import fixtureSystem from "../__fixtures__/system"
+import { defaultSystem } from "../src"
 
-const { css } = fixtureSystem
+const { css } = defaultSystem
 
 describe("css", () => {
   test("works", () => {
@@ -146,42 +146,19 @@ describe("css", () => {
     `)
   })
 
-  test("layer styles", () => {
-    const result = css({
-      // @ts-expect-error
-      layerStyle: "v1",
-    })
-
-    expect(result).toMatchInlineSnapshot(`
-      {
-        "@layer compositions": {
-          "background": "tomato",
-          "color": "var(--chakra-colors-red-300)",
-        },
-      }
-    `)
-  })
-
   test("responsive text styles", () => {
     const result = css({
-      //@ts-expect-error
-      textStyle: ["caps", "lower"],
+      textStyle: ["sm", "lg"],
     })
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "@layer compositions": {
-          "fontSize": "var(--chakra-font-sizes-lg)",
-          "letterSpacing": "var(--chakra-letter-spacings-wide)",
-          "textTransform": "uppercase",
-        },
         "@media screen and (min-width: 30rem)": {
-          "@layer compositions": {
-            "fontSize": "var(--chakra-font-sizes-sm)",
-            "letterSpacing": "0.2px",
-            "textTransform": "lowercase",
-          },
+          "fontSize": "var(--chakra-font-sizes-lg)",
+          "lineHeight": "1.5",
         },
+        "fontSize": "var(--chakra-font-sizes-sm)",
+        "lineHeight": "1.5",
       }
     `)
   })

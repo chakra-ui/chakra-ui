@@ -5,6 +5,7 @@ import { recipes } from "./recipes"
 import { semanticColors } from "./semantic-tokens/colors"
 import { semanticShadows } from "./semantic-tokens/shadows"
 import { slotRecipes } from "./slot-recipes"
+import { textStyles } from "./text-styles"
 import { animations } from "./tokens/animations"
 import { blurs } from "./tokens/blurs"
 import { borders } from "./tokens/borders"
@@ -53,5 +54,6 @@ export const defaultThemeConfig = defineConfig({
     },
     recipes: recipes,
     slotRecipes: slotRecipes,
+    textStyles: textStyles,
   },
 })

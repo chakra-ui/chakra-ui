@@ -65,7 +65,7 @@ export function createSystem(config: SystemConfig): SystemContext {
       utility.register(key, {
         values: Object.keys(flatValues),
         transform(value) {
-          return { "@layer compositions": css(flatValues[value]) }
+          return css(flatValues[value])
         },
       })
     }

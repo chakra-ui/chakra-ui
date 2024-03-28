@@ -2,6 +2,26 @@ import type { ConditionalValue, CssProperties } from "../css.types"
 import type { Tokens } from "./token.gen"
 
 interface PropertyValueTypes {
+  colorPalette:
+    | "transparent"
+    | "current"
+    | "black"
+    | "white"
+    | "whiteAlpha"
+    | "blackAlpha"
+    | "gray"
+    | "red"
+    | "orange"
+    | "yellow"
+    | "green"
+    | "teal"
+    | "blue"
+    | "cyan"
+    | "purple"
+    | "pink"
+    | "bg"
+    | "fg"
+    | "border"
   background: Tokens["colors"]
   backgroundColor: Tokens["colors"]
   backgroundGradient:
@@ -78,7 +98,6 @@ interface PropertyValueTypes {
   divideX: string
   divideY: string
   divideColor: Tokens["colors"]
-  divideStyle: CssProperties["borderStyle"]
   boxShadow: Tokens["shadows"]
   boxShadowColor: Tokens["colors"]
   opacity: Tokens["opacity"]
@@ -176,26 +195,19 @@ interface PropertyValueTypes {
   srOnly: boolean
   debug: boolean
   caretColor: Tokens["colors"]
-  colorPalette:
-    | "transparent"
-    | "current"
-    | "black"
-    | "white"
-    | "whiteAlpha"
-    | "blackAlpha"
-    | "gray"
-    | "red"
-    | "orange"
-    | "yellow"
-    | "green"
-    | "teal"
-    | "blue"
-    | "cyan"
-    | "purple"
-    | "pink"
-    | "bg"
-    | "fg"
-    | "border"
+  divideStyle: CssProperties["borderStyle"]
+  textStyle:
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl"
+    | "6xl"
+    | "7xl"
 }
 
 // eslint-disable-next-line
@@ -274,8 +286,9 @@ export interface PropertyTypes extends PropertyValueTypes {
   mr: Shorthand<"marginRight">
   mb: Shorthand<"marginBottom">
   ml: Shorthand<"marginLeft">
-  ms: Shorthand<"marginInlineEnd">
+  ms: Shorthand<"marginInlineStart">
   marginStart: Shorthand<"marginInlineStart">
+  me: Shorthand<"marginInlineEnd">
   marginEnd: Shorthand<"marginInlineEnd">
   mx: Shorthand<"marginInline">
   marginX: Shorthand<"marginInline">

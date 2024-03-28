@@ -151,13 +151,13 @@ export type Token =
   | "colors.pink.800"
   | "colors.pink.900"
   | "colors.pink.950"
-  | "durations.ultra-fast"
+  | "durations.fastest"
   | "durations.faster"
   | "durations.fast"
   | "durations.normal"
   | "durations.slow"
   | "durations.slower"
-  | "durations.ultra-slow"
+  | "durations.slowest"
   | "easings.default"
   | "easings.linear"
   | "easings.in"
@@ -626,13 +626,13 @@ export type ColorsToken =
   | "colorPalette.disabled"
 
 export type DurationsToken =
-  | "ultra-fast"
+  | "fastest"
   | "faster"
   | "fast"
   | "normal"
   | "slow"
   | "slower"
-  | "ultra-slow"
+  | "slowest"
 
 export type EasingsToken = "default" | "linear" | "in" | "out" | "in-out"
 

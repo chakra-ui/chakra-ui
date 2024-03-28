@@ -571,6 +571,7 @@ export interface SystemProperties {
   ml?: PropertyValue<"ml">
   ms?: PropertyValue<"ms">
   marginStart?: PropertyValue<"marginStart">
+  me?: PropertyValue<"me">
   marginEnd?: PropertyValue<"marginEnd">
   mx?: PropertyValue<"mx">
   marginX?: PropertyValue<"marginX">
@@ -647,4 +648,5 @@ export interface SystemProperties {
   srOnly?: PropertyValue<"srOnly">
   debug?: PropertyValue<"debug">
   colorPalette?: PropertyValue<"colorPalette">
+  textStyle?: PropertyValue<"textStyle">
 }

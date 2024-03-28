@@ -41,6 +41,7 @@ export function createUtilty(options: Options) {
     const values = getPropertyValues(config)
     if (!values) return
     propValues.set(property, values)
+    assignPropertyType(property, config)
   }
 
   const assignProperties = () => {
