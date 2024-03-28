@@ -1,5 +1,16 @@
 # Change Log
 
+## 2.0.46
+
+### Patch Changes
+
+- Updated dependencies
+  [[`170198f`](https://github.com/chakra-ui/chakra-ui/commit/170198fc3936ad34f8136a2da173c12d9dc3dc36),
+  [`7b6e66a`](https://github.com/chakra-ui/chakra-ui/commit/7b6e66a15b08ad27e8458a009c3fb15ee738ca37),
+  [`a89c598`](https://github.com/chakra-ui/chakra-ui/commit/a89c598ed822bf11efc519f8789fa7c145e3bba0),
+  [`a89c598`](https://github.com/chakra-ui/chakra-ui/commit/a89c598ed822bf11efc519f8789fa7c145e3bba0)]:
+  - @chakra-ui/react@3.0.0
+
 ## 2.0.45
 
 ### Patch Changes
@@ -682,10 +693,10 @@
 
   ```jsx live=false
   // Won't work 🎇
-  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click"
+  import { useOutsideClick } from "@chakra-ui/hooks/dist/use-outside-click";
 
   // Works ✅
-  import { useOutsideClick } from "@chakra-ui/hooks"
+  import { useOutsideClick } from "@chakra-ui/hooks";
   ```
 
   If this affected your project, we recommend that you import hooks, functions

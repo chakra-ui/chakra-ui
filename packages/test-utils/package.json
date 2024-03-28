@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/test-utils",
-  "version": "2.0.45",
+  "version": "2.0.46",
   "private": true,
   "description": "Testing utilities for Chakra UI's components",
   "keywords": [
