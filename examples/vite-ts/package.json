@@ -16,6 +16,8 @@
     "@types/react": "^18.2.72",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
+    "lucide-react": "^0.363.0",
+    "next-themes": "^0.3.0",
     "typescript": "^5.4.3",
     "vite": "^5.2.6"
   }
