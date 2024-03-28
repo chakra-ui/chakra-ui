@@ -5,7 +5,7 @@ import { ConfigRecipeSlots } from "./generated/recipes.gen"
 import { SlotRecipeKey, useSlotRecipe } from "./use-slot-recipe"
 
 export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
-  const SlotRecipeContext = createContext<any>(null)
+  const SlotRecipeContext = createContext<any>(EMPTY_SLOT_STYLES)
   SlotRecipeContext.displayName = `SlotRecipeContext(${recipe})`
 
   const withProvider = <T, P>(
