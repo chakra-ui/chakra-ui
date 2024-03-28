@@ -24,6 +24,72 @@ can be done with the following command:
   }}
 />
 
+> For Chakra v3 -- to reduce maintenance costs across the repo -- we are
+> deprecating the plugin. Below is the recommended approach to set up the
+> provider to allow for complete user-end flexibility.
+
+### Setting up Chakra locally
+
+To set up the Chakra Provider, you apply it as a root element in
+`gatsby-browser.js`
+
+```jsx live=false
+// gatsby-browser.jsx
+import * as React from 'react'
+import { ChakraProvider } from '@chakra-ui/react'
+
+// Import your extended theme from a location in `./src`
+import { customTheme } from './src/theme'
+
+export const wrapRootElement = ({ element }) => (
+  // Or ChakraBaseProvider if you only want to compile the default Chakra theme tokens
+  <ChakraProvider theme={customTheme}>{element}</ChakraProvider>
+)
+```
+
+And you are using SSR, also add this to `gatsby-ssr.js`. Additionally, include
+the color mode script to assist in color mode flashing.
+
+```jsx live=false
+// gatsby-ssr.jsx
+
+import * as React from 'react'
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+
+// Import your extended theme from a location in `./src`
+import { customTheme } from './src/theme'
+
+export const onRenderBody = ({ setPreBodyComponents }) => {
+  setPreBodyComponents([
+    <ColorModeScript
+      initialColorMode={customTheme.config.initialColorMode}
+      key='chakra-ui-no-flash'
+    />,
+  ])
+}
+
+export const wrapRootElement = ({ element }) => (
+  // Or ChakraBaseProvider if you only want to compile the default Chakra theme tokens
+  <ChakraProvider theme={customTheme}>{element}</ChakraProvider>
+)
+```
+
+If you use `gatsby-ssr.js` with `gatsby-browser.js` you can import the root
+element setup from a reusable component file.
+
+```tsx live=false
+// ./src/provider.tsx
+import * as React from 'react'
+import { ChakraProvider } from '@chakra-ui/react'
+
+import { customTheme } from './theme'
+
+export const WrapRootElement = ({ element }) => (
+  // Or ChakraBaseProvider if you only want to compile the default Chakra theme tokens
+  <ChakraProvider theme={customTheme}>{element}</ChakraProvider>
+)
+```
+
 ### Gatsby Starter
 
 Alternatively, you can run a Gatsby Starter to have everything you need already
@@ -37,13 +103,16 @@ This includes
 
 - TypeScript
 - Chakra UI and needed dependencies
-- Chakra Gatsby Plugin
+- Local setup of the Chakra provider
 - Basic Gatsby Boilerplate and Config
 
 ## Usage
 
 After installation, you'll need to add `@chakra-ui/gatsby-plugin` to the
 `gatsby-config.js` file.
+
+> Once we deprecate the plugin, this configuration for it should simply be
+> removed.
 
 ```jsx live=false
 // gatsby-config.js
@@ -69,6 +138,10 @@ module.exports = {
   ],
 }
 ```
+
+> The theme setup below will also be deprecated as you can create a simple
+> `theme` directory to house the extended theming to then import into the
+> provider at `gatsby-browser.js`
 
 To use a custom theme, you can
 [shadow](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/)
