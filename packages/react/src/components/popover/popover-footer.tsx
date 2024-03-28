@@ -1,3 +1,5 @@
+"use client"
+
 import { cx } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePopoverStyles } from "./popover-context"

@@ -1,3 +1,5 @@
+"use client"
+
 import { createPortal } from "react-dom"
 
 export interface PortalProps {

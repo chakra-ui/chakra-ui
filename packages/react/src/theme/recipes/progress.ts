@@ -31,18 +31,18 @@ export const progressSlotRecipe = defineSlotRecipe({
       outline: {
         track: {
           shadow: "inset",
-          bg: { base: "gray.100", _dark: "whiteAlpha.300" },
+          bgColor: { base: "gray.100", _dark: "whiteAlpha.300" },
         },
         filledTrack: {
-          bg: "colorPalette.600",
+          bgColor: "colorPalette.600",
         },
       },
       subtle: {
         track: {
-          bg: { base: "gray.100", _dark: "whiteAlpha.300" },
+          bgColor: { base: "gray.100", _dark: "whiteAlpha.300" },
         },
         filledTrack: {
-          bg: { base: "colorPalette.400", _dark: "colorPalette.400/20" },
+          bgColor: { base: "colorPalette.400", _dark: "colorPalette.400/20" },
         },
       },
     },
@@ -119,7 +119,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       colorPalette: "gray",
       css: {
         filledTrack: {
-          bg: { base: "colorPalette.800", _dark: "colorPalette.200" },
+          bgColor: { base: "colorPalette.800", _dark: "colorPalette.200" },
         },
       },
     },

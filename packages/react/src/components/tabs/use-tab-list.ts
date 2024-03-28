@@ -1,3 +1,5 @@
+"use client"
+
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useRef } from "react"
 import { useTabsContext } from "./tabs-context"

@@ -1,3 +1,5 @@
+"use client"
+
 import { splitProps } from "@chakra-ui/utils"
 import styled from "@emotion/styled"
 import {

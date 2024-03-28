@@ -1,3 +1,5 @@
+"use client"
+
 import { raf } from "@zag-js/dom-utils"
 import { RefObject, useEffect, useState } from "react"
 

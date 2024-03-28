@@ -1,3 +1,5 @@
+"use client"
+
 import { useMergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"

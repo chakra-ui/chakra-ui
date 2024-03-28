@@ -1,3 +1,5 @@
+"use client"
+
 import {
   EMPTY_SLOT_STYLES,
   SlotRecipeProps,

@@ -1,3 +1,5 @@
+"use client"
+
 import { RemoveScroll } from "react-remove-scroll"
 import { FocusLock } from "../focus-lock"
 import { useDialogContext } from "./dialog-context"

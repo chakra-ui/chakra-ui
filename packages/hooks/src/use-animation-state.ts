@@ -1,3 +1,5 @@
+"use client"
+
 import { getOwnerWindow } from "@chakra-ui/utils"
 import { useEffect, useState } from "react"
 import { useEventListener } from "./use-event-listener"

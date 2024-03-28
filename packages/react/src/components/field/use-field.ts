@@ -1,3 +1,5 @@
+"use client"
+
 import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { useFieldContext } from "./field-context"
 import { UseFieldProps } from "./types"

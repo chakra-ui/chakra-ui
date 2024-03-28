@@ -1,3 +1,5 @@
+"use client"
+
 import { mergeRefs, useDisclosure, useEventListener } from "@chakra-ui/hooks"
 import { callAllHandlers, getScrollParent } from "@chakra-ui/utils"
 import React, {

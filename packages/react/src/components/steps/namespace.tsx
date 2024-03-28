@@ -1,3 +1,4 @@
+"use client"
 export { StepsRoot as Root } from "./steps-root"
 export type { StepsRootProps as RootProps } from "./steps-root"
 

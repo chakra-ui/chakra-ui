@@ -1,3 +1,5 @@
+"use client"
+
 import { forwardRef } from "react"
 import { Icon, IconProps } from "../icon"
 import { useListStyles } from "./list-context"

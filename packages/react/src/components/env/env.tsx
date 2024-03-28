@@ -1,3 +1,5 @@
+"use client"
+
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { createContext, useContext, useMemo, useReducer, useRef } from "react"
 

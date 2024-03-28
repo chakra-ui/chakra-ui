@@ -1,3 +1,5 @@
+"use client"
+
 import { isCssUnit, isCssVar, mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"

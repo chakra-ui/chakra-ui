@@ -9,7 +9,6 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       gap: "0.5rem",
       alignItems: "center",
       verticalAlign: "top",
-      cursor: "pointer",
       position: "relative",
       colorPalette: "gray",
       _disabled: {
@@ -103,6 +102,21 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       },
     },
   },
+  compoundVariants: [
+    {
+      variant: "outline",
+      colorPalette: "gray",
+      css: {
+        control: {
+          color: "fg.inverse",
+          _checked: {
+            bg: { base: "gray.800", _dark: "gray.200" },
+            borderColor: { base: "gray.800", _dark: "gray.200" },
+          },
+        },
+      },
+    },
+  ],
   defaultVariants: {
     variant: "outline",
     size: "md",

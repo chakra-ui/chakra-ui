@@ -1,3 +1,5 @@
+"use client"
+
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
@@ -20,6 +22,7 @@ export const BlockquoteRoot = forwardRef<HTMLElement, BlockquoteRootProps>(
     const recipe = useSlotRecipe("Blockquote", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
+    console.log(styles)
 
     return (
       <BlockquoteStylesProvider value={styles}>

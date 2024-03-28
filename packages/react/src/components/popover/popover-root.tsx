@@ -1,3 +1,5 @@
+"use client"
+
 import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
 import {
   EMPTY_SLOT_STYLES,

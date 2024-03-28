@@ -1,3 +1,5 @@
+"use client"
+
 import { pick } from "@chakra-ui/utils"
 import { useEditableContext } from "./editable-context"
 

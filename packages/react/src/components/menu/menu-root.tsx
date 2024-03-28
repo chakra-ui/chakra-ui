@@ -1,3 +1,5 @@
+"use client"
+
 import { useAnimationState } from "@chakra-ui/hooks"
 import { MaybeRenderProp, pick, runIfFn } from "@chakra-ui/utils"
 import {

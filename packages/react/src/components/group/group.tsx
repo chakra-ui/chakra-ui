@@ -1,3 +1,5 @@
+"use client"
+
 import { dataAttr } from "@chakra-ui/utils"
 import { Children, cloneElement, forwardRef, isValidElement, memo } from "react"
 import { HTMLChakraProps, InferRecipeProps, chakra } from "../../styled-system"

@@ -1,3 +1,5 @@
+"use client"
+
 import { useControllableState } from "@chakra-ui/hooks"
 import { warn } from "@chakra-ui/utils"
 import { useId, useRef, useState } from "react"

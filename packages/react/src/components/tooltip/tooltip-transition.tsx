@@ -1,3 +1,5 @@
+"use client"
+
 import { Variants } from "framer-motion"
 
 export const scale: Variants = {

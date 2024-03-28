@@ -1,3 +1,5 @@
+"use client"
+
 import { cx, mapResponsive } from "@chakra-ui/utils"
 import { Children, forwardRef } from "react"
 import { ConditionalValue, HTMLChakraProps, chakra } from "../../styled-system"
@@ -25,13 +27,11 @@ export const AspectRatio = forwardRef<HTMLDivElement, AspectRatioProps>(
     // enforce single child
     const child = Children.only(children)
 
-    const _className = cx("chakra-aspect-ratio", className)
-
     return (
       <chakra.div
         ref={ref}
         position="relative"
-        className={_className}
+        className={cx("chakra-aspect-ratio", className)}
         _before={{
           height: 0,
           content: `""`,

@@ -1,3 +1,5 @@
+"use client"
+
 import {
   mergeRefs,
   useAnimationState,

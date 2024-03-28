@@ -1,3 +1,5 @@
+"use client"
+
 import { cx, omit } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {

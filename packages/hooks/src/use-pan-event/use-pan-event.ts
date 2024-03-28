@@ -1,3 +1,5 @@
+"use client"
+
 import { addPointerEvent } from "@chakra-ui/utils"
 import { useEffect, useRef } from "react"
 import { useLatestRef } from "../use-latest-ref"

@@ -1,3 +1,5 @@
+"use client"
+
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { Icon, type IconProps } from "../icon"

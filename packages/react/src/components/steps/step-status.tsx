@@ -1,3 +1,5 @@
+"use client"
+
 import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
 import { StepContext, StepItemStatus, useStepContext } from "./step-context"
 

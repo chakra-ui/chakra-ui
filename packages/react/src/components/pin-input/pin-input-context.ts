@@ -1,10 +1,8 @@
+"use client"
+
 import { createContext } from "../../create-context"
 import { SystemStyleObject } from "../../styled-system"
 import { UsePinInputReturn } from "./use-pin-input"
-
-/* -------------------------------------------------------------------------------------------------
- * Create context that stores pin-input logic
- * -----------------------------------------------------------------------------------------------*/
 
 export type PinInputContext = UsePinInputReturn & {
   /**

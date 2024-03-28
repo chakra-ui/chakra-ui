@@ -1,3 +1,5 @@
+"use client"
+
 import { useEventListener } from "./use-event-listener"
 
 export interface UseFocusOnMouseDownProps {

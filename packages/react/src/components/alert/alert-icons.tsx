@@ -1,3 +1,5 @@
+"use client"
+
 import { Icon, IconProps } from "../icon"
 
 export function CheckIcon(props: IconProps) {

@@ -1,3 +1,5 @@
+"use client"
+
 import { mergeRefs } from "@chakra-ui/hooks"
 import { PropGetter } from "@chakra-ui/utils"
 import {

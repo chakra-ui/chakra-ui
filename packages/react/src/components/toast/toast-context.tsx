@@ -1,3 +1,5 @@
+"use client"
+
 import { SystemStyleObject } from "../.."
 import { createContext } from "../../create-context"
 import { ToastOptions } from "./toast.types"

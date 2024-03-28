@@ -1,3 +1,5 @@
+"use client"
+
 import { hideOthers } from "aria-hidden"
 import { useEffect, useId, useMemo } from "react"
 

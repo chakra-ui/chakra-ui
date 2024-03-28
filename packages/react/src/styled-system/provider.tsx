@@ -1,3 +1,5 @@
+"use client"
+
 import { Global } from "@emotion/react"
 import { createContext } from "../create-context"
 import { SystemContext } from "./types"

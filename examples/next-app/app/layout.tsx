@@ -1,5 +1,10 @@
-import { ColorModeScript } from "@chakra-ui/react"
+import { Inter } from "next/font/google"
 import Provider from "./provider"
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+})
 
 export default function RootLayout({
   children,
@@ -7,10 +12,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme="light">
+    <html className={inter.className} suppressHydrationWarning>
       <head />
       <body>
-        <ColorModeScript type="cookie" nonce="testing" />
         <Provider>{children}</Provider>
       </body>
     </html>

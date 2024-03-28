@@ -1,3 +1,5 @@
+"use client"
+
 import { mergeRefs } from "@chakra-ui/hooks"
 import { callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"

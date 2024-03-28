@@ -1,3 +1,5 @@
+"use client"
+
 import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 

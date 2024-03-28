@@ -1,3 +1,5 @@
+"use client"
+
 import { HTMLMotionProps, Variants, motion } from "framer-motion"
 import { forwardRef } from "react"
 import { useToastContext } from "./toast-context"

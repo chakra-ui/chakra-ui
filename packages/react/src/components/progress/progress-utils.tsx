@@ -1,3 +1,5 @@
+"use client"
+
 import { valueToPercent } from "@chakra-ui/utils"
 
 export interface ProgressPropsOptions {

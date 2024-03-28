@@ -1,3 +1,5 @@
+"use client"
+
 import { MaybeRenderProp, cx, pick, runIfFn } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {

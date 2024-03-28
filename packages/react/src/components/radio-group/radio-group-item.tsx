@@ -1,3 +1,5 @@
+"use client"
+
 import { callAll, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { HTMLChakraProps, SlotRecipeProps, chakra } from "../../styled-system"

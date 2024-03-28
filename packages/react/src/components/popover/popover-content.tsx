@@ -1,3 +1,5 @@
+"use client"
+
 import { callAll, cx } from "@chakra-ui/utils"
 import { HTMLMotionProps } from "framer-motion"
 import { forwardRef } from "react"

@@ -1,3 +1,5 @@
+"use client"
+
 import { UseAnimationStateReturn } from "@chakra-ui/hooks"
 import { createContext } from "../../create-context"
 import { SystemStyleObject } from "../../styled-system"

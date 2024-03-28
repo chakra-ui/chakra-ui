@@ -1,3 +1,5 @@
+"use client"
+
 import { cx, warn } from "@chakra-ui/utils"
 import {
   AnimatePresence,

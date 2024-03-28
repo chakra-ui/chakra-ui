@@ -1,3 +1,5 @@
+"use client"
+
 import { dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { HTMLChakraProps, chakra } from "../../styled-system"

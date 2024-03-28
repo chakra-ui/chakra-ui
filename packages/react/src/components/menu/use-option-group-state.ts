@@ -1,3 +1,5 @@
+"use client"
+
 import { useControllableState } from "@chakra-ui/hooks"
 import { useCallback } from "react"
 

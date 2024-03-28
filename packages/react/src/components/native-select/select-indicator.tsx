@@ -1,3 +1,5 @@
+"use client"
+
 import { cx, dataAttr } from "@chakra-ui/utils"
 import { HTMLChakraProps, chakra } from "../../styled-system"
 import { useSelectContext, useSelectStyles } from "./select-context"

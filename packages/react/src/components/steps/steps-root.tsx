@@ -1,3 +1,5 @@
+"use client"
+
 import { cx, dataAttr } from "@chakra-ui/utils"
 import { Children, forwardRef } from "react"
 import {

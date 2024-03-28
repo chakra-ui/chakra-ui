@@ -1,3 +1,5 @@
+"use client"
+
 import { forwardRef } from "react"
 import { HTMLChakraProps, chakra } from "../../styled-system"
 import { usePopoverContext } from "./popover-context"

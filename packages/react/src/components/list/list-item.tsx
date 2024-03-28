@@ -1,3 +1,5 @@
+"use client"
+
 import { forwardRef } from "react"
 import type { HTMLChakraProps } from "../../styled-system"
 import { chakra } from "../../styled-system"

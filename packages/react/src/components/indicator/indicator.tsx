@@ -1,3 +1,5 @@
+"use client"
+
 import { mapResponsive } from "@chakra-ui/utils"
 import { forwardRef, useMemo } from "react"
 import {

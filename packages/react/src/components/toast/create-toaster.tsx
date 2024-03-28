@@ -1,3 +1,5 @@
+"use client"
+
 import { AnimatePresence } from "framer-motion"
 import { forwardRef, useSyncExternalStore } from "react"
 import { HTMLChakraProps, chakra } from "../../styled-system"

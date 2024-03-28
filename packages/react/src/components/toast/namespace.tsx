@@ -1,3 +1,4 @@
+"use client"
 export { ToastTransition as Transition } from "./toast-transition"
 
 export { ToastRoot as Root } from "./toast-root"

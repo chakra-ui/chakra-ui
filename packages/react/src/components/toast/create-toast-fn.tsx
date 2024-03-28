@@ -1,3 +1,5 @@
+"use client"
+
 import { runIfFn } from "@chakra-ui/utils"
 import { toastStore } from "./toast.store"
 import type { ToastId, ToastOptions, ToastPublicOptions } from "./toast.types"

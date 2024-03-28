@@ -1,3 +1,5 @@
+"use client"
+
 import { Icon, IconProps } from "../icon"
 
 export const TagCloseIcon: React.FC<IconProps> = (props) => (

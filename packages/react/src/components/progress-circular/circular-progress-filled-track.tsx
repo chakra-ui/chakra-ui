@@ -1,3 +1,5 @@
+"use client"
+
 import { dataAttr } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
 import { forwardRef } from "react"

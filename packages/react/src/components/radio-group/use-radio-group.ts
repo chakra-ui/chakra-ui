@@ -1,3 +1,5 @@
+"use client"
+
 import { mergeRefs } from "@chakra-ui/hooks"
 import { PropGetter, isObject } from "@chakra-ui/utils"
 import { useCallback, useId, useRef, useState } from "react"

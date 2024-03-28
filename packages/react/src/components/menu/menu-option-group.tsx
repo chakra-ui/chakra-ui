@@ -1,3 +1,5 @@
+"use client"
+
 import { cx } from "@chakra-ui/utils"
 import { MenuGroupContextProvider } from "./menu-context"
 import { MenuGroup, type MenuGroupProps } from "./menu-group"

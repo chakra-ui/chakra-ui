@@ -1,7 +1,17 @@
 "use client"
-import { Button, useColorMode } from "@chakra-ui/react"
+
+import { IconButton } from "@chakra-ui/react"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
 
 export function ColorModeToggle() {
-  const { toggleColorMode } = useColorMode()
-  return <Button onClick={toggleColorMode}>Click me</Button>
+  const { theme, setTheme } = useTheme()
+  const toggleColorMode = () => {
+    setTheme(theme === "light" ? "dark" : "light")
+  }
+  return (
+    <IconButton aria-label="toggle color mode" onClick={toggleColorMode}>
+      {theme === "light" ? <Moon /> : <Sun />}
+    </IconButton>
+  )
 }

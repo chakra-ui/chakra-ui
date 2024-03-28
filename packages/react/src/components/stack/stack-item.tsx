@@ -1,3 +1,5 @@
+"use client"
+
 import { HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface StackItemProps extends HTMLChakraProps<"div"> {}

@@ -1,3 +1,5 @@
+"use client"
+
 import { HTMLMotionProps, motion } from "framer-motion"
 import { forwardRef } from "react"
 import { JsxStyleProps, chakra } from "../../styled-system"

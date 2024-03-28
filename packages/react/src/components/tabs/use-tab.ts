@@ -1,3 +1,5 @@
+"use client"
+
 import { dataAttr } from "@chakra-ui/utils"
 import { useTabsContext } from "./tabs-context"
 import { makeTabId, makeTabPanelId } from "./use-tabs"

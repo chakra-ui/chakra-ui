@@ -1,3 +1,5 @@
+"use client"
+
 import { useCallbackRef, useTimeout, useUpdateEffect } from "@chakra-ui/hooks"
 import { callAllHandlers } from "@chakra-ui/utils"
 import { useIsPresent } from "framer-motion"

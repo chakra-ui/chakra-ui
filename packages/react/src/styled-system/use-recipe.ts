@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemo } from "react"
 import { ConfigRecipes } from "./generated/recipes.gen"
 import { useChakraContext } from "./provider"

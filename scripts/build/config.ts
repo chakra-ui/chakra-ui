@@ -4,18 +4,8 @@ import replace from "@rollup/plugin-replace"
 import glob from "fast-glob"
 import { resolve } from "node:path"
 import { Plugin, RollupOptions } from "rollup"
-import banner from "rollup-plugin-banner2"
 import esbuild from "rollup-plugin-esbuild"
-
-const useClientFileExclude = ["index"].reduce<string[]>((acc, name) => {
-  acc.push(`${name}.js`, `${name}.mjs`, `${name}.cjs`)
-  return acc
-}, [])
-
-const useClientDirInclude = [
-  "packages/hooks/src",
-  "packages/react/src/components",
-]
+import { preserveDirectives } from "rollup-plugin-preserve-directives"
 
 interface Options {
   dir: string
@@ -38,15 +28,7 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
       platform: isCli ? "node" : "browser",
     }),
     replace({ preventAssignment: true }),
-    // banner((chunk) => {
-    //   const skip =
-    //     useClientFileExclude.includes(chunk.fileName) ||
-    //     !useClientDirInclude.includes(dir)
-
-    //   if (skip) return
-
-    //   return "'use client';\n"
-    // }),
+    preserveDirectives(),
     {
       name: "@rollup-plugin/remove-empty-chunks",
       generateBundle(_, bundle) {
@@ -71,6 +53,7 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
   const outputs: RollupOptions["output"] = [
     {
       format: "es",
+      exports: "named",
       entryFileNames: "[name].mjs",
       dir: resolve(dir, "dist/esm"),
       preserveModules: true,
@@ -80,6 +63,7 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
   if (!isCli) {
     outputs.push({
       format: "cjs",
+      exports: "named",
       entryFileNames: "[name].cjs",
       dir: resolve(dir, "dist/cjs"),
       preserveModules: true,
@@ -91,6 +75,11 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
     onLog(level, log, handler) {
       if (log.code === "EMPTY_BUNDLE") return
       return handler(level, log)
+    },
+    onwarn(warning, warn) {
+      if (warning.code === "SOURCEMAP_ERROR") return
+      if (warning.code === "MODULE_LEVEL_DIRECTIVE") return
+      warn(warning)
     },
     output: outputs,
     external,

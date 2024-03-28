@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext } from "../create-context"
 import { RecipeProps } from "./generated/recipes.gen"
 import { RecipeKey } from "./use-recipe"

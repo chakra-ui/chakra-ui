@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext } from "../../create-context"
 import { SystemStyleObject } from "../../styled-system"
 import { CheckboxContext, CheckboxGroupContext } from "./checkbox-types"

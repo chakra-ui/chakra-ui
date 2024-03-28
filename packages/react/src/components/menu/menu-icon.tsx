@@ -1,3 +1,5 @@
+"use client"
+
 import { cx } from "@chakra-ui/utils"
 import { Children, cloneElement, isValidElement } from "react"
 import { HTMLChakraProps, chakra } from "../../styled-system"

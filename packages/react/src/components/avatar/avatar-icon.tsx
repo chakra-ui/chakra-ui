@@ -1,3 +1,5 @@
+"use client"
+
 import { cx } from "@chakra-ui/utils"
 import { ChakraComponent, chakra } from "../../styled-system"
 

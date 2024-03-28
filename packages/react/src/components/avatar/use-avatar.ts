@@ -1,3 +1,5 @@
+"use client"
+
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { isHTMLElement } from "@chakra-ui/utils"
 import { getWindow } from "@zag-js/dom-utils"

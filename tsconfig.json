@@ -18,7 +18,5 @@
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "customConditions": ["source"]
-  },
-  "include": ["vitest.setup.ts", "packages"],
-  "exclude": ["node_modules"]
+  }
 }
