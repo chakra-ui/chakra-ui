@@ -1,22 +1,9 @@
 import { Meta } from "@storybook/react"
 import { motion } from "framer-motion"
-import { fixtureConfig as sys } from "../__fixtures__/system"
-import {
-  ChakraProvider,
-  chakra,
-  useRecipe,
-  useSlotRecipe,
-} from "../src/styled-system"
+import { chakra, useRecipe, useSlotRecipe } from "../src/styled-system"
 
 export default {
   title: "Foundations / System",
-  decorators: [
-    (Story: any) => (
-      <ChakraProvider value={sys}>
-        <Story />
-      </ChakraProvider>
-    ),
-  ],
 } satisfies Meta
 
 const Box = chakra("div")
@@ -45,6 +32,22 @@ const Alert = chakra("div", {
     },
   },
 })
+
+export const TextStyle = () => {
+  return (
+    <Box
+      bg="pink.500"
+      px="5"
+      py="2"
+      rounded="sm"
+      textStyle="2xl"
+      fontSize="6xl"
+      color="white/50"
+    >
+      Welcome
+    </Box>
+  )
+}
 
 export const Basic = () => {
   return (

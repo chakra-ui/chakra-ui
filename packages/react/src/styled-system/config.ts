@@ -1,4 +1,5 @@
 import { mergeWith } from "@chakra-ui/utils"
+import { CompositionStyles } from "./composition"
 import {
   GlobalStyleIdentityFn,
   KeyframeIdentityFn,
@@ -20,6 +21,10 @@ export const defineKeyframes: KeyframeIdentityFn = (v) => v
 export const defineGlobalStyles: GlobalStyleIdentityFn = (v) => v
 
 export const defineStyle: SystemStyleIdentityFn = (v) => v
+
+export const defineTextStyles = (v: CompositionStyles["textStyles"]) => v
+
+export const defineLayerStyles = (v: CompositionStyles["layerStyles"]) => v
 
 /* -----------------------------------------------------------------------------
  * Token creators

@@ -23,7 +23,18 @@ export interface CodeVariantProps {
 export interface ContainerVariantProps {}
 
 export interface HeadingVariantProps {
-  size?: "4xl" | "3xl" | "2xl" | "xl" | "lg" | "md" | "sm" | "xs"
+  size?:
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl"
+    | "6xl"
+    | "7xl"
 }
 
 export interface InputVariantProps {
@@ -316,7 +327,7 @@ export interface ProgressVariantProps {
 
 // Radio
 
-export type RadioSlot = "root" | "control" | "indicator" | "label"
+export type RadioSlot = "root" | "item" | "control" | "indicator" | "label"
 
 export interface RadioVariantProps {
   variant?: "outline" | "subtle" | "classic"
@@ -325,7 +336,15 @@ export interface RadioVariantProps {
 
 // Slider
 
-export type SliderSlot = "root" | "track" | "thumb" | "filledTrack" | "mark"
+export type SliderSlot =
+  | "root"
+  | "control"
+  | "track"
+  | "thumb"
+  | "label"
+  | "filledTrack"
+  | "mark"
+  | "valueText"
 
 export interface SliderVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
@@ -341,7 +360,7 @@ export type StatSlot =
   | "label"
   | "helpText"
   | "number"
-  | "icon"
+  | "indicator"
 
 export interface StatVariantProps {
   size?: "md"
