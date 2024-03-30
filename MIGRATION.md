@@ -83,7 +83,8 @@ Renamed all `container` parts to `root`. Kindly update your theme to reflect
 ### Removed Components and Packages
 
 - Removed `ControlBox` component
-- Removed `@chakra-ui/icons` package. Prefer to use [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
+- Removed `@chakra-ui/icons` package. Prefer to use
+  [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
   `react-icons` instead.
 
 ### Root component and types
@@ -1125,3 +1126,11 @@ toast({
 
 - Now requires the `Slider.Control` to work properly
 - Added new `Slider.ValueText` and `Slider.Label` components
+
+### Environment
+
+- Rename `EnvironmentProvider` to `Environment`
+- Rename `useEnvironment` to `useEnvironmentContext`
+- Environment is no longer automatically provided by `ChakraProvider`. You must
+  wrap your app in `Environment` to use it and provide the `getRootNode`
+  function
