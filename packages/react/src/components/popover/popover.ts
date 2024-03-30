@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Popover as ArkPopover,
   PopoverAnchorProps as ArkPopoverAnchorProps,

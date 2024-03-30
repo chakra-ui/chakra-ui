@@ -1,3 +1,5 @@
+"use client"
+
 import {
   HoverCard as ArkHoverCard,
   HoverCardArrowProps as ArkHoverCardArrowProps,
