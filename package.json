@@ -13,6 +13,7 @@
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
     "postinstall": "pnpm clean:emotion-types",
     "build:tokens": "chakra-cli tokens packages/react/src/preset.ts",
+    "build:tokens-dev": "cross-env LOCAL=1 chakra-cli tokens packages/react/src/preset.ts",
     "build:prop-docs": "pnpm typedocs && pnpm --filter=*props-docs build",
     "build": "pnpm --filter=./packages/* build",
     "build:fast": "pnpm --filter=./packages/* build:fast",

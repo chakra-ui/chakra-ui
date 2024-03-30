@@ -1,27 +1,32 @@
-export { PopoverRoot as Root } from "./popover-root"
-export type { PopoverRootProps as RootProps } from "./popover-root"
+export { PopoverRoot as Root } from "./popover"
+export type { PopoverRootProps as RootProps } from "./popover"
 
-export { PopoverAnchor as Anchor } from "./popover-anchor"
+export { PopoverAnchor as Anchor } from "./popover"
 
-export { PopoverArrow as Arrow } from "./popover-arrow"
-export type { PopoverArrowProps as ArrowProps } from "./popover-arrow"
+export { PopoverArrow as Arrow } from "./popover"
+export type { PopoverArrowProps as ArrowProps } from "./popover"
 
-export { PopoverBody as Body } from "./popover-body"
-export type { PopoverBodyProps as BodyProps } from "./popover-body"
+export { PopoverArrowTip as ArrowTip } from "./popover"
+export type { PopoverArrowTipProps as ArrowTipProps } from "./popover"
 
-export { PopoverCloseTrigger as CloseTrigger } from "./popover-close-trigger"
-export { type PopoverCloseTriggerProps as CloseTriggerProps } from "./popover-close-trigger"
+export { PopoverBody as Body } from "./popover"
+export type { PopoverBodyProps as BodyProps } from "./popover"
 
-export { PopoverContent as Content } from "./popover-content"
-export type { PopoverContentProps as ContentProps } from "./popover-content"
+export { PopoverCloseTrigger as CloseTrigger } from "./popover"
+export { type PopoverCloseTriggerProps as CloseTriggerProps } from "./popover"
 
-export { PopoverFooter as Footer } from "./popover-footer"
-export type { PopoverFooterProps as FooterProps } from "./popover-footer"
+export { PopoverContent as Content } from "./popover"
+export type { PopoverContentProps as ContentProps } from "./popover"
 
-export { PopoverHeader as Header } from "./popover-header"
-export type { PopoverHeaderProps as HeaderProps } from "./popover-header"
+export { PopoverFooter as Footer } from "./popover"
+export type { PopoverFooterProps as FooterProps } from "./popover"
 
-export { PopoverTrigger as Trigger } from "./popover-trigger"
+export { PopoverHeader as Header } from "./popover"
+export type { PopoverHeaderProps as HeaderProps } from "./popover"
 
-export { PopoverPositioner as Positioner } from "./popover-positioner"
-export type { PopoverPositionerProps as PositionerProps } from "./popover-positioner"
+export { PopoverTrigger as Trigger } from "./popover"
+
+export { PopoverPositioner as Positioner } from "./popover"
+export type { PopoverPositionerProps as PositionerProps } from "./popover"
+
+export type { PopoverOpenChangeDetails as OpenChangeDetails } from "@ark-ui/react/popover"

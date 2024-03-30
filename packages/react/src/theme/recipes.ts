@@ -15,7 +15,6 @@ import { skeletonRecipe } from "./recipes/skeleton"
 import { skipLinkRecipe } from "./recipes/skip-link"
 import { spinnerRecipe } from "./recipes/spinner"
 import { textareaRecipe } from "./recipes/textarea"
-import { tooltipRecipe } from "./recipes/tooltip"
 
 export const recipes = {
   Badge: badgeRecipe,
@@ -33,7 +32,6 @@ export const recipes = {
   Skeleton: skeletonRecipe,
   SkipLink: skipLinkRecipe,
   Spinner: spinnerRecipe,
-  Tooltip: tooltipRecipe,
   Textarea: textareaRecipe,
   Icon: iconRecipe,
 }

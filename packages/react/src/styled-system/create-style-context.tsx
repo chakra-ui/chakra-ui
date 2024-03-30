@@ -1,12 +1,42 @@
-import { createContext, forwardRef, useContext } from "react"
+"use client"
+
+import { forwardRef } from "react"
+import { createContext } from "../create-context"
+import { SystemStyleObject } from "./css.types"
 import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
 import { ConfigRecipeSlots } from "./generated/recipes.gen"
 import { SlotRecipeKey, useSlotRecipe } from "./use-slot-recipe"
 
 export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
-  const SlotRecipeContext = createContext<any>(EMPTY_SLOT_STYLES)
-  SlotRecipeContext.displayName = `SlotRecipeContext(${recipe})`
+  const [RecipeStylesProvider, useStyles] = createContext<
+    Record<string, SystemStyleObject>
+  >({
+    name: `${recipe}StylesContext`,
+    errorMessage: `use${recipe}Styles returned is 'undefined'. Seems you forgot to wrap the components in "<${recipe}.Root />" `,
+  })
+
+  function withRootProvider<P>(
+    Component: React.ElementType<any>,
+  ): React.FC<React.PropsWithoutRef<P>> {
+    const StyledComponent = forwardRef<any, any>(({ unstyled, ...props }) => {
+      const slotRecipe = useSlotRecipe(recipe, props.recipe)
+      // @ts-ignore
+      const [variantProps, otherProps] = slotRecipe.splitVariantProps(props)
+      const slotStyles = unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)
+
+      return (
+        <RecipeStylesProvider value={slotStyles}>
+          <Component {...otherProps} />
+        </RecipeStylesProvider>
+      )
+    })
+
+    // @ts-expect-error
+    StyledComponent.displayName = Component.displayName || Component.name
+
+    return StyledComponent as any
+  }
 
   const withProvider = <T, P>(
     Component: React.ElementType<any>,
@@ -25,14 +55,14 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
           : slotRecipe(variantProps)
 
         return (
-          <SlotRecipeContext.Provider value={slotStyles}>
+          <RecipeStylesProvider value={slotStyles}>
             <SuperComponent
               ref={ref}
               {...otherProps}
               // @ts-expect-error
               css={[slotStyles[slot], props.css]}
             />
-          </SlotRecipeContext.Provider>
+          </RecipeStylesProvider>
         )
       },
     )
@@ -45,17 +75,17 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
 
   const withContext = <T, P>(
     Component: React.ElementType<any>,
-    slot: R extends keyof ConfigRecipeSlots ? R : string,
+    slot?: R extends keyof ConfigRecipeSlots ? ConfigRecipeSlots[R] : string,
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
     const SuperComponent = chakra(Component)
     const StyledComponent = forwardRef<any, any>((props, ref) => {
-      const slotStyles = useContext(SlotRecipeContext)
+      const slotStyles = useStyles()
       return (
         <SuperComponent
           {...props}
-          css={[slotStyles[slot], props.css]}
+          css={[slot ? slotStyles[slot] : undefined, props.css]}
           ref={ref}
         />
       )
@@ -66,5 +96,5 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
     return StyledComponent as any
   }
 
-  return { withProvider, withContext }
+  return { withProvider, withContext, withRootProvider, useStyles }
 }

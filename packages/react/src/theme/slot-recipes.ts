@@ -9,6 +9,7 @@ import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
 import { editableSlotRecipe } from "./recipes/editable"
 import { fieldSlotRecipe } from "./recipes/field"
+import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
 import { menuSlotRecipe } from "./recipes/menu"
 import { nativeSelectSlotRecipe } from "./recipes/native-select"
@@ -24,6 +25,7 @@ import { tableSlotRecipe } from "./recipes/table"
 import { tabSlotRecipe } from "./recipes/tabs"
 import { tagSlotRecipe } from "./recipes/tag"
 import { toastSlotRecipe } from "./recipes/toast"
+import { tooltipSlotRecipe } from "./recipes/tooltip"
 
 export const slotRecipes = {
   Accordion: accordionSlotRecipe,
@@ -42,6 +44,7 @@ export const slotRecipes = {
   NativeSelect: nativeSelectSlotRecipe,
   NumberInput: numberInputSlotRecipe,
   Popover: popoverSlotRecipe,
+  HoverCard: hoverCardSlotRecipe,
   Progress: progressSlotRecipe,
   Radio: radioSlotRecipe,
   Slider: sliderSlotRecipe,
@@ -52,4 +55,5 @@ export const slotRecipes = {
   Tabs: tabSlotRecipe,
   Tag: tagSlotRecipe,
   Toast: toastSlotRecipe,
+  Tooltip: tooltipSlotRecipe,
 }

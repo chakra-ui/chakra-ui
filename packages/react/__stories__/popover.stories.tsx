@@ -8,6 +8,7 @@ import {
   Heading,
   IconButton,
   Popover,
+  Portal,
   Textarea,
   chakra,
   useSlotRecipe,
@@ -16,42 +17,46 @@ import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / Popover",
-  decorators: [(story: Function) => <Box padding="100px">{story()}</Box>],
+  decorators: [(story: Function) => <Box margin="200px">{story()}</Box>],
 }
 
 export const Basic = () => {
   return (
-    <Popover.Root defaultOpen closeOnBlur={false}>
-      <Popover.Trigger asChild>
-        <Button variant="solid">
+    <Popover.Root>
+      <Button variant="solid" asChild>
+        <Popover.Trigger>
           <HiChat />
           Add comment
-        </Button>
-      </Popover.Trigger>
-      <Popover.Positioner>
-        <Popover.Content>
-          <Popover.Arrow />
+        </Popover.Trigger>
+      </Button>
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Arrow>
+              <Popover.ArrowTip />
+            </Popover.Arrow>
 
-          <Popover.CloseTrigger asChild>
-            <IconButton aria-label="Close" variant="ghost">
-              <HiX />
+            <IconButton asChild aria-label="Close" variant="ghost">
+              <Popover.CloseTrigger>
+                <HiX />
+              </Popover.CloseTrigger>
             </IconButton>
-          </Popover.CloseTrigger>
 
-          <Popover.Header>
-            <Heading size="sm">Confirmation!</Heading>
-          </Popover.Header>
+            <Popover.Header>
+              <Heading size="sm">Confirmation!</Heading>
+            </Popover.Header>
 
-          <Popover.Body>
-            <Textarea placeholder="Type your comment here" />
-          </Popover.Body>
+            <Popover.Body>
+              <Textarea placeholder="Type your comment here" />
+            </Popover.Body>
 
-          <Popover.Footer gap="2">
-            <Button variant="solid">Submit</Button>
-            <Button>Cancel</Button>
-          </Popover.Footer>
-        </Popover.Content>
-      </Popover.Positioner>
+            <Popover.Footer gap="2">
+              <Button>Submit</Button>
+              <Button variant="outline">Cancel</Button>
+            </Popover.Footer>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
     </Popover.Root>
   )
 }
@@ -71,20 +76,20 @@ export const Sizes = () => {
             {(v) => (
               <chakra.td key={v} minW="400px">
                 <Popover.Root size={v} open>
-                  <Popover.Trigger asChild>
-                    <Button size={v} variant="solid">
+                  <Button asChild size={v} variant="solid">
+                    <Popover.Trigger>
                       <HiChat />
                       Add comment
-                    </Button>
-                  </Popover.Trigger>
+                    </Popover.Trigger>
+                  </Button>
                   <Popover.Positioner>
                     <Popover.Content>
                       <Popover.Arrow />
-                      <Popover.CloseTrigger asChild>
-                        <IconButton aria-label="Close" variant="ghost" size={v}>
+                      <IconButton asChild variant="ghost" size={v}>
+                        <Popover.CloseTrigger>
                           <HiX />
-                        </IconButton>
-                      </Popover.CloseTrigger>
+                        </Popover.CloseTrigger>
+                      </IconButton>
 
                       <Popover.Header>
                         <Heading size="sm">Confirmation!</Heading>
@@ -127,10 +132,10 @@ const Interval = () => {
 
 export function WithLazyPopover() {
   return (
-    <Popover.Root lazyMount>
-      <Popover.Trigger asChild>
-        <Button variant="solid">Popover Target</Button>
-      </Popover.Trigger>
+    <Popover.Root unmountOnExit>
+      <Button asChild variant="solid">
+        <Popover.Trigger>Popover Target</Popover.Trigger>
+      </Button>
       <Popover.Positioner>
         <Popover.Content>
           <Popover.Body>

@@ -1,16 +1,19 @@
-export { TooltipTrigger as Trigger } from "./tooltip-trigger"
-export type { TooltipTriggerProps as TriggerProps } from "./tooltip-trigger"
+export { TooltipTrigger as Trigger } from "./tooltip"
+export type { TooltipTriggerProps as TriggerProps } from "./tooltip"
 
-export { TooltipContent as Content } from "./tooltip-content"
-export type { TooltipContentProps as ContentProps } from "./tooltip-content"
+export { TooltipContent as Content } from "./tooltip"
+export type { TooltipContentProps as ContentProps } from "./tooltip"
 
-export { TooltipRoot as Root } from "./tooltip-root"
-export type { TooltipRootProps as RootProps } from "./tooltip-root"
+export { TooltipRoot as Root } from "./tooltip"
+export type { TooltipRootProps as RootProps } from "./tooltip"
 
-export { splitTooltipProps as splitProps } from "./tooltip-props"
+export { TooltipArrow as Arrow } from "./tooltip"
+export type { TooltipArrowProps as ArrowProps } from "./tooltip"
 
-export { TooltipArrow as Arrow } from "./tooltip-arrow"
-export type { TooltipArrowProps as ArrowProps } from "./tooltip-arrow"
+export { TooltipArrowTip as ArrowTip } from "./tooltip"
+export type { TooltipArrowTipProps as ArrowTipProps } from "./tooltip"
 
-export { TooltipPositioner as Positioner } from "./tooltip-positioner"
-export type { TooltipPositionerProps as PositionerProps } from "./tooltip-positioner"
+export { TooltipPositioner as Positioner } from "./tooltip"
+export type { TooltipPositionerProps as PositionerProps } from "./tooltip"
+
+export type { TooltipOpenChangeDetails as OpenChangeDetails } from "@ark-ui/react/tooltip"

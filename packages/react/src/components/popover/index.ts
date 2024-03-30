@@ -1,38 +1,31 @@
+export { PopoverAnchor } from "./popover"
+export type { PopoverAnchorProps } from "./popover"
+
+export { PopoverArrow } from "./popover"
+export type { PopoverArrowProps } from "./popover"
+
+export { PopoverBody } from "./popover"
+export type { PopoverBodyProps } from "./popover"
+
+export { PopoverCloseTrigger, type PopoverCloseTriggerProps } from "./popover"
+
+export { PopoverContent } from "./popover"
+export type { PopoverContentProps } from "./popover"
+
+export { usePopoverStyles } from "./popover"
+
+export { PopoverFooter } from "./popover"
+export type { PopoverFooterProps } from "./popover"
+
+export { PopoverHeader } from "./popover"
+export type { PopoverHeaderProps } from "./popover"
+
+export { PopoverRoot } from "./popover"
+export type { PopoverRootProps } from "./popover"
+
+export { PopoverTrigger } from "./popover"
+
+export { PopoverPositioner } from "./popover"
+export type { PopoverPositionerProps } from "./popover"
+
 export * as Popover from "./namespace"
-export { PopoverAnchor } from "./popover-anchor"
-
-export { PopoverArrow } from "./popover-arrow"
-export type { PopoverArrowProps } from "./popover-arrow"
-
-export { PopoverBody } from "./popover-body"
-export type { PopoverBodyProps } from "./popover-body"
-
-export {
-  PopoverCloseTrigger,
-  type PopoverCloseTriggerProps,
-} from "./popover-close-trigger"
-
-export { PopoverContent } from "./popover-content"
-export type { PopoverContentProps } from "./popover-content"
-
-export { usePopoverContext, usePopoverStyles } from "./popover-context"
-
-export { PopoverFooter } from "./popover-footer"
-export type { PopoverFooterProps } from "./popover-footer"
-
-export { PopoverHeader } from "./popover-header"
-export type { PopoverHeaderProps } from "./popover-header"
-
-export { PopoverRoot } from "./popover-root"
-export type { PopoverRootProps } from "./popover-root"
-
-export { PopoverTrigger } from "./popover-trigger"
-
-export {
-  usePopover,
-  type UsePopoverProps,
-  type UsePopoverReturn,
-} from "./use-popover"
-
-export { PopoverPositioner } from "./popover-positioner"
-export type { PopoverPositionerProps } from "./popover-positioner"

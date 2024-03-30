@@ -1,13 +1,14 @@
 import { fileUploadAnatomy } from "@ark-ui/anatomy"
+import { Meta } from "@storybook/react"
 import { HiX } from "react-icons/hi"
 import { Button, FileUpload, IconButton, defineSlotRecipe } from "../src"
 
 export default {
   title: "Components / File Upload",
-}
+} satisfies Meta
 
 // https://park-ui.com/docs/panda/components/file-upload
-export const fileUpload = defineSlotRecipe({
+const fileUpload = defineSlotRecipe({
   slots: fileUploadAnatomy.keys(),
   base: {
     root: {

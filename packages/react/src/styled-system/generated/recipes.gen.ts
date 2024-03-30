@@ -79,8 +79,6 @@ export interface SpinnerVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
-export interface TooltipVariantProps {}
-
 export interface TextareaVariantProps {
   size?: "lg" | "md" | "sm" | "xs"
   variant?: "outline" | "filled" | "flushed"
@@ -104,7 +102,6 @@ export interface ConfigRecipes {
   Skeleton: SystemRecipeFn<SkeletonVariantProps>
   SkipLink: SystemRecipeFn<SkipLinkVariantProps>
   Spinner: SystemRecipeFn<SpinnerVariantProps>
-  Tooltip: SystemRecipeFn<TooltipVariantProps>
   Textarea: SystemRecipeFn<TextareaVariantProps>
   Icon: SystemRecipeFn<IconVariantProps>
 }
@@ -297,13 +294,31 @@ export interface NumberInputVariantProps {
 export type PopoverSlot =
   | "content"
   | "header"
+  | "title"
+  | "description"
   | "body"
   | "footer"
+  | "trigger"
   | "positioner"
+  | "indicator"
   | "arrow"
+  | "arrowTip"
   | "closeTrigger"
 
 export interface PopoverVariantProps {
+  size?: "xs" | "sm" | "md" | "lg"
+}
+
+// HoverCard
+
+export type HoverCardSlot =
+  | "content"
+  | "trigger"
+  | "positioner"
+  | "arrow"
+  | "arrowTip"
+
+export interface HoverCardVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
@@ -455,6 +470,17 @@ export interface ToastVariantProps {
   variant?: "solid" | "raised"
 }
 
+// Tooltip
+
+export type TooltipSlot =
+  | "trigger"
+  | "arrow"
+  | "arrowTip"
+  | "positioner"
+  | "content"
+
+export interface TooltipVariantProps {}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -472,6 +498,7 @@ export interface ConfigSlotRecipes {
   NativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>
   NumberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariantProps>
   Popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
+  HoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
   Progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
   Radio: SystemSlotRecipeFn<RadioSlot, RadioVariantProps>
   Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
@@ -482,6 +509,7 @@ export interface ConfigSlotRecipes {
   Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
   Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
   Toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
+  Tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -501,6 +529,7 @@ export interface ConfigRecipeSlots {
   NativeSelect: NativeSelectSlot
   NumberInput: NumberInputSlot
   Popover: PopoverSlot
+  HoverCard: HoverCardSlot
   Progress: ProgressSlot
   Radio: RadioSlot
   Slider: SliderSlot
@@ -511,6 +540,7 @@ export interface ConfigRecipeSlots {
   Tabs: TabsSlot
   Tag: TagSlot
   Toast: ToastSlot
+  Tooltip: TooltipSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
