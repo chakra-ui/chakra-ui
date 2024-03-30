@@ -106,5 +106,5 @@ You can learn more about custom theme at
 [Chakra UI's documentation](https://chakra-ui.com/theme).
 
 By default, Chakra provides a sensible
-[default theme](https://github.com/chakra-ui/chakra-ui/tree/main/packages/theme)
+[default theme](https://github.com/chakra-ui/chakra-ui/tree/v2/packages/theme)
 inspired by Tailwind CSS.
