@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import { HiX } from "react-icons/hi"
 import {
-  Box,
+  Absolute,
   Button,
   HStack,
   IconButton,
@@ -21,18 +21,18 @@ const [Toaster, toast] = createToaster({
             <Toast.Title>{toast.title}</Toast.Title>
             <Toast.Description>{toast.description}</Toast.Description>
           </Stack>
-          <Box pos="absolute" top="1" insetEnd="1">
-            <Toast.CloseTrigger asChild>
-              <IconButton
-                aria-label="Close"
-                size="sm"
-                variant="ghost"
-                colorPalette="whiteAlpha"
-              >
+          <Absolute top="1" insetEnd="1">
+            <IconButton
+              size="sm"
+              variant="ghost"
+              colorPalette="whiteAlpha"
+              asChild
+            >
+              <Toast.CloseTrigger>
                 <HiX />
-              </IconButton>
-            </Toast.CloseTrigger>
-          </Box>
+              </Toast.CloseTrigger>
+            </IconButton>
+          </Absolute>
         </Toast.Root>
       </Toast.Transition>
     )
