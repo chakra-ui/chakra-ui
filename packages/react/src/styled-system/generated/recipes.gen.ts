@@ -244,6 +244,23 @@ export type FieldSlot =
 
 export interface FieldVariantProps {}
 
+// FileUpload
+
+export type FileUploadSlot =
+  | "root"
+  | "dropzone"
+  | "item"
+  | "itemDeleteTrigger"
+  | "itemGroup"
+  | "itemName"
+  | "itemPreview"
+  | "itemPreviewImage"
+  | "itemSizeText"
+  | "label"
+  | "trigger"
+
+export interface FileUploadVariantProps {}
+
 // List
 
 export type ListSlot = "root" | "item" | "icon"
@@ -493,6 +510,7 @@ export interface ConfigSlotRecipes {
   Drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
   Editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
   Field: SystemSlotRecipeFn<FieldSlot, FieldVariantProps>
+  FileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps>
   List: SystemSlotRecipeFn<ListSlot, ListVariantProps>
   Menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
   NativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>
@@ -524,6 +542,7 @@ export interface ConfigRecipeSlots {
   Drawer: DrawerSlot
   Editable: EditableSlot
   Field: FieldSlot
+  FileUpload: FileUploadSlot
   List: ListSlot
   Menu: MenuSlot
   NativeSelect: NativeSelectSlot
