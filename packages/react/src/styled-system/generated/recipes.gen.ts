@@ -309,18 +309,19 @@ export interface NumberInputVariantProps {
 // Popover
 
 export type PopoverSlot =
-  | "content"
-  | "header"
-  | "title"
-  | "description"
-  | "body"
-  | "footer"
-  | "trigger"
-  | "positioner"
-  | "indicator"
   | "arrow"
   | "arrowTip"
+  | "anchor"
+  | "trigger"
+  | "indicator"
+  | "positioner"
+  | "content"
+  | "title"
+  | "description"
   | "closeTrigger"
+  | "header"
+  | "body"
+  | "footer"
 
 export interface PopoverVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
@@ -329,11 +330,11 @@ export interface PopoverVariantProps {
 // HoverCard
 
 export type HoverCardSlot =
-  | "content"
-  | "trigger"
-  | "positioner"
   | "arrow"
   | "arrowTip"
+  | "trigger"
+  | "positioner"
+  | "content"
 
 export interface HoverCardVariantProps {
   size?: "xs" | "sm" | "md" | "lg"

@@ -1,8 +1,8 @@
-import { hoverCardAnatomy as parts } from "../../anatomy"
+import { hoverCardAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const hoverCardSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: hoverCardAnatomy.keys(),
   base: {
     content: {
       position: "relative",

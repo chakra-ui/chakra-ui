@@ -1,8 +1,10 @@
-import { popoverAnatomy as parts } from "../../anatomy"
+import { popoverAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
+const anatomy = popoverAnatomy.extendWith("header", "body", "footer")
+
 export const popoverSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: anatomy.keys(),
   base: {
     content: {
       position: "relative",
