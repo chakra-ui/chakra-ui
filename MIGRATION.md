@@ -504,7 +504,7 @@ Before:
 After:
 
 ```tsx
-<Button isDisabled colorScheme="blue">
+<Button disabled colorPalette="blue">
   <Spinner boxSize="1em" />
   Click me
 </Button>
@@ -513,7 +513,7 @@ After:
 Alternative approach to keep the content width but center the spinner:
 
 ```tsx
-<Button isDisabled variant="solid" colorPalette="blue">
+<Button disabled variant="solid" colorPalette="blue">
   <AbsoluteCenter>
     <BeatLoader size={8} color="white" />
   </AbsoluteCenter>
