@@ -186,13 +186,17 @@ export interface CheckboxVariantProps {
 // Dialog
 
 export type DialogSlot =
-  | "overlay"
+  | "trigger"
+  | "backdrop"
   | "positioner"
   | "content"
-  | "header"
+  | "title"
+  | "description"
   | "closeTrigger"
+  | "header"
   | "body"
   | "footer"
+  | "backdrop"
 
 export interface DialogVariantProps {
   centered?: boolean
@@ -209,22 +213,33 @@ export interface DialogVariantProps {
     | "5xl"
     | "6xl"
     | "full"
+  motionPreset?:
+    | "scale"
+    | "slide-in-bottom"
+    | "slide-in-top"
+    | "slide-in-left"
+    | "slide-in-right"
+    | "none"
 }
 
 // Drawer
 
 export type DrawerSlot =
-  | "overlay"
+  | "trigger"
+  | "backdrop"
   | "positioner"
   | "content"
-  | "header"
+  | "title"
+  | "description"
   | "closeTrigger"
+  | "header"
   | "body"
   | "footer"
+  | "backdrop"
 
 export interface DrawerVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
-  isFullHeight?: boolean
+  placement?: "start" | "end" | "top" | "bottom"
 }
 
 // Editable

@@ -1,39 +1,36 @@
-export { DialogRoot } from "./dialog-root"
-export type { DialogRootProps } from "./dialog-root"
+export { DialogRoot } from "./dialog"
+export type { DialogRootProps } from "./dialog"
 
-export {
-  DialogContextProvider,
-  DialogStylesProvider,
-  useDialogContext,
-  useDialogStyles,
-} from "./dialog-context"
+export { useDialogStyles } from "./dialog"
 
-export { DialogBody } from "./dialog-body"
-export type { DialogBodyProps } from "./dialog-body"
+export { DialogBody } from "./dialog"
+export type { DialogBodyProps } from "./dialog"
 
-export { DialogPositioner } from "./dialog-positioner"
-export type { DialogPositionerProps } from "./dialog-positioner"
+export { DialogTitle } from "./dialog"
+export type { DialogTitleProps } from "./dialog"
 
-export { DialogCloseTrigger } from "./dialog-close-trigger"
-export type { DialogCloseTriggerProps } from "./dialog-close-trigger"
+export { DialogDescription } from "./dialog"
+export type { DialogDescriptionProps } from "./dialog"
 
-export { DialogContent } from "./dialog-content"
-export type { DialogContentProps } from "./dialog-content"
+export { DialogPositioner } from "./dialog"
+export type { DialogPositionerProps } from "./dialog"
 
-export { DialogFocusScope } from "./dialog-focus-scope"
+export { DialogCloseTrigger } from "./dialog"
+export type { DialogCloseTriggerProps } from "./dialog"
 
-export { DialogFooter } from "./dialog-footer"
-export type { DialogFooterProps } from "./dialog-footer"
+export { DialogContent } from "./dialog"
+export type { DialogContentProps } from "./dialog"
 
-export { DialogHeader } from "./dialog-header"
-export type { DialogHeaderProps } from "./dialog-header"
+export { DialogFooter } from "./dialog"
+export type { DialogFooterProps } from "./dialog"
 
-export { DialogBackdrop } from "./dialog-backdrop"
-export type { DialogBackdropProps } from "./dialog-backdrop"
+export { DialogHeader } from "./dialog"
+export type { DialogHeaderProps } from "./dialog"
 
-export { useDialog } from "./use-dialog"
-export type { UseDialogProps, UseDialogReturn } from "./use-dialog"
+export { DialogBackdrop } from "./dialog"
+export type { DialogBackdropProps } from "./dialog"
 
-export { useDialogManager } from "./dialog-manager"
+export { DialogTrigger } from "./dialog"
+export type { DialogTriggerProps } from "./dialog"
 
 export * as Dialog from "./namespace"

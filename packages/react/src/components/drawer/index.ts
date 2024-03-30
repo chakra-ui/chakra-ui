@@ -1,16 +1,27 @@
-export { DrawerRoot } from "./drawer-root"
-export type { DrawerRootProps } from "./drawer-root"
+export { DrawerRoot } from "./drawer"
+export type { DrawerRootProps } from "./drawer"
 
-export { DrawerContent } from "./drawer-content"
-export type { DrawerContentProps } from "./drawer-content"
+export { useDrawerStyles } from "./drawer"
+
+export { DrawerBody } from "./drawer"
+export type { DrawerBodyProps } from "./drawer"
+
+export { DrawerPositioner } from "./drawer"
+export type { DrawerPositionerProps } from "./drawer"
+
+export { DrawerCloseTrigger } from "./drawer"
+export type { DrawerCloseTriggerProps } from "./drawer"
+
+export { DrawerContent } from "./drawer"
+export type { DrawerContentProps } from "./drawer"
+
+export { DrawerFooter } from "./drawer"
+export type { DrawerFooterProps } from "./drawer"
+
+export { DrawerHeader } from "./drawer"
+export type { DrawerHeaderProps } from "./drawer"
+
+export { DrawerBackdrop } from "./drawer"
+export type { DrawerBackdropProps } from "./drawer"
 
 export * as Drawer from "./namespace"
-
-export { DialogBody as DrawerBody } from "../dialog/dialog-body"
-export { DialogPositioner as DrawerPositioner } from "../dialog/dialog-positioner"
-export { DialogCloseTrigger as DrawerCloseTrigger } from "../dialog/dialog-close-trigger"
-export { DialogFooter as DrawerFooter } from "../dialog/dialog-footer"
-export { DialogHeader as DrawerHeader } from "../dialog/dialog-header"
-export { DialogBackdrop as DrawerBackdrop } from "../dialog/dialog-backdrop"
-
-export { useDrawerContext } from "./drawer-context"

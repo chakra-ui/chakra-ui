@@ -1,6 +1,7 @@
 "use client"
 
 import { cx, warn } from "@chakra-ui/utils"
+import type { Target, TargetAndTransition, Transition } from "framer-motion"
 import {
   AnimatePresence,
   HTMLMotionProps,
@@ -8,15 +9,45 @@ import {
   motion,
 } from "framer-motion"
 import { forwardRef, useEffect, useState } from "react"
-import {
-  TRANSITION_EASINGS,
-  Variants,
-  WithTransitionConfig,
-  withDelay,
-} from "./transition-utils"
+
+type WithMotionState<P> = Partial<Record<"enter" | "exit", P>>
+
+type TransitionConfig = WithMotionState<Transition>
+
+type TransitionEndConfig = WithMotionState<Target>
+
+type DelayConfig = WithMotionState<number>
+
+type TransitionProperties = {
+  /**
+   * Custom `transition` definition for `enter` and `exit`
+   */
+  transition?: TransitionConfig
+  /**
+   * Custom `transitionEnd` definition for `enter` and `exit`
+   */
+  transitionEnd?: TransitionEndConfig
+  /**
+   * Custom `delay` definition for `enter` and `exit`
+   */
+  delay?: number | DelayConfig
+}
+const EASE = [0.25, 0.1, 0.25, 1]
 
 const isNumeric = (value?: string | number) =>
   value != null && parseInt(value.toString(), 10) > 0
+
+type TargetResolver<P = {}> = (
+  props: P & TransitionProperties,
+) => TargetAndTransition
+
+type Variant<P = {}> = TargetAndTransition | TargetResolver<P>
+
+type Variants<P = {}> = {
+  enter: Variant<P>
+  exit: Variant<P>
+  initial?: Variant<P>
+}
 
 export interface CollapseOptions {
   /**
@@ -38,12 +69,12 @@ export interface CollapseOptions {
 
 const defaultTransitions = {
   exit: {
-    height: { duration: 0.2, ease: TRANSITION_EASINGS.ease },
-    opacity: { duration: 0.3, ease: TRANSITION_EASINGS.ease },
+    height: { duration: 0.2, ease: EASE },
+    opacity: { duration: 0.3, ease: EASE },
   },
   enter: {
-    height: { duration: 0.3, ease: TRANSITION_EASINGS.ease },
-    opacity: { duration: 0.4, ease: TRANSITION_EASINGS.ease },
+    height: { duration: 0.3, ease: EASE },
+    opacity: { duration: 0.4, ease: EASE },
   },
 }
 
@@ -58,8 +89,10 @@ const variants: Variants<CollapseOptions> = {
     ...(animateOpacity && { opacity: isNumeric(startingHeight) ? 1 : 0 }),
     height: startingHeight,
     transitionEnd: transitionEnd?.exit,
-    transition:
-      transition?.exit ?? withDelay.exit(defaultTransitions.exit, delay),
+    transition: transition?.exit ?? {
+      ...defaultTransitions.exit,
+      delay: typeof delay === "number" ? delay : delay?.["exit"],
+    },
   }),
   enter: ({
     animateOpacity,
@@ -71,12 +104,24 @@ const variants: Variants<CollapseOptions> = {
     ...(animateOpacity && { opacity: 1 }),
     height: endingHeight,
     transitionEnd: transitionEnd?.enter,
-    transition:
-      transition?.enter ?? withDelay.enter(defaultTransitions.enter, delay),
+    transition: transition?.enter ?? {
+      ...defaultTransitions.enter,
+      delay: typeof delay === "number" ? delay : delay?.["enter"],
+    },
   }),
 }
 
-export type ICollapse = CollapseProps
+export type WithTransitionConfig<P extends object> = Omit<P, "transition"> &
+  TransitionProperties & {
+    /**
+     * If `true`, the element will unmount when `in={false}` and animation is done
+     */
+    unmountOnExit?: boolean
+    /**
+     * Show the component; triggers when enter or exit states
+     */
+    in?: boolean
+  }
 
 export interface CollapseProps
   extends WithTransitionConfig<HTMLMotionProps<"div">>,

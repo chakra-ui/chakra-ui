@@ -1,5 +1,5 @@
 import { useBoolean } from "@chakra-ui/hooks"
-import { Collapse, CollapseProps } from "../src/components/transition"
+import { Collapse, CollapseProps } from "../src"
 
 export default {
   title: "Components / Collapse",

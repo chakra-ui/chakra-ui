@@ -34,7 +34,7 @@ export { usePopoverStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverRootProps
-  extends HTMLChakraProps<"div", ArkPopoverRootProps>,
+  extends ArkPopoverRootProps,
     SlotRecipeProps<"Popover">,
     UnstyledProp {}
 

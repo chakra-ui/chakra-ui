@@ -3,7 +3,7 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { HTMLChakraProps, chakra } from "../../styled-system"
-import { Collapse, CollapseProps } from "../transition"
+import { Collapse, CollapseProps } from "../collapse"
 import {
   useAccordionContext,
   useAccordionItemContext,

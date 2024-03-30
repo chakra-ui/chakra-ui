@@ -1,5 +1,5 @@
 import { render, screen } from "@chakra-ui/test-utils"
-import { Collapse } from "../src/components/transition"
+import { Collapse } from "../src"
 
 describe("Collapse", () => {
   test("should hide its children", async () => {

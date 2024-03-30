@@ -392,6 +392,16 @@ After:
 - Removed `containerProps` in favor of rendering the `Dialog.Positioner`
   component to better control this element.
 - Renamed `ModalOverlay` to `Dialog.Backdrop`
+- Renamed `initialFocusRef` to `initialFocusEl` which is now a function that
+  returns the element to focus on
+- Renamed `finalFocusRef` to `finalFocusEl` which is now a function that returns
+  the element to focus on
+- Renamed `returnFocusOnClose` to `restoreFocus`
+- Renamed `blockScrollOnMount` to `preventScroll`
+- Removed `preserveScrollBarGap` and `allowPinZoom`
+- `onOpen` and `onClose` -> `onOpenChange`
+- Now requires an explicit `Portal` component to render the dialog outside the
+  DOM tree
 
 Before:
 
@@ -427,6 +437,8 @@ After:
 
 - Same changes as `Dialog` above
 - Renamed `DrawerOverlay` to `Drawer.Backdrop`
+- Removed `isFullHeight` in favor of setting `height=100dvh` on the content
+  directly.
 
 ### Alert Dialog
 
