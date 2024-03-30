@@ -24,6 +24,7 @@ export { PopoverRoot } from "./popover"
 export type { PopoverRootProps } from "./popover"
 
 export { PopoverTrigger } from "./popover"
+export type { PopoverTriggerProps } from "./popover"
 
 export { PopoverPositioner } from "./popover"
 export type { PopoverPositionerProps } from "./popover"

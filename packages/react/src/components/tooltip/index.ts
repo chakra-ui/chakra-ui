@@ -19,3 +19,5 @@ export type { TooltipPositionerProps } from "./tooltip"
 export * as Tooltip from "./namespace"
 
 export type { TooltipOpenChangeDetails } from "@ark-ui/react/tooltip"
+
+export { useTooltipStyles } from "./tooltip"

@@ -19,3 +19,5 @@ export type { HoverCardTriggerProps } from "./hover-card"
 export type { HoverCardOpenChangeDetails } from "@ark-ui/react/hover-card"
 
 export * as HoverCard from "./namespace"
+
+export { useHoverCardStyles } from "./hover-card"
