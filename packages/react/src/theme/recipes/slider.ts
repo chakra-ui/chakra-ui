@@ -1,29 +1,37 @@
-import { sliderAnatomy as parts } from "../../anatomy"
+import { sliderAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const sliderSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: sliderAnatomy.keys(),
   base: {
     root: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "1",
       fontSize: "sm",
       position: "relative",
       colorPalette: "gray",
     },
     control: {
-      display: "inline-block",
+      display: "inline-flex",
+      alignItems: "center",
       position: "relative",
       minHeight: "var(--slider-thumb-size)",
     },
     track: {
       overflow: "hidden",
       borderRadius: "sm",
+      flex: "1",
     },
-    filledTrack: {
+    range: {
       width: "inherit",
       height: "inherit",
       _disabled: {
         bg: { base: "gray.300!", _dark: "gray.500!" },
       },
+    },
+    markerGroup: {
+      mt: "-1",
     },
     thumb: {
       width: "var(--slider-thumb-size)",
@@ -81,7 +89,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
           shadow: "inset",
           bg: "bg.muted",
         },
-        filledTrack: {
+        range: {
           bg: "colorPalette.600",
         },
       },
@@ -89,7 +97,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
         track: {
           bg: "bg.muted",
         },
-        filledTrack: {
+        range: {
           bg: { base: "colorPalette.600", _dark: "colorPalette.600/40" },
         },
       },
@@ -126,7 +134,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       variant: "outline",
       colorPalette: "gray",
       css: {
-        filledTrack: {
+        range: {
           bg: { base: "gray.800", _dark: "gray.200" },
         },
       },
@@ -135,7 +143,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       variant: "subtle",
       colorPalette: "gray",
       css: {
-        filledTrack: {
+        range: {
           bg: { base: "gray.600", _dark: "gray.200/64" },
         },
       },

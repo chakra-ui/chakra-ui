@@ -386,13 +386,14 @@ export interface RadioVariantProps {
 
 export type SliderSlot =
   | "root"
-  | "control"
-  | "track"
-  | "thumb"
   | "label"
-  | "filledTrack"
-  | "mark"
+  | "thumb"
   | "valueText"
+  | "track"
+  | "range"
+  | "control"
+  | "markerGroup"
+  | "marker"
 
 export interface SliderVariantProps {
   size?: "xs" | "sm" | "md" | "lg"

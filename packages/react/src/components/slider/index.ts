@@ -1,35 +1,30 @@
-export { SliderRoot } from "./slider-root"
-export type { SliderRootProps } from "./slider-root"
+export { SliderRoot } from "./slider"
+export type { SliderRootProps } from "./slider"
 
-export { SliderMark } from "./slider-mark"
-export type { SliderMarkProps } from "./slider-mark"
+export { SliderMarker } from "./slider"
+export type { SliderMarkerProps } from "./slider"
 
-export { SliderThumb } from "./slider-thumb"
-export type { SliderThumbProps } from "./slider-thumb"
+export { SliderMarkerGroup } from "./slider"
+export type { SliderMarkerGroupProps } from "./slider"
 
-export { SliderTrack } from "./slider-track"
-export type { SliderTrackProps } from "./slider-track"
+export { SliderThumb } from "./slider"
+export type { SliderThumbProps } from "./slider"
 
-export { SliderFilledTrack } from "./slider-filled-track"
-export type { SliderFilledTrackProps } from "./slider-filled-track"
+export { SliderTrack } from "./slider"
+export type { SliderTrackProps } from "./slider"
 
-export { SliderControl } from "./slider-control"
-export type { SliderControlProps } from "./slider-control"
+export { SliderRange } from "./slider"
+export type { SliderRangeProps } from "./slider"
 
-export { SliderValueText } from "./slider-value-text"
-export type { SliderValueTextProps } from "./slider-value-text"
+export { SliderControl } from "./slider"
+export type { SliderControlProps } from "./slider"
 
-export { SliderLabel } from "./slider-label"
-export type { SliderLabelProps } from "./slider-label"
+export { SliderValueText } from "./slider"
+export type { SliderValueTextProps } from "./slider"
 
-export {
-  SliderProvider,
-  useSliderContext,
-  useSliderStyles,
-} from "./slider-context"
+export { SliderLabel } from "./slider"
+export type { SliderLabelProps } from "./slider"
 
-export { useSlider } from "./use-slider"
-
-export type { UseSliderProps, UseSliderReturn } from "./use-slider"
+export { useSliderStyles } from "./slider"
 
 export * as Slider from "./namespace"

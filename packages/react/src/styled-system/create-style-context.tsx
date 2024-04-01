@@ -40,7 +40,7 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
 
   const withProvider = <T, P>(
     Component: React.ElementType<any>,
-    slot: R extends keyof ConfigRecipeSlots ? R : string,
+    slot: R extends keyof ConfigRecipeSlots ? ConfigRecipeSlots[R] : string,
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
