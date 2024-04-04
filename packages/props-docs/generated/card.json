@@ -1,41 +1,41 @@
 {
-  "Card": {
+  "CardBody": {},
+  "CardFooter": {
+    "justify": {
+      "type": "SystemStyleObject[\"justifyContent\"]",
+      "required": false,
+      "description": "The justify-content CSS property defines the alignment along the main axis."
+    }
+  },
+  "CardHeader": {},
+  "CardRoot": {
     "align": {
-      "type": "ResponsiveValue<AlignItems>",
+      "type": "SystemStyleObject[\"alignItems\"]",
       "required": false,
       "description": "The flex alignment of the card"
     },
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
       "required": false,
-      "description": "The visual color appearance of the component"
-    },
-    "direction": {
-      "type": "ResponsiveValue<FlexDirection>",
-      "required": false,
-      "description": "The flex direction of the card"
+      "description": "The color palette of the component"
     },
     "justify": {
-      "type": "ResponsiveValue<JustifyContent>",
+      "type": "SystemStyleObject[\"justifyContent\"]",
       "required": false,
       "description": "The flex distribution of the card"
     },
     "size": {
-      "defaultValue": "md",
       "type": "\"sm\" | \"md\" | \"lg\"",
+      "defaultValue": "md",
       "required": false,
-      "description": "The size of the Card"
+      "description": "The size of the component"
     },
     "variant": {
-      "defaultValue": "elevated",
-      "type": "\"elevated\" | \"outline\" | \"filled\" | \"unstyled\"",
+      "type": "\"elevated\" | \"outline\" | \"subtle\"",
+      "defaultValue": "outline",
       "required": false,
-      "description": "The variant of the Card"
+      "description": "The variant of the component"
     }
-  },
-  "CardBody": {},
-  "CardFooter": {
-    "justify": { "type": "ResponsiveValue<JustifyContent>", "required": false }
-  },
-  "CardHeader": {}
+  }
 }

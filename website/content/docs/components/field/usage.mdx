@@ -1,0 +1,117 @@
+---
+id: field
+category: form
+title: Field
+package: '@chakra-ui/react'
+description:
+  Field provides context such as `invalid`, `disabled`, and `required` to form
+  elements
+---
+
+## Import
+
+```js
+import { Field } from '@chakra-ui/react'
+```
+
+## Usage
+
+```jsx
+<Field.Root>
+  <Field.Label>Email address</Field.Label>
+  <Input type='email' />
+  <Field.HelpText>We'll never share your email.</Field.HelpText>
+</Field.Root>
+```
+
+### Usage with `RadioGroup`
+
+```jsx
+<Field.Root as='fieldset'>
+  <Field.Label as='legend'>Favorite Naruto Character</Field.Label>
+  <RadioGroup.Root defaultValue='Itachi'>
+    <HStack gap='24px'>
+      <RadioGroup.Item value='Sasuke'>Sasuke</RadioGroup.Item>
+      <RadioGroup.Item value='Nagato'>Nagato</RadioGroup.Item>
+      <RadioGroup.Item value='Itachi'>Itachi</RadioGroup.Item>
+      <RadioGroup.Item value='Sage of the six Paths'>
+        Sage of the six Paths
+      </RadioGroup.Item>
+    </HStack>
+  </RadioGroup.Root>
+  <Field.HelpText>Select only if you're a fan.</Field.HelpText>
+</Field.Root>
+```
+
+### Displaying an error message
+
+`Field.ErrorMessage` will only show up when the property `invalid` in
+`Field.Root` is `true`.
+
+```jsx
+function ErrorMessageExample() {
+  const [input, setInput] = useState('')
+
+  const handleInputChange = (e) => setInput(e.target.value)
+  const invalid = input === ''
+
+  return (
+    <Field.Root invalid={invalid}>
+      <Field.Label>Email</Field.Label>
+      <Input type='email' value={input} onChange={handleInputChange} />
+      {!isError ? (
+        <Field.HelpText>
+          Enter the email you'd like to receive the newsletter on.
+        </Field.HelpText>
+      ) : (
+        <Field.ErrorMessage>Email is required.</Field.ErrorMessage>
+      )}
+    </Field.Root>
+  )
+}
+```
+
+### Making a field required
+
+By passing the `required` props, the `Input` field has `aria-required` set to
+`true`, and the `Field.Label` will show a red asterisk.
+
+This red asterisk can be overwritten by passing `requiredIndicator` to the
+`Field.Label`. If you want to indicate that a field is optional you can add
+`optionalIndicator` to the `Field.Label`
+
+```jsx
+<Field.Root required>
+  <Field.Label>First name </Field.Label>
+  <Input placeholder='First name' />
+</Field.Root>
+```
+
+### Usage with `Select`
+
+```jsx
+<Field.Root>
+  <Field.Label>Country</Field.Label>
+  <NativeSelect.Root>
+    <NativeSelect.Field placeholder='Select country'>
+      <option>United Arab Emirates</option>
+      <option>Nigeria</option>
+    </NativeSelect.Field>
+  </NativeSelect.Root>
+</Field.Root>
+```
+
+### Usage with `NumberInput`
+
+```jsx
+<Field.Root>
+  <Field.Label>Amount</Field.Label>
+  <NumberInput.Root max={50} min={10}>
+    <NumberInput.Field />
+    <NumberInput.Control>
+      <NumberInput.IncrementTrigger />
+      <NumberInput.DecrementTrigger />
+    </NumberInput.Control>
+  </NumberInput.Root>
+</Field.Root>
+```

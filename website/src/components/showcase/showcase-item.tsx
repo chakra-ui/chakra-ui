@@ -5,11 +5,11 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { ChakraNextUnwrappedImage } from 'components/chakra-next-image'
+import Image from 'next/image'
 
 export const ShowcaseItem = ({ name, image, url }) => {
   return (
-    <VStack key={url} alignItems='flex-start' spacing={3}>
+    <VStack key={url} alignItems='flex-start' gap={3}>
       <LinkBox
         w='full'
         borderWidth='1px'
@@ -21,7 +21,7 @@ export const ShowcaseItem = ({ name, image, url }) => {
         transition='all 0.1s ease-out'
       >
         <AspectRatio ratio={16 / 9} w='full'>
-          <ChakraNextUnwrappedImage
+          <Image
             alt={name}
             layout='fill'
             objectFit='cover'
@@ -34,7 +34,7 @@ export const ShowcaseItem = ({ name, image, url }) => {
             }
           />
         </AspectRatio>
-        <LinkOverlay href={url} isExternal>
+        <LinkOverlay href={url} external>
           <Text
             px={4}
             py={3}

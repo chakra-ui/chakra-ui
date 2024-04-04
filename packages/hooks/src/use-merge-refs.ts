@@ -1,3 +1,5 @@
+"use client"
+
 import { useMemo } from "react"
 
 export type ReactRef<T> = React.RefCallback<T> | React.MutableRefObject<T>

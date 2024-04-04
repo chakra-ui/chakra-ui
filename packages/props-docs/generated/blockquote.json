@@ -1,0 +1,25 @@
+{
+  "BlockquoteRoot": {
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
+    "justify": {
+      "type": "\"start\" | \"center\" | \"end\"",
+      "defaultValue": "start",
+      "required": false,
+      "description": "The justify of the component"
+    },
+    "variant": {
+      "type": "\"subtle\" | \"solid\" | \"plain\"",
+      "defaultValue": "subtle",
+      "required": false,
+      "description": "The variant of the component"
+    }
+  },
+  "BlockquoteContent": {},
+  "BlockquoteCaption": {},
+  "BlockquoteIcon": {}
+}

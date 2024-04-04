@@ -15,7 +15,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "customConditions": ["source"]
+    "customConditions": ["source"],
+    "paths": {
+      "@chakra-ui/react": ["../../packages/react/src"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["src"],

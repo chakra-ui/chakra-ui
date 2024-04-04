@@ -1,37 +1,49 @@
+import { useDisclosure, useUpdateEffect } from '@chakra-ui/hooks'
 import {
   Box,
+  ClientOnly,
   Flex,
   HStack,
   HTMLChakraProps,
   Icon,
   IconButton,
   Link,
+  Square,
   chakra,
-  useColorMode,
-  useColorModeValue,
-  useDisclosure,
-  useUpdateEffect,
 } from '@chakra-ui/react'
+import siteConfig from 'configs/site-config.json'
 import { useScroll } from 'framer-motion'
+import { useTheme } from 'next-themes'
 import NextLink from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { FaMoon, FaSun, FaYoutube } from 'react-icons/fa'
+import {
+  BsDiscord,
+  BsGithub,
+  BsMoonFill,
+  BsSunFill,
+  BsYoutube,
+} from 'react-icons/bs'
 import Logo, { LogoIcon } from './logo'
 import { MobileNavButton, MobileNavContent } from './mobile-nav'
 import Search from './omni-search'
 import SponsorButton from './sponsor-button'
 import VersionSwitcher from './version-switcher'
-import { DiscordIcon, GithubIcon } from 'components/icons'
-import siteConfig from 'configs/site-config.json'
+
+function ColorModeIcon() {
+  const { theme } = useTheme()
+  const SwitchIcon = theme === 'light' ? BsMoonFill : BsSunFill
+  return (
+    <ClientOnly fallback={<Square size='1em' />}>
+      <SwitchIcon />
+    </ClientOnly>
+  )
+}
 
 function HeaderContent() {
   const [opened, mobileNav] = useDisclosure()
-
-  const { toggleColorMode: toggleMode } = useColorMode()
-
-  const text = useColorModeValue('dark', 'light')
-  const SwitchIcon = useColorModeValue(FaMoon, FaSun)
   const mobileNavBtnRef = useRef<HTMLButtonElement>()
+
+  const { setTheme, theme } = useTheme()
 
   useUpdateEffect(() => {
     mobileNavBtnRef.current?.focus()
@@ -41,14 +53,18 @@ function HeaderContent() {
     <>
       <Flex w='100%' h='100%' px='6' align='center' justify='space-between'>
         <Flex align='center'>
-          <NextLink href='/' passHref>
-            <chakra.a display='block' aria-label='Chakra UI, Back to homepage'>
+          <chakra.a
+            asChild
+            display='block'
+            aria-label='Chakra UI, Back to homepage'
+          >
+            <NextLink href='/'>
               <Logo display={{ base: 'none', md: 'block' }} />
               <Box minW='3rem' display={{ base: 'block', md: 'none' }}>
                 <LogoIcon />
               </Box>
-            </chakra.a>
-          </NextLink>
+            </NextLink>
+          </chakra.a>
         </Flex>
 
         <Flex
@@ -63,63 +79,62 @@ function HeaderContent() {
             width='auto'
             flexShrink={0}
             display={{ base: 'none', md: 'flex' }}
-            marginRight='var(--chakra-space-5)'
+            marginRight='5'
           />
-          <HStack spacing='5' display={{ base: 'none', md: 'flex' }}>
+          <HStack gap='5' display={{ base: 'none', md: 'flex' }}>
             <Link
-              isExternal
+              external
               aria-label='Go to Chakra UI GitHub page'
               href={siteConfig.repo.url}
             >
               <Icon
-                as={GithubIcon}
+                as={BsGithub}
                 display='block'
                 transition='color 0.2s'
-                w='5'
-                h='5'
+                fontSize='md'
                 _hover={{ color: 'gray.600' }}
               />
             </Link>
             <Link
-              isExternal
+              external
               aria-label='Go to Chakra UI Discord page'
               href='/discord'
             >
               <Icon
-                as={DiscordIcon}
+                as={BsDiscord}
                 display='block'
                 transition='color 0.2s'
-                w='5'
-                h='5'
+                fontSize='md'
                 _hover={{ color: 'gray.600' }}
               />
             </Link>
             <Link
-              isExternal
+              external
               aria-label='Go to Chakra UI YouTube channel'
               href={siteConfig.youtube}
             >
               <Icon
-                as={FaYoutube}
+                as={BsYoutube}
                 display='block'
                 transition='color 0.2s'
-                w='5'
-                h='5'
+                fontSize='md'
                 _hover={{ color: 'gray.600' }}
               />
             </Link>
           </HStack>
-          <HStack spacing='5'>
+          <HStack gap='5'>
             <IconButton
               size='md'
-              fontSize='lg'
-              aria-label={`Switch to ${text} mode`}
+              aria-label='toggle color mode'
               variant='ghost'
               color='current'
               ml={{ base: '0', md: '3' }}
-              onClick={toggleMode}
-              icon={<SwitchIcon />}
-            />
+              onClick={() => {
+                setTheme(theme === 'light' ? 'dark' : 'light')
+              }}
+            >
+              <ColorModeIcon />
+            </IconButton>
             <SponsorButton ml='5' />
             <MobileNavButton
               ref={mobileNavBtnRef}
@@ -153,8 +168,7 @@ function Header(props: HTMLChakraProps<'header'>) {
       pos='sticky'
       top='0'
       zIndex='11'
-      bg='white'
-      _dark={{ bg: 'gray.800' }}
+      bg='bg'
       left='0'
       right='0'
       width='full'

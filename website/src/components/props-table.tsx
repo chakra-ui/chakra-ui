@@ -20,11 +20,13 @@ export type PropsTableProps = {
   only?: string[] | null
 }
 
-const PropsTable = ({
-  of,
-  omit = ['layerStyle', 'noOfLines', 'textStyle', 'orientation', 'styleConfig'],
-  only,
-}: PropsTableProps) => {
+export function PropsTable(props: PropsTableProps) {
+  const {
+    of,
+    omit = ['layerStyle', 'noOfLines', 'textStyle', 'orientation', 'recipe'],
+    only,
+  } = props
+
   const propList = React.useMemo(
     () => makePropsTable({ of, omit, only }),
     [of, omit, only],
@@ -33,7 +35,7 @@ const PropsTable = ({
   if (!propList.length) return null
 
   return (
-    <Stack overflowX='auto' spacing='16' my='10'>
+    <Stack overflowX='auto' gap='16' my='10'>
       {propList.map((prop) => (
         <chakra.div
           key={prop.name}
@@ -41,7 +43,7 @@ const PropsTable = ({
             width: '100%',
             fontSize: '0.95em',
             borderCollapse: 'collapse',
-            '.row': {
+            '& .row': {
               minWidth: 100,
               width: '20%',
               fontSize: '0.9em',
@@ -51,7 +53,7 @@ const PropsTable = ({
               whiteSpace: 'nowrap',
               verticalAlign: 'baseline',
             },
-            '.cell': {
+            '& .cell': {
               padding: '4px 0px 4px 8px',
               width: '100%',
             },
@@ -67,8 +69,8 @@ const PropsTable = ({
               }}
             >
               <HStack>
-                <Code colorScheme='purple'>{prop.name}</Code>
-                {prop.required && <Code colorScheme='red'>Required</Code>}
+                <Code colorPalette='purple'>{prop.name}</Code>
+                {prop.required && <Code colorPalette='red'>Required</Code>}
               </HStack>
             </chakra.h3>
           </chakra.div>
@@ -105,8 +107,6 @@ const PropsTable = ({
     </Stack>
   )
 }
-
-export default PropsTable
 
 type MakePropsTableOptions = PropsTableProps
 

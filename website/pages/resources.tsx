@@ -47,26 +47,26 @@ function Resources() {
         how Chakra UI works.
       </Text>
       <ShowcaseBanner />
-      <Tabs.Root colorScheme='teal' variant='line' mt='6'>
+      <Tabs.Root colorPalette='teal' variant='line' mt='6'>
         <Tabs.List>
-          <Tabs.Trigger>
+          <Tabs.Trigger value='talks'>
             <ResourcesTabContent icon={FaMicrophone} text='Talks' />
           </Tabs.Trigger>
-          <Tabs.Trigger>
+          <Tabs.Trigger value='videos'>
             <ResourcesTabContent icon={FaVideo} text='Videos' />
           </Tabs.Trigger>
-          <Tabs.Trigger>
+          <Tabs.Trigger value='blogs'>
             <ResourcesTabContent icon={FaPenSquare} text='Blogs' />
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.ContentGroup>
-          <Tabs.Content>
+          <Tabs.Content value='talks'>
             <ResourceSection title='Talks' resources={groups.talk} />
           </Tabs.Content>
-          <Tabs.Content>
+          <Tabs.Content value='videos'>
             <ResourceSection title='Videos' resources={groups.video} />
           </Tabs.Content>
-          <Tabs.Content>
+          <Tabs.Content value='blogs'>
             <ResourceSection title='Blogs' resources={groups.blog} />
           </Tabs.Content>
         </Tabs.ContentGroup>
@@ -164,14 +164,14 @@ const ShowcaseBanner = () => (
   <LinkBox role='group' mt='6'>
     <Flex align='center' rounded='3xl' bg='gray.900' padding='8'>
       <Box>
-        <NextLink href='/showcase' passHref>
-          <LinkOverlay color='white'>
+        <LinkOverlay color='white' asChild>
+          <NextLink href='/showcase'>
             <Flex align='center' mb='4'>
               <Heading size='md'>Visit the Showcase</Heading>
               <ShowcaseIcon w='8' h='8' ml='1' />
             </Flex>
-          </LinkOverlay>
-        </NextLink>
+          </NextLink>
+        </LinkOverlay>
         <Text color='gray.400'>
           See what other Devs made with Chakra UI. Those are community projects,
           websites, libraries, tools, articles and videos that you can use to

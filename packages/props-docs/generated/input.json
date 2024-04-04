@@ -1,56 +1,54 @@
 {
   "Input": {
-    "colorScheme": {
-      "type": "\"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
       "required": false,
-      "description": "The visual color appearance of the component"
+      "description": "The color palette of the component"
     },
-    "isDisabled": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the form control will be disabled. This has 2 side effects:\n- The `FormLabel` will have `data-disabled` attribute\n- The form element (e.g, Input) will be disabled"
-    },
-    "isInvalid": {
+    "invalid": {
       "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, the form control will be invalid. This has 2 side effects:\n- The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`\n- The form element (e.g, Input) will have `aria-invalid` set to `true`"
     },
-    "isReadOnly": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the form control will be readonly"
-    },
-    "isRequired": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false,
-      "description": "If `true`, the form control will be required. This has 2 side effects:\n- The `FormLabel` will show a required indicator\n- The form element (e.g, Input) will have `aria-required` set to `true`"
-    },
     "size": {
-      "defaultValue": "md",
       "type": "\"lg\" | \"md\" | \"sm\" | \"xs\"",
+      "defaultValue": "md",
       "required": false,
-      "description": "The size of the Input"
+      "description": "The size of the component"
+    },
+    "unstyled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the input will be unstyled"
     },
     "variant": {
+      "type": "\"outline\" | \"filled\" | \"flushed\"",
       "defaultValue": "outline",
-      "type": "\"outline\" | \"filled\" | \"flushed\" | \"unstyled\"",
       "required": false,
-      "description": "The variant of the Input"
+      "description": "The variant of the component"
     }
   },
-  "InputAddon": { "placement": { "type": "Placement", "required": false } },
-  "InputLeftAddon": { "placement": { "type": "Placement", "required": false } },
-  "InputRightAddon": {
-    "placement": { "type": "Placement", "required": false }
+  "InputAddon": {
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
+    "size": {
+      "type": "\"lg\" | \"md\" | \"sm\" | \"xs\"",
+      "defaultValue": "md",
+      "required": false,
+      "description": "The size of the component"
+    },
+    "variant": {
+      "type": "\"outline\" | \"filled\" | \"flushed\"",
+      "defaultValue": "outline",
+      "required": false,
+      "description": "The variant of the component"
+    }
   },
-  "InputGroup": {},
-  "InputElement": {
-    "placement": { "type": "\"right\" | \"left\"", "required": false }
-  },
-  "InputLeftElement": {},
-  "InputRightElement": {}
+  "InputElement": {}
 }

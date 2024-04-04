@@ -1,0 +1,22 @@
+{
+  "Separator": {
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
+    "orientation": {
+      "type": "\"vertical\" | \"horizontal\"",
+      "defaultValue": "horizontal",
+      "required": false,
+      "description": "The orientation of the component"
+    },
+    "variant": {
+      "type": "\"solid\" | \"dashed\"",
+      "defaultValue": "solid",
+      "required": false,
+      "description": "The variant of the component"
+    }
+  }
+}

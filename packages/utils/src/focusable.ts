@@ -1,4 +1,4 @@
-import { focusable, isTabbable } from "./tabbable"
+import { isFocusable, isTabbable } from "./tabbable"
 
 const focusableElList = [
   "input:not(:disabled):not([disabled])",
@@ -26,7 +26,7 @@ export function getAllFocusable<T extends HTMLElement>(container: T): T[] {
     container.querySelectorAll<T>(focusableElSelector),
   )
   focusableEls.unshift(container)
-  return focusableEls.filter((el) => focusable(el) && isVisible(el))
+  return focusableEls.filter((el) => isFocusable(el) && isVisible(el))
 }
 
 export function getFirstFocusable<T extends HTMLElement>(container: T) {

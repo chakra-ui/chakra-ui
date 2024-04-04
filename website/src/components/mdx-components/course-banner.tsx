@@ -1,20 +1,18 @@
-import { Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, SimpleGrid, Text, chakra } from '@chakra-ui/react'
 import NextImage from 'next/image'
 
-const CourseBanner = ({
-  href,
-  image,
-  title,
-}: {
+interface Props {
   image: string
   title: string
   description: string
   href: string
-}) => {
+}
+
+const CourseBanner = (props: Props) => {
+  const { href, image, title } = props
   return (
-    <Box
+    <chakra.a
       display='block'
-      as='a'
       borderWidth='1px'
       target='_blank'
       transition='box-shadow 0.1s ease-out'
@@ -23,19 +21,13 @@ const CourseBanner = ({
       overflow='hidden'
       _hover={{ shadow: 'md' }}
     >
-      <NextImage
-        src={image}
-        alt='Egghead Logo'
-        layout='responsive'
-        width='400'
-        height='200'
-      />
+      <NextImage src={image} alt='Egghead Logo' width='400' height='200' />
       <Box py='3' px='4'>
         <Text as='h3' fontWeight='semibold'>
           {title}
         </Text>
       </Box>
-    </Box>
+    </chakra.a>
   )
 }
 
@@ -44,7 +36,7 @@ export const FeaturesCourses = () => {
     <SimpleGrid
       mt='10'
       columns={{ base: 1, lg: 2 }}
-      spacing={{ base: '4', md: '8' }}
+      gap={{ base: '4', md: '8' }}
     >
       <CourseBanner
         image='/course-banners/egghead-course.png'

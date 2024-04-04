@@ -1,8 +1,6 @@
-import {
-  clampValue,
-  countDecimalPlaces,
-  toPrecision,
-} from "@chakra-ui/utils/number"
+"use client"
+
+import { clampValue, countDecimalPlaces, toPrecision } from "@chakra-ui/utils"
 import { useCallback, useState } from "react"
 import { useCallbackRef } from "./use-callback-ref"
 

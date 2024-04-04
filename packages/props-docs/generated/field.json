@@ -1,0 +1,73 @@
+{
+  "FieldRoot": {
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be disabled. This has 2 side effects:\n- The `FormLabel` will have `data-disabled` attribute\n- The form element (e.g, Input) will be disabled"
+    },
+    "invalid": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be invalid. This has 2 side effects:\n- The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`\n- The form element (e.g, Input) will have `aria-invalid` set to `true`"
+    },
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "The label text used to inform users as to what information is\nrequested for a text field."
+    },
+    "readOnly": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be readonly"
+    },
+    "required": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be required. This has 2 side effects:\n- The `FormLabel` will show a required indicator\n- The form element (e.g, Input) will have `aria-required` set to `true`"
+    }
+  },
+  "FieldErrorMessage": {},
+  "FieldHelpText": {},
+  "FieldRequiredIndicator": {
+    "fallback": { "type": "React.ReactNode", "required": false }
+  },
+  "FieldLabel": {},
+  "UseField": {
+    "aria-describedby": { "type": "string", "required": false },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the form control will be disabled. This has 2 side effects:\n- The `FormLabel` will have `data-disabled` attribute\n- The form element (e.g, Input) will be disabled"
+    },
+    "id": { "type": "string", "required": false },
+    "invalid": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the form control will be invalid. This has 2 side effects:\n- The `FormLabel` and `FormErrorIcon` will have `data-invalid` set to `true`\n- The form element (e.g, Input) will have `aria-invalid` set to `true`"
+    },
+    "onBlur": { "type": "React.FocusEventHandler<T>", "required": false },
+    "onFocus": { "type": "React.FocusEventHandler<T>", "required": false },
+    "readOnly": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the form control will be readonly"
+    },
+    "required": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the form control will be required. This has 2 side effects:\n- The `FormLabel` will show a required indicator\n- The form element (e.g, Input) will have `aria-required` set to `true`"
+    }
+  },
+  "FieldErrorIcon": {}
+}

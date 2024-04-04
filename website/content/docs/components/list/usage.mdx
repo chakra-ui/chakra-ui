@@ -2,7 +2,7 @@
 id: list
 title: List
 category: 'data-display'
-package: '@chakra-ui/layout'
+package: '@chakra-ui/react'
 description:
   'List is used to display list items. It renders a <ul> element by default.'
 ---
@@ -10,35 +10,29 @@ description:
 ## Import
 
 ```js
-import {
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
-} from '@chakra-ui/react'
+import { List } from '@chakra-ui/react'
 ```
 
 ## Unordered List
 
 ```jsx
-<UnorderedList>
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</UnorderedList>
+<List.Root>
+  <List.Item>Lorem ipsum dolor sit amet</List.Item>
+  <List.Item>Consectetur adipiscing elit</List.Item>
+  <List.Item>Integer molestie lorem at massa</List.Item>
+  <List.Item>Facilisis in pretium nisl aliquet</List.Item>
+</List.Root>
 ```
 
 ## Ordered List
 
 ```jsx
-<OrderedList>
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</OrderedList>
+<List.Root>
+  <List.Item>Lorem ipsum dolor sit amet</List.Item>
+  <List.Item>Consectetur adipiscing elit</List.Item>
+  <List.Item>Integer molestie lorem at massa</List.Item>
+  <List.Item>Facilisis in pretium nisl aliquet</List.Item>
+</List.Root>
 ```
 
 ## Unstyled List with icon
@@ -48,63 +42,23 @@ name of the icon or use custom icons. The size of the icon is relative to the
 font size of the list item.
 
 ```jsx
-<List spacing={3}>
-  <ListItem>
+<List.Root gap={3}>
+  <List.Item>
     <ListIcon as={MdCheckCircle} color='green.500' />
     Lorem ipsum dolor sit amet, consectetur adipisicing elit
-  </ListItem>
-  <ListItem>
+  </List.Item>
+  <List.Item>
     <ListIcon as={MdCheckCircle} color='green.500' />
     Assumenda, quia temporibus eveniet a libero incidunt suscipit
-  </ListItem>
-  <ListItem>
+  </List.Item>
+  <List.Item>
     <ListIcon as={MdCheckCircle} color='green.500' />
     Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-  </ListItem>
+  </List.Item>
   {/* You can also use custom icons from react-icons */}
-  <ListItem>
+  <List.Item>
     <ListIcon as={MdSettings} color='green.500' />
     Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-  </ListItem>
-</List>
+  </List.Item>
+</List.Root>
 ```
-
-## Custom style type
-
-Sometimes we need to specify our own marker in lists using the built-in
-capabilities of the browser. In css this can be done using the CSS property
-`list-style-type`.
-
-To do the same in `List`, you can use the prop `styleType`.
-
-For example:
-
-```jsx
-<UnorderedList styleType='lower-roman'>
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</UnorderedList>
-```
-
-In fact, the content that you pass to `styleType` will become the value of the
-`list-style-type` property.
-
-That is, you can represent `styleType='lower-roman'` as
-`list-style-type: lower-roman;`.
-
-If you need to make a custom marker from a string, for example `-`, this can be
-done as follows:
-
-```jsx
-<UnorderedList styleType="'-'">
-  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-  <ListItem>Consectetur adipiscing elit</ListItem>
-  <ListItem>Integer molestie lorem at massa</ListItem>
-  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-</UnorderedList>
-```
-
-It is important to understand that `UnorderedList`, `OrderedList` and `List`
-work the same in this case.

@@ -1,10 +1,4 @@
-import {
-  Box,
-  BoxProps,
-  chakra,
-  List,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, BoxProps, chakra, List } from '@chakra-ui/react'
 import { useScrollSpy } from 'hooks/use-scrollspy'
 import type { FrontmatterHeading } from 'src/types/frontmatter'
 import { FigmaPluginAd } from './figma-plugin-ad'
@@ -22,9 +16,6 @@ function TableOfContent(props: TableOfContentProps) {
     { rootMargin: '-10% 0% -24% 0%' },
   )
 
-  const linkColor = useColorModeValue('gray.600', 'gray.400')
-  const linkHoverColor = useColorModeValue('gray.900', 'gray.600')
-
   return (
     <TocNav title='On this page' {...rest}>
       <List.Root gap='1' ml='0' mt='4' styleType='none'>
@@ -40,9 +31,9 @@ function TableOfContent(props: TableOfContentProps) {
               fontWeight={id === activeId ? 'bold' : 'medium'}
               href={`#${id}`}
               aria-current={id === activeId ? 'location' : undefined}
-              color={linkColor}
+              color='fg.muted'
               _hover={{
-                color: linkHoverColor,
+                color: 'fg',
               }}
             >
               {text}

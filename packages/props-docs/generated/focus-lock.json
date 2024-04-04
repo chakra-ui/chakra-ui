@@ -7,25 +7,25 @@
       "description": "If `true`, the first focusable element within the `children`\nwill auto-focused once `FocusLock` mounts"
     },
     "contentRef": {
-      "type": "RefObject<HTMLElement>",
+      "type": "React.RefObject<HTMLElement>",
       "required": false,
       "description": "The `ref` of the wrapper for which the focus-lock wraps"
     },
-    "finalFocusRef": {
-      "type": "RefObject<FocusableElement>",
-      "required": false,
-      "description": "`ref` of the element to return focus to when `FocusLock`\nunmounts"
-    },
-    "initialFocusRef": {
-      "type": "RefObject<FocusableElement>",
-      "required": false,
-      "description": "`ref` of the element to receive focus initially"
-    },
-    "isDisabled": {
+    "disabled": {
       "type": "boolean",
       "defaultValue": false,
       "required": false,
       "description": "If `true`, focus trapping will be disabled"
+    },
+    "finalFocusRef": {
+      "type": "React.RefObject<FocusableElement>",
+      "required": false,
+      "description": "`ref` of the element to return focus to when `FocusLock`\nunmounts"
+    },
+    "initialFocusRef": {
+      "type": "React.RefObject<FocusableElement>",
+      "required": false,
+      "description": "`ref` of the element to receive focus initially"
     },
     "lockFocusAcrossFrames": {
       "type": "boolean",

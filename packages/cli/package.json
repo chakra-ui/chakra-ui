@@ -11,11 +11,11 @@
     "ui mode",
     "ui"
   ],
-  "author": "Tim Kolberger <tim@kolberger.eu>",
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "type": "module",
-  "main": "dist/cjs/index.cjs",
+  "main": "dist/esm/index.mjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
   "sideEffects": false,
@@ -38,133 +38,30 @@
   },
   "scripts": {
     "clean": "rimraf dist .turbo",
-    "build:fast": "tsup src --format cjs --shims",
-    "build": "tsup src --format cjs --shims",
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
     "dev": "pnpm build:fast --watch",
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
-    "bundle-n-require": "^1.0.1",
-    "chokidar": "^3.5.3",
-    "cli-welcome": "^2.2.2",
-    "commander": "^11.0.0",
-    "ora": "^7.0.1",
-    "prettier": "^3.0.2",
-    "update-notifier": "^6.0.2"
+    "@clack/prompts": "0.7.0",
+    "bundle-n-require": "1.1.1",
+    "chokidar": "3.6.0",
+    "commander": "12.0.0",
+    "prettier": "3.2.5"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": ">=2.8.0"
   },
   "devDependencies": {
-    "@types/ora": "^3.2.0",
-    "@types/update-notifier": "6.0.4"
+    "@chakra-ui/react": "workspace:*"
   },
   "exports": {
     ".": {
       "source": "./src/index.ts",
       "import": {
-        "types": "./dist/types/index.d.mts",
-        "default": "./dist/esm/index.mjs"
-      },
-      "require": {
         "types": "./dist/types/index.d.ts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    },
-    "./config": {
-      "source": "./src/config.ts",
-      "import": {
-        "types": "./dist/types/config.d.mts",
-        "default": "./dist/esm/config.mjs"
-      },
-      "require": {
-        "types": "./dist/types/config.d.ts",
-        "default": "./dist/cjs/config.cjs"
-      }
-    },
-    "./create-theme-typings-interface": {
-      "source": "./src/create-theme-typings-interface.ts",
-      "import": {
-        "types": "./dist/types/create-theme-typings-interface.d.mts",
-        "default": "./dist/esm/create-theme-typings-interface.mjs"
-      },
-      "require": {
-        "types": "./dist/types/create-theme-typings-interface.d.ts",
-        "default": "./dist/cjs/create-theme-typings-interface.cjs"
-      }
-    },
-    "./extract-color-schemes": {
-      "source": "./src/extract-color-schemes.ts",
-      "import": {
-        "types": "./dist/types/extract-color-schemes.d.mts",
-        "default": "./dist/esm/extract-color-schemes.mjs"
-      },
-      "require": {
-        "types": "./dist/types/extract-color-schemes.d.ts",
-        "default": "./dist/cjs/extract-color-schemes.cjs"
-      }
-    },
-    "./extract-component-types": {
-      "source": "./src/extract-component-types.ts",
-      "import": {
-        "types": "./dist/types/extract-component-types.d.mts",
-        "default": "./dist/esm/extract-component-types.mjs"
-      },
-      "require": {
-        "types": "./dist/types/extract-component-types.d.ts",
-        "default": "./dist/cjs/extract-component-types.cjs"
-      }
-    },
-    "./extract-property-keys": {
-      "source": "./src/extract-property-keys.ts",
-      "import": {
-        "types": "./dist/types/extract-property-keys.d.mts",
-        "default": "./dist/esm/extract-property-keys.mjs"
-      },
-      "require": {
-        "types": "./dist/types/extract-property-keys.d.ts",
-        "default": "./dist/cjs/extract-property-keys.cjs"
-      }
-    },
-    "./extract-property-paths": {
-      "source": "./src/extract-property-paths.ts",
-      "import": {
-        "types": "./dist/types/extract-property-paths.d.mts",
-        "default": "./dist/esm/extract-property-paths.mjs"
-      },
-      "require": {
-        "types": "./dist/types/extract-property-paths.d.ts",
-        "default": "./dist/cjs/extract-property-paths.cjs"
-      }
-    },
-    "./extract-semantic-token-keys": {
-      "source": "./src/extract-semantic-token-keys.ts",
-      "import": {
-        "types": "./dist/types/extract-semantic-token-keys.d.mts",
-        "default": "./dist/esm/extract-semantic-token-keys.mjs"
-      },
-      "require": {
-        "types": "./dist/types/extract-semantic-token-keys.d.ts",
-        "default": "./dist/cjs/extract-semantic-token-keys.cjs"
-      }
-    },
-    "./generate-theme-typings": {
-      "source": "./src/generate-theme-typings.ts",
-      "import": {
-        "types": "./dist/types/generate-theme-typings.d.mts",
-        "default": "./dist/esm/generate-theme-typings.mjs"
-      },
-      "require": {
-        "types": "./dist/types/generate-theme-typings.d.ts",
-        "default": "./dist/cjs/generate-theme-typings.cjs"
-      }
-    },
-    "./resolve-output-path": {
-      "source": "./src/resolve-output-path.ts",
-      "import": {
-        "types": "./dist/types/resolve-output-path.d.mts",
-        "default": "./dist/esm/resolve-output-path.mjs"
-      },
-      "require": {
-        "types": "./dist/types/resolve-output-path.d.ts",
-        "default": "./dist/cjs/resolve-output-path.cjs"
+        "default": "./dist/esm/index.mjs"
       }
     },
     "./package.json": "./package.json"

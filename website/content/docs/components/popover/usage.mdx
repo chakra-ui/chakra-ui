@@ -10,28 +10,8 @@ description: Popover is a non-modal dialog that floats around a trigger.
 
 ## Import
 
-- `Popover`: The wrapper that provides props, state, and context to its
-  children.
-- `PopoverTrigger`: Used to wrap the reference (or trigger) element.
-- `PopoverContent`: The popover itself.
-- `PopoverHeader`: The header of the popover.
-- `PopoverBody`: The body of the popover.
-- `PopoverArrow`: A visual arrow that points to the reference (or trigger).
-- `PopoverCloseButton`: A button to close the popover.
-- `PopoverAnchor`: Used to wrap the position-reference element.
-
 ```js
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-} from '@chakra-ui/react'
+import { Popover } from '@chakra-ui/react'
 ```
 
 ## Basic Usage
@@ -39,63 +19,64 @@ import {
 It is used to display contextual information to the user, and should be paired
 with a clickable trigger element.
 
-When Popover opens, focus is sent to `PopoverContent`. When it closes, focus is
+When Popover opens, focus is sent to `Popover.Content`. When it closes, focus is
 returned to the trigger.
 
-> Tip: When using this component, ensure the children passed to `PopoverTrigger`
-> is focusable and has a forwarded `ref`.
+> Tip: When using this component, ensure the children passed to
+> `Popover.Trigger` is focusable and has a forwarded `ref`.
 
 ```jsx
-<Popover>
-  <PopoverTrigger>
+<Popover.Root>
+  <Popover.Trigger asChild>
     <Button>Trigger</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverHeader>Confirmation!</PopoverHeader>
-    <PopoverBody>Are you sure you want to have that milkshake?</PopoverBody>
-  </PopoverContent>
-</Popover>
+  </Popover.Trigger>
+  <Popover.Positioner>
+    <Popover.Content>
+      <Popover.Arrow />
+      <Popover.CloseTrigger />
+      <Popover.Header>Confirmation!</Popover.Header>
+      <Popover.Body>Are you sure you want to have that milkshake?</Popover.Body>
+    </Popover.Content>
+  </Popover.Positioner>
+</Popover.Root>
 ```
 
 ## Rendering the Popover in a Portal
 
 By default, the Popover doesn't render in a Portal. To make them display in a
-portal, wrap the `PopoverContent` in a `Portal`
+portal, wrap the `Popover.Content` in a `Portal`
 
 > You might need to **Inspect Element** to see this in action. Notice that
-> `PopoverContent` is rendered as a child of `<body>`
+> `Popover.Content` is rendered as a child of `<body>`
 
 ```jsx
-<Popover>
-  <PopoverTrigger>
+<Popover.Root>
+  <Popover.Trigger asChild>
     <Button>Trigger</Button>
-  </PopoverTrigger>
+  </Popover.Trigger>
   <Portal>
-    <PopoverContent>
-      <PopoverArrow />
-      <PopoverHeader>Header</PopoverHeader>
-      <PopoverCloseButton />
-      <PopoverBody>
-        <Button colorScheme='blue'>Button</Button>
-      </PopoverBody>
-      <PopoverFooter>This is the footer</PopoverFooter>
-    </PopoverContent>
+    <Popover.Positioner>
+      <Popover.Content>
+        <Popover.Arrow />
+        <Popover.Header>Header</Popover.Header>
+        <Popover.CloseTrigger />
+        <Popover.Body>
+          <Button colorPalette='blue'>Button</Button>
+        </Popover.Body>
+        <Popover.Footer>This is the footer</Popover.Footer>
+      </Popover.Content>
+    </Popover.Positioner>
   </Portal>
-</Popover>
+</Popover.Root>
 ```
 
-## Focus an element when Popover opens
+## Setting the initial focused element
 
-By default, focus is to sent to `PopoverContent` when it opens. Pass the
+By default, focus is to set to `Popover.Content` when it opens. Pass the
 `initialFocusRef` prop to send focus to a specific element instead.
 
-> Focusing a child element only works for popovers with a `click` trigger, not
-> `hover`.
-
 ```jsx
-function WalkthroughPopover() {
+function Demo() {
   const initialFocusRef = React.useRef()
   return (
     <Popover
@@ -103,35 +84,37 @@ function WalkthroughPopover() {
       placement='bottom'
       closeOnBlur={false}
     >
-      <PopoverTrigger>
+      <Popover.Trigger asChild>
         <Button>Trigger</Button>
-      </PopoverTrigger>
-      <PopoverContent color='white' bg='blue.800' borderColor='blue.800'>
-        <PopoverHeader pt={4} fontWeight='bold' border='0'>
-          Manage Your Channels
-        </PopoverHeader>
-        <PopoverArrow bg='blue.800' />
-        <PopoverCloseButton />
-        <PopoverBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore.
-        </PopoverBody>
-        <PopoverFooter
-          border='0'
-          display='flex'
-          alignItems='center'
-          justifyContent='space-between'
-          pb={4}
-        >
-          <Box fontSize='sm'>Step 2 of 4</Box>
-          <ButtonGroup size='sm'>
-            <Button colorScheme='green'>Setup Email</Button>
-            <Button colorScheme='blue' ref={initialFocusRef}>
-              Next
-            </Button>
-          </ButtonGroup>
-        </PopoverFooter>
-      </PopoverContent>
+      </Popover.Trigger>
+      <Popover.Positioner>
+        <Popover.Content color='white' bg='blue.800' borderColor='blue.800'>
+          <Popover.Header pt={4} fontWeight='bold' border='0'>
+            Manage Your Channels
+          </Popover.Header>
+          <Popover.Arrow bg='blue.800' />
+          <Popover.CloseTrigger />
+          <Popover.Body>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore.
+          </Popover.Body>
+          <Popover.Footer
+            border='0'
+            display='flex'
+            alignItems='center'
+            justifyContent='space-between'
+            pb={4}
+          >
+            <Box fontSize='sm'>Step 2 of 4</Box>
+            <ButtonGroup size='sm'>
+              <Button colorPalette='green'>Setup Email</Button>
+              <Button colorPalette='blue' ref={initialFocusRef}>
+                Next
+              </Button>
+            </ButtonGroup>
+          </Popover.Footer>
+        </Popover.Content>
+      </Popover.Positioner>
     </Popover>
   )
 }
@@ -144,7 +127,7 @@ and close it when the user fills the form and hits "save".
 
 You can leverage
 [react-focus-lock](https://github.com/theKashey/react-focus-lock) to trap focus
-within the `PopoverContent`.
+within the `Popover.Content`.
 
 ```jsx manual=true
 // import  FocusLock from "react-focus-lock"
@@ -152,17 +135,17 @@ within the `PopoverContent`.
 // 1. Create a text input component
 const TextInput = React.forwardRef((props, ref) => {
   return (
-    <FormControl>
-      <FormLabel htmlFor={props.id}>{props.label}</FormLabel>
+    <Field.Root>
+      <Field.Label htmlFor={props.id}>{props.label}</Field.Label>
       <Input ref={ref} id={props.id} {...props} />
-    </FormControl>
+    </Field.Root>
   )
 })
 
 // 2. Create the form
 const Form = ({ firstFieldRef, onCancel }) => {
   return (
-    <Stack spacing={4}>
+    <Stack gap={4}>
       <TextInput
         label='First name'
         id='first-name'
@@ -170,14 +153,14 @@ const Form = ({ firstFieldRef, onCancel }) => {
         defaultValue='John'
       />
       <TextInput label='Last name' id='last-name' defaultValue='Smith' />
-      <ButtonGroup display='flex' justifyContent='flex-end'>
+      <Group justifyContent='flex-end'>
         <Button variant='outline' onClick={onCancel}>
           Cancel
         </Button>
-        <Button isDisabled colorScheme='teal'>
+        <Button disabled colorPalette='teal'>
           Save
         </Button>
-      </ButtonGroup>
+      </Group>
     </Stack>
   )
 }
@@ -185,7 +168,7 @@ const Form = ({ firstFieldRef, onCancel }) => {
 // 3. Create the Popover
 // Ensure you set `closeOnBlur` prop to false so it doesn't close on outside click
 const PopoverForm = () => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
+  const { onOpen, onClose, open } = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   return (
@@ -193,25 +176,29 @@ const PopoverForm = () => {
       <Box display='inline-block' mr={3}>
         John Smith
       </Box>
-      <Popover
-        isOpen={isOpen}
+      <Popover.Root
+        open={open}
         initialFocusRef={firstFieldRef}
         onOpen={onOpen}
         onClose={onClose}
         placement='right'
         closeOnBlur={false}
       >
-        <PopoverTrigger>
-          <IconButton size='sm' icon={<EditIcon />} />
-        </PopoverTrigger>
-        <PopoverContent p={5}>
-          <FocusLock returnFocus persistentFocus={false}>
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <Form firstFieldRef={firstFieldRef} onCancel={onClose} />
-          </FocusLock>
-        </PopoverContent>
-      </Popover>
+        <Popover.Trigger asChild>
+          <IconButton size='sm'>
+            <EditIcon />
+          </IconButton>
+        </Popover.Trigger>
+        <Popover.Positioner>
+          <Popover.Content p={5}>
+            <FocusLock returnFocus persistentFocus={false}>
+              <Popover.Arrow />
+              <Popover.CloseTrigger />
+              <Form firstFieldRef={firstFieldRef} onCancel={onClose} />
+            </FocusLock>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Popover.Root>
     </>
   )
 }
@@ -219,150 +206,139 @@ const PopoverForm = () => {
 render(<PopoverForm />)
 ```
 
-## Controlled Usage
+## Controlling the Popover
 
-You can control the opening and closing of the popover by passing the `isOpen`,
+You can control the opening and closing of the popover by passing the `open`,
 and `onClose` props.
 
 Sometimes you might need to set the `returnFocusOnClose` prop to `false` to
-prevent popover from returning focus to `PopoverTrigger`'s children.
+prevent popover from returning focus to `Popover.Trigger`'s children.
 
 ```jsx
 function ControlledUsage() {
-  const { isOpen, onToggle, onClose } = useDisclosure()
+  const { open, onToggle, onClose } = useDisclosure()
 
   return (
     <>
       <Button mr={5} onClick={onToggle}>
         Trigger
       </Button>
-      <Popover
+      <Popover.Root
         returnFocusOnClose={false}
-        isOpen={isOpen}
+        open={open}
         onClose={onClose}
         placement='right'
         closeOnBlur={false}
       >
-        <PopoverTrigger>
-          <Button colorScheme='pink'>Popover Target</Button>
-        </PopoverTrigger>
-        <PopoverContent>
-          <PopoverHeader fontWeight='semibold'>Confirmation</PopoverHeader>
-          <PopoverArrow />
-          <PopoverCloseButton />
-          <PopoverBody>
-            Are you sure you want to continue with your action?
-          </PopoverBody>
-          <PopoverFooter display='flex' justifyContent='flex-end'>
-            <ButtonGroup size='sm'>
-              <Button variant='outline'>Cancel</Button>
-              <Button colorScheme='red'>Apply</Button>
-            </ButtonGroup>
-          </PopoverFooter>
-        </PopoverContent>
-      </Popover>
+        <Popover.Trigger asChild>
+          <Button colorPalette='pink'>Popover Target</Button>
+        </Popover.Trigger>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Header fontWeight='semibold'>Confirmation</Popover.Header>
+            <Popover.Arrow />
+            <Popover.CloseTrigger />
+            <Popover.Body>
+              Are you sure you want to continue with your action?
+            </Popover.Body>
+            <Popover.Footer display='flex' justifyContent='flex-end'>
+              <ButtonGroup size='sm'>
+                <Button variant='outline'>Cancel</Button>
+                <Button colorPalette='red'>Apply</Button>
+              </ButtonGroup>
+            </Popover.Footer>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Popover.Root>
     </>
   )
 }
 ```
 
-## Popover Anchor
+## Setting the popover anchor
 
-You can wrap your component with `PopoverAnchor` to prevent trigger any action.
+You can wrap your component with `Popover.Anchor` to prevent trigger any action.
 The wrapped component will become a position reference. Actions will only be
-triggered by components inside `PopoverTrigger`.
-
-In this case, you can only open and close the popover with `Button`. If you
-click on `Input`, it acts same as the original input and doesn't trigger any
-action about popover.
-
-> 🚨 Note: As with [PopoverTrigger](#basic-usage), if you use a custom component
-> inside `PopoverAnchor` ensure that it uses Chakra's
-> [forwardRef](../recipes/as-prop#option-1-using-forwardref-from-chakra-uireact)
-> so the popover is triggered successfully.
+triggered by components inside `Popover.Trigger`.
 
 ```jsx
-function WithPopoverAnchor() {
+function Demo() {
   const [isEditing, setIsEditing] = useBoolean()
   const [color, setColor] = React.useState('red')
 
   return (
-    <Popover
-      isOpen={isEditing}
+    <Popover.Root
+      open={isEditing}
       onOpen={setIsEditing.on}
       onClose={setIsEditing.off}
       closeOnBlur={false}
-      isLazy
+      lazyMount
       lazyBehavior='keepMounted'
     >
       <HStack>
-        <PopoverAnchor>
+        <Popover.Anchor>
           <Input
             color={color}
             w='auto'
             display='inline-flex'
-            isDisabled={!isEditing}
+            disabled={!isEditing}
             defaultValue='Popover Anchor'
           />
-        </PopoverAnchor>
+        </Popover.Anchor>
 
-        <PopoverTrigger>
-          <Button h='40px' colorScheme='pink'>
+        <Popover.Trigger asChild>
+          <Button h='40px' colorPalette='pink'>
             {isEditing ? 'Save' : 'Edit'}
           </Button>
-        </PopoverTrigger>
+        </Popover.Trigger>
       </HStack>
 
-      <PopoverContent>
-        <PopoverBody>
+      <Popover.Content>
+        <Popover.Body>
           Colors:
-          <RadioGroup value={color} onChange={(newColor) => setColor(newColor)}>
-            <Radio value='red'>red</Radio>
-            <Radio value='blue'>blue</Radio>
-            <Radio value='green'>green</Radio>
-            <Radio value='purple'>purple</Radio>
-          </RadioGroup>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+          <RadioGroup.Root
+            value={color}
+            onChange={(newColor) => setColor(newColor)}
+          >
+            <RadioGroup.Item value='red'>red</RadioGroup.Item>
+            <RadioGroup.Item value='blue'>blue</RadioGroup.Item>
+            <RadioGroup.Item value='green'>green</RadioGroup.Item>
+            <RadioGroup.Item value='purple'>purple</RadioGroup.Item>
+          </RadioGroup.Root>
+        </Popover.Body>
+      </Popover.Content>
+    </Popover.Root>
   )
 }
 ```
 
 ## Accessing Internal state
 
-Chakra provides access to two internal details: `isOpen` and `onClose`. Use the
+Chakra provides access to two internal details: `open` and `onClose`. Use the
 render prop pattern to gain access to them.
 
 ```jsx
-function InternalStateEx() {
-  const initRef = React.useRef()
+function Demo() {
+  const ref = React.useRef()
   return (
-    <Popover closeOnBlur={false} placement='left' initialFocusRef={initRef}>
-      {({ isOpen, onClose }) => (
+    <Popover closeOnBlur={false} placement='left' initialFocusRef={ref}>
+      {(state) => (
         <>
-          <PopoverTrigger>
-            <Button>Click to {isOpen ? 'close' : 'open'}</Button>
-          </PopoverTrigger>
+          <Popover.Trigger asChild>
+            <Button>Click to {state.open ? 'close' : 'open'}</Button>
+          </Popover.Trigger>
           <Portal>
-            <PopoverContent>
-              <PopoverHeader>This is the header</PopoverHeader>
-              <PopoverCloseButton />
-              <PopoverBody>
+            <Popover.Content>
+              <Popover.Header>This is the header</Popover.Header>
+              <Popover.CloseTrigger />
+              <Popover.Body>
+                <Input ref={ref} placeholder='Enter value' />
                 <Box>
                   Hello. Nice to meet you! This is the body of the popover
                 </Box>
-                <Button
-                  mt={4}
-                  colorScheme='blue'
-                  onClick={onClose}
-                  ref={initRef}
-                >
-                  Close
-                </Button>
-              </PopoverBody>
-              <PopoverFooter>This is the footer</PopoverFooter>
-            </PopoverContent>
+              </Popover.Body>
+              <Popover.Footer>This is the footer</Popover.Footer>
+            </Popover.Content>
           </Portal>
         </>
       )}
@@ -377,8 +353,8 @@ Chakra exports all the components you need to customize the look and feel of the
 popover. You can change the background, arrow size, box shadow and so on.
 
 ```jsx
-<Popover>
-  <PopoverTrigger>
+<Popover.Root>
+  <Popover.Trigger asChild>
     <Box
       tabIndex='0'
       role='button'
@@ -388,151 +364,105 @@ popover. You can change the background, arrow size, box shadow and so on.
       bg='gray.300'
       children='Click'
     />
-  </PopoverTrigger>
-  <PopoverContent bg='tomato' color='white'>
-    <PopoverHeader fontWeight='semibold'>Customization</PopoverHeader>
-    <PopoverArrow bg='pink.500' />
-    <PopoverCloseButton bg='purple.500' />
-    <PopoverBody>
+  </Popover.Trigger>
+  <Popover.Content bg='tomato' color='white'>
+    <Popover.Header fontWeight='semibold'>Customization</Popover.Header>
+    <Popover.Arrow bg='pink.500' />
+    <Popover.CloseTrigger />
+    <Popover.Body>
       Tadaa!! The arrow color and background color is customized. Check the
       props for each component.
-    </PopoverBody>
-  </PopoverContent>
-</Popover>
+    </Popover.Body>
+  </Popover.Content>
+</Popover.Root>
 ```
 
-## Popover Placements
-
-Since popover is powered by PopperJS, you can change the placement of the
-popover by passing the `placement` prop.
-
-The possible values are:
-
-<table>
-  <tr>
-    <td>`bottom-start`</td>
-    <td> | </td>
-    <td>`bottom` _(default)_</td>
-    <td> | </td>
-    <td>`bottom-end`</td>
-  </tr>
-  <tr>
-    <td>`auto-start`</td>
-    <td> | </td>
-    <td>`auto`</td>
-    <td> | </td>
-    <td>`auto-end`</td>
-  </tr>
-  <tr>
-    <td>`top-start`</td>
-    <td> | </td>
-    <td>`top`</td>
-    <td> | </td>
-    <td>`top-end`</td>
-  </tr>
-  <tr>
-    <td>`left-start`</td>
-    <td> | </td>
-    <td>`left`</td>
-    <td> | </td>
-    <td>`left-end`</td>
-  </tr>
-  <tr>
-    <td>`right-start`</td>
-    <td> | </td>
-    <td>`right`</td>
-    <td> | </td>
-    <td>`right-end`</td>
-  </tr>
-</table>
-
-> Even though you specified the placement, Popover will try to reposition itself
-> in the event that available space at the specified placement isn't enough.
+## Changing the placement of the Popover
 
 ```jsx
 <Popover placement='top-start'>
-  <PopoverTrigger>
+  <Popover.Trigger asChild>
     <Button>Click me</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverHeader fontWeight='semibold'>Popover placement</PopoverHeader>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverBody>
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Header fontWeight='semibold'>Popover placement</Popover.Header>
+    <Popover.Arrow />
+    <Popover.CloseTrigger />
+    <Popover.Body>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore.
-    </PopoverBody>
-  </PopoverContent>
+    </Popover.Body>
+  </Popover.Content>
 </Popover>
 ```
 
 ### Lazily mounting Popover
 
-By default, the `Popover` component renders children of `PopoverContent` to the
+By default, the `Popover` component renders children of `Popover.Content` to the
 DOM, meaning that invisible popover contents are still rendered but are hidden
 by styles.
 
 If you want to defer rendering of popover content until that `Popover` is
-opened, you can use the `isLazy` prop. This is useful if your `PopoverContent`
-needs to be extra performant, or make network calls on mount that should only
-happen when the component is displayed.
+opened, you can use the `lazyMount` prop. This is useful if your
+`Popover.Content` needs to be extra performant, or make network calls on mount
+that should only happen when the component is displayed.
 
 ```jsx
-<Popover isLazy>
-  <PopoverTrigger>
+<Popover lazyMount>
+  <Popover.Trigger asChild>
     <Button>Click me</Button>
-  </PopoverTrigger>
-  <PopoverContent>
-    <PopoverHeader fontWeight='semibold'>Popover placement</PopoverHeader>
-    <PopoverArrow />
-    <PopoverCloseButton />
-    <PopoverBody>
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Header fontWeight='semibold'>Popover placement</Popover.Header>
+    <Popover.Arrow />
+    <Popover.CloseTrigger />
+    <Popover.Body>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore.
-    </PopoverBody>
-  </PopoverContent>
+    </Popover.Body>
+  </Popover.Content>
 </Popover>
 ```
 
 ## Accessibility
 
 > When you see the word _"trigger"_, it is referring to the `children` of
-> `PopoverTrigger`
+> `Popover.Trigger`
 
 ### Keyboard and Focus
 
-- When the popover is opened, focus is moved to the `PopoverContent`. If the
+- When the popover is opened, focus is moved to the `Popover.Content`. If the
   `initialFocusRef` is set, then focus moves to the element with that `ref`.
 - When the popover is closed, focus returns to the trigger. If you set
   `returnFocusOnClose` to `false`, focus will not return.
 - If trigger is set to `hover`:
   - Focusing on or mousing over the trigger will open the popover.
   - Blurring or mousing out of the trigger will close the popover. If you move
-    your mouse into the `PopoverContent`, it'll remain visible.
+    your mouse into the `Popover.Content`, it'll remain visible.
 - If trigger is set to `click`:
   - Clicking the trigger or using the `Space` or `Enter` when focus is on the
     trigger will open the popover.
   - Clicking the trigger again will close the popover.
 - Hitting the `Esc` key while the popover is open and focus is within the
-  `PopoverContent`, will close the popover. If you set `closeOnEsc` to `false`,
+  `Popover.Content`, will close the popover. If you set `closeOnEsc` to `false`,
   it will not close.
-- Clicking outside or blurring out of the `PopoverContent` closes the popover.
+- Clicking outside or blurring out of the `Popover.Content` closes the popover.
   If you set `closeOnBlur` to `false`, it will not close.
 
 ### ARIA Attributes
 
-- If the trigger is set to `click`, the `PopoverContent` element has role set to
-  `dialog`. If the trigger is set to `hover`, the `PopoverContent` has `role`
-  set to `tooltip`.
-- The `PopoverContent` has `aria-labelledby` set to the `id` of the
-  `PopoverHeader`.
-- The `PopoverContent` has `aria-describedby` set to the `id` of the
-  `PopoverBody`.
-- The `PopoverContent` has `aria-hidden` set to `true` or `false` depending on
+- If the trigger is set to `click`, the `Popover.Content` element has role set
+  to `dialog`. If the trigger is set to `hover`, the `Popover.Content` has
+  `role` set to `tooltip`.
+- The `Popover.Content` has `aria-labelledby` set to the `id` of the
+  `Popover.Header`.
+- The `Popover.Content` has `aria-describedby` set to the `id` of the
+  `Popover.Body`.
+- The `Popover.Content` has `aria-hidden` set to `true` or `false` depending on
   the open/closed state of the popover.
 - The trigger has `aria-haspopup` set to `true` to denote that it triggers a
   popover.
-- The trigger has `aria-controls` set to the `id` of the `PopoverContent` to
+- The trigger has `aria-controls` set to the `id` of the `Popover.Content` to
   associate the popover and the trigger.
 - The trigger has `aria-expanded` set to `true` or `false` depending on the
   open/closed state of the popover.

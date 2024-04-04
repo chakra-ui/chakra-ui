@@ -1,4 +1,4 @@
-import slugger from 'github-slugger'
+import { slug } from 'github-slugger'
 
 export function getTableOfContents(mdxContent: string) {
   const regexp = new RegExp(/^(### |## )(.*)\n/, 'gm')
@@ -9,7 +9,7 @@ export function getTableOfContents(mdxContent: string) {
     tableOfContents = headings.map((heading) => {
       const headingText = heading[2].trim()
       const headingType = heading[1].trim() === '##' ? 'h2' : 'h3'
-      const headingLink = slugger.slug(headingText, false)
+      const headingLink = slug(headingText, false)
 
       return {
         text: headingText,

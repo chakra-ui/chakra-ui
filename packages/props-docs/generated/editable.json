@@ -1,19 +1,27 @@
 {
-  "Editable": {
+  "EditableInput": {},
+  "EditablePreview": {},
+  "EditableRoot": {
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
+      "required": false,
+      "description": "The color palette of the component"
+    },
     "defaultValue": {
       "type": "string",
       "required": false,
       "description": "The initial value of the Editable in both edit & preview mode"
     },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the Editable will be disabled."
+    },
     "finalFocusRef": {
       "type": "RefObject<FocusableElement>",
       "required": false,
       "description": "The `ref` of element to receive focus when the modal closes."
-    },
-    "isDisabled": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the Editable will be disabled."
     },
     "isPreviewFocusable": {
       "type": "boolean",
@@ -22,17 +30,17 @@
       "description": "If `true`, the read only view, has a `tabIndex` set to `0`\nso it can receive focus via the keyboard or click."
     },
     "onBlur": {
-      "type": "(nextValue: string) => void",
+      "type": "(nextValue",
       "required": false,
       "description": "Callback invoked when the user either submits or cancels.\nIt provides the last confirmed value as argument."
     },
     "onCancel": {
-      "type": "(previousValue: string) => void",
+      "type": "(previousValue",
       "required": false,
       "description": "Callback invoked when user cancels input with the `Esc` key.\nIt provides the last confirmed value as argument."
     },
     "onChange": {
-      "type": "(nextValue: string) => void",
+      "type": "(nextValue",
       "required": false,
       "description": "Callback invoked when user changes input."
     },
@@ -42,7 +50,7 @@
       "description": "Callback invoked once the user enters edit mode."
     },
     "onSubmit": {
-      "type": "(nextValue: string) => void",
+      "type": "(nextValue",
       "required": false,
       "description": "Callback invoked when user confirms value with `enter` key or by blurring input."
     },
@@ -74,8 +82,6 @@
       "description": "The value of the Editable in both edit & preview mode"
     }
   },
-  "EditableInput": {},
-  "EditablePreview": {},
   "EditableTextarea": {},
   "UseEditable": {
     "defaultValue": {
@@ -83,15 +89,15 @@
       "required": false,
       "description": "The initial value of the Editable in both edit & preview mode"
     },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the Editable will be disabled."
+    },
     "finalFocusRef": {
       "type": "RefObject<FocusableElement>",
       "required": false,
       "description": "The `ref` of element to receive focus when the modal closes."
-    },
-    "isDisabled": {
-      "type": "boolean",
-      "required": false,
-      "description": "If `true`, the Editable will be disabled."
     },
     "isPreviewFocusable": {
       "type": "boolean",
@@ -100,17 +106,17 @@
       "description": "If `true`, the read only view, has a `tabIndex` set to `0`\nso it can receive focus via the keyboard or click."
     },
     "onBlur": {
-      "type": "(nextValue: string) => void",
+      "type": "(nextValue",
       "required": false,
       "description": "Callback invoked when the user either submits or cancels.\nIt provides the last confirmed value as argument."
     },
     "onCancel": {
-      "type": "(previousValue: string) => void",
+      "type": "(previousValue",
       "required": false,
       "description": "Callback invoked when user cancels input with the `Esc` key.\nIt provides the last confirmed value as argument."
     },
     "onChange": {
-      "type": "(nextValue: string) => void",
+      "type": "(nextValue",
       "required": false,
       "description": "Callback invoked when user changes input."
     },
@@ -120,7 +126,7 @@
       "description": "Callback invoked once the user enters edit mode."
     },
     "onSubmit": {
-      "type": "(nextValue: string) => void",
+      "type": "(nextValue",
       "required": false,
       "description": "Callback invoked when user confirms value with `enter` key or by blurring input."
     },

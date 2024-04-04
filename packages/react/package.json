@@ -1,0 +1,104 @@
+{
+  "name": "@chakra-ui/react",
+  "version": "2.8.2",
+  "description": "Responsive and accessible React UI components built with React and Emotion",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "MIT",
+  "homepage": "https://chakra-ui.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chakra-ui/chakra-ui",
+    "directory": "packages/react"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "design-system",
+    "react-components",
+    "uikit",
+    "accessible",
+    "components",
+    "emotion",
+    "library",
+    "design-system"
+  ],
+  "storybook": {
+    "title": "Chakra UI",
+    "url": "https://storybook.chakra-ui.com"
+  },
+  "dependencies": {
+    "@chakra-ui/hooks": "workspace:*",
+    "@chakra-ui/utils": "workspace:*",
+    "@popperjs/core": "^2.11.8",
+    "@zag-js/dom-utils": "^0.2.4",
+    "@zag-js/focus-visible": "^0.40.0",
+    "aria-hidden": "^1.2.4",
+    "csstype": "^3.1.3",
+    "react-focus-lock": "^2.11.2",
+    "react-remove-scroll": "^2.5.9"
+  },
+  "peerDependencies": {
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11",
+    "framer-motion": ">=4.0.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@tanstack/react-table": "^8.15.0",
+    "@testing-library/react": "^14.2.2",
+    "framer-motion": "11.0.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-frame-component": "^5.2.6",
+    "react-lorem-component": "^0.13.0",
+    "react-hook-form": "^7.51.2",
+    "react-icons": "^5.0.1",
+    "react-spinners": "^0.13.8"
+  },
+  "scripts": {
+    "build:fast": "tsx ../../scripts/build/main.ts",
+    "build": "tsx ../../scripts/build/main.ts --dts",
+    "dev": "pnpm build:fast --watch",
+    "clean": "rimraf dist .turbo",
+    "typedocs": "tsx scripts/typedocs.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./system": {
+      "source": "./src/system/index.ts",
+      "import": {
+        "types": "./dist/types/system/index.d.ts",
+        "default": "./dist/esm/system/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/system/index.d.ts",
+        "default": "./dist/cjs/system/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  }
+}

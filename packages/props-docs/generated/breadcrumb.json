@@ -1,54 +1,28 @@
 {
-  "Breadcrumb": {
-    "listProps": { "type": "HTMLChakraProps<\"ol\">", "required": false },
-    "separator": {
-      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | ReactElement<any, string | JSXElementConstructor<any>>",
-      "defaultValue": "/",
+  "BreadcrumbItem": {},
+  "BreadcrumbLink": {},
+  "BreadcrumbList": {},
+  "BreadcrumbRoot": {
+    "colorPalette": {
+      "defaultValue": "gray",
+      "type": "\"black\" | \"white\" | \"whiteAlpha\" | \"blackAlpha\" | \"gray\" | \"red\" | \"orange\" | \"yellow\" | \"green\" | \"teal\" | \"blue\" | \"cyan\" | \"purple\" | \"pink\"",
       "required": false,
-      "description": "The visual separator between each breadcrumb item"
+      "description": "The color palette of the component"
     },
-    "spacing": {
-      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
-      "defaultValue": "0.5rem",
+    "size": {
+      "type": "\"sm\" | \"md\" | \"lg\"",
+      "defaultValue": "md",
       "required": false,
-      "description": "The left and right margin applied to the separator"
+      "description": "The size of the component"
+    },
+    "variant": {
+      "type": "\"underline\" | \"plain\"",
+      "defaultValue": "plain",
+      "required": false,
+      "description": "The variant of the component"
     }
   },
-  "BreadcrumbItem": {
-    "isCurrentPage": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
-    },
-    "isLastChild": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
-    },
-    "separator": {
-      "type": "type ONLY_FOR_FORMAT =\n  | string\n  | ReactElement<any, string | JSXElementConstructor<any>>",
-      "defaultValue": "/",
-      "required": false,
-      "description": "The visual separator between each breadcrumb item"
-    },
-    "spacing": {
-      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
-      "defaultValue": "0.5rem",
-      "required": false,
-      "description": "The left and right margin applied to the separator"
-    }
-  },
-  "BreadcrumbLink": {
-    "isCurrentPage": {
-      "type": "boolean",
-      "defaultValue": false,
-      "required": false
-    }
-  },
-  "BreadcrumbSeparator": {
-    "spacing": {
-      "type": "string | number | boolean | (string & {}) | ResponsiveArray<string | number | (string & {})> | Partial<Record<string, string | number | (string & {})>> | ResponsiveArray<...> | Partial<...> | ((theme: Record<...>) => ResponsiveValue<...>)",
-      "required": false
-    }
-  }
+  "BreadcrumbSeparator": {},
+  "BreadcrumbCurrentLink": {},
+  "BreadcrumbEllipsis": {}
 }

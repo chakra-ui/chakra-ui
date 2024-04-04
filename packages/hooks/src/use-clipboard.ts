@@ -1,5 +1,7 @@
-import { useState, useCallback, useEffect } from "react"
+"use client"
+
 import copy from "copy-to-clipboard"
+import { useCallback, useEffect, useState } from "react"
 
 export interface UseClipboardOptions {
   /**

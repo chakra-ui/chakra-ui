@@ -31,7 +31,7 @@ function NewBadge() {
       lineHeight='tall'
       fontSize='10px'
       variant='solid'
-      colorScheme='purple'
+      colorPalette='purple'
     >
       New
     </Badge>
@@ -68,7 +68,7 @@ export function SidebarContent({
                     mt='2'
                     key={lvl2.path}
                     href={lvl2.path}
-                    isExternal={lvl2.external}
+                    external={lvl2.external}
                   >
                     {lvl2.title}
                   </SidebarLink>
@@ -112,44 +112,38 @@ type MainNavLinkProps = {
   children: ReactNode
   label?: string
   isActive?: boolean
-  isExternal?: boolean
+  external?: boolean
 }
 
-const MainNavLink = ({
-  href,
-  icon,
-  children,
-  isActive,
-  isExternal,
-}: MainNavLinkProps) => {
+const MainNavLink = (props: MainNavLinkProps) => {
+  const { href, icon, children, isActive, external } = props
   const router = useRouter()
   const active = router.asPath.startsWith(href) || !!isActive
 
   return (
-    <NextLink href={href} passHref>
-      <HStack
-        target={isExternal ? '_blank' : undefined}
-        as='a'
-        spacing='3'
-        fontSize='sm'
-        fontWeight={active ? 'semibold' : 'medium'}
-        color={active ? 'accent' : 'fg-muted'}
-        _hover={{ color: active ? undefined : 'fg' }}
-      >
+    <HStack
+      asChild
+      gap='3'
+      fontSize='sm'
+      fontWeight={active ? 'semibold' : 'medium'}
+      color={active ? 'accent' : 'fg-muted'}
+      _hover={{ color: active ? undefined : 'fg' }}
+    >
+      <NextLink target={external ? '_blank' : undefined} href={href}>
         <Center
           w='6'
           h='6'
           borderWidth='1px'
-          bg={active ? 'accent-static' : 'transparent'}
-          borderColor={active ? 'accent-static' : undefined}
-          rounded='base'
-          color={active ? 'white' : 'accent'}
+          bg={active ? 'teal.600' : 'transparent'}
+          borderColor={active ? 'teal.600' : undefined}
+          rounded='sm'
+          color={active ? 'white' : 'fg.muted'}
         >
           {icon}
         </Center>
         <span>{children}</span>
-      </HStack>
-    </NextLink>
+      </NextLink>
+    </HStack>
   )
 }
 
@@ -206,7 +200,7 @@ export const MainNavLinkGroup = (props: List.RootProps) => {
   const router = useRouter()
 
   return (
-    <List.Root spacing='4' styleType='none' {...props}>
+    <List.Root gap='4' styleType='none' {...props}>
       {mainNavLinks.map((item) => (
         <List.Item key={item.label}>
           <MainNavLink
@@ -214,7 +208,7 @@ export const MainNavLinkGroup = (props: List.RootProps) => {
             href={item.href}
             label={item.label}
             isActive={item.match?.(router.asPath, item.href)}
-            isExternal={item.external}
+            external={item.external}
           >
             {item.label} {item.new && <NewBadge />}
           </MainNavLink>

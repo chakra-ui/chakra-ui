@@ -27,44 +27,42 @@ const TutorialMenu = (props: Props) => {
 
   return (
     <Menu.Root>
-      <Menu.Trigger
-        as={IconButton}
-        icon={<AiOutlineMenu />}
-        aria-label='Tutorial menu'
-        variant='outline'
-      />
+      <Menu.Trigger asChild>
+        <IconButton aria-label='Tutorial'>
+          <AiOutlineMenu />
+        </IconButton>
+      </Menu.Trigger>
       <Menu.Content>
         {routes.map((route) => {
           if (route.path === asPath) {
             return (
               <>
-                <Menu.Divider key={'1'} />
+                <Menu.Separator key={'1'} />
                 <Menu.Group
                   key={route.path}
                   title={route.title}
                   color='teal.500'
                 >
                   {headings.map((heading) => (
-                    <Menu.Item
-                      as='a'
-                      key={heading.id}
-                      href={`#${heading.id}`}
-                      fontSize='sm'
-                    >
-                      {heading.text}
+                    <Menu.Item asChild key={heading.id} fontSize='sm'>
+                      <a href={`#${heading.id}`}>{heading.text}</a>
                     </Menu.Item>
                   ))}
                 </Menu.Group>
-                <Menu.Divider key={'2'} />
+                <Menu.Separator key={'2'} />
               </>
             )
           }
           return (
-            <Link key={route.path} href={route.path} passHref>
-              <Menu.Item fontSize='sm' fontWeight='semibold' color='teal.500'>
-                {route.title}
-              </Menu.Item>
-            </Link>
+            <Menu.Item
+              key={route.path}
+              asChild
+              fontSize='sm'
+              fontWeight='semibold'
+              color='teal.500'
+            >
+              <Link href={route.path}>{route.title}</Link>
+            </Menu.Item>
           )
         })}
       </Menu.Content>

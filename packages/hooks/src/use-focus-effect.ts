@@ -1,7 +1,11 @@
-import { getAllFocusable } from "@chakra-ui/utils/focusable"
-import { getActiveElement } from "@chakra-ui/utils/owner"
-import { isTabbable } from "@chakra-ui/utils/tabbable"
-import { FocusableElement } from "@chakra-ui/utils/types"
+"use client"
+
+import {
+  FocusableElement,
+  getActiveElement,
+  getAllFocusable,
+  isTabbable,
+} from "@chakra-ui/utils"
 import type { RefObject } from "react"
 import { useCallback, useRef } from "react"
 import { useEventListener } from "./use-event-listener"

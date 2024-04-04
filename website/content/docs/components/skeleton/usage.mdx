@@ -56,7 +56,7 @@ function Card() {
 ```jsx
 <Box padding='6' boxShadow='lg' bg='white'>
   <SkeletonCircle size='10' />
-  <SkeletonText mt='4' noOfLines={4} spacing='4' skeletonHeight='2' />
+  <SkeletonText mt='4' noOfLines={4} gap='4' skeletonHeight='2' />
 </Box>
 ```
 
@@ -92,7 +92,7 @@ This requires the `isLoaded` prop, and the animation is best visible when the
 function Example() {
   const [isLoaded, setIsLoaded] = React.useState(false)
   return (
-    <Stack padding={4} spacing={1}>
+    <Stack padding={4} gap={1}>
       <Skeleton height='40px' isLoaded={isLoaded}>
         <Box>Hello World!</Box>
       </Skeleton>

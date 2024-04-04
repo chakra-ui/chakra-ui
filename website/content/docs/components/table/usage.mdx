@@ -2,7 +2,7 @@
 id: table
 title: Table
 category: 'data-display'
-package: '@chakra-ui/table'
+package: '@chakra-ui/react'
 description:
   'Table component is used to organize and display data efficiently. It renders
   a `<table>` element by default'
@@ -11,169 +11,172 @@ description:
 ## Import
 
 ```js
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
-} from '@chakra-ui/react'
+import { Table } from '@chakra-ui/react'
 ```
 
-## Table Container
-
-The table container component renders a `div` that wraps the table component to
-not allow the table to overflow the parent container, not allow data content to
-break lines without exception, and enable horizontal scrolling.
-
-It renders the following props:
-
-| Property     | Value    |
-| ------------ | -------- |
-| `display`    | `block`  |
-| `maxWidth`   | `100%`   |
-| `overflowX`  | `auto`   |
-| `overflowY`  | `hidden` |
-| `whiteSpace` | `nowrap` |
-
-It can optionally accept the `overflow` or `overflowX` props to override the
-`overflowX` default value of `auto` rendered by this component.
-
-> This component will be shown on all examples in this page. View the examples
-> in mobile to see the effects.
-
-## Table Variants
-
-The table component comes in 3 variants: `simple`, `striped`, and `unstyled`.
-The default variant is `simple`
-
-> Change the `variant` values to see the other variants.
-
-### Simple Table
+## Usage
 
 ```jsx
-<TableContainer>
-  <Table variant='simple'>
-    <TableCaption>Imperial to metric conversion factors</TableCaption>
-    <Thead>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td isNumeric>25.4</Td>
-      </Tr>
-      <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td isNumeric>30.48</Td>
-      </Tr>
-      <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td isNumeric>0.91444</Td>
-      </Tr>
-    </Tbody>
-    <Tfoot>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Tfoot>
-  </Table>
-</TableContainer>
+<Table.Root>
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeader>Name</Table.ColumnHeader>
+      <Table.ColumnHeader>Email</Table.ColumnHeader>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>Segun Adebayo</Table.Cell>
+      <Table.Cell>sage@acme.org </Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>Sally Thompson</Table.Cell>
+      <Table.Cell>sally@acme.org</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table.Root>
 ```
 
-### Striped Table
+## Driving the table with data
+
+To render a table with data, you can use the `map` function to iterate over the
+data and render the table rows.
+
+```jsx manual=true
+const data = [
+  { id: 1, name: 'John Doe', age: 25, gender: 'Male' },
+  { id: 2, name: 'Jane Smith', age: 30, gender: 'Female' },
+  { id: 3, name: 'Michael Johnson', age: 35, gender: 'Male' },
+  { id: 4, name: 'Emily Davis', age: 28, gender: 'Female' },
+  { id: 5, name: 'David Brown', age: 32, gender: 'Male' },
+]
+
+function Demo() {
+  const rows = data.map((row) => (
+    <Table.Row key={row.id}>
+      <Table.Cell>{row.name}</Table.Cell>
+      <Table.Cell numeric>{row.age}</Table.Cell>
+      <Table.Cell>{row.gender}</Table.Cell>
+    </Table.Row>
+  ))
+
+  return (
+    <Table.Root>
+      <Table.Header>
+        <Table.Row>
+          <Table.ColumnHeader>Name</Table.ColumnHeader>
+          <Table.ColumnHeader numeric>Age</Table.ColumnHeader>
+          <Table.ColumnHeader>Gender</Table.ColumnHeader>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>{rows}</Table.Body>
+    </Table.Root>
+  )
+}
+
+render(<Demo />)
+```
+
+## Changing the table variant
+
+The table component comes in 2 variants: `line` and `outline`
 
 ```jsx
-<TableContainer>
-  <Table variant='striped' colorScheme='teal'>
-    <TableCaption>Imperial to metric conversion factors</TableCaption>
-    <Thead>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td isNumeric>25.4</Td>
-      </Tr>
-      <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td isNumeric>30.48</Td>
-      </Tr>
-      <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td isNumeric>0.91444</Td>
-      </Tr>
-    </Tbody>
-    <Tfoot>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Tfoot>
-  </Table>
-</TableContainer>
+<Table.Root variant='outline'>
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeader>To convert</Table.ColumnHeader>
+      <Table.ColumnHeader>into</Table.ColumnHeader>
+      <Table.ColumnHeader numeric>multiply by</Table.ColumnHeader>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>inches</Table.Cell>
+      <Table.Cell>millimetres (mm)</Table.Cell>
+      <Table.Cell numeric>25.4</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>feet</Table.Cell>
+      <Table.Cell>centimetres (cm)</Table.Cell>
+      <Table.Cell numeric>30.48</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>yards</Table.Cell>
+      <Table.Cell>metres (m)</Table.Cell>
+      <Table.Cell numeric>0.91444</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+  <Table.Footer>
+    <Table.Row>
+      <Table.Cell>To convert</Table.Cell>
+      <Table.Cell>into</Table.Cell>
+      <Table.Cell numeric>multiply by</Table.Cell>
+    </Table.Row>
+  </Table.Footer>
+</Table.Root>
 ```
 
-## Table Sizing
+## Changing the table size
 
 The table component is available in 3 sizes: `sm`, `md`, `lg`. The default size
 is `md`.
 
 ```jsx
-<TableContainer>
-  <Table size='sm'>
-    <Thead>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Thead>
-    <Tbody>
-      <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td isNumeric>25.4</Td>
-      </Tr>
-      <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td isNumeric>30.48</Td>
-      </Tr>
-      <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td isNumeric>0.91444</Td>
-      </Tr>
-    </Tbody>
-    <Tfoot>
-      <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
-      </Tr>
-    </Tfoot>
-  </Table>
-</TableContainer>
+<For each={['sm', 'md', 'lg']}>
+  {(size) => (
+    <Table.Overflow key={size} mb='10'>
+      <Table.Root size={size}>
+        <Table.Header>
+          <Table.Row>
+            <Table.ColumnHeader>Name</Table.ColumnHeader>
+            <Table.ColumnHeader>Email</Table.ColumnHeader>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>Segun Adebayo</Table.Cell>
+            <Table.Cell>sage@acme.org </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Sally Thompson</Table.Cell>
+            <Table.Cell>sally@acme.org</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table.Root>
+    </Table.Overflow>
+  )}
+</For>
+```
+
+## Handling overflow in tables
+
+Tables can be quite large and can overflow the parent container. To handle
+overflow, you can wrap the table in a `Table.Overflow` component.
+
+## Performance optimization in large tables
+
+Due to the limitations of the DOM combined with CSS-in-JS, large tables can be
+slow to render. To optimize style performance, pass the `native` prop to the
+`Table.Root` component and render the table using native HTML elements.
+
+```jsx
+<Table.Root native>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Segun Adebayo</td>
+      <td>sage@acme.org </td>
+    </tr>
+    <tr>
+      <td>Sally Thompson</td>
+      <td>sally@acme.org</td>
+    </tr>
+  </tbody>
+</Table.Root>
 ```

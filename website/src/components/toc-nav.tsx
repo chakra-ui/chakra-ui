@@ -17,7 +17,7 @@ export default function TocNav({ children, title, ...rest }: BoxProps) {
       alignSelf='start'
       maxHeight='calc(100vh - 8rem)'
       overflowY='auto'
-      sx={{ overscrollBehavior: 'contain' }}
+      css={{ overscrollBehavior: 'contain' }}
       {...rest}
     >
       {title && (

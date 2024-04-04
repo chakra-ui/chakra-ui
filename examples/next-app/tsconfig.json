@@ -19,11 +19,10 @@
     "allowSyntheticDefaultImports": true,
     "incremental": true,
     "customConditions": ["source"],
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@chakra-ui/react": ["../../packages/react/src"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]

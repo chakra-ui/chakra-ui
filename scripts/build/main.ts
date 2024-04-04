@@ -1,48 +1,34 @@
-import { sortPackages } from "@pnpm/sort-packages"
-import { createPkgGraph } from "@pnpm/workspace.pkgs-graph"
-import { findPackages } from "find-packages"
 import { resolve } from "path/posix"
 import { buildProject } from "./build.js"
 
-async function main() {
-  const flags = process.argv.slice(2)
+const aliases = [
+  {
+    find: new RegExp(`^@chakra-ui/hooks`),
+    replacement: resolve("../hooks", "src"),
+  },
+  {
+    find: new RegExp(`^@chakra-ui/utils`),
+    replacement: resolve("../utils", "src"),
+  },
+]
 
+async function main() {
+  const cwd = process.cwd()
+  const flags = process.argv.slice(2)
   const watch = flags.includes("--watch")
   const clean = flags.includes("--clean")
   const dts = flags.includes("--dts")
-  const prod = flags.includes("--prod")
 
-  const packages = await findPackages("packages", {
-    ignore: [
-      "**/test-utils",
-      "**/props-docs",
-      "**/gatsby-plugin",
-      "**/node_modules",
-    ],
+  const packageJson = await import(resolve(cwd, "package.json"))
+
+  await buildProject({
+    dir: cwd,
+    name: packageJson.name,
+    watch,
+    clean,
+    dts,
+    aliases,
   })
-
-  const { graph } = createPkgGraph(packages, {
-    ignoreDevDeps: true,
-    linkWorkspacePackages: true,
-  })
-  const sortedDirs = sortPackages(graph)
-    .flat()
-    .filter((t) => !t.includes("node_modules"))
-
-  packages.sort((a, b) => {
-    const aIndex = sortedDirs.indexOf(a.dir)
-    const bIndex = sortedDirs.indexOf(b.dir)
-    return aIndex - bIndex
-  })
-
-  const aliases = packages.map((pkg) => ({
-    find: new RegExp(`^${pkg.manifest.name}`),
-    replacement: resolve(pkg.dir, "src"),
-  }))
-
-  for (const pkg of packages) {
-    await buildProject(pkg, { watch, clean, dts, aliases, prod })
-  }
 }
 
 main().catch((err) => {

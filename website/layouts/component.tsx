@@ -28,7 +28,7 @@ export default function ComponentDocsLayout({
   return (
     <MDXLayout frontmatter={frontmatter}>
       {id && (
-        <Stack spacing='5'>
+        <Stack gap='5'>
           <MDXComponents.p>{frontmatter.description}</MDXComponents.p>
           <MDXComponents.ComponentLinks
             theme={hasTheme && { componentName: id }}
@@ -42,25 +42,25 @@ export default function ComponentDocsLayout({
         <HStack as='ul' listStyleType='none' borderBottomWidth='1px'>
           {tabsData.map((item) => (
             <Box as='li' key={item.id}>
-              <NextLink href={item.href} passHref replace>
-                <Box
-                  mb='-1px'
-                  as='a'
-                  display='block'
-                  fontSize='sm'
-                  px='5'
-                  py='3'
-                  fontWeight='medium'
-                  borderBottom='2px solid transparent'
-                  data-selected={item.match ? '' : undefined}
-                  _selected={{
-                    color: 'accent',
-                    borderColor: 'currentColor',
-                  }}
-                >
+              <Box
+                mb='-1px'
+                asChild
+                display='block'
+                fontSize='sm'
+                px='5'
+                py='3'
+                fontWeight='medium'
+                borderBottom='2px solid transparent'
+                data-selected={item.match ? '' : undefined}
+                _selected={{
+                  color: 'fg.accent',
+                  borderColor: 'currentColor',
+                }}
+              >
+                <NextLink href={item.href} replace>
                   {item.label}
-                </Box>
-              </NextLink>
+                </NextLink>
+              </Box>
             </Box>
           ))}
         </HStack>

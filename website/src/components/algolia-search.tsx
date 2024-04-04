@@ -30,11 +30,7 @@ interface HitProps {
 }
 
 function Hit({ hit, children }: HitProps) {
-  return (
-    <Link href={hit.url} passHref>
-      <a>{children}</a>
-    </Link>
-  )
+  return <Link href={hit.url}>{children}</Link>
 }
 
 export const SearchButton = React.forwardRef(function SearchButton(
@@ -68,16 +64,16 @@ export const SearchButton = React.forwardRef(function SearchButton(
       px='4'
       outline='0'
       _focus={{ shadow: 'outline' }}
-      shadow='base'
+      shadow='xs'
       rounded='md'
       {...props}
     >
       <SearchIcon />
-      <HStack w='full' ml='3' spacing='4px'>
+      <HStack w='full' ml='3' gap='4px'>
         <Text textAlign='left' flex='1'>
           Search the docs
         </Text>
-        <HStack spacing='4px'>
+        <HStack gap='4px'>
           <VisuallyHidden>Press</VisuallyHidden>
           <Kbd rounded='2px'>
             <chakra.div
@@ -99,28 +95,28 @@ export const SearchButton = React.forwardRef(function SearchButton(
 
 function AlgoliaSearch() {
   const router = useRouter()
-  const [open, setIsOpen] = React.useState(false)
+  const [open, setopen] = React.useState(false)
   const searchButtonRef = React.useRef()
   const [initialQuery, setInitialQuery] = React.useState(null)
 
   const onOpen = React.useCallback(() => {
-    setIsOpen(true)
-  }, [setIsOpen])
+    setopen(true)
+  }, [setopen])
 
   const onClose = React.useCallback(() => {
-    setIsOpen(false)
-  }, [setIsOpen])
+    setopen(false)
+  }, [setopen])
 
   const onInput = React.useCallback(
     (e) => {
-      setIsOpen(true)
+      setopen(true)
       setInitialQuery(e.key)
     },
-    [setIsOpen, setInitialQuery],
+    [setopen, setInitialQuery],
   )
 
   useDocSearchKeyboardEvents({
-    open,
+    isOpen: open,
     onOpen,
     onClose,
     onInput,
@@ -148,11 +144,10 @@ function AlgoliaSearch() {
             indexName='chakra-ui'
             apiKey='df1dcc41f7b8e5d68e73dd56d1e19701'
             appId='BH4D9OD16A'
-            //@ts-expect-error we allow this error because we don't need what is missing here.
             navigator={{
-              navigate({ suggestionUrl }) {
-                setIsOpen(false)
-                router.push(suggestionUrl)
+              navigate({ itemUrl }) {
+                setopen(false)
+                router.push(itemUrl)
               },
             }}
             hitComponent={Hit}

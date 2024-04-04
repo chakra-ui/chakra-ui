@@ -29,11 +29,10 @@ export function DiscordStrip(props: BoxProps) {
               </Text>
             </Box>
           </Flex>
-          <chakra.button
+          <chakra.a
             width={{ base: '100%', md: 'auto' }}
             mt={{ base: '6', md: 0 }}
             color='gray.800'
-            as='a'
             justifyContent='center'
             display='inline-flex'
             alignItems='center'
@@ -49,7 +48,7 @@ export function DiscordStrip(props: BoxProps) {
             fontSize='md'
           >
             Join the #Chakra Discord!
-          </chakra.button>
+          </chakra.a>
         </Flex>
       </Container>
     </Box>

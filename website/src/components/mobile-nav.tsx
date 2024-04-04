@@ -2,7 +2,6 @@ import {
   Box,
   BoxProps,
   Center,
-  CloseButton,
   Flex,
   Grid,
   GridItem,
@@ -10,20 +9,20 @@ import {
   IconButton,
   IconButtonProps,
   useBreakpointValue,
-  useColorModeValue,
-  useUpdateEffect,
 } from '@chakra-ui/react'
 import { AnimatePresence, motion, useElementScroll } from 'framer-motion'
-import NextLink from 'next/link'
-import { useRouter } from 'next/router'
-import { forwardRef, ReactNode, Ref, useEffect, useRef, useState } from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
-import { RemoveScroll } from 'react-remove-scroll'
-import Logo from './logo'
-import { mainNavLinks, SidebarContent } from './sidebar/sidebar'
-import SponsorButton from './sponsor-button'
 import useRouteChanged from 'hooks/use-route-changed'
 import { getRoutes } from 'layouts/mdx'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { ReactNode, Ref, forwardRef, useEffect, useRef, useState } from 'react'
+import { AiOutlineMenu } from 'react-icons/ai'
+import { BsX } from 'react-icons/bs'
+import { RemoveScroll } from 'react-remove-scroll'
+import Logo from './logo'
+import { SidebarContent, mainNavLinks } from './sidebar/sidebar'
+import SponsorButton from './sponsor-button'
+import { useUpdateEffect } from '@chakra-ui/hooks'
 
 type NavLinkProps = {
   href: string
@@ -32,28 +31,32 @@ type NavLinkProps = {
 
 function NavLink({ href, children }: NavLinkProps) {
   const router = useRouter()
-  const bgActiveHoverColor = useColorModeValue('gray.100', 'whiteAlpha.100')
 
   const isActive = router.asPath.startsWith(href)
 
   return (
-    <GridItem as={NextLink} href={href}>
-      <Center
-        flex='1'
-        minH='40px'
-        as='button'
-        rounded='md'
-        transition='0.2s all'
-        fontWeight={isActive ? 'semibold' : 'medium'}
-        bg={isActive ? 'teal.400' : undefined}
-        borderWidth={isActive ? undefined : '1px'}
-        color={isActive ? 'white' : undefined}
-        _hover={{
-          bg: isActive ? 'teal.500' : bgActiveHoverColor,
-        }}
-      >
-        {children}
-      </Center>
+    <GridItem asChild>
+      <NextLink href={href}>
+        <Center
+          flex='1'
+          minH='40px'
+          as='button'
+          rounded='md'
+          transition='0.2s all'
+          aria-current={isActive ? 'page' : undefined}
+          fontWeight='medium'
+          borderWidth={isActive ? undefined : '1px'}
+          color={isActive ? 'white' : undefined}
+          bg='bg.muted'
+          _currentPage={{
+            fontWeight: 'semibold',
+            bg: { base: 'teal.800', _hover: 'teal.600' },
+            color: 'white',
+          }}
+        >
+          {children}
+        </Center>
+      </NextLink>
     </GridItem>
   )
 }
@@ -67,7 +70,6 @@ export function MobileNavContent(props: MobileNavContentProps) {
   const { open, onClose } = props
   const closeBtnRef = useRef<HTMLButtonElement>()
   const { pathname, asPath } = useRouter()
-  const bgColor = useColorModeValue('white', 'gray.800')
 
   useRouteChanged(onClose)
 
@@ -106,7 +108,7 @@ export function MobileNavContent(props: MobileNavContentProps) {
             <Flex
               direction='column'
               w='100%'
-              bg={bgColor}
+              bg='bg'
               h='100vh'
               overflow='auto'
               pos='absolute'
@@ -117,10 +119,16 @@ export function MobileNavContent(props: MobileNavContentProps) {
             >
               <Box>
                 <Flex justify='space-between' px='6' pt='5' pb='4'>
-                  <Logo sx={{ rect: { fill: 'teal.300' } }} />
-                  <HStack spacing='5'>
+                  <Logo css={{ rect: { fill: 'teal.300' } }} />
+                  <HStack gap='5'>
                     <SponsorButton display='flex' />
-                    <CloseButton ref={closeBtnRef} onClick={onClose} />
+                    <IconButton
+                      aria-label='Close'
+                      ref={closeBtnRef}
+                      onClick={onClose}
+                    >
+                      <BsX />
+                    </IconButton>
                   </HStack>
                 </Flex>
                 <Grid
@@ -193,11 +201,12 @@ export const MobileNavButton = forwardRef(
         display={{ base: 'flex', md: 'none' }}
         aria-label='Open menu'
         fontSize='20px'
-        color={useColorModeValue('gray.800', 'inherit')}
+        color='fg'
         variant='ghost'
-        icon={<AiOutlineMenu />}
         {...props}
-      />
+      >
+        <AiOutlineMenu />
+      </IconButton>
     )
   },
 )

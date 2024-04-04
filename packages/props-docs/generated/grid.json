@@ -1,116 +1,140 @@
 {
-  "Grid": {},
+  "Grid": {
+    "autoColumns": {
+      "type": "SystemStyleObject[\"gridAutoColumns\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridAutoColumns`"
+    },
+    "autoFlow": {
+      "type": "SystemStyleObject[\"gridAutoFlow\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridAutoFlow`"
+    },
+    "autoRows": {
+      "type": "SystemStyleObject[\"gridAutoRows\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridAutoRows`"
+    },
+    "column": {
+      "type": "SystemStyleObject[\"gridColumn\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridColumn`"
+    },
+    "columnGap": {
+      "type": "SystemStyleObject[\"gridColumnGap\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridColumnGap`"
+    },
+    "gap": {
+      "type": "SystemStyleObject[\"gridGap\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridGap`"
+    },
+    "row": {
+      "type": "SystemStyleObject[\"gridRow\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridRow`"
+    },
+    "rowGap": {
+      "type": "SystemStyleObject[\"gridRowGap\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridRowGap`"
+    },
+    "templateAreas": {
+      "type": "SystemStyleObject[\"gridTemplateAreas\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridTemplateAreas`"
+    },
+    "templateColumns": {
+      "type": "SystemStyleObject[\"gridTemplateColumns\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridTemplateColumns`"
+    },
+    "templateRows": {
+      "type": "SystemStyleObject[\"gridTemplateRows\"]",
+      "required": false,
+      "description": "Shorthand prop for `gridTemplateRows`"
+    }
+  },
   "GridItem": {
     "area": {
-      "type": "ResponsiveValue<GridArea>",
+      "type": "SystemStyleObject[\"gridArea\"]",
       "required": false,
       "description": "Shorthand prop for `gridArea`"
     },
     "colEnd": {
-      "type": "ResponsiveValue<number | \"auto\">",
+      "type": "ConditionalValue<number | \"auto\">",
       "required": false
     },
     "colSpan": {
-      "type": "ResponsiveValue<number | \"auto\">",
+      "type": "ConditionalValue<number | \"auto\">",
       "required": false,
       "description": "The number of columns the grid item should `span`."
     },
     "colStart": {
-      "type": "ResponsiveValue<number | \"auto\">",
+      "type": "ConditionalValue<number | \"auto\">",
       "required": false,
       "description": "The column number the grid item should start."
     },
     "rowEnd": {
-      "type": "ResponsiveValue<number | \"auto\">",
+      "type": "ConditionalValue<number | \"auto\">",
       "required": false
     },
     "rowSpan": {
-      "type": "ResponsiveValue<number | \"auto\">",
+      "type": "ConditionalValue<number | \"auto\">",
       "required": false
     },
     "rowStart": {
-      "type": "ResponsiveValue<number | \"auto\">",
+      "type": "ConditionalValue<number | \"auto\">",
       "required": false
     }
   },
   "SimpleGrid": {
     "autoColumns": {
-      "type": "ResponsiveValue<GridAutoColumns<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridAutoColumns`"
     },
     "autoFlow": {
-      "type": "ResponsiveValue<GridAutoFlow>",
       "required": false,
       "description": "Shorthand prop for `gridAutoFlow`"
     },
     "autoRows": {
-      "type": "ResponsiveValue<GridAutoRows<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridAutoRows`"
     },
     "column": {
-      "type": "ResponsiveValue<GridColumn>",
       "required": false,
       "description": "Shorthand prop for `gridColumn`"
     },
     "columnGap": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridColumnGap`"
     },
     "columns": {
-      "type": "ResponsiveValue<number>",
+      "type": "ConditionalValue<number>",
       "required": false,
       "description": "The number of columns"
     },
-    "gap": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "Shorthand prop for `gridGap`"
-    },
+    "gap": { "required": false, "description": "Shorthand prop for `gridGap`" },
     "minChildWidth": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
+      "type": "GridProps[\"minWidth\"]",
       "required": false,
       "description": "The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length."
     },
-    "row": {
-      "type": "ResponsiveValue<GridRow>",
-      "required": false,
-      "description": "Shorthand prop for `gridRow`"
-    },
+    "row": { "required": false, "description": "Shorthand prop for `gridRow`" },
     "rowGap": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
       "required": false,
       "description": "Shorthand prop for `gridRowGap`"
     },
-    "spacing": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "The gap between the grid items"
-    },
-    "spacingX": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "The column gap between the grid items"
-    },
-    "spacingY": {
-      "type": "ResponsiveValue<string | number | (string & {})>",
-      "required": false,
-      "description": "The row gap between the grid items"
-    },
     "templateAreas": {
-      "type": "ResponsiveValue<GridTemplateAreas>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateAreas`"
     },
     "templateColumns": {
-      "type": "ResponsiveValue<GridTemplateColumns<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateColumns`"
     },
     "templateRows": {
-      "type": "ResponsiveValue<GridTemplateRows<0 | (string & {})>>",
       "required": false,
       "description": "Shorthand prop for `gridTemplateRows`"
     }

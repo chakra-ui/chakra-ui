@@ -10,7 +10,6 @@ import {
   Stack,
   Text,
   VStack,
-  chakra,
 } from '@chakra-ui/react'
 import {
   SandpackCodeEditor,
@@ -21,6 +20,7 @@ import {
 import { nightOwl } from '@codesandbox/sandpack-themes'
 import EditPageLink from 'components/edit-page-button'
 import Header from 'components/header'
+import { PageHeading } from 'components/heading'
 import SEO from 'components/seo'
 import { useRouter } from 'next/router'
 import mainPackageJson from 'package.json'
@@ -91,7 +91,7 @@ function TutorialContainer({
               <Center>
                 <VStack
                   justify='center'
-                  spacing='4'
+                  gap='4'
                   as='section'
                   mt={['20', null, '40']}
                   textAlign='center'
@@ -107,7 +107,7 @@ function TutorialContainer({
                   </Text>
                   <Button
                     aria-label='Reload'
-                    colorScheme='teal'
+                    colorPalette='teal'
                     size='lg'
                     onClick={() => window.location.reload()}
                   >
@@ -131,7 +131,7 @@ function TutorialContainer({
               }}
             >
               <div>
-                <HStack spacing={0}>
+                <HStack gap={0}>
                   <Box
                     overflowY={'auto'}
                     minW={{ base: '40%', xl: '35%' }}
@@ -146,12 +146,12 @@ function TutorialContainer({
                       pb='4'
                       pt='1'
                       pl='6'
-                      spacing={4}
+                      gap={4}
                     >
                       {sidebar}
-                      <chakra.h1 tabIndex={-1} outline={0} apply='mdx.h1'>
+                      <PageHeading as='h1' tabIndex={-1} outline={0}>
                         {title}
-                      </chakra.h1>
+                      </PageHeading>
                     </HStack>
                     <Flex px={'6'} direction='column' height='95%'>
                       <Box flex='1'>{children}</Box>

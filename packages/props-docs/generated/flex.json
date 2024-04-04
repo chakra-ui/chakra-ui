@@ -1,38 +1,32 @@
 {
   "Flex": {
     "align": {
-      "type": "ResponsiveValue<AlignItems>",
+      "type": "SystemStyleObject[\"alignItems\"]",
       "required": false,
       "description": "Shorthand for `alignItems` style prop"
     },
     "basis": {
-      "type": "ResponsiveValue<FlexBasis<Length>>",
+      "type": "SystemStyleObject[\"flexBasis\"]",
       "required": false,
       "description": "Shorthand for `flexBasis` style prop"
     },
-    "direction": {
-      "type": "ResponsiveValue<FlexDirection>",
-      "defaultValue": "row",
-      "required": false,
-      "description": "Shorthand for `flexDirection` style prop"
-    },
     "grow": {
-      "type": "ResponsiveValue<FlexGrow>",
+      "type": "SystemStyleObject[\"flexGrow\"]",
       "required": false,
       "description": "Shorthand for `flexGrow` style prop"
     },
     "justify": {
-      "type": "ResponsiveValue<JustifyContent>",
+      "type": "SystemStyleObject[\"justifyContent\"]",
       "required": false,
       "description": "Shorthand for `justifyContent` style prop"
     },
     "shrink": {
-      "type": "ResponsiveValue<FlexShrink>",
+      "type": "SystemStyleObject[\"flexShrink\"]",
       "required": false,
       "description": "Shorthand for `flexShrink` style prop"
     },
     "wrap": {
-      "type": "ResponsiveValue<FlexWrap>",
+      "type": "SystemStyleObject[\"flexWrap\"]",
       "required": false,
       "description": "Shorthand for `flexWrap` style prop"
     }

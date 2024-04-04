@@ -39,7 +39,7 @@ export function isContentEditableElement(element: HTMLElement) {
   return value !== "false" && value != null
 }
 
-export function disabledElement(element: HTMLElement) {
+export function isDisabledElement(element: HTMLElement) {
   return (
     Boolean(element.getAttribute("disabled")) === true ||
     Boolean(element.getAttribute("aria-disabled")) === true

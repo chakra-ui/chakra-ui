@@ -1,4 +1,6 @@
-import { getOwnerWindow } from "@chakra-ui/utils/owner"
+"use client"
+
+import { getOwnerWindow } from "@chakra-ui/utils"
 import { useEffect, useState } from "react"
 import { useEventListener } from "./use-event-listener"
 
@@ -39,3 +41,5 @@ export function useAnimationState(props: UseAnimationStateProps) {
     },
   }
 }
+
+export type UseAnimationStateReturn = ReturnType<typeof useAnimationState>

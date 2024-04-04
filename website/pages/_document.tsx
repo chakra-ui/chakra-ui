@@ -1,4 +1,3 @@
-import { ColorModeScript } from '@chakra-ui/react'
 import NextDocument, {
   DocumentContext,
   Head,
@@ -6,7 +5,6 @@ import NextDocument, {
   Main,
   NextScript,
 } from 'next/document'
-import React from 'react'
 
 class Document extends NextDocument {
   static getInitialProps(ctx: DocumentContext) {
@@ -15,7 +13,7 @@ class Document extends NextDocument {
 
   render() {
     return (
-      <Html lang='en'>
+      <Html lang='en' suppressHydrationWarning>
         <Head>
           <link
             rel='preload'
@@ -26,7 +24,6 @@ class Document extends NextDocument {
           />
         </Head>
         <body>
-          <ColorModeScript />
           <Main />
           <NextScript />
         </body>

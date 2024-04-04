@@ -1,5 +1,5 @@
 import { writeFile } from 'node:fs/promises'
-import mkdirp from 'mkdirp'
+import { mkdirp } from 'mkdirp'
 import fetch from 'node-fetch'
 import path from 'path'
 import tweetsJson from '../configs/tweets.json'

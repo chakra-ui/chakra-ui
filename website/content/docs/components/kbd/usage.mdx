@@ -2,7 +2,7 @@
 id: kbd
 title: Keyboard Key
 category: 'data-display'
-package: '@chakra-ui/layout'
+package: '@chakra-ui/react'
 description:
   'The keyboard key component exists to show which key or combination of keys
   performs a given action.'
@@ -14,33 +14,18 @@ description:
 import { Kbd } from '@chakra-ui/react'
 ```
 
-```jsx
-<span>
-  <Kbd>shift</Kbd> + <Kbd>H</Kbd>
-</span>
-```
-
-## Guideline
-
-All shortcuts should do their best to match what appears on the user’s keyboard.
-
-- All single letters A-Z are uppercase.
-- For non-letter keys such as enter, esc and shift, stick to lowercase.
-- Use the arrow symbol as opposed to spelling things out.
-
-## Modifier
-
-The only punctuation you should need is the **+** to indicate that a combination
-of keys will activate the shortcut.
+## Usage
 
 ```jsx
 <span>
   <Kbd>shift</Kbd> + <Kbd>H</Kbd>
 </span>
 ```
+
+## Representing a sequence of keyboard
 
 For a sequence of keys where one must follow the other, write "then" in between.
-Stick to lowercase to match the non-letter keys.
+Use lowercase to match the non-letter keys.
 
 ```jsx
 <span>
@@ -49,7 +34,7 @@ Stick to lowercase to match the non-letter keys.
 ```
 
 If two different keys can execute the same action or the shortcut itself may
-look different on the user’s keyboard, write "or" in between.
+look different on the user's keyboard, write "or" in between.
 
 ```jsx
 <span>

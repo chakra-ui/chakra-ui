@@ -4,7 +4,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "next"
+    "next",
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
@@ -17,19 +17,9 @@
     "import/namespace": [
       "error",
       {
-        "allowComputed": true
-      }
+        "allowComputed": true,
+      },
     ],
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
   },
-  "parserOptions": {
-    "project": "tsconfig.json"
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true
-      }
-    }
-  }
 }

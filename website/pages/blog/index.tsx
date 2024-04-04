@@ -4,7 +4,7 @@ import {
   Heading,
   Link,
   Stack,
-  StackDivider,
+  StackSeparator,
   Text,
   chakra,
 } from '@chakra-ui/react'
@@ -24,11 +24,11 @@ function Blog() {
         slug: '/blog',
       }}
     >
-      <Stack divider={<StackDivider />} my='12' spacing='20'>
+      <Stack separator={<StackSeparator />} my='12' gap='20'>
         {allBlogs.map((item) => (
           <Box key={item._id}>
-            <NextLink href={item.slug} passHref>
-              <Link _hover={{ textDecor: 'none' }}>
+            <Link asChild _hover={{ textDecor: 'none' }}>
+              <NextLink href={item.slug}>
                 <Heading
                   fontWeight='medium'
                   size='lg'
@@ -36,26 +36,26 @@ function Blog() {
                 >
                   {item.title}
                 </Heading>
-              </Link>
-            </NextLink>
+              </NextLink>
+            </Link>
 
             <Text as='time' my='1' color='gray.500' fontSize='sm'>
               {item.frontMatter.publishedDate.text}
             </Text>
             <Text mt='4'>{item.description}</Text>
 
-            <NextLink href={item.slug} passHref>
-              <Button
-                size='sm'
-                as='a'
-                mt='8'
-                variant='outline'
-                colorScheme='teal'
-              >
+            <Button
+              size='sm'
+              asChild
+              mt='8'
+              variant='outline'
+              colorPalette='teal'
+            >
+              <NextLink href={item.slug}>
                 Read more
                 <ArrowForwardIcon />
-              </Button>
-            </NextLink>
+              </NextLink>
+            </Button>
           </Box>
         ))}
       </Stack>

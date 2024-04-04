@@ -1,6 +1,8 @@
-import { addPointerEvent } from "@chakra-ui/utils/add-pointer-event"
-import { getEventPoint } from "@chakra-ui/utils/event-point"
-import { isMultiTouchEvent } from "@chakra-ui/utils/is-event"
+import {
+  addPointerEvent,
+  getEventPoint,
+  isMultiTouchEvent,
+} from "@chakra-ui/utils"
 import sync, { cancelSync, getFrameData } from "framesync"
 import {
   AnyPointerEvent,

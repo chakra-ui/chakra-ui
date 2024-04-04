@@ -1,5 +1,5 @@
 ---
-"@chakra-ui/styled-system": minor
+"@chakra-ui/react": minor
 ---
 
 Add support for `_open` and `_closed` pseudo props for styling their respective
