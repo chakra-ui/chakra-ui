@@ -37,7 +37,7 @@
     "docsearch.js": "^2.6.3",
     "focus-visible": "5.2.0",
     "formik": "^2.4.5",
-    "framer-motion": "11.0.22",
+    "framer-motion": "11.0.25",
     "github-slugger": "2.0.0",
     "highlight-words-core": "^1.2.2",
     "lodash.clonedeep": "^4.5.0",
