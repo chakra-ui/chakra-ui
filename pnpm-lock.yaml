@@ -566,8 +566,8 @@ importers:
         specifier: ^2.4.5
         version: 2.4.5(react@18.2.0)
       framer-motion:
-        specifier: 11.0.22
-        version: 11.0.22(@emotion/is-prop-valid@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 11.0.25
+        version: 11.0.25(@emotion/is-prop-valid@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       github-slugger:
         specifier: 2.0.0
         version: 2.0.0
@@ -6004,6 +6004,20 @@ packages:
 
   framer-motion@11.0.22:
     resolution: {integrity: sha512-kWyldNJLyKDvLWjPYFmgngQYLiU8973BtAeVBc83r2cnil/NBUQJb1ff/6/EweNQYb5BW3PaXFjZa4D3pn/W2Q==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
+  framer-motion@11.0.25:
+    resolution: {integrity: sha512-mRt7vQGzA7++wTgb+PW1TrlXXgndqR6hCiJ48fXr2X9alte2hPQiAq556HRwDCt0Q5X98MNvcSe4KUa27Gm5Lg==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.2.0
@@ -17635,6 +17649,14 @@ snapshots:
   forwarded@0.2.0: {}
 
   framer-motion@11.0.22(@emotion/is-prop-valid@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      tslib: 2.6.2
+    optionalDependencies:
+      '@emotion/is-prop-valid': 1.2.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
+  framer-motion@11.0.25(@emotion/is-prop-valid@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       tslib: 2.6.2
     optionalDependencies:
