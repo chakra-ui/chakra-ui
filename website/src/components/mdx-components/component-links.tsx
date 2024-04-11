@@ -69,7 +69,7 @@ function ComponentLinks(props: ComponentLinksProps) {
     <ComponentLink
       url={
         github.url ||
-        `${githubRepoUrl}/tree/main/packages/components/src/${github.package}`
+        `${githubRepoUrl}/tree/v2/packages/components/src/${github.package}`
       }
       icon={FaGithub}
       iconColor={iconColor}
@@ -116,7 +116,7 @@ function ComponentLinks(props: ComponentLinksProps) {
 
   const themeComponentLink = theme && (
     <ComponentLink
-      url={`${githubRepoUrl}/tree/main/packages/theme/src/components/${theme.componentName}.ts`}
+      url={`${githubRepoUrl}/tree/v2/packages/theme/src/components/${theme.componentName}.ts`}
       icon={FaGithub}
       iconColor={iconColor}
       iconSize='1rem'
