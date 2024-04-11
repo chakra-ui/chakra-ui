@@ -1,5 +1,61 @@
 {
-  "Grid": {},
+  "Grid": {
+    "autoColumns": {
+      "type": "ResponsiveValue<GridAutoColumns<0 | (string & {})>>",
+      "required": false,
+      "description": "Shorthand prop for `gridAutoColumns`"
+    },
+    "autoFlow": {
+      "type": "ResponsiveValue<GridAutoFlow>",
+      "required": false,
+      "description": "Shorthand prop for `gridAutoFlow`"
+    },
+    "autoRows": {
+      "type": "ResponsiveValue<GridAutoRows<0 | (string & {})>>",
+      "required": false,
+      "description": "Shorthand prop for `gridAutoRows`"
+    },
+    "column": {
+      "type": "ResponsiveValue<GridColumn>",
+      "required": false,
+      "description": "Shorthand prop for `gridColumn`"
+    },
+    "columnGap": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "Shorthand prop for `gridColumnGap`"
+    },
+    "gap": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "Shorthand prop for `gridGap`"
+    },
+    "row": {
+      "type": "ResponsiveValue<GridRow>",
+      "required": false,
+      "description": "Shorthand prop for `gridRow`"
+    },
+    "rowGap": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "Shorthand prop for `gridRowGap`"
+    },
+    "templateAreas": {
+      "type": "ResponsiveValue<GridTemplateAreas>",
+      "required": false,
+      "description": "Shorthand prop for `gridTemplateAreas`"
+    },
+    "templateColumns": {
+      "type": "ResponsiveValue<GridTemplateColumns<0 | (string & {})>>",
+      "required": false,
+      "description": "Shorthand prop for `gridTemplateColumns`"
+    },
+    "templateRows": {
+      "type": "ResponsiveValue<GridTemplateRows<0 | (string & {})>>",
+      "required": false,
+      "description": "Shorthand prop for `gridTemplateRows`"
+    }
+  },
   "GridItem": {
     "area": {
       "type": "ResponsiveValue<GridArea>",

@@ -1,1 +1,20 @@
-{ "ListItem": {}, "List": {} }
+{
+  "ListItem": {},
+  "List": {
+    "spacing": {
+      "type": "ResponsiveValue<string | number | (string & {})>",
+      "required": false,
+      "description": "The space between each list item"
+    },
+    "stylePosition": {
+      "type": "ResponsiveValue<ListStylePosition>",
+      "required": false,
+      "description": "Shorthand prop for `listStylePosition`"
+    },
+    "styleType": {
+      "type": "ResponsiveValue<ListStyleType>",
+      "required": false,
+      "description": "Shorthand prop for `listStyleType`"
+    }
+  }
+}

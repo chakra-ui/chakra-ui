@@ -128,7 +128,7 @@
       "description": "Callback when the index (controlled or un-controlled) changes."
     },
     "orientation": {
-      "type": "\"horizontal\" | \"vertical\"",
+      "type": "\"vertical\" | \"horizontal\"",
       "defaultValue": "horizontal",
       "required": false,
       "description": "The orientation of the tab list."

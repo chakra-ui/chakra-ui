@@ -7,7 +7,7 @@
       "description": "The padding required to prevent the arrow from\nreaching the very edge of the popper."
     },
     "boundary": {
-      "type": "HTMLElement | \"clippingParents\" | \"scrollParent\"",
+      "type": "\"clippingParents\" | \"scrollParent\" | HTMLElement",
       "defaultValue": "clippingParents",
       "required": false,
       "description": "The boundary area for the popper. Used within the `preventOverflow` modifier"
