@@ -1,6 +1,6 @@
 export { Alert } from "./alert"
 export type { AlertProps } from "./alert"
-export { useAlertStyles } from "./alert-context"
+export { useAlertStyles, useAlertContext } from "./alert-context"
 export type { AlertStatus } from "./alert-context"
 export { AlertDescription } from "./alert-description"
 export type { AlertDescriptionProps } from "./alert-description"
