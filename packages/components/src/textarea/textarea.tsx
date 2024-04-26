@@ -40,7 +40,6 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
   const { className, rows, ...rest } = omitThemingProps(props)
 
   const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
-  console.log("textareaProps", textareaProps)
   //@ts-ignore
   const textareaStyles = rows ? omit(styles, omitted) : styles
 
