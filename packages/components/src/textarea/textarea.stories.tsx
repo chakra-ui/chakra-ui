@@ -74,3 +74,25 @@ export const Controlled = () => {
 export const withResize = () => (
   <Textarea placeholder="Here is a sample placeholder" resize="horizontal" />
 )
+
+export const ControlledWithCharacterCounter = () => {
+  const [value, setValue] = React.useState("")
+
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value)
+  }
+
+  return (
+    <>
+      <p>Value: {value}</p>
+      <Textarea
+        mt="8px"
+        value={value}
+        placeholder="Enter value"
+        onChange={onChange}
+        hasCharacterCounter
+        maxLength={40}
+      />
+    </>
+  )
+}

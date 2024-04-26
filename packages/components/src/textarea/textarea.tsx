@@ -3,6 +3,7 @@ import { HTMLChakraProps, chakra, forwardRef, useStyleConfig } from "../system"
 import { cx } from "@chakra-ui/utils/cx"
 import { omit } from "@chakra-ui/utils/omit"
 import { FormControlOptions, useFormControl } from "../form-control"
+import { Text } from "../typography"
 
 interface TextareaOptions {
   /**
@@ -17,6 +18,7 @@ interface TextareaOptions {
    * errorBorderColor = "red.500"
    */
   errorBorderColor?: string
+  hasCharacterCounter?: boolean
 }
 
 type Omitted = "disabled" | "required" | "readOnly"
@@ -38,18 +40,32 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
   const { className, rows, ...rest } = omitThemingProps(props)
 
   const textareaProps = useFormControl<HTMLTextAreaElement>(rest)
-
+  console.log("textareaProps", textareaProps)
   //@ts-ignore
   const textareaStyles = rows ? omit(styles, omitted) : styles
 
   return (
-    <chakra.textarea
-      ref={ref}
-      rows={rows}
-      {...textareaProps}
-      className={cx("chakra-textarea", className)}
-      __css={textareaStyles}
-    />
+    <chakra.div position={"relative"}>
+      <chakra.textarea
+        ref={ref}
+        rows={rows}
+        {...textareaProps}
+        className={cx("chakra-textarea", className)}
+        __css={textareaStyles}
+      />
+      {props.hasCharacterCounter && (
+        <Text
+          color="gray.500"
+          fontWeight={400}
+          position="absolute"
+          bottom={3}
+          right={3}
+        >
+          {props.value?.toString().length}
+          {props.maxLength && `/${props.maxLength}`}
+        </Text>
+      )}
+    </chakra.div>
   )
 })
 
