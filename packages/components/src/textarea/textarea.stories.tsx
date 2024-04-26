@@ -89,7 +89,7 @@ export const ControlledWithCharacterCounter = () => {
         value={value}
         placeholder="Enter value"
         onChange={onChange}
-        hasCharacterCounter
+        showCharacterCounter
       />
     </>
   )
@@ -110,7 +110,7 @@ export const ControlledWithCharacterCounterAndMaxLength = () => {
         value={value}
         placeholder="Enter value"
         onChange={onChange}
-        hasCharacterCounter
+        showCharacterCounter
         maxLength={40}
       />
     </>

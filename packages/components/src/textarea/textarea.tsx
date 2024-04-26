@@ -18,7 +18,10 @@ interface TextareaOptions {
    * errorBorderColor = "red.500"
    */
   errorBorderColor?: string
-  hasCharacterCounter?: boolean
+  /**
+   * Whether to show the character counter or not
+   */
+  showCharacterCounter?: boolean
 }
 
 type Omitted = "disabled" | "required" | "readOnly"
@@ -52,7 +55,7 @@ export const Textarea = forwardRef<TextareaProps, "textarea">((props, ref) => {
         className={cx("chakra-textarea", className)}
         __css={textareaStyles}
       />
-      {props.hasCharacterCounter && (
+      {props.showCharacterCounter && (
         <Text
           color="gray.500"
           fontWeight={400}
