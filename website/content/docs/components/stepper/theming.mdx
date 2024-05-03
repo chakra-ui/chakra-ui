@@ -84,9 +84,42 @@ const theme = extendTheme({
 })
 ```
 
-The styling for a stepper component can be overriden at any level, whether it's
-`variant` or `size`, it's completely up to you.
+### Changing the styles for a step indicator status
 
-> To learn more about styling multipart components, visit the
-> [Component Style](/docs/styled-system/component-style#styling-multipart-components)
-> page.
+In addition to the indicator status, you can also change the styles by modifying the data attributes:
+
+```jsx live=false
+// themes/stepper.ts
+
+const baseStyle = {
+  indicator: {
+      "&[data-status=complete]": {
+        bgColor: "red",
+        borderColor: "red",
+        borderWidth: "3px",
+      },
+
+      "&[data-status=active]": {
+        bgColor: "yellow",
+        borderColor: "yellow",
+        borderWidth: "3px",
+      },
+
+      "&[data-status=incomplete]": {
+        bgColor: "blue",
+        borderColor: "blue",
+        borderWidth: "3px",
+      },
+  },
+}
+
+const stepperTheme = {
+  baseStyle,
+}
+
+const theme = extendTheme({
+  components: {
+    Stepper: stepperTheme,
+  },
+})
+```
