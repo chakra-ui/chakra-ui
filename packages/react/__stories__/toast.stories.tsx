@@ -51,7 +51,7 @@ export default {
   ],
 }
 
-export function ToastExample() {
+export const Basic = () => {
   const id = "login-error-toast"
   return (
     <HStack>

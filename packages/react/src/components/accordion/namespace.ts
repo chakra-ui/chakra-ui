@@ -1,14 +1,23 @@
-export { AccordionRoot as Root } from "./accordion-root"
-export type { AccordionRootProps as RootProps } from "./accordion-root"
+export {
+  AccordionItem as Item,
+  AccordionItemContent as ItemContent,
+  AccordionItemIndicator as ItemIndicator,
+  AccordionItemTrigger as ItemTrigger,
+  AccordionRoot as Root,
+} from "./accordion"
 
-export { AccordionTrigger as Trigger } from "./accordion-trigger"
-export type { AccordionTrigger as TriggerProps } from "./accordion-trigger"
+export type {
+  AccordionItemContentProps as ItemContentProps,
+  AccordionItemIndicatorProps as ItemIndicatorProps,
+  AccordionItemProps as ItemProps,
+  AccordionItemTriggerProps as ItemTriggerProps,
+  AccordionRootProps as RootProps,
+} from "./accordion"
 
-export { AccordionIndicator as Indicator } from "./accordion-indicator"
-export type { AccordionIndicatorProps as IndicatorProps } from "./accordion-indicator"
+export { AccordionContext as Context } from "@ark-ui/react/accordion"
 
-export { AccordionItem as Item } from "./accordion-item"
-export type { AccordionItemProps as ItemProps } from "./accordion-item"
-
-export { AccordionContent as Content } from "./accordion-content"
-export type { AccordionContentProps as ContentProps } from "./accordion-content"
+export type {
+  AccordionContextProps as ContextProps,
+  AccordionFocusChangeDetails as FocusChangeDetails,
+  AccordionValueChangeDetails as ValueChangeDetails,
+} from "@ark-ui/react/accordion"

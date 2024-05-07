@@ -14,14 +14,12 @@
     "noEmit": true,
 
     // JSX
-    "jsx": "preserve",
-    "jsxImportSource": "react",
+    "jsx": "react-jsx",
 
     // Best practices
     "strict": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "types": ["node", "vitest/globals"]

@@ -1,4 +1,5 @@
-import { Accordion, Box, For, Span, useSlotRecipe } from "../src"
+import { HiChevronDown } from "react-icons/hi"
+import { Accordion, Box, For, Icon, Span, useSlotRecipe } from "../src"
 import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
@@ -19,18 +20,26 @@ const AccordionDemo = (props: Accordion.RootProps) => {
       {accordionData.map((item, index) => (
         <Accordion.Item key={index} value={item.title}>
           <h2>
-            <Accordion.Trigger>
+            <Accordion.ItemTrigger>
               <Box flex="1" textAlign="start">
                 {item.title}
               </Box>
-              <Accordion.Indicator />
-            </Accordion.Trigger>
+              <Accordion.ItemIndicator>
+                <Icon as={HiChevronDown} />
+              </Accordion.ItemIndicator>
+            </Accordion.ItemTrigger>
           </h2>
-          <Accordion.Content>{item.text}</Accordion.Content>
+          <Accordion.ItemContent>
+            <Box pb="calc(var(--accordion-padding-y) * 2)">{item.text}</Box>
+          </Accordion.ItemContent>
         </Accordion.Item>
       ))}
     </Accordion.Root>
   )
+}
+
+export const Basic = () => {
+  return <AccordionDemo collapsible />
 }
 
 export const Variants = () => {
