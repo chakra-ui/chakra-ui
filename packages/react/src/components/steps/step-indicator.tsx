@@ -1,7 +1,7 @@
 "use client"
 
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useStepContext, useStepperStyles } from "./step-context"
 import { StepIcon } from "./step-icon"
 import { StepNumber } from "./step-number"
@@ -16,7 +16,7 @@ export function StepIndicator(props: StepIndicatorProps) {
     <chakra.div
       {...api.dataAttrs}
       {...props}
-      css={[styles.indicator, props.css]}
+      css={[styles["indicator"], props.css]}
       className={cx("chakra-step__indicator", props.className)}
     >
       {props.children ?? (

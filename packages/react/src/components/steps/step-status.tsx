@@ -1,7 +1,11 @@
 "use client"
 
-import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
-import { StepContext, StepItemStatus, useStepContext } from "./step-context"
+import { type MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
+import {
+  type StepContext,
+  type StepItemStatus,
+  useStepContext,
+} from "./step-context"
 
 export interface StepStatusProps
   extends Partial<Record<StepItemStatus, MaybeRenderProp<StepContext>>> {}

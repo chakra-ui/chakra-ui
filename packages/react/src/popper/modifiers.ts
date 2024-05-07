@@ -1,4 +1,4 @@
-import { Modifier, Placement, State } from "@popperjs/core"
+import type { Modifier, Placement, State } from "@popperjs/core"
 import { cssVars, getBoxShadow, toTransformOrigin } from "./utils"
 
 /* -------------------------------------------------------------------------------------------------

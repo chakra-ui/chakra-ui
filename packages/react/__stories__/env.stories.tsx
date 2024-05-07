@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from "react"
 import { createPortal } from "react-dom"
-import Frame, { FrameContextProps, useFrame } from "react-frame-component"
+import Frame, { type FrameContextProps, useFrame } from "react-frame-component"
 import { Environment, useEnvironmentContext } from "../src"
 
 export default {
@@ -9,7 +9,7 @@ export default {
 
 const Portal = (props: React.PropsWithChildren<{}>) => {
   useDefer(true)
-  const getRootNode = useEnvironmentContext()
+  const { getRootNode } = useEnvironmentContext()
   const doc: any = getRootNode?.() ?? globalThis.document
   return createPortal(props.children, doc.body)
 }
@@ -24,7 +24,7 @@ function useDefer(defer?: boolean) {
 }
 
 function useWindow() {
-  const getRootNode = useEnvironmentContext()
+  const { getRootNode } = useEnvironmentContext()
   const doc: any = getRootNode?.() ?? globalThis.document
   const win = doc.defaultView ?? globalThis.window
 

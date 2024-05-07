@@ -4,9 +4,9 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -34,7 +34,7 @@ export const StatRoot = forwardRef<HTMLDivElement, StatRootProps>(
           ref={ref}
           {...localProps}
           className={cx("chakra-stat", localProps.className)}
-          css={[styles.root, localProps.css]}
+          css={[styles["root"], localProps.css]}
         >
           <dl>{localProps.children}</dl>
         </chakra.div>

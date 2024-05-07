@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import {
   useAccordionItemContext,
   useAccordionStyles,
@@ -28,7 +28,7 @@ export const AccordionTrigger = forwardRef<
     <chakra.button
       {...api.getTriggerProps(props, ref)}
       className={cx("chakra-accordion__trigger", props.className)}
-      css={[styles.trigger, props.css]}
+      css={[styles["trigger"], props.css]}
     />
   )
 })

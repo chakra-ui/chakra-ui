@@ -1,12 +1,12 @@
-import { Dict, DistributiveOmit } from "@chakra-ui/utils"
-import { PropertiesFallback } from "csstype"
-import {
+import type { Dict, DistributiveOmit } from "@chakra-ui/utils"
+import type { PropertiesFallback } from "csstype"
+import type {
   ConditionalValue,
   CssKeyframes,
   Nested,
   SystemStyleObject,
 } from "./css.types"
-import {
+import type {
   RecipeCreatorFn,
   RecipeDefinition,
   SlotRecipeConfig,

@@ -1,6 +1,6 @@
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
 import "@testing-library/jest-dom/vitest"
-import { RenderOptions, render as rtlRender } from "@testing-library/react"
+import { type RenderOptions, render as rtlRender } from "@testing-library/react"
 import user from "@testing-library/user-event"
 
 const Provider = (props: any) => (

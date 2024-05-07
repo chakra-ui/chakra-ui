@@ -1,6 +1,6 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseMenuItemProps } from "./use-menu"
-import { UseMenuOptionGroupProps } from "./use-option-group-state"
+import { type UseMenuItemProps } from "./use-menu"
+import { type UseMenuOptionGroupProps } from "./use-option-group-state"
 
 const menuItemProps = createProps<UseMenuItemProps>()([
   "closeOnSelect",

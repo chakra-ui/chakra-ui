@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest"
-import { RenderOptions } from "@testing-library/react"
+import type { RenderOptions } from "@testing-library/react"
 import { isValidElement } from "react"
 import { render } from "./render"
 

@@ -4,9 +4,9 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -37,7 +37,7 @@ export const AlertRoot = forwardRef<HTMLDivElement, AlertRootProps>(
             ref={ref}
             {...localProps}
             className={cx("chakra-alert", props.className)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
           />
         </AlertStylesProvider>
       </AlertProvider>

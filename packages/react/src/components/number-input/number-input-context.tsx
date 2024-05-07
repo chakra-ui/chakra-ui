@@ -1,8 +1,8 @@
 "use client"
 
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseNumberInputReturn } from "./use-number-input"
+import { type SystemStyleObject } from "../../styled-system"
+import { type UseNumberInputReturn } from "./use-number-input"
 
 export const [NumberInputStylesProvider, useNumberInputStyles] = createContext<
   Record<string, SystemStyleObject>

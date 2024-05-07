@@ -1,8 +1,8 @@
 "use client"
 
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseEditableReturn } from "./use-editable"
+import type { SystemStyleObject } from "../../styled-system"
+import type { UseEditableReturn } from "./use-editable"
 
 export const [EditableStylesProvider, useEditableStyles] = createContext<
   Record<string, SystemStyleObject>

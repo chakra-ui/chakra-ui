@@ -2,8 +2,8 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
-import { Collapse, CollapseProps } from "../collapse"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
+import { Collapse, CollapseProps } from "../collapsible"
 import {
   useAccordionContext,
   useAccordionItemContext,
@@ -38,7 +38,7 @@ export const AccordionContent = forwardRef<
   const child = (
     <chakra.div
       {...contentProps}
-      css={styles.content}
+      css={styles["content"]}
       className={cx("chakra-accordion__panel", className)}
     />
   )

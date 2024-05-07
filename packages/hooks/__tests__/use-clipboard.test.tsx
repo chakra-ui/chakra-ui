@@ -1,6 +1,6 @@
 import { hooks } from "@chakra-ui/test-utils"
 import copy from "copy-to-clipboard"
-import { Mock } from "vitest"
+import type { Mock } from "vitest"
 import { useClipboard } from "../src/use-clipboard"
 
 vi.mock("copy-to-clipboard")

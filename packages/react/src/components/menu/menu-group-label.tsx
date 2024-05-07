@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuStyles } from "./menu-context"
 
 export interface MenuGroupLabelProps extends HTMLChakraProps<"div"> {}
@@ -15,7 +15,7 @@ export const MenuGroupLabel = forwardRef<HTMLDivElement, MenuGroupLabelProps>(
         ref={ref}
         {...props}
         className={cx("chakra-menu__group-label", props.className)}
-        css={[styles.groupTitle, props.css]}
+        css={[styles["groupTitle"], props.css]}
       />
     )
   },

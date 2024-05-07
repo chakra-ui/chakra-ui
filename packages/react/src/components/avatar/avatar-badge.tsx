@@ -3,8 +3,8 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  HTMLChakraProps,
-  SystemStyleObject,
+  type HTMLChakraProps,
+  type SystemStyleObject,
   chakra,
   defineStyle,
 } from "../../styled-system"
@@ -56,7 +56,7 @@ export const AvatarBadge = forwardRef<HTMLDivElement, AvatarBadgeProps>(
       alignItems: "center",
       justifyContent: "center",
       ...placementStyles,
-      ...styles.badge,
+      ...styles["badge"],
     })
 
     return (

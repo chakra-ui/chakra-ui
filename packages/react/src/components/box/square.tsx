@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { Box, BoxProps } from "./box"
+import { Box, type BoxProps } from "./box"
 
 export interface SquareProps extends BoxProps {
   /**

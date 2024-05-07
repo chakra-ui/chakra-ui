@@ -1,4 +1,4 @@
-import { MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
+import { type MaybeRenderProp, runIfFn } from "@chakra-ui/utils"
 
 export interface ShowProps<T> {
   when: T | null | undefined

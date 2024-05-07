@@ -1,4 +1,4 @@
-import { ColorPalette } from "../../src/styled-system/generated/token.gen"
+import type { ColorPalette } from "../../src/styled-system/generated/token.gen"
 
 export const colorPalettes: ColorPalette[] = [
   "gray",

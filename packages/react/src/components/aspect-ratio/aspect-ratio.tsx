@@ -2,7 +2,11 @@
 
 import { cx, mapResponsive } from "@chakra-ui/utils"
 import { Children, forwardRef } from "react"
-import { ConditionalValue, HTMLChakraProps, chakra } from "../../styled-system"
+import {
+  type ConditionalValue,
+  type HTMLChakraProps,
+  chakra,
+} from "../../styled-system"
 
 export interface AspectRatioProps
   extends Omit<HTMLChakraProps<"div">, "aspectRatio"> {

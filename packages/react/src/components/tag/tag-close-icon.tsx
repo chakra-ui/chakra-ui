@@ -1,6 +1,6 @@
 "use client"
 
-import { Icon, IconProps } from "../icon"
+import { Icon, type IconProps } from "../icon"
 
 export const TagCloseIcon: React.FC<IconProps> = (props) => (
   <Icon verticalAlign="inherit" viewBox="0 0 512 512" {...props}>

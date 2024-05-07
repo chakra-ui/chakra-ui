@@ -1,5 +1,5 @@
-import { Dict } from "@chakra-ui/utils"
-import { Condition, ConditionConfig } from "./types"
+import type { Dict } from "@chakra-ui/utils"
+import type { Condition, ConditionConfig } from "./types"
 
 const mapEntries = <T extends Dict, R extends Dict>(
   obj: T,

@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbCurrentLinkProps extends HTMLChakraProps<"span"> {}
@@ -19,7 +19,7 @@ export const BreadcrumbCurrentLink = forwardRef<
       aria-current="page"
       aria-disabled="true"
       {...props}
-      css={[styles.currentLink, props.css]}
+      css={[styles["currentLink"], props.css]}
     />
   )
 })

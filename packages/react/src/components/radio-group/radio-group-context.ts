@@ -1,9 +1,9 @@
 "use client"
 
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseRadioReturn } from "./use-radio"
-import { UseRadioGroupReturn } from "./use-radio-group"
+import type { SystemStyleObject } from "../../styled-system"
+import type { UseRadioReturn } from "./use-radio"
+import type { UseRadioGroupReturn } from "./use-radio-group"
 
 export const [RadioGroupContextProvider, useRadioGroupContext] =
   createContext<UseRadioGroupReturn>({

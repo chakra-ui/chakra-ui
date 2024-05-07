@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuContext, useMenuStyles } from "./menu-context"
 
 export interface MenuPositionerProps extends HTMLChakraProps<"div"> {}

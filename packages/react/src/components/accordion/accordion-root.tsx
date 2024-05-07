@@ -5,9 +5,9 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -16,7 +16,7 @@ import {
   AccordionStylesProvider,
 } from "./accordion-context"
 import { splitAccordionProps } from "./accordion-props"
-import { UseAccordionProps, useAccordion } from "./use-accordion"
+import { type UseAccordionProps, useAccordion } from "./use-accordion"
 
 export interface AccordionRootProps
   extends UseAccordionProps,
@@ -59,7 +59,7 @@ export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(
             ref={useMergeRefs(ref, context.rootRef)}
             {...htmlProps}
             className={cx("chakra-accordion", props.className)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
           />
         </AccordionStylesProvider>
       </AccordionContextProvider>

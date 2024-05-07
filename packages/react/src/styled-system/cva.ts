@@ -1,5 +1,5 @@
 import {
-  Dict,
+  type Dict,
   compact,
   mergeWith as mergeProps,
   mergeWith,
@@ -8,8 +8,8 @@ import {
   uniq,
 } from "@chakra-ui/utils"
 import { createCssFn } from "./css"
-import { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
-import { Condition, CssFn } from "./types"
+import type { RecipeCreatorFn, RecipeDefinition } from "./recipe.types"
+import type { Condition, CssFn } from "./types"
 
 const defaults = (conf: any): Required<RecipeDefinition> => ({
   base: {},

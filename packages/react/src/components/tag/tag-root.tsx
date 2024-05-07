@@ -4,9 +4,9 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -40,7 +40,7 @@ export const TagRoot = forwardRef<HTMLSpanElement, TagRootProps>(
           role={interactive ? "button" : undefined}
           ref={ref}
           {...localProps}
-          css={[styles.root, localProps.css]}
+          css={[styles["root"], localProps.css]}
           className={cx("chakra-tag", localProps.className)}
         />
       </TagStylesProvider>

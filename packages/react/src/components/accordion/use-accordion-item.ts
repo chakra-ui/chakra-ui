@@ -4,7 +4,7 @@ import { mergeRefs } from "@chakra-ui/hooks"
 import { callAllHandlers, dataAttr } from "@chakra-ui/utils"
 import { nextById, prevById, queryAll } from "@zag-js/dom-utils"
 import { useCallback, useId, useRef } from "react"
-import { PropGetterFn } from "../../styled-system/factory.types"
+import type { PropGetterFn } from "../../styled-system/factory.types"
 import { useAccordionContext } from "./accordion-context"
 import {
   focusableNotDisabledWarning,

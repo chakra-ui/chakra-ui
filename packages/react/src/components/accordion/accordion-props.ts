@@ -1,6 +1,6 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseAccordionProps } from "./use-accordion"
-import { UseAccordionItemProps } from "./use-accordion-item"
+import type { UseAccordionProps } from "./use-accordion"
+import type { UseAccordionItemProps } from "./use-accordion-item"
 
 const accordionItemProps = createProps<UseAccordionItemProps>()([
   "disabled",

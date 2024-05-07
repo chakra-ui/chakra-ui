@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuStyles } from "./menu-context"
 
 export interface MenuCommandProps extends HTMLChakraProps<"span"> {}
@@ -14,7 +14,7 @@ export const MenuCommand = forwardRef<HTMLSpanElement, MenuCommandProps>(
       <chakra.span
         ref={ref}
         {...props}
-        css={[styles.command, props.css]}
+        css={[styles["command"], props.css]}
         className={cx("chakra-menu__command", props.className)}
       />
     )

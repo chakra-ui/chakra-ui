@@ -5,15 +5,15 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
 import { splitTabsProps } from "./tab-props"
 import { TabsProvider, TabsStylesProvider } from "./tabs-context"
-import { UseTabsProps, useTabs } from "./use-tabs"
+import { type UseTabsProps, useTabs } from "./use-tabs"
 
 export interface TabsRootProps
   extends HTMLChakraProps<"div", UseTabsProps>,
@@ -44,7 +44,7 @@ export const TabsRoot = forwardRef<HTMLDivElement, TabsRootProps>(
             ref={useMergeRefs(ref, api.rootRef)}
             {...elementProps}
             className={cx("chakra-tabs", props.className)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
           />
         </TabsStylesProvider>
       </TabsProvider>

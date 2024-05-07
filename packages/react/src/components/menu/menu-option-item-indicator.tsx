@@ -2,7 +2,7 @@
 
 import { dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuStyles, useOptionItemStateContext } from "./menu-context"
 
 const CheckIcon = (props: HTMLChakraProps<"svg">) => (
@@ -29,7 +29,7 @@ export const MenuOptionItemIndicator = forwardRef<
       aria-hidden
       data-type={item.type}
       data-checked={dataAttr(item.checked)}
-      css={[styles.indicator, props.css]}
+      css={[styles["indicator"], props.css]}
     >
       {props.children ?? <CheckIcon />}
     </chakra.div>

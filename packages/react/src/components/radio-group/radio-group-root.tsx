@@ -4,9 +4,9 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -15,7 +15,7 @@ import {
   RadioGroupStylesProvider,
 } from "./radio-group-context"
 import { splitRadioGroupProps } from "./radio-group-props"
-import { UseRadioGroupProps, useRadioGroup } from "./use-radio-group"
+import { type UseRadioGroupProps, useRadioGroup } from "./use-radio-group"
 
 export interface RadioGroupRootProps
   extends HTMLChakraProps<"div", UseRadioGroupProps>,
@@ -42,7 +42,7 @@ export const RadioGroupRoot = forwardRef<HTMLDivElement, RadioGroupRootProps>(
         <RadioGroupContextProvider value={api}>
           <chakra.div
             {...api.getRootProps(localProps, ref)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
             className={cx("chakra-radio-group", localProps.className)}
           />
         </RadioGroupContextProvider>

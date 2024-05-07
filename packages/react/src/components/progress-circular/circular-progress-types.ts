@@ -1,4 +1,4 @@
-import { ProgressPropsReturn } from "../progress/progress-utils"
+import type { ProgressPropsReturn } from "../progress/progress-utils"
 
 export interface CircularProgressOptions {
   /**

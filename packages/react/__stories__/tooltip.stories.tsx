@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react"
 import { FaBell } from "react-icons/fa"
 import { Box, Button, Portal, Tooltip } from "../src"
 

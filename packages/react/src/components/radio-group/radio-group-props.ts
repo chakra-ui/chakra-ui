@@ -1,6 +1,6 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseRadioProps } from "./use-radio"
-import { UseRadioGroupProps } from "./use-radio-group"
+import type { UseRadioProps } from "./use-radio"
+import type { UseRadioGroupProps } from "./use-radio-group"
 
 const radioGroupProps = createProps<UseRadioGroupProps>()([
   "defaultValue",

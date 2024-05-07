@@ -1,6 +1,6 @@
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseAvatarReturn } from "./use-avatar"
+import type { SystemStyleObject } from "../../styled-system"
+import type { UseAvatarReturn } from "./use-avatar"
 
 export const [AvatarStylesProvider, useAvatarStyles] = createContext<
   Record<string, SystemStyleObject>

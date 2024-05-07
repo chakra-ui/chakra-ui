@@ -1,14 +1,17 @@
 "use client"
 
-import { MaybeRenderProp, cx, runIfFn } from "@chakra-ui/utils"
+import { type MaybeRenderProp, cx, runIfFn } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import {
   AccordionItemContextProvider,
   useAccordionStyles,
 } from "./accordion-context"
 import { splitAccordionItemProps } from "./accordion-props"
-import { UseAccordionItemProps, useAccordionItem } from "./use-accordion-item"
+import {
+  type UseAccordionItemProps,
+  useAccordionItem,
+} from "./use-accordion-item"
 
 interface AccordionItemState {
   open: boolean
@@ -48,7 +51,7 @@ export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
         <chakra.div
           {...itemApi.getItemProps(localProps, ref)}
           className={cx("chakra-accordion__item", props.className)}
-          css={[styles.item, localProps.css]}
+          css={[styles["item"], localProps.css]}
         >
           {runIfFn(children, itemState)}
         </chakra.div>

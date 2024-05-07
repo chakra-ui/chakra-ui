@@ -4,7 +4,7 @@ import {
   isMultiTouchEvent,
 } from "@chakra-ui/utils"
 import sync, { cancelSync, getFrameData } from "framesync"
-import {
+import type {
   AnyPointerEvent,
   PanEventHandlers,
   PanEventHistory,

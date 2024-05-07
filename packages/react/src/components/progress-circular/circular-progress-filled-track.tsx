@@ -3,7 +3,7 @@
 import { dataAttr } from "@chakra-ui/utils"
 import { keyframes } from "@emotion/react"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useCircularProgressContext } from "./circular-progress-context"
 
 const spinAnim = keyframes({

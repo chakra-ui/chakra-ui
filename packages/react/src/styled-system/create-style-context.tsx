@@ -2,11 +2,11 @@
 
 import { forwardRef } from "react"
 import { createContext } from "../create-context"
-import { SystemStyleObject } from "./css.types"
+import type { SystemStyleObject } from "./css.types"
 import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
-import { ConfigRecipeSlots } from "./generated/recipes.gen"
-import { SlotRecipeKey, useSlotRecipe } from "./use-slot-recipe"
+import type { ConfigRecipeSlots } from "./generated/recipes.gen"
+import { type SlotRecipeKey, useSlotRecipe } from "./use-slot-recipe"
 
 export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   const [RecipeStylesProvider, useStyles] = createContext<

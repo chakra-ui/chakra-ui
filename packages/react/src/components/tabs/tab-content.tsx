@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useRenderStrategy } from "../render-strategy"
 import { useTabsContext, useTabsStyles } from "./tabs-context"
 import { makeTabId, makeTabPanelId } from "./use-tabs"
@@ -41,7 +41,7 @@ export const TabContent = forwardRef<HTMLDivElement, TabContentProps>(
         aria-labelledby={triggerId}
         hidden={render.hidden}
         className={cx("chakra-tabs__content", props.className)}
-        css={[styles.content, props.css]}
+        css={[styles["content"], props.css]}
       >
         {render.unmounted ? null : props.children}
       </chakra.div>

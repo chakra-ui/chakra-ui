@@ -1,9 +1,9 @@
 "use client"
 
 import { useMemo } from "react"
-import { ConfigRecipes } from "./generated/recipes.gen"
+import type { ConfigRecipes } from "./generated/recipes.gen"
 import { useChakraContext } from "./provider"
-import { RecipeDefinition, SystemRecipeFn } from "./recipe.types"
+import type { RecipeDefinition, SystemRecipeFn } from "./recipe.types"
 
 export type RecipeKey = keyof ConfigRecipes | (string & {})
 

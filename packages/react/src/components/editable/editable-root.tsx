@@ -1,20 +1,20 @@
 "use client"
 
-import { MaybeRenderProp, cx, pick, runIfFn } from "@chakra-ui/utils"
+import { type MaybeRenderProp, cx, pick, runIfFn } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
 import { EditableProvider, EditableStylesProvider } from "./editable-context"
 import { splitEditableProps } from "./editable-props"
 import {
-  UseEditableProps,
-  UseEditableReturn,
+  type UseEditableProps,
+  type UseEditableReturn,
   useEditable,
 } from "./use-editable"
 
@@ -69,7 +69,7 @@ export const EditableRoot = forwardRef<HTMLDivElement, EditableRootProps>(
           <chakra.div
             ref={ref}
             {...rootProps}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
             className={cx("chakra-editable", props.className)}
           >
             {children}

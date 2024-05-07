@@ -5,7 +5,7 @@ import { MenuGroupContextProvider } from "./menu-context"
 import { MenuGroup, type MenuGroupProps } from "./menu-group"
 import { splitMenuOptionGroupProps } from "./menu-props"
 import {
-  UseMenuOptionGroupProps,
+  type UseMenuOptionGroupProps,
   useOptionGroupState,
 } from "./use-option-group-state"
 

@@ -1,5 +1,5 @@
-import { Dict, isObject, walkObject } from "@chakra-ui/utils"
-import { SystemContext } from "./types"
+import { type Dict, isObject, walkObject } from "@chakra-ui/utils"
+import type { SystemContext } from "./types"
 
 export function createSerializeFn(
   options: Pick<SystemContext, "conditions" | "isValidProperty">,

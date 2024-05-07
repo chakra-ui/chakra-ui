@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { HighlightOptions, highlightWords } from "./highlight-words"
+import { type HighlightOptions, highlightWords } from "./highlight-words"
 
 export interface UseHighlightProps extends HighlightOptions {}
 

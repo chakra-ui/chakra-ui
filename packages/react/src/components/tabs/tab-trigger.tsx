@@ -2,11 +2,11 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { mergeProps } from "../../styled-system/merge-props"
 import { splitTabProps } from "./tab-props"
 import { useTabsStyles } from "./tabs-context"
-import { UseTabProps, useTab } from "./use-tab"
+import { type UseTabProps, useTab } from "./use-tab"
 
 export interface TabTriggerProps
   extends HTMLChakraProps<"button", UseTabProps> {}
@@ -29,7 +29,7 @@ export const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
         ref={ref}
         {...combinedProps}
         className={cx("chakra-tabs__tab", props.className)}
-        css={[styles.trigger, props.css]}
+        css={[styles["trigger"], props.css]}
       />
     )
   },

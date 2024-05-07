@@ -3,9 +3,9 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  HTMLChakraProps,
+  type HTMLChakraProps,
   RecipePropsProvider,
-  SlotRecipeProps,
+  type SlotRecipeProps,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -29,7 +29,7 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
           ref={ref}
           role="group"
           {...localProps}
-          css={[styles.group, localProps.css]}
+          css={[styles["group"], localProps.css]}
           className={cx("chakra-avatar__group", props.className)}
         />
       </RecipePropsProvider>

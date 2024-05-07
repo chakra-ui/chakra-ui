@@ -1,6 +1,9 @@
 export { FileUploadDropzone as Dropzone } from "./file-upload"
 export type { FileUploadDropzoneProps as DropzoneProps } from "./file-upload"
 
+export { FileUploadContext as Context } from "@ark-ui/react/file-upload"
+export type { FileUploadContextProps as ContextProps } from "@ark-ui/react/file-upload"
+
 export { FileUploadItem as Item } from "./file-upload"
 export type { FileUploadItemProps as ItemProps } from "./file-upload"
 

@@ -2,20 +2,20 @@
 
 import {
   Slider as ArkSlider,
-  SliderControlProps as ArkSliderControlProps,
-  SliderLabelProps as ArkSliderLabelProps,
-  SliderMarkerGroupProps as ArkSliderMarkerGroupProps,
-  SliderMarkerProps as ArkSliderMarkerProps,
-  SliderRangeProps as ArkSliderRangeProps,
-  SliderRootProps as ArkSliderRootProps,
-  SliderThumbProps as ArkSliderThumbProps,
-  SliderTrackProps as ArkSliderTrackProps,
-  SliderValueTextProps as ArkSliderValueTextProps,
+  type SliderControlProps as ArkSliderControlProps,
+  type SliderLabelProps as ArkSliderLabelProps,
+  type SliderMarkerGroupProps as ArkSliderMarkerGroupProps,
+  type SliderMarkerProps as ArkSliderMarkerProps,
+  type SliderRangeProps as ArkSliderRangeProps,
+  type SliderRootProps as ArkSliderRootProps,
+  type SliderThumbProps as ArkSliderThumbProps,
+  type SliderTrackProps as ArkSliderTrackProps,
+  type SliderValueTextProps as ArkSliderValueTextProps,
 } from "@ark-ui/react/slider"
 import {
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   createStyleContext,
 } from "../../styled-system"
 

@@ -1,5 +1,5 @@
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
+import { type SystemStyleObject } from "../../styled-system"
 import { CheckIcon, InfoIcon, WarningIcon } from "./alert-icons"
 
 export const [AlertProvider, useAlertContext] = createContext<AlertContext>({

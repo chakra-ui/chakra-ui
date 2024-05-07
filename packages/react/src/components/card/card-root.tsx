@@ -4,10 +4,10 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  SystemStyleObject,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type SystemStyleObject,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -56,7 +56,7 @@ export const CardRoot = forwardRef<HTMLDivElement, CardRootProps>(
           flexDirection={direction}
           justifyContent={justify}
           alignItems={align}
-          css={[styles.root, props.css]}
+          css={[styles["root"], props.css]}
         >
           {children}
         </chakra.div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { Square, SquareProps } from "./square"
+import { Square, type SquareProps } from "./square"
 
 export interface CircleProps extends SquareProps {}
 

@@ -1,4 +1,4 @@
-import { BreakpointEntry, SystemContext } from "./types"
+import type { BreakpointEntry, SystemContext } from "./types"
 import { toPx, toRem } from "./unit-conversion"
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)

@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react"
 import { Box, For, Span, useSlotRecipe } from "../src"
 import { Slider } from "../src/components/slider"
 import { colorPalettes } from "./shared/color-palettes"

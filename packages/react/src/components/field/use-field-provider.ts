@@ -1,9 +1,9 @@
 "use client"
 
 import { mergeRefs } from "@chakra-ui/hooks"
-import { PropGetter, dataAttr } from "@chakra-ui/utils"
+import { type PropGetter, dataAttr } from "@chakra-ui/utils"
 import { useCallback, useId, useState } from "react"
-import { FieldContext } from "./types"
+import { type FieldContext } from "./types"
 
 export function useFieldProvider(props: FieldContext) {
   const {

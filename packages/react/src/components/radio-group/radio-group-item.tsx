@@ -2,14 +2,18 @@
 
 import { callAll, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, SlotRecipeProps, chakra } from "../../styled-system"
+import {
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  chakra,
+} from "../../styled-system"
 import {
   RadioItemContextProvider,
   useRadioGroupContext,
   useRadioGroupStyles,
 } from "./radio-group-context"
 import { splitRadioItemProps } from "./radio-group-props"
-import { UseRadioProps, useRadio } from "./use-radio"
+import { type UseRadioProps, useRadio } from "./use-radio"
 
 export interface RadioGroupItemProps
   extends HTMLChakraProps<"label", UseRadioProps>,
@@ -58,7 +62,7 @@ export const RadioGroupItem = forwardRef<HTMLInputElement, RadioGroupItemProps>(
         <chakra.label
           {...rootProps}
           className={cx("chakra-radio", rootProps.className)}
-          css={[styles.item, props.css]}
+          css={[styles["item"], props.css]}
         >
           <input
             className="chakra-radio__input"

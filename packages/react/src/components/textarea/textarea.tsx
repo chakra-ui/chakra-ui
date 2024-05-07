@@ -4,13 +4,13 @@ import { cx, omit } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
-  HTMLChakraProps,
-  RecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
-import { FieldOptions, splitFieldProps, useField } from "../field"
+import { type FieldOptions, splitFieldProps, useField } from "../field"
 
 const omitted = ["h", "minH", "height", "minHeight"] as const
 

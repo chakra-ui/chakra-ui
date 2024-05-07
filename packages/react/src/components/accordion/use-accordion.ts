@@ -3,7 +3,7 @@
 import { useControllableState } from "@chakra-ui/hooks"
 import { warn } from "@chakra-ui/utils"
 import { useId, useRef, useState } from "react"
-import { UseAccordionItemProps } from "./use-accordion-item"
+import { type UseAccordionItemProps } from "./use-accordion-item"
 
 /* -------------------------------------------------------------------------------------------------
  * useAccordion - The root react hook that manages all accordion items

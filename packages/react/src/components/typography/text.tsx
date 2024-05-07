@@ -3,9 +3,9 @@
 import { compact, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  HTMLChakraProps,
-  RecipeProps,
-  SystemStyleObject,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type SystemStyleObject,
   chakra,
   useRecipe,
 } from "../../styled-system"

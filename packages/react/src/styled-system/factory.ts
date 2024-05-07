@@ -10,7 +10,7 @@ import {
   memo,
   useMemo,
 } from "react"
-import { StyledFactoryFn } from "./factory.types"
+import type { StyledFactoryFn } from "./factory.types"
 import { mergeProps } from "./merge-props"
 import { mergeRefs } from "./merge-refs"
 import { useChakraContext } from "./provider"

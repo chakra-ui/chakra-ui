@@ -1,11 +1,12 @@
 "use client"
 
 import { forwardRef } from "react"
-import type { HTMLChakraProps, UnstyledProp } from "../../styled-system"
 import {
   EMPTY_SLOT_STYLES,
-  SlotRecipeProps,
-  SystemStyleObject,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type SystemStyleObject,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -50,7 +51,7 @@ export const ListRoot = forwardRef<HTMLUListElement, ListRootProps>(
           role="list"
           listStyleType={styleType}
           listStylePosition={stylePosition}
-          css={[styles.root, props.css]}
+          css={[styles["root"], props.css]}
         />
       </ListStylesProvider>
     )

@@ -1,8 +1,8 @@
 "use client"
 
 import {
-  InputDOMAttributes,
-  PropGetter,
+  type InputDOMAttributes,
+  type PropGetter,
   ariaAttr,
   callAllHandlers,
   dataAttr,

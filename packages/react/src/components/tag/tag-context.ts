@@ -1,5 +1,5 @@
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
+import type { SystemStyleObject } from "../../styled-system"
 
 export const [TagStylesProvider, useTagStyles] = createContext<
   Record<string, SystemStyleObject>

@@ -1,6 +1,6 @@
 "use client"
 
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 
 function CheckIcon(props: HTMLChakraProps<"svg">) {
@@ -59,7 +59,7 @@ export function CheckboxIndicator(props: CheckboxIndicatorProps) {
       <CheckIcon
         asChild={!!checked}
         {...restProps}
-        css={[styles.indicator, restProps.css]}
+        css={[styles["indicator"], restProps.css]}
       >
         {checked}
       </CheckIcon>
@@ -71,7 +71,7 @@ export function CheckboxIndicator(props: CheckboxIndicatorProps) {
       <IndeterminateIcon
         asChild={!!indeterminate}
         {...restProps}
-        css={[styles.indicator, restProps.css]}
+        css={[styles["indicator"], restProps.css]}
       >
         {indeterminate}
       </IndeterminateIcon>

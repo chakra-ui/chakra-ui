@@ -4,15 +4,15 @@ import { cx, dataAttr } from "@chakra-ui/utils"
 import { Children, forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
 import {
   StepContextProvider,
-  StepItemStatus,
+  type StepItemStatus,
   StepperStylesProvider,
 } from "./step-context"
 
@@ -48,7 +48,7 @@ export const StepsRoot = forwardRef<HTMLDivElement, StepsRootProps>(
         <chakra.div
           ref={ref}
           {...restProps}
-          css={[styles.root, props.css]}
+          css={[styles["root"], props.css]}
           className={cx("chakra-stepper", props.className)}
         >
           {items.map((item, index) => {

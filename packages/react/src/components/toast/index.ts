@@ -1,18 +1,16 @@
-export { createToaster } from "./create-toaster"
-export type { ToastPlacement } from "./toast.types"
+export { ToastRoot as Root } from "./toast"
+export type { ToastRootProps as RootProps } from "./toast"
 
-export { ToastTransition } from "./toast-transition"
+export { ToastCloseTrigger as CloseTrigger } from "./toast"
+export type { ToastCloseTriggerProps as CloseTriggerProps } from "./toast"
 
-export { ToastRoot } from "./toast-root"
-export type { ToastRootProps } from "./toast-root"
+export { ToastTitle as Title } from "./toast"
+export type { ToastTitleProps as TitleProps } from "./toast"
 
-export { ToastCloseTrigger } from "./toast-close-trigger"
-export type { ToastCloseTriggerProps } from "./toast-close-trigger"
-
-export { ToastTitle } from "./toast-title"
-export type { ToastTitleProps } from "./toast-title"
-
-export { ToastDescription } from "./toast-description"
-export type { ToastDescriptionProps } from "./toast-description"
+export { ToastDescription as Description } from "./toast"
+export type { ToastDescriptionProps as DescriptionProps } from "./toast"
 
 export * as Toast from "./namespace"
+
+export { createToaster, useToastStyles, Toaster } from "./toast"
+export type { CreateToasterProps, ToasterProps } from "./toast"

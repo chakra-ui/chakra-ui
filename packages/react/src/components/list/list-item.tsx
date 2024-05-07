@@ -10,7 +10,7 @@ export interface ListItemProps extends HTMLChakraProps<"li"> {}
 export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
   function ListItem(props, ref) {
     const styles = useListStyles()
-    return <chakra.li ref={ref} {...props} css={[styles.item, props.css]} />
+    return <chakra.li ref={ref} {...props} css={[styles["item"], props.css]} />
   },
 )
 

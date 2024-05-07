@@ -2,17 +2,17 @@
 
 import {
   HoverCard as ArkHoverCard,
-  HoverCardArrowProps as ArkHoverCardArrowProps,
-  HoverCardArrowTipProps as ArkHoverCardArrowTipProps,
-  HoverCardContentProps as ArkHoverCardContentProps,
-  HoverCardPositionerProps as ArkHoverCardPositionerProps,
-  HoverCardRootProps as ArkHoverCardRootProps,
-  HoverCardTriggerProps as ArkHoverCardTriggerProps,
+  type HoverCardArrowProps as ArkHoverCardArrowProps,
+  type HoverCardArrowTipProps as ArkHoverCardArrowTipProps,
+  type HoverCardContentProps as ArkHoverCardContentProps,
+  type HoverCardPositionerProps as ArkHoverCardPositionerProps,
+  type HoverCardRootProps as ArkHoverCardRootProps,
+  type HoverCardTriggerProps as ArkHoverCardTriggerProps,
 } from "@ark-ui/react/hover-card"
 import {
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   createStyleContext,
 } from "../../styled-system"
 

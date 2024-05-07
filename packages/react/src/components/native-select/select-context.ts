@@ -1,8 +1,8 @@
 "use client"
 
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseFieldReturn } from "../field/use-field"
+import { type SystemStyleObject } from "../../styled-system"
+import { type UseFieldReturn } from "../field/use-field"
 
 export const [SelectStylesProvider, useSelectStyles] = createContext<
   Record<string, SystemStyleObject>

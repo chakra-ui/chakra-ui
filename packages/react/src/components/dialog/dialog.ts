@@ -1,18 +1,18 @@
 import {
   Dialog as ArkDialog,
-  DialogBackdropProps as ArkDialogBackdropProps,
-  DialogCloseTriggerProps as ArkDialogCloseTriggerProps,
-  DialogContentProps as ArkDialogContentProps,
-  DialogDescriptionProps as ArkDialogDescriptionProps,
-  DialogPositionerProps as ArkDialogPositionerProps,
-  DialogRootProps as ArkDialogRootProps,
-  DialogTitleProps as ArkDialogTitleProps,
-  DialogTriggerProps as ArkDialogTriggerProps,
+  type DialogBackdropProps as ArkDialogBackdropProps,
+  type DialogCloseTriggerProps as ArkDialogCloseTriggerProps,
+  type DialogContentProps as ArkDialogContentProps,
+  type DialogDescriptionProps as ArkDialogDescriptionProps,
+  type DialogPositionerProps as ArkDialogPositionerProps,
+  type DialogRootProps as ArkDialogRootProps,
+  type DialogTitleProps as ArkDialogTitleProps,
+  type DialogTriggerProps as ArkDialogTriggerProps,
 } from "@ark-ui/react/dialog"
 import {
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   createStyleContext,
 } from "../../styled-system"
 

@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 export interface BreadcrumbLinkProps extends HTMLChakraProps<"a"> {}
@@ -22,7 +22,7 @@ export const BreadcrumbLink = forwardRef<
     <chakra.a
       ref={ref}
       {...props}
-      css={[styles.link, props.css]}
+      css={[styles["link"], props.css]}
       className={cx("chakra-breadcrumb__link", props.className)}
     />
   )

@@ -1,7 +1,7 @@
 "use client"
 
 import { cx, dataAttr } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useSelectContext, useSelectStyles } from "./select-context"
 
 const DefaultIcon = (props: HTMLChakraProps<"svg">) => (
@@ -31,7 +31,7 @@ export function NativeSelectIndicator(props: NativeSelectIndicatorProps) {
       {...props}
       data-disabled={dataAttr(api.disabled)}
       className={cx("chakra-select__indicator", props.className)}
-      css={[styles.indicator, props.css]}
+      css={[styles["indicator"], props.css]}
     >
       {props.children ?? <DefaultIcon />}
     </chakra.div>

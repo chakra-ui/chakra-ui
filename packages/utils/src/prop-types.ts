@@ -1,4 +1,4 @@
-import { Merge } from "./types"
+import type { Merge } from "./types"
 
 export interface AriaLabelingProps {
   "aria-label"?: string

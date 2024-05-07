@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import {
   BlockquoteStylesProvider,
   useBlockquoteStyles,
@@ -22,7 +22,7 @@ export const BlockquoteCaption = forwardRef<
         ref={ref}
         {...props}
         className={cx("chakra-blockquote__caption", props.className)}
-        css={styles.caption}
+        css={styles["caption"]}
       />
     </BlockquoteStylesProvider>
   )

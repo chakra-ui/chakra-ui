@@ -1,5 +1,5 @@
 import {
-  Dict,
+  type Dict,
   compact,
   isObject,
   isString,
@@ -7,8 +7,8 @@ import {
   mergeWith,
   walkObject,
 } from "@chakra-ui/utils"
-import { SystemStyleObject } from "./css.types"
-import { SystemContext } from "./types"
+import type { SystemStyleObject } from "./css.types"
+import type { SystemContext } from "./types"
 
 const importantRegex = /\s*!(important)?/i
 

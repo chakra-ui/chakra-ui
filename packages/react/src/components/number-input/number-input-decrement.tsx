@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import {
   useNumberInputContext,
   useNumberInputStyles,
@@ -37,7 +37,7 @@ export const NumberInputDecrementTrigger = forwardRef<
   return (
     <chakra.button
       {...api.getDecrementTriggerProps(props, ref)}
-      css={[styles.decrementTrigger, props.css]}
+      css={[styles["decrementTrigger"], props.css]}
       className={cx("chakra-number-input__stepper", props.className)}
     >
       {props.children ?? <DownIcon />}

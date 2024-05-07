@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react"
 import { HiX } from "react-icons/hi"
 import { Button, FileUpload, IconButton } from "../src"
 
@@ -8,19 +8,19 @@ export default {
 
 export const Basic = () => (
   <FileUpload.Root maxFiles={5}>
-    {(api) => (
-      <>
-        <FileUpload.Dropzone>
-          <FileUpload.Label fontWeight="medium">
-            Drag your file(s) here
-          </FileUpload.Label>
-          <Button asChild>
-            <FileUpload.Trigger>Choose file(s)</FileUpload.Trigger>
-          </Button>
-        </FileUpload.Dropzone>
+    <FileUpload.Dropzone>
+      <FileUpload.Label fontWeight="medium">
+        Drag your file(s) here
+      </FileUpload.Label>
+      <Button asChild>
+        <FileUpload.Trigger>Choose file(s)</FileUpload.Trigger>
+      </Button>
+    </FileUpload.Dropzone>
 
-        <FileUpload.ItemGroup>
-          {api.files.map((file, id) => (
+    <FileUpload.ItemGroup>
+      <FileUpload.Context>
+        {({ acceptedFiles }) =>
+          acceptedFiles.map((file, id) => (
             <FileUpload.Item key={id} file={file}>
               <FileUpload.ItemPreview type="image/*">
                 <FileUpload.ItemPreviewImage />
@@ -38,9 +38,9 @@ export const Basic = () => (
                 </FileUpload.ItemDeleteTrigger>
               </IconButton>
             </FileUpload.Item>
-          ))}
-        </FileUpload.ItemGroup>
-      </>
-    )}
+          ))
+        }
+      </FileUpload.Context>
+    </FileUpload.ItemGroup>
   </FileUpload.Root>
 )

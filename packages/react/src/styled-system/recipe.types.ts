@@ -1,6 +1,6 @@
-import { DistributiveOmit, Pretty } from "@chakra-ui/utils"
+import type { DistributiveOmit, Pretty } from "@chakra-ui/utils"
 import type { ConditionalValue, SystemStyleObject } from "./css.types"
-import { ColorPalette } from "./generated/token.gen"
+import type { ColorPalette } from "./generated/token.gen"
 
 type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 

@@ -1,6 +1,6 @@
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseTabsReturn } from "./use-tabs"
+import type { SystemStyleObject } from "../../styled-system"
+import type { UseTabsReturn } from "./use-tabs"
 
 export const [TabsProvider, useTabsContext] = createContext<UseTabsReturn>({
   name: "TabsContext",

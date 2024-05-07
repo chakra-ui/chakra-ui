@@ -2,22 +2,22 @@
 
 import {
   Popover as ArkPopover,
-  PopoverAnchorProps as ArkPopoverAnchorProps,
-  PopoverArrowProps as ArkPopoverArrowProps,
-  PopoverArrowTipProps as ArkPopoverArrowTipProps,
-  PopoverCloseTriggerProps as ArkPopoverCloseTriggerProps,
-  PopoverContentProps as ArkPopoverContentProps,
-  PopoverDescriptionProps as ArkPopoverDescriptionProps,
-  PopoverIndicatorProps as ArkPopoverIndicatorProps,
-  PopoverPositionerProps as ArkPopoverPositionerProps,
-  PopoverRootProps as ArkPopoverRootProps,
-  PopoverTitleProps as ArkPopoverTitleProps,
-  PopoverTriggerProps as ArkPopoverTriggerProps,
+  type PopoverAnchorProps as ArkPopoverAnchorProps,
+  type PopoverArrowProps as ArkPopoverArrowProps,
+  type PopoverArrowTipProps as ArkPopoverArrowTipProps,
+  type PopoverCloseTriggerProps as ArkPopoverCloseTriggerProps,
+  type PopoverContentProps as ArkPopoverContentProps,
+  type PopoverDescriptionProps as ArkPopoverDescriptionProps,
+  type PopoverIndicatorProps as ArkPopoverIndicatorProps,
+  type PopoverPositionerProps as ArkPopoverPositionerProps,
+  type PopoverRootProps as ArkPopoverRootProps,
+  type PopoverTitleProps as ArkPopoverTitleProps,
+  type PopoverTriggerProps as ArkPopoverTriggerProps,
 } from "@ark-ui/react/popover"
 import {
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   createStyleContext,
 } from "../../styled-system"
 

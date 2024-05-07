@@ -1,5 +1,5 @@
 import {
-  Dict,
+  type Dict,
   compact,
   flatten,
   isObject,
@@ -17,7 +17,12 @@ import { createPreflight } from "./preflight"
 import { createSerializeFn } from "./serialize"
 import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
-import { SystemConfig, SystemContext, TokenDictionary, TokenFn } from "./types"
+import type {
+  SystemConfig,
+  SystemContext,
+  TokenDictionary,
+  TokenFn,
+} from "./types"
 import { createUtilty } from "./utility"
 
 export function createSystem(config: SystemConfig): SystemContext {

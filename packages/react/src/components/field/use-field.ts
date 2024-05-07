@@ -2,7 +2,7 @@
 
 import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { useFieldContext } from "./field-context"
-import { UseFieldProps } from "./types"
+import { type UseFieldProps } from "./types"
 
 export function useField<T extends HTMLElement = HTMLInputElement>(
   props: UseFieldProps<T>,

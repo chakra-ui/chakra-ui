@@ -1,4 +1,4 @@
-import { FocusableElement } from "./types"
+import type { FocusableElement } from "./types"
 
 export function isHTMLElement(el: any): el is HTMLElement {
   return (

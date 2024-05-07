@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useTagStyles } from "./tag-context"
 
 export interface TagLabelProps extends HTMLChakraProps<"span"> {}
@@ -14,7 +14,7 @@ export const TagLabel = forwardRef<HTMLSpanElement, TagLabelProps>(
       <chakra.span
         ref={ref}
         {...props}
-        css={[styles.label, props.css]}
+        css={[styles["label"], props.css]}
         className={cx("chakra-tag__label", props.className)}
       />
     )

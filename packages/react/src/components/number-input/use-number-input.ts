@@ -1,7 +1,7 @@
 "use client"
 
 import {
-  UseCounterProps,
+  type UseCounterProps,
   mergeRefs,
   useCallbackRef,
   useCounter,
@@ -10,13 +10,13 @@ import {
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import {
-  InputDOMAttributes,
-  PropGetter,
+  type InputDOMAttributes,
+  type PropGetter,
   ariaAttr,
   callAllHandlers,
 } from "@chakra-ui/utils"
 import { useCallback, useMemo, useRef, useState } from "react"
-import { PropGetterFn } from "../../styled-system/factory.types"
+import { type PropGetterFn } from "../../styled-system/factory.types"
 import { splitFieldProps, useFieldProps } from "../field"
 import { useAttributeObserver } from "./use-attr-observer"
 import { useSpinner } from "./use-spinner"

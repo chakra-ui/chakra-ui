@@ -2,9 +2,9 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef, useId } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuContext, useMenuStyles } from "./menu-context"
-import { UseMenuItemProps } from "./use-menu"
+import { type UseMenuItemProps } from "./use-menu"
 
 export interface StyledMenuItemProps extends HTMLChakraProps<"button"> {}
 
@@ -26,7 +26,7 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
       <chakra.button
         {...api.getItemProps({ ...props, id }, ref)}
         className={cx("chakra-menu__menuitem", props.className)}
-        css={[styles.item, props.css]}
+        css={[styles["item"], props.css]}
       />
     )
   },

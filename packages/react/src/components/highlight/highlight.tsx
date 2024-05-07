@@ -1,10 +1,10 @@
 "use client"
 
 import { Fragment } from "react"
-import { SystemStyleObject } from "../../styled-system"
+import { type SystemStyleObject } from "../../styled-system"
 import { For } from "../for"
 import { Mark } from "../typography/mark"
-import { Chunk } from "./highlight-words"
+import type { Chunk } from "./highlight-words"
 import { useHighlight } from "./use-highlight"
 
 export interface HighlightProps {

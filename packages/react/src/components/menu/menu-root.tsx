@@ -1,15 +1,15 @@
 "use client"
 
 import { useAnimationState } from "@chakra-ui/hooks"
-import { MaybeRenderProp, pick, runIfFn } from "@chakra-ui/utils"
+import { type MaybeRenderProp, pick, runIfFn } from "@chakra-ui/utils"
 import {
   EMPTY_SLOT_STYLES,
-  SlotRecipeProps,
-  UnstyledProp,
+  type SlotRecipeProps,
+  type UnstyledProp,
   useSlotRecipe,
 } from "../../styled-system"
 import {
-  RenderStrategyProps,
+  type RenderStrategyProps,
   RenderStrategyProvider,
   useRenderStrategy,
 } from "../render-strategy"
@@ -18,7 +18,7 @@ import {
   MenuProvider,
   MenuStylesProvider,
 } from "./menu-context"
-import { UseMenuProps, useMenu } from "./use-menu"
+import { type UseMenuProps, useMenu } from "./use-menu"
 
 export interface MenuRootProps
   extends UseMenuProps,

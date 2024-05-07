@@ -1,5 +1,5 @@
 import {
-  Dict,
+  type Dict,
   createProps,
   isFunction,
   isObject,
@@ -17,7 +17,7 @@ import {
 } from "./references"
 import { tokenMiddlewares } from "./token-middleware"
 import { tokenTransforms } from "./token-transforms"
-import {
+import type {
   SemanticTokenDefinition,
   Token,
   TokenCategory,

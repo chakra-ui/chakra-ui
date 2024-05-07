@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { Children, cloneElement, isValidElement } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useMenuStyles } from "./menu-context"
 
 export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
@@ -23,7 +23,7 @@ export const MenuIcon: React.FC<HTMLChakraProps<"span">> = (props) => {
   const _className = cx("chakra-menu__icon-wrapper", className)
 
   return (
-    <chakra.span className={_className} {...rest} css={styles.icon}>
+    <chakra.span className={_className} {...rest} css={styles["icon"]}>
       {clone}
     </chakra.span>
   )

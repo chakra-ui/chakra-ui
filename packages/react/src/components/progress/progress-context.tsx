@@ -1,8 +1,8 @@
 "use client"
 
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { ProgressContext } from "./progress-types"
+import type { SystemStyleObject } from "../../styled-system"
+import type { ProgressContext } from "./progress-types"
 
 export const [ProgressStylesProvider, useProgressStyles] = createContext<
   Record<string, SystemStyleObject>

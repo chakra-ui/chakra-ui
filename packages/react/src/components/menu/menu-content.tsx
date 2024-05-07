@@ -1,9 +1,9 @@
 "use client"
 
 import { callAll, cx } from "@chakra-ui/utils"
-import { HTMLMotionProps, Variants, motion } from "framer-motion"
+import { type HTMLMotionProps, type Variants, motion } from "framer-motion"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useRenderStrategyContext } from "../render-strategy"
 import {
   useAnimationStateContext,
@@ -60,7 +60,7 @@ export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
         animate={api.open ? "enter" : "exit"}
         {...(motionProps as any)}
         {...api.getContentProps(restProps, ref)}
-        css={[styles.content, props.css]}
+        css={[styles["content"], props.css]}
         className={cx("chakra-menu__content", props.className)}
         onAnimationComplete={callAll(
           motionProps.onAnimationComplete,

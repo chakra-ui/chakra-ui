@@ -1,10 +1,10 @@
 "use client"
 
-import { UseAnimationStateReturn } from "@chakra-ui/hooks"
+import type { UseAnimationStateReturn } from "@chakra-ui/hooks"
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseMenuReturn } from "./use-menu"
-import { UseOptionGroupStateReturn } from "./use-option-group-state"
+import type { SystemStyleObject } from "../../styled-system"
+import type { UseMenuReturn } from "./use-menu"
+import type { UseOptionGroupStateReturn } from "./use-option-group-state"
 
 export const [MenuProvider, useMenuContext] = createContext<UseMenuReturn>({
   strict: true,

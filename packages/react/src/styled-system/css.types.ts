@@ -1,7 +1,7 @@
 import type { PropertiesFallback } from "csstype"
-import { Conditions } from "./generated/conditions.gen"
-import { CssVarProperties, SystemProperties } from "./generated/system.gen"
-import { AnySelector, Selectors } from "./selectors"
+import type { Conditions } from "./generated/conditions.gen"
+import type { CssVarProperties, SystemProperties } from "./generated/system.gen"
+import type { AnySelector, Selectors } from "./selectors"
 
 type String = string & {}
 type Number = number & {}

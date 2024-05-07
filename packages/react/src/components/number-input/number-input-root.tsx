@@ -3,8 +3,8 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  HTMLChakraProps,
-  SlotRecipeProps,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -13,7 +13,7 @@ import {
   NumberInputStylesProvider,
 } from "./number-input-context"
 import { splitNumberInputProps } from "./number-input-props"
-import { UseNumberInputProps, useNumberInput } from "./use-number-input"
+import { type UseNumberInputProps, useNumberInput } from "./use-number-input"
 
 export interface NumberInputRootProps
   extends SlotRecipeProps<"NumberInput">,
@@ -45,7 +45,7 @@ export const NumberInputRoot = forwardRef<HTMLDivElement, NumberInputRootProps>(
             {...rootProps}
             ref={ref}
             className={cx("chakra-numberinput", props.className)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
           />
         </NumberInputStylesProvider>
       </NumberInputContextProvider>

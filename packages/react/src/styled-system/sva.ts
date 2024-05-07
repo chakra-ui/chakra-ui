@@ -1,5 +1,5 @@
-import { Dict, omit, splitProps } from "@chakra-ui/utils"
-import { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
+import { type Dict, omit, splitProps } from "@chakra-ui/utils"
+import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
 
 interface Options {
   cva: RecipeCreatorFn

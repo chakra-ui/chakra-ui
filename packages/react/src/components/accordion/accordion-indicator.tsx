@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { Icon } from "../icon"
 import {
   useAccordionItemContext,
@@ -30,7 +30,7 @@ export const AccordionIndicator = forwardRef<
   return (
     <chakra.div
       {...itemApi.getIndicatorProps(props, ref)}
-      css={[styles.indicator, props.css]}
+      css={[styles["indicator"], props.css]}
       className={cx("chakra-accordion__indicator", props.className)}
     >
       {props.children || <ChevronIcon />}

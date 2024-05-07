@@ -1,6 +1,6 @@
 import { addDomEvent } from "./add-dom-event"
 import { getEventPoint } from "./event-point"
-import { MixedEventListener } from "./event-types"
+import type { MixedEventListener } from "./event-types"
 import { isMouseEvent } from "./is-event"
 
 function filter(cb: EventListener): EventListener {

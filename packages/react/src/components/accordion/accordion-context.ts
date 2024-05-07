@@ -1,7 +1,7 @@
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseAccordionReturn } from "./use-accordion"
-import { UseAccordionItemReturn } from "./use-accordion-item"
+import type { SystemStyleObject } from "../../styled-system"
+import type { UseAccordionReturn } from "./use-accordion"
+import type { UseAccordionItemReturn } from "./use-accordion-item"
 
 export const [AccordionStylesProvider, useAccordionStyles] = createContext<
   Record<string, SystemStyleObject>

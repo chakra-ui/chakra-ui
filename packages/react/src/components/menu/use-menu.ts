@@ -1,7 +1,7 @@
 "use client"
 
 import {
-  UseDisclosureProps,
+  type UseDisclosureProps,
   mergeRefs,
   useDisclosure,
   useFocusOnHide,
@@ -18,8 +18,8 @@ import {
   raf,
 } from "@zag-js/dom-utils"
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
-import { UsePopperProps, usePopper } from "../../popper"
-import { PropGetterFn } from "../../styled-system/factory.types"
+import { type UsePopperProps, usePopper } from "../../popper"
+import { type PropGetterFn } from "../../styled-system/factory.types"
 import { getNextItemFromSearch } from "./get-next-item-from-search"
 import { useMenuContext } from "./menu-context"
 import { splitMenuItemProps } from "./menu-props"

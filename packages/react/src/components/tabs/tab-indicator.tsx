@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useTabsStyles } from "./tabs-context"
 import { useTabIndicatorStyle } from "./use-tab-indicator-style"
 
@@ -25,7 +25,7 @@ export const TabIndicator = forwardRef<HTMLDivElement, TabIndicatorProps>(
         {...props}
         className={cx("chakra-tabs__tab-indicator", props.className)}
         style={{ ...props.style, ...indicatorStyle }}
-        css={[styles.indicator, props.css]}
+        css={[styles["indicator"], props.css]}
       />
     )
   },

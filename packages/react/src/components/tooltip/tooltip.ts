@@ -2,17 +2,17 @@
 
 import {
   Tooltip as ArkTooltip,
-  TooltipArrowProps as ArkTooltipArrowProps,
-  TooltipArrowTipProps as ArkTooltipArrowTipProps,
-  TooltipContentProps as ArkTooltipContentProps,
-  TooltipPositionerProps as ArkTooltipPositionerProps,
-  TooltipRootProps as ArkTooltipRootProps,
-  TooltipTriggerProps as ArkTooltipTriggerProps,
+  type TooltipArrowProps as ArkTooltipArrowProps,
+  type TooltipArrowTipProps as ArkTooltipArrowTipProps,
+  type TooltipContentProps as ArkTooltipContentProps,
+  type TooltipPositionerProps as ArkTooltipPositionerProps,
+  type TooltipRootProps as ArkTooltipRootProps,
+  type TooltipTriggerProps as ArkTooltipTriggerProps,
 } from "@ark-ui/react/tooltip"
 import {
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   createStyleContext,
 } from "../../styled-system"
 

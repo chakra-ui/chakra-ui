@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react"
+import type { Meta } from "@storybook/react"
 import { chakra, useRecipe, useSlotRecipe } from "../src/styled-system"
 
 export default {
@@ -130,7 +130,7 @@ export const WithSlotRecipe = () => {
   const alert = useSlotRecipe("Alert")
   const styles = alert({ variant: "solid" })
   return (
-    <chakra.button className="reset" css={styles.root}>
+    <chakra.button className="reset" css={styles["root"]}>
       Welcome
     </chakra.button>
   )

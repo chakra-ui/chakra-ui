@@ -1,19 +1,19 @@
-import {
+import type {
   Assign,
   Dict,
   DistributiveOmit,
   DistributiveUnion,
   Pretty,
 } from "@chakra-ui/utils"
-import {
+import type {
   ComponentProps,
   ComponentPropsWithoutRef,
   ElementType,
   FunctionComponent,
 } from "react"
-import { MinimalNested, SystemStyleObject } from "./css.types"
-import { SystemProperties } from "./generated/system.gen"
-import {
+import type { MinimalNested, SystemStyleObject } from "./css.types"
+import type { SystemProperties } from "./generated/system.gen"
+import type {
   RecipeDefinition,
   RecipeSelection,
   RecipeVariantRecord,

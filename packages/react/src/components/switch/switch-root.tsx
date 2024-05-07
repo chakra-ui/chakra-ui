@@ -4,13 +4,13 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
-import { UseCheckboxProps, useCheckbox } from "../checkbox"
+import { type UseCheckboxProps, useCheckbox } from "../checkbox"
 import { splitCheckboxProps } from "../checkbox/checkbox-props"
 import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"
 
@@ -40,7 +40,7 @@ export const SwitchRoot = forwardRef<HTMLInputElement, SwitchRootProps>(
           <chakra.label
             {...api.getRootProps(elementProps)}
             className={cx("chakra-switch", props.className)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
           >
             <input
               className="chakra-switch__input"

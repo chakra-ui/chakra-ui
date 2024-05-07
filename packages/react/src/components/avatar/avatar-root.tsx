@@ -4,9 +4,9 @@ import { cx, dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   mergeProps,
   mergeRefs,
@@ -45,7 +45,7 @@ export const AvatarRoot = forwardRef<HTMLSpanElement, AvatarRootProps>(
             className={cx("chakra-avatar", props.className)}
             data-loaded={dataAttr(api.isLoaded)}
             data-in-group={dataAttr(!!parentVariantProps)}
-            css={styles.root}
+            css={styles["root"]}
           />
         </AvatarContextProvider>
       </AvatarStylesProvider>

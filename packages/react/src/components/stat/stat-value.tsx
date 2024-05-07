@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useStatStyles } from "./stat-context"
 
 export interface StatValueProps extends HTMLChakraProps<"dd"> {}
@@ -15,7 +15,7 @@ export const StatValue = forwardRef<HTMLElement, StatValueProps>(
         ref={ref}
         {...props}
         className={cx("chakra-stat__number", props.className)}
-        css={[styles.number, props.css]}
+        css={[styles["number"], props.css]}
       />
     )
   },

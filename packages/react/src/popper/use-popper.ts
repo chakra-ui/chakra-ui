@@ -1,16 +1,19 @@
 "use client"
 
 import { mergeRefs } from "@chakra-ui/hooks"
-import { PropGetter } from "@chakra-ui/utils"
+import type { PropGetter } from "@chakra-ui/utils"
 import {
-  Instance,
-  Modifier,
-  VirtualElement,
+  type Instance,
+  type Modifier,
+  type VirtualElement,
   createPopper,
 } from "@popperjs/core"
 import { useCallback, useEffect, useRef } from "react"
 import * as customModifiers from "./modifiers"
-import { PlacementWithLogical, getPopperPlacement } from "./popper.placement"
+import {
+  type PlacementWithLogical,
+  getPopperPlacement,
+} from "./popper.placement"
 import { cssVars, getEventListenerOptions } from "./utils"
 
 export interface UsePopperProps {

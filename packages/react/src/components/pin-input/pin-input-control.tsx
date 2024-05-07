@@ -3,7 +3,7 @@
 import { mergeRefs } from "@chakra-ui/hooks"
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { usePinInputContext } from "./pin-input-context"
 
 export interface PinInputControlProps extends HTMLChakraProps<"div"> {}

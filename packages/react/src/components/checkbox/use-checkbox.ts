@@ -13,7 +13,7 @@ import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useFieldProps } from "../field"
 import { visuallyHiddenStyle } from "../visually-hidden"
-import { CheckboxState, UseCheckboxProps } from "./checkbox-types"
+import type { CheckboxState, UseCheckboxProps } from "./checkbox-types"
 
 /**
  * useCheckbox that provides all the state and focus management logic

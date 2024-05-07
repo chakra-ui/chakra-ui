@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
 const RightIcon = (props: HTMLChakraProps<"svg">) => (
@@ -34,7 +34,7 @@ export const BreadcrumbSeparator = forwardRef<
     <chakra.li
       ref={ref}
       {...props}
-      css={[styles.separator, props.css]}
+      css={[styles["separator"], props.css]}
       className={cx("chakra-breadcrumb__separator", props.className)}
     >
       {props.children || <RightIcon />}

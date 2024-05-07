@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { StepItemStatus } from "./step-context"
+import type { StepItemStatus } from "./step-context"
 
 export interface UseStepsProps {
   index?: number

@@ -1,6 +1,6 @@
 "use client"
 
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface SpacerProps extends HTMLChakraProps<"div"> {}
 

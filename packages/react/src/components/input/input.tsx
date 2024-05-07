@@ -4,14 +4,14 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
-  HTMLChakraProps,
-  RecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type UnstyledProp,
   chakra,
   mergeProps,
   useRecipe,
 } from "../../styled-system"
-import { FieldOptions, splitFieldProps, useField } from "../field"
+import { type FieldOptions, splitFieldProps, useField } from "../field"
 
 export interface InputProps
   extends HTMLChakraProps<"input">,

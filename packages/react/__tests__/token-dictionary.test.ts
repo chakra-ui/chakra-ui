@@ -1,5 +1,5 @@
 import { createTokenDictionary } from "../src/styled-system/token-dictionary"
-import { TokenDictionary } from "../src/styled-system/types"
+import type { TokenDictionary } from "../src/styled-system/types"
 
 const res = (dict: TokenDictionary) => {
   return dict.allTokens.map(({ name, value }) => ({ name, value }))

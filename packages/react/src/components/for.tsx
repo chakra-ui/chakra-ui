@@ -1,4 +1,4 @@
-import { Dict } from "@chakra-ui/utils"
+import type { Dict } from "@chakra-ui/utils"
 
 export interface ForProps<T> {
   each: T[] | readonly T[] | undefined

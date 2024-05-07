@@ -1,6 +1,6 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseTabProps } from "./use-tab"
-import { UseTabsProps } from "./use-tabs"
+import type { UseTabProps } from "./use-tab"
+import type { UseTabsProps } from "./use-tabs"
 
 const tabsProps = createProps<UseTabsProps>()([
   "defaultValue",
