@@ -285,13 +285,21 @@ export interface ListVariantProps {}
 // Menu
 
 export type MenuSlot =
-  | "trigger"
+  | "arrow"
+  | "arrowTip"
   | "content"
-  | "item"
-  | "groupTitle"
+  | "contextTrigger"
   | "indicator"
-  | "command"
+  | "item"
+  | "itemGroup"
+  | "itemGroupLabel"
+  | "itemIndicator"
+  | "itemText"
+  | "positioner"
   | "separator"
+  | "trigger"
+  | "triggerItem"
+  | "itemCommand"
 
 export interface MenuVariantProps {
   variant?: "subtle" | "solid"
@@ -500,7 +508,6 @@ export type ToastSlot =
   | "closeTrigger"
 
 export interface ToastVariantProps {
-  status?: "default" | "info" | "warning" | "success" | "error" | "loading"
   variant?: "solid" | "raised"
 }
 

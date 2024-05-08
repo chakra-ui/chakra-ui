@@ -63,7 +63,7 @@ export const PopoverPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface PopoverContentProps
-  extends HTMLChakraProps<"section", ArkPopoverContentProps> {}
+  extends HTMLChakraProps<"div", ArkPopoverContentProps> {}
 
 export const PopoverContent = withContext<HTMLDivElement, PopoverContentProps>(
   ArkPopover.Content,
