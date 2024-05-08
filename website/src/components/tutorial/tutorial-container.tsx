@@ -71,7 +71,6 @@ function TutorialContainer({
     'typescript',
     '@emotion/react',
     '@emotion/styled',
-    'framer-motion',
   ]
 
   const dependencies = dependenciesNames.reduce((prev, cur) => {

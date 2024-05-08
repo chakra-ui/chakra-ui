@@ -256,9 +256,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.22
         version: 18.2.22
-      framer-motion:
-        specifier: ^11.0.22
-        version: 11.0.22(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       lucide-react:
         specifier: ^0.363.0
         version: 0.363.0(react@18.2.0)
@@ -298,9 +295,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.22
         version: 18.2.22
-      framer-motion:
-        specifier: ^11.0.22
-        version: 11.0.22(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       lucide-react:
         specifier: ^0.363.0
         version: 0.363.0(react@18.2.0)
@@ -459,9 +453,6 @@ importers:
       '@tanstack/react-table':
         specifier: 8.16.0
         version: 8.16.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      framer-motion:
-        specifier: 11.1.9
-        version: 11.1.9(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -546,9 +537,6 @@ importers:
       formik:
         specifier: ^2.4.5
         version: 2.4.5(react@18.2.0)
-      framer-motion:
-        specifier: 11.0.25
-        version: 11.0.25(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       github-slugger:
         specifier: 2.0.0
         version: 2.0.0
@@ -5990,48 +5978,6 @@ packages:
   forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
-
-  framer-motion@11.0.22:
-    resolution: {integrity: sha512-kWyldNJLyKDvLWjPYFmgngQYLiU8973BtAeVBc83r2cnil/NBUQJb1ff/6/EweNQYb5BW3PaXFjZa4D3pn/W2Q==}
-    peerDependencies:
-      '@emotion/is-prop-valid': '*'
-      react: 18.2.0
-      react-dom: 18.2.0
-    peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
-  framer-motion@11.0.25:
-    resolution: {integrity: sha512-mRt7vQGzA7++wTgb+PW1TrlXXgndqR6hCiJ48fXr2X9alte2hPQiAq556HRwDCt0Q5X98MNvcSe4KUa27Gm5Lg==}
-    peerDependencies:
-      '@emotion/is-prop-valid': '*'
-      react: 18.2.0
-      react-dom: 18.2.0
-    peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
-  framer-motion@11.1.9:
-    resolution: {integrity: sha512-flECDIPV4QDNcOrDafVFiIazp8X01HFpzc01eDKJsdNH/wrATcYydJSH9JbPWMS8UD5lZlw+J1sK8LG2kICgqw==}
-    peerDependencies:
-      '@emotion/is-prop-valid': '*'
-      react: 18.2.0
-      react-dom: 18.2.0
-    peerDependenciesMeta:
-      '@emotion/is-prop-valid':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
 
   framesync@6.1.2:
     resolution: {integrity: sha512-jBTqhX6KaQVDyus8muwZbBeGGP0XgujBRbQ7gM7BRdS3CadCZIHiawyzYLnafYcvZIh5j8WE7cxZKFn7dXhu9g==}
@@ -17655,30 +17601,6 @@ snapshots:
       tslib: 2.6.2
 
   forwarded@0.2.0: {}
-
-  framer-motion@11.0.22(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      tslib: 2.6.2
-    optionalDependencies:
-      '@emotion/is-prop-valid': 1.2.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  framer-motion@11.0.25(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      tslib: 2.6.2
-    optionalDependencies:
-      '@emotion/is-prop-valid': 1.2.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  framer-motion@11.1.9(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      tslib: 2.6.2
-    optionalDependencies:
-      '@emotion/is-prop-valid': 1.2.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
 
   framesync@6.1.2:
     dependencies:

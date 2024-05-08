@@ -12,7 +12,6 @@ export const packageJson = `
     "@chakra-ui/react": "1.8.6",
     "@emotion/react": "11.8.1",
     "@emotion/styled": "11.8.1",
-    "framer-motion": "6.2.8",
     "hash-it": "5.0.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
