@@ -408,10 +408,10 @@ importers:
   packages/react:
     dependencies:
       '@ark-ui/anatomy':
-        specifier: latest
+        specifier: 3.0.0
         version: 3.0.0(@internationalized/date@3.5.2)
       '@ark-ui/react':
-        specifier: rc
+        specifier: 3.0.0-1
         version: 3.0.0-1(@internationalized/date@3.5.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@chakra-ui/hooks':
         specifier: workspace:*

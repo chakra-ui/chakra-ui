@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "@pandacss/is-valid-prop": "0.39.1",
-    "@ark-ui/anatomy": "latest",
-    "@ark-ui/react": "rc",
+    "@ark-ui/anatomy": "3.0.0",
+    "@ark-ui/react": "3.0.0-1",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@popperjs/core": "2.11.8",
