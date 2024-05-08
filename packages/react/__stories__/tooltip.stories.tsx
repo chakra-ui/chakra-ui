@@ -15,9 +15,11 @@ export default {
 
 export const Basic = () => (
   <Tooltip.Root unmountOnExit>
-    <Button asChild variant="outline" size="sm">
-      <Tooltip.Trigger>Hover me</Tooltip.Trigger>
-    </Button>
+    <Tooltip.Trigger asChild>
+      <Button variant="outline" size="sm">
+        Hover me
+      </Button>
+    </Tooltip.Trigger>
     <Portal>
       <Tooltip.Positioner>
         <Tooltip.Content>
@@ -33,11 +35,11 @@ export const Basic = () => (
 
 export const WithCustomBg = () => (
   <Tooltip.Root unmountOnExit>
-    <Button asChild variant="outline" size="sm">
-      <Tooltip.Trigger>
+    <Tooltip.Trigger asChild>
+      <Button variant="outline" size="sm">
         <FaBell /> 3
-      </Tooltip.Trigger>
-    </Button>
+      </Button>
+    </Tooltip.Trigger>
     <Portal>
       <Tooltip.Positioner>
         <Tooltip.Content css={{ "--tooltip-bg": "tomato" }}>

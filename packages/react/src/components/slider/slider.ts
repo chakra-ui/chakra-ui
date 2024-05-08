@@ -1,17 +1,6 @@
 "use client"
 
-import {
-  Slider as ArkSlider,
-  type SliderControlProps as ArkSliderControlProps,
-  type SliderLabelProps as ArkSliderLabelProps,
-  type SliderMarkerGroupProps as ArkSliderMarkerGroupProps,
-  type SliderMarkerProps as ArkSliderMarkerProps,
-  type SliderRangeProps as ArkSliderRangeProps,
-  type SliderRootProps as ArkSliderRootProps,
-  type SliderThumbProps as ArkSliderThumbProps,
-  type SliderTrackProps as ArkSliderTrackProps,
-  type SliderValueTextProps as ArkSliderValueTextProps,
-} from "@ark-ui/react/slider"
+import { Slider as ArkSlider } from "@ark-ui/react/slider"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -32,91 +21,98 @@ export { useSliderStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderRootProps
-  extends HTMLChakraProps<"div", ArkSliderRootProps>,
+  extends HTMLChakraProps<"div", ArkSlider.RootProps>,
     SlotRecipeProps<"Slider">,
     UnstyledProp {}
 
 export const SliderRoot = withProvider<HTMLDivElement, SliderRootProps>(
   ArkSlider.Root,
   "root",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderControlProps
-  extends HTMLChakraProps<"div", ArkSliderControlProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.ControlProps> {}
 
 export const SliderControl = withContext<HTMLDivElement, SliderControlProps>(
   ArkSlider.Control,
   "control",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderTrackProps
-  extends HTMLChakraProps<"div", ArkSliderTrackProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.TrackProps> {}
 
 export const SliderTrack = withContext<HTMLDivElement, SliderTrackProps>(
   ArkSlider.Track,
   "track",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderRangeProps
-  extends HTMLChakraProps<"div", ArkSliderRangeProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.RangeProps> {}
 
 export const SliderRange = withContext<HTMLDivElement, SliderRangeProps>(
   ArkSlider.Range,
   "range",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderThumbProps
-  extends HTMLChakraProps<"div", ArkSliderThumbProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.ThumbProps> {}
 
 export const SliderThumb = withContext<HTMLDivElement, SliderThumbProps>(
   ArkSlider.Thumb,
   "thumb",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderValueTextProps
-  extends HTMLChakraProps<"div", ArkSliderValueTextProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.ValueTextProps> {}
 
 export const SliderValueText = withContext<
   HTMLDivElement,
   SliderValueTextProps
->(ArkSlider.ValueText, "valueText")
+>(ArkSlider.ValueText, "valueText", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderLabelProps
-  extends HTMLChakraProps<"label", ArkSliderLabelProps> {}
+  extends HTMLChakraProps<"label", ArkSlider.LabelProps> {}
 
 export const SliderLabel = withContext<HTMLLabelElement, SliderLabelProps>(
   ArkSlider.Label,
   "label",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderMarkerGroupProps
-  extends HTMLChakraProps<"div", ArkSliderMarkerGroupProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.MarkerGroupProps> {}
 
 export const SliderMarkerGroup = withContext<
   HTMLDivElement,
   SliderMarkerGroupProps
->(ArkSlider.MarkerGroup, "markerGroup")
+>(ArkSlider.MarkerGroup, "markerGroup", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SliderMarkerProps
-  extends HTMLChakraProps<"div", ArkSliderMarkerProps> {}
+  extends HTMLChakraProps<"div", ArkSlider.MarkerProps> {}
 
 export const SliderMarker = withContext<HTMLDivElement, SliderMarkerProps>(
   ArkSlider.Marker,
   "marker",
+  { forwardAsChild: true },
 )

@@ -23,12 +23,12 @@ export default {
 export const Basic = () => {
   return (
     <Popover.Root>
-      <Button variant="solid" asChild>
-        <Popover.Trigger>
+      <Popover.Trigger asChild>
+        <Button variant="solid">
           <HiChat />
           Add comment
-        </Popover.Trigger>
-      </Button>
+        </Button>
+      </Popover.Trigger>
       <Portal>
         <Popover.Positioner>
           <Popover.Content>
@@ -36,11 +36,11 @@ export const Basic = () => {
               <Popover.ArrowTip />
             </Popover.Arrow>
 
-            <IconButton asChild aria-label="Close" variant="ghost">
-              <Popover.CloseTrigger>
+            <Popover.CloseTrigger asChild>
+              <IconButton aria-label="Close" variant="ghost">
                 <HiX />
-              </Popover.CloseTrigger>
-            </IconButton>
+              </IconButton>
+            </Popover.CloseTrigger>
 
             <Popover.Header>
               <Heading size="sm">Confirmation!</Heading>
@@ -76,20 +76,20 @@ export const Sizes = () => {
             {(v) => (
               <chakra.td key={v} minW="400px">
                 <Popover.Root size={v} open>
-                  <Button asChild size={v} variant="solid">
-                    <Popover.Trigger>
+                  <Popover.Trigger asChild>
+                    <Button size={v} variant="solid">
                       <HiChat />
                       Add comment
-                    </Popover.Trigger>
-                  </Button>
+                    </Button>
+                  </Popover.Trigger>
                   <Popover.Positioner>
                     <Popover.Content>
                       <Popover.Arrow />
-                      <IconButton asChild variant="ghost" size={v}>
-                        <Popover.CloseTrigger>
+                      <Popover.CloseTrigger asChild>
+                        <IconButton variant="ghost" size={v}>
                           <HiX />
-                        </Popover.CloseTrigger>
-                      </IconButton>
+                        </IconButton>
+                      </Popover.CloseTrigger>
 
                       <Popover.Header>
                         <Heading size="sm">Confirmation!</Heading>
@@ -133,9 +133,9 @@ const Interval = () => {
 export function WithLazyPopover() {
   return (
     <Popover.Root unmountOnExit>
-      <Button asChild variant="solid">
-        <Popover.Trigger>Popover Target</Popover.Trigger>
-      </Button>
+      <Popover.Trigger asChild>
+        <Button variant="solid">Popover Target</Button>
+      </Popover.Trigger>
       <Popover.Positioner>
         <Popover.Content>
           <Popover.Body>

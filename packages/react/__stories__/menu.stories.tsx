@@ -17,9 +17,11 @@ export default {
 
 export const Basic = () => (
   <Menu.Root>
-    <Button variant="solid" colorPalette="green" size="sm" asChild>
-      <Menu.Trigger>Open menu</Menu.Trigger>
-    </Button>
+    <Menu.Trigger asChild>
+      <Button variant="solid" colorPalette="green" size="sm">
+        Open menu
+      </Button>
+    </Menu.Trigger>
     <Menu.Positioner>
       <Menu.Content minWidth="240px">
         <Menu.Item value="share">Share...</Menu.Item>
@@ -37,9 +39,11 @@ export const WithRadioItems = () => {
   const [value, setValue] = useState("val-1")
   return (
     <Menu.Root>
-      <Button variant="solid" colorPalette="green" size="sm" asChild>
-        <Menu.Trigger>Open menu</Menu.Trigger>
-      </Button>
+      <Menu.Trigger asChild>
+        <Button variant="solid" colorPalette="green" size="sm">
+          Open menu
+        </Button>
+      </Menu.Trigger>
 
       <Menu.Positioner>
         <Menu.Content minWidth="240px">
@@ -91,13 +95,13 @@ export const WithOverflow = () => {
 
 export const WithLinkItem = () => (
   <Menu.Root>
-    <Button variant="solid" asChild>
-      <Menu.Trigger>Actions</Menu.Trigger>
-    </Button>
+    <Menu.Trigger asChild>
+      <Button variant="solid">Actions</Button>
+    </Menu.Trigger>
     <Menu.Positioner>
       <Menu.Content>
-        <Menu.Item value="download">Download</Menu.Item>
-        <Menu.Item value="copy">Create a Copy</Menu.Item>
+        {/* <Menu.Item value="download">Download</Menu.Item>
+        <Menu.Item value="copy">Create a Copy</Menu.Item> */}
         <Menu.Item value="link" asChild>
           <a href="#">Attend a Workshop</a>
         </Menu.Item>

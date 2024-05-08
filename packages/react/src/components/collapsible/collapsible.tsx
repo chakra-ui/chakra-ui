@@ -1,9 +1,4 @@
-import {
-  Collapsible as ArkCollapsible,
-  type CollapsibleContentProps as ArkCollapsibleContentProps,
-  type CollapsibleRootProps as ArkCollapsibleRootProps,
-  type CollapsibleTriggerProps as ArkCollapsibleTriggerProps,
-} from "@ark-ui/react/collapsible"
+import { Collapsible as ArkCollapsible } from "@ark-ui/react/collapsible"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -24,31 +19,31 @@ export { useCollapsibleStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleRootProps
-  extends HTMLChakraProps<"div", ArkCollapsibleRootProps>,
+  extends HTMLChakraProps<"div", ArkCollapsible.RootProps>,
     SlotRecipeProps<"Collapsible">,
     UnstyledProp {}
 
 export const CollapsibleRoot = withProvider<
   HTMLDivElement,
   CollapsibleRootProps
->(ArkCollapsible.Root, "root")
+>(ArkCollapsible.Root, "root", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleTriggerProps
-  extends HTMLChakraProps<"button", ArkCollapsibleTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkCollapsible.TriggerProps> {}
 
 export const CollapsibleTrigger = withContext<
   HTMLButtonElement,
   CollapsibleTriggerProps
->(ArkCollapsible.Trigger, "trigger")
+>(ArkCollapsible.Trigger, "trigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CollapsibleContentProps
-  extends HTMLChakraProps<"div", ArkCollapsibleContentProps> {}
+  extends HTMLChakraProps<"div", ArkCollapsible.ContentProps> {}
 
 export const CollapsibleContent = withContext<
   HTMLDivElement,
   CollapsibleContentProps
->(ArkCollapsible.Content, "content")
+>(ArkCollapsible.Content, "content", { forwardAsChild: true })

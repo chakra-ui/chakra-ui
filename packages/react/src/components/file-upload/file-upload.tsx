@@ -1,17 +1,4 @@
-import {
-  FileUpload as ArkFileUpload,
-  type FileUploadDropzoneProps as ArkFileUploadDropzoneProps,
-  type FileUploadItemDeleteTriggerProps as ArkFileUploadItemDeleteTriggerProps,
-  type FileUploadItemGroupProps as ArkFileUploadItemGroupProps,
-  type FileUploadItemNameProps as ArkFileUploadItemNameProps,
-  type FileUploadItemPreviewImageProps as ArkFileUploadItemPreviewImageProps,
-  type FileUploadItemPreviewProps as ArkFileUploadItemPreviewProps,
-  type FileUploadItemProps as ArkFileUploadItemProps,
-  type FileUploadItemSizeTextProps as ArkFileUploadItemSizeTextProps,
-  type FileUploadLabelProps as ArkFileUploadLabelProps,
-  type FileUploadRootProps as ArkFileUploadRootProps,
-  type FileUploadTriggerProps as ArkFileUploadTriggerProps,
-} from "@ark-ui/react/file-upload"
+import { FileUpload as ArkFileUpload } from "@ark-ui/react/file-upload"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -26,111 +13,115 @@ const { withProvider, withContext } = createStyleContext("FileUpload")
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadRootProps
-  extends HTMLChakraProps<"div", ArkFileUploadRootProps>,
+  extends HTMLChakraProps<"div", ArkFileUpload.RootProps>,
     SlotRecipeProps<"FileUpload">,
     UnstyledProp {}
 
 export const FileUploadRoot = withProvider<HTMLDivElement, FileUploadRootProps>(
   ArkFileUpload.Root,
   "root",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadDropzoneProps
-  extends HTMLChakraProps<"li", ArkFileUploadDropzoneProps> {}
+  extends HTMLChakraProps<"li", ArkFileUpload.DropzoneProps> {}
 
 export const FileUploadDropzone = withContext<
   HTMLDivElement,
   FileUploadDropzoneProps
->(ArkFileUpload.Dropzone, "dropzone")
+>(ArkFileUpload.Dropzone, "dropzone", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemProps
-  extends HTMLChakraProps<"li", ArkFileUploadItemProps> {}
+  extends HTMLChakraProps<"li", ArkFileUpload.ItemProps> {}
 
 export const FileUploadItem = withContext<HTMLLIElement, FileUploadItemProps>(
   ArkFileUpload.Item,
   "item",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemDeleteTriggerProps
-  extends HTMLChakraProps<"button", ArkFileUploadItemDeleteTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkFileUpload.ItemDeleteTriggerProps> {}
 
 export const FileUploadItemDeleteTrigger = withContext<
   HTMLButtonElement,
   FileUploadItemDeleteTriggerProps
->(ArkFileUpload.ItemDeleteTrigger, "itemDeleteTrigger")
+>(ArkFileUpload.ItemDeleteTrigger, "itemDeleteTrigger", {
+  forwardAsChild: true,
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemGroupProps
-  extends HTMLChakraProps<"ul", ArkFileUploadItemGroupProps> {}
+  extends HTMLChakraProps<"ul", ArkFileUpload.ItemGroupProps> {}
 
 export const FileUploadItemGroup = withContext<
   HTMLUListElement,
   FileUploadItemGroupProps
->(ArkFileUpload.ItemGroup, "itemGroup")
+>(ArkFileUpload.ItemGroup, "itemGroup", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemNameProps
-  extends HTMLChakraProps<"span", ArkFileUploadItemNameProps> {}
+  extends HTMLChakraProps<"span", ArkFileUpload.ItemNameProps> {}
 
 export const FileUploadItemName = withContext<
   HTMLSpanElement,
   FileUploadItemNameProps
->(ArkFileUpload.ItemName, "itemName")
+>(ArkFileUpload.ItemName, "itemName", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemPreviewProps
-  extends HTMLChakraProps<"div", ArkFileUploadItemPreviewProps> {}
+  extends HTMLChakraProps<"div", ArkFileUpload.ItemPreviewProps> {}
 
 export const FileUploadItemPreview = withContext<
   HTMLDivElement,
   FileUploadItemPreviewProps
->(ArkFileUpload.ItemPreview, "itemPreview")
+>(ArkFileUpload.ItemPreview, "itemPreview", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemPreviewImageProps
-  extends HTMLChakraProps<"img", ArkFileUploadItemPreviewImageProps> {}
+  extends HTMLChakraProps<"img", ArkFileUpload.ItemPreviewImageProps> {}
 
 export const FileUploadItemPreviewImage = withContext<
   HTMLImageElement,
   FileUploadItemPreviewImageProps
->(ArkFileUpload.ItemPreviewImage, "itemPreviewImage")
+>(ArkFileUpload.ItemPreviewImage, "itemPreviewImage", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadItemSizeTextProps
-  extends HTMLChakraProps<"span", ArkFileUploadItemSizeTextProps> {}
+  extends HTMLChakraProps<"span", ArkFileUpload.ItemSizeTextProps> {}
 
 export const FileUploadItemSizeText = withContext<
   HTMLSpanElement,
   FileUploadItemSizeTextProps
->(ArkFileUpload.ItemSizeText, "itemSizeText")
+>(ArkFileUpload.ItemSizeText, "itemSizeText", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadLabelProps
-  extends HTMLChakraProps<"label", ArkFileUploadLabelProps> {}
+  extends HTMLChakraProps<"label", ArkFileUpload.LabelProps> {}
 
 export const FileUploadLabel = withContext<
   HTMLLabelElement,
   FileUploadLabelProps
->(ArkFileUpload.Label, "label")
+>(ArkFileUpload.Label, "label", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadTriggerProps
-  extends HTMLChakraProps<"button", ArkFileUploadTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkFileUpload.TriggerProps> {}
 
 export const FileUploadTrigger = withContext<
   HTMLButtonElement,
   FileUploadTriggerProps
->(ArkFileUpload.Trigger, "trigger")
+>(ArkFileUpload.Trigger, "trigger", { forwardAsChild: true })

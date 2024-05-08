@@ -5,6 +5,7 @@ import { createContext } from "../create-context"
 import type { SystemStyleObject } from "./css.types"
 import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
+import type { JsxFactoryOptions } from "./factory.types"
 import type { ConfigRecipeSlots } from "./generated/recipes.gen"
 import { type SlotRecipeKey, useSlotRecipe } from "./use-slot-recipe"
 
@@ -18,19 +19,26 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
 
   function withRootProvider<P>(
     Component: React.ElementType<any>,
+    options: { defaultProps?: Partial<P> } = {},
   ): React.FC<React.PropsWithoutRef<P>> {
-    const StyledComponent = forwardRef<any, any>(({ unstyled, ...props }) => {
-      const slotRecipe = useSlotRecipe(recipe, props.recipe)
-      // @ts-ignore
-      const [variantProps, otherProps] = slotRecipe.splitVariantProps(props)
-      const slotStyles = unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)
+    const { defaultProps } = options
+    const StyledComponent = forwardRef<any, any>(
+      ({ unstyled, ...baseProps }) => {
+        const props = { ...defaultProps, ...baseProps }
+        const slotRecipe = useSlotRecipe(recipe, props.recipe)
+        // @ts-ignore
+        const [variantProps, otherProps] = slotRecipe.splitVariantProps(props)
+        const slotStyles = unstyled
+          ? EMPTY_SLOT_STYLES
+          : slotRecipe(variantProps)
 
-      return (
-        <RecipeStylesProvider value={slotStyles}>
-          <Component {...otherProps} />
-        </RecipeStylesProvider>
-      )
-    })
+        return (
+          <RecipeStylesProvider value={slotStyles}>
+            <Component {...otherProps} />
+          </RecipeStylesProvider>
+        )
+      },
+    )
 
     // @ts-expect-error
     StyledComponent.displayName = Component.displayName || Component.name
@@ -41,10 +49,11 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   const withProvider = <T, P>(
     Component: React.ElementType<any>,
     slot: R extends keyof ConfigRecipeSlots ? ConfigRecipeSlots[R] : string,
+    options?: JsxFactoryOptions<P>,
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
-    const SuperComponent = chakra(Component)
+    const SuperComponent = chakra(Component, {}, options as any)
     const StyledComponent = forwardRef<any, any>(
       ({ unstyled, ...props }, ref) => {
         const slotRecipe = useSlotRecipe(recipe, props.recipe)
@@ -76,10 +85,11 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   const withContext = <T, P>(
     Component: React.ElementType<any>,
     slot?: R extends keyof ConfigRecipeSlots ? ConfigRecipeSlots[R] : string,
+    options?: JsxFactoryOptions<P>,
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
-    const SuperComponent = chakra(Component)
+    const SuperComponent = chakra(Component, {}, options as any)
     const StyledComponent = forwardRef<any, any>((props, ref) => {
       const slotStyles = useStyles()
       return (

@@ -12,9 +12,9 @@ export const Basic = () => (
       <FileUpload.Label fontWeight="medium">
         Drag your file(s) here
       </FileUpload.Label>
-      <Button asChild>
-        <FileUpload.Trigger>Choose file(s)</FileUpload.Trigger>
-      </Button>
+      <FileUpload.Trigger asChild>
+        <Button>Choose file(s)</Button>
+      </FileUpload.Trigger>
     </FileUpload.Dropzone>
 
     <FileUpload.ItemGroup>
@@ -32,11 +32,11 @@ export const Basic = () => (
 
               <FileUpload.ItemName />
               <FileUpload.ItemSizeText />
-              <IconButton variant="outline" size="sm" asChild>
-                <FileUpload.ItemDeleteTrigger>
+              <FileUpload.ItemDeleteTrigger asChild>
+                <IconButton variant="outline" size="sm">
                   <HiX />
-                </FileUpload.ItemDeleteTrigger>
-              </IconButton>
+                </IconButton>
+              </FileUpload.ItemDeleteTrigger>
             </FileUpload.Item>
           ))
         }

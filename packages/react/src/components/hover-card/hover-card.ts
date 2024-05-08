@@ -1,14 +1,6 @@
 "use client"
 
-import {
-  HoverCard as ArkHoverCard,
-  type HoverCardArrowProps as ArkHoverCardArrowProps,
-  type HoverCardArrowTipProps as ArkHoverCardArrowTipProps,
-  type HoverCardContentProps as ArkHoverCardContentProps,
-  type HoverCardPositionerProps as ArkHoverCardPositionerProps,
-  type HoverCardRootProps as ArkHoverCardRootProps,
-  type HoverCardTriggerProps as ArkHoverCardTriggerProps,
-} from "@ark-ui/react/hover-card"
+import { HoverCard as ArkHoverCard } from "@ark-ui/react/hover-card"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -29,7 +21,7 @@ export { useHoverCardStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardRootProps
-  extends ArkHoverCardRootProps,
+  extends ArkHoverCard.RootProps,
     SlotRecipeProps<"HoverCard">,
     UnstyledProp {}
 
@@ -40,49 +32,50 @@ export const HoverCardRoot = withRootProvider<HoverCardRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardTriggerProps
-  extends HTMLChakraProps<"button", ArkHoverCardTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkHoverCard.TriggerProps> {}
 
 export const HoverCardTrigger = withContext<
   HTMLButtonElement,
   HoverCardTriggerProps
->(ArkHoverCard.Trigger, "trigger")
+>(ArkHoverCard.Trigger, "trigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardPositionerProps
-  extends HTMLChakraProps<"div", ArkHoverCardPositionerProps> {}
+  extends HTMLChakraProps<"div", ArkHoverCard.PositionerProps> {}
 
 export const HoverCardPositioner = withContext<
   HTMLDivElement,
   HoverCardPositionerProps
->(ArkHoverCard.Positioner, "positioner")
+>(ArkHoverCard.Positioner, "positioner", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardContentProps
-  extends HTMLChakraProps<"section", ArkHoverCardContentProps> {}
+  extends HTMLChakraProps<"section", ArkHoverCard.ContentProps> {}
 
 export const HoverCardContent = withContext<
   HTMLDivElement,
   HoverCardContentProps
->(ArkHoverCard.Content, "content")
+>(ArkHoverCard.Content, "content", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardArrowProps
-  extends HTMLChakraProps<"div", ArkHoverCardArrowProps> {}
+  extends HTMLChakraProps<"div", ArkHoverCard.ArrowProps> {}
 
 export const HoverCardArrow = withContext<HTMLDivElement, HoverCardArrowProps>(
   ArkHoverCard.Arrow,
   "arrow",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface HoverCardArrowTipProps
-  extends HTMLChakraProps<"div", ArkHoverCardArrowTipProps> {}
+  extends HTMLChakraProps<"div", ArkHoverCard.ArrowTipProps> {}
 
 export const HoverCardArrowTip = withContext<
   HTMLDivElement,
   HoverCardArrowTipProps
->(ArkHoverCard.ArrowTip, "arrowTip")
+>(ArkHoverCard.ArrowTip, "arrowTip", { forwardAsChild: true })

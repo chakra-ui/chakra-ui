@@ -1,14 +1,4 @@
-import {
-  Dialog as ArkDialog,
-  type DialogBackdropProps as ArkDialogBackdropProps,
-  type DialogCloseTriggerProps as ArkDialogCloseTriggerProps,
-  type DialogContentProps as ArkDialogContentProps,
-  type DialogDescriptionProps as ArkDialogDescriptionProps,
-  type DialogPositionerProps as ArkDialogPositionerProps,
-  type DialogRootProps as ArkDialogRootProps,
-  type DialogTitleProps as ArkDialogTitleProps,
-  type DialogTriggerProps as ArkDialogTriggerProps,
-} from "@ark-ui/react/dialog"
+import { Dialog as ArkDialog } from "@ark-ui/react/dialog"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -29,80 +19,86 @@ export { useDrawerStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerRootProps
-  extends ArkDialogRootProps,
+  extends ArkDialog.RootProps,
     SlotRecipeProps<"Drawer">,
     UnstyledProp {}
 
-export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root)
+export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root, {
+  defaultProps: { unmountOnExit: true, lazyMount: true },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerTriggerProps
-  extends HTMLChakraProps<"button", ArkDialogTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkDialog.TriggerProps> {}
 
 export const DrawerTrigger = withContext<HTMLButtonElement, DrawerTriggerProps>(
   ArkDialog.Trigger,
   "trigger",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerPositionerProps
-  extends HTMLChakraProps<"div", ArkDialogPositionerProps> {}
+  extends HTMLChakraProps<"div", ArkDialog.PositionerProps> {}
 
 export const DrawerPositioner = withContext<
   HTMLDivElement,
   DrawerPositionerProps
->(ArkDialog.Positioner, "positioner")
+>(ArkDialog.Positioner, "positioner", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerContentProps
-  extends HTMLChakraProps<"section", ArkDialogContentProps> {}
+  extends HTMLChakraProps<"section", ArkDialog.ContentProps> {}
 
 export const DrawerContent = withContext<HTMLDivElement, DrawerContentProps>(
   ArkDialog.Content,
   "content",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerDescriptionProps
-  extends HTMLChakraProps<"p", ArkDialogDescriptionProps> {}
+  extends HTMLChakraProps<"p", ArkDialog.DescriptionProps> {}
 
 export const DrawerDescription = withContext<
   HTMLDivElement,
   DrawerDescriptionProps
->(ArkDialog.Description, "description")
+>(ArkDialog.Description, "description", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerTitleProps
-  extends HTMLChakraProps<"h2", ArkDialogTitleProps> {}
+  extends HTMLChakraProps<"h2", ArkDialog.TitleProps> {}
 
 export const DrawerTitle = withContext<HTMLDivElement, DrawerTitleProps>(
   ArkDialog.Title,
   "title",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkDialogCloseTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkDialog.CloseTriggerProps> {}
 
 export const DrawerCloseTrigger = withContext<
   HTMLButtonElement,
   DrawerCloseTriggerProps
->(ArkDialog.CloseTrigger, "closeTrigger")
+>(ArkDialog.CloseTrigger, "closeTrigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerBackdropProps
-  extends HTMLChakraProps<"div", ArkDialogBackdropProps> {}
+  extends HTMLChakraProps<"div", ArkDialog.BackdropProps> {}
 
 export const DrawerBackdrop = withContext<HTMLDivElement, DrawerBackdropProps>(
   ArkDialog.Backdrop,
   "backdrop",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

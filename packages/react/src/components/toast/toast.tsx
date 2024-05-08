@@ -2,10 +2,6 @@
 
 import {
   Toast as ArkToast,
-  type ToastCloseTriggerProps as ArkToastCloseTriggerProps,
-  type ToastDescriptionProps as ArkToastDescriptionProps,
-  type ToastRootProps as ArkToastRootProps,
-  type ToastTitleProps as ArkToastTitleProps,
   type CreateToasterProps,
   Toaster,
   type ToasterProps,
@@ -34,41 +30,43 @@ export { useToastStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastRootProps
-  extends ArkToastRootProps,
+  extends ArkToast.RootProps,
     SlotRecipeProps<"Toast">,
     UnstyledProp {}
 
 export const ToastRoot = withProvider<HTMLDivElement, ToastRootProps>(
   ArkToast.Root,
   "root",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkToastCloseTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkToast.CloseTriggerProps> {}
 
 export const ToastCloseTrigger = withContext<
   HTMLButtonElement,
   ToastCloseTriggerProps
->(ArkToast.CloseTrigger, "closeTrigger")
+>(ArkToast.CloseTrigger, "closeTrigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastTitleProps
-  extends HTMLChakraProps<"div", ArkToastTitleProps> {}
+  extends HTMLChakraProps<"div", ArkToast.TitleProps> {}
 
 export const ToastTitle = withContext<HTMLDivElement, ToastTitleProps>(
   ArkToast.Title,
   "title",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ToastDescriptionProps
-  extends HTMLChakraProps<"div", ArkToastDescriptionProps> {}
+  extends HTMLChakraProps<"div", ArkToast.DescriptionProps> {}
 
 export const ToastDescription = withContext<
   HTMLDivElement,
   ToastDescriptionProps
->(ArkToast.Description, "description")
+>(ArkToast.Description, "description", { forwardAsChild: true })

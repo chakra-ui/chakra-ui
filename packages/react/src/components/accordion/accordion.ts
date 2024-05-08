@@ -26,6 +26,7 @@ export interface AccordionRootProps
 export const AccordionRoot = withProvider<HTMLDivElement, AccordionRootProps>(
   ArkAccordion.Root,
   "root",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +37,7 @@ export interface AccordionItemProps
 export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
   ArkAccordion.Item,
   "item",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +48,7 @@ export interface AccordionItemContentProps
 export const AccordionItemContent = withContext<
   HTMLDivElement,
   AccordionItemContentProps
->(ArkAccordion.ItemContent, "content")
+>(ArkAccordion.ItemContent, "content", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -56,7 +58,7 @@ export interface AccordionItemTriggerProps
 export const AccordionItemTrigger = withContext<
   HTMLDivElement,
   AccordionItemTriggerProps
->(ArkAccordion.ItemTrigger, "trigger")
+>(ArkAccordion.ItemTrigger, "trigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -66,4 +68,4 @@ export interface AccordionItemIndicatorProps
 export const AccordionItemIndicator = withContext<
   HTMLDivElement,
   AccordionItemIndicatorProps
->(ArkAccordion.ItemIndicator, "indicator")
+>(ArkAccordion.ItemIndicator, "indicator", { forwardAsChild: true })

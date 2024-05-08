@@ -15,9 +15,11 @@ export default {
 export const Basic = () => {
   return (
     <HoverCard.Root>
-      <Link variant="underline" asChild href="#test" color="blue.500">
-        <HoverCard.Trigger>Hover to see @swyx profile</HoverCard.Trigger>
-      </Link>
+      <HoverCard.Trigger asChild>
+        <Link variant="underline" href="#test" color="blue.500">
+          Hover to see @swyx profile
+        </Link>
+      </HoverCard.Trigger>
       <HoverCard.Positioner>
         <HoverCard.Content>
           <HoverCard.Arrow>

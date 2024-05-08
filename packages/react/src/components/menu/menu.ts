@@ -35,6 +35,7 @@ export interface MenuTriggerProps
 export const MenuTrigger = withContext<HTMLButtonElement, MenuTriggerProps>(
   ArkMenu.Trigger,
   "trigger",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -45,7 +46,7 @@ export interface MenuContextTriggerProps
 export const MenuContextTrigger = withContext<
   HTMLButtonElement,
   MenuContextTriggerProps
->(ArkMenu.ContextTrigger, "contextTrigger")
+>(ArkMenu.ContextTrigger, "contextTrigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -55,6 +56,7 @@ export interface MenuPositionerProps
 export const MenuPositioner = withContext<HTMLDivElement, MenuPositionerProps>(
   ArkMenu.Positioner,
   "positioner",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +67,7 @@ export interface MenuSeparatorProps
 export const MenuSeparator = withContext<HTMLDivElement, MenuSeparatorProps>(
   ArkMenu.Separator,
   "separator",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +78,7 @@ export interface MenuContentProps
 export const MenuContent = withContext<HTMLDivElement, MenuContentProps>(
   ArkMenu.Content,
   "content",
+  { forwardAsChild: true },
 )
 
 // arrow
@@ -85,6 +89,7 @@ export interface MenuArrowProps
 export const MenuArrow = withContext<HTMLDivElement, MenuArrowProps>(
   ArkMenu.Arrow,
   "arrow",
+  { forwardAsChild: true },
 )
 
 // arrow tip
@@ -95,6 +100,7 @@ export interface MenuArrowTipProps
 export const MenuArrowTip = withContext<HTMLDivElement, MenuArrowTipProps>(
   ArkMenu.ArrowTip,
   "arrowTip",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -105,6 +111,7 @@ export interface MenuIndicatorProps
 export const MenuIndicator = withContext<HTMLDivElement, MenuIndicatorProps>(
   ArkMenu.Indicator,
   "indicator",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -115,6 +122,7 @@ export interface MenuItemGroupProps
 export const MenuItemGroup = withContext<HTMLDivElement, MenuItemGroupProps>(
   ArkMenu.ItemGroup,
   "itemGroup",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -125,7 +133,7 @@ export interface MenuItemGroupLabelProps
 export const MenuItemGroupLabel = withContext<
   HTMLDivElement,
   MenuItemGroupLabelProps
->(ArkMenu.ItemGroupLabel, "itemGroupLabel")
+>(ArkMenu.ItemGroupLabel, "itemGroupLabel", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -135,6 +143,7 @@ export interface MenuItemProps
 export const MenuItem = withContext<HTMLDivElement, MenuItemProps>(
   ArkMenu.Item,
   "item",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -145,6 +154,7 @@ export interface MenuItemTextProps
 export const MenuItemText = withContext<HTMLDivElement, MenuItemTextProps>(
   ArkMenu.ItemText,
   "itemText",
+  { forwardAsChild: true },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -164,7 +174,7 @@ export interface MenuItemIndicatorProps
 export const MenuItemIndicator = withContext<
   HTMLDivElement,
   MenuItemIndicatorProps
->(ArkMenu.ItemIndicator, "itemIndicator")
+>(ArkMenu.ItemIndicator, "itemIndicator", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -174,7 +184,7 @@ export interface MenuCheckboxItemProps
 export const MenuCheckboxItem = withContext<
   HTMLDivElement,
   MenuCheckboxItemProps
->(ArkMenu.CheckboxItem, "item")
+>(ArkMenu.CheckboxItem, "item", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -184,7 +194,7 @@ export interface MenuRadioItemGroupProps
 export const MenuRadioItemGroup = withContext<
   HTMLDivElement,
   MenuRadioItemGroupProps
->(ArkMenu.RadioItemGroup, "itemGroup")
+>(ArkMenu.RadioItemGroup, "itemGroup", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -194,4 +204,5 @@ export interface MenuRadioItemProps
 export const MenuRadioItem = withContext<HTMLDivElement, MenuRadioItemProps>(
   ArkMenu.RadioItem,
   "item",
+  { forwardAsChild: true },
 )

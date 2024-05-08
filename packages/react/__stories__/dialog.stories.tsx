@@ -2,8 +2,7 @@ import * as React from "react"
 import { HiX } from "react-icons/hi"
 //@ts-ignore
 import Lorem from "react-lorem-component"
-import { Box, Button, IconButton, Input, Portal } from "../src"
-import { Dialog } from "../src/components/dialog"
+import { Box, Button, Dialog, IconButton, Input, Portal } from "../src"
 
 export default {
   title: "Components / Dialog",
@@ -13,17 +12,17 @@ export default {
 export const Basic = () => {
   return (
     <Dialog.Root centered>
-      <Button variant="outline" asChild>
-        <Dialog.Trigger>Open</Dialog.Trigger>
-      </Button>
+      <Dialog.Trigger asChild>
+        <Button variant="outline">Open</Button>
+      </Dialog.Trigger>
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <IconButton asChild variant="ghost" aria-label="Close">
-            <Dialog.CloseTrigger>
+          <Dialog.CloseTrigger asChild>
+            <IconButton variant="ghost" aria-label="Close">
               <HiX />
-            </Dialog.CloseTrigger>
-          </IconButton>
+            </IconButton>
+          </Dialog.CloseTrigger>
           <Dialog.Header>Welcome Home</Dialog.Header>
           <Dialog.Body>
             Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
@@ -31,10 +30,7 @@ export const Basic = () => {
             irure nisi.
           </Dialog.Body>
           <Dialog.Footer>
-            <Button asChild>
-              <Dialog.CloseTrigger>Close</Dialog.CloseTrigger>
-            </Button>
-            <Button variant="outline">Save</Button>
+            <Button>Save</Button>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>
@@ -46,9 +42,9 @@ export const NestedDialogs = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   return (
     <Dialog.Root lazyMount>
-      <Button asChild>
-        <Dialog.Trigger>Open</Dialog.Trigger>
-      </Button>
+      <Dialog.Trigger asChild>
+        <Button variant="outline">Open</Button>
+      </Dialog.Trigger>
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
@@ -94,9 +90,9 @@ export const NestedDialogs = () => {
 export const InsideScroll = () => {
   return (
     <Dialog.Root scrollBehavior="inside">
-      <Button asChild>
-        <Dialog.Trigger>Open</Dialog.Trigger>
-      </Button>
+      <Dialog.Trigger asChild>
+        <Button variant="outline">Open</Button>
+      </Dialog.Trigger>
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
@@ -110,9 +106,9 @@ export const InsideScroll = () => {
             <Lorem size={5} />
           </Dialog.Body>
           <Dialog.Footer>
-            <Button asChild>
-              <Dialog.CloseTrigger>Close</Dialog.CloseTrigger>
-            </Button>
+            <Dialog.CloseTrigger asChild>
+              <Button>Close</Button>
+            </Dialog.CloseTrigger>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>
@@ -123,9 +119,9 @@ export const InsideScroll = () => {
 export const WithInstantAnimation = () => {
   return (
     <Dialog.Root motionPreset="none">
-      <Button asChild>
-        <Dialog.Trigger>Open</Dialog.Trigger>
-      </Button>
+      <Dialog.Trigger asChild>
+        <Button variant="outline">Open</Button>
+      </Dialog.Trigger>
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
@@ -139,9 +135,9 @@ export const WithInstantAnimation = () => {
             <Lorem size={5} />
           </Dialog.Body>
           <Dialog.Footer>
-            <Button asChild>
-              <Dialog.CloseTrigger>Close</Dialog.CloseTrigger>
-            </Button>
+            <Dialog.CloseTrigger asChild>
+              <Button>Close</Button>
+            </Dialog.CloseTrigger>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>
@@ -152,9 +148,9 @@ export const WithInstantAnimation = () => {
 export const WithContentOverflow = () => {
   return (
     <Dialog.Root size="full">
-      <Button asChild variant="outline">
-        <Dialog.Trigger>Open</Dialog.Trigger>
-      </Button>
+      <Dialog.Trigger asChild>
+        <Button variant="outline">Open</Button>
+      </Dialog.Trigger>
 
       <Dialog.Backdrop />
       <Dialog.Positioner>
@@ -169,9 +165,9 @@ export const WithContentOverflow = () => {
             <Lorem count={30} />
           </Dialog.Body>
           <Dialog.Footer>
-            <Button asChild>
-              <Dialog.CloseTrigger>Close</Dialog.CloseTrigger>
-            </Button>
+            <Dialog.CloseTrigger asChild>
+              <Button>Close</Button>
+            </Dialog.CloseTrigger>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>
@@ -183,9 +179,9 @@ export const WithInitialFocus = () => {
   const inputRef = React.useRef<any>()
   return (
     <Dialog.Root initialFocusEl={() => inputRef.current}>
-      <Button asChild variant="outline">
-        <Dialog.Trigger>Open</Dialog.Trigger>
-      </Button>
+      <Dialog.Trigger asChild>
+        <Button variant="outline">Open</Button>
+      </Dialog.Trigger>
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
@@ -216,19 +212,21 @@ export const WithFinalFocus = () => {
       </Box>
 
       <Dialog.Root finalFocusEl={() => finalRef.current}>
-        <Button asChild mt={4}>
-          <Dialog.Trigger>Open Dialog.</Dialog.Trigger>
-        </Button>
+        <Dialog.Trigger asChild>
+          <Button variant="outline" mt={4}>
+            Open Dialog
+          </Button>
+        </Dialog.Trigger>
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
             <Dialog.Header>
               <Dialog.Title>Dialog Title</Dialog.Title>
-              <IconButton asChild variant="ghost">
-                <Dialog.CloseTrigger>
+              <Dialog.CloseTrigger asChild>
+                <IconButton variant="ghost">
                   <HiX />
-                </Dialog.CloseTrigger>
-              </IconButton>
+                </IconButton>
+              </Dialog.CloseTrigger>
             </Dialog.Header>
 
             <Dialog.Body>
@@ -239,9 +237,9 @@ export const WithFinalFocus = () => {
             </Dialog.Body>
 
             <Dialog.Footer>
-              <Button asChild>
-                <Dialog.CloseTrigger>Close</Dialog.CloseTrigger>
-              </Button>
+              <Dialog.CloseTrigger asChild>
+                <Button>Close</Button>
+              </Dialog.CloseTrigger>
               <Button variant="outline">Secondary Action</Button>
             </Dialog.Footer>
           </Dialog.Content>

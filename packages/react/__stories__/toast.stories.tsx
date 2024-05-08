@@ -31,16 +31,15 @@ export default {
                   <Toast.Description>{toast.description}</Toast.Description>
                 </Stack>
                 <Absolute top="1" insetEnd="1">
-                  <IconButton
-                    size="sm"
-                    variant="ghost"
-                    colorPalette="whiteAlpha"
-                    asChild
-                  >
-                    <Toast.CloseTrigger>
+                  <Toast.CloseTrigger asChild>
+                    <IconButton
+                      size="sm"
+                      variant="ghost"
+                      colorPalette="whiteAlpha"
+                    >
                       <HiX />
-                    </Toast.CloseTrigger>
-                  </IconButton>
+                    </IconButton>
+                  </Toast.CloseTrigger>
                 </Absolute>
               </Toast.Root>
             )}

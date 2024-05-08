@@ -81,8 +81,9 @@ type JsxElements = {
 
 export type StyledFactoryFn = JsxFactory & JsxElements
 
-interface JsxFactoryOptions<TProps extends Dict> {
+export interface JsxFactoryOptions<TProps> {
   defaultProps?: TProps
+  forwardAsChild?: boolean
   shouldForwardProp?(prop: string, variantKeys: string[]): boolean
 }
 
