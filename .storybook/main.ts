@@ -9,13 +9,11 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "@storybook/react-vite",
-    options: {},
-  },
-  features: {
-    buildStoriesJson: true,
+    options: { builder: {} },
   },
   core: {
     disableTelemetry: true,
+    disableProjectJson: true,
   },
   typescript: {
     reactDocgen: false,
