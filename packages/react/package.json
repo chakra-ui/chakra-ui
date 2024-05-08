@@ -60,10 +60,9 @@
   },
   "devDependencies": {
     "@emotion/react": "11.11.4",
-    "@emotion/styled": "11.11.0",
-    "@tanstack/react-table": "8.15.0",
-    "@testing-library/react": "14.2.2",
-    "framer-motion": "11.0.22",
+    "@emotion/styled": "11.11.5",
+    "@tanstack/react-table": "8.16.0",
+    "framer-motion": "11.1.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-frame-component": "5.2.6",

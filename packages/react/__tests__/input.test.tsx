@@ -1,5 +1,6 @@
-import { render, screen, testA11y } from "@chakra-ui/test-utils"
+import { screen } from "@testing-library/react"
 import { Group, Input, InputElement } from "../src"
+import { render, testA11y } from "./core"
 
 describe("Input", () => {
   test("passes a11y test", async () => {

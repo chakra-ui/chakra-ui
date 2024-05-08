@@ -1,6 +1,7 @@
-import { act, fireEvent, render, screen, waitFor } from "@chakra-ui/test-utils"
+import { act, fireEvent, screen, waitFor } from "@testing-library/react"
 import { useState } from "react"
 import { PinInput } from "../src"
+import { render } from "./core"
 
 const DemoPinInput = (props: PinInput.RootProps = {}) => {
   return (

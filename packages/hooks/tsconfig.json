@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "__stories__", "__tests__"],
+  "include": ["src", "__stories__", "__tests__", "../../vitest.setup.ts"],
   "compilerOptions": {
     "customConditions": ["source"]
   }

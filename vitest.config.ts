@@ -1,3 +1,4 @@
+import { resolve } from "path"
 import { defineConfig } from "vitest/config"
 
 export default defineConfig({
@@ -12,6 +13,10 @@ export default defineConfig({
     },
   },
   resolve: {
-    conditions: ["source"],
+    alias: {
+      "@chakra-ui/utils": resolve("packages/utils/src"),
+      "@chakra-ui/react": resolve("packages/react/src"),
+      "@chakra-ui/hooks": resolve("packages/hooks/src"),
+    },
   },
 })

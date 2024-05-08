@@ -1,6 +1,7 @@
-import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import { fireEvent, screen } from "@testing-library/react"
 import * as React from "react"
 import { FocusLock } from "../src"
+import { render, testA11y } from "./core"
 
 describe("FocusLock", () => {
   test("focuses an element on render", () => {

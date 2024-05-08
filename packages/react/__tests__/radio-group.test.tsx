@@ -1,5 +1,6 @@
-import { fireEvent, render, screen } from "@chakra-ui/test-utils"
+import { fireEvent, screen } from "@testing-library/react"
 import { Field, RadioGroup } from "../src"
+import { render } from "./core"
 
 const DemoRadio = (props: RadioGroup.ItemProps) => {
   const { children, ...rest } = props

@@ -1,5 +1,6 @@
-import { render, screen, testA11y } from "@chakra-ui/test-utils"
+import { screen } from "@testing-library/react"
 import { Field, NativeSelect } from "../src"
+import { render, testA11y } from "./core"
 
 const DemoSelect = (props: NativeSelect.RootProps) => {
   return (

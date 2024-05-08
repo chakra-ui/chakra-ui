@@ -1,4 +1,4 @@
-import { createSystem } from "../src/styled-system/system"
+import { createSystem } from "../src"
 
 const { cva } = createSystem({
   conditions: {
