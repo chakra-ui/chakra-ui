@@ -18,10 +18,13 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "hooks/*": ["src/hooks/*"],
+      "@chakra-ui/react": ["../packages/react/src"],
+      "@chakra-ui/hooks": ["../packages/hooks/src"],
+      "@chakra-ui/utils": ["../packages/utils/src"],
+      "contentlayer/generated": ["./.contentlayer/generated"],
       "components/*": ["src/components/*"],
-      "utils/*": ["src/utils/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "hooks/*": ["src/hooks/*"],
+      "utils/*": ["src/utils/*"]
     },
     "incremental": true
   },
