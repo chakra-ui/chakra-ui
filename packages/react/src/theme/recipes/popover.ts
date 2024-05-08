@@ -16,7 +16,7 @@ export const popoverSlotRecipe = defineSlotRecipe({
       shadow: "md",
       width: "xs",
       borderRadius: "var(--popover-radius)",
-      zIndex: "inherit",
+      zIndex: "popover",
       _focusVisible: {
         outline: 0,
       },
