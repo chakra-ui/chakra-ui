@@ -40,7 +40,7 @@ export default function App() {
         <IconButton
           variant="ghost"
           size="xl"
-          colorScheme="whatsapp"
+          colorScheme="green"
           aria-label="WhatsApp icon"
           icon={<Icon as={FaWhatsapp} />}
         />
@@ -48,8 +48,8 @@ export default function App() {
         <IconButton
           size="xl"
           variant="link"
-          colorScheme="telegram"
-          aria-label="WhatsApp icon"
+          colorScheme="cyan"
+          aria-label="Telegram icon"
           icon={<Icon as={FaTelegram} />}
         />
 

@@ -6,10 +6,8 @@ import {
   FaArrowRight,
   FaChevronDown,
   FaEnvelope,
-  FaFacebook,
   FaPhone,
   FaSearch,
-  FaTwitter,
 } from "react-icons/fa"
 import { MdBuild, MdCall } from "react-icons/md"
 import { BeatLoader } from "react-spinners"
@@ -243,17 +241,6 @@ export const WithVerticalAttachedButtons = () => (
       icon={<FaChevronDown />}
     />
   </ButtonGroup>
-)
-
-export const WithSocialButton = () => (
-  <Stack direction="row">
-    <Button colorScheme="facebook" leftIcon={<FaFacebook />}>
-      Facebook
-    </Button>
-    <Button colorScheme="twitter" leftIcon={<FaTwitter />}>
-      Twitter
-    </Button>
-  </Stack>
 )
 
 const motionConfig = {

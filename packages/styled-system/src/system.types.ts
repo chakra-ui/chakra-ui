@@ -20,7 +20,7 @@ import type {
   TypographyProps,
   ScrollProps,
 } from "./config"
-import { Pseudos } from "./pseudos"
+import { PseudoKey } from "./pseudos"
 import { ResponsiveValue } from "./utils/types"
 
 export interface StyleProps
@@ -60,7 +60,7 @@ export type CSSWithMultiValues = {
     : PropertyValue<K>
 }
 
-type PseudoKeys = keyof CSS.Pseudos | keyof Pseudos
+type PseudoKeys = keyof CSS.Pseudos | PseudoKey
 
 type PseudoSelectorDefinition<D> = D | RecursivePseudo<D>
 
@@ -79,19 +79,12 @@ export type RecursiveCSSObject<D> = D &
 
 export type SystemStyleObject = RecursiveCSSObject<CSSWithMultiValues>
 
-/**
- * @deprecated use `SystemStyleObject` instead
- */
-export type CSSObject = SystemStyleObject & {}
-
-export interface FunctionCSSInterpolation {
-  (theme: Record<string, any>): CSSObject
-}
-
-export type StyleObjectOrFn = SystemStyleObject | FunctionCSSInterpolation
+export type StyleObjectOrFn =
+  | SystemStyleObject
+  | ((theme: any) => SystemStyleObject)
 
 type PseudoProps = {
-  [K in keyof Pseudos]?: SystemStyleObject
+  [K in PseudoKey]?: SystemStyleObject
 }
 
 export interface SystemProps extends StyleProps, PseudoProps {}
