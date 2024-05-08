@@ -75,7 +75,7 @@ export function useOutsideClick(props: UseOutsideClickProps) {
 }
 
 function isValidEvent(event: Event, ref: React.RefObject<HTMLElement>) {
-  const target = event.target as HTMLElement
+  const target = (event.composedPath?.()[0] ?? event.target) as HTMLElement
 
   if (target) {
     const doc = getOwnerDocument(target)
