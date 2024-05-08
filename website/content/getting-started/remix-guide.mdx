@@ -66,7 +66,7 @@ client and the server. We'll use our createEmotionCache function here.
 ```jsx live=false
 // entry.client.tsx
 import React, { useState } from 'react'
-import { hydrate } from 'react-dom'
+import * as ReactDOM from 'react-dom/client'
 import { CacheProvider } from '@emotion/react'
 import { RemixBrowser } from '@remix-run/react'
 
@@ -91,12 +91,24 @@ function ClientCacheProvider({ children }: ClientCacheProviderProps) {
   )
 }
 
-hydrate(
-  <ClientCacheProvider>
-    <RemixBrowser />
-  </ClientCacheProvider>,
-  document,
-)
+const hydrate = () => {
+  React.startTransition(() => {
+    ReactDOM.hydrateRoot(
+      document,
+      <ClientCacheProvider>
+        <RemixBrowser />
+      </ClientCacheProvider>,
+    )
+  })
+}
+
+if (window.requestIdleCallback) {
+  window.requestIdleCallback(hydrate)
+} else {
+  // Safari doesn't support requestIdleCallback
+  // https://caniuse.com/requestidlecallback
+  setTimeout(hydrate, 1)
+}
 ```
 
 ```jsx live=false
@@ -166,13 +178,15 @@ import { MetaFunction, LinksFunction } from '@remix-run/node' // Depends on the 
 
 import { ServerStyleContext, ClientStyleContext } from './context'
 
-export const meta: MetaFunction = () => ({
-  charset: 'utf-8',
-  title: 'New Remix App',
-  viewport: 'width=device-width,initial-scale=1',
-});
+export const meta: MetaFunction = () => {
+  return [
+    { charSet: 'utf-8' },
+    { title: 'New Remix App' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+  ];
+};
 
-export let links: LinksFunction = () => {
+export const links: LinksFunction = () => {
   return [
     { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
     { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
