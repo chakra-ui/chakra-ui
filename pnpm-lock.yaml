@@ -356,6 +356,9 @@ importers:
       '@clack/prompts':
         specifier: 0.7.0
         version: 0.7.0
+      '@pandacss/is-valid-prop':
+        specifier: 0.39.1
+        version: 0.39.1
       bundle-n-require:
         specifier: 1.1.1
         version: 1.1.1
@@ -419,6 +422,9 @@ importers:
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../utils
+      '@pandacss/is-valid-prop':
+        specifier: 0.39.1
+        version: 0.39.1
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
@@ -2800,6 +2806,9 @@ packages:
   '@opentelemetry/semantic-conventions@1.22.0':
     resolution: {integrity: sha512-CAOgFOKLybd02uj/GhCdEeeBjOS0yeoDeo/CA7ASBSmenpZHAKGB3iDm/rv3BQLcabb/OprDEsSQ1y0P8A7Siw==}
     engines: {node: '>=14'}
+
+  '@pandacss/is-valid-prop@0.39.1':
+    resolution: {integrity: sha512-UkEJpbSw6uWK2a5duYKUXGd1SHKB1yCYCS3XPjV+bWkdltuyiMqdSIVWFpS7t2cxw4Upp+iE3c7yuqlqiQLeAg==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -12832,6 +12841,8 @@ snapshots:
   '@opentelemetry/semantic-conventions@1.13.0': {}
 
   '@opentelemetry/semantic-conventions@1.22.0': {}
+
+  '@pandacss/is-valid-prop@0.39.1': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true

@@ -1,6 +1,8 @@
 import type { ConditionalValue, CssProperties } from "../css.types"
 import type { Tokens } from "./token.gen"
 
+type AnyString = string & {}
+
 interface PropertyValueTypes {
   colorPalette:
     | "transparent"
@@ -211,7 +213,7 @@ interface PropertyValueTypes {
 }
 
 // eslint-disable-next-line
-type PropOrCondition<Key, Value> = ConditionalValue<Value | (string & {})>
+type PropOrCondition<Value> = ConditionalValue<Value | AnyString>
 
 type CssValue<T> = T extends keyof CssProperties ? CssProperties[T] : never
 
@@ -312,15 +314,15 @@ export interface PropertyTypes extends PropertyValueTypes {
 }
 
 type PropertyTypeValue<T extends string> = T extends keyof PropertyTypes
-  ? PropOrCondition<T, PropertyTypes[T] | CssValue<T>>
+  ? PropOrCondition<PropertyTypes[T] | CssValue<T>>
   : never
 
 type CssPropertyValue<T extends string> = T extends keyof CssProperties
-  ? PropOrCondition<T, CssProperties[T]>
+  ? PropOrCondition<CssProperties[T]>
   : never
 
 export type PropertyValue<T extends string> = T extends keyof PropertyTypes
   ? PropertyTypeValue<T>
   : T extends keyof CssProperties
     ? CssPropertyValue<T>
-    : PropOrCondition<T, string | number>
+    : PropOrCondition<string | number>

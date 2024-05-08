@@ -8,9 +8,28 @@ export async function generatePropTypes(sys: SystemContext, strict = false) {
     `
   import type { ConditionalValue, CssProperties } from "../css.types"
   import type { Tokens } from "./token.gen"
-  
-  interface PropertyValueTypes {`,
+
+  type AnyString = (string & {})
+  `,
   ]
+
+  if (strict) {
+    result.push(`
+  type WithColorOpacityModifier<T> = T extends string ? \`$\{T}/\${string}\` : T
+
+  type ImportantMark = "!" | "!important"
+  type WhitespaceImportant = \` \${ImportantMark}\`
+  type Important = ImportantMark | WhitespaceImportant
+  
+  type WithImportant<T> = T extends string ? \`\${T}\${Important}\` & { __important?: true } : T;
+  type WithEscapeHatch<T> = T | \`[\${string}]\` | WithColorOpacityModifier<T> | WithImportant<T>
+    `)
+  }
+
+  result.push(`
+
+  interface PropertyValueTypes {
+  `)
 
   const types = utility.getTypes()
 
@@ -20,10 +39,17 @@ export async function generatePropTypes(sys: SystemContext, strict = false) {
 
   result.push("}", "\n")
 
-  result.push(`
+  if (strict) {
+    result.push(`
     // eslint-disable-next-line
-    type PropOrCondition<Key, Value> = ConditionalValue<Value | (string & {})>
-  `)
+    type PropOrCondition<Value> = ConditionalValue<WithEscapeHatch<Value>>
+    `)
+  } else {
+    result.push(`
+    // eslint-disable-next-line
+    type PropOrCondition<Value> = ConditionalValue<Value | AnyString>
+    `)
+  }
 
   result.push(`
     type CssValue<T> = T extends keyof CssProperties ? CssProperties[T] : never
@@ -43,18 +69,18 @@ export async function generatePropTypes(sys: SystemContext, strict = false) {
 
   result.push(`
   type PropertyTypeValue<T extends string> = T extends keyof PropertyTypes
-    ? PropOrCondition<T, PropertyTypes[T] | CssValue<T>>
+    ? PropOrCondition<PropertyTypes[T] | CssValue<T>>
     : never;
   
   type CssPropertyValue<T extends string> = T extends keyof CssProperties
-    ? PropOrCondition<T, CssProperties[T]>
+    ? PropOrCondition<CssProperties[T]>
     : never;
 
   export type PropertyValue<T extends string> = T extends keyof PropertyTypes
     ? PropertyTypeValue<T>
     : T extends keyof CssProperties
       ? CssPropertyValue<T>
-      : PropOrCondition<T, string | number>
+      : PropOrCondition<string | number>
   `)
 
   return pretty(result.join("\n"))
