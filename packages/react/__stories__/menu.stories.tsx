@@ -100,8 +100,8 @@ export const WithLinkItem = () => (
     </Menu.Trigger>
     <Menu.Positioner>
       <Menu.Content>
-        {/* <Menu.Item value="download">Download</Menu.Item>
-        <Menu.Item value="copy">Create a Copy</Menu.Item> */}
+        <Menu.Item value="download">Download</Menu.Item>
+        <Menu.Item value="copy">Create a Copy</Menu.Item>
         <Menu.Item value="link" asChild>
           <a href="#">Attend a Workshop</a>
         </Menu.Item>
