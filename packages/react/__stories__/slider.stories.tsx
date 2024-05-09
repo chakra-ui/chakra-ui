@@ -125,3 +125,11 @@ export const RangeSlider = () => {
     </Slider.Root>
   )
 }
+
+export const WithSteps = () => {
+  return <DemoSlider step={5} />
+}
+
+export const VerticalSlider = () => {
+  return <DemoSlider colorScheme="red" orientation="vertical" />
+}
