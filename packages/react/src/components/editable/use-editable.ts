@@ -9,8 +9,8 @@ import {
   useUpdateEffect,
 } from "@chakra-ui/hooks"
 import { ariaAttr, callAllHandlers, contains } from "@chakra-ui/utils"
-import { RefObject, useCallback, useEffect, useRef, useState } from "react"
-import { PropGetterFn } from "../../styled-system/factory.types"
+import { type RefObject, useCallback, useEffect, useRef, useState } from "react"
+import { type PropGetterFn } from "../../styled-system/factory.types"
 
 interface FocusableElement {
   focus(options?: FocusOptions): void

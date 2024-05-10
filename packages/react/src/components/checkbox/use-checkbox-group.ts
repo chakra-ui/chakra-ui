@@ -3,7 +3,7 @@
 import { useCallbackRef, useControllableState } from "@chakra-ui/hooks"
 import { callAll, isObject } from "@chakra-ui/utils"
 import { useCallback } from "react"
-import { EventOrValue, UseCheckboxGroupProps } from "./checkbox-types"
+import type { EventOrValue, UseCheckboxGroupProps } from "./checkbox-types"
 
 function isInputEvent(value: any): value is { target: HTMLInputElement } {
   return value && isObject(value) && isObject(value.target)

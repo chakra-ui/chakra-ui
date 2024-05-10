@@ -4,10 +4,10 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef, useMemo } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  SystemStyleObject,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type SystemStyleObject,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"

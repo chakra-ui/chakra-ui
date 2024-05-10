@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface FieldLabelProps extends HTMLChakraProps<"label"> {}
@@ -27,7 +27,7 @@ export const FieldLabel = forwardRef<HTMLLabelElement, FieldLabelProps>(
       <chakra.label
         {...ownProps}
         className={cx("chakra-field__label", className)}
-        css={[styles.label, rest.css]}
+        css={[styles["label"], rest.css]}
       >
         {children}
       </chakra.label>

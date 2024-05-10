@@ -1,4 +1,4 @@
-import { HTMLChakraProps, chakra } from '@chakra-ui/react'
+import { type HTMLChakraProps, chakra } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 

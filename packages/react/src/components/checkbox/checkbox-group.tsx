@@ -2,11 +2,11 @@
 
 import {
   RecipePropsProvider,
-  SlotRecipeProps,
+  type SlotRecipeProps,
   useSlotRecipe,
 } from "../../styled-system"
 import { CheckboxGroupProvider } from "./checkbox-context"
-import { UseCheckboxGroupProps } from "./checkbox-types"
+import type { UseCheckboxGroupProps } from "./checkbox-types"
 import { useCheckboxGroup } from "./use-checkbox-group"
 
 export interface CheckboxGroupProps

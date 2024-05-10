@@ -16,6 +16,34 @@ export const toastSlotRecipe = defineSlotRecipe({
       paddingEnd: "8",
       rounded: "md",
       fontSize: "sm",
+      translate: "var(--x) var(--y)",
+      scale: "var(--scale)",
+      zIndex: "var(--z-index)",
+      height: "var(--height)",
+      opacity: "var(--opacity)",
+      willChange: "translate, opacity, scale",
+      transition:
+        "translate 400ms, scale 400ms, opacity 400ms, height 400ms, box-shadow 200ms",
+      transitionTimingFunction: "cubic-bezier(0.21, 1.02, 0.73, 1)",
+      _closed: {
+        transition: "translate 400ms, scale 400ms, opacity 200ms",
+        transitionTimingFunction: "cubic-bezier(0.06, 0.71, 0.55, 1)",
+      },
+      "&[data-type=info]": {
+        colorPalette: "blue",
+      },
+      "&[data-type=warning]": {
+        colorPalette: "orange",
+      },
+      "&[data-type=success]": {
+        colorPalette: "green",
+      },
+      "&[data-type=error]": {
+        colorPalette: "red",
+      },
+      "&[data-type=loading]": {
+        colorPalette: "gray",
+      },
     },
     title: {
       fontWeight: "semibold",
@@ -32,28 +60,10 @@ export const toastSlotRecipe = defineSlotRecipe({
     },
   },
   variants: {
-    status: {
-      default: {
-        root: { colorPalette: "gray" },
-      },
-      info: {
-        root: { colorPalette: "blue" },
-      },
-      warning: {
-        root: { colorPalette: "orange" },
-      },
-      success: {
-        root: { colorPalette: "green" },
-      },
-      error: {
-        root: { colorPalette: "red" },
-      },
-      loading: {},
-    },
     variant: {
       solid: {
         root: {
-          bg: "colorPalette.600",
+          bg: "colorPalette.700",
           color: "white",
         },
         icon: {
@@ -74,6 +84,5 @@ export const toastSlotRecipe = defineSlotRecipe({
   },
   defaultVariants: {
     variant: "solid",
-    status: "default",
   },
 })

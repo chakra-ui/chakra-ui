@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import {
   FieldErrorStylesProvider,
   useFieldContext,
@@ -29,7 +29,7 @@ export const FieldErrorMessage = forwardRef<
       <chakra.div
         {...field?.getErrorMessageProps(props, ref)}
         className={cx("chakra-field__error-message", props.className)}
-        css={[styles.errorMessage, props.css]}
+        css={[styles["errorMessage"], props.css]}
       />
     </FieldErrorStylesProvider>
   )

@@ -1,17 +1,18 @@
-import { act, hooks, render, screen } from "@chakra-ui/test-utils"
+import { act, render, renderHook, screen } from "@testing-library/react"
+import { userEvent } from "@testing-library/user-event"
 import { useState } from "react"
 import { useControllableState } from "../src"
 
 describe("Controllable State", () => {
   test("should be uncontrolled when defaultValue is passed", () => {
-    const { result } = hooks.render(() =>
+    const { result } = renderHook(() =>
       useControllableState({ defaultValue: "testing" }),
     )
 
     const [value] = result.current
     expect(value).toBe("testing")
 
-    hooks.act(() => {
+    act(() => {
       const [, setValue] = result.current
       setValue("naruto")
     })
@@ -21,13 +22,13 @@ describe("Controllable State", () => {
   })
 
   test("should be controlled when value is passed", () => {
-    const { result } = hooks.render(() =>
+    const { result } = renderHook(() =>
       useControllableState({ value: "testing" }),
     )
     const [value] = result.current
     expect(value).toBe("testing")
 
-    hooks.act(() => {
+    act(() => {
       const [, setValue] = result.current
       setValue("naruto")
     })
@@ -69,13 +70,13 @@ describe("Controllable State", () => {
       return <Controllable value={value} onChange={onChange} />
     }
 
-    const { user } = render(<TestComponent />)
+    render(<TestComponent />)
 
     expect(screen.getByTestId("value")).toHaveTextContent("0")
-    await act(() => user.type(screen.getByRole("textbox"), "5"))
+    await act(() => userEvent.type(screen.getByRole("textbox"), "5"))
 
     expect(await screen.findByTestId("value")).toHaveTextContent("5")
-    await act(() => user.type(screen.getByRole("textbox"), "{selectall}1"))
+    await act(() => userEvent.type(screen.getByRole("textbox"), "{selectall}1"))
 
     expect(await screen.findByTestId("value")).toHaveTextContent("6")
   })

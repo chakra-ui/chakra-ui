@@ -1,5 +1,5 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
-import { Preview, ReactRenderer } from "@storybook/react"
+import type { Preview, ReactRenderer } from "@storybook/react"
 import React from "react"
 import { ChakraProvider, defaultSystem } from "../packages/react/src"
 

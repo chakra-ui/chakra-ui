@@ -2,7 +2,7 @@
 
 import { Global } from "@emotion/react"
 import { createContext } from "../create-context"
-import { SystemContext } from "./types"
+import type { SystemContext } from "./types"
 
 const [ChakraContextProvider, useChakraContext] = createContext<SystemContext>({
   name: "ChakraContext",

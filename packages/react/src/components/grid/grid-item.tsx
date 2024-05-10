@@ -3,11 +3,11 @@
 import { compact, mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  ConditionalValue,
-  SystemStyleObject,
+  type ConditionalValue,
+  type SystemStyleObject,
   chakra,
 } from "../../styled-system"
-import { BoxProps } from "../box/box"
+import type { BoxProps } from "../box/box"
 
 export interface GridItemProps extends BoxProps {
   /**

@@ -20,7 +20,9 @@
     "incremental": true,
     "customConditions": ["source"],
     "paths": {
-      "@chakra-ui/react": ["../../packages/react/src"]
+      "@chakra-ui/react": ["../../packages/react/src"],
+      "@chakra-ui/hooks": ["../../packages/hooks/src"],
+      "@chakra-ui/utils": ["../../packages/utils/src"]
     }
   },
   "exclude": ["node_modules"],

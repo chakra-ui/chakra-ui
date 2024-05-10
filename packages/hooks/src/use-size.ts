@@ -1,6 +1,6 @@
 "use client"
 
-import { ElementSize, trackElementSize } from "@zag-js/element-size"
+import { type ElementSize, trackElementSize } from "@zag-js/element-size"
 import { useEffect, useLayoutEffect, useState } from "react"
 
 const useSafeLayoutEffect = Boolean(globalThis?.document)

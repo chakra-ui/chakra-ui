@@ -1,7 +1,11 @@
 "use client"
 
 import { forwardRef } from "react"
-import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
+import {
+  type HTMLChakraProps,
+  type SystemStyleObject,
+  chakra,
+} from "../../styled-system"
 
 export interface GridOptions {
   /**

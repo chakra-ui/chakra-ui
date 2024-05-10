@@ -3,9 +3,9 @@
 import { mapResponsive } from "@chakra-ui/utils"
 import { forwardRef, useMemo } from "react"
 import {
-  ConditionalValue,
-  HTMLChakraProps,
-  SystemStyleObject,
+  type ConditionalValue,
+  type HTMLChakraProps,
+  type SystemStyleObject,
   chakra,
 } from "../../styled-system"
 

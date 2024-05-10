@@ -1,5 +1,5 @@
 import type { SystemContext } from "@chakra-ui/react"
-import { allCssProperties } from "@chakra-ui/react"
+import { allCssProperties } from "@pandacss/is-valid-prop"
 import { pretty } from "./shared.js"
 
 export async function generateSystemTypes(sys: SystemContext) {
@@ -8,9 +8,9 @@ export async function generateSystemTypes(sys: SystemContext) {
   )
 
   const result = `
-  import { ConditionalValue } from "../css.types"
-  import { PropertyValue } from "./prop-types.gen"
-  import { Token } from "./token.gen"
+  import type { ConditionalValue } from "../css.types"
+  import type { PropertyValue } from "./prop-types.gen"
+  import type { Token } from "./token.gen"
 
   export type CssVarProperties = {
       [key in \`--\${string}\`]?: ConditionalValue<Token | (string & {}) | (number & {})>

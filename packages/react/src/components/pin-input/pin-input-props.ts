@@ -1,5 +1,5 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UsePinInputProps } from "./use-pin-input"
+import type { UsePinInputProps } from "./use-pin-input"
 
 const pinInputProps = createProps<UsePinInputProps>()([
   "autoFocus",

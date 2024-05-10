@@ -2,7 +2,11 @@
 
 import { isCssUnit, isCssVar, mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
+import {
+  type HTMLChakraProps,
+  type SystemStyleObject,
+  chakra,
+} from "../../styled-system"
 
 export interface BleedProps extends HTMLChakraProps<"div"> {
   /**

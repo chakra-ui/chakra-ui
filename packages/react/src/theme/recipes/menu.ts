@@ -1,8 +1,8 @@
-import { menuAnatomy as parts } from "../../anatomy"
+import { anatomy as parts } from "@ark-ui/anatomy/menu"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const menuSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: [...parts.keys(), "itemCommand"],
   base: {
     content: {
       outline: 0,
@@ -35,10 +35,13 @@ export const menuSlotRecipe = defineSlotRecipe({
         opacity: "0.5",
       },
     },
-    groupTitle: {
+    itemText: {
+      flex: "1",
+    },
+    itemGroupLabel: {
       px: "2",
       py: "1.5",
-      fontWeight: "semibold",
+      fontWeight: "medium",
       fontSize: "sm",
     },
     indicator: {
@@ -46,12 +49,8 @@ export const menuSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       flexShrink: "0",
-      opacity: "0",
-      _checked: {
-        opacity: "1",
-      },
     },
-    command: {
+    itemCommand: {
       opacity: "0.6",
       marginLeft: "auto",
     },
@@ -66,14 +65,14 @@ export const menuSlotRecipe = defineSlotRecipe({
     variant: {
       subtle: {
         item: {
-          _focus: {
+          _highlighted: {
             bg: { base: "gray.100", _dark: "whiteAlpha.100" },
           },
         },
       },
       solid: {
         item: {
-          _focus: {
+          _highlighted: {
             bg: "colorPalette.600",
             color: "white",
           },

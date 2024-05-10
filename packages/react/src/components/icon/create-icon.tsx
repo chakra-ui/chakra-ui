@@ -1,7 +1,7 @@
 "use client"
 
 import { Children, forwardRef } from "react"
-import { Icon, IconProps } from "./icon"
+import { Icon, type IconProps } from "./icon"
 
 interface CreateIconOptions {
   /**

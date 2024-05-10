@@ -4,15 +4,15 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
 import { FieldContextProvider, FieldStylesProvider } from "./field-context"
 import { splitFieldProps } from "./field-props"
-import { FieldContext } from "./types"
+import type { FieldContext } from "./types"
 import { useFieldProvider } from "./use-field-provider"
 
 export interface FieldRootProps
@@ -45,7 +45,7 @@ export const FieldRoot = forwardRef<HTMLDivElement, FieldRootProps>(
           <chakra.div
             {...api.getRootProps(rootProps, ref)}
             className={cx("chakra-form-control", props.className)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
           />
         </FieldStylesProvider>
       </FieldContextProvider>

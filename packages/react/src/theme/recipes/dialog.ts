@@ -1,22 +1,30 @@
-import { modalAnatomy as parts } from "../../anatomy"
+import { dialogAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
+const anatomy = dialogAnatomy.extendWith("header", "body", "footer", "backdrop")
+
 export const dialogSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: anatomy.keys(),
   base: {
-    overlay: {
+    backdrop: {
       bg: "blackAlpha.800",
       pos: "fixed",
       left: 0,
       top: 0,
       w: "100vw",
-      h: "100vh",
+      h: "100dvh",
       zIndex: "modal",
+      _open: {
+        animation: "fade-in 0.2s",
+      },
+      _closed: {
+        animation: "fade-out 0.1s",
+      },
     },
     positioner: {
       display: "flex",
       width: "100vw",
-      height: "100vh",
+      height: "100dvh",
       position: "fixed",
       left: 0,
       top: 0,
@@ -34,6 +42,12 @@ export const dialogSlotRecipe = defineSlotRecipe({
       zIndex: "modal",
       bg: "bg",
       shadow: "lg",
+      _open: {
+        animation: "enter 0.2s",
+      },
+      _closed: {
+        animation: "exit 0.1s",
+      },
     },
     header: {
       flex: 0,
@@ -43,9 +57,9 @@ export const dialogSlotRecipe = defineSlotRecipe({
       fontWeight: "semibold",
     },
     closeTrigger: {
-      position: "absolute",
+      position: "absolute!",
       top: "2",
-      insetEnd: "3",
+      insetEnd: "2",
     },
     body: {
       px: "6",
@@ -103,10 +117,74 @@ export const dialogSlotRecipe = defineSlotRecipe({
         },
       },
     },
+    motionPreset: {
+      scale: {
+        content: {
+          _open: {
+            "--enter-scale": "0.95",
+            "--enter-opacity": "0",
+          },
+          _closed: {
+            "--exit-scale": "0.95",
+            "--exit-opacity": "0",
+          },
+        },
+      },
+      "slide-in-bottom": {
+        content: {
+          _open: {
+            "--enter-opacity": "0",
+            "--enter-translate-y": "16px",
+          },
+          _closed: {
+            "--exit-opacity": "0",
+            "--exit-translate-y": "16px",
+          },
+        },
+      },
+      "slide-in-top": {
+        content: {
+          _open: {
+            "--enter-opacity": "0",
+            "--enter-translate-y": "-16px",
+          },
+          _closed: {
+            "--exit-opacity": "0",
+            "--exit-translate-y": "-16px",
+          },
+        },
+      },
+      "slide-in-left": {
+        content: {
+          _open: {
+            "--enter-opacity": "0",
+            "--enter-translate-x": "-16px",
+          },
+          _closed: {
+            "--exit-opacity": "0",
+            "--exit-translate-x": "-16px",
+          },
+        },
+      },
+      "slide-in-right": {
+        content: {
+          _open: {
+            "--enter-opacity": "0",
+            "--enter-translate-x": "16px",
+          },
+          _closed: {
+            "--exit-opacity": "0",
+            "--exit-translate-x": "16px",
+          },
+        },
+      },
+      none: {},
+    },
   },
   defaultVariants: {
     size: "md",
     scrollBehavior: "outside",
     centered: false,
+    motionPreset: "scale",
   },
 })

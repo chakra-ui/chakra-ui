@@ -1,23 +1,28 @@
-export { SliderRoot as Root } from "./slider-root"
-export type { SliderRootProps as RootProps } from "./slider-root"
+export { SliderRoot as Root } from "./slider"
+export type { SliderRootProps as RootProps } from "./slider"
 
-export { SliderMark as Mark } from "./slider-mark"
-export type { SliderMarkProps as MarkProps } from "./slider-mark"
+export { SliderMarker as Marker } from "./slider"
+export type { SliderMarkerProps as MarkerProps } from "./slider"
 
-export { SliderThumb as Thumb } from "./slider-thumb"
-export type { SliderThumbProps as ThumbProps } from "./slider-thumb"
+export { SliderMarkerGroup as MarkerGroup } from "./slider"
+export type { SliderMarkerGroupProps as MarkerGroupProps } from "./slider"
 
-export { SliderTrack as Track } from "./slider-track"
-export type { SliderTrackProps as TrackProps } from "./slider-track"
+export { SliderThumb as Thumb } from "./slider"
+export type { SliderThumbProps as ThumbProps } from "./slider"
 
-export { SliderFilledTrack as FilledTrack } from "./slider-filled-track"
-export type { SliderFilledTrackProps as FilledTrackProps } from "./slider-filled-track"
+export { SliderTrack as Track } from "./slider"
+export type { SliderTrackProps as TrackProps } from "./slider"
 
-export { SliderControl as Control } from "./slider-control"
-export type { SliderControlProps as ControlProps } from "./slider-control"
+export { SliderRange as FilledTrack } from "./slider"
+export type { SliderRangeProps as FilledTrackProps } from "./slider"
 
-export { SliderValueText as ValueText } from "./slider-value-text"
-export type { SliderValueTextProps as ValueTextProps } from "./slider-value-text"
+export { SliderControl as Control } from "./slider"
+export type { SliderControlProps as ControlProps } from "./slider"
 
-export { SliderLabel as Label } from "./slider-label"
-export type { SliderLabelProps as LabelProps } from "./slider-label"
+export { SliderValueText as ValueText } from "./slider"
+export type { SliderValueTextProps as ValueTextProps } from "./slider"
+
+export { SliderLabel as Label } from "./slider"
+export type { SliderLabelProps as LabelProps } from "./slider"
+
+export type { SliderValueChangeDetails as ValueChangeDetails } from "@ark-ui/react/slider"

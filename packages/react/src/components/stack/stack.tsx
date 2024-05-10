@@ -9,7 +9,11 @@ import {
   isValidElement,
   useMemo,
 } from "react"
-import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
+import {
+  type HTMLChakraProps,
+  type SystemStyleObject,
+  chakra,
+} from "../../styled-system"
 import type { StackDirection } from "./get-separator-style"
 import { getSeparatorStyles } from "./get-separator-style"
 

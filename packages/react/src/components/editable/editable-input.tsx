@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useEditableContext, useEditableStyles } from "./editable-context"
 
 export interface EditableInputProps extends HTMLChakraProps<"input"> {}
@@ -14,7 +14,7 @@ export const EditableInput = forwardRef<HTMLInputElement, EditableInputProps>(
     return (
       <chakra.input
         {...api.getInputProps(props, ref)}
-        css={[styles.input, props.css]}
+        css={[styles["input"], props.css]}
         className={cx("chakra-editable__input", props.className)}
       />
     )

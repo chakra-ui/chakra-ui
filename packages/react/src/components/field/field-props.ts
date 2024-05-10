@@ -1,5 +1,5 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseFieldProps } from "./types"
+import type { UseFieldProps } from "./types"
 
 export const fieldProps = createProps<UseFieldProps>()([
   "aria-describedby",

@@ -1,7 +1,7 @@
 "use client"
 
 import { useMediaQuery } from "@chakra-ui/hooks"
-import { Dict, arrayToObjectNotation, isArray } from "@chakra-ui/utils"
+import { type Dict, arrayToObjectNotation, isArray } from "@chakra-ui/utils"
 import { useChakraContext } from "../styled-system"
 
 /* -----------------------------------------------------------------------------

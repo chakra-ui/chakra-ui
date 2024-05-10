@@ -3,11 +3,11 @@
 import { mapResponsive } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  ConditionalValue,
-  SystemContext,
+  type ConditionalValue,
+  type SystemContext,
   useChakraContext,
 } from "../../styled-system"
-import { Grid, GridProps } from "./grid"
+import { Grid, type GridProps } from "./grid"
 
 interface SimpleGridOptions {
   /**

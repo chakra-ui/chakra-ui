@@ -1,5 +1,5 @@
 import { mapResponsive } from "@chakra-ui/utils"
-import { ConditionalValue, SystemStyleObject } from "../../styled-system"
+import type { ConditionalValue, SystemStyleObject } from "../../styled-system"
 
 export type StackDirection = ConditionalValue<
   "row" | "column" | "row-reverse" | "column-reverse"

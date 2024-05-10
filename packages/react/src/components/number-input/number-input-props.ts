@@ -1,5 +1,5 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseNumberInputProps } from "./use-number-input"
+import type { UseNumberInputProps } from "./use-number-input"
 
 export const numberInputProps = createProps<UseNumberInputProps>()([
   "allowMouseWheel",

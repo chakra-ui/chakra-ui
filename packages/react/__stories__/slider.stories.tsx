@@ -1,3 +1,4 @@
+import type { Meta } from "@storybook/react"
 import { Box, For, Span, useSlotRecipe } from "../src"
 import { Slider } from "../src/components/slider"
 import { colorPalettes } from "./shared/color-palettes"
@@ -5,12 +6,12 @@ import { PlaygroundTable } from "./shared/playground-table"
 
 const DemoSlider = (props: Slider.RootProps) => {
   return (
-    <Slider.Root {...props}>
+    <Slider.Root defaultValue={[50]} {...props}>
       <Slider.Control>
         <Slider.Track>
           <Slider.FilledTrack />
         </Slider.Track>
-        <Slider.Thumb />
+        <Slider.Thumb index={0} />
       </Slider.Control>
     </Slider.Root>
   )
@@ -18,8 +19,14 @@ const DemoSlider = (props: Slider.RootProps) => {
 
 export default {
   title: "Components / Slider",
-  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
-}
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export const Variants = () => {
   const recipe = useSlotRecipe("Slider")
@@ -43,7 +50,12 @@ export const Variants = () => {
               <For each={recipe.variantMap.variant}>
                 {(v) => (
                   <td>
-                    <DemoSlider colorPalette={c} variant={v} minW="200px" />
+                    <DemoSlider
+                      colorPalette={c}
+                      variant={v}
+                      minW="200px"
+                      mb="2"
+                    />
                     <DemoSlider
                       colorPalette={c}
                       variant={v}
@@ -95,51 +107,29 @@ export const Sizes = () => {
   )
 }
 
-// export function HorizontalSlider() {
-//   return (
-//     <Slider colorScheme="red" onChangeEnd={console.log}>
-//       <SliderTrack>
-//         <SliderFilledTrack />
-//       </SliderTrack>
-//       <SliderThumb />
-//       <SliderMark value={90} top="20px">
-//         "90%"
-//       </SliderMark>
-//     </Slider>
-//   )
-// }
+export const RangeSlider = () => {
+  return (
+    <Slider.Root
+      maxW="sm"
+      thumbSize={{ width: 16, height: 16 }}
+      defaultValue={[30, 70]}
+    >
+      <Slider.Label fontWeight="medium">Price Range</Slider.Label>
+      <Slider.Control>
+        <Slider.Track>
+          <Slider.FilledTrack />
+        </Slider.Track>
+        <Slider.Thumb index={0} />
+        <Slider.Thumb index={1} />
+      </Slider.Control>
+    </Slider.Root>
+  )
+}
 
-// export function VerticalSlider() {
-//   return (
-//     <Slider colorScheme="red" isReversed orientation="vertical">
-//       <SliderTrack>
-//         <SliderFilledTrack />
-//       </SliderTrack>
-//       <SliderThumb />
-//       <SliderMark value={90} children="90%" left="40px" />
-//     </Slider>
-//   )
-// }
+export const WithSteps = () => {
+  return <DemoSlider step={5} />
+}
 
-// export function ChakraHorizontalSlider() {
-//   return (
-//     <Slider colorScheme="blue" defaultValue={40}>
-//       <SliderTrack>
-//         <SliderFilledTrack />
-//       </SliderTrack>
-//       <SliderThumb children="#" boxSize="30px" color="black" />
-//     </Slider>
-//   )
-// }
-
-// export function SteppedHorizontalSlider() {
-//   const [value, setValue] = React.useState<number>(1)
-//   return (
-//     <Slider value={value} onChange={setValue} min={1} max={7} step={2}>
-//       <SliderTrack>
-//         <SliderFilledTrack />
-//       </SliderTrack>
-//       <SliderThumb children={value} boxSize="30px" color="black" />
-//     </Slider>
-//   )
-// }
+export const VerticalSlider = () => {
+  return <DemoSlider colorScheme="red" orientation="vertical" />
+}

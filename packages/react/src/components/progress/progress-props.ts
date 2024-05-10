@@ -1,5 +1,5 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { ProgressOptions } from "./progress-types"
+import type { ProgressOptions } from "./progress-types"
 
 export const progressProps = createProps<ProgressOptions>()([
   "indeterminate",

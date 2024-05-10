@@ -1,6 +1,6 @@
 import { isString } from "@chakra-ui/utils"
 import { calc } from "./calc"
-import { Token, TokenMiddleware } from "./types"
+import type { Token, TokenMiddleware } from "./types"
 
 export const addNegativeTokens: TokenMiddleware = {
   enforce: "pre",

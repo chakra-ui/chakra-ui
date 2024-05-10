@@ -1,5 +1,5 @@
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
+import { type SystemStyleObject } from "../../styled-system"
 
 export const [TableStylesProvider, useTableStyles] = createContext<
   Record<string, SystemStyleObject>

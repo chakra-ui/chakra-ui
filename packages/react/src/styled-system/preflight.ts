@@ -1,6 +1,6 @@
 import { isObject } from "@chakra-ui/utils"
-import { CssProperties } from "./css.types"
-import { PreflightConfig } from "./types"
+import type { CssProperties } from "./css.types"
+import type { PreflightConfig } from "./types"
 
 export function createPreflight(options: PreflightConfig) {
   const { preflight } = options

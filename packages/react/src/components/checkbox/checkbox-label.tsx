@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useCheckboxContext, useCheckboxStyles } from "./checkbox-context"
 
 export interface CheckboxLabelProps extends HTMLChakraProps<"span"> {}
@@ -16,7 +16,7 @@ export const CheckboxLabel = forwardRef<HTMLElement, CheckboxLabelProps>(
       <chakra.span
         {...api.getLabelProps(props, ref)}
         className={cx("chakra-checkbox__label", props.className)}
-        css={[styles.label, props.css]}
+        css={[styles["label"], props.css]}
       />
     )
   },

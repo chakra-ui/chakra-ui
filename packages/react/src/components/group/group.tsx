@@ -2,7 +2,11 @@
 
 import { dataAttr } from "@chakra-ui/utils"
 import { Children, cloneElement, forwardRef, isValidElement, memo } from "react"
-import { HTMLChakraProps, InferRecipeProps, chakra } from "../../styled-system"
+import {
+  type HTMLChakraProps,
+  type InferRecipeProps,
+  chakra,
+} from "../../styled-system"
 
 const StyledGroup = chakra("div", {
   base: {

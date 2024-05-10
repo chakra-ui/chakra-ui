@@ -1,4 +1,7 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "__tests__", "__stories__"]
+  "include": ["src", "__tests__", "__stories__"],
+  "compilerOptions": {
+    "customConditions": ["source"]
+  }
 }

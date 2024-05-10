@@ -1,19 +1,19 @@
-import {
+import type {
   Assign,
   Dict,
   DistributiveOmit,
   DistributiveUnion,
   Pretty,
 } from "@chakra-ui/utils"
-import {
+import type {
   ComponentProps,
   ComponentPropsWithoutRef,
   ElementType,
   FunctionComponent,
 } from "react"
-import { MinimalNested, SystemStyleObject } from "./css.types"
-import { SystemProperties } from "./generated/system.gen"
-import {
+import type { MinimalNested, SystemStyleObject } from "./css.types"
+import type { SystemProperties } from "./generated/system.gen"
+import type {
   RecipeDefinition,
   RecipeSelection,
   RecipeVariantRecord,
@@ -24,7 +24,7 @@ export interface PolymorphicProps {
   asChild?: boolean
 }
 
-interface HtmlProps {
+export interface HtmlProps {
   htmlSize?: number
   htmlWidth?: string | number
   htmlHeight?: string | number
@@ -81,8 +81,9 @@ type JsxElements = {
 
 export type StyledFactoryFn = JsxFactory & JsxElements
 
-interface JsxFactoryOptions<TProps extends Dict> {
+export interface JsxFactoryOptions<TProps> {
   defaultProps?: TProps
+  forwardAsChild?: boolean
   shouldForwardProp?(prop: string, variantKeys: string[]): boolean
 }
 

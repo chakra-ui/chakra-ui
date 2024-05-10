@@ -1,7 +1,7 @@
-import { Dict, isFunction, isString, memo } from "@chakra-ui/utils"
+import { type Dict, isFunction, isString, memo } from "@chakra-ui/utils"
 import { colorMix } from "./color-mix"
 import { mapToJson } from "./map-to-json"
-import {
+import type {
   TokenDictionary,
   Utility,
   UtilityConfig,

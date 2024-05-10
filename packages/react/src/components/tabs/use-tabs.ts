@@ -1,7 +1,7 @@
 "use client"
 
 import { useControllableState } from "@chakra-ui/hooks"
-import { LazyMode } from "@chakra-ui/utils"
+import type { LazyMode } from "@chakra-ui/utils"
 import { useId, useRef, useState } from "react"
 
 /* -------------------------------------------------------------------------------------------------

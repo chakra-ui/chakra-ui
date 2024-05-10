@@ -4,7 +4,7 @@ import { useControllableState } from "@chakra-ui/hooks"
 import { ariaAttr, callAllHandlers } from "@chakra-ui/utils"
 import { nextById, prevById, queryAll, raf } from "@zag-js/dom-utils"
 import { useCallback, useEffect, useId, useRef, useState } from "react"
-import { PropGetterFn } from "../../styled-system/factory.types"
+import type { PropGetterFn } from "../../styled-system/factory.types"
 
 export interface UsePinInputProps {
   /**

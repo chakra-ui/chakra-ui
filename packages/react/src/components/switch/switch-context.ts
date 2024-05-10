@@ -1,6 +1,6 @@
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
-import { UseCheckboxReturn } from "../checkbox"
+import type { SystemStyleObject } from "../../styled-system"
+import type { UseCheckboxReturn } from "../checkbox"
 
 export const [SwitchStylesProvider, useSwitchStyles] = createContext<
   Record<string, SystemStyleObject>

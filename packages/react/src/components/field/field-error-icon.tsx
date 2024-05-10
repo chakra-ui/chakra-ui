@@ -20,7 +20,7 @@ export const FieldErrorIcon = forwardRef<SVGElement, FieldErrorIconProps>(
         ref={ref}
         aria-hidden
         {...props}
-        css={styles.icon}
+        css={styles["icon"]}
         className={cx("chakra-form__error-icon", props.className)}
       >
         <path

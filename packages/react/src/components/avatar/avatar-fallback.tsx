@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useAvatarContext, useAvatarStyles } from "./avatar-context"
 import { getInitials } from "./get-initials"
 
@@ -26,7 +26,7 @@ export const AvatarFallback = forwardRef<HTMLSpanElement, AvatarFallbackProps>(
         hidden={api.isLoaded}
         {...restProps}
         className={cx("chakra-avatar__fallback", props.className)}
-        css={styles.fallback}
+        css={styles["fallback"]}
       >
         {props.children || initials}
       </chakra.div>

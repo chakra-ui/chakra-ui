@@ -845,6 +845,8 @@ export type ShadowsToken = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inset"
 export type AnimationName =
   | "spin"
   | "bg-position"
+  | "collapse-in"
+  | "collapse-out"
   | "position"
   | "pulse"
   | "fade-in"

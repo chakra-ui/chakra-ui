@@ -2,10 +2,10 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra, defineStyle } from "../../styled-system"
+import { type HTMLChakraProps, chakra, defineStyle } from "../../styled-system"
 import { getProgressProps } from "../progress/progress-utils"
 import { CircularProgressContextProvider } from "./circular-progress-context"
-import { CircularProgressOptions } from "./circular-progress-types"
+import type { CircularProgressOptions } from "./circular-progress-types"
 
 export interface CircularProgressRootProps
   extends Omit<HTMLChakraProps<"div">, "color">,

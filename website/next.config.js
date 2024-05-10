@@ -18,4 +18,7 @@ module.exports = withContentlayer({
   productionBrowserSourceMaps: true,
   redirects: require('./next-redirect'),
   reactStrictMode: true,
+  experimental: {
+    externalDir: true,
+  },
 })

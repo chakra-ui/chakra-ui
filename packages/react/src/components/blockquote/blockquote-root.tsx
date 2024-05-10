@@ -4,9 +4,9 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   useSlotRecipe,
 } from "../../styled-system"
@@ -30,7 +30,7 @@ export const BlockquoteRoot = forwardRef<HTMLElement, BlockquoteRootProps>(
           ref={ref}
           {...localProps}
           className={cx("chakra-blockquote", props.className)}
-          css={styles.root}
+          css={styles["root"]}
         />
       </BlockquoteStylesProvider>
     )

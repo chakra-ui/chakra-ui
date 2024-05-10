@@ -2,7 +2,11 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, SystemStyleObject, chakra } from "../../styled-system"
+import {
+  type HTMLChakraProps,
+  type SystemStyleObject,
+  chakra,
+} from "../../styled-system"
 import { useCardStyles } from "./card-context"
 
 export interface CardFooterProps extends HTMLChakraProps<"div"> {
@@ -23,7 +27,7 @@ export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
         justifyContent={justify}
         {...rest}
         className={cx("chakra-card__footer", props.className)}
-        css={[styles.footer, props.css]}
+        css={[styles["footer"], props.css]}
       />
     )
   },

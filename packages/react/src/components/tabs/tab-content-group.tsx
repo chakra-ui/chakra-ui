@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useTabsStyles } from "./tabs-context"
 
 export interface TabContentGroupProps extends HTMLChakraProps<"div"> {}
@@ -15,7 +15,7 @@ export const TabContentGroup = forwardRef<HTMLDivElement, TabContentGroupProps>(
         {...props}
         ref={ref}
         className={cx("chakra-tabs__content-group", props.className)}
-        css={[styles.contentGroup, props.css]}
+        css={[styles["contentGroup"], props.css]}
       />
     )
   },

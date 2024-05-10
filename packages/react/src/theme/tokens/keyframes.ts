@@ -9,6 +9,14 @@ export const keyframes = defineKeyframes({
     from: { backgroundPosition: "var(--animate-from, 1rem) 0" },
     to: { backgroundPosition: "var(--animate-to, 0) 0" },
   },
+  "collapse-in": {
+    from: { height: "0", opacity: 0 },
+    to: { height: "var(--height)", opacity: 1 },
+  },
+  "collapse-out": {
+    from: { height: "var(--height)", opacity: 1 },
+    to: { height: "0", opacity: 0 },
+  },
   position: {
     from: {
       insetInlineStart: "var(--animate-from-x)",

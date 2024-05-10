@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext } from "../../create-context"
-import { SystemStyleObject } from "../../styled-system"
+import type { SystemStyleObject } from "../../styled-system"
 
 export const [CardStylesProvider, useCardStyles] = createContext<
   Record<string, SystemStyleObject>

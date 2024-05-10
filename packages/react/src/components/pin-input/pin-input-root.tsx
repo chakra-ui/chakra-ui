@@ -4,15 +4,15 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  RecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
 import { PinInputProvider, PinInputStylesProvider } from "./pin-input-context"
 import { splitPinInputProps } from "./pin-input-props"
-import { UsePinInputProps, usePinInput } from "./use-pin-input"
+import { type UsePinInputProps, usePinInput } from "./use-pin-input"
 
 export interface PinInputRootProps
   extends HTMLChakraProps<"div", UsePinInputProps>,

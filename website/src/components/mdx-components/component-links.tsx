@@ -2,7 +2,7 @@ import {
   Button,
   ButtonProps,
   Link,
-  SystemStyleObject,
+  type SystemStyleObject,
   Wrap,
 } from '@chakra-ui/react'
 import React from 'react'

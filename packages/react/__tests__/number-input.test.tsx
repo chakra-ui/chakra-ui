@@ -1,12 +1,6 @@
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  testA11y,
-  waitFor,
-} from "@chakra-ui/test-utils"
+import { act, fireEvent, screen, waitFor } from "@testing-library/react"
 import { Field, NumberInput } from "../src"
+import { render, testA11y } from "./core"
 
 function renderComponent(props: NumberInput.RootProps = {}) {
   return render(

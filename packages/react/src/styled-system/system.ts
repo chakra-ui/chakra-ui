@@ -1,5 +1,5 @@
 import {
-  Dict,
+  type Dict,
   compact,
   flatten,
   isObject,
@@ -7,17 +7,22 @@ import {
   mergeWith,
   splitProps,
 } from "@chakra-ui/utils"
+import { isCssProperty } from "@pandacss/is-valid-prop"
 import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"
 import { createCssFn } from "./css"
 import { createRecipeFn } from "./cva"
-import { isCssProperty } from "./is-valid-prop"
 import { createNormalizeFn } from "./normalize"
 import { createPreflight } from "./preflight"
 import { createSerializeFn } from "./serialize"
 import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
-import { SystemConfig, SystemContext, TokenDictionary, TokenFn } from "./types"
+import type {
+  SystemConfig,
+  SystemContext,
+  TokenDictionary,
+  TokenFn,
+} from "./types"
 import { createUtilty } from "./utility"
 
 export function createSystem(config: SystemConfig): SystemContext {

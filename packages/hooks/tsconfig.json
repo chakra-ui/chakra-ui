@@ -1,5 +1,7 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "__stories__", "__tests__"],
-  "exclude": ["node_modules"]
+  "include": ["src", "__stories__", "__tests__", "../../vitest.setup.ts"],
+  "compilerOptions": {
+    "customConditions": ["source"]
+  }
 }

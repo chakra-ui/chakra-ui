@@ -1,6 +1,7 @@
-import { act, fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import { act, fireEvent, screen } from "@testing-library/react"
 import { useState } from "react"
 import { Checkbox, Field, Icon } from "../src"
+import { render, testA11y } from "./core"
 
 const DemoCheckbox = (props: Checkbox.RootProps) => {
   return (

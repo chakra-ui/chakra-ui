@@ -24,13 +24,20 @@ export const accordionSlotRecipe = defineSlotRecipe({
       },
     },
     content: {
-      paddingBottom: "calc(var(--accordion-padding-y) * 2)",
+      overflow: "hidden",
+      // paddingBottom: "calc(var(--accordion-padding-y) * 2)",
       borderRadius: "var(--accordion-radius)",
+      _open: {
+        animation: "collapse-in 250ms",
+      },
+      _closed: {
+        animation: "collapse-out 250ms",
+      },
     },
     indicator: {
       transition: "transform 0.2s",
       transformOrigin: "center",
-      _expanded: {
+      _open: {
         transform: "rotate(180deg)",
       },
       "& svg": {
@@ -55,7 +62,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
         },
         item: {
           borderRadius: "var(--accordion-radius)",
-          _expanded: {
+          _open: {
             bg: "bg.panel",
             boxShadow: "xs",
           },
@@ -70,7 +77,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
         },
         item: {
           borderRadius: "var(--accordion-radius)",
-          _expanded: {
+          _open: {
             bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
           },
         },

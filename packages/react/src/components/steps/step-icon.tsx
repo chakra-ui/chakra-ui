@@ -1,7 +1,7 @@
 "use client"
 
 import { cx } from "@chakra-ui/utils"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useStepContext, useStepperStyles } from "./step-context"
 
 function CheckIcon(props: StepIconProps) {
@@ -31,7 +31,7 @@ export function StepIcon(props: StepIconProps) {
     return (
       <CheckIcon
         {...props}
-        css={styles.icon}
+        css={styles["icon"]}
         className={cx("chakra-step__icon", props.className)}
       />
     )

@@ -1,7 +1,7 @@
 "use client"
 
 import { cx } from "@chakra-ui/utils"
-import { ChakraComponent, chakra } from "../../styled-system"
+import { type ChakraComponent, chakra } from "../../styled-system"
 
 export const AvatarIcon: ChakraComponent<"svg"> = (props) => (
   <chakra.svg

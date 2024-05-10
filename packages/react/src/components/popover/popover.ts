@@ -1,0 +1,160 @@
+"use client"
+
+import { Popover as ArkPopover } from "@ark-ui/react/popover"
+import {
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
+  createStyleContext,
+} from "../../styled-system"
+
+////////////////////////////////////////////////////////////////////////////////////
+
+const {
+  withRootProvider,
+  withContext,
+  useStyles: usePopoverStyles,
+} = createStyleContext("Popover")
+
+export { usePopoverStyles }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverRootProps
+  extends ArkPopover.RootProps,
+    SlotRecipeProps<"Popover">,
+    UnstyledProp {}
+
+export const PopoverRoot = withRootProvider<PopoverRootProps>(ArkPopover.Root)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverTriggerProps
+  extends HTMLChakraProps<"button", ArkPopover.TriggerProps> {}
+
+export const PopoverTrigger = withContext<
+  HTMLButtonElement,
+  PopoverTriggerProps
+>(ArkPopover.Trigger, "trigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverPositionerProps
+  extends HTMLChakraProps<"div", ArkPopover.PositionerProps> {}
+
+export const PopoverPositioner = withContext<
+  HTMLDivElement,
+  PopoverPositionerProps
+>(ArkPopover.Positioner, "positioner", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverContentProps
+  extends HTMLChakraProps<"div", ArkPopover.ContentProps> {}
+
+export const PopoverContent = withContext<HTMLDivElement, PopoverContentProps>(
+  ArkPopover.Content,
+  "content",
+  { forwardAsChild: true },
+)
+
+// arrow
+
+export interface PopoverArrowProps
+  extends HTMLChakraProps<"div", ArkPopover.ArrowProps> {}
+
+export const PopoverArrow = withContext<HTMLDivElement, PopoverArrowProps>(
+  ArkPopover.Arrow,
+  "arrow",
+  { forwardAsChild: true },
+)
+
+// arrow tip
+
+export interface PopoverArrowTipProps
+  extends HTMLChakraProps<"div", ArkPopover.ArrowTipProps> {}
+
+export const PopoverArrowTip = withContext<
+  HTMLDivElement,
+  PopoverArrowTipProps
+>(ArkPopover.ArrowTip, "arrowTip", { forwardAsChild: true })
+
+// close trigger
+
+export interface PopoverCloseTriggerProps
+  extends HTMLChakraProps<"button", ArkPopover.CloseTriggerProps> {}
+
+export const PopoverCloseTrigger = withContext<
+  HTMLButtonElement,
+  PopoverCloseTriggerProps
+>(ArkPopover.CloseTrigger, "closeTrigger", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverIndicatorProps
+  extends HTMLChakraProps<"div", ArkPopover.IndicatorProps> {}
+
+export const PopoverIndicator = withContext<
+  HTMLDivElement,
+  PopoverIndicatorProps
+>(ArkPopover.Indicator, "indicator", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverTitleProps
+  extends HTMLChakraProps<"div", ArkPopover.TitleProps> {}
+
+export const PopoverTitle = withContext<HTMLDivElement, PopoverTitleProps>(
+  ArkPopover.Title,
+  "title",
+  { forwardAsChild: true },
+)
+
+// description
+
+export interface PopoverDescriptionProps
+  extends HTMLChakraProps<"div", ArkPopover.DescriptionProps> {}
+
+export const PopoverDescription = withContext<
+  HTMLDivElement,
+  PopoverDescriptionProps
+>(ArkPopover.Description, "description", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverFooterProps extends HTMLChakraProps<"footer"> {}
+
+export const PopoverFooter = withContext<HTMLDivElement, PopoverFooterProps>(
+  "footer",
+  "footer",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverHeaderProps
+  extends HTMLChakraProps<"div", ArkPopover.TitleProps> {}
+
+export const PopoverHeader = withContext<HTMLDivElement, PopoverHeaderProps>(
+  "header",
+  "header",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverBodyProps extends HTMLChakraProps<"div"> {}
+
+export const PopoverBody = withContext<HTMLDivElement, PopoverBodyProps>(
+  "div",
+  "body",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface PopoverAnchorProps
+  extends HTMLChakraProps<"div", ArkPopover.AnchorProps> {}
+
+export const PopoverAnchor = withContext<HTMLDivElement, PopoverAnchorProps>(
+  ArkPopover.Anchor,
+  undefined,
+  { forwardAsChild: true },
+)

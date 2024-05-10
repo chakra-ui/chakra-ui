@@ -1,8 +1,8 @@
-import "vitest-axe/extend-expect"
 import "@testing-library/jest-dom/vitest"
-
-import * as matchers from "vitest-axe/matchers.js"
 import { expect } from "vitest"
+import "vitest-axe/extend-expect"
+import * as matchers from "vitest-axe/matchers"
+
 expect.extend(matchers)
 
 const { getComputedStyle } = window

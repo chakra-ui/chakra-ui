@@ -2,7 +2,7 @@
 
 import { callAllHandlers, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra, mergeRefs } from "../../styled-system"
+import { type HTMLChakraProps, chakra, mergeRefs } from "../../styled-system"
 import { useAvatarContext, useAvatarStyles } from "./avatar-context"
 
 export interface AvatarImageProps extends HTMLChakraProps<"img"> {}
@@ -19,7 +19,7 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
         hidden={!api.isLoaded}
         onLoad={callAllHandlers(props.onLoad, api.setLoaded)}
         onError={callAllHandlers(props.onError, api.setError)}
-        css={[styles.image, props.css]}
+        css={[styles["image"], props.css]}
       />
     )
   },

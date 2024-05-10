@@ -1,4 +1,4 @@
-import { ProgressPropsReturn } from "./progress-utils"
+import type { ProgressPropsReturn } from "./progress-utils"
 
 export interface ProgressOptions {
   /**

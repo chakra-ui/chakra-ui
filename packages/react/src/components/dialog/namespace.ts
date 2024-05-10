@@ -1,23 +1,32 @@
-export { DialogRoot as Root } from "./dialog-root"
-export type { DialogRootProps as RootProps } from "./dialog-root"
+export { DialogRoot as Root } from "./dialog"
+export type { DialogRootProps as RootProps } from "./dialog"
 
-export { DialogBody as Body } from "./dialog-body"
-export type { DialogBodyProps as BodyProps } from "./dialog-body"
+export { DialogBody as Body } from "./dialog"
+export type { DialogBodyProps as BodyProps } from "./dialog"
 
-export { DialogCloseTrigger as CloseTrigger } from "./dialog-close-trigger"
-export type { DialogCloseTriggerProps as CloseTriggerProps } from "./dialog-close-trigger"
+export { DialogTitle as Title } from "./dialog"
+export type { DialogTitleProps as TitleProps } from "./dialog"
 
-export { DialogContent as Content } from "./dialog-content"
-export type { DialogContentProps as ContentProps } from "./dialog-content"
+export { DialogDescription as Description } from "./dialog"
+export type { DialogDescriptionProps as DescriptionProps } from "./dialog"
 
-export { DialogFooter as Footer } from "./dialog-footer"
-export type { DialogFooterProps as FooterProps } from "./dialog-footer"
+export { DialogCloseTrigger as CloseTrigger } from "./dialog"
+export type { DialogCloseTriggerProps as CloseTriggerProps } from "./dialog"
 
-export { DialogHeader as Header } from "./dialog-header"
-export type { DialogHeaderProps as HeaderProps } from "./dialog-header"
+export { DialogContent as Content } from "./dialog"
+export type { DialogContentProps as ContentProps } from "./dialog"
 
-export { DialogBackdrop as Backdrop } from "./dialog-backdrop"
-export type { DialogBackdropProps as BackdropProps } from "./dialog-backdrop"
+export { DialogFooter as Footer } from "./dialog"
+export type { DialogFooterProps as FooterProps } from "./dialog"
 
-export { DialogPositioner as Positioner } from "./dialog-positioner"
-export type { DialogPositionerProps as PositionerProps } from "./dialog-positioner"
+export { DialogHeader as Header } from "./dialog"
+export type { DialogHeaderProps as HeaderProps } from "./dialog"
+
+export { DialogBackdrop as Backdrop } from "./dialog"
+export type { DialogBackdropProps as BackdropProps } from "./dialog"
+
+export { DialogTrigger as Trigger } from "./dialog"
+export type { DialogTriggerProps as TriggerProps } from "./dialog"
+
+export { DialogPositioner as Positioner } from "./dialog"
+export type { DialogPositionerProps as PositionerProps } from "./dialog"

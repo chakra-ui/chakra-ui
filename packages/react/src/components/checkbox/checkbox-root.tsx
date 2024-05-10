@@ -4,9 +4,9 @@ import { callAll, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_SLOT_STYLES,
-  HTMLChakraProps,
-  SlotRecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type SlotRecipeProps,
+  type UnstyledProp,
   chakra,
   mergeProps,
   useParentRecipeProps,
@@ -18,7 +18,7 @@ import {
   useCheckboxGroupContext,
 } from "./checkbox-context"
 import { splitCheckboxProps } from "./checkbox-props"
-import { UseCheckboxProps } from "./checkbox-types"
+import type { UseCheckboxProps } from "./checkbox-types"
 import { useCheckbox } from "./use-checkbox"
 
 export interface CheckboxRootProps
@@ -65,7 +65,7 @@ export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
         <CheckboxContextProvider value={api}>
           <chakra.label
             {...api.getRootProps(elementProps)}
-            css={[styles.root, props.css]}
+            css={[styles["root"], props.css]}
             className={cx("chakra-checkbox", props.className)}
           >
             <input

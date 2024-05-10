@@ -1,6 +1,6 @@
-import { hooks } from "@chakra-ui/test-utils"
+import { act, renderHook } from "@testing-library/react"
 import copy from "copy-to-clipboard"
-import { Mock } from "vitest"
+import type { Mock } from "vitest"
 import { useClipboard } from "../src/use-clipboard"
 
 vi.mock("copy-to-clipboard")
@@ -19,9 +19,9 @@ test.each`
 `("calls setTimeout with proper value", ({ params, expected }) => {
   ;(copy as Mock).mockReturnValue(true)
 
-  const { result } = hooks.render(() => useClipboard(text, params))
+  const { result } = renderHook(() => useClipboard(text, params))
 
-  hooks.act(() => {
+  act(() => {
     result.current.onCopy()
   })
 
@@ -32,9 +32,9 @@ test.each`
 test("sets new copy value", () => {
   ;(copy as Mock).mockReturnValue(true)
 
-  const { result } = hooks.render(() => useClipboard(text))
+  const { result } = renderHook(() => useClipboard(text))
 
-  hooks.act(() => {
+  act(() => {
     result.current.onCopy()
   })
 
@@ -43,13 +43,13 @@ test("sets new copy value", () => {
 
   const newText = "dolor sit amet"
 
-  hooks.act(() => {
+  act(() => {
     result.current.setValue(newText)
   })
 
   expect(result.current.value).toBe(newText)
 
-  hooks.act(() => {
+  act(() => {
     result.current.onCopy()
   })
 

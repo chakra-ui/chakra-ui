@@ -1,5 +1,0 @@
-chakra-ui/chakra-ui-docs:
-  - source: .changelog/
-    dest: content/changelog/
-    exclude: |
-      manifest.json

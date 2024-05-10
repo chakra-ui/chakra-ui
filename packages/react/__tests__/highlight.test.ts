@@ -1,12 +1,12 @@
-import { hooks } from "@chakra-ui/test-utils"
-import { useHighlight } from "../src/components/highlight/use-highlight"
+import { renderHook } from "@testing-library/react"
+import { useHighlight } from "../src"
 
 describe("Highlight", () => {
   test.each([[], ""])(
     "useHighlight returns no matches if queries is empty but returns original value",
     (query) => {
       const text = "this is an ordinary text which should not have any matches"
-      const { result } = hooks.render(() =>
+      const { result } = renderHook(() =>
         useHighlight({
           query,
           text,
@@ -20,7 +20,7 @@ describe("Highlight", () => {
 
   test("useHighlight matches correctly", () => {
     const query = ["", "text"]
-    const { result } = hooks.render(() =>
+    const { result } = renderHook(() =>
       useHighlight({
         query: query,
         text: "this is an ordinary text which should have one match ",

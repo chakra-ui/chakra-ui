@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { TagCloseIcon } from "./tag-close-icon"
 import { useTagStyles } from "./tag-context"
 
@@ -29,7 +29,7 @@ export const TagCloseTrigger = forwardRef<
       {...rest}
       type="button"
       disabled={disabled}
-      css={[styles.closeTrigger, props.css]}
+      css={[styles["closeTrigger"], props.css]}
     >
       {children}
     </chakra.button>

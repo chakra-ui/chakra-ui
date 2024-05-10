@@ -1,34 +1,30 @@
-export { AccordionTrigger as AccordionButton } from "./accordion-trigger"
-export type { AccordionTriggerProps } from "./accordion-trigger"
+export {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemIndicator,
+  AccordionItemTrigger,
+  AccordionRoot,
+  useAccordionStyles,
+} from "./accordion"
 
-export { useAccordionStyles } from "./accordion-context"
-
-export { AccordionIndicator } from "./accordion-indicator"
-export type { AccordionIndicatorProps } from "./accordion-indicator"
-
-export { AccordionItem } from "./accordion-item"
-export type { AccordionItemProps } from "./accordion-item"
-
-export { AccordionContent } from "./accordion-content"
-export type { AccordionContentProps } from "./accordion-content"
-
-export { AccordionRoot } from "./accordion-root"
-export type { AccordionRootProps } from "./accordion-root"
-
-export * as Accordion from "./namespace"
-
-export { useAccordion } from "./use-accordion"
-export { useAccordionItem } from "./use-accordion-item"
+export type {
+  AccordionItemContentProps,
+  AccordionItemIndicatorProps,
+  AccordionItemProps,
+  AccordionItemTriggerProps,
+  AccordionRootProps,
+} from "./accordion"
 
 export {
-  AccordionContextProvider,
+  AccordionContext,
   useAccordionContext,
-} from "./accordion-context"
+  useAccordionItemContext,
+} from "@ark-ui/react/accordion"
 
-export type { UseAccordionProps, UseAccordionReturn } from "./use-accordion"
 export type {
-  UseAccordionItemProps,
-  UseAccordionItemReturn,
-} from "./use-accordion-item"
+  AccordionContextProps,
+  AccordionFocusChangeDetails,
+  AccordionValueChangeDetails,
+} from "@ark-ui/react/accordion"
 
-export { useAccordionItemState } from "./use-accordion-item-state"
+export * as Accordion from "./namespace"

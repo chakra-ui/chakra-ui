@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { usePinInputContext } from "./pin-input-context"
 
 export interface PinInputLabelProps extends HTMLChakraProps<"label"> {}

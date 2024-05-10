@@ -2,8 +2,8 @@
 
 import { forwardRef } from "react"
 import {
-  HTMLChakraProps,
-  RecipeProps,
+  type HTMLChakraProps,
+  type RecipeProps,
   chakra,
   defineStyle,
   useRecipe,

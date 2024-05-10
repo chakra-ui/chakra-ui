@@ -1,5 +1,5 @@
 import { getReferences } from "./references"
-import { TokenTransformer } from "./types"
+import type { TokenTransformer } from "./types"
 
 export const addCssVariables: TokenTransformer = {
   type: "extensions",

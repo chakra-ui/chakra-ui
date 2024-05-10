@@ -1,6 +1,7 @@
-import { act, fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import { act, fireEvent, screen } from "@testing-library/react"
 import { useEffect, useRef, useState } from "react"
 import { Editable } from "../src"
+import { render, testA11y } from "./core"
 
 const DemoEditable = (props: Editable.RootProps) => {
   return (

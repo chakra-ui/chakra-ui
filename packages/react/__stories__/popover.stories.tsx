@@ -8,6 +8,7 @@ import {
   Heading,
   IconButton,
   Popover,
+  Portal,
   Textarea,
   chakra,
   useSlotRecipe,
@@ -16,42 +17,46 @@ import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / Popover",
-  decorators: [(story: Function) => <Box padding="100px">{story()}</Box>],
+  decorators: [(story: Function) => <Box margin="200px">{story()}</Box>],
 }
 
 export const Basic = () => {
   return (
-    <Popover.Root defaultOpen closeOnBlur={false}>
+    <Popover.Root>
       <Popover.Trigger asChild>
         <Button variant="solid">
           <HiChat />
           Add comment
         </Button>
       </Popover.Trigger>
-      <Popover.Positioner>
-        <Popover.Content>
-          <Popover.Arrow />
+      <Portal>
+        <Popover.Positioner>
+          <Popover.Content>
+            <Popover.Arrow>
+              <Popover.ArrowTip />
+            </Popover.Arrow>
 
-          <Popover.CloseTrigger asChild>
-            <IconButton aria-label="Close" variant="ghost">
-              <HiX />
-            </IconButton>
-          </Popover.CloseTrigger>
+            <Popover.CloseTrigger asChild>
+              <IconButton aria-label="Close" variant="ghost">
+                <HiX />
+              </IconButton>
+            </Popover.CloseTrigger>
 
-          <Popover.Header>
-            <Heading size="sm">Confirmation!</Heading>
-          </Popover.Header>
+            <Popover.Header>
+              <Heading size="sm">Confirmation!</Heading>
+            </Popover.Header>
 
-          <Popover.Body>
-            <Textarea placeholder="Type your comment here" />
-          </Popover.Body>
+            <Popover.Body>
+              <Textarea placeholder="Type your comment here" />
+            </Popover.Body>
 
-          <Popover.Footer gap="2">
-            <Button variant="solid">Submit</Button>
-            <Button>Cancel</Button>
-          </Popover.Footer>
-        </Popover.Content>
-      </Popover.Positioner>
+            <Popover.Footer gap="2">
+              <Button>Submit</Button>
+              <Button variant="outline">Cancel</Button>
+            </Popover.Footer>
+          </Popover.Content>
+        </Popover.Positioner>
+      </Portal>
     </Popover.Root>
   )
 }
@@ -81,7 +86,7 @@ export const Sizes = () => {
                     <Popover.Content>
                       <Popover.Arrow />
                       <Popover.CloseTrigger asChild>
-                        <IconButton aria-label="Close" variant="ghost" size={v}>
+                        <IconButton variant="ghost" size={v}>
                           <HiX />
                         </IconButton>
                       </Popover.CloseTrigger>
@@ -127,7 +132,7 @@ const Interval = () => {
 
 export function WithLazyPopover() {
   return (
-    <Popover.Root lazyMount>
+    <Popover.Root unmountOnExit>
       <Popover.Trigger asChild>
         <Button variant="solid">Popover Target</Button>
       </Popover.Trigger>

@@ -1,6 +1,6 @@
-import { SlotRecipeProps } from "../../styled-system"
-import { UseCheckboxReturn } from "./use-checkbox"
-import { UseCheckboxGroupReturn } from "./use-checkbox-group"
+import type { SlotRecipeProps } from "../../styled-system"
+import type { UseCheckboxReturn } from "./use-checkbox"
+import type { UseCheckboxGroupReturn } from "./use-checkbox-group"
 
 export interface UseCheckboxGroupProps {
   /**

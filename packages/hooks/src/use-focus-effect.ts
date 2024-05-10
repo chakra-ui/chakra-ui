@@ -1,7 +1,7 @@
 "use client"
 
 import {
-  FocusableElement,
+  type FocusableElement,
   getActiveElement,
   getAllFocusable,
   isTabbable,

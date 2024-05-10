@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface FieldRequiredIndicatorProps extends HTMLChakraProps<"span"> {
@@ -29,7 +29,7 @@ export const FieldRequiredIndicator = forwardRef<
       ref={ref}
       aria-hidden="true"
       {...restProps}
-      css={[styles.requiredIndicator, restProps.css]}
+      css={[styles["requiredIndicator"], restProps.css]}
       className={cx("chakra-form__required-indicator", restProps.className)}
     >
       {field.required ? children : fallback}

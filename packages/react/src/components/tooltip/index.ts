@@ -1,19 +1,23 @@
-export { TooltipRoot } from "./tooltip-root"
-export type { TooltipRootProps } from "./tooltip-root"
+export { TooltipTrigger } from "./tooltip"
+export type { TooltipTriggerProps } from "./tooltip"
 
-export { TooltipTrigger } from "./tooltip-trigger"
-export type { TooltipTriggerProps } from "./tooltip-trigger"
+export { TooltipContent } from "./tooltip"
+export type { TooltipContentProps } from "./tooltip"
 
-export { TooltipContent } from "./tooltip-content"
-export type { TooltipContentProps } from "./tooltip-content"
+export { TooltipRoot } from "./tooltip"
+export type { TooltipRootProps } from "./tooltip"
 
-export { TooltipArrow } from "./tooltip-arrow"
-export type { TooltipArrowProps } from "./tooltip-arrow"
+export { TooltipArrow } from "./tooltip"
+export type { TooltipArrowProps } from "./tooltip"
 
-export { TooltipPositioner } from "./tooltip-positioner"
-export type { TooltipPositionerProps } from "./tooltip-positioner"
+export { TooltipArrowTip } from "./tooltip"
+export type { TooltipArrowTipProps } from "./tooltip"
+
+export { TooltipPositioner } from "./tooltip"
+export type { TooltipPositionerProps } from "./tooltip"
 
 export * as Tooltip from "./namespace"
 
-export { useTooltip } from "./use-tooltip"
-export type { UseTooltipProps, UseTooltipReturn } from "./use-tooltip"
+export type { TooltipOpenChangeDetails } from "@ark-ui/react/tooltip"
+
+export { useTooltipStyles } from "./tooltip"

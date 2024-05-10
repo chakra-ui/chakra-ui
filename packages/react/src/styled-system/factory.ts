@@ -10,7 +10,7 @@ import {
   memo,
   useMemo,
 } from "react"
-import { StyledFactoryFn } from "./factory.types"
+import type { StyledFactoryFn } from "./factory.types"
 import { mergeProps } from "./merge-props"
 import { mergeRefs } from "./merge-refs"
 import { useChakraContext } from "./provider"
@@ -25,6 +25,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       !variantKeys.includes(prop) && !isValidProperty(prop)
 
     const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
+    const forwardAsChild = options.forwardAsChild || false
 
     const __cva = mergeCva(Dynamic.__cva, cvaFn)
     const __sfp = mergeShouldForwardProps(Dynamic, forwardFn)
@@ -84,7 +85,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       return css(cvaStyles, ...toArray(cssStyles), propStyles)
     }, [css, cvaStyles, cssStyles, propStyles])
 
-    if (!asChild) {
+    if (!asChild || (asChild && forwardAsChild)) {
       // eslint-disable-next-line
       const element = useMemo(() => styled(Element)(styles), [Element, styles])
 
@@ -94,6 +95,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
         element,
         {
           ref,
+          asChild: asChild && forwardAsChild,
           ...res.forwardedProps,
           ...res.elementProps,
           ...res.htmlProps,

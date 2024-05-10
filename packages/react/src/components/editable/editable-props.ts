@@ -1,5 +1,5 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseEditableProps } from "./use-editable"
+import type { UseEditableProps } from "./use-editable"
 
 export const editableProps = createProps<UseEditableProps>()([
   "defaultValue",

@@ -1,7 +1,7 @@
-import { fireEvent, render, screen, testA11y } from "@chakra-ui/test-utils"
+import { fireEvent, screen } from "@testing-library/react"
 import { forwardRef } from "react"
-import { Field, useField } from "../src/components/field"
-import { chakra } from "../src/styled-system"
+import { Field, chakra, useField } from "../src"
+import { render, testA11y } from "./core"
 
 const Input = forwardRef<HTMLInputElement, any>(function Input(props, ref) {
   const { invalid: _, ...inputProps } = useField<HTMLInputElement>(props)

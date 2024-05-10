@@ -79,8 +79,6 @@ export interface SpinnerVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
-export interface TooltipVariantProps {}
-
 export interface TextareaVariantProps {
   size?: "lg" | "md" | "sm" | "xs"
   variant?: "outline" | "filled" | "flushed"
@@ -104,7 +102,6 @@ export interface ConfigRecipes {
   Skeleton: SystemRecipeFn<SkeletonVariantProps>
   SkipLink: SystemRecipeFn<SkipLinkVariantProps>
   Spinner: SystemRecipeFn<SpinnerVariantProps>
-  Tooltip: SystemRecipeFn<TooltipVariantProps>
   Textarea: SystemRecipeFn<TextareaVariantProps>
   Icon: SystemRecipeFn<IconVariantProps>
 }
@@ -189,13 +186,17 @@ export interface CheckboxVariantProps {
 // Dialog
 
 export type DialogSlot =
-  | "overlay"
+  | "trigger"
+  | "backdrop"
   | "positioner"
   | "content"
-  | "header"
+  | "title"
+  | "description"
   | "closeTrigger"
+  | "header"
   | "body"
   | "footer"
+  | "backdrop"
 
 export interface DialogVariantProps {
   centered?: boolean
@@ -212,22 +213,33 @@ export interface DialogVariantProps {
     | "5xl"
     | "6xl"
     | "full"
+  motionPreset?:
+    | "scale"
+    | "slide-in-bottom"
+    | "slide-in-top"
+    | "slide-in-left"
+    | "slide-in-right"
+    | "none"
 }
 
 // Drawer
 
 export type DrawerSlot =
-  | "overlay"
+  | "trigger"
+  | "backdrop"
   | "positioner"
   | "content"
-  | "header"
+  | "title"
+  | "description"
   | "closeTrigger"
+  | "header"
   | "body"
   | "footer"
+  | "backdrop"
 
 export interface DrawerVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
-  isFullHeight?: boolean
+  placement?: "start" | "end" | "top" | "bottom"
 }
 
 // Editable
@@ -247,6 +259,23 @@ export type FieldSlot =
 
 export interface FieldVariantProps {}
 
+// FileUpload
+
+export type FileUploadSlot =
+  | "root"
+  | "dropzone"
+  | "item"
+  | "itemDeleteTrigger"
+  | "itemGroup"
+  | "itemName"
+  | "itemPreview"
+  | "itemPreviewImage"
+  | "itemSizeText"
+  | "label"
+  | "trigger"
+
+export interface FileUploadVariantProps {}
+
 // List
 
 export type ListSlot = "root" | "item" | "icon"
@@ -256,13 +285,21 @@ export interface ListVariantProps {}
 // Menu
 
 export type MenuSlot =
-  | "trigger"
+  | "arrow"
+  | "arrowTip"
   | "content"
-  | "item"
-  | "groupTitle"
+  | "contextTrigger"
   | "indicator"
-  | "command"
+  | "item"
+  | "itemGroup"
+  | "itemGroupLabel"
+  | "itemIndicator"
+  | "itemText"
+  | "positioner"
   | "separator"
+  | "trigger"
+  | "triggerItem"
+  | "itemCommand"
 
 export interface MenuVariantProps {
   variant?: "subtle" | "solid"
@@ -295,15 +332,34 @@ export interface NumberInputVariantProps {
 // Popover
 
 export type PopoverSlot =
+  | "arrow"
+  | "arrowTip"
+  | "anchor"
+  | "trigger"
+  | "indicator"
+  | "positioner"
   | "content"
+  | "title"
+  | "description"
+  | "closeTrigger"
   | "header"
   | "body"
   | "footer"
-  | "positioner"
-  | "arrow"
-  | "closeTrigger"
 
 export interface PopoverVariantProps {
+  size?: "xs" | "sm" | "md" | "lg"
+}
+
+// HoverCard
+
+export type HoverCardSlot =
+  | "arrow"
+  | "arrowTip"
+  | "trigger"
+  | "positioner"
+  | "content"
+
+export interface HoverCardVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
@@ -338,13 +394,14 @@ export interface RadioVariantProps {
 
 export type SliderSlot =
   | "root"
-  | "control"
-  | "track"
-  | "thumb"
   | "label"
-  | "filledTrack"
-  | "mark"
+  | "thumb"
   | "valueText"
+  | "track"
+  | "range"
+  | "control"
+  | "markerGroup"
+  | "marker"
 
 export interface SliderVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
@@ -451,9 +508,19 @@ export type ToastSlot =
   | "closeTrigger"
 
 export interface ToastVariantProps {
-  status?: "default" | "info" | "warning" | "success" | "error" | "loading"
   variant?: "solid" | "raised"
 }
+
+// Tooltip
+
+export type TooltipSlot =
+  | "trigger"
+  | "arrow"
+  | "arrowTip"
+  | "positioner"
+  | "content"
+
+export interface TooltipVariantProps {}
 
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
@@ -467,11 +534,13 @@ export interface ConfigSlotRecipes {
   Drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
   Editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
   Field: SystemSlotRecipeFn<FieldSlot, FieldVariantProps>
+  FileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps>
   List: SystemSlotRecipeFn<ListSlot, ListVariantProps>
   Menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
   NativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>
   NumberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariantProps>
   Popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
+  HoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
   Progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
   Radio: SystemSlotRecipeFn<RadioSlot, RadioVariantProps>
   Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
@@ -482,6 +551,7 @@ export interface ConfigSlotRecipes {
   Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
   Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
   Toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
+  Tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -496,11 +566,13 @@ export interface ConfigRecipeSlots {
   Drawer: DrawerSlot
   Editable: EditableSlot
   Field: FieldSlot
+  FileUpload: FileUploadSlot
   List: ListSlot
   Menu: MenuSlot
   NativeSelect: NativeSelectSlot
   NumberInput: NumberInputSlot
   Popover: PopoverSlot
+  HoverCard: HoverCardSlot
   Progress: ProgressSlot
   Radio: RadioSlot
   Slider: SliderSlot
@@ -511,6 +583,7 @@ export interface ConfigRecipeSlots {
   Tabs: TabsSlot
   Tag: TagSlot
   Toast: ToastSlot
+  Tooltip: TooltipSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots

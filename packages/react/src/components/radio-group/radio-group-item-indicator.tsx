@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useRadioGroupStyles, useRadioItemContext } from "./radio-group-context"
 
 export interface RadioGroupItemIndicatorProps extends HTMLChakraProps<"span"> {}
@@ -21,7 +21,7 @@ export const RadioGroupItemIndicator = forwardRef<
       aria-hidden="true"
       hidden={!api.state.checked}
       className={cx("chakra-radio__indicator", props.className)}
-      css={[styles.indicator, props.css]}
+      css={[styles["indicator"], props.css]}
     />
   )
 })

@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useFieldContext, useFieldStyles } from "./field-context"
 
 export interface FieldHelpTextProps extends HTMLChakraProps<"div"> {}
@@ -21,7 +21,7 @@ export const FieldHelpText = forwardRef<HTMLDivElement, FieldHelpTextProps>(
     return (
       <chakra.div
         {...field?.getHelpTextProps(props, ref)}
-        css={[styles.helpText, props.css]}
+        css={[styles["helpText"], props.css]}
         className={cx("chakra-field__help-text", props.className)}
       />
     )

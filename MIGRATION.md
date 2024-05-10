@@ -83,7 +83,8 @@ Renamed all `container` parts to `root`. Kindly update your theme to reflect
 ### Removed Components and Packages
 
 - Removed `ControlBox` component
-- Removed `@chakra-ui/icons` package. Prefer to use [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
+- Removed `@chakra-ui/icons` package. Prefer to use
+  [`lucide-react`](https://lucide.dev/guide/packages/lucide-react) or
   `react-icons` instead.
 
 ### Root component and types
@@ -391,6 +392,16 @@ After:
 - Removed `containerProps` in favor of rendering the `Dialog.Positioner`
   component to better control this element.
 - Renamed `ModalOverlay` to `Dialog.Backdrop`
+- Renamed `initialFocusRef` to `initialFocusEl` which is now a function that
+  returns the element to focus on
+- Renamed `finalFocusRef` to `finalFocusEl` which is now a function that returns
+  the element to focus on
+- Renamed `returnFocusOnClose` to `restoreFocus`
+- Renamed `blockScrollOnMount` to `preventScroll`
+- Removed `preserveScrollBarGap` and `allowPinZoom`
+- `onOpen` and `onClose` -> `onOpenChange`
+- Now requires an explicit `Portal` component to render the dialog outside the
+  DOM tree
 
 Before:
 
@@ -426,6 +437,8 @@ After:
 
 - Same changes as `Dialog` above
 - Renamed `DrawerOverlay` to `Drawer.Backdrop`
+- Removed `isFullHeight` in favor of setting `height=100dvh` on the content
+  directly.
 
 ### Alert Dialog
 
@@ -1125,3 +1138,11 @@ toast({
 
 - Now requires the `Slider.Control` to work properly
 - Added new `Slider.ValueText` and `Slider.Label` components
+
+### Environment
+
+- Rename `EnvironmentProvider` to `Environment`
+- Rename `useEnvironment` to `useEnvironmentContext`
+- Environment is no longer automatically provided by `ChakraProvider`. You must
+  wrap your app in `Environment` to use it and provide the `getRootNode`
+  function

@@ -1,4 +1,4 @@
-import { UseFieldProviderReturn } from "./use-field-provider"
+import type { UseFieldProviderReturn } from "./use-field-provider"
 
 export interface FieldOptions {
   /**

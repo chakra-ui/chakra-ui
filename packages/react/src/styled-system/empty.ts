@@ -1,4 +1,4 @@
-import { SystemStyleObject } from "./css.types"
+import type { SystemStyleObject } from "./css.types"
 
 export const EMPTY_STYLES = Object.freeze({} as SystemStyleObject)
 

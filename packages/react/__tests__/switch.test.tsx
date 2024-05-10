@@ -1,6 +1,7 @@
-import { act, fireEvent, render, screen } from "@chakra-ui/test-utils"
+import { act, fireEvent, screen } from "@testing-library/react"
 import { useState } from "react"
 import { Field, Switch } from "../src"
+import { render } from "./core"
 
 const DemoSwitch = (props: Switch.RootProps) => {
   return (

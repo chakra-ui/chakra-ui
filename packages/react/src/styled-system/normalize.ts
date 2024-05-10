@@ -1,5 +1,5 @@
-import { Dict, isArray, walkObject } from "@chakra-ui/utils"
-import { SystemContext } from "./types"
+import { type Dict, isArray, walkObject } from "@chakra-ui/utils"
+import { type SystemContext } from "./types"
 
 function toResponsiveObject(values: any[], breakpoints: string[]) {
   return values.reduce((acc, current, index) => {

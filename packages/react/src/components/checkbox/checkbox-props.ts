@@ -1,5 +1,5 @@
 import { createProps, createSplitProps } from "@chakra-ui/utils"
-import { UseCheckboxProps } from "./checkbox-types"
+import type { UseCheckboxProps } from "./checkbox-types"
 
 export const checkboxProps = createProps<UseCheckboxProps>()([
   "aria-describedby",

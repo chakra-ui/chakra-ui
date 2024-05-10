@@ -1,10 +1,12 @@
 export * from "./config"
+export { createStyleContext } from "./create-style-context"
 export type {
   ConditionalValue,
   GlobalStyleObject,
   JsxStyleProps,
   SystemStyleObject,
 } from "./css.types"
+export * from "./empty"
 export { chakra } from "./factory"
 export type {
   ChakraComponent,
@@ -13,13 +15,11 @@ export type {
   PropGetterFn,
   UnstyledProp,
 } from "./factory.types"
-export * from "./empty"
 export type {
   RecipeProps,
   SlotRecipeProps,
   SlotRecipeRecord,
 } from "./generated/recipes.gen"
-export { allCssProperties, isCssProperty } from "./is-valid-prop"
 export { mergeProps } from "./merge-props"
 export { mergeRefs } from "./merge-refs"
 export * from "./provider"

@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { Span } from "../box"
 import { useBreadcrumbStyles } from "./breadcrumb-context"
 
@@ -38,7 +38,7 @@ export const BreadcrumbEllipsis = forwardRef<
       role="presentation"
       aria-hidden="true"
       {...props}
-      css={[styles.ellipsis, props.css]}
+      css={[styles["ellipsis"], props.css]}
     >
       {props.children || <EllpsisIcon />}
       <Span srOnly>More</Span>

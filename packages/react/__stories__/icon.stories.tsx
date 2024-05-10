@@ -1,6 +1,6 @@
 import { HiHeart } from "react-icons/hi"
 import { Md3DRotation } from "react-icons/md"
-import { Icon, IconProps, createIcon } from "../src/components/icon"
+import { Icon, type IconProps, createIcon } from "../src/components/icon"
 
 export default {
   title: "Components / Icon",

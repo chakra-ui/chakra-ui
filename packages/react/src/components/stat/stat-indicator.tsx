@@ -1,7 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { Icon, type IconProps } from "../icon"
 import { useStatStyles } from "./stat-context"
 
@@ -35,7 +35,7 @@ export const StatIndicator = forwardRef<HTMLSpanElement, StatIndicatorProps>(
     const styles = useStatStyles()
     const IconEl = type === "increase" ? StatUpArrow : StatDownArrow
     return (
-      <chakra.span {...rest} css={[styles.indicator, props.css]} ref={ref}>
+      <chakra.span {...rest} css={[styles["indicator"], props.css]} ref={ref}>
         {props.children ?? <IconEl aria-hidden />}
       </chakra.span>
     )

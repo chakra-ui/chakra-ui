@@ -2,7 +2,7 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useProgressStyles } from "./progress-context"
 
 export interface ProgressTrackProps extends HTMLChakraProps<"div"> {}
@@ -14,7 +14,7 @@ export const ProgressTrack = forwardRef<HTMLDivElement, ProgressTrackProps>(
       <chakra.div
         ref={ref}
         {...props}
-        css={[styles.track, props.css]}
+        css={[styles["track"], props.css]}
         className={cx("chakra-progress__track", props.className)}
       />
     )

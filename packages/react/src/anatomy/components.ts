@@ -133,11 +133,24 @@ export const pinInputAnatomy = anatomy("pininput").parts("field")
 export const popoverAnatomy = anatomy("popover").parts(
   "content",
   "header",
+  "title",
+  "description",
   "body",
   "footer",
+  "trigger",
+  "positioner",
+  "indicator",
+  "arrow",
+  "arrowTip",
+  "closeTrigger",
+)
+
+export const hoverCardAnatomy = anatomy("popover").parts(
+  "content",
+  "trigger",
   "positioner",
   "arrow",
-  "closeTrigger",
+  "arrowTip",
 )
 
 export const progressAnatomy = anatomy("progress").parts(

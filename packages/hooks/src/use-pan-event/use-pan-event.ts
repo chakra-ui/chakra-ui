@@ -4,7 +4,11 @@ import { addPointerEvent } from "@chakra-ui/utils"
 import { useEffect, useRef } from "react"
 import { useLatestRef } from "../use-latest-ref"
 import { PanEvent } from "./pan-event"
-import { AnyPointerEvent, PanEventHandler, PanEventHandlers } from "./types"
+import type {
+  AnyPointerEvent,
+  PanEventHandler,
+  PanEventHandlers,
+} from "./types"
 
 export interface UsePanEventProps {
   onPan?: PanEventHandler

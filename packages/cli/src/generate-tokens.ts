@@ -1,4 +1,4 @@
-import { SystemContext } from "@chakra-ui/react"
+import type { SystemContext } from "@chakra-ui/react"
 import { capitalize, pretty, unionType } from "./shared.js"
 
 export async function generateTokens(sys: SystemContext) {

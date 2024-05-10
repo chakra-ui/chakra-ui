@@ -3,7 +3,7 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  HTMLChakraProps,
+  type HTMLChakraProps,
   chakra,
   mergeProps,
   mergeRefs,
@@ -25,7 +25,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
         ref={mergeRefs(listProps.ref, ref)}
         {...combinedProps}
         className={cx("chakra-tabs__list", props.className)}
-        css={[styles.list, props.css]}
+        css={[styles["list"], props.css]}
       />
     )
   },
