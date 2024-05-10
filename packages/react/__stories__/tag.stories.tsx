@@ -118,14 +118,14 @@ export const Sizes = () => {
 }
 
 // export const WithStartIcon = () => (
-//   <Tag.Root colorScheme="cyan">
+//   <Tag.Root colorPalette="cyan">
 //     <Icon as={HiPlus} w="12px" h="12px" />
 //     <Tag.Label>Green</Tag.Label>
 //   </Tag.Root>
 // )
 
 // export const WithEndIcon = () => (
-//   <Tag.Root colorScheme="cyan">
+//   <Tag.Root colorPalette="cyan">
 //     <Tag.Label>Green</Tag.Label>
 //     <Icon as={HiPlus} w="12px" h="12px" />
 //   </Tag.Root>
@@ -133,17 +133,17 @@ export const Sizes = () => {
 
 // export const WithCloseTrigger = () => (
 //   <>
-//     <Tag.Root variant="solid" size="sm" colorScheme="cyan">
+//     <Tag.Root variant="solid" size="sm" colorPalette="cyan">
 //       <Tag.Label>Tab Label</Tag.Label>
 //       <Tag.CloseTrigger />
 //     </Tag.Root>
 
-//     <Tag.Root variant="solid" size="md" colorScheme="cyan">
+//     <Tag.Root variant="solid" size="md" colorPalette="cyan">
 //       <Tag.Label>Tab Label</Tag.Label>
 //       <Tag.CloseTrigger />
 //     </Tag.Root>
 
-//     <Tag.Root variant="solid" size="lg" colorScheme="cyan">
+//     <Tag.Root variant="solid" size="lg" colorPalette="cyan">
 //       <Tag.Label>Tab Label</Tag.Label>
 //       <Tag.CloseTrigger />
 //     </Tag.Root>
@@ -151,7 +151,7 @@ export const Sizes = () => {
 // )
 
 // export const WithCustomElement = () => (
-//   <Tag.Root size="lg" colorScheme="red" borderRadius="full">
+//   <Tag.Root size="lg" colorPalette="red" borderRadius="full">
 //     <Avatar.Root
 //       src="https://bit.ly/sage-adebayo"
 //       size="xs"

@@ -16,6 +16,7 @@ import SandpackEmbed from 'components/sandpack-embed'
 import { TutorialCodeBlock } from 'components/tutorial/tutorial-code-block'
 import { TutorialFileAction } from 'components/tutorial/tutorial-file-action'
 import Image from 'next/image'
+import { FiFigma } from 'react-icons/fi'
 import CarbonAd from './carbon-ad'
 import CodeBlock from './codeblock/codeblock'
 import ComponentLinks from './component-links'
@@ -37,6 +38,7 @@ const MdxList = chakra('ul', {
 
 export const MDXComponents = {
   ...Chakra,
+  FiFigma: FiFigma,
   Image: ({ ratio, border, src, height, ...props }: any) => (
     <AspectRatio
       my='5'
@@ -145,4 +147,15 @@ export const MDXComponents = {
   FeaturesOverview,
   TutorialFileAction,
   PackageManagers,
+  FigmaKitButton: () => (
+    <Chakra.Button asChild colorPalette='teal' size='lg' my='8'>
+      <a
+        href='https://www.figma.com/community/file/971408767069651759'
+        target='_blank'
+      >
+        <FiFigma />
+        Get Figma UI Kit
+      </a>
+    </Chakra.Button>
+  ),
 }

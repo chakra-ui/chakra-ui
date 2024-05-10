@@ -1,5 +1,5 @@
 import { Box, Flex, SystemStyleObject, chakra } from '@chakra-ui/react'
-import NextImage from 'next/image'
+import Image from 'next/image'
 import * as React from 'react'
 import loadScript from 'utils/load-script'
 
@@ -86,10 +86,9 @@ const DocsPageChakraProAd = () => (
       target='_blank'
     >
       <Box w='xs' h='100px' bg='gray.300' mr='4'>
-        <NextImage
+        <Image
           alt='chakra ui pro'
           src='/chakra-pro-ad.png'
-          layout='fixed'
           width='150'
           height='100'
         />

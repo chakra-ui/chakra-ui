@@ -1,5 +1,5 @@
 import { Box, Flex } from '@chakra-ui/react'
-import NextImage from 'next/image'
+import Image from 'next/image'
 import { getUrl } from './get-url'
 
 const DocsPageChakraProAd = () => (
@@ -13,10 +13,9 @@ const DocsPageChakraProAd = () => (
   >
     <a href={getUrl('docs-ad')} target='_blank' rel='noopener sponsored'>
       <Box w='xs' h='100px' bg='gray.300' mr='4'>
-        <NextImage
+        <Image
           alt='chakra ui pro'
           src='/chakra-pro-ad.png'
-          layout='fixed'
           width='150'
           height='100'
         />

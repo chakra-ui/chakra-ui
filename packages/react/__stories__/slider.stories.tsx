@@ -131,5 +131,5 @@ export const WithSteps = () => {
 }
 
 export const VerticalSlider = () => {
-  return <DemoSlider colorScheme="red" orientation="vertical" />
+  return <DemoSlider colorPalette="red" orientation="vertical" />
 }

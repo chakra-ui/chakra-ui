@@ -49,7 +49,7 @@ export const Variants = () => {
                   </Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Button variant="solid" colorScheme="blue">
+                  <Button variant="solid" colorPalette="blue">
                     Button
                   </Button>
                 </Card.Footer>
@@ -97,7 +97,7 @@ export const Sizes = () => {
                         </Text>
                       </Card.Body>
                       <Card.Footer>
-                        <Button variant="solid" colorScheme="blue">
+                        <Button variant="solid" colorPalette="blue">
                           Button
                         </Button>
                       </Card.Footer>
@@ -137,10 +137,10 @@ export const WithImage = () => (
     </Card.Body>
     <Card.Footer>
       <HStack gap="2">
-        <Button variant="solid" colorScheme="blue">
+        <Button variant="solid" colorPalette="blue">
           Buy now
         </Button>
-        <Button variant="ghost" colorScheme="blue">
+        <Button variant="ghost" colorPalette="blue">
           Add to cart
         </Button>
       </HStack>
@@ -165,7 +165,7 @@ export const Horizontal = () => (
         </Text>
       </Card.Body>
       <Card.Footer>
-        <Button variant="solid" colorScheme="blue">
+        <Button variant="solid" colorPalette="blue">
           Buy Latte
         </Button>
       </Card.Footer>
