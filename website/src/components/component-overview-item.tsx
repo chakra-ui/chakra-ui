@@ -29,7 +29,7 @@ export function ComponentOverviewItem(props: Props) {
           src={imageUrl}
           width={400}
           height={300}
-          objectFit='cover'
+          style={{ objectFit: 'cover' }}
         />
       </Flex>
 

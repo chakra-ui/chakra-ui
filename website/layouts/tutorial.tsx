@@ -32,40 +32,49 @@ const TutorialMenu = (props: Props) => {
           <AiOutlineMenu />
         </IconButton>
       </Menu.Trigger>
-      <Menu.Content>
-        {routes.map((route) => {
-          if (route.path === asPath) {
+
+      <Menu.Positioner>
+        <Menu.Content>
+          {routes.map((route) => {
+            if (route.path === asPath) {
+              return (
+                <>
+                  <Menu.Separator key={'1'} />
+                  <Menu.ItemGroup
+                    key={route.path}
+                    title={route.title}
+                    color='teal.500'
+                  >
+                    {headings.map((heading) => (
+                      <Menu.Item
+                        asChild
+                        key={heading.id}
+                        fontSize='sm'
+                        value={`#${heading.id}`}
+                      >
+                        <a href={`#${heading.id}`}>{heading.text}</a>
+                      </Menu.Item>
+                    ))}
+                  </Menu.ItemGroup>
+                  <Menu.Separator key={'2'} />
+                </>
+              )
+            }
             return (
-              <>
-                <Menu.Separator key={'1'} />
-                <Menu.Group
-                  key={route.path}
-                  title={route.title}
-                  color='teal.500'
-                >
-                  {headings.map((heading) => (
-                    <Menu.Item asChild key={heading.id} fontSize='sm'>
-                      <a href={`#${heading.id}`}>{heading.text}</a>
-                    </Menu.Item>
-                  ))}
-                </Menu.Group>
-                <Menu.Separator key={'2'} />
-              </>
+              <Menu.Item
+                key={route.path}
+                asChild
+                fontSize='sm'
+                fontWeight='semibold'
+                color='teal.500'
+                value={route.path}
+              >
+                <Link href={route.path}>{route.title}</Link>
+              </Menu.Item>
             )
-          }
-          return (
-            <Menu.Item
-              key={route.path}
-              asChild
-              fontSize='sm'
-              fontWeight='semibold'
-              color='teal.500'
-            >
-              <Link href={route.path}>{route.title}</Link>
-            </Menu.Item>
-          )
-        })}
-      </Menu.Content>
+          })}
+        </Menu.Content>
+      </Menu.Positioner>
     </Menu.Root>
   )
 }

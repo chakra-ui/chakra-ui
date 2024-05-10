@@ -22,23 +22,19 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
     options: { defaultProps?: Partial<P> } = {},
   ): React.FC<React.PropsWithoutRef<P>> {
     const { defaultProps } = options
-    const StyledComponent = forwardRef<any, any>(
-      ({ unstyled, ...baseProps }) => {
-        const props = { ...defaultProps, ...baseProps }
-        const slotRecipe = useSlotRecipe(recipe, props.recipe)
-        // @ts-ignore
-        const [variantProps, otherProps] = slotRecipe.splitVariantProps(props)
-        const slotStyles = unstyled
-          ? EMPTY_SLOT_STYLES
-          : slotRecipe(variantProps)
+    const StyledComponent = ({ unstyled, ...baseProps }: any) => {
+      const props = { ...defaultProps, ...baseProps }
+      const slotRecipe = useSlotRecipe(recipe, props.recipe)
+      // @ts-ignore
+      const [variantProps, otherProps] = slotRecipe.splitVariantProps(props)
+      const slotStyles = unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)
 
-        return (
-          <RecipeStylesProvider value={slotStyles}>
-            <Component {...otherProps} />
-          </RecipeStylesProvider>
-        )
-      },
-    )
+      return (
+        <RecipeStylesProvider value={slotStyles}>
+          <Component {...otherProps} />
+        </RecipeStylesProvider>
+      )
+    }
 
     // @ts-expect-error
     StyledComponent.displayName = Component.displayName || Component.name

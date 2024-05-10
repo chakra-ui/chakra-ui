@@ -146,15 +146,12 @@ function OmniSearch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal.open])
 
-  const results = React.useMemo(
-    function getResults() {
-      if (query.length < 2) return []
-      return matchSorter(searchData, query, {
-        keys: ['hierarchy.lvl1', 'hierarchy.lvl2', 'hierarchy.lvl3', 'content'],
-      }).slice(0, 20) // There is probably a filter needed to filter for current locale
-    },
-    [query],
-  )
+  const results = React.useMemo((): any[] => {
+    if (query.length < 2) return []
+    return matchSorter(searchData, query, {
+      keys: ['hierarchy.lvl1', 'hierarchy.lvl2', 'hierarchy.lvl3', 'content'],
+    }).slice(0, 20) // There is probably a filter needed to filter for current locale
+  }, [query])
 
   const onKeyDown = React.useCallback(
     (e: React.KeyboardEvent) => {
@@ -233,7 +230,7 @@ function OmniSearch() {
       <Dialog.Root
         scrollBehavior='inside'
         open={modal.open}
-        onClose={modal.onClose}
+        onOpenChange={(e) => (e.open ? menu.onOpen() : menu.onClose())}
       >
         <Dialog.Backdrop />
         <Dialog.Positioner>

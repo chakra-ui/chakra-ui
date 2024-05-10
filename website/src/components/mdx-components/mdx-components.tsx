@@ -37,14 +37,21 @@ const MdxList = chakra('ul', {
 
 export const MDXComponents = {
   ...Chakra,
-  Image: ({ ratio, border, src, ...props }: any) => (
+  Image: ({ ratio, border, src, height, ...props }: any) => (
     <AspectRatio
       my='5'
       position='relative'
       borderWidth={border ? '1px' : undefined}
       ratio={ratio}
+      height={height}
     >
-      <Image src={src} alt='' fill objectFit='contain' {...props} />
+      <Image
+        src={src}
+        alt=''
+        fill
+        style={{ objectFit: 'contain' }}
+        {...props}
+      />
     </AspectRatio>
   ),
   LinkedImage: ({ href, ...props }) => (

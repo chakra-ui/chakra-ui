@@ -28,7 +28,7 @@ export default function BlogLayout(props: BlogLayoutProps) {
           </Text>
         </Box>
       </HStack>
-      <Box asChild color='gray.500' fontSize='sm' display='block' mb='16'>
+      <Box color='gray.500' fontSize='sm' display='block' mb='16'>
         <time dateTime={publishedDate.iso}></time>
         {publishedDate.text}
       </Box>

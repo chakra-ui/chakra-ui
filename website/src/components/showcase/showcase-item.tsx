@@ -23,8 +23,8 @@ export const ShowcaseItem = ({ name, image, url }) => {
         <AspectRatio ratio={16 / 9} w='full'>
           <Image
             alt={name}
-            layout='fill'
-            objectFit='cover'
+            fill
+            style={{ objectFit: 'cover' }}
             src={
               image
                 ? /^(https|http)/.test(image)
