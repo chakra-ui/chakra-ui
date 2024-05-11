@@ -17,6 +17,7 @@ export const StepItem = forwardRef<HTMLDivElement, StepItemProps>(
         ref={ref}
         {...api.dataAttrs}
         {...props}
+        aria-current={api.status === "current" ? "step" : undefined}
         css={[styles["item"], props.css]}
         className={cx("chakra-step", props.className)}
       />

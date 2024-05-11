@@ -8,7 +8,7 @@ export type StepItemStatus = "current" | "completed" | "incomplete"
 export interface StepContext {
   /**
    * The status of the step
-   * @type "active" | "complete" | "incomplete"
+   * @type "current" | "complete" | "incomplete"
    */
   status: StepItemStatus
   /**
