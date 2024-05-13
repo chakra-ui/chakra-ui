@@ -90,7 +90,7 @@
     "mkdirp": "3.0.1",
     "node-fetch": "3.3.2",
     "prettier": "3.2.5",
-    "react-multi-ref": "1.0.1",
+    "react-multi-ref": "1.0.2",
     "semver": "7.6.0",
     "sharp": "0.33.3",
     "tsx": "4.7.1",
