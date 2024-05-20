@@ -707,8 +707,8 @@ importers:
         specifier: 10.1.2
         version: 10.1.2
       unist-util-visit:
-        specifier: 4.1.1
-        version: 4.1.1
+        specifier: 4.1.2
+        version: 4.1.2
 
 packages:
 
@@ -9532,8 +9532,8 @@ packages:
   unist-util-visit-parents@6.0.1:
     resolution: {integrity: sha512-L/PqWzfTP9lzzEa6CKs0k2nARxTdZduw3zyh8d2NVBnsyvHjSX4TWse388YrrQKbvI8w20fGjGlhgT96WwKykw==}
 
-  unist-util-visit@4.1.1:
-    resolution: {integrity: sha512-n9KN3WV9k4h1DxYR1LoajgN93wpEi/7ZplVe02IoB4gH5ctI1AaF2670BLHQYbwj+pY83gFtyeySFiyMHJklrg==}
+  unist-util-visit@4.1.2:
+    resolution: {integrity: sha512-MSd8OUGISqHdVvfY9TPhyK2VdUrPgxkUtWSuMHF6XAAFuL4LokseigBnZtPnJMu+FbynTkFNnFlyjxpVKujMRg==}
 
   unist-util-visit@5.0.0:
     resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
@@ -12234,7 +12234,7 @@ snapshots:
       unified: 10.1.2
       unist-util-position-from-estree: 1.1.2
       unist-util-stringify-position: 3.0.3
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
       vfile: 5.3.7
     transitivePeerDependencies:
       - supports-color
@@ -17655,7 +17655,7 @@ snapshots:
       html-void-elements: 2.0.1
       parse5: 6.0.1
       unist-util-position: 4.0.4
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
       vfile: 5.3.7
       web-namespaces: 2.0.1
       zwitch: 2.0.4
@@ -18723,7 +18723,7 @@ snapshots:
     dependencies:
       '@types/mdast': 3.0.15
       '@types/unist': 2.0.6
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
 
   mdast-util-find-and-replace@2.2.2:
     dependencies:
@@ -18943,7 +18943,7 @@ snapshots:
       trim-lines: 3.0.1
       unist-util-generated: 2.0.1
       unist-util-position: 4.0.4
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
 
   mdast-util-to-hast@13.1.0:
     dependencies:
@@ -18965,7 +18965,7 @@ snapshots:
       mdast-util-phrasing: 3.0.1
       mdast-util-to-string: 3.2.0
       micromark-util-decode-string: 1.1.0
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
       zwitch: 2.0.4
 
   mdast-util-to-markdown@2.1.0:
@@ -20627,7 +20627,7 @@ snapshots:
     dependencies:
       emoticon: 4.0.1
       node-emoji: 1.11.0
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
 
   remark-frontmatter@4.0.1:
     dependencies:
@@ -20723,7 +20723,7 @@ snapshots:
       github-slugger: 1.5.0
       mdast-util-to-string: 3.2.0
       unified: 10.1.2
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
 
   remark-stringify@10.0.3:
     dependencies:
@@ -21839,7 +21839,7 @@ snapshots:
   unist-util-remove-position@4.0.2:
     dependencies:
       '@types/unist': 2.0.6
-      unist-util-visit: 4.1.1
+      unist-util-visit: 4.1.2
 
   unist-util-remove-position@5.0.0:
     dependencies:
@@ -21864,7 +21864,7 @@ snapshots:
       '@types/unist': 3.0.2
       unist-util-is: 6.0.0
 
-  unist-util-visit@4.1.1:
+  unist-util-visit@4.1.2:
     dependencies:
       '@types/unist': 2.0.6
       unist-util-is: 5.2.1
