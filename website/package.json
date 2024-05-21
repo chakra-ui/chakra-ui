@@ -78,7 +78,7 @@
     "@types/node": "20.11.30",
     "@types/react": "18.2.72",
     "@types/react-dom": "18.2.22",
-    "@types/sharp": "0.31.1",
+    "@types/sharp": "0.32.0",
     "@typescript-eslint/eslint-plugin": "7.4.0",
     "dotenv": "16.4.5",
     "eslint": "8.57.0",
@@ -92,7 +92,7 @@
     "prettier": "3.2.5",
     "react-multi-ref": "1.0.1",
     "semver": "7.6.0",
-    "sharp": "0.33.3",
+    "sharp": "0.33.4",
     "tsx": "4.7.1",
     "unified": "10.1.2",
     "unist-util-visit": "4.1.1"
