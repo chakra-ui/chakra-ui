@@ -10,7 +10,7 @@ export const InputElement = chakra("div", {
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    zIndex: 1,
+    zIndex: 2,
     color: "fg.subtle",
     height: "full",
     fontSize: "sm",

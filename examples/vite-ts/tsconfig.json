@@ -9,16 +9,13 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "customConditions": ["source"],
-    "paths": {
-      "@chakra-ui/react": ["../../packages/react/src"]
-    }
+    "customConditions": ["source"]
   },
   "exclude": ["node_modules"],
   "include": ["src"],

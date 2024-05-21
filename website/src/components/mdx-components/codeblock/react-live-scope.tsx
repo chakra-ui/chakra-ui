@@ -30,6 +30,7 @@ import {
   MdPhone,
   MdReceipt,
   MdSettings,
+  MdCheck,
 } from 'react-icons/md'
 import Lorem from 'react-lorem-component'
 import * as Loaders from 'react-spinners'
@@ -50,6 +51,7 @@ const reactIcons = {
   AiOutlineUser,
   FaFacebook,
   FaTwitter,
+  MdCheck,
   BsThreeDotsVertical,
   BiLike,
   BiShare,

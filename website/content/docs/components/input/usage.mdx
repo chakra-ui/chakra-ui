@@ -70,13 +70,11 @@ case.
 
 ```jsx
 <Stack gap={4}>
-  <Group>
+  <Group attached>
     <InputAddon>+234</InputAddon>
     <Input type='tel' placeholder='phone number' />
   </Group>
-
-  {/* If you add the size prop to `Group`, it'll pass it to all its children. */}
-  <Group size='sm'>
+  <Group attached>
     <InputAddon>https://</InputAddon>
     <Input placeholder='mysite' />
     <InputAddon placement='end'>.com</InputAddon>
@@ -87,30 +85,26 @@ case.
 ### Add elements inside Input
 
 In some scenarios, you might need to add an icon or button inside the input
-component. Chakra UI exports `InputLeftElement` and `InputRightElement` to help
-with this use case.
+component. Chakra UI exports `InputElement` to help with this use case.
 
 If the left or right is an icon or text, you can pass `pointerEvents="none"` to
-`InputLeftElement` or `InputRightElement` to ensure that clicking on them
-focused the input.
+`InputElement` to ensure that clicking on them focused the input.
 
 ```jsx
 <Stack gap={4}>
   <Group>
-    <InputLeftElement pointerEvents='none'>
-      <PhoneIcon color='gray.300' />
-    </InputLeftElement>
-    <Input type='tel' placeholder='Phone number' />
+    <InputElement pointerEvents='none'>
+      <MdPhone />
+    </InputElement>
+    <Input ps='8' type='tel' placeholder='Phone number' />
   </Group>
 
   <Group>
-    <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em'>
-      $
-    </InputLeftElement>
-    <Input placeholder='Enter amount' />
-    <InputRightElement>
-      <CheckIcon color='green.500' />
-    </InputRightElement>
+    <InputElement pointerEvents='none'>$</InputElement>
+    <Input px='8' placeholder='Enter amount' />
+    <InputElement placement='end'>
+      <MdCheck />
+    </InputElement>
   </Group>
 </Stack>
 ```
@@ -132,41 +126,20 @@ function PasswordInput() {
         type={show ? 'text' : 'password'}
         placeholder='Enter password'
       />
-      <InputRightElement width='4.5rem'>
+      <InputElement width='4.5rem' placement='end'>
         <Button h='1.75rem' size='sm' onClick={handleClick}>
           {show ? 'Hide' : 'Show'}
         </Button>
-      </InputRightElement>
+      </InputElement>
     </Group>
-  )
-}
-```
-
-### Controlled Input
-
-```jsx
-function Example() {
-  const [value, setValue] = React.useState('')
-  const handleChange = (event) => setValue(event.target.value)
-
-  return (
-    <>
-      <Text mb='8px'>Value: {value}</Text>
-      <Input
-        value={value}
-        onChange={handleChange}
-        placeholder='Here is a sample placeholder'
-        size='sm'
-      />
-    </>
   )
 }
 ```
 
 ### Changing the focus and error border colors
 
-You can change the border color that shows when the input receives focus
-(`focusBorderColor`) and when `invalid` is set to `true` (`errorBorderColor`).
+Set the `--focus-color` and `--error-color` CSS variables to change the focus
+and error border colors of the input component.
 
 ```jsx
 <Input
