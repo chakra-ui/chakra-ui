@@ -463,8 +463,8 @@ importers:
         specifier: 5.2.6
         version: 5.2.6(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-hook-form:
-        specifier: 7.51.2
-        version: 7.51.2(react@18.2.0)
+        specifier: 7.51.4
+        version: 7.51.4(react@18.2.0)
       react-icons:
         specifier: 5.0.1
         version: 5.0.1(react@18.2.0)
@@ -8300,8 +8300,8 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0
 
-  react-hook-form@7.51.2:
-    resolution: {integrity: sha512-y++lwaWjtzDt/XNnyGDQy6goHskFualmDlf+jzEZvjvz6KWDf7EboL7pUvRCzPTJd0EOPpdekYaQLEvvG6m6HA==}
+  react-hook-form@7.51.4:
+    resolution: {integrity: sha512-V14i8SEkh+V1gs6YtD0hdHYnoL4tp/HX/A45wWQN15CYr9bFRmmRdYStSO5L65lCCZRF+kYiSKhm9alqbcdiVA==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: 18.2.0
@@ -20386,7 +20386,7 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  react-hook-form@7.51.2(react@18.2.0):
+  react-hook-form@7.51.4(react@18.2.0):
     dependencies:
       react: 18.2.0
 
