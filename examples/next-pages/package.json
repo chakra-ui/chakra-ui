@@ -1,5 +1,5 @@
 {
-  "name": "chakra-next-pages",
+  "name": "next-pages",
   "version": "2.0.14",
   "private": true,
   "scripts": {
@@ -12,12 +12,12 @@
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@types/node": "^20.11.30",
-    "@types/react": "^18.2.72",
-    "@types/react-dom": "^18.2.22",
-    "next": "^14.1.4",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "next": "^14.2.3",
     "next-themes": "^0.3.0",
-    "lucide-react": "^0.363.0",
+    "lucide-react": "^0.379.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.4.5"

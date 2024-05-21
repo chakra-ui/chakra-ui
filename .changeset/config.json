@@ -5,12 +5,12 @@
     { "repo": "chakra-ui/chakra-ui" }
   ],
   "commit": false,
-  "fixed": [],
+  "fixed": [["@chakra-ui/**"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   },
-  "ignore": ["chakra-next-app", "chakra-next-pages", "vite-ts"]
+  "ignore": ["next-app", "next-pages", "vite-ts"]
 }
