@@ -10,22 +10,8 @@ description:
 
 ## Import
 
-Chakra UI exports 5 components for the NumberInput.
-
-- `NumberInput`: The wrapper that provides context and logic to the components.
-- `NumberInputField`: The `input` field itself.
-- `NumberInputStepper`: The wrapper for the input's stepper buttons.
-- `NumberIncrementStepper`: The button to increment the value of the input.
-- `NumberDecrementStepper`: The button to decrement the value of the input.
-
 ```js
-import {
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-} from '@chakra-ui/react'
+import { NumberInput } from '@chakra-ui/react'
 ```
 
 ## Usage
@@ -36,36 +22,30 @@ for the spin button widget. It is composed of smaller components to give you
 control of the styling of each part.
 
 ```jsx
-<NumberInput>
-  <NumberInputField />
-  <NumberInputStepper>
-    <NumberIncrementStepper />
-    <NumberDecrementStepper />
-  </NumberInputStepper>
-</NumberInput>
+<NumberInput.Root>
+  <NumberInput.Field />
+  <NumberInput.Control>
+    <NumberInput.IncrementTrigger />
+    <NumberInput.DecrementTrigger />
+  </NumberInput.Control>
+</NumberInput.Root>
 ```
 
 ### Setting a minimum and maximum value
 
-Pass the `min` prop or `max` prop to set an upper and lower limit for the input.
-By default, the input will restrict the value to stay within the specified
-range.
+Set the `min` or `max` prop to set an upper and lower limit for the input. By
+default, the input will restrict the value to stay within the specified range.
 
-> These props defaults to
-> [Number.MIN_SAFE_INTEGER](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_SAFE_INTEGER)
-> and
-> [Number.MAX_SAFE_INTEGER](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)
-> . If they do not match your requirements you can use other `Number` properties
-> as `min` or `max`.
+These props defaults to `MIN_SAFE_INTEGER` and `MAX_SAFE_INTEGER` respectively.
 
-```jsx
-<NumberInput defaultValue={15} min={10} max={20}>
-  <NumberInputField />
-  <NumberInputStepper>
-    <NumberIncrementStepper />
-    <NumberDecrementStepper />
-  </NumberInputStepper>
-</NumberInput>
+```jsx live=false
+<NumberInput.Root defaultValue={15} min={10} max={20}>
+  <NumberInput.Field />
+  <NumberInput.Control>
+    <NumberInput.IncrementTrigger />
+    <NumberInput.DecrementTrigger />
+  </NumberInput.Control>
+</NumberInput.Root>
 ```
 
 ### Setting the step size
@@ -74,14 +54,14 @@ Pass the `step` prop to change the step size when you increment or decrement the
 value. By default, the value is rounded to match the number of decimals in the
 `step`.
 
-```jsx
-<NumberInput step={5} defaultValue={15} min={10} max={30}>
-  <NumberInputField />
-  <NumberInputStepper>
-    <NumberIncrementStepper />
-    <NumberDecrementStepper />
-  </NumberInputStepper>
-</NumberInput>
+```jsx live=false
+<NumberInput.Root step={5} defaultValue={15} min={10} max={30}>
+  <NumberInput.Field />
+  <NumberInput.Control>
+    <NumberInput.IncrementTrigger />
+    <NumberInput.DecrementTrigger />
+  </NumberInput.Control>
+</NumberInput.Root>
 ```
 
 ### Adjusting the precision of the value
@@ -90,7 +70,7 @@ In some cases, you might need the value to be rounded to specific decimal
 points. Simply pass the `precision` prop and set it to the number of decimal
 points.
 
-```jsx
+```jsx live=false
 <NumberInput defaultValue={15} precision={2} step={0.2}>
   <NumberInputField />
   <NumberInputStepper>
@@ -111,7 +91,7 @@ To disable this behavior, pass `clampValueOnBlur` and set to `false`.
 > In this example, try to type a value greater than the max. It won't reset the
 > value on blur.
 
-```jsx
+```jsx live=false
 <NumberInput defaultValue={15} max={30} clampValueOnBlur={false}>
   <NumberInputField />
   <NumberInputStepper>
@@ -131,7 +111,7 @@ support this use case.
 > out of range. Out of range means that the `value` is great than `max` or less
 > than `min`.
 
-```jsx
+```jsx live=false
 <NumberInput
   defaultValue={15}
   max={10}
@@ -148,7 +128,7 @@ support this use case.
 
 ### Formatting and Parsing the value
 
-```jsx
+```jsx live=false
 function Example() {
   const format = (val) => `$` + val
   const parse = (val) => val.replace(/^\$/, '')
@@ -176,7 +156,7 @@ function Example() {
 Like the `Input` component, you can pass the `size` prop to change the size of
 the input.
 
-```jsx
+```jsx live=false
 <Stack shouldWrapChildren direction='row'>
   <NumberInput size='xs' maxW={16} defaultValue={15} min={10}>
     <NumberInputField />
@@ -217,7 +197,7 @@ the input.
 You can change the style of any part of the components using style props. You
 can also change the icons used in the steppers.
 
-```jsx
+```jsx live=false
 <NumberInput size='sm' defaultValue={15} min={10}>
   <NumberInputField focusBorderColor='red.200' />
   <NumberInputStepper>
@@ -244,7 +224,7 @@ We recommend disabling `focusThumbOnChange` on the `Slider`, so the
 
 Here's an example of how to do that:
 
-```jsx
+```jsx live=false
 function SliderInput() {
   const [value, setValue] = React.useState(0)
   const handleChange = (value) => setValue(value)
@@ -279,7 +259,7 @@ function SliderInput() {
 Sometimes, you might need to create a mobile version of the number input. Here's
 how you can leverage the `useNumberInput` hook to build one.
 
-```jsx
+```jsx live=false
 function HookUsage() {
   const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
@@ -310,7 +290,7 @@ The `NumberInput` component supports the ability to increment or decrement
 values using the mouse wheel events. To activate this, pass the
 `allowMouseWheel` prop.
 
-```jsx
+```jsx live=false
 function MouseWheelExample() {
   return (
     <NumberInput allowMouseWheel>

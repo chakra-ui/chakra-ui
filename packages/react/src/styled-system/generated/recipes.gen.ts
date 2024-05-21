@@ -113,6 +113,7 @@ export type AccordionSlot =
   | "item"
   | "trigger"
   | "content"
+  | "body"
   | "indicator"
 
 export interface AccordionVariantProps {

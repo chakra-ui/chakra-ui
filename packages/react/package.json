@@ -38,11 +38,11 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
-    "@pandacss/is-valid-prop": "0.39.1",
     "@ark-ui/anatomy": "3.0.0",
-    "@ark-ui/react": "3.0.0-1",
+    "@ark-ui/react": "3.0.0-2",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
+    "@pandacss/is-valid-prop": "0.39.1",
     "@popperjs/core": "2.11.8",
     "@zag-js/dom-utils": "0.2.4",
     "@zag-js/focus-visible": "0.40.0",

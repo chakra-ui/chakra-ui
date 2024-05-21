@@ -1,6 +1,7 @@
 export {
   AccordionItem as Item,
   AccordionItemContent as ItemContent,
+  AccordionItemBody as ItemBody,
   AccordionItemIndicator as ItemIndicator,
   AccordionItemTrigger as ItemTrigger,
   AccordionRoot as Root,
@@ -10,6 +11,7 @@ export type {
   AccordionItemContentProps as ItemContentProps,
   AccordionItemIndicatorProps as ItemIndicatorProps,
   AccordionItemProps as ItemProps,
+  AccordionItemBodyProps as ItemBodyProps,
   AccordionItemTriggerProps as ItemTriggerProps,
   AccordionRootProps as RootProps,
 } from "./accordion"

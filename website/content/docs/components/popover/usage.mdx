@@ -6,7 +6,7 @@ package: '@chakra-ui/popover'
 description: Popover is a non-modal dialog that floats around a trigger.
 ---
 
-`Popover` is built on top of the [Popper.js](https://popper.js.org/) library.
+Popover is a non-modal dialog component that floats around a trigger.
 
 ## Import
 
@@ -32,7 +32,9 @@ returned to the trigger.
   </Popover.Trigger>
   <Popover.Positioner>
     <Popover.Content>
-      <Popover.Arrow />
+      <Popover.Arrow>
+        <Popover.ArrowTip />
+      </Popover.Arrow>
       <Popover.CloseTrigger />
       <Popover.Header>Confirmation!</Popover.Header>
       <Popover.Body>Are you sure you want to have that milkshake?</Popover.Body>
@@ -49,7 +51,7 @@ portal, wrap the `Popover.Content` in a `Portal`
 > You might need to **Inspect Element** to see this in action. Notice that
 > `Popover.Content` is rendered as a child of `<body>`
 
-```jsx
+```jsx live=false
 <Popover.Root>
   <Popover.Trigger asChild>
     <Button>Trigger</Button>
@@ -75,15 +77,11 @@ portal, wrap the `Popover.Content` in a `Portal`
 By default, focus is to set to `Popover.Content` when it opens. Pass the
 `initialFocusRef` prop to send focus to a specific element instead.
 
-```jsx
+```jsx live=false
 function Demo() {
   const initialFocusRef = React.useRef()
   return (
-    <Popover
-      initialFocusRef={initialFocusRef}
-      placement='bottom'
-      closeOnBlur={false}
-    >
+    <Popover.Root initialFocusRef={initialFocusRef} placement='bottom'>
       <Popover.Trigger asChild>
         <Button>Trigger</Button>
       </Popover.Trigger>
@@ -106,151 +104,18 @@ function Demo() {
             pb={4}
           >
             <Box fontSize='sm'>Step 2 of 4</Box>
-            <ButtonGroup size='sm'>
-              <Button colorPalette='green'>Setup Email</Button>
-              <Button colorPalette='blue' ref={initialFocusRef}>
+            <Group>
+              <Button size='sm' colorPalette='green'>
+                Setup Email
+              </Button>
+              <Button size='sm' colorPalette='blue' ref={initialFocusRef}>
                 Next
               </Button>
-            </ButtonGroup>
+            </Group>
           </Popover.Footer>
         </Popover.Content>
       </Popover.Positioner>
-    </Popover>
-  )
-}
-```
-
-## Trapping Focus within Popover
-
-If the popover contains a form, you might need to trap focus within the popover
-and close it when the user fills the form and hits "save".
-
-You can leverage
-[react-focus-lock](https://github.com/theKashey/react-focus-lock) to trap focus
-within the `Popover.Content`.
-
-```jsx manual=true
-// import  FocusLock from "react-focus-lock"
-
-// 1. Create a text input component
-const TextInput = React.forwardRef((props, ref) => {
-  return (
-    <Field.Root>
-      <Field.Label htmlFor={props.id}>{props.label}</Field.Label>
-      <Input ref={ref} id={props.id} {...props} />
-    </Field.Root>
-  )
-})
-
-// 2. Create the form
-const Form = ({ firstFieldRef, onCancel }) => {
-  return (
-    <Stack gap={4}>
-      <TextInput
-        label='First name'
-        id='first-name'
-        ref={firstFieldRef}
-        defaultValue='John'
-      />
-      <TextInput label='Last name' id='last-name' defaultValue='Smith' />
-      <Group justifyContent='flex-end'>
-        <Button variant='outline' onClick={onCancel}>
-          Cancel
-        </Button>
-        <Button disabled colorPalette='teal'>
-          Save
-        </Button>
-      </Group>
-    </Stack>
-  )
-}
-
-// 3. Create the Popover
-// Ensure you set `closeOnBlur` prop to false so it doesn't close on outside click
-const PopoverForm = () => {
-  const { onOpen, onClose, open } = useDisclosure()
-  const firstFieldRef = React.useRef(null)
-
-  return (
-    <>
-      <Box display='inline-block' mr={3}>
-        John Smith
-      </Box>
-      <Popover.Root
-        open={open}
-        initialFocusRef={firstFieldRef}
-        onOpen={onOpen}
-        onClose={onClose}
-        placement='right'
-        closeOnBlur={false}
-      >
-        <Popover.Trigger asChild>
-          <IconButton size='sm'>
-            <EditIcon />
-          </IconButton>
-        </Popover.Trigger>
-        <Popover.Positioner>
-          <Popover.Content p={5}>
-            <FocusLock returnFocus persistentFocus={false}>
-              <Popover.Arrow />
-              <Popover.CloseTrigger />
-              <Form firstFieldRef={firstFieldRef} onCancel={onClose} />
-            </FocusLock>
-          </Popover.Content>
-        </Popover.Positioner>
-      </Popover.Root>
-    </>
-  )
-}
-
-render(<PopoverForm />)
-```
-
-## Controlling the Popover
-
-You can control the opening and closing of the popover by passing the `open`,
-and `onClose` props.
-
-Sometimes you might need to set the `returnFocusOnClose` prop to `false` to
-prevent popover from returning focus to `Popover.Trigger`'s children.
-
-```jsx
-function ControlledUsage() {
-  const { open, onToggle, onClose } = useDisclosure()
-
-  return (
-    <>
-      <Button mr={5} onClick={onToggle}>
-        Trigger
-      </Button>
-      <Popover.Root
-        returnFocusOnClose={false}
-        open={open}
-        onClose={onClose}
-        placement='right'
-        closeOnBlur={false}
-      >
-        <Popover.Trigger asChild>
-          <Button colorPalette='pink'>Popover Target</Button>
-        </Popover.Trigger>
-        <Popover.Positioner>
-          <Popover.Content>
-            <Popover.Header fontWeight='semibold'>Confirmation</Popover.Header>
-            <Popover.Arrow />
-            <Popover.CloseTrigger />
-            <Popover.Body>
-              Are you sure you want to continue with your action?
-            </Popover.Body>
-            <Popover.Footer display='flex' justifyContent='flex-end'>
-              <ButtonGroup size='sm'>
-                <Button variant='outline'>Cancel</Button>
-                <Button colorPalette='red'>Apply</Button>
-              </ButtonGroup>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover.Positioner>
-      </Popover.Root>
-    </>
+    </Popover.Root>
   )
 }
 ```
@@ -261,7 +126,7 @@ You can wrap your component with `Popover.Anchor` to prevent trigger any action.
 The wrapped component will become a position reference. Actions will only be
 triggered by components inside `Popover.Trigger`.
 
-```jsx
+```jsx live=false
 function Demo() {
   const [isEditing, setIsEditing] = useBoolean()
   const [color, setColor] = React.useState('red')
@@ -317,11 +182,11 @@ function Demo() {
 Chakra provides access to two internal details: `open` and `onClose`. Use the
 render prop pattern to gain access to them.
 
-```jsx
+```jsx live=false
 function Demo() {
   const ref = React.useRef()
   return (
-    <Popover closeOnBlur={false} placement='left' initialFocusRef={ref}>
+    <Popover.Root closeOnBlur={false} placement='left' initialFocusRef={ref}>
       {(state) => (
         <>
           <Popover.Trigger asChild>
@@ -342,7 +207,7 @@ function Demo() {
           </Portal>
         </>
       )}
-    </Popover>
+    </Popover.Root>
   )
 }
 ```
@@ -352,7 +217,7 @@ function Demo() {
 Chakra exports all the components you need to customize the look and feel of the
 popover. You can change the background, arrow size, box shadow and so on.
 
-```jsx
+```jsx live=false
 <Popover.Root>
   <Popover.Trigger asChild>
     <Box
@@ -379,8 +244,8 @@ popover. You can change the background, arrow size, box shadow and so on.
 
 ## Changing the placement of the Popover
 
-```jsx
-<Popover placement='top-start'>
+```jsx live=false
+<Popover.Root placement='top-start'>
   <Popover.Trigger asChild>
     <Button>Click me</Button>
   </Popover.Trigger>
@@ -393,7 +258,7 @@ popover. You can change the background, arrow size, box shadow and so on.
       tempor incididunt ut labore et dolore.
     </Popover.Body>
   </Popover.Content>
-</Popover>
+</Popover.Root>
 ```
 
 ### Lazily mounting Popover
@@ -407,8 +272,8 @@ opened, you can use the `lazyMount` prop. This is useful if your
 `Popover.Content` needs to be extra performant, or make network calls on mount
 that should only happen when the component is displayed.
 
-```jsx
-<Popover lazyMount>
+```jsx live=false
+<Popover.Root lazyMount>
   <Popover.Trigger asChild>
     <Button>Click me</Button>
   </Popover.Trigger>
@@ -421,7 +286,7 @@ that should only happen when the component is displayed.
       tempor incididunt ut labore et dolore.
     </Popover.Body>
   </Popover.Content>
-</Popover>
+</Popover.Root>
 ```
 
 ## Accessibility

@@ -23,9 +23,11 @@ export const accordionSlotRecipe = defineSlotRecipe({
         cursor: "not-allowed",
       },
     },
+    body: {
+      paddingBottom: "calc(var(--accordion-padding-y) * 2)",
+    },
     content: {
       overflow: "hidden",
-      // paddingBottom: "calc(var(--accordion-padding-y) * 2)",
       borderRadius: "var(--accordion-radius)",
       _open: {
         animation: "collapse-in 250ms",

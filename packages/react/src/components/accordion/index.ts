@@ -1,6 +1,7 @@
 export {
   AccordionItem,
   AccordionItemContent,
+  AccordionItemBody,
   AccordionItemIndicator,
   AccordionItemTrigger,
   AccordionRoot,
@@ -9,6 +10,7 @@ export {
 
 export type {
   AccordionItemContentProps,
+  AccordionItemBodyProps,
   AccordionItemIndicatorProps,
   AccordionItemProps,
   AccordionItemTriggerProps,
