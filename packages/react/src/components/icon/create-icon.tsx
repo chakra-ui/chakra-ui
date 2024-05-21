@@ -3,7 +3,7 @@
 import { Children, forwardRef } from "react"
 import { Icon, type IconProps } from "./icon"
 
-interface CreateIconOptions {
+export interface CreateIconOptions {
   /**
    * The icon `svg` viewBox
    * @default "0 0 24 24"
