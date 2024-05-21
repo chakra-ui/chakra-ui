@@ -43,15 +43,15 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create @dev release
-        if: steps.changesets.outputs.published != 'true'
-        run: |
-          git checkout main
-          pnpm version:dev
-          pnpm release:dev
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create @dev release
+      #   if: steps.changesets.outputs.published != 'true'
+      #   run: |
+      #     git checkout main
+      #     pnpm version:dev
+      #     pnpm release:dev
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Slack notification
         if: steps.changesets.outputs.published == 'true'
