@@ -91,7 +91,7 @@
     "node-fetch": "3.3.2",
     "prettier": "3.2.5",
     "react-multi-ref": "1.0.1",
-    "semver": "7.6.0",
+    "semver": "7.6.2",
     "sharp": "0.33.4",
     "tsx": "4.7.1",
     "unified": "10.1.2",
