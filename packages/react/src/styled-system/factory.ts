@@ -27,7 +27,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
     const forwardFn = options.shouldForwardProp || defaultShouldForwardProp
     const forwardAsChild = options.forwardAsChild || false
 
-    const __cva = mergeCva(Dynamic.__cva, cvaFn)
+    const cvaRecipe = mergeCva(Dynamic.__cva, cvaFn)
     const __sfp = mergeShouldForwardProps(Dynamic, forwardFn)
 
     const {
@@ -37,94 +37,98 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       ...restProps
     } = props
 
-    const assign = (el: any) => {
+    const assignStaticProps = (el: any) => {
       Object.assign(el, {
-        displayName: `chakra.${getDisplayName(Dynamic)}`,
-        __cva: __cva,
+        displayName: `chakra(${getDisplayName(Dynamic)})`,
+        __cva: cvaRecipe,
         __el: Dynamic,
         __sfp,
       })
     }
 
-    const combinedProps = useMemo(
+    const propsWithDefault = useMemo(
       () => Object.assign({}, options.defaultProps, restProps),
       [restProps],
     )
 
-    const res = useMemo(() => {
-      const [htmlProps, _a] = splitProps(combinedProps, [
+    const mixedProps = useMemo(() => {
+      const [htmlProps, _a] = splitProps(propsWithDefault, [
         "htmlWidth",
         "htmlHeight",
         "htmlSize",
         "htmlTranslate",
       ])
+
       const [forwardedProps, _b] = splitProps(_a, (key) =>
-        __sfp(key, __cva.variantKeys),
+        __sfp(key, cvaRecipe.variantKeys),
       )
-      const [variantProps, _c] = splitProps(_b, __cva.variantKeys)
+
+      const [variantProps, _c] = splitProps(_b, cvaRecipe.variantKeys)
       const [styleProps, elementProps] = splitProps(_c, isValidProperty)
+
       return {
-        htmlProps: getHTMLProps(htmlProps),
+        htmlProps: getHtmlProps(htmlProps),
         forwardedProps,
         variantProps,
         styleProps,
         elementProps,
       }
-    }, [__cva.variantKeys, __sfp, combinedProps, isValidProperty])
+    }, [cvaRecipe.variantKeys, __sfp, propsWithDefault, isValidProperty])
 
-    const { css: cssStyles, ...propStyles } = res.styleProps
+    const { css: cssStyles, ...propStyles } = mixedProps.styleProps
 
     const cvaStyles = useMemo(
-      () => __cva(res.variantProps),
-      [__cva, res.variantProps],
+      () => cvaRecipe(mixedProps.variantProps),
+      [cvaRecipe, mixedProps.variantProps],
     )
 
-    const _children = combinedProps.children ?? children
+    const finalChildren = propsWithDefault.children ?? children
 
     const styles = useMemo((): any => {
       return css(cvaStyles, ...toArray(cssStyles), propStyles)
     }, [css, cvaStyles, cssStyles, propStyles])
 
+    const MemoizedElement = useMemo(
+      () => styled(Element)(styles),
+      [Element, styles],
+    )
+
     if (!asChild || (asChild && forwardAsChild)) {
-      // eslint-disable-next-line
-      const element = useMemo(() => styled(Element)(styles), [Element, styles])
+      assignStaticProps(MemoizedElement)
 
-      assign(element)
+      const finalProps = {
+        ref,
+        ...mixedProps.forwardedProps,
+        ...mixedProps.elementProps,
+        ...mixedProps.htmlProps,
+      }
 
-      return createElement(
-        element,
-        {
-          ref,
-          asChild: asChild && forwardAsChild,
-          ...res.forwardedProps,
-          ...res.elementProps,
-          ...res.htmlProps,
-        },
-        _children,
-      )
+      if (asChild && forwardAsChild) {
+        finalProps.asChild = true
+      }
+
+      return createElement(MemoizedElement, finalProps, finalChildren)
     }
 
-    const onlyChild = Children.only(_children)
+    const child = Children.only(finalChildren)
 
-    if (!isValidElement(onlyChild)) return onlyChild
+    if (!isValidElement(child)) {
+      return child
+    }
 
     const composedProps = mergeProps(
-      res.forwardedProps,
-      res.elementProps,
-      onlyChild.props ?? {},
+      mixedProps.forwardedProps,
+      mixedProps.elementProps,
+      child.props ?? {},
     )
 
     const composedRef = ref
-      ? mergeRefs(ref, (onlyChild as any).ref)
-      : (onlyChild as any).ref
+      ? mergeRefs(ref, (child as any).ref)
+      : (child as any).ref
 
-    // eslint-disable-next-line
-    const element = useMemo(
-      () => styled(onlyChild.type as any)(styles),
-      [onlyChild.type, styles],
-    )
+    const element = styled(child.type as any)(styles)
 
-    assign(element)
+    assignStaticProps(element)
 
     return createElement(element, {
       ref: composedRef,
@@ -168,7 +172,7 @@ const mergeCva = (cvaA: any, cvaB: any) => {
   return cvaA.merge(cvaB)
 }
 
-const getHTMLProps = (props: any) => {
+const getHtmlProps = (props: any) => {
   const htmlProps: any = {}
   for (const key in props) {
     if (key.startsWith("html")) {
