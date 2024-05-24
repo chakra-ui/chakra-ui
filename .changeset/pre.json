@@ -10,7 +10,15 @@
     "@chakra-ui/props-docs": "2.2.1",
     "@chakra-ui/react": "2.8.2",
     "@chakra-ui/utils": "2.0.15",
-    "@chakra-ui/docs": "2.1.6"
+    "@chakra-ui/docs": "2.1.6",
+    "next-app": "2.0.14",
+    "next-pages": "2.0.14"
   },
-  "changesets": []
+  "changesets": [
+    "blue-masks-tell",
+    "curvy-zebras-fold",
+    "many-lamps-provide",
+    "pretty-cougars-cough",
+    "tasty-scissors-watch"
+  ]
 }
