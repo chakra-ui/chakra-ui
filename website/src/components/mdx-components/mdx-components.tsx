@@ -19,7 +19,7 @@ import Image from 'next/image'
 import { FiFigma } from 'react-icons/fi'
 import CarbonAd from './carbon-ad'
 import CodeBlock from './codeblock/codeblock'
-import ComponentLinks from './component-links'
+import { ComponentLinks } from './component-links'
 import { FeaturesCourses } from './course-banner'
 import { VideoPlayer } from './video-player'
 
@@ -103,6 +103,7 @@ export const MDXComponents = {
         mt: '1.25rem',
         lineHeight: 1.7,
         'blockquote &': { mt: 0 },
+        color: 'fg.muted',
       }}
       {...props}
     />

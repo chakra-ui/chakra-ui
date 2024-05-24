@@ -4,7 +4,7 @@ export const badgeRecipe = defineRecipe({
   base: {
     display: "inline-flex",
     alignItems: "center",
-    gap: "0.5",
+    gap: "1",
     fontWeight: "medium",
     fontVariantNumeric: "tabular-nums",
     colorPalette: "gray",

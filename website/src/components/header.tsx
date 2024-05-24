@@ -157,7 +157,7 @@ function Header(props: HTMLChakraProps<'header'>) {
 
   const { scrollY } = useScroll()
   useEffect(() => {
-    return scrollY.onChange(() => setY(scrollY.get()))
+    return scrollY.on('change', () => setY(scrollY.get()))
   }, [scrollY])
 
   return (
