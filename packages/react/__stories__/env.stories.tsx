@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import Frame, { type FrameContextProps, useFrame } from "react-frame-component"
-import { Environment, useEnvironmentContext } from "../src"
+import { EnvironmentProvider, useEnvironmentContext } from "../src"
 
 export default {
   title: "Components / Environment",
@@ -70,10 +70,10 @@ export const WithPortal = () => {
       <h2>Start editing to see some magic happen!</h2>
       <Portal>Outside iframe</Portal>
       <Frame style={{ background: "yellow" }}>
-        <Environment>
+        <EnvironmentProvider>
           <span>Welcome home</span>
           <Portal>Inside iframe</Portal>
-        </Environment>
+        </EnvironmentProvider>
       </Frame>
     </div>
   )
@@ -86,9 +86,9 @@ export const WithSize = () => {
       <Frame style={{ background: "yellow", width: "100%", maxWidth: "300px" }}>
         <FrameContext>
           {({ document }) => (
-            <Environment value={() => document ?? globalThis.document}>
+            <EnvironmentProvider value={() => document ?? globalThis.document}>
               <WindowSize />
-            </Environment>
+            </EnvironmentProvider>
           )}
         </FrameContext>
       </Frame>
