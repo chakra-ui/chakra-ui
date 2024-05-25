@@ -25,7 +25,7 @@ function normalizeConfig(config: UtilityConfig) {
   )
 }
 
-export function createUtilty(options: Options) {
+export function createUtility(options: Options) {
   const configs = normalizeConfig(options.config)
   const tokens = options.tokens
 
