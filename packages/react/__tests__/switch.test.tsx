@@ -1,4 +1,5 @@
-import { act, fireEvent, screen } from "@testing-library/react"
+import { fireEvent, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 import { useState } from "react"
 import { Field, Switch } from "../src"
 import { render } from "./core"
@@ -16,22 +17,26 @@ const DemoSwitch = (props: Switch.RootProps) => {
 
 describe("Switch", () => {
   test("Uncontrolled - should check and uncheck", async () => {
-    const { user } = render(<DemoSwitch />)
+    render(<DemoSwitch />)
+
     const input = screen.getByRole("checkbox")
 
-    await act(() => user.click(input))
+    await userEvent.click(input)
+
     expect(input).toBeChecked()
 
-    await act(() => user.click(input))
+    await userEvent.click(input)
+
     expect(input).not.toBeChecked()
   })
 
   test("Uncontrolled - should not check if disabled", async () => {
-    const { user } = render(<DemoSwitch disabled />)
+    render(<DemoSwitch disabled />)
     const input = screen.getByRole("checkbox")
     expect(input).toBeDisabled()
 
-    await act(() => user.click(input))
+    await userEvent.click(input)
+
     expect(input).not.toBeChecked()
   })
 
@@ -51,23 +56,23 @@ describe("Switch", () => {
       )
     }
 
-    const { user } = render(<ControlledSwitch />)
+    render(<ControlledSwitch />)
     const input = screen.getByRole("checkbox")
     expect(input).not.toBeChecked()
 
-    await act(() => user.click(input))
+    await userEvent.click(input)
 
     expect(input).toBeChecked()
     expect(onChange).toHaveBeenCalled()
 
-    await act(() => user.click(input))
+    await userEvent.click(input)
 
     expect(input).not.toBeChecked()
     expect(onChange).toHaveBeenCalled()
   })
 
   test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
-    const { user } = render(
+    render(
       <Field.Root disabled mt="4">
         <Field.Label>Disabled Opt-in Example</Field.Label>
         <DemoSwitch />
@@ -82,9 +87,9 @@ describe("Switch", () => {
     expect(inputB).toBeDisabled()
     expect(inputC).not.toBeDisabled()
 
-    await act(() => user.click(inputA))
-    await act(() => user.click(inputB))
-    await act(() => user.click(inputC))
+    await userEvent.click(inputA)
+    await userEvent.click(inputB)
+    await userEvent.click(inputC)
 
     expect(inputA).not.toBeChecked()
     expect(inputB).not.toBeChecked()
@@ -141,7 +146,7 @@ describe("Switch", () => {
     const onFocus = vi.fn()
     const _onFocus = vi.fn()
 
-    const { user } = render(
+    render(
       <Field.Root mt="4" onFocus={onFocus}>
         <Field.Label>onFocus Example</Field.Label>
         <DemoSwitch onFocus={_onFocus} />
@@ -149,7 +154,7 @@ describe("Switch", () => {
     )
 
     const inputEl = screen.getByRole("checkbox")
-    await act(() => user.click(inputEl))
+    await userEvent.click(inputEl)
 
     expect(onFocus).toHaveBeenCalled()
     expect(_onFocus).toHaveBeenCalled()
