@@ -129,8 +129,7 @@ function OmniSearch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // @ts-expect-error @segunadebayo not sure what this should be?!
-  useEventListener('keydown', (event) => {
+  useEventListener(null, 'keydown', (event) => {
     const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform)
     const hotkey = isMac ? 'metaKey' : 'ctrlKey'
     if (event?.key?.toLowerCase() === 'k' && event[hotkey]) {
@@ -230,7 +229,7 @@ function OmniSearch() {
       <Dialog.Root
         scrollBehavior='inside'
         open={modal.open}
-        onOpenChange={(e) => (e.open ? menu.onOpen() : menu.onClose())}
+        onOpenChange={(e) => (e.open ? modal.onOpen() : modal.onClose())}
       >
         <Dialog.Backdrop />
         <Dialog.Positioner>
