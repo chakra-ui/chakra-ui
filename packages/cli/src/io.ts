@@ -5,7 +5,7 @@ import chokidar from "chokidar"
 import { existsSync, mkdirSync, rm } from "node:fs"
 import { writeFile } from "node:fs/promises"
 import { dirname, join, resolve } from "node:path"
-import { fileURLToPath } from "url"
+import { fileURLToPath } from "node:url"
 
 interface ReadResult {
   mod: SystemContext
