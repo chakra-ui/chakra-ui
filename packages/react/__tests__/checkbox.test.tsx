@@ -1,4 +1,4 @@
-import { act, fireEvent, screen } from "@testing-library/react"
+import { fireEvent, screen } from "@testing-library/react"
 import { useState } from "react"
 import { Checkbox, Field, Icon } from "../src"
 import { render, testA11y } from "./core"
@@ -25,12 +25,12 @@ describe("Checkbox", () => {
     const controlEl = screen.getByTestId("control")
 
     // click the first time, it is checked
-    await act(() => user.click(inputEl))
+    await user.click(inputEl)
     expect(inputEl).toBeChecked()
     expect(controlEl).toHaveAttribute("data-checked")
 
     // click the second time, it is unchecked
-    await act(() => user.click(inputEl))
+    await user.click(inputEl)
     expect(inputEl).not.toBeChecked()
     expect(controlEl).not.toHaveAttribute("data-checked")
   })
@@ -44,7 +44,7 @@ describe("Checkbox", () => {
     expect(inputEl).toBeDisabled()
     expect(controlEl).toHaveAttribute("data-disabled")
 
-    await act(() => user.click(inputEl))
+    await user.click(inputEl)
     expect(inputEl).not.toBeChecked()
     expect(controlEl).not.toHaveAttribute("data-checked")
   })
@@ -76,7 +76,7 @@ describe("Checkbox", () => {
     const controlEl = screen.getByTestId("control")
     expect(controlEl).not.toBeChecked()
 
-    await act(() => user.click(controlEl))
+    await user.click(controlEl)
     expect(controlEl).toHaveAttribute("data-checked")
     expect(onChange).toHaveBeenCalled()
   })
@@ -98,7 +98,7 @@ describe("Checkbox", () => {
     expect(inputB).toBeChecked()
     expect(inputC).not.toBeChecked()
 
-    await act(() => user.click(inputC))
+    await user.click(inputC)
 
     expect(inputA).toBeChecked()
     expect(inputB).toBeChecked()
@@ -132,7 +132,7 @@ describe("Checkbox", () => {
     expect(inputB).toBeChecked()
     expect(inputC).not.toBeChecked()
 
-    await act(() => user.click(inputC))
+    await user.click(inputC)
     expect(onChange).toHaveBeenCalledTimes(1)
   })
 
@@ -154,9 +154,9 @@ describe("Checkbox", () => {
     expect(inputB).toBeDisabled()
     expect(inputC).not.toBeDisabled()
 
-    await act(() => user.click(inputA))
-    await act(() => user.click(inputB))
-    await act(() => user.click(inputC))
+    await user.click(inputA)
+    await user.click(inputB)
+    await user.click(inputC)
 
     expect(inputA).not.toBeChecked()
     expect(inputB).not.toBeChecked()
@@ -243,9 +243,9 @@ describe("Checkbox", () => {
     expect(inputB).toBeDisabled()
     expect(inputC).not.toBeDisabled()
 
-    await act(() => user.click(inputA))
-    await act(() => user.click(inputB))
-    await act(() => user.click(inputC))
+    await user.click(inputA)
+    await user.click(inputB)
+    await user.click(inputC)
 
     expect(inputA).not.toBeChecked()
     expect(inputB).not.toBeChecked()
