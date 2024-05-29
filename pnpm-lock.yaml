@@ -354,8 +354,8 @@ importers:
         specifier: 0.7.0
         version: 0.7.0
       '@pandacss/is-valid-prop':
-        specifier: 0.39.1
-        version: 0.39.1
+        specifier: 0.40.0
+        version: 0.40.0
       bundle-n-require:
         specifier: 1.1.1
         version: 1.1.1
@@ -420,8 +420,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@pandacss/is-valid-prop':
-        specifier: 0.39.1
-        version: 0.39.1
+        specifier: 0.40.0
+        version: 0.40.0
       '@zag-js/dom-query':
         specifier: 0.51.2
         version: 0.51.2
@@ -2911,8 +2911,8 @@ packages:
     resolution: {integrity: sha512-CAOgFOKLybd02uj/GhCdEeeBjOS0yeoDeo/CA7ASBSmenpZHAKGB3iDm/rv3BQLcabb/OprDEsSQ1y0P8A7Siw==}
     engines: {node: '>=14'}
 
-  '@pandacss/is-valid-prop@0.39.1':
-    resolution: {integrity: sha512-UkEJpbSw6uWK2a5duYKUXGd1SHKB1yCYCS3XPjV+bWkdltuyiMqdSIVWFpS7t2cxw4Upp+iE3c7yuqlqiQLeAg==}
+  '@pandacss/is-valid-prop@0.40.0':
+    resolution: {integrity: sha512-SJk4hY84Kjr1jWd+A6tCdNAzGOi1dMpLahjK7urNdTkVb0lvFb/0SURFM5zj9+N90zXaqPNtWgOoUvN5o0E+kQ==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -6147,6 +6147,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -6441,6 +6442,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -8734,10 +8736,12 @@ packages:
 
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@5.0.5:
@@ -12819,7 +12823,7 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.22.0': {}
 
-  '@pandacss/is-valid-prop@0.39.1': {}
+  '@pandacss/is-valid-prop@0.40.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true

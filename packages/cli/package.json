@@ -44,7 +44,7 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
-    "@pandacss/is-valid-prop": "0.39.1",
+    "@pandacss/is-valid-prop": "0.40.0",
     "@clack/prompts": "0.7.0",
     "bundle-n-require": "1.1.1",
     "chokidar": "3.6.0",
