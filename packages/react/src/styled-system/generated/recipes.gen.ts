@@ -391,6 +391,29 @@ export interface RadioVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+// Select
+
+export type SelectSlot =
+  | "label"
+  | "positioner"
+  | "trigger"
+  | "indicator"
+  | "clearTrigger"
+  | "item"
+  | "itemText"
+  | "itemIndicator"
+  | "itemGroup"
+  | "itemGroupLabel"
+  | "content"
+  | "root"
+  | "control"
+  | "valueText"
+
+export interface SelectVariantProps {
+  variant?: "outline" | "ghost"
+  size?: "sm" | "md" | "lg"
+}
+
 // Slider
 
 export type SliderSlot =
@@ -544,6 +567,7 @@ export interface ConfigSlotRecipes {
   HoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
   Progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
   Radio: SystemSlotRecipeFn<RadioSlot, RadioVariantProps>
+  Select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps>
   Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
   Stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
   Steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps>
@@ -576,6 +600,7 @@ export interface ConfigRecipeSlots {
   HoverCard: HoverCardSlot
   Progress: ProgressSlot
   Radio: RadioSlot
+  Select: SelectSlot
   Slider: SliderSlot
   Stat: StatSlot
   Steps: StepsSlot

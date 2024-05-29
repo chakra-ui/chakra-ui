@@ -18,6 +18,7 @@ import { numberInputSlotRecipe } from "./recipes/number-input"
 import { popoverSlotRecipe } from "./recipes/popover"
 import { progressSlotRecipe } from "./recipes/progress"
 import { radioSlotRecipe } from "./recipes/radio"
+import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
 import { statSlotRecipe } from "./recipes/stat"
 import { stepsSlotRecipe } from "./recipes/steps"
@@ -49,6 +50,7 @@ export const slotRecipes = {
   HoverCard: hoverCardSlotRecipe,
   Progress: progressSlotRecipe,
   Radio: radioSlotRecipe,
+  Select: selectSlotRecipe,
   Slider: sliderSlotRecipe,
   Stat: statSlotRecipe,
   Steps: stepsSlotRecipe,
