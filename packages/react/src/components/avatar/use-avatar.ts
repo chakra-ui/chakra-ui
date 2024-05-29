@@ -2,7 +2,7 @@
 
 import { useSafeLayoutEffect } from "@chakra-ui/hooks"
 import { isHTMLElement } from "@chakra-ui/utils"
-import { getWindow } from "@zag-js/dom-utils"
+import { getWindow } from "@zag-js/dom-query"
 import { useEffect, useRef, useState } from "react"
 
 export function useAvatar() {

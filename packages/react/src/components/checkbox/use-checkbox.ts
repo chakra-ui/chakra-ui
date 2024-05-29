@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/hooks"
 import type { PropGetter } from "@chakra-ui/utils"
 import { callAllHandlers, dataAttr } from "@chakra-ui/utils"
-import { getEventTarget } from "@zag-js/dom-utils"
+import { getEventTarget } from "@zag-js/dom-query"
 import { trackFocusVisible } from "@zag-js/focus-visible"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useFieldProps } from "../field"

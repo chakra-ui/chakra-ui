@@ -38,14 +38,13 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
-    "@ark-ui/anatomy": "3.1.0",
-    "@ark-ui/react": "3.0.0",
+    "@ark-ui/anatomy": "3.2.0",
+    "@ark-ui/react": "3.0.2",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@pandacss/is-valid-prop": "0.39.1",
-    "@popperjs/core": "2.11.8",
-    "@zag-js/dom-utils": "0.2.4",
-    "@zag-js/focus-visible": "0.40.0",
+    "@zag-js/dom-query": "0.51.2",
+    "@zag-js/focus-visible": "0.51.2",
     "aria-hidden": "1.2.4",
     "csstype": "3.1.3",
     "react-focus-lock": "2.12.1",
