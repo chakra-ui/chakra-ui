@@ -30,7 +30,11 @@ interface HitProps {
 }
 
 function Hit({ hit, children }: HitProps) {
-  return <Link href={hit.url}>{children}</Link>
+  return (
+    <Link href={hit.url} legacyBehavior>
+      {children}
+    </Link>
+  )
 }
 
 export const SearchButton = React.forwardRef(function SearchButton(
@@ -48,24 +52,25 @@ export const SearchButton = React.forwardRef(function SearchButton(
 
   return (
     <chakra.button
-      flex='1'
-      type='button'
-      mx='6'
-      ref={ref}
-      lineHeight='1.2'
-      w='100%'
-      bg='white'
-      whiteSpace='nowrap'
-      display={{ base: 'none', sm: 'flex' }}
       alignItems='center'
+      bg='white'
       color='gray.600'
-      _dark={{ bg: 'gray.700', color: 'gray.400' }}
-      py='3'
-      px='4'
+      cursor='pointer'
+      display={{ base: 'none', sm: 'flex' }}
+      flex='1'
+      lineHeight='1.2'
+      mx='6'
       outline='0'
-      _focus={{ shadow: 'outline' }}
-      shadow='xs'
+      px='4'
+      py='3'
+      ref={ref}
       rounded='md'
+      shadow='xs'
+      type='button'
+      w='100%'
+      whiteSpace='nowrap'
+      _dark={{ bg: 'gray.700', color: 'gray.400' }}
+      _focus={{ shadow: 'outline' }}
       {...props}
     >
       <SearchIcon />

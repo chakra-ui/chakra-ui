@@ -1,4 +1,4 @@
-import { Box, Center, Dialog, Flex, chakra } from '@chakra-ui/react'
+import { Box, Center, Dialog, Flex, HStack, chakra } from '@chakra-ui/react'
 import {
   useDisclosure,
   useEventListener,
@@ -129,8 +129,7 @@ function OmniSearch() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // @ts-expect-error @segunadebayo not sure what this should be?!
-  useEventListener('keydown', (event) => {
+  useEventListener(null, 'keydown', (event) => {
     const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform)
     const hotkey = isMac ? 'metaKey' : 'ctrlKey'
     if (event?.key?.toLowerCase() === 'k' && event[hotkey]) {
@@ -230,7 +229,7 @@ function OmniSearch() {
       <Dialog.Root
         scrollBehavior='inside'
         open={modal.open}
-        onOpenChange={(e) => (e.open ? menu.onOpen() : menu.onClose())}
+        onOpenChange={(e) => (e.open ? modal.onOpen() : modal.onClose())}
       >
         <Dialog.Backdrop />
         <Dialog.Positioner>
@@ -250,17 +249,15 @@ function OmniSearch() {
                 aria-autocomplete='list'
                 autoComplete='off'
                 autoCorrect='off'
-                spellCheck='false'
+                bg='white'
+                fontWeight='medium'
+                h='68px'
                 maxLength={64}
-                css={{
-                  w: '100%',
-                  h: '68px',
-                  pl: '68px',
-                  fontWeight: 'medium',
-                  outline: 0,
-                  bg: 'white',
-                  '.chakra-ui-dark &': { bg: 'gray.700' },
-                }}
+                outline={0}
+                pl='68px'
+                spellCheck='false'
+                w='full'
+                _dark={{ bg: 'gray.700' }}
                 placeholder='Search the docs'
                 value={query}
                 onChange={(e) => {
@@ -277,10 +274,10 @@ function OmniSearch() {
             <Dialog.Body maxH='66vh' p='0' ref={menuRef}>
               {open && (
                 <Box
-                  css={{
-                    px: 4,
-                    bg: 'white',
-                    '.chakra-ui-dark &': { bg: 'gray.700' },
+                  px='4'
+                  bg='white'
+                  _dark={{
+                    bg: 'gray.700',
                   }}
                 >
                   <Box
@@ -296,70 +293,66 @@ function OmniSearch() {
 
                       return (
                         <Link key={item.url} href={item.url}>
-                          <a>
-                            <Box
-                              id={`search-item-${index}`}
-                              as='li'
-                              aria-selected={selected ? true : undefined}
-                              onMouseEnter={() => {
-                                setActive(index)
-                                eventRef.current = 'mouse'
-                              }}
-                              onClick={() => {
-                                if (shouldCloseModal) {
-                                  modal.onClose()
-                                }
-                              }}
-                              ref={menuNodes.ref(index)}
-                              role='option'
-                              key={item.url}
-                              css={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                minH: 16,
-                                mt: 2,
-                                px: 4,
-                                py: 2,
-                                rounded: 'lg',
-                                bg: 'gray.100',
-                                '.chakra-ui-dark &': { bg: 'gray.600' },
-                                _selected: {
-                                  bg: 'teal.500',
-                                  color: 'white',
-                                  mark: {
-                                    color: 'white',
-                                    textDecoration: 'underline',
-                                  },
-                                },
-                              }}
-                            >
-                              {isLvl1 ? (
-                                <DocIcon opacity={0.4} />
-                              ) : (
-                                <HashIcon opacity={0.4} />
-                              )}
+                          <HStack
+                            key={item.url}
+                            id={`search-item-${index}`}
+                            as='li'
+                            aria-selected={selected ? true : undefined}
+                            onMouseEnter={() => {
+                              setActive(index)
+                              eventRef.current = 'mouse'
+                            }}
+                            onClick={() => {
+                              if (shouldCloseModal) {
+                                modal.onClose()
+                              }
+                            }}
+                            ref={menuNodes.ref(index)}
+                            role='option'
+                            bg='gray.100'
+                            minH='16'
+                            mt='2'
+                            px='4'
+                            py='2'
+                            rounded='lg'
+                            _dark={{
+                              bg: 'gray.600',
+                            }}
+                            _selected={{
+                              bg: 'teal.500',
+                              color: 'white',
+                              '& mark': {
+                                color: 'white',
+                                textDecoration: 'underline',
+                              },
+                            }}
+                          >
+                            {isLvl1 ? (
+                              <DocIcon opacity={0.4} />
+                            ) : (
+                              <HashIcon opacity={0.4} />
+                            )}
 
-                              <Box flex='1' ml='4'>
-                                {!isLvl1 && (
-                                  <Box
-                                    fontWeight='medium'
-                                    fontSize='xs'
-                                    opacity={0.7}
-                                  >
-                                    {item.hierarchy.lvl1}
-                                  </Box>
-                                )}
-                                <Box fontWeight='semibold'>
-                                  <OptionText
-                                    searchWords={[query]}
-                                    textToHighlight={item.content}
-                                  />
+                            <Box flex='1' ml='4'>
+                              {!isLvl1 && (
+                                <Box
+                                  fontWeight='medium'
+                                  fontSize='xs'
+                                  opacity={0.7}
+                                >
+                                  {item.hierarchy.lvl1}
                                 </Box>
+                              )}
+                              <Box fontWeight='semibold'>
+                                <OptionText
+                                  searchWords={[query]}
+                                  textToHighlight={item.content}
+                                />
                               </Box>
-
-                              <EnterIcon opacity={0.5} />
                             </Box>
-                          </a>
+
+                            <EnterIcon opacity={0.5} />
+                          </HStack>
                         </Link>
                       )
                     })}
