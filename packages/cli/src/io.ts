@@ -5,6 +5,7 @@ import chokidar from "chokidar"
 import { existsSync, mkdirSync, rm } from "node:fs"
 import { writeFile } from "node:fs/promises"
 import { dirname, join, resolve } from "node:path"
+import { fileURLToPath } from "node:url"
 
 interface ReadResult {
   mod: SystemContext
@@ -33,7 +34,13 @@ export const read = async (file: string): Promise<ReadResult> => {
 const getBasePath = () => {
   if (!process.env.LOCAL) {
     const root = import.meta.resolve("@chakra-ui/react")
-    return resolve(dirname(root), "..", "types", "styled-system", "generated")
+    return resolve(
+      fileURLToPath(dirname(root)),
+      "..",
+      "types",
+      "styled-system",
+      "generated",
+    )
   }
 
   const root = join(process.cwd(), "packages", "react", "src")
