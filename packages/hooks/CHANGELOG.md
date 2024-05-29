@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/utils@3.0.0-next.1
+
 ## 3.0.0-next.0
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @chakra-ui/docs
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c941971`](https://github.com/chakra-ui/chakra-ui/commit/c9419714db8b50b2cad3f478d90d4be4268da48f),
+  [`548470d`](https://github.com/chakra-ui/chakra-ui/commit/548470dd4306dd39d76555e172da64fd1861fdc5)]:
+  - @chakra-ui/react@3.0.0-next.1
+  - @chakra-ui/cli@3.0.0-next.1
+  - @chakra-ui/hooks@3.0.0-next.1
+  - @chakra-ui/props-docs@3.0.0-next.1
+  - @chakra-ui/utils@3.0.0-next.1
+
 ## 3.0.0-next.0
 
 ### Patch Changes
