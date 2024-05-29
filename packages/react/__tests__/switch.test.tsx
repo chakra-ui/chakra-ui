@@ -1,4 +1,4 @@
-import { act, fireEvent, screen } from "@testing-library/react"
+import { fireEvent, screen } from "@testing-library/react"
 import { useState } from "react"
 import { Field, Switch } from "../src"
 import { render } from "./core"
@@ -17,12 +17,15 @@ const DemoSwitch = (props: Switch.RootProps) => {
 describe("Switch", () => {
   test("Uncontrolled - should check and uncheck", async () => {
     const { user } = render(<DemoSwitch />)
+
     const input = screen.getByRole("checkbox")
 
-    await act(() => user.click(input))
+    await user.click(input)
+
     expect(input).toBeChecked()
 
-    await act(() => user.click(input))
+    await user.click(input)
+
     expect(input).not.toBeChecked()
   })
 
@@ -31,7 +34,8 @@ describe("Switch", () => {
     const input = screen.getByRole("checkbox")
     expect(input).toBeDisabled()
 
-    await act(() => user.click(input))
+    await user.click(input)
+
     expect(input).not.toBeChecked()
   })
 
@@ -55,12 +59,12 @@ describe("Switch", () => {
     const input = screen.getByRole("checkbox")
     expect(input).not.toBeChecked()
 
-    await act(() => user.click(input))
+    await user.click(input)
 
     expect(input).toBeChecked()
     expect(onChange).toHaveBeenCalled()
 
-    await act(() => user.click(input))
+    await user.click(input)
 
     expect(input).not.toBeChecked()
     expect(onChange).toHaveBeenCalled()
@@ -82,9 +86,9 @@ describe("Switch", () => {
     expect(inputB).toBeDisabled()
     expect(inputC).not.toBeDisabled()
 
-    await act(() => user.click(inputA))
-    await act(() => user.click(inputB))
-    await act(() => user.click(inputC))
+    await user.click(inputA)
+    await user.click(inputB)
+    await user.click(inputC)
 
     expect(inputA).not.toBeChecked()
     expect(inputB).not.toBeChecked()
@@ -149,7 +153,7 @@ describe("Switch", () => {
     )
 
     const inputEl = screen.getByRole("checkbox")
-    await act(() => user.click(inputEl))
+    await user.click(inputEl)
 
     expect(onFocus).toHaveBeenCalled()
     expect(_onFocus).toHaveBeenCalled()
