@@ -8,6 +8,9 @@ import {
   mockLocalStorage,
   mockMatchMedia,
 } from "./test.fixture"
+import { CacheProvider } from "@emotion/react"
+
+vi.spyOn(document.head, "appendChild")
 
 describe("<ColorModeProvider /> localStorage browser", () => {
   it.each(
@@ -61,6 +64,25 @@ describe("Config options", () => {
 
     expect(getColorModeButton()).toHaveTextContent(
       defaultThemeOptions.initialColorMode,
+    )
+  })
+
+  test("by default, picks up nonce from emotion cache", async () => {
+    const mockNonce = "testNonce"
+
+    render(
+      // @ts-ignore - we are only testing the nonce prop
+      <CacheProvider value={{ nonce: mockNonce }}>
+        <ColorModeProvider options={defaultThemeOptions}>
+          <DummyComponent />
+        </ColorModeProvider>
+      </CacheProvider>,
+    )
+
+    expect(document.head.appendChild).toHaveBeenCalledWith(
+      expect.objectContaining({
+        nonce: mockNonce,
+      }),
     )
   })
 
