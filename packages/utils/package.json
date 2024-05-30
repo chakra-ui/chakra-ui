@@ -30,10 +30,6 @@
     "clean": "rimraf dist",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@types/lodash.mergewith": "4.6.9",
-    "lodash.mergewith": "4.6.2"
-  },
   "exports": {
     ".": {
       "source": "./src/index.ts",
