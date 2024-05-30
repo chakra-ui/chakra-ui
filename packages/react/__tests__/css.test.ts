@@ -359,4 +359,21 @@ describe("css", () => {
       }
     `)
   })
+
+  test("space x and y", () => {
+    const result = css({
+      spaceX: "2",
+      spaceXReverse: true,
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+          "--space-x-reverse": "1",
+          "marginInlineEnd": "calc(var(--chakra-spacing-2) * var(--space-x-reverse))",
+          "marginInlineStart": "calc(var(--chakra-spacing-2) * calc(1 - var(--space-x-reverse)))",
+        },
+      }
+    `)
+  })
 })

@@ -684,6 +684,48 @@ export const defaultBaseConfig = defineConfig({
         }
       },
     },
+    spaceXReverse: {
+      values: { type: "boolean" },
+      transform(value) {
+        return {
+          "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+            "--space-x-reverse": value ? "1" : undefined,
+          },
+        }
+      },
+    },
+    spaceX: {
+      property: "marginInlineStart",
+      values: "spacing",
+      transform: (v) => ({
+        "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+          "--space-x-reverse": "0",
+          marginInlineStart: `calc(${v} * calc(1 - var(--space-x-reverse)))`,
+          marginInlineEnd: `calc(${v} * var(--space-x-reverse))`,
+        },
+      }),
+    },
+    spaceYReverse: {
+      values: { type: "boolean" },
+      transform(value) {
+        return {
+          "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+            "--space-y-reverse": value ? "1" : undefined,
+          },
+        }
+      },
+    },
+    spaceY: {
+      property: "marginTop",
+      values: "spacing",
+      transform: (v) => ({
+        "& > :not(style, [hidden]) ~ :not(style, [hidden])": {
+          "--space-y-reverse": "0",
+          marginTop: `calc(${v} * calc(1 - var(--space-y-reverse)))`,
+          marginBottom: `calc(${v} * var(--space-y-reverse))`,
+        },
+      }),
+    },
     rotate: {
       transform(value) {
         if (value !== "auto") return { rotate: deg(value) }

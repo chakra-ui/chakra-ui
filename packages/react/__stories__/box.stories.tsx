@@ -1,4 +1,4 @@
-import { Box, Circle, HStack, Square } from "../src"
+import { Box, Circle, Flex, HStack, Square, Stack } from "../src"
 import { DecorativeBox } from "./shared/decorative-box"
 
 export default {
@@ -21,6 +21,38 @@ export const basic = () => (
       }}
     />
   </Box>
+)
+
+export const stacked = () => (
+  <Stack align="flex-start">
+    <Flex display="inline-flex" direction="row" spaceX="-2">
+      <Circle size="10" bg="red">
+        1
+      </Circle>
+      <Circle size="10" bg="pink">
+        2
+      </Circle>
+      <Circle size="10" bg="green">
+        3
+      </Circle>
+    </Flex>
+    <Flex
+      display="inline-flex"
+      direction="row-reverse"
+      spaceX="-2"
+      spaceXReverse
+    >
+      <Circle size="10" bg="red">
+        1
+      </Circle>
+      <Circle size="10" bg="pink">
+        2
+      </Circle>
+      <Circle size="10" bg="green">
+        3
+      </Circle>
+    </Flex>
+  </Stack>
 )
 
 export const square = () => (

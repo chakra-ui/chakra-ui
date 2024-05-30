@@ -13,6 +13,14 @@ export default {
   ],
 }
 
+export const Basic = () => {
+  return (
+    <Avatar.Root colorPalette="pink" variant="subtle">
+      <Avatar.Fallback name="Dan Abrahmov" />
+    </Avatar.Root>
+  )
+}
+
 export const Variants = () => {
   const recipe = useSlotRecipe("Avatar")
   return (

@@ -180,6 +180,10 @@ interface PropertyValueTypes {
   paddingBlock: Tokens["spacing"]
   textDecorationColor: Tokens["colors"]
   textShadow: Tokens["shadows"]
+  spaceXReverse: boolean
+  spaceX: Tokens["spacing"] | CssProperties["marginInlineStart"]
+  spaceYReverse: boolean
+  spaceY: Tokens["spacing"] | CssProperties["marginTop"]
   translateX: Tokens["spacing"]
   translateY: Tokens["spacing"]
   transitionDuration: Tokens["durations"]

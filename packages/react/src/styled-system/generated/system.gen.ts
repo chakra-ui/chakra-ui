@@ -656,6 +656,10 @@ export interface SystemProperties {
   skewY?: PropertyValue<"skewY">
   scaleX?: PropertyValue<"scaleX">
   scaleY?: PropertyValue<"scaleY">
+  spaceXReverse?: PropertyValue<"spaceXReverse">
+  spaceX?: PropertyValue<"spaceX">
+  spaceYReverse?: PropertyValue<"spaceYReverse">
+  spaceY?: PropertyValue<"spaceY">
   translateX?: PropertyValue<"translateX">
   translateY?: PropertyValue<"translateY">
   truncated?: PropertyValue<"truncated">

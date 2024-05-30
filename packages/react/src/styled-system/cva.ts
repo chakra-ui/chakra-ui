@@ -32,7 +32,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
     const { base, variants, defaultVariants, compoundVariants } =
       defaults(config)
 
-    const processor = createCssFn({
+    const getVariantCss = createCssFn({
       conditions,
       normalize,
       transform(prop, value) {
@@ -48,7 +48,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
 
       let variantCss = { ...base }
 
-      mergeWith(variantCss, processor(variantSelections))
+      mergeWith(variantCss, getVariantCss(variantSelections))
 
       const compoundVariantCss = getCompoundVariantCss(
         compoundVariants,
