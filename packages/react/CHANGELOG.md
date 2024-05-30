@@ -1,5 +1,23 @@
 # @chakra-ui/react
 
+## 3.0.0-next.1
+
+### Minor Changes
+
+- [`548470d`](https://github.com/chakra-ui/chakra-ui/commit/548470dd4306dd39d76555e172da64fd1861fdc5)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add custom select
+  from Ark UI and design recipe
+
+### Patch Changes
+
+- [`c941971`](https://github.com/chakra-ui/chakra-ui/commit/c9419714db8b50b2cad3f478d90d4be4268da48f)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Convert Tabs
+  component to use Ark UI
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.1
+  - @chakra-ui/utils@3.0.0-next.1
+
 ## 3.0.0-next.0
 
 ### Major Changes
