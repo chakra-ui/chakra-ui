@@ -369,9 +369,13 @@ export interface HoverCardVariantProps {
 export type ProgressSlot =
   | "root"
   | "label"
-  | "filledTrack"
   | "track"
+  | "range"
   | "valueText"
+  | "view"
+  | "circle"
+  | "circleTrack"
+  | "circleRange"
 
 export interface ProgressVariantProps {
   variant?: "outline" | "subtle"
@@ -410,7 +414,7 @@ export type SelectSlot =
   | "valueText"
 
 export interface SelectVariantProps {
-  variant?: "outline" | "ghost"
+  variant?: "outline"
   size?: "sm" | "md" | "lg"
 }
 
@@ -546,6 +550,25 @@ export type TooltipSlot =
 
 export interface TooltipVariantProps {}
 
+// CircularProgress
+
+export type CircularProgressSlot =
+  | "root"
+  | "label"
+  | "track"
+  | "range"
+  | "valueText"
+  | "view"
+  | "circle"
+  | "circleTrack"
+  | "circleRange"
+
+export interface CircularProgressVariantProps {
+  indeterminate?: boolean
+  valuePlacement?: "center"
+  size?: "xs" | "sm" | "md" | "lg"
+}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -577,6 +600,10 @@ export interface ConfigSlotRecipes {
   Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
   Toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
   Tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
+  CircularProgress: SystemSlotRecipeFn<
+    CircularProgressSlot,
+    CircularProgressVariantProps
+  >
 }
 
 export interface ConfigRecipeSlots {
@@ -610,6 +637,7 @@ export interface ConfigRecipeSlots {
   Tag: TagSlot
   Toast: ToastSlot
   Tooltip: TooltipSlot
+  CircularProgress: CircularProgressSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots

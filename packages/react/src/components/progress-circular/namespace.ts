@@ -1,17 +1,17 @@
-export { CircularProgressRoot as Root } from "./circular-progress-root"
-export type { CircularProgressRootProps as RootProps } from "./circular-progress-root"
+export {
+  CircularProgressRoot as Root,
+  CircularProgressLabel as Label,
+  CircularProgressCircle as Circle,
+  CircularProgressTrack as Track,
+  CircularProgressRange as Range,
+  CircularProgressValueText as ValueText,
+} from "./progress-circular"
 
-export { CircularProgressLabel as Label } from "./circular-progress-label"
-export type { CircularProgressLabelProps as LabelProps } from "./circular-progress-label"
-
-export { CircularProgressTrack as Track } from "./circular-progress-track"
-export type { CircularProgressTrackProps as TrackProps } from "./circular-progress-track"
-
-export { CircularProgressFilledTrack as FilledTrack } from "./circular-progress-filled-track"
-export type { CircularProgressFilledTrackProps as FilledTrackProps } from "./circular-progress-filled-track"
-
-export { CircularProgressValueText as ValueText } from "./circular-progress-value-text"
-export type { CircularProgressValueTextProps as ValueTextProps } from "./circular-progress-value-text"
-
-export { CircularProgressCircle as Circle } from "./circular-progress-circle"
-export type { CircularProgressCircleProps as CircleProps } from "./circular-progress-circle"
+export type {
+  CircularProgressRootProps as RootProps,
+  CircularProgressLabelProps as LabelProps,
+  CircularProgressCircleProps as CircleProps,
+  CircularProgressTrackProps as TrackProps,
+  CircularProgressRangeProps as RangeProps,
+  CircularProgressValueTextProps as ValueTextProps,
+} from "./progress-circular"

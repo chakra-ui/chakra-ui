@@ -68,6 +68,16 @@ export const keyframes = defineKeyframes({
     from: { translate: "0 100%" },
     to: { translate: "0 0" },
   },
+  "circular-progress": {
+    "0%": {
+      strokeDasharray: "1, 400",
+      strokeDashoffset: "0",
+    },
+    "100%": {
+      strokeDasharray: "400, 400",
+      strokeDashoffset: "-260%",
+    },
+  },
   enter: {
     from: {
       opacity: "var(--enter-opacity, 1)",

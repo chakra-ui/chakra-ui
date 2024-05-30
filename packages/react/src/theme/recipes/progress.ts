@@ -1,24 +1,28 @@
-import { progressAnatomy as parts } from "../../anatomy"
+import { progressAnatomy as parts } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const progressSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: parts.keys(),
   base: {
     root: {
       colorPalette: "gray",
       fontSize: "sm",
+      position: "relative",
     },
     track: {
       overflow: "hidden",
       position: "relative",
     },
-    filledTrack: {
+    range: {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       transitionProperty: "width, height",
       transitionDuration: "slow",
       height: "100%",
+    },
+    label: {
+      display: "inline-flex",
     },
     valueText: {
       fontSize: "xs",
@@ -33,7 +37,7 @@ export const progressSlotRecipe = defineSlotRecipe({
           shadow: "inset",
           bgColor: { base: "gray.100", _dark: "whiteAlpha.300" },
         },
-        filledTrack: {
+        range: {
           bgColor: "colorPalette.600",
         },
       },
@@ -41,14 +45,14 @@ export const progressSlotRecipe = defineSlotRecipe({
         track: {
           bgColor: { base: "gray.100", _dark: "whiteAlpha.300" },
         },
-        filledTrack: {
+        range: {
           bgColor: { base: "colorPalette.400", _dark: "colorPalette.400/20" },
         },
       },
     },
     indeterminate: {
       true: {
-        filledTrack: {
+        range: {
           "--animate-from-x": "-40%",
           "--animate-to-x": "100%",
           position: "absolute",
@@ -59,7 +63,7 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
       },
       false: {
-        filledTrack: {
+        range: {
           bgColor: "var(--track-color)",
         },
       },
@@ -79,7 +83,7 @@ export const progressSlotRecipe = defineSlotRecipe({
     },
     hasStripe: {
       true: {
-        filledTrack: {
+        range: {
           backgroundImage: `linear-gradient(45deg, var(--stripe-color) 25%, transparent 25%, transparent 50%, var(--stripe-color) 50%, var(--stripe-color) 75%, transparent 75%, transparent)`,
           backgroundSize: `var(--stripe-size) var(--stripe-size)`,
           "--stripe-size": "1rem",
@@ -92,7 +96,7 @@ export const progressSlotRecipe = defineSlotRecipe({
     },
     isAnimated: {
       true: {
-        filledTrack: {
+        range: {
           "--animated-from": "var(--stripe-size)",
           animation: "bg-position 1s linear infinite",
         },
@@ -118,7 +122,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       variant: "outline",
       colorPalette: "gray",
       css: {
-        filledTrack: {
+        range: {
           bgColor: { base: "colorPalette.800", _dark: "colorPalette.200" },
         },
       },

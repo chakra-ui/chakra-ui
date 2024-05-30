@@ -28,7 +28,7 @@ const DemoProgress = (props: Progress.RootProps) => {
   return (
     <Progress.Root {...props}>
       <Progress.Track>
-        <Progress.FilledTrack />
+        <Progress.Range />
       </Progress.Track>
     </Progress.Root>
   )
@@ -145,7 +145,7 @@ const FeatureUsage = (props: FeatureUsageProps) => {
           </Progress.ValueText>
         </HStack>
         <Progress.Track mt="2">
-          <Progress.FilledTrack />
+          <Progress.Range />
         </Progress.Track>
       </Progress.Root>
     </HStack>
