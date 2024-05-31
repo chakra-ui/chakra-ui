@@ -11,7 +11,7 @@ import {
 
 type Dict = Record<string, any>
 
-export interface IndicatorOptions {
+export interface FloatOptions {
   /**
    * The x offset of the indicator
    */
@@ -41,12 +41,12 @@ export interface IndicatorOptions {
   >
 }
 
-export interface IndicatorProps
-  extends Omit<HTMLChakraProps<"div">, keyof IndicatorOptions>,
-    IndicatorOptions {}
+export interface FloatProps
+  extends Omit<HTMLChakraProps<"div">, keyof FloatOptions>,
+    FloatOptions {}
 
-export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
-  function Indicator(props, ref) {
+export const Float = forwardRef<HTMLDivElement, FloatProps>(
+  function Float(props, ref) {
     const {
       offsetX,
       offsetY,

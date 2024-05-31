@@ -1,7 +1,7 @@
-import { Box, Circle, Indicator, Stack } from "../src"
+import { Box, Circle, Float, Stack } from "../src"
 
 export default {
-  title: "Components / Indicator",
+  title: "Components / Float",
 }
 
 const placements = [
@@ -22,11 +22,11 @@ export const Basic = () => (
       <Stack key={placement} gap="3">
         <p>{placement}</p>
         <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Indicator placement={placement}>
+          <Float placement={placement}>
             <Circle size="5" bg="red.100">
               3
             </Circle>
-          </Indicator>
+          </Float>
         </Box>
       </Stack>
     ))}
@@ -39,11 +39,11 @@ export const WithOffsetX = () => (
       <Stack key={placement} gap="3">
         <p>{placement}</p>
         <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Indicator placement={placement} offsetX="2">
+          <Float placement={placement} offsetX="2">
             <Circle size="5" bg="red.100">
               3
             </Circle>
-          </Indicator>
+          </Float>
         </Box>
       </Stack>
     ))}
@@ -56,11 +56,11 @@ export const WithOffsetY = () => (
       <Stack key={placement} gap="3">
         <p>{placement}</p>
         <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Indicator placement={placement} offsetY="2">
+          <Float placement={placement} offsetY="2">
             <Circle size="5" bg="red.100">
               3
             </Circle>
-          </Indicator>
+          </Float>
         </Box>
       </Stack>
     ))}
@@ -73,11 +73,11 @@ export const WithOffset = () => (
       <Stack key={placement} gap="3">
         <p>{placement}</p>
         <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Indicator placement={placement} offset="4">
+          <Float placement={placement} offset="4">
             <Circle size="5" bg="red.100">
               3
             </Circle>
-          </Indicator>
+          </Float>
         </Box>
       </Stack>
     ))}

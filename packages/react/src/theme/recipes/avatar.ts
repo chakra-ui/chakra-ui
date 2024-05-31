@@ -1,18 +1,9 @@
-import { avatarAnatomy as parts } from "../../anatomy"
+import { avatarAnatomy as parts } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const avatarSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: parts.keys(),
   base: {
-    group: {
-      display: "inline-flex",
-      alignItems: "center",
-      position: "relative",
-      flexDirection: "row",
-      "& > *:not(style) ~ *:not(style)": {
-        marginInlineStart: "var(--avatar-margin)",
-      },
-    },
     root: {
       display: "inline-flex",
       alignItems: "center",
@@ -22,21 +13,16 @@ export const avatarSlotRecipe = defineSlotRecipe({
       verticalAlign: "top",
       flexShrink: 0,
       userSelect: "none",
-      bg: "gray.400",
       width: "var(--avatar-size)",
       height: "var(--avatar-size)",
       "--avatar-font-size": "calc(var(--avatar-size) / 2.5)",
       fontSize: "var(--avatar-font-size)",
       borderRadius: "var(--avatar-radius)",
-      "&[data-in-group]": {
+      colorPalette: "gray",
+      "&[data-group-item]": {
         borderWidth: "2px",
         borderColor: "bg",
       },
-    },
-    badge: {
-      borderRadius: "full",
-      border: "0.2em solid",
-      borderColor: { base: "white", _dark: "gray.800" },
     },
     image: {
       width: "100%",
@@ -119,5 +105,7 @@ export const avatarSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     shape: "full",
+    variant: "subtle",
+    colorPalette: "gray",
   },
 })

@@ -133,7 +133,7 @@ export interface AlertVariantProps {
 
 // Avatar
 
-export type AvatarSlot = "group" | "root" | "image" | "fallback" | "badge"
+export type AvatarSlot = "root" | "image" | "fallback"
 
 export interface AvatarVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
