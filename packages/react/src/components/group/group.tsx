@@ -93,6 +93,11 @@ export const Group = memo(
         ...child.props,
         "data-first": dataAttr(index === 0),
         "data-last": dataAttr(index === count - 1),
+        style: {
+          "--group-count": count,
+          "--group-index": index,
+          ...child.props.style,
+        },
       } as any)
     })
 
