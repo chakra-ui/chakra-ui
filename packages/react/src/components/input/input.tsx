@@ -11,7 +11,7 @@ import {
   mergeProps,
   useRecipe,
 } from "../../styled-system"
-import { type FieldOptions, splitFieldProps, useField } from "../field"
+import { type FieldOptions, splitFieldProps, useFieldProps } from "../field"
 
 export interface InputProps
   extends HTMLChakraProps<"input">,
@@ -40,7 +40,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 
     const [fieldProps, elementProps] = splitFieldProps(localProps)
-    const inputProps = useField<HTMLInputElement>(fieldProps)
+    const inputProps = useFieldProps<HTMLInputElement>(fieldProps)
 
     return (
       <chakra.input

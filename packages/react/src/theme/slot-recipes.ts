@@ -8,7 +8,6 @@ import { checkboxSlotRecipe } from "./recipes/checkbox"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
 import { editableSlotRecipe } from "./recipes/editable"
-import { fieldSlotRecipe } from "./recipes/field"
 import { fileUploadSlotRecipe } from "./recipes/file-upload"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
@@ -41,7 +40,6 @@ export const slotRecipes = {
   Dialog: dialogSlotRecipe,
   Drawer: drawerSlotRecipe,
   Editable: editableSlotRecipe,
-  Field: fieldSlotRecipe,
   FileUpload: fileUploadSlotRecipe,
   List: listSlotRecipe,
   Menu: menuSlotRecipe,

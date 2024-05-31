@@ -1,5 +1,5 @@
 import { act, fireEvent, screen, waitFor } from "@testing-library/react"
-import { Field, NumberInput } from "../src"
+import { Field, HelpText, Label, NumberInput } from "../src"
 import { render, testA11y } from "./core"
 
 function renderComponent(props: NumberInput.RootProps = {}) {
@@ -156,7 +156,7 @@ describe("NumberInput", () => {
     const onBlur = vi.fn()
 
     render(
-      <Field.Root
+      <Field
         id="input"
         required
         invalid
@@ -165,7 +165,7 @@ describe("NumberInput", () => {
         onFocus={onFocus}
         onBlur={onBlur}
       >
-        <Field.Label>Number</Field.Label>
+        <Label>Number</Label>
         <NumberInput.Root data-testid="root">
           <NumberInput.Field data-testid="input" />
           <NumberInput.Control data-testid="control">
@@ -173,8 +173,8 @@ describe("NumberInput", () => {
             <NumberInput.DecrementTrigger children="-" data-testid="down-btn" />
           </NumberInput.Control>
         </NumberInput.Root>
-        <Field.HelpText>Select a number</Field.HelpText>
-      </Field.Root>,
+        <HelpText>Select a number</HelpText>
+      </Field>,
     )
 
     expect(input()).toHaveAttribute("id", "input")

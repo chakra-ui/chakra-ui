@@ -4,7 +4,9 @@ import {
   Flex,
   HTMLChakraProps,
   Heading,
+  HelpText,
   Input,
+  Label,
   LinkBox,
   LinkOverlay,
   Tabs,
@@ -103,16 +105,16 @@ function ResourceSection(props: ResourceSectionProps) {
 
   return (
     <Box as='section' mt='8'>
-      <Field.Root id={filterInputId} mt='8' mb='8'>
-        <Field.Label>Search</Field.Label>
+      <Field id={filterInputId} mt='8' mb='8'>
+        <Label>Search</Label>
         <Input
           name={filterInputId}
           onChange={formik.handleChange}
           placeholder='react'
           value={formik.values[filterInputId]}
         />
-        <Field.HelpText>Filter by title</Field.HelpText>
-      </Field.Root>
+        <HelpText>Filter by title</HelpText>
+      </Field>
       <ResponsiveMasonry columnsCountBreakPoints={masonryGridBreakpoints}>
         <Masonry gutter='16px'>
           {filteredResources.map((item, index) => (

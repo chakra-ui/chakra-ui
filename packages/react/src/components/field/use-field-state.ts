@@ -5,7 +5,7 @@ import { type PropGetter, dataAttr } from "@chakra-ui/utils"
 import { useCallback, useId, useState } from "react"
 import { type FieldContext } from "./types"
 
-export function useFieldProvider(props: FieldContext) {
+export function useFieldState(props: FieldContext) {
   const {
     id: idProp,
     required,
@@ -122,4 +122,4 @@ export function useFieldProvider(props: FieldContext) {
   }
 }
 
-export type UseFieldProviderReturn = ReturnType<typeof useFieldProvider>
+export type UseFieldStateReturn = ReturnType<typeof useFieldState>

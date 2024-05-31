@@ -72,14 +72,6 @@ export const editableAnatomy = anatomy("editable").parts(
   "textarea",
 )
 
-export const fieldAnatomy = anatomy("form").parts(
-  "root",
-  "label",
-  "requiredIndicator",
-  "helpText",
-  "errorMessage",
-)
-
 export const formErrorAnatomy = anatomy("formError").parts("text", "icon")
 
 export const inputAnatomy = anatomy("input").parts(

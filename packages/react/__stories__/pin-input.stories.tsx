@@ -1,4 +1,4 @@
-import { Box, Field, For, Group, PinInput, useRecipe } from "../src"
+import { Box, Field, For, Group, Label, PinInput, useRecipe } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
@@ -61,11 +61,11 @@ export const WithCompleteFn = () => {
 
 export const WithField = () => {
   return (
-    <Field.Root>
+    <Field>
       <PinInput.Root>
-        <Field.Label asChild>
+        <Label asChild>
           <PinInput.Label>Enter your pin</PinInput.Label>
-        </Field.Label>
+        </Label>
         <PinInput.Control mt="2" asChild>
           <Group gap="3">
             {[0, 1, 2].map((id, index) => (
@@ -74,6 +74,6 @@ export const WithField = () => {
           </Group>
         </PinInput.Control>
       </PinInput.Root>
-    </Field.Root>
+    </Field>
   )
 }

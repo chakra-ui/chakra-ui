@@ -1,6 +1,5 @@
 import { HiCheck, HiOutlineBriefcase, HiX } from "react-icons/hi"
-import { Avatar, Box, For, Span, Stack, Tag } from "../src"
-import { useSlotRecipe } from "../src/styled-system"
+import { Avatar, Box, For, Span, Stack, Tag, useSlotRecipe } from "../src"
 import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
@@ -62,7 +61,7 @@ export const Variants = () => {
                       >
                         <Avatar.Root size="xs">
                           <Avatar.Image src="https://bit.ly/dan-abramov" />
-                          <Avatar.Fallback name="Dan Abrahmov" />
+                          <Avatar.Fallback>DA</Avatar.Fallback>
                         </Avatar.Root>
                         <Tag.Label> Dan Abramov</Tag.Label>
                       </Tag.Root>

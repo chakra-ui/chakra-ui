@@ -1,5 +1,3 @@
-import type { UseFieldProviderReturn } from "./use-field-provider"
-
 export interface FieldOptions {
   /**
    * If `true`, the form control will be required. This has 2 side effects:
@@ -59,5 +57,3 @@ export interface FieldContext extends FieldOptions {
    */
   id?: string
 }
-
-export interface FieldProviderContext extends UseFieldProviderReturn {}

@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react"
 import { useState } from "react"
-import { Field, Switch } from "../src"
+import { Field, Label, Switch } from "../src"
 import { render } from "./core"
 
 const DemoSwitch = (props: Switch.RootProps) => {
@@ -72,12 +72,12 @@ describe("Switch", () => {
 
   test("Uncontrolled FormControl - should not check if form-control disabled", async () => {
     const { user } = render(
-      <Field.Root disabled mt="4">
-        <Field.Label>Disabled Opt-in Example</Field.Label>
+      <Field disabled mt="4">
+        <Label>Disabled Opt-in Example</Label>
         <DemoSwitch />
         <DemoSwitch disabled />
         <DemoSwitch disabled={false} />
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
@@ -97,12 +97,12 @@ describe("Switch", () => {
 
   test("Uncontrolled FormControl - mark label as invalid", () => {
     render(
-      <Field.Root invalid mt="4">
-        <Field.Label>Invalid Opt-in Example</Field.Label>
+      <Field invalid mt="4">
+        <Label>Invalid Opt-in Example</Label>
         <DemoSwitch>Invalid Opt-in 1</DemoSwitch>
         <DemoSwitch invalid>Invalid Opt-in 2</DemoSwitch>
         <DemoSwitch invalid={false}>Invalid Opt-in 3</DemoSwitch>
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
@@ -114,12 +114,12 @@ describe("Switch", () => {
 
   test("Uncontrolled FormControl - mark required", () => {
     render(
-      <Field.Root required mt="4">
-        <Field.Label>Required Opt-in Example</Field.Label>
+      <Field required mt="4">
+        <Label>Required Opt-in Example</Label>
         <DemoSwitch />
         <DemoSwitch required />
         <DemoSwitch required={false} />
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
@@ -131,10 +131,10 @@ describe("Switch", () => {
 
   test("Uncontrolled FormControl - mark readonly", () => {
     render(
-      <Field.Root readOnly mt="4">
-        <Field.Label>ReadOnly Opt-in Example</Field.Label>
+      <Field readOnly mt="4">
+        <Label>ReadOnly Opt-in Example</Label>
         <DemoSwitch />
-      </Field.Root>,
+      </Field>,
     )
 
     const inputEl = screen.getByRole("checkbox")
@@ -146,10 +146,10 @@ describe("Switch", () => {
     const _onFocus = vi.fn()
 
     const { user } = render(
-      <Field.Root mt="4" onFocus={onFocus}>
-        <Field.Label>onFocus Example</Field.Label>
+      <Field mt="4" onFocus={onFocus}>
+        <Label>onFocus Example</Label>
         <DemoSwitch onFocus={_onFocus} />
-      </Field.Root>,
+      </Field>,
     )
 
     const inputEl = screen.getByRole("checkbox")
@@ -164,10 +164,10 @@ describe("Switch", () => {
     const _onBlur = vi.fn()
 
     render(
-      <Field.Root mt="4" onBlur={onBlur}>
-        <Field.Label>onBlur Example</Field.Label>
+      <Field mt="4" onBlur={onBlur}>
+        <Label>onBlur Example</Label>
         <DemoSwitch onBlur={_onBlur} />
-      </Field.Root>,
+      </Field>,
     )
 
     const inputEl = screen.getByRole("checkbox")

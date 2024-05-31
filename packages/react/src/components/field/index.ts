@@ -1,30 +1,24 @@
-export { FieldRoot } from "./field-root"
-export type { FieldRootProps } from "./field-root"
+export { Field } from "./field"
+export type { FieldProps } from "./field"
 
-export {
-  useFieldContext,
-  useFieldErrorStyles,
-  useFieldStyles,
-} from "./field-context"
+export { useFieldContext } from "./field-context"
 
-export { FieldErrorMessage } from "./field-error-message"
-export type { FieldErrorMessageProps } from "./field-error-message"
+export { ErrorMessage } from "./error-message"
+export type { ErrorMessageProps } from "./error-message"
 
-export { FieldHelpText } from "./field-help-text"
-export type { FieldHelpTextProps } from "./field-help-text"
+export { HelpText } from "./help-text"
+export type { HelpTextProps } from "./help-text"
 
-export { FieldRequiredIndicator } from "./field-required-indicator"
-export type { FieldRequiredIndicatorProps } from "./field-required-indicator"
+export { RequiredIndicator } from "./required-indicator"
+export type { RequiredIndicatorProps } from "./required-indicator"
 
-export { FieldLabel } from "./field-label"
-export type { FieldLabelProps } from "./field-label"
-
-export * as Field from "./namespace"
+export { Label } from "./label"
+export type { LabelProps } from "./label"
 
 export type { FieldOptions, UseFieldProps } from "./types"
-export { useField, useField as useFieldProps } from "./use-field"
+export { useFieldProps } from "./use-field-props"
 
-export { FieldErrorIcon } from "./field-error-icon"
-export type { FieldErrorIconProps } from "./field-error-icon"
+export { ErrorIcon } from "./error-icon"
+export type { ErrorIconProps } from "./error-icon"
 
 export { splitFieldProps } from "./field-props"

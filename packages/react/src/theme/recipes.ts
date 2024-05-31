@@ -3,11 +3,15 @@ import { buttonRecipe } from "./recipes/button"
 import { codeRecipe } from "./recipes/code"
 import { containerRecipe } from "./recipes/container"
 import { separatorRecipe } from "./recipes/divider"
+import { errorMessageRecipe } from "./recipes/error-message"
+import { fieldRecipe } from "./recipes/field"
 import { headingRecipe } from "./recipes/heading"
+import { helpTextRecipe } from "./recipes/help-text"
 import { iconRecipe } from "./recipes/icon"
 import { inputRecipe } from "./recipes/input"
 import { inputAddonRecipe } from "./recipes/input-addon"
 import { kbdRecipe } from "./recipes/kbd"
+import { labelRecipe } from "./recipes/label"
 import { linkRecipe } from "./recipes/link"
 import { markRecipe } from "./recipes/mark"
 import { pinInputRecipe } from "./recipes/pin-input"
@@ -34,4 +38,8 @@ export const recipes = {
   Spinner: spinnerRecipe,
   Textarea: textareaRecipe,
   Icon: iconRecipe,
+  Field: fieldRecipe,
+  ErrorMessage: errorMessageRecipe,
+  HelpText: helpTextRecipe,
+  Label: labelRecipe,
 }

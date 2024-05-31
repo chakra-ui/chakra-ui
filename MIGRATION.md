@@ -380,12 +380,12 @@ Form control has now been renamed to `Field` to better reflect its purpose as an
 element that represents a form field.
 
 ```tsx
-<Field.Root id="first-name" isRequired isInvalid>
-  <Field.Label>First name</Field.Label>
+<Field id="first-name" required invalid>
+  <Label>First name</Label>
   <Input placeholder="First Name" />
-  <Field.HelpText>Keep it very short and sweet!</Field.HelpText>
-  <Field.ErrorMessage>Your First name is invalid</Field.ErrorMessage>
-</Field.Root>
+  <HelpText>Keep it very short and sweet!</HelpText>
+  <ErrorMessage>Your First name is invalid</ErrorMessage>
+</Field>
 ```
 
 HelperText has been renamed to `Field.HelpText` for brevity.

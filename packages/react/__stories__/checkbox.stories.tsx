@@ -6,6 +6,7 @@ import {
   Field,
   For,
   Input,
+  Label,
   Span,
   Stack,
   useSlotRecipe,
@@ -154,14 +155,14 @@ export const WithGroup = () => {
 export const WithForm = () => {
   return (
     <Stack maxW="sm" gap="4">
-      <Field.Root>
-        <Field.Label>User name</Field.Label>
+      <Field>
+        <Label>User name</Label>
         <Input />
-      </Field.Root>
-      <Field.Root>
-        <Field.Label>Password</Field.Label>
+      </Field>
+      <Field>
+        <Label>Password</Label>
         <Input />
-      </Field.Root>
+      </Field>
 
       <DemoCheckbox value="one" alignSelf="flex-start">
         Remember me

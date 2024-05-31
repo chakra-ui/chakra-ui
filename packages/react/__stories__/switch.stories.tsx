@@ -1,4 +1,13 @@
-import { Box, Field, For, HStack, Span, Switch, useSlotRecipe } from "../src"
+import {
+  Box,
+  Field,
+  For,
+  HStack,
+  Label,
+  Span,
+  Switch,
+  useSlotRecipe,
+} from "../src"
 import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
@@ -103,10 +112,10 @@ export const Sizes = () => {
 }
 
 export const WithLabel = () => (
-  <Field.Root id="email-alerts">
+  <Field id="email-alerts">
     <HStack>
       <DemoSwitch colorPalette="green" id="email-alerts" />
-      <Field.Label htmlFor="email-alerts">Enable email alerts?</Field.Label>
+      <Label htmlFor="email-alerts">Enable email alerts?</Label>
     </HStack>
-  </Field.Root>
+  </Field>
 )

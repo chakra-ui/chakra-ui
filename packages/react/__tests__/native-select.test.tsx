@@ -40,9 +40,9 @@ describe("NativeSelect", () => {
 
   test("renders in disabled state if wrapped by Field has disabled=true", () => {
     render(
-      <Field.Root disabled>
+      <Field disabled>
         <DemoSelect />,
-      </Field.Root>,
+      </Field>,
     )
     const select = screen.getByRole("combobox")
     expect(select).toBeDisabled()

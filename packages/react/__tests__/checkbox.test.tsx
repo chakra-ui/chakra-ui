@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react"
 import { useState } from "react"
-import { Checkbox, Field, Icon } from "../src"
+import { Checkbox, Field, Icon, Label } from "../src"
 import { render, testA11y } from "./core"
 
 const DemoCheckbox = (props: Checkbox.RootProps) => {
@@ -223,8 +223,8 @@ describe("Checkbox", () => {
 
   test("Uncontrolled Form.Control - should not check if form-control disabled", async () => {
     const { user } = render(
-      <Field.Root disabled mt={4}>
-        <Field.Label>Disabled Opt-in Example</Field.Label>
+      <Field disabled mt={4}>
+        <Label>Disabled Opt-in Example</Label>
         <Checkbox.Group>
           <DemoCheckbox value="1">Disabled Opt-in 1</DemoCheckbox>
           <DemoCheckbox value="2" disabled>
@@ -234,7 +234,7 @@ describe("Checkbox", () => {
             Disabled Opt-in 3
           </DemoCheckbox>
         </Checkbox.Group>
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA, inputB, inputC] = screen.getAllByRole("checkbox")
@@ -254,8 +254,8 @@ describe("Checkbox", () => {
 
   test("Uncontrolled Form.Control - mark label as invalid", () => {
     const { container } = render(
-      <Field.Root invalid mt={4}>
-        <Field.Label>Invalid Opt-in Example</Field.Label>
+      <Field invalid mt={4}>
+        <Label>Invalid Opt-in Example</Label>
         <Checkbox.Group>
           <DemoCheckbox value="1">Invalid Opt-in 1</DemoCheckbox>
           <DemoCheckbox value="2" invalid>
@@ -265,7 +265,7 @@ describe("Checkbox", () => {
             Invalid Opt-in 3
           </DemoCheckbox>
         </Checkbox.Group>
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA, inputB, inputC] = Array.from(
@@ -295,8 +295,8 @@ describe("Checkbox", () => {
 
   test("Uncontrolled Form.Control - mark label required", () => {
     const { container } = render(
-      <Field.Root required mt={4}>
-        <Field.Label>Required Opt-in Example</Field.Label>
+      <Field required mt={4}>
+        <Label>Required Opt-in Example</Label>
         <Checkbox.Group>
           <DemoCheckbox value="1">Required Opt-in 1</DemoCheckbox>
           <DemoCheckbox value="2" required>
@@ -306,7 +306,7 @@ describe("Checkbox", () => {
             Required Opt-in 3
           </DemoCheckbox>
         </Checkbox.Group>
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA, inputB, inputC] = Array.from(
@@ -320,8 +320,8 @@ describe("Checkbox", () => {
 
   test("Uncontrolled Form.Control - mark readonly", () => {
     const { container } = render(
-      <Field.Root readOnly mt={4}>
-        <Field.Label>ReadOnly Opt-in Example</Field.Label>
+      <Field readOnly mt={4}>
+        <Label>ReadOnly Opt-in Example</Label>
         <Checkbox.Group>
           <DemoCheckbox value="1">ReadOnly Opt-in 1</DemoCheckbox>
           <DemoCheckbox value="2" readOnly>
@@ -331,7 +331,7 @@ describe("Checkbox", () => {
             ReadOnly Opt-in 3
           </DemoCheckbox>
         </Checkbox.Group>
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA, inputB, inputC] = Array.from(
@@ -356,14 +356,14 @@ describe("Checkbox", () => {
     const checkboxOnFocusMock = vi.fn()
 
     const { container } = render(
-      <Field.Root mt={4} onFocus={formControlOnFocusMock}>
-        <Field.Label>onFocus example</Field.Label>
+      <Field mt={4} onFocus={formControlOnFocusMock}>
+        <Label>onFocus example</Label>
         <Checkbox.Group>
           <DemoCheckbox value="1" onFocus={checkboxOnFocusMock}>
             onFocus Opt-in 1
           </DemoCheckbox>
         </Checkbox.Group>
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA] = Array.from(container.querySelectorAll("input"))
@@ -377,14 +377,14 @@ describe("Checkbox", () => {
     const checkboxOnBlurMock = vi.fn()
 
     const { container } = render(
-      <Field.Root mt={4} onBlur={formControlOnBlurMock}>
-        <Field.Label>onBlur Example</Field.Label>
+      <Field mt={4} onBlur={formControlOnBlurMock}>
+        <Label>onBlur Example</Label>
         <Checkbox.Group>
           <DemoCheckbox value="1" onBlur={checkboxOnBlurMock}>
             onBlur EOpt-in 1
           </DemoCheckbox>
         </Checkbox.Group>
-      </Field.Root>,
+      </Field>,
     )
 
     const [inputA] = Array.from(container.querySelectorAll("input"))

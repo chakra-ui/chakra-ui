@@ -86,6 +86,14 @@ export interface TextareaVariantProps {
 
 export interface IconVariantProps {}
 
+export interface FieldVariantProps {}
+
+export interface ErrorMessageVariantProps {}
+
+export interface HelpTextVariantProps {}
+
+export interface LabelVariantProps {}
+
 export interface ConfigRecipes {
   Badge: SystemRecipeFn<BadgeVariantProps>
   Button: SystemRecipeFn<ButtonVariantProps>
@@ -104,6 +112,10 @@ export interface ConfigRecipes {
   Spinner: SystemRecipeFn<SpinnerVariantProps>
   Textarea: SystemRecipeFn<TextareaVariantProps>
   Icon: SystemRecipeFn<IconVariantProps>
+  Field: SystemRecipeFn<FieldVariantProps>
+  ErrorMessage: SystemRecipeFn<ErrorMessageVariantProps>
+  HelpText: SystemRecipeFn<HelpTextVariantProps>
+  Label: SystemRecipeFn<LabelVariantProps>
 }
 
 // Accordion
@@ -248,17 +260,6 @@ export interface DrawerVariantProps {
 export type EditableSlot = "root" | "preview" | "input" | "textarea"
 
 export interface EditableVariantProps {}
-
-// Field
-
-export type FieldSlot =
-  | "root"
-  | "label"
-  | "requiredIndicator"
-  | "helpText"
-  | "errorMessage"
-
-export interface FieldVariantProps {}
 
 // FileUpload
 
@@ -580,7 +581,6 @@ export interface ConfigSlotRecipes {
   Dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>
   Drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
   Editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
-  Field: SystemSlotRecipeFn<FieldSlot, FieldVariantProps>
   FileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps>
   List: SystemSlotRecipeFn<ListSlot, ListVariantProps>
   Menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
@@ -617,7 +617,6 @@ export interface ConfigRecipeSlots {
   Dialog: DialogSlot
   Drawer: DrawerSlot
   Editable: EditableSlot
-  Field: FieldSlot
   FileUpload: FileUploadSlot
   List: ListSlot
   Menu: MenuSlot

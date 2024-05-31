@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Box, Field, For, NumberInput, useSlotRecipe } from "../src"
+import { Box, Field, For, Label, NumberInput, useSlotRecipe } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
@@ -77,9 +77,9 @@ export const WithPrecision = () => (
 
 export const WithField = () => {
   return (
-    <Field.Root id="amount">
-      <Field.Label>Amount</Field.Label>
+    <Field id="amount">
+      <Label>Amount</Label>
       <DemoNumberInput defaultValue={20} max={50} min={10} />
-    </Field.Root>
+    </Field>
   )
 }
