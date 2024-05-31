@@ -22,6 +22,7 @@ export const RequiredIndicator = forwardRef<
     <chakra.span
       ref={ref}
       aria-hidden="true"
+      marginStart="2"
       {...restProps}
       className={cx("chakra-required-indicator", restProps.className)}
     >
