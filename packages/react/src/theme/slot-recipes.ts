@@ -5,6 +5,7 @@ import { blockquoteSlotRecipe } from "./recipes/blockquote"
 import { breadcrumbSlotRecipe } from "./recipes/breadcrumb"
 import { cardSlotRecipe } from "./recipes/card"
 import { checkboxSlotRecipe } from "./recipes/checkbox"
+import { dataListSlotRecipe } from "./recipes/data-list"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
 import { editableSlotRecipe } from "./recipes/editable"
@@ -60,4 +61,5 @@ export const slotRecipes = {
   Toast: toastSlotRecipe,
   Tooltip: tooltipSlotRecipe,
   CircularProgress: circularProgressSlotRecipe,
+  DataList: dataListSlotRecipe,
 }

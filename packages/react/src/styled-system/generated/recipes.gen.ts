@@ -570,6 +570,15 @@ export interface CircularProgressVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
+// DataList
+
+export type DataListSlot = "root" | "item" | "itemLabel" | "itemValue"
+
+export interface DataListVariantProps {
+  orientation?: "horizontal" | "vertical"
+  size?: "sm" | "md" | "lg"
+}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -604,6 +613,7 @@ export interface ConfigSlotRecipes {
     CircularProgressSlot,
     CircularProgressVariantProps
   >
+  DataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -637,6 +647,7 @@ export interface ConfigRecipeSlots {
   Toast: ToastSlot
   Tooltip: TooltipSlot
   CircularProgress: CircularProgressSlot
+  DataList: DataListSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
