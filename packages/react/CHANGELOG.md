@@ -1,5 +1,19 @@
 # @chakra-ui/react
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- [`83366c4`](https://github.com/chakra-ui/chakra-ui/commit/83366c43e42d7d4d385bbb3d85051768b0e03be7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Fix regression in
+  `mergeConfigs`
+  - Decompose `Field` component
+  - Refactor `Avatar` to use Ark UI
+  - Refactor `Progress` to use Ark UI
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.2
+  - @chakra-ui/utils@3.0.0-next.2
+
 ## 3.0.0-next.1
 
 ### Minor Changes
