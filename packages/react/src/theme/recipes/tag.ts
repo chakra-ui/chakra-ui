@@ -1,11 +1,11 @@
-import { tagAnatomy as parts } from "../../anatomy"
+import { tagAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { badgeRecipe } from "./badge"
 
 const badgeVariant = badgeRecipe.variants?.variant
 
 export const tagSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: tagAnatomy.keys(),
   base: {
     root: {
       colorPalette: "gray",

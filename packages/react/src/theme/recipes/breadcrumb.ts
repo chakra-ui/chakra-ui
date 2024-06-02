@@ -1,8 +1,8 @@
-import { breadcrumbAnatomy as parts } from "../../anatomy"
+import { breadcrumbAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const breadcrumbSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: breadcrumbAnatomy.keys(),
   base: {
     root: {
       colorPalette: "gray",

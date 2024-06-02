@@ -1,8 +1,8 @@
-import { tabsAnatomy as parts } from "../../anatomy"
+import { tabsAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const tabSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: tabsAnatomy.keys(),
   base: {
     root: {
       position: "relative",

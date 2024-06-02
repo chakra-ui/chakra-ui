@@ -15,6 +15,7 @@ import { listSlotRecipe } from "./recipes/list"
 import { menuSlotRecipe } from "./recipes/menu"
 import { nativeSelectSlotRecipe } from "./recipes/native-select"
 import { numberInputSlotRecipe } from "./recipes/number-input"
+import { pinInputSlotRecipe } from "./recipes/pin-input"
 import { popoverSlotRecipe } from "./recipes/popover"
 import { progressSlotRecipe } from "./recipes/progress"
 import { circularProgressSlotRecipe } from "./recipes/progress-circular"
@@ -62,4 +63,5 @@ export const slotRecipes = {
   Tooltip: tooltipSlotRecipe,
   CircularProgress: circularProgressSlotRecipe,
   DataList: dataListSlotRecipe,
+  PinInput: pinInputSlotRecipe,
 }

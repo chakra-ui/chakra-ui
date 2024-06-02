@@ -1,4 +1,4 @@
-import { Box, Field, For, Group, Label, PinInput, useRecipe } from "../src"
+import { Box, Field, For, Group, Label, PinInput, useSlotRecipe } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
@@ -18,7 +18,7 @@ const DemoPinInput = (props: PinInput.RootProps) => {
       <PinInput.Control asChild>
         <Group attached>
           {[0, 1, 2].map((id, index) => (
-            <PinInput.Field key={id} index={index} />
+            <PinInput.Input key={id} index={index} />
           ))}
         </Group>
       </PinInput.Control>
@@ -31,19 +31,19 @@ export const Basic = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useRecipe("Badge")
+  const recipe = useSlotRecipe("PinInput")
   return (
     <PlaygroundTable>
       <thead>
         <tr>
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>
         <tr>
           <For each={recipe.variantMap.size}>
             {(v) => (
-              <td>
+              <td key={v}>
                 <DemoPinInput size={v} />
               </td>
             )}
@@ -56,7 +56,7 @@ export const Sizes = () => {
 
 export const WithCompleteFn = () => {
   const handleComplete = (value: string[]) => console.log(value)
-  return <DemoPinInput onComplete={handleComplete} />
+  return <DemoPinInput onValueComplete={(e) => handleComplete(e.value)} />
 }
 
 export const WithField = () => {
@@ -69,7 +69,7 @@ export const WithField = () => {
         <PinInput.Control mt="2" asChild>
           <Group gap="3">
             {[0, 1, 2].map((id, index) => (
-              <PinInput.Field key={id} index={index} />
+              <PinInput.Input key={id} index={index} />
             ))}
           </Group>
         </PinInput.Control>

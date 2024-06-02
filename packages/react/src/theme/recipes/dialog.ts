@@ -1,10 +1,10 @@
-import { dialogAnatomy } from "@ark-ui/anatomy"
+import { anatomy } from "@ark-ui/anatomy/dialog"
 import { defineSlotRecipe } from "../../styled-system"
 
-const anatomy = dialogAnatomy.extendWith("header", "body", "footer", "backdrop")
+const dialogAnatomy = anatomy.extendWith("header", "body", "footer", "backdrop")
 
 export const dialogSlotRecipe = defineSlotRecipe({
-  slots: anatomy.keys(),
+  slots: dialogAnatomy.keys(),
   base: {
     backdrop: {
       bg: "blackAlpha.800",

@@ -1,5 +1,27 @@
 # @chakra-ui/react
 
+## 3.0.0-next.3
+
+### Minor Changes
+
+- [`de9c0a0`](https://github.com/chakra-ui/chakra-ui/commit/de9c0a0d78f70db1fb246ea8ec377e57e10919e7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `DataList`
+  component
+
+- [`763329e`](https://github.com/chakra-ui/chakra-ui/commit/763329ebdca2a9d4b7295d94fff3d2265a793c99)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add preset and
+  preset-base entrypoints.
+
+  - The `preset` entrypoint exposes the default theme and recipes for Chakra.
+  - The `preset-base` entrypoint exposes the base utilities and conditions used
+    internally.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.3
+  - @chakra-ui/utils@3.0.0-next.3
+
 ## 3.0.0-next.2
 
 ### Patch Changes

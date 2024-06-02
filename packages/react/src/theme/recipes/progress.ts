@@ -1,8 +1,8 @@
-import { progressAnatomy as parts } from "@ark-ui/anatomy"
+import { progressAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const progressSlotRecipe = defineSlotRecipe({
-  slots: parts.keys(),
+  slots: progressAnatomy.keys(),
   base: {
     root: {
       colorPalette: "gray",

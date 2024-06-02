@@ -58,18 +58,13 @@ export interface LinkVariantProps {
 
 export interface MarkVariantProps {}
 
-export interface PinInputVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "filled" | "flushed"
-}
-
 export interface SeparatorVariantProps {
   variant?: "solid" | "dashed"
   orientation?: "vertical" | "horizontal"
 }
 
 export interface SkeletonVariantProps {
-  isLoaded?: boolean
+  loaded?: boolean
   variant?: "pulse" | "shine" | "none"
 }
 
@@ -105,7 +100,6 @@ export interface ConfigRecipes {
   Kbd: SystemRecipeFn<KbdVariantProps>
   Link: SystemRecipeFn<LinkVariantProps>
   Mark: SystemRecipeFn<MarkVariantProps>
-  PinInput: SystemRecipeFn<PinInputVariantProps>
   Separator: SystemRecipeFn<SeparatorVariantProps>
   Skeleton: SystemRecipeFn<SkeletonVariantProps>
   SkipLink: SystemRecipeFn<SkipLinkVariantProps>
@@ -123,10 +117,10 @@ export interface ConfigRecipes {
 export type AccordionSlot =
   | "root"
   | "item"
-  | "trigger"
-  | "content"
-  | "body"
-  | "indicator"
+  | "itemTrigger"
+  | "itemContent"
+  | "itemIndicator"
+  | "itemBody"
 
 export interface AccordionVariantProps {
   variant?: "outline" | "elevated" | "contained" | "plain"
@@ -257,7 +251,17 @@ export interface DrawerVariantProps {
 
 // Editable
 
-export type EditableSlot = "root" | "preview" | "input" | "textarea"
+export type EditableSlot =
+  | "root"
+  | "area"
+  | "label"
+  | "preview"
+  | "input"
+  | "editTrigger"
+  | "submitTrigger"
+  | "cancelTrigger"
+  | "control"
+  | "textarea"
 
 export interface EditableVariantProps {}
 
@@ -579,6 +583,15 @@ export interface DataListVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+// PinInput
+
+export type PinInputSlot = "root" | "label" | "input" | "control"
+
+export interface PinInputVariantProps {
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "outline" | "filled" | "flushed"
+}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -614,6 +627,7 @@ export interface ConfigSlotRecipes {
     CircularProgressVariantProps
   >
   DataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
+  PinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -648,6 +662,7 @@ export interface ConfigRecipeSlots {
   Tooltip: TooltipSlot
   CircularProgress: CircularProgressSlot
   DataList: DataListSlot
+  PinInput: PinInputSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots

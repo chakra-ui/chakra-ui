@@ -3,7 +3,7 @@ import { defineRecipe } from "../../styled-system"
 export const skeletonRecipe = defineRecipe({
   base: {},
   variants: {
-    isLoaded: {
+    loaded: {
       true: {
         animation: "fade-in var(--fade-duration, 0.3s) ease-out !important",
       },
@@ -41,6 +41,6 @@ export const skeletonRecipe = defineRecipe({
   },
   defaultVariants: {
     variant: "pulse",
-    isLoaded: false,
+    loaded: false,
   },
 })

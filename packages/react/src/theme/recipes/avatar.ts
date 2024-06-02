@@ -1,8 +1,8 @@
-import { avatarAnatomy as parts } from "@ark-ui/anatomy"
+import { anatomy } from "@ark-ui/anatomy/avatar"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const avatarSlotRecipe = defineSlotRecipe({
-  slots: parts.keys(),
+  slots: anatomy.keys(),
   base: {
     root: {
       display: "inline-flex",

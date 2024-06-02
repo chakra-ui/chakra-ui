@@ -1,8 +1,8 @@
-import { blockquoteAnatomy as parts } from "../../anatomy"
+import { blockquoteAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const blockquoteSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: blockquoteAnatomy.keys(),
   base: {
     root: {
       display: "flex",

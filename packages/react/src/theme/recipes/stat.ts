@@ -1,8 +1,8 @@
-import { statAnatomy as parts } from "../../anatomy"
+import { statAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const statSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: statAnatomy.keys(),
   base: {
     root: {
       position: "relative",

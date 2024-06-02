@@ -14,7 +14,6 @@ import { kbdRecipe } from "./recipes/kbd"
 import { labelRecipe } from "./recipes/label"
 import { linkRecipe } from "./recipes/link"
 import { markRecipe } from "./recipes/mark"
-import { pinInputRecipe } from "./recipes/pin-input"
 import { skeletonRecipe } from "./recipes/skeleton"
 import { skipLinkRecipe } from "./recipes/skip-link"
 import { spinnerRecipe } from "./recipes/spinner"
@@ -31,7 +30,6 @@ export const recipes = {
   Kbd: kbdRecipe,
   Link: linkRecipe,
   Mark: markRecipe,
-  PinInput: pinInputRecipe,
   Separator: separatorRecipe,
   Skeleton: skeletonRecipe,
   SkipLink: skipLinkRecipe,

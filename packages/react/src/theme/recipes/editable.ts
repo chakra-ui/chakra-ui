@@ -1,4 +1,4 @@
-import { editableAnatomy as parts } from "../../anatomy"
+import { editableAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
 
 const sharedStyles = defineStyle({
@@ -9,7 +9,7 @@ const sharedStyles = defineStyle({
 })
 
 export const editableSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: [...editableAnatomy.keys(), "textarea"],
   base: {
     preview: {
       ...sharedStyles,

@@ -1,11 +1,11 @@
-import { radioAnatomy as parts } from "../../anatomy"
+import { radioAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { checkboxSlotRecipe } from "./checkbox"
 
 const { base, variants, compoundVariants } = checkboxSlotRecipe
 
 export const radioSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: radioAnatomy.keys(),
   base: {
     item: base!.root,
     label: base!.label,

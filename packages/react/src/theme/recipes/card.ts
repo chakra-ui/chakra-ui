@@ -1,8 +1,8 @@
-import { cardAnatomy as parts } from "../../anatomy"
+import { cardAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const cardSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: cardAnatomy.keys(),
   base: {
     root: {
       display: "inline-flex",
