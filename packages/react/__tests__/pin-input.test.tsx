@@ -1,4 +1,4 @@
-import { act, fireEvent, screen, waitFor } from "@testing-library/react"
+import { fireEvent, screen, waitFor } from "@testing-library/react"
 import { useState } from "react"
 import { PinInput } from "../src"
 import { render } from "./core"
@@ -26,10 +26,10 @@ describe("Pin Input", () => {
     const { user } = render(<DemoPinInput />)
     const [first, second, third] = screen.getAllByRole("textbox")
 
-    await act(() => user.type(first, "1"))
+    await user.type(first, "1")
     await waitFor(() => expect(second).toHaveFocus())
 
-    await act(() => user.type(second, "2"))
+    await user.type(second, "2")
     await waitFor(() => expect(third).toHaveFocus())
   })
 
@@ -37,12 +37,12 @@ describe("Pin Input", () => {
     const { user } = render(<DemoPinInput />)
     const [first, second, third] = screen.getAllByRole("textbox")
 
-    await act(() => user.type(first, "1"))
-    await act(() => user.type(second, "2"))
+    await user.type(first, "1")
+    await user.type(second, "2")
 
     await waitFor(() => expect(third).toHaveFocus())
 
-    await act(() => fireEvent.keyDown(third, { key: "Backspace" }))
+    await fireEvent.keyDown(third, { key: "Backspace" })
 
     await waitFor(() => expect(second).toHaveFocus())
     await waitFor(() => expect(third).toHaveValue(""))
@@ -54,9 +54,9 @@ describe("Pin Input", () => {
 
     const [first, second, third] = screen.getAllByRole("textbox")
 
-    await act(() => user.type(first, "1"))
-    await act(() => user.type(second, "2"))
-    await act(() => user.type(third, "3"))
+    await user.type(first, "1")
+    await user.type(second, "2")
+    await user.type(third, "3")
 
     expect(onComplete).toHaveBeenCalledWith(["1", "2", "3"])
   })
@@ -75,8 +75,8 @@ describe("Pin Input", () => {
     const { user } = render(<Component />)
     const [first, second] = screen.getAllByRole("textbox")
 
-    await act(() => user.type(first, "1"))
-    await act(() => user.type(second, "2"))
+    await user.type(first, "1")
+    await user.type(second, "2")
 
     // click the clear button
     fireEvent.click(screen.getByRole("button"))
@@ -98,9 +98,9 @@ describe("Pin Input", () => {
 
     const [first, second, third] = screen.getAllByRole("textbox")
 
-    await act(() => user.type(first, "1"))
-    await act(() => user.type(second, "2"))
-    await act(() => user.type(third, "3"))
+    await user.type(first, "1")
+    await user.type(second, "2")
+    await user.type(third, "3")
 
     await waitFor(() =>
       expect(onComplete).toHaveBeenCalledWith(["1", "2", "3"]),
