@@ -268,7 +268,7 @@ export type CssFn = (
 ) => SystemStyleObject
 
 export interface SystemContext {
-  $$typeof: "SystemContext"
+  $$chakra: true
   _config: SystemConfig
   utility: Utility
   conditions: Condition

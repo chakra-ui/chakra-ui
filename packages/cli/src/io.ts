@@ -1,4 +1,4 @@
-import type { SystemContext } from "@chakra-ui/react"
+import { type SystemContext, isValidSystem } from "@chakra-ui/react"
 import { log } from "@clack/prompts"
 import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
@@ -12,17 +12,13 @@ interface ReadResult {
   dependencies: string[]
 }
 
-const isValidSystemContext = (mod: any): mod is SystemContext => {
-  return Reflect.get(mod, "$$typeof") === "SystemContext"
-}
-
 export const read = async (file: string): Promise<ReadResult> => {
   const filePath = resolve(file)
   const { mod, dependencies } = await bundleNRequire(filePath)
 
   const resolvedMod = mod.default || mod.preset || mod.system || mod
 
-  if (!isValidSystemContext(resolvedMod)) {
+  if (!isValidSystem(resolvedMod)) {
     throw new Error(
       `No default export found in ${file}. Did you forget to provide an export default?`,
     )

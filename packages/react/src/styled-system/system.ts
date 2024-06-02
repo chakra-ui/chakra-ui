@@ -157,7 +157,7 @@ export function createSystem(config: SystemConfig): SystemContext {
   }
 
   return {
-    $$typeof: "SystemContext",
+    $$chakra: true,
     _config: config,
     breakpoints,
     tokens,
@@ -188,4 +188,8 @@ function getTokenMap(tokens: TokenDictionary) {
   })
 
   return map
+}
+
+export const isValidSystem = (mod: unknown): mod is SystemContext => {
+  return isObject(mod) && !!Reflect.get(mod, "$$chakra")
 }
