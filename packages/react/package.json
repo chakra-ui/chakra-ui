@@ -88,6 +88,28 @@
         "default": "./dist/cjs/index.cjs"
       }
     },
+    "./preset": {
+      "source": "./src/preset.ts",
+      "import": {
+        "types": "./dist/types/preset.d.ts",
+        "default": "./dist/esm/preset.mjs"
+      },
+      "require": {
+        "types": "./dist/types/preset.d.ts",
+        "default": "./dist/cjs/preset.cjs"
+      }
+    },
+    "./preset-base": {
+      "source": "./src/preset-base.ts",
+      "import": {
+        "types": "./dist/types/preset-base.d.ts",
+        "default": "./dist/esm/preset-base.mjs"
+      },
+      "require": {
+        "types": "./dist/types/preset-base.d.ts",
+        "default": "./dist/cjs/preset-base.cjs"
+      }
+    },
     "./system": {
       "source": "./src/system/index.ts",
       "import": {
