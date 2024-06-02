@@ -1,8 +1,8 @@
-import { anatomy as parts } from "@ark-ui/anatomy/menu"
+import { anatomy } from "@ark-ui/anatomy/menu"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const menuSlotRecipe = defineSlotRecipe({
-  slots: [...parts.keys(), "itemCommand"],
+  slots: [...anatomy.keys(), "itemCommand"],
   base: {
     content: {
       outline: 0,

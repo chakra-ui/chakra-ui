@@ -1,5 +1,5 @@
 import { mapEntries } from "@chakra-ui/utils"
-import { numberInputAnatomy as parts } from "../../anatomy"
+import { numberInputAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
 import { inputRecipe } from "./input"
 
@@ -25,7 +25,7 @@ const stepperStyle = defineStyle({
 })
 
 export const numberInputSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: numberInputAnatomy.keys(),
   base: {
     root: {
       position: "relative",

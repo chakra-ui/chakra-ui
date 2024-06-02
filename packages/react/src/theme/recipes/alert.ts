@@ -1,8 +1,8 @@
-import { alertAnatomy as parts } from "../../anatomy"
+import { alertAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const alertSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: alertAnatomy.keys(),
   base: {
     root: {
       width: "100%",

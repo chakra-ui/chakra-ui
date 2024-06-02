@@ -1,8 +1,8 @@
-import { toastAnatomy as parts } from "../../anatomy"
+import { toastAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const toastSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: toastAnatomy.keys(),
   base: {
     root: {
       width: "auto",

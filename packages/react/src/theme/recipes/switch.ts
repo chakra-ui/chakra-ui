@@ -1,8 +1,8 @@
-import { switchAnatomy as parts } from "../../anatomy"
+import { switchAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const switchSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: switchAnatomy.keys(),
   base: {
     root: {
       display: "inline-flex",

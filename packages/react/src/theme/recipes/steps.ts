@@ -1,8 +1,8 @@
-import { stepsAnatomy as parts } from "../../anatomy"
+import { stepsAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const stepsSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: stepsAnatomy.keys(),
   base: {
     root: {
       display: "flex",

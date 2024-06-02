@@ -64,7 +64,7 @@ export interface SeparatorVariantProps {
 }
 
 export interface SkeletonVariantProps {
-  isLoaded?: boolean
+  loaded?: boolean
   variant?: "pulse" | "shine" | "none"
 }
 
@@ -117,10 +117,10 @@ export interface ConfigRecipes {
 export type AccordionSlot =
   | "root"
   | "item"
-  | "trigger"
-  | "content"
-  | "body"
-  | "indicator"
+  | "itemTrigger"
+  | "itemContent"
+  | "itemIndicator"
+  | "itemBody"
 
 export interface AccordionVariantProps {
   variant?: "outline" | "elevated" | "contained" | "plain"
@@ -251,7 +251,17 @@ export interface DrawerVariantProps {
 
 // Editable
 
-export type EditableSlot = "root" | "preview" | "input" | "textarea"
+export type EditableSlot =
+  | "root"
+  | "area"
+  | "label"
+  | "preview"
+  | "input"
+  | "editTrigger"
+  | "submitTrigger"
+  | "cancelTrigger"
+  | "control"
+  | "textarea"
 
 export interface EditableVariantProps {}
 

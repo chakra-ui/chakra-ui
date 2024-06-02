@@ -1,8 +1,8 @@
-import { fileUploadAnatomy } from "@ark-ui/anatomy"
+import { anatomy } from "@ark-ui/anatomy/file-upload"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const fileUploadSlotRecipe = defineSlotRecipe({
-  slots: fileUploadAnatomy.keys(),
+  slots: anatomy.keys(),
   base: {
     root: {
       display: "flex",

@@ -48,7 +48,7 @@ export interface AccordionItemContentProps
 export const AccordionItemContent = withContext<
   HTMLDivElement,
   AccordionItemContentProps
->(ArkAccordion.ItemContent, "content", { forwardAsChild: true })
+>(ArkAccordion.ItemContent, "itemContent", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,7 +57,7 @@ export interface AccordionItemBodyProps extends HTMLChakraProps<"div"> {}
 export const AccordionItemBody = withContext<
   HTMLDivElement,
   AccordionItemBodyProps
->("div", "body")
+>("div", "itemBody")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -67,7 +67,7 @@ export interface AccordionItemTriggerProps
 export const AccordionItemTrigger = withContext<
   HTMLDivElement,
   AccordionItemTriggerProps
->(ArkAccordion.ItemTrigger, "trigger", { forwardAsChild: true })
+>(ArkAccordion.ItemTrigger, "itemTrigger", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -77,4 +77,4 @@ export interface AccordionItemIndicatorProps
 export const AccordionItemIndicator = withContext<
   HTMLDivElement,
   AccordionItemIndicatorProps
->(ArkAccordion.ItemIndicator, "indicator", { forwardAsChild: true })
+>(ArkAccordion.ItemIndicator, "itemIndicator", { forwardAsChild: true })

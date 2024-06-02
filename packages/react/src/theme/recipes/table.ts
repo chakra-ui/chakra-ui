@@ -1,8 +1,8 @@
-import { tableAnatomy as parts } from "../../anatomy"
+import { tableAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const tableSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: tableAnatomy.keys(),
   base: {
     root: {
       fontVariantNumeric: "lining-nums tabular-nums",

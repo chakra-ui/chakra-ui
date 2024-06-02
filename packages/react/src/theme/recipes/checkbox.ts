@@ -1,8 +1,8 @@
-import { checkboxAnatomy as parts } from "../../anatomy"
+import { checkboxAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const checkboxSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: checkboxAnatomy.keys(),
   base: {
     root: {
       display: "inline-flex",
