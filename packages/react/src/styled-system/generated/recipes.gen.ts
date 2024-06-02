@@ -58,11 +58,6 @@ export interface LinkVariantProps {
 
 export interface MarkVariantProps {}
 
-export interface PinInputVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "filled" | "flushed"
-}
-
 export interface SeparatorVariantProps {
   variant?: "solid" | "dashed"
   orientation?: "vertical" | "horizontal"
@@ -105,7 +100,6 @@ export interface ConfigRecipes {
   Kbd: SystemRecipeFn<KbdVariantProps>
   Link: SystemRecipeFn<LinkVariantProps>
   Mark: SystemRecipeFn<MarkVariantProps>
-  PinInput: SystemRecipeFn<PinInputVariantProps>
   Separator: SystemRecipeFn<SeparatorVariantProps>
   Skeleton: SystemRecipeFn<SkeletonVariantProps>
   SkipLink: SystemRecipeFn<SkipLinkVariantProps>
@@ -579,6 +573,15 @@ export interface DataListVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+// PinInput
+
+export type PinInputSlot = "root" | "label" | "input" | "control"
+
+export interface PinInputVariantProps {
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "outline" | "filled" | "flushed"
+}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -614,6 +617,7 @@ export interface ConfigSlotRecipes {
     CircularProgressVariantProps
   >
   DataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
+  PinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -648,6 +652,7 @@ export interface ConfigRecipeSlots {
   Tooltip: TooltipSlot
   CircularProgress: CircularProgressSlot
   DataList: DataListSlot
+  PinInput: PinInputSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots

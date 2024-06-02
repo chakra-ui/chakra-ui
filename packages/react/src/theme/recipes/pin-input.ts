@@ -1,39 +1,55 @@
-import { defineRecipe } from "../../styled-system"
+import { pinInputAnatomy } from "@ark-ui/anatomy"
+import { mapEntries } from "@chakra-ui/utils"
+import { defineSlotRecipe } from "../../styled-system"
 import { inputRecipe } from "./input"
 
-export const pinInputRecipe = defineRecipe({
+export const pinInputSlotRecipe = defineSlotRecipe({
+  slots: pinInputAnatomy.keys(),
   base: {
-    ...inputRecipe.base,
-    textAlign: "center",
+    input: {
+      ...inputRecipe.base,
+      textAlign: "center",
+    },
   },
   variants: {
     size: {
       lg: {
-        fontSize: "lg",
-        w: 12,
-        h: 12,
-        borderRadius: "md",
+        input: {
+          fontSize: "lg",
+          w: 12,
+          h: 12,
+          borderRadius: "md",
+        },
       },
       md: {
-        fontSize: "md",
-        w: 10,
-        h: 10,
-        borderRadius: "md",
+        input: {
+          fontSize: "md",
+          w: 10,
+          h: 10,
+          borderRadius: "md",
+        },
       },
       sm: {
-        fontSize: "sm",
-        w: 8,
-        h: 8,
-        borderRadius: "sm",
+        input: {
+          fontSize: "sm",
+          w: 8,
+          h: 8,
+          borderRadius: "sm",
+        },
       },
       xs: {
-        fontSize: "xs",
-        w: 6,
-        h: 6,
-        borderRadius: "sm",
+        input: {
+          fontSize: "xs",
+          w: 6,
+          h: 6,
+          borderRadius: "sm",
+        },
       },
     },
-    variant: inputRecipe.variants!.variant,
+    variant: mapEntries(inputRecipe.variants!.variant, (key, value) => [
+      key,
+      { input: value },
+    ]),
   },
   defaultVariants: inputRecipe.defaultVariants,
 })

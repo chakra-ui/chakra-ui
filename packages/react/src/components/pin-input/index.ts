@@ -1,18 +1,20 @@
-export { PinInputRoot } from "./pin-input-root"
-export type { PinInputRootProps } from "./pin-input-root"
+export {
+  PinInputControl,
+  PinInputInput,
+  PinInputLabel,
+  PinInputRoot,
+} from "./pin-input"
 
-export { PinInputField } from "./pin-input-field"
-export type { PinInputFieldProps } from "./pin-input-field"
+export type {
+  PinInputControlProps,
+  PinInputInputProps,
+  PinInputLabelProps,
+  PinInputRootProps,
+} from "./pin-input"
 
-export { PinInputControl } from "./pin-input-control"
-export type { PinInputControlProps } from "./pin-input-control"
+export { usePinInputStyles } from "./pin-input"
 
-export { PinInputLabel } from "./pin-input-label"
-export type { PinInputLabelProps } from "./pin-input-label"
-
-export { PinInputProvider, usePinInputContext } from "./pin-input-context"
-
-export { usePinInput } from "./use-pin-input"
-export type { UsePinInputProps, UsePinInputReturn } from "./use-pin-input"
+export { PinInputContext, PinInputHiddenInput } from "@ark-ui/react/pin-input"
+export type { PinInputHiddenInputProps } from "@ark-ui/react/pin-input"
 
 export * as PinInput from "./namespace"
