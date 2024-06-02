@@ -21,8 +21,7 @@ const DemoSelect = (props: NativeSelect.RootProps) => {
 
 describe("NativeSelect", () => {
   test("should pass a11y check", async () => {
-    const { container } = render(<DemoSelect />)
-    await testA11y(container)
+    await testA11y(<DemoSelect />)
   })
 
   test("renders a placeholder option", () => {
