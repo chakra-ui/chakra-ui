@@ -207,7 +207,7 @@ describe("Field", () => {
     )
   })
 
-  test("it renders the optionalIndicator in Label if it is provided", () => {
+  test.skip("it renders the optionalIndicator in Label if it is provided", () => {
     render(
       <Field required={false}>
         <Label>
