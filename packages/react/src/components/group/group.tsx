@@ -1,10 +1,18 @@
 "use client"
 
 import { dataAttr } from "@chakra-ui/utils"
-import { Children, cloneElement, forwardRef, isValidElement, memo } from "react"
+import {
+  Children,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  memo,
+  useMemo,
+} from "react"
 import {
   type HTMLChakraProps,
   type InferRecipeProps,
+  type JsxStyleProps,
   chakra,
 } from "../../styled-system"
 
@@ -90,34 +98,64 @@ const StyledGroup = chakra("div", {
 
 type VariantProps = InferRecipeProps<typeof StyledGroup>
 
-interface GroupProps extends HTMLChakraProps<"div", VariantProps> {}
+export interface GroupProps extends HTMLChakraProps<"div", VariantProps> {
+  /**
+   * The `alignItems` style property
+   */
+  align?: JsxStyleProps["alignItems"]
+  /**
+   * The `justifyContent` style property
+   */
+  justify?: JsxStyleProps["justifyContent"]
+  /**
+   * The `flexWrap` style property
+   */
+  wrap?: JsxStyleProps["flexWrap"]
+}
 
 export const Group = memo(
   forwardRef<HTMLDivElement, GroupProps>(function Group(props, ref) {
-    const count = Children.count(props.children)
-    const clones = Children.map(props.children, (child, index) => {
-      if (!isValidElement(child)) {
-        throw new Error(
-          "chakra-ui: Group expects children to be valid elements",
-        )
-      }
-      return cloneElement(child, {
-        ...child.props,
-        "data-group-item": "",
-        "data-first": dataAttr(index === 0),
-        "data-last": dataAttr(index === count - 1),
-        "data-between": dataAttr(index > 0 && index < count - 1),
-        style: {
-          "--group-count": count,
-          "--group-index": index,
-          ...child.props.style,
-        },
-      } as any)
-    })
+    const {
+      align = "center",
+      justify = "flex-start",
+      children,
+      wrap,
+      ...rest
+    } = props
+
+    const count = Children.count(children)
+
+    const _children = useMemo(() => {
+      return Children.map(children, (child, index) => {
+        if (!isValidElement(child)) {
+          throw new Error(
+            "chakra-ui: Group expects children to be valid elements",
+          )
+        }
+        return cloneElement(child, {
+          ...child.props,
+          "data-group-item": "",
+          "data-first": dataAttr(index === 0),
+          "data-last": dataAttr(index === count - 1),
+          "data-between": dataAttr(index > 0 && index < count - 1),
+          style: {
+            "--group-count": count,
+            "--group-index": index,
+            ...child.props.style,
+          },
+        } as any)
+      })
+    }, [children, count])
 
     return (
-      <StyledGroup ref={ref} {...props}>
-        {clones}
+      <StyledGroup
+        ref={ref}
+        alignItems={align}
+        justifyContent={justify}
+        flexWrap={wrap}
+        {...rest}
+      >
+        {_children}
       </StyledGroup>
     )
   }),
