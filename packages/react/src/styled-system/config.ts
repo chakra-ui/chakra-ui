@@ -16,6 +16,8 @@ import type {
  * Core creators
  * -----------------------------------------------------------------------------*/
 
+export const defineConditions = <T extends Record<string, string>>(v: T): T => v
+
 export const defineRecipe: RecipeIdentityFn = (v) => v
 
 export const defineSlotRecipe: SlotRecipeIdentityFn = (v) => v
