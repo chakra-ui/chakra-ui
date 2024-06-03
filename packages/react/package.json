@@ -62,7 +62,7 @@
     "@tanstack/react-table": "8.16.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-frame-component": "5.2.6",
+    "react-frame-component": "5.2.7",
     "react-hook-form": "7.51.5",
     "react-icons": "5.2.1",
     "react-lorem-component": "0.13.0",
