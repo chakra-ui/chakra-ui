@@ -1,4 +1,4 @@
-import { act, fireEvent, screen } from "@testing-library/react"
+import { fireEvent, screen } from "@testing-library/react"
 import { useEffect, useRef, useState } from "react"
 import { Editable } from "../src"
 import { render, testA11y } from "./core"
@@ -44,11 +44,11 @@ describe("Editable", () => {
     )
 
     // calls `onEdit` when preview is focused
-    await act(() => fireEvent.focus(preview()))
+    await fireEvent.focus(preview())
     expect(onEdit).toHaveBeenCalled()
 
     // calls `onChange` with input on change
-    await act(() => user.type(input(), "World"))
+    await user.type(input(), "World")
     expect(onChange).toHaveBeenCalled()
 
     // calls `onCancel` with previous value when "esc" pressed
@@ -58,7 +58,7 @@ describe("Editable", () => {
     fireEvent.focus(preview())
 
     // calls `onChange` with input on change
-    await act(() => user.type(input(), "World"))
+    await user.type(input(), "World")
     expect(onChange).toHaveBeenCalled()
 
     // calls `onSubmit` with previous value when "enter" pressed after cancelling
@@ -101,7 +101,7 @@ describe("Editable", () => {
     // calls `onChange` with new input on change
     // since we called `focus(..)` first, editable will focus and select the text
     // typing will clear the values in input and add the next text.
-    await act(() => user.type(input, "World"))
+    await user.type(input, "World")
     expect(onChange).toHaveBeenCalledWith("World")
 
     // calls `onSubmit` with `value`
@@ -112,7 +112,7 @@ describe("Editable", () => {
     fireEvent.focus(preview)
 
     // update the input value
-    await act(() => user.type(input, "Rasengan"))
+    await user.type(input, "Rasengan")
 
     // press `Escape`
     fireEvent.keyDown(input, { key: "Escape" })
@@ -131,7 +131,7 @@ describe("Editable", () => {
       <DemoEditable submitOnBlur onSubmit={onSubmit} defaultValue="testing" />,
     )
 
-    await act(() => user.click(preview()))
+    await user.click(preview())
     fireEvent.blur(input())
     expect(onSubmit).toHaveBeenCalledWith("testing")
   })
@@ -173,7 +173,7 @@ describe("Editable", () => {
       fireEvent.focus(!startWithEditView ? preview() : input())
 
       if (text) {
-        await act(() => user.type(input(), text))
+        await user.type(input(), text)
       }
 
       fireEvent.keyDown(input(), { key: "Escape" })
@@ -184,7 +184,7 @@ describe("Editable", () => {
 
   test("should not be interactive when disabled", async () => {
     const { user } = render(<DemoEditable disabled />)
-    await act(() => user.click(preview()))
+    await user.click(preview())
     expect(input()).not.toBeVisible()
   })
 
@@ -203,11 +203,11 @@ describe("Editable", () => {
 
     const { user } = render(<Component />)
 
-    await act(() => user.click(preview()))
+    await user.click(preview())
     expect(button()).not.toHaveFocus()
     expect(input()).toHaveFocus()
 
-    await act(() => fireEvent.blur(input()))
+    await fireEvent.blur(input())
     expect(button()).toHaveFocus()
   })
 })
