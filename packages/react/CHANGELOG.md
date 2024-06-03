@@ -1,5 +1,24 @@
 # @chakra-ui/react
 
+## 3.0.0-next.4
+
+### Minor Changes
+
+- [`e4f2df0`](https://github.com/chakra-ui/chakra-ui/commit/e4f2df05a44d39cb951193cad771bc3f6f917bf2)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `Prose`
+  component to help style markdown content.
+
+### Patch Changes
+
+- [#8475](https://github.com/chakra-ui/chakra-ui/pull/8475)
+  [`9224f4e`](https://github.com/chakra-ui/chakra-ui/commit/9224f4e16299ab6eee7dbc9b1ba3bc6723f00046)
+  Thanks [@ryo-manba](https://github.com/ryo-manba)! - Add aria-current
+  attribute to stepper
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.4
+  - @chakra-ui/utils@3.0.0-next.4
+
 ## 3.0.0-next.3
 
 ### Minor Changes
