@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react"
+import { screen } from "@testing-library/react"
 import * as React from "react"
 import { FocusLock } from "../src"
 import { render, testA11y } from "./core"
@@ -49,12 +49,15 @@ describe("FocusLock", () => {
         </FocusLock>
       )
     }
+
     render(<Component />)
+
     const input = screen.getByTestId("input")
+
     expect(input).toHaveFocus()
   })
 
-  test("focuses finalFocusRef on unmount", () => {
+  test("focuses finalFocusRef on unmount", async () => {
     const Component = () => {
       const [show, setShow] = React.useState(true)
       const ref = React.useRef<HTMLButtonElement>(null)
@@ -71,14 +74,16 @@ describe("FocusLock", () => {
         </div>
       )
     }
-    render(<Component />)
+    const { user } = render(<Component />)
+
     const button = screen.getByTestId("button")
 
     // not focused while focus lock is displayed
     expect(button).not.toHaveFocus()
 
     // toggle focus lock and check that button is now focused
-    fireEvent.click(button)
+    await user.click(button)
+
     expect(button).toHaveFocus()
   })
 })
