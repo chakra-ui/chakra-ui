@@ -18,10 +18,10 @@
       "required": false,
       "description": "The indeterminate of the component"
     },
-    "isAnimated": {
+    "animated": {
       "type": "\"true\"",
       "required": false,
-      "description": "The isAnimated of the component"
+      "description": "The animated of the component"
     },
     "max": {
       "type": "number",

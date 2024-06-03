@@ -386,8 +386,8 @@ export interface ProgressVariantProps {
   variant?: "outline" | "subtle"
   indeterminate?: boolean
   shape?: "square" | "rounded" | "pill"
-  hasStripe?: boolean
-  isAnimated?: boolean
+  striped?: boolean
+  animated?: boolean
   size?: "xs" | "sm" | "md" | "lg"
 }
 

@@ -924,8 +924,8 @@ and `withThemeByClassName` helper.
 
 ## Progress
 
-- Move `hasStripe` and `isAnimated` to the `decoration` variant in recipe. Value
-  can be either `striped` or `striped-animated`
+- Move `striped` and `animated` to the `decoration` variant in recipe. Value can
+  be either `striped` or `striped-animated`
 - label or valueText no longer comes with a color by default, you can style
   yourself
 

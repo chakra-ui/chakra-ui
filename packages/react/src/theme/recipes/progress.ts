@@ -81,7 +81,7 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
       },
     },
-    hasStripe: {
+    striped: {
       true: {
         range: {
           backgroundImage: `linear-gradient(45deg, var(--stripe-color) 25%, transparent 25%, transparent 50%, var(--stripe-color) 50%, var(--stripe-color) 75%, transparent 75%, transparent)`,
@@ -94,7 +94,7 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
       },
     },
-    isAnimated: {
+    animated: {
       true: {
         range: {
           "--animated-from": "var(--stripe-size)",

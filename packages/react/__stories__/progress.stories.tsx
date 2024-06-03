@@ -61,14 +61,14 @@ export const Variants = () => {
                       <DemoProgress
                         colorPalette={c}
                         variant={v}
-                        hasStripe
+                        striped
                         value={65}
                       />
                       <DemoProgress
                         colorPalette={c}
                         variant={v}
-                        hasStripe
-                        isAnimated
+                        striped
+                        animated
                         value={65}
                       />
                     </Stack>

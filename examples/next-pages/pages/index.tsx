@@ -45,7 +45,7 @@ export default function Page() {
           </RadioGroup.Root>
         </HStack>
 
-        <Progress.Root width="300px" value={65} hasStripe>
+        <Progress.Root width="300px" value={65} striped>
           <Progress.Track>
             <Progress.FilledTrack />
           </Progress.Track>
