@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react"
+import { screen, waitFor } from "@testing-library/react"
 import { useEffect, useRef, useState } from "react"
 import { Editable } from "../src"
 import { render, testA11y } from "./core"
@@ -179,7 +179,9 @@ describe("Editable", () => {
 
       await user.keyboard("{Escape}")
 
-      expect(preview()).toHaveTextContent("John")
+      await waitFor(() => {
+        expect(preview()).toHaveTextContent("John")
+      })
     },
   )
 
