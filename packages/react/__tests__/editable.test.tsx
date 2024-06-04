@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react"
+import { screen } from "@testing-library/react"
 import { useEffect, useRef, useState } from "react"
 import { Editable } from "../src"
 import { render, testA11y } from "./core"
@@ -44,7 +44,7 @@ describe("Editable", () => {
     )
 
     // calls `onEdit` when preview is focused
-    await fireEvent.focus(preview())
+    await user.click(preview())
     expect(onEdit).toHaveBeenCalled()
 
     // calls `onChange` with input on change
@@ -52,17 +52,17 @@ describe("Editable", () => {
     expect(onChange).toHaveBeenCalled()
 
     // calls `onCancel` with previous value when "esc" pressed
-    fireEvent.keyDown(input(), { key: "Escape" })
+    await user.keyboard('{ "Escape" }')
     expect(onCancel).toHaveBeenCalled()
 
-    fireEvent.focus(preview())
+    await user.click(preview())
 
     // calls `onChange` with input on change
     await user.type(input(), "World")
     expect(onChange).toHaveBeenCalled()
 
     // calls `onSubmit` with previous value when "enter" pressed after cancelling
-    fireEvent.keyDown(input(), { key: "Enter" })
+    await user.keyboard('{ "Enter" }')
     expect(onSubmit).toHaveBeenCalled()
   })
 
@@ -95,7 +95,7 @@ describe("Editable", () => {
     const input = screen.getByTestId("input")
 
     // calls `onEdit` when preview is focused
-    fireEvent.focus(preview)
+    await user.click(preview)
     expect(onEdit).toHaveBeenCalled()
 
     // calls `onChange` with new input on change
@@ -105,17 +105,17 @@ describe("Editable", () => {
     expect(onChange).toHaveBeenCalledWith("World")
 
     // calls `onSubmit` with `value`
-    fireEvent.keyDown(input, { key: "Enter" })
+    await user.keyboard('{ "Enter" }')
     expect(onSubmit).toHaveBeenCalledWith("World")
 
     expect(input).not.toBeVisible()
-    fireEvent.focus(preview)
+    await user.click(preview)
 
     // update the input value
     await user.type(input, "Rasengan")
 
     // press `Escape`
-    fireEvent.keyDown(input, { key: "Escape" })
+    await user.keyboard('{ "Escape" }')
 
     // calls `onSubmit` with previous `value`
     expect(onSubmit).toHaveBeenCalledWith("World")
@@ -132,7 +132,8 @@ describe("Editable", () => {
     )
 
     await user.click(preview())
-    fireEvent.blur(input())
+    await user.click(input())
+    await user.tab()
     expect(onSubmit).toHaveBeenCalledWith("testing")
   })
 
@@ -170,13 +171,13 @@ describe("Editable", () => {
 
       const { user } = render(<Component />)
 
-      fireEvent.focus(!startWithEditView ? preview() : input())
+      await user.focus(!startWithEditView ? preview() : input())
 
       if (text) {
         await user.type(input(), text)
       }
 
-      fireEvent.keyDown(input(), { key: "Escape" })
+      await user.keyboard('{ "Escape" }')
 
       expect(preview()).toHaveTextContent("John")
     },
@@ -207,7 +208,8 @@ describe("Editable", () => {
     expect(button()).not.toHaveFocus()
     expect(input()).toHaveFocus()
 
-    await fireEvent.blur(input())
+    await user.click(input())
+    await user.tab()
     expect(button()).toHaveFocus()
   })
 })
