@@ -52,7 +52,7 @@ describe("Editable", () => {
     expect(onChange).toHaveBeenCalled()
 
     // calls `onCancel` with previous value when "esc" pressed
-    await user.keyboard('{ "Escape" }')
+    await user.keyboard("{Escape}")
     expect(onCancel).toHaveBeenCalled()
 
     await user.click(preview())
@@ -62,7 +62,7 @@ describe("Editable", () => {
     expect(onChange).toHaveBeenCalled()
 
     // calls `onSubmit` with previous value when "enter" pressed after cancelling
-    await user.keyboard('{ "Enter" }')
+    await user.keyboard("{Enter}")
     expect(onSubmit).toHaveBeenCalled()
   })
 
@@ -105,7 +105,7 @@ describe("Editable", () => {
     expect(onChange).toHaveBeenCalledWith("World")
 
     // calls `onSubmit` with `value`
-    await user.keyboard('{ "Enter" }')
+    await user.keyboard("{Enter}")
     expect(onSubmit).toHaveBeenCalledWith("World")
 
     expect(input).not.toBeVisible()
@@ -115,7 +115,7 @@ describe("Editable", () => {
     await user.type(input, "Rasengan")
 
     // press `Escape`
-    await user.keyboard('{ "Escape" }')
+    await user.keyboard("{Escape}")
 
     // calls `onSubmit` with previous `value`
     expect(onSubmit).toHaveBeenCalledWith("World")
@@ -171,13 +171,13 @@ describe("Editable", () => {
 
       const { user } = render(<Component />)
 
-      await user.focus(!startWithEditView ? preview() : input())
+      await user.click(!startWithEditView ? preview() : input())
 
       if (text) {
         await user.type(input(), text)
       }
 
-      await user.keyboard('{ "Escape" }')
+      await user.keyboard("{Escape}")
 
       expect(preview()).toHaveTextContent("John")
     },
