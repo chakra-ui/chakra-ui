@@ -457,8 +457,8 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
       react-frame-component:
-        specifier: 5.2.6
-        version: 5.2.6(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 5.2.7
+        version: 5.2.7(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-hook-form:
         specifier: 7.51.5
         version: 7.51.5(react@18.2.0)
@@ -9035,8 +9035,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-frame-component@5.2.6:
-    resolution: {integrity: sha512-CwkEM5VSt6nFwZ1Op8hi3JB5rPseZlmnp5CGiismVTauE6S4Jsc4TNMlT0O7Cts4WgIC3ZBAQ2p1Mm9XgLbj+w==}
+  react-frame-component@5.2.7:
+    resolution: {integrity: sha512-ROjHtSLoSVYUBfTieazj/nL8jIX9rZFmHC0yXEU+dx6Y82OcBEGgU9o7VyHMrBFUN9FuQ849MtIPNNLsb4krbg==}
     peerDependencies:
       prop-types: ^15.5.9
       react: 18.2.0
@@ -21974,7 +21974,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  react-frame-component@5.2.6(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-frame-component@5.2.7(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       prop-types: 15.8.1
       react: 18.2.0
