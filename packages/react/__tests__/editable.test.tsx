@@ -44,7 +44,7 @@ describe("Editable", () => {
     )
 
     // calls `onEdit` when preview is focused
-    await fireEvent.focus(preview())
+    fireEvent.focus(preview())
     expect(onEdit).toHaveBeenCalled()
 
     // calls `onChange` with input on change
@@ -52,7 +52,7 @@ describe("Editable", () => {
     expect(onChange).toHaveBeenCalled()
 
     // calls `onCancel` with previous value when "esc" pressed
-    fireEvent.keyDown(input(), { key: "Escape" })
+    await user.type(input(), "{escape}")
     expect(onCancel).toHaveBeenCalled()
 
     fireEvent.focus(preview())
@@ -105,7 +105,7 @@ describe("Editable", () => {
     expect(onChange).toHaveBeenCalledWith("World")
 
     // calls `onSubmit` with `value`
-    fireEvent.keyDown(input, { key: "Enter" })
+    await user.type(input, "{enter}")
     expect(onSubmit).toHaveBeenCalledWith("World")
 
     expect(input).not.toBeVisible()
@@ -207,7 +207,7 @@ describe("Editable", () => {
     expect(button()).not.toHaveFocus()
     expect(input()).toHaveFocus()
 
-    await fireEvent.blur(input())
+    fireEvent.blur(input())
     expect(button()).toHaveFocus()
   })
 })
