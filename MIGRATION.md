@@ -1187,3 +1187,36 @@ toast({
 - Environment is no longer automatically provided by `ChakraProvider`. You must
   wrap your app in `Environment` to use it and provide the `getRootNode`
   function
+
+### Collapse
+
+- Rename `Collapse` to `Collapsible` namespace
+- Rename `in` to `open`
+- `animateOpacity` has been removed, use keyframes animations `collapse-in` and
+  `collapse-out` instead
+
+Before:
+
+```tsx
+<Collapse in={isOpen} animateOpacity>
+  Some content
+</Collapse>
+```
+
+After:
+
+```tsx
+<Collapsible.Root open={isOpen}>
+  <Collapsible.Content
+    overflow="hidden"
+    _open={{
+      animation: "collapse-in 250ms",
+    }}
+    _closed={{
+      animation: "collapse-out 250ms",
+    }}
+  >
+    Some content
+  </Collapsible.Content>
+</Collapsible.Root>
+```
