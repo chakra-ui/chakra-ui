@@ -9,6 +9,7 @@ import { dataListSlotRecipe } from "./recipes/data-list"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
 import { editableSlotRecipe } from "./recipes/editable"
+import { emptyStateSlotRecipe } from "./recipes/empty-state"
 import { fileUploadSlotRecipe } from "./recipes/file-upload"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
@@ -64,4 +65,5 @@ export const slotRecipes = {
   CircularProgress: circularProgressSlotRecipe,
   DataList: dataListSlotRecipe,
   PinInput: pinInputSlotRecipe,
+  EmptyState: emptyStateSlotRecipe,
 }
