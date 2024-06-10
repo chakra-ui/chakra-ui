@@ -15,6 +15,48 @@
 - Introduce new `unstyled` prop to every component to allow for unstyled
   rendering of the component or its parts
 
+- Gradient style prop simplified to `gradient` and `gradientFrom` and
+  `gradientTo` props. This reduces the runtime performance cost of parsing the
+  gradient string, and allows for better type inference.
+
+Before:
+
+```tsx
+<Box bgGradient="linear(to-r, red.200, pink.500)" />
+```
+
+After:
+
+```tsx
+<Box bgGradient="to-r" gradientFrom="red.200" gradientTo="pink.500" />
+```
+
+- `colorScheme` is now `colorPalette`: Prior to this change, the `colorScheme`
+  prop could only be used in a component's theme. This has been changed to
+  `colorPalette` to better reflect the purpose of the prop and can be used
+  anywhere.
+
+Before:
+
+```tsx
+<Button colorScheme="blue">Click me</Button>
+```
+
+After:
+
+```tsx
+<Button colorPalette="blue">Click me</Button>
+```
+
+Usage in any component, you can do somethine like:
+
+```tsx
+<Box colorPalette="red">
+  <Box bg="colorPalette.400">Some box</Box>
+  <Text color="colorPalette.600">Some text</Text>
+</Box>
+```
+
 ### Changes to `Show` and `Hide`
 
 We've removed the `Hide` component in favor of hidding elements using the
