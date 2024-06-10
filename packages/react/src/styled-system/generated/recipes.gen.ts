@@ -89,6 +89,11 @@ export interface HelpTextVariantProps {}
 
 export interface LabelVariantProps {}
 
+export interface CheckmarkVariantProps {
+  size?: "sm" | "md" | "lg"
+  variant?: "outline" | "subtle"
+}
+
 export interface ConfigRecipes {
   Badge: SystemRecipeFn<BadgeVariantProps>
   Button: SystemRecipeFn<ButtonVariantProps>
@@ -110,6 +115,7 @@ export interface ConfigRecipes {
   ErrorMessage: SystemRecipeFn<ErrorMessageVariantProps>
   HelpText: SystemRecipeFn<HelpTextVariantProps>
   Label: SystemRecipeFn<LabelVariantProps>
+  Checkmark: SystemRecipeFn<CheckmarkVariantProps>
 }
 
 // Accordion
@@ -592,6 +598,28 @@ export interface PinInputVariantProps {
   variant?: "outline" | "filled" | "flushed"
 }
 
+// EmptyState
+
+export type EmptyStateSlot = "root" | "content" | "indicator"
+
+export interface EmptyStateVariantProps {
+  size?: "lg" | "md"
+}
+
+// CheckboxCard
+
+export type CheckboxCardSlot =
+  | "root"
+  | "control"
+  | "label"
+  | "addon"
+  | "indicator"
+
+export interface CheckboxCardVariantProps {
+  size?: "sm" | "md" | "lg"
+  variant?: "plain" | "subtle"
+}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -628,6 +656,8 @@ export interface ConfigSlotRecipes {
   >
   DataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
   PinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
+  EmptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps>
+  CheckboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -663,6 +693,8 @@ export interface ConfigRecipeSlots {
   CircularProgress: CircularProgressSlot
   DataList: DataListSlot
   PinInput: PinInputSlot
+  EmptyState: EmptyStateSlot
+  CheckboxCard: CheckboxCardSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots

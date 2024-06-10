@@ -79,10 +79,22 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       Object.entries(variants).map(([key, value]) => [key, Object.keys(value)]),
     )
 
+    let classNameMap: Record<string, string> = {}
+
+    if (config.className) {
+      classNameMap = Object.fromEntries(
+        config.slots.map((slot: string) => [
+          slot,
+          `${config.className}__${slot}`,
+        ]),
+      )
+    }
+
     return Object.assign(svaFn, {
       variantMap,
       variantKeys,
       splitVariantProps,
+      classNameMap,
     })
   }
 }

@@ -5,6 +5,7 @@ import { blockquoteSlotRecipe } from "./recipes/blockquote"
 import { breadcrumbSlotRecipe } from "./recipes/breadcrumb"
 import { cardSlotRecipe } from "./recipes/card"
 import { checkboxSlotRecipe } from "./recipes/checkbox"
+import { checkboxCardSlotRecipe } from "./recipes/checkbox-card"
 import { dataListSlotRecipe } from "./recipes/data-list"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
@@ -66,4 +67,5 @@ export const slotRecipes = {
   DataList: dataListSlotRecipe,
   PinInput: pinInputSlotRecipe,
   EmptyState: emptyStateSlotRecipe,
+  CheckboxCard: checkboxCardSlotRecipe,
 }

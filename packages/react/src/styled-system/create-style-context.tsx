@@ -1,5 +1,6 @@
 "use client"
 
+import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { createContext } from "../create-context"
 import type { SystemStyleObject } from "./css.types"
@@ -17,6 +18,10 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
     errorMessage: `use${recipe}Styles returned is 'undefined'. Seems you forgot to wrap the components in "<${recipe}.Root />" `,
   })
 
+  const [ClassNamesProvider, useClassNames] = createContext<
+    Record<string, string>
+  >({ name: `${recipe}ClassNameContext` })
+
   function withRootProvider<P>(
     Component: React.ElementType<any>,
     options: { defaultProps?: Partial<P> } = {},
@@ -31,7 +36,9 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
 
       return (
         <RecipeStylesProvider value={slotStyles}>
-          <Component {...otherProps} />
+          <ClassNamesProvider value={slotRecipe.classNameMap}>
+            <Component {...otherProps} />
+          </ClassNamesProvider>
         </RecipeStylesProvider>
       )
     }
@@ -61,12 +68,20 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
 
         return (
           <RecipeStylesProvider value={slotStyles}>
-            <SuperComponent
-              ref={ref}
-              {...otherProps}
-              // @ts-expect-error
-              css={[slotStyles[slot], props.css]}
-            />
+            <ClassNamesProvider value={slotRecipe.classNameMap}>
+              <SuperComponent
+                ref={ref}
+                {...otherProps}
+                // @ts-expect-error
+                css={[slotStyles[slot], props.css]}
+                className={cx(
+                  props.className,
+                  slotRecipe.classNameMap[
+                    slot as keyof typeof slotRecipe.classNameMap
+                  ],
+                )}
+              />
+            </ClassNamesProvider>
           </RecipeStylesProvider>
         )
       },
@@ -88,11 +103,16 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
     const SuperComponent = chakra(Component, {}, options as any)
     const StyledComponent = forwardRef<any, any>((props, ref) => {
       const slotStyles = useStyles()
+      const classNames = useClassNames()
       return (
         <SuperComponent
           {...props}
           css={[slot ? slotStyles[slot] : undefined, props.css]}
           ref={ref}
+          className={cx(
+            props.className,
+            classNames[slot as keyof typeof classNames],
+          )}
         />
       )
     })

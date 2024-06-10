@@ -1,5 +1,6 @@
 import { badgeRecipe } from "./recipes/badge"
 import { buttonRecipe } from "./recipes/button"
+import { checkmarkRecipe } from "./recipes/checkmark"
 import { codeRecipe } from "./recipes/code"
 import { containerRecipe } from "./recipes/container"
 import { separatorRecipe } from "./recipes/divider"
@@ -40,4 +41,5 @@ export const recipes = {
   ErrorMessage: errorMessageRecipe,
   HelpText: helpTextRecipe,
   Label: labelRecipe,
+  Checkmark: checkmarkRecipe,
 }

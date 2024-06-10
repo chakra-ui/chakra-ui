@@ -6,24 +6,26 @@ type StringToBoolean<T> = T extends "true" | "false" ? boolean : T
 
 export type RecipeVariantRecord = Record<any, Record<any, SystemStyleObject>>
 
-export type RecipeSelection<T extends RecipeVariantRecord> =
-  keyof any extends keyof T
-    ? {}
-    : {
-        [K in keyof T]?: ConditionalValue<
-          StringToBoolean<keyof T[K]> | undefined
-        >
-      }
+export type RecipeSelection<
+  T extends RecipeVariantRecord | SlotRecipeVariantRecord<string>,
+> = keyof any extends keyof T
+  ? {}
+  : {
+      [K in keyof T]?: ConditionalValue<StringToBoolean<keyof T[K]> | undefined>
+    }
 
 export type RecipeVariantFn<T extends RecipeVariantRecord> = (
   props?: RecipeSelection<T>,
 ) => string
 
 export type RecipeVariantProps<
-  T extends
-    | RecipeVariantFn<RecipeVariantRecord>
-    | SlotRecipeVariantFn<string, SlotRecipeVariantRecord<string>>,
-> = Pretty<Parameters<T>[0]>
+  T extends RecipeDefinition | SlotRecipeDefinition,
+> =
+  T extends RecipeDefinition<infer U>
+    ? RecipeSelection<U>
+    : T extends SlotRecipeDefinition<string, infer U>
+      ? RecipeSelection<U>
+      : never
 
 type RecipeVariantMap<T extends RecipeVariantRecord> = {
   [K in keyof T]: Array<keyof T[K]>
@@ -106,6 +108,7 @@ export interface SlotRecipeRuntimeFn<
   S extends string,
   T extends SlotRecipeVariantRecord<S>,
 > extends SlotRecipeVariantFn<S, T> {
+  classNameMap: Record<S, string>
   variantKeys: (keyof T)[]
   variantMap: RecipeVariantMap<T>
   splitVariantProps<Props extends RecipeSelection<T>>(
@@ -121,6 +124,13 @@ export interface SlotRecipeDefinition<
   S extends string = string,
   T extends SlotRecipeVariantRecord<S> = SlotRecipeVariantRecord<S>,
 > {
+  /**
+   * The class name of the recipe. Useful for targeting slots.
+   *
+   * Say the recipe has slots like `root`, `control` and the class name is 'checkbox'
+   * Each slot will have a class name like `checkbox__root`, `checkbox__control`
+   */
+  className?: string
   /**
    * The parts/slots of the recipe.
    */
@@ -183,6 +193,7 @@ export interface SystemRecipeFn<T> {
 export interface SystemSlotRecipeFn<S extends string, T> {
   __type: Partial<T>
   (props?: Partial<T>): Record<S, SystemStyleObject>
+  classNameMap: Record<S, string>
   variantMap: {
     [key in keyof T]: Array<T[key]>
   }
