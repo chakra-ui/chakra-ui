@@ -22,6 +22,7 @@ import { popoverSlotRecipe } from "./recipes/popover"
 import { progressSlotRecipe } from "./recipes/progress"
 import { circularProgressSlotRecipe } from "./recipes/progress-circular"
 import { radioSlotRecipe } from "./recipes/radio"
+import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
 import { statSlotRecipe } from "./recipes/stat"
@@ -68,4 +69,5 @@ export const slotRecipes = {
   PinInput: pinInputSlotRecipe,
   EmptyState: emptyStateSlotRecipe,
   CheckboxCard: checkboxCardSlotRecipe,
+  SegmentGroup: segmentGroupSlotRecipe,
 }

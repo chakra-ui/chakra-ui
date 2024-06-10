@@ -620,6 +620,20 @@ export interface CheckboxCardVariantProps {
   variant?: "plain" | "subtle"
 }
 
+// SegmentGroup
+
+export type SegmentGroupSlot =
+  | "root"
+  | "label"
+  | "item"
+  | "itemText"
+  | "itemControl"
+  | "indicator"
+
+export interface SegmentGroupVariantProps {
+  size?: "sm" | "md" | "lg"
+}
+
 export interface ConfigSlotRecipes {
   Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
@@ -658,6 +672,7 @@ export interface ConfigSlotRecipes {
   PinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
   EmptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps>
   CheckboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
+  SegmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -695,6 +710,7 @@ export interface ConfigRecipeSlots {
   PinInput: PinInputSlot
   EmptyState: EmptyStateSlot
   CheckboxCard: CheckboxCardSlot
+  SegmentGroup: SegmentGroupSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
