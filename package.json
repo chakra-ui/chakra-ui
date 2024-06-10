@@ -56,7 +56,7 @@
     "@octokit/rest": "^20.0.2",
     "@rollup/plugin-alias": "5.1.0",
     "@rollup/plugin-node-resolve": "15.2.3",
-    "@rollup/plugin-replace": "5.0.5",
+    "@rollup/plugin-replace": "5.0.7",
     "@storybook/addon-a11y": "8.1.5",
     "@storybook/addon-essentials": "8.1.5",
     "@storybook/addon-themes": "8.1.5",
