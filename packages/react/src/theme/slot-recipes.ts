@@ -21,7 +21,7 @@ import { pinInputSlotRecipe } from "./recipes/pin-input"
 import { popoverSlotRecipe } from "./recipes/popover"
 import { progressSlotRecipe } from "./recipes/progress"
 import { circularProgressSlotRecipe } from "./recipes/progress-circular"
-import { radioSlotRecipe } from "./recipes/radio"
+import { radioGroupSlotRecipe } from "./recipes/radio-group"
 import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
@@ -53,7 +53,7 @@ export const slotRecipes = {
   Popover: popoverSlotRecipe,
   HoverCard: hoverCardSlotRecipe,
   Progress: progressSlotRecipe,
-  Radio: radioSlotRecipe,
+  RadioGroup: radioGroupSlotRecipe,
   Select: selectSlotRecipe,
   Slider: sliderSlotRecipe,
   Stat: statSlotRecipe,

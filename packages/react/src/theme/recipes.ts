@@ -15,6 +15,7 @@ import { kbdRecipe } from "./recipes/kbd"
 import { labelRecipe } from "./recipes/label"
 import { linkRecipe } from "./recipes/link"
 import { markRecipe } from "./recipes/mark"
+import { radiomarkRecipe } from "./recipes/radiomark"
 import { skeletonRecipe } from "./recipes/skeleton"
 import { skipLinkRecipe } from "./recipes/skip-link"
 import { spinnerRecipe } from "./recipes/spinner"
@@ -42,4 +43,5 @@ export const recipes = {
   HelpText: helpTextRecipe,
   Label: labelRecipe,
   Checkmark: checkmarkRecipe,
+  Radiomark: radiomarkRecipe,
 }

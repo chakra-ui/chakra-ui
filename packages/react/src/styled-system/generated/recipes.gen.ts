@@ -94,6 +94,11 @@ export interface CheckmarkVariantProps {
   variant?: "outline" | "subtle"
 }
 
+export interface RadiomarkVariantProps {
+  variant?: "outline" | "subtle" | "classic"
+  size?: "sm" | "md" | "lg"
+}
+
 export interface ConfigRecipes {
   Badge: SystemRecipeFn<BadgeVariantProps>
   Button: SystemRecipeFn<ButtonVariantProps>
@@ -116,6 +121,7 @@ export interface ConfigRecipes {
   HelpText: SystemRecipeFn<HelpTextVariantProps>
   Label: SystemRecipeFn<LabelVariantProps>
   Checkmark: SystemRecipeFn<CheckmarkVariantProps>
+  Radiomark: SystemRecipeFn<RadiomarkVariantProps>
 }
 
 // Accordion
@@ -397,11 +403,17 @@ export interface ProgressVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
-// Radio
+// RadioGroup
 
-export type RadioSlot = "root" | "item" | "control" | "indicator" | "label"
+export type RadioGroupSlot =
+  | "root"
+  | "label"
+  | "item"
+  | "itemText"
+  | "itemControl"
+  | "indicator"
 
-export interface RadioVariantProps {
+export interface RadioGroupVariantProps {
   variant?: "outline" | "subtle" | "classic"
   size?: "sm" | "md" | "lg"
 }
@@ -653,7 +665,7 @@ export interface ConfigSlotRecipes {
   Popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
   HoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
   Progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
-  Radio: SystemSlotRecipeFn<RadioSlot, RadioVariantProps>
+  RadioGroup: SystemSlotRecipeFn<RadioGroupSlot, RadioGroupVariantProps>
   Select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps>
   Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
   Stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
@@ -694,7 +706,7 @@ export interface ConfigRecipeSlots {
   Popover: PopoverSlot
   HoverCard: HoverCardSlot
   Progress: ProgressSlot
-  Radio: RadioSlot
+  RadioGroup: RadioGroupSlot
   Select: SelectSlot
   Slider: SliderSlot
   Stat: StatSlot
