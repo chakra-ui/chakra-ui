@@ -147,14 +147,14 @@ const theme = extendTheme({
 
 **And that's it!** You can use your new Button along with its custom variants
 throughout your app. But what if we want to create a custom component that's not
-part of Chakra UI? Let's use the following design spec for a Card component:
+part of Chakra UI? Let's use the following design spec for a Sample component:
 
 <Image mt='10' mb='12' src='/card-spec.png' />
 
 Here's a contrived implementation of the design:
 
 ```jsx live=false
-const Card = defineStyleConfig({
+const Sample = defineStyleConfig({
   // The styles all Cards have in common
   baseStyle: {
     display: 'flex',
@@ -183,7 +183,7 @@ const Card = defineStyleConfig({
 })
 ```
 
-As with the Button component, we'll update the theme to include the new Card
+As with the Button component, we'll update the theme to include the new Sample
 component style.
 
 ```jsx live=false
@@ -191,17 +191,20 @@ import { extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
   components: {
-    Card,
+    Sample,
   },
 })
 ```
 
-But in this case we'd have to **consume** these styles because the `Card`
+> Please note that name of a component you make must not be conflicted with any
+> components built-in Chakra UI.
+
+But in this case we'd have to **consume** these styles because the `Sample`
 component is not a built-in component in Chakra UI.
 
 ### Consuming style config
 
-Since the new Card component is **not** part of Chakra UI we need to create a
+Since the new Sample component is **not** part of Chakra UI we need to create a
 new React component and consume the style we just created. We can do that using
 `useStyleConfig` hook.
 
@@ -226,10 +229,10 @@ passed, the `defaultProps` defined in the style config will be used.
 ```jsx live=false
 import { Box, useStyleConfig } from '@chakra-ui/react'
 
-function Card(props) {
+function Sample(props) {
   const { variant, ...rest } = props
 
-  const styles = useStyleConfig('Card', { variant })
+  const styles = useStyleConfig('Sample', { variant })
 
   // Pass the computed styles into the `__css` prop
   return <Box __css={styles} {...rest} />
@@ -241,14 +244,14 @@ function Card(props) {
 > style priority. This means you can override the style properties with chakra
 > style props.
 
-And lastly - the fun part - let's use our custom Card component anywhere in our
-app:
+And lastly - the fun part - let's use our custom Sample component anywhere in
+our app:
 
 ```jsx live=false
 // 1. Using the default props defined in style config
 function Usage() {
   return (
-    <Card>
+    <Sample>
       <Image
         src='https://chakra-ui.com/eric.jpg'
         rounded='full'
@@ -263,14 +266,14 @@ function Usage() {
         Use your fingerprint to continue.
       </Text>
       <Image src='/fingerprint.png' w={32} h={32} />
-    </Card>
+    </Sample>
   )
 }
 
 // 2. Overriding the default
 function Usage() {
   return (
-    <Card variant='smooth'>
+    <Sample variant='smooth'>
       <Image
         src='https://chakra-ui.com/eric.jpg'
         rounded='full'
@@ -285,7 +288,7 @@ function Usage() {
         Use your fingerprint to continue.
       </Text>
       <Image src='/fingerprint.png' w={32} h={32} />
-    </Card>
+    </Sample>
   )
 }
 ```
