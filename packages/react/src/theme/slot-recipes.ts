@@ -6,6 +6,7 @@ import { breadcrumbSlotRecipe } from "./recipes/breadcrumb"
 import { cardSlotRecipe } from "./recipes/card"
 import { checkboxSlotRecipe } from "./recipes/checkbox"
 import { checkboxCardSlotRecipe } from "./recipes/checkbox-card"
+import { collapsibleSlotRecipe } from "./recipes/collapsible"
 import { dataListSlotRecipe } from "./recipes/data-list"
 import { dialogSlotRecipe } from "./recipes/dialog"
 import { drawerSlotRecipe } from "./recipes/drawer"
@@ -70,4 +71,5 @@ export const slotRecipes = {
   EmptyState: emptyStateSlotRecipe,
   CheckboxCard: checkboxCardSlotRecipe,
   SegmentGroup: segmentGroupSlotRecipe,
+  Collapsible: collapsibleSlotRecipe,
 }

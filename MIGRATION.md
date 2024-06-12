@@ -1249,16 +1249,6 @@ After:
 
 ```tsx
 <Collapsible.Root open={isOpen}>
-  <Collapsible.Content
-    overflow="hidden"
-    _open={{
-      animation: "collapse-in 250ms",
-    }}
-    _closed={{
-      animation: "collapse-out 250ms",
-    }}
-  >
-    Some content
-  </Collapsible.Content>
+  <Collapsible.Content>Some content</Collapsible.Content>
 </Collapsible.Root>
 ```
