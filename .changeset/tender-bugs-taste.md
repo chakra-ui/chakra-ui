@@ -3,4 +3,4 @@
 "@chakra-ui/cli": major
 ---
 
-"Fix the `boxSize` type to allow for number values.
+Fix the `boxSize` type to allow number values.
