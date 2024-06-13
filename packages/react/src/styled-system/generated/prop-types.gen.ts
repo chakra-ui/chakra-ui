@@ -117,7 +117,7 @@ interface PropertyValueTypes {
   inlineSize: Tokens["sizes"]
   height: Tokens["sizes"]
   blockSize: Tokens["sizes"]
-  boxSize: Tokens["sizes"]
+  boxSize: Tokens["sizes"] | CssProperties["width"]
   minWidth: Tokens["sizes"]
   minInlineSize: Tokens["sizes"]
   minHeight: Tokens["sizes"]

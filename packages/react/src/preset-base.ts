@@ -533,7 +533,11 @@ export const defaultBaseConfig = defineConfig({
     inlineSize: { values: "sizes" },
     height: { values: "sizes", shorthand: ["h"] },
     blockSize: { values: "sizes" },
-    boxSize: { values: "sizes", transform: (v) => ({ width: v, height: v }) },
+    boxSize: {
+      values: "sizes",
+      property: "width",
+      transform: (v) => ({ width: v, height: v }),
+    },
     minWidth: { values: "sizes", shorthand: ["minW"] },
     minInlineSize: { values: "sizes" },
     minHeight: { values: "sizes", shorthand: ["minH"] },
