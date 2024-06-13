@@ -3,4 +3,4 @@
 "@chakra-ui/cli": major
 ---
 
-Fix the CLI type generation by allowing the export of number types.
+"Fix the `boxSize` type to allow for number values.
