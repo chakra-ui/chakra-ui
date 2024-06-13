@@ -3,17 +3,7 @@ import { format } from "prettier"
 
 export function unionType(values: Iterable<any>) {
   return Array.from(values)
-    .map((value) => {
-      const safeValue = JSON.stringify(value)
-
-      // If the string value represents a positive, negative, or decimal number, then return a tuple of the string and the number
-      if (/^-?\d*\.?\d+$/.test(value)) {
-        return [safeValue, JSON.stringify(Number(value))]
-      }
-
-      return safeValue
-    })
-    .flat()
+    .map((value) => JSON.stringify(value))
     .join(" | ")
 }
 
