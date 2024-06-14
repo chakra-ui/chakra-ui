@@ -21,7 +21,7 @@ export { useProgressStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressRootProps
-  extends HTMLChakraProps<"div", ArkProgress.RootProps>,
+  extends HTMLChakraProps<"div", ArkProgress.RootBaseProps>,
     SlotRecipeProps<"Progress">,
     UnstyledProp {}
 
@@ -33,7 +33,7 @@ export const ProgressRoot = withProvider<HTMLDivElement, ProgressRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressLabelProps
-  extends HTMLChakraProps<"div", ArkProgress.LabelProps> {}
+  extends HTMLChakraProps<"div", ArkProgress.LabelBaseProps> {}
 
 export const ProgressLabel = withContext<HTMLDivElement, ProgressLabelProps>(
   ArkProgress.Label,
@@ -44,7 +44,7 @@ export const ProgressLabel = withContext<HTMLDivElement, ProgressLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressTrackProps
-  extends HTMLChakraProps<"div", ArkProgress.TrackProps> {}
+  extends HTMLChakraProps<"div", ArkProgress.TrackBaseProps> {}
 
 export const ProgressTrack = withContext<HTMLDivElement, ProgressTrackProps>(
   ArkProgress.Track,
@@ -55,7 +55,7 @@ export const ProgressTrack = withContext<HTMLDivElement, ProgressTrackProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressRangeProps
-  extends HTMLChakraProps<"div", ArkProgress.RangeProps> {}
+  extends HTMLChakraProps<"div", ArkProgress.RangeBaseProps> {}
 
 export const ProgressRange = withContext<HTMLDivElement, ProgressRangeProps>(
   ArkProgress.Range,
@@ -66,7 +66,7 @@ export const ProgressRange = withContext<HTMLDivElement, ProgressRangeProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface ProgressValueTextProps
-  extends HTMLChakraProps<"div", ArkProgress.ValueTextProps> {}
+  extends HTMLChakraProps<"div", ArkProgress.ValueTextBaseProps> {}
 
 export const ProgressValueText = withContext<
   HTMLDivElement,

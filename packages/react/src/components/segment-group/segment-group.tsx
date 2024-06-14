@@ -21,7 +21,7 @@ export { useSegmentGroupStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupRootProps
-  extends HTMLChakraProps<"div", ArkSegmentGroup.RootProps>,
+  extends HTMLChakraProps<"div", ArkSegmentGroup.RootBaseProps>,
     SlotRecipeProps<"SegmentGroup">,
     UnstyledProp {}
 
@@ -33,7 +33,7 @@ export const SegmentGroupRoot = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupItemProps
-  extends HTMLChakraProps<"label", ArkSegmentGroup.ItemProps> {}
+  extends HTMLChakraProps<"label", ArkSegmentGroup.ItemBaseProps> {}
 
 export const SegmentGroupItem = withContext<
   HTMLLabelElement,
@@ -43,7 +43,7 @@ export const SegmentGroupItem = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupItemTextProps
-  extends HTMLChakraProps<"span", ArkSegmentGroup.ItemTextProps> {}
+  extends HTMLChakraProps<"span", ArkSegmentGroup.ItemTextBaseProps> {}
 
 export const SegmentGroupItemText = withContext<
   HTMLSpanElement,
@@ -53,7 +53,7 @@ export const SegmentGroupItemText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SegmentGroupIndicatorProps
-  extends HTMLChakraProps<"div", ArkSegmentGroup.IndicatorProps> {}
+  extends HTMLChakraProps<"div", ArkSegmentGroup.IndicatorBaseProps> {}
 
 export const SegmentGroupIndicator = withContext<
   HTMLSpanElement,

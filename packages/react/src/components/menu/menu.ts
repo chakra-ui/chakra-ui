@@ -21,16 +21,18 @@ export { useMenuStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuRootProps
-  extends ArkMenu.RootProps,
+  extends ArkMenu.RootBaseProps,
     SlotRecipeProps<"Menu">,
-    UnstyledProp {}
+    UnstyledProp {
+  children: React.ReactNode
+}
 
 export const MenuRoot = withRootProvider<MenuRootProps>(ArkMenu.Root)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuTriggerProps
-  extends HTMLChakraProps<"button", ArkMenu.TriggerProps> {}
+  extends HTMLChakraProps<"button", ArkMenu.TriggerBaseProps> {}
 
 export const MenuTrigger = withContext<HTMLButtonElement, MenuTriggerProps>(
   ArkMenu.Trigger,
@@ -41,7 +43,7 @@ export const MenuTrigger = withContext<HTMLButtonElement, MenuTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuContextTriggerProps
-  extends HTMLChakraProps<"button", ArkMenu.ContextTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkMenu.ContextTriggerBaseProps> {}
 
 export const MenuContextTrigger = withContext<
   HTMLButtonElement,
@@ -51,7 +53,7 @@ export const MenuContextTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuPositionerProps
-  extends HTMLChakraProps<"div", ArkMenu.PositionerProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.PositionerBaseProps> {}
 
 export const MenuPositioner = withContext<HTMLDivElement, MenuPositionerProps>(
   ArkMenu.Positioner,
@@ -62,7 +64,7 @@ export const MenuPositioner = withContext<HTMLDivElement, MenuPositionerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuSeparatorProps
-  extends HTMLChakraProps<"div", ArkMenu.SeparatorProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.SeparatorBaseProps> {}
 
 export const MenuSeparator = withContext<HTMLDivElement, MenuSeparatorProps>(
   ArkMenu.Separator,
@@ -73,7 +75,7 @@ export const MenuSeparator = withContext<HTMLDivElement, MenuSeparatorProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuContentProps
-  extends HTMLChakraProps<"div", ArkMenu.ContentProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ContentBaseProps> {}
 
 export const MenuContent = withContext<HTMLDivElement, MenuContentProps>(
   ArkMenu.Content,
@@ -84,7 +86,7 @@ export const MenuContent = withContext<HTMLDivElement, MenuContentProps>(
 // arrow
 
 export interface MenuArrowProps
-  extends HTMLChakraProps<"div", ArkMenu.ArrowProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ArrowBaseProps> {}
 
 export const MenuArrow = withContext<HTMLDivElement, MenuArrowProps>(
   ArkMenu.Arrow,
@@ -95,7 +97,7 @@ export const MenuArrow = withContext<HTMLDivElement, MenuArrowProps>(
 // arrow tip
 
 export interface MenuArrowTipProps
-  extends HTMLChakraProps<"div", ArkMenu.ArrowTipProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ArrowTipBaseProps> {}
 
 export const MenuArrowTip = withContext<HTMLDivElement, MenuArrowTipProps>(
   ArkMenu.ArrowTip,
@@ -106,7 +108,7 @@ export const MenuArrowTip = withContext<HTMLDivElement, MenuArrowTipProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuIndicatorProps
-  extends HTMLChakraProps<"div", ArkMenu.IndicatorProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.IndicatorBaseProps> {}
 
 export const MenuIndicator = withContext<HTMLDivElement, MenuIndicatorProps>(
   ArkMenu.Indicator,
@@ -117,7 +119,7 @@ export const MenuIndicator = withContext<HTMLDivElement, MenuIndicatorProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuItemGroupProps
-  extends HTMLChakraProps<"div", ArkMenu.ItemGroupProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ItemGroupBaseProps> {}
 
 export const MenuItemGroup = withContext<HTMLDivElement, MenuItemGroupProps>(
   ArkMenu.ItemGroup,
@@ -128,7 +130,7 @@ export const MenuItemGroup = withContext<HTMLDivElement, MenuItemGroupProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuItemGroupLabelProps
-  extends HTMLChakraProps<"div", ArkMenu.ItemGroupLabelProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ItemGroupLabelBaseProps> {}
 
 export const MenuItemGroupLabel = withContext<
   HTMLDivElement,
@@ -138,7 +140,7 @@ export const MenuItemGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuItemProps
-  extends HTMLChakraProps<"div", ArkMenu.ItemProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ItemBaseProps> {}
 
 export const MenuItem = withContext<HTMLDivElement, MenuItemProps>(
   ArkMenu.Item,
@@ -149,7 +151,7 @@ export const MenuItem = withContext<HTMLDivElement, MenuItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuItemTextProps
-  extends HTMLChakraProps<"div", ArkMenu.ItemTextProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ItemTextBaseProps> {}
 
 export const MenuItemText = withContext<HTMLDivElement, MenuItemTextProps>(
   ArkMenu.ItemText,
@@ -169,7 +171,7 @@ export const MenuItemCommand = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuItemIndicatorProps
-  extends HTMLChakraProps<"div", ArkMenu.ItemIndicatorProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ItemIndicatorBaseProps> {}
 
 export const MenuItemIndicator = withContext<
   HTMLDivElement,
@@ -179,7 +181,7 @@ export const MenuItemIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuCheckboxItemProps
-  extends HTMLChakraProps<"div", ArkMenu.CheckboxItemProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.CheckboxItemBaseProps> {}
 
 export const MenuCheckboxItem = withContext<
   HTMLDivElement,
@@ -189,7 +191,7 @@ export const MenuCheckboxItem = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuRadioItemGroupProps
-  extends HTMLChakraProps<"div", ArkMenu.RadioItemGroupProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.RadioItemGroupBaseProps> {}
 
 export const MenuRadioItemGroup = withContext<
   HTMLDivElement,
@@ -199,7 +201,7 @@ export const MenuRadioItemGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuRadioItemProps
-  extends HTMLChakraProps<"div", ArkMenu.RadioItemProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.RadioItemBaseProps> {}
 
 export const MenuRadioItem = withContext<HTMLDivElement, MenuRadioItemProps>(
   ArkMenu.RadioItem,

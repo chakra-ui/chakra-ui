@@ -19,9 +19,11 @@ export { useDrawerStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerRootProps
-  extends ArkDialog.RootProps,
+  extends ArkDialog.RootBaseProps,
     SlotRecipeProps<"Drawer">,
-    UnstyledProp {}
+    UnstyledProp {
+  children: React.ReactNode
+}
 
 export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
@@ -30,7 +32,7 @@ export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root, {
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerTriggerProps
-  extends HTMLChakraProps<"button", ArkDialog.TriggerProps> {}
+  extends HTMLChakraProps<"button", ArkDialog.TriggerBaseProps> {}
 
 export const DrawerTrigger = withContext<HTMLButtonElement, DrawerTriggerProps>(
   ArkDialog.Trigger,
@@ -41,7 +43,7 @@ export const DrawerTrigger = withContext<HTMLButtonElement, DrawerTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerPositionerProps
-  extends HTMLChakraProps<"div", ArkDialog.PositionerProps> {}
+  extends HTMLChakraProps<"div", ArkDialog.PositionerBaseProps> {}
 
 export const DrawerPositioner = withContext<
   HTMLDivElement,
@@ -51,7 +53,7 @@ export const DrawerPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerContentProps
-  extends HTMLChakraProps<"section", ArkDialog.ContentProps> {}
+  extends HTMLChakraProps<"section", ArkDialog.ContentBaseProps> {}
 
 export const DrawerContent = withContext<HTMLDivElement, DrawerContentProps>(
   ArkDialog.Content,
@@ -62,7 +64,7 @@ export const DrawerContent = withContext<HTMLDivElement, DrawerContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerDescriptionProps
-  extends HTMLChakraProps<"p", ArkDialog.DescriptionProps> {}
+  extends HTMLChakraProps<"p", ArkDialog.DescriptionBaseProps> {}
 
 export const DrawerDescription = withContext<
   HTMLDivElement,
@@ -72,7 +74,7 @@ export const DrawerDescription = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerTitleProps
-  extends HTMLChakraProps<"h2", ArkDialog.TitleProps> {}
+  extends HTMLChakraProps<"h2", ArkDialog.TitleBaseProps> {}
 
 export const DrawerTitle = withContext<HTMLDivElement, DrawerTitleProps>(
   ArkDialog.Title,
@@ -83,7 +85,7 @@ export const DrawerTitle = withContext<HTMLDivElement, DrawerTitleProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerCloseTriggerProps
-  extends HTMLChakraProps<"button", ArkDialog.CloseTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkDialog.CloseTriggerBaseProps> {}
 
 export const DrawerCloseTrigger = withContext<
   HTMLButtonElement,
@@ -93,7 +95,7 @@ export const DrawerCloseTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DrawerBackdropProps
-  extends HTMLChakraProps<"div", ArkDialog.BackdropProps> {}
+  extends HTMLChakraProps<"div", ArkDialog.BackdropBaseProps> {}
 
 export const DrawerBackdrop = withContext<HTMLDivElement, DrawerBackdropProps>(
   ArkDialog.Backdrop,

@@ -21,7 +21,7 @@ export { useSelectStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectRootProps
-  extends HTMLChakraProps<"div", ArkSelect.RootProps<any>>,
+  extends HTMLChakraProps<"div", ArkSelect.RootBaseProps<any>>,
     SlotRecipeProps<"Select">,
     UnstyledProp {}
 
@@ -34,7 +34,7 @@ export const SelectRoot = withProvider<HTMLDivElement, SelectRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectTriggerProps
-  extends HTMLChakraProps<"button", ArkSelect.TriggerProps> {}
+  extends HTMLChakraProps<"button", ArkSelect.TriggerBaseProps> {}
 
 export const SelectTrigger = withContext<HTMLButtonElement, SelectTriggerProps>(
   ArkSelect.Trigger,
@@ -45,7 +45,7 @@ export const SelectTrigger = withContext<HTMLButtonElement, SelectTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectPositionerProps
-  extends HTMLChakraProps<"div", ArkSelect.PositionerProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.PositionerBaseProps> {}
 
 export const SelectPositioner = withContext<
   HTMLDivElement,
@@ -55,7 +55,7 @@ export const SelectPositioner = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectContentProps
-  extends HTMLChakraProps<"div", ArkSelect.ContentProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ContentBaseProps> {}
 
 export const SelectContent = withContext<HTMLDivElement, SelectContentProps>(
   ArkSelect.Content,
@@ -66,7 +66,7 @@ export const SelectContent = withContext<HTMLDivElement, SelectContentProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectValueTextProps
-  extends HTMLChakraProps<"span", ArkSelect.ValueTextProps> {}
+  extends HTMLChakraProps<"span", ArkSelect.ValueTextBaseProps> {}
 
 export const SelectValueText = withContext<
   HTMLSpanElement,
@@ -76,7 +76,7 @@ export const SelectValueText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectClearTriggerProps
-  extends HTMLChakraProps<"div", ArkSelect.IndicatorProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.IndicatorBaseProps> {}
 
 export const SelectClearTrigger = withContext<
   HTMLDivElement,
@@ -86,7 +86,7 @@ export const SelectClearTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemGroupProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemGroupProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemGroupBaseProps> {}
 
 export const SelectItemGroup = withContext<
   HTMLDivElement,
@@ -96,7 +96,7 @@ export const SelectItemGroup = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemGroupLabelProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemGroupLabelProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemGroupLabelBaseProps> {}
 
 export const SelectItemGroupLabel = withContext<
   HTMLDivElement,
@@ -106,7 +106,7 @@ export const SelectItemGroupLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemBaseProps> {}
 
 export const SelectItem = withContext<HTMLDivElement, SelectItemProps>(
   ArkSelect.Item,
@@ -117,7 +117,7 @@ export const SelectItem = withContext<HTMLDivElement, SelectItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemTextProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemTextProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemTextBaseProps> {}
 
 export const SelectItemText = withContext<HTMLDivElement, SelectItemTextProps>(
   ArkSelect.ItemText,
@@ -128,7 +128,7 @@ export const SelectItemText = withContext<HTMLDivElement, SelectItemTextProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectItemIndicatorProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps> {}
 
 export const SelectItemIndicator = withContext<
   HTMLDivElement,
@@ -138,7 +138,7 @@ export const SelectItemIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectIndicatorProps
-  extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps> {}
 
 export const SelectIndicator = withContext<
   HTMLDivElement,
@@ -148,7 +148,7 @@ export const SelectIndicator = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectControlProps
-  extends HTMLChakraProps<"div", ArkSelect.ControlProps> {}
+  extends HTMLChakraProps<"div", ArkSelect.ControlBaseProps> {}
 
 export const SelectControl = withContext<HTMLDivElement, SelectControlProps>(
   ArkSelect.Control,
@@ -159,7 +159,7 @@ export const SelectControl = withContext<HTMLDivElement, SelectControlProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface SelectLabelProps
-  extends HTMLChakraProps<"label", ArkSelect.LabelProps> {}
+  extends HTMLChakraProps<"label", ArkSelect.LabelBaseProps> {}
 
 export const SelectLabel = withContext<HTMLLabelElement, SelectLabelProps>(
   ArkSelect.Label,

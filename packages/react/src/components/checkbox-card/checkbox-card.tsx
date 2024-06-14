@@ -26,7 +26,7 @@ export { useCheckboxCardStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxCardRootProps
-  extends HTMLChakraProps<"label", ArkCheckbox.RootProps>,
+  extends HTMLChakraProps<"label", ArkCheckbox.RootBaseProps>,
     SlotRecipeProps<"CheckboxCard">,
     UnstyledProp {}
 
@@ -38,7 +38,7 @@ export const CheckboxCardRoot = withProvider<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxCardLabelProps
-  extends HTMLChakraProps<"span", ArkCheckbox.LabelProps> {}
+  extends HTMLChakraProps<"span", ArkCheckbox.LabelBaseProps> {}
 
 export const CheckboxCardLabel = withContext<
   HTMLElement,
@@ -48,7 +48,7 @@ export const CheckboxCardLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxCardControlProps
-  extends HTMLChakraProps<"div", ArkCheckbox.ControlProps> {}
+  extends HTMLChakraProps<"div", ArkCheckbox.ControlBaseProps> {}
 
 export const CheckboxCardControl = withContext<
   HTMLDivElement,
@@ -81,7 +81,7 @@ export const CheckboxCardIndicator = forwardRef<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CheckboxCardAddonProps
-  extends HTMLChakraProps<"div", ArkCheckbox.IndicatorProps> {}
+  extends HTMLChakraProps<"div", ArkCheckbox.IndicatorBaseProps> {}
 
 export const CheckboxCardAddon = withContext<
   HTMLElement,

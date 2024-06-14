@@ -19,7 +19,7 @@ export { useAccordionStyles }
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionRootProps
-  extends HTMLChakraProps<"div", ArkAccordion.RootProps>,
+  extends HTMLChakraProps<"div", ArkAccordion.RootBaseProps>,
     SlotRecipeProps<"Accordion">,
     UnstyledProp {}
 
@@ -32,7 +32,7 @@ export const AccordionRoot = withProvider<HTMLDivElement, AccordionRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemProps
-  extends HTMLChakraProps<"div", ArkAccordion.ItemProps> {}
+  extends HTMLChakraProps<"div", ArkAccordion.ItemBaseProps> {}
 
 export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
   ArkAccordion.Item,
@@ -43,7 +43,7 @@ export const AccordionItem = withContext<HTMLDivElement, AccordionItemProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemContentProps
-  extends HTMLChakraProps<"div", ArkAccordion.ItemContentProps> {}
+  extends HTMLChakraProps<"div", ArkAccordion.ItemContentBaseProps> {}
 
 export const AccordionItemContent = withContext<
   HTMLDivElement,
@@ -62,7 +62,7 @@ export const AccordionItemBody = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemTriggerProps
-  extends HTMLChakraProps<"button", ArkAccordion.ItemTriggerProps> {}
+  extends HTMLChakraProps<"button", ArkAccordion.ItemTriggerBaseProps> {}
 
 export const AccordionItemTrigger = withContext<
   HTMLDivElement,
@@ -72,7 +72,7 @@ export const AccordionItemTrigger = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface AccordionItemIndicatorProps
-  extends HTMLChakraProps<"button", ArkAccordion.ItemIndicatorProps> {}
+  extends HTMLChakraProps<"button", ArkAccordion.ItemIndicatorBaseProps> {}
 
 export const AccordionItemIndicator = withContext<
   HTMLDivElement,
