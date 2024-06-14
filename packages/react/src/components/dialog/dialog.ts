@@ -12,7 +12,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useDialogStyles,
-} = createStyleContext("Dialog")
+} = createStyleContext("dialog")
 
 export { useDialogStyles }
 
@@ -20,7 +20,7 @@ export { useDialogStyles }
 
 export interface DialogRootProps
   extends ArkDialog.RootProps,
-    SlotRecipeProps<"Dialog">,
+    SlotRecipeProps<"dialog">,
     UnstyledProp {
   children: React.ReactNode
 }

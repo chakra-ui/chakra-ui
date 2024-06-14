@@ -14,12 +14,12 @@ import { useFieldContext } from "./field-context"
 
 export interface HelpTextProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Label">,
+    RecipeProps<"label">,
     UnstyledProp {}
 
 export const HelpText = forwardRef<HTMLDivElement, HelpTextProps>(
   function HelpText({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("HelpText", props.recipe)
+    const recipe = useRecipe("helpText", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
     const field = useFieldContext()

@@ -14,7 +14,7 @@ import { AlertProvider, AlertStylesProvider } from "./alert-context"
 
 export interface AlertRootProps
   extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"Alert">,
+    SlotRecipeProps<"alert">,
     UnstyledProp {}
 
 /**

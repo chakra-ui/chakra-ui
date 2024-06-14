@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCircularProgressStyles,
-} = createStyleContext("CircularProgress")
+} = createStyleContext("circularProgress")
 
 export { useCircularProgressStyles }
 
@@ -22,7 +22,7 @@ export { useCircularProgressStyles }
 
 export interface CircularProgressRootProps
   extends HTMLChakraProps<"div", ArkProgress.RootBaseProps>,
-    SlotRecipeProps<"CircularProgress">,
+    SlotRecipeProps<"circularProgress">,
     UnstyledProp {}
 
 export const CircularProgressRoot = withProvider<

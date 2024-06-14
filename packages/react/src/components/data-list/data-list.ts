@@ -11,14 +11,14 @@ const {
   withProvider,
   withContext,
   useStyles: useDataListStyles,
-} = createStyleContext("DataList")
+} = createStyleContext("dataList")
 
 export { useDataListStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface DataListRootProps
-  extends HTMLChakraProps<"dl", SlotRecipeProps<"DataList">>,
+  extends HTMLChakraProps<"dl", SlotRecipeProps<"dataList">>,
     UnstyledProp {}
 
 export const DataListRoot = withProvider<HTMLDListElement, DataListRootProps>(

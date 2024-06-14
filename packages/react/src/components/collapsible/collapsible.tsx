@@ -12,7 +12,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCollapsibleStyles,
-} = createStyleContext("Collapsible")
+} = createStyleContext("collapsible")
 
 export { useCollapsibleStyles }
 
@@ -20,7 +20,7 @@ export { useCollapsibleStyles }
 
 export interface CollapsibleRootProps
   extends HTMLChakraProps<"div", ArkCollapsible.RootBaseProps>,
-    SlotRecipeProps<"Collapsible">,
+    SlotRecipeProps<"collapsible">,
     UnstyledProp {}
 
 export const CollapsibleRoot = withProvider<

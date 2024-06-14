@@ -838,7 +838,7 @@ After:
 import { chakra, useRecipe } from "@chakra-ui/react"
 
 function Alert(props) {
-  const recipe = useRecipe("Alert", props.recipe)
+  const recipe = useRecipe("alert", props.recipe)
   const [variantProps, elementProps] = recipe.splitVariantProps(props)
   return <chakra.div {...elementProps} css={recipe(variantProps)} />
 }

@@ -32,7 +32,7 @@ interface BaseEditableProps
 export interface EditableRootProps
   extends UseEditableProps,
     Omit<BaseEditableProps, "children">,
-    SlotRecipeProps<"Editable">,
+    SlotRecipeProps<"editable">,
     UnstyledProp {
   children?: MaybeRenderProp<EditableState>
 }

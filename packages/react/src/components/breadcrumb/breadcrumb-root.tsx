@@ -14,7 +14,7 @@ import { BreadcrumbStylesProvider } from "./breadcrumb-context"
 
 export interface BreadcrumbRootProps
   extends HTMLChakraProps<"nav">,
-    SlotRecipeProps<"Breadcrumb">,
+    SlotRecipeProps<"breadcrumb">,
     UnstyledProp {}
 
 /**

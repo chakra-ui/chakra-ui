@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useHoverCardStyles,
-} = createStyleContext("HoverCard")
+} = createStyleContext("hoverCard")
 
 export { useHoverCardStyles }
 
@@ -22,7 +22,7 @@ export { useHoverCardStyles }
 
 export interface HoverCardRootProps
   extends ArkHoverCard.RootBaseProps,
-    SlotRecipeProps<"HoverCard">,
+    SlotRecipeProps<"hoverCard">,
     UnstyledProp {
   children: React.ReactNode
 }

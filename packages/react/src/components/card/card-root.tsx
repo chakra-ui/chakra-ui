@@ -30,7 +30,7 @@ export interface CardOptions {
 
 export interface CardRootProps
   extends HTMLChakraProps<"div", CardOptions>,
-    SlotRecipeProps<"Card">,
+    SlotRecipeProps<"card">,
     UnstyledProp {}
 
 export const CardRoot = forwardRef<HTMLDivElement, CardRootProps>(

@@ -14,7 +14,7 @@ import { TagStylesProvider } from "./tag-context"
 
 export interface TagRootProps
   extends HTMLChakraProps<"span">,
-    SlotRecipeProps<"Tag">,
+    SlotRecipeProps<"tag">,
     UnstyledProp {
   /**
    * If `true`, the tag will be interactive

@@ -10,7 +10,7 @@ export const Basic = () => <Spinner />
 export const WithColor = () => <Spinner color="red.500" />
 
 export const WithSizes = () => {
-  const recipe = useRecipe("Spinner")
+  const recipe = useRecipe("spinner")
   return (
     <div>
       <For each={recipe.variantMap.size}>

@@ -23,7 +23,7 @@ import { useCheckbox } from "./use-checkbox"
 
 export interface CheckboxRootProps
   extends HTMLChakraProps<"label", UseCheckboxProps>,
-    SlotRecipeProps<"Checkbox">,
+    SlotRecipeProps<"checkbox">,
     UnstyledProp {
   /**
    * Additional props to be forwarded to the `input` element

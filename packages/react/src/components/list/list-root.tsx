@@ -27,7 +27,7 @@ interface ListOptions {
 
 export interface ListRootProps
   extends HTMLChakraProps<"ul">,
-    SlotRecipeProps<"List">,
+    SlotRecipeProps<"list">,
     UnstyledProp,
     ListOptions {}
 

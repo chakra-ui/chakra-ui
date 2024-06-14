@@ -115,7 +115,7 @@ const Flex = chakra("div", {
 })
 
 export const WithRecipe = () => {
-  const button = useRecipe("Button")
+  const button = useRecipe("button")
   return (
     <Flex align="center" gap="40px">
       <button>Welcome</button>

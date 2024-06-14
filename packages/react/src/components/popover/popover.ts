@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: usePopoverStyles,
-} = createStyleContext("Popover")
+} = createStyleContext("popover")
 
 export { usePopoverStyles }
 
@@ -22,7 +22,7 @@ export { usePopoverStyles }
 
 export interface PopoverRootProps
   extends ArkPopover.RootBaseProps,
-    SlotRecipeProps<"Popover">,
+    SlotRecipeProps<"popover">,
     UnstyledProp {
   children: React.ReactNode
 }

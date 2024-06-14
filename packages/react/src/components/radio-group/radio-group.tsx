@@ -16,7 +16,7 @@ const {
   withProvider,
   withContext,
   useStyles: useRadioGroupStyles,
-} = createStyleContext("RadioGroup")
+} = createStyleContext("radioGroup")
 
 export { useRadioGroupStyles }
 
@@ -24,7 +24,7 @@ export { useRadioGroupStyles }
 
 export interface RadioGroupRootProps
   extends HTMLChakraProps<"div", ArkRadioGroup.RootBaseProps>,
-    SlotRecipeProps<"RadioGroup">,
+    SlotRecipeProps<"radioGroup">,
     UnstyledProp {}
 
 export const RadioGroupRoot = withProvider<HTMLDivElement, RadioGroupRootProps>(

@@ -13,7 +13,7 @@ import {
 
 export interface LinkProps
   extends HTMLChakraProps<"a">,
-    RecipeProps<"Link">,
+    RecipeProps<"link">,
     UnstyledProp {
   /**
    *  If `true`, the link will open in new tab
@@ -31,7 +31,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   { unstyled, external, ...props },
   ref,
 ) {
-  const recipe = useRecipe("Link", props.recipe)
+  const recipe = useRecipe("link", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

@@ -15,7 +15,7 @@ import { StatStylesProvider } from "./stat-context"
 export interface StatRootProps
   extends HTMLChakraProps<"div">,
     UnstyledProp,
-    SlotRecipeProps<"Stat"> {}
+    SlotRecipeProps<"stat"> {}
 
 /**
  * The `Stat` component is used to display some statistics.

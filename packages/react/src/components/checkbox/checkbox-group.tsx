@@ -11,7 +11,7 @@ import { useCheckboxGroup } from "./use-checkbox-group"
 
 export interface CheckboxGroupProps
   extends UseCheckboxGroupProps,
-    SlotRecipeProps<"Checkbox"> {
+    SlotRecipeProps<"checkbox"> {
   children?: React.ReactNode
 }
 

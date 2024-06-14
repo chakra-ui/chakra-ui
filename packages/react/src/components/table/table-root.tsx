@@ -21,7 +21,7 @@ export interface TableRootProps
   extends HTMLChakraProps<"table">,
     TableOptions,
     UnstyledProp,
-    SlotRecipeProps<"Table"> {
+    SlotRecipeProps<"table"> {
   /**
    * If `true`, the table will style its descendants with nested selectors
    */

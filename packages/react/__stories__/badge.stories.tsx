@@ -15,7 +15,7 @@ export default {
 }
 
 export const Variants = () => {
-  const recipe = useRecipe("Badge")
+  const recipe = useRecipe("badge")
   return (
     <PlaygroundTable>
       <thead>
@@ -51,7 +51,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useRecipe("Badge")
+  const recipe = useRecipe("badge")
   return (
     <PlaygroundTable>
       <thead>

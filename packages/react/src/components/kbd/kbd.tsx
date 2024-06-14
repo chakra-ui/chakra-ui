@@ -13,7 +13,7 @@ import {
 
 export interface KbdProps
   extends HTMLChakraProps<"kbd">,
-    RecipeProps<"Kbd">,
+    RecipeProps<"kbd">,
     UnstyledProp {}
 
 /**
@@ -32,7 +32,7 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(
   { unstyled, ...props },
   ref,
 ) {
-  const recipe = useRecipe("Kbd", props.recipe)
+  const recipe = useRecipe("kbd", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

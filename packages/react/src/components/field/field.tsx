@@ -17,7 +17,7 @@ import { useFieldState } from "./use-field-state"
 
 export interface FieldProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Field">,
+    RecipeProps<"field">,
     FieldContext,
     UnstyledProp {}
 
@@ -25,7 +25,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
   { unstyled, ...props },
   ref,
 ) {
-  const recipe = useRecipe("Field", props.recipe)
+  const recipe = useRecipe("field", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

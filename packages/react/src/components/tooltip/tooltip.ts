@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useTooltipStyles,
-} = createStyleContext("Tooltip")
+} = createStyleContext("tooltip")
 
 export { useTooltipStyles }
 
@@ -22,7 +22,7 @@ export { useTooltipStyles }
 
 export interface TooltipRootProps
   extends ArkTooltip.RootProps,
-    SlotRecipeProps<"Tooltip">,
+    SlotRecipeProps<"tooltip">,
     UnstyledProp {}
 
 export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root)

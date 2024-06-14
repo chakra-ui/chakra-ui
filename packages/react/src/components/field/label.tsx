@@ -14,14 +14,14 @@ import { useFieldContext } from "./field-context"
 
 export interface LabelProps
   extends HTMLChakraProps<"label">,
-    RecipeProps<"Label">,
+    RecipeProps<"label">,
     UnstyledProp {}
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   { unstyled, ...props },
   ref,
 ) {
-  const recipe = useRecipe("Label", props.recipe)
+  const recipe = useRecipe("label", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

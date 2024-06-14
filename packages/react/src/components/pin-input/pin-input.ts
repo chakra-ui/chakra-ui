@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: usePinInputStyles,
-} = createStyleContext("PinInput")
+} = createStyleContext("pinInput")
 
 export { usePinInputStyles }
 
@@ -22,7 +22,7 @@ export { usePinInputStyles }
 
 export interface PinInputRootProps
   extends HTMLChakraProps<"div", ArkPinInput.RootBaseProps>,
-    SlotRecipeProps<"PinInput">,
+    SlotRecipeProps<"pinInput">,
     UnstyledProp {}
 
 export const PinInputRoot = withProvider<HTMLDivElement, PinInputRootProps>(

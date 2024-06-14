@@ -12,7 +12,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAccordionStyles,
-} = createStyleContext("Accordion")
+} = createStyleContext("accordion")
 
 export { useAccordionStyles }
 
@@ -20,7 +20,7 @@ export { useAccordionStyles }
 
 export interface AccordionRootProps
   extends HTMLChakraProps<"div", ArkAccordion.RootBaseProps>,
-    SlotRecipeProps<"Accordion">,
+    SlotRecipeProps<"accordion">,
     UnstyledProp {}
 
 export const AccordionRoot = withProvider<HTMLDivElement, AccordionRootProps>(

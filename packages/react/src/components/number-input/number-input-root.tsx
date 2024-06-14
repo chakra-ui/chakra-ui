@@ -16,7 +16,7 @@ import { splitNumberInputProps } from "./number-input-props"
 import { type UseNumberInputProps, useNumberInput } from "./use-number-input"
 
 export interface NumberInputRootProps
-  extends SlotRecipeProps<"NumberInput">,
+  extends SlotRecipeProps<"numberInput">,
     HTMLChakraProps<"div", UseNumberInputProps> {}
 
 /**

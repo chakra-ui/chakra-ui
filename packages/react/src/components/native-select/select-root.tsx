@@ -15,7 +15,7 @@ import { SelectContextProvider, SelectStylesProvider } from "./select-context"
 
 export interface NativeSelectRootProps
   extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"NativeSelect">,
+    SlotRecipeProps<"nativeSelect">,
     FieldOptions,
     UnstyledProp {}
 

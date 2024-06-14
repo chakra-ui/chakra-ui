@@ -100,28 +100,28 @@ export interface RadiomarkVariantProps {
 }
 
 export interface ConfigRecipes {
-  Badge: SystemRecipeFn<BadgeVariantProps>
-  Button: SystemRecipeFn<ButtonVariantProps>
-  Code: SystemRecipeFn<CodeVariantProps>
-  Container: SystemRecipeFn<ContainerVariantProps>
-  Heading: SystemRecipeFn<HeadingVariantProps>
-  Input: SystemRecipeFn<InputVariantProps>
-  InputAddon: SystemRecipeFn<InputAddonVariantProps>
-  Kbd: SystemRecipeFn<KbdVariantProps>
-  Link: SystemRecipeFn<LinkVariantProps>
-  Mark: SystemRecipeFn<MarkVariantProps>
-  Separator: SystemRecipeFn<SeparatorVariantProps>
-  Skeleton: SystemRecipeFn<SkeletonVariantProps>
-  SkipLink: SystemRecipeFn<SkipLinkVariantProps>
-  Spinner: SystemRecipeFn<SpinnerVariantProps>
-  Textarea: SystemRecipeFn<TextareaVariantProps>
-  Icon: SystemRecipeFn<IconVariantProps>
-  Field: SystemRecipeFn<FieldVariantProps>
-  ErrorMessage: SystemRecipeFn<ErrorMessageVariantProps>
-  HelpText: SystemRecipeFn<HelpTextVariantProps>
-  Label: SystemRecipeFn<LabelVariantProps>
-  Checkmark: SystemRecipeFn<CheckmarkVariantProps>
-  Radiomark: SystemRecipeFn<RadiomarkVariantProps>
+  badge: SystemRecipeFn<BadgeVariantProps>
+  button: SystemRecipeFn<ButtonVariantProps>
+  code: SystemRecipeFn<CodeVariantProps>
+  container: SystemRecipeFn<ContainerVariantProps>
+  heading: SystemRecipeFn<HeadingVariantProps>
+  input: SystemRecipeFn<InputVariantProps>
+  inputAddon: SystemRecipeFn<InputAddonVariantProps>
+  kbd: SystemRecipeFn<KbdVariantProps>
+  link: SystemRecipeFn<LinkVariantProps>
+  mark: SystemRecipeFn<MarkVariantProps>
+  separator: SystemRecipeFn<SeparatorVariantProps>
+  skeleton: SystemRecipeFn<SkeletonVariantProps>
+  skipLink: SystemRecipeFn<SkipLinkVariantProps>
+  spinner: SystemRecipeFn<SpinnerVariantProps>
+  textarea: SystemRecipeFn<TextareaVariantProps>
+  icon: SystemRecipeFn<IconVariantProps>
+  field: SystemRecipeFn<FieldVariantProps>
+  errorMessage: SystemRecipeFn<ErrorMessageVariantProps>
+  helpText: SystemRecipeFn<HelpTextVariantProps>
+  label: SystemRecipeFn<LabelVariantProps>
+  checkmark: SystemRecipeFn<CheckmarkVariantProps>
+  radiomark: SystemRecipeFn<RadiomarkVariantProps>
 }
 
 // Accordion
@@ -431,6 +431,7 @@ export type SelectSlot =
   | "itemIndicator"
   | "itemGroup"
   | "itemGroupLabel"
+  | "list"
   | "content"
   | "root"
   | "control"
@@ -646,83 +647,91 @@ export interface SegmentGroupVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+// Collapsible
+
+export type CollapsibleSlot = "root" | "trigger" | "content"
+
+export interface CollapsibleVariantProps {}
+
 export interface ConfigSlotRecipes {
-  Accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
-  Alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
-  Avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariantProps>
-  Breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps>
-  Blockquote: SystemSlotRecipeFn<BlockquoteSlot, BlockquoteVariantProps>
-  Card: SystemSlotRecipeFn<CardSlot, CardVariantProps>
-  Checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps>
-  Dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>
-  Drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
-  Editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
-  FileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps>
-  List: SystemSlotRecipeFn<ListSlot, ListVariantProps>
-  Menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
-  NativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>
-  NumberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariantProps>
-  Popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
-  HoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
-  Progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
-  RadioGroup: SystemSlotRecipeFn<RadioGroupSlot, RadioGroupVariantProps>
-  Select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps>
-  Slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
-  Stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
-  Steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps>
-  Switch: SystemSlotRecipeFn<SwitchSlot, SwitchVariantProps>
-  Table: SystemSlotRecipeFn<TableSlot, TableVariantProps>
-  Tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
-  Tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
-  Toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
-  Tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
-  CircularProgress: SystemSlotRecipeFn<
+  accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
+  alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
+  avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariantProps>
+  breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps>
+  blockquote: SystemSlotRecipeFn<BlockquoteSlot, BlockquoteVariantProps>
+  card: SystemSlotRecipeFn<CardSlot, CardVariantProps>
+  checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps>
+  dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>
+  drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
+  editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
+  fileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps>
+  list: SystemSlotRecipeFn<ListSlot, ListVariantProps>
+  menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
+  nativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>
+  numberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariantProps>
+  popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
+  hoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
+  progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
+  radioGroup: SystemSlotRecipeFn<RadioGroupSlot, RadioGroupVariantProps>
+  select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps>
+  slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
+  stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
+  steps: SystemSlotRecipeFn<StepsSlot, StepsVariantProps>
+  switch: SystemSlotRecipeFn<SwitchSlot, SwitchVariantProps>
+  table: SystemSlotRecipeFn<TableSlot, TableVariantProps>
+  tabs: SystemSlotRecipeFn<TabsSlot, TabsVariantProps>
+  tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
+  toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
+  tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
+  circularProgress: SystemSlotRecipeFn<
     CircularProgressSlot,
     CircularProgressVariantProps
   >
-  DataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
-  PinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
-  EmptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps>
-  CheckboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
-  SegmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps>
+  dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
+  pinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
+  emptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps>
+  checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
+  segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps>
+  collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps>
 }
 
 export interface ConfigRecipeSlots {
-  Accordion: AccordionSlot
-  Alert: AlertSlot
-  Avatar: AvatarSlot
-  Breadcrumb: BreadcrumbSlot
-  Blockquote: BlockquoteSlot
-  Card: CardSlot
-  Checkbox: CheckboxSlot
-  Dialog: DialogSlot
-  Drawer: DrawerSlot
-  Editable: EditableSlot
-  FileUpload: FileUploadSlot
-  List: ListSlot
-  Menu: MenuSlot
-  NativeSelect: NativeSelectSlot
-  NumberInput: NumberInputSlot
-  Popover: PopoverSlot
-  HoverCard: HoverCardSlot
-  Progress: ProgressSlot
-  RadioGroup: RadioGroupSlot
-  Select: SelectSlot
-  Slider: SliderSlot
-  Stat: StatSlot
-  Steps: StepsSlot
-  Switch: SwitchSlot
-  Table: TableSlot
-  Tabs: TabsSlot
-  Tag: TagSlot
-  Toast: ToastSlot
-  Tooltip: TooltipSlot
-  CircularProgress: CircularProgressSlot
-  DataList: DataListSlot
-  PinInput: PinInputSlot
-  EmptyState: EmptyStateSlot
-  CheckboxCard: CheckboxCardSlot
-  SegmentGroup: SegmentGroupSlot
+  accordion: AccordionSlot
+  alert: AlertSlot
+  avatar: AvatarSlot
+  breadcrumb: BreadcrumbSlot
+  blockquote: BlockquoteSlot
+  card: CardSlot
+  checkbox: CheckboxSlot
+  dialog: DialogSlot
+  drawer: DrawerSlot
+  editable: EditableSlot
+  fileUpload: FileUploadSlot
+  list: ListSlot
+  menu: MenuSlot
+  nativeSelect: NativeSelectSlot
+  numberInput: NumberInputSlot
+  popover: PopoverSlot
+  hoverCard: HoverCardSlot
+  progress: ProgressSlot
+  radioGroup: RadioGroupSlot
+  select: SelectSlot
+  slider: SliderSlot
+  stat: StatSlot
+  steps: StepsSlot
+  switch: SwitchSlot
+  table: TableSlot
+  tabs: TabsSlot
+  tag: TagSlot
+  toast: ToastSlot
+  tooltip: TooltipSlot
+  circularProgress: CircularProgressSlot
+  dataList: DataListSlot
+  pinInput: PinInputSlot
+  emptyState: EmptyStateSlot
+  checkboxCard: CheckboxCardSlot
+  segmentGroup: SegmentGroupSlot
+  collapsible: CollapsibleSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots

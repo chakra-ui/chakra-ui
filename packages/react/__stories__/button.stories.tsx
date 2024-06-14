@@ -41,7 +41,7 @@ export default {
 } satisfies Meta
 
 export const Variants = () => {
-  const recipe = useRecipe("Button")
+  const recipe = useRecipe("button")
   return (
     <PlaygroundTable>
       <thead>
@@ -77,7 +77,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useRecipe("Button")
+  const recipe = useRecipe("button")
   return (
     <PlaygroundTable>
       <thead>

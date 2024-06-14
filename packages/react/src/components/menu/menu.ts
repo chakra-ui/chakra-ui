@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useMenuStyles,
-} = createStyleContext("Menu")
+} = createStyleContext("menu")
 
 export { useMenuStyles }
 
@@ -22,7 +22,7 @@ export { useMenuStyles }
 
 export interface MenuRootProps
   extends ArkMenu.RootBaseProps,
-    SlotRecipeProps<"Menu">,
+    SlotRecipeProps<"menu">,
     UnstyledProp {
   children: React.ReactNode
 }

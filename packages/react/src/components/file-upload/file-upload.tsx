@@ -8,13 +8,13 @@ import {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const { withProvider, withContext } = createStyleContext("FileUpload")
+const { withProvider, withContext } = createStyleContext("fileUpload")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FileUploadRootProps
   extends HTMLChakraProps<"div", ArkFileUpload.RootBaseProps>,
-    SlotRecipeProps<"FileUpload">,
+    SlotRecipeProps<"fileUpload">,
     UnstyledProp {}
 
 export const FileUploadRoot = withProvider<HTMLDivElement, FileUploadRootProps>(

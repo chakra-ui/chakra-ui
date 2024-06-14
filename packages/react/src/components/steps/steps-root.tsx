@@ -18,7 +18,7 @@ import {
 
 export interface StepsRootProps
   extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"Steps">,
+    SlotRecipeProps<"steps">,
     UnstyledProp {
   /**
    * The active step index

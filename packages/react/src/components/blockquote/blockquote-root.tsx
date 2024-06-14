@@ -14,7 +14,7 @@ import { BlockquoteStylesProvider } from "./blockquote-context"
 
 export interface BlockquoteRootProps
   extends HTMLChakraProps<"figure">,
-    SlotRecipeProps<"Blockquote">,
+    SlotRecipeProps<"blockquote">,
     UnstyledProp {}
 
 export const BlockquoteRoot = forwardRef<HTMLElement, BlockquoteRootProps>(

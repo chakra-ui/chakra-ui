@@ -17,7 +17,7 @@ import { SwitchContextProvider, SwitchStylesProvider } from "./switch-context"
 export interface SwitchRootProps
   extends HTMLChakraProps<"label", UseCheckboxProps>,
     UnstyledProp,
-    SlotRecipeProps<"Switch"> {}
+    SlotRecipeProps<"switch"> {}
 
 /**
  * The `Switch` component is used as an alternative for the checkbox component for switching between "enabled" and "disabled" states.
