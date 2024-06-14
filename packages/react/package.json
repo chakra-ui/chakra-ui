@@ -38,8 +38,8 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
-    "@ark-ui/anatomy": "3.2.0",
-    "@ark-ui/react": "3.0.2",
+    "@ark-ui/anatomy": "3.3.1",
+    "@ark-ui/react": "3.4.0-0",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@pandacss/is-valid-prop": "0.40.0",
