@@ -28,7 +28,7 @@ export interface StepsRootProps
 
 export const StepsRoot = forwardRef<HTMLDivElement, StepsRootProps>(
   function StepsRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Steps", props.recipe)
+    const recipe = useSlotRecipe("steps", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

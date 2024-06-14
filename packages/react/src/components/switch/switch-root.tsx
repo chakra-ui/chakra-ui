@@ -27,7 +27,7 @@ export interface SwitchRootProps
  */
 export const SwitchRoot = forwardRef<HTMLInputElement, SwitchRootProps>(
   function SwitchRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Switch", props.recipe)
+    const recipe = useSlotRecipe("switch", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

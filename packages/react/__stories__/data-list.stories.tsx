@@ -6,7 +6,7 @@ export default {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("DataList")
+  const recipe = useSlotRecipe("dataList")
   return (
     <PlaygroundTable>
       <thead>
@@ -47,7 +47,7 @@ export const Sizes = () => {
 }
 
 export const Orientation = () => {
-  const recipe = useSlotRecipe("DataList")
+  const recipe = useSlotRecipe("dataList")
   return (
     <PlaygroundTable>
       <thead>

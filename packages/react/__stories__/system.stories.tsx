@@ -127,7 +127,7 @@ export const WithRecipe = () => {
 }
 
 export const WithSlotRecipe = () => {
-  const alert = useSlotRecipe("Alert")
+  const alert = useSlotRecipe("alert")
   const styles = alert({ variant: "solid" })
   return (
     <chakra.button className="reset" css={styles["root"]}>

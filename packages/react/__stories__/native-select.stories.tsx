@@ -24,7 +24,7 @@ const DemoSelect = (props: Select.RootProps) => (
 )
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("NativeSelect")
+  const recipe = useSlotRecipe("nativeSelect")
   return (
     <PlaygroundTable>
       <tbody>
@@ -48,7 +48,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("NativeSelect")
+  const recipe = useSlotRecipe("nativeSelect")
   return (
     <PlaygroundTable>
       <tbody>

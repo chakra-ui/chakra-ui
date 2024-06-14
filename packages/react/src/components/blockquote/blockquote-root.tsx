@@ -19,7 +19,7 @@ export interface BlockquoteRootProps
 
 export const BlockquoteRoot = forwardRef<HTMLElement, BlockquoteRootProps>(
   function BlockquoteRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Blockquote", props.recipe)
+    const recipe = useSlotRecipe("blockquote", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
     console.log(styles)

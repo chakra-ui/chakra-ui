@@ -31,7 +31,7 @@ export interface NumberInputRootProps
  */
 export const NumberInputRoot = forwardRef<HTMLDivElement, NumberInputRootProps>(
   function NumberInputRoot(props, ref) {
-    const recipe = useSlotRecipe("NumberInput")
+    const recipe = useSlotRecipe("numberInput")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

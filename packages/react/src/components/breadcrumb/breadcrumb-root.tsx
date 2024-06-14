@@ -26,7 +26,7 @@ export interface BreadcrumbRootProps
  */
 export const BreadcrumbRoot = forwardRef<HTMLElement, BreadcrumbRootProps>(
   function BreadcrumbRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Breadcrumb", props.recipe)
+    const recipe = useSlotRecipe("breadcrumb", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

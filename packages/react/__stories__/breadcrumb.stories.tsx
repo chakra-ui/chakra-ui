@@ -43,7 +43,7 @@ const DemoBreadcrumb = (
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Breadcrumb")
+  const recipe = useSlotRecipe("breadcrumb")
   return (
     <PlaygroundTable>
       <thead>
@@ -84,7 +84,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Breadcrumb")
+  const recipe = useSlotRecipe("breadcrumb")
   return (
     <PlaygroundTable>
       <thead>

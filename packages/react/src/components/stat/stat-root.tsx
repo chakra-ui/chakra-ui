@@ -24,7 +24,7 @@ export interface StatRootProps
  */
 export const StatRoot = forwardRef<HTMLDivElement, StatRootProps>(
   function StatRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Stat", props.recipe)
+    const recipe = useSlotRecipe("stat", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

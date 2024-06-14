@@ -22,7 +22,7 @@ export interface CheckboxGroupProps
  * @see Docs https://chakra-ui.com/checkbox
  */
 export function CheckboxGroup(props: CheckboxGroupProps) {
-  const recipe = useSlotRecipe("Checkbox", props.recipe)
+  const recipe = useSlotRecipe("checkbox", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
 
   const { children, ...hookProps } = localProps

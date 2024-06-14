@@ -18,7 +18,7 @@ const DemoBlockquote = (props: Blockquote.RootProps) => (
 )
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Blockquote")
+  const recipe = useSlotRecipe("blockquote")
   return (
     <PlaygroundTable>
       <thead>

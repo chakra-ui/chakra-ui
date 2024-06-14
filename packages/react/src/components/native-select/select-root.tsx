@@ -28,7 +28,7 @@ export const NativeSelectRoot = forwardRef<
   HTMLDivElement,
   NativeSelectRootProps
 >(function NativeSelectRoot({ unstyled, ...props }, ref) {
-  const recipe = useSlotRecipe("NativeSelect", props.recipe)
+  const recipe = useSlotRecipe("nativeSelect", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

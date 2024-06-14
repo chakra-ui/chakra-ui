@@ -35,7 +35,7 @@ const DemoProgress = (props: Progress.RootProps) => {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Progress")
+  const recipe = useSlotRecipe("progress")
   return (
     <PlaygroundTable>
       <thead>
@@ -84,7 +84,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Progress")
+  const recipe = useSlotRecipe("progress")
   return (
     <PlaygroundTable>
       <thead>

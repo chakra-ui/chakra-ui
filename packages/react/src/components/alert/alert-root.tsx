@@ -26,7 +26,7 @@ export interface AlertRootProps
  */
 export const AlertRoot = forwardRef<HTMLDivElement, AlertRootProps>(
   function AlertRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Alert", props.recipe)
+    const recipe = useSlotRecipe("alert", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

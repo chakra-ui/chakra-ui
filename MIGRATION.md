@@ -868,7 +868,7 @@ After:
 import { chakra, useSlotRecipe } from "@chakra-ui/react"
 
 function Alert(props) {
-  const recipe = useSlotRecipe("Alert", props.recipe)
+  const recipe = useSlotRecipe("alert", props.recipe)
   const [variantProps, elementProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
   return (

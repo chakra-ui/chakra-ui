@@ -42,7 +42,7 @@ export const Basic = () => {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("RadioGroup")
+  const recipe = useSlotRecipe("radioGroup")
   return (
     <PlaygroundTable>
       <thead>
@@ -86,7 +86,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("RadioGroup")
+  const recipe = useSlotRecipe("radioGroup")
   return (
     <PlaygroundTable>
       <thead>

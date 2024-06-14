@@ -29,7 +29,7 @@ export interface TagRootProps
  */
 export const TagRoot = forwardRef<HTMLSpanElement, TagRootProps>(
   function TagRoot({ unstyled, interactive, ...props }, ref) {
-    const recipe = useSlotRecipe("Tag", props.recipe)
+    const recipe = useSlotRecipe("tag", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
