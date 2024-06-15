@@ -1,4 +1,4 @@
-import { act, fireEvent, screen, waitFor } from "@testing-library/react"
+import { fireEvent, screen, waitFor } from "@testing-library/react"
 import { Field, HelpText, Label, NumberInput } from "../src"
 import { render, testA11y } from "./core"
 
@@ -30,57 +30,53 @@ describe("NumberInput", () => {
   test("should increment on press increment button", async () => {
     const { user } = renderComponent()
 
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
     expect(input()).toHaveValue("1")
 
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
     expect(input()).toHaveValue("2")
   })
 
   test("should increase/decrease with keyboard", async () => {
-    renderComponent()
+    const { user } = renderComponent()
 
     fireEvent.focus(input())
 
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowUp" }))
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowUp" }))
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowUp" }))
+    await user.type(input(), "{arrowup}")
+    await user.type(input(), "{arrowup}")
+    await user.type(input(), "{arrowup}")
     expect(input()).toHaveValue("3")
 
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowDown" }))
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowDown" }))
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowDown" }))
+    await user.type(input(), "{arrowdown}")
+    await user.type(input(), "{arrowdown}")
+    await user.type(input(), "{arrowdown}")
     expect(input()).toHaveValue("0")
 
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowUp" }))
+    await user.type(input(), "{arrowup}")
     expect(input()).toHaveValue("1")
 
-    await act(() => fireEvent.keyDown(input(), { key: "Home" }))
+    await user.type(input(), "{home}")
     expect(input()).toHaveValue("-9007199254740991")
 
-    await act(() => fireEvent.keyDown(input(), { key: "End" }))
+    await user.type(input(), "{end}")
     expect(input()).toHaveValue("9007199254740991")
   })
 
   test("should increase/decrease by 10*step on shift+Arrow", async () => {
-    renderComponent({ defaultValue: 0 })
+    const { user } = renderComponent({ defaultValue: 0 })
 
     fireEvent.focus(input())
 
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowUp" }))
+    await user.type(input(), "{arrowup}")
     expect(input()).toHaveValue("1")
 
-    await act(() =>
-      fireEvent.keyDown(input(), { key: "ArrowUp", shiftKey: true }),
-    )
+    await user.type(input(), "{shift>}{ArrowUp}")
     expect(input()).toHaveValue("11")
 
-    await act(() =>
-      fireEvent.keyDown(input(), { key: "ArrowDown", shiftKey: true }),
-    )
+    await user.type(input(), "{shift>}{ArrowDown}")
     expect(input()).toHaveValue("1")
 
-    await act(() => fireEvent.keyDown(input(), { key: "ArrowDown" }))
+    await user.type(input(), "{arrowdown}")
     expect(input()).toHaveValue("0")
   })
 
@@ -91,16 +87,16 @@ describe("NumberInput", () => {
       precision: 2,
     })
 
-    await act(() => user.type(input(), "[ArrowUp]"))
+    await user.type(input(), "[ArrowUp]")
     expect(input()).toHaveValue("0.10")
 
-    await act(() => user.keyboard("[ControlLeft>][ArrowUp][/ControlLeft]"))
+    await user.keyboard("[ControlLeft>][ArrowUp][/ControlLeft]")
     expect(input()).toHaveValue("0.11")
 
-    await act(() => user.keyboard("[ControlLeft>][ArrowDown][/ControlLeft]"))
+    await user.keyboard("[ControlLeft>][ArrowDown][/ControlLeft]")
     expect(input()).toHaveValue("0.10")
 
-    await act(() => user.keyboard("[ArrowDown]"))
+    await user.keyboard("[ArrowDown]")
     expect(input()).toHaveValue("0.00")
   })
 
@@ -112,19 +108,19 @@ describe("NumberInput", () => {
     })
 
     expect(input()).toHaveValue("0.00")
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
 
     expect(input()).toHaveValue("0.65")
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
 
     expect(input()).toHaveValue("1.30")
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
 
     expect(input()).toHaveValue("1.95")
-    await act(() => user.click(downBtn()))
+    await user.click(downBtn())
 
     expect(input()).toHaveValue("1.30")
-    await act(() => user.type(input(), "1234"))
+    await user.type(input(), "1234")
 
     await waitFor(() => expect(input()).toHaveValue("1.301234"))
     fireEvent.blur(input())
@@ -136,7 +132,7 @@ describe("NumberInput", () => {
     const onChange = vi.fn()
 
     const { user } = renderComponent({ onChange })
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
 
     expect(onChange).toBeCalled()
     expect(onChange).toBeCalledWith("1", 1)
@@ -145,7 +141,7 @@ describe("NumberInput", () => {
   test("should constrain value onBlur", async () => {
     const { user } = renderComponent({ max: 30, precision: 2 })
 
-    await act(() => user.type(input(), "34.55"))
+    await user.type(input(), "34.55")
     fireEvent.blur(input())
 
     expect(input()).toHaveValue("30.00")
@@ -193,7 +189,7 @@ describe("NumberInput", () => {
 
   test("should reset value if `e` is typed", async () => {
     const { user } = renderComponent({ max: 30, min: 1 })
-    await act(() => user.type(input(), "e"))
+    await user.type(input(), "e")
     fireEvent.blur(input())
     expect(input()).toHaveValue("")
   })
@@ -212,20 +208,20 @@ describe("NumberInput", () => {
     })
 
     expect(input()).toHaveValue("0,00")
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
 
     expect(input()).toHaveValue("0,65")
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
 
     expect(input()).toHaveValue("1,30")
-    await act(() => user.click(upBtn()))
+    await user.click(upBtn())
 
     expect(input()).toHaveValue("1,95")
-    await act(() => user.click(downBtn()))
+    await user.click(downBtn())
 
     expect(input()).toHaveValue("1,30")
 
-    await act(() => user.type(input(), "1234"))
+    await user.type(input(), "1234")
     await waitFor(() => expect(input()).toHaveValue("1,301234"))
 
     fireEvent.blur(input())
