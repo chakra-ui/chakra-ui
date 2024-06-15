@@ -17,7 +17,7 @@ import { linkRecipe } from "./recipes/link"
 import { markRecipe } from "./recipes/mark"
 import { radiomarkRecipe } from "./recipes/radiomark"
 import { skeletonRecipe } from "./recipes/skeleton"
-import { skipLinkRecipe } from "./recipes/skip-link"
+import { skipNavLinkRecipe } from "./recipes/skip-nav-link"
 import { spinnerRecipe } from "./recipes/spinner"
 import { textareaRecipe } from "./recipes/textarea"
 
@@ -34,7 +34,7 @@ export const recipes = {
   mark: markRecipe,
   separator: separatorRecipe,
   skeleton: skeletonRecipe,
-  skipLink: skipLinkRecipe,
+  skipNavLink: skipNavLinkRecipe,
   spinner: spinnerRecipe,
   textarea: textareaRecipe,
   icon: iconRecipe,

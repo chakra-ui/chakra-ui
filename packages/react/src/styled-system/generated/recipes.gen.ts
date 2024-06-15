@@ -68,7 +68,7 @@ export interface SkeletonVariantProps {
   variant?: "pulse" | "shine" | "none"
 }
 
-export interface SkipLinkVariantProps {}
+export interface SkipNavLinkVariantProps {}
 
 export interface SpinnerVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
@@ -112,7 +112,7 @@ export interface ConfigRecipes {
   mark: SystemRecipeFn<MarkVariantProps>
   separator: SystemRecipeFn<SeparatorVariantProps>
   skeleton: SystemRecipeFn<SkeletonVariantProps>
-  skipLink: SystemRecipeFn<SkipLinkVariantProps>
+  skipNavLink: SystemRecipeFn<SkipNavLinkVariantProps>
   spinner: SystemRecipeFn<SpinnerVariantProps>
   textarea: SystemRecipeFn<TextareaVariantProps>
   icon: SystemRecipeFn<IconVariantProps>
