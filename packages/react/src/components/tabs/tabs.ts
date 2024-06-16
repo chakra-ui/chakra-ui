@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useTabsStyles,
-} = createStyleContext("Tabs")
+} = createStyleContext("tabs")
 
 export { useTabsStyles }
 
@@ -22,7 +22,7 @@ export { useTabsStyles }
 
 export interface TabsRootProps
   extends HTMLChakraProps<"div", ArkTabs.RootBaseProps>,
-    SlotRecipeProps<"Tabs">,
+    SlotRecipeProps<"tabs">,
     UnstyledProp {}
 
 export const TabsRoot = withProvider<HTMLDivElement, TabsRootProps>(

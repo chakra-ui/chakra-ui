@@ -10,7 +10,7 @@ import {
 } from "../styled-system"
 
 export interface CheckmarkProps
-  extends HTMLChakraProps<"svg", RecipeProps<"Checkmark">>,
+  extends HTMLChakraProps<"svg", RecipeProps<"checkmark">>,
     UnstyledProp {
   /**
    * Whether the checkmark is checked
@@ -28,7 +28,7 @@ export interface CheckmarkProps
 
 export const Checkmark = forwardRef<SVGSVGElement, CheckmarkProps>(
   function Checkmark(props, ref) {
-    const recipe = useRecipe("Checkmark", props.recipe)
+    const recipe = useRecipe("checkmark", props.recipe)
     const [variantProps, restProps] = recipe.splitVariantProps(props)
 
     const { checked, indeterminate, disabled, unstyled, children, ...rest } =

@@ -29,7 +29,7 @@ const DemoCheckbox = (props: Checkbox.RootProps) => {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Checkbox")
+  const recipe = useSlotRecipe("checkbox")
   return (
     <PlaygroundTable>
       <thead>
@@ -78,7 +78,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Checkbox")
+  const recipe = useSlotRecipe("checkbox")
   return (
     <PlaygroundTable>
       <thead>

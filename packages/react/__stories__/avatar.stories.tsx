@@ -49,7 +49,7 @@ export const WithBadge = () => {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Avatar")
+  const recipe = useSlotRecipe("avatar")
   return (
     <PlaygroundTable>
       <thead>
@@ -96,7 +96,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Avatar")
+  const recipe = useSlotRecipe("avatar")
   return (
     <PlaygroundTable>
       <thead>
@@ -145,7 +145,7 @@ export const Sizes = () => {
 }
 
 export const Grouped = () => {
-  const recipe = useSlotRecipe("Avatar")
+  const recipe = useSlotRecipe("avatar")
   return (
     <Stack gap="24px">
       <For each={recipe.variantMap.size}>

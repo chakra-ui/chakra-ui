@@ -15,7 +15,7 @@ import { StatStylesProvider } from "./stat-context"
 export interface StatRootProps
   extends HTMLChakraProps<"div">,
     UnstyledProp,
-    SlotRecipeProps<"Stat"> {}
+    SlotRecipeProps<"stat"> {}
 
 /**
  * The `Stat` component is used to display some statistics.
@@ -24,7 +24,7 @@ export interface StatRootProps
  */
 export const StatRoot = forwardRef<HTMLDivElement, StatRootProps>(
   function StatRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Stat", props.recipe)
+    const recipe = useSlotRecipe("stat", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

@@ -23,7 +23,7 @@ const {
   withProvider,
   withContext,
   useStyles: useToastStyles,
-} = createStyleContext("Toast")
+} = createStyleContext("toast")
 
 export { useToastStyles }
 
@@ -31,7 +31,7 @@ export { useToastStyles }
 
 export interface ToastRootProps
   extends ArkToast.RootProps,
-    SlotRecipeProps<"Toast">,
+    SlotRecipeProps<"toast">,
     UnstyledProp {}
 
 export const ToastRoot = withProvider<HTMLDivElement, ToastRootProps>(

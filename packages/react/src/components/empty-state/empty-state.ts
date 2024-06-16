@@ -11,7 +11,7 @@ const {
   withProvider,
   withContext,
   useStyles: useEmptyStateStyles,
-} = createStyleContext("EmptyState")
+} = createStyleContext("emptyState")
 
 export { useEmptyStateStyles }
 
@@ -19,7 +19,7 @@ export { useEmptyStateStyles }
 
 export interface EmptyStateRootProps
   extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"EmptyState">,
+    SlotRecipeProps<"emptyState">,
     UnstyledProp {}
 
 export const EmptyStateRoot = withProvider<HTMLDivElement, EmptyStateRootProps>(

@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSelectStyles,
-} = createStyleContext("Select")
+} = createStyleContext("select")
 
 export { useSelectStyles }
 
@@ -22,7 +22,7 @@ export { useSelectStyles }
 
 export interface SelectRootProps
   extends HTMLChakraProps<"div", ArkSelect.RootBaseProps<any>>,
-    SlotRecipeProps<"Select">,
+    SlotRecipeProps<"select">,
     UnstyledProp {}
 
 export const SelectRoot = withProvider<HTMLDivElement, SelectRootProps>(

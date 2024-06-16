@@ -29,7 +29,7 @@ export default {
 } satisfies Meta
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Slider")
+  const recipe = useSlotRecipe("slider")
   return (
     <PlaygroundTable>
       <thead>
@@ -74,7 +74,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Slider")
+  const recipe = useSlotRecipe("slider")
   return (
     <PlaygroundTable>
       <thead>

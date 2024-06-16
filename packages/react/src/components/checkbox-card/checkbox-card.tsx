@@ -19,7 +19,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCheckboxCardStyles,
-} = createStyleContext("CheckboxCard")
+} = createStyleContext("checkboxCard")
 
 export { useCheckboxCardStyles }
 
@@ -27,7 +27,7 @@ export { useCheckboxCardStyles }
 
 export interface CheckboxCardRootProps
   extends HTMLChakraProps<"label", ArkCheckbox.RootBaseProps>,
-    SlotRecipeProps<"CheckboxCard">,
+    SlotRecipeProps<"checkboxCard">,
     UnstyledProp {}
 
 export const CheckboxCardRoot = withProvider<

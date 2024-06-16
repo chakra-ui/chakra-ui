@@ -10,12 +10,12 @@ import {
 } from "../../styled-system"
 
 export interface MarkProps
-  extends RecipeProps<"Mark">,
+  extends RecipeProps<"mark">,
     HTMLChakraProps<"mark"> {}
 
 export const Mark = forwardRef<HTMLElement, MarkProps>(
   function Mark(props, ref) {
-    const recipe = useRecipe("Mark", props.recipe)
+    const recipe = useRecipe("mark", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
       <chakra.mark

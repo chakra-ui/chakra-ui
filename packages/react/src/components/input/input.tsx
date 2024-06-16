@@ -15,7 +15,7 @@ import { type FieldOptions, splitFieldProps, useFieldProps } from "../field"
 
 export interface InputProps
   extends HTMLChakraProps<"input">,
-    RecipeProps<"Input">,
+    RecipeProps<"input">,
     UnstyledProp,
     FieldOptions {
   /**
@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   function Input(props, ref) {
     const { unstyled, ...restProps } = props
 
-    const recipe = useRecipe("Input", props.recipe)
+    const recipe = useRecipe("input", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(restProps)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

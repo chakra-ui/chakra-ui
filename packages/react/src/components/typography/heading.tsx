@@ -11,7 +11,7 @@ import {
 
 export interface HeadingProps
   extends HTMLChakraProps<"h2">,
-    RecipeProps<"Heading"> {}
+    RecipeProps<"heading"> {}
 
 /**
  * `Heading` is used to render semantic HTML heading elements.
@@ -22,7 +22,7 @@ export interface HeadingProps
  */
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   function Heading(props, ref) {
-    const recipe = useRecipe("Heading", props.recipe)
+    const recipe = useRecipe("heading", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
       <chakra.h2

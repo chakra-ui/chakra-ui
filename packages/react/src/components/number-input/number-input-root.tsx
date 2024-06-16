@@ -16,7 +16,7 @@ import { splitNumberInputProps } from "./number-input-props"
 import { type UseNumberInputProps, useNumberInput } from "./use-number-input"
 
 export interface NumberInputRootProps
-  extends SlotRecipeProps<"NumberInput">,
+  extends SlotRecipeProps<"numberInput">,
     HTMLChakraProps<"div", UseNumberInputProps> {}
 
 /**
@@ -31,7 +31,7 @@ export interface NumberInputRootProps
  */
 export const NumberInputRoot = forwardRef<HTMLDivElement, NumberInputRootProps>(
   function NumberInputRoot(props, ref) {
-    const recipe = useSlotRecipe("NumberInput")
+    const recipe = useSlotRecipe("numberInput")
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

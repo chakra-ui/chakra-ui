@@ -51,7 +51,7 @@ interface SpinnerOptions {
 export interface SpinnerProps
   extends HTMLChakraProps<"div", SpinnerOptions>,
     UnstyledProp,
-    RecipeProps<"Spinner"> {}
+    RecipeProps<"spinner"> {}
 
 /**
  * Spinner is used to indicate the loading state of a page or a component,
@@ -61,7 +61,7 @@ export interface SpinnerProps
  */
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   function Spinner({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("Spinner", props.recipe)
+    const recipe = useRecipe("spinner", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

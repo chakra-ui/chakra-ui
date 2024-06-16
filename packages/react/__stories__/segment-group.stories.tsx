@@ -35,7 +35,7 @@ export const Basic = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("SegmentGroup")
+  const recipe = useSlotRecipe("segmentGroup")
   return (
     <PlaygroundTable>
       <thead>

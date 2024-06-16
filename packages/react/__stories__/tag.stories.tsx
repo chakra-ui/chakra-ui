@@ -9,7 +9,7 @@ export default {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Tag")
+  const recipe = useSlotRecipe("tag")
   return (
     <PlaygroundTable>
       <thead>
@@ -78,7 +78,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Tag")
+  const recipe = useSlotRecipe("tag")
   return (
     <PlaygroundTable>
       <thead>

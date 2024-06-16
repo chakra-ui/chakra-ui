@@ -124,7 +124,7 @@ export interface UseCheckboxProps {
 
 export interface CheckboxGroupContext
   extends Pick<UseCheckboxGroupReturn, "onChange" | "value" | "disabled">,
-    Omit<SlotRecipeProps<"Checkbox">, "orientation"> {}
+    Omit<SlotRecipeProps<"checkbox">, "orientation"> {}
 
 export interface CheckboxState {
   invalid?: boolean

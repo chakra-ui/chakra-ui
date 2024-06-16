@@ -27,7 +27,7 @@ interface ListOptions {
 
 export interface ListRootProps
   extends HTMLChakraProps<"ul">,
-    SlotRecipeProps<"List">,
+    SlotRecipeProps<"list">,
     UnstyledProp,
     ListOptions {}
 
@@ -38,7 +38,7 @@ export interface ListRootProps
  */
 export const ListRoot = forwardRef<HTMLUListElement, ListRootProps>(
   function ListRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("List", props.recipe)
+    const recipe = useSlotRecipe("list", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
     const { styleType, stylePosition, ...rest } = localProps

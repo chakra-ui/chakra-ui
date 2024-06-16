@@ -23,7 +23,7 @@ import { useCheckbox } from "./use-checkbox"
 
 export interface CheckboxRootProps
   extends HTMLChakraProps<"label", UseCheckboxProps>,
-    SlotRecipeProps<"Checkbox">,
+    SlotRecipeProps<"checkbox">,
     UnstyledProp {
   /**
    * Additional props to be forwarded to the `input` element
@@ -35,7 +35,7 @@ export const CheckboxRoot = forwardRef<HTMLInputElement, CheckboxRootProps>(
   function Checkbox({ unstyled, ...props }, ref) {
     const parentVariantProps = useParentRecipeProps()
 
-    const recipe = useSlotRecipe("Checkbox", props.recipe)
+    const recipe = useSlotRecipe("checkbox", props.recipe)
     const [variantProps, ownProps] = recipe.splitVariantProps(props)
     const _variantProps = mergeProps<any>(parentVariantProps, variantProps)
 

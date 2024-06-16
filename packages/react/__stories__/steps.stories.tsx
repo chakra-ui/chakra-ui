@@ -91,7 +91,7 @@ const VerticalSteps = (props: Partial<Steps.RootProps>) => {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Steps")
+  const recipe = useSlotRecipe("steps")
   return (
     <PlaygroundTable>
       <thead>
@@ -129,7 +129,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Steps")
+  const recipe = useSlotRecipe("steps")
   return (
     <PlaygroundTable>
       <thead>

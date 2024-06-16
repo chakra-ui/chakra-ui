@@ -13,7 +13,7 @@ import {
 
 export interface ContainerProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Container">,
+    RecipeProps<"container">,
     UnstyledProp {
   /**
    * If `true`, container will center its children
@@ -36,7 +36,7 @@ export interface ContainerProps
  */
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   function Container({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("Container", props.recipe)
+    const recipe = useRecipe("container", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

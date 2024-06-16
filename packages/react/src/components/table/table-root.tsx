@@ -21,7 +21,7 @@ export interface TableRootProps
   extends HTMLChakraProps<"table">,
     TableOptions,
     UnstyledProp,
-    SlotRecipeProps<"Table"> {
+    SlotRecipeProps<"table"> {
   /**
    * If `true`, the table will style its descendants with nested selectors
    */
@@ -36,7 +36,7 @@ export interface TableRootProps
  */
 export const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(
   function TableRoot({ unstyled, native, ...props }, ref) {
-    const recipe = useSlotRecipe("Table", props.recipe)
+    const recipe = useSlotRecipe("table", props.recipe)
 
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)

@@ -13,7 +13,7 @@ import {
 
 export interface SeparatorProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Separator">,
+    RecipeProps<"separator">,
     UnstyledProp {}
 
 /**
@@ -24,7 +24,7 @@ export interface SeparatorProps
  */
 export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
   function Separator({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("Separator", props.recipe)
+    const recipe = useRecipe("separator", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

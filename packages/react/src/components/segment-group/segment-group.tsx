@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSegmentGroupStyles,
-} = createStyleContext("SegmentGroup")
+} = createStyleContext("segmentGroup")
 
 export { useSegmentGroupStyles }
 
@@ -22,7 +22,7 @@ export { useSegmentGroupStyles }
 
 export interface SegmentGroupRootProps
   extends HTMLChakraProps<"div", ArkSegmentGroup.RootBaseProps>,
-    SlotRecipeProps<"SegmentGroup">,
+    SlotRecipeProps<"segmentGroup">,
     UnstyledProp {}
 
 export const SegmentGroupRoot = withProvider<

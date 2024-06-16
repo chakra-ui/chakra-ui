@@ -7,7 +7,7 @@ export default {
 }
 
 export const Variants = () => {
-  const recipe = useRecipe("Kbd")
+  const recipe = useRecipe("kbd")
   return (
     <PlaygroundTable>
       <thead>
@@ -43,7 +43,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useRecipe("Kbd")
+  const recipe = useRecipe("kbd")
   return (
     <PlaygroundTable>
       <thead>

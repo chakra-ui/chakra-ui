@@ -12,7 +12,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useDrawerStyles,
-} = createStyleContext("Drawer")
+} = createStyleContext("drawer")
 
 export { useDrawerStyles }
 
@@ -20,7 +20,7 @@ export { useDrawerStyles }
 
 export interface DrawerRootProps
   extends ArkDialog.RootBaseProps,
-    SlotRecipeProps<"Drawer">,
+    SlotRecipeProps<"drawer">,
     UnstyledProp {
   children: React.ReactNode
 }

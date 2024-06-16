@@ -1,6 +1,6 @@
 import { defineRecipe } from "../../styled-system"
 
-export const skipLinkRecipe = defineRecipe({
+export const skipNavLinkRecipe = defineRecipe({
   base: {
     borderRadius: "md",
     fontWeight: "semibold",

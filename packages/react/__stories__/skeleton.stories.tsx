@@ -10,7 +10,7 @@ export default {
 }
 
 export const Variants = () => {
-  const recipe = useRecipe("Skeleton")
+  const recipe = useRecipe("skeleton")
   return (
     <PlaygroundTable>
       <thead>

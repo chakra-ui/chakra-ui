@@ -32,7 +32,7 @@ interface BaseEditableProps
 export interface EditableRootProps
   extends UseEditableProps,
     Omit<BaseEditableProps, "children">,
-    SlotRecipeProps<"Editable">,
+    SlotRecipeProps<"editable">,
     UnstyledProp {
   children?: MaybeRenderProp<EditableState>
 }
@@ -47,7 +47,7 @@ export interface EditableRootProps
  */
 export const EditableRoot = forwardRef<HTMLDivElement, EditableRootProps>(
   function Editable({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Editable", props.recipe)
+    const recipe = useSlotRecipe("editable", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

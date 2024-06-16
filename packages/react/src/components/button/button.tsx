@@ -22,7 +22,7 @@ interface ButtonOptions {
 export interface ButtonProps
   extends HTMLChakraProps<"button">,
     ButtonOptions,
-    RecipeProps<"Button">,
+    RecipeProps<"button">,
     UnstyledProp {}
 
 /**
@@ -33,7 +33,7 @@ export interface ButtonProps
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button({ unstyled, active, ...props }, ref) {
-    const recipe = useRecipe("Button", props.recipe)
+    const recipe = useRecipe("button", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

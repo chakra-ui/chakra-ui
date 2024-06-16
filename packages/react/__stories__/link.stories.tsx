@@ -7,7 +7,7 @@ export default {
 }
 
 export const Variants = () => {
-  const recipe = useRecipe("Link")
+  const recipe = useRecipe("link")
   return (
     <PlaygroundTable>
       <thead>

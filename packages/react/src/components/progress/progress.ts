@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useProgressStyles,
-} = createStyleContext("Progress")
+} = createStyleContext("progress")
 
 export { useProgressStyles }
 
@@ -22,7 +22,7 @@ export { useProgressStyles }
 
 export interface ProgressRootProps
   extends HTMLChakraProps<"div", ArkProgress.RootBaseProps>,
-    SlotRecipeProps<"Progress">,
+    SlotRecipeProps<"progress">,
     UnstyledProp {}
 
 export const ProgressRoot = withProvider<HTMLDivElement, ProgressRootProps>(

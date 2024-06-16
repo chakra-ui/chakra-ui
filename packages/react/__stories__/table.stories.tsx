@@ -43,7 +43,7 @@ const DemoTable = (props: Table.RootProps) => (
 )
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Table")
+  const recipe = useSlotRecipe("table")
   return (
     <PlaygroundTable>
       <thead>
@@ -77,7 +77,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Table")
+  const recipe = useSlotRecipe("table")
   return (
     <PlaygroundTable>
       <thead>

@@ -62,7 +62,7 @@ export const Basic = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Popover")
+  const recipe = useSlotRecipe("popover")
   return (
     <PlaygroundTable>
       <thead>

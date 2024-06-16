@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSliderStyles,
-} = createStyleContext("Slider")
+} = createStyleContext("slider")
 
 export { useSliderStyles }
 
@@ -22,7 +22,7 @@ export { useSliderStyles }
 
 export interface SliderRootProps
   extends HTMLChakraProps<"div", ArkSlider.RootBaseProps>,
-    SlotRecipeProps<"Slider">,
+    SlotRecipeProps<"slider">,
     UnstyledProp {}
 
 export const SliderRoot = withProvider<HTMLDivElement, SliderRootProps>(

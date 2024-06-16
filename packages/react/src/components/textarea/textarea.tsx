@@ -18,7 +18,7 @@ export interface TextareaProps
   extends HTMLChakraProps<"textarea">,
     FieldOptions,
     UnstyledProp,
-    RecipeProps<"Textarea"> {}
+    RecipeProps<"textarea"> {}
 
 /**
  * Textarea is used to enter an amount of text that's longer than a single line
@@ -26,7 +26,7 @@ export interface TextareaProps
  */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   function Textarea({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("Textarea", props.recipe)
+    const recipe = useRecipe("textarea", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

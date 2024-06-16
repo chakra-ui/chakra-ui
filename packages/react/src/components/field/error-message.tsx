@@ -14,14 +14,14 @@ import { useFieldContext } from "./field-context"
 
 export interface ErrorMessageProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Label">,
+    RecipeProps<"label">,
     UnstyledProp {}
 {
 }
 
 export const ErrorMessage = forwardRef<HTMLDivElement, ErrorMessageProps>(
   function ErrorMessage({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("ErrorMessage", props.recipe)
+    const recipe = useRecipe("errorMessage", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

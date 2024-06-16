@@ -115,7 +115,7 @@ const Flex = chakra("div", {
 })
 
 export const WithRecipe = () => {
-  const button = useRecipe("Button")
+  const button = useRecipe("button")
   return (
     <Flex align="center" gap="40px">
       <button>Welcome</button>
@@ -127,7 +127,7 @@ export const WithRecipe = () => {
 }
 
 export const WithSlotRecipe = () => {
-  const alert = useSlotRecipe("Alert")
+  const alert = useSlotRecipe("alert")
   const styles = alert({ variant: "solid" })
   return (
     <chakra.button className="reset" css={styles["root"]}>

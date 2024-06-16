@@ -30,12 +30,12 @@ export interface CardOptions {
 
 export interface CardRootProps
   extends HTMLChakraProps<"div", CardOptions>,
-    SlotRecipeProps<"Card">,
+    SlotRecipeProps<"card">,
     UnstyledProp {}
 
 export const CardRoot = forwardRef<HTMLDivElement, CardRootProps>(
   function CardRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("Card", props.recipe)
+    const recipe = useSlotRecipe("card", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

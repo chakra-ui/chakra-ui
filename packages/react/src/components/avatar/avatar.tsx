@@ -15,7 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAvatarStyles,
-} = createStyleContext("Avatar")
+} = createStyleContext("avatar")
 
 export { useAvatarStyles }
 
@@ -23,7 +23,7 @@ export { useAvatarStyles }
 
 export interface AvatarRootProps
   extends HTMLChakraProps<"div", ArkAvatar.RootProps>,
-    SlotRecipeProps<"Avatar">,
+    SlotRecipeProps<"avatar">,
     UnstyledProp {}
 
 export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(

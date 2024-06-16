@@ -133,7 +133,7 @@ export const WithIcon = () => {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("CheckboxCard")
+  const recipe = useSlotRecipe("checkboxCard")
   return (
     <PlaygroundTable>
       <thead>
@@ -180,7 +180,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("CheckboxCard")
+  const recipe = useSlotRecipe("checkboxCard")
   return (
     <PlaygroundTable>
       <thead>

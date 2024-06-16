@@ -10,7 +10,7 @@ import {
 } from "../styled-system"
 
 export interface RadiomarkProps
-  extends HTMLChakraProps<"span", RecipeProps<"Radiomark">>,
+  extends HTMLChakraProps<"span", RecipeProps<"radiomark">>,
     UnstyledProp {
   /**
    * Whether the checkmark is checked
@@ -24,7 +24,7 @@ export interface RadiomarkProps
 
 export const Radiomark = forwardRef<HTMLSpanElement, RadiomarkProps>(
   function Radiomark(props, ref) {
-    const recipe = useRecipe("Radiomark", props.recipe)
+    const recipe = useRecipe("radiomark", props.recipe)
     const [variantProps, restProps] = recipe.splitVariantProps(props)
 
     const { checked, disabled, unstyled, children, ...rest } = restProps

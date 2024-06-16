@@ -28,7 +28,7 @@ const DemoSwitch = (props: Switch.RootProps) => {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Switch")
+  const recipe = useSlotRecipe("switch")
   return (
     <PlaygroundTable>
       <thead>
@@ -67,7 +67,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Switch")
+  const recipe = useSlotRecipe("switch")
   return (
     <PlaygroundTable>
       <thead>

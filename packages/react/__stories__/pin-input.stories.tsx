@@ -31,7 +31,7 @@ export const Basic = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("PinInput")
+  const recipe = useSlotRecipe("pinInput")
   return (
     <PlaygroundTable>
       <thead>
