@@ -200,9 +200,9 @@ Before:
 After:
 
 ```tsx
-<Avatar.Root name="Dan Abrahmov" src="https://bit.ly/dan-abramov">
-  <Avatar.Image />
-  <Avatar.Fallback />
+<Avatar.Root>
+  <Avatar.Image src="https://bit.ly/dan-abramov" />
+  <Avatar.Fallback>DA</Avatar.Fallback>
 </Avatar.Root>
 ```
 
