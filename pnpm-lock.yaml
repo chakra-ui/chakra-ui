@@ -354,8 +354,8 @@ importers:
         specifier: 0.7.0
         version: 0.7.0
       '@pandacss/is-valid-prop':
-        specifier: 0.40.0
-        version: 0.40.0
+        specifier: 0.41.0
+        version: 0.41.0
       bundle-n-require:
         specifier: 1.1.1
         version: 1.1.1
@@ -420,8 +420,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@pandacss/is-valid-prop':
-        specifier: 0.40.0
-        version: 0.40.0
+        specifier: 0.41.0
+        version: 0.41.0
       '@zag-js/dom-query':
         specifier: 0.51.2
         version: 0.51.2
@@ -3365,8 +3365,8 @@ packages:
     resolution: {integrity: sha512-CAOgFOKLybd02uj/GhCdEeeBjOS0yeoDeo/CA7ASBSmenpZHAKGB3iDm/rv3BQLcabb/OprDEsSQ1y0P8A7Siw==}
     engines: {node: '>=14'}
 
-  '@pandacss/is-valid-prop@0.40.0':
-    resolution: {integrity: sha512-SJk4hY84Kjr1jWd+A6tCdNAzGOi1dMpLahjK7urNdTkVb0lvFb/0SURFM5zj9+N90zXaqPNtWgOoUvN5o0E+kQ==}
+  '@pandacss/is-valid-prop@0.41.0':
+    resolution: {integrity: sha512-BE6h6CsJk14ugIRrsazJtN3fcg+KDFRat1Bs93YFKH6jd4DOb1yUyVvC70jKqPVvg70zEcV8acZ7VdcU5TLu+w==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -13897,7 +13897,7 @@ snapshots:
 
   '@opentelemetry/semantic-conventions@1.22.0': {}
 
-  '@pandacss/is-valid-prop@0.40.0': {}
+  '@pandacss/is-valid-prop@0.41.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true

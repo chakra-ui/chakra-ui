@@ -42,7 +42,7 @@
     "@ark-ui/react": "3.4.0-0",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "@pandacss/is-valid-prop": "0.40.0",
+    "@pandacss/is-valid-prop": "0.41.0",
     "@zag-js/dom-query": "0.51.2",
     "@zag-js/focus-visible": "0.51.2",
     "aria-hidden": "1.2.4",
