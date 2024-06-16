@@ -5,6 +5,8 @@ Please read the following before submitting:
 - PRs that adds new external dependencies might take a while to review.
 - Keep your PR as small as possible.
 - Limit your PR to one type (docs, feature, refactoring, ci, or bugfix)
+
+🚨 NOTE: Please open v2 related PRs against the `v2` branch.
 -->
 
 Closes # <!-- Github issue # here -->
