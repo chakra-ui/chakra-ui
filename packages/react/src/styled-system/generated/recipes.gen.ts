@@ -159,6 +159,15 @@ export interface AvatarVariantProps {
   shape?: "square" | "rounded" | "full"
 }
 
+// Blockquote
+
+export type BlockquoteSlot = "root" | "icon" | "content" | "caption"
+
+export interface BlockquoteVariantProps {
+  justify?: "start" | "center" | "end"
+  variant?: "subtle" | "solid" | "plain"
+}
+
 // Breadcrumb
 
 export type BreadcrumbSlot =
@@ -173,15 +182,6 @@ export type BreadcrumbSlot =
 export interface BreadcrumbVariantProps {
   variant?: "underline" | "plain"
   size?: "sm" | "md" | "lg"
-}
-
-// Blockquote
-
-export type BlockquoteSlot = "root" | "icon" | "content" | "caption"
-
-export interface BlockquoteVariantProps {
-  justify?: "start" | "center" | "end"
-  variant?: "subtle" | "solid" | "plain"
 }
 
 // Card
@@ -200,6 +200,54 @@ export type CheckboxSlot = "control" | "indicator" | "root" | "label"
 export interface CheckboxVariantProps {
   size?: "sm" | "md" | "lg"
   variant?: "outline" | "subtle"
+}
+
+// CheckboxCard
+
+export type CheckboxCardSlot =
+  | "root"
+  | "control"
+  | "label"
+  | "addon"
+  | "indicator"
+
+export interface CheckboxCardVariantProps {
+  size?: "sm" | "md" | "lg"
+  variant?: "plain" | "subtle"
+}
+
+// CircularProgress
+
+export type CircularProgressSlot =
+  | "root"
+  | "label"
+  | "track"
+  | "range"
+  | "valueText"
+  | "view"
+  | "circle"
+  | "circleTrack"
+  | "circleRange"
+
+export interface CircularProgressVariantProps {
+  indeterminate?: boolean
+  valuePlacement?: "center"
+  size?: "xs" | "sm" | "md" | "lg"
+}
+
+// Collapsible
+
+export type CollapsibleSlot = "root" | "trigger" | "content"
+
+export interface CollapsibleVariantProps {}
+
+// DataList
+
+export type DataListSlot = "root" | "item" | "itemLabel" | "itemValue"
+
+export interface DataListVariantProps {
+  orientation?: "horizontal" | "vertical"
+  size?: "sm" | "md" | "lg"
 }
 
 // Dialog
@@ -277,6 +325,14 @@ export type EditableSlot =
 
 export interface EditableVariantProps {}
 
+// EmptyState
+
+export type EmptyStateSlot = "root" | "content" | "indicator"
+
+export interface EmptyStateVariantProps {
+  size?: "lg" | "md"
+}
+
 // FileUpload
 
 export type FileUploadSlot =
@@ -293,6 +349,19 @@ export type FileUploadSlot =
   | "trigger"
 
 export interface FileUploadVariantProps {}
+
+// HoverCard
+
+export type HoverCardSlot =
+  | "arrow"
+  | "arrowTip"
+  | "trigger"
+  | "positioner"
+  | "content"
+
+export interface HoverCardVariantProps {
+  size?: "xs" | "sm" | "md" | "lg"
+}
 
 // List
 
@@ -347,6 +416,15 @@ export interface NumberInputVariantProps {
   variant?: "outline" | "filled" | "flushed"
 }
 
+// PinInput
+
+export type PinInputSlot = "root" | "label" | "input" | "control"
+
+export interface PinInputVariantProps {
+  size?: "lg" | "md" | "sm" | "xs"
+  variant?: "outline" | "filled" | "flushed"
+}
+
 // Popover
 
 export type PopoverSlot =
@@ -365,19 +443,6 @@ export type PopoverSlot =
   | "footer"
 
 export interface PopoverVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
-}
-
-// HoverCard
-
-export type HoverCardSlot =
-  | "arrow"
-  | "arrowTip"
-  | "trigger"
-  | "positioner"
-  | "content"
-
-export interface HoverCardVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
@@ -403,6 +468,23 @@ export interface ProgressVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
+// RadioCard
+
+export type RadioCardSlot =
+  | "root"
+  | "label"
+  | "item"
+  | "itemText"
+  | "itemControl"
+  | "indicator"
+  | "itemAddon"
+  | "itemIndicator"
+
+export interface RadioCardVariantProps {
+  size?: "sm" | "md" | "lg"
+  variant?: "plain" | "subtle"
+}
+
 // RadioGroup
 
 export type RadioGroupSlot =
@@ -415,6 +497,20 @@ export type RadioGroupSlot =
 
 export interface RadioGroupVariantProps {
   variant?: "outline" | "subtle" | "classic"
+  size?: "sm" | "md" | "lg"
+}
+
+// SegmentGroup
+
+export type SegmentGroupSlot =
+  | "root"
+  | "label"
+  | "item"
+  | "itemText"
+  | "itemControl"
+  | "indicator"
+
+export interface SegmentGroupVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
@@ -574,105 +670,37 @@ export type TooltipSlot =
 
 export interface TooltipVariantProps {}
 
-// CircularProgress
-
-export type CircularProgressSlot =
-  | "root"
-  | "label"
-  | "track"
-  | "range"
-  | "valueText"
-  | "view"
-  | "circle"
-  | "circleTrack"
-  | "circleRange"
-
-export interface CircularProgressVariantProps {
-  indeterminate?: boolean
-  valuePlacement?: "center"
-  size?: "xs" | "sm" | "md" | "lg"
-}
-
-// DataList
-
-export type DataListSlot = "root" | "item" | "itemLabel" | "itemValue"
-
-export interface DataListVariantProps {
-  orientation?: "horizontal" | "vertical"
-  size?: "sm" | "md" | "lg"
-}
-
-// PinInput
-
-export type PinInputSlot = "root" | "label" | "input" | "control"
-
-export interface PinInputVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "filled" | "flushed"
-}
-
-// EmptyState
-
-export type EmptyStateSlot = "root" | "content" | "indicator"
-
-export interface EmptyStateVariantProps {
-  size?: "lg" | "md"
-}
-
-// CheckboxCard
-
-export type CheckboxCardSlot =
-  | "root"
-  | "control"
-  | "label"
-  | "addon"
-  | "indicator"
-
-export interface CheckboxCardVariantProps {
-  size?: "sm" | "md" | "lg"
-  variant?: "plain" | "subtle"
-}
-
-// SegmentGroup
-
-export type SegmentGroupSlot =
-  | "root"
-  | "label"
-  | "item"
-  | "itemText"
-  | "itemControl"
-  | "indicator"
-
-export interface SegmentGroupVariantProps {
-  size?: "sm" | "md" | "lg"
-}
-
-// Collapsible
-
-export type CollapsibleSlot = "root" | "trigger" | "content"
-
-export interface CollapsibleVariantProps {}
-
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
   avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariantProps>
-  breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps>
   blockquote: SystemSlotRecipeFn<BlockquoteSlot, BlockquoteVariantProps>
+  breadcrumb: SystemSlotRecipeFn<BreadcrumbSlot, BreadcrumbVariantProps>
   card: SystemSlotRecipeFn<CardSlot, CardVariantProps>
   checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps>
+  checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
+  circularProgress: SystemSlotRecipeFn<
+    CircularProgressSlot,
+    CircularProgressVariantProps
+  >
+  collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps>
+  dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
   dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>
   drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
   editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
+  emptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps>
   fileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps>
+  hoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
   list: SystemSlotRecipeFn<ListSlot, ListVariantProps>
   menu: SystemSlotRecipeFn<MenuSlot, MenuVariantProps>
   nativeSelect: SystemSlotRecipeFn<NativeSelectSlot, NativeSelectVariantProps>
   numberInput: SystemSlotRecipeFn<NumberInputSlot, NumberInputVariantProps>
+  pinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
   popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
-  hoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
   progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
+  radioCard: SystemSlotRecipeFn<RadioCardSlot, RadioCardVariantProps>
   radioGroup: SystemSlotRecipeFn<RadioGroupSlot, RadioGroupVariantProps>
+  segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps>
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
   stat: SystemSlotRecipeFn<StatSlot, StatVariantProps>
@@ -683,38 +711,36 @@ export interface ConfigSlotRecipes {
   tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
   toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
   tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
-  circularProgress: SystemSlotRecipeFn<
-    CircularProgressSlot,
-    CircularProgressVariantProps
-  >
-  dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
-  pinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
-  emptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps>
-  checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
-  segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps>
-  collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps>
 }
 
 export interface ConfigRecipeSlots {
   accordion: AccordionSlot
   alert: AlertSlot
   avatar: AvatarSlot
-  breadcrumb: BreadcrumbSlot
   blockquote: BlockquoteSlot
+  breadcrumb: BreadcrumbSlot
   card: CardSlot
   checkbox: CheckboxSlot
+  checkboxCard: CheckboxCardSlot
+  circularProgress: CircularProgressSlot
+  collapsible: CollapsibleSlot
+  dataList: DataListSlot
   dialog: DialogSlot
   drawer: DrawerSlot
   editable: EditableSlot
+  emptyState: EmptyStateSlot
   fileUpload: FileUploadSlot
+  hoverCard: HoverCardSlot
   list: ListSlot
   menu: MenuSlot
   nativeSelect: NativeSelectSlot
   numberInput: NumberInputSlot
+  pinInput: PinInputSlot
   popover: PopoverSlot
-  hoverCard: HoverCardSlot
   progress: ProgressSlot
+  radioCard: RadioCardSlot
   radioGroup: RadioGroupSlot
+  segmentGroup: SegmentGroupSlot
   select: SelectSlot
   slider: SliderSlot
   stat: StatSlot
@@ -725,13 +751,6 @@ export interface ConfigRecipeSlots {
   tag: TagSlot
   toast: ToastSlot
   tooltip: TooltipSlot
-  circularProgress: CircularProgressSlot
-  dataList: DataListSlot
-  pinInput: PinInputSlot
-  emptyState: EmptyStateSlot
-  checkboxCard: CheckboxCardSlot
-  segmentGroup: SegmentGroupSlot
-  collapsible: CollapsibleSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots

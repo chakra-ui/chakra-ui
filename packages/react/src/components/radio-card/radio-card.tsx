@@ -16,18 +16,18 @@ const {
   withProvider,
   withContext,
   useStyles: useRadioGroupStyles,
-} = createStyleContext("radioGroup")
+} = createStyleContext("radioCard")
 
 export { useRadioGroupStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioGroupRootProps
+export interface RadioCardRootProps
   extends HTMLChakraProps<"div", ArkRadioGroup.RootBaseProps>,
-    SlotRecipeProps<"radioGroup">,
+    SlotRecipeProps<"radioCard">,
     UnstyledProp {}
 
-export const RadioGroupRoot = withProvider<HTMLDivElement, RadioGroupRootProps>(
+export const RadioCardRoot = withProvider<HTMLDivElement, RadioCardRootProps>(
   ArkRadioGroup.Root,
   "root",
   { forwardAsChild: true },
@@ -35,20 +35,21 @@ export const RadioGroupRoot = withProvider<HTMLDivElement, RadioGroupRootProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioGroupLabelProps
+export interface RadioCardLabelProps
   extends HTMLChakraProps<"div", ArkRadioGroup.LabelBaseProps> {}
 
-export const RadioGroupLabel = withContext<
-  HTMLDivElement,
-  RadioGroupLabelProps
->(ArkRadioGroup.Label, "label", { forwardAsChild: true })
+export const RadioCardLabel = withContext<HTMLDivElement, RadioCardLabelProps>(
+  ArkRadioGroup.Label,
+  "label",
+  { forwardAsChild: true },
+)
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioGroupItemProps
+export interface RadioCardItemProps
   extends HTMLChakraProps<"div", ArkRadioGroup.ItemBaseProps> {}
 
-export const RadioGroupItem = withContext<HTMLDivElement, RadioGroupItemProps>(
+export const RadioCardItem = withContext<HTMLDivElement, RadioCardItemProps>(
   ArkRadioGroup.Item,
   "item",
   { forwardAsChild: true },
@@ -56,46 +57,53 @@ export const RadioGroupItem = withContext<HTMLDivElement, RadioGroupItemProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioGroupItemTextProps
+export interface RadioCardItemTextProps
   extends HTMLChakraProps<"span", ArkRadioGroup.ItemTextBaseProps> {}
 
-export const RadioGroupItemText = withContext<
+export const RadioCardItemText = withContext<
   HTMLSpanElement,
-  RadioGroupItemTextProps
+  RadioCardItemTextProps
 >(ArkRadioGroup.ItemText, "itemText", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioGroupItemControlProps
+export interface RadioCardItemControlProps
   extends HTMLChakraProps<"div", ArkRadioGroup.ItemControlBaseProps> {}
 
-export const RadioGroupItemControl = withContext<
+export const RadioCardItemControl = withContext<
   HTMLDivElement,
-  RadioGroupItemControlProps
+  RadioCardItemControlProps
 >(ArkRadioGroup.ItemControl, "itemControl", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioGroupItemIndicatorProps extends HTMLChakraProps<"span"> {}
+export interface RadioCardItemAddonProps extends HTMLChakraProps<"div"> {}
 
-export const RadioGroupItemIndicator = forwardRef<
+export const RadioCardItemAddon = withContext<
+  HTMLElement,
+  RadioCardItemAddonProps
+>("div", "itemAddon")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface RadioCardItemIndicatorProps extends HTMLChakraProps<"span"> {}
+
+export const RadioCardItemIndicator = forwardRef<
   HTMLSpanElement,
-  RadioGroupItemIndicatorProps
+  RadioCardItemIndicatorProps
 >(function RadioGroupItemIndicator(props, ref) {
   const styles = useRadioGroupStyles()
   return (
     <ArkRadioGroup.ItemContext>
       {(itemState) => (
-        <ArkRadioGroup.ItemControl asChild>
-          <Radiomark
-            ref={ref}
-            unstyled
-            {...props}
-            checked={itemState.checked}
-            disabled={itemState.disabled}
-            css={[styles["itemControl"], props.css]}
-          />
-        </ArkRadioGroup.ItemControl>
+        <Radiomark
+          ref={ref}
+          unstyled
+          {...props}
+          checked={itemState.checked}
+          disabled={itemState.disabled}
+          css={[styles["itemIndicator"], props.css]}
+        />
       )}
     </ArkRadioGroup.ItemContext>
   )

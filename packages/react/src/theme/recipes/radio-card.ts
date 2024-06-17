@@ -1,15 +1,18 @@
+import { anatomy } from "@ark-ui/anatomy/radio-group"
 import { defineSlotRecipe } from "../../styled-system"
-import { checkmarkRecipe } from "./checkmark"
+import { radiomarkRecipe } from "./radiomark"
 
-export const checkboxCardSlotRecipe = defineSlotRecipe({
-  slots: ["root", "control", "label", "addon", "indicator"],
+export const radioCardSlotRecipe = defineSlotRecipe({
+  slots: [...anatomy.keys(), "itemAddon", "itemIndicator"],
   base: {
     root: {
+      colorPalette: "gray",
+    },
+    item: {
       display: "flex",
       flexDirection: "column",
       borderWidth: "1px",
       userSelect: "none",
-      colorPalette: "gray",
       pos: "relative",
       _focus: {
         outline: "2px solid",
@@ -22,92 +25,77 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         borderColor: "border.disabled!",
       },
     },
-    control: {
-      display: "inline-flex",
-      flex: "1",
-      pos: "relative",
-      rounded: "inherit",
-      justifyContent: "space-between",
-      alignItems: "center",
-      _disabled: {
-        bg: "bg.subtle!",
-      },
-    },
     label: {
+      display: "inline-flex",
       fontWeight: "medium",
       _disabled: {
         color: "fg.subtle!",
       },
     },
-    addon: {
-      _disabled: {
-        color: "fg.subtle",
-      },
-    },
-    indicator: checkmarkRecipe.base,
+    itemIndicator: radiomarkRecipe.base,
   },
 
   variants: {
     size: {
       sm: {
-        root: {
+        item: {
           rounded: "md",
           fontSize: "xs",
         },
-        control: {
+        itemControl: {
           padding: "3",
           gap: "3",
         },
-        addon: {
+        itemAddon: {
           paddingInline: "3",
           paddingBlock: "1.5",
           borderTopWidth: "1px",
         },
-        indicator: checkmarkRecipe.variants?.size.sm,
+        itemIndicator: radiomarkRecipe.variants?.size.sm,
       },
       md: {
-        root: {
+        item: {
           rounded: "md",
           fontSize: "sm",
         },
-        control: {
+        itemControl: {
           padding: "4",
           gap: "4",
           rounded: "md",
         },
-        addon: {
+        itemAddon: {
           paddingInline: "4",
           paddingBlock: "2",
           borderTopWidth: "1px",
         },
-        indicator: checkmarkRecipe.variants?.size.md,
+        itemIndicator: radiomarkRecipe.variants?.size.md,
       },
       lg: {
-        root: {
+        item: {
           rounded: "lg",
           fontSize: "md",
         },
-        control: {
+        itemControl: {
           padding: "4",
           gap: "4",
         },
-        addon: {
+        itemAddon: {
           paddingInline: "4",
           paddingBlock: "2",
           borderTopWidth: "1px",
         },
-        indicator: checkmarkRecipe.variants?.size.lg,
+        itemIndicator: radiomarkRecipe.variants?.size.lg,
       },
     },
+
     variant: {
       plain: {
-        root: {
+        item: {
           bg: "bg",
         },
-        indicator: checkmarkRecipe.variants?.variant.outline,
       },
       subtle: {
-        root: {
+        item: {
           bg: "bg",
           _checked: {
             borderColor: {
@@ -116,7 +104,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
             },
           },
         },
-        control: {
+        itemControl: {
           _checked: {
             bg: {
               base: "colorPalette.50",
@@ -124,34 +112,19 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
             },
           },
         },
-        label: {
+        itemText: {
           _checked: {
-            color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+            color: { base: "colorPalette.600", _dark: "colorPalette.200" },
           },
         },
-        indicator: checkmarkRecipe.variants?.variant.outline,
+        itemIndicator: radiomarkRecipe.variants?.variant.classic,
       },
     },
   },
 
-  compoundVariants: [
-    {
-      colorPalette: "gray",
-      css: {
-        indicator: {
-          color: "fg.inverse",
-          "&:is([data-checked], [data-indeterminate])": {
-            bg: { base: "gray.800", _dark: "gray.200" },
-            borderColor: { base: "gray.800", _dark: "gray.200" },
-          },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     size: "md",
-    variant: "plain",
+    variant: "subtle",
     colorPalette: "gray",
   },
 })

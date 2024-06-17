@@ -80,8 +80,7 @@ export const CheckboxCardIndicator = forwardRef<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CheckboxCardAddonProps
-  extends HTMLChakraProps<"div", ArkCheckbox.IndicatorBaseProps> {}
+export interface CheckboxCardAddonProps extends HTMLChakraProps<"div"> {}
 
 export const CheckboxCardAddon = withContext<
   HTMLElement,

@@ -22,6 +22,7 @@ import { pinInputSlotRecipe } from "./recipes/pin-input"
 import { popoverSlotRecipe } from "./recipes/popover"
 import { progressSlotRecipe } from "./recipes/progress"
 import { circularProgressSlotRecipe } from "./recipes/progress-circular"
+import { radioCardSlotRecipe } from "./recipes/radio-card"
 import { radioGroupSlotRecipe } from "./recipes/radio-group"
 import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
@@ -39,22 +40,30 @@ export const slotRecipes = {
   accordion: accordionSlotRecipe,
   alert: alertSlotRecipe,
   avatar: avatarSlotRecipe,
-  breadcrumb: breadcrumbSlotRecipe,
   blockquote: blockquoteSlotRecipe,
+  breadcrumb: breadcrumbSlotRecipe,
   card: cardSlotRecipe,
   checkbox: checkboxSlotRecipe,
+  checkboxCard: checkboxCardSlotRecipe,
+  circularProgress: circularProgressSlotRecipe,
+  collapsible: collapsibleSlotRecipe,
+  dataList: dataListSlotRecipe,
   dialog: dialogSlotRecipe,
   drawer: drawerSlotRecipe,
   editable: editableSlotRecipe,
+  emptyState: emptyStateSlotRecipe,
   fileUpload: fileUploadSlotRecipe,
+  hoverCard: hoverCardSlotRecipe,
   list: listSlotRecipe,
   menu: menuSlotRecipe,
   nativeSelect: nativeSelectSlotRecipe,
   numberInput: numberInputSlotRecipe,
+  pinInput: pinInputSlotRecipe,
   popover: popoverSlotRecipe,
-  hoverCard: hoverCardSlotRecipe,
   progress: progressSlotRecipe,
+  radioCard: radioCardSlotRecipe,
   radioGroup: radioGroupSlotRecipe,
+  segmentGroup: segmentGroupSlotRecipe,
   select: selectSlotRecipe,
   slider: sliderSlotRecipe,
   stat: statSlotRecipe,
@@ -65,11 +74,4 @@ export const slotRecipes = {
   tag: tagSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
-  circularProgress: circularProgressSlotRecipe,
-  dataList: dataListSlotRecipe,
-  pinInput: pinInputSlotRecipe,
-  emptyState: emptyStateSlotRecipe,
-  checkboxCard: checkboxCardSlotRecipe,
-  segmentGroup: segmentGroupSlotRecipe,
-  collapsible: collapsibleSlotRecipe,
 }
