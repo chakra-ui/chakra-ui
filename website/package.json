@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/docs",
-  "version": "3.0.0-next.4",
+  "version": "3.0.0-next.5",
   "scripts": {
     "dev": "next",
     "prebuild": "pnpm build:search-meta && pnpm build:packages && pnpm build:props-docs",

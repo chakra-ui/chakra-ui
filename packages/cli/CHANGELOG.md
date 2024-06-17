@@ -1,5 +1,14 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.5
+
+### Minor Changes
+
+- [#8569](https://github.com/chakra-ui/chakra-ui/pull/8569)
+  [`eb26857`](https://github.com/chakra-ui/chakra-ui/commit/eb2685735e25d6790d14d28653c792b9572c080e)
+  Thanks [@isBatak](https://github.com/isBatak)! - Fix the `boxSize` type to
+  allow number values.
+
 ## 3.0.0-next.4
 
 ## 3.0.0-next.3
