@@ -1,5 +1,28 @@
 # @chakra-ui/docs
 
+## 3.0.0-next.5
+
+### Minor Changes
+
+- [#8575](https://github.com/chakra-ui/chakra-ui/pull/8575)
+  [`d4522d9`](https://github.com/chakra-ui/chakra-ui/commit/d4522d92bca44a79baa404340426b2783d283e2e)
+  Thanks [@isBatak](https://github.com/isBatak)! - Align theme recipe name with
+  panda
+
+### Patch Changes
+
+- Updated dependencies
+  [[`07b04b1`](https://github.com/chakra-ui/chakra-ui/commit/07b04b1c506995f6f276f5f80a93d09d89b92fce),
+  [`5fd993b`](https://github.com/chakra-ui/chakra-ui/commit/5fd993bfbfd82f340646b3aa55fccc4d633834a7),
+  [`43f2c7d`](https://github.com/chakra-ui/chakra-ui/commit/43f2c7d857c8fe3cab911891200fdc75d1aa782d),
+  [`d4522d9`](https://github.com/chakra-ui/chakra-ui/commit/d4522d92bca44a79baa404340426b2783d283e2e),
+  [`eb26857`](https://github.com/chakra-ui/chakra-ui/commit/eb2685735e25d6790d14d28653c792b9572c080e)]:
+  - @chakra-ui/react@3.0.0-next.5
+  - @chakra-ui/cli@3.0.0-next.5
+  - @chakra-ui/hooks@3.0.0-next.5
+  - @chakra-ui/props-docs@3.0.0-next.5
+  - @chakra-ui/utils@3.0.0-next.5
+
 ## 3.0.0-next.4
 
 ### Patch Changes
