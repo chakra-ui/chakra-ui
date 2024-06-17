@@ -1,9 +1,9 @@
+import { anatomy } from "@ark-ui/anatomy/number-input"
 import { mapEntries } from "@chakra-ui/utils"
-import { numberInputAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
 import { inputRecipe } from "./input"
 
-const stepperStyle = defineStyle({
+const triggerStyle = defineStyle({
   bg: "bg",
   display: "flex",
   justifyContent: "center",
@@ -25,14 +25,14 @@ const stepperStyle = defineStyle({
 })
 
 export const numberInputSlotRecipe = defineSlotRecipe({
-  slots: numberInputAnatomy.keys(),
+  slots: anatomy.keys(),
   base: {
     root: {
       position: "relative",
       zIndex: 0,
       colorPalette: "gray",
     },
-    field: {
+    input: {
       ...inputRecipe.base,
       verticalAlign: "top",
       paddingEnd: "calc(var(--stepper-width) + 0.5rem)",
@@ -52,18 +52,18 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       divideY: "1px",
     },
     incrementTrigger: {
-      ...stepperStyle,
+      ...triggerStyle,
       borderTopEndRadius: "var(--stepper-radius)",
     },
     decrementTrigger: {
-      ...stepperStyle,
+      ...triggerStyle,
       borderBottomEndRadius: "var(--stepper-radius)",
     },
   },
   variants: {
     size: {
       xs: {
-        field: inputRecipe.variants!.size.xs,
+        input: inputRecipe.variants!.size.xs,
         control: {
           fontSize: "2xs",
           "--stepper-radius": "radii.sm",
@@ -71,7 +71,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
       },
       sm: {
-        field: inputRecipe.variants!.size.sm,
+        input: inputRecipe.variants!.size.sm,
         control: {
           fontSize: "xs",
           "--stepper-radius": "radii.sm",
@@ -79,7 +79,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
       },
       md: {
-        field: inputRecipe.variants!.size.md,
+        input: inputRecipe.variants!.size.md,
         control: {
           fontSize: "sm",
           "--stepper-radius": "radii.md",
@@ -87,7 +87,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
       },
       lg: {
-        field: inputRecipe.variants!.size.lg,
+        input: inputRecipe.variants!.size.lg,
         control: {
           fontSize: "sm",
           "--stepper-radius": "radii.md",
@@ -95,10 +95,12 @@ export const numberInputSlotRecipe = defineSlotRecipe({
         },
       },
     },
-    variant: mapEntries(inputRecipe.variants!.variant, (key, value) => [
+
+    variant: mapEntries(inputRecipe.variants!.variant, (key, variantStyles) => [
       key,
-      { field: value },
+      { input: variantStyles },
     ]),
   },
+
   defaultVariants: inputRecipe.defaultVariants,
 })
