@@ -3,7 +3,6 @@ import {
   fileToPath,
   parseMarkdownFile,
   posixPath,
-  removePrefix,
 } from '@docusaurus/utils'
 import { globSync } from 'fast-glob'
 import { readFileSync, writeFileSync } from 'fs'
@@ -58,7 +57,7 @@ async function getMDXMeta(file: string) {
     content: frontMatter.title,
     id: slug,
     type: 'lvl1',
-    url: removePrefix(slug, '/'),
+    url: slug,
     hierarchy: {
       lvl1: frontMatter.title,
     },
@@ -69,7 +68,7 @@ async function getMDXMeta(file: string) {
       content: item.content,
       id: slug,
       type: `lvl${item.lvl}` as any,
-      url: removePrefix(slug, '/') + `#${item.slug}`,
+      url: slug + `#${item.slug}`,
       hierarchy: {
         lvl1: frontMatter.title,
         lvl2: item.lvl === 2 ? item.content : json[index - 1]?.content ?? null,
