@@ -24,6 +24,7 @@ import { progressSlotRecipe } from "./recipes/progress"
 import { circularProgressSlotRecipe } from "./recipes/progress-circular"
 import { radioCardSlotRecipe } from "./recipes/radio-card"
 import { radioGroupSlotRecipe } from "./recipes/radio-group"
+import { ratingGroupSlotRecipe } from "./recipes/rating-group"
 import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
@@ -63,6 +64,7 @@ export const slotRecipes = {
   progress: progressSlotRecipe,
   radioCard: radioCardSlotRecipe,
   radioGroup: radioGroupSlotRecipe,
+  ratingGroup: ratingGroupSlotRecipe,
   segmentGroup: segmentGroupSlotRecipe,
   select: selectSlotRecipe,
   slider: sliderSlotRecipe,

@@ -67,6 +67,7 @@ export const Variants = () => {
                       defaultValue="1"
                       colorPalette={c}
                       variant={v}
+                      readOnly
                       minWidth="200px"
                     >
                       <HStack gap="4">

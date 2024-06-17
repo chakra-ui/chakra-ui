@@ -500,6 +500,19 @@ export interface RadioGroupVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+// RatingGroup
+
+export type RatingGroupSlot =
+  | "root"
+  | "label"
+  | "item"
+  | "control"
+  | "itemIndicator"
+
+export interface RatingGroupVariantProps {
+  size?: "sm" | "md" | "lg"
+}
+
 // SegmentGroup
 
 export type SegmentGroupSlot =
@@ -700,6 +713,7 @@ export interface ConfigSlotRecipes {
   progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
   radioCard: SystemSlotRecipeFn<RadioCardSlot, RadioCardVariantProps>
   radioGroup: SystemSlotRecipeFn<RadioGroupSlot, RadioGroupVariantProps>
+  ratingGroup: SystemSlotRecipeFn<RatingGroupSlot, RatingGroupVariantProps>
   segmentGroup: SystemSlotRecipeFn<SegmentGroupSlot, SegmentGroupVariantProps>
   select: SystemSlotRecipeFn<SelectSlot, SelectVariantProps>
   slider: SystemSlotRecipeFn<SliderSlot, SliderVariantProps>
@@ -740,6 +754,7 @@ export interface ConfigRecipeSlots {
   progress: ProgressSlot
   radioCard: RadioCardSlot
   radioGroup: RadioGroupSlot
+  ratingGroup: RatingGroupSlot
   segmentGroup: SegmentGroupSlot
   select: SelectSlot
   slider: SliderSlot
