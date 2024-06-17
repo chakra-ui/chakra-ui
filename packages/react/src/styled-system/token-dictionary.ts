@@ -1,6 +1,7 @@
 import {
   type Dict,
   createProps,
+  esc,
   isFunction,
   isObject,
   isString,
@@ -8,12 +9,13 @@ import {
   walkObject,
 } from "@chakra-ui/utils"
 import { cssVar } from "./css-var"
+import { expandTokenReferences as _expandReferences } from "./expand-reference"
 import { mapToJson } from "./map-to-json"
 import {
+  TOKEN_PATH_REGEX,
   expandReferences,
   getReferences,
   hasReference,
-  transformReferences,
 } from "./references"
 import { tokenMiddlewares } from "./token-middleware"
 import { tokenTransforms } from "./token-transforms"
@@ -262,6 +264,34 @@ export function createTokenDictionary(options: Options): TokenDictionary {
     byCategoryJson = mapToJson(byCategory)
   }
 
+  const colorMix = (value: string, tokenFn: (path: string) => string) => {
+    if (!value || typeof value !== "string") return { invalid: true, value }
+
+    const [colorPath, rawOpacity] = value.split("/")
+
+    if (!colorPath || !rawOpacity) {
+      return { invalid: true, value: colorPath }
+    }
+
+    const colorToken = tokenFn(colorPath)
+    const opacityToken = getByName(`opacity.${rawOpacity}`)?.value
+
+    if (!opacityToken && isNaN(Number(rawOpacity))) {
+      return { invalid: true, value: colorPath }
+    }
+
+    const percent = opacityToken
+      ? Number(opacityToken) * 100 + "%"
+      : `${rawOpacity}%`
+    const color = colorToken ?? colorPath
+
+    return {
+      invalid: false,
+      color,
+      value: `color-mix(in srgb, ${color} ${percent}, transparent)`,
+    }
+  }
+
   const getVar = memo((value: string, fallback?: string) => {
     return flatMap.get(value) ?? fallback
   })
@@ -271,7 +301,24 @@ export function createTokenDictionary(options: Options): TokenDictionary {
   })
 
   const expandReferenceInValue = memo((value: string) => {
-    return transformReferences(value, (path) => getVar(path))
+    return _expandReferences(value, (path) => {
+      if (!path) return
+
+      if (path.includes("/")) {
+        const mix = colorMix(path, (v) => getVar(v)!)
+        if (mix.invalid) {
+          throw new Error("Invalid color mix at " + path + ": " + mix.value)
+        }
+
+        return mix.value
+      }
+
+      const resolved = getVar(path)
+      if (resolved) return resolved
+
+      // If the path includes an unresolved token reference, we need to escape it
+      return TOKEN_PATH_REGEX.test(path) ? esc(path) : path
+    })
   })
 
   const dictionary: TokenDictionary = {

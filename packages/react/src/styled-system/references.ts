@@ -3,8 +3,7 @@ import type { Token } from "./types"
 
 const REFERENCE_REGEX = /({([^}]*)})/g
 const CURLY_REGEX = /[{}]/g
-const TOKEN_FN_REGEX = /token\(([^)]+)\)/g
-const CLOSING_REGEX = /\)$/g
+export const TOKEN_PATH_REGEX = /\w+\.\w+/
 
 export const getReferences = (value: string) => {
   if (!isString(value)) return []
@@ -42,48 +41,4 @@ export function expandReferences(token: Token) {
   delete token.extensions.references
 
   return token.value
-}
-
-const isTokenReference = (v: string) =>
-  REFERENCE_REGEX.test(v) || TOKEN_FN_REGEX.test(v)
-
-const tokenReplacer = (a: string, b?: string) =>
-  b
-    ? a.endsWith(")")
-      ? a.replace(CLOSING_REGEX, `, ${b})`)
-      : `var(${a}, ${b})`
-    : a
-
-export function transformReferences(
-  v: string,
-  fn: (v: string) => string | undefined,
-) {
-  if (!isTokenReference(v)) return v
-
-  const references = getReferences(v)
-
-  const value = references.reduce((valueStr, key) => {
-    const resolved = fn(key)
-    const expandedValue = resolved ?? `var(--${key})`
-    return valueStr.replace(`{${key}}`, expandedValue)
-  }, v)
-
-  if (!value.includes(`token(`)) return value
-
-  return value.replace(TOKEN_FN_REGEX, (_, token) => {
-    const [tokenValue, tokenFallback] = token
-      .split(",")
-      .map((s: string) => s.trim())
-
-    const result = [tokenValue, tokenFallback]
-      .filter(Boolean)
-      .map((key) => fn(key) ?? `var(--${key})`)
-
-    if (result.length > 1) {
-      const [a, b] = result
-      return tokenReplacer(a, b)
-    }
-
-    return tokenReplacer(result[0])
-  })
 }
