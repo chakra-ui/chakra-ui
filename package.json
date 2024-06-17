@@ -106,7 +106,7 @@
     "prettier": "3.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "rimraf": "5.0.5",
+    "rimraf": "5.0.7",
     "rollup": "4.13.0",
     "rollup-plugin-esbuild": "6.1.1",
     "rollup-plugin-preserve-directives": "0.4.0",
