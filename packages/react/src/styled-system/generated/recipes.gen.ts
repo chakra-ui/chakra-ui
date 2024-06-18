@@ -139,6 +139,16 @@ export interface AccordionVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+// ActionBar
+
+export type ActionBarSlot =
+  | "positioner"
+  | "content"
+  | "separator"
+  | "selectionTrigger"
+
+export interface ActionBarVariantProps {}
+
 // Alert
 
 export type AlertSlot = "title" | "description" | "root" | "icon" | "spinner"
@@ -687,6 +697,7 @@ export interface TooltipVariantProps {}
 
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
+  actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps>
   alert: SystemSlotRecipeFn<AlertSlot, AlertVariantProps>
   avatar: SystemSlotRecipeFn<AvatarSlot, AvatarVariantProps>
   blockquote: SystemSlotRecipeFn<BlockquoteSlot, BlockquoteVariantProps>
@@ -731,6 +742,7 @@ export interface ConfigSlotRecipes {
 
 export interface ConfigRecipeSlots {
   accordion: AccordionSlot
+  actionBar: ActionBarSlot
   alert: AlertSlot
   avatar: AvatarSlot
   blockquote: BlockquoteSlot

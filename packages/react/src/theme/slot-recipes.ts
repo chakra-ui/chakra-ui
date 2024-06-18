@@ -1,4 +1,5 @@
 import { accordionSlotRecipe } from "./recipes/accordion"
+import { actionBarSlotRecipe } from "./recipes/action-bar"
 import { alertSlotRecipe } from "./recipes/alert"
 import { avatarSlotRecipe } from "./recipes/avatar"
 import { blockquoteSlotRecipe } from "./recipes/blockquote"
@@ -39,6 +40,7 @@ import { tooltipSlotRecipe } from "./recipes/tooltip"
 
 export const slotRecipes = {
   accordion: accordionSlotRecipe,
+  actionBar: actionBarSlotRecipe,
   alert: alertSlotRecipe,
   avatar: avatarSlotRecipe,
   blockquote: blockquoteSlotRecipe,
