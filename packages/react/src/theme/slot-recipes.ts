@@ -30,6 +30,7 @@ import { segmentGroupSlotRecipe } from "./recipes/segment-group"
 import { selectSlotRecipe } from "./recipes/select"
 import { sliderSlotRecipe } from "./recipes/slider"
 import { statSlotRecipe } from "./recipes/stat"
+import { statusSlotRecipe } from "./recipes/status"
 import { stepsSlotRecipe } from "./recipes/steps"
 import { switchSlotRecipe } from "./recipes/switch"
 import { tableSlotRecipe } from "./recipes/table"
@@ -78,4 +79,5 @@ export const slotRecipes = {
   tag: tagSlotRecipe,
   toast: toastSlotRecipe,
   tooltip: tooltipSlotRecipe,
+  status: statusSlotRecipe,
 }

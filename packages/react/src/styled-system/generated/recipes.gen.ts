@@ -695,6 +695,14 @@ export type TooltipSlot =
 
 export interface TooltipVariantProps {}
 
+// Status
+
+export type StatusSlot = "root" | "indicator"
+
+export interface StatusVariantProps {
+  size?: "sm" | "md" | "lg"
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps>
@@ -738,6 +746,7 @@ export interface ConfigSlotRecipes {
   tag: SystemSlotRecipeFn<TagSlot, TagVariantProps>
   toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
   tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
+  status: SystemSlotRecipeFn<StatusSlot, StatusVariantProps>
 }
 
 export interface ConfigRecipeSlots {
@@ -780,6 +789,7 @@ export interface ConfigRecipeSlots {
   tag: TagSlot
   toast: ToastSlot
   tooltip: TooltipSlot
+  status: StatusSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
