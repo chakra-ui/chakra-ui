@@ -1,17 +1,23 @@
 "use client"
 
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useInsertionEffect, useRef } from "react"
 
-export function useCallbackRef<T extends (...args: any[]) => any>(
-  callback: T | undefined,
+/**
+ * This hook is user-land implementation of the experimental `useEffectEvent` hook.
+ * React docs: https://react.dev/learn/separating-events-from-effects#declaring-an-effect-event
+ */
+export function useCallbackRef<Args extends unknown[], Return>(
+  callback: ((...args: Args) => Return) | undefined,
   deps: React.DependencyList = [],
 ) {
-  const callbackRef = useRef(callback)
+  const callbackRef = useRef<typeof callback>(() => {
+    throw new Error("Cannot call an event handler while rendering.")
+  })
 
-  useEffect(() => {
+  useInsertionEffect(() => {
     callbackRef.current = callback
   })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  return useCallback(((...args) => callbackRef.current?.(...args)) as T, deps)
+  return useCallback((...args: Args) => callbackRef.current?.(...args), deps)
 }
