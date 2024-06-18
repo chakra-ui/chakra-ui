@@ -10,7 +10,7 @@ export function useCallbackRef<Args extends unknown[], Return>(
   callback: ((...args: Args) => Return) | undefined,
   deps: React.DependencyList = [],
 ) {
-  const callbackRef = useRef<((...args: Args) => Return) | undefined>(() => {
+  const callbackRef = useRef<typeof callback>(() => {
     throw new Error("Cannot call an event handler while rendering.")
   })
 
