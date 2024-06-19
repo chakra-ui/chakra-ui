@@ -1,5 +1,5 @@
+import { Progress as ChakraProgress } from "@chakra-ui/react"
 import { forwardRef } from "react"
-import { Progress as ChakraProgress } from "../src"
 
 export const Progress = forwardRef<HTMLDivElement, ChakraProgress.RootProps>(
   function Progress(props, ref) {
