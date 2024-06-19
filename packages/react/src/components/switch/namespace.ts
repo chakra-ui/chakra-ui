@@ -1,11 +1,18 @@
-export { SwitchRoot as Root } from "./switch-root"
-export type { SwitchRootProps as RootProps } from "./switch-root"
+export {
+  SwitchRoot as Root,
+  SwitchControl as Control,
+  SwitchLabel as Label,
+  SwitchThumb as Thumb,
+} from "./switch"
 
-export { SwitchLabel as Label } from "./switch-label"
-export type { SwitchLabelProps as LabelProps } from "./switch-label"
+export type {
+  SwitchRootProps as RootProps,
+  SwitchControlProps as ControlProps,
+  SwitchLabelProps as LabelProps,
+  SwitchThumbProps as ThumbProps,
+} from "./switch"
 
-export { SwitchThumb as Thumb } from "./switch-thumb"
-export type { SwitchThumbProps as ThumbProps } from "./switch-thumb"
-
-export { SwitchTrack as Track } from "./switch-track"
-export type { SwitchTrackProps as TrackProps } from "./switch-track"
+export {
+  SwitchContext as Context,
+  SwitchHiddenInput as HiddenInput,
+} from "@ark-ui/react/switch"

@@ -1,10 +1,10 @@
 import { mapEntries } from "@chakra-ui/utils"
-import { selectAnatomy } from "../../anatomy"
+import { nativeSelectAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { inputRecipe } from "./input"
 
 export const nativeSelectSlotRecipe = defineSlotRecipe({
-  slots: selectAnatomy.keys(),
+  slots: nativeSelectAnatomy.keys(),
   base: {
     root: {
       height: "fit-content",

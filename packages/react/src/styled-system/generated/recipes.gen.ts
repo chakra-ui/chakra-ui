@@ -205,7 +205,7 @@ export interface CardVariantProps {
 
 // Checkbox
 
-export type CheckboxSlot = "control" | "indicator" | "root" | "label"
+export type CheckboxSlot = "root" | "label" | "control" | "indicator" | "group"
 
 export interface CheckboxVariantProps {
   size?: "sm" | "md" | "lg"
@@ -616,7 +616,7 @@ export interface StepsVariantProps {
 
 // Switch
 
-export type SwitchSlot = "root" | "track" | "thumb" | "label"
+export type SwitchSlot = "root" | "label" | "control" | "thumb"
 
 export interface SwitchVariantProps {
   variant?: "solid" | "outline" | "raised"

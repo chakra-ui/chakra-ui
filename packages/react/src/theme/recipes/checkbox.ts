@@ -1,8 +1,8 @@
-import { checkboxAnatomy } from "../../anatomy"
+import { anatomy } from "@ark-ui/anatomy/checkbox"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const checkboxSlotRecipe = defineSlotRecipe({
-  slots: checkboxAnatomy.keys(),
+  slots: anatomy.keys(),
   base: {
     root: {
       display: "inline-flex",
@@ -15,6 +15,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
         cursor: "not-allowed",
       },
     },
+
     control: {
       display: "inline-flex",
       alignItems: "center",
@@ -24,7 +25,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       color: "white",
       borderWidth: "1px",
       borderColor: "transparent",
-      _focusVisible: {
+      _focus: {
         outline: "2px solid",
         outlineColor: "colorPalette.500",
         outlineOffset: "2px",
@@ -39,6 +40,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
         color: "fg.subtle/80!",
       },
     },
+
     label: {
       userSelect: "none",
       _disabled: {
@@ -102,6 +104,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   compoundVariants: [
     {
       variant: "outline",
@@ -117,6 +120,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       },
     },
   ],
+
   defaultVariants: {
     variant: "outline",
     size: "md",

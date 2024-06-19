@@ -1,8 +1,8 @@
-import { switchAnatomy } from "../../anatomy"
+import { anatomy } from "@ark-ui/anatomy/switch"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const switchSlotRecipe = defineSlotRecipe({
-  slots: switchAnatomy.keys(),
+  slots: anatomy.keys(),
   base: {
     root: {
       display: "inline-flex",
@@ -17,12 +17,14 @@ export const switchSlotRecipe = defineSlotRecipe({
       },
       colorPalette: "gray",
     },
+
     label: {
       lineHeight: "1",
       userSelect: "none",
       fontSize: "sm",
     },
-    track: {
+
+    control: {
       display: "inline-flex",
       gap: "0.5rem",
       flexShrink: 0,
@@ -39,6 +41,7 @@ export const switchSlotRecipe = defineSlotRecipe({
         cursor: "not-allowed",
       },
     },
+
     thumb: {
       bg: "white",
       transitionProperty: "translate",
@@ -49,16 +52,17 @@ export const switchSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   variants: {
     variant: {
       solid: {
-        track: {
+        control: {
           borderRadius: "full",
           bg: { base: "gray.300", _dark: "whiteAlpha.400" },
           _checked: {
             bg: "colorPalette.600",
           },
-          _focusVisible: {
+          _focus: {
             outline: "2px solid",
             outlineColor: "colorPalette.500",
             outlineOffset: "2px",
@@ -71,8 +75,9 @@ export const switchSlotRecipe = defineSlotRecipe({
           boxShadow: "sm",
         },
       },
+
       outline: {
-        track: {
+        control: {
           borderRadius: "full",
           shadowColor: "border",
           boxShadow: "0 0 0 1px var(--shadow-color)",
@@ -84,7 +89,7 @@ export const switchSlotRecipe = defineSlotRecipe({
             },
             bg: { base: "colorPalette.200", _dark: "colorPalette.400/40" },
           },
-          _focusVisible: {
+          _focus: {
             outline: "2px solid",
             outlineColor: "colorPalette.500",
             outlineOffset: "2px",
@@ -106,8 +111,9 @@ export const switchSlotRecipe = defineSlotRecipe({
           },
         },
       },
+
       raised: {
-        track: {
+        control: {
           borderRadius: "full",
           height: "calc(var(--switch-height) / 2)",
           bg: { base: "gray.100", _dark: "whiteAlpha.400" },
@@ -126,7 +132,7 @@ export const switchSlotRecipe = defineSlotRecipe({
           _checked: {
             bg: { base: "colorPalette.700", _dark: "colorPalette.500" },
           },
-          _focusVisible: {
+          _focus: {
             outline: "2px solid",
             outlineColor: "colorPalette.500",
             outlineOffset: "2px",
@@ -134,6 +140,7 @@ export const switchSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     size: {
       sm: {
         root: {
@@ -161,6 +168,7 @@ export const switchSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   defaultVariants: {
     variant: "solid",
     size: "md",

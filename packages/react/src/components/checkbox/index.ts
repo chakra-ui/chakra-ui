@@ -1,29 +1,27 @@
-export { CheckboxControl } from "./checkbox-control"
-export type { CheckboxControlProps } from "./checkbox-control"
-
-export { CheckboxGroup } from "./checkbox-group"
-export type { CheckboxGroupProps } from "./checkbox-group"
-
-export { CheckboxIndicator } from "./checkbox-indicator"
-export type { CheckboxIndicatorProps } from "./checkbox-indicator"
-
-export { CheckboxLabel } from "./checkbox-label"
-export type { CheckboxLabelProps } from "./checkbox-label"
-
-export { CheckboxRoot } from "./checkbox-root"
-export type { CheckboxRootProps } from "./checkbox-root"
+export {
+  CheckboxControl,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckboxRoot,
+  CheckboxGroup,
+  useCheckboxStyles,
+} from "./checkbox"
 
 export type {
-  CheckboxGroupContext,
-  CheckboxState,
-  UseCheckboxGroupProps,
-  UseCheckboxProps,
-} from "./checkbox-types"
+  CheckboxControlProps,
+  CheckboxIndicatorProps,
+  CheckboxLabelProps,
+  CheckboxRootProps,
+  CheckboxGroupProps,
+} from "./checkbox"
+
+export {
+  CheckboxContext,
+  CheckboxHiddenInput,
+  useCheckbox,
+  useCheckboxContext,
+  useCheckboxGroup,
+  useCheckboxGroupContext,
+} from "@ark-ui/react/checkbox"
 
 export * as Checkbox from "./namespace"
-
-export { useCheckbox } from "./use-checkbox"
-export type { UseCheckboxReturn } from "./use-checkbox"
-
-export { useCheckboxGroup } from "./use-checkbox-group"
-export type { UseCheckboxGroupReturn } from "./use-checkbox-group"

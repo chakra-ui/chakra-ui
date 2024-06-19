@@ -422,12 +422,6 @@ importers:
       '@pandacss/is-valid-prop':
         specifier: 0.41.0
         version: 0.41.0
-      '@zag-js/dom-query':
-        specifier: 0.57.0
-        version: 0.57.0
-      '@zag-js/focus-visible':
-        specifier: 0.57.0
-        version: 0.57.0
       aria-hidden:
         specifier: 1.2.4
         version: 1.2.4
@@ -437,9 +431,6 @@ importers:
       react-focus-lock:
         specifier: 2.12.1
         version: 2.12.1(@types/react@18.3.3)(react@18.2.0)
-      react-remove-scroll:
-        specifier: 2.5.10
-        version: 2.5.10(@types/react@18.3.3)(react@18.2.0)
     devDependencies:
       '@emotion/react':
         specifier: 11.11.4
@@ -4343,9 +4334,6 @@ packages:
   '@zag-js/dom-query@0.56.1':
     resolution: {integrity: sha512-mxUa7vzI+NhaMpf0D3cci0kmRuCPBkZCvoV+jsokkLfFKEUvAMVftnzxMxeydAEK6LFZL6PK6icOXP5FxbzzLA==}
 
-  '@zag-js/dom-query@0.57.0':
-    resolution: {integrity: sha512-RSJyVZTL21UxIVWnylJKuRI/Ixa4IjF3xa9JfvvmGF4+WCdtdcDdr18eRE82iuHaBoV100i0BKtZaJubsal6lg==}
-
   '@zag-js/editable@0.56.1':
     resolution: {integrity: sha512-zVoGRDotNwTehsLaKvPTPTMSXEkYvoUJfYd3hliYUQgo738uQTqj8TXDU8emW/WKJbHISlChiLIK05XupSMxbQ==}
 
@@ -4363,9 +4351,6 @@ packages:
 
   '@zag-js/file-utils@0.56.1':
     resolution: {integrity: sha512-RQbvfNMTyKCBwKKzmBZcPAfk/L7HLLhr6kQvV82Dop8fKxdu4u6cdpYUwRtDn/eX4QcHJ1kQ8PpzcrVIhEggLw==}
-
-  '@zag-js/focus-visible@0.57.0':
-    resolution: {integrity: sha512-+j9/LZ8TmOmkxy/six+bZjKUHtM1lL23xEzmhnWq3i5I1N9KM6P2hpoGEyskYCdiY2MnNCZr6xDEuOVH//rOXA==}
 
   '@zag-js/form-utils@0.56.1':
     resolution: {integrity: sha512-7u3PjOl21muU89Ungl9bjBVqsHNNqlOnsl/2ws8t/1qkQbcGJnzAPG/AkM4njj0A5IXO9X6MqIa+9qgEYMviCQ==}
@@ -15378,8 +15363,6 @@ snapshots:
 
   '@zag-js/dom-query@0.56.1': {}
 
-  '@zag-js/dom-query@0.57.0': {}
-
   '@zag-js/editable@0.56.1':
     dependencies:
       '@zag-js/anatomy': 0.56.1
@@ -15410,10 +15393,6 @@ snapshots:
   '@zag-js/file-utils@0.56.1':
     dependencies:
       '@zag-js/i18n-utils': 0.56.1
-
-  '@zag-js/focus-visible@0.57.0':
-    dependencies:
-      '@zag-js/dom-query': 0.57.0
 
   '@zag-js/form-utils@0.56.1': {}
 

@@ -22,7 +22,10 @@ export default {
 const DemoCheckbox = (props: Checkbox.RootProps) => {
   return (
     <Checkbox.Root {...props}>
-      <Checkbox.Control />
+      <Checkbox.HiddenInput />
+      <Checkbox.Control>
+        <Checkbox.Indicator />
+      </Checkbox.Control>
       <Checkbox.Label>{props.children}</Checkbox.Label>
     </Checkbox.Root>
   )
@@ -141,7 +144,7 @@ export const WithGroup = () => {
   return (
     <Checkbox.Group
       defaultValue={["one", "two"]}
-      onChange={(value) => console.log(value)}
+      onValueChange={(value) => console.log(value)}
     >
       <Stack align="start">
         <DemoCheckbox value="one">One</DemoCheckbox>

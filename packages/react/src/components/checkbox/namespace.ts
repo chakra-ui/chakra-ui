@@ -1,14 +1,20 @@
-export { CheckboxRoot as Root } from "./checkbox-root"
-export type { CheckboxRootProps as RootProps } from "./checkbox-root"
+export {
+  CheckboxControl as Control,
+  CheckboxRoot as Root,
+  CheckboxIndicator as Indicator,
+  CheckboxLabel as Label,
+  CheckboxGroup as Group,
+} from "./checkbox"
 
-export { CheckboxGroup as Group } from "./checkbox-group"
-export type { CheckboxGroupProps as GroupProps } from "./checkbox-group"
+export type {
+  CheckboxControlProps as ControlProps,
+  CheckboxRootProps as RootProps,
+  CheckboxIndicatorProps as IndicatorProps,
+  CheckboxLabelProps as LabelProps,
+  CheckboxGroupProps as GroupProps,
+} from "./checkbox"
 
-export { CheckboxIndicator as Indicator } from "./checkbox-indicator"
-export type { CheckboxIndicatorProps as IndicatorProps } from "./checkbox-indicator"
-
-export { CheckboxControl as Control } from "./checkbox-control"
-export type { CheckboxControlProps as ControlProps } from "./checkbox-control"
-
-export { CheckboxLabel as Label } from "./checkbox-label"
-export type { CheckboxLabelProps as LabelProps } from "./checkbox-label"
+export {
+  CheckboxContext as Context,
+  CheckboxHiddenInput as HiddenInput,
+} from "@ark-ui/react/checkbox"
