@@ -12,7 +12,7 @@ export interface BadgeVariantProps {
 
 export interface ButtonVariantProps {
   size?: "lg" | "md" | "sm" | "xs"
-  variant?: "solid" | "subtle" | "outline" | "ghost"
+  variant?: "solid" | "subtle" | "outline" | "ghost" | "plain"
 }
 
 export interface CodeVariantProps {

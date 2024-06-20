@@ -107,6 +107,10 @@ export const buttonRecipe = defineRecipe({
           bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
         },
       },
+
+      plain: {
+        color: "fg",
+      },
     },
   },
   compoundVariants: [
