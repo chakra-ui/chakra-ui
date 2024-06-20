@@ -12,7 +12,8 @@
     "@chakra-ui/utils": "2.0.15",
     "@chakra-ui/docs": "2.1.6",
     "next-app": "2.0.14",
-    "next-pages": "2.0.14"
+    "next-pages": "2.0.14",
+    "remix-ts": "1.0.0"
   },
   "changesets": [
     "blue-masks-tell",
@@ -23,6 +24,7 @@
     "few-paws-hammer",
     "fluffy-eggs-protect",
     "fuzzy-seas-itch",
+    "lazy-beans-visit",
     "many-lamps-provide",
     "pretty-cougars-cough",
     "shiny-dogs-promise",
