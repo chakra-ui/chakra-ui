@@ -26,7 +26,7 @@ export default function Index() {
       <VStack gap="8">
         <img alt="chakra logo" src="/static/logo.svg" width="80" height="80" />
         <Heading size="2xl" letterSpacing="tight">
-          Welcome to Chakra UI v3 + Next.js (App)
+          Welcome to Chakra UI v3 + Remix
         </Heading>
 
         <HStack gap="10">

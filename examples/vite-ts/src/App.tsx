@@ -18,22 +18,32 @@ export default function Page() {
       <VStack gap="8">
         <img alt="chakra logo" src="/static/logo.svg" width="80" height="80" />
         <Heading size="2xl" letterSpacing="tight">
-          Welcome to Chakra UI v3 + Next.js (App)
+          Welcome to Chakra UI v3 + Vite
         </Heading>
 
         <HStack gap="10">
           <Checkbox.Root defaultChecked>
-            <Checkbox.Control />
+            <Checkbox.HiddenInput />
+            <Checkbox.Control>
+              <Checkbox.Indicator />
+            </Checkbox.Control>
             <Checkbox.Label>Checkbox</Checkbox.Label>
           </Checkbox.Root>
 
           <RadioGroup.Root display="inline-flex" defaultValue="1">
             <RadioGroup.Item value="1" mr="2">
-              <RadioGroup.ItemControl />
+              <RadioGroup.ItemHiddenInput />
+              <RadioGroup.ItemControl>
+                <RadioGroup.ItemIndicator />
+              </RadioGroup.ItemControl>
               <RadioGroup.ItemText lineHeight="1">Radio</RadioGroup.ItemText>
             </RadioGroup.Item>
+
             <RadioGroup.Item value="2">
-              <RadioGroup.ItemControl />
+              <RadioGroup.ItemHiddenInput />
+              <RadioGroup.ItemControl>
+                <RadioGroup.ItemIndicator />
+              </RadioGroup.ItemControl>
               <RadioGroup.ItemText lineHeight="1">Radio</RadioGroup.ItemText>
             </RadioGroup.Item>
           </RadioGroup.Root>
