@@ -2,4 +2,4 @@
 "@chakra-ui/react": patch
 ---
 
-Add aria-current attribute to stepper
+Add `aria-current` attribute to stepper

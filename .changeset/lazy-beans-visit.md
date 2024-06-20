@@ -2,4 +2,4 @@
 "@chakra-ui/hooks": patch
 ---
 
-Update useCalbackRef hook to use useInsertionEffect
+Update `useCallbackRef` hook to use `useInsertionEffect`
