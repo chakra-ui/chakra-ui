@@ -8,7 +8,13 @@ import {
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const { withProvider, withContext } = createStyleContext("fileUpload")
+const {
+  withProvider,
+  withContext,
+  useStyles: useFileUploadStyles,
+} = createStyleContext("fileUpload")
+
+export { useFileUploadStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 

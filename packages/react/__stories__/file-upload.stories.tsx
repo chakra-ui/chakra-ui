@@ -8,6 +8,8 @@ export default {
 
 export const Basic = () => (
   <FileUpload.Root maxFiles={5}>
+    <FileUpload.HiddenInput />
+
     <FileUpload.Dropzone>
       <FileUpload.Label fontWeight="medium">
         Drag your file(s) here
