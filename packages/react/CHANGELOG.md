@@ -1,5 +1,19 @@
 # @chakra-ui/react
 
+## 3.0.0-next.6
+
+### Minor Changes
+
+- [`925cfd9`](https://github.com/chakra-ui/chakra-ui/commit/925cfd99ce0a09c4145b81c17605e882c4aa1840)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add ActionBar,
+  Status, Rating, Pagination components
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.6
+  - @chakra-ui/utils@3.0.0-next.6
+
 ## 3.0.0-next.5
 
 ### Minor Changes
