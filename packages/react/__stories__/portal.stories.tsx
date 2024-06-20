@@ -26,7 +26,7 @@ export const WithContainer = () => {
   return (
     <>
       <p>Welcome</p>
-      <Portal containerRef={ref}>
+      <Portal container={ref}>
         <span>This text has been portaled</span>
       </Portal>
       <div id="iframe" ref={ref}>
