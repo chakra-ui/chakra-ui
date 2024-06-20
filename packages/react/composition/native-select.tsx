@@ -11,6 +11,7 @@ export interface NativeSelectProps extends Select.RootProps {
   rootRef?: React.Ref<HTMLDivElement>
   items: Array<string | Item>
   icon?: React.ReactNode
+  placeholder?: string
 }
 
 function normalize(items: Array<string | Item>): Item[] {
@@ -22,11 +23,19 @@ function normalize(items: Array<string | Item>): Item[] {
 
 export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   function NativeSelect(props, ref) {
-    const { items, rootRef, icon, ...rest } = props
+    const {
+      items,
+      rootRef,
+      icon,
+      placeholder = "Select option",
+      ...rest
+    } = props
+
     const normalizedItems = normalize(items)
+
     return (
-      <Select.Root {...rest}>
-        <Select.Field ref={ref} placeholder="Select option">
+      <Select.Root ref={rootRef} {...rest}>
+        <Select.Field ref={ref} placeholder={placeholder}>
           <For each={normalizedItems}>
             {(item) => (
               <option

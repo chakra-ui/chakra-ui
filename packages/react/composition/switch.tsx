@@ -3,13 +3,14 @@ import { forwardRef } from "react"
 
 export interface SwitchProps extends ChakraSwitch.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  rootRef?: React.Ref<HTMLLabelElement>
 }
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   function Switch(props, ref) {
-    const { inputProps, children, ...rest } = props
+    const { inputProps, children, rootRef, ...rest } = props
     return (
-      <ChakraSwitch.Root {...rest}>
+      <ChakraSwitch.Root ref={rootRef} {...rest}>
         <ChakraSwitch.HiddenInput ref={ref} {...inputProps} />
         <ChakraSwitch.Control>
           <ChakraSwitch.Thumb />
