@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src", "composition", "__tests__", "__stories__"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "customConditions": ["source"]
   }
