@@ -1278,3 +1278,14 @@ const nextConfig = {
   },
 }
 ```
+
+If you're not getting autocompletions for style props for compound components,
+you can fix this by adding the following to your `tsconfig.json` file
+
+```json
+{
+  "compilerOptions": {
+    "moduleResolution": "Bundler"
+  }
+}
+```
