@@ -1260,3 +1260,21 @@ After:
   <Collapsible.Content>Some content</Collapsible.Content>
 </Collapsible.Root>
 ```
+
+### Next.js Optimization
+
+If you notice an error similar to
+
+```sh
+[webpack.cache.PackFileCacheStrategy] Serializing big strings (140kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+```
+
+You can fix this by adding the following to your `next.config.js` file
+
+```js
+const nextConfig = {
+  experimental: {
+    optimizePackageImports: ["@chakra-ui/react"],
+  },
+}
+```
