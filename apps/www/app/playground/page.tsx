@@ -1,6 +1,7 @@
 import * as Playground from "@/components/playground"
 import { Alert } from "@/compositions/ui/alert"
 import { Avatar } from "@/compositions/ui/avatar"
+import { Rating } from "@/compositions/ui/rating"
 import { Switch } from "@/compositions/ui/switch"
 import {
   Badge,
@@ -54,7 +55,7 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="avatar">Alert</Playground.SectionTitle>
+        <Playground.SectionTitle id="alert">Alert</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
           {alertStatuses.map((status) => (
             <Stack
@@ -78,7 +79,7 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="avatar">Badge</Playground.SectionTitle>
+        <Playground.SectionTitle id="badge">Badge</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
           {colorPalettes.map((colorPalette) => (
             <Stack
@@ -108,7 +109,7 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="avatar">Button</Playground.SectionTitle>
+        <Playground.SectionTitle id="button">Button</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
           {colorPalettes.map((colorPalette) => (
             <Stack
@@ -126,6 +127,26 @@ export default function Page() {
               <Button colorPalette={colorPalette} variant="subtle">
                 Button
               </Button>
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="rating">Rating</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Rating defaultValue={3} size="sm" colorPalette={colorPalette}>
+                Button
+              </Rating>
             </Stack>
           ))}
         </Stack>
