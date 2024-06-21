@@ -48,6 +48,7 @@ practices.
 It's the https://chakra-ui.com website for the latest version of Chakra UI. For
 older versions head over here
 
+- v2: https://v2.chakra-ui.com
 - v1: https://v1.chakra-ui.com
 - v0: https://v0.chakra-ui.com
 
@@ -69,16 +70,16 @@ To use Chakra UI components, all you need to do is install the
 
 ```sh
 # with Yarn
-$ yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+$ yarn add @chakra-ui/react @emotion/react @emotion/styled
 
 # with npm
-$ npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+$ npm i @chakra-ui/react @emotion/react @emotion/styled
 
 # with pnpm
-$ pnpm add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+$ pnpm add @chakra-ui/react @emotion/react @emotion/styled
 
 # with Bun
-$ bun add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6
+$ bun add @chakra-ui/react @emotion/react @emotion/styled
 ```
 
 ## Usage
@@ -89,11 +90,11 @@ To start using the components, please follow these steps:
    **@chakra-ui/react**.
 
 ```jsx
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
 
 // Do this at the root of your application
 function App({ children }) {
-  return <ChakraProvider>{children}</ChakraProvider>
+  return <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
 }
 ```
 
