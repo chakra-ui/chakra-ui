@@ -5,8 +5,10 @@ import { CircularProgress } from "@/compositions/ui/circular-progress"
 import { Progress } from "@/compositions/ui/progress"
 import { Rating } from "@/compositions/ui/rating"
 import { Switch } from "@/compositions/ui/switch"
+import { Tooltip } from "@/compositions/ui/tooltip"
 import {
   Badge,
+  Box,
   Button,
   ColorPalette,
   Container,
@@ -241,6 +243,25 @@ export default function Page() {
               <Switch colorPalette={colorPalette} defaultChecked />
             </Stack>
           ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="tooltip">Tooltip</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <Tooltip showArrow label="This is the tooltip content">
+            <Box
+              tabIndex={0}
+              userSelect="none"
+              bg="bg.subtle"
+              borderWidth="1px"
+              borderStyle="dashed"
+              padding="5"
+              rounded="lg"
+            >
+              Hover me
+            </Box>
+          </Tooltip>
         </Stack>
       </Playground.Section>
     </Container>
