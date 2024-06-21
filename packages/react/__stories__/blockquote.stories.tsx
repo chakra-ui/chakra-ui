@@ -17,6 +17,10 @@ const DemoBlockquote = (props: Blockquote.RootProps) => (
   </Blockquote.Root>
 )
 
+export const Basic = () => {
+  return <DemoBlockquote />
+}
+
 export const Variants = () => {
   const recipe = useSlotRecipe("blockquote")
   return (

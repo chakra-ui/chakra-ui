@@ -82,7 +82,7 @@ const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {
       [cvaRecipe, mixedProps.variantProps],
     )
 
-    const finalChildren = propsWithDefault.children ?? children
+    const finalChildren = children ?? propsWithDefault.children
 
     const styles = useMemo((): any => {
       return css(cvaStyles, ...toArray(cssStyles), propStyles)

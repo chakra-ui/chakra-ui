@@ -119,3 +119,19 @@ export const Sizes = () => {
     </PlaygroundTable>
   )
 }
+
+export const WithCustomSeparator = () => {
+  return (
+    <Breadcrumb.Root>
+      <Breadcrumb.List>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Separator>-</Breadcrumb.Separator>
+        <Breadcrumb.Item>
+          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
+        </Breadcrumb.Item>
+      </Breadcrumb.List>
+    </Breadcrumb.Root>
+  )
+}
