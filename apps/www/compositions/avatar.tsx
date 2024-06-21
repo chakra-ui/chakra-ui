@@ -1,5 +1,5 @@
 import { Avatar as ChakraAvatar } from "@chakra-ui/react"
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>
 

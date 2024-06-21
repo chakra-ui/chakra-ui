@@ -1,5 +1,5 @@
+import { For, NativeSelect as Select } from "@chakra-ui/react"
 import { forwardRef } from "react"
-import { For, NativeSelect as Select } from "../src"
 
 interface Item {
   value: string

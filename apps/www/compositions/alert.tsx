@@ -1,5 +1,5 @@
+import { Box, Alert as ChakraAlert } from "@chakra-ui/react"
 import { forwardRef } from "react"
-import { Box, Alert as ChakraAlert } from "../src"
 
 export interface AlertProps extends ChakraAlert.RootProps {
   title?: string
