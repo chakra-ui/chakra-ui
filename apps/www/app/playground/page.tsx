@@ -1,6 +1,7 @@
 import * as Playground from "@/components/playground"
 import { Alert } from "@/compositions/ui/alert"
 import { Avatar } from "@/compositions/ui/avatar"
+import { Progress } from "@/compositions/ui/progress"
 import { Rating } from "@/compositions/ui/rating"
 import { Switch } from "@/compositions/ui/switch"
 import {
@@ -127,6 +128,37 @@ export default function Page() {
               <Button colorPalette={colorPalette} variant="subtle">
                 Button
               </Button>
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="progress">
+          Linear Progress
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Progress
+                width="120px"
+                defaultValue={40}
+                colorPalette={colorPalette}
+                variant="outline"
+              />
+              <Progress
+                width="120px"
+                defaultValue={40}
+                colorPalette={colorPalette}
+                variant="subtle"
+              />
             </Stack>
           ))}
         </Stack>
