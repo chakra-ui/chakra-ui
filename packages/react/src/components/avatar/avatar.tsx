@@ -1,3 +1,5 @@
+"use client"
+
 import { Avatar as ArkAvatar } from "@ark-ui/react/avatar"
 import { forwardRef, useMemo } from "react"
 import {

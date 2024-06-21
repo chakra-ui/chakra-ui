@@ -1,3 +1,5 @@
+"use client"
+
 import { Dialog as ArkDialog } from "@ark-ui/react/dialog"
 import {
   type HTMLChakraProps,

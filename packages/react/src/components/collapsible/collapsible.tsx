@@ -1,3 +1,5 @@
+"use client"
+
 import { Collapsible as ArkCollapsible } from "@ark-ui/react/collapsible"
 import {
   type HTMLChakraProps,

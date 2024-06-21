@@ -1,3 +1,5 @@
+"use client"
+
 import { FileUpload as ArkFileUpload } from "@ark-ui/react/file-upload"
 import {
   type HTMLChakraProps,
