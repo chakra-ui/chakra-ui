@@ -194,7 +194,7 @@ export const WithForm = () => (
         </Field>
       </Stack>
     </Card.Body>
-    <Card.Footer justify="flex-end" gap="4">
+    <Card.Footer justifyContent="flex-end" gap="4">
       <Button variant="outline">Cancel</Button>
       <Button variant="solid">Sign in</Button>
     </Card.Footer>

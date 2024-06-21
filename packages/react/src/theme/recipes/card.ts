@@ -6,6 +6,7 @@ export const cardSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "inline-flex",
+      flexDirection: "column",
       position: "relative",
       minWidth: 0,
       wordWrap: "break-word",
