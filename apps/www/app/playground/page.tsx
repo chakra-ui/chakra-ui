@@ -12,6 +12,7 @@ import {
   Button,
   ColorPalette,
   Container,
+  Heading,
   Stack,
   Text,
 } from "@chakra-ui/react"
@@ -243,6 +244,21 @@ export default function Page() {
               <Switch colorPalette={colorPalette} defaultChecked />
             </Stack>
           ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="heading">Heading</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <Heading size="6xl">Heading (6xl)</Heading>
+          <Heading size="5xl">Heading (5xl)</Heading>
+          <Heading size="4xl">Heading (4xl)</Heading>
+          <Heading size="3xl">Heading (3xl)</Heading>
+          <Heading size="2xl">Heading (2xl)</Heading>
+          <Heading size="xl">Heading (xl)</Heading>
+          <Heading size="lg">Heading (lg)</Heading>
+          <Heading size="md">Heading (md)</Heading>
+          <Heading size="sm">Heading (sm)</Heading>
         </Stack>
       </Playground.Section>
 
