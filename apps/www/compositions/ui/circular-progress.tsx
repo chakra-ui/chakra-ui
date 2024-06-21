@@ -14,10 +14,10 @@ export const CircularProgress = forwardRef<
   HTMLDivElement,
   CircularProgressProps
 >(function CircularProgress(props, ref) {
-  const { value, showValue, trackColor, capIsRound, color, ...rest } = props
+  const { showValue, trackColor, capIsRound, color, ...rest } = props
   return (
     <Progress.Root ref={ref} valuePlacement="center" {...rest}>
-      <Progress.ValueText />
+      {showValue && <Progress.ValueText>{props.value}</Progress.ValueText>}
       <Progress.Circle>
         <Progress.Track stroke={trackColor} />
         <Progress.Range
