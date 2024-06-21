@@ -1,3 +1,5 @@
+"use client"
+
 import { type HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface StickyProps extends HTMLChakraProps<"div"> {}

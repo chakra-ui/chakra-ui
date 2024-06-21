@@ -1,4 +1,4 @@
-import { Box, Alert as ChakraAlert } from "@chakra-ui/react"
+import { Box, Alert as ChakraAlert, Stack } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
 export interface AlertProps extends ChakraAlert.RootProps {
@@ -13,10 +13,10 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
       <ChakraAlert.Root ref={ref} {...rest}>
         <ChakraAlert.Icon>{icon}</ChakraAlert.Icon>
         {children ? (
-          <Box>
+          <Stack gap="1">
             <ChakraAlert.Title>{title}</ChakraAlert.Title>
             <ChakraAlert.Description>{children}</ChakraAlert.Description>
-          </Box>
+          </Stack>
         ) : (
           <ChakraAlert.Title>{title}</ChakraAlert.Title>
         )}

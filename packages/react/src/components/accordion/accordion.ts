@@ -1,3 +1,5 @@
+"use client"
+
 import { Accordion as ArkAccordion } from "@ark-ui/react/accordion"
 import {
   type HTMLChakraProps,

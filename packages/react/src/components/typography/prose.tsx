@@ -1,3 +1,5 @@
+"use client"
+
 import { chakra } from "../../styled-system"
 
 export const Prose = chakra("div", {
