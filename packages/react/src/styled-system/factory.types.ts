@@ -19,6 +19,13 @@ import type {
   RecipeVariantRecord,
 } from "./recipe.types"
 
+export interface UnstyledProp {
+  /**
+   * If `true`, the element will opt out of the theme styles.
+   */
+  unstyled?: boolean
+}
+
 export interface PolymorphicProps {
   as?: ElementType
   asChild?: boolean
@@ -43,7 +50,7 @@ export type HtmlProp =
 
 type PatchHtmlProps<T> = DistributiveOmit<T, HtmlProp> & HtmlProps
 
-type AssignHtmlProps<T extends Dict, P extends Dict = {}> = Assign<
+type JsxHtmlProps<T extends Dict, P extends Dict = {}> = Assign<
   PatchHtmlProps<T>,
   P
 >
@@ -56,7 +63,7 @@ export type ChakraComponent<
 export type HTMLChakraProps<
   T extends ElementType,
   P extends Dict = {},
-> = AssignHtmlProps<
+> = JsxHtmlProps<
   ComponentPropsWithoutRef<T>,
   Assign<JsxStyleProps, P> & PolymorphicProps
 >
@@ -98,17 +105,3 @@ export interface JsxStyleProps
 
 export type InferRecipeProps<T> =
   T extends ChakraComponent<any, infer P> ? P : {}
-
-export interface UnstyledProp {
-  /**
-   * If `true`, the element will opt out of the theme styles.
-   */
-  unstyled?: boolean
-}
-
-export type PropGetterFn<T extends keyof JSX.IntrinsicElements, P = unknown> = (
-  props?: Partial<Omit<JSX.IntrinsicElements[T], HtmlProp | keyof P>> & P,
-  ref?: any,
-) => JSX.IntrinsicElements[T] & { ref?: any } & {
-  [key in `data-${string}`]?: any
-}

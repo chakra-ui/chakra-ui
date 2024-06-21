@@ -14,7 +14,9 @@ export type CssProperty = keyof PropertiesFallback
 
 export interface CssProperties
   extends PropertiesFallback<String | Number>,
-    CssVarProperties {}
+    CssVarProperties {
+  initialLetterAlign?: String
+}
 
 export interface CssKeyframes {
   [name: string]: {

@@ -12,7 +12,6 @@ export type {
   ChakraComponent,
   HTMLChakraProps,
   InferRecipeProps,
-  PropGetterFn,
   UnstyledProp,
 } from "./factory.types"
 export type {

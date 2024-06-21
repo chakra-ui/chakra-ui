@@ -312,4 +312,5 @@ export interface SystemConfig extends PreflightConfig {
   theme?: ThemingConfig
   utilities?: UtilityConfig
   conditions?: Dict
+  strictTokens?: boolean
 }

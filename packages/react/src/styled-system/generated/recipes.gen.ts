@@ -1,9 +1,4 @@
-import type {
-  RecipeDefinition,
-  SlotRecipeDefinition,
-  SystemRecipeFn,
-  SystemSlotRecipeFn,
-} from "../recipe.types"
+import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
 
 export interface BadgeVariantProps {
   variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
@@ -23,18 +18,7 @@ export interface CodeVariantProps {
 export interface ContainerVariantProps {}
 
 export interface HeadingVariantProps {
-  size?:
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl"
-    | "7xl"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
 }
 
 export interface InputVariantProps {
@@ -126,13 +110,7 @@ export interface ConfigRecipes {
 
 // Accordion
 
-export type AccordionSlot =
-  | "root"
-  | "item"
-  | "itemTrigger"
-  | "itemContent"
-  | "itemIndicator"
-  | "itemBody"
+export type AccordionSlot = "root" | "item" | "itemTrigger" | "itemContent" | "itemIndicator" | "itemBody"
 
 export interface AccordionVariantProps {
   variant?: "outline" | "elevated" | "contained" | "plain"
@@ -141,11 +119,7 @@ export interface AccordionVariantProps {
 
 // ActionBar
 
-export type ActionBarSlot =
-  | "positioner"
-  | "content"
-  | "separator"
-  | "selectionTrigger"
+export type ActionBarSlot = "positioner" | "content" | "separator" | "selectionTrigger"
 
 export interface ActionBarVariantProps {}
 
@@ -180,14 +154,7 @@ export interface BlockquoteVariantProps {
 
 // Breadcrumb
 
-export type BreadcrumbSlot =
-  | "link"
-  | "currentLink"
-  | "item"
-  | "list"
-  | "root"
-  | "ellipsis"
-  | "separator"
+export type BreadcrumbSlot = "link" | "currentLink" | "item" | "list" | "root" | "ellipsis" | "separator"
 
 export interface BreadcrumbVariantProps {
   variant?: "underline" | "plain"
@@ -214,12 +181,7 @@ export interface CheckboxVariantProps {
 
 // CheckboxCard
 
-export type CheckboxCardSlot =
-  | "root"
-  | "control"
-  | "label"
-  | "addon"
-  | "indicator"
+export type CheckboxCardSlot = "root" | "control" | "label" | "addon" | "indicator"
 
 export interface CheckboxCardVariantProps {
   size?: "sm" | "md" | "lg"
@@ -228,16 +190,7 @@ export interface CheckboxCardVariantProps {
 
 // CircularProgress
 
-export type CircularProgressSlot =
-  | "root"
-  | "label"
-  | "track"
-  | "range"
-  | "valueText"
-  | "view"
-  | "circle"
-  | "circleTrack"
-  | "circleRange"
+export type CircularProgressSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
 
 export interface CircularProgressVariantProps {
   indeterminate?: boolean
@@ -278,25 +231,8 @@ export type DialogSlot =
 export interface DialogVariantProps {
   centered?: boolean
   scrollBehavior?: "inside" | "outside"
-  size?:
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl"
-    | "full"
-  motionPreset?:
-    | "scale"
-    | "slide-in-bottom"
-    | "slide-in-top"
-    | "slide-in-left"
-    | "slide-in-right"
-    | "none"
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "full"
+  motionPreset?: "scale" | "slide-in-bottom" | "slide-in-top" | "slide-in-left" | "slide-in-right" | "none"
 }
 
 // Drawer
@@ -321,17 +257,7 @@ export interface DrawerVariantProps {
 
 // Editable
 
-export type EditableSlot =
-  | "root"
-  | "area"
-  | "label"
-  | "preview"
-  | "input"
-  | "editTrigger"
-  | "submitTrigger"
-  | "cancelTrigger"
-  | "control"
-  | "textarea"
+export type EditableSlot = "root" | "area" | "label" | "preview" | "input" | "editTrigger" | "submitTrigger" | "cancelTrigger" | "control" | "textarea"
 
 export interface EditableVariantProps {}
 
@@ -362,12 +288,7 @@ export interface FileUploadVariantProps {}
 
 // HoverCard
 
-export type HoverCardSlot =
-  | "arrow"
-  | "arrowTip"
-  | "trigger"
-  | "positioner"
-  | "content"
+export type HoverCardSlot = "arrow" | "arrowTip" | "trigger" | "positioner" | "content"
 
 export interface HoverCardVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
@@ -414,14 +335,7 @@ export interface NativeSelectVariantProps {
 
 // NumberInput
 
-export type NumberInputSlot =
-  | "root"
-  | "label"
-  | "input"
-  | "control"
-  | "incrementTrigger"
-  | "decrementTrigger"
-  | "scrubber"
+export type NumberInputSlot = "root" | "label" | "input" | "control" | "incrementTrigger" | "decrementTrigger" | "scrubber"
 
 export interface NumberInputVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
@@ -460,16 +374,7 @@ export interface PopoverVariantProps {
 
 // Progress
 
-export type ProgressSlot =
-  | "root"
-  | "label"
-  | "track"
-  | "range"
-  | "valueText"
-  | "view"
-  | "circle"
-  | "circleTrack"
-  | "circleRange"
+export type ProgressSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
 
 export interface ProgressVariantProps {
   variant?: "outline" | "subtle"
@@ -482,15 +387,7 @@ export interface ProgressVariantProps {
 
 // RadioCard
 
-export type RadioCardSlot =
-  | "root"
-  | "label"
-  | "item"
-  | "itemText"
-  | "itemControl"
-  | "indicator"
-  | "itemAddon"
-  | "itemIndicator"
+export type RadioCardSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator"
 
 export interface RadioCardVariantProps {
   size?: "sm" | "md" | "lg"
@@ -499,13 +396,7 @@ export interface RadioCardVariantProps {
 
 // RadioGroup
 
-export type RadioGroupSlot =
-  | "root"
-  | "label"
-  | "item"
-  | "itemText"
-  | "itemControl"
-  | "indicator"
+export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator"
 
 export interface RadioGroupVariantProps {
   variant?: "outline" | "subtle" | "classic"
@@ -514,12 +405,7 @@ export interface RadioGroupVariantProps {
 
 // RatingGroup
 
-export type RatingGroupSlot =
-  | "root"
-  | "label"
-  | "item"
-  | "control"
-  | "itemIndicator"
+export type RatingGroupSlot = "root" | "label" | "item" | "control" | "itemIndicator"
 
 export interface RatingGroupVariantProps {
   size?: "sm" | "md" | "lg"
@@ -527,13 +413,7 @@ export interface RatingGroupVariantProps {
 
 // SegmentGroup
 
-export type SegmentGroupSlot =
-  | "root"
-  | "label"
-  | "item"
-  | "itemText"
-  | "itemControl"
-  | "indicator"
+export type SegmentGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator"
 
 export interface SegmentGroupVariantProps {
   size?: "sm" | "md" | "lg"
@@ -565,16 +445,7 @@ export interface SelectVariantProps {
 
 // Slider
 
-export type SliderSlot =
-  | "root"
-  | "label"
-  | "thumb"
-  | "valueText"
-  | "track"
-  | "range"
-  | "control"
-  | "markerGroup"
-  | "marker"
+export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker"
 
 export interface SliderVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
@@ -584,13 +455,7 @@ export interface SliderVariantProps {
 
 // Stat
 
-export type StatSlot =
-  | "group"
-  | "root"
-  | "label"
-  | "helpText"
-  | "number"
-  | "indicator"
+export type StatSlot = "group" | "root" | "label" | "helpText" | "number" | "indicator"
 
 export interface StatVariantProps {
   size?: "md"
@@ -598,15 +463,7 @@ export interface StatVariantProps {
 
 // Steps
 
-export type StepsSlot =
-  | "root"
-  | "item"
-  | "title"
-  | "description"
-  | "indicator"
-  | "separator"
-  | "icon"
-  | "number"
+export type StepsSlot = "root" | "item" | "title" | "description" | "indicator" | "separator" | "icon" | "number"
 
 export interface StepsVariantProps {
   orientation?: "vertical" | "horizontal"
@@ -625,16 +482,7 @@ export interface SwitchVariantProps {
 
 // Table
 
-export type TableSlot =
-  | "scrollArea"
-  | "root"
-  | "header"
-  | "body"
-  | "row"
-  | "columnHeader"
-  | "cell"
-  | "footer"
-  | "caption"
+export type TableSlot = "scrollArea" | "root" | "header" | "body" | "row" | "columnHeader" | "cell" | "footer" | "caption"
 
 export interface TableVariantProps {
   interactive?: boolean
@@ -646,13 +494,7 @@ export interface TableVariantProps {
 
 // Tabs
 
-export type TabsSlot =
-  | "root"
-  | "trigger"
-  | "list"
-  | "content"
-  | "contentGroup"
-  | "indicator"
+export type TabsSlot = "root" | "trigger" | "list" | "content" | "contentGroup" | "indicator"
 
 export interface TabsVariantProps {
   orientation?: "vertical" | "horizontal"
@@ -673,12 +515,7 @@ export interface TagVariantProps {
 
 // Toast
 
-export type ToastSlot =
-  | "root"
-  | "title"
-  | "description"
-  | "icon"
-  | "closeTrigger"
+export type ToastSlot = "root" | "title" | "description" | "icon" | "closeTrigger"
 
 export interface ToastVariantProps {
   variant?: "solid" | "raised"
@@ -686,12 +523,7 @@ export interface ToastVariantProps {
 
 // Tooltip
 
-export type TooltipSlot =
-  | "trigger"
-  | "arrow"
-  | "arrowTip"
-  | "positioner"
-  | "content"
+export type TooltipSlot = "trigger" | "arrow" | "arrowTip" | "positioner" | "content"
 
 export interface TooltipVariantProps {}
 
@@ -713,10 +545,7 @@ export interface ConfigSlotRecipes {
   card: SystemSlotRecipeFn<CardSlot, CardVariantProps>
   checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps>
   checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
-  circularProgress: SystemSlotRecipeFn<
-    CircularProgressSlot,
-    CircularProgressVariantProps
-  >
+  circularProgress: SystemSlotRecipeFn<CircularProgressSlot, CircularProgressVariantProps>
   collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps>
   dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
   dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>
@@ -792,14 +621,10 @@ export interface ConfigRecipeSlots {
   status: StatusSlot
 }
 
-export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
-  ? Record<ConfigRecipeSlots[T], K>
-  : Record<string, K>
+export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
 
 export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
   ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition }
   : { recipe?: SlotRecipeDefinition }
 
-export type RecipeProps<T> = T extends keyof ConfigRecipes
-  ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition }
-  : { recipe?: RecipeDefinition }
+export type RecipeProps<T> = T extends keyof ConfigRecipes ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition } : { recipe?: RecipeDefinition }

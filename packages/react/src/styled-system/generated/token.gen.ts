@@ -625,80 +625,21 @@ export type ColorsToken =
   | "colorPalette.info"
   | "colorPalette.disabled"
 
-export type DurationsToken =
-  | "fastest"
-  | "faster"
-  | "fast"
-  | "normal"
-  | "slow"
-  | "slower"
-  | "slowest"
+export type DurationsToken = "fastest" | "faster" | "fast" | "normal" | "slow" | "slower" | "slowest"
 
 export type EasingsToken = "default" | "linear" | "in" | "out" | "in-out"
 
 export type FontsToken = "heading" | "body" | "mono"
 
-export type FontSizesToken =
-  | "3xs"
-  | "2xs"
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl"
-  | "6xl"
-  | "7xl"
-  | "8xl"
-  | "9xl"
+export type FontSizesToken = "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl"
 
-export type FontWeightsToken =
-  | "hairline"
-  | "thin"
-  | "light"
-  | "normal"
-  | "medium"
-  | "semibold"
-  | "bold"
-  | "extrabold"
-  | "black"
+export type FontWeightsToken = "hairline" | "thin" | "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold" | "black"
 
-export type LetterSpacingsToken =
-  | "tighter"
-  | "tight"
-  | "normal"
-  | "wide"
-  | "wider"
-  | "widest"
+export type LetterSpacingsToken = "tighter" | "tight" | "normal" | "wide" | "wider" | "widest"
 
-export type LineHeightsToken =
-  | "3"
-  | "4"
-  | "5"
-  | "6"
-  | "7"
-  | "8"
-  | "9"
-  | "10"
-  | "shorter"
-  | "short"
-  | "base"
-  | "tall"
-  | "taller"
+export type LineHeightsToken = "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "shorter" | "short" | "base" | "tall" | "taller"
 
-export type RadiiToken =
-  | "2xs"
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "full"
+export type RadiiToken = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full"
 
 export type SpacingToken =
   | "1"

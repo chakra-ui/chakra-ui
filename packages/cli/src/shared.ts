@@ -12,7 +12,7 @@ export async function pretty(value: any) {
     parser: "typescript",
     bracketSpacing: true,
     jsxSingleQuote: false,
-    printWidth: 80,
+    printWidth: 160,
     proseWrap: "always",
     semi: false,
     singleQuote: false,
