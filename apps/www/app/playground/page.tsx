@@ -3,6 +3,7 @@ import { Alert } from "@/compositions/ui/alert"
 import { Avatar } from "@/compositions/ui/avatar"
 import { Button } from "@/compositions/ui/button"
 import { CircularProgress } from "@/compositions/ui/circular-progress"
+import { EmptyState } from "@/compositions/ui/empty-state"
 import { Progress } from "@/compositions/ui/progress"
 import { Rating } from "@/compositions/ui/rating"
 import { SegmentControl } from "@/compositions/ui/segment-control"
@@ -13,10 +14,12 @@ import {
   Box,
   ColorPalette,
   Container,
+  Group,
   Heading,
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { HiColorSwatch, HiPlus } from "react-icons/hi"
 
 const colorPalettes: ColorPalette[] = [
   "gray",
@@ -283,6 +286,24 @@ export default function Page() {
             defaultValue="React"
             items={["React", "Vue", "Solid"]}
           />
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="empty-state">
+          Empty State
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <EmptyState
+            icon={<HiColorSwatch />}
+            title="Start adding tokens"
+            description="Add a new design token to get started"
+          >
+            <Group>
+              <Button startIcon={<HiPlus />}>Add new</Button>
+              <Button variant="outline">Import</Button>
+            </Group>
+          </EmptyState>
         </Stack>
       </Playground.Section>
 

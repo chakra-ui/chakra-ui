@@ -4,10 +4,8 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
   slots: ["root", "content", "indicator"],
   base: {
     root: {
-      bg: "bg.subtle",
       rounded: "md",
       width: "full",
-      borderWidth: "1px",
     },
     content: {
       display: "flex",
@@ -54,9 +52,22 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
+    variant: {
+      outline: {
+        root: {
+          bg: "bg.subtle",
+          borderWidth: "1px",
+        },
+      },
+      plain: {
+        root: {},
+      },
+    },
   },
 
   defaultVariants: {
+    variant: "outline",
     size: "lg",
   },
 })

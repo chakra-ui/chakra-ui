@@ -267,6 +267,7 @@ export type EmptyStateSlot = "root" | "content" | "indicator"
 
 export interface EmptyStateVariantProps {
   size?: "lg" | "md"
+  variant?: "outline" | "plain"
 }
 
 // FileUpload
