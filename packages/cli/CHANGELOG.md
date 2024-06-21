@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.7
+
+### Minor Changes
+
+- [`4ff153f`](https://github.com/chakra-ui/chakra-ui/commit/4ff153fd9b449d3e43561b7daceaadfe3c925b08)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Speed up
+  intellisence for style props, and add support for `strictTokens` in the CLI.
+
 ## 3.0.0-next.6
 
 ## 3.0.0-next.5
