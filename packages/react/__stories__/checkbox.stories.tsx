@@ -177,3 +177,16 @@ export const WithForm = () => {
     </Stack>
   )
 }
+
+export const WithIndeterminate = () => {
+  return (
+    <Stack>
+      <DemoCheckbox defaultChecked="indeterminate" variant="outline">
+        Indeterminate
+      </DemoCheckbox>
+      <DemoCheckbox defaultChecked="indeterminate" variant="subtle">
+        Indeterminate
+      </DemoCheckbox>
+    </Stack>
+  )
+}

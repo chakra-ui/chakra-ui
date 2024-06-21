@@ -48,6 +48,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   variants: {
     size: {
       sm: {
@@ -75,12 +76,17 @@ export const checkboxSlotRecipe = defineSlotRecipe({
         indicator: { fontSize: "xs" },
       },
     },
+
     variant: {
       outline: {
         control: {
           borderWidth: "1px",
           borderColor: "inherit",
           _checked: {
+            bg: "colorPalette.600",
+            borderColor: "colorPalette.600",
+          },
+          _indeterminate: {
             bg: "colorPalette.600",
             borderColor: "colorPalette.600",
           },
@@ -100,6 +106,9 @@ export const checkboxSlotRecipe = defineSlotRecipe({
           _checked: {
             color: { base: "colorPalette.700", _dark: "colorPalette.200" },
           },
+          _indeterminate: {
+            color: { base: "colorPalette.700", _dark: "colorPalette.200" },
+          },
         },
       },
     },
@@ -113,6 +122,10 @@ export const checkboxSlotRecipe = defineSlotRecipe({
         control: {
           color: "fg.inverse",
           _checked: {
+            bg: { base: "gray.800", _dark: "gray.200" },
+            borderColor: { base: "gray.800", _dark: "gray.200" },
+          },
+          _indeterminate: {
             bg: { base: "gray.800", _dark: "gray.200" },
             borderColor: { base: "gray.800", _dark: "gray.200" },
           },
