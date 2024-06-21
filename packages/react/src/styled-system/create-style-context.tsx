@@ -10,6 +10,20 @@ import type { JsxFactoryOptions } from "./factory.types"
 import type { ConfigRecipeSlots } from "./generated/recipes.gen"
 import { type SlotRecipeKey, useSlotRecipe } from "./use-slot-recipe"
 
+interface WrapElementProps<P> {
+  wrapElement?(element: React.ReactElement, props: P): React.ReactElement
+}
+
+interface WithRootProviderOptions<P> extends WrapElementProps<P> {
+  defaultProps?: Partial<P>
+}
+
+interface WithProviderOptions<P>
+  extends JsxFactoryOptions<P>,
+    WrapElementProps<P> {}
+
+interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
+
 export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   const [RecipeStylesProvider, useStyles] = createContext<
     Record<string, SystemStyleObject>
@@ -24,7 +38,7 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
 
   function withRootProvider<P>(
     Component: React.ElementType<any>,
-    options: { defaultProps?: Partial<P> } = {},
+    options: WithRootProviderOptions<P> = {},
   ): React.FC<React.PropsWithoutRef<P>> {
     const { defaultProps } = options
     const StyledComponent = ({ unstyled, ...baseProps }: any) => {
@@ -52,11 +66,12 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   const withProvider = <T, P>(
     Component: React.ElementType<any>,
     slot: R extends keyof ConfigRecipeSlots ? ConfigRecipeSlots[R] : string,
-    options?: JsxFactoryOptions<P>,
+    options?: WithProviderOptions<P>,
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
     const SuperComponent = chakra(Component, {}, options as any)
+
     const StyledComponent = forwardRef<any, any>(
       ({ unstyled, ...props }, ref) => {
         const slotRecipe = useSlotRecipe(recipe, props.recipe)
@@ -66,7 +81,7 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
           ? EMPTY_SLOT_STYLES
           : slotRecipe(variantProps)
 
-        return (
+        const element = (
           <RecipeStylesProvider value={slotStyles}>
             <ClassNamesProvider value={slotRecipe.classNameMap}>
               <SuperComponent
@@ -84,6 +99,8 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
             </ClassNamesProvider>
           </RecipeStylesProvider>
         )
+
+        return options?.wrapElement?.(element, props) ?? element
       },
     )
 
@@ -96,7 +113,7 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   const withContext = <T, P>(
     Component: React.ElementType<any>,
     slot?: R extends keyof ConfigRecipeSlots ? ConfigRecipeSlots[R] : string,
-    options?: JsxFactoryOptions<P>,
+    options?: WithContextOptions<P>,
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {

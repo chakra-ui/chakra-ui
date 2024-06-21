@@ -21,6 +21,7 @@ export const alertSlotRecipe = defineSlotRecipe({
       lineHeight: "1.5",
     },
     icon: {
+      display: "inherit",
       flexShrink: 0,
     },
   },
