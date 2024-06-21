@@ -45,25 +45,27 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <ChakraButton disabled={trulyDisabled} ref={ref} {...rest}>
-        {showSpinner && (
-          <AbsoluteCenter display="inline-flex">
-            <Spinner boxSize="1em" color="currentColor" />
-          </AbsoluteCenter>
-        )}
+        {showSpinner && <ButtonSpinner />}
         {loading ? loadingText || <Span opacity={0}>{content}</Span> : content}
       </ChakraButton>
     )
   },
 )
 
-function ButtonContent(props: React.PropsWithChildren<ButtonProps>) {
+const ButtonContent = (props: React.PropsWithChildren<ButtonProps>) => {
   const { children, startIcon, endIcon } = props
   if (!startIcon && !endIcon) return children
   return (
     <>
-      {startIcon && <Span marginEnd="2">{startIcon}</Span>}
+      {startIcon}
       <span>{children}</span>
-      {endIcon && <Span marginStart="2">{endIcon}</Span>}
+      {endIcon}
     </>
   )
 }
+
+const ButtonSpinner = () => (
+  <AbsoluteCenter display="inline-flex">
+    <Spinner boxSize="1em" color="currentColor" />
+  </AbsoluteCenter>
+)
