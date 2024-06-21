@@ -1,6 +1,7 @@
 import * as Playground from "@/components/playground"
 import { Alert } from "@/compositions/ui/alert"
 import { Avatar } from "@/compositions/ui/avatar"
+import { Button } from "@/compositions/ui/button"
 import { CircularProgress } from "@/compositions/ui/circular-progress"
 import { Progress } from "@/compositions/ui/progress"
 import { Rating } from "@/compositions/ui/rating"
@@ -9,7 +10,6 @@ import { Tooltip } from "@/compositions/ui/tooltip"
 import {
   Badge,
   Box,
-  Button,
   ColorPalette,
   Container,
   Heading,

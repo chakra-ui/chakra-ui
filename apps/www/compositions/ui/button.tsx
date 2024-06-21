@@ -24,8 +24,18 @@ export interface ButtonProps
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(props, ref) {
-    const { loading, loadingText, startIcon, endIcon, children, ...rest } =
-      props
+    const {
+      loading,
+      disabled,
+      loadingText,
+      startIcon,
+      endIcon,
+      children,
+      ...rest
+    } = props
+
+    const trulyDisabled = loading || disabled
+    const showSpinner = loading && !loadingText
 
     const content = (
       <ButtonContent startIcon={startIcon} endIcon={endIcon}>
@@ -34,9 +44,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     )
 
     return (
-      <ChakraButton ref={ref} {...rest}>
-        {loading && (
-          <AbsoluteCenter>
+      <ChakraButton disabled={trulyDisabled} ref={ref} {...rest}>
+        {showSpinner && (
+          <AbsoluteCenter display="inline-flex">
             <Spinner boxSize="1em" color="currentColor" />
           </AbsoluteCenter>
         )}
