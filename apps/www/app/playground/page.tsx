@@ -13,6 +13,7 @@ import { Tooltip } from "@/compositions/ui/tooltip"
 import {
   Badge,
   Box,
+  Code,
   ColorPalette,
   Container,
   Group,
@@ -39,7 +40,7 @@ const alertStatuses = ["info", "warning", "success", "error"] as const
 
 export default function Page() {
   return (
-    <Container py="20" fontSize="sm">
+    <Container py="20" fontSize="sm" maxW="4xl">
       <Playground.Section>
         <Playground.SectionTitle id="avatar">Avatar</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
@@ -113,6 +114,36 @@ export default function Page() {
               <Badge colorPalette={colorPalette} variant="surface">
                 New
               </Badge>
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="code">Code</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+              width="full"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Code colorPalette={colorPalette} variant="solid">
+                {`console.log()`}
+              </Code>
+              <Code colorPalette={colorPalette} variant="outline">
+                {`console.log()`}
+              </Code>
+              <Code colorPalette={colorPalette} variant="subtle">
+                {`console.log()`}
+              </Code>
+              <Code colorPalette={colorPalette} variant="surface">
+                {`console.log()`}
+              </Code>
             </Stack>
           ))}
         </Stack>

@@ -12,7 +12,7 @@ export const alertSlotRecipe = defineSlotRecipe({
       overflow: "hidden",
     },
     title: {
-      fontWeight: "semibold",
+      fontWeight: "medium",
       lineHeight: "1.2",
       marginEnd: "2",
     },
