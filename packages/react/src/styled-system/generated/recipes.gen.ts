@@ -626,6 +626,7 @@ export interface SwitchVariantProps {
 // Table
 
 export type TableSlot =
+  | "scrollArea"
   | "root"
   | "header"
   | "body"
@@ -636,7 +637,6 @@ export type TableSlot =
   | "caption"
 
 export interface TableVariantProps {
-  numeric?: boolean
   interactive?: boolean
   striped?: boolean
   showColumnBorder?: boolean

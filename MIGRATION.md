@@ -673,6 +673,14 @@ the theme keys.
 - Renamed `Tfoot` to `Table.Footer`
 - Renamed `isNumeric` to `numeric`
 
+- Remove `numeric` from `TableColumnHeader` in favor of applying the
+  `text-align` css property directly.
+
+- Rename `TableOverflow` to `TableScrollArea`
+
+- Remove `placement` prop from `TableCaption` in favor of setting the
+  `caption-side` css property directly.
+
 ### Menu
 
 - Removed `rootProps` in favor of rendering the `Menu.Positioner` component

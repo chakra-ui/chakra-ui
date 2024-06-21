@@ -24,42 +24,67 @@ interface WithProviderOptions<P>
 
 interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
 
+const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
+
 export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
-  const [RecipeStylesProvider, useStyles] = createContext<
+  const contextName = upperFirst(recipe)
+
+  const [StylesProvider, useStyles] = createContext<
     Record<string, SystemStyleObject>
   >({
-    name: `${recipe}StylesContext`,
-    errorMessage: `use${recipe}Styles returned is 'undefined'. Seems you forgot to wrap the components in "<${recipe}.Root />" `,
+    name: `${contextName}StylesContext`,
+    errorMessage: `use${contextName}Styles returned is 'undefined'. Seems you forgot to wrap the components in "<${contextName}.Root />" `,
   })
 
   const [ClassNamesProvider, useClassNames] = createContext<
     Record<string, string>
-  >({ name: `${recipe}ClassNameContext` })
+  >({
+    name: `${contextName}ClassNameContext`,
+    errorMessage: `use${contextName}ClassNames returned is 'undefined'. Seems you forgot to wrap the components in "<${contextName}.Root />" `,
+    strict: false,
+  })
+
+  function useRecipeResult(props: any) {
+    const { unstyled, ...restProps } = props
+    const slotRecipe = useSlotRecipe(recipe, restProps.recipe)
+
+    // @ts-ignore
+    const [variantProps, otherProps] = slotRecipe.splitVariantProps(restProps)
+    const styles = unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)
+
+    return {
+      styles: styles as Record<string, SystemStyleObject>,
+      classNames: slotRecipe.classNameMap as Record<string, string>,
+      props: otherProps,
+    }
+  }
 
   function withRootProvider<P>(
     Component: React.ElementType<any>,
     options: WithRootProviderOptions<P> = {},
   ): React.FC<React.PropsWithoutRef<P>> {
     const { defaultProps } = options
-    const StyledComponent = ({ unstyled, ...baseProps }: any) => {
-      const props = { ...defaultProps, ...baseProps }
-      const slotRecipe = useSlotRecipe(recipe, props.recipe)
-      // @ts-ignore
-      const [variantProps, otherProps] = slotRecipe.splitVariantProps(props)
-      const slotStyles = unstyled ? EMPTY_SLOT_STYLES : slotRecipe(variantProps)
+
+    const StyledComponent = (props: any) => {
+      const propsWithDefault = { ...defaultProps, ...props }
+
+      const {
+        styles,
+        classNames,
+        props: rootProps,
+      } = useRecipeResult(propsWithDefault)
 
       return (
-        <RecipeStylesProvider value={slotStyles}>
-          <ClassNamesProvider value={slotRecipe.classNameMap}>
-            <Component {...otherProps} />
+        <StylesProvider value={styles}>
+          <ClassNamesProvider value={classNames}>
+            <Component {...rootProps} />
           </ClassNamesProvider>
-        </RecipeStylesProvider>
+        </StylesProvider>
       )
     }
 
     // @ts-expect-error
     StyledComponent.displayName = Component.displayName || Component.name
-
     return StyledComponent as any
   }
 
@@ -72,37 +97,25 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   > => {
     const SuperComponent = chakra(Component, {}, options as any)
 
-    const StyledComponent = forwardRef<any, any>(
-      ({ unstyled, ...props }, ref) => {
-        const slotRecipe = useSlotRecipe(recipe, props.recipe)
-        // @ts-ignore
-        const [variantProps, otherProps] = slotRecipe.splitVariantProps(props)
-        const slotStyles = unstyled
-          ? EMPTY_SLOT_STYLES
-          : slotRecipe(variantProps)
+    const StyledComponent = forwardRef<any, any>((props, ref) => {
+      const { styles, props: rootProps, classNames } = useRecipeResult(props)
+      const className = classNames[slot as keyof typeof classNames]
 
-        const element = (
-          <RecipeStylesProvider value={slotStyles}>
-            <ClassNamesProvider value={slotRecipe.classNameMap}>
-              <SuperComponent
-                ref={ref}
-                {...otherProps}
-                // @ts-expect-error
-                css={[slotStyles[slot], props.css]}
-                className={cx(
-                  props.className,
-                  slotRecipe.classNameMap[
-                    slot as keyof typeof slotRecipe.classNameMap
-                  ],
-                )}
-              />
-            </ClassNamesProvider>
-          </RecipeStylesProvider>
-        )
+      const element = (
+        <StylesProvider value={styles}>
+          <ClassNamesProvider value={classNames}>
+            <SuperComponent
+              ref={ref}
+              {...rootProps}
+              css={[styles[slot], props.css]}
+              className={cx(props.className, className)}
+            />
+          </ClassNamesProvider>
+        </StylesProvider>
+      )
 
-        return options?.wrapElement?.(element, props) ?? element
-      },
-    )
+      return options?.wrapElement?.(element, props) ?? element
+    })
 
     // @ts-expect-error
     StyledComponent.displayName = Component.displayName || Component.name
@@ -119,17 +132,16 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
   > => {
     const SuperComponent = chakra(Component, {}, options as any)
     const StyledComponent = forwardRef<any, any>((props, ref) => {
-      const slotStyles = useStyles()
+      const styles = useStyles()
       const classNames = useClassNames()
+      const className = classNames?.[slot as keyof typeof classNames]
+
       return (
         <SuperComponent
           {...props}
-          css={[slot ? slotStyles[slot] : undefined, props.css]}
+          css={[slot ? styles[slot] : undefined, props.css]}
           ref={ref}
-          className={cx(
-            props.className,
-            classNames[slot as keyof typeof classNames],
-          )}
+          className={cx(props.className, className)}
         />
       )
     })
@@ -139,5 +151,14 @@ export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
     return StyledComponent as any
   }
 
-  return { withProvider, withContext, withRootProvider, useStyles }
+  return {
+    StylesProvider,
+    ClassNamesProvider,
+    useRecipeResult,
+    withProvider,
+    withContext,
+    withRootProvider,
+    useStyles,
+    useClassNames,
+  }
 }

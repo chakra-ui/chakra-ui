@@ -2,6 +2,7 @@ import { tableAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const tableSlotRecipe = defineSlotRecipe({
+  className: "table",
   slots: tableAnatomy.keys(),
   base: {
     root: {
@@ -32,14 +33,16 @@ export const tableSlotRecipe = defineSlotRecipe({
     footer: {
       fontWeight: "medium",
     },
+    scrollArea: {
+      display: "block",
+      whiteSpace: "nowrap",
+      WebkitOverflowScrolling: "touch",
+      overflowX: "auto",
+      overflowY: "hidden",
+      maxWidth: "100%",
+    },
   },
   variants: {
-    numeric: {
-      true: {
-        columnHeader: { textAlign: "end" },
-        cell: { textAlign: "end" },
-      },
-    },
     interactive: {
       true: {
         row: {
@@ -107,6 +110,7 @@ export const tableSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     size: {
       sm: {
         root: {
@@ -122,6 +126,7 @@ export const tableSlotRecipe = defineSlotRecipe({
           py: "2",
         },
       },
+
       md: {
         root: {
           "--table-radius": "radii.md",
@@ -136,6 +141,7 @@ export const tableSlotRecipe = defineSlotRecipe({
           py: "3",
         },
       },
+
       lg: {
         root: {
           "--table-radius": "radii.md",
@@ -152,6 +158,7 @@ export const tableSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   defaultVariants: {
     variant: "line",
     size: "md",

@@ -13,34 +13,38 @@ const DemoTable = (props: Table.RootProps) => (
       <Table.Row>
         <Table.ColumnHeader>Name</Table.ColumnHeader>
         <Table.ColumnHeader>Email</Table.ColumnHeader>
-        <Table.ColumnHeader numeric>Award Count</Table.ColumnHeader>
+        <Table.ColumnHeader textAlign="end">Award Count</Table.ColumnHeader>
       </Table.Row>
     </Table.Header>
     <Table.Body>
       <Table.Row>
         <Table.Cell>John Doe</Table.Cell>
         <Table.Cell>johndoe@gmail.com</Table.Cell>
-        <Table.Cell numeric>10</Table.Cell>
+        <Table.Cell textAlign="end">10</Table.Cell>
       </Table.Row>
       <Table.Row>
         <Table.Cell>Jane Doe</Table.Cell>
         <Table.Cell>janedoe@gmail.com</Table.Cell>
-        <Table.Cell numeric>2</Table.Cell>
+        <Table.Cell textAlign="end">2</Table.Cell>
       </Table.Row>
       <Table.Row data-selected="">
         <Table.Cell>Jack Doe</Table.Cell>
         <Table.Cell>jackdoe@gmail.com</Table.Cell>
-        <Table.Cell numeric>9</Table.Cell>
+        <Table.Cell textAlign="end">9</Table.Cell>
       </Table.Row>
     </Table.Body>
     <Table.Footer>
       <Table.Row>
         <Table.Cell colSpan={2}>Total</Table.Cell>
-        <Table.Cell>15</Table.Cell>
+        <Table.Cell textAlign="end">15</Table.Cell>
       </Table.Row>
     </Table.Footer>
   </Table.Root>
 )
+
+export const Basic = () => {
+  return <DemoTable />
+}
 
 export const Variants = () => {
   const recipe = useSlotRecipe("table")
