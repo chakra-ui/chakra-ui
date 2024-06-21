@@ -2,7 +2,14 @@ import * as Playground from "@/components/playground"
 import { Alert } from "@/compositions/ui/alert"
 import { Avatar } from "@/compositions/ui/avatar"
 import { Switch } from "@/compositions/ui/switch"
-import { Button, ColorPalette, Container, Stack, Text } from "@chakra-ui/react"
+import {
+  Badge,
+  Button,
+  ColorPalette,
+  Container,
+  Stack,
+  Text,
+} from "@chakra-ui/react"
 
 const colorPalettes: ColorPalette[] = [
   "gray",
@@ -65,6 +72,36 @@ export default function Page() {
                   This is the alert description
                 </Alert>
               </Stack>
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="avatar">Badge</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+              width="full"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Badge colorPalette={colorPalette} variant="solid">
+                New
+              </Badge>
+              <Badge colorPalette={colorPalette} variant="outline">
+                New
+              </Badge>
+              <Badge colorPalette={colorPalette} variant="subtle">
+                New
+              </Badge>
+              <Badge colorPalette={colorPalette} variant="surface">
+                New
+              </Badge>
             </Stack>
           ))}
         </Stack>
