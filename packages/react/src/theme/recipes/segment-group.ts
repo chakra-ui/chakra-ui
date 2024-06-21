@@ -40,6 +40,12 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
           opacity: "0",
         },
       },
+
+      "&[data-state=checked][data-ssr]": {
+        shadow: "sm",
+        bg: "bg",
+        borderRadius: "var(--segment-indicator-radius)",
+      },
     },
 
     indicator: {
@@ -51,6 +57,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       top: "var(--top)",
       left: "var(--left)",
       zIndex: -1,
+      borderRadius: "var(--segment-indicator-radius)",
     },
   },
 
@@ -60,42 +67,36 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
         root: {
           rounded: "sm",
           height: "6",
+          "--segment-indicator-radius": "radii.sm",
         },
         item: {
           fontSize: "xs",
           px: "3",
           gap: "1",
         },
-        indicator: {
-          rounded: "xs",
-        },
       },
       md: {
         root: {
           rounded: "md",
           height: "8",
+          "--segment-indicator-radius": "radii.sm",
         },
         item: {
           fontSize: "sm",
           px: "4",
           gap: "2",
         },
-        indicator: {
-          rounded: "sm",
-        },
       },
       lg: {
         root: {
           rounded: "lg",
           height: "10",
+          "--segment-indicator-radius": "radii.md",
         },
         item: {
           fontSize: "md",
           px: "5",
           gap: "3",
-        },
-        indicator: {
-          rounded: "md",
         },
       },
     },

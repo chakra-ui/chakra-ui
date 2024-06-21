@@ -5,6 +5,7 @@ import { Button } from "@/compositions/ui/button"
 import { CircularProgress } from "@/compositions/ui/circular-progress"
 import { Progress } from "@/compositions/ui/progress"
 import { Rating } from "@/compositions/ui/rating"
+import { SegmentControl } from "@/compositions/ui/segment-control"
 import { Switch } from "@/compositions/ui/switch"
 import { Tooltip } from "@/compositions/ui/tooltip"
 import {
@@ -259,6 +260,29 @@ export default function Page() {
           <Heading size="lg">Heading (lg)</Heading>
           <Heading size="md">Heading (md)</Heading>
           <Heading size="sm">Heading (sm)</Heading>
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="segment-control">
+          Segment Control
+        </Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          <SegmentControl
+            size="sm"
+            defaultValue="React"
+            items={["React", "Vue", "Solid"]}
+          />
+          <SegmentControl
+            size="md"
+            defaultValue="React"
+            items={["React", "Vue", "Solid"]}
+          />
+          <SegmentControl
+            size="lg"
+            defaultValue="React"
+            items={["React", "Vue", "Solid"]}
+          />
         </Stack>
       </Playground.Section>
 

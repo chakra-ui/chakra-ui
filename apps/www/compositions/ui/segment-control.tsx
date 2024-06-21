@@ -1,5 +1,7 @@
+"use client"
+
 import { For, SegmentGroup } from "@chakra-ui/react"
-import { forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 
 interface Item {
   value: string
@@ -8,7 +10,7 @@ interface Item {
 }
 
 export interface SegmentControlProps extends SegmentGroup.RootProps {
-  items?: Array<string | Item>
+  items: Array<string | Item>
 }
 
 function normalize(items: Array<string | Item>): Item[] {
@@ -21,7 +23,7 @@ function normalize(items: Array<string | Item>): Item[] {
 export const SegmentControl = forwardRef<HTMLDivElement, SegmentControlProps>(
   function SegmentControl(props, ref) {
     const { items, ...rest } = props
-    const data = normalize(items ?? [])
+    const data = useMemo(() => normalize(items), [items])
 
     return (
       <SegmentGroup.Root ref={ref} {...rest}>
