@@ -1,12 +1,6 @@
 import type { StoryFn } from "@storybook/react"
 import * as React from "react"
-import {
-  Editable,
-  Heading,
-  chakra,
-  useEditable,
-  useEditableControls,
-} from "../src"
+import { Editable, Heading, chakra } from "../src"
 
 export default {
   title: "Components / Editable",
@@ -19,66 +13,12 @@ export default {
   ],
 }
 
-const Actions = () => {
-  const {
-    isEditing,
-    getEditButtonProps,
-    getSubmitButtonProps,
-    getCancelButtonProps,
-  } = useEditableControls()
-
-  return (
-    <div>
-      {!isEditing ? (
-        <button {...getEditButtonProps()}>Edit</button>
-      ) : (
-        <>
-          <button {...getSubmitButtonProps()}>Save</button>
-          <button {...getCancelButtonProps()}>Cancel</button>
-        </>
-      )}
-    </div>
-  )
-}
-
-export const UseEditableHook = () => {
-  const state = useEditable({
-    placeholder: "Title...",
-    submitOnBlur: true,
-    onCancel: () => console.log("cancel"),
-    onSubmit: () => console.log("submit"),
-  })
-
-  return (
-    <>
-      <input
-        style={{ width: "auto", background: "transparent" }}
-        {...state.getInputProps()}
-      />
-      <span
-        style={{ opacity: state.isValueEmpty ? 0.7 : 1 }}
-        {...state.getPreviewProps()}
-      />
-      {!state.isEditing && <button onClick={state.onEdit}>Edit</button>}
-      {state.isEditing && (
-        <>
-          <button {...state.getSubmitButtonProps()}>Save</button>
-          <button {...state.getCancelButtonProps({ style: { padding: 10 } })}>
-            Cancel
-          </button>
-        </>
-      )}
-    </>
-  )
-}
-
 export const Basic = () => (
   <Editable.Root
     textAlign="center"
     defaultValue="Rasengan ⚡️"
     fontSize="2xl"
     onSubmit={() => console.log("onSubmit", Math.random())}
-    isPreviewFocusable
   >
     <Editable.Preview />
     <Editable.Input />
@@ -104,20 +44,23 @@ export const WithTextarea = () => {
       defaultValue="Hello!!"
       fontSize="xl"
       textAlign="center"
-      isPreviewFocusable={false}
-      submitOnBlur={false}
-      onChange={console.log}
+      submitMode="enter"
+      onValueChange={console.log}
     >
       <Editable.Preview />
       <Editable.Textarea />
-      <Actions />
+
+      <Editable.Control>
+        <Editable.EditTrigger>Edit</Editable.EditTrigger>
+        <Editable.CancelTrigger>Cancel</Editable.CancelTrigger>
+        <Editable.SubmitTrigger>Submit</Editable.SubmitTrigger>
+      </Editable.Control>
     </Editable.Root>
   )
 }
 
-export const EditableEventHandler = () => {
+export const Controlled = () => {
   const [name, setName] = React.useState("")
-  console.log("State 'name' is ", name)
 
   React.useEffect(() => {
     setName("John")
@@ -128,17 +71,9 @@ export const EditableEventHandler = () => {
       <Heading>Name State=[{name}]</Heading>
       <Editable.Root
         value={name}
-        onChange={(value) => {
-          console.log("onChange called with ", value)
-          setName(value)
-        }}
-        onSubmit={(value) => {
-          console.log("onSubmit called with ", value)
-          setName(value)
-        }}
-        onCancel={(value) => {
-          console.log("onCancel called with ", value)
-          setName(value)
+        onValueChange={(changes) => {
+          console.log("onChange called with ", changes.value)
+          setName(changes.value)
         }}
         placeholder="Enter your name"
       >
@@ -153,7 +88,11 @@ export const Disabled = () => (
   <Editable.Root disabled defaultValue="Rasengan ⚡️" fontSize="xl">
     <Editable.Preview />
     <Editable.Input />
-    <Actions />
+    <Editable.Control>
+      <Editable.EditTrigger>Edit</Editable.EditTrigger>
+      <Editable.CancelTrigger>Cancel</Editable.CancelTrigger>
+      <Editable.SubmitTrigger>Submit</Editable.SubmitTrigger>
+    </Editable.Control>
   </Editable.Root>
 )
 
@@ -164,13 +103,17 @@ export const FinalFocusRef = () => {
     <>
       <input ref={finalFocusRef} />
       <Editable.Root
-        finalFocusRef={finalFocusRef}
+        finalFocusEl={() => finalFocusRef.current}
         defaultValue="Final fantasy"
         fontSize="xl"
       >
         <Editable.Preview />
         <Editable.Input />
-        <Actions />
+        <Editable.Control>
+          <Editable.EditTrigger>Edit</Editable.EditTrigger>
+          <Editable.CancelTrigger>Cancel</Editable.CancelTrigger>
+          <Editable.SubmitTrigger>Submit</Editable.SubmitTrigger>
+        </Editable.Control>
       </Editable.Root>
     </>
   )
