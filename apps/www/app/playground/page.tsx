@@ -4,6 +4,7 @@ import { Avatar } from "@/compositions/ui/avatar"
 import { Button } from "@/compositions/ui/button"
 import { CircularProgress } from "@/compositions/ui/circular-progress"
 import { EmptyState } from "@/compositions/ui/empty-state"
+import { FileButton } from "@/compositions/ui/file-button"
 import { Progress } from "@/compositions/ui/progress"
 import { Rating } from "@/compositions/ui/rating"
 import { SegmentControl } from "@/compositions/ui/segment-control"
@@ -19,7 +20,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { HiColorSwatch, HiPlus } from "react-icons/hi"
+import { HiColorSwatch, HiPlus, HiUpload } from "react-icons/hi"
 
 const colorPalettes: ColorPalette[] = [
   "gray",
@@ -304,6 +305,19 @@ export default function Page() {
               <Button variant="outline">Import</Button>
             </Group>
           </EmptyState>
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="file-button">
+          File Button
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <FileButton width="auto">
+            <Button variant="outline" startIcon={<HiUpload />}>
+              Upload file
+            </Button>
+          </FileButton>
         </Stack>
       </Playground.Section>
 
