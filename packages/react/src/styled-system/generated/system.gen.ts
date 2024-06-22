@@ -627,7 +627,7 @@ export interface SystemProperties {
   divideColor?: ConditionalValue<UtilityValues["divideColor"] | CssVars | AnyString>
   divideStyle?: ConditionalValue<UtilityValues["divideStyle"] | CssVars | AnyString>
   boxShadowColor?: ConditionalValue<UtilityValues["boxShadowColor"] | CssVars | AnyString>
-  blur?: ConditionalValue<string | number | AnyString>
+  blur?: ConditionalValue<UtilityValues["blur"] | CssVars | AnyString>
   brightness?: ConditionalValue<string | number | AnyString>
   contrast?: ConditionalValue<string | number | AnyString>
   grayscale?: ConditionalValue<string | number | AnyString>

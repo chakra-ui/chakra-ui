@@ -105,6 +105,7 @@ export interface UtilityValues {
   boxShadow: Tokens["shadows"]
   boxShadowColor: Tokens["colors"]
   opacity: Tokens["opacity"]
+  blur: Tokens["blurs"]
   backdropBlur: Tokens["blurs"]
   flexBasis: Tokens["sizes"]
   gap: Tokens["spacing"]
