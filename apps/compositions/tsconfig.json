@@ -1,6 +1,9 @@
 {
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
-    "customConditions": ["source"]
+    "customConditions": ["source"],
+    "paths": {
+      "compositions/*": ["./src/*"]
+    }
   }
 }
