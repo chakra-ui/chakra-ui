@@ -1,21 +1,4 @@
 import * as Playground from "@/components/playground"
-import { Alert } from "@/compositions/ui/alert"
-import { Avatar } from "@/compositions/ui/avatar"
-import { Blockquote } from "@/compositions/ui/blockquote"
-import { Button } from "@/compositions/ui/button"
-import { Checkbox } from "@/compositions/ui/checkbox"
-import { CircularProgress } from "@/compositions/ui/circular-progress"
-import { EmptyState } from "@/compositions/ui/empty-state"
-import { FileButton } from "@/compositions/ui/file-button"
-import { Pagination, SimplePagination } from "@/compositions/ui/pagination"
-import { Progress } from "@/compositions/ui/progress"
-import { RadioItem } from "@/compositions/ui/radio-item"
-import { Rating } from "@/compositions/ui/rating"
-import { SegmentControl } from "@/compositions/ui/segment-control"
-import { Slider } from "@/compositions/ui/slider"
-import { Status } from "@/compositions/ui/status"
-import { Switch } from "@/compositions/ui/switch"
-import { Tooltip } from "@/compositions/ui/tooltip"
 import {
   Badge,
   Box,
@@ -32,6 +15,23 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Alert } from "compositions/ui/alert"
+import { Avatar } from "compositions/ui/avatar"
+import { Blockquote } from "compositions/ui/blockquote"
+import { Button } from "compositions/ui/button"
+import { Checkbox } from "compositions/ui/checkbox"
+import { CircularProgress } from "compositions/ui/circular-progress"
+import { EmptyState } from "compositions/ui/empty-state"
+import { FileButton } from "compositions/ui/file-button"
+import { Pagination, SimplePagination } from "compositions/ui/pagination"
+import { Progress } from "compositions/ui/progress"
+import { RadioItem } from "compositions/ui/radio-item"
+import { Rating } from "compositions/ui/rating"
+import { SegmentControl } from "compositions/ui/segment-control"
+import { Slider } from "compositions/ui/slider"
+import { Status } from "compositions/ui/status"
+import { Switch } from "compositions/ui/switch"
+import { Tooltip } from "compositions/ui/tooltip"
 import { HiColorSwatch, HiPlus, HiUpload } from "react-icons/hi"
 
 const colorPalettes: ColorPalette[] = [

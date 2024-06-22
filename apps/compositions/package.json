@@ -1,0 +1,23 @@
+{
+  "name": "registry",
+  "version": "1.0.0",
+  "private": "true",
+  "description": "Registry for component compositions",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chakra",
+    "ui",
+    "registry",
+    "components",
+    "compositions"
+  ],
+  "author": "Segun Adebayo <sage@adebayosegun.com>",
+  "license": "ISC",
+  "dependencies": {
+    "react-icons": "5.2.1",
+    "@chakra-ui/react": "workspace:*",
+    "@chakra-ui/hooks": "workspace:*"
+  }
+}

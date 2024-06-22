@@ -22,7 +22,8 @@
       "@/*": ["./*"],
       "@chakra-ui/react": ["../../packages/react/src"],
       "@chakra-ui/hooks": ["../../packages/hooks/src"],
-      "@chakra-ui/utils": ["../../packages/utils/src"]
+      "@chakra-ui/utils": ["../../packages/utils/src"],
+      "compositions/*": ["../compositions/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

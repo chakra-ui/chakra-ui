@@ -1,9 +1,5 @@
-import {
-  Blockquote as ChakraBlockquote,
-  Circle,
-  Float,
-  FloatProps,
-} from "@chakra-ui/react"
+import type { FloatProps } from "@chakra-ui/react"
+import { Blockquote as ChakraBlockquote, Circle, Float } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
 export interface BlockquoteProps extends ChakraBlockquote.RootProps {

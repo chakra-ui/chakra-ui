@@ -1,7 +1,5 @@
-import {
-  CircularProgress as Progress,
-  type SystemStyleObject,
-} from "@chakra-ui/react"
+import { CircularProgress as Progress } from "@chakra-ui/react"
+import type { SystemStyleObject } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
 export interface CircularProgressProps extends Progress.RootProps {

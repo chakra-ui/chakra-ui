@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "compositions": "../compositions/src",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.11.4",
