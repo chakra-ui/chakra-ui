@@ -1,5 +1,13 @@
-import { FileUpload as ChakraFileUpload } from "@chakra-ui/react"
+"use client"
+
+import {
+  FileUpload as ChakraFileUpload,
+  IconButton,
+  Square,
+  Stack,
+} from "@chakra-ui/react"
 import { forwardRef } from "react"
+import { LuFile, LuTrash2 } from "react-icons/lu"
 
 export interface FileButtonProps extends ChakraFileUpload.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
@@ -10,10 +18,81 @@ export const FileButton = forwardRef<HTMLInputElement, FileButtonProps>(
   function FileButton(props, ref) {
     const { children, inputProps, rootRef, ...rest } = props
     return (
-      <ChakraFileUpload.Root ref={rootRef} {...rest}>
+      <ChakraFileUpload.Root alignItems="flex-start" ref={rootRef} {...rest}>
         <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />
         <ChakraFileUpload.Trigger asChild>{children}</ChakraFileUpload.Trigger>
+        <FileUploadList showSize showDelete />
       </ChakraFileUpload.Root>
     )
   },
 )
+
+interface VisiblityProps {
+  showSize?: boolean
+  showDelete?: boolean
+}
+
+interface ItemProps extends VisiblityProps {
+  file: File
+}
+
+const FileUploadItem = (props: ItemProps) => {
+  const { file, showSize, showDelete } = props
+  return (
+    <ChakraFileUpload.Item rounded="sm" file={file}>
+      <ChakraFileUpload.ItemPreview asChild>
+        <Square
+          size="10"
+          bg="bg.muted"
+          rounded="sm"
+          fontSize="lg"
+          color="fg.muted"
+        >
+          <LuFile />
+        </Square>
+      </ChakraFileUpload.ItemPreview>
+
+      {showSize ? (
+        <Stack gap="0.5" flex="1" pe="4">
+          <ChakraFileUpload.ItemName lineClamp="1" />
+          <ChakraFileUpload.ItemSizeText fontSize="xs" color="fg.subtle" />
+        </Stack>
+      ) : (
+        <ChakraFileUpload.ItemName lineClamp="1" flex="1" pe="4" />
+      )}
+
+      {showDelete && (
+        <ChakraFileUpload.ItemDeleteTrigger asChild>
+          <IconButton variant="ghost" color="fg.subtle">
+            <LuTrash2 />
+          </IconButton>
+        </ChakraFileUpload.ItemDeleteTrigger>
+      )}
+    </ChakraFileUpload.Item>
+  )
+}
+
+interface ListProps extends VisiblityProps, ChakraFileUpload.ItemGroupProps {}
+
+const FileUploadList = (props: ListProps) => {
+  const { showSize, showDelete, ...rest } = props
+  return (
+    <ChakraFileUpload.Context>
+      {({ acceptedFiles }) => {
+        if (acceptedFiles.length === 0) return null
+        return (
+          <ChakraFileUpload.ItemGroup {...rest}>
+            {acceptedFiles.map((file) => (
+              <FileUploadItem
+                key={file.name}
+                file={file}
+                showSize={showSize}
+                showDelete={showDelete}
+              />
+            ))}
+          </ChakraFileUpload.ItemGroup>
+        )
+      }}
+    </ChakraFileUpload.Context>
+  )
+}
