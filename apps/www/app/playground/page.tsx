@@ -7,6 +7,7 @@ import { Checkbox } from "@/compositions/ui/checkbox"
 import { CircularProgress } from "@/compositions/ui/circular-progress"
 import { EmptyState } from "@/compositions/ui/empty-state"
 import { FileButton } from "@/compositions/ui/file-button"
+import { Pagination, SimplePagination } from "@/compositions/ui/pagination"
 import { Progress } from "@/compositions/ui/progress"
 import { RadioItem } from "@/compositions/ui/radio-item"
 import { Rating } from "@/compositions/ui/rating"
@@ -318,6 +319,17 @@ export default function Page() {
               />
             </Stack>
           ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Pagination">
+          Pagination
+        </Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          <Pagination count={100} pageSize={10} />
+          <SimplePagination showPageText count={100} pageSize={10} />
+          <SimplePagination count={100} pageSize={10} />
         </Stack>
       </Playground.Section>
 

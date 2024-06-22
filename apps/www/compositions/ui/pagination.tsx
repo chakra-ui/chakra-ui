@@ -4,14 +4,20 @@ import type { RecipeProps } from "@chakra-ui/react"
 import {
   Button,
   Pagination as ChakraPagination,
+  HStack,
   IconButton,
+  Span,
+  Text,
   Wrap,
   createContext,
   usePaginationContext,
 } from "@chakra-ui/react"
 import { forwardRef } from "react"
-import { FaEllipsisH } from "react-icons/fa"
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
+import {
+  HiChevronLeft,
+  HiChevronRight,
+  HiMiniEllipsisHorizontal,
+} from "react-icons/hi2"
 
 interface ButtonVariantProps extends RecipeProps<"button"> {}
 
@@ -40,6 +46,28 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
   },
 )
 
+export interface SimplePaginationProps extends PaginationProps {
+  showPageText?: boolean
+}
+
+export const SimplePagination = forwardRef<
+  HTMLDivElement,
+  SimplePaginationProps
+>(function SimplePagination(props, ref) {
+  const { size = "sm", showPageText, ...rest } = props
+  return (
+    <ButtonVariantProvider value={{ size }}>
+      <ChakraPagination.Root ref={ref} {...rest}>
+        <HStack>
+          <PaginationPrevTrigger />
+          {showPageText && <PaginationPageText />}
+          <PaginationNextTrigger />
+        </HStack>
+      </ChakraPagination.Root>
+    </ButtonVariantProvider>
+  )
+})
+
 const [ButtonVariantProvider, useButtonVariant] =
   createContext<ButtonVariantContext>({
     name: "ButtonVariantContext",
@@ -51,7 +79,7 @@ const Ellipsis = forwardRef<HTMLDivElement, ChakraPagination.EllipsisProps>(
     return (
       <ChakraPagination.Ellipsis ref={ref} index={props.index} asChild>
         <Button variant="plain" size={size}>
-          <FaEllipsisH />
+          <HiMiniEllipsisHorizontal />
         </Button>
       </ChakraPagination.Ellipsis>
     )
@@ -114,5 +142,15 @@ const PaginationItems = () => {
         })
       }
     </ChakraPagination.Context>
+  )
+}
+
+const PaginationPageText = () => {
+  const { page, pages } = usePaginationContext()
+  return (
+    <Text color="fg.subtle" fontWeight="medium" marginX="3">
+      Page <Span color="fg">{page}</Span> of{" "}
+      <Span color="fg">{pages.length}</Span>
+    </Text>
   )
 }
