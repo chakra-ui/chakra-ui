@@ -1,6 +1,7 @@
 import * as Playground from "@/components/playground"
 import { Alert } from "@/compositions/ui/alert"
 import { Avatar } from "@/compositions/ui/avatar"
+import { Blockquote } from "@/compositions/ui/blockquote"
 import { Button } from "@/compositions/ui/button"
 import { Checkbox } from "@/compositions/ui/checkbox"
 import { CircularProgress } from "@/compositions/ui/circular-progress"
@@ -123,6 +124,36 @@ export default function Page() {
               <Badge colorPalette={colorPalette} variant="surface">
                 New
               </Badge>
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Blockquote">
+          Blockquote
+        </Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+              width="full"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Blockquote
+                dash
+                showIcon
+                colorPalette={colorPalette}
+                cite="Uzumaki Naruto"
+              >
+                If anyone thinks he is something when he is nothing, he deceives
+                himself. Each one should test his own actions. Then he can take
+                pride in himself, without comparing himself to anyone else.
+              </Blockquote>
             </Stack>
           ))}
         </Stack>
