@@ -1,3 +1,4 @@
+import Markdown from "react-markdown"
 import { Prose } from "../src"
 
 export default {
@@ -139,4 +140,25 @@ const code = `
 
 export const Demo = () => {
   return <Prose mx="auto" dangerouslySetInnerHTML={{ __html: code }} />
+}
+
+export const WithReactMarkdown = () => {
+  return (
+    <Prose mx="auto">
+      <Markdown>
+        {`
+## Heading
+
+Based on your Chakra package. So [click here](http://chakra-ui.com) to confirm your plan.
+
+- first item
+- second item
+- second item
+- second item
+
+[title](http://chakra-ui.com)
+  `}
+      </Markdown>
+    </Prose>
+  )
 }
