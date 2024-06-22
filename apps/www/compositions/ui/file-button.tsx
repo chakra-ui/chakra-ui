@@ -39,7 +39,7 @@ interface ItemProps extends VisiblityProps {
 const FileUploadItem = (props: ItemProps) => {
   const { file, showSize, showDelete } = props
   return (
-    <ChakraFileUpload.Item rounded="sm" file={file}>
+    <ChakraFileUpload.Item file={file}>
       <ChakraFileUpload.ItemPreview asChild>
         <Square
           size="10"
@@ -55,7 +55,7 @@ const FileUploadItem = (props: ItemProps) => {
       {showSize ? (
         <Stack gap="0.5" flex="1" pe="4">
           <ChakraFileUpload.ItemName lineClamp="1" />
-          <ChakraFileUpload.ItemSizeText fontSize="xs" color="fg.subtle" />
+          <ChakraFileUpload.ItemSizeText />
         </Stack>
       ) : (
         <ChakraFileUpload.ItemName lineClamp="1" flex="1" pe="4" />

@@ -16,7 +16,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     },
     dropzone: {
       background: "bg",
-      borderRadius: "l3",
+      borderRadius: "md",
       borderWidth: "1px",
       display: "flex",
       alignItems: "center",
@@ -28,13 +28,14 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       py: "4",
     },
     item: {
+      fontSize: "sm",
       animation: "fade-in 0.25s ease-out",
       background: "bg",
-      borderRadius: "l3",
+      borderRadius: "sm",
       borderWidth: "1px",
-      columnGap: "3",
       display: "flex",
       alignItems: "center",
+      gap: "3",
       p: "4",
     },
     itemGroup: {
@@ -45,26 +46,18 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     itemName: {
       color: "fg",
       fontWeight: "medium",
-      gridArea: "name",
-      fontSize: "sm",
     },
     itemSizeText: {
-      color: "fg.muted",
-      gridArea: "size",
-      fontSize: "sm",
+      color: "fg.subtle",
+      fontSize: "xs",
     },
     itemDeleteTrigger: {
       alignSelf: "flex-start",
-      gridArea: "delete",
-    },
-    itemPreview: {
-      gridArea: "preview",
     },
     itemPreviewImage: {
-      aspectRatio: "1",
+      width: "10",
       height: "10",
       objectFit: "scale-down",
-      width: "10",
     },
   },
 })
