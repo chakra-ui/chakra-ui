@@ -446,7 +446,10 @@ export const defaultBaseConfig = defineConfig({
         }
       },
     },
-    blur: { transform: (v) => ({ "--blur": wrap("blur", v) }) },
+    blur: {
+      values: "blurs",
+      transform: (v) => ({ "--blur": wrap("blur", v) }),
+    },
     brightness: {
       transform: (v) => ({ "--brightness": wrap("brightness", v) }),
     },
