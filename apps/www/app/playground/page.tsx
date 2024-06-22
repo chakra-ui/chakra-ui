@@ -2,6 +2,7 @@ import * as Playground from "@/components/playground"
 import { Alert } from "@/compositions/ui/alert"
 import { Avatar } from "@/compositions/ui/avatar"
 import { Button } from "@/compositions/ui/button"
+import { Checkbox } from "@/compositions/ui/checkbox"
 import { CircularProgress } from "@/compositions/ui/circular-progress"
 import { EmptyState } from "@/compositions/ui/empty-state"
 import { FileButton } from "@/compositions/ui/file-button"
@@ -179,6 +180,51 @@ export default function Page() {
               <Code colorPalette={colorPalette} variant="surface">
                 {`console.log()`}
               </Code>
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Checkbox">
+          Checkbox
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+              width="full"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Stack>
+                <Checkbox variant="outline" colorPalette={colorPalette}>
+                  Checkbox
+                </Checkbox>
+                <Checkbox
+                  defaultChecked
+                  variant="outline"
+                  colorPalette={colorPalette}
+                >
+                  Checkbox
+                </Checkbox>
+              </Stack>
+
+              <Stack>
+                <Checkbox variant="subtle" colorPalette={colorPalette}>
+                  Checkbox
+                </Checkbox>
+                <Checkbox
+                  defaultChecked
+                  variant="subtle"
+                  colorPalette={colorPalette}
+                >
+                  Checkbox
+                </Checkbox>
+              </Stack>
             </Stack>
           ))}
         </Stack>
