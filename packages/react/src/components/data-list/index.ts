@@ -3,6 +3,7 @@ export {
   DataListItemLabel,
   DataListItemValue,
   DataListRoot,
+  useDataListStyles,
 } from "./data-list"
 
 export type {
@@ -11,7 +12,5 @@ export type {
   DataListItemValueProps,
   DataListRootProps,
 } from "./data-list"
-
-export { useDataListStyles } from "./data-list"
 
 export * as DataList from "./namespace"

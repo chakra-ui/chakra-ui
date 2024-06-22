@@ -2,6 +2,7 @@ export {
   EmptyStateRoot,
   EmptyStateContent,
   EmptyStateIndicator,
+  useEmptyStateStyles,
 } from "./empty-state"
 
 export type {

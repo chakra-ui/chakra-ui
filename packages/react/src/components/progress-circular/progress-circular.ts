@@ -43,30 +43,30 @@ export const CircularProgressLabel = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CircularProgressCircleProps
-  extends HTMLChakraProps<"div", ArkProgress.TrackBaseProps> {}
+  extends HTMLChakraProps<"svg", ArkProgress.CircleBaseProps> {}
 
 export const CircularProgressCircle = withContext<
-  HTMLDivElement,
+  SVGSVGElement,
   CircularProgressCircleProps
 >(ArkProgress.Circle, "circle", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CircularProgressTrackProps
-  extends HTMLChakraProps<"div", ArkProgress.TrackBaseProps> {}
+  extends HTMLChakraProps<"circle", ArkProgress.TrackBaseProps> {}
 
 export const CircularProgressTrack = withContext<
-  HTMLDivElement,
+  SVGCircleElement,
   CircularProgressTrackProps
 >(ArkProgress.CircleTrack, "circleTrack", { forwardAsChild: true })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface CircularProgressRangeProps
-  extends HTMLChakraProps<"div", ArkProgress.RangeBaseProps> {}
+  extends HTMLChakraProps<"circle", ArkProgress.RangeBaseProps> {}
 
 export const CircularProgressRange = withContext<
-  HTMLDivElement,
+  SVGCircleElement,
   CircularProgressRangeProps
 >(ArkProgress.CircleRange, "circleRange", { forwardAsChild: true })
 

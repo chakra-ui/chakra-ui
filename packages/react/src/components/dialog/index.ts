@@ -27,4 +27,10 @@ export type {
   DialogDescriptionProps,
 } from "./dialog"
 
+export {
+  useDialog,
+  useDialogContext,
+  DialogContext,
+} from "@ark-ui/react/dialog"
+
 export * as Dialog from "./namespace"

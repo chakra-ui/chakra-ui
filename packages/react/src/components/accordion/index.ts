@@ -18,6 +18,7 @@ export type {
 } from "./accordion"
 
 export {
+  useAccordion,
   AccordionContext,
   useAccordionContext,
   useAccordionItemContext,
