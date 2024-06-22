@@ -11,6 +11,7 @@ import { RadioItem } from "@/compositions/ui/radio-item"
 import { Rating } from "@/compositions/ui/rating"
 import { SegmentControl } from "@/compositions/ui/segment-control"
 import { Slider } from "@/compositions/ui/slider"
+import { Status } from "@/compositions/ui/status"
 import { Switch } from "@/compositions/ui/switch"
 import { Tooltip } from "@/compositions/ui/tooltip"
 import {
@@ -20,10 +21,12 @@ import {
   Code,
   ColorPalette,
   Container,
+  For,
   Group,
   Heading,
   Prose,
   RadioGroup,
+  Spinner,
   Stack,
   Text,
 } from "@chakra-ui/react"
@@ -372,6 +375,72 @@ export default function Page() {
               </Rating>
             </Stack>
           ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Spinner">Spinner</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+            >
+              <Spinner
+                size="sm"
+                color="colorPalette.600"
+                colorPalette={colorPalette}
+              />
+              <Spinner
+                size="md"
+                color="colorPalette.600"
+                colorPalette={colorPalette}
+              />
+              <Spinner
+                size="lg"
+                color="colorPalette.600"
+                colorPalette={colorPalette}
+              />
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Status">Status</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <Stack align="center" direction="row" gap="10" px="4">
+            <For each={["sm", "md", "lg"]}>
+              {(size) => (
+                <Status size={size} width="100px" value="warning">
+                  In Review
+                </Status>
+              )}
+            </For>
+          </Stack>
+
+          <Stack align="center" direction="row" gap="10" px="4">
+            <For each={["sm", "md", "lg"]}>
+              {(size) => (
+                <Status size={size} width="100px" value="success">
+                  Approved
+                </Status>
+              )}
+            </For>
+          </Stack>
+
+          <Stack align="center" direction="row" gap="10" px="4">
+            <For each={["sm", "md", "lg"]}>
+              {(size) => (
+                <Status size={size} width="100px" value="error">
+                  Error
+                </Status>
+              )}
+            </For>
+          </Stack>
         </Stack>
       </Playground.Section>
 

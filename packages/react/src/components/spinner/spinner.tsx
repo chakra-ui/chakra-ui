@@ -6,6 +6,7 @@ import {
   EMPTY_STYLES,
   type HTMLChakraProps,
   type RecipeProps,
+  type SystemStyleObject,
   type UnstyledProp,
   chakra,
   defineStyle,
@@ -17,11 +18,7 @@ interface SpinnerOptions {
    * The color of the empty area in the spinner
    * @default "transparent"
    */
-  emptyColor?: string
-  /**
-   * The color of the spinner
-   */
-  color?: string
+  emptyColor?: SystemStyleObject["color"]
   /**
    * The thickness of the spinner
    * @default "2px"
