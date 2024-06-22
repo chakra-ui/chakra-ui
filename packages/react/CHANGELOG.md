@@ -1,5 +1,17 @@
 # @chakra-ui/react
 
+## 3.0.0-next.8
+
+### Patch Changes
+
+- [`32a454d`](https://github.com/chakra-ui/chakra-ui/commit/32a454d0c2ffc67a9f09210d591f68b052e889e9)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add missing
+  `use client` directives to several components
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.8
+  - @chakra-ui/utils@3.0.0-next.8
+
 ## 3.0.0-next.7
 
 ### Minor Changes
