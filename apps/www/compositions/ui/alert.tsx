@@ -1,4 +1,4 @@
-import { Box, Alert as ChakraAlert, Stack } from "@chakra-ui/react"
+import { Alert as ChakraAlert, Stack } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
 export interface AlertProps extends ChakraAlert.RootProps {

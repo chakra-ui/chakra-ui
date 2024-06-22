@@ -6,6 +6,7 @@ import { CircularProgress } from "@/compositions/ui/circular-progress"
 import { EmptyState } from "@/compositions/ui/empty-state"
 import { FileButton } from "@/compositions/ui/file-button"
 import { Progress } from "@/compositions/ui/progress"
+import { RadioItem } from "@/compositions/ui/radio-item"
 import { Rating } from "@/compositions/ui/rating"
 import { SegmentControl } from "@/compositions/ui/segment-control"
 import { Switch } from "@/compositions/ui/switch"
@@ -18,6 +19,7 @@ import {
   Container,
   Group,
   Heading,
+  RadioGroup,
   Stack,
   Text,
 } from "@chakra-ui/react"
@@ -239,6 +241,34 @@ export default function Page() {
                 value={30}
                 colorPalette={colorPalette}
               />
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="radio">
+          Radio Group
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <RadioGroup.Root
+                colorPalette={colorPalette}
+                defaultValue="react"
+                spaceX="8"
+              >
+                <RadioItem value="react">React</RadioItem>
+                <RadioItem value="vue">Vue</RadioItem>
+                <RadioItem value="solid">Solid</RadioItem>
+              </RadioGroup.Root>
             </Stack>
           ))}
         </Stack>
