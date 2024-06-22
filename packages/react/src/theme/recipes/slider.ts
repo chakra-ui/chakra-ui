@@ -33,6 +33,13 @@ export const sliderSlotRecipe = defineSlotRecipe({
     markerGroup: {
       mt: "-1",
     },
+    marker: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      color: "fg.subtle",
+      fontSize: "xs",
+    },
     thumb: {
       width: "var(--slider-thumb-size)",
       height: "var(--slider-thumb-size)",

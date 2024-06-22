@@ -10,6 +10,7 @@ import { Progress } from "@/compositions/ui/progress"
 import { RadioItem } from "@/compositions/ui/radio-item"
 import { Rating } from "@/compositions/ui/rating"
 import { SegmentControl } from "@/compositions/ui/segment-control"
+import { Slider } from "@/compositions/ui/slider"
 import { Switch } from "@/compositions/ui/switch"
 import { Tooltip } from "@/compositions/ui/tooltip"
 import {
@@ -502,6 +503,34 @@ export default function Page() {
               Upload file
             </Button>
           </FileButton>
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="slider">Slider</Playground.SectionTitle>
+        <Stack gap="4" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Slider
+                width="200px"
+                colorPalette={colorPalette}
+                defaultValue={[40]}
+                marks={[0, 50, 100]}
+              />
+              <Slider
+                width="200px"
+                colorPalette={colorPalette}
+                defaultValue={[25, 75]}
+              />
+            </Stack>
+          ))}
         </Stack>
       </Playground.Section>
 
