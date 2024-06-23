@@ -530,6 +530,38 @@ export const defaultBaseConfig = defineConfig({
       values: "colors",
       transform: createColorMixTransform("outlineColor"),
     },
+    focusRing: {
+      values: ["extended", "contained"],
+      transform(value: any, { token }: any) {
+        const focusRingColor = token("colors.border.muted")
+        const styles: Record<string, any> = {
+          contained: {
+            "--focus-ring-color": focusRingColor,
+            "&:where(:focus-visible, [data-focus])": {
+              outlineWidth: "1px",
+              outlineColor: "var(--focus-ring-color)",
+              outlineStyle: "solid",
+              borderColor: "var(--focus-ring-color)",
+            },
+          },
+          extended: {
+            "--focus-ring-color": focusRingColor,
+            "&:where(:focus-visible, [data-focus])": {
+              outlineWidth: "2px",
+              outlineOffset: "2px",
+              outlineColor: "var(--focus-ring-color)",
+              outlineStyle: "solid",
+            },
+          },
+        }
+
+        return styles[value]
+      },
+    },
+    focusRingColor: {
+      values: "colors",
+      transform: createColorMixTransform("--focus-ring-color"),
+    },
     // layout
     aspectRatio: { values: "aspectRatios" },
     width: { values: "sizes", shorthand: ["w"] },
