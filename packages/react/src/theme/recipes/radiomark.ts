@@ -98,7 +98,7 @@ export const radiomarkRecipe = defineRecipe({
       variant: "outline",
       colorPalette: "gray",
       css: {
-        color: "fg.inverse",
+        color: "fg.inverted",
       },
     },
   ],

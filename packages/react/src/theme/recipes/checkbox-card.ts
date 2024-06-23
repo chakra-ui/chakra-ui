@@ -139,7 +139,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       colorPalette: "gray",
       css: {
         indicator: {
-          color: "fg.inverse",
+          color: "fg.inverted",
           "&:is([data-checked], [data-indeterminate])": {
             bg: { base: "gray.800", _dark: "gray.200" },
             borderColor: { base: "gray.800", _dark: "gray.200" },

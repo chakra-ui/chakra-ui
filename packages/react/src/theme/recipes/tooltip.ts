@@ -5,9 +5,9 @@ export const tooltipSlotRecipe = defineSlotRecipe({
   slots: tooltipAnatomy.keys(),
   base: {
     content: {
-      "--tooltip-bg": "colors.bg.inverse",
+      "--tooltip-bg": "colors.bg.inverted",
       bg: "var(--tooltip-bg)",
-      color: "fg.inverse",
+      color: "fg.inverted",
       px: "2",
       py: "0.5",
       borderRadius: "sm",
