@@ -1,3 +1,5 @@
+import type { ColorPalette } from "@chakra-ui/react"
+
 export const colorPalettes: ColorPalette[] = [
   "gray",
   "red",
