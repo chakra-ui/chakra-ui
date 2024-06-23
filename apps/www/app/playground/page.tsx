@@ -44,6 +44,7 @@ import { Status } from "compositions/ui/status"
 import { Switch } from "compositions/ui/switch"
 import { Tag } from "compositions/ui/tag"
 import { TextField } from "compositions/ui/text-field"
+import { TextareaField } from "compositions/ui/textarea-field"
 import { Tooltip } from "compositions/ui/tooltip"
 import { HiColorSwatch, HiPlus, HiUpload } from "react-icons/hi"
 
@@ -117,6 +118,32 @@ export default function Page() {
               error="This field is required"
               label="Email"
               placeholder="Enter your email"
+              variant="outline"
+            />
+          </HStack>
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Textarea">
+          Textarea
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <HStack gap="10" width="full">
+            <TextareaField label="Comment" variant="filled" />
+            <TextareaField label="Comment" variant="outline" />
+          </HStack>
+
+          <HStack gap="10" width="full">
+            <TextareaField
+              label="Comment"
+              description="We'll never share your email."
+              variant="outline"
+            />
+            <TextareaField
+              invalid
+              error="This field is required"
+              label="Comment"
               variant="outline"
             />
           </HStack>
