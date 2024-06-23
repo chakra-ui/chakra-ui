@@ -9,6 +9,7 @@ import {
   For,
   Group,
   Heading,
+  Input,
   Prose,
   RadioGroup,
   Spinner,
@@ -25,6 +26,13 @@ import { CircularProgress } from "compositions/ui/circular-progress"
 import { EmptyState } from "compositions/ui/empty-state"
 import { FileButton } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
+import {
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTitle,
+  PopoverTrigger,
+} from "compositions/ui/popover"
 import { Progress } from "compositions/ui/progress"
 import { RadioItem } from "compositions/ui/radio-item"
 import { Rating } from "compositions/ui/rating"
@@ -61,7 +69,34 @@ export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Playground.Section>
-        <Playground.SectionTitle id="Stat">Tag</Playground.SectionTitle>
+        <Playground.SectionTitle id="Popover">Popover</Playground.SectionTitle>
+        <Stack align="center" direction="row" gap="10">
+          <For each={["sm", "md"]}>
+            {(size) => (
+              <PopoverRoot key={size} size={size}>
+                <PopoverTrigger>
+                  <Button size={size} variant="outline">
+                    Click me
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent showArrow>
+                  <PopoverBody>
+                    <PopoverTitle fontWeight="medium">Naruto Form</PopoverTitle>
+                    <Text my="4">
+                      Naruto is a Japanese manga series written and illustrated
+                      by Masashi Kishimoto.
+                    </Text>
+                    <Input placeholder="Your fav. character" size={size} />
+                  </PopoverBody>
+                </PopoverContent>
+              </PopoverRoot>
+            )}
+          </For>
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Tag">Tag</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
           {colorPalettes.map((colorPalette) => (
             <Stack
@@ -118,8 +153,8 @@ export default function Page() {
         <Stack gap="2" align="flex-start">
           {colorPalettes.map((colorPalette) => (
             <Stack
-              align="center"
               key={colorPalette}
+              align="center"
               direction="row"
               gap="10"
               px="4"
