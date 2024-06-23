@@ -5,7 +5,9 @@ export const dataListSlotRecipe = defineSlotRecipe({
   base: {
     itemLabel: {
       color: "fg.subtle",
-      lineClamp: 1,
+      display: "flex",
+      alignItems: "center",
+      gap: "1",
     },
     itemValue: {
       display: "flex",
@@ -68,8 +70,9 @@ export const dataListSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   defaultVariants: {
-    size: "sm",
+    size: "md",
     orientation: "vertical",
   },
 })

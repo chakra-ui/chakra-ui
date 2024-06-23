@@ -24,6 +24,7 @@ import { Blockquote } from "compositions/ui/blockquote"
 import { Button } from "compositions/ui/button"
 import { Checkbox } from "compositions/ui/checkbox"
 import { CircularProgress } from "compositions/ui/circular-progress"
+import { DataListItem, DataListRoot } from "compositions/ui/data-list"
 import { EmptyState } from "compositions/ui/empty-state"
 import { FileButton } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
@@ -70,6 +71,24 @@ const stats = [
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="DataList">
+          DataList
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <DataListRoot orientation="horizontal">
+            {stats.map((item) => (
+              <DataListItem
+                info="This is some info"
+                key={item.label}
+                label={item.label}
+                value={item.value}
+              />
+            ))}
+          </DataListRoot>
+        </Stack>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Input">Input</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
