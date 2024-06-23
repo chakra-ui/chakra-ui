@@ -771,7 +771,7 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="tooltip">Tooltip</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
-          <Tooltip showArrow label="This is the tooltip content">
+          <Tooltip showArrow title="This is the tooltip content">
             <Box
               tabIndex={0}
               userSelect="none"
