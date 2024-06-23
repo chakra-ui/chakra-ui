@@ -218,4 +218,5 @@ export interface UtilityValues {
     | "ghost.solid"
     | "indicator.bottom"
     | "indicator.start"
+    | "disabled"
 }

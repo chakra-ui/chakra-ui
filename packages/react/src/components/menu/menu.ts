@@ -150,6 +150,16 @@ export const MenuItem = withContext<HTMLDivElement, MenuItemProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface MenuTriggerItemProps
+  extends HTMLChakraProps<"div", ArkMenu.TriggerItemBaseProps> {}
+
+export const MenuTriggerItem = withContext<
+  HTMLDivElement,
+  MenuTriggerItemProps
+>(ArkMenu.TriggerItem, "item", { forwardAsChild: true })
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface MenuItemTextProps
   extends HTMLChakraProps<"div", ArkMenu.ItemTextBaseProps> {}
 
@@ -161,12 +171,12 @@ export const MenuItemText = withContext<HTMLDivElement, MenuItemTextProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface MenuItemCommandProps extends HTMLChakraProps<"span"> {}
+export interface MenuItemCommandProps extends HTMLChakraProps<"kbd"> {}
 
-export const MenuItemCommand = withContext<
-  HTMLSpanElement,
-  MenuItemCommandProps
->("span", "itemCommand")
+export const MenuItemCommand = withContext<HTMLElement, MenuItemCommandProps>(
+  "kbd",
+  "itemCommand",
+)
 
 ////////////////////////////////////////////////////////////////////////////////////
 

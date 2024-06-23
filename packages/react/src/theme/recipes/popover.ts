@@ -17,17 +17,16 @@ export const popoverSlotRecipe = defineSlotRecipe({
       width: "xs",
       borderRadius: "var(--popover-radius)",
       zIndex: "popover",
-      _focusVisible: {
-        outline: 0,
-      },
+      outline: 0,
+      "--enter-opacity": "1",
+      "--enter-scale": "0.95",
+      "--exit-opacity": "0",
+      "--exit-scale": "0.95",
+      transformOrigin: "var(--transform-origin)",
       _open: {
-        "--enter-opacity": "1",
-        "--enter-scale": "0.95",
         animation: "enter 0.2s cubic-bezier(0, 0, 0.2, 1)",
       },
       _closed: {
-        "--exit-opacity": "0",
-        "--exit-scale": "0.95",
         animation: "exit 0.1s cubic-bezier(0.4, 0, 1, 1)",
       },
     },

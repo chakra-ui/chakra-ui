@@ -15,7 +15,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       h: "100dvh",
       zIndex: "modal",
       _open: {
-        animation: "fade-in 0.2s",
+        animation: "fade-in 0.15s",
       },
       _closed: {
         animation: "fade-out 0.1s",
@@ -135,62 +135,42 @@ export const dialogSlotRecipe = defineSlotRecipe({
     motionPreset: {
       scale: {
         content: {
-          _open: {
-            "--enter-scale": "0.95",
-            "--enter-opacity": "0",
-          },
-          _closed: {
-            "--exit-scale": "0.95",
-            "--exit-opacity": "0",
-          },
+          "--enter-scale": "0.95",
+          "--enter-opacity": "0",
+          "--exit-scale": "0.95",
+          "--exit-opacity": "0",
         },
       },
       "slide-in-bottom": {
         content: {
-          _open: {
-            "--enter-opacity": "0",
-            "--enter-translate-y": "16px",
-          },
-          _closed: {
-            "--exit-opacity": "0",
-            "--exit-translate-y": "16px",
-          },
+          "--enter-opacity": "0",
+          "--enter-translate-y": "16px",
+          "--exit-opacity": "0",
+          "--exit-translate-y": "16px",
         },
       },
       "slide-in-top": {
         content: {
-          _open: {
-            "--enter-opacity": "0",
-            "--enter-translate-y": "-16px",
-          },
-          _closed: {
-            "--exit-opacity": "0",
-            "--exit-translate-y": "-16px",
-          },
+          "--enter-opacity": "0",
+          "--enter-translate-y": "-16px",
+          "--exit-opacity": "0",
+          "--exit-translate-y": "-16px",
         },
       },
       "slide-in-left": {
         content: {
-          _open: {
-            "--enter-opacity": "0",
-            "--enter-translate-x": "-16px",
-          },
-          _closed: {
-            "--exit-opacity": "0",
-            "--exit-translate-x": "-16px",
-          },
+          "--enter-opacity": "0",
+          "--enter-translate-x": "-16px",
+          "--exit-opacity": "0",
+          "--exit-translate-x": "-16px",
         },
       },
       "slide-in-right": {
         content: {
-          _open: {
-            "--enter-opacity": "0",
-            "--enter-translate-x": "16px",
-          },
-          _closed: {
-            "--exit-opacity": "0",
-            "--exit-translate-x": "16px",
-          },
+          "--enter-opacity": "0",
+          "--enter-translate-x": "16px",
+          "--exit-opacity": "0",
+          "--exit-translate-x": "16px",
         },
       },
       none: {},

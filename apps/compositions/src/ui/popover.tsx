@@ -17,6 +17,7 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
       showArrow,
       ...rest
     } = props
+
     return (
       <Portal disabled={!portalled} container={containerRef}>
         <ChakraPopover.Positioner>

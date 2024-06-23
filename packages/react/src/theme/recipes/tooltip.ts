@@ -16,15 +16,15 @@ export const tooltipSlotRecipe = defineSlotRecipe({
       boxShadow: "md",
       maxW: "xs",
       zIndex: "tooltip",
+      "--enter-opacity": "0",
+      "--enter-scale": "0.95",
+      "--exit-opacity": "0",
+      "--exit-scale": "0.95",
       _open: {
-        "--enter-opacity": "0",
-        "--enter-scale": "0.95",
-        animation: "enter 0.2s cubic-bezier(0, 0, 0.2, 1)",
+        animation: "enter 0.1s",
       },
       _closed: {
-        "--exit-opacity": "0",
-        "--exit-scale": "0.95",
-        animation: "exit 0.1s cubic-bezier(0.4, 0, 1, 1)",
+        animation: "exit 0.1s",
       },
     },
     arrow: {

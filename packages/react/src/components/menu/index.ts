@@ -17,6 +17,7 @@ export {
   MenuRoot,
   MenuSeparator,
   MenuTrigger,
+  MenuTriggerItem,
   useMenuStyles,
 } from "./menu"
 
@@ -45,6 +46,7 @@ export type {
   MenuRadioItemProps,
   MenuRootProps,
   MenuSeparatorProps,
+  MenuTriggerItemProps,
   MenuTriggerProps,
 } from "./menu"
 

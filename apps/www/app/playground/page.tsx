@@ -24,6 +24,10 @@ import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
+import { MenuBasic } from "compositions/examples/menu-basic"
+import { MenuNested } from "compositions/examples/menu-nested"
+import { MenuWithCommand } from "compositions/examples/menu-with-command"
+import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { Alert } from "compositions/ui/alert"
 import { Avatar } from "compositions/ui/avatar"
@@ -90,6 +94,16 @@ export default function Page() {
         <Stack gap="5" align="flex-start">
           <BreadcrumbBasic />
           <BreadcrumbWithSeparator />
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Menu">Menu</Playground.SectionTitle>
+        <Stack direction="row" gap="5" align="flex-start">
+          <MenuWithRadioItems />
+          <MenuBasic />
+          <MenuWithCommand />
+          <MenuNested />
         </Stack>
       </Playground.Section>
 
