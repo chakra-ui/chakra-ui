@@ -88,8 +88,13 @@ type JsxElements = {
 
 export type StyledFactoryFn = JsxFactory & JsxElements
 
+export type DataAttr = Record<
+  `data-${string}`,
+  string | number | undefined | null | boolean
+>
+
 export interface JsxFactoryOptions<TProps> {
-  defaultProps?: TProps
+  defaultProps?: TProps & DataAttr
   forwardAsChild?: boolean
   shouldForwardProp?(prop: string, variantKeys: string[]): boolean
 }

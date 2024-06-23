@@ -1,19 +1,17 @@
-export { StatIndicator as Indicator } from "./stat-indicator"
-export type { StatIndicatorProps as IndicatorProps } from "./stat-indicator"
+export {
+  StatUpIndicator as UpIndicator,
+  StatDownIndicator as DownIndicator,
+  StatRoot as Root,
+  StatValueText as ValueText,
+  StatHelpText as HelpText,
+  StatLabel as Label,
+} from "./stat"
 
-export { useStatStyles } from "./stat-context"
-
-export { StatGroup as Group } from "./stat-group"
-export type { StatGroupProps as GroupProps } from "./stat-group"
-
-export { StatHelpText as HelpText } from "./stat-help-text"
-export type { StatHelpTextProps as HelpTextProps } from "./stat-help-text"
-
-export { StatLabel as Label } from "./stat-label"
-export type { StatLabelProps as LabelProps } from "./stat-label"
-
-export { StatValue as Value } from "./stat-value"
-export type { StatValueProps as ValueProps } from "./stat-value"
-
-export { StatRoot as Root } from "./stat-root"
-export type { StatRootProps as RootProps } from "./stat-root"
+export type {
+  StatUpIndicatorProps as UpIndicatorProps,
+  StatDownIndicatorProps as DownIndicatorProps,
+  StatRootProps as RootProps,
+  StatValueTextProps as ValueTextProps,
+  StatHelpTextProps as HelpTextProps,
+  StatLabelProps as LabelProps,
+} from "./stat"

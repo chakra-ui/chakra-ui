@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "../../apps/compositions"],
   "compilerOptions": {
     "customConditions": ["source"],
     "paths": {

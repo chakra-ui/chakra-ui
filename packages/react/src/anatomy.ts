@@ -49,11 +49,10 @@ export const nativeSelectAnatomy = createAnatomy("select").parts(
 )
 
 export const statAnatomy = createAnatomy("stat").parts(
-  "group",
   "root",
   "label",
   "helpText",
-  "number",
+  "valueText",
   "indicator",
 )
 

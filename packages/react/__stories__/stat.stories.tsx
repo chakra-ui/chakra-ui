@@ -1,4 +1,4 @@
-import { Stat } from "../src/components/stat"
+import { Group, Stat } from "../src"
 
 export default {
   title: "Components / Stat",
@@ -8,32 +8,32 @@ export const Basic = () => {
   return (
     <Stat.Root>
       <Stat.Label>Collected Fees</Stat.Label>
-      <Stat.Value>£0.00</Stat.Value>
+      <Stat.ValueText>£0.00</Stat.ValueText>
       <Stat.HelpText>Feb 12 - Feb 28</Stat.HelpText>
     </Stat.Root>
   )
 }
 
-export const WithIndicators = () => {
+export const WithIndicator = () => {
   return (
-    <Stat.Group>
+    <Group gap="10">
       <Stat.Root>
         <Stat.Label>Sent</Stat.Label>
-        <Stat.Value>345,670</Stat.Value>
+        <Stat.ValueText>345,670</Stat.ValueText>
         <Stat.HelpText>
-          <Stat.Indicator type="increase" />
+          <Stat.UpIndicator />
           23.36%
         </Stat.HelpText>
       </Stat.Root>
 
       <Stat.Root>
         <Stat.Label>Clicked</Stat.Label>
-        <Stat.Value>45</Stat.Value>
+        <Stat.ValueText>45</Stat.ValueText>
         <Stat.HelpText>
-          <Stat.Indicator type="decrease" />
+          <Stat.DownIndicator />
           9.05%
         </Stat.HelpText>
       </Stat.Root>
-    </Stat.Group>
+    </Group>
   )
 }
