@@ -19,7 +19,7 @@ export type {
   DialogContentProps as ContentProps,
   DialogFooterProps as FooterProps,
   DialogRootProps as RootProps,
-  DialogTitleProps as TitleProp,
+  DialogTitleProps as TitleProps,
   DialogTriggerProps as TriggerProps,
   DialogHeaderProps as HeaderProps,
   DialogPositionerProps as PositionerProps,

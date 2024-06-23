@@ -106,9 +106,7 @@ export const InsideScroll = () => {
             <Lorem size={5} />
           </Dialog.Body>
           <Dialog.Footer>
-            <Dialog.CloseTrigger asChild>
-              <Button>Close</Button>
-            </Dialog.CloseTrigger>
+            <Button>Close</Button>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>
@@ -116,9 +114,9 @@ export const InsideScroll = () => {
   )
 }
 
-export const WithInstantAnimation = () => {
+export const OutsideScroll = () => {
   return (
-    <Dialog.Root motionPreset="none">
+    <Dialog.Root>
       <Dialog.Trigger asChild>
         <Button variant="outline">Open</Button>
       </Dialog.Trigger>
@@ -135,9 +133,7 @@ export const WithInstantAnimation = () => {
             <Lorem size={5} />
           </Dialog.Body>
           <Dialog.Footer>
-            <Dialog.CloseTrigger asChild>
-              <Button>Close</Button>
-            </Dialog.CloseTrigger>
+            <Button>Close</Button>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>

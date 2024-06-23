@@ -7,7 +7,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
   slots: dialogAnatomy.keys(),
   base: {
     backdrop: {
-      bg: "blackAlpha.800",
+      bg: "blackAlpha.500",
       pos: "fixed",
       left: 0,
       top: 0,
@@ -38,9 +38,10 @@ export const dialogSlotRecipe = defineSlotRecipe({
       position: "relative",
       width: "100%",
       outline: 0,
-      borderRadius: "md",
+      borderRadius: "lg",
+      fontSize: "sm",
       zIndex: "modal",
-      bg: "bg",
+      bg: "bg.panel",
       shadow: "lg",
       _open: {
         animation: "enter 0.2s",
@@ -51,10 +52,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
     },
     header: {
       flex: 0,
-      px: "6",
-      py: "4",
-      fontSize: "xl",
-      fontWeight: "semibold",
+      padding: "6",
     },
     closeTrigger: {
       position: "absolute!",
@@ -62,20 +60,19 @@ export const dialogSlotRecipe = defineSlotRecipe({
       insetEnd: "2",
     },
     body: {
-      px: "6",
-      py: "2",
       flex: "1",
       color: "fg.muted",
+      paddingX: "6",
     },
     footer: {
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
       gap: "3",
-      px: "6",
-      py: "4",
+      padding: "6",
     },
   },
+
   variants: {
     centered: {
       true: {
@@ -87,6 +84,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
         content: { my: "16", mx: "auto" },
       },
     },
+
     scrollBehavior: {
       inside: {
         positioner: { overflow: "hidden" },
@@ -97,17 +95,33 @@ export const dialogSlotRecipe = defineSlotRecipe({
         positioner: { overflow: "auto" },
       },
     },
+
     size: {
-      xs: { content: { maxW: "xs" } },
-      sm: { content: { maxW: "sm" } },
-      md: { content: { maxW: "md" } },
-      lg: { content: { maxW: "lg" } },
-      xl: { content: { maxW: "xl" } },
-      "2xl": { content: { maxW: "2xl" } },
-      "3xl": { content: { maxW: "3xl" } },
-      "4xl": { content: { maxW: "4xl" } },
-      "5xl": { content: { maxW: "5xl" } },
-      "6xl": { content: { maxW: "6xl" } },
+      xs: {
+        content: {
+          maxW: "2xs",
+        },
+      },
+      sm: {
+        content: {
+          maxW: "sm",
+        },
+      },
+      md: {
+        content: {
+          maxW: "lg",
+        },
+      },
+      lg: {
+        content: {
+          maxW: "2xl",
+        },
+      },
+      xl: {
+        content: {
+          maxW: "4xl",
+        },
+      },
       full: {
         content: {
           maxW: "100vw",
@@ -117,6 +131,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     motionPreset: {
       scale: {
         content: {

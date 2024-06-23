@@ -41,7 +41,7 @@ export const PopoverTrigger = (props: ChakraPopover.TriggerProps) => {
 export const PopoverCloseTrigger = (props: ChakraPopover.CloseTriggerProps) => {
   return (
     <ChakraPopover.CloseTrigger {...props} asChild>
-      <CloseButton />
+      <CloseButton size="sm" />
     </ChakraPopover.CloseTrigger>
   )
 }

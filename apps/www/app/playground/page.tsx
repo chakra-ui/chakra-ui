@@ -22,6 +22,7 @@ import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-s
 import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
+import { DialogSizes } from "compositions/examples/dialog-sizes"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { Alert } from "compositions/ui/alert"
@@ -75,6 +76,13 @@ const stats = [
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          <DialogSizes />
+        </Stack>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Breadcrumb">
           Breadcrumb
