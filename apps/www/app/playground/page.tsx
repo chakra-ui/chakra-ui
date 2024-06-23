@@ -11,26 +11,24 @@ import {
   HStack,
   Heading,
   Input,
-  Prose,
   RadioGroup,
   Spinner,
   Stack,
   Stat,
   Text,
 } from "@chakra-ui/react"
+import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
+import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-separator"
+import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
+import { DataListBasic } from "compositions/examples/data-list-basic"
+import { DataListWithInfo } from "compositions/examples/data-list-with-info"
+import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
+import { ProseBasic } from "compositions/examples/prose-basic"
 import { Alert } from "compositions/ui/alert"
 import { Avatar } from "compositions/ui/avatar"
-import { Blockquote } from "compositions/ui/blockquote"
-import {
-  BreadcrumbCurrentLink,
-  BreadcrumbLink,
-  BreadcrumbRoot,
-} from "compositions/ui/breadcrumb"
 import { Button } from "compositions/ui/button"
 import { Checkbox } from "compositions/ui/checkbox"
 import { CircularProgress } from "compositions/ui/circular-progress"
-import { DataListItem, DataListRoot } from "compositions/ui/data-list"
-import { EmptyState } from "compositions/ui/empty-state"
 import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import {
@@ -51,8 +49,7 @@ import { Tag } from "compositions/ui/tag"
 import { TextField } from "compositions/ui/text-field"
 import { TextareaField } from "compositions/ui/textarea-field"
 import { Tooltip } from "compositions/ui/tooltip"
-import { HiColorSwatch, HiPlus, HiUpload } from "react-icons/hi"
-import { LiaSlashSolid } from "react-icons/lia"
+import { HiPlus, HiUpload } from "react-icons/hi"
 
 const colorPalettes: ColorPalette[] = [
   "gray",
@@ -83,17 +80,8 @@ export default function Page() {
           Breadcrumb
         </Playground.SectionTitle>
         <Stack gap="5" align="flex-start">
-          <BreadcrumbRoot>
-            <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-            <BreadcrumbLink href="#">Components</BreadcrumbLink>
-            <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-          </BreadcrumbRoot>
-
-          <BreadcrumbRoot separator={<LiaSlashSolid />}>
-            <BreadcrumbLink href="#">Docs</BreadcrumbLink>
-            <BreadcrumbLink href="#">Components</BreadcrumbLink>
-            <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
-          </BreadcrumbRoot>
+          <BreadcrumbBasic />
+          <BreadcrumbWithSeparator />
         </Stack>
       </Playground.Section>
 
@@ -102,16 +90,8 @@ export default function Page() {
           DataList
         </Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
-          <DataListRoot orientation="horizontal">
-            {stats.map((item) => (
-              <DataListItem
-                info="This is some info"
-                key={item.label}
-                label={item.label}
-                value={item.value}
-              />
-            ))}
-          </DataListRoot>
+          <DataListBasic />
+          <DataListWithInfo />
         </Stack>
       </Playground.Section>
 
@@ -337,30 +317,7 @@ export default function Page() {
         <Playground.SectionTitle id="Blockquote">
           Blockquote
         </Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-              width="full"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Blockquote
-                dash
-                showIcon
-                colorPalette={colorPalette}
-                cite="Uzumaki Naruto"
-              >
-                If anyone thinks he is something when he is nothing, he deceives
-                himself. Each one should test his own actions. Then he can take
-                pride in himself, without comparing himself to anyone else.
-              </Blockquote>
-            </Stack>
-          ))}
-        </Stack>
+        <BlockquoteWithColors />
       </Playground.Section>
 
       <Playground.Section>
@@ -726,45 +683,7 @@ export default function Page() {
 
       <Playground.Section>
         <Playground.SectionTitle id="prose">Prose</Playground.SectionTitle>
-        <Prose
-          dangerouslySetInnerHTML={{
-            __html: `
-<h1>Title Heading 1</h1>
-<h2>Title Heading 2</h2>
-<h3>Title Heading 3</h3>
-<h4>Title Heading 4</h4>
-
-<h4>Title Heading 4 <code>testing</code></h4>
-
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at dolor
-  nec ex rutrum semper. Praesent ultricies purus eget lectus tristique
-  egestas ac in lacus. Nulla eleifend lorem risus, sit amet dictum nisi
-  gravida eget. Suspendisse odio sem, scelerisque congue luctus nec,
-  scelerisque ultrices orci. Praesent tincidunt, risus ut commodo cursus,
-  ligula orci tristique justo, vitae sollicitudin lacus risus dictum orci.
-
-  Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy
-</p>
-
-<p>
-  Vivamus vel enim at lorem ultricies faucibus. Cras vitae ipsum ut quam
-  varius dignissim a ac tellus. Aliquam maximus mauris eget tincidunt
-  interdum. Fusce vitae massa non risus congue tincidunt. Pellentesque
-  maximus elit quis eros lobortis dictum.
-</p>
-
-<hr />
-
-<p>
-  Fusce placerat ipsum vel sollicitudin imperdiet. Morbi vulputate non
-  diam at consequat. Donec vitae sem eu arcu auctor scelerisque vel in
-  turpis. Pellentesque dapibus justo dui, quis egestas sapien porttitor
-  in.
-</p>
-          `,
-          }}
-        />
+        <ProseBasic />
       </Playground.Section>
 
       <Playground.Section>
@@ -795,16 +714,7 @@ export default function Page() {
           Empty State
         </Playground.SectionTitle>
         <Stack gap="2" align="flex-start">
-          <EmptyState
-            icon={<HiColorSwatch />}
-            title="Start adding tokens"
-            description="Add a new design token to get started"
-          >
-            <Group>
-              <Button startIcon={<HiPlus />}>Add new</Button>
-              <Button variant="outline">Import</Button>
-            </Group>
-          </EmptyState>
+          <EmptyStateWithAction />
         </Stack>
       </Playground.Section>
 
