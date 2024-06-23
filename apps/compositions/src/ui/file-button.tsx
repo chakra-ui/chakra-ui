@@ -5,6 +5,7 @@ import {
   IconButton,
   Square,
   Stack,
+  Text,
 } from "@chakra-ui/react"
 import { forwardRef } from "react"
 import { LuFile, LuTrash2 } from "react-icons/lu"
@@ -21,6 +22,31 @@ export const FileButton = forwardRef<HTMLInputElement, FileButtonProps>(
       <ChakraFileUpload.Root alignItems="flex-start" ref={rootRef} {...rest}>
         <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />
         <ChakraFileUpload.Trigger asChild>{children}</ChakraFileUpload.Trigger>
+        <FileUploadList showSize showDelete />
+      </ChakraFileUpload.Root>
+    )
+  },
+)
+
+export const FileDropzone = forwardRef<HTMLInputElement, FileButtonProps>(
+  function FileDropzone(props, ref) {
+    const { children, inputProps, rootRef, ...rest } = props
+    return (
+      <ChakraFileUpload.Root ref={rootRef} {...rest}>
+        <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />
+        <ChakraFileUpload.Dropzone>
+          <LuFile />
+          <div>
+            Drag and drop your files here or{" "}
+            <ChakraFileUpload.Trigger color="blue.500">
+              click to browse
+            </ChakraFileUpload.Trigger>
+          </div>
+          <Text fontSize="sm" color="fg.subtle">
+            .png, .jpg up to 5MB
+          </Text>
+          {children}
+        </ChakraFileUpload.Dropzone>
         <FileUploadList showSize showDelete />
       </ChakraFileUpload.Root>
     )
