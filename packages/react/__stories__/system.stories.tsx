@@ -48,6 +48,38 @@ export const TextStyle = () => {
   )
 }
 
+export const LayerStyle = () => {
+  return (
+    <Box>
+      <Box
+        layerStyle="indicator.start"
+        css={{ "--indicator-offset": "4px" }}
+        colorPalette="red"
+      >
+        <Box mx="5" p="1" _hover={{ layerStyle: "ghost.subtle" }}>
+          Welcome
+        </Box>
+      </Box>
+      <Box as="button" layerStyle="fill.surface" colorPalette="pink">
+        Click me
+      </Box>
+      <Box
+        as="button"
+        layerStyle={{ base: "fill.subtle", _hover: "fill.solid" }}
+        textStyle="sm"
+        px="3"
+        py="2"
+        rounded="sm"
+        fontWeight="medium"
+        colorPalette="blue"
+        focusRing="extended"
+      >
+        Welcome
+      </Box>
+    </Box>
+  )
+}
+
 export const Basic = () => {
   return (
     <Box>

@@ -115,6 +115,8 @@ export interface UtilityValues {
   gridColumnGap: Tokens["spacing"]
   gridRowGap: Tokens["spacing"]
   outlineColor: Tokens["colors"]
+  focusRing: "extended" | "contained"
+  focusRingColor: Tokens["colors"]
   aspectRatio: Tokens["aspectRatios"]
   width: Tokens["sizes"]
   inlineSize: Tokens["sizes"]
@@ -206,4 +208,14 @@ export interface UtilityValues {
   caretColor: Tokens["colors"]
   divideStyle: CssProperties["borderStyle"]
   textStyle: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
+  layerStyle:
+    | "fill.subtle"
+    | "fill.surface"
+    | "fill.solid"
+    | "outline.subtle"
+    | "outline.solid"
+    | "ghost.subtle"
+    | "ghost.solid"
+    | "indicator.bottom"
+    | "indicator.start"
 }

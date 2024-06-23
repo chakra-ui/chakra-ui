@@ -1,6 +1,7 @@
 import { defineConfig } from "../styled-system"
 import { breakpoints } from "./breakpoints"
 import { globalCss } from "./global-css"
+import { layerStyles } from "./layer-styles"
 import { recipes } from "./recipes"
 import { semanticColors } from "./semantic-tokens/colors"
 import { semanticShadows } from "./semantic-tokens/shadows"
@@ -55,5 +56,6 @@ export const defaultThemeConfig = defineConfig({
     recipes: recipes,
     slotRecipes: slotRecipes,
     textStyles: textStyles,
+    layerStyles: layerStyles,
   },
 })
