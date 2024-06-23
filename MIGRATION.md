@@ -57,7 +57,7 @@ Usage in any component, you can do something like:
 </Box>
 ```
 
-Default them color palette size has been increased to 11 shades to allow more
+Default theme color palette size has been increased to 11 shades to allow more
 color variations.
 
 Before:
@@ -104,6 +104,9 @@ const colors = {
 
   ...
 ```
+
+- Changed `noOfLines` prop to `lineClamp`
+- Changed `truncated` to `truncate`
 
 ### Changes to `Show` and `Hide`
 

@@ -32,6 +32,7 @@ import { SegmentControl } from "compositions/ui/segment-control"
 import { Slider } from "compositions/ui/slider"
 import { Status } from "compositions/ui/status"
 import { Switch } from "compositions/ui/switch"
+import { Tag } from "compositions/ui/tag"
 import { Tooltip } from "compositions/ui/tooltip"
 import { HiColorSwatch, HiPlus, HiUpload } from "react-icons/hi"
 
@@ -59,6 +60,37 @@ const stats = [
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="Stat">Tag</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          {colorPalettes.map((colorPalette) => (
+            <Stack
+              align="center"
+              key={colorPalette}
+              direction="row"
+              gap="10"
+              px="4"
+            >
+              <Text minW="8ch">{colorPalette}</Text>
+              <Tag size="sm" colorPalette={colorPalette}>
+                Content
+              </Tag>
+              <Tag icon={<HiPlus />} size="sm" colorPalette={colorPalette}>
+                Content
+              </Tag>
+              <Tag
+                size="sm"
+                colorPalette={colorPalette}
+                variant="solid"
+                showClose
+              >
+                Content
+              </Tag>
+            </Stack>
+          ))}
+        </Stack>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Stat">Stat</Playground.SectionTitle>
         <Stack gap="2" align="flex-start">

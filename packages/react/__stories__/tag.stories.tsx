@@ -116,52 +116,17 @@ export const Sizes = () => {
   )
 }
 
-// export const WithStartIcon = () => (
-//   <Tag.Root colorPalette="cyan">
-//     <Icon as={HiPlus} w="12px" h="12px" />
-//     <Tag.Label>Green</Tag.Label>
-//   </Tag.Root>
-// )
-
-// export const WithEndIcon = () => (
-//   <Tag.Root colorPalette="cyan">
-//     <Tag.Label>Green</Tag.Label>
-//     <Icon as={HiPlus} w="12px" h="12px" />
-//   </Tag.Root>
-// )
-
-// export const WithCloseTrigger = () => (
-//   <>
-//     <Tag.Root variant="solid" size="sm" colorPalette="cyan">
-//       <Tag.Label>Tab Label</Tag.Label>
-//       <Tag.CloseTrigger />
-//     </Tag.Root>
-
-//     <Tag.Root variant="solid" size="md" colorPalette="cyan">
-//       <Tag.Label>Tab Label</Tag.Label>
-//       <Tag.CloseTrigger />
-//     </Tag.Root>
-
-//     <Tag.Root variant="solid" size="lg" colorPalette="cyan">
-//       <Tag.Label>Tab Label</Tag.Label>
-//       <Tag.CloseTrigger />
-//     </Tag.Root>
-//   </>
-// )
-
-// export const WithCustomElement = () => (
-//   <Tag.Root size="lg" colorPalette="red" borderRadius="full">
-//     <Avatar.Root
-//       src="https://bit.ly/sage-adebayo"
-//       size="xs"
-//       name="Segun Adebayo"
-//       marginLeft={-1}
-//       marginRight={2}
-//     >
-//       <Avatar.Image />
-//       <Avatar.Fallback />
-//     </Avatar.Root>
-//     <Tag.Label>Segun</Tag.Label>
-//     <Tag.CloseTrigger />
-//   </Tag.Root>
-// )
+export const Overflow = () => {
+  return (
+    <Tag.Root size="sm" colorPalette="blue" maxW="200px">
+      <Tag.Label>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+        molestias, laboriosam, quod, quia quidem quae voluptatem natus
+        exercitationem autem quibusdam
+      </Tag.Label>
+      <Tag.CloseTrigger>
+        <HiX />
+      </Tag.CloseTrigger>
+    </Tag.Root>
+  )
+}

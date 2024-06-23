@@ -669,8 +669,7 @@ export interface SystemProperties {
   spaceY?: ConditionalValue<UtilityValues["spaceY"] | CssVars | AnyString>
   translateX?: ConditionalValue<UtilityValues["translateX"] | CssVars | AnyString>
   translateY?: ConditionalValue<UtilityValues["translateY"] | CssVars | AnyString>
-  truncated?: ConditionalValue<UtilityValues["truncated"] | CssVars | AnyString>
-  noOfLines?: ConditionalValue<string | number | AnyString>
+  truncate?: ConditionalValue<UtilityValues["truncate"] | CssVars | AnyString>
   srOnly?: ConditionalValue<UtilityValues["srOnly"] | CssVars | AnyString>
   debug?: ConditionalValue<UtilityValues["debug"] | CssVars | AnyString>
   colorPalette?: ConditionalValue<UtilityValues["colorPalette"] | CssVars | AnyString>

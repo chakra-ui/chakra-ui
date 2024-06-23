@@ -202,7 +202,7 @@ export interface UtilityValues {
   fontWeight: Tokens["fontWeights"]
   lineHeight: Tokens["lineHeights"]
   letterSpacing: Tokens["letterSpacings"]
-  truncated: boolean
+  truncate: boolean
   srOnly: boolean
   debug: boolean
   caretColor: Tokens["colors"]

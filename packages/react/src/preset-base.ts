@@ -818,7 +818,7 @@ export const defaultBaseConfig = defineConfig({
     fontWeight: { values: "fontWeights" },
     lineHeight: { values: "lineHeights" },
     letterSpacing: { values: "letterSpacings" },
-    truncated: {
+    truncate: {
       values: { type: "boolean" },
       transform(value) {
         if (value === true) {
@@ -831,15 +831,18 @@ export const defaultBaseConfig = defineConfig({
         return {}
       },
     },
-    noOfLines: {
+    lineClamp: {
       transform(value) {
+        if (value === "none") {
+          return {
+            WebkitLineClamp: "unset",
+          }
+        }
         return {
-          display: "-webkit-box",
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: "var(--line-clamp)",
-          "--line-clamp": value,
           overflow: "hidden",
-          textOverflow: "ellipsis",
+          display: "-webkit-box",
+          WebkitLineClamp: value,
+          WebkitBoxOrient: "vertical",
         }
       },
     },
