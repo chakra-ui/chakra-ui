@@ -1,6 +1,6 @@
 {
   "extends": ["./tsconfig.build.json"],
-  "include": ["vitest.setup.ts", "packages", "apps"],
+  "include": ["vitest.setup.ts", "packages", "apps/compositions"],
   "compilerOptions": {
     "paths": {
       "compositions/*": ["./apps/compositions/src/*"]
