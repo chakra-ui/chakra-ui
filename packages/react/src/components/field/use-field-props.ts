@@ -11,10 +11,10 @@ export function useFieldProps<T extends HTMLElement = HTMLInputElement>(
 
   const {
     id,
-    disabled,
-    readOnly,
-    required,
-    invalid,
+    disabled = field?.disabled,
+    readOnly = field?.readOnly,
+    required = field?.required,
+    invalid = field?.invalid,
     onFocus,
     onBlur,
     "aria-describedby": ariaDescribedby,

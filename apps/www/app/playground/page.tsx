@@ -8,6 +8,7 @@ import {
   Container,
   For,
   Group,
+  HStack,
   Heading,
   Input,
   Prose,
@@ -41,6 +42,7 @@ import { Slider } from "compositions/ui/slider"
 import { Status } from "compositions/ui/status"
 import { Switch } from "compositions/ui/switch"
 import { Tag } from "compositions/ui/tag"
+import { TextField } from "compositions/ui/text-field"
 import { Tooltip } from "compositions/ui/tooltip"
 import { HiColorSwatch, HiPlus, HiUpload } from "react-icons/hi"
 
@@ -68,6 +70,40 @@ const stats = [
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="Input">Input</Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <HStack gap="10" width="full">
+            <TextField
+              label="Email"
+              placeholder="Enter your email"
+              variant="filled"
+            />
+            <TextField
+              label="Email"
+              placeholder="Enter your email"
+              variant="outline"
+            />
+          </HStack>
+
+          <HStack gap="10" width="full">
+            <TextField
+              label="Email"
+              description="We'll never share your email."
+              placeholder="Enter your email"
+              variant="outline"
+            />
+            <TextField
+              invalid
+              error="This field is required"
+              label="Email"
+              placeholder="Enter your email"
+              variant="outline"
+            />
+          </HStack>
+        </Stack>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Popover">Popover</Playground.SectionTitle>
         <Stack align="center" direction="row" gap="10">

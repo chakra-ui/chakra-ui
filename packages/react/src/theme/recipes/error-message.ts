@@ -6,5 +6,6 @@ export const errorMessageRecipe = defineRecipe({
     alignItems: "center",
     gap: "2",
     color: "fg.error",
+    fontSize: "xs",
   },
 })
