@@ -18,6 +18,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       background: "bg",
       borderRadius: "md",
       borderWidth: "1px",
+      borderStyle: "dashed",
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
@@ -26,6 +27,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       minHeight: "xs",
       px: "6",
       py: "4",
+      focusRing: "extend",
     },
     item: {
       fontSize: "sm",

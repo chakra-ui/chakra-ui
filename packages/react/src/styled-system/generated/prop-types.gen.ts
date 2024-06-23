@@ -115,7 +115,7 @@ export interface UtilityValues {
   gridColumnGap: Tokens["spacing"]
   gridRowGap: Tokens["spacing"]
   outlineColor: Tokens["colors"]
-  focusRing: "extended" | "contained"
+  focusRing: "extend" | "contain"
   focusRingColor: Tokens["colors"]
   aspectRatio: Tokens["aspectRatios"]
   width: Tokens["sizes"]

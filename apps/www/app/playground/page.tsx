@@ -26,7 +26,7 @@ import { Checkbox } from "compositions/ui/checkbox"
 import { CircularProgress } from "compositions/ui/circular-progress"
 import { DataListItem, DataListRoot } from "compositions/ui/data-list"
 import { EmptyState } from "compositions/ui/empty-state"
-import { FileButton } from "compositions/ui/file-button"
+import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import {
   PopoverBody,
@@ -793,6 +793,15 @@ export default function Page() {
               Upload file
             </Button>
           </FileButton>
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="FileDropzone">
+          File Dropzone
+        </Playground.SectionTitle>
+        <Stack gap="2" align="flex-start">
+          <FileDropzone />
         </Stack>
       </Playground.Section>
 

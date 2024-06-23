@@ -35,7 +35,9 @@ export const FileDropzone = forwardRef<HTMLInputElement, FileButtonProps>(
       <ChakraFileUpload.Root ref={rootRef} {...rest}>
         <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />
         <ChakraFileUpload.Dropzone>
-          <LuFile />
+          <Square size="10" bg="bg" rounded="sm" borderWidth="1px">
+            <LuFile />
+          </Square>
           <div>
             Drag and drop your files here or{" "}
             <ChakraFileUpload.Trigger color="blue.500">
