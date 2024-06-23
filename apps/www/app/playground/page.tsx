@@ -21,6 +21,11 @@ import {
 import { Alert } from "compositions/ui/alert"
 import { Avatar } from "compositions/ui/avatar"
 import { Blockquote } from "compositions/ui/blockquote"
+import {
+  BreadcrumbCurrentLink,
+  BreadcrumbLink,
+  BreadcrumbRoot,
+} from "compositions/ui/breadcrumb"
 import { Button } from "compositions/ui/button"
 import { Checkbox } from "compositions/ui/checkbox"
 import { CircularProgress } from "compositions/ui/circular-progress"
@@ -47,6 +52,7 @@ import { TextField } from "compositions/ui/text-field"
 import { TextareaField } from "compositions/ui/textarea-field"
 import { Tooltip } from "compositions/ui/tooltip"
 import { HiColorSwatch, HiPlus, HiUpload } from "react-icons/hi"
+import { LiaSlashSolid } from "react-icons/lia"
 
 const colorPalettes: ColorPalette[] = [
   "gray",
@@ -72,6 +78,25 @@ const stats = [
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="Breadcrumb">
+          Breadcrumb
+        </Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          <BreadcrumbRoot>
+            <BreadcrumbLink href="#">Docs</BreadcrumbLink>
+            <BreadcrumbLink href="#">Components</BreadcrumbLink>
+            <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
+          </BreadcrumbRoot>
+
+          <BreadcrumbRoot separator={<LiaSlashSolid />}>
+            <BreadcrumbLink href="#">Docs</BreadcrumbLink>
+            <BreadcrumbLink href="#">Components</BreadcrumbLink>
+            <BreadcrumbCurrentLink>Props</BreadcrumbCurrentLink>
+          </BreadcrumbRoot>
+        </Stack>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="DataList">
           DataList
