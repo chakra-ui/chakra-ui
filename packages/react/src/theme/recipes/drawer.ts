@@ -8,7 +8,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
   slots: anatomy.keys(),
   base: {
     backdrop: {
-      bg: "blackAlpha.800",
+      bg: "blackAlpha.500",
       pos: "fixed",
       insetInlineStart: 0,
       top: 0,
@@ -16,10 +16,10 @@ export const drawerSlotRecipe = defineSlotRecipe({
       h: "100dvh",
       zIndex: "modal",
       _open: {
-        animation: "fade-in 0.35s",
+        animation: "fade-in 0.15s",
       },
       _closed: {
-        animation: "fade-out 0.25s",
+        animation: "fade-out 0.1s",
       },
     },
     positioner: {
@@ -39,15 +39,16 @@ export const drawerSlotRecipe = defineSlotRecipe({
       width: "100%",
       outline: 0,
       zIndex: "modal",
+      fontSize: "sm",
       maxH: "100dvh",
       color: "inherit",
       bg: "bg.panel",
-      boxShadow: "lg",
+      shadow: "lg",
       _open: {
         animation: "enter 0.5s cubic-bezier(.32,.72,0,1)",
       },
       _closed: {
-        animation: "exit 0.25s cubic-bezier(.32,.72,0,1)",
+        animation: "exit 0.2s cubic-bezier(.32,.72,0,1)",
       },
     },
     header: dialogSlotRecipe.base!.header,
@@ -64,22 +65,35 @@ export const drawerSlotRecipe = defineSlotRecipe({
   variants: {
     size: {
       xs: {
-        content: { maxW: "xs" },
+        content: {
+          maxW: "xs",
+        },
       },
       sm: {
-        content: { maxW: "md" },
+        content: {
+          maxW: "md",
+        },
       },
       md: {
-        content: { maxW: "lg" },
+        content: {
+          maxW: "lg",
+        },
       },
       lg: {
-        content: { maxW: "2xl" },
+        content: {
+          maxW: "2xl",
+        },
       },
       xl: {
-        content: { maxW: "4xl" },
+        content: {
+          maxW: "4xl",
+        },
       },
       full: {
-        content: { maxW: "100vw", h: "100dvh" },
+        content: {
+          maxW: "100vw",
+          h: "100dvh",
+        },
       },
     },
 
@@ -89,12 +103,8 @@ export const drawerSlotRecipe = defineSlotRecipe({
           justifyContent: "flex-start",
         },
         content: {
-          _open: {
-            "--enter-translate-x": "-100%",
-          },
-          _closed: {
-            "--exit-translate-x": "-100%",
-          },
+          "--enter-translate-x": "-100%",
+          "--exit-translate-x": "-100%",
         },
       },
       end: {
@@ -102,12 +112,8 @@ export const drawerSlotRecipe = defineSlotRecipe({
           justifyContent: "flex-end",
         },
         content: {
-          _open: {
-            "--enter-translate-x": "100%",
-          },
-          _closed: {
-            "--exit-translate-x": "100%",
-          },
+          "--enter-translate-x": "100%",
+          "--exit-translate-x": "100%",
         },
       },
       top: {
@@ -115,12 +121,9 @@ export const drawerSlotRecipe = defineSlotRecipe({
           alignItems: "flex-start",
         },
         content: {
-          _open: {
-            "--enter-translate-y": "-100%",
-          },
-          _closed: {
-            "--exit-translate-y": "-100%",
-          },
+          maxW: "100%",
+          "--enter-translate-y": "-100%",
+          "--exit-translate-y": "-100%",
         },
       },
       bottom: {
@@ -128,27 +131,24 @@ export const drawerSlotRecipe = defineSlotRecipe({
           alignItems: "flex-end",
         },
         content: {
-          _open: {
-            "--enter-translate-y": "100%",
-          },
-          _closed: {
-            "--exit-translate-y": "100%",
-          },
+          maxW: "100%",
+          "--enter-translate-y": "100%",
+          "--exit-translate-y": "100%",
+        },
+      },
+    },
+
+    contained: {
+      true: {
+        positioner: {
+          padding: "4",
+        },
+        content: {
+          borderRadius: "lg",
         },
       },
     },
   },
-
-  compoundVariants: [
-    {
-      placement: ["top", "bottom"],
-      css: {
-        content: {
-          maxW: "100%",
-        },
-      },
-    },
-  ],
 
   defaultVariants: {
     size: "xs",

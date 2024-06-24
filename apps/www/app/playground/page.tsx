@@ -23,6 +23,7 @@ import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
+import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { MenuBasic } from "compositions/examples/menu-basic"
 import { MenuNested } from "compositions/examples/menu-nested"
@@ -85,6 +86,13 @@ export default function Page() {
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
         <Stack gap="5" align="flex-start">
           <DialogSizes />
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Drawer">Drawer</Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          <DrawerBasic />
         </Stack>
       </Playground.Section>
 

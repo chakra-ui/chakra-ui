@@ -158,7 +158,6 @@ export type Token =
   | "durations.slow"
   | "durations.slower"
   | "durations.slowest"
-  | "easings.default"
   | "easings.linear"
   | "easings.in"
   | "easings.out"
@@ -627,7 +626,7 @@ export type ColorsToken =
 
 export type DurationsToken = "fastest" | "faster" | "fast" | "normal" | "slow" | "slower" | "slowest"
 
-export type EasingsToken = "default" | "linear" | "in" | "out" | "in-out"
+export type EasingsToken = "linear" | "in" | "out" | "in-out"
 
 export type FontsToken = "heading" | "body" | "mono"
 

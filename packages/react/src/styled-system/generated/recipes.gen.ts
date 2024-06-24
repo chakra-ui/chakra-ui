@@ -253,6 +253,7 @@ export type DrawerSlot =
 export interface DrawerVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
   placement?: "start" | "end" | "top" | "bottom"
+  contained?: boolean
 }
 
 // Editable

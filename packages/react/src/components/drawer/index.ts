@@ -27,4 +27,10 @@ export type {
   DrawerTitleProps,
 } from "./drawer"
 
+export {
+  useDialogContext as useDrawerContext,
+  DialogContext as DrawerContext,
+  useDialog,
+} from "@ark-ui/react/dialog"
+
 export * as Drawer from "./namespace"

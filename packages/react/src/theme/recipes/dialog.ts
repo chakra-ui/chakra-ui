@@ -76,23 +76,41 @@ export const dialogSlotRecipe = defineSlotRecipe({
   variants: {
     centered: {
       true: {
-        positioner: { alignItems: "center" },
-        content: { my: "auto", mx: "auto" },
+        positioner: {
+          alignItems: "center",
+        },
+        content: {
+          my: "auto",
+          mx: "auto",
+        },
       },
       false: {
-        positioner: { alignItems: "flex-start" },
-        content: { my: "16", mx: "auto" },
+        positioner: {
+          alignItems: "flex-start",
+        },
+        content: {
+          my: "16",
+          mx: "auto",
+        },
       },
     },
 
     scrollBehavior: {
       inside: {
-        positioner: { overflow: "hidden" },
-        content: { maxH: "calc(100% - 7.5rem)" },
-        body: { overflow: "auto" },
+        positioner: {
+          overflow: "hidden",
+        },
+        content: {
+          maxH: "calc(100% - 7.5rem)",
+        },
+        body: {
+          overflow: "auto",
+        },
       },
       outside: {
-        positioner: { overflow: "auto" },
+        positioner: {
+          overflow: "auto",
+        },
       },
     },
 
@@ -176,6 +194,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       none: {},
     },
   },
+
   defaultVariants: {
     size: "md",
     scrollBehavior: "outside",
