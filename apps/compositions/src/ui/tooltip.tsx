@@ -5,12 +5,12 @@ export interface TooltipProps extends ChakraTooltip.RootProps {
   showArrow?: boolean
   portalled?: boolean
   containerRef?: React.RefObject<HTMLElement>
-  title?: React.ReactNode
+  content?: React.ReactNode
 }
 
 export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
   function Tooltip(props, ref) {
-    const { showArrow, children, portalled, title, containerRef, ...rest } =
+    const { showArrow, children, portalled, content, containerRef, ...rest } =
       props
     return (
       <ChakraTooltip.Root {...rest}>
@@ -23,7 +23,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
                   <ChakraTooltip.ArrowTip />
                 </ChakraTooltip.Arrow>
               )}
-              {title}
+              {content}
             </ChakraTooltip.Content>
           </ChakraTooltip.Positioner>
         </Portal>

@@ -19,7 +19,7 @@ export const DataListItem = forwardRef<HTMLDivElement, ItemProps>(
         <ChakraDataList.ItemLabel>
           {label}
           {info && (
-            <ToggleTip title={info}>
+            <ToggleTip content={info}>
               <IconButton variant="ghost" aria-label="info" size="xs">
                 <HiOutlineInformationCircle />
               </IconButton>
