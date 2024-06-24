@@ -217,6 +217,8 @@ export interface UtilityValues {
     | "ghost.subtle"
     | "ghost.solid"
     | "indicator.bottom"
+    | "indicator.top"
     | "indicator.start"
+    | "indicator.end"
     | "disabled"
 }

@@ -82,28 +82,56 @@ export const layerStyles = defineLayerStyles({
   "indicator.bottom": {
     value: {
       position: "relative",
-      "--indicator-color": "colors.colorPalette.500",
+      "--indicator-color-fallback": "colors.colorPalette.500",
       _before: {
         content: `""`,
         position: "absolute",
-        bottom: 0,
-        insetInline: "var(--indicator-offset, 0)",
-        height: "2px",
-        background: "var(--indicator-color)",
+        bottom: "var(--indicator-offset-y, 0)",
+        insetInline: "var(--indicator-offset-x, 0)",
+        height: "var(--indicator-thickness, 2px)",
+        background: "var(--indicator-color, var(--indicator-color-fallback))",
+      },
+    },
+  },
+  "indicator.top": {
+    value: {
+      position: "relative",
+      "--indicator-color-fallback": "colors.colorPalette.500",
+      _before: {
+        content: `""`,
+        position: "absolute",
+        top: "var(--indicator-offset-y, 0)",
+        insetInline: "var(--indicator-offset-x, 0)",
+        height: "var(--indicator-thickness, 2px)",
+        background: "var(--indicator-color, var(--indicator-color-fallback))",
       },
     },
   },
   "indicator.start": {
     value: {
       position: "relative",
-      "--indicator-color": "colors.colorPalette.500",
+      "--indicator-color-fallback": "colors.colorPalette.500",
       _before: {
         content: `""`,
         position: "absolute",
-        insetInlineStart: 0,
-        insetBlock: "var(--indicator-offset, 0)",
-        width: "2px",
-        background: "var(--indicator-color)",
+        insetInlineStart: "var(--indicator-offset-x, 0)",
+        insetBlock: "var(--indicator-offset-y, 0)",
+        width: "var(--indicator-thickness, 2px)",
+        background: "var(--indicator-color, var(--indicator-color-fallback))",
+      },
+    },
+  },
+  "indicator.end": {
+    value: {
+      position: "relative",
+      "--indicator-color-fallback": "colors.colorPalette.500",
+      _before: {
+        content: `""`,
+        position: "absolute",
+        insetInlineEnd: "var(--indicator-offset-x, 0)",
+        insetBlock: "var(--indicator-offset-y, 0)",
+        width: "var(--indicator-thickness, 2px)",
+        background: "var(--indicator-color, var(--indicator-color-fallback))",
       },
     },
   },

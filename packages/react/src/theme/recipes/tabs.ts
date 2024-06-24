@@ -13,6 +13,8 @@ export const tabSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       fontWeight: "medium",
+      position: "relative",
+      gap: "2",
       _focusVisible: {
         zIndex: 1,
         outline: "2px solid",
@@ -25,6 +27,10 @@ export const tabSlotRecipe = defineSlotRecipe({
     },
     list: {
       display: "flex",
+      position: "relative",
+      isolation: "isolate",
+      "--tabs-indicator-shadow": "shadows.xs",
+      "--tabs-indicator-bg": "colors.bg",
     },
     content: {
       _focusVisible: {
@@ -33,42 +39,75 @@ export const tabSlotRecipe = defineSlotRecipe({
       },
     },
     indicator: {
-      borderRadius: "sm",
       width: "var(--width)",
       height: "var(--height)",
+      borderRadius: "var(--tabs-indicator-radius)",
+      bg: "var(--tabs-indicator-bg)",
+      shadow: "var(--tabs-indicator-shadow)",
+      zIndex: -1,
     },
   },
+
   variants: {
     orientation: {
       vertical: {
-        root: { display: "flex" },
-        contentGroup: { height: "100%" },
-        list: { flexDirection: "column" },
+        root: {
+          display: "flex",
+        },
+        content: {
+          height: "100%",
+          ms: "2",
+        },
+        list: {
+          flexDirection: "column",
+        },
       },
       horizontal: {
-        root: { display: "block" },
-        contentGroup: { width: "100%" },
-        list: { flexDirection: "row" },
+        root: {
+          display: "block",
+        },
+        content: {
+          width: "100%",
+          mt: "2",
+        },
+        list: {
+          flexDirection: "row",
+        },
       },
     },
     fitted: {
       true: {
-        trigger: { flex: 1 },
+        trigger: {
+          flex: 1,
+          textAlign: "center",
+          justifyContent: "center",
+        },
       },
     },
     justify: {
       start: {
-        list: { justifyContent: "flex-start" },
+        list: {
+          justifyContent: "flex-start",
+        },
       },
       center: {
-        list: { justifyContent: "center" },
+        list: {
+          justifyContent: "center",
+        },
       },
       end: {
-        list: { justifyContent: "flex-end" },
+        list: {
+          justifyContent: "flex-end",
+        },
       },
     },
+
     size: {
       sm: {
+        root: {
+          "--tabs-trigger-radius": "radii.sm",
+          "--tabs-indicator-radius": "radii.sm",
+        },
         trigger: {
           py: "1",
           px: "2.5",
@@ -76,6 +115,10 @@ export const tabSlotRecipe = defineSlotRecipe({
         },
       },
       md: {
+        root: {
+          "--tabs-trigger-radius": "radii.sm",
+          "--tabs-indicator-radius": "radii.sm",
+        },
         trigger: {
           py: "1.5",
           px: "3",
@@ -83,6 +126,10 @@ export const tabSlotRecipe = defineSlotRecipe({
         },
       },
       lg: {
+        root: {
+          "--tabs-trigger-radius": "radii.sm",
+          "--tabs-indicator-radius": "radii.sm",
+        },
         trigger: {
           py: "2",
           px: "3",
@@ -90,22 +137,19 @@ export const tabSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     variant: {
       line: {
         list: {
           borderColor: "border",
         },
         trigger: {
-          borderColor: "transparent",
-          _selected: {
-            color: { base: "colorPalette.600", _dark: "colorPalette.300" },
-            borderColor: "currentColor",
-          },
           _disabled: {
             _active: { bg: "initial" },
           },
         },
       },
+
       enclosed: {
         list: {
           bg: "bg.muted",
@@ -115,8 +159,8 @@ export const tabSlotRecipe = defineSlotRecipe({
         trigger: {
           flex: "1",
           justifyContent: "center",
-          color: "fg.subtle",
-          borderRadius: "sm",
+          color: "fg.muted",
+          borderRadius: "var(--tabs-trigger-radius)",
           _selected: {
             bg: "bg",
             shadow: "xs",
@@ -124,55 +168,120 @@ export const tabSlotRecipe = defineSlotRecipe({
           },
         },
       },
+
       outline: {
         list: {
-          marginBottom: "-1px",
-          borderBottom: "1px solid",
+          "--line-thickness": "1px",
+          "--line-offset": "calc(var(--line-thickness) * -1)",
           borderColor: "inherit",
+          _before: {
+            content: '""',
+            position: "absolute",
+          },
         },
         trigger: {
-          border: "1px solid",
-          borderColor: "inherit",
-          marginBottom: "-1px",
-          marginEnd: { _notLast: "-1px" },
-          bg: "bg.subtle",
+          color: "fg",
+          borderWidth: "1px",
+          borderColor: "transparent",
           _selected: {
             bg: "bg",
             color: { base: "colorPalette.600", _dark: "colorPalette.300" },
-            borderColor: "inherit",
-            borderTopColor: "currentColor",
-            borderBottomColor: "transparent",
           },
         },
       },
+
       plain: {
         trigger: {
-          _hover: {
-            bg: "bg.muted",
-            borderRadius: "sm",
+          borderRadius: "var(--tabs-trigger-radius)",
+          "&[data-selected][data-ssr]": {
+            bg: "var(--tabs-indicator-bg)",
+            shadow: "var(--tabs-indicator-shadow)",
+            borderRadius: "var(--tabs-indicator-radius)",
           },
         },
       },
     },
   },
+
   compoundVariants: [
+    // line + horizontal
     {
       orientation: "horizontal",
       variant: "line",
       css: {
         list: { borderBottomWidth: "1px" },
-        trigger: { borderBottomWidth: "2px", marginBottom: "-1px" },
+        trigger: {
+          _selected: {
+            layerStyle: "indicator.bottom",
+            "--indicator-offset-y": "-1px",
+          },
+        },
       },
     },
+    // line + vertical
     {
       orientation: "vertical",
       variant: "line",
       css: {
         list: { borderEndWidth: "1px" },
-        trigger: { borderEndWidth: "2px", marginEnd: "-1px" },
+        trigger: {
+          _selected: {
+            layerStyle: "indicator.end",
+            "--indicator-offset-x": "-1px",
+          },
+        },
+      },
+    },
+    // outline + horizontal
+    {
+      orientation: "horizontal",
+      variant: "outline",
+      css: {
+        list: {
+          _before: {
+            bottom: "var(--line-offset)",
+            width: "100%",
+            borderBottomWidth: "var(--line-thickness)",
+            borderBottomColor: "border",
+          },
+        },
+        trigger: {
+          borderTopRadius: "var(--tabs-trigger-radius)",
+          marginBottom: "var(--line-offset)",
+          marginEnd: { _notLast: "var(--line-offset)" },
+          _selected: {
+            borderColor: "inherit",
+            borderBottomColor: "transparent",
+          },
+        },
+      },
+    },
+    // outline + vertical
+    {
+      orientation: "vertical",
+      variant: "outline",
+      css: {
+        list: {
+          _before: {
+            insetInline: "var(--line-offset)",
+            height: "100%",
+            borderEndWidth: "var(--line-thickness)",
+            borderEndColor: "border",
+          },
+        },
+        trigger: {
+          borderStartRadius: "var(--tabs-trigger-radius)",
+          marginEnd: "var(--line-offset)",
+          marginBottom: { _notLast: "var(--line-offset)" },
+          _selected: {
+            borderColor: "inherit",
+            borderEndColor: "transparent",
+          },
+        },
       },
     },
   ],
+
   defaultVariants: {
     size: "md",
     variant: "line",

@@ -1,5 +1,5 @@
 import * as Playground from "@/components/playground"
-import { Container, HStack, Stack, Text } from "@chakra-ui/react"
+import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { BadgeWithColors } from "compositions/examples/badge-with-colors"
@@ -44,6 +44,11 @@ import { SpinnerWithColors } from "compositions/examples/spinner-with-colors"
 import { StatBasic } from "compositions/examples/stat-basic"
 import { StatusWithSizes } from "compositions/examples/status-with-sizes"
 import { SwitchWithColors } from "compositions/examples/switch-with-colors"
+import { TabsStretched } from "compositions/examples/tabs-stretched"
+import { TabsWithIndicator } from "compositions/examples/tabs-with-indicator"
+import { TabsWithLink } from "compositions/examples/tabs-with-links"
+import { TabsWithVariants } from "compositions/examples/tabs-with-variants"
+import { TabsWithVertical } from "compositions/examples/tabs-with-vertical"
 import { TagWithColors } from "compositions/examples/tag-with-colors"
 import { TextareaWithDescription } from "compositions/examples/textarea-with-description"
 import { TextareaWithError } from "compositions/examples/textarea-with-error"
@@ -60,6 +65,19 @@ import { LuMinimize2 } from "react-icons/lu"
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="Tabs">Tabs</Playground.SectionTitle>
+        <Playground.SectionContent gap="14">
+          <TabsWithVariants />
+          <TabsWithVertical />
+          <SimpleGrid columns={2} width="full" gap="14">
+            <TabsWithIndicator />
+            <TabsWithLink />
+          </SimpleGrid>
+          <TabsStretched />
+        </Playground.SectionContent>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Skeleton">
           Skeleton
