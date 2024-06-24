@@ -638,8 +638,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/utils
       '@codesandbox/sandpack-react':
-        specifier: 2.14.2
-        version: 2.14.2(@lezer/common@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 2.14.4
+        version: 2.14.4(@lezer/common@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@codesandbox/sandpack-themes':
         specifier: 2.0.21
         version: 2.0.21
@@ -1862,11 +1862,11 @@ packages:
   '@codesandbox/nodebox@0.1.8':
     resolution: {integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==}
 
-  '@codesandbox/sandpack-client@2.13.8':
-    resolution: {integrity: sha512-IjVlqfVK0fascNyUVH9hs5UZBx4KhKtyZyDrxdiDyQBtLmgESNaFWelAf4a/PX4gJp+H+WW6/iC6KzR7XtK//w==}
+  '@codesandbox/sandpack-client@2.14.4':
+    resolution: {integrity: sha512-o6w65hsLTgJNktWS+M8u0VbgozIHHh3NZbSg8bscaeV2xDWDB6YRFfrZGV0y/RQhyuL7LUesn3RVt4ZuWksVFg==}
 
-  '@codesandbox/sandpack-react@2.14.2':
-    resolution: {integrity: sha512-6yuy98zNqtwhQYZR7hg62s7SX5n4UejCtYJXW4TTa8xjfGSxICexx2j4Ub8ebgDLo3gCLl9ZKoMkaf+ZCQ6s3w==}
+  '@codesandbox/sandpack-react@2.14.4':
+    resolution: {integrity: sha512-QDaWLcMhOnNvMdYvo77J+onUbNM3SZIwnplwXIA3WMF9zTBtSeUrpbVT+UZnGC3Kfrw+Adq/J5v3hyAXXMlSHg==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
@@ -12636,7 +12636,7 @@ snapshots:
       outvariant: 1.4.0
       strict-event-emitter: 0.4.6
 
-  '@codesandbox/sandpack-client@2.13.8':
+  '@codesandbox/sandpack-client@2.14.4':
     dependencies:
       '@codesandbox/nodebox': 0.1.8
       buffer: 6.0.3
@@ -12644,7 +12644,7 @@ snapshots:
       outvariant: 1.4.0
       static-browser-server: 1.0.3
 
-  '@codesandbox/sandpack-react@2.14.2(@lezer/common@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@codesandbox/sandpack-react@2.14.4(@lezer/common@1.2.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@codemirror/autocomplete': 6.12.0(@codemirror/language@6.10.0)(@codemirror/state@6.4.0)(@codemirror/view@6.23.0)(@lezer/common@1.2.1)
       '@codemirror/commands': 6.3.3
@@ -12654,7 +12654,7 @@ snapshots:
       '@codemirror/language': 6.10.0
       '@codemirror/state': 6.4.0
       '@codemirror/view': 6.23.0
-      '@codesandbox/sandpack-client': 2.13.8
+      '@codesandbox/sandpack-client': 2.14.4
       '@lezer/highlight': 1.2.0
       '@react-hook/intersection-observer': 3.1.1(react@18.2.0)
       '@stitches/core': 1.2.8
