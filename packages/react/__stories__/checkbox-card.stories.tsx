@@ -3,6 +3,7 @@ import {
   Badge,
   Box,
   CheckboxCard,
+  CheckboxGroup,
   Float,
   For,
   SimpleGrid,
@@ -28,11 +29,12 @@ export default {
 }
 
 const DemoCheckboxCard = (props: CheckboxCard.RootProps) => {
+  const { children = "CheckboxCard", ...rest } = props
   return (
-    <CheckboxCard.Root width="300px" {...props}>
+    <CheckboxCard.Root width="300px" {...rest}>
       <CheckboxCard.Control>
         <Stack gap="0" flex="1">
-          <CheckboxCard.Label>Checkbox</CheckboxCard.Label>
+          <CheckboxCard.Label>{children}</CheckboxCard.Label>
           <Text>Some description</Text>
         </Stack>
 
@@ -205,5 +207,20 @@ export const Sizes = () => {
         </tr>
       </tbody>
     </PlaygroundTable>
+  )
+}
+
+export const WithGroup = () => {
+  return (
+    <CheckboxGroup
+      defaultValue={["one", "two"]}
+      onValueChange={(value) => console.log(value)}
+    >
+      <Stack align="start">
+        <DemoCheckboxCard value="one">One</DemoCheckboxCard>
+        <DemoCheckboxCard value="two">Two</DemoCheckboxCard>
+        <DemoCheckboxCard value="three">Three</DemoCheckboxCard>
+      </Stack>
+    </CheckboxGroup>
   )
 }

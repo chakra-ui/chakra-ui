@@ -32,6 +32,7 @@ import { MenuWithCommand } from "compositions/examples/menu-with-command"
 import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { ProseBasic } from "compositions/examples/prose-basic"
+import { RadioCardBasic } from "compositions/examples/radio-card-basic"
 import { Alert } from "compositions/ui/alert"
 import { Avatar } from "compositions/ui/avatar"
 import { Button } from "compositions/ui/button"
@@ -103,6 +104,15 @@ export default function Page() {
         </Playground.SectionTitle>
         <Stack gap="5" align="flex-start">
           <CheckboxCardBasic />
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="RadioCard">
+          RadioCard
+        </Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          <RadioCardBasic />
         </Stack>
       </Playground.Section>
 

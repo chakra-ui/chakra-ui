@@ -13,13 +13,14 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       borderWidth: "1px",
       userSelect: "none",
-      pos: "relative",
+      position: "relative",
       _focus: {
         outline: "2px solid",
         outlineColor: "colorPalette.500",
         outlineOffset: "2px",
       },
       _disabled: {
+        opacity: 0.8,
         color: "fg.subtle",
         cursor: "not-allowed",
         borderColor: "border.disabled!",
@@ -32,7 +33,20 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         color: "fg.subtle!",
       },
     },
+    itemControl: {
+      display: "inline-flex",
+      flex: "1",
+      pos: "relative",
+      _disabled: {
+        bg: "bg.subtle!",
+      },
+    },
     itemIndicator: radiomarkRecipe.base,
+    itemAddon: {
+      _disabled: {
+        color: "fg.subtle",
+      },
+    },
   },
 
   variants: {

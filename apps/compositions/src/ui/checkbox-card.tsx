@@ -8,7 +8,7 @@ interface CheckboxCardItemProps extends ChakraCheckboxCard.RootProps {}
 export const CheckboxCardItem = (props: CheckboxCardItemProps) => {
   const { children, ...rest } = props
   return (
-    <ChakraCheckboxCard.Root width="300px" {...rest}>
+    <ChakraCheckboxCard.Root {...rest}>
       <ChakraCheckboxCard.Control>
         {children}
         <ChakraCheckboxCard.HiddenInput />

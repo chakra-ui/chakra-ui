@@ -1,32 +1,37 @@
-import { HStack, Label, Stack, Text } from "@chakra-ui/react"
+"use client"
+
+import { CheckboxGroup, HStack, Label, Stack, Text } from "@chakra-ui/react"
 import {
-  CheckboxCardGroup,
   CheckboxCardItem,
   CheckboxCardLabel,
 } from "compositions/ui/checkbox-card"
 
 const items = [
   {
-    value: "github",
-    title: "GitHub",
-    description: "Best for OSS projects",
+    value: "next",
+    title: "Next.js",
+    description: "Best for apps",
   },
   {
-    value: "github",
-    title: "GitLab",
-    description: "Best for private projects",
+    value: "vite",
+    title: "Vite",
+    description: "Best for SPAs",
   },
   {
-    value: "bitbucket",
-    title: "Bitbucket",
-    description: "Best for enterprise projects",
+    value: "astro",
+    title: "Astro",
+    description: "Best for static sites",
   },
 ]
 
 export const CheckboxCardBasic = () => {
   return (
-    <CheckboxCardGroup width="full" defaultValue={["React"]}>
-      <Label> Select platform(s)</Label>
+    <CheckboxGroup
+      width="full"
+      defaultValue={["next", "vite"]}
+      onValueChange={(value) => console.log(value)}
+    >
+      <Label>Select framework(s)</Label>
       <HStack mt="2" align="stretch" width="full">
         {items.map((item) => (
           <CheckboxCardItem key={item.value} value={item.value} flex="1">
@@ -37,6 +42,6 @@ export const CheckboxCardBasic = () => {
           </CheckboxCardItem>
         ))}
       </HStack>
-    </CheckboxCardGroup>
+    </CheckboxGroup>
   )
 }

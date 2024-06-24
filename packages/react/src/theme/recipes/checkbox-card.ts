@@ -17,17 +17,20 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         outlineOffset: "2px",
       },
       _disabled: {
-        layerStyle: "disabled",
+        opacity: 0.8,
+        color: "fg.subtle",
+        cursor: "not-allowed",
+        borderColor: "border.disabled!",
       },
     },
     control: {
       display: "inline-flex",
       flex: "1",
-      pos: "relative",
+      position: "relative",
       rounded: "inherit",
       justifyContent: "space-between",
       _disabled: {
-        layerStyle: "disabled",
+        bg: "bg.subtle!",
       },
     },
     label: {
@@ -36,12 +39,12 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       _disabled: {
-        layerStyle: "disabled",
+        color: "fg.subtle!",
       },
     },
     addon: {
       _disabled: {
-        layerStyle: "disabled",
+        color: "fg.subtle",
       },
     },
     indicator: checkmarkRecipe.base,
