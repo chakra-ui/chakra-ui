@@ -10,6 +10,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
+    "local:sync": "tsx scripts/symlink.ts",
+    "local:revert": "tsx scripts/symlink.ts --revert",
     "clean:emotion-types": "rimraf node_modules/@emotion/core/types",
     "postinstall": "pnpm clean:emotion-types",
     "build:tokens": "chakra-cli tokens packages/react/src/preset.ts",
