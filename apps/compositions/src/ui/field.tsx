@@ -1,38 +1,34 @@
+import type { FieldProps as ChakraFieldProps } from "@chakra-ui/react"
 import {
+  Field as ChakraField,
   ErrorMessage,
-  Field,
   HelpText,
-  Input,
-  type InputProps,
   Label,
   RequiredIndicator,
-  splitFieldProps,
 } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
-export interface TextFieldProps extends InputProps {
+export interface FieldProps extends Omit<ChakraFieldProps, "label"> {
   label?: React.ReactNode
   description?: React.ReactNode
   error?: React.ReactNode
-  rootProps?: React.ComponentProps<typeof Field>
   asterisk?: boolean
 }
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  function TextField(props, ref) {
-    const [fieldProps, localProps] = splitFieldProps(props)
-    const { label, description, error, asterisk, ...rest } = localProps
+export const Field = forwardRef<HTMLInputElement, FieldProps>(
+  function Field(props, ref) {
+    const { label, children, description, error, asterisk, ...rest } = props
     return (
-      <Field {...fieldProps}>
+      <ChakraField ref={ref} {...rest}>
         {label && (
           <Label>
             {label} {asterisk && <RequiredIndicator />}
           </Label>
         )}
-        <Input ref={ref} {...rest} />
+        {children}
         {description && <HelpText>{description}</HelpText>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
-      </Field>
+      </ChakraField>
     )
   },
 )

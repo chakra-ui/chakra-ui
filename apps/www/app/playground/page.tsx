@@ -1,5 +1,5 @@
 import * as Playground from "@/components/playground"
-import { Container, HStack } from "@chakra-ui/react"
+import { Container } from "@chakra-ui/react"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { BadgeWithColors } from "compositions/examples/badge-with-colors"
@@ -18,6 +18,9 @@ import { DialogSizes } from "compositions/examples/dialog-sizes"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
+import { InputWithDescription } from "compositions/examples/input-with-description"
+import { InputWithError } from "compositions/examples/input-with-error"
+import { InputWithField } from "compositions/examples/input-with-field"
 import { MenuBasic } from "compositions/examples/menu-basic"
 import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
@@ -37,13 +40,14 @@ import { StatBasic } from "compositions/examples/stat-basic"
 import { StatusWithSizes } from "compositions/examples/status-with-sizes"
 import { SwitchWithColors } from "compositions/examples/switch-with-colors"
 import { TagWithColors } from "compositions/examples/tag-with-colors"
+import { TextareaWithDescription } from "compositions/examples/textarea-with-description"
+import { TextareaWithError } from "compositions/examples/textarea-with-error"
+import { TextareaWithField } from "compositions/examples/textarea-with-field"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
 import { Button } from "compositions/ui/button"
 import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import { StepperInput } from "compositions/ui/stepper-input"
-import { TextField } from "compositions/ui/text-field"
-import { TextareaField } from "compositions/ui/textarea-field"
 import { HiUpload } from "react-icons/hi"
 
 export default function Page() {
@@ -133,34 +137,9 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Input">Input</Playground.SectionTitle>
         <Playground.SectionContent>
-          <HStack gap="10" width="full">
-            <TextField
-              label="Email"
-              placeholder="Enter your email"
-              variant="filled"
-            />
-            <TextField
-              label="Email"
-              placeholder="Enter your email"
-              variant="outline"
-            />
-          </HStack>
-
-          <HStack gap="10" width="full">
-            <TextField
-              label="Email"
-              description="We'll never share your email."
-              placeholder="Enter your email"
-              variant="outline"
-            />
-            <TextField
-              invalid
-              error="This field is required"
-              label="Email"
-              placeholder="Enter your email"
-              variant="outline"
-            />
-          </HStack>
+          <InputWithField />
+          <InputWithDescription />
+          <InputWithError />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -169,24 +148,9 @@ export default function Page() {
           Textarea
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <HStack gap="10" width="full">
-            <TextareaField label="Comment" variant="filled" />
-            <TextareaField label="Comment" variant="outline" />
-          </HStack>
-
-          <HStack gap="10" width="full">
-            <TextareaField
-              label="Comment"
-              description="We'll never share your email."
-              variant="outline"
-            />
-            <TextareaField
-              invalid
-              error="This field is required"
-              label="Comment"
-              variant="outline"
-            />
-          </HStack>
+          <TextareaWithField />
+          <TextareaWithDescription />
+          <TextareaWithError />
         </Playground.SectionContent>
       </Playground.Section>
 
