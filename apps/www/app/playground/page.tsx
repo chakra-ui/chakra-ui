@@ -33,6 +33,7 @@ import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
+import { SliderWithColors } from "compositions/examples/slider-with-colors"
 import { StatBasic } from "compositions/examples/stat-basic"
 import { Alert } from "compositions/ui/alert"
 import { Avatar } from "compositions/ui/avatar"
@@ -45,7 +46,6 @@ import { Progress } from "compositions/ui/progress"
 import { RadioItem } from "compositions/ui/radio-item"
 import { Rating } from "compositions/ui/rating"
 import { SegmentControl } from "compositions/ui/segment-control"
-import { Slider } from "compositions/ui/slider"
 import { Status } from "compositions/ui/status"
 import { Switch } from "compositions/ui/switch"
 import { Tag } from "compositions/ui/tag"
@@ -738,30 +738,7 @@ export default function Page() {
 
       <Playground.Section>
         <Playground.SectionTitle id="slider">Slider</Playground.SectionTitle>
-        <Stack gap="4" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Slider
-                width="200px"
-                colorPalette={colorPalette}
-                defaultValue={[40]}
-                marks={[0, 50, 100]}
-              />
-              <Slider
-                width="200px"
-                colorPalette={colorPalette}
-                defaultValue={[25, 75]}
-              />
-            </Stack>
-          ))}
-        </Stack>
+        <SliderWithColors />
       </Playground.Section>
 
       <Playground.Section>
