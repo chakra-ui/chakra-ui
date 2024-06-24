@@ -21,6 +21,8 @@ import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { InputWithDescription } from "compositions/examples/input-with-description"
 import { InputWithError } from "compositions/examples/input-with-error"
 import { InputWithField } from "compositions/examples/input-with-field"
+import { InputWithLeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
+import { InputWithLeftElement } from "compositions/examples/input-with-left-element"
 import { MenuBasic } from "compositions/examples/menu-basic"
 import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
@@ -137,6 +139,8 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Input">Input</Playground.SectionTitle>
         <Playground.SectionContent>
+          <InputWithLeftElement />
+          <InputWithLeftAndRightElement />
           <InputWithField />
           <InputWithDescription />
           <InputWithError />
