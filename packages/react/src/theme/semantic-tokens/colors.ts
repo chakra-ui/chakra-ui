@@ -11,14 +11,14 @@ export const semanticColors = defineSemanticTokens.colors({
     muted: {
       value: { base: "{colors.gray.100}", _dark: "{colors.gray.700}" },
     },
+    emphasized: {
+      value: { base: "{colors.gray.200}", _dark: "{colors.gray.700}" },
+    },
     inverted: {
       value: { base: "{colors.gray.900}", _dark: "white" },
     },
     panel: {
       value: { base: "{colors.white}", _dark: "{colors.gray.800}" },
-    },
-    accent: {
-      value: { base: "{colors.teal.50}", _dark: "{colors.teal.800}" },
     },
     error: {
       value: { base: "{colors.red.50}", _dark: "{colors.red.800}" },
@@ -43,8 +43,8 @@ export const semanticColors = defineSemanticTokens.colors({
     subtle: {
       value: { base: "{colors.gray.500}", _dark: "{colors.whiteAlpha.600}" },
     },
-    accent: {
-      value: { base: "{colors.teal.600}", _dark: "{colors.teal.300}" },
+    disabled: {
+      value: { base: "{colors.gray.400}", _dark: "{colors.whiteAlpha.500}" },
     },
     inverted: {
       value: { base: "white", _dark: "{colors.gray.800}" },
@@ -71,9 +71,6 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     subtle: {
       value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" },
-    },
-    accent: {
-      value: { base: "{colors.teal.200}", _dark: "{colors.teal.600}" },
     },
     disabled: {
       value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" },

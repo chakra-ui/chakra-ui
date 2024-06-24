@@ -36,6 +36,9 @@ import { RadioCardCentered } from "compositions/examples/radio-card-centered"
 import { RadioGroupWithColors } from "compositions/examples/radio-group-with-colors"
 import { RatingWithColors } from "compositions/examples/rating-with-colors"
 import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
+import { SkeletonBasic } from "compositions/examples/skeleton-basic"
+import { SkeletonForFeed } from "compositions/examples/skeleton-for-feed"
+import { SkeletonWithLoaded } from "compositions/examples/skeleton-with-loaded"
 import { SliderWithColors } from "compositions/examples/slider-with-colors"
 import { SpinnerWithColors } from "compositions/examples/spinner-with-colors"
 import { StatBasic } from "compositions/examples/stat-basic"
@@ -52,11 +55,22 @@ import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import { ScrubberInput } from "compositions/ui/scrubber-input"
 import { StepperInput } from "compositions/ui/stepper-input"
 import { HiUpload } from "react-icons/hi"
-import { LuMinimize2, LuScaling } from "react-icons/lu"
+import { LuMinimize2 } from "react-icons/lu"
 
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="Skeleton">
+          Skeleton
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <SkeletonBasic />
+          <SkeletonForFeed />
+          <SkeletonWithLoaded />
+        </Playground.SectionContent>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="StepperInput">
           StepperInput

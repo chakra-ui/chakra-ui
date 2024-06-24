@@ -2,13 +2,14 @@ import { defineRecipe } from "../../styled-system"
 
 export const skeletonRecipe = defineRecipe({
   base: {},
+
   variants: {
     loaded: {
       true: {
-        animation: "fade-in var(--fade-duration, 0.3s) ease-out !important",
+        background: "unset",
+        animation: "fade-in var(--fade-duration, 0.1s) ease-out !important",
       },
       false: {
-        background: "bg.muted",
         borderRadius: "sm",
         boxShadow: "none",
         backgroundClip: "padding-box",
@@ -24,13 +25,16 @@ export const skeletonRecipe = defineRecipe({
     },
     variant: {
       pulse: {
-        animation: "pulse var(--duration, 2s) infinite",
+        background: "bg.emphasized",
+        animation: "pulse var(--duration, 1.2s) infinite",
       },
       shine: {
         "--animate-from": "200%",
         "--animate-to": "-200%",
+        "--start-color": "colors.bg.subtle",
+        "--end-color": "colors.bg.emphasized",
         backgroundImage:
-          "linear-gradient(90deg, {colors.blackAlpha.300}, {colors.blackAlpha.50}, {colors.blackAlpha.300})",
+          "linear-gradient(270deg,var(--start-color),var(--end-color),var(--end-color),var(--start-color))",
         backgroundSize: "400% 100%",
         animation: "bg-position var(--duration, 5s) ease-in-out infinite",
       },
@@ -39,6 +43,7 @@ export const skeletonRecipe = defineRecipe({
       },
     },
   },
+
   defaultVariants: {
     variant: "pulse",
     loaded: false,
