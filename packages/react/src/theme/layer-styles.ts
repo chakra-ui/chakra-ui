@@ -110,7 +110,7 @@ export const layerStyles = defineLayerStyles({
 
   disabled: {
     value: {
-      opacity: 0.6,
+      opacity: 0.4,
       cursor: "not-allowed",
     },
   },

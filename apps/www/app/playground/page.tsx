@@ -40,6 +40,7 @@ import { TooltipBasic } from "compositions/examples/tooltip-basic"
 import { Button } from "compositions/ui/button"
 import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
+import { StepperInput } from "compositions/ui/stepper-input"
 import { TextField } from "compositions/ui/text-field"
 import { TextareaField } from "compositions/ui/textarea-field"
 import { HiUpload } from "react-icons/hi"
@@ -47,6 +48,15 @@ import { HiUpload } from "react-icons/hi"
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="StepperInput">
+          StepperInput
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <StepperInput defaultValue="12" min={0} />
+        </Playground.SectionContent>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
         <Playground.SectionContent>
