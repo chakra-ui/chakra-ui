@@ -33,8 +33,10 @@ import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
+import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
 import { SliderWithColors } from "compositions/examples/slider-with-colors"
 import { StatBasic } from "compositions/examples/stat-basic"
+import { TooltipBasic } from "compositions/examples/tooltip-basic"
 import { Alert } from "compositions/ui/alert"
 import { Avatar } from "compositions/ui/avatar"
 import { Button } from "compositions/ui/button"
@@ -686,23 +688,7 @@ export default function Page() {
         <Playground.SectionTitle id="segment-control">
           Segment Control
         </Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
-          <SegmentControl
-            size="sm"
-            defaultValue="React"
-            items={["React", "Vue", "Solid"]}
-          />
-          <SegmentControl
-            size="md"
-            defaultValue="React"
-            items={["React", "Vue", "Solid"]}
-          />
-          <SegmentControl
-            size="lg"
-            defaultValue="React"
-            items={["React", "Vue", "Solid"]}
-          />
-        </Stack>
+        <SegmentControlSizes />
       </Playground.Section>
 
       <Playground.Section>
@@ -743,21 +729,7 @@ export default function Page() {
 
       <Playground.Section>
         <Playground.SectionTitle id="tooltip">Tooltip</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          <Tooltip showArrow content="This is the tooltip content">
-            <Box
-              tabIndex={0}
-              userSelect="none"
-              bg="bg.subtle"
-              borderWidth="1px"
-              borderStyle="dashed"
-              padding="5"
-              rounded="lg"
-            >
-              Hover me
-            </Box>
-          </Tooltip>
-        </Stack>
+        <TooltipBasic />
       </Playground.Section>
     </Container>
   )
