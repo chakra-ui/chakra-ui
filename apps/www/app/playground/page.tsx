@@ -20,6 +20,7 @@ import {
 import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
 import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-separator"
 import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
+import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
@@ -93,6 +94,15 @@ export default function Page() {
         <Playground.SectionTitle id="Drawer">Drawer</Playground.SectionTitle>
         <Stack gap="5" align="flex-start">
           <DrawerBasic />
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="CheckboxCard">
+          CheckboxCard
+        </Playground.SectionTitle>
+        <Stack gap="5" align="flex-start">
+          <CheckboxCardBasic />
         </Stack>
       </Playground.Section>
 
