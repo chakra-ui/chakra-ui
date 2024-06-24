@@ -77,9 +77,6 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <StepperInput defaultValue="12" min={0} />
-          <Stack>
-            <Text>Just like Figma, interact to scrub value</Text>
-          </Stack>
         </Playground.SectionContent>
       </Playground.Section>
 
