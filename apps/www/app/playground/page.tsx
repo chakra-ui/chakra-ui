@@ -1,5 +1,5 @@
 import * as Playground from "@/components/playground"
-import { Container } from "@chakra-ui/react"
+import { Container, HStack, Stack, Text } from "@chakra-ui/react"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { BadgeWithColors } from "compositions/examples/badge-with-colors"
@@ -49,8 +49,10 @@ import { TooltipBasic } from "compositions/examples/tooltip-basic"
 import { Button } from "compositions/ui/button"
 import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
+import { ScrubberInput } from "compositions/ui/scrubber-input"
 import { StepperInput } from "compositions/ui/stepper-input"
 import { HiUpload } from "react-icons/hi"
+import { LuMinimize2, LuScaling } from "react-icons/lu"
 
 export default function Page() {
   return (
@@ -61,6 +63,30 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <StepperInput defaultValue="12" min={0} />
+          <Stack>
+            <Text>Just like Figma, interact to scrub value</Text>
+          </Stack>
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="ScrubberInput">
+          ScrubberInput
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <Text>Just like Figma, interact to scrub value</Text>
+          <HStack>
+            <ScrubberInput
+              label="Angle"
+              icon={<LuMinimize2 />}
+              defaultValue="0"
+            />
+            <ScrubberInput
+              label="Height (px)"
+              defaultValue="12"
+              icon={<Text fontSize="sm">H</Text>}
+            />
+          </HStack>
         </Playground.SectionContent>
       </Playground.Section>
 
