@@ -1,0 +1,28 @@
+import { Stack, Text } from "@chakra-ui/react"
+import { colorPalettes } from "compositions/lib/color-palettes"
+import { Button } from "compositions/ui/button"
+
+export const ButtonWithColors = () => {
+  return (
+    <Stack gap="2" align="flex-start">
+      {colorPalettes.map((colorPalette) => (
+        <Stack
+          align="center"
+          key={colorPalette}
+          direction="row"
+          gap="10"
+          px="4"
+        >
+          <Text minW="8ch">{colorPalette}</Text>
+          <Button colorPalette={colorPalette}>Button</Button>
+          <Button colorPalette={colorPalette} variant="outline">
+            Button
+          </Button>
+          <Button colorPalette={colorPalette} variant="subtle">
+            Button
+          </Button>
+        </Stack>
+      ))}
+    </Stack>
+  )
+}

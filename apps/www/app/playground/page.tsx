@@ -1,159 +1,126 @@
 import * as Playground from "@/components/playground"
-import {
-  Badge,
-  Box,
-  Card,
-  Code,
-  ColorPalette,
-  Container,
-  For,
-  Group,
-  HStack,
-  Heading,
-  RadioGroup,
-  Spinner,
-  Stack,
-  Text,
-} from "@chakra-ui/react"
+import { Container, HStack } from "@chakra-ui/react"
+import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
+import { BadgeWithColors } from "compositions/examples/badge-with-colors"
 import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
 import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-separator"
 import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
+import { ButtonWithColors } from "compositions/examples/button-with-colors"
+import { CardWithVariants } from "compositions/examples/card-with-variants"
 import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
+import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
+import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
+import { CodeWithColors } from "compositions/examples/code-with-colors"
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
+import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { MenuBasic } from "compositions/examples/menu-basic"
 import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
 import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
+import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
+import { RadioGroupWithColors } from "compositions/examples/radio-group-with-colors"
+import { RatingWithColors } from "compositions/examples/rating-with-colors"
 import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
 import { SliderWithColors } from "compositions/examples/slider-with-colors"
+import { SpinnerWithColors } from "compositions/examples/spinner-with-colors"
 import { StatBasic } from "compositions/examples/stat-basic"
+import { StatusWithSizes } from "compositions/examples/status-with-sizes"
+import { SwitchWithColors } from "compositions/examples/switch-with-colors"
+import { TagWithColors } from "compositions/examples/tag-with-colors"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
-import { Alert } from "compositions/ui/alert"
-import { Avatar } from "compositions/ui/avatar"
 import { Button } from "compositions/ui/button"
-import { Checkbox } from "compositions/ui/checkbox"
-import { CircularProgress } from "compositions/ui/circular-progress"
 import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
-import { Progress } from "compositions/ui/progress"
-import { RadioItem } from "compositions/ui/radio-item"
-import { Rating } from "compositions/ui/rating"
-import { SegmentControl } from "compositions/ui/segment-control"
-import { Status } from "compositions/ui/status"
-import { Switch } from "compositions/ui/switch"
-import { Tag } from "compositions/ui/tag"
 import { TextField } from "compositions/ui/text-field"
 import { TextareaField } from "compositions/ui/textarea-field"
-import { Tooltip } from "compositions/ui/tooltip"
-import { HiPlus, HiUpload } from "react-icons/hi"
-
-const colorPalettes: ColorPalette[] = [
-  "gray",
-  "red",
-  "green",
-  "blue",
-  "teal",
-  "pink",
-  "purple",
-  "cyan",
-  "orange",
-  "yellow",
-]
-
-const alertStatuses = ["info", "warning", "success", "error"] as const
-
-const stats = [
-  { label: "New Users", value: "234", diff: -12, helpText: "Till date" },
-  { label: "Sales", value: "£12,340", diff: 12, helpText: "Last 30 days" },
-  { label: "Revenue", value: "3,450", diff: 4.5, helpText: "Last 30 days" },
-]
+import { HiUpload } from "react-icons/hi"
 
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Playground.Section>
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
+        <Playground.SectionContent>
           <DialogSizes />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Drawer">Drawer</Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
+        <Playground.SectionContent>
           <DrawerBasic />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="CheckboxCard">
           CheckboxCard
         </Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
+        <Playground.SectionContent>
           <CheckboxCardBasic />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="RadioCard">
           RadioCard
         </Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
+        <Playground.SectionContent>
           <RadioCardBasic />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Breadcrumb">
           Breadcrumb
         </Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
+        <Playground.SectionContent>
           <BreadcrumbBasic />
           <BreadcrumbWithSeparator />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Menu">Menu</Playground.SectionTitle>
-        <Stack direction="row" gap="5" align="flex-start">
+        <Playground.SectionContent direction="row">
           <MenuWithRadioItems />
           <MenuBasic />
           <MenuWithCommand />
           <MenuNested />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="ContextMenu">
           ContextMenu
         </Playground.SectionTitle>
-        <Stack direction="row" gap="5">
+        <Playground.SectionContent direction="row">
           <MenuWithContextTrigger />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="DataList">
           DataList
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
+        <Playground.SectionContent>
           <DataListBasic />
           <DataListWithInfo />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Input">Input</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
+        <Playground.SectionContent>
           <HStack gap="10" width="full">
             <TextField
               label="Email"
@@ -182,14 +149,14 @@ export default function Page() {
               variant="outline"
             />
           </HStack>
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Textarea">
           Textarea
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
+        <Playground.SectionContent>
           <HStack gap="10" width="full">
             <TextareaField label="Comment" variant="filled" />
             <TextareaField label="Comment" variant="outline" />
@@ -208,528 +175,222 @@ export default function Page() {
               variant="outline"
             />
           </HStack>
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Popover">Popover</Playground.SectionTitle>
-        <PopoverSizes />
+        <Playground.SectionContent>
+          <PopoverSizes />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Tag">Tag</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Tag size="sm" colorPalette={colorPalette}>
-                Content
-              </Tag>
-              <Tag icon={<HiPlus />} size="sm" colorPalette={colorPalette}>
-                Content
-              </Tag>
-              <Tag
-                size="sm"
-                colorPalette={colorPalette}
-                variant="solid"
-                showClose
-              >
-                Content
-              </Tag>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <TagWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="stat">Stat</Playground.SectionTitle>
-        <StatBasic />
+        <Playground.SectionContent>
+          <StatBasic />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="avatar">Avatar</Playground.SectionTitle>
-        <AvatarWithColors />
+        <Playground.SectionContent>
+          <AvatarWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="alert">Alert</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {alertStatuses.map((status) => (
-            <Stack
-              align="center"
-              key={status}
-              direction="row"
-              gap="10"
-              px="4"
-              width="full"
-            >
-              <Text minW="8ch">{status}</Text>
-              <Stack flex="1">
-                <Alert status={status} title="This is the alert title" />
-                <Alert status={status} title="This is the alert title" flex="1">
-                  This is the alert description
-                </Alert>
-              </Stack>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <AlertWithStatus />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="badge">Badge</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-              width="full"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Badge colorPalette={colorPalette} variant="solid">
-                New
-              </Badge>
-              <Badge colorPalette={colorPalette} variant="outline">
-                New
-              </Badge>
-              <Badge colorPalette={colorPalette} variant="subtle">
-                New
-              </Badge>
-              <Badge colorPalette={colorPalette} variant="surface">
-                New
-              </Badge>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <BadgeWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Blockquote">
           Blockquote
         </Playground.SectionTitle>
-        <BlockquoteWithColors />
+        <Playground.SectionContent>
+          <BlockquoteWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Card">Card</Playground.SectionTitle>
-        <Stack direction="row" gap="2" align="flex-start">
-          {["subtle", "outline"].map((variant: any) => (
-            <Card.Root width="320px" variant={variant} key={variant}>
-              <Card.Body>
-                <Avatar
-                  src="https://picsum.photos/200/300"
-                  name="Nue Camp"
-                  size="lg"
-                  shape="rounded"
-                />
-                <Heading size="lg" mt="4" mb="2">
-                  Nue Camp
-                </Heading>
-                <Text color="fg.muted">
-                  This is the card body. Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-                  Curabitur nec odio vel dui euismod fermentum.
-                </Text>
-              </Card.Body>
-              <Card.Footer>
-                <Group justify="flex-end" width="full">
-                  <Button variant="outline">View</Button>
-                  <Button>Join</Button>
-                </Group>
-              </Card.Footer>
-            </Card.Root>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <CardWithVariants />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="code">Code</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-              width="full"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Code colorPalette={colorPalette} variant="solid">
-                {`console.log()`}
-              </Code>
-              <Code colorPalette={colorPalette} variant="outline">
-                {`console.log()`}
-              </Code>
-              <Code colorPalette={colorPalette} variant="subtle">
-                {`console.log()`}
-              </Code>
-              <Code colorPalette={colorPalette} variant="surface">
-                {`console.log()`}
-              </Code>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <CodeWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Checkbox">
           Checkbox
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-              width="full"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Stack>
-                <Checkbox variant="outline" colorPalette={colorPalette}>
-                  Checkbox
-                </Checkbox>
-                <Checkbox
-                  defaultChecked
-                  variant="outline"
-                  colorPalette={colorPalette}
-                >
-                  Checkbox
-                </Checkbox>
-              </Stack>
-
-              <Stack>
-                <Checkbox variant="subtle" colorPalette={colorPalette}>
-                  Checkbox
-                </Checkbox>
-                <Checkbox
-                  defaultChecked
-                  variant="subtle"
-                  colorPalette={colorPalette}
-                >
-                  Checkbox
-                </Checkbox>
-              </Stack>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <CheckboxWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="button">Button</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Button colorPalette={colorPalette}>Button</Button>
-              <Button colorPalette={colorPalette} variant="outline">
-                Button
-              </Button>
-              <Button colorPalette={colorPalette} variant="subtle">
-                Button
-              </Button>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <ButtonWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="progress">
           Linear Progress
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Progress
-                width="120px"
-                defaultValue={40}
-                colorPalette={colorPalette}
-                variant="outline"
-              />
-              <Progress
-                width="120px"
-                defaultValue={40}
-                colorPalette={colorPalette}
-                variant="subtle"
-              />
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <ProgressWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Pagination">
           Pagination
         </Playground.SectionTitle>
-        <Stack gap="5" align="flex-start">
+        <Playground.SectionContent>
           <Pagination count={100} pageSize={10} />
           <SimplePagination showPageText count={100} pageSize={10} />
           <SimplePagination count={100} pageSize={10} />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="circular-progress">
           Circular Progress
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <CircularProgress
-                capIsRound
-                size="sm"
-                showValue
-                value={30}
-                colorPalette={colorPalette}
-              />
-              <CircularProgress
-                capIsRound
-                size="md"
-                showValue
-                value={30}
-                colorPalette={colorPalette}
-              />
-              <CircularProgress
-                capIsRound
-                size="lg"
-                showValue
-                value={30}
-                colorPalette={colorPalette}
-              />
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <CircularProgressWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="radio">
           Radio Group
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <RadioGroup.Root
-                colorPalette={colorPalette}
-                defaultValue="react"
-                spaceX="8"
-              >
-                <RadioItem value="react">React</RadioItem>
-                <RadioItem value="vue">Vue</RadioItem>
-                <RadioItem value="solid">Solid</RadioItem>
-              </RadioGroup.Root>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <RadioGroupWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="rating">Rating</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Rating defaultValue={3} size="sm" colorPalette={colorPalette}>
-                Button
-              </Rating>
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <RatingWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Spinner">Spinner</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Spinner
-                size="sm"
-                color="colorPalette.600"
-                colorPalette={colorPalette}
-              />
-              <Spinner
-                size="md"
-                color="colorPalette.600"
-                colorPalette={colorPalette}
-              />
-              <Spinner
-                size="lg"
-                color="colorPalette.600"
-                colorPalette={colorPalette}
-              />
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <SpinnerWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Status">Status</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          <Stack align="center" direction="row" gap="10" px="4">
-            <For each={["sm", "md", "lg"]}>
-              {(size) => (
-                <Status size={size} width="100px" value="warning">
-                  In Review
-                </Status>
-              )}
-            </For>
-          </Stack>
-
-          <Stack align="center" direction="row" gap="10" px="4">
-            <For each={["sm", "md", "lg"]}>
-              {(size) => (
-                <Status size={size} width="100px" value="success">
-                  Approved
-                </Status>
-              )}
-            </For>
-          </Stack>
-
-          <Stack align="center" direction="row" gap="10" px="4">
-            <For each={["sm", "md", "lg"]}>
-              {(size) => (
-                <Status size={size} width="100px" value="error">
-                  Error
-                </Status>
-              )}
-            </For>
-          </Stack>
-        </Stack>
+        <Playground.SectionContent>
+          <StatusWithSizes />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="switch">Switch</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              align="center"
-              key={colorPalette}
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Switch colorPalette={colorPalette} />
-              <Switch colorPalette={colorPalette} defaultChecked />
-            </Stack>
-          ))}
-        </Stack>
+        <Playground.SectionContent>
+          <SwitchWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="heading">Heading</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          <Heading size="6xl">Heading (6xl)</Heading>
-          <Heading size="5xl">Heading (5xl)</Heading>
-          <Heading size="4xl">Heading (4xl)</Heading>
-          <Heading size="3xl">Heading (3xl)</Heading>
-          <Heading size="2xl">Heading (2xl)</Heading>
-          <Heading size="xl">Heading (xl)</Heading>
-          <Heading size="lg">Heading (lg)</Heading>
-          <Heading size="md">Heading (md)</Heading>
-          <Heading size="sm">Heading (sm)</Heading>
-        </Stack>
+        <Playground.SectionContent>
+          <HeadingWithSizes />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="prose">Prose</Playground.SectionTitle>
-        <ProseBasic />
+        <Playground.SectionContent>
+          <ProseBasic />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="segment-control">
           Segment Control
         </Playground.SectionTitle>
-        <SegmentControlSizes />
+        <Playground.SectionContent>
+          <SegmentControlSizes />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="empty-state">
           Empty State
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
+        <Playground.SectionContent>
           <EmptyStateWithAction />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="file-button">
           File Button
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
+        <Playground.SectionContent>
           <FileButton width="auto">
             <Button variant="outline" startIcon={<HiUpload />}>
               Upload file
             </Button>
           </FileButton>
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="FileDropzone">
           File Dropzone
         </Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
+        <Playground.SectionContent>
           <FileDropzone />
-        </Stack>
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="slider">Slider</Playground.SectionTitle>
-        <SliderWithColors />
+        <Playground.SectionContent>
+          <SliderWithColors />
+        </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="tooltip">Tooltip</Playground.SectionTitle>
-        <TooltipBasic />
+        <Playground.SectionContent>
+          <TooltipBasic />
+        </Playground.SectionContent>
       </Playground.Section>
     </Container>
   )

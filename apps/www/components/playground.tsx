@@ -1,6 +1,6 @@
 "use client"
 
-import { Flex, Link, Text, chakra } from "@chakra-ui/react"
+import { Flex, Link, Stack, StackProps, Text, chakra } from "@chakra-ui/react"
 import NextLink from "next/link"
 
 const Section = ({ children }: { children: React.ReactNode }) => {
@@ -57,4 +57,8 @@ const Table = chakra("table", {
   },
 })
 
-export { Section, SectionTitle, Table }
+const SectionContent = (props: StackProps) => {
+  return <Stack gap="5" align="flex-start" {...props} />
+}
+
+export { Section, SectionTitle, Table, SectionContent }
