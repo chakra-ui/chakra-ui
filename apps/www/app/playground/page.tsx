@@ -27,6 +27,7 @@ import { PopoverSizes } from "compositions/examples/popover-sizes"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
+import { RadioCardCentered } from "compositions/examples/radio-card-centered"
 import { RadioGroupWithColors } from "compositions/examples/radio-group-with-colors"
 import { RatingWithColors } from "compositions/examples/rating-with-colors"
 import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
@@ -86,6 +87,7 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <RadioCardBasic />
+          <RadioCardCentered />
         </Playground.SectionContent>
       </Playground.Section>
 
