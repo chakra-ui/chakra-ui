@@ -137,7 +137,7 @@ const PaginationItems = () => {
           return page.type === "ellipsis" ? (
             <Ellipsis key={index} index={index} />
           ) : (
-            <Item type="page" value={page.value} />
+            <Item key={index} type="page" value={page.value} />
           )
         })
       }

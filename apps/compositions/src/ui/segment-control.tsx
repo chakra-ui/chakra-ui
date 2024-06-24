@@ -30,7 +30,11 @@ export const SegmentControl = forwardRef<HTMLDivElement, SegmentControlProps>(
         <SegmentGroup.Indicator />
         <For each={data}>
           {(item) => (
-            <SegmentGroup.Item value={item.value} disabled={item.disabled}>
+            <SegmentGroup.Item
+              key={item.value}
+              value={item.value}
+              disabled={item.disabled}
+            >
               <SegmentGroup.ItemText>{item.label}</SegmentGroup.ItemText>
               <SegmentGroup.ItemHiddenInput />
             </SegmentGroup.Item>
