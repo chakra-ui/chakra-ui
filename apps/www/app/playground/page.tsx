@@ -27,6 +27,7 @@ import { EmptyStateWithAction } from "compositions/examples/empty-state-with-act
 import { MenuBasic } from "compositions/examples/menu-basic"
 import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
+import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { Alert } from "compositions/ui/alert"
@@ -104,6 +105,15 @@ export default function Page() {
           <MenuBasic />
           <MenuWithCommand />
           <MenuNested />
+        </Stack>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="ContextMenu">
+          ContextMenu
+        </Playground.SectionTitle>
+        <Stack direction="row" gap="5">
+          <MenuWithContextTrigger />
         </Stack>
       </Playground.Section>
 

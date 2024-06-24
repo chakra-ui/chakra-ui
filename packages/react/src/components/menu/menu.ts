@@ -43,10 +43,10 @@ export const MenuTrigger = withContext<HTMLButtonElement, MenuTriggerProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface MenuContextTriggerProps
-  extends HTMLChakraProps<"button", ArkMenu.ContextTriggerBaseProps> {}
+  extends HTMLChakraProps<"div", ArkMenu.ContextTriggerBaseProps> {}
 
 export const MenuContextTrigger = withContext<
-  HTMLButtonElement,
+  HTMLElement,
   MenuContextTriggerProps
 >(ArkMenu.ContextTrigger, "contextTrigger", { forwardAsChild: true })
 
