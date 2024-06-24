@@ -13,9 +13,9 @@ import {
   RadioGroup,
   Spinner,
   Stack,
-  Stat,
   Text,
 } from "@chakra-ui/react"
+import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
 import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-separator"
 import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
@@ -33,6 +33,7 @@ import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
+import { StatBasic } from "compositions/examples/stat-basic"
 import { Alert } from "compositions/ui/alert"
 import { Avatar } from "compositions/ui/avatar"
 import { Button } from "compositions/ui/button"
@@ -245,49 +246,13 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="Stat">Stat</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          <Group gap="10" width="full">
-            {stats.map((item) => (
-              <Stat.Root key={item.label}>
-                <Stat.Label>{item.label}</Stat.Label>
-                <Stat.ValueText>{item.value}</Stat.ValueText>
-                <Stat.HelpText>
-                  {item.diff > 0 ? (
-                    <Stat.UpIndicator />
-                  ) : (
-                    <Stat.DownIndicator />
-                  )}
-                  {item.diff}% {item.helpText}
-                </Stat.HelpText>
-              </Stat.Root>
-            ))}
-          </Group>
-        </Stack>
+        <Playground.SectionTitle id="stat">Stat</Playground.SectionTitle>
+        <StatBasic />
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="avatar">Avatar</Playground.SectionTitle>
-        <Stack gap="2" align="flex-start">
-          {colorPalettes.map((colorPalette) => (
-            <Stack
-              key={colorPalette}
-              align="center"
-              direction="row"
-              gap="10"
-              px="4"
-            >
-              <Text minW="8ch">{colorPalette}</Text>
-              <Avatar
-                colorPalette={colorPalette}
-                name="Segun Adebayo"
-                src="https://bit.ly/sage-adebayo"
-              />
-              <Avatar colorPalette={colorPalette} name="Segun Adebayo" />
-              <Avatar colorPalette={colorPalette} />
-            </Stack>
-          ))}
-        </Stack>
+        <AvatarWithColors />
       </Playground.Section>
 
       <Playground.Section>
