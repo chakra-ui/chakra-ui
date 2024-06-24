@@ -28,6 +28,8 @@ import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
 import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
+import { NumberInputBasic } from "compositions/examples/number-input-basic"
+import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
@@ -65,6 +67,15 @@ import { LuMinimize2 } from "react-icons/lu"
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="NumberInput">
+          NumberInput
+        </Playground.SectionTitle>
+        <Playground.SectionContent gap="14" align="stretch">
+          <NumberInputWithSizes />
+        </Playground.SectionContent>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Tabs">Tabs</Playground.SectionTitle>
         <Playground.SectionContent gap="14">
