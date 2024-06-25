@@ -12,6 +12,8 @@ import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
 import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
 import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
 import { CodeWithColors } from "compositions/examples/code-with-colors"
+import { CollapsibleBasic } from "compositions/examples/collapsible-basic"
+import { CollapsibleLazyMounted } from "compositions/examples/collapsible-lazy-mounted"
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
@@ -71,6 +73,16 @@ import { LuMinimize2 } from "react-icons/lu"
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="Select">
+          Collapsible
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <CollapsibleBasic />
+          <CollapsibleLazyMounted />
+        </Playground.SectionContent>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="Select">
           Native Select
