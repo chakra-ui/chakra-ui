@@ -441,7 +441,7 @@ export type SelectSlot =
   | "valueText"
 
 export interface SelectVariantProps {
-  variant?: "outline"
+  variant?: "outline" | "filled"
   size?: "sm" | "md" | "lg"
 }
 

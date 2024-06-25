@@ -50,7 +50,7 @@ export const inputRecipe = defineRecipe({
     },
     variant: {
       outline: {
-        border: "1px solid",
+        borderWidth: "1px",
         borderColor: "inherit",
         bg: "bg",
         _invalid: {
@@ -62,7 +62,7 @@ export const inputRecipe = defineRecipe({
         },
       },
       filled: {
-        border: "1px solid",
+        borderWidth: "1px",
         borderColor: "transparent",
         bg: { base: "gray.100", _dark: "gray.800" },
         _invalid: {
@@ -75,7 +75,7 @@ export const inputRecipe = defineRecipe({
         },
       },
       flushed: {
-        borderBottom: "1px solid",
+        borderBottomWith: "1px",
         borderColor: "inherit",
         borderRadius: "0",
         px: "0",

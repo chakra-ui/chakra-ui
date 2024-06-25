@@ -1,4 +1,3 @@
-import { HiCheck, HiChevronDown } from "react-icons/hi"
 import { Select, chakra } from "../src"
 
 export default {
@@ -31,22 +30,17 @@ export const Demo = (props: Select.RootProps) => {
       <Select.Control>
         <Select.Trigger>
           <Select.ValueText placeholder="Select a Framework" />
-          <HiChevronDown />
+          <Select.Indicator />
         </Select.Trigger>
       </Select.Control>
       <Select.Positioner>
         <Select.Content>
-          <Select.ItemGroup>
-            <Select.ItemGroupLabel>Framework</Select.ItemGroupLabel>
-            {items.map((item) => (
-              <Select.Item key={item.value} item={item}>
-                <Select.ItemText>{item.label}</Select.ItemText>
-                <Select.ItemIndicator>
-                  <HiCheck />
-                </Select.ItemIndicator>
-              </Select.Item>
-            ))}
-          </Select.ItemGroup>
+          {items.map((item) => (
+            <Select.Item key={item.value} item={item}>
+              <Select.ItemText>{item.label}</Select.ItemText>
+              <Select.ItemIndicator />
+            </Select.Item>
+          ))}
         </Select.Content>
       </Select.Positioner>
     </Select.Root>

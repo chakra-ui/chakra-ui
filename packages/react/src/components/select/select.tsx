@@ -127,15 +127,56 @@ export const SelectItemText = withContext<HTMLDivElement, SelectItemTextProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+const CheckIcon = (props: React.ComponentProps<"svg">) => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  )
+}
+
 export interface SelectItemIndicatorProps
   extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps> {}
 
 export const SelectItemIndicator = withContext<
   HTMLDivElement,
   SelectItemIndicatorProps
->(ArkSelect.ItemIndicator, "itemIndicator", { forwardAsChild: true })
+>(ArkSelect.ItemIndicator, "itemIndicator", {
+  forwardAsChild: true,
+  defaultProps: {
+    children: <CheckIcon />,
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+const DownIcon = (props: React.ComponentProps<"svg">) => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  )
+}
 
 export interface SelectIndicatorProps
   extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps> {}
@@ -143,7 +184,12 @@ export interface SelectIndicatorProps
 export const SelectIndicator = withContext<
   HTMLDivElement,
   SelectItemIndicatorProps
->(ArkSelect.Indicator, "indicator", { forwardAsChild: true })
+>(ArkSelect.Indicator, "indicator", {
+  forwardAsChild: true,
+  defaultProps: {
+    children: <DownIcon />,
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 

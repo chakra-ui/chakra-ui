@@ -72,6 +72,9 @@ export const semanticColors = defineSemanticTokens.colors({
     subtle: {
       value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" },
     },
+    emphasized: {
+      value: { base: "{colors.gray.400}", _dark: "{colors.gray.500}" },
+    },
     disabled: {
       value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" },
     },

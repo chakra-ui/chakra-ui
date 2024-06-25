@@ -534,7 +534,7 @@ export const defaultBaseConfig = defineConfig({
     focusRing: {
       values: ["extend", "contain"],
       transform(value: any, { token }: any) {
-        const focusRingColor = token("colors.border.muted")
+        const focusRingColor = token("colors.border.emphasized")
         const styles: Record<string, any> = {
           contain: {
             "--focus-ring-color": focusRingColor,
