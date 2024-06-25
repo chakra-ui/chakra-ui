@@ -79,16 +79,16 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" },
     },
     error: {
-      value: { base: "{colors.red.200}", _dark: "{colors.red.600}" },
+      value: "{colors.red.500}",
     },
     warning: {
-      value: { base: "{colors.orange.200}", _dark: "{colors.orange.600}" },
+      value: "{colors.orange.500}",
     },
     success: {
-      value: { base: "{colors.green.200}", _dark: "{colors.green.600}" },
+      value: "{colors.green.500}",
     },
     info: {
-      value: { base: "{colors.blue.200}", _dark: "{colors.blue.600}" },
+      value: "{colors.blue.500}",
     },
   },
 })

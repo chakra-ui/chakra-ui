@@ -114,7 +114,9 @@ export function createTokenDictionary(options: Options): TokenDictionary {
         const category = path[0]
 
         const name = formatTokenName(path)
-        const t = isString(entry) ? { value: { base: entry } } : entry
+        const t = isString(entry.value)
+          ? { value: { base: entry.value } }
+          : entry
 
         const token: Token = {
           value: t.value.base || "",

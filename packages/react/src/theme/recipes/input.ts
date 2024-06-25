@@ -9,15 +9,10 @@ export const inputRecipe = defineRecipe({
     appearance: "none",
     colorPalette: "gray",
     _disabled: {
-      opacity: 0.5,
-      cursor: "not-allowed",
+      layerStyle: "disabled",
     },
-    _readOnly: {
-      boxShadow: "none !important",
-      userSelect: "all",
-    },
-    "--focus-color": "colors.colorPalette.400",
-    "--error-color": "colors.red.500",
+    "--focus-color": "colors.border.emphasized",
+    "--error-color": "colors.border.error",
   },
   variants: {
     size: {

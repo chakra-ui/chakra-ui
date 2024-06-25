@@ -38,6 +38,29 @@ describe("token dictionary", () => {
     `)
   })
 
+  test("semantic tokens / simple", () => {
+    const dict = createTokenDictionary({
+      semanticTokens: {
+        colors: {
+          test: { value: "#fff" },
+        },
+      },
+    })
+
+    expect(res(dict)).toMatchInlineSnapshot(`
+      [
+        {
+          "name": "colors.test",
+          "value": "#fff",
+        },
+        {
+          "name": "colors.colorPalette",
+          "value": "colors.colorPalette",
+        },
+      ]
+    `)
+  })
+
   test("semantic tokens / nested", () => {
     const dict = createTokenDictionary({
       semanticTokens: {
@@ -134,6 +157,44 @@ describe("token dictionary", () => {
             "red",
           ],
           "value": "#red",
+        },
+        {
+          "extensions": {
+            "category": "colors",
+            "colorPalette": {
+              "keys": [
+                [
+                  "",
+                ],
+              ],
+              "roots": [
+                [
+                  "error",
+                ],
+              ],
+              "value": "error",
+            },
+            "condition": "base",
+            "conditions": {
+              "base": "{colors.red}",
+            },
+            "cssVar": {
+              "ref": "var(--colors-error)",
+              "var": "--colors-error",
+            },
+            "originalPath": [
+              "colors",
+              "error",
+            ],
+            "prop": "error",
+          },
+          "name": "colors.error",
+          "originalValue": "{colors.red}",
+          "path": [
+            "colors",
+            "error",
+          ],
+          "value": "var(--colors-red)",
         },
         {
           "extensions": {
