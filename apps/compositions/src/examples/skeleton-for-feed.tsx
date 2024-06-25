@@ -7,7 +7,7 @@ import {
 
 export const SkeletonForFeed = () => {
   return (
-    <Stack gap="6" maxW="xs" alignSelf="stretch">
+    <Stack gap="6" maxW="xs">
       <HStack width="full">
         <SkeletonCircle size="10" />
         <SkeletonText noOfLines={2} />

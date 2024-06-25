@@ -478,7 +478,7 @@ export default function Page() {
 
       <Playground.Section>
         <Playground.SectionTitle id="tooltip">Tooltip</Playground.SectionTitle>
-        <Playground.SectionContent>
+        <Playground.SectionContent align="flex-start">
           <TooltipBasic />
         </Playground.SectionContent>
       </Playground.Section>

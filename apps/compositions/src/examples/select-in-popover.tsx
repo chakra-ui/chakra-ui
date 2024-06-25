@@ -16,9 +16,9 @@ import {
 export const SelectInPopover = () => {
   return (
     <PopoverRoot size="xs">
-      <PopoverTrigger>
+      <PopoverTrigger maxW="240px">
         <Button variant="outline" size="sm">
-          Select + Popover
+          Select in Popover
         </Button>
       </PopoverTrigger>
 

@@ -58,7 +58,7 @@ const Table = chakra("table", {
 })
 
 const SectionContent = (props: StackProps) => {
-  return <Stack gap="5" align="flex-start" {...props} />
+  return <Stack gap="5" {...props} />
 }
 
 export { Section, SectionTitle, Table, SectionContent }

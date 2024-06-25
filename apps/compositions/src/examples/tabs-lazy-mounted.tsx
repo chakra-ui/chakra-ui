@@ -2,7 +2,7 @@ import { Tabs } from "@chakra-ui/react"
 
 export const TabsLazyMounted = () => {
   return (
-    <Tabs.Root alignSelf="stretch" lazyMount unmountOnExit defaultValue="tab-1">
+    <Tabs.Root lazyMount unmountOnExit defaultValue="tab-1">
       <Tabs.List>
         <Tabs.Trigger value="tab-1">Tab 1</Tabs.Trigger>
         <Tabs.Trigger value="tab-2">Tab 2</Tabs.Trigger>
