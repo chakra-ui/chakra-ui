@@ -4,7 +4,7 @@ export const alertAnatomy = createAnatomy("alert").parts(
   "title",
   "description",
   "root",
-  "icon",
+  "indicator",
   "spinner",
 )
 

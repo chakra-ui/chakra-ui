@@ -1,55 +1,21 @@
-import { For, NativeSelect as Select } from "@chakra-ui/react"
+import { NativeSelect as Select } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
-interface Item {
-  value: string
-  label: string
-  disabled?: boolean
-}
-
-export interface NativeSelectProps extends Select.RootProps {
-  rootRef?: React.Ref<HTMLDivElement>
-  items: Array<string | Item>
+export interface NativeSelectRootProps extends Select.RootProps {
   icon?: React.ReactNode
-  placeholder?: string
 }
 
-function normalize(items: Array<string | Item>): Item[] {
-  return items.map((item) => {
-    if (typeof item === "string") return { value: item, label: item }
-    return item
-  })
-}
+export const NativeSelectRoot = forwardRef<
+  HTMLDivElement,
+  NativeSelectRootProps
+>(function NativeSelect(props, ref) {
+  const { icon, children, ...rest } = props
+  return (
+    <Select.Root ref={ref} {...rest}>
+      {children}
+      <Select.Indicator>{icon}</Select.Indicator>
+    </Select.Root>
+  )
+})
 
-export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
-  function NativeSelect(props, ref) {
-    const {
-      items,
-      rootRef,
-      icon,
-      placeholder = "Select option",
-      ...rest
-    } = props
-
-    const normalizedItems = normalize(items)
-
-    return (
-      <Select.Root ref={rootRef} {...rest}>
-        <Select.Field ref={ref} placeholder={placeholder}>
-          <For each={normalizedItems}>
-            {(item) => (
-              <option
-                key={item.value}
-                value={item.value}
-                disabled={item.disabled}
-              >
-                {item.label}
-              </option>
-            )}
-          </For>
-        </Select.Field>
-        <Select.Indicator>{icon}</Select.Indicator>
-      </Select.Root>
-    )
-  },
-)
+export const NativeSelectField = Select.Field

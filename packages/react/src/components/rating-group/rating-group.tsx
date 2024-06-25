@@ -12,7 +12,7 @@ import {
   chakra,
   createStyleContext,
 } from "../../styled-system"
-import { createIcon } from "../icon"
+import { StarIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,10 +71,6 @@ export const RatingGroupItem = withContext<
 export interface RatingGroupItemIndicatorProps extends HTMLChakraProps<"span"> {
   icon?: React.ReactElement
 }
-
-const StarIcon = createIcon({
-  d: "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z",
-})
 
 function cloneIcon(icon: React.ReactElement | undefined, type: "bg" | "fg") {
   if (!isValidElement(icon)) return null

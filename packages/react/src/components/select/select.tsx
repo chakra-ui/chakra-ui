@@ -10,6 +10,7 @@ import {
   type UnstyledProp,
   createStyleContext,
 } from "../../styled-system"
+import { CheckIcon, ChevronDownIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,24 +135,6 @@ export const SelectItemText = withContext<HTMLDivElement, SelectItemTextProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const CheckIcon = (props: React.ComponentProps<"svg">) => {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-  )
-}
-
 export interface SelectItemIndicatorProps
   extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps> {}
 
@@ -167,24 +150,6 @@ export const SelectItemIndicator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const DownIcon = (props: React.ComponentProps<"svg">) => {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="m6 9 6 6 6-6" />
-    </svg>
-  )
-}
-
 export interface SelectIndicatorProps
   extends HTMLChakraProps<"div", ArkSelect.ItemIndicatorBaseProps> {}
 
@@ -194,7 +159,7 @@ export const SelectIndicator = withContext<
 >(ArkSelect.Indicator, "indicator", {
   forwardAsChild: true,
   defaultProps: {
-    children: <DownIcon />,
+    children: <ChevronDownIcon />,
   },
 })
 

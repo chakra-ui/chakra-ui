@@ -11,7 +11,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
     const { title, children, icon, ...rest } = props
     return (
       <ChakraAlert.Root ref={ref} {...rest}>
-        <ChakraAlert.Icon>{icon}</ChakraAlert.Icon>
+        <ChakraAlert.Indicator>{icon}</ChakraAlert.Indicator>
         {children ? (
           <Stack gap="1">
             <ChakraAlert.Title>{title}</ChakraAlert.Title>

@@ -4,9 +4,9 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  chakra,
   createStyleContext,
 } from "../../styled-system"
+import { ChevronRightIcon, EllpsisIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -80,54 +80,18 @@ export const BreadcrumbCurrentLink = withContext<
 
 export interface BreadcrumbSeparatorProps extends HTMLChakraProps<"li"> {}
 
-const RightIcon = (props: HTMLChakraProps<"svg">) => (
-  <chakra.svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="m9 18 6-6-6-6" />
-  </chakra.svg>
-)
-
 export const BreadcrumbSeparator = withContext<
   HTMLElement,
   BreadcrumbSeparatorProps
 >("li", "separator", {
   defaultProps: {
-    children: <RightIcon />,
+    children: <ChevronRightIcon />,
   },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface BreadcrumbEllipsisProps extends HTMLChakraProps<"span"> {}
-
-const EllpsisIcon = (props: HTMLChakraProps<"svg">) => (
-  <chakra.svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <circle cx="12" cy="12" r="1" />
-    <circle cx="19" cy="12" r="1" />
-    <circle cx="5" cy="12" r="1" />
-  </chakra.svg>
-)
 
 export const BreadcrumbEllipsis = withContext<
   HTMLElement,

@@ -1,7 +1,7 @@
 export {
   AlertTitle,
   AlertDescription,
-  AlertIcon,
+  AlertIndicator,
   AlertRoot,
   useAlertStyles,
 } from "./alert"
@@ -10,7 +10,7 @@ export type {
   AlertRootProps,
   AlertTitleProps,
   AlertDescriptionProps,
-  AlertIconProps,
+  AlertIndicatorProps,
 } from "./alert"
 
 export * as Alert from "./namespace"

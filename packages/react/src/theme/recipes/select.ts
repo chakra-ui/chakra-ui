@@ -21,14 +21,15 @@ export const selectSlotRecipe = defineSlotRecipe({
         color: "fg.subtle",
       },
       _disabled: {
-        cursor: "not-allowed",
-        opacity: "0.5",
+        layerStyle: "disabled",
       },
       _invalid: {
         borderColor: "var(--error-color)",
       },
       focusRing: "extend",
-      "& :where(svg)": {
+    },
+    indicator: {
+      "& svg": {
         width: "4",
         height: "4",
       },

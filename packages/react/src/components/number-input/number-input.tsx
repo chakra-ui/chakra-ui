@@ -5,9 +5,9 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  chakra,
   createStyleContext,
 } from "../../styled-system"
+import { ChevronDownIcon, ChevronUpIcon } from "../icons"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -63,22 +63,6 @@ export const NumberInputInput = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const UpIcon = (props: HTMLChakraProps<"svg">) => (
-  <chakra.svg
-    width="1em"
-    height="1em"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="3"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="m18 15-6-6-6 6" />
-  </chakra.svg>
-)
-
 export interface NumberInputIncrementTriggerProps
   extends HTMLChakraProps<"button", ArkNumberInput.IncrementTriggerBaseProps> {}
 
@@ -87,26 +71,10 @@ export const NumberInputIncrementTrigger = withContext<
   NumberInputIncrementTriggerProps
 >(ArkNumberInput.IncrementTrigger, "incrementTrigger", {
   forwardAsChild: true,
-  defaultProps: { children: <UpIcon /> },
+  defaultProps: { children: <ChevronUpIcon /> },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////
-
-const DownIcon = (props: HTMLChakraProps<"svg">) => (
-  <chakra.svg
-    width="1em"
-    height="1em"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="3"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="m6 9 6 6 6-6" />
-  </chakra.svg>
-)
 
 export interface NumberInputDecrementTriggerProps
   extends HTMLChakraProps<"button", ArkNumberInput.DecrementTriggerBaseProps> {}
@@ -116,7 +84,7 @@ export const NumberInputDecrementTrigger = withContext<
   NumberInputDecrementTriggerProps
 >(ArkNumberInput.DecrementTrigger, "decrementTrigger", {
   forwardAsChild: true,
-  defaultProps: { children: <DownIcon /> },
+  defaultProps: { children: <ChevronDownIcon /> },
 })
 
 ////////////////////////////////////////////////////////////////////////////////////

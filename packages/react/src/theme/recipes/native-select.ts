@@ -1,29 +1,37 @@
-import { mapEntries } from "@chakra-ui/utils"
 import { nativeSelectAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
-import { inputRecipe } from "./input"
+import { selectSlotRecipe } from "./select"
 
 export const nativeSelectSlotRecipe = defineSlotRecipe({
   slots: nativeSelectAnatomy.keys(),
+
   base: {
     root: {
       height: "fit-content",
       display: "flex",
       position: "relative",
+      colorPalette: "gray",
     },
     field: {
-      ...inputRecipe.base,
       width: "100%",
+      minWidth: 0,
+      outline: 0,
       appearance: "none",
+      _disabled: {
+        layerStyle: "disabled",
+      },
+      _readOnly: {
+        boxShadow: "none !important",
+        userSelect: "all",
+      },
+      focusRing: "extend",
       lineHeight: "normal",
-      bg: "bg",
       "& > option, & > optgroup": {
         bg: "inherit",
       },
     },
     indicator: {
       position: "absolute",
-      insetEnd: "0",
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
@@ -33,31 +41,79 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       height: "100%",
       color: "fg.subtle",
       _disabled: {
-        opacity: 0.5,
+        opacity: "0.5",
       },
       "& svg": {
-        boxSize: "1em",
+        width: "4",
+        height: "4",
       },
     },
   },
+
   variants: {
-    variant: mapEntries(inputRecipe.variants!.variant, (variant, styles) => [
-      variant,
-      { field: styles },
-    ]),
-    size: mapEntries(inputRecipe.variants!.size, (size, styles) => [
-      size,
-      {
+    variant: {
+      outline: {
+        field: selectSlotRecipe.variants?.variant.outline.trigger,
+      },
+      filled: {
+        field: selectSlotRecipe.variants?.variant.filled.trigger,
+      },
+    },
+
+    size: {
+      lg: {
         field: {
-          ...styles,
-          paddingEnd: "8",
-          paddingBlock: "0",
+          fontSize: "md",
+          ps: "4",
+          pe: "8",
+          borderRadius: "md",
+          height: "12",
         },
         indicator: {
-          insetEnd: size === "sm" ? "1" : "2",
+          insetEnd: "2",
         },
       },
-    ]),
+
+      md: {
+        field: {
+          fontSize: "sm",
+          ps: "3",
+          pe: "8",
+          borderRadius: "md",
+          height: "10",
+        },
+        indicator: {
+          insetEnd: "4",
+        },
+      },
+
+      sm: {
+        field: {
+          fontSize: "sm",
+          ps: "3",
+          pe: "8",
+          borderRadius: "sm",
+          height: "8",
+        },
+        indicator: {
+          insetEnd: "3",
+        },
+      },
+
+      xs: {
+        field: {
+          fontSize: "xs",
+          ps: "2",
+          pe: "6",
+          borderRadius: "sm",
+          height: "6",
+        },
+        indicator: {
+          insetEnd: "1",
+        },
+      },
+    },
   },
-  defaultVariants: inputRecipe.defaultVariants,
+
+  defaultVariants: selectSlotRecipe.defaultVariants,
 })

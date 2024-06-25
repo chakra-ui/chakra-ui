@@ -10,7 +10,7 @@ export default {
 export const Basic = () => {
   return (
     <Alert.Root>
-      <Alert.Icon />
+      <Alert.Indicator />
       <Box>
         <Alert.Title>Alert Title</Alert.Title>
         <Alert.Description>
@@ -46,7 +46,7 @@ export const Variants = () => {
                 {(v) => (
                   <td key={v}>
                     <Alert.Root variant={v} colorPalette={c}>
-                      <Alert.Icon />
+                      <Alert.Indicator />
                       <Box>
                         <Alert.Title>Alert Title</Alert.Title>
                         <Alert.Description>
@@ -88,7 +88,7 @@ export const Sizes = () => {
                 {(v) => (
                   <td key={v}>
                     <Alert.Root size={v} colorPalette={c}>
-                      <Alert.Icon />
+                      <Alert.Indicator />
                       <Box>
                         <Alert.Title>Alert Title</Alert.Title>
                         <Alert.Description>
@@ -114,9 +114,9 @@ export const WithSpinner = () => {
       borderStartWidth="3px"
       borderStartColor="colorPalette.600"
     >
-      <Alert.Icon>
+      <Alert.Indicator>
         <Spinner size="sm" />
-      </Alert.Icon>
+      </Alert.Indicator>
       We are loading something
     </Alert.Root>
   )
