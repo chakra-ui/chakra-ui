@@ -18,6 +18,7 @@ import { DialogSizes } from "compositions/examples/dialog-sizes"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
+import { HoverCardBasic } from "compositions/examples/hovercard-basic"
 import { InputWithDescription } from "compositions/examples/input-with-description"
 import { InputWithError } from "compositions/examples/input-with-error"
 import { InputWithField } from "compositions/examples/input-with-field"
@@ -28,7 +29,6 @@ import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
 import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
-import { NumberInputBasic } from "compositions/examples/number-input-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
@@ -67,6 +67,15 @@ import { LuMinimize2 } from "react-icons/lu"
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
+      <Playground.Section>
+        <Playground.SectionTitle id="HoverCard">
+          HoverCard
+        </Playground.SectionTitle>
+        <Playground.SectionContent gap="14">
+          <HoverCardBasic />
+        </Playground.SectionContent>
+      </Playground.Section>
+
       <Playground.Section>
         <Playground.SectionTitle id="NumberInput">
           NumberInput
