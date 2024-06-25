@@ -1,4 +1,6 @@
-import { Select as ChakraSelect, Portal, createIcon } from "@chakra-ui/react"
+"use client"
+
+import { Select as ChakraSelect, Portal } from "@chakra-ui/react"
 import { useMemo } from "react"
 
 interface Item {
@@ -8,57 +10,83 @@ interface Item {
 }
 
 export interface SelectProps extends Omit<ChakraSelect.RootProps, "items"> {
-  label?: React.ReactNode
   items: Array<string | Item>
-  placeholder?: string
-  portalled?: boolean
 }
 
 function normalizeItem(item: string | Item): Item {
   return typeof item === "string" ? { label: item, value: item } : item
 }
 
-export const Select = (props: SelectProps) => {
-  const { items, label, placeholder, portalled = true, ...rest } = props
+export const SelectRoot = (props: SelectProps) => {
+  const { items, ...rest } = props
   const normalizedItems = useMemo(() => items.map(normalizeItem), [items])
-
   return (
     <ChakraSelect.Root
-      positioning={{ sameWidth: true }}
       {...rest}
-      items={items}
-    >
-      {label && <ChakraSelect.Label>{label}</ChakraSelect.Label>}
-
-      <ChakraSelect.Control>
-        <ChakraSelect.Trigger>
-          <ChakraSelect.ValueText placeholder={placeholder} />
-          <DownIcon />
-        </ChakraSelect.Trigger>
-      </ChakraSelect.Control>
-
-      <Portal disabled={!portalled}>
-        <ChakraSelect.Positioner>
-          <ChakraSelect.Content>
-            {normalizedItems.map((item) => (
-              <ChakraSelect.Item key={item.value} item={item}>
-                <ChakraSelect.ItemText>{item.label}</ChakraSelect.ItemText>
-                <ChakraSelect.ItemIndicator>
-                  <CheckIcon />
-                </ChakraSelect.ItemIndicator>
-              </ChakraSelect.Item>
-            ))}
-          </ChakraSelect.Content>
-        </ChakraSelect.Positioner>
-      </Portal>
-    </ChakraSelect.Root>
+      positioning={{ sameWidth: true, ...rest.positioning }}
+      items={normalizedItems}
+    />
   )
 }
 
-const CheckIcon = createIcon({
-  d: "M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z",
-})
+interface SelectTriggerProps extends ChakraSelect.ControlProps {
+  clearable?: boolean
+}
 
-const DownIcon = createIcon({
-  d: "M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z",
-})
+export const SelectTrigger = (props: SelectTriggerProps) => {
+  const { clearable, children, ...rest } = props
+  return (
+    <ChakraSelect.Control {...rest}>
+      <ChakraSelect.Trigger>
+        {children}
+        <ChakraSelect.Indicator />
+      </ChakraSelect.Trigger>
+      {clearable && <ChakraSelect.ClearTrigger />}
+    </ChakraSelect.Control>
+  )
+}
+
+interface SelectContentProps extends ChakraSelect.ContentProps {
+  portalled?: boolean
+  containerRef?: React.RefObject<HTMLElement>
+}
+
+export const SelectContent = (props: SelectContentProps) => {
+  const { portalled = true, containerRef, ...rest } = props
+  return (
+    <Portal disabled={!portalled} container={containerRef}>
+      <ChakraSelect.Positioner>
+        <ChakraSelect.Content {...rest} />
+      </ChakraSelect.Positioner>
+    </Portal>
+  )
+}
+
+export const SelectItem = (props: ChakraSelect.ItemProps) => {
+  const { item, ...rest } = props
+  return (
+    <ChakraSelect.Item key={item.value} item={item} {...rest}>
+      <ChakraSelect.ItemText>{item.label}</ChakraSelect.ItemText>
+      <ChakraSelect.ItemIndicator />
+    </ChakraSelect.Item>
+  )
+}
+
+export const SelectLabel = ChakraSelect.Label
+export const SelectItemGroup = ChakraSelect.ItemGroup
+
+export const SelectValueText = (props: ChakraSelect.ValueTextProps) => {
+  return (
+    <ChakraSelect.ValueText>
+      <ChakraSelect.Context>
+        {(select) => {
+          const items = select.selectedItems
+          if (items.length === 0) return props.placeholder
+          if (items.length === 1)
+            return select.collection.itemToString(items[0])
+          return `${items.length} selected`
+        }}
+      </ChakraSelect.Context>
+    </ChakraSelect.ValueText>
+  )
+}

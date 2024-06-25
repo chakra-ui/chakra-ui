@@ -39,6 +39,8 @@ export const selectSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       zIndex: "dropdown",
       outline: 0,
+      maxH: "96",
+      overflowY: "auto",
       transformOrigin: "var(--transform-origin)",
       "&[data-placement^=top]": {
         "--enter-translate-y": "0.5rem",
@@ -78,11 +80,13 @@ export const selectSlotRecipe = defineSlotRecipe({
         height: "4",
       },
     },
+    itemText: {
+      flex: "1",
+    },
     itemGroupLabel: {
       fontWeight: "medium",
     },
     label: {
-      color: "fg",
       fontWeight: "medium",
       userSelect: "none",
     },
@@ -116,13 +120,13 @@ export const selectSlotRecipe = defineSlotRecipe({
           rounded: "sm",
           boxShadow: "sm",
           minW: "12rem",
-          fontSize: "xs",
+          fontSize: "sm",
         },
         trigger: {
           px: "3",
           h: "8",
           minW: "8",
-          fontSize: "xs",
+          fontSize: "sm",
           rounded: "sm",
           gap: "1",
         },
@@ -134,9 +138,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         itemGroupLabel: {
           py: "1",
           px: "2",
-        },
-        label: {
-          textStyle: "xs",
         },
       },
 
@@ -163,9 +164,6 @@ export const selectSlotRecipe = defineSlotRecipe({
           py: "1.5",
           px: "2",
         },
-        label: {
-          textStyle: "sm",
-        },
         trigger: {
           px: "3",
           h: "10",
@@ -191,9 +189,6 @@ export const selectSlotRecipe = defineSlotRecipe({
         itemGroupLabel: {
           py: "2",
           px: "3",
-        },
-        label: {
-          textStyle: "md",
         },
         trigger: {
           fontSize: "md",

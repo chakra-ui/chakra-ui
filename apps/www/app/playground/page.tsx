@@ -38,6 +38,7 @@ import { RadioCardCentered } from "compositions/examples/radio-card-centered"
 import { RadioGroupWithColors } from "compositions/examples/radio-group-with-colors"
 import { RatingWithColors } from "compositions/examples/rating-with-colors"
 import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
+import { SelectBasic } from "compositions/examples/select-basic"
 import { SkeletonBasic } from "compositions/examples/skeleton-basic"
 import { SkeletonForFeed } from "compositions/examples/skeleton-for-feed"
 import { SkeletonWithLoaded } from "compositions/examples/skeleton-with-loaded"
@@ -68,11 +69,9 @@ export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Playground.Section>
-        <Playground.SectionTitle id="HoverCard">
-          HoverCard
-        </Playground.SectionTitle>
+        <Playground.SectionTitle id="Select">Select</Playground.SectionTitle>
         <Playground.SectionContent gap="14">
-          <HoverCardBasic />
+          <SelectBasic />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -311,6 +310,15 @@ export default function Page() {
         <Playground.SectionTitle id="button">Button</Playground.SectionTitle>
         <Playground.SectionContent>
           <ButtonWithColors />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="HoverCard">
+          HoverCard
+        </Playground.SectionTitle>
+        <Playground.SectionContent gap="14">
+          <HoverCardBasic />
         </Playground.SectionContent>
       </Playground.Section>
 
