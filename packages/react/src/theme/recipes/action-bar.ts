@@ -26,15 +26,13 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       pointerEvents: "auto",
 
       _open: {
-        animation: "enter 0.2s {easings.out}",
-        "--enter-opacity": "0",
-        "--enter-translate-y": "100%",
+        animationName: "slide-in, fade-in",
+        animationDuration: "normal",
       },
 
       _closed: {
-        animation: "exit 0.1s {easings.in}",
-        "--exit-opacity": "0",
-        "--exit-translate-y": "100%",
+        animationName: "slide-out, fade-out",
+        animationDuration: "slower",
       },
     },
 

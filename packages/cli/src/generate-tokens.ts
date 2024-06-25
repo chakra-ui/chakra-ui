@@ -2,7 +2,6 @@ import type { SystemContext } from "@chakra-ui/react"
 import { capitalize, pretty, unionType } from "./shared.js"
 
 export async function generateTokens(sys: SystemContext) {
-  const theme = sys._config.theme ?? {}
   const { allTokens, tokenMap, colorPaletteMap, categoryMap } = sys.tokens
 
   const isTokenEmpty = allTokens.length === 0
@@ -31,15 +30,6 @@ export async function generateTokens(sys: SystemContext) {
       set.add(`export type ${typeName}Token = ${unionType(value.keys())}`)
       result.add(`\t\t${key}: ${typeName}Token`)
     }
-
-    if (theme.keyframes)
-      set.add(
-        `export type AnimationName = ${unionType(
-          Object.keys(theme.keyframes),
-        )}`,
-      )
-
-    result.add(`\t\tanimationName: AnimationName`)
   }
 
   result.add("} & { [token: string]: never }")

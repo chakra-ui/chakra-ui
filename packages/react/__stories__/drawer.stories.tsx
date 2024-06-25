@@ -53,7 +53,7 @@ export const WithLongContent = () => {
       >
         <Drawer.Backdrop />
         <Drawer.Positioner>
-          <Drawer.Content>
+          <Drawer.Content roundedTop="xl">
             <Drawer.Header borderBottomWidth="1px">Basic Drawer</Drawer.Header>
             <Drawer.Body>
               <input placeholder="Type here..." />

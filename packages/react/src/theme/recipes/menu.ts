@@ -13,26 +13,13 @@ export const menuSlotRecipe = defineSlotRecipe({
       borderRadius: "md",
       overflow: "hidden",
       colorPalette: "gray",
-      transformOrigin: "var(--transform-origin)",
-      "&[data-placement^=top]": {
-        "--enter-translate-y": "0.5rem",
-      },
-      "&[data-placement^=bottom]": {
-        "--enter-translate-y": "-0.5rem",
-      },
-      "&[data-placement^=left]": {
-        "--enter-translate-x": "0.5rem",
-      },
-      "&[data-placement^=right]": {
-        "--enter-translate-x": "-0.5rem",
-      },
-      "--enter-opacity": "0",
-      "--exit-opacity": "0",
       _open: {
-        animation: "enter 0.1s",
+        motionStyle: "slide-fade-in",
+        animationDuration: "fast",
       },
       _closed: {
-        animation: "exit 0.1s",
+        motionStyle: "slide-fade-out",
+        animationDuration: "faster",
       },
     },
     item: {

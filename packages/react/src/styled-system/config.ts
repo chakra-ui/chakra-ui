@@ -30,6 +30,8 @@ export const defineStyle: SystemStyleIdentityFn = (v) => v
 
 export const defineTextStyles = (v: CompositionStyles["textStyles"]) => v
 
+export const defineMotionStyles = (v: CompositionStyles["motionStyles"]) => v
+
 export const defineLayerStyles = (v: CompositionStyles["layerStyles"]) => v
 
 /* -----------------------------------------------------------------------------

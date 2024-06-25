@@ -1301,8 +1301,8 @@ toast({
 
 - Rename `Collapse` to `Collapsible` namespace
 - Rename `in` to `open`
-- `animateOpacity` has been removed, use keyframes animations `collapse-in` and
-  `collapse-out` instead
+- `animateOpacity` has been removed, use keyframes animations `expand-height`
+  and `collapse-height` instead
 
 Before:
 

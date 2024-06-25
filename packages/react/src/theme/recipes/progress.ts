@@ -30,6 +30,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       fontWeight: "semibold",
     },
   },
+
   variants: {
     variant: {
       outline: {
@@ -46,7 +47,7 @@ export const progressSlotRecipe = defineSlotRecipe({
           bgColor: { base: "gray.100", _dark: "whiteAlpha.300" },
         },
         range: {
-          bgColor: { base: "colorPalette.400", _dark: "colorPalette.400/20" },
+          bgColor: { base: "colorPalette.400", _dark: "colorPalette.400/40" },
         },
       },
     },
@@ -94,14 +95,16 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     animated: {
       true: {
         range: {
-          "--animated-from": "var(--stripe-size)",
+          "--animate-from": "var(--stripe-size)",
           animation: "bg-position 1s linear infinite",
         },
       },
     },
+
     size: {
       xs: {
         track: { h: "1" },
@@ -117,6 +120,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   compoundVariants: [
     {
       variant: "outline",
@@ -128,6 +132,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       },
     },
   ],
+
   defaultVariants: {
     variant: "outline",
     size: "md",

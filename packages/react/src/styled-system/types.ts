@@ -214,6 +214,7 @@ export interface Utility {
   transform(key: string, value: any): Dict | undefined
   register(property: string, config: UtilityPropertyConfig): void
   getTypes(): Map<string, string[]>
+  addPropertyType(property: string, type: string[]): void
 }
 
 /* -----------------------------------------------------------------------------
@@ -297,6 +298,7 @@ export interface ThemingConfig {
   semanticTokens?: SemanticTokenDefinition
   textStyles?: Record<string, Dict>
   layerStyles?: Record<string, Dict>
+  motionStyles?: Record<string, Dict>
   recipes?: Record<string, RecipeDefinition>
   slotRecipes?: Record<string, SlotRecipeConfig>
 }

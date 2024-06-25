@@ -782,25 +782,6 @@ export type ZIndexToken =
 
 export type ShadowsToken = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inset"
 
-export type AnimationName =
-  | "spin"
-  | "bg-position"
-  | "collapse-in"
-  | "collapse-out"
-  | "position"
-  | "pulse"
-  | "fade-in"
-  | "fade-out"
-  | "scale-fade"
-  | "slide-fade"
-  | "slide-left"
-  | "slide-right"
-  | "slide-up"
-  | "slide-down"
-  | "circular-progress"
-  | "enter"
-  | "exit"
-
 export type Tokens = {
   animations: AnimationsToken
   blurs: BlursToken
@@ -818,5 +799,4 @@ export type Tokens = {
   sizes: SizesToken
   zIndex: ZIndexToken
   shadows: ShadowsToken
-  animationName: AnimationName
 } & { [token: string]: never }

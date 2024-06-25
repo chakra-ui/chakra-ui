@@ -55,7 +55,7 @@ export interface SystemProperties {
   animationDuration?: ConditionalValue<UtilityValues["animationDuration"] | CssVars | CssProperties["animationDuration"] | AnyString>
   animationFillMode?: ConditionalValue<CssProperties["animationFillMode"] | AnyString>
   animationIterationCount?: ConditionalValue<CssProperties["animationIterationCount"] | AnyString>
-  animationName?: ConditionalValue<CssProperties["animationName"] | AnyString>
+  animationName?: ConditionalValue<UtilityValues["animationName"] | CssVars | CssProperties["animationName"] | AnyString>
   animationPlayState?: ConditionalValue<CssProperties["animationPlayState"] | AnyString>
   animationRange?: ConditionalValue<CssProperties["animationRange"] | AnyString>
   animationRangeEnd?: ConditionalValue<CssProperties["animationRangeEnd"] | AnyString>
@@ -675,4 +675,5 @@ export interface SystemProperties {
   colorPalette?: ConditionalValue<UtilityValues["colorPalette"] | CssVars | AnyString>
   textStyle?: ConditionalValue<UtilityValues["textStyle"] | CssVars | AnyString>
   layerStyle?: ConditionalValue<UtilityValues["layerStyle"] | CssVars | AnyString>
+  motionStyle?: ConditionalValue<UtilityValues["motionStyle"] | CssVars | AnyString>
 }

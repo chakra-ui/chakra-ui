@@ -103,6 +103,11 @@ export function createUtility(options: Options) {
     }
   }
 
+  const addPropertyType = (property: string, type: string[]) => {
+    const set = propTypes.get(property) ?? new Set()
+    propTypes.set(property, new Set([...set, ...type]))
+  }
+
   const getTypes = () => {
     const map = new Map<string, string[]>()
 
@@ -217,6 +222,7 @@ export function createUtility(options: Options) {
     resolveShorthand,
     register,
     getTypes,
+    addPropertyType,
   }
 
   return instance

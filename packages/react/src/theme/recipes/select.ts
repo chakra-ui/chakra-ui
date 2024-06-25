@@ -34,31 +34,20 @@ export const selectSlotRecipe = defineSlotRecipe({
       },
     },
     content: {
-      background: "bg",
+      background: "bg.panel",
       display: "flex",
       flexDirection: "column",
       zIndex: "dropdown",
       outline: 0,
       maxH: "96",
       overflowY: "auto",
-      transformOrigin: "var(--transform-origin)",
-      "&[data-placement^=top]": {
-        "--enter-translate-y": "0.5rem",
-      },
-      "&[data-placement^=bottom]": {
-        "--enter-translate-y": "-0.5rem",
-      },
-      "&[data-placement^=left]": {
-        "--enter-translate-x": "0.5rem",
-      },
-      "&[data-placement^=right]": {
-        "--enter-translate-x": "-0.5rem",
-      },
       _open: {
-        animation: "enter 0.1s",
+        motionStyle: "slide-fade-in",
+        animationDuration: "faster",
       },
       _closed: {
-        animation: "fade-out 0.01s",
+        animationName: "fade-out",
+        animationDuration: "0.01s",
       },
     },
     item: {
@@ -66,8 +55,10 @@ export const selectSlotRecipe = defineSlotRecipe({
       userSelect: "none",
       display: "flex",
       alignItems: "center",
+      gap: "2",
       justifyContent: "space-between",
       flex: "1",
+      textAlign: "start",
       _highlighted: {
         bg: "bg.muted",
       },
@@ -102,6 +93,12 @@ export const selectSlotRecipe = defineSlotRecipe({
           borderWidth: "1px",
           borderColor: "inherit",
           bg: "bg",
+          _hover: {
+            bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
+          },
+          _expanded: {
+            bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
+          },
         },
       },
       filled: {
@@ -118,7 +115,7 @@ export const selectSlotRecipe = defineSlotRecipe({
         content: {
           p: "1",
           rounded: "sm",
-          boxShadow: "sm",
+          boxShadow: "md",
           minW: "12rem",
           fontSize: "sm",
         },
@@ -144,7 +141,6 @@ export const selectSlotRecipe = defineSlotRecipe({
       md: {
         content: {
           p: "1",
-          gap: "1",
           rounded: "md",
           boxShadow: "sm",
           minW: "12rem",
@@ -177,7 +173,6 @@ export const selectSlotRecipe = defineSlotRecipe({
       lg: {
         content: {
           p: "2",
-          gap: "2",
           rounded: "lg",
           fontSize: "md",
         },
@@ -195,7 +190,6 @@ export const selectSlotRecipe = defineSlotRecipe({
           px: "4",
           py: "3",
           rounded: "md",
-          height: "12",
         },
       },
     },

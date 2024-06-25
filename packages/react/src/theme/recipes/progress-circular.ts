@@ -12,7 +12,8 @@ export const circularProgressSlotRecipe = defineSlotRecipe({
     },
     circle: {
       _indeterminate: {
-        animation: "spin 2s linear infinite",
+        animation: "spin",
+        animationDuration: "normal",
       },
     },
     circleTrack: {

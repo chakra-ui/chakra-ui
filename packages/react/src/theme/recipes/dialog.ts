@@ -15,10 +15,12 @@ export const dialogSlotRecipe = defineSlotRecipe({
       h: "100dvh",
       zIndex: "modal",
       _open: {
-        animation: "fade-in 0.15s",
+        animationName: "fade-in",
+        animationDuration: "fast",
       },
       _closed: {
-        animation: "fade-out 0.1s",
+        animationName: "fade-out",
+        animationDuration: "faster",
       },
     },
     positioner: {
@@ -44,10 +46,10 @@ export const dialogSlotRecipe = defineSlotRecipe({
       bg: "bg.panel",
       shadow: "lg",
       _open: {
-        animation: "enter 0.2s",
+        animationDuration: "normal",
       },
       _closed: {
-        animation: "exit 0.1s",
+        animationDuration: "faster",
       },
     },
     header: {
@@ -117,12 +119,12 @@ export const dialogSlotRecipe = defineSlotRecipe({
     size: {
       xs: {
         content: {
-          maxW: "2xs",
+          maxW: "sm",
         },
       },
       sm: {
         content: {
-          maxW: "sm",
+          maxW: "md",
         },
       },
       md: {
@@ -153,42 +155,32 @@ export const dialogSlotRecipe = defineSlotRecipe({
     motionPreset: {
       scale: {
         content: {
-          "--enter-scale": "0.95",
-          "--enter-opacity": "0",
-          "--exit-scale": "0.95",
-          "--exit-opacity": "0",
+          _open: { animationName: "scale-in, fade-in" },
+          _closed: { animationName: "scale-out, fade-out" },
         },
       },
       "slide-in-bottom": {
         content: {
-          "--enter-opacity": "0",
-          "--enter-translate-y": "16px",
-          "--exit-opacity": "0",
-          "--exit-translate-y": "16px",
+          _open: { animationName: "slide-from-bottom, fade-in" },
+          _closed: { animationName: "slide-to-bottom, fade-out" },
         },
       },
       "slide-in-top": {
         content: {
-          "--enter-opacity": "0",
-          "--enter-translate-y": "-16px",
-          "--exit-opacity": "0",
-          "--exit-translate-y": "-16px",
+          _open: { animationName: "slide-from-top, fade-in" },
+          _closed: { animationName: "slide-to-top, fade-out" },
         },
       },
       "slide-in-left": {
         content: {
-          "--enter-opacity": "0",
-          "--enter-translate-x": "-16px",
-          "--exit-opacity": "0",
-          "--exit-translate-x": "-16px",
+          _open: { animationName: "slide-from-left, fade-in" },
+          _closed: { animationName: "slide-to-left, fade-out" },
         },
       },
       "slide-in-right": {
         content: {
-          "--enter-opacity": "0",
-          "--enter-translate-x": "16px",
-          "--exit-opacity": "0",
-          "--exit-translate-x": "16px",
+          _open: { animationName: "slide-from-right, fade-in" },
+          _closed: { animationName: "slide-to-right, fade-out" },
         },
       },
       none: {},

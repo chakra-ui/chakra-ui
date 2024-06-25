@@ -16,15 +16,13 @@ export const tooltipSlotRecipe = defineSlotRecipe({
       boxShadow: "md",
       maxW: "xs",
       zIndex: "tooltip",
-      "--enter-opacity": "0",
-      "--enter-scale": "0.95",
-      "--exit-opacity": "0",
-      "--exit-scale": "0.95",
       _open: {
-        animation: "enter 0.1s",
+        motionStyle: "scale-fade-in",
+        animationDuration: "fast",
       },
       _closed: {
-        animation: "exit 0.1s",
+        motionStyle: "scale-fade-out",
+        animationDuration: "fast",
       },
     },
     arrow: {

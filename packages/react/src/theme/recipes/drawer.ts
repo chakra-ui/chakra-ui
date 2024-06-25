@@ -16,10 +16,12 @@ export const drawerSlotRecipe = defineSlotRecipe({
       h: "100dvh",
       zIndex: "modal",
       _open: {
-        animation: "fade-in 0.15s",
+        animationName: "fade-in",
+        animationDuration: "fast",
       },
       _closed: {
-        animation: "fade-out 0.1s",
+        animationName: "fade-out",
+        animationDuration: "faster",
       },
     },
     positioner: {
@@ -45,10 +47,14 @@ export const drawerSlotRecipe = defineSlotRecipe({
       bg: "bg.panel",
       shadow: "lg",
       _open: {
-        animation: "enter 0.5s cubic-bezier(.32,.72,0,1)",
+        animationDuration: "slowest",
+        // TODO: tokenize
+        animationTimingFunction: "cubic-bezier(.32,.72,0,1)",
       },
       _closed: {
-        animation: "exit 0.2s cubic-bezier(.32,.72,0,1)",
+        animationDuration: "normal",
+        // TODO: tokenize
+        animationTimingFunction: "cubic-bezier(.32,.72,0,1)",
       },
     },
     header: dialogSlotRecipe.base!.header,
@@ -103,37 +109,60 @@ export const drawerSlotRecipe = defineSlotRecipe({
           justifyContent: "flex-start",
         },
         content: {
-          "--enter-translate-x": "-100%",
-          "--exit-translate-x": "-100%",
+          _open: {
+            animationName: {
+              base: "slide-from-left-full, fade-in",
+              _rtl: "slide-from-right-full, fade-in",
+            },
+          },
+          _closed: {
+            animationName: {
+              base: "slide-to-left-full, fade-out",
+              _rtl: "slide-to-right-full, fade-out",
+            },
+          },
         },
       },
+
       end: {
         positioner: {
           justifyContent: "flex-end",
         },
         content: {
-          "--enter-translate-x": "100%",
-          "--exit-translate-x": "100%",
+          _open: {
+            animationName: {
+              base: "slide-from-right-full, fade-in",
+              _rtl: "slide-from-left-full, fade-in",
+            },
+          },
+          _closed: {
+            animationName: {
+              base: "slide-to-right-full, fade-out",
+              _rtl: "slide-to-right-full, fade-out",
+            },
+          },
         },
       },
+
       top: {
         positioner: {
           alignItems: "flex-start",
         },
         content: {
           maxW: "100%",
-          "--enter-translate-y": "-100%",
-          "--exit-translate-y": "-100%",
+          _open: { animationName: "slide-from-top-full, fade-in" },
+          _closed: { animationName: "slide-to-top-full, fade-out" },
         },
       },
+
       bottom: {
         positioner: {
           alignItems: "flex-end",
         },
         content: {
           maxW: "100%",
-          "--enter-translate-y": "100%",
-          "--exit-translate-y": "100%",
+          _open: { animationName: "slide-from-bottom-full, fade-in" },
+          _closed: { animationName: "slide-to-bottom-full, fade-out" },
         },
       },
     },

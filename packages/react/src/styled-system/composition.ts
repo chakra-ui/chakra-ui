@@ -114,7 +114,33 @@ export type LayerStyle = CompositionStyleObject<LayerStyleProperty>
 
 export type LayerStyles = Recursive<Token<LayerStyle>>
 
+/* -----------------------------------------------------------------------------
+ * Motion styles
+ * -----------------------------------------------------------------------------*/
+
+type MotionStyleProperty =
+  | "animation"
+  | "animationComposition"
+  | "animationDelay"
+  | "animationDirection"
+  | "animationDuration"
+  | "animationFillMode"
+  | "animationIterationCount"
+  | "animationName"
+  | "animationPlayState"
+  | "animationTimingFunction"
+  | "animationRange"
+  | "animationRangeStart"
+  | "animationRangeEnd"
+  | "animationTimeline"
+  | "transformOrigin"
+
+export type MotionStyle = CompositionStyleObject<MotionStyleProperty>
+
+export type MotionStyles = Recursive<Token<MotionStyle>>
+
 export interface CompositionStyles {
   textStyles: TextStyles
   layerStyles: LayerStyles
+  motionStyles: MotionStyles
 }

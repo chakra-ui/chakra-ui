@@ -30,10 +30,12 @@ export const accordionSlotRecipe = defineSlotRecipe({
       overflow: "hidden",
       borderRadius: "var(--accordion-radius)",
       _open: {
-        animation: "collapse-in 250ms",
+        animationName: "expand-height, fade-in",
+        animationDuration: "normal",
       },
       _closed: {
-        animation: "collapse-out 250ms",
+        animationName: "collapse-height, fade-out",
+        animationDuration: "normal",
       },
     },
     itemIndicator: {
