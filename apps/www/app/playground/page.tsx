@@ -94,7 +94,7 @@ export default function Page() {
 
       <Playground.Section>
         <Playground.SectionTitle id="Select">Select</Playground.SectionTitle>
-        <Playground.SectionContent>
+        <Playground.SectionContent align="flex-start">
           <SelectWithOverflow />
           {/* <SelectWithClear /> */}
           <SelectWithAvatar />
