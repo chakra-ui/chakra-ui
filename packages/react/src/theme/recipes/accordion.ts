@@ -48,6 +48,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   variants: {
     variant: {
       outline: {
@@ -86,6 +87,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
       },
       plain: {},
     },
+
     size: {
       sm: {
         item: {
@@ -122,6 +124,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   defaultVariants: {
     size: "md",
     variant: "outline",

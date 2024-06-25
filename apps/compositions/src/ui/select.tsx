@@ -1,33 +1,7 @@
 "use client"
 
 import { Select as ChakraSelect, Portal } from "@chakra-ui/react"
-import { useMemo } from "react"
-
-interface Item {
-  label: string
-  value: string
-  disabled?: boolean
-}
-
-export interface SelectProps extends Omit<ChakraSelect.RootProps, "items"> {
-  items: Array<string | Item>
-}
-
-function normalizeItem(item: string | Item): Item {
-  return typeof item === "string" ? { label: item, value: item } : item
-}
-
-export const SelectRoot = (props: SelectProps) => {
-  const { items, ...rest } = props
-  const normalizedItems = useMemo(() => items.map(normalizeItem), [items])
-  return (
-    <ChakraSelect.Root
-      {...rest}
-      positioning={{ sameWidth: true, ...rest.positioning }}
-      items={normalizedItems}
-    />
-  )
-}
+import { CloseButton } from "./close-button"
 
 interface SelectTriggerProps extends ChakraSelect.ControlProps {
   clearable?: boolean
@@ -41,10 +15,15 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
         {children}
         <ChakraSelect.Indicator />
       </ChakraSelect.Trigger>
-      {clearable && <ChakraSelect.ClearTrigger />}
     </ChakraSelect.Control>
   )
 }
+
+export const SelectClearTrigger = () => (
+  <ChakraSelect.ClearTrigger asChild>
+    <CloseButton size="sm" variant="plain" />
+  </ChakraSelect.ClearTrigger>
+)
 
 interface SelectContentProps extends ChakraSelect.ContentProps {
   portalled?: boolean
@@ -63,25 +42,29 @@ export const SelectContent = (props: SelectContentProps) => {
 }
 
 export const SelectItem = (props: ChakraSelect.ItemProps) => {
-  const { item, ...rest } = props
+  const { item, children, ...rest } = props
   return (
     <ChakraSelect.Item key={item.value} item={item} {...rest}>
-      <ChakraSelect.ItemText>{item.label}</ChakraSelect.ItemText>
+      {children}
       <ChakraSelect.ItemIndicator />
     </ChakraSelect.Item>
   )
 }
 
-export const SelectLabel = ChakraSelect.Label
-export const SelectItemGroup = ChakraSelect.ItemGroup
+interface SelectValueTextProps
+  extends Omit<ChakraSelect.ValueTextProps, "children"> {
+  children?(items: any[]): React.ReactNode
+}
 
-export const SelectValueText = (props: ChakraSelect.ValueTextProps) => {
+export const SelectValueText = (props: SelectValueTextProps) => {
+  const { children, ...rest } = props
   return (
-    <ChakraSelect.ValueText>
+    <ChakraSelect.ValueText {...rest}>
       <ChakraSelect.Context>
         {(select) => {
           const items = select.selectedItems
           if (items.length === 0) return props.placeholder
+          if (children) return children(items)
           if (items.length === 1)
             return select.collection.itemToString(items[0])
           return `${items.length} selected`
@@ -90,3 +73,8 @@ export const SelectValueText = (props: ChakraSelect.ValueTextProps) => {
     </ChakraSelect.ValueText>
   )
 }
+
+export const SelectLabel = ChakraSelect.Label
+export const SelectItemGroup = ChakraSelect.ItemGroup
+export const SelectItemText = ChakraSelect.ItemText
+export const SelectRoot = ChakraSelect.Root

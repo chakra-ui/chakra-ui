@@ -38,4 +38,5 @@ export type {
   SelectHighlightChangeDetails as HighlightChangeDetails,
   SelectOpenChangeDetails as OpenChangeDetails,
   SelectValueChangeDetails as ValueChangeDetails,
+  SelectCollectionItem as CollectionItem,
 } from "@ark-ui/react/select"

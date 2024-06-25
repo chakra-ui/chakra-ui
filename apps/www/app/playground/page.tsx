@@ -38,7 +38,9 @@ import { RadioCardCentered } from "compositions/examples/radio-card-centered"
 import { RadioGroupWithColors } from "compositions/examples/radio-group-with-colors"
 import { RatingWithColors } from "compositions/examples/rating-with-colors"
 import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
-import { SelectBasic } from "compositions/examples/select-basic"
+import { SelectInPopover } from "compositions/examples/select-in-popover"
+import { SelectWithAvatar } from "compositions/examples/select-with-avatar"
+import { SelectWithOverflow } from "compositions/examples/select-with-overflow"
 import { SkeletonBasic } from "compositions/examples/skeleton-basic"
 import { SkeletonForFeed } from "compositions/examples/skeleton-for-feed"
 import { SkeletonWithLoaded } from "compositions/examples/skeleton-with-loaded"
@@ -70,8 +72,11 @@ export default function Page() {
     <Container py="20" fontSize="sm" maxW="4xl">
       <Playground.Section>
         <Playground.SectionTitle id="Select">Select</Playground.SectionTitle>
-        <Playground.SectionContent gap="14">
-          <SelectBasic />
+        <Playground.SectionContent>
+          <SelectWithOverflow />
+          {/* <SelectWithClear /> */}
+          <SelectWithAvatar />
+          <SelectInPopover />
         </Playground.SectionContent>
       </Playground.Section>
 

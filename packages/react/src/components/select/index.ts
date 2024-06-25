@@ -43,6 +43,7 @@ export type {
   SelectHighlightChangeDetails,
   SelectOpenChangeDetails,
   SelectValueChangeDetails,
+  SelectCollectionItem,
 } from "@ark-ui/react/select"
 
 export * as Select from "./namespace"

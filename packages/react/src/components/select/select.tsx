@@ -1,6 +1,9 @@
 "use client"
 
-import { Select as ArkSelect } from "@ark-ui/react/select"
+import {
+  Select as ArkSelect,
+  type SelectCollectionItem,
+} from "@ark-ui/react/select"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,16 +23,20 @@ export { useSelectStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SelectRootProps
-  extends HTMLChakraProps<"div", ArkSelect.RootBaseProps<any>>,
+export interface SelectRootProps<T extends SelectCollectionItem = any>
+  extends HTMLChakraProps<"div", ArkSelect.RootBaseProps<T>>,
     SlotRecipeProps<"select">,
     UnstyledProp {}
+
+interface SelectRootComponent {
+  <T extends SelectCollectionItem>(props: SelectRootProps<T>): JSX.Element
+}
 
 export const SelectRoot = withProvider<HTMLDivElement, SelectRootProps>(
   ArkSelect.Root,
   "root",
   { forwardAsChild: true },
-)
+) as SelectRootComponent
 
 ////////////////////////////////////////////////////////////////////////////////////
 
