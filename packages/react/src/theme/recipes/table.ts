@@ -25,7 +25,7 @@ export const tableSlotRecipe = defineSlotRecipe({
     columnHeader: {
       fontWeight: "medium",
       textAlign: "start",
-      color: "fg.muted",
+      color: "fg",
     },
     caption: {
       fontWeight: "medium",
