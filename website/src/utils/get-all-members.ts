@@ -8,8 +8,7 @@ import fs from 'fs'
 export function getAllMembers() {
   const membersRcPath = path.resolve('.all-membersrc')
   const { members } = JSON.parse(fs.readFileSync(membersRcPath, 'utf-8'))
-  const filters = ['christiannwamba']
-  return members.filter((m) => !filters.includes(m.login))
+  return members
 }
 
 export function getMember(login: string) {
