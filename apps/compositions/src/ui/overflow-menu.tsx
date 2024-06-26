@@ -1,4 +1,5 @@
-import { IconButton, type MenuRootProps } from "@chakra-ui/react"
+import type { MenuRootProps } from "@chakra-ui/react"
+import { IconButton } from "@chakra-ui/react"
 import {
   MenuContent,
   MenuItem,
