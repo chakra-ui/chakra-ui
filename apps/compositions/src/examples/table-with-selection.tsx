@@ -20,7 +20,6 @@ export const TableWithSelection = () => {
           aria-label="Select row"
           checked={selection.includes(item.name)}
           onCheckedChange={(changes) => {
-            console.log("onCheckedChange", changes)
             setSelection((prev) =>
               changes.checked
                 ? [...prev, item.name]

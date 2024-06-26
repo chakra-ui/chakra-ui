@@ -4,9 +4,9 @@ export const TableWithColumnGroup = () => {
   return (
     <Table.Root size="sm" variant="outline">
       <Table.ColumnGroup>
-        <Table.Column width="50%" />
-        <Table.Column width="40%" />
-        <Table.Column bg="bg.muted" />
+        <Table.Column htmlWidth="50%" />
+        <Table.Column htmlWidth="40%" />
+        <Table.Column />
       </Table.ColumnGroup>
       <Table.Header>
         <Table.Row>

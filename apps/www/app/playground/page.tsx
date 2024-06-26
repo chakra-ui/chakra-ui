@@ -186,7 +186,7 @@ export default function Page() {
 
       <Playground.Section>
         <Playground.SectionTitle id="Drawer">Drawer</Playground.SectionTitle>
-        <Playground.SectionContent>
+        <Playground.SectionContent align="flex-start">
           <DrawerBasic />
         </Playground.SectionContent>
       </Playground.Section>
