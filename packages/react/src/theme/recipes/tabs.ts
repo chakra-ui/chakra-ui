@@ -150,6 +150,16 @@ export const tabSlotRecipe = defineSlotRecipe({
         },
       },
 
+      soft: {
+        trigger: {
+          borderRadius: "var(--tabs-trigger-radius)",
+          _selected: {
+            bg: { base: "colorPalette.100", _dark: "colorPalette.950" },
+            color: { base: "colorPalette.700", _dark: "colorPalette.300" },
+          },
+        },
+      },
+
       enclosed: {
         list: {
           bg: "bg.muted",
@@ -280,11 +290,24 @@ export const tabSlotRecipe = defineSlotRecipe({
         },
       },
     },
+    {
+      variant: "soft",
+      colorPalette: "gray",
+      css: {
+        trigger: {
+          _selected: {
+            bg: { base: "gray.100", _dark: "gray.800" },
+            color: { base: "gray.700", _dark: "gray.300" },
+          },
+        },
+      },
+    },
   ],
 
   defaultVariants: {
     size: "md",
     variant: "line",
     orientation: "horizontal",
+    colorPalette: "gray",
   },
 })
