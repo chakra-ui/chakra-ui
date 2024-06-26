@@ -81,10 +81,16 @@ export const TableRow = withContext<HTMLTableRowElement, TableRowProps>(
 
 export interface TableScrollAreaProps extends HTMLChakraProps<"div"> {}
 
-export const TableScrollArea = withContext<
-  HTMLDivElement,
-  TableScrollAreaProps
->("div", "scrollArea")
+export const TableScrollArea = chakra("div", {
+  base: {
+    display: "block",
+    whiteSpace: "nowrap",
+    WebkitOverflowScrolling: "touch",
+    overflowX: "auto",
+    overflowY: "hidden",
+    maxWidth: "100%",
+  },
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -142,4 +148,21 @@ export interface TableBodyProps extends HTMLChakraProps<"tbody"> {}
 export const TableBody = withContext<HTMLTableSectionElement, TableBodyProps>(
   "tbody",
   "body",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TableColumnGroupProps extends HTMLChakraProps<"colgroup"> {}
+
+export const TableColumnGroup = withContext<
+  HTMLTableColElement,
+  TableColumnGroupProps
+>("colgroup")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TableColumnProps extends HTMLChakraProps<"col"> {}
+
+export const TableColumn = withContext<HTMLTableColElement, TableColumnProps>(
+  "col",
 )

@@ -30,17 +30,14 @@ export const checkmarkRecipe = defineRecipe({
       sm: {
         boxSize: "3.5",
         borderRadius: "xs",
-        fontSize: "3xs",
       },
       md: {
         boxSize: "4",
         borderRadius: "xs",
-        fontSize: "2xs",
       },
       lg: {
         boxSize: "5",
         borderRadius: "sm",
-        fontSize: "xs",
       },
     },
 

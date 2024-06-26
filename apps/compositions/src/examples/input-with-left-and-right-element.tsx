@@ -1,13 +1,11 @@
-import {
-  Group,
-  HStack,
-  Input,
-  InputElement,
-  Kbd,
-  MenuTrigger,
-} from "@chakra-ui/react"
+import { Group, HStack, Input, InputElement, Kbd } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
-import { MenuContent, MenuItem, MenuRoot } from "compositions/ui/menu"
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "compositions/ui/menu"
 import { LuChevronsUpDown, LuSearch } from "react-icons/lu"
 
 export const InputWithLeftAndRightElement = () => {
@@ -37,7 +35,7 @@ export const InputWithLeftAndRightElement = () => {
                 .com
               </Button>
             </MenuTrigger>
-            <MenuContent>
+            <MenuContent portalled={false}>
               <MenuItem value=".com">.com</MenuItem>
               <MenuItem value=".org">.org</MenuItem>
               <MenuItem value=".net">.net</MenuItem>

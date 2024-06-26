@@ -57,7 +57,6 @@ export const statAnatomy = createAnatomy("stat").parts(
 )
 
 export const tableAnatomy = createAnatomy("table").parts(
-  "scrollArea",
   "root",
   "header",
   "body",

@@ -2,9 +2,9 @@ import { findPackages } from "find-packages"
 import { findUpSync } from "find-up"
 import { spawnSync } from "node:child_process"
 import { readFileSync, writeFileSync } from "node:fs"
-import { dirname, relative, resolve } from "node:path"
+import { resolve } from "node:path"
 
-const packageJsonPath = resolve("apps", "www", "package.json")
+const packageJsonPath = resolve("package.json")
 const { log, info } = console
 
 function readPkgJson() {
@@ -12,8 +12,6 @@ function readPkgJson() {
 }
 
 async function getZagPackages(): Promise<Record<string, string>> {
-  const rootDir = dirname(packageJsonPath)
-
   const dir = findUpSync("zag", { type: "directory" })
   if (!dir) throw new ReferenceError("zag directory not found")
 
@@ -26,28 +24,7 @@ async function getZagPackages(): Promise<Record<string, string>> {
 
   for (const { manifest, dir } of packages) {
     if (!manifest.name) continue
-    result[manifest.name] = relative(rootDir, dir)
-  }
-
-  return result
-}
-
-async function getArkPackages(): Promise<Record<string, string>> {
-  const rootDir = dirname(packageJsonPath)
-
-  const dir = findUpSync("ark", { type: "directory" })
-  if (!dir) throw new ReferenceError("ark directory not found")
-
-  const packages = await findPackages(dir, {
-    includeRoot: false,
-    patterns: ["packages/react", "packages/anatomy"],
-  })
-
-  const result: Record<string, string> = {}
-
-  for (const { manifest, dir } of packages) {
-    if (!manifest.name) continue
-    result[manifest.name] = relative(rootDir, dir)
+    result[manifest.name] = resolve(dir)
   }
 
   return result
@@ -56,10 +33,7 @@ async function getArkPackages(): Promise<Record<string, string>> {
 async function main() {
   log("packageJsonPath", packageJsonPath)
 
-  const zagOverrides = await getZagPackages()
-  const arkOverrides = await getArkPackages()
-
-  const overrides = { ...zagOverrides, ...arkOverrides }
+  const overrides = await getZagPackages()
 
   const revert = process.argv.includes("--revert")
 

@@ -7,6 +7,14 @@ export {
   useActionBarStyles,
 } from "./action-bar"
 
+export type {
+  ActionBarRootProps as RootProps,
+  ActionBarContentProps as ContentProps,
+  ActionBarPositionerProps as PositionerProps,
+  ActionBarSeparatorProps as SeparatorProps,
+  ActionBarSelectionTriggerProps as SelectionTriggerProps,
+} from "./action-bar"
+
 export {
   PopoverContext as Context,
   PopoverRootProvider as RootProvider,
