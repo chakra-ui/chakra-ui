@@ -1,4 +1,4 @@
-import type { MenuRootProps } from "@chakra-ui/react"
+import type { ButtonProps, MenuRootProps } from "@chakra-ui/react"
 import { IconButton } from "@chakra-ui/react"
 import {
   MenuContent,
@@ -11,25 +11,31 @@ import {
   HiMiniEllipsisVertical,
 } from "react-icons/hi2"
 
-export interface OverflowMenuProps extends MenuRootProps {
+export interface OverflowMenuRootProps extends MenuRootProps {}
+
+export const OverflowMenuRoot = (props: OverflowMenuRootProps) => {
+  return (
+    <MenuRoot
+      {...props}
+      positioning={{ placement: "bottom-end", ...props.positioning }}
+    />
+  )
+}
+
+export interface OverflowMenuTriggerProps extends ButtonProps {
   vertical?: boolean
 }
 
-export const OverflowMenu = (props: OverflowMenuProps) => {
-  const { children, vertical, ...rest } = props
+export const OverflowMenuTrigger = (props: OverflowMenuTriggerProps) => {
+  const { vertical, ...rest } = props
   return (
-    <MenuRoot
-      {...rest}
-      positioning={{ placement: "bottom-end", ...rest.positioning }}
-    >
-      <MenuTrigger>
-        <IconButton variant="plain" size="sm" fontSize="1.2em">
-          {vertical ? <HiMiniEllipsisVertical /> : <HiMiniEllipsisHorizontal />}
-        </IconButton>
-      </MenuTrigger>
-      <MenuContent>{children}</MenuContent>
-    </MenuRoot>
+    <MenuTrigger>
+      <IconButton variant="plain" size="sm" {...rest}>
+        {vertical ? <HiMiniEllipsisVertical /> : <HiMiniEllipsisHorizontal />}
+      </IconButton>
+    </MenuTrigger>
   )
 }
 
 export const OverflowMenuItem = MenuItem
+export const OverflowMenuContent = MenuContent

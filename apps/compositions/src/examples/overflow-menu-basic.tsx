@@ -1,11 +1,19 @@
-import { OverflowMenu, OverflowMenuItem } from "compositions/ui/overflow-menu"
+import {
+  OverflowMenuContent,
+  OverflowMenuItem,
+  OverflowMenuRoot,
+  OverflowMenuTrigger,
+} from "compositions/ui/overflow-menu"
 
 export const OverflowMenuBasic = () => {
   return (
-    <OverflowMenu>
-      <OverflowMenuItem value="Banana">Banana</OverflowMenuItem>
-      <OverflowMenuItem value="Apple">Apple</OverflowMenuItem>
-      <OverflowMenuItem value="Orange">Orange</OverflowMenuItem>
-    </OverflowMenu>
+    <OverflowMenuRoot>
+      <OverflowMenuTrigger />
+      <OverflowMenuContent>
+        <OverflowMenuItem value="Banana">Banana</OverflowMenuItem>
+        <OverflowMenuItem value="Apple">Apple</OverflowMenuItem>
+        <OverflowMenuItem value="Orange">Orange</OverflowMenuItem>
+      </OverflowMenuContent>
+    </OverflowMenuRoot>
   )
 }

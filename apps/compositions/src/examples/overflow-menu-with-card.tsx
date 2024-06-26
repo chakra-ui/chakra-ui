@@ -1,6 +1,11 @@
 import { Card, HStack, Text } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
-import { OverflowMenu, OverflowMenuItem } from "compositions/ui/overflow-menu"
+import {
+  OverflowMenuContent,
+  OverflowMenuItem,
+  OverflowMenuRoot,
+  OverflowMenuTrigger,
+} from "compositions/ui/overflow-menu"
 
 export const OverflowMenuWithCard = () => {
   return (
@@ -12,13 +17,16 @@ export const OverflowMenuWithCard = () => {
             <Text>Sage</Text>
             <Text color="fg.muted">5h</Text>
           </HStack>
-          <OverflowMenu vertical>
-            <OverflowMenuItem value="Share">Share</OverflowMenuItem>
-            <OverflowMenuItem value="Report">Report</OverflowMenuItem>
-            <OverflowMenuItem value="View Profile">
-              View Profile
-            </OverflowMenuItem>
-          </OverflowMenu>
+          <OverflowMenuRoot>
+            <OverflowMenuTrigger vertical size="sm" color="fg.subtle" />
+            <OverflowMenuContent>
+              <OverflowMenuItem value="Share">Share</OverflowMenuItem>
+              <OverflowMenuItem value="Report">Report</OverflowMenuItem>
+              <OverflowMenuItem value="View Profile">
+                View Profile
+              </OverflowMenuItem>
+            </OverflowMenuContent>
+          </OverflowMenuRoot>
         </HStack>
       </Card.Header>
       <Card.Body>
