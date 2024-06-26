@@ -5,17 +5,25 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "compositions/ui/menu"
-import { LuCircleEllipsis } from "react-icons/lu"
+import {
+  HiMiniEllipsisHorizontal,
+  HiMiniEllipsisVertical,
+} from "react-icons/hi2"
 
-export interface OverflowMenuProps extends MenuRootProps {}
+export interface OverflowMenuProps extends MenuRootProps {
+  vertical?: boolean
+}
 
 export const OverflowMenu = (props: OverflowMenuProps) => {
-  const { children, ...rest } = props
+  const { children, vertical, ...rest } = props
   return (
-    <MenuRoot {...rest}>
+    <MenuRoot
+      {...rest}
+      positioning={{ placement: "bottom-end", ...rest.positioning }}
+    >
       <MenuTrigger>
-        <IconButton variant="plain">
-          <LuCircleEllipsis />
+        <IconButton variant="plain" size="sm" fontSize="1.2em">
+          {vertical ? <HiMiniEllipsisVertical /> : <HiMiniEllipsisHorizontal />}
         </IconButton>
       </MenuTrigger>
       <MenuContent>{children}</MenuContent>
