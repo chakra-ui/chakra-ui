@@ -52,12 +52,16 @@ import { SpinnerWithColors } from "compositions/examples/spinner-with-colors"
 import { StatBasic } from "compositions/examples/stat-basic"
 import { StatusWithSizes } from "compositions/examples/status-with-sizes"
 import { SwitchWithColors } from "compositions/examples/switch-with-colors"
+import { TableBasic } from "compositions/examples/table-basic"
+import { TableWithColumnGroup } from "compositions/examples/table-with-colgroup"
+import { TableWithOverflow } from "compositions/examples/table-with-overflow"
 import { TabsStretched } from "compositions/examples/tabs-stretched"
 import { TabsWithIndicator } from "compositions/examples/tabs-with-indicator"
 import { TabsWithLink } from "compositions/examples/tabs-with-links"
 import { TabsWithVariants } from "compositions/examples/tabs-with-variants"
 import { TabsWithVertical } from "compositions/examples/tabs-with-vertical"
 import { TagWithColors } from "compositions/examples/tag-with-colors"
+import { TextareaWithAutoresize } from "compositions/examples/textarea-with-autoresize"
 import { TextareaWithDescription } from "compositions/examples/textarea-with-description"
 import { TextareaWithError } from "compositions/examples/textarea-with-error"
 import { TextareaWithField } from "compositions/examples/textarea-with-field"
@@ -74,7 +78,16 @@ export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Playground.Section>
-        <Playground.SectionTitle id="Select">
+        <Playground.SectionTitle id="Table">Table</Playground.SectionTitle>
+        <Playground.SectionContent>
+          <TableBasic />
+          <TableWithColumnGroup />
+          <TableWithOverflow />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Collapsible">
           Collapsible
         </Playground.SectionTitle>
         <Playground.SectionContent>
@@ -84,8 +97,8 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="Select">
-          Native Select
+        <Playground.SectionTitle id="NativeSelect">
+          NativeSelect
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <NativeSelectBasic />
@@ -96,7 +109,6 @@ export default function Page() {
         <Playground.SectionTitle id="Select">Select</Playground.SectionTitle>
         <Playground.SectionContent align="flex-start">
           <SelectWithOverflow />
-          {/* <SelectWithClear /> */}
           <SelectWithAvatar />
           <SelectInPopover />
         </Playground.SectionContent>
@@ -256,6 +268,7 @@ export default function Page() {
           <TextareaWithField />
           <TextareaWithDescription />
           <TextareaWithError />
+          <TextareaWithAutoresize />
         </Playground.SectionContent>
       </Playground.Section>
 

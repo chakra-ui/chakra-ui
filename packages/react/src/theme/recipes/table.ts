@@ -11,20 +11,21 @@ export const tableSlotRecipe = defineSlotRecipe({
       width: "full",
       textAlign: "start",
       verticalAlign: "top",
+      colorPalette: "gray",
     },
     row: {
       _selected: {
         bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-        shadowColor: "colorPalette.600",
-        boxShadow: "inset 2px 0 0px 0px var(--shadow-color)",
       },
     },
     cell: {
       textAlign: "start",
+      alignItems: "center",
     },
     columnHeader: {
-      fontWeight: "semibold",
+      fontWeight: "medium",
       textAlign: "start",
+      color: "fg.muted",
     },
     caption: {
       fontWeight: "medium",
@@ -33,22 +34,27 @@ export const tableSlotRecipe = defineSlotRecipe({
     footer: {
       fontWeight: "medium",
     },
-    scrollArea: {
-      display: "block",
-      whiteSpace: "nowrap",
-      WebkitOverflowScrolling: "touch",
-      overflowX: "auto",
-      overflowY: "hidden",
-      maxWidth: "100%",
-    },
   },
+
   variants: {
     interactive: {
       true: {
-        row: {
-          _hover: {
-            bg: { base: "colorPalette.100", _dark: "colorPalette.700" },
+        body: {
+          "& tr": {
+            _hover: {
+              bg: { base: "colorPalette.100", _dark: "colorPalette.700" },
+            },
           },
+        },
+      },
+    },
+
+    stickyHeader: {
+      true: {
+        columnHeader: {
+          position: "sticky",
+          top: "var(--sticky-header-offset, 0)",
+          zIndex: "sticky",
         },
       },
     },
@@ -162,5 +168,6 @@ export const tableSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "line",
     size: "md",
+    colorPalette: "gray",
   },
 })

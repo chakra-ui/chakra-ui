@@ -8,6 +8,8 @@ export {
   TableCell,
   TableHeader,
   TableBody,
+  TableColumnGroup,
+  TableColumn,
   useTableStyles,
 } from "./table"
 
@@ -21,6 +23,8 @@ export type {
   TableCellProps,
   TableHeaderProps,
   TableBodyProps,
+  TableColumnProps,
+  TableColumnGroupProps,
 } from "./table"
 
 export * as Table from "./namespace"
