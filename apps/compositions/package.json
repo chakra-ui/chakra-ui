@@ -16,8 +16,16 @@
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "license": "ISC",
   "dependencies": {
-    "react-icons": "5.2.1",
+    "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react": "workspace:*",
-    "@chakra-ui/hooks": "workspace:*"
+    "@tanstack/react-table": "8.17.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "5.2.1",
+    "react-textarea-autosize": "^8.5.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "@types/react-dom": "^18"
   }
 }
