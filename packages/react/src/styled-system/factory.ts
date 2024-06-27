@@ -10,9 +10,9 @@ import {
   memo,
   useMemo,
 } from "react"
+import { mergeProps } from "../merge-props"
+import { mergeRefs } from "../merge-refs"
 import type { StyledFactoryFn } from "./factory.types"
-import { mergeProps } from "./merge-props"
-import { mergeRefs } from "./merge-refs"
 import { useChakraContext } from "./provider"
 
 const styledFn = (Dynamic: any, configOrCva: any = {}, options: any = {}) => {

@@ -6,12 +6,12 @@ import {
 } from "@ark-ui/react/editable"
 import { ark } from "@ark-ui/react/factory"
 import { forwardRef } from "react"
+import { mergeProps } from "../../merge-props"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
   createStyleContext,
-  mergeProps,
 } from "../../styled-system"
 
 ////////////////////////////////////////////////////////////////////////////////////

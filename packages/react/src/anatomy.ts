@@ -89,13 +89,17 @@ export const cardAnatomy = createAnatomy("card").parts(
   "footer",
 )
 
-export const stepsAnatomy = createAnatomy("stepper").parts(
+export const stepsAnatomy = createAnatomy("steps", [
   "root",
+  "list",
   "item",
-  "title",
-  "description",
+  "trigger",
   "indicator",
   "separator",
-  "icon",
-  "number",
-)
+  "content",
+  "title",
+  "description",
+  "nextTrigger",
+  "prevTrigger",
+  "progress",
+])

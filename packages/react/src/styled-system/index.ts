@@ -20,8 +20,6 @@ export type {
   SlotRecipeRecord,
 } from "./generated/recipes.gen"
 export type { ColorPalette, Token, Tokens } from "./generated/token.gen"
-export { mergeProps } from "./merge-props"
-export { mergeRefs } from "./merge-refs"
 export * from "./provider"
 export * from "./recipe-props"
 export type * from "./recipe.types"

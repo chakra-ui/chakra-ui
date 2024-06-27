@@ -125,7 +125,7 @@ export interface ActionBarVariantProps {}
 
 // Alert
 
-export type AlertSlot = "title" | "description" | "root" | "icon" | "spinner"
+export type AlertSlot = "title" | "description" | "root" | "indicator" | "spinner"
 
 export interface AlertVariantProps {
   status?: "info" | "warning" | "success" | "error"
@@ -331,7 +331,7 @@ export interface MenuVariantProps {
 export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariantProps {
-  variant?: "outline" | "filled" | "flushed"
+  variant?: "outline" | "filled"
   size?: "lg" | "md" | "sm" | "xs"
 }
 
@@ -465,7 +465,19 @@ export interface StatVariantProps {
 
 // Steps
 
-export type StepsSlot = "root" | "item" | "title" | "description" | "indicator" | "separator" | "icon" | "number"
+export type StepsSlot =
+  | "root"
+  | "list"
+  | "item"
+  | "trigger"
+  | "indicator"
+  | "separator"
+  | "content"
+  | "title"
+  | "description"
+  | "nextTrigger"
+  | "prevTrigger"
+  | "progress"
 
 export interface StepsVariantProps {
   orientation?: "vertical" | "horizontal"
@@ -484,10 +496,11 @@ export interface SwitchVariantProps {
 
 // Table
 
-export type TableSlot = "scrollArea" | "root" | "header" | "body" | "row" | "columnHeader" | "cell" | "footer" | "caption"
+export type TableSlot = "root" | "header" | "body" | "row" | "columnHeader" | "cell" | "footer" | "caption"
 
 export interface TableVariantProps {
   interactive?: boolean
+  stickyHeader?: boolean
   striped?: boolean
   showColumnBorder?: boolean
   variant?: "line" | "outline"
@@ -503,7 +516,7 @@ export interface TabsVariantProps {
   fitted?: boolean
   justify?: "start" | "center" | "end"
   size?: "sm" | "md" | "lg"
-  variant?: "line" | "enclosed" | "outline" | "plain"
+  variant?: "line" | "soft" | "enclosed" | "outline" | "plain"
 }
 
 // Tag

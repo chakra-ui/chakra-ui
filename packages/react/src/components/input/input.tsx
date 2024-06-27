@@ -2,13 +2,13 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
+import { mergeProps } from "../../merge-props"
 import {
   EMPTY_STYLES,
   type HTMLChakraProps,
   type RecipeProps,
   type UnstyledProp,
   chakra,
-  mergeProps,
   useRecipe,
 } from "../../styled-system"
 import { type FieldOptions, splitFieldProps, useFieldProps } from "../field"

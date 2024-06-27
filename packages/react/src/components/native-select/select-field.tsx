@@ -2,7 +2,8 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
-import { type HTMLChakraProps, chakra, mergeProps } from "../../styled-system"
+import { mergeProps } from "../../merge-props"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 import { useSelectContext, useSelectStyles } from "./select-context"
 
 type Omitted = "disabled" | "required" | "readOnly" | "size"

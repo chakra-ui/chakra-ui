@@ -51,10 +51,16 @@ import { SliderWithColors } from "compositions/examples/slider-with-colors"
 import { SpinnerWithColors } from "compositions/examples/spinner-with-colors"
 import { StatBasic } from "compositions/examples/stat-basic"
 import { StatusWithSizes } from "compositions/examples/status-with-sizes"
+import { StepsBasic } from "compositions/examples/steps-basic"
+import { StepsVertical } from "compositions/examples/steps-vertical"
+import { StepsWithDescription } from "compositions/examples/steps-with-description"
+import { StepsWithIcon } from "compositions/examples/steps-with-icon"
 import { SwitchWithColors } from "compositions/examples/switch-with-colors"
 import { TableBasic } from "compositions/examples/table-basic"
 import { TableWithColumnGroup } from "compositions/examples/table-with-colgroup"
 import { TableWithOverflow } from "compositions/examples/table-with-overflow"
+import { TableWithSelection } from "compositions/examples/table-with-selection"
+import { TableWithStickyColumn } from "compositions/examples/table-with-sticky-column"
 import { TabsStretched } from "compositions/examples/tabs-stretched"
 import { TabsWithIndicator } from "compositions/examples/tabs-with-indicator"
 import { TabsWithLink } from "compositions/examples/tabs-with-links"
@@ -83,6 +89,18 @@ export default function Page() {
           <TableBasic />
           <TableWithColumnGroup />
           <TableWithOverflow />
+          <TableWithSelection />
+          <TableWithStickyColumn />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Steps">Steps</Playground.SectionTitle>
+        <Playground.SectionContent gap="10">
+          <StepsBasic />
+          <StepsVertical />
+          <StepsWithDescription />
+          <StepsWithIcon />
         </Playground.SectionContent>
       </Playground.Section>
 
