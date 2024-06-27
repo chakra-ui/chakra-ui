@@ -3,6 +3,7 @@ import { createContext } from "@chakra-ui/utils/context"
 import { createPortal } from "react-dom"
 import { usePortalManager } from "./portal-manager"
 import { useEffect, useMemo, useRef, useState } from "react"
+import { useEnvironment } from "../env"
 
 type PortalContext = HTMLDivElement | null
 
@@ -106,8 +107,9 @@ interface ContainerPortalProps extends React.PropsWithChildren<{}> {
 const ContainerPortal = (props: ContainerPortalProps) => {
   const { children, containerRef, appendToParentPortal } = props
   const containerEl = containerRef.current
+  const { getPortalRoot } = useEnvironment()
   const host =
-    containerEl ?? (typeof window !== "undefined" ? document.body : undefined)
+    containerEl ?? (typeof window !== "undefined" ? getPortalRoot() : undefined)
 
   const portal = useMemo(() => {
     const node = containerEl?.ownerDocument.createElement("div")

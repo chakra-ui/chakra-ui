@@ -4,6 +4,7 @@ import { createContext, useContext, useMemo, useReducer, useRef } from "react"
 interface Environment {
   getWindow: () => Window
   getDocument: () => Document
+  getPortalRoot: () => HTMLElement
 }
 
 const EnvironmentContext = createContext<Environment>({
@@ -13,6 +14,9 @@ const EnvironmentContext = createContext<Environment>({
   getWindow() {
     return window
   },
+  getPortalRoot() {
+    return document.body
+  }
 })
 
 EnvironmentContext.displayName = "EnvironmentContext"
@@ -43,6 +47,7 @@ export function EnvironmentProvider(props: EnvironmentProviderProps) {
     return {
       getDocument: () => ref.current?.ownerDocument ?? document,
       getWindow: () => ref.current?.ownerDocument.defaultView ?? window,
+      getPortalRoot: () => ref.current?.ownerDocument.body ?? document.body,
     }
   }, [environmentProp])
 
