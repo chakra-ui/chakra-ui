@@ -62,7 +62,7 @@ export const tableSlotRecipe = defineSlotRecipe({
     striped: {
       true: {
         row: {
-          "&:nth-of-type(even)": {
+          "&:nth-of-type(even) td": {
             bg: "bg.subtle",
           },
         },
