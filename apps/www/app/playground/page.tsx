@@ -1,6 +1,7 @@
 import * as Playground from "@/components/playground"
 import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
+import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { BadgeWithColors } from "compositions/examples/badge-with-colors"
 import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
@@ -304,6 +305,7 @@ export default function Page() {
         <Playground.SectionTitle id="alert">Alert</Playground.SectionTitle>
         <Playground.SectionContent>
           <AlertWithStatus />
+          <AlertWithSpinner />
         </Playground.SectionContent>
       </Playground.Section>
 
