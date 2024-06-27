@@ -155,10 +155,10 @@ describe("css", () => {
       {
         "@media screen and (min-width: 30rem)": {
           "fontSize": "var(--chakra-font-sizes-lg)",
-          "lineHeight": "1.5",
+          "lineHeight": "var(--chakra-line-heights-base)",
         },
         "fontSize": "var(--chakra-font-sizes-sm)",
-        "lineHeight": "1.5",
+        "lineHeight": "var(--chakra-line-heights-base)",
       }
     `)
   })
