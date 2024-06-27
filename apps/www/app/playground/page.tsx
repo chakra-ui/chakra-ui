@@ -1,5 +1,6 @@
 import * as Playground from "@/components/playground"
 import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
+import { AccordionBasic } from "compositions/examples/accordion-basic"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
@@ -291,6 +292,15 @@ export default function Page() {
         <Playground.SectionTitle id="stat">Stat</Playground.SectionTitle>
         <Playground.SectionContent>
           <StatBasic />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Accordion">
+          Accordion
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <AccordionBasic />
         </Playground.SectionContent>
       </Playground.Section>
 
