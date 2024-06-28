@@ -4,6 +4,9 @@
 
 ### General
 
+- Default color palette is now gray for all components but you can configure
+  this in your theme.
+
 - Changed Naming convention for boolean properties from `is<X>` to `<x>`
 
   - isOpen -> open
@@ -107,6 +110,46 @@ const colors = {
 
 - Changed `noOfLines` prop to `lineClamp`
 - Changed `truncated` to `truncate`
+
+### Theme Tools
+
+We've removed this package in favor using CSS color mix.
+
+#### `transparentize`
+
+**Before:** We use JS to resolve the colors and then apply the transparency
+
+```jsx
+defineStyle({
+  bg: transparentize("blue.200", 0.16)(theme), // -> rgba(0, 0, 255, 0.16)
+})
+```
+
+**After:** We use CSS color-mix
+
+```jsx
+defineStyle({
+  bg: "blue.200/16", // -> color-mix(in srgb, var(--chakra-colors-200), transparent 16%)
+})
+```
+
+#### `mode`
+
+**Before:** We use JS to resolve the colors and then apply the mode
+
+```jsx
+defineStyle({
+  color: mode("gray.800", "gray.200")(props),
+})
+```
+
+**After:** We use native css selectors instead
+
+```jsx
+defineStyle({
+  color: { _light: "gray.800", _dark: "gray.200" },
+})
+```
 
 ### Changes to `Show` and `Hide`
 
@@ -831,6 +874,17 @@ const Demo = () => {
 
 ## Theming
 
+We've removed support for functions in the theme object due to the performance
+implications.
+
+> NOTE 🚨: We now require the theme to serializable.
+
+Consider the following approach instead:
+
+- Use the `data-*` attribute to store dynamic values and style them using CSS
+- Design the dynamic property/value in the recipe
+- Leverage `compoundVariants` to create complex variants overrides
+
 ### chakra factory
 
 The `chakra` factory has been recipes to make it easier to style components
@@ -872,15 +926,6 @@ const Alert = chakra("div", {
   },
 })
 ```
-
-We've also removed support for functions in the theme object due to the
-performance implications.
-
-Consider the following approach instead:
-
-- Use the `data-*` attribute to store dynamic values and style them using CSS
-- Design the dynamic property/value in the recipe
-- Leverage `compoundVariants` to create complex variants overrides
 
 ### Style Config
 
@@ -1026,11 +1071,6 @@ and `withThemeByClassName` helper.
 - The `enclosed` variant has been modified
 - Added `plain` variant for usage with `Tabs.Indicator`
 - Changed `isManual` to `activationMode=manual`
-
-## General
-
-- Default color palette is now gray for all components but you can configure
-  this in your theme.
 
 ## Progress
 
