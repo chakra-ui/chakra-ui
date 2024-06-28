@@ -1,13 +1,13 @@
 import type { SystemContext } from "@chakra-ui/react"
 import * as p from "@clack/prompts"
 import { Command } from "commander"
-import { generateCondition } from "../lib/generate-conditions.js"
-import { generatePropTypes } from "../lib/generate-prop-types.js"
-import { generateRecipe } from "../lib/generate-recipe.js"
-import { generateSystemTypes } from "../lib/generate-system-types.js"
-import { generateTokens } from "../lib/generate-tokens.js"
-import * as io from "../lib/io.js"
-import { tasks } from "../lib/shared.js"
+import { generateCondition } from "../lib/generate-conditions"
+import { generatePropTypes } from "../lib/generate-prop-types"
+import { generateRecipe } from "../lib/generate-recipe"
+import { generateSystemTypes } from "../lib/generate-system-types"
+import { generateTokens } from "../lib/generate-tokens"
+import * as io from "../lib/io"
+import { tasks } from "../lib/shared"
 
 interface CodegenFlags {
   strict?: boolean
