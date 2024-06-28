@@ -1,5 +1,5 @@
 import type { SystemContext } from "@chakra-ui/react"
-import { pretty } from "./shared.js"
+import { pretty } from "./pretty.js"
 
 export function generateCondition(sys: SystemContext) {
   const keys = sys.conditions.keys().concat("base")

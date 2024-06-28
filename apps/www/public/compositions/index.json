@@ -1,0 +1,372 @@
+[
+  {
+    "type": "composition",
+    "id": "action-bar",
+    "file": "action-bar.tsx",
+    "component": "ActionBar",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "alert",
+    "file": "alert.tsx",
+    "component": "Alert",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "avatar",
+    "file": "avatar.tsx",
+    "component": "Avatar",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "blockquote",
+    "file": "blockquote.tsx",
+    "component": "Blockquote",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "breadcrumb",
+    "file": "breadcrumb.tsx",
+    "component": "Breadcrumb",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "button",
+    "file": "button.tsx",
+    "component": "Button",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "checkbox-card",
+    "file": "checkbox-card.tsx",
+    "component": "CheckboxCard",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "checkbox",
+    "file": "checkbox.tsx",
+    "component": "Checkbox",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "circular-progress",
+    "file": "circular-progress.tsx",
+    "component": "CircularProgress",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "close-button",
+    "file": "close-button.tsx",
+    "component": "CloseButton",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "data-list",
+    "file": "data-list.tsx",
+    "component": "DataList",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": [
+      "compositions/ui/toggle-tip"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "dialog",
+    "file": "dialog.tsx",
+    "component": "Dialog",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "drawer",
+    "file": "drawer.tsx",
+    "component": "Drawer",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "empty-state",
+    "file": "empty-state.tsx",
+    "component": "EmptyState",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "field",
+    "file": "field.tsx",
+    "component": "Field",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "file-button",
+    "file": "file-button.tsx",
+    "component": "FileButton",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "hover-card",
+    "file": "hover-card.tsx",
+    "component": "HoverCard",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "link-button",
+    "file": "link-button.tsx",
+    "component": "LinkButton",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "menu",
+    "file": "menu.tsx",
+    "component": "Menu",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "native-select",
+    "file": "native-select.tsx",
+    "component": "NativeSelect",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "number-input",
+    "file": "number-input.tsx",
+    "component": "NumberInput",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "overflow-menu",
+    "file": "overflow-menu.tsx",
+    "component": "OverflowMenu",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": [
+      "compositions/ui/menu"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "pagination",
+    "file": "pagination.tsx",
+    "component": "Pagination",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "password-input",
+    "file": "password-input.tsx",
+    "component": "PasswordInput",
+    "npmDependencies": [
+      "@chakra-ui/hooks"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "pin-input",
+    "file": "pin-input.tsx",
+    "component": "PinInput",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "popover",
+    "file": "popover.tsx",
+    "component": "Popover",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "progress",
+    "file": "progress.tsx",
+    "component": "Progress",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "radio-card",
+    "file": "radio-card.tsx",
+    "component": "RadioCard",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "radio-item",
+    "file": "radio-item.tsx",
+    "component": "RadioItem",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "rating",
+    "file": "rating.tsx",
+    "component": "Rating",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "scrubber-input",
+    "file": "scrubber-input.tsx",
+    "component": "ScrubberInput",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "./tooltip"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "segment-control",
+    "file": "segment-control.tsx",
+    "component": "SegmentControl",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "select",
+    "file": "select.tsx",
+    "component": "Select",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "./close-button"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "skeleton",
+    "file": "skeleton.tsx",
+    "component": "Skeleton",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "slider",
+    "file": "slider.tsx",
+    "component": "Slider",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "status",
+    "file": "status.tsx",
+    "component": "Status",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "stepper-input",
+    "file": "stepper-input.tsx",
+    "component": "StepperInput",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "steps",
+    "file": "steps.tsx",
+    "component": "Steps",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "switch",
+    "file": "switch.tsx",
+    "component": "Switch",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "tag",
+    "file": "tag.tsx",
+    "component": "Tag",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "toggle-tip",
+    "file": "toggle-tip.tsx",
+    "component": "ToggleTip",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "tooltip",
+    "file": "tooltip.tsx",
+    "component": "Tooltip",
+    "npmDependencies": [],
+    "fileDependencies": []
+  }
+]

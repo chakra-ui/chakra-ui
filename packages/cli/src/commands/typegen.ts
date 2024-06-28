@@ -7,7 +7,7 @@ import { generateRecipe } from "../utils/generate-recipe"
 import { generateSystemTypes } from "../utils/generate-system-types"
 import { generateTokens } from "../utils/generate-tokens"
 import * as io from "../utils/io"
-import { tasks } from "../utils/shared"
+import { tasks } from "../utils/tasks"
 
 interface CodegenFlags {
   strict?: boolean

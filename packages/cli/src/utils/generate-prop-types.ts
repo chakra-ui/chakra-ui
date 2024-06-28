@@ -1,5 +1,5 @@
 import type { SystemContext } from "@chakra-ui/react"
-import { pretty } from "./shared.js"
+import { pretty } from "./pretty.js"
 
 export async function generatePropTypes(sys: SystemContext) {
   const { utility } = sys

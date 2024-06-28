@@ -1,5 +1,6 @@
 import type { SystemContext } from "@chakra-ui/react"
-import { capitalize, isBooleanValue, pretty, unionType } from "./shared.js"
+import { pretty } from "./pretty.js"
+import { capitalize, isBooleanValue, unionType } from "./shared.js"
 
 export async function generateRecipe(sys: SystemContext) {
   const theme = sys._config.theme ?? {}

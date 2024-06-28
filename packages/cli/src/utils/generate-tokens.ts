@@ -1,5 +1,6 @@
 import type { SystemContext } from "@chakra-ui/react"
-import { capitalize, pretty, unionType } from "./shared.js"
+import { pretty } from "./pretty.js"
+import { capitalize, unionType } from "./shared.js"
 
 export async function generateTokens(sys: SystemContext) {
   const { allTokens, tokenMap, colorPaletteMap, categoryMap } = sys.tokens

@@ -3,7 +3,7 @@ import { findUpSync } from "find-up"
 import { ensureDirSync } from "fs-extra"
 import { readFileSync, readdirSync } from "node:fs"
 import { writeFile } from "node:fs/promises"
-import path, { join } from "node:path"
+import { basename, extname, join } from "node:path"
 
 function getBaseDirectory() {
   const dir = findUpSync("compositions", { type: "directory" })
@@ -59,13 +59,13 @@ function getDependencies(imports: Set<string>, dependencies: string[]) {
 }
 
 const setFileExtension = (file: string, ext: string) =>
-  path.basename(file, path.extname(file)) + ext
+  basename(file, extname(file)) + ext
 
 const excludedDependencies = ["@chakra-ui/react", "react", "react-dom"]
 
 const camelCase = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
-const getFileName = (file: string) => path.basename(file, path.extname(file))
+const getFileName = (file: string) => basename(file, extname(file))
 
 const getComponentName = (file: string) =>
   getFileName(file).split("-").map(camelCase).join("")
@@ -103,6 +103,19 @@ async function main() {
         component: getComponentName(file),
       },
     }
+  })
+
+  result.push({
+    path: join(publicDir, "compositions", "index.json"),
+    //@ts-expect-error
+    data: result.map(({ data }) => ({
+      type: data.type,
+      id: data.id,
+      file: data.file.name,
+      component: data.component,
+      npmDependencies: data.npmDependencies,
+      fileDependencies: data.fileDependencies,
+    })),
   })
 
   ensureDirSync(join(publicDir, "compositions"))
