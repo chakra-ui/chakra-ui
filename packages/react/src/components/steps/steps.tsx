@@ -83,10 +83,10 @@ export interface StepsCompleteContentProps extends HTMLChakraProps<"div"> {}
 export const StepsCompleteContent = forwardRef<
   HTMLDivElement,
   StepsCompleteContentProps
->(function StepsCompleteContent(props) {
+>(function StepsCompleteContent(props, ref) {
   return (
     <ArkSteps.StepsContext>
-      {(api) => <StepsContent {...props} index={api.count} />}
+      {(api) => <StepsContent ref={ref} {...props} index={api.count} />}
     </ArkSteps.StepsContext>
   )
 })
