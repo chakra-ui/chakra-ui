@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "blockquote",
+  "file": {
+    "name": "blockquote.tsx",
+    "content": "import type { FloatProps } from \"@chakra-ui/react\"\nimport { Blockquote as ChakraBlockquote, Circle, Float } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface BlockquoteProps extends ChakraBlockquote.RootProps {\n  cite?: React.ReactNode\n  citeUrl?: string\n  icon?: React.ReactNode\n  showIcon?: boolean\n  dash?: boolean\n  iconPlacement?: FloatProps[\"placement\"]\n}\n\nexport const Blockquote = forwardRef<HTMLDivElement, BlockquoteProps>(\n  function Blockquote(props, ref) {\n    const {\n      children,\n      cite,\n      citeUrl,\n      dash,\n      showIcon,\n      icon,\n      iconPlacement = \"middle-start\",\n      ...rest\n    } = props\n\n    return (\n      <ChakraBlockquote.Root ref={ref} {...rest}>\n        {showIcon && (\n          <Float placement={iconPlacement}>\n            <Circle bg=\"bg\" size=\"8\">\n              {icon || <ChakraBlockquote.Icon />}\n            </Circle>\n          </Float>\n        )}\n        <ChakraBlockquote.Content cite={citeUrl}>\n          {children}\n        </ChakraBlockquote.Content>\n        {cite && (\n          <ChakraBlockquote.Caption>\n            {dash ? <>&mdash;</> : null} <cite>{cite}</cite>\n          </ChakraBlockquote.Caption>\n        )}\n      </ChakraBlockquote.Root>\n    )\n  },\n)\n"
+  },
+  "component": "Blockquote"
+}

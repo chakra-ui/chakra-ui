@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [
+    "react-icons"
+  ],
+  "fileDependencies": [],
+  "id": "tag",
+  "file": {
+    "name": "tag.tsx",
+    "content": "import { Tag as ChakraTag } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\nimport { HiX } from \"react-icons/hi\"\n\nexport interface TagProps extends ChakraTag.RootProps {\n  icon?: React.ReactNode\n  showClose?: boolean\n  onClose?: VoidFunction\n}\n\nexport const Tag = forwardRef<HTMLSpanElement, TagProps>(\n  function Tag(props, ref) {\n    const { icon, onClose, children, showClose, ...rest } = props\n    return (\n      <ChakraTag.Root ref={ref} {...rest}>\n        {icon}\n        <ChakraTag.Label>{children}</ChakraTag.Label>\n        {showClose && (\n          <ChakraTag.CloseTrigger onClick={onClose}>\n            <HiX />\n          </ChakraTag.CloseTrigger>\n        )}\n      </ChakraTag.Root>\n    )\n  },\n)\n"
+  },
+  "component": "Tag"
+}

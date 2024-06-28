@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "segment-control",
+  "file": {
+    "name": "segment-control.tsx",
+    "content": "\"use client\"\n\nimport { For, SegmentGroup } from \"@chakra-ui/react\"\nimport { forwardRef, useMemo } from \"react\"\n\ninterface Item {\n  value: string\n  label: React.ReactNode\n  disabled?: boolean\n}\n\nexport interface SegmentControlProps extends SegmentGroup.RootProps {\n  items: Array<string | Item>\n}\n\nfunction normalize(items: Array<string | Item>): Item[] {\n  return items.map((item) => {\n    if (typeof item === \"string\") return { value: item, label: item }\n    return item\n  })\n}\n\nexport const SegmentControl = forwardRef<HTMLDivElement, SegmentControlProps>(\n  function SegmentControl(props, ref) {\n    const { items, ...rest } = props\n    const data = useMemo(() => normalize(items), [items])\n\n    return (\n      <SegmentGroup.Root ref={ref} {...rest}>\n        <SegmentGroup.Indicator />\n        <For each={data}>\n          {(item) => (\n            <SegmentGroup.Item\n              key={item.value}\n              value={item.value}\n              disabled={item.disabled}\n            >\n              <SegmentGroup.ItemText>{item.label}</SegmentGroup.ItemText>\n              <SegmentGroup.ItemHiddenInput />\n            </SegmentGroup.Item>\n          )}\n        </For>\n      </SegmentGroup.Root>\n    )\n  },\n)\n"
+  },
+  "component": "SegmentControl"
+}

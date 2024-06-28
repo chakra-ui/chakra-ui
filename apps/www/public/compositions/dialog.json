@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [
+    "compositions/ui/close-button"
+  ],
+  "id": "dialog",
+  "file": {
+    "name": "dialog.tsx",
+    "content": "import { Dialog as ChakraDialog, Heading, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"compositions/ui/close-button\"\nimport { forwardRef } from \"react\"\n\ninterface DialogContentProps extends ChakraDialog.ContentProps {\n  portalled?: boolean\n  containerRef?: React.RefObject<HTMLElement>\n  showArrow?: boolean\n}\n\nexport const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(\n  function DialogContent(props, ref) {\n    const {\n      children,\n      portalled = true,\n      containerRef,\n      showArrow,\n      ...rest\n    } = props\n\n    return (\n      <Portal disabled={!portalled} container={containerRef}>\n        <ChakraDialog.Positioner>\n          <ChakraDialog.Content ref={ref} {...rest} asChild={false}>\n            {children}\n          </ChakraDialog.Content>\n        </ChakraDialog.Positioner>\n      </Portal>\n    )\n  },\n)\n\nexport const DialogTrigger = (props: ChakraDialog.TriggerProps) => {\n  return <ChakraDialog.Trigger {...props} asChild />\n}\n\nexport const DialogCloseTrigger = (props: ChakraDialog.CloseTriggerProps) => {\n  return (\n    <ChakraDialog.CloseTrigger {...props} asChild>\n      <CloseButton size=\"sm\" />\n    </ChakraDialog.CloseTrigger>\n  )\n}\n\nexport const DialogTitle = (props: ChakraDialog.TitleProps) => {\n  return (\n    <ChakraDialog.Title {...props} asChild>\n      <Heading as=\"h2\" size=\"lg\" lineHeight=\"1.2\">\n        {props.children}\n      </Heading>\n    </ChakraDialog.Title>\n  )\n}\n\nexport const DialogDescription = (props: ChakraDialog.DescriptionProps) => {\n  return <ChakraDialog.Description color=\"fg.muted\" {...props} />\n}\n\nexport const DialogRoot = ChakraDialog.Root\nexport const DialogFooter = ChakraDialog.Footer\nexport const DialogHeader = ChakraDialog.Header\nexport const DialogBody = ChakraDialog.Body\nexport const DialogBackdrop = ChakraDialog.Backdrop\n"
+  },
+  "component": "Dialog"
+}

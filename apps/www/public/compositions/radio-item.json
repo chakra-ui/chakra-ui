@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "radio-item",
+  "file": {
+    "name": "radio-item.tsx",
+    "content": "import { RadioGroup } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface RadioItemProps extends RadioGroup.ItemProps {\n  rootRef?: React.Ref<HTMLDivElement>\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n}\n\nexport const RadioItem = forwardRef<HTMLInputElement, RadioItemProps>(\n  function RadioItem(props, ref) {\n    const { children, inputProps, rootRef, ...rest } = props\n    return (\n      <RadioGroup.Item ref={rootRef} {...rest}>\n        <RadioGroup.ItemHiddenInput ref={ref} {...inputProps} />\n        <RadioGroup.ItemIndicator />\n        {children && <RadioGroup.ItemText>{children}</RadioGroup.ItemText>}\n      </RadioGroup.Item>\n    )\n  },\n)\n"
+  },
+  "component": "RadioItem"
+}

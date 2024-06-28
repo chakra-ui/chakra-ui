@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "avatar",
+  "file": {
+    "name": "avatar.tsx",
+    "content": "import { Avatar as ChakraAvatar } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\ntype ImageProps = React.ImgHTMLAttributes<HTMLImageElement>\n\ninterface AvatarOptions {\n  name?: string\n  src?: string\n  srcSet?: string\n  loading?: ImageProps[\"loading\"]\n}\n\nexport interface AvatarProps extends ChakraAvatar.RootProps, AvatarOptions {}\n\nexport const Avatar = forwardRef<HTMLDivElement, AvatarProps>(\n  function Avatar(props, ref) {\n    const { name, src, srcSet, loading, ...rest } = props\n    return (\n      <ChakraAvatar.Root ref={ref} {...rest}>\n        <ChakraAvatar.Fallback>\n          {name ? <ChakraAvatar.Initial name={name} /> : <ChakraAvatar.Icon />}\n        </ChakraAvatar.Fallback>\n        <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />\n      </ChakraAvatar.Root>\n    )\n  },\n)\n"
+  },
+  "component": "Avatar"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "composition",
+  "npmDependencies": [
+    "react-icons"
+  ],
+  "fileDependencies": [
+    "compositions/ui/toggle-tip"
+  ],
+  "id": "data-list",
+  "file": {
+    "name": "data-list.tsx",
+    "content": "import { DataList as ChakraDataList, IconButton } from \"@chakra-ui/react\"\nimport { ToggleTip } from \"compositions/ui/toggle-tip\"\nimport { forwardRef } from \"react\"\nimport { HiOutlineInformationCircle } from \"react-icons/hi2\"\n\nexport const DataListRoot = ChakraDataList.Root\n\ninterface ItemProps extends ChakraDataList.ItemProps {\n  label: React.ReactNode\n  value: React.ReactNode\n  info?: React.ReactNode\n}\n\nexport const DataListItem = forwardRef<HTMLDivElement, ItemProps>(\n  function DataListItem(props, ref) {\n    const { label, info, value, children, ...rest } = props\n    return (\n      <ChakraDataList.Item ref={ref} {...rest}>\n        <ChakraDataList.ItemLabel>\n          {label}\n          {info && (\n            <ToggleTip content={info}>\n              <IconButton variant=\"ghost\" aria-label=\"info\" size=\"xs\">\n                <HiOutlineInformationCircle />\n              </IconButton>\n            </ToggleTip>\n          )}\n        </ChakraDataList.ItemLabel>\n        <ChakraDataList.ItemValue>{value}</ChakraDataList.ItemValue>\n        {children}\n      </ChakraDataList.Item>\n    )\n  },\n)\n"
+  },
+  "component": "DataList"
+}

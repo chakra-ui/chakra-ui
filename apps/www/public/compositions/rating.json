@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "rating",
+  "file": {
+    "name": "rating.tsx",
+    "content": "import { RatingGroup } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface RatingProps extends RatingGroup.RootProps {\n  icon?: React.ReactElement\n  count?: number\n}\n\nexport const Rating = forwardRef<HTMLDivElement, RatingProps>(\n  function Rating(props, ref) {\n    const { icon, count = 5, ...rest } = props\n    return (\n      <RatingGroup.Root ref={ref} count={count} {...rest}>\n        <RatingGroup.Control>\n          {Array.from({ length: count }).map((_, index) => (\n            <RatingGroup.Item key={index} index={index + 1}>\n              <RatingGroup.ItemIndicator icon={icon} />\n            </RatingGroup.Item>\n          ))}\n        </RatingGroup.Control>\n      </RatingGroup.Root>\n    )\n  },\n)\n"
+  },
+  "component": "Rating"
+}

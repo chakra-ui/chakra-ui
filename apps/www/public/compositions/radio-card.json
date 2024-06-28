@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "radio-card",
+  "file": {
+    "name": "radio-card.tsx",
+    "content": "import { RadioCard as ChakraRadioCard } from \"@chakra-ui/react\"\n\ninterface RadioCardItemProps extends ChakraRadioCard.ItemProps {\n  addon?: React.ReactNode\n  showIndicator?: boolean\n}\n\nexport const RadioCardItem = (props: RadioCardItemProps) => {\n  const { children, addon, showIndicator = true, ...rest } = props\n  return (\n    <ChakraRadioCard.Item {...rest}>\n      <ChakraRadioCard.ItemHiddenInput />\n      <ChakraRadioCard.ItemControl>\n        {children}\n        {showIndicator && <ChakraRadioCard.ItemIndicator />}\n      </ChakraRadioCard.ItemControl>\n      {addon}\n    </ChakraRadioCard.Item>\n  )\n}\n\nexport const RadioCardRoot = ChakraRadioCard.Root\nexport const RadioCardLabel = ChakraRadioCard.Label\nexport const RadioCardItemIndicator = ChakraRadioCard.ItemIndicator\n"
+  },
+  "component": "RadioCard"
+}

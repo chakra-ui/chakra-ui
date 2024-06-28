@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "checkbox",
+  "file": {
+    "name": "checkbox.tsx",
+    "content": "import { Checkbox as ChakraCheckbox } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface CheckboxProps extends ChakraCheckbox.RootProps {\n  icon?: React.ReactNode\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n  rootRef?: React.Ref<HTMLLabelElement>\n}\n\nexport const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(\n  function Checkbox(props, ref) {\n    const { icon, children, inputProps, rootRef, ...rest } = props\n    return (\n      <ChakraCheckbox.Root ref={rootRef} {...rest}>\n        <ChakraCheckbox.HiddenInput ref={ref} {...inputProps} />\n        <ChakraCheckbox.Control>\n          {icon || <ChakraCheckbox.Indicator />}\n        </ChakraCheckbox.Control>\n        {children != null && (\n          <ChakraCheckbox.Label>{children}</ChakraCheckbox.Label>\n        )}\n      </ChakraCheckbox.Root>\n    )\n  },\n)\n"
+  },
+  "component": "Checkbox"
+}

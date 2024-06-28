@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "circular-progress",
+  "file": {
+    "name": "circular-progress.tsx",
+    "content": "import { CircularProgress as Progress } from \"@chakra-ui/react\"\nimport type { SystemStyleObject } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface CircularProgressProps extends Progress.RootProps {\n  showValue?: boolean\n  trackColor?: SystemStyleObject[\"stroke\"]\n  capIsRound?: boolean\n}\n\nexport const CircularProgress = forwardRef<\n  HTMLDivElement,\n  CircularProgressProps\n>(function CircularProgress(props, ref) {\n  const { showValue, trackColor, capIsRound, color, ...rest } = props\n  return (\n    <Progress.Root ref={ref} valuePlacement=\"center\" {...rest}>\n      {showValue && <Progress.ValueText>{props.value}</Progress.ValueText>}\n      <Progress.Circle>\n        <Progress.Track stroke={trackColor} />\n        <Progress.Range\n          stroke={color}\n          strokeLinecap={capIsRound ? \"round\" : undefined}\n        />\n      </Progress.Circle>\n    </Progress.Root>\n  )\n})\n"
+  },
+  "component": "CircularProgress"
+}

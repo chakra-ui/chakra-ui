@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [
+    "compositions/ui/close-button"
+  ],
+  "id": "popover",
+  "file": {
+    "name": "popover.tsx",
+    "content": "import { Popover as ChakraPopover, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"compositions/ui/close-button\"\nimport { forwardRef } from \"react\"\n\ninterface PopoverContentProps extends ChakraPopover.ContentProps {\n  portalled?: boolean\n  containerRef?: React.RefObject<HTMLElement>\n  showArrow?: boolean\n}\n\nexport const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(\n  function PopoverContent(props, ref) {\n    const {\n      children,\n      portalled = true,\n      containerRef,\n      showArrow,\n      ...rest\n    } = props\n\n    return (\n      <Portal disabled={!portalled} container={containerRef}>\n        <ChakraPopover.Positioner>\n          <ChakraPopover.Content ref={ref} {...rest} asChild={false}>\n            {showArrow && (\n              <ChakraPopover.Arrow>\n                <ChakraPopover.ArrowTip />\n              </ChakraPopover.Arrow>\n            )}\n            {children}\n          </ChakraPopover.Content>\n        </ChakraPopover.Positioner>\n      </Portal>\n    )\n  },\n)\n\nexport const PopoverTrigger = (props: ChakraPopover.TriggerProps) => {\n  return <ChakraPopover.Trigger {...props} asChild />\n}\n\nexport const PopoverCloseTrigger = (props: ChakraPopover.CloseTriggerProps) => {\n  return (\n    <ChakraPopover.CloseTrigger {...props} asChild>\n      <CloseButton size=\"sm\" />\n    </ChakraPopover.CloseTrigger>\n  )\n}\n\nexport const PopoverTitle = ChakraPopover.Title\nexport const PopoverDescription = ChakraPopover.Description\nexport const PopoverFooter = ChakraPopover.Footer\nexport const PopoverHeader = ChakraPopover.Header\nexport const PopoverRoot = ChakraPopover.Root\nexport const PopoverBody = ChakraPopover.Body\n"
+  },
+  "component": "Popover"
+}

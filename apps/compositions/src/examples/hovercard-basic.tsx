@@ -3,7 +3,7 @@ import {
   HoverCardContent,
   HoverCardRoot,
   HoverCardTrigger,
-} from "compositions/ui/hovercard"
+} from "compositions/ui/hover-card"
 
 export const HoverCardBasic = () => {
   return (

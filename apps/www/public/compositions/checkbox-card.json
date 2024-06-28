@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "checkbox-card",
+  "file": {
+    "name": "checkbox-card.tsx",
+    "content": "import {\n  CheckboxCard as ChakraCheckboxCard,\n  CheckboxGroup,\n} from \"@chakra-ui/react\"\n\ninterface CheckboxCardItemProps extends ChakraCheckboxCard.RootProps {}\n\nexport const CheckboxCardItem = (props: CheckboxCardItemProps) => {\n  const { children, ...rest } = props\n  return (\n    <ChakraCheckboxCard.Root {...rest}>\n      <ChakraCheckboxCard.Control>\n        {children}\n        <ChakraCheckboxCard.HiddenInput />\n        <ChakraCheckboxCard.Indicator />\n      </ChakraCheckboxCard.Control>\n    </ChakraCheckboxCard.Root>\n  )\n}\n\nexport const CheckboxCardGroup = CheckboxGroup\nexport const CheckboxCardLabel = ChakraCheckboxCard.Label\n"
+  },
+  "component": "CheckboxCard"
+}

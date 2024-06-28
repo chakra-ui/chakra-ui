@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "native-select",
+  "file": {
+    "name": "native-select.tsx",
+    "content": "import { NativeSelect as Select } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface NativeSelectRootProps extends Select.RootProps {\n  icon?: React.ReactNode\n}\n\nexport const NativeSelectRoot = forwardRef<\n  HTMLDivElement,\n  NativeSelectRootProps\n>(function NativeSelect(props, ref) {\n  const { icon, children, ...rest } = props\n  return (\n    <Select.Root ref={ref} {...rest}>\n      {children}\n      <Select.Indicator>{icon}</Select.Indicator>\n    </Select.Root>\n  )\n})\n\nexport const NativeSelectField = Select.Field\n"
+  },
+  "component": "NativeSelect"
+}

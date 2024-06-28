@@ -34,7 +34,7 @@
     "url": "https://github.com/chakra-ui/chakra-ui/issues"
   },
   "bin": {
-    "chakra-cli": "bin/index.js"
+    "chakra": "bin/index.js"
   },
   "scripts": {
     "clean": "rimraf dist .turbo",

@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "switch",
+  "file": {
+    "name": "switch.tsx",
+    "content": "import { Switch as ChakraSwitch } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport interface SwitchProps extends ChakraSwitch.RootProps {\n  inputProps?: React.InputHTMLAttributes<HTMLInputElement>\n  rootRef?: React.Ref<HTMLLabelElement>\n}\n\nexport const Switch = forwardRef<HTMLInputElement, SwitchProps>(\n  function Switch(props, ref) {\n    const { inputProps, children, rootRef, ...rest } = props\n    return (\n      <ChakraSwitch.Root ref={rootRef} {...rest}>\n        <ChakraSwitch.HiddenInput ref={ref} {...inputProps} />\n        <ChakraSwitch.Control>\n          <ChakraSwitch.Thumb />\n        </ChakraSwitch.Control>\n        {children != null && (\n          <ChakraSwitch.Label>{children}</ChakraSwitch.Label>\n        )}\n      </ChakraSwitch.Root>\n    )\n  },\n)\n"
+  },
+  "component": "Switch"
+}

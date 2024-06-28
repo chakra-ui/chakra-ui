@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "link-button",
+  "file": {
+    "name": "link-button.tsx",
+    "content": "\"use client\"\n\nimport type { HTMLChakraProps, SlotRecipeProps } from \"@chakra-ui/react\"\nimport { chakra } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\ninterface LinkButtonIconProps {\n  startIcon?: React.ReactElement\n  endIcon?: React.ReactElement\n}\n\nexport interface LinkButtonProps\n  extends HTMLChakraProps<\"a\">,\n    SlotRecipeProps<\"Button\">,\n    LinkButtonIconProps {}\n\n// Replace \"a\" with your framework's link component\nconst StyledLink = chakra(\"a\")\n\nexport const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(\n  function LinkButton(props, ref) {\n    const { startIcon, endIcon, children, ...rest } = props\n\n    return (\n      <StyledLink ref={ref} {...rest}>\n        <ButtonContent startIcon={startIcon} endIcon={endIcon}>\n          {children}\n        </ButtonContent>\n      </StyledLink>\n    )\n  },\n)\n\nconst ButtonContent = (props: React.PropsWithChildren<LinkButtonIconProps>) => {\n  const { children, startIcon, endIcon } = props\n  if (!startIcon && !endIcon) return children\n  return (\n    <>\n      {startIcon}\n      <span>{children}</span>\n      {endIcon}\n    </>\n  )\n}\n"
+  },
+  "component": "LinkButton"
+}

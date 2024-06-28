@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "progress",
+  "file": {
+    "name": "progress.tsx",
+    "content": "import { Progress as ChakraProgress } from \"@chakra-ui/react\"\nimport { forwardRef } from \"react\"\n\nexport const Progress = forwardRef<HTMLDivElement, ChakraProgress.RootProps>(\n  function Progress(props, ref) {\n    return (\n      <ChakraProgress.Root ref={ref} {...props}>\n        <ChakraProgress.Track>\n          <ChakraProgress.Range />\n        </ChakraProgress.Track>\n      </ChakraProgress.Root>\n    )\n  },\n)\n"
+  },
+  "component": "Progress"
+}

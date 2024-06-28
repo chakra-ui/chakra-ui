@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [
+    "./close-button"
+  ],
+  "id": "select",
+  "file": {
+    "name": "select.tsx",
+    "content": "\"use client\"\n\nimport { Select as ChakraSelect, Portal } from \"@chakra-ui/react\"\nimport { CloseButton } from \"./close-button\"\n\ninterface SelectTriggerProps extends ChakraSelect.ControlProps {\n  clearable?: boolean\n}\n\nexport const SelectTrigger = (props: SelectTriggerProps) => {\n  const { clearable, children, ...rest } = props\n  return (\n    <ChakraSelect.Control {...rest}>\n      <ChakraSelect.Trigger>\n        {children}\n        <ChakraSelect.Indicator />\n      </ChakraSelect.Trigger>\n    </ChakraSelect.Control>\n  )\n}\n\nexport const SelectClearTrigger = () => (\n  <ChakraSelect.ClearTrigger asChild>\n    <CloseButton size=\"sm\" variant=\"plain\" />\n  </ChakraSelect.ClearTrigger>\n)\n\ninterface SelectContentProps extends ChakraSelect.ContentProps {\n  portalled?: boolean\n  containerRef?: React.RefObject<HTMLElement>\n}\n\nexport const SelectContent = (props: SelectContentProps) => {\n  const { portalled = true, containerRef, ...rest } = props\n  return (\n    <Portal disabled={!portalled} container={containerRef}>\n      <ChakraSelect.Positioner>\n        <ChakraSelect.Content {...rest} />\n      </ChakraSelect.Positioner>\n    </Portal>\n  )\n}\n\nexport const SelectItem = (props: ChakraSelect.ItemProps) => {\n  const { item, children, ...rest } = props\n  return (\n    <ChakraSelect.Item key={item.value} item={item} {...rest}>\n      {children}\n      <ChakraSelect.ItemIndicator />\n    </ChakraSelect.Item>\n  )\n}\n\ninterface SelectValueTextProps\n  extends Omit<ChakraSelect.ValueTextProps, \"children\"> {\n  children?(items: any[]): React.ReactNode\n}\n\nexport const SelectValueText = (props: SelectValueTextProps) => {\n  const { children, ...rest } = props\n  return (\n    <ChakraSelect.ValueText {...rest}>\n      <ChakraSelect.Context>\n        {(select) => {\n          const items = select.selectedItems\n          if (items.length === 0) return props.placeholder\n          if (children) return children(items)\n          if (items.length === 1)\n            return select.collection.itemToString(items[0])\n          return `${items.length} selected`\n        }}\n      </ChakraSelect.Context>\n    </ChakraSelect.ValueText>\n  )\n}\n\nexport const SelectLabel = ChakraSelect.Label\nexport const SelectItemGroup = ChakraSelect.ItemGroup\nexport const SelectItemText = ChakraSelect.ItemText\nexport const SelectRoot = ChakraSelect.Root\n"
+  },
+  "component": "Select"
+}
