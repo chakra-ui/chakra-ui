@@ -1,5 +1,20 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.9
+
+### Minor Changes
+
+- [`77fe01d`](https://github.com/chakra-ui/chakra-ui/commit/77fe01d3de6e07936998acce37d6f2e7d34c25ed)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Change CLI name and
+  command structure.
+
+  - Change the CLI name from `chakra-cli` to `chakra`.
+  - Change `tokens` command to `typegen` to better reflect its purpose since its
+    generates types for more than just the tokens.
+  - Scaffold new `composition` command to help users scaffold new compositions
+    easily. Compositions are snippets of Chakra UI component composition them
+    easier to reuse across projects.
+
 ## 3.0.0-next.8
 
 ## 3.0.0-next.7
