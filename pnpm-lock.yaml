@@ -392,16 +392,16 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@emotion/is-prop-valid':
-        specifier: ^1.2.2
+        specifier: 1.2.2
         version: 1.2.2
       '@emotion/serialize':
-        specifier: ^1.1.4
+        specifier: 1.1.4
         version: 1.1.4
       '@emotion/use-insertion-effect-with-fallbacks':
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1(react@18.2.0)
       '@emotion/utils':
-        specifier: ^1.2.1
+        specifier: 1.2.1
         version: 1.2.1
       '@pandacss/is-valid-prop':
         specifier: 0.41.0
