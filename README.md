@@ -70,16 +70,16 @@ To use Chakra UI components, all you need to do is install the
 
 ```sh
 # with Yarn
-$ yarn add @chakra-ui/react @emotion/react @emotion/styled
+$ yarn add @chakra-ui/react @emotion/react
 
 # with npm
-$ npm i @chakra-ui/react @emotion/react @emotion/styled
+$ npm i @chakra-ui/react @emotion/react
 
 # with pnpm
-$ pnpm add @chakra-ui/react @emotion/react @emotion/styled
+$ pnpm add @chakra-ui/react @emotion/react
 
 # with Bun
-$ bun add @chakra-ui/react @emotion/react @emotion/styled
+$ bun add @chakra-ui/react @emotion/react
 ```
 
 ## Usage

@@ -8,6 +8,7 @@ overrides:
   react: 18.2.0
   react-dom: 18.2.0
   prism-react-renderer: 2.3.1
+  '@emotion/react': 11.11.4
 
 importers:
 
@@ -279,11 +280,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react
       '@emotion/react':
-        specifier: ^11.11.4
+        specifier: 11.11.4
         version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
-      '@emotion/styled':
-        specifier: ^11.11.5
-        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0))(@types/react@18.3.3)(react@18.2.0)
       compositions:
         specifier: ../compositions/src
         version: link:../compositions/src
@@ -393,6 +391,18 @@ importers:
       '@chakra-ui/utils':
         specifier: workspace:*
         version: link:../utils
+      '@emotion/is-prop-valid':
+        specifier: ^1.2.2
+        version: 1.2.2
+      '@emotion/serialize':
+        specifier: ^1.1.4
+        version: 1.1.4
+      '@emotion/use-insertion-effect-with-fallbacks':
+        specifier: ^1.0.1
+        version: 1.0.1(react@18.2.0)
+      '@emotion/utils':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@pandacss/is-valid-prop':
         specifier: 0.41.0
         version: 0.41.0
@@ -406,9 +416,6 @@ importers:
       '@emotion/react':
         specifier: 11.11.4
         version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
-      '@emotion/styled':
-        specifier: 11.11.5
-        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0))(@types/react@18.3.3)(react@18.2.0)
       '@tanstack/react-table':
         specifier: 8.17.3
         version: 8.17.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -445,11 +452,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react
       '@emotion/react':
-        specifier: ^11.11.4
+        specifier: 11.11.4
         version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
-      '@emotion/styled':
-        specifier: ^11.11.5
-        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0))(@types/react@18.3.3)(react@18.2.0)
       '@types/node':
         specifier: ^20.14.2
         version: 20.14.2
@@ -484,11 +488,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react
       '@emotion/react':
-        specifier: ^11.11.4
+        specifier: 11.11.4
         version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
-      '@emotion/styled':
-        specifier: ^11.11.5
-        version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0))(@types/react@18.3.3)(react@18.2.0)
       '@types/node':
         specifier: ^20.14.2
         version: 20.14.2
@@ -526,7 +527,7 @@ importers:
         specifier: ^11.11.0
         version: 11.11.0
       '@emotion/react':
-        specifier: ^11.11.4
+        specifier: 11.11.4
         version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
       '@emotion/server':
         specifier: ^11.11.0
@@ -2122,7 +2123,7 @@ packages:
   '@emotion/styled@11.11.5':
     resolution: {integrity: sha512-/ZjjnaNKvuMPxcIiUkf/9SHoG4Q196DRl1w82hQ3WCsjo1IUR8uaGWrC6a87CrYAW0Kb/pK7hk8BnLgLRi9KoQ==}
     peerDependencies:
-      '@emotion/react': ^11.0.0-rc.0
+      '@emotion/react': 11.11.4
       '@types/react': '*'
       react: 18.2.0
     peerDependenciesMeta:
@@ -13077,7 +13078,7 @@ snapshots:
 
   '@emotion/react@11.11.4(@types/react@18.3.3)(react@18.2.0)':
     dependencies:
-      '@babel/runtime': 7.23.9
+      '@babel/runtime': 7.24.5
       '@emotion/babel-plugin': 11.11.0
       '@emotion/cache': 11.11.0
       '@emotion/serialize': 1.1.4
@@ -18333,8 +18334,8 @@ snapshots:
       '@typescript-eslint/parser': 6.18.1(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)
       eslint-plugin-jsx-a11y: 6.8.0(eslint@8.57.0)
       eslint-plugin-react: 7.34.2(eslint@8.57.0)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.0)
@@ -18358,13 +18359,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint@8.57.0):
+  eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0):
     dependencies:
       debug: 4.3.4
       enhanced-resolve: 5.15.0
       eslint: 8.57.0
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.2
       is-core-module: 2.13.1
@@ -18409,14 +18410,14 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.8.0(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
+  eslint-module-utils@2.8.0(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0))(eslint@8.57.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 6.18.1(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.13.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.18.1(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@8.57.0)
     transitivePeerDependencies:
       - supports-color
 

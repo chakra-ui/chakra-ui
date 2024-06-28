@@ -4,10 +4,16 @@
 
 ### General
 
+- Removed dependency on `@emotion/styled` and `framer-motion`. You now only need
+  `@emotion/react` as peer dependencies
+
+- Improved reconciliation performance by `4x` and re-render performance by
+  `1.6x`. (TODO: Attach profiler screenshots)
+
 - Default color palette is now gray for all components but you can configure
   this in your theme.
 
-- Changed Naming convention for boolean properties from `is<X>` to `<x>`
+- Changed naming convention for boolean properties from `is<X>` to `<x>`
 
   - isOpen -> open
   - defaultIsOpen -> defaultOpen
