@@ -1,5 +1,5 @@
 {
-  "name": "registry",
+  "name": "@chakra-ui/compositions",
   "version": "1.0.0",
   "private": "true",
   "description": "Registry for component compositions",
