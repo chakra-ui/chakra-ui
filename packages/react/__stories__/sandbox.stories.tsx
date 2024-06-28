@@ -42,3 +42,11 @@ export const ReRenders = () => {
     </Stack>
   )
 }
+
+export const SelfClosing = () => {
+  return (
+    <Box rounded="full" overflow="hidden" asChild>
+      <img src="https://via.placeholder.com/150" alt="placeholder" />
+    </Box>
+  )
+}
