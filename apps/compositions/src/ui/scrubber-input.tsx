@@ -1,6 +1,6 @@
 import { Group, Icon, InputElement, NumberInput } from "@chakra-ui/react"
+import { Tooltip } from "compositions/ui/tooltip"
 import { forwardRef } from "react"
-import { Tooltip } from "./tooltip"
 
 export interface StepperInputProps extends NumberInput.InputProps {
   label: React.ReactNode
