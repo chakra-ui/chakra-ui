@@ -103,38 +103,38 @@ export const keyframes = defineKeyframes({
 
   // slide from
   "slide-from-top": {
-    "0%": { translate: "0 0.5rem" },
-    to: { translate: "0" },
-  },
-  "slide-from-bottom": {
     "0%": { translate: "0 -0.5rem" },
     to: { translate: "0" },
   },
+  "slide-from-bottom": {
+    "0%": { translate: "0 0.5rem" },
+    to: { translate: "0" },
+  },
   "slide-from-left": {
-    "0%": { translate: "0.5rem 0" },
+    "0%": { translate: "-0.5rem 0" },
     to: { translate: "0" },
   },
   "slide-from-right": {
-    "0%": { translate: "-0.5rem 0" },
+    "0%": { translate: "0.5rem 0" },
     to: { translate: "0" },
   },
 
   // slide to
   "slide-to-top": {
     "0%": { translate: "0" },
-    to: { translate: "0 0.5rem" },
+    to: { translate: "0 -0.5rem" },
   },
   "slide-to-bottom": {
     "0%": { translate: "0" },
-    to: { translate: "0 -0.5rem" },
+    to: { translate: "0 0.5rem" },
   },
   "slide-to-left": {
     "0%": { translate: "0" },
-    to: { translate: "0.5rem 0" },
+    to: { translate: "-0.5rem 0" },
   },
   "slide-to-right": {
     "0%": { translate: "0" },
-    to: { translate: "-0.5rem 0" },
+    to: { translate: "0.5rem 0" },
   },
 
   // scale

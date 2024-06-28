@@ -5,16 +5,16 @@ export const motionStyles = defineMotionStyles({
     value: {
       transformOrigin: "var(--transform-origin)",
       "&[data-placement^=top]": {
-        animationName: "slide-from-top, fade-in",
-      },
-      "&[data-placement^=bottom]": {
         animationName: "slide-from-bottom, fade-in",
       },
+      "&[data-placement^=bottom]": {
+        animationName: "slide-from-top, fade-in",
+      },
       "&[data-placement^=left]": {
-        animationName: "slide-from-left, fade-in",
+        animationName: "slide-from-right, fade-in",
       },
       "&[data-placement^=right]": {
-        animationName: "slide-from-right, fade-in",
+        animationName: "slide-from-left, fade-in",
       },
     },
   },
@@ -23,16 +23,16 @@ export const motionStyles = defineMotionStyles({
     value: {
       transformOrigin: "var(--transform-origin)",
       "&[data-placement^=top]": {
-        animationName: "slide-to-top, fade-out",
-      },
-      "&[data-placement^=bottom]": {
         animationName: "slide-to-bottom, fade-out",
       },
+      "&[data-placement^=bottom]": {
+        animationName: "slide-to-top, fade-out",
+      },
       "&[data-placement^=left]": {
-        animationName: "slide-to-left, fade-out",
+        animationName: "slide-to-right, fade-out",
       },
       "&[data-placement^=right]": {
-        animationName: "slide-to-right, fade-out",
+        animationName: "slide-to-left, fade-out",
       },
     },
   },
