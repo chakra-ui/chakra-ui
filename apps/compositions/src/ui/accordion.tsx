@@ -1,4 +1,4 @@
-import { Box, Accordion as ChakraAccordion } from "@chakra-ui/react"
+import { Accordion as ChakraAccordion } from "@chakra-ui/react"
 import { forwardRef } from "react"
 import { HiChevronDown } from "react-icons/hi"
 
