@@ -32,4 +32,5 @@ export const addCommandFlags = z.object({
   dryRun: z.boolean().optional(),
   outdir: z.string(),
   jsx: z.boolean().optional(),
+  all: z.boolean().optional(),
 })

@@ -20,15 +20,16 @@ export const CompositionCommand = new Command("composition")
       .option(
         "--outdir <dir>",
         "Output directory to write the composition",
-        process.cwd(),
+        join(process.cwd(), "components", "ui"),
       )
+      .option("--all", "Add all compositions")
       .option("--jsx", "Emit JSX files instead of TSX")
       .action(async (components: string[], flags: unknown) => {
-        const { dryRun, outdir, jsx } = S.addCommandFlags.parse(flags)
+        const { dryRun, outdir, jsx, all } = S.addCommandFlags.parse(flags)
 
         const items = await fetchCompositions()
 
-        if (components.length === 0) {
+        if (components.length === 0 && !all) {
           p.log.info("No components provided, Adding all components...")
 
           const selected = await p.multiselect({
@@ -49,6 +50,10 @@ export const CompositionCommand = new Command("composition")
               s.includes("all") ? items.map((item) => item.id) : s,
             )
             .parse(selected)
+        }
+
+        if (all) {
+          components = items.map((item) => item.id)
         }
 
         if (components.length === 0) {
