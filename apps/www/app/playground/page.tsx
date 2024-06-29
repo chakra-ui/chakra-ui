@@ -5,6 +5,8 @@ import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { BadgeWithColors } from "compositions/examples/badge-with-colors"
+import { BadgeWithGroup } from "compositions/examples/badge-with-group"
+import { BadgeWithIcon } from "compositions/examples/badge-with-icon"
 import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
 import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-separator"
 import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
@@ -341,6 +343,8 @@ export default function Page() {
         <Playground.SectionTitle id="badge">Badge</Playground.SectionTitle>
         <Playground.SectionContent>
           <BadgeWithColors />
+          <BadgeWithIcon />
+          <BadgeWithGroup />
         </Playground.SectionContent>
       </Playground.Section>
 
