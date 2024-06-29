@@ -1,11 +1,5 @@
-import { Box } from "@chakra-ui/react"
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemBody,
-  AccordionItemContent,
-  AccordionItemTrigger,
-} from "compositions/ui/accordion"
+import { Accordion, Box } from "@chakra-ui/react"
+import { HiChevronDown } from "react-icons/hi"
 
 const items = [
   { value: "a", title: "First Item", text: "Some value 1..." },
@@ -15,21 +9,24 @@ const items = [
 
 export const AccordionBasic = () => {
   return (
-    <Accordion collapsible minW="300px" defaultValue={["b"]}>
+    <Accordion.Root collapsible minW="300px" defaultValue={["b"]}>
       {items.map((item, index) => (
-        <AccordionItem key={index} value={item.value}>
+        <Accordion.Item key={index} value={item.value}>
           <h2>
-            <AccordionItemTrigger>
+            <Accordion.ItemTrigger>
               <Box flex="1" textAlign="start">
                 {item.title}
               </Box>
-            </AccordionItemTrigger>
+              <Accordion.ItemIndicator>
+                <HiChevronDown />
+              </Accordion.ItemIndicator>
+            </Accordion.ItemTrigger>
           </h2>
-          <AccordionItemContent>
-            <AccordionItemBody>{item.text}</AccordionItemBody>
-          </AccordionItemContent>
-        </AccordionItem>
+          <Accordion.ItemContent>
+            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>
+          </Accordion.ItemContent>
+        </Accordion.Item>
       ))}
-    </Accordion>
+    </Accordion.Root>
   )
 }
