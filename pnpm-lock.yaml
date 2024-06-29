@@ -787,8 +787,8 @@ importers:
         specifier: 2.5.10
         version: 2.5.10(@types/react@18.3.3)(react@18.2.0)
       react-responsive-masonry:
-        specifier: 2.2.1
-        version: 2.2.1
+        specifier: 2.2.0
+        version: 2.2.0
       react-spinners:
         specifier: 0.14.1
         version: 0.14.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -5300,9 +5300,6 @@ packages:
   caniuse-lite@1.0.30001636:
     resolution: {integrity: sha512-bMg2vmr8XBsbL6Lr0UHXy/21m84FTxDLWn2FSqMd5PrlbMxwJlQnC2YWYxVgp66PZE+BBNF2jYQUBKCo1FDeZg==}
 
-  caniuse-lite@1.0.30001638:
-    resolution: {integrity: sha512-5SuJUJ7cZnhPpeLHaH0c/HPAnAHZvS6ElWyHK9GSIbVOQABLzowiI2pjmpvZ1WEbkyz46iFd4UXlOHR5SqgfMQ==}
-
   capital-case@1.0.4:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
 
@@ -9354,8 +9351,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-responsive-masonry@2.2.1:
-    resolution: {integrity: sha512-QY1vH8vWd8YpW2g40zsFp4CjttK2NWw2btzHbxks8vDRe+0JZfsrtK7Ob3siCtg+9mttwsofmAB6dp9ujSYwKw==}
+  react-responsive-masonry@2.2.0:
+    resolution: {integrity: sha512-IYbnfe2tWCZ3pvyTLyBWPj7uv5ZmNOULYMcAZi5a47ZLhSotOck1vkkISq6gP2qiyWdMvPfeMhjvYzUYGw9BOQ==}
 
   react-router-dom@6.24.0:
     resolution: {integrity: sha512-960sKuau6/yEwS8e+NVEidYQb1hNjAYM327gjEyXlc6r3Skf2vtwuJ2l7lssdegD2YjoKG5l8MsVyeTDlVeY8g==}
@@ -16950,8 +16947,6 @@ snapshots:
 
   caniuse-lite@1.0.30001636: {}
 
-  caniuse-lite@1.0.30001638: {}
-
   capital-case@1.0.4:
     dependencies:
       no-case: 3.0.4
@@ -22318,9 +22313,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  react-responsive-masonry@2.2.1:
-    dependencies:
-      caniuse-lite: 1.0.30001638
+  react-responsive-masonry@2.2.0: {}
 
   react-router-dom@6.24.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
