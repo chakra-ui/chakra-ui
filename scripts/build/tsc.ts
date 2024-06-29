@@ -1,5 +1,4 @@
-import { Project } from "find-packages"
-import { cpSync, statSync } from "node:fs"
+import { cpSync } from "node:fs"
 import { join } from "node:path/posix"
 
 export async function generateTypes(dir: string) {

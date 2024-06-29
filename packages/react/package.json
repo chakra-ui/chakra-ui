@@ -38,8 +38,8 @@
     "url": "https://storybook.chakra-ui.com"
   },
   "dependencies": {
-    "@ark-ui/anatomy": "3.3.1",
-    "@ark-ui/react": "3.4.0-0",
+    "@ark-ui/anatomy": "3.4.0",
+    "@ark-ui/react": "3.4.0",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@emotion/is-prop-valid": "1.2.2",
@@ -65,7 +65,7 @@
     "react-icons": "5.2.1",
     "react-lorem-component": "0.13.0",
     "react-markdown": "^9.0.1",
-    "react-spinners": "0.13.8"
+    "react-spinners": "0.14.1"
   },
   "scripts": {
     "build:fast": "tsx ../../scripts/build/main.ts",

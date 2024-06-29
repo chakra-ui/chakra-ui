@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "workspace:*",
-    "lucide-react": "^0.395.0",
+    "lucide-react": "^0.399.0",
     "react": "^18.3.1",
     "next-themes": "^0.3.0",
     "react-dom": "^18.3.1"
@@ -18,7 +18,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "typescript": "^5.4.5",
-    "vite": "^5.3.1"
+    "typescript": "^5.5.2",
+    "vite": "^5.3.2"
   }
 }
