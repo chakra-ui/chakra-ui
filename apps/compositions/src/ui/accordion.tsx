@@ -2,34 +2,49 @@ import { Box, Accordion as ChakraAccordion } from "@chakra-ui/react"
 import { forwardRef } from "react"
 import { HiChevronDown } from "react-icons/hi"
 
-export interface AccordionProps extends ChakraAccordion.RootProps {
-  items: Array<{ value: string; title: string; text: string }>
-}
+export interface AccordionProps extends ChakraAccordion.RootProps {}
 
 export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
   function Accordion(props, ref) {
-    const { items, ...rest } = props
-
+    const { children, ...rest } = props
     return (
       <ChakraAccordion.Root ref={ref} {...rest}>
-        {items.map((item, index) => (
-          <ChakraAccordion.Item key={index} value={item.value}>
-            <h2>
-              <ChakraAccordion.ItemTrigger>
-                <Box flex="1" textAlign="start">
-                  {item.title}
-                </Box>
-                <ChakraAccordion.ItemIndicator>
-                  <HiChevronDown />
-                </ChakraAccordion.ItemIndicator>
-              </ChakraAccordion.ItemTrigger>
-            </h2>
-            <ChakraAccordion.ItemContent>
-              <ChakraAccordion.ItemBody>{item.text}</ChakraAccordion.ItemBody>
-            </ChakraAccordion.ItemContent>
-          </ChakraAccordion.Item>
-        ))}
+        {children}
       </ChakraAccordion.Root>
     )
   },
 )
+
+export interface AccordionItemProps extends ChakraAccordion.ItemProps {}
+
+export const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
+  function AccordionItem(props, ref) {
+    const { children, ...rest } = props
+    return (
+      <ChakraAccordion.Item ref={ref} {...rest}>
+        {children}
+      </ChakraAccordion.Item>
+    )
+  },
+)
+
+export interface AccordionItemTriggerProps
+  extends ChakraAccordion.ItemTriggerProps {}
+
+export const AccordionItemTrigger = forwardRef<
+  HTMLDivElement,
+  AccordionItemTriggerProps
+>(function AccordionItemTrigger(props, ref) {
+  const { children, ...rest } = props
+  return (
+    <ChakraAccordion.ItemTrigger ref={ref} {...rest}>
+      {children}
+      <ChakraAccordion.ItemIndicator>
+        <HiChevronDown />
+      </ChakraAccordion.ItemIndicator>
+    </ChakraAccordion.ItemTrigger>
+  )
+})
+
+export const AccordionItemContent = ChakraAccordion.ItemContent
+export const AccordionItemBody = ChakraAccordion.ItemBody
