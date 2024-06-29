@@ -1,5 +1,13 @@
 # @chakra-ui/react
 
+## 3.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.10
+  - @chakra-ui/utils@3.0.0-next.10
+
 ## 3.0.0-next.9
 
 ### Minor Changes
