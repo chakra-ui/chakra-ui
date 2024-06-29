@@ -8,6 +8,7 @@ import { z } from "zod"
 import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchComposition, fetchCompositions } from "../utils/fetch"
 import { getFileDependencies } from "../utils/get-file-dependencies"
+import * as io from "../utils/io"
 import * as S from "../utils/schema"
 
 export const CompositionCommand = new Command("composition")
@@ -65,6 +66,8 @@ export const CompositionCommand = new Command("composition")
 
         const formatFileName = (name: string) =>
           jsx ? name.replace(".tsx", ".jsx") : name
+
+        io.ensureDir(outdir)
 
         await Promise.all(
           components.map(async (id) => {
