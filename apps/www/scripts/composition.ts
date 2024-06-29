@@ -99,7 +99,7 @@ async function main() {
         npmDependencies: Array.from(npmDependencies),
         fileDependencies: Array.from(fileDependencies),
         id: getFileName(file),
-        file: { name: file, content },
+        file: { name: file, content: content.replace("compositions/ui", ".") },
         component: getComponentName(file),
       },
     }

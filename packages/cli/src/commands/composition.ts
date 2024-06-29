@@ -1,16 +1,17 @@
 import * as p from "@clack/prompts"
 import { boxen } from "@visulima/boxen"
 import { Command } from "commander"
+import { existsSync } from "fs"
 import { writeFile } from "fs/promises"
 import { join } from "node:path/posix"
 import { z } from "zod"
 import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchComposition, fetchCompositions } from "../utils/fetch"
+import { getFileDependencies } from "../utils/get-file-dependencies"
 import * as S from "../utils/schema"
 
 export const CompositionCommand = new Command("composition")
   .description("Add compositions to your project for better DX")
-
   .addCommand(
     new Command("add")
       .description("Add a new composition for better DX")
@@ -25,13 +26,14 @@ export const CompositionCommand = new Command("composition")
       .action(async (components: string[], flags: unknown) => {
         const { dryRun, outdir, jsx } = S.addCommandFlags.parse(flags)
 
+        const items = await fetchCompositions()
+
         if (components.length === 0) {
           p.log.info("No components provided, Adding all components...")
 
-          const items = await fetchCompositions()
-
           const selected = await p.multiselect({
-            message: "Select compositions to add",
+            message:
+              "Select compositions to add. Press <space> to select. Press <enter> to submit.",
             options: [
               { label: "All Compositions", value: "all" },
               ...items.map((item) => ({
@@ -49,16 +51,27 @@ export const CompositionCommand = new Command("composition")
             .parse(selected)
         }
 
+        if (components.length === 0) {
+          p.log.info("No compositions selected. Exiting...")
+          process.exit(0)
+        }
+
         p.log.info(`Adding ${components.length} composition(s)...`)
+
+        const formatFileName = (name: string) =>
+          jsx ? name.replace(".tsx", ".jsx") : name
 
         await Promise.all(
           components.map(async (id) => {
+            if (existsSync(join(outdir, id))) return
+
             const item = await fetchComposition(id)
+            const dependencies = getFileDependencies(items, id)
 
             if (jsx) {
               const content = await convertTsxToJsx(item.file.content)
               item.file.content = content
-              item.file.name = item.file.name.replace(".tsx", ".jsx")
+              item.file.name = formatFileName(item.file.name)
             }
 
             const outPath = join(outdir, item.file.name)
@@ -70,8 +83,30 @@ export const CompositionCommand = new Command("composition")
               })
 
               p.log.info(boxText)
+
+              if (dependencies.length) {
+                p.log.info(`Writing dependencies: ${dependencies.join(", ")}`)
+              }
             } else {
-              writeFile(outPath, item.file.content, "utf-8")
+              // if dependencies are not found, write them to the outdir as well
+              await Promise.all(
+                dependencies.map(async (dep) => {
+                  if (existsSync(join(outdir, dep))) return
+
+                  const depItem = await fetchComposition(dep)
+                  depItem.file.name = formatFileName(depItem.file.name)
+
+                  if (jsx) {
+                    const content = await convertTsxToJsx(depItem.file.content)
+                    depItem.file.content = content
+                  }
+
+                  const depOutPath = join(outdir, depItem.file.name)
+                  return writeFile(depOutPath, depItem.file.content, "utf-8")
+                }),
+              )
+
+              return writeFile(outPath, item.file.content, "utf-8")
             }
           }),
         )

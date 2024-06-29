@@ -2,7 +2,7 @@
   "type": "composition",
   "npmDependencies": [],
   "fileDependencies": [
-    "./close-button"
+    "compositions/ui/close-button"
   ],
   "id": "select",
   "file": {

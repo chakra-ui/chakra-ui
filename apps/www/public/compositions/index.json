@@ -270,7 +270,7 @@
     "component": "ScrubberInput",
     "npmDependencies": [],
     "fileDependencies": [
-      "./tooltip"
+      "compositions/ui/tooltip"
     ]
   },
   {
@@ -288,7 +288,7 @@
     "component": "Select",
     "npmDependencies": [],
     "fileDependencies": [
-      "./close-button"
+      "compositions/ui/close-button"
     ]
   },
   {

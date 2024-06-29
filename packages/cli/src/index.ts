@@ -12,7 +12,7 @@ export async function run() {
   const program = new Command()
     .name("chakra-ui")
     .description("add compositions and examples to your project")
-    .version("0.0.1")
+    .version("3.0.0")
 
   program.addCommand(TypegenCommand).addCommand(CompositionCommand)
 
