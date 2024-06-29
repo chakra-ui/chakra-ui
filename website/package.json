@@ -93,7 +93,7 @@
     "react-multi-ref": "1.0.2",
     "semver": "7.6.2",
     "sharp": "0.33.4",
-    "tsx": "4.15.9",
+    "tsx": "4.16.0",
     "unified": "10.1.2",
     "unist-util-visit": "4.1.2"
   }
