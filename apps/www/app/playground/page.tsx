@@ -14,6 +14,9 @@ import { ButtonWithColors } from "compositions/examples/button-with-colors"
 import { CardWithVariants } from "compositions/examples/card-with-variants"
 import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
 import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
+import { CheckboxWithCustomIcon } from "compositions/examples/checkbox-with-custom-icon"
+import { CheckboxWithIndeterminate } from "compositions/examples/checkbox-with-indeterminate"
+import { CheckboxWithStates } from "compositions/examples/checkbox-with-states"
 import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
 import { CodeWithColors } from "compositions/examples/code-with-colors"
 import { CollapsibleBasic } from "compositions/examples/collapsible-basic"
@@ -376,6 +379,9 @@ export default function Page() {
           Checkbox
         </Playground.SectionTitle>
         <Playground.SectionContent>
+          <CheckboxWithStates />
+          <CheckboxWithIndeterminate />
+          <CheckboxWithCustomIcon />
           <CheckboxWithColors />
         </Playground.SectionContent>
       </Playground.Section>
