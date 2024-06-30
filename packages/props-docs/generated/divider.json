@@ -16,7 +16,7 @@
     },
     "variant": {
       "defaultValue": "solid",
-      "type": "\"solid\" | \"dashed\"",
+      "type": "\"solid\" | \"dashed\" | \"dotted\"",
       "required": false,
       "description": "The variant of the Divider"
     }

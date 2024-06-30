@@ -13,6 +13,9 @@ export const separatorRecipe = defineRecipe({
       dashed: {
         borderStyle: "dashed",
       },
+      dotted: {
+        borderStyle: "dotted",
+      },
     },
     orientation: {
       vertical: {
