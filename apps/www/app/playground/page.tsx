@@ -3,6 +3,8 @@ import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
 import { AccordionBasic } from "compositions/examples/accordion-basic"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
+import { AvatarGrouped } from "compositions/examples/avatar-grouped"
+import { AvatarWithBadge } from "compositions/examples/avatar-with-badge"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { BadgeWithColors } from "compositions/examples/badge-with-colors"
 import { BadgeWithGroup } from "compositions/examples/badge-with-group"
@@ -330,7 +332,9 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="avatar">Avatar</Playground.SectionTitle>
         <Playground.SectionContent>
+          <AvatarWithBadge />
           <AvatarWithColors />
+          <AvatarGrouped />
         </Playground.SectionContent>
       </Playground.Section>
 
