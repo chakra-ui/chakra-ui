@@ -1,8 +1,12 @@
 import { HttpsProxyAgent } from "https-proxy-agent"
 import fetch from "node-fetch"
-import * as S from "./schema"
+import {
+  compositionFileSchema,
+  compositionIndexSchema,
+  processEnvSchema,
+} from "./schema"
 
-const env = S.processEnv.parse(process.env)
+const env = processEnvSchema.parse(process.env)
 
 const agent = env.HTTPS_PROXY ? new HttpsProxyAgent(env.HTTPS_PROXY) : undefined
 
@@ -11,7 +15,7 @@ export async function fetchCompositions() {
     agent,
   })
   const json = await res.json()
-  return S.compositionIndex.parse(json)
+  return compositionIndexSchema.parse(json)
 }
 
 export async function fetchComposition(id: string) {
@@ -19,5 +23,5 @@ export async function fetchComposition(id: string) {
     agent,
   })
   const json = await res.json()
-  return S.compositionFile.parse(json)
+  return compositionFileSchema.parse(json)
 }

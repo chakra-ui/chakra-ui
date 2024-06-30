@@ -1,7 +1,4 @@
-import type { z } from "zod"
-import * as S from "./schema"
-
-interface Compositions extends z.infer<typeof S.compositionIndex> {}
+import type { Compositions } from "./schema"
 
 const findCompositionById = (compositions: Compositions, id: string) => {
   return compositions.find((comp) => comp.id === id)

@@ -9,7 +9,24 @@ import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchComposition, fetchCompositions } from "../utils/fetch"
 import { getFileDependencies } from "../utils/get-file-dependencies"
 import * as io from "../utils/io"
+import { runCommand } from "../utils/run-command"
 import * as S from "../utils/schema"
+import { uniq } from "../utils/shared"
+import { tasks } from "../utils/tasks"
+
+async function transformToJsx(item: S.CompositionFile) {
+  const content = await convertTsxToJsx(item.file.content)
+  item.file.content = content
+  item.file.name = item.file.name.replace(".tsx", ".jsx")
+}
+
+function printFileSync(item: S.CompositionFile) {
+  const boxText = boxen(item.file.content, {
+    headerText: `${item.file.name}\n`,
+    borderStyle: "none",
+  })
+  p.log.info(boxText)
+}
 
 export const CompositionCommand = new Command("composition")
   .description("Add compositions to your project for better DX")
@@ -26,7 +43,8 @@ export const CompositionCommand = new Command("composition")
       .option("--all", "Add all compositions")
       .option("--jsx", "Emit JSX files instead of TSX")
       .action(async (components: string[], flags: unknown) => {
-        const { dryRun, outdir, jsx, all } = S.addCommandFlags.parse(flags)
+        const { dryRun, outdir, jsx, all } =
+          S.addCommandFlagsSchema.parse(flags)
 
         const items = await fetchCompositions()
 
@@ -64,60 +82,75 @@ export const CompositionCommand = new Command("composition")
 
         p.log.info(`Adding ${components.length} composition(s)...`)
 
-        const formatFileName = (name: string) =>
-          jsx ? name.replace(".tsx", ".jsx") : name
-
         io.ensureDir(outdir)
 
-        await Promise.all(
-          components.map(async (id) => {
-            if (existsSync(join(outdir, id))) return
+        const fileDependencies = uniq(
+          components.flatMap((id) => getFileDependencies(items, id)),
+        )
 
-            const item = await fetchComposition(id)
-            const dependencies = getFileDependencies(items, id)
-
-            if (jsx) {
-              const content = await convertTsxToJsx(item.file.content)
-              item.file.content = content
-              item.file.name = formatFileName(item.file.name)
-            }
-
-            const outPath = join(outdir, item.file.name)
-
-            if (dryRun) {
-              const boxText = boxen(item.file.content, {
-                headerText: `${item.file.name}\n`,
-                borderStyle: "none",
-              })
-
-              p.log.info(boxText)
-
-              if (dependencies.length) {
-                p.log.info(`Writing dependencies: ${dependencies.join(", ")}`)
-              }
-            } else {
-              // if dependencies are not found, write them to the outdir as well
-              await Promise.all(
-                dependencies.map(async (dep) => {
-                  if (existsSync(join(outdir, dep))) return
-
-                  const depItem = await fetchComposition(dep)
-                  depItem.file.name = formatFileName(depItem.file.name)
-
-                  if (jsx) {
-                    const content = await convertTsxToJsx(depItem.file.content)
-                    depItem.file.content = content
-                  }
-
-                  const depOutPath = join(outdir, depItem.file.name)
-                  return writeFile(depOutPath, depItem.file.content, "utf-8")
-                }),
-              )
-
-              return writeFile(outPath, item.file.content, "utf-8")
-            }
+        const npmDependencies = uniq(
+          fileDependencies.flatMap((dep) => {
+            const comp = items.find((item) => item.id === dep)
+            return comp?.npmDependencies || []
           }),
         )
+
+        console.log({ fileDependencies, npmDependencies })
+
+        await tasks([
+          {
+            title: `Installing required dependencies: ${npmDependencies.join(", ")}`,
+            enabled: !!npmDependencies.length && !dryRun,
+            task: () =>
+              runCommand(["ni", ...npmDependencies, "--silent"], outdir),
+          },
+          {
+            title: "Writing file dependencies",
+            enabled: !!fileDependencies.length && !dryRun,
+            task: async () => {
+              await Promise.all(
+                fileDependencies.map(async (dep) => {
+                  if (existsSync(join(outdir, dep))) return
+                  const item = await fetchComposition(dep)
+                  item.file.name = item.file.name.replace(".tsx", ".jsx")
+
+                  if (jsx) {
+                    await transformToJsx(item)
+                  }
+
+                  const outPath = join(outdir, item.file.name)
+
+                  await writeFile(outPath, item.file.content, "utf-8")
+                }),
+              )
+            },
+          },
+          {
+            title: "Writing selected compositions",
+            task: async () => {
+              await Promise.all(
+                components.map(async (id) => {
+                  if (existsSync(join(outdir, id))) return
+
+                  const item = await fetchComposition(id)
+                  item.file.name = item.file.name.replace(".tsx", ".jsx")
+
+                  if (jsx) {
+                    await transformToJsx(item)
+                  }
+
+                  const outPath = join(outdir, item.file.name)
+
+                  if (dryRun) {
+                    printFileSync(item)
+                  } else {
+                    await writeFile(outPath, item.file.content, "utf-8")
+                  }
+                }),
+              )
+            },
+          },
+        ])
 
         p.outro("🎉 Done!")
       }),

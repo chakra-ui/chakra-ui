@@ -44,6 +44,7 @@
     "typecheck": " tsc --noEmit"
   },
   "dependencies": {
+    "@antfu/ni": "^0.21.12",
     "@clack/prompts": "0.7.0",
     "@pandacss/is-valid-prop": "0.41.0",
     "@types/cli-table": "^0.3.4",

@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const compositionFile = z.object({
+export const compositionFileSchema = z.object({
   type: z.string(),
   id: z.string(),
   file: z.object({
@@ -12,7 +12,10 @@ export const compositionFile = z.object({
   fileDependencies: z.array(z.string()),
 })
 
-export const compositionIndex = z.array(
+export interface CompositionFile
+  extends z.infer<typeof compositionFileSchema> {}
+
+export const compositionIndexSchema = z.array(
   z.object({
     type: z.string(),
     id: z.string(),
@@ -23,15 +26,20 @@ export const compositionIndex = z.array(
   }),
 )
 
-export const processEnv = z.object({
+export interface Compositions extends z.infer<typeof compositionIndexSchema> {}
+
+export const processEnvSchema = z.object({
   // REGISTRY_URL: z.string().default("http://localhost:3000"),
   REGISTRY_URL: z.string().default("https://chakra-v3-docs.vercel.app"),
   HTTPS_PROXY: z.string().optional(),
 })
 
-export const addCommandFlags = z.object({
+export const addCommandFlagsSchema = z.object({
   dryRun: z.boolean().optional(),
   outdir: z.string(),
   jsx: z.boolean().optional(),
   all: z.boolean().optional(),
 })
+
+export interface AddCommandFlags
+  extends z.infer<typeof addCommandFlagsSchema> {}

@@ -10,3 +10,5 @@ export function capitalize(value: string) {
 
 export const isBooleanValue = (value: string) =>
   value === "true" || value === "false"
+
+export const uniq = <T>(arr: T[]) => Array.from(new Set(arr))
