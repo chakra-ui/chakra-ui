@@ -22,6 +22,7 @@ import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
 import { CheckboxWithCustomIcon } from "compositions/examples/checkbox-with-custom-icon"
 import { CheckboxWithIndeterminate } from "compositions/examples/checkbox-with-indeterminate"
 import { CheckboxWithStates } from "compositions/examples/checkbox-with-states"
+import { CheckmarkStates } from "compositions/examples/checkmark-states"
 import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
 import { CodeWithColors } from "compositions/examples/code-with-colors"
 import { CollapsibleBasic } from "compositions/examples/collapsible-basic"
@@ -227,6 +228,15 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <CheckboxCardBasic />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Checkmark">
+          Checkmark
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <CheckmarkStates />
         </Playground.SectionContent>
       </Playground.Section>
 
