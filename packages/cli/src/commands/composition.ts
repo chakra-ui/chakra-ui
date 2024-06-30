@@ -95,11 +95,9 @@ export const CompositionCommand = new Command("composition")
           }),
         )
 
-        console.log({ fileDependencies, npmDependencies })
-
         await tasks([
           {
-            title: `Installing required dependencies: ${npmDependencies.join(", ")}`,
+            title: `Installing required dependencies`,
             enabled: !!npmDependencies.length && !dryRun,
             task: () =>
               runCommand(["ni", ...npmDependencies, "--silent"], outdir),
