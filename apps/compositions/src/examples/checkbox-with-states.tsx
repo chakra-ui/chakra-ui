@@ -1,32 +1,12 @@
-import { Checkbox, Stack } from "@chakra-ui/react"
-
-const states = [
-  {
-    disabled: true,
-    label: "Disabled",
-  },
-  {
-    readOnly: true,
-    label: "Readonly",
-  },
-  {
-    invalid: true,
-    label: "Invalid",
-  },
-] as const
+import { Stack } from "@chakra-ui/react"
+import { Checkbox } from "compositions/ui/checkbox"
 
 export const CheckboxWithStates = () => {
   return (
     <Stack>
-      {states.map(({ label, ...state }, index) => (
-        <Checkbox.Root key={index} {...state}>
-          <Checkbox.HiddenInput />
-          <Checkbox.Control>
-            <Checkbox.Indicator />
-          </Checkbox.Control>
-          <Checkbox.Label>{label}</Checkbox.Label>
-        </Checkbox.Root>
-      ))}
+      <Checkbox disabled>Disabled</Checkbox>
+      <Checkbox readOnly>Readonly</Checkbox>
+      <Checkbox invalid>Invalid</Checkbox>
     </Stack>
   )
 }

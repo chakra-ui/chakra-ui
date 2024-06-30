@@ -1,20 +1,10 @@
-import { Checkbox, Stack } from "@chakra-ui/react"
-import { HiOutlineCheck, HiOutlinePlus, HiOutlineX } from "react-icons/hi"
-
-const icons = [<HiOutlineCheck />, <HiOutlinePlus />, <HiOutlineX />]
+import { Checkbox } from "compositions/ui/checkbox"
+import { HiOutlinePlus } from "react-icons/hi"
 
 export const CheckboxWithCustomIcon = () => {
   return (
-    <Stack>
-      {icons.map((icon, index) => (
-        <Checkbox.Root key={index}>
-          <Checkbox.HiddenInput />
-          <Checkbox.Control>
-            <Checkbox.Indicator checked={icon} />
-          </Checkbox.Control>
-          <Checkbox.Label>Custom Icon</Checkbox.Label>
-        </Checkbox.Root>
-      ))}
-    </Stack>
+    <Checkbox defaultChecked icon={<HiOutlinePlus />}>
+      With Custom Icon
+    </Checkbox>
   )
 }
