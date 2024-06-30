@@ -10,7 +10,10 @@ import { BadgeWithIcon } from "compositions/examples/badge-with-icon"
 import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
 import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-separator"
 import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
+import { ButtonIcons } from "compositions/examples/button-icons"
 import { ButtonWithColors } from "compositions/examples/button-with-colors"
+import { ButtonWithIcons } from "compositions/examples/button-with-icons"
+import { ButtonWithLoading } from "compositions/examples/button-with-loading"
 import { CardWithVariants } from "compositions/examples/card-with-variants"
 import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
 import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
@@ -383,6 +386,9 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="button">Button</Playground.SectionTitle>
         <Playground.SectionContent>
+          <ButtonWithIcons />
+          <ButtonWithLoading />
+          <ButtonIcons />
           <ButtonWithColors />
         </Playground.SectionContent>
       </Playground.Section>
