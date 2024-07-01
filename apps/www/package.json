@@ -11,7 +11,7 @@
     "prebuild": "pnpm codegen"
   },
   "dependencies": {
-    "@ark-ui/react": "3.4.0",
+    "@ark-ui/react": "3.5.0",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.11.4",
