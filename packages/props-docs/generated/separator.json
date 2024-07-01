@@ -13,7 +13,7 @@
       "description": "The orientation of the component"
     },
     "variant": {
-      "type": "\"solid\" | \"dashed\"",
+      "type": "\"solid\" | \"dashed\" | \"dotted\"",
       "defaultValue": "solid",
       "required": false,
       "description": "The variant of the component"

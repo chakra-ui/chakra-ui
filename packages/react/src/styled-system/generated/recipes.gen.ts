@@ -43,7 +43,7 @@ export interface LinkVariantProps {
 export interface MarkVariantProps {}
 
 export interface SeparatorVariantProps {
-  variant?: "solid" | "dashed"
+  variant?: "solid" | "dashed" | "dotted"
   orientation?: "vertical" | "horizontal"
 }
 

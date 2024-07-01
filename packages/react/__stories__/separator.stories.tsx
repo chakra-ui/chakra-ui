@@ -19,3 +19,7 @@ export const Vertical = () => <Separator orientation="vertical" />
 export const DashedVariant = () => (
   <Separator orientation="horizontal" variant="dashed" />
 )
+
+export const DottedVariant = () => (
+  <Separator orientation="horizontal" variant="dotted" />
+)
