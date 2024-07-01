@@ -68,6 +68,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
       vertical: {
         root: {
           flexDirection: "row",
+          height: "100%",
         },
         list: {
           flexDirection: "column",
@@ -88,6 +89,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
       horizontal: {
         root: {
           flexDirection: "column",
+          width: "100%",
         },
         list: {
           flexDirection: "row",

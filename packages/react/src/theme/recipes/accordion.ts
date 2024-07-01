@@ -4,6 +4,9 @@ import { defineSlotRecipe } from "../../styled-system"
 export const accordionSlotRecipe = defineSlotRecipe({
   slots: [...anatomy.keys(), "itemBody"],
   base: {
+    root: {
+      width: "100%",
+    },
     item: {
       overflowAnchor: "none",
     },
