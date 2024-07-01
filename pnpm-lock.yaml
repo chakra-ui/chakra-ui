@@ -811,8 +811,8 @@ importers:
         specifier: 14.0.2
         version: 14.0.2
       remark-emoji:
-        specifier: 3.0.2
-        version: 3.0.2
+        specifier: 3.1.2
+        version: 3.1.2
       remark-gfm:
         specifier: 3.0.1
         version: 3.0.1
@@ -9079,8 +9079,8 @@ packages:
   rehype-stringify@9.0.4:
     resolution: {integrity: sha512-Uk5xu1YKdqobe5XpSskwPvo1XeHUUucWEQSl8hTrXt5selvca1e8K1EZ37E6YoZ4BT8BCqCdVfQW7OfHfthtVQ==}
 
-  remark-emoji@3.0.2:
-    resolution: {integrity: sha512-hEgxEv2sBtvhT3tNG/tQeeFY3EbslftaOoG14dDZndLo25fWJ6Fbg4ukFbIotOWWrfXyASjXjyHT+6n366k3mg==}
+  remark-emoji@3.1.2:
+    resolution: {integrity: sha512-QwhAzNk27Ol64uV4z/3n55MKrNz9bhr8wg+mO5aGqIYDS+jUarS1d8Y0ZIeEBVhfGkXj6gGYM+727sOgAPvV/A==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   remark-frontmatter@4.0.1:
@@ -21369,11 +21369,11 @@ snapshots:
       hast-util-to-html: 8.0.4
       unified: 10.1.2
 
-  remark-emoji@3.0.2:
+  remark-emoji@3.1.2:
     dependencies:
       emoticon: 4.0.1
+      mdast-util-find-and-replace: 2.2.2
       node-emoji: 1.11.0
-      unist-util-visit: 4.1.2
 
   remark-frontmatter@4.0.1:
     dependencies:
