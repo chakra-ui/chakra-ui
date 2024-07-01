@@ -1,8 +1,9 @@
 import { readExampleFile } from "@/lib/composition"
 import { highlightCode } from "@/lib/highlight-code"
-import { Box, HStack, Stack, Text } from "@chakra-ui/react"
+import { Absolute, Box, BoxProps, HStack, Stack, Text } from "@chakra-ui/react"
 import dynamic from "next/dynamic"
 import Link from "next/link"
+import { CopyButton } from "./copy-button"
 
 interface Props {
   name: string
@@ -26,21 +27,33 @@ export const ExamplePreview = (props: Props) => {
   return <Component />
 }
 
-export const ExampleCode = async (props: Props) => {
-  const { name } = props
+interface CodeProps extends Props {
+  showCopy?: boolean
+}
+
+export const ExampleCode = async (props: CodeProps) => {
+  const { name, showCopy = true } = props
   const content = await readExampleFile(name)
   const html = await highlightCode(content)
   return (
-    <div
-      className="code-highlight"
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <>
+      <div
+        className="code-highlight"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+      {showCopy && (
+        <Absolute top="4" right="4">
+          <CopyButton value={content} />
+        </Absolute>
+      )}
+    </>
   )
 }
 
-type CodeWrapperProps = React.PropsWithChildren<{
-  maxHeight?: number
-}>
+interface CodeWrapperProps {
+  maxHeight?: BoxProps["maxHeight"]
+  children: React.ReactNode
+}
 
 export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
   const { children, maxHeight } = props
