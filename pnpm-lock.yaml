@@ -384,8 +384,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@zag-js/element-size':
-        specifier: 0.58.3
-        version: 0.58.3
+        specifier: 0.59.0
+        version: 0.59.0
       copy-to-clipboard:
         specifier: 3.3.3
         version: 3.3.3
@@ -4443,8 +4443,8 @@ packages:
   '@zag-js/element-size@0.58.2':
     resolution: {integrity: sha512-Oi46+b5FP5sz3NtAGPBYjKjLJx4r5Iyiwi63ukes3tbIgxp5mua0Cnqy3qOib4mzQGyYbGJ/sGK/SdYiuSpfjA==}
 
-  '@zag-js/element-size@0.58.3':
-    resolution: {integrity: sha512-Lo5mdvMpZnGq/AVhkiHpDFZel9mZw1Ul59TQ9SMeqYS8QukzSFZsUgqy5Z69zHy8+nOau6V/R40LpQkEMsXrbQ==}
+  '@zag-js/element-size@0.59.0':
+    resolution: {integrity: sha512-2NSzl92YX4LWoGDHINte8ZjsncgNZgqk4wXwkbS1qJv6leTpLaZdemUh+CyfbwWdeU1Y980jA5JYr271/sWAKQ==}
 
   '@zag-js/file-upload@0.58.2':
     resolution: {integrity: sha512-Oh43MPpao8bBvRHa2Cgn9BeEDmupdMYcFDIwNR+4He6fcIJjKZ0gyathFrP320lR+xH0fn5WpwU3Gzu5Sfgulw==}
@@ -15386,7 +15386,7 @@ snapshots:
 
   '@zag-js/element-size@0.58.2': {}
 
-  '@zag-js/element-size@0.58.3': {}
+  '@zag-js/element-size@0.59.0': {}
 
   '@zag-js/file-upload@0.58.2':
     dependencies:
