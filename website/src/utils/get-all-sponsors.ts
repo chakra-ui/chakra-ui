@@ -6,6 +6,12 @@ import fs from 'fs'
  */
 export function getAllSponsors() {
   const sponsorsRcPath = path.resolve('.all-sponsorsrc')
-  const sponsors = JSON.parse(fs.readFileSync(sponsorsRcPath, 'utf-8'))
-  return sponsors
+  const { individuals, companies } = JSON.parse(
+    fs.readFileSync(sponsorsRcPath, 'utf-8'),
+  )
+  const filterFn = (sponsor) => sponsor.isActive
+  return {
+    individuals: individuals.filter(filterFn),
+    companies: companies.filter(filterFn),
+  }
 }
