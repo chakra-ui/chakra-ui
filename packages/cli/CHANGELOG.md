@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.11
+
+### Minor Changes
+
+- [`085cacd`](https://github.com/chakra-ui/chakra-ui/commit/085cacdef4dbc853609d2930ca01382599df705c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  installing required NPM dependencies for compositions
+
 ## 3.0.0-next.10
 
 ### Minor Changes
