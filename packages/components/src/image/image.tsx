@@ -138,9 +138,9 @@ export const Image = forwardRef<ImageProps, "img">(function Image(props, ref) {
   return (
     <chakra.img
       as={NativeImage}
+      crossOrigin={crossOrigin}
       src={src}
       srcSet={srcSet}
-      crossOrigin={crossOrigin}
       loading={loading}
       referrerPolicy={referrerPolicy}
       className="chakra-image"
