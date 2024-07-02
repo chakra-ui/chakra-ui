@@ -42,7 +42,7 @@ export const ExampleCode = async (props: CodeProps) => {
         dangerouslySetInnerHTML={{ __html: html }}
       />
       {showCopy && (
-        <Absolute top="4" right="4">
+        <Absolute top="4" right="6">
           <CopyButton value={content} />
         </Absolute>
       )}
@@ -68,19 +68,7 @@ export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
           py: "6",
           maxHeight,
           overflow: "auto",
-        },
-        "& code": {
-          fontSize: "0.82rem",
-          fontFamily: "Geist Mono, Menlo, Monaco, 'Courier New', monospace",
-          "& *": {
-            fontStyle: "normal!",
-          },
-        },
-        _dark: {
-          "& :is(.shiki, .shiki span)": {
-            color: "var(--shiki-dark)!",
-            bg: "var(--shiki-dark-bg)!",
-          },
+          my: "0",
         },
       }}
     >
@@ -130,5 +118,19 @@ export const ExampleLinkTree = (props: LinkTreeProps) => {
         </Stack>
       ))}
     </Stack>
+  )
+}
+
+export const Example = (props: Props) => {
+  const { name } = props
+  return (
+    <Box borderWidth="1px" rounded="lg" overflow="hidden" divideY="1px">
+      <Box padding="10">
+        <ExamplePreview name={name} />
+      </Box>
+      <ExampleCodeWrapper maxHeight="400px">
+        <ExampleCode name={name} />
+      </ExampleCodeWrapper>
+    </Box>
   )
 }

@@ -1,0 +1,83 @@
+.dark :where(.shiki, .shiki span) {
+  color: var(--shiki-dark) !important;
+  background: var(--shiki-dark-bg) !important;
+}
+
+pre.shiki {
+  position: relative;
+}
+
+pre.shiki code * {
+  font-size: 0.82rem;
+  hyphens: none;
+  white-space: pre;
+  font-style: normal;
+}
+
+code .diff {
+  transition: background-color 0.5s;
+  margin: 0 -12px;
+  padding: 0 24px;
+  width: calc(100% + 24px);
+  display: inline-block;
+
+  &:before {
+    position: absolute;
+    left: 10px;
+  }
+}
+
+code .diff.remove {
+  background-color: rgba(244, 63, 94, 0.16) !important;
+  opacity: 0.7;
+  & span {
+    background-color: transparent !important;
+  }
+}
+
+code .diff.remove:before {
+  content: "-";
+  color: #f14158;
+}
+
+code .diff.add {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+  & span {
+    background-color: transparent !important;
+  }
+}
+
+code .diff.add:before {
+  content: "+";
+  color: #3dd68c;
+}
+
+code .highlighted {
+  background-color: rgb(240, 240, 240) !important;
+  transition: background-color 0.5s;
+  margin: 0 -12px;
+  padding: 0 12px;
+  box-shadow: 2px 0 0px 0px rgb(162, 162, 162) inset;
+  width: calc(100% + 24px);
+  display: inline-block;
+
+  & span {
+    background-color: transparent !important;
+  }
+
+  .dark & {
+    background-color: rgb(255 255 255 / 0.1) !important;
+  }
+}
+
+code .highlighted-word {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-width: 1px;
+  padding: 1px 3px;
+  margin: -1px -3px;
+  border-radius: 4px;
+
+  + span {
+    background: transparent !important;
+  }
+}

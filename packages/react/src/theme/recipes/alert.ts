@@ -60,7 +60,7 @@ export const alertSlotRecipe = defineSlotRecipe({
         root: {
           bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
           shadowColor: {
-            base: "colorPalette.300",
+            base: "colorPalette.200",
             _dark: "colorPalette.200/10",
           },
           color: { base: "colorPalette.800", _dark: "colorPalette.200" },

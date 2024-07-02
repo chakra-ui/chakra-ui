@@ -5,7 +5,7 @@ export const highlightCode = (code: string) => {
     lang: "tsx",
     themes: {
       light: "github-light",
-      dark: "github-dark",
+      dark: "vesper",
     },
     defaultColor: "light",
   })

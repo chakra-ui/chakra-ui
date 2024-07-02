@@ -37,7 +37,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
       w: "full",
       overflow: "hidden",
       pe: "px",
-      ps: "var(--timeline-size)",
+      ps: "calc(var(--timeline-size) + var(--timeline-gutter))",
     },
   },
 
@@ -46,7 +46,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
       sm: {
         root: {
           "--timeline-size": "spacing.4",
-          "--timeline-offset": "spacing.2",
+          "--timeline-offset": "spacing.6",
           "--timeline-gutter": "0.5rem",
           "--timeline-radius": "radii.full",
         },
@@ -54,7 +54,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
       md: {
         root: {
           "--timeline-size": "spacing.7",
-          "--timeline-offset": "spacing.4",
+          "--timeline-offset": "spacing.10",
           "--timeline-gutter": "0.5rem",
           "--timeline-radius": "radii.full",
         },
@@ -62,7 +62,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
       lg: {
         root: {
           "--timeline-size": "spacing.10",
-          "--timeline-offset": "spacing.6",
+          "--timeline-offset": "spacing.14",
           "--timeline-gutter": "0.5rem",
           "--timeline-radius": "radii.full",
         },
