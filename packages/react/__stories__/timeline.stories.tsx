@@ -9,7 +9,7 @@ export const Basic = () => {
   return (
     <Timeline.Root maxW="300px">
       <Timeline.Item>
-        <Timeline.Connector>1</Timeline.Connector>
+        <Timeline.Indicator>1</Timeline.Indicator>
         <Timeline.Separator />
         <Timeline.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
@@ -18,7 +18,7 @@ export const Basic = () => {
       </Timeline.Item>
 
       <Timeline.Item>
-        <Timeline.Connector>2</Timeline.Connector>
+        <Timeline.Indicator>2</Timeline.Indicator>
         <Timeline.Separator />
         <Timeline.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -26,7 +26,7 @@ export const Basic = () => {
       </Timeline.Item>
 
       <Timeline.Item>
-        <Timeline.Connector>3</Timeline.Connector>
+        <Timeline.Indicator>3</Timeline.Indicator>
         <Timeline.Separator />
         <Timeline.Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -44,7 +44,7 @@ export const WithContentBefore = () => {
           Nov 1994
         </Box>
         <Box>
-          <Timeline.Connector>1</Timeline.Connector>
+          <Timeline.Indicator>1</Timeline.Indicator>
           <Timeline.Separator />
         </Box>
         <Timeline.Content>
@@ -58,7 +58,7 @@ export const WithContentBefore = () => {
           Feb 2003
         </Box>
         <Box>
-          <Timeline.Connector>2</Timeline.Connector>
+          <Timeline.Indicator>2</Timeline.Indicator>
           <Timeline.Separator />
         </Box>
         <Timeline.Content>
@@ -71,7 +71,7 @@ export const WithContentBefore = () => {
           Dec 2013
         </Box>
         <Box>
-          <Timeline.Connector>3</Timeline.Connector>
+          <Timeline.Indicator>3</Timeline.Indicator>
           <Timeline.Separator />
         </Box>
         <Timeline.Content>

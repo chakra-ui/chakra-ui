@@ -23,7 +23,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
       maxH: "calc(100% - var(--timeline-size) - var(--timeline-gutter) * 2)",
       top: "calc(var(--timeline-size) + var(--timeline-gutter))",
     },
-    connector: {
+    indicator: {
       position: "absolute",
       ms: "calc(-1 * var(--timeline-size) / 2)",
       boxSize: "var(--timeline-size)",

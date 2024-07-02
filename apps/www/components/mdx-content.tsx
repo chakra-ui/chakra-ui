@@ -267,7 +267,7 @@ const sharedComponents = {
           return (
             <Timeline.Item>
               <Timeline.Separator />
-              <Timeline.Connector rounded="md">{index + 1}</Timeline.Connector>
+              <Timeline.Indicator rounded="md">{index + 1}</Timeline.Indicator>
               <Timeline.Content
                 css={{ "& > :is(h3, h4, h5)": { marginTop: "0" } }}
               >

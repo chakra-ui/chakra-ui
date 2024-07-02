@@ -2,7 +2,7 @@ export {
   TimelineRoot,
   TimelineItem,
   TimelineSeparator,
-  TimelineConnector,
+  TimelineIndicator,
   TimelineContent,
   useTimelineStyles,
 } from "./timeline"
@@ -11,7 +11,7 @@ export type {
   TimelineRootProps,
   TimelineItemProps,
   TimelineSeparatorProps,
-  TimelineConnectorProps,
+  TimelineIndicatorProps,
   TimelineContentProps,
 } from "./timeline"
 

@@ -51,12 +51,12 @@ export const TimelineSeparator = withContext<
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TimelineConnectorProps extends HTMLChakraProps<"div"> {}
+export interface TimelineIndicatorProps extends HTMLChakraProps<"div"> {}
 
-export const TimelineConnector = withContext<
+export const TimelineIndicator = withContext<
   HTMLDivElement,
-  TimelineConnectorProps
->("div", "connector")
+  TimelineIndicatorProps
+>("div", "indicator")
 
 ////////////////////////////////////////////////////////////////////////////////////
 
