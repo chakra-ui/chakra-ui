@@ -6,6 +6,22 @@ interface Props {
   part?: string
 }
 
+const stringify = (value: any) => {
+  if (value === "true") return `true`
+  if (value === "false") return `false`
+  return JSON.stringify(value)
+}
+
+const sortEntries = (props: Record<string, any>) => {
+  return Object.entries(props).sort(([, a], [, b]) => {
+    if (a.isRequired && !b.isRequired) return -1
+    if (!a.isRequired && b.isRequired) return 1
+    if (a.defaultValue && !b.defaultValue) return -1
+    if (!a.defaultValue && b.defaultValue) return 1
+    return 0
+  })
+}
+
 export const PropTable = async (props: Props) => {
   const { component, part } = props
   const json = await fetch(
@@ -20,7 +36,7 @@ export const PropTable = async (props: Props) => {
 
   return (
     <Box divideY="0.5px">
-      {Object.entries(propTypes.props).map(([key, value]: any[]) => (
+      {sortEntries(propTypes.props).map(([key, value]) => (
         <Box py="4" key={key}>
           <HStack>
             <Box>{key}</Box>
@@ -28,8 +44,12 @@ export const PropTable = async (props: Props) => {
             <Code variant="outline" lineClamp="1" colorPalette="teal">
               {value.type}
             </Code>
+            {value.defaultValue && (
+              <Code whiteSpace="nowrap">
+                default: {stringify(value.defaultValue)}
+              </Code>
+            )}
           </HStack>
-          {/* <div>{value.defaultValue}</div> */}
           <Box color="fg.subtle" mt="2">
             {value.description}
           </Box>
