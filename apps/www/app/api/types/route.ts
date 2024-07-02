@@ -2,9 +2,7 @@ import { findUpSync } from "find-up"
 import { readdir } from "fs/promises"
 import type { NextRequest } from "next/server"
 import { dirname, extname, resolve } from "path/posix"
-
-const toCamelCase = (str: string) =>
-  str.replace(/-([a-z])/g, (g) => g[1].toUpperCase())
+import { camelCase } from "scule"
 
 const isFileType = (file: string) => extname(file).startsWith(".ts")
 
@@ -25,7 +23,7 @@ export const GET = async (_req: NextRequest) => {
 
   const componentList = (await readdir(componentPath, { withFileTypes: false }))
     .filter((v) => !isFileType(v))
-    .map(toCamelCase)
+    .map(camelCase)
 
   return Response.json(componentList)
 }

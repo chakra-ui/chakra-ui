@@ -7,6 +7,7 @@ export const codeRecipe = defineRecipe({
   base: {
     display: "inline-block",
     fontFamily: "mono",
+    colorPalette: "gray",
   },
   variants,
   defaultVariants,
