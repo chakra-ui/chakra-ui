@@ -12,7 +12,7 @@ import {
 import { CheckCircleIcon, InfoIcon, WarningIcon } from "../icons"
 
 interface StatusProps {
-  status: "info" | "warning" | "success" | "error"
+  status: "info" | "warning" | "success" | "error" | "neutral"
 }
 
 export const [AlertStatusProvider, useAlertStatusContext] =
@@ -79,6 +79,7 @@ const iconMap = {
   warning: WarningIcon,
   success: CheckCircleIcon,
   error: WarningIcon,
+  neutral: InfoIcon,
 }
 
 export interface AlertIndicatorProps extends HTMLChakraProps<"span"> {}
