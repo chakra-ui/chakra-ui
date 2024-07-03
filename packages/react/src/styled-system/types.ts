@@ -288,6 +288,7 @@ export interface SystemContext {
   sva: SlotRecipeCreatorFn
   getRecipe(key: string, fallback?: any): any
   getSlotRecipe(key: string, fallback?: any): any
+  hasRecipe(key: string): boolean
   token: TokenFn
 }
 

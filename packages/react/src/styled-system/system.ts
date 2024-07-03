@@ -158,6 +158,10 @@ export function createSystem(config: SystemConfig): SystemContext {
     return theme.slotRecipes?.[key] ?? fallback
   }
 
+  function hasRecipe(key: string) {
+    return !!theme.recipes?.[key] || !!theme.slotRecipes?.[key]
+  }
+
   return {
     $$chakra: true,
     _config: config,
@@ -177,6 +181,7 @@ export function createSystem(config: SystemConfig): SystemContext {
     sva,
     getRecipe,
     getSlotRecipe,
+    hasRecipe,
   }
 }
 

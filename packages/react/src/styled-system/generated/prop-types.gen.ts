@@ -2,7 +2,6 @@ import type { CssProperties } from "../css.types"
 import type { Tokens } from "./token.gen"
 
 type WithColorOpacityModifier<T> = T extends string ? `${T}/${string}` : T
-
 type ImportantMark = "!" | "!important"
 type WhitespaceImportant = ` ${ImportantMark}`
 type Important = ImportantMark | WhitespaceImportant
@@ -10,7 +9,6 @@ type Important = ImportantMark | WhitespaceImportant
 type WithImportant<T> = T extends string ? `${T}${Important}` & { __important?: true } : T
 
 export type WithEscapeHatch<T> = T | `[${string}]` | WithColorOpacityModifier<T> | WithImportant<T>
-
 // eslint-disable-next-line
 export type OnlyKnown<Value> = Value extends boolean ? Value : Value extends `${infer _}` ? Value : never
 

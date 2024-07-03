@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "pnpm tsx scripts/composition.ts",
-    "prebuild": "pnpm codegen"
+    "generate:composition": "pnpm tsx scripts/composition.ts",
+    "generate:types": "pnpm tsx scripts/types.ts",
+    "prebuild": "pnpm generate:composition && pnpm generate:types"
   },
   "dependencies": {
     "@ark-ui/react": "3.4.0",

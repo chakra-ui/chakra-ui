@@ -9,7 +9,7 @@ import {
   type UnstyledProp,
   chakra,
   useRecipe,
-} from "../styled-system"
+} from "../../styled-system"
 
 export interface RadiomarkProps
   extends HTMLChakraProps<"span", RecipeProps<"radiomark">>,
