@@ -36,11 +36,13 @@ export function getRecipeProps(system: SystemContext, key: string) {
 
   const recipe = _recipe ? system.cva(config) : system.sva(config)
 
-  result["colorPalette"] = {
-    defaultValue: "gray",
-    type: colorPaletteType,
-    isRequired: false,
-    description: "The color palette of the component",
+  if (Object.keys(recipe.variantMap).length) {
+    result["colorPalette"] = {
+      defaultValue: "gray",
+      type: colorPaletteType,
+      isRequired: false,
+      description: "The color palette of the component",
+    }
   }
 
   Object.keys(recipe.variantMap).forEach((variant) => {
