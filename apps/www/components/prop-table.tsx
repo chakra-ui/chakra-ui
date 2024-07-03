@@ -1,4 +1,5 @@
 import { Badge, Box, Code, HStack } from "@chakra-ui/react"
+import fetch from "node-fetch"
 import { kebabCase } from "scule"
 
 interface Props {
@@ -22,11 +23,15 @@ const sortEntries = (props: Record<string, any>) => {
   })
 }
 
+const BASE_URL = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000"
+
 export const PropTable = async (props: Props) => {
   const { component, part } = props
-  const json = await fetch(
-    `http://localhost:3001/api/types/${kebabCase(component)}`,
-  ).then((res) => res.json())
+
+  const prom = fetch(`${BASE_URL}/api/types/${kebabCase(component)}`)
+  const json = await prom.then((res) => res.json() as Promise<any>)
 
   const propTypes = part ? json[part] : json
 
