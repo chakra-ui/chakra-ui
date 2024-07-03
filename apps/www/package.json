@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate:composition": "pnpm tsx scripts/composition.ts",
-    "generate:types": "pnpm tsx scripts/types.ts",
+    "generate:types": "pnpm tsx scripts/typedocs.ts",
     "prebuild": "pnpm generate:composition && pnpm generate:types"
   },
   "dependencies": {
