@@ -26,7 +26,7 @@ function getColorPaletteType(system: SystemContext) {
   return toLiteralStringType(Array.from(system.tokens.colorPaletteMap.keys()))
 }
 
-export function getRecipeProps(system: SystemContext, key: string) {
+export function getRecipeTypes(system: SystemContext, key: string) {
   const result: PropDocRecord = {}
 
   const colorPaletteType = getColorPaletteType(system)

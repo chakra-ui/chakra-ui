@@ -1,0 +1,21 @@
+{
+  "Checkmark": {
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkmark is checked"
+      },
+      "indeterminate": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkmark is indeterminate"
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkmark is disabled"
+      }
+    }
+  }
+}

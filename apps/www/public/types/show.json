@@ -1,0 +1,16 @@
+{
+  "Show": {
+    "props": {
+      "when": {
+        "type": "T | null | undefined",
+        "isRequired": false,
+        "description": "If `true`, it'll render the `children` prop"
+      },
+      "fallback": {
+        "type": "React.ReactNode",
+        "isRequired": false,
+        "description": "The fallback content to render if `when` is `false`"
+      }
+    }
+  }
+}

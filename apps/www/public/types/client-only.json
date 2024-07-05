@@ -1,0 +1,10 @@
+{
+  "ClientOnly": {
+    "props": {
+      "fallback": {
+        "type": "React.ReactNode",
+        "isRequired": false
+      }
+    }
+  }
+}

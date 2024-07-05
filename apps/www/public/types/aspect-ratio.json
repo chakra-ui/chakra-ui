@@ -1,0 +1,11 @@
+{
+  "AspectRatio": {
+    "props": {
+      "ratio": {
+        "type": "ConditionalValue<number>",
+        "isRequired": false,
+        "description": "The aspect ratio of the Box. Common values are:\n\n`21/9`, `16/9`, `9/16`, `4/3`, `1.85/1`"
+      }
+    }
+  }
+}

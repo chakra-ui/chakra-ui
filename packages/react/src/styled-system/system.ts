@@ -158,8 +158,16 @@ export function createSystem(config: SystemConfig): SystemContext {
     return theme.slotRecipes?.[key] ?? fallback
   }
 
+  function isRecipe(key: string) {
+    return Object.hasOwnProperty.call(theme.recipes ?? {}, key)
+  }
+
+  function isSlotRecipe(key: string) {
+    return Object.hasOwnProperty.call(theme.slotRecipes ?? {}, key)
+  }
+
   function hasRecipe(key: string) {
-    return !!theme.recipes?.[key] || !!theme.slotRecipes?.[key]
+    return isRecipe(key) || isSlotRecipe(key)
   }
 
   return {
@@ -182,6 +190,8 @@ export function createSystem(config: SystemConfig): SystemContext {
     getRecipe,
     getSlotRecipe,
     hasRecipe,
+    isRecipe,
+    isSlotRecipe,
   }
 }
 

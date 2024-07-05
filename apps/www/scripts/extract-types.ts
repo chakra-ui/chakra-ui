@@ -1,20 +1,16 @@
-import { ensureDirSync } from "fs-extra"
-import { existsSync } from "node:fs"
-import { readFile, writeFile } from "node:fs/promises"
+import { readFile } from "node:fs/promises"
 import { dirname } from "node:path"
-import { join } from "node:path/posix"
-import { resolve } from "path/posix"
 import ts, { readConfigFile } from "typescript"
 
-interface ComponentTypeInfo {
+interface Prop {
   type: string
   defaultValue?: string | boolean | null
   isRequired: boolean
   description?: string
 }
 
-interface ComponentTypeProperties {
-  [component: string]: ComponentTypeInfo
+interface PropRecord {
+  [component: string]: Prop
 }
 
 interface TypeSearchOptions {
@@ -44,10 +40,10 @@ async function extractPropertiesOfTypeName(
       new RegExp(regexSearchTerm).test(statement.name.getText()),
   )
 
-  const results: Record<string, ComponentTypeProperties> = {}
+  const results: Record<string, PropRecord> = {}
 
   for (const typeStatement of typeStatements) {
-    const properties: ComponentTypeProperties = {}
+    const properties: PropRecord = {}
     const type = typeChecker.getTypeAtLocation(typeStatement)
 
     for (const property of type.getProperties()) {
@@ -120,7 +116,7 @@ function createTypeSearch(
   return async (
     searchTerm: Parameters<typeof extractPropertiesOfTypeName>[0],
   ) => {
-    const results: Record<string, ComponentTypeProperties> = {}
+    const results: Record<string, PropRecord> = {}
     for (const sourceFile of sourceFiles) {
       const typeInfo = await extractPropertiesOfTypeName(
         searchTerm,
@@ -178,9 +174,7 @@ function shouldIgnoreProperty(property: ts.Symbol) {
   return isExternal || isExcludedByName
 }
 
-async function extractDirectory(file: string) {
-  if (!existsSync(file)) return {}
-
+export async function extractTypes(file: string) {
   const content = await readFile(file, "utf8")
   const searchType = createTypeSearch("tsconfig.json", { shouldIgnoreProperty })
 
@@ -193,55 +187,6 @@ async function extractDirectory(file: string) {
     .reduce((acc, value) => ({ ...acc, ...value }), {})
 }
 
-const layoutComponents = [
-  "aspect-ratio",
-  "bleed",
-  "box",
-  "center",
-  "container",
-  "flex",
-  "float",
-  "grid",
-  "group",
-  "highlight",
-  "portal",
-  "wrap",
-  "for",
-  "client-only",
-  "show",
-  "checkmark",
-  "radiomark",
-]
-
-const main = async () => {
-  const componentPath = resolve("../../packages/react/src/components")
-
-  const dirs = layoutComponents
-    .flatMap((dir) => join(componentPath, dir, "index.ts"))
-    .flat()
-
-  const result: ComponentTypeProperties = {}
-
-  await Promise.all(
-    dirs.map(async (dir) => {
-      const typeExports = await extractDirectory(dir)
-      Object.assign(result, typeExports)
-    }),
-  )
-
-  ensureDirSync("public/types")
-
-  await writeFile(
-    "public/types/components.json",
-    JSON.stringify(result, null, 2),
-  )
-}
-
-main().catch((err) => {
-  console.error(err.message)
-  process.exit(1)
-})
-
 function log(...args: any[]) {
-  console.log("[props-docs]: ", ...args)
+  // console.log("[props-docs]: ", ...args)
 }

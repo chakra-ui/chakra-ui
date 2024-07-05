@@ -20,7 +20,7 @@ export interface BleedProps extends HTMLChakraProps<"div"> {
 }
 
 const valueFn = (v: string) =>
-  isCssUnit(v) || isCssVar(v) ? v : `space.${v}, ${v}`
+  isCssUnit(v) || isCssVar(v) ? v : `spacing.${v}, ${v}`
 
 export const Bleed = forwardRef<HTMLDivElement, BleedProps>(
   function Bleed(props, ref) {

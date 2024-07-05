@@ -1,5 +1,5 @@
 import { Badge, Box, Code, HStack } from "@chakra-ui/react"
-import fetch from "node-fetch"
+import { readFile } from "fs/promises"
 import { kebabCase } from "scule"
 
 interface Props {
@@ -23,15 +23,15 @@ const sortEntries = (props: Record<string, any>) => {
   })
 }
 
-const BASE_URL = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000"
-
 export const PropTable = async (props: Props) => {
   const { component, part } = props
 
-  const prom = fetch(`${BASE_URL}/api/types/${kebabCase(component)}`)
-  const json = await prom.then((res) => res.json() as Promise<any>)
+  const fileContent = await readFile(
+    `public/types/${kebabCase(component)}.json`,
+    "utf-8",
+  )
+
+  const json = JSON.parse(fileContent)
 
   const propTypes = part ? json[part] : json
 
@@ -46,7 +46,7 @@ export const PropTable = async (props: Props) => {
           <HStack>
             <Box>{key}</Box>
             {value.isRequired && <Badge colorPalette="red">required</Badge>}
-            <Code variant="outline" lineClamp="1" colorPalette="teal">
+            <Code variant="surface" lineClamp="1" colorPalette="teal">
               {value.type}
             </Code>
             {value.defaultValue && (

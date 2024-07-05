@@ -1,0 +1,51 @@
+{
+  "FocusLock": {
+    "props": {
+      "initialFocusRef": {
+        "type": "React.RefObject<FocusableElement>",
+        "isRequired": false,
+        "description": "`ref` of the element to receive focus initially"
+      },
+      "finalFocusRef": {
+        "type": "React.RefObject<FocusableElement>",
+        "isRequired": false,
+        "description": "`ref` of the element to return focus to when `FocusLock`\nunmounts"
+      },
+      "contentRef": {
+        "type": "React.RefObject<HTMLElement>",
+        "isRequired": false,
+        "description": "The `ref` of the wrapper for which the focus-lock wraps"
+      },
+      "restoreFocus": {
+        "type": "boolean",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "If `true`, focus will be restored to the element that\ntriggered the `FocusLock` once it unmounts"
+      },
+      "disabled": {
+        "type": "boolean",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "If `true`, focus trapping will be disabled"
+      },
+      "autoFocus": {
+        "type": "boolean",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "If `true`, the first focusable element within the `children`\nwill auto-focused once `FocusLock` mounts"
+      },
+      "persistentFocus": {
+        "type": "boolean",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "If `true`, disables text selections inside, and outside focus lock"
+      },
+      "lockFocusAcrossFrames": {
+        "type": "boolean",
+        "defaultValue": false,
+        "isRequired": false,
+        "description": "Enables aggressive focus capturing within iframes.\n- If `true`: keep focus in the lock, no matter where lock is active\n- If `false`:  allows focus to move outside of iframe"
+      }
+    }
+  }
+}
