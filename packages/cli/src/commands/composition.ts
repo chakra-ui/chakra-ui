@@ -1,6 +1,7 @@
 import * as p from "@clack/prompts"
 import { boxen } from "@visulima/boxen"
 import { Command } from "commander"
+import createDebug from "debug"
 import { existsSync } from "fs"
 import { writeFile } from "fs/promises"
 import { join } from "node:path/posix"
@@ -10,17 +11,19 @@ import { fetchComposition, fetchCompositions } from "../utils/fetch"
 import { getFileDependencies } from "../utils/get-file-dependencies"
 import * as io from "../utils/io"
 import { runCommand } from "../utils/run-command"
-import * as S from "../utils/schema"
+import { type CompositionFile, addCommandFlagsSchema } from "../utils/schema"
 import { uniq } from "../utils/shared"
 import { tasks } from "../utils/tasks"
 
-async function transformToJsx(item: S.CompositionFile) {
+const debug = createDebug("chakra:composition")
+
+async function transformToJsx(item: CompositionFile) {
   const content = await convertTsxToJsx(item.file.content)
   item.file.content = content
   item.file.name = item.file.name.replace(".tsx", ".jsx")
 }
 
-function printFileSync(item: S.CompositionFile) {
+function printFileSync(item: CompositionFile) {
   const boxText = boxen(item.file.content, {
     headerText: `${item.file.name}\n`,
     borderStyle: "none",
@@ -43,8 +46,10 @@ export const CompositionCommand = new Command("composition")
       .option("--all", "Add all compositions")
       .option("--jsx", "Emit JSX files instead of TSX")
       .action(async (components: string[], flags: unknown) => {
-        const { dryRun, outdir, jsx, all } =
-          S.addCommandFlagsSchema.parse(flags)
+        debug("selected components", components)
+
+        const { dryRun, outdir, jsx, all } = addCommandFlagsSchema.parse(flags)
+        debug("flags", { dryRun, outdir, jsx, all })
 
         const items = await fetchCompositions()
 
@@ -75,6 +80,8 @@ export const CompositionCommand = new Command("composition")
           components = items.map((item) => item.id)
         }
 
+        debug("resolved components", components)
+
         if (components.length === 0) {
           p.log.info("No compositions selected. Exiting...")
           process.exit(0)
@@ -94,6 +101,9 @@ export const CompositionCommand = new Command("composition")
             return comp?.npmDependencies || []
           }),
         )
+
+        debug("fileDependencies", fileDependencies)
+        debug("npmDependencies", npmDependencies)
 
         await tasks([
           {
