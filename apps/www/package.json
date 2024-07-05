@@ -9,7 +9,7 @@
     "lint": "next lint",
     "generate:composition": "pnpm tsx scripts/composition.ts",
     "generate:types": "pnpm tsx scripts/generate-types.ts",
-    "prebuild": "pnpm generate:composition && pnpm generate:types"
+    "prebuild": "pnpm generate:composition"
   },
   "dependencies": {
     "@ark-ui/react": "3.4.0",
