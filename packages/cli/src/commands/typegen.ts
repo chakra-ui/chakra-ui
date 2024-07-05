@@ -3,6 +3,7 @@ import * as p from "@clack/prompts"
 import { Command } from "commander"
 import createDebug from "debug"
 import { writeFileSync } from "fs"
+import { resolve } from "path"
 import { generateCondition } from "../utils/generate-conditions"
 import { generatePropTypes } from "../utils/generate-prop-types"
 import { generateRecipe } from "../utils/generate-recipe"
@@ -39,7 +40,8 @@ export const TypegenCommand = new Command("typegen")
     let result = await io.read(source)
 
     if (process.env.DEBUG) {
-      debug("writing bundled source to:", "chakra-config.json")
+      const configPath = resolve("chakra-config.json")
+      debug("writing bundled source to", configPath)
       const config = (result as any).mod._config
       writeFileSync("chakra-config.json", JSON.stringify(config, null, 2))
     }
@@ -67,7 +69,7 @@ export const TypegenCommand = new Command("typegen")
 
 function codegen(sys: SystemContext) {
   io.ensureDir(io.basePath)
-  debug("running codegen", io.basePath)
+  debug("writing codegen to", io.basePath)
 
   return tasks([
     {
