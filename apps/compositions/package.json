@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "react-lorem-component": "0.13.0"
   }
 }
