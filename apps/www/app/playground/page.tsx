@@ -40,10 +40,10 @@ import { InputWithField } from "compositions/examples/input-with-field"
 import { InputWithLeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
 import { InputWithLeftElement } from "compositions/examples/input-with-left-element"
 import { MenuBasic } from "compositions/examples/menu-basic"
-import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
 import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
+import { MenuWithSubmenu } from "compositions/examples/menu-with-submenu"
 import { NativeSelectBasic } from "compositions/examples/native-select-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
@@ -266,7 +266,7 @@ export default function Page() {
           <MenuWithRadioItems />
           <MenuBasic />
           <MenuWithCommand />
-          <MenuNested />
+          <MenuWithSubmenu />
         </Playground.SectionContent>
       </Playground.Section>
 
