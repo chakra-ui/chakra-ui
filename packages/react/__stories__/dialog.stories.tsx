@@ -103,7 +103,7 @@ export const InsideScroll = () => {
             </IconButton>
           </Dialog.CloseTrigger>
           <Dialog.Body>
-            <Lorem size={5} />
+            <Lorem count={5} />
           </Dialog.Body>
           <Dialog.Footer>
             <Button>Close</Button>
@@ -130,7 +130,7 @@ export const OutsideScroll = () => {
             </IconButton>
           </Dialog.CloseTrigger>
           <Dialog.Body>
-            <Lorem size={5} />
+            <Lorem count={5} />
           </Dialog.Body>
           <Dialog.Footer>
             <Button>Close</Button>

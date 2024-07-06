@@ -29,7 +29,17 @@ import { CollapsibleBasic } from "compositions/examples/collapsible-basic"
 import { CollapsibleLazyMounted } from "compositions/examples/collapsible-lazy-mounted"
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
+import { DialogNested } from "compositions/examples/dialog-nested"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
+import { DialogWithDataList } from "compositions/examples/dialog-with-datalist"
+import {
+  DialogWithFinalFocus,
+  DialogWithInitialFocus,
+} from "compositions/examples/dialog-with-focus"
+import {
+  DialogWithInsideScroll,
+  DialogWithOutsideScroll,
+} from "compositions/examples/dialog-with-scroll"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
@@ -40,7 +50,7 @@ import { InputWithField } from "compositions/examples/input-with-field"
 import { InputWithLeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
 import { InputWithLeftElement } from "compositions/examples/input-with-left-element"
 import { MenuBasic } from "compositions/examples/menu-basic"
-import { MenuNested } from "compositions/examples/menu-nested"
+import { Menu } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
 import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
@@ -212,6 +222,12 @@ export default function Page() {
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
         <Playground.SectionContent>
           <DialogSizes />
+          <DialogWithDataList />
+          <DialogWithInsideScroll />
+          <DialogWithOutsideScroll />
+          <DialogNested />
+          <DialogWithInitialFocus />
+          <DialogWithFinalFocus />
         </Playground.SectionContent>
       </Playground.Section>
 
