@@ -1,4 +1,4 @@
-import { PageProps } from "@/.next/types/app/page"
+import { PageProps } from "@/.next/types/app/layout"
 import {
   ExampleCode,
   ExampleCodeWrapper,
@@ -40,6 +40,18 @@ const tree = [
       { name: "Basic", path: "select-basic" },
       { name: "With Avatar", path: "select-with-avatar" },
       { name: "With Overflow", path: "select-with-overflow" },
+    ],
+  },
+  {
+    name: "Menu",
+    items: [
+      { name: "Basic", path: "menu-basic" },
+      { name: "Nested", path: "menu-nested" },
+      { name: "With Group", path: "menu-with-group" },
+      { name: "With Icon and Command", path: "menu-with-icon-and-command" },
+      { name: "With Links", path: "menu-with-links" },
+      { name: "With Submenu", path: "menu-with-submenu" },
+      { name: "With Submenu - Dynamic", path: "menu-with-submenu-dynamic" },
     ],
   },
 ]
