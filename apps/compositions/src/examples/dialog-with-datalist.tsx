@@ -1,12 +1,4 @@
-import {
-  Badge,
-  Box,
-  HStack,
-  Label,
-  Stack,
-  Textarea,
-  VStack,
-} from "@chakra-ui/react"
+import { Badge, HStack, Label, Textarea, VStack } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
 import { Button } from "compositions/ui/button"
 import { DataListItem, DataListRoot } from "compositions/ui/data-list"
