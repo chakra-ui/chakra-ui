@@ -10,11 +10,11 @@ import {
   DialogTrigger,
 } from "compositions/ui/dialog"
 
-export const DialogBasic = () => {
+export const DialogWithMotionPreset = () => {
   return (
-    <DialogRoot>
+    <DialogRoot motionPreset="slide-in-bottom">
       <DialogTrigger>
-        <Button variant="outline">Open Dialog</Button>
+        <Button variant="outline">Slide in Bottom</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

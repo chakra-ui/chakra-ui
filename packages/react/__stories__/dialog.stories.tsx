@@ -1,7 +1,6 @@
 import * as React from "react"
 import { HiX } from "react-icons/hi"
-//@ts-ignore
-import Lorem from "react-lorem-component"
+import Lorem from "react-lorem-ipsum"
 import { Box, Button, Dialog, IconButton, Input, Portal } from "../src"
 
 export default {
@@ -103,7 +102,7 @@ export const InsideScroll = () => {
             </IconButton>
           </Dialog.CloseTrigger>
           <Dialog.Body>
-            <Lorem count={5} />
+            <Lorem p={5} />
           </Dialog.Body>
           <Dialog.Footer>
             <Button>Close</Button>
@@ -130,7 +129,7 @@ export const OutsideScroll = () => {
             </IconButton>
           </Dialog.CloseTrigger>
           <Dialog.Body>
-            <Lorem count={5} />
+            <Lorem p={5} />
           </Dialog.Body>
           <Dialog.Footer>
             <Button>Close</Button>
@@ -158,7 +157,7 @@ export const WithContentOverflow = () => {
             </IconButton>
           </Dialog.CloseTrigger>
           <Dialog.Body>
-            <Lorem count={30} />
+            <Lorem p={30} />
           </Dialog.Body>
           <Dialog.Footer>
             <Dialog.CloseTrigger asChild>
