@@ -1,9 +1,8 @@
-import { Badge, HStack, Label, Textarea, VStack } from "@chakra-ui/react"
+import { Badge, HStack, Textarea, VStack } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
 import { Button } from "compositions/ui/button"
 import { DataListItem, DataListRoot } from "compositions/ui/data-list"
 import {
-  DialogBackdrop,
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
@@ -16,9 +15,7 @@ import {
 export const DialogWithDataList = () => {
   return (
     <VStack alignItems="start">
-      <Label>With Datalist</Label>
       <DialogRoot>
-        <DialogBackdrop />
         <DialogTrigger>
           <Button variant="outline">Open Dialog</Button>
         </DialogTrigger>

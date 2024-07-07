@@ -9,7 +9,7 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(
   function CloseButton(props, ref) {
     return (
       <ChakraIconButton variant="ghost" aria-label="Close" ref={ref} {...props}>
-        <LuX />
+        {props.children ?? <LuX />}
       </ChakraIconButton>
     )
   },

@@ -81,6 +81,7 @@ export const MenuItemGroup = (props: ChakraMenu.ItemGroupProps) => {
 export const MenuRoot = ChakraMenu.Root
 export const MenuSeparator = ChakraMenu.Separator
 export const MenuItem = ChakraMenu.Item
+export const MenuItemCommand = ChakraMenu.ItemCommand
 
 export interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
   startIcon?: React.ReactNode
