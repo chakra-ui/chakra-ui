@@ -37,6 +37,11 @@ import { DialogWithInitialFocus } from "compositions/examples/dialog-with-initia
 import { DialogWithInsideScroll } from "compositions/examples/dialog-with-inside-scroll"
 import { DialogWithOutsideScroll } from "compositions/examples/dialog-with-outside-scroll"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
+import { EditableBasic } from "compositions/examples/editable-basic"
+import { EditableControlled } from "compositions/examples/editable-controlled"
+import { EditableDisabled } from "compositions/examples/editable-disabled"
+import { EditableWithDoubleClick } from "compositions/examples/editable-with-double-click"
+import { EditableWithTextarea } from "compositions/examples/editable-with-textarea"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { HoverCardBasic } from "compositions/examples/hovercard-basic"
@@ -554,6 +559,19 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <EmptyStateWithAction />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="editable">
+          Editable
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <EditableBasic />
+          <EditableWithTextarea />
+          <EditableControlled />
+          <EditableWithDoubleClick />
+          <EditableDisabled />
         </Playground.SectionContent>
       </Playground.Section>
 
