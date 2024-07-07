@@ -1,7 +1,8 @@
 "use client"
 
-import { CheckboxGroup, HStack, Stack, Text } from "@chakra-ui/react"
+import { HStack, Stack, Text } from "@chakra-ui/react"
 import {
+  CheckboxCardGroup,
   CheckboxCardItem,
   CheckboxCardLabel,
 } from "compositions/ui/checkbox-card"
@@ -21,7 +22,7 @@ const states = [
 
 export const CheckboxCardStates = () => {
   return (
-    <CheckboxGroup>
+    <CheckboxCardGroup>
       <HStack mt="2">
         {states.map(({ label, description, ...states }, index) => (
           <CheckboxCardItem key={index} value={label} {...states} flex="1">
@@ -32,6 +33,6 @@ export const CheckboxCardStates = () => {
           </CheckboxCardItem>
         ))}
       </HStack>
-    </CheckboxGroup>
+    </CheckboxCardGroup>
   )
 }
