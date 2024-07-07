@@ -4,6 +4,7 @@ export {
   ClipboardRoot,
   ClipboardTrigger,
   ClipboardInput,
+  ClipboardLabel,
   useClipboardStyles,
 } from "./clipboard"
 
@@ -11,6 +12,7 @@ export type {
   ClipboardControlProps,
   ClipboardIndicatorProps,
   ClipboardRootProps,
+  ClipboardLabelProps,
   ClipboardTriggerProps,
   ClipboardInputProps,
 } from "./clipboard"
