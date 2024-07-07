@@ -112,21 +112,35 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Table">Table</Playground.SectionTitle>
         <Playground.SectionContent>
-          <TableBasic />
-          <TableWithColumnGroup />
-          <TableWithOverflow />
-          <TableWithSelection />
-          <TableWithStickyColumn />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <TableBasic /> },
+              {
+                label: "w/ Column Group",
+                component: <TableWithColumnGroup />,
+              },
+              { label: "w/ Overflow", component: <TableWithOverflow /> },
+              { label: "w/ Selection", component: <TableWithSelection /> },
+              {
+                label: "w/ Sticky Column",
+                component: <TableWithStickyColumn />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Steps">Steps</Playground.SectionTitle>
         <Playground.SectionContent gap="10">
-          <StepsBasic />
-          <StepsVertical />
-          <StepsWithDescription />
-          <StepsWithIcon />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <StepsBasic /> },
+              { label: "vertical", component: <StepsVertical /> },
+              { label: "w/ description", component: <StepsWithDescription /> },
+              { label: "w/ icon", component: <StepsWithIcon /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -299,8 +313,15 @@ export default function Page() {
           Breadcrumb
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <BreadcrumbBasic />
-          <BreadcrumbWithSeparator />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <BreadcrumbBasic /> },
+              {
+                label: "w/ separator",
+                component: <BreadcrumbWithSeparator />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -389,17 +410,25 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="avatar">Avatar</Playground.SectionTitle>
         <Playground.SectionContent>
-          <AvatarWithBadge />
-          <AvatarWithColors />
-          <AvatarGrouped />
+          <Playground.DemoList
+            items={[
+              { label: "w/ badge", component: <AvatarWithBadge /> },
+              { label: "w/ colors", component: <AvatarWithColors /> },
+              { label: "Grouped", component: <AvatarGrouped /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="alert">Alert</Playground.SectionTitle>
         <Playground.SectionContent>
-          <AlertWithStatus />
-          <AlertWithSpinner />
+          <Playground.DemoList
+            items={[
+              { label: "w/ status", component: <AlertWithStatus /> },
+              { label: "w/ spinner", component: <AlertWithSpinner /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -440,20 +469,37 @@ export default function Page() {
           Checkbox
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <CheckboxWithStates />
-          <CheckboxWithIndeterminate />
-          <CheckboxWithCustomIcon />
-          <CheckboxWithColors />
+          <Playground.DemoList
+            items={[
+              { label: "w/ states", component: <CheckboxWithStates /> },
+              {
+                label: "w/ indeterminate",
+                component: <CheckboxWithIndeterminate />,
+              },
+              {
+                label: "w/ custom Icon",
+                component: <CheckboxWithCustomIcon />,
+              },
+              {
+                label: "w/ color palettes",
+                component: <CheckboxWithColors />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="button">Button</Playground.SectionTitle>
         <Playground.SectionContent>
-          <ButtonWithIcons />
-          <ButtonWithLoading />
-          <ButtonIcons />
-          <ButtonWithColors />
+          <Playground.DemoList
+            items={[
+              { label: "w/ icons", component: <ButtonIcons /> },
+              { label: "w/ loading", component: <ButtonWithLoading /> },
+              { label: "w/ colors", component: <ButtonWithColors /> },
+              { label: "w/ icons", component: <ButtonWithIcons /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -569,11 +615,15 @@ export default function Page() {
           Editable
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <EditableBasic />
-          <EditableWithTextarea />
-          <EditableControlled />
-          <EditableWithDoubleClick />
-          <EditableDisabled />
+          <Playground.DemoList
+            items={[
+              { label: "Basic", component: <EditableBasic /> },
+              { label: "Controlled", component: <EditableControlled /> },
+              { label: "Double Click", component: <EditableWithDoubleClick /> },
+              { label: "Disabled", component: <EditableDisabled /> },
+              { label: "Textarea", component: <EditableWithTextarea /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -582,26 +632,18 @@ export default function Page() {
           File Button
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <Stack>
-            <Text>Basic</Text>
-            <FileUploadBasic />
-          </Stack>
-          <Stack>
-            <Text>Accepted Types</Text>
-            <FileUploadAcceptedFiles />
-          </Stack>
-          <Stack>
-            <Text>Media Capture</Text>
-            <FileUploadMediaCapture />
-          </Stack>
-          <Stack>
-            <Text>Multiple</Text>
-            <FileUploadMultiple />
-          </Stack>
-          <Stack>
-            <Text>With Dropzone</Text>
-            <FileUploadWithDropzone />
-          </Stack>
+          <Playground.DemoList
+            items={[
+              { label: "Basic", component: <FileUploadBasic /> },
+              {
+                label: "Accepted Types",
+                component: <FileUploadAcceptedFiles />,
+              },
+              { label: "Media Capture", component: <FileUploadMediaCapture /> },
+              { label: "Multiple", component: <FileUploadMultiple /> },
+              { label: "With Dropzone", component: <FileUploadWithDropzone /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 

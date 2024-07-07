@@ -11,7 +11,6 @@ export const CheckboxWithColors = () => {
           key={colorPalette}
           direction="row"
           gap="10"
-          px="4"
           width="full"
         >
           <Text minW="8ch">{colorPalette}</Text>

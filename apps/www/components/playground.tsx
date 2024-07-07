@@ -58,7 +58,31 @@ const Table = chakra("table", {
 })
 
 const SectionContent = (props: StackProps) => {
-  return <Stack gap="5" {...props} />
+  return <Stack gap="8" {...props} />
 }
 
-export { Section, SectionTitle, Table, SectionContent }
+interface DemoListProps {
+  items: Array<{
+    label: string
+    component: JSX.Element
+    align?: StackProps["align"]
+  }>
+}
+
+const DemoList = (props: DemoListProps) => {
+  const { items } = props
+  return (
+    <>
+      {items.map(({ label, component, align }) => (
+        <Stack key={label} align={align || "flex-start"} gap="5">
+          <Text color="fg.subtle" fontWeight="medium">
+            {label}
+          </Text>
+          {component}
+        </Stack>
+      ))}
+    </>
+  )
+}
+
+export { Section, SectionTitle, Table, SectionContent, DemoList }

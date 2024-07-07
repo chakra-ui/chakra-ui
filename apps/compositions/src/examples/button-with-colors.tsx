@@ -6,13 +6,7 @@ export const ButtonWithColors = () => {
   return (
     <Stack gap="2" align="flex-start">
       {colorPalettes.map((colorPalette) => (
-        <Stack
-          align="center"
-          key={colorPalette}
-          direction="row"
-          gap="10"
-          px="4"
-        >
+        <Stack align="center" key={colorPalette} direction="row" gap="10">
           <Text minW="8ch">{colorPalette}</Text>
           <Button colorPalette={colorPalette}>Button</Button>
           <Button colorPalette={colorPalette} variant="outline">

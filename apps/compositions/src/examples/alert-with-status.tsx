@@ -1,4 +1,4 @@
-import { For, Stack, Text } from "@chakra-ui/react"
+import { For, HStack, Stack, Text } from "@chakra-ui/react"
 import { Alert } from "compositions/ui/alert"
 
 export const AlertWithStatus = () => {
@@ -6,14 +6,7 @@ export const AlertWithStatus = () => {
     <Stack gap="2" width="full">
       <For each={["info", "warning", "success", "error"]}>
         {(status) => (
-          <Stack
-            align="center"
-            key={status}
-            direction="row"
-            gap="10"
-            px="4"
-            width="full"
-          >
+          <HStack key={status} gap="10" width="full">
             <Text minW="8ch">{status}</Text>
             <Stack flex="1">
               <Alert status={status} title="This is the alert title" />
@@ -21,7 +14,7 @@ export const AlertWithStatus = () => {
                 This is the alert description
               </Alert>
             </Stack>
-          </Stack>
+          </HStack>
         )}
       </For>
     </Stack>

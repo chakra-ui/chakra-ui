@@ -1,28 +1,18 @@
 "use client"
 
-import { Box, Editable, Heading, Label, VStack } from "@chakra-ui/react"
-import React from "react"
+import { Editable } from "@chakra-ui/react"
+import { useState } from "react"
 
 export const EditableControlled = () => {
-  const [name, setName] = React.useState("")
-
+  const [name, setName] = useState("")
   return (
-    <VStack alignItems="start">
-      <Label>Controlled</Label>
-      <Box>
-        <Heading>Name State=[{name}]</Heading>
-        <Editable.Root
-          value={name}
-          onValueChange={(changes) => {
-            console.log("onChange called with ", changes.value)
-            setName(changes.value)
-          }}
-          placeholder="Click to edit"
-        >
-          <Editable.Preview />
-          <Editable.Input />
-        </Editable.Root>
-      </Box>
-    </VStack>
+    <Editable.Root
+      value={name}
+      onValueChange={(e) => setName(e.value)}
+      placeholder="Click to edit"
+    >
+      <Editable.Preview />
+      <Editable.Input />
+    </Editable.Root>
   )
 }
