@@ -1,0 +1,16 @@
+{
+  "Radiomark": {
+    "props": {
+      "checked": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkmark is checked"
+      },
+      "disabled": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Whether the checkmark is disabled"
+      }
+    }
+  }
+}

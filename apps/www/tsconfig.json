@@ -13,6 +13,7 @@
     "jsx": "preserve",
     "incremental": true,
     "customConditions": ["source"],
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -30,6 +31,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    ".velite",
     ".next/types/**/*.ts",
     "../compositions"
   ],

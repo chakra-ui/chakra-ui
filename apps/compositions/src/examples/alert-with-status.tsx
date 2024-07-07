@@ -3,7 +3,7 @@ import { Alert } from "compositions/ui/alert"
 
 export const AlertWithStatus = () => {
   return (
-    <Stack gap="2" align="flex-start">
+    <Stack gap="2" width="full">
       <For each={["info", "warning", "success", "error"]}>
         {(status) => (
           <Stack

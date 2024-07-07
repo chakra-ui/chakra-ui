@@ -101,3 +101,6 @@ yarn-error.log
 
 report.*
 *.backup
+
+.velite
+.vercel

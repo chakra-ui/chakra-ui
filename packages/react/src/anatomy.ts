@@ -103,3 +103,11 @@ export const stepsAnatomy = createAnatomy("steps", [
   "prevTrigger",
   "progress",
 ])
+
+export const timelineAnatomy = createAnatomy("timeline").parts(
+  "root",
+  "item",
+  "content",
+  "separator",
+  "indicator",
+)

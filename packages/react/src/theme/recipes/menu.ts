@@ -43,7 +43,7 @@ export const menuSlotRecipe = defineSlotRecipe({
     itemGroupLabel: {
       px: "2",
       py: "1.5",
-      fontWeight: "medium",
+      fontWeight: "semibold",
       fontSize: "sm",
     },
     indicator: {

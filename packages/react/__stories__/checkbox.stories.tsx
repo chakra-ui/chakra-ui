@@ -132,6 +132,7 @@ export const WithStates = () => (
 export const WithCustomIcon = () => {
   return (
     <Checkbox.Root>
+      <Checkbox.HiddenInput />
       <Checkbox.Control>
         <Checkbox.Indicator checked={<HiCheck />} />
       </Checkbox.Control>

@@ -1,0 +1,138 @@
+{
+  "Ellipsis": {
+    "props": {
+      "index": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLDivElement",
+    "tag": "div"
+  },
+  "Item": {
+    "props": {
+      "type": {
+        "type": "'page'",
+        "isRequired": true
+      },
+      "value": {
+        "type": "number",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "NextTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "PrevTrigger": {
+    "props": {
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLButtonElement",
+    "tag": "button"
+  },
+  "Root": {
+    "props": {
+      "count": {
+        "type": "number",
+        "isRequired": true,
+        "description": "Total number of data items"
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      },
+      "defaultPage": {
+        "type": "number",
+        "isRequired": false,
+        "description": "The initial page of the pagination when it is first rendered.\nUse when you do not need to control the state of the pagination."
+      },
+      "ids": {
+        "type": "Partial<{\n  root: string\n  ellipsis(index: number): string\n  prevTrigger: string\n  nextTrigger: string\n  item(page: number): string\n}>",
+        "isRequired": false,
+        "description": "The ids of the elements in the accordion. Useful for composition."
+      },
+      "onPageChange": {
+        "type": "(details: PageChangeDetails) => void",
+        "isRequired": false,
+        "description": "Called when the page number is changed"
+      },
+      "onPageSizeChange": {
+        "type": "(details: PageSizeChangeDetails) => void",
+        "isRequired": false,
+        "description": "Called when the page size is changed"
+      },
+      "page": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "The active page"
+      },
+      "pageSize": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "10",
+        "description": "Number of data items per page"
+      },
+      "siblingCount": {
+        "type": "number",
+        "isRequired": false,
+        "defaultValue": "1",
+        "description": "Number of pages to show beside active page"
+      },
+      "translations": {
+        "type": "IntlTranslations",
+        "isRequired": false,
+        "description": "Specifies the localized strings that identifies the accessibility elements and their states"
+      },
+      "type": {
+        "type": "'button' | 'link'",
+        "isRequired": false,
+        "defaultValue": "\"button\"",
+        "description": "The type of the trigger element"
+      }
+    },
+    "element": "HTMLElement",
+    "tag": "nav"
+  },
+  "RootProvider": {
+    "props": {
+      "value": {
+        "type": "UsePaginationReturn",
+        "isRequired": true
+      },
+      "asChild": {
+        "type": "boolean",
+        "isRequired": false,
+        "description": "Use the provided child element as the default rendered element, combining their props and behavior."
+      }
+    },
+    "element": "HTMLElement",
+    "tag": "nav"
+  }
+}

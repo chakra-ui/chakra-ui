@@ -75,5 +75,6 @@ export const badgeRecipe = defineRecipe({
   defaultVariants: {
     variant: "subtle",
     size: "sm",
+    colorPalette: "gray",
   },
 })

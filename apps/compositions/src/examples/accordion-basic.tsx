@@ -1,5 +1,5 @@
 import { Accordion, Box } from "@chakra-ui/react"
-import { HiChevronDown } from "react-icons/hi"
+import { LuChevronDown } from "react-icons/lu"
 
 const items = [
   { value: "a", title: "First Item", text: "Some value 1..." },
@@ -18,7 +18,7 @@ export const AccordionBasic = () => {
                 {item.title}
               </Box>
               <Accordion.ItemIndicator>
-                <HiChevronDown />
+                <LuChevronDown />
               </Accordion.ItemIndicator>
             </Accordion.ItemTrigger>
           </h2>

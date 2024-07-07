@@ -1,0 +1,20 @@
+{
+  "CircularProgressRoot": {
+    "props": {}
+  },
+  "CircularProgressLabel": {
+    "props": {}
+  },
+  "CircularProgressCircle": {
+    "props": {}
+  },
+  "CircularProgressTrack": {
+    "props": {}
+  },
+  "CircularProgressRange": {
+    "props": {}
+  },
+  "CircularProgressValueText": {
+    "props": {}
+  }
+}

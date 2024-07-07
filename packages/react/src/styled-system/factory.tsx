@@ -178,7 +178,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
       }
     }
 
-    newProps.className = className
+    newProps.className = className.trim()
     newProps.ref = ref
 
     if (props.asChild && !options.forwardAsChild) {

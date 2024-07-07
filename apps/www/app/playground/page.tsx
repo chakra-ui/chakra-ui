@@ -10,8 +10,8 @@ import { BadgeWithColors } from "compositions/examples/badge-with-colors"
 import { BadgeWithGroup } from "compositions/examples/badge-with-group"
 import { BadgeWithIcon } from "compositions/examples/badge-with-icon"
 import { BlockquoteWithColors } from "compositions/examples/blockquote-with-colors"
-import { BreadcrumbWithSeparator } from "compositions/examples/breabcrumb-with-separator"
 import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
+import { BreadcrumbWithSeparator } from "compositions/examples/breadcrumb-with-separator"
 import { ButtonIcons } from "compositions/examples/button-icons"
 import { ButtonWithColors } from "compositions/examples/button-with-colors"
 import { ButtonWithIcons } from "compositions/examples/button-with-icons"
@@ -22,13 +22,27 @@ import { CheckboxCardStates } from "compositions/examples/checkbox-card-states"
 import { CheckboxCardWithAddon } from "compositions/examples/checkbox-card-with-addon"
 import { CheckboxCardWithIcon } from "compositions/examples/checkbox-card-with-icon"
 import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
+import { CheckboxWithCustomIcon } from "compositions/examples/checkbox-with-custom-icon"
+import { CheckboxWithIndeterminate } from "compositions/examples/checkbox-with-indeterminate"
+import { CheckboxWithStates } from "compositions/examples/checkbox-with-states"
+import { CheckmarkStates } from "compositions/examples/checkmark-states"
 import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
 import { CodeWithColors } from "compositions/examples/code-with-colors"
 import { CollapsibleBasic } from "compositions/examples/collapsible-basic"
 import { CollapsibleLazyMounted } from "compositions/examples/collapsible-lazy-mounted"
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
+import { DialogNested } from "compositions/examples/dialog-nested"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
+import { DialogWithDataList } from "compositions/examples/dialog-with-datalist"
+import {
+  DialogWithFinalFocus,
+  DialogWithInitialFocus,
+} from "compositions/examples/dialog-with-focus"
+import {
+  DialogWithInsideScroll,
+  DialogWithOutsideScroll,
+} from "compositions/examples/dialog-with-scroll"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
@@ -39,10 +53,10 @@ import { InputWithField } from "compositions/examples/input-with-field"
 import { InputWithLeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
 import { InputWithLeftElement } from "compositions/examples/input-with-left-element"
 import { MenuBasic } from "compositions/examples/menu-basic"
-import { MenuNested } from "compositions/examples/menu-nested"
 import { MenuWithCommand } from "compositions/examples/menu-with-command"
 import { MenuWithContextTrigger } from "compositions/examples/menu-with-context-trigger"
 import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
+import { MenuWithSubmenu } from "compositions/examples/menu-with-submenu"
 import { NativeSelectBasic } from "compositions/examples/native-select-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
@@ -211,6 +225,12 @@ export default function Page() {
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
         <Playground.SectionContent>
           <DialogSizes />
+          <DialogWithDataList />
+          <DialogWithInsideScroll />
+          <DialogWithOutsideScroll />
+          <DialogNested />
+          <DialogWithInitialFocus />
+          <DialogWithFinalFocus />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -230,6 +250,15 @@ export default function Page() {
           <CheckboxCardStates />
           <CheckboxCardWithIcon />
           <CheckboxCardWithAddon />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="Checkmark">
+          Checkmark
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <CheckmarkStates />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -259,7 +288,7 @@ export default function Page() {
           <MenuWithRadioItems />
           <MenuBasic />
           <MenuWithCommand />
-          <MenuNested />
+          <MenuWithSubmenu />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -389,6 +418,9 @@ export default function Page() {
           Checkbox
         </Playground.SectionTitle>
         <Playground.SectionContent>
+          <CheckboxWithStates />
+          <CheckboxWithIndeterminate />
+          <CheckboxWithCustomIcon />
           <CheckboxWithColors />
         </Playground.SectionContent>
       </Playground.Section>

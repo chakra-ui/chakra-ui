@@ -1,0 +1,115 @@
+{
+  "Grid": {
+    "props": {
+      "templateColumns": {
+        "type": "SystemStyleObject[\"gridTemplateColumns\"]",
+        "isRequired": false
+      },
+      "autoFlow": {
+        "type": "SystemStyleObject[\"gridAutoFlow\"]",
+        "isRequired": false
+      },
+      "autoRows": {
+        "type": "SystemStyleObject[\"gridAutoRows\"]",
+        "isRequired": false
+      },
+      "autoColumns": {
+        "type": "SystemStyleObject[\"gridAutoColumns\"]",
+        "isRequired": false
+      },
+      "templateRows": {
+        "type": "SystemStyleObject[\"gridTemplateRows\"]",
+        "isRequired": false
+      },
+      "templateAreas": {
+        "type": "SystemStyleObject[\"gridTemplateAreas\"]",
+        "isRequired": false
+      },
+      "column": {
+        "type": "SystemStyleObject[\"gridColumn\"]",
+        "isRequired": false
+      },
+      "row": {
+        "type": "SystemStyleObject[\"gridRow\"]",
+        "isRequired": false
+      },
+      "inline": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    }
+  },
+  "GridItem": {
+    "props": {
+      "area": {
+        "type": "SystemStyleObject[\"gridArea\"]",
+        "isRequired": false
+      },
+      "colSpan": {
+        "type": "ConditionalValue<number | \"auto\">",
+        "isRequired": false
+      },
+      "colStart": {
+        "type": "ConditionalValue<number | \"auto\">",
+        "isRequired": false
+      },
+      "colEnd": {
+        "type": "ConditionalValue<number | \"auto\">",
+        "isRequired": false
+      },
+      "rowStart": {
+        "type": "ConditionalValue<number | \"auto\">",
+        "isRequired": false
+      },
+      "rowEnd": {
+        "type": "ConditionalValue<number | \"auto\">",
+        "isRequired": false
+      },
+      "rowSpan": {
+        "type": "ConditionalValue<number | \"auto\">",
+        "isRequired": false
+      }
+    }
+  },
+  "SimpleGrid": {
+    "props": {
+      "templateColumns": {
+        "isRequired": false
+      },
+      "autoFlow": {
+        "isRequired": false
+      },
+      "autoRows": {
+        "isRequired": false
+      },
+      "autoColumns": {
+        "isRequired": false
+      },
+      "templateRows": {
+        "isRequired": false
+      },
+      "templateAreas": {
+        "isRequired": false
+      },
+      "column": {
+        "isRequired": false
+      },
+      "row": {
+        "isRequired": false
+      },
+      "inline": {
+        "isRequired": false
+      },
+      "minChildWidth": {
+        "type": "GridProps[\"minWidth\"]",
+        "isRequired": false,
+        "description": "The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length."
+      },
+      "columns": {
+        "type": "ConditionalValue<number>",
+        "isRequired": false,
+        "description": "The number of columns"
+      }
+    }
+  }
+}

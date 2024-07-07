@@ -128,7 +128,7 @@ export interface ActionBarVariantProps {}
 export type AlertSlot = "title" | "description" | "root" | "indicator" | "spinner"
 
 export interface AlertVariantProps {
-  status?: "info" | "warning" | "success" | "error"
+  status?: "info" | "warning" | "success" | "error" | "neutral"
   variant?: "subtle" | "outline" | "solid"
   size?: "sm" | "md" | "lg"
 }
@@ -550,6 +550,14 @@ export interface StatusVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+// Timeline
+
+export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicator"
+
+export interface TimelineVariantProps {
+  size?: "sm" | "md" | "lg"
+}
+
 export interface ConfigSlotRecipes {
   accordion: SystemSlotRecipeFn<AccordionSlot, AccordionVariantProps>
   actionBar: SystemSlotRecipeFn<ActionBarSlot, ActionBarVariantProps>
@@ -591,8 +599,8 @@ export interface ConfigSlotRecipes {
   toast: SystemSlotRecipeFn<ToastSlot, ToastVariantProps>
   tooltip: SystemSlotRecipeFn<TooltipSlot, TooltipVariantProps>
   status: SystemSlotRecipeFn<StatusSlot, StatusVariantProps>
+  timeline: SystemSlotRecipeFn<TimelineSlot, TimelineVariantProps>
 }
-
 export interface ConfigRecipeSlots {
   accordion: AccordionSlot
   actionBar: ActionBarSlot
@@ -634,12 +642,11 @@ export interface ConfigRecipeSlots {
   toast: ToastSlot
   tooltip: TooltipSlot
   status: StatusSlot
+  timeline: TimelineSlot
 }
 
 export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots ? Record<ConfigRecipeSlots[T], K> : Record<string, K>
-
 export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
   ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition }
   : { recipe?: SlotRecipeDefinition }
-
 export type RecipeProps<T> = T extends keyof ConfigRecipes ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition } : { recipe?: RecipeDefinition }

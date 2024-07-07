@@ -9,7 +9,7 @@ import {
 } from "compositions/ui/menu"
 import { LuChevronsUpDown } from "react-icons/lu"
 
-export const MenuNested = () => {
+export const MenuWithSubmenu = () => {
   return (
     <MenuRoot>
       <MenuTrigger>

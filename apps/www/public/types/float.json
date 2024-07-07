@@ -1,0 +1,27 @@
+{
+  "Float": {
+    "props": {
+      "offsetX": {
+        "type": "SystemStyleObject[\"left\"]",
+        "isRequired": false,
+        "description": "The x offset of the indicator"
+      },
+      "offsetY": {
+        "type": "SystemStyleObject[\"top\"]",
+        "isRequired": false,
+        "description": "The y offset of the indicator"
+      },
+      "offset": {
+        "type": "SystemStyleObject[\"top\"]",
+        "isRequired": false,
+        "description": "The x and y offset of the indicator"
+      },
+      "placement": {
+        "type": "ConditionalValue<\n    | \"bottom-end\"\n    | \"bottom-start\"\n    | \"top-end\"\n    | \"top-start\"\n    | \"bottom-center\"\n    | \"top-center\"\n    | \"middle-center\"\n    | \"middle-end\"\n    | \"middle-start\"\n  >",
+        "defaultValue": "top-end",
+        "isRequired": false,
+        "description": "The placement of the indicator"
+      }
+    }
+  }
+}

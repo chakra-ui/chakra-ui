@@ -1,0 +1,38 @@
+{
+  "Flex": {
+    "props": {
+      "align": {
+        "type": "SystemStyleObject[\"alignItems\"]",
+        "isRequired": false
+      },
+      "justify": {
+        "type": "SystemStyleObject[\"justifyContent\"]",
+        "isRequired": false
+      },
+      "wrap": {
+        "type": "SystemStyleObject[\"flexWrap\"]",
+        "isRequired": false
+      },
+      "direction": {
+        "type": "SystemStyleObject[\"flexDirection\"]",
+        "isRequired": false
+      },
+      "basis": {
+        "type": "SystemStyleObject[\"flexBasis\"]",
+        "isRequired": false
+      },
+      "grow": {
+        "type": "SystemStyleObject[\"flexGrow\"]",
+        "isRequired": false
+      },
+      "shrink": {
+        "type": "SystemStyleObject[\"flexShrink\"]",
+        "isRequired": false
+      },
+      "inline": {
+        "type": "boolean",
+        "isRequired": false
+      }
+    }
+  }
+}

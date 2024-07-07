@@ -1,13 +1,15 @@
+import { Example } from "@/components/example"
 import * as Playground from "@/components/playground"
+import { PropTable } from "@/components/prop-table"
 import { Container } from "@chakra-ui/react"
-import { StepsWithIcon } from "compositions/examples/steps-with-icon"
 
 export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Playground.Section>
         <Playground.SectionContent>
-          <StepsWithIcon />
+          <Example name="select-with-avatar" />
+          <PropTable component="Select" part="Root" />
         </Playground.SectionContent>
       </Playground.Section>
     </Container>

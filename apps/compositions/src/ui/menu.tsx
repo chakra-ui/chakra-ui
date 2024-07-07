@@ -66,28 +66,21 @@ export const MenuTrigger = (props: ChakraMenu.TriggerProps) => {
   return <ChakraMenu.Trigger {...props} asChild />
 }
 
-export const MenuRoot = ChakraMenu.Root
-export const MenuSeparator = ChakraMenu.Separator
-
-export interface MenuItemProps extends ChakraMenu.ItemProps {
-  startIcon?: React.ReactNode
-  endIcon?: React.ReactNode
-  command?: string
+export const MenuItemGroup = (props: ChakraMenu.ItemGroupProps) => {
+  const { title, children, ...rest } = props
+  return (
+    <ChakraMenu.ItemGroup {...rest}>
+      <ChakraMenu.ItemGroupLabel userSelect="none">
+        {title}
+      </ChakraMenu.ItemGroupLabel>
+      {children}
+    </ChakraMenu.ItemGroup>
+  )
 }
 
-export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  function MenuItem(props, ref) {
-    const { startIcon, endIcon, command, children, ...rest } = props
-    return (
-      <ChakraMenu.Item ref={ref} {...rest}>
-        {startIcon}
-        {children}
-        {endIcon}
-        {command && <ChakraMenu.ItemCommand>{command}</ChakraMenu.ItemCommand>}
-      </ChakraMenu.Item>
-    )
-  },
-)
+export const MenuRoot = ChakraMenu.Root
+export const MenuSeparator = ChakraMenu.Separator
+export const MenuItem = ChakraMenu.Item
 
 export interface MenuTriggerItemProps extends ChakraMenu.ItemProps {
   startIcon?: React.ReactNode

@@ -5,7 +5,7 @@ export interface TooltipProps extends ChakraTooltip.RootProps {
   showArrow?: boolean
   portalled?: boolean
   containerRef?: React.RefObject<HTMLElement>
-  content?: React.ReactNode
+  content: React.ReactNode
   disabled?: boolean
 }
 
