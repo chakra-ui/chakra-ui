@@ -23,7 +23,6 @@ import { CheckboxWithCustomIcon } from "compositions/examples/checkbox-with-cust
 import { CheckboxWithIndeterminate } from "compositions/examples/checkbox-with-indeterminate"
 import { CheckboxWithStates } from "compositions/examples/checkbox-with-states"
 import { CheckmarkStates } from "compositions/examples/checkmark-states"
-import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
 import { CodeWithColors } from "compositions/examples/code-with-colors"
 import { CollapsibleBasic } from "compositions/examples/collapsible-basic"
 import { CollapsibleLazyMounted } from "compositions/examples/collapsible-lazy-mounted"
@@ -63,6 +62,7 @@ import { MenuWithSubmenu } from "compositions/examples/menu-with-submenu"
 import { NativeSelectBasic } from "compositions/examples/native-select-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
+import { ProgressCircleWithColors } from "compositions/examples/progress-circle-with-colors"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
@@ -238,38 +238,36 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
         <Playground.SectionContent>
-          <Stack>
-            <Text>Dialog w/ sizes</Text>
-            <DialogSizes />
-          </Stack>
-
-          <Stack>
-            <Text>Dialog w/ DataList</Text>
-            <DialogWithDataList />
-          </Stack>
-
-          <Stack>
-            <Text>Dialog Scrollable</Text>
-            <HStack>
-              <DialogWithInsideScroll />
-              <DialogWithOutsideScroll />
-            </HStack>
-          </Stack>
-
-          <Stack align="flex-start">
-            <Text>Dialog Nested</Text>
-            <DialogNested />
-          </Stack>
-
-          <Stack align="flex-start">
-            <Text>Dialog Initial Focus</Text>
-            <DialogWithInitialFocus />
-          </Stack>
-
-          <Stack align="flex-start">
-            <Text>Dialog Final Focus</Text>
-            <DialogWithFinalFocus />
-          </Stack>
+          <Playground.DemoList
+            items={[
+              { label: "Dialog w/ sizes", component: <DialogSizes /> },
+              {
+                label: "Dialog w/ DataList",
+                component: <DialogWithDataList />,
+              },
+              {
+                label: "Dialog Scrollable",
+                component: (
+                  <HStack>
+                    <DialogWithInsideScroll />
+                    <DialogWithOutsideScroll />
+                  </HStack>
+                ),
+              },
+              {
+                label: "Dialog Nested",
+                component: <DialogNested />,
+              },
+              {
+                label: "Dialog Initial Focus",
+                component: <DialogWithInitialFocus />,
+              },
+              {
+                label: "Dialog Final Focus",
+                component: <DialogWithFinalFocus />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -533,11 +531,11 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="circular-progress">
-          Circular Progress
+        <Playground.SectionTitle id="progress-circle">
+          Progress Circle
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <CircularProgressWithColors />
+          <ProgressCircleWithColors />
         </Playground.SectionContent>
       </Playground.Section>
 

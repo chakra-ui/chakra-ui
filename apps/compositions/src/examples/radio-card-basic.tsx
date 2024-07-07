@@ -6,21 +6,9 @@ import {
 } from "compositions/ui/radio-card"
 
 const items = [
-  {
-    value: "next",
-    title: "Next.js",
-    description: "Best for apps",
-  },
-  {
-    value: "vite",
-    title: "Vite",
-    description: "Best for SPAs",
-  },
-  {
-    value: "astro",
-    title: "Astro",
-    description: "Best for static sites",
-  },
+  { value: "next", title: "Next.js", description: "Best for apps" },
+  { value: "vite", title: "Vite", description: "Best for SPAs" },
+  { value: "astro", title: "Astro", description: "Best for static sites" },
 ]
 
 export const RadioCardBasic = () => {

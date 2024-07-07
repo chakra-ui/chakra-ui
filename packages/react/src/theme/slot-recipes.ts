@@ -22,7 +22,7 @@ import { numberInputSlotRecipe } from "./recipes/number-input"
 import { pinInputSlotRecipe } from "./recipes/pin-input"
 import { popoverSlotRecipe } from "./recipes/popover"
 import { progressSlotRecipe } from "./recipes/progress"
-import { circularProgressSlotRecipe } from "./recipes/progress-circular"
+import { progressCircleSlotRecipe } from "./recipes/progress-circle"
 import { radioCardSlotRecipe } from "./recipes/radio-card"
 import { radioGroupSlotRecipe } from "./recipes/radio-group"
 import { ratingGroupSlotRecipe } from "./recipes/rating-group"
@@ -50,7 +50,6 @@ export const slotRecipes = {
   card: cardSlotRecipe,
   checkbox: checkboxSlotRecipe,
   checkboxCard: checkboxCardSlotRecipe,
-  circularProgress: circularProgressSlotRecipe,
   collapsible: collapsibleSlotRecipe,
   dataList: dataListSlotRecipe,
   dialog: dialogSlotRecipe,
@@ -66,6 +65,7 @@ export const slotRecipes = {
   pinInput: pinInputSlotRecipe,
   popover: popoverSlotRecipe,
   progress: progressSlotRecipe,
+  progressCircle: progressCircleSlotRecipe,
   radioCard: radioCardSlotRecipe,
   radioGroup: radioGroupSlotRecipe,
   ratingGroup: ratingGroupSlotRecipe,

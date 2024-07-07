@@ -1,8 +1,8 @@
 import { Stack, Text } from "@chakra-ui/react"
 import { colorPalettes } from "compositions/lib/color-palettes"
-import { CircularProgress } from "compositions/ui/circular-progress"
+import { ProgressCircle } from "compositions/ui/progress-circle"
 
-export const CircularProgressWithColors = () => {
+export const ProgressCircleWithColors = () => {
   return (
     <Stack gap="2" align="flex-start">
       {colorPalettes.map((colorPalette) => (
@@ -14,21 +14,21 @@ export const CircularProgressWithColors = () => {
           px="4"
         >
           <Text minW="8ch">{colorPalette}</Text>
-          <CircularProgress
+          <ProgressCircle
             capIsRound
             size="sm"
             showValue
             value={30}
             colorPalette={colorPalette}
           />
-          <CircularProgress
+          <ProgressCircle
             capIsRound
             size="md"
             showValue
             value={30}
             colorPalette={colorPalette}
           />
-          <CircularProgress
+          <ProgressCircle
             capIsRound
             size="lg"
             showValue
