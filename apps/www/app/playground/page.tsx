@@ -19,7 +19,7 @@ import { ButtonWithLoading } from "compositions/examples/button-with-loading"
 import { CardWithVariants } from "compositions/examples/card-with-variants"
 import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
 import { CheckboxCardStates } from "compositions/examples/checkbox-card-states"
-import { ChecboxCardWithAddon } from "compositions/examples/checkbox-card-with-addon"
+import { CheckboxCardWithAddon } from "compositions/examples/checkbox-card-with-addon"
 import { CheckboxCardWithIcon } from "compositions/examples/checkbox-card-with-icon"
 import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
 import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
@@ -229,7 +229,7 @@ export default function Page() {
           <CheckboxCardBasic />
           <CheckboxCardStates />
           <CheckboxCardWithIcon />
-          <ChecboxCardWithAddon />
+          <CheckboxCardWithAddon />
         </Playground.SectionContent>
       </Playground.Section>
 

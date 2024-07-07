@@ -1,13 +1,9 @@
+import { Box, For, HStack, Text, VStack } from "@chakra-ui/react"
 import {
-  Box,
-  CheckboxCard,
-  CheckboxGroup,
-  Float,
-  For,
-  HStack,
-  Text,
-  VStack,
-} from "@chakra-ui/react"
+  CheckboxCardGroup,
+  CheckboxCardItem,
+  CheckboxCardLabel,
+} from "compositions/ui/checkbox-card"
 import { HiGlobeAlt, HiLockClosed, HiShieldCheck, HiUser } from "react-icons/hi"
 
 export const CheckboxCardWithIcon = () => {
@@ -35,35 +31,28 @@ export const CheckboxCardWithIcon = () => {
   ]
 
   return (
-    <CheckboxGroup>
+    <CheckboxCardGroup>
       <HStack mt="2">
         <For each={items}>
           {(item) => (
-            <CheckboxCard.Root
+            <CheckboxCardItem
               variant="subtle"
               defaultChecked={item.label === "Guest"}
               flex={1}
             >
-              <CheckboxCard.Control>
-                <VStack gap="1" flex="1" textAlign="center">
-                  <Box mb="2" css={{ "& svg": { fontSize: "2xl" } }}>
-                    {item.icon}
-                  </Box>
-                  <CheckboxCard.Label color="inherit!">
-                    {item.label}
-                  </CheckboxCard.Label>
-                  <Text>{item.description}</Text>
-                </VStack>
-
-                <CheckboxCard.HiddenInput />
-                <Float placement="top-end" offset="4">
-                  <CheckboxCard.Indicator />
-                </Float>
-              </CheckboxCard.Control>
-            </CheckboxCard.Root>
+              <VStack gap="1" flex="1" textAlign="center">
+                <Box mb="2" css={{ "& svg": { fontSize: "2xl" } }}>
+                  {item.icon}
+                </Box>
+                <CheckboxCardLabel color="inherit!">
+                  {item.label}
+                </CheckboxCardLabel>
+                <Text fontSize="xs">{item.description}</Text>
+              </VStack>
+            </CheckboxCardItem>
           )}
         </For>
       </HStack>
-    </CheckboxGroup>
+    </CheckboxCardGroup>
   )
 }
