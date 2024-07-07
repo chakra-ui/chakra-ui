@@ -10,9 +10,9 @@ import {
   DialogTrigger,
 } from "compositions/ui/dialog"
 
-export const DialogBasic = () => {
+export const DialogCentered = () => {
   return (
-    <DialogRoot>
+    <DialogRoot centered>
       <DialogTrigger>
         <Button variant="outline">Open Dialog</Button>
       </DialogTrigger>

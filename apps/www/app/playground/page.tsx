@@ -1,5 +1,5 @@
 import * as Playground from "@/components/playground"
-import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
+import { Container, HStack, SimpleGrid, Stack, Text } from "@chakra-ui/react"
 import { AccordionBasic } from "compositions/examples/accordion-basic"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
@@ -35,14 +35,10 @@ import { DataListWithInfo } from "compositions/examples/data-list-with-info"
 import { DialogNested } from "compositions/examples/dialog-nested"
 import { DialogSizes } from "compositions/examples/dialog-sizes"
 import { DialogWithDataList } from "compositions/examples/dialog-with-datalist"
-import {
-  DialogWithFinalFocus,
-  DialogWithInitialFocus,
-} from "compositions/examples/dialog-with-focus"
-import {
-  DialogWithInsideScroll,
-  DialogWithOutsideScroll,
-} from "compositions/examples/dialog-with-scroll"
+import { DialogWithFinalFocus } from "compositions/examples/dialog-with-final-focus"
+import { DialogWithInitialFocus } from "compositions/examples/dialog-with-initial-focus"
+import { DialogWithInsideScroll } from "compositions/examples/dialog-with-inside-scroll"
+import { DialogWithOutsideScroll } from "compositions/examples/dialog-with-outside-scroll"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
@@ -224,13 +220,38 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
         <Playground.SectionContent>
-          <DialogSizes />
-          <DialogWithDataList />
-          <DialogWithInsideScroll />
-          <DialogWithOutsideScroll />
-          <DialogNested />
-          <DialogWithInitialFocus />
-          <DialogWithFinalFocus />
+          <Stack>
+            <Text>Dialog w/ sizes</Text>
+            <DialogSizes />
+          </Stack>
+
+          <Stack>
+            <Text>Dialog w/ DataList</Text>
+            <DialogWithDataList />
+          </Stack>
+
+          <Stack>
+            <Text>Dialog Scrollable</Text>
+            <HStack>
+              <DialogWithInsideScroll />
+              <DialogWithOutsideScroll />
+            </HStack>
+          </Stack>
+
+          <Stack align="flex-start">
+            <Text>Dialog Nested</Text>
+            <DialogNested />
+          </Stack>
+
+          <Stack align="flex-start">
+            <Text>Dialog Initial Focus</Text>
+            <DialogWithInitialFocus />
+          </Stack>
+
+          <Stack align="flex-start">
+            <Text>Dialog Final Focus</Text>
+            <DialogWithFinalFocus />
+          </Stack>
         </Playground.SectionContent>
       </Playground.Section>
 

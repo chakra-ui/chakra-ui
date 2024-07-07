@@ -1,7 +1,6 @@
 import { Badge, For, HStack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
-  DialogBackdrop,
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
@@ -18,7 +17,6 @@ export const DialogSizes = () => {
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <DialogRoot size={size}>
-            <DialogBackdrop />
             <DialogTrigger>
               <Button variant="outline" size={size}>
                 Open <Badge>{size}</Badge>
