@@ -38,6 +38,11 @@ import { DialogWithInsideScroll } from "compositions/examples/dialog-with-inside
 import { DialogWithOutsideScroll } from "compositions/examples/dialog-with-outside-scroll"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
+import { FileUploadAcceptedFiles } from "compositions/examples/file-upload-accepted-files"
+import { FileUploadBasic } from "compositions/examples/file-upload-basic"
+import { FileUploadMediaCapture } from "compositions/examples/file-upload-media-capture"
+import { FileUploadMultiple } from "compositions/examples/file-upload-multiple"
+import { FileUploadWithDropzone } from "compositions/examples/file-upload-with-dropzone"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { HoverCardBasic } from "compositions/examples/hovercard-basic"
 import { InputWithDescription } from "compositions/examples/input-with-description"
@@ -91,12 +96,9 @@ import { TextareaWithDescription } from "compositions/examples/textarea-with-des
 import { TextareaWithError } from "compositions/examples/textarea-with-error"
 import { TextareaWithField } from "compositions/examples/textarea-with-field"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
-import { Button } from "compositions/ui/button"
-import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import { ScrubberInput } from "compositions/ui/scrubber-input"
 import { StepperInput } from "compositions/ui/stepper-input"
-import { HiUpload } from "react-icons/hi"
 import { LuMinimize2 } from "react-icons/lu"
 
 export default function Page() {
@@ -562,46 +564,26 @@ export default function Page() {
           File Button
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <FileButton width="auto">
-            <Button variant="outline" startIcon={<HiUpload />}>
-              Upload file
-            </Button>
-          </FileButton>
-        </Playground.SectionContent>
-      </Playground.Section>
-
-      <Playground.Section>
-        <Playground.SectionTitle id="file-media-capture">
-          File Media Capture
-        </Playground.SectionTitle>
-        <Playground.SectionContent>
-          <FileButton width="auto" capture="environment">
-            <Button variant="outline" startIcon={<HiUpload />}>
-              Open Camera
-            </Button>
-          </FileButton>
-        </Playground.SectionContent>
-      </Playground.Section>
-
-      <Playground.Section>
-        <Playground.SectionTitle id="file-directory-selection">
-          File Directory Selection
-        </Playground.SectionTitle>
-        <Playground.SectionContent>
-          <FileButton width="auto" directory>
-            <Button variant="outline" startIcon={<HiUpload />}>
-              Upload Directory
-            </Button>
-          </FileButton>
-        </Playground.SectionContent>
-      </Playground.Section>
-
-      <Playground.Section>
-        <Playground.SectionTitle id="FileDropzone">
-          File Dropzone
-        </Playground.SectionTitle>
-        <Playground.SectionContent>
-          <FileDropzone maxFiles={10} />
+          <Stack>
+            <Text>Basic</Text>
+            <FileUploadBasic />
+          </Stack>
+          <Stack>
+            <Text>Accepted Types</Text>
+            <FileUploadAcceptedFiles />
+          </Stack>
+          <Stack>
+            <Text>Media Capture</Text>
+            <FileUploadMediaCapture />
+          </Stack>
+          <Stack>
+            <Text>Multiple</Text>
+            <FileUploadMultiple />
+          </Stack>
+          <Stack>
+            <Text>With Dropzone</Text>
+            <FileUploadWithDropzone />
+          </Stack>
         </Playground.SectionContent>
       </Playground.Section>
 

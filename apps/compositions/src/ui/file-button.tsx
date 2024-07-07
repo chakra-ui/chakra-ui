@@ -10,61 +10,63 @@ import {
 import { forwardRef } from "react"
 import { LuFile, LuTrash2 } from "react-icons/lu"
 
-export interface FileButtonProps extends ChakraFileUpload.RootProps {
+export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-  rootRef?: React.Ref<HTMLDivElement>
 }
 
-export const FileButton = forwardRef<HTMLInputElement, FileButtonProps>(
-  function FileButton(props, ref) {
-    const { children, inputProps, rootRef, ...rest } = props
+export const FileUploadRoot = forwardRef<HTMLInputElement, FileUploadRootProps>(
+  function FileUploadRoot(props, ref) {
+    const { children, inputProps, ...rest } = props
     return (
-      <ChakraFileUpload.Root alignItems="flex-start" ref={rootRef} {...rest}>
+      <ChakraFileUpload.Root alignItems="flex-start" {...rest}>
         <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />
-        <ChakraFileUpload.Trigger asChild>{children}</ChakraFileUpload.Trigger>
-        <FileUploadList showSize showDelete />
+        {children}
       </ChakraFileUpload.Root>
     )
   },
 )
 
-export const FileDropzone = forwardRef<HTMLInputElement, FileButtonProps>(
-  function FileDropzone(props, ref) {
-    const { children, inputProps, rootRef, ...rest } = props
-    return (
-      <ChakraFileUpload.Root ref={rootRef} {...rest}>
-        <ChakraFileUpload.HiddenInput ref={ref} {...inputProps} />
-        <ChakraFileUpload.Dropzone>
-          <Square size="10" bg="bg" rounded="sm" borderWidth="1px">
-            <LuFile />
-          </Square>
-          <div>
-            Drag and drop your files here or{" "}
-            <ChakraFileUpload.Trigger color="blue.500">
-              click to browse
-            </ChakraFileUpload.Trigger>
-          </div>
-          <Text fontSize="sm" color="fg.subtle">
-            .png, .jpg up to 5MB
-          </Text>
-          {children}
-        </ChakraFileUpload.Dropzone>
-        <FileUploadList showSize showDelete />
-      </ChakraFileUpload.Root>
-    )
-  },
-)
+export const FileUploadTrigger = forwardRef<
+  HTMLButtonElement,
+  ChakraFileUpload.TriggerProps
+>(function FileButton(props, ref) {
+  return <ChakraFileUpload.Trigger ref={ref} {...props} asChild />
+})
 
-interface VisiblityProps {
+export const FileUploadDropzone = forwardRef<
+  HTMLInputElement,
+  ChakraFileUpload.DropzoneProps
+>(function FileDropzone(props, ref) {
+  const { children, ...rest } = props
+  return (
+    <ChakraFileUpload.Dropzone ref={ref} {...rest}>
+      <Square size="10" bg="bg" rounded="sm" borderWidth="1px">
+        <LuFile />
+      </Square>
+      <div>
+        Drag and drop your files here or{" "}
+        <ChakraFileUpload.Trigger color="blue.500">
+          click to browse
+        </ChakraFileUpload.Trigger>
+      </div>
+      <Text fontSize="sm" color="fg.subtle">
+        .png, .jpg up to 5MB
+      </Text>
+      {children}
+    </ChakraFileUpload.Dropzone>
+  )
+})
+
+interface VisibilityProps {
   showSize?: boolean
   showDelete?: boolean
 }
 
-interface ItemProps extends VisiblityProps {
+interface FileUploadItemProps extends VisibilityProps {
   file: File
 }
 
-const FileUploadItem = (props: ItemProps) => {
+const FileUploadItem = (props: FileUploadItemProps) => {
   const { file, showSize, showDelete } = props
   return (
     <ChakraFileUpload.Item file={file}>
@@ -100,9 +102,11 @@ const FileUploadItem = (props: ItemProps) => {
   )
 }
 
-interface ListProps extends VisiblityProps, ChakraFileUpload.ItemGroupProps {}
+interface FileUploadListProps
+  extends VisibilityProps,
+    ChakraFileUpload.ItemGroupProps {}
 
-const FileUploadList = (props: ListProps) => {
+export const FileUploadList = (props: FileUploadListProps) => {
   const { showSize, showDelete, ...rest } = props
   return (
     <ChakraFileUpload.Context>
