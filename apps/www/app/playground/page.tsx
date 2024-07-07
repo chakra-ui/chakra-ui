@@ -571,11 +571,37 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
+        <Playground.SectionTitle id="file-media-capture">
+          File Media Capture
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <FileButton width="auto" capture="environment">
+            <Button variant="outline" startIcon={<HiUpload />}>
+              Open Camera
+            </Button>
+          </FileButton>
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="file-directory-selection">
+          File Directory Selection
+        </Playground.SectionTitle>
+        <Playground.SectionContent>
+          <FileButton width="auto" directory>
+            <Button variant="outline" startIcon={<HiUpload />}>
+              Upload Directory
+            </Button>
+          </FileButton>
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
         <Playground.SectionTitle id="FileDropzone">
           File Dropzone
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <FileDropzone />
+          <FileDropzone maxFiles={10} />
         </Playground.SectionContent>
       </Playground.Section>
 
