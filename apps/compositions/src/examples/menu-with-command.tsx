@@ -2,6 +2,7 @@ import { Button } from "compositions/ui/button"
 import {
   MenuContent,
   MenuItem,
+  MenuItemCommand,
   MenuRoot,
   MenuTrigger,
 } from "compositions/ui/menu"
@@ -15,20 +16,20 @@ export const MenuWithCommand = () => {
         </Button>
       </MenuTrigger>
       <MenuContent>
-        <MenuItem value="new-txt" command="⌘E">
-          New Text File
+        <MenuItem value="new-txt">
+          New Text File <MenuItemCommand>⌘E</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="new-file" command="⌘N">
-          New File...
+        <MenuItem value="new-file">
+          New File... <MenuItemCommand>⌘N</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="new-win" command="⌘⇧N">
-          New Window
+        <MenuItem value="new-win">
+          New Window <MenuItemCommand>⌘⇧N</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="open-file" command="⌘O">
-          Open File...
+        <MenuItem value="open-file">
+          Open File... <MenuItemCommand>⌘O</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="export" command="⌘S">
-          Export
+        <MenuItem value="export">
+          Export <MenuItemCommand>⌘S</MenuItemCommand>
         </MenuItem>
       </MenuContent>
     </MenuRoot>
