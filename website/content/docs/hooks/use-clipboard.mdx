@@ -61,37 +61,3 @@ function Example() {
   )
 }
 ```
-
-### Imperative
-
-Use this approach when you need to get the value to copy imperatively, e.g.
-getting a URL from browser or getting an input using `prompt`.
-
-```jsx
-function Example() {
-  const { onCopy, hasCopied } = useClipboard()
-
-  return (
-    <>
-      <Button
-        onClick={() => {
-          onCopy(window.location.href)
-        }}
-      >
-        {hasCopied ? 'URL copied!' : 'Copy URL'}
-      </Button>
-
-      {/* or */}
-
-      <Button
-        onClick={() => {
-          const userInput = prompt()
-          onCopy(userInput)
-        }}
-      >
-        {hasCopied ? "User's propmt copied!" : "Copy user's propmt"}
-      </Button>
-    </>
-  )
-}
-```
