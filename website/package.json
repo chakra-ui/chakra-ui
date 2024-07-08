@@ -25,7 +25,7 @@
     "@chakra-ui/props-docs": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
-    "@codesandbox/sandpack-react": "2.14.4",
+    "@codesandbox/sandpack-react": "2.16.1",
     "@codesandbox/sandpack-themes": "2.0.21",
     "@docsearch/react": "3.6.0",
     "@docusaurus/utils": "3.4.0",
@@ -70,7 +70,7 @@
     "remark-slug": "7.0.1",
     "scroll-into-view-if-needed": "3.1.0",
     "shelljs": "0.8.5",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "devDependencies": {
     "@types/lodash.clonedeep": "4.5.9",
