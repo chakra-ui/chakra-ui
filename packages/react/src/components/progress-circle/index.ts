@@ -5,7 +5,7 @@ export {
   ProgressCircleTrack,
   ProgressCircleRange,
   ProgressCircleValueText,
-} from "./progress-circular"
+} from "./progress-circle"
 
 export type {
   ProgressCircleRootProps,
@@ -14,8 +14,8 @@ export type {
   ProgressCircleTrackProps,
   ProgressCircleRangeProps,
   ProgressCircleValueTextProps,
-} from "./progress-circular"
+} from "./progress-circle"
 
-export { useProgressCircleStyles } from "./progress-circular"
+export { useProgressCircleStyles } from "./progress-circle"
 
 export * as ProgressCircle from "./namespace"
