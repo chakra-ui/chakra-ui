@@ -55,11 +55,11 @@ export const stepsSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "3",
       textAlign: "start",
-      focusRing: "extend",
+      focusRing: "outside",
       borderRadius: "md",
     },
     content: {
-      focusRing: "extend",
+      focusRing: "outside",
     },
   },
 

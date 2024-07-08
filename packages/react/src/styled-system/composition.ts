@@ -109,6 +109,11 @@ type LayerStyleProperty =
   | "minWidth"
   | `inset${LogicalPlacement}`
   | Lowercase<PhysicalPlacement>
+  | "outline"
+  | "outlineColor"
+  | "outlineStyle"
+  | "outlineWidth"
+  | "outlineOffset"
 
 export type LayerStyle = CompositionStyleObject<LayerStyleProperty>
 

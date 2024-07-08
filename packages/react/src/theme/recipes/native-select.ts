@@ -24,7 +24,7 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
         boxShadow: "none !important",
         userSelect: "all",
       },
-      focusRing: "extend",
+      focusRing: "outside",
       lineHeight: "normal",
       "& > option, & > optgroup": {
         bg: "inherit",

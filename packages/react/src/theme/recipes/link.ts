@@ -5,7 +5,7 @@ export const linkRecipe = defineRecipe({
     outline: "none",
     cursor: "pointer",
     borderRadius: "xs",
-    focusRing: "extend",
+    focusRing: "outside",
   },
   variants: {
     variant: {

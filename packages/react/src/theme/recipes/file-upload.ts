@@ -27,7 +27,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       minHeight: "xs",
       px: "6",
       py: "4",
-      focusRing: "extend",
+      focusRing: "outside",
     },
     item: {
       fontSize: "sm",

@@ -532,31 +532,49 @@ export const defaultBaseConfig = defineConfig({
       transform: createColorMixTransform("outlineColor"),
     },
     focusRing: {
-      values: ["extend", "contain"],
+      values: ["outside", "inside", "mixed", "none"],
       transform(value: any, { token }: any) {
         const focusRingColor = token("colors.border.emphasized")
         const styles: Record<string, any> = {
-          contain: {
+          inside: {
             "--focus-ring-color": focusRingColor,
             "&:where(:focus-visible, [data-focus])": {
               outlineWidth: "var(--focus-ring-width, 1px)",
               outlineColor: "var(--focus-ring-color)",
               outlineStyle: "solid",
+              borderWidth: "1px",
               borderColor: "var(--focus-ring-color)",
             },
           },
-          extend: {
+          outside: {
             "--focus-ring-color": focusRingColor,
-            "&:where(:focus-visible, [data-focus])": {
+            "&:is(:focus-visible, [data-focus])": {
               outlineWidth: "var(--focus-ring-width, 2px)",
               outlineOffset: "2px",
               outlineColor: "var(--focus-ring-color)",
               outlineStyle: "solid",
             },
           },
+          mixed: {
+            "--focus-ring-color": focusRingColor,
+            "&:is(:focus-visible, [data-focus])": {
+              outlineWidth: "2px",
+              outlineStyle: "solid",
+              outlineColor:
+                "color-mix(in srgb, var(--focus-ring-color), transparent 60%)",
+              borderWidth: "1px",
+              borderColor: "var(--focus-ring-color)",
+            },
+          },
+          none: {
+            "--focus-ring-color": focusRingColor,
+            "&:is(:focus-visible, [data-focus])": {
+              outline: "none",
+            },
+          },
         }
 
-        return styles[value]
+        return styles[value] ?? {}
       },
     },
     focusRingColor: {
