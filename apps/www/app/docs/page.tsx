@@ -5,6 +5,7 @@ import { Pagination } from "@/components/pagination"
 import { SearchButton } from "@/components/search-button"
 import { SideNav } from "@/components/sidenav"
 import { SocialLinks } from "@/components/social-links"
+import { VersionMenu } from "@/components/version-menu"
 import { Container, Stack } from "@chakra-ui/react"
 import { pages } from ".velite"
 
@@ -12,6 +13,13 @@ export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Stack gap="10">
+        <VersionMenu
+          items={[
+            { label: "v3", value: "3.1.0", href: "/v3" },
+            { label: "v2", value: "2.8.x", href: "/v2" },
+            { label: "v1", value: "1.5.x", href: "/v1" },
+          ]}
+        />
         <SocialLinks
           items={[
             { type: "x", href: "https://twitter.com/chakra_ui" },
