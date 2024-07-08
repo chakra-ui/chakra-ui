@@ -1,0 +1,56 @@
+import { Badge, HStack, Stack, Text } from "@chakra-ui/react"
+import Link, { LinkProps } from "next/link"
+
+interface SideNavItem {
+  label: React.ReactNode
+  href: LinkProps["href"]
+  status?: string
+}
+
+interface SideNavProps {
+  currentHref: string
+  label?: React.ReactNode
+  items: Array<SideNavItem>
+}
+
+export const SideNav = (props: SideNavProps) => {
+  const { label, items, currentHref } = props
+  return (
+    <Stack gap="4">
+      {label && (
+        <Text ps="4" fontWeight="semibold">
+          {label}
+        </Text>
+      )}
+      <Stack gap="1px">
+        {items.map((item, index) => (
+          <HStack
+            key={index}
+            asChild
+            py="2"
+            ps="4"
+            pe="3"
+            rounded="sm"
+            _hover={{
+              layerStyle: "fill.subtle",
+              colorPalette: "gray",
+            }}
+            _currentPage={{
+              fontWeight: "medium",
+              layerStyle: "fill.subtle",
+              colorPalette: "gray",
+            }}
+          >
+            <Link
+              href={item.href}
+              aria-current={item.href === currentHref ? "page" : undefined}
+            >
+              {item.label}{" "}
+              {item.status && <Badge variant="solid">{item.status}</Badge>}
+            </Link>
+          </HStack>
+        ))}
+      </Stack>
+    </Stack>
+  )
+}

@@ -3,6 +3,7 @@ import { EditPageButton } from "@/components/edit-page-button"
 import { MDXContent } from "@/components/mdx-content"
 import { Pagination } from "@/components/pagination"
 import { SearchButton } from "@/components/search-button"
+import { SideNav } from "@/components/sidenav"
 import { Container, Stack } from "@chakra-ui/react"
 import { pages } from ".velite"
 
@@ -10,6 +11,17 @@ export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Stack gap="10">
+        <SideNav
+          currentHref="/quickstart"
+          label="Getting Started"
+          items={[
+            { label: "Quick Start", href: "/quickstart" },
+            { label: "Installation", href: "/installation" },
+            { label: "Chakra UI", href: "/chakra-ui" },
+            { label: "Theming", href: "/theming" },
+            { label: "Dark Mode", href: "/dark-mode", status: "new" },
+          ]}
+        />
         <Pagination
           next={{ label: "Card", href: "#" }}
           previous={{ label: "Button", href: "#" }}
