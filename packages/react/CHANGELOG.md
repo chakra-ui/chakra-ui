@@ -1,5 +1,22 @@
 # @chakra-ui/react
 
+## 3.0.0-next.11
+
+### Minor Changes
+
+- [`e77a9b8`](https://github.com/chakra-ui/chakra-ui/commit/e77a9b81ecd765d0b0963e5f847a867dfd506363)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Add new Timeline
+  component to presenting chronological information or activities.
+
+  - Trim generated `className` in the DOM.
+  - Add `neutral` status to `Alert` component
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.11
+  - @chakra-ui/utils@3.0.0-next.11
+
 ## 3.0.0-next.10
 
 ### Patch Changes
