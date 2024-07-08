@@ -6,13 +6,7 @@ export const AvatarWithColors = () => {
   return (
     <Stack gap="2" align="flex-start">
       {colorPalettes.map((colorPalette) => (
-        <Stack
-          key={colorPalette}
-          align="center"
-          direction="row"
-          gap="10"
-          px="4"
-        >
+        <Stack key={colorPalette} align="center" direction="row" gap="10">
           <Text minW="8ch">{colorPalette}</Text>
           <Avatar
             colorPalette={colorPalette}

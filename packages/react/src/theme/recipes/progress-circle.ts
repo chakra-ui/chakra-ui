@@ -1,7 +1,7 @@
 import { progressAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
-export const circularProgressSlotRecipe = defineSlotRecipe({
+export const progressCircleSlotRecipe = defineSlotRecipe({
   slots: progressAnatomy.keys(),
   base: {
     root: {

@@ -26,7 +26,6 @@ import { CheckboxWithCustomIcon } from "compositions/examples/checkbox-with-cust
 import { CheckboxWithIndeterminate } from "compositions/examples/checkbox-with-indeterminate"
 import { CheckboxWithStates } from "compositions/examples/checkbox-with-states"
 import { CheckmarkStates } from "compositions/examples/checkmark-states"
-import { CircularProgressWithColors } from "compositions/examples/circular-progress-with-colors"
 import { CodeWithColors } from "compositions/examples/code-with-colors"
 import { CollapsibleBasic } from "compositions/examples/collapsible-basic"
 import { CollapsibleLazyMounted } from "compositions/examples/collapsible-lazy-mounted"
@@ -40,7 +39,17 @@ import { DialogWithInitialFocus } from "compositions/examples/dialog-with-initia
 import { DialogWithInsideScroll } from "compositions/examples/dialog-with-inside-scroll"
 import { DialogWithOutsideScroll } from "compositions/examples/dialog-with-outside-scroll"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
+import { EditableBasic } from "compositions/examples/editable-basic"
+import { EditableControlled } from "compositions/examples/editable-controlled"
+import { EditableDisabled } from "compositions/examples/editable-disabled"
+import { EditableWithDoubleClick } from "compositions/examples/editable-with-double-click"
+import { EditableWithTextarea } from "compositions/examples/editable-with-textarea"
 import { EmptyStateWithAction } from "compositions/examples/empty-state-with-action"
+import { FileUploadAcceptedFiles } from "compositions/examples/file-upload-accepted-files"
+import { FileUploadBasic } from "compositions/examples/file-upload-basic"
+import { FileUploadMediaCapture } from "compositions/examples/file-upload-media-capture"
+import { FileUploadMultiple } from "compositions/examples/file-upload-multiple"
+import { FileUploadWithDropzone } from "compositions/examples/file-upload-with-dropzone"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { HoverCardBasic } from "compositions/examples/hovercard-basic"
 import { InputWithDescription } from "compositions/examples/input-with-description"
@@ -56,6 +65,7 @@ import { MenuWithSubmenu } from "compositions/examples/menu-with-submenu"
 import { NativeSelectBasic } from "compositions/examples/native-select-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
 import { PopoverSizes } from "compositions/examples/popover-sizes"
+import { ProgressCircleWithColors } from "compositions/examples/progress-circle-with-colors"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
@@ -94,12 +104,9 @@ import { TextareaWithDescription } from "compositions/examples/textarea-with-des
 import { TextareaWithError } from "compositions/examples/textarea-with-error"
 import { TextareaWithField } from "compositions/examples/textarea-with-field"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
-import { Button } from "compositions/ui/button"
-import { FileButton, FileDropzone } from "compositions/ui/file-button"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import { ScrubberInput } from "compositions/ui/scrubber-input"
 import { StepperInput } from "compositions/ui/stepper-input"
-import { HiUpload } from "react-icons/hi"
 import { LuMinimize2 } from "react-icons/lu"
 
 export default function Page() {
@@ -108,21 +115,35 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Table">Table</Playground.SectionTitle>
         <Playground.SectionContent>
-          <TableBasic />
-          <TableWithColumnGroup />
-          <TableWithOverflow />
-          <TableWithSelection />
-          <TableWithStickyColumn />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <TableBasic /> },
+              {
+                label: "w/ Column Group",
+                component: <TableWithColumnGroup />,
+              },
+              { label: "w/ Overflow", component: <TableWithOverflow /> },
+              { label: "w/ Selection", component: <TableWithSelection /> },
+              {
+                label: "w/ Sticky Column",
+                component: <TableWithStickyColumn />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="Steps">Steps</Playground.SectionTitle>
         <Playground.SectionContent gap="10">
-          <StepsBasic />
-          <StepsVertical />
-          <StepsWithDescription />
-          <StepsWithIcon />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <StepsBasic /> },
+              { label: "vertical", component: <StepsVertical /> },
+              { label: "w/ description", component: <StepsWithDescription /> },
+              { label: "w/ icon", component: <StepsWithIcon /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -220,38 +241,36 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Dialog">Dialog</Playground.SectionTitle>
         <Playground.SectionContent>
-          <Stack>
-            <Text>Dialog w/ sizes</Text>
-            <DialogSizes />
-          </Stack>
-
-          <Stack>
-            <Text>Dialog w/ DataList</Text>
-            <DialogWithDataList />
-          </Stack>
-
-          <Stack>
-            <Text>Dialog Scrollable</Text>
-            <HStack>
-              <DialogWithInsideScroll />
-              <DialogWithOutsideScroll />
-            </HStack>
-          </Stack>
-
-          <Stack align="flex-start">
-            <Text>Dialog Nested</Text>
-            <DialogNested />
-          </Stack>
-
-          <Stack align="flex-start">
-            <Text>Dialog Initial Focus</Text>
-            <DialogWithInitialFocus />
-          </Stack>
-
-          <Stack align="flex-start">
-            <Text>Dialog Final Focus</Text>
-            <DialogWithFinalFocus />
-          </Stack>
+          <Playground.DemoList
+            items={[
+              { label: "Dialog w/ sizes", component: <DialogSizes /> },
+              {
+                label: "Dialog w/ DataList",
+                component: <DialogWithDataList />,
+              },
+              {
+                label: "Dialog Scrollable",
+                component: (
+                  <HStack>
+                    <DialogWithInsideScroll />
+                    <DialogWithOutsideScroll />
+                  </HStack>
+                ),
+              },
+              {
+                label: "Dialog Nested",
+                component: <DialogNested />,
+              },
+              {
+                label: "Dialog Initial Focus",
+                component: <DialogWithInitialFocus />,
+              },
+              {
+                label: "Dialog Final Focus",
+                component: <DialogWithFinalFocus />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -298,8 +317,15 @@ export default function Page() {
           Breadcrumb
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <BreadcrumbBasic />
-          <BreadcrumbWithSeparator />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <BreadcrumbBasic /> },
+              {
+                label: "w/ separator",
+                component: <BreadcrumbWithSeparator />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -388,17 +414,25 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="avatar">Avatar</Playground.SectionTitle>
         <Playground.SectionContent>
-          <AvatarWithBadge />
-          <AvatarWithColors />
-          <AvatarGrouped />
+          <Playground.DemoList
+            items={[
+              { label: "w/ badge", component: <AvatarWithBadge /> },
+              { label: "w/ colors", component: <AvatarWithColors /> },
+              { label: "Grouped", component: <AvatarGrouped /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="alert">Alert</Playground.SectionTitle>
         <Playground.SectionContent>
-          <AlertWithStatus />
-          <AlertWithSpinner />
+          <Playground.DemoList
+            items={[
+              { label: "w/ status", component: <AlertWithStatus /> },
+              { label: "w/ spinner", component: <AlertWithSpinner /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -439,20 +473,37 @@ export default function Page() {
           Checkbox
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <CheckboxWithStates />
-          <CheckboxWithIndeterminate />
-          <CheckboxWithCustomIcon />
-          <CheckboxWithColors />
+          <Playground.DemoList
+            items={[
+              { label: "w/ states", component: <CheckboxWithStates /> },
+              {
+                label: "w/ indeterminate",
+                component: <CheckboxWithIndeterminate />,
+              },
+              {
+                label: "w/ custom Icon",
+                component: <CheckboxWithCustomIcon />,
+              },
+              {
+                label: "w/ color palettes",
+                component: <CheckboxWithColors />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
         <Playground.SectionTitle id="button">Button</Playground.SectionTitle>
         <Playground.SectionContent>
-          <ButtonWithIcons />
-          <ButtonWithLoading />
-          <ButtonIcons />
-          <ButtonWithColors />
+          <Playground.DemoList
+            items={[
+              { label: "w/ icons", component: <ButtonIcons /> },
+              { label: "w/ loading", component: <ButtonWithLoading /> },
+              { label: "w/ colors", component: <ButtonWithColors /> },
+              { label: "w/ icons", component: <ButtonWithIcons /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -486,11 +537,11 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="circular-progress">
-          Circular Progress
+        <Playground.SectionTitle id="progress-circle">
+          Progress Circle
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <CircularProgressWithColors />
+          <ProgressCircleWithColors />
         </Playground.SectionContent>
       </Playground.Section>
 
@@ -564,24 +615,39 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="file-button">
-          File Button
+        <Playground.SectionTitle id="editable">
+          Editable
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <FileButton width="auto">
-            <Button variant="outline" startIcon={<HiUpload />}>
-              Upload file
-            </Button>
-          </FileButton>
+          <Playground.DemoList
+            items={[
+              { label: "Basic", component: <EditableBasic /> },
+              { label: "Controlled", component: <EditableControlled /> },
+              { label: "Double Click", component: <EditableWithDoubleClick /> },
+              { label: "Disabled", component: <EditableDisabled /> },
+              { label: "Textarea", component: <EditableWithTextarea /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
       <Playground.Section>
-        <Playground.SectionTitle id="FileDropzone">
-          File Dropzone
+        <Playground.SectionTitle id="file-button">
+          File Button
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <FileDropzone />
+          <Playground.DemoList
+            items={[
+              { label: "Basic", component: <FileUploadBasic /> },
+              {
+                label: "Accepted Types",
+                component: <FileUploadAcceptedFiles />,
+              },
+              { label: "Media Capture", component: <FileUploadMediaCapture /> },
+              { label: "Multiple", component: <FileUploadMultiple /> },
+              { label: "With Dropzone", component: <FileUploadWithDropzone /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 

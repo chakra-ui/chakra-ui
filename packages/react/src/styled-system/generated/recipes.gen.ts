@@ -188,16 +188,6 @@ export interface CheckboxCardVariantProps {
   variant?: "plain" | "subtle"
 }
 
-// CircularProgress
-
-export type CircularProgressSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
-
-export interface CircularProgressVariantProps {
-  indeterminate?: boolean
-  valuePlacement?: "center"
-  size?: "xs" | "sm" | "md" | "lg"
-}
-
 // Collapsible
 
 export type CollapsibleSlot = "root" | "trigger" | "content"
@@ -387,6 +377,16 @@ export interface ProgressVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
+// ProgressCircle
+
+export type ProgressCircleSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
+
+export interface ProgressCircleVariantProps {
+  indeterminate?: boolean
+  valuePlacement?: "center"
+  size?: "xs" | "sm" | "md" | "lg"
+}
+
 // RadioCard
 
 export type RadioCardSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator"
@@ -568,7 +568,6 @@ export interface ConfigSlotRecipes {
   card: SystemSlotRecipeFn<CardSlot, CardVariantProps>
   checkbox: SystemSlotRecipeFn<CheckboxSlot, CheckboxVariantProps>
   checkboxCard: SystemSlotRecipeFn<CheckboxCardSlot, CheckboxCardVariantProps>
-  circularProgress: SystemSlotRecipeFn<CircularProgressSlot, CircularProgressVariantProps>
   collapsible: SystemSlotRecipeFn<CollapsibleSlot, CollapsibleVariantProps>
   dataList: SystemSlotRecipeFn<DataListSlot, DataListVariantProps>
   dialog: SystemSlotRecipeFn<DialogSlot, DialogVariantProps>
@@ -584,6 +583,7 @@ export interface ConfigSlotRecipes {
   pinInput: SystemSlotRecipeFn<PinInputSlot, PinInputVariantProps>
   popover: SystemSlotRecipeFn<PopoverSlot, PopoverVariantProps>
   progress: SystemSlotRecipeFn<ProgressSlot, ProgressVariantProps>
+  progressCircle: SystemSlotRecipeFn<ProgressCircleSlot, ProgressCircleVariantProps>
   radioCard: SystemSlotRecipeFn<RadioCardSlot, RadioCardVariantProps>
   radioGroup: SystemSlotRecipeFn<RadioGroupSlot, RadioGroupVariantProps>
   ratingGroup: SystemSlotRecipeFn<RatingGroupSlot, RatingGroupVariantProps>
@@ -611,7 +611,6 @@ export interface ConfigRecipeSlots {
   card: CardSlot
   checkbox: CheckboxSlot
   checkboxCard: CheckboxCardSlot
-  circularProgress: CircularProgressSlot
   collapsible: CollapsibleSlot
   dataList: DataListSlot
   dialog: DialogSlot
@@ -627,6 +626,7 @@ export interface ConfigRecipeSlots {
   pinInput: PinInputSlot
   popover: PopoverSlot
   progress: ProgressSlot
+  progressCircle: ProgressCircleSlot
   radioCard: RadioCardSlot
   radioGroup: RadioGroupSlot
   ratingGroup: RatingGroupSlot
