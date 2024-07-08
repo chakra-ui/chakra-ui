@@ -18,7 +18,7 @@ import { ButtonWithIcons } from "compositions/examples/button-with-icons"
 import { ButtonWithLoading } from "compositions/examples/button-with-loading"
 import { CardWithVariants } from "compositions/examples/card-with-variants"
 import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
-import { CheckboxCardStates } from "compositions/examples/checkbox-card-states"
+import { CheckboxCardDisabled } from "compositions/examples/checkbox-card-disabled"
 import { CheckboxCardWithAddon } from "compositions/examples/checkbox-card-with-addon"
 import { CheckboxCardWithIcon } from "compositions/examples/checkbox-card-with-icon"
 import { CheckboxWithColors } from "compositions/examples/checkbox-with-colors"
@@ -286,10 +286,14 @@ export default function Page() {
           CheckboxCard
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <CheckboxCardBasic />
-          <CheckboxCardStates />
-          <CheckboxCardWithIcon />
-          <CheckboxCardWithAddon />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <CheckboxCardBasic /> },
+              { label: "disabled", component: <CheckboxCardDisabled /> },
+              { label: "w/ icon", component: <CheckboxCardWithIcon /> },
+              { label: "w/ addon", component: <CheckboxCardWithAddon /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 

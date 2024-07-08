@@ -3,23 +3,24 @@ import {
   CheckboxGroup,
 } from "@chakra-ui/react"
 
-interface CheckboxCardItemProps extends ChakraCheckboxCard.RootProps {
-  addon?: React.ReactNode
+export interface CheckboxCardControlProps
+  extends ChakraCheckboxCard.ControlProps {
+  showIndicator?: boolean
 }
 
-export const CheckboxCardItem = (props: CheckboxCardItemProps) => {
-  const { children, addon, ...rest } = props
+export const CheckboxCardControl = (props: CheckboxCardControlProps) => {
+  const { children, showIndicator = true, ...rest } = props
   return (
-    <ChakraCheckboxCard.Root {...rest}>
-      <ChakraCheckboxCard.Control>
-        {children}
-        <ChakraCheckboxCard.HiddenInput />
-        <ChakraCheckboxCard.Indicator />
-      </ChakraCheckboxCard.Control>
-      {addon && <ChakraCheckboxCard.Addon>{addon}</ChakraCheckboxCard.Addon>}
-    </ChakraCheckboxCard.Root>
+    <ChakraCheckboxCard.Control {...rest}>
+      {children}
+      <ChakraCheckboxCard.HiddenInput />
+      {showIndicator && <ChakraCheckboxCard.Indicator />}
+    </ChakraCheckboxCard.Control>
   )
 }
 
+export const CheckboxCardAddon = ChakraCheckboxCard.Addon
+export const CheckboxCardRoot = ChakraCheckboxCard.Root
+export const CheckboxCardIndicator = ChakraCheckboxCard.Indicator
 export const CheckboxCardGroup = CheckboxGroup
 export const CheckboxCardLabel = ChakraCheckboxCard.Label
