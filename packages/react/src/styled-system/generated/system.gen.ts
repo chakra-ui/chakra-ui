@@ -644,6 +644,7 @@ export interface SystemProperties {
   backdropSepia?: ConditionalValue<string | number | AnyString>
   focusRing?: ConditionalValue<UtilityValues["focusRing"] | CssVars | AnyString>
   focusRingColor?: ConditionalValue<UtilityValues["focusRingColor"] | CssVars | AnyString>
+  focusRingWidth?: ConditionalValue<UtilityValues["focusRingWidth"] | CssVars | AnyString>
   boxSize?: ConditionalValue<UtilityValues["boxSize"] | CssVars | AnyString>
   hideFrom?: ConditionalValue<UtilityValues["hideFrom"] | CssVars | AnyString>
   hideBelow?: ConditionalValue<UtilityValues["hideBelow"] | CssVars | AnyString>

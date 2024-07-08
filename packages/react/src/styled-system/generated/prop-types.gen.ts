@@ -115,6 +115,7 @@ export interface UtilityValues {
   outlineColor: Tokens["colors"]
   focusRing: "extend" | "contain"
   focusRingColor: Tokens["colors"]
+  focusRingWidth: Tokens["borderWidths"] | CssProperties["outlineWidth"]
   aspectRatio: Tokens["aspectRatios"]
   width: Tokens["sizes"]
   inlineSize: Tokens["sizes"]

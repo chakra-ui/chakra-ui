@@ -539,7 +539,7 @@ export const defaultBaseConfig = defineConfig({
           contain: {
             "--focus-ring-color": focusRingColor,
             "&:where(:focus-visible, [data-focus])": {
-              outlineWidth: "1px",
+              outlineWidth: "var(--focus-ring-width, 1px)",
               outlineColor: "var(--focus-ring-color)",
               outlineStyle: "solid",
               borderColor: "var(--focus-ring-color)",
@@ -548,7 +548,7 @@ export const defaultBaseConfig = defineConfig({
           extend: {
             "--focus-ring-color": focusRingColor,
             "&:where(:focus-visible, [data-focus])": {
-              outlineWidth: "2px",
+              outlineWidth: "var(--focus-ring-width, 2px)",
               outlineOffset: "2px",
               outlineColor: "var(--focus-ring-color)",
               outlineStyle: "solid",
@@ -562,6 +562,11 @@ export const defaultBaseConfig = defineConfig({
     focusRingColor: {
       values: "colors",
       transform: createColorMixTransform("--focus-ring-color"),
+    },
+    focusRingWidth: {
+      values: "borderWidths",
+      property: "outlineWidth",
+      transform: (v) => ({ "--focus-ring-width": v }),
     },
     // layout
     aspectRatio: { values: "aspectRatios" },
