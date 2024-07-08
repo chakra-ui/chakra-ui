@@ -4,6 +4,7 @@ import { MDXContent } from "@/components/mdx-content"
 import { Pagination } from "@/components/pagination"
 import { SearchButton } from "@/components/search-button"
 import { SideNav } from "@/components/sidenav"
+import { SocialLinks } from "@/components/social-links"
 import { Container, Stack } from "@chakra-ui/react"
 import { pages } from ".velite"
 
@@ -11,6 +12,13 @@ export default function Page() {
   return (
     <Container py="20" fontSize="sm" maxW="4xl">
       <Stack gap="10">
+        <SocialLinks
+          items={[
+            { type: "x", href: "https://twitter.com/chakra_ui" },
+            { type: "github", href: "https://github.com/chakra_ui" },
+            { type: "discord", href: "https://discord.com/chakra_ui" },
+          ]}
+        />
         <SideNav
           currentHref="/quickstart"
           label="Getting Started"
