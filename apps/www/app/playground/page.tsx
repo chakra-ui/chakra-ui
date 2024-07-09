@@ -1,6 +1,7 @@
 import * as Playground from "@/components/playground"
 import { Container, HStack, SimpleGrid, Stack, Text } from "@chakra-ui/react"
 import { AccordionBasic } from "compositions/examples/accordion-basic"
+import { AccordionWithIcon } from "compositions/examples/accordion-with-icon"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
 import { AvatarGrouped } from "compositions/examples/avatar-grouped"
@@ -411,7 +412,12 @@ export default function Page() {
           Accordion
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <AccordionBasic />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <AccordionBasic /> },
+              { label: "w/ icon", component: <AccordionWithIcon /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 

@@ -1,5 +1,9 @@
-import { Accordion, Box } from "@chakra-ui/react"
-import { LuChevronDown } from "react-icons/lu"
+import {
+  AccordionItem,
+  AccordionItemContent,
+  AccordionItemTrigger,
+  AccordionRoot,
+} from "compositions/ui/accordion"
 
 const items = [
   { value: "a", title: "First Item", text: "Some value 1..." },
@@ -9,24 +13,13 @@ const items = [
 
 export const AccordionBasic = () => {
   return (
-    <Accordion.Root collapsible minW="300px" defaultValue={["b"]}>
+    <AccordionRoot collapsible minW="300px" defaultValue={["b"]}>
       {items.map((item, index) => (
-        <Accordion.Item key={index} value={item.value}>
-          <h2>
-            <Accordion.ItemTrigger>
-              <Box flex="1" textAlign="start">
-                {item.title}
-              </Box>
-              <Accordion.ItemIndicator>
-                <LuChevronDown />
-              </Accordion.ItemIndicator>
-            </Accordion.ItemTrigger>
-          </h2>
-          <Accordion.ItemContent>
-            <Accordion.ItemBody>{item.text}</Accordion.ItemBody>
-          </Accordion.ItemContent>
-        </Accordion.Item>
+        <AccordionItem key={index} value={item.value}>
+          <AccordionItemTrigger>{item.title}</AccordionItemTrigger>
+          <AccordionItemContent>{item.text}</AccordionItemContent>
+        </AccordionItem>
       ))}
-    </Accordion.Root>
+    </AccordionRoot>
   )
 }
