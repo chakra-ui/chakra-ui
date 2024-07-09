@@ -7,6 +7,10 @@ import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
 import { AvatarGrouped } from "compositions/examples/avatar-grouped"
 import { AvatarWithBadge } from "compositions/examples/avatar-with-badge"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
+import { AvatarWithFallback } from "compositions/examples/avatar-with-fallback"
+import { AvatarWithRing } from "compositions/examples/avatar-with-ring"
+import { AvatarWithShape } from "compositions/examples/avatar-with-shape"
+import { AvatarWithSizes } from "compositions/examples/avatar-with-sizes"
 import { BadgeWithColors } from "compositions/examples/badge-with-colors"
 import { BadgeWithGroup } from "compositions/examples/badge-with-group"
 import { BadgeWithIcon } from "compositions/examples/badge-with-icon"
@@ -428,6 +432,10 @@ export default function Page() {
             items={[
               { label: "w/ badge", component: <AvatarWithBadge /> },
               { label: "w/ colors", component: <AvatarWithColors /> },
+              { label: "w/ sizes", component: <AvatarWithSizes /> },
+              { label: "w/ fallback", component: <AvatarWithFallback /> },
+              { label: "w/ ring", component: <AvatarWithRing /> },
+              { label: "w/ shape", component: <AvatarWithShape /> },
               { label: "Grouped", component: <AvatarGrouped /> },
             ]}
           />
