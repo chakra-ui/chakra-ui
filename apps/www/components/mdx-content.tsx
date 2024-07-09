@@ -12,7 +12,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Children } from "react"
 import * as runtime from "react/jsx-runtime"
-import { Example } from "./example"
+import { Example, ExampleTabs } from "./example"
 
 const sharedComponents = {
   a(props: any) {
@@ -328,10 +328,8 @@ const sharedComponents = {
       </Tabs.Root>
     )
   },
-  Example(props: any) {
-    if (!props.name) return null
-    return <Example {...props} />
-  },
+  Example,
+  ExampleTabs,
 }
 
 const useMDXComponent = (code: string) => {
