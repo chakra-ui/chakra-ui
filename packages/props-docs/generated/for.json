@@ -1,0 +1,14 @@
+{
+  "For": {
+    "each": {
+      "type": "T[] | readonly T[] | undefined",
+      "required": false,
+      "description": "The array to iterate over"
+    },
+    "fallback": {
+      "type": "React.ReactNode",
+      "required": false,
+      "description": "The fallback content to render when the array is empty"
+    }
+  }
+}
