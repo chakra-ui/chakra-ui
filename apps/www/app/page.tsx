@@ -1,3 +1,4 @@
+import { ExampleTabs } from "@/components/example"
 import { Box } from "@chakra-ui/react"
 import { Content } from "./docs/content"
 import { Header } from "./docs/header"
@@ -11,7 +12,9 @@ export default function Page() {
       }}
     >
       <Header />
-      <Content />
+      <Content>
+        <ExampleTabs name="alert-basic" />
+      </Content>
     </Box>
   )
 }

@@ -17,13 +17,12 @@ const SidebarStart = () => {
       flexShrink="0"
       height="var(--content-height)"
       overflowY="auto"
-      width="320px"
+      width="16rem"
       hideBelow="md"
       fontSize="sm"
     >
       <Stack gap="10">
         <SideNav
-          maxW="80%"
           currentHref="/quickstart"
           label="Getting Started"
           items={[
@@ -35,7 +34,6 @@ const SidebarStart = () => {
           ]}
         />
         <SideNav
-          maxW="80%"
           label="Frameworks"
           items={[
             { label: "Next.js (App)", href: "/next-js-app" },
@@ -62,7 +60,7 @@ const SidebarEnd = () => {
       flexShrink="0"
       height="var(--content-height)"
       overflowY="auto"
-      width="256px"
+      width="16rem"
       hideBelow="xl"
     >
       <Stack gap="4" align="flex-start">
@@ -80,7 +78,7 @@ const SidebarEnd = () => {
   )
 }
 
-const Body = () => {
+const Body = (props: React.PropsWithChildren) => {
   return (
     <Stack
       flex="1"
@@ -95,16 +93,17 @@ const Body = () => {
         title="Quick Start"
         description="Learn how to get started with Chakra UI"
       />
+      {props.children}
     </Stack>
   )
 }
 
-export const Content = () => {
+export const Content = (props: React.PropsWithChildren) => {
   return (
     <Container pt="var(--header-height)" minHeight="var(--content-height)">
       <Flex>
         <SidebarStart />
-        <Body />
+        <Body>{props.children}</Body>
         <SidebarEnd />
       </Flex>
     </Container>
