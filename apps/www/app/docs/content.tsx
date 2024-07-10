@@ -92,6 +92,11 @@ const Body = (props: React.PropsWithChildren) => {
       <PageHeader
         title="Quick Start"
         description="Learn how to get started with Chakra UI"
+        links={[
+          { label: "Source", href: "#" },
+          { label: "Recipe", href: "#" },
+          { label: "Storybook", href: "#" },
+        ]}
       />
       {props.children}
     </Stack>
