@@ -28,9 +28,6 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Generate docs
-        run: pnpm build:prop-docs
-
       - name: Create release Pull Request or publish to NPM
         id: changesets
         uses: changesets/action@v1
@@ -42,16 +39,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Create @dev release
-      #   if: steps.changesets.outputs.published != 'true'
-      #   run: |
-      #     git checkout main
-      #     pnpm version:dev
-      #     pnpm release:dev
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Slack notification
         if: steps.changesets.outputs.published == 'true'
