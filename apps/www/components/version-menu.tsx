@@ -23,7 +23,7 @@ export const VersionMenu = (props: Props) => {
   const [currentItem, ...restItems] = items
   return (
     <MenuRoot>
-      <MenuTrigger alignSelf="flex-start">
+      <MenuTrigger>
         <Button size="sm" variant="outline" gap="1" pe="2">
           {currentItem.value}
           <LuChevronDown />

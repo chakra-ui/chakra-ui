@@ -1,4 +1,4 @@
-import { Badge, HStack, Stack, Text } from "@chakra-ui/react"
+import { Badge, HStack, Stack, StackProps, Text } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 
 interface SideNavItem {
@@ -7,16 +7,16 @@ interface SideNavItem {
   status?: string
 }
 
-interface SideNavProps {
-  currentHref: string
+interface SideNavProps extends StackProps {
+  currentHref?: string
   label?: React.ReactNode
   items: Array<SideNavItem>
 }
 
 export const SideNav = (props: SideNavProps) => {
-  const { label, items, currentHref } = props
+  const { label, items, currentHref, ...rest } = props
   return (
-    <Stack gap="4">
+    <Stack gap="4" {...rest}>
       {label && (
         <Text ps="4" fontWeight="semibold">
           {label}
@@ -27,10 +27,11 @@ export const SideNav = (props: SideNavProps) => {
           <HStack
             key={index}
             asChild
-            py="2"
+            py="1.5"
             ps="4"
             pe="3"
             rounded="sm"
+            color="fg.muted"
             _hover={{
               layerStyle: "fill.subtle",
               colorPalette: "gray",
