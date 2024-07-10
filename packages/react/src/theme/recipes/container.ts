@@ -2,9 +2,19 @@ import { defineRecipe } from "../../styled-system"
 
 export const containerRecipe = defineRecipe({
   base: {
+    position: "relative",
+    maxWidth: "8xl",
     w: "100%",
     mx: "auto",
-    maxW: "prose",
-    px: "4",
+    px: { base: "4", md: "6", lg: "8" },
+  },
+  variants: {
+    centerContent: {
+      true: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      },
+    },
   },
 })

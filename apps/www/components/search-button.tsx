@@ -9,10 +9,18 @@ export const SearchButton = forwardRef<HTMLButtonElement, ButtonProps>(
         <Box asChild color="fg.subtle">
           <LuSearch />
         </Box>
-        <Span ms="2" fontWeight="normal" flex="1" textAlign="start">
-          Search documentation
+        <Span ms="1" fontWeight="normal" flex="1" textAlign="start">
+          Search...
         </Span>
-        <Kbd>⌘K</Kbd>
+        <Kbd
+          variant="outline"
+          bg="bg"
+          fontSize="0.8em"
+          letterSpacing="widest"
+          lineHeight="tall"
+        >
+          ⌘K
+        </Kbd>
       </Button>
     )
   },

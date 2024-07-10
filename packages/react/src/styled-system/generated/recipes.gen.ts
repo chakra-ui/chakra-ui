@@ -15,7 +15,9 @@ export interface CodeVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
 }
 
-export interface ContainerVariantProps {}
+export interface ContainerVariantProps {
+  centerContent?: boolean
+}
 
 export interface HeadingVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"

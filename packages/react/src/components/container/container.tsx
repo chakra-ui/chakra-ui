@@ -14,49 +14,19 @@ import {
 export interface ContainerProps
   extends HTMLChakraProps<"div">,
     RecipeProps<"container">,
-    UnstyledProp {
-  /**
-   * If `true`, container will center its children
-   * regardless of their width.
-   *
-   * @default false
-   */
-  centerContent?: boolean
-}
+    UnstyledProp {}
 
-/**
- * Layout component used to wrap app or website content
- *
- * It sets `margin-left` and `margin-right` to `auto`,
- * to keep its content centered.
- *
- * It also sets a default max-width of `60ch` (60 characters).
- *
- * @see Docs https://chakra-ui.com/docs/components/container
- */
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   function Container({ unstyled, ...props }, ref) {
     const recipe = useRecipe("container", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
-
-    const { centerContent, ...rest } = localProps
-
     return (
       <chakra.div
         ref={ref}
-        {...rest}
+        {...localProps}
         className={cx("chakra-container", props.className)}
-        css={[
-          styles,
-          centerContent
-            ? {
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }
-            : {},
-        ]}
+        css={[styles, props.css]}
       />
     )
   },

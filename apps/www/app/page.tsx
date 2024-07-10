@@ -1,16 +1,17 @@
-import { Example, ExampleTabs } from "@/components/example"
-import * as Playground from "@/components/playground"
-import { Container } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
+import { Content } from "./docs/content"
+import { Header } from "./docs/header"
 
 export default function Page() {
   return (
-    <Container py="20" fontSize="sm" maxW="4xl">
-      <Playground.Section>
-        <Playground.SectionContent>
-          <ExampleTabs name="select-with-avatar" />
-          <Example name="select-with-avatar" />
-        </Playground.SectionContent>
-      </Playground.Section>
-    </Container>
+    <Box
+      css={{
+        "--header-height": "104px",
+        "--content-height": "calc(100dvh - var(--header-height))",
+      }}
+    >
+      <Header />
+      <Content />
+    </Box>
   )
 }
