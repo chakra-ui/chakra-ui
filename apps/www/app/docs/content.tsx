@@ -4,6 +4,7 @@ import { BackToTop } from "@/components/back-to-top"
 import { PageHeader } from "@/components/page-header"
 import { SideNav } from "@/components/sidenav"
 import { Toc } from "@/components/toc"
+import { NavUtil } from "@/lib/nav-util"
 import { Box, Container, Flex, Stack } from "@chakra-ui/react"
 
 const SidebarStart = () => {
@@ -22,29 +23,14 @@ const SidebarStart = () => {
       fontSize="sm"
     >
       <Stack gap="10">
-        <SideNav
-          currentHref="/quickstart"
-          label="Getting Started"
-          items={[
-            { label: "Quick Start", href: "/quickstart" },
-            { label: "Installation", href: "/installation" },
-            { label: "Changelog", href: "/changelog", status: "new" },
-            { label: "Upgrade to v3", href: "/upgrade-to-v3" },
-            { label: "Contributing", href: "/contributing" },
-          ]}
-        />
-        <SideNav
-          label="Frameworks"
-          items={[
-            { label: "Next.js (App)", href: "/next-js-app" },
-            { label: "Next.js (Page)", href: "/next-js-pages" },
-            { label: "Remix", href: "/remix" },
-            { label: "Gatsby", href: "/gatsby" },
-            { label: "Vite", href: "/vite" },
-            { label: "Storybook", href: "/storybook" },
-            { label: "Redwood", href: "/redwood" },
-          ]}
-        />
+        {NavUtil.getSidebarNavItems()?.map((group) => (
+          <SideNav
+            key={group.label}
+            currentHref={NavUtil.currentHref}
+            label={group.label}
+            items={group.items}
+          />
+        ))}
       </Stack>
     </Box>
   )

@@ -8,6 +8,7 @@ const docsLinks: NavItem = {
       items: [
         {
           label: "Overview",
+          href: "overview",
           items: [
             { label: "Installation", href: "installation" },
             { label: "Changelog", href: "changelog" },
@@ -18,6 +19,7 @@ const docsLinks: NavItem = {
         },
         {
           label: "Frameworks",
+          href: "frameworks",
           items: [
             { label: "Vite", href: "vite" },
             { label: "Next.js", href: "nextjs" },
@@ -54,6 +56,20 @@ const docsLinks: NavItem = {
           ],
         },
         { label: "Customization", href: "customization" },
+      ],
+    },
+
+    {
+      label: "Styled System",
+      href: "styled-system",
+      items: [
+        { label: "Style Props", href: "style-props" },
+        { label: "Responsive Design", href: "responsive-design" },
+        { label: "Chakra Factory", href: "chakra-factory" },
+        { label: "CSS Variables", href: "css-variables" },
+        { label: "Text Styles", href: "text-styles" },
+        { label: "Layer Styles", href: "layer-styles" },
+        { label: "Color Mode", href: "color-mode" },
       ],
     },
 
@@ -163,7 +179,7 @@ export const docsConfig: DocsConfig = {
   navigation: [
     docsLinks,
     { label: "Examples", href: "examples" },
-    { label: "Blog", href: "blog" },
+    { label: "Figma", href: "figma" },
     { label: "Showcase", href: "showcase" },
   ],
 }

@@ -5,6 +5,7 @@ import { Logo } from "@/components/logo"
 import { SearchButton } from "@/components/search-button"
 import { SocialLinks } from "@/components/social-links"
 import { VersionMenu } from "@/components/version-menu"
+import { NavUtil } from "@/lib/nav-util"
 import { Container, HStack, Spacer, chakra } from "@chakra-ui/react"
 import Link from "next/link"
 
@@ -49,12 +50,15 @@ const HeaderPrimaryNav = () => {
       <Link href="/">
         <Logo />
       </Link>
-      <TopNavLink href="/" aria-current="page">
-        Docs
-      </TopNavLink>
-      <TopNavLink href="/">Examples</TopNavLink>
-      <TopNavLink href="/">Figma</TopNavLink>
-      <TopNavLink href="/">Showcase</TopNavLink>
+      {NavUtil.getPrimaryNavItems().map((item) => (
+        <TopNavLink
+          key={item.label}
+          href={item.href}
+          aria-current={item.current ? "page" : undefined}
+        >
+          {item.label}
+        </TopNavLink>
+      ))}
     </HStack>
   )
 }
@@ -62,18 +66,16 @@ const HeaderPrimaryNav = () => {
 const HeaderSecondaryNav = () => {
   return (
     <HStack as="nav" gap="6" aria-label="secondary navigation">
-      <TopNavLink variant="tab" href="/" aria-current="page">
-        Get Started
-      </TopNavLink>
-      <TopNavLink variant="tab" href="/">
-        Design Tokens
-      </TopNavLink>
-      <TopNavLink variant="tab" href="/">
-        Components
-      </TopNavLink>
-      <TopNavLink variant="tab" href="/">
-        Theming
-      </TopNavLink>
+      {NavUtil.getSecondaryNavItems().map((item) => (
+        <TopNavLink
+          key={item.label}
+          variant="tab"
+          href={item.href}
+          aria-current={item.current ? "page" : undefined}
+        >
+          {item.label}
+        </TopNavLink>
+      ))}
     </HStack>
   )
 }
