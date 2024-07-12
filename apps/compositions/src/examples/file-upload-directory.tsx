@@ -10,8 +10,8 @@ export const FileUploadDirectory = () => {
   return (
     <FileUploadRoot directory>
       <FileUploadTrigger>
-        <Button variant="outline" size="sm" startIcon={<HiUpload />}>
-          Upload file
+        <Button variant="outline" size="sm">
+          <HiUpload /> Upload file
         </Button>
       </FileUploadTrigger>
       <FileUploadList />

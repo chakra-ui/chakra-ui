@@ -16,8 +16,8 @@ export const MenuWithRadioItems = () => {
   return (
     <MenuRoot>
       <MenuTrigger>
-        <Button variant="outline" size="sm" startIcon={<HiSortAscending />}>
-          Sort
+        <Button variant="outline" size="sm">
+          <HiSortAscending /> Sort
         </Button>
       </MenuTrigger>
       <MenuContent minW="10rem">

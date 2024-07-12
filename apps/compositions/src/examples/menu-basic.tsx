@@ -11,8 +11,8 @@ export const MenuBasic = () => {
   return (
     <MenuRoot>
       <MenuTrigger>
-        <Button variant="outline" size="sm" endIcon={<LuChevronsUpDown />}>
-          Menu
+        <Button variant="outline" size="sm">
+          Menu <LuChevronsUpDown />
         </Button>
       </MenuTrigger>
       <MenuContent>

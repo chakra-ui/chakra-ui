@@ -10,8 +10,8 @@ export const FileUploadMultiple = () => {
   return (
     <FileUploadRoot maxFiles={5}>
       <FileUploadTrigger>
-        <Button variant="outline" size="sm" startIcon={<HiUpload />}>
-          Upload file
+        <Button variant="outline" size="sm">
+          <HiUpload /> Upload file
         </Button>
       </FileUploadTrigger>
       <FileUploadList />

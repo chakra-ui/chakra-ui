@@ -11,7 +11,9 @@ export const EmptyStateWithAction = () => {
       description="Add a new design token to get started"
     >
       <Group>
-        <Button startIcon={<HiPlus />}>Add new</Button>
+        <Button>
+          <HiPlus /> Add new
+        </Button>
         <Button variant="outline">Import</Button>
       </Group>
     </EmptyState>

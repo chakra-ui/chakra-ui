@@ -10,8 +10,8 @@ export const FileUploadMediaCapture = () => {
   return (
     <FileUploadRoot capture="environment">
       <FileUploadTrigger>
-        <Button variant="outline" size="sm" startIcon={<HiCamera />}>
-          Open Camera
+        <Button variant="outline" size="sm">
+          <HiCamera /> Open Camera
         </Button>
       </FileUploadTrigger>
       <FileUploadList />

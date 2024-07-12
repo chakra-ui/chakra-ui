@@ -6,8 +6,8 @@ export const FileUploadAcceptedFiles = () => {
   return (
     <FileUploadRoot accept={["image/png"]}>
       <FileUploadTrigger>
-        <Button variant="outline" size="sm" startIcon={<HiUpload />}>
-          Upload file
+        <Button variant="outline" size="sm">
+          <HiUpload /> Upload file
         </Button>
       </FileUploadTrigger>
     </FileUploadRoot>
