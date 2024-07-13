@@ -1,4 +1,4 @@
-import { docsConfig } from "@/docs.config"
+import { FlattenNavItem, NavItem, docsConfig } from "@/docs.config"
 
 const currentHref = "/docs/get-started/overview/installation"
 
@@ -27,6 +27,35 @@ export const NavUtil = {
       href: `/${primaryNav.href}/${item.href}`,
       current: currentHref.startsWith(`/${primaryNav.href}/${item.href}`),
     }))
+  },
+  flattenedNavItems: (): FlattenNavItem[] => {
+    const result: FlattenNavItem[] = []
+
+    const iterate = (item: NavItem, parentHref = "") => {
+      const href = `${parentHref}/${item.href}`
+      if (item.items) {
+        item.items.forEach((child) => iterate(child, href))
+      } else {
+        result.push({ label: item.label, href, status: item.status })
+      }
+    }
+
+    docsConfig.navigation.forEach((item) => iterate(item))
+
+    return result
+  },
+  getCurrentIndex: (items: FlattenNavItem[]) => {
+    return items.findIndex((item) => currentHref.startsWith(item.href!))
+  },
+  getNextItem: (): NavItem | null => {
+    const flattenedItems = NavUtil.flattenedNavItems()
+    const currentIndex = NavUtil.getCurrentIndex(flattenedItems)
+    return flattenedItems[currentIndex + 1] || null
+  },
+  getPrevItem: (): NavItem | null => {
+    const flattenedItems = NavUtil.flattenedNavItems()
+    const currentIndex = NavUtil.getCurrentIndex(flattenedItems)
+    return flattenedItems[currentIndex - 1] || null
   },
   getSidebarNavItems: () => {
     const primaryNav = NavUtil.getPrimaryNav()

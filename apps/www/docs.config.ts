@@ -197,9 +197,11 @@ interface DocsConfig {
   navigation: NavItem[]
 }
 
-interface NavItem {
+export interface NavItem {
   label: string
   href?: string
   status?: string
   items?: NavItem[]
 }
+
+export interface FlattenNavItem extends Omit<NavItem, "items"> {}
