@@ -1,44 +1,27 @@
 "use client"
 
 import type { HTMLChakraProps, SlotRecipeProps } from "@chakra-ui/react"
-import { chakra } from "@chakra-ui/react"
+import { Button, chakra, useRecipe } from "@chakra-ui/react"
 import { forwardRef } from "react"
-
-interface LinkButtonIconProps {
-  startIcon?: React.ReactElement
-  endIcon?: React.ReactElement
-}
 
 export interface LinkButtonProps
   extends HTMLChakraProps<"a">,
-    SlotRecipeProps<"Button">,
-    LinkButtonIconProps {}
+    SlotRecipeProps<"Button"> {}
 
 // Replace "a" with your framework's link component
 const StyledLink = chakra("a")
 
 export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   function LinkButton(props, ref) {
-    const { startIcon, endIcon, children, ...rest } = props
-
+    const { children, ...rest } = props
+    const recipe = useRecipe("Button", props.recipe)
+    const [variantProps, localProps] = recipe.splitVariantProps(rest)
     return (
-      <StyledLink ref={ref} {...rest}>
-        <ButtonContent startIcon={startIcon} endIcon={endIcon}>
+      <Button asChild {...variantProps}>
+        <StyledLink ref={ref} {...localProps}>
           {children}
-        </ButtonContent>
-      </StyledLink>
+        </StyledLink>
+      </Button>
     )
   },
 )
-
-const ButtonContent = (props: React.PropsWithChildren<LinkButtonIconProps>) => {
-  const { children, startIcon, endIcon } = props
-  if (!startIcon && !endIcon) return children
-  return (
-    <>
-      {startIcon}
-      <span>{children}</span>
-      {endIcon}
-    </>
-  )
-}
