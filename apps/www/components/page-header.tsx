@@ -4,7 +4,7 @@ import { LuArrowUpRight } from "react-icons/lu"
 interface PageHeaderProps {
   title: string
   description: string
-  links?: Array<{ label: string; href: string }>
+  links?: Array<{ title: string; url: string }>
 }
 
 export const PageHeader = (props: PageHeaderProps) => {
@@ -23,10 +23,10 @@ export const PageHeader = (props: PageHeaderProps) => {
               fontSize="sm"
               target="_blank"
               color="fg.subtle"
-              key={link.href}
-              href={link.href}
+              key={link.url}
+              href={link.url}
             >
-              {link.label}
+              {link.title}
               <LuArrowUpRight />
             </Link>
           ))}

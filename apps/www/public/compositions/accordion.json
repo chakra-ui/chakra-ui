@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [
+    "react-icons"
+  ],
+  "fileDependencies": [],
+  "id": "accordion",
+  "file": {
+    "name": "accordion.tsx",
+    "content": "import {\n  Accordion as ChakraAccordion,\n  HStack,\n  Icon,\n  type IconProps,\n} from \"@chakra-ui/react\"\nimport { LuChevronDown } from \"react-icons/lu\"\n\ninterface AccordionItemTriggerProps extends ChakraAccordion.ItemTriggerProps {}\n\nexport const AccordionItemTrigger = (props: AccordionItemTriggerProps) => {\n  const { children, ...rest } = props\n  return (\n    <ChakraAccordion.ItemTrigger {...rest}>\n      <HStack gap=\"4\" flex=\"1\" textAlign=\"start\" width=\"full\">\n        {children}\n      </HStack>\n      <ChakraAccordion.ItemIndicator>\n        <LuChevronDown />\n      </ChakraAccordion.ItemIndicator>\n    </ChakraAccordion.ItemTrigger>\n  )\n}\n\ninterface AccordionItemContentProps extends ChakraAccordion.ItemContentProps {}\n\nexport const AccordionItemContent = (props: AccordionItemContentProps) => {\n  return (\n    <ChakraAccordion.ItemContent>\n      <ChakraAccordion.ItemBody {...props} />\n    </ChakraAccordion.ItemContent>\n  )\n}\n\nexport const AccordionItemIcon = (props: IconProps) => {\n  return <Icon color=\"fg.muted\" fontSize=\"lg\" {...props} asChild />\n}\n\nexport const AccordionRoot = ChakraAccordion.Root\nexport const AccordionItem = ChakraAccordion.Item\n"
+  },
+  "component": "Accordion"
+}

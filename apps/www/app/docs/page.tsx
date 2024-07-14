@@ -1,13 +1,11 @@
 import { Card, CardGroup } from "@/components/card"
 import { EditPageButton } from "@/components/edit-page-button"
-import { MDXContent } from "@/components/mdx-content"
 import { Pagination } from "@/components/pagination"
 import { SearchButton } from "@/components/search-button"
 import { SideNav } from "@/components/sidenav"
 import { SocialLinks } from "@/components/social-links"
 import { VersionMenu } from "@/components/version-menu"
 import { Container, Stack } from "@chakra-ui/react"
-import { pages } from ".velite"
 
 export default function Page() {
   return (
@@ -15,9 +13,9 @@ export default function Page() {
       <Stack gap="10">
         <VersionMenu
           items={[
-            { label: "v3", value: "3.1.0", href: "/v3" },
-            { label: "v2", value: "2.8.x", href: "/v2" },
-            { label: "v1", value: "1.5.x", href: "/v1" },
+            { title: "v3", value: "3.1.0", url: "/v3" },
+            { title: "v2", value: "2.8.x", url: "/v2" },
+            { title: "v1", value: "1.5.x", url: "/v1" },
           ]}
         />
         <SocialLinks
@@ -28,14 +26,14 @@ export default function Page() {
           ]}
         />
         <SideNav
-          currentHref="/quickstart"
-          label="Getting Started"
+          currentUrl="/quickstart"
+          title="Getting Started"
           items={[
-            { label: "Quick Start", href: "/quickstart" },
-            { label: "Installation", href: "/installation" },
-            { label: "Chakra UI", href: "/chakra-ui" },
-            { label: "Theming", href: "/theming" },
-            { label: "Dark Mode", href: "/dark-mode", status: "new" },
+            { title: "Quick Start", url: "/quickstart" },
+            { title: "Installation", url: "/installation" },
+            { title: "Chakra UI", url: "/chakra-ui" },
+            { title: "Theming", url: "/theming" },
+            { title: "Dark Mode", url: "/dark-mode", status: "new" },
           ]}
         />
         <Pagination
@@ -58,7 +56,6 @@ export default function Page() {
             How to add Chakra UI to your project and customize the theme.
           </Card>
         </CardGroup>
-        <MDXContent code={pages[0].code} />
       </Stack>
     </Container>
   )

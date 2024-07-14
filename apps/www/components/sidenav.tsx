@@ -2,24 +2,24 @@ import { Badge, HStack, Stack, Text } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 
 interface SideNavItem {
-  label: React.ReactNode
-  href: LinkProps["href"]
+  title: React.ReactNode
+  url: LinkProps["href"]
   status?: string
 }
 
 interface SideNavProps {
-  currentHref?: string
-  label?: React.ReactNode
+  currentUrl?: string
+  title?: React.ReactNode
   items: Array<SideNavItem>
 }
 
 export const SideNav = (props: SideNavProps) => {
-  const { label, items, currentHref } = props
+  const { title, items, currentUrl } = props
   return (
     <Stack gap="4">
-      {label && (
+      {title && (
         <Text ps="4" fontWeight="semibold">
-          {label}
+          {title}
         </Text>
       )}
       <Stack gap="1px">
@@ -43,10 +43,10 @@ export const SideNav = (props: SideNavProps) => {
             }}
           >
             <Link
-              href={item.href}
-              aria-current={item.href === currentHref ? "page" : undefined}
+              href={item.url}
+              aria-current={item.url === currentUrl ? "page" : undefined}
             >
-              {item.label}{" "}
+              {item.title}{" "}
               {item.status && <Badge variant="solid">{item.status}</Badge>}
             </Link>
           </HStack>

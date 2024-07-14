@@ -9,9 +9,9 @@ import Link from "next/link"
 import { LuChevronDown } from "react-icons/lu"
 
 interface VersionItem {
-  label: string
+  title: string
   value: string
-  href: NonNullable<LinkProps["href"]>
+  url: NonNullable<LinkProps["href"]>
 }
 
 interface Props {
@@ -32,9 +32,9 @@ export const VersionMenu = (props: Props) => {
       <MenuContent>
         {restItems.map((item, index) => (
           <MenuItem value={item.value} key={index} asChild>
-            <Link href={item.href}>
+            <Link href={item.url}>
               <Span fontWeight="medium" flex="1">
-                {item.label}
+                {item.title}
               </Span>
               <Span color="fg.subtle">{item.value}</Span>
             </Link>

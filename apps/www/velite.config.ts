@@ -17,14 +17,11 @@ import { remarkCodeTitle } from "./lib/remark-code-title"
 import { remarkCodeGroup } from "./lib/remark-codegroup"
 import { remarkSteps } from "./lib/remark-steps"
 
-const betaComponents = ["carousel", "qr-code", "signature-pad", "tree-view"]
-
-const pages = defineCollection({
-  name: "Components",
-  pattern: ["content/**/*.mdx"],
+const docs = defineCollection({
+  name: "Docs",
+  pattern: ["content/docs/**/*.mdx"],
   schema: s
     .object({
-      id: s.string(),
       title: s.string(),
       description: s.string(),
       metadata: s.metadata(),
@@ -32,13 +29,21 @@ const pages = defineCollection({
       status: s.string().optional(),
       toc: s.toc(),
       code: s.mdx(),
+      links: s
+        .array(s.object({ title: s.string(), url: s.string() }))
+        .optional(),
     })
     .transform((data, { meta }) => {
       return {
         ...data,
-        status: betaComponents.includes(data.id) ? "preview" : undefined,
-        slug: meta.path.replace(/.*\/pages\//, "").replace(/\.mdx$/, ""),
-        category: meta.path.replace(/.*\/pages\//, "").replace(/\/[^/]*$/, ""),
+        slug: meta.path
+          .replace(/.*\/content\//, "")
+          .replace(/\.mdx$/, "")
+          .replace(process.cwd(), ""),
+        category: meta.path
+          .replace(/.*\/content\//, "")
+          .replace(/\/[^/]*$/, "")
+          .replace(process.cwd(), ""),
       }
     }),
 })
@@ -56,7 +61,7 @@ const showcases = defineCollection({
 
 export default defineConfig({
   root: process.cwd(),
-  collections: { pages, showcases },
+  collections: { docs, showcases },
   mdx: {
     remarkPlugins: [
       remarkDirective,

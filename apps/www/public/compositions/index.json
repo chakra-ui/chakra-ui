@@ -1,6 +1,16 @@
 [
   {
     "type": "composition",
+    "id": "accordion",
+    "file": "accordion.tsx",
+    "component": "Accordion",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "action-bar",
     "file": "action-bar.tsx",
     "component": "ActionBar",
@@ -60,14 +70,6 @@
     "id": "checkbox",
     "file": "checkbox.tsx",
     "component": "Checkbox",
-    "npmDependencies": [],
-    "fileDependencies": []
-  },
-  {
-    "type": "composition",
-    "id": "circular-progress",
-    "file": "circular-progress.tsx",
-    "component": "CircularProgress",
     "npmDependencies": [],
     "fileDependencies": []
   },
@@ -233,11 +235,23 @@
   },
   {
     "type": "composition",
+    "id": "progress-circle",
+    "file": "progress-circle.tsx",
+    "component": "ProgressCircle",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "progress",
     "file": "progress.tsx",
     "component": "Progress",
-    "npmDependencies": [],
-    "fileDependencies": []
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": [
+      "./toggle-tip"
+    ]
   },
   {
     "type": "composition",

@@ -152,6 +152,7 @@ const sharedComponents = {
         as="pre"
         css={{
           backgroundColor: "bg.muted",
+          shadow: "inset",
           marginTop: "1.6em",
           marginBottom: "1.6em",
           borderRadius: "md",

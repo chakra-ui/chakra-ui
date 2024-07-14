@@ -1,0 +1,57 @@
+import { MDXContent } from "@/components/mdx-content"
+import { PageHeader } from "@/components/page-header"
+import { ScrollToTop } from "@/components/scroll-to-top"
+import { Toc } from "@/components/toc"
+import { flattenToc } from "@/lib/flatten-toc"
+import { Stack } from "@chakra-ui/react"
+import { notFound } from "next/navigation"
+import { SidebarEnd } from "../sidebar"
+import { docs } from ".velite"
+
+interface Props {
+  params: { slug: string[] }
+}
+
+export default function Page(props: Props) {
+  const { params } = props
+
+  const page = docs.find(
+    (doc) => doc.slug === ["docs", ...params.slug].join("/"),
+  )
+
+  if (!page) {
+    return notFound()
+  }
+
+  return (
+    <>
+      <Stack
+        flex="1"
+        width="full"
+        px={{ md: "12" }}
+        pt="10"
+        pb="16"
+        minHeight="var(--content-height)"
+      >
+        <span id="scroll-to-top" />
+        <PageHeader
+          title={page.title}
+          description={page.description}
+          links={page.links}
+        />
+        <MDXContent code={page.code} />
+      </Stack>
+
+      <SidebarEnd>
+        <Toc items={flattenToc(page.toc)} />
+        <ScrollToTop />
+      </SidebarEnd>
+    </>
+  )
+}
+
+export function generateStaticParams() {
+  return docs.map((item) => ({
+    slug: item.slug.split("/").slice(1),
+  }))
+}

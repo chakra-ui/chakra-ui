@@ -5,7 +5,7 @@
   "id": "checkbox-card",
   "file": {
     "name": "checkbox-card.tsx",
-    "content": "import {\n  CheckboxCard as ChakraCheckboxCard,\n  CheckboxGroup,\n} from \"@chakra-ui/react\"\n\ninterface CheckboxCardItemProps extends ChakraCheckboxCard.RootProps {}\n\nexport const CheckboxCardItem = (props: CheckboxCardItemProps) => {\n  const { children, ...rest } = props\n  return (\n    <ChakraCheckboxCard.Root {...rest}>\n      <ChakraCheckboxCard.Control>\n        {children}\n        <ChakraCheckboxCard.HiddenInput />\n        <ChakraCheckboxCard.Indicator />\n      </ChakraCheckboxCard.Control>\n    </ChakraCheckboxCard.Root>\n  )\n}\n\nexport const CheckboxCardGroup = CheckboxGroup\nexport const CheckboxCardLabel = ChakraCheckboxCard.Label\n"
+    "content": "import {\n  CheckboxCard as ChakraCheckboxCard,\n  CheckboxGroup,\n} from \"@chakra-ui/react\"\n\nexport interface CheckboxCardControlProps\n  extends ChakraCheckboxCard.ControlProps {\n  showIndicator?: boolean\n}\n\nexport const CheckboxCardControl = (props: CheckboxCardControlProps) => {\n  const { children, showIndicator = true, ...rest } = props\n  return (\n    <ChakraCheckboxCard.Control {...rest}>\n      {children}\n      <ChakraCheckboxCard.HiddenInput />\n      {showIndicator && <ChakraCheckboxCard.Indicator />}\n    </ChakraCheckboxCard.Control>\n  )\n}\n\nexport const CheckboxCardAddon = ChakraCheckboxCard.Addon\nexport const CheckboxCardRoot = ChakraCheckboxCard.Root\nexport const CheckboxCardIndicator = ChakraCheckboxCard.Indicator\nexport const CheckboxCardGroup = CheckboxGroup\nexport const CheckboxCardLabel = ChakraCheckboxCard.Label\n"
   },
   "component": "CheckboxCard"
 }
