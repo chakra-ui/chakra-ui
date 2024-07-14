@@ -12,6 +12,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Children } from "react"
 import * as runtime from "react/jsx-runtime"
+import { Card, CardGroup } from "./card"
 import { Example, ExampleTabs } from "./example"
 
 const sharedComponents = {
@@ -162,6 +163,7 @@ const sharedComponents = {
           overflowX: "auto",
           fontWeight: "400",
           "& code": {
+            bg: "transparent",
             fontSize: "inherit",
             letterSpacing: "inherit",
             borderWidth: "inherit",
@@ -180,9 +182,9 @@ const sharedComponents = {
         css={{
           fontSize: "0.925em",
           letterSpacing: "-0.01em",
-          borderRadius: "md",
-          borderWidth: "1px",
-          padding: "0.25em",
+          borderRadius: "sm",
+          bg: "bg.emphasized",
+          padding: "0.15em 0.25em",
         }}
       />
     )
@@ -331,6 +333,16 @@ const sharedComponents = {
   },
   Example,
   ExampleTabs,
+  card(props: any) {
+    return (
+      <Card title={props.title} href={props.href} icon={props.icon}>
+        {props.children}
+      </Card>
+    )
+  },
+  "card-group"(props: any) {
+    return <CardGroup {...props} />
+  },
 }
 
 const useMDXComponent = (code: string) => {

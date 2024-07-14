@@ -7,12 +7,14 @@ import {
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from "@shikijs/transformers"
+import { title } from "process"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeSlug from "rehype-slug"
 import remarkDirective from "remark-directive"
 import remarkGfm from "remark-gfm"
 import { defineCollection, defineConfig, s } from "velite"
 import { remarkCallout } from "./lib/remark-callout"
+import { remarkCard } from "./lib/remark-card"
 import { remarkCodeTitle } from "./lib/remark-code-title"
 import { remarkCodeGroup } from "./lib/remark-codegroup"
 import { remarkSteps } from "./lib/remark-steps"
@@ -48,6 +50,18 @@ const docs = defineCollection({
     }),
 })
 
+const notes = defineCollection({
+  name: "Notes",
+  pattern: "content/notes/**/*.mdx",
+  schema: s.object({
+    title: s.string(),
+    description: s.string(),
+    metadata: s.metadata(),
+    content: s.markdown(),
+    code: s.mdx(),
+  }),
+})
+
 const showcases = defineCollection({
   name: "Showcases",
   pattern: "content/showcases.json",
@@ -61,7 +75,7 @@ const showcases = defineCollection({
 
 export default defineConfig({
   root: process.cwd(),
-  collections: { docs, showcases },
+  collections: { docs, showcases, notes },
   mdx: {
     remarkPlugins: [
       remarkDirective,
@@ -70,6 +84,7 @@ export default defineConfig({
       remarkCodeTitle,
       remarkCodeGroup,
       remarkSteps,
+      remarkCard,
     ],
     rehypePlugins: [
       rehypeSlug,
