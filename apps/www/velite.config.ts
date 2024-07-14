@@ -18,6 +18,8 @@ import { remarkCodeTitle } from "./lib/remark-code-title"
 import { remarkCodeGroup } from "./lib/remark-codegroup"
 import { remarkSteps } from "./lib/remark-steps"
 
+const cwd = process.cwd()
+
 const docs = defineCollection({
   name: "Docs",
   pattern: ["content/docs/**/*.mdx"],
@@ -40,11 +42,11 @@ const docs = defineCollection({
         slug: meta.path
           .replace(/.*\/content\//, "")
           .replace(/\.mdx$/, "")
-          .replace(process.cwd(), ""),
+          .replace(cwd, ""),
         category: meta.path
           .replace(/.*\/content\//, "")
           .replace(/\/[^/]*$/, "")
-          .replace(process.cwd(), ""),
+          .replace(cwd, ""),
       }
     }),
 })
@@ -73,7 +75,7 @@ const showcases = defineCollection({
 })
 
 export default defineConfig({
-  root: process.cwd(),
+  root: cwd,
   collections: { docs, showcases, notes },
   mdx: {
     remarkPlugins: [
