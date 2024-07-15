@@ -12,14 +12,15 @@ export const EditPageButton = (props: Props) => {
   return (
     <HStack
       asChild
-      focusRing="contain"
+      focusRing="inside"
       focusRingWidth="2px"
       rounded="sm"
+      color="fg.subtle"
       css={{ "& svg": { fontSize: "lg" } }}
     >
       <Link href={href}>
         <LiaGithub />
-        <Span fontSize="sm">Edit this page on GitHub</Span>
+        <Span fontSize="sm">Edit page on GitHub</Span>
         <LuArrowUpRight />
       </Link>
     </HStack>

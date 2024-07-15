@@ -98,10 +98,8 @@ const sharedComponents = {
           marginTop: "1.6em",
           marginBottom: "0.8em",
           lineHeight: "1.4em",
-          fontWeight: "medium",
-          "& code": {
-            fontSize: "0.9em",
-          },
+          fontWeight: "semibold",
+          "& code": { fontSize: "0.9em" },
           "& + *": { marginTop: "0" },
         }}
         {...props}
@@ -118,9 +116,9 @@ const sharedComponents = {
           letterSpacing: "-0.01em",
           marginTop: "1.5em",
           marginBottom: "0.4em",
-          fontWeight: "medium",
+          fontWeight: "semibold",
           lineHeight: "1.5em",
-          "& code": { fontSize: "0.8em" },
+          "& code": { fontSize: "0.9em" },
           "& + *": { marginTop: "0" },
         }}
         {...props}
@@ -136,7 +134,7 @@ const sharedComponents = {
           marginTop: "1.4em",
           marginBottom: "0.5em",
           letterSpacing: "-0.01em",
-          fontWeight: "medium",
+          fontWeight: "semibold",
           lineHeight: "1.5em",
           "& + *": { marginTop: "0" },
         }}
@@ -183,7 +181,8 @@ const sharedComponents = {
           fontSize: "0.925em",
           letterSpacing: "-0.01em",
           borderRadius: "sm",
-          bg: "bg.emphasized",
+          borderWidth: "1px",
+          bg: "bg.muted",
           padding: "0.15em 0.25em",
         }}
       />
@@ -343,6 +342,7 @@ const sharedComponents = {
   "card-group"(props: any) {
     return <CardGroup {...props} />
   },
+  Card,
 }
 
 const useMDXComponent = (code: string) => {

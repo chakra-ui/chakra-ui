@@ -557,6 +557,7 @@ export interface StatusVariantProps {
 export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicator"
 
 export interface TimelineVariantProps {
+  variant?: "subtle" | "solid"
   size?: "sm" | "md" | "lg"
 }
 

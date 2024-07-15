@@ -1,3 +1,4 @@
+import { EditPageButton } from "@/components/edit-page-button"
 import { MDXContent } from "@/components/mdx-content"
 import { PageHeader } from "@/components/page-header"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -44,7 +45,10 @@ export default function Page(props: Props) {
 
       <SidebarEnd>
         <Toc items={flattenToc(page.toc)} />
-        <ScrollToTop />
+        <Stack borderTopWidth="1px" pt="4" align="start">
+          <EditPageButton href="" />
+          <ScrollToTop />
+        </Stack>
       </SidebarEnd>
     </>
   )

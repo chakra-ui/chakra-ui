@@ -3,21 +3,71 @@ title: Installation
 description: How to install and set up Chakra UI in your project
 ---
 
-To use Chakra UI in your project, run one of the following commands in your
-terminal:
+## Framework Guide
+
+Chakra UI works in your favorite framework. We've put together step-by-step
+guides for these frameworks
+
+:::card-group
+
+<Card title="Next.js" href="/docs/frameworks/nextjs/getting-started" icon="nextjs">
+
+Easily add Chakra UI with Next.js app directory
+
+</Card>
+
+<Card title="Remix" href="/docs/frameworks/remix/getting-started" icon="remix">
+
+Use Chakra UI in your Remix application
+
+</Card>
+
+<Card title="Vite" href="/docs/frameworks/remix/getting-started" icon="vite">
+
+Use Chakra UI in your Vite application
+
+</Card>
+
+:::
+
+## Installation
+
+To manually set up Chakra UI in your project, follow the steps below.
+
+:::steps
+
+### Install `@chakra-ui/react`
 
 ```bash
 npm i @chakra-ui/react @emotion/react
 ```
 
-After installing Chakra UI, you need to set up the `ChakraProvider` at the root
-of your application. This can be either in your `index.jsx`, `index.tsx` or
-`App.jsx` depending on the framework you use.
+### Setup provider
 
-## Framework Guide
+Wrap your application with the `ChakraProvider` at the root of your application.
 
-Chakra UI works in your favorite framework. We've put together step-by-step
-guides for these frameworks:
+```jsx
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+
+function App({ Component, pageProps }) {
+  return (
+    <ChakraProvider system={defaultSystem}>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
+}
+```
+
+### Add compositions
+
+Compositions are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add compositions to your project.
+
+```bash
+npx @chakra-ui/cli add compositions
+```
+
+:::
 
 ## Learn
 

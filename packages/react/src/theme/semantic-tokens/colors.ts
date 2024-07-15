@@ -64,16 +64,16 @@ export const semanticColors = defineSemanticTokens.colors({
   },
   border: {
     DEFAULT: {
-      value: { base: "{colors.gray.300}", _dark: "{colors.gray.700}" },
+      value: { base: "{colors.gray.200}", _dark: "{colors.gray.700}" },
     },
     muted: {
-      value: { base: "{colors.gray.200}", _dark: "{colors.gray.800}" },
+      value: { base: "{colors.gray.100}", _dark: "{colors.gray.800}" },
     },
     subtle: {
-      value: { base: "{colors.gray.100}", _dark: "{colors.gray.800/50}" },
+      value: { base: "{colors.gray.50}", _dark: "{colors.gray.800/50}" },
     },
     emphasized: {
-      value: { base: "{colors.gray.400}", _dark: "{colors.gray.500}" },
+      value: { base: "{colors.gray.300}", _dark: "{colors.gray.600}" },
     },
     disabled: {
       value: { base: "{colors.gray.200}", _dark: "{colors.gray.600}" },

@@ -7,6 +7,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       width: "full",
+      "--timeline-thickness": "1px",
     },
     item: {
       display: "flex",
@@ -17,8 +18,7 @@ export const timelineSlotRecipe = defineSlotRecipe({
     },
     separator: {
       position: "absolute",
-      borderStartWidth: "2px",
-      borderStartColor: "border",
+      borderStartWidth: "var(--timeline-thickness)",
       h: "100%",
       maxH: "calc(100% - var(--timeline-size) - var(--timeline-gutter) * 2)",
       top: "calc(var(--timeline-size) + var(--timeline-gutter))",
@@ -27,11 +27,11 @@ export const timelineSlotRecipe = defineSlotRecipe({
       position: "absolute",
       ms: "calc(-1 * var(--timeline-size) / 2)",
       boxSize: "var(--timeline-size)",
-      bg: "bg.muted",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       rounded: "var(--timeline-radius)",
+      fontWeight: "semibold",
     },
     content: {
       w: "full",
@@ -42,6 +42,17 @@ export const timelineSlotRecipe = defineSlotRecipe({
   },
 
   variants: {
+    variant: {
+      subtle: {
+        separator: { borderStartColor: "border" },
+        indicator: { bg: "bg.muted" },
+      },
+      solid: {
+        separator: { borderStartColor: "border" },
+        indicator: { bg: "bg.inverted", color: "fg.inverted" },
+      },
+    },
+
     size: {
       sm: {
         root: {
@@ -72,5 +83,6 @@ export const timelineSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
+    variant: "solid",
   },
 })

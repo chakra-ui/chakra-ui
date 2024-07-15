@@ -10,6 +10,7 @@ export const SidebarStart = () => {
     <Box
       as="aside"
       position="sticky"
+      top="var(--header-height)"
       pe="5"
       ms="-3"
       py="8"
@@ -42,6 +43,7 @@ export const SidebarEnd = (props: React.PropsWithChildren) => {
     <Box
       as="aside"
       position="sticky"
+      top="var(--header-height)"
       pt="8"
       px="2"
       flexShrink="0"

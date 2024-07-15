@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@chakra-ui/react"
+import { HStack, Span } from "@chakra-ui/react"
 import { LuArrowUpCircle } from "react-icons/lu"
 import { useScrollPosition } from "../lib/use-scroll-position"
 
@@ -13,18 +13,23 @@ export const ScrollToTop = () => {
   }
 
   return (
-    <Button
-      size="sm"
-      variant="ghost"
-      onClick={scrollToTop}
-      visibility={show ? "visible" : "hidden"}
-      data-state={show ? "open" : "closed"}
+    <HStack
+      asChild
+      focusRing="inside"
+      focusRingWidth="2px"
+      rounded="sm"
+      color="fg.subtle"
       animationDuration="0.2s"
+      animationFillMode="forwards"
+      data-state={show ? "open" : "closed"}
       _open={{ animationName: "fade-in" }}
       _closed={{ animationName: "fade-out" }}
+      css={{ "& svg": { fontSize: "lg" } }}
     >
-      <LuArrowUpCircle />
-      Back to top
-    </Button>
+      <button onClick={scrollToTop}>
+        <LuArrowUpCircle />
+        <Span fontSize="sm">Scroll to top</Span>
+      </button>
+    </HStack>
   )
 }

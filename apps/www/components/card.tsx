@@ -12,7 +12,7 @@ import { LuChevronRight, LuInfo, LuTerminal } from "react-icons/lu"
 import { GatsbyIcon, NextJsIcon, RemixIcon, ViteIcon } from "./framework-icon"
 
 export const CardGroup = (props: SimpleGridProps) => {
-  return <SimpleGrid gap="6" columns={{ base: 1, md: 2 }} {...props} />
+  return <SimpleGrid gap="6" my="10" minChildWidth="240px" {...props} />
 }
 
 const CardTitleIcon = (props: IconProps) => {
@@ -61,14 +61,16 @@ export const Card = (props: CardProps) => {
             {icon}
           </Box>
         )}
-        <Stack gap="0.5">
+        <Stack gap="1">
           <HStack fontWeight="semibold" gap="1">
             {title}
             <CardTitleIcon>
               <LuChevronRight />
             </CardTitleIcon>
           </HStack>
-          <Box color="fg.subtle">{children}</Box>
+          <Box color="fg.subtle" lineHeight="5">
+            {children}
+          </Box>
         </Stack>
       </Link>
     </Box>
