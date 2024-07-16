@@ -55,6 +55,8 @@ export const dialogSlotRecipe = defineSlotRecipe({
     header: {
       flex: 0,
       padding: "6",
+      fontSize: "md",
+      fontWeight: "medium",
     },
     closeTrigger: {
       position: "absolute!",

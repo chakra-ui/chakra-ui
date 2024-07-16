@@ -17,7 +17,7 @@ export const Basic = () => {
   return (
     <>
       <Button size="sm" onClick={() => setOpen((o) => !o)}>
-        Show Action bar
+        Show Action Bar
       </Button>
       <ActionBar.Root
         open={open}

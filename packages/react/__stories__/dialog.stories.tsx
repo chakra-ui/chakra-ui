@@ -23,6 +23,7 @@ export const Basic = () => {
             </IconButton>
           </Dialog.CloseTrigger>
           <Dialog.Header>Welcome Home</Dialog.Header>
+
           <Dialog.Body>
             Sit nulla est ex deserunt exercitation anim occaecat. Nostrud
             ullamco deserunt aute id consequat veniam incididunt duis in sint
@@ -95,7 +96,7 @@ export const InsideScroll = () => {
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.Header>Dialog Title</Dialog.Header>
+          <Dialog.Header bg="gray.100">Dialog Title</Dialog.Header>
           <Dialog.CloseTrigger asChild>
             <IconButton variant="ghost" aria-label="Close">
               <HiX />

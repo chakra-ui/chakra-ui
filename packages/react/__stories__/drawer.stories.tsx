@@ -48,7 +48,7 @@ export const BasicAdjusted = () => {
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content>
-            <Drawer.Header fontSize="xl" bg="gray.100" p="4" mb="2">
+            <Drawer.Header fontSize="xl" bg="gray.100" pt="4" pb="4" mb="2">
               Drawer Header
             </Drawer.Header>
             <Drawer.Body>

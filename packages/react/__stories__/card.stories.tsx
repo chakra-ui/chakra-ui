@@ -1,11 +1,14 @@
+import { HiHome } from "react-icons/hi"
 import {
   Box,
   Button,
   Card,
   Field,
+  Flex,
   For,
   HStack,
   Heading,
+  Icon,
   Image,
   Input,
   Label,
@@ -150,13 +153,41 @@ export const WithImage = () => (
 )
 
 export const Horizontal = () => (
-  <Card.Root direction="row" overflow="hidden" maxWidth="xl">
+  <Card.Root flexDirection="row" overflow="hidden" maxWidth="xl">
     <Image
       objectFit="cover"
       maxW="200px"
       src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
       alt="Caffe Latte"
     />
+    <Box>
+      <Card.Body>
+        <Heading size="md">The perfect latte</Heading>
+        <Text py="2" color="fg.muted">
+          Caffè latte is a coffee beverage of Italian origin made with espresso
+          and steamed milk.
+        </Text>
+      </Card.Body>
+      <Card.Footer>
+        <Button variant="solid" colorPalette="blue">
+          Buy Latte
+        </Button>
+      </Card.Footer>
+    </Box>
+  </Card.Root>
+)
+
+export const IconCard = () => (
+  <Card.Root flexDirection="row" overflow="hidden" maxWidth="xl">
+    <Card.Body>
+      <Icon
+        as={HiHome}
+        w="48px"
+        h="48px"
+        color="gray.500"
+        aria-label="home icon"
+      />
+    </Card.Body>
     <Box>
       <Card.Body>
         <Heading size="md">The perfect latte</Heading>
@@ -195,8 +226,10 @@ export const WithForm = () => (
       </Stack>
     </Card.Body>
     <Card.Footer justifyContent="flex-end" gap="4">
-      <Button variant="outline">Cancel</Button>
-      <Button variant="solid">Sign in</Button>
+      <HStack>
+        <Button variant="outline">Cancel</Button>
+        <Button variant="solid">Sign in</Button>
+      </HStack>
     </Card.Footer>
   </Card.Root>
 )
