@@ -79,6 +79,31 @@ export const WithAddon = () => {
   )
 }
 
+export const WithAddonUpdated = () => {
+  return (
+    <CheckboxCard.Root width="300px" colorPalette="purple">
+      <CheckboxCard.Control
+        style={{ borderBottomLeftRadius: "0", borderBottomRightRadius: "0" }}
+      >
+        <Stack gap="0" flex="1">
+          <CheckboxCard.Label>Checkbox</CheckboxCard.Label>
+          <Text>Some description</Text>
+        </Stack>
+
+        <CheckboxCard.HiddenInput />
+        <CheckboxCard.Indicator />
+      </CheckboxCard.Control>
+
+      <CheckboxCard.Addon>
+        Some supporting text
+        <Badge ms="2" colorPalette="purple">
+          New
+        </Badge>
+      </CheckboxCard.Addon>
+    </CheckboxCard.Root>
+  )
+}
+
 export const WithIcon = () => {
   const items = [
     {

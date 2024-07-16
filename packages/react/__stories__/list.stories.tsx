@@ -43,6 +43,27 @@ export const Ordered = () => (
   </Box>
 )
 
+//Updated
+export const OrderedUpdated = () => (
+  <Box mt="6">
+    <Text fontSize="sm" color="gray.600">
+      .list-decimal
+    </Text>
+    <List.Root as="ol" styleType="decimal">
+      <List.Item>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+      </List.Item>
+      <Divider />
+      <List.Item>
+        Assumenda, quia temporibus eveniet a libero incidunt suscipit
+      </List.Item>
+      <List.Item>
+        Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+      </List.Item>
+    </List.Root>
+  </Box>
+)
+
 export const WithIcon = () => (
   <Box mb="6">
     <Text fontSize="sm" color="gray.600">

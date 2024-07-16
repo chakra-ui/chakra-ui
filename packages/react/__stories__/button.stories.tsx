@@ -18,6 +18,7 @@ import {
   Span,
   Spinner,
   Stack,
+  VStack,
   useRecipe,
 } from "../src"
 import { colorPalettes } from "./shared/color-palettes"
@@ -176,6 +177,21 @@ export const WithVerticalAttached = () => (
     <Button size="sm">Save</Button>
     <Button size="sm">Cancel</Button>
     <IconButton size="sm" aria-label="Add to friends">
+      <FaChevronDown />
+    </IconButton>
+  </Group>
+)
+
+//updated
+export const WithVerticalAttachedUpdated = () => (
+  <Group orientation="vertical" attached>
+    <Button size="sm" flexGrow={1} width="100%">
+      Save
+    </Button>
+    <Button size="sm" flexGrow={1}>
+      Cancel
+    </Button>
+    <IconButton size="sm" aria-label="Add to friends" flexGrow={1} width="100%">
       <FaChevronDown />
     </IconButton>
   </Group>

@@ -37,6 +37,36 @@ export const Basic = () => {
   )
 }
 
+export const BasicAdjusted = () => {
+  const [open, setOpen] = React.useState(false)
+  return (
+    <>
+      <Button variant="solid" onClick={() => setOpen(!open)}>
+        Open
+      </Button>
+      <Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+        <Drawer.Backdrop />
+        <Drawer.Positioner>
+          <Drawer.Content>
+            <Drawer.Header fontSize="xl" bg="gray.100" p="4" mb="2">
+              Drawer Header
+            </Drawer.Header>
+            <Drawer.Body>
+              <div>
+                This is the drawer content. You can add more content as you
+                wish.
+              </div>
+              <Button variant="solid" mt="6">
+                This is a button
+              </Button>
+            </Drawer.Body>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Drawer.Root>
+    </>
+  )
+}
+
 export const WithLongContent = () => {
   const [open, setOpen] = React.useState(false)
 
