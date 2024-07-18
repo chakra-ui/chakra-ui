@@ -236,7 +236,7 @@ function Example() {
   return (
     <Steps.Root size='lg' index={activeStep}>
       {steps.map((step, index) => (
-        <Steps.Item key={index} onClick={() => setActiveStep(index)}>
+        <Steps.Item key={index} onClick={() => setActiveStep(index + 1)}>
           <Steps.Indicator />
 
           <Box flexShrink='0'>
