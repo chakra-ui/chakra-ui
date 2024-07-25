@@ -841,8 +841,8 @@ importers:
         specifier: 2.5.10
         version: 2.5.10(@types/react@18.3.3)(react@18.2.0)
       react-responsive-masonry:
-        specifier: 2.2.0
-        version: 2.2.0
+        specifier: 2.3.0
+        version: 2.3.0
       react-spinners:
         specifier: 0.14.1
         version: 0.14.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -9230,8 +9230,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-responsive-masonry@2.2.0:
-    resolution: {integrity: sha512-IYbnfe2tWCZ3pvyTLyBWPj7uv5ZmNOULYMcAZi5a47ZLhSotOck1vkkISq6gP2qiyWdMvPfeMhjvYzUYGw9BOQ==}
+  react-responsive-masonry@2.3.0:
+    resolution: {integrity: sha512-ttb71B75qAfZ5q2CRLKRnCRO9V6p1Vkgw1C9wIeNaD2JpAxwCb1hUBI4Drqea9hNlvxxLpUkO0TRE5CLxqLY0A==}
 
   react-router-dom@6.24.0:
     resolution: {integrity: sha512-960sKuau6/yEwS8e+NVEidYQb1hNjAYM327gjEyXlc6r3Skf2vtwuJ2l7lssdegD2YjoKG5l8MsVyeTDlVeY8g==}
@@ -22207,7 +22207,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  react-responsive-masonry@2.2.0: {}
+  react-responsive-masonry@2.3.0: {}
 
   react-router-dom@6.24.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
