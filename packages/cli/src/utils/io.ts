@@ -1,4 +1,4 @@
-import { type SystemContext, isValidSystem } from "@chakra-ui/react"
+import type { SystemContext } from "@chakra-ui/react"
 import { log } from "@clack/prompts"
 import { bundleNRequire } from "bundle-n-require"
 import chokidar from "chokidar"
@@ -10,6 +10,10 @@ import { fileURLToPath } from "node:url"
 interface ReadResult {
   mod: SystemContext
   dependencies: string[]
+}
+
+const isValidSystem = (mod: unknown): mod is SystemContext => {
+  return Object.hasOwnProperty.call(mod, "$$chakra")
 }
 
 export const read = async (file: string): Promise<ReadResult> => {
