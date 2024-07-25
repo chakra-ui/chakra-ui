@@ -29,6 +29,9 @@ function mergeVariants(variants?: MotionVariants): any {
     enter: {
       ...variants.enter,
       visibility: "visible",
+      transition: {
+        visibility: { duration: 0 },
+      },
     },
     exit: {
       ...variants.exit,
