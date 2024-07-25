@@ -1,15 +1,19 @@
 "use client"
 
+import { useHighlight } from "@ark-ui/react"
 import { Fragment } from "react"
 import { type SystemStyleObject } from "../../styled-system"
 import { For } from "../for"
 import { Mark } from "../typography/mark"
-import type { Chunk } from "./highlight-words"
-import { useHighlight } from "./use-highlight"
+
+export interface HighlightChunk {
+  text: string
+  match: boolean
+}
 
 export interface HighlightProps {
   query: string | string[]
-  children: string | ((props: Chunk[]) => React.ReactNode)
+  children: string | ((props: HighlightChunk[]) => React.ReactNode)
   styles?: SystemStyleObject
 }
 
