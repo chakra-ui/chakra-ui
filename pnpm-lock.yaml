@@ -246,8 +246,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react
       '@tanstack/react-table':
-        specifier: 8.19.2
-        version: 8.19.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 8.19.3
+        version: 8.19.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -492,8 +492,8 @@ importers:
         specifier: 11.11.4
         version: 11.11.4(@types/react@18.3.3)(react@18.2.0)
       '@tanstack/react-table':
-        specifier: 8.19.2
-        version: 8.19.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 8.19.3
+        version: 8.19.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -3865,15 +3865,15 @@ packages:
   '@swc/helpers@0.5.5':
     resolution: {integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==}
 
-  '@tanstack/react-table@8.19.2':
-    resolution: {integrity: sha512-itoSIAkA/Vsg+bjY23FSemcTyPhc5/1YjYyaMsr9QSH/cdbZnQxHVWrpWn0Sp2BWN71qkzR7e5ye8WuMmwyOjg==}
+  '@tanstack/react-table@8.19.3':
+    resolution: {integrity: sha512-MtgPZc4y+cCRtU16y1vh1myuyZ2OdkWgMEBzyjYsoMWMicKZGZvcDnub3Zwb6XF2pj9iRMvm1SO1n57lS0vXLw==}
     engines: {node: '>=12'}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
 
-  '@tanstack/table-core@8.19.2':
-    resolution: {integrity: sha512-KpRjhgehIhbfH78ARm/GJDXGnpdw4bCg3qas6yjWSi7czJhI/J6pWln7NHtmBkGE9ZbohiiNtLqwGzKmBfixig==}
+  '@tanstack/table-core@8.19.3':
+    resolution: {integrity: sha512-IqREj9ADoml9zCAouIG/5kCGoyIxPFdqdyoxis9FisXFi5vT+iYfEfLosq4xkU/iDbMcEuAj+X8dWRLvKYDNoQ==}
     engines: {node: '>=12'}
 
   '@testing-library/dom@10.2.0':
@@ -14674,13 +14674,13 @@ snapshots:
       '@swc/counter': 0.1.3
       tslib: 2.6.3
 
-  '@tanstack/react-table@8.19.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@tanstack/react-table@8.19.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@tanstack/table-core': 8.19.2
+      '@tanstack/table-core': 8.19.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@tanstack/table-core@8.19.2': {}
+  '@tanstack/table-core@8.19.3': {}
 
   '@testing-library/dom@10.2.0':
     dependencies:
