@@ -19,6 +19,7 @@
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@tanstack/react-table": "8.19.3",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "5.2.1",
