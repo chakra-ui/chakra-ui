@@ -948,10 +948,10 @@ Reasons for the Change:
 
 Before:
 
-```jsx
+```tsx
 <Box
   sx={{
-    "p, ul, ol, blockquote": {
+    "p, ul, ol": {
       my: 2,
     },
     h2: {
@@ -965,15 +965,22 @@ Before:
       mb: 4,
     },
   }}
-/>
+>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+  </ul>
+  <h2>...</h2>
+  <h3>...</h3>
+</Box>
 ```
 
 After:
 
-```jsx
+```tsx
 <Box
   css={{
-    "& p, & ul, & ol, & blockquote": {
+    "& p, & ul, & ol": {
       my: 2,
     },
     "& h2": {
@@ -987,7 +994,14 @@ After:
       mb: 4,
     },
   }}
-/>
+>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+  </ul>
+  <h2>...</h2>
+  <h3>...</h3>
+</Box>
 ```
 
 ### Style Config
