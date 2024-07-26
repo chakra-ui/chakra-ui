@@ -102,7 +102,7 @@ export default defineConfig({
           ],
           themes: {
             light: "github-light",
-            dark: "vesper",
+            dark: "dark-plus",
           },
           defaultColor: "light",
         },

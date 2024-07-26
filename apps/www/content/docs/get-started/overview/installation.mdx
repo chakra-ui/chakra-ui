@@ -58,13 +58,32 @@ function App({ Component, pageProps }) {
 }
 ```
 
-### Add compositions
+### Update tsconfig
+
+If you're using TypeScript, you need to update the `compilerOptions` in the
+tsconfig file to include the following options:
+
+```json
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true
+  }
+}
+```
+
+### Add compositions (optional)
 
 Compositions are pre-built components that you can use to build your UI faster.
 Using the `@chakra-ui/cli` you can add compositions to your project.
 
 ```bash
-npx @chakra-ui/cli add compositions
+# Install CLI
+npm i -D @chakra-ui/cli
+
+# Add compositions
+chakra add compositions
 ```
 
 :::

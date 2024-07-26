@@ -19,6 +19,7 @@ export const ScrollToTop = () => {
       focusRingWidth="2px"
       rounded="sm"
       color="fg.subtle"
+      cursor="pointer"
       animationDuration="0.2s"
       animationFillMode="forwards"
       data-state={show ? "open" : "closed"}

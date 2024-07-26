@@ -54,7 +54,14 @@ export const Card = (props: CardProps) => {
       : iconProp
 
   return (
-    <Box asChild padding="6" borderWidth="1px" rounded="lg" focusRing="outside">
+    <Box
+      asChild
+      padding="6"
+      borderWidth="1px"
+      rounded="lg"
+      focusRing="outside"
+      _hover={{ bg: "bg.subtle" }}
+    >
       <Link href={href} className="group">
         {icon && (
           <Box mb="4" fontSize="3xl" boxSize="1em" asChild>
@@ -62,13 +69,13 @@ export const Card = (props: CardProps) => {
           </Box>
         )}
         <Stack gap="1">
-          <HStack fontWeight="semibold" gap="1">
+          <HStack fontWeight="semibold" gap="1" color="fg">
             {title}
             <CardTitleIcon>
               <LuChevronRight />
             </CardTitleIcon>
           </HStack>
-          <Box color="fg.subtle" lineHeight="5">
+          <Box color="fg.muted" lineHeight="5">
             {children}
           </Box>
         </Stack>

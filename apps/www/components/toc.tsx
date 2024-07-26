@@ -39,6 +39,7 @@ export const Toc = (props: Props) => {
         {items.map((item, index) => (
           <TocLink
             data-toc
+            fontSize="0.9em"
             id={item.url}
             key={index}
             href={item.url}

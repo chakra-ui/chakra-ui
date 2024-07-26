@@ -45,6 +45,7 @@ export const SidebarEnd = (props: React.PropsWithChildren) => {
       position="sticky"
       top="var(--header-height)"
       pt="8"
+      pb="8"
       px="2"
       flexShrink="0"
       height="var(--content-height)"

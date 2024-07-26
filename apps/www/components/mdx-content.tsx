@@ -112,7 +112,7 @@ const sharedComponents = {
         as="h3"
         css={{
           color: "fg",
-          fontSize: "1.285em",
+          fontSize: "1.2em",
           letterSpacing: "-0.01em",
           marginTop: "1.5em",
           marginBottom: "0.4em",
@@ -156,8 +156,8 @@ const sharedComponents = {
           marginBottom: "1.6em",
           borderRadius: "md",
           fontSize: "0.9em",
-          paddingBlock: "0.65em",
-          paddingInline: "1em",
+          paddingBlock: "2em",
+          paddingInline: "2em",
           overflowX: "auto",
           fontWeight: "400",
           "& code": {

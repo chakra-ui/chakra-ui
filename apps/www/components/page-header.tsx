@@ -10,7 +10,7 @@ interface PageHeaderProps {
 export const PageHeader = (props: PageHeaderProps) => {
   const { title, description, links } = props
   return (
-    <Stack gap="4" pb="6">
+    <Stack gap="4" pb="2">
       <Heading as="h1" size="3xl" letterSpacing="tight">
         {title}
       </Heading>

@@ -12,7 +12,7 @@ const docsLinks: NavItem = {
           items: [
             { title: "Installation", url: "installation" },
             { title: "Changelog", url: "changelog" },
-            { title: "Upgrading", url: "upgrading-to-v3" },
+            { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli", status: "new" },
             { title: "Contributing", url: "contributing" },
           ],

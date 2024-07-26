@@ -28,13 +28,19 @@ const TopNavLink = chakra(Link, {
   base: {
     fontSize: "sm",
     color: "fg.subtle",
-    _currentPage: { color: "fg" },
+    _currentPage: {
+      color: "fg",
+      fontWeight: "medium",
+    },
+    _hover: {
+      color: "fg",
+    },
   },
   variants: {
     variant: {
       tab: {
         py: "2",
-        borderBottom: "1px solid",
+        borderBottomWidth: "2px",
         borderColor: "transparent",
         transition: "border-color 0.2s",
         _hover: { borderColor: "border" },

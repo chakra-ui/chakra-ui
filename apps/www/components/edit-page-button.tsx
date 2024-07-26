@@ -20,7 +20,7 @@ export const EditPageButton = (props: Props) => {
     >
       <Link href={href}>
         <LiaGithub />
-        <Span fontSize="sm">Edit page on GitHub</Span>
+        <Span fontSize="0.8em">Edit page on GitHub</Span>
         <LuArrowUpRight />
       </Link>
     </HStack>
