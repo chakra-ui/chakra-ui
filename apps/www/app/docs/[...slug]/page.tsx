@@ -5,6 +5,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { Toc } from "@/components/toc"
 import { flattenToc } from "@/lib/flatten-toc"
 import { Stack } from "@chakra-ui/react"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { SidebarEnd } from "../sidebar"
 import { docs } from ".velite"
@@ -54,8 +55,20 @@ export default function Page(props: Props) {
   )
 }
 
+export const generateMetadata = (props: Props): Metadata => {
+  const page = getPageBySlug(props.params.slug)
+  return {
+    title: page?.title,
+    description: page?.description,
+  }
+}
+
 export function generateStaticParams() {
   return docs.map((item) => ({
     slug: item.slug.split("/").slice(1),
   }))
+}
+
+function getPageBySlug(slug: string[]) {
+  return docs.find((doc) => doc.slug === ["docs", ...slug].join("/"))
 }

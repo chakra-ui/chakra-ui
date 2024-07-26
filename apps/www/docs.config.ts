@@ -168,6 +168,7 @@ const docsLinks: NavItem = {
 export const docsConfig: DocsConfig = {
   copyright: "Copyright © {{date}} Segun Adebayo. All Rights Reserved.",
   title: "Chakra UI",
+  titleTemplate: "%s | Chakra UI",
   description:
     "Simple, Modular & Accessible UI Components for your React Applications",
   url: "https://chakra-ui.com",
@@ -186,6 +187,7 @@ export const docsConfig: DocsConfig = {
 
 interface DocsConfig {
   title: string
+  titleTemplate: string
   description: string
   copyright: string
   url: string
