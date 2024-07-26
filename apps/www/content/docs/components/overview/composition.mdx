@@ -1,0 +1,67 @@
+---
+title: Composition
+description: Learn how to compose components in Chakra UI.
+---
+
+Chakra UI components offers two powerful props for customization: `as` and
+`asChild` prop.
+
+## The `as` Prop
+
+Used to change the underlying HTML element a React component renders. It
+provides a straightforward way to change the underlying element while retaining
+the component's functionality.
+
+```jsx
+<Heading as="h3">Hello, world!</Heading>
+```
+
+:::warning
+
+**TypeScript:** The caveat with the `as` prop is that the types of the component
+passed to the `as` prop must be compatible with the component's props. We do not
+infer the underlying component's props from the `as` prop.
+
+:::
+
+## The `asChild` Prop
+
+The `asChild` Prop: Used to compose a component's functionality onto its child
+element. This approach, inspired by
+[Radix UI](https://www.radix-ui.com/primitives/docs/utilities/slot), offers
+maximum flexibility.
+
+```jsx
+<Popover.Root>
+  <Popover.Trigger asChild>
+    <Button>Open</Button>
+  </Popover.Trigger>
+</Popover.Root>
+```
+
+In this example, the `asChild` prop allows the `Button` to be used as the
+trigger for the popover.
+
+## Rules of Thumb
+
+There are a few rules of thumb to consider when using the `as` and `asChild`
+props to avoid common pitfalls.
+
+- **Forward Refs:** Ensure that the underlying component forwards the ref passed
+  to it properly.
+- **Spread Props:** Ensure that the underlying component spreads the props
+  passed to it.
+
+```jsx
+const MyComponent = React.forwardRef((props, ref) => {
+  return <Box ref={ref} {...props} />
+})
+
+// with `as` prop
+<MyComponent as="button" />
+
+// with `asChild` prop
+<Button asChild>
+  <MyComponent> Click me </MyComponent>
+</Button>
+```

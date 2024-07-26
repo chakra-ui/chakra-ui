@@ -81,9 +81,9 @@ const docsLinks: NavItem = {
           title: "Overview",
           url: "overview",
           items: [
-            { title: "Animation", url: "animation" },
+            { title: "Introduction", url: "index" },
             { title: "Composition", url: "composition" },
-            { title: "Polymorphism", url: "polymorphism" },
+            { title: "Animation", url: "animation" },
             { title: "Component State", url: "component-state" },
           ],
         },
