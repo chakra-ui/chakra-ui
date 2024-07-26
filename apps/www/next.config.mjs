@@ -13,6 +13,13 @@ const nextConfig = {
     config.plugins.push(new VeliteWebpackPlugin())
     return config
   },
+  redirects: async () => [
+    {
+      source: "/docs",
+      destination: "/docs/get-started/overview/installation",
+      permanent: true,
+    },
+  ],
 }
 
 class VeliteWebpackPlugin {

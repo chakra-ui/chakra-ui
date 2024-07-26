@@ -34,7 +34,8 @@
     "**/*.tsx",
     ".velite",
     ".next/types/**/*.ts",
-    "../compositions"
+    "../compositions",
+    "next.config.mjs"
   ],
   "exclude": ["node_modules"]
 }
