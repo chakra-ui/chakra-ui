@@ -883,7 +883,7 @@ const Demo = () => {
 We've removed support for functions in the theme object due to the performance
 implications.
 
-> NOTE 🚨: We now require the theme to serializable.
+> NOTE 🚨: We now require the theme to be serializable.
 
 Consider the following approach instead:
 
@@ -931,6 +931,63 @@ const Alert = chakra("div", {
     size: "md",
   },
 })
+```
+
+#### `css` prop nuances
+
+The `sx` and `__css` props have been replaced by the `css` prop, but with some
+notable differences. The `css` prop now requires an `&` in front of nested
+selector.
+
+Reasons for the Change:
+
+- **Faster Style Processing:** Previously, the system had to determine if a key
+  was a style property or a selector, which was computationally expensive.
+- **Improved Typings:** This change makes it easier to type nested style props,
+  ensuring they are strongly typed.
+
+Before:
+
+```jsx
+<Box
+  sx={{
+    "p, ul, ol, blockquote": {
+      my: 2,
+    },
+    h2: {
+      fontSize: "3xl",
+      mt: 12,
+      mb: 4,
+    },
+    h3: {
+      fontSize: "2xl",
+      mt: 8,
+      mb: 4,
+    },
+  }}
+/>
+```
+
+After:
+
+```jsx
+<Box
+  css={{
+    "& p, & ul, & ol, & blockquote": {
+      my: 2,
+    },
+    "& h2": {
+      fontSize: "3xl",
+      mt: 12,
+      mb: 4,
+    },
+    "& h3": {
+      fontSize: "2xl",
+      mt: 8,
+      mb: 4,
+    },
+  }}
+/>
 ```
 
 ### Style Config
