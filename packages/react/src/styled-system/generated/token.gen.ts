@@ -306,6 +306,11 @@ export type Token =
   | "sizes.container.md"
   | "sizes.container.lg"
   | "sizes.container.xl"
+  | "sizes.breakpoint-sm"
+  | "sizes.breakpoint-md"
+  | "sizes.breakpoint-lg"
+  | "sizes.breakpoint-xl"
+  | "sizes.breakpoint-2xl"
   | "zIndex.hide"
   | "zIndex.base"
   | "zIndex.docked"
@@ -319,6 +324,11 @@ export type Token =
   | "zIndex.toast"
   | "zIndex.tooltip"
   | "zIndex.max"
+  | "breakpoints.sm"
+  | "breakpoints.md"
+  | "breakpoints.lg"
+  | "breakpoints.xl"
+  | "breakpoints.2xl"
   | "colors.bg"
   | "colors.bg.subtle"
   | "colors.bg.muted"
@@ -765,6 +775,11 @@ export type SizesToken =
   | "container.md"
   | "container.lg"
   | "container.xl"
+  | "breakpoint-sm"
+  | "breakpoint-md"
+  | "breakpoint-lg"
+  | "breakpoint-xl"
+  | "breakpoint-2xl"
 
 export type ZIndexToken =
   | "hide"
@@ -780,6 +795,8 @@ export type ZIndexToken =
   | "toast"
   | "tooltip"
   | "max"
+
+export type BreakpointsToken = "sm" | "md" | "lg" | "xl" | "2xl"
 
 export type ShadowsToken = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inset"
 
@@ -799,5 +816,6 @@ export type Tokens = {
   spacing: SpacingToken
   sizes: SizesToken
   zIndex: ZIndexToken
+  breakpoints: BreakpointsToken
   shadows: ShadowsToken
 } & { [token: string]: never }

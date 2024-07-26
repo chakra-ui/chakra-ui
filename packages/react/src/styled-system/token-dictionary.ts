@@ -1,10 +1,12 @@
 import {
   type Dict,
+  compact,
   createProps,
   esc,
   isFunction,
   isObject,
   isString,
+  mapObject,
   memo,
   walkObject,
 } from "@chakra-ui/utils"
@@ -32,6 +34,7 @@ import type {
 
 interface Options {
   prefix?: string
+  breakpoints?: Record<string, string>
   tokens?: TokenDefinition
   semanticTokens?: SemanticTokenDefinition
 }
@@ -40,8 +43,26 @@ const isToken = (value: any) => {
   return isObject(value) && Object.prototype.hasOwnProperty.call(value, "value")
 }
 
+function expandBreakpoints(breakpoints?: Record<string, string>) {
+  if (!breakpoints) return { breakpoints: {}, sizes: {} }
+  return {
+    breakpoints: mapObject(breakpoints, (value) => ({ value })),
+    sizes: Object.fromEntries(
+      Object.entries(breakpoints).map(([key, value]) => [
+        `breakpoint-${key}`,
+        { value },
+      ]),
+    ),
+  }
+}
+
 export function createTokenDictionary(options: Options): TokenDictionary {
-  const { prefix = "", tokens = {}, semanticTokens = {} } = options
+  const {
+    prefix = "",
+    tokens = {},
+    semanticTokens = {},
+    breakpoints = {},
+  } = options
 
   const formatTokenName = (path: string[]) => path.join(".")
 
@@ -71,9 +92,20 @@ export function createTokenDictionary(options: Options): TokenDictionary {
     }
   }
 
+  const breakpointTokens = expandBreakpoints(breakpoints)
+
+  const computedTokens = compact({
+    ...tokens,
+    breakpoints: breakpointTokens.breakpoints,
+    sizes: {
+      ...tokens.sizes,
+      ...breakpointTokens.sizes,
+    },
+  })
+
   function registerTokens() {
     walkObject(
-      tokens,
+      computedTokens,
       (entry, path) => {
         const isDefault = path.includes("DEFAULT")
         path = filterDefault(path)

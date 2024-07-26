@@ -36,6 +36,7 @@ export function createSystem(config: SystemConfig): SystemContext {
   } = config
 
   const tokens = createTokenDictionary({
+    breakpoints: theme.breakpoints,
     tokens: theme.tokens,
     semanticTokens: theme.semanticTokens,
     prefix: cssVarsPrefix,

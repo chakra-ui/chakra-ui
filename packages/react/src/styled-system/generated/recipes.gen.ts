@@ -329,7 +329,7 @@ export interface NativeSelectVariantProps {
 
 // NumberInput
 
-export type NumberInputSlot = "root" | "label" | "input" | "control" | "incrementTrigger" | "decrementTrigger" | "scrubber"
+export type NumberInputSlot = "root" | "label" | "input" | "control" | "valueText" | "incrementTrigger" | "decrementTrigger" | "scrubber"
 
 export interface NumberInputVariantProps {
   size?: "xs" | "sm" | "md" | "lg"
