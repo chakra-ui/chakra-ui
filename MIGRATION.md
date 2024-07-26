@@ -939,7 +939,7 @@ The `sx` and `__css` props have been replaced by the `css` prop, but with some
 notable differences. The `css` prop now requires an `&` in front of nested
 selector.
 
-Reasons for the Change:
+Reasons for the change:
 
 - **Faster Style Processing:** Previously, the system had to determine if a key
   was a style property or a selector, which was computationally expensive.
