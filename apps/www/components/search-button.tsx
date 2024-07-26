@@ -1,4 +1,4 @@
-import { Box, Button, ButtonProps, Kbd, Span, chakra } from "@chakra-ui/react"
+import { Box, Button, ButtonProps, Kbd, Span } from "@chakra-ui/react"
 import { forwardRef } from "react"
 import { LuSearch } from "react-icons/lu"
 
