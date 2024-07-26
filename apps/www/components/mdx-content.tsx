@@ -37,7 +37,10 @@ const sharedComponents = {
     return (
       <Blockquote.Root
         {...props}
-        css={{ marginTop: "1.285em", marginBottom: "1.285em" }}
+        css={{
+          marginTop: "1.285em",
+          marginBottom: "1.285em",
+        }}
       />
     )
   },
@@ -82,6 +85,7 @@ const sharedComponents = {
           marginBottom: "0.8em",
           lineHeight: "1.2em",
           fontWeight: "medium",
+          scrollMarginTop: "calc(var(--header-height) + 1.5em)",
         }}
         {...props}
       />
@@ -99,6 +103,7 @@ const sharedComponents = {
           marginBottom: "0.8em",
           lineHeight: "1.4em",
           fontWeight: "semibold",
+          scrollMarginTop: "calc(var(--header-height) + 1.5em)",
           "& code": { fontSize: "0.9em" },
           "& + *": { marginTop: "0" },
         }}
@@ -118,6 +123,7 @@ const sharedComponents = {
           marginBottom: "0.4em",
           fontWeight: "semibold",
           lineHeight: "1.5em",
+          scrollMarginTop: "calc(var(--header-height) + 1.5em)",
           "& code": { fontSize: "0.9em" },
           "& + *": { marginTop: "0" },
         }}
@@ -136,6 +142,7 @@ const sharedComponents = {
           letterSpacing: "-0.01em",
           fontWeight: "semibold",
           lineHeight: "1.5em",
+          scrollMarginTop: "calc(var(--header-height) + 1.5em)",
           "& + *": { marginTop: "0" },
         }}
         {...props}

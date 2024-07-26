@@ -84,7 +84,7 @@ const docsLinks: NavItem = {
             { title: "Introduction", url: "index" },
             { title: "Composition", url: "composition" },
             { title: "Animation", url: "animation" },
-            { title: "Component State", url: "component-state" },
+            { title: "Server Component", url: "server-components" },
           ],
         },
         {
