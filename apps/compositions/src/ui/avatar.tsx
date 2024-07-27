@@ -8,17 +8,22 @@ interface AvatarOptions {
   src?: string
   srcSet?: string
   loading?: ImageProps["loading"]
+  icon?: React.ReactElement
 }
 
 export interface AvatarProps extends ChakraAvatar.RootProps, AvatarOptions {}
 
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   function Avatar(props, ref) {
-    const { name, src, srcSet, loading, ...rest } = props
+    const { name, src, srcSet, loading, icon, ...rest } = props
     return (
       <ChakraAvatar.Root ref={ref} {...rest}>
         <ChakraAvatar.Fallback>
-          {name ? <ChakraAvatar.Initial name={name} /> : <ChakraAvatar.Icon />}
+          {name ? (
+            <ChakraAvatar.Initial name={name} />
+          ) : (
+            <ChakraAvatar.Icon asChild={!!icon}>{icon}</ChakraAvatar.Icon>
+          )}
         </ChakraAvatar.Fallback>
         <ChakraAvatar.Image src={src} srcSet={srcSet} loading={loading} />
       </ChakraAvatar.Root>

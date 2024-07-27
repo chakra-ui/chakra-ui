@@ -4,10 +4,10 @@ import { AccordionBasic } from "compositions/examples/accordion-basic"
 import { AccordionWithIcon } from "compositions/examples/accordion-with-icon"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
 import { AlertWithSpinner } from "compositions/examples/alert-wtih-spinner"
-import { AvatarGrouped } from "compositions/examples/avatar-grouped"
 import { AvatarWithBadge } from "compositions/examples/avatar-with-badge"
 import { AvatarWithColors } from "compositions/examples/avatar-with-colors"
 import { AvatarWithFallback } from "compositions/examples/avatar-with-fallback"
+import { AvatarWithGroup } from "compositions/examples/avatar-with-group"
 import { AvatarWithRing } from "compositions/examples/avatar-with-ring"
 import { AvatarWithShape } from "compositions/examples/avatar-with-shape"
 import { AvatarWithSizes } from "compositions/examples/avatar-with-sizes"
@@ -436,7 +436,7 @@ export default function Page() {
               { label: "w/ fallback", component: <AvatarWithFallback /> },
               { label: "w/ ring", component: <AvatarWithRing /> },
               { label: "w/ shape", component: <AvatarWithShape /> },
-              { label: "Grouped", component: <AvatarGrouped /> },
+              { label: "w/ group", component: <AvatarWithGroup /> },
             ]}
           />
         </Playground.SectionContent>

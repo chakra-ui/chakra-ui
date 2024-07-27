@@ -1,0 +1,72 @@
+---
+title: Avatar
+description:
+  The Avatar component is used to represent user, and displays the profile
+  picture, initials or fallback icon.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="avatar-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`avatar` snippet
+
+```sh
+chakra snippet add avatar
+```
+
+The snippet includes a closed component composition for the `Avatar` component.
+
+## Usage
+
+```jsx
+import { Avatar } from "@/components/ui/avatar"
+```
+
+```jsx
+<Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" loading="lazy" />
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the avatar
+
+<ExampleTabs name="avatar-with-sizes" />
+
+### Shape
+
+Use the `shape` prop to change the shape of the avatar, from `round` to `square`
+
+<ExampleTabs name="avatar-with-shape" />
+
+### Fallback
+
+The initials of the name can be used as a fallback when the `src` prop is not
+provided or when the image fails to load.
+
+<ExampleTabs name="avatar-with-fallback" />
+
+### Ring
+
+Use the `outline*` props to add a ring around the avatar
+
+<ExampleTabs name="avatar-with-ring" />
+
+### Group
+
+Use the `Group` component to group multiple avatars together
+
+<ExampleTabs name="avatar-with-group" />
+
+### Badge
+
+<ExampleTabs name="avatar-with-badge" />
