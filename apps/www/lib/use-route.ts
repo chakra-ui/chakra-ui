@@ -1,6 +1,9 @@
 import { FlattenNavItem, NavItem, docsConfig } from "@/docs.config"
 import { usePathname } from "next/navigation"
 
+const join = (...args: Array<string | undefined>) =>
+  `/${args.filter(Boolean).join("/")}`
+
 export function useRoute() {
   const currentUrl = usePathname()
 
@@ -33,12 +36,12 @@ export function useRoute() {
     const nav = getPrimaryNav()
     return nav.items!.map((item) => {
       const firstChild = flattenedItems.find((child) =>
-        child.url?.startsWith(`/${nav.url}/${item.url}`),
+        child.url?.startsWith(join(nav.url, item.url)),
       )
       return {
         title: item.title,
         url: firstChild?.url,
-        current: currentUrl.startsWith(`/${nav.url}/${item.url}`),
+        current: currentUrl.startsWith(join(nav.url, item.url)),
       }
     })
   }
@@ -81,9 +84,9 @@ export function useRoute() {
       items: group.items!.map((item) => ({
         status: item.status,
         title: item.title,
-        url: `/${primaryNav.url}/${secondaryNav.url}/${group.url}/${item.url}`,
+        url: join(primaryNav.url, secondaryNav.url, group.url, item.url),
         current: currentUrl.startsWith(
-          `/${primaryNav.url}/${secondaryNav.url}/${group.url}${item.url}`,
+          join(primaryNav.url, secondaryNav.url, group.url, item.url),
         ),
       })),
     }))
