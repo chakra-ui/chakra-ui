@@ -14,6 +14,7 @@ import { Children } from "react"
 import * as runtime from "react/jsx-runtime"
 import { Card, CardGroup } from "./card"
 import { Example, ExampleTabs } from "./example"
+import { PropTable } from "./prop-table"
 
 const sharedComponents = {
   a(props: any) {
@@ -353,6 +354,7 @@ const sharedComponents = {
     return <CardGroup {...props} />
   },
   Card,
+  PropTable,
 }
 
 const useMDXComponent = (code: string) => {
