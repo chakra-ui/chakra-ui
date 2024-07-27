@@ -14,7 +14,7 @@ export const alertSlotRecipe = defineSlotRecipe({
     },
     title: {
       fontWeight: "medium",
-      lineHeight: "1.2",
+      lineHeight: "1.3",
       marginEnd: "2",
     },
     description: {

@@ -1,8 +1,8 @@
 import { Alert as ChakraAlert, Stack } from "@chakra-ui/react"
 import { forwardRef } from "react"
 
-export interface AlertProps extends ChakraAlert.RootProps {
-  title?: string
+export interface AlertProps extends Omit<ChakraAlert.RootProps, "title"> {
+  title?: React.ReactNode
   icon?: React.ReactElement
 }
 

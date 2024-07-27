@@ -148,7 +148,7 @@ export const ExampleTabs = (props: Props) => {
   const { name } = props
   if (!name) return null
   return (
-    <Tabs.Root variant="soft" defaultValue={"preview"}>
+    <Tabs.Root variant="soft" defaultValue={"preview"} mb="4em">
       <Tabs.List mb="4">
         <Tabs.Trigger value="preview">Preview</Tabs.Trigger>
         <Tabs.Trigger value="code">Code</Tabs.Trigger>

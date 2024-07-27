@@ -1,0 +1,75 @@
+---
+title: Alert
+description:
+  Alerts are used to communicate a state that affects a system, feature or page.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="alert-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`alert` snippet:
+
+```sh
+chakra snippet add alert
+```
+
+The snippet includes a closed component composition for the `Alert` component.
+
+## Usage
+
+```jsx
+import { Alert } from "@/components/ui/alert"
+```
+
+```jsx
+<Alert title="Alert Title" icon={<LuTerminal />}>
+  This is the alert description
+</Alert>
+```
+
+## Examples
+
+### Description
+
+Use the `description` prop to provide additional context to the alert. This will
+be displayed below the alert message.
+
+<br />
+
+<ExampleTabs name="alert-with-description" />
+
+### Status
+
+Change the status of the alerts by passing the `status` prop. This affects the
+color scheme and icon used. Alert supports `error`, `success`, `warning`, and
+`info` statuses.
+
+<br />
+
+<ExampleTabs name="alert-with-status" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the alert. Values can be
+either `subtle`, `solid`, `outline`
+
+<br />
+
+<ExampleTabs name="alert-with-variants" />
+
+### Custom Icon
+
+Use the `icon` prop to pass a custom icon to the alert. This will override the
+default icon for the alert status.
+
+<br />
+
+<ExampleTabs name="alert-with-custom-icon" />

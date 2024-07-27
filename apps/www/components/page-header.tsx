@@ -16,7 +16,7 @@ export const PageHeader = (props: PageHeaderProps) => {
       </Heading>
       <Text fontSize="sm">{description}</Text>
       {links && (
-        <HStack gap="6" mt="4" mb="3">
+        <HStack gap="6" mb="4">
           {links.map((link) => (
             <Link
               variant="underline"

@@ -106,6 +106,7 @@ const sharedComponents = {
           scrollMarginTop: "calc(var(--header-height) + 1.5em)",
           "& code": { fontSize: "0.9em" },
           "& + *": { marginTop: "0" },
+          "& a": { font: "inherit!" },
         }}
         {...props}
       />
@@ -126,6 +127,7 @@ const sharedComponents = {
           scrollMarginTop: "calc(var(--header-height) + 1.5em)",
           "& code": { fontSize: "0.9em" },
           "& + *": { marginTop: "0" },
+          "& a": { font: "inherit!" },
         }}
         {...props}
       />
@@ -144,6 +146,7 @@ const sharedComponents = {
           lineHeight: "1.5em",
           scrollMarginTop: "calc(var(--header-height) + 1.5em)",
           "& + *": { marginTop: "0" },
+          "& a": { font: "inherit!" },
         }}
         {...props}
       />
