@@ -17,6 +17,7 @@ export const SidebarStart = () => {
       flexShrink="0"
       height="var(--content-height)"
       overflowY="auto"
+      overscrollBehavior="contain"
       width="16rem"
       hideBelow="md"
       fontSize="sm"
@@ -50,6 +51,7 @@ export const SidebarEnd = (props: React.PropsWithChildren) => {
       flexShrink="0"
       height="var(--content-height)"
       overflowY="auto"
+      overscrollBehavior="contain"
       width="16rem"
       hideBelow="xl"
     >
