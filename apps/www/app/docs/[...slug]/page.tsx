@@ -3,6 +3,7 @@ import { MDXContent } from "@/components/mdx-content"
 import { PageHeader } from "@/components/page-header"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Toc } from "@/components/toc"
+import { docsConfig } from "@/docs.config"
 import { flattenToc } from "@/lib/flatten-toc"
 import { Stack } from "@chakra-ui/react"
 import { Metadata } from "next"
@@ -47,7 +48,7 @@ export default function Page(props: Props) {
       <SidebarEnd>
         <Toc items={flattenToc(page.toc)} />
         <Stack borderTopWidth="1px" pt="4" align="start">
-          <EditPageButton href="" />
+          <EditPageButton href={`${docsConfig.editUrl}/${page.slug}.mdx`} />
           <ScrollToTop />
         </Stack>
       </SidebarEnd>
