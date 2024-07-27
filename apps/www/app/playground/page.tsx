@@ -57,6 +57,10 @@ import { FileUploadMultiple } from "compositions/examples/file-upload-multiple"
 import { FileUploadWithDropzone } from "compositions/examples/file-upload-with-dropzone"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { HoverCardBasic } from "compositions/examples/hovercard-basic"
+import { IconBasic } from "compositions/examples/icon-basic"
+import { IconCustom } from "compositions/examples/icon-custom"
+import { IconWithCreateIcon } from "compositions/examples/icon-with-create-icon"
+import { IconWithReactIcon } from "compositions/examples/icon-with-react-icon"
 import { InputWithDescription } from "compositions/examples/input-with-description"
 import { InputWithError } from "compositions/examples/input-with-error"
 import { InputWithField } from "compositions/examples/input-with-field"
@@ -531,6 +535,20 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent gap="14">
           <HoverCardBasic />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="icon">Icon</Playground.SectionTitle>
+        <Playground.SectionContent>
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <IconBasic /> },
+              { label: "custom", component: <IconCustom /> },
+              { label: "w/ react icon", component: <IconWithReactIcon /> },
+              { label: "w/ create icon", component: <IconWithCreateIcon /> },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
