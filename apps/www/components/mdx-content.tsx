@@ -70,6 +70,7 @@ const sharedComponents = {
           marginBottom: "1em",
           _first: { marginTop: "0" },
           _last: { marginBottom: "0" },
+          "& + .example-tabs": { marginTop: "2em" },
         }}
       />
     )

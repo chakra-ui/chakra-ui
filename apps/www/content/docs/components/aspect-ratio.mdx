@@ -1,0 +1,51 @@
+---
+title: Aspect Ratio
+description:
+  AspectRatio component is used to embed responsive videos and maps, etc.
+links: [{ title: "Source", url: "#" }, { title: "Storybook", url: "#" }]
+---
+
+<ExampleTabs name="aspect-ratio-basic" />
+
+## Usage
+
+```jsx
+import { AspectRatio } from "@chakra-ui/react"
+```
+
+```jsx
+<AspectRatio>
+  <iframe
+    title="naruto"
+    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
+    allowFullScreen
+  />
+</AspectRatio>
+```
+
+## Examples
+
+### Image
+
+Here's how to embed an image that has a 4 by 3 aspect ratio.
+
+<ExampleTabs name="aspect-ratio-with-image" />
+
+### Video
+
+To embed a video with a specific aspect ratio, use an iframe with `src` pointing
+to the link of the video.
+
+<ExampleTabs name="aspect-ratio-with-video" />
+
+### Google Map
+
+Here's how to embed a responsive Google map using `AspectRatio`.
+
+<ExampleTabs name="aspect-ratio-with-map" />
+
+## Props
+
+These props can be passed to the `AspectRatio` component.
+
+<PropTable component="AspectRatio" part="AspectRatio" />

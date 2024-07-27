@@ -133,7 +133,13 @@ export const Example = (props: Props) => {
   const { name } = props
   if (!name) return null
   return (
-    <Box borderWidth="1px" rounded="lg" overflow="hidden" divideY="1px">
+    <Box
+      className="example-tabs"
+      borderWidth="1px"
+      rounded="lg"
+      overflow="hidden"
+      divideY="1px"
+    >
       <Box padding="10">
         <ExamplePreview name={name} />
       </Box>
@@ -148,7 +154,12 @@ export const ExampleTabs = (props: Props) => {
   const { name } = props
   if (!name) return null
   return (
-    <Tabs.Root variant="soft" defaultValue={"preview"} mb="4em">
+    <Tabs.Root
+      className="example-tabs"
+      variant="soft"
+      defaultValue={"preview"}
+      mb="4em"
+    >
       <Tabs.List mb="4">
         <Tabs.Trigger value="preview">Preview</Tabs.Trigger>
         <Tabs.Trigger value="code">Code</Tabs.Trigger>

@@ -34,6 +34,7 @@ export default function Page(props: Props) {
         px={{ md: "12" }}
         pt="10"
         pb="16"
+        overflow="auto"
         minHeight="var(--content-height)"
       >
         <span id="scroll-to-top" />

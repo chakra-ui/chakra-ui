@@ -21,5 +21,6 @@ export const globalCss = defineGlobalStyles({
   },
   "*, *::before, &::after": {
     borderColor: "border",
+    wordWrap: "break-word",
   },
 })
