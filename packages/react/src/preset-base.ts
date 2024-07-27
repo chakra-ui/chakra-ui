@@ -608,12 +608,30 @@ export const defaultBaseConfig = defineConfig({
     hideFrom: {
       values: "breakpoints",
       //@ts-ignore
-      transform: (v) => ({ [`@breakpoint ${v}`]: { display: "none" } }),
+      transform: (value, { raw, token }) => {
+        const bp = token.raw(`breakpoints.${raw}`)
+        const media = bp
+          ? `@breakpoint ${raw}`
+          : `@media screen and (min-width: ${value})`
+        return {
+          [media]: { display: "none" },
+        }
+      },
     },
     hideBelow: {
       values: "breakpoints",
       //@ts-ignore
-      transform: (v) => ({ [`@breakpoint ${v}Down`]: { display: "none" } }),
+      transform(value, { raw, token }) {
+        const bp = token.raw(`breakpoints.${raw}`)
+        const media = bp
+          ? `@breakpoint ${raw}Down`
+          : `@media screen and (max-width: ${value})`
+        return {
+          [media]: {
+            display: "none",
+          },
+        }
+      },
     },
     // scroll
     overscrollBehavior: { shorthand: ["overscroll"] },
