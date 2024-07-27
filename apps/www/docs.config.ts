@@ -90,6 +90,7 @@ const docsLinks: NavItem = {
         {
           title: "Layout",
           items: [
+            { title: "Aspect Ratio", url: "aspect-ratio" },
             { title: "Bleed", url: "bleed" },
             { title: "Box", url: "box" },
             { title: "Center", url: "center" },
@@ -122,7 +123,6 @@ const docsLinks: NavItem = {
             { title: "Accordion", url: "accordion" },
             { title: "Action Bar", url: "action-bar" },
             { title: "Alert", url: "alert" },
-            { title: "Aspect Ratio", url: "aspect-ratio" },
             { title: "Avatar", url: "avatar" },
             { title: "Badge", url: "badge" },
             { title: "Breadcrumb", url: "breadcrumb" },
