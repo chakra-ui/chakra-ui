@@ -120,9 +120,9 @@ export const CompositionCommand = new Command("composition")
                 fileDependencies.map(async (dep) => {
                   if (existsSync(join(outdir, dep))) return
                   const item = await fetchComposition(dep)
-                  item.file.name = item.file.name.replace(".tsx", ".jsx")
 
                   if (jsx) {
+                    item.file.name = item.file.name.replace(".tsx", ".jsx")
                     await transformToJsx(item)
                   }
 
@@ -141,9 +141,9 @@ export const CompositionCommand = new Command("composition")
                   if (existsSync(join(outdir, id))) return
 
                   const item = await fetchComposition(id)
-                  item.file.name = item.file.name.replace(".tsx", ".jsx")
 
                   if (jsx) {
+                    item.file.name = item.file.name.replace(".tsx", ".jsx")
                     await transformToJsx(item)
                   }
 
