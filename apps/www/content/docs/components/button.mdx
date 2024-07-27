@@ -1,0 +1,71 @@
+---
+title: Button
+description: Button component is used to trigger an action or event
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="button-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`button` snippet
+
+```sh
+chakra snippet add button
+```
+
+The snippet includes enhances the Button with `loading` and `loadingText` props.
+
+## Usage
+
+```jsx
+import { Button } from "@/components/ui/button"
+```
+
+```jsx
+<Button>Click me</Button>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the button. You can set the value to
+`xs`, `sm`, `md`, or `lg`.
+
+<ExampleTabs name="button-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the Button. You can set the
+value to `solid`, `outline`, or `ghost`
+
+<ExampleTabs name="button-with-variants" />
+
+### Icon
+
+<ExampleTabs name="button-with-icons" />
+
+### Color
+
+Use the `colorPalette` prop to change the color of the button
+
+<ExampleTabs name="button-with-colors" />
+
+### Loading
+
+Use the `loading` and `loadingText` prop to show a loading spinner
+
+<ExampleTabs name="button-with-loading" />
+
+### Group
+
+Use the `Group` component to group buttons together
+
+<ExampleTabs name="button-with-group" />

@@ -1,13 +1,13 @@
-import { Flex } from "@chakra-ui/react"
+import { HStack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 
 export const ButtonWithSizes = () => {
   return (
-    <Flex wrap="wrap">
-      <Button size="xs">Button</Button>
-      <Button size="sm">Button</Button>
-      <Button size="md">Button</Button>
-      <Button size="lg">Button</Button>
-    </Flex>
+    <HStack wrap="wrap" gap="6">
+      <Button size="xs">Button (xs)</Button>
+      <Button size="sm">Button (sm)</Button>
+      <Button size="md">Button (md)</Button>
+      <Button size="lg">Button (lg)</Button>
+    </HStack>
   )
 }

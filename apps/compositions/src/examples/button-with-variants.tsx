@@ -1,14 +1,14 @@
-import { Flex } from "@chakra-ui/react"
+import { HStack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 
-export const ButtonWithSizes = () => {
+export const ButtonWithVariants = () => {
   return (
-    <Flex align="center" wrap="wrap">
-      <Button variant="solid">Button</Button>
-      <Button variant="subtle">Button</Button>
-      <Button variant="outline">Button</Button>
-      <Button variant="ghost">Button</Button>
-      <Button variant="plain">Button</Button>
-    </Flex>
+    <HStack wrap="wrap" gap="6">
+      <Button variant="solid">Solid</Button>
+      <Button variant="subtle">Subtle</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="plain">Plain</Button>
+    </HStack>
   )
 }
