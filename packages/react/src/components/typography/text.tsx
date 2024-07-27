@@ -26,6 +26,11 @@ interface TextOptions {
    * @type SystemStyleObject["textTransform"]
    */
   casing?: SystemStyleObject["textTransform"]
+  /**
+   * The CSS `text-wrap` property
+   * @type SystemStyleObject["textWrap"]
+   */
+  wrap?: SystemStyleObject["textWrap"]
 }
 
 export interface TextProps
@@ -46,6 +51,7 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(
       textAlign: localProps.align,
       textDecoration: localProps.decoration,
       textTransform: localProps.casing,
+      textWrap: localProps.wrap,
     })
 
     return (

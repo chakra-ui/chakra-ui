@@ -18,9 +18,9 @@ export const Blockquote = forwardRef<HTMLDivElement, BlockquoteProps>(
       cite,
       citeUrl,
       dash,
-      showIcon,
       icon,
       iconPlacement = "middle-start",
+      showIcon = !!icon,
       ...rest
     } = props
 
@@ -29,7 +29,9 @@ export const Blockquote = forwardRef<HTMLDivElement, BlockquoteProps>(
         {showIcon && (
           <Float placement={iconPlacement}>
             <Circle bg="bg" size="8">
-              {icon || <ChakraBlockquote.Icon />}
+              <ChakraBlockquote.Icon asChild={!!icon}>
+                {icon}
+              </ChakraBlockquote.Icon>
             </Circle>
           </Float>
         )}
