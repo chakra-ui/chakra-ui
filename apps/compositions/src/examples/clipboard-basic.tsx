@@ -1,16 +1,16 @@
-import { Clipboard } from "@chakra-ui/react"
-import { LuCopy } from "react-icons/lu"
+import { Clipboard, IconButton } from "@chakra-ui/react"
+import { LuCheck, LuClipboard } from "react-icons/lu"
 
 export const ClipboardBasic = () => {
-  const value = "gh repo clone chakra-ui/chakra-ui"
   return (
-    <Clipboard.Root value={value}>
-      <Clipboard.Control>
-        <Clipboard.Input fontFamily="mono">{value}</Clipboard.Input>
-        <Clipboard.Trigger>
-          <LuCopy /> Copy
-        </Clipboard.Trigger>
-      </Clipboard.Control>
+    <Clipboard.Root value="https://chakra-ui.com">
+      <Clipboard.Trigger asChild>
+        <IconButton size="sm" variant="subtle">
+          <Clipboard.Indicator copied={<LuCheck />}>
+            <LuClipboard />
+          </Clipboard.Indicator>
+        </IconButton>
+      </Clipboard.Trigger>
     </Clipboard.Root>
   )
 }

@@ -1,0 +1,48 @@
+---
+title: Clipboard
+description: Used to copy text to the clipboard
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="clipboard-basic" />
+
+## Usage
+
+```jsx
+import { Clipboard } from "@chakra-ui/react"
+```
+
+```jsx
+<Clipboard.Root>
+  <Clipboard.Control>
+    <Clipboard.Input />
+    <Clipboard.Trigger />
+  </Clipboard.Control>
+</Clipboard.Root>
+```
+
+## Examples
+
+### Copy Button
+
+Use the `Clipboard.Context` and `Clipboard.Trigger` components to create a copy
+button.
+
+<ExampleTabs name="clipboard-with-button" />
+
+### Input
+
+Use the `Clipboard.Input` component to create a copy input.
+
+<ExampleTabs name="clipboard-with-input" />
+
+### Timeout
+
+Use the `timeout` prop to change the duration of the copy message.
+
+<ExampleTabs name="clipboard-with-timeout" />
