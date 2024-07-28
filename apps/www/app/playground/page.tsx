@@ -61,6 +61,10 @@ import { IconBasic } from "compositions/examples/icon-basic"
 import { IconCustom } from "compositions/examples/icon-custom"
 import { IconWithCreateIcon } from "compositions/examples/icon-with-create-icon"
 import { IconWithReactIcon } from "compositions/examples/icon-with-react-icon"
+import { ImageBasic } from "compositions/examples/image-basic"
+import { ImageWithCircle } from "compositions/examples/image-with-circle"
+import { ImageWithFit } from "compositions/examples/image-with-fit"
+import { ImageWithSkeleton } from "compositions/examples/image-with-skeleton"
 import { InputWithDescription } from "compositions/examples/input-with-description"
 import { InputWithError } from "compositions/examples/input-with-error"
 import { InputWithField } from "compositions/examples/input-with-field"
@@ -379,6 +383,29 @@ export default function Page() {
           <InputWithField />
           <InputWithDescription />
           <InputWithError />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="image">Image</Playground.SectionTitle>
+        <Playground.SectionContent>
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <ImageBasic /> },
+              {
+                label: "w/ fit",
+                component: <ImageWithFit />,
+              },
+              {
+                label: "w/ circle",
+                component: <ImageWithCircle />,
+              },
+              {
+                label: "w/ skeleton",
+                component: <ImageWithSkeleton />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
