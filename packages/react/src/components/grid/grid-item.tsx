@@ -51,5 +51,3 @@ export const GridItem = forwardRef<HTMLDivElement, GridItemProps>(
     return <chakra.div ref={ref} css={styles} {...rest} />
   },
 )
-
-GridItem.displayName = "GridItem"

@@ -40,5 +40,3 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
     )
   },
 )
-
-Separator.displayName = "Divider"

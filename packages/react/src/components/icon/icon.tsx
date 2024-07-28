@@ -36,5 +36,3 @@ export const Icon = forwardRef<SVGElement, IconProps>(
     )
   },
 )
-
-Icon.displayName = "Icon"

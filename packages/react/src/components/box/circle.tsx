@@ -11,5 +11,3 @@ export const Circle = forwardRef<HTMLDivElement, SquareProps>(
     return <Square size={size} ref={ref} borderRadius="9999px" {...rest} />
   },
 )
-
-Circle.displayName = "Circle"

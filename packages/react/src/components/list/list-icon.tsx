@@ -12,5 +12,3 @@ export const ListIcon = forwardRef<SVGElement, ListIconProps>(
     return <Icon ref={ref} {...props} css={[styles["icon"], props.css]} />
   },
 )
-
-ListIcon.displayName = "ListIcon"

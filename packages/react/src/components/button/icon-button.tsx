@@ -15,5 +15,3 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
     return <Button padding="0" ref={ref} {...props} />
   },
 )
-
-IconButton.displayName = "IconButton"

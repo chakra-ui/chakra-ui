@@ -39,5 +39,3 @@ export const Badge = forwardRef<HTMLElement, BadgeProps>(function Badge(
     />
   )
 })
-
-Badge.displayName = "Badge"

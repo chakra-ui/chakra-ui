@@ -13,5 +13,3 @@ export const HStack = forwardRef<HTMLDivElement, StackProps>(
     return <Stack align="center" {...props} direction="row" ref={ref} />
   },
 )
-
-HStack.displayName = "HStack"

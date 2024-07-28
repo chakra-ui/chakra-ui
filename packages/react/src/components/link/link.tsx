@@ -46,5 +46,3 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     />
   )
 })
-
-Link.displayName = "Link"

@@ -38,5 +38,3 @@ export const Code = forwardRef<HTMLElement, CodeProps>(function Code(
     />
   )
 })
-
-Code.displayName = "Code"

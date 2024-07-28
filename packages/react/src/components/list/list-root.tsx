@@ -57,5 +57,3 @@ export const ListRoot = forwardRef<HTMLUListElement, ListRootProps>(
     )
   },
 )
-
-ListRoot.displayName = "List"

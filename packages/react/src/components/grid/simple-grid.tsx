@@ -47,8 +47,6 @@ export const SimpleGrid = forwardRef<HTMLDivElement, SimpleGridProps>(
   },
 )
 
-SimpleGrid.displayName = "SimpleGrid"
-
 function toPx(n: string | number) {
   return typeof n === "number" ? `${n}px` : n
 }

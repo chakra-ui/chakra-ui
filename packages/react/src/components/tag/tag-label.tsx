@@ -20,5 +20,3 @@ export const TagLabel = forwardRef<HTMLSpanElement, TagLabelProps>(
     )
   },
 )
-
-TagLabel.displayName = "TagLabel"

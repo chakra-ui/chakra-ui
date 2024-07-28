@@ -50,5 +50,3 @@ export const NativeSelectRoot = forwardRef<
     </SelectContextProvider>
   )
 })
-
-NativeSelectRoot.displayName = "Select"

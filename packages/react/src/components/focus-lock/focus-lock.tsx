@@ -110,5 +110,3 @@ export function FocusLock(props: Props) {
     </FocusTrap>
   )
 }
-
-FocusLock.displayName = "FocusLock"

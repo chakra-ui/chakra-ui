@@ -25,5 +25,3 @@ export const SkipNavContent = forwardRef<HTMLDivElement, SkipNavContentProps>(
     )
   },
 )
-
-SkipNavContent.displayName = "SkipNavContent"
