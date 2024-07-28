@@ -138,6 +138,7 @@ const docsLinks: NavItem = {
             { title: "Divider", url: "divider" },
             { title: "Drawer", url: "drawer" },
             { title: "Editable", url: "editable" },
+            { title: "File Upload", url: "file-upload" },
             { title: "Hover Card", url: "hover-card" },
             { title: "Icon", url: "icon" },
             { title: "Image", url: "image" },
