@@ -26,6 +26,8 @@ export const cardSlotRecipe = defineSlotRecipe({
       paddingTop: "var(--card-padding)",
     },
     footer: {
+      display: "flex",
+      alignItems: "center",
       paddingInline: "var(--card-padding)",
       paddingBottom: "var(--card-padding)",
     },

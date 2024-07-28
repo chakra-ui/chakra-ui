@@ -1,4 +1,4 @@
-import { Card, Group, Heading, Text } from "@chakra-ui/react"
+import { Card, Heading, Text } from "@chakra-ui/react"
 import { Avatar } from "compositions/ui/avatar"
 import { Button } from "compositions/ui/button"
 
@@ -21,11 +21,9 @@ export const CardBasic = () => {
           Curabitur nec odio vel dui euismod fermentum.
         </Text>
       </Card.Body>
-      <Card.Footer>
-        <Group justify="flex-end" width="full">
-          <Button variant="outline">View</Button>
-          <Button>Join</Button>
-        </Group>
+      <Card.Footer justifyContent="flex-end" gap="2">
+        <Button variant="outline">View</Button>
+        <Button>Join</Button>
       </Card.Footer>
     </Card.Root>
   )

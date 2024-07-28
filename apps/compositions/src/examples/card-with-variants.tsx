@@ -4,8 +4,8 @@ import { Button } from "compositions/ui/button"
 
 export const CardWithVariants = () => {
   return (
-    <Stack direction="row" gap="2" align="flex-start">
-      <For each={["subtle", "outline"]}>
+    <Stack gap="4" direction="row" wrap="wrap">
+      <For each={["subtle", "outline", "elevated"]}>
         {(variant) => (
           <Card.Root width="320px" variant={variant} key={variant}>
             <Card.Body>
@@ -20,8 +20,7 @@ export const CardWithVariants = () => {
               </Heading>
               <Text color="fg.muted">
                 This is the card body. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
-                Curabitur nec odio vel dui euismod fermentum.
+                adipiscing elit.
               </Text>
             </Card.Body>
             <Card.Footer>
