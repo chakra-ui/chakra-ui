@@ -372,7 +372,6 @@ export type ProgressSlot = "root" | "label" | "track" | "range" | "valueText" | 
 
 export interface ProgressVariantProps {
   variant?: "outline" | "subtle"
-  indeterminate?: boolean
   shape?: "square" | "rounded" | "pill"
   striped?: boolean
   animated?: boolean

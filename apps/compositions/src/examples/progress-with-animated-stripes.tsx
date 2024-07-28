@@ -1,8 +1,8 @@
 import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
 
-export const ProgressBasic = () => {
+export const ProgressWithAnimatedStripes = () => {
   return (
-    <ProgressRoot>
+    <ProgressRoot maxW="240px" striped animated>
       <ProgressBar />
     </ProgressRoot>
   )

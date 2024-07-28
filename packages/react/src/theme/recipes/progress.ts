@@ -20,9 +20,20 @@ export const progressSlotRecipe = defineSlotRecipe({
       transitionProperty: "width, height",
       transitionDuration: "slow",
       height: "100%",
+      bgColor: "var(--track-color)",
+      _indeterminate: {
+        "--animate-from-x": "-40%",
+        "--animate-to-x": "100%",
+        position: "absolute",
+        willChange: "left",
+        minWidth: "50%",
+        animation: "position 1s ease infinite normal none running",
+        backgroundImage: `linear-gradient(to right, transparent 0%, var(--track-color) 50%, transparent 100%)`,
+      },
     },
     label: {
       display: "inline-flex",
+      fontWeight: "medium",
     },
     valueText: {
       fontSize: "xs",
@@ -48,24 +59,6 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
         range: {
           bgColor: { base: "colorPalette.400", _dark: "colorPalette.400/40" },
-        },
-      },
-    },
-    indeterminate: {
-      true: {
-        range: {
-          "--animate-from-x": "-40%",
-          "--animate-to-x": "100%",
-          position: "absolute",
-          willChange: "left",
-          minWidth: "50%",
-          animation: "position 1s ease infinite normal none running",
-          backgroundImage: `linear-gradient(to right, transparent 0%, var(--track-color) 50%, transparent 100%)`,
-        },
-      },
-      false: {
-        range: {
-          bgColor: "var(--track-color)",
         },
       },
     },
