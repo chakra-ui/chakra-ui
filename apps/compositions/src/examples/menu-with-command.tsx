@@ -11,24 +11,24 @@ export const MenuWithCommand = () => {
   return (
     <MenuRoot>
       <MenuTrigger>
-        <Button variant="solid" size="sm">
-          Command
+        <Button variant="outline" size="sm">
+          Open
         </Button>
       </MenuTrigger>
       <MenuContent>
-        <MenuItem value="new-txt">
+        <MenuItem value="new-txt-a">
           New Text File <MenuItemCommand>⌘E</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="new-file">
+        <MenuItem value="new-file-a">
           New File... <MenuItemCommand>⌘N</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="new-win">
+        <MenuItem value="new-win-a">
           New Window <MenuItemCommand>⌘⇧N</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="open-file">
+        <MenuItem value="open-file-a">
           Open File... <MenuItemCommand>⌘O</MenuItemCommand>
         </MenuItem>
-        <MenuItem value="export">
+        <MenuItem value="export-a">
           Export <MenuItemCommand>⌘S</MenuItemCommand>
         </MenuItem>
       </MenuContent>

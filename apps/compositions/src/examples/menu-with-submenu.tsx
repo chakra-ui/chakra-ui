@@ -1,4 +1,3 @@
-import { Icon } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
   MenuContent,
@@ -7,17 +6,13 @@ import {
   MenuTrigger,
   MenuTriggerItem,
 } from "compositions/ui/menu"
-import { LuChevronsUpDown } from "react-icons/lu"
 
 export const MenuWithSubmenu = () => {
   return (
     <MenuRoot>
       <MenuTrigger>
         <Button variant="outline" size="sm">
-          Nested
-          <Icon asChild mx="-1">
-            <LuChevronsUpDown />
-          </Icon>
+          Open
         </Button>
       </MenuTrigger>
       <MenuContent>
