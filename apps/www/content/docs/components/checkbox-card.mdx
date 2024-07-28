@@ -1,0 +1,66 @@
+---
+title: Checkbox Card
+description:
+  Checkbox Cards allows the user to select or deselect options displayed within
+  Cards.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="checkbox-card-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`checkbox-card` snippet
+
+```sh
+chakra snippet add checkbox-card
+```
+
+The snippet includes a closed component composition for the `CheckboxCard`
+component.
+
+## Usage
+
+```jsx
+import {
+  CheckboxCardAddon,
+  CheckboxCardControl,
+  CheckboxCardLabel,
+  CheckboxCardRoot,
+} from "@/components/ui/checkbox-card"
+```
+
+```jsx
+<CheckboxCardRoot>
+  <CheckboxCardControl>
+    <CheckboxCardLabel />
+  </CheckboxCardControl>
+  <CheckboxCardAddon />
+</CheckboxCardRoot>
+```
+
+## Examples
+
+### Disabled
+
+Use the `disabled` prop to make the checkbox card isDisabled.
+
+<ExampleTabs name="checkbox-card-disabled" />
+
+### With Addon
+
+Use the `CheckboxCardAddon` to add some more context to the checkbox card.
+
+<ExampleTabs name="checkbox-card-with-addon" />
+
+### With Icon
+
+You can render custom icons within the checkbox card.
+
+<ExampleTabs name="checkbox-card-with-icon" />
