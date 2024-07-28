@@ -40,3 +40,20 @@ Use `Link` within a text to create a hyperlink
 Add an external link icon to the `Link` component
 
 <ExampleTabs name="link-with-external" />
+
+### Next.js
+
+Compose `Link` with Next.js `Link` component using the `asChild` prop
+
+```jsx
+import { Link as ChakraLink } from "@chakra-ui/react"
+import NextLink from "next/link"
+
+const Demo = () => {
+  return (
+    <ChakraLink asChild>
+      <NextLink href="/about">Click here</NextLink>
+    </ChakraLink>
+  )
+}
+```
