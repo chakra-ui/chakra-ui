@@ -1,25 +1,24 @@
 "use client"
 
-import { Image } from "@chakra-ui/react"
-import { SkeletonCircle } from "compositions/ui/skeleton"
+import { Image, Skeleton } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 
 export const ImageWithSkeleton = () => {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     setTimeout(() => {
-      setIsLoaded(true)
+      setIsLoading(false)
     }, 2000)
   }, [])
 
   return (
-    <SkeletonCircle loaded={isLoaded} boxSize="150px">
+    <Skeleton loading={isLoading} boxSize="150px" borderRadius="full">
       <Image
         src="https://bit.ly/gleb-koshcheev"
         alt="Gleb Koshcheev"
         borderRadius="full"
         boxSize="150px"
       />
-    </SkeletonCircle>
+    </Skeleton>
   )
 }
