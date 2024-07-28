@@ -11,7 +11,7 @@ import {
 
 export const SelectBasic = () => {
   return (
-    <SelectRoot items={frameworks} size="sm" width="240px">
+    <SelectRoot items={frameworks} size="sm" width="320px">
       <SelectLabel>Select framework</SelectLabel>
       <SelectTrigger>
         <SelectValueText placeholder="Select movie" />

@@ -112,6 +112,32 @@ export const selectSlotRecipe = defineSlotRecipe({
     },
 
     size: {
+      xs: {
+        trigger: {
+          px: "2",
+          h: "6",
+          minW: "6",
+          fontSize: "xs",
+          rounded: "sm",
+          gap: "1",
+        },
+        item: {
+          py: "1",
+          px: "2",
+          rounded: "sm",
+        },
+        itemGroupLabel: {
+          py: "1",
+          px: "2",
+        },
+        content: {
+          p: "1",
+          rounded: "sm",
+          boxShadow: "md",
+          minW: "8rem",
+          fontSize: "xs",
+        },
+      },
       sm: {
         content: {
           p: "1",

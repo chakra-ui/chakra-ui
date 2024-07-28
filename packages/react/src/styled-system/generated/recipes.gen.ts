@@ -443,7 +443,7 @@ export type SelectSlot =
 
 export interface SelectVariantProps {
   variant?: "outline" | "filled"
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // Slider
