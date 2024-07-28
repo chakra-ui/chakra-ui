@@ -61,9 +61,9 @@ import { IconBasic } from "compositions/examples/icon-basic"
 import { IconCustom } from "compositions/examples/icon-custom"
 import { IconWithCreateIcon } from "compositions/examples/icon-with-create-icon"
 import { IconWithReactIcon } from "compositions/examples/icon-with-react-icon"
-import { InputWithDescription } from "compositions/examples/input-with-description"
-import { InputWithError } from "compositions/examples/input-with-error"
+import { InputWithErrorText } from "compositions/examples/input-with-error-text"
 import { InputWithField } from "compositions/examples/input-with-field"
+import { InputWithHelperText } from "compositions/examples/input-with-helper-text"
 import { InputWithLeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
 import { InputWithLeftElement } from "compositions/examples/input-with-left-element"
 import { MenuBasic } from "compositions/examples/menu-basic"
@@ -377,8 +377,8 @@ export default function Page() {
           <InputWithLeftElement />
           <InputWithLeftAndRightElement />
           <InputWithField />
-          <InputWithDescription />
-          <InputWithError />
+          <InputWithHelperText />
+          <InputWithErrorText />
         </Playground.SectionContent>
       </Playground.Section>
 

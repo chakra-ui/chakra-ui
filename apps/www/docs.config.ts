@@ -140,6 +140,7 @@ const docsLinks: NavItem = {
             { title: "Hover Card", url: "hover-card" },
             { title: "Icon", url: "icon" },
             { title: "Image", url: "image" },
+            { title: "Input", url: "input" },
             { title: "Menu", url: "menu" },
             { title: "Number Input", url: "number-input" },
             { title: "Pagination", url: "pagination" },

@@ -35,7 +35,7 @@ export const InputWithLeftAndRightElement = () => {
                 .com <LuChevronsUpDown />
               </Button>
             </MenuTrigger>
-            <MenuContent portalled={false}>
+            <MenuContent>
               <MenuItem value=".com">.com</MenuItem>
               <MenuItem value=".org">.org</MenuItem>
               <MenuItem value=".net">.net</MenuItem>
