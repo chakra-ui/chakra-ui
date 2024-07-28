@@ -6,14 +6,14 @@ import { Skeleton } from "compositions/ui/skeleton"
 import { useState } from "react"
 
 export const SkeletonWithLoaded = () => {
-  const [loaded, setLoaded] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   return (
-    <Stack align="flex-start">
-      <Skeleton height="6" loaded={loaded}>
-        <Text>Chakra ui is cool</Text>
+    <Stack align="flex-start" gap="4">
+      <Skeleton height="6" loading={loading}>
+        <Text>Chakra UI is cool</Text>
       </Skeleton>
-      <Button size="sm" onClick={() => setLoaded((c) => !c)}>
+      <Button size="sm" onClick={() => setLoading((c) => !c)}>
         Toggle
       </Button>
     </Stack>

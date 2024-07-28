@@ -55,14 +55,14 @@ export const Variants = () => {
 }
 
 export const WithFade = () => {
-  const [loaded, setLoaded] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setLoaded(true), 1000)
+    setTimeout(() => setLoading(true), 1000)
   }, [])
 
   return (
-    <Skeleton loaded={loaded} width="fit-content">
+    <Skeleton loading={loading} width="fit-content">
       <span>Chakra ui is cool</span>
     </Skeleton>
   )

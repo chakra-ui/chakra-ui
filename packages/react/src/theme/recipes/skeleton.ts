@@ -4,12 +4,8 @@ export const skeletonRecipe = defineRecipe({
   base: {},
 
   variants: {
-    loaded: {
+    loading: {
       true: {
-        background: "unset",
-        animation: "fade-in var(--fade-duration, 0.1s) ease-out !important",
-      },
-      false: {
         borderRadius: "sm",
         boxShadow: "none",
         backgroundClip: "padding-box",
@@ -21,6 +17,10 @@ export const skeletonRecipe = defineRecipe({
         "&::before, &::after, *": {
           visibility: "hidden",
         },
+      },
+      false: {
+        background: "unset",
+        animation: "fade-in var(--fade-duration, 0.1s) ease-out !important",
       },
     },
     variant: {
@@ -47,6 +47,6 @@ export const skeletonRecipe = defineRecipe({
 
   defaultVariants: {
     variant: "pulse",
-    loaded: false,
+    loading: true,
   },
 })

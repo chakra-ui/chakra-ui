@@ -50,7 +50,7 @@ export interface SeparatorVariantProps {
 }
 
 export interface SkeletonVariantProps {
-  loaded?: boolean
+  loading?: boolean
   variant?: "pulse" | "shine" | "none"
 }
 

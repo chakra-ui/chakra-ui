@@ -1,0 +1,72 @@
+---
+title: Skeleton
+description:
+  The Skeleton component is used to render a placeholder while the content is
+  loading.
+---
+
+<ExampleTabs name="skeleton-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`skeleton` snippet
+
+```sh
+chakra snippet add skeleton
+```
+
+The snippet includes components for skeleton text and circle using the
+`Skeleton` component.
+
+## Usage
+
+```jsx
+import {
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
+} from "@/components/ui/skeleton"
+```
+
+```jsx
+<Stack gap="6" maxW="xs">
+  <HStack width="full">
+    <SkeletonCircle size="10" />
+    <SkeletonText noOfLines={2} />
+  </HStack>
+  <Skeleton height="200px" />
+</Stack>
+```
+
+## Examples
+
+### Feed
+
+Use the `Skeleton` component to create a feed skeleton.
+
+<ExampleTabs name="skeleton-for-feed" />
+
+### Text
+
+Use the `SkeletonText` component to create a skeleton for text.
+
+<ExampleTabs name="skeleton-for-text" />
+
+### With Children
+
+Use the `loading` prop to show the skeleton while the content is loading.
+
+<ExampleTabs name="skeleton-with-children" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the Skeleton.
+
+<ExampleTabs name="skeleton-with-variants" />
+
+### Content Loading
+
+When `loading` is changed to `false`, the Skeleton component will fade in.
+
+<ExampleTabs name="skeleton-with-loaded" />
