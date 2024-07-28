@@ -1,32 +1,17 @@
-import { Stack, Text } from "@chakra-ui/react"
-import { colorPalettes } from "compositions/lib/color-palettes"
+import { Stack } from "@chakra-ui/react"
 import { Slider } from "compositions/ui/slider"
 
 export const SliderWithColors = () => {
   return (
     <Stack gap="4" align="flex-start">
-      {colorPalettes.map((colorPalette) => (
-        <Stack
-          align="center"
-          key={colorPalette}
-          direction="row"
-          gap="10"
-          px="4"
-        >
-          <Text minW="8ch">{colorPalette}</Text>
-          <Slider
-            width="200px"
-            colorPalette={colorPalette}
-            defaultValue={[40]}
-            marks={[0, 50, 100]}
-          />
-          <Slider
-            width="200px"
-            colorPalette={colorPalette}
-            defaultValue={[25, 75]}
-          />
-        </Stack>
-      ))}
+      <Slider width="200px" colorPalette="gray" defaultValue={[40]} />
+      <Slider width="200px" colorPalette="blue" defaultValue={[40]} />
+      <Slider width="200px" colorPalette="red" defaultValue={[40]} />
+      <Slider width="200px" colorPalette="green" defaultValue={[40]} />
+      <Slider width="200px" colorPalette="pink" defaultValue={[40]} />
+      <Slider width="200px" colorPalette="teal" defaultValue={[40]} />
+      <Slider width="200px" colorPalette="purple" defaultValue={[40]} />
+      <Slider width="200px" colorPalette="cyan" defaultValue={[40]} />
     </Stack>
   )
 }

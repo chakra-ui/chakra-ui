@@ -69,6 +69,10 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
           props.colorPalette || defaultVariants.colorPalette
       }
 
+      if (variantKeys.includes("orientation")) {
+        ;(localProps as any).orientation = props.orientation
+      }
+
       return [recipeProps, localProps]
     }
 

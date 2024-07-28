@@ -152,6 +152,7 @@ const docsLinks: NavItem = {
             { title: "Rating Group", url: "rating-group" },
             { title: "Select (Native)", url: "native-select" },
             { title: "Select", url: "select" },
+            { title: "Slider", url: "slider" },
             { title: "Spinner", url: "spinner" },
             { title: "Stat", url: "stat" },
             { title: "Status", url: "status" },

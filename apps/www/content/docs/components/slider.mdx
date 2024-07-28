@@ -1,0 +1,103 @@
+---
+title: Slider
+description:
+  The Slider is used to allow users to make selections from a range of values.
+---
+
+<ExampleTabs name="slider-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`slider` snippet
+
+```sh
+chakra snippet add slider
+```
+
+The snippet includes a closed component composition for the `Slider` component.
+
+## Usage
+
+```jsx
+import { Slider } from "@/components/ui/slider"
+```
+
+```jsx
+<Slider defaultValue={[40]} marks={[10, 20, 40]} />
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the slider.
+
+<ExampleTabs name="slider-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the slider.
+
+<ExampleTabs name="slider-with-variants" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color of the slider.
+
+<ExampleTabs name="slider-with-colors" />
+
+### Label
+
+Use the `label` prop to add a label to the slider.
+
+<ExampleTabs name="slider-with-label" />
+
+### Range Slider
+
+Set the `value` or `defaultValue` prop to an array to create a range slider.
+
+<ExampleTabs name="slider-with-multiple-thumbs" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the value of the slider.
+
+<ExampleTabs name="slider-controlled" />
+
+### Disabled
+
+Use the `disabled` prop to disable the slider.
+
+<ExampleTabs name="slider-disabled" />
+
+### Change End
+
+Use the `onValueChangeEnd` prop to listen to the end of the slider change.
+
+<ExampleTabs name="slider-change-end" />
+
+### Steps
+
+Use the `step` prop to set the step value of the slider.
+
+<ExampleTabs name="slider-with-step" />
+
+### Thumb Contained
+
+Use the `thumbAlignment` and `thumbSize` prop to contain the thumb within the
+track.
+
+<ExampleTabs name="slider-thumb-contained" />
+
+### Marks
+
+Use the `marks` prop to display marks on the slider.
+
+<ExampleTabs name="slider-with-marks" />
+
+### Vertical
+
+Use the `orientation` prop to change the orientation of the slider.
+
+<ExampleTabs name="slider-vertical" />

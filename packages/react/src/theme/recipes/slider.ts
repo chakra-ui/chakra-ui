@@ -16,7 +16,6 @@ export const sliderSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       position: "relative",
-      minHeight: "var(--slider-thumb-size)",
     },
     track: {
       overflow: "hidden",
@@ -111,8 +110,13 @@ export const sliderSlotRecipe = defineSlotRecipe({
     },
     orientation: {
       vertical: {
+        root: {
+          display: "inline-flex",
+        },
         control: {
+          flexDirection: "column",
           height: "100%",
+          minWidth: "var(--slider-thumb-size)",
         },
         track: {
           width: "var(--slider-track-size)",
@@ -124,7 +128,9 @@ export const sliderSlotRecipe = defineSlotRecipe({
       },
       horizontal: {
         control: {
+          flexDirection: "row",
           width: "100%",
+          minHeight: "var(--slider-thumb-size)",
         },
         track: {
           height: "var(--slider-track-size)",
