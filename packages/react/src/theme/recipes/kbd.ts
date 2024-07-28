@@ -2,22 +2,22 @@ import { defineRecipe } from "../../styled-system"
 
 export const kbdRecipe = defineRecipe({
   base: {
-    fontWeight: "medium",
+    fontWeight: "semibold",
     lineHeight: "normal",
     fontFamily: "mono",
     flexShrink: 0,
     whiteSpace: "nowrap",
     wordSpacing: "-0.5em",
     userSelect: "none",
-    verticalAlign: "text-top",
     colorPalette: "gray",
+    py: "0.2em",
   },
   variants: {
     variant: {
       raised: {
         bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
         borderWidth: "1px",
-        borderBottomWidth: "3px",
+        borderBottomWidth: "var(--kbd-border)",
         borderColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
       },
       outline: {
@@ -34,17 +34,20 @@ export const kbdRecipe = defineRecipe({
     },
     size: {
       sm: {
-        fontSize: "0.6em",
+        "--kbd-border": "2px",
+        fontSize: "0.725em",
         px: "0.25em",
         borderRadius: "xs",
       },
       md: {
-        fontSize: "0.8em",
+        "--kbd-border": "3px",
+        fontSize: "0.875em",
         px: "0.4em",
         borderRadius: "sm",
       },
       lg: {
-        fontSize: "0.9em",
+        "--kbd-border": "3px",
+        fontSize: "1em",
         px: "0.4em",
         borderRadius: "sm",
       },

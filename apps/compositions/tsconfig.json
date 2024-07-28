@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.build.json",
   "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "jsxImportSource": "react",
+    "jsx": "react-jsx",
     "customConditions": ["source"],
     "paths": {
       "compositions/*": ["./src/*"]
