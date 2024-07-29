@@ -1,0 +1,35 @@
+---
+title: Collapsible
+description:
+  Collapsibles allows content to be expanded and collapsed to show or hide
+  additional content.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="collapsible-basic" />
+
+## Usage
+
+```jsx
+import { Collapsible } from "@chakra-ui/react"
+```
+
+```jsx
+<Collapsible.Root>
+  <Collapsible.Trigger />
+  <Collapsible.Content />
+</Collapsible.Root>
+```
+
+## Examples
+
+### Lazy Mounted
+
+Use the `unmountOnExit` prop to make the content unmount when collapsed.
+
+<ExampleTabs name="collapsible-lazy-mounted" />
