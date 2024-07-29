@@ -1,0 +1,47 @@
+---
+title: DataList
+description: DataList displays a list of similar data items.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="data-list-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`data-list` snippet
+
+```sh
+chakra snippet add data-list
+```
+
+The snippet includes a closed component composition for the `DataList`
+component.
+
+## Usage
+
+```jsx
+import { DataListItem, DataListRoot } from "@/components/ui/data-list"
+```
+
+```jsx
+<DataListRoot>
+  {data.map((item) => (
+    <DataListItem key={item.label} label={item.label} value={item.value} />
+  ))}
+</DataListRoot>
+```
+
+## Examples
+
+### With Info Icon
+
+Use the `info` prop on the `DataListItem` to provide additional context to the
+datalist.
+
+<ExampleTabs name="data-list-with-info" />

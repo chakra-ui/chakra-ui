@@ -1,0 +1,60 @@
+---
+title: Editable
+description:
+  Editable is used for inline renaming of some text. It appears as normal UI
+  text but transforms into a text input field when the user clicks or focuses on
+  it.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="editable-basic" />
+
+## Usage
+
+```jsx
+import { Editable } from "@chakra-ui/react"
+```
+
+```jsx
+<Editable.Root>
+  <Editable.Preview />
+  <Editable.Input />
+</Editable.Root>
+```
+
+## Examples
+
+### Controlled
+
+<ExampleTabs name="editable-controlled" />
+
+### With Double Click
+
+Use the `activationMode` prop to make the content editable when users double
+click.
+
+<ExampleTabs name="editable-with-double-click" />
+
+### Disabled
+
+Use the `disabled` prop to disable the editable component.
+
+<ExampleTabs name="editable-disabled" />
+
+### TextArea
+
+You can make a text area editable.
+
+<ExampleTabs name="editable-with-textarea" />
+
+### With Controls
+
+Add controls such as "edit", "cancel" and "submit" to `Editable` for better user
+experience.
+
+<ExampleTabs name="editable-with-controls" />
