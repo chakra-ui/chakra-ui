@@ -12,7 +12,7 @@
     "prebuild": "pnpm generate:composition"
   },
   "dependencies": {
-    "@ark-ui/react": "3.6.1",
+    "@ark-ui/react": "3.6.2",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/react": "workspace:*",
     "@emotion/react": "^11.11.4",
