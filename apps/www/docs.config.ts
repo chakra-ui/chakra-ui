@@ -162,6 +162,7 @@ const docsLinks: NavItem = {
             { title: "Status", url: "status" },
             { title: "Steps", url: "steps" },
             { title: "Switch", url: "switch" },
+            { title: "Tabs", url: "tabs" },
             { title: "Table", url: "table" },
             { title: "Tag", url: "tag" },
             { title: "Textarea", url: "textarea" },

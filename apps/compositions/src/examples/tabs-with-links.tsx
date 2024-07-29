@@ -1,6 +1,6 @@
 import { Link, Tabs } from "@chakra-ui/react"
 
-export const TabsWithLink = () => {
+export const TabsWithLinks = () => {
   return (
     <Tabs.Root defaultValue="members">
       <Tabs.List>
@@ -10,7 +10,7 @@ export const TabsWithLink = () => {
           </Link>
         </Tabs.Trigger>
         <Tabs.Trigger value="projects" asChild>
-          <Link unstyled href="#members">
+          <Link unstyled href="#projects">
             Projects
           </Link>
         </Tabs.Trigger>
