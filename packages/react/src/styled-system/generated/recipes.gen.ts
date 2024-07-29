@@ -411,7 +411,7 @@ export interface RadioGroupVariantProps {
 export type RatingGroupSlot = "root" | "label" | "item" | "control" | "itemIndicator"
 
 export interface RatingGroupVariantProps {
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // SegmentGroup

@@ -152,7 +152,7 @@ const docsLinks: NavItem = {
             { title: "Progress", url: "progress" },
             { title: "Radio Card", url: "radio-card" },
             { title: "Radio", url: "radio" },
-            { title: "Rating Group", url: "rating-group" },
+            { title: "Rating", url: "rating" },
             { title: "Select (Native)", url: "native-select" },
             { title: "Select", url: "select" },
             { title: "Skeleton", url: "skeleton" },
