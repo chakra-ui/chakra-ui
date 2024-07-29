@@ -1,0 +1,75 @@
+---
+title: Menu
+description: Used to accessible dropdown menu
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="menu-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`menu` snippet
+
+```sh
+chakra snippet add menu
+```
+
+The snippet includes a closed component composition for the `Menu` component.
+
+## Usage
+
+```jsx
+import {
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu"
+```
+
+```jsx
+<MenuRoot>
+  <MenuTrigger />
+  <MenuContent>
+    <MenuItem value="..." />
+  </MenuContent>
+</MenuRoot>
+```
+
+## Examples
+
+### Command
+
+Use the `MenuItemCommand` component to display a command in the menu.
+
+<ExampleTabs name="menu-with-command" />
+
+### Context menu
+
+Use the `MenuContextTrigger` component to create a context menu.
+
+<ExampleTabs name="menu-with-context-trigger" />
+
+### Group
+
+Use the `MenuItemGroup` component to group related menu items.
+
+<ExampleTabs name="menu-with-group" />
+
+### Submenu
+
+Here's an example of how to create a submenu.
+
+<ExampleTabs name="menu-with-submenu" />
+
+### Links
+
+Pass the `asChild` prop to the `MenuItem` component to render a link.
+
+<ExampleTabs name="menu-with-links" />

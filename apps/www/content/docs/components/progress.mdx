@@ -1,0 +1,91 @@
+---
+title: Progress
+description:
+  used to display the progress status for a task that takes a long time or
+  consists of several steps.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="progress-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`progress` snippet
+
+```sh
+chakra snippet add progress
+```
+
+The snippet includes a closed component composition for the `Progress`
+component.
+
+## Usage
+
+```jsx
+import { ProgressBar, ProgressRoot } from "@/components/ui/progress"
+```
+
+```jsx
+<ProgressRoot>
+  <ProgressLabel />
+  <ProgressValueText />
+  <ProgressBar />
+</ProgressRoot>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the progress bar.
+
+<ExampleTabs name="progress-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the progress bar.
+
+<ExampleTabs name="progress-with-variants" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color of the progress bar.
+
+<ExampleTabs name="progress-with-colors" />
+
+### Inline Label
+
+Compose the `ProgressLabel` and `ProgressValueText` components to create an
+inline label for the progress bar.
+
+<ExampleTabs name="progress-with-inline-label" />
+
+### Info tip
+
+Use the `info` prop to add a tooltip to the progress bar.
+
+<ExampleTabs name="progress-with-label-info" />
+
+### Indeterminate
+
+Set the value to `null` to show an indeterminate progress bar.
+
+<ExampleTabs name="progress-indeterminate" />
+
+### Stripes
+
+Set the `striped` prop to `true` to add stripes to the progress bar.
+
+<ExampleTabs name="progress-with-stripes" />
+
+### Animated Stripes
+
+You can also set the `animated` prop to `true` to animate the stripes.
+
+<ExampleTabs name="progress-with-animated-stripes" />

@@ -66,8 +66,9 @@ import { ImageWithCircle } from "compositions/examples/image-with-circle"
 import { ImageWithFit } from "compositions/examples/image-with-fit"
 import { ImageWithSkeleton } from "compositions/examples/image-with-skeleton"
 import { InputWithDescription } from "compositions/examples/input-with-description"
-import { InputWithError } from "compositions/examples/input-with-error"
+import { InputWithErrorText } from "compositions/examples/input-with-error-text"
 import { InputWithField } from "compositions/examples/input-with-field"
+import { InputWithHelperText } from "compositions/examples/input-with-helper-text"
 import { InputWithLeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
 import { InputWithLeftElement } from "compositions/examples/input-with-left-element"
 import { MenuBasic } from "compositions/examples/menu-basic"
@@ -381,8 +382,8 @@ export default function Page() {
           <InputWithLeftElement />
           <InputWithLeftAndRightElement />
           <InputWithField />
-          <InputWithDescription />
-          <InputWithError />
+          <InputWithHelperText />
+          <InputWithErrorText />
         </Playground.SectionContent>
       </Playground.Section>
 

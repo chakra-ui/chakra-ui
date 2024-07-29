@@ -6,7 +6,7 @@ export const linkRecipe = defineRecipe({
     display: "inline-flex",
     alignItems: "center",
     outline: "none",
-    gap: "1",
+    gap: "1.5",
     cursor: "pointer",
     borderRadius: "xs",
     focusRing: "outside",

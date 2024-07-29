@@ -56,5 +56,3 @@ export const SkipNavLink = forwardRef<HTMLAnchorElement, SkipNavLinkProps>(
     )
   },
 )
-
-SkipNavLink.displayName = "SkipNavLink"

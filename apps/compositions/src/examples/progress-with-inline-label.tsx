@@ -6,12 +6,12 @@ import {
   ProgressValueText,
 } from "compositions/ui/progress"
 
-export const ProgressBarWithInlineLabel = () => {
+export const ProgressWithInlineLabel = () => {
   return (
-    <ProgressRoot defaultValue={40}>
-      <HStack justify="space-between" mb="1">
-        <ProgressLabel>Token usage</ProgressLabel>
-        <ProgressBar />
+    <ProgressRoot defaultValue={40} maxW="sm">
+      <HStack gap="5">
+        <ProgressLabel>Usage</ProgressLabel>
+        <ProgressBar flex="1" />
         <ProgressValueText>40%</ProgressValueText>
       </HStack>
     </ProgressRoot>

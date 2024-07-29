@@ -35,5 +35,3 @@ export const TagCloseTrigger = forwardRef<
     </chakra.button>
   )
 })
-
-TagCloseTrigger.displayName = "TagCloseTrigger"

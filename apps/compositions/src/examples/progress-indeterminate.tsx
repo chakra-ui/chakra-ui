@@ -1,13 +1,8 @@
-import {
-  ProgressBar,
-  ProgressLabel,
-  ProgressRoot,
-} from "compositions/ui/progress"
+import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
 
-export const ProgressBarIndeterminate = () => {
+export const ProgressIndeterminate = () => {
   return (
-    <ProgressRoot value={null}>
-      <ProgressLabel>Loading...</ProgressLabel>
+    <ProgressRoot maxW="240px" value={null}>
       <ProgressBar />
     </ProgressRoot>
   )

@@ -1,0 +1,98 @@
+---
+title: Checkbox
+description:
+  Used in forms when a user needs to select multiple values from several options
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="checkbox-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`checkbox` snippet
+
+```sh
+chakra snippet add checkbox
+```
+
+The snippet includes a closed component composition for the `Checkbox`
+
+## Usage
+
+```jsx
+import { Checkbox } from "@/components/ui/checkbox"
+```
+
+```jsx
+<Checkbox>Click me</Checkbox>
+```
+
+## Examples
+
+### Variants
+
+Use the `variant` prop to change the visual style of the checkbox.
+
+<ExampleTabs name="checkbox-with-variants" />
+
+### Controlled
+
+Use the `checked` and `onCheckedChange` props to control the state of the
+checkbox.
+
+<ExampleTabs name="checkbox-controlled" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color of the checkbox.
+
+<ExampleTabs name="checkbox-with-colors" />
+
+### Sizes
+
+Use the `size` prop to change the size of the checkbox.
+
+<ExampleTabs name="checkbox-with-sizes" />
+
+### States
+
+Use the `disabled` or `invalid` prop to change the visual state of the checkbox.
+
+<ExampleTabs name="checkbox-with-states" />
+
+### Group
+
+Use the `CheckboxGroup` component to group multiple checkboxes together.
+
+<ExampleTabs name="checkbox-with-group" />
+
+### Custom Icon
+
+Use the `icon` prop to change the icon of the checkbox.
+
+<ExampleTabs name="checkbox-with-custom-icon" />
+
+### Indeterminate
+
+Set the `checked` prop to `indeterminate` to show the checkbox in an
+indeterminate state.
+
+<ExampleTabs name="checkbox-indeterminate" />
+
+### Description
+
+Add content to the children of the `Checkbox` component to add a description.
+
+<ExampleTabs name="checkbox-with-description" />
+
+### Link
+
+Render an anchor tag as the checkbox label.
+
+<ExampleTabs name="checkbox-with-link" />

@@ -72,5 +72,3 @@ export const Wrap = forwardRef<HTMLDivElement, WrapProps>(
     )
   },
 )
-
-Wrap.displayName = "Wrap"

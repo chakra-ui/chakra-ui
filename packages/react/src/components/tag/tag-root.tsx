@@ -47,5 +47,3 @@ export const TagRoot = forwardRef<HTMLSpanElement, TagRootProps>(
     )
   },
 )
-
-TagRoot.displayName = "TagRoot"

@@ -74,7 +74,16 @@ export const SelectValueText = (props: SelectValueTextProps) => {
   )
 }
 
+export const SelectRoot = (props: ChakraSelect.RootProps) => {
+  return (
+    <ChakraSelect.Root
+      {...props}
+      positioning={{ sameWidth: true, ...props.positioning }}
+    />
+  )
+}
+
 export const SelectLabel = ChakraSelect.Label
 export const SelectItemGroup = ChakraSelect.ItemGroup
 export const SelectItemText = ChakraSelect.ItemText
-export const SelectRoot = ChakraSelect.Root
+export const SelectItemGroupLabel = ChakraSelect.ItemGroupLabel

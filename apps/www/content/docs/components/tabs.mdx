@@ -1,0 +1,85 @@
+---
+title: Tabs
+description: Used to display content in a tabbed interface
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="tabs-basic" />
+
+## Usage
+
+```jsx
+import { Badge } from "@chakra-ui/react"
+```
+
+```jsx
+<Tabs.Root>
+  <Tabs.List>
+    <Tabs.Trigger />
+    <Tabs.Indicator />
+  </Tabs.List>
+  <Tabs.Content />
+</Tabs.Root>
+```
+
+## Examples
+
+### Variants
+
+Use the `variant` prop to change the visual style of the tabs.
+
+<ExampleTabs name="tabs-with-variants" />
+
+### Lazy Mounted
+
+Use the `lazyMount` and/or `unmountOnExit` prop to only render the tab content
+when it is active. This can be useful for performance optimization.
+
+<ExampleTabs name="tabs-lazy-mounted" />
+
+### Indicator
+
+Render the `Tabs.Indicator` component to display a visual indicator of the
+active tab.
+
+<ExampleTabs name="tabs-with-indicator" />
+
+### Links
+
+Pass the `asChild` to the `Tabs.Trigger` component to render a link as a tab.
+When a tab is clicked, the link will be navigated to.
+
+<ExampleTabs name="tabs-with-links" />
+
+### Fitted
+
+Use the `fitted` prop to make the tabs fit the width of the container.
+
+<ExampleTabs name="tabs-stretched" />
+
+### Controlled
+
+Use the `value` and `onValueChange` prop to control the active tab.
+
+<ExampleTabs name="tabs-controlled" />
+
+### Disabled Tab
+
+Set the `disabled` prop on the `Tabs.Trigger` component to disable a tab.
+
+<ExampleTabs name="tabs-with-disabled-tab" />
+
+### Manual activation
+
+By default, the tabs are selected when the arrow keys are pressed. Disable this
+behavior by setting the `activationBehavior` prop to `manual`.
+
+In this mode, the tabs will only be selected when clicked or the enter key is
+pressed.
+
+<ExampleTabs name="tabs-with-manual-activation" />

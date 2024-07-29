@@ -13,5 +13,3 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
     return <chakra.li ref={ref} {...props} css={[styles["item"], props.css]} />
   },
 )
-
-ListItem.displayName = "ListItem"

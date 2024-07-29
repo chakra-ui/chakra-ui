@@ -45,5 +45,3 @@ export const Kbd = forwardRef<HTMLElement, KbdProps>(function Kbd(
     />
   )
 })
-
-Kbd.displayName = "Kbd"

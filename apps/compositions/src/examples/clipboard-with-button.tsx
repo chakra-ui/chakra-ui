@@ -1,24 +1,19 @@
 "use client"
 
 import { Clipboard } from "@chakra-ui/react"
-import { Tooltip } from "compositions/ui/tooltip"
-import { LuCopy, LuCopyCheck } from "react-icons/lu"
+import { Button } from "compositions/ui/button"
+import { LuCheck, LuCopy } from "react-icons/lu"
 
 export const ClipboardWithButton = () => {
   return (
     <Clipboard.Root value="https://chakra-ui.com">
       <Clipboard.Context>
         {({ copied }) => (
-          <Tooltip
-            content={copied ? "Copied!" : "Copy URL"}
-            openDelay={500}
-            closeDelay={200}
-            closeOnPointerDown={false}
-          >
-            <Clipboard.Trigger>
-              {copied ? <LuCopyCheck /> : <LuCopy />}
-            </Clipboard.Trigger>
-          </Tooltip>
+          <Clipboard.Trigger asChild>
+            <Button size="sm" variant="subtle">
+              {copied ? <LuCheck /> : <LuCopy />} {copied ? "Copied" : "Copy"}
+            </Button>
+          </Clipboard.Trigger>
         )}
       </Clipboard.Context>
     </Clipboard.Root>

@@ -22,5 +22,3 @@ export function NativeSelectIndicator(props: NativeSelectIndicatorProps) {
     </chakra.div>
   )
 }
-
-NativeSelectIndicator.displayName = "NativeSelectIndicator"

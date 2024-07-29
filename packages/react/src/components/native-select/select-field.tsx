@@ -34,5 +34,3 @@ export const NativeSelectField = forwardRef<
     </chakra.select>
   )
 })
-
-NativeSelectField.displayName = "NativeSelectField"

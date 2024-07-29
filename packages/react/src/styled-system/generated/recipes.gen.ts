@@ -372,7 +372,6 @@ export type ProgressSlot = "root" | "label" | "track" | "range" | "valueText" | 
 
 export interface ProgressVariantProps {
   variant?: "outline" | "subtle"
-  indeterminate?: boolean
   shape?: "square" | "rounded" | "pill"
   striped?: boolean
   animated?: boolean
@@ -412,7 +411,7 @@ export interface RadioGroupVariantProps {
 export type RatingGroupSlot = "root" | "label" | "item" | "control" | "itemIndicator"
 
 export interface RatingGroupVariantProps {
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // SegmentGroup
@@ -444,7 +443,7 @@ export type SelectSlot =
 
 export interface SelectVariantProps {
   variant?: "outline" | "filled"
-  size?: "sm" | "md" | "lg"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // Slider

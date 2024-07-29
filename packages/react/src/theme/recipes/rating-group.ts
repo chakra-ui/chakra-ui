@@ -5,6 +5,7 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
   slots: [...anatomy.keys(), "itemIndicator"],
   base: {
     root: {
+      display: "inline-flex",
       colorPalette: "orange",
     },
 
@@ -64,6 +65,11 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
 
   variants: {
     size: {
+      xs: {
+        item: {
+          fontSize: "0.875rem",
+        },
+      },
       sm: {
         item: {
           fontSize: "1.125rem",

@@ -1,0 +1,79 @@
+---
+title: Rating
+description: Used to show reviews and ratings in a visual format.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="rating-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`rating` snippet
+
+```sh
+chakra snippet add rating
+```
+
+The snippet includes a closed component composition for the `RatingGroup`
+component.
+
+## Usage
+
+```jsx
+import { Rating } from "@/components/ui/rating"
+```
+
+```jsx
+<Rating allowHalf defaultValue={3.5} />
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the rating component.
+
+<ExampleTabs name="rating-with-sizes" />
+
+### Controlled
+
+Use the `value` and `onValueChange` prop to control the rating value.
+
+<ExampleTabs name="rating-controlled" />
+
+### ReadOnly
+
+Use the `readOnly` prop to make the rating component read-only.
+
+<ExampleTabs name="rating-with-readonly" />
+
+### Custom Icon
+
+Use the `icon` prop to pass a custom icon to the rating component. This will
+override the default star icon.
+
+<ExampleTabs name="rating-with-custom-icon" />
+
+### Half Star
+
+Use the `allowHalf` prop to allow half-star ratings.
+
+<ExampleTabs name="rating-with-half" />
+
+### Emoji
+
+Compose the rating component with emojis.
+
+<ExampleTabs name="rating-emoji" />
+
+### Testimonial
+
+Use the rating component to show testimonials.
+
+<ExampleTabs name="rating-in-testimonial" />

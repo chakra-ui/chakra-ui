@@ -23,5 +23,3 @@ export const InputAddon = forwardRef<HTMLDivElement, InputAddonProps>(
     return <chakra.div ref={ref} {...localProps} css={[styles, props.css]} />
   },
 )
-
-InputAddon.displayName = "InputAddon"

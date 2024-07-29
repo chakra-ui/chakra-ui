@@ -24,7 +24,7 @@ export const ProgressLabel = (props: ProgressLabelProps) => {
       {children}
       {info && (
         <ToggleTip content={info}>
-          <IconButton variant="ghost" aria-label="info" size="xs">
+          <IconButton variant="ghost" aria-label="info" size="xs" ms="1">
             <HiOutlineInformationCircle />
           </IconButton>
         </ToggleTip>

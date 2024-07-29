@@ -10,14 +10,14 @@ import { forwardRef } from "react"
 
 export interface FieldProps extends Omit<ChakraFieldProps, "label"> {
   label?: React.ReactNode
-  description?: React.ReactNode
+  hint?: React.ReactNode
   error?: React.ReactNode
   asterisk?: boolean
 }
 
 export const Field = forwardRef<HTMLInputElement, FieldProps>(
   function Field(props, ref) {
-    const { label, children, description, error, asterisk, ...rest } = props
+    const { label, children, hint, error, asterisk, ...rest } = props
     return (
       <ChakraField ref={ref} {...rest}>
         {label && (
@@ -26,7 +26,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(
           </Label>
         )}
         {children}
-        {description && <HelpText>{description}</HelpText>}
+        {hint && <HelpText>{hint}</HelpText>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </ChakraField>
     )

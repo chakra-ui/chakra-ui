@@ -10,6 +10,8 @@ export interface HighlightProps {
   query: string | string[]
   children: string | ((props: HighlightChunk[]) => React.ReactNode)
   styles?: SystemStyleObject
+  ignoreCase?: boolean
+  matchAll?: boolean
 }
 
 /**
@@ -18,13 +20,18 @@ export interface HighlightProps {
  * @see Docs https://chakra-ui.com/docs/components/highlight
  */
 export function Highlight(props: HighlightProps): JSX.Element {
-  const { children, query, styles } = props
+  const { children, query, ignoreCase, matchAll, styles } = props
 
   if (typeof children !== "string") {
     throw new Error("The children prop of Highlight must be a string")
   }
 
-  const chunks = useHighlight({ query, text: children })
+  const chunks = useHighlight({
+    query,
+    text: children,
+    matchAll,
+    ignoreCase,
+  })
 
   return (
     <For each={chunks}>

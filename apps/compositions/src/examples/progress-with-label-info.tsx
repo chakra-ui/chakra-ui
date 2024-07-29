@@ -4,11 +4,11 @@ import {
   ProgressRoot,
 } from "compositions/ui/progress"
 
-export const ProgressBarWithLabelInfo = () => {
+export const ProgressWithLabelInfo = () => {
   return (
-    <ProgressRoot>
-      <ProgressLabel info="Uploding document to the server. Please wait...">
-        Uploading...
+    <ProgressRoot maxW="240px">
+      <ProgressLabel info="Uploading document to the server" mb="2">
+        Uploading
       </ProgressLabel>
       <ProgressBar />
     </ProgressRoot>
