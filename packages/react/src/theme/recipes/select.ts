@@ -10,6 +10,8 @@ export const selectSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "1.5",
       width: "full",
+      "--focus-color": "colors.border.emphasized",
+      "--error-color": "colors.border.error",
     },
     trigger: {
       display: "flex",
@@ -38,6 +40,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       background: "bg.panel",
       display: "flex",
       flexDirection: "column",
+      gap: "1",
       zIndex: "dropdown",
       outline: 0,
       maxH: "96",

@@ -5,14 +5,13 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "compositions/ui/menu"
-import { LuChevronsUpDown } from "react-icons/lu"
 
 export const MenuBasic = () => {
   return (
     <MenuRoot>
       <MenuTrigger>
         <Button variant="outline" size="sm">
-          Menu <LuChevronsUpDown />
+          Open
         </Button>
       </MenuTrigger>
       <MenuContent>

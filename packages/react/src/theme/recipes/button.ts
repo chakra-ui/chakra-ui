@@ -10,6 +10,7 @@ export const buttonRecipe = defineRecipe({
     position: "relative",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
+    flexShrink: "0",
     outline: "0",
     lineHeight: "1.2",
     isolation: "isolate",
@@ -26,7 +27,7 @@ export const buttonRecipe = defineRecipe({
       layerStyle: "disabled",
     },
     "& svg": {
-      fontSize: "1.25em",
+      fontSize: "1em",
     },
   },
 

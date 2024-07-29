@@ -7,25 +7,6 @@ import {
   MenuTrigger,
 } from "compositions/ui/menu"
 
-const items = [
-  {
-    name: "Top Panel",
-    value: "top",
-    children: [
-      { value: "5", name: "index.html" },
-      { value: "6", name: "styles.css" },
-    ],
-  },
-  {
-    name: "Bottom Panel",
-    value: "bottom",
-    children: [
-      { value: "7", name: "script.js" },
-      { value: "8", name: "assets" },
-    ],
-  },
-]
-
 export const MenuWithGroupDynamic = () => {
   return (
     <MenuRoot>
@@ -44,3 +25,22 @@ export const MenuWithGroupDynamic = () => {
     </MenuRoot>
   )
 }
+
+const items = [
+  {
+    name: "Top Panel",
+    value: "top",
+    children: [
+      { value: "5", name: "index.html" },
+      { value: "6", name: "styles.css" },
+    ],
+  },
+  {
+    name: "Bottom Panel",
+    value: "bottom",
+    children: [
+      { value: "7", name: "script.js" },
+      { value: "8", name: "assets" },
+    ],
+  },
+]
