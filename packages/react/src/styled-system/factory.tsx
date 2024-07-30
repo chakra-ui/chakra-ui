@@ -103,6 +103,17 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     const cvaFn = configOrCva.__cva__ ? configOrCva : cva(configOrCva)
     const cvaRecipe = mergeCva(tag.__emotion_cva, cvaFn)
 
+    const createShouldForwardProps = (props: string[]) => {
+      return (prop: string, variantKeys: string[]) => {
+        if (props.includes(prop)) return true
+        return !variantKeys?.includes(prop) && !isValidProperty(prop)
+      }
+    }
+
+    if (!options.shouldForwardProp && options.forwardProps) {
+      options.shouldForwardProp = createShouldForwardProps(options.forwardProps)
+    }
+
     const shouldForwardProp = composeShouldForwardProps(tag, options, isReal)
 
     const initShouldForwardProp = (prop: string, variantKeys: string[]) => {

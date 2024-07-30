@@ -28,7 +28,7 @@ export interface PaginationRootProps
 export const PaginationRoot = withProvider<HTMLDivElement, PaginationRootProps>(
   ArkPagination.Root,
   "root",
-  { forwardAsChild: true },
+  { forwardAsChild: true, forwardProps: ["page"] },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////

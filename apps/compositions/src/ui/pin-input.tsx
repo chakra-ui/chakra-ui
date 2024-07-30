@@ -10,11 +10,11 @@ export interface PinInputProps extends ChakraPinInput.RootProps {
 
 export const PinInput = forwardRef<HTMLInputElement, PinInputProps>(
   function PinInput(props, ref) {
-    const { count = 3, inputProps, rootRef, attached, ...rest } = props
+    const { count = 4, inputProps, rootRef, attached, ...rest } = props
     return (
       <ChakraPinInput.Root ref={rootRef} {...rest}>
         <ChakraPinInput.HiddenInput ref={ref} {...inputProps} />
-        <ChakraPinInput.Control asChild>
+        <ChakraPinInput.Control>
           <Group attached={attached}>
             {Array.from({ length: count }).map((_, index) => (
               <ChakraPinInput.Input key={index} index={index} />

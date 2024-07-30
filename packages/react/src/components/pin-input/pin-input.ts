@@ -28,6 +28,7 @@ export interface PinInputRootProps
 export const PinInputRoot = withProvider<HTMLDivElement, PinInputRootProps>(
   ArkPinInput.Root,
   "root",
+  { forwardProps: ["mask"] },
 )
 
 ////////////////////////////////////////////////////////////////////////////////////
