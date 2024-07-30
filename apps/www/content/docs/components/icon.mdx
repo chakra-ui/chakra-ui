@@ -1,0 +1,50 @@
+---
+title: Icon
+description: Used to display an svg icon
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="icon-basic" />
+
+## Usage
+
+```jsx
+import { Icon } from "@chakra-ui/react"
+```
+
+```jsx
+<Icon />
+```
+
+:::warning
+
+Chakra doesn't provide any icons out of the box. Use popular icon libraries like
+[react-icons](https://react-icons.github.io/react-icons/) or
+[lucide-react](https://lucide.dev/react/)
+
+:::
+
+## Examples
+
+### React Icons
+
+Integrate with popular react icon libraries like `react-icons`
+
+<ExampleTabs name="icon-with-react-icon" />
+
+### Custom svg
+
+Use the `asChild` prop to render custom svg icons within the `Icon` component
+
+<ExampleTabs name="icon-with-custom-svg" />
+
+### Create Icon
+
+Use the `createIcon` utility to create custom icons
+
+<ExampleTabs name="icon-with-create-icon" />
