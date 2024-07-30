@@ -73,7 +73,7 @@ import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { MenuWithSubmenu } from "compositions/examples/menu-with-submenu"
 import { NativeSelectBasic } from "compositions/examples/native-select-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
-import { PopoverSizes } from "compositions/examples/popover-sizes"
+import { PopoverWithSizes } from "compositions/examples/popover-with-sizes"
 import { ProgressCircleWithColors } from "compositions/examples/progress-circle-with-colors"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
@@ -104,7 +104,7 @@ import { TableWithSelection } from "compositions/examples/table-with-selection"
 import { TableWithStickyColumn } from "compositions/examples/table-with-sticky-column"
 import { TabsStretched } from "compositions/examples/tabs-stretched"
 import { TabsWithIndicator } from "compositions/examples/tabs-with-indicator"
-import { TabsWithLink } from "compositions/examples/tabs-with-links"
+import { TabsWithLinks } from "compositions/examples/tabs-with-links"
 import { TabsWithVariants } from "compositions/examples/tabs-with-variants"
 import { TabsWithVertical } from "compositions/examples/tabs-with-vertical"
 import { TagWithColors } from "compositions/examples/tag-with-colors"
@@ -200,7 +200,7 @@ export default function Page() {
           <TabsWithVertical />
           <SimpleGrid columns={2} width="full" gap="14">
             <TabsWithIndicator />
-            <TabsWithLink />
+            <TabsWithLinks />
           </SimpleGrid>
           <TabsStretched />
         </Playground.SectionContent>
@@ -397,7 +397,7 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Popover">Popover</Playground.SectionTitle>
         <Playground.SectionContent>
-          <PopoverSizes />
+          <PopoverWithSizes />
         </Playground.SectionContent>
       </Playground.Section>
 
