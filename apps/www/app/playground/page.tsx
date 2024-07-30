@@ -58,14 +58,13 @@ import { FileUploadWithDropzone } from "compositions/examples/file-upload-with-d
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { HoverCardBasic } from "compositions/examples/hovercard-basic"
 import { IconBasic } from "compositions/examples/icon-basic"
-import { IconCustom } from "compositions/examples/icon-custom"
 import { IconWithCreateIcon } from "compositions/examples/icon-with-create-icon"
+import { IconWithCustomSvg } from "compositions/examples/icon-with-custom-svg"
 import { IconWithReactIcon } from "compositions/examples/icon-with-react-icon"
 import { ImageBasic } from "compositions/examples/image-basic"
-import { ImageWithCircle } from "compositions/examples/image-with-circle"
+import { ImageCircular } from "compositions/examples/image-circular"
+import { ImageWithAspectRatio } from "compositions/examples/image-with-aspect-ratio"
 import { ImageWithFit } from "compositions/examples/image-with-fit"
-import { ImageWithSkeleton } from "compositions/examples/image-with-skeleton"
-import { InputWithDescription } from "compositions/examples/input-with-description"
 import { InputWithErrorText } from "compositions/examples/input-with-error-text"
 import { InputWithField } from "compositions/examples/input-with-field"
 import { InputWithHelperText } from "compositions/examples/input-with-helper-text"
@@ -399,11 +398,11 @@ export default function Page() {
               },
               {
                 label: "w/ circle",
-                component: <ImageWithCircle />,
+                component: <ImageCircular />,
               },
               {
-                label: "w/ skeleton",
-                component: <ImageWithSkeleton />,
+                label: "w/ aspect ratio",
+                component: <ImageWithAspectRatio />,
               },
             ]}
           />
@@ -572,7 +571,7 @@ export default function Page() {
           <Playground.DemoList
             items={[
               { label: "basic", component: <IconBasic /> },
-              { label: "custom", component: <IconCustom /> },
+              { label: "custom", component: <IconWithCustomSvg /> },
               { label: "w/ react icon", component: <IconWithReactIcon /> },
               { label: "w/ create icon", component: <IconWithCreateIcon /> },
             ]}
