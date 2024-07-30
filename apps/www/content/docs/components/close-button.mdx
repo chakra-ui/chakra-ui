@@ -1,0 +1,48 @@
+---
+title: Close Button
+description: used to trigger close functionality
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="close-button-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`alert` snippet
+
+```sh
+chakra snippet add close-button
+```
+
+The snippet includes a `CloseButton` component composition based on the
+`IconButton` component.
+
+## Usage
+
+```jsx
+import { CloseButton } from "@/components/ui/close-button"
+```
+
+```jsx
+<CloseButton />
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the close button.
+
+<ExampleTabs name="close-button-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the close button.
+
+<ExampleTabs name="close-button-with-variants" />

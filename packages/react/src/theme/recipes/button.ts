@@ -26,28 +26,20 @@ export const buttonRecipe = defineRecipe({
     _disabled: {
       layerStyle: "disabled",
     },
-    "& svg": {
-      fontSize: "1em",
+    "& :where(svg)": {
+      fontSize: "1.2em",
     },
   },
 
   variants: {
     size: {
-      lg: {
-        gap: "3",
-        h: "12",
-        minW: "12",
-        borderRadius: "lg",
-        fontSize: "md",
-        px: "6",
-      },
-      md: {
-        gap: "2",
-        h: "10",
-        minW: "10",
-        borderRadius: "md",
-        fontSize: "sm",
-        px: "4",
+      xs: {
+        gap: "1",
+        h: "6",
+        minW: "6",
+        fontSize: "xs",
+        borderRadius: "sm",
+        px: "2",
       },
       sm: {
         gap: "2",
@@ -57,13 +49,21 @@ export const buttonRecipe = defineRecipe({
         borderRadius: "sm",
         px: "3",
       },
-      xs: {
-        gap: "1",
-        h: "6",
-        minW: "6",
-        fontSize: "xs",
-        borderRadius: "sm",
-        px: "2",
+      md: {
+        gap: "2",
+        h: "10",
+        minW: "10",
+        borderRadius: "md",
+        fontSize: "sm",
+        px: "4",
+      },
+      lg: {
+        gap: "3",
+        h: "12",
+        minW: "12",
+        borderRadius: "lg",
+        fontSize: "md",
+        px: "6",
       },
     },
 
