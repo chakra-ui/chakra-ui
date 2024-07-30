@@ -38,3 +38,4 @@ export const BreadcrumbRoot = forwardRef<HTMLDivElement, BreadcrumbRootProps>(
 
 export const BreadcrumbLink = ChakraBreadcrumb.Link
 export const BreadcrumbCurrentLink = ChakraBreadcrumb.CurrentLink
+export const BreadcrumbEllipsis = ChakraBreadcrumb.Ellipsis

@@ -18,6 +18,9 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       textDecoration: "none",
       rounded: "xs",
       focusRing: "outside",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "2",
     },
     item: {
       display: "inline-flex",
@@ -43,7 +46,6 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
     variant: {
       underline: {
         root: {
-          padding: "2",
           borderRadius: "md",
           color: { base: "colorPalette.800", _dark: "colorPalette.400" },
         },
