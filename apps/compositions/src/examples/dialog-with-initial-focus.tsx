@@ -1,30 +1,44 @@
 "use client"
 
-import { Input } from "@chakra-ui/react"
+import { Input, Stack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
   DialogBody,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogRoot,
+  DialogTitle,
   DialogTrigger,
 } from "compositions/ui/dialog"
+import { Field } from "compositions/ui/field"
 import { useRef } from "react"
 
 export const DialogWithInitialFocus = () => {
-  const inputRef = useRef<HTMLInputElement>(null)
+  const ref = useRef<HTMLInputElement>(null)
   return (
-    <DialogRoot initialFocusEl={() => inputRef.current}>
+    <DialogRoot initialFocusEl={() => ref.current}>
       <DialogTrigger>
         <Button variant="outline">Open</Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>Dialog Header</DialogHeader>
-        <DialogBody>
-          <Input placeholder="First Name" />
-          <Input placeholder="Last Name" />
-          <Input ref={inputRef} placeholder="Focus First" />
+        <DialogHeader>
+          <DialogTitle>Dialog Header</DialogTitle>
+        </DialogHeader>
+        <DialogBody pb="4">
+          <Stack gap="4">
+            <Field label="First Name">
+              <Input placeholder="First Name" />
+            </Field>
+            <Field label="Last Name">
+              <Input ref={ref} placeholder="Focus First" />
+            </Field>
+          </Stack>
         </DialogBody>
+        <DialogFooter>
+          <Button variant="outline">Cancel</Button>
+          <Button>Save</Button>
+        </DialogFooter>
       </DialogContent>
     </DialogRoot>
   )

@@ -1,4 +1,4 @@
-import { Badge, For, HStack } from "@chakra-ui/react"
+import { For, HStack } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
   DialogBody,
@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "compositions/ui/dialog"
 
-export const DialogSizes = () => {
+export const DialogWithSizes = () => {
   return (
     <HStack>
       <For each={["xs", "sm", "md", "lg"]}>
@@ -19,7 +19,7 @@ export const DialogSizes = () => {
           <DialogRoot size={size}>
             <DialogTrigger>
               <Button variant="outline" size={size}>
-                Open <Badge>{size}</Badge>
+                Open ({size})
               </Button>
             </DialogTrigger>
             <DialogContent>

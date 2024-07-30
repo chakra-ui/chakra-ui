@@ -1,0 +1,120 @@
+---
+title: Dialog
+description: Used to display a dialog prompt
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="dialog-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`dialog` snippet
+
+```sh
+chakra snippet add dialog
+```
+
+The snippet includes a closed component composition for the `Dialog` component.
+
+## Usage
+
+```jsx
+import {
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+```
+
+```jsx
+<DialogRoot>
+  <DialogBackdrop />
+  <DialogTrigger />
+  <DialogContent>
+    <DialogCloseTrigger />
+    <DialogHeader>
+      <DialogTitle />
+    </DialogHeader>
+    <DialogBody />
+    <DialogFooter />
+  </DialogContent>
+</DialogRoot>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the dialog component.
+
+<ExampleTabs name="dialog-with-sizes" />
+
+### Centered
+
+Use the `centered` prop to center the dialog component.
+
+<ExampleTabs name="dialog-centered" />
+
+### Controlled
+
+Use the `open` and `onOpenChange` prop to control the visibility of the dialog
+component.
+
+<ExampleTabs name="dialog-controlled" />
+
+### Initial Focus
+
+Use the `initialFocusEl` prop to set the initial focus of the dialog component.
+
+<ExampleTabs name="dialog-with-initial-focus" />
+
+### Inside Scroll
+
+Use the `scrollBehavior=inside` prop to change the scroll behavior of the dialog
+when its content overflows .
+
+<ExampleTabs name="dialog-with-inside-scroll" />
+
+### Outside Scroll
+
+Use the `scrollBehavior=outside` prop to change the scroll behavior of the
+dialog when its content overflows.
+
+<ExampleTabs name="dialog-with-outside-scroll" />
+
+### Initial Focus
+
+Use the `initialFocusEl` prop to set the initial focus of the dialog component.
+
+<ExampleTabs name="dialog-with-initial-focus" />
+
+### Motion Preset
+
+Use the `motionPreset` prop to change the animation of the dialog component.
+
+<ExampleTabs name="dialog-with-motion-preset" />
+
+### Alert Dialog
+
+Set the `role: "alertdialog"` prop to change the dialog component to an alert
+dialog.
+
+<ExampleTabs name="dialog-with-role" />
+
+### With DataList
+
+Here's an example of how to compose the dialog component with the `DataList`
+component.
+
+<ExampleTabs name="dialog-with-datalist" />

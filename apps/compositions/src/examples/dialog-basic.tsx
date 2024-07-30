@@ -14,7 +14,9 @@ export const DialogBasic = () => {
   return (
     <DialogRoot>
       <DialogTrigger>
-        <Button variant="outline">Open Dialog</Button>
+        <Button variant="outline" size="sm">
+          Open Dialog
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

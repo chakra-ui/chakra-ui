@@ -37,12 +37,12 @@ import { CollapsibleLazyMounted } from "compositions/examples/collapsible-lazy-m
 import { DataListBasic } from "compositions/examples/data-list-basic"
 import { DataListWithInfo } from "compositions/examples/data-list-with-info"
 import { DialogNested } from "compositions/examples/dialog-nested"
-import { DialogSizes } from "compositions/examples/dialog-sizes"
-import { DialogWithDataList } from "compositions/examples/dialog-with-datalist"
+import { DialogWithDatalist } from "compositions/examples/dialog-with-datalist"
 import { DialogWithFinalFocus } from "compositions/examples/dialog-with-final-focus"
 import { DialogWithInitialFocus } from "compositions/examples/dialog-with-initial-focus"
 import { DialogWithInsideScroll } from "compositions/examples/dialog-with-inside-scroll"
 import { DialogWithOutsideScroll } from "compositions/examples/dialog-with-outside-scroll"
+import { DialogWithSizes } from "compositions/examples/dialog-with-sizes"
 import { DrawerBasic } from "compositions/examples/drawer-basic"
 import { EditableBasic } from "compositions/examples/editable-basic"
 import { EditableControlled } from "compositions/examples/editable-controlled"
@@ -256,10 +256,10 @@ export default function Page() {
         <Playground.SectionContent>
           <Playground.DemoList
             items={[
-              { label: "Dialog w/ sizes", component: <DialogSizes /> },
+              { label: "Dialog w/ sizes", component: <DialogWithSizes /> },
               {
                 label: "Dialog w/ DataList",
-                component: <DialogWithDataList />,
+                component: <DialogWithDatalist />,
               },
               {
                 label: "Dialog Scrollable",

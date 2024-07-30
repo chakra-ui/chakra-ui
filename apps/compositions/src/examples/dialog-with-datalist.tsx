@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "compositions/ui/dialog"
 
-export const DialogWithDataList = () => {
+export const DialogWithDatalist = () => {
   return (
     <VStack alignItems="start">
       <DialogRoot>

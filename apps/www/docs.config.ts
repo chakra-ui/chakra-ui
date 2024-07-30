@@ -135,6 +135,7 @@ const docsLinks: NavItem = {
             { title: "Close Button", url: "close-button" },
             { title: "Collapsible", url: "collapsible" },
             { title: "Data List", url: "data-list", status: "new" },
+            { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
             { title: "Editable", url: "editable" },
             { title: "File Upload", url: "file-upload" },

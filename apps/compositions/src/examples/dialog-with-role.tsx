@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from "compositions/ui/button"
 import {
   DialogBody,
@@ -11,23 +9,24 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "compositions/ui/dialog"
-import { useState } from "react"
-import Lorem from "react-lorem-ipsum"
 
-export const DialogControlled = () => {
-  const [open, setOpen] = useState(false)
+export const DialogWithRole = () => {
   return (
-    <DialogRoot lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
+    <DialogRoot role="alertdialog">
       <DialogTrigger>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline" size="sm">
+          Open Dialog
+        </Button>
       </DialogTrigger>
-
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Dialog Title</DialogTitle>
         </DialogHeader>
         <DialogBody>
-          <Lorem p={2} />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
         </DialogBody>
         <DialogFooter>
           <Button variant="outline">Cancel</Button>
