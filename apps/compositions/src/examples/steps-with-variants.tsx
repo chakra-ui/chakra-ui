@@ -1,5 +1,4 @@
 import { For, Group, Stack } from "@chakra-ui/react"
-import { colorPalettes } from "compositions/lib/color-palettes"
 import { Button } from "compositions/ui/button"
 import {
   StepsCompleteContent,
@@ -11,17 +10,12 @@ import {
   StepsRoot,
 } from "compositions/ui/steps"
 
-export const StepsWithColors = () => {
+export const StepsWithVariants = () => {
   return (
-    <Stack gap="10" width="full">
-      <For each={colorPalettes}>
-        {(colorPalette) => (
-          <StepsRoot
-            key={colorPalette}
-            defaultValue={1}
-            count={3}
-            colorPalette={colorPalette}
-          >
+    <Stack gap="16">
+      <For each={["subtle", "solid"]}>
+        {(variant) => (
+          <StepsRoot variant={variant} count={3}>
             <StepsList>
               <StepsItem index={0} title="Step 1" />
               <StepsItem index={1} title="Step 2" />
