@@ -1,7 +1,8 @@
-import { Input, Textarea } from "@chakra-ui/react"
+import { Input, Stack, Textarea } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import { Field } from "compositions/ui/field"
 import {
+  PopoverArrow,
   PopoverBody,
   PopoverCloseTrigger,
   PopoverContent,
@@ -17,17 +18,20 @@ export const PopoverWithForm = () => {
           Click me
         </Button>
       </PopoverTrigger>
-      <PopoverContent showArrow>
+      <PopoverContent>
+        <PopoverArrow />
         <PopoverBody>
-          <Field label="Width">
-            <Input placeholder="40px" />
-          </Field>
-          <Field label="Height">
-            <Input placeholder="32px" />
-          </Field>
-          <Field label="Comments">
-            <Textarea placeholder="Start typing..." />
-          </Field>
+          <Stack gap="4">
+            <Field label="Width">
+              <Input placeholder="40px" />
+            </Field>
+            <Field label="Height">
+              <Input placeholder="32px" />
+            </Field>
+            <Field label="Comments">
+              <Textarea placeholder="Start typing..." />
+            </Field>
+          </Stack>
         </PopoverBody>
         <PopoverCloseTrigger />
       </PopoverContent>

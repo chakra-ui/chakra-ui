@@ -1,5 +1,6 @@
 import { Button } from "compositions/ui/button"
 import {
+  PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverRoot,
@@ -10,11 +11,12 @@ export const PopoverWithSameWidth = () => {
   return (
     <PopoverRoot positioning={{ sameWidth: true }}>
       <PopoverTrigger>
-        <Button size="sm" variant="outline" minW="200px">
+        <Button size="sm" variant="outline" minW="xs">
           Click me
         </Button>
       </PopoverTrigger>
-      <PopoverContent showArrow>
+      <PopoverContent width="auto">
+        <PopoverArrow />
         <PopoverBody>
           This is a popover with the same width as the trigger button
         </PopoverBody>

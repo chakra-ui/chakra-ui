@@ -7,35 +7,29 @@ import { LuCheck, LuChevronRight } from "react-icons/lu"
 interface MenuContentProps extends ChakraMenu.ContentProps {
   portalled?: boolean
   containerRef?: React.RefObject<HTMLElement>
-  showArrow?: boolean
 }
 
 export const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
   function MenuContent(props, ref) {
-    const {
-      children,
-      portalled = true,
-      containerRef,
-      showArrow,
-      ...rest
-    } = props
+    const { portalled = true, containerRef, ...rest } = props
 
     return (
       <Portal disabled={!portalled} container={containerRef}>
         <ChakraMenu.Positioner>
-          <ChakraMenu.Content ref={ref} {...rest} asChild={false}>
-            {showArrow && (
-              <ChakraMenu.Arrow>
-                <ChakraMenu.ArrowTip />
-              </ChakraMenu.Arrow>
-            )}
-            {children}
-          </ChakraMenu.Content>
+          <ChakraMenu.Content ref={ref} {...rest} />
         </ChakraMenu.Positioner>
       </Portal>
     )
   },
 )
+
+export const MenuArrow = (props: ChakraMenu.ArrowProps) => {
+  return (
+    <ChakraMenu.Arrow {...props}>
+      <ChakraMenu.ArrowTip />
+    </ChakraMenu.Arrow>
+  )
+}
 
 export const MenuCheckboxItem = (props: ChakraMenu.CheckboxItemProps) => {
   return (

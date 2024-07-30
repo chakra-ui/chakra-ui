@@ -2,6 +2,7 @@
 
 import { Button } from "compositions/ui/button"
 import {
+  PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverRoot,
@@ -18,7 +19,8 @@ export const PopoverControlled = () => {
           Click me
         </Button>
       </PopoverTrigger>
-      <PopoverContent showArrow>
+      <PopoverContent>
+        <PopoverArrow />
         <PopoverBody>
           This is a popover with the same width as the trigger button
         </PopoverBody>

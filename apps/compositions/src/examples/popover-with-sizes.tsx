@@ -1,6 +1,7 @@
 import { For, Input, Stack, Text } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
+  PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverRoot,
@@ -8,10 +9,10 @@ import {
   PopoverTrigger,
 } from "compositions/ui/popover"
 
-export const PopoverSizes = () => {
+export const PopoverWithSizes = () => {
   return (
     <Stack align="center" direction="row" gap="10">
-      <For each={["sm", "md"]}>
+      <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <PopoverRoot key={size} size={size}>
             <PopoverTrigger>
@@ -19,7 +20,8 @@ export const PopoverSizes = () => {
                 Click me
               </Button>
             </PopoverTrigger>
-            <PopoverContent showArrow>
+            <PopoverContent>
+              <PopoverArrow />
               <PopoverBody>
                 <PopoverTitle fontWeight="medium">Naruto Form</PopoverTitle>
                 <Text my="4">

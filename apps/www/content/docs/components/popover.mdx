@@ -1,0 +1,108 @@
+---
+title: Popover
+description: Used to show detailed information inside a pop-up
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="popover-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`popover` snippet
+
+```sh
+chakra snippet add popover
+```
+
+The snippet includes component compositions based on the `Popover` component.
+
+## Usage
+
+```jsx
+import {
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTitle,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+```
+
+```jsx
+<PopoverRoot>
+  <PopoverTrigger />
+  <PopoverContent>
+    <PopoverBody>
+      <PopoverTitle />
+    </PopoverBody>
+  </PopoverContent>
+</PopoverRoot>
+```
+
+## Examples
+
+### Controlled
+
+Use the `open` and `onOpenChange` to control the visibility of the popover.
+
+<ExampleTabs name="popover-controlled" />
+
+### Sizes
+
+Use the `size` prop to change the size of the popover component.
+
+<ExampleTabs name="popover-with-sizes" />
+
+### Lazy Mount
+
+Use the `lazyMounted` and/or `unmountOnExit` prop to defer the mounting of the
+popover content until it's opened.
+
+<ExampleTabs name="popover-lazy-mounted" />
+
+### Placement
+
+Use the `positioning.placement` prop to configure the underlying `floating-ui`
+positioning logic.
+
+<ExampleTabs name="popover-with-placement" />
+
+### Offset
+
+Use the `positioning.offset` prop to adjust the position of the popover content.
+
+<ExampleTabs name="popover-with-offset" />
+
+### Same Width
+
+Use the `positioning.sameWidth` prop to make the popover content the same width
+as the trigger.
+
+<ExampleTabs name="popover-with-same-width" />
+
+### Nested Popover
+
+When nesting overlay elements like popover, select, menu, inside of the popover,
+set `portalled=false` on them.
+
+Here's an example of a popover inside another popover.
+
+<ExampleTabs name="popover-nested" />
+
+### Initial Focus
+
+Use the `initialFocusEl` prop to set the initial focus of the popover content.
+
+<ExampleTabs name="popover-with-initial-focus" />
+
+### Form
+
+Here's an example of a popover with a form inside.
+
+<ExampleTabs name="popover-with-form" />

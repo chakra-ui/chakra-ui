@@ -1,6 +1,7 @@
 import { Text } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
+  PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverRoot,
@@ -15,18 +16,22 @@ export const PopoverNested = () => {
           Click me
         </Button>
       </PopoverTrigger>
-      <PopoverContent showArrow>
+      <PopoverContent>
+        <PopoverArrow />
         <PopoverBody>
-          <Text>
+          <Text mb="4">
             Naruto is a Japanese manga series written and illustrated by Masashi
             Kishimoto.
           </Text>
 
           <PopoverRoot>
             <PopoverTrigger>
-              <Button size="sm">Open Nested Popover</Button>
+              <Button variant="outline" size="xs">
+                Open Nested Popover
+              </Button>
             </PopoverTrigger>
-            <PopoverContent showArrow portalled={false}>
+            <PopoverContent portalled={false}>
+              <PopoverArrow />
               <PopoverBody>Some nested popover content</PopoverBody>
             </PopoverContent>
           </PopoverRoot>

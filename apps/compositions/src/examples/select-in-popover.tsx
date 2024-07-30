@@ -22,7 +22,7 @@ export const SelectInPopover = () => {
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent showArrow>
+      <PopoverContent>
         <PopoverBody>
           <SelectRoot
             items={frameworks}

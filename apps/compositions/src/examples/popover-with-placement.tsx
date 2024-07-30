@@ -1,5 +1,6 @@
 import { Button } from "compositions/ui/button"
 import {
+  PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverRoot,
@@ -14,7 +15,8 @@ export const PopoverWithPlacement = () => {
           Click me
         </Button>
       </PopoverTrigger>
-      <PopoverContent showArrow>
+      <PopoverContent>
+        <PopoverArrow />
         <PopoverBody>Some content</PopoverBody>
       </PopoverContent>
     </PopoverRoot>

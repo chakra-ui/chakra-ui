@@ -8,13 +8,13 @@ import {
 
 export const PopoverWithOffset = () => {
   return (
-    <PopoverRoot positioning={{ offset: { crossAxis: 10, mainAxis: 10 } }}>
+    <PopoverRoot positioning={{ offset: { crossAxis: 0, mainAxis: 0 } }}>
       <PopoverTrigger>
-        <Button size="sm" variant="outline" minW="200px">
-          Click me
+        <Button size="sm" variant="outline">
+          Open
         </Button>
       </PopoverTrigger>
-      <PopoverContent showArrow>
+      <PopoverContent>
         <PopoverBody>
           This is a popover with the same width as the trigger button
         </PopoverBody>

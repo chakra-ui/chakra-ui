@@ -5,35 +5,28 @@ import { forwardRef } from "react"
 interface PopoverContentProps extends ChakraPopover.ContentProps {
   portalled?: boolean
   containerRef?: React.RefObject<HTMLElement>
-  showArrow?: boolean
 }
 
 export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
   function PopoverContent(props, ref) {
-    const {
-      children,
-      portalled = true,
-      containerRef,
-      showArrow,
-      ...rest
-    } = props
-
+    const { portalled = true, containerRef, ...rest } = props
     return (
       <Portal disabled={!portalled} container={containerRef}>
         <ChakraPopover.Positioner>
-          <ChakraPopover.Content ref={ref} {...rest} asChild={false}>
-            {showArrow && (
-              <ChakraPopover.Arrow>
-                <ChakraPopover.ArrowTip />
-              </ChakraPopover.Arrow>
-            )}
-            {children}
-          </ChakraPopover.Content>
+          <ChakraPopover.Content ref={ref} {...rest} />
         </ChakraPopover.Positioner>
       </Portal>
     )
   },
 )
+
+export const PopoverArrow = (props: ChakraPopover.ArrowProps) => {
+  return (
+    <ChakraPopover.Arrow {...props}>
+      <ChakraPopover.ArrowTip />
+    </ChakraPopover.Arrow>
+  )
+}
 
 export const PopoverTrigger = (props: ChakraPopover.TriggerProps) => {
   return <ChakraPopover.Trigger {...props} asChild />

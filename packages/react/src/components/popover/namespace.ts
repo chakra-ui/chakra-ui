@@ -19,6 +19,7 @@ export type {
   PopoverAnchorProps as AnchorProps,
   PopoverTriggerProps as TriggerProps,
   PopoverArrowTipProps as ArrowTipProps,
+  PopoverArrowProps as ArrowProps,
   PopoverBodyProps as BodyProps,
   PopoverHeaderProps as HeaderProps,
   PopoverTitleProps as TitleProps,

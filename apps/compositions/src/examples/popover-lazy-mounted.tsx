@@ -1,6 +1,7 @@
 import { Text } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
+  PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverRoot,
@@ -16,7 +17,8 @@ export const PopoverLazyMounted = () => {
           Click me
         </Button>
       </PopoverTrigger>
-      <PopoverContent showArrow>
+      <PopoverContent>
+        <PopoverArrow />
         <PopoverBody>
           <PopoverTitle fontWeight="medium">Naruto Form</PopoverTitle>
           <Text my="4">
