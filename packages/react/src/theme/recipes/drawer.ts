@@ -52,7 +52,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
         animationTimingFunction: "cubic-bezier(.32,.72,0,1)",
       },
       _closed: {
-        animationDuration: "normal",
+        animationDuration: "slow",
         // TODO: tokenize
         animationTimingFunction: "cubic-bezier(.32,.72,0,1)",
       },
