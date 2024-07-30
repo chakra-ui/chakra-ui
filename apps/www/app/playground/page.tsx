@@ -61,6 +61,11 @@ import { IconBasic } from "compositions/examples/icon-basic"
 import { IconCustom } from "compositions/examples/icon-custom"
 import { IconWithCreateIcon } from "compositions/examples/icon-with-create-icon"
 import { IconWithReactIcon } from "compositions/examples/icon-with-react-icon"
+import { ImageBasic } from "compositions/examples/image-basic"
+import { ImageWithCircle } from "compositions/examples/image-with-circle"
+import { ImageWithFit } from "compositions/examples/image-with-fit"
+import { ImageWithSkeleton } from "compositions/examples/image-with-skeleton"
+import { InputWithDescription } from "compositions/examples/input-with-description"
 import { InputWithErrorText } from "compositions/examples/input-with-error-text"
 import { InputWithField } from "compositions/examples/input-with-field"
 import { InputWithHelperText } from "compositions/examples/input-with-helper-text"
@@ -73,7 +78,7 @@ import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { MenuWithSubmenu } from "compositions/examples/menu-with-submenu"
 import { NativeSelectBasic } from "compositions/examples/native-select-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
-import { PopoverSizes } from "compositions/examples/popover-sizes"
+import { PopoverWithSizes } from "compositions/examples/popover-with-sizes"
 import { ProgressCircleWithColors } from "compositions/examples/progress-circle-with-colors"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
@@ -104,7 +109,7 @@ import { TableWithSelection } from "compositions/examples/table-with-selection"
 import { TableWithStickyColumn } from "compositions/examples/table-with-sticky-column"
 import { TabsStretched } from "compositions/examples/tabs-stretched"
 import { TabsWithIndicator } from "compositions/examples/tabs-with-indicator"
-import { TabsWithLink } from "compositions/examples/tabs-with-links"
+import { TabsWithLinks } from "compositions/examples/tabs-with-links"
 import { TabsWithVariants } from "compositions/examples/tabs-with-variants"
 import { TabsWithVertical } from "compositions/examples/tabs-with-vertical"
 import { TagWithColors } from "compositions/examples/tag-with-colors"
@@ -200,7 +205,7 @@ export default function Page() {
           <TabsWithVertical />
           <SimpleGrid columns={2} width="full" gap="14">
             <TabsWithIndicator />
-            <TabsWithLink />
+            <TabsWithLinks />
           </SimpleGrid>
           <TabsStretched />
         </Playground.SectionContent>
@@ -383,6 +388,29 @@ export default function Page() {
       </Playground.Section>
 
       <Playground.Section>
+        <Playground.SectionTitle id="image">Image</Playground.SectionTitle>
+        <Playground.SectionContent>
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <ImageBasic /> },
+              {
+                label: "w/ fit",
+                component: <ImageWithFit />,
+              },
+              {
+                label: "w/ circle",
+                component: <ImageWithCircle />,
+              },
+              {
+                label: "w/ skeleton",
+                component: <ImageWithSkeleton />,
+              },
+            ]}
+          />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
         <Playground.SectionTitle id="Textarea">
           Textarea
         </Playground.SectionTitle>
@@ -397,7 +425,7 @@ export default function Page() {
       <Playground.Section>
         <Playground.SectionTitle id="Popover">Popover</Playground.SectionTitle>
         <Playground.SectionContent>
-          <PopoverSizes />
+          <PopoverWithSizes />
         </Playground.SectionContent>
       </Playground.Section>
 
