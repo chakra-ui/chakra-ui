@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.12
+
+### Patch Changes
+
+- [`0f0ed76`](https://github.com/chakra-ui/chakra-ui/commit/0f0ed76e3f06b9f3efeb7421d2283aee8aead9f7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix regression
+  where files were always converted to `.jsx`
+
 ## 3.0.0-next.11
 
 ### Minor Changes

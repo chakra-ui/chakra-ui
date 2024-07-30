@@ -1,5 +1,17 @@
 # @chakra-ui/react
 
+## 3.0.0-next.12
+
+### Patch Changes
+
+- [`0ae054d`](https://github.com/chakra-ui/chakra-ui/commit/0ae054d3745339bd7bdae83b19a7be42957f0f59)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  `hideFrom` and `hideBelow` doesn't show any autocompletions
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.12
+  - @chakra-ui/utils@3.0.0-next.12
+
 ## 3.0.0-next.11
 
 ### Minor Changes
