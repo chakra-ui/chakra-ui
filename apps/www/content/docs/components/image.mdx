@@ -1,0 +1,55 @@
+---
+title: Image
+description: Used to display images
+---
+
+<ExampleTabs name="image-basic" />
+
+## Usage
+
+```js
+import { Image } from "@chakra-ui/react"
+```
+
+```jsx
+<Image src="..." />
+```
+
+## Examples
+
+### Height
+
+Use the `height` prop to change the height of the image component.
+
+<ExampleTabs name="image-with-height" />
+
+### Circular
+
+Here's an example of how to render a circular image.
+
+<ExampleTabs name="image-circular" />
+
+### Aspect Ratio
+
+Use the `aspectRatio` prop to change the aspect ratio of the image component.
+
+<ExampleTabs name="image-with-aspect-ratio" />
+
+### Fit
+
+By default, the image applies `object-fit: cover`. Use the `fit` prop to change
+the fit of the image component.
+
+<ExampleTabs name="image-with-fit" />
+
+### Next.js Image
+
+Use the `asChild` prop to render the image as a child of the `Image` component.
+
+```jsx
+// import NextImage from "next/image"
+
+<Image asChild>
+  <NextImage src="..." alt="..." />
+</Image>
+```

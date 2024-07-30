@@ -33,7 +33,7 @@ export interface ImageProps extends HTMLChakraProps<"img", ImageOptions> {}
  */
 export const Image = forwardRef<HTMLImageElement, ImageProps>(
   function Image(props, ref) {
-    const { align, fit, ...rest } = props
+    const { align, fit = "cover", ...rest } = props
     return (
       <chakra.img
         ref={ref}

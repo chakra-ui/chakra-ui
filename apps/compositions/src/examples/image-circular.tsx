@@ -1,6 +1,6 @@
 import { Image } from "@chakra-ui/react"
 
-export const ImageWithCircle = () => (
+export const ImageCircular = () => (
   <Image
     src="https://bit.ly/naruto-sage"
     boxSize="150px"
