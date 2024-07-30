@@ -493,7 +493,7 @@ export type SwitchSlot = "root" | "label" | "control" | "thumb"
 
 export interface SwitchVariantProps {
   variant?: "solid" | "outline" | "raised"
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // Table
