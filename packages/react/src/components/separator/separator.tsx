@@ -12,7 +12,7 @@ import {
 } from "../../styled-system"
 
 export interface SeparatorProps
-  extends HTMLChakraProps<"div">,
+  extends HTMLChakraProps<"span">,
     RecipeProps<"separator">,
     UnstyledProp {}
 
@@ -22,14 +22,14 @@ export interface SeparatorProps
  *
  * @see Docs https://chakra-ui.com/divider
  */
-export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
+export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
   function Separator({ unstyled, ...props }, ref) {
     const recipe = useRecipe("separator", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 
     return (
-      <chakra.div
+      <chakra.span
         ref={ref}
         role="separator"
         aria-orientation={variantProps.orientation || "horizontal"}

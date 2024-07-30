@@ -2,8 +2,8 @@ import { defineRecipe } from "../../styled-system"
 
 export const separatorRecipe = defineRecipe({
   base: {
+    display: "block",
     borderColor: "border",
-    "--divider-border-width": "1px",
   },
   variants: {
     variant: {
@@ -13,19 +13,37 @@ export const separatorRecipe = defineRecipe({
       dashed: {
         borderStyle: "dashed",
       },
+      dotted: {
+        borderStyle: "dotted",
+      },
     },
     orientation: {
       vertical: {
         height: "100%",
-        borderInlineStartWidth: "var(--divider-border-width)",
+        borderInlineStartWidth: "var(--separator-thickness)",
       },
       horizontal: {
         width: "100%",
-        borderTopWidth: "var(--divider-border-width)",
+        borderTopWidth: "var(--separator-thickness)",
+      },
+    },
+    size: {
+      xs: {
+        "--separator-thickness": "0.5px",
+      },
+      sm: {
+        "--separator-thickness": "1px",
+      },
+      md: {
+        "--separator-thickness": "2px",
+      },
+      lg: {
+        "--separator-thickness": "3px",
       },
     },
   },
   defaultVariants: {
+    size: "sm",
     variant: "solid",
     orientation: "horizontal",
   },

@@ -6,7 +6,7 @@ export interface BadgeVariantProps {
 }
 
 export interface ButtonVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
+  size?: "xs" | "sm" | "md" | "lg"
   variant?: "solid" | "subtle" | "outline" | "ghost" | "plain"
 }
 
@@ -45,8 +45,9 @@ export interface LinkVariantProps {
 export interface MarkVariantProps {}
 
 export interface SeparatorVariantProps {
-  variant?: "solid" | "dashed"
+  variant?: "solid" | "dashed" | "dotted"
   orientation?: "vertical" | "horizontal"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 export interface SkeletonVariantProps {
