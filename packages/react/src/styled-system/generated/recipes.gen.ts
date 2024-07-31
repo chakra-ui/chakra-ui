@@ -459,10 +459,10 @@ export interface SliderVariantProps {
 
 // Stat
 
-export type StatSlot = "root" | "label" | "helpText" | "valueText" | "indicator"
+export type StatSlot = "root" | "label" | "helpText" | "valueText" | "valueUnit" | "indicator"
 
 export interface StatVariantProps {
-  size?: "md"
+  size?: "sm" | "md" | "lg"
 }
 
 // Steps

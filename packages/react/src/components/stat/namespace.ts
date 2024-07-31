@@ -1,17 +1,19 @@
 export {
-  StatUpIndicator as UpIndicator,
   StatDownIndicator as DownIndicator,
-  StatRoot as Root,
-  StatValueText as ValueText,
   StatHelpText as HelpText,
   StatLabel as Label,
+  StatRoot as Root,
+  StatUpIndicator as UpIndicator,
+  StatValueText as ValueText,
+  StatValueUnit as ValueUnit,
 } from "./stat"
 
 export type {
-  StatUpIndicatorProps as UpIndicatorProps,
   StatDownIndicatorProps as DownIndicatorProps,
-  StatRootProps as RootProps,
-  StatValueTextProps as ValueTextProps,
   StatHelpTextProps as HelpTextProps,
   StatLabelProps as LabelProps,
+  StatRootProps as RootProps,
+  StatUpIndicatorProps as UpIndicatorProps,
+  StatValueTextProps as ValueTextProps,
+  StatValueUnitProps as ValueUnitProps,
 } from "./stat"

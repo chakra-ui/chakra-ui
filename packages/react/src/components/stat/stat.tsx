@@ -56,6 +56,15 @@ export const StatHelpText = withContext<HTMLElement, StatHelpTextProps>(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface StatValueUnitProps extends HTMLChakraProps<"span"> {}
+
+export const StatValueUnit = withContext<HTMLElement, StatValueUnitProps>(
+  "span",
+  "valueUnit",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
 export interface StatUpIndicatorProps extends HTMLChakraProps<"span"> {}
 
 export const StatUpIndicator = withContext<HTMLElement, StatUpIndicatorProps>(
