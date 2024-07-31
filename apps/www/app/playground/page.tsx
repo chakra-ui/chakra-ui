@@ -1,5 +1,5 @@
 import * as Playground from "@/components/playground"
-import { Container, HStack, SimpleGrid, Stack, Text } from "@chakra-ui/react"
+import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
 import { AccordionBasic } from "compositions/examples/accordion-basic"
 import { AccordionWithIcon } from "compositions/examples/accordion-with-icon"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
@@ -83,7 +83,7 @@ import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
 import { RadioCardCentered } from "compositions/examples/radio-card-centered"
-import { RadioGroupWithColors } from "compositions/examples/radio-group-with-colors"
+import { RadioWithColors } from "compositions/examples/radio-with-colors"
 import { RatingWithColors } from "compositions/examples/rating-with-colors"
 import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
 import { SelectInPopover } from "compositions/examples/select-in-popover"
@@ -613,7 +613,7 @@ export default function Page() {
           Radio Group
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <RadioGroupWithColors />
+          <RadioWithColors />
         </Playground.SectionContent>
       </Playground.Section>
 
