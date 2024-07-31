@@ -1,0 +1,53 @@
+---
+title: Format Number
+description: Used to format numbers to a specific locale and options
+---
+
+<ExampleTabs name="format-number-basic" />
+
+## Usage
+
+The number formatting logic is handled by the native `Intl.NumberFormat` API and
+smartly cached to avoid performance issues when using the same locale and
+options.
+
+```jsx
+import { FormatNumber } from "@chakra-ui/react"
+```
+
+```jsx
+<FormatNumber value={1000} />
+```
+
+## Examples
+
+### Percentage
+
+Use the `style=percentage` prop to change the number format to percentage.
+
+<ExampleTabs name="format-number-with-percentage" />
+
+### Currency
+
+Use the `style=currency` prop to change the number format to currency.
+
+<ExampleTabs name="format-number-with-currency" />
+
+### Locale
+
+Wrap the `FormatNumber` component within the `LocaleProvider` to change the
+locale.
+
+<ExampleTabs name="format-number-with-locale" />
+
+### Unit
+
+Use the `style=unit` prop to change the number format to unit.
+
+<ExampleTabs name="format-number-with-unit" />
+
+### Compact Notation
+
+Use the `notation=compact` prop to change the number format to compact notation.
+
+<ExampleTabs name="format-number-with-compact" />

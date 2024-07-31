@@ -1,20 +1,12 @@
-import { Box } from "@chakra-ui/react"
+import { Button } from "@chakra-ui/react"
 import { Tooltip } from "compositions/ui/tooltip"
 
 export const TooltipBasic = () => {
   return (
-    <Tooltip showArrow content="This is the tooltip content">
-      <Box
-        tabIndex={0}
-        userSelect="none"
-        bg="bg.subtle"
-        borderWidth="1px"
-        borderStyle="dashed"
-        padding="5"
-        rounded="lg"
-      >
+    <Tooltip content="This is the tooltip content">
+      <Button variant="outline" size="sm">
         Hover me
-      </Box>
+      </Button>
     </Tooltip>
   )
 }

@@ -9,7 +9,7 @@ export const tooltipSlotRecipe = defineSlotRecipe({
       bg: "var(--tooltip-bg)",
       color: "fg.inverted",
       px: "2.5",
-      py: "1.5",
+      py: "1",
       borderRadius: "md",
       fontWeight: "medium",
       fontSize: "xs",
@@ -27,7 +27,7 @@ export const tooltipSlotRecipe = defineSlotRecipe({
     },
     arrow: {
       "--arrow-size": "sizes.2",
-      "--arrow-bg": "var(--tooltip-bg)",
+      "--arrow-background": "var(--tooltip-bg)",
     },
     arrowTip: {
       borderTopWidth: "1px",

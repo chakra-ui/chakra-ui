@@ -31,6 +31,10 @@ export const keyframes = defineKeyframes({
       strokeDasharray: "1, 400",
       strokeDashoffset: "0",
     },
+    "50%": {
+      strokeDasharray: "400, 400",
+      strokeDashoffset: "-100%",
+    },
     "100%": {
       strokeDasharray: "400, 400",
       strokeDashoffset: "-260%",

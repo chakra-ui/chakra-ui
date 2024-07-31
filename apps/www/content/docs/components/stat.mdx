@@ -1,0 +1,84 @@
+---
+title: Stat
+description: Used to display a statistic with a title and value.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="stat-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`stat` snippet
+
+```sh
+chakra snippet add stat
+```
+
+The snippet includes a closed component composition for the `Stat` component.
+
+## Usage
+
+```jsx
+import { StatLabel, StatRoot, StatValueText } from "@/components/ui/stat"
+```
+
+```jsx
+<StatRoot>
+  <StatLabel />
+  <StatValueText />
+  <StatHelpText>
+    <StatUpIndicator />
+    <StatDownIndicator />
+  </StatHelpText>
+</StatRoot>
+```
+
+## Examples
+
+### Format Options
+
+Pass the `formatOptions` to the `StatValueText` component to format the value.
+
+<ExampleTabs name="stat-with-format-options" />
+
+### Indicator
+
+Here's an example of how to display a statistic with an indicator.
+
+<ExampleTabs name="stat-with-indicator" />
+
+### Info Tip
+
+Pass the `info` prop to the `StatLabel` component to display an info tip.
+
+<ExampleTabs name="stat-with-info-tip" />
+
+### Value Unit
+
+Here's an example of how to display a value with a unit.
+
+<ExampleTabs name="stat-with-value-unit" />
+
+### Progress Bar
+
+Here's an example of how to display a statistic with a progress bar.
+
+<ExampleTabs name="stat-with-progress-bar" />
+
+### Icon
+
+Here's an example of how to display a statistic with an icon.
+
+<ExampleTabs name="stat-with-icon" />
+
+### Trend
+
+Here's an example of how to display a statistic with a trend indicator.
+
+<ExampleTabs name="stat-with-trend" />

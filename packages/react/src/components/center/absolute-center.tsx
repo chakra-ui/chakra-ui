@@ -17,6 +17,9 @@ export interface AbsoluteCenterProps extends HTMLChakraProps<"div"> {
 export const AbsoluteCenter = chakra("div", {
   base: {
     position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   variants: {
     axis: {

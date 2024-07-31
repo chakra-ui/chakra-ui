@@ -384,8 +384,6 @@ export interface ProgressVariantProps {
 export type ProgressCircleSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
 
 export interface ProgressCircleVariantProps {
-  indeterminate?: boolean
-  valuePlacement?: "center"
   size?: "xs" | "sm" | "md" | "lg"
 }
 
@@ -459,10 +457,10 @@ export interface SliderVariantProps {
 
 // Stat
 
-export type StatSlot = "root" | "label" | "helpText" | "valueText" | "indicator"
+export type StatSlot = "root" | "label" | "helpText" | "valueText" | "valueUnit" | "indicator"
 
 export interface StatVariantProps {
-  size?: "md"
+  size?: "sm" | "md" | "lg"
 }
 
 // Steps
@@ -493,7 +491,7 @@ export type SwitchSlot = "root" | "label" | "control" | "thumb"
 
 export interface SwitchVariantProps {
   variant?: "solid" | "outline" | "raised"
-  size?: "sm" | "md" | "lg" | "xl"
+  size?: "xs" | "sm" | "md" | "lg"
 }
 
 // Table

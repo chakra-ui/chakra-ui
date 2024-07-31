@@ -13,7 +13,7 @@ import {
 
 export const StepsWithColors = () => {
   return (
-    <Stack gap="4" width="full">
+    <Stack gap="10" width="full">
       <For each={colorPalettes}>
         {(colorPalette) => (
           <StepsRoot

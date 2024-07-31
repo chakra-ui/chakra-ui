@@ -53,6 +53,7 @@ export const statAnatomy = createAnatomy("stat").parts(
   "label",
   "helpText",
   "valueText",
+  "valueUnit",
   "indicator",
 )
 

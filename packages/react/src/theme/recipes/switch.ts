@@ -22,6 +22,10 @@ export const switchSlotRecipe = defineSlotRecipe({
       lineHeight: "1",
       userSelect: "none",
       fontSize: "sm",
+      fontWeight: "medium",
+      _disabled: {
+        opacity: "0.5",
+      },
     },
 
     control: {
@@ -142,10 +146,16 @@ export const switchSlotRecipe = defineSlotRecipe({
     },
 
     size: {
-      sm: {
+      xs: {
         root: {
           "--switch-width": "sizes.5",
           "--switch-height": "sizes.3",
+        },
+      },
+      sm: {
+        root: {
+          "--switch-width": "sizes.7",
+          "--switch-height": "sizes.4",
         },
       },
       md: {
@@ -158,12 +168,6 @@ export const switchSlotRecipe = defineSlotRecipe({
         root: {
           "--switch-width": "sizes.10",
           "--switch-height": "sizes.6",
-        },
-      },
-      xl: {
-        root: {
-          "--switch-width": "sizes.14",
-          "--switch-height": "sizes.8",
         },
       },
     },

@@ -12,8 +12,7 @@ export default {
 }
 
 export const Basic = () => (
-  <ProgressCircle.Root value={20} valuePlacement="center">
-    <ProgressCircle.ValueText>20%</ProgressCircle.ValueText>
+  <ProgressCircle.Root value={20}>
     <ProgressCircle.Circle>
       <ProgressCircle.Track />
       <ProgressCircle.Range />
@@ -22,8 +21,7 @@ export const Basic = () => (
 )
 
 export const RoundCap = () => (
-  <ProgressCircle.Root value={20} valuePlacement="center">
-    <ProgressCircle.ValueText>20%</ProgressCircle.ValueText>
+  <ProgressCircle.Root value={20}>
     <ProgressCircle.Circle>
       <ProgressCircle.Track />
       <ProgressCircle.Range strokeLinecap="round" />
@@ -32,8 +30,7 @@ export const RoundCap = () => (
 )
 
 export const Customized = () => (
-  <ProgressCircle.Root value={20} valuePlacement="center">
-    <ProgressCircle.ValueText>20%</ProgressCircle.ValueText>
+  <ProgressCircle.Root value={20}>
     <ProgressCircle.Circle>
       <ProgressCircle.Track stroke="red.300" />
       <ProgressCircle.Range strokeLinecap="round" stroke="pink.800" />

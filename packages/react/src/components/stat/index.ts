@@ -3,6 +3,7 @@ export {
   StatDownIndicator,
   StatRoot,
   StatValueText,
+  StatValueUnit,
   StatHelpText,
   StatLabel,
   useStatStyles,
@@ -13,6 +14,7 @@ export type {
   StatDownIndicatorProps,
   StatRootProps,
   StatValueTextProps,
+  StatValueUnitProps,
   StatHelpTextProps,
   StatLabelProps,
 } from "./stat"

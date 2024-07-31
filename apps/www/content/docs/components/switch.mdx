@@ -1,0 +1,65 @@
+---
+title: Switch
+description: Used to capture a binary state
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="switch-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`switch` snippet
+
+```sh
+chakra snippet add switch
+```
+
+The snippet includes a closed component composition for the `Switch` component.
+
+## Usage
+
+```jsx
+import { Switch } from "@/components/ui/alert"
+```
+
+```jsx
+<Switch>Label</Switch>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the switch component.
+
+<ExampleTabs name="switch-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the visual style of the switch.
+
+<ExampleTabs name="switch-with-variants" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color scheme of the component.
+
+<ExampleTabs name="switch-with-colors" />
+
+### Controlled
+
+Use the `checked` and `onCheckedChange` prop to control the state of the switch.
+
+<ExampleTabs name="switch-controlled" />
+
+### Disabled
+
+Use the `disabled` prop to disable the switch.
+
+<ExampleTabs name="switch-with-disabled" />

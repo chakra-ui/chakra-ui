@@ -1,0 +1,88 @@
+---
+title: Tooltip
+description:
+  Used to display additional information when a user hovers over an element.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="tooltip-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`tooltip` snippet
+
+```sh
+chakra snippet add tooltip
+```
+
+The snippet includes a closed component composition for the `Tooltip` component.
+
+## Usage
+
+```jsx
+import { Tooltip } from "@/components/ui/tooltip"
+```
+
+```jsx
+<Tooltip content="...">
+  <button />
+</Tooltip>
+```
+
+## Examples
+
+### Arrow
+
+Use the `showArrow` prop to show an arrow on the tooltip.
+
+<ExampleTabs name="tooltip-with-arrow" />
+
+### Placement
+
+Use the `positioning.placement` prop to change the position of the tooltip.
+
+<ExampleTabs name="tooltip-with-placement" />
+
+### Offset
+
+Use the `positioning.offset` prop to change the offset of the tooltip.
+
+<ExampleTabs name="tooltip-with-offset" />
+
+### Delay
+
+Use the `openDelay` and `closeDelay` prop to change the delay of the tooltip.
+
+<ExampleTabs name="tooltip-with-delay" />
+
+### Controlled
+
+Use the `open` and `onOpenChange` prop to control the visibility of the tooltip.
+
+<ExampleTabs name="tooltip-controlled" />
+
+### Interactive
+
+Use the `interactive` prop to make the tooltip interactive. When set to `true`,
+use can interact with the tooltip content.
+
+:::info
+
+Notice that you can interact with the tooltip content and copy the text within
+it.
+
+:::
+
+<ExampleTabs name="tooltip-with-interactive" />
+
+### Disabled
+
+Use the `disabled` prop to disable the tooltip.
+
+<ExampleTabs name="tooltip-with-disabled" />

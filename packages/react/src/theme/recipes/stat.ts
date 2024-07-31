@@ -5,14 +5,25 @@ export const statSlotRecipe = defineSlotRecipe({
   slots: statAnatomy.keys(),
   base: {
     root: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "1",
       position: "relative",
       flex: "1 1 0%",
     },
     label: {
-      fontWeight: "medium",
+      color: "fg.subtle",
+      textStyle: "sm",
     },
     helpText: {
-      color: "fg.muted",
+      color: "fg.subtle",
+      textStyle: "xs",
+    },
+    valueUnit: {
+      fontSize: "xs",
+      color: "fg.subtle",
+      fontWeight: "initial",
+      letterSpacing: "initial",
     },
     valueText: {
       verticalAlign: "baseline",
@@ -20,13 +31,17 @@ export const statSlotRecipe = defineSlotRecipe({
       letterSpacing: "tight",
       fontFeatureSettings: "pnum",
       fontVariantNumeric: "proportional-nums",
+      display: "inline-flex",
+      gap: "1",
     },
     indicator: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
       marginEnd: 1,
-      "& svg": {
+      "& :where(svg)": {
         w: "1em",
         h: "1em",
-        verticalAlign: "middle",
       },
       "&[data-type=up]": {
         color: "fg.success",
@@ -39,15 +54,19 @@ export const statSlotRecipe = defineSlotRecipe({
 
   variants: {
     size: {
-      md: {
-        label: {
-          fontSize: "sm",
-        },
-        helpText: {
-          fontSize: "sm",
-        },
+      sm: {
         valueText: {
-          fontSize: "2xl",
+          textStyle: "xl",
+        },
+      },
+      md: {
+        valueText: {
+          textStyle: "2xl",
+        },
+      },
+      lg: {
+        valueText: {
+          textStyle: "3xl",
         },
       },
     },

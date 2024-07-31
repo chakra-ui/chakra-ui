@@ -1,5 +1,5 @@
 import * as Playground from "@/components/playground"
-import { Container, HStack, SimpleGrid, Stack, Text } from "@chakra-ui/react"
+import { Container, HStack, SimpleGrid, Text } from "@chakra-ui/react"
 import { AccordionBasic } from "compositions/examples/accordion-basic"
 import { AccordionWithIcon } from "compositions/examples/accordion-with-icon"
 import { AlertWithStatus } from "compositions/examples/alert-with-status"
@@ -83,7 +83,7 @@ import { ProgressWithColors } from "compositions/examples/progress-with-colors"
 import { ProseBasic } from "compositions/examples/prose-basic"
 import { RadioCardBasic } from "compositions/examples/radio-card-basic"
 import { RadioCardCentered } from "compositions/examples/radio-card-centered"
-import { RadioGroupWithColors } from "compositions/examples/radio-group-with-colors"
+import { RadioWithColors } from "compositions/examples/radio-with-colors"
 import { RatingWithColors } from "compositions/examples/rating-with-colors"
 import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
 import { SelectInPopover } from "compositions/examples/select-in-popover"
@@ -113,9 +113,9 @@ import { TabsWithVariants } from "compositions/examples/tabs-with-variants"
 import { TabsWithVertical } from "compositions/examples/tabs-with-vertical"
 import { TagWithColors } from "compositions/examples/tag-with-colors"
 import { TextareaWithAutoresize } from "compositions/examples/textarea-with-autoresize"
-import { TextareaWithDescription } from "compositions/examples/textarea-with-description"
-import { TextareaWithError } from "compositions/examples/textarea-with-error"
+import { TextareaWithErrorText } from "compositions/examples/textarea-with-error-text"
 import { TextareaWithField } from "compositions/examples/textarea-with-field"
+import { TextareaWithHelperText } from "compositions/examples/textarea-with-helper-text"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import { ScrubberInput } from "compositions/ui/scrubber-input"
@@ -415,8 +415,8 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <TextareaWithField />
-          <TextareaWithDescription />
-          <TextareaWithError />
+          <TextareaWithHelperText />
+          <TextareaWithErrorText />
           <TextareaWithAutoresize />
         </Playground.SectionContent>
       </Playground.Section>
@@ -613,7 +613,7 @@ export default function Page() {
           Radio Group
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <RadioGroupWithColors />
+          <RadioWithColors />
         </Playground.SectionContent>
       </Playground.Section>
 

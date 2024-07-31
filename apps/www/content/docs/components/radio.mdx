@@ -1,0 +1,68 @@
+---
+title: Radio
+description: Used  to select one option from several options
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="radio-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`radio` snippet
+
+```sh
+chakra snippet add radio
+```
+
+The snippet includes a closed component composition for the `RadioGroup`
+
+## Usage
+
+```jsx
+import { Radio, RadioGroup } from "@/components/ui/radio"
+```
+
+```jsx
+<RadioGroup>
+  <Radio />
+</RadioGroup>
+```
+
+## Examples
+
+### Controlled
+
+Use the `value` and `onValueChange` prop to control the selected radio button
+
+<ExampleTabs name="radio-controlled" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color scheme of the component.
+
+<ExampleTabs name="radio-with-colors" />
+
+### Sizes
+
+Use the `size` prop to change the size of the radio component.
+
+<ExampleTabs name="radio-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the radio component.
+
+<ExampleTabs name="radio-with-variants" />
+
+### React Hook Form
+
+Use the `Controller` component from `react-hook-form` to control the radio group
+withing a form
+
+<ExampleTabs name="radio-with-form" />
