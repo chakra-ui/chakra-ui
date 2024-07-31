@@ -113,9 +113,9 @@ import { TabsWithVariants } from "compositions/examples/tabs-with-variants"
 import { TabsWithVertical } from "compositions/examples/tabs-with-vertical"
 import { TagWithColors } from "compositions/examples/tag-with-colors"
 import { TextareaWithAutoresize } from "compositions/examples/textarea-with-autoresize"
-import { TextareaWithDescription } from "compositions/examples/textarea-with-description"
-import { TextareaWithError } from "compositions/examples/textarea-with-error"
+import { TextareaWithErrorText } from "compositions/examples/textarea-with-error-text"
 import { TextareaWithField } from "compositions/examples/textarea-with-field"
+import { TextareaWithHelperText } from "compositions/examples/textarea-with-helper-text"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
 import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import { ScrubberInput } from "compositions/ui/scrubber-input"
@@ -415,8 +415,8 @@ export default function Page() {
         </Playground.SectionTitle>
         <Playground.SectionContent>
           <TextareaWithField />
-          <TextareaWithDescription />
-          <TextareaWithError />
+          <TextareaWithHelperText />
+          <TextareaWithErrorText />
           <TextareaWithAutoresize />
         </Playground.SectionContent>
       </Playground.Section>

@@ -11,7 +11,7 @@ export const TextareaWithAutoresize = () => {
   return (
     <StyledAutoResize
       placeholder="This textarea will autoresize as you type"
-      minH="12"
+      minH="initial"
       resize="none"
       overflow="hidden"
       lineHeight="inherit"
