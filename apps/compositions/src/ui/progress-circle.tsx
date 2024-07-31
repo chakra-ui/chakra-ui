@@ -1,31 +1,38 @@
-import { ProgressCircle as ChakraProgressCircle } from "@chakra-ui/react"
-import type { SystemStyleObject } from "@chakra-ui/react"
-import { forwardRef } from "react"
+"use client"
 
-export interface ProgressCircleProps extends ChakraProgressCircle.RootProps {
-  showValue?: boolean
+import type { SystemStyleObject } from "@chakra-ui/react"
+import {
+  AbsoluteCenter,
+  ProgressCircle as ChakraProgressCircle,
+  useProgressContext,
+} from "@chakra-ui/react"
+
+export const ProgressCircleRoot = ChakraProgressCircle.Root
+
+interface ProgressCircleRingProps extends ChakraProgressCircle.CircleProps {
   trackColor?: SystemStyleObject["stroke"]
-  capIsRound?: boolean
+  cap?: SystemStyleObject["strokeLinecap"]
 }
 
-export const ProgressCircle = forwardRef<HTMLDivElement, ProgressCircleProps>(
-  function ProgressCircle(props, ref) {
-    const { showValue, trackColor, capIsRound, color, ...rest } = props
-    return (
-      <ChakraProgressCircle.Root ref={ref} valuePlacement="center" {...rest}>
-        {showValue && (
-          <ChakraProgressCircle.ValueText>
-            {props.value}
-          </ChakraProgressCircle.ValueText>
-        )}
-        <ChakraProgressCircle.Circle>
-          <ChakraProgressCircle.Track stroke={trackColor} />
-          <ChakraProgressCircle.Range
-            stroke={color}
-            strokeLinecap={capIsRound ? "round" : undefined}
-          />
-        </ChakraProgressCircle.Circle>
-      </ChakraProgressCircle.Root>
-    )
-  },
-)
+export const ProgressCircleRing = (props: ProgressCircleRingProps) => {
+  const { trackColor, cap, color, ...rest } = props
+  return (
+    <ChakraProgressCircle.Circle {...rest}>
+      <ChakraProgressCircle.Track stroke={trackColor} />
+      <ChakraProgressCircle.Range stroke={color} strokeLinecap={cap} />
+    </ChakraProgressCircle.Circle>
+  )
+}
+
+export const ProgressCircleValueText = (
+  props: ChakraProgressCircle.ValueTextProps,
+) => {
+  const progress = useProgressContext()
+  return (
+    <AbsoluteCenter>
+      <ChakraProgressCircle.ValueText {...props}>
+        {props.children ?? progress.percentAsString}
+      </ChakraProgressCircle.ValueText>
+    </AbsoluteCenter>
+  )
+}

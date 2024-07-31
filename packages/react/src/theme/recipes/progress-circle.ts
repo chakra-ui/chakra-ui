@@ -12,26 +12,25 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
     },
     circle: {
       _indeterminate: {
-        animation: "spin",
-        animationDuration: "normal",
+        animation: "spin 2s linear infinite",
       },
     },
     circleTrack: {
-      stroke: "bg.muted",
+      "--track-color": "colors.bg.emphasized",
+      stroke: "var(--track-color)",
     },
     circleRange: {
       stroke: "colorPalette.600",
       transitionProperty: "stroke-dasharray, stroke",
       transitionDuration: "0.6s",
       _indeterminate: {
-        animation: "circular-progress 1.5s infinite",
+        animation: "circular-progress 1.5s linear infinite",
       },
     },
     label: {
       display: "inline-flex",
     },
     valueText: {
-      fontSize: "xs",
       lineHeight: "1",
       fontWeight: "medium",
       letterSpacing: "tight",
@@ -39,64 +38,59 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
     },
   },
   variants: {
-    indeterminate: {
-      true: {
-        range: {
-          "--animate-from-x": "-40%",
-          "--animate-to-x": "100%",
-          position: "absolute",
-          willChange: "left",
-          minWidth: "50%",
-          animation: "position 1s ease infinite normal none running",
-          backgroundImage: `linear-gradient(to right, transparent 0%, var(--track-color) 50%, transparent 100%)`,
-        },
-      },
-      false: {
-        range: {
-          bgColor: "var(--track-color)",
-        },
-      },
-    },
-    valuePlacement: {
-      center: {
-        valueText: {
-          top: "50%",
-          left: "50%",
-          textAlign: "center",
-          position: "absolute",
-          transform: "translate(-50%, -50%)",
-        },
-      },
-    },
     size: {
       xs: {
         circle: {
           "--size": "24px",
-          "--thickness": "2px",
+          "--thickness": "4px",
+        },
+        valueText: {
+          fontSize: "2xs",
         },
       },
       sm: {
         circle: {
-          "--size": "36px",
-          "--thickness": "4px",
+          "--size": "32px",
+          "--thickness": "5px",
+        },
+        valueText: {
+          fontSize: "2xs",
         },
       },
       md: {
         circle: {
-          "--size": "40px",
-          "--thickness": "4px",
+          "--size": "48px",
+          "--thickness": "6px",
+        },
+        valueText: {
+          fontSize: "xs",
         },
       },
       lg: {
         circle: {
-          "--size": "48px",
-          "--thickness": "4px",
+          "--size": "64px",
+          "--thickness": "8px",
+        },
+        valueText: {
+          fontSize: "sm",
         },
       },
     },
   },
+
+  compoundVariants: [
+    {
+      colorPalette: "gray",
+      css: {
+        circleRange: {
+          stroke: { base: "gray.800", _dark: "gray.200" },
+        },
+      },
+    },
+  ],
+
   defaultVariants: {
-    size: "lg",
+    size: "md",
     colorPalette: "gray",
   },
 })

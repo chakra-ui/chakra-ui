@@ -384,8 +384,6 @@ export interface ProgressVariantProps {
 export type ProgressCircleSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
 
 export interface ProgressCircleVariantProps {
-  indeterminate?: boolean
-  valuePlacement?: "center"
   size?: "xs" | "sm" | "md" | "lg"
 }
 
