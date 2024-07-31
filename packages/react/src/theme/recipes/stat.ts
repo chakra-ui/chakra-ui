@@ -36,6 +36,8 @@ export const statSlotRecipe = defineSlotRecipe({
     },
     indicator: {
       display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
       marginEnd: 1,
       "& :where(svg)": {
         w: "1em",
