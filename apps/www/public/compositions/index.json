@@ -85,6 +85,17 @@
   },
   {
     "type": "composition",
+    "id": "color-mode",
+    "file": "color-mode.tsx",
+    "component": "ColorMode",
+    "npmDependencies": [
+      "next-themes",
+      "react-icons"
+    ],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "data-list",
     "file": "data-list.tsx",
     "component": "DataList",
@@ -263,9 +274,9 @@
   },
   {
     "type": "composition",
-    "id": "radio-item",
-    "file": "radio-item.tsx",
-    "component": "RadioItem",
+    "id": "radio",
+    "file": "radio.tsx",
+    "component": "Radio",
     "npmDependencies": [],
     "fileDependencies": []
   },
@@ -320,6 +331,18 @@
     "component": "Slider",
     "npmDependencies": [],
     "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "stat",
+    "file": "stat.tsx",
+    "component": "Stat",
+    "npmDependencies": [
+      "react-icons"
+    ],
+    "fileDependencies": [
+      "./toggle-tip"
+    ]
   },
   {
     "type": "composition",
