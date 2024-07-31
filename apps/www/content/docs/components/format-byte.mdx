@@ -1,0 +1,43 @@
+---
+title: Format Byte
+description: Used to format bytes to a human-readable format
+---
+
+<ExampleTabs name="format-byte-basic" />
+
+## Usage
+
+```jsx
+import { FormatByte } from "@chakra-ui/react"
+```
+
+```jsx
+<FormatByte value={1000} />
+```
+
+## Examples
+
+### Sizes
+
+The format functions works for any size of bytes.
+
+<ExampleTabs name="format-byte-sizes" />
+
+### Format Bits
+
+Use the `unit` prop to change the byte format to bits.
+
+<ExampleTabs name="format-byte-with-unit" />
+
+### Locale
+
+Wrap the `FormatByte` component within the `LocaleProvider` to change the
+locale.
+
+<ExampleTabs name="format-byte-with-locale" />
+
+### Unit Display
+
+Use the `unitDisplay` prop to change the byte format to compact notation.
+
+<ExampleTabs name="format-byte-with-unit-display" />
