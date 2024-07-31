@@ -215,7 +215,6 @@ export const HeroShowCase = () => {
                   fontSize="sm"
                   css={{
                     "--tooltip-bg": "#061416",
-                    "--arrow-background": "#061416",
                   }}
                 >
                   <Tooltip.Arrow>
@@ -262,12 +261,15 @@ export const HeroShowCase = () => {
       <GridItem area="progress" borderBottomWidth="1px!" asChild>
         <Center>
           <Stack gap="7">
-            <ProgressCircle.Root
-              value={75}
-              valuePlacement="center"
-              colorPalette="teal"
-            >
-              <ProgressCircle.ValueText fontWeight="medium">
+            <ProgressCircle.Root value={75} colorPalette="teal">
+              <ProgressCircle.ValueText
+                fontWeight="medium"
+                top="50%"
+                left="50%"
+                textAlign="center"
+                position="absolute"
+                transform="translate(-50%, -50%)"
+              >
                 75%
               </ProgressCircle.ValueText>
               <ProgressCircle.Circle
@@ -324,6 +326,7 @@ export const HeroShowCase = () => {
               <SegmentGroup.Indicator bg="teal.500" />
               {SEGMENT_CONTROL_OPTIONS.map((item, i) => (
                 <SegmentGroup.Item
+                  key={i}
                   value={i.toString()}
                   w="full"
                   px="3"
