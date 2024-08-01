@@ -49,6 +49,7 @@ export const HeroShowCase = () => {
 
   return (
     <Grid
+      pb="40"
       divideStyle="solid"
       divideColor="teal.500/15"
       divideX="1px"
@@ -299,18 +300,14 @@ export const HeroShowCase = () => {
         pos="relative"
       >
         <Circle
-          css={{
-            content: '""',
-            position: "absolute",
-            right: "-5",
-            top: 0,
-            w: "426px",
-            h: "419px",
-            bg: "teal.500",
-            rounded: "full",
-            filter: "blur(250px)",
-            opacity: 0.3,
-          }}
+          w="426px"
+          h="412px"
+          pos="absolute"
+          top="0"
+          right="-5"
+          opacity="0.25"
+          filter="blur(250px)"
+          bg="teal.500"
         />
         <Center>
           <Stack maxW="64" gap="3">
