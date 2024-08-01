@@ -13,8 +13,6 @@ export const DemoCode = async (props: { name: string }) => {
   })
   return (
     <Box
-      // TODO remove
-      pb="12"
       w="full"
       css={{
         "& > pre": {
