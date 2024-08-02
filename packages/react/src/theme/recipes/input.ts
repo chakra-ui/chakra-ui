@@ -22,6 +22,7 @@ export const inputRecipe = defineRecipe({
         py: "3",
         borderRadius: "md",
         height: "12",
+        scrollPaddingBottom: "3",
       },
       md: {
         fontSize: "sm",
@@ -29,18 +30,23 @@ export const inputRecipe = defineRecipe({
         py: "2",
         borderRadius: "md",
         height: "10",
+        scrollPaddingBottom: "2",
       },
       sm: {
         fontSize: "sm",
-        padding: "3",
+        px: "3",
+        py: "3",
         borderRadius: "sm",
         height: "8",
+        scrollPaddingBottom: "3",
       },
       xs: {
         fontSize: "xs",
-        padding: "2",
+        px: "2",
+        py: "2",
         borderRadius: "sm",
         height: "6",
+        scrollPaddingBottom: "2",
       },
     },
     variant: {
