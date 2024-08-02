@@ -1,0 +1,67 @@
+---
+title: Box
+description:
+  The most abstract component on top of which all other Chakra UI components are
+  built.
+links: [{ title: "Source", url: "#" }, { title: "Storybook", url: "#" }]
+---
+
+<ExampleTabs name="box-basic" />
+
+## Usage
+
+The `Box` component provides an easy way to write styles with ease. It provides
+access to design tokens and an unmatched DX when writing responsive styles.
+
+```jsx
+import { Box } from "@chakra-ui/react"
+```
+
+```jsx
+<Box />
+```
+
+## Examples
+
+### Shorthand
+
+Use shorthand like `bg` instead of `backgroundColor`, `m` instead of `margin`,
+etc.
+
+<ExampleTabs name="box-with-shorthand" />
+
+### Psuedo Props
+
+Use pseudo props like `_hover` to apply styles on hover, `_focus` to apply
+styles on focus, etc.
+
+<ExampleTabs name="box-with-pseudo-props" />
+
+### Border
+
+Use the `borderWidth` and `borderColor` prop to apply border styles.
+
+> **Good to know:** Chakra applies `borderStyle: solid` globally so you don't
+> have to.
+
+<ExampleTabs name="box-with-border" />
+
+### As Prop
+
+Use the `as` prop to render a different component.
+
+> Inspect the DOM to see the rendered component.
+
+<ExampleTabs name="box-with-as-prop" />
+
+### Shadow
+
+Use the `boxShadow` or `shadow` prop to apply shadow styles.
+
+<ExampleTabs name="box-with-shadow" />
+
+### Composition
+
+Here's an example of a property card built with layout primitives in Chakra.
+
+<ExampleTabs name="box-property-card" />
