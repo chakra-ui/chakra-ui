@@ -16,6 +16,7 @@ import { Header } from "./page/header"
 import { HeroShowCase } from "./page/hero-showcase"
 import { BlitzIcon } from "./page/icons"
 import { Partners } from "./page/partners"
+import { Stats } from "./page/stats"
 
 export default function Page() {
   return (
@@ -90,6 +91,8 @@ export default function Page() {
             <DesignSystem />
 
             <Accessibility />
+
+            <Stats />
           </Stack>
         </Stack>
       </Container>
