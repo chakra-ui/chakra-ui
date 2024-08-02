@@ -1,18 +1,20 @@
 export {
-  TimelineRoot,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineIndicator,
+  TimelineConnector,
   TimelineContent,
+  TimelineIndicator,
+  TimelineItem,
+  TimelineRoot,
+  TimelineSeparator,
   useTimelineStyles,
 } from "./timeline"
 
 export type {
-  TimelineRootProps,
-  TimelineItemProps,
-  TimelineSeparatorProps,
-  TimelineIndicatorProps,
+  TimelineConnectorProps,
   TimelineContentProps,
+  TimelineIndicatorProps,
+  TimelineItemProps,
+  TimelineRootProps,
+  TimelineSeparatorProps,
 } from "./timeline"
 
 export * as Timeline from "./namespace"

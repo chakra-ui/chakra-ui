@@ -552,11 +552,11 @@ export interface StatusVariantProps {
 
 // Timeline
 
-export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicator"
+export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicator" | "connector"
 
 export interface TimelineVariantProps {
-  variant?: "subtle" | "solid"
-  size?: "sm" | "md" | "lg"
+  variant?: "subtle" | "solid" | "outline" | "plain"
+  size?: "sm" | "md"
 }
 
 export interface ConfigSlotRecipes {
