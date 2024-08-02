@@ -27,7 +27,7 @@ const Blob = chakra(Circle, {
   },
 })
 
-export const Accessibility = () => (
+export const Accessibility = async () => (
   <Flex justify="center">
     <Flex gap="20" flex="1" maxW="6xl" pos="relative">
       <Blob top="-5px" left="-50%" bottom="-180px" />
@@ -38,7 +38,7 @@ export const Accessibility = () => (
             <Stack gap="5">
               <HStack gap="4" color="teal.500">
                 <BlitzFillIcon />
-                <Text fontWeight="bold">Design Tokens</Text>
+                <Text fontWeight="bold">Accessible UI Components</Text>
               </HStack>
               <Heading size="5xl" fontWeight="bold">
                 Less code. More speed
