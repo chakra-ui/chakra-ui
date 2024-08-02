@@ -17,24 +17,52 @@ export interface BleedProps extends HTMLChakraProps<"div"> {
    * The negative margin on the y-axis
    */
   block?: SystemStyleObject["marginBlock"]
+  /**
+   * The negative margin on the inline-start axis
+   */
+  inlineStart?: SystemStyleObject["marginInlineStart"]
+  /**
+   * The negative margin on the inline-end axis
+   */
+  inlineEnd?: SystemStyleObject["marginInlineEnd"]
+  /**
+   * The negative margin on the block-start axis
+   */
+  blockStart?: SystemStyleObject["marginBlockStart"]
+  /**
+   * The negative margin on the block-end axis
+   */
+  blockEnd?: SystemStyleObject["marginBlockEnd"]
 }
 
 const valueFn = (v: string) =>
-  isCssUnit(v) || isCssVar(v) ? v : `spacing.${v}, ${v}`
+  isCssUnit(v) || isCssVar(v) ? v : `token(spacing.${v}, ${v})`
 
 export const Bleed = forwardRef<HTMLDivElement, BleedProps>(
   function Bleed(props, ref) {
-    const { inline, block, ...rest } = props
+    const {
+      inline,
+      inlineStart,
+      inlineEnd,
+      block,
+      blockStart,
+      blockEnd,
+      ...rest
+    } = props
 
     return (
       <chakra.div
         ref={ref}
         {...rest}
         css={{
-          "--bleed-x": mapResponsive(inline, valueFn),
-          "--bleed-y": mapResponsive(block, valueFn),
-          marginInline: "calc(var(--bleed-x, 0) * -1)",
-          marginBlock: "calc(var(--bleed-y, 0) * -1)",
+          "--bleed-inline-start": mapResponsive(inline ?? inlineStart, valueFn),
+          "--bleed-inline-end": mapResponsive(inline ?? inlineEnd, valueFn),
+          "--bleed-block-start": mapResponsive(block ?? blockStart, valueFn),
+          "--bleed-block-end": mapResponsive(block ?? blockEnd, valueFn),
+          marginInlineStart: "calc(var(--bleed-inline-start, 0) * -1)",
+          marginInlineEnd: "calc(var(--bleed-inline-end, 0) * -1)",
+          marginBlockStart: "calc(var(--bleed-block-start, 0) * -1)",
+          marginBlockEnd: "calc(var(--bleed-block-end, 0) * -1)",
         }}
       />
     )
