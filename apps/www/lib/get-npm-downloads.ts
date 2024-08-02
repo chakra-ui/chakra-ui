@@ -9,7 +9,7 @@ export async function getNpmDownloads() {
     ).then((res) => res.json())
 
     count = data.downloads
-  } catch (error) {
+  } catch (error: any) {
     console.log("Failed to get npm downloads: ", error.toString())
   }
 
