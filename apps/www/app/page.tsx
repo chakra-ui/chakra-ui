@@ -13,6 +13,7 @@ import { HiArrowRight } from "react-icons/hi"
 import { Header } from "./page/header"
 import { HeroShowCase } from "./page/hero-showcase"
 import { BlitzIcon } from "./page/icons"
+import { Partners } from "./page/partners"
 
 export default function Page() {
   return (
@@ -23,9 +24,9 @@ export default function Page() {
         top="111px"
         left="50%"
         transform="translateX(-50%)"
-        opacity="0.15"
+        opacity="0.25"
         filter="blur(250px)"
-        bg="teal.300"
+        bg="teal.500"
       />
 
       <Icon asChild w="245px" h="342px" pos="absolute" top="58px" right="67px">
@@ -37,12 +38,15 @@ export default function Page() {
       <Container pt="8">
         <Stack gap="8">
           <Button
-            size="lg"
+            size="md"
             colorPalette="teal"
             variant="outline"
             w="fit-content"
             bg="#061416"
-            px="1.5"
+            px="4"
+            py="2.5"
+            fontWeight="bold"
+            gap="2.5"
           >
             Celebrating the launch of v3
             <HiArrowRight />
@@ -70,7 +74,7 @@ export default function Page() {
                 with speed
               </Span>
             </Heading>
-            <Text fontSize="2xl" color="fg.muted" fontWeight="medium">
+            <Text fontSize="2xl" color="gray.400" fontWeight="medium">
               Beautiful, accessible, React components for high-quality web apps
               and design systems.
             </Text>
@@ -78,7 +82,7 @@ export default function Page() {
 
           <HeroShowCase />
 
-          <Stack pt="40"></Stack>
+          <Partners />
         </Stack>
       </Container>
     </Box>
