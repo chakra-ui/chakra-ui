@@ -1,4 +1,4 @@
-import { Box, Circle, Container, Icon, Stack } from "@chakra-ui/react"
+import { Circle, Container, Icon, Stack } from "@chakra-ui/react"
 import { Accessibility } from "./page/accessibility"
 import { DesignSystem } from "./page/design-system"
 import { Header } from "./page/header"
@@ -7,10 +7,11 @@ import { HeroShowCase } from "./page/hero-showcase"
 import { BlitzIcon } from "./page/icons"
 import { Partners } from "./page/partners"
 import { Stats } from "./page/stats"
+import { Testimonials } from "./page/testimonials"
 
 export default function Page() {
   return (
-    <Box bg="black" pos="relative">
+    <Stack bg="black" pos="relative" gap="8">
       <Circle
         size="452px"
         pos="absolute"
@@ -28,19 +29,28 @@ export default function Page() {
 
       <Header />
 
-      <Container pt="8">
-        <Stack gap="8">
+      <Container>
+        <Stack>
           <Hero />
           <HeroShowCase />
-
-          <Stack gap="52">
-            <Partners />
-            <DesignSystem />
-            <Accessibility />
-            <Stats />
-          </Stack>
         </Stack>
       </Container>
-    </Box>
+
+      <Stack gap="52">
+        <Container>
+          <Partners />
+        </Container>
+        <Container>
+          <DesignSystem />
+        </Container>
+        <Container>
+          <Accessibility />
+        </Container>
+        <Container>
+          <Stats />
+        </Container>
+        <Testimonials />
+      </Stack>
+    </Stack>
   )
 }
