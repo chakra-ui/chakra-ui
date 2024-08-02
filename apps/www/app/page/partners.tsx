@@ -51,14 +51,14 @@ export const Partners = () => (
         From next-gen startups to established enterprises.
       </Text>
     </Stack>
-    <Stack gap="8" pos="relative" pb="52">
+    <Stack gap="8" pos="relative">
       <Circle
         pos="absolute"
-        bottom="0"
+        bottom="-50%"
         left="0"
         top="0"
         right="0"
-        opacity="0.15"
+        opacity="0.18"
         filter="blur(250px)"
         bg="teal.500"
         rounded="100%"

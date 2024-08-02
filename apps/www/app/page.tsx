@@ -10,6 +10,8 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { HiArrowRight } from "react-icons/hi"
+import { Accessibility } from "./page/accessibility"
+import { DesignSystem } from "./page/design-system"
 import { Header } from "./page/header"
 import { HeroShowCase } from "./page/hero-showcase"
 import { BlitzIcon } from "./page/icons"
@@ -82,7 +84,13 @@ export default function Page() {
 
           <HeroShowCase />
 
-          <Partners />
+          <Stack gap="52">
+            <Partners />
+
+            <DesignSystem />
+
+            <Accessibility />
+          </Stack>
         </Stack>
       </Container>
     </Box>
