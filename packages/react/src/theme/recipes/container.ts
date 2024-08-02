@@ -16,5 +16,10 @@ export const containerRecipe = defineRecipe({
         alignItems: "center",
       },
     },
+    fluid: {
+      true: {
+        maxWidth: "full",
+      },
+    },
   },
 })

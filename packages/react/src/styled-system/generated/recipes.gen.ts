@@ -17,6 +17,7 @@ export interface CodeVariantProps {
 
 export interface ContainerVariantProps {
   centerContent?: boolean
+  fluid?: boolean
 }
 
 export interface HeadingVariantProps {

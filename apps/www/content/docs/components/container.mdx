@@ -1,0 +1,37 @@
+---
+title: Container
+description:
+  Used to constrain a content's width to the current breakpoint, while keeping
+  it fluid.
+links: [{ title: "Source", url: "#" }, { title: "Storybook", url: "#" }]
+---
+
+<ExampleTabs name="container-basic" />
+
+## Usage
+
+The default `maxWidth` is `8xl` which maps to `90rem (1440px)`.
+
+```jsx
+import { Container } from "@chakra-ui/react"
+```
+
+```jsx
+<Container>
+  <div />
+</Container>
+```
+
+## Examples
+
+### Sizes
+
+Use the `maxWidth` prop to change the size of the container.
+
+<ExampleTabs name="container-with-sizes" />
+
+### Fluid
+
+Use the `fluid` prop to make the container fluid.
+
+<ExampleTabs name="container-with-fluid" />
