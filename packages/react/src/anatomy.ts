@@ -111,4 +111,5 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
   "content",
   "separator",
   "indicator",
+  "connector",
 )

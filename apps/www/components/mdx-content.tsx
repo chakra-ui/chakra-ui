@@ -276,13 +276,14 @@ const sharedComponents = {
   },
   steps(props: any) {
     return (
-      <Timeline.Root mt="10" mb="6" ps="1rem">
+      <Timeline.Root mt="10" mb="6">
         {Children.map(props.children, (child, index) => {
           return (
             <Timeline.Item>
               <Timeline.Separator />
               <Timeline.Indicator rounded="md">{index + 1}</Timeline.Indicator>
               <Timeline.Content
+                ps="2"
                 css={{ "& > :is(h3, h4, h5)": { marginTop: "0" } }}
               >
                 {child.props.children}
