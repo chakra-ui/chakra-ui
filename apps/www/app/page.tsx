@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { HiArrowRight } from "react-icons/hi"
+import { Accessibility } from "./page/accessibility"
 import { DesignSystem } from "./page/design-system"
 import { Header } from "./page/header"
 import { HeroShowCase } from "./page/hero-showcase"
@@ -87,6 +88,8 @@ export default function Page() {
             <Partners />
 
             <DesignSystem />
+
+            <Accessibility />
           </Stack>
         </Stack>
       </Container>
