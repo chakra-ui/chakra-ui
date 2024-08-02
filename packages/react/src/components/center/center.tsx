@@ -16,6 +16,13 @@ export const Center = chakra("div", {
     alignItems: "center",
     justifyContent: "center",
   },
+  variants: {
+    inline: {
+      true: {
+        display: "inline-flex",
+      },
+    },
+  },
 })
 
 Center.displayName = "Center"

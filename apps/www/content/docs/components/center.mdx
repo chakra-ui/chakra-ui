@@ -1,0 +1,46 @@
+---
+title: Center
+description: Used to center its child within itself.
+links: [{ title: "Source", url: "#" }, { title: "Storybook", url: "#" }]
+---
+
+<ExampleTabs name="center-basic" />
+
+## Usage
+
+```jsx
+import { AbsoluteCenter, Center, Circle, Square } from "@chakra-ui/react"
+```
+
+```jsx
+<Center bg="tomato" h="100px" color="white">
+  This is the Center
+</Center>
+```
+
+## Examples
+
+### Icon
+
+Center can be used to create frames around icons or numbers.
+
+<ExampleTabs name="center-with-icons" />
+
+### Square
+
+`Square` centers its child given `size` (width and height).
+
+<ExampleTabs name="center-with-square" />
+
+### Inline
+
+Use the `inline` to change the display to `inline-flex`.
+
+<ExampleTabs name="center-with-inline" />
+
+### AbsoluteCenter
+
+`AbsoluteCenter` centers relative to its parent using the `position: absolute`
+strategy. Pass the `axis` prop to change the axis of alignment.
+
+<ExampleTabs name="center-with-absolute" />
