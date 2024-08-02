@@ -20,7 +20,7 @@ const Blob = chakra(Circle, {
     w: "765px",
     h: "765px",
     rounded: "100%",
-    opacity: "0.15",
+    opacity: "0.1",
     filter: "blur(250px)",
     bg: "teal.500",
     pos: "absolute",
