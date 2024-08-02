@@ -16,62 +16,72 @@ import { IconType } from "react-icons/lib"
 import { RiNpmjsFill } from "react-icons/ri"
 import { BlitzIcon } from ".//icons"
 
-export const Stats = async () => {
+const Intro = () => (
+  <Stack gap="20" align="center">
+    <Heading maxW="md" size="5xl" fontWeight="bold" textAlign="center">
+      Built for developers By{" "}
+      <Span
+        color="teal.500"
+        pos="relative"
+        px="2"
+        display="inline-block"
+        _before={{
+          pos: "absolute",
+          content: "''",
+          w: "full",
+          h: "full",
+          bg: "teal.500/10",
+          bottom: "-3px",
+          left: "0",
+          borderRight: "solid 1.5px",
+          borderColor: "currentColor",
+        }}
+      >
+        developers
+      </Span>
+    </Heading>
+
+    <Stack fontWeight="medium" textAlign="center">
+      <Heading size="2xl">Built for modern product teams.</Heading>
+      <Text fontSize="2xl" color="gray.400">
+        From next-gen startups to established enterprises.
+      </Text>
+    </Stack>
+  </Stack>
+)
+
+const StatsList = async () => {
   const { githubStars, discordMembers, npmDownloads } = await getStats()
 
+  return (
+    <Flex w="full" maxW="6xl" pos="relative">
+      <StatsBox
+        icon={RiNpmjsFill}
+        title="downloads  / month"
+        description={npmDownloads}
+      />
+      <StatsBox
+        icon={BsGithub}
+        title="github stars"
+        description={githubStars}
+      />
+      <StatsBox
+        icon={FaDiscord}
+        title="discord members"
+        description={discordMembers}
+      />
+    </Flex>
+  )
+}
+
+export const Stats = async () => {
   return (
     <Stack gap="20" pos="relative" align="center">
       <Icon asChild w="245px" h="342px" pos="absolute" top="-28" right="67px">
         <BlitzIcon />
       </Icon>
-      <Stack gap="20" align="center">
-        <Heading maxW="md" size="5xl" fontWeight="bold" textAlign="center">
-          Built for developers By{" "}
-          <Span
-            color="teal.500"
-            pos="relative"
-            px="2"
-            display="inline-block"
-            _before={{
-              pos: "absolute",
-              content: "''",
-              w: "full",
-              h: "full",
-              bg: "teal.500/10",
-              bottom: "-3px",
-              left: "0",
-              borderRight: "solid 1.5px",
-              borderColor: "currentColor",
-            }}
-          >
-            developers
-          </Span>
-        </Heading>
-
-        <Stack fontWeight="medium" textAlign="center">
-          <Heading size="2xl">Built for modern product teams.</Heading>
-          <Text fontSize="2xl" color="gray.400">
-            From next-gen startups to established enterprises.
-          </Text>
-        </Stack>
-      </Stack>
-      <Flex w="full" maxW="6xl" pos="relative">
-        <StatsBox
-          icon={RiNpmjsFill}
-          title="downloads  / month"
-          description={npmDownloads}
-        />
-        <StatsBox
-          icon={BsGithub}
-          title="github stars"
-          description={githubStars}
-        />
-        <StatsBox
-          icon={FaDiscord}
-          title="discord members"
-          description={discordMembers}
-        />
-      </Flex>
+      <Intro />
+      <StatsList />
       <Circle
         w="765px"
         h="765px"
