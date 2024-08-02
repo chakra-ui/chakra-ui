@@ -76,7 +76,7 @@ export const Stats = async () => {
         w="765px"
         h="765px"
         rounded="100%"
-        opacity="0.2"
+        opacity="0.15"
         filter="blur(250px)"
         bg="teal.500"
         pos="absolute"
