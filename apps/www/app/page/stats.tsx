@@ -50,53 +50,6 @@ const Intro = () => (
   </Stack>
 )
 
-const StatsList = async () => {
-  const { githubStars, discordMembers, npmDownloads } = await getStats()
-
-  return (
-    <Flex w="full" maxW="6xl" pos="relative">
-      <StatsBox
-        icon={RiNpmjsFill}
-        title="downloads  / month"
-        description={npmDownloads}
-      />
-      <StatsBox
-        icon={BsGithub}
-        title="github stars"
-        description={githubStars}
-      />
-      <StatsBox
-        icon={FaDiscord}
-        title="discord members"
-        description={discordMembers}
-      />
-    </Flex>
-  )
-}
-
-export const Stats = async () => {
-  return (
-    <Stack gap="20" pos="relative" align="center">
-      <Icon asChild w="245px" h="342px" pos="absolute" top="-28" right="67px">
-        <BlitzIcon />
-      </Icon>
-      <Intro />
-      <StatsList />
-      <Circle
-        w="765px"
-        h="765px"
-        rounded="100%"
-        opacity="0.15"
-        filter="blur(250px)"
-        bg="teal.500"
-        pos="absolute"
-        right="-32"
-        bottom="-50%"
-      />
-    </Stack>
-  )
-}
-
 interface StatBoxProps {
   icon: IconType
   title: string
@@ -147,4 +100,51 @@ async function getStats() {
     discordMembers,
     npmDownloads,
   }
+}
+
+const StatsList = async () => {
+  const { githubStars, discordMembers, npmDownloads } = await getStats()
+
+  return (
+    <Flex w="full" maxW="6xl" pos="relative">
+      <StatsBox
+        icon={RiNpmjsFill}
+        title="downloads  / month"
+        description={npmDownloads}
+      />
+      <StatsBox
+        icon={BsGithub}
+        title="github stars"
+        description={githubStars}
+      />
+      <StatsBox
+        icon={FaDiscord}
+        title="discord members"
+        description={discordMembers}
+      />
+    </Flex>
+  )
+}
+
+export const Stats = async () => {
+  return (
+    <Stack gap="20" pos="relative" align="center" maxW="100%">
+      <Icon asChild w="245px" h="342px" pos="absolute" top="-28" right="67px">
+        <BlitzIcon />
+      </Icon>
+      <Intro />
+      <StatsList />
+      <Circle
+        w="765px"
+        h="765px"
+        rounded="100%"
+        opacity="0.15"
+        filter="blur(250px)"
+        bg="teal.500"
+        pos="absolute"
+        right="-32"
+        bottom="-50%"
+      />
+    </Stack>
+  )
 }

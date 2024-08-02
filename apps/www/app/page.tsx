@@ -11,7 +11,7 @@ import { Testimonials } from "./page/testimonials"
 
 export default function Page() {
   return (
-    <Stack bg="black" pos="relative" gap="8">
+    <Stack bg="black" pos="relative" gap="8" overflowX="hidden">
       <Circle
         size="452px"
         pos="absolute"
