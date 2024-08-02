@@ -66,3 +66,12 @@ export const TimelineContent = withContext<
   HTMLDivElement,
   TimelineContentProps
 >("div", "content")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface TimelineConnectorProps extends HTMLChakraProps<"div"> {}
+
+export const TimelineConnector = withContext<
+  HTMLDivElement,
+  TimelineConnectorProps
+>("div", "connector")

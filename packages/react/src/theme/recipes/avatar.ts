@@ -43,7 +43,7 @@ export const avatarSlotRecipe = defineSlotRecipe({
     size: {
       xs: {
         root: {
-          "--avatar-size": "sizes.5",
+          "--avatar-size": "sizes.4",
           "--avatar-margin": "-0.45rem",
         },
       },
