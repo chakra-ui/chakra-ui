@@ -55,6 +55,10 @@ import { FileUploadBasic } from "compositions/examples/file-upload-basic"
 import { FileUploadMediaCapture } from "compositions/examples/file-upload-media-capture"
 import { FileUploadMultiple } from "compositions/examples/file-upload-multiple"
 import { FileUploadWithDropzone } from "compositions/examples/file-upload-with-dropzone"
+import { FloatBasic } from "compositions/examples/float-basic"
+import { FloatWithOffset } from "compositions/examples/float-with-offset"
+import { FloatWithOffsetX } from "compositions/examples/float-with-offset-x"
+import { FloatWithOffsetY } from "compositions/examples/float-with-offset-y"
 import { HeadingWithSizes } from "compositions/examples/heading-with-sizes"
 import { HoverCardBasic } from "compositions/examples/hovercard-basic"
 import { IconBasic } from "compositions/examples/icon-basic"
@@ -709,6 +713,29 @@ export default function Page() {
               { label: "Media Capture", component: <FileUploadMediaCapture /> },
               { label: "Multiple", component: <FileUploadMultiple /> },
               { label: "With Dropzone", component: <FileUploadWithDropzone /> },
+            ]}
+          />
+        </Playground.SectionContent>
+      </Playground.Section>
+
+      <Playground.Section>
+        <Playground.SectionTitle id="float">Float</Playground.SectionTitle>
+        <Playground.SectionContent direction="row" gap={10}>
+          <Playground.DemoList
+            items={[
+              { label: "Float Basic", component: <FloatBasic /> },
+              {
+                label: "Float w/ Offset X",
+                component: <FloatWithOffsetX />,
+              },
+              {
+                label: "Float w/ Offset Y",
+                component: <FloatWithOffsetY />,
+              },
+              {
+                label: "Float w/ Offset",
+                component: <FloatWithOffset />,
+              },
             ]}
           />
         </Playground.SectionContent>
