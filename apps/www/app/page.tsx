@@ -1,6 +1,7 @@
 import { Circle, Icon, Stack } from "@chakra-ui/react"
 import { Accessibility } from "./page/accessibility"
 import { DesignSystem } from "./page/design-system"
+import { Footer } from "./page/footer"
 import { Frameworks } from "./page/frameworks"
 import { Header } from "./page/header"
 import { Hero } from "./page/hero"
@@ -47,6 +48,7 @@ export default function Page() {
         <Frameworks />
         <Templates />
       </Stack>
+      <Footer />
     </Stack>
   )
 }
