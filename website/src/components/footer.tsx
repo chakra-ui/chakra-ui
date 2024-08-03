@@ -18,11 +18,17 @@ type FooterLinkProps = {
   icon?: React.ElementType
   href?: string
   label?: string
+  hoverColor?: string
 }
 
-const FooterLink = ({ icon, href, label }: FooterLinkProps) => (
+const FooterLink = ({ icon, href, label, hoverColor }: FooterLinkProps) => (
   <Link display='inline-block' href={href} aria-label={label} external>
-    <Icon as={icon} fontSize='xl' color='gray.400' />
+    <Icon
+      as={icon}
+      fontSize='xl'
+      color='gray.400'
+      _hover={{ color: hoverColor }}
+    />
   </Link>
 )
 
@@ -31,26 +37,31 @@ const links = [
     icon: DiGithubBadge,
     label: 'GitHub',
     href: 'https://github.com/segunadebayo',
+    hoverColor: 'gray.800',
   },
   {
     icon: IoLogoTwitter,
     label: 'Twitter',
     href: 'https://twitter.com/thesegunadebayo',
+    hoverColor: 'blue.400',
   },
   {
     icon: IoLogoLinkedin,
     label: 'LinkedIn',
     href: 'https://linkedin.com/in/thesegunadebayo/',
+    hoverColor: 'blue.700',
   },
   {
     icon: MdEmail,
     label: 'Email',
     href: 'mailto:sage@adebayosegun.com',
+    hoverColor: 'red.400',
   },
   {
     icon: FaYoutube,
     label: 'YouTube',
     href: 'https://www.youtube.com/channel/UC4TmDovH46TB4S0SM0Y4CIg',
+    hoverColor: 'red.600',
   },
 ]
 
