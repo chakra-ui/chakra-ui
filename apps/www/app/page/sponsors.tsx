@@ -80,7 +80,7 @@ const Description = () => (
     <Text textStyle="2xl" maxW="xl">
       Our maintainers devote their time, effort, and heart to ensure Chakra UI
       keeps getting better.
-      <Span color="gray.400">Support us by donating to our collective 🙏</Span>
+      <Text color="gray.400">Support us by donating to our collective 🙏</Text>
     </Text>
     <SponsorLinks />
   </Stack>
