@@ -2,8 +2,12 @@ import { highlightCode } from "@/lib/highlight-code"
 import { Box } from "@chakra-ui/react"
 import { readDemoFile } from "./read-demo-file"
 
-export const DemoCode = async (props: { name: string }) => {
-  const content = await readDemoFile(props.name)
+export const DemoCode = async (props: {
+  name: string
+  extension?: string
+  opts?: Partial<Parameters<typeof highlightCode>[1]>
+}) => {
+  const content = await readDemoFile(props.name, props.extension)
   const html = await highlightCode(content, {
     lang: "ts",
     themes: {

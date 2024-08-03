@@ -6,12 +6,13 @@ import { Hero } from "./page/hero"
 import { HeroShowCase } from "./page/hero-showcase"
 import { BlitzIcon } from "./page/icons"
 import { Partners } from "./page/partners"
+import { Sponsors } from "./page/sponsors"
 import { Stats } from "./page/stats"
 import { Testimonials } from "./page/testimonials"
 
 export default function Page() {
   return (
-    <Stack bg="black" pos="relative" gap="8">
+    <Stack bg="black" pos="relative" gap="8" overflowX="hidden">
       <Circle
         size="452px"
         pos="absolute"
@@ -50,6 +51,11 @@ export default function Page() {
           <Stats />
         </Container>
         <Testimonials />
+        <Container>
+          <Sponsors />
+        </Container>
+
+        <div></div>
       </Stack>
     </Stack>
   )

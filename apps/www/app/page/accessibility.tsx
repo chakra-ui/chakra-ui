@@ -1,5 +1,4 @@
-"use client"
-
+import { DemoCode } from "@/app/page/demo-code"
 import { BlitzFillIcon } from "@/app/page/icons"
 import {
   Button,
@@ -10,22 +9,11 @@ import {
   Image,
   Span,
   Stack,
+  Tabs,
   Text,
-  chakra,
 } from "@chakra-ui/react"
 import Link from "next/link"
-
-const Blob = chakra(Circle, {
-  base: {
-    w: "765px",
-    h: "765px",
-    rounded: "100%",
-    opacity: "0.1",
-    filter: "blur(250px)",
-    bg: "teal.500",
-    pos: "absolute",
-  },
-})
+import { AccessibilityDemo } from "./data/accessibility-demo"
 
 const Intro = () => (
   <Stack gap="10">
@@ -85,28 +73,101 @@ const Testimonial = () => (
   </Stack>
 )
 
-const CodePreviewTab = () => (
+const CodePreviewSection = () => (
   <Flex
+    css={{
+      "&, & *": {
+        minW: "0",
+      },
+    }}
     bg="#040A0A"
     border="solid 1px"
     borderColor="#001B18"
     flex="1"
     h="full"
-  ></Flex>
+  >
+    <Tabs.Root
+      variant="plain"
+      defaultValue="Preview"
+      w="full"
+      display="flex"
+      flexDir="column"
+    >
+      <Tabs.List p="2">
+        {["Preview", "Code"].map((tab) => (
+          <Tabs.Trigger
+            key={tab}
+            value={tab}
+            bg={{ base: "#050D0D/10", _selected: "teal.500/10!" }}
+            rounded="0"
+            cursor="pointer"
+          >
+            {tab}
+          </Tabs.Trigger>
+        ))}
+      </Tabs.List>
+      <Tabs.ContentGroup rounded="md" overflow="hidden" h="full">
+        <Tabs.Content
+          value="Preview"
+          mt="0"
+          h="full"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          className="light"
+        >
+          <AccessibilityDemo />
+        </Tabs.Content>
+        <Tabs.Content
+          value="Code"
+          mt="0"
+          css={{
+            "&  pre": {
+              overflow: "auto",
+            },
+          }}
+        >
+          <DemoCode
+            name="accessibility-demo"
+            extension="tsx"
+            opts={{
+              lang: "tsx",
+            }}
+          />
+        </Tabs.Content>
+      </Tabs.ContentGroup>
+    </Tabs.Root>
+  </Flex>
 )
 
 export const Accessibility = async () => (
   <Flex justify="center">
-    <Flex gap="20" flex="1" maxW="6xl" pos="relative">
-      <Blob top="-5px" left="-50%" bottom="-180px" />
-      <Blob top="-70%" right="-20%" />
+    <Flex gap="20" flex="1" pos="relative">
+      <Circle
+        size="765px"
+        pos="absolute"
+        top="-5px"
+        left="-50%"
+        bottom="-180px"
+        opacity="0.1"
+        filter="blur(250px)"
+        bg="teal.500"
+      />
+      <Circle
+        size="765px"
+        pos="absolute"
+        top="-70%"
+        right="-20%"
+        opacity="0.1"
+        filter="blur(250px)"
+        bg="teal.500"
+      />
       <Stack gap="12" flex="1">
         <Intro />
-
         <Testimonial />
       </Stack>
 
-      <CodePreviewTab />
+      <CodePreviewSection />
     </Flex>
   </Flex>
 )

@@ -69,7 +69,7 @@ const NewPartner = () => (
 )
 
 const PartnerGridRow1 = () => (
-  <PartnerGridRoot columns={4}>
+  <PartnerGridRoot>
     <Center borderInlineStartWidth="var(--border-width)">
       <Lattice />
     </Center>
@@ -86,7 +86,7 @@ const PartnerGridRow1 = () => (
 )
 
 const PartnerGridRow2 = () => (
-  <PartnerGridRoot columns={4} zIndex="5">
+  <PartnerGridRoot zIndex="5">
     <Center borderInlineStartWidth="var(--border-width)">
       <Udacity />
     </Center>
