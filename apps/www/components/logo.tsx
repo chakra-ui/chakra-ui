@@ -1,3 +1,5 @@
+"use client"
+
 import { type HTMLChakraProps, chakra } from "@chakra-ui/react"
 
 export const Logo = (props: HTMLChakraProps<"svg">) => {
@@ -62,6 +64,24 @@ export const LogoIcon = (props: HTMLChakraProps<"svg">) => {
           <stop offset="1" stopColor="#29C6B7" />
         </linearGradient>
       </defs>
+    </chakra.svg>
+  )
+}
+
+export const LogoBlitzIcon = (props: HTMLChakraProps<"svg">) => {
+  return (
+    <chakra.svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="auto"
+      height="8"
+      viewBox="0 0 26 36"
+      fill="none"
+      {...props}
+    >
+      <path
+        d="M0.439466 19.4621L19.1409 0.368881C19.4902 0.0121879 20.0525 0.446251 19.8166 0.890609L12.8561 14.0056C12.7007 14.298 12.9067 14.6549 13.2308 14.6549H25.2597C25.6473 14.6549 25.8343 15.1428 25.551 15.4147L4.47199 35.639C4.09405 36.0016 3.53148 35.4906 3.83492 35.0604L13.8133 20.9092C14.0178 20.6191 13.8163 20.2126 13.4676 20.2126H0.74036C0.359231 20.2126 0.169039 19.7382 0.439466 19.4621Z"
+        fill="white"
+      />
     </chakra.svg>
   )
 }

@@ -1,4 +1,4 @@
-import { Circle, Container, Icon, Stack } from "@chakra-ui/react"
+import { Circle, Icon, Stack } from "@chakra-ui/react"
 import { Accessibility } from "./page/accessibility"
 import { DesignSystem } from "./page/design-system"
 import { Frameworks } from "./page/frameworks"
@@ -9,6 +9,7 @@ import { BlitzIcon } from "./page/icons"
 import { Partners } from "./page/partners"
 import { Sponsors } from "./page/sponsors"
 import { Stats } from "./page/stats"
+import { Templates } from "./page/templates"
 import { Testimonials } from "./page/testimonials"
 
 export default function Page() {
@@ -44,8 +45,7 @@ export default function Page() {
         <Testimonials />
         <Sponsors />
         <Frameworks />
-
-        <div></div>
+        <Templates />
       </Stack>
     </Stack>
   )
