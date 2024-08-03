@@ -42,6 +42,14 @@ const StyledGroup = chakra("div", {
         gap: "0!",
       },
     },
+    grow: {
+      true: {
+        display: "flex",
+        "& > *": {
+          flex: 1,
+        },
+      },
+    },
     stacking: {
       "first-on-top": {
         "& > [data-group-item]": {
