@@ -98,7 +98,7 @@ export const Frameworks = async () => {
         <Circle
           size="765px"
           rounded="100%"
-          opacity="0.15"
+          opacity="0.1"
           filter="blur(250px)"
           bg="teal.500"
           pos="absolute"
