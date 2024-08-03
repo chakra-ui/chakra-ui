@@ -1,0 +1,56 @@
+---
+title: Float
+description: Used to anchor an element to the edge of a container.
+links: [{ title: "Source", url: "#" }, { title: "Storybook", url: "#" }]
+---
+
+<ExampleTabs name="float-basic" />
+
+## Usage
+
+Float requires a parent element with `position: relative` style applied.
+
+```jsx
+import { Box, Float } from "@chakra-ui/react"
+```
+
+```jsx
+<Box position="relative">
+  <Float>
+    <div />
+  </Float>
+</Box>
+```
+
+## Examples
+
+### Placement
+
+Use the `placement` prop to position the element along the edges of the
+container.
+
+<ExampleTabs name="float-with-placements" />
+
+### Offset X
+
+Use the `offsetX` prop to offset the element along the x-axis.
+
+<ExampleTabs name="float-with-offset-x" />
+
+### Offset Y
+
+Use the `offsetY` prop to offset the element along the y-axis.
+
+<ExampleTabs name="float-with-offset-y" />
+
+### Offset
+
+Use the `offset` prop to offset the element along both axes.
+
+<ExampleTabs name="float-with-offset" />
+
+### Avatar
+
+Here's an example of composing a `Float` component with an `Avatar` component.
+
+<ExampleTabs name="float-with-avatar" />
