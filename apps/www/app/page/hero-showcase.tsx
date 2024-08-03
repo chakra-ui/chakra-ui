@@ -204,10 +204,9 @@ const TooltipDemo = () => (
     <Center pb="12">
       <Tooltip.Root
         unmountOnExit
-        open
+        defaultOpen
         closeOnScroll={false}
         closeOnPointerDown={false}
-        closeOnClick={false}
       >
         <Tooltip.Trigger asChild>
           <Button variant="outline" size="lg" colorPalette="teal">
