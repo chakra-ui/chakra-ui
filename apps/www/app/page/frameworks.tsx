@@ -79,7 +79,7 @@ const FrameworksList = () => (
     }}
   >
     {FRAMEWORKS.map((framework) => (
-      <Center p="16" title={framework.title}>
+      <Center p="16" key={framework.title} title={framework.title}>
         <framework.icon />
       </Center>
     ))}
