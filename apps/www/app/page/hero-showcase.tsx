@@ -6,6 +6,7 @@ import {
   Button,
   Center,
   Circle,
+  Container,
   Grid,
   GridItem,
   Group,
@@ -45,7 +46,7 @@ const SEGMENT_CONTROL_OPTIONS = [
   },
 ]
 
-const HeroShowcaseRoot = chakra(Grid, {
+const HeroShowcaseGrid = chakra(Grid, {
   base: {
     pb: "40",
     divideStyle: "solid",
@@ -373,15 +374,17 @@ const SegmentGroupDemo = () => {
 }
 
 export const HeroShowCase = () => (
-  <HeroShowcaseRoot>
-    <CTAButtonGroup />
-    <MenuDemo />
-    <SliderDemo />
-    <BadgeDemo />
-    <AvatarDemo />
-    <TooltipDemo />
-    <RadioDemo />
-    <ProgressDemo />
-    <SegmentGroupDemo />
-  </HeroShowcaseRoot>
+  <Container>
+    <HeroShowcaseGrid>
+      <CTAButtonGroup />
+      <MenuDemo />
+      <SliderDemo />
+      <BadgeDemo />
+      <AvatarDemo />
+      <TooltipDemo />
+      <RadioDemo />
+      <ProgressDemo />
+      <SegmentGroupDemo />
+    </HeroShowcaseGrid>
+  </Container>
 )

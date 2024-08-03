@@ -3,6 +3,7 @@
 import {
   Center,
   Circle,
+  Container,
   Grid,
   Heading,
   Stack,
@@ -101,20 +102,22 @@ const PartnerGridRow2 = () => (
 )
 
 export const Partners = () => (
-  <Stack gap="8" pos="relative">
-    <Blob />
-    <Description />
+  <Container>
     <Stack gap="8" pos="relative">
-      <Blob
-        bottom="-50%"
-        left="0"
-        top="0"
-        right="0"
-        opacity="0.18"
-        zIndex="1"
-      />
-      <PartnerGridRow1 />
-      <PartnerGridRow2 />
+      <Blob />
+      <Description />
+      <Stack gap="8" pos="relative">
+        <Blob
+          bottom="-50%"
+          left="0"
+          top="0"
+          right="0"
+          opacity="0.18"
+          zIndex="1"
+        />
+        <PartnerGridRow1 />
+        <PartnerGridRow2 />
+      </Stack>
     </Stack>
-  </Stack>
+  </Container>
 )

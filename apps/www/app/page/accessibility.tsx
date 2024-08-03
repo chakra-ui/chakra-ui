@@ -3,6 +3,7 @@ import { BlitzFillIcon } from "@/app/page/icons"
 import {
   Button,
   Circle,
+  Container,
   Flex,
   HStack,
   Heading,
@@ -141,33 +142,35 @@ const CodePreviewSection = () => (
 )
 
 export const Accessibility = async () => (
-  <Flex justify="center">
-    <Flex gap="20" flex="1" pos="relative">
-      <Circle
-        size="765px"
-        pos="absolute"
-        top="-5px"
-        left="-50%"
-        bottom="-180px"
-        opacity="0.1"
-        filter="blur(250px)"
-        bg="teal.500"
-      />
-      <Circle
-        size="765px"
-        pos="absolute"
-        top="-70%"
-        right="-20%"
-        opacity="0.1"
-        filter="blur(250px)"
-        bg="teal.500"
-      />
-      <Stack gap="12" flex="1">
-        <Intro />
-        <Testimonial />
-      </Stack>
+  <Container>
+    <Flex justify="center">
+      <Flex gap="20" flex="1" pos="relative">
+        <Circle
+          size="765px"
+          pos="absolute"
+          top="-5px"
+          left="-50%"
+          bottom="-180px"
+          opacity="0.1"
+          filter="blur(250px)"
+          bg="teal.500"
+        />
+        <Circle
+          size="765px"
+          pos="absolute"
+          top="-70%"
+          right="-20%"
+          opacity="0.1"
+          filter="blur(250px)"
+          bg="teal.500"
+        />
+        <Stack gap="12" flex="1">
+          <Intro />
+          <Testimonial />
+        </Stack>
 
-      <CodePreviewSection />
+        <CodePreviewSection />
+      </Flex>
     </Flex>
-  </Flex>
+  </Container>
 )

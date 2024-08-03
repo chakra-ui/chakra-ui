@@ -1,4 +1,4 @@
-import { Button, Heading, Span, Stack, Text } from "@chakra-ui/react"
+import { Button, Container, Heading, Span, Stack, Text } from "@chakra-ui/react"
 import { HiArrowRight } from "react-icons/hi"
 
 const V3LaunchButton = () => (
@@ -51,11 +51,13 @@ const Description = () => (
 )
 
 export const Hero = () => (
-  <>
-    <V3LaunchButton />
-    <Stack gap="5" pr="4" maxW="3xl" px="1.5">
-      <Intro />
-      <Description />
+  <Container>
+    <Stack>
+      <V3LaunchButton />
+      <Stack gap="5" pr="4" maxW="3xl" px="1.5">
+        <Intro />
+        <Description />
+      </Stack>
     </Stack>
-  </>
+  </Container>
 )

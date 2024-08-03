@@ -8,6 +8,7 @@ import {
   Button,
   Center,
   Circle,
+  Container,
   Flex,
   Grid,
   Group,
@@ -180,21 +181,23 @@ const SponsorsList = () => {
 
 export const Sponsors = () => {
   return (
-    <Stack gap="14" pos="relative">
-      <Circle
-        size="765px"
-        pos="absolute"
-        top="-20%"
-        left="30%"
-        opacity="0.15"
-        filter="blur(250px)"
-        bg="teal.500"
-      />
-      <Flex align="center" justify="space-between">
-        <Intro />
-        <Description />
-      </Flex>
-      <SponsorsList />
-    </Stack>
+    <Container>
+      <Stack gap="14" pos="relative">
+        <Circle
+          size="765px"
+          pos="absolute"
+          top="-20%"
+          left="30%"
+          opacity="0.15"
+          filter="blur(250px)"
+          bg="teal.500"
+        />
+        <Flex align="center" justify="space-between">
+          <Intro />
+          <Description />
+        </Flex>
+        <SponsorsList />
+      </Stack>
+    </Container>
   )
 }

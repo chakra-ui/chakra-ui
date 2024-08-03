@@ -1,6 +1,14 @@
 import { DemoCode } from "@/app/page/demo-code"
 import { BlitzFillIcon } from "@/app/page/icons"
-import { HStack, Heading, Span, Stack, Tabs, Text } from "@chakra-ui/react"
+import {
+  Container,
+  HStack,
+  Heading,
+  Span,
+  Stack,
+  Tabs,
+  Text,
+} from "@chakra-ui/react"
 
 const items = [
   {
@@ -95,13 +103,15 @@ const Content = () => (
 
 export const DesignSystem = () => {
   return (
-    <Stack gap="12" align="center">
-      <Header />
+    <Container>
+      <Stack gap="12" align="center">
+        <Header />
 
-      <Tabs.Root defaultValue="design-tokens" variant="plain" maxW="3xl">
-        <List />
-        <Content />
-      </Tabs.Root>
-    </Stack>
+        <Tabs.Root defaultValue="design-tokens" variant="plain" maxW="3xl">
+          <List />
+          <Content />
+        </Tabs.Root>
+      </Stack>
+    </Container>
   )
 }

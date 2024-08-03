@@ -3,6 +3,7 @@ import { getGithubStars } from "@/lib/get-github-stars"
 import { getNpmDownloads } from "@/lib/get-npm-downloads"
 import {
   Circle,
+  Container,
   Flex,
   Heading,
   Icon,
@@ -128,23 +129,25 @@ const StatsList = async () => {
 
 export const Stats = async () => {
   return (
-    <Stack gap="20" pos="relative" align="center" maxW="100%">
-      <Icon asChild w="245px" h="342px" pos="absolute" top="-28" right="67px">
-        <BlitzIcon />
-      </Icon>
-      <Intro />
-      <StatsList />
-      <Circle
-        w="765px"
-        h="765px"
-        rounded="100%"
-        opacity="0.15"
-        filter="blur(250px)"
-        bg="teal.500"
-        pos="absolute"
-        right="-32"
-        bottom="-50%"
-      />
-    </Stack>
+    <Container>
+      <Stack gap="20" pos="relative" align="center" maxW="100%">
+        <Icon asChild w="245px" h="342px" pos="absolute" top="-28" right="67px">
+          <BlitzIcon />
+        </Icon>
+        <Intro />
+        <StatsList />
+        <Circle
+          w="765px"
+          h="765px"
+          rounded="100%"
+          opacity="0.15"
+          filter="blur(250px)"
+          bg="teal.500"
+          pos="absolute"
+          right="-32"
+          bottom="-50%"
+        />
+      </Stack>
+    </Container>
   )
 }

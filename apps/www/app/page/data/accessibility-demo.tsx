@@ -4,7 +4,7 @@ import { MdStar } from "react-icons/md"
 export const AccessibilityDemo = () => (
   <Center>
     <Box p="5" maxW="320px" borderWidth="1px" borderColor="teal.900/30">
-      <Image borderRadius="md" src="https://bit.ly/2k1H1t6" />
+      <Image borderRadius="md" src="https://bit.ly/2k1H1t6" alt="Room" />
       <Flex align="baseline" mt={2}>
         <Badge colorPalette="teal">Plus</Badge>
         <Text

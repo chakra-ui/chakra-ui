@@ -1,6 +1,7 @@
 import { Circle, Container, Icon, Stack } from "@chakra-ui/react"
 import { Accessibility } from "./page/accessibility"
 import { DesignSystem } from "./page/design-system"
+import { Frameworks } from "./page/frameworks"
 import { Header } from "./page/header"
 import { Hero } from "./page/hero"
 import { HeroShowCase } from "./page/hero-showcase"
@@ -30,30 +31,19 @@ export default function Page() {
 
       <Header />
 
-      <Container>
-        <Stack>
-          <Hero />
-          <HeroShowCase />
-        </Stack>
-      </Container>
+      <Stack>
+        <Hero />
+        <HeroShowCase />
+      </Stack>
 
       <Stack gap="52">
-        <Container>
-          <Partners />
-        </Container>
-        <Container>
-          <DesignSystem />
-        </Container>
-        <Container>
-          <Accessibility />
-        </Container>
-        <Container>
-          <Stats />
-        </Container>
+        <Partners />
+        <DesignSystem />
+        <Accessibility />
+        <Stats />
         <Testimonials />
-        <Container>
-          <Sponsors />
-        </Container>
+        <Sponsors />
+        <Frameworks />
 
         <div></div>
       </Stack>
