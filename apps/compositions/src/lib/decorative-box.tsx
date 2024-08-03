@@ -4,6 +4,7 @@ export const DecorativeBox = (props: BoxProps) => (
   <Box
     {...props}
     css={{
+      width: "100%",
       height: "100%",
       bg: "bg.emphasized",
       backgroundClip: "padding-box",
