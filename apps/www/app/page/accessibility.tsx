@@ -17,18 +17,18 @@ import Link from "next/link"
 import { AccessibilityDemo } from "./data/accessibility-demo"
 
 const Intro = () => (
-  <Stack gap="10">
-    <Stack gap="7" align="flex-start">
-      <Stack gap="5">
+  <Stack gap={{ base: "4", md: "10" }}>
+    <Stack gap={{ base: "3", md: "7" }} align="flex-start">
+      <Stack gap={{ base: "3", md: "6" }}>
         <HStack gap="4" color="teal.500">
           <BlitzFillIcon />
           <Text fontWeight="bold">Accessible UI Components</Text>
         </HStack>
-        <Heading size="5xl" fontWeight="bold">
+        <Heading textStyle={{ base: "3xl", md: "5xl" }} fontWeight="bold">
           Less code. More speed
         </Heading>
       </Stack>
-      <Text textStyle="2xl">
+      <Text textStyle={{ base: "lg", md: "2xl" }}>
         Meet the system for modern product development.{" "}
         <Span color="gray.400">
           Streamline issues, projects, and product roadmaps.
@@ -38,7 +38,7 @@ const Intro = () => (
     <Button
       asChild
       colorPalette="teal"
-      size="lg"
+      size={{ base: "md", md: "lg" }}
       bg="teal.500"
       color="black"
       w="fit-content"
@@ -50,7 +50,12 @@ const Intro = () => (
 )
 
 const Testimonial = () => (
-  <Stack gap="10" pl="9" borderLeft="solid 4px" borderColor="teal.500">
+  <Stack
+    gap={{ base: "4", md: "10" }}
+    pl={{ base: "4", md: "9" }}
+    borderLeft="solid 4px"
+    borderColor="teal.500"
+  >
     <Text color="gray.400">
       “Chakra UI is glorious. Dark mode support looks amazing and it is 100%
       built-in. I love the consistent use of focus styling and the subtle
@@ -115,7 +120,7 @@ const CodePreviewSection = () => (
           display="flex"
           justifyContent="center"
           alignItems="center"
-          className="light"
+          py="6"
         >
           <AccessibilityDemo />
         </Tabs.Content>
@@ -144,7 +149,12 @@ const CodePreviewSection = () => (
 export const Accessibility = async () => (
   <Container>
     <Flex justify="center">
-      <Flex gap="20" flex="1" pos="relative">
+      <Flex
+        gap={{ base: "10", md: "20" }}
+        flex="1"
+        pos="relative"
+        direction={{ base: "column", md: "row" }}
+      >
         <Circle
           size="765px"
           pos="absolute"
@@ -154,6 +164,7 @@ export const Accessibility = async () => (
           opacity="0.1"
           filter="blur(250px)"
           bg="teal.500"
+          mdDown={{ display: "none" }}
         />
         <Circle
           size="765px"
@@ -163,8 +174,9 @@ export const Accessibility = async () => (
           opacity="0.1"
           filter="blur(250px)"
           bg="teal.500"
+          mdDown={{ display: "none" }}
         />
-        <Stack gap="12" flex="1">
+        <Stack gap={{ base: "6", md: "12" }} flex="1">
           <Intro />
           <Testimonial />
         </Stack>

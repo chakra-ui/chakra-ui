@@ -25,13 +25,13 @@ import { PiMedalFill } from "react-icons/pi"
 import { RiMedalFill } from "react-icons/ri"
 
 const Intro = () => (
-  <Stack gap="6">
+  <Stack gap={{ base: "3", md: "6" }}>
     <HStack gap="4" color="teal.500">
       <BlitzFillIcon />
       <Text fontWeight="bold">Sponsors</Text>
     </HStack>
-    <Heading maxW="md" size="5xl" fontWeight="bold">
-      Built for developers By{" "}
+    <Heading maxW="md" textStyle={{ base: "3xl", md: "5xl" }} fontWeight="bold">
+      Built for developers By
       <Span color="teal.500" px="2">
         developers
       </Span>
@@ -41,7 +41,13 @@ const Intro = () => (
 
 const SponsorLinks = () => (
   <Group gap="5">
-    <Button asChild colorPalette="teal" size="lg" bg="teal.500" color="black">
+    <Button
+      asChild
+      colorPalette="teal"
+      size={{ base: "md", md: "lg" }}
+      bg="teal.500"
+      color="black"
+    >
       <a
         target="_blank"
         rel="noopener"
@@ -56,7 +62,7 @@ const SponsorLinks = () => (
     <Button
       asChild
       colorPalette="teal"
-      size="lg"
+      size={{ base: "md", md: "lg" }}
       variant="outline"
       color="teal.500!"
     >
@@ -75,8 +81,8 @@ const SponsorLinks = () => (
 )
 
 const Description = () => (
-  <Stack gap="6">
-    <Text textStyle="2xl" maxW="xl">
+  <Stack gap={{ base: "3", md: "6" }}>
+    <Text textStyle={{ base: "lg", md: "2xl" }} maxW="xl">
       Our maintainers devote their time, effort, and heart to ensure Chakra UI
       keeps getting better.
       <br />
@@ -180,7 +186,7 @@ const SponsorsList = () => {
 export const Sponsors = () => {
   return (
     <Container>
-      <Stack gap="14" pos="relative">
+      <Stack gap={{ base: "7", md: "14" }} pos="relative">
         <Circle
           size="765px"
           pos="absolute"
@@ -189,8 +195,14 @@ export const Sponsors = () => {
           opacity="0.15"
           filter="blur(250px)"
           bg="teal.500"
+          mdDown={{ display: "none" }}
         />
-        <Flex align="center" justify="space-between">
+        <Flex
+          align={{ md: "center" }}
+          justify="space-between"
+          direction={{ base: "column", md: "row" }}
+          gap="4"
+        >
           <Intro />
           <Description />
         </Flex>

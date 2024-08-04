@@ -1,25 +1,33 @@
-import { Button, Container, Heading, Span, Stack, Text } from "@chakra-ui/react"
+import {
+  Badge,
+  Button,
+  Container,
+  Heading,
+  Span,
+  Stack,
+  Text,
+} from "@chakra-ui/react"
 import { HiArrowRight } from "react-icons/hi"
 
 const V3LaunchButton = () => (
-  <Button
-    size="md"
+  <Badge
+    size={{ base: "sm", sm: "md" }}
     colorPalette="teal"
     variant="outline"
     w="fit-content"
     bg="#061416"
-    px="4"
-    py="2.5"
-    fontWeight="bold"
-    gap="2.5"
+    px={{ base: "2", md: "4" }}
+    py={{ base: "1", md: "2.5" }}
+    fontWeight={{ md: "bold" }}
+    gap={{ base: "1", md: "2.5" }}
   >
     Celebrating the launch of v3
     <HiArrowRight />
-  </Button>
+  </Badge>
 )
 
 const Intro = () => (
-  <Heading size="5xl" fontWeight="bold">
+  <Heading textStyle={{ base: "3xl", md: "5xl" }} fontWeight="bold">
     Chakra UI is a component system for building products{" "}
     <Span
       color="teal.500"
@@ -44,7 +52,11 @@ const Intro = () => (
 )
 
 const Description = () => (
-  <Text fontSize="2xl" color="gray.400" fontWeight="medium">
+  <Text
+    textStyle={{ base: "lg", md: "2xl" }}
+    color="gray.400"
+    fontWeight="medium"
+  >
     Beautiful, accessible, React components for high-quality web apps and design
     systems.
   </Text>
@@ -52,7 +64,7 @@ const Description = () => (
 
 export const Hero = () => (
   <Container>
-    <Stack>
+    <Stack gap={{ base: "4", md: "6" }}>
       <V3LaunchButton />
       <Stack gap="5" pr="4" maxW="3xl" px="1.5">
         <Intro />

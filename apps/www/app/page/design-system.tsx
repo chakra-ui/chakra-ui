@@ -29,12 +29,16 @@ const items = [
 ]
 
 const Header = () => (
-  <Stack gap="6" maxW="xl" align="center">
+  <Stack gap={{ base: "3", md: "6" }} maxW="xl" align="center">
     <HStack gap="4" color="teal.500">
       <BlitzFillIcon />
       <Text fontWeight="bold">Design Tokens</Text>
     </HStack>
-    <Heading size="5xl" fontWeight="bold" textAlign="center">
+    <Heading
+      textStyle={{ base: "3xl", md: "5xl" }}
+      fontWeight="bold"
+      textAlign="center"
+    >
       Build your design system on top of
       <Span
         color="teal.500"
@@ -66,10 +70,10 @@ const List = () => (
         key={item.value}
         value={item.value}
         gap="2"
-        alignItems="start"
+        alignItems={{ base: "center", md: "start" }}
         borderColor="#001B18"
         w="full"
-        h="28"
+        h={{ base: "auto", md: "28" }}
         px="5"
         py="4"
         bg={{ base: "#050D0D/10", _selected: "#050D0D!" }}
@@ -84,7 +88,9 @@ const List = () => (
           <Text fontWeight="medium" color="white!">
             {item.label}
           </Text>
-          <Text color="gray.400">{item.description}</Text>
+          <Text color="gray.400" display={{ mdDown: "none" }}>
+            {item.description}
+          </Text>
         </Stack>
       </Tabs.Trigger>
     ))}
@@ -104,7 +110,7 @@ const Content = () => (
 export const DesignSystem = () => {
   return (
     <Container>
-      <Stack gap="12" align="center">
+      <Stack gap={{ base: "6", md: "12" }} align="center">
         <Header />
 
         <Tabs.Root defaultValue="design-tokens" variant="plain" maxW="3xl">

@@ -25,20 +25,28 @@ export default function Page() {
         opacity="0.25"
         filter="blur(250px)"
         bg="teal.500"
+        mdDown={{ display: "none" }}
       />
 
-      <Icon asChild w="245px" h="342px" pos="absolute" top="58px" right="67px">
+      <Icon
+        asChild
+        w="245px"
+        h="342px"
+        pos="absolute"
+        top="58px"
+        right="67px"
+        mdDown={{ display: "none" }}
+      >
         <BlitzIcon />
       </Icon>
 
       <Header />
 
-      <Stack>
-        <Hero />
-        <HeroShowCase />
-      </Stack>
-
-      <Stack gap="52">
+      <Stack gap={{ base: "24", md: "52" }}>
+        <Stack>
+          <Hero />
+          <HeroShowCase />
+        </Stack>
         <Partners />
         <DesignSystem />
         <Accessibility />
