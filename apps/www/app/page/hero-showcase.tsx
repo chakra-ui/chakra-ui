@@ -19,7 +19,6 @@ import {
   RadioGroup,
   SegmentGroup,
   Slider,
-  Span,
   Stack,
   Text,
   Tooltip,
@@ -48,45 +47,73 @@ const SEGMENT_CONTROL_OPTIONS = [
 
 const HeroShowcaseGrid = chakra(Grid, {
   base: {
-    pb: "40",
     divideStyle: "solid",
-    divideColor: "teal.500/15",
-    divideX: "1px",
-    divideY: "1px",
-    gridTemplateAreas: `"buttons buttons buttons menu" 
-    "slider badge avatar menu" 
-    "tooltip radio progress segment-group"`,
+    divideColor: "#001B18",
+    divideX: { md: "1px" },
+    divideY: { md: "1px" },
+    gridTemplateColumns: { base: "1fr 1fr", md: "1fr 1fr 1fr 1fr" },
+    gridTemplateRows: "auto",
+    gridTemplateAreas: {
+      base: `"buttons buttons"
+      "tooltip slider"
+      "tooltip slider"
+      "tooltip badge"
+      "radio badge"
+      "radio avatar"
+      "radio avatar"
+      "progress menu"
+      "segment-group segment-group"`,
+      md: `"buttons buttons buttons menu" 
+      "slider badge avatar menu" 
+      "tooltip radio progress segment-group"`,
+    },
+    "& > :not(:first-child)": {
+      "--border-width": "0.5px",
+      border: "solid var(--border-width)",
+      borderColor: "#001B18",
+      ml: "calc(var(--border-width) * -1)",
+      mb: "calc(var(--border-width) * -1)",
+    },
   },
 })
 
 const CTAButtonGroup = () => (
-  <GridItem area="buttons" pt="7" px="1.5">
-    <Group gap="5">
-      <Button asChild colorPalette="teal" size="lg" bg="teal.500" color="black">
+  <GridItem pt="7" area="buttons" px={{ md: "1.5" }} pb={{ mdDown: "6" }}>
+    <Stack direction={{ base: "column", sm: "row" }} gap="3">
+      <Button
+        asChild
+        colorPalette="teal"
+        size={{ base: "md", md: "lg" }}
+        bg="teal.500"
+        color="black"
+        w={{ base: "full", sm: "fit-content" }}
+      >
         <Link href="/docs/get-started/overview/installation">
           Start Building
         </Link>
       </Button>
-      <Button
-        asChild
-        variant="ghost"
+      <Badge
+        variant="plain"
+        px={{ base: "4", md: "6" }}
+        h={{ base: "10", md: "12" }}
+        textStyle={{ base: "sm", md: "md" }}
+        rounded={{ base: "md", md: "lg" }}
         border="solid 1px"
         borderColor="border.muted"
         colorPalette="teal"
-        size="lg"
         bg="transparent"
-        color="teal.500"
         fontFamily="mono"
+        w={{ base: "full", sm: "fit-content" }}
       >
-        <Span>npm i @chakra-ui/react</Span>
-      </Button>
-    </Group>
+        npm i @chakra-ui/react
+      </Badge>
+    </Stack>
   </GridItem>
 )
 
 const MenuDemo = () => (
-  <GridItem area="menu" borderInlineEndWidth="1px!">
-    <Center py="12">
+  <GridItem area="menu" borderInlineEndWidth={{ md: "1px!" }}>
+    <Center py={{ base: "6", md: "12" }}>
       <Stack gap="4" align="center">
         <Menu.Root open>
           <Button
@@ -201,8 +228,8 @@ const AvatarDemo = () => (
 )
 
 const TooltipDemo = () => (
-  <GridItem area="tooltip" borderBottomWidth="1px!" asChild>
-    <Center pb="12">
+  <GridItem area="tooltip" borderBottomWidth={{ md: "1px!" }} asChild>
+    <Center pb={{ base: "24", md: "12" }} pt={{ mdDown: "12" }}>
       <Tooltip.Root
         unmountOnExit
         defaultOpen
@@ -239,7 +266,13 @@ const TooltipDemo = () => (
 )
 
 const RadioDemo = () => (
-  <GridItem area="radio" borderBottomWidth="1px!" asChild>
+  <GridItem
+    area="radio"
+    px="6"
+    py={{ mdDown: "12" }}
+    borderBottomWidth={{ md: "1px!" }}
+    asChild
+  >
     <Center>
       <RadioGroup.Root
         defaultValue="Standard"
@@ -273,7 +306,7 @@ const RadioDemo = () => (
 )
 
 const ProgressDemo = () => (
-  <GridItem area="progress" borderBottomWidth="1px!" asChild>
+  <GridItem area="progress" borderBottomWidth={{ md: "1px!" }} asChild>
     <Center>
       <Stack gap="7">
         <ProgressCircle.Root value={75} colorPalette="teal">
@@ -314,8 +347,9 @@ const SegmentGroupDemo = () => {
   return (
     <GridItem
       area="segment-group"
-      borderInlineEndWidth="1px!"
-      borderBottomWidth="1px!"
+      borderInlineEndWidth={{ md: "1px!" }}
+      borderBottomWidth={{ md: "1px!" }}
+      px="6"
       py="12"
       pos="relative"
     >

@@ -19,8 +19,13 @@ import {
 } from "./icons"
 
 const Intro = () => (
-  <Stack gap="8" align="center">
-    <Heading maxW="lg" size="5xl" fontWeight="bold" textAlign="center">
+  <Stack gap={{ base: "4", md: "8" }} align="center">
+    <Heading
+      maxW="lg"
+      textStyle={{ base: "3xl", md: "5xl" }}
+      fontWeight="bold"
+      textAlign="center"
+    >
       Works with your favorite application{" "}
       <Span
         color="teal.500"
@@ -45,7 +50,7 @@ const Intro = () => (
 
     <Text
       maxW="lg"
-      textStyle="2xl"
+      textStyle={{ base: "lg", md: "2xl" }}
       fontWeight="medium"
       textAlign="center"
       color="gray.400"
@@ -79,8 +84,14 @@ const FrameworksList = () => (
     }}
   >
     {FRAMEWORKS.map((framework) => (
-      <Center p="16" key={framework.title} title={framework.title}>
-        <framework.icon />
+      <Center
+        p={{ base: "6", md: "10" }}
+        key={framework.title}
+        title={framework.title}
+      >
+        <Icon fontSize={{ base: "3xl", md: "6xl" }} asChild>
+          <framework.icon />
+        </Icon>
       </Center>
     ))}
   </Wrap>
@@ -89,8 +100,21 @@ const FrameworksList = () => (
 export const Frameworks = async () => {
   return (
     <Container>
-      <Stack gap="20" pos="relative" align="center" maxW="100%">
-        <Icon asChild w="245px" h="342px" pos="absolute" top="-28" left="-20">
+      <Stack
+        gap={{ base: "10", md: "20" }}
+        pos="relative"
+        align="center"
+        maxW="100%"
+      >
+        <Icon
+          asChild
+          w="245px"
+          h="342px"
+          pos="absolute"
+          top="-28"
+          left="-20"
+          mdDown={{ display: "none" }}
+        >
           <BlitzIcon />
         </Icon>
         <Intro />
@@ -104,6 +128,7 @@ export const Frameworks = async () => {
           pos="absolute"
           top="-80%"
           left="-25%"
+          mdDown={{ display: "none" }}
         />
       </Stack>
     </Container>

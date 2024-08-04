@@ -18,8 +18,13 @@ import { RiNpmjsFill } from "react-icons/ri"
 import { BlitzIcon } from ".//icons"
 
 const Intro = () => (
-  <Stack gap="20" align="center">
-    <Heading maxW="md" size="5xl" fontWeight="bold" textAlign="center">
+  <Stack gap={{ base: "6", md: "14" }} align="center">
+    <Heading
+      maxW="md"
+      textStyle={{ base: "3xl", md: "5xl" }}
+      fontWeight="bold"
+      textAlign="center"
+    >
       Built for developers By{" "}
       <Span
         color="teal.500"
@@ -42,9 +47,13 @@ const Intro = () => (
       </Span>
     </Heading>
 
-    <Stack fontWeight="medium" textAlign="center">
-      <Heading size="2xl">Built for modern product teams.</Heading>
-      <Text fontSize="2xl" color="gray.400">
+    <Stack
+      textStyle={{ base: "lg", md: "2xl" }}
+      fontWeight="medium"
+      textAlign="center"
+    >
+      <Heading>Built for modern product teams.</Heading>
+      <Text color="gray.400">
         From next-gen startups to established enterprises.
       </Text>
     </Stack>
@@ -66,11 +75,15 @@ const StatsBox = (props: StatBoxProps) => {
       border="1px solid #001B18"
       ml="-1px"
       align="center"
-      gap="8"
-      pt="10"
-      pb="8"
+      gap={{ base: "4", md: "8" }}
+      pt={{ base: "5", md: "10" }}
+      pb={{ base: "4", md: "8" }}
     >
-      <Text fontWeight="medium" color="teal.500" fontSize="5.5rem">
+      <Text
+        fontWeight="medium"
+        color="teal.500"
+        textStyle={{ base: "4xl", md: "7xl" }}
+      >
         {description}
       </Text>
       <Flex align="center" gap="3">
@@ -107,7 +120,12 @@ const StatsList = async () => {
   const { githubStars, discordMembers, npmDownloads } = await getStats()
 
   return (
-    <Flex w="full" maxW="6xl" pos="relative">
+    <Flex
+      w="full"
+      maxW="6xl"
+      pos="relative"
+      direction={{ base: "column", md: "row" }}
+    >
       <StatsBox
         icon={RiNpmjsFill}
         title="downloads  / month"
@@ -130,12 +148,26 @@ const StatsList = async () => {
 export const Stats = async () => {
   return (
     <Container>
-      <Stack gap="20" pos="relative" align="center" maxW="100%">
-        <Icon asChild w="245px" h="342px" pos="absolute" top="-28" right="67px">
+      <Stack
+        gap={{ base: "10", md: "20" }}
+        pos="relative"
+        align="center"
+        maxW="100%"
+      >
+        <Icon
+          asChild
+          w="245px"
+          h="342px"
+          pos="absolute"
+          top="-28"
+          right="67px"
+          mdDown={{ display: "none" }}
+        >
           <BlitzIcon />
         </Icon>
         <Intro />
         <StatsList />
+
         <Circle
           w="765px"
           h="765px"
@@ -146,6 +178,7 @@ export const Stats = async () => {
           pos="absolute"
           right="-32"
           bottom="-50%"
+          mdDown={{ display: "none" }}
         />
       </Stack>
     </Container>

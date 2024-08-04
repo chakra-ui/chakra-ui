@@ -50,9 +50,9 @@ const Testimonial = chakra("a", {
     "--border-color": "#001B18",
     display: "flex",
     flexDir: "column",
-    gap: "10",
-    px: "14",
-    py: "20",
+    gap: { base: "4", md: "10" },
+    px: { base: "7", md: "14" },
+    py: { base: "10", md: "20" },
     border: "var(--border-width) solid",
     borderColor: "var(--border-color)",
     ml: "calc(var(--border-width) * -1)",
@@ -111,7 +111,6 @@ const TestimonialsList = () => (
       <Testimonial
         key={index}
         data-pos={(index + 1) % 2 ? "left" : "right"}
-        gap="10"
         href={testimonial.url}
         target="_blank"
         rel="noopener"
