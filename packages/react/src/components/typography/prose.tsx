@@ -86,7 +86,7 @@ export const Prose = chakra("div", {
       paddingInlineStart: "0.35em",
       fontFamily: "inherit",
       color: "fg.muted",
-      "--shadow": "colors.border.subtle",
+      "--shadow": "colors.border",
       boxShadow: "0 0 0 1px var(--shadow),0 1px 0 1px var(--shadow)",
     },
     "& code": {

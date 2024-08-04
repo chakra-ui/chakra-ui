@@ -1,0 +1,32 @@
+---
+title: Prose
+description: Used to style remote HTML content
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="prose-basic" />
+
+## Usage
+
+```jsx
+import { Prose } from "@chakra-ui/react"
+```
+
+```jsx
+<Prose>
+  <div dangerouslySetInnerHTML={{ _html: "..." }} />
+</Prose>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the `Prose` component
+
+<ExampleTabs name="prose-with-sizes" />
