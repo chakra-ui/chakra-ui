@@ -1,0 +1,56 @@
+---
+title: Stack
+description: Used to layout its children in a vertical or horizontal stack.
+links: [{ title: "Source", url: "#" }, { title: "Storybook", url: "#" }]
+---
+
+<ExampleTabs name="stack-basic" />
+
+## Usage
+
+By default, Stack applies `flex-direction: column` and `gap: 8px` to its
+children.
+
+```jsx
+import { HStack, Stack, VStack } from "@chakra-ui/react"
+```
+
+```jsx
+<Stack>
+  <div />
+  <div />
+</Stack>
+```
+
+## Examples
+
+### Horizontal
+
+Use the `direction` prop to change the direction of the stack.
+
+<ExampleTabs name="stack-horizontal" />
+
+### HStack
+
+Alternatively, you can use the `HStack` to create a horizontal stack and align
+its children horizontally.
+
+<ExampleTabs name="stack-with-hstack" />
+
+### VStack
+
+Use the `VStack` to create a vertical stack and align its children vertically.
+
+<ExampleTabs name="stack-with-vstack" />
+
+### Separator
+
+Use the `separator` prop to add a separator between the stack items.
+
+<ExampleTabs name="stack-with-separator" />
+
+### Responsive Direction
+
+Use the `direction` prop to change the direction of the stack responsively.
+
+<ExampleTabs name="stack-with-responsive-direction" />
