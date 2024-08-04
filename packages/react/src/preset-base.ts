@@ -132,6 +132,8 @@ export const defaultConditions = defineConditions({
 
   horizontal: "&[data-orientation=horizontal]",
   vertical: "&[data-orientation=vertical]",
+
+  icon: "& :where(svg)",
 })
 
 export const defaultBaseConfig = defineConfig({

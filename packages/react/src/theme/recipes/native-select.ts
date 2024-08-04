@@ -43,9 +43,9 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       _disabled: {
         opacity: "0.5",
       },
-      "& svg": {
-        width: "4",
-        height: "4",
+      _icon: {
+        width: "1em",
+        height: "1em",
       },
     },
   },
@@ -70,7 +70,8 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
           height: "12",
         },
         indicator: {
-          insetEnd: "2",
+          fontSize: "xl",
+          insetEnd: "3",
         },
       },
 
@@ -83,7 +84,8 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
           height: "10",
         },
         indicator: {
-          insetEnd: "4",
+          fontSize: "lg",
+          insetEnd: "2",
         },
       },
 
@@ -96,7 +98,8 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
           height: "8",
         },
         indicator: {
-          insetEnd: "3",
+          fontSize: "md",
+          insetEnd: "2",
         },
       },
 
@@ -109,7 +112,8 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
           height: "6",
         },
         indicator: {
-          insetEnd: "1",
+          fontSize: "sm",
+          insetEnd: "1.5",
         },
       },
     },

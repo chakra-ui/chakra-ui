@@ -31,7 +31,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       focusRing: "outside",
     },
     indicator: {
-      "& svg": {
+      _icon: {
         width: "4",
         height: "4",
       },
@@ -70,7 +70,7 @@ export const selectSlotRecipe = defineSlotRecipe({
         pointerEvents: "none",
         opacity: "0.5",
       },
-      "& :where(svg)": {
+      _icon: {
         width: "4",
         height: "4",
       },

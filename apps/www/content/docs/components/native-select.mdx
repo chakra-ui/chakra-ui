@@ -1,0 +1,69 @@
+---
+title: Select (Native)
+description: Used to pick a value from predefined options.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="native-select-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`native-select` snippet
+
+```sh
+chakra snippet add native-select
+```
+
+The snippet includes a closed component composition for the `NativeSelect`
+component.
+
+## Usage
+
+```jsx
+import {
+  NativeSelectField,
+  NativeSelectRoot,
+} from "@/components/ui/native-select"
+```
+
+```jsx
+<NativeSelectRoot>
+  <NativeSelectField>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+  </NativeSelectField>
+</NativeSelectRoot>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the select component.
+
+<ExampleTabs name="native-select-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the select component.
+
+<ExampleTabs name="native-select-with-variants" />
+
+### Items Prop
+
+Pass the `items` prop to the `NativeSelectField` component to render a list of
+options.
+
+<ExampleTabs name="native-select-with-items" />
+
+### Controlled
+
+Use the `value` and `onChange` props to control the select component.
+
+<ExampleTabs name="native-select-controlled" />

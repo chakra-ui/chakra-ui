@@ -183,6 +183,8 @@ export interface Conditions {
   _horizontal: string
   /** `&[data-orientation=vertical]` */
   _vertical: string
+  /** `& :where(svg)` */
+  _icon: string
   /** `@media screen and (min-width: 30rem)` */
   sm: string
   /** `@media screen and (min-width: 30rem) and (max-width: 47.9975rem)` */
