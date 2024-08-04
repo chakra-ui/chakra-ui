@@ -41,7 +41,7 @@ const ValueText = (props: TextProps) => {
 const DecrementTrigger = (props: NumberInput.DecrementTriggerProps) => {
   return (
     <NumberInput.DecrementTrigger {...props} asChild>
-      <IconButton variant="outline" size="sm" rounded="full">
+      <IconButton variant="outline" size="sm">
         <LuMinus />
       </IconButton>
     </NumberInput.DecrementTrigger>
@@ -51,7 +51,7 @@ const DecrementTrigger = (props: NumberInput.DecrementTriggerProps) => {
 const IncrementTrigger = (props: NumberInput.IncrementTriggerProps) => {
   return (
     <NumberInput.IncrementTrigger {...props} asChild>
-      <IconButton variant="outline" size="sm" rounded="full">
+      <IconButton variant="outline" size="sm">
         <LuPlus />
       </IconButton>
     </NumberInput.IncrementTrigger>

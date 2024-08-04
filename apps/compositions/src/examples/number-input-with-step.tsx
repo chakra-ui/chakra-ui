@@ -1,8 +1,8 @@
 import { NumberInputField, NumberInputRoot } from "compositions/ui/number-input"
 
-export const NumberInputBasic = () => {
+export const NumberInputWithStep = () => {
   return (
-    <NumberInputRoot defaultValue="10" width="200px">
+    <NumberInputRoot maxW="200px" defaultValue="2" step={3}>
       <NumberInputField />
     </NumberInputRoot>
   )

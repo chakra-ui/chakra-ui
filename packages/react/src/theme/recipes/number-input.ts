@@ -14,7 +14,6 @@ const triggerStyle = defineStyle({
   color: "fg.muted",
   _disabled: {
     opacity: "0.5",
-    cursor: "not-allowed",
   },
   _hover: {
     bg: { base: "gray.50", _dark: "gray.400/10" },

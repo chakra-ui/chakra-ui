@@ -1,9 +1,9 @@
-import { For, HStack } from "@chakra-ui/react"
+import { For, Stack } from "@chakra-ui/react"
 import { NumberInputField, NumberInputRoot } from "compositions/ui/number-input"
 
 export const NumberInputWithSizes = () => {
   return (
-    <HStack align="flex-start">
+    <Stack gap="5" width="200px">
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <NumberInputRoot size={size} key={size} defaultValue="10">
@@ -11,6 +11,6 @@ export const NumberInputWithSizes = () => {
           </NumberInputRoot>
         )}
       </For>
-    </HStack>
+    </Stack>
   )
 }

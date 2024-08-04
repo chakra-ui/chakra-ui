@@ -1,0 +1,102 @@
+---
+title: Number Input
+description:
+  Used to enter a number, and increment or decrement the value using stepper
+  buttons.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="number-input-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`number-input` snippet
+
+```sh
+chakra snippet add number-input stepper-input
+```
+
+The snippet includes a closed component composition for the `NumberInput`
+component.
+
+## Usage
+
+```jsx
+import {
+  NumberInputField,
+  NumberInputLabel,
+  NumberInputRoot,
+} from "@/components/ui/number-input"
+```
+
+```jsx
+<NumberInputRoot>
+  <NumberInputLabel />
+  <NumberInputField />
+</NumberInputRoot>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the number input.
+
+<ExampleTabs name="number-input-with-sizes" />
+
+### Formatting
+
+Use the `formatOptions` prop to format the number input value. The value of this
+maps to `Intl.NumberFormatOptions` and is applied based on the current locale.
+
+<ExampleTabs name="number-input-with-format-options" />
+
+### Min and Max
+
+Use the `min` and `max` props to set the minimum and maximum values of the
+number input.
+
+If value entered is less than `min` or greater than `max`, the value will be
+clamped to the nearest boundary on blur, or enter key press.
+
+<ExampleTabs name="number-input-with-min-max" />
+
+### Step
+
+Use the `step` prop to change the increment or decrement interval of the number
+input.
+
+<ExampleTabs name="number-input-with-step" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the value of the number
+input.
+
+<ExampleTabs name="number-input-controlled" />
+
+### Mobile Stepper
+
+Use the `StepperInput` component to create a stepper input for mobile devices.
+
+> You can also apply `spinOnPress: false` to disable the spin functionality.
+
+<ExampleTabs name="number-input-with-stepper" />
+
+### Mouse Wheel
+
+Use the `allowMouseWheel` prop to enable or disable the mouse wheel to change
+
+<ExampleTabs name="number-input-with-mouse-wheel" />
+
+### Disabled
+
+Use the `disabled` prop to disable the number input.
+
+<ExampleTabs name="number-input-with-disabled" />
