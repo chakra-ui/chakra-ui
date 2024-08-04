@@ -242,7 +242,7 @@ const TooltipDemo = () => (
           </Button>
         </Tooltip.Trigger>
         <Portal>
-          <Tooltip.Positioner>
+          <Tooltip.Positioner zIndex="1300!">
             <Tooltip.Content
               color="fg"
               px="4"
