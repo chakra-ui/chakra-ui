@@ -81,6 +81,10 @@ import { MenuWithRadioItems } from "compositions/examples/menu-with-radio-items"
 import { MenuWithSubmenu } from "compositions/examples/menu-with-submenu"
 import { NativeSelectBasic } from "compositions/examples/native-select-basic"
 import { NumberInputWithSizes } from "compositions/examples/number-input-with-sizes"
+import { PaginationBasic } from "compositions/examples/pagination-basic"
+import { PaginationCompact } from "compositions/examples/pagination-compact"
+import { PaginationWithContent } from "compositions/examples/pagination-with-content"
+import { PaginationWithCountText } from "compositions/examples/pagination-with-count-text"
 import { PopoverWithSizes } from "compositions/examples/popover-with-sizes"
 import { ProgressCircleWithColors } from "compositions/examples/progress-circle-with-colors"
 import { ProgressWithColors } from "compositions/examples/progress-with-colors"
@@ -121,7 +125,6 @@ import { TextareaWithErrorText } from "compositions/examples/textarea-with-error
 import { TextareaWithField } from "compositions/examples/textarea-with-field"
 import { TextareaWithHelperText } from "compositions/examples/textarea-with-helper-text"
 import { TooltipBasic } from "compositions/examples/tooltip-basic"
-import { Pagination, SimplePagination } from "compositions/ui/pagination"
 import { ScrubberInput } from "compositions/ui/scrubber-input"
 import { StepperInput } from "compositions/ui/stepper-input"
 import { LuMinimize2 } from "react-icons/lu"
@@ -597,9 +600,17 @@ export default function Page() {
           Pagination
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <Pagination count={100} pageSize={10} />
-          <SimplePagination showPageText count={100} pageSize={10} />
-          <SimplePagination count={100} pageSize={10} />
+          <Playground.DemoList
+            items={[
+              { label: "basic", component: <PaginationBasic /> },
+              { label: "compact", component: <PaginationCompact /> },
+              { label: "w/ content", component: <PaginationWithContent /> },
+              {
+                label: "w/ count text",
+                component: <PaginationWithCountText />,
+              },
+            ]}
+          />
         </Playground.SectionContent>
       </Playground.Section>
 
