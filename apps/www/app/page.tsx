@@ -15,7 +15,15 @@ import { Testimonials } from "./page/testimonials"
 
 export default function Page() {
   return (
-    <Stack bg="black" pos="relative" gap="8" overflowX="hidden">
+    <Stack
+      bg="var(--bg)"
+      pos="relative"
+      gap="8"
+      overflowX="hidden"
+      css={{
+        "--bg": "colors.black",
+      }}
+    >
       <Circle
         size="452px"
         pos="absolute"
