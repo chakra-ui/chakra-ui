@@ -106,7 +106,7 @@ import { StepsWithDescription } from "compositions/examples/steps-with-descripti
 import { StepsWithIcon } from "compositions/examples/steps-with-icon"
 import { SwitchWithColors } from "compositions/examples/switch-with-colors"
 import { TableBasic } from "compositions/examples/table-basic"
-import { TableWithColumnGroup } from "compositions/examples/table-with-colgroup"
+import { TableWithColumnGroup } from "compositions/examples/table-with-column-group"
 import { TableWithOverflow } from "compositions/examples/table-with-overflow"
 import { TableWithSelection } from "compositions/examples/table-with-selection"
 import { TableWithStickyColumn } from "compositions/examples/table-with-sticky-column"

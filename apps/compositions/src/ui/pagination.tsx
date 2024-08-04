@@ -92,7 +92,7 @@ const Item = forwardRef<HTMLButtonElement, ChakraPagination.ItemProps>(
     const { size } = useButtonVariant()
     return (
       <ChakraPagination.Item ref={ref} {...props} asChild>
-        <Button variant={current ? "solid" : "outline"} size={size}>
+        <Button variant={current ? "outline" : "ghost"} size={size}>
           {props.value}
         </Button>
       </ChakraPagination.Item>
@@ -107,7 +107,7 @@ const PaginationPrevTrigger = forwardRef<
   const { size } = useButtonVariant()
   return (
     <ChakraPagination.PrevTrigger ref={ref} asChild {...props}>
-      <IconButton variant="outline" size={size}>
+      <IconButton variant="ghost" size={size}>
         <HiChevronLeft />
       </IconButton>
     </ChakraPagination.PrevTrigger>
@@ -121,7 +121,7 @@ const PaginationNextTrigger = forwardRef<
   const { size } = useButtonVariant()
   return (
     <ChakraPagination.NextTrigger ref={ref} asChild {...props}>
-      <IconButton variant="outline" size={size}>
+      <IconButton variant="ghost" size={size}>
         <HiChevronRight />
       </IconButton>
     </ChakraPagination.NextTrigger>

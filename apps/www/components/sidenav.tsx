@@ -47,7 +47,11 @@ export const SideNav = (props: SideNavProps) => {
               aria-current={item.url === currentUrl ? "page" : undefined}
             >
               {item.title}{" "}
-              {item.status && <Badge variant="solid">{item.status}</Badge>}
+              {item.status && (
+                <Badge variant="solid" colorPalette="purple" rounded="full">
+                  {item.status}
+                </Badge>
+              )}
             </Link>
           </HStack>
         ))}

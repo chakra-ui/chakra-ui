@@ -11,7 +11,7 @@ import { Button } from "compositions/ui/button"
 import { Checkbox } from "compositions/ui/checkbox"
 import { useState } from "react"
 
-export const TableWithSelection = () => {
+export const TableWithSelectionActionBar = () => {
   const [selection, setSelection] = useState<string[]>([])
 
   const hasSelection = selection.length > 0
@@ -24,11 +24,10 @@ export const TableWithSelection = () => {
     >
       <Table.Cell>
         <Checkbox
-          mt="0.5"
+          top="1"
           aria-label="Select row"
           checked={selection.includes(item.name)}
           onCheckedChange={(changes) => {
-            console.log("onCheckedChange", changes)
             setSelection((prev) =>
               changes.checked
                 ? [...prev, item.name]
@@ -48,9 +47,9 @@ export const TableWithSelection = () => {
       <Table.Root>
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeader>
+            <Table.ColumnHeader w="6">
               <Checkbox
-                mt="0.5"
+                top="1"
                 aria-label="Select all rows"
                 checked={indeterminate ? "indeterminate" : selection.length > 0}
                 onCheckedChange={(changes) => {

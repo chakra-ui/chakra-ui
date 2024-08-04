@@ -51,10 +51,12 @@ export const tableSlotRecipe = defineSlotRecipe({
 
     stickyHeader: {
       true: {
-        columnHeader: {
-          position: "sticky",
-          top: "var(--sticky-header-offset, 0)",
-          zIndex: "sticky",
+        header: {
+          "& :where(tr)": {
+            top: "var(--table-sticky-offset, 0)",
+            position: "sticky",
+            zIndex: 1,
+          },
         },
       },
     },
@@ -62,7 +64,7 @@ export const tableSlotRecipe = defineSlotRecipe({
     striped: {
       true: {
         row: {
-          "&:nth-of-type(even) td": {
+          "&:nth-of-type(odd) td": {
             bg: "bg.subtle",
           },
         },
@@ -92,19 +94,21 @@ export const tableSlotRecipe = defineSlotRecipe({
         cell: {
           borderBottomWidth: "1px",
         },
+        row: {
+          bg: "bg",
+        },
       },
 
       outline: {
         root: {
           boxShadow: "0 0 0 1px {colors.border}",
-          borderRadius: "var(--table-radius)",
           overflow: "hidden",
         },
         columnHeader: {
           borderBottomWidth: "1px",
         },
         header: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
         },
         row: {
           "&:not(:last-of-type)": {
@@ -120,7 +124,6 @@ export const tableSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          "--table-radius": "radii.sm",
           fontSize: "sm",
         },
         columnHeader: {
@@ -135,7 +138,6 @@ export const tableSlotRecipe = defineSlotRecipe({
 
       md: {
         root: {
-          "--table-radius": "radii.md",
           fontSize: "sm",
         },
         columnHeader: {
@@ -150,7 +152,6 @@ export const tableSlotRecipe = defineSlotRecipe({
 
       lg: {
         root: {
-          "--table-radius": "radii.md",
           fontSize: "md",
         },
         columnHeader: {

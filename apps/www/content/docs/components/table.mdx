@@ -1,0 +1,108 @@
+---
+title: Table
+description: Used to display data in a tabular format.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="table-basic" />
+
+## Usage
+
+```jsx
+import { Table } from "@chakra-ui/react"
+```
+
+```jsx
+<Table.Root>
+  <Table.Header>
+    <Table.Row>
+      <Table.ColumnHeader />
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell />
+    </Table.Row>
+  </Table.Body>
+  <Table.Footer>
+    <Table.Row>
+      <Table.Cell />
+    </Table.Row>
+  </Table.Footer>
+</Table.Root>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the table.
+
+<ExampleTabs name="table-with-sizes" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the table.
+
+<ExampleTabs name="table-with-variants" />
+
+### Striped
+
+Use the `striped` prop to add zebra-stripes to the table.
+
+<ExampleTabs name="table-with-striped" />
+
+### Column Border
+
+Use the `showColumnBorder` prop to add borders between columns.
+
+<ExampleTabs name="table-with-column-border" />
+
+### Overflow
+
+Render the `Table.ScrollArea` component to enable horizontal scrolling.
+
+<ExampleTabs name="table-with-overflow" />
+
+### Sticky Header
+
+Use the `stickyHeader` prop to make the table header sticky.
+
+<ExampleTabs name="table-with-sticky-header" />
+
+### Highlight on Hover
+
+Use the `interactive` prop to highlight rows on hover.
+
+<ExampleTabs name="table-with-interactive" />
+
+### Pagination
+
+Here's an example of how to compose a table with pagination.
+
+<ExampleTabs name="table-with-pagination" />
+
+### Action Bar
+
+Here's an example of how to compose a table with an action bar and checkboxes.
+This is useful for showing actions for selected table rows.
+
+<ExampleTabs name="table-with-selection-action-bar" />
+
+### Column Group
+
+Use the `Table.ColumnGroup` component to distribute the column widths using the
+html `colgroup` element.
+
+:::warning
+
+The only prop that works for this component is `htmlWidth`
+
+:::
+
+<ExampleTabs name="table-with-column-group" />

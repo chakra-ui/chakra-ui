@@ -86,8 +86,7 @@ export const TableScrollArea = chakra("div", {
     display: "block",
     whiteSpace: "nowrap",
     WebkitOverflowScrolling: "touch",
-    overflowX: "auto",
-    overflowY: "hidden",
+    overflow: "auto",
     maxWidth: "100%",
   },
 })
