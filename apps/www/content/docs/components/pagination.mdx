@@ -1,0 +1,106 @@
+---
+title: Pagination
+description: Used to navigate through a series of pages.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="pagination-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`pagination` snippet
+
+```sh
+chakra snippet add pagination
+```
+
+The snippet includes a closed component composition for the `Pagination`
+component.
+
+## Usage
+
+```jsx
+import {
+  PaginationItems,
+  PaginationNextTrigger,
+  PaginationPageText,
+  PaginationPrevTrigger,
+  PaginationRoot,
+} from "@/components/ui/pagination"
+```
+
+```jsx
+<PaginationRoot>
+  <PaginationPrevTrigger />
+  <PaginationItems />
+  <PaginationPageText />
+  <PaginationNextTrigger />
+</PaginationRoot>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the pagination.
+
+:::info
+
+The pagination sizes are mapped to the `Button` component sizes.
+
+:::
+
+<ExampleTabs name="pagination-with-sizes" />
+
+### Controlled
+
+Use the `page` and `onPageChange` props to control the current page.
+
+<ExampleTabs name="pagination-controlled" />
+
+### Sibling Count
+
+Use `siblingCount` to control the number of sibling pages to show before and
+after the current page.
+
+<ExampleTabs name="pagination-with-sibling-count" />
+
+### Variant Map
+
+Use the `variantMap` prop to control the variant of the pagination items and
+ellipsis.
+
+<ExampleTabs name="pagination-with-variant-map" />
+
+### Compact
+
+Use the `PaginationPageText` to create a compact pagination. This can be useful
+for mobile views.
+
+<ExampleTabs name="pagination-compact" />
+
+### Attached
+
+Here's an example of composing the pagination with the `Group` component to
+attach the pagination items and triggers.
+
+<ExampleTabs name="pagination-attached" />
+
+### Count Text
+
+Pass `format=long` to the `PaginationPageText` component to show the count text
+
+<ExampleTabs name="pagination-with-count-text" />
+
+### Data Driven
+
+Here's an example of controlling the pagination state and using the state to
+chunk the data.
+
+<ExampleTabs name="pagination-with-content" />

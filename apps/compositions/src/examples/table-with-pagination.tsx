@@ -1,5 +1,10 @@
-import { Heading, Stack, Table } from "@chakra-ui/react"
-import { Pagination } from "compositions/ui/pagination"
+import { HStack, Heading, Stack, Table } from "@chakra-ui/react"
+import {
+  PaginationItems,
+  PaginationNextTrigger,
+  PaginationPrevTrigger,
+  PaginationRoot,
+} from "compositions/ui/pagination"
 
 export const TableWithPagination = () => {
   return (
@@ -23,7 +28,14 @@ export const TableWithPagination = () => {
           ))}
         </Table.Body>
       </Table.Root>
-      <Pagination count={items.length * 5} pageSize={5} page={1} />
+
+      <PaginationRoot count={items.length * 5} pageSize={5} page={1}>
+        <HStack wrap="wrap">
+          <PaginationPrevTrigger />
+          <PaginationItems />
+          <PaginationNextTrigger />
+        </HStack>
+      </PaginationRoot>
     </Stack>
   )
 }

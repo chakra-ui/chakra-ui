@@ -26,7 +26,7 @@ export const buttonRecipe = defineRecipe({
     _disabled: {
       layerStyle: "disabled",
     },
-    "& :where(svg)": {
+    _icon: {
       fontSize: "1.2em",
     },
   },
@@ -63,7 +63,7 @@ export const buttonRecipe = defineRecipe({
         minW: "12",
         borderRadius: "lg",
         fontSize: "md",
-        px: "6",
+        px: "5",
       },
     },
 
