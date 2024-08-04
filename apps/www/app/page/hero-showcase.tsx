@@ -268,7 +268,7 @@ const TooltipDemo = () => (
 const RadioDemo = () => (
   <GridItem
     area="radio"
-    px="6"
+    px="2"
     py={{ mdDown: "12" }}
     borderBottomWidth={{ md: "1px!" }}
     asChild

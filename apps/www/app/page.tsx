@@ -22,6 +22,10 @@ export default function Page() {
       overflowX="hidden"
       css={{
         "--bg": "colors.black",
+        "--chakra-fonts-heading": "var(--satoshi)",
+        "--chakra-fonts-body": "var(--satoshi)",
+        fontFamily: "var(--satoshi)",
+        fontWeight: "medium",
       }}
     >
       <Circle
