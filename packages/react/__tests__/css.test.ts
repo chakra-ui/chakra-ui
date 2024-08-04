@@ -310,7 +310,7 @@ describe("css", () => {
 
     expect(result).toMatchInlineSnapshot(`
       {
-        " &.dark, .dark &": {
+        "&.dark, .dark &": {
           "border": "2px solid var(--chakra-colors-green-300)",
         },
         "border": "1px solid var(--chakra-colors-white)",
@@ -389,6 +389,25 @@ describe("css", () => {
         "--bg": "color-mix(in srgb, var(--chakra-colors-red-300) 30%, transparent)",
         "--color": "color-mix(in srgb, pink 40%, transparent)",
         "border": "2px solid var(--chakra-colors-red-300)",
+      }
+    `)
+  })
+
+  test("merge layer styles", () => {
+    const result = css({
+      layerStyle: "fill.subtle",
+      color: "inherit",
+    })
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "&.dark, .dark &": {
+          "--mix-background": "color-mix(in srgb, var(--chakra-colors-color-palette-400) 20%, transparent)",
+          "background": "var(--mix-background, var(--chakra-colors-color-palette-400))",
+          "color": "var(--chakra-colors-color-palette-200)",
+        },
+        "background": "var(--chakra-colors-color-palette-100)",
+        "color": "inherit",
       }
     `)
   })

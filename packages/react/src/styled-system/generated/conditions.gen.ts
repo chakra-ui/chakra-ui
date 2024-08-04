@@ -155,9 +155,9 @@ export interface Conditions {
   _landscape: string
   /** `@media (orientation: portrait)` */
   _portrait: string
-  /** ` &.dark, .dark &` */
+  /** `&.dark, .dark &` */
   _dark: string
-  /** ` &.light, .light &` */
+  /** `&.light, .light &` */
   _light: string
   /** `@media (prefers-color-scheme: dark)` */
   _mediaDark: string

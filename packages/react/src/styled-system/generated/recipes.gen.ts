@@ -43,7 +43,9 @@ export interface LinkVariantProps {
   variant?: "underline" | "plain"
 }
 
-export interface MarkVariantProps {}
+export interface MarkVariantProps {
+  variant?: "subtle" | "solid" | "text" | "plain"
+}
 
 export interface SeparatorVariantProps {
   variant?: "solid" | "dashed" | "dotted"
