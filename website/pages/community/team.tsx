@@ -1,15 +1,15 @@
 import {
   Box,
   Circle,
+  Flex,
   Heading,
+  HStack,
   Icon,
   Link,
   SimpleGrid,
   Stack,
   Text,
   VisuallyHidden,
-  Wrap,
-  WrapItem,
 } from '@chakra-ui/react'
 import fs from 'fs'
 import MDXLayout from 'layouts/mdx'
@@ -128,9 +128,9 @@ function Team({ members, contributors }: TeamProps) {
           <Text mb='4' textTransform='uppercase' opacity='0.7'>
             Organizations
           </Text>
-          <Wrap>
+          <HStack wrap='wrap'>
             {new Array(9).fill('').map((_, idx) => (
-              <WrapItem key={idx} asChild>
+              <Flex align='flex-start' key={idx} asChild>
                 <a
                   href={`https://opencollective.com/chakra-ui/organization/${idx}/website`}
                 >
@@ -139,9 +139,9 @@ function Team({ members, contributors }: TeamProps) {
                     src={`https://opencollective.com/chakra-ui/organization/${idx}/avatar.svg?avatarHeight=130`}
                   />
                 </a>
-              </WrapItem>
+              </Flex>
             ))}
-          </Wrap>
+          </HStack>
         </Box>
         <Box>
           <Text mb='4' textTransform='uppercase' opacity='0.7'>
@@ -158,7 +158,7 @@ function Team({ members, contributors }: TeamProps) {
 
       <Stack gap={8} mt={{ base: '10', md: '24' }}>
         <Heading size='lg'>Project Contributors 💖</Heading>
-        <Wrap gap='3'>
+        <HStack wrap='wrap' gap='3'>
           {contributorsWithoutTeam.map((contributor) => (
             <Circle overflow='hidden' key={contributor.login}>
               <NextImage
@@ -169,7 +169,7 @@ function Team({ members, contributors }: TeamProps) {
               />
             </Circle>
           ))}
-        </Wrap>
+        </HStack>
       </Stack>
     </MDXLayout>
   )

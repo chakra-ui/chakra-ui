@@ -10,7 +10,6 @@ import {
   Circle,
   Container,
   Flex,
-  Grid,
   Group,
   HStack,
   Heading,
@@ -19,7 +18,6 @@ import {
   Span,
   Stack,
   Text,
-  Wrap,
 } from "@chakra-ui/react"
 import { FaShieldHeart } from "react-icons/fa6"
 import { GiGoldBar } from "react-icons/gi"
@@ -91,8 +89,8 @@ const Description = () => (
 const SponsorGroup = (props: {
   sponsors: (CompanySponsor | IndividualSponsor)[]
 }) => (
-  <Wrap
-    gap="0"
+  <HStack
+    wrap="wrap"
     zIndex="5"
     css={{
       "& > *": {
@@ -126,7 +124,7 @@ const SponsorGroup = (props: {
         </Center>
       )
     })}
-  </Wrap>
+  </HStack>
 )
 
 const METAL_TIERS = [

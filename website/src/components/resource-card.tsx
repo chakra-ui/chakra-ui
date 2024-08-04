@@ -1,15 +1,13 @@
 import {
   Badge,
   BoxProps,
+  Flex,
   Heading,
   LinkBox,
   LinkOverlay,
   Text,
   VStack,
-  Wrap,
-  WrapItem,
 } from '@chakra-ui/react'
-import * as React from 'react'
 
 export interface Resource {
   heading: string
@@ -44,24 +42,29 @@ function ResourceCard(props: ResourceCardProps) {
       }}
     >
       <VStack gap={2} align='stretch'>
-        <Wrap className='algolia-exclude' gap='3' mb='2' align='center'>
+        <Flex
+          wrap='wrap'
+          className='algolia-exclude'
+          gap='3'
+          mb='2'
+          align='center'
+        >
           {tags?.map((tag, index) => (
-            <WrapItem key={index} overflow='hidden'>
-              <Badge
-                as='a'
-                rel='tag'
-                color='teal.600'
-                _dark={{ color: 'teal.400' }}
-                textTransform='uppercase'
-                fontSize='xs'
-                fontWeight='bold'
-                whiteSpace='break-spaces'
-              >
-                {tag}
-              </Badge>
-            </WrapItem>
+            <Badge
+              key={index}
+              as='a'
+              rel='tag'
+              color='teal.600'
+              _dark={{ color: 'teal.400' }}
+              textTransform='uppercase'
+              fontSize='xs'
+              fontWeight='bold'
+              whiteSpace='break-spaces'
+            >
+              {tag}
+            </Badge>
           ))}
-        </Wrap>
+        </Flex>
 
         <LinkOverlay external href={url}>
           <VStack gap={2} align='stretch'>

@@ -100,7 +100,6 @@ const docsLinks: NavItem = {
             { title: "Grid", url: "grid" },
             { title: "Group", url: "group" },
             { title: "Stack", url: "stack" },
-            { title: "Wrap", url: "wrap" },
           ],
         },
         {

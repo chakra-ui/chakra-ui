@@ -15,8 +15,6 @@ import {
   Span,
   Stack,
   Text,
-  Wrap,
-  WrapItem,
   chakra,
 } from '@chakra-ui/react'
 import users from 'chakra-users'
@@ -244,7 +242,8 @@ const HomePage = ({
             >
               Supported and Backed by
             </chakra.p>
-            <Wrap
+            <Flex
+              wrap='wrap'
               maxW='800px'
               mx='auto'
               justify='center'
@@ -255,47 +254,50 @@ const HomePage = ({
                 .filter((user) => user.image.includes('.'))
                 .slice(0, 7)
                 .map((user) => (
-                  <WrapItem key={user.name} bg='white' rounded='md'>
-                    <Link p='5' href={user.url}>
-                      <Image
-                        src={user.image}
-                        alt={user.name}
-                        width={120}
-                        height={32}
-                        loading='lazy'
-                      />
-                    </Link>
-                  </WrapItem>
-                ))}
-              <WrapItem>
-                <Button
-                  asChild
-                  w='40'
-                  h='16'
-                  border='1px dashed'
-                  borderColor='teal.200'
-                  bg='teal.50'
-                  _hover={{ bg: 'teal.100' }}
-                  _dark={{
-                    borderColor: 'teal.500',
-                    bg: 'whiteAlpha.200',
-                    _hover: { bg: 'whiteAlpha.300' },
-                  }}
-                  rounded='md'
-                >
-                  <a
-                    href={`${openCollectiveLink}/contribute`}
-                    rel='noopener'
-                    target='_blank'
+                  <Link
+                    p='5'
+                    key={user.name}
+                    href={user.url}
+                    bg='white'
+                    rounded='md'
                   >
-                    <Box as='span' mr='1' role='img'>
-                      💖
-                    </Box>{' '}
-                    Your company
-                  </a>
-                </Button>
-              </WrapItem>
-            </Wrap>
+                    <Image
+                      src={user.image}
+                      alt={user.name}
+                      width={120}
+                      height={32}
+                      loading='lazy'
+                    />
+                  </Link>
+                ))}
+
+              <Button
+                asChild
+                w='40'
+                h='16'
+                border='1px dashed'
+                borderColor='teal.200'
+                bg='teal.50'
+                _hover={{ bg: 'teal.100' }}
+                _dark={{
+                  borderColor: 'teal.500',
+                  bg: 'whiteAlpha.200',
+                  _hover: { bg: 'whiteAlpha.300' },
+                }}
+                rounded='md'
+              >
+                <a
+                  href={`${openCollectiveLink}/contribute`}
+                  rel='noopener'
+                  target='_blank'
+                >
+                  <Box as='span' mr='1' role='img'>
+                    💖
+                  </Box>{' '}
+                  Your company
+                </a>
+              </Button>
+            </Flex>
           </Container>
         </Box>
 
@@ -415,23 +417,21 @@ const HomePage = ({
               <chakra.p mb='48px' textTransform='uppercase'>
                 Chakra Heroes 🥇
               </chakra.p>
-              <Wrap gap='4' justify='center' maxW='660px' mx='auto'>
+              <Flex wrap='wrap' gap='4' justify='center' maxW='660px' mx='auto'>
                 {members.map((i) => (
-                  <WrapItem key={i.login}>
-                    <Link href={i.url}>
-                      <Box rounded='full' overflow='hidden' asChild>
-                        <Image
-                          alt={i.name}
-                          src={i.avatar_url}
-                          width={80}
-                          height={80}
-                          loading='lazy'
-                        />
-                      </Box>
-                    </Link>
-                  </WrapItem>
+                  <Link href={i.url} key={i.login}>
+                    <Box rounded='full' overflow='hidden' asChild>
+                      <Image
+                        alt={i.name}
+                        src={i.avatar_url}
+                        width={80}
+                        height={80}
+                        loading='lazy'
+                      />
+                    </Box>
+                  </Link>
                 ))}
-              </Wrap>
+              </Flex>
             </Box>
           </Container>
         </Box>
@@ -570,59 +570,56 @@ const HomePage = ({
               <chakra.p textTransform='uppercase' mb='8' mt='4rem'>
                 Organization Sponsors 🏦
               </chakra.p>
-              <Wrap justify='center'>
+              <Flex wrap='wrap' gap='2' justify='center'>
                 {sponsors.companies.map((i) => (
-                  <WrapItem key={i.MemberId}>
-                    <Circle
-                      size='80px'
-                      bg='white'
-                      shadow='lg'
-                      {...(i.website && {
-                        as: 'a',
-                        href: i.website,
-                        target: '_blank',
-                        rel: 'noopener',
-                      })}
+                  <Circle
+                    size='80px'
+                    bg='white'
+                    shadow='lg'
+                    key={i.MemberId}
+                    {...(i.website && {
+                      as: 'a',
+                      href: i.website,
+                      target: '_blank',
+                      rel: 'noopener',
+                    })}
+                  >
+                    <Box
+                      asChild
+                      rounded='full'
+                      cursor={i.website ? 'pointer' : 'auto'}
                     >
-                      <Box
-                        asChild
-                        rounded='full'
-                        cursor={i.website ? 'pointer' : 'auto'}
-                      >
-                        <Image
-                          width={56}
-                          height={56}
-                          alt={i.name}
-                          key={i.MemberId}
-                          src={i.image}
-                          loading='lazy'
-                        />
-                      </Box>
-                    </Circle>
-                  </WrapItem>
+                      <Image
+                        width={56}
+                        height={56}
+                        alt={i.name}
+                        key={i.MemberId}
+                        src={i.image}
+                        loading='lazy'
+                      />
+                    </Box>
+                  </Circle>
                 ))}
-              </Wrap>
+              </Flex>
 
               <chakra.p mb='8' mt='4rem' textTransform='uppercase'>
                 Individual Sponsors 🥇
               </chakra.p>
-              <Wrap justify='center'>
+              <Flex wrap='wrap' gap='2' justify='center'>
                 {sponsors.individuals.map((i) => (
-                  <WrapItem key={i.MemberId}>
-                    <Link href={i.profile}>
-                      <Box rounded='full' asChild>
-                        <Image
-                          src={i.image}
-                          alt={i.name}
-                          width={40}
-                          height={40}
-                          loading='lazy'
-                        />
-                      </Box>
-                    </Link>
-                  </WrapItem>
+                  <Link href={i.profile} key={i.MemberId}>
+                    <Box rounded='full' asChild>
+                      <Image
+                        src={i.image}
+                        alt={i.name}
+                        width={40}
+                        height={40}
+                        loading='lazy'
+                      />
+                    </Box>
+                  </Link>
                 ))}
-              </Wrap>
+              </Flex>
             </Box>
           </Container>
         </Box>

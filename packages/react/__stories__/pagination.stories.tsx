@@ -2,9 +2,9 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 import {
   Box,
   Button,
+  HStack,
   IconButton,
   Pagination,
-  Wrap,
   usePaginationContext,
 } from "../src"
 
@@ -59,7 +59,7 @@ const PaginationItems = () => {
 
 export const Basic = () => (
   <Pagination.Root count={100} pageSize={10}>
-    <Wrap>
+    <HStack wrap="wrap">
       <Pagination.PrevTrigger>
         <IconButton variant="outline" size="sm">
           <HiChevronLeft />
@@ -73,6 +73,6 @@ export const Basic = () => (
           <HiChevronRight />
         </IconButton>
       </Pagination.NextTrigger>
-    </Wrap>
+    </HStack>
   </Pagination.Root>
 )

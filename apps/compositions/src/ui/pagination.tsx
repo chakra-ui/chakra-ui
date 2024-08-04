@@ -8,7 +8,6 @@ import {
   IconButton,
   Span,
   Text,
-  Wrap,
   createContext,
   usePaginationContext,
 } from "@chakra-ui/react"
@@ -35,11 +34,11 @@ export const Pagination = forwardRef<HTMLDivElement, PaginationProps>(
     return (
       <ButtonVariantProvider value={{ size }}>
         <ChakraPagination.Root ref={ref} {...rest}>
-          <Wrap>
+          <HStack wrap="wrap">
             <PaginationPrevTrigger />
             <PaginationItems />
             <PaginationNextTrigger />
-          </Wrap>
+          </HStack>
         </ChakraPagination.Root>
       </ButtonVariantProvider>
     )

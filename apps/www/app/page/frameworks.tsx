@@ -2,12 +2,12 @@ import {
   Center,
   Circle,
   Container,
+  Flex,
   Heading,
   Icon,
   Span,
   Stack,
   Text,
-  Wrap,
 } from "@chakra-ui/react"
 import {
   BlitzIcon,
@@ -65,9 +65,9 @@ const FRAMEWORKS = [
 ]
 
 const FrameworksList = () => (
-  <Wrap
+  <Flex
+    wrap="wrap"
     justify="center"
-    gap="0"
     css={{
       "& > *": {
         "--border-width": "0.5px",
@@ -83,7 +83,7 @@ const FrameworksList = () => (
         <framework.icon />
       </Center>
     ))}
-  </Wrap>
+  </Flex>
 )
 
 export const Frameworks = async () => {
