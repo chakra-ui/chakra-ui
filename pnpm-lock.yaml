@@ -859,8 +859,8 @@ importers:
         specifier: 14.0.2
         version: 14.0.2
       remark-emoji:
-        specifier: 3.0.2
-        version: 3.0.2
+        specifier: 3.1.2
+        version: 3.1.2
       remark-gfm:
         specifier: 3.0.1
         version: 3.0.1
@@ -9405,8 +9405,8 @@ packages:
   remark-directive@3.0.0:
     resolution: {integrity: sha512-l1UyWJ6Eg1VPU7Hm/9tt0zKtReJQNOA4+iDMAxTyZNWnJnFlbS/7zhiel/rogTLQ2vMYwDzSJa4BiVNqGlqIMA==}
 
-  remark-emoji@3.0.2:
-    resolution: {integrity: sha512-hEgxEv2sBtvhT3tNG/tQeeFY3EbslftaOoG14dDZndLo25fWJ6Fbg4ukFbIotOWWrfXyASjXjyHT+6n366k3mg==}
+  remark-emoji@3.1.2:
+    resolution: {integrity: sha512-QwhAzNk27Ol64uV4z/3n55MKrNz9bhr8wg+mO5aGqIYDS+jUarS1d8Y0ZIeEBVhfGkXj6gGYM+727sOgAPvV/A==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   remark-frontmatter@4.0.1:
@@ -22501,11 +22501,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  remark-emoji@3.0.2:
+  remark-emoji@3.1.2:
     dependencies:
       emoticon: 4.0.1
+      mdast-util-find-and-replace: 2.2.2
       node-emoji: 1.11.0
-      unist-util-visit: 4.1.2
 
   remark-frontmatter@4.0.1:
     dependencies:
