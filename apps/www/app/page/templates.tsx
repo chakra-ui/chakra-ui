@@ -6,7 +6,6 @@ import {
   Container,
   HStack,
   Heading,
-  Icon,
   Image,
   Stack,
   Text,
@@ -27,9 +26,7 @@ const Logo = () => (
     transform="translateX(-50%)"
     pos="absolute"
   >
-    <Icon asChild fontSize={{ base: "2xl", md: "4xl" }}>
-      <LogoBlitzIcon />
-    </Icon>
+    <LogoBlitzIcon fontSize={{ base: "2xl", md: "4xl" }} />
   </Center>
 )
 
