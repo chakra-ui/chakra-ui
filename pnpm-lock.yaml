@@ -432,8 +432,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@zag-js/element-size':
-        specifier: 0.60.0
-        version: 0.60.0
+        specifier: 0.64.0
+        version: 0.64.0
       copy-to-clipboard:
         specifier: 3.3.3
         version: 3.3.3
@@ -4565,14 +4565,14 @@ packages:
   '@zag-js/element-rect@0.63.0':
     resolution: {integrity: sha512-98VlKSSxWvsnObitnCcloOwzXQ0eamt4CqIWg70LsFE/vPbCyrqyNoorXTgZA50TYm9K4oSkmBc/CIq8/VFkpQ==}
 
-  '@zag-js/element-size@0.60.0':
-    resolution: {integrity: sha512-6dvLkgeFhzXTp17TtH+WHFH/rKzNYBf6/3ZaUYh7/tpYtMclfuBKoo2HSYjZK2qE3tkp/mDNbxj5PF4mUjCsEg==}
-
   '@zag-js/element-size@0.62.1':
     resolution: {integrity: sha512-QCtVeIJ611hJPorKEkdfrWWcMohadplZoW8xQW/2PLSmKUhTNLfHsZLyeoYKyj5Jk4X8OAN4onnMVETFw232EA==}
 
   '@zag-js/element-size@0.63.0':
     resolution: {integrity: sha512-QfLcNNb9aZYRZUCVMjbUnHJk4ujRpINWmr8NTCMsqCtmqZ0ay3YmyGL/ZzrMkKWkCYjrq4tD23XYChIjha/24Q==}
+
+  '@zag-js/element-size@0.64.0':
+    resolution: {integrity: sha512-A4R70CdOZ4DKaHvAHZsvvLpoBv2PrHPExQTN73vI5mwlS3Eqb6yn58GUOp6I4xIHAo4/EhFgxorT0rZYkfBtjw==}
 
   '@zag-js/file-upload@0.62.1':
     resolution: {integrity: sha512-Wh33acYMJLNRIV2y0GdSZqoN3aX/t/uzIBWh3rVsN7tpjDYWXLYIsXQttkGLFf0sgICK+3PVD+LLaIpiGDh4+Q==}
@@ -15943,11 +15943,11 @@ snapshots:
 
   '@zag-js/element-rect@0.63.0': {}
 
-  '@zag-js/element-size@0.60.0': {}
-
   '@zag-js/element-size@0.62.1': {}
 
   '@zag-js/element-size@0.63.0': {}
+
+  '@zag-js/element-size@0.64.0': {}
 
   '@zag-js/file-upload@0.62.1':
     dependencies:
