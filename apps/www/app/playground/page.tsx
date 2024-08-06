@@ -93,7 +93,7 @@ import { RadioCardBasic } from "compositions/examples/radio-card-basic"
 import { RadioCardCentered } from "compositions/examples/radio-card-centered"
 import { RadioWithColors } from "compositions/examples/radio-with-colors"
 import { RatingWithColors } from "compositions/examples/rating-with-colors"
-import { SegmentControlSizes } from "compositions/examples/segment-control-sizes"
+import { SegmentedControlWithSizes } from "compositions/examples/segmented-control-with-sizes"
 import { SelectInPopover } from "compositions/examples/select-in-popover"
 import { SelectWithAvatar } from "compositions/examples/select-with-avatar"
 import { SelectWithOverflow } from "compositions/examples/select-with-overflow"
@@ -679,7 +679,7 @@ export default function Page() {
           Segment Control
         </Playground.SectionTitle>
         <Playground.SectionContent>
-          <SegmentControlSizes />
+          <SegmentedControlWithSizes />
         </Playground.SectionContent>
       </Playground.Section>
 
