@@ -1,0 +1,91 @@
+---
+title: Animation
+description: Using CSS animations to animate Chakra UI components
+---
+
+We recommend using CSS animations to animate your Chakra UI components. This
+approach is performant, straightforward and provides a lot of flexibility.
+
+You can animate both the mounting and unmounting phases of your components with
+better control.
+
+## Enter animation
+
+When a disclosure component (popover, dialog), the `data-state` attribute is set
+to `open`. This maps to `data-state=open` and can be styled with `_open` pseudo
+prop.
+
+```tsx
+<Box
+  data-state="open"
+  _open={{
+    animation: "fade-in 300ms ease-out",
+  }}
+>
+  This is open
+</Box>
+```
+
+Here's an example of creating a fade-in animation using keyframes:
+
+```css
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+```
+
+## Exit animation
+
+When a disclosure component (popover, dialog) is closed, the `data-state`
+attribute is set to `closed`. This maps to `data-state=closed` and can be styled
+with `_closed` pseudo prop.
+
+```tsx
+<Box
+  data-state="closed"
+  _closed={{
+    animation: "fadeOut 300ms ease-in",
+  }}
+>
+  This is closed
+</Box>
+```
+
+Here's an example of creating a fade-out animation using keyframes:
+
+```css
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+```
+
+## Composing animations
+
+Use the `animationName` prop to compose multiple animations together. This makes
+it easy to create complex animations with multiple keyframes.
+
+```tsx
+<Box
+  data-state="open"
+  _open={{
+    animationName: "fade-in, scale-in",
+    animationDuration: "300ms",
+  }}
+  _closed={{
+    animationName: "fade-out, scale-out",
+    animationDuration: "120ms",
+  }}
+>
+  This is a composed animation
+</Box>
+```

@@ -196,6 +196,7 @@ const sharedComponents = {
           borderRadius: "sm",
           borderWidth: "1px",
           bg: "bg.muted",
+          whiteSpace: "pre",
           padding: "0.15em 0.25em",
         }}
       />
