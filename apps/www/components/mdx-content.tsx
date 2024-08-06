@@ -13,6 +13,7 @@ import Link from "next/link"
 import { Children } from "react"
 import * as runtime from "react/jsx-runtime"
 import { Card, CardGroup } from "./card"
+import { ComponentGrid } from "./component-grid"
 import { Example, ExampleTabs } from "./example"
 import { PropTable } from "./prop-table"
 
@@ -357,6 +358,7 @@ const sharedComponents = {
   },
   Card,
   PropTable,
+  ComponentGrid,
 }
 
 const useMDXComponent = (code: string) => {

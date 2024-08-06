@@ -2,9 +2,9 @@
 
 import { SideNav } from "@/components/sidenav"
 import { useRoute } from "@/lib/use-route"
-import { Box, Stack } from "@chakra-ui/react"
+import { Box, BoxProps, Stack } from "@chakra-ui/react"
 
-export const SidebarStart = () => {
+export const SidebarStart = (props: BoxProps) => {
   const route = useRoute()
   return (
     <Box
@@ -21,6 +21,7 @@ export const SidebarStart = () => {
       width="16rem"
       hideBelow="md"
       fontSize="sm"
+      {...props}
     >
       <Stack gap="10">
         {route
@@ -38,7 +39,7 @@ export const SidebarStart = () => {
   )
 }
 
-export const SidebarEnd = (props: React.PropsWithChildren) => {
+export const SidebarEnd = (props: BoxProps) => {
   const { children } = props
   return (
     <Box
@@ -54,6 +55,7 @@ export const SidebarEnd = (props: React.PropsWithChildren) => {
       overscrollBehavior="contain"
       width="16rem"
       hideBelow="xl"
+      {...props}
     >
       <Stack gap="4" align="flex-start">
         {children}
