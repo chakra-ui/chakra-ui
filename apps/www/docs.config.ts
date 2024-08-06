@@ -152,6 +152,7 @@ const docsLinks: NavItem = {
             { title: "Radio Card", url: "radio-card" },
             { title: "Radio", url: "radio" },
             { title: "Rating", url: "rating" },
+            { title: "Segmented Control", url: "segmented-control" },
             { title: "Select (Native)", url: "native-select" },
             { title: "Select", url: "select" },
             { title: "Separator", url: "separator" },

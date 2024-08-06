@@ -1,0 +1,66 @@
+---
+title: Segmented Control
+description: Used to pick one choice from a linear set of options
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="segmented-control-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`segmented-control` snippet
+
+```sh
+chakra snippet add segmented-control
+```
+
+The snippet includes a closed component composition for the `SegmentGroup`
+component.
+
+## Usage
+
+```jsx
+import { SegmentedControl } from "@/components/ui/segmented-control"
+```
+
+```jsx
+<SegmentedControl items={[]} />
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the segmented control.
+
+<ExampleTabs name="segmented-control-with-sizes" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the selected item.
+
+<ExampleTabs name="segmented-control-controlled" />
+
+### Disabled
+
+Use the `disabled` prop to disable the segmented control.
+
+<ExampleTabs name="segmented-control-with-disabled" />
+
+### Disabled Item
+
+Use the `disabled` prop on the item to disable it.
+
+<ExampleTabs name="segmented-control-with-disabled-item" />
+
+### Icon
+
+Render the `label` as a `ReactNode` to render an icon.
+
+<ExampleTabs name="segmented-control-with-icon" />

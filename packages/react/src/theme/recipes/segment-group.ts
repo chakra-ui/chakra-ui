@@ -22,17 +22,15 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       position: "relative",
       color: "fg",
       _disabled: {
-        color: "fg.subtle/60!",
+        opacity: "0.5",
       },
       _before: {
         content: '""',
         position: "absolute",
-        top: 0,
-        bottom: 0,
         insetInlineStart: 0,
-        bg: "border.subtle",
+        insetBlock: "1.5",
+        bg: "border",
         width: "1px",
-        marginBlock: "3px",
         transition: "opacity 0.2s",
       },
       "& + &[data-state=checked], &[data-state=checked] + &, &:first-of-type": {
@@ -44,7 +42,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       "&[data-state=checked][data-ssr]": {
         shadow: "sm",
         bg: "bg",
-        borderRadius: "var(--segment-indicator-radius)",
+        borderRadius: "var(--segment-radius)",
       },
     },
 
@@ -57,7 +55,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
       top: "var(--top)",
       left: "var(--left)",
       zIndex: -1,
-      borderRadius: "var(--segment-indicator-radius)",
+      borderRadius: "var(--segment-radius)",
     },
   },
 
@@ -67,7 +65,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
         root: {
           rounded: "sm",
           height: "6",
-          "--segment-indicator-radius": "radii.sm",
+          "--segment-radius": "radii.sm",
         },
         item: {
           fontSize: "xs",
@@ -79,7 +77,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
         root: {
           rounded: "md",
           height: "8",
-          "--segment-indicator-radius": "radii.sm",
+          "--segment-radius": "radii.sm",
         },
         item: {
           fontSize: "sm",
@@ -91,7 +89,7 @@ export const segmentGroupSlotRecipe = defineSlotRecipe({
         root: {
           rounded: "lg",
           height: "10",
-          "--segment-indicator-radius": "radii.md",
+          "--segment-radius": "radii.md",
         },
         item: {
           fontSize: "md",
