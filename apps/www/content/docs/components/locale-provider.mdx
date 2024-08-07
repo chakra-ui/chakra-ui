@@ -1,0 +1,40 @@
+---
+title: Locale Provider
+description: Used for globally setting the locale
+---
+
+## Usage
+
+The `LocaleProvider` component sets the locale for your app, formatting dates,
+numbers, and other locale-specific data.
+
+> Most Chakra UI components that read the locale set by the `LocaleProvider`.
+
+```jsx
+import { LocaleProvider } from "@chakra-ui/react"
+```
+
+```jsx
+<LocaleProvider locale="...">{/* Your App */}</LocaleProvider>
+```
+
+## Examples
+
+### Setting Locale
+
+Set the `locale` prop to the locale you want to use.
+
+```jsx
+<LocaleProvider locale="ar-BH">
+  <Component />
+</LocaleProvider>
+```
+
+### Reading Locale
+
+```jsx
+export const Usage = () => {
+  const { locale, dir } = useLocaleContext()
+  return <pre>{JSON.stringify({ locale, dir }, null, 2)}</pre>
+}
+```
