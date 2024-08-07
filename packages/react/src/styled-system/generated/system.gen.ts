@@ -57,7 +57,7 @@ export interface SystemProperties {
   animationRange?: ConditionalValue<CssProperties["animationRange"] | AnyString>
   animationRangeEnd?: ConditionalValue<CssProperties["animationRangeEnd"] | AnyString>
   animationRangeStart?: ConditionalValue<CssProperties["animationRangeStart"] | AnyString>
-  animationTimingFunction?: ConditionalValue<CssProperties["animationTimingFunction"] | AnyString>
+  animationTimingFunction?: ConditionalValue<UtilityValues["animationTimingFunction"] | CssVars | CssProperties["animationTimingFunction"] | AnyString>
   animationTimeline?: ConditionalValue<CssProperties["animationTimeline"] | AnyString>
   appearance?: ConditionalValue<CssProperties["appearance"] | AnyString>
   aspectRatio?: ConditionalValue<UtilityValues["aspectRatio"] | CssVars | CssProperties["aspectRatio"] | AnyString>
@@ -608,7 +608,6 @@ export interface SystemProperties {
   py?: ConditionalValue<UtilityValues["paddingBlock"] | CssVars | CssProperties["paddingBlock"] | AnyString>
   paddingY?: ConditionalValue<UtilityValues["paddingBlock"] | CssVars | CssProperties["paddingBlock"] | AnyString>
   textDecor?: ConditionalValue<CssProperties["textDecoration"] | AnyString>
-  transitionTiming?: ConditionalValue<UtilityValues["transitionTimingFunction"] | CssVars | CssProperties["transitionTimingFunction"] | AnyString>
   backgroundGradient?: ConditionalValue<UtilityValues["backgroundGradient"] | CssVars | AnyString>
   gradientFrom?: ConditionalValue<UtilityValues["gradientFrom"] | CssVars | AnyString>
   gradientTo?: ConditionalValue<UtilityValues["gradientTo"] | CssVars | AnyString>

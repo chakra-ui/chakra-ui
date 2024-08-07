@@ -22,19 +22,17 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       _open: {
         motionStyle: "scale-fade-in",
         animationDuration: "normal",
-        // TODO: tokenize
-        animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+        animationTimingFunction: "out",
       },
       _closed: {
         motionStyle: "scale-fade-out",
         animationDuration: "faster",
-        // TODO: tokenize
-        animationTimingFunction: "cubic-bezier(0.4, 0, 1, 1)",
+        animationTimingFunction: "in",
       },
     },
     arrow: {
       "--arrow-size": "sizes.3",
-      "--arrow-bg": "var(--hovercard-bg)",
+      "--arrow-background": "var(--hovercard-bg)",
     },
     arrowTip: {
       borderTopWidth: "1px",

@@ -845,14 +845,12 @@ export const defaultBaseConfig = defineConfig({
         background: "background-color, background-image, background-position",
       },
     },
-    transitionTimingFunction: {
-      values: "easings",
-      shorthand: ["transitionTiming"],
-    },
+    transitionTimingFunction: { values: "easings" },
     // animation
     animation: { values: "animations" },
     animationDuration: { values: "durations" },
     animationDelay: { values: "durations" },
+    animationTimingFunction: { values: "easings" },
     // typography
     fontFamily: { values: "fonts" },
     fontSize: { values: "fontSizes" },

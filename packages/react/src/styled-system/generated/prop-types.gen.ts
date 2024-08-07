@@ -196,6 +196,7 @@ export interface UtilityValues {
   animation: Tokens["animations"]
   animationDuration: Tokens["durations"]
   animationDelay: Tokens["durations"]
+  animationTimingFunction: Tokens["easings"]
   fontFamily: Tokens["fonts"]
   fontSize: Tokens["fontSizes"]
   fontWeight: Tokens["fontWeights"]
