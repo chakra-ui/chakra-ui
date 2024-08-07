@@ -3,12 +3,12 @@ title: Composition
 description: Learn how to compose components in Chakra UI.
 ---
 
-Chakra UI components offers two powerful props for customization: `as` and
+Chakra UI components offer two powerful props for customization: `as` and
 `asChild` prop.
 
 ## The `as` Prop
 
-Used to change the underlying HTML element a React component renders. It
+Used to change the underlying HTML element that a React component renders. It
 provides a straightforward way to change the underlying element while retaining
 the component's functionality.
 
@@ -26,8 +26,8 @@ infer the underlying component's props from the `as` prop.
 
 ## The `asChild` Prop
 
-The `asChild` Prop: Used to compose a component's functionality onto its child
-element. This approach, inspired by
+Used to compose a component's functionality onto its child element. This
+approach, inspired by
 [Radix UI](https://www.radix-ui.com/primitives/docs/utilities/slot), offers
 maximum flexibility.
 
@@ -42,10 +42,10 @@ maximum flexibility.
 In this example, the `asChild` prop allows the `Button` to be used as the
 trigger for the popover.
 
-## Rules of Thumb
+## Best Practices
 
-There are a few rules of thumb to consider when using the `as` and `asChild`
-props to avoid common pitfalls.
+To avoid common pitfalls when using the `as` and `asChild` props, there are a
+few best practices to consider:
 
 - **Forward Refs:** Ensure that the underlying component forwards the ref passed
   to it properly.

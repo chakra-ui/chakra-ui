@@ -3,16 +3,15 @@ title: Server Components
 description: Learn how to use Chakra UI with React Server Components.
 ---
 
-React Server Components is a new experimental feature in React that allows you
-to build components that render on the server and hydrate on the client. This
-feature is still experimental and not yet stable.
-
-Chakra UI components are client components because they rely on `useState`,
-`useRef` and `useState` which are not available in server components.
+React Server Components is a new feature in React that allows you to build
+components that render on the server and hydrate on the client.
 
 Client components are still server-rendered and hydrated on the client. Learn
 more about
 [Server component patterns](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
+
+Chakra UI components are client components because they rely on `useState`,
+`useRef` and `useState` which are not available in server components.
 
 :::info
 
@@ -23,7 +22,7 @@ Components without adding the 'use client' directive.
 
 ## Usage
 
-Here's an example of how you can use Chakra UI components with React Server
+Here's an example of how to use Chakra UI components with React Server
 Components in Next.js
 
 ```jsx [app/page.tsx]
@@ -38,8 +37,8 @@ export default async function Page() {
 
 ## Chakra Factory
 
-When using the `chakra()` factory function, you need to use the `use client`
-directive and move the component to a dedicated file.
+When using the `chakra()` factory function, use the `use client` directive and
+move the component to a dedicated file.
 
 ```jsx [blog-post.tsx]
 "use client"
@@ -59,7 +58,7 @@ export const BlogPost = chakra("div", {
 })
 ```
 
-Then you can import the component in your page server component
+Then import the component in your page server component
 
 ```jsx [blogs/page.tsx]
 import { BlogPost } from "./blog-post"
@@ -72,7 +71,7 @@ export default async function Page() {
 
 ## Hooks
 
-When importing hooks from Chakra UI, you need to use the `use client` directive
+When importing hooks from Chakra UI, use the `use client` directive
 
 ```jsx
 "use client"
@@ -87,7 +86,7 @@ export function MyComponent() {
 
 ## Render Props
 
-When using render props, you need to use the `use client` directive
+When using render props, use the `use client` directive
 
 ```jsx
 "use client"
