@@ -1,0 +1,64 @@
+---
+title: Portal
+description: Used to render an element outside the DOM hierarchy.
+---
+
+## Usage
+
+The `Portal` uses the `ReactDOM.createPortal` API to render an element at the
+end of `document.body` or specific container.
+
+```jsx
+import { Portal } from "@chakra-ui/react"
+```
+
+```jsx
+<Portal>
+  <div>Portal content</div>
+</Portal>
+```
+
+## Examples
+
+### Custom Container
+
+Use the `containerRef` prop to render the portal in a custom container.
+
+```jsx
+import { Portal } from "@chakra-ui/react"
+
+const Demo = () => {
+  const containerRef = React.useRef()
+  return (
+    <>
+      <Portal containerRef={containerRef}>
+        <div>Portal content</div>
+      </Portal>
+      <div ref={containerRef} />
+    </>
+  )
+}
+```
+
+### Disabled
+
+Use the `disabled` prop to disable the portal. This will render the children in
+the same DOM hierarchy.
+
+```jsx
+import { Portal } from "@chakra-ui/react"
+
+const Demo = () => {
+  return (
+    <Portal disabled>
+      <div>Will render the content in place</div>
+    </Portal>
+  )
+}
+```
+
+## Server Rendering
+
+During SSR, the `Portal` component directly renders its content. If you run into
+any mismatch warnings, we recommended conditionally rendering the `Portal`
+component only on the client-side.
