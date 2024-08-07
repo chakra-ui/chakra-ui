@@ -11,7 +11,7 @@ export const DemoCode = async (props: {
   const html = await highlightCode(content, {
     lang: "ts",
     themes: {
-      light: "github-light",
+      light: "night-owl",
       dark: "vitesse-black",
     },
   })
