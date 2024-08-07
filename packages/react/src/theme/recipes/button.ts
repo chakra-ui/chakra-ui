@@ -27,7 +27,7 @@ export const buttonRecipe = defineRecipe({
       layerStyle: "disabled",
     },
     _icon: {
-      fontSize: "1.2em",
+      fontSize: "1em",
     },
   },
 

@@ -1,4 +1,5 @@
 import { ActionBar as ChakraActionBar, Portal } from "@chakra-ui/react"
+import { CloseButton } from "compositions/ui/close-button"
 import { forwardRef } from "react"
 
 interface ActionBarContentProps extends ChakraActionBar.ContentProps {
@@ -27,3 +28,13 @@ export const ActionBarContent = forwardRef<
 export const ActionBarRoot = ChakraActionBar.Root
 export const ActionBarSelectionTrigger = ChakraActionBar.SelectionTrigger
 export const ActionBarSeparator = ChakraActionBar.Separator
+
+export const ActionBarCloseTrigger = (
+  props: ChakraActionBar.CloseTriggerProps,
+) => {
+  return (
+    <ChakraActionBar.CloseTrigger {...props} asChild>
+      <CloseButton size="sm" />
+    </ChakraActionBar.CloseTrigger>
+  )
+}

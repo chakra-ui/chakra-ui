@@ -1,7 +1,13 @@
 import { defineSlotRecipe } from "../../styled-system"
 
 export const actionBarSlotRecipe = defineSlotRecipe({
-  slots: ["positioner", "content", "separator", "selectionTrigger"],
+  slots: [
+    "positioner",
+    "content",
+    "separator",
+    "selectionTrigger",
+    "closeTrigger",
+  ],
   base: {
     positioner: {
       position: "fixed",
@@ -19,10 +25,9 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       gap: "3",
-      borderRadius: "md",
+      borderRadius: "lg",
       paddingY: "2",
-      paddingStart: "4",
-      paddingEnd: "4",
+      paddingX: "2",
       pointerEvents: "auto",
 
       _open: {

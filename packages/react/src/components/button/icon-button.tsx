@@ -12,6 +12,8 @@ export interface IconButtonProps extends ButtonProps {}
  */
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(props, ref) {
-    return <Button padding="0" ref={ref} {...props} />
+    return (
+      <Button padding="0" _icon={{ fontSize: "1.2em" }} ref={ref} {...props} />
+    )
   },
 )

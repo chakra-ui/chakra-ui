@@ -2,9 +2,7 @@ import { Box, Collapsible } from "@chakra-ui/react"
 
 export const CollapsibleBasic = () => (
   <Collapsible.Root>
-    <Collapsible.Trigger paddingY="3">
-      Toggle Collapse (Basic)
-    </Collapsible.Trigger>
+    <Collapsible.Trigger paddingY="3">Toggle Collapsible</Collapsible.Trigger>
     <Collapsible.Content>
       <Box padding="4" borderWidth="1px">
         Lorem Ipsum is simply dummy text of the printing and typesetting

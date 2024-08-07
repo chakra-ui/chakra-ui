@@ -75,3 +75,13 @@ export const ActionBarSelectionTrigger = withContext<
   HTMLButtonElement,
   ActionBarSelectionTriggerProps
 >("button", "selectionTrigger")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface ActionBarCloseTriggerProps
+  extends HTMLChakraProps<"button", ArkPopover.CloseTriggerProps> {}
+
+export const ActionBarCloseTrigger = withContext<
+  HTMLButtonElement,
+  ActionBarCloseTriggerProps
+>(ArkPopover.CloseTrigger, "closeTrigger", { forwardAsChild: true })

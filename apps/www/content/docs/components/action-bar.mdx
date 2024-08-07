@@ -1,0 +1,62 @@
+---
+title: Action Bar
+description: Used to display a bottom action bar with a set of actions
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="action-bar-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`action-bar` snippet
+
+```sh
+chakra snippet add action-bar
+```
+
+The snippet includes a closed component composition based on the `Popover`
+component.
+
+## Usage
+
+The action bar is designed to be controlled by table or checkbox selections. It
+provides a set of actions that can be performed on the selected items.
+
+Use the `open` and `onOpenChange` to control the visibility of the action bar.
+
+```jsx
+import {
+  ActionBarCloseTrigger,
+  ActionBarContent,
+  ActionBarRoot,
+  ActionBarSelectionTrigger,
+  ActionBarSeparator,
+} from "@/components/ui/action-bar"
+```
+
+```jsx
+<ActionBarRoot>
+  <ActionBarContent>
+    <ActionBarCloseTrigger />
+    <ActionBarSelectionTrigger />
+    <ActionBarSeparator />
+    <Button />
+  </ActionBarContent>
+</ActionBarRoot>
+```
+
+## Examples
+
+### Close Trigger
+
+Render the `ActionBarCloseTrigger` to close the action bar, and pass the
+`onOpenChange` handler to control the visibility of the action bar when the
+close trigger is clicked.
+
+<ExampleTabs name="action-bar-with-close-trigger" />

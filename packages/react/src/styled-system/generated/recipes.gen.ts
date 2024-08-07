@@ -125,7 +125,7 @@ export interface AccordionVariantProps {
 
 // ActionBar
 
-export type ActionBarSlot = "positioner" | "content" | "separator" | "selectionTrigger"
+export type ActionBarSlot = "positioner" | "content" | "separator" | "selectionTrigger" | "closeTrigger"
 
 export interface ActionBarVariantProps {}
 

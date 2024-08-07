@@ -4,6 +4,7 @@ export {
   ActionBarPositioner as Positioner,
   ActionBarSeparator as Separator,
   ActionBarSelectionTrigger as SelectionTrigger,
+  ActionBarCloseTrigger as CloseTrigger,
   useActionBarStyles,
 } from "./action-bar"
 
@@ -13,6 +14,7 @@ export type {
   ActionBarPositionerProps as PositionerProps,
   ActionBarSeparatorProps as SeparatorProps,
   ActionBarSelectionTriggerProps as SelectionTriggerProps,
+  ActionBarCloseTriggerProps as CloseTriggerProps,
 } from "./action-bar"
 
 export {
