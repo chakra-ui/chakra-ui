@@ -21,4 +21,6 @@ export const RadioCardItem = (props: RadioCardItemProps) => {
 
 export const RadioCardRoot = ChakraRadioCard.Root
 export const RadioCardLabel = ChakraRadioCard.Label
+export const RadioCardItemText = ChakraRadioCard.ItemText
+export const RadioCardItemAddon = ChakraRadioCard.ItemAddon
 export const RadioCardItemIndicator = ChakraRadioCard.ItemIndicator

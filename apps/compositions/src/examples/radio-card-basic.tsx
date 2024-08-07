@@ -1,6 +1,7 @@
 import { HStack, Stack, Text } from "@chakra-ui/react"
 import {
   RadioCardItem,
+  RadioCardItemText,
   RadioCardLabel,
   RadioCardRoot,
 } from "compositions/ui/radio-card"
@@ -19,7 +20,9 @@ export const RadioCardBasic = () => {
         {items.map((item) => (
           <RadioCardItem key={item.value} value={item.value} flex="1">
             <Stack gap="0" flex="1">
-              <RadioCardLabel as="div">{item.title}</RadioCardLabel>
+              <RadioCardItemText fontWeight="medium">
+                {item.title}
+              </RadioCardItemText>
               <Text color="fg.muted">{item.description}</Text>
             </Stack>
           </RadioCardItem>

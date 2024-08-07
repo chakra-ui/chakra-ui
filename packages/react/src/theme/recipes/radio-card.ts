@@ -16,7 +16,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       position: "relative",
       _focus: {
         outline: "2px solid",
-        outlineColor: "colorPalette.500",
+        outlineColor: "focusRing",
         outlineOffset: "2px",
       },
       _disabled: {
@@ -37,6 +37,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       flex: "1",
       pos: "relative",
+      rounded: "inherit",
       _disabled: {
         bg: "bg.subtle!",
       },
@@ -75,7 +76,6 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         itemControl: {
           padding: "4",
           gap: "4",
-          rounded: "md",
         },
         itemAddon: {
           paddingInline: "4",
@@ -114,21 +114,18 @@ export const radioCardSlotRecipe = defineSlotRecipe({
           _checked: {
             borderColor: {
               base: "colorPalette.300",
-              _dark: "colorPalette.300/40",
+              _dark: "colorPalette.300/24",
             },
           },
         },
         itemControl: {
           _checked: {
-            bg: {
-              base: "colorPalette.50",
-              _dark: "colorPalette.400/20",
-            },
+            bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
           },
         },
         itemText: {
           _checked: {
-            color: { base: "colorPalette.600", _dark: "colorPalette.200" },
+            color: { base: "colorPalette.700", _dark: "colorPalette.200" },
           },
         },
         itemIndicator: radiomarkRecipe.variants?.variant.classic,

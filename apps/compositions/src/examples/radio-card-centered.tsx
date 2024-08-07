@@ -1,7 +1,8 @@
-import { HStack, Icon, Text, VStack } from "@chakra-ui/react"
+import { HStack, Icon, VStack } from "@chakra-ui/react"
 import {
   RadioCardItem,
   RadioCardItemIndicator,
+  RadioCardItemText,
   RadioCardLabel,
   RadioCardRoot,
 } from "compositions/ui/radio-card"
@@ -12,19 +13,16 @@ const items = [
     icon: <LuDollarSign />,
     value: "fixed",
     title: "Fixed Rate",
-    description: "Contracts with a fixed rate",
   },
   {
     icon: <LuTrendingUp />,
     value: "milestone",
     title: "Milestone",
-    description: "Contracts with milestone payments",
   },
   {
     icon: <LuClock />,
     value: "hourly",
     title: "Hourly",
-    description: "Contracts with hourly rates",
   },
 ]
 
@@ -41,12 +39,13 @@ export const RadioCardCentered = () => {
             flex="1"
             rounded="lg"
           >
-            <VStack flex="1">
-              <Icon asChild fontSize="2xl" color="fg.subtle" my="2">
+            <VStack textAlign="center" flex="1">
+              <Icon asChild fontSize="2xl" color="fg.subtle">
                 {item.icon}
               </Icon>
-              <RadioCardLabel as="div">{item.title}</RadioCardLabel>
-              <Text color="fg.muted">{item.description}</Text>
+              <RadioCardItemText fontWeight="medium">
+                {item.title}
+              </RadioCardItemText>
               <RadioCardItemIndicator />
             </VStack>
           </RadioCardItem>

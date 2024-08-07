@@ -1,0 +1,73 @@
+---
+title: Radio Card
+description: Used to select an option from list
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="radio-card-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`radio-card` snippet
+
+```sh
+chakra snippet add radio-card
+```
+
+The snippet includes a closed component composition for the `RadioCard`
+component.
+
+## Usage
+
+A RadioCard is a form element with a larger interaction surface represented as a
+card.
+
+```jsx
+import {
+  RadioCardItem,
+  RadioCardItemText,
+  RadioCardLabel,
+  RadioCardRoot,
+} from "@/components/ui/radio-card"
+```
+
+```jsx
+<RadioCardRoot>
+  <RadioCardLabel />
+  <RadioCardItem>
+    <RadioCardItemText />
+  </RadioCardItem>
+</RadioCardRoot>
+```
+
+## Examples
+
+### Sizes
+
+Use the `size` prop to change the size of the radio card.
+
+<ExampleTabs name="radio-card-with-sizes" />
+
+### Colors
+
+Use the `colorPalette` prop to change the color of the radio card.
+
+<ExampleTabs name="radio-card-with-colors" />
+
+### Icon
+
+Here's an example of a RadioCard with an icon.
+
+<ExampleTabs name="radio-card-with-icon" />
+
+### Centered
+
+Here's an example of a RadioCard with centered text.
+
+<ExampleTabs name="radio-card-centered" />

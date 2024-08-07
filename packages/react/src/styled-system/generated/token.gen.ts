@@ -357,6 +357,7 @@ export type Token =
   | "colors.border.warning"
   | "colors.border.success"
   | "colors.border.info"
+  | "colors.focusRing"
   | "shadows.xs"
   | "shadows.sm"
   | "shadows.md"
@@ -440,6 +441,7 @@ export type ColorPalette =
   | "bg"
   | "fg"
   | "border"
+  | "focusRing"
 
 export type AnimationsToken = "spin" | "ping" | "pulse" | "bounce"
 
@@ -612,6 +614,7 @@ export type ColorsToken =
   | "border.warning"
   | "border.success"
   | "border.info"
+  | "focusRing"
   | "colorPalette"
   | "colorPalette.50"
   | "colorPalette.100"
