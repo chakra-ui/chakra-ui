@@ -42,6 +42,24 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 ```
 
+Alternatively, if a hydration error is thrown in Next.js 13 after integrating `Providers` in the `Layout`, replace the `Providers` code with the following implementation:
+
+```jsx live=false
+// app/providers.tsx
+'use client';
+
+import { CacheProvider } from '@chakra-ui/next-js';
+import { ChakraProvider } from '@chakra-ui/react';
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <CacheProvider>
+      <ChakraProvider>{children}</ChakraProvider>
+    </CacheProvider>
+  );
+}
+```
+
 ### Setup Layout
 
 Next, use the `Providers` component in your layouts.
