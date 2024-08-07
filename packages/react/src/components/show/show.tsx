@@ -18,7 +18,7 @@ export interface ShowProps<T> {
 export function Show<T>(props: ShowProps<T>) {
   const { when, fallback, children } = props
 
-  if (when != null) {
+  if (!when) {
     return fallback || null
   }
 

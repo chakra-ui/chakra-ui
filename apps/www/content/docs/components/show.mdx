@@ -1,0 +1,37 @@
+---
+title: Show
+description: Used to conditional render part of the view based on a condition.
+---
+
+<ExampleTabs name="show-basic" />
+
+## Usage
+
+The `Show` component renders its children when the `when` value is truthy,
+otherwise it renders the `fallback` prop.
+
+```jsx
+import { Show } from "@chakra-ui/react"
+```
+
+```jsx
+<Show when={...} fallback={...}>
+  <div>Content</div>
+</Show>
+```
+
+## Examples
+
+### Fallback
+
+Use the `fallback` prop to render a fallback component when the array is empty
+or undefined.
+
+<ExampleTabs name="show-with-fallback" />
+
+### Render Prop
+
+Use the `children` render prop will narrow the type of the `when` value to
+remove `undefined` | `null`
+
+<ExampleTabs name="show-with-render-prop" />
