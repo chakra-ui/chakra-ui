@@ -1,0 +1,74 @@
+---
+title: Tag
+description: Used for categorizing or labeling content
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="tag-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`tag` snippet
+
+```sh
+chakra snippet add tag
+```
+
+The snippet includes a closed component composition for the `Tag` component.
+
+## Usage
+
+```jsx
+import { Tag } from "@/components/ui/tag"
+```
+
+```jsx
+<Tag>Badge</Tag>
+```
+
+## Examples
+
+### Icon
+
+Use the `startElement` prop to add an icon to the tag.
+
+<ExampleTabs name="tag-with-icon" />
+
+### Variants
+
+Use the `variant` prop to change the appearance of the tag.
+
+<ExampleTabs name="tag-with-variants" />
+
+### Sizes
+
+Use the `size` prop to change the size of the tag.
+
+<ExampleTabs name="tag-with-sizes" />
+
+### Closable
+
+Use the `closable` prop to make the tag closable.
+
+<ExampleTabs name="tag-with-close" />
+
+### Avatar
+
+Here's an example of a tag with an avatar.
+
+<ExampleTabs name="tag-with-avatar" />
+
+### As Button
+
+Use the `asChild` prop to render the tag as a button.
+
+> Note that you'll need to import the Tag from `@chakra-ui/react` to use this
+> prop.
+
+<ExampleTabs name="tag-as-button" />

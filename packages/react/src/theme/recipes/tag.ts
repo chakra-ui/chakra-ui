@@ -6,6 +6,7 @@ const badgeVariant = badgeRecipe.variants?.variant
 
 export const tagSlotRecipe = defineSlotRecipe({
   slots: tagAnatomy.keys(),
+  className: "tag",
   base: {
     root: {
       colorPalette: "gray",
@@ -14,21 +15,15 @@ export const tagSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       maxWidth: "100%",
       userSelect: "none",
-
-      "& svg": {
+      _icon: {
         fontSize: "md",
       },
-      "& > svg:first-of-type": {
-        marginStart: "0.2em",
-      },
-      _focusVisible: {
-        outline: "2px solid",
-        outlineColor: "colorPalette.500",
-        outlineOffset: "2px",
-      },
+      focusRing: "outside",
     },
     label: {
       lineClamp: "1",
+      lineHeight: "1.2",
+      px: "0.2em",
     },
     closeTrigger: {
       display: "flex",
@@ -37,11 +32,7 @@ export const tagSlotRecipe = defineSlotRecipe({
       outline: "0",
       borderRadius: "xs",
       color: "currentColor/60",
-      _focusVisible: {
-        outline: "2px solid",
-        outlineColor: "colorPalette.500",
-        outlineOffset: "2px",
-      },
+      focusRing: "inside",
     },
   },
 
@@ -49,47 +40,26 @@ export const tagSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          minH: "5",
-          minW: "5",
           fontSize: "xs",
-          px: "0.5",
+          padding: "1.5",
+          gap: "1",
           borderRadius: "sm",
-        },
-        label: {
-          px: "1",
-        },
-        closeTrigger: {
-          marginEnd: "0.5",
         },
       },
       md: {
         root: {
-          minH: "6",
-          minW: "6",
           fontSize: "sm",
-          px: "0.5",
+          padding: "1.5",
+          gap: "1.5",
           borderRadius: "md",
-        },
-        label: {
-          px: "1.5",
-        },
-        closeTrigger: {
-          marginEnd: "0.5",
         },
       },
       lg: {
         root: {
-          minH: "8",
-          minW: "8",
           fontSize: "md",
-          px: "0.5",
+          padding: "1.5",
+          gap: "1.5",
           borderRadius: "md",
-        },
-        label: {
-          px: "1.5",
-        },
-        closeTrigger: {
-          marginEnd: "1",
         },
       },
     },
@@ -111,7 +81,7 @@ export const tagSlotRecipe = defineSlotRecipe({
         root: {
           bg: "bg.panel",
           color: { base: "colorPalette.800", _dark: "colorPalette.300" },
-          boxShadow: "sm",
+          boxShadow: "xs",
         },
       },
     },
@@ -119,7 +89,7 @@ export const tagSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
-    variant: "subtle",
+    variant: "surface",
     colorPalette: "gray",
   },
 })

@@ -1,4 +1,4 @@
-import { HiCheck, HiOutlineBriefcase, HiX } from "react-icons/hi"
+import { HiCheck, HiOutlineBriefcase } from "react-icons/hi"
 import { Avatar, Box, For, Span, Stack, Tag, useSlotRecipe } from "../src"
 import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
@@ -39,9 +39,7 @@ export const Variants = () => {
 
                       <Tag.Root variant={v} colorPalette={c}>
                         <Tag.Label>Gray</Tag.Label>
-                        <Tag.CloseTrigger>
-                          <HiX />
-                        </Tag.CloseTrigger>
+                        <Tag.CloseTrigger />
                       </Tag.Root>
 
                       <Tag.Root variant={v} colorPalette={c}>
@@ -101,9 +99,7 @@ export const Sizes = () => {
                   <td key={v}>
                     <Tag.Root size={v} colorPalette={c}>
                       <Tag.Label>Gray</Tag.Label>
-                      <Tag.CloseTrigger>
-                        <HiX />
-                      </Tag.CloseTrigger>
+                      <Tag.CloseTrigger />
                     </Tag.Root>
                   </td>
                 )}
@@ -124,9 +120,7 @@ export const Overflow = () => {
         molestias, laboriosam, quod, quia quidem quae voluptatem natus
         exercitationem autem quibusdam
       </Tag.Label>
-      <Tag.CloseTrigger>
-        <HiX />
-      </Tag.CloseTrigger>
+      <Tag.CloseTrigger />
     </Tag.Root>
   )
 }

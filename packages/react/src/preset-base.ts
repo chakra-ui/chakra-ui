@@ -541,9 +541,9 @@ export const defaultBaseConfig = defineConfig({
           inside: {
             "--focus-ring-color": focusRingColor,
             "&:where(:focus-visible, [data-focus])": {
-              outlineWidth: "var(--focus-ring-width, 1px)",
+              outlineWidth: "var(--focus-ring-width, 2px)",
               outlineColor: "var(--focus-ring-color)",
-              borderWidth: "1px",
+              outlineStyle: "solid",
               borderColor: "var(--focus-ring-color)",
             },
           },
@@ -552,6 +552,7 @@ export const defaultBaseConfig = defineConfig({
             "&:is(:focus-visible, [data-focus])": {
               outlineWidth: "var(--focus-ring-width, 2px)",
               outlineOffset: "2px",
+              outlineStyle: "solid",
               outlineColor: "var(--focus-ring-color)",
             },
           },
@@ -559,9 +560,9 @@ export const defaultBaseConfig = defineConfig({
             "--focus-ring-color": focusRingColor,
             "&:is(:focus-visible, [data-focus])": {
               outlineWidth: "2px",
+              outlineStyle: "solid",
               outlineColor:
                 "color-mix(in srgb, var(--focus-ring-color), transparent 60%)",
-              borderWidth: "1px",
               borderColor: "var(--focus-ring-color)",
             },
           },
