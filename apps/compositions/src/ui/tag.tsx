@@ -1,25 +1,30 @@
 import { Tag as ChakraTag } from "@chakra-ui/react"
 import { forwardRef } from "react"
-import { HiX } from "react-icons/hi"
 
 export interface TagProps extends ChakraTag.RootProps {
-  icon?: React.ReactNode
-  showClose?: boolean
+  startElement?: React.ReactNode
+  endElement?: React.ReactNode
   onClose?: VoidFunction
+  closable?: boolean
 }
 
 export const Tag = forwardRef<HTMLSpanElement, TagProps>(
   function Tag(props, ref) {
-    const { icon, onClose, children, showClose, ...rest } = props
+    const {
+      startElement,
+      endElement,
+      onClose,
+      closable = !!onClose,
+      children,
+      ...rest
+    } = props
+
     return (
       <ChakraTag.Root ref={ref} {...rest}>
-        {icon}
+        {startElement}
         <ChakraTag.Label>{children}</ChakraTag.Label>
-        {showClose && (
-          <ChakraTag.CloseTrigger onClick={onClose}>
-            <HiX />
-          </ChakraTag.CloseTrigger>
-        )}
+        {endElement}
+        {closable && <ChakraTag.CloseTrigger onClick={onClose} />}
       </ChakraTag.Root>
     )
   },

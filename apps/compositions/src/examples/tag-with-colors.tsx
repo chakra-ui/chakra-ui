@@ -18,10 +18,10 @@ export const TagWithColors = () => {
           <Tag size="sm" colorPalette={colorPalette}>
             Content
           </Tag>
-          <Tag icon={<HiPlus />} size="sm" colorPalette={colorPalette}>
+          <Tag startElement={<HiPlus />} size="sm" colorPalette={colorPalette}>
             Content
           </Tag>
-          <Tag size="sm" colorPalette={colorPalette} variant="solid" showClose>
+          <Tag size="sm" colorPalette={colorPalette} variant="solid" closable>
             Content
           </Tag>
         </Stack>

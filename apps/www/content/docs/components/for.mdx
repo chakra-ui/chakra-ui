@@ -1,0 +1,34 @@
+---
+title: For
+description: Used to loop over an array and render a component for each item.
+---
+
+<ExampleTabs name="for-basic" />
+
+## Usage
+
+The `For` component is used to render a list of items in a strongly typed
+manner. It is similar to the `.map()`.
+
+```jsx
+import { For } from "@chakra-ui/react"
+```
+
+```jsx
+<For each={[]} fallback={...} />
+```
+
+## Examples
+
+### Object
+
+Here's an example of using the `For` component to loop over an object.
+
+<ExampleTabs name="for-with-object" />
+
+### Fallback
+
+Use the `fallback` prop to render a fallback component when the array is empty
+or undefined.
+
+<ExampleTabs name="for-with-fallback" />
