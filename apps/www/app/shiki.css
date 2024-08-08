@@ -1,7 +1,7 @@
-.dark :where(.shiki, .shiki span) {
+/* .dark :where(.shiki, .shiki span) {
   color: var(--shiki-dark) !important;
   background: var(--shiki-dark-bg) !important;
-}
+} */
 
 pre.shiki {
   position: relative;
@@ -11,8 +11,8 @@ pre.shiki code * {
   font-size: 0.82rem;
   hyphens: none;
   white-space: pre;
-  font-style: normal;
-  line-height: 1.4;
+  font-style: normal !important;
+  line-height: 1.2;
 }
 
 code .diff {

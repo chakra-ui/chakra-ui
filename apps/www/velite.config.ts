@@ -100,11 +100,7 @@ export default defineConfig({
             transformerMetaHighlight(),
             transformerMetaWordHighlight(),
           ],
-          themes: {
-            light: "night-owl",
-            dark: "dark-plus",
-          },
-          defaultColor: "light",
+          theme: "dark-plus",
         },
       ],
       [

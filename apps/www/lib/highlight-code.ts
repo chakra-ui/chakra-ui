@@ -6,11 +6,7 @@ export const highlightCode = (
 ) => {
   return codeToHtml(code, {
     lang: "tsx",
-    themes: {
-      light: "night-owl",
-      dark: "dark-plus",
-    },
-    defaultColor: "light",
+    theme: "dark-plus",
     ...opts,
   })
 }

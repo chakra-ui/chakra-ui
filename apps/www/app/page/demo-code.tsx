@@ -10,10 +10,7 @@ export const DemoCode = async (props: {
   const content = await readDemoFile(props.name, props.extension)
   const html = await highlightCode(content, {
     lang: "ts",
-    themes: {
-      light: "night-owl",
-      dark: "vitesse-black",
-    },
+    theme: "dark-plus",
   })
   return (
     <Box
