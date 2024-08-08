@@ -1,15 +1,19 @@
-import { Box } from "../src"
-import { Bleed } from "../src/components/bleed"
+import { BleedBasic } from "compositions/examples/bleed-basic"
+import { BleedVertical } from "compositions/examples/bleed-vertical"
+import { BleedWithDirection } from "compositions/examples/bleed-with-direction"
 
 export default {
   title: "Layout / Bleed",
 }
 
-export const Basic = () => (
-  <Box padding="4" borderWidth="1px">
-    <Bleed inline="4" bg="pink.100" padding="3">
-      Some bleed
-    </Bleed>
-    <Box padding="4">Inner text</Box>
-  </Box>
-)
+export const Basic = () => {
+  return <BleedBasic />
+}
+
+export const Vertical = () => {
+  return <BleedVertical />
+}
+
+export const WithDirection = () => {
+  return <BleedWithDirection />
+}

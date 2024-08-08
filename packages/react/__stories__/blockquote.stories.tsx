@@ -1,56 +1,29 @@
-import { Blockquote, For, Span, useSlotRecipe } from "../src"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import { BlockquoteBasic } from "compositions/examples/blockquote-basic"
+import { BlockquoteVariantTable } from "compositions/examples/blockquote-variant-table"
+import { BlockquoteWithCite } from "compositions/examples/blockquote-with-cite"
+import { BlockquoteWithCustomIcon } from "compositions/examples/blockquote-with-custom-icon"
+import { BlockquoteWithIcon } from "compositions/examples/blockquote-with-icon"
 
 export default {
   title: "Components / Blockquote",
 }
 
-const DemoBlockquote = (props: Blockquote.RootProps) => (
-  <Blockquote.Root {...props}>
-    <Blockquote.Content cite="#">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
-    </Blockquote.Content>
-    <Blockquote.Caption>
-      — Blockquote Caption, <cite>Book</cite>
-    </Blockquote.Caption>
-  </Blockquote.Root>
-)
-
 export const Basic = () => {
-  return <DemoBlockquote />
+  return <BlockquoteBasic />
+}
+
+export const WithCite = () => {
+  return <BlockquoteWithCite />
+}
+
+export const WithIcon = () => {
+  return <BlockquoteWithIcon />
+}
+
+export const WithCustomIcon = () => {
+  return <BlockquoteWithCustomIcon />
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("blockquote")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td>
-                    <DemoBlockquote variant={v} colorPalette={c} />
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <BlockquoteVariantTable />
 }
