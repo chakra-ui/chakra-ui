@@ -22,6 +22,10 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
         cursor: "not-allowed",
         borderColor: "border.disabled!",
       },
+      _invalid: {
+        outline: "2px solid",
+        outlineColor: "border.error",
+      },
     },
     control: {
       display: "inline-flex",

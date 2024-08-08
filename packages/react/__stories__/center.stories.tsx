@@ -1,20 +1,29 @@
-import { FaPhone } from "react-icons/fa"
-import { Box, Center } from "../src"
+import { CenterBasic } from "compositions/examples/center-basic"
+import { CenterWithAbsolute } from "compositions/examples/center-with-absolute"
+import { CenterWithIcons } from "compositions/examples/center-with-icons"
+import { CenterWithInline } from "compositions/examples/center-with-inline"
+import { CenterWithSquare } from "compositions/examples/center-with-square"
 
 export default {
   title: "Layout / Center",
 }
 
-export const basic = () => (
-  <Center bg="#da3d6929" w="400px" h="400px">
-    <Box p="40px" bg="green.600">
-      Box
-    </Box>
-  </Center>
-)
+export const Basic = () => {
+  return <CenterBasic />
+}
 
-export const iconWithFrame = () => (
-  <Center bg="green.500" color="white" boxSize="40px" borderRadius="full">
-    <FaPhone />
-  </Center>
-)
+export const WithAbsolute = () => {
+  return <CenterWithAbsolute />
+}
+
+export const WithIcons = () => {
+  return <CenterWithIcons />
+}
+
+export const WithInline = () => {
+  return <CenterWithInline />
+}
+
+export const WithSquare = () => {
+  return <CenterWithSquare />
+}
