@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "3.0.0-next.12",
+  "version": "3.0.0-next.13",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "type": "module",
   "main": "dist/cjs/index.cjs",
