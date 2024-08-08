@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/react"
 import { Children, Fragment, forwardRef, isValidElement } from "react"
 
-interface BreadcrumbRootProps extends ChakraBreadcrumb.RootProps {
+export interface BreadcrumbRootProps extends ChakraBreadcrumb.RootProps {
   separator?: React.ReactNode
   separatorGap?: SystemStyleObject["gap"]
 }

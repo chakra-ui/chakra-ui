@@ -1,137 +1,39 @@
-import { For, Span, Stack, useSlotRecipe } from "../src"
-import { Breadcrumb } from "../src/components/breadcrumb"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
+import { BreadcrumbSizeTable } from "compositions/examples/breadcrumb-size-table"
+import { BreadcrumbVariantTable } from "compositions/examples/breadcrumb-variant-table"
+import { BreadcrumbWithEllipsis } from "compositions/examples/breadcrumb-with-ellipsis"
+import { BreadcrumbWithIcon } from "compositions/examples/breadcrumb-with-icon"
+import { BreadcrumbWithMenu } from "compositions/examples/breadcrumb-with-menu"
+import { BreadcrumbWithSeparator } from "compositions/examples/breadcrumb-with-separator"
 
 export default {
   title: "Components / Breadcrumb",
 }
 
-const DemoBreadcrumb = (
-  props: Breadcrumb.RootProps & { separator?: React.ReactNode },
-) => {
-  const { separator, gap, ...restProps } = props
-  return (
-    <Breadcrumb.Root minW="200px" {...restProps}>
-      <Breadcrumb.List gap={gap}>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="#">First</Breadcrumb.Link>
-        </Breadcrumb.Item>
+export const Basic = () => {
+  return <BreadcrumbBasic />
+}
 
-        <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="#">Second</Breadcrumb.Link>
-        </Breadcrumb.Item>
+export const WithEllipsis = () => {
+  return <BreadcrumbWithEllipsis />
+}
 
-        <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.Ellipsis />
-        </Breadcrumb.Item>
+export const WithIcon = () => {
+  return <BreadcrumbWithIcon />
+}
 
-        <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="#">Fourth</Breadcrumb.Link>
-        </Breadcrumb.Item>
+export const WithMenu = () => {
+  return <BreadcrumbWithMenu />
+}
 
-        <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.CurrentLink>Fifth</Breadcrumb.CurrentLink>
-        </Breadcrumb.Item>
-      </Breadcrumb.List>
-    </Breadcrumb.Root>
-  )
+export const WithSeparator = () => {
+  return <BreadcrumbWithSeparator />
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("breadcrumb")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td>
-                    <Stack>
-                      <DemoBreadcrumb variant={v} colorPalette={c} />
-                      <DemoBreadcrumb
-                        variant={v}
-                        colorPalette={c}
-                        separator="/"
-                      />
-                    </Stack>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <BreadcrumbVariantTable />
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("breadcrumb")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.size}>
-                {(v) => (
-                  <td>
-                    <Stack>
-                      <DemoBreadcrumb size={v} colorPalette={c} />
-                      <DemoBreadcrumb size={v} colorPalette={c} separator="/" />
-                    </Stack>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-export const WithCustomSeparator = () => {
-  return (
-    <Breadcrumb.Root>
-      <Breadcrumb.List>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="#">Link 1</Breadcrumb.Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Separator>-</Breadcrumb.Separator>
-        <Breadcrumb.Item>
-          <Breadcrumb.Link href="#">Link 2</Breadcrumb.Link>
-        </Breadcrumb.Item>
-      </Breadcrumb.List>
-    </Breadcrumb.Root>
-  )
+  return <BreadcrumbSizeTable />
 }
