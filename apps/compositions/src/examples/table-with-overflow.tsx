@@ -2,7 +2,7 @@ import { Table } from "@chakra-ui/react"
 
 export const TableWithOverflow = () => {
   return (
-    <Table.ScrollArea borderWidth="1px">
+    <Table.ScrollArea borderWidth="1px" maxW="xl">
       <Table.Root size="sm" variant="outline">
         <Table.Header>
           <Table.Row>

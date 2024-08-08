@@ -1,115 +1,69 @@
-import { For, Span, useSlotRecipe } from "../src"
-import { Table } from "../src/components/table"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import { TableBasic } from "compositions/examples/table-basic"
+import { TableSizeTable } from "compositions/examples/table-size-table"
+import { TableVariantTable } from "compositions/examples/table-variant-table"
+import { TableWithColumnBorder } from "compositions/examples/table-with-column-border"
+import { TableWithColumnGroup } from "compositions/examples/table-with-column-group"
+import { TableWithInteractive } from "compositions/examples/table-with-interactive"
+import { TableWithOverflow } from "compositions/examples/table-with-overflow"
+import { TableWithPagination } from "compositions/examples/table-with-pagination"
+import { TableWithSelection } from "compositions/examples/table-with-selection"
+import { TableWithSelectionActionBar } from "compositions/examples/table-with-selection-action-bar"
+import { TableWithStickyColumn } from "compositions/examples/table-with-sticky-column"
+import { TableWithStickyHeader } from "compositions/examples/table-with-sticky-header"
+import { TableWithStriped } from "compositions/examples/table-with-striped"
 
 export default {
   title: "Components / Table",
 }
 
-const DemoTable = (props: Table.RootProps) => (
-  <Table.Root {...props}>
-    <Table.Header>
-      <Table.Row>
-        <Table.ColumnHeader>Name</Table.ColumnHeader>
-        <Table.ColumnHeader>Email</Table.ColumnHeader>
-        <Table.ColumnHeader textAlign="end">Award Count</Table.ColumnHeader>
-      </Table.Row>
-    </Table.Header>
-    <Table.Body>
-      <Table.Row>
-        <Table.Cell>John Doe</Table.Cell>
-        <Table.Cell>johndoe@gmail.com</Table.Cell>
-        <Table.Cell textAlign="end">10</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>Jane Doe</Table.Cell>
-        <Table.Cell>janedoe@gmail.com</Table.Cell>
-        <Table.Cell textAlign="end">2</Table.Cell>
-      </Table.Row>
-      <Table.Row data-selected="">
-        <Table.Cell>Jack Doe</Table.Cell>
-        <Table.Cell>jackdoe@gmail.com</Table.Cell>
-        <Table.Cell textAlign="end">9</Table.Cell>
-      </Table.Row>
-    </Table.Body>
-    <Table.Footer>
-      <Table.Row>
-        <Table.Cell colSpan={2}>Total</Table.Cell>
-        <Table.Cell textAlign="end">15</Table.Cell>
-      </Table.Row>
-    </Table.Footer>
-  </Table.Root>
-)
-
 export const Basic = () => {
-  return <DemoTable />
+  return <TableBasic />
+}
+
+export const WithColumnBorder = () => {
+  return <TableWithColumnBorder />
+}
+
+export const WithColumnGroup = () => {
+  return <TableWithColumnGroup />
+}
+
+export const WithInteractive = () => {
+  return <TableWithInteractive />
+}
+
+export const Overflow = () => {
+  return <TableWithOverflow />
+}
+
+export const WithPagination = () => {
+  return <TableWithPagination />
+}
+
+export const WithStickyColumn = () => {
+  return <TableWithStickyColumn />
+}
+
+export const WithStickyHeader = () => {
+  return <TableWithStickyHeader />
+}
+
+export const WithStripe = () => {
+  return <TableWithStriped />
+}
+
+export const WithSelection = () => {
+  return <TableWithSelection />
+}
+
+export const WithSelectionActionBar = () => {
+  return <TableWithSelectionActionBar />
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("table")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td>
-                    <DemoTable showColumnBorder variant={v} colorPalette={c} />
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <TableVariantTable />
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("table")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={recipe.variantMap.variant}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.size}>
-                {(v) => (
-                  <td>
-                    <DemoTable size={v} variant={c} striped />
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <TableSizeTable />
 }

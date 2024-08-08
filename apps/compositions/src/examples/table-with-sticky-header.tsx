@@ -2,10 +2,10 @@ import { Table } from "@chakra-ui/react"
 
 export const TableWithStickyHeader = () => {
   return (
-    <Table.ScrollArea borderWidth="1px" rounded="md" height="200px">
+    <Table.ScrollArea borderWidth="1px" rounded="md" height="160px">
       <Table.Root size="sm" stickyHeader>
         <Table.Header>
-          <Table.Row>
+          <Table.Row bg="bg.subtle">
             <Table.ColumnHeader>Product</Table.ColumnHeader>
             <Table.ColumnHeader>Category</Table.ColumnHeader>
             <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
