@@ -1,7 +1,9 @@
-import { HiAtSymbol, HiStar } from "react-icons/hi"
-import { Badge, Box, For, Group, Span, Stack, useRecipe } from "../src"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import { BadgeBasic } from "compositions/examples/badge-basic"
+import { BadgeSizeTable } from "compositions/examples/badge-size-table"
+import { BadgeVariantTable } from "compositions/examples/badge-variant-table"
+import { BadgeWithGroup } from "compositions/examples/badge-with-group"
+import { BadgeWithIcon } from "compositions/examples/badge-with-icon"
+import { Box } from "../src"
 
 export default {
   title: "Components / Badge",
@@ -14,102 +16,22 @@ export default {
   ],
 }
 
+export const Basic = () => {
+  return <BadgeBasic />
+}
+
 export const Variants = () => {
-  const recipe = useRecipe("badge")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td>
-                    <Badge variant={v} colorPalette={c}>
-                      New
-                    </Badge>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <BadgeVariantTable />
 }
 
 export const Sizes = () => {
-  const recipe = useRecipe("badge")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.size}>
-                {(v) => (
-                  <td>
-                    <Badge size={v} colorPalette={c} variant="solid">
-                      New
-                    </Badge>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <BadgeSizeTable />
 }
 
 export const WithIcon = () => {
-  return (
-    <Stack align="flex-start">
-      <Badge variant="solid" colorPalette="purple" size="md">
-        <HiStar />
-        New
-      </Badge>
-      <Badge variant="solid" colorPalette="green" size="md">
-        New
-        <HiAtSymbol />
-      </Badge>
-    </Stack>
-  )
+  return <BadgeWithIcon />
 }
 
 export const WithGroup = () => {
-  return (
-    <Group attached>
-      <Badge variant="solid" colorPalette="purple">
-        Commit status
-      </Badge>
-      <Badge variant="solid" colorPalette="green">
-        90+
-      </Badge>
-    </Group>
-  )
+  return <BadgeWithGroup />
 }
