@@ -7,6 +7,7 @@ export const RadioWithVariants = () => {
       <For each={["classic", "outline", "subtle"]}>
         {(variant) => (
           <RadioGroup
+            key={variant}
             variant={variant}
             defaultValue="react"
             spaceX="4"

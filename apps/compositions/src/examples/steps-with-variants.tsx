@@ -15,7 +15,7 @@ export const StepsWithVariants = () => {
     <Stack gap="16">
       <For each={["subtle", "solid"]}>
         {(variant) => (
-          <StepsRoot variant={variant} count={3}>
+          <StepsRoot key={variant} variant={variant} count={3}>
             <StepsList>
               <StepsItem index={0} title="Step 1" />
               <StepsItem index={1} title="Step 2" />

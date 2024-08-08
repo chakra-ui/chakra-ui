@@ -11,13 +11,13 @@ export const CardSizeTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>
         <For each={recipe.variantMap.variant}>
           {(v) => (
-            <tr>
+            <tr key={v}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {v}
@@ -25,7 +25,7 @@ export const CardSizeTable = () => {
               </td>
               <For each={recipe.variantMap.size}>
                 {(s) => (
-                  <td>
+                  <td key={s}>
                     <Card.Root size={s} variant={v}>
                       <Card.Header>
                         <Heading size={s} fontWeight="semibold">

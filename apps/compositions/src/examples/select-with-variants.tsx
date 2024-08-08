@@ -13,7 +13,7 @@ export const SelectWithVariants = () => {
     <Stack gap="5" width="320px">
       <For each={["outline", "filled"]}>
         {(variant) => (
-          <SelectRoot variant={variant} items={frameworks}>
+          <SelectRoot key={variant} variant={variant} items={frameworks}>
             <SelectLabel>Select framework - {variant}</SelectLabel>
             <SelectTrigger>
               <SelectValueText placeholder="Select movie" />

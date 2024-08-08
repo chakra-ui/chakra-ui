@@ -18,13 +18,15 @@ export const AccordionVariantTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.variant}>
+            {(v) => <td key={v}>{v}</td>}
+          </For>
         </tr>
       </thead>
       <tbody>
         <For each={colorPalettes}>
           {(c) => (
-            <tr>
+            <tr key={c}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {c}
@@ -32,7 +34,7 @@ export const AccordionVariantTable = () => {
               </td>
               <For each={recipe.variantMap.variant}>
                 {(v) => (
-                  <td>
+                  <td key={v}>
                     <AccordionDemo variant={v} colorPalette={c} />
                   </td>
                 )}

@@ -11,7 +11,13 @@ export const PaginationWithSizes = () => {
     <Stack gap="8">
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
-          <PaginationRoot count={10} pageSize={2} defaultPage={1} size={size}>
+          <PaginationRoot
+            key={size}
+            count={10}
+            pageSize={2}
+            defaultPage={1}
+            size={size}
+          >
             <HStack>
               <PaginationPrevTrigger />
               <PaginationItems />

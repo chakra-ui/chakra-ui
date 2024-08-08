@@ -6,13 +6,13 @@ export const TagWithSizes = () => {
   return (
     <Stack gap="8">
       <For each={["sm", "md", "lg"]}>
-        {(v) => (
-          <HStack>
-            <Tag size={v}>Gray</Tag>
-            <Tag size={v} closable>
+        {(size) => (
+          <HStack key={size}>
+            <Tag size={size}>Gray</Tag>
+            <Tag size={size} closable>
               Gray
             </Tag>
-            <Tag endElement={<HiCheck />} size={v}>
+            <Tag endElement={<HiCheck />} size={size}>
               Gray
             </Tag>
           </HStack>

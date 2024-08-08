@@ -13,7 +13,7 @@ export const SelectWithSizes = () => {
     <Stack gap="5" width="320px">
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
-          <SelectRoot size={size} items={frameworks}>
+          <SelectRoot key={size} size={size} items={frameworks}>
             <SelectLabel>Select framework - {size}</SelectLabel>
             <SelectTrigger>
               <SelectValueText placeholder="Select movie" />

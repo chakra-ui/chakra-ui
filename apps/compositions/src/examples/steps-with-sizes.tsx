@@ -15,7 +15,7 @@ export const StepsWithSizes = () => {
     <Stack gap="16">
       <For each={["sm", "md", "lg"]}>
         {(size) => (
-          <StepsRoot size={size} count={3}>
+          <StepsRoot key={size} size={size} count={3}>
             <StepsList>
               <StepsItem index={0} title="Step 1" />
               <StepsItem index={1} title="Step 2" />

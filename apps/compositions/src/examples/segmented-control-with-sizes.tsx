@@ -7,6 +7,7 @@ export const SegmentedControlWithSizes = () => {
       <For each={["sm", "md", "lg"]}>
         {(size) => (
           <SegmentedControl
+            key={size}
             size={size}
             defaultValue="React"
             items={["React", "Vue", "Solid"]}

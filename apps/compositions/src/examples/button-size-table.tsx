@@ -13,13 +13,13 @@ export const ButtonSizeTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>
         <For each={colorPalettes}>
           {(c) => (
-            <tr>
+            <tr key={c}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {c}
@@ -27,7 +27,7 @@ export const ButtonSizeTable = () => {
               </td>
               <For each={recipe.variantMap.size}>
                 {(v) => (
-                  <td>
+                  <td key={v}>
                     <Button size={v} colorPalette={c}>
                       Next <HiArrowRight />
                     </Button>

@@ -6,13 +6,13 @@ export const TagWithVariants = () => {
   return (
     <Stack gap="8">
       <For each={["subtle", "solid", "surface", "raised"]}>
-        {(v) => (
-          <HStack>
-            <Tag variant={v}>Gray</Tag>
-            <Tag variant={v} closable>
+        {(variant) => (
+          <HStack key={variant}>
+            <Tag variant={variant}>Gray</Tag>
+            <Tag variant={variant} closable>
               Gray
             </Tag>
-            <Tag endElement={<HiCheck />} variant={v}>
+            <Tag endElement={<HiCheck />} variant={variant}>
               Gray
             </Tag>
           </HStack>

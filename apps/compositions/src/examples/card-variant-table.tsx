@@ -10,13 +10,15 @@ export const CardVariantTable = () => {
     <PlaygroundTable>
       <thead>
         <tr>
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.variant}>
+            {(v) => <td key={v}>{v}</td>}
+          </For>
         </tr>
       </thead>
       <tbody>
         <For each={recipe.variantMap.variant}>
           {(v) => (
-            <td>
+            <td key={v}>
               <Card.Root variant={v}>
                 <Card.Header>
                   <Heading size="md"> Card Title</Heading>
