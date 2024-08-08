@@ -1,10 +1,13 @@
 "use client"
 
-import { Switch as ArkSwitch } from "@ark-ui/react/switch"
+import { Switch as ArkSwitch, useSwitchContext } from "@ark-ui/react/switch"
+import { dataAttr } from "@chakra-ui/utils"
+import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
+  chakra,
   createStyleContext,
 } from "../../styled-system"
 
@@ -63,3 +66,28 @@ export const SwitchThumb = withContext<HTMLSpanElement, SwitchThumbProps>(
   "thumb",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SwitchIndicatorProps extends HTMLChakraProps<"span"> {
+  fallback?: React.ReactNode
+}
+
+export const SwitchIndicator = forwardRef<
+  HTMLSpanElement,
+  SwitchIndicatorProps
+>(function SwitchIndicator(props, ref) {
+  const api = useSwitchContext()
+  const styles = useSwitchStyles()
+  const { fallback, children, ...rest } = props
+  return (
+    <chakra.span
+      ref={ref}
+      data-checked={dataAttr(api.checked)}
+      {...rest}
+      css={[styles.indicator, props.css]}
+    >
+      {api.checked ? children : fallback}
+    </chakra.span>
+  )
+})

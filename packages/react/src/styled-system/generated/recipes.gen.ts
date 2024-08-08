@@ -490,7 +490,7 @@ export interface StepsVariantProps {
 
 // Switch
 
-export type SwitchSlot = "root" | "label" | "control" | "thumb"
+export type SwitchSlot = "root" | "label" | "control" | "thumb" | "indicator"
 
 export interface SwitchVariantProps {
   variant?: "solid" | "outline" | "raised"

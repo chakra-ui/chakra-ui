@@ -1,112 +1,46 @@
-import { Box, For, HStack, Span, Switch, useSlotRecipe } from "../src"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import { SwitchBasic } from "compositions/examples/switch-basic"
+import { SwitchControlled } from "compositions/examples/switch-controlled"
+import { SwitchSizeTable } from "compositions/examples/switch-size-table"
+import { SwitchVariantTable } from "compositions/examples/switch-variant-table"
+import { SwitchWithDisabled } from "compositions/examples/switch-with-disabled"
+import { SwitchWithIndicator } from "compositions/examples/switch-with-indicator"
+import { SwitchWithInvalid } from "compositions/examples/switch-with-invalid"
+import { SwitchWithTooltip } from "compositions/examples/switch-with-tooltip"
+import { Box } from "../src"
 
 export default {
   title: "Components / Switch",
   decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-const DemoSwitch = (props: Switch.RootProps) => {
-  return (
-    <Switch.Root {...props}>
-      <Switch.HiddenInput />
-      <Switch.Control>
-        <Switch.Thumb />
-      </Switch.Control>
-      {props.children && (
-        <Switch.Label fontWeight="medium">{props.children}</Switch.Label>
-      )}
-    </Switch.Root>
-  )
+export const Basic = () => {
+  return <SwitchBasic />
+}
+
+export const Controlled = () => {
+  return <SwitchControlled />
+}
+
+export const WithDisabled = () => {
+  return <SwitchWithDisabled />
+}
+
+export const WithTooltip = () => {
+  return <SwitchWithTooltip />
+}
+
+export const WithInvalid = () => {
+  return <SwitchWithInvalid />
+}
+
+export const WithIndicator = () => {
+  return <SwitchWithIndicator />
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("switch")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>
-            {(v) => <td key={v}>{v}</td>}
-          </For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr key={c}>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td key={v}>
-                    <HStack>
-                      <DemoSwitch variant={v} colorPalette={c} />
-                      <DemoSwitch variant={v} colorPalette={c} defaultChecked />
-                    </HStack>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <SwitchVariantTable />
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("switch")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr key={c}>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.size}>
-                {(v) => (
-                  <td key={v}>
-                    <HStack>
-                      <For each={recipe.variantMap.variant}>
-                        {(t) => (
-                          <DemoSwitch
-                            variant={t}
-                            size={v}
-                            colorPalette={c}
-                            defaultChecked
-                          />
-                        )}
-                      </For>
-                    </HStack>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
+  return <SwitchSizeTable />
 }
-
-export const WithLabel = () => (
-  <DemoSwitch colorPalette="green" id="email-alerts">
-    Enable email alerts?
-  </DemoSwitch>
-)

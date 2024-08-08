@@ -3,6 +3,7 @@ export {
   SwitchControl,
   SwitchLabel,
   SwitchThumb,
+  SwitchIndicator,
   useSwitchStyles,
 } from "./switch"
 
@@ -10,6 +11,7 @@ export type {
   SwitchRootProps,
   SwitchControlProps,
   SwitchLabelProps,
+  SwitchIndicatorProps,
   SwitchThumbProps,
 } from "./switch"
 
