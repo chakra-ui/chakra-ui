@@ -19,7 +19,7 @@ export const AvatarWithGroup = () => {
         src="https://cdn.myanimelist.net/r/84x124/images/characters/9/105421.webp?s=269ff1b2bb9abe3ac1bc443d3a76e863"
         name="Uchiha Chan"
       />
-      <Avatar variant="solid" size="lg" name="+ 3" />
+      <Avatar variant="solid" size="lg" fallback="+3" />
     </Group>
   )
 }
