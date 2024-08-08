@@ -1,39 +1,44 @@
-import { Group, Stat } from "../src"
+import { StatBasic } from "compositions/examples/stat-basic"
+import { StatWithFormatOptions } from "compositions/examples/stat-with-format-options"
+import { StatWithIcon } from "compositions/examples/stat-with-icon"
+import { StatWithIndicator } from "compositions/examples/stat-with-indicator"
+import { StatWithInfoTip } from "compositions/examples/stat-with-info-tip"
+import { StatWithProgressBar } from "compositions/examples/stat-with-progress-bar"
+import { StatWithTrend } from "compositions/examples/stat-with-trend"
+import { StatWithValueUnit } from "compositions/examples/stat-with-value-unit"
 
 export default {
   title: "Components / Stat",
 }
 
 export const Basic = () => {
-  return (
-    <Stat.Root>
-      <Stat.Label>Collected Fees</Stat.Label>
-      <Stat.ValueText>£0.00</Stat.ValueText>
-      <Stat.HelpText>Feb 12 - Feb 28</Stat.HelpText>
-    </Stat.Root>
-  )
+  return <StatBasic />
+}
+
+export const WithFormatOptions = () => {
+  return <StatWithFormatOptions />
+}
+
+export const WithIcon = () => {
+  return <StatWithIcon />
 }
 
 export const WithIndicator = () => {
-  return (
-    <Group gap="10">
-      <Stat.Root>
-        <Stat.Label>Sent</Stat.Label>
-        <Stat.ValueText>345,670</Stat.ValueText>
-        <Stat.HelpText>
-          <Stat.UpIndicator />
-          23.36%
-        </Stat.HelpText>
-      </Stat.Root>
+  return <StatWithIndicator />
+}
 
-      <Stat.Root>
-        <Stat.Label>Clicked</Stat.Label>
-        <Stat.ValueText>45</Stat.ValueText>
-        <Stat.HelpText>
-          <Stat.DownIndicator />
-          9.05%
-        </Stat.HelpText>
-      </Stat.Root>
-    </Group>
-  )
+export const WithInfoTip = () => {
+  return <StatWithInfoTip />
+}
+
+export const WithProgressBar = () => {
+  return <StatWithProgressBar />
+}
+
+export const WithTrend = () => {
+  return <StatWithTrend />
+}
+
+export const WithValueUnit = () => {
+  return <StatWithValueUnit />
 }
