@@ -1,5 +1,23 @@
 # @chakra-ui/react
 
+## 3.0.0-next.13
+
+### Minor Changes
+
+- [`3fc49ca`](https://github.com/chakra-ui/chakra-ui/commit/3fc49ca37df42e793d84afd4bc857c568e2e8b5a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  `FormatNumber` and `FormatByte` components
+
+### Patch Changes
+
+- [`bffb68f`](https://github.com/chakra-ui/chakra-ui/commit/bffb68f4fdedf4a438a0e56406315b44b98c6011)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - **Pagination:**
+  Fix issue page props were not forwarded correctly.
+  - **PinInput:** Fix issue mask props were not forwarded correctly.
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.13
+  - @chakra-ui/utils@3.0.0-next.13
+
 ## 3.0.0-next.12
 
 ### Patch Changes
