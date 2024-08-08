@@ -1,25 +1,34 @@
-import { Em, Strong, Text } from "../src"
+import { TextBasic } from "compositions/examples/text-basic"
+import { TextWithAsProp } from "compositions/examples/text-with-as-prop"
+import { TextWithLineClamp } from "compositions/examples/text-with-line-clamp"
+import { TextWithSizes } from "compositions/examples/text-with-sizes"
+import { TextWithTruncate } from "compositions/examples/text-with-truncate"
+import { TextWithWeights } from "compositions/examples/text-with-weights"
 
 export default {
   title: "Typography / Text",
 }
 
-export const Basic = () => (
-  <Text>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
-  </Text>
-)
+export const Basic = () => {
+  return <TextBasic />
+}
 
-export const WithStrong = () => (
-  <Text>
-    <Strong>Lorem ipsum dolor</Strong> sit amet, consectetur adipisicing elit.
-    Amet, sapiente.
-  </Text>
-)
+export const AsProps = () => {
+  return <TextWithAsProp />
+}
 
-export const WithItalic = () => (
-  <Text>
-    <Em>Lorem ipsum dolor</Em> sit amet, consectetur adipisicing elit. Amet,
-    sapiente.
-  </Text>
-)
+export const Truncate = () => {
+  return <TextWithTruncate />
+}
+
+export const LineClamp = () => {
+  return <TextWithLineClamp />
+}
+
+export const Sizes = () => {
+  return <TextWithSizes />
+}
+
+export const Weights = () => {
+  return <TextWithWeights />
+}

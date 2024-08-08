@@ -1,6 +1,15 @@
 import type { Meta } from "@storybook/react"
-import { FaBell } from "react-icons/fa"
-import { Box, Button, Portal, Tooltip } from "../src"
+import { TooltipBasic } from "compositions/examples/tooltip-basic"
+import { TooltipControlled } from "compositions/examples/tooltip-controlled"
+import { TooltipMultiple } from "compositions/examples/tooltip-multiple"
+import { TooltipWithArrow } from "compositions/examples/tooltip-with-arrow"
+import { TooltipWithCustomBg } from "compositions/examples/tooltip-with-custom-bg"
+import { TooltipWithDelay } from "compositions/examples/tooltip-with-delay"
+import { TooltipWithDisabled } from "compositions/examples/tooltip-with-disabled"
+import { TooltipWithInteractive } from "compositions/examples/tooltip-with-interactive"
+import { TooltipWithOffset } from "compositions/examples/tooltip-with-offset"
+import { TooltipWithPlacement } from "compositions/examples/tooltip-with-placement"
+import { Box } from "../src"
 
 export default {
   title: "Components / Tooltip",
@@ -13,42 +22,42 @@ export default {
   ],
 } satisfies Meta
 
-export const Basic = () => (
-  <Tooltip.Root unmountOnExit>
-    <Tooltip.Trigger asChild>
-      <Button variant="outline" size="sm">
-        Hover me
-      </Button>
-    </Tooltip.Trigger>
-    <Portal>
-      <Tooltip.Positioner>
-        <Tooltip.Content>
-          <Tooltip.Arrow>
-            <Tooltip.ArrowTip />
-          </Tooltip.Arrow>
-          This is a chakra tooltip
-        </Tooltip.Content>
-      </Tooltip.Positioner>
-    </Portal>
-  </Tooltip.Root>
-)
+export const Basic = () => {
+  return <TooltipBasic />
+}
 
-export const WithCustomBg = () => (
-  <Tooltip.Root unmountOnExit>
-    <Tooltip.Trigger asChild>
-      <Button variant="outline" size="sm">
-        <FaBell /> 3
-      </Button>
-    </Tooltip.Trigger>
-    <Portal>
-      <Tooltip.Positioner>
-        <Tooltip.Content css={{ "--tooltip-bg": "tomato" }}>
-          <Tooltip.Arrow>
-            <Tooltip.ArrowTip />
-          </Tooltip.Arrow>
-          Notifications
-        </Tooltip.Content>
-      </Tooltip.Positioner>
-    </Portal>
-  </Tooltip.Root>
-)
+export const Controlled = () => {
+  return <TooltipControlled />
+}
+
+export const Multiple = () => {
+  return <TooltipMultiple />
+}
+
+export const WithArrow = () => {
+  return <TooltipWithArrow />
+}
+
+export const WithDelay = () => {
+  return <TooltipWithDelay />
+}
+
+export const WithDisabled = () => {
+  return <TooltipWithDisabled />
+}
+
+export const WithInteractive = () => {
+  return <TooltipWithInteractive />
+}
+
+export const WithOffset = () => {
+  return <TooltipWithOffset />
+}
+
+export const WithPlacement = () => {
+  return <TooltipWithPlacement />
+}
+
+export const WithCustomBg = () => {
+  return <TooltipWithCustomBg />
+}

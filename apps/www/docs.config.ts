@@ -168,6 +168,7 @@ const docsLinks: NavItem = {
             { title: "Tag", url: "tag" },
             { title: "Textarea", url: "textarea" },
             { title: "Timeline", url: "timeline", status: "new" },
+            { title: "Toast", url: "toast" },
             { title: "Tooltip", url: "tooltip" },
           ],
         },

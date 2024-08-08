@@ -1,5 +1,9 @@
+import { TimelineAlternating } from "compositions/examples/timeline-alternating"
+import { TimelineBasic } from "compositions/examples/timeline-basic"
 import { TimelineWithContentBefore } from "compositions/examples/timeline-with-content-before"
-import { Box, Timeline } from "../src"
+import { TimelineWithSizes } from "compositions/examples/timeline-with-sizes"
+import { TimelineWithVariants } from "compositions/examples/timeline-with-variants"
+import { Box } from "../src"
 
 export default {
   title: "Components / Timeline",
@@ -7,38 +11,21 @@ export default {
 }
 
 export const Basic = () => {
-  return (
-    <Timeline.Root maxW="300px">
-      <Timeline.Item>
-        <Timeline.Indicator>1</Timeline.Indicator>
-        <Timeline.Separator />
-        <Timeline.Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Timeline.Content>
-      </Timeline.Item>
-
-      <Timeline.Item>
-        <Timeline.Indicator>2</Timeline.Indicator>
-        <Timeline.Separator />
-        <Timeline.Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Timeline.Content>
-      </Timeline.Item>
-
-      <Timeline.Item>
-        <Timeline.Indicator>3</Timeline.Indicator>
-        <Timeline.Separator />
-        <Timeline.Content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Timeline.Content>
-      </Timeline.Item>
-    </Timeline.Root>
-  )
+  return <TimelineBasic />
 }
 
-export const WithContentBefore = {
-  render() {
-    return <TimelineWithContentBefore />
-  },
+export const WithContentBefore = () => {
+  return <TimelineWithContentBefore />
+}
+
+export const Alternating = () => {
+  return <TimelineAlternating />
+}
+
+export const Variants = () => {
+  return <TimelineWithVariants />
+}
+
+export const Sizes = () => {
+  return <TimelineWithSizes />
 }
