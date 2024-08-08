@@ -19,12 +19,10 @@ export const StepsItem = (props: StepsItemProps) => {
     <ChakraSteps.Item {...rest}>
       <ChakraSteps.Trigger>
         <ChakraSteps.Indicator>
-          {completedIcon || icon ? (
-            <ChakraSteps.Status
-              complete={completedIcon || <LuCheck />}
-              incomplete={icon || <ChakraSteps.Number />}
-            />
-          ) : undefined}
+          <ChakraSteps.Status
+            complete={completedIcon || <LuCheck />}
+            incomplete={icon || <ChakraSteps.Number />}
+          />
         </ChakraSteps.Indicator>
         <StepInfo title={title} description={description} />
       </ChakraSteps.Trigger>
