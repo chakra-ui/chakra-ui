@@ -14,7 +14,11 @@ export const ForWithFallback = () => {
           </VStack>
         }
       >
-        {(item) => <DecorativeBox h="10">{item}</DecorativeBox>}
+        {(item, index) => (
+          <DecorativeBox h="10" key={index}>
+            {item}
+          </DecorativeBox>
+        )}
       </For>
     </Stack>
   )

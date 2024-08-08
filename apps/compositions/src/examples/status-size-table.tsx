@@ -12,13 +12,13 @@ export const StatusSizeTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>
         <For each={colorPalettes}>
           {(c) => (
-            <tr>
+            <tr key={c}>
               <td>
                 <Span fontSize="sm" color="fg.muted" minW="8ch">
                   {c}
@@ -26,8 +26,8 @@ export const StatusSizeTable = () => {
               </td>
               <For each={recipe.variantMap.size}>
                 {(v) => (
-                  <td>
-                    <Status>Status</Status>
+                  <td key={v}>
+                    <Status size={v}>Status</Status>
                   </td>
                 )}
               </For>

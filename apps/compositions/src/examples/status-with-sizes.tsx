@@ -6,7 +6,7 @@ export const StatusWithSizes = () => {
     <Stack gap="2" align="flex-start">
       <For each={["sm", "md", "lg"]}>
         {(size) => (
-          <HStack gap="10" px="4">
+          <HStack key={size} gap="10" px="4">
             <Status size={size} width="100px" value="warning">
               In Review
             </Status>

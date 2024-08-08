@@ -6,7 +6,7 @@ export const TabsWithVariants = () => {
     <SimpleGrid columns={2} gap="14" width="full">
       <For each={["line", "enclosed", "outline", "plain"]}>
         {(variant) => (
-          <Tabs.Root defaultValue="members" variant={variant}>
+          <Tabs.Root key={variant} defaultValue="members" variant={variant}>
             <Tabs.List>
               <Tabs.Trigger value="members">
                 <LuUser />

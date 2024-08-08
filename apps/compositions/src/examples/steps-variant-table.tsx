@@ -27,7 +27,9 @@ export const StepsVariantTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.variant}>
+            {(v) => <td key={v}>{v}</td>}
+          </For>
         </tr>
       </thead>
       <tbody>

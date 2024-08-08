@@ -7,6 +7,7 @@ export const TabsWithVertical = () => {
       <For each={["line", "enclosed", "outline", "plain"]}>
         {(variant) => (
           <Tabs.Root
+            key={variant}
             defaultValue="members"
             orientation="vertical"
             variant={variant}

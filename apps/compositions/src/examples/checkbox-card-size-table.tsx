@@ -21,7 +21,7 @@ export const CheckboxCardSizeTable = () => {
       <thead>
         <tr>
           <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
+          <For each={recipe.variantMap.size}>{(v) => <td key={v}>{v}</td>}</For>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +29,7 @@ export const CheckboxCardSizeTable = () => {
           <td />
           <For each={recipe.variantMap.size}>
             {(v) => (
-              <td>
+              <td key={v}>
                 <Stack gap="4">
                   <DemoCheckboxCard size={v} variant="plain" defaultChecked />
                   <DemoCheckboxCard size={v} variant="subtle" defaultChecked />

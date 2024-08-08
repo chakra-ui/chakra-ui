@@ -1,3 +1,5 @@
+"use client"
+
 import { Stack, Textarea } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import { Field } from "compositions/ui/field"

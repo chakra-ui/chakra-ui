@@ -16,7 +16,7 @@ export const DialogWithSizes = () => {
     <HStack>
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
-          <DialogRoot size={size}>
+          <DialogRoot key={size} size={size}>
             <DialogTrigger>
               <Button variant="outline" size={size}>
                 Open ({size})

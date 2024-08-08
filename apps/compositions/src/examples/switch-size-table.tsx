@@ -31,6 +31,7 @@ export const SwitchSizeTable = () => {
                       <For each={recipe.variantMap.variant}>
                         {(t) => (
                           <Switch
+                            key={t}
                             variant={t}
                             size={v}
                             colorPalette={c}
