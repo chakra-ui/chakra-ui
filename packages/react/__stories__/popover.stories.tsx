@@ -1,151 +1,23 @@
-import { useInterval } from "@chakra-ui/hooks"
-import { useState } from "react"
-import { HiChat, HiX } from "react-icons/hi"
-import {
-  Box,
-  Button,
-  For,
-  Heading,
-  IconButton,
-  Popover,
-  Portal,
-  Textarea,
-  chakra,
-  useSlotRecipe,
-} from "../src"
-import { PlaygroundTable } from "./shared/playground-table"
+import { Box } from "../src"
 
 export default {
   title: "Components / Popover",
-  decorators: [(story: Function) => <Box margin="200px">{story()}</Box>],
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
-export const Basic = () => {
-  return (
-    <Popover.Root>
-      <Popover.Trigger asChild>
-        <Button variant="solid">
-          <HiChat />
-          Add comment
-        </Button>
-      </Popover.Trigger>
-      <Portal>
-        <Popover.Positioner>
-          <Popover.Content>
-            <Popover.Arrow>
-              <Popover.ArrowTip />
-            </Popover.Arrow>
-
-            <Popover.CloseTrigger asChild>
-              <IconButton aria-label="Close" variant="ghost">
-                <HiX />
-              </IconButton>
-            </Popover.CloseTrigger>
-
-            <Popover.Header>
-              <Heading size="sm">Confirmation!</Heading>
-            </Popover.Header>
-
-            <Popover.Body>
-              <Textarea placeholder="Type your comment here" />
-            </Popover.Body>
-
-            <Popover.Footer gap="2">
-              <Button>Submit</Button>
-              <Button variant="outline">Cancel</Button>
-            </Popover.Footer>
-          </Popover.Content>
-        </Popover.Positioner>
-      </Portal>
-    </Popover.Root>
-  )
-}
-
-export const Sizes = () => {
-  const recipe = useSlotRecipe("popover")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <For each={recipe.variantMap.size}>
-            {(v) => (
-              <chakra.td key={v} minW="400px">
-                <Popover.Root size={v} open>
-                  <Popover.Trigger asChild>
-                    <Button size={v} variant="solid">
-                      <HiChat />
-                      Add comment
-                    </Button>
-                  </Popover.Trigger>
-                  <Popover.Positioner>
-                    <Popover.Content>
-                      <Popover.Arrow />
-                      <Popover.CloseTrigger asChild>
-                        <IconButton variant="ghost" size={v}>
-                          <HiX />
-                        </IconButton>
-                      </Popover.CloseTrigger>
-
-                      <Popover.Header>
-                        <Heading size="sm">Confirmation!</Heading>
-                      </Popover.Header>
-
-                      <Popover.Body>
-                        <Textarea
-                          size={v}
-                          placeholder="Type your comment here"
-                        />
-                      </Popover.Body>
-
-                      <Popover.Footer gap="2">
-                        <Button size={v} variant="solid">
-                          Submit
-                        </Button>
-                        <Button size={v}>Cancel</Button>
-                      </Popover.Footer>
-                    </Popover.Content>
-                  </Popover.Positioner>
-                </Popover.Root>
-              </chakra.td>
-            )}
-          </For>
-        </tr>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-const Interval = () => {
-  const [value, setValue] = useState(0)
-  useInterval(() => setValue((v) => v + 1), 1000)
-  return (
-    <span style={{ fontWeight: "bold", color: "tomato", padding: 4 }}>
-      {value}
-    </span>
-  )
-}
-
-export function WithLazyPopover() {
-  return (
-    <Popover.Root unmountOnExit>
-      <Popover.Trigger asChild>
-        <Button variant="solid">Popover Target</Button>
-      </Popover.Trigger>
-      <Popover.Positioner>
-        <Popover.Content>
-          <Popover.Body>
-            Are you sure you want to continue with your action?
-            <p>
-              Timer: <Interval />
-            </p>
-          </Popover.Body>
-        </Popover.Content>
-      </Popover.Positioner>
-    </Popover.Root>
-  )
-}
+export { PopoverBasic as Basic } from "compositions/examples/popover-basic"
+export { PopoverControlled as Controlled } from "compositions/examples/popover-controlled"
+export { PopoverLazyMounted as LazyMounted } from "compositions/examples/popover-lazy-mounted"
+export { PopoverNested as Nested } from "compositions/examples/popover-nested"
+export { PopoverSizeTable as Sizes } from "compositions/examples/popover-size-table"
+export { PopoverWithForm as WithForm } from "compositions/examples/popover-with-form"
+export { PopoverWithInitialFocus as WithInitialFocus } from "compositions/examples/popover-with-initial-focus"
+export { PopoverWithOffset as WithOffset } from "compositions/examples/popover-with-offset"
+export { PopoverWithPlacement as WithPlacement } from "compositions/examples/popover-with-placement"
+export { PopoverWithSameWidth as WithSameWidth } from "compositions/examples/popover-with-same-width"

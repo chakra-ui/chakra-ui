@@ -1,88 +1,18 @@
-import { Badge, DataList, For, useSlotRecipe } from "../src"
-import { PlaygroundTable } from "./shared/playground-table"
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
 
 export default {
   title: "Components / Data List",
-}
+  decorators: [
+    (Story) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
-export const Sizes = () => {
-  const recipe = useSlotRecipe("dataList")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>
-            {(v) => (
-              <td>
-                <DataList.Root size={v}>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Name</DataList.ItemLabel>
-                    <DataList.ItemValue>John Doe</DataList.ItemValue>
-                  </DataList.Item>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Email</DataList.ItemLabel>
-                    <DataList.ItemValue>john@test.com</DataList.ItemValue>
-                  </DataList.Item>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Status</DataList.ItemLabel>
-                    <DataList.ItemValue>
-                      <Badge colorPalette="teal">Active</Badge>
-                    </DataList.ItemValue>
-                  </DataList.Item>
-                </DataList.Root>
-              </td>
-            )}
-          </For>
-        </tr>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-export const Orientation = () => {
-  const recipe = useSlotRecipe("dataList")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>
-            {(v) => (
-              <td>
-                <DataList.Root orientation="horizontal" size={v}>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Name</DataList.ItemLabel>
-                    <DataList.ItemValue>John Doe</DataList.ItemValue>
-                  </DataList.Item>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Email</DataList.ItemLabel>
-                    <DataList.ItemValue>john@test.com</DataList.ItemValue>
-                  </DataList.Item>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Status</DataList.ItemLabel>
-                    <DataList.ItemValue>
-                      <Badge colorPalette="teal">Active</Badge>
-                    </DataList.ItemValue>
-                  </DataList.Item>
-                </DataList.Root>
-              </td>
-            )}
-          </For>
-        </tr>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
+export { DataListBasic as Basic } from "compositions/examples/data-list-basic"
+export { DataListSizeTable as Sizes } from "compositions/examples/data-list-size-table"
+export { DataListVertical as Vertical } from "compositions/examples/data-list-vertical"
+export { DataListWithInfo as WithInfo } from "compositions/examples/data-list-with-info"

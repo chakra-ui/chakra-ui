@@ -1,26 +1,15 @@
-import { Box, Stack } from "../src"
-import { Checkmark } from "../src/components/checkmark"
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
 
 export default {
   title: "Components / Checkmark",
   decorators: [
-    (story: Function) => (
-      <Box maxW="500px" mt="40px" mx="auto">
-        {story()}
+    (Story) => (
+      <Box p="10">
+        <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
-export const Demo = () => {
-  return (
-    <Stack>
-      <Checkmark />
-      <Checkmark checked />
-      <Checkmark indeterminate />
-      <Checkmark disabled />
-      <Checkmark checked disabled />
-      <Checkmark indeterminate disabled />
-    </Stack>
-  )
-}
+export { CheckmarkBasic as Basic } from "compositions/examples/checkmark-basic"

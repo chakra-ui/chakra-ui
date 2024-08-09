@@ -1,37 +1,17 @@
-import type { Meta } from "@storybook/react"
-import { HoverCard, Link, Text, chakra } from "../src"
+import { Box } from "../src"
 
 export default {
   title: "Components / HoverCard",
   decorators: [
     (Story: any) => (
-      <chakra.div mx="auto" maxW="400px" mt="200px">
+      <Box padding="40px">
         <Story />
-      </chakra.div>
+      </Box>
     ),
   ],
-} satisfies Meta
-
-export const Basic = () => {
-  return (
-    <HoverCard.Root>
-      <HoverCard.Trigger asChild>
-        <Link variant="underline" href="#test" color="blue.500">
-          Hover to see @swyx profile
-        </Link>
-      </HoverCard.Trigger>
-      <HoverCard.Positioner>
-        <HoverCard.Content>
-          <HoverCard.Arrow>
-            <HoverCard.ArrowTip />
-          </HoverCard.Arrow>
-          <Text fontWeight="bold">swyx</Text>
-          <Text mt={3}>
-            Infinite Builder working on DX @Netlify. Helping people
-            #LearnInPublic
-          </Text>
-        </HoverCard.Content>
-      </HoverCard.Positioner>
-    </HoverCard.Root>
-  )
 }
+
+export { HoverCardBasic as Basic } from "compositions/examples/hover-card-basic"
+export { HoverCardControlled as Controlled } from "compositions/examples/hover-card-controlled"
+export { HoverCardWithDelay as WithDelay } from "compositions/examples/hover-card-with-delay"
+export { HoverCardWithPlacement as WithPlacement } from "compositions/examples/hover-card-with-placement"

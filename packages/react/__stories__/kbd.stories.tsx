@@ -1,79 +1,19 @@
-import { For, Kbd, Span, useRecipe } from "../src"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
 
 export default {
-  title: "Typography / Kbd",
-}
+  title: "Components / Kbd",
+  decorators: [
+    (Story) => (
+      <Box p="40px">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
-export const Variants = () => {
-  const recipe = useRecipe("kbd")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td>
-                    <Kbd variant={v} colorPalette={c}>
-                      ⌘ C
-                    </Kbd>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-export const Sizes = () => {
-  const recipe = useRecipe("kbd")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.size}>
-                {(v) => (
-                  <td>
-                    <Kbd size={v} colorPalette={c}>
-                      ⌘ C
-                    </Kbd>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
+export { KbdBasic as Basic } from "compositions/examples/kbd-basic"
+export { KbdFunctionKeys as FunctionKeys } from "compositions/examples/kbd-function-keys"
+export { KbdSizeTable as Sizes } from "compositions/examples/kbd-size-table"
+export { KbdVariantTable as Variants } from "compositions/examples/kbd-variant-table"
+export { KbdWithCombinations as Combinations } from "compositions/examples/kbd-with-combinations"

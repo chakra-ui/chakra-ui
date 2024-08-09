@@ -1,37 +1,16 @@
-import * as React from "react"
-import Frame from "react-frame-component"
-import { Portal } from "../src/components/portal"
+import { Box } from "../src"
 
 export default {
   title: "Components / Portal",
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
-export const Basic = () => (
-  <>
-    <p>Welcome</p>
-    <Portal>This text has been portaled</Portal>
-  </>
-)
-
-export const WithIframe = () => (
-  <Frame>
-    <h1>Welcome</h1>
-    <Portal>Welcome</Portal>
-  </Frame>
-)
-
-export const WithContainer = () => {
-  const ref = React.useRef<HTMLDivElement>(null)
-
-  return (
-    <>
-      <p>Welcome</p>
-      <Portal container={ref}>
-        <span>This text has been portaled</span>
-      </Portal>
-      <div id="iframe" ref={ref}>
-        Portal Div
-      </div>
-    </>
-  )
-}
+export { PortalBasic as Basic } from "compositions/examples/portal-basic"
+export { PortalWithIframe as WithIframe } from "compositions/examples/portal-with-iframe"
+export { PortalWithContainer as WithContainer } from "compositions/examples/portal-with-container"
