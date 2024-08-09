@@ -1,9 +1,3 @@
-import { AccordionBasic } from "compositions/examples/accordion-basic"
-import { AccordionControlled } from "compositions/examples/accordion-controlled"
-import { AccordionSizeTable } from "compositions/examples/accordion-size-table"
-import { AccordionVariantTable } from "compositions/examples/accordion-variant-table"
-import { AccordionWithIcon } from "compositions/examples/accordion-with-icon"
-import { AccordionWithMultiple } from "compositions/examples/accordion-with-multiple"
 import { Box } from "../src"
 
 export default {
@@ -11,26 +5,9 @@ export default {
   decorators: [(story: Function) => <Box padding="4">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <AccordionBasic />
-}
-
-export const Variants = () => {
-  return <AccordionVariantTable />
-}
-
-export const Sizes = () => {
-  return <AccordionSizeTable />
-}
-
-export const Icon = () => {
-  return <AccordionWithIcon />
-}
-
-export const WithMultiple = () => {
-  return <AccordionWithMultiple />
-}
-
-export const Controlled = () => {
-  return <AccordionControlled />
-}
+export { AccordionBasic as Basic } from "compositions/examples/accordion-basic"
+export { AccordionVariantTable as Variants } from "compositions/examples/accordion-variant-table"
+export { AccordionSizeTable as Sizes } from "compositions/examples/accordion-size-table"
+export { AccordionWithIcon as Icon } from "compositions/examples/accordion-with-icon"
+export { AccordionWithMultiple as WithMultiple } from "compositions/examples/accordion-with-multiple"
+export { AccordionControlled as Controlled } from "compositions/examples/accordion-controlled"

@@ -1,44 +1,15 @@
-import { BoxBasic } from "compositions/examples/box-basic"
-import { BoxPropertyCard } from "compositions/examples/box-property-card"
-import { BoxWithAsProp } from "compositions/examples/box-with-as-prop"
-import { BoxWithBorder } from "compositions/examples/box-with-border"
-import { BoxWithHideBelow } from "compositions/examples/box-with-hide-below"
-import { BoxWithHideFrom } from "compositions/examples/box-with-hide-from"
-import { BoxWithPseudoProps } from "compositions/examples/box-with-pseudo-props"
-import { BoxWithShadow } from "compositions/examples/box-with-shadow"
+import { Box } from "../src"
 
 export default {
   title: "Layout / Box",
+  decorators: [(story: Function) => <Box padding="4">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <BoxBasic />
-}
-
-export const PseudoProps = () => {
-  return <BoxWithPseudoProps />
-}
-
-export const HideBelow = () => {
-  return <BoxWithHideBelow />
-}
-
-export const HideFrom = () => {
-  return <BoxWithHideFrom />
-}
-
-export const WithShadow = () => {
-  return <BoxWithShadow />
-}
-
-export const WithBorder = () => {
-  return <BoxWithBorder />
-}
-
-export const AsProp = () => {
-  return <BoxWithAsProp />
-}
-
-export const Composition = () => {
-  return <BoxPropertyCard />
-}
+export { BoxBasic as Basic } from "compositions/examples/box-basic"
+export { BoxWithPseudoProps as PseudoProps } from "compositions/examples/box-with-pseudo-props"
+export { BoxWithHideBelow as HideBelow } from "compositions/examples/box-with-hide-below"
+export { BoxWithHideFrom as HideFrom } from "compositions/examples/box-with-hide-from"
+export { BoxWithShadow as WithShadow } from "compositions/examples/box-with-shadow"
+export { BoxWithBorder as WithBorder } from "compositions/examples/box-with-border"
+export { BoxWithAsProp as AsProp } from "compositions/examples/box-with-as-prop"
+export { BoxPropertyCard as Composition } from "compositions/examples/box-property-card"

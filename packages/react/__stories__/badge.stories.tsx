@@ -1,37 +1,12 @@
-import { BadgeBasic } from "compositions/examples/badge-basic"
-import { BadgeSizeTable } from "compositions/examples/badge-size-table"
-import { BadgeVariantTable } from "compositions/examples/badge-variant-table"
-import { BadgeWithGroup } from "compositions/examples/badge-with-group"
-import { BadgeWithIcon } from "compositions/examples/badge-with-icon"
 import { Box } from "../src"
 
 export default {
   title: "Components / Badge",
-  decorators: [
-    (Story: any) => (
-      <Box padding="40px">
-        <Story />
-      </Box>
-    ),
-  ],
+  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <BadgeBasic />
-}
-
-export const Variants = () => {
-  return <BadgeVariantTable />
-}
-
-export const Sizes = () => {
-  return <BadgeSizeTable />
-}
-
-export const WithIcon = () => {
-  return <BadgeWithIcon />
-}
-
-export const WithGroup = () => {
-  return <BadgeWithGroup />
-}
+export { BadgeBasic as Basic } from "compositions/examples/badge-basic"
+export { BadgeVariantTable as Variants } from "compositions/examples/badge-variant-table"
+export { BadgeSizeTable as Sizes } from "compositions/examples/badge-size-table"
+export { BadgeWithIcon as WithIcon } from "compositions/examples/badge-with-icon"
+export { BadgeWithGroup as WithGroup } from "compositions/examples/badge-with-group"

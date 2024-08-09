@@ -1,52 +1,15 @@
-import { CheckboxCardBasic } from "compositions/examples/checkbox-card-basic"
-import { CheckboxCardDisabled } from "compositions/examples/checkbox-card-disabled"
-import { CheckboxCardSizeTable } from "compositions/examples/checkbox-card-size-table"
-import { CheckboxCardVariantTable } from "compositions/examples/checkbox-card-variant-table"
-import { CheckboxCardWithAddon } from "compositions/examples/checkbox-card-with-addon"
-import { CheckboxCardWithGroup } from "compositions/examples/checkbox-card-with-group"
-import { CheckboxCardWithIcon } from "compositions/examples/checkbox-card-with-icon"
-import { CheckboxCardWithStates } from "compositions/examples/checkbox-card-with-states"
 import { Box } from "../src"
 
 export default {
   title: "Components / Checkbox Card",
-  decorators: [
-    (story: Function) => (
-      <Box mt="40px" padding="10">
-        {story()}
-      </Box>
-    ),
-  ],
+  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <CheckboxCardBasic />
-}
-
-export const Disabled = () => {
-  return <CheckboxCardDisabled />
-}
-
-export const States = () => {
-  return <CheckboxCardWithStates />
-}
-
-export const WithAddon = () => {
-  return <CheckboxCardWithAddon />
-}
-
-export const WithIcon = () => {
-  return <CheckboxCardWithIcon />
-}
-
-export const Variants = () => {
-  return <CheckboxCardVariantTable />
-}
-
-export const Sizes = () => {
-  return <CheckboxCardSizeTable />
-}
-
-export const WithGroup = () => {
-  return <CheckboxCardWithGroup />
-}
+export { CheckboxCardBasic as Basic } from "compositions/examples/checkbox-card-basic"
+export { CheckboxCardDisabled as Disabled } from "compositions/examples/checkbox-card-disabled"
+export { CheckboxCardWithStates as States } from "compositions/examples/checkbox-card-with-states"
+export { CheckboxCardWithAddon as WithAddon } from "compositions/examples/checkbox-card-with-addon"
+export { CheckboxCardWithIcon as WithIcon } from "compositions/examples/checkbox-card-with-icon"
+export { CheckboxCardVariantTable as Variants } from "compositions/examples/checkbox-card-variant-table"
+export { CheckboxCardSizeTable as Sizes } from "compositions/examples/checkbox-card-size-table"
+export { CheckboxCardWithGroup as WithGroup } from "compositions/examples/checkbox-card-with-group"

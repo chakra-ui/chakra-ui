@@ -1,14 +1,3 @@
-import type { Meta } from "@storybook/react"
-import { TooltipBasic } from "compositions/examples/tooltip-basic"
-import { TooltipControlled } from "compositions/examples/tooltip-controlled"
-import { TooltipMultiple } from "compositions/examples/tooltip-multiple"
-import { TooltipWithArrow } from "compositions/examples/tooltip-with-arrow"
-import { TooltipWithCustomBg } from "compositions/examples/tooltip-with-custom-bg"
-import { TooltipWithDelay } from "compositions/examples/tooltip-with-delay"
-import { TooltipWithDisabled } from "compositions/examples/tooltip-with-disabled"
-import { TooltipWithInteractive } from "compositions/examples/tooltip-with-interactive"
-import { TooltipWithOffset } from "compositions/examples/tooltip-with-offset"
-import { TooltipWithPlacement } from "compositions/examples/tooltip-with-placement"
 import { Box } from "../src"
 
 export default {
@@ -20,44 +9,15 @@ export default {
       </Box>
     ),
   ],
-} satisfies Meta
-
-export const Basic = () => {
-  return <TooltipBasic />
 }
 
-export const Controlled = () => {
-  return <TooltipControlled />
-}
-
-export const Multiple = () => {
-  return <TooltipMultiple />
-}
-
-export const WithArrow = () => {
-  return <TooltipWithArrow />
-}
-
-export const WithDelay = () => {
-  return <TooltipWithDelay />
-}
-
-export const WithDisabled = () => {
-  return <TooltipWithDisabled />
-}
-
-export const WithInteractive = () => {
-  return <TooltipWithInteractive />
-}
-
-export const WithOffset = () => {
-  return <TooltipWithOffset />
-}
-
-export const WithPlacement = () => {
-  return <TooltipWithPlacement />
-}
-
-export const WithCustomBg = () => {
-  return <TooltipWithCustomBg />
-}
+export { TooltipBasic as Basic } from "compositions/examples/tooltip-basic"
+export { TooltipControlled as Controlled } from "compositions/examples/tooltip-controlled"
+export { TooltipMultiple as Multiple } from "compositions/examples/tooltip-multiple"
+export { TooltipWithArrow as WithArrow } from "compositions/examples/tooltip-with-arrow"
+export { TooltipWithCustomBg as WithCustomBg } from "compositions/examples/tooltip-with-custom-bg"
+export { TooltipWithDelay as WithDelay } from "compositions/examples/tooltip-with-delay"
+export { TooltipWithDisabled as WithDisabled } from "compositions/examples/tooltip-with-disabled"
+export { TooltipWithInteractive as WithInteractive } from "compositions/examples/tooltip-with-interactive"
+export { TooltipWithOffset as WithOffset } from "compositions/examples/tooltip-with-offset"
+export { TooltipWithPlacement as WithPlacement } from "compositions/examples/tooltip-with-placement"

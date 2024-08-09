@@ -1,39 +1,14 @@
-import { BreadcrumbBasic } from "compositions/examples/breadcrumb-basic"
-import { BreadcrumbSizeTable } from "compositions/examples/breadcrumb-size-table"
-import { BreadcrumbVariantTable } from "compositions/examples/breadcrumb-variant-table"
-import { BreadcrumbWithEllipsis } from "compositions/examples/breadcrumb-with-ellipsis"
-import { BreadcrumbWithIcon } from "compositions/examples/breadcrumb-with-icon"
-import { BreadcrumbWithMenu } from "compositions/examples/breadcrumb-with-menu"
-import { BreadcrumbWithSeparator } from "compositions/examples/breadcrumb-with-separator"
+import { Box } from "../src"
 
 export default {
   title: "Components / Breadcrumb",
+  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <BreadcrumbBasic />
-}
-
-export const WithEllipsis = () => {
-  return <BreadcrumbWithEllipsis />
-}
-
-export const WithIcon = () => {
-  return <BreadcrumbWithIcon />
-}
-
-export const WithMenu = () => {
-  return <BreadcrumbWithMenu />
-}
-
-export const WithSeparator = () => {
-  return <BreadcrumbWithSeparator />
-}
-
-export const Variants = () => {
-  return <BreadcrumbVariantTable />
-}
-
-export const Sizes = () => {
-  return <BreadcrumbSizeTable />
-}
+export { BreadcrumbBasic as Basic } from "compositions/examples/breadcrumb-basic"
+export { BreadcrumbWithEllipsis as WithEllipsis } from "compositions/examples/breadcrumb-with-ellipsis"
+export { BreadcrumbWithIcon as WithIcon } from "compositions/examples/breadcrumb-with-icon"
+export { BreadcrumbWithMenu as WithMenu } from "compositions/examples/breadcrumb-with-menu"
+export { BreadcrumbWithSeparator as WithSeparator } from "compositions/examples/breadcrumb-with-separator"
+export { BreadcrumbVariantTable as Variants } from "compositions/examples/breadcrumb-variant-table"
+export { BreadcrumbSizeTable as Sizes } from "compositions/examples/breadcrumb-size-table"

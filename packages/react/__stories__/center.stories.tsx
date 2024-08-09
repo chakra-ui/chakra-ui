@@ -1,29 +1,12 @@
-import { CenterBasic } from "compositions/examples/center-basic"
-import { CenterWithAbsolute } from "compositions/examples/center-with-absolute"
-import { CenterWithIcons } from "compositions/examples/center-with-icons"
-import { CenterWithInline } from "compositions/examples/center-with-inline"
-import { CenterWithSquare } from "compositions/examples/center-with-square"
+import { Box } from "../src"
 
 export default {
   title: "Layout / Center",
+  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <CenterBasic />
-}
-
-export const WithAbsolute = () => {
-  return <CenterWithAbsolute />
-}
-
-export const WithIcons = () => {
-  return <CenterWithIcons />
-}
-
-export const WithInline = () => {
-  return <CenterWithInline />
-}
-
-export const WithSquare = () => {
-  return <CenterWithSquare />
-}
+export { CenterBasic as Basic } from "compositions/examples/center-basic"
+export { CenterWithAbsolute as WithAbsolute } from "compositions/examples/center-with-absolute"
+export { CenterWithIcons as WithIcons } from "compositions/examples/center-with-icons"
+export { CenterWithInline as WithInline } from "compositions/examples/center-with-inline"
+export { CenterWithSquare as WithSquare } from "compositions/examples/center-with-square"

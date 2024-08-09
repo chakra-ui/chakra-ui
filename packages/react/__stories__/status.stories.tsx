@@ -1,6 +1,3 @@
-import { StatusBasic } from "compositions/examples/status-basic"
-import { StatusSizeTable } from "compositions/examples/status-size-table"
-import { StatusWithLabel } from "compositions/examples/status-with-label"
 import { Box } from "../src"
 
 export default {
@@ -14,14 +11,6 @@ export default {
   ],
 }
 
-export const Basic = () => {
-  return <StatusBasic />
-}
-
-export const WithLabel = () => {
-  return <StatusWithLabel />
-}
-
-export const Sizes = () => {
-  return <StatusSizeTable />
-}
+export { StatusBasic as Basic } from "compositions/examples/status-basic"
+export { StatusWithLabel as WithLabel } from "compositions/examples/status-with-label"
+export { StatusSizeTable as Sizes } from "compositions/examples/status-size-table"

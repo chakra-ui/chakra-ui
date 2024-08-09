@@ -1,29 +1,12 @@
-import { BlockquoteBasic } from "compositions/examples/blockquote-basic"
-import { BlockquoteVariantTable } from "compositions/examples/blockquote-variant-table"
-import { BlockquoteWithCite } from "compositions/examples/blockquote-with-cite"
-import { BlockquoteWithCustomIcon } from "compositions/examples/blockquote-with-custom-icon"
-import { BlockquoteWithIcon } from "compositions/examples/blockquote-with-icon"
+import { Box } from "../src"
 
 export default {
   title: "Components / Blockquote",
+  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <BlockquoteBasic />
-}
-
-export const WithCite = () => {
-  return <BlockquoteWithCite />
-}
-
-export const WithIcon = () => {
-  return <BlockquoteWithIcon />
-}
-
-export const WithCustomIcon = () => {
-  return <BlockquoteWithCustomIcon />
-}
-
-export const Variants = () => {
-  return <BlockquoteVariantTable />
-}
+export { BlockquoteBasic as Basic } from "compositions/examples/blockquote-basic"
+export { BlockquoteVariantTable as Variants } from "compositions/examples/blockquote-variant-table"
+export { BlockquoteWithCite as WithCite } from "compositions/examples/blockquote-with-cite"
+export { BlockquoteWithCustomIcon as WithCustomIcon } from "compositions/examples/blockquote-with-custom-icon"
+export { BlockquoteWithIcon as WithIcon } from "compositions/examples/blockquote-with-icon"

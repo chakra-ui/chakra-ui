@@ -1,34 +1,10 @@
-import { TextBasic } from "compositions/examples/text-basic"
-import { TextWithAsProp } from "compositions/examples/text-with-as-prop"
-import { TextWithLineClamp } from "compositions/examples/text-with-line-clamp"
-import { TextWithSizes } from "compositions/examples/text-with-sizes"
-import { TextWithTruncate } from "compositions/examples/text-with-truncate"
-import { TextWithWeights } from "compositions/examples/text-with-weights"
-
 export default {
   title: "Typography / Text",
 }
 
-export const Basic = () => {
-  return <TextBasic />
-}
-
-export const AsProps = () => {
-  return <TextWithAsProp />
-}
-
-export const Truncate = () => {
-  return <TextWithTruncate />
-}
-
-export const LineClamp = () => {
-  return <TextWithLineClamp />
-}
-
-export const Sizes = () => {
-  return <TextWithSizes />
-}
-
-export const Weights = () => {
-  return <TextWithWeights />
-}
+export { TextBasic as Basic } from "compositions/examples/text-basic"
+export { TextWithAsProp as AsProps } from "compositions/examples/text-with-as-prop"
+export { TextWithTruncate as Truncate } from "compositions/examples/text-with-truncate"
+export { TextWithLineClamp as LineClamp } from "compositions/examples/text-with-line-clamp"
+export { TextWithSizes as Sizes } from "compositions/examples/text-with-sizes"
+export { TextWithWeights as Weights } from "compositions/examples/text-with-weights"

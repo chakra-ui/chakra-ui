@@ -1,11 +1,3 @@
-import { SwitchBasic } from "compositions/examples/switch-basic"
-import { SwitchControlled } from "compositions/examples/switch-controlled"
-import { SwitchSizeTable } from "compositions/examples/switch-size-table"
-import { SwitchVariantTable } from "compositions/examples/switch-variant-table"
-import { SwitchWithDisabled } from "compositions/examples/switch-with-disabled"
-import { SwitchWithIndicator } from "compositions/examples/switch-with-indicator"
-import { SwitchWithInvalid } from "compositions/examples/switch-with-invalid"
-import { SwitchWithTooltip } from "compositions/examples/switch-with-tooltip"
 import { Box } from "../src"
 
 export default {
@@ -13,34 +5,11 @@ export default {
   decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
 }
 
-export const Basic = () => {
-  return <SwitchBasic />
-}
-
-export const Controlled = () => {
-  return <SwitchControlled />
-}
-
-export const WithDisabled = () => {
-  return <SwitchWithDisabled />
-}
-
-export const WithTooltip = () => {
-  return <SwitchWithTooltip />
-}
-
-export const WithInvalid = () => {
-  return <SwitchWithInvalid />
-}
-
-export const WithIndicator = () => {
-  return <SwitchWithIndicator />
-}
-
-export const Variants = () => {
-  return <SwitchVariantTable />
-}
-
-export const Sizes = () => {
-  return <SwitchSizeTable />
-}
+export { SwitchBasic as Basic } from "compositions/examples/switch-basic"
+export { SwitchControlled as Controlled } from "compositions/examples/switch-controlled"
+export { SwitchWithDisabled as WithDisabled } from "compositions/examples/switch-with-disabled"
+export { SwitchWithTooltip as WithTooltip } from "compositions/examples/switch-with-tooltip"
+export { SwitchWithInvalid as WithInvalid } from "compositions/examples/switch-with-invalid"
+export { SwitchWithIndicator as WithIndicator } from "compositions/examples/switch-with-indicator"
+export { SwitchVariantTable as Variants } from "compositions/examples/switch-variant-table"
+export { SwitchSizeTable as Sizes } from "compositions/examples/switch-size-table"
