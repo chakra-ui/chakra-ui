@@ -1,21 +1,4 @@
-import type { Meta } from "@storybook/react"
-import { Box, For, Span, useSlotRecipe } from "../src"
-import { Slider } from "../src/components/slider"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
-
-const DemoSlider = (props: Slider.RootProps) => {
-  return (
-    <Slider.Root defaultValue={[50]} {...props}>
-      <Slider.Control>
-        <Slider.Track>
-          <Slider.Range />
-        </Slider.Track>
-        <Slider.Thumb index={0} />
-      </Slider.Control>
-    </Slider.Root>
-  )
-}
+import { Box } from "../src"
 
 export default {
   title: "Components / Slider",
@@ -26,110 +9,18 @@ export default {
       </Box>
     ),
   ],
-} satisfies Meta
-
-export const Variants = () => {
-  const recipe = useSlotRecipe("slider")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td>
-                    <DemoSlider
-                      colorPalette={c}
-                      variant={v}
-                      minW="200px"
-                      mb="2"
-                    />
-                    <DemoSlider
-                      colorPalette={c}
-                      variant={v}
-                      minW="200px"
-                      disabled
-                    />
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
 }
 
-export const Sizes = () => {
-  const recipe = useSlotRecipe("slider")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.size}>
-                {(v) => (
-                  <td>
-                    <DemoSlider colorPalette={c} size={v} minW="160px" />
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-export const RangeSlider = () => {
-  return (
-    <Slider.Root
-      maxW="sm"
-      thumbSize={{ width: 16, height: 16 }}
-      defaultValue={[30, 70]}
-    >
-      <Slider.Label fontWeight="medium">Price Range</Slider.Label>
-      <Slider.Control>
-        <Slider.Track>
-          <Slider.Range />
-        </Slider.Track>
-        <Slider.Thumb index={0} />
-        <Slider.Thumb index={1} />
-      </Slider.Control>
-    </Slider.Root>
-  )
-}
-
-export const WithSteps = () => {
-  return <DemoSlider step={5} />
-}
-
-export const VerticalSlider = () => {
-  return <DemoSlider colorPalette="red" orientation="vertical" />
-}
+export { SliderBasic as Basic } from "compositions/examples/slider-basic"
+export { SliderChangeEnd as ChangeEnd } from "compositions/examples/slider-change-end"
+export { SliderControlled as Controlled } from "compositions/examples/slider-controlled"
+export { SliderDisabled as Disabled } from "compositions/examples/slider-disabled"
+export { SliderSizeTable as Sizes } from "compositions/examples/slider-size-table"
+export { SliderThumbContained as ThumbContained } from "compositions/examples/slider-thumb-contained"
+export { SliderVariantTable as Variants } from "compositions/examples/slider-variant-table"
+export { SliderVertical as Vertical } from "compositions/examples/slider-vertical"
+export { SliderWithColors as WithColors } from "compositions/examples/slider-with-colors"
+export { SliderWithLabel as WithLabel } from "compositions/examples/slider-with-label"
+export { SliderWithMarks as WithMarks } from "compositions/examples/slider-with-marks"
+export { SliderWithMultipleThumbs as RangeSlider } from "compositions/examples/slider-with-multiple-thumbs"
+export { SliderWithStep as WithStep } from "compositions/examples/slider-with-step"
