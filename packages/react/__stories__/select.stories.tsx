@@ -1,48 +1,25 @@
-import { Select, chakra } from "../src"
+import { Box } from "../src"
 
 export default {
   title: "Components / Select",
   decorators: [
     (Story: any) => (
-      <chakra.div maxWidth="500px" mx="auto" mt="40px">
+      <Box padding="40px">
         <Story />
-      </chakra.div>
+      </Box>
     ),
   ],
 }
 
-const items = [
-  { label: "React", value: "react" },
-  { label: "Solid", value: "solid" },
-  { label: "Svelte", value: "svelte", disabled: true },
-  { label: "Vue", value: "vue" },
-]
-
-export const Demo = (props: Select.RootProps) => {
-  return (
-    <Select.Root
-      positioning={{ sameWidth: true }}
-      width="12rem"
-      {...props}
-      items={items}
-    >
-      <Select.Label>Framework</Select.Label>
-      <Select.Control>
-        <Select.Trigger>
-          <Select.ValueText placeholder="Select a Framework" />
-          <Select.Indicator />
-        </Select.Trigger>
-      </Select.Control>
-      <Select.Positioner>
-        <Select.Content>
-          {items.map((item) => (
-            <Select.Item key={item.value} item={item}>
-              <Select.ItemText>{item.label}</Select.ItemText>
-              <Select.ItemIndicator />
-            </Select.Item>
-          ))}
-        </Select.Content>
-      </Select.Positioner>
-    </Select.Root>
-  )
-}
+export { SelectBasic as Basic } from "compositions/examples/select-basic"
+export { SelectControlled as Controlled } from "compositions/examples/select-controlled"
+export { SelectInPopover as WithinPopover } from "compositions/examples/select-in-popover"
+export { SelectWithAvatar as WithAvatar } from "compositions/examples/select-with-avatar"
+export { SelectWithClear as WithClear } from "compositions/examples/select-with-clear"
+export { SelectWithDisabled as Disabled } from "compositions/examples/select-with-disabled"
+export { SelectWithInvalid as Invalid } from "compositions/examples/select-with-invalid"
+export { SelectWithOptionGroup as WithOptionGroup } from "compositions/examples/select-with-option-group"
+export { SelectWithOverflow as WithOverflow } from "compositions/examples/select-with-overflow"
+export { SelectWithPositioning as Positioning } from "compositions/examples/select-with-positioning"
+export { SelectWithSizes as Sizes } from "compositions/examples/select-with-sizes"
+export { SelectWithVariants as Variants } from "compositions/examples/select-with-variants"

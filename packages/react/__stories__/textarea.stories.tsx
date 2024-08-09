@@ -2,7 +2,13 @@ import { Box } from "../src"
 
 export default {
   title: "Components / Textarea",
-  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
 export { TextareaBasic as Basic } from "compositions/examples/textarea-basic"

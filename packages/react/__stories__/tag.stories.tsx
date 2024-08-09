@@ -2,7 +2,13 @@ import { Box } from "../src"
 
 export default {
   title: "Components / Tag",
-  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
+  decorators: [
+    (Story: any) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
 export { TagBasic as Basic } from "compositions/examples/tag-basic"

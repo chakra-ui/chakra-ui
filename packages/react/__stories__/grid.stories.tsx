@@ -1,62 +1,17 @@
-import { Grid, GridItem } from "../src"
-import { DecorativeBox } from "./shared/decorative-box"
+import { Box } from "../src"
 
 export default {
   title: "Layout / Grid",
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
-export const WithTemplateColumns = () => (
-  <Grid templateColumns="repeat(5, 1fr)" gap={4}>
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-  </Grid>
-)
-
-export const WithTemplateRows = () => (
-  <Grid templateRows="repeat(2, 1fr)" gap={4}>
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-  </Grid>
-)
-
-export const WithTemplateRowsAndColumns = () => (
-  <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(3, 1fr)" gap={4}>
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-    <DecorativeBox height="200px" />
-  </Grid>
-)
-
-export const WithTemplateAreas = () => {
-  const gridTemplateAreas = `
-    "one one two three"
-    "four five five three"
-  `
-  return (
-    <Grid templateAreas={gridTemplateAreas} gap={4}>
-      <GridItem bg="green.500" area="one">
-        one
-      </GridItem>
-      <GridItem bg="pink.500" area="two">
-        two
-      </GridItem>
-      <GridItem bg="red.500" area="three">
-        three
-      </GridItem>
-      <GridItem bg="teal.500" area="four">
-        four
-      </GridItem>
-      <GridItem bg="yellow.500" area="five">
-        five
-      </GridItem>
-    </Grid>
-  )
-}
+export { GridBasic as Basic } from "compositions/examples/grid-basic"
+export { GridSpanningColumns as SpanningColumns } from "compositions/examples/grid-spanning-columns"
+export { GridWithColSpan as WithColSpan } from "compositions/examples/grid-with-col-span"
+export { GridWithTemplateAreas as WithTemplateAreas } from "compositions/examples/grid-with-template-areas"

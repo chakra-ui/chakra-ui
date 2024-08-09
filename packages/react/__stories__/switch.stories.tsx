@@ -2,7 +2,13 @@ import { Box } from "../src"
 
 export default {
   title: "Components / Switch",
-  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
 export { SwitchBasic as Basic } from "compositions/examples/switch-basic"

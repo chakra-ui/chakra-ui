@@ -14,7 +14,7 @@ import { colorPalettes } from "./shared/color-palettes"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
-  title: "Components / Progress - Linear",
+  title: "Components / Progress",
   decorators: [
     (Story: any) => (
       <Box padding="40px">

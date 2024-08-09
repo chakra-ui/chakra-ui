@@ -1,13 +1,13 @@
-import { Stack, chakra } from "../src"
+import { Box, Stack } from "../src"
 import { Checkmark } from "../src/components/checkmark"
 
 export default {
   title: "Components / Checkmark",
   decorators: [
     (story: Function) => (
-      <chakra.div maxW="500px" mt="40px" mx="auto">
+      <Box maxW="500px" mt="40px" mx="auto">
         {story()}
-      </chakra.div>
+      </Box>
     ),
   ],
 }

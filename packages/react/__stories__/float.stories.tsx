@@ -1,85 +1,19 @@
-import { Box, Circle, Float, Stack } from "../src"
+import { Box } from "../src"
 
 export default {
   title: "Components / Float",
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
-const placements = [
-  "bottom-end",
-  "bottom-start",
-  "top-end",
-  "top-start",
-  "bottom-center",
-  "top-center",
-  "middle-center",
-  "middle-end",
-  "middle-start",
-] as const
-
-export const Basic = () => (
-  <Stack gap="10">
-    {placements.map((placement) => (
-      <Stack key={placement} gap="3">
-        <p>{placement}</p>
-        <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Float placement={placement}>
-            <Circle size="5" bg="red.100">
-              3
-            </Circle>
-          </Float>
-        </Box>
-      </Stack>
-    ))}
-  </Stack>
-)
-
-export const WithOffsetX = () => (
-  <Stack gap="10">
-    {placements.map((placement) => (
-      <Stack key={placement} gap="3">
-        <p>{placement}</p>
-        <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Float placement={placement} offsetX="2">
-            <Circle size="5" bg="red.100">
-              3
-            </Circle>
-          </Float>
-        </Box>
-      </Stack>
-    ))}
-  </Stack>
-)
-
-export const WithOffsetY = () => (
-  <Stack gap="10">
-    {placements.map((placement) => (
-      <Stack key={placement} gap="3">
-        <p>{placement}</p>
-        <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Float placement={placement} offsetY="2">
-            <Circle size="5" bg="red.100">
-              3
-            </Circle>
-          </Float>
-        </Box>
-      </Stack>
-    ))}
-  </Stack>
-)
-
-export const WithOffset = () => (
-  <Stack gap="10">
-    {placements.map((placement) => (
-      <Stack key={placement} gap="3">
-        <p>{placement}</p>
-        <Box position="relative" width="80px" height="80px" bg="gray.50">
-          <Float placement={placement} offset="4">
-            <Circle size="5" bg="red.100">
-              3
-            </Circle>
-          </Float>
-        </Box>
-      </Stack>
-    ))}
-  </Stack>
-)
+export { FloatBasic as Basic } from "compositions/examples/float-basic"
+export { FloatWithOffsetX as WithOffsetX } from "compositions/examples/float-with-offset-x"
+export { FloatWithOffsetY as WithOffsetY } from "compositions/examples/float-with-offset-y"
+export { FloatWithOffset as WithOffset } from "compositions/examples/float-with-offset"
+export { FloatWithPlacements as WithPlacements } from "compositions/examples/float-with-placements"
+export { FloatWithAvatar as WithAvatar } from "compositions/examples/float-with-avatar"

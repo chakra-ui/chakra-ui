@@ -1,19 +1,19 @@
-import { For, Heading, Stack } from "../src"
+import { Box } from "../src"
 
 export default {
   title: "Typography / Heading",
+  decorators: [
+    (Story: any) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
-export const WithSizes = () => (
-  <Stack gap="8">
-    <For each={["sm", "md", "lg", "xl", "2xl", "3xl", "4xl"]}>
-      {(size) => <Heading size={size}>Heading {size}</Heading>}
-    </For>
-  </Stack>
-)
-
-export const WithStyleOverride = () => (
-  <Heading color="red.500" fontSize="40px">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, sapiente.
-  </Heading>
-)
+export { HeadingBasic as Basic } from "compositions/examples/heading-basic"
+export { HeadingWithSizes as Sizes } from "compositions/examples/heading-with-sizes"
+export { HeadingWithAsProp as AsProps } from "compositions/examples/heading-with-as-prop"
+export { HeadingWithWeights as Weights } from "compositions/examples/heading-with-weights"
+export { HeadingWithHighlight as WithHighlight } from "compositions/examples/heading-with-highlight"
+export { HeadingWithComposition as Composition } from "compositions/examples/heading-with-composition"

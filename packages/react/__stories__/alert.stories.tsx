@@ -2,7 +2,13 @@ import { Box } from "../src"
 
 export default {
   title: "Components / Alert",
-  decorators: [(story: Function) => <Box padding="4">{story()}</Box>],
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
 export { AlertBasic as Basic } from "compositions/examples/alert-basic"

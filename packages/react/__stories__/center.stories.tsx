@@ -2,7 +2,13 @@ import { Box } from "../src"
 
 export default {
   title: "Layout / Center",
-  decorators: [(story: Function) => <Box padding="40px">{story()}</Box>],
+  decorators: [
+    (Story: any) => (
+      <Box padding="40px">
+        <Story />
+      </Box>
+    ),
+  ],
 }
 
 export { CenterBasic as Basic } from "compositions/examples/center-basic"

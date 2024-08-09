@@ -1,11 +1,4 @@
-import { StepsBasic } from "compositions/examples/steps-basic"
-import { StepsSizeTable } from "compositions/examples/steps-size-table"
-import { StepsVariantTable } from "compositions/examples/steps-variant-table"
-import { StepsVertical } from "compositions/examples/steps-vertical"
-import { StepsWithDescription } from "compositions/examples/steps-with-description"
-import { StepsWithIcon } from "compositions/examples/steps-with-icon"
-import { Box, Button, Center, HStack } from "../src"
-import { Steps } from "../src/components/steps"
+import { Box, Button, Center, HStack, Steps } from "../src"
 
 export default {
   title: "Components / Steps",
@@ -18,29 +11,12 @@ export default {
   ],
 }
 
-export const Basic = () => {
-  return <StepsBasic />
-}
-
-export const Vertical = () => {
-  return <StepsVertical />
-}
-
-export const WithDescription = () => {
-  return <StepsWithDescription />
-}
-
-export const WithIcon = () => {
-  return <StepsWithIcon />
-}
-
-export const Variants = () => {
-  return <StepsVariantTable />
-}
-
-export const Sizes = () => {
-  return <StepsSizeTable />
-}
+export { StepsBasic as Basic } from "compositions/examples/steps-basic"
+export { StepsSizeTable as Sizes } from "compositions/examples/steps-size-table"
+export { StepsVariantTable as Variants } from "compositions/examples/steps-variant-table"
+export { StepsVertical as Vertical } from "compositions/examples/steps-vertical"
+export { StepsWithDescription as WithDescription } from "compositions/examples/steps-with-description"
+export { StepsWithIcon as WithIcon } from "compositions/examples/steps-with-icon"
 
 const steps = [
   { value: "first", title: "First", description: "Contact Info" },
