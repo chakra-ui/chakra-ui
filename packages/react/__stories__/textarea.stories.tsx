@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Textarea",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { TextareaBasic as Basic } from "compositions/examples/textarea-basic"
 export { TextareaWithAutoresize as WithAutoresize } from "compositions/examples/textarea-with-autoresize"

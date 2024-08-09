@@ -1,36 +1,16 @@
-import { HiPlus, HiTemplate } from "react-icons/hi"
-import { Box, Button, EmptyState, Text, VStack } from "../src"
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
 
 export default {
   title: "Components / Empty State",
   decorators: [
-    (Story: any) => (
-      <Box mx="auto" padding="10">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
-export const Basic = () => {
-  return (
-    <EmptyState.Root>
-      <EmptyState.Content>
-        <EmptyState.Indicator>
-          <HiTemplate />
-        </EmptyState.Indicator>
-
-        <VStack textAlign="center">
-          <Text fontWeight="medium">No template found</Text>
-          <Text fontSize="sm" color="fg.muted">
-            Try creating a new template with the button below
-          </Text>
-        </VStack>
-
-        <Button variant="outline">
-          <HiPlus /> Create Template
-        </Button>
-      </EmptyState.Content>
-    </EmptyState.Root>
-  )
-}
+export { EmptyStateBasic as Basic } from "compositions/examples/empty-state-basic"
+export { EmptyStateWithAction as WithAction } from "compositions/examples/empty-state-with-action"

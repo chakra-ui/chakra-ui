@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Timeline",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { TimelineBasic as Basic } from "compositions/examples/timeline-basic"
 export { TimelineWithContentBefore as WithContentBefore } from "compositions/examples/timeline-with-content-before"

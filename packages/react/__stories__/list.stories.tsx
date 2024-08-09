@@ -1,9 +1,17 @@
+import type { Meta } from "@storybook/react"
 import { FaAccessibleIcon, FaCheck, FaPhone } from "react-icons/fa"
 import { Box, List, Text } from "../src"
 
 export default {
   title: "Components / List",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export const Basic = () => (
   <Box mt="6">

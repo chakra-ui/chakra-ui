@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Typography / Code",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { CodeBasic as Basic } from "compositions/examples/code-basic"
 export { CodeWithColors as WithColors } from "compositions/examples/code-with-colors"

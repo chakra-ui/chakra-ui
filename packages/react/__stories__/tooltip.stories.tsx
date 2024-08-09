@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Tooltip",
   decorators: [
-    (Story: any) => (
-      <Box maxWidth="400px" mx="auto" mt="200px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { TooltipBasic as Basic } from "compositions/examples/tooltip-basic"
 export { TooltipControlled as Controlled } from "compositions/examples/tooltip-controlled"

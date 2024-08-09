@@ -1,83 +1,20 @@
-import { Box, For, NativeSelect as Select, Span, useSlotRecipe } from "../src"
-import { PlaygroundTable } from "./shared/playground-table"
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
 
 export default {
-  title: "Components / Select - Native",
+  title: "Components / Native Select",
   decorators: [
-    (Story: React.ElementType) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
-const DemoSelect = (props: Select.RootProps) => (
-  <Select.Root {...props}>
-    <Select.Field placeholder="Select option">
-      <option value="Option 1">Option 1</option>
-      <option value="Option 2">Option 2</option>
-      <option value="Option 3">Option 3</option>
-    </Select.Field>
-    <Select.Indicator />
-  </Select.Root>
-)
-
-export const Variants = () => {
-  const recipe = useSlotRecipe("nativeSelect")
-  return (
-    <PlaygroundTable>
-      <tbody>
-        <For each={recipe.variantMap.variant}>
-          {(v) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {v}
-                </Span>
-              </td>
-              <td>
-                <DemoSelect variant={v} minW="300px" />
-              </td>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-export const Sizes = () => {
-  const recipe = useSlotRecipe("nativeSelect")
-  return (
-    <PlaygroundTable>
-      <tbody>
-        <For each={recipe.variantMap.size}>
-          {(v) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {v}
-                </Span>
-              </td>
-              <td>
-                <DemoSelect size={v} minW="300px" />
-              </td>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-// export const Invalid = () => (
-//   <Select.Root invalid>
-//     <Select.Field placeholder="Select option">
-//       <option value="Option 1">Option 1</option>
-//       <option value="Option 2">Option 2</option>
-//       <option value="Option 3">Option 3</option>
-//     </Select.Field>
-//     <Select.Indicator />
-//   </Select.Root>
-// )
+export { NativeSelectBasic as Basic } from "compositions/examples/native-select-basic"
+export { NativeSelectControlled as Controlled } from "compositions/examples/native-select-controlled"
+export { NativeSelectWithSizes as Sizes } from "compositions/examples/native-select-with-sizes"
+export { NativeSelectWithVariants as Variants } from "compositions/examples/native-select-with-variants"
+export { NativeSelectWithItems as WithItems } from "compositions/examples/native-select-with-items"
+export { NativeSelectWithInvalid as Invalid } from "compositions/examples/native-select-with-invalid"

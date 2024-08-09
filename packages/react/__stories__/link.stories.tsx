@@ -1,43 +1,17 @@
-import { For, Link, Span, useRecipe } from "../src"
-import { colorPalettes } from "./shared/color-palettes"
-import { PlaygroundTable } from "./shared/playground-table"
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
 
 export default {
   title: "Typography / Link",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
-export const Variants = () => {
-  const recipe = useRecipe("link")
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <td />
-          <For each={recipe.variantMap.variant}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <For each={colorPalettes}>
-          {(c) => (
-            <tr>
-              <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
-                  {c}
-                </Span>
-              </td>
-              <For each={recipe.variantMap.variant}>
-                {(v) => (
-                  <td>
-                    <Link variant={v} colorPalette={c}>
-                      Open in new tab
-                    </Link>
-                  </td>
-                )}
-              </For>
-            </tr>
-          )}
-        </For>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
+export { LinkBasic as Basic } from "compositions/examples/link-basic"
+export { LinkVariantTable as Variants } from "compositions/examples/link-variant-table"
+export { LinkWithinText as WithinText } from "compositions/examples/link-within-text"

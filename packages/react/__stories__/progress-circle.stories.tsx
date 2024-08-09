@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Progress Circle",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { ProgressCircleBasic as Basic } from "compositions/examples/progress-circle-basic"
 export { ProgressCircleIndeterminate as Indeterminate } from "compositions/examples/progress-circle-indeterminate"

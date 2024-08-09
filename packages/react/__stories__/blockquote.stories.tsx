@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Blockquote",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { BlockquoteBasic as Basic } from "compositions/examples/blockquote-basic"
 export { BlockquoteVariantTable as Variants } from "compositions/examples/blockquote-variant-table"

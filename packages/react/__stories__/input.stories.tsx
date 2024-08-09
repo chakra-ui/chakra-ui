@@ -5,7 +5,7 @@ export default {
   title: "Components / Input",
   decorators: [
     (Story) => (
-      <Box p="40px">
+      <Box p="10">
         <Story />
       </Box>
     ),

@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Pagination",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { PaginationBasic as Basic } from "compositions/examples/pagination-basic"
 export { PaginationControlled as Controlled } from "compositions/examples/pagination-controlled"

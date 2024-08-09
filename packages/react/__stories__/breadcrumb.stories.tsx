@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Breadcrumb",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { BreadcrumbBasic as Basic } from "compositions/examples/breadcrumb-basic"
 export { BreadcrumbWithEllipsis as WithEllipsis } from "compositions/examples/breadcrumb-with-ellipsis"

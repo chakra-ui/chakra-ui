@@ -1,6 +1,16 @@
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
+
 export default {
   title: "Components / Stat",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export { StatBasic as Basic } from "compositions/examples/stat-basic"
 export { StatWithFormatOptions as WithFormatOptions } from "compositions/examples/stat-with-format-options"

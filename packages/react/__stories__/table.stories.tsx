@@ -1,6 +1,16 @@
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
+
 export default {
   title: "Components / Table",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export { TableBasic as Basic } from "compositions/examples/table-basic"
 export { TableWithColumnBorder as WithColumnBorder } from "compositions/examples/table-with-column-border"

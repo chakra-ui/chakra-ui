@@ -4,7 +4,7 @@ export default {
   title: "Layout / Center",
   decorators: [
     (Story: any) => (
-      <Box padding="40px">
+      <Box p="10">
         <Story />
       </Box>
     ),

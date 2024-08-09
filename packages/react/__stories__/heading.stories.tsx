@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Typography / Heading",
   decorators: [
-    (Story: any) => (
+    (Story) => (
       <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { HeadingBasic as Basic } from "compositions/examples/heading-basic"
 export { HeadingWithSizes as Sizes } from "compositions/examples/heading-with-sizes"

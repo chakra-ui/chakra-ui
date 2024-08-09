@@ -1,9 +1,17 @@
+import type { Meta } from "@storybook/react"
 import Markdown from "react-markdown"
-import { Prose } from "../src"
+import { Box, Prose } from "../src"
 
 export default {
   title: "Typography / Prose",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 const code = `
 <h1>Title Heading 1</h1>

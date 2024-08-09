@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Tabs",
   decorators: [
-    (story: Function) => (
-      <Box mx="auto" padding="40px">
-        {story()}
+    (Story) => (
+      <Box p="10">
+        <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { TabsBasic as Basic } from "compositions/examples/tabs-basic"
 export { TabsWithIndicator as WithIndicator } from "compositions/examples/tabs-with-indicator"

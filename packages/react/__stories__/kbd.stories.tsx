@@ -5,7 +5,7 @@ export default {
   title: "Components / Kbd",
   decorators: [
     (Story) => (
-      <Box p="40px">
+      <Box p="10">
         <Story />
       </Box>
     ),

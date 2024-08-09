@@ -1,16 +1,17 @@
+import type { Meta } from "@storybook/react"
 import { Box, For, SegmentGroup, useSlotRecipe } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / Segment Group",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export const Basic = () => {
   return (

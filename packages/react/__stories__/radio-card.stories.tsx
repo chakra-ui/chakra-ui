@@ -1,60 +1,19 @@
-import { Flex, HStack, RadioCard, Stack, Text, chakra } from "../src"
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
 
 export default {
   title: "Components / Radio Card",
   decorators: [
-    (story: Function) => (
-      <chakra.div mt="40px" mx="10">
-        {story()}
-      </chakra.div>
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
     ),
   ],
-}
+} satisfies Meta
 
-const RadioCardItem = (props: RadioCard.ItemProps) => {
-  const { children, ...rest } = props
-  return (
-    <RadioCard.Item {...rest}>
-      <RadioCard.ItemControl>{children}</RadioCard.ItemControl>
-      <RadioCard.ItemHiddenInput />
-    </RadioCard.Item>
-  )
-}
-
-const items = [
-  {
-    value: "standard",
-    label: "Standard",
-    description: "4 - 10 business days",
-  },
-  {
-    value: "express",
-    label: "Express",
-    description: "2 - 4 business days",
-  },
-]
-
-export const Basic = () => {
-  return (
-    <RadioCard.Root defaultValue="standard" colorPalette="pink">
-      <RadioCard.Label mb="3" fontSize="sm">
-        Shipping method
-      </RadioCard.Label>
-      <HStack gap="4">
-        {items.map((item) => (
-          <RadioCardItem key={item.value} value={item.value}>
-            <Flex gap="4">
-              <Stack gap="1">
-                <RadioCard.ItemText fontWeight="medium">
-                  {item.label}
-                </RadioCard.ItemText>
-                <Text>{item.description}</Text>
-              </Stack>
-              <RadioCard.ItemIndicator />
-            </Flex>
-          </RadioCardItem>
-        ))}
-      </HStack>
-    </RadioCard.Root>
-  )
-}
+export { RadioCardBasic as Basic } from "compositions/examples/radio-card-basic"
+export { RadioCardWithSizes as Sizes } from "compositions/examples/radio-card-with-sizes"
+export { RadioCardWithColors as WithColors } from "compositions/examples/radio-card-with-colors"
+export { RadioCardWithIcon as WithIcon } from "compositions/examples/radio-card-with-icon"
+export { RadioCardCentered as Centered } from "compositions/examples/radio-card-centered"

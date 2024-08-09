@@ -1,9 +1,17 @@
+import type { Meta } from "@storybook/react"
 import * as React from "react"
 import { Box, Heading, Highlight, Mark, Text, useHighlight } from "../src"
 
 export default {
   title: "Typography / Highlight",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export const WithSymbol = () => (
   <Text fontWeight="semibold">

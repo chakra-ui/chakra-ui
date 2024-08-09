@@ -1,6 +1,16 @@
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
+
 export default {
   title: "Layout / Stack",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export { StackBasic as Basic } from "compositions/examples/stack-basic"
 export { StackHorizontal as Horizontal } from "compositions/examples/stack-horizontal"

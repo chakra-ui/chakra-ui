@@ -1,9 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Layout / Box",
-  decorators: [(story: Function) => <Box padding="4">{story()}</Box>],
-}
+  decorators: [
+    (Story) => (
+      <Box p="4">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export { BoxBasic as Basic } from "compositions/examples/box-basic"
 export { BoxWithPseudoProps as PseudoProps } from "compositions/examples/box-with-pseudo-props"

@@ -3,6 +3,13 @@ import { chakra, useRecipe, useSlotRecipe } from "../src/styled-system"
 
 export default {
   title: "Foundations / System",
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
 } satisfies Meta
 
 const Box = chakra("div")
@@ -90,7 +97,7 @@ export const Basic = () => {
         as="section"
         bg={{ base: "primary", _hover: "green" }}
         color="pink"
-        padding="40px"
+        p="10"
         rounded="12px"
         mt="40px"
       >

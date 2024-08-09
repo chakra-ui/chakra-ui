@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Tag",
   decorators: [
-    (Story: any) => (
+    (Story) => (
       <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { TagBasic as Basic } from "compositions/examples/tag-basic"
 export { TagWithAvatar as WithAvatar } from "compositions/examples/tag-with-avatar"

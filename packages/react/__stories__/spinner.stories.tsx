@@ -1,6 +1,16 @@
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
+
 export default {
   title: "Components / Spinner",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export { SpinnerBasic as Basic } from "compositions/examples/spinner-basic"
 export { SpinnerCustomColor as CustomColor } from "compositions/examples/spinner-custom-color"

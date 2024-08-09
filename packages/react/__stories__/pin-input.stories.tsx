@@ -1,16 +1,17 @@
+import type { Meta } from "@storybook/react"
 import { Box, Field, For, Group, Label, PinInput, useSlotRecipe } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / PinInput",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 const DemoPinInput = (props: PinInput.RootProps) => {
   return (

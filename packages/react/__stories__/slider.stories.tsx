@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Slider",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { SliderBasic as Basic } from "compositions/examples/slider-basic"
 export { SliderChangeEnd as ChangeEnd } from "compositions/examples/slider-change-end"

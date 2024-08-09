@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box, Button, Center, HStack, Steps } from "../src"
 
 export default {
   title: "Components / Steps",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { StepsBasic as Basic } from "compositions/examples/steps-basic"
 export { StepsSizeTable as Sizes } from "compositions/examples/steps-size-table"

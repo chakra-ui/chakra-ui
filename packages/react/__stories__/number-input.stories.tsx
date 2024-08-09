@@ -1,16 +1,17 @@
+import type { Meta } from "@storybook/react"
 import { Box, For, NumberInput, useSlotRecipe } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
   title: "Components / NumberInput",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 const DemoNumberInput = (props: NumberInput.RootProps) => {
   return (

@@ -1,16 +1,17 @@
+import type { Meta } from "@storybook/react"
 import { useState } from "react"
 import { Box, Button, Stack, Text } from "../src"
 
 export default {
   title: "Foundations / Sandbox",
   decorators: [
-    (Story: any) => (
-      <Box padding={5}>
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 const TimeStamp = () => {
   const [data] = useState(() => new Date().toISOString())

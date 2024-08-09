@@ -5,7 +5,7 @@ export default {
   title: "Components / Data List",
   decorators: [
     (Story) => (
-      <Box padding="40px">
+      <Box p="10">
         <Story />
       </Box>
     ),

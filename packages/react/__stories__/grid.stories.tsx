@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Layout / Grid",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { GridBasic as Basic } from "compositions/examples/grid-basic"
 export { GridSpanningColumns as SpanningColumns } from "compositions/examples/grid-spanning-columns"

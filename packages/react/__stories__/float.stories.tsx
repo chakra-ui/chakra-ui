@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Float",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { FloatBasic as Basic } from "compositions/examples/float-basic"
 export { FloatWithOffsetX as WithOffsetX } from "compositions/examples/float-with-offset-x"

@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Layout / Flex",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { FlexBasic as Basic } from "compositions/examples/flex-basic"
 export { FlexWithAlign as WithAlign } from "compositions/examples/flex-with-align"

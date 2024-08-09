@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Image",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { ImageBasic as Basic } from "compositions/examples/image-basic"
 export { ImageWithAspectRatio as WithAspectRatio } from "compositions/examples/image-with-aspect-ratio"

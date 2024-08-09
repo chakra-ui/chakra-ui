@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Layout / Container",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { ContainerBasic as Basic } from "compositions/examples/container-basic"
 export { ContainerWithSizes as Sizes } from "compositions/examples/container-with-sizes"

@@ -1,6 +1,16 @@
+import type { Meta } from "@storybook/react"
+import { Box } from "../src"
+
 export default {
   title: "Typography / Text",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export { TextBasic as Basic } from "compositions/examples/text-basic"
 export { TextWithAsProp as AsProps } from "compositions/examples/text-with-as-prop"

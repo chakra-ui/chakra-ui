@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / HoverCard",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { HoverCardBasic as Basic } from "compositions/examples/hover-card-basic"
 export { HoverCardControlled as Controlled } from "compositions/examples/hover-card-controlled"

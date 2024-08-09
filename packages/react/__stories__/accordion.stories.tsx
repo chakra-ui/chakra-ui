@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Accordion",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { AccordionBasic as Basic } from "compositions/examples/accordion-basic"
 export { AccordionVariantTable as Variants } from "compositions/examples/accordion-variant-table"

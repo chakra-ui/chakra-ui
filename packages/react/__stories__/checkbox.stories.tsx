@@ -1,15 +1,16 @@
+import type { Meta } from "@storybook/react"
 import { Box } from "../src"
 
 export default {
   title: "Components / Checkbox",
   decorators: [
-    (Story: any) => (
-      <Box padding="40px">
+    (Story) => (
+      <Box p="10">
         <Story />
       </Box>
     ),
   ],
-}
+} satisfies Meta
 
 export { CheckboxBasic as Basic } from "compositions/examples/checkbox-basic"
 export { CheckboxControlled as Controlled } from "compositions/examples/checkbox-controlled"
