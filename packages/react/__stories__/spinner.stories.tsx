@@ -1,31 +1,12 @@
-import { For, useRecipe } from "../src"
-import { Spinner } from "../src/components/spinner"
-
 export default {
   title: "Components / Spinner",
 }
 
-export const Basic = () => <Spinner />
-
-export const WithColor = () => <Spinner color="red.500" />
-
-export const WithSizes = () => {
-  const recipe = useRecipe("spinner")
-  return (
-    <div>
-      <For each={recipe.variantMap.size}>
-        {(size) => (
-          <Spinner key={size} margin={3} color="green.500" size={size} />
-        )}
-      </For>
-    </div>
-  )
-}
-
-export const WithSpeed = () => (
-  <Spinner color="blue.500" emptyColor="gray.200" speed="0.8s" />
-)
-
-export const WithEmptyColor = () => (
-  <Spinner color="red.500" emptyColor="gray.200" />
-)
+export { SpinnerBasic as Basic } from "compositions/examples/spinner-basic"
+export { SpinnerCustomColor as CustomColor } from "compositions/examples/spinner-custom-color"
+export { SpinnerSizeTable as Sizes } from "compositions/examples/spinner-size-table"
+export { SpinnerWithCustomSpeed as WithCustomSpeed } from "compositions/examples/spinner-with-custom-speed"
+export { SpinnerWithCustomThickness as WithCustomThickness } from "compositions/examples/spinner-with-custom-thickness"
+export { SpinnerWithTrackColor as WithTrackColor } from "compositions/examples/spinner-with-track-color"
+export { SpinnerWithLabel as WithLabel } from "compositions/examples/spinner-with-label"
+export { SpinnerWithOverlay as WithOverlay } from "compositions/examples/spinner-with-overlay"
