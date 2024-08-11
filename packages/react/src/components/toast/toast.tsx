@@ -34,7 +34,11 @@ export { useToastStyles }
 export interface ToasterProps
   extends HTMLChakraProps<"div", ToasterBaseProps> {}
 
-export const Toaster = chakra(ArkToaster, {}, { forwardAsChild: true })
+export const Toaster = chakra(
+  ArkToaster,
+  {},
+  { forwardAsChild: true },
+) as React.FC<ToasterProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 
