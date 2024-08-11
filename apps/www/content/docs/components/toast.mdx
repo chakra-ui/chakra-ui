@@ -1,0 +1,161 @@
+---
+title: Toast
+description: Used to display a temporary message to the user
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="toaster-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`toaster` snippet
+
+```sh
+chakra snippet add toaster
+```
+
+The snippet includes a closed component composition for the `Toast` component.
+
+## Usage
+
+```jsx
+import { Toaster, toaster } from "@/components/ui/toaster"
+```
+
+First, render the `Toaster` component in your app.
+
+```jsx
+<Toaster />
+```
+
+Then, create a toast by calling the `toaster` function.
+
+```jsx
+toaster.create({
+  title: "Toast Title",
+  description: "Toast Description",
+})
+```
+
+## Examples
+
+### Persistent Toast
+
+Set the `type` prop to `"loading"` to create a persistent toast.
+
+<ExampleTabs name="toaster-persistent" />
+
+### Types
+
+Here's an example of each type of toast.
+
+<ExampleTabs name="toaster-with-status" />
+
+### With Action
+
+Use the `action` and `actionLabel` prop to add an action to the toast.
+
+> When the action trigger is clicked, the toast will be closed.
+
+<ExampleTabs name="toaster-with-action" />
+
+### Promise
+
+Use the `toaster.promise` to create a toast that resolves when the promise is
+resolved.
+
+Next, you can define the toast options (title, description, etc.) for each state
+of the promise.
+
+<ExampleTabs name="toaster-with-promise" />
+
+### Custom Duration
+
+Use the `duration` prop to set the duration of the toast.
+
+<ExampleTabs name="toaster-with-duration" />
+
+### Pause and Play
+
+Use the `pause` and `resume` methods on the `toaster` object to pause and play
+the toast.
+
+<ExampleTabs name="toaster-pause-and-play" />
+
+### Lifecycle
+
+Use the `onStatusChange` prop on the `toaster` function to listen for changes to
+the toast's status.
+
+<ExampleTabs name="toaster-lifecycle" />
+
+### Maximum Visible Toasts
+
+Set the `max` prop on the `createToaster` function to define the maximum number
+of toasts that can be rendered at any one time. Any extra toasts will be queued
+and rendered when a toast has been dismissed.
+
+```jsx
+// @/components/ui/toaster.tsx
+
+const toaster = createToaster({
+  max: 3,
+})
+```
+
+### Placement
+
+Toasts can be displayed on all four corners of a page. We recommend picking one
+desired position and configure it in the `createToaster` function.
+
+```jsx
+// @/components/ui/toaster.tsx
+
+const toaster = createToaster({
+  position: "top-right",
+})
+```
+
+### Overlapping Toasts
+
+By default, toasts are stacked on top of each other. To make the toasts overlap
+each other, set the `overlap` prop to `true` in the `createToaster` function.
+
+```jsx
+// @/components/ui/toaster.tsx
+
+const toaster = createToaster({
+  position: "top-right",
+  overlap: true,
+})
+```
+
+### Offset
+
+Set the `offset` prop in the `createToaster` function to offset the toasts from
+the edges of the screen.
+
+```jsx
+// @/components/ui/toaster.tsx
+
+const toaster = createToaster({
+  offset: "20px",
+})
+```
+
+Alternatively, you can use the `offset` prop to set the offset for each edge of
+the screen.
+
+```jsx
+// @/components/ui/toaster.tsx
+
+const toaster = createToaster({
+  offset: { left: "20px", top: "20px", right: "20px", bottom: "20px" },
+})
+```

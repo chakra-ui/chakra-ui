@@ -1,104 +1,26 @@
-import { Fragment } from "react"
-import { HiX } from "react-icons/hi"
-import {
-  Absolute,
-  Button,
-  HStack,
-  IconButton,
-  Portal,
-  Stack,
-  Toast,
-  Toaster,
-  createToaster,
-} from "../src"
-
-const toaster = createToaster({
-  placement: "bottom",
-})
+import type { Meta } from "@storybook/react"
+import { Toaster } from "compositions/ui/toaster"
+import { Box } from "../src"
 
 export default {
   title: "Components / Toast",
   decorators: [
     (Story: any) => (
-      <Fragment>
+      <Box p="10">
         <Story />
-        <Portal>
-          <Toaster toaster={toaster}>
-            {(toast) => (
-              <Toast.Root>
-                <Stack gap="1" flex="1" maxWidth="100%">
-                  <Toast.Title>{toast.title}</Toast.Title>
-                  <Toast.Description>{toast.description}</Toast.Description>
-                </Stack>
-                <Absolute top="1" insetEnd="1">
-                  <Toast.CloseTrigger asChild>
-                    <IconButton
-                      size="sm"
-                      variant="ghost"
-                      colorPalette="whiteAlpha"
-                    >
-                      <HiX />
-                    </IconButton>
-                  </Toast.CloseTrigger>
-                </Absolute>
-              </Toast.Root>
-            )}
-          </Toaster>
-        </Portal>
-      </Fragment>
+        <Toaster />
+      </Box>
     ),
   ],
-}
+} satisfies Meta
 
-export const Basic = () => {
-  const id = "login-error-toast"
-  return (
-    <HStack>
-      <Button
-        variant="solid"
-        onClick={() => {
-          if (toaster.isVisible(id)) return
-          toaster.create({
-            id,
-            title: "Error Connecting...",
-            description: "You do not have permissions to perform this action.",
-            type: "loading",
-          })
-        }}
-      >
-        Show Toast
-      </Button>
-      <Button onClick={() => toaster.remove()}>Close all</Button>
-      <Button
-        onClick={() =>
-          toaster.update(id, {
-            title: "Hooray 🥳🥳🥳!!!",
-            description: "You now have permissions to perform this action.",
-            type: "success",
-            duration: 3000,
-          })
-        }
-      >
-        Update
-      </Button>
-      <Button onClick={() => toaster.remove(id)}>Close One</Button>
-    </HStack>
-  )
-}
-
-export const SuccessToast = () => {
-  return (
-    <Button
-      onClick={() =>
-        toaster.create({
-          title: "Account created.",
-          description: "We've created your account for you.",
-          type: "success",
-          duration: 3000,
-        })
-      }
-    >
-      Show Success Toast
-    </Button>
-  )
-}
+export { ToasterBasic as Basic } from "compositions/examples/toaster-basic"
+export { ToasterLifecycle as Lifecycle } from "compositions/examples/toaster-lifecycle"
+export { ToasterPersistent as Persistent } from "compositions/examples/toaster-persistent"
+export { ToasterStatic as Static } from "compositions/examples/toaster-static"
+export { ToasterWithAction as WithAction } from "compositions/examples/toaster-with-action"
+export { ToasterWithDuration as WithDuration } from "compositions/examples/toaster-with-duration"
+export { ToasterWithExternalClose as ExternalClose } from "compositions/examples/toaster-with-external-close"
+export { ToasterWithPromise as WithPromise } from "compositions/examples/toaster-with-promise"
+export { ToasterWithStatus as WithStatus } from "compositions/examples/toaster-with-status"
+export { ToasterWithUpdate as WithUpdate } from "compositions/examples/toaster-with-update"

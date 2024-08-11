@@ -533,11 +533,9 @@ export interface TagVariantProps {
 
 // Toast
 
-export type ToastSlot = "root" | "title" | "description" | "icon" | "closeTrigger"
+export type ToastSlot = "root" | "title" | "description" | "indicator" | "closeTrigger" | "actionTrigger"
 
-export interface ToastVariantProps {
-  variant?: "solid" | "raised"
-}
+export interface ToastVariantProps {}
 
 // Tooltip
 

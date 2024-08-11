@@ -12,8 +12,9 @@ export const toastAnatomy = createAnatomy("toast").parts(
   "root",
   "title",
   "description",
-  "icon",
+  "indicator",
   "closeTrigger",
+  "actionTrigger",
 )
 
 export const breadcrumbAnatomy = createAnatomy("breadcrumb").parts(
