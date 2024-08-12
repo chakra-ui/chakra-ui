@@ -241,25 +241,23 @@ const TooltipDemo = () => (
             Hover me
           </Button>
         </Tooltip.Trigger>
-        <Portal>
-          <Tooltip.Positioner zIndex="1300!">
-            <Tooltip.Content
-              color="fg"
-              px="4"
-              py="2.5"
-              fontWeight="medium"
-              fontSize="sm"
-              css={{
-                "--tooltip-bg": "#061416",
-              }}
-            >
-              <Tooltip.Arrow>
-                <Tooltip.ArrowTip />
-              </Tooltip.Arrow>
-              This a chakra tooltip
-            </Tooltip.Content>
-          </Tooltip.Positioner>
-        </Portal>
+        <Tooltip.Positioner zIndex="1300!">
+          <Tooltip.Content
+            color="fg"
+            px="4"
+            py="2.5"
+            fontWeight="medium"
+            fontSize="sm"
+            css={{
+              "--tooltip-bg": "#061416",
+            }}
+          >
+            <Tooltip.Arrow>
+              <Tooltip.ArrowTip />
+            </Tooltip.Arrow>
+            This a chakra tooltip
+          </Tooltip.Content>
+        </Tooltip.Positioner>
       </Tooltip.Root>
     </Center>
   </GridItem>

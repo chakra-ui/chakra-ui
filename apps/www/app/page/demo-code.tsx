@@ -20,7 +20,8 @@ export const DemoCode = async (props: {
           p: "4",
           minH: "md",
           rounded: "md",
-          "--shiki-dark-bg": "#050D0D!",
+          "--shiki-dark-bg": "#080808!",
+          bgColor: "var(--shiki-dark-bg)!",
         },
       }}
       className="code-highlight"
