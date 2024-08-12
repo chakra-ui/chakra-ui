@@ -57,7 +57,7 @@
     "debug": "^4.3.5",
     "https-proxy-agent": "^7.0.5",
     "node-fetch": "3.3.2",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "sucrase": "^3.35.0",
     "zod": "^3.23.8"
   },
