@@ -1,5 +1,6 @@
 import type { Meta } from "@storybook/react"
-import { Box, Field, For, Group, Label, PinInput, useSlotRecipe } from "../src"
+import { Field } from "compositions/ui/field"
+import { Box, For, Group, PinInput, useSlotRecipe } from "../src"
 import { PlaygroundTable } from "./shared/playground-table"
 
 export default {
@@ -64,9 +65,7 @@ export const WithField = () => {
   return (
     <Field>
       <PinInput.Root>
-        <Label asChild>
-          <PinInput.Label>Enter your pin</PinInput.Label>
-        </Label>
+        <PinInput.Label>Enter your pin</PinInput.Label>
         <PinInput.Control mt="2" asChild>
           <Group gap="3">
             {[0, 1, 2].map((id, index) => (

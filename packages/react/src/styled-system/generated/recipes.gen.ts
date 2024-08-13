@@ -71,14 +71,6 @@ export interface TextareaVariantProps {
 
 export interface IconVariantProps {}
 
-export interface FieldVariantProps {}
-
-export interface ErrorMessageVariantProps {}
-
-export interface HelpTextVariantProps {}
-
-export interface LabelVariantProps {}
-
 export interface CheckmarkVariantProps {
   size?: "sm" | "md" | "lg"
   variant?: "outline" | "subtle"
@@ -106,10 +98,6 @@ export interface ConfigRecipes {
   spinner: SystemRecipeFn<SpinnerVariantProps>
   textarea: SystemRecipeFn<TextareaVariantProps>
   icon: SystemRecipeFn<IconVariantProps>
-  field: SystemRecipeFn<FieldVariantProps>
-  errorMessage: SystemRecipeFn<ErrorMessageVariantProps>
-  helpText: SystemRecipeFn<HelpTextVariantProps>
-  label: SystemRecipeFn<LabelVariantProps>
   checkmark: SystemRecipeFn<CheckmarkVariantProps>
   radiomark: SystemRecipeFn<RadiomarkVariantProps>
 }
@@ -266,6 +254,12 @@ export interface EmptyStateVariantProps {
   size?: "lg" | "md"
   variant?: "outline" | "plain"
 }
+
+// Field
+
+export type FieldSlot = "root" | "errorText" | "helperText" | "input" | "label" | "select" | "textarea" | "requiredIndicator"
+
+export interface FieldVariantProps {}
 
 // FileUpload
 
@@ -576,6 +570,7 @@ export interface ConfigSlotRecipes {
   drawer: SystemSlotRecipeFn<DrawerSlot, DrawerVariantProps>
   editable: SystemSlotRecipeFn<EditableSlot, EditableVariantProps>
   emptyState: SystemSlotRecipeFn<EmptyStateSlot, EmptyStateVariantProps>
+  field: SystemSlotRecipeFn<FieldSlot, FieldVariantProps>
   fileUpload: SystemSlotRecipeFn<FileUploadSlot, FileUploadVariantProps>
   hoverCard: SystemSlotRecipeFn<HoverCardSlot, HoverCardVariantProps>
   list: SystemSlotRecipeFn<ListSlot, ListVariantProps>
@@ -619,6 +614,7 @@ export interface ConfigRecipeSlots {
   drawer: DrawerSlot
   editable: EditableSlot
   emptyState: EmptyStateSlot
+  field: FieldSlot
   fileUpload: FileUploadSlot
   hoverCard: HoverCardSlot
   list: ListSlot

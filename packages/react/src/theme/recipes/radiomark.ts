@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const radiomarkRecipe = defineRecipe({
+  className: "radiomark",
   base: {
     display: "inline-flex",
     alignItems: "center",

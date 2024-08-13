@@ -3,6 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 import { radiomarkRecipe } from "./radiomark"
 
 export const radioCardSlotRecipe = defineSlotRecipe({
+  className: "radio-card",
   slots: [...anatomy.keys(), "itemAddon", "itemIndicator"],
   base: {
     root: {

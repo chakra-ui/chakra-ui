@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const kbdRecipe = defineRecipe({
+  className: "kbd",
   base: {
     fontWeight: "semibold",
     lineHeight: "normal",

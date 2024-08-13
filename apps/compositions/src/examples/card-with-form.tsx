@@ -1,13 +1,5 @@
-import {
-  Button,
-  Card,
-  Field,
-  Heading,
-  Input,
-  Label,
-  Stack,
-  Text,
-} from "@chakra-ui/react"
+import { Button, Card, Heading, Input, Stack, Text } from "@chakra-ui/react"
+import { Field } from "compositions/ui/field"
 
 export const CardWithForm = () => (
   <Card.Root bg="bg.subtle">
@@ -19,12 +11,10 @@ export const CardWithForm = () => (
     </Card.Header>
     <Card.Body>
       <Stack maxW="sm" gap="4">
-        <Field>
-          <Label>First Name</Label>
+        <Field label="First Name">
           <Input />
         </Field>
-        <Field>
-          <Label>Last Name</Label>
+        <Field label="Last Name">
           <Input />
         </Field>
       </Stack>

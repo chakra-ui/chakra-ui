@@ -3,12 +3,14 @@ import { defineSlotRecipe } from "../../styled-system"
 import { selectSlotRecipe } from "./select"
 
 export const nativeSelectSlotRecipe = defineSlotRecipe({
+  className: "native-select",
   slots: nativeSelectAnatomy.keys(),
 
   base: {
     root: {
       height: "fit-content",
       display: "flex",
+      width: "100%",
       position: "relative",
       colorPalette: "gray",
     },
@@ -20,9 +22,8 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       _disabled: {
         layerStyle: "disabled",
       },
-      _readOnly: {
-        boxShadow: "none !important",
-        userSelect: "all",
+      _invalid: {
+        borderColor: "border.error",
       },
       focusRing: "outside",
       lineHeight: "normal",

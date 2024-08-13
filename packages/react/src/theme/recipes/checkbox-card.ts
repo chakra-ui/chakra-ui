@@ -3,6 +3,7 @@ import { checkmarkRecipe } from "./checkmark"
 
 export const checkboxCardSlotRecipe = defineSlotRecipe({
   slots: ["root", "control", "label", "addon", "indicator"],
+  className: "checkbox-card",
   base: {
     root: {
       display: "flex",

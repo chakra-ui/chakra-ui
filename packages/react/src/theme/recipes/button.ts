@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const buttonRecipe = defineRecipe({
+  className: "button",
   base: {
     display: "inline-flex",
     appearance: "none",

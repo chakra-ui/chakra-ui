@@ -63,6 +63,10 @@ export interface RecipeDefinition<
   T extends RecipeVariantRecord = RecipeVariantRecord,
 > {
   /**
+   * The class name of the recipe.
+   */
+  className?: string
+  /**
    * The base styles of the recipe.
    */
   base?: SystemStyleObject
@@ -181,6 +185,7 @@ export type SlotRecipeConfig<
 export interface SystemRecipeFn<T> {
   __type: Partial<T>
   (props?: Partial<T>): SystemStyleObject
+  className: string
   variantMap: {
     [key in keyof T]: Array<T[key]>
   }

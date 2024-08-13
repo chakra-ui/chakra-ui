@@ -3,15 +3,11 @@ import { buttonRecipe } from "./recipes/button"
 import { checkmarkRecipe } from "./recipes/checkmark"
 import { codeRecipe } from "./recipes/code"
 import { containerRecipe } from "./recipes/container"
-import { errorMessageRecipe } from "./recipes/error-message"
-import { fieldRecipe } from "./recipes/field"
 import { headingRecipe } from "./recipes/heading"
-import { helpTextRecipe } from "./recipes/help-text"
 import { iconRecipe } from "./recipes/icon"
 import { inputRecipe } from "./recipes/input"
 import { inputAddonRecipe } from "./recipes/input-addon"
 import { kbdRecipe } from "./recipes/kbd"
-import { labelRecipe } from "./recipes/label"
 import { linkRecipe } from "./recipes/link"
 import { markRecipe } from "./recipes/mark"
 import { radiomarkRecipe } from "./recipes/radiomark"
@@ -38,10 +34,6 @@ export const recipes = {
   spinner: spinnerRecipe,
   textarea: textareaRecipe,
   icon: iconRecipe,
-  field: fieldRecipe,
-  errorMessage: errorMessageRecipe,
-  helpText: helpTextRecipe,
-  label: labelRecipe,
   checkmark: checkmarkRecipe,
   radiomark: radiomarkRecipe,
 }

@@ -3,6 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const checkboxSlotRecipe = defineSlotRecipe({
   slots: anatomy.keys(),
+  className: "checkbox",
   base: {
     root: {
       display: "inline-flex",

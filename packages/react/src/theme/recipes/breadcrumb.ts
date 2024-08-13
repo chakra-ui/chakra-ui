@@ -2,6 +2,7 @@ import { breadcrumbAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const breadcrumbSlotRecipe = defineSlotRecipe({
+  className: "breadcrumb",
   slots: breadcrumbAnatomy.keys(),
   base: {
     root: {

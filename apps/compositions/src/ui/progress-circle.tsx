@@ -1,10 +1,7 @@
-"use client"
-
 import type { SystemStyleObject } from "@chakra-ui/react"
 import {
   AbsoluteCenter,
   ProgressCircle as ChakraProgressCircle,
-  useProgressContext,
 } from "@chakra-ui/react"
 
 export const ProgressCircleRoot = ChakraProgressCircle.Root
@@ -27,12 +24,9 @@ export const ProgressCircleRing = (props: ProgressCircleRingProps) => {
 export const ProgressCircleValueText = (
   props: ChakraProgressCircle.ValueTextProps,
 ) => {
-  const progress = useProgressContext()
   return (
     <AbsoluteCenter>
-      <ChakraProgressCircle.ValueText {...props}>
-        {props.children ?? progress.percentAsString}
-      </ChakraProgressCircle.ValueText>
+      <ChakraProgressCircle.ValueText {...props} />
     </AbsoluteCenter>
   )
 }

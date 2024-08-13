@@ -422,3 +422,22 @@ After:
 - Simplify component to rely on `borderTopWidth` and `borderInlineStartWidth`
 - To change the thickness reliably, set the `--divider-border-width` css
   variable
+
+### Input, Select, Textarea
+
+- Removed `invalid` prop in favor of wrapping the component in a `Field`
+  component. This allows for adding a label, error text and asterisk easily.
+
+Before:
+
+```tsx
+<Input invalid />
+```
+
+After:
+
+```tsx
+<Field invalid label="Email" errorText="This field is required">
+  <Input />
+</Field>
+```

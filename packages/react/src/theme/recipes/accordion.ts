@@ -2,6 +2,7 @@ import { anatomy } from "@ark-ui/anatomy/accordion"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const accordionSlotRecipe = defineSlotRecipe({
+  className: "accordion",
   slots: [...anatomy.keys(), "itemBody"],
   base: {
     root: {

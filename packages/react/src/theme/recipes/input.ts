@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const inputRecipe = defineRecipe({
+  className: "input",
   base: {
     width: "100%",
     minWidth: 0,
