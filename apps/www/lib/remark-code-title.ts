@@ -1,22 +1,29 @@
 import { visit } from "unist-util-visit"
 
 export function remarkCodeTitle() {
-  return (tree: any) => {
-    visit(tree, (node, index, parent) => {
-      if (node.type !== "code") return
-      if (!node.lang) node.lang = "txt"
-      if (parent?.type === "containerDirective" && parent.name !== "steps")
-        return
+  return (tree: any, file: any) => {
+    visit(tree, "code", (node, index, parent) => {
+      const metaString = `${node.lang ?? ""} ${node.meta ?? ""}`.trim()
 
-      const [match, title] = node.meta?.match(/\[(.*)\]/) || []
-      if (match) node.meta = node.meta?.replace(match, `title=\"${title}\"`)
+      if (!metaString) return
+      const [title] = metaString.match(/(?<=title=("|'))(.*?)(?=("|'))/) ?? [""]
+
+      if (!title && metaString.includes("title=")) {
+        file.message("Invalid title", node, "remark-code-title")
+        return
+      }
+
+      if (!title) return
 
       parent.children.splice(index, 1, {
         type: "paragraph",
         children: [node],
         data: {
-          hName: "div",
-          hProperties: title ? { "data-title": title } : undefined,
+          hName: "code-block",
+          hProperties: {
+            title,
+            lang: node.lang,
+          },
         },
       })
     })
