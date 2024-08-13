@@ -8,7 +8,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { CheckIcon, ChevronDownIcon } from "../icons"
 
@@ -18,7 +18,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSelectStyles,
-} = createStyleContext("select")
+} = createSlotRecipeContext("select")
 
 export { useSelectStyles }
 

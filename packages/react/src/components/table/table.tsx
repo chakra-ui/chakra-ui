@@ -8,7 +8,7 @@ import {
   type SystemStyleObject,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +19,7 @@ const {
   useRecipeResult,
   withContext,
   useStyles: useTableStyles,
-} = createStyleContext("table")
+} = createSlotRecipeContext("table")
 
 export { useTableStyles }
 

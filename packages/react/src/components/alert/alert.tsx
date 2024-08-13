@@ -7,7 +7,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { CheckCircleIcon, InfoIcon, WarningIcon } from "../icons"
 
@@ -28,7 +28,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAlertStyles,
-} = createStyleContext("alert")
+} = createSlotRecipeContext("alert")
 
 export { useAlertStyles }
 

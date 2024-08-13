@@ -10,7 +10,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { StarIcon } from "../icons"
 
@@ -20,7 +20,7 @@ const {
   withProvider,
   withContext,
   useStyles: useRatingGroupStyles,
-} = createStyleContext("ratingGroup")
+} = createSlotRecipeContext("ratingGroup")
 
 export { useRatingGroupStyles }
 

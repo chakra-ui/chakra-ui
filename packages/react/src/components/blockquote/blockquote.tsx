@@ -4,7 +4,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { QuoteIcon } from "../icons"
 
@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useBlockquoteStyles,
-} = createStyleContext("blockquote")
+} = createSlotRecipeContext("blockquote")
 
 export { useBlockquoteStyles }
 

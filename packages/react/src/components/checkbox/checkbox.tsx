@@ -10,7 +10,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { Checkmark } from "../checkmark"
 
@@ -20,7 +20,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCheckboxStyles,
-} = createStyleContext("checkbox")
+} = createSlotRecipeContext("checkbox")
 
 export { useCheckboxStyles }
 

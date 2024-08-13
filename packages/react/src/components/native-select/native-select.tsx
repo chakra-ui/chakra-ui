@@ -9,7 +9,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { ChevronDownIcon } from "../icons"
 
@@ -27,7 +27,7 @@ const {
   withProvider,
   useClassNames,
   useStyles: useNativeSelectStyles,
-} = createStyleContext("nativeSelect")
+} = createSlotRecipeContext("nativeSelect")
 
 export { useNativeSelectStyles }
 

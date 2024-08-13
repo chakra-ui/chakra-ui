@@ -7,7 +7,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { getInitials } from "./get-initials"
 
@@ -17,7 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAvatarStyles,
-} = createStyleContext("avatar")
+} = createSlotRecipeContext("avatar")
 
 export { useAvatarStyles }
 

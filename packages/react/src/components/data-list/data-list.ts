@@ -4,7 +4,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -13,7 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useDataListStyles,
-} = createStyleContext("dataList")
+} = createSlotRecipeContext("dataList")
 
 export { useDataListStyles }
 
