@@ -441,3 +441,22 @@ After:
   <Input />
 </Field>
 ```
+
+### Link
+
+- Removed `external` prop in favor of explicitly setting the `target` and `rel`
+  props
+
+Before:
+
+```tsx
+<Link external>Click me</Link>
+```
+
+After:
+
+```tsx
+<Link target="_blank" rel="noopener noreferrer">
+  Click me
+</Link>
+```

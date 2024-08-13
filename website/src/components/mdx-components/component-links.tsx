@@ -9,7 +9,7 @@ function ComponentLink(props: ComponentLinkProps) {
   const { url, children, ...rest } = props
   return (
     <Badge asChild fontWeight='semibold' px='2' py='1' {...rest}>
-      <Link href={url} external>
+      <Link href={url} target='_blank' rel='noopener noreferrer'>
         {children}
         <FiExternalLink />
       </Link>
