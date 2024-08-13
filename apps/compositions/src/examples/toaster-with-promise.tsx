@@ -3,16 +3,16 @@
 import { Button } from "@chakra-ui/react"
 import { toaster } from "compositions/ui/toaster"
 
-const promise = new Promise<void>((resolve) => {
-  setTimeout(() => resolve(), 5000)
-})
-
 export const ToasterWithPromise = () => {
   return (
     <Button
       variant="outline"
       size="sm"
       onClick={() => {
+        const promise = new Promise<void>((resolve) => {
+          setTimeout(() => resolve(), 5000)
+        })
+
         toaster.promise(promise, {
           success: {
             title: "Successfully uploaded!",
