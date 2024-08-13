@@ -5,7 +5,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useProgressCircleStyles,
-} = createStyleContext("progressCircle")
+} = createSlotRecipeContext("progressCircle")
 
 export { useProgressCircleStyles }
 

@@ -9,7 +9,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { Checkmark } from "../checkmark"
 
@@ -19,7 +19,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCheckboxCardStyles,
-} = createStyleContext("checkboxCard")
+} = createSlotRecipeContext("checkboxCard")
 
 export { useCheckboxCardStyles }
 

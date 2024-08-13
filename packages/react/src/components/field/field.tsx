@@ -8,7 +8,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { createIcon } from "../icon"
 
@@ -19,7 +19,7 @@ const {
   withContext,
   useStyles: useFieldStyles,
   useClassNames,
-} = createStyleContext("field")
+} = createSlotRecipeContext("field")
 
 export { useFieldStyles }
 

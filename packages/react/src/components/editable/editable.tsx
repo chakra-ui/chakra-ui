@@ -11,7 +11,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ const {
   withProvider,
   withContext,
   useStyles: useEditableStyles,
-} = createStyleContext("editable")
+} = createSlotRecipeContext("editable")
 
 export { useEditableStyles }
 

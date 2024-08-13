@@ -1,6 +1,6 @@
 export * from "./config"
-export { createStyleContext } from "./create-slot-recipe-context"
-export * from "./create-recipe-context"
+export { createRecipeContext } from "./create-recipe-context"
+export { createSlotRecipeContext } from "./create-slot-recipe-context"
 export type {
   ConditionalValue,
   GlobalStyleObject,

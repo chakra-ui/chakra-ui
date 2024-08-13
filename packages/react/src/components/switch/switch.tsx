@@ -8,7 +8,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSwitchStyles,
-} = createStyleContext("switch")
+} = createSlotRecipeContext("switch")
 
 export { useSwitchStyles }
 

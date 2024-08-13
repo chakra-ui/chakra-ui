@@ -6,7 +6,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { CheckIcon } from "../icons"
 import * as ArkSteps from "./steps.ark"
@@ -17,7 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useStepsStyles,
-} = createStyleContext("steps")
+} = createSlotRecipeContext("steps")
 
 export { useStepsStyles }
 

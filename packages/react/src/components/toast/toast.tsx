@@ -15,7 +15,7 @@ import {
   type SlotRecipeProps,
   type UnstyledProp,
   chakra,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { CheckCircleIcon, CloseIcon, WarningIcon } from "../icons"
 
@@ -25,7 +25,7 @@ const {
   withProvider,
   withContext,
   useStyles: useToastStyles,
-} = createStyleContext("toast")
+} = createSlotRecipeContext("toast")
 
 export { useToastStyles }
 

@@ -6,7 +6,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { Radiomark } from "../radiomark"
 
@@ -16,7 +16,7 @@ const {
   withProvider,
   withContext,
   useStyles: useRadioGroupStyles,
-} = createStyleContext("radioCard")
+} = createSlotRecipeContext("radioCard")
 
 export { useRadioGroupStyles }
 

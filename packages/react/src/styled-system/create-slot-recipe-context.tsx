@@ -26,7 +26,7 @@ interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
 
 const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
-export const createStyleContext = <R extends SlotRecipeKey>(recipe: R) => {
+export const createSlotRecipeContext = <R extends SlotRecipeKey>(recipe: R) => {
   const contextName = upperFirst(recipe)
 
   const [StylesProvider, useStyles] = createContext<

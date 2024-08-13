@@ -5,7 +5,7 @@ import {
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
-  createStyleContext,
+  createSlotRecipeContext,
 } from "../../styled-system"
 import { ChevronDownIcon, ChevronUpIcon } from "../icons"
 
@@ -15,7 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useNumberInputStyles,
-} = createStyleContext("numberInput")
+} = createSlotRecipeContext("numberInput")
 
 export { useNumberInputStyles }
 
