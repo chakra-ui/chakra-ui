@@ -36,9 +36,7 @@ export const processEnvSchema = z.object({
 
 export const addCommandFlagsSchema = z.object({
   dryRun: z.boolean().optional(),
-  outdir: z.string(),
-  jsx: z.boolean().optional(),
-  all: z.boolean().optional(),
+  outdir: z.string().optional(),
 })
 
 export interface AddCommandFlags
