@@ -32,7 +32,8 @@ function SocialLink(props: Props) {
       justifyContent='center'
       rounded='full'
       href={href}
-      external
+      target='_blank'
+      rel='noopener noreferrer'
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       <Icon as={icon} fontSize='xl' color='accent' />

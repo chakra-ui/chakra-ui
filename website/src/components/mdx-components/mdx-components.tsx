@@ -57,7 +57,13 @@ export const MDXComponents = {
     </AspectRatio>
   ),
   LinkedImage: ({ href, ...props }) => (
-    <Link display='block' my='10' href={href} external>
+    <Link
+      display='block'
+      my='10'
+      href={href}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
       <MDXComponents.Image {...props} />
     </Link>
   ),
