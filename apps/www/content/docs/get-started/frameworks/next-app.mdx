@@ -3,6 +3,131 @@ title: Using Chakra UI in Next.js (App)
 description: A guide for installing Chakra UI with Next.js app directory
 ---
 
-### Installation
+## Templates
 
-Some content to be added here
+Use one of the following templates to get started quickly. The templates are
+configured correctly to use Chakra UI.
+
+:::card-group
+
+<ResourceCard
+  type="github"
+  title="Next.js app template"
+  url="https://github.com/chakra-ui/chakra-next-app-template"
+/>
+
+<ResourceCard
+  type="github"
+  title="Next.js pages template"
+  url="https://github.com/chakra-ui/chakra-next-pages-template"
+/>
+
+:::
+
+## Installation
+
+:::steps
+
+### Install dependencies
+
+```bash
+npm i @chakra-ui/react @emotion/react next-themes
+```
+
+### Setup provider
+
+Create a `Provider` component at the root of your application. This provider
+composes the following:
+
+- `ChakraProvider` from `@chakra-ui/react` for the styling system
+- `ThemeProvider` from `next-themes` for color mode
+
+```tsx title="app/provider.tsx"
+"use client"
+
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import { ThemeProvider } from "next-themes"
+
+export function Provider(props: { children: React.ReactNode }) {
+  return (
+    <ChakraProvider value={defaultSystem}>
+      <ThemeProvider attribute="class" disableTransitionOnChange>
+        {props.children}
+      </ThemeProvider>
+    </ChakraProvider>
+  )
+}
+```
+
+Next, wrap your application with the `Provider` component at the root of your
+application.
+
+```tsx title="app/layout.tsx"
+import Provider from "./provider"
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html suppressHydrationWarning>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
+    </html>
+  )
+}
+```
+
+> Adding the `suppressHydrationWarning` prop to the `html` element is required
+> to prevent the warning about the `next-themes` library.
+
+### Update tsconfig
+
+If you're using TypeScript, you need to update the `compilerOptions` in the
+tsconfig file to include the following options:
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true
+  }
+}
+```
+
+### Add snippets
+
+Snippets are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add snippets to your project.
+
+```bash
+# Install CLI
+npm i -D @chakra-ui/cli
+
+# Add snippets
+chakra snippets add
+```
+
+### Enjoy!
+
+When the power of the snippets and the primitive components from Chakra UI, you
+can build your UI faster.
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { HStack } from "@chakra-ui/react"
+
+const Demo = () => {
+  return (
+    <HStack>
+      <Button>Click me</Button>
+      <Button>Click me</Button>
+    </HStack>
+  )
+}
+```
+
+:::

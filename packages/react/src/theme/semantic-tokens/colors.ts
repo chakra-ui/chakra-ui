@@ -90,6 +90,9 @@ export const semanticColors = defineSemanticTokens.colors({
     info: {
       value: { base: "{colors.blue.500}", _dark: "{colors.blue.400}" },
     },
+    inverted: {
+      value: { base: "{colors.gray.700}", _dark: "{colors.gray.200}" },
+    },
   },
   focusRing: {
     value: { base: "{colors.blue.600}", _dark: "{colors.blue.500}" },

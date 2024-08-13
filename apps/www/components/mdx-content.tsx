@@ -3,19 +3,24 @@ import {
   Alert,
   Blockquote,
   Box,
+  HStack,
   Kbd,
   Table,
   Tabs,
+  Text,
   Timeline,
 } from "@chakra-ui/react"
 import Image from "next/image"
 import Link from "next/link"
 import { Children } from "react"
+import { LuArrowUpRight } from "react-icons/lu"
 import * as runtime from "react/jsx-runtime"
 import { Card, CardGroup } from "./card"
 import { ComponentGrid } from "./component-grid"
 import { Example, ExampleTabs } from "./example"
+import { LangIcon } from "./lang-icon"
 import { PropTable } from "./prop-table"
+import { ResourceIcon } from "./resource-icon"
 
 const sharedComponents = {
   a(props: any) {
@@ -286,6 +291,8 @@ const sharedComponents = {
               <Timeline.Indicator rounded="md">{index + 1}</Timeline.Indicator>
               <Timeline.Content
                 ps="2"
+                pb="10"
+                width="full"
                 css={{ "& > :is(h3, h4, h5)": { marginTop: "0" } }}
               >
                 {child.props.children}
@@ -360,6 +367,57 @@ const sharedComponents = {
   Card,
   PropTable,
   ComponentGrid,
+  ResourceCard(props: any) {
+    const { type, title, url, ...rest } = props
+    return (
+      <HStack borderWidth="1px" padding="3" borderRadius="md" asChild {...rest}>
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <ResourceIcon type={type} />
+          <Text fontWeight="medium" flex="1" color="fg">
+            {title}
+          </Text>
+          <LuArrowUpRight />
+        </a>
+      </HStack>
+    )
+  },
+  "code-block"(props: any) {
+    const { title, lang, children, ...rest } = props
+    return (
+      <Box
+        {...rest}
+        data-lang={lang}
+        spaceY="0!"
+        marginY="1.6em"
+        borderWidth="1px"
+        rounded="10px"
+        borderColor="gray.800"
+        css={{
+          "& pre.shiki": {
+            roundedTop: "0!",
+            roundedBottom: "lg!",
+            shadow: "none!",
+          },
+        }}
+      >
+        <HStack
+          bg="#1E1E1E"
+          px="4"
+          py="3"
+          color="white"
+          roundedTop="lg"
+          borderBottomWidth="1px"
+          borderBottomColor="gray.800"
+        >
+          <LangIcon type={lang} />
+          <Text fontSize="xs" fontFamily="mono" fontWeight="semibold">
+            {title}
+          </Text>
+        </HStack>
+        {children}
+      </Box>
+    )
+  },
 }
 
 const useMDXComponent = (code: string) => {
