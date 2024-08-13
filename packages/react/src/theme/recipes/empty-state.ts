@@ -2,6 +2,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const emptyStateSlotRecipe = defineSlotRecipe({
   slots: ["root", "content", "indicator"],
+  className: "empty-state",
   base: {
     root: {
       rounded: "md",

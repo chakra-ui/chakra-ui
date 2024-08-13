@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const badgeRecipe = defineRecipe({
+  className: "badge",
   base: {
     display: "inline-flex",
     alignItems: "center",

@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react"
-import { Group, Input, InputElement } from "../src"
+import { FieldRoot, Group, Input, InputElement } from "../src"
 import { render, testA11y } from "./core"
 
 describe("Input", () => {
@@ -30,7 +30,11 @@ describe("Input", () => {
   })
 
   test("Invalid input renders correctly", () => {
-    render(<Input invalid />)
+    render(
+      <FieldRoot invalid>
+        <Input />
+      </FieldRoot>,
+    )
     expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true")
   })
 

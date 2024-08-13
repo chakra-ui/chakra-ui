@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const headingRecipe = defineRecipe({
+  className: "heading",
   base: {
     fontFamily: "heading",
     fontWeight: "semibold",

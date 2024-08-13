@@ -3,6 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const switchSlotRecipe = defineSlotRecipe({
   slots: [...anatomy.keys(), "indicator"],
+  className: "switch",
   base: {
     root: {
       display: "inline-flex",

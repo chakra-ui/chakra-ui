@@ -3,6 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const tooltipSlotRecipe = defineSlotRecipe({
   slots: tooltipAnatomy.keys(),
+  className: "tooltip",
   base: {
     content: {
       "--tooltip-bg": "colors.bg.inverted",

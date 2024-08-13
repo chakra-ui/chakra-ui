@@ -1,4 +1,4 @@
-import { CheckboxGroup, HStack, Label, Stack, Text } from "@chakra-ui/react"
+import { CheckboxGroup, HStack, Stack, Text } from "@chakra-ui/react"
 import {
   CheckboxCardControl,
   CheckboxCardLabel,
@@ -8,7 +8,9 @@ import {
 export const CheckboxCardWithGroup = () => {
   return (
     <CheckboxGroup width="full" defaultValue={["next"]}>
-      <Label>Select framework(s)</Label>
+      <Text fontWeight="medium" mb="2">
+        Select framework(s)
+      </Text>
       <HStack mt="2" align="stretch" width="full">
         {items.map((item) => (
           <CheckboxCardRoot key={item.value} value={item.value} flex="1">

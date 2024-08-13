@@ -2,6 +2,7 @@ import { selectAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const selectSlotRecipe = defineSlotRecipe({
+  className: "select",
   slots: selectAnatomy.keys(),
   base: {
     root: {
@@ -10,8 +11,6 @@ export const selectSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "1.5",
       width: "full",
-      "--focus-color": "colors.border.emphasized",
-      "--error-color": "colors.border.error",
     },
     trigger: {
       display: "flex",
@@ -26,7 +25,7 @@ export const selectSlotRecipe = defineSlotRecipe({
         layerStyle: "disabled",
       },
       _invalid: {
-        borderColor: "var(--error-color)",
+        borderColor: "border.error",
       },
       focusRing: "outside",
     },

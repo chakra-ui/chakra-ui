@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const checkmarkRecipe = defineRecipe({
+  className: "checkmark",
   base: {
     display: "inline-flex",
     alignItems: "center",

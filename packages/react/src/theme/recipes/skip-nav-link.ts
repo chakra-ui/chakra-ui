@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const skipNavLinkRecipe = defineRecipe({
+  className: "skip-nav",
   base: {
     borderRadius: "md",
     fontWeight: "semibold",

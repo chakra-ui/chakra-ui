@@ -4,6 +4,7 @@ import { defineSlotRecipe } from "../../styled-system"
 const anatomy = popoverAnatomy.extendWith("header", "body", "footer")
 
 export const popoverSlotRecipe = defineSlotRecipe({
+  className: "popover",
   slots: anatomy.keys(),
   base: {
     content: {

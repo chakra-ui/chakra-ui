@@ -1,6 +1,7 @@
 import {
   type Dict,
   compact,
+  cx,
   mergeWith as mergeProps,
   mergeWith,
   omit,
@@ -85,6 +86,7 @@ export function createRecipeFn(options: Options): RecipeCreatorFn {
 
     const cvaFn = (props: any) => css(resolve(props))
     return Object.assign(cvaFn, {
+      className: config.className,
       __cva__: true,
       variantMap,
       variantKeys,
@@ -143,6 +145,14 @@ function mergeCva(opts: Options) {
       ...override.compoundVariants,
     ]
 
-    return { base, variants, defaultVariants, compoundVariants }
+    const className = cx(cvaA.className, cvaB.className)
+
+    return {
+      className,
+      base,
+      variants,
+      defaultVariants,
+      compoundVariants,
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const linkRecipe = defineRecipe({
+  className: "link",
   base: {
     colorPalette: "gray",
     display: "inline-flex",

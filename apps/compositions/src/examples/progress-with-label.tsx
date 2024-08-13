@@ -11,7 +11,7 @@ export const ProgressBarWithLabel = () => {
     <ProgressRoot defaultValue={40}>
       <HStack justify="space-between" mb="1">
         <ProgressLabel>Token usage</ProgressLabel>
-        <ProgressValueText>40%</ProgressValueText>
+        <ProgressValueText />
       </HStack>
       <ProgressBar />
     </ProgressRoot>

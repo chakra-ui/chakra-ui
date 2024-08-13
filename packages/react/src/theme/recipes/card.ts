@@ -2,6 +2,7 @@ import { cardAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const cardSlotRecipe = defineSlotRecipe({
+  className: "card",
   slots: cardAnatomy.keys(),
   base: {
     root: {

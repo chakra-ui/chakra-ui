@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const markRecipe = defineRecipe({
+  className: "mark",
   base: {
     bg: "transparent",
     color: "inherit",

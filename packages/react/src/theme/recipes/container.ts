@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const containerRecipe = defineRecipe({
+  className: "container",
   base: {
     position: "relative",
     maxWidth: "8xl",

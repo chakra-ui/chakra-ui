@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const skeletonRecipe = defineRecipe({
+  className: "skeleton",
   base: {},
 
   variants: {

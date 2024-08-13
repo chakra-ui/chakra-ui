@@ -15,7 +15,7 @@ export const TextareaWithForm = () => {
       <Stack maxW="sm" gap="4">
         <Field
           label="Issue Details"
-          hint="You can @mention people and refer to issues and pull requests."
+          helperText="You can @mention people and refer to issues and pull requests."
         >
           <Textarea placeholder="Type your message here..." />
         </Field>

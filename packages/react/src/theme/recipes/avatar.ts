@@ -3,6 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const avatarSlotRecipe = defineSlotRecipe({
   slots: anatomy.keys(),
+  className: "avatar",
   base: {
     root: {
       display: "inline-flex",

@@ -2,6 +2,7 @@ import { hoverCardAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const hoverCardSlotRecipe = defineSlotRecipe({
+  className: "hover-card",
   slots: hoverCardAnatomy.keys(),
   base: {
     content: {

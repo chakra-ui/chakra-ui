@@ -2,6 +2,7 @@ import { defineRecipe } from "../../styled-system"
 import { inputRecipe } from "./input"
 
 export const textareaRecipe = defineRecipe({
+  className: "textarea",
   base: {
     ...inputRecipe.base,
     paddingY: "2",

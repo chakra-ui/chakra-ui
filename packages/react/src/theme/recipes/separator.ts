@@ -1,6 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const separatorRecipe = defineRecipe({
+  className: "separator",
   base: {
     display: "block",
     borderColor: "border",

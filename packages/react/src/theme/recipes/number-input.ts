@@ -24,6 +24,7 @@ const triggerStyle = defineStyle({
 })
 
 export const numberInputSlotRecipe = defineSlotRecipe({
+  className: "number-input",
   slots: anatomy.keys(),
   base: {
     root: {

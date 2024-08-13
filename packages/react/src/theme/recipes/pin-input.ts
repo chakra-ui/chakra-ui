@@ -4,6 +4,7 @@ import { defineSlotRecipe } from "../../styled-system"
 import { inputRecipe } from "./input"
 
 export const pinInputSlotRecipe = defineSlotRecipe({
+  className: "pin-input",
   slots: pinInputAnatomy.keys(),
   base: {
     input: {

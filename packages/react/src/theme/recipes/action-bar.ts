@@ -1,6 +1,7 @@
 import { defineSlotRecipe } from "../../styled-system"
 
 export const actionBarSlotRecipe = defineSlotRecipe({
+  className: "action-bar",
   slots: [
     "positioner",
     "content",
