@@ -5,7 +5,7 @@ import createDebug from "debug"
 import { existsSync } from "fs"
 import { writeFile } from "fs/promises"
 import { join } from "node:path/posix"
-import { z } from "zod"
+import { getProjectContext } from "../utils/context"
 import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchComposition, fetchCompositions } from "../utils/fetch"
 import { getFileDependencies } from "../utils/get-file-dependencies"
@@ -15,7 +15,7 @@ import { type CompositionFile, addCommandFlagsSchema } from "../utils/schema"
 import { uniq } from "../utils/shared"
 import { tasks } from "../utils/tasks"
 
-const debug = createDebug("chakra:composition")
+const debug = createDebug("chakra:snippet")
 
 async function transformToJsx(item: CompositionFile) {
   const content = await convertTsxToJsx(item.file.content)
@@ -31,63 +31,36 @@ function printFileSync(item: CompositionFile) {
   p.log.info(boxText)
 }
 
-export const CompositionCommand = new Command("composition")
-  .description("Add compositions to your project for better DX")
+export const SnippetCommand = new Command("snippet")
+  .description("Add snippets to your project for better DX")
   .addCommand(
     new Command("add")
-      .description("Add a new composition for better DX")
-      .argument("[components...]", "components to add")
+      .description("Add a new snippet for better DX")
+      .argument("[snippets...]", "snippets to add")
       .option("-d, --dry-run", "Dry run")
-      .option(
-        "--outdir <dir>",
-        "Output directory to write the composition",
-        join(process.cwd(), "components", "ui"),
-      )
-      .option("--all", "Add all compositions")
-      .option("--jsx", "Emit JSX files instead of TSX")
+      .option("--outdir <dir>", "Output directory to write the snippets")
       .action(async (components: string[], flags: unknown) => {
-        debug("selected components", components)
+        const parsedFlags = addCommandFlagsSchema.parse(flags)
+        const { dryRun } = parsedFlags
 
-        const { dryRun, outdir, jsx, all } = addCommandFlagsSchema.parse(flags)
-        debug("flags", { dryRun, outdir, jsx, all })
+        const ctx = await getProjectContext({ cwd: process.cwd() })
+        debug("context", ctx)
+
+        const jsx = !ctx.isTypeScript
+        const outdir = parsedFlags.outdir || ctx.scope.componentsDir
 
         const items = await fetchCompositions()
 
-        if (components.length === 0 && !all) {
-          p.log.info("No components provided, Adding all components...")
-
-          const selected = await p.multiselect({
-            message:
-              "Select compositions to add. Press <space> to select. Press <enter> to submit.",
-            options: [
-              { label: "All Compositions", value: "all" },
-              ...items.map((item) => ({
-                label: item.component,
-                value: item.id,
-              })),
-            ],
-          })
-
-          components = z
-            .array(z.string())
-            .transform((s) =>
-              s.includes("all") ? items.map((item) => item.id) : s,
-            )
-            .parse(selected)
-        }
+        const all = components.length === 0
 
         if (all) {
+          p.log.info("No components selected, Adding all...")
           components = items.map((item) => item.id)
         }
 
-        debug("resolved components", components)
+        debug("components", components)
 
-        if (components.length === 0) {
-          p.log.info("No compositions selected. Exiting...")
-          process.exit(0)
-        }
-
-        p.log.info(`Adding ${components.length} composition(s)...`)
+        p.log.info(`Adding ${components.length} snippet(s)...`)
 
         io.ensureDir(outdir)
 
@@ -134,7 +107,7 @@ export const CompositionCommand = new Command("composition")
             },
           },
           {
-            title: "Writing selected compositions",
+            title: "Writing selected snippets",
             task: async () => {
               await Promise.all(
                 components.map(async (id) => {
@@ -166,7 +139,7 @@ export const CompositionCommand = new Command("composition")
 
   .addCommand(
     new Command("list")
-      .description("List all compositions")
+      .description("List available snippets")
       .action(async () => {
         const { default: Table } = await import("cli-table")
 
@@ -188,7 +161,7 @@ export const CompositionCommand = new Command("composition")
           table.push([item.id, depsString])
         })
 
-        p.log.info(`Found ${items.length} compositions`)
+        p.log.info(`Found ${items.length} snippets`)
 
         p.log.info(table.toString())
 

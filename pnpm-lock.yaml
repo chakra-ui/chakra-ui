@@ -409,6 +409,9 @@ importers:
       debug:
         specifier: ^4.3.5
         version: 4.3.5
+      globby:
+        specifier: 14.0.2
+        version: 14.0.2
       https-proxy-agent:
         specifier: ^7.0.5
         version: 7.0.5
