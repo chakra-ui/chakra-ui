@@ -12,7 +12,7 @@ import {
 export const PopoverBasic = () => {
   return (
     <PopoverRoot>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>

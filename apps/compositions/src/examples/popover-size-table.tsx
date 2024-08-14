@@ -30,7 +30,7 @@ export const PopoverSizeTable = () => {
             {(v) => (
               <chakra.td key={v} minW="400px">
                 <PopoverRoot size={v} open>
-                  <PopoverTrigger>
+                  <PopoverTrigger asChild>
                     <Button size={v} variant="solid">
                       <HiChat />
                       Add comment

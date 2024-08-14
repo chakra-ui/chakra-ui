@@ -16,7 +16,7 @@ import {
 export const SelectInPopover = () => {
   return (
     <PopoverRoot size="xs">
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button variant="outline" size="sm">
           Select in Popover
         </Button>

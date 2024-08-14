@@ -13,7 +13,7 @@ import {
 export const PopoverWithForm = () => {
   return (
     <PopoverRoot>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>

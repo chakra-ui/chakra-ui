@@ -10,7 +10,7 @@ import {
 export const PopoverWithSameWidth = () => {
   return (
     <PopoverRoot positioning={{ sameWidth: true }}>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline" minW="xs">
           Click me
         </Button>
