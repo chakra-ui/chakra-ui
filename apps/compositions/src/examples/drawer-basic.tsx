@@ -15,7 +15,7 @@ export const DrawerBasic = () => {
   return (
     <DrawerRoot>
       <DrawerBackdrop />
-      <DrawerTrigger>
+      <DrawerTrigger asChild>
         <Button variant="outline" size="sm">
           Open Drawer
         </Button>

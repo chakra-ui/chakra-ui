@@ -19,7 +19,7 @@ export const DrawerWithSizes = () => {
         {(size) => (
           <DrawerRoot key={size} size={size}>
             <DrawerBackdrop />
-            <DrawerTrigger>
+            <DrawerTrigger asChild>
               <Button variant="outline" size="sm">
                 Open ({size})
               </Button>
