@@ -1,6 +1,6 @@
 ---
-title: Using Chakra UI in Next.js (App)
-description: A guide for installing Chakra UI with Next.js app directory
+title: Using Chakra UI in Next.js (Pages)
+description: A guide for installing Chakra UI with Next.js pages directory
 ---
 
 ## Templates
@@ -42,7 +42,7 @@ composes the following:
 - `ChakraProvider` from `@chakra-ui/react` for the styling system
 - `ThemeProvider` from `next-themes` for color mode
 
-```tsx title="app/provider.tsx"
+```tsx title="components/provider.tsx"
 "use client"
 
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
@@ -62,26 +62,36 @@ export function Provider(props: { children: React.ReactNode }) {
 Next, wrap your application with the `Provider` component at the root of your
 application.
 
-```tsx title="app/layout.tsx"
+```tsx title="pages/_app.tsx"
 import Provider from "./provider"
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <html suppressHydrationWarning>
-      <body>
-        <Provider>{children}</Provider>
-      </body>
-    </html>
+    <Provider>
+      <Component {...pageProps} />
+    </Provider>
   )
 }
 ```
 
-> Adding the `suppressHydrationWarning` prop to the `html` element is required
-> to prevent the warning about the `next-themes` library.
+In the `pages/_document.tsx` file, you need to add the
+`suppressHydrationWarning` prop to the `html` element.
+
+```tsx title="pages/_document.tsx"
+import { Head, Html, Main, NextScript } from "next/document"
+
+export default function Document() {
+  return (
+    <Html suppressHydrationWarning>
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
+}
+```
 
 ### Update tsconfig
 
