@@ -28,12 +28,12 @@ export const StepsWithSizes = () => {
             <StepsCompleteContent>All steps are complete!</StepsCompleteContent>
 
             <Group>
-              <StepsPrevTrigger>
+              <StepsPrevTrigger asChild>
                 <Button variant="outline" size="sm">
                   Prev
                 </Button>
               </StepsPrevTrigger>
-              <StepsNextTrigger>
+              <StepsNextTrigger asChild>
                 <Button variant="outline" size="sm">
                   Next
                 </Button>
