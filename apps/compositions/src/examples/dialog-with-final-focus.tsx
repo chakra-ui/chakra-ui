@@ -18,7 +18,7 @@ export const DialogWithFinalFocus = () => {
   return (
     <Stack align="start">
       <DialogRoot finalFocusEl={() => finalRef.current}>
-        <DialogTrigger>
+        <DialogTrigger asChild>
           <Button variant="outline">Open</Button>
         </DialogTrigger>
         <DialogContent>

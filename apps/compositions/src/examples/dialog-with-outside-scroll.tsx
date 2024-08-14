@@ -12,7 +12,7 @@ import Lorem from "react-lorem-ipsum"
 export const DialogWithOutsideScroll = () => {
   return (
     <DialogRoot size="sm">
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline">Outside Scroll</Button>
       </DialogTrigger>
       <DialogContent>

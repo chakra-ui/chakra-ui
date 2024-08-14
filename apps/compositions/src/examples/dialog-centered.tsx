@@ -13,7 +13,7 @@ import {
 export const DialogCentered = () => {
   return (
     <DialogRoot centered>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline">Open Dialog</Button>
       </DialogTrigger>
       <DialogContent>

@@ -18,7 +18,7 @@ export const DialogControlled = () => {
   const [open, setOpen] = useState(false)
   return (
     <DialogRoot lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline">Open</Button>
       </DialogTrigger>
 

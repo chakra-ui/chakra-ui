@@ -12,7 +12,7 @@ import Lorem from "react-lorem-ipsum"
 export const DialogNested = () => {
   return (
     <DialogRoot lazyMount>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline">Open</Button>
       </DialogTrigger>
 
@@ -24,7 +24,7 @@ export const DialogNested = () => {
         <DialogFooter>
           <Button variant="outline">Button 2</Button>
           <DialogRoot lazyMount>
-            <DialogTrigger>
+            <DialogTrigger asChild>
               <Button>Open Nested</Button>
             </DialogTrigger>
             <DialogContent>

@@ -13,7 +13,7 @@ import {
 export const DialogWithRole = () => {
   return (
     <DialogRoot role="alertdialog">
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline" size="sm">
           Open Dialog
         </Button>

@@ -13,7 +13,7 @@ import {
 export const DialogWithMotionPreset = () => {
   return (
     <DialogRoot motionPreset="slide-in-bottom">
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline">Slide in Bottom</Button>
       </DialogTrigger>
       <DialogContent>

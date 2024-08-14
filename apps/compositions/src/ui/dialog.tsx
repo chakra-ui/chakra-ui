@@ -34,7 +34,7 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 )
 
 export const DialogTrigger = (props: ChakraDialog.TriggerProps) => {
-  return <ChakraDialog.Trigger {...props} asChild />
+  return <ChakraDialog.Trigger {...props} />
 }
 
 export const DialogCloseTrigger = (props: ChakraDialog.CloseTriggerProps) => {

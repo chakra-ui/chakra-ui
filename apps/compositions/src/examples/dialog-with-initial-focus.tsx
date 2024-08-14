@@ -18,7 +18,7 @@ export const DialogWithInitialFocus = () => {
   const ref = useRef<HTMLInputElement>(null)
   return (
     <DialogRoot initialFocusEl={() => ref.current}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline">Open</Button>
       </DialogTrigger>
       <DialogContent>

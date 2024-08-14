@@ -13,7 +13,7 @@ import {
 export const DialogBasic = () => {
   return (
     <DialogRoot>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline" size="sm">
           Open Dialog
         </Button>
