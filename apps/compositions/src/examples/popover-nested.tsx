@@ -11,7 +11,7 @@ import {
 export const PopoverNested = () => {
   return (
     <PopoverRoot>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>
@@ -25,7 +25,7 @@ export const PopoverNested = () => {
           </Text>
 
           <PopoverRoot>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button variant="outline" size="xs">
                 Open Nested Popover
               </Button>

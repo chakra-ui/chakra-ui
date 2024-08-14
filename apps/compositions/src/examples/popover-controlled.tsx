@@ -14,7 +14,7 @@ export const PopoverControlled = () => {
   const [open, setOpen] = useState(false)
   return (
     <PopoverRoot open={open} onOpenChange={(e) => setOpen(e.open)}>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>

@@ -15,7 +15,7 @@ export const PopoverWithSizes = () => {
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <PopoverRoot key={size} size={size}>
-            <PopoverTrigger>
+            <PopoverTrigger asChild>
               <Button size={size} variant="outline">
                 Click me
               </Button>

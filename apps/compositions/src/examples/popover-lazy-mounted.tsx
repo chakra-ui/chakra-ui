@@ -12,7 +12,7 @@ import {
 export const PopoverLazyMounted = () => {
   return (
     <PopoverRoot lazyMount unmountOnExit>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>

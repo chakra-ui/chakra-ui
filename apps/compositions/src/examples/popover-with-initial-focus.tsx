@@ -18,7 +18,7 @@ export const PopoverWithInitialFocus = () => {
   const ref = useRef<HTMLButtonElement>(null)
   return (
     <PopoverRoot initialFocusEl={() => ref.current}>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>

@@ -9,7 +9,7 @@ import {
 export const PopoverWithOffset = () => {
   return (
     <PopoverRoot positioning={{ offset: { crossAxis: 0, mainAxis: 0 } }}>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Open
         </Button>

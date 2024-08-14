@@ -10,7 +10,7 @@ import {
 export const PopoverWithPlacement = () => {
   return (
     <PopoverRoot positioning={{ placement: "bottom-end" }}>
-      <PopoverTrigger>
+      <PopoverTrigger asChild>
         <Button size="sm" variant="outline">
           Click me
         </Button>
