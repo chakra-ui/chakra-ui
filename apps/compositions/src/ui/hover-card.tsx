@@ -30,7 +30,7 @@ export const HoverCardArrow = (props: ChakraHoverCard.ArrowProps) => {
 }
 
 export const HoverCardTrigger = (props: ChakraHoverCard.TriggerProps) => {
-  return <ChakraHoverCard.Trigger {...props} asChild />
+  return <ChakraHoverCard.Trigger {...props} />
 }
 
 export const HoverCardRoot = ChakraHoverCard.Root

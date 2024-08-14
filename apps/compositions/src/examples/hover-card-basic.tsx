@@ -9,7 +9,7 @@ import {
 export const HoverCardBasic = () => {
   return (
     <HoverCardRoot size="sm">
-      <HoverCardTrigger>
+      <HoverCardTrigger asChild>
         <Link href="#">@chakra_ui</Link>
       </HoverCardTrigger>
       <HoverCardContent maxWidth="240px">
