@@ -18,6 +18,7 @@ export const MenuWithContextTrigger = () => {
           borderWidth="2px"
           borderStyle="dashed"
           rounded="lg"
+          padding="4"
         >
           Right click here
         </Center>
