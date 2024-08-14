@@ -9,7 +9,7 @@ import {
 export const HoverCardWithDelay = () => {
   return (
     <HoverCardRoot size="sm" openDelay={1000} closeDelay={100}>
-      <HoverCardTrigger>
+      <HoverCardTrigger asChild>
         <Link href="#">@chakra_ui</Link>
       </HoverCardTrigger>
       <HoverCardContent maxWidth="240px">

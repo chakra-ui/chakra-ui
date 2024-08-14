@@ -13,7 +13,7 @@ export const HoverCardControlled = () => {
   const [open, setOpen] = useState(false)
   return (
     <HoverCardRoot size="sm" open={open} onOpenChange={(e) => setOpen(e.open)}>
-      <HoverCardTrigger>
+      <HoverCardTrigger asChild>
         <Link href="#">@chakra_ui</Link>
       </HoverCardTrigger>
       <HoverCardContent maxWidth="240px">
