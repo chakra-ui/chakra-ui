@@ -71,9 +71,9 @@ export const StepsContent = ChakraSteps.Content
 export const StepsCompleteContent = ChakraSteps.CompleteContent
 
 export const StepsNextTrigger = (props: ChakraSteps.NextTriggerProps) => {
-  return <ChakraSteps.NextTrigger {...props} asChild />
+  return <ChakraSteps.NextTrigger {...props} />
 }
 
 export const StepsPrevTrigger = (props: ChakraSteps.PrevTriggerProps) => {
-  return <ChakraSteps.PrevTrigger {...props} asChild />
+  return <ChakraSteps.PrevTrigger {...props} />
 }
