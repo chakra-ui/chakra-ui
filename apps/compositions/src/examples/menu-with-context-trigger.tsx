@@ -13,7 +13,6 @@ export const MenuWithContextTrigger = () => {
         <Center
           width="full"
           height="40"
-          tabIndex={0}
           userSelect="none"
           bg="bg.subtle"
           borderWidth="2px"

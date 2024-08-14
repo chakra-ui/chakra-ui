@@ -23,10 +23,6 @@ export const DrawerContent = forwardRef<HTMLDivElement, DrawerContentProps>(
   },
 )
 
-export const DrawerTrigger = (props: ChakraDrawer.TriggerProps) => {
-  return <ChakraDrawer.Trigger {...props} asChild />
-}
-
 export const DrawerCloseTrigger = (props: ChakraDrawer.CloseTriggerProps) => {
   return (
     <ChakraDrawer.CloseTrigger {...props} asChild>
@@ -49,6 +45,7 @@ export const DrawerDescription = (props: ChakraDrawer.DescriptionProps) => {
   return <ChakraDrawer.Description color="fg.muted" {...props} />
 }
 
+export const DrawerTrigger = ChakraDrawer.Trigger
 export const DrawerRoot = ChakraDrawer.Root
 export const DrawerFooter = ChakraDrawer.Footer
 export const DrawerHeader = ChakraDrawer.Header

@@ -19,7 +19,7 @@ export const DrawerWithPlacement = () => {
         {(placement) => (
           <DrawerRoot key={placement} placement={placement}>
             <DrawerBackdrop />
-            <DrawerTrigger>
+            <DrawerTrigger asChild>
               <Button variant="outline" size="sm">
                 Open ({placement})
               </Button>

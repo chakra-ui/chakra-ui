@@ -95,10 +95,4 @@ export const MenuTriggerItem = forwardRef<HTMLDivElement, MenuTriggerItemProps>(
 )
 
 export const MenuRadioItemGroup = ChakraMenu.RadioItemGroup
-
-export const MenuContextTrigger = forwardRef<
-  HTMLDivElement,
-  ChakraMenu.ContextTriggerProps
->(function ContextTrigger(props, ref) {
-  return <ChakraMenu.ContextTrigger ref={ref} {...props} asChild />
-})
+export const MenuContextTrigger = ChakraMenu.ContextTrigger
