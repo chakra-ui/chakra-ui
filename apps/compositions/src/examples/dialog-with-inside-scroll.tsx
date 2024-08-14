@@ -12,7 +12,7 @@ import Lorem from "react-lorem-ipsum"
 export const DialogWithInsideScroll = () => {
   return (
     <DialogRoot scrollBehavior="inside" size="sm">
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button variant="outline">Inside Scroll</Button>
       </DialogTrigger>
       <DialogContent>

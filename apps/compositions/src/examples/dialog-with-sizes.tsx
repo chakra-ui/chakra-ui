@@ -17,7 +17,7 @@ export const DialogWithSizes = () => {
       <For each={["xs", "sm", "md", "lg"]}>
         {(size) => (
           <DialogRoot key={size} size={size}>
-            <DialogTrigger>
+            <DialogTrigger asChild>
               <Button variant="outline" size={size}>
                 Open ({size})
               </Button>
