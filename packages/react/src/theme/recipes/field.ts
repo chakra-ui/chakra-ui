@@ -19,7 +19,7 @@ export const fieldSlotRecipe = defineSlotRecipe({
     label: {
       display: "block",
       textAlign: "start",
-      fontSize: "sm",
+      textStyle: "sm",
       fontWeight: "medium",
       marginEnd: "3",
       userSelect: "none",

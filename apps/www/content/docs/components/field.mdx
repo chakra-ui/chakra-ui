@@ -1,0 +1,67 @@
+---
+title: Field
+description: Used to add labels, help text, and error messages to form fields.
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="field-basic" />
+
+## Setup
+
+If you don't already have the snippet, run the following command to add the
+`field` snippet
+
+```sh
+chakra snippet add field
+```
+
+The snippet includes a closed component composition for the `Field` component.
+
+## Usage
+
+```jsx
+import { Field } from "@/components/ui/field"
+```
+
+```jsx
+<Field>
+  <Input />
+</Field>
+```
+
+## Examples
+
+### Error Text
+
+Use the `invalid` and `errorText` to indicate that the field is invalid.
+
+<ExampleTabs name="field-with-error-text" />
+
+### Helper Text
+
+Use the `helperText` prop to add helper text to the field.
+
+<ExampleTabs name="field-with-helper-text" />
+
+### Disabled
+
+Use the `disabled` prop to disable the field.
+
+<ExampleTabs name="field-with-disabled" />
+
+### Textarea
+
+Here's how to use the field component with a textarea.
+
+<ExampleTabs name="field-with-textarea" />
+
+### Native Select
+
+Here's how to use the field component with a native select.
+
+<ExampleTabs name="field-with-native-select" />

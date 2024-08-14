@@ -25,7 +25,7 @@ export { useFieldStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 export interface FieldRootProps
-  extends HTMLChakraProps<"div", ArkField.RootProps>,
+  extends HTMLChakraProps<"div", ArkField.RootBaseProps>,
     SlotRecipeProps<"field">,
     UnstyledProp {}
 
@@ -38,7 +38,7 @@ export const FieldRoot = withProvider<HTMLDivElement, FieldRootProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldLabelProps
-  extends HTMLChakraProps<"label", ArkField.LabelProps> {}
+  extends HTMLChakraProps<"label", ArkField.LabelBaseProps> {}
 
 export const FieldLabel = withContext<HTMLLabelElement, FieldLabelProps>(
   ArkField.Label,
@@ -49,7 +49,7 @@ export const FieldLabel = withContext<HTMLLabelElement, FieldLabelProps>(
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldHelperTextProps
-  extends HTMLChakraProps<"div", ArkField.HelperTextProps> {}
+  extends HTMLChakraProps<"div", ArkField.HelperTextBaseProps> {}
 
 export const FieldHelperText = withContext<
   HTMLDivElement,
@@ -59,7 +59,7 @@ export const FieldHelperText = withContext<
 ////////////////////////////////////////////////////////////////////////////////////
 
 export interface FieldErrorTextProps
-  extends HTMLChakraProps<"div", ArkField.ErrorTextProps> {}
+  extends HTMLChakraProps<"div", ArkField.ErrorTextBaseProps> {}
 
 export const FieldErrorText = withContext<HTMLDivElement, FieldErrorTextProps>(
   ArkField.ErrorText,
