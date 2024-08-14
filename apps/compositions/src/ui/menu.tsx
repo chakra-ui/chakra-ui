@@ -57,7 +57,7 @@ export const MenuRadioItem = (props: ChakraMenu.RadioItemProps) => {
 }
 
 export const MenuTrigger = (props: ChakraMenu.TriggerProps) => {
-  return <ChakraMenu.Trigger {...props} asChild />
+  return <ChakraMenu.Trigger {...props} />
 }
 
 export const MenuItemGroup = (props: ChakraMenu.ItemGroupProps) => {

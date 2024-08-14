@@ -31,7 +31,7 @@ const Item = (props: { item: Item }) => {
 export const MenuWithSubmenuDynamic = () => {
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button variant="outline">Nested</Button>
       </MenuTrigger>
       <MenuContent>

@@ -10,7 +10,7 @@ import {
 export const MenuWithSubmenu = () => {
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>

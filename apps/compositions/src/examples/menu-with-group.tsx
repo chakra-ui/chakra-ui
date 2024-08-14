@@ -11,7 +11,7 @@ import {
 export const MenuWithGroup = () => {
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button variant="outline">Edit</Button>
       </MenuTrigger>
       <MenuContent>

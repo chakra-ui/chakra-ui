@@ -11,7 +11,7 @@ import { FaCopy, FaCut, FaPaste } from "react-icons/fa"
 export const MenuWithIconAndCommand = () => {
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button>Edit</Button>
       </MenuTrigger>
       <MenuContent>

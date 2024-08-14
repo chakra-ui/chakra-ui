@@ -30,7 +30,7 @@ export const InputWithLeftAndRightElement = () => {
         <Input ps="4.75em" placeholder="yoursite.com" />
         <InputElement placement="end" pe="1">
           <MenuRoot>
-            <MenuTrigger>
+            <MenuTrigger asChild>
               <Button variant="plain" size="xs">
                 .com <LuChevronsUpDown />
               </Button>

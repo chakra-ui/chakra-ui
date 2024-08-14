@@ -9,7 +9,7 @@ import {
 export const MenuBasic = () => {
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button variant="outline" size="sm">
           Open
         </Button>

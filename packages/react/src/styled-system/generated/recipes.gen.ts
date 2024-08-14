@@ -133,7 +133,7 @@ export type AvatarSlot = "root" | "image" | "fallback"
 
 export interface AvatarVariantProps {
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-  variant?: "solid" | "subtle"
+  variant?: "solid" | "subtle" | "outline"
   shape?: "square" | "rounded" | "full"
 }
 

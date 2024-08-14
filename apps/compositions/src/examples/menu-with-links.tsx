@@ -9,7 +9,7 @@ import {
 export const MenuWithLinks = () => {
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button>Popular Animes</Button>
       </MenuTrigger>
       <MenuContent>
