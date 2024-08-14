@@ -18,3 +18,4 @@ export { AvatarVariantTable as Variants } from "compositions/examples/avatar-var
 export { AvatarWithBadge as WithBadge } from "compositions/examples/avatar-with-badge"
 export { AvatarWithFallback as Fallback } from "compositions/examples/avatar-with-fallback"
 export { AvatarWithGroup as Grouped } from "compositions/examples/avatar-with-group"
+export { AvatarWithPopover as WithPopover } from "compositions/examples/avatar-with-popover"

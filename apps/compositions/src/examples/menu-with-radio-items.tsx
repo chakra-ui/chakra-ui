@@ -15,7 +15,7 @@ export const MenuWithRadioItems = () => {
   const [value, setValue] = useState("asc")
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button variant="outline" size="sm">
           <HiSortAscending /> Sort
         </Button>

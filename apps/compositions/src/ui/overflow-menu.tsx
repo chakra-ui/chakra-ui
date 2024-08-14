@@ -29,7 +29,7 @@ export interface OverflowMenuTriggerProps extends ButtonProps {
 export const OverflowMenuTrigger = (props: OverflowMenuTriggerProps) => {
   const { vertical, ...rest } = props
   return (
-    <MenuTrigger>
+    <MenuTrigger asChild>
       <IconButton variant="plain" size="sm" {...rest}>
         {vertical ? <HiMiniEllipsisVertical /> : <HiMiniEllipsisHorizontal />}
       </IconButton>

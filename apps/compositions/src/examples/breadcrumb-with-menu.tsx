@@ -16,7 +16,7 @@ export const BreadcrumbWithMenu = () => {
     <BreadcrumbRoot separator="/" separatorGap="4">
       <BreadcrumbLink href="#">Docs</BreadcrumbLink>
       <MenuRoot>
-        <MenuTrigger>
+        <MenuTrigger asChild>
           <BreadcrumbLink as="button">
             Components <LuChevronDown />
           </BreadcrumbLink>

@@ -10,7 +10,7 @@ import {
 export const MenuWithGroupDynamic = () => {
   return (
     <MenuRoot>
-      <MenuTrigger>
+      <MenuTrigger asChild>
         <Button variant="outline">Window</Button>
       </MenuTrigger>
       <MenuContent>
