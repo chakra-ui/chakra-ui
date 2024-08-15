@@ -22,7 +22,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       },
       _disabled: {
         opacity: 0.8,
-        color: "fg.subtle",
+        color: "fg.muted",
         cursor: "not-allowed",
         borderColor: "border.disabled!",
       },
@@ -31,7 +31,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       fontWeight: "medium",
       _disabled: {
-        color: "fg.subtle!",
+        color: "fg.muted!",
       },
     },
     itemControl: {
@@ -40,13 +40,13 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       pos: "relative",
       rounded: "inherit",
       _disabled: {
-        bg: "bg.subtle!",
+        bg: "bg.muted!",
       },
     },
     itemIndicator: radiomarkRecipe.base,
     itemAddon: {
       _disabled: {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
     },
   },

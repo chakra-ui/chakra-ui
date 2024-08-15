@@ -18,7 +18,7 @@ export const OverflowMenuWithCard = () => {
             <Text color="fg.muted">5h</Text>
           </HStack>
           <OverflowMenuRoot>
-            <OverflowMenuTrigger vertical size="sm" color="fg.subtle" />
+            <OverflowMenuTrigger vertical size="sm" color="fg.muted" />
             <OverflowMenuContent>
               <OverflowMenuItem value="Share">Share</OverflowMenuItem>
               <OverflowMenuItem value="Report">Report</OverflowMenuItem>

@@ -3,6 +3,8 @@ export {
   CardRoot as Root,
   CardFooter as Footer,
   CardHeader as Header,
+  CardTitle as Title,
+  CardDescription as Description,
 } from "./card"
 
 export type {
@@ -10,4 +12,6 @@ export type {
   CardRootProps as RootProps,
   CardFooterProps as FooterProps,
   CardHeaderProps as HeaderProps,
+  CardTitleProps as TitleProps,
+  CardDescriptionProps as DescriptionProps,
 } from "./card"

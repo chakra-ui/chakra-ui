@@ -139,14 +139,14 @@ export const Prose = chakra("div", {
       paddingInlineStart: "0.4em",
       listStyleType: "decimal",
       "&::marker": {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
     },
     "& ul > li": {
       paddingInlineStart: "0.4em",
       listStyleType: "disc",
       "&::marker": {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
     },
     "& > ul > li p": {
@@ -241,7 +241,7 @@ export const Prose = chakra("div", {
       fontSize: "0.85em",
       lineHeight: "1.25em",
       marginTop: "0.85em",
-      color: "fg.subtle",
+      color: "fg.muted",
     },
     "& h1, h2, h3, h4": {
       color: "fg",

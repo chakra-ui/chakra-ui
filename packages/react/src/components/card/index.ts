@@ -3,6 +3,8 @@ export {
   CardRoot,
   CardFooter,
   CardHeader,
+  CardTitle,
+  CardDescription,
   useCardStyles,
 } from "./card"
 
@@ -11,6 +13,8 @@ export type {
   CardRootProps,
   CardFooterProps,
   CardHeaderProps,
+  CardTitleProps,
+  CardDescriptionProps,
 } from "./card"
 
 export * as Card from "./namespace"

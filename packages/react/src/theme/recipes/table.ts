@@ -65,7 +65,7 @@ export const tableSlotRecipe = defineSlotRecipe({
       true: {
         row: {
           "&:nth-of-type(odd) td": {
-            bg: "bg.subtle",
+            bg: "bg.muted",
           },
         },
       },

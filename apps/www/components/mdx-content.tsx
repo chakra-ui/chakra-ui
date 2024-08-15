@@ -219,7 +219,7 @@ const sharedComponents = {
             paddingInlineStart: "0.4em",
             listStyleType: "decimal",
             "&::marker": {
-              color: "fg.subtle",
+              color: "fg.muted",
             },
           },
           "& ol, & ul": {
@@ -243,7 +243,7 @@ const sharedComponents = {
             paddingInlineStart: "0.4em",
             listStyleType: "disc",
             "&::marker": {
-              color: "fg.subtle",
+              color: "fg.muted",
             },
           },
           "& ol, & ul": {
@@ -436,7 +436,6 @@ export const MDXContent = (props: MDXProps) => {
   return (
     <Box
       css={{
-        color: "fg.muted",
         fontSize: "sm",
         lineHeight: "1.75",
       }}

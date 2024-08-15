@@ -20,8 +20,10 @@ export const BoxPropertyCard = () => {
             </Text>
           </HStack>
         </HStack>
-        <Text fontWeight="medium">{data.title}</Text>
-        <HStack color="fg.subtle">
+        <Text fontWeight="medium" color="fg">
+          {data.title}
+        </Text>
+        <HStack color="fg.muted">
           {data.formattedPrice} • {data.beds} beds
         </HStack>
       </Box>

@@ -65,7 +65,7 @@ export default function Page(props: PageProps) {
       overflow="hidden"
       padding="3"
       fontSize="sm"
-      bg="bg.subtle"
+      bg="bg.muted"
     >
       <Box as="header">
         <HStack justify="center" height="8">

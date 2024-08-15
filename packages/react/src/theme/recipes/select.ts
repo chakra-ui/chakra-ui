@@ -19,7 +19,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       width: "full",
       userSelect: "none",
       _placeholderShown: {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
       _disabled: {
         layerStyle: "disabled",

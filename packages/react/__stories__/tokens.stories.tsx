@@ -13,7 +13,7 @@ export const Shadows = () => {
             shadow={shadow}
             width="400px"
             height="20"
-            color="fg.subtle"
+            color="fg.muted"
             borderRadius="md"
           >
             {shadow}

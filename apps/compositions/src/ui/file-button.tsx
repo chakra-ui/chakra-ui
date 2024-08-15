@@ -49,7 +49,7 @@ export const FileUploadDropzone = forwardRef<
           click to browse
         </ChakraFileUpload.Trigger>
       </div>
-      <Text fontSize="sm" color="fg.subtle">
+      <Text fontSize="sm" color="fg.muted">
         .png, .jpg up to 5MB
       </Text>
       {children}
@@ -93,7 +93,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
 
       {showDelete && (
         <ChakraFileUpload.ItemDeleteTrigger asChild>
-          <IconButton variant="ghost" color="fg.subtle">
+          <IconButton variant="ghost" color="fg.muted">
             <LuTrash2 />
           </IconButton>
         </ChakraFileUpload.ItemDeleteTrigger>

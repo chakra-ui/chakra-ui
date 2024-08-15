@@ -17,7 +17,7 @@ export const CardWithAvatar = () => {
             <Text fontWeight="medium" lineHeight="1">
               Nate Foss
             </Text>
-            <Text color="fg.subtle" lineHeight="1">
+            <Text color="fg.muted" lineHeight="1">
               @natefoss
             </Text>
           </Stack>

@@ -18,9 +18,10 @@ export const stepsSlotRecipe = defineSlotRecipe({
     },
     title: {
       fontWeight: "medium",
+      color: "fg",
     },
     description: {
-      color: "fg.subtle",
+      color: "fg.muted",
     },
     separator: {
       bg: "border",
@@ -35,7 +36,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
       fontWeight: "medium",
       width: "var(--steps-size)",
       height: "var(--steps-size)",
-      "& svg": {
+      _icon: {
         flexShrink: 0,
         width: "var(--steps-icon-size)",
         height: "var(--steps-icon-size)",

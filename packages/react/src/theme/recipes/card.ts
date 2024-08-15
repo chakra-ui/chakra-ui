@@ -18,6 +18,14 @@ export const cardSlotRecipe = defineSlotRecipe({
       borderWidth: "var(--card-border-width, 0)",
       borderColor: "var(--card-border)",
     },
+    title: {
+      fontWeight: "semibold",
+      textStyle: "lg",
+      letterSpacing: "tight",
+    },
+    description: {
+      color: "fg.muted",
+    },
     body: {
       padding: "var(--card-padding)",
       flex: "1 1 0%",
@@ -25,6 +33,9 @@ export const cardSlotRecipe = defineSlotRecipe({
     header: {
       paddingInline: "var(--card-padding)",
       paddingTop: "var(--card-padding)",
+      display: "flex",
+      flexDirection: "column",
+      gap: "1.5",
     },
     footer: {
       display: "flex",
@@ -37,19 +48,19 @@ export const cardSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          "--card-radius": "radii.sm",
+          "--card-radius": "radii.lg",
           "--card-padding": "spacing.4",
         },
       },
       md: {
         root: {
-          "--card-radius": "radii.md",
+          "--card-radius": "radii.xl",
           "--card-padding": "spacing.6",
         },
       },
       lg: {
         root: {
-          "--card-radius": "radii.xl",
+          "--card-radius": "radii.2xl",
           "--card-padding": "spacing.7",
         },
       },
@@ -63,6 +74,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       },
       outline: {
         root: {
+          "--card-bg": "colors.bg",
           "--card-border-width": "1px",
           "--card-border": "colors.border",
         },

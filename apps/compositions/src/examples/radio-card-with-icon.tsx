@@ -15,7 +15,7 @@ export const RadioCardWithIcon = () => {
         {items.map((item) => (
           <RadioCardItem key={item.value} value={item.value} flex="1">
             <Stack flex="1">
-              <Icon asChild color="fg.subtle" fontSize="xl">
+              <Icon asChild color="fg.muted" fontSize="xl">
                 {item.icon}
               </Icon>
               <RadioCardItemText fontWeight="medium" mt="2">

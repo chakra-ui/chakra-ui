@@ -57,7 +57,7 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
     variant: {
       outline: {
         root: {
-          bg: "bg.subtle",
+          bg: "bg.muted",
           borderWidth: "1px",
         },
       },

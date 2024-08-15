@@ -17,7 +17,7 @@ export const ScrubberInput = forwardRef<HTMLInputElement, StepperInputProps>(
           <Group width="full">
             <InputElement>
               <NumberInput.Scrubber>
-                <Icon asChild color="fg.subtle">
+                <Icon asChild color="fg.muted">
                   {icon}
                 </Icon>
               </NumberInput.Scrubber>

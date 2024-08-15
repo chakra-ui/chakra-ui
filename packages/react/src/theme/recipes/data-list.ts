@@ -5,7 +5,7 @@ export const dataListSlotRecipe = defineSlotRecipe({
   className: "data-list",
   base: {
     itemLabel: {
-      color: "fg.subtle",
+      color: "fg.muted",
       display: "flex",
       alignItems: "center",
       gap: "1",

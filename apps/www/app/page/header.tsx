@@ -78,7 +78,7 @@ const MainNavigation = () => (
           href={item.url}
           fontWeight="bold"
           fontSize="sm"
-          color={{ base: "fg.subtle", _hover: "fg" }}
+          color={{ base: "fg.muted", _hover: "fg" }}
         >
           {item.title}
         </chakra.a>

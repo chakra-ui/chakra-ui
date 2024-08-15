@@ -22,7 +22,7 @@ export const PageHeader = (props: PageHeaderProps) => {
               variant="underline"
               fontSize="sm"
               target="_blank"
-              color="fg.subtle"
+              color="fg.muted"
               key={link.url}
               href={link.url}
             >

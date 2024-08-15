@@ -19,11 +19,7 @@ export const buttonRecipe = defineRecipe({
     transitionProperty: "common",
     transitionDuration: "normal",
     colorPalette: "gray",
-    _focusVisible: {
-      outline: "2px solid",
-      outlineColor: "colorPalette.500",
-      outlineOffset: "2px",
-    },
+    focusRing: "outside",
     _disabled: {
       layerStyle: "disabled",
     },
@@ -83,13 +79,13 @@ export const buttonRecipe = defineRecipe({
         },
       },
       subtle: {
-        bg: { base: "colorPalette.100", _dark: "colorPalette.400/10" },
+        bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
         color: { base: "colorPalette.700", _dark: "colorPalette.200" },
         _hover: {
-          bg: { base: "colorPalette.200", _dark: "colorPalette.400/20" },
+          bg: { base: "colorPalette.200", _dark: "colorPalette.400/24" },
         },
         _expanded: {
-          bg: { base: "colorPalette.200", _dark: "colorPalette.400/20" },
+          bg: { base: "colorPalette.200", _dark: "colorPalette.400/24" },
         },
         _active: {
           bg: { base: "colorPalette.300", _dark: "colorPalette.400/30" },
@@ -98,7 +94,7 @@ export const buttonRecipe = defineRecipe({
       outline: {
         bg: "bg",
         borderWidth: "1px",
-        borderColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
+        borderColor: { base: "colorPalette.200", _dark: "colorPalette.200/20" },
         color: { base: "colorPalette.700", _dark: "colorPalette.200" },
         _hover: {
           bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
@@ -113,13 +109,13 @@ export const buttonRecipe = defineRecipe({
       ghost: {
         color: { base: "colorPalette.700", _dark: "colorPalette.200" },
         _hover: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.400/10" },
+          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
         },
         _expanded: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.400/10" },
+          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
         },
         _active: {
-          bg: { base: "colorPalette.200", _dark: "colorPalette.400/20" },
+          bg: { base: "colorPalette.200", _dark: "colorPalette.400/24" },
         },
       },
 

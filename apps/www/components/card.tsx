@@ -60,7 +60,7 @@ export const Card = (props: CardProps) => {
       borderWidth="1px"
       rounded="lg"
       focusRing="outside"
-      _hover={{ bg: "bg.subtle" }}
+      _hover={{ bg: "bg.muted" }}
     >
       <Link href={href} className="group">
         {icon && (

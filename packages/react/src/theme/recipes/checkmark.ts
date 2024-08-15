@@ -21,9 +21,7 @@ export const checkmarkRecipe = defineRecipe({
       borderColor: "red.500",
     },
     _disabled: {
-      bg: "bg.muted!",
-      borderColor: "border.subtle!",
-      color: "fg.subtle/80!",
+      opacity: "0.5",
     },
   },
   variants: {

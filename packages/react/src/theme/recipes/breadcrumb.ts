@@ -28,7 +28,7 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       alignItems: "center",
     },
     separator: {
-      color: "fg.subtle",
+      color: "fg.muted",
       opacity: "0.8",
       "& svg": {
         boxSize: "1em",
@@ -71,7 +71,7 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
           fontWeight: "medium",
         },
         link: {
-          color: "fg.subtle",
+          color: "fg.muted",
           _hover: {
             textDecoration: "underline",
             color: { base: "colorPalette.700", _dark: "colorPalette.600" },
@@ -106,7 +106,7 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       variant: "plain",
       css: {
         link: {
-          color: "fg.subtle",
+          color: "fg.muted",
           _hover: {
             color: { base: "colorPalette.700", _dark: "colorPalette.300" },
           },

@@ -16,7 +16,7 @@ export const TimelineBasic = () => {
         </TimelineConnector>
         <TimelineContent>
           <Text>Product Shipped</Text>
-          <Text fontSize="xs" color="fg.subtle">
+          <Text fontSize="xs" color="fg.muted">
             13th May 2021
           </Text>
           <Text mt="5">
@@ -32,7 +32,7 @@ export const TimelineBasic = () => {
         </TimelineConnector>
         <TimelineContent>
           <Text>Order Confirmed</Text>
-          <Text fontSize="xs" color="fg.subtle">
+          <Text fontSize="xs" color="fg.muted">
             18th May 2021
           </Text>
         </TimelineContent>
@@ -44,7 +44,7 @@ export const TimelineBasic = () => {
         </TimelineConnector>
         <TimelineContent>
           <Text>Order Delivered</Text>
-          <Text fontSize="xs" color="fg.subtle">
+          <Text fontSize="xs" color="fg.muted">
             20th May 2021, 10:30am
           </Text>
         </TimelineContent>

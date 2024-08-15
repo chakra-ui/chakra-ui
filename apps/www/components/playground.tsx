@@ -75,7 +75,7 @@ const DemoList = (props: DemoListProps) => {
     <>
       {items.map(({ label, component, align }) => (
         <Stack key={label} align={align || "flex-start"} gap="5">
-          <Text color="fg.subtle" fontWeight="medium">
+          <Text color="fg.muted" fontWeight="medium">
             {label}
           </Text>
           {component}

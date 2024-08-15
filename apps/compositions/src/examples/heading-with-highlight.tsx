@@ -8,7 +8,7 @@ export const HeadingWithHighlight = () => {
           Create accessible React apps with speed
         </Highlight>
       </Heading>
-      <Text fontSize="md" color="fg.subtle">
+      <Text fontSize="md" color="fg.muted">
         Chakra UI is a simple, modular and accessible component library that
         gives you the building blocks you need.
       </Text>

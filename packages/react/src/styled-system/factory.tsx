@@ -59,13 +59,13 @@ const Insertion = ({ cache, serialized, isStringTag }: any) => {
     let serializedNames = serialized.name
     let next = serialized.next
     while (next !== undefined) {
-      serializedNames += " " + next.name
+      serializedNames = cx(serializedNames, next.name)
       next = next.next
     }
     return (
       <style
         {...{
-          [`data-emotion`]: `${cache.key} ${serializedNames}`,
+          [`data-emotion`]: cx(cache.key, serializedNames),
           dangerouslySetInnerHTML: { __html: rules },
           nonce: cache.sheet.nonce,
         }}

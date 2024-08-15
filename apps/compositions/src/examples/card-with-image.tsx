@@ -1,4 +1,4 @@
-import { Button, Card, Heading, Image, Stack, Text } from "@chakra-ui/react"
+import { Button, Card, Image, Stack, Text } from "@chakra-ui/react"
 
 export const CardWithImage = () => {
   return (
@@ -9,13 +9,11 @@ export const CardWithImage = () => {
       />
       <Card.Body>
         <Stack>
-          <Heading size="md" fontWeight="semibold">
-            Living room Sofa
-          </Heading>
-          <Text color="fg.muted">
+          <Card.Title>Living room Sofa</Card.Title>
+          <Card.Description>
             This sofa is perfect for modern tropical spaces, baroque inspired
             spaces.
-          </Text>
+          </Card.Description>
           <Text fontSize="2xl" letterSpacing="tight" fontWeight="semibold">
             $450
           </Text>

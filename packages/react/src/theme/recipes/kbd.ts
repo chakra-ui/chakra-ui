@@ -17,6 +17,7 @@ export const kbdRecipe = defineRecipe({
     variant: {
       raised: {
         bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+        color: "fg",
         borderWidth: "1px",
         borderBottomWidth: "var(--kbd-border)",
         borderColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
@@ -35,13 +36,13 @@ export const kbdRecipe = defineRecipe({
     },
     size: {
       sm: {
-        "--kbd-border": "2px",
+        "--kbd-border": "1.5px",
         fontSize: "0.725em",
         px: "0.25em",
         borderRadius: "xs",
       },
       md: {
-        "--kbd-border": "3px",
+        "--kbd-border": "2px",
         fontSize: "0.875em",
         px: "0.4em",
         borderRadius: "sm",

@@ -89,6 +89,8 @@ export const cardAnatomy = createAnatomy("card").parts(
   "header",
   "body",
   "footer",
+  "title",
+  "description",
 )
 
 export const stepsAnatomy = createAnatomy("steps", [

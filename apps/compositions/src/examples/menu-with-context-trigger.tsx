@@ -14,7 +14,7 @@ export const MenuWithContextTrigger = () => {
           width="full"
           height="40"
           userSelect="none"
-          bg="bg.subtle"
+          bg="bg.muted"
           borderWidth="2px"
           borderStyle="dashed"
           rounded="lg"

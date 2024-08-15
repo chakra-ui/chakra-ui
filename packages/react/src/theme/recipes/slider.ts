@@ -37,7 +37,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      color: "fg.subtle",
+      color: "fg.muted",
       fontSize: "xs",
     },
     thumb: {

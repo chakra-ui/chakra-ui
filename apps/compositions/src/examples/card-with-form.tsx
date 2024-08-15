@@ -1,13 +1,13 @@
-import { Button, Card, Heading, Input, Stack, Text } from "@chakra-ui/react"
+import { Button, Card, Input, Stack } from "@chakra-ui/react"
 import { Field } from "compositions/ui/field"
 
 export const CardWithForm = () => (
-  <Card.Root bg="bg.subtle">
+  <Card.Root>
     <Card.Header>
-      <Heading size="lg" mb="3">
-        Sign up
-      </Heading>
-      <Text color="fg.muted">Fill in the form below to create an account</Text>
+      <Card.Title>Sign up</Card.Title>
+      <Card.Description>
+        Fill in the form below to create an account
+      </Card.Description>
     </Card.Header>
     <Card.Body>
       <Stack maxW="sm" gap="4">

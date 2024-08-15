@@ -55,7 +55,7 @@ export const PropTable = async (props: Props) => {
               </Code>
             )}
           </HStack>
-          <Box color="fg.subtle" mt="2">
+          <Box color="fg.muted" mt="2">
             {value.description}
           </Box>
         </Box>

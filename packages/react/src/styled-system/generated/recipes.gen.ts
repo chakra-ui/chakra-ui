@@ -157,7 +157,7 @@ export interface BreadcrumbVariantProps {
 
 // Card
 
-export type CardSlot = "root" | "header" | "body" | "footer"
+export type CardSlot = "root" | "header" | "body" | "footer" | "title" | "description"
 
 export interface CardVariantProps {
   size?: "sm" | "md" | "lg"

@@ -8,7 +8,7 @@ import {
 
 export const ResourceIcon = (props: any) => {
   return (
-    <Icon asChild fontSize="lg" color="fg.subtle">
+    <Icon asChild fontSize="lg" color="fg.muted">
       {(() => {
         switch (props.type) {
           case "github":

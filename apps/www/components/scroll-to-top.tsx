@@ -18,7 +18,7 @@ export const ScrollToTop = () => {
       focusRing="inside"
       focusRingWidth="2px"
       rounded="sm"
-      color="fg.subtle"
+      color="fg.muted"
       cursor="pointer"
       animationDuration="0.2s"
       animationFillMode="forwards"

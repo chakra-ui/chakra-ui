@@ -1,12 +1,4 @@
-import {
-  Badge,
-  Box,
-  Card,
-  HStack,
-  Heading,
-  Image,
-  Text,
-} from "@chakra-ui/react"
+import { Badge, Box, Card, HStack, Image } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 
 export const CardHorizontal = () => (
@@ -19,11 +11,11 @@ export const CardHorizontal = () => (
     />
     <Box>
       <Card.Body>
-        <Heading size="md">The perfect latte</Heading>
-        <Text py="2" color="fg.muted" mb="2">
+        <Card.Title>The perfect latte</Card.Title>
+        <Card.Description>
           Caffè latte is a coffee beverage of Italian origin made with espresso
           and steamed milk.
-        </Text>
+        </Card.Description>
         <HStack>
           <Badge>Hot</Badge>
           <Badge>Caffeine</Badge>

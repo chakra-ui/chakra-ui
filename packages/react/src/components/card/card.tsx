@@ -55,3 +55,21 @@ export const CardFooter = withContext<HTMLDivElement, CardFooterProps>(
   "div",
   "footer",
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CardTitleProps extends HTMLChakraProps<"h2"> {}
+
+export const CardTitle = withContext<HTMLHeadingElement, CardTitleProps>(
+  "h3",
+  "title",
+)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface CardDescriptionProps extends HTMLChakraProps<"p"> {}
+
+export const CardDescription = withContext<
+  HTMLParagraphElement,
+  CardDescriptionProps
+>("p", "description")

@@ -19,7 +19,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       },
       _disabled: {
         opacity: 0.8,
-        color: "fg.subtle",
+        color: "fg.muted",
         cursor: "not-allowed",
         borderColor: "border.disabled!",
       },
@@ -35,7 +35,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       rounded: "inherit",
       justifyContent: "space-between",
       _disabled: {
-        bg: "bg.subtle!",
+        bg: "bg.muted!",
       },
     },
     label: {
@@ -44,12 +44,12 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       _disabled: {
-        color: "fg.subtle!",
+        color: "fg.muted!",
       },
     },
     addon: {
       _disabled: {
-        color: "fg.subtle",
+        color: "fg.muted",
       },
     },
     indicator: checkmarkRecipe.base,

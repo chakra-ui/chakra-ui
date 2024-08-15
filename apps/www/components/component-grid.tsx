@@ -20,10 +20,10 @@ export const ComponentGrid = () => {
           overflow="hidden"
         >
           <Link href={`/${item.slug}`}>
-            <Box height="120px" bg="bg.subtle" />
+            <Box height="120px" bg="bg.muted" />
             <Stack gap="1" padding="4" flex="1">
               <Box fontWeight="medium">{item.title}</Box>
-              <Box color="fg.subtle" lineClamp="2" lineHeight="short">
+              <Box color="fg.muted" lineClamp="2" lineHeight="short">
                 {item.description}
               </Box>
             </Stack>
