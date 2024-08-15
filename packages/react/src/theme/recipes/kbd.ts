@@ -3,7 +3,7 @@ import { defineRecipe } from "../../styled-system"
 export const kbdRecipe = defineRecipe({
   className: "kbd",
   base: {
-    fontWeight: "semibold",
+    fontWeight: "medium",
     lineHeight: "normal",
     fontFamily: "mono",
     flexShrink: 0,
