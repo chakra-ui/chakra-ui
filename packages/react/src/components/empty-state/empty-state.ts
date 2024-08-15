@@ -46,3 +46,21 @@ export const EmptyStateIndicator = withContext<
   HTMLDivElement,
   EmptyStateIndicatorProps
 >("div", "indicator")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface EmptyStateTitleProps extends HTMLChakraProps<"h3"> {}
+
+export const EmptyStateTitle = withContext<
+  HTMLHeadingElement,
+  EmptyStateTitleProps
+>("h3", "title")
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface EmptyStateDescriptionProps extends HTMLChakraProps<"p"> {}
+
+export const EmptyStateDescription = withContext<
+  HTMLParagraphElement,
+  EmptyStateDescriptionProps
+>("p", "description")

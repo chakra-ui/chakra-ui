@@ -1,12 +1,12 @@
 import { EmptyState } from "compositions/ui/empty-state"
-import { HiColorSwatch } from "react-icons/hi"
+import { HiShoppingCart } from "react-icons/hi"
 
 export const EmptyStateBasic = () => {
   return (
     <EmptyState
-      icon={<HiColorSwatch />}
-      title="No template found"
-      description="Try creating a new template with the button below"
+      icon={<HiShoppingCart />}
+      title="Your cart is empty"
+      description="Explore our products and add items to your cart"
     />
   )
 }

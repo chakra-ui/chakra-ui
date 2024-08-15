@@ -1,12 +1,13 @@
 import { defineSlotRecipe } from "../../styled-system"
 
 export const emptyStateSlotRecipe = defineSlotRecipe({
-  slots: ["root", "content", "indicator"],
+  slots: ["root", "content", "indicator", "title", "description"],
   className: "empty-state",
   base: {
     root: {
       rounded: "md",
       width: "full",
+      bg: "bg",
     },
     content: {
       display: "flex",
@@ -18,57 +19,51 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      bg: "bg",
-      rounded: "md",
-      borderWidth: "1px",
+      color: "fg.disabled",
+      _icon: {
+        boxSize: "1em",
+      },
+    },
+    title: {
+      textStyle: "lg",
+      fontWeight: "semibold",
+    },
+    description: {
+      textStyle: "sm",
+      color: "fg.muted",
     },
   },
 
   variants: {
     size: {
-      lg: {
-        root: {
-          px: "12",
-          py: "16",
-        },
-        content: {
-          gap: "6",
-        },
-        indicator: {
-          padding: "4",
-          height: "12",
-        },
-      },
       md: {
         root: {
           px: "8",
           py: "12",
         },
         content: {
-          gap: "4",
+          gap: "6",
         },
         indicator: {
-          padding: "3",
-          height: "10",
+          fontSize: "4xl",
         },
       },
-    },
-
-    variant: {
-      outline: {
+      lg: {
         root: {
-          bg: "bg.muted",
-          borderWidth: "1px",
+          px: "12",
+          py: "16",
         },
-      },
-      plain: {
-        root: {},
+        content: {
+          gap: "8",
+        },
+        indicator: {
+          fontSize: "6xl",
+        },
       },
     },
   },
 
   defaultVariants: {
-    variant: "outline",
-    size: "lg",
+    size: "md",
   },
 })

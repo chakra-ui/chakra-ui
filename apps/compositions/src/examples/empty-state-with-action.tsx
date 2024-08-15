@@ -1,7 +1,7 @@
 import { Group } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import { EmptyState } from "compositions/ui/empty-state"
-import { HiColorSwatch, HiPlus } from "react-icons/hi"
+import { HiColorSwatch } from "react-icons/hi"
 
 export const EmptyStateWithAction = () => {
   return (
@@ -11,9 +11,7 @@ export const EmptyStateWithAction = () => {
       description="Add a new design token to get started"
     >
       <Group>
-        <Button>
-          <HiPlus /> Add new
-        </Button>
+        <Button>Create token</Button>
         <Button variant="outline">Import</Button>
       </Group>
     </EmptyState>

@@ -18,12 +18,10 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
           )}
           {description ? (
             <VStack textAlign="center">
-              <Text fontWeight="medium" fontSize="md">
-                {title}
-              </Text>
-              <Text fontSize="sm" color="fg.muted">
+              <ChakraEmptyState.Title>{title}</ChakraEmptyState.Title>
+              <ChakraEmptyState.Description>
                 {description}
-              </Text>
+              </ChakraEmptyState.Description>
             </VStack>
           ) : (
             <Text fontSize="sm" color="fg.muted">

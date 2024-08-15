@@ -14,3 +14,4 @@ export default {
 
 export { EmptyStateBasic as Basic } from "compositions/examples/empty-state-basic"
 export { EmptyStateWithAction as WithAction } from "compositions/examples/empty-state-with-action"
+export { EmptyStateWithList as WithList } from "compositions/examples/empty-state-with-list"

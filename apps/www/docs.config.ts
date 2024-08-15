@@ -138,6 +138,7 @@ const docsLinks: NavItem = {
             { title: "Dialog", url: "dialog" },
             { title: "Drawer", url: "drawer" },
             { title: "Editable", url: "editable" },
+            { title: "Empty State", url: "empty-state", status: "new" },
             { title: "Field", url: "field" },
             { title: "File Upload", url: "file-upload" },
             { title: "Hover Card", url: "hover-card" },

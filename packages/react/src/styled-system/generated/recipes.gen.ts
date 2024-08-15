@@ -248,11 +248,10 @@ export interface EditableVariantProps {}
 
 // EmptyState
 
-export type EmptyStateSlot = "root" | "content" | "indicator"
+export type EmptyStateSlot = "root" | "content" | "indicator" | "title" | "description"
 
 export interface EmptyStateVariantProps {
-  size?: "lg" | "md"
-  variant?: "outline" | "plain"
+  size?: "md" | "lg"
 }
 
 // Field
@@ -290,7 +289,9 @@ export interface HoverCardVariantProps {
 
 export type ListSlot = "root" | "item" | "icon"
 
-export interface ListVariantProps {}
+export interface ListVariantProps {
+  variant?: "marker" | "plain"
+}
 
 // Menu
 

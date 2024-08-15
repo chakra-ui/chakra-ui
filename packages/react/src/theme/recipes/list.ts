@@ -10,17 +10,42 @@ export const listSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
     },
     item: {
-      alignItems: "flex-start",
-      display: "inline-flex",
       whiteSpace: "normal",
-      "&:has(svg)": {
-        alignItems: "center",
-      },
     },
     icon: {
       marginEnd: "2",
       display: "inline",
       verticalAlign: "text-bottom",
     },
+  },
+
+  variants: {
+    variant: {
+      marker: {
+        root: {
+          listStyleType: "disc",
+        },
+        item: {
+          display: "list-item",
+          _marker: {
+            color: "fg.disabled",
+          },
+        },
+      },
+
+      plain: {
+        item: {
+          alignItems: "flex-start",
+          display: "inline-flex",
+          "&:has(svg)": {
+            alignItems: "center",
+          },
+        },
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: "plain",
   },
 })
