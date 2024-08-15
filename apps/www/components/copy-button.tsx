@@ -9,7 +9,7 @@ interface Props {
 export const CopyButton = (props: Props) => {
   const { value } = props
   return (
-    <Clipboard.Root value={value}>
+    <Clipboard.Root className="dark" value={value}>
       <Clipboard.Trigger asChild>
         <IconButton variant="ghost" size="sm">
           <Clipboard.Indicator copied={<LuCheck />}>
