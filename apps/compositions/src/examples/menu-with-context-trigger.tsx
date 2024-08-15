@@ -9,12 +9,11 @@ import {
 export const MenuWithContextTrigger = () => {
   return (
     <MenuRoot>
-      <MenuContextTrigger>
+      <MenuContextTrigger w="full">
         <Center
           width="full"
           height="40"
           userSelect="none"
-          bg="bg.muted"
           borderWidth="2px"
           borderStyle="dashed"
           rounded="lg"

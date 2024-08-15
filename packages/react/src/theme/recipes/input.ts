@@ -12,7 +12,7 @@ export const inputRecipe = defineRecipe({
     _disabled: {
       layerStyle: "disabled",
     },
-    "--focus-color": "colors.border.emphasized",
+    "--focus-color": "colors.focusRing",
     "--error-color": "colors.border.error",
   },
   variants: {

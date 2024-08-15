@@ -10,7 +10,9 @@ export const MenuWithLinks = () => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <Button>Popular Animes</Button>
+        <Button size="sm" variant="outline">
+          Select Anime
+        </Button>
       </MenuTrigger>
       <MenuContent>
         <MenuItem asChild value="naruto">

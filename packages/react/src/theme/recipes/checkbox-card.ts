@@ -14,7 +14,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       pos: "relative",
       _focus: {
         outline: "2px solid",
-        outlineColor: "colorPalette.500",
+        outlineColor: "focusRing",
         outlineOffset: "2px",
       },
       _disabled: {

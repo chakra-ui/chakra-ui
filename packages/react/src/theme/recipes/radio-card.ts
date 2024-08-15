@@ -24,14 +24,14 @@ export const radioCardSlotRecipe = defineSlotRecipe({
         opacity: 0.8,
         color: "fg.muted",
         cursor: "not-allowed",
-        borderColor: "border.disabled!",
+        borderColor: "border.disabled",
       },
     },
     label: {
       display: "inline-flex",
       fontWeight: "medium",
       _disabled: {
-        color: "fg.muted!",
+        color: "fg.muted",
       },
     },
     itemControl: {
@@ -40,7 +40,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       pos: "relative",
       rounded: "inherit",
       _disabled: {
-        bg: "bg.muted!",
+        bg: "bg.muted",
       },
     },
     itemIndicator: radiomarkRecipe.base,

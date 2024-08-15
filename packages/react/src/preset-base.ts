@@ -536,7 +536,7 @@ export const defaultBaseConfig = defineConfig({
     focusRing: {
       values: ["outside", "inside", "mixed", "none"],
       transform(value: any, { token }: any) {
-        const focusRingColor = token("colors.border.emphasized")
+        const focusRingColor = token("colors.focusRing")
         const styles: Record<string, any> = {
           inside: {
             "--focus-ring-color": focusRingColor,

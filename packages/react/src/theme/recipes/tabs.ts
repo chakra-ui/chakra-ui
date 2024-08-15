@@ -18,7 +18,7 @@ export const tabSlotRecipe = defineSlotRecipe({
       _focusVisible: {
         zIndex: 1,
         outline: "2px solid",
-        outlineColor: "colorPalette.500",
+        outlineColor: "focusRing",
       },
       _disabled: {
         cursor: "not-allowed",
@@ -35,7 +35,7 @@ export const tabSlotRecipe = defineSlotRecipe({
     content: {
       _focusVisible: {
         outline: "2px solid",
-        outlineColor: "colorPalette.500",
+        outlineColor: "focusRing",
       },
     },
     indicator: {

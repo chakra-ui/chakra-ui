@@ -1,34 +1,35 @@
-import { Box, Kbd } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
   MenuContent,
   MenuItem,
+  MenuItemCommand,
   MenuRoot,
   MenuTrigger,
 } from "compositions/ui/menu"
-import { FaCopy, FaCut, FaPaste } from "react-icons/fa"
+import { LuClipboardPaste, LuCopy, LuScissors } from "react-icons/lu"
 
 export const MenuWithIconAndCommand = () => {
   return (
     <MenuRoot>
       <MenuTrigger asChild>
-        <Button>Edit</Button>
+        <Button variant="outline">Edit</Button>
       </MenuTrigger>
       <MenuContent>
         <MenuItem value="cut" valueText="cut">
-          <FaCut />
+          <LuScissors />
           <Box flex="1">Cut</Box>
-          <Kbd>⌘X</Kbd>
+          <MenuItemCommand>⌘X</MenuItemCommand>
         </MenuItem>
         <MenuItem value="copy" valueText="copy">
-          <FaCopy />
+          <LuCopy />
           <Box flex="1">Copy</Box>
-          <Kbd>⌘C</Kbd>
+          <MenuItemCommand>⌘C</MenuItemCommand>
         </MenuItem>
         <MenuItem value="paste" valueText="paste">
-          <FaPaste />
+          <LuClipboardPaste />
           <Box flex="1">Paste</Box>
-          <Kbd>⌘V</Kbd>
+          <MenuItemCommand>⌘V</MenuItemCommand>
         </MenuItem>
       </MenuContent>
     </MenuRoot>

@@ -11,7 +11,7 @@ export const skipNavLinkRecipe = defineRecipe({
       position: "fixed",
       top: "6",
       insetStart: "6",
-      bg: { base: "white", _dark: "gray.700" },
+      bg: "bg.panel",
     },
   },
 })

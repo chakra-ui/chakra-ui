@@ -55,9 +55,10 @@ export const menuSlotRecipe = defineSlotRecipe({
     },
     itemCommand: {
       opacity: "0.6",
+      textStyle: "xs",
       ms: "auto",
       ps: "4",
-      letterSpacing: "0.1em",
+      letterSpacing: "widest",
     },
     separator: {
       height: "1px",

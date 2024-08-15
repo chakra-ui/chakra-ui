@@ -95,7 +95,7 @@ export const switchSlotRecipe = defineSlotRecipe({
           },
           _focus: {
             outline: "2px solid",
-            outlineColor: "colorPalette.500",
+            outlineColor: "focusRing",
             outlineOffset: "2px",
           },
         },
@@ -122,7 +122,7 @@ export const switchSlotRecipe = defineSlotRecipe({
           },
           _focus: {
             outline: "2px solid",
-            outlineColor: "colorPalette.500",
+            outlineColor: "focusRing",
             outlineOffset: "2px",
           },
         },
@@ -165,7 +165,7 @@ export const switchSlotRecipe = defineSlotRecipe({
           },
           _focus: {
             outline: "2px solid",
-            outlineColor: "colorPalette.500",
+            outlineColor: "focusRing",
             outlineOffset: "2px",
           },
         },
