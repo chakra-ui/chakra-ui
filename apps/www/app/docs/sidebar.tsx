@@ -23,7 +23,7 @@ export const SidebarStart = (props: BoxProps) => {
       fontSize="sm"
       {...props}
     >
-      <Stack gap="10">
+      <Stack gap="6">
         {route
           .getSidebarNavItems()
           ?.map((group) => (

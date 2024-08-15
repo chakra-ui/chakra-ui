@@ -16,7 +16,7 @@ interface SideNavProps {
 export const SideNav = (props: SideNavProps) => {
   const { title, items, currentUrl } = props
   return (
-    <Stack gap="4">
+    <Stack gap="2">
       {title && (
         <Text ps="4" fontWeight="semibold">
           {title}
