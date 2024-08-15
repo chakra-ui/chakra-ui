@@ -6,14 +6,9 @@ import {
   PaginationRoot,
 } from "compositions/ui/pagination"
 
-export const PaginationWithVariantMap = () => {
+export const PaginationWithVariants = () => {
   return (
-    <PaginationRoot
-      count={10}
-      pageSize={2}
-      defaultPage={1}
-      variantMap={{ default: "outline", ellipsis: "outline", current: "solid" }}
-    >
+    <PaginationRoot count={20} pageSize={2} defaultPage={1} variant="solid">
       <HStack>
         <PaginationPrevTrigger />
         <PaginationItems />

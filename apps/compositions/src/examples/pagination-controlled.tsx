@@ -14,7 +14,7 @@ export const PaginationControlled = () => {
 
   return (
     <PaginationRoot
-      count={10}
+      count={20}
       pageSize={2}
       page={page}
       onPageChange={(e) => setPage(e.page)}

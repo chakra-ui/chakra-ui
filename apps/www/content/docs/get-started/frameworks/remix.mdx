@@ -1,18 +1,18 @@
 ---
-title: Using Chakra in Vite
-description: A guide for installing Chakra UI with Vite.js projects
+title: Using Chakra in Remix
+description: A guide for installing Chakra UI with Remix projects
 ---
 
 ## Templates
 
-Use the vite template below to get started quickly.
+Use the remix template below to get started quickly.
 
 :::card-group
 
 <ResourceCard
   type="github"
-  title="Vite template"
-  url="https://github.com/chakra-ui/chakra-vite-template"
+  title="Remix template"
+  url="https://github.com/chakra-ui/chakra-remix-template"
 />
 
 :::
@@ -112,3 +112,17 @@ const Demo = () => {
 ```
 
 :::
+
+## Known issues
+
+You may encounter the following issues when using Chakra UI with Remix:
+
+```bash
+Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
+```
+
+This is a known issue related to extension installed in your browser. We
+recommend testing your application in incognito mode to see if the issue
+persists.
+
+> We welcome contributions to fix this issue.

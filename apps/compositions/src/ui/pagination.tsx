@@ -22,6 +22,8 @@ interface ButtonVariantMap {
   ellipsis: ButtonProps["variant"]
 }
 
+type PaginationVariant = "outline" | "solid" | "subtle"
+
 interface ButtonVariantContext {
   size: ButtonProps["size"]
   variantMap: ButtonVariantMap
@@ -31,21 +33,22 @@ const [RootPropsProvider, useRootProps] = createContext<ButtonVariantContext>({
   name: "RootPropsProvider",
 })
 
-export interface PaginationRootProps
-  extends ChakraPagination.RootProps,
-    Partial<ButtonVariantContext> {}
+export interface PaginationRootProps extends ChakraPagination.RootProps {
+  size?: ButtonProps["size"]
+  variant?: PaginationVariant
+}
 
-const defaultVariantMap: ButtonVariantMap = {
-  default: "ghost",
-  ellipsis: "plain",
-  current: "outline",
+const variantMap: Record<PaginationVariant, ButtonVariantMap> = {
+  outline: { default: "ghost", ellipsis: "plain", current: "outline" },
+  solid: { default: "outline", ellipsis: "outline", current: "solid" },
+  subtle: { default: "ghost", ellipsis: "plain", current: "subtle" },
 }
 
 export const PaginationRoot = forwardRef<HTMLDivElement, PaginationRootProps>(
   function PaginationRoot(props, ref) {
-    const { size = "sm", variantMap = defaultVariantMap, ...rest } = props
+    const { size = "sm", variant = "outline", ...rest } = props
     return (
-      <RootPropsProvider value={{ size, variantMap }}>
+      <RootPropsProvider value={{ size, variantMap: variantMap[variant] }}>
         <ChakraPagination.Root ref={ref} {...rest} />
       </RootPropsProvider>
     )

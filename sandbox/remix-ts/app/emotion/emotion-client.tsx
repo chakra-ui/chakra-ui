@@ -59,7 +59,10 @@ export function useInjectStyles(cache: EmotionCache) {
     const tags = cache.sheet.tags
     cache.sheet.flush()
     tags.forEach((tag) => {
-      ;(cache.sheet as any)._insertTag(tag)
+      const sheet = cache.sheet as unknown as {
+        _insertTag: (tag: HTMLStyleElement) => void
+      }
+      sheet._insertTag(tag)
     })
 
     styles.reset()

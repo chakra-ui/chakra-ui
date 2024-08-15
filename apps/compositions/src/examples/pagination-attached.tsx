@@ -8,12 +8,7 @@ import {
 
 export const PaginationAttached = () => {
   return (
-    <PaginationRoot
-      count={10}
-      pageSize={2}
-      defaultPage={1}
-      variantMap={{ default: "outline", ellipsis: "outline", current: "solid" }}
-    >
+    <PaginationRoot count={10} pageSize={2} defaultPage={1} variant="solid">
       <Group attached>
         <PaginationPrevTrigger />
         <PaginationItems />
