@@ -41,22 +41,24 @@ export function useRoute() {
 
   function getSecondaryNavItems() {
     const nav = getPrimaryNav()
-    return nav.items!.map((item) => {
-      const firstChild = flattenedItems.find((child) =>
-        child.url?.startsWith(join(nav.url, item.url)),
-      )
-      return {
-        title: item.title,
-        url: firstChild?.url,
-        current: currentUrl.startsWith(join(nav.url, item.url)),
-      }
-    })
+    return (
+      nav.items?.map((item) => {
+        const firstChild = flattenedItems.find((child) =>
+          child.url?.startsWith(join(nav.url, item.url)),
+        )
+        return {
+          title: item.title,
+          url: firstChild?.url,
+          current: currentUrl.startsWith(join(nav.url, item.url)),
+        }
+      }) || []
+    )
   }
 
   function getFlattenedNavItems(): FlattenNavItem[] {
     const result: FlattenNavItem[] = []
-    const iterate = (item: NavItem, parentHref = "") => {
-      const url = `${parentHref}/${item.url}`
+    const iterate = (item: NavItem, parentUrl = "") => {
+      const url = item.url ? `${parentUrl}/${item.url}` : parentUrl
       if (item.items) {
         item.items.forEach((child) => iterate(child, url))
       } else {
@@ -86,17 +88,20 @@ export function useRoute() {
   function getSidebarNavItems() {
     const primaryNav = getPrimaryNav()
     const secondaryNav = getSecondaryNav()
-    return secondaryNav?.items?.map((group) => ({
-      ...group,
-      items: group.items!.map((item) => ({
-        status: item.status,
-        title: item.title,
-        url: join(primaryNav.url, secondaryNav.url, group.url, item.url),
-        current: currentUrl.startsWith(
-          join(primaryNav.url, secondaryNav.url, group.url, item.url),
-        ),
-      })),
-    }))
+    return (
+      secondaryNav?.items?.map((group) => ({
+        ...group,
+        items:
+          group.items?.map((item) => ({
+            status: item.status,
+            title: item.title,
+            url: join(primaryNav.url, secondaryNav.url, group.url, item.url),
+            current: currentUrl.startsWith(
+              join(primaryNav.url, secondaryNav.url, group.url, item.url),
+            ),
+          })) || [],
+      })) || []
+    )
   }
 
   return {

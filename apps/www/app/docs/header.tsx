@@ -60,7 +60,7 @@ const HeaderPrimaryNav = () => {
       {route.getPrimaryNavItems().map((item) => (
         <TopNavLink
           key={item.title}
-          href={item.url!}
+          href={item.url || "#"}
           aria-current={item.current ? "page" : undefined}
         >
           {item.title}
@@ -78,7 +78,7 @@ const HeaderSecondaryNav = () => {
         <TopNavLink
           key={item.title}
           variant="tab"
-          href={item.url!}
+          href={item.url || "#"}
           aria-current={item.current ? "page" : undefined}
         >
           {item.title}

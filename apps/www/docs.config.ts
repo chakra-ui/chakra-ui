@@ -35,6 +35,14 @@ const docsLinks: NavItem = {
       url: "theming",
       items: [
         {
+          title: "Overview",
+          items: [
+            { title: "Introduction", url: "overview" },
+            { title: "Token", url: "token" },
+            { title: "Semantic Tokens", url: "semantic-tokens" },
+          ],
+        },
+        {
           title: "Design Tokens",
           url: "design-tokens",
           items: [
@@ -43,6 +51,14 @@ const docsLinks: NavItem = {
             { title: "Shadows", url: "shadows" },
             { title: "Spacing", url: "spacing" },
             { title: "Sizes", url: "sizes" },
+            { title: "Font Sizes", url: "font-sizes" },
+            { title: "Font Weights", url: "font-weights" },
+            { title: "Line Heights", url: "line-heights" },
+            { title: "Letter Spacings", url: "letter-spacings" },
+            { title: "Borders", url: "borders" },
+            { title: "Radii", url: "radii" },
+            { title: "Z-Index", url: "z-index" },
+            { title: "Breakpoints", url: "breakpoints" },
           ],
         },
         {
@@ -54,21 +70,76 @@ const docsLinks: NavItem = {
             { title: "Slot Recipes", url: "slot-recipes" },
           ],
         },
-        { title: "Customization", url: "customization" },
+        {
+          title: "Customization",
+          url: "customization",
+          items: [
+            { title: "Configuration", url: "configuration" },
+            { title: "Breakpoints", url: "breakpoints" },
+            { title: "Recipe", url: "recipe" },
+            { title: "Tokens", url: "tokens" },
+            { title: "Conditions", url: "conditions" },
+          ],
+        },
       ],
     },
 
     {
-      title: "Styled System",
-      url: "styled-system",
+      title: "Style Props",
+      url: "style-props",
       items: [
-        { title: "Style Props", url: "style-props" },
-        { title: "Responsive Design", url: "responsive-design" },
-        { title: "Chakra Factory", url: "chakra-factory" },
-        { title: "CSS Variables", url: "css-variables" },
-        { title: "Text Styles", url: "text-styles" },
-        { title: "Layer Styles", url: "layer-styles" },
-        { title: "Color Mode", url: "color-mode" },
+        {
+          title: "Concepts",
+          items: [
+            { title: "Overview", url: "overview" },
+            { title: "Dark Mode", url: "dark-mode" },
+            { title: "Responsive Design", url: "responsive-design" },
+            { title: "Chakra Factory", url: "chakra-factory" },
+            {
+              title: "Color Opacity Modifier",
+              url: "color-opacity-modifier",
+            },
+            { title: "Virtual Color", url: "virtual-color" },
+            { title: "Conditional Styles", url: "conditional-styles" },
+          ],
+        },
+        {
+          title: "Compositions",
+          items: [
+            { title: "Text Style", url: "text-style" },
+            { title: "Layer Style", url: "layer-style" },
+            { title: "Animation Style", url: "animation-style" },
+          ],
+        },
+        {
+          title: "Style Props",
+          items: [
+            {
+              title: "Transition & Animation",
+              url: "transition-and-animation",
+            },
+            { title: "Background", url: "background" },
+            { title: "Border", url: "border" },
+            { title: "Box Shadow", url: "box-shadow" },
+            { title: "Color", url: "color" },
+            { title: "Display", url: "display" },
+            { title: "Divide", url: "divide" },
+            { title: "Effects", url: "effects" },
+            { title: "Filters", url: "filters" },
+            { title: "Flex and Grid", url: "flex-and-grid" },
+            { title: "Layout", url: "layout" },
+            { title: "List", url: "list" },
+            { title: "Position", url: "position" },
+            { title: "Shadow", url: "shadow" },
+            { title: "Sizing", url: "sizing" },
+            { title: "Spacing", url: "spacing" },
+            { title: "SVG", url: "svg" },
+            { title: "Tables", url: "tables" },
+            { title: "Transforms", url: "transforms" },
+            { title: "Typography", url: "typography" },
+            { title: "Visibility", url: "visibility" },
+          ],
+        },
       ],
     },
 

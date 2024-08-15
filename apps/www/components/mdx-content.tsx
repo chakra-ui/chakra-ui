@@ -70,6 +70,7 @@ const sharedComponents = {
     return (
       <Box
         as="p"
+        color="fg.muted"
         {...props}
         css={{
           marginTop: "1em",
