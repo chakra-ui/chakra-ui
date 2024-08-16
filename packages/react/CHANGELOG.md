@@ -1,5 +1,23 @@
 # @chakra-ui/react
 
+## 3.0.0-next.15
+
+### Minor Changes
+
+- [`e119ae9`](https://github.com/chakra-ui/chakra-ui/commit/e119ae94088a4ab84cf72559fe75621b30f9f4f7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Rename
+  `motionStyle` to `animationStyle` for better intuitiveness
+
+### Patch Changes
+
+- [`87cf70c`](https://github.com/chakra-ui/chakra-ui/commit/87cf70cc161d1b38f44a5989a5d84867d0e7e4b1)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Revert text recipe
+  to prevent color regressions
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.15
+  - @chakra-ui/utils@3.0.0-next.15
+
 ## 3.0.0-next.14
 
 ### Minor Changes
