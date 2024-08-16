@@ -1,0 +1,113 @@
+---
+title: Responsive Design
+description:
+  Learn how to create responsive designs using Chakra UI's built-in responsive
+  style props
+---
+
+## Overview
+
+Responsive design is a fundamental aspect of modern web development, allowing
+websites and applications to adapt seamlessly to different screen sizes and
+devices.
+
+:::info
+
+Chakra uses a mobile-first breakpoint system and leverages min-width media
+queries `@media(min-width)` when you write responsive styles.
+
+:::
+
+Chakra provides five breakpoints by default:
+
+```ts
+const breakpoints = {
+  base: "0em", // 0px
+  sm: "30em", // ~480px
+  md: "48em", // ~768px
+  lg: "62em", // ~992px
+  xl: "80em", // ~1280px
+  "2xl": "96em", // ~1536px
+}
+```
+
+## Object syntax
+
+Let's say you want to change the font weight of a text on large screens, you can
+do it like this:
+
+```jsx
+<Text fontWeight="medium" lg={{ fontWeight: "bold" }}>
+  Text
+</Text>
+```
+
+or you can use the prop based modifier
+
+```jsx
+<Text fontWeight={{ base: "medium", lg: "bold" }}>Text</Text>
+```
+
+## Array syntax
+
+Chakra also accepts arrays as values for responsive styles. Pass the
+corresponding value for each breakpoint in the array. Using our previous code as
+an example:
+
+```jsx
+<Text fontWeight={["medium", undefined, undefined, "bold"]}>Text</Text>
+```
+
+Notice the use of `undefined` for the breakpoints to skip the `md` and `lg`
+breakpoints.
+
+## Breakpoint targeting
+
+### Breakpoint range
+
+Chakra provides a way to target a range of breakpoints using the `To` notation.
+Let's say we want to apply styles between the `md` and `xl` breakpoints, we use
+the `mdToXl` property:
+
+```jsx
+<Text fontWeight={{ mdToXl: "bold" }}>Text</Text>
+```
+
+> This text will only be bold from `md` to `xl` breakpoints.
+
+### Only breakpoint
+
+To target a single breakpoint, use the `Only` notation. Let's say we want to
+apply styles only in the `lg` breakpoint, we use the `lgOnly` property:
+
+```jsx
+<Text fontWeight={{ lgOnly: "bold" }}>Text</Text>
+```
+
+## Hiding elements at breakpoint
+
+Chakra provides the `hideFrom` and `hideBelow` utilities to hide elements at
+specific breakpoints.
+
+Let's say we want to hide an element from the `md` breakpoint, we use the
+`hideFrom` utility:
+
+```jsx
+<Stack hideFrom="md">
+  <Text>This text will be hidden from the `md` breakpoint</Text>
+</Stack>
+```
+
+Let's say we want to hide an element below the `md` breakpoint, we use the
+`hideBelow` utility:
+
+```jsx
+<Stack hideBelow="md">
+  <Text>This text will be hidden below the `md` breakpoint</Text>
+</Stack>
+```
+
+## Customizing Breakpoints
+
+To learn how to customize breakpoints, please refer to the
+[customizing breakpoints](/docs/theming/customization/breakpoints) section.
