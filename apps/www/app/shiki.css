@@ -7,7 +7,6 @@ pre.shiki code * {
   hyphens: none;
   white-space: pre;
   font-style: normal !important;
-  line-height: 1.2;
 }
 
 code .diff {
