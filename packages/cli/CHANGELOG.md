@@ -1,5 +1,7 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.15
+
 ## 3.0.0-next.14
 
 ### Minor Changes
