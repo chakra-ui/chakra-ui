@@ -1,5 +1,31 @@
 # @chakra-ui/react
 
+## 3.0.0-next.14
+
+### Minor Changes
+
+- [`3908155`](https://github.com/chakra-ui/chakra-ui/commit/3908155e291b14468c12711abc9e45e94c904358)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Rename
+  `createStyleContext` to `createSlotRecipeContext`
+
+- [`952647a`](https://github.com/chakra-ui/chakra-ui/commit/952647a1767df596d08f91fd3b50c28e8edc22e7)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add `CardTitle` and
+  `CardDescription` components
+
+- [`b6d1d0d`](https://github.com/chakra-ui/chakra-ui/commit/b6d1d0db60644fc43d04e6d40e86b6dba659457a)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Simplify spinner
+  component to use less custom props.
+
+  - Removed `emptyColor`, prefer to use `--spinner-track-color`
+  - Removed `speed`, prefer to use `animationDuration`
+  - Removed `thickness`, prefer to use `borderWidth`
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.14
+  - @chakra-ui/utils@3.0.0-next.14
+
 ## 3.0.0-next.13
 
 ### Minor Changes
