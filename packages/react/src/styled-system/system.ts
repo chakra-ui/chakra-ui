@@ -55,12 +55,12 @@ export function createSystem(config: SystemConfig): SystemContext {
   })
 
   function assignComposition() {
-    const { textStyles, layerStyles, motionStyles } = theme
+    const { textStyles, layerStyles, animationStyles } = theme
 
     const compositions = compact({
       textStyle: textStyles,
       layerStyle: layerStyles,
-      motionStyle: motionStyles,
+      animationStyle: animationStyles,
     })
 
     for (const [key, values] of Object.entries(compositions)) {

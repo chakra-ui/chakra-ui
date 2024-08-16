@@ -301,7 +301,7 @@ export interface ThemingConfig {
   semanticTokens?: SemanticTokenDefinition
   textStyles?: Record<string, Dict>
   layerStyles?: Record<string, Dict>
-  motionStyles?: Record<string, Dict>
+  animationStyles?: Record<string, Dict>
   recipes?: Record<string, RecipeDefinition>
   slotRecipes?: Record<string, SlotRecipeConfig>
 }

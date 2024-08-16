@@ -20,11 +20,11 @@ export const popoverSlotRecipe = defineSlotRecipe({
       zIndex: "popover",
       outline: 0,
       _open: {
-        motionStyle: "scale-fade-in",
+        animationStyle: "scale-fade-in",
         animationDuration: "fast",
       },
       _closed: {
-        motionStyle: "scale-fade-out",
+        animationStyle: "scale-fade-out",
         animationDuration: "faster",
       },
     },

@@ -673,5 +673,5 @@ export interface SystemProperties {
   colorPalette?: ConditionalValue<UtilityValues["colorPalette"] | CssVars | AnyString>
   textStyle?: ConditionalValue<UtilityValues["textStyle"] | CssVars | AnyString>
   layerStyle?: ConditionalValue<UtilityValues["layerStyle"] | CssVars | AnyString>
-  motionStyle?: ConditionalValue<UtilityValues["motionStyle"] | CssVars | AnyString>
+  animationStyle?: ConditionalValue<UtilityValues["animationStyle"] | CssVars | AnyString>
 }

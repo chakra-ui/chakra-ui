@@ -21,12 +21,12 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       transformOrigin: "var(--transform-origin)",
       outline: 0,
       _open: {
-        motionStyle: "scale-fade-in",
+        animationStyle: "scale-fade-in",
         animationDuration: "normal",
         animationTimingFunction: "out",
       },
       _closed: {
-        motionStyle: "scale-fade-out",
+        animationStyle: "scale-fade-out",
         animationDuration: "faster",
         animationTimingFunction: "in",
       },

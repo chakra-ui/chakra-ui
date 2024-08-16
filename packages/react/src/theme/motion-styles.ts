@@ -1,6 +1,6 @@
-import { defineMotionStyles } from "../styled-system"
+import { defineAnimationStyles } from "../styled-system"
 
-export const motionStyles = defineMotionStyles({
+export const animationStyles = defineAnimationStyles({
   "slide-fade-in": {
     value: {
       transformOrigin: "var(--transform-origin)",

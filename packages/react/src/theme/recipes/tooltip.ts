@@ -18,11 +18,11 @@ export const tooltipSlotRecipe = defineSlotRecipe({
       maxW: "xs",
       zIndex: "tooltip",
       _open: {
-        motionStyle: "scale-fade-in",
+        animationStyle: "scale-fade-in",
         animationDuration: "fast",
       },
       _closed: {
-        motionStyle: "scale-fade-out",
+        animationStyle: "scale-fade-out",
         animationDuration: "fast",
       },
     },

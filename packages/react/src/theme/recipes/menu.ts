@@ -15,11 +15,11 @@ export const menuSlotRecipe = defineSlotRecipe({
       overflow: "hidden",
       colorPalette: "gray",
       _open: {
-        motionStyle: "slide-fade-in",
+        animationStyle: "slide-fade-in",
         animationDuration: "fast",
       },
       _closed: {
-        motionStyle: "slide-fade-out",
+        animationStyle: "slide-fade-out",
         animationDuration: "faster",
       },
     },
