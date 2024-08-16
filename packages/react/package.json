@@ -109,15 +109,15 @@
         "default": "./dist/cjs/preset-base.cjs"
       }
     },
-    "./system": {
-      "source": "./src/system/index.ts",
+    "./styled-system": {
+      "source": "./src/styled-system/index.ts",
       "import": {
-        "types": "./dist/types/system/index.d.ts",
-        "default": "./dist/esm/system/index.mjs"
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/esm/styled-system/index.mjs"
       },
       "require": {
-        "types": "./dist/types/system/index.d.ts",
-        "default": "./dist/cjs/system/index.cjs"
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/cjs/styled-system/index.cjs"
       }
     },
     "./package.json": "./package.json"
