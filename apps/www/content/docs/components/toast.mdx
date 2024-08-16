@@ -101,9 +101,7 @@ Set the `max` prop on the `createToaster` function to define the maximum number
 of toasts that can be rendered at any one time. Any extra toasts will be queued
 and rendered when a toast has been dismissed.
 
-```jsx
-// @/components/ui/toaster.tsx
-
+```jsx title="@/components/ui/toaster.tsx"
 const toaster = createToaster({
   max: 3,
 })
@@ -114,9 +112,7 @@ const toaster = createToaster({
 Toasts can be displayed on all four corners of a page. We recommend picking one
 desired position and configure it in the `createToaster` function.
 
-```jsx
-// @/components/ui/toaster.tsx
-
+```jsx title="@/components/ui/toaster.tsx"
 const toaster = createToaster({
   position: "top-right",
 })
@@ -127,9 +123,7 @@ const toaster = createToaster({
 By default, toasts are stacked on top of each other. To make the toasts overlap
 each other, set the `overlap` prop to `true` in the `createToaster` function.
 
-```jsx
-// @/components/ui/toaster.tsx
-
+```jsx title="@/components/ui/toaster.tsx"
 const toaster = createToaster({
   position: "top-right",
   overlap: true,
@@ -141,9 +135,7 @@ const toaster = createToaster({
 Set the `offset` prop in the `createToaster` function to offset the toasts from
 the edges of the screen.
 
-```jsx
-// @/components/ui/toaster.tsx
-
+```jsx title="@/components/ui/toaster.tsx"
 const toaster = createToaster({
   offset: "20px",
 })
@@ -152,9 +144,7 @@ const toaster = createToaster({
 Alternatively, you can use the `offset` prop to set the offset for each edge of
 the screen.
 
-```jsx
-// @/components/ui/toaster.tsx
-
+```jsx title="@/components/ui/toaster.tsx"
 const toaster = createToaster({
   offset: { left: "20px", top: "20px", right: "20px", bottom: "20px" },
 })
