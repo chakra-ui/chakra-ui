@@ -92,9 +92,9 @@ const docsLinks: NavItem = {
           title: "Concepts",
           items: [
             { title: "Overview", url: "overview" },
-            { title: "Dark Mode", url: "dark-mode" },
-            { title: "Responsive Design", url: "responsive-design" },
             { title: "Chakra Factory", url: "chakra-factory" },
+            { title: "Responsive Design", url: "responsive-design" },
+            { title: "Dark Mode", url: "dark-mode" },
             {
               title: "Color Opacity Modifier",
               url: "color-opacity-modifier",
