@@ -15,6 +15,7 @@ import { separatorRecipe } from "./recipes/separator"
 import { skeletonRecipe } from "./recipes/skeleton"
 import { skipNavLinkRecipe } from "./recipes/skip-nav-link"
 import { spinnerRecipe } from "./recipes/spinner"
+import { textRecipe } from "./recipes/text"
 import { textareaRecipe } from "./recipes/textarea"
 
 export const recipes = {
@@ -36,4 +37,5 @@ export const recipes = {
   icon: iconRecipe,
   checkmark: checkmarkRecipe,
   radiomark: radiomarkRecipe,
+  text: textRecipe,
 }

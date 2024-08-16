@@ -65,7 +65,8 @@ code .highlighted {
 code .highlighted-word {
   background: rgba(255, 255, 255, 0.1) !important;
   border-width: 1px;
-  padding: 1px 3px;
+  border-color: #4c4c4c;
+  padding: 1px 2px;
   margin: -1px -3px;
   border-radius: 4px;
 

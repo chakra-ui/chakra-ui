@@ -81,6 +81,8 @@ export interface RadiomarkVariantProps {
   size?: "sm" | "md" | "lg"
 }
 
+export interface TextVariantProps {}
+
 export interface ConfigRecipes {
   badge: SystemRecipeFn<BadgeVariantProps>
   button: SystemRecipeFn<ButtonVariantProps>
@@ -100,6 +102,7 @@ export interface ConfigRecipes {
   icon: SystemRecipeFn<IconVariantProps>
   checkmark: SystemRecipeFn<CheckmarkVariantProps>
   radiomark: SystemRecipeFn<RadiomarkVariantProps>
+  text: SystemRecipeFn<TextVariantProps>
 }
 
 // Accordion
