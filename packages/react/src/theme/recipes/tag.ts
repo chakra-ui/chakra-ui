@@ -18,7 +18,7 @@ export const tagSlotRecipe = defineSlotRecipe({
       _icon: {
         fontSize: "md",
       },
-      focusRing: "outside",
+      focusVisibleRing: "outside",
     },
     label: {
       lineClamp: "1",
@@ -32,7 +32,7 @@ export const tagSlotRecipe = defineSlotRecipe({
       outline: "0",
       borderRadius: "xs",
       color: "currentColor/60",
-      focusRing: "inside",
+      focusVisibleRing: "outside",
     },
   },
 

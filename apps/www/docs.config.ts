@@ -101,6 +101,7 @@ const docsLinks: NavItem = {
             },
             { title: "Virtual Color", url: "virtual-color" },
             { title: "Conditional Styles", url: "conditional-styles" },
+            { title: "Focus Ring", url: "focus-ring" },
           ],
         },
         {

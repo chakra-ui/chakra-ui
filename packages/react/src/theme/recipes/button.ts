@@ -19,7 +19,7 @@ export const buttonRecipe = defineRecipe({
     transitionProperty: "common",
     transitionDuration: "normal",
     colorPalette: "gray",
-    focusRing: "outside",
+    focusVisibleRing: "outside",
     _disabled: {
       layerStyle: "disabled",
     },

@@ -53,20 +53,18 @@ export const inputRecipe = defineRecipe({
     variant: {
       outline: {
         borderWidth: "1px",
-        borderColor: "inherit",
+        borderColor: "border",
         bg: "bg",
+        focusVisibleRing: "inside",
+        focusRingWidth: "1px",
         _invalid: {
           borderColor: "var(--error-color)",
-        },
-        _focusVisible: {
-          outline: "1px solid var(--focus-color)",
-          borderColor: "var(--focus-color)",
         },
       },
       filled: {
         borderWidth: "1px",
         borderColor: "transparent",
-        bg: { base: "gray.100", _dark: "gray.800" },
+        bg: "bg.muted",
         _invalid: {
           borderColor: "var(--error-color)",
         },
@@ -77,8 +75,8 @@ export const inputRecipe = defineRecipe({
         },
       },
       flushed: {
-        borderBottomWith: "1px",
-        borderColor: "inherit",
+        borderBottomWidth: "1px",
+        borderBottomColor: "border",
         borderRadius: "0",
         px: "0",
         bg: "bg",

@@ -27,7 +27,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       _invalid: {
         borderColor: "border.error",
       },
-      focusRing: "outside",
+      focusVisibleRing: "outside",
     },
     indicator: {
       _icon: {

@@ -115,6 +115,7 @@ export interface UtilityValues {
   gridRowGap: Tokens["spacing"]
   outlineColor: Tokens["colors"]
   focusRing: "outside" | "inside" | "mixed" | "none"
+  focusVisibleRing: "outside" | "inside" | "mixed" | "none"
   focusRingColor: Tokens["colors"]
   focusRingWidth: Tokens["borderWidths"] | CssProperties["outlineWidth"]
   aspectRatio: Tokens["aspectRatios"]

@@ -11,6 +11,53 @@ const deg = (v: any) => {
   return typeof v === "number" || unitless ? `${v}deg` : v
 }
 
+const createFocusRing = (selector: string) => {
+  return {
+    values: ["outside", "inside", "mixed", "none"],
+    transform(value: any, { token }: any) {
+      const focusRingColor = token("colors.focusRing")
+      const styles: Record<string, any> = {
+        inside: {
+          "--focus-ring-color": focusRingColor,
+          [selector]: {
+            outlineWidth: "var(--focus-ring-width, 2px)",
+            outlineColor: "var(--focus-ring-color)",
+            outlineStyle: "solid",
+            borderColor: "var(--focus-ring-color)",
+          },
+        },
+        outside: {
+          "--focus-ring-color": focusRingColor,
+          [selector]: {
+            outlineWidth: "var(--focus-ring-width, 2px)",
+            outlineOffset: "2px",
+            outlineStyle: "solid",
+            outlineColor: "var(--focus-ring-color)",
+          },
+        },
+        mixed: {
+          "--focus-ring-color": focusRingColor,
+          [selector]: {
+            outlineWidth: "var(--focus-ring-width, 3px)",
+            outlineStyle: "solid",
+            outlineColor:
+              "color-mix(in srgb, var(--focus-ring-color), transparent 60%)",
+            borderColor: "var(--focus-ring-color)",
+          },
+        },
+        none: {
+          "--focus-ring-color": focusRingColor,
+          [selector]: {
+            outline: "none",
+          },
+        },
+      }
+
+      return styles[value] ?? {}
+    },
+  }
+}
+
 const divideColor = createColorMixTransform("borderColor")
 
 export const defaultConditions = defineConditions({
@@ -533,50 +580,10 @@ export const defaultBaseConfig = defineConfig({
       values: "colors",
       transform: createColorMixTransform("outlineColor"),
     },
-    focusRing: {
-      values: ["outside", "inside", "mixed", "none"],
-      transform(value: any, { token }: any) {
-        const focusRingColor = token("colors.focusRing")
-        const styles: Record<string, any> = {
-          inside: {
-            "--focus-ring-color": focusRingColor,
-            "&:where(:focus-visible, [data-focus])": {
-              outlineWidth: "var(--focus-ring-width, 2px)",
-              outlineColor: "var(--focus-ring-color)",
-              outlineStyle: "solid",
-              borderColor: "var(--focus-ring-color)",
-            },
-          },
-          outside: {
-            "--focus-ring-color": focusRingColor,
-            "&:is(:focus-visible, [data-focus])": {
-              outlineWidth: "var(--focus-ring-width, 2px)",
-              outlineOffset: "2px",
-              outlineStyle: "solid",
-              outlineColor: "var(--focus-ring-color)",
-            },
-          },
-          mixed: {
-            "--focus-ring-color": focusRingColor,
-            "&:is(:focus-visible, [data-focus])": {
-              outlineWidth: "2px",
-              outlineStyle: "solid",
-              outlineColor:
-                "color-mix(in srgb, var(--focus-ring-color), transparent 60%)",
-              borderColor: "var(--focus-ring-color)",
-            },
-          },
-          none: {
-            "--focus-ring-color": focusRingColor,
-            "&:is(:focus-visible, [data-focus])": {
-              outline: "none",
-            },
-          },
-        }
-
-        return styles[value] ?? {}
-      },
-    },
+    focusRing: createFocusRing("&:is(:focus, [data-focus])"),
+    focusVisibleRing: createFocusRing(
+      "&:is(:focus-visible, [data-focus-visible])",
+    ),
     focusRingColor: {
       values: "colors",
       transform: createColorMixTransform("--focus-ring-color"),
