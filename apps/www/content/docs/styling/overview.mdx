@@ -1,0 +1,23 @@
+---
+title: Styling
+description: Style props are a way to style your components in Chakra UI.
+---
+
+TODO
+
+## Nested Styles
+
+For type safety, Chakra requires that you use the `&` operator to nest styles.
+
+```tsx
+const Card = chakra("div", {
+  base: {
+    bg: "white",
+    borderRadius: "md",
+    boxShadow: "md",
+    "& svg": {
+      color: "red.500",
+    },
+  },
+})
+```

@@ -163,8 +163,8 @@ export const defaultConditions = defineConditions({
 
   dark: "&.dark, .dark &",
   light: "&.light, .light &",
-  mediaDark: "@media (prefers-color-scheme: dark)",
-  mediaLight: "@media (prefers-color-scheme: light)",
+  osDark: "@media (prefers-color-scheme: dark)",
+  osLight: "@media (prefers-color-scheme: light)",
 
   highContrast: "@media (forced-colors: active)",
   lessContrast: "@media (prefers-contrast: less)",
@@ -181,6 +181,7 @@ export const defaultConditions = defineConditions({
   vertical: "&[data-orientation=vertical]",
 
   icon: "& :where(svg)",
+  starting: "@starting-style",
 })
 
 export const defaultBaseConfig = defineConfig({

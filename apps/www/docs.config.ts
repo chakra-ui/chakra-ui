@@ -85,8 +85,8 @@ const docsLinks: NavItem = {
     },
 
     {
-      title: "Style Props",
-      url: "style-props",
+      title: "Styling",
+      url: "styling",
       items: [
         {
           title: "Concepts",

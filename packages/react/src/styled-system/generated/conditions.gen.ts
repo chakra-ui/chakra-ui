@@ -160,9 +160,9 @@ export interface Conditions {
   /** `&.light, .light &` */
   _light: string
   /** `@media (prefers-color-scheme: dark)` */
-  _mediaDark: string
+  _osDark: string
   /** `@media (prefers-color-scheme: light)` */
-  _mediaLight: string
+  _osLight: string
   /** `@media (forced-colors: active)` */
   _highContrast: string
   /** `@media (prefers-contrast: less)` */
@@ -185,6 +185,8 @@ export interface Conditions {
   _vertical: string
   /** `& :where(svg)` */
   _icon: string
+  /** `@starting-style` */
+  _starting: string
   /** `@media screen and (min-width: 30rem)` */
   sm: string
   /** `@media screen and (min-width: 30rem) and (max-width: 47.9975rem)` */
