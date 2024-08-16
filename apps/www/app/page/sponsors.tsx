@@ -1,4 +1,3 @@
-import { BlitzFillIcon, OpenCollective, Patreon } from "@/app/page/icons"
 import {
   CompanySponsor,
   IndividualSponsor,
@@ -7,7 +6,6 @@ import {
 import {
   Button,
   Center,
-  Circle,
   Container,
   Flex,
   Group,
@@ -23,6 +21,8 @@ import { FaShieldHeart } from "react-icons/fa6"
 import { GiGoldBar } from "react-icons/gi"
 import { PiMedalFill } from "react-icons/pi"
 import { RiMedalFill } from "react-icons/ri"
+import { Blob } from "./blob"
+import { BlitzFillIcon, OpenCollective, Patreon } from "./icons"
 
 const Intro = () => (
   <Stack gap={{ base: "3", md: "6" }}>
@@ -187,16 +187,7 @@ export const Sponsors = () => {
   return (
     <Container>
       <Stack gap={{ base: "7", md: "14" }} pos="relative">
-        <Circle
-          size="765px"
-          pos="absolute"
-          top="-20%"
-          left="30%"
-          opacity="0.15"
-          filter="blur(250px)"
-          bg="teal.500"
-          mdDown={{ display: "none" }}
-        />
+        <Blob size="765px" top="-20%" left="30%" />
         <Flex
           align={{ md: "center" }}
           justify="space-between"

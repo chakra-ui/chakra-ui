@@ -5,7 +5,6 @@ import {
   Badge,
   Button,
   Center,
-  Circle,
   Container,
   Grid,
   GridItem,
@@ -13,7 +12,6 @@ import {
   Menu,
   MenuContent,
   MenuItem,
-  Portal,
   Progress,
   ProgressCircle,
   RadioGroup,
@@ -26,6 +24,7 @@ import {
 } from "@chakra-ui/react"
 import Link from "next/link"
 import { useState } from "react"
+import { Blob } from "./blob"
 
 const SEGMENT_CONTROL_OPTIONS = [
   {
@@ -351,16 +350,7 @@ const SegmentGroupDemo = () => {
       py="12"
       pos="relative"
     >
-      <Circle
-        w="426px"
-        h="412px"
-        pos="absolute"
-        top="0"
-        right="-5"
-        opacity="0.25"
-        filter="blur(250px)"
-        bg="teal.500"
-      />
+      <Blob top="0" right="-5" w="426px" h="412px" />
       <Center>
         <Stack maxW="64" gap="3">
           <SegmentGroup.Root
@@ -372,7 +362,7 @@ const SegmentGroupDemo = () => {
             boxShadow="none"
             h="auto"
           >
-            <SegmentGroup.Indicator bg="teal.500" />
+            <SegmentGroup.Indicator bg="whiteAlpha.100" />
             {SEGMENT_CONTROL_OPTIONS.map((item, i) => (
               <SegmentGroup.Item
                 key={i}
@@ -381,7 +371,7 @@ const SegmentGroupDemo = () => {
                 px="3"
                 py="2"
                 _checked={{
-                  color: "black",
+                  color: "teal.500",
                 }}
                 _before={{ pos: "relative" }}
               >
