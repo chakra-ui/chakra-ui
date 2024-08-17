@@ -1,0 +1,163 @@
+---
+title: Border
+description: JSX style props for styling border and border radius.
+---
+
+## Border Radius
+
+### All sides
+
+Use the `rounded` or `borderRadius` props to apply border radius on all sides of
+an element.
+
+```jsx
+<Box borderRadius="md" />
+<Box rounded="md" /> // shorthand
+```
+
+| Prop                      | CSS Property    | Token Category |
+| ------------------------- | --------------- | -------------- |
+| `rounded`, `borderRadius` | `border-radius` | `radii`        |
+
+### Specific sides
+
+Use the `rounded{Left,Right,Top,Bottom}` or
+`border{Left,Right,Top,Bottom}Radius` prop, to apply border radius on a specific
+side of an element.
+
+```jsx
+<Box borderTopRadius="md" />
+<Box roundedTop="md" /> // shorthand
+
+<Box borderLeftRadius="md" />
+<Box roundedLeft="md" /> // shorthand
+```
+
+Use the logical equivalent to make the border radius adapt based on the text
+direction.
+
+```jsx
+<Box roundedStart="md" />
+<Box roundedEnd="md" />
+```
+
+| Prop                                  | CSS Property                                           | Token Category |
+| ------------------------------------- | ------------------------------------------------------ | -------------- |
+| `roundedLeft`, `borderLeftRadius`     | `border-left-radius`                                   | `radii`        |
+| `roundedRight`, `borderRightRadius`   | `border-right-radius`                                  | `radii`        |
+| `roundedTop`, `borderTopRadius`       | `border-top-radius`                                    | `radii`        |
+| `roundedBottom`, `borderBottomRadius` | `border-bottom-radius`                                 | `radii`        |
+| `roundedStart`, `borderStartRadius`   | `border-start-start-radius`, `border-end-start-radius` | `radii`        |
+| `roundedEnd`, `borderEndRadius`       | `border-start-end-radius`, `border-end-end-radius`     | `radii`        |
+
+### Specific corners
+
+Use the `border{Top,Bottom}{Left,Right}Radius` properties, or the shorthand
+equivalent to round a specific corner.
+
+```jsx
+<Box borderTopLeftRadius="md" />
+<Box roundedTopLeft="md" /> // shorthand
+```
+
+Use the logical properties to adapt based on the text direction.
+
+```jsx
+<Box borderStartStartRadius="md" />
+<Box roundedStartStart="md" /> // shorthand
+```
+
+| Prop                                     | CSS Property                 | Token Category |
+| ---------------------------------------- | ---------------------------- | -------------- |
+| `roundedTopLeft`,`borderTopLeftRadius`   | `border-top-left-radius`     | `radii`        |
+| `roundedTopRight`,`borderTopRight`       | `border-top-right-radius`    | `radii`        |
+| `roundedBottomRight`,`borderBottomRight` | `border-bottom-right-radius` | `radii`        |
+| `roundedBottomLeft`,`borderBottomLeft`   | `border-bottom-left-radius`  | `radii`        |
+
+## Border Width
+
+### All sides
+
+Use the `borderWidth` prop to apply border width on all sides of an element.
+
+> Chakra applies `borderStyle: solid` and a global border color by default.
+> Specifying a border width is sufficient to apply the border.
+
+```jsx
+<Box borderWidth="1px" />
+```
+
+| Prop          | CSS Property   | Token Category |
+| ------------- | -------------- | -------------- |
+| `borderWidth` | `border-width` | `borderWidths` |
+
+### Specific sides
+
+Use the `border{Left|Right|Top|Bottom}Width` prop to apply border width on a
+specific side of an element.
+
+```jsx
+<Box borderTopWidth="1px" />
+<Box borderLeftWidth="1px" />
+```
+
+Use the logical equivalent to make the border width adapt based on the text
+direction.
+
+```jsx
+<Box borderInlineStartWidth="1px" />
+<Box borderInlineWidth="1px" /> // shorthand
+```
+
+| Prop                                          | CSS Property                | Token Category |
+| --------------------------------------------- | --------------------------- | -------------- |
+| `borderTopWidth`                              | `border-top-width`          | `borderWidths` |
+| `borderLeftWidth`                             | `border-left-width`         | `borderWidths` |
+| `borderRightWidth`                            | `border-right-width`        | `borderWidths` |
+| `borderBottomWidth`                           | `border-bottom-width`       | `borderWidths` |
+| `borderStartWidth` , `borderInlineStartWidth` | `border-{start+end}-width`  |
+| `borderEndWidth` , `borderInlineEndWidth`     | `border-{start+end}-width`  |
+| `borderXWidth` , `borderInlineWidth`          | `border-{left,right}-width` | `borderWidths` |
+| `borderYWidth` , `borderBlockWidth`           | `border-{top,bottom}-width` | `borderWidths` |
+
+## Border Color
+
+### All sides
+
+Use the `borderColor` prop to apply border color on all sides of an element.
+
+```jsx
+<Box borderColor="red.400" />
+
+// with opacity modifier
+<Box borderColor="red.400/20" />
+```
+
+### Specific sides
+
+Use the `border{Left,Right,Top,Bottom}Color` prop to apply border color on a
+specific side of an element.
+
+```jsx
+<Box borderTopColor="red.400" />
+<Box borderLeftColor="red.400" />
+```
+
+Use the logical properties to adapt based on the text direction.
+
+```jsx
+<Box borderStartColor="red.400" />
+<Box borderEndColor="red.400" />
+```
+
+| Prop                                          | CSS Property               | Token Category |
+| --------------------------------------------- | -------------------------- | -------------- |
+| `borderColor`                                 | `border-color`             | `colors`       |
+| `borderTopColor`                              | `border-top-color`         | `colors`       |
+| `borderLeftColor`                             | `border-left-color`        | `colors`       |
+| `borderRightColor`                            | `border-right-color`       | `colors`       |
+| `borderBottomColor`                           | `border-bottom-color`      | `colors`       |
+| `borderStartColor` , `borderInlineStartColor` | `border-{start,end}-color` | `colors`       |
+| `borderEndColor` , `borderInlineEndColor`     | `border-{start,end}-color` | `colors`       |
+| `borderXColor`, `borderInlineColor`           | `border-inline-color`      | `colors`       |
+| `borderYColor`, `borderBlockColor`            | `border-block-color`       | `colors`       |

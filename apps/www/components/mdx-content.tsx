@@ -279,7 +279,7 @@ const sharedComponents = {
       <Table.Root
         native
         size="sm"
-        variant="outline"
+        variant="line"
         {...props}
         css={{
           marginTop: "2em",

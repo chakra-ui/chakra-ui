@@ -114,11 +114,8 @@ const docsLinks: NavItem = {
         },
         {
           title: "Style Props",
+          url: "style-props",
           items: [
-            {
-              title: "Transition & Animation",
-              url: "transition-and-animation",
-            },
             { title: "Background", url: "background" },
             { title: "Border", url: "border" },
             { title: "Box Shadow", url: "box-shadow" },
@@ -137,6 +134,10 @@ const docsLinks: NavItem = {
             { title: "SVG", url: "svg" },
             { title: "Tables", url: "tables" },
             { title: "Transforms", url: "transforms" },
+            {
+              title: "Transition and Animation",
+              url: "transition-and-animation",
+            },
             { title: "Typography", url: "typography" },
             { title: "Visibility", url: "visibility" },
           ],

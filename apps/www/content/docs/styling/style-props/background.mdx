@@ -1,0 +1,142 @@
+---
+title: Background
+description:
+  JSX style props for styling background colors, gradients, and images.
+---
+
+## Background Attachment
+
+Use `bgAttachment` to control the attachment of a background image.
+
+```jsx
+<Box bgAttachment="fixed" bgImage="url(...)" />
+```
+
+| Prop                                   | CSS Property            | Token Category |
+| -------------------------------------- | ----------------------- | -------------- |
+| `bgAttachment`, `backgroundAttachment` | `background-attachment` | -              |
+
+## Background Blend Mode
+
+Use `bgBlendMode` prop to control how an element's background image should blend
+with the its background color.
+
+```jsx
+<Box bgBlendMode="multiply" bgColor="red.200" bgImage="url(...)" />
+```
+
+## Background Clip
+
+Use `bgClip` to control the clipping of a background image.
+
+```jsx
+<Box bgClip="border-box" bgImage="url(...)" />
+```
+
+| Prop                       | CSS Property      | Token Category |
+| -------------------------- | ----------------- | -------------- |
+| `bgClip`, `backgroundClip` | `background-clip` | -              |
+
+## Background Color
+
+Use `bg`, `bgColor`, or `backgroundColor` props to set the background color of
+an element.
+
+```jsx
+<Box bg="red.200" />
+<Box bgColor="red.200" />
+
+// with opacity modifier
+<Box bg="blue.200/30" />
+<Box bgColor="blue.200/30" />
+```
+
+| Prop                         | CSS Property       | Token Category |
+| ---------------------------- | ------------------ | -------------- |
+| `bg`, `background`           | `background`       | `colors`       |
+| `bgColor`, `backgroundColor` | `background-color` | `colors`       |
+
+## Background Origin
+
+Use `bgOrigin` or `backgroundOrigin` to control the origin of a background
+image.
+
+```jsx
+<Box bgOrigin="border-box" bgImage="url(...)" />
+```
+
+| Prop                           | CSS Property        | Token Category |
+| ------------------------------ | ------------------- | -------------- |
+| `bgOrigin`, `backgroundOrigin` | `background-origin` | -              |
+
+## Background Position
+
+Properties for controlling the src and position of a background image.
+
+```jsx
+<Box bgImage="url(...)" bgPosition="center" />
+```
+
+| Prop                                 | CSS Property       | Token Category |
+| ------------------------------------ | ------------------ | -------------- |
+| `bgPosition`, `backgroundPosition`   | `background-image` | -              |
+| `bgPositionX`, `backgroundPositionX` | `background-image` | -              |
+| `bgPositionY`, `backgroundPositionY` | `background-image` | -              |
+
+## Background Repeat
+
+Use `bgRepeat` or `backgroundRepeat` to control the repeat of a background
+image.
+
+```jsx
+<Box bgRepeat="no-repeat" bgImage="url(...)" />
+```
+
+| Prop                           | CSS Property        | Token Category |
+| ------------------------------ | ------------------- | -------------- |
+| `bgRepeat`, `backgroundRepeat` | `background-repeat` | -              |
+
+## Background Size
+
+Use `bgSize` or `backgroundSize` to control the size of a background image.
+
+```jsx
+<Box bgSize="cover" bgImage="url(...)" />
+```
+
+| Prop                       | CSS Property      | Token Category |
+| -------------------------- | ----------------- | -------------- |
+| `bgSize`, `backgroundSize` | `background-size` | -              |
+
+## Background Image
+
+Use `bgImage` or `backgroundImage` to set the background image of an element.
+
+```jsx
+<Box bgImage="url(...)" />
+<Box bgImage="radial-gradient(circle, #0000 45%, #000f 48%)" />
+<Box bgImage="linear-gradient(black, white)" />
+
+// with token reference
+<Box bgImage="linear-gradient({colors.red.200}, {colors.blue.200})" />
+```
+
+| Prop                         | CSS Property       | Token Category |
+| ---------------------------- | ------------------ | -------------- |
+| `bgImage`, `backgroundImage` | `background-image` | assets         |
+
+## Background Gradient
+
+Properties to create a background gradient based on color stops.
+
+```jsx
+<Box bgGradient="to-r" gradientFrom="red.200" gradientTo="blue.200" />
+```
+
+| Prop           | CSS Property       | Token Category |
+| -------------- | ------------------ | -------------- |
+| `bgGradient`   | `background-image` | `gradients`    |
+| `textGradient` | `background-image` | `gradients`    |
+| `gradientFrom` | `--gradient-from`  | `colors`       |
+| `gradientTo`   | `--gradient-to`    | `colors`       |
+| `gradientVia`  | `--gradient-via`   | `colors`       |
