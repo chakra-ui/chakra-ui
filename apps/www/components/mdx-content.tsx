@@ -73,6 +73,7 @@ const sharedComponents = {
       <Box
         as="p"
         color="fg.muted"
+        lineHeight="2"
         {...props}
         css={{
           marginTop: "1em",
@@ -447,12 +448,7 @@ export const MDXContent = (props: MDXProps) => {
   const { code, components = {} } = props
   const Component = useMDXComponent(code)
   return (
-    <Box
-      css={{
-        fontSize: "sm",
-        lineHeight: "1.75",
-      }}
-    >
+    <Box fontSize="sm">
       <Component components={{ ...sharedComponents, ...components }} />
     </Box>
   )

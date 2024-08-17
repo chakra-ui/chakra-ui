@@ -1,0 +1,203 @@
+---
+title: Flex and Grid
+description: JSX style props to control flex and grid layouts
+---
+
+## Flex Basis
+
+Use the `flexBasis` prop to set the initial main size of a flex item.
+
+```jsx
+<Flex>
+  <Box flexBasis="25%" />
+  <Box flexBasis="25%" />
+  <Box flexBasis="50%" />
+</Flex>
+```
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `flexBasis` | `flex-basis` | -              |
+
+## Flex Direction
+
+Use the `flexDir` or `flexDirection` prop to set the direction of the main axis
+in a flex container.
+
+```jsx
+<Box display="flex" flexDirection="column">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+When using `Flex` component, the `direction` prop is aliased to `flexDirection`.
+
+```jsx
+<Flex direction="column">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Flex>
+```
+
+| Prop                       | CSS Property     | Token Category |
+| -------------------------- | ---------------- | -------------- |
+| `flexDir`, `flexDirection` | `flex-direction` | -              |
+
+## Flex Wrap
+
+Use the `flexWrap` prop to set whether flex items are forced onto one line or
+can wrap onto multiple lines.
+
+```jsx
+<Box display="flex" flexWrap="wrap">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+When using `Flex` component, the `wrap` prop is aliased to `flexWrap`.
+
+```jsx
+<Flex wrap="wrap">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Flex>
+```
+
+| Prop       | CSS Property | Token Category |
+| ---------- | ------------ | -------------- |
+| `flexWrap` | `flex-wrap`  | -              |
+
+## Flex
+
+Use the `flex` prop to define the flexibility of a flex container or item.
+
+```jsx
+<Flex>
+  <Box flex="1" />
+  <Box />
+</Flex>
+```
+
+| Prop   | CSS Property | Token Category |
+| ------ | ------------ | -------------- |
+| `flex` | `flex`       | -              |
+
+## Flex Grow
+
+Use the `flexGrow` prop to set the flex grow factor of a flex item.
+
+```jsx
+<Flex>
+  <Box flexGrow="0" />
+  <Box flexGrow="1" />
+</Flex>
+```
+
+| Prop       | CSS Property | Token Category |
+| ---------- | ------------ | -------------- |
+| `flexGrow` | `flex-grow`  | -              |
+
+## Flex Shrink
+
+Use the `flexShrink` prop to set the flex shrink factor of a flex item.
+
+```jsx
+<Flex>
+  <Box flexShrink="0" />
+  <Box flexShrink="1" />
+</Flex>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `flexShrink` | `flex-shrink` | -              |
+
+## Order
+
+Use the `order` prop to set the order of a flex item.
+
+```jsx
+<Flex>
+  <Box order="0" />
+  <Box order="1" />
+</Flex>
+```
+
+| Prop    | CSS Property | Token Category |
+| ------- | ------------ | -------------- |
+| `order` | `order`      | -              |
+
+## Gap
+
+Use the `gap` prop to set the gap between items in a flex or grid container.
+
+```jsx
+<Flex gap="4">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Flex>
+```
+
+| Prop  | CSS Property | Token Category |
+| ----- | ------------ | -------------- |
+| `gap` | `gap`        | `spacing`      |
+
+## Grid Template Columns
+
+Use the `gridTemplateColumns` prop to define the columns of a grid container.
+
+```jsx
+<Box display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+When using `Grid` component, the `templateColumns` prop is aliased to
+`gridTemplateColumns`.
+
+```jsx
+<Grid templateColumns="repeat(3, minmax(0, 1fr))">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Grid>
+```
+
+## Grid Template Start/End
+
+Use the `gridTemplateStart` and `gridTemplateEnd` props to define the start and
+end of a grid container.
+
+```jsx
+<Box display="grid" gridTemplateColumns="repeat(3, minmax(0, 1fr))">
+  <Box>Item 1</Box>
+  <Box gridColumn="span 2 / span 2">Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop                | CSS Property          | Token Category |
+| ------------------- | --------------------- | -------------- |
+| `gridTemplateStart` | `grid-template-start` | -              |
+| `gridTemplateEnd`   | `grid-template-end`   | -              |
+
+## Grid Template Rows
+
+Use the `gridTemplateRows` prop to define the rows of a grid container.
+
+```jsx
+<Box display="grid" gap="4" gridTemplateRows="repeat(3, minmax(0, 1fr))">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
