@@ -87,6 +87,17 @@
         "default": "./dist/cjs/index.cjs"
       }
     },
+    "./anatomy": {
+      "source": "./src/anatomy/index.ts",
+      "import": {
+        "types": "./dist/types/anatomy/index.d.ts",
+        "default": "./dist/esm/anatomy/index.mjs"
+      },
+      "require": {
+        "types": "./dist/types/anatomy/index.d.ts",
+        "default": "./dist/cjs/anatomy/index.cjs"
+      }
+    },
     "./preset": {
       "source": "./src/preset.ts",
       "import": {
