@@ -62,15 +62,15 @@ direction and/or spacing between elements.
 </Stack>
 ```
 
-### Stack Dividers
+### Stack Separators
 
 In some scenarios, you may want to add dividers between stacked elements. Pass
-the `divider` prop and set its value to the `StackDivider` or any custom React
-element.
+the `separator` prop and set its value to the `StackSeparator` or any custom
+React element.
 
 ```jsx
 <VStack
-  divider={<StackDivider borderColor='gray.200' />}
+  separator={<StackSeparator borderColor='gray.200' />}
   gap={4}
   align='stretch'
 >
