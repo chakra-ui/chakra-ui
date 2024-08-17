@@ -1,1 +1,1 @@
-export * from "@ark-ui/react/portal"
+export { Portal, type PortalProps } from "@ark-ui/react/portal"
