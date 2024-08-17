@@ -53,7 +53,7 @@ export async function getConfig(options: Options): Promise<RollupOptions> {
     {
       format: "es",
       exports: "named",
-      entryFileNames: "[name].mjs",
+      entryFileNames: "[name].js",
       dir: resolve(dir, "dist/esm"),
       preserveModules: true,
     },

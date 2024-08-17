@@ -14,7 +14,7 @@ files.forEach((file) => {
     source: "./" + join(".", "src", baseName, "index.ts"),
     import: {
       type: "./" + join(".", "dist", "types", baseName, "index.d.ts"),
-      default: "./" + join(".", "dist", "esm", baseName, "index.mjs"),
+      default: "./" + join(".", "dist", "esm", baseName, "index.js"),
     },
     require: {
       types: "./" + join(".", "dist", "types", baseName, "index.d.ts"),

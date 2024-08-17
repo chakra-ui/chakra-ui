@@ -4,7 +4,7 @@
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"
@@ -80,7 +80,7 @@
       "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.ts",
-        "default": "./dist/esm/index.mjs"
+        "default": "./dist/esm/index.js"
       },
       "require": {
         "types": "./dist/types/index.d.ts",
@@ -91,7 +91,7 @@
       "source": "./src/anatomy/index.ts",
       "import": {
         "types": "./dist/types/anatomy/index.d.ts",
-        "default": "./dist/esm/anatomy/index.mjs"
+        "default": "./dist/esm/anatomy/index.js"
       },
       "require": {
         "types": "./dist/types/anatomy/index.d.ts",
@@ -102,7 +102,7 @@
       "source": "./src/preset.ts",
       "import": {
         "types": "./dist/types/preset.d.ts",
-        "default": "./dist/esm/preset.mjs"
+        "default": "./dist/esm/preset.js"
       },
       "require": {
         "types": "./dist/types/preset.d.ts",
@@ -113,7 +113,7 @@
       "source": "./src/preset-base.ts",
       "import": {
         "types": "./dist/types/preset-base.d.ts",
-        "default": "./dist/esm/preset-base.mjs"
+        "default": "./dist/esm/preset-base.js"
       },
       "require": {
         "types": "./dist/types/preset-base.d.ts",
@@ -124,7 +124,7 @@
       "source": "./src/system/index.ts",
       "import": {
         "types": "./dist/types/system/index.d.ts",
-        "default": "./dist/esm/system/index.mjs"
+        "default": "./dist/esm/system/index.js"
       },
       "require": {
         "types": "./dist/types/system/index.d.ts",
