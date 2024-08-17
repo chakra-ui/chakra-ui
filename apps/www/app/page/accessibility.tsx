@@ -1,8 +1,5 @@
-import { DemoCode } from "@/app/page/demo-code"
-import { BlitzFillIcon } from "@/app/page/icons"
 import {
   Button,
-  Circle,
   Container,
   Flex,
   HStack,
@@ -14,7 +11,10 @@ import {
   Text,
 } from "@chakra-ui/react"
 import Link from "next/link"
+import { Blob } from "./blob"
 import { AccessibilityDemo } from "./data/accessibility-demo"
+import { DemoCode } from "./demo-code"
+import { BlitzFillIcon } from "./icons"
 
 const Intro = () => (
   <Stack gap={{ base: "4", md: "10" }}>
@@ -155,27 +155,9 @@ export const Accessibility = async () => (
         pos="relative"
         direction={{ base: "column", md: "row" }}
       >
-        <Circle
-          size="765px"
-          pos="absolute"
-          top="-5px"
-          left="-50%"
-          bottom="-180px"
-          opacity="0.1"
-          filter="blur(250px)"
-          bg="teal.500"
-          mdDown={{ display: "none" }}
-        />
-        <Circle
-          size="765px"
-          pos="absolute"
-          top="-70%"
-          right="-20%"
-          opacity="0.1"
-          filter="blur(250px)"
-          bg="teal.500"
-          mdDown={{ display: "none" }}
-        />
+        <Blob size="765px" top="-5px" left="-50%" bottom="-180px" />
+        <Blob size="765px" top="-70%" right="-20%" />
+
         <Stack gap={{ base: "6", md: "12" }} flex="1">
           <Intro />
           <Testimonial />

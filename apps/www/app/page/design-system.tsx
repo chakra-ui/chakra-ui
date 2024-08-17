@@ -1,5 +1,3 @@
-import { DemoCode } from "@/app/page/demo-code"
-import { BlitzFillIcon } from "@/app/page/icons"
 import {
   Container,
   HStack,
@@ -9,6 +7,8 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react"
+import { DemoCode } from "./demo-code"
+import { BlitzFillIcon } from "./icons"
 
 const items = [
   {

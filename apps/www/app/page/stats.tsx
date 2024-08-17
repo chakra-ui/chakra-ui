@@ -2,7 +2,6 @@ import { getDiscordMembers } from "@/lib/get-discord-members"
 import { getGithubStars } from "@/lib/get-github-stars"
 import { getNpmDownloads } from "@/lib/get-npm-downloads"
 import {
-  Circle,
   Container,
   Flex,
   Heading,
@@ -15,7 +14,22 @@ import { BsGithub } from "react-icons/bs"
 import { FaDiscord } from "react-icons/fa"
 import { IconType } from "react-icons/lib"
 import { RiNpmjsFill } from "react-icons/ri"
-import { BlitzIcon } from ".//icons"
+import { Blob } from "./blob"
+import { BlitzIcon } from "./icons"
+
+const BlitzIconSection = () => (
+  <Icon
+    asChild
+    w="245px"
+    h="342px"
+    pos="absolute"
+    top="-28"
+    right="67px"
+    mdDown={{ display: "none" }}
+  >
+    <BlitzIcon />
+  </Icon>
+)
 
 const Intro = () => (
   <Stack gap={{ base: "6", md: "14" }} align="center">
@@ -154,32 +168,10 @@ export const Stats = async () => {
         align="center"
         maxW="100%"
       >
-        <Icon
-          asChild
-          w="245px"
-          h="342px"
-          pos="absolute"
-          top="-28"
-          right="67px"
-          mdDown={{ display: "none" }}
-        >
-          <BlitzIcon />
-        </Icon>
+        <BlitzIconSection />
         <Intro />
         <StatsList />
-
-        <Circle
-          w="765px"
-          h="765px"
-          rounded="100%"
-          opacity="0.15"
-          filter="blur(250px)"
-          bg="teal.500"
-          pos="absolute"
-          right="-32"
-          bottom="-50%"
-          mdDown={{ display: "none" }}
-        />
+        <Blob size="765px" right="-32" bottom="-50%" />
       </Stack>
     </Container>
   )
