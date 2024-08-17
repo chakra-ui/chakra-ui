@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/react",
-  "version": "3.0.0-next.13",
+  "version": "3.0.0-next.15",
   "description": "Responsive and accessible React UI components built with React and Emotion",
   "type": "module",
   "main": "dist/cjs/index.cjs",
@@ -120,15 +120,15 @@
         "default": "./dist/cjs/preset-base.cjs"
       }
     },
-    "./system": {
-      "source": "./src/system/index.ts",
+    "./styled-system": {
+      "source": "./src/styled-system/index.ts",
       "import": {
-        "types": "./dist/types/system/index.d.ts",
-        "default": "./dist/esm/system/index.js"
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/esm/styled-system/index.js"
       },
       "require": {
-        "types": "./dist/types/system/index.d.ts",
-        "default": "./dist/cjs/system/index.cjs"
+        "types": "./dist/types/styled-system/index.d.ts",
+        "default": "./dist/cjs/styled-system/index.cjs"
       }
     },
     "./package.json": "./package.json"

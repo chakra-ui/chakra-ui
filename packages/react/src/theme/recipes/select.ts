@@ -27,7 +27,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       _invalid: {
         borderColor: "border.error",
       },
-      focusRing: "outside",
+      focusVisibleRing: "outside",
     },
     indicator: {
       _icon: {
@@ -45,7 +45,7 @@ export const selectSlotRecipe = defineSlotRecipe({
       maxH: "96",
       overflowY: "auto",
       _open: {
-        motionStyle: "slide-fade-in",
+        animationStyle: "slide-fade-in",
         animationDuration: "faster",
       },
       _closed: {

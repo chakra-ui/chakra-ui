@@ -2,7 +2,6 @@
 
 import {
   Center,
-  Circle,
   Container,
   Grid,
   Heading,
@@ -10,6 +9,7 @@ import {
   Text,
   chakra,
 } from "@chakra-ui/react"
+import { Blob } from "./blob"
 import {
   Ethereum,
   Lattice,
@@ -19,20 +19,6 @@ import {
   Udacity,
   Xata,
 } from "./logos"
-
-const Blob = chakra(Circle, {
-  base: {
-    w: "489px",
-    h: "489px",
-    pos: "absolute",
-    bottom: "0",
-    left: "-365px",
-    opacity: "0.25",
-    filter: "blur(250px)",
-    bg: "teal.500",
-    mdDown: { display: "none" },
-  },
-})
 
 const Description = () => (
   <Stack
@@ -113,7 +99,7 @@ const PartnerGridRow = () => (
 export const Partners = () => (
   <Container>
     <Stack gap="8" pos="relative">
-      <Blob />
+      <Blob size="489px" bottom="0" left="-365px" />
       <Description />
       <PartnerGridRow />
     </Stack>

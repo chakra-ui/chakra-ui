@@ -1,6 +1,5 @@
 import {
   Center,
-  Circle,
   Container,
   Flex,
   Heading,
@@ -9,6 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Blob } from "./blob"
 import {
   BlitzIcon,
   GatsbyIcon,
@@ -17,6 +17,20 @@ import {
   RemixJSIcon,
   ViteIcon,
 } from "./icons"
+
+const BlitzIconSection = () => (
+  <Icon
+    asChild
+    w="245px"
+    h="342px"
+    pos="absolute"
+    top="-28"
+    left="-20"
+    mdDown={{ display: "none" }}
+  >
+    <BlitzIcon />
+  </Icon>
+)
 
 const Intro = () => (
   <Stack gap={{ base: "4", md: "8" }} align="center">
@@ -106,30 +120,10 @@ export const Frameworks = async () => {
         align="center"
         maxW="100%"
       >
-        <Icon
-          asChild
-          w="245px"
-          h="342px"
-          pos="absolute"
-          top="-28"
-          left="-20"
-          mdDown={{ display: "none" }}
-        >
-          <BlitzIcon />
-        </Icon>
+        <BlitzIconSection />
         <Intro />
         <FrameworksList />
-        <Circle
-          size="765px"
-          rounded="100%"
-          opacity="0.1"
-          filter="blur(250px)"
-          bg="teal.500"
-          pos="absolute"
-          top="-80%"
-          left="-25%"
-          mdDown={{ display: "none" }}
-        />
+        <Blob size="765px" top="-80%" left="-25%" />
       </Stack>
     </Container>
   )

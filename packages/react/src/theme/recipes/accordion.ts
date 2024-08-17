@@ -23,8 +23,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
         outlineColor: "focusRing",
       },
       _disabled: {
-        opacity: "0.5",
-        cursor: "not-allowed",
+        layerStyle: "disabled",
       },
     },
     itemBody: {

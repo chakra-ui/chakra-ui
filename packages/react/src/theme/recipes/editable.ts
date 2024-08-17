@@ -29,7 +29,7 @@ export const editableSlotRecipe = defineSlotRecipe({
       transitionProperty: "common",
       transitionDuration: "normal",
       width: "full",
-      _focusVisible: { boxShadow: "outline" },
+      focusVisibleRing: "inside",
       _placeholder: { opacity: 0.6 },
     },
     textarea: {
@@ -40,7 +40,7 @@ export const editableSlotRecipe = defineSlotRecipe({
       transitionProperty: "common",
       transitionDuration: "normal",
       width: "full",
-      _focusVisible: { boxShadow: "outline" },
+      focusVisibleRing: "inside",
       _placeholder: { opacity: 0.6 },
     },
   },

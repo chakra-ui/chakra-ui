@@ -1,0 +1,130 @@
+---
+title: Dark Mode
+description: How to use dark mode in Chakra UI applications
+---
+
+Chakra relies on the `next-themes` library to provide dark mode support. During
+the installation process, the snippets required to get started are added to your
+project via the CLI.
+
+## Setup
+
+If you haven't already, you can add the `next-themes` library to your project
+via the CLI.
+
+```bash
+npx @chakra-ui/cli@next snippet add color-mode
+```
+
+The generated snippets consists of the following:
+
+- `ColorModeProvider`: composes the `next-themes` provider component
+- `useColorMode`: provides the current color mode and a function to toggle the
+  color mode
+- `useColorModeValue`: returns the correct value based on the current color mode
+- `ColorModeButton`: can be used to toggle the color mode
+
+## Usage
+
+Wrap your app with the `ColorModeProvider` and use the `useColorMode` hook to
+access and toggle the color mode.
+
+```tsx
+import { ColorModeProvider } from "@/components/ui/color-mode"
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <ChakraProvider theme={defaultSystem}>
+      <ColorModeProvider>{children}</ColorModeProvider>
+    </ChakraProvider>
+  )
+}
+```
+
+To trigger the dark mode version of components, set the `dark` className on any
+parent element, or the root element of your application. This is what
+`next-themes` does under the hood.
+
+### Adding the dark mode toggle
+
+Use the `ColorModeButton` component to toggle the color mode.
+
+```tsx
+import { ColorModeButton } from "@/components/ui/color-mode"
+
+export default function Page({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <ColorModeButton />
+      {children}
+    </>
+  )
+}
+```
+
+### Styling dark mode
+
+Use the `_dark` condition to style components for dark mode.
+
+```tsx
+<Box bg={{ base: "white", _dark: "black" }}>
+  <Text>Hello</Text>
+</Box>
+```
+
+or
+
+```tsx
+<Box bg="white" _dark={{ bg: "black" }}>
+  <Text>Hello</Text>
+</Box>
+```
+
+## Using semantic tokens
+
+To reduce the amount of code you need to write, prefer to use semantic tokens to
+style components for dark mode. This ensures the light and dark mode styles are
+applied automatically and consistently.
+
+Chakra provides a set of semantic tokens that you can use to style components
+for dark mode. Learn more about
+[semantic tokens](/docs/design-tokens/colors#semantic-tokens).
+
+```tsx
+<Box bg="bg.muted">
+  <Text>Hello</Text>
+</Box>
+```
+
+## Forcing dark mode
+
+### Element specific dark mode
+
+To force dark mode, you can set the `dark` className on any parent element, or
+the root element of your application.
+
+```tsx /className="dark"/
+<Box bg="black" className="dark">
+  <Box bg="bg.muted">
+    <Text>Hello</Text>
+  </Box>
+</Box>
+```
+
+### Page specific dark mode
+
+Use the `ColorModeProvider` component to set the dark mode for a page.
+
+```tsx
+<ColorModeProvider forcedTheme="dark">
+  <Box bg="black" className="dark">
+    <Box bg="bg.muted">
+      <Text>Hello</Text>
+    </Box>
+  </Box>
+</ColorModeProvider>
+```
+
+> Follow this `next-themes` guide to learn more about
+> [forcing color mode](https://github.com/pacocoursey/next-themes#force-page-to-a-theme).

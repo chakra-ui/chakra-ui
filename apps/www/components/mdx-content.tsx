@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import {
+  Absolute,
   Alert,
+  Badge,
   Blockquote,
   Box,
   HStack,
@@ -199,11 +201,12 @@ const sharedComponents = {
         css={{
           fontSize: "0.925em",
           letterSpacing: "-0.01em",
-          borderRadius: "sm",
+          borderRadius: "md",
           borderWidth: "1px",
-          bg: "bg.muted",
+          bg: "bg",
+          color: "fg",
           whiteSpace: "pre",
-          padding: "0.15em 0.25em",
+          padding: "0.2em 0.4em",
         }}
       />
     )
@@ -305,10 +308,9 @@ const sharedComponents = {
     )
   },
   callout(props: any) {
-    let status = props["data-type"]
-    if (status === "note") status = "neutral"
+    const status = props["data-type"]
     return (
-      <Alert.Root variant="outline" status={status} ps="6" my="4">
+      <Alert.Root variant="outline" status="neutral" ps="6" mt="6" mb="4">
         <Box
           position="absolute"
           h="100%"
@@ -316,9 +318,15 @@ const sharedComponents = {
           top="8px"
           maxHeight="calc(100% - 16px)"
           insetStart="2"
-          bg="colorPalette.500"
+          bg={{ base: "gray.500", _dark: "gray.600" }}
         />
         <Alert.Description color="fg">
+          <Absolute top="-2" insetStart="2">
+            <Badge variant="solid" rounded="0">
+              <Alert.Indicator fontSize="xs" color="inherit" />
+              {status}
+            </Badge>
+          </Absolute>
           {props.children.props.children}
         </Alert.Description>
       </Alert.Root>
@@ -405,7 +413,7 @@ const sharedComponents = {
           bg="#1E1E1E"
           px="4"
           py="3"
-          color="white"
+          color="gray.300"
           roundedTop="lg"
           borderBottomWidth="1px"
           borderBottomColor="gray.800"

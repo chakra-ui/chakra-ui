@@ -2,4 +2,4 @@
 "@chakra-ui/cli": minor
 ---
 
-Rename `compositions` command to `snippets` for better intuitiveness
+Rename `compositions` command to `snippet` for better intuitiveness

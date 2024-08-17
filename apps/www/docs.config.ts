@@ -85,22 +85,23 @@ const docsLinks: NavItem = {
     },
 
     {
-      title: "Style Props",
-      url: "style-props",
+      title: "Styling",
+      url: "styling",
       items: [
         {
           title: "Concepts",
           items: [
             { title: "Overview", url: "overview" },
-            { title: "Dark Mode", url: "dark-mode" },
-            { title: "Responsive Design", url: "responsive-design" },
             { title: "Chakra Factory", url: "chakra-factory" },
+            { title: "Responsive Design", url: "responsive-design" },
+            { title: "Dark Mode", url: "dark-mode" },
             {
               title: "Color Opacity Modifier",
               url: "color-opacity-modifier",
             },
             { title: "Virtual Color", url: "virtual-color" },
             { title: "Conditional Styles", url: "conditional-styles" },
+            { title: "Focus Ring", url: "focus-ring" },
           ],
         },
         {

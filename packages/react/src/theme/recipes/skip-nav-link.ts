@@ -5,8 +5,8 @@ export const skipNavLinkRecipe = defineRecipe({
   base: {
     borderRadius: "md",
     fontWeight: "semibold",
+    focusVisibleRing: "outside",
     _focusVisible: {
-      boxShadow: "outline",
       padding: "4",
       position: "fixed",
       top: "6",

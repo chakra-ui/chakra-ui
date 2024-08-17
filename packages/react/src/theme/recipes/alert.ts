@@ -7,11 +7,10 @@ export const alertSlotRecipe = defineSlotRecipe({
 
   base: {
     root: {
-      width: "100%",
+      width: "full",
       display: "flex",
       alignItems: "flex-start",
       position: "relative",
-      overflow: "hidden",
     },
     title: {
       fontWeight: "medium",

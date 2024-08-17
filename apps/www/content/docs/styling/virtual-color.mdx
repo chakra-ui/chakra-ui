@@ -1,0 +1,102 @@
+---
+title: Virtual Color
+description: Create color placeholders for better theming and customization.
+---
+
+## Overview
+
+Chakra allows you to create a virtual color or color placeholder in your
+project. The `colorPalette` property is how you create virtual color.
+
+```js
+<Box
+  colorPalette="blue"
+  bg={{ base: "colorPalette.100", _hover: "colorPalette.200" }}
+>
+  Hello World
+</Box>
+```
+
+This will translate to the `blue.100` background color and `blue.200` background
+color on hover.
+
+## Usage
+
+The fundamental requirement for virtual colors is that your colors must have a
+consistent naming convention. By default, Chakra use `50-950` color values for
+each color we provide.
+
+This makes it easier for you to create and use virtual colors. Let's say we need
+to create a themable outline button from scratch.
+
+```jsx
+<chakra.button
+  borderWidth="1px"
+  colorPalette="red"
+  borderColor="colorPalette.500"
+  _hover={{
+    borderColor: "colorPalette.600",
+  }}
+>
+  Click me
+</chakra.button>
+```
+
+### Recipes
+
+Virtual colors are most useful when used with recipes.
+
+```js
+const buttonRecipe = defineRecipe({
+  base: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    // set the color palette
+    colorPalette: "blue",
+  },
+  variants: {
+    variant: {
+      primary: {
+        bg: "colorPalette.500",
+        color: "white",
+      },
+      outline: {
+        borderWidth: "1px",
+        borderColor: "colorPalette.500",
+        _hover: {
+          borderColor: "colorPalette.600",
+        },
+      },
+    },
+  },
+})
+```
+
+### Components
+
+Most built-in components in Chakra support virtual colors.
+
+```jsx
+<Button colorPalette="blue">Click me</Button>
+<Button colorPalette="red" variant="outline">
+  Click me
+</Button>
+```
+
+### Dark mode
+
+Another amazing thing you can do with virtual colors is to use them with dark
+mode.
+
+```jsx
+<Box
+  colorPalette="blue"
+  bg={{ base: "colorPalette.600", _dark: "colorPalette.400" }}
+>
+  Hello World
+</Box>
+```
+
+> This element will have a `blue.600` background color in light mode and a
+> `blue.400` background color in dark mode.

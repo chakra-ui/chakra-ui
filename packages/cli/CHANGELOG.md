@@ -1,5 +1,15 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.15
+
+## 3.0.0-next.14
+
+### Minor Changes
+
+- [`d50d72c`](https://github.com/chakra-ui/chakra-ui/commit/d50d72c2bcdf147caa273f3a1aa1e0cd67da38d3)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Rename
+  `compositions` command to `snippet` for better intuitiveness
+
 ## 3.0.0-next.13
 
 ## 3.0.0-next.12

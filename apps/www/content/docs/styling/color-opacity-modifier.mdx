@@ -1,0 +1,44 @@
+---
+title: Color opacity modifier
+description: How to dynamically set the opacity of a raw color or color token
+---
+
+Every color related style property can use the
+[`color-mix`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix)
+shortcut to apply opacity to a color.
+
+## Syntax
+
+The general syntax is `{color}/{opacity}`. For example: `bg="red.300/40"`.
+
+## Usage
+
+```tsx
+<Text bg="red.300/40" color="white">
+  Hello World
+</Text>
+```
+
+This will generate something like this:
+
+```css {2,3}
+.css-sxdf {
+  --mix-background: color-mix(in srgb, var(--colors-red-300) 40%, transparent);
+  background: var(--mix-background, var(--colors-red-300));
+  color: var(--colors-white);
+}
+```
+
+### CSS Variables
+
+This feature can be used in css variables as well. This is useful for creating
+one-off color token in a component.
+
+The token reference syntax `{}` is required for this to work.
+
+```tsx
+<Box css={{ "--bg": "{colors.red.400/40}" }}>
+  <Text>Hello World</Text>
+  <Box bg="var(--bg)" />
+</Box>
+```

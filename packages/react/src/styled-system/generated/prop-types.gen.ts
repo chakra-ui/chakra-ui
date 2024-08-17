@@ -115,6 +115,7 @@ export interface UtilityValues {
   gridRowGap: Tokens["spacing"]
   outlineColor: Tokens["colors"]
   focusRing: "outside" | "inside" | "mixed" | "none"
+  focusVisibleRing: "outside" | "inside" | "mixed" | "none"
   focusRingColor: Tokens["colors"]
   focusRingWidth: Tokens["borderWidths"] | CssProperties["outlineWidth"]
   aspectRatio: Tokens["aspectRatios"]
@@ -222,7 +223,7 @@ export interface UtilityValues {
     | "indicator.start"
     | "indicator.end"
     | "disabled"
-  motionStyle: "slide-fade-in" | "slide-fade-out" | "scale-fade-in" | "scale-fade-out"
+  animationStyle: "slide-fade-in" | "slide-fade-out" | "scale-fade-in" | "scale-fade-out"
   animationName:
     | "spin"
     | "pulse"
