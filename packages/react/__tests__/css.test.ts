@@ -395,7 +395,7 @@ describe("css", () => {
 
   test("merge layer styles", () => {
     const result = css({
-      layerStyle: "fill.subtle",
+      layerStyle: "fill.muted",
       color: "inherit",
     })
 

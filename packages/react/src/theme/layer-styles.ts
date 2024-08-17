@@ -2,7 +2,7 @@ import { defineLayerStyles } from "../styled-system"
 
 export const layerStyles = defineLayerStyles({
   // fill: some background color + color combination
-  "fill.subtle": {
+  "fill.muted": {
     value: {
       background: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
       color: { base: "colorPalette.800", _dark: "colorPalette.200" },
@@ -14,8 +14,8 @@ export const layerStyles = defineLayerStyles({
       color: { base: "colorPalette.800", _dark: "colorPalette.200" },
       boxShadow: "inset 0 0 0px 1px var(--shadow-color)",
       boxShadowColor: {
-        base: "colorPalette.300",
-        _dark: "colorPalette.200/10",
+        base: "colorPalette.200",
+        _dark: "colorPalette.200/20",
       },
     },
   },
@@ -27,54 +27,21 @@ export const layerStyles = defineLayerStyles({
   },
 
   // outline: some border color + color combination
-  "outline.subtle": {
+  "outline.muted": {
     value: {
       color: { base: "colorPalette.800", _dark: "colorPalette.200" },
       boxShadow: "inset 0 0 0px 1px var(--shadow-color)",
       boxShadowColor: {
-        base: "colorPalette.300",
-        _dark: "colorPalette.200/10",
+        base: "colorPalette.200",
+        _dark: "colorPalette.200/20",
       },
     },
   },
   "outline.solid": {
     value: {
       borderWidth: "1px",
-      borderColor: "colorPalette.500",
-      color: "colorPalette.600",
-    },
-  },
-
-  // ghost: for menu items, nav links, buttons, etc.
-  "ghost.subtle": {
-    value: {
-      "--interative-color": "colors.bg.muted",
-      _hover: {
-        background: "var(--interative-color)",
-      },
-      _highlighted: {
-        background: "var(--interative-color)",
-      },
-      _selected: {
-        background: "var(--interative-color)",
-      },
-    },
-  },
-  "ghost.solid": {
-    value: {
-      "--interative-color": "colors.colorPalette.500",
-      _hover: {
-        background: "var(--interative-color)",
-        color: "white",
-      },
-      _highlighted: {
-        background: "var(--interative-color)",
-        color: "white",
-      },
-      _selected: {
-        background: "var(--interative-color)",
-        color: "white",
-      },
+      borderColor: "colorPalette.600",
+      color: { base: "colorPalette.800", _dark: "colorPalette.400" },
     },
   },
 

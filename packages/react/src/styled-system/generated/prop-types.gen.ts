@@ -211,13 +211,11 @@ export interface UtilityValues {
   divideStyle: CssProperties["borderStyle"]
   textStyle: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
   layerStyle:
-    | "fill.subtle"
+    | "fill.muted"
     | "fill.surface"
     | "fill.solid"
-    | "outline.subtle"
+    | "outline.muted"
     | "outline.solid"
-    | "ghost.subtle"
-    | "ghost.solid"
     | "indicator.bottom"
     | "indicator.top"
     | "indicator.start"

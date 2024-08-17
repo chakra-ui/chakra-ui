@@ -19,7 +19,7 @@ import { LuArrowUpRight } from "react-icons/lu"
 import * as runtime from "react/jsx-runtime"
 import { Card, CardGroup } from "./card"
 import { ComponentGrid } from "./component-grid"
-import { Example, ExampleTabs } from "./example"
+import { Example, ExamplePreview, ExampleTabs } from "./example"
 import { LangIcon } from "./lang-icon"
 import { PropTable } from "./prop-table"
 import { ResourceIcon } from "./resource-icon"
@@ -83,6 +83,9 @@ const sharedComponents = {
         }}
       />
     )
+  },
+  strong(props: any) {
+    return <Box as="strong" fontWeight="semibold" color="fg" {...props} />
   },
   h1(props: any) {
     return (
@@ -203,7 +206,7 @@ const sharedComponents = {
           letterSpacing: "-0.01em",
           borderRadius: "md",
           borderWidth: "1px",
-          bg: "bg",
+          bg: "bg.muted",
           color: "fg",
           whiteSpace: "pre",
           padding: "0.2em 0.4em",
@@ -223,7 +226,7 @@ const sharedComponents = {
             paddingInlineStart: "0.4em",
             listStyleType: "decimal",
             "&::marker": {
-              color: "fg.muted",
+              color: "fg.muted/50",
             },
           },
           "& ol, & ul": {
@@ -247,7 +250,7 @@ const sharedComponents = {
             paddingInlineStart: "0.4em",
             listStyleType: "disc",
             "&::marker": {
-              color: "fg.muted",
+              color: "fg.muted/50",
             },
           },
           "& ol, & ul": {
@@ -363,6 +366,7 @@ const sharedComponents = {
   },
   Example,
   ExampleTabs,
+  ExamplePreview,
   card(props: any) {
     return (
       <Card title={props.title} href={props.href} icon={props.icon}>

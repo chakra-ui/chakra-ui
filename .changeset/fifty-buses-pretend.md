@@ -6,27 +6,19 @@ Add support for built-in layer styles to help prototype faster with automatic
 dark mode. Paired with `colorPalette`, you can create beautiful designs with
 little code that adapts to dark mode automatically.
 
-**Fill Layer Styles:** `fill.subtle`, `fill.solid`, `fill.surface`
+**Fill Layer Styles:** `fill.muted`, `fill.solid`, `fill.surface`
 
 ```jsx
-<Box layerStyle="fill.subtle" colorPalette="red">
+<Box layerStyle="fill.muted" colorPalette="red">
   This is a subtle fill layer
 </Box>
 ```
 
-**Border Layer Styles:** `outline.subtle`, `outline.solid`
+**Border Layer Styles:** `outline.muted`, `outline.solid`
 
 ```jsx
-<Box layerStyle="outline.subtle" colorPalette="red">
+<Box layerStyle="outline.muted" colorPalette="red">
   This is a subtle outline layer
-</Box>
-```
-
-**Ghost:** `ghost.subtle`, `ghost.solid`
-
-```jsx
-<Box layerStyle="ghost.subtle" colorPalette="red">
-  This is a subtle ghost layer
 </Box>
 ```
 
@@ -50,7 +42,7 @@ code.
 
 ```jsx
 <Box
-  layerStyle="fill.subtle"
+  layerStyle="fill.muted"
   _hover={{ layerStyle: "outline.solid" }}
   colorPalette="red"
 >

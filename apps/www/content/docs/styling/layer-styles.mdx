@@ -1,0 +1,72 @@
+---
+title: Layer Styles
+description: Using layer styles to define visual properties.
+---
+
+## Overview
+
+Layer styles allows you to define visual properties. The common properties are:
+
+- Color or text color
+- Background color
+- Border width and border color
+- Box shadow
+- Opacity
+
+## Defining layer styles
+
+Layer styles are defined in the `layerStyles` property of the theme.
+
+```js title="layer-styles.ts"
+import { defineLayerStyles } from "@chakra-ui/react"
+
+const layerStyles = defineLayerStyles({
+  container: {
+    description: "container styles",
+    value: {
+      bg: "gray.50",
+      border: "2px solid",
+      borderColor: "gray.500",
+    },
+  },
+})
+```
+
+## Built-in layer styles
+
+Chakra UI provides a set of built-in layer styles.
+
+<ExamplePreview name="tokens/layer-style" />
+
+## Updating the theme
+
+To use the layer styles, we need to update the `theme` object.
+
+```js title="theme.ts"
+import { createSystem, defineConfig, mergeConfigs } from "@chakra-ui/react"
+import { layerStyles } from "./layer-styles"
+
+const config = defineConfig({
+  theme: {
+    layerStyles,
+  },
+})
+
+const systemConfig = mergeConfigs(defaultConfig, config)
+
+export default createSystem(systemConfig)
+```
+
+After updating the theme, you need to run this command to generate the typings.
+
+```bash
+npx @chakra-ui/cli@next typegen
+```
+
+## Using layer styles
+
+Now we can use `layerStyle` property in our components.
+
+```jsx
+<Box layerStyle="container">This is inside a container style</Box>
+```

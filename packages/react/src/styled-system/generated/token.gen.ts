@@ -154,14 +154,14 @@ export type Token =
   | "durations.fastest"
   | "durations.faster"
   | "durations.fast"
-  | "durations.normal"
+  | "durations.moderate"
   | "durations.slow"
   | "durations.slower"
   | "durations.slowest"
-  | "easings.linear"
-  | "easings.in"
-  | "easings.out"
-  | "easings.in-out"
+  | "easings.ease-in"
+  | "easings.ease-out"
+  | "easings.ease-in-out"
+  | "easings.ease-in-smooth"
   | "fonts.heading"
   | "fonts.body"
   | "fonts.mono"
@@ -632,9 +632,9 @@ export type ColorsToken =
   | "colorPalette.info"
   | "colorPalette.disabled"
 
-export type DurationsToken = "fastest" | "faster" | "fast" | "normal" | "slow" | "slower" | "slowest"
+export type DurationsToken = "fastest" | "faster" | "fast" | "moderate" | "slow" | "slower" | "slowest"
 
-export type EasingsToken = "linear" | "in" | "out" | "in-out"
+export type EasingsToken = "ease-in" | "ease-out" | "ease-in-out" | "ease-in-smooth"
 
 export type FontsToken = "heading" | "body" | "mono"
 

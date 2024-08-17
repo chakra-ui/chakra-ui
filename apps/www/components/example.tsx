@@ -19,7 +19,7 @@ interface Props {
 
 function formatComponentName(name: string) {
   return name
-    .split("-")
+    .split(/[-\/]/)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join("")
 }
@@ -110,7 +110,7 @@ export const ExampleLinkTree = (props: LinkTreeProps) => {
                 py="0.5"
                 px="2"
                 _currentPage={{
-                  layerStyle: "fill.subtle",
+                  layerStyle: "fill.muted",
                   colorPalette: "gray",
                 }}
               >

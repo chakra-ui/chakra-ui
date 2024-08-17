@@ -1,8 +1,16 @@
-import { Center, For, SimpleGrid, Stack, Text } from "../src"
+import type { Meta } from "@storybook/react"
+import { Box, Center, For, SimpleGrid, Stack, Text } from "../src"
 
 export default {
   title: "Foundations / Tokens",
-}
+  decorators: [
+    (Story) => (
+      <Box p="10">
+        <Story />
+      </Box>
+    ),
+  ],
+} satisfies Meta
 
 export const Shadows = () => {
   return (
@@ -23,6 +31,10 @@ export const Shadows = () => {
     </Stack>
   )
 }
+
+export { TokensAnimationStyle as AnimationStyle } from "compositions/examples/tokens/animation-style"
+export { TokensLayerStyle as LayerStyle } from "compositions/examples/tokens/layer-style"
+export { TokensTextStyles as TextStyles } from "compositions/examples/tokens/text-styles"
 
 export const StatusTokens = () => {
   return (

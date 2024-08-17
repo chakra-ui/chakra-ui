@@ -1,0 +1,58 @@
+---
+title: Animation Styles
+description: Using animation styles to define reusable motion properties.
+---
+
+## Overview
+
+Animation styles allow you to define reusable animation properties. The goal is
+to reduce the amount of code needed to animate components.
+
+The supported animation styles are:
+
+- **Animation**: animation composition, delay, direction, duration, fill mode,
+  iteration count, name, play state, timing function
+
+- **Animation range**: animation range, start, end, timeline
+
+- **Transform origin**: transform origin
+
+## Defining animation styles
+
+Animation styles are defined in the `animationStyles` property of the theme.
+
+Here's an example of an animation style:
+
+```js
+import { defineAnimationStyles } from "@chakra-ui/react"
+
+const animationStyles = defineAnimationStyles({
+  bounceFadeIn: {
+    value: {
+      animationName: "bounce, fade-in",
+      animationDuration: "1s",
+      animationTimingFunction: "ease-in-out",
+      animationIterationCount: "infinite",
+    },
+  },
+})
+```
+
+## Built-in animation styles
+
+Chakra UI provides a set of built-in animation styles that you can use.
+
+<ExamplePreview name="tokens/animation-style" />
+
+These animation styles can be composed with other styles like `_open` and
+`_closed` which map to the `data-state=open|closed` attribute.
+
+```jsx
+<Box
+  data-state="open"
+  animationDuration="slow"
+  animationStyle={{ _open: "slide-fade-in", _closed: "slide-fade-out" }}
+>
+  > This content will fade in
+</Box>
+```

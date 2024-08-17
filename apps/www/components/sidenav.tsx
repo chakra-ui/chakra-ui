@@ -33,12 +33,12 @@ export const SideNav = (props: SideNavProps) => {
             rounded="sm"
             color="fg.muted"
             _hover={{
-              layerStyle: "fill.subtle",
+              layerStyle: "fill.muted",
               colorPalette: "gray",
             }}
             _currentPage={{
               fontWeight: "medium",
-              layerStyle: "fill.subtle",
+              layerStyle: "fill.muted",
               colorPalette: "gray",
             }}
           >

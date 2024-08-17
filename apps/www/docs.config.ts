@@ -107,9 +107,9 @@ const docsLinks: NavItem = {
         {
           title: "Compositions",
           items: [
-            { title: "Text Style", url: "text-style" },
-            { title: "Layer Style", url: "layer-style" },
-            { title: "Animation Style", url: "animation-style" },
+            { title: "Text Styles", url: "text-styles" },
+            { title: "Layer Styles", url: "layer-styles" },
+            { title: "Animation Styles", url: "animation-styles" },
           ],
         },
         {
