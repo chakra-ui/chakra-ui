@@ -28,8 +28,8 @@ const ensureFileSync = (path: string) => {
 }
 
 const paths = {
-  cjs: join("dist", "index.js"),
-  mjs: join("dist", "index.mjs"),
+  cjs: join("dist", "index.cjs"),
+  mjs: join("dist", "index.js"),
   dts: join("dist", "index.d.ts"),
 }
 

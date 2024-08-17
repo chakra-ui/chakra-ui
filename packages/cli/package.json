@@ -15,8 +15,8 @@
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "type": "module",
-  "main": "dist/esm/index.mjs",
-  "module": "dist/esm/index.mjs",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "sideEffects": false,
   "files": [
@@ -73,7 +73,7 @@
       "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.ts",
-        "default": "./dist/esm/index.mjs"
+        "default": "./dist/esm/index.js"
       }
     },
     "./package.json": "./package.json"

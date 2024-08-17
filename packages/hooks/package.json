@@ -8,12 +8,13 @@
     "chakra-ui",
     "utilities"
   ],
+  "type": "module",
   "sideEffects": false,
   "author": "Segun Adebayo <sage@adebayosegun.com>",
   "homepage": "https://github.com/chakra-ui/chakra-ui#readme",
   "license": "MIT",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"
@@ -53,7 +54,7 @@
       "source": "./src/index.ts",
       "import": {
         "types": "./dist/types/index.d.ts",
-        "default": "./dist/esm/index.mjs"
+        "default": "./dist/esm/index.js"
       },
       "require": {
         "types": "./dist/types/index.d.ts",
