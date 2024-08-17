@@ -1,0 +1,43 @@
+---
+title: Display
+description: Style props for styling display of an element.
+---
+
+## Display Property
+
+```jsx
+<Box display="flex" />
+
+// responsive
+<Box display={{ base: "none", md: "block" }} />
+```
+
+| Prop      | CSS Property | Token Category |
+| --------- | ------------ | -------------- |
+| `display` | `display`    | -              |
+
+## Hiding Elements
+
+### Hide From
+
+Use the `hideFrom` prop to hide an element from a specific breakpoint.
+
+```jsx
+<Box display="flex" hideFrom="md" />
+```
+
+| Prop       | CSS Property | Token Category |
+| ---------- | ------------ | -------------- |
+| `hideFrom` | `display`    | `breakpoints`  |
+
+### Hide Below
+
+Use the `hideBelow` prop to hide an element below a specific breakpoint.
+
+```jsx
+<Box display="flex" hideBelow="md" />
+```
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `hideBelow` | `display`    | `breakpoints`  |
