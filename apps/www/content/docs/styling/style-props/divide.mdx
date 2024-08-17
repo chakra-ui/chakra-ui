@@ -1,0 +1,64 @@
+---
+title: Divide
+description: JSX style props to add dividers between elements
+---
+
+## Divide X
+
+Use the `divideX` prop to add a divider between elements horizontally.
+
+```jsx
+<Box divideX="2px">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Box>
+```
+
+| Prop      | CSS Property                | Token Category |
+| --------- | --------------------------- | -------------- |
+| `divideX` | `border-inline-start-width` | -              |
+
+## Divide Y
+
+Use the `divideY` prop to add a divider between elements vertically.
+
+```jsx
+<Box divideY="2px">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Box>
+```
+
+| Prop      | CSS Property       | Token Category |
+| --------- | ------------------ | -------------- |
+| `divideY` | `border-top-width` | -              |
+
+## Divide Color
+
+Use the `divideColor` prop to add a divider color.
+
+```jsx
+<Box divideY="2px" divideColor="red.200">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Box>
+```
+
+| Prop          | CSS Property       | Token Category |
+| ------------- | ------------------ | -------------- |
+| `divideColor` | `border-top-color` | -              |
+
+## Divide Style
+
+Use the `divideStyle` prop to add a divider style.
+
+```jsx
+<Box divideY="2px" divideStyle="dashed">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Box>
+```
+
+| Prop          | CSS Property   | Token Category |
+| ------------- | -------------- | -------------- |
+| `divideStyle` | `border-style` | -              |
