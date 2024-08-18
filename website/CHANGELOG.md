@@ -1,5 +1,23 @@
 # @chakra-ui/docs
 
+## 3.0.0-next.16
+
+### Patch Changes
+
+- [#8740](https://github.com/chakra-ui/chakra-ui/pull/8740)
+  [`d5a225f`](https://github.com/chakra-ui/chakra-ui/commit/d5a225f1bc3eca8be67a69b78429481cf802372b)
+  Thanks [@Pagebakers](https://github.com/Pagebakers)! - Use correct extension
+  for ESM exports
+
+- Updated dependencies
+  [[`d5a225f`](https://github.com/chakra-ui/chakra-ui/commit/d5a225f1bc3eca8be67a69b78429481cf802372b),
+  [`651561b`](https://github.com/chakra-ui/chakra-ui/commit/651561bd43dd90894203e22d36b125453016f5f3)]:
+  - @chakra-ui/props-docs@3.0.0-next.16
+  - @chakra-ui/hooks@3.0.0-next.16
+  - @chakra-ui/react@3.0.0-next.16
+  - @chakra-ui/utils@3.0.0-next.16
+  - @chakra-ui/cli@3.0.0-next.16
+
 ## 3.0.0-next.15
 
 ### Patch Changes
