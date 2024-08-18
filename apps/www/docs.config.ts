@@ -38,11 +38,13 @@ const docsLinks: NavItem = {
       url: "theming",
       items: [
         {
-          title: "Overview",
+          title: "Concepts",
           items: [
-            { title: "Introduction", url: "overview" },
+            { title: "Overview", url: "overview" },
             { title: "Token", url: "token" },
             { title: "Semantic Tokens", url: "semantic-tokens" },
+            { title: "Recipe", url: "recipe" },
+            { title: "Slot Recipes", url: "slot-recipes" },
           ],
         },
         {
@@ -62,15 +64,6 @@ const docsLinks: NavItem = {
             { title: "Radii", url: "radii" },
             { title: "Z-Index", url: "z-index" },
             { title: "Breakpoints", url: "breakpoints" },
-          ],
-        },
-        {
-          title: "Recipes",
-          url: "recipes",
-          items: [
-            { title: "Overview", url: "overview" },
-            { title: "Recipe", url: "recipe" },
-            { title: "Slot Recipes", url: "slot-recipes" },
           ],
         },
         {
