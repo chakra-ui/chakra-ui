@@ -95,7 +95,9 @@ export function useRoute() {
           group.items?.map((item) => ({
             status: item.status,
             title: item.title,
-            url: join(primaryNav.url, secondaryNav.url, group.url, item.url),
+            url: item.url?.startsWith("http")
+              ? item.url
+              : join(primaryNav.url, secondaryNav.url, group.url, item.url),
             current: currentUrl.startsWith(
               join(primaryNav.url, secondaryNav.url, group.url, item.url),
             ),

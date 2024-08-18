@@ -75,7 +75,7 @@ export const Card = (props: CardProps) => {
               <LuChevronRight />
             </CardTitleIcon>
           </HStack>
-          <Box color="fg.muted" lineHeight="5">
+          <Box color="fg.muted" lineHeight="1.2">
             {children}
           </Box>
         </Stack>

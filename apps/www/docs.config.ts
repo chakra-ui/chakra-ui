@@ -11,7 +11,10 @@ const docsLinks: NavItem = {
           url: "overview",
           items: [
             { title: "Installation", url: "installation" },
-            { title: "Changelog", url: "changelog" },
+            {
+              title: "Changelog",
+              url: "https://github.com/chakra-ui/chakra-ui/blob/main/CHANGELOG.md",
+            },
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
             { title: "Contributing", url: "contributing" },
