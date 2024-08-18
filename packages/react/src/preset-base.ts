@@ -866,6 +866,7 @@ export const defaultBaseConfig = defineConfig({
     fontWeight: { values: "fontWeights" },
     lineHeight: { values: "lineHeights" },
     letterSpacing: { values: "letterSpacings" },
+    textIndent: { values: "spacing" },
     truncate: {
       values: { type: "boolean" },
       transform(value) {
