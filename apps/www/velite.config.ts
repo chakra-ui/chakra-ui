@@ -32,6 +32,7 @@ const docs = defineCollection({
       status: s.string().optional(),
       toc: s.toc(),
       code: s.mdx(),
+      hideToc: s.boolean().optional(),
       links: s
         .array(s.object({ title: s.string(), url: s.string() }))
         .optional(),

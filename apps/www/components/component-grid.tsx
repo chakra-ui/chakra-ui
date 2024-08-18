@@ -8,7 +8,7 @@ const components = docs.filter(
 
 export const ComponentGrid = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 3 }} gap="6" mt="8">
+    <SimpleGrid minChildWidth="240px" gap="6" mt="8">
       {components.map((item) => (
         <Stack
           asChild
