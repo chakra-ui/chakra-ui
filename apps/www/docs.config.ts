@@ -120,6 +120,7 @@ const docsLinks: NavItem = {
             { title: "Effects", url: "effects" },
             { title: "Filters", url: "filters" },
             { title: "Flex and Grid", url: "flex-and-grid" },
+            { title: "Interactivity", url: "interactivity" },
             { title: "Layout", url: "layout" },
             { title: "List", url: "list" },
             { title: "Sizing", url: "sizing" },
