@@ -3,7 +3,7 @@ import Link from "next/link"
 import { docs } from ".velite"
 
 const components = docs.filter(
-  (doc) => doc.slug.includes("components/") && !doc.slug.includes("overview/"),
+  (doc) => doc.slug.includes("components/") && !doc.slug.includes("concepts/"),
 )
 
 export const ComponentGrid = () => {
