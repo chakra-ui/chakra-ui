@@ -192,6 +192,7 @@ export interface UtilityValues {
   spaceY: Tokens["spacing"] | CssProperties["marginTop"]
   translateX: Tokens["spacing"]
   translateY: Tokens["spacing"]
+  transition: "all" | "common" | "colors" | "opacity" | "position" | "backgrounds" | "size" | "shadow" | "transform"
   transitionDuration: Tokens["durations"]
   transitionProperty: "common" | "colors" | "size" | "position" | "background"
   transitionTimingFunction: Tokens["easings"]

@@ -1,0 +1,152 @@
+---
+title: Transitions
+description:
+  JSX style props for controlling an element's transition and animation.
+---
+
+## Transition
+
+Use the `transition` prop to control the transition of an element.
+
+```jsx
+// hardcoded value
+<Box bg="red.400" _hover={{ bg: "red.500" }} transition="background 0.2s ease-in-out">
+  Hover me
+</Box>
+
+// shortcut value
+<Box bg="red.400" _hover={{ bg: "red.500" }} transition="backgrounds">
+  Hover me
+</Box>
+```
+
+| Prop         | CSS Property | Token Category |
+| ------------ | ------------ | -------------- |
+| `transition` | `transition` | -              |
+
+## Transition Timing Function
+
+Use the `transitionTimingFunction` prop to control the timing function of a
+transition.
+
+```jsx
+<Box
+  bg="red.400"
+  _hover={{ bg: "red.500" }}
+  transition="backgrounds"
+  transitionTimingFunction="ease-in-out"
+>
+  Hover me
+</Box>
+```
+
+| Prop                       | CSS Property                 | Token Category |
+| -------------------------- | ---------------------------- | -------------- |
+| `transitionTimingFunction` | `transition-timing-function` | `easings`      |
+
+## Transition Duration
+
+Use the `transitionDuration` prop to control the duration of a transition.
+
+```jsx
+<Box
+  bg="red.400"
+  _hover={{ bg: "red.500" }}
+  transition="backgrounds"
+  transitionDuration="fast"
+>
+  Hover me
+</Box>
+```
+
+| Prop                 | CSS Property          | Token Category |
+| -------------------- | --------------------- | -------------- |
+| `transitionDuration` | `transition-duration` | `durations`    |
+
+## Transition Delay
+
+Use the `transitionDelay` prop to control the delay of a transition.
+
+```jsx
+<Box
+  bg="red.400"
+  _hover={{ bg: "red.500" }}
+  transition="backgrounds"
+  transitionDelay="fast"
+>
+  Hover me
+</Box>
+```
+
+| Prop              | CSS Property       | Token Category |
+| ----------------- | ------------------ | -------------- |
+| `transitionDelay` | `transition-delay` | `durations`    |
+
+## Animation
+
+Use the `animation` prop to control the animation of an element.
+
+```jsx
+<Box animation="bounce" />
+```
+
+| Prop        | CSS Property     | Token Category |
+| ----------- | ---------------- | -------------- |
+| `animation` | `animation-name	` | `animations`   |
+
+## Animation Name
+
+Use the `animationName` prop to control the name of an animation. Compose
+multiple animation names to create complex animations.
+
+:::info
+
+The value of the `animation` prop points to a global keyframe animation. Use the
+`theme.keyframes` object to define the animation.
+
+:::
+
+```jsx
+<Box animationName="bounce, fade-in" animationDuration="fast" />
+```
+
+| Prop            | CSS Property     | Token Category |
+| --------------- | ---------------- | -------------- |
+| `animationName` | `animation-name` | `animations`   |
+
+## Animation Timing Function
+
+Use the `animationTimingFunction` prop to control the timing function of an
+animation.
+
+```jsx
+<Box animation="bounce" animationTimingFunction="ease-in-out" />
+```
+
+| Prop                      | CSS Property                | Token Category |
+| ------------------------- | --------------------------- | -------------- |
+| `animationTimingFunction` | `animation-timing-function` | `easings`      |
+
+## Animation Duration
+
+Use the `animationDuration` prop to control the duration of an animation.
+
+```jsx
+<Box animation="bounce" animationDuration="fast" />
+```
+
+| Prop                | CSS Property         | Token Category |
+| ------------------- | -------------------- | -------------- |
+| `animationDuration` | `animation-duration` | `durations`    |
+
+## Animation Delay
+
+Use the `animationDelay` prop to control the delay of an animation.
+
+```jsx
+<Box animation="bounce" animationDelay="fast" />
+```
+
+| Prop             | CSS Property      | Token Category |
+| ---------------- | ----------------- | -------------- |
+| `animationDelay` | `animation-delay` | `durations`    |

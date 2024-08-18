@@ -129,10 +129,7 @@ const docsLinks: NavItem = {
             { title: "SVG", url: "svg" },
             { title: "Tables", url: "tables" },
             { title: "Transforms", url: "transforms" },
-            {
-              title: "Transition and Animation",
-              url: "transition-and-animation",
-            },
+            { title: "Transitions", url: "transitions" },
             { title: "Typography", url: "typography" },
           ],
         },
@@ -273,8 +270,8 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
-    { title: "Examples", url: "examples" },
     { title: "Figma", url: "figma" },
+    { title: "Blog", url: "blog" },
     { title: "Showcase", url: "showcase" },
   ],
 }

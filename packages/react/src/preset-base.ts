@@ -60,6 +60,14 @@ const createFocusRing = (selector: string) => {
 
 const divideColor = createColorMixTransform("borderColor")
 
+const createTransition = (value: string) => {
+  return {
+    transition: value,
+    transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+    transitionDuration: "150ms",
+  }
+}
+
 export const defaultConditions = defineConditions({
   hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
   active:
@@ -825,6 +833,16 @@ export const defaultBaseConfig = defineConfig({
         }
       },
     },
+    rotateX: {
+      transform(value) {
+        return { "--rotate-x": deg(value) }
+      },
+    },
+    rotateY: {
+      transform(value) {
+        return { "--rotate-y": deg(value) }
+      },
+    },
     // transform / translate
     translate: {
       transform(value) {
@@ -843,6 +861,51 @@ export const defaultBaseConfig = defineConfig({
       transform: (v) => ({ "--translate-y": v }),
     },
     // transition
+    transition: {
+      values: [
+        "all",
+        "common",
+        "colors",
+        "opacity",
+        "position",
+        "backgrounds",
+        "size",
+        "shadow",
+        "transform",
+      ],
+      transform(value) {
+        switch (value) {
+          case "all":
+            return createTransition("all")
+          case "position":
+            return createTransition(
+              "left, right, top, bottom, inset-inline, inset-block",
+            )
+          case "colors":
+            return createTransition(
+              "color, background-color, border-color, text-decoration-color, fill, stroke",
+            )
+          case "opacity":
+            return createTransition("opacity")
+          case "shadow":
+            return createTransition("box-shadow")
+          case "transform":
+            return createTransition("transform")
+          case "size":
+            return createTransition("width, height")
+          case "backgrounds":
+            return createTransition(
+              "background, background-color, background-image, background-position",
+            )
+          case "common":
+            return createTransition(
+              "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter",
+            )
+          default:
+            return { transition: value }
+        }
+      },
+    },
     transitionDuration: { values: "durations" },
     transitionProperty: {
       values: {
@@ -850,8 +913,9 @@ export const defaultBaseConfig = defineConfig({
           "background-color, border-color, color, fill, stroke, opacity, box-shadow, translate, transform",
         colors: "background-color, border-color, color, fill, stroke",
         size: "width, height",
-        position: "left, right, top, bottom",
-        background: "background-color, background-image, background-position",
+        position: "left, right, top, bottom, inset-inline, inset-block",
+        background:
+          "background, background-color, background-image, background-position",
       },
     },
     transitionTimingFunction: { values: "easings" },

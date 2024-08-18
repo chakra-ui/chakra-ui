@@ -206,7 +206,7 @@ const sharedComponents = {
           fontSize: "0.925em",
           letterSpacing: "-0.01em",
           borderRadius: "md",
-          borderWidth: "1px",
+          borderWidth: "0.5px",
           bg: "bg.muted",
           color: "fg",
           whiteSpace: "pre",
@@ -314,7 +314,7 @@ const sharedComponents = {
   callout(props: any) {
     const status = props["data-type"]
     return (
-      <Alert.Root variant="outline" status="neutral" ps="6" mt="6" mb="4">
+      <Alert.Root variant="outline" status="neutral" ps="7" mt="6" mb="4">
         <Box
           position="absolute"
           h="100%"
@@ -324,7 +324,7 @@ const sharedComponents = {
           insetStart="2"
           bg={{ base: "gray.500", _dark: "gray.600" }}
         />
-        <Alert.Description color="fg">
+        <Alert.Description color="fg" pt="0.5">
           <Absolute top="-2" insetStart="2">
             <Badge variant="solid" rounded="0">
               <Alert.Indicator fontSize="xs" color="inherit" />

@@ -463,7 +463,7 @@ export interface SystemProperties {
   transformBox?: ConditionalValue<CssProperties["transformBox"] | AnyString>
   transformOrigin?: ConditionalValue<CssProperties["transformOrigin"] | AnyString>
   transformStyle?: ConditionalValue<CssProperties["transformStyle"] | AnyString>
-  transition?: ConditionalValue<CssProperties["transition"] | AnyString>
+  transition?: ConditionalValue<UtilityValues["transition"] | CssVars | CssProperties["transition"] | AnyString>
   transitionBehavior?: ConditionalValue<CssProperties["transitionBehavior"] | AnyString>
   transitionDelay?: ConditionalValue<CssProperties["transitionDelay"] | AnyString>
   transitionDuration?: ConditionalValue<UtilityValues["transitionDuration"] | CssVars | CssProperties["transitionDuration"] | AnyString>
@@ -665,6 +665,8 @@ export interface SystemProperties {
   spaceX?: ConditionalValue<UtilityValues["spaceX"] | CssVars | AnyString>
   spaceYReverse?: ConditionalValue<UtilityValues["spaceYReverse"] | CssVars | AnyString>
   spaceY?: ConditionalValue<UtilityValues["spaceY"] | CssVars | AnyString>
+  rotateX?: ConditionalValue<string | number | AnyString>
+  rotateY?: ConditionalValue<string | number | AnyString>
   translateX?: ConditionalValue<UtilityValues["translateX"] | CssVars | AnyString>
   translateY?: ConditionalValue<UtilityValues["translateY"] | CssVars | AnyString>
   truncate?: ConditionalValue<UtilityValues["truncate"] | CssVars | AnyString>
