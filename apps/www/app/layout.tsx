@@ -2,6 +2,7 @@ import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Provider } from "./provider"
+import "./scrollbar.css"
 import "./shiki.css"
 
 const inter = Inter({ subsets: ["latin"] })

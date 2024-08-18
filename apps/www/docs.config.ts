@@ -118,7 +118,6 @@ const docsLinks: NavItem = {
           items: [
             { title: "Background", url: "background" },
             { title: "Border", url: "border" },
-            { title: "Box Shadow", url: "box-shadow" },
             { title: "Color", url: "color" },
             { title: "Display", url: "display" },
             { title: "Divide", url: "divide" },

@@ -8,6 +8,7 @@ export const SidebarStart = (props: BoxProps) => {
   const route = useRoute()
   return (
     <Box
+      className="no-bg-scrollbar"
       as="aside"
       position="sticky"
       top="var(--header-height)"
@@ -43,6 +44,7 @@ export const SidebarEnd = (props: BoxProps) => {
   const { children } = props
   return (
     <Box
+      className="no-bg-scrollbar"
       as="aside"
       position="sticky"
       top="var(--header-height)"
