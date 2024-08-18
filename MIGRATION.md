@@ -530,15 +530,15 @@ Form control has now been renamed to `Field` to better reflect its purpose as an
 element that represents a form field.
 
 ```tsx
-<Field id="first-name" required invalid>
-  <Label>First name</Label>
+<Field.Root id="first-name" required invalid>
+  <Field.Label>First name</Field.Label>
   <Input placeholder="First Name" />
-  <HelpText>Keep it very short and sweet!</HelpText>
-  <ErrorMessage>Your First name is invalid</ErrorMessage>
-</Field>
+  <Field.HelperText>Keep it very short and sweet!</Field.HelperText>
+  <Field.ErrorText>Your First name is invalid</Field.ErrorText>
+</Field.Root>
 ```
 
-HelperText has been renamed to `Field.HelpText` for brevity.
+HelperText has been renamed to `Field.HelperText` for brevity.
 
 ### Select -> NativeSelect
 

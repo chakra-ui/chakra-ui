@@ -17,18 +17,18 @@ import { Field } from '@chakra-ui/react'
 ## Usage
 
 ```jsx
-<Field>
-  <Label>Email address</Label>
+<Field.Root>
+  <Field.Label>Email address</Field.Label>
   <Input type='email' />
-  <HelpText>We'll never share your email.</HelpText>
-</Field>
+  <Field.HelperText>We'll never share your email.</Field.HelperText>
+</Field.Root>
 ```
 
 ### Usage with `RadioGroup`
 
 ```jsx
-<Field as='fieldset'>
-  <Label as='legend'>Favorite Naruto Character</Label>
+<Field.Root as='fieldset'>
+  <Field.Label as='legend'>Favorite Naruto Character</Field.Label>
   <RadioGroup.Root defaultValue='Itachi'>
     <HStack gap='24px'>
       <RadioGroup.Item value='Sasuke'>Sasuke</RadioGroup.Item>
@@ -39,13 +39,13 @@ import { Field } from '@chakra-ui/react'
       </RadioGroup.Item>
     </HStack>
   </RadioGroup.Root>
-  <HelpText>Select only if you're a fan.</HelpText>
-</Field>
+  <Field.HelperText>Select only if you're a fan.</Field.HelperText>
+</Field.Root>
 ```
 
 ### Displaying an error message
 
-`Field.ErrorMessage` will only show up when the property `invalid` in `Field` is
+`Field.ErrorText` will only show up when the property `invalid` in `Field` is
 `true`.
 
 ```jsx
@@ -56,17 +56,17 @@ function ErrorMessageExample() {
   const invalid = input === ''
 
   return (
-    <Field invalid={invalid}>
-      <Label>Email</Label>
+    <Field.Root invalid={invalid}>
+      <Field.Label>Email</Field.Label>
       <Input type='email' value={input} onChange={handleInputChange} />
-      {!isError ? (
-        <HelpText>
+      {!invalid ? (
+        <Field.HelperText>
           Enter the email you'd like to receive the newsletter on.
-        </HelpText>
+        </Field.HelperText>
       ) : (
-        <ErrorMessage>Email is required.</ErrorMessage>
+        <Field.ErrorText>Email is required.</Field.ErrorText>
       )}
-    </Field>
+    </Field.Root>
   )
 }
 ```
@@ -81,31 +81,31 @@ This red asterisk can be overwritten by passing `requiredIndicator` to the
 `optionalIndicator` to the `Field.Label`
 
 ```jsx
-<Field required>
-  <Label>First name </Label>
+<Field.Root required>
+  <Field.Label>First name </Field.Label>
   <Input placeholder='First name' />
-</Field>
+</Field.Root>
 ```
 
 ### Usage with `Select`
 
 ```jsx
-<Field>
-  <Label>Country</Label>
+<Field.Root>
+  <Field.Label>Country</Field.Label>
   <NativeSelect.Root>
     <NativeSelect.Field placeholder='Select country'>
       <option>United Arab Emirates</option>
       <option>Nigeria</option>
     </NativeSelect.Field>
   </NativeSelect.Root>
-</Field>
+</Field.Root>
 ```
 
 ### Usage with `NumberInput`
 
 ```jsx
-<Field>
-  <Label>Amount</Label>
+<Field.Root>
+  <Field.Label>Amount</Field.Label>
   <NumberInput.Root max={50} min={10}>
     <NumberInput.Field />
     <NumberInput.Control>
@@ -113,5 +113,5 @@ This red asterisk can be overwritten by passing `requiredIndicator` to the
       <NumberInput.DecrementTrigger />
     </NumberInput.Control>
   </NumberInput.Root>
-</Field>
+</Field.Root>
 ```
