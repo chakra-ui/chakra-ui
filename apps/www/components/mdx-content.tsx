@@ -6,7 +6,9 @@ import {
   Blockquote,
   Box,
   HStack,
+  Icon,
   Kbd,
+  Stack,
   Table,
   Tabs,
   Text,
@@ -221,7 +223,7 @@ const sharedComponents = {
         as="ol"
         css={{
           marginTop: "1em",
-          marginBottom: "1em",
+          marginBottom: "2em",
           paddingInlineStart: "1.5em",
           "& > li": {
             paddingInlineStart: "0.4em",
@@ -245,7 +247,7 @@ const sharedComponents = {
         as="ul"
         css={{
           marginTop: "1em",
-          marginBottom: "1em",
+          marginBottom: "2em",
           paddingInlineStart: "1.5em",
           "& > li": {
             paddingInlineStart: "0.4em",
@@ -264,16 +266,7 @@ const sharedComponents = {
     )
   },
   li(props: any) {
-    return (
-      <Box
-        as="li"
-        css={{
-          marginTop: "0.285em",
-          marginBottom: "0.285em",
-        }}
-        {...props}
-      />
-    )
+    return <Box as="li" marginY="0.8em" {...props} />
   },
   table(props: any) {
     return (
@@ -382,15 +375,27 @@ const sharedComponents = {
   PropTable,
   ComponentGrid,
   ResourceCard(props: any) {
-    const { type, title, url, ...rest } = props
+    const { type, title, url, description, ...rest } = props
     return (
-      <HStack borderWidth="1px" padding="3" borderRadius="md" asChild {...rest}>
+      <HStack
+        borderWidth="1px"
+        padding="4"
+        borderRadius="md"
+        gap="4"
+        asChild
+        {...rest}
+      >
         <a href={url} target="_blank" rel="noopener noreferrer">
           <ResourceIcon type={type} />
-          <Text fontWeight="medium" flex="1" color="fg">
-            {title}
-          </Text>
-          <LuArrowUpRight />
+          <Stack gap="1">
+            <Text fontWeight="medium" flex="1" color="fg">
+              {title}
+            </Text>
+            {description && <Text color="fg.muted/80">{description}</Text>}
+          </Stack>
+          <Icon asChild flexShrink="0">
+            <LuArrowUpRight />
+          </Icon>
         </a>
       </HStack>
     )
