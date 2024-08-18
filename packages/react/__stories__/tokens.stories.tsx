@@ -35,6 +35,7 @@ export const Shadows = () => {
 export { TokensAnimationStyle as AnimationStyle } from "compositions/examples/tokens/animation-style"
 export { TokensLayerStyle as LayerStyle } from "compositions/examples/tokens/layer-style"
 export { TokensTextStyles as TextStyles } from "compositions/examples/tokens/text-styles"
+export { TokensFocusRing as FocusRing } from "compositions/examples/tokens/focus-ring"
 
 export const StatusTokens = () => {
   return (

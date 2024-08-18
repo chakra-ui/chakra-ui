@@ -20,9 +20,10 @@ const createFocusRing = (selector: string) => {
         inside: {
           "--focus-ring-color": focusRingColor,
           [selector]: {
-            outlineWidth: "var(--focus-ring-width, 2px)",
+            outlineOffset: "0px",
+            outlineWidth: "var(--focus-ring-width, 1px)",
             outlineColor: "var(--focus-ring-color)",
-            outlineStyle: "solid",
+            outlineStyle: "var(--focus-ring-style, solid)",
             borderColor: "var(--focus-ring-color)",
           },
         },
@@ -31,7 +32,7 @@ const createFocusRing = (selector: string) => {
           [selector]: {
             outlineWidth: "var(--focus-ring-width, 2px)",
             outlineOffset: "2px",
-            outlineStyle: "solid",
+            outlineStyle: "var(--focus-ring-style, solid)",
             outlineColor: "var(--focus-ring-color)",
           },
         },
@@ -39,7 +40,7 @@ const createFocusRing = (selector: string) => {
           "--focus-ring-color": focusRingColor,
           [selector]: {
             outlineWidth: "var(--focus-ring-width, 3px)",
-            outlineStyle: "solid",
+            outlineStyle: "var(--focus-ring-style, solid)",
             outlineColor:
               "color-mix(in srgb, var(--focus-ring-color), transparent 60%)",
             borderColor: "var(--focus-ring-color)",
@@ -601,6 +602,11 @@ export const defaultBaseConfig = defineConfig({
       values: "borderWidths",
       property: "outlineWidth",
       transform: (v) => ({ "--focus-ring-width": v }),
+    },
+    focusRingStyle: {
+      values: "borderStyles",
+      property: "outlineStyle",
+      transform: (v) => ({ "--focus-ring-style": v }),
     },
     // layout
     aspectRatio: { values: "aspectRatios" },

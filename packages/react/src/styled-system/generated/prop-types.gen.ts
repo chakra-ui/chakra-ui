@@ -118,6 +118,7 @@ export interface UtilityValues {
   focusVisibleRing: "outside" | "inside" | "mixed" | "none"
   focusRingColor: Tokens["colors"]
   focusRingWidth: Tokens["borderWidths"] | CssProperties["outlineWidth"]
+  focusRingStyle: Tokens["borderStyles"] | CssProperties["outlineStyle"]
   aspectRatio: Tokens["aspectRatios"]
   width: Tokens["sizes"]
   inlineSize: Tokens["sizes"]
