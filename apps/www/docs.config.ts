@@ -136,10 +136,10 @@ const docsLinks: NavItem = {
       url: "components",
       items: [
         {
-          title: "Overview",
-          url: "overview",
+          title: "Concepts",
+          url: "concepts",
           items: [
-            { title: "Introduction", url: "index" },
+            { title: "Overview", url: "overview" },
             { title: "Composition", url: "composition" },
             { title: "Animation", url: "animation" },
             { title: "Server Component", url: "server-components" },
