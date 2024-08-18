@@ -1,5 +1,14 @@
 # @chakra-ui/utils
 
+## 3.0.0-next.16
+
+### Patch Changes
+
+- [#8740](https://github.com/chakra-ui/chakra-ui/pull/8740)
+  [`d5a225f`](https://github.com/chakra-ui/chakra-ui/commit/d5a225f1bc3eca8be67a69b78429481cf802372b)
+  Thanks [@Pagebakers](https://github.com/Pagebakers)! - Use correct extension
+  for ESM exports
+
 ## 3.0.0-next.15
 
 ## 3.0.0-next.14
