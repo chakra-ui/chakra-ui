@@ -119,7 +119,7 @@ export const expandTokenReferences = (
         // `token(tokenPath, fallback))`
         //        ^^^^^^^^^
         const resolved = tokenPath
-          ? resolve(tokenPath) ?? esc(tokenPath)
+          ? (resolve(tokenPath) ?? esc(tokenPath))
           : tokenPath
 
         if (fallback) {
