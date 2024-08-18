@@ -94,14 +94,12 @@ const docsLinks: NavItem = {
             { title: "Overview", url: "overview" },
             { title: "Chakra Factory", url: "chakra-factory" },
             { title: "Responsive Design", url: "responsive-design" },
+            { title: "CSS Variables", url: "css-variables" },
             { title: "Dark Mode", url: "dark-mode" },
-            {
-              title: "Color Opacity Modifier",
-              url: "color-opacity-modifier",
-            },
-            { title: "Virtual Color", url: "virtual-color" },
+            { title: "Color Opacity Modifier", url: "color-opacity-modifier" },
             { title: "Conditional Styles", url: "conditional-styles" },
             { title: "Focus Ring", url: "focus-ring" },
+            { title: "Virtual Color", url: "virtual-color" },
           ],
         },
         {

@@ -1,0 +1,266 @@
+---
+title: Interactivity
+description: JSX style props to enhance interactivity on an element
+---
+
+## Accent Color
+
+Use the `accentColor` prop to set the accent color for browser generated
+user-interface controls.
+
+```jsx
+// hardcoded
+<label>
+  <chakra.input type="checkbox" accentColor="#3b82f6" />
+</label>
+
+// token value
+<label>
+  <chakra.input type="checkbox" accentColor="blue.500" />
+</label>
+```
+
+| Prop          | CSS Property   | Token Category |
+| ------------- | -------------- | -------------- |
+| `accentColor` | `accent-color` | `colors`       |
+
+## Appearance
+
+Use the `appearance` prop to set the appearance of an element.
+
+```jsx
+<chakra.select appearance="none">
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+</chakra.select>
+```
+
+| Prop         | CSS Property | Token Category |
+| ------------ | ------------ | -------------- |
+| `appearance` | `appearance` | -              |
+
+## Caret Color
+
+Use the `caretColor` prop to set the color of the text cursor (caret) in an
+input or textarea
+
+```jsx
+// hardcoded
+<chakra.input caretColor="#3b82f6" />
+
+// token value
+<chakra.input caretColor="blue.500" />
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `caretColor` | `caret-color` | `colors`       |
+
+## Cursor
+
+Use the `cursor` prop to set the mouse cursor image to show when the mouse
+pointer is over an element.
+
+```jsx
+<Box cursor="pointer" />
+```
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `cursor` | `cursor`     | -              |
+
+## Pointer Events
+
+Use the `pointerEvents` prop to control how pointer events are handled on an
+element.
+
+```jsx
+<Box pointerEvents="none">Can't click me</Box>
+```
+
+| Prop            | CSS Property     | Token Category |
+| --------------- | ---------------- | -------------- |
+| `pointerEvents` | `pointer-events` | -              |
+
+## Resize
+
+Use the `resize` prop to control whether an element is resizable, and if so, in
+which directions.
+
+```jsx
+<chakra.textarea resize="both" />
+<chakra.textarea resize="horizontal" />
+<chakra.textarea resize="vertical" />
+```
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `resize` | `resize`     | -              |
+
+## Scrollbar
+
+Use the `scrollbar` prop to customize the appearance of scrollbars.
+
+```jsx
+<Box scrollbar="hidden" maxH="100px" overflowY="auto">
+  Scrollbar hidden
+</Box>
+```
+
+## Scroll Behavior
+
+Use the `scrollBehavior` prop to set the behavior for a scrolling box when
+scrolling is triggered by the navigation or JavaScript code.
+
+```jsx
+<Box maxH="100px" overflowY="auto" scrollBehavior="smooth">
+  <div>Scroll me</div>
+</Box>
+```
+
+| Prop             | CSS Property      | Token Category |
+| ---------------- | ----------------- | -------------- |
+| `scrollBehavior` | `scroll-behavior` | -              |
+
+## Scroll Margin
+
+Use the `scrollMargin*` prop to set margins around scroll containers.
+
+```jsx
+<Box maxH="100px" overflowY="auto" scrollMarginY="2">
+  Scrollbar Container with block padding
+</Box>
+```
+
+| Prop                                  | CSS Property                 | Token Category |
+| ------------------------------------- | ---------------------------- | -------------- |
+| `scrollMarginX` ,`scrollMarginInline` | `scroll-margin-inline`       | `spacing`      |
+| `scrollMarginInlineStart`             | `scroll-margin-inline-start` | `spacing`      |
+| `scrollMarginInlineEnd`               | `scroll-margin-inline-end`   | `spacing`      |
+| `scrollMarginY` , `scrollMarginBlock` | `scroll-margin-block`        | `spacing`      |
+| `scrollMarginBlockStart`              | `scroll-margin-block-start`  | `spacing`      |
+| `scrollMarginBlockEnd`                | `scroll-margin-block-end`    | `spacing`      |
+| `scrollMarginLeft`                    | `scroll-margin-left`         | `spacing`      |
+| `scrollMarginRight`                   | `scroll-margin-right`        | `spacing`      |
+| `scrollMarginTop`                     | `scroll-margin-top`          | `spacing`      |
+| `scrollMarginBottom`                  | `scroll-margin-bottom`       | `spacing`      |
+
+## Scroll Padding
+
+Use the `scrollPadding*` prop to set padding inside scroll containers.
+
+```jsx
+<Box maxH="100px" overflowY="auto" scrollPaddingY="2">
+  Scrollbar Container with block padding
+</Box>
+```
+
+| Prop                                     | CSS Property                  | Token Category |
+| ---------------------------------------- | ----------------------------- | -------------- |
+| `scrollPaddingX` , `scrollPaddingInline` | `scroll-padding-inline`       | `spacing`      |
+| `scrollPaddingInlineStart`               | `scroll-padding-inline-start` | `spacing`      |
+| `scrollPaddingInlineEnd`                 | `scroll-padding-inline-end`   | `spacing`      |
+| `scrollPaddingY` , `scrollPaddingBlock`  | `scroll-padding-block`        | `spacing`      |
+| `scrollPaddingBlockStart`                | `scroll-padding-block-start`  | `spacing`      |
+| `scrollPaddingBlockEnd`                  | `scroll-padding-block-end`    | `spacing`      |
+| `scrollPaddingLeft`                      | `scroll-padding-left`         | `spacing`      |
+| `scrollPaddingRight`                     | `scroll-padding-right`        | `spacing`      |
+| `scrollPaddingTop`                       | `scroll-padding-top`          | `spacing`      |
+| `scrollPaddingBottom`                    | `scroll-padding-bottom`       | `spacing`      |
+
+## Scroll Snap Margin
+
+Use the `scrollSnapMargin*` prop to set margins around scroll containers.
+
+```jsx
+<Box maxH="100px" overflowY="auto" scrollSnapMarginY="2">
+  Scrollbar Container with block padding
+</Box>
+```
+
+| Prop                     | CSS Property           | Token Category |
+| ------------------------ | ---------------------- | -------------- |
+| `scrollSnapMargin`       | `scroll-margin`        | `spacing`      |
+| `scrollSnapMarginTop`    | `scroll-margin-top`    | `spacing`      |
+| `scrollSnapMarginBottom` | `scroll-margin-bottom` | `spacing`      |
+| `scrollSnapMarginLeft`   | `scroll-margin-left`   | `spacing`      |
+| `scrollSnapMarginRight`  | `scroll-margin-right`  | `spacing`      |
+
+## Scroll Snap Type
+
+Use the `scrollSnapType` prop to control how strictly snap points are enforced
+in a scroll container.
+
+```jsx
+<Box maxH="100px" overflowY="auto" scrollSnapType="x">
+  Scroll container with x snap type
+</Box>
+```
+
+| Value  |                                      |
+| ------ | ------------------------------------ |
+| `none` | `none`                               |
+| `x`    | `x var(--scroll-snap-strictness)`    |
+| `y`    | `y var(--scroll-snap-strictness)`    |
+| `both` | `both var(--scroll-snap-strictness)` |
+
+## Scroll Snap Strictness
+
+Use the `scrollSnapStrictness` prop to set the scroll snap strictness of an
+element. This requires `scrollSnapType` to be set to `x`,`y` or `both`.
+
+It's values can be `mandatory` or `proximity` values, and maps to
+`var(--scroll-snap-strictness)`.
+
+```jsx
+<Box maxH="100px" overflowY="auto" scrollSnapStrictness="proximity">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+</Box>
+```
+
+| Prop                   | CSS Property               | Token Category |
+| ---------------------- | -------------------------- | -------------- |
+| `scrollSnapStrictness` | `--scroll-snap-strictness` | -              |
+
+## Touch Action
+
+Use the `touchAction` prop to control how an element's region can be manipulated
+by a touchscreen user
+
+```jsx
+<Box touchAction="none" />
+```
+
+| Prop          | CSS Property   | Token Category |
+| ------------- | -------------- | -------------- |
+| `touchAction` | `touch-action` | -              |
+
+## User Select
+
+Use the `userSelect` prop to control whether the user can select text within an
+element.
+
+```jsx
+<Box userSelect="none">
+  <p>Can't Select me</p>
+</Box>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `userSelect` | `user-select` | -              |
+
+## Will Change
+
+Use the `willChange` prop to hint browsers how an element's property is expected
+to change.
+
+```jsx
+<Box willChange="transform" />
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `willChange` | `will-change` | -              |
