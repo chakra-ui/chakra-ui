@@ -577,8 +577,8 @@ export const defaultBaseConfig = defineConfig({
     // flexbox
     flexBasis: { values: "sizes" },
     gap: { values: "spacing" },
-    rowGap: { values: "spacing" },
-    columnGap: { values: "spacing" },
+    rowGap: { values: "spacing", shorthand: ["gapY"] },
+    columnGap: { values: "spacing", shorthand: ["gapX"] },
     flexDirection: { shorthand: ["flexDir"] },
     // grid
     gridGap: { values: "spacing" },
@@ -653,6 +653,33 @@ export const defaultBaseConfig = defineConfig({
     overscrollBehavior: { shorthand: ["overscroll"] },
     overscrollBehaviorX: { shorthand: ["overscrollX"] },
     overscrollBehaviorY: { shorthand: ["overscrollY"] },
+    scrollbar: {
+      values: ["visible", "hidden"],
+      transform(v) {
+        switch (v) {
+          case "visible":
+            return {
+              msOverflowStyle: "auto",
+              scrollbarWidth: "auto",
+              "&::-webkit-scrollbar": { display: "block" },
+            }
+          case "hidden":
+            return {
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+              "&::-webkit-scrollbar": { display: "none" },
+            }
+          default:
+            return {}
+        }
+      },
+    },
+    scrollbarColor: {
+      values: "colors",
+      transform: createColorMixTransform("scrollbarColor"),
+    },
+    scrollbarGutter: { values: "spacing" },
+    scrollbarWidth: { values: "sizes" },
     // scroll margin
     scrollMargin: { values: "spacing" },
     scrollMarginTop: { values: "spacing" },
@@ -673,8 +700,26 @@ export const defaultBaseConfig = defineConfig({
     scrollPaddingBottom: { values: "spacing" },
     scrollPaddingLeft: { values: "spacing" },
     scrollPaddingRight: { values: "spacing" },
-    scrollPaddingX: { values: "spacing" },
-    scrollPaddingY: { values: "spacing" },
+    scrollPaddingInline: { values: "spacing", shorthand: ["scrollPaddingX"] },
+    scrollPaddingBlock: { values: "spacing", shorthand: ["scrollPaddingY"] },
+    // scroll snap
+    scrollSnapType: {
+      values: {
+        none: "none",
+        x: "x var(--scroll-snap-strictness)",
+        y: "y var(--scroll-snap-strictness)",
+        both: "both var(--scroll-snap-strictness)",
+      },
+    },
+    scrollSnapStrictness: {
+      values: ["mandatory", "proximity"],
+      transform: (v) => ({ "--scroll-snap-strictness": v }),
+    },
+    scrollSnapMargin: { values: "spacing" },
+    scrollSnapMarginTop: { values: "spacing" },
+    scrollSnapMarginBottom: { values: "spacing" },
+    scrollSnapMarginLeft: { values: "spacing" },
+    scrollSnapMarginRight: { values: "spacing" },
     // list
     listStylePosition: { shorthand: ["listStylePos"] },
     listStyleImage: { shorthand: ["listStyleImg"] },

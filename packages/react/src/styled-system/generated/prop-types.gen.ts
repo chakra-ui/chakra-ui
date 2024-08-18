@@ -134,6 +134,10 @@ export interface UtilityValues {
   maxBlockSize: Tokens["sizes"]
   hideFrom: Tokens["breakpoints"]
   hideBelow: Tokens["breakpoints"]
+  scrollbar: "visible" | "hidden"
+  scrollbarColor: Tokens["colors"]
+  scrollbarGutter: Tokens["spacing"]
+  scrollbarWidth: Tokens["sizes"]
   scrollMargin: Tokens["spacing"]
   scrollMarginTop: Tokens["spacing"]
   scrollMarginBottom: Tokens["spacing"]
@@ -146,8 +150,15 @@ export interface UtilityValues {
   scrollPaddingBottom: Tokens["spacing"]
   scrollPaddingLeft: Tokens["spacing"]
   scrollPaddingRight: Tokens["spacing"]
-  scrollPaddingX: Tokens["spacing"]
-  scrollPaddingY: Tokens["spacing"]
+  scrollPaddingInline: Tokens["spacing"]
+  scrollPaddingBlock: Tokens["spacing"]
+  scrollSnapType: "none" | "x" | "y" | "both"
+  scrollSnapStrictness: "mandatory" | "proximity"
+  scrollSnapMargin: Tokens["spacing"]
+  scrollSnapMarginTop: Tokens["spacing"]
+  scrollSnapMarginBottom: Tokens["spacing"]
+  scrollSnapMarginLeft: Tokens["spacing"]
+  scrollSnapMarginRight: Tokens["spacing"]
   zIndex: Tokens["zIndex"]
   inset: Tokens["spacing"]
   insetInline: Tokens["spacing"]
