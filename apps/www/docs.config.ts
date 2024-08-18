@@ -8,7 +8,6 @@ const docsLinks: NavItem = {
       items: [
         {
           title: "Overview",
-          url: "overview",
           items: [
             { title: "Installation", url: "installation" },
             {
@@ -28,6 +27,7 @@ const docsLinks: NavItem = {
             { title: "Next.js (App)", url: "next-app" },
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
+            { title: "Storybook", url: "storybook" },
           ],
         },
       ],
