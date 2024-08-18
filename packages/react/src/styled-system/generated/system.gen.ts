@@ -445,7 +445,7 @@ export interface SystemProperties {
   textEmphasisColor?: ConditionalValue<CssProperties["textEmphasisColor"] | AnyString>
   textEmphasisPosition?: ConditionalValue<CssProperties["textEmphasisPosition"] | AnyString>
   textEmphasisStyle?: ConditionalValue<CssProperties["textEmphasisStyle"] | AnyString>
-  textIndent?: ConditionalValue<CssProperties["textIndent"] | AnyString>
+  textIndent?: ConditionalValue<UtilityValues["textIndent"] | CssVars | CssProperties["textIndent"] | AnyString>
   textJustify?: ConditionalValue<CssProperties["textJustify"] | AnyString>
   textOrientation?: ConditionalValue<CssProperties["textOrientation"] | AnyString>
   textOverflow?: ConditionalValue<CssProperties["textOverflow"] | AnyString>

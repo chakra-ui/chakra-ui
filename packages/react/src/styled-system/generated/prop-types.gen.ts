@@ -204,6 +204,7 @@ export interface UtilityValues {
   fontWeight: Tokens["fontWeights"]
   lineHeight: Tokens["lineHeights"]
   letterSpacing: Tokens["letterSpacings"]
+  textIndent: Tokens["spacing"]
   truncate: boolean
   srOnly: boolean
   debug: boolean

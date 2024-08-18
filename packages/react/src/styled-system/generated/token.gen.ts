@@ -3,13 +3,14 @@ export type Token =
   | "animations.ping"
   | "animations.pulse"
   | "animations.bounce"
+  | "blurs.none"
   | "blurs.sm"
-  | "blurs.base"
   | "blurs.md"
   | "blurs.lg"
   | "blurs.xl"
   | "blurs.2xl"
   | "blurs.3xl"
+  | "blurs.4xl"
   | "borders.xs"
   | "borders.sm"
   | "borders.md"
@@ -442,7 +443,7 @@ export type ColorPalette =
 
 export type AnimationsToken = "spin" | "ping" | "pulse" | "bounce"
 
-export type BlursToken = "sm" | "base" | "md" | "lg" | "xl" | "2xl" | "3xl"
+export type BlursToken = "none" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl"
 
 export type BordersToken = "xs" | "sm" | "md" | "lg" | "xl"
 
