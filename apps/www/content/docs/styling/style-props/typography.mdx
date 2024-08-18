@@ -1,0 +1,361 @@
+---
+title: Typography
+description: JSX style props for styling text
+---
+
+## Font Family
+
+Use the `fontFamily` prop to set the font family of a text element.
+
+```jsx
+<Text fontFamily="mono">Hello World</Text>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `fontFamily` | `font-family` | `fonts`        |
+
+## Font Size
+
+Use the `fontSize` prop to set the font size of a text element.
+
+```jsx
+// hardcoded values
+<Text fontSize="12px">Hello World</Text>
+<Text fontSize="10rem">Hello World</Text>
+
+// token values
+<Text fontSize="xs">Hello World</Text>
+<Text fontSize="4xl">Hello World</Text>
+<Text fontSize="5xl">Hello World</Text>
+```
+
+| Prop       | CSS Property | Token Category |
+| ---------- | ------------ | -------------- |
+| `fontSize` | `font-size`  | `fonts`        |
+
+## Text Styles
+
+Use the `textStyle` prop to apply both a font size, line height, and letter
+spacing composition at once.
+
+```jsx
+<Text textStyle="xs">Hello World</Text>
+<Text textStyle="sm">Hello World</Text>
+<Text textStyle="md">Hello World</Text>
+<Text textStyle="lg">Hello World</Text>
+<Text textStyle="xl">Hello World</Text>
+<Text textStyle="2xl">Hello World</Text>
+<Text textStyle="3xl">Hello World</Text>
+<Text textStyle="4xl">Hello World</Text>
+<Text textStyle="5xl">Hello World</Text>
+```
+
+| Prop        | Config             |
+| ----------- | ------------------ |
+| `textStyle` | `theme.textStyles` |
+
+## Font Style
+
+Use the `fontStyle` prop to set the font style of a text element.
+
+```jsx
+<Text fontStyle="italic">Hello World</Text>
+```
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `fontStyle` | `font-style` | none           |
+
+## Font Weight
+
+Use the `fontWeight` prop to set the font weight of a text element.
+
+```jsx
+// hardcoded values
+<Text fontWeight="600">Hello World</Text>
+
+// token values
+<Text fontWeight="semibold">Hello World</Text>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `fontWeight` | `font-weight` | `fontWeights`  |
+
+## Font Variant Numeric
+
+Use the `fontVariantNumeric` prop to set the font variant numeric of a text
+element.
+
+```jsx
+<Text fontVariantNumeric="lining-nums">Hello World</Text>
+```
+
+| Prop                 | CSS Property           | Token Category |
+| -------------------- | ---------------------- | -------------- |
+| `fontVariantNumeric` | `font-variant-numeric` | none           |
+
+## Letter Spacing
+
+Use the `letterSpacing` prop to set the letter spacing of a text element.
+
+```jsx
+// hardcoded values
+<Text letterSpacing="0.1rem">Hello World</Text>
+
+// token values
+<Text letterSpacing="tight">Hello World</Text>
+<Text letterSpacing="wide">Hello World</Text>
+<Text letterSpacing="wider">Hello World</Text>
+<Text letterSpacing="widest">Hello World</Text>
+```
+
+| Prop            | CSS Property     | Token Category   |
+| --------------- | ---------------- | ---------------- |
+| `letterSpacing` | `letter-spacing` | `letterSpacings` |
+
+## Truncation
+
+Use the `truncate` prop to truncate text.
+
+```jsx
+<Text truncate>Lorem ipsum dolor sit amet...</Text>
+```
+
+| Prop       | CSS Property    | Token Category |
+| ---------- | --------------- | -------------- |
+| `truncate` | `text-overflow` | none           |
+
+## Line Clamp
+
+Use the `lineClamp` prop to truncate multi-line text. Set `lineClamp` to `none`
+to disable truncation.
+
+```jsx
+<Text lineClamp="2">Lorem ipsum dolor sit amet...</Text>
+
+// revert truncation
+<Text lineClamp="none">Lorem ipsum dolor sit amet...</Text>
+```
+
+| Prop        | CSS Property        | Token Category |
+| ----------- | ------------------- | -------------- |
+| `lineClamp` | `webkit-line-clamp` | none           |
+
+## Line Height
+
+Use the `lineHeight` prop to set the line height of a text element.
+
+```jsx
+// hardcoded values
+<Text lineHeight="1.5">Hello World</Text>
+
+// token values
+<Text lineHeight="tall">Hello World</Text>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `lineHeight` | `line-height` | `lineHeights`  |
+
+## Text Align
+
+Use the `textAlign` prop to set the text alignment of a text element.
+
+```jsx
+<Text textAlign="left">Hello World</Text>
+<Text textAlign="center">Hello World</Text>
+<Text textAlign="right">Hello World</Text>
+<Text textAlign="justify">Hello World</Text>
+```
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `textAlign` | `text-align` | none           |
+
+## Text Color
+
+Use the `color` prop to set the color of a text element.
+
+```jsx
+<Text color="red">Hello World</Text>
+```
+
+| Prop    | CSS Property | Token Category |
+| ------- | ------------ | -------------- |
+| `color` | `color`      | `colors`       |
+
+## Text Decoration
+
+Use the `textDecoration` or `textDecor` prop to set the text decoration of a
+text element.
+
+```jsx
+<Text textDecoration="underline">Hello World</Text>
+```
+
+| Prop                          | CSS Property      | Token Category |
+| ----------------------------- | ----------------- | -------------- |
+| `textDecor`, `textDecoration` | `text-decoration` | none           |
+
+## Text Decoration Color
+
+Use the `textDecorationColor` prop to set the text decoration color of a text
+element.
+
+```jsx
+<Text textDecoration="underline" textDecorationColor="red">
+  Hello World
+</Text>
+```
+
+| Prop                  | CSS Property            | Token Category |
+| --------------------- | ----------------------- | -------------- |
+| `textDecorationColor` | `text-decoration-color` | `colors`       |
+
+## Text Decoration Style
+
+Use the `textDecorationStyle` prop to set the text decoration style of a text
+element.
+
+```jsx
+<Text textDecoration="underline" textDecorationStyle="dashed">
+  Hello World
+</Text>
+```
+
+| Prop                  | CSS Property            | Token Category |
+| --------------------- | ----------------------- | -------------- |
+| `textDecorationStyle` | `text-decoration-style` | none           |
+
+## Text Decoration Thickness
+
+Use the `textDecorationThickness` prop to set the text decoration thickness of a
+text element.
+
+```jsx
+<Text textDecoration="underline" textDecorationThickness="1px">
+  Hello World
+</Text>
+```
+
+| Prop                      | CSS Property                | Token Category |
+| ------------------------- | --------------------------- | -------------- |
+| `textDecorationThickness` | `text-decoration-thickness` | none           |
+
+## Text Underline Offset
+
+Use the `textUnderlineOffset` prop to set the text underline offset of a text
+element.
+
+```jsx
+<Text textDecoration="underline" textUnderlineOffset="1px">
+  Hello World
+</Text>
+```
+
+| Prop                  | CSS Property            | Token Category |
+| --------------------- | ----------------------- | -------------- |
+| `textUnderlineOffset` | `text-underline-offset` | none           |
+
+## Text Transform
+
+Use the `textTransform` prop to set the text transform of a text element.
+
+```jsx
+<Text textTransform="uppercase">Hello World</Text>
+```
+
+| Prop            | CSS Property     | Token Category |
+| --------------- | ---------------- | -------------- |
+| `textTransform` | `text-transform` | none           |
+
+## Text Overflow
+
+Use the `textOverflow` prop to set the text overflow of a text element.
+
+```jsx
+<Text textOverflow="ellipsis">Hello World</Text>
+```
+
+| Prop           | CSS Property    | Token Category |
+| -------------- | --------------- | -------------- |
+| `textOverflow` | `text-overflow` | none           |
+
+## Text Shadow
+
+Use the `textShadow` prop to set the text shadow of a text element.
+
+```jsx
+<Text textShadow="0 0 1px red">Hello World</Text>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `textShadow` | `text-shadow` | `shadows`      |
+
+## Text Indent
+
+Use the `textIndent` prop to set the text indent of a text element.
+
+```jsx
+// hardcoded values
+<Text textIndent="1rem">Hello World</Text>
+
+// token values
+<Text textIndent="3">Hello World</Text>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `textIndent` | `text-indent` | `spacing`      |
+
+## Vertical Align
+
+Use the `verticalAlign` prop to set the vertical alignment of a text element.
+
+```jsx
+<Text verticalAlign="top">Hello World</Text>
+```
+
+| Prop            | CSS Property     | Token Category |
+| --------------- | ---------------- | -------------- |
+| `verticalAlign` | `vertical-align` | none           |
+
+## White Space
+
+Use the `whiteSpace` prop to set the white space of a text element.
+
+```jsx
+<Text whiteSpace="nowrap">Hello World</Text>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `whiteSpace` | `white-space` | none           |
+
+## Word Break
+
+Use the `wordBreak` prop to set whether line breaks appear wherever the text
+would otherwise overflow its content box.
+
+```jsx
+<Text wordBreak="break-all">Hello World</Text>
+```
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `wordBreak` | `word-break` | none           |
+
+## Hyphens
+
+Use the `hyphens` prop to set whether hyphens are used in the text.
+
+```jsx
+<Text hyphens="auto">Hello World</Text>
+```
+
+| Prop      | CSS Property | Token Category |
+| --------- | ------------ | -------------- |
+| `hyphens` | `hyphens`    | none           |
