@@ -201,3 +201,233 @@ Use the `gridTemplateRows` prop to define the rows of a grid container.
   <Box>Item 3</Box>
 </Box>
 ```
+
+| Prop               | CSS Property         | Token Category |
+| ------------------ | -------------------- | -------------- |
+| `gridTemplateRows` | `grid-template-rows` | -              |
+
+## Grid Row Start/End
+
+Use the `gridRowStart` and `gridRowEnd` props to define the start and end of a
+grid item.
+
+```jsx
+<Box display="grid" gap="4" gridTemplateRows="repeat(3, minmax(0, 1fr))">
+  <Box gridRowStart="1" gridRowEnd="3">
+    Item 1
+  </Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop           | CSS Property     | Token Category |
+| -------------- | ---------------- | -------------- |
+| `gridRowStart` | `grid-row-start` | -              |
+| `gridRowEnd`   | `grid-row-end`   | -              |
+
+## Grid Autoflow
+
+Use the `gridAutoFlow` prop to define how auto-placed items get flowed into the
+grid.
+
+```jsx
+<Box display="grid" gridAutoFlow="row">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop           | CSS Property     | Token Category |
+| -------------- | ---------------- | -------------- |
+| `gridAutoFlow` | `grid-auto-flow` | -              |
+
+## Grid Auto Columns
+
+Use the `gridAutoColumns` prop to specify the size of the grid columns that were
+created without an explicit size.
+
+```jsx
+<Box display="grid" gridAutoColumns="120px">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop              | CSS Property        | Token Category |
+| ----------------- | ------------------- | -------------- |
+| `gridAutoColumns` | `grid-auto-columns` | -              |
+
+## Grid Auto Rows
+
+Use the `gridAutoRows` prop to specify the size of the grid rows that were
+created without an explicit size.
+
+```jsx
+<Box display="grid" gridTemplateRows="200px" gridAutoRows="120px">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop           | CSS Property     | Token Category |
+| -------------- | ---------------- | -------------- |
+| `gridAutoRows` | `grid-auto-rows` | -              |
+
+## Justify Content
+
+Use the `justifyContent` prop to align items along the main axis of a flex
+container.
+
+```jsx
+<Box display="flex" justifyContent="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+When using the `Flex` component, the `justify` prop is aliased to
+`justifyContent`.
+
+```jsx
+<Flex justify="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Flex>
+```
+
+| Prop             | CSS Property      | Token Category |
+| ---------------- | ----------------- | -------------- |
+| `justifyContent` | `justify-content` | -              |
+
+## Justify Items
+
+Use the `justifyItems` prop to control the alignment of grid items within their
+scope.
+
+```jsx
+<Box display="grid" justifyItems="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop           | CSS Property    | Token Category |
+| -------------- | --------------- | -------------- |
+| `justifyItems` | `justify-items` | -              |
+
+## Align Content
+
+Use the `alignContent` prop to align rows of content along the cross axis of a
+flex container when there's extra space.
+
+```jsx
+<Box display="flex" alignContent="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+When using the `Flex` component, the `align` prop is aliased to `alignContent`.
+
+```jsx
+<Flex align="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Flex>
+```
+
+| Prop           | CSS Property    | Token Category |
+| -------------- | --------------- | -------------- |
+| `alignContent` | `align-content` | -              |
+
+## Align Items
+
+Use the `alignItems` prop to control the alignment of grid items within their
+scope.
+
+```jsx
+<Box display="grid" alignItems="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+## Align Self
+
+Use the `alignSelf` prop to control the alignment of a grid item within its
+scope.
+
+```jsx
+<Box display="grid">
+  <Box alignSelf="center">Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `alignSelf` | `align-self` | -              |
+
+## Place Content
+
+Use the `placeContent` prop to align content along both the block and inline
+directions at once. It works like `justifyContent` and `alignContent` combined,
+and can be used in flex and grid containers.
+
+```jsx
+<Flex placeContent="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Flex>
+```
+
+| Prop           | CSS Property    | Token Category |
+| -------------- | --------------- | -------------- |
+| `placeContent` | `place-content` | -              |
+
+## Place Items
+
+Use the `placeItems` prop to align items along both the block and inline
+directions at once. It works like `justifyItems` and `alignItems` combined, and
+can be used in flex and grid containers.
+
+```jsx
+<Box display="grid" placeItems="center">
+  <Box>Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop         | CSS Property  | Token Category |
+| ------------ | ------------- | -------------- |
+| `placeItems` | `place-items` | -              |
+
+## Place Self
+
+Use the `placeSelf` prop to align a grid item along both the block and inline
+directions at once.
+
+```jsx
+<Box display="grid">
+  <Box placeSelf="center">Item 1</Box>
+  <Box>Item 2</Box>
+  <Box>Item 3</Box>
+</Box>
+```
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `placeSelf` | `place-self` | -              |
