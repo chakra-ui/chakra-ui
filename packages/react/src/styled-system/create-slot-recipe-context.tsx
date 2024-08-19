@@ -1,6 +1,6 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
+import { cx, isString } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { createContext } from "../create-context"
 import type { SystemStyleObject } from "./css.types"
@@ -8,6 +8,7 @@ import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
 import type { ConfigRecipeSlots } from "./generated/recipes.gen"
+import type { SlotRecipeDefinition } from "./recipe.types"
 import { type SlotRecipeKey, useSlotRecipe } from "./use-slot-recipe"
 
 interface WrapElementProps<P> {
@@ -26,8 +27,17 @@ interface WithContextOptions<P> extends JsxFactoryOptions<P> {}
 
 const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
-export const createSlotRecipeContext = <R extends SlotRecipeKey>(recipe: R) => {
-  const contextName = upperFirst(recipe)
+export const createSlotRecipeContext = <R extends SlotRecipeKey>(
+  recipeKeyOrConfig: R | SlotRecipeDefinition,
+) => {
+  const recipeKey = isString(recipeKeyOrConfig) ? recipeKeyOrConfig : undefined
+  const recipeConfig = isString(recipeKeyOrConfig)
+    ? undefined
+    : recipeKeyOrConfig
+
+  const contextName = upperFirst(
+    recipeKey || (recipeConfig as any).className || "Component",
+  )
 
   const [StylesProvider, useStyles] = createContext<
     Record<string, SystemStyleObject>
@@ -46,7 +56,9 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(recipe: R) => {
 
   function useRecipeResult(props: any) {
     const { unstyled, ...restProps } = props
-    const slotRecipe = useSlotRecipe(recipe, restProps.recipe)
+
+    const fallbackRecipe = restProps.recipe || recipeConfig
+    const slotRecipe = useSlotRecipe(recipeKey, fallbackRecipe)
 
     // @ts-ignore
     const [variantProps, otherProps] = slotRecipe.splitVariantProps(restProps)
