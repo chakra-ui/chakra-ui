@@ -15,6 +15,7 @@ export default {
 export { TabsBasic as Basic } from "compositions/examples/tabs-basic"
 export { TabsControlled as Controlled } from "compositions/examples/tabs-controlled"
 export { TabsLazyMounted as LazyMounted } from "compositions/examples/tabs-lazy-mounted"
+export { TabsNested as Nested } from "compositions/examples/tabs-nested"
 export { TabsSizeTable as Sizes } from "compositions/examples/tabs-size-table"
 export { TabsStretched as Stretched } from "compositions/examples/tabs-stretched"
 export { TabsVariantTable as Variants } from "compositions/examples/tabs-variant-table"
