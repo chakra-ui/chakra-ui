@@ -41,7 +41,7 @@ const docsLinks: NavItem = {
           title: "Concepts",
           items: [
             { title: "Overview", url: "overview" },
-            { title: "Token", url: "token" },
+            { title: "Tokens", url: "tokens" },
             { title: "Semantic Tokens", url: "semantic-tokens" },
             { title: "Recipe", url: "recipe" },
             { title: "Slot Recipes", url: "slot-recipes" },
