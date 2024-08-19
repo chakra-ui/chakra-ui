@@ -1,0 +1,573 @@
+---
+title: Tokens
+description: Managing design decisions in your app using tokens.
+---
+
+## Overview
+
+Design tokens are the platform-agnostic way to manage design decisions in your
+application or website. It is a collection of attributes that describe any
+fundamental/atomic visual style. Each attribute is a key-value pair.
+
+> Design tokens in Chakra are largely influenced by the
+> [W3C Token Format](https://tr.designtokens.org/format/).
+
+A design token consists of the following properties:
+
+- `value`: The value of the token. This can be any valid CSS value.
+- `description`: An optional description of what the token can be used for.
+
+## Defining Tokens
+
+Tokens are defined in the under the `theme` key in your system config.
+
+```ts title="theme.ts"
+import { createSystem, defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        primary: { value: "#0FEE0F" },
+        secondary: { value: "#EE0F0F" },
+      },
+      fonts: {
+        body: { value: "system-ui, sans-serif" },
+      },
+    },
+  },
+})
+
+export const system = createSystem(config)
+```
+
+:::warning
+
+> Token values need to be nested in an object with a `value` key. This is to
+> allow for additional properties like `description` and more in the future.
+
+:::
+
+## Using Tokens
+
+After defining tokens, we recommend using the Chakra CLI to generate theme
+typings for your tokens.
+
+```bash
+npx @chakra-ui/cli@next typegen ./src/theme.ts
+```
+
+This will provide autocompletion for your tokens in your editor.
+
+```tsx
+<Box color="primary" fontFamily="body">
+  Hello World
+</Box>
+```
+
+## Token Nesting
+
+Tokens can be nested to create a hierarchy of tokens. This is useful when you
+want to group related tokens together.
+
+:::info
+
+Use the `DEFAULT` key to define the default value of a nested token.
+
+:::
+
+```ts title="theme.ts"
+import { defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        red: {
+          DEFAULT: { value: "#EE0F0F" },
+          100: { value: "#EE0F0F" },
+        },
+      },
+    },
+  },
+})
+
+export default createSystem(config)
+```
+
+```tsx
+<Box
+  // 👇🏻 This will use the `DEFAULT` value
+  bg="red"
+  color="red.100"
+>
+  Hello World
+</Box>
+```
+
+## Token Types
+
+### Colors
+
+Colors have meaning and support the purpose of the content, communicating things
+like hierarchy of information, and states. It is mostly defined as a string
+value or reference to other tokens.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  colors: {
+    red: {
+      100: { value: "#fff1f0" },
+    },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+### Gradients
+
+Gradient tokens represent a smooth transition between two or more colors. Its
+value can be defined as a string or a composite value.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  gradients: {
+    // string value
+    simple: { value: "linear-gradient(to right, red, blue)" },
+
+    // composite value
+    primary: {
+      value: { type: "linear", placement: "to right", stops: ["red", "blue"] },
+    },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+### Sizes
+
+Size tokens represent the width and height of an element. Its value is defined
+as a string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  sizes: {
+    sm: { value: "12px" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Size tokens are typically used in `width`, `height`, `minWidth`, `maxWidth`,
+> `minHeight`, `maxHeight` properties.
+
+### Spacing
+
+Spacing tokens represent the margin and padding of an element. Its value is
+defined as a string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  spacing: {
+    gutter: { value: "12px" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Spacing tokens are typically used in `margin`, `padding`, `gap`, and
+> `{top,right,bottom,left}` properties.
+
+### Fonts
+
+Font tokens represent the font family of a text element. Its value is defined as
+a string or an array of strings.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  fonts: {
+    body: { value: "Inter, sans-serif" },
+    heading: { value: ["Roboto Mono", "sans-serif"] },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Font tokens are typically used in `font-family` property.
+
+### Font Sizes
+
+Font size tokens represent the size of a text element. Its value is defined as a
+string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  fontSizes: {
+    sm: { value: "12px" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Font size tokens are typically used in `font-size` property.
+
+### Font Weights
+
+Font weight tokens represent the weight of a text element. Its value is defined
+as a string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  fontWeights: {
+    bold: { value: "700" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Font weight tokens are typically used in `font-weight` property.
+
+### Letter Spacings
+
+Letter spacing tokens represent the spacing between letters in a text element.
+Its value is defined as a string.
+
+```tsx
+const tokens = defineTokens({
+  letterSpacings: {
+    wide: { value: "0.1em" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Letter spacing tokens are typically used in `letter-spacing` property.
+
+### Line Heights
+
+Line height tokens represent the height of a line of text. Its value is defined
+as a string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  lineHeights: {
+    normal: { value: "1.5" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Line height tokens are typically used in `line-height` property.
+
+### Radii
+
+Radii tokens represent the radius of a border. Its value is defined as a string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  radii: {
+    sm: { value: "4px" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Radii tokens are typically used in `border-radius` property.
+
+### Borders
+
+A border is a line surrounding a UI element. You can define them as string
+values or as a composite value
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  borders: {
+    // string value
+    subtle: { value: "1px solid red" },
+    // string value with reference to color token
+    danger: { value: "1px solid {colors.red.400}" },
+    // composite value
+    accent: { value: { width: "1px", color: "red", style: "solid" } },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Border tokens are typically used in `border`, `border-top`, `border-right`,
+> `border-bottom`, `border-left`, `outline` properties.
+
+### Border Widths
+
+Border width tokens represent the width of a border. Its value is defined as a
+string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  borderWidths: {
+    thin: { value: "1px" },
+    thick: { value: "2px" },
+    medium: { value: "1.5px" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+### Shadows
+
+Shadow tokens represent the shadow of an element. Its value is defined as single
+or multiple values containing a string or a composite value.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  shadows: {
+    // string value
+    subtle: { value: "0 1px 2px 0 rgba(0, 0, 0, 0.05)" },
+    // composite value
+    accent: {
+      value: {
+        offsetX: 0,
+        offsetY: 4,
+        blur: 4,
+        spread: 0,
+        color: "rgba(0, 0, 0, 0.1)",
+      },
+    },
+    // multiple string values
+    realistic: {
+      value: [
+        "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        "0 1px 4px 0 rgba(0, 0, 0, 0.1)",
+      ],
+    },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Shadow tokens are typically used in `box-shadow` property.
+
+### Easings
+
+Easing tokens represent the easing function of an animation or transition. Its
+value is defined as a string or an array of values representing the cubic
+bezier.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  easings: {
+    // string value
+    easeIn: { value: "cubic-bezier(0.4, 0, 0.2, 1)" },
+    // array value
+    easeOut: { value: [0.4, 0, 0.2, 1] },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Ease tokens are typically used in `transition-timing-function` property.
+
+### Opacity
+
+Opacity tokens help you set the opacity of an element.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  opacity: {
+    50: { value: 0.5 },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Opacity tokens are typically used in `opacity` property.
+
+### Z-Index
+
+This token type represents the depth of an element's position on the z-axis.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  zIndex: {
+    modal: { value: 1000 },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Z-index tokens are typically used in `z-index` property.
+
+### Assets
+
+Asset tokens represent a url or svg string. Its value is defined as a string or
+a composite value.
+
+```ts
+type CompositeAsset = { type: "url" | "svg"; value: string }
+type Asset = string | CompositeAsset
+```
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  tokens: {
+    assets: {
+      logo: {
+        value: { type: "url", value: "/static/logo.png" },
+      },
+      checkmark: {
+        value: { type: "svg", value: "<svg>...</svg>" },
+      },
+    },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Asset tokens are typically used in `background-image` property.
+
+### Durations
+
+Duration tokens represent the length of time in milliseconds an animation or
+animation cycle takes to complete. Its value is defined as a string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  durations: {
+    fast: { value: "100ms" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Duration tokens are typically used in `transition-duration` and
+> `animation-duration` properties.
+
+### Animations
+
+Animation tokens represent a keyframe animation. Its value is defined as a
+string value.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  animations: {
+    spin: {
+      value: "spin 1s linear infinite",
+    },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```
+
+> Animation tokens are typically used in `animation` property.
+
+### Aspect Ratios
+
+Aspect ratio tokens represent the aspect ratio of an element. Its value is
+defined as a string.
+
+```tsx title="theme.ts"
+import { defineTokens } from "@chakra-ui/react"
+
+const tokens = defineTokens({
+  aspectRatios: {
+    "1:1": { value: "1 / 1" },
+    "16:9": { value: "16 / 9" },
+  },
+})
+
+export default createSystem({
+  theme: { tokens },
+})
+```

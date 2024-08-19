@@ -36,13 +36,13 @@ export function useRoute() {
 
   function getSecondaryNav() {
     const nav = getPrimaryNav()
-    return nav.items?.find((item) => item.url === secondaryHref)!
+    return nav?.items?.find((item) => item.url === secondaryHref)!
   }
 
   function getSecondaryNavItems() {
     const nav = getPrimaryNav()
     return (
-      nav.items?.map((item) => {
+      nav?.items?.map((item) => {
         const firstChild = flattenedItems.find((child) =>
           child.url?.startsWith(join(nav.url, item.url)),
         )
@@ -92,7 +92,7 @@ export function useRoute() {
       secondaryNav?.items?.map((group) => ({
         ...group,
         items:
-          group.items?.map((item) => ({
+          group?.items?.map((item) => ({
             status: item.status,
             title: item.title,
             url: item.url?.startsWith("http")
