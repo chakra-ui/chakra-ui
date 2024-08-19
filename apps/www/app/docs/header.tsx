@@ -18,7 +18,8 @@ import {
   chakra,
 } from "@chakra-ui/react"
 import Link from "next/link"
-import { useRef, useSyncExternalStore } from "react"
+import { usePathname } from "next/navigation"
+import { useEffect, useRef, useSyncExternalStore } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
 const usePrimaryNavItems = () => {
@@ -198,7 +199,7 @@ const HeaderSocialLinks = () => (
 )
 
 const HeaderMobileMenuButton = () => {
-  const { isOpen, toggleMenu } = useMenuStore()
+  const { toggleMenu } = useMenuStore()
   return (
     <IconButton
       variant="ghost"
@@ -213,11 +214,35 @@ const HeaderMobileMenuButton = () => {
   )
 }
 
+const NavigationEvents = () => {
+  const { closeMenu } = useMenuStore()
+  const pathname = usePathname()
+  const pathnameRef = useRef(pathname)
+
+  useEffect(() => {
+    if (pathnameRef.current !== pathname) {
+      closeMenu()
+    }
+    pathnameRef.current = pathname
+  }, [pathname, closeMenu])
+
+  return null
+}
+
 const HeaderMobileMenuDropdown = () => {
   const { isOpen, closeMenu, toggleMenu } = useMenuStore()
   const primaryNavItems = usePrimaryNavItems()
   const secondaryNavItems = useSecondaryNavItems()
   const containerRef = useRef(null)
+  const pathname = usePathname()
+  const pathnameRef = useRef(pathname)
+
+  useEffect(() => {
+    if (pathnameRef.current !== pathname) {
+      closeMenu()
+    }
+    pathnameRef.current = pathname
+  }, [pathname, closeMenu])
 
   return (
     <Drawer.Root
