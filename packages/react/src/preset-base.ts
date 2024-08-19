@@ -20,9 +20,10 @@ const createFocusRing = (selector: string) => {
         inside: {
           "--focus-ring-color": focusRingColor,
           [selector]: {
-            outlineWidth: "var(--focus-ring-width, 2px)",
+            outlineOffset: "0px",
+            outlineWidth: "var(--focus-ring-width, 1px)",
             outlineColor: "var(--focus-ring-color)",
-            outlineStyle: "solid",
+            outlineStyle: "var(--focus-ring-style, solid)",
             borderColor: "var(--focus-ring-color)",
           },
         },
@@ -31,7 +32,7 @@ const createFocusRing = (selector: string) => {
           [selector]: {
             outlineWidth: "var(--focus-ring-width, 2px)",
             outlineOffset: "2px",
-            outlineStyle: "solid",
+            outlineStyle: "var(--focus-ring-style, solid)",
             outlineColor: "var(--focus-ring-color)",
           },
         },
@@ -39,7 +40,7 @@ const createFocusRing = (selector: string) => {
           "--focus-ring-color": focusRingColor,
           [selector]: {
             outlineWidth: "var(--focus-ring-width, 3px)",
-            outlineStyle: "solid",
+            outlineStyle: "var(--focus-ring-style, solid)",
             outlineColor:
               "color-mix(in srgb, var(--focus-ring-color), transparent 60%)",
             borderColor: "var(--focus-ring-color)",
@@ -59,6 +60,14 @@ const createFocusRing = (selector: string) => {
 }
 
 const divideColor = createColorMixTransform("borderColor")
+
+const createTransition = (value: string) => {
+  return {
+    transition: value,
+    transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+    transitionDuration: "150ms",
+  }
+}
 
 export const defaultConditions = defineConditions({
   hover: "&:is(:hover, [data-hover]):not(:disabled, [data-disabled])",
@@ -569,8 +578,8 @@ export const defaultBaseConfig = defineConfig({
     // flexbox
     flexBasis: { values: "sizes" },
     gap: { values: "spacing" },
-    rowGap: { values: "spacing" },
-    columnGap: { values: "spacing" },
+    rowGap: { values: "spacing", shorthand: ["gapY"] },
+    columnGap: { values: "spacing", shorthand: ["gapX"] },
     flexDirection: { shorthand: ["flexDir"] },
     // grid
     gridGap: { values: "spacing" },
@@ -593,6 +602,11 @@ export const defaultBaseConfig = defineConfig({
       values: "borderWidths",
       property: "outlineWidth",
       transform: (v) => ({ "--focus-ring-width": v }),
+    },
+    focusRingStyle: {
+      values: "borderStyles",
+      property: "outlineStyle",
+      transform: (v) => ({ "--focus-ring-style": v }),
     },
     // layout
     aspectRatio: { values: "aspectRatios" },
@@ -645,6 +659,33 @@ export const defaultBaseConfig = defineConfig({
     overscrollBehavior: { shorthand: ["overscroll"] },
     overscrollBehaviorX: { shorthand: ["overscrollX"] },
     overscrollBehaviorY: { shorthand: ["overscrollY"] },
+    scrollbar: {
+      values: ["visible", "hidden"],
+      transform(v) {
+        switch (v) {
+          case "visible":
+            return {
+              msOverflowStyle: "auto",
+              scrollbarWidth: "auto",
+              "&::-webkit-scrollbar": { display: "block" },
+            }
+          case "hidden":
+            return {
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+              "&::-webkit-scrollbar": { display: "none" },
+            }
+          default:
+            return {}
+        }
+      },
+    },
+    scrollbarColor: {
+      values: "colors",
+      transform: createColorMixTransform("scrollbarColor"),
+    },
+    scrollbarGutter: { values: "spacing" },
+    scrollbarWidth: { values: "sizes" },
     // scroll margin
     scrollMargin: { values: "spacing" },
     scrollMarginTop: { values: "spacing" },
@@ -665,8 +706,26 @@ export const defaultBaseConfig = defineConfig({
     scrollPaddingBottom: { values: "spacing" },
     scrollPaddingLeft: { values: "spacing" },
     scrollPaddingRight: { values: "spacing" },
-    scrollPaddingX: { values: "spacing" },
-    scrollPaddingY: { values: "spacing" },
+    scrollPaddingInline: { values: "spacing", shorthand: ["scrollPaddingX"] },
+    scrollPaddingBlock: { values: "spacing", shorthand: ["scrollPaddingY"] },
+    // scroll snap
+    scrollSnapType: {
+      values: {
+        none: "none",
+        x: "x var(--scroll-snap-strictness)",
+        y: "y var(--scroll-snap-strictness)",
+        both: "both var(--scroll-snap-strictness)",
+      },
+    },
+    scrollSnapStrictness: {
+      values: ["mandatory", "proximity"],
+      transform: (v) => ({ "--scroll-snap-strictness": v }),
+    },
+    scrollSnapMargin: { values: "spacing" },
+    scrollSnapMarginTop: { values: "spacing" },
+    scrollSnapMarginBottom: { values: "spacing" },
+    scrollSnapMarginLeft: { values: "spacing" },
+    scrollSnapMarginRight: { values: "spacing" },
     // list
     listStylePosition: { shorthand: ["listStylePos"] },
     listStyleImage: { shorthand: ["listStyleImg"] },
@@ -825,6 +884,16 @@ export const defaultBaseConfig = defineConfig({
         }
       },
     },
+    rotateX: {
+      transform(value) {
+        return { "--rotate-x": deg(value) }
+      },
+    },
+    rotateY: {
+      transform(value) {
+        return { "--rotate-y": deg(value) }
+      },
+    },
     // transform / translate
     translate: {
       transform(value) {
@@ -843,6 +912,51 @@ export const defaultBaseConfig = defineConfig({
       transform: (v) => ({ "--translate-y": v }),
     },
     // transition
+    transition: {
+      values: [
+        "all",
+        "common",
+        "colors",
+        "opacity",
+        "position",
+        "backgrounds",
+        "size",
+        "shadow",
+        "transform",
+      ],
+      transform(value) {
+        switch (value) {
+          case "all":
+            return createTransition("all")
+          case "position":
+            return createTransition(
+              "left, right, top, bottom, inset-inline, inset-block",
+            )
+          case "colors":
+            return createTransition(
+              "color, background-color, border-color, text-decoration-color, fill, stroke",
+            )
+          case "opacity":
+            return createTransition("opacity")
+          case "shadow":
+            return createTransition("box-shadow")
+          case "transform":
+            return createTransition("transform")
+          case "size":
+            return createTransition("width, height")
+          case "backgrounds":
+            return createTransition(
+              "background, background-color, background-image, background-position",
+            )
+          case "common":
+            return createTransition(
+              "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter",
+            )
+          default:
+            return { transition: value }
+        }
+      },
+    },
     transitionDuration: { values: "durations" },
     transitionProperty: {
       values: {
@@ -850,8 +964,9 @@ export const defaultBaseConfig = defineConfig({
           "background-color, border-color, color, fill, stroke, opacity, box-shadow, translate, transform",
         colors: "background-color, border-color, color, fill, stroke",
         size: "width, height",
-        position: "left, right, top, bottom",
-        background: "background-color, background-image, background-position",
+        position: "left, right, top, bottom, inset-inline, inset-block",
+        background:
+          "background, background-color, background-image, background-position",
       },
     },
     transitionTimingFunction: { values: "easings" },
@@ -866,6 +981,7 @@ export const defaultBaseConfig = defineConfig({
     fontWeight: { values: "fontWeights" },
     lineHeight: { values: "lineHeights" },
     letterSpacing: { values: "letterSpacings" },
+    textIndent: { values: "spacing" },
     truncate: {
       values: { type: "boolean" },
       transform(value) {

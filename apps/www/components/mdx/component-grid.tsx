@@ -3,12 +3,12 @@ import Link from "next/link"
 import { docs } from ".velite"
 
 const components = docs.filter(
-  (doc) => doc.slug.includes("components/") && !doc.slug.includes("overview/"),
+  (doc) => doc.slug.includes("components/") && !doc.slug.includes("concepts/"),
 )
 
 export const ComponentGrid = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 3 }} gap="6" mt="8">
+    <SimpleGrid minChildWidth="240px" gap="6" mt="8">
       {components.map((item) => (
         <Stack
           asChild

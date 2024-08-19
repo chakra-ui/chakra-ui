@@ -1,12 +1,12 @@
 ---
 title: Chakra Factory
-description: Using the chakra factory to create supercharged components
+description: Use the chakra factory to create supercharged components
 ---
 
 ## Overview
 
-Chakra factory serves as a way to create supercharged JSX element from any
-component to enable them receive JSX style props.
+Chakra factory serves as a way to create supercharged JSX component from any
+HTML element to enable them receive JSX style props.
 
 ```js
 import { chakra } from "@chakra-ui/react"
@@ -17,9 +17,9 @@ function.
 
 ## JSX Element
 
-Style props are just CSS properties that you can pass to your components as
-props. With the JSX factory, you can use `chakra.<element>` syntax to create
-supercharged JSX elements that support style props.
+Style props are CSS properties that you can pass as props to your components.
+With the JSX factory, you can use `chakra.<element>` syntax to create JSX
+elements that support style props.
 
 ```jsx
 import { chakra } from "@chakra-ui/react"
@@ -34,7 +34,7 @@ const Button = ({ children }) => (
 ## Factory function
 
 Use the `chakra` function to convert native elements or custom components. The
-key requirement is that the component **must** accepts `className` as props.
+key requirement is that the component **must** accept `className` as props.
 
 ```jsx
 const Link = chakra("a")
@@ -64,7 +64,7 @@ function Example() {
 
 ### Attaching styles
 
-The `chakra` function, styles or recipes can be attached to the component.
+Use the `chakra` function to attach styles or recipes to components.
 
 ```jsx
 const Link = chakra("a", {

@@ -1,0 +1,256 @@
+---
+title: Filters
+description: JSX style props for applying various filters to elements.
+---
+
+## Filter
+
+Use the `filter` prop to apply visual effects like blur or color shift to an
+element.
+
+```jsx
+<Box filter="blur(5px)" />
+<Box filter="grayscale(80%)" />
+```
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `filter` | `filter`     | -              |
+
+## Blur
+
+Use the `blur` prop to apply a blur effect to an element. The requirement for
+this prop is to set the `filter` prop to `auto`.
+
+```jsx
+// hardcoded value
+<Box filter="auto" blur="5px" />
+
+// token value
+<Box filter="auto" blur="sm" />
+```
+
+| Prop   | CSS Property | Token Category |
+| ------ | ------------ | -------------- |
+| `blur` | `--blur`     | `blurs`        |
+
+## Contrast
+
+Use the `contrast` prop to apply a contrast effect to an element. The
+requirement for this prop is to use the `filter` prop and set it to `auto`.
+
+```jsx
+<Box filter="auto" contrast="0.3" />
+```
+
+| Prop       | CSS Property | Token Category |
+| ---------- | ------------ | -------------- |
+| `contrast` | `--contrast` | -              |
+
+## Drop Shadow
+
+Use the `dropShadow` prop to apply a drop shadow effect to an element. The
+requirement for this prop is to use the `filter` prop and set it to `auto`.
+
+```jsx
+<Box filter="auto" dropShadow="0px 0px 10px rgba(0, 0, 0, 0.5)" />
+```
+
+| Prop         | CSS Property    | Token Category |
+| ------------ | --------------- | -------------- |
+| `dropShadow` | `--drop-shadow` | -              |
+
+## Grayscale
+
+Use the `grayscale` prop to apply a grayscale effect to an element. The
+requirement for this prop is to use the `filter` prop and set it to `auto`.
+
+```jsx
+<Box filter="auto" grayscale="64%" />
+```
+
+| Prop        | CSS Property  | Token Category |
+| ----------- | ------------- | -------------- |
+| `grayscale` | `--grayscale` | -              |
+
+## Hue Rotate
+
+Use the `hueRotate` prop to apply a hue rotate effect to an element. The
+requirement for this prop is to use the `filter` prop and set it to `auto`.
+
+```jsx
+<Box filter="auto" hueRotate="30deg" />
+```
+
+| Prop        | CSS Property   | Token Category |
+| ----------- | -------------- | -------------- |
+| `hueRotate` | `--hue-rotate` | -              |
+
+## Invert
+
+Use the `invert` prop to apply an invert effect to an element. The requirement
+for this prop is to use the `filter` prop and set it to `auto`.
+
+```jsx
+<Box filter="auto" invert="40%" />
+```
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `invert` | `--invert`   | -              |
+
+## Saturate
+
+Use the `saturate` prop to apply a saturate effect to an element. The
+requirement for this prop is to use the `filter` prop and set it to `auto`.
+
+```jsx
+<Box filter="auto" saturate="0.4" />
+```
+
+| Prop       | CSS Property | Token Category |
+| ---------- | ------------ | -------------- |
+| `saturate` | `--saturate` | -              |
+
+## Sepia
+
+Use the `sepia` prop to apply a sepia effect to an element. The requirement for
+this prop is to use the `filter` prop and set it to `auto`.
+
+```jsx
+<Box filter="auto" sepia="0.4" />
+```
+
+| Prop    | CSS Property | Token Category |
+| ------- | ------------ | -------------- |
+| `sepia` | `--sepia`    | -              |
+
+## Backdrop Filter
+
+Use the `backdropFilter` prop to apply visual effects like blur or color shift
+to the area behind an element. This creates a translucent effect.
+
+```jsx
+<Box backdropFilter="blur(5px)" />
+<Box backdropFilter="grayscale(80%)" />
+```
+
+| Prop             | CSS Property      | Token Category |
+| ---------------- | ----------------- | -------------- |
+| `backdropFilter` | `backdrop-filter` | -              |
+
+## Backdrop Blur
+
+Use the `backdropBlur` prop to apply a blur effect to the area behind an
+element. The requirement for this prop is to set the `backdropFilter` prop to
+`auto`.
+
+```jsx
+// hardcoded value
+<Box backdropFilter="auto" backdropBlur="5px" />
+
+// token value
+<Box backdropFilter="auto" backdropBlur="sm" />
+```
+
+| Prop           | CSS Property      | Token Category |
+| -------------- | ----------------- | -------------- |
+| `backdropBlur` | `--backdrop-blur` | `blurs`        |
+
+## Backdrop Contrast
+
+Use the `backdropContrast` prop to apply a contrast effect to the area behind an
+element. The requirement for this prop is to use the `backdropFilter` prop and
+set it to `auto`.
+
+```jsx
+<Box backdropFilter="auto" backdropContrast="0.3" />
+```
+
+| Prop               | CSS Property          | Token Category |
+| ------------------ | --------------------- | -------------- |
+| `backdropContrast` | `--backdrop-contrast` | -              |
+
+## Backdrop Grayscale
+
+Use the `backdropGrayscale` prop to apply a grayscale effect to the area behind
+an element. The requirement for this prop is to use the `backdropFilter` prop
+and set it to `auto`.
+
+```jsx
+<Box backdropFilter="auto" backdropGrayscale="64%" />
+```
+
+| Prop                | CSS Property           | Token Category |
+| ------------------- | ---------------------- | -------------- |
+| `backdropGrayscale` | `--backdrop-grayscale` | -              |
+
+## Backdrop Hue Rotate
+
+Use the `backdropHueRotate` prop to apply a hue rotate effect to the area behind
+an element. The requirement for this prop is to use the `backdropFilter` prop
+and set it to `auto`.
+
+```jsx
+<Box backdropFilter="auto" backdropHueRotate="30deg" />
+```
+
+| Prop                | CSS Property            | Token Category |
+| ------------------- | ----------------------- | -------------- |
+| `backdropHueRotate` | `--backdrop-hue-rotate` | -              |
+
+## Backdrop Invert
+
+Use the `backdropInvert` prop to apply an invert effect to the area behind an
+element. The requirement for this prop is to use the `backdropFilter` prop and
+set it to `auto`.
+
+```jsx
+<Box backdropFilter="auto" backdropInvert="40%" />
+```
+
+| Prop             | CSS Property        | Token Category |
+| ---------------- | ------------------- | -------------- |
+| `backdropInvert` | `--backdrop-invert` | -              |
+
+## Backdrop Opacity
+
+Use the `backdropOpacity` prop to apply an opacity effect to the area behind an
+element. The requirement for this prop is to use the `backdropFilter` prop and
+set it to `auto`.
+
+```jsx
+<Box backdropFilter="auto" backdropOpacity="0.4" />
+```
+
+| Prop              | CSS Property         | Token Category |
+| ----------------- | -------------------- | -------------- |
+| `backdropOpacity` | `--backdrop-opacity` | -              |
+
+## Backdrop Saturate
+
+Use the `backdropSaturate` prop to apply a saturate effect to the area behind an
+element. The requirement for this prop is to use the `backdropFilter` prop and
+set it to `auto`.
+
+```jsx
+<Box backdropFilter="auto" backdropSaturate="0.4" />
+```
+
+| Prop               | CSS Property          | Token Category |
+| ------------------ | --------------------- | -------------- |
+| `backdropSaturate` | `--backdrop-saturate` | -              |
+
+## Backdrop Sepia
+
+Use the `backdropSepia` prop to apply a sepia effect to the area behind an
+element. The requirement for this prop is to use the `backdropFilter` prop and
+set it to `auto`.
+
+```jsx
+<Box backdropFilter="auto" backdropSepia="0.4" />
+```
+
+| Prop            | CSS Property       | Token Category |
+| --------------- | ------------------ | -------------- |
+| `backdropSepia` | `--backdrop-sepia` | -              |

@@ -1,23 +1,32 @@
 ---
 title: Styling
-description: Style props are a way to style your components in Chakra UI.
+description: All components are designed to be styled using props.
 ---
 
-TODO
+## Concepts
 
-## Nested Styles
+After installing Chakra UI, follow these guidelines to learn the key concepts:
 
-For type safety, Chakra requires that you use the `&` operator to nest styles.
+- [Chakra Factory](/docs/styling/chakra-factory)
+- [Responsive Design](/docs/styling/responsive-design)
+- [CSS Variables](/docs/styling/css-variables)
+- [Dark Mode](/docs/styling/dark-mode)
+- [Color Opacity Modifier](/docs/styling/color-opacity-modifier)
+- [Conditional Styles](/docs/styling/conditional-styles)
+- [Focus Ring](/docs/styling/focus-ring)
+- [Virtual Color](/docs/styling/virtual-color)
 
-```tsx
-const Card = chakra("div", {
-  base: {
-    bg: "white",
-    borderRadius: "md",
-    boxShadow: "md",
-    "& svg": {
-      color: "red.500",
-    },
-  },
-})
-```
+## Compositions
+
+After understanding the concepts, learn how to use these compositions to avoid
+repeating styles:
+
+- [Text Styles](/docs/styling/text-styles)
+- [Layer Styles](/docs/styling/layer-styles)
+- [Animation Styles](/docs/styling/animation-styles)
+
+## Style Props
+
+Style props are the most fundamental way to style your components in Chakra UI.
+They are basically css styles as props.
+[Learn more about style props](/docs/styling/style-props/background)

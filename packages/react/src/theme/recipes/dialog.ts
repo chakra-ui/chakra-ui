@@ -17,11 +17,11 @@ export const dialogSlotRecipe = defineSlotRecipe({
       zIndex: "modal",
       _open: {
         animationName: "fade-in",
-        animationDuration: "fast",
+        animationDuration: "moderate",
       },
       _closed: {
         animationName: "fade-out",
-        animationDuration: "faster",
+        animationDuration: "moderate",
       },
     },
     positioner: {
@@ -47,7 +47,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       bg: "bg.panel",
       shadow: "lg",
       _open: {
-        animationDuration: "normal",
+        animationDuration: "moderate",
       },
       _closed: {
         animationDuration: "faster",

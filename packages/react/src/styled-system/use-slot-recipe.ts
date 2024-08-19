@@ -13,12 +13,12 @@ export type SlotRecipeFn<K extends SlotRecipeKey> =
     : SystemSlotRecipeFn<string, {}>
 
 export function useSlotRecipe<K extends SlotRecipeKey>(
-  key: K,
+  key?: K,
   fallback?: SlotRecipeConfig,
 ): SlotRecipeFn<K> {
   const sys = useChakraContext()
   return useMemo((): any => {
-    const recipe = fallback || sys.getSlotRecipe(key)
+    const recipe = fallback || (key != null ? sys.getSlotRecipe(key) : {})
     return sys.sva(structuredClone(recipe))
   }, [key, fallback, sys])
 }

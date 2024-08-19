@@ -1,0 +1,82 @@
+---
+title: Using Chakra UI in Storybook
+description: A guide for using Chakra UI with Storybook
+---
+
+## Installation
+
+:::steps
+
+### Install dependencies
+
+Install the required dependencies for Chakra UI and Storybook.
+
+```bash
+npm i @storybook/addon-themes @chakra-ui/react @emotion/react
+```
+
+### Setup Preview
+
+Edit the `.storybook/preview.tsx` file to include the Chakra UI provider.
+
+```tsx
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
+import type { Preview } from "@storybook/react"
+
+const preview: Preview = {
+  // ...
+  decorators: [
+    (Story) => (
+      <ChakraProvider value={defaultSystem}>
+        <Story />
+      </ChakraProvider>
+    ),
+  ],
+}
+
+export default preview
+```
+
+### Setup dark mode toggle
+
+Use the `withThemeByClassName` decorator from `@storybook/addon-themes` to add a
+color mode toggle to the Storybook toolbar.
+
+```tsx
+import { withThemeByClassName } from "@storybook/addon-themes"
+import type { Preview, ReactRenderer } from "@storybook/react"
+
+const preview: Preview = {
+  decorators: [
+    // ...
+    withThemeByClassName({
+      defaultTheme: "light",
+      themes: { light: "", dark: "dark" },
+    }),
+  ],
+}
+
+export default preview
+```
+
+### Start the Storybook server
+
+```bash
+npm run storybook
+```
+
+### Enjoy!
+
+Use Chakra UI components in your stories.
+
+```tsx
+import { Button } from "@chakra-ui/react"
+
+export const SampleStory = {
+  render() {
+    return <Button>Click me</Button>
+  },
+}
+```
+
+:::

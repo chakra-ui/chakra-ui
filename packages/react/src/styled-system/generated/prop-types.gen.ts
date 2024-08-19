@@ -118,6 +118,7 @@ export interface UtilityValues {
   focusVisibleRing: "outside" | "inside" | "mixed" | "none"
   focusRingColor: Tokens["colors"]
   focusRingWidth: Tokens["borderWidths"] | CssProperties["outlineWidth"]
+  focusRingStyle: Tokens["borderStyles"] | CssProperties["outlineStyle"]
   aspectRatio: Tokens["aspectRatios"]
   width: Tokens["sizes"]
   inlineSize: Tokens["sizes"]
@@ -134,6 +135,10 @@ export interface UtilityValues {
   maxBlockSize: Tokens["sizes"]
   hideFrom: Tokens["breakpoints"]
   hideBelow: Tokens["breakpoints"]
+  scrollbar: "visible" | "hidden"
+  scrollbarColor: Tokens["colors"]
+  scrollbarGutter: Tokens["spacing"]
+  scrollbarWidth: Tokens["sizes"]
   scrollMargin: Tokens["spacing"]
   scrollMarginTop: Tokens["spacing"]
   scrollMarginBottom: Tokens["spacing"]
@@ -146,8 +151,15 @@ export interface UtilityValues {
   scrollPaddingBottom: Tokens["spacing"]
   scrollPaddingLeft: Tokens["spacing"]
   scrollPaddingRight: Tokens["spacing"]
-  scrollPaddingX: Tokens["spacing"]
-  scrollPaddingY: Tokens["spacing"]
+  scrollPaddingInline: Tokens["spacing"]
+  scrollPaddingBlock: Tokens["spacing"]
+  scrollSnapType: "none" | "x" | "y" | "both"
+  scrollSnapStrictness: "mandatory" | "proximity"
+  scrollSnapMargin: Tokens["spacing"]
+  scrollSnapMarginTop: Tokens["spacing"]
+  scrollSnapMarginBottom: Tokens["spacing"]
+  scrollSnapMarginLeft: Tokens["spacing"]
+  scrollSnapMarginRight: Tokens["spacing"]
   zIndex: Tokens["zIndex"]
   inset: Tokens["spacing"]
   insetInline: Tokens["spacing"]
@@ -192,6 +204,7 @@ export interface UtilityValues {
   spaceY: Tokens["spacing"] | CssProperties["marginTop"]
   translateX: Tokens["spacing"]
   translateY: Tokens["spacing"]
+  transition: "all" | "common" | "colors" | "opacity" | "position" | "backgrounds" | "size" | "shadow" | "transform"
   transitionDuration: Tokens["durations"]
   transitionProperty: "common" | "colors" | "size" | "position" | "background"
   transitionTimingFunction: Tokens["easings"]
@@ -204,6 +217,7 @@ export interface UtilityValues {
   fontWeight: Tokens["fontWeights"]
   lineHeight: Tokens["lineHeights"]
   letterSpacing: Tokens["letterSpacings"]
+  textIndent: Tokens["spacing"]
   truncate: boolean
   srOnly: boolean
   debug: boolean

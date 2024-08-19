@@ -56,7 +56,6 @@ export const inputRecipe = defineRecipe({
         borderColor: "border",
         bg: "bg",
         focusVisibleRing: "inside",
-        focusRingWidth: "1px",
         _invalid: {
           borderColor: "var(--error-color)",
         },

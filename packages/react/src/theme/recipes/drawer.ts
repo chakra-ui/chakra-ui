@@ -18,11 +18,11 @@ export const drawerSlotRecipe = defineSlotRecipe({
       zIndex: "modal",
       _open: {
         animationName: "fade-in",
-        animationDuration: "fast",
+        animationDuration: "slow",
       },
       _closed: {
         animationName: "fade-out",
-        animationDuration: "faster",
+        animationDuration: "moderate",
       },
     },
     positioner: {
@@ -49,13 +49,11 @@ export const drawerSlotRecipe = defineSlotRecipe({
       shadow: "lg",
       _open: {
         animationDuration: "slowest",
-        // TODO: tokenize
-        animationTimingFunction: "cubic-bezier(.32,.72,0,1)",
+        animationTimingFunction: "ease-in-smooth",
       },
       _closed: {
-        animationDuration: "slow",
-        // TODO: tokenize
-        animationTimingFunction: "cubic-bezier(.32,.72,0,1)",
+        animationDuration: "slower",
+        animationTimingFunction: "ease-in-smooth",
       },
     },
     header: dialogSlotRecipe.base!.header,

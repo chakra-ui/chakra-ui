@@ -5,7 +5,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { Toc } from "@/components/toc"
 import { docsConfig } from "@/docs.config"
 import { flattenToc } from "@/lib/flatten-toc"
-import { Stack } from "@chakra-ui/react"
+import { Show, Stack } from "@chakra-ui/react"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { SidebarEnd } from "../sidebar"
@@ -46,13 +46,15 @@ export default function Page(props: Props) {
         <MDXContent code={page.code} />
       </Stack>
 
-      <SidebarEnd visibility={page.toc.length === 0 ? "hidden" : undefined}>
-        <Toc items={flattenToc(page.toc)} />
-        <Stack borderTopWidth="1px" pt="4" align="start">
-          <EditPageButton href={`${docsConfig.editUrl}/${page.slug}.mdx`} />
-          <ScrollToTop />
-        </Stack>
-      </SidebarEnd>
+      <Show when={!page.hideToc}>
+        <SidebarEnd visibility={page.toc.length === 0 ? "hidden" : undefined}>
+          <Toc items={flattenToc(page.toc)} />
+          <Stack borderTopWidth="1px" pt="4" align="start">
+            <EditPageButton href={`${docsConfig.editUrl}/${page.slug}.mdx`} />
+            <ScrollToTop />
+          </Stack>
+        </SidebarEnd>
+      </Show>
     </>
   )
 }

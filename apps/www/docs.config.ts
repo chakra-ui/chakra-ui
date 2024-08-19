@@ -8,12 +8,14 @@ const docsLinks: NavItem = {
       items: [
         {
           title: "Overview",
-          url: "overview",
           items: [
             { title: "Installation", url: "installation" },
-            { title: "Changelog", url: "changelog" },
+            {
+              title: "Changelog",
+              url: "https://github.com/chakra-ui/chakra-ui/blob/main/CHANGELOG.md",
+            },
             { title: "Migration", url: "migration" },
-            { title: "CLI", url: "cli", status: "new" },
+            { title: "CLI", url: "cli" },
             { title: "Contributing", url: "contributing" },
           ],
         },
@@ -25,6 +27,7 @@ const docsLinks: NavItem = {
             { title: "Next.js (App)", url: "next-app" },
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
+            { title: "Storybook", url: "storybook" },
           ],
         },
       ],
@@ -35,11 +38,13 @@ const docsLinks: NavItem = {
       url: "theming",
       items: [
         {
-          title: "Overview",
+          title: "Concepts",
           items: [
-            { title: "Introduction", url: "overview" },
-            { title: "Token", url: "token" },
+            { title: "Overview", url: "overview" },
+            { title: "Tokens", url: "tokens" },
             { title: "Semantic Tokens", url: "semantic-tokens" },
+            { title: "Recipe", url: "recipe" },
+            { title: "Slot Recipes", url: "slot-recipes" },
           ],
         },
         {
@@ -59,15 +64,6 @@ const docsLinks: NavItem = {
             { title: "Radii", url: "radii" },
             { title: "Z-Index", url: "z-index" },
             { title: "Breakpoints", url: "breakpoints" },
-          ],
-        },
-        {
-          title: "Recipes",
-          url: "recipes",
-          items: [
-            { title: "Overview", url: "overview" },
-            { title: "Recipe", url: "recipe" },
-            { title: "Slot Recipes", url: "slot-recipes" },
           ],
         },
         {
@@ -94,14 +90,12 @@ const docsLinks: NavItem = {
             { title: "Overview", url: "overview" },
             { title: "Chakra Factory", url: "chakra-factory" },
             { title: "Responsive Design", url: "responsive-design" },
+            { title: "CSS Variables", url: "css-variables" },
             { title: "Dark Mode", url: "dark-mode" },
-            {
-              title: "Color Opacity Modifier",
-              url: "color-opacity-modifier",
-            },
-            { title: "Virtual Color", url: "virtual-color" },
+            { title: "Color Opacity Modifier", url: "color-opacity-modifier" },
             { title: "Conditional Styles", url: "conditional-styles" },
             { title: "Focus Ring", url: "focus-ring" },
+            { title: "Virtual Color", url: "virtual-color" },
           ],
         },
         {
@@ -118,28 +112,20 @@ const docsLinks: NavItem = {
           items: [
             { title: "Background", url: "background" },
             { title: "Border", url: "border" },
-            { title: "Box Shadow", url: "box-shadow" },
-            { title: "Color", url: "color" },
             { title: "Display", url: "display" },
-            { title: "Divide", url: "divide" },
             { title: "Effects", url: "effects" },
             { title: "Filters", url: "filters" },
             { title: "Flex and Grid", url: "flex-and-grid" },
+            { title: "Interactivity", url: "interactivity" },
             { title: "Layout", url: "layout" },
             { title: "List", url: "list" },
-            { title: "Position", url: "position" },
-            { title: "Shadow", url: "shadow" },
             { title: "Sizing", url: "sizing" },
             { title: "Spacing", url: "spacing" },
             { title: "SVG", url: "svg" },
             { title: "Tables", url: "tables" },
             { title: "Transforms", url: "transforms" },
-            {
-              title: "Transition and Animation",
-              url: "transition-and-animation",
-            },
+            { title: "Transitions", url: "transitions" },
             { title: "Typography", url: "typography" },
-            { title: "Visibility", url: "visibility" },
           ],
         },
       ],
@@ -150,10 +136,10 @@ const docsLinks: NavItem = {
       url: "components",
       items: [
         {
-          title: "Overview",
-          url: "overview",
+          title: "Concepts",
+          url: "concepts",
           items: [
-            { title: "Introduction", url: "index" },
+            { title: "Overview", url: "overview" },
             { title: "Composition", url: "composition" },
             { title: "Animation", url: "animation" },
             { title: "Server Component", url: "server-components" },
@@ -279,8 +265,8 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
-    { title: "Examples", url: "examples" },
     { title: "Figma", url: "figma" },
+    { title: "Blog", url: "blog" },
     { title: "Showcase", url: "showcase" },
   ],
 }

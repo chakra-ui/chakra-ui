@@ -1,0 +1,138 @@
+---
+title: Transforms
+description: JSX style props for transforming elements.
+---
+
+## Scale
+
+Use the `scale` prop to control the scale of an element.
+
+```jsx
+<Box scale="1.2" />
+```
+
+When the `scale` prop is set to `auto`, the `scaleX` and `scaleY` props are used
+to control the scale of the element.
+
+| Prop    | CSS Property | Token Category |
+| ------- | ------------ | -------------- |
+| `scale` | `scale`      | -              |
+
+## Scale X
+
+Use the `scaleX` prop to control the scaleX property of an element. This
+requires the `scale` prop to be set to `auto`.
+
+```jsx
+<Box scale="auto" scaleX="1.3" />
+```
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `scaleX` | `--scale-x`  | -              |
+
+## Scale Y
+
+Use the `scaleY` prop to control the scaleY property of an element. This
+requires the `scale` prop to be set to `auto`.
+
+```jsx
+<Box scale="auto" scaleY="0.4" />
+```
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `scaleY` | `--scale-y`  | -              |
+
+## Rotate
+
+Use the `rotate` prop to control the rotate property of an element.
+
+```jsx
+<Box rotate="45deg" />
+```
+
+When the `rotate` prop is set to `auto`, the `rotateX` and `rotateY` props are
+used to control the rotate of the element.
+
+| Prop     | CSS Property | Token Category |
+| -------- | ------------ | -------------- |
+| `rotate` | `rotate`     | -              |
+
+## Rotate X
+
+Use the `rotateX` prop to control the rotateX property of an element.
+
+```jsx
+<Box rotateX="45deg" />
+```
+
+| Prop      | CSS Property | Token Category |
+| --------- | ------------ | -------------- |
+| `rotateX` | `--rotate-x` | -              |
+
+## Rotate Y
+
+Use the `rotateY` prop to control the rotateY property of an element.
+
+```jsx
+<Box rotateY="45deg" />
+```
+
+| Prop      | CSS Property | Token Category |
+| --------- | ------------ | -------------- |
+| `rotateY` | `--rotate-y` | -              |
+
+## Translate
+
+Use the `translate` prop to control the translate property of an element.
+
+```jsx
+<Box translate="40px" />
+<Box translate="50% -40%" />
+```
+
+When the `translate` prop is set to `auto`, the `translateX` and `translateY`
+props are used to control the translate of the element.
+
+| Prop        | CSS Property | Token Category |
+| ----------- | ------------ | -------------- |
+| `translate` | `translate`  | -              |
+
+## Translate X
+
+Use the `translateX` prop to control the translateX property of an element. This
+requires the `translate` prop to be set to `auto`.
+
+```jsx
+// hardcoded values
+<Box translate="auto" translateX="50%" />
+<Box translate="auto" translateX="20px" />
+
+// token values
+<Box translate="auto" translateX="4" />
+<Box translate="auto" translateX="-10" />
+```
+
+| Prop         | CSS Property    | Token Category |
+| ------------ | --------------- | -------------- |
+| `translateX` | `--translate-x` | `spacing`      |
+
+## Translate Y
+
+Use the `translateY` prop to control the translateY property of an element. This
+requires the `translate` prop to be set to `auto`.
+
+```jsx
+// hardcoded values
+<Box translate="auto" translateY="-40%" />
+<Box translate="auto" translateY="4rem" />
+
+// token values
+<Box translate="auto" translateY="4" />
+<Box translate="auto" translateY="-10" />
+```
+
+| Prop         | CSS Property    | Token Category |
+| ------------ | --------------- | -------------- |
+| `translateY` | `--translate-y` | `spacing`      |

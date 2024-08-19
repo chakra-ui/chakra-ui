@@ -34,11 +34,11 @@ export const accordionSlotRecipe = defineSlotRecipe({
       borderRadius: "var(--accordion-radius)",
       _open: {
         animationName: "expand-height, fade-in",
-        animationDuration: "normal",
+        animationDuration: "moderate",
       },
       _closed: {
         animationName: "collapse-height, fade-out",
-        animationDuration: "normal",
+        animationDuration: "moderate",
       },
     },
     itemIndicator: {

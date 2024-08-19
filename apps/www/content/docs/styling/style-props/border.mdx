@@ -161,3 +161,54 @@ Use the logical properties to adapt based on the text direction.
 | `borderEndColor` , `borderInlineEndColor`     | `border-{start,end}-color` | `colors`       |
 | `borderXColor`, `borderInlineColor`           | `border-inline-color`      | `colors`       |
 | `borderYColor`, `borderBlockColor`            | `border-block-color`       | `colors`       |
+
+## Divide Width
+
+Use the `divide{X,Y}Width` prop to apply border width between elements. It uses
+the CSS selector `> * + *` to apply the `border*` properties.
+
+```jsx
+<Box divideXWidth="1px">
+  <Box>1</Box>
+  <Box>2</Box>
+</Box>
+
+<Box divideYWidth="1px">
+  <Box>1</Box>
+  <Box>2</Box>
+</Box>
+```
+
+| Prop          | CSS Property                        | Token Category |
+| ------------- | ----------------------------------- | -------------- |
+| `divideWidth` | `border-{inline,block}-start-width` | `borderWidths` |
+
+## Divide Color
+
+Use the `divideColor` prop to apply border color between elements.
+
+```jsx
+<Box divideColor="red.400">
+  <Box>1</Box>
+  <Box>2</Box>
+</Box>
+```
+
+| Prop          | CSS Property     | Token Category |
+| ------------- | ---------------- | -------------- |
+| `divideColor` | `--divide-color` | `colors`       |
+
+## Divide Style
+
+Use the `divideStyle` prop to apply border style between elements.
+
+```jsx
+<Box divideX="2px" divideStyle="dashed">
+  <Box>1</Box>
+  <Box>2</Box>
+</Box>
+```
+
+| Prop          | CSS Property     | Token Category |
+| ------------- | ---------------- | -------------- |
+| `divideStyle` | `--divide-style` | `borderStyle`  |

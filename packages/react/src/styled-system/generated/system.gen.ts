@@ -388,9 +388,9 @@ export interface SystemProperties {
   rubyMerge?: ConditionalValue<CssProperties["rubyMerge"] | AnyString>
   rubyPosition?: ConditionalValue<CssProperties["rubyPosition"] | AnyString>
   scale?: ConditionalValue<CssProperties["scale"] | AnyString>
-  scrollbarColor?: ConditionalValue<CssProperties["scrollbarColor"] | AnyString>
-  scrollbarGutter?: ConditionalValue<CssProperties["scrollbarGutter"] | AnyString>
-  scrollbarWidth?: ConditionalValue<CssProperties["scrollbarWidth"] | AnyString>
+  scrollbarColor?: ConditionalValue<UtilityValues["scrollbarColor"] | CssVars | CssProperties["scrollbarColor"] | AnyString>
+  scrollbarGutter?: ConditionalValue<UtilityValues["scrollbarGutter"] | CssVars | CssProperties["scrollbarGutter"] | AnyString>
+  scrollbarWidth?: ConditionalValue<UtilityValues["scrollbarWidth"] | CssVars | CssProperties["scrollbarWidth"] | AnyString>
   scrollBehavior?: ConditionalValue<CssProperties["scrollBehavior"] | AnyString>
   scrollMargin?: ConditionalValue<UtilityValues["scrollMargin"] | CssVars | CssProperties["scrollMargin"] | AnyString>
   scrollMarginBlock?: ConditionalValue<CssProperties["scrollMarginBlock"] | AnyString>
@@ -404,11 +404,11 @@ export interface SystemProperties {
   scrollMarginRight?: ConditionalValue<UtilityValues["scrollMarginRight"] | CssVars | CssProperties["scrollMarginRight"] | AnyString>
   scrollMarginTop?: ConditionalValue<UtilityValues["scrollMarginTop"] | CssVars | CssProperties["scrollMarginTop"] | AnyString>
   scrollPadding?: ConditionalValue<UtilityValues["scrollPadding"] | CssVars | CssProperties["scrollPadding"] | AnyString>
-  scrollPaddingBlock?: ConditionalValue<CssProperties["scrollPaddingBlock"] | AnyString>
+  scrollPaddingBlock?: ConditionalValue<UtilityValues["scrollPaddingBlock"] | CssVars | CssProperties["scrollPaddingBlock"] | AnyString>
   scrollPaddingBlockStart?: ConditionalValue<CssProperties["scrollPaddingBlockStart"] | AnyString>
   scrollPaddingBlockEnd?: ConditionalValue<CssProperties["scrollPaddingBlockEnd"] | AnyString>
   scrollPaddingBottom?: ConditionalValue<UtilityValues["scrollPaddingBottom"] | CssVars | CssProperties["scrollPaddingBottom"] | AnyString>
-  scrollPaddingInline?: ConditionalValue<CssProperties["scrollPaddingInline"] | AnyString>
+  scrollPaddingInline?: ConditionalValue<UtilityValues["scrollPaddingInline"] | CssVars | CssProperties["scrollPaddingInline"] | AnyString>
   scrollPaddingInlineStart?: ConditionalValue<CssProperties["scrollPaddingInlineStart"] | AnyString>
   scrollPaddingInlineEnd?: ConditionalValue<CssProperties["scrollPaddingInlineEnd"] | AnyString>
   scrollPaddingLeft?: ConditionalValue<UtilityValues["scrollPaddingLeft"] | CssVars | CssProperties["scrollPaddingLeft"] | AnyString>
@@ -420,7 +420,7 @@ export interface SystemProperties {
   scrollSnapPointsX?: ConditionalValue<CssProperties["scrollSnapPointsX"] | AnyString>
   scrollSnapPointsY?: ConditionalValue<CssProperties["scrollSnapPointsY"] | AnyString>
   scrollSnapStop?: ConditionalValue<CssProperties["scrollSnapStop"] | AnyString>
-  scrollSnapType?: ConditionalValue<CssProperties["scrollSnapType"] | AnyString>
+  scrollSnapType?: ConditionalValue<UtilityValues["scrollSnapType"] | CssVars | CssProperties["scrollSnapType"] | AnyString>
   scrollSnapTypeX?: ConditionalValue<CssProperties["scrollSnapTypeX"] | AnyString>
   scrollSnapTypeY?: ConditionalValue<CssProperties["scrollSnapTypeY"] | AnyString>
   scrollTimeline?: ConditionalValue<CssProperties["scrollTimeline"] | AnyString>
@@ -445,7 +445,7 @@ export interface SystemProperties {
   textEmphasisColor?: ConditionalValue<CssProperties["textEmphasisColor"] | AnyString>
   textEmphasisPosition?: ConditionalValue<CssProperties["textEmphasisPosition"] | AnyString>
   textEmphasisStyle?: ConditionalValue<CssProperties["textEmphasisStyle"] | AnyString>
-  textIndent?: ConditionalValue<CssProperties["textIndent"] | AnyString>
+  textIndent?: ConditionalValue<UtilityValues["textIndent"] | CssVars | CssProperties["textIndent"] | AnyString>
   textJustify?: ConditionalValue<CssProperties["textJustify"] | AnyString>
   textOrientation?: ConditionalValue<CssProperties["textOrientation"] | AnyString>
   textOverflow?: ConditionalValue<CssProperties["textOverflow"] | AnyString>
@@ -463,7 +463,7 @@ export interface SystemProperties {
   transformBox?: ConditionalValue<CssProperties["transformBox"] | AnyString>
   transformOrigin?: ConditionalValue<CssProperties["transformOrigin"] | AnyString>
   transformStyle?: ConditionalValue<CssProperties["transformStyle"] | AnyString>
-  transition?: ConditionalValue<CssProperties["transition"] | AnyString>
+  transition?: ConditionalValue<UtilityValues["transition"] | CssVars | CssProperties["transition"] | AnyString>
   transitionBehavior?: ConditionalValue<CssProperties["transitionBehavior"] | AnyString>
   transitionDelay?: ConditionalValue<CssProperties["transitionDelay"] | AnyString>
   transitionDuration?: ConditionalValue<UtilityValues["transitionDuration"] | CssVars | CssProperties["transitionDuration"] | AnyString>
@@ -564,6 +564,8 @@ export interface SystemProperties {
   shadowColor?: ConditionalValue<UtilityValues["boxShadowColor"] | CssVars | AnyString>
   blendMode?: ConditionalValue<CssProperties["mixBlendMode"] | AnyString>
   bgBlendMode?: ConditionalValue<CssProperties["backgroundBlendMode"] | AnyString>
+  gapY?: ConditionalValue<UtilityValues["rowGap"] | CssVars | CssProperties["rowGap"] | AnyString>
+  gapX?: ConditionalValue<UtilityValues["columnGap"] | CssVars | CssProperties["columnGap"] | AnyString>
   flexDir?: ConditionalValue<CssProperties["flexDirection"] | AnyString>
   w?: ConditionalValue<UtilityValues["width"] | CssVars | CssProperties["width"] | AnyString>
   h?: ConditionalValue<UtilityValues["height"] | CssVars | CssProperties["height"] | AnyString>
@@ -574,6 +576,8 @@ export interface SystemProperties {
   overscroll?: ConditionalValue<CssProperties["overscrollBehavior"] | AnyString>
   overscrollX?: ConditionalValue<CssProperties["overscrollBehaviorX"] | AnyString>
   overscrollY?: ConditionalValue<CssProperties["overscrollBehaviorY"] | AnyString>
+  scrollPaddingX?: ConditionalValue<UtilityValues["scrollPaddingInline"] | CssVars | CssProperties["scrollPaddingInline"] | AnyString>
+  scrollPaddingY?: ConditionalValue<UtilityValues["scrollPaddingBlock"] | CssVars | CssProperties["scrollPaddingBlock"] | AnyString>
   listStylePos?: ConditionalValue<CssProperties["listStylePosition"] | AnyString>
   listStyleImg?: ConditionalValue<CssProperties["listStyleImage"] | AnyString>
   pos?: ConditionalValue<CssProperties["position"] | AnyString>
@@ -645,13 +649,19 @@ export interface SystemProperties {
   focusVisibleRing?: ConditionalValue<UtilityValues["focusVisibleRing"] | CssVars | AnyString>
   focusRingColor?: ConditionalValue<UtilityValues["focusRingColor"] | CssVars | AnyString>
   focusRingWidth?: ConditionalValue<UtilityValues["focusRingWidth"] | CssVars | AnyString>
+  focusRingStyle?: ConditionalValue<UtilityValues["focusRingStyle"] | CssVars | AnyString>
   boxSize?: ConditionalValue<UtilityValues["boxSize"] | CssVars | AnyString>
   hideFrom?: ConditionalValue<UtilityValues["hideFrom"] | CssVars | AnyString>
   hideBelow?: ConditionalValue<UtilityValues["hideBelow"] | CssVars | AnyString>
+  scrollbar?: ConditionalValue<UtilityValues["scrollbar"] | CssVars | AnyString>
   scrollMarginX?: ConditionalValue<UtilityValues["scrollMarginX"] | CssVars | AnyString>
   scrollMarginY?: ConditionalValue<UtilityValues["scrollMarginY"] | CssVars | AnyString>
-  scrollPaddingX?: ConditionalValue<UtilityValues["scrollPaddingX"] | CssVars | AnyString>
-  scrollPaddingY?: ConditionalValue<UtilityValues["scrollPaddingY"] | CssVars | AnyString>
+  scrollSnapStrictness?: ConditionalValue<UtilityValues["scrollSnapStrictness"] | CssVars | AnyString>
+  scrollSnapMargin?: ConditionalValue<UtilityValues["scrollSnapMargin"] | CssVars | AnyString>
+  scrollSnapMarginTop?: ConditionalValue<UtilityValues["scrollSnapMarginTop"] | CssVars | AnyString>
+  scrollSnapMarginBottom?: ConditionalValue<UtilityValues["scrollSnapMarginBottom"] | CssVars | AnyString>
+  scrollSnapMarginLeft?: ConditionalValue<UtilityValues["scrollSnapMarginLeft"] | CssVars | AnyString>
+  scrollSnapMarginRight?: ConditionalValue<UtilityValues["scrollSnapMarginRight"] | CssVars | AnyString>
   ring?: ConditionalValue<string | number | AnyString>
   ringColor?: ConditionalValue<UtilityValues["ringColor"] | CssVars | AnyString>
   ringOffset?: ConditionalValue<string | number | AnyString>
@@ -665,6 +675,8 @@ export interface SystemProperties {
   spaceX?: ConditionalValue<UtilityValues["spaceX"] | CssVars | AnyString>
   spaceYReverse?: ConditionalValue<UtilityValues["spaceYReverse"] | CssVars | AnyString>
   spaceY?: ConditionalValue<UtilityValues["spaceY"] | CssVars | AnyString>
+  rotateX?: ConditionalValue<string | number | AnyString>
+  rotateY?: ConditionalValue<string | number | AnyString>
   translateX?: ConditionalValue<UtilityValues["translateX"] | CssVars | AnyString>
   translateY?: ConditionalValue<UtilityValues["translateY"] | CssVars | AnyString>
   truncate?: ConditionalValue<UtilityValues["truncate"] | CssVars | AnyString>

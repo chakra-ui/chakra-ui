@@ -44,7 +44,7 @@ export const DialogWithDatalist = () => {
               <DataListItem label="Due date" value="12th August 2024" />
             </DataListRoot>
 
-            <Textarea variant="filled" placeholder="Add a note" mt="8" />
+            <Textarea placeholder="Add a note" mt="8" />
           </DialogBody>
           <DialogCloseTrigger />
         </DialogContent>

@@ -25,7 +25,6 @@ export const TypegenCommand = new Command("typegen")
   .argument("<source>", "path to the theme file")
   .description("Generate theme and recipe typings")
   .option("--strict", "Generate strict types for props variant and size")
-  .option("--format", "Disable auto formatting")
   .option("--watch [path]", "Watch directory for changes and rebuild")
   .option("--clean", "Clean the output directory")
   .action(async (source: string, flags: CodegenFlags) => {

@@ -1,0 +1,196 @@
+---
+title: Sizing
+description: JSX style props for sizing an element
+---
+
+## Width
+
+Use the `width` or `w` property to set the width of an element.
+
+```jsx
+// hardcoded values
+<Box width="64px" />
+<Box w="4rem" />
+
+// token values
+<Box width="5" />
+<Box w="5" />
+```
+
+### Fractional width
+
+Use can set fractional widths using the `width` or `w` property.
+
+Values can be within the following ranges:
+
+- Thirds: `1/3` to `2/3`
+- Fourths: `1/4` to `3/4`
+- Fifths: `1/5` to `4/5`
+- Sixths: `1/6` to `5/6`
+- Twelfths: `1/12` to `11/12`
+
+```jsx
+// half width
+<Flex>
+  <Box width="1/2" />
+  <Box width="1/2" />
+</Flex>
+
+// thirds
+<Flex>
+  <Box width="1/3" />
+  <Box width="2/3" />
+</Flex>
+
+// fourths
+<Flex>
+  <Box width="1/4" />
+  <Box width="3/4" />
+</Flex>
+
+// fifths
+<Flex>
+  <Box width="1/5" />
+  <Box width="4/5" />
+</Flex>
+
+// sixths
+<Flex>
+  <Box width="1/6" />
+  <Box width="5/6" />
+</Flex>
+
+// twelfths
+<Flex>
+  <Box width="3/12" />
+  <Box width="9/12" />
+</Flex>
+```
+
+### Viewport width
+
+Use the modern viewport width values `dvw`, `svw`, `lvw`.
+
+> `dvw` maps to `100dvw`, `svw` maps to `100svw`, `lvw` maps to `100lvw`.
+
+```jsx
+<Box width="dvw" />
+<Box w="dvw" /> // shorthand
+```
+
+| Prop         | CSS Property | Token Category |
+| ------------ | ------------ | -------------- |
+| `w`, `width` | `width`      | `sizes`        |
+
+## Max width
+
+Use the `maxWidth` or `maxW` property to set the maximum width of an element.
+
+```jsx
+// hardcoded values
+<Box maxWidth="640px" />
+<Box maxW="4rem" /> // shorthand
+
+// token values
+<Box maxWidth="xl" />
+<Box maxW="2xl" /> // shorthand
+```
+
+| Prop               | CSS Property | Token Category |
+| ------------------ | ------------ | -------------- |
+| `maxW`, `maxWidth` | `max-width`  | `sizes`        |
+
+## Min width
+
+Use the `minWidth` or `minW` property to set the minimum width of an element.
+
+```jsx
+// hardcoded values
+<Box minWidth="64px" />
+<Box minW="4rem" /> // shorthand
+
+// token values
+<Box minWidth="8" />
+<Box minW="10" /> // shorthand
+```
+
+| Prop               | CSS Property | Token Category |
+| ------------------ | ------------ | -------------- |
+| `w`, `width`       | `width`      | `sizing`       |
+| `maxW`, `maxWidth` | `max-width`  | `sizing`       |
+| `minW`, `minWidth` | `min-width`  | `sizing`       |
+
+## Height
+
+Use the `height` or `h` property to set the height of an element.
+
+```jsx
+// hardcoded values
+<Box height="40px" />
+<Box h="0.4rem" /> // shorthand
+
+// token values
+<Box height="5" />
+<Box h="5" /> // shorthand
+```
+
+### Fractional height
+
+Use can set fractional heights using the `height` or `h` property.
+
+Values can be within the following ranges:
+
+- Thirds: `1/3` to `2/3`
+- Fourths: `1/4` to `3/4`
+- Fifths: `1/5` to `4/5`
+- Sixths: `1/6` to `5/6`
+
+```jsx
+<Box height="1/2" />
+<Box h="1/2" /> // shorthand
+```
+
+### Relative heights
+
+Use the modern relative height values `dvh`, `svh`, `lvh`.
+
+> `dvh` maps to `100dvh`, `svh` maps to `100svh`, `lvh` maps to `100lvh`.
+
+```jsx
+<Box height="dvh" />
+<Box h="dvh" /> // shorthand
+```
+
+## Max height
+
+Use the `maxHeight` or `maxH` property to set the maximum height of an element.
+
+```jsx
+// hardcoded values
+<Box maxHeight="40px" />
+<Box maxH="0.4rem" /> // shorthand
+
+// token values
+<Box maxHeight="8" />
+<Box maxH="10" /> // shorthand
+```
+
+## Min height
+
+Use the `minHeight` or `minH` property to set the minimum height of an element.
+
+```jsx
+// hardcoded values
+<Box minHeight="40px" />
+<Box minH="0.4rem" /> // shorthand
+
+// token values
+<Box minHeight="8" />
+<Box minH="10" /> // shorthand
+```
+
+| Prop                | CSS Property | Token Category |
+| ------------------- | ------------ | -------------- |
+| `h`, `height`       | `height`     | `sizes`        |
+| `maxH`, `maxHeight` | `max-height` | `sizes`        |
+| `minH`, `minHeight` | `min-height` | `sizes`        |

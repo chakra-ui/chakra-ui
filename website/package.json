@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/docs",
-  "version": "3.0.0-next.15",
+  "version": "3.0.0-next.16",
   "scripts": {
     "dev": "next",
     "prebuild": "pnpm build:search-meta && pnpm build:packages && pnpm build:props-docs",
@@ -89,7 +89,7 @@
     "eslint-plugin-prettier": "5.1.3",
     "mkdirp": "3.0.1",
     "node-fetch": "3.3.2",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "react-multi-ref": "1.0.2",
     "semver": "7.6.3",
     "sharp": "0.33.4",
