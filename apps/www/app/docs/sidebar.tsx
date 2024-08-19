@@ -92,6 +92,7 @@ const MobileMenuButton = chakra("button", {
     borderColor: "border.muted",
     zIndex: "10",
     cursor: "pointer",
+    bg: "bg",
   },
 })
 
