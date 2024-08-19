@@ -33,7 +33,7 @@ export const actionBarSlotRecipe = defineSlotRecipe({
 
       _open: {
         animationName: "slide-from-bottom, fade-in",
-        animationDuration: "normal",
+        animationDuration: "moderate",
       },
 
       _closed: {

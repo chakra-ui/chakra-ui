@@ -33,7 +33,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     item: {
       fontSize: "sm",
       animationName: "fade-in",
-      animationDuration: "normal",
+      animationDuration: "moderate",
       background: "bg",
       borderRadius: "sm",
       borderWidth: "1px",
