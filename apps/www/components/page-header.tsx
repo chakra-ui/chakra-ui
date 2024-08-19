@@ -25,7 +25,7 @@ export const PageHeader = (props: PageHeaderProps) => {
               fontSize="sm"
               target="_blank"
               color="fg.muted"
-              key={link.url}
+              key={link.title + link.url}
               href={link.url}
             >
               {link.title}
