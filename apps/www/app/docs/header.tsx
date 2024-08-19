@@ -201,32 +201,10 @@ const HeaderSocialLinks = () => (
 const HeaderMobileMenuButton = () => {
   const { toggleMenu } = useMenuStore()
   return (
-    <IconButton
-      variant="ghost"
-      size="sm"
-      onClick={() => {
-        console.log("toggle menu")
-        toggleMenu()
-      }}
-    >
+    <IconButton variant="ghost" size="sm" onClick={toggleMenu}>
       <AiOutlineMenu />
     </IconButton>
   )
-}
-
-const NavigationEvents = () => {
-  const { closeMenu } = useMenuStore()
-  const pathname = usePathname()
-  const pathnameRef = useRef(pathname)
-
-  useEffect(() => {
-    if (pathnameRef.current !== pathname) {
-      closeMenu()
-    }
-    pathnameRef.current = pathname
-  }, [pathname, closeMenu])
-
-  return null
 }
 
 const HeaderMobileMenuDropdown = () => {
@@ -255,7 +233,7 @@ const HeaderMobileMenuDropdown = () => {
       <Portal>
         <Drawer.Backdrop />
         <Drawer.Positioner>
-          <Drawer.Content ref={containerRef} borderTopRadius="md">
+          <Drawer.Content borderTopRadius="md">
             <Drawer.CloseTrigger asChild>
               <IconButton size="sm" variant="ghost">
                 <AiOutlineClose />
@@ -296,6 +274,7 @@ const HeaderMobileMenuDropdown = () => {
               justifyContent="space-between"
               borderTop="1px solid"
               borderColor="border.muted"
+              ref={containerRef}
             >
               <HeaderVersionMenu containerRef={containerRef} />
               <HeaderSocialLinks />
