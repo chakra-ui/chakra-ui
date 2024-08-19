@@ -28,7 +28,7 @@
     "utils": "pnpm --filter=@chakra-ui/utils",
     "hooks": "pnpm --filter=@chakra-ui/hooks",
     "website": "pnpm --filter=./website",
-    "www": "pnpm --filter=./www",
+    "www": "pnpm --filter=./apps/www",
     "lint": "eslint packages --ext .ts,.tsx --config .eslintrc --cache",
     "format:check": "prettier --check packages --cache",
     "format:write": "prettier --write packages --cache",
