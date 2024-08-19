@@ -2,7 +2,16 @@
 
 import { SideNav } from "@/components/sidenav"
 import { useRoute } from "@/lib/use-route"
-import { Box, BoxProps, Stack } from "@chakra-ui/react"
+import {
+  Box,
+  BoxProps,
+  Drawer,
+  IconButton,
+  Portal,
+  Stack,
+  chakra,
+} from "@chakra-ui/react"
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
 export const SidebarStart = (props: BoxProps) => {
   const route = useRoute()
@@ -63,5 +72,69 @@ export const SidebarEnd = (props: BoxProps) => {
         {children}
       </Stack>
     </Box>
+  )
+}
+
+const MobileMenuButton = chakra("button", {
+  base: {
+    display: "flex",
+    px: "4",
+    py: "2",
+    gap: "2",
+    w: "full",
+    hideFrom: "md",
+    fontSize: "md",
+    alignItems: "center",
+    color: "fg",
+    position: "sticky",
+    top: "var(--header-height)",
+    borderBottom: "1px solid",
+    borderColor: "border.muted",
+    zIndex: "10",
+    cursor: "pointer",
+  },
+})
+
+export const MobileSidebarNav = () => {
+  const route = useRoute()
+  return (
+    <Drawer.Root placement="bottom">
+      <Drawer.Trigger asChild>
+        <MobileMenuButton aria-label="Open menu">
+          <AiOutlineMenu />
+          Menu
+        </MobileMenuButton>
+      </Drawer.Trigger>
+      <Portal>
+        <Drawer.Backdrop />
+        <Drawer.Positioner>
+          <Drawer.Content borderTopRadius="md">
+            <Drawer.CloseTrigger asChild>
+              <IconButton size="sm" variant="ghost">
+                <AiOutlineClose />
+              </IconButton>
+            </Drawer.CloseTrigger>
+            <Drawer.Body
+              display="flex"
+              flexDir="column"
+              gap="6"
+              py="5"
+              flex="1"
+            >
+              {route
+                .getSidebarNavItems()
+                ?.map((group) => (
+                  <SideNav
+                    key={group.title}
+                    currentUrl={route.currentUrl}
+                    title={group.title}
+                    items={group.items}
+                  />
+                ))}
+            </Drawer.Body>
+          </Drawer.Content>
+        </Drawer.Positioner>
+      </Portal>
+    </Drawer.Root>
   )
 }
