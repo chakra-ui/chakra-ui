@@ -15,6 +15,7 @@ export default {
 export { MenuBasic as Basic } from "compositions/examples/menu-basic"
 export { MenuWithCommand as WithCommand } from "compositions/examples/menu-with-command"
 export { MenuWithContextTrigger as WithContextTrigger } from "compositions/examples/menu-with-context-trigger"
+export { MenuWithDangerItem as WithDangerItem } from "compositions/examples/menu-with-danger-item"
 export { MenuWithGroup as WithGroup } from "compositions/examples/menu-with-group"
 export { MenuWithGroupDynamic as WithGroupDynamic } from "compositions/examples/menu-with-group-dynamic"
 export { MenuWithIconAndCommand as WithIconAndCommand } from "compositions/examples/menu-with-icon-and-command"
