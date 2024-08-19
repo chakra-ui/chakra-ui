@@ -1,0 +1,128 @@
+---
+title: Semantic Tokens
+description: Leveraging semantic tokens for design decisions in your app.
+---
+
+## Overview
+
+Semantic tokens are tokens that are designed to be used in a specific context. A
+semantic token consists of the following properties:
+
+- `value`: The value of the token or a reference to an existing token.
+- `description`: An optional description of what the token can be used for.
+
+## Defining Semantic Tokens
+
+In most cases, the value of a semantic token references to an existing token.
+
+> To reference a value in a semantic token, use the token reference `{}` syntax.
+
+```js title="theme.ts"
+import { createSystem, defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        red: { value: "#EE0F0F" },
+      },
+    },
+    semanticTokens: {
+      colors: {
+        danger: { value: "{colors.red}" },
+      },
+    },
+  },
+})
+
+export default createSystem(config)
+```
+
+## Using Semantic Tokens
+
+After defining semantic tokens, we recommend using the Chakra CLI to generate
+theme typings for your tokens.
+
+```bash
+npx @chakra-ui/cli@next typegen ./src/theme.ts
+```
+
+This will provide autocompletion for your tokens in your editor.
+
+```tsx
+<Box color="danger">Hello World</Box>
+```
+
+## Conditional Token
+
+Semantic tokens can also be changed based on the conditions like light and dark
+modes.
+
+For example, if you want a color to change automatically based on light or dark
+mode.
+
+```js title="theme.ts"
+import { createSystem, defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors: {
+        danger: {
+          value: { base: "{colors.red}", _dark: "{colors.darkred}" },
+        },
+        success: {
+          value: { base: "{colors.green}", _dark: "{colors.darkgreen}" },
+        },
+      },
+    },
+  },
+})
+
+export default createSystem(config)
+```
+
+:::info
+
+The conditions used in semantic tokens must be an at-rule or parent selector
+[condition](/docs/styling/conditional-styles#reference).
+
+:::
+
+## Semantic Token Nesting
+
+Semantic tokens can be nested to create a hierarchy of tokens. This is useful
+when you want to group tokens together.
+
+:::info
+
+You can use the `DEFAULT` key to define the default value of a nested token.
+
+:::
+
+```js title="theme.ts"
+import { createSystem, defineConfig } from "@chakra-ui/react"
+
+const config = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors: {
+        bg: {
+          DEFAULT: { value: "{colors.gray.100}" },
+          muted: { value: "{colors.gray.100}" },
+        },
+      },
+    },
+  },
+})
+
+export default createSystem(config)
+```
+
+This allows the use of the `bg` token in the following ways:
+
+```tsx
+<Box bg="bg">
+  <Box bg="bg.muted">Hello World</Box>
+</Box>
+```
