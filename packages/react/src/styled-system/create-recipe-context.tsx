@@ -30,16 +30,14 @@ export function createRecipeContext<T, P>(
 
     // @ts-ignore
     const [variantProps, localProps] = recipe.splitVariantProps(otherProps)
-
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
-    const className = `chakra-${recipe.className}`
 
     return (
       <StyledComponent
         {...localProps}
         ref={ref}
         css={[styles, props.css]}
-        className={cx(props.className, className)}
+        className={cx(recipe.className, props.className)}
       />
     )
   })

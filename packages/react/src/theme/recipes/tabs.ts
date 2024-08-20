@@ -1,8 +1,9 @@
 import { tabsAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
-export const tabSlotRecipe = defineSlotRecipe({
+export const tabsSlotRecipe = defineSlotRecipe({
   slots: tabsAnatomy.keys(),
+  className: "chakra-tabs",
   base: {
     root: {
       position: "relative",

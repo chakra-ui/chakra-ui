@@ -2,7 +2,7 @@ import { defineRecipe } from "../../styled-system"
 import { inputRecipe } from "./input"
 
 export const inputAddonRecipe = defineRecipe({
-  className: "input-addon",
+  className: "chakra-input-addon",
   base: {
     flex: "0 0 auto",
     width: "auto",

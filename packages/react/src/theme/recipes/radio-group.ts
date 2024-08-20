@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 import { radiomarkRecipe } from "./radiomark"
 
 export const radioGroupSlotRecipe = defineSlotRecipe({
-  className: "radio-group",
+  className: "chakra-radio-group",
   slots: anatomy.keys(),
   base: {
     root: {

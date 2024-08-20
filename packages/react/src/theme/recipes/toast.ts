@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const toastSlotRecipe = defineSlotRecipe({
   slots: toastAnatomy.keys(),
-  className: "toast",
+  className: "chakra-toast",
   base: {
     root: {
       width: "full",

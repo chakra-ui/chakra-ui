@@ -1,7 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const linkRecipe = defineRecipe({
-  className: "link",
+  className: "chakra-link",
   base: {
     colorPalette: "gray",
     display: "inline-flex",

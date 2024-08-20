@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const progressSlotRecipe = defineSlotRecipe({
   slots: progressAnatomy.keys(),
-  className: "progress",
+  className: "chakra-progress",
   base: {
     root: {
       colorPalette: "gray",

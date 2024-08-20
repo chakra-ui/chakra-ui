@@ -2,7 +2,7 @@ import { cardAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const cardSlotRecipe = defineSlotRecipe({
-  className: "card",
+  className: "chakra-card",
   slots: cardAnatomy.keys(),
   base: {
     root: {

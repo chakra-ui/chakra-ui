@@ -1,7 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const spinnerRecipe = defineRecipe({
-  className: "spinner",
+  className: "chakra-spinner",
   base: {
     display: "inline-block",
     borderColor: "currentColor",

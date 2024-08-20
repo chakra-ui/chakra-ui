@@ -2,7 +2,7 @@ import { anatomy } from "@ark-ui/anatomy/rating-group"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const ratingGroupSlotRecipe = defineSlotRecipe({
-  className: "rating-group",
+  className: "chakra-rating-group",
   slots: [...anatomy.keys(), "itemIndicator"],
   base: {
     root: {

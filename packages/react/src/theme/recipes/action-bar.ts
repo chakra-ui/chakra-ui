@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../../styled-system"
 
 export const actionBarSlotRecipe = defineSlotRecipe({
-  className: "action-bar",
+  className: "chakra-action-bar",
   slots: [
     "positioner",
     "content",

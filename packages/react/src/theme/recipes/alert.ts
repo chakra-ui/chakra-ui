@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const alertSlotRecipe = defineSlotRecipe({
   slots: alertAnatomy.keys(),
-  className: "alert",
+  className: "chakra-alert",
 
   base: {
     root: {

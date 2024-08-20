@@ -6,7 +6,7 @@ const badgeVariant = badgeRecipe.variants?.variant
 
 export const tagSlotRecipe = defineSlotRecipe({
   slots: tagAnatomy.keys(),
-  className: "tag",
+  className: "chakra-tag",
   base: {
     root: {
       colorPalette: "gray",

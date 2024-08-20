@@ -6,7 +6,7 @@ const anatomy = dialogAnatomy.extendWith("header", "body", "footer", "backdrop")
 
 export const drawerSlotRecipe = defineSlotRecipe({
   slots: anatomy.keys(),
-  className: "drawer",
+  className: "chakra-drawer",
   base: {
     backdrop: {
       bg: "blackAlpha.500",

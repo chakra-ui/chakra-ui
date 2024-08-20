@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const collapsibleSlotRecipe = defineSlotRecipe({
   slots: [...anatomy.keys()],
-  className: "collapsible",
+  className: "chakra-collapsible",
   base: {
     content: {
       overflow: "hidden",
