@@ -3,6 +3,7 @@
 import { ColorModeButton } from "@/components/color-mode-button"
 import { Logo } from "@/components/logo"
 import { MobileSearchButton, SearchButton } from "@/components/search-button"
+import { SideNav } from "@/components/sidenav"
 import { SocialLinks } from "@/components/social-links"
 import { VersionMenu } from "@/components/version-menu"
 import { useRoute } from "@/lib/use-route"
@@ -19,7 +20,7 @@ import {
 } from "@chakra-ui/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useRef, useSyncExternalStore } from "react"
+import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
 const usePrimaryNavItems = () => {
@@ -32,49 +33,6 @@ const useSecondaryNavItems = () => {
   const route = useRoute()
 
   return route.getSecondaryNavItems()
-}
-
-type Listener = () => void
-
-interface MenuStore {
-  isOpen: boolean
-  listeners: Set<Listener>
-  getState: () => boolean
-  setState: (newState: boolean) => void
-  subscribe: (listener: Listener) => () => void
-}
-
-const store: MenuStore = {
-  isOpen: false,
-  listeners: new Set(),
-
-  getState() {
-    return this.isOpen
-  },
-
-  setState(newState: boolean) {
-    this.isOpen = newState
-    this.listeners.forEach((listener) => listener())
-  },
-
-  subscribe(listener: Listener) {
-    this.listeners.add(listener)
-    return () => this.listeners.delete(listener)
-  },
-}
-
-function useMenuStore() {
-  const state = useSyncExternalStore(
-    store.subscribe.bind(store),
-    store.getState.bind(store),
-  )
-
-  return {
-    isOpen: state,
-    toggleMenu: () => store.setState(!state),
-    openMenu: () => store.setState(true),
-    closeMenu: () => store.setState(false),
-  }
 }
 
 const HeaderRoot = chakra("header", {
@@ -198,29 +156,22 @@ const HeaderSocialLinks = () => (
   <SocialLinks items={[{ type: "github", href: "#" }]} />
 )
 
-const HeaderMobileMenuButton = () => {
-  const { toggleMenu } = useMenuStore()
-  return (
-    <IconButton variant="ghost" size="sm" onClick={toggleMenu}>
-      <AiOutlineMenu />
-    </IconButton>
-  )
-}
-
 const HeaderMobileMenuDropdown = () => {
-  const { isOpen, closeMenu, toggleMenu } = useMenuStore()
+  const [isOpen, setIsOpen] = useState(false)
   const primaryNavItems = usePrimaryNavItems()
   const secondaryNavItems = useSecondaryNavItems()
   const containerRef = useRef(null)
   const pathname = usePathname()
   const pathnameRef = useRef(pathname)
 
+  const closeMenu = () => setIsOpen(false)
+
   useEffect(() => {
     if (pathnameRef.current !== pathname) {
-      closeMenu()
+      setIsOpen(false)
     }
     pathnameRef.current = pathname
-  }, [pathname, closeMenu])
+  }, [pathname, setIsOpen])
 
   return (
     <Drawer.Root
@@ -228,12 +179,17 @@ const HeaderMobileMenuDropdown = () => {
       placement="bottom"
       onPointerDownOutside={closeMenu}
       onEscapeKeyDown={closeMenu}
-      onOpenChange={toggleMenu}
+      onOpenChange={(e) => setIsOpen(e.open)}
     >
+      <Drawer.Trigger asChild>
+        <IconButton variant="ghost" size="sm">
+          <AiOutlineMenu />
+        </IconButton>
+      </Drawer.Trigger>
       <Portal>
         <Drawer.Backdrop />
         <Drawer.Positioner>
-          <Drawer.Content borderTopRadius="md">
+          <Drawer.Content borderTopRadius="md" maxH="var(--content-height)">
             <Drawer.CloseTrigger asChild>
               <IconButton size="sm" variant="ghost">
                 <AiOutlineClose />
@@ -273,7 +229,7 @@ const HeaderMobileMenuDropdown = () => {
               py="2"
               justifyContent="space-between"
               borderTop="1px solid"
-              borderColor="border.muted"
+              borderColor="border"
               ref={containerRef}
             >
               <HeaderVersionMenu containerRef={containerRef} />
@@ -302,7 +258,7 @@ const HeaderMobileActions = () => {
     <HStack>
       <MobileSearchButton />
       <ColorModeButton />
-      <HeaderMobileMenuButton />
+      <HeaderMobileMenuDropdown />
     </HStack>
   )
 }
@@ -333,14 +289,11 @@ const HeaderMobileNavbar = () => {
 
 export const Header = () => {
   return (
-    <>
-      <HeaderRoot>
-        <Container as="nav">
-          <HeaderDesktopNavbar />
-          <HeaderMobileNavbar />
-        </Container>
-      </HeaderRoot>
-      <HeaderMobileMenuDropdown />
-    </>
+    <HeaderRoot>
+      <Container as="nav">
+        <HeaderDesktopNavbar />
+        <HeaderMobileNavbar />
+      </Container>
+    </HeaderRoot>
   )
 }

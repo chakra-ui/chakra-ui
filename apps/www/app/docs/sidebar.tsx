@@ -11,6 +11,8 @@ import {
   Stack,
   chakra,
 } from "@chakra-ui/react"
+import { usePathname } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
 export const SidebarStart = (props: BoxProps) => {
@@ -97,9 +99,28 @@ const MobileMenuButton = chakra("button", {
 })
 
 export const MobileSidebarNav = () => {
+  const [isOpen, setIsOpen] = useState(false)
   const route = useRoute()
+  const pathname = usePathname()
+  const pathnameRef = useRef(pathname)
+
+  const closeMenu = () => setIsOpen(false)
+
+  useEffect(() => {
+    if (pathnameRef.current !== pathname) {
+      setIsOpen(false)
+    }
+    pathnameRef.current = pathname
+  }, [pathname, setIsOpen])
+
   return (
-    <Drawer.Root placement="bottom">
+    <Drawer.Root
+      open={isOpen}
+      placement="bottom"
+      onPointerDownOutside={closeMenu}
+      onEscapeKeyDown={closeMenu}
+      onOpenChange={(e) => setIsOpen(e.open)}
+    >
       <Drawer.Trigger asChild>
         <MobileMenuButton aria-label="Open menu">
           <AiOutlineMenu />
@@ -109,7 +130,7 @@ export const MobileSidebarNav = () => {
       <Portal>
         <Drawer.Backdrop />
         <Drawer.Positioner>
-          <Drawer.Content borderTopRadius="md">
+          <Drawer.Content borderTopRadius="md" maxH="var(--content-height)">
             <Drawer.CloseTrigger asChild>
               <IconButton size="sm" variant="ghost">
                 <AiOutlineClose />
