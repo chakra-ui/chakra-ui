@@ -41,7 +41,7 @@ export const Code = (props: BoxProps) => {
         bg: "bg.muted",
         color: "fg",
         whiteSpace: "pre",
-        padding: "0.2em 0.4em",
+        padding: "0.1em 0.4em",
       }}
     />
   )

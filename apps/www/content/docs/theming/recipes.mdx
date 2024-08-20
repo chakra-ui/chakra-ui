@@ -1,0 +1,144 @@
+---
+title: Recipes
+description: Writing multi-variant styles with recipes in Chakra.
+---
+
+## Overview
+
+Panda provides a way to write CSS-in-JS with better performance, developer
+experience, and composability. One of its key features is the ability to create
+multi-variant styles with a type-safe runtime API.
+
+A recipe consists of four properties:
+
+- `base`: The base styles for the component
+- `variants`: The different visual styles for the component
+- `compoundVariants`: The different combinations of variants for the component
+- `defaultVariants`: The default variant values for the component
+
+## Creating a recipe
+
+Use the `chakra` function to create a component and add styles or recipes to it.
+
+:::info
+
+Adding the `"use client"` directive is required to use the `chakra` function
+since it relies on react hooks like `useContext` and `useInsertionEffect` under
+the hood.
+
+:::
+
+```tsx title="button.tsx"
+"use client"
+
+import { chakra } from "@chakra-ui/react"
+
+export const Button = chakra("button", {
+  base: {
+    display: "flex",
+  },
+  variants: {
+    visual: {
+      solid: { bg: "red.200", color: "white" },
+      outline: { borderWidth: "1px", borderColor: "red.200" },
+    },
+    size: {
+      sm: { padding: "4", fontSize: "12px" },
+      lg: { padding: "8", fontSize: "24px" },
+    },
+  },
+})
+```
+
+## Using the recipe
+
+Next, you can render the component and pass recipe properties to it. The
+variants of the recipe will be automatically inferred.
+
+```tsx title="app.tsx"
+import { Button } from "./button"
+
+const App = () => {
+  return (
+    <Button visual="solid" size="lg">
+      Click Me
+    </Button>
+  )
+}
+```
+
+## Default Variants
+
+The `defaultVariants` property is used to set the default variant values for the
+recipe. This is useful when you want to apply a variant by default.
+
+```tsx title="button.tsx" {19-22}
+"use client"
+
+import { chakra } from "@chakra-ui/react"
+
+const Button = chakra("button", {
+  base: {
+    display: "flex",
+  },
+  variants: {
+    visual: {
+      solid: { bg: "red.200", color: "white" },
+      outline: { borderWidth: "1px", borderColor: "red.200" },
+    },
+    size: {
+      sm: { padding: "4", fontSize: "12px" },
+      lg: { padding: "8", fontSize: "24px" },
+    },
+  },
+  defaultVariants: {
+    visual: "solid",
+    size: "lg",
+  },
+})
+```
+
+## Compound Variants
+
+Use the `compoundVariants` property to define a set of variants that are applied
+based on a combination of other variants.
+
+```tsx title="button.tsx" /compoundVariants/
+"use client"
+
+import { chakra } from "@chakra-ui/react"
+
+const button = cva({
+  base: {
+    display: "flex",
+  },
+  variants: {
+    visual: {
+      solid: { bg: "red.200", color: "white" },
+      outline: { borderWidth: "1px", borderColor: "red.200" },
+    },
+    size: {
+      sm: { padding: "4", fontSize: "12px" },
+      lg: { padding: "8", fontSize: "24px" },
+    },
+  },
+  compoundVariants: [
+    {
+      size: "small",
+      visual: "outline",
+      css: {
+        borderWidth: "2px",
+      },
+    },
+  ],
+})
+```
+
+When you use the `size="small"` and `visual="outline"` variants together, the
+`compoundVariants` will apply the `css` property to the component.
+
+```tsx title="app.tsx"
+<Button size="small" visual="outline">
+  Click Me
+</Button>
+```
