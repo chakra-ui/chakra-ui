@@ -19,7 +19,7 @@ export const Callout: React.FC<CalloutProps> = (props) => {
         insetStart="2"
         bg={{ base: "gray.500", _dark: "gray.600" }}
       />
-      <Alert.Description color="fg" pt="0.5">
+      <Alert.Description color="fg" pt="0.5" lineHeight="tall">
         <Absolute top="-2" insetStart="2">
           <Badge variant="solid" rounded="0">
             <Alert.Indicator fontSize="xs" color="inherit" />
