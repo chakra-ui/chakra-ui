@@ -26,7 +26,7 @@ export function createRecipeContext<T, P>(
     const { unstyled, ...otherProps } = props
 
     const fallbackRecipe = props.recipe || recipeConfig
-    const recipe = useRecipe(recipeKey, fallbackRecipe)
+    const recipe = useRecipe({ key: recipeKey, recipe: fallbackRecipe })
 
     // @ts-ignore
     const [variantProps, localProps] = recipe.splitVariantProps(otherProps)

@@ -24,7 +24,7 @@ export interface SeparatorProps
  */
 export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
   function Separator({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("separator", props.recipe)
+    const recipe = useRecipe({ key: "separator", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
 

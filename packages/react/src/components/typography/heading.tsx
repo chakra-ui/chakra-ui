@@ -22,7 +22,7 @@ export interface HeadingProps
  */
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   function Heading(props, ref) {
-    const recipe = useRecipe("heading", props.recipe)
+    const recipe = useRecipe({ key: "heading", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
       <chakra.h2

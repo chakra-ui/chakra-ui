@@ -4,7 +4,7 @@ import { For, Span, Textarea, useRecipe } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const TextareaVariantTable = () => {
-  const recipe = useRecipe("input")
+  const recipe = useRecipe({ key: "textarea" })
   return (
     <PlaygroundTable>
       <tbody>

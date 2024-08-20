@@ -5,7 +5,7 @@ import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const BadgeVariantTable = () => {
-  const recipe = useRecipe("badge")
+  const recipe = useRecipe({ key: "badge" })
   return (
     <PlaygroundTable>
       <thead>

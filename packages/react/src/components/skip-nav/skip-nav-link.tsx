@@ -40,7 +40,7 @@ const baseStyle = defineStyle({
  */
 export const SkipNavLink = forwardRef<HTMLAnchorElement, SkipNavLinkProps>(
   function SkipNavLink(props, ref) {
-    const recipe = useRecipe("skipNavLink", props.recipe)
+    const recipe = useRecipe({ key: "skipNavLink", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

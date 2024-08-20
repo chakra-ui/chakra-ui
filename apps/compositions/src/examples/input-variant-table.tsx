@@ -4,7 +4,7 @@ import { For, Input, Span, useRecipe } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const InputVariantTable = () => {
-  const recipe = useRecipe("input")
+  const recipe = useRecipe({ key: "input" })
   return (
     <PlaygroundTable>
       <tbody>

@@ -30,7 +30,7 @@ export interface CheckmarkProps
 
 export const Checkmark = forwardRef<SVGSVGElement, CheckmarkProps>(
   function Checkmark(props, ref) {
-    const recipe = useRecipe("checkmark", props.recipe)
+    const recipe = useRecipe({ key: "checkmark", recipe: props.recipe })
     const [variantProps, restProps] = recipe.splitVariantProps(props)
 
     const { checked, indeterminate, disabled, unstyled, children, ...rest } =

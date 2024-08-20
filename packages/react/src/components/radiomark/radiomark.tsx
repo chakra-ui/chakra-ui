@@ -26,7 +26,7 @@ export interface RadiomarkProps
 
 export const Radiomark = forwardRef<HTMLSpanElement, RadiomarkProps>(
   function Radiomark(props, ref) {
-    const recipe = useRecipe("radiomark", props.recipe)
+    const recipe = useRecipe({ key: "radiomark", recipe: props.recipe })
     const [variantProps, restProps] = recipe.splitVariantProps(props)
 
     const { checked, disabled, unstyled, children, ...rest } = restProps

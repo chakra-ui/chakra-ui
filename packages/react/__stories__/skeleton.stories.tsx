@@ -17,7 +17,7 @@ export default {
 } satisfies Meta
 
 export const Variants = () => {
-  const recipe = useRecipe("skeleton")
+  const recipe = useRecipe({ key: "skeleton" })
   return (
     <PlaygroundTable>
       <thead>

@@ -14,7 +14,7 @@ const StyledLink = chakra("a")
 export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   function LinkButton(props, ref) {
     const { children, ...rest } = props
-    const recipe = useRecipe("Button", props.recipe)
+    const recipe = useRecipe({ key: "button", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(rest)
     return (
       <Button asChild {...variantProps}>
