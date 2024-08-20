@@ -34,53 +34,6 @@ const docsLinks: NavItem = {
     },
 
     {
-      title: "Theming",
-      url: "theming",
-      items: [
-        {
-          title: "Concepts",
-          items: [
-            { title: "Overview", url: "overview" },
-            { title: "Tokens", url: "tokens" },
-            { title: "Semantic Tokens", url: "semantic-tokens" },
-            { title: "Recipe", url: "recipe" },
-            { title: "Slot Recipes", url: "slot-recipes" },
-          ],
-        },
-        {
-          title: "Design Tokens",
-          url: "design-tokens",
-          items: [
-            { title: "Colors", url: "colors" },
-            { title: "Typography", url: "typography" },
-            { title: "Shadows", url: "shadows" },
-            { title: "Spacing", url: "spacing" },
-            { title: "Sizes", url: "sizes" },
-            { title: "Font Sizes", url: "font-sizes" },
-            { title: "Font Weights", url: "font-weights" },
-            { title: "Line Heights", url: "line-heights" },
-            { title: "Letter Spacings", url: "letter-spacings" },
-            { title: "Borders", url: "borders" },
-            { title: "Radii", url: "radii" },
-            { title: "Z-Index", url: "z-index" },
-            { title: "Breakpoints", url: "breakpoints" },
-          ],
-        },
-        {
-          title: "Customization",
-          url: "customization",
-          items: [
-            { title: "Configuration", url: "configuration" },
-            { title: "Breakpoints", url: "breakpoints" },
-            { title: "Recipe", url: "recipe" },
-            { title: "Tokens", url: "tokens" },
-            { title: "Conditions", url: "conditions" },
-          ],
-        },
-      ],
-    },
-
-    {
       title: "Styling",
       url: "styling",
       items: [
@@ -126,6 +79,53 @@ const docsLinks: NavItem = {
             { title: "Transforms", url: "transforms" },
             { title: "Transitions", url: "transitions" },
             { title: "Typography", url: "typography" },
+          ],
+        },
+      ],
+    },
+
+    {
+      title: "Theming",
+      url: "theming",
+      items: [
+        {
+          title: "Concepts",
+          items: [
+            { title: "Overview", url: "overview" },
+            { title: "Tokens", url: "tokens" },
+            { title: "Semantic Tokens", url: "semantic-tokens" },
+            { title: "Recipe", url: "recipe" },
+            { title: "Slot Recipes", url: "slot-recipes" },
+          ],
+        },
+        {
+          title: "Design Tokens",
+          url: "design-tokens",
+          items: [
+            { title: "Colors", url: "colors" },
+            { title: "Typography", url: "typography" },
+            { title: "Shadows", url: "shadows" },
+            { title: "Spacing", url: "spacing" },
+            { title: "Sizes", url: "sizes" },
+            { title: "Font Sizes", url: "font-sizes" },
+            { title: "Font Weights", url: "font-weights" },
+            { title: "Line Heights", url: "line-heights" },
+            { title: "Letter Spacings", url: "letter-spacings" },
+            { title: "Borders", url: "borders" },
+            { title: "Radii", url: "radii" },
+            { title: "Z-Index", url: "z-index" },
+            { title: "Breakpoints", url: "breakpoints" },
+          ],
+        },
+        {
+          title: "Customization",
+          url: "customization",
+          items: [
+            { title: "Configuration", url: "configuration" },
+            { title: "Breakpoints", url: "breakpoints" },
+            { title: "Recipe", url: "recipe" },
+            { title: "Tokens", url: "tokens" },
+            { title: "Conditions", url: "conditions" },
           ],
         },
       ],
