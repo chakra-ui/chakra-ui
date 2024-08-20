@@ -16,7 +16,7 @@ const {
   withProvider,
   withContext,
   useStyles: useRadioGroupStyles,
-} = createSlotRecipeContext("radioGroup")
+} = createSlotRecipeContext({ key: "radioGroup" })
 
 export { useRadioGroupStyles }
 

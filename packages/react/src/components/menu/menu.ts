@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useMenuStyles,
-} = createSlotRecipeContext("menu")
+} = createSlotRecipeContext({ key: "menu" })
 
 export { useMenuStyles }
 

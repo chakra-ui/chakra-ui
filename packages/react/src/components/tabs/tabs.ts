@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useTabsStyles,
-} = createSlotRecipeContext("tabs")
+} = createSlotRecipeContext({ key: "tabs" })
 
 export { useTabsStyles }
 

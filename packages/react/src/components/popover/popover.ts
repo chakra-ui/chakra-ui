@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: usePopoverStyles,
-} = createSlotRecipeContext("popover")
+} = createSlotRecipeContext({ key: "popover" })
 
 export { usePopoverStyles }
 

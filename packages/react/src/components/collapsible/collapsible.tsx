@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCollapsibleStyles,
-} = createSlotRecipeContext("collapsible")
+} = createSlotRecipeContext({ key: "collapsible" })
 
 export { useCollapsibleStyles }
 

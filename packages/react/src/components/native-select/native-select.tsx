@@ -27,7 +27,7 @@ const {
   withProvider,
   useClassNames,
   useStyles: useNativeSelectStyles,
-} = createSlotRecipeContext("nativeSelect")
+} = createSlotRecipeContext({ key: "nativeSelect" })
 
 export { useNativeSelectStyles }
 

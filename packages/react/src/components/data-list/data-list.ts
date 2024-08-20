@@ -13,7 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useDataListStyles,
-} = createSlotRecipeContext("dataList")
+} = createSlotRecipeContext({ key: "dataList" })
 
 export { useDataListStyles }
 

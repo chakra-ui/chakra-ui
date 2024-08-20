@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useActionBarStyles,
-} = createSlotRecipeContext("actionBar")
+} = createSlotRecipeContext({ key: "actionBar" })
 
 export { useActionBarStyles }
 

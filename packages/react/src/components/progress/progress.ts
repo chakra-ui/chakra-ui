@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useProgressStyles,
-} = createSlotRecipeContext("progress")
+} = createSlotRecipeContext({ key: "progress" })
 
 export { useProgressStyles }
 

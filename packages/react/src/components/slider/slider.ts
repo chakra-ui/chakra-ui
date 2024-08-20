@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSliderStyles,
-} = createSlotRecipeContext("slider")
+} = createSlotRecipeContext({ key: "slider" })
 
 export { useSliderStyles }
 

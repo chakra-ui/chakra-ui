@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useProgressCircleStyles,
-} = createSlotRecipeContext("progressCircle")
+} = createSlotRecipeContext({ key: "progressCircle" })
 
 export { useProgressCircleStyles }
 

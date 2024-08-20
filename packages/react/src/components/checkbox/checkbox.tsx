@@ -20,7 +20,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCheckboxStyles,
-} = createSlotRecipeContext("checkbox")
+} = createSlotRecipeContext({ key: "checkbox" })
 
 export { useCheckboxStyles }
 

@@ -20,7 +20,7 @@ const {
   withProvider,
   withContext,
   useStyles: useRatingGroupStyles,
-} = createSlotRecipeContext("ratingGroup")
+} = createSlotRecipeContext({ key: "ratingGroup" })
 
 export { useRatingGroupStyles }
 

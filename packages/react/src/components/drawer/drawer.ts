@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useDrawerStyles,
-} = createSlotRecipeContext("drawer")
+} = createSlotRecipeContext({ key: "drawer" })
 
 export { useDrawerStyles }
 

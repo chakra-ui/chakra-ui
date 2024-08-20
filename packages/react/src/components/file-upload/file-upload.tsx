@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useFileUploadStyles,
-} = createSlotRecipeContext("fileUpload")
+} = createSlotRecipeContext({ key: "fileUpload" })
 
 export { useFileUploadStyles }
 

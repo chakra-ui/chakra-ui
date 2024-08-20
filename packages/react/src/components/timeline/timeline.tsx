@@ -13,7 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useTimelineStyles,
-} = createSlotRecipeContext("timeline")
+} = createSlotRecipeContext({ key: "timeline" })
 
 export { useTimelineStyles }
 
