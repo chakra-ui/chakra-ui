@@ -5,7 +5,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { DataListItem, DataListRoot } from "compositions/ui/data-list"
 
 export const DataListSizeTable = () => {
-  const recipe = useSlotRecipe("dataList")
+  const recipe = useSlotRecipe({ key: "dataList" })
   return (
     <PlaygroundTable>
       <thead>

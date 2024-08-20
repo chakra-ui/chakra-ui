@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Radio, RadioGroup } from "compositions/ui/radio"
 
 export const RadioSizeTable = () => {
-  const recipe = useSlotRecipe("radioGroup")
+  const recipe = useSlotRecipe({ key: "radioGroup" })
   return (
     <PlaygroundTable>
       <thead>

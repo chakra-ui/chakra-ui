@@ -15,7 +15,7 @@ import {
 } from "compositions/ui/checkbox-card"
 
 export const CheckboxCardSizeTable = () => {
-  const recipe = useSlotRecipe("checkboxCard")
+  const recipe = useSlotRecipe({ key: "checkboxCard" })
   return (
     <PlaygroundTable>
       <thead>

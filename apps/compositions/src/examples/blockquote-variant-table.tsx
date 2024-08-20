@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Blockquote, type BlockquoteProps } from "compositions/ui/blockquote"
 
 export const BlockquoteVariantTable = () => {
-  const recipe = useSlotRecipe("blockquote")
+  const recipe = useSlotRecipe({ key: "blockquote" })
   return (
     <PlaygroundTable>
       <thead>

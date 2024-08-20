@@ -8,7 +8,7 @@ import { Tag } from "compositions/ui/tag"
 import { HiCheck, HiOutlineBriefcase } from "react-icons/hi"
 
 export const TagVariantTable = () => {
-  const recipe = useSlotRecipe("tag")
+  const recipe = useSlotRecipe({ key: "tag" })
   return (
     <PlaygroundTable>
       <thead>

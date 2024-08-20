@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Slider } from "compositions/ui/slider"
 
 export const SliderVariantTable = () => {
-  const recipe = useSlotRecipe("slider")
+  const recipe = useSlotRecipe({ key: "slider" })
   return (
     <PlaygroundTable>
       <thead>

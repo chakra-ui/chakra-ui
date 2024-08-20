@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Checkbox } from "compositions/ui/checkbox"
 
 export const CheckboxSizeTable = () => {
-  const recipe = useSlotRecipe("checkbox")
+  const recipe = useSlotRecipe({ key: "checkbox" })
   return (
     <PlaygroundTable>
       <thead>

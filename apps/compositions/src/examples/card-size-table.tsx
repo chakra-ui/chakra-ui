@@ -5,7 +5,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Button } from "compositions/ui/button"
 
 export const CardSizeTable = () => {
-  const recipe = useSlotRecipe("card")
+  const recipe = useSlotRecipe({ key: "card" })
   return (
     <PlaygroundTable>
       <thead>

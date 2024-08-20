@@ -5,7 +5,7 @@ import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const TabsVariantTable = () => {
-  const recipe = useSlotRecipe("tabs")
+  const recipe = useSlotRecipe({ key: "tabs" })
   return (
     <PlaygroundTable>
       <thead>

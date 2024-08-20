@@ -16,7 +16,7 @@ import {
 import { HiChat } from "react-icons/hi"
 
 export const PopoverSizeTable = () => {
-  const recipe = useSlotRecipe("popover")
+  const recipe = useSlotRecipe({ key: "popover" })
   return (
     <PlaygroundTable>
       <thead>

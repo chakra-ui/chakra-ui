@@ -20,7 +20,7 @@ import {
 } from "compositions/ui/steps"
 
 export const StepsSizeTable = () => {
-  const recipe = useSlotRecipe("steps")
+  const recipe = useSlotRecipe({ key: "steps" })
   return (
     <PlaygroundTable>
       <thead>

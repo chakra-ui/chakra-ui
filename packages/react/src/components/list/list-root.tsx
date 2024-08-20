@@ -38,7 +38,7 @@ export interface ListRootProps
  */
 export const ListRoot = forwardRef<HTMLUListElement, ListRootProps>(
   function ListRoot({ unstyled, ...props }, ref) {
-    const recipe = useSlotRecipe("list", props.recipe)
+    const recipe = useSlotRecipe({ key: "list", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
     const { styleType, stylePosition, ...rest } = localProps
