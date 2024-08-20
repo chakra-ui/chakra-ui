@@ -1,4 +1,4 @@
-import { Button, LinkProps, MenuContentProps, Span } from "@chakra-ui/react"
+import { Button, LinkProps, Span } from "@chakra-ui/react"
 import {
   MenuContent,
   MenuItem,

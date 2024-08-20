@@ -5,12 +5,19 @@ import { useRoute } from "@/lib/use-route"
 import {
   Box,
   BoxProps,
-  Drawer,
   IconButton,
   Portal,
   Stack,
   chakra,
 } from "@chakra-ui/react"
+import {
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerRoot,
+  DrawerTrigger,
+} from "compositions/ui/drawer"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
@@ -114,49 +121,42 @@ export const MobileSidebarNav = () => {
   }, [pathname, setIsOpen])
 
   return (
-    <Drawer.Root
+    <DrawerRoot
       open={isOpen}
       placement="bottom"
       onPointerDownOutside={closeMenu}
       onEscapeKeyDown={closeMenu}
       onOpenChange={(e) => setIsOpen(e.open)}
     >
-      <Drawer.Trigger asChild>
+      <DrawerTrigger asChild>
         <MobileMenuButton aria-label="Open menu">
           <AiOutlineMenu />
           Menu
         </MobileMenuButton>
-      </Drawer.Trigger>
+      </DrawerTrigger>
       <Portal>
-        <Drawer.Backdrop />
-        <Drawer.Positioner>
-          <Drawer.Content borderTopRadius="md" maxH="var(--content-height)">
-            <Drawer.CloseTrigger asChild>
-              <IconButton size="sm" variant="ghost">
-                <AiOutlineClose />
-              </IconButton>
-            </Drawer.CloseTrigger>
-            <Drawer.Body
-              display="flex"
-              flexDir="column"
-              gap="6"
-              py="5"
-              flex="1"
-            >
-              {route
-                .getSidebarNavItems()
-                ?.map((group) => (
-                  <SideNav
-                    key={group.title}
-                    currentUrl={route.currentUrl}
-                    title={group.title}
-                    items={group.items}
-                  />
-                ))}
-            </Drawer.Body>
-          </Drawer.Content>
-        </Drawer.Positioner>
+        <DrawerBackdrop />
+
+        <DrawerContent borderTopRadius="md" maxH="var(--content-height)">
+          <DrawerCloseTrigger asChild>
+            <IconButton size="sm" variant="ghost">
+              <AiOutlineClose />
+            </IconButton>
+          </DrawerCloseTrigger>
+          <DrawerBody display="flex" flexDir="column" gap="6" py="5" flex="1">
+            {route
+              .getSidebarNavItems()
+              ?.map((group) => (
+                <SideNav
+                  key={group.title}
+                  currentUrl={route.currentUrl}
+                  title={group.title}
+                  items={group.items}
+                />
+              ))}
+          </DrawerBody>
+        </DrawerContent>
       </Portal>
-    </Drawer.Root>
+    </DrawerRoot>
   )
 }

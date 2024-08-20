@@ -3,14 +3,12 @@
 import { ColorModeButton } from "@/components/color-mode-button"
 import { Logo } from "@/components/logo"
 import { MobileSearchButton, SearchButton } from "@/components/search-button"
-import { SideNav } from "@/components/sidenav"
 import { SocialLinks } from "@/components/social-links"
 import { VersionMenu } from "@/components/version-menu"
 import { useRoute } from "@/lib/use-route"
 import {
   Box,
   Container,
-  Drawer,
   HStack,
   IconButton,
   Portal,
@@ -18,9 +16,18 @@ import {
   VStack,
   chakra,
 } from "@chakra-ui/react"
+import {
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerFooter,
+  DrawerRoot,
+  DrawerTrigger,
+} from "compositions/ui/drawer"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useRef, useState, useSyncExternalStore } from "react"
+import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
 const usePrimaryNavItems = () => {
@@ -174,71 +181,63 @@ const HeaderMobileMenuDropdown = () => {
   }, [pathname, setIsOpen])
 
   return (
-    <Drawer.Root
+    <DrawerRoot
       open={isOpen}
       placement="bottom"
       onPointerDownOutside={closeMenu}
       onEscapeKeyDown={closeMenu}
       onOpenChange={(e) => setIsOpen(e.open)}
     >
-      <Drawer.Trigger asChild>
+      <DrawerTrigger asChild>
         <IconButton variant="ghost" size="sm">
           <AiOutlineMenu />
         </IconButton>
-      </Drawer.Trigger>
+      </DrawerTrigger>
       <Portal>
-        <Drawer.Backdrop />
-        <Drawer.Positioner>
-          <Drawer.Content borderTopRadius="md" maxH="var(--content-height)">
-            <Drawer.CloseTrigger asChild>
-              <IconButton size="sm" variant="ghost">
-                <AiOutlineClose />
-              </IconButton>
-            </Drawer.CloseTrigger>
-            <Drawer.Body
-              display="flex"
-              flexDir="column"
-              gap="10"
-              py="5"
-              flex="1"
-            >
-              <VStack align="start" justify="stretch">
-                {primaryNavItems.map((item) => (
-                  <TopNavMobileLink
-                    key={item.title}
-                    href={item.url || "#"}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.title}
-                  </TopNavMobileLink>
-                ))}
-              </VStack>
-              <VStack align="start" justify="stretch">
-                {secondaryNavItems.map((item) => (
-                  <TopNavMobileLink
-                    key={item.title}
-                    href={item.url || "#"}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.title}
-                  </TopNavMobileLink>
-                ))}
-              </VStack>
-            </Drawer.Body>
-            <Drawer.Footer
-              py="2"
-              justifyContent="space-between"
-              borderTop="1px solid"
-              borderColor="border"
-              ref={containerRef}
-            >
-              <HeaderVersionMenu containerRef={containerRef} />
-              <HeaderSocialLinks />
-            </Drawer.Footer>
-          </Drawer.Content>
-        </Drawer.Positioner>
+        <DrawerBackdrop />
+        <DrawerContent borderTopRadius="md" maxH="var(--content-height)">
+          <DrawerCloseTrigger asChild>
+            <IconButton size="sm" variant="ghost">
+              <AiOutlineClose />
+            </IconButton>
+          </DrawerCloseTrigger>
+          <DrawerBody display="flex" flexDir="column" gap="10" py="5" flex="1">
+            <VStack align="start" justify="stretch">
+              {primaryNavItems.map((item) => (
+                <TopNavMobileLink
+                  key={item.title}
+                  href={item.url || "#"}
+                  aria-current={item.current ? "page" : undefined}
+                >
+                  {item.title}
+                </TopNavMobileLink>
+              ))}
+            </VStack>
+            <VStack align="start" justify="stretch">
+              {secondaryNavItems.map((item) => (
+                <TopNavMobileLink
+                  key={item.title}
+                  href={item.url || "#"}
+                  aria-current={item.current ? "page" : undefined}
+                >
+                  {item.title}
+                </TopNavMobileLink>
+              ))}
+            </VStack>
+          </DrawerBody>
+          <DrawerFooter
+            py="2"
+            justifyContent="space-between"
+            borderTop="1px solid"
+            borderColor="border"
+            ref={containerRef}
+          >
+            <HeaderVersionMenu containerRef={containerRef} />
+            <HeaderSocialLinks />
+          </DrawerFooter>
+        </DrawerContent>
       </Portal>
-    </Drawer.Root>
+    </DrawerRoot>
   )
 }
 
