@@ -1,7 +1,6 @@
 import { defineTokens } from "../../styled-system"
 
 export const spacing = defineTokens.spacing({
-  px: { value: "1px" },
   0.5: { value: "0.125rem" },
   1: { value: "0.25rem" },
   1.5: { value: "0.375rem" },

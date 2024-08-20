@@ -1,6 +1,7 @@
 import { isString } from "@chakra-ui/utils"
 import { calc } from "./calc"
 import type { Token, TokenMiddleware } from "./types"
+import { toPx } from "./unit-conversion"
 
 export const addNegativeTokens: TokenMiddleware = {
   enforce: "pre",
@@ -41,6 +42,29 @@ export const addNegativeTokens: TokenMiddleware = {
       }
 
       registerToken(nextToken)
+    })
+  },
+}
+
+const units = new Set([
+  "spacing",
+  "sizes",
+  "borderWidths",
+  "fontSizes",
+  "radii",
+])
+
+export const addPixelUnit: TokenMiddleware = {
+  enforce: "post",
+  transform(dictionary) {
+    const tokens = dictionary.allTokens.filter((token) => {
+      return units.has(token.extensions.category!) && !token.extensions.negative
+    })
+
+    tokens.forEach((token) => {
+      Object.assign(token.extensions, {
+        pixelValue: toPx(token.value),
+      })
     })
   },
 }
@@ -118,5 +142,6 @@ export const removeEmptyTokens: TokenMiddleware = {
 export const tokenMiddlewares = [
   addNegativeTokens,
   addVirtualPalette,
+  addPixelUnit,
   removeEmptyTokens,
 ]
