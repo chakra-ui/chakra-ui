@@ -35,6 +35,7 @@ test("has proper aria and data attributes", async () => {
   expect(checkbox).not.toHaveAttribute("data-readonly")
   expect(container).not.toHaveAttribute("data-invalid")
   expect(container).not.toHaveAttribute("data-disabled")
+  expect(container).toHaveAttribute("for", "id")
 
   // render with various flags enabled
   utils.rerender(<Component isDisabled isInvalid isReadOnly isRequired />)
@@ -130,7 +131,7 @@ test("should derive values from surrounding FormControl", () => {
   const onFocus = vi.fn()
   const onBlur = vi.fn()
 
-  render(
+  const { getByRole, container } = render(
     <FormControl
       id="radio"
       isRequired
@@ -146,13 +147,16 @@ test("should derive values from surrounding FormControl", () => {
     </FormControl>,
   )
 
-  const radio = screen.getByRole("radio")
+  const radio = getByRole("radio")
+  const [label1, label2] = container.querySelectorAll("label")
 
   expect(radio).toHaveAttribute("id", "radio")
   expect(radio).toHaveAttribute("aria-invalid", "true")
   expect(radio).toHaveAttribute("aria-required", "true")
   expect(radio).toHaveAttribute("data-readonly", "")
   expect(radio).toHaveAttribute("aria-invalid", "true")
+  expect(label1).toHaveAttribute("for", "radio")
+  expect(label2).toHaveAttribute("for", "radio")
 
   fireEvent.focus(radio)
   expect(onFocus).toHaveBeenCalled()
