@@ -20,8 +20,7 @@ A slot recipe consists of these properties:
 
 ## Defining the recipe
 
-Use the `defineSlotRecipe` identity function to create a slot recipe and build
-compound components from it.
+Use the `defineSlotRecipe` identity function to create a slot recipe.
 
 ```tsx title="checkbox.recipe.ts"
 import { defineSlotRecipe } from "@chakra-ui/react"
@@ -118,7 +117,7 @@ export const Checkbox = (props) => {
 To infer the recipe variant prop types, use the `RecipeVariantProps` type
 helper.
 
-```ts
+```tsx title="checkbox.tsx"
 import type { RecipeVariantProps } from "@chakra-ui/react"
 import { checkboxSlotRecipe } from "./checkbox.recipe"
 
