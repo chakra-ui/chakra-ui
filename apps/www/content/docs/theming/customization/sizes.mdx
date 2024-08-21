@@ -1,0 +1,49 @@
+---
+title: Sizes
+description: Learn how to customize sizes in Chakra UI
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Example
+
+Here's an example of how to customize spacing in Chakra UI.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  theme: {
+    tokens: {
+      sizes: {
+        "1/7": { value: "14.285%" },
+        "2/7": { value: "28.571%" },
+        "3/7": { value: "42.857%" },
+      },
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+## Usage
+
+Set the value of any size related properties, like `width`, `height`,
+`minWidth`, `minHeight`, `maxWidth`, `maxHeight`, etc. to the `sizes` token.
+
+```tsx
+<Box width="1/7" height="2/7" />
+```

@@ -10,7 +10,7 @@ export const Anchor = (props: LinkProps) => {
         textDecoration: "underline",
         textUnderlineOffset: "3px",
         textDecorationThickness: "2px",
-        textDecorationColor: "border.muted",
+        textDecorationColor: "border.emphasized",
         fontWeight: "500",
       }}
     >

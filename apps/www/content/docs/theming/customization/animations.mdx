@@ -1,0 +1,54 @@
+---
+title: Animations
+description: Learn how to customize animations in Chakra UI
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Example
+
+Here's an example of how to customize keyframes in Chakra UI.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  theme: {
+    keyframes: {
+      wiggle: {
+        "0%, 100%": { transform: "rotate(-3deg)" },
+        "50%": { transform: "rotate(3deg)" },
+      },
+    },
+    tokens: {
+      animations: {
+        wiggle: { value: "wiggle 1s infinite" },
+      },
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+## Usage
+
+Set the value value of `animationName` or `animation` style prop to apply the
+keyframes and animation respectively.
+
+```tsx title="app.tsx"
+<Box animation="wiggle" />
+<Box animationName="wiggle" animationDuration="fast" animationIterationCount="infinite" />
+```
