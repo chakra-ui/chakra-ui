@@ -2,7 +2,6 @@
 
 import {
   Center,
-  Icon,
   SimpleGrid,
   Stack,
   Text,
@@ -10,7 +9,6 @@ import {
   VStack,
   defaultSystem,
 } from "@chakra-ui/react"
-import { LuCheckCircle } from "react-icons/lu"
 import { TokenDoc } from "./token-doc"
 
 const { tokens } = defaultSystem
@@ -48,43 +46,96 @@ export const ColorTokenDoc = () => {
   )
 }
 
-interface ColorGridItemProps {
+export const ColorSemanticTokenDoc = () => {
+  return (
+    <Stack gap="8" my="8">
+      <TokenDoc title="background">
+        <ColorGrid
+          tokens={allColors.filter((token) =>
+            token.name.startsWith("colors.bg"),
+          )}
+        />
+      </TokenDoc>
+
+      <TokenDoc title="border">
+        <ColorGrid
+          variant="border"
+          tokens={allColors.filter((token) =>
+            token.name.startsWith("colors.border"),
+          )}
+        />
+      </TokenDoc>
+
+      <TokenDoc title="text">
+        <ColorGrid
+          variant="text"
+          tokens={allColors.filter((token) =>
+            token.name.startsWith("colors.fg"),
+          )}
+        />
+      </TokenDoc>
+    </Stack>
+  )
+}
+
+interface VariantProps {
+  variant?: "border" | "background" | "text"
+}
+
+interface ColorGridItemProps extends VariantProps {
   token: TokenInterface
-  selected?: boolean
 }
 
 const ColorGridItem = (props: ColorGridItemProps) => {
-  const { token, selected } = props
+  const { token, variant = "background" } = props
   const value = token.extensions.cssVar!.ref
+  const conditions = token.extensions.conditions
   return (
     <VStack flex="1">
-      <Center borderWidth="1px" bg={value} w="full" h="20" rounded="lg">
-        {selected && (
-          <Icon asChild fontSize="xl" color="white">
-            <LuCheckCircle />
-          </Icon>
-        )}
+      <Center
+        borderWidth="1px"
+        bg={(() => {
+          if (variant === "text" && token.name.includes("inverted"))
+            return "bg.inverted"
+          return variant === "background" ? value : undefined
+        })()}
+        w="full"
+        h="20"
+        rounded="lg"
+        color={variant === "text" ? value : undefined}
+        borderColor={variant === "border" ? value : undefined}
+      >
+        {variant === "text" && <Text fontSize="lg">Ag</Text>}
       </Center>
-      <Text textStyle="xs" color="fg.muted">
-        {token.name.replace("colors.", "")}
-      </Text>
-      <Text fontSize="xs" mt="-1" color="fg.muted">
-        {token.originalValue}
-      </Text>
+      <Text textStyle="xs">{token.name.replace("colors.", "")}</Text>
+      {conditions && (
+        <Stack mt="1">
+          {Object.entries(conditions).map(([key, value]) => (
+            <Text key={key} fontSize="xs" mt="-1" color="fg.muted">
+              {key.replace("_", "")}: {value.replace("colors.", "")}
+            </Text>
+          ))}
+        </Stack>
+      )}
+      {!conditions && (
+        <Text fontSize="xs" mt="-1" color="fg.muted">
+          {token.originalValue}
+        </Text>
+      )}
     </VStack>
   )
 }
 
-interface ColorGridProps {
+interface ColorGridProps extends VariantProps {
   tokens: TokenInterface[]
 }
 
 export const ColorGrid = (props: ColorGridProps) => {
-  const { tokens } = props
+  const { tokens, variant = "background" } = props
   return (
     <SimpleGrid minChildWidth="80px" gap="2">
       {tokens.map((token) => (
-        <ColorGridItem key={token.name} token={token} />
+        <ColorGridItem key={token.name} token={token} variant={variant} />
       ))}
     </SimpleGrid>
   )

@@ -3,7 +3,10 @@ import { Box, Kbd } from "@chakra-ui/react"
 import { AspectRatioTokenDoc } from "compositions/lib/aspect-ratio-token-toc"
 import { BorderRadiusTokenDoc } from "compositions/lib/border-radius-token-doc"
 import { BreakpointDoc } from "compositions/lib/breakpoint-doc"
-import { ColorTokenDoc } from "compositions/lib/color-token-doc"
+import {
+  ColorSemanticTokenDoc,
+  ColorTokenDoc,
+} from "compositions/lib/color-token-doc"
 import { DurationTokenDoc, KeyframeDoc } from "compositions/lib/keyframe-doc"
 import { ShadowTokenDoc } from "compositions/lib/shadow-token-doc"
 import { SpacingTokenDoc } from "compositions/lib/spacing-token-doc"
@@ -58,6 +61,7 @@ const sharedComponents = {
   ResourceCard: ResourceCard,
   "code-block": CodeBlock,
   ColorTokenDoc,
+  ColorSemanticTokenDoc,
   ShadowTokenDoc,
   BorderRadiusTokenDoc,
   ...TypographyDocs,

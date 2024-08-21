@@ -369,7 +369,6 @@ export type Token =
   | "colors.bg.info"
   | "colors.fg"
   | "colors.fg.muted"
-  | "colors.fg.disabled"
   | "colors.fg.inverted"
   | "colors.fg.error"
   | "colors.fg.warning"
@@ -378,7 +377,6 @@ export type Token =
   | "colors.border"
   | "colors.border.muted"
   | "colors.border.emphasized"
-  | "colors.border.disabled"
   | "colors.border.inverted"
   | "colors.border.error"
   | "colors.border.warning"
@@ -444,7 +442,6 @@ export type Token =
   | "colors.colorPalette.warning"
   | "colors.colorPalette.success"
   | "colors.colorPalette.info"
-  | "colors.colorPalette.disabled"
 
 export type ColorPalette =
   | "transparent"
@@ -624,7 +621,6 @@ export type ColorsToken =
   | "bg.info"
   | "fg"
   | "fg.muted"
-  | "fg.disabled"
   | "fg.inverted"
   | "fg.error"
   | "fg.warning"
@@ -633,7 +629,6 @@ export type ColorsToken =
   | "border"
   | "border.muted"
   | "border.emphasized"
-  | "border.disabled"
   | "border.inverted"
   | "border.error"
   | "border.warning"
@@ -660,7 +655,6 @@ export type ColorsToken =
   | "colorPalette.warning"
   | "colorPalette.success"
   | "colorPalette.info"
-  | "colorPalette.disabled"
 
 export type DurationsToken = "fastest" | "faster" | "fast" | "moderate" | "slow" | "slower" | "slowest"
 

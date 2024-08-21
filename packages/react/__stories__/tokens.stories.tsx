@@ -19,7 +19,10 @@ export { TokensTextStyles as TextStyles } from "compositions/examples/tokens/tex
 
 export { BorderRadiusTokenDoc as Radius } from "compositions/lib/border-radius-token-doc"
 export { BreakpointDoc as Breakpoints } from "compositions/lib/breakpoint-doc"
-export { ColorTokenDoc as Colors } from "compositions/lib/color-token-doc"
+export {
+  ColorTokenDoc as Colors,
+  ColorSemanticTokenDoc as SemanticColors,
+} from "compositions/lib/color-token-doc"
 export {
   KeyframeDoc as Keyframes,
   DurationTokenDoc as Durations,
