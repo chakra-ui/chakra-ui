@@ -4,7 +4,7 @@ import { For, Span, Tabs, Text, useSlotRecipe } from "@chakra-ui/react"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const TabsSizeTable = () => {
-  const recipe = useSlotRecipe("tabs")
+  const recipe = useSlotRecipe({ key: "tabs" })
   return (
     <PlaygroundTable>
       <thead>

@@ -18,7 +18,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSelectStyles,
-} = createSlotRecipeContext("select")
+} = createSlotRecipeContext({ key: "select" })
 
 export { useSelectStyles }
 

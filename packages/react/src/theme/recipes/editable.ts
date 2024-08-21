@@ -10,7 +10,7 @@ const sharedStyles = defineStyle({
 
 export const editableSlotRecipe = defineSlotRecipe({
   slots: [...editableAnatomy.keys(), "textarea"],
-  className: "editable",
+  className: "chakra-editable",
   base: {
     preview: {
       ...sharedStyles,

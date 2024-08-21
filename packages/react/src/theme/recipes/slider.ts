@@ -2,7 +2,7 @@ import { sliderAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const sliderSlotRecipe = defineSlotRecipe({
-  className: "slider",
+  className: "chakra-slider",
   slots: sliderAnatomy.keys(),
   base: {
     root: {

@@ -28,7 +28,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAlertStyles,
-} = createSlotRecipeContext("alert")
+} = createSlotRecipeContext({ key: "alert" })
 
 export { useAlertStyles }
 

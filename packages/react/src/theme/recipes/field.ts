@@ -2,7 +2,7 @@ import { fieldAnatomy } from "@ark-ui/react/field"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const fieldSlotRecipe = defineSlotRecipe({
-  className: "field",
+  className: "chakra-field",
   slots: [...fieldAnatomy.keys(), "requiredIndicator"],
   base: {
     requiredIndicator: {

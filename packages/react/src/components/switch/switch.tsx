@@ -17,7 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSwitchStyles,
-} = createSlotRecipeContext("switch")
+} = createSlotRecipeContext({ key: "switch" })
 
 export { useSwitchStyles }
 

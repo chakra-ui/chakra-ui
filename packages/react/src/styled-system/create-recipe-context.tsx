@@ -26,20 +26,18 @@ export function createRecipeContext<T, P>(
     const { unstyled, ...otherProps } = props
 
     const fallbackRecipe = props.recipe || recipeConfig
-    const recipe = useRecipe(recipeKey, fallbackRecipe)
+    const recipe = useRecipe({ key: recipeKey, recipe: fallbackRecipe })
 
     // @ts-ignore
     const [variantProps, localProps] = recipe.splitVariantProps(otherProps)
-
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
-    const className = `chakra-${recipe.className}`
 
     return (
       <StyledComponent
         {...localProps}
         ref={ref}
         css={[styles, props.css]}
-        className={cx(props.className, className)}
+        className={cx(recipe.className, props.className)}
       />
     )
   })

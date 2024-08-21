@@ -9,7 +9,7 @@ import {
 } from "react-icons/hi"
 
 export const ToasterStatic = () => {
-  const recipe = useSlotRecipe("toast")
+  const recipe = useSlotRecipe({ key: "toast" })
   const styles = recipe()
 
   return (

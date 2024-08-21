@@ -25,7 +25,7 @@ const {
   withProvider,
   withContext,
   useStyles: useToastStyles,
-} = createSlotRecipeContext("toast")
+} = createSlotRecipeContext({ key: "toast" })
 
 export { useToastStyles }
 

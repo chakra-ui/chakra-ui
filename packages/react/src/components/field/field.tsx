@@ -19,7 +19,7 @@ const {
   withContext,
   useStyles: useFieldStyles,
   useClassNames,
-} = createSlotRecipeContext("field")
+} = createSlotRecipeContext({ key: "field" })
 
 export { useFieldStyles }
 

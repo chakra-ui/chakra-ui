@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSegmentGroupStyles,
-} = createSlotRecipeContext("segmentGroup")
+} = createSlotRecipeContext({ key: "segmentGroup" })
 
 export { useSegmentGroupStyles }
 

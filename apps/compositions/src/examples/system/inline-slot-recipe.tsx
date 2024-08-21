@@ -35,7 +35,9 @@ const checkbox = defineSlotRecipe({
   },
 })
 
-const { withProvider, withContext } = createSlotRecipeContext(checkbox)
+const { withProvider, withContext } = createSlotRecipeContext({
+  recipe: checkbox,
+})
 
 // 2. Create the components
 

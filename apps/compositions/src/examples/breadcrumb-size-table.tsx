@@ -11,7 +11,7 @@ import {
 } from "compositions/ui/breadcrumb"
 
 export const BreadcrumbSizeTable = () => {
-  const recipe = useSlotRecipe("breadcrumb")
+  const recipe = useSlotRecipe({ key: "breadcrumb" })
   return (
     <PlaygroundTable>
       <thead>

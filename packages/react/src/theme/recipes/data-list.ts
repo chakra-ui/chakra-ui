@@ -2,7 +2,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const dataListSlotRecipe = defineSlotRecipe({
   slots: ["root", "item", "itemLabel", "itemValue"],
-  className: "data-list",
+  className: "chakra-data-list",
   base: {
     itemLabel: {
       color: "fg.muted",

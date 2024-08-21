@@ -20,7 +20,7 @@ const {
   withProvider,
   withContext,
   useStyles: useEditableStyles,
-} = createSlotRecipeContext("editable")
+} = createSlotRecipeContext({ key: "editable" })
 
 export { useEditableStyles }
 

@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useBlockquoteStyles,
-} = createSlotRecipeContext("blockquote")
+} = createSlotRecipeContext({ key: "blockquote" })
 
 export { useBlockquoteStyles }
 

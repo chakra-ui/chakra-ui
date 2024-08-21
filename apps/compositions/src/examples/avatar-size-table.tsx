@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Avatar } from "compositions/ui/avatar"
 
 export const AvatarSizeTable = () => {
-  const recipe = useSlotRecipe("avatar")
+  const recipe = useSlotRecipe({ key: "avatar" })
   return (
     <PlaygroundTable>
       <thead>

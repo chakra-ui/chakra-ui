@@ -17,7 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useStepsStyles,
-} = createSlotRecipeContext("steps")
+} = createSlotRecipeContext({ key: "steps" })
 
 export { useStepsStyles }
 

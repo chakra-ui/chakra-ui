@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Tag } from "compositions/ui/tag"
 
 export const TagSizeTable = () => {
-  const recipe = useSlotRecipe("tag")
+  const recipe = useSlotRecipe({ key: "tag" })
   return (
     <PlaygroundTable>
       <thead>

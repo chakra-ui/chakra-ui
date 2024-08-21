@@ -5,7 +5,7 @@ import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const LinkVariantTable = () => {
-  const recipe = useRecipe("link")
+  const recipe = useRecipe({ key: "link" })
   return (
     <PlaygroundTable>
       <thead>

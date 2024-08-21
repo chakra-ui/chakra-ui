@@ -956,7 +956,7 @@ After:
 import { chakra, useRecipe } from "@chakra-ui/react"
 
 function Alert(props) {
-  const recipe = useRecipe("alert", props.recipe)
+  const recipe = useRecipe({ key: "alert", recipe: props.recipe })
   const [variantProps, elementProps] = recipe.splitVariantProps(props)
   return <chakra.div {...elementProps} css={recipe(variantProps)} />
 }
@@ -986,7 +986,7 @@ After:
 import { chakra, useSlotRecipe } from "@chakra-ui/react"
 
 function Alert(props) {
-  const recipe = useSlotRecipe("alert", props.recipe)
+  const recipe = useSlotRecipe({ key: "alert", recipe: props.recipe })
   const [variantProps, elementProps] = recipe.splitVariantProps(props)
   const styles = recipe(variantProps)
   return (

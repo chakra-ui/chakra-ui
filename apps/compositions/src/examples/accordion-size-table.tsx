@@ -12,7 +12,7 @@ import {
 } from "compositions/ui/accordion"
 
 export const AccordionSizeTable = () => {
-  const recipe = useSlotRecipe("accordion")
+  const recipe = useSlotRecipe({ key: "accordion" })
   return (
     <PlaygroundTable>
       <thead>

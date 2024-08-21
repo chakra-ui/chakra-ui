@@ -2,7 +2,7 @@ import { blockquoteAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const blockquoteSlotRecipe = defineSlotRecipe({
-  className: "blockquote",
+  className: "chakra-blockquote",
   slots: blockquoteAnatomy.keys(),
   base: {
     root: {

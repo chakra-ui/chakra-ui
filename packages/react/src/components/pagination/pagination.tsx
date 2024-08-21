@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: usePaginationStyles,
-} = createSlotRecipeContext("pagination")
+} = createSlotRecipeContext({ key: "pagination" })
 
 export { usePaginationStyles }
 

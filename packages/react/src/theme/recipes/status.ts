@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from "../../styled-system"
 
 export const statusSlotRecipe = defineSlotRecipe({
-  className: "status",
+  className: "chakra-status",
   slots: ["root", "indicator"],
 
   base: {

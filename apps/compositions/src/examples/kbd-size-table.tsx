@@ -5,7 +5,7 @@ import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const KbdSizeTable = () => {
-  const recipe = useRecipe("kbd")
+  const recipe = useRecipe({ key: "kbd" })
   return (
     <PlaygroundTable>
       <thead>

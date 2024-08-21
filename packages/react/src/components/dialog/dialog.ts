@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useDialogStyles,
-} = createSlotRecipeContext("dialog")
+} = createSlotRecipeContext({ key: "dialog" })
 
 export { useDialogStyles }
 

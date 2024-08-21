@@ -89,7 +89,7 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       classNameMap = Object.fromEntries(
         config.slots.map((slot: string) => [
           slot,
-          `chakra-${config.className}__${slot}`,
+          `${config.className}__${slot}`,
         ]),
       )
     }

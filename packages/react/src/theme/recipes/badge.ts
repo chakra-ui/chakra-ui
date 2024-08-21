@@ -1,7 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const badgeRecipe = defineRecipe({
-  className: "badge",
+  className: "chakra-badge",
   base: {
     display: "inline-flex",
     alignItems: "center",

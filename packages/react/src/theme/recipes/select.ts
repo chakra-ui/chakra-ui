@@ -2,7 +2,7 @@ import { selectAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const selectSlotRecipe = defineSlotRecipe({
-  className: "select",
+  className: "chakra-select",
   slots: selectAnatomy.keys(),
   base: {
     root: {

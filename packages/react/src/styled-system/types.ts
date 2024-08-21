@@ -131,6 +131,7 @@ export interface TokenExtensions {
   cssVar?: TokenCssVar
   colorPalette?: ColorPaletteExtension
   references?: Dict<Token>
+  pixelValue?: string
 }
 
 export interface Token<T = any> {

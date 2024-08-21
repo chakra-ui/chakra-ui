@@ -4,7 +4,7 @@ import { badgeRecipe } from "./badge"
 const { variants, defaultVariants } = badgeRecipe
 
 export const codeRecipe = defineRecipe({
-  className: "code",
+  className: "chakra-code",
   base: {
     display: "inline-block",
     fontFamily: "mono",

@@ -7,7 +7,7 @@ import { Button } from "compositions/ui/button"
 import { HiArrowRight } from "react-icons/hi"
 
 export const ButtonVariantTable = () => {
-  const recipe = useRecipe("button")
+  const recipe = useRecipe({ key: "button" })
   return (
     <PlaygroundTable>
       <thead>

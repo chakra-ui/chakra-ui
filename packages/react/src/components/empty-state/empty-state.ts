@@ -13,7 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useEmptyStateStyles,
-} = createSlotRecipeContext("emptyState")
+} = createSlotRecipeContext({ key: "emptyState" })
 
 export { useEmptyStateStyles }
 

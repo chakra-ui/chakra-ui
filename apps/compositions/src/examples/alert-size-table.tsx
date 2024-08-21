@@ -7,7 +7,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Alert } from "compositions/ui/alert"
 
 export const AlertSizeTable = () => {
-  const recipe = useSlotRecipe("alert")
+  const recipe = useSlotRecipe({ key: "alert" })
   return (
     <PlaygroundTable>
       <thead>

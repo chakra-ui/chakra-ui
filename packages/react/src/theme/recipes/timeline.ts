@@ -3,8 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const timelineSlotRecipe = defineSlotRecipe({
   slots: timelineAnatomy.keys(),
-  className: "timeline",
-
+  className: "chakra-timeline",
   base: {
     root: {
       display: "flex",

@@ -10,6 +10,24 @@ export const keyframes = defineKeyframes({
     "50%": { opacity: "0.5" },
   },
 
+  ping: {
+    "75%, 100%": {
+      transform: "scale(2)",
+      opacity: "0",
+    },
+  },
+
+  bounce: {
+    "0%, 100%": {
+      transform: "translateY(-25%)",
+      animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+    },
+    "50%": {
+      transform: "none",
+      animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+    },
+  },
+
   "bg-position": {
     from: { backgroundPosition: "var(--animate-from, 1rem) 0" },
     to: { backgroundPosition: "var(--animate-to, 0) 0" },
@@ -143,11 +161,11 @@ export const keyframes = defineKeyframes({
 
   // scale
   "scale-in": {
-    from: { scale: "0.97" },
+    from: { scale: "0.9" },
     to: { scale: "1" },
   },
   "scale-out": {
     from: { scale: "1" },
-    to: { scale: "0.97" },
+    to: { scale: "0.9" },
   },
 })

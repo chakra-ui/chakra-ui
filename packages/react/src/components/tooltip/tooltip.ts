@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useTooltipStyles,
-} = createSlotRecipeContext("tooltip")
+} = createSlotRecipeContext({ key: "tooltip" })
 
 export { useTooltipStyles }
 

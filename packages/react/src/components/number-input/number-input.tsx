@@ -15,7 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useNumberInputStyles,
-} = createSlotRecipeContext("numberInput")
+} = createSlotRecipeContext({ key: "numberInput" })
 
 export { useNumberInputStyles }
 

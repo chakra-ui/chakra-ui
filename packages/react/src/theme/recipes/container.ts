@@ -1,7 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const containerRecipe = defineRecipe({
-  className: "container",
+  className: "chakra-container",
   base: {
     position: "relative",
     maxWidth: "8xl",

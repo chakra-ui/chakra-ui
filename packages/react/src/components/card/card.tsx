@@ -13,7 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCardStyles,
-} = createSlotRecipeContext("card")
+} = createSlotRecipeContext({ key: "card" })
 
 export { useCardStyles }
 

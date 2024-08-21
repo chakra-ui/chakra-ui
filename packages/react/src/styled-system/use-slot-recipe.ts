@@ -12,13 +12,18 @@ export type SlotRecipeFn<K extends SlotRecipeKey> =
     ? ConfigSlotRecipes[K]
     : SystemSlotRecipeFn<string, {}>
 
+export interface UseSlotRecipeOptions<K extends SlotRecipeKey> {
+  key?: K
+  recipe?: SlotRecipeConfig
+}
+
 export function useSlotRecipe<K extends SlotRecipeKey>(
-  key?: K,
-  fallback?: SlotRecipeConfig,
+  options: UseSlotRecipeOptions<K>,
 ): SlotRecipeFn<K> {
+  const { key, recipe: recipeProp } = options
   const sys = useChakraContext()
   return useMemo((): any => {
-    const recipe = fallback || (key != null ? sys.getSlotRecipe(key) : {})
+    const recipe = recipeProp || (key != null ? sys.getSlotRecipe(key) : {})
     return sys.sva(structuredClone(recipe))
-  }, [key, fallback, sys])
+  }, [key, recipeProp, sys])
 }

@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Switch } from "compositions/ui/switch"
 
 export const SwitchSizeTable = () => {
-  const recipe = useSlotRecipe("switch")
+  const recipe = useSlotRecipe({ key: "switch" })
   return (
     <PlaygroundTable>
       <thead>

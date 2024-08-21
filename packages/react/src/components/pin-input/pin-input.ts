@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: usePinInputStyles,
-} = createSlotRecipeContext("pinInput")
+} = createSlotRecipeContext({ key: "pinInput" })
 
 export { usePinInputStyles }
 

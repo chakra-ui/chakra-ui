@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useClipboardStyles,
-} = createSlotRecipeContext("clipboard")
+} = createSlotRecipeContext({ key: "clipboard" })
 
 export { useClipboardStyles }
 

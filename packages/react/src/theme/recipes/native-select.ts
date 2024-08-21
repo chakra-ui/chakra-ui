@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 import { selectSlotRecipe } from "./select"
 
 export const nativeSelectSlotRecipe = defineSlotRecipe({
-  className: "native-select",
+  className: "chakra-native-select",
   slots: nativeSelectAnatomy.keys(),
 
   base: {

@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react"
-import { Box, Center, For, SimpleGrid, Stack, Text } from "../src"
+import { Box, Center, For, SimpleGrid, Text } from "../src"
 
 export default {
   title: "Foundations / Tokens",
@@ -12,30 +12,28 @@ export default {
   ],
 } satisfies Meta
 
-export const Shadows = () => {
-  return (
-    <Stack gap="6" padding="10">
-      <For each={["xs", "sm", "md", "lg", "xl", "2xl"]}>
-        {(shadow) => (
-          <Center
-            shadow={shadow}
-            width="400px"
-            height="20"
-            color="fg.muted"
-            borderRadius="md"
-          >
-            {shadow}
-          </Center>
-        )}
-      </For>
-    </Stack>
-  )
-}
-
 export { TokensAnimationStyle as AnimationStyle } from "compositions/examples/tokens/animation-style"
+export { TokensFocusRing as FocusRing } from "compositions/examples/tokens/focus-ring"
 export { TokensLayerStyle as LayerStyle } from "compositions/examples/tokens/layer-style"
 export { TokensTextStyles as TextStyles } from "compositions/examples/tokens/text-styles"
-export { TokensFocusRing as FocusRing } from "compositions/examples/tokens/focus-ring"
+
+export { BorderRadiusTokenDoc as Radius } from "compositions/lib/border-radius-token-doc"
+export { BreakpointDoc as Breakpoints } from "compositions/lib/breakpoint-doc"
+export { ColorTokenDoc as Colors } from "compositions/lib/color-token-doc"
+export {
+  KeyframeDoc as Keyframes,
+  DurationTokenDoc as Durations,
+} from "compositions/lib/keyframe-doc"
+export { ShadowTokenDoc as Shadows } from "compositions/lib/shadow-token-doc"
+export { SpacingTokenDoc as Spacing } from "compositions/lib/spacing-token-doc"
+export {
+  FontTokenDoc as Font,
+  FontSizeTokenDoc as FontSizes,
+  FontWeightTokenDoc as FontWeights,
+  LetterSpacingTokenDoc as LetterSpacings,
+  LineHeightTokenDoc as LineHeights,
+} from "compositions/lib/typography-token-doc"
+export { AspectRatioTokenDoc as AspectRatio } from "compositions/lib/aspect-ratio-token-toc"
 
 export const StatusTokens = () => {
   return (

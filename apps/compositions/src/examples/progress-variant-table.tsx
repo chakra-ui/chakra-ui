@@ -12,7 +12,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { ProgressBar, ProgressRoot } from "compositions/ui/progress"
 
 export const ProgressVariantTable = () => {
-  const recipe = useSlotRecipe("progress")
+  const recipe = useSlotRecipe({ key: "progress" })
   return (
     <PlaygroundTable>
       <thead>

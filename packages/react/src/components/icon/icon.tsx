@@ -20,7 +20,7 @@ export interface IconProps
  */
 export const Icon = forwardRef<SVGElement, IconProps>(
   function Icon(props, ref) {
-    const recipe = useRecipe("icon", props.recipe)
+    const recipe = useRecipe({ key: "icon", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

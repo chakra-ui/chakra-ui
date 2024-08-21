@@ -70,8 +70,8 @@ export const H4 = (props: BoxProps) => {
       as="h4"
       css={{
         color: "fg",
-        marginTop: "1.4em",
-        marginBottom: "0.5em",
+        marginTop: "2em",
+        marginBottom: "0.8em",
         letterSpacing: "-0.01em",
         fontWeight: "semibold",
         lineHeight: "1.5em",

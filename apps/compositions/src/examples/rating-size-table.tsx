@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Rating } from "compositions/ui/rating"
 
 export const RatingSizeTable = () => {
-  const recipe = useSlotRecipe("ratingGroup")
+  const recipe = useSlotRecipe({ key: "ratingGroup" })
   return (
     <PlaygroundTable>
       <thead>

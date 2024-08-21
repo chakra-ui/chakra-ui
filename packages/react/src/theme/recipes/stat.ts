@@ -2,7 +2,7 @@ import { statAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const statSlotRecipe = defineSlotRecipe({
-  className: "stat",
+  className: "chakra-stat",
   slots: statAnatomy.keys(),
   base: {
     root: {

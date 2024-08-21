@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useBreadcrumbStyles,
-} = createSlotRecipeContext("breadcrumb")
+} = createSlotRecipeContext({ key: "breadcrumb" })
 
 export { useBreadcrumbStyles }
 

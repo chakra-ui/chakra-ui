@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useStatStyles,
-} = createSlotRecipeContext("stat")
+} = createSlotRecipeContext({ key: "stat" })
 
 export { useStatStyles }
 

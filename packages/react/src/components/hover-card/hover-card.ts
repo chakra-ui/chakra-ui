@@ -14,7 +14,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useHoverCardStyles,
-} = createSlotRecipeContext("hoverCard")
+} = createSlotRecipeContext({ key: "hoverCard" })
 
 export { useHoverCardStyles }
 

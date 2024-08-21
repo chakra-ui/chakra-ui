@@ -44,7 +44,7 @@ export interface TextProps
  */
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(
   function Text(props, ref) {
-    const recipe = useRecipe("text", props.recipe)
+    const recipe = useRecipe({ key: "text", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(props)
 
     const aliasedProps = compact({

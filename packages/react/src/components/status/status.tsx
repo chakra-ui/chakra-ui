@@ -13,7 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useStatusStyles,
-} = createSlotRecipeContext("status")
+} = createSlotRecipeContext({ key: "status" })
 
 export { useStatusStyles }
 

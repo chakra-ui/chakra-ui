@@ -14,7 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAccordionStyles,
-} = createSlotRecipeContext("accordion")
+} = createSlotRecipeContext({ key: "accordion" })
 
 export { useAccordionStyles }
 

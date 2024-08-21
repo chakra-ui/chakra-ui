@@ -19,7 +19,7 @@ const {
   useRecipeResult,
   withContext,
   useStyles: useTableStyles,
-} = createSlotRecipeContext("table")
+} = createSlotRecipeContext({ key: "table" })
 
 export { useTableStyles }
 

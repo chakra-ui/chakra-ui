@@ -10,7 +10,7 @@ import {
 import { PlaygroundTable } from "compositions/lib/playground-table"
 
 export const TableSizeTable = () => {
-  const recipe = useSlotRecipe("table")
+  const recipe = useSlotRecipe({ key: "table" })
   return (
     <PlaygroundTable>
       <thead>

@@ -1,7 +1,7 @@
 import { defineRecipe } from "../../styled-system"
 
 export const kbdRecipe = defineRecipe({
-  className: "kbd",
+  className: "chakra-kbd",
   base: {
     fontWeight: "medium",
     lineHeight: "normal",

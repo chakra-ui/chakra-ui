@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { ProgressBar } from "compositions/ui/progress"
 
 export const ProgressSizeTable = () => {
-  const recipe = useSlotRecipe("progress")
+  const recipe = useSlotRecipe({ key: "progress" })
   return (
     <PlaygroundTable>
       <thead>

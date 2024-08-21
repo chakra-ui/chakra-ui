@@ -25,7 +25,11 @@ export * from "./provider"
 export * from "./recipe-props"
 export type * from "./recipe.types"
 export { createSystem, isValidSystem } from "./system"
-export type { SystemConfig, SystemContext } from "./types"
+export type {
+  SystemConfig,
+  SystemContext,
+  Token as TokenInterface,
+} from "./types"
 export * from "./use-recipe"
 export * from "./use-slot-recipe"
 export * from "./use-token"

@@ -15,7 +15,7 @@ export interface MarkProps
 
 export const Mark = forwardRef<HTMLElement, MarkProps>(
   function Mark(props, ref) {
-    const recipe = useRecipe("mark", props.recipe)
+    const recipe = useRecipe({ key: "mark", recipe: props.recipe })
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     return (
       <chakra.mark

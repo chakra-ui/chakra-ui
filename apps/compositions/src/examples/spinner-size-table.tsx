@@ -3,7 +3,7 @@
 import { For, Spinner, useRecipe } from "@chakra-ui/react"
 
 export const SpinnerSizeTable = () => {
-  const recipe = useRecipe("spinner")
+  const recipe = useRecipe({ key: "spinner" })
   return (
     <div>
       <For each={recipe.variantMap.size}>

@@ -6,7 +6,7 @@ import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Status } from "compositions/ui/status"
 
 export const StatusSizeTable = () => {
-  const recipe = useSlotRecipe("status")
+  const recipe = useSlotRecipe({ key: "status" })
   return (
     <PlaygroundTable>
       <thead>

@@ -26,7 +26,7 @@ const DemoNumberInput = (props: NumberInput.RootProps) => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("numberInput")
+  const recipe = useSlotRecipe({ key: "numberInput" })
   return (
     <PlaygroundTable>
       <thead>

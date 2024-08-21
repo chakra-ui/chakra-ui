@@ -17,7 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAvatarStyles,
-} = createSlotRecipeContext("avatar")
+} = createSlotRecipeContext({ key: "avatar" })
 
 export { useAvatarStyles }
 

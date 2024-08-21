@@ -91,9 +91,11 @@ export interface UtilityValues {
   borderBottomWidth: Tokens["borderWidths"]
   borderBlockEndWidth: Tokens["borderWidths"]
   borderRightWidth: Tokens["borderWidths"]
+  borderInlineWidth: Tokens["borderWidths"]
   borderInlineStartWidth: Tokens["borderWidths"]
   borderInlineEndWidth: Tokens["borderWidths"]
   borderLeftWidth: Tokens["borderWidths"]
+  borderBlockWidth: Tokens["borderWidths"]
   color: Tokens["colors"]
   fill: Tokens["colors"]
   stroke: Tokens["colors"]
@@ -239,6 +241,8 @@ export interface UtilityValues {
   animationName:
     | "spin"
     | "pulse"
+    | "ping"
+    | "bounce"
     | "bg-position"
     | "position"
     | "circular-progress"
