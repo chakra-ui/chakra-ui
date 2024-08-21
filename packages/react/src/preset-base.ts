@@ -415,6 +415,10 @@ export const defaultBaseConfig = defineConfig({
     borderBottomWidth: { values: "borderWidths" },
     borderBlockEndWidth: { values: "borderWidths" },
     borderRightWidth: { values: "borderWidths" },
+    borderInlineWidth: {
+      values: "borderWidths",
+      shorthand: ["borderXWidth"],
+    },
     borderInlineStartWidth: {
       values: "borderWidths",
       shorthand: ["borderStartWidth"],
@@ -424,6 +428,10 @@ export const defaultBaseConfig = defineConfig({
       shorthand: ["borderEndWidth"],
     },
     borderLeftWidth: { values: "borderWidths" },
+    borderBlockWidth: {
+      values: "borderWidths",
+      shorthand: ["borderYWidth"],
+    },
     // colors
     color: {
       values: "colors",

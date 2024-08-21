@@ -9,6 +9,7 @@ import { semanticShadows } from "./semantic-tokens/shadows"
 import { slotRecipes } from "./slot-recipes"
 import { textStyles } from "./text-styles"
 import { animations } from "./tokens/animations"
+import { aspectRatios } from "./tokens/aspect-ratios"
 import { blurs } from "./tokens/blurs"
 import { borders } from "./tokens/borders"
 import { colors } from "./tokens/colors"
@@ -34,6 +35,7 @@ export const defaultThemeConfig = defineConfig({
     breakpoints: breakpoints,
     keyframes: keyframes,
     tokens: {
+      aspectRatios,
       animations,
       blurs,
       borders,

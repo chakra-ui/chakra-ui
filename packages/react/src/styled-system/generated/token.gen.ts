@@ -1,4 +1,10 @@
 export type Token =
+  | "aspectRatios.square"
+  | "aspectRatios.landscape"
+  | "aspectRatios.portrait"
+  | "aspectRatios.wide"
+  | "aspectRatios.ultrawide"
+  | "aspectRatios.golden"
   | "animations.spin"
   | "animations.ping"
   | "animations.pulse"
@@ -166,7 +172,6 @@ export type Token =
   | "fonts.heading"
   | "fonts.body"
   | "fonts.mono"
-  | "fontSizes.3xs"
   | "fontSizes.2xs"
   | "fontSizes.xs"
   | "fontSizes.sm"
@@ -192,21 +197,12 @@ export type Token =
   | "fontWeights.black"
   | "letterSpacings.tighter"
   | "letterSpacings.tight"
-  | "letterSpacings.normal"
   | "letterSpacings.wide"
   | "letterSpacings.wider"
   | "letterSpacings.widest"
-  | "lineHeights.3"
-  | "lineHeights.4"
-  | "lineHeights.5"
-  | "lineHeights.6"
-  | "lineHeights.7"
-  | "lineHeights.8"
-  | "lineHeights.9"
-  | "lineHeights.10"
   | "lineHeights.shorter"
   | "lineHeights.short"
-  | "lineHeights.base"
+  | "lineHeights.moderate"
   | "lineHeights.tall"
   | "lineHeights.taller"
   | "radii.2xs"
@@ -353,7 +349,7 @@ export type Token =
   | "zIndex.overlay"
   | "zIndex.modal"
   | "zIndex.popover"
-  | "zIndex.skipNavLink"
+  | "zIndex.skipNav"
   | "zIndex.toast"
   | "zIndex.tooltip"
   | "zIndex.max"
@@ -471,6 +467,8 @@ export type ColorPalette =
   | "fg"
   | "border"
   | "focusRing"
+
+export type AspectRatiosToken = "square" | "landscape" | "portrait" | "wide" | "ultrawide" | "golden"
 
 export type AnimationsToken = "spin" | "ping" | "pulse" | "bounce"
 
@@ -670,13 +668,13 @@ export type EasingsToken = "ease-in" | "ease-out" | "ease-in-out" | "ease-in-smo
 
 export type FontsToken = "heading" | "body" | "mono"
 
-export type FontSizesToken = "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl"
+export type FontSizesToken = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl"
 
 export type FontWeightsToken = "hairline" | "thin" | "light" | "normal" | "medium" | "semibold" | "bold" | "extrabold" | "black"
 
-export type LetterSpacingsToken = "tighter" | "tight" | "normal" | "wide" | "wider" | "widest"
+export type LetterSpacingsToken = "tighter" | "tight" | "wide" | "wider" | "widest"
 
-export type LineHeightsToken = "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "shorter" | "short" | "base" | "tall" | "taller"
+export type LineHeightsToken = "shorter" | "short" | "moderate" | "tall" | "taller"
 
 export type RadiiToken = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "full"
 
@@ -851,7 +849,7 @@ export type ZIndexToken =
   | "overlay"
   | "modal"
   | "popover"
-  | "skipNavLink"
+  | "skipNav"
   | "toast"
   | "tooltip"
   | "max"
@@ -861,6 +859,7 @@ export type BreakpointsToken = "sm" | "md" | "lg" | "xl" | "2xl"
 export type ShadowsToken = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "inset"
 
 export type Tokens = {
+  aspectRatios: AspectRatiosToken
   animations: AnimationsToken
   blurs: BlursToken
   borders: BordersToken

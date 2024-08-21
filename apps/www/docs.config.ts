@@ -101,13 +101,10 @@ const docsLinks: NavItem = {
         {
           title: "Design Tokens",
           items: [
+            { title: "Animations", url: "animations" },
+            { title: "Aspect Ratios", url: "aspect-ratios" },
             { title: "Breakpoints", url: "breakpoints" },
             { title: "Colors", url: "colors" },
-            { title: "Font Sizes", url: "font-sizes" },
-            { title: "Font Weights", url: "font-weights" },
-            { title: "Fonts", url: "fonts" },
-            { title: "Letter Spacings", url: "letter-spacings" },
-            { title: "Line Heights", url: "line-heights" },
             { title: "Radii", url: "radii" },
             { title: "Shadows", url: "shadows" },
             { title: "Sizes", url: "sizes" },
@@ -120,7 +117,7 @@ const docsLinks: NavItem = {
           title: "Customization",
           url: "customization",
           items: [
-            { title: "Configuration", url: "configuration" },
+            { title: "Config", url: "config" },
             { title: "Breakpoints", url: "breakpoints" },
             { title: "Recipe", url: "recipe" },
             { title: "Tokens", url: "tokens" },

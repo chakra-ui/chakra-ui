@@ -1,7 +1,6 @@
 import { defineTokens } from "../../styled-system"
 
 export const fontSizes = defineTokens.fontSizes({
-  "3xs": { value: "0.475rem" },
   "2xs": { value: "0.65rem" },
   xs: { value: "0.725rem" },
   sm: { value: "0.875rem" },

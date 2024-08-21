@@ -68,7 +68,9 @@ const ColorGridItem = (props: ColorGridItemProps) => {
       <Text textStyle="xs" color="fg.muted">
         {token.name.replace("colors.", "")}
       </Text>
-      <pre>{token.originalValue}</pre>
+      <Text fontSize="xs" mt="-1" color="fg.muted">
+        {token.originalValue}
+      </Text>
     </VStack>
   )
 }

@@ -18,10 +18,22 @@ export { TokensLayerStyle as LayerStyle } from "compositions/examples/tokens/lay
 export { TokensTextStyles as TextStyles } from "compositions/examples/tokens/text-styles"
 
 export { BorderRadiusTokenDoc as Radius } from "compositions/lib/border-radius-token-doc"
+export { BreakpointDoc as Breakpoints } from "compositions/lib/breakpoint-doc"
 export { ColorTokenDoc as Colors } from "compositions/lib/color-token-doc"
-export { FontTokenDoc as Font } from "compositions/lib/font-token-doc"
+export {
+  KeyframeDoc as Keyframes,
+  DurationTokenDoc as Durations,
+} from "compositions/lib/keyframe-doc"
 export { ShadowTokenDoc as Shadows } from "compositions/lib/shadow-token-doc"
 export { SpacingTokenDoc as Spacing } from "compositions/lib/spacing-token-doc"
+export {
+  FontTokenDoc as Font,
+  FontSizeTokenDoc as FontSizes,
+  FontWeightTokenDoc as FontWeights,
+  LetterSpacingTokenDoc as LetterSpacings,
+  LineHeightTokenDoc as LineHeights,
+} from "compositions/lib/typography-token-doc"
+export { AspectRatioTokenDoc as AspectRatio } from "compositions/lib/aspect-ratio-token-toc"
 
 export const StatusTokens = () => {
   return (

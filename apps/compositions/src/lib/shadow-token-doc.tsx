@@ -5,7 +5,7 @@ import { TokenDoc } from "./token-doc"
 
 export const ShadowTokenDoc = () => {
   return (
-    <TokenDoc title="shadows" my="8">
+    <TokenDoc title="theme.semanticTokens.shadows" my="8">
       <SimpleGrid minChildWidth="240px" gap="4">
         <For each={["xs", "sm", "md", "lg", "xl", "2xl"]}>
           {(shadow) => (

@@ -15,7 +15,7 @@ export const defaultSpacings = Array.from(allSpacing)
 
 export const SpacingTokenDoc = () => {
   return (
-    <TokenDoc title="spacing" mt="8">
+    <TokenDoc title="theme.tokens.spacing" mt="8">
       <Flex
         fontSize="sm"
         fontWeight="medium"

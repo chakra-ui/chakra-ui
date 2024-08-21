@@ -15,7 +15,7 @@ const keys = Object.keys(_config.theme?.tokens?.radii ?? {})
 
 export const BorderRadiusTokenDoc = () => {
   return (
-    <TokenDoc title="radii" mt="8">
+    <TokenDoc title="theme.tokens.radii" mt="8">
       <SimpleGrid minChildWidth="120px" gap="4">
         <For each={keys}>
           {(radius) => {
@@ -27,6 +27,7 @@ export const BorderRadiusTokenDoc = () => {
                   size="20"
                   bg="bg.muted"
                   color="fg.muted"
+                  borderWidth="1px"
                 />
                 <Box lineHeight="1">{radius}</Box>
                 <Box as="pre" color="fg.muted" fontSize="xs">

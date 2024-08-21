@@ -81,7 +81,7 @@ export interface SystemProperties {
   borderBlock?: ConditionalValue<UtilityValues["borderBlock"] | CssVars | CssProperties["borderBlock"] | AnyString>
   borderBlockColor?: ConditionalValue<CssProperties["borderBlockColor"] | AnyString>
   borderBlockStyle?: ConditionalValue<CssProperties["borderBlockStyle"] | AnyString>
-  borderBlockWidth?: ConditionalValue<CssProperties["borderBlockWidth"] | AnyString>
+  borderBlockWidth?: ConditionalValue<UtilityValues["borderBlockWidth"] | CssVars | CssProperties["borderBlockWidth"] | AnyString>
   borderBlockEnd?: ConditionalValue<UtilityValues["borderBlockEnd"] | CssVars | CssProperties["borderBlockEnd"] | AnyString>
   borderBlockEndColor?: ConditionalValue<UtilityValues["borderBlockEndColor"] | CssVars | CssProperties["borderBlockEndColor"] | AnyString>
   borderBlockEndStyle?: ConditionalValue<UtilityValues["borderBlockEndStyle"] | CssVars | CssProperties["borderBlockEndStyle"] | AnyString>
@@ -110,7 +110,7 @@ export interface SystemProperties {
   borderInlineEnd?: ConditionalValue<UtilityValues["borderInlineEnd"] | CssVars | CssProperties["borderInlineEnd"] | AnyString>
   borderInlineColor?: ConditionalValue<CssProperties["borderInlineColor"] | AnyString>
   borderInlineStyle?: ConditionalValue<CssProperties["borderInlineStyle"] | AnyString>
-  borderInlineWidth?: ConditionalValue<CssProperties["borderInlineWidth"] | AnyString>
+  borderInlineWidth?: ConditionalValue<UtilityValues["borderInlineWidth"] | CssVars | CssProperties["borderInlineWidth"] | AnyString>
   borderInlineEndColor?: ConditionalValue<UtilityValues["borderInlineEndColor"] | CssVars | CssProperties["borderInlineEndColor"] | AnyString>
   borderInlineEndStyle?: ConditionalValue<UtilityValues["borderInlineEndStyle"] | CssVars | CssProperties["borderInlineEndStyle"] | AnyString>
   borderInlineEndWidth?: ConditionalValue<UtilityValues["borderInlineEndWidth"] | CssVars | CssProperties["borderInlineEndWidth"] | AnyString>
@@ -558,8 +558,10 @@ export interface SystemProperties {
   roundedBottom?: ConditionalValue<UtilityValues["borderBottomRadius"] | CssVars | AnyString>
   roundedLeft?: ConditionalValue<UtilityValues["borderLeftRadius"] | CssVars | AnyString>
   roundedRight?: ConditionalValue<UtilityValues["borderRightRadius"] | CssVars | AnyString>
+  borderXWidth?: ConditionalValue<UtilityValues["borderInlineWidth"] | CssVars | CssProperties["borderInlineWidth"] | AnyString>
   borderStartWidth?: ConditionalValue<UtilityValues["borderInlineStartWidth"] | CssVars | CssProperties["borderInlineStartWidth"] | AnyString>
   borderEndWidth?: ConditionalValue<UtilityValues["borderInlineEndWidth"] | CssVars | CssProperties["borderInlineEndWidth"] | AnyString>
+  borderYWidth?: ConditionalValue<UtilityValues["borderBlockWidth"] | CssVars | CssProperties["borderBlockWidth"] | AnyString>
   shadow?: ConditionalValue<UtilityValues["boxShadow"] | CssVars | CssProperties["boxShadow"] | AnyString>
   shadowColor?: ConditionalValue<UtilityValues["boxShadowColor"] | CssVars | AnyString>
   blendMode?: ConditionalValue<CssProperties["mixBlendMode"] | AnyString>
