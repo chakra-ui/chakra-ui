@@ -19,7 +19,7 @@
     "build:prop-docs": "pnpm typedocs && pnpm --filter=*props-docs build",
     "build": "pnpm --filter=./packages/* build",
     "build:fast": "pnpm --filter=./packages/* build:fast",
-    "dev": "pnpm --filter=./packages/* dev",
+    "dev": "pnpm --recursive --parallel --filter=./packages/* dev",
     "postbuild": "pnpm build:tokens",
     "typedocs": "pnpm react typedocs",
     "typecheck": "tsc --noEmit",
@@ -129,7 +129,7 @@
       "@emotion/react": "11.11.4"
     }
   },
-  "packageManager": "pnpm@9.4.0",
+  "packageManager": "pnpm@9.8.0",
   "engines": {
     "node": ">=18.x"
   }

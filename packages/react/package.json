@@ -88,14 +88,14 @@
       }
     },
     "./anatomy": {
-      "source": "./src/anatomy/index.ts",
+      "source": "./src/anatomy.ts",
       "import": {
-        "types": "./dist/types/anatomy/index.d.ts",
-        "default": "./dist/esm/anatomy/index.js"
+        "types": "./dist/types/anatomy.d.ts",
+        "default": "./dist/esm/anatomy.js"
       },
       "require": {
-        "types": "./dist/types/anatomy/index.d.ts",
-        "default": "./dist/cjs/anatomy/index.cjs"
+        "types": "./dist/types/anatomy.d.ts",
+        "default": "./dist/cjs/anatomy.cjs"
       }
     },
     "./preset": {
@@ -129,6 +129,17 @@
       "require": {
         "types": "./dist/types/styled-system/index.d.ts",
         "default": "./dist/cjs/styled-system/index.cjs"
+      }
+    },
+    "./*": {
+      "source": "./src/components/*/index.ts",
+      "import": {
+        "types": "./dist/types/components/*/index.d.ts",
+        "default": "./dist/esm/components/*/index.js"
+      },
+      "require": {
+        "types": "./dist/types/components/*/index.d.ts",
+        "default": "./dist/cjs/components/*/index.cjs"
       }
     },
     "./package.json": "./package.json"
