@@ -1,0 +1,40 @@
+---
+title: Global CSS
+description: Learn how to customize global CSS in Chakra UI
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Example
+
+Here's an example of how to customize the global CSS in Chakra UI.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  globalCss: {
+    "*::placeholder": {
+      opacity: 1,
+      color: "fg.subtle",
+    },
+    "*::selection": {
+      bg: "green.200",
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```

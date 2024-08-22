@@ -1,13 +1,17 @@
-/* eslint-disable jsx-a11y/alt-text */
 import { Box, Kbd } from "@chakra-ui/react"
 import { AspectRatioTokenDoc } from "compositions/lib/aspect-ratio-token-toc"
 import { BorderRadiusTokenDoc } from "compositions/lib/border-radius-token-doc"
 import { BreakpointDoc } from "compositions/lib/breakpoint-doc"
-import { ColorTokenDoc } from "compositions/lib/color-token-doc"
+import {
+  ColorSemanticTokenDoc,
+  ColorTokenDoc,
+} from "compositions/lib/color-token-doc"
 import { DurationTokenDoc, KeyframeDoc } from "compositions/lib/keyframe-doc"
 import { ShadowTokenDoc } from "compositions/lib/shadow-token-doc"
+import { SizesTokenDoc } from "compositions/lib/sizes-token-doc"
 import { SpacingTokenDoc } from "compositions/lib/spacing-token-doc"
 import * as TypographyDocs from "compositions/lib/typography-token-doc"
+import { ZIndexTokenDoc } from "compositions/lib/z-index-token-doc"
 import * as runtime from "react/jsx-runtime"
 import { Card, CardGroup } from "./card"
 import { Example, ExamplePreview, ExampleTabs } from "./example"
@@ -58,6 +62,7 @@ const sharedComponents = {
   ResourceCard: ResourceCard,
   "code-block": CodeBlock,
   ColorTokenDoc,
+  ColorSemanticTokenDoc,
   ShadowTokenDoc,
   BorderRadiusTokenDoc,
   ...TypographyDocs,
@@ -66,6 +71,8 @@ const sharedComponents = {
   BreakpointDoc,
   DurationTokenDoc,
   AspectRatioTokenDoc,
+  SizesTokenDoc,
+  ZIndexTokenDoc,
 }
 
 const useMDXComponent = (code: string) => {

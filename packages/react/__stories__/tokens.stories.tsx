@@ -17,14 +17,19 @@ export { TokensFocusRing as FocusRing } from "compositions/examples/tokens/focus
 export { TokensLayerStyle as LayerStyle } from "compositions/examples/tokens/layer-style"
 export { TokensTextStyles as TextStyles } from "compositions/examples/tokens/text-styles"
 
+export { AspectRatioTokenDoc as AspectRatio } from "compositions/lib/aspect-ratio-token-toc"
 export { BorderRadiusTokenDoc as Radius } from "compositions/lib/border-radius-token-doc"
 export { BreakpointDoc as Breakpoints } from "compositions/lib/breakpoint-doc"
-export { ColorTokenDoc as Colors } from "compositions/lib/color-token-doc"
 export {
-  KeyframeDoc as Keyframes,
+  ColorTokenDoc as Colors,
+  ColorSemanticTokenDoc as SemanticColors,
+} from "compositions/lib/color-token-doc"
+export {
   DurationTokenDoc as Durations,
+  KeyframeDoc as Keyframes,
 } from "compositions/lib/keyframe-doc"
 export { ShadowTokenDoc as Shadows } from "compositions/lib/shadow-token-doc"
+export { SizesTokenDoc as Sizes } from "compositions/lib/sizes-token-doc"
 export { SpacingTokenDoc as Spacing } from "compositions/lib/spacing-token-doc"
 export {
   FontTokenDoc as Font,
@@ -33,7 +38,7 @@ export {
   LetterSpacingTokenDoc as LetterSpacings,
   LineHeightTokenDoc as LineHeights,
 } from "compositions/lib/typography-token-doc"
-export { AspectRatioTokenDoc as AspectRatio } from "compositions/lib/aspect-ratio-token-toc"
+export { ZIndexTokenDoc as ZIndex } from "compositions/lib/z-index-token-doc"
 
 export const StatusTokens = () => {
   return (

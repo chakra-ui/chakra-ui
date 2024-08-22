@@ -1,0 +1,47 @@
+---
+title: Conditions
+description: Learn how to customize conditions in Chakra UI
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Example
+
+Here's an example of how to customize conditions in Chakra UI.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  conditions: {
+    off: "&:is([data-state=off])",
+    on: "&:is([data-state=on])",
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+## Usage
+
+Use `_off` and `_on` conditions to style elements based on the `data-state`
+attribute.
+
+```tsx title="app.tsx"
+import { Box } from "@chakra-ui/react"
+
+<Box data-state="off" _off={{ bg: "red.500" }} />
+<Box data-state="on" _on={{ bg: "green.500" }} />
+```

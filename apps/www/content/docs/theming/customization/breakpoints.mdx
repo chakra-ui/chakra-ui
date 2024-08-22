@@ -1,0 +1,46 @@
+---
+title: Breakpoints
+description: Learn how to customize breakpoints in Chakra UI
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Example
+
+Here's an example of how to customize breakpoints in Chakra UI.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  theme: {
+    breakpoints: {
+      tablet: "992px",
+      desktop: "1200px",
+      wide: "1400px",
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+## Usage
+
+When using responsive properties, you can now reference the new breakpoints.
+
+```tsx title="App.tsx"
+<Box fontSize={{ base: "16px", tablet: "18px", desktop: "20px" }}>Hello</Box>
+```

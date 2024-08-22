@@ -1,0 +1,94 @@
+---
+title: Colors
+description: Learn how to customize colors in Chakra UI
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Tokens
+
+### Example
+
+Here's an example of how to customize colors in Chakra UI.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  theme: {
+    tokens: {
+      colors: {
+        brand: {
+          100: { value: "#e6f2ff" },
+          200: { value: "#bfdeff" },
+          300: { value: "#99caff" },
+        },
+      },
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+### Usage
+
+Set the value of any color related properties, like `bg`, `borderColor`,
+`color`, etc. to the `brand` token.
+
+```tsx
+<Box bg="brand.100" />
+```
+
+## Semantic Tokens
+
+### Example
+
+Here's an example of how to customize semantic tokens in Chakra UI.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  theme: {
+    semanticTokens: {
+      colors: {
+        "checkbox-control": {
+          value: { _light: "brand.100", _dark: "brand.200" },
+        },
+      },
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+### Usage
+
+To use the checkbox control color, you can use the `checkbox-control` token.
+
+```tsx
+<Square size="4" borderColor="checkbox-control">
+  <LuCheck />
+</Square>
+```

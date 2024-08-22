@@ -1,0 +1,74 @@
+---
+title: CSS Variables
+description: Learn how to customize CSS variables in Chakra UI
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Variable Root
+
+Here's an example of how to customize the selector that token CSS variables are
+applied to.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  cssVarsRoot: ":where(html)",
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+The emitted CSS variables will now be applied to the `html` element.
+
+```css
+:where(html) {
+  --chakra-colors-gray-100: #e6f2ff;
+  --chakra-colors-gray-200: #bfdeff;
+  --chakra-colors-gray-300: #99caff;
+}
+```
+
+## Variable Prefix
+
+Here's an example of how to customize the prefix of the emitted CSS variables.
+
+```tsx title="theme.ts"
+import {
+  createSystem,
+  defaultConfig,
+  defineConfig,
+  mergeConfigs,
+} from "@chakra-ui/react"
+
+const customConfig = defineConfig({
+  cssVarsPrefix: "sui",
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+The emitted CSS variables will now use the `sui` prefix.
+
+```css
+:where(html) {
+  --sui-colors-gray-100: #e6f2ff;
+  --sui-colors-gray-200: #bfdeff;
+  --sui-colors-gray-300: #99caff;
+}
+```
