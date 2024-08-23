@@ -42,7 +42,7 @@ export function ColorModeButton() {
         variant="ghost"
         size="sm"
         css={{
-          "& svg": {
+          _icon: {
             width: "5",
             height: "5",
           },

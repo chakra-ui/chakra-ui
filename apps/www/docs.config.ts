@@ -23,11 +23,11 @@ const docsLinks: NavItem = {
           title: "Frameworks",
           url: "frameworks",
           items: [
-            { title: "Vite", url: "vite" },
             { title: "Next.js (App)", url: "next-app" },
             { title: "Next.js (Pages)", url: "next-pages" },
             { title: "Remix", url: "remix" },
             { title: "Storybook", url: "storybook" },
+            { title: "Vite", url: "vite" },
           ],
         },
       ],

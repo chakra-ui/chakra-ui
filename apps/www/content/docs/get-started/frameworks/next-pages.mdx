@@ -31,39 +31,30 @@ configured correctly to use Chakra UI.
 ### Install dependencies
 
 ```bash
-npm i @chakra-ui/react @emotion/react next-themes
+npm i @chakra-ui/react @emotion/react
+```
+
+### Add snippets
+
+Snippets are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add snippets to your project.
+
+```bash
+npx @chakra-ui/cli@next snippet add
 ```
 
 ### Setup provider
 
-Create a `Provider` component at the root of your application. This provider
-composes the following:
+Wrap your application with the `Provider` component at the root of your
+application.
+
+This provider composes the following:
 
 - `ChakraProvider` from `@chakra-ui/react` for the styling system
 - `ThemeProvider` from `next-themes` for color mode
 
-```tsx title="components/provider.tsx"
-"use client"
-
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
-import { ThemeProvider } from "next-themes"
-
-export function Provider(props: { children: React.ReactNode }) {
-  return (
-    <ChakraProvider value={defaultSystem}>
-      <ThemeProvider attribute="class" disableTransitionOnChange>
-        {props.children}
-      </ThemeProvider>
-    </ChakraProvider>
-  )
-}
-```
-
-Next, wrap your application with the `Provider` component at the root of your
-application.
-
 ```tsx title="pages/_app.tsx"
-import Provider from "./provider"
+import Provider from "@/components/ui/provider"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -106,15 +97,6 @@ tsconfig file to include the following options:
     "skipLibCheck": true
   }
 }
-```
-
-### Add snippets
-
-Snippets are pre-built components that you can use to build your UI faster.
-Using the `@chakra-ui/cli` you can add snippets to your project.
-
-```bash
-npx @chakra-ui/cli@next snippet add
 ```
 
 ### Enjoy!

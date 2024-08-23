@@ -15,7 +15,9 @@
     "file": "action-bar.tsx",
     "component": "ActionBar",
     "npmDependencies": [],
-    "fileDependencies": []
+    "fileDependencies": [
+      "compositions/ui/close-button"
+    ]
   },
   {
     "type": "composition",
@@ -170,6 +172,14 @@
   },
   {
     "type": "composition",
+    "id": "loading-overlay",
+    "file": "loading-overlay.tsx",
+    "component": "LoadingOverlay",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "menu",
     "file": "menu.tsx",
     "component": "Menu",
@@ -261,7 +271,17 @@
       "react-icons"
     ],
     "fileDependencies": [
-      "./toggle-tip"
+      "compositions/ui/toggle-tip"
+    ]
+  },
+  {
+    "type": "composition",
+    "id": "provider",
+    "file": "provider.tsx",
+    "component": "Provider",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/color-mode"
     ]
   },
   {
@@ -300,9 +320,9 @@
   },
   {
     "type": "composition",
-    "id": "segment-control",
-    "file": "segment-control.tsx",
-    "component": "SegmentControl",
+    "id": "segmented-control",
+    "file": "segmented-control.tsx",
+    "component": "SegmentedControl",
     "npmDependencies": [],
     "fileDependencies": []
   },
@@ -341,7 +361,7 @@
       "react-icons"
     ],
     "fileDependencies": [
-      "./toggle-tip"
+      "compositions/ui/toggle-tip"
     ]
   },
   {
@@ -385,9 +405,23 @@
     "id": "tag",
     "file": "tag.tsx",
     "component": "Tag",
-    "npmDependencies": [
-      "react-icons"
-    ],
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "timeline",
+    "file": "timeline.tsx",
+    "component": "Timeline",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
+    "id": "toaster",
+    "file": "toaster.tsx",
+    "component": "Toaster",
+    "npmDependencies": [],
     "fileDependencies": []
   },
   {
