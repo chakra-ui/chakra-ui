@@ -1,6 +1,7 @@
 "use client"
 
 import { Collapsible as ArkCollapsible } from "@ark-ui/react/collapsible"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useCollapsibleStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CollapsibleRootProps
-  extends HTMLChakraProps<"div", ArkCollapsible.RootBaseProps>,
-    SlotRecipeProps<"collapsible">,
+export interface CollapsibleRootBaseProps
+  extends Assign<ArkCollapsible.RootBaseProps, SlotRecipeProps<"collapsible">>,
     UnstyledProp {}
+
+export interface CollapsibleRootProps
+  extends HTMLChakraProps<"div", CollapsibleRootBaseProps> {}
 
 export const CollapsibleRoot = withProvider<
   HTMLDivElement,

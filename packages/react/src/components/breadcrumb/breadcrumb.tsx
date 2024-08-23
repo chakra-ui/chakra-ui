@@ -20,10 +20,12 @@ export { useBreadcrumbStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface BreadcrumbRootProps
-  extends HTMLChakraProps<"nav">,
-    SlotRecipeProps<"breadcrumb">,
+export interface BreadcrumbRootBaseProps
+  extends SlotRecipeProps<"breadcrumb">,
     UnstyledProp {}
+
+export interface BreadcrumbRootProps
+  extends HTMLChakraProps<"nav", BreadcrumbRootBaseProps> {}
 
 export const BreadcrumbRoot = withProvider<HTMLElement, BreadcrumbRootProps>(
   "nav",

@@ -1,6 +1,7 @@
 "use client"
 
 import { FileUpload as ArkFileUpload } from "@ark-ui/react/file-upload"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useFileUploadStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface FileUploadRootProps
-  extends HTMLChakraProps<"div", ArkFileUpload.RootBaseProps>,
-    SlotRecipeProps<"fileUpload">,
+export interface FileUploadRootBaseProps
+  extends Assign<ArkFileUpload.RootBaseProps, SlotRecipeProps<"fileUpload">>,
     UnstyledProp {}
+
+export interface FileUploadRootProps
+  extends HTMLChakraProps<"div", FileUploadRootBaseProps> {}
 
 export const FileUploadRoot = withProvider<HTMLDivElement, FileUploadRootProps>(
   ArkFileUpload.Root,

@@ -1,7 +1,7 @@
 "use client"
 
 import { Field as ArkField, useFieldContext } from "@ark-ui/react/field"
-import { cx } from "@chakra-ui/utils"
+import { type Assign, cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -24,10 +24,13 @@ const {
 export { useFieldStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
-export interface FieldRootProps
-  extends HTMLChakraProps<"div", ArkField.RootBaseProps>,
-    SlotRecipeProps<"field">,
+
+export interface FieldRootBaseProps
+  extends Assign<ArkField.RootBaseProps, SlotRecipeProps<"field">>,
     UnstyledProp {}
+
+export interface FieldRootProps
+  extends HTMLChakraProps<"div", FieldRootBaseProps> {}
 
 export const FieldRoot = withProvider<HTMLDivElement, FieldRootProps>(
   ArkField.Root,

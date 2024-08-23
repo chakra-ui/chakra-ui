@@ -25,10 +25,12 @@ export { useTableStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface TableRootBaseProps
+  extends SlotRecipeProps<"table">,
+    UnstyledProp {}
+
 export interface TableRootProps
-  extends HTMLChakraProps<"table">,
-    UnstyledProp,
-    SlotRecipeProps<"table"> {
+  extends HTMLChakraProps<"table", TableRootBaseProps> {
   /**
    * If `true`, the table will style its descendants with nested selectors
    */

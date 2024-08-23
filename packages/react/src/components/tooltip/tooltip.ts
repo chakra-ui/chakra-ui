@@ -1,6 +1,7 @@
 "use client"
 
 import { Tooltip as ArkTooltip } from "@ark-ui/react/tooltip"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,11 @@ export { useTooltipStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TooltipRootProps
-  extends ArkTooltip.RootProps,
-    SlotRecipeProps<"tooltip">,
+export interface TooltipRootBaseProps
+  extends Assign<ArkTooltip.RootBaseProps, SlotRecipeProps<"tooltip">>,
     UnstyledProp {}
+
+export interface TooltipRootProps extends TooltipRootBaseProps {}
 
 export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root)
 

@@ -4,6 +4,7 @@ import {
   Select as ArkSelect,
   type SelectCollectionItem,
 } from "@ark-ui/react/select"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -24,10 +25,12 @@ export { useSelectStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SelectRootProps<T extends SelectCollectionItem = any>
-  extends HTMLChakraProps<"div", ArkSelect.RootBaseProps<T>>,
-    SlotRecipeProps<"select">,
+export interface SelectRootBaseProps<T extends SelectCollectionItem = any>
+  extends Assign<ArkSelect.RootBaseProps<T>, SlotRecipeProps<"select">>,
     UnstyledProp {}
+
+export interface SelectRootProps<T extends SelectCollectionItem = any>
+  extends HTMLChakraProps<"div", SelectRootBaseProps<T>> {}
 
 interface SelectRootComponent {
   <T extends SelectCollectionItem>(props: SelectRootProps<T>): JSX.Element

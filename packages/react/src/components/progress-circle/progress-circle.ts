@@ -1,6 +1,7 @@
 "use client"
 
 import { Progress as ArkProgress } from "@ark-ui/react/progress"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useProgressCircleStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ProgressCircleRootProps
-  extends HTMLChakraProps<"div", ArkProgress.RootBaseProps>,
-    SlotRecipeProps<"progressCircle">,
+export interface ProgressCircleRootBaseProps
+  extends Assign<ArkProgress.RootBaseProps, SlotRecipeProps<"progressCircle">>,
     UnstyledProp {}
+
+export interface ProgressCircleRootProps
+  extends HTMLChakraProps<"div", ProgressCircleRootBaseProps> {}
 
 export const ProgressCircleRoot = withProvider<
   HTMLDivElement,

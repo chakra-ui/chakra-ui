@@ -19,9 +19,12 @@ export { useDataListStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DataListRootProps
-  extends HTMLChakraProps<"dl", SlotRecipeProps<"dataList">>,
+export interface DataListRootBaseProps
+  extends SlotRecipeProps<"dataList">,
     UnstyledProp {}
+
+export interface DataListRootProps
+  extends HTMLChakraProps<"dl", DataListRootBaseProps> {}
 
 export const DataListRoot = withProvider<HTMLDListElement, DataListRootProps>(
   "dl",

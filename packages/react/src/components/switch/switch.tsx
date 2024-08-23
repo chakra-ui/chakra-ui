@@ -1,7 +1,7 @@
 "use client"
 
 import { Switch as ArkSwitch, useSwitchContext } from "@ark-ui/react/switch"
-import { dataAttr } from "@chakra-ui/utils"
+import { type Assign, dataAttr } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -23,10 +23,12 @@ export { useSwitchStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SwitchRootProps
-  extends HTMLChakraProps<"label", ArkSwitch.RootBaseProps>,
-    SlotRecipeProps<"switch">,
+export interface SwitchRootBaseProps
+  extends Assign<ArkSwitch.RootBaseProps, SlotRecipeProps<"switch">>,
     UnstyledProp {}
+
+export interface SwitchRootProps
+  extends HTMLChakraProps<"label", SwitchRootBaseProps> {}
 
 export const SwitchRoot = withProvider<HTMLLabelElement, SwitchRootProps>(
   ArkSwitch.Root,

@@ -33,12 +33,14 @@ export { useNativeSelectStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface NativeSelectRootProps
-  extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"nativeSelect">,
+export interface NativeSelectRootBaseProps
+  extends SlotRecipeProps<"nativeSelect">,
     UnstyledProp {
   disabled?: boolean
 }
+
+export interface NativeSelectRootProps
+  extends HTMLChakraProps<"div", NativeSelectRootBaseProps> {}
 
 export const NativeSelectRoot = withProvider<
   HTMLDivElement,

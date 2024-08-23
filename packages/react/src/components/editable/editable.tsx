@@ -5,6 +5,7 @@ import {
   useEditableContext,
 } from "@ark-ui/react/editable"
 import { ark } from "@ark-ui/react/factory"
+import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { mergeProps } from "../../merge-props"
 import {
@@ -26,10 +27,12 @@ export { useEditableStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface EditableRootProps
-  extends HTMLChakraProps<"div", ArkEditable.RootBaseProps>,
-    SlotRecipeProps<"editable">,
+export interface EditableRootBaseProps
+  extends Assign<ArkEditable.RootBaseProps, SlotRecipeProps<"editable">>,
     UnstyledProp {}
+
+export interface EditableRootProps
+  extends HTMLChakraProps<"div", EditableRootBaseProps> {}
 
 export const EditableRoot = withProvider<HTMLDivElement, EditableRootProps>(
   ArkEditable.Root,

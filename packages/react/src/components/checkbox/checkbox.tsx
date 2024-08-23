@@ -4,6 +4,7 @@ import {
   Checkbox as ArkCheckbox,
   useCheckboxContext,
 } from "@ark-ui/react/checkbox"
+import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -26,10 +27,12 @@ export { useCheckboxStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CheckboxRootProps
-  extends HTMLChakraProps<"label", ArkCheckbox.RootBaseProps>,
-    SlotRecipeProps<"checkbox">,
+export interface CheckboxRootBaseProps
+  extends Assign<ArkCheckbox.RootBaseProps, SlotRecipeProps<"checkbox">>,
     UnstyledProp {}
+
+export interface CheckboxRootProps
+  extends HTMLChakraProps<"label", CheckboxRootBaseProps> {}
 
 export const CheckboxRoot = withProvider<HTMLLabelElement, CheckboxRootProps>(
   ArkCheckbox.Root,

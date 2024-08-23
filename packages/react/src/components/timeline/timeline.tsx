@@ -19,10 +19,12 @@ export { useTimelineStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TimelineRootProps
-  extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"timeline">,
+export interface TimelineRootBaseProps
+  extends SlotRecipeProps<"timeline">,
     UnstyledProp {}
+
+export interface TimelineRootProps
+  extends HTMLChakraProps<"div", TimelineRootBaseProps> {}
 
 export const TimelineRoot = withProvider<HTMLDivElement, TimelineRootProps>(
   "div",

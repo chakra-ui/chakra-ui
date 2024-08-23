@@ -1,6 +1,7 @@
 "use client"
 
 import { HoverCard as ArkHoverCard } from "@ark-ui/react/hover-card"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,11 @@ export { useHoverCardStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface HoverCardRootProps
-  extends ArkHoverCard.RootBaseProps,
-    SlotRecipeProps<"hoverCard">,
-    UnstyledProp {
+export interface HoverCardRootBaseProps
+  extends Assign<ArkHoverCard.RootBaseProps, SlotRecipeProps<"hoverCard">>,
+    UnstyledProp {}
+
+export interface HoverCardRootProps extends HoverCardRootBaseProps {
   children: React.ReactNode
 }
 

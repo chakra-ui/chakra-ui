@@ -4,6 +4,7 @@ import {
   RatingGroup as ArkRatingGroup,
   useRatingGroupItemContext,
 } from "@ark-ui/react/rating-group"
+import type { Assign } from "@chakra-ui/utils"
 import { cloneElement, forwardRef, isValidElement } from "react"
 import {
   type HTMLChakraProps,
@@ -26,10 +27,12 @@ export { useRatingGroupStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RatingGroupRootProps
-  extends HTMLChakraProps<"div", ArkRatingGroup.RootBaseProps>,
-    SlotRecipeProps<"ratingGroup">,
+export interface RatingGroupRootBaseProps
+  extends Assign<ArkRatingGroup.RootBaseProps, SlotRecipeProps<"ratingGroup">>,
     UnstyledProp {}
+
+export interface RatingGroupRootProps
+  extends HTMLChakraProps<"div", RatingGroupRootBaseProps> {}
 
 export const RatingGroupRoot = withProvider<
   HTMLDivElement,

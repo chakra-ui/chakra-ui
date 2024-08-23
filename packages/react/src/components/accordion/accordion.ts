@@ -1,6 +1,7 @@
 "use client"
 
 import { Accordion as ArkAccordion } from "@ark-ui/react/accordion"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useAccordionStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AccordionRootProps
-  extends HTMLChakraProps<"div", ArkAccordion.RootBaseProps>,
-    SlotRecipeProps<"accordion">,
+export interface AccordionRootBaseProps
+  extends Assign<ArkAccordion.RootBaseProps, SlotRecipeProps<"accordion">>,
     UnstyledProp {}
+
+export interface AccordionRootProps
+  extends HTMLChakraProps<"div", AccordionRootBaseProps> {}
 
 export const AccordionRoot = withProvider<HTMLDivElement, AccordionRootProps>(
   ArkAccordion.Root,

@@ -20,10 +20,12 @@ export { useTagStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TagRootProps
-  extends HTMLChakraProps<"span">,
-    SlotRecipeProps<"tag">,
+export interface TagRootBaseProps
+  extends SlotRecipeProps<"tag">,
     UnstyledProp {}
+
+export interface TagRootProps
+  extends HTMLChakraProps<"span", TagRootBaseProps> {}
 
 export const TagRoot = withProvider<HTMLSpanElement, TagRootProps>(
   "div",

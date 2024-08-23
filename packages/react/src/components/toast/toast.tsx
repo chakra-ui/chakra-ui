@@ -8,7 +8,7 @@ import {
   createToaster,
   useToastContext,
 } from "@ark-ui/react/toast"
-////////////////////////////////////////////////////////////////////////////////////
+import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -42,10 +42,12 @@ export const Toaster = chakra(
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ToastRootProps
-  extends HTMLChakraProps<"div", ArkToast.RootBaseProps>,
-    SlotRecipeProps<"toast">,
+export interface ToastRootBaseProps
+  extends Assign<ArkToast.RootBaseProps, SlotRecipeProps<"toast">>,
     UnstyledProp {}
+
+export interface ToastRootProps
+  extends HTMLChakraProps<"div", ToastRootBaseProps> {}
 
 export const ToastRoot = withProvider<HTMLDivElement, ToastRootProps>(
   ArkToast.Root,

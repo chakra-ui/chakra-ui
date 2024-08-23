@@ -1,6 +1,7 @@
 "use client"
 
 import { SegmentGroup as ArkSegmentGroup } from "@ark-ui/react/segment-group"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,15 @@ export { useSegmentGroupStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SegmentGroupRootProps
-  extends HTMLChakraProps<"div", ArkSegmentGroup.RootBaseProps>,
-    SlotRecipeProps<"segmentGroup">,
+export interface SegmentGroupRootBaseProps
+  extends Assign<
+      ArkSegmentGroup.RootBaseProps,
+      SlotRecipeProps<"segmentGroup">
+    >,
     UnstyledProp {}
+
+export interface SegmentGroupRootProps
+  extends HTMLChakraProps<"div", SegmentGroupRootBaseProps> {}
 
 export const SegmentGroupRoot = withProvider<
   HTMLDivElement,
