@@ -1,6 +1,7 @@
 ---
 title: Animation Styles
-description: Using animation styles to define reusable motion properties.
+description:
+  Learn how to use animation styles to define reusable motion properties.
 ---
 
 ## Overview
@@ -19,7 +20,7 @@ The supported animation styles are:
 
 ## Defining animation styles
 
-Animation styles are defined in the `animationStyles` property of the theme.
+Animation styles are defined using the `defineAnimationStyles` function.
 
 Here's an example of an animation style:
 
@@ -43,6 +44,34 @@ const animationStyles = defineAnimationStyles({
 Chakra UI provides a set of built-in animation styles that you can use.
 
 <ExamplePreview name="tokens/animation-style" />
+
+## Update the theme
+
+To use the animation styles, update the `theme` object with the
+`animationStyles` property.
+
+```js filename="theme.ts"
+import { createSystem, defineConfig, mergeConfigs } from "@chakra-ui/react"
+import { animationStyles } from "./animation-styles"
+
+const config = defineConfig({
+  theme: {
+    extend: {
+      animationStyles,
+    },
+  },
+})
+
+const systemConfig = mergeConfigs(defaultConfig, config)
+
+export default createSystem(systemConfig)
+```
+
+After updating the theme, run this command to generate the animations.
+
+```bash
+npx @chakra-ui/cli@next typegen
+```
 
 These animation styles can be composed with other styles like `_open` and
 `_closed` which map to the `data-state=open|closed` attribute.

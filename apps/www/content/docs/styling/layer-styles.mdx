@@ -1,6 +1,6 @@
 ---
 title: Layer Styles
-description: Using layer styles to define visual properties.
+description: Learn how to use layer styles to define visual properties.
 ---
 
 ## Overview
@@ -15,7 +15,7 @@ Layer styles allows you to define visual properties. The common properties are:
 
 ## Defining layer styles
 
-Layer styles are defined in the `layerStyles` property of the theme.
+Layer styles are defined using the `defineLayerStyles` function.
 
 ```js title="layer-styles.ts"
 import { defineLayerStyles } from "@chakra-ui/react"
@@ -40,7 +40,8 @@ Chakra UI provides a set of built-in layer styles.
 
 ## Updating the theme
 
-To use the layer styles, we need to update the `theme` object.
+To use the layer styles, update the `theme` object with the `layerStyles`
+property.
 
 ```js title="theme.ts"
 import { createSystem, defineConfig, mergeConfigs } from "@chakra-ui/react"
@@ -57,7 +58,7 @@ const systemConfig = mergeConfigs(defaultConfig, config)
 export default createSystem(systemConfig)
 ```
 
-After updating the theme, you need to run this command to generate the typings.
+After updating the theme, run this command to generate the typings.
 
 ```bash
 npx @chakra-ui/cli@next typegen
@@ -65,7 +66,7 @@ npx @chakra-ui/cli@next typegen
 
 ## Using layer styles
 
-Now we can use `layerStyle` property in our components.
+Now you can use `layerStyle` property in your components.
 
 ```jsx
 <Box layerStyle="container">This is inside a container style</Box>

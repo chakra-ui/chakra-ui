@@ -1,6 +1,7 @@
 "use client"
 
 import { RadioGroup as ArkRadioGroup } from "@ark-ui/react/radio-group"
+import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -22,10 +23,12 @@ export { useRadioGroupStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface RadioCardRootProps
-  extends HTMLChakraProps<"div", ArkRadioGroup.RootBaseProps>,
-    SlotRecipeProps<"radioCard">,
+export interface RadioCardRootBaseProps
+  extends Assign<ArkRadioGroup.RootBaseProps, SlotRecipeProps<"radioCard">>,
     UnstyledProp {}
+
+export interface RadioCardRootProps
+  extends HTMLChakraProps<"div", RadioCardRootBaseProps> {}
 
 export const RadioCardRoot = withProvider<HTMLDivElement, RadioCardRootProps>(
   ArkRadioGroup.Root,

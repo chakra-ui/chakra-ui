@@ -1,6 +1,7 @@
 "use client"
 
 import { NumberInput as ArkNumberInput } from "@ark-ui/react/number-input"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -21,10 +22,12 @@ export { useNumberInputStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface NumberInputRootProps
-  extends HTMLChakraProps<"div", ArkNumberInput.RootBaseProps>,
-    SlotRecipeProps<"numberInput">,
+export interface NumberInputRootBaseProps
+  extends Assign<ArkNumberInput.RootBaseProps, SlotRecipeProps<"numberInput">>,
     UnstyledProp {}
+
+export interface NumberInputRootProps
+  extends HTMLChakraProps<"div", NumberInputRootBaseProps> {}
 
 export const NumberInputRoot = withProvider<
   HTMLDivElement,

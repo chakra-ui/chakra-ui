@@ -8,19 +8,32 @@ export const getFileDependencies = (compositions: Compositions, id: string) => {
   const composition = findCompositionById(compositions, id)
   if (!composition) return []
 
-  const dependencies = new Set<string>()
+  const fileDependencies = new Set<string>()
+  composition.fileDependencies.forEach((dep) => {
+    fileDependencies.add(dep.replace("compositions/ui/", ""))
+  })
 
-  const collect = (compositionId: string) => {
-    const comp = findCompositionById(compositions, compositionId)
+  const npmDependencies = new Set<string>(composition.npmDependencies)
+
+  const collect = (id: string) => {
+    const comp = findCompositionById(compositions, id)
     if (!comp) return
 
+    comp.npmDependencies.forEach((dep) => {
+      npmDependencies.add(dep)
+    })
+
     comp.fileDependencies.forEach((dep) => {
-      if (dependencies.has(dep)) return
-      dependencies.add(dep.replace("compositions/ui/", ""))
+      if (fileDependencies.has(dep)) return
+      fileDependencies.add(dep.replace("compositions/ui/", ""))
       collect(dep)
     })
   }
 
   collect(id)
-  return Array.from(dependencies)
+
+  return {
+    fileDependencies: Array.from(fileDependencies),
+    npmDependencies: Array.from(npmDependencies),
+  }
 }

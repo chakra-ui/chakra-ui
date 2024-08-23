@@ -1,6 +1,7 @@
 "use client"
 
 import { Menu as ArkMenu } from "@ark-ui/react/menu"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,11 @@ export { useMenuStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface MenuRootProps
-  extends ArkMenu.RootBaseProps,
-    SlotRecipeProps<"menu">,
-    UnstyledProp {
+export interface MenuRootBaseProps
+  extends Assign<ArkMenu.RootBaseProps, SlotRecipeProps<"menu">>,
+    UnstyledProp {}
+
+export interface MenuRootProps extends MenuRootBaseProps {
   children: React.ReactNode
 }
 

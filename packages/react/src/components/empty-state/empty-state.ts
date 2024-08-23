@@ -19,10 +19,12 @@ export { useEmptyStateStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface EmptyStateRootProps
-  extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"emptyState">,
+export interface EmptyStateRootBaseProps
+  extends SlotRecipeProps<"emptyState">,
     UnstyledProp {}
+
+export interface EmptyStateRootProps
+  extends HTMLChakraProps<"div", EmptyStateRootBaseProps> {}
 
 export const EmptyStateRoot = withProvider<HTMLDivElement, EmptyStateRootProps>(
   "div",

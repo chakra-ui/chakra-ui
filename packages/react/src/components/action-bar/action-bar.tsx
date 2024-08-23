@@ -1,6 +1,7 @@
 "use client"
 
 import { Popover as ArkPopover } from "@ark-ui/react/popover"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useActionBarStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
+export interface ActionBarRootBaseProps
+  extends Assign<ArkPopover.RootBaseProps, SlotRecipeProps<"actionBar">>,
+    UnstyledProp {}
+
 export interface ActionBarRootProps
-  extends Omit<ArkPopover.RootBaseProps, "positioning">,
-    SlotRecipeProps<"actionBar">,
-    UnstyledProp {
+  extends Omit<ActionBarRootBaseProps, "positioning"> {
   children: React.ReactNode
 }
 

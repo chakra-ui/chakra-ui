@@ -14,7 +14,7 @@ interface UseRecipeOptions<K extends RecipeKey> {
 
 export function useRecipe<K extends RecipeKey>(
   options: UseRecipeOptions<K>,
-): K extends keyof ConfigRecipes ? ConfigRecipes[K] : SystemRecipeFn<{}> {
+): K extends keyof ConfigRecipes ? ConfigRecipes[K] : SystemRecipeFn<{}, {}> {
   const { key, recipe: recipeProp } = options
   const sys = useChakraContext()
   return useMemo((): any => {

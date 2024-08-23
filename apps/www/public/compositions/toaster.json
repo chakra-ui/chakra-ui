@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "toaster",
+  "file": {
+    "name": "toaster.tsx",
+    "content": "import {\n  Toaster as ChakraToaster,\n  Portal,\n  Spinner,\n  Stack,\n  Toast,\n  createToaster,\n} from \"@chakra-ui/react\"\n\nexport const toaster = createToaster({\n  placement: \"bottom-end\",\n  pauseOnPageIdle: true,\n})\n\ninterface ToastMeta {\n  closable?: boolean\n  action?: VoidFunction\n  actionLabel?: string\n}\n\nconst defaultMeta: ToastMeta = {\n  closable: true,\n}\n\nexport const Toaster = () => {\n  return (\n    <Portal>\n      <ChakraToaster toaster={toaster} width=\"full\" maxWidth=\"400px\">\n        {(toast) => {\n          const meta = Object.assign(defaultMeta, toast.meta ?? {})\n          return (\n            <Toast.Root>\n              {toast.type === \"loading\" ? (\n                <Spinner size=\"sm\" color=\"blue.600\" />\n              ) : (\n                <Toast.Indicator />\n              )}\n              <Stack gap=\"1\" flex=\"1\" maxWidth=\"100%\">\n                {toast.title && <Toast.Title>{toast.title}</Toast.Title>}\n                {toast.description && (\n                  <Toast.Description>{toast.description}</Toast.Description>\n                )}\n              </Stack>\n              {meta?.action && (\n                <Toast.ActionTrigger onClick={meta.action}>\n                  {meta.actionLabel}\n                </Toast.ActionTrigger>\n              )}\n              {meta?.closable && <Toast.CloseTrigger />}\n            </Toast.Root>\n          )\n        }}\n      </ChakraToaster>\n    </Portal>\n  )\n}\n"
+  },
+  "component": "Toaster"
+}

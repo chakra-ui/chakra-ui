@@ -1,6 +1,7 @@
 "use client"
 
 import { Slider as ArkSlider } from "@ark-ui/react/slider"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useSliderStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface SliderRootProps
-  extends HTMLChakraProps<"div", ArkSlider.RootBaseProps>,
-    SlotRecipeProps<"slider">,
+export interface SliderRootBaseProps
+  extends Assign<ArkSlider.RootBaseProps, SlotRecipeProps<"slider">>,
     UnstyledProp {}
+
+export interface SliderRootProps
+  extends HTMLChakraProps<"div", SliderRootBaseProps> {}
 
 export const SliderRoot = withProvider<HTMLDivElement, SliderRootProps>(
   ArkSlider.Root,

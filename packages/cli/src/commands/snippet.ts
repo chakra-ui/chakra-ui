@@ -9,8 +9,8 @@ import { getProjectContext } from "../utils/context"
 import { convertTsxToJsx } from "../utils/convert-tsx-to-jsx"
 import { fetchComposition, fetchCompositions } from "../utils/fetch"
 import { getFileDependencies } from "../utils/get-file-dependencies"
-import * as io from "../utils/io"
-import { runCommand } from "../utils/run-command"
+import { ensureDir } from "../utils/io"
+import { installCommand } from "../utils/run-command"
 import { type CompositionFile, addCommandFlagsSchema } from "../utils/schema"
 import { uniq } from "../utils/shared"
 import { tasks } from "../utils/tasks"
@@ -47,6 +47,8 @@ export const SnippetCommand = new Command("snippet")
         debug("context", ctx)
 
         const jsx = !ctx.isTypeScript
+
+        ensureDir(ctx.scope.componentsDir)
         const outdir = parsedFlags.outdir || ctx.scope.componentsDir
 
         const items = await fetchCompositions()
@@ -62,17 +64,15 @@ export const SnippetCommand = new Command("snippet")
 
         p.log.info(`Adding ${components.length} snippet(s)...`)
 
-        io.ensureDir(outdir)
-
-        const fileDependencies = uniq(
+        const deps = uniq(
           components.flatMap((id) => getFileDependencies(items, id)),
         )
 
+        const fileDependencies = uniq(
+          deps.map((dep) => dep.fileDependencies).flat(),
+        )
         const npmDependencies = uniq(
-          fileDependencies.flatMap((dep) => {
-            const comp = items.find((item) => item.id === dep)
-            return comp?.npmDependencies || []
-          }),
+          deps.map((dep) => dep.npmDependencies).flat(),
         )
 
         debug("fileDependencies", fileDependencies)
@@ -80,10 +80,10 @@ export const SnippetCommand = new Command("snippet")
 
         await tasks([
           {
-            title: `Installing required dependencies`,
+            title: `Installing required dependencies...`,
             enabled: !!npmDependencies.length && !dryRun,
             task: () =>
-              runCommand(["ni", ...npmDependencies, "--silent"], outdir),
+              installCommand([...npmDependencies, "--silent"], outdir),
           },
           {
             title: "Writing file dependencies",

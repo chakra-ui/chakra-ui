@@ -182,28 +182,24 @@ export type SlotRecipeConfig<
  * Config / Codegen
  * -----------------------------------------------------------------------------*/
 
-export interface SystemRecipeFn<T> {
-  __type: Partial<T>
-  (props?: Partial<T>): SystemStyleObject
+export interface SystemRecipeFn<VP, VM> {
+  __type: Partial<VP>
+  (props?: Partial<VP>): SystemStyleObject
   className: string
-  variantMap: {
-    [key in keyof T]: Array<T[key]>
-  }
-  variantKeys: Array<keyof T>
-  splitVariantProps<P extends T>(
+  variantMap: VM
+  variantKeys: Array<keyof VP>
+  splitVariantProps<P extends VP>(
     props: P,
-  ): [T, Pretty<DistributiveOmit<P, keyof T>>]
+  ): [VP, Pretty<DistributiveOmit<P, keyof VP>>]
 }
 
-export interface SystemSlotRecipeFn<S extends string, T> {
-  __type: Partial<T>
-  (props?: Partial<T>): Record<S, SystemStyleObject>
+export interface SystemSlotRecipeFn<S extends string, VP, VM> {
+  __type: Partial<VP>
+  (props?: Partial<VP>): Record<S, SystemStyleObject>
   classNameMap: Record<S, string>
-  variantMap: {
-    [key in keyof T]: Array<T[key]>
-  }
-  variantKeys: Array<keyof T>
-  splitVariantProps<P extends T & { recipe?: any }>(
+  variantMap: VM
+  variantKeys: Array<keyof VP>
+  splitVariantProps<P extends VP & { recipe?: any }>(
     props: P,
-  ): [T, Pretty<DistributiveOmit<P, keyof T | "recipe">>]
+  ): [VP, Pretty<DistributiveOmit<P, keyof VP | "recipe">>]
 }

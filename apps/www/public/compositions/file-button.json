@@ -1,6 +1,8 @@
 {
   "type": "composition",
-  "npmDependencies": ["react-icons"],
+  "npmDependencies": [
+    "react-icons"
+  ],
   "fileDependencies": [],
   "id": "file-button",
   "file": {

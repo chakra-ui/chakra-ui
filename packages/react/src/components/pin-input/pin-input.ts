@@ -1,6 +1,7 @@
 "use client"
 
 import { PinInput as ArkPinInput } from "@ark-ui/react/pin-input"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { usePinInputStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface PinInputRootProps
-  extends HTMLChakraProps<"div", ArkPinInput.RootBaseProps>,
-    SlotRecipeProps<"pinInput">,
+export interface PinInputRootBaseProps
+  extends Assign<ArkPinInput.RootBaseProps, SlotRecipeProps<"pinInput">>,
     UnstyledProp {}
+
+export interface PinInputRootProps
+  extends HTMLChakraProps<"div", PinInputRootBaseProps> {}
 
 export const PinInputRoot = withProvider<HTMLDivElement, PinInputRootProps>(
   ArkPinInput.Root,

@@ -1,6 +1,7 @@
 "use client"
 
 import { Pagination as ArkPagination } from "@ark-ui/react/pagination"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { usePaginationStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface PaginationRootProps
-  extends HTMLChakraProps<"div", ArkPagination.RootBaseProps>,
-    SlotRecipeProps<"pagination">,
+export interface PaginationRootBaseProps
+  extends Assign<ArkPagination.RootBaseProps, SlotRecipeProps<"pagination">>,
     UnstyledProp {}
+
+export interface PaginationRootProps
+  extends HTMLChakraProps<"div", PaginationRootBaseProps> {}
 
 export const PaginationRoot = withProvider<HTMLDivElement, PaginationRootProps>(
   ArkPagination.Root,

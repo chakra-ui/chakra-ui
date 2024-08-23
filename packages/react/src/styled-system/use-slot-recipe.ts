@@ -10,7 +10,7 @@ export type SlotRecipeKey = keyof ConfigSlotRecipes | (string & {})
 export type SlotRecipeFn<K extends SlotRecipeKey> =
   K extends keyof ConfigSlotRecipes
     ? ConfigSlotRecipes[K]
-    : SystemSlotRecipeFn<string, {}>
+    : SystemSlotRecipeFn<string, {}, {}>
 
 export interface UseSlotRecipeOptions<K extends SlotRecipeKey> {
   key?: K

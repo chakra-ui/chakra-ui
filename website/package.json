@@ -92,7 +92,7 @@
     "prettier": "3.3.3",
     "react-multi-ref": "1.0.2",
     "semver": "7.6.3",
-    "sharp": "0.33.4",
+    "sharp": "0.33.5",
     "tsx": "4.16.2",
     "unified": "10.1.2",
     "unist-util-visit": "4.1.2"

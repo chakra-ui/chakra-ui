@@ -1,6 +1,7 @@
 ---
 title: Text Styles
-description: Using text styles to define typography related properties.
+description:
+  Learn how to use text styles to define typography related properties.
 ---
 
 ## Overview
@@ -16,7 +17,7 @@ are:
 
 ## Defining text styles
 
-Text styles are defined in the `textStyles` property of the theme.
+Text styles are defined using the `defineTextStyles` function.
 
 ```js filename="text-styles.ts"
 import { defineTextStyles } from "@chakra-ui/react"
@@ -45,7 +46,8 @@ Chakra UI provides a set of built-in text styles.
 
 ## Update the theme
 
-To use the text styles, we need to update the `theme` object.
+To use the text styles, update the `theme` object with the `textStyles`
+property.
 
 ```js filename="theme.ts"
 import { createSystem, defineConfig, mergeConfigs } from "@chakra-ui/react"
@@ -64,7 +66,7 @@ const systemConfig = mergeConfigs(defaultConfig, config)
 export default createSystem(systemConfig)
 ```
 
-After updating the theme, you need to run this command to generate the typings.
+After updating the theme, run this command to generate the typings.
 
 ```bash
 npx @chakra-ui/cli@next typegen
@@ -72,7 +74,7 @@ npx @chakra-ui/cli@next typegen
 
 ## Using text styles
 
-Now we can use `textStyle` property in our components.
+Now you can use `textStyle` property in your components.
 
 ```jsx
 <Box textStyle="body">This is the body text style</Box>

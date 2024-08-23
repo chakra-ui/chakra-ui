@@ -42,6 +42,15 @@ To manually set up Chakra UI in your project, follow the steps below.
 npm i @chakra-ui/react @emotion/react
 ```
 
+### Add snippets
+
+Snippets are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add snippets to your project.
+
+```bash
+npx @chakra-ui/cli@next snippet add
+```
+
 ### Setup provider
 
 Wrap your application with the `ChakraProvider` at the root of your application.
@@ -73,17 +82,23 @@ tsconfig file to include the following options:
 }
 ```
 
-### Add compositions (optional)
+### Enjoy!
 
-Compositions are pre-built components that you can use to build your UI faster.
-Using the `@chakra-ui/cli` you can add compositions to your project.
+When the power of the snippets and the primitive components from Chakra UI, you
+can build your UI faster.
 
-```bash
-# Install CLI
-npm i -D @chakra-ui/cli
+```tsx
+import { Button } from "@/components/ui/button"
+import { HStack } from "@chakra-ui/react"
 
-# Add compositions
-chakra add compositions
+const Demo = () => {
+  return (
+    <HStack>
+      <Button>Click me</Button>
+      <Button>Click me</Button>
+    </HStack>
+  )
+}
 ```
 
 :::

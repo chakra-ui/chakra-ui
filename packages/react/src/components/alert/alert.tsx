@@ -1,8 +1,9 @@
 "use client"
 
-import { forwardRef } from "react"
+import { Fragment, forwardRef } from "react"
 import { createContext } from "../../create-context"
 import {
+  type ConditionalValue,
   type HTMLChakraProps,
   type SlotRecipeProps,
   type UnstyledProp,
@@ -12,7 +13,7 @@ import {
 import { CheckCircleIcon, InfoIcon, WarningIcon } from "../icons"
 
 interface StatusProps {
-  status: "info" | "warning" | "success" | "error" | "neutral"
+  status: ConditionalValue<"info" | "warning" | "success" | "error" | "neutral">
 }
 
 export const [AlertStatusProvider, useAlertStatusContext] =
@@ -34,10 +35,12 @@ export { useAlertStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AlertRootProps
-  extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"alert">,
+export interface AlertRootBaseProps
+  extends SlotRecipeProps<"alert">,
     UnstyledProp {}
+
+export interface AlertRootProps
+  extends HTMLChakraProps<"div", AlertRootBaseProps> {}
 
 export const AlertRoot = withProvider<HTMLDivElement, AlertRootProps>(
   "div",
@@ -46,6 +49,7 @@ export const AlertRoot = withProvider<HTMLDivElement, AlertRootProps>(
     forwardAsChild: true,
     wrapElement(element, props) {
       return (
+        // @ts-ignore fix later
         <AlertStatusProvider value={{ status: props.status || "info" }}>
           {element}
         </AlertStatusProvider>
@@ -88,8 +92,10 @@ export const AlertIndicator = forwardRef<SVGSVGElement, AlertIndicatorProps>(
   function AlertIndicator(props, ref) {
     const api = useAlertStatusContext()
     const styles = useAlertStyles()
-    const Icon = iconMap[api.status]
+
+    const Icon = typeof api.status === "string" ? iconMap[api.status] : Fragment
     const { children = <Icon />, ...rest } = props
+
     return (
       <chakra.span ref={ref} {...rest} css={[styles.indicator, props.css]}>
         {children}

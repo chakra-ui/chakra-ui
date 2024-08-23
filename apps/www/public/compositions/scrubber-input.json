@@ -1,7 +1,9 @@
 {
   "type": "composition",
   "npmDependencies": [],
-  "fileDependencies": ["compositions/ui/tooltip"],
+  "fileDependencies": [
+    "compositions/ui/tooltip"
+  ],
   "id": "scrubber-input",
   "file": {
     "name": "scrubber-input.tsx",

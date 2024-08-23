@@ -1,6 +1,7 @@
 "use client"
 
 import { Dialog as ArkDialog } from "@ark-ui/react/dialog"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,11 @@ export { useDrawerStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface DrawerRootProps
-  extends ArkDialog.RootBaseProps,
-    SlotRecipeProps<"drawer">,
-    UnstyledProp {
+export interface DrawerRootBaseProps
+  extends Assign<ArkDialog.RootBaseProps, SlotRecipeProps<"drawer">>,
+    UnstyledProp {}
+
+export interface DrawerRootProps extends DrawerRootBaseProps {
   children: React.ReactNode
 }
 

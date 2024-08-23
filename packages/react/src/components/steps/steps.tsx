@@ -1,5 +1,6 @@
 "use client"
 
+import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
@@ -23,10 +24,12 @@ export { useStepsStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface StepsRootProps
-  extends HTMLChakraProps<"div", ArkSteps.StepsRootBaseProps>,
-    SlotRecipeProps<"steps">,
+export interface StepsRootBaseProps
+  extends Assign<ArkSteps.StepsRootBaseProps, SlotRecipeProps<"steps">>,
     UnstyledProp {}
+
+export interface StepsRootProps
+  extends HTMLChakraProps<"div", StepsRootBaseProps> {}
 
 export const StepsRoot = withProvider<HTMLDivElement, StepsRootProps>(
   ArkSteps.StepsRoot,

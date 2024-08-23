@@ -45,6 +45,7 @@ Options:
 Commands:
   typegen [options] <source>  Generate theme and recipe typings
   snippet                     Add snippets to your project for better DX
+  eject [options]             Take control over the default theme tokens and recipes
   help [command]              display help for command
 ```
 
@@ -77,4 +78,14 @@ chakra snippet add button
 
 # List all available snippets
 chakra snippet list
+```
+
+## `chakra eject`
+
+Generated the file(s) that contain the default theme tokens and recipes so you
+can have full control over them.
+
+```bash
+# Copy the tokens and recipes to your project
+chakra eject --outdir src/theme
 ```

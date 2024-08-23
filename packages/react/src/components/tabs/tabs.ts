@@ -1,6 +1,7 @@
 "use client"
 
 import { Tabs as ArkTabs } from "@ark-ui/react/tabs"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useTabsStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface TabsRootProps
-  extends HTMLChakraProps<"div", ArkTabs.RootBaseProps>,
-    SlotRecipeProps<"tabs">,
+export interface TabsRootBaseProps
+  extends Assign<ArkTabs.RootBaseProps, SlotRecipeProps<"tabs">>,
     UnstyledProp {}
+
+export interface TabsRootProps
+  extends HTMLChakraProps<"div", TabsRootBaseProps> {}
 
 export const TabsRoot = withProvider<HTMLDivElement, TabsRootProps>(
   ArkTabs.Root,

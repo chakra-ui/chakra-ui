@@ -1,6 +1,7 @@
 "use client"
 
 import { Clipboard as ArkClipboard } from "@ark-ui/react/clipboard"
+import type { Assign } from "@chakra-ui/utils"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -20,10 +21,12 @@ export { useClipboardStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface ClipboardRootProps
-  extends HTMLChakraProps<"div", ArkClipboard.RootProps>,
-    SlotRecipeProps<"clipboard">,
+export interface ClipboardRootBaseProps
+  extends Assign<ArkClipboard.RootBaseProps, SlotRecipeProps<"clipboard">>,
     UnstyledProp {}
+
+export interface ClipboardRootProps
+  extends HTMLChakraProps<"div", ClipboardRootBaseProps> {}
 
 export const ClipboardRoot = withProvider<HTMLDivElement, ClipboardRootProps>(
   ArkClipboard.Root,

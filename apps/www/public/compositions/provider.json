@@ -1,0 +1,13 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [
+    "compositions/ui/color-mode"
+  ],
+  "id": "provider",
+  "file": {
+    "name": "provider.tsx",
+    "content": "\"use client\"\n\nimport { ChakraProvider, type ChakraProviderProps } from \"@chakra-ui/react\"\nimport { ColorModeProvider } from \"./color-mode\"\n\nexport function Provider(props: ChakraProviderProps) {\n  return (\n    <ChakraProvider {...props}>\n      <ColorModeProvider>{props.children}</ColorModeProvider>\n    </ChakraProvider>\n  )\n}\n"
+  },
+  "component": "Provider"
+}

@@ -24,48 +24,48 @@ Use the remix template below to get started quickly.
 ### Install dependencies
 
 ```bash
-npm i @chakra-ui/react @emotion/react next-themes
+npm i @chakra-ui/react @emotion/react
 ```
 
-### Setup provider
+### Add snippets
 
-Create a `Provider` component at the root of your application. This provider
-composes the following:
+Snippets are pre-built components that you can use to build your UI faster.
+Using the `@chakra-ui/cli` you can add snippets to your project.
+
+```bash
+npx @chakra-ui/cli@next snippet add
+```
+
+### Setup emotion cache
+
+Using snippets from the Remix sandbox, you can add the emotion cache to your
+application.
+
+[Emotion cache snippet](https://github.com/chakra-ui/chakra-ui/blob/main/sandbox/remix-ts/app/emotion)
+
+### Setup root
+
+Wrap your application with the `Provider` component at the root of your
+application.
+
+This provider composes the following:
 
 - `ChakraProvider` from `@chakra-ui/react` for the styling system
 - `ThemeProvider` from `next-themes` for color mode
 
-```tsx title="src/components/provider.tsx"
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react"
-import { ThemeProvider } from "next-themes"
-
-export function Provider(props: { children: React.ReactNode }) {
-  return (
-    <ChakraProvider value={defaultSystem}>
-      <ThemeProvider attribute="class" disableTransitionOnChange>
-        {props.children}
-      </ThemeProvider>
-    </ChakraProvider>
-  )
-}
-```
-
-Next, wrap your application with the `Provider` component at the root of your
-application.
-
-```tsx title="src/main.tsx"
+```tsx title="app/root.tsx"
 import React from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
-import { Provider } from "./components/provider"
+import { Provider } from "@/components/ui/provider"
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+export default function App() {
+  return (
     <Provider>
-      <App />
+      <Outlet />
     </Provider>
-  </React.StrictMode>,
-)
+  )
+}
 ```
 
 ### Update tsconfig
@@ -81,15 +81,6 @@ tsconfig file to include the following options:
     "skipLibCheck": true
   }
 }
-```
-
-### Add snippets
-
-Snippets are pre-built components that you can use to build your UI faster.
-Using the `@chakra-ui/cli` you can add snippets to your project.
-
-```bash
-npx @chakra-ui/cli@next snippet add
 ```
 
 ### Enjoy!

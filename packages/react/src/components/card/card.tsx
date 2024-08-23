@@ -19,10 +19,12 @@ export { useCardStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface CardRootProps
-  extends HTMLChakraProps<"div">,
-    SlotRecipeProps<"card">,
+export interface CardRootBaseProps
+  extends SlotRecipeProps<"card">,
     UnstyledProp {}
+
+export interface CardRootProps
+  extends HTMLChakraProps<"div", CardRootBaseProps> {}
 
 export const CardRoot = withProvider<HTMLDivElement, CardRootProps>(
   "div",

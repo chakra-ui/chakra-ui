@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "loading-overlay",
+  "file": {
+    "name": "loading-overlay.tsx",
+    "content": "\"use client\"\n\nimport { AbsoluteCenter, Box, type BoxProps, Spinner } from \"@chakra-ui/react\"\nimport { useEffect } from \"react\"\n\ninterface LoadingOverlayProps extends BoxProps {\n  loading?: boolean\n  containerRef?: React.RefObject<HTMLElement>\n}\n\nexport const LoadingOverlay = (props: LoadingOverlayProps) => {\n  const { loading, containerRef, children, ...rest } = props\n\n  useEffect(() => {\n    if (!containerRef?.current) return\n    if (loading) {\n      containerRef.current.setAttribute(\"aria-busy\", \"true\")\n    } else {\n      containerRef.current.removeAttribute(\"aria-busy\")\n    }\n  }, [loading])\n\n  if (!loading) return null\n\n  return (\n    <AbsoluteCenter>\n      <Box inset=\"0\" pos=\"absolute\" {...rest} />\n      <Spinner size=\"lg\" />\n      {children}\n    </AbsoluteCenter>\n  )\n}\n"
+  },
+  "component": "LoadingOverlay"
+}

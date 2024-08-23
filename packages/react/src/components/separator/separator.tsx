@@ -11,17 +11,13 @@ import {
   useRecipe,
 } from "../../styled-system"
 
-export interface SeparatorProps
-  extends HTMLChakraProps<"span">,
-    RecipeProps<"separator">,
+export interface SeparatorBaseProps
+  extends RecipeProps<"separator">,
     UnstyledProp {}
 
-/**
- * Layout component used to visually separate content in a list or group.
- * It displays a thin horizontal or vertical line, and renders a `hr` tag.
- *
- * @see Docs https://chakra-ui.com/divider
- */
+export interface SeparatorProps
+  extends HTMLChakraProps<"span", SeparatorBaseProps> {}
+
 export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
   function Separator({ unstyled, ...props }, ref) {
     const recipe = useRecipe({ key: "separator", recipe: props.recipe })
@@ -32,7 +28,6 @@ export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
       <chakra.span
         ref={ref}
         role="separator"
-        aria-orientation={variantProps.orientation || "horizontal"}
         {...localProps}
         css={[styles, props.css]}
         className={cx("chakra-separator", props.className)}

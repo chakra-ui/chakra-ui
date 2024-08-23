@@ -1,6 +1,7 @@
 "use client"
 
 import { Avatar as ArkAvatar } from "@ark-ui/react/avatar"
+import type { Assign } from "@chakra-ui/utils"
 import { forwardRef, useMemo } from "react"
 import {
   type HTMLChakraProps,
@@ -23,10 +24,12 @@ export { useAvatarStyles }
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-export interface AvatarRootProps
-  extends HTMLChakraProps<"div", ArkAvatar.RootProps>,
-    SlotRecipeProps<"avatar">,
+export interface AvatarRootBaseProps
+  extends Assign<ArkAvatar.RootBaseProps, SlotRecipeProps<"avatar">>,
     UnstyledProp {}
+
+export interface AvatarRootProps
+  extends HTMLChakraProps<"div", AvatarRootBaseProps> {}
 
 export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(
   ArkAvatar.Root,
