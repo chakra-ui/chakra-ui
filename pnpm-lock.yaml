@@ -421,6 +421,9 @@ importers:
       prettier:
         specifier: 3.3.3
         version: 3.3.3
+      scule:
+        specifier: 1.3.0
+        version: 1.3.0
       sucrase:
         specifier: ^3.35.0
         version: 3.35.0
