@@ -17,9 +17,18 @@ export async function generateRecipe(sys: SystemContext) {
         export interface ${upperName}VariantProps {
           ${Object.keys(variantKeyMap)
             .map((key) => {
+              const def = Reflect.get(recipe.defaultVariants ?? {}, key)
+              const jsDoc = def
+                ? `/** @default ${JSON.stringify(def)} */\n`
+                : ""
+
               const values = variantKeyMap[key]
-              if (values.every(isBooleanValue)) return `${key}?: boolean`
-              return `${key}?: ${unionType(values)}`
+
+              if (values.every(isBooleanValue)) {
+                return `${jsDoc}${key}?: ConditionalValue<boolean>`
+              }
+
+              return `${jsDoc}${key}?: ConditionalValue<${unionType(values)}>`
             })
             .join("\n")}
         }
@@ -59,9 +68,18 @@ export async function generateRecipe(sys: SystemContext) {
         export interface ${upperName}VariantProps {
           ${Object.keys(variantKeyMap)
             .map((key) => {
+              const def = Reflect.get(recipe.defaultVariants ?? {}, key)
+              const jsDoc = def
+                ? `/** @default ${JSON.stringify(def)} */\n`
+                : ""
+
               const values = variantKeyMap[key]
-              if (values.every(isBooleanValue)) return `${key}?: boolean`
-              return `${key}?: ${unionType(values)}`
+
+              if (values.every(isBooleanValue)) {
+                return `${jsDoc}${key}?: ConditionalValue<boolean>`
+              }
+
+              return `${jsDoc}${key}?: ConditionalValue<${unionType(values)}>`
             })
             .join("\n")}
         }
@@ -100,6 +118,7 @@ export async function generateRecipe(sys: SystemContext) {
   return pretty(
     [
       'import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"',
+      'import type { ConditionalValue } from "../css.types"',
       recipeResult,
       slotRecipeResult,
       `

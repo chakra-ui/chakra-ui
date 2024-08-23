@@ -1,84 +1,112 @@
 import type { RecipeDefinition, SlotRecipeDefinition, SystemRecipeFn, SystemSlotRecipeFn } from "../recipe.types"
+import type { ConditionalValue } from "../css.types"
 
 export interface BadgeVariantProps {
-  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "subtle" */
+  variant?: ConditionalValue<"solid" | "subtle" | "outline" | "surface" | "plain">
+  /** @default "sm" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 export interface ButtonVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
-  variant?: "solid" | "subtle" | "outline" | "ghost" | "plain"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
+  /** @default "solid" */
+  variant?: ConditionalValue<"solid" | "subtle" | "outline" | "ghost" | "plain">
 }
 
 export interface CodeVariantProps {
-  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "subtle" */
+  variant?: ConditionalValue<"solid" | "subtle" | "outline" | "surface" | "plain">
+  /** @default "sm" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 export interface ContainerVariantProps {
-  centerContent?: boolean
-  fluid?: boolean
+  centerContent?: ConditionalValue<boolean>
+  fluid?: ConditionalValue<boolean>
 }
 
 export interface HeadingVariantProps {
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
+  /** @default "xl" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl">
 }
 
 export interface InputVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "filled" | "flushed"
+  /** @default "md" */
+  size?: ConditionalValue<"lg" | "md" | "sm" | "xs">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "filled" | "flushed">
 }
 
 export interface InputAddonVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "filled" | "flushed"
+  /** @default "md" */
+  size?: ConditionalValue<"lg" | "md" | "sm" | "xs">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "filled" | "flushed">
 }
 
 export interface KbdVariantProps {
-  variant?: "raised" | "outline" | "subtle" | "plain"
-  size?: "sm" | "md" | "lg"
+  /** @default "raised" */
+  variant?: ConditionalValue<"raised" | "outline" | "subtle" | "plain">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 export interface LinkVariantProps {
-  variant?: "underline" | "plain"
+  /** @default "plain" */
+  variant?: ConditionalValue<"underline" | "plain">
 }
 
 export interface MarkVariantProps {
-  variant?: "subtle" | "solid" | "text" | "plain"
+  /** @default "plain" */
+  variant?: ConditionalValue<"subtle" | "solid" | "text" | "plain">
 }
 
 export interface SeparatorVariantProps {
-  variant?: "solid" | "dashed" | "dotted"
-  orientation?: "vertical" | "horizontal"
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "solid" */
+  variant?: ConditionalValue<"solid" | "dashed" | "dotted">
+  /** @default "horizontal" */
+  orientation?: ConditionalValue<"vertical" | "horizontal">
+  /** @default "sm" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 export interface SkeletonVariantProps {
-  loading?: boolean
-  variant?: "pulse" | "shine" | "none"
+  /** @default true */
+  loading?: ConditionalValue<boolean>
+  /** @default "pulse" */
+  variant?: ConditionalValue<"pulse" | "shine" | "none">
 }
 
 export interface SkipNavLinkVariantProps {}
 
 export interface SpinnerVariantProps {
-  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg" | "xl">
 }
 
 export interface TextareaVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "filled" | "flushed"
+  /** @default "md" */
+  size?: ConditionalValue<"lg" | "md" | "sm" | "xs">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "filled" | "flushed">
 }
 
 export interface IconVariantProps {}
 
 export interface CheckmarkVariantProps {
-  size?: "sm" | "md" | "lg"
-  variant?: "outline" | "subtle"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "subtle">
 }
 
 export interface RadiomarkVariantProps {
-  variant?: "outline" | "subtle" | "classic"
-  size?: "sm" | "md" | "lg"
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "subtle" | "classic">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 export interface ConfigRecipes {
@@ -107,8 +135,10 @@ export interface ConfigRecipes {
 export type AccordionSlot = "root" | "item" | "itemTrigger" | "itemContent" | "itemIndicator" | "itemBody"
 
 export interface AccordionVariantProps {
-  variant?: "outline" | "elevated" | "contained" | "plain"
-  size?: "sm" | "md" | "lg"
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "elevated" | "contained" | "plain">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // ActionBar
@@ -122,9 +152,12 @@ export interface ActionBarVariantProps {}
 export type AlertSlot = "title" | "description" | "root" | "indicator" | "spinner"
 
 export interface AlertVariantProps {
-  status?: "info" | "warning" | "success" | "error" | "neutral"
-  variant?: "subtle" | "outline" | "solid"
-  size?: "sm" | "md" | "lg"
+  /** @default "info" */
+  status?: ConditionalValue<"info" | "warning" | "success" | "error" | "neutral">
+  /** @default "subtle" */
+  variant?: ConditionalValue<"subtle" | "outline" | "solid">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Avatar
@@ -132,9 +165,12 @@ export interface AlertVariantProps {
 export type AvatarSlot = "root" | "image" | "fallback"
 
 export interface AvatarVariantProps {
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-  variant?: "solid" | "subtle" | "outline"
-  shape?: "square" | "rounded" | "full"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg" | "xl" | "2xl">
+  /** @default "subtle" */
+  variant?: ConditionalValue<"solid" | "subtle" | "outline">
+  /** @default "full" */
+  shape?: ConditionalValue<"square" | "rounded" | "full">
 }
 
 // Blockquote
@@ -142,8 +178,10 @@ export interface AvatarVariantProps {
 export type BlockquoteSlot = "root" | "icon" | "content" | "caption"
 
 export interface BlockquoteVariantProps {
-  justify?: "start" | "center" | "end"
-  variant?: "subtle" | "solid" | "plain"
+  /** @default "start" */
+  justify?: ConditionalValue<"start" | "center" | "end">
+  /** @default "subtle" */
+  variant?: ConditionalValue<"subtle" | "solid" | "plain">
 }
 
 // Breadcrumb
@@ -151,8 +189,10 @@ export interface BlockquoteVariantProps {
 export type BreadcrumbSlot = "link" | "currentLink" | "item" | "list" | "root" | "ellipsis" | "separator"
 
 export interface BreadcrumbVariantProps {
-  variant?: "underline" | "plain"
-  size?: "sm" | "md" | "lg"
+  /** @default "plain" */
+  variant?: ConditionalValue<"underline" | "plain">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Card
@@ -160,8 +200,10 @@ export interface BreadcrumbVariantProps {
 export type CardSlot = "root" | "header" | "body" | "footer" | "title" | "description"
 
 export interface CardVariantProps {
-  size?: "sm" | "md" | "lg"
-  variant?: "elevated" | "outline" | "subtle"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
+  /** @default "outline" */
+  variant?: ConditionalValue<"elevated" | "outline" | "subtle">
 }
 
 // Checkbox
@@ -169,8 +211,10 @@ export interface CardVariantProps {
 export type CheckboxSlot = "root" | "label" | "control" | "indicator" | "group"
 
 export interface CheckboxVariantProps {
-  size?: "sm" | "md" | "lg"
-  variant?: "outline" | "subtle"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "subtle">
 }
 
 // CheckboxCard
@@ -178,8 +222,10 @@ export interface CheckboxVariantProps {
 export type CheckboxCardSlot = "root" | "control" | "label" | "addon" | "indicator"
 
 export interface CheckboxCardVariantProps {
-  size?: "sm" | "md" | "lg"
-  variant?: "plain" | "subtle"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
+  /** @default "subtle" */
+  variant?: ConditionalValue<"plain" | "subtle">
 }
 
 // Collapsible
@@ -193,8 +239,10 @@ export interface CollapsibleVariantProps {}
 export type DataListSlot = "root" | "item" | "itemLabel" | "itemValue"
 
 export interface DataListVariantProps {
-  orientation?: "horizontal" | "vertical"
-  size?: "sm" | "md" | "lg"
+  /** @default "vertical" */
+  orientation?: ConditionalValue<"horizontal" | "vertical">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Dialog
@@ -213,10 +261,13 @@ export type DialogSlot =
   | "backdrop"
 
 export interface DialogVariantProps {
-  centered?: boolean
-  scrollBehavior?: "inside" | "outside"
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
-  motionPreset?: "scale" | "slide-in-bottom" | "slide-in-top" | "slide-in-left" | "slide-in-right" | "none"
+  centered?: ConditionalValue<boolean>
+  /** @default "outside" */
+  scrollBehavior?: ConditionalValue<"inside" | "outside">
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg" | "xl" | "full">
+  /** @default "scale" */
+  motionPreset?: ConditionalValue<"scale" | "slide-in-bottom" | "slide-in-top" | "slide-in-left" | "slide-in-right" | "none">
 }
 
 // Drawer
@@ -235,9 +286,11 @@ export type DrawerSlot =
   | "backdrop"
 
 export interface DrawerVariantProps {
-  size?: "xs" | "sm" | "md" | "lg" | "xl" | "full"
-  placement?: "start" | "end" | "top" | "bottom"
-  contained?: boolean
+  /** @default "xs" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg" | "xl" | "full">
+  /** @default "end" */
+  placement?: ConditionalValue<"start" | "end" | "top" | "bottom">
+  contained?: ConditionalValue<boolean>
 }
 
 // Editable
@@ -251,7 +304,8 @@ export interface EditableVariantProps {}
 export type EmptyStateSlot = "root" | "content" | "indicator" | "title" | "description"
 
 export interface EmptyStateVariantProps {
-  size?: "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"md" | "lg">
 }
 
 // Field
@@ -282,7 +336,8 @@ export interface FileUploadVariantProps {}
 export type HoverCardSlot = "arrow" | "arrowTip" | "trigger" | "positioner" | "content"
 
 export interface HoverCardVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 // List
@@ -290,7 +345,8 @@ export interface HoverCardVariantProps {
 export type ListSlot = "root" | "item" | "icon"
 
 export interface ListVariantProps {
-  variant?: "marker" | "plain"
+  /** @default "plain" */
+  variant?: ConditionalValue<"marker" | "plain">
 }
 
 // Menu
@@ -313,8 +369,10 @@ export type MenuSlot =
   | "itemCommand"
 
 export interface MenuVariantProps {
-  variant?: "subtle" | "solid"
-  size?: "sm" | "md"
+  /** @default "subtle" */
+  variant?: ConditionalValue<"subtle" | "solid">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md">
 }
 
 // NativeSelect
@@ -322,8 +380,10 @@ export interface MenuVariantProps {
 export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariantProps {
-  variant?: "outline" | "filled"
-  size?: "lg" | "md" | "sm" | "xs"
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "filled">
+  /** @default "md" */
+  size?: ConditionalValue<"lg" | "md" | "sm" | "xs">
 }
 
 // NumberInput
@@ -331,8 +391,10 @@ export interface NativeSelectVariantProps {
 export type NumberInputSlot = "root" | "label" | "input" | "control" | "valueText" | "incrementTrigger" | "decrementTrigger" | "scrubber"
 
 export interface NumberInputVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
-  variant?: "outline" | "filled" | "flushed"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "filled" | "flushed">
 }
 
 // PinInput
@@ -340,8 +402,10 @@ export interface NumberInputVariantProps {
 export type PinInputSlot = "root" | "label" | "input" | "control"
 
 export interface PinInputVariantProps {
-  size?: "lg" | "md" | "sm" | "xs"
-  variant?: "outline" | "filled" | "flushed"
+  /** @default "md" */
+  size?: ConditionalValue<"lg" | "md" | "sm" | "xs">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "filled" | "flushed">
 }
 
 // Popover
@@ -362,7 +426,8 @@ export type PopoverSlot =
   | "footer"
 
 export interface PopoverVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 // Progress
@@ -370,11 +435,14 @@ export interface PopoverVariantProps {
 export type ProgressSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
 
 export interface ProgressVariantProps {
-  variant?: "outline" | "subtle"
-  shape?: "square" | "rounded" | "pill"
-  striped?: boolean
-  animated?: boolean
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "subtle">
+  /** @default "rounded" */
+  shape?: ConditionalValue<"square" | "rounded" | "pill">
+  striped?: ConditionalValue<boolean>
+  animated?: ConditionalValue<boolean>
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 // ProgressCircle
@@ -382,7 +450,8 @@ export interface ProgressVariantProps {
 export type ProgressCircleSlot = "root" | "label" | "track" | "range" | "valueText" | "view" | "circle" | "circleTrack" | "circleRange"
 
 export interface ProgressCircleVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 // RadioCard
@@ -390,8 +459,10 @@ export interface ProgressCircleVariantProps {
 export type RadioCardSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator" | "itemAddon" | "itemIndicator"
 
 export interface RadioCardVariantProps {
-  size?: "sm" | "md" | "lg"
-  variant?: "plain" | "subtle"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
+  /** @default "subtle" */
+  variant?: ConditionalValue<"plain" | "subtle">
 }
 
 // RadioGroup
@@ -399,8 +470,10 @@ export interface RadioCardVariantProps {
 export type RadioGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator"
 
 export interface RadioGroupVariantProps {
-  variant?: "outline" | "subtle" | "classic"
-  size?: "sm" | "md" | "lg"
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "subtle" | "classic">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // RatingGroup
@@ -408,7 +481,8 @@ export interface RadioGroupVariantProps {
 export type RatingGroupSlot = "root" | "label" | "item" | "control" | "itemIndicator"
 
 export interface RatingGroupVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 // SegmentGroup
@@ -416,7 +490,8 @@ export interface RatingGroupVariantProps {
 export type SegmentGroupSlot = "root" | "label" | "item" | "itemText" | "itemControl" | "indicator"
 
 export interface SegmentGroupVariantProps {
-  size?: "sm" | "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Select
@@ -439,8 +514,10 @@ export type SelectSlot =
   | "valueText"
 
 export interface SelectVariantProps {
-  variant?: "outline" | "filled"
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "filled">
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 // Slider
@@ -448,9 +525,12 @@ export interface SelectVariantProps {
 export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker"
 
 export interface SliderVariantProps {
-  size?: "xs" | "sm" | "md" | "lg"
-  variant?: "outline" | "subtle"
-  orientation?: "vertical" | "horizontal"
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
+  /** @default "outline" */
+  variant?: ConditionalValue<"outline" | "subtle">
+  /** @default "horizontal" */
+  orientation?: ConditionalValue<"vertical" | "horizontal">
 }
 
 // Stat
@@ -458,7 +538,8 @@ export interface SliderVariantProps {
 export type StatSlot = "root" | "label" | "helpText" | "valueText" | "valueUnit" | "indicator"
 
 export interface StatVariantProps {
-  size?: "sm" | "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Steps
@@ -478,9 +559,12 @@ export type StepsSlot =
   | "progress"
 
 export interface StepsVariantProps {
-  orientation?: "vertical" | "horizontal"
-  variant?: "solid" | "subtle"
-  size?: "sm" | "md" | "lg"
+  /** @default "horizontal" */
+  orientation?: ConditionalValue<"vertical" | "horizontal">
+  /** @default "solid" */
+  variant?: ConditionalValue<"solid" | "subtle">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Switch
@@ -488,8 +572,10 @@ export interface StepsVariantProps {
 export type SwitchSlot = "root" | "label" | "control" | "thumb" | "indicator"
 
 export interface SwitchVariantProps {
-  variant?: "solid" | "outline" | "raised"
-  size?: "xs" | "sm" | "md" | "lg"
+  /** @default "solid" */
+  variant?: ConditionalValue<"solid" | "outline" | "raised">
+  /** @default "md" */
+  size?: ConditionalValue<"xs" | "sm" | "md" | "lg">
 }
 
 // Table
@@ -497,12 +583,14 @@ export interface SwitchVariantProps {
 export type TableSlot = "root" | "header" | "body" | "row" | "columnHeader" | "cell" | "footer" | "caption"
 
 export interface TableVariantProps {
-  interactive?: boolean
-  stickyHeader?: boolean
-  striped?: boolean
-  showColumnBorder?: boolean
-  variant?: "line" | "outline"
-  size?: "sm" | "md" | "lg"
+  interactive?: ConditionalValue<boolean>
+  stickyHeader?: ConditionalValue<boolean>
+  striped?: ConditionalValue<boolean>
+  showColumnBorder?: ConditionalValue<boolean>
+  /** @default "line" */
+  variant?: ConditionalValue<"line" | "outline">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Tabs
@@ -510,11 +598,14 @@ export interface TableVariantProps {
 export type TabsSlot = "root" | "trigger" | "list" | "content" | "contentGroup" | "indicator"
 
 export interface TabsVariantProps {
-  orientation?: "vertical" | "horizontal"
-  fitted?: boolean
-  justify?: "start" | "center" | "end"
-  size?: "sm" | "md" | "lg"
-  variant?: "line" | "soft" | "enclosed" | "outline" | "plain"
+  /** @default "horizontal" */
+  orientation?: ConditionalValue<"vertical" | "horizontal">
+  fitted?: ConditionalValue<boolean>
+  justify?: ConditionalValue<"start" | "center" | "end">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
+  /** @default "line" */
+  variant?: ConditionalValue<"line" | "soft" | "enclosed" | "outline" | "plain">
 }
 
 // Tag
@@ -522,8 +613,10 @@ export interface TabsVariantProps {
 export type TagSlot = "root" | "label" | "closeTrigger"
 
 export interface TagVariantProps {
-  size?: "sm" | "md" | "lg"
-  variant?: "subtle" | "solid" | "outline" | "surface" | "raised"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
+  /** @default "surface" */
+  variant?: ConditionalValue<"subtle" | "solid" | "outline" | "surface" | "raised">
 }
 
 // Toast
@@ -543,7 +636,8 @@ export interface TooltipVariantProps {}
 export type StatusSlot = "root" | "indicator"
 
 export interface StatusVariantProps {
-  size?: "sm" | "md" | "lg"
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md" | "lg">
 }
 
 // Timeline
@@ -551,8 +645,10 @@ export interface StatusVariantProps {
 export type TimelineSlot = "root" | "item" | "content" | "separator" | "indicator" | "connector"
 
 export interface TimelineVariantProps {
-  variant?: "subtle" | "solid" | "outline" | "plain"
-  size?: "sm" | "md"
+  /** @default "solid" */
+  variant?: ConditionalValue<"subtle" | "solid" | "outline" | "plain">
+  /** @default "md" */
+  size?: ConditionalValue<"sm" | "md">
 }
 
 export interface ConfigSlotRecipes {
