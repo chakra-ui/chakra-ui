@@ -1,5 +1,57 @@
 # @chakra-ui/react
 
+## 3.0.0-next.17
+
+### Minor Changes
+
+- [`e9a1537`](https://github.com/chakra-ui/chakra-ui/commit/e9a1537579e80071cc00722a5f707768524f675c)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - BREAKING: Change
+  signature of `useRecipe`, `useSlotRecipe`, `createSlotRecipeContext`
+
+  ### createSlotRecipeContext
+
+  Before:
+
+  ```tsx
+  const { withProvider, withContext } = createSlotRecipeContext("accordion")
+  ```
+
+  After:
+
+  ```tsx
+  const { withProvider, withContext } = createSlotRecipeContext({
+    key: "accordion",
+  })
+  ```
+
+  ### useSlotRecipe
+
+  Before:
+
+  ```tsx
+  const recipe = useSlotRecipe("accordion")
+  ```
+
+  After:
+
+  ```tsx
+  const recipe = useSlotRecipe({ key: "accordion" })
+  ```
+
+- [`8b110da`](https://github.com/chakra-ui/chakra-ui/commit/8b110dafa8c3db069254ea3e01937165f5bd9321)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Support inlining
+  recipe in `createRecipeContext` and `createSlotRecipeContext` for better DX
+  when shipping libraries based on Chakra.
+
+  This reduces the need for using the Chakra CLI to generate types for custom
+  components.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.17
+  - @chakra-ui/utils@3.0.0-next.17
+
 ## 3.0.0-next.16
 
 ### Patch Changes

@@ -1,0 +1,267 @@
+---
+title: Recipes
+description: Learn how to customize recipes and slot recipes in Chakra UI
+links: [{ title: "Source", url: "#" }]
+---
+
+:::info
+
+Please read the [overview](/docs/theming/customization/overview) first to learn
+how to properly customize the styling engine, and get type safety.
+
+:::
+
+## Recipes
+
+### Extending variants
+
+Use the `defineRecipe` function to define a recipe override.
+
+Here's an example of extending the `Button` to add a new `xl` size
+
+```tsx title="theme.ts"
+const buttonRecipe = defineRecipe({
+  variants: {
+    size: {
+      xl: {
+        fontSize: "lg",
+        px: 6,
+        py: 3,
+      },
+    },
+  },
+})
+
+const customConfig = defineConfig({
+  theme: {
+    recipes: {
+      button: buttonRecipe,
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+Then you can use the new size variant in your components.
+
+```tsx
+<Button size="xl">Click me</Button>
+```
+
+### Adding new variant
+
+Use the `defineRecipe` function to define a new recipe variant.
+
+Here's an example of defining a boolean variant called `raised`.
+
+```tsx title="theme.ts"
+const buttonRecipe = defineRecipe({
+  variants: {
+    raised: {
+      true: {
+        boxShadow: "md",
+      },
+    },
+  },
+})
+
+const customConfig = defineConfig({
+  theme: {
+    recipes: {
+      button: buttonRecipe,
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+Then you can use the new variant in your components.
+
+```tsx
+<Button raised>Click me</Button>
+```
+
+### Custom recipe
+
+Use the `defineRecipe` function to define a custom recipe all together.
+
+Here's an example of defining a custom recipe called `Title`
+
+```tsx title="theme.ts"
+const titleRecipe = defineRecipe({
+  baseStyle: {
+    fontWeight: "bold",
+    letterSpacing: "tight",
+  },
+  variants: {
+    size: {
+      md: { fontSize: "xl" },
+      lg: { fontSize: "2xl" },
+    },
+  },
+})
+
+const customConfig = defineConfig({
+  theme: {
+    recipes: {
+      title: titleRecipe,
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+Then, use the new recipe to create a components
+
+```tsx
+const Title = (props) => {
+  const recipe = useRecipe({ key: "title" })
+  const styles = recipe({ size: "lg" })
+  return <Box as="h1" css={styles} {...props} />
+}
+```
+
+## Slot Recipes
+
+To effectively override an existing slot recipe, we recommend connecting to its
+anatomy. Slot recipes are added to the `theme.slotRecipes` object.
+
+### Extending variants
+
+Here's an example of how to extend the `Alert` slot recipe to create an `xl`
+size.
+
+```tsx title="theme.ts"
+import { alertAnatomy } from "@chakra-ui/react/anatomy"
+
+const alertSlotRecipe = defineRecipe({
+  slots: alertAnatomy.keys(),
+  variants: {
+    size: {
+      xl: {
+        root: {
+          fontSize: "lg",
+          px: 6,
+          py: 3,
+        },
+      },
+    },
+  },
+})
+
+const customConfig = defineConfig({
+  theme: {
+    slotRecipes: {
+      alert: alertSlotRecipe,
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+Then you can use the new size variant in your components.
+
+```tsx /size="xl"/
+<Alert size="xl" title="..." />
+```
+
+### Adding new variant
+
+Here's an example of how to extend the `Alert` slot recipe to add a new variant
+called `shape`.
+
+```tsx title="theme.ts"
+import { alertAnatomy } from "@chakra-ui/react/anatomy"
+
+const alertSlotRecipe = defineRecipe({
+  slots: alertAnatomy.keys(),
+  variants: {
+    shape: {
+      rounded: {
+        root: { borderRadius: "full" },
+      },
+    },
+  },
+})
+
+const customConfig = defineConfig({
+  theme: {
+    slotRecipes: {
+      alert: alertSlotRecipe,
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+Then you can use the new variant in your components.
+
+```tsx /shape="rounded"/
+<Alert shape="rounded" title="..." />
+```
+
+### Custom recipe
+
+Here's an example of how to define a custom slot recipe called `Navbar`.
+
+```tsx title="theme.ts"
+const navbarSlotRecipe = defineRecipe({
+  slots: ["root", "badge", "icon"],
+  base: {
+    root: {
+      bg: "blue.500",
+      color: "white",
+      px: 4,
+      py: 2,
+    },
+    badge: {
+      borderRadius: "full",
+      px: 2,
+      py: 1,
+    },
+  },
+})
+
+const customConfig = defineConfig({
+  theme: {
+    slotRecipes: {
+      navbar: navbarSlotRecipe,
+    },
+  },
+})
+
+const config = mergeConfigs(defaultConfig, customConfig)
+
+export const system = createSystem(config)
+```
+
+Then you can use the new recipe to create a components
+
+```tsx
+const Navbar = (props) => {
+  const recipe = useSlotRecipe({ key: "navbar" })
+  const styles = recipe()
+  return (
+    <Box css={styles.root}>
+      {props.children}
+      <Box css={styles.badge} />
+      <Box css={styles.icon} />
+    </Box>
+  )
+}
+```

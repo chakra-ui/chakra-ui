@@ -1,6 +1,6 @@
 {
   "name": "@chakra-ui/props-docs",
-  "version": "3.0.0-next.16",
+  "version": "3.0.0-next.17",
   "description": "Extracts prop types for documentation purposes",
   "keywords": [
     "docs",
