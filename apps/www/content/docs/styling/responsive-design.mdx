@@ -33,8 +33,7 @@ const breakpoints = {
 
 ## Object syntax
 
-Let's say you want to change the font weight of a text on large screens, you can
-do it like this:
+Here's an example of how to change the font weight of a text on large screens
 
 ```jsx
 <Text fontWeight="medium" lg={{ fontWeight: "bold" }}>
@@ -42,7 +41,7 @@ do it like this:
 </Text>
 ```
 
-or you can use the prop based modifier
+or use the prop based modifier
 
 ```jsx
 <Text fontWeight={{ base: "medium", lg: "bold" }}>Text</Text>
@@ -66,8 +65,8 @@ breakpoints.
 ### Breakpoint range
 
 Chakra provides a way to target a range of breakpoints using the `To` notation.
-Let's say we want to apply styles between the `md` and `xl` breakpoints, we use
-the `mdToXl` property:
+To apply styles between the `md` and `xl` breakpoints, use the `mdToXl`
+property:
 
 ```jsx
 <Text fontWeight={{ mdToXl: "bold" }}>Text</Text>
@@ -77,8 +76,8 @@ the `mdToXl` property:
 
 ### Only breakpoint
 
-To target a single breakpoint, use the `Only` notation. Let's say we want to
-apply styles only in the `lg` breakpoint, we use the `lgOnly` property:
+To target a single breakpoint, use the `Only` notation. Here's an example of how
+to apply styles only in the `lg` breakpoint, using the `lgOnly` property:
 
 ```jsx
 <Text fontWeight={{ lgOnly: "bold" }}>Text</Text>
@@ -89,8 +88,7 @@ apply styles only in the `lg` breakpoint, we use the `lgOnly` property:
 Chakra provides the `hideFrom` and `hideBelow` utilities to hide elements at
 specific breakpoints.
 
-Let's say we want to hide an element from the `md` breakpoint, we use the
-`hideFrom` utility:
+To hide an element from the `md` breakpoint, use the `hideFrom` utility:
 
 ```jsx
 <Stack hideFrom="md">
@@ -98,8 +96,7 @@ Let's say we want to hide an element from the `md` breakpoint, we use the
 </Stack>
 ```
 
-Let's say we want to hide an element below the `md` breakpoint, we use the
-`hideBelow` utility:
+To hide an element below the `md` breakpoint, use the `hideBelow` utility:
 
 ```jsx
 <Stack hideBelow="md">

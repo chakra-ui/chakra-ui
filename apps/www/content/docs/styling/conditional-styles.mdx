@@ -16,8 +16,8 @@ See the list of [built-in conditions](#reference) below.
 
 ## Usage
 
-For example, to change the background color of a button when it's hovered,
-here's to do it:
+For example, here's how to change the background color of a button when it's
+hovered:
 
 ```jsx
 <Box bg="red.500" _hover={{ bg: "red.700" }}>
@@ -29,11 +29,12 @@ here's to do it:
 
 Conditional values can be nested to create complex selector rules.
 
-For example, to change the background color of an element is focused and
-hovered. Here's how to do it:
+Here's how to change the background color of an element when in focus on hover:
 
 ```jsx
-<Box bg={{ base: "red.500", _hover: { _focus: "red.700" } }}>Hocus me</Box>
+<Box bg={{ base: "red.500", _hover: { _focus: "red.700" } }}>
+  Hover & Focus me
+</Box>
 ```
 
 ### At Rules
@@ -61,7 +62,12 @@ Here's an example of how to style the hover, active, focus, and disabled states
 of an element
 
 ```jsx
-<chakra.button _hover={{ bg: "red.700" }} _active={{ bg: "red.900" }}>
+<chakra.button
+  _hover={{ bg: "red.700" }}
+  _active={{ bg: "red.900" }}
+  _focus={{ bg: "red.800" }}
+  _disabled={{ opacity: "0.5" }}
+>
   Hover me > Hover me
 </chakra.button>
 ```
@@ -74,14 +80,19 @@ list
 ```jsx
 <Box as="ul">
   {items.map((item) => (
-    <Box as="li" key={item} _first={{ color: "red.500" }}>
+    <Box
+      as="li"
+      key={item}
+      _first={{ color: "red.500" }}
+      _last={{ color: "red.800" }}
+    >
       {item}
     </Box>
   ))}
 </Box>
 ```
 
-You can also style even and odd elements using the `_even` and `_odd` modifier:
+You can also style even and odd elements using the `_even` and `_odd` modifier
 
 ```jsx
 <table>
@@ -103,7 +114,9 @@ To style the `::before` and `::after` pseudo elements of an element, use the
 `_before` and `_after` modifiers
 
 ```jsx /_before/
-<Box _before={{ content: '"👋"' }}>Hello</Box>
+<Box _before={{ content: '"👋"' }} after={{ content: '"🥂"' }}>
+  Hello
+</Box>
 ```
 
 ### Placeholder
@@ -143,7 +156,7 @@ the user's motion preference:
 ### Color Scheme
 
 The `prefers-color-scheme` media feature is used to detect if the user has
-requested the system use a light or dark color theme.
+requested the system to use a light or dark color theme.
 
 Use the `_osLight` and `_osDark` modifiers to style an element based on the
 user's color scheme preference:
@@ -215,9 +228,9 @@ This modifier works for every pseudo class modifiers like `_groupHover`,
 
 ### Sibling Selectors
 
-To style an element based on its sibling element's state or attribute, you can
-add the `peer` class to the sibling element, and use any of the `_peer*`
-modifiers on the target element.
+To style an element based on its sibling element's state or attribute, add the
+`peer` class to the sibling element, and use any of the `_peer*` modifiers on
+the target element.
 
 ```jsx /_peerHover={{ bg: "red.500" }}/
 <div>

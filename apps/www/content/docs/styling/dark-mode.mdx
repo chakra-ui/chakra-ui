@@ -1,6 +1,6 @@
 ---
 title: Dark Mode
-description: How to use dark mode in Chakra UI applications
+description: Learn how to use dark mode in Chakra UI applications
 ---
 
 Chakra relies on the `next-themes` library to provide dark mode support. During
@@ -42,10 +42,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 }
 ```
 
-To trigger the dark mode version of components, set the `dark` className on any
-parent element, or the root element of your application. This is what
-`next-themes` does under the hood.
-
 ### Adding the dark mode toggle
 
 Use the `ColorModeButton` component to toggle the color mode.
@@ -83,8 +79,8 @@ or
 
 ## Using semantic tokens
 
-To reduce the amount of code you need to write, prefer to use semantic tokens to
-style components for dark mode. This ensures the light and dark mode styles are
+To reduce the amount of code you need to write, use semantic tokens to style
+components for dark mode. This ensures the light and dark mode styles are
 applied automatically and consistently.
 
 Chakra provides a set of semantic tokens that you can use to style components
@@ -101,8 +97,8 @@ for dark mode. Learn more about
 
 ### Element specific dark mode
 
-To force dark mode, you can set the `dark` className on any parent element, or
-the root element of your application.
+To force dark mode, set the `dark` className on any parent element, or the root
+element of your application.
 
 ```tsx /className="dark"/
 <Box bg="black" className="dark">
