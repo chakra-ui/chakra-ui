@@ -4,6 +4,7 @@ export {
   SwitchLabel as Label,
   SwitchThumb as Thumb,
   SwitchIndicator as Indicator,
+  SwitchThumbIndicator as ThumbIndicator,
 } from "./switch"
 
 export type {
@@ -12,6 +13,7 @@ export type {
   SwitchLabelProps as LabelProps,
   SwitchThumbProps as ThumbProps,
   SwitchIndicatorProps as IndicatorProps,
+  SwitchThumbIndicatorProps as ThumbIndicatorProps,
 } from "./switch"
 
 export {

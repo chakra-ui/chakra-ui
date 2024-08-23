@@ -93,3 +93,22 @@ export const SwitchIndicator = forwardRef<
     </chakra.span>
   )
 })
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SwitchThumbIndicatorProps extends HTMLChakraProps<"span"> {
+  fallback?: React.ReactNode
+}
+
+export const SwitchThumbIndicator = forwardRef<
+  HTMLSpanElement,
+  SwitchThumbIndicatorProps
+>(function SwitchThumbIndicator(props, ref) {
+  const api = useSwitchContext()
+  const { fallback, children, ...rest } = props
+  return (
+    <chakra.span ref={ref} data-checked={dataAttr(api.checked)} {...rest}>
+      {api.checked ? children : fallback}
+    </chakra.span>
+  )
+})
