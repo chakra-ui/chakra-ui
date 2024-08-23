@@ -25,7 +25,9 @@ export interface TooltipRootBaseProps
   extends Assign<ArkTooltip.RootBaseProps, SlotRecipeProps<"tooltip">>,
     UnstyledProp {}
 
-export interface TooltipRootProps extends TooltipRootBaseProps {}
+export interface TooltipRootProps extends TooltipRootBaseProps {
+  children?: React.ReactNode
+}
 
 export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root)
 

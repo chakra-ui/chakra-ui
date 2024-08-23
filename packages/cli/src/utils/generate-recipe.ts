@@ -14,7 +14,7 @@ export async function generateRecipe(sys: SystemContext) {
     const upperName = capitalize(key)
 
     const str = `
-        export interface ${upperName}VariantProps {
+        export interface ${upperName}Variant {
           ${Object.keys(variantKeyMap)
             .map((key) => {
               const def = Reflect.get(recipe.defaultVariants ?? {}, key)
@@ -25,12 +25,20 @@ export async function generateRecipe(sys: SystemContext) {
               const values = variantKeyMap[key]
 
               if (values.every(isBooleanValue)) {
-                return `${jsDoc}${key}?: ConditionalValue<boolean>`
+                return `${jsDoc}${key}?: boolean`
               }
 
-              return `${jsDoc}${key}?: ConditionalValue<${unionType(values)}>`
+              return `${jsDoc}${key}?: ${unionType(values)}`
             })
             .join("\n")}
+        }
+
+        export type ${upperName}VariantProps = {
+          [K in keyof ${upperName}Variant]?: ConditionalValue<${upperName}Variant[K]> | undefined
+        }
+
+        export type ${upperName}VariantMap = {
+          [K in keyof ${upperName}Variant]: Array<${upperName}Variant[K]>
         }
         `
     return str
@@ -42,10 +50,10 @@ export async function generateRecipe(sys: SystemContext) {
       ${
         recipeKeys.length
           ? Object.keys(sysRecipes)
-              .map(
-                (key) =>
-                  `${key}: SystemRecipeFn<${capitalize(key)}VariantProps>`,
-              )
+              .map((key) => {
+                const upperName = capitalize(key)
+                return `${key}: SystemRecipeFn<${upperName}VariantProps, ${upperName}VariantMap>`
+              })
               .join("\n")
           : "[key: string]: SystemRecipeFn<any>"
       }
@@ -65,7 +73,7 @@ export async function generateRecipe(sys: SystemContext) {
         
         export type ${upperName}Slot = ${unionType(recipe.slots ?? [])}
         
-        export interface ${upperName}VariantProps {
+        export interface ${upperName}Variant {
           ${Object.keys(variantKeyMap)
             .map((key) => {
               const def = Reflect.get(recipe.defaultVariants ?? {}, key)
@@ -76,12 +84,20 @@ export async function generateRecipe(sys: SystemContext) {
               const values = variantKeyMap[key]
 
               if (values.every(isBooleanValue)) {
-                return `${jsDoc}${key}?: ConditionalValue<boolean>`
+                return `${jsDoc}${key}?: boolean`
               }
 
-              return `${jsDoc}${key}?: ConditionalValue<${unionType(values)}>`
+              return `${jsDoc}${key}?: ${unionType(values)}`
             })
             .join("\n")}
+        }
+
+        export type ${upperName}VariantProps = {
+          [K in keyof ${upperName}Variant]?: ConditionalValue<${upperName}Variant[K]> | undefined
+        }
+
+        export type ${upperName}VariantMap = {
+          [K in keyof ${upperName}Variant]: Array<${upperName}Variant[K]>
         }
         `
     return str
@@ -92,16 +108,15 @@ export async function generateRecipe(sys: SystemContext) {
       ${
         slotRecipeKeys.length
           ? slotRecipeKeys
-              .map(
-                (key) =>
-                  `${key}: SystemSlotRecipeFn<${capitalize(
-                    key,
-                  )}Slot, ${capitalize(key)}VariantProps>`,
-              )
+              .map((key) => {
+                const upperName = capitalize(key)
+                return `${key}: SystemSlotRecipeFn<${upperName}Slot, ${upperName}VariantProps, ${upperName}VariantMap>`
+              })
               .join("\n")
           : "[key: string]: SystemSlotRecipeFn<string, any>"
       }
      }
+
      export interface ConfigRecipeSlots {
        ${
          slotRecipeKeys.length
@@ -125,9 +140,11 @@ export async function generateRecipe(sys: SystemContext) {
       export type SlotRecipeRecord<T, K> = T extends keyof ConfigRecipeSlots
         ? Record<ConfigRecipeSlots[T], K>
         : Record<string, K>
+      
       export type SlotRecipeProps<T> = T extends keyof ConfigSlotRecipes
         ? ConfigSlotRecipes[T]["__type"] & { recipe?: SlotRecipeDefinition }
         : { recipe?: SlotRecipeDefinition }
+      
       export type RecipeProps<T> = T extends keyof ConfigRecipes
         ? ConfigRecipes[T]["__type"] & { recipe?: RecipeDefinition }
         : { recipe?: RecipeDefinition }
