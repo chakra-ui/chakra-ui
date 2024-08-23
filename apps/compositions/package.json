@@ -23,7 +23,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-frame-component": "5.2.7",
-    "react-hook-form": "7.52.1",
+    "react-hook-form": "7.52.2",
     "react-icons": "5.2.1",
     "react-lorem-ipsum": "1.4.10",
     "react-textarea-autosize": "^8.5.3"
