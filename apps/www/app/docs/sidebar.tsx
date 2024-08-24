@@ -5,9 +5,11 @@ import { useRoute } from "@/lib/use-route"
 import {
   Box,
   BoxProps,
+  HStack,
   IconButton,
   Portal,
   Stack,
+  Text,
   chakra,
 } from "@chakra-ui/react"
 import {
@@ -19,8 +21,9 @@ import {
   DrawerTrigger,
 } from "compositions/ui/drawer"
 import { usePathname } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { Fragment, useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+import { ChevronRightIcon } from "../../../../packages/react/src/components/icons"
 
 export const SidebarStart = (props: BoxProps) => {
   const route = useRoute()
@@ -105,6 +108,41 @@ const MobileMenuButton = chakra("button", {
   },
 })
 
+export const MobileMenuBreadcrumbs = () => {
+  const route = useRoute()
+
+  const crumbs = route
+    .getSidebarNavItems()
+    .map((group) => {
+      const item = group.items.find((item) => item.url === route.currentUrl)
+      return item ? [group.title, item.title] : null
+    })
+    .filter(Boolean)[0]
+
+  return (
+    <HStack gap="1">
+      {crumbs?.map((crumb, index, arr) => (
+        <Fragment key={index}>
+          <Text
+            as="span"
+            textStyle="sm"
+            color="fg.muted"
+            fontWeight="medium"
+            textTransform="capitalize"
+          >
+            {crumb}
+          </Text>
+          {arr.length - 1 !== index && (
+            <Box color="fg.subtle" boxSize="4" asChild>
+              <ChevronRightIcon />
+            </Box>
+          )}
+        </Fragment>
+      ))}
+    </HStack>
+  )
+}
+
 export const MobileSidebarNav = () => {
   const [isOpen, setIsOpen] = useState(false)
   const route = useRoute()
@@ -131,7 +169,7 @@ export const MobileSidebarNav = () => {
       <DrawerTrigger asChild>
         <MobileMenuButton aria-label="Open menu">
           <AiOutlineMenu />
-          Menu
+          <MobileMenuBreadcrumbs />
         </MobileMenuButton>
       </DrawerTrigger>
       <Portal>
