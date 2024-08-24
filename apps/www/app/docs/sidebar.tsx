@@ -5,13 +5,13 @@ import { useRoute } from "@/lib/use-route"
 import {
   Box,
   BoxProps,
-  HStack,
   IconButton,
   Portal,
   Stack,
   Text,
   chakra,
 } from "@chakra-ui/react"
+import { BreadcrumbRoot } from "compositions/ui/breadcrumb"
 import {
   DrawerBackdrop,
   DrawerBody,
@@ -21,7 +21,7 @@ import {
   DrawerTrigger,
 } from "compositions/ui/drawer"
 import { usePathname } from "next/navigation"
-import { Fragment, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 import { ChevronRightIcon } from "../../../../packages/react/src/components/icons"
 
@@ -120,20 +120,9 @@ export const MobileMenuBreadcrumbs = () => {
     .filter(Boolean)[0]
 
   return (
-    <HStack gap="1">
-      {crumbs?.map((crumb, index, arr) => (
-        <Fragment key={index}>
-          <Text as="span" textStyle="sm" textTransform="capitalize">
-            {crumb}
-          </Text>
-          {arr.length - 1 !== index && (
-            <Box boxSize="4" asChild>
-              <ChevronRightIcon />
-            </Box>
-          )}
-        </Fragment>
-      ))}
-    </HStack>
+    <BreadcrumbRoot separator={<ChevronRightIcon />}>
+      {crumbs?.map((crumb, index) => <Text key={index}>{crumb}</Text>)}
+    </BreadcrumbRoot>
   )
 }
 
