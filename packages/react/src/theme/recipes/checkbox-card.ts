@@ -1,8 +1,9 @@
+import { checkboxCardAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { checkmarkRecipe } from "./checkmark"
 
 export const checkboxCardSlotRecipe = defineSlotRecipe({
-  slots: ["root", "control", "label", "addon", "indicator"],
+  slots: checkboxCardAnatomy.keys(),
   className: "chakra-checkbox-card",
   base: {
     root: {
@@ -60,7 +61,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       sm: {
         root: {
           rounded: "md",
-          fontSize: "xs",
+          textStyle: "xs",
         },
         control: {
           padding: "3",
@@ -76,7 +77,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       md: {
         root: {
           rounded: "md",
-          fontSize: "sm",
+          textStyle: "sm",
         },
         control: {
           padding: "4",
@@ -93,7 +94,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       lg: {
         root: {
           rounded: "lg",
-          fontSize: "md",
+          textStyle: "md",
         },
         control: {
           padding: "4",

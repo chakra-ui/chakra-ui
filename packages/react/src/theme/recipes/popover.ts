@@ -11,7 +11,7 @@ export const popoverSlotRecipe = defineSlotRecipe({
       position: "relative",
       display: "flex",
       flexDirection: "column",
-      fontSize: "sm",
+      textStyle: "sm",
       "--popover-bg": "colors.bg.panel",
       bg: "var(--popover-bg)",
       shadow: "md",

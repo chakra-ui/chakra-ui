@@ -52,7 +52,7 @@ export const actionBarSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       gap: "2",
-      fontSize: "sm",
+      textStyle: "sm",
       paddingX: "4",
       paddingY: "1",
       borderRadius: "md",

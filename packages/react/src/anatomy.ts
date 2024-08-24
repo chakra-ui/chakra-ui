@@ -1,4 +1,8 @@
-import { createAnatomy } from "@ark-ui/anatomy"
+import {
+  dialogAnatomy as arkDialogAnatomy,
+  createAnatomy,
+} from "@ark-ui/anatomy"
+import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
 
 export const alertAnatomy = createAnatomy("alert").parts(
   "title",
@@ -16,6 +20,14 @@ export const toastAnatomy = createAnatomy("toast").parts(
   "closeTrigger",
   "actionTrigger",
 )
+
+export const emptyStateAnatomy = createAnatomy("empty-state", [
+  "root",
+  "content",
+  "indicator",
+  "title",
+  "description",
+])
 
 export const breadcrumbAnatomy = createAnatomy("breadcrumb").parts(
   "link",
@@ -42,6 +54,14 @@ export const editableAnatomy = createAnatomy("editable").parts(
 )
 
 export const listAnatomy = createAnatomy("list").parts("root", "item", "icon")
+
+export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
+  "root",
+  "control",
+  "label",
+  "addon",
+  "indicator",
+])
 
 export const nativeSelectAnatomy = createAnatomy("select").parts(
   "root",
@@ -116,3 +136,12 @@ export const timelineAnatomy = createAnatomy("timeline").parts(
   "indicator",
   "connector",
 )
+
+export const drawerAnatomy = arkDialogAnatomy.extendWith(
+  "header",
+  "body",
+  "footer",
+  "backdrop",
+)
+
+export const fieldAnatomy = arkFieldAnatomy.extendWith("requiredIndicator")

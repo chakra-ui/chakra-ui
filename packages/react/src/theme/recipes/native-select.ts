@@ -64,56 +64,56 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
     size: {
       lg: {
         field: {
-          fontSize: "md",
+          textStyle: "md",
           ps: "4",
           pe: "8",
           borderRadius: "md",
           height: "12",
         },
         indicator: {
-          fontSize: "xl",
+          textStyle: "xl",
           insetEnd: "3",
         },
       },
 
       md: {
         field: {
-          fontSize: "sm",
+          textStyle: "sm",
           ps: "3",
           pe: "8",
           borderRadius: "md",
           height: "10",
         },
         indicator: {
-          fontSize: "lg",
+          textStyle: "lg",
           insetEnd: "2",
         },
       },
 
       sm: {
         field: {
-          fontSize: "sm",
+          textStyle: "sm",
           ps: "3",
           pe: "8",
           borderRadius: "sm",
           height: "8",
         },
         indicator: {
-          fontSize: "md",
+          textStyle: "md",
           insetEnd: "2",
         },
       },
 
       xs: {
         field: {
-          fontSize: "xs",
+          textStyle: "xs",
           ps: "2",
           pe: "6",
           borderRadius: "sm",
           height: "6",
         },
         indicator: {
-          fontSize: "sm",
+          textStyle: "sm",
           insetEnd: "1.5",
         },
       },

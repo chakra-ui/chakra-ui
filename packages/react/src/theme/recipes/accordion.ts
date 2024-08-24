@@ -99,7 +99,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
           "--accordion-padding-x": "spacing.3",
           "--accordion-padding-y": "spacing.1.5",
           "--accordion-radius": "radii.sm",
-          fontSize: "sm",
+          textStyle: "sm",
         },
         itemTrigger: {
           paddingY: "var(--accordion-padding-y)",
@@ -110,7 +110,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
           "--accordion-padding-x": "spacing.4",
           "--accordion-padding-y": "spacing.2",
           "--accordion-radius": "radii.md",
-          fontSize: "sm",
+          textStyle: "sm",
         },
         itemTrigger: {
           paddingY: "var(--accordion-padding-y)",
@@ -121,7 +121,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
           "--accordion-padding-x": "spacing.6",
           "--accordion-padding-y": "spacing.3",
           "--accordion-radius": "radii.md",
-          fontSize: "md",
+          textStyle: "md",
         },
         itemTrigger: {
           paddingY: "var(--accordion-padding-y)",

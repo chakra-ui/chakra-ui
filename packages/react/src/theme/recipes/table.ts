@@ -29,7 +29,7 @@ export const tableSlotRecipe = defineSlotRecipe({
     },
     caption: {
       fontWeight: "medium",
-      fontSize: "xs",
+      textStyle: "xs",
     },
     footer: {
       fontWeight: "medium",
@@ -124,7 +124,7 @@ export const tableSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         root: {
-          fontSize: "sm",
+          textStyle: "sm",
         },
         columnHeader: {
           px: "2",
@@ -138,7 +138,7 @@ export const tableSlotRecipe = defineSlotRecipe({
 
       md: {
         root: {
-          fontSize: "sm",
+          textStyle: "sm",
         },
         columnHeader: {
           px: "3",
@@ -152,7 +152,7 @@ export const tableSlotRecipe = defineSlotRecipe({
 
       lg: {
         root: {
-          fontSize: "md",
+          textStyle: "md",
         },
         columnHeader: {
           px: "4",

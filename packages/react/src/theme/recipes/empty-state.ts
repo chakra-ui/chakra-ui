@@ -1,7 +1,8 @@
+import { emptyStateAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const emptyStateSlotRecipe = defineSlotRecipe({
-  slots: ["root", "content", "indicator", "title", "description"],
+  slots: emptyStateAnatomy.keys(),
   className: "chakra-empty-state",
   base: {
     root: {
@@ -45,7 +46,7 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
           gap: "6",
         },
         indicator: {
-          fontSize: "4xl",
+          textStyle: "4xl",
         },
       },
       lg: {
@@ -57,7 +58,7 @@ export const emptyStateSlotRecipe = defineSlotRecipe({
           gap: "8",
         },
         indicator: {
-          fontSize: "6xl",
+          textStyle: "6xl",
         },
       },
     },

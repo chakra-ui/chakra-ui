@@ -7,7 +7,7 @@ export const progressSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       colorPalette: "gray",
-      fontSize: "sm",
+      textStyle: "sm",
       position: "relative",
     },
     track: {
@@ -37,7 +37,7 @@ export const progressSlotRecipe = defineSlotRecipe({
       fontWeight: "medium",
     },
     valueText: {
-      fontSize: "xs",
+      textStyle: "xs",
       lineHeight: "1",
       fontWeight: "semibold",
     },

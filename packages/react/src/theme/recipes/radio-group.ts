@@ -47,40 +47,40 @@ export const radioGroupSlotRecipe = defineSlotRecipe({
     size: {
       sm: {
         item: {
-          fontSize: "xs",
+          textStyle: "xs",
           gap: "0.35rem",
         },
         itemControl: {
           boxSize: "3",
         },
         label: {
-          fontSize: "xs",
+          textStyle: "xs",
         },
       },
 
       md: {
         item: {
-          fontSize: "sm",
+          textStyle: "sm",
           gap: "0.5rem",
         },
         itemControl: {
           boxSize: "4",
         },
         label: {
-          fontSize: "sm",
+          textStyle: "sm",
         },
       },
 
       lg: {
         item: {
-          fontSize: "md",
+          textStyle: "md",
           gap: "0.5rem",
         },
         itemControl: {
           boxSize: "5",
         },
         label: {
-          fontSize: "md",
+          textStyle: "md",
         },
       },
     },

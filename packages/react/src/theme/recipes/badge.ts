@@ -39,7 +39,7 @@ export const badgeRecipe = defineRecipe({
     },
     size: {
       xs: {
-        fontSize: "2xs",
+        textStyle: "2xs",
         borderRadius: "xs",
         px: "1",
         _empty: {
@@ -47,7 +47,7 @@ export const badgeRecipe = defineRecipe({
         },
       },
       sm: {
-        fontSize: "xs",
+        textStyle: "xs",
         borderRadius: "sm",
         px: "1.5",
         _empty: {
@@ -55,7 +55,7 @@ export const badgeRecipe = defineRecipe({
         },
       },
       md: {
-        fontSize: "sm",
+        textStyle: "sm",
         borderRadius: "sm",
         px: "2",
         _empty: {
@@ -63,7 +63,7 @@ export const badgeRecipe = defineRecipe({
         },
       },
       lg: {
-        fontSize: "sm",
+        textStyle: "sm",
         borderRadius: "sm",
         px: "2",
         py: "0.5",

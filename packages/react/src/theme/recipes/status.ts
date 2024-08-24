@@ -25,13 +25,19 @@ export const statusSlotRecipe = defineSlotRecipe({
   variants: {
     size: {
       sm: {
-        root: { fontSize: "xs" },
+        root: {
+          textStyle: "xs",
+        },
       },
       md: {
-        root: { fontSize: "sm" },
+        root: {
+          textStyle: "sm",
+        },
       },
       lg: {
-        root: { fontSize: "md" },
+        root: {
+          textStyle: "md",
+        },
       },
     },
   },
