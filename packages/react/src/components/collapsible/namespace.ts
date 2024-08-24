@@ -1,5 +1,6 @@
 export {
   CollapsibleRoot as Root,
+  CollapsibleRootPropsProvider as RootPropsProvider,
   CollapsibleTrigger as Trigger,
   CollapsibleContent as Content,
 } from "./collapsible"

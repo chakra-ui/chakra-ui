@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCollapsibleStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "collapsible" })
 
 export { useCollapsibleStyles }
@@ -32,6 +33,9 @@ export const CollapsibleRoot = withProvider<
   HTMLDivElement,
   CollapsibleRootProps
 >(ArkCollapsible.Root, "root", { forwardAsChild: true })
+
+export const CollapsibleRootPropsProvider =
+  PropsProvider as React.Provider<CollapsibleRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

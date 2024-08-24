@@ -53,7 +53,11 @@ export const editableAnatomy = createAnatomy("editable").parts(
   "textarea",
 )
 
-export const listAnatomy = createAnatomy("list").parts("root", "item", "icon")
+export const listAnatomy = createAnatomy("list").parts(
+  "root",
+  "item",
+  "indicator",
+)
 
 export const checkboxCardAnatomy = createAnatomy("checkbox-card", [
   "root",

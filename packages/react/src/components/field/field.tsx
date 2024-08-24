@@ -19,6 +19,7 @@ const {
   withContext,
   useStyles: useFieldStyles,
   useClassNames,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "field" })
 
 export { useFieldStyles }
@@ -37,6 +38,9 @@ export const FieldRoot = withProvider<HTMLDivElement, FieldRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const FieldRootPropsProvider =
+  PropsProvider as React.Provider<FieldRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

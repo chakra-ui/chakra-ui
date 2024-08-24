@@ -13,6 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useEmptyStateStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "emptyState" })
 
 export { useEmptyStateStyles }
@@ -30,6 +31,9 @@ export const EmptyStateRoot = withProvider<HTMLDivElement, EmptyStateRootProps>(
   "div",
   "root",
 )
+
+export const EmptyStateRootPropsProvider =
+  PropsProvider as React.Provider<EmptyStateRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

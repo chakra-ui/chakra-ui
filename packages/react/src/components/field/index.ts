@@ -1,5 +1,6 @@
 export {
   FieldRoot,
+  FieldRootPropsProvider,
   FieldLabel,
   FieldHelperText,
   FieldErrorText,

@@ -8,14 +8,21 @@ export const listSlotRecipe = defineSlotRecipe({
     root: {
       display: "flex",
       flexDirection: "column",
+      gap: "var(--list-gap)",
+      "& :where(ul, ol)": {
+        marginTop: "var(--list-gap)",
+      },
     },
     item: {
       whiteSpace: "normal",
+      display: "list-item",
     },
-    icon: {
+    indicator: {
       marginEnd: "2",
-      display: "inline",
-      verticalAlign: "text-bottom",
+      minHeight: "1lh",
+      flexShrink: 0,
+      display: "inline-block",
+      verticalAlign: "middle",
     },
   },
 
@@ -23,10 +30,10 @@ export const listSlotRecipe = defineSlotRecipe({
     variant: {
       marker: {
         root: {
-          listStyleType: "disc",
+          listStyle: "revert",
+          listStylePosition: "inside",
         },
         item: {
-          display: "list-item",
           _marker: {
             color: "fg.disabled",
           },
@@ -37,15 +44,24 @@ export const listSlotRecipe = defineSlotRecipe({
         item: {
           alignItems: "flex-start",
           display: "inline-flex",
-          "&:has(svg)": {
-            alignItems: "center",
-          },
         },
+      },
+    },
+
+    align: {
+      center: {
+        item: { alignItems: "center" },
+      },
+      start: {
+        item: { alignItems: "flex-start" },
+      },
+      end: {
+        item: { alignItems: "flex-end" },
       },
     },
   },
 
   defaultVariants: {
-    variant: "plain",
+    variant: "marker",
   },
 })

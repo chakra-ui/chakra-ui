@@ -11,10 +11,9 @@ const { withContext, PropsProvider } = createRecipeContext({
   key: "link",
 })
 
-export interface LinkProps
-  extends HTMLChakraProps<"a">,
-    RecipeProps<"link">,
-    UnstyledProp {}
+export interface LinkBaseProps extends RecipeProps<"link">, UnstyledProp {}
+
+export interface LinkProps extends HTMLChakraProps<"a", LinkBaseProps> {}
 
 export const Link = withContext<HTMLAnchorElement, LinkProps>("a")
 

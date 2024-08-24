@@ -1,8 +1,12 @@
-export { ListRoot as Root } from "./list-root"
-export type { ListRootProps as RootProps } from "./list-root"
+export {
+  ListIndicator as Indicator,
+  ListItem as Item,
+  ListRoot as Root,
+  ListRootPropsProvider as RootPropsProvider,
+} from "./list"
 
-export { ListItem as Item } from "./list-item"
-export type { ListItemProps as ItemProps } from "./list-item"
-
-export { ListIcon as Icon } from "./list-icon"
-export type { ListIconProps as IconProps } from "./list-icon"
+export type {
+  ListIndicator as IndicatorProps,
+  ListItemProps as ItemProps,
+  ListRootProps as RootProps,
+} from "./list"

@@ -59,6 +59,7 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     strict: false,
     name: `${contextName}PropsContext`,
     providerName: `${contextName}PropsContext`,
+    defaultValue: {},
   })
 
   function useRecipeResult(props: any) {

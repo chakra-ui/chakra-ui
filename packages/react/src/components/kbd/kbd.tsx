@@ -11,10 +11,9 @@ const { withContext, PropsProvider } = createRecipeContext({
   key: "kbd",
 })
 
-export interface KbdProps
-  extends HTMLChakraProps<"kbd">,
-    RecipeProps<"kbd">,
-    UnstyledProp {}
+export interface KbdBaseProps extends RecipeProps<"kbd">, UnstyledProp {}
+
+export interface KbdProps extends HTMLChakraProps<"kbd", KbdBaseProps> {}
 
 export const Kbd = withContext<HTMLElement, KbdProps>("kbd")
 
