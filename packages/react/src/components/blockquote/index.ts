@@ -1,5 +1,6 @@
 export {
   BlockquoteRoot,
+  BlockquoteRootPropsProvider,
   BlockquoteContent,
   BlockquoteCaption,
   BlockquoteIcon,

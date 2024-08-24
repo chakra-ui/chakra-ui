@@ -1,5 +1,6 @@
 export {
   TableRoot,
+  TableRootPropsProvider,
   TableCaption,
   TableScrollArea,
   TableColumnHeader,

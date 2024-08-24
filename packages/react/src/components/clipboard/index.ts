@@ -2,6 +2,7 @@ export {
   ClipboardControl,
   ClipboardIndicator,
   ClipboardRoot,
+  ClipboardRootPropsProvider,
   ClipboardTrigger,
   ClipboardInput,
   ClipboardLabel,

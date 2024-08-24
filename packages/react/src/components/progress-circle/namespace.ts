@@ -1,5 +1,6 @@
 export {
   ProgressCircleRoot as Root,
+  ProgressCircleRootPropsProvider as RootPropsProvider,
   ProgressCircleLabel as Label,
   ProgressCircleCircle as Circle,
   ProgressCircleTrack as Track,

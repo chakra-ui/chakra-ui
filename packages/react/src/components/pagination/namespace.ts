@@ -4,6 +4,7 @@ export {
   PaginationNextTrigger as NextTrigger,
   PaginationPrevTrigger as PrevTrigger,
   PaginationRoot as Root,
+  PaginationRootPropsProvider as RootPropsProvider,
 } from "./pagination"
 
 export type {

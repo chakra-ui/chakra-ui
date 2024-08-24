@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useClipboardStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "clipboard" })
 
 export { useClipboardStyles }
@@ -33,6 +34,9 @@ export const ClipboardRoot = withProvider<HTMLDivElement, ClipboardRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const ClipboardRootPropsProvider =
+  PropsProvider as React.Provider<ClipboardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

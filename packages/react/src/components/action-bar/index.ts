@@ -1,27 +1,28 @@
 export {
-  ActionBarRoot,
+  ActionBarCloseTrigger,
   ActionBarContent,
   ActionBarPositioner,
-  ActionBarSeparator,
+  ActionBarRoot,
+  ActionBarRootPropsProvider,
   ActionBarSelectionTrigger,
-  ActionBarCloseTrigger,
+  ActionBarSeparator,
   useActionBarStyles,
 } from "./action-bar"
 
 export type {
-  ActionBarRootProps,
+  ActionBarCloseTriggerProps,
   ActionBarContentProps,
   ActionBarPositionerProps,
-  ActionBarSeparatorProps,
+  ActionBarRootProps,
   ActionBarSelectionTriggerProps,
-  ActionBarCloseTriggerProps,
+  ActionBarSeparatorProps,
 } from "./action-bar"
 
 export {
   PopoverContext as ActionBarContext,
+  PopoverRootProvider as ActionBarRootProvider,
   usePopover as useActionBar,
   usePopoverContext as useActionBarContext,
-  PopoverRootProvider as ActionBarRootProvider,
 } from "@ark-ui/react/popover"
 
 export * as ActionBar from "./namespace"

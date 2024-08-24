@@ -5,7 +5,7 @@ import type {
 } from "@chakra-ui/react"
 import { createRecipeContext, defineRecipe } from "@chakra-ui/react"
 
-const button = defineRecipe({
+const buttonRecipe = defineRecipe({
   className: "button",
   base: {
     padding: "10px",
@@ -22,14 +22,15 @@ const button = defineRecipe({
   },
 })
 
+const { withContext } = createRecipeContext({
+  recipe: buttonRecipe,
+})
+
 interface ButtonProps
-  extends HTMLChakraProps<"button", RecipeVariantProps<typeof button>>,
+  extends HTMLChakraProps<"button", RecipeVariantProps<typeof buttonRecipe>>,
     UnstyledProp {}
 
-const Button = createRecipeContext<HTMLButtonElement, ButtonProps>(
-  "button",
-  button,
-)
+const Button = withContext<HTMLButtonElement, ButtonProps>("button")
 
 export const SystemInlineRecipe = () => {
   return <Button bold>Welcome</Button>

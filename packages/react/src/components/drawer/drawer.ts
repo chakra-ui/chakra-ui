@@ -15,6 +15,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useDrawerStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "drawer" })
 
 export { useDrawerStyles }
@@ -32,6 +33,9 @@ export interface DrawerRootProps extends DrawerRootBaseProps {
 export const DrawerRoot = withRootProvider<DrawerRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
 })
+
+export const DrawerRootPropsProvider =
+  PropsProvider as React.Provider<DrawerRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

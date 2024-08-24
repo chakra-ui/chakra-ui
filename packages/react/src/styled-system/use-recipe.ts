@@ -7,7 +7,7 @@ import type { RecipeDefinition, SystemRecipeFn } from "./recipe.types"
 
 export type RecipeKey = keyof ConfigRecipes | (string & {})
 
-interface UseRecipeOptions<K extends RecipeKey> {
+export interface UseRecipeOptions<K extends RecipeKey> {
   key?: K
   recipe?: RecipeDefinition
 }

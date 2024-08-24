@@ -10,6 +10,7 @@ export {
   PopoverHeader,
   PopoverPositioner,
   PopoverRoot,
+  PopoverRootPropsProvider,
   PopoverTitle,
   PopoverTrigger,
   usePopoverStyles,

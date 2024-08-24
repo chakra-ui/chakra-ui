@@ -18,6 +18,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAvatarStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "avatar" })
 
 export { useAvatarStyles }
@@ -36,6 +37,9 @@ export const AvatarRoot = withProvider<HTMLDivElement, AvatarRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const AvatarRootPropsProvider =
+  PropsProvider as React.Provider<AvatarRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

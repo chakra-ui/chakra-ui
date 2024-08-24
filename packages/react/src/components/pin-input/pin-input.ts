@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: usePinInputStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "pinInput" })
 
 export { usePinInputStyles }
@@ -33,6 +34,9 @@ export const PinInputRoot = withProvider<HTMLDivElement, PinInputRootProps>(
   "root",
   { forwardProps: ["mask"] },
 )
+
+export const PinInputRootPropsProvider =
+  PropsProvider as React.Provider<PinInputRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

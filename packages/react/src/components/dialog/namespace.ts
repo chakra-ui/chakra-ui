@@ -5,6 +5,7 @@ export {
   DialogContent as Content,
   DialogFooter as Footer,
   DialogRoot as Root,
+  DialogRootPropsProvider as RootPropsProvider,
   DialogTitle as Title,
   DialogTrigger as Trigger,
   DialogHeader as Header,

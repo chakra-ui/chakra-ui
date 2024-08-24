@@ -1,5 +1,6 @@
 export {
   SliderRoot as Root,
+  SliderRootPropsProvider as RootPropsProvider,
   SliderMarker as Marker,
   SliderThumb as Thumb,
   SliderValueText as ValueText,

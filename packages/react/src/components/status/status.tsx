@@ -13,6 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useStatusStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "status" })
 
 export { useStatusStyles }
@@ -30,6 +31,9 @@ export const StatusRoot = withProvider<HTMLDivElement, StatusRootProps>(
   "div",
   "root",
 )
+
+export const StatusRootPropsProvider =
+  PropsProvider as React.Provider<StatusRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

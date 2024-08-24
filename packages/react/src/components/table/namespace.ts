@@ -8,6 +8,7 @@ export {
   TableFooter as Footer,
   TableHeader as Header,
   TableRoot as Root,
+  TableRootPropsProvider as RootPropsProvider,
   TableRow as Row,
   TableScrollArea as ScrollArea,
 } from "./table"

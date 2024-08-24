@@ -14,6 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useStatStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "stat" })
 
 export { useStatStyles }
@@ -31,6 +32,9 @@ export const StatRoot = withProvider<HTMLDListElement, StatRootProps>(
   "dl",
   "root",
 )
+
+export const StatRootPropsProvider =
+  PropsProvider as React.Provider<StatRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

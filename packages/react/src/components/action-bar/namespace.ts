@@ -5,6 +5,7 @@ export {
   ActionBarSeparator as Separator,
   ActionBarSelectionTrigger as SelectionTrigger,
   ActionBarCloseTrigger as CloseTrigger,
+  ActionBarRootPropsProvider as RootPropsProvider,
   useActionBarStyles,
 } from "./action-bar"
 

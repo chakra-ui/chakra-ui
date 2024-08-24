@@ -4,7 +4,9 @@ export {
   TabsIndicator,
   TabsList,
   TabsRoot,
+  TabsRootPropsProvider,
   TabsTrigger,
+  useTabsStyles,
 } from "./tabs"
 
 export type {
@@ -15,8 +17,6 @@ export type {
   TabsRootProps,
   TabsTriggerProps,
 } from "./tabs"
-
-export { useTabsStyles } from "./tabs"
 
 export * as Tabs from "./namespace"
 

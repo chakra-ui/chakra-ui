@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAccordionStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "accordion" })
 
 export { useAccordionStyles }
@@ -33,6 +34,9 @@ export const AccordionRoot = withProvider<HTMLDivElement, AccordionRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const AccordionRootPropsProvider =
+  PropsProvider as React.Provider<ArkAccordion.RootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,15 +1,15 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
-import { forwardRef } from "react"
 import {
-  EMPTY_SLOT_STYLES,
   type HTMLChakraProps,
   type RecipeProps,
   type UnstyledProp,
-  chakra,
-  useRecipe,
+  createRecipeContext,
 } from "../../styled-system"
+
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "separator",
+})
 
 export interface SeparatorBaseProps
   extends RecipeProps<"separator">,
@@ -18,20 +18,9 @@ export interface SeparatorBaseProps
 export interface SeparatorProps
   extends HTMLChakraProps<"span", SeparatorBaseProps> {}
 
-export const Separator = forwardRef<HTMLSpanElement, SeparatorProps>(
-  function Separator({ unstyled, ...props }, ref) {
-    const recipe = useRecipe({ key: "separator", recipe: props.recipe })
-    const [variantProps, localProps] = recipe.splitVariantProps(props)
-    const styles = unstyled ? EMPTY_SLOT_STYLES : recipe(variantProps)
+export const Separator = withContext<HTMLSpanElement, SeparatorProps>("span", {
+  defaultProps: { role: "separator" },
+})
 
-    return (
-      <chakra.span
-        ref={ref}
-        role="separator"
-        {...localProps}
-        css={[styles, props.css]}
-        className={cx("chakra-separator", props.className)}
-      />
-    )
-  },
-)
+export const SeparatorPropsProvider =
+  PropsProvider as React.Provider<SeparatorBaseProps>

@@ -3,6 +3,7 @@ export {
   StatHelpText as HelpText,
   StatLabel as Label,
   StatRoot as Root,
+  StatRootPropsProvider as RootPropsProvider,
   StatUpIndicator as UpIndicator,
   StatValueText as ValueText,
   StatValueUnit as ValueUnit,

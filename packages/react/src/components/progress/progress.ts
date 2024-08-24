@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useProgressStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "progress" })
 
 export { useProgressStyles }
@@ -32,6 +33,9 @@ export const ProgressRoot = withProvider<HTMLDivElement, ProgressRootProps>(
   ArkProgress.Root,
   "root",
 )
+
+export const ProgressRootPropsProvider =
+  PropsProvider as React.Provider<ProgressRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

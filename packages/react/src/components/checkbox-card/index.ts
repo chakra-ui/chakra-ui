@@ -4,6 +4,7 @@ export {
   CheckboxCardIndicator,
   CheckboxCardLabel,
   CheckboxCardRoot,
+  CheckboxCardRootPropsProvider,
   useCheckboxCardStyles,
 } from "./checkbox-card"
 

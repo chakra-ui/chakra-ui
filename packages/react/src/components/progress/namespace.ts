@@ -1,5 +1,6 @@
 export {
   ProgressRoot as Root,
+  ProgressRootPropsProvider as RootPropsProvider,
   ProgressLabel as Label,
   ProgressRange as Range,
   ProgressTrack as Track,

@@ -1,5 +1,6 @@
 export {
   CheckboxCardRoot as Root,
+  CheckboxCardRootPropsProvider as RootPropsProvider,
   CheckboxCardLabel as Label,
   CheckboxCardControl as Control,
   CheckboxCardIndicator as Indicator,

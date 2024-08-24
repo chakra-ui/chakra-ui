@@ -2,6 +2,7 @@ export {
   StatUpIndicator,
   StatDownIndicator,
   StatRoot,
+  StatRootPropsProvider,
   StatValueText,
   StatValueUnit,
   StatHelpText,

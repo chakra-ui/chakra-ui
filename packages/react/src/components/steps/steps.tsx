@@ -18,6 +18,7 @@ const {
   withProvider,
   withContext,
   useStyles: useStepsStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "steps" })
 
 export { useStepsStyles }
@@ -36,6 +37,9 @@ export const StepsRoot = withProvider<HTMLDivElement, StepsRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const StepsRootPropsProvider =
+  PropsProvider as React.Provider<StepsRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

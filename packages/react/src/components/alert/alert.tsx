@@ -29,6 +29,7 @@ const {
   withProvider,
   withContext,
   useStyles: useAlertStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "alert" })
 
 export { useAlertStyles }
@@ -57,6 +58,9 @@ export const AlertRoot = withProvider<HTMLDivElement, AlertRootProps>(
     },
   },
 )
+
+export const AlertRootPropsProvider =
+  PropsProvider as React.Provider<AlertRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

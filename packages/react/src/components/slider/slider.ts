@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSliderStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "slider" })
 
 export { useSliderStyles }
@@ -33,6 +34,9 @@ export const SliderRoot = withProvider<HTMLDivElement, SliderRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const SliderRootPropsProvider =
+  PropsProvider as React.Provider<SliderRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

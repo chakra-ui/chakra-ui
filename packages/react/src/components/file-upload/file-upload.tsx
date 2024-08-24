@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useFileUploadStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "fileUpload" })
 
 export { useFileUploadStyles }
@@ -33,6 +34,9 @@ export const FileUploadRoot = withProvider<HTMLDivElement, FileUploadRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const FileUploadRootPropsProvider =
+  PropsProvider as React.Provider<FileUploadRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -13,6 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useTimelineStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "timeline" })
 
 export { useTimelineStyles }
@@ -31,6 +32,9 @@ export const TimelineRoot = withProvider<HTMLDivElement, TimelineRootProps>(
   "root",
   { defaultProps: { role: "list" } },
 )
+
+export const TimelineRootPropsProvider =
+  PropsProvider as React.Provider<TimelineRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 
