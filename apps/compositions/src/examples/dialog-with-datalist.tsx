@@ -16,7 +16,7 @@ export const DialogWithDatalist = () => {
   return (
     <VStack alignItems="start">
       <DialogRoot>
-        <DialogTrigger>
+        <DialogTrigger asChild>
           <Button variant="outline">Open Dialog</Button>
         </DialogTrigger>
         <DialogContent>
