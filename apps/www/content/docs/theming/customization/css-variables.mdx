@@ -16,20 +16,13 @@ Here's an example of how to customize the selector that token CSS variables are
 applied to.
 
 ```tsx title="theme.ts"
-import {
-  createSystem,
-  defaultConfig,
-  defineConfig,
-  mergeConfigs,
-} from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const customConfig = defineConfig({
   cssVarsRoot: ":where(html)",
 })
 
-const config = mergeConfigs(defaultConfig, customConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultConfig, customConfig)
 ```
 
 The emitted CSS variables will now be applied to the `html` element.
@@ -47,20 +40,13 @@ The emitted CSS variables will now be applied to the `html` element.
 Here's an example of how to customize the prefix of the emitted CSS variables.
 
 ```tsx title="theme.ts"
-import {
-  createSystem,
-  defaultConfig,
-  defineConfig,
-  mergeConfigs,
-} from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const customConfig = defineConfig({
   cssVarsPrefix: "sui",
 })
 
-const config = mergeConfigs(defaultConfig, customConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultConfig, customConfig)
 ```
 
 The emitted CSS variables will now use the `sui` prefix.

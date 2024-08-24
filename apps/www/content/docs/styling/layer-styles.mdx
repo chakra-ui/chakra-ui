@@ -44,7 +44,7 @@ To use the layer styles, update the `theme` object with the `layerStyles`
 property.
 
 ```js title="theme.ts"
-import { createSystem, defineConfig, mergeConfigs } from "@chakra-ui/react"
+import { createSystem, defineConfig } from "@chakra-ui/react"
 import { layerStyles } from "./layer-styles"
 
 const config = defineConfig({
@@ -53,9 +53,7 @@ const config = defineConfig({
   },
 })
 
-const systemConfig = mergeConfigs(defaultConfig, config)
-
-export default createSystem(systemConfig)
+export default createSystem(defaultConfig, config)
 ```
 
 After updating the theme, run this command to generate the typings.

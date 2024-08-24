@@ -51,7 +51,7 @@ To use the animation styles, update the `theme` object with the
 `animationStyles` property.
 
 ```js filename="theme.ts"
-import { createSystem, defineConfig, mergeConfigs } from "@chakra-ui/react"
+import { createSystem, defineConfig } from "@chakra-ui/react"
 import { animationStyles } from "./animation-styles"
 
 const config = defineConfig({
@@ -62,9 +62,7 @@ const config = defineConfig({
   },
 })
 
-const systemConfig = mergeConfigs(defaultConfig, config)
-
-export default createSystem(systemConfig)
+export default createSystem(defaultConfig, config)
 ```
 
 After updating the theme, run this command to generate the animations.
