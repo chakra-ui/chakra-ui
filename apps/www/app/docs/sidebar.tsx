@@ -22,8 +22,7 @@ import {
 } from "compositions/ui/drawer"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
-import { ChevronRightIcon } from "../../../../packages/react/src/components/icons"
+import { AiOutlineClose, AiOutlineMenu, AiOutlineRight } from "react-icons/ai"
 
 export const SidebarStart = (props: BoxProps) => {
   const route = useRoute()
@@ -120,7 +119,7 @@ export const MobileMenuBreadcrumbs = () => {
     .filter(Boolean)[0]
 
   return (
-    <BreadcrumbRoot separator={<ChevronRightIcon />}>
+    <BreadcrumbRoot separator={<AiOutlineRight />}>
       {crumbs?.map((crumb, index) => <Text key={index}>{crumb}</Text>)}
     </BreadcrumbRoot>
   )
