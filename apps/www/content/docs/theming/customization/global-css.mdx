@@ -15,12 +15,7 @@ how to properly customize the styling engine, and get type safety.
 Here's an example of how to customize the global CSS in Chakra UI.
 
 ```tsx title="theme.ts"
-import {
-  createSystem,
-  defaultConfig,
-  defineConfig,
-  mergeConfigs,
-} from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const customConfig = defineConfig({
   globalCss: {
@@ -34,7 +29,5 @@ const customConfig = defineConfig({
   },
 })
 
-const config = mergeConfigs(defaultConfig, customConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultConfig, customConfig)
 ```

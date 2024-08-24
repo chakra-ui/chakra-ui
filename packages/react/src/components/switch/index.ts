@@ -4,6 +4,7 @@ export {
   SwitchLabel,
   SwitchThumb,
   SwitchIndicator,
+  SwitchThumbIndicator,
   useSwitchStyles,
 } from "./switch"
 
@@ -12,6 +13,7 @@ export type {
   SwitchControlProps,
   SwitchLabelProps,
   SwitchIndicatorProps,
+  SwitchThumbIndicatorProps,
   SwitchThumbProps,
 } from "./switch"
 

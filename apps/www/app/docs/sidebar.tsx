@@ -123,17 +123,11 @@ export const MobileMenuBreadcrumbs = () => {
     <HStack gap="1">
       {crumbs?.map((crumb, index, arr) => (
         <Fragment key={index}>
-          <Text
-            as="span"
-            textStyle="sm"
-            color="fg.muted"
-            fontWeight="medium"
-            textTransform="capitalize"
-          >
+          <Text as="span" textStyle="sm" textTransform="capitalize">
             {crumb}
           </Text>
           {arr.length - 1 !== index && (
-            <Box color="fg.subtle" boxSize="4" asChild>
+            <Box boxSize="4" asChild>
               <ChevronRightIcon />
             </Box>
           )}

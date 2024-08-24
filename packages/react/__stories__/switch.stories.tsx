@@ -20,3 +20,4 @@ export { SwitchWithDisabled as WithDisabled } from "compositions/examples/switch
 export { SwitchWithIndicator as WithIndicator } from "compositions/examples/switch-with-indicator"
 export { SwitchWithInvalid as WithInvalid } from "compositions/examples/switch-with-invalid"
 export { SwitchWithTooltip as WithTooltip } from "compositions/examples/switch-with-tooltip"
+export { SwitchWithThumbIcon as WithThumbIcon } from "compositions/examples/switch-with-thumb-icon"

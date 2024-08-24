@@ -67,9 +67,6 @@ export const defineSemanticTokens =
 
 export const defineConfig = (v: SystemConfig) => v
 
-export const mergeConfigs = (
-  config: SystemConfig,
-  ...configs: SystemConfig[]
-): SystemConfig => {
-  return mergeWith({}, config, ...configs)
+export const mergeConfigs = (...configs: SystemConfig[]): SystemConfig => {
+  return mergeWith({}, ...configs)
 }

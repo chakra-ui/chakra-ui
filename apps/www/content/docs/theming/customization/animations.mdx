@@ -15,14 +15,9 @@ how to properly customize the styling engine, and get type safety.
 Here's an example of how to customize keyframes in Chakra UI.
 
 ```tsx title="theme.ts"
-import {
-  createSystem,
-  defaultConfig,
-  defineConfig,
-  mergeConfigs,
-} from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
-const customConfig = defineConfig({
+const config = defineConfig({
   theme: {
     keyframes: {
       wiggle: {
@@ -38,9 +33,7 @@ const customConfig = defineConfig({
   },
 })
 
-const config = mergeConfigs(defaultConfig, customConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultConfig, config)
 ```
 
 ## Usage

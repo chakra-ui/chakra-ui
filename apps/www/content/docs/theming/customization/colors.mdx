@@ -17,12 +17,7 @@ how to properly customize the styling engine, and get type safety.
 Here's an example of how to customize colors in Chakra UI.
 
 ```tsx title="theme.ts"
-import {
-  createSystem,
-  defaultConfig,
-  defineConfig,
-  mergeConfigs,
-} from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const customConfig = defineConfig({
   theme: {
@@ -38,9 +33,7 @@ const customConfig = defineConfig({
   },
 })
 
-const config = mergeConfigs(defaultConfig, customConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultConfig, customConfig)
 ```
 
 ### Usage
@@ -59,12 +52,7 @@ Set the value of any color related properties, like `bg`, `borderColor`,
 Here's an example of how to customize semantic tokens in Chakra UI.
 
 ```tsx title="theme.ts"
-import {
-  createSystem,
-  defaultConfig,
-  defineConfig,
-  mergeConfigs,
-} from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
 
 const customConfig = defineConfig({
   theme: {
@@ -78,9 +66,7 @@ const customConfig = defineConfig({
   },
 })
 
-const config = mergeConfigs(defaultConfig, customConfig)
-
-export const system = createSystem(config)
+export const system = createSystem(defaultConfig, customConfig)
 ```
 
 ### Usage

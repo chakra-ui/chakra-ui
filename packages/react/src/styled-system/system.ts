@@ -10,6 +10,7 @@ import {
 import { isCssProperty } from "@pandacss/is-valid-prop"
 import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"
+import { mergeConfigs } from "./config"
 import { createCssFn } from "./css"
 import { createRecipeFn } from "./cva"
 import { createNormalizeFn } from "./normalize"
@@ -25,7 +26,8 @@ import type {
 } from "./types"
 import { createUtility } from "./utility"
 
-export function createSystem(config: SystemConfig): SystemContext {
+export function createSystem(...configs: SystemConfig[]): SystemContext {
+  const config = mergeConfigs(...configs)
   const {
     theme = {},
     utilities = {},

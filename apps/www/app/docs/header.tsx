@@ -30,18 +30,6 @@ import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
-const usePrimaryNavItems = () => {
-  const route = useRoute()
-
-  return route.getPrimaryNavItems()
-}
-
-const useSecondaryNavItems = () => {
-  const route = useRoute()
-
-  return route.getSecondaryNavItems()
-}
-
 const HeaderRoot = chakra("header", {
   base: {
     bg: "bg",
@@ -108,8 +96,9 @@ const HeaderLogoLink = () => {
   )
 }
 
-const HeaderPrimaryNavbarLinks = () => {
-  const items = usePrimaryNavItems()
+const HeaderPrimaryNavbar = () => {
+  const route = useRoute()
+  const items = route.getPrimaryNavItems()
   return (
     <HStack gap="8" minH="48px" aria-label="primary navigation">
       <HeaderLogoLink />
@@ -126,8 +115,9 @@ const HeaderPrimaryNavbarLinks = () => {
   )
 }
 
-const HeaderSecondaryNavbarLinks = () => {
-  const items = useSecondaryNavItems()
+const HeaderSecondaryNavbar = () => {
+  const route = useRoute()
+  const items = route.getSecondaryNavItems()
   return (
     <HStack as="nav" gap="6" aria-label="secondary navigation">
       {items.map((item) => (
@@ -165,13 +155,15 @@ const HeaderSocialLinks = () => (
 
 const HeaderMobileMenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const primaryNavItems = usePrimaryNavItems()
-  const secondaryNavItems = useSecondaryNavItems()
+  const closeMenu = () => setIsOpen(false)
+
+  const route = useRoute()
+  const primaryNavItems = route.getPrimaryNavItems()
+  const secondaryNavItems = route.getSecondaryNavItems()
+
   const containerRef = useRef(null)
   const pathname = usePathname()
   const pathnameRef = useRef(pathname)
-
-  const closeMenu = () => setIsOpen(false)
 
   useEffect(() => {
     if (pathnameRef.current !== pathname) {
@@ -266,12 +258,11 @@ const HeaderDesktopNavbar = () => {
   return (
     <Box hideBelow="md">
       <HStack pt="2" pb="2">
-        <HeaderPrimaryNavbarLinks />
+        <HeaderPrimaryNavbar />
         <Spacer />
         <HeaderDesktopActions />
       </HStack>
-
-      <HeaderSecondaryNavbarLinks />
+      <HeaderSecondaryNavbar />
     </Box>
   )
 }

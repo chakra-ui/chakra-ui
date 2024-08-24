@@ -50,7 +50,7 @@ To use the text styles, update the `theme` object with the `textStyles`
 property.
 
 ```js filename="theme.ts"
-import { createSystem, defineConfig, mergeConfigs } from "@chakra-ui/react"
+import { createSystem, defineConfig } from "@chakra-ui/react"
 import { textStyles } from "./text-styles"
 
 const config = defineConfig({
@@ -61,9 +61,7 @@ const config = defineConfig({
   },
 })
 
-const systemConfig = mergeConfigs(defaultConfig, config)
-
-export default createSystem(systemConfig)
+export default createSystem(defaultConfig, config)
 ```
 
 After updating the theme, run this command to generate the typings.
