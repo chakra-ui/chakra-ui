@@ -69,7 +69,7 @@ const showcases = defineCollection({
   pattern: "content/showcases.json",
   schema: s.object({
     title: s.string(),
-    description: s.string(),
+    description: s.string().optional(),
     url: s.string(),
     image: s.string(),
   }),
