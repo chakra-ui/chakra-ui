@@ -4,6 +4,7 @@ export {
   RadioGroupItemText as ItemText,
   RadioGroupLabel as Label,
   RadioGroupRoot as Root,
+  RadioGroupRootPropsProvider as RootPropsProvider,
   RadioGroupItemIndicator as ItemIndicator,
 } from "./radio-group"
 

@@ -15,6 +15,7 @@ export {
   MenuRadioItem as RadioItem,
   MenuRadioItemGroup as RadioItemGroup,
   MenuRoot as Root,
+  MenuRootPropsProvider as RootPropsProvider,
   MenuSeparator as Separator,
   MenuTrigger as Trigger,
   MenuTriggerItem as TriggerItem,

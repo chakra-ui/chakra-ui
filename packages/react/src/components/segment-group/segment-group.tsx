@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSegmentGroupStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "segmentGroup" })
 
 export { useSegmentGroupStyles }
@@ -35,6 +36,9 @@ export const SegmentGroupRoot = withProvider<
   HTMLDivElement,
   SegmentGroupRootProps
 >(ArkSegmentGroup.Root, "root", { forwardAsChild: true })
+
+export const SegmentGroupRootPropsProvider =
+  PropsProvider as React.Provider<SegmentGroupRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

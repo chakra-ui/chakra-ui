@@ -21,6 +21,7 @@ const {
   withProvider,
   withContext,
   useStyles: useRatingGroupStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "ratingGroup" })
 
 export { useRatingGroupStyles }
@@ -38,6 +39,9 @@ export const RatingGroupRoot = withProvider<
   HTMLDivElement,
   RatingGroupRootProps
 >(ArkRatingGroup.Root, "root", { forwardAsChild: true })
+
+export const RatingGroupRootPropsProvider =
+  PropsProvider as React.Provider<RatingGroupRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

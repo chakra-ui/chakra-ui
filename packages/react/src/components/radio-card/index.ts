@@ -4,9 +4,9 @@ export {
   RadioCardItemText,
   RadioCardLabel,
   RadioCardRoot,
+  RadioCardRootPropsProvider,
   RadioCardItemAddon,
   RadioCardItemIndicator,
-  //   RadioCardItemIndicator,
 } from "./radio-card"
 
 export type {

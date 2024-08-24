@@ -1,5 +1,6 @@
 export {
   SegmentGroupRoot,
+  SegmentGroupRootPropsProvider,
   SegmentGroupItem,
   SegmentGroupItemText,
   SegmentGroupIndicator,

@@ -9,6 +9,7 @@ export {
   SelectLabel as Label,
   SelectPositioner as Positioner,
   SelectRoot as Root,
+  SelectRootPropsProvider as RootPropsProvider,
   SelectTrigger as Trigger,
   SelectValueText as ValueText,
   SelectIndicator as Indicator,

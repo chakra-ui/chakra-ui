@@ -4,6 +4,7 @@ export {
   RatingGroupItemIndicator,
   RatingGroupLabel,
   RatingGroupRoot,
+  RatingGroupRootPropsProvider,
   useRatingGroupStyles,
 } from "./rating-group"
 

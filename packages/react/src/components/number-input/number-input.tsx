@@ -16,6 +16,7 @@ const {
   withProvider,
   withContext,
   useStyles: useNumberInputStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "numberInput" })
 
 export { useNumberInputStyles }
@@ -33,6 +34,9 @@ export const NumberInputRoot = withProvider<
   HTMLDivElement,
   NumberInputRootProps
 >(ArkNumberInput.Root, "root", { forwardAsChild: true })
+
+export const NumberInputRootPropsProvider =
+  PropsProvider as React.Provider<NumberInputRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

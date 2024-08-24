@@ -11,6 +11,7 @@ export {
   SelectLabel,
   SelectPositioner,
   SelectRoot,
+  SelectRootPropsProvider,
   SelectTrigger,
   SelectValueText,
   useSelectStyles,

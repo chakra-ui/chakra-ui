@@ -27,6 +27,7 @@ const {
   withProvider,
   useClassNames,
   useStyles: useNativeSelectStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "nativeSelect" })
 
 export { useNativeSelectStyles }
@@ -54,6 +55,9 @@ export const NativeSelectRoot = withProvider<
     )
   },
 })
+
+export const NativeSelectRootPropsProvider =
+  PropsProvider as React.Provider<NativeSelectRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

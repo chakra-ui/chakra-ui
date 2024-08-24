@@ -4,6 +4,7 @@ export {
   RadioCardItemText as ItemText,
   RadioCardLabel as Label,
   RadioCardRoot as Root,
+  RadioCardRootPropsProvider as RootPropsProvider,
   RadioCardItemAddon as ItemAddon,
   RadioCardItemIndicator as ItemIndicator,
 } from "./radio-card"
