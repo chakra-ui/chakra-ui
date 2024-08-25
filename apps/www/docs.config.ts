@@ -170,6 +170,7 @@ const docsLinks: NavItem = {
             { title: "Highlight", url: "highlight" },
             { title: "Kbd", url: "kbd" },
             { title: "Link", url: "link" },
+            { title: "List", url: "list" },
             { title: "Mark", url: "mark" },
             { title: "Prose", url: "prose" },
             { title: "Text", url: "text" },

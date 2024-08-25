@@ -1,0 +1,45 @@
+---
+title: List
+description: Used to display a list of items
+links:
+  [
+    { title: "Source", url: "#" },
+    { title: "Storybook", url: "#" },
+    { title: "Recipe", url: "#" },
+  ]
+---
+
+<ExampleTabs name="list-basic" />
+
+## Usage
+
+```jsx
+import { List } from "@chakra-ui/react"
+```
+
+```jsx
+<List.Root>
+  <List.Item>Item 1</List.Item>
+  <List.Item>Item 2</List.Item>
+</List.Root>
+```
+
+## Examples
+
+### Ordered
+
+Pass the `as="ol"` prop to create an ordered list
+
+<ExampleTabs name="list-ordered" />
+
+### Icon
+
+Use the `List.Indicator` component to add an icon to the list
+
+<ExampleTabs name="list-with-icon" />
+
+### Nested
+
+Here's an example of a nested list
+
+<ExampleTabs name="list-nested" />
