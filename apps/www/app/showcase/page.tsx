@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <VStack pt="10" pb="16" gap="10">
       <VStack>
-        <Heading as="h1" textStyle="5xl">
+        <Heading as="h1" textStyle={{ base: "4xl", md: "5xl" }}>
           Showcase
         </Heading>
         <Text
