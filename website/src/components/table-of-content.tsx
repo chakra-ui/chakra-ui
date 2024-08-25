@@ -18,7 +18,7 @@ function TableOfContent(props: TableOfContentProps) {
 
   return (
     <TocNav title='On this page' {...rest}>
-      <List.Root gap='1' ml='0' mt='4' styleType='none'>
+      <List.Root gap='1' ml='0' mt='4' listStyleType='none'>
         {headings.map(({ id, text, level }) => (
           <List.Item
             key={id}

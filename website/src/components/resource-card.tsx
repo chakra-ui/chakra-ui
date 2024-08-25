@@ -66,7 +66,7 @@ function ResourceCard(props: ResourceCardProps) {
           ))}
         </Flex>
 
-        <LinkOverlay external href={url}>
+        <LinkOverlay target='_blank' rel='noopener' href={url}>
           <VStack gap={2} align='stretch'>
             <Heading as='h3' size='sm'>
               <span className='content'>{heading}</span>
