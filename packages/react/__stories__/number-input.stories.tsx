@@ -1,6 +1,5 @@
 import type { Meta } from "@storybook/react"
-import { Box, For, NumberInput, useSlotRecipe } from "../src"
-import { PlaygroundTable } from "./shared/playground-table"
+import { Box } from "../src"
 
 export default {
   title: "Components / NumberInput",
@@ -13,51 +12,14 @@ export default {
   ],
 } satisfies Meta
 
-const DemoNumberInput = (props: NumberInput.RootProps) => {
-  return (
-    <NumberInput.Root {...props}>
-      <NumberInput.Input />
-      <NumberInput.Control>
-        <NumberInput.IncrementTrigger />
-        <NumberInput.DecrementTrigger />
-      </NumberInput.Control>
-    </NumberInput.Root>
-  )
-}
-
-export const Sizes = () => {
-  const recipe = useSlotRecipe({ key: "numberInput" })
-  return (
-    <PlaygroundTable>
-      <thead>
-        <tr>
-          <For each={recipe.variantMap.size}>{(v) => <td>{v}</td>}</For>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <For each={recipe.variantMap.size}>
-            {(v) => (
-              <td>
-                <DemoNumberInput max={50} min={10} size={v} defaultValue="12" />
-              </td>
-            )}
-          </For>
-        </tr>
-      </tbody>
-    </PlaygroundTable>
-  )
-}
-
-export const WithFormatOptions = () => {
-  return (
-    <DemoNumberInput
-      step={0.5}
-      defaultValue="10"
-      formatOptions={{
-        style: "currency",
-        currency: "USD",
-      }}
-    />
-  )
-}
+export { NumberInputBasic as Basic } from "compositions/examples/number-input-basic"
+export { NumberInputControlled as Controlled } from "compositions/examples/number-input-controlled"
+export { NumberInputWithDisabled as Disabled } from "compositions/examples/number-input-with-disabled"
+export { NumberInputWithField as Field } from "compositions/examples/number-input-with-field"
+export { NumberInputWithFormatOptions as FormatOptions } from "compositions/examples/number-input-with-format-options"
+export { NumberInputWithMinMax as MinMax } from "compositions/examples/number-input-with-min-max"
+export { NumberInputWithMouseWheel as MouseWheel } from "compositions/examples/number-input-with-mouse-wheel"
+export { NumberInputWithScrubber as Scrubber } from "compositions/examples/number-input-with-scrubber"
+export { NumberInputWithSizes as Sizes } from "compositions/examples/number-input-with-sizes"
+export { NumberInputWithStep as Step } from "compositions/examples/number-input-with-step"
+export { NumberInputWithInvalid as Invalid } from "compositions/examples/number-input-with-invalid"

@@ -65,7 +65,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       xs: {
         input: inputRecipe.variants!.size.xs,
         control: {
-          textStyle: "2xs",
+          fontSize: "2xs",
           "--stepper-radius": "radii.sm",
           "--stepper-width": "sizes.4",
         },
@@ -73,7 +73,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       sm: {
         input: inputRecipe.variants!.size.sm,
         control: {
-          textStyle: "xs",
+          fontSize: "xs",
           "--stepper-radius": "radii.sm",
           "--stepper-width": "sizes.5",
         },
@@ -81,7 +81,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       md: {
         input: inputRecipe.variants!.size.md,
         control: {
-          textStyle: "sm",
+          fontSize: "sm",
           "--stepper-radius": "radii.md",
           "--stepper-width": "sizes.6",
         },
@@ -89,7 +89,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       lg: {
         input: inputRecipe.variants!.size.lg,
         control: {
-          textStyle: "sm",
+          fontSize: "sm",
           "--stepper-radius": "radii.md",
           "--stepper-width": "sizes.6",
         },
