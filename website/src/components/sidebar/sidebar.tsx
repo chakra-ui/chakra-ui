@@ -200,7 +200,7 @@ export const MainNavLinkGroup = (props: List.RootProps) => {
   const router = useRouter()
 
   return (
-    <List.Root gap='4' styleType='none' {...props}>
+    <List.Root gap='4' listStyleType='none' {...props}>
       {mainNavLinks.map((item) => (
         <List.Item key={item.label}>
           <MainNavLink
