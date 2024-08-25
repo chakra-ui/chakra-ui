@@ -1,0 +1,11 @@
+{
+  "type": "composition",
+  "npmDependencies": [],
+  "fileDependencies": [],
+  "id": "input-group",
+  "file": {
+    "name": "input-group.tsx",
+    "content": "import { type BoxProps, Group, InputElement } from \"@chakra-ui/react\"\nimport { cloneElement } from \"react\"\n\nexport interface InputGroupProps extends BoxProps {\n  startElement?: React.ReactNode\n  endElement?: React.ReactNode\n  children: React.ReactElement\n}\n\nexport const InputGroup = (props: InputGroupProps) => {\n  const { startElement, endElement, children, ...rest } = props\n  return (\n    <Group {...rest}>\n      {startElement && (\n        <InputElement pointerEvents=\"none\">{startElement}</InputElement>\n      )}\n      {cloneElement(children, {\n        ...(startElement && { ps: \"calc(var(--input-height) - 6px)\" }),\n        ...(endElement && { pe: \"calc(var(--input-height) - 6px)\" }),\n        ...children.props,\n      })}\n      {endElement && <InputElement placement=\"end\">{endElement}</InputElement>}\n    </Group>\n  )\n}\n"
+  },
+  "component": "InputGroup"
+}

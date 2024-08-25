@@ -2,7 +2,7 @@
 
 import { Avatar as ArkAvatar } from "@ark-ui/react/avatar"
 import type { Assign } from "@chakra-ui/utils"
-import { forwardRef, useMemo } from "react"
+import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type SlotRecipeProps,
@@ -10,7 +10,6 @@ import {
   chakra,
   createSlotRecipeContext,
 } from "../../styled-system"
-import { getInitials } from "./get-initials"
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -90,11 +89,3 @@ export const AvatarIcon = forwardRef<SVGElement, AvatarIconProps>(
     )
   },
 )
-
-////////////////////////////////////////////////////////////////////////////////////
-
-export const AvatarInitial = (props: { name: string }) => {
-  const { name } = props
-  const initials = useMemo(() => getInitials(name), [name])
-  return <>{initials}</>
-}

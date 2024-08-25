@@ -3,7 +3,6 @@ export {
   AvatarRootPropsProvider,
   AvatarImage,
   AvatarFallback,
-  AvatarInitial,
   AvatarIcon,
   useAvatarStyles,
 } from "./avatar"

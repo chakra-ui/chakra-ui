@@ -164,6 +164,14 @@
   },
   {
     "type": "composition",
+    "id": "input-group",
+    "file": "input-group.tsx",
+    "component": "InputGroup",
+    "npmDependencies": [],
+    "fileDependencies": []
+  },
+  {
+    "type": "composition",
     "id": "link-button",
     "file": "link-button.tsx",
     "component": "LinkButton",
