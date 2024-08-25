@@ -1,5 +1,6 @@
 export {
   SwitchRoot as Root,
+  SwitchRootPropsProvider as RootPropsProvider,
   SwitchControl as Control,
   SwitchLabel as Label,
   SwitchThumb as Thumb,

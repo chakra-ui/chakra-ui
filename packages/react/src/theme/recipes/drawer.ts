@@ -1,11 +1,9 @@
-import { dialogAnatomy } from "@ark-ui/anatomy"
+import { drawerAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { dialogSlotRecipe } from "./dialog"
 
-const anatomy = dialogAnatomy.extendWith("header", "body", "footer", "backdrop")
-
 export const drawerSlotRecipe = defineSlotRecipe({
-  slots: anatomy.keys(),
+  slots: drawerAnatomy.keys(),
   className: "chakra-drawer",
   base: {
     backdrop: {
@@ -42,7 +40,7 @@ export const drawerSlotRecipe = defineSlotRecipe({
       width: "100%",
       outline: 0,
       zIndex: "modal",
-      fontSize: "sm",
+      textStyle: "sm",
       maxH: "100dvh",
       color: "inherit",
       bg: "bg.panel",

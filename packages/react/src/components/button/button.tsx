@@ -7,13 +7,18 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
-export interface ButtonProps
-  extends HTMLChakraProps<"button">,
-    RecipeProps<"button">,
-    UnstyledProp {}
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "button",
+})
 
-export const Button = createRecipeContext<HTMLButtonElement, ButtonProps>(
-  "button",
-  "button",
-  { defaultProps: { type: "button" } },
-)
+export interface ButtonBaseProps extends RecipeProps<"button">, UnstyledProp {}
+
+export interface ButtonProps
+  extends HTMLChakraProps<"button", ButtonBaseProps> {}
+
+export const Button = withContext<HTMLButtonElement, ButtonProps>("button", {
+  defaultProps: { type: "button" },
+})
+
+export const ButtonPropsProvider =
+  PropsProvider as React.Provider<ButtonBaseProps>

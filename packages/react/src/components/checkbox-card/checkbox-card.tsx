@@ -20,6 +20,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCheckboxCardStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "checkboxCard" })
 
 export { useCheckboxCardStyles }
@@ -37,6 +38,9 @@ export const CheckboxCardRoot = withProvider<
   HTMLLabelElement,
   CheckboxCardRootProps
 >(ArkCheckbox.Root, "root", { forwardAsChild: true })
+
+export const CheckboxCardRootPropsProvider =
+  PropsProvider as React.Provider<CheckboxCardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

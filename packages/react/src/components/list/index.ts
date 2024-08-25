@@ -1,12 +1,11 @@
-export { ListRoot } from "./list-root"
-export type { ListRootProps } from "./list-root"
+export {
+  ListRoot,
+  ListRootPropsProvider,
+  ListItem,
+  ListIndicator,
+  useListStyles,
+} from "./list"
 
-export { ListItem } from "./list-item"
-export type { ListItemProps } from "./list-item"
-
-export { ListIcon } from "./list-icon"
-export type { ListIconProps } from "./list-icon"
-
-export { useListStyles } from "./list-context"
+export type { ListRootProps, ListItemProps, ListIndicatorProps } from "./list"
 
 export * as List from "./namespace"

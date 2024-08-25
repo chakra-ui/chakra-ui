@@ -3,6 +3,7 @@ export {
   FileUploadItem,
   FileUploadTrigger,
   FileUploadRoot,
+  FileUploadRootPropsProvider,
   FileUploadLabel,
   FileUploadItemPreview,
   FileUploadItemPreviewImage,

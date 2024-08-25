@@ -6,6 +6,7 @@ export {
   DrawerHeader,
   DrawerPositioner,
   DrawerRoot,
+  DrawerRootPropsProvider,
   DrawerTrigger,
   DrawerContent,
   DrawerTitle,

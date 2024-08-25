@@ -3,6 +3,7 @@ export {
   PinInputInput,
   PinInputLabel,
   PinInputRoot,
+  PinInputRootPropsProvider,
 } from "./pin-input"
 
 export type {

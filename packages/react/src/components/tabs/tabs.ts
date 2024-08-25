@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useTabsStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "tabs" })
 
 export { useTabsStyles }
@@ -33,6 +34,9 @@ export const TabsRoot = withProvider<HTMLDivElement, TabsRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const TabsRootPropsProvider =
+  PropsProvider as React.Provider<TabsRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

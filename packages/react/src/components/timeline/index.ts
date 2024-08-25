@@ -4,6 +4,7 @@ export {
   TimelineIndicator,
   TimelineItem,
   TimelineRoot,
+  TimelineRootPropsProvider,
   TimelineSeparator,
   useTimelineStyles,
 } from "./timeline"

@@ -19,6 +19,7 @@ const {
   useRecipeResult,
   withContext,
   useStyles: useTableStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "table" })
 
 export { useTableStyles }
@@ -69,6 +70,9 @@ export const TableRoot = forwardRef<HTMLTableElement, TableRootProps>(
     )
   },
 )
+
+export const TableRootPropsProvider =
+  PropsProvider as React.Provider<TableRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

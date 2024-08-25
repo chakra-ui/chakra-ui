@@ -2,46 +2,66 @@
 
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
+import { createContext } from "../create-context"
+import { mergeProps } from "../merge-props"
 import { EMPTY_STYLES } from "./empty"
 import { chakra } from "./factory"
 import type { JsxFactoryOptions } from "./factory.types"
-import type { RecipeDefinition } from "./recipe.types"
-import { type RecipeKey, useRecipe } from "./use-recipe"
+import { type RecipeKey, type UseRecipeOptions, useRecipe } from "./use-recipe"
 
-export function createRecipeContext<T, P>(
-  component: React.ElementType<any>,
-  recipeKeyOrConfig: RecipeKey | RecipeDefinition,
-  options?: JsxFactoryOptions<P>,
-): React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<P> & React.RefAttributes<T>
-> {
-  const recipeKey =
-    typeof recipeKeyOrConfig === "string" ? recipeKeyOrConfig : undefined
-  const recipeConfig =
-    typeof recipeKeyOrConfig === "string" ? undefined : recipeKeyOrConfig
+const upperFirst = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
-  const StyledComponent = chakra(component, {}, options as any)
+export function createRecipeContext<K extends RecipeKey>(
+  options: UseRecipeOptions<K>,
+) {
+  const { key: recipeKey, recipe: recipeConfig } = options
 
-  const Component = forwardRef<any, any>((props, ref) => {
-    const { unstyled, ...otherProps } = props
+  const contextName = upperFirst(
+    recipeKey || (recipeConfig as any).className || "Component",
+  )
 
-    const fallbackRecipe = props.recipe || recipeConfig
-    const recipe = useRecipe({ key: recipeKey, recipe: fallbackRecipe })
-
-    // @ts-ignore
-    const [variantProps, localProps] = recipe.splitVariantProps(otherProps)
-    const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
-
-    return (
-      <StyledComponent
-        {...localProps}
-        ref={ref}
-        css={[styles, props.css]}
-        className={cx(recipe.className, props.className)}
-      />
-    )
+  const [PropsProvider, usePropsContext] = createContext<Record<string, any>>({
+    strict: false,
+    name: `${contextName}PropsContext`,
+    providerName: `${contextName}PropsContext`,
   })
 
-  StyledComponent.displayName = Component.displayName || Component.name
-  return Component as any
+  const withContext = <T, P>(
+    Component: React.ElementType<any>,
+    options?: JsxFactoryOptions<P>,
+  ): React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<P> & React.RefAttributes<T>
+  > => {
+    const SuperComponent = chakra(Component, {}, options as any)
+    const StyledComponent = forwardRef<any, any>((inProps, ref) => {
+      const props = mergeProps(usePropsContext(), inProps)
+
+      const { unstyled, ...otherProps } = props
+      const fallbackRecipe = props.recipe || recipeConfig
+
+      const recipe = useRecipe({ key: recipeKey, recipe: fallbackRecipe })
+      // @ts-ignore
+      const [variantProps, localProps] = recipe.splitVariantProps(otherProps)
+      const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
+
+      return (
+        <SuperComponent
+          {...localProps}
+          ref={ref}
+          css={[styles, props.css]}
+          className={cx(recipe.className, props.className)}
+        />
+      )
+    })
+
+    // @ts-expect-error
+    StyledComponent.displayName = Component.displayName || Component.name
+    return StyledComponent as any
+  }
+
+  return {
+    withContext,
+    PropsProvider,
+    usePropsContext,
+  }
 }

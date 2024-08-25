@@ -13,11 +13,11 @@ export const blockquoteSlotRecipe = defineSlotRecipe({
       colorPalette: "gray",
     },
     caption: {
-      fontSize: "sm",
+      textStyle: "sm",
       opacity: 0.6,
     },
     icon: {
-      fontSize: "xl",
+      textStyle: "xl",
       color: "colorPalette.400",
     },
   },

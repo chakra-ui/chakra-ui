@@ -7,12 +7,15 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
-export interface BadgeProps
-  extends HTMLChakraProps<"span">,
-    RecipeProps<"badge">,
-    UnstyledProp {}
+export const { PropsProvider, withContext } = createRecipeContext({
+  key: "badge",
+})
 
-export const Badge = createRecipeContext<HTMLSpanElement, BadgeProps>(
-  "span",
-  "badge",
-)
+export interface BadgeBaseProps extends RecipeProps<"badge">, UnstyledProp {}
+
+export interface BadgeProps extends HTMLChakraProps<"span", BadgeBaseProps> {}
+
+export const Badge = withContext<HTMLSpanElement, BadgeProps>("span")
+
+export const BadgePropsProvider =
+  PropsProvider as React.Provider<BadgeBaseProps>

@@ -8,7 +8,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
     root: {
       display: "inline-flex",
       colorPalette: "gray",
-      fontSize: "sm",
+      textStyle: "sm",
       position: "relative",
     },
     circle: {
@@ -46,7 +46,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
           "--thickness": "4px",
         },
         valueText: {
-          fontSize: "2xs",
+          textStyle: "2xs",
         },
       },
       sm: {
@@ -55,7 +55,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
           "--thickness": "5px",
         },
         valueText: {
-          fontSize: "2xs",
+          textStyle: "2xs",
         },
       },
       md: {
@@ -64,7 +64,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
           "--thickness": "6px",
         },
         valueText: {
-          fontSize: "xs",
+          textStyle: "xs",
         },
       },
       lg: {
@@ -73,7 +73,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
           "--thickness": "8px",
         },
         valueText: {
-          fontSize: "sm",
+          textStyle: "sm",
         },
       },
     },

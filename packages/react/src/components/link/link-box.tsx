@@ -4,25 +4,16 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { type HTMLChakraProps, chakra } from "../../styled-system"
 
-export interface LinkOverlayProps extends HTMLChakraProps<"a"> {
-  /**
-   *  If `true`, the link will open in new tab
-   *
-   * @default false
-   */
-  external?: boolean
-}
+export interface LinkOverlayProps extends HTMLChakraProps<"a"> {}
 
 export const LinkOverlay = forwardRef<HTMLAnchorElement, LinkOverlayProps>(
   function LinkOverlay(props, ref) {
-    const { external, target, rel, className, ...rest } = props
+    const { target, rel, className, ...rest } = props
     return (
       <chakra.a
         {...rest}
         ref={ref}
         className={cx("chakra-linkbox__overlay", className)}
-        rel={external ? "noopener noreferrer" : rel}
-        target={external ? "_blank" : target}
         css={[
           {
             position: "static",

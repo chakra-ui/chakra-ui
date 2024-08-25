@@ -8,12 +8,14 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
-export interface InputProps
-  extends HTMLChakraProps<"input">,
-    RecipeProps<"input">,
-    UnstyledProp {}
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "input",
+})
 
-export const Input = createRecipeContext<HTMLInputElement, InputProps>(
-  ArkField.Input,
-  "input",
-)
+export interface InputBaseProps extends RecipeProps<"input">, UnstyledProp {}
+
+export interface InputProps extends HTMLChakraProps<"input", InputBaseProps> {}
+
+export const Input = withContext<HTMLInputElement, InputProps>(ArkField.Input)
+
+export const InputPropsProvider = PropsProvider as React.Provider<InputProps>

@@ -1,5 +1,6 @@
 export {
   PopoverRoot as Root,
+  PopoverRootPropsProvider as RootPropsProvider,
   PopoverAnchor as Anchor,
   PopoverTrigger as Trigger,
   PopoverArrowTip as ArrowTip,

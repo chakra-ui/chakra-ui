@@ -13,6 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useDataListStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "dataList" })
 
 export { useDataListStyles }
@@ -30,6 +31,9 @@ export const DataListRoot = withProvider<HTMLDListElement, DataListRootProps>(
   "dl",
   "root",
 )
+
+export const DataListRootPropsProvider =
+  PropsProvider as React.Provider<DataListRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,5 +1,6 @@
 export {
   EmptyStateRoot,
+  EmptyStateRootPropsProvider,
   EmptyStateContent,
   EmptyStateIndicator,
   EmptyStateTitle,

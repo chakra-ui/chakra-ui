@@ -42,7 +42,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       width: "100%",
       outline: 0,
       borderRadius: "lg",
-      fontSize: "sm",
+      textStyle: "sm",
       zIndex: "modal",
       bg: "bg.panel",
       shadow: "lg",

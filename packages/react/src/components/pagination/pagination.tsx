@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: usePaginationStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "pagination" })
 
 export { usePaginationStyles }
@@ -33,6 +34,9 @@ export const PaginationRoot = withProvider<HTMLDivElement, PaginationRootProps>(
   "root",
   { forwardAsChild: true, forwardProps: ["page"] },
 )
+
+export const PaginationRootPropsProvider =
+  PropsProvider as React.Provider<PaginationRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

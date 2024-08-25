@@ -56,7 +56,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       sm: {
         item: {
           rounded: "md",
-          fontSize: "xs",
+          textStyle: "xs",
         },
         itemControl: {
           padding: "3",
@@ -72,7 +72,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       md: {
         item: {
           rounded: "md",
-          fontSize: "sm",
+          textStyle: "sm",
         },
         itemControl: {
           padding: "4",
@@ -88,7 +88,7 @@ export const radioCardSlotRecipe = defineSlotRecipe({
       lg: {
         item: {
           rounded: "lg",
-          fontSize: "md",
+          textStyle: "md",
         },
         itemControl: {
           padding: "4",

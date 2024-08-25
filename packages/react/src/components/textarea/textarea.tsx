@@ -1,6 +1,6 @@
 "use client"
 
-import { Field, type FieldRootBaseProps } from "@ark-ui/react/field"
+import { Field } from "@ark-ui/react/field"
 import {
   type HTMLChakraProps,
   type RecipeProps,
@@ -8,12 +8,20 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
-export interface TextareaProps
-  extends HTMLChakraProps<"textarea", FieldRootBaseProps>,
-    UnstyledProp,
-    RecipeProps<"textarea"> {}
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "textarea",
+})
 
-export const Textarea = createRecipeContext<HTMLTextAreaElement, TextareaProps>(
+export interface TextareaBaseProps
+  extends RecipeProps<"textarea">,
+    UnstyledProp {}
+
+export interface TextareaProps
+  extends HTMLChakraProps<"textarea", TextareaBaseProps> {}
+
+export const Textarea = withContext<HTMLTextAreaElement, TextareaProps>(
   Field.Textarea,
-  "textarea",
 )
+
+export const TextareaPropsProvider =
+  PropsProvider as React.Provider<TextareaProps>

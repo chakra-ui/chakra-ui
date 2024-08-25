@@ -7,9 +7,14 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
-export interface KbdProps
-  extends HTMLChakraProps<"kbd">,
-    RecipeProps<"kbd">,
-    UnstyledProp {}
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "kbd",
+})
 
-export const Kbd = createRecipeContext<HTMLElement, KbdProps>("kbd", "kbd")
+export interface KbdBaseProps extends RecipeProps<"kbd">, UnstyledProp {}
+
+export interface KbdProps extends HTMLChakraProps<"kbd", KbdBaseProps> {}
+
+export const Kbd = withContext<HTMLElement, KbdProps>("kbd")
+
+export const KbdPropsProvider = PropsProvider as React.Provider<KbdProps>

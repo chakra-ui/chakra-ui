@@ -1,5 +1,6 @@
 export {
   StepsRoot,
+  StepsRootPropsProvider,
   StepsSeparator,
   StepsTrigger,
   StepsTitle,

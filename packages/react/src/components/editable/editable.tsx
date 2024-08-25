@@ -21,6 +21,7 @@ const {
   withProvider,
   withContext,
   useStyles: useEditableStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "editable" })
 
 export { useEditableStyles }
@@ -39,6 +40,9 @@ export const EditableRoot = withProvider<HTMLDivElement, EditableRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const EditableRootPropsProvider =
+  PropsProvider as React.Provider<EditableRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

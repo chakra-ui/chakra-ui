@@ -8,8 +8,10 @@ import {
   IconButton,
   Portal,
   Stack,
+  Text,
   chakra,
 } from "@chakra-ui/react"
+import { BreadcrumbRoot } from "compositions/ui/breadcrumb"
 import {
   DrawerBackdrop,
   DrawerBody,
@@ -20,7 +22,7 @@ import {
 } from "compositions/ui/drawer"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+import { AiOutlineClose, AiOutlineMenu, AiOutlineRight } from "react-icons/ai"
 
 export const SidebarStart = (props: BoxProps) => {
   const route = useRoute()
@@ -105,6 +107,24 @@ const MobileMenuButton = chakra("button", {
   },
 })
 
+export const MobileMenuBreadcrumbs = () => {
+  const route = useRoute()
+
+  const crumbs = route
+    .getSidebarNavItems()
+    .map((group) => {
+      const item = group.items.find((item) => item.url === route.currentUrl)
+      return item ? [group.title, item.title] : null
+    })
+    .filter(Boolean)[0]
+
+  return (
+    <BreadcrumbRoot separator={<AiOutlineRight />}>
+      {crumbs?.map((crumb, index) => <Text key={index}>{crumb}</Text>)}
+    </BreadcrumbRoot>
+  )
+}
+
 export const MobileSidebarNav = () => {
   const [isOpen, setIsOpen] = useState(false)
   const route = useRoute()
@@ -131,7 +151,7 @@ export const MobileSidebarNav = () => {
       <DrawerTrigger asChild>
         <MobileMenuButton aria-label="Open menu">
           <AiOutlineMenu />
-          Menu
+          <MobileMenuBreadcrumbs />
         </MobileMenuButton>
       </DrawerTrigger>
       <Portal>

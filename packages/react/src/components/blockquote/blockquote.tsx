@@ -14,6 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useBlockquoteStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "blockquote" })
 
 export { useBlockquoteStyles }
@@ -31,6 +32,9 @@ export const BlockquoteRoot = withProvider<HTMLElement, BlockquoteRootProps>(
   "figure",
   "root",
 )
+
+export const BlockquoteRootPropsProvider =
+  PropsProvider as React.Provider<BlockquoteRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

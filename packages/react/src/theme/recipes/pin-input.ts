@@ -16,7 +16,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
     size: {
       lg: {
         input: {
-          fontSize: "lg",
+          textStyle: "lg",
           w: 12,
           h: 12,
           borderRadius: "md",
@@ -24,7 +24,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
       },
       md: {
         input: {
-          fontSize: "md",
+          textStyle: "md",
           w: 10,
           h: 10,
           borderRadius: "md",
@@ -32,7 +32,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
       },
       sm: {
         input: {
-          fontSize: "sm",
+          textStyle: "sm",
           w: 8,
           h: 8,
           borderRadius: "sm",
@@ -40,7 +40,7 @@ export const pinInputSlotRecipe = defineSlotRecipe({
       },
       xs: {
         input: {
-          fontSize: "xs",
+          textStyle: "xs",
           w: 6,
           h: 6,
           borderRadius: "sm",

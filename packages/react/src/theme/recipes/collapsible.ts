@@ -2,7 +2,7 @@ import { anatomy } from "@ark-ui/anatomy/collapsible"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const collapsibleSlotRecipe = defineSlotRecipe({
-  slots: [...anatomy.keys()],
+  slots: anatomy.keys(),
   className: "chakra-collapsible",
   base: {
     content: {

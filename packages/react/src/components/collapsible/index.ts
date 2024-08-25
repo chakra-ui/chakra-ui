@@ -1,5 +1,6 @@
 export {
   CollapsibleRoot,
+  CollapsibleRootPropsProvider,
   CollapsibleTrigger,
   CollapsibleContent,
   useCollapsibleStyles,

@@ -17,6 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSwitchStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "switch" })
 
 export { useSwitchStyles }
@@ -35,6 +36,9 @@ export const SwitchRoot = withProvider<HTMLLabelElement, SwitchRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const SwitchRootPropsProvider =
+  PropsProvider as React.Provider<SwitchRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

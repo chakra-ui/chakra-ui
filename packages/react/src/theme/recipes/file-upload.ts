@@ -13,7 +13,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     },
     label: {
       fontWeight: "medium",
-      fontSize: "sm",
+      textStyle: "sm",
     },
     dropzone: {
       background: "bg",
@@ -31,7 +31,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       focusVisibleRing: "outside",
     },
     item: {
-      fontSize: "sm",
+      textStyle: "sm",
       animationName: "fade-in",
       animationDuration: "moderate",
       background: "bg",
@@ -53,7 +53,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     },
     itemSizeText: {
       color: "fg.muted",
-      fontSize: "xs",
+      textStyle: "xs",
     },
     itemDeleteTrigger: {
       alignSelf: "flex-start",

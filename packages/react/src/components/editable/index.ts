@@ -2,6 +2,7 @@ export {
   EditableInput,
   EditablePreview,
   EditableRoot,
+  EditableRootPropsProvider,
   EditableTextarea,
   EditableControl,
   EditableArea,

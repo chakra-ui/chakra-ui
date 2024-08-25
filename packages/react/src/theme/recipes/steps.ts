@@ -162,7 +162,9 @@ export const stepsSlotRecipe = defineSlotRecipe({
           "--steps-icon-size": "sizes.4",
           fontSize: "xs",
         },
-        title: { fontSize: "sm" },
+        title: {
+          fontSize: "sm",
+        },
       },
       md: {
         list: {
@@ -170,7 +172,9 @@ export const stepsSlotRecipe = defineSlotRecipe({
           "--steps-icon-size": "sizes.4",
           fontSize: "xs",
         },
-        title: { fontSize: "sm" },
+        title: {
+          fontSize: "sm",
+        },
       },
       lg: {
         list: {
@@ -178,7 +182,9 @@ export const stepsSlotRecipe = defineSlotRecipe({
           "--steps-icon-size": "sizes.4",
           fontSize: "sm",
         },
-        title: { fontSize: "md" },
+        title: {
+          fontSize: "md",
+        },
       },
     },
   },

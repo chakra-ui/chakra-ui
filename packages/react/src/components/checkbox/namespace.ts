@@ -1,6 +1,7 @@
 export {
   CheckboxControl as Control,
   CheckboxRoot as Root,
+  CheckboxRootPropsProvider as RootPropsProvider,
   CheckboxIndicator as Indicator,
   CheckboxLabel as Label,
   CheckboxGroup as Group,

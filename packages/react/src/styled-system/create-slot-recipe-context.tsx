@@ -3,6 +3,7 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import { createContext } from "../create-context"
+import { mergeProps } from "../merge-props"
 import type { SystemStyleObject } from "./css.types"
 import { EMPTY_SLOT_STYLES } from "./empty"
 import { chakra } from "./factory"
@@ -54,6 +55,13 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
     strict: false,
   })
 
+  const [PropsProvider, usePropsContext] = createContext<Record<string, any>>({
+    strict: false,
+    name: `${contextName}PropsContext`,
+    providerName: `${contextName}PropsContext`,
+    defaultValue: {},
+  })
+
   function useRecipeResult(props: any) {
     const { unstyled, ...restProps } = props
 
@@ -79,14 +87,9 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
   ): React.FC<React.PropsWithoutRef<P>> {
     const { defaultProps } = options
 
-    const StyledComponent = (props: any) => {
-      const propsWithDefault = { ...defaultProps, ...props }
-
-      const {
-        styles,
-        classNames,
-        props: rootProps,
-      } = useRecipeResult(propsWithDefault)
+    const StyledComponent = (inProps: any) => {
+      const props = mergeProps(defaultProps, usePropsContext(), inProps)
+      const { styles, classNames, props: rootProps } = useRecipeResult(props)
 
       return (
         <StylesProvider value={styles}>
@@ -109,9 +112,11 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P> & React.RefAttributes<T>
   > => {
-    const SuperComponent = chakra(Component, {}, options as any)
+    const { defaultProps, ...restOptions } = options ?? {}
+    const SuperComponent = chakra(Component, {}, restOptions as any)
 
-    const StyledComponent = forwardRef<any, any>((props, ref) => {
+    const StyledComponent = forwardRef<any, any>((inProps, ref) => {
+      const props = mergeProps(defaultProps, usePropsContext(), inProps)
       const { styles, props: rootProps, classNames } = useRecipeResult(props)
       const className = classNames[slot as keyof typeof classNames]
 
@@ -168,6 +173,8 @@ export const createSlotRecipeContext = <R extends SlotRecipeKey>(
   return {
     StylesProvider,
     ClassNamesProvider,
+    PropsProvider,
+    usePropsContext,
     useRecipeResult,
     withProvider,
     withContext,

@@ -1,4 +1,4 @@
-export { Input } from "./input"
+export { Input, InputPropsProvider } from "./input"
 export type { InputProps } from "./input"
 
 export { InputAddon } from "./input-addon"

@@ -7,12 +7,16 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "spinner",
+})
+
 export interface SpinnerProps
   extends HTMLChakraProps<"span">,
     UnstyledProp,
     RecipeProps<"spinner"> {}
 
-export const Spinner = createRecipeContext<HTMLSpanElement, SpinnerProps>(
-  "span",
-  "spinner",
-)
+export const Spinner = withContext<HTMLSpanElement, SpinnerProps>("span")
+
+export const SpinnerPropsProvider =
+  PropsProvider as React.Provider<SpinnerProps>

@@ -4,6 +4,7 @@ export {
   TabsIndicator as Indicator,
   TabsList as List,
   TabsRoot as Root,
+  TabsRootPropsProvider as RootPropsProvider,
   TabsTrigger as Trigger,
 } from "./tabs"
 

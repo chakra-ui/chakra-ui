@@ -5,6 +5,7 @@ export {
   AccordionItemIndicator as ItemIndicator,
   AccordionItemTrigger as ItemTrigger,
   AccordionRoot as Root,
+  AccordionRootPropsProvider as RootPropsProvider,
 } from "./accordion"
 
 export type {

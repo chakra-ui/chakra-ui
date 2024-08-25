@@ -5,6 +5,7 @@ export {
   SliderMarkerGroup,
   SliderRange,
   SliderRoot,
+  SliderRootPropsProvider,
   SliderThumb,
   SliderTrack,
   SliderValueText,

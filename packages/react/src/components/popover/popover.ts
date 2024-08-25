@@ -15,6 +15,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: usePopoverStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "popover" })
 
 export { usePopoverStyles }
@@ -30,6 +31,9 @@ export interface PopoverRootProps extends PopoverRootBaseProps {
 }
 
 export const PopoverRoot = withRootProvider<PopoverRootProps>(ArkPopover.Root)
+
+export const PopoverRootPropsProvider =
+  PropsProvider as React.Provider<PopoverRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

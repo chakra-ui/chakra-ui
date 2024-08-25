@@ -3,6 +3,7 @@ export {
   FileUploadItem as Item,
   FileUploadTrigger as Trigger,
   FileUploadRoot as Root,
+  FileUploadRootPropsProvider as RootPropsProvider,
   FileUploadLabel as Label,
   FileUploadItemPreview as ItemPreview,
   FileUploadItemPreviewImage as ItemPreviewImage,

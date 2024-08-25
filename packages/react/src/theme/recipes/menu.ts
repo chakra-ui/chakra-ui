@@ -45,7 +45,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       px: "2",
       py: "1.5",
       fontWeight: "semibold",
-      fontSize: "sm",
+      textStyle: "sm",
     },
     indicator: {
       display: "inline-flex",
@@ -95,7 +95,7 @@ export const menuSlotRecipe = defineSlotRecipe({
         },
         item: {
           gap: "1",
-          fontSize: "xs",
+          textStyle: "xs",
           borderRadius: "sm",
           py: "1",
           px: "1.5",
@@ -108,7 +108,7 @@ export const menuSlotRecipe = defineSlotRecipe({
         },
         item: {
           gap: "2",
-          fontSize: "sm",
+          textStyle: "sm",
           borderRadius: "sm",
           py: "1.5",
           px: "2",

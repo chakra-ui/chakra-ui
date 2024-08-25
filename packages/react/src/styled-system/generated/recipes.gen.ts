@@ -630,11 +630,12 @@ export type HoverCardVariantMap = {
 
 // List
 
-export type ListSlot = "root" | "item" | "icon"
+export type ListSlot = "root" | "item" | "indicator"
 
 export interface ListVariant {
-  /** @default "plain" */
+  /** @default "marker" */
   variant?: "marker" | "plain"
+  align?: "center" | "start" | "end"
 }
 
 export type ListVariantProps = {

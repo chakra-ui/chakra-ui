@@ -15,6 +15,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useDialogStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "dialog" })
 
 export { useDialogStyles }
@@ -32,6 +33,9 @@ export interface DialogRootProps extends DialogRootBaseProps {
 export const DialogRoot = withRootProvider<DialogRootProps>(ArkDialog.Root, {
   defaultProps: { unmountOnExit: true, lazyMount: true },
 })
+
+export const DialogRootPropsProvider =
+  PropsProvider as React.Provider<DialogRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

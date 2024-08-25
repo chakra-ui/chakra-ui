@@ -21,8 +21,8 @@ export const statSlotRecipe = defineSlotRecipe({
       textStyle: "xs",
     },
     valueUnit: {
-      fontSize: "xs",
       color: "fg.muted",
+      textStyle: "xs",
       fontWeight: "initial",
       letterSpacing: "initial",
     },

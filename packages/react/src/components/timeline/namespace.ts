@@ -1,5 +1,6 @@
 export {
   TimelineRoot as Root,
+  TimelineRootPropsProvider as RootPropsProvider,
   TimelineItem as Item,
   TimelineSeparator as Separator,
   TimelineConnector as Connector,

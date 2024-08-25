@@ -15,6 +15,7 @@ const {
   withProvider,
   withContext,
   useStyles: useProgressCircleStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "progressCircle" })
 
 export { useProgressCircleStyles }
@@ -32,6 +33,9 @@ export const ProgressCircleRoot = withProvider<
   HTMLDivElement,
   ProgressCircleRootProps
 >(ArkProgress.Root, "root")
+
+export const ProgressCircleRootPropsProvider =
+  PropsProvider as React.Provider<ProgressCircleRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

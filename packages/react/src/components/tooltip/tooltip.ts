@@ -15,6 +15,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useTooltipStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "tooltip" })
 
 export { useTooltipStyles }
@@ -30,6 +31,9 @@ export interface TooltipRootProps extends TooltipRootBaseProps {
 }
 
 export const TooltipRoot = withRootProvider<TooltipRootProps>(ArkTooltip.Root)
+
+export const TooltipRootPropsProvider =
+  PropsProvider as React.Provider<TooltipRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

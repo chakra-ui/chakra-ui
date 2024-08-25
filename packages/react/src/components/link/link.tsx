@@ -7,12 +7,14 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
-export interface LinkProps
-  extends HTMLChakraProps<"a">,
-    RecipeProps<"link">,
-    UnstyledProp {}
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "link",
+})
 
-export const Link = createRecipeContext<HTMLAnchorElement, LinkProps>(
-  "a",
-  "link",
-)
+export interface LinkBaseProps extends RecipeProps<"link">, UnstyledProp {}
+
+export interface LinkProps extends HTMLChakraProps<"a", LinkBaseProps> {}
+
+export const Link = withContext<HTMLAnchorElement, LinkProps>("a")
+
+export const LinkPropsProvider = PropsProvider as React.Provider<LinkProps>

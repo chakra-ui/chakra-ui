@@ -15,6 +15,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useHoverCardStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "hoverCard" })
 
 export { useHoverCardStyles }
@@ -32,6 +33,9 @@ export interface HoverCardRootProps extends HoverCardRootBaseProps {
 export const HoverCardRoot = withRootProvider<HoverCardRootProps>(
   ArkHoverCard.Root,
 )
+
+export const HoverCardRootPropsProvider =
+  PropsProvider as React.Provider<HoverCardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

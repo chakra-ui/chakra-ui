@@ -5,6 +5,7 @@ export {
   NumberInputInput as Input,
   NumberInputLabel as Label,
   NumberInputRoot as Root,
+  NumberInputRootPropsProvider as RootPropsProvider,
   NumberInputScrubber as Scrubber,
 } from "./number-input"
 

@@ -1,5 +1,6 @@
 export {
   PaginationRoot,
+  PaginationRootPropsProvider,
   PaginationPrevTrigger,
   PaginationNextTrigger,
   PaginationEllipsis,

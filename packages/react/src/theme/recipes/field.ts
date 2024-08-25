@@ -1,9 +1,9 @@
-import { fieldAnatomy } from "@ark-ui/react/field"
+import { fieldAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const fieldSlotRecipe = defineSlotRecipe({
   className: "chakra-field",
-  slots: [...fieldAnatomy.keys(), "requiredIndicator"],
+  slots: fieldAnatomy.keys(),
   base: {
     requiredIndicator: {
       marginStart: "2",
@@ -32,12 +32,12 @@ export const fieldSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       color: "fg.error",
-      fontSize: "xs",
+      textStyle: "xs",
     },
     helperText: {
       color: "fg.muted",
       lineHeight: "normal",
-      fontSize: "xs",
+      textStyle: "xs",
     },
   },
 })

@@ -17,6 +17,7 @@ const {
   withProvider,
   withContext,
   useStyles: useRadioGroupStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "radioCard" })
 
 export { useRadioGroupStyles }
@@ -35,6 +36,9 @@ export const RadioCardRoot = withProvider<HTMLDivElement, RadioCardRootProps>(
   "root",
   { forwardAsChild: true },
 )
+
+export const RadioCardRootPropsProvider =
+  PropsProvider as React.Provider<RadioCardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

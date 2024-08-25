@@ -56,24 +56,24 @@ export const checkboxSlotRecipe = defineSlotRecipe({
           boxSize: "3",
           borderRadius: "xs",
         },
-        label: { fontSize: "xs" },
-        indicator: { fontSize: "3xs" },
+        label: { textStyle: "xs" },
+        indicator: { textStyle: "3xs" },
       },
       md: {
         control: {
           boxSize: "4",
           borderRadius: "xs",
         },
-        label: { fontSize: "sm" },
-        indicator: { fontSize: "2xs" },
+        label: { textStyle: "sm" },
+        indicator: { textStyle: "2xs" },
       },
       lg: {
         control: {
           boxSize: "5",
           borderRadius: "sm",
         },
-        label: { fontSize: "md" },
-        indicator: { fontSize: "xs" },
+        label: { textStyle: "md" },
+        indicator: { textStyle: "xs" },
       },
     },
 

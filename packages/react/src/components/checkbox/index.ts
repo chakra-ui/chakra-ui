@@ -3,6 +3,7 @@ export {
   CheckboxIndicator,
   CheckboxLabel,
   CheckboxRoot,
+  CheckboxRootPropsProvider,
   CheckboxGroup,
   useCheckboxStyles,
 } from "./checkbox"

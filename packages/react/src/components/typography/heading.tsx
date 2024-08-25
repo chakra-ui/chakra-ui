@@ -1,36 +1,20 @@
 "use client"
 
-import { cx } from "@chakra-ui/utils"
-import { forwardRef } from "react"
 import {
   type HTMLChakraProps,
   type RecipeProps,
-  chakra,
-  useRecipe,
+  createRecipeContext,
 } from "../../styled-system"
+
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "heading",
+})
 
 export interface HeadingProps
   extends HTMLChakraProps<"h2">,
     RecipeProps<"heading"> {}
 
-/**
- * `Heading` is used to render semantic HTML heading elements.
- *
- * By default, renders as `h2` with themantic size `xl`
- *
- * @see Docs https://chakra-ui.com/docs/components/heading
- */
-export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  function Heading(props, ref) {
-    const recipe = useRecipe({ key: "heading", recipe: props.recipe })
-    const [variantProps, localProps] = recipe.splitVariantProps(props)
-    return (
-      <chakra.h2
-        ref={ref}
-        {...localProps}
-        className={cx("chakra-heading", props.className)}
-        css={[recipe(variantProps), localProps.css]}
-      />
-    )
-  },
-)
+export const Heading = withContext<HTMLHeadingElement, HeadingProps>("h2")
+
+export const HeadingPropsProvider =
+  PropsProvider as React.Provider<HeadingProps>

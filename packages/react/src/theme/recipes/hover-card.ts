@@ -9,7 +9,7 @@ export const hoverCardSlotRecipe = defineSlotRecipe({
       position: "relative",
       display: "flex",
       flexDirection: "column",
-      fontSize: "sm",
+      textStyle: "sm",
       paddingInline: "var(--hovercard-padding)",
       paddingBlock: "var(--hovercard-padding)",
       "--hovercard-bg": "colors.bg.panel",

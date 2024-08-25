@@ -15,6 +15,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useMenuStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "menu" })
 
 export { useMenuStyles }
@@ -30,6 +31,9 @@ export interface MenuRootProps extends MenuRootBaseProps {
 }
 
 export const MenuRoot = withRootProvider<MenuRootProps>(ArkMenu.Root)
+
+export const MenuRootPropsProvider =
+  PropsProvider as React.Provider<MenuRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

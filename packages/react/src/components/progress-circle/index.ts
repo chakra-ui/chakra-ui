@@ -1,18 +1,19 @@
 export {
-  ProgressCircleRoot,
-  ProgressCircleLabel,
   ProgressCircleCircle,
-  ProgressCircleTrack,
+  ProgressCircleLabel,
   ProgressCircleRange,
+  ProgressCircleRoot,
+  ProgressCircleRootPropsProvider,
+  ProgressCircleTrack,
   ProgressCircleValueText,
 } from "./progress-circle"
 
 export type {
-  ProgressCircleRootProps,
-  ProgressCircleLabelProps,
   ProgressCircleCircleProps,
-  ProgressCircleTrackProps,
+  ProgressCircleLabelProps,
   ProgressCircleRangeProps,
+  ProgressCircleRootProps,
+  ProgressCircleTrackProps,
   ProgressCircleValueTextProps,
 } from "./progress-circle"
 

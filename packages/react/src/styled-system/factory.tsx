@@ -6,7 +6,7 @@
  *
  * This also serves a bridge to React 19's style tag hoisting features.
  */
-import { cx } from "@chakra-ui/utils"
+import { compact, cx } from "@chakra-ui/utils"
 import isPropValid from "@emotion/is-prop-valid"
 import { ThemeContext, withEmotionCache } from "@emotion/react"
 import { serializeStyles } from "@emotion/serialize"
@@ -128,7 +128,7 @@ const createStyled = (tag: any, configOrCva: any = {}, options: any = {}) => {
     const defaultShouldForwardProp = shouldForwardProp || initShouldForwardProp
 
     const propsWithDefault = React.useMemo(
-      () => Object.assign({}, options.defaultProps, inProps),
+      () => Object.assign({}, options.defaultProps, compact(inProps)),
       [inProps],
     )
 

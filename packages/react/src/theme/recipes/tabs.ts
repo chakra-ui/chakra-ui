@@ -112,7 +112,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         trigger: {
           py: "1",
           px: "2.5",
-          fontSize: "sm",
+          textStyle: "sm",
         },
       },
       md: {
@@ -123,7 +123,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         trigger: {
           py: "1.5",
           px: "3",
-          fontSize: "sm",
+          textStyle: "sm",
         },
       },
       lg: {
@@ -134,7 +134,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         trigger: {
           py: "2",
           px: "3",
-          fontSize: "md",
+          textStyle: "md",
         },
       },
     },

@@ -7,9 +7,14 @@ import {
   createRecipeContext,
 } from "../../styled-system"
 
-export interface CodeProps
-  extends HTMLChakraProps<"code">,
-    RecipeProps<"code">,
-    UnstyledProp {}
+const { withContext, PropsProvider } = createRecipeContext({
+  key: "code",
+})
 
-export const Code = createRecipeContext<HTMLElement, CodeProps>("code", "code")
+export interface CodeBaseProps extends RecipeProps<"code">, UnstyledProp {}
+
+export interface CodeProps extends HTMLChakraProps<"code", CodeBaseProps> {}
+
+export const Code = withContext<HTMLElement, CodeProps>("code")
+
+export const CodePropsProvider = PropsProvider as React.Provider<CodeBaseProps>

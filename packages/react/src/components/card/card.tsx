@@ -13,6 +13,7 @@ const {
   withProvider,
   withContext,
   useStyles: useCardStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "card" })
 
 export { useCardStyles }
@@ -30,6 +31,9 @@ export const CardRoot = withProvider<HTMLDivElement, CardRootProps>(
   "div",
   "root",
 )
+
+export const CardRootPropsProvider =
+  PropsProvider as React.Provider<CardRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

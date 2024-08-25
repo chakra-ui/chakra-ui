@@ -14,6 +14,7 @@ const {
   withProvider,
   withContext,
   useStyles: useTagStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "tag" })
 
 export { useTagStyles }
@@ -31,6 +32,9 @@ export const TagRoot = withProvider<HTMLSpanElement, TagRootProps>(
   "div",
   "root",
 )
+
+export const TagRootPropsProvider =
+  PropsProvider as React.Provider<TagRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

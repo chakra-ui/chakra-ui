@@ -15,6 +15,7 @@ const {
   withRootProvider,
   withContext,
   useStyles: useActionBarStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "actionBar" })
 
 export { useActionBarStyles }
@@ -40,6 +41,9 @@ export const ActionBarRoot = withRootProvider<ActionBarRootProps>(
     },
   },
 )
+
+export const ActionBarRootPropsProvider =
+  PropsProvider as React.Provider<ActionBarRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 

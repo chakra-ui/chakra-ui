@@ -19,6 +19,7 @@ const {
   withProvider,
   withContext,
   useStyles: useSelectStyles,
+  PropsProvider,
 } = createSlotRecipeContext({ key: "select" })
 
 export { useSelectStyles }
@@ -41,6 +42,9 @@ export const SelectRoot = withProvider<HTMLDivElement, SelectRootProps>(
   "root",
   { forwardAsChild: true },
 ) as SelectRootComponent
+
+export const SelectRootPropsProvider =
+  PropsProvider as React.Provider<SelectRootBaseProps>
 
 ////////////////////////////////////////////////////////////////////////////////////
 
