@@ -3,7 +3,6 @@ import {
   CardDescription,
   CardRoot,
   CardTitle,
-  Flex,
   Heading,
   Image,
   SimpleGrid,
@@ -17,8 +16,7 @@ export default function Page() {
   return (
     <VStack pt="10" pb="16" gap="10">
       <VStack>
-        <Text color="fg">Community</Text>
-        <Heading as="h1" size="5xl">
+        <Heading as="h1" textStyle="5xl">
           Showcase
         </Heading>
         <Text
@@ -27,7 +25,7 @@ export default function Page() {
           textAlign="center"
           color="fg.muted"
         >
-          Discover amazing projects built with Chakra UI.
+          A collection of beautiful websites that are built in Chakra UI
         </Text>
       </VStack>
 
@@ -43,7 +41,7 @@ export default function Page() {
               />
 
               <CardBody>
-                <CardTitle>{title}</CardTitle>
+                <CardTitle textStyle="sm">{title}</CardTitle>
                 <CardDescription>{description}</CardDescription>
               </CardBody>
             </Link>
