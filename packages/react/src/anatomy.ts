@@ -1,8 +1,8 @@
 import {
   dialogAnatomy as arkDialogAnatomy,
+  fieldAnatomy as arkFieldAnatomy,
   createAnatomy,
 } from "@ark-ui/anatomy"
-import { fieldAnatomy as arkFieldAnatomy } from "@ark-ui/react/field"
 
 export const alertAnatomy = createAnatomy("alert").parts(
   "title",
