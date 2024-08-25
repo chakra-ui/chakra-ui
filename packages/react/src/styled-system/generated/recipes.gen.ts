@@ -686,7 +686,7 @@ export type NativeSelectSlot = "root" | "field" | "indicator"
 
 export interface NativeSelectVariant {
   /** @default "outline" */
-  variant?: "outline" | "filled"
+  variant?: "outline" | "filled" | "plain"
   /** @default "md" */
   size?: "lg" | "md" | "sm" | "xs"
 }

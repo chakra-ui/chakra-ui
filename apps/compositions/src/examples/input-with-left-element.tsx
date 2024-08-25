@@ -1,22 +1,17 @@
-import { Group, HStack, Input, InputElement } from "@chakra-ui/react"
+import { HStack, Input } from "@chakra-ui/react"
+import { InputGroup } from "compositions/ui/input-group"
 import { LuUser } from "react-icons/lu"
 
 export const InputWithLeftElement = () => {
   return (
     <HStack gap="10" width="full">
-      <Group flex="1">
-        <InputElement pointerEvents="none">
-          <LuUser />
-        </InputElement>
-        <Input ps="10" placeholder="Username" />
-      </Group>
+      <InputGroup flex="1" startElement={<LuUser />}>
+        <Input placeholder="Username" />
+      </InputGroup>
 
-      <Group flex="1">
-        <InputElement pointerEvents="none" color="fg">
-          https://
-        </InputElement>
+      <InputGroup flex="1" startElement="https://">
         <Input ps="4.75em" placeholder="yoursite.com" />
-      </Group>
+      </InputGroup>
     </HStack>
   )
 }

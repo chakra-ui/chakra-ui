@@ -134,14 +134,14 @@ export const Group = memo(
     const count = Children.count(children)
 
     const _children = useMemo(() => {
-      return Children.map(children, (child, index) => {
-        if (!isValidElement(child)) {
-          throw new Error(
-            "chakra-ui: Group expects children to be valid elements",
-          )
-        }
+      const childArray = Children.toArray(children).filter(
+        isValidElement,
+      ) as React.ReactElement<any, any>[]
+
+      return childArray.map((child, index) => {
+        const childProps = child.props as any
         return cloneElement(child, {
-          ...child.props,
+          ...childProps,
           "data-group-item": "",
           "data-first": dataAttr(index === 0),
           "data-last": dataAttr(index === count - 1),
@@ -149,7 +149,7 @@ export const Group = memo(
           style: {
             "--group-count": count,
             "--group-index": index,
-            ...child.props.style,
+            ...(childProps?.style ?? {}),
           },
         } as any)
       })

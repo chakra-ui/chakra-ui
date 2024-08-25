@@ -59,6 +59,7 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       filled: {
         field: selectSlotRecipe.variants?.variant.filled.trigger,
       },
+      plain: {},
     },
 
     size: {

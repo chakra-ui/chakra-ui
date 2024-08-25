@@ -1,48 +1,39 @@
-import { Group, HStack, Input, InputElement, Kbd } from "@chakra-ui/react"
-import { Button } from "compositions/ui/button"
+import { HStack, Input, Kbd } from "@chakra-ui/react"
+import { InputGroup } from "compositions/ui/input-group"
 import {
-  MenuContent,
-  MenuItem,
-  MenuRoot,
-  MenuTrigger,
-} from "compositions/ui/menu"
-import { LuChevronsUpDown, LuSearch } from "react-icons/lu"
+  NativeSelectField,
+  NativeSelectRoot,
+} from "compositions/ui/native-select"
+import { LuSearch } from "react-icons/lu"
+
+const DomainSelect = () => (
+  <NativeSelectRoot size="xs" variant="plain" width="auto" me="-1">
+    <NativeSelectField defaultValue=".com" fontSize="sm">
+      <option value=".com">.com</option>
+      <option value=".org">.org</option>
+      <option value=".net">.net</option>
+    </NativeSelectField>
+  </NativeSelectRoot>
+)
 
 export const InputWithLeftAndRightElement = () => {
   return (
     <HStack gap="10" width="full">
-      <Group flex="1">
-        <InputElement pointerEvents="none">
-          <LuSearch />
-        </InputElement>
-        <Input ps="10" pe="10" placeholder="Username" />
-        <InputElement pointerEvents="none" placement="end">
-          <Kbd variant="outline" size="lg" letterSpacing="wider">
-            ⌘K
-          </Kbd>
-        </InputElement>
-      </Group>
+      <InputGroup
+        flex="1"
+        startElement={<LuSearch />}
+        endElement={<Kbd>⌘K</Kbd>}
+      >
+        <Input placeholder="Search contacts" />
+      </InputGroup>
 
-      <Group flex="1">
-        <InputElement pointerEvents="none" color="fg">
-          https://
-        </InputElement>
-        <Input ps="4.75em" placeholder="yoursite.com" />
-        <InputElement placement="end" pe="1">
-          <MenuRoot>
-            <MenuTrigger asChild>
-              <Button variant="plain" size="xs">
-                .com <LuChevronsUpDown />
-              </Button>
-            </MenuTrigger>
-            <MenuContent>
-              <MenuItem value=".com">.com</MenuItem>
-              <MenuItem value=".org">.org</MenuItem>
-              <MenuItem value=".net">.net</MenuItem>
-            </MenuContent>
-          </MenuRoot>
-        </InputElement>
-      </Group>
+      <InputGroup
+        flex="1"
+        startElement="https://"
+        endElement={<DomainSelect />}
+      >
+        <Input ps="4.75em" pe="0" placeholder="yoursite.com" />
+      </InputGroup>
     </HStack>
   )
 }

@@ -12,6 +12,7 @@ export const inputRecipe = defineRecipe({
     _disabled: {
       layerStyle: "disabled",
     },
+    height: "var(--input-height)",
     "--focus-color": "colors.focusRing",
     "--error-color": "colors.border.error",
   },
@@ -22,7 +23,7 @@ export const inputRecipe = defineRecipe({
         px: "4",
         py: "3",
         borderRadius: "md",
-        height: "12",
+        "--input-height": "sizes.12",
         scrollPaddingBottom: "3",
       },
       md: {
@@ -30,7 +31,7 @@ export const inputRecipe = defineRecipe({
         px: "3",
         py: "2",
         borderRadius: "md",
-        height: "10",
+        "--input-height": "sizes.10",
         scrollPaddingBottom: "2",
       },
       sm: {
@@ -38,7 +39,7 @@ export const inputRecipe = defineRecipe({
         px: "3",
         py: "3",
         borderRadius: "sm",
-        height: "8",
+        "--input-height": "sizes.8",
         scrollPaddingBottom: "3",
       },
       xs: {
@@ -46,7 +47,7 @@ export const inputRecipe = defineRecipe({
         px: "2",
         py: "2",
         borderRadius: "sm",
-        height: "6",
+        "--input-height": "sizes.6",
         scrollPaddingBottom: "2",
       },
     },
