@@ -1,5 +1,5 @@
+import { Header } from "@/components/docs/header"
 import { Container, SkipNavContent, SkipNavLink } from "@chakra-ui/react"
-import { Header } from "../docs/header"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,10 +7,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <SkipNavLink>Skip to Content</SkipNavLink>
       <Header />
       <main>
-        {/* <MobileSidebarNav /> */}
         <Container display="flex">
-          {/* <SidebarStart />
-          <SkipNavContent /> */}
+          <SkipNavContent />
           {children}
         </Container>
       </main>

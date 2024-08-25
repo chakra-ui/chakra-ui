@@ -1,5 +1,5 @@
+import { Header } from "@/components/docs/header"
 import { Container, SkipNavContent, SkipNavLink } from "@chakra-ui/react"
-import { Header } from "./header"
 import { MobileSidebarNav, SidebarStart } from "./sidebar"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
