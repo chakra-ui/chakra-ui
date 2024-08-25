@@ -1,5 +1,38 @@
 # @chakra-ui/react
 
+## 3.0.0-next.19
+
+### Minor Changes
+
+- [`4c6838c`](https://github.com/chakra-ui/chakra-ui/commit/4c6838c5e6c262da6b573c8576595bb8cedc5452)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - - Rename `onLabel`
+  and `offLabel` to `trackLabel`
+
+  - Add support for `thumbLabel` prop for rendering an icon within thumb
+
+- [`f4762bf`](https://github.com/chakra-ui/chakra-ui/commit/f4762bf087a8aac240c83093adde0f84e37a0456)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Add support for
+  merging multiple system configs into one within `createSystem`
+
+  Before:
+
+  ```tsx
+  const config = mergeConfigs(defaultConfig, customConfig)
+  export const system = createSystem(config)
+  ```
+
+  After:
+
+  ```tsx
+  const system = createSystem(defaultConfig, customConfig)
+  ```
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @chakra-ui/hooks@3.0.0-next.19
+  - @chakra-ui/utils@3.0.0-next.19
+
 ## 3.0.0-next.18
 
 ### Patch Changes
