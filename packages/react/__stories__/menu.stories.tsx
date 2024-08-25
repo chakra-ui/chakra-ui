@@ -20,6 +20,7 @@ export { MenuWithGroup as WithGroup } from "compositions/examples/menu-with-grou
 export { MenuWithGroupDynamic as WithGroupDynamic } from "compositions/examples/menu-with-group-dynamic"
 export { MenuWithIconAndCommand as WithIconAndCommand } from "compositions/examples/menu-with-icon-and-command"
 export { MenuWithLinks as WithLinks } from "compositions/examples/menu-with-links"
+export { MenuWithMixedLayout as WithMixedLayout } from "compositions/examples/menu-with-mixed-layout"
 export { MenuWithPlacement as WithPlacement } from "compositions/examples/menu-with-placement"
 export { MenuWithRadioItems as WithRadioItems } from "compositions/examples/menu-with-radio-items"
 export { MenuWithSubmenu as WithSubmenu } from "compositions/examples/menu-with-submenu"
