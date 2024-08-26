@@ -339,6 +339,7 @@ export interface AvatarVariant {
   variant?: "solid" | "subtle" | "outline"
   /** @default "full" */
   shape?: "square" | "rounded" | "full"
+  borderless?: boolean
 }
 
 export type AvatarVariantProps = {

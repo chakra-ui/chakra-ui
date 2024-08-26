@@ -1,4 +1,10 @@
-import { Avatar as ChakraAvatar } from "@chakra-ui/react"
+import {
+  AvatarRootPropsProvider,
+  Avatar as ChakraAvatar,
+  Group,
+  type GroupProps,
+  type SlotRecipeProps,
+} from "@chakra-ui/react"
 import { forwardRef } from "react"
 
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>
@@ -56,3 +62,16 @@ function getInitials(name: string) {
     ? `${firstName.charAt(0)}${lastName.charAt(0)}`
     : firstName.charAt(0)
 }
+
+interface AvatarGroupProps extends GroupProps, SlotRecipeProps<"avatar"> {}
+
+export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
+  function AvatarGroup(props, ref) {
+    const { size, variant, borderless, ...rest } = props
+    return (
+      <AvatarRootPropsProvider value={{ size, variant, borderless }}>
+        <Group gap="0" spaceX="-3" ref={ref} {...rest} />
+      </AvatarRootPropsProvider>
+    )
+  },
+)
