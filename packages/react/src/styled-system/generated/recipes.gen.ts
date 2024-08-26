@@ -916,7 +916,7 @@ export type SelectVariantMap = {
 
 // Slider
 
-export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker"
+export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker" | "markerIndicator"
 
 export interface SliderVariant {
   /** @default "md" */

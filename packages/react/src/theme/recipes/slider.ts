@@ -3,7 +3,7 @@ import { defineSlotRecipe } from "../../styled-system"
 
 export const sliderSlotRecipe = defineSlotRecipe({
   className: "chakra-slider",
-  slots: sliderAnatomy.keys(),
+  slots: [...sliderAnatomy.keys(), "markerIndicator"],
   base: {
     root: {
       display: "flex",
@@ -11,6 +11,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       gap: "1",
       fontSize: "sm",
       position: "relative",
+      isolation: "isolate",
       colorPalette: "gray",
     },
     control: {
@@ -26,19 +27,27 @@ export const sliderSlotRecipe = defineSlotRecipe({
     range: {
       width: "inherit",
       height: "inherit",
-      _disabled: {
-        bg: { base: "gray.300!", _dark: "gray.500!" },
-      },
+      _disabled: { bg: "border.emphasized!" },
     },
     markerGroup: {
-      mt: "-1",
+      position: "absolute!",
+      top: "var(--slider-marker-top)",
+      insetInline: "var(--slider-marker-inset)",
+      zIndex: "1",
     },
     marker: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      gap: "1.5",
       color: "fg.muted",
       fontSize: "xs",
+    },
+    markerIndicator: {
+      width: "var(--slider-marker-size)",
+      height: "var(--slider-marker-size)",
+      borderRadius: "full",
+      bg: "var(--slider-marker-bg, white)",
     },
     thumb: {
       width: "var(--slider-thumb-size)",
@@ -47,14 +56,15 @@ export const sliderSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       outline: 0,
-      zIndex: 1,
+      zIndex: "2",
       borderRadius: "full",
-      bg: "white",
-      borderWidth: "1px",
-      borderColor: "gray.400/40",
-      _disabled: {
-        bg: { base: "gray.300", _dark: "gray.400" },
+      "--slider-thumb-bg": {
+        base: "white",
+        _disabled: "colors.border.emphasized",
       },
+      bg: "var(--slider-thumb-bg)",
+      borderWidth: "1px",
+      borderColor: "border.emphasized",
       _focusVisible: {
         ring: "2px",
         ringColor: "focusRing",
@@ -69,24 +79,36 @@ export const sliderSlotRecipe = defineSlotRecipe({
         root: {
           "--slider-thumb-size": "sizes.2.5",
           "--slider-track-size": "sizes.0.5",
+          "--slider-marker-top": "2px",
+          "--slider-marker-size": "2px",
+          "--slider-marker-inset": "1px",
         },
       },
       sm: {
         root: {
           "--slider-thumb-size": "sizes.3",
           "--slider-track-size": "sizes.1",
+          "--slider-marker-top": "5px",
+          "--slider-marker-size": "2px",
+          "--slider-marker-inset": "2px",
         },
       },
       md: {
         root: {
           "--slider-thumb-size": "sizes.4",
           "--slider-track-size": "sizes.1.5",
+          "--slider-marker-top": "6px",
+          "--slider-marker-size": "4px",
+          "--slider-marker-inset": "3px",
         },
       },
       lg: {
         root: {
           "--slider-thumb-size": "sizes.5",
           "--slider-track-size": "sizes.2",
+          "--slider-marker-top": "8px",
+          "--slider-marker-size": "4px",
+          "--slider-marker-inset": "4px",
         },
       },
     },
@@ -148,6 +170,11 @@ export const sliderSlotRecipe = defineSlotRecipe({
       variant: "outline",
       colorPalette: "gray",
       css: {
+        marker: {
+          "&[data-state=under-value]": {
+            "--slider-marker-bg": { base: "white", _dark: "black" },
+          },
+        },
         range: {
           bg: { base: "gray.800", _dark: "gray.200" },
         },
@@ -157,6 +184,11 @@ export const sliderSlotRecipe = defineSlotRecipe({
       variant: "subtle",
       colorPalette: "gray",
       css: {
+        marker: {
+          "&[data-state=under-value]": {
+            "--slider-marker-bg": { base: "white", _dark: "black" },
+          },
+        },
         range: {
           bg: { base: "gray.600", _dark: "gray.200/64" },
         },

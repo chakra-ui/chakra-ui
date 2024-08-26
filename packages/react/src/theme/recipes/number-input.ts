@@ -31,6 +31,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       position: "relative",
       zIndex: 0,
       colorPalette: "gray",
+      isolation: "isolate",
     },
     input: {
       ...inputRecipe.base,
@@ -46,8 +47,7 @@ export const numberInputSlotRecipe = defineSlotRecipe({
       margin: "1px",
       width: "var(--stepper-width)",
       height: "calc(100% - 2px)",
-      isolation: "isolate",
-      zIndex: 1,
+      zIndex: "1",
       borderStartWidth: "1px",
       divideY: "1px",
     },

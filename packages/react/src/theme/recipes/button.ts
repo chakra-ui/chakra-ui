@@ -17,7 +17,7 @@ export const buttonRecipe = defineRecipe({
     isolation: "isolate",
     fontWeight: "medium",
     transitionProperty: "common",
-    transitionDuration: "normal",
+    transitionDuration: "moderate",
     colorPalette: "gray",
     focusVisibleRing: "outside",
     _disabled: {
@@ -25,6 +25,7 @@ export const buttonRecipe = defineRecipe({
     },
     _icon: {
       fontSize: "1em",
+      flexShrink: 0,
     },
   },
 
