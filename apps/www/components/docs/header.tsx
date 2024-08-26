@@ -29,6 +29,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
+import { CommandMenu } from "./command-menu"
 
 const HeaderRoot = chakra("header", {
   base: {
@@ -237,7 +238,10 @@ const HeaderDesktopActions = () => {
   return (
     <HStack gap="2" minH="48px" flexShrink="1" minW="0">
       <HeaderVersionMenu />
-      <SearchButton width="256px" size="sm" flexShrink="1" />
+      <CommandMenu
+        data={{}}
+        trigger={<SearchButton width="256px" size="sm" flexShrink="1" />}
+      />
       <HeaderSocialLinks />
       <ColorModeButton />
     </HStack>
@@ -247,7 +251,7 @@ const HeaderDesktopActions = () => {
 const HeaderMobileActions = () => {
   return (
     <HStack>
-      <MobileSearchButton />
+      <CommandMenu data={{}} trigger={<MobileSearchButton />} />
       <ColorModeButton />
       <HeaderMobileMenuDropdown />
     </HStack>
