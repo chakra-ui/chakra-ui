@@ -12,13 +12,16 @@ import { forwardRef, useRef } from "react"
 import { LuEye, LuEyeOff } from "react-icons/lu"
 import { InputGroup } from "./input-group"
 
-interface VisibilityProps {
+export interface PasswordVisibilityProps {
   defaultVisible?: boolean
   visible?: boolean
   onVisibleChange?: (visible: boolean) => void
+  visibilityIcon?: { on: React.ReactNode; off: React.ReactNode }
 }
 
-export interface PasswordInputProps extends InputProps, VisibilityProps {
+export interface PasswordInputProps
+  extends InputProps,
+    PasswordVisibilityProps {
   rootProps?: GroupProps
 }
 
@@ -29,12 +32,13 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
       defaultVisible,
       visible: visibleProp,
       onVisibleChange,
+      visibilityIcon = { on: <LuEye />, off: <LuEyeOff /> },
       ...rest
     } = props
 
     const [visible, setVisible] = useControllableState({
       value: visibleProp,
-      defaultValue: defaultVisible,
+      defaultValue: defaultVisible || false,
       onChange: onVisibleChange,
     })
 
@@ -46,13 +50,16 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           <VisibilityTrigger
             disabled={rest.disabled}
             onPointerDown={(e) => {
+              if (rest.disabled) return
+              if (e.button !== 0) return
               e.preventDefault()
               setVisible(!visible)
             }}
           >
-            {visible ? <LuEyeOff /> : <LuEye />}
+            {visible ? visibilityIcon.off : visibilityIcon.on}
           </VisibilityTrigger>
         }
+        {...rootProps}
       >
         <Input
           {...rest}
@@ -71,9 +78,11 @@ const VisibilityTrigger = forwardRef<HTMLButtonElement, ButtonProps>(
         tabIndex={-1}
         ref={ref}
         me="-2"
+        aspectRatio="square"
         size="sm"
         color="fg.muted/80"
         variant="ghost"
+        height="calc(100% - {spacing.2})"
         aria-label="Toggle password visibility"
         {...props}
       />

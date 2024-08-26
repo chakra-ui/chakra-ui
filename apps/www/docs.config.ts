@@ -206,6 +206,7 @@ const docsLinks: NavItem = {
             { title: "Menu", url: "menu" },
             { title: "Number Input", url: "number-input" },
             { title: "Pagination", url: "pagination" },
+            { title: "Password Input", url: "password-input", status: "new" },
             { title: "Pin Input", url: "pin-input" },
             { title: "Popover", url: "popover" },
             { title: "Progress Circle", url: "progress-circle" },
