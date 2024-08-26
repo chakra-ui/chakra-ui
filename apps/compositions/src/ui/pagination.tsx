@@ -15,6 +15,7 @@ import {
   HiChevronRight,
   HiMiniEllipsisHorizontal,
 } from "react-icons/hi2"
+import { LinkButton } from "./link-button"
 
 interface ButtonVariantMap {
   current: ButtonProps["variant"]
@@ -27,15 +28,18 @@ type PaginationVariant = "outline" | "solid" | "subtle"
 interface ButtonVariantContext {
   size: ButtonProps["size"]
   variantMap: ButtonVariantMap
+  getHref?: (page: number) => string
 }
 
 const [RootPropsProvider, useRootProps] = createContext<ButtonVariantContext>({
   name: "RootPropsProvider",
 })
 
-export interface PaginationRootProps extends ChakraPagination.RootProps {
+export interface PaginationRootProps
+  extends Omit<ChakraPagination.RootProps, "type"> {
   size?: ButtonProps["size"]
   variant?: PaginationVariant
+  getHref?: (page: number) => string
 }
 
 const variantMap: Record<PaginationVariant, ButtonVariantMap> = {
@@ -46,10 +50,16 @@ const variantMap: Record<PaginationVariant, ButtonVariantMap> = {
 
 export const PaginationRoot = forwardRef<HTMLDivElement, PaginationRootProps>(
   function PaginationRoot(props, ref) {
-    const { size = "sm", variant = "outline", ...rest } = props
+    const { size = "sm", variant = "outline", getHref, ...rest } = props
     return (
-      <RootPropsProvider value={{ size, variantMap: variantMap[variant] }}>
-        <ChakraPagination.Root ref={ref} {...rest} />
+      <RootPropsProvider
+        value={{ size, variantMap: variantMap[variant], getHref }}
+      >
+        <ChakraPagination.Root
+          ref={ref}
+          type={getHref ? "link" : "button"}
+          {...rest}
+        />
       </RootPropsProvider>
     )
   },
@@ -74,14 +84,22 @@ export const PaginationItem = forwardRef<
   ChakraPagination.ItemProps
 >(function PaginationItem(props, ref) {
   const { page } = usePaginationContext()
+  const { size, variantMap, getHref } = useRootProps()
+
   const current = page === props.value
-  const { size, variantMap } = useRootProps()
+  const variant = current ? variantMap.current : variantMap.default
+
+  if (getHref) {
+    return (
+      <LinkButton href={getHref(props.value)} variant={variant} size={size}>
+        {props.value}
+      </LinkButton>
+    )
+  }
+
   return (
     <ChakraPagination.Item ref={ref} {...props} asChild>
-      <Button
-        variant={current ? variantMap.current : variantMap.default}
-        size={size}
-      >
+      <Button variant={variant} size={size}>
         {props.value}
       </Button>
     </ChakraPagination.Item>
@@ -92,7 +110,21 @@ export const PaginationPrevTrigger = forwardRef<
   HTMLButtonElement,
   ChakraPagination.PrevTriggerProps
 >(function PaginationPrevTrigger(props, ref) {
-  const { size, variantMap } = useRootProps()
+  const { size, variantMap, getHref } = useRootProps()
+  const { previousPage } = usePaginationContext()
+
+  if (getHref) {
+    return (
+      <LinkButton
+        href={previousPage != null ? getHref(previousPage) : undefined}
+        variant={variantMap.default}
+        size={size}
+      >
+        <HiChevronLeft />
+      </LinkButton>
+    )
+  }
+
   return (
     <ChakraPagination.PrevTrigger ref={ref} asChild {...props}>
       <IconButton variant={variantMap.default} size={size}>
@@ -106,7 +138,21 @@ export const PaginationNextTrigger = forwardRef<
   HTMLButtonElement,
   ChakraPagination.NextTriggerProps
 >(function PaginationNextTrigger(props, ref) {
-  const { size, variantMap } = useRootProps()
+  const { size, variantMap, getHref } = useRootProps()
+  const { nextPage } = usePaginationContext()
+
+  if (getHref) {
+    return (
+      <LinkButton
+        href={nextPage != null ? getHref(nextPage) : undefined}
+        variant={variantMap.default}
+        size={size}
+      >
+        <HiChevronRight />
+      </LinkButton>
+    )
+  }
+
   return (
     <ChakraPagination.NextTrigger ref={ref} asChild {...props}>
       <IconButton variant={variantMap.default} size={size}>
@@ -147,7 +193,6 @@ export const PaginationPageText = (props: PageTextProps) => {
   const { page, pages, pageRange, pageSize, totalPages } =
     usePaginationContext()
 
-  // TODO: replace woth actual count (when resolved in zag.js)
   const count = totalPages * pageSize
 
   const content = useMemo(() => {

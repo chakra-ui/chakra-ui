@@ -12,6 +12,7 @@ export default {
   ],
 } satisfies Meta
 
+export { PaginationAsLink as AsLink } from "compositions/examples/pagination-as-link"
 export { PaginationAttached as Attached } from "compositions/examples/pagination-attached"
 export { PaginationBasic as Basic } from "compositions/examples/pagination-basic"
 export { PaginationCompact as Compact } from "compositions/examples/pagination-compact"
