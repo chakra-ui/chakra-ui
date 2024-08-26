@@ -27,7 +27,6 @@ const keys = [
   "green",
   "yellow",
   "orange",
-  "red",
 ]
 
 export const ColorTokenDoc = () => {
