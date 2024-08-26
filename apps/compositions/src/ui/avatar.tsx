@@ -1,3 +1,5 @@
+"use client"
+
 import {
   AvatarRootPropsProvider,
   Avatar as ChakraAvatar,
