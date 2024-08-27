@@ -1,8 +1,6 @@
 import { globbySync } from "globby"
 import { existsSync, readFileSync } from "node:fs"
-import path from "node:path"
-
-const localePath = path[process.platform === `win32` ? `win32` : `posix`]
+import { join, resolve } from "node:path"
 
 export interface ProjectScope {
   framework: "next" | "remix" | "vite" | null
@@ -25,11 +23,11 @@ function getFramework(files: string[], cwd: string) {
   }
 
   if (files.find((file) => file.startsWith("vite.config"))) {
-    const viteConfig = readFileSync(
-      localePath.resolve(cwd, "vite.config.js"),
-      "utf-8",
-    )
-    const isRemix = viteConfig.includes("@remix-run/dev")
+    const [viteConfigPath] = globbySync(["vite.config.ts", "vite.config.js"], {
+      cwd,
+    })
+    const viteConfig = readFileSync(viteConfigPath, "utf-8")
+    const isRemix = !!viteConfig?.includes("@remix-run/dev")
     return isRemix ? "remix" : "vite"
   }
 
@@ -37,27 +35,27 @@ function getFramework(files: string[], cwd: string) {
 }
 
 function getComponentsDir(scope: ProjectScope, cwd: string) {
-  const basePath = localePath.join("components", "ui")
+  const basePath = join("components", "ui")
 
   if (scope.framework === "remix") {
-    return localePath.join("app", basePath)
+    return join("app", basePath)
   }
 
   if (scope.framework === "next") {
-    const isSrcDir = existsSync(localePath.join(cwd, "src"))
-    return localePath.join(isSrcDir ? "src" : "", basePath)
+    const isSrcDir = existsSync(join(cwd, "src"))
+    return join(isSrcDir ? "src" : "", basePath)
   }
 
-  return localePath.join("src", basePath)
+  return join("src", basePath)
 }
 
 export async function getProjectContext(opts: ProjectContextOptions) {
   const { cwd = process.cwd() } = opts
-  const isTypeScript = existsSync(localePath.resolve(cwd, "tsconfig.json"))
+  const isTypeScript = existsSync(resolve(cwd, "tsconfig.json"))
 
   const scope: ProjectScope = {
     framework: "next",
-    componentsDir: localePath.join("src", "components", "ui"),
+    componentsDir: join("src", "components", "ui"),
   }
 
   const files = globbySync(["next.config.*", "vite.config.*"], { cwd })
