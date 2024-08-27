@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorModeButton } from "@/components/color-mode-button"
+import { ColorModeButton } from "@/components/docs/color-mode-button"
 import { Logo } from "@/components/logo"
 import { MobileSearchButton, SearchButton } from "@/components/search-button"
 import { SocialLinks } from "@/components/social-links"
