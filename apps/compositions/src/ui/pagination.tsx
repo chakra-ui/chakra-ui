@@ -203,7 +203,7 @@ export const PaginationPageText = (props: PageTextProps) => {
       return `${page} of ${pages.length}`
     }
     return `${pageRange.start + 1} - ${pageRange.end} of ${count}`
-  }, [format, page, pages.length, pageRange])
+  }, [format, page, pages.length, pageRange, count])
 
   return (
     <Text fontWeight="medium" {...rest}>

@@ -38,9 +38,7 @@ export const StatValueText = (props: StatValueTextProps) => {
   return (
     <ChakraStat.ValueText {...rest}>
       {children ||
-        (value != null && (
-          <FormatNumber value={value} {...props.formatOptions} />
-        ))}
+        (value != null && <FormatNumber value={value} {...formatOptions} />)}
     </ChakraStat.ValueText>
   )
 }

@@ -101,7 +101,11 @@ export const SnippetCommand = new Command("snippet")
 
                   const outPath = join(outdir, item.file.name)
 
-                  await writeFile(outPath, item.file.content, "utf-8")
+                  await writeFile(
+                    outPath,
+                    item.file.content.replace("compositions/ui", "."),
+                    "utf-8",
+                  )
                 }),
               )
             },
@@ -125,7 +129,11 @@ export const SnippetCommand = new Command("snippet")
                   if (dryRun) {
                     printFileSync(item)
                   } else {
-                    await writeFile(outPath, item.file.content, "utf-8")
+                    await writeFile(
+                      outPath,
+                      item.file.content.replace("compositions/ui", "."),
+                      "utf-8",
+                    )
                   }
                 }),
               )
