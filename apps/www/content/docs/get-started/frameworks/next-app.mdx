@@ -26,6 +26,8 @@ configured correctly to use Chakra UI.
 
 ## Installation
 
+> The minimum node version required is Node.20.x
+
 :::steps
 
 ### Install dependencies
@@ -53,7 +55,7 @@ This provider composes the following:
 - `ChakraProvider` from `@chakra-ui/react` for the styling system
 - `ThemeProvider` from `next-themes` for color mode
 
-```tsx title="app/layout.tsx"
+```tsx title="app/layout.tsx" {1,6,8}
 import { Provider } from "@/components/ui/provider"
 
 export default function RootLayout(props: { children: React.ReactNode }) {
@@ -71,24 +73,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 > Adding the `suppressHydrationWarning` prop to the `html` element is required
 > to prevent the warning about the `next-themes` library.
 
-### Update tsconfig
-
-If you're using TypeScript, you need to update the `compilerOptions` in the
-tsconfig file to include the following options:
-
-```json title="tsconfig.json"
-{
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "skipLibCheck": true
-  }
-}
-```
-
 ### Enjoy!
 
-When the power of the snippets and the primitive components from Chakra UI, you
+With the power of the snippets and the primitive components from Chakra UI, you
 can build your UI faster.
 
 ```tsx
