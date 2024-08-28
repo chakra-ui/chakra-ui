@@ -111,7 +111,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         },
         trigger: {
           py: "1",
-          px: "2.5",
+          px: "3",
           textStyle: "sm",
         },
       },
@@ -122,7 +122,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         },
         trigger: {
           py: "1.5",
-          px: "3",
+          px: "4",
           textStyle: "sm",
         },
       },
@@ -133,7 +133,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         },
         trigger: {
           py: "2",
-          px: "3",
+          px: "5",
           textStyle: "md",
         },
       },
@@ -145,6 +145,10 @@ export const tabsSlotRecipe = defineSlotRecipe({
           borderColor: "border",
         },
         trigger: {
+          color: "fg",
+          _selected: {
+            color: "fg.muted",
+          },
           _disabled: {
             _active: { bg: "initial" },
           },
@@ -154,9 +158,10 @@ export const tabsSlotRecipe = defineSlotRecipe({
       soft: {
         trigger: {
           borderRadius: "var(--tabs-trigger-radius)",
+          color: "fg.muted",
           _selected: {
             bg: { base: "colorPalette.100", _dark: "colorPalette.950" },
-            color: { base: "colorPalette.700", _dark: "colorPalette.300" },
+            color: "fg",
           },
         },
       },
@@ -174,8 +179,8 @@ export const tabsSlotRecipe = defineSlotRecipe({
           borderRadius: "var(--tabs-trigger-radius)",
           _selected: {
             bg: "bg",
+            color: "fg",
             shadow: "xs",
-            color: { base: "colorPalette.700", _dark: "colorPalette.300" },
           },
         },
       },

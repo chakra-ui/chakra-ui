@@ -4,7 +4,7 @@ export const layerStyles = defineLayerStyles({
   // fill: some background color + color combination
   "fill.muted": {
     value: {
-      background: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+      background: { base: "colorPalette.100", _dark: "colorPalette.400/16" },
       color: { base: "colorPalette.800", _dark: "colorPalette.200" },
     },
   },

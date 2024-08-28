@@ -1,14 +1,12 @@
 "use client"
 
 import { ColorModeButton } from "@/components/docs/color-mode-button"
-import { Logo, LogoIcon } from "@/components/logo"
+import { Logo } from "@/components/logo"
 import { SocialLinks } from "@/components/social-links"
 import {
-  Box,
   Button,
   Container,
   Dialog,
-  Group,
   HStack,
   IconButton,
   Spacer,
@@ -28,60 +26,37 @@ const HeaderRoot = chakra(Container, {
   },
 })
 
-const LogoSection = () => (
-  <Link href="/" aria-label="Chakra UI, Back to homepage">
-    <Logo color="red" display={{ base: "none", md: "block" }} />
-    <Box minW="3rem" display={{ base: "block", md: "none" }}>
-      <LogoIcon />
-    </Box>
-  </Link>
-)
-
-const SectionButtonGroup = () => (
-  <Group rounded="full" border="1px solid" borderColor="border.muted" p="1">
-    <Button
-      asChild
-      colorPalette="teal"
-      size="xs"
-      rounded="full"
-      bg="teal.500"
-      color="black"
-    >
-      <Link href="/docs/get-started/overview/installation">Open Source</Link>
-    </Button>
-    <Button asChild variant="ghost" size="xs" rounded="full">
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://pro.chakra-ui.com/?utm_source=chakra-ui.com&utm_medium=homepage-ad"
-      >
-        Chakra Pro
-      </a>
-    </Button>
-  </Group>
+const LogoLink = () => (
+  <HStack asChild focusRing="outside">
+    <Link href="/" aria-label="Chakra UI, Back to homepage">
+      <Logo color="fg" />
+    </Link>
+  </HStack>
 )
 
 const NAV_LINKS = [
-  { title: "Docs", url: "" },
-  { title: "Examples", url: "" },
-  { title: "Showcase", url: "" },
-  { title: "Figma Kit", url: "" },
-  { title: "Sponsor", url: "" },
+  { title: "Docs", url: "/docs/get-started/installation" },
+  { title: "Components", url: "/docs/components/overview" },
+  { title: "Blog", url: "/blog" },
+  { title: "Showcase", url: "/showcase" },
 ]
 
-const MainNavigation = () => (
+const DesktopNav = () => (
   <HStack gap="2" as="nav" aria-label="primary navigation">
-    <HStack gap="2" minH="48px" display={{ base: "none", md: "flex" }}>
+    <HStack gap="4" minH="48px" display={{ base: "none", md: "flex" }}>
       {NAV_LINKS.map((item) => (
-        <chakra.a
+        <HStack
+          minH="8"
+          px="3"
+          rounded="md"
+          focusRing="outside"
+          asChild
+          fontWeight="medium"
+          textStyle="sm"
           key={item.title}
-          href={item.url}
-          fontWeight="bold"
-          fontSize="sm"
-          color={{ base: "fg.muted", _hover: "fg" }}
         >
-          {item.title}
-        </chakra.a>
+          <Link href={item.url}>{item.title}</Link>
+        </HStack>
       ))}
       <SocialLinks items={[{ type: "github", href: "#" }]} />
     </HStack>
@@ -128,16 +103,15 @@ const MobileNavContent = () => (
   </Container>
 )
 
-const MobileNavigation = () => {
+const MobileNav = () => {
   return (
     <Dialog.Root>
       <MobileNavTrigger />
       <Dialog.Backdrop />
       <Dialog.Positioner>
-        <Dialog.Content m="0" shadow="none" borderRadius="0" bg="var(--bg)">
+        <Dialog.Content m="0" shadow="none" borderRadius="0" bg="bg">
           <HeaderRoot>
-            <LogoSection />
-            <SectionButtonGroup />
+            <LogoLink />
             <Spacer />
             <MobileNavCloseTrigger />
           </HeaderRoot>
@@ -148,14 +122,15 @@ const MobileNavigation = () => {
   )
 }
 
-export const Header = () => {
+export const HeaderSection = () => {
   return (
-    <HeaderRoot>
-      <LogoSection />
-      <SectionButtonGroup />
-      <Spacer />
-      <MainNavigation />
-      <MobileNavigation />
-    </HeaderRoot>
+    <Container mt="4">
+      <HStack>
+        <LogoLink />
+        <Spacer />
+        <DesktopNav />
+        <MobileNav />
+      </HStack>
+    </Container>
   )
 }

@@ -11,9 +11,9 @@ import {
   Text,
 } from "@chakra-ui/react"
 import Link from "next/link"
+// import { DemoCode } from "../demo-code"
 import { Blob } from "./blob"
-import { AccessibilityDemo } from "./data/accessibility-demo"
-import { DemoCode } from "./demo-code"
+// import { AccessibilityDemo } from "./data/accessibility-demo"
 import { BlitzFillIcon } from "./icons"
 
 const Intro = () => (
@@ -122,7 +122,7 @@ const CodePreviewSection = () => (
           alignItems="center"
           py="6"
         >
-          <AccessibilityDemo />
+          {/* <AccessibilityDemo /> */}
         </Tabs.Content>
         <Tabs.Content
           value="Code"
@@ -133,13 +133,13 @@ const CodePreviewSection = () => (
             },
           }}
         >
-          <DemoCode
+          {/* <DemoCode
             name="accessibility-demo"
             extension="tsx"
             opts={{
               lang: "tsx",
             }}
-          />
+          /> */}
         </Tabs.Content>
       </Tabs.ContentGroup>
     </Tabs.Root>
@@ -155,8 +155,14 @@ export const Accessibility = async () => (
         pos="relative"
         direction={{ base: "column", md: "row" }}
       >
-        <Blob size="765px" top="-5px" left="-50%" bottom="-180px" />
-        <Blob size="765px" top="-70%" right="-20%" />
+        <Blob
+          width="765px"
+          height="765px"
+          top="-5px"
+          left="-50%"
+          bottom="-180px"
+        />
+        <Blob width="765px" height="765px" top="-70%" right="-20%" />
 
         <Stack gap={{ base: "6", md: "12" }} flex="1">
           <Intro />

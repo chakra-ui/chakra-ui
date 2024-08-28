@@ -1,8 +1,8 @@
-import { readFile } from "fs/promises"
-import { resolve } from "path"
+import { readFile } from "node:fs/promises"
+import { resolve } from "node:path"
 
-export const readExampleFile = async (name: string) => {
-  const filePath = resolve("../compositions/src/examples", `${name}.tsx`)
+export const readExampleFile = async (name: string, ext = "tsx") => {
+  const filePath = resolve("../compositions/src/examples", `${name}.${ext}`)
 
   let fileContent = await readFile(filePath, "utf-8")
   fileContent = fileContent

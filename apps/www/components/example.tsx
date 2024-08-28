@@ -37,11 +37,12 @@ export const ExamplePreview = (props: Props) => {
 
 interface CodeProps extends Props {
   showCopy?: boolean
+  ext?: string
 }
 
 export const ExampleCode = async (props: CodeProps) => {
-  const { name, showCopy = true } = props
-  const content = await readExampleFile(name)
+  const { name, showCopy = true, ext = "tsx" } = props
+  const content = await readExampleFile(name, ext)
   const html = await highlightCode(content)
   return (
     <>
@@ -60,11 +61,14 @@ export const ExampleCode = async (props: CodeProps) => {
 
 interface CodeWrapperProps {
   maxHeight?: BoxProps["maxHeight"]
+  bg?: BoxProps["bg"]
+  px?: BoxProps["px"]
+  py?: BoxProps["py"]
   children: React.ReactNode
 }
 
 export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
-  const { children, maxHeight } = props
+  const { children, maxHeight, bg, px = 8, py = 6 } = props
   return (
     <Box
       height="100%"
@@ -72,11 +76,12 @@ export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
       css={{
         position: "relative",
         "& pre": {
-          px: "8",
-          py: "6",
+          px,
+          py,
           maxHeight,
           overflow: "auto",
           my: "0",
+          bg,
         },
       }}
     >

@@ -257,7 +257,7 @@ const HeaderMobileActions = () => {
 const HeaderDesktopNavbar = () => {
   return (
     <Box hideBelow="md">
-      <HStack pt="2" pb="2">
+      <HStack py="2">
         <HeaderPrimaryNavbar />
         <Spacer />
         <HeaderDesktopActions />
@@ -280,7 +280,7 @@ const HeaderMobileNavbar = () => {
 export const Header = () => {
   return (
     <HeaderRoot>
-      <Container as="nav">
+      <Container>
         <HeaderDesktopNavbar />
         <HeaderMobileNavbar />
       </Container>

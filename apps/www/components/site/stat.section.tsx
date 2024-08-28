@@ -2,6 +2,7 @@ import { getDiscordMembers } from "@/lib/get-discord-members"
 import { getGithubStars } from "@/lib/get-github-stars"
 import { getNpmDownloads } from "@/lib/get-npm-downloads"
 import {
+  Box,
   Container,
   Flex,
   Heading,
@@ -16,6 +17,7 @@ import { IconType } from "react-icons/lib"
 import { RiNpmjsFill } from "react-icons/ri"
 import { Blob } from "./blob"
 import { BlitzIcon } from "./icons"
+import { HighlightHeading } from "./typography"
 
 const BlitzIconSection = () => (
   <Icon
@@ -25,53 +27,11 @@ const BlitzIconSection = () => (
     pos="absolute"
     top="-28"
     right="67px"
-    mdDown={{ display: "none" }}
+    color="fg.inverted"
+    hideBelow="md"
   >
     <BlitzIcon />
   </Icon>
-)
-
-const Intro = () => (
-  <Stack gap={{ base: "6", md: "14" }} align="center">
-    <Heading
-      maxW="md"
-      textStyle={{ base: "3xl", md: "5xl" }}
-      fontWeight="bold"
-      textAlign="center"
-    >
-      Built for developers By{" "}
-      <Span
-        color="teal.500"
-        pos="relative"
-        px="2"
-        display="inline-block"
-        _before={{
-          pos: "absolute",
-          content: "''",
-          w: "full",
-          h: "full",
-          bg: "teal.500/10",
-          bottom: "-3px",
-          left: "0",
-          borderRight: "solid 1.5px",
-          borderColor: "currentColor",
-        }}
-      >
-        developers
-      </Span>
-    </Heading>
-
-    <Stack
-      textStyle={{ base: "lg", md: "2xl" }}
-      fontWeight="medium"
-      textAlign="center"
-    >
-      <Heading>Built for modern product teams.</Heading>
-      <Text color="gray.400">
-        From next-gen startups to established enterprises.
-      </Text>
-    </Stack>
-  </Stack>
 )
 
 interface StatBoxProps {
@@ -86,25 +46,26 @@ const StatsBox = (props: StatBoxProps) => {
   return (
     <Stack
       flex="1"
-      border="1px solid #001B18"
-      ml="-1px"
+      ms="-1px"
+      borderWidth="1px"
+      borderColor={{ base: "inherit", _dark: "#001B18" }}
       align="center"
-      gap={{ base: "4", md: "8" }}
+      gap={{ base: "3", md: "6" }}
       pt={{ base: "5", md: "10" }}
       pb={{ base: "4", md: "8" }}
     >
       <Text
         fontWeight="medium"
-        color="teal.500"
+        color={{ base: "teal.600", _dark: "teal.500" }}
         textStyle={{ base: "4xl", md: "7xl" }}
       >
         {description}
       </Text>
       <Flex align="center" gap="3">
-        <Icon color="teal.500">
+        <Icon asChild color={{ base: "teal.600", _dark: "teal.500" }}>
           <StatIcon />
         </Icon>
-        <Text color="gray.400" fontWeight="medium">
+        <Text color="fg.muted" fontWeight="medium">
           {title}
         </Text>
       </Flex>
@@ -112,7 +73,7 @@ const StatsBox = (props: StatBoxProps) => {
   )
 }
 
-async function getStats() {
+const KeyStats = async () => {
   const [
     { prettyCount: githubStars },
     { prettyCount: npmDownloads },
@@ -122,16 +83,6 @@ async function getStats() {
     getNpmDownloads(),
     getDiscordMembers(),
   ])
-
-  return {
-    githubStars,
-    discordMembers,
-    npmDownloads,
-  }
-}
-
-const StatsList = async () => {
-  const { githubStars, discordMembers, npmDownloads } = await getStats()
 
   return (
     <Flex
@@ -159,20 +110,39 @@ const StatsList = async () => {
   )
 }
 
-export const Stats = async () => {
+export const StatSection = async () => {
   return (
-    <Container>
-      <Stack
-        gap={{ base: "10", md: "20" }}
-        pos="relative"
-        align="center"
-        maxW="100%"
-      >
-        <BlitzIconSection />
-        <Intro />
-        <StatsList />
-        <Blob size="765px" right="-32" bottom="-50%" />
-      </Stack>
-    </Container>
+    <Box as="section" py="20">
+      <Container>
+        <Stack
+          gap={{ base: "10", md: "20" }}
+          pos="relative"
+          align="center"
+          maxW="100%"
+        >
+          <BlitzIconSection />
+          <Stack gap={{ base: "6", md: "14" }} align="center">
+            <HighlightHeading
+              query="By developers"
+              as="h2"
+              maxW="500px"
+              textAlign="center"
+            >
+              Built for developers By developers
+            </HighlightHeading>
+            <Heading textAlign="center" fontWeight="medium">
+              Built for modern product teams.
+              <br />
+              <Span color="gray.400">
+                From next-gen startups to established enterprises.
+              </Span>
+            </Heading>
+          </Stack>
+          <KeyStats />
+        </Stack>
+
+        <Blob width="765px" height="765px" right="-32" bottom="-50%" />
+      </Container>
+    </Box>
   )
 }

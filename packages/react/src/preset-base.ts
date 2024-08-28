@@ -237,17 +237,18 @@ export const defaultBaseConfig = defineConfig({
     },
     gradientFrom: {
       values: "colors",
-      transform: (value) => ({ "--gradient-from": value }),
+      transform: createColorMixTransform("--gradient-from"),
     },
     gradientTo: {
       values: "colors",
-      transform: (value) => ({ "--gradient-to": value }),
+      transform: createColorMixTransform("--gradient-to"),
     },
     gradientVia: {
       values: "colors",
-      transform(value) {
+      transform(value, args) {
+        const color = createColorMixTransform("--gradient-via")(value, args)
         return {
-          "--gradient-via": value,
+          "--gradient-via": color,
           "--gradient-via-stops":
             "var(--gradient-from), var(--gradient-via), var(--gradient-to)",
         }
