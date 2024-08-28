@@ -23,7 +23,10 @@ export const DemoFrame = chakra(
       onFocusCapture(e) {
         const activeEl = document.activeElement
         if (activeEl === e.currentTarget) {
-          e.currentTarget?.scrollIntoView({ inline: "nearest" })
+          e.currentTarget?.scrollIntoView({
+            inline: "nearest",
+            block: "nearest",
+          })
         }
       },
     },
