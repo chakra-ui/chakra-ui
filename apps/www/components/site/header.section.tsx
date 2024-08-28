@@ -36,7 +36,7 @@ const LogoLink = () => (
 
 const NAV_LINKS = [
   { title: "Docs", url: "/docs/get-started/installation" },
-  { title: "Components", url: "/docs/components/overview" },
+  { title: "Enterprise", url: "/enterprise" },
   { title: "Blog", url: "/blog" },
   { title: "Showcase", url: "/showcase" },
 ]

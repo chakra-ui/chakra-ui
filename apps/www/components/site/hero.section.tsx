@@ -13,11 +13,9 @@ import {
   Center,
   Container,
   HStack,
-  Menu,
   Span,
   Stack,
   Tabs,
-  VStack,
 } from "@chakra-ui/react"
 import {
   MenuContent,
@@ -114,11 +112,6 @@ const ComponentDemos = () => {
               </Button>
             </MenuTrigger>
             <MenuContent
-              pos="absolute"
-              top="10"
-              left="50%"
-              transform="translateX(-50%)"
-              animationDuration="0!"
               onKeyDownCapture={(e) => {
                 setTimeout(() => {
                   if (e.key === "Tab" && !e.shiftKey) {

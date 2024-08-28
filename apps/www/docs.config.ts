@@ -267,7 +267,7 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
-    { title: "Figma", url: "figma" },
+    { title: "Enterprise", url: "enterprise" },
     { title: "Blog", url: "blog" },
     { title: "Showcase", url: "showcase" },
   ],
