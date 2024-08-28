@@ -1,14 +1,6 @@
 import { readExampleFile } from "@/lib/composition"
 import { highlightCode } from "@/lib/highlight-code"
-import {
-  Absolute,
-  Box,
-  BoxProps,
-  HStack,
-  Stack,
-  Tabs,
-  Text,
-} from "@chakra-ui/react"
+import { Box, BoxProps, HStack, Stack, Tabs, Text } from "@chakra-ui/react"
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { CopyButton } from "./copy-button"
@@ -51,9 +43,9 @@ export const ExampleCode = async (props: CodeProps) => {
         dangerouslySetInnerHTML={{ __html: html }}
       />
       {showCopy && (
-        <Absolute top="4" right="6">
+        <Box pos="absolute" top="4" right="6">
           <CopyButton value={content} />
-        </Absolute>
+        </Box>
       )}
     </>
   )

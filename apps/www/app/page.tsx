@@ -1,7 +1,7 @@
 import { Blob } from "@/components/site/blob"
 import { ChakraProSection } from "@/components/site/chakra-pro.section"
 import { DesignSystemSection } from "@/components/site/design-system.section"
-import { Footer } from "@/components/site/footer.section"
+import { FooterSection } from "@/components/site/footer.section"
 import { FrameworkSection } from "@/components/site/framework.section"
 import { HeaderSection } from "@/components/site/header.section"
 import { HeroSection } from "@/components/site/hero.section"
@@ -59,7 +59,7 @@ export default function Page() {
       <SponsorSection />
       <FrameworkSection />
       <ChakraProSection />
-      <Footer />
+      <FooterSection />
     </Stack>
   )
 }

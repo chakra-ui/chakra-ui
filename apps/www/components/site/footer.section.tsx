@@ -39,7 +39,7 @@ const linkTree = [
   },
 ]
 
-export const Footer = () => {
+export const FooterSection = () => {
   return (
     <footer role="contentinfo">
       <Container py="8" fontSize="sm">

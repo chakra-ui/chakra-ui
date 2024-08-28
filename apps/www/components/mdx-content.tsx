@@ -1,4 +1,4 @@
-import { Box, Kbd } from "@chakra-ui/react"
+import { Kbd } from "@chakra-ui/react"
 import { AspectRatioTokenDoc } from "compositions/lib/aspect-ratio-token-toc"
 import { BorderRadiusTokenDoc } from "compositions/lib/border-radius-token-doc"
 import { BreakpointDoc } from "compositions/lib/breakpoint-doc"
@@ -88,9 +88,5 @@ interface MDXProps {
 export const MDXContent = (props: MDXProps) => {
   const { code, components = {} } = props
   const Component = useMDXComponent(code)
-  return (
-    <Box fontSize="sm">
-      <Component components={{ ...sharedComponents, ...components }} />
-    </Box>
-  )
+  return <Component components={{ ...sharedComponents, ...components }} />
 }
