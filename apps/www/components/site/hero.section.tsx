@@ -28,7 +28,7 @@ import { Slider } from "compositions/ui/slider"
 import { Switch } from "compositions/ui/switch"
 import Link from "next/link"
 import { HiArrowRight } from "react-icons/hi"
-import { LuTerminal } from "react-icons/lu"
+import { LuPartyPopper, LuTerminal } from "react-icons/lu"
 
 const tabsData = [
   {
@@ -147,6 +147,7 @@ export const HeroSection = () => (
       <Stack gap={{ base: "5", md: "10" }} mb="20">
         <Annoucement alignSelf="flex-start" asChild>
           <Link href="#">
+            <LuPartyPopper />
             Celebrating the launch of Chakra 3.0
             <HiArrowRight />
           </Link>

@@ -402,7 +402,7 @@ describe("css", () => {
     expect(result).toMatchInlineSnapshot(`
       {
         "&.dark, .dark &": {
-          "--mix-background": "color-mix(in srgb, var(--chakra-colors-color-palette-400) 20%, transparent)",
+          "--mix-background": "color-mix(in srgb, var(--chakra-colors-color-palette-400) 16%, transparent)",
           "background": "var(--mix-background, var(--chakra-colors-color-palette-400))",
           "color": "var(--chakra-colors-color-palette-200)",
         },
