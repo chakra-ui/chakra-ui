@@ -35,7 +35,7 @@ export interface ToastOptions {
   /**
    * Function that removes the toast from manager's state.
    */
-  onRequestRemove(): void
+  onRequestRemove(this: void): void
 
   /**
    * The position of the toast
@@ -45,7 +45,7 @@ export interface ToastOptions {
   /**
    * Callback function to run side effects after the toast has closed.
    */
-  onCloseComplete?(): void
+  onCloseComplete?(this: void): void
 
   /**
    * Internally used to queue closing a toast. Should probably not be used by
