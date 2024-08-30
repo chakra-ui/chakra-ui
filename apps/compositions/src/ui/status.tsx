@@ -11,16 +11,16 @@ export interface StatusProps extends ChakraStatus.RootProps {
 const statusMap: Record<StatusValue, ColorPalette> = {
   success: "green",
   error: "red",
-  warning: "yellow",
-  info: "gray",
+  warning: "orange",
+  info: "blue",
 }
 
 export const Status = forwardRef<HTMLDivElement, StatusProps>(
   function Status(props, ref) {
     const { children, value = "info", ...rest } = props
-    const colorPalette = statusMap[value]
+    const colorPalette = rest.colorPalette ?? statusMap[value]
     return (
-      <ChakraStatus.Root colorPalette={colorPalette} ref={ref} {...rest}>
+      <ChakraStatus.Root ref={ref} {...rest} colorPalette={colorPalette}>
         <ChakraStatus.Indicator />
         {children}
       </ChakraStatus.Root>

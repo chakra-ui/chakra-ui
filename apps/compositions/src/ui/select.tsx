@@ -19,7 +19,7 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
 
 export const SelectClearTrigger = () => (
   <ChakraSelect.ClearTrigger asChild>
-    <CloseButton size="sm" variant="plain" />
+    <CloseButton size="sm" variant="ghost" />
   </ChakraSelect.ClearTrigger>
 )
 

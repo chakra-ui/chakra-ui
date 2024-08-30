@@ -8,33 +8,30 @@ export const badgeRecipe = defineRecipe({
     gap: "1",
     fontWeight: "medium",
     fontVariantNumeric: "tabular-nums",
-    colorPalette: "gray",
+    colorPalette: "accent",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
   },
   variants: {
     variant: {
       solid: {
-        bg: "colorPalette.600",
-        color: "white",
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
       },
       subtle: {
-        bg: { base: "colorPalette.200", _dark: "colorPalette.400/20" },
-        color: { base: "colorPalette.800", _dark: "colorPalette.300" },
+        bg: "colorPalette.subtle",
+        color: "colorPalette.fg",
       },
       outline: {
-        color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+        color: "colorPalette.fg",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
+        shadowColor: "colorPalette.emphasized",
       },
       surface: {
-        bg: { base: "colorPalette.50", _dark: "colorPalette.300/20" },
-        color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+        bg: "colorPalette.muted",
+        color: "colorPalette.fg",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: { base: "colorPalette.300", _dark: "colorPalette.200/10" },
-      },
-      plain: {
-        color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+        shadowColor: "colorPalette.subtle",
       },
     },
     size: {

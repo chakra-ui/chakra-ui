@@ -40,7 +40,7 @@ export const RadioCardCentered = () => {
             rounded="lg"
           >
             <VStack textAlign="center" flex="1">
-              <Icon asChild fontSize="2xl" color="fg.muted">
+              <Icon asChild fontSize="2xl" color="fg.subtle">
                 {item.icon}
               </Icon>
               <RadioCardItemText fontWeight="medium">

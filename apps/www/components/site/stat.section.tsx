@@ -65,7 +65,7 @@ const StatsBox = (props: StatBoxProps) => {
         <Icon asChild color={{ base: "teal.600", _dark: "teal.500" }}>
           <StatIcon />
         </Icon>
-        <Text color="fg.muted" fontWeight="medium">
+        <Text color="fg.subtle" fontWeight="medium">
           {title}
         </Text>
       </Flex>

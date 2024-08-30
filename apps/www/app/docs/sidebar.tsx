@@ -100,7 +100,7 @@ const MobileMenuButton = chakra("button", {
     position: "sticky",
     top: "var(--header-height)",
     borderBottom: "1px solid",
-    borderColor: "border.muted",
+    borderColor: "border.subtle",
     zIndex: "10",
     cursor: "pointer",
     bg: "bg",

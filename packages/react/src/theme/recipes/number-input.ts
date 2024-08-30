@@ -11,7 +11,7 @@ const triggerStyle = defineStyle({
   flex: 1,
   userSelect: "none",
   lineHeight: "1",
-  color: "fg.muted",
+  color: "fg.subtle",
   _disabled: {
     opacity: "0.5",
   },

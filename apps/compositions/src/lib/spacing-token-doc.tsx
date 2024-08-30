@@ -34,10 +34,10 @@ export const SpacingTokenDoc = () => {
             <Text width="100px" fontWeight="medium">
               {token.extensions.prop}
             </Text>
-            <Text width="100px" color="fg.muted">
+            <Text width="100px" color="fg.subtle">
               {token.value}
             </Text>
-            <Text width="100px" color="fg.muted">
+            <Text width="100px" color="fg.subtle">
               {token.extensions.pixelValue}
             </Text>
             <Box flex="1">

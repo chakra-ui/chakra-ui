@@ -34,13 +34,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           >
             {blog.type}
           </Badge>
-          <Span color="fg.muted">·</Span>
+          <Span color="fg.subtle">·</Span>
           {formatBlogDate(blog.publishedAt)}
         </HStack>
         <Heading size="4xl">{blog.title}</Heading>
-        <Text color="fg.muted">{blog.description}</Text>
+        <Text color="fg.subtle">{blog.description}</Text>
         <Stack mt="4" gap="3">
-          <Text color="fg.muted" fontSize="sm">
+          <Text color="fg.subtle" fontSize="sm">
             Posted by
           </Text>
           <HStack>
@@ -51,7 +51,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                   <Avatar src={author.image} name={author.name} />
                   <Stack gap="0" fontSize="sm">
                     <Text>{author.name}</Text>
-                    <Text color="fg.muted">{author.x.username}</Text>
+                    <Text color="fg.subtle">{author.x.username}</Text>
                   </Stack>
                 </HStack>
               )

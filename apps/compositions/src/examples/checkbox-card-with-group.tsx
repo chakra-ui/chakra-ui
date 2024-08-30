@@ -17,7 +17,7 @@ export const CheckboxCardWithGroup = () => {
             <CheckboxCardControl>
               <Stack gap="0" flex="1">
                 <CheckboxCardLabel>{item.title}</CheckboxCardLabel>
-                <Text color="fg.muted">{item.description}</Text>
+                <Text color="fg.subtle">{item.description}</Text>
               </Stack>
             </CheckboxCardControl>
           </CheckboxCardRoot>

@@ -26,11 +26,11 @@ export const BorderRadiusTokenDoc = () => {
                   borderRadius={radius}
                   size="20"
                   bg="bg.muted"
-                  color="fg.muted"
+                  color="fg.subtle"
                   borderWidth="1px"
                 />
                 <Box lineHeight="1">{radius}</Box>
-                <Box as="pre" color="fg.muted" fontSize="xs">
+                <Box as="pre" color="fg.subtleeee" fontSize="xs">
                   {token?.originalValue}
                 </Box>
               </Stack>

@@ -51,7 +51,7 @@ export const DesignSystemSection = () => {
                   <List.Indicator asChild>{item.icon}</List.Indicator>
                   <p>
                     {item.label}.{" "}
-                    <Span color="fg.muted">{item.description}</Span>
+                    <Span color="fg.subtle">{item.description}</Span>
                   </p>
                 </List.Item>
               ))}
@@ -63,7 +63,7 @@ export const DesignSystemSection = () => {
               rounded="lg"
               p="2"
               defaultValue={items[0].value}
-              variant="soft"
+              variant="subtle"
               shadow="inset"
               flex="1"
               bg="bg"

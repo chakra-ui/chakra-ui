@@ -23,7 +23,7 @@ export default function Page() {
           textWrap="balance"
           maxWidth="2xl"
           textAlign="center"
-          color="fg.muted"
+          color="fg.subtle"
         >
           A collection of beautiful websites that are built in Chakra UI
         </Text>

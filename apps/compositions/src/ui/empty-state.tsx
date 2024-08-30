@@ -24,7 +24,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
               </ChakraEmptyState.Description>
             </VStack>
           ) : (
-            <Text fontSize="sm" color="fg.muted">
+            <Text fontSize="sm" color="fg.subtle">
               {description}
             </Text>
           )}

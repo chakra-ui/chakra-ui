@@ -88,7 +88,7 @@ for dark mode. Learn more about
 [semantic tokens](/docs/design-tokens/colors#semantic-tokens).
 
 ```tsx
-<Box bg="bg.muted">
+<Box bg="bg.subtle">
   <Text>Hello</Text>
 </Box>
 ```
@@ -102,7 +102,7 @@ element of your application.
 
 ```tsx /className="dark"/
 <Box bg="black" className="dark">
-  <Box bg="bg.muted">
+  <Box bg="bg.subtle">
     <Text>Hello</Text>
   </Box>
 </Box>
@@ -115,7 +115,7 @@ Use the `ColorModeProvider` component to set the dark mode for a page.
 ```tsx
 <ColorModeProvider forcedTheme="dark">
   <Box bg="black" className="dark">
-    <Box bg="bg.muted">
+    <Box bg="bg.subtle">
       <Text>Hello</Text>
     </Box>
   </Box>

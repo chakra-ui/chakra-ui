@@ -56,7 +56,7 @@ export const PartnersSection = () => (
         <Heading textAlign="center" fontWeight="medium">
           Built for modern product teams.
           <br />
-          <Span color="fg.muted">
+          <Span color="fg.subtle">
             From next-gen startups to established enterprises.
           </Span>
         </Heading>

@@ -2,46 +2,40 @@ import { defineLayerStyles } from "../styled-system"
 
 export const layerStyles = defineLayerStyles({
   // fill: some background color + color combination
-  "fill.muted": {
+  "fill.subtle": {
     value: {
-      background: { base: "colorPalette.100", _dark: "colorPalette.400/16" },
-      color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+      background: "colorPalette.subtle",
+      color: "colorPalette.fg",
     },
   },
   "fill.surface": {
     value: {
-      background: { base: "colorPalette.50", _dark: "colorPalette.300/20" },
-      color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+      background: "colorPalette.muted",
+      color: "colorPalette.fg",
       boxShadow: "inset 0 0 0px 1px var(--shadow-color)",
-      boxShadowColor: {
-        base: "colorPalette.200",
-        _dark: "colorPalette.200/20",
-      },
+      boxShadowColor: "colorPalette.emphasized",
     },
   },
   "fill.solid": {
     value: {
-      background: "colorPalette.600",
-      color: "white",
+      background: "colorPalette.solid",
+      color: "colorPalette.contrast",
     },
   },
 
   // outline: some border color + color combination
-  "outline.muted": {
+  "outline.subtle": {
     value: {
-      color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+      color: "colorPalette.fg",
       boxShadow: "inset 0 0 0px 1px var(--shadow-color)",
-      boxShadowColor: {
-        base: "colorPalette.200",
-        _dark: "colorPalette.200/20",
-      },
+      boxShadowColor: "colorPalette.emphasized",
     },
   },
   "outline.solid": {
     value: {
       borderWidth: "1px",
-      borderColor: "colorPalette.600",
-      color: { base: "colorPalette.800", _dark: "colorPalette.400" },
+      borderColor: "colorPalette.solid",
+      color: "colorPalette.fg",
     },
   },
 
@@ -49,7 +43,7 @@ export const layerStyles = defineLayerStyles({
   "indicator.bottom": {
     value: {
       position: "relative",
-      "--indicator-color-fallback": "colors.colorPalette.500",
+      "--indicator-color-fallback": "colors.colorPalette.solid",
       _before: {
         content: `""`,
         position: "absolute",
@@ -63,7 +57,7 @@ export const layerStyles = defineLayerStyles({
   "indicator.top": {
     value: {
       position: "relative",
-      "--indicator-color-fallback": "colors.colorPalette.500",
+      "--indicator-color-fallback": "colors.colorPalette.solid",
       _before: {
         content: `""`,
         position: "absolute",
@@ -77,7 +71,7 @@ export const layerStyles = defineLayerStyles({
   "indicator.start": {
     value: {
       position: "relative",
-      "--indicator-color-fallback": "colors.colorPalette.500",
+      "--indicator-color-fallback": "colors.colorPalette.solid",
       _before: {
         content: `""`,
         position: "absolute",
@@ -91,7 +85,7 @@ export const layerStyles = defineLayerStyles({
   "indicator.end": {
     value: {
       position: "relative",
-      "--indicator-color-fallback": "colors.colorPalette.500",
+      "--indicator-color-fallback": "colors.colorPalette.solid",
       _before: {
         content: `""`,
         position: "absolute",

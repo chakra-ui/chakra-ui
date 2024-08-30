@@ -18,7 +18,7 @@ export const buttonRecipe = defineRecipe({
     fontWeight: "medium",
     transitionProperty: "common",
     transitionDuration: "moderate",
-    colorPalette: "gray",
+    colorPalette: "accent",
     focusVisibleRing: "outside",
     _disabled: {
       layerStyle: "disabled",
@@ -67,87 +67,67 @@ export const buttonRecipe = defineRecipe({
 
     variant: {
       solid: {
-        bg: "colorPalette.600",
-        color: "white",
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
         _hover: {
-          bg: "colorPalette.700",
+          bg: "colorPalette.solid/90",
         },
         _expanded: {
-          bg: "colorPalette.700",
-        },
-        _active: {
-          bg: "colorPalette.800",
-        },
-      },
-      subtle: {
-        bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-        color: { base: "colorPalette.700", _dark: "colorPalette.200" },
-        _hover: {
-          bg: { base: "colorPalette.200", _dark: "colorPalette.400/24" },
-        },
-        _expanded: {
-          bg: { base: "colorPalette.200", _dark: "colorPalette.400/24" },
-        },
-        _active: {
-          bg: { base: "colorPalette.300", _dark: "colorPalette.400/30" },
-        },
-      },
-      outline: {
-        bg: "bg",
-        borderWidth: "1px",
-        borderColor: { base: "colorPalette.200", _dark: "colorPalette.200/20" },
-        color: { base: "colorPalette.700", _dark: "colorPalette.200" },
-        _hover: {
-          bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
-        },
-        _expanded: {
-          bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
-        },
-        _active: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-        },
-      },
-      ghost: {
-        color: { base: "colorPalette.700", _dark: "colorPalette.200" },
-        _hover: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-        },
-        _expanded: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-        },
-        _active: {
-          bg: { base: "colorPalette.200", _dark: "colorPalette.400/24" },
+          bg: "colorPalette.solid/90",
         },
       },
 
-      plain: {
-        color: "fg",
+      subtle: {
+        bg: "colorPalette.muted",
+        color: "colorPalette.fg",
+        _hover: {
+          bg: "colorPalette.subtle",
+        },
+        _expanded: {
+          bg: "colorPalette.subtle",
+        },
+      },
+
+      surface: {
+        bg: "colorPalette.muted",
+        color: "colorPalette.fg",
+        shadow: "inset 0 0 0px 1px var(--shadow-color)",
+        shadowColor: "colorPalette.subtle",
+        _hover: {
+          bg: "colorPalette.subtle",
+        },
+        _expanded: {
+          bg: "colorPalette.subtle",
+        },
+      },
+
+      outline: {
+        borderWidth: "1px",
+        borderColor: "colorPalette.emphasized",
+        color: "colorPalette.fg",
+        _hover: {
+          bg: "colorPalette.muted",
+        },
+        _expanded: {
+          bg: "colorPalette.muted",
+        },
+      },
+
+      ghost: {
+        color: "colorPalette.fg",
+        _hover: {
+          bg: "colorPalette.muted",
+        },
+        _expanded: {
+          bg: "colorPalette.muted",
+        },
       },
     },
   },
 
-  compoundVariants: [
-    {
-      variant: "solid",
-      colorPalette: "gray",
-      css: {
-        bg: { base: "gray.800", _dark: "gray.200" },
-        color: { base: "white", _dark: "gray.800" },
-        _hover: {
-          bg: { base: "gray.700", _dark: "gray.300" },
-        },
-        _expanded: {
-          bg: { base: "gray.700", _dark: "gray.300" },
-        },
-        _active: {
-          bg: { base: "gray.600", _dark: "gray.400" },
-        },
-      },
-    },
-  ],
   defaultVariants: {
     size: "md",
     variant: "solid",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

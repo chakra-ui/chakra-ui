@@ -18,7 +18,7 @@ export const AlertWithVariants = () => {
 
       <Alert
         status="success"
-        variant="outline"
+        variant="surface"
         title="Data uploaded to the server. Fire on!"
       />
     </Stack>

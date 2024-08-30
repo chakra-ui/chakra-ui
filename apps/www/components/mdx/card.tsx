@@ -60,7 +60,7 @@ export const Card = (props: CardProps) => {
       borderWidth="1px"
       rounded="lg"
       focusRing="outside"
-      _hover={{ bg: "bg.muted" }}
+      _hover={{ bg: "bg.subtle" }}
     >
       <Link href={href} className="group">
         {icon && (
@@ -75,7 +75,7 @@ export const Card = (props: CardProps) => {
               <LuChevronRight />
             </CardTitleIcon>
           </HStack>
-          <Box color="fg.muted" lineHeight="1.2">
+          <Box color="fg.subtle" lineHeight="1.2">
             {children}
           </Box>
         </Stack>

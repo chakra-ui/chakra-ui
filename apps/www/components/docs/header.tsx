@@ -40,7 +40,7 @@ const HeaderRoot = chakra("header", {
     width: "100%",
     minHeight: "64px",
     borderBottom: "1px solid",
-    borderColor: "border.muted",
+    borderColor: "border.subtle",
     zIndex: "10",
   },
 })
@@ -48,7 +48,7 @@ const HeaderRoot = chakra("header", {
 const TopNavLink = chakra(Link, {
   base: {
     fontSize: "sm",
-    color: "fg.muted",
+    color: "fg.subtle",
     _currentPage: {
       color: "fg",
       fontWeight: "medium",
@@ -76,7 +76,7 @@ const TopNavMobileLink = chakra(Link, {
     display: "block",
     py: "2",
     px: "4",
-    color: "fg.muted",
+    color: "fg.subtle",
     w: "full",
     _currentPage: {
       color: "fg",

@@ -7,7 +7,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "inline-flex",
-      colorPalette: "gray",
+      colorPalette: "accent",
       textStyle: "sm",
       position: "relative",
     },
@@ -17,12 +17,12 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
       },
     },
     circleTrack: {
-      "--track-color": "colors.bg.emphasized",
+      "--track-color": "colors.colorPalette.subtle",
       stroke: "var(--track-color)",
     },
     circleRange: {
-      stroke: "colorPalette.600",
-      transitionProperty: "stroke-dasharray, stroke",
+      stroke: "colorPalette.solid",
+      transitionProperty: "stroke-dasharray",
       transitionDuration: "0.6s",
       _indeterminate: {
         animation: "circular-progress 1.5s linear infinite",
@@ -38,6 +38,7 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
       fontVariantNumeric: "tabular-nums",
     },
   },
+
   variants: {
     size: {
       xs: {
@@ -79,19 +80,8 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
     },
   },
 
-  compoundVariants: [
-    {
-      colorPalette: "gray",
-      css: {
-        circleRange: {
-          stroke: { base: "gray.800", _dark: "gray.200" },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     size: "md",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

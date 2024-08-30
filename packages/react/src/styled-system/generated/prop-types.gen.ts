@@ -34,6 +34,7 @@ export interface UtilityValues {
     | "fg"
     | "border"
     | "focusRing"
+    | "accent"
   background: Tokens["colors"]
   backgroundColor: Tokens["colors"]
   backgroundGradient: Tokens["gradients"] | "to-t" | "to-tr" | "to-r" | "to-br" | "to-b" | "to-bl" | "to-l" | "to-tl"

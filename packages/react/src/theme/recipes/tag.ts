@@ -9,7 +9,7 @@ export const tagSlotRecipe = defineSlotRecipe({
   className: "chakra-tag",
   base: {
     root: {
-      colorPalette: "gray",
+      colorPalette: "accent",
       display: "inline-flex",
       verticalAlign: "top",
       alignItems: "center",
@@ -41,7 +41,7 @@ export const tagSlotRecipe = defineSlotRecipe({
       sm: {
         root: {
           fontSize: "xs",
-          padding: "1.5",
+          padding: "0.5",
           gap: "1",
           borderRadius: "sm",
         },
@@ -49,16 +49,16 @@ export const tagSlotRecipe = defineSlotRecipe({
       md: {
         root: {
           fontSize: "sm",
-          padding: "1.5",
-          gap: "1.5",
+          padding: "1",
+          gap: "1",
           borderRadius: "md",
         },
       },
       lg: {
         root: {
-          fontSize: "md",
+          fontSize: "sm",
           padding: "1.5",
-          gap: "1.5",
+          gap: "1",
           borderRadius: "md",
         },
       },
@@ -77,19 +77,12 @@ export const tagSlotRecipe = defineSlotRecipe({
       surface: {
         root: badgeVariant?.surface,
       },
-      raised: {
-        root: {
-          bg: "bg.panel",
-          color: { base: "colorPalette.800", _dark: "colorPalette.300" },
-          boxShadow: "xs",
-        },
-      },
     },
   },
 
   defaultVariants: {
     size: "md",
     variant: "surface",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

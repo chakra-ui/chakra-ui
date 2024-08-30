@@ -6,7 +6,7 @@ export const progressSlotRecipe = defineSlotRecipe({
   className: "chakra-progress",
   base: {
     root: {
-      colorPalette: "gray",
+      colorPalette: "accent",
       textStyle: "sm",
       position: "relative",
     },
@@ -48,21 +48,22 @@ export const progressSlotRecipe = defineSlotRecipe({
       outline: {
         track: {
           shadow: "inset",
-          bgColor: { base: "gray.100", _dark: "whiteAlpha.300" },
+          bgColor: "bg.subtle",
         },
         range: {
-          bgColor: "colorPalette.600",
+          bgColor: "colorPalette.solid",
         },
       },
       subtle: {
         track: {
-          bgColor: { base: "gray.100", _dark: "whiteAlpha.300" },
+          bgColor: "bg.subtle",
         },
         range: {
-          bgColor: { base: "colorPalette.400", _dark: "colorPalette.400/40" },
+          bgColor: "colorPalette.solid/72",
         },
       },
     },
+
     shape: {
       square: {},
       rounded: {
@@ -76,6 +77,7 @@ export const progressSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     striped: {
       true: {
         range: {
@@ -115,22 +117,10 @@ export const progressSlotRecipe = defineSlotRecipe({
     },
   },
 
-  compoundVariants: [
-    {
-      variant: "outline",
-      colorPalette: "gray",
-      css: {
-        range: {
-          bgColor: { base: "colorPalette.800", _dark: "colorPalette.200" },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     variant: "outline",
     size: "md",
     shape: "rounded",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

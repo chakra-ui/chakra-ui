@@ -35,7 +35,7 @@ export const fieldSlotRecipe = defineSlotRecipe({
       textStyle: "xs",
     },
     helperText: {
-      color: "fg.muted",
+      color: "fg.subtle",
       lineHeight: "normal",
       textStyle: "xs",
     },

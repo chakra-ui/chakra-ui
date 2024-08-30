@@ -11,19 +11,7 @@ export const ColorModeButton = () => {
   }
   return (
     <ClientOnly fallback={<Skeleton boxSize="8" />}>
-      <IconButton
-        onClick={handleClick}
-        variant="ghost"
-        size="sm"
-        css={{
-          color: "fg.muted",
-          _hover: { color: "fg.default" },
-          "& svg": {
-            width: "5",
-            height: "5",
-          },
-        }}
-      >
+      <IconButton onClick={handleClick} variant="ghost" size="sm">
         {theme === "light" ? <LuSun /> : <LuMoon />}
       </IconButton>
     </ClientOnly>

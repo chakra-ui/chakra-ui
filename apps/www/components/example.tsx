@@ -107,7 +107,7 @@ export const ExampleLinkTree = (props: LinkTreeProps) => {
                 py="0.5"
                 px="2"
                 _currentPage={{
-                  layerStyle: "fill.muted",
+                  layerStyle: "fill.subtle",
                   colorPalette: "gray",
                 }}
               >
@@ -153,7 +153,7 @@ export const ExampleTabs = (props: Props) => {
   return (
     <Tabs.Root
       className="example-tabs"
-      variant="soft"
+      variant="subtle"
       defaultValue={"preview"}
       mb="4em"
     >
@@ -162,10 +162,10 @@ export const ExampleTabs = (props: Props) => {
         <Tabs.Trigger value="code">Code</Tabs.Trigger>
       </Tabs.List>
       <Tabs.ContentGroup borderWidth="1px" rounded="md" overflow="hidden">
-        <Tabs.Content value="preview" mt="0" padding={{ base: "6", sm: "10" }}>
+        <Tabs.Content value="preview" mt="0!" padding={{ base: "6", sm: "10" }}>
           <ExamplePreview name={name} />
         </Tabs.Content>
-        <Tabs.Content value="code" mt="0">
+        <Tabs.Content value="code" mt="0!">
           <ExampleCodeWrapper maxHeight="480px">
             <ExampleCode name={name} />
           </ExampleCodeWrapper>

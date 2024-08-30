@@ -23,7 +23,7 @@ export const AlertVariantTable = () => {
           {(c) => (
             <tr key={c}>
               <td>
-                <Span fontSize="sm" color="fg.muted" minW="8ch">
+                <Span fontSize="sm" color="fg.subtle" minW="8ch">
                   {c}
                 </Span>
               </td>
@@ -45,7 +45,7 @@ export const AlertVariantTable = () => {
 const AlertDemo = (props: AlertRootProps) => {
   return (
     <Alert title="Alert Title" {...props}>
-      Chakra UI v3 is the greatest! Check it out.
+      Chakra UI v3 is the greatest
     </Alert>
   )
 }

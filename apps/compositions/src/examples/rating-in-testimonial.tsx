@@ -21,7 +21,7 @@ export const RatingInTestimonial = () => {
           <Text fontWeight="medium" lineHeight="1">
             Matthew Jones
           </Text>
-          <Text color="fg.muted" lineHeight="1">
+          <Text color="fg.subtle" lineHeight="1">
             CTO, Company
           </Text>
         </Stack>

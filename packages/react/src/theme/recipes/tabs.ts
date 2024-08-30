@@ -7,7 +7,13 @@ export const tabsSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       position: "relative",
-      colorPalette: "gray",
+      colorPalette: "accent",
+      _horizontal: {
+        display: "block",
+      },
+      _vertical: {
+        display: "flex",
+      },
     },
     trigger: {
       outline: 0,
@@ -32,11 +38,29 @@ export const tabsSlotRecipe = defineSlotRecipe({
       isolation: "isolate",
       "--tabs-indicator-shadow": "shadows.xs",
       "--tabs-indicator-bg": "colors.bg",
+      _horizontal: {
+        flexDirection: "row",
+      },
+      _vertical: {
+        flexDirection: "column",
+      },
     },
     content: {
+      mt: "var(--tabs-gap-y)",
+      ms: "var(--tabs-gap-x)",
+      width: "var(--tabs-width)",
+      height: "var(--tabs-height)",
       _focusVisible: {
         outline: "2px solid",
         outlineColor: "focusRing",
+      },
+      _horizontal: {
+        "--tabs-width": "100%",
+        "--tabs-gap-y": "spacing.2",
+      },
+      _vertical: {
+        "--tabs-height": "100%",
+        "--tabs-gap-x": "spacing.2",
       },
     },
     indicator: {
@@ -50,32 +74,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
   },
 
   variants: {
-    orientation: {
-      vertical: {
-        root: {
-          display: "flex",
-        },
-        content: {
-          height: "100%",
-          ms: "2",
-        },
-        list: {
-          flexDirection: "column",
-        },
-      },
-      horizontal: {
-        root: {
-          display: "block",
-        },
-        content: {
-          width: "100%",
-          mt: "2",
-        },
-        list: {
-          flexDirection: "row",
-        },
-      },
-    },
     fitted: {
       true: {
         trigger: {
@@ -85,6 +83,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
     justify: {
       start: {
         list: {
@@ -143,39 +142,54 @@ export const tabsSlotRecipe = defineSlotRecipe({
       line: {
         list: {
           borderColor: "border",
+          _horizontal: {
+            borderBottomWidth: "1px",
+          },
+          _vertical: {
+            borderEndWidth: "1px",
+          },
         },
         trigger: {
-          color: "fg",
-          _selected: {
-            color: "fg.muted",
-          },
+          color: "fg.subtle",
           _disabled: {
             _active: { bg: "initial" },
+          },
+          _selected: {
+            color: "fg",
+            _horizontal: {
+              layerStyle: "indicator.bottom",
+              "--indicator-offset-y": "-1px",
+              "--indicator-color": "colors.colorPalette.solid",
+            },
+            _vertical: {
+              layerStyle: "indicator.end",
+              "--indicator-offset-x": "-1px",
+            },
           },
         },
       },
 
-      soft: {
+      subtle: {
         trigger: {
           borderRadius: "var(--tabs-trigger-radius)",
-          color: "fg.muted",
+          color: "fg.subtle",
           _selected: {
-            bg: { base: "colorPalette.100", _dark: "colorPalette.950" },
-            color: "fg",
+            bg: "colorPalette.muted",
+            color: "colorPalette.fg",
           },
         },
       },
 
       enclosed: {
         list: {
-          bg: "bg.muted",
+          bg: "bg.subtle",
           padding: "1",
           borderRadius: "md",
         },
         trigger: {
           flex: "1",
           justifyContent: "center",
-          color: "fg.muted",
+          color: "fg.subtle",
           borderRadius: "var(--tabs-trigger-radius)",
           _selected: {
             bg: "bg",
@@ -189,19 +203,53 @@ export const tabsSlotRecipe = defineSlotRecipe({
         list: {
           "--line-thickness": "1px",
           "--line-offset": "calc(var(--line-thickness) * -1)",
-          borderColor: "inherit",
-          _before: {
-            content: '""',
-            position: "absolute",
+          borderColor: "border",
+          _horizontal: {
+            _before: {
+              content: '""',
+              position: "absolute",
+              bottom: "var(--line-offset)",
+              width: "100%",
+              borderBottomWidth: "var(--line-thickness)",
+              borderBottomColor: "border",
+            },
+          },
+          _vertical: {
+            _before: {
+              content: '""',
+              position: "absolute",
+              insetInline: "var(--line-offset)",
+              height: "100%",
+              borderEndWidth: "var(--line-thickness)",
+              borderEndColor: "border",
+            },
           },
         },
         trigger: {
-          color: "fg",
+          color: "fg.subtle",
           borderWidth: "1px",
           borderColor: "transparent",
           _selected: {
             bg: "bg",
-            color: { base: "colorPalette.600", _dark: "colorPalette.300" },
+            color: "colorPalette.fg",
+          },
+          _horizontal: {
+            borderTopRadius: "var(--tabs-trigger-radius)",
+            marginBottom: "var(--line-offset)",
+            marginEnd: { _notLast: "var(--line-offset)" },
+            _selected: {
+              borderColor: "border",
+              borderBottomColor: "transparent",
+            },
+          },
+          _vertical: {
+            borderStartRadius: "var(--tabs-trigger-radius)",
+            marginEnd: "var(--line-offset)",
+            marginBottom: { _notLast: "var(--line-offset)" },
+            _selected: {
+              borderColor: "border",
+              borderEndColor: "transparent",
+            },
           },
         },
       },
@@ -219,101 +267,9 @@ export const tabsSlotRecipe = defineSlotRecipe({
     },
   },
 
-  compoundVariants: [
-    // line + horizontal
-    {
-      orientation: "horizontal",
-      variant: "line",
-      css: {
-        list: { borderBottomWidth: "1px" },
-        trigger: {
-          _selected: {
-            layerStyle: "indicator.bottom",
-            "--indicator-offset-y": "-1px",
-          },
-        },
-      },
-    },
-    // line + vertical
-    {
-      orientation: "vertical",
-      variant: "line",
-      css: {
-        list: { borderEndWidth: "1px" },
-        trigger: {
-          _selected: {
-            layerStyle: "indicator.end",
-            "--indicator-offset-x": "-1px",
-          },
-        },
-      },
-    },
-    // outline + horizontal
-    {
-      orientation: "horizontal",
-      variant: "outline",
-      css: {
-        list: {
-          _before: {
-            bottom: "var(--line-offset)",
-            width: "100%",
-            borderBottomWidth: "var(--line-thickness)",
-            borderBottomColor: "border",
-          },
-        },
-        trigger: {
-          borderTopRadius: "var(--tabs-trigger-radius)",
-          marginBottom: "var(--line-offset)",
-          marginEnd: { _notLast: "var(--line-offset)" },
-          _selected: {
-            borderColor: "inherit",
-            borderBottomColor: "transparent",
-          },
-        },
-      },
-    },
-    // outline + vertical
-    {
-      orientation: "vertical",
-      variant: "outline",
-      css: {
-        list: {
-          _before: {
-            insetInline: "var(--line-offset)",
-            height: "100%",
-            borderEndWidth: "var(--line-thickness)",
-            borderEndColor: "border",
-          },
-        },
-        trigger: {
-          borderStartRadius: "var(--tabs-trigger-radius)",
-          marginEnd: "var(--line-offset)",
-          marginBottom: { _notLast: "var(--line-offset)" },
-          _selected: {
-            borderColor: "inherit",
-            borderEndColor: "transparent",
-          },
-        },
-      },
-    },
-    {
-      variant: "soft",
-      colorPalette: "gray",
-      css: {
-        trigger: {
-          _selected: {
-            bg: { base: "gray.100", _dark: "gray.800" },
-            color: { base: "gray.700", _dark: "gray.300" },
-          },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     size: "md",
     variant: "line",
-    orientation: "horizontal",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

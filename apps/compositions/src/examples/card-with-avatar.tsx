@@ -17,12 +17,12 @@ export const CardWithAvatar = () => {
             <Text fontWeight="medium" lineHeight="1">
               Nate Foss
             </Text>
-            <Text color="fg.muted" lineHeight="1">
+            <Text color="fg.subtle" lineHeight="1">
               @natefoss
             </Text>
           </Stack>
         </HStack>
-        <Text color="fg.muted">
+        <Text color="fg.subtle">
           <Strong>Nate Foss </Strong>
           has requested to join your team. You can approve or decline their
           request.

@@ -50,7 +50,7 @@ const FeatureUsage = (props: FeatureUsageProps) => {
         <HStack justify="space-between">
           <ProgressLabel>{data.label}</ProgressLabel>
           <ProgressValueText color="inherit">
-            {data.value} <Span color="fg.muted">/ {data.max}</Span>
+            {data.value} <Span color="fg.subtle">/ {data.max}</Span>
           </ProgressValueText>
         </HStack>
         <ProgressBar mt="2" />

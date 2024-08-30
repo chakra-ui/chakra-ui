@@ -9,7 +9,7 @@ import {
 export const AccordionVariants = () => {
   return (
     <Stack gap="8">
-      <For each={["outline", "elevated", "contained", "plain"]}>
+      <For each={["outline", "subtle", "enclosed", "plain"]}>
         {(variant) => (
           <Stack gap="2">
             <Text fontWeight="semibold">{variant}</Text>

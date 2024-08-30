@@ -13,11 +13,11 @@ export const BlogCard = (props: Props) => {
   const { title, description, authors, publishedAt } = data
   return (
     <Card.Root size="sm">
-      <Box h="40" bg="bg.muted" rounded="md" />
+      <Box h="40" bg="bg.subtle" rounded="md" />
       <Card.Body>
         <Stack gap="1" fontSize="sm">
           <Flex gap="2" justify="space-between">
-            <Text fontSize="sm" color="fg.muted">
+            <Text fontSize="sm" color="fg.subtle">
               {formatBlogDate(publishedAt)}
             </Text>
             <AvatarGroup size="sm">

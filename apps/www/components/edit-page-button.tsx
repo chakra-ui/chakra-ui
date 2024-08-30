@@ -15,7 +15,7 @@ export const EditPageButton = (props: Props) => {
       focusRing="inside"
       focusRingWidth="2px"
       rounded="sm"
-      color="fg.muted"
+      color="fg.subtle"
       css={{ "& svg": { fontSize: "lg" } }}
     >
       <Link href={href}>

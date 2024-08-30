@@ -18,7 +18,7 @@ const Item = (props: { item: Item }) => {
         <MenuTriggerItem value={item.value}>{item.label}</MenuTriggerItem>
         <MenuContent>
           {item.children.map((item) => (
-            <Item item={item} />
+            <Item key={item.value} item={item} />
           ))}
         </MenuContent>
       </MenuRoot>

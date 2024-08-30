@@ -52,7 +52,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       fontWeight: "medium",
     },
     itemSizeText: {
-      color: "fg.muted",
+      color: "fg.subtle",
       textStyle: "xs",
     },
     itemDeleteTrigger: {

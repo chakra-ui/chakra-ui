@@ -12,7 +12,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       fontSize: "sm",
       position: "relative",
       isolation: "isolate",
-      colorPalette: "gray",
+      colorPalette: "accent",
     },
     control: {
       display: "inline-flex",
@@ -40,7 +40,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       alignItems: "center",
       gap: "1.5",
-      color: "fg.muted",
+      color: "fg.subtle",
       fontSize: "xs",
     },
     markerIndicator: {
@@ -58,13 +58,7 @@ export const sliderSlotRecipe = defineSlotRecipe({
       outline: 0,
       zIndex: "2",
       borderRadius: "full",
-      "--slider-thumb-bg": {
-        base: "white",
-        _disabled: "colors.border.emphasized",
-      },
-      bg: "var(--slider-thumb-bg)",
-      borderWidth: "1px",
-      borderColor: "border.emphasized",
+
       _focusVisible: {
         ring: "2px",
         ringColor: "focusRing",
@@ -116,18 +110,35 @@ export const sliderSlotRecipe = defineSlotRecipe({
       outline: {
         track: {
           shadow: "inset",
-          bg: "bg.muted",
+          bg: "bg.subtle",
         },
         range: {
-          bg: "colorPalette.600",
+          bg: "colorPalette.solid",
+        },
+        thumb: {
+          borderWidth: "1px",
+          borderColor: "border.emphasized",
+          bg: "white",
+          _disabled: {
+            bg: "border.emphasized",
+          },
         },
       },
       subtle: {
         track: {
-          bg: "bg.muted",
+          bg: "colorPalette.subtle",
+          _disabled: {
+            bg: "bg.subtle",
+          },
         },
         range: {
-          bg: { base: "colorPalette.600", _dark: "colorPalette.600/40" },
+          bg: "colorPalette.solid",
+        },
+        thumb: {
+          bg: "colorPalette.solid",
+          _disabled: {
+            bg: "border.emphasized",
+          },
         },
       },
     },
@@ -165,40 +176,11 @@ export const sliderSlotRecipe = defineSlotRecipe({
       },
     },
   },
-  compoundVariants: [
-    {
-      variant: "outline",
-      colorPalette: "gray",
-      css: {
-        marker: {
-          "&[data-state=under-value]": {
-            "--slider-marker-bg": { base: "white", _dark: "black" },
-          },
-        },
-        range: {
-          bg: { base: "gray.800", _dark: "gray.200" },
-        },
-      },
-    },
-    {
-      variant: "subtle",
-      colorPalette: "gray",
-      css: {
-        marker: {
-          "&[data-state=under-value]": {
-            "--slider-marker-bg": { base: "white", _dark: "black" },
-          },
-        },
-        range: {
-          bg: { base: "gray.600", _dark: "gray.200/64" },
-        },
-      },
-    },
-  ],
+
   defaultVariants: {
     size: "md",
     variant: "outline",
     orientation: "horizontal",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

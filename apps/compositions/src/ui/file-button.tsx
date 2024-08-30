@@ -49,7 +49,7 @@ export const FileUploadDropzone = forwardRef<
           click to browse
         </ChakraFileUpload.Trigger>
       </div>
-      <Text fontSize="sm" color="fg.muted">
+      <Text fontSize="sm" color="fg.subtle">
         .png, .jpg up to 5MB
       </Text>
       {children}
@@ -76,7 +76,7 @@ const FileUploadItem = (props: FileUploadItemProps) => {
           bg="bg.muted"
           rounded="sm"
           fontSize="lg"
-          color="fg.muted"
+          color="fg.subtle"
         >
           <LuFile />
         </Square>

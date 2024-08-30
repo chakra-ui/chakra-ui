@@ -24,7 +24,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       letterSpacing: "tight",
     },
     description: {
-      color: "fg.muted",
+      color: "fg.subtle",
     },
     body: {
       padding: "var(--card-padding)",
@@ -81,7 +81,7 @@ export const cardSlotRecipe = defineSlotRecipe({
       },
       subtle: {
         root: {
-          "--card-bg": "colors.bg.muted",
+          "--card-bg": "colors.bg.subtle",
         },
       },
     },

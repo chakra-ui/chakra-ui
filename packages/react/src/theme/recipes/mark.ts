@@ -6,25 +6,26 @@ export const markRecipe = defineRecipe({
     bg: "transparent",
     color: "inherit",
     whiteSpace: "nowrap",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
+
   variants: {
     variant: {
       subtle: {
-        bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+        bg: "colorPalette.muted",
         color: "inherit",
       },
       solid: {
-        bg: "colorPalette.600",
-        color: "white",
+        bg: "colorPalette.solid",
+        color: "colorPalette.contrast",
       },
       text: {
-        fontWeight: "semibold",
+        fontWeight: "medium",
       },
-      plain: {},
     },
   },
+
   defaultVariants: {
-    variant: "plain",
+    colorPalette: "accent",
   },
 })

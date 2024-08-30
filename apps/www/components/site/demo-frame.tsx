@@ -36,7 +36,7 @@ export const DemoFrame = chakra(
 export const DemoFrameText = chakra("div", {
   base: {
     textStyle: "sm",
-    color: "fg.muted",
+    color: "fg.subtle",
     fontFamily: "mono",
     textAlign: "center",
   },
