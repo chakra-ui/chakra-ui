@@ -22,6 +22,7 @@ export const markRecipe = defineRecipe({
       text: {
         fontWeight: "medium",
       },
+      plain: {},
     },
   },
 

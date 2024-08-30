@@ -122,6 +122,8 @@ export const buttonRecipe = defineRecipe({
           bg: "colorPalette.muted",
         },
       },
+
+      plain: {},
     },
   },
 

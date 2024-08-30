@@ -31,6 +31,7 @@ export const kbdRecipe = defineRecipe({
         bg: "colorPalette.subtle",
         color: "colorPalette.fg",
       },
+      plain: {},
     },
 
     size: {

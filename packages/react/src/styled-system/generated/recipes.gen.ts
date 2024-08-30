@@ -3,7 +3,7 @@ import type { ConditionalValue } from "../css.types"
 
 export interface BadgeVariant {
   /** @default "subtle" */
-  variant?: "solid" | "subtle" | "outline" | "surface"
+  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
   /** @default "sm" */
   size?: "xs" | "sm" | "md" | "lg"
 }
@@ -20,7 +20,7 @@ export interface ButtonVariant {
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
   /** @default "solid" */
-  variant?: "solid" | "subtle" | "surface" | "outline" | "ghost"
+  variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain"
 }
 
 export type ButtonVariantProps = {
@@ -33,7 +33,7 @@ export type ButtonVariantMap = {
 
 export interface CodeVariant {
   /** @default "subtle" */
-  variant?: "solid" | "subtle" | "outline" | "surface"
+  variant?: "solid" | "subtle" | "outline" | "surface" | "plain"
   /** @default "sm" */
   size?: "xs" | "sm" | "md" | "lg"
 }
@@ -104,7 +104,7 @@ export type InputAddonVariantMap = {
 
 export interface KbdVariant {
   /** @default "raised" */
-  variant?: "raised" | "outline" | "subtle"
+  variant?: "raised" | "outline" | "subtle" | "plain"
   /** @default "md" */
   size?: "sm" | "md" | "lg"
 }
@@ -131,7 +131,7 @@ export type LinkVariantMap = {
 }
 
 export interface MarkVariant {
-  variant?: "subtle" | "solid" | "text"
+  variant?: "subtle" | "solid" | "text" | "plain"
 }
 
 export type MarkVariantProps = {

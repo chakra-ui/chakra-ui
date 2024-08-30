@@ -12,7 +12,7 @@ export const TabsNested = () => {
         <Heading mb="6" mt="4">
           This is a nested tab
         </Heading>
-        <Tabs.Root variant="soft" defaultValue="one">
+        <Tabs.Root variant="subtle" defaultValue="one">
           <Tabs.List>
             <Tabs.Trigger value="one">Tab 1.1</Tabs.Trigger>
             <Tabs.Trigger value="two">Tab 1.2</Tabs.Trigger>

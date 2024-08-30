@@ -33,6 +33,9 @@ export const badgeRecipe = defineRecipe({
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
         shadowColor: "colorPalette.subtle",
       },
+      plain: {
+        color: "colorPalette.contrast",
+      },
     },
     size: {
       xs: {
