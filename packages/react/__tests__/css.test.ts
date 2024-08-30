@@ -295,6 +295,12 @@ describe("css", () => {
         "--chakra-colors-color-palette-800": "var(--chakra-colors-red-800)",
         "--chakra-colors-color-palette-900": "var(--chakra-colors-red-900)",
         "--chakra-colors-color-palette-950": "var(--chakra-colors-red-950)",
+        "--chakra-colors-color-palette-contrast": "var(--chakra-colors-red-contrast)",
+        "--chakra-colors-color-palette-emphasized": "var(--chakra-colors-red-emphasized)",
+        "--chakra-colors-color-palette-fg": "var(--chakra-colors-red-fg)",
+        "--chakra-colors-color-palette-muted": "var(--chakra-colors-red-muted)",
+        "--chakra-colors-color-palette-solid": "var(--chakra-colors-red-solid)",
+        "--chakra-colors-color-palette-subtle": "var(--chakra-colors-red-subtle)",
         "background": "var(--chakra-colors-color-palette-300)",
       }
     `)
@@ -395,18 +401,13 @@ describe("css", () => {
 
   test("merge layer styles", () => {
     const result = css({
-      layerStyle: "fill.muted",
+      layerStyle: "fill.subtle",
       color: "inherit",
     })
 
     expect(result).toMatchInlineSnapshot(`
       {
-        "&.dark, .dark &": {
-          "--mix-background": "color-mix(in srgb, var(--chakra-colors-color-palette-400) 16%, transparent)",
-          "background": "var(--mix-background, var(--chakra-colors-color-palette-400))",
-          "color": "var(--chakra-colors-color-palette-200)",
-        },
-        "background": "var(--chakra-colors-color-palette-100)",
+        "background": "var(--chakra-colors-color-palette-subtle)",
         "color": "inherit",
       }
     `)
