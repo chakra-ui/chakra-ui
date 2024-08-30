@@ -17,7 +17,7 @@ export { TabsControlled as Controlled } from "compositions/examples/tabs-control
 export { TabsLazyMounted as LazyMounted } from "compositions/examples/tabs-lazy-mounted"
 export { TabsNested as Nested } from "compositions/examples/tabs-nested"
 export { TabsSizeTable as Sizes } from "compositions/examples/tabs-size-table"
-export { TabsStretched as Stretched } from "compositions/examples/tabs-stretched"
+export { TabsWithFitted as Fitted } from "compositions/examples/tabs-with-fitted"
 export { TabsVariantTable as Variants } from "compositions/examples/tabs-variant-table"
 export { TabsWithDisabledTab as DisabledTab } from "compositions/examples/tabs-with-disabled-tab"
 export { TabsWithDynamicAdd as DynamicAdd } from "compositions/examples/tabs-with-dynamic-add"

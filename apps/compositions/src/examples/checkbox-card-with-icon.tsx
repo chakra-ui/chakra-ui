@@ -13,7 +13,12 @@ export const CheckboxCardWithIcon = () => {
     <CheckboxCardGroup width="full" defaultValue={["Guest"]}>
       <HStack>
         {items.map((item) => (
-          <CheckboxCardRoot variant="subtle" flex="1" key={item.label}>
+          <CheckboxCardRoot
+            variant="subtle"
+            colorPalette="teal"
+            flex="1"
+            key={item.label}
+          >
             <CheckboxCardControl showIndicator={false}>
               <VStack gap="1" flex="1" textAlign="center">
                 <Box mb="2" css={{ "& svg": { fontSize: "2xl" } }}>

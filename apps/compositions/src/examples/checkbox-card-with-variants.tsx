@@ -5,14 +5,14 @@ import {
   CheckboxCardRoot,
 } from "compositions/ui/checkbox-card"
 
-export const CheckboxCardWithSizes = () => {
+export const CheckboxCardWithVariants = () => {
   return (
     <Stack maxW="320px">
-      <For each={["sm", "md", "lg"]}>
-        {(size) => (
-          <CheckboxCardRoot size={size}>
+      <For each={["subtle", "outline"]}>
+        {(variant) => (
+          <CheckboxCardRoot colorPalette="teal" variant={variant}>
             <CheckboxCardControl>
-              <CheckboxCardLabel>Checkbox ({size})</CheckboxCardLabel>
+              <CheckboxCardLabel>Checkbox ({variant})</CheckboxCardLabel>
             </CheckboxCardControl>
           </CheckboxCardRoot>
         )}

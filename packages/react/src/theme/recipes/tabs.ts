@@ -33,7 +33,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
       },
     },
     list: {
-      display: "flex",
+      display: "inline-flex",
       position: "relative",
       isolation: "isolate",
       "--tabs-indicator-shadow": "shadows.xs",
@@ -76,6 +76,9 @@ export const tabsSlotRecipe = defineSlotRecipe({
   variants: {
     fitted: {
       true: {
+        list: {
+          display: "flex",
+        },
         trigger: {
           flex: 1,
           textAlign: "center",
@@ -187,7 +190,6 @@ export const tabsSlotRecipe = defineSlotRecipe({
           borderRadius: "md",
         },
         trigger: {
-          flex: "1",
           justifyContent: "center",
           color: "fg.subtle",
           borderRadius: "var(--tabs-trigger-radius)",

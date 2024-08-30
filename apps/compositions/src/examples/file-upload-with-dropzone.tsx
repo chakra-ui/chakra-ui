@@ -6,7 +6,7 @@ import {
 
 export const FileUploadWithDropzone = () => {
   return (
-    <FileUploadRoot alignItems="stretch" maxFiles={10}>
+    <FileUploadRoot maxW="xl" alignItems="stretch" maxFiles={10}>
       <FileUploadDropzone />
       <FileUploadList />
     </FileUploadRoot>

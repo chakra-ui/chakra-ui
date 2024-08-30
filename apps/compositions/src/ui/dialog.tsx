@@ -54,7 +54,7 @@ export const DialogTitle = (props: ChakraDialog.TitleProps) => {
 }
 
 export const DialogDescription = (props: ChakraDialog.DescriptionProps) => {
-  return <ChakraDialog.Description color="fg.muted" {...props} />
+  return <ChakraDialog.Description color="fg.subtle" {...props} />
 }
 
 export const DialogRoot = ChakraDialog.Root

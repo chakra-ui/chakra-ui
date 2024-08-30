@@ -113,7 +113,10 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
 
       subtle: {
         root: {
-          bg: "bg.subtle",
+          bg: "bg.subtle/60",
+          _hover: {
+            bg: "bg.subtle",
+          },
         },
         control: {
           _checked: {

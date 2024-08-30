@@ -10,6 +10,7 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "4",
       width: "100%",
+      colorPalette: "accent",
     },
     label: {
       fontWeight: "medium",
@@ -18,17 +19,26 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     dropzone: {
       background: "bg",
       borderRadius: "md",
-      borderWidth: "1px",
+      borderWidth: "2px",
       borderStyle: "dashed",
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
       gap: "3",
       justifyContent: "center",
-      minHeight: "xs",
-      px: "6",
-      py: "4",
+      minHeight: "2xs",
+      px: "3",
+      py: "2",
+      transition: "backgrounds",
       focusVisibleRing: "outside",
+      _hover: {
+        bg: "bg.muted",
+      },
+      _dragging: {
+        bg: "colorPalette.muted",
+        borderStyle: "solid",
+        borderColor: "colorPalette.solid",
+      },
     },
     item: {
       textStyle: "sm",
@@ -63,5 +73,9 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       height: "10",
       objectFit: "scale-down",
     },
+  },
+
+  defaultVariants: {
+    colorPalette: "accent",
   },
 })
