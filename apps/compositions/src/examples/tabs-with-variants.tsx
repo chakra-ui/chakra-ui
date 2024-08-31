@@ -4,7 +4,7 @@ import { LuCheckSquare, LuFolder, LuUser } from "react-icons/lu"
 export const TabsWithVariants = () => {
   return (
     <SimpleGrid columns={2} gap="14" width="full">
-      <For each={["line", "enclosed", "outline", "plain"]}>
+      <For each={["line", "subtle", "enclosed", "outline", "plain"]}>
         {(variant) => (
           <Tabs.Root key={variant} defaultValue="members" variant={variant}>
             <Tabs.List>

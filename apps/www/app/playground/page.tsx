@@ -114,7 +114,7 @@ import { TableWithColumnGroup } from "compositions/examples/table-with-column-gr
 import { TableWithOverflow } from "compositions/examples/table-with-overflow"
 import { TableWithSelection } from "compositions/examples/table-with-selection"
 import { TableWithStickyColumn } from "compositions/examples/table-with-sticky-column"
-import { TabsStretched } from "compositions/examples/tabs-stretched"
+import { TabsWithFitted } from "compositions/examples/tabs-with-fitted"
 import { TabsWithIndicator } from "compositions/examples/tabs-with-indicator"
 import { TabsWithLinks } from "compositions/examples/tabs-with-links"
 import { TabsWithVariants } from "compositions/examples/tabs-with-variants"
@@ -213,7 +213,7 @@ export default function Page() {
             <TabsWithIndicator />
             <TabsWithLinks />
           </SimpleGrid>
-          <TabsStretched />
+          <TabsWithFitted />
         </Playground.SectionContent>
       </Playground.Section>
 

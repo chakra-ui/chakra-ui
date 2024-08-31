@@ -13,11 +13,13 @@ export const MenuWithGroupDynamic = () => {
       <MenuTrigger asChild>
         <Button variant="outline">Window</Button>
       </MenuTrigger>
-      <MenuContent>
+      <MenuContent spaceY="2">
         {items.map((item) => (
-          <MenuItemGroup title={item.name}>
+          <MenuItemGroup key={item.name} title={item.name}>
             {item.children.map((child) => (
-              <MenuItem value={child.value}>{child.name}</MenuItem>
+              <MenuItem key={child.value} value={child.value}>
+                {child.name}
+              </MenuItem>
             ))}
           </MenuItemGroup>
         ))}

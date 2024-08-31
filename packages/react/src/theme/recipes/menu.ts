@@ -13,7 +13,7 @@ export const menuSlotRecipe = defineSlotRecipe({
       zIndex: "dropdown",
       borderRadius: "md",
       overflow: "hidden",
-      colorPalette: "gray",
+      colorPalette: "accent",
       _open: {
         animationStyle: "slide-fade-in",
         animationDuration: "fast",
@@ -44,7 +44,7 @@ export const menuSlotRecipe = defineSlotRecipe({
     itemGroupLabel: {
       px: "2",
       py: "1.5",
-      fontWeight: "semibold",
+      fontWeight: "medium",
       textStyle: "sm",
     },
     indicator: {
@@ -62,7 +62,7 @@ export const menuSlotRecipe = defineSlotRecipe({
     },
     separator: {
       height: "1px",
-      bg: "bg.muted",
+      bg: "bg.subtle",
       my: "1",
       mx: "-1",
     },
@@ -73,15 +73,15 @@ export const menuSlotRecipe = defineSlotRecipe({
       subtle: {
         item: {
           _highlighted: {
-            bg: { base: "gray.100", _dark: "whiteAlpha.100" },
+            bg: { base: "bg.subtle", _dark: "bg.emphasized" },
           },
         },
       },
       solid: {
         item: {
           _highlighted: {
-            bg: "colorPalette.600",
-            color: "white",
+            bg: "colorPalette.solid",
+            color: "colorPalette.contrast",
           },
         },
       },
@@ -120,6 +120,6 @@ export const menuSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "subtle",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

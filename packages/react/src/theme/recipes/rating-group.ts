@@ -42,7 +42,7 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
       },
 
       "& [data-bg]": {
-        color: { base: "gray.300", _dark: "gray.700" },
+        color: "bg.emphasized",
       },
 
       "& [data-fg]": {
@@ -51,13 +51,13 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
 
       "&[data-highlighted]:not([data-half])": {
         "& [data-fg]": {
-          color: "colorPalette.500",
+          color: "colorPalette.solid",
         },
       },
 
       "&[data-half]": {
         "& [data-fg]": {
-          color: "colorPalette.500",
+          color: "colorPalette.solid",
           clipPath: "inset(0 50% 0 0)",
         },
       },

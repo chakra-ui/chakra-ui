@@ -3,6 +3,7 @@
 import {
   Center,
   SimpleGrid,
+  type SimpleGridProps,
   Stack,
   Text,
   type TokenInterface,
@@ -35,8 +36,10 @@ export const ColorTokenDoc = () => {
       {keys.map((key) => (
         <TokenDoc key={key} title={key}>
           <ColorGrid
-            tokens={allColors.filter((token) =>
-              token.name.startsWith(`colors.${key}`),
+            tokens={allColors.filter(
+              (token) =>
+                token.name.startsWith(`colors.${key}`) &&
+                !token.extensions.conditions,
             )}
           />
         </TokenDoc>
@@ -73,6 +76,18 @@ export const ColorSemanticTokenDoc = () => {
           )}
         />
       </TokenDoc>
+
+      {keys.map((key) => (
+        <TokenDoc key={key} title={key}>
+          <ColorGrid
+            tokens={allColors.filter(
+              (token) =>
+                token.name.startsWith(`colors.${key}`) &&
+                token.extensions.conditions,
+            )}
+          />
+        </TokenDoc>
+      ))}
     </Stack>
   )
 }
@@ -110,14 +125,14 @@ const ColorGridItem = (props: ColorGridItemProps) => {
       {conditions && (
         <Stack mt="1">
           {Object.entries(conditions).map(([key, value]) => (
-            <Text key={key} fontSize="xs" mt="-1" color="fg.muted">
+            <Text key={key} fontSize="xs" mt="-1" color="fg.subtle">
               {key.replace("_", "")}: {value.replace("colors.", "")}
             </Text>
           ))}
         </Stack>
       )}
       {!conditions && (
-        <Text fontSize="xs" mt="-1" color="fg.muted">
+        <Text fontSize="xs" mt="-1" color="fg.subtle">
           {token.originalValue}
         </Text>
       )}
@@ -125,14 +140,14 @@ const ColorGridItem = (props: ColorGridItemProps) => {
   )
 }
 
-interface ColorGridProps extends VariantProps {
+interface ColorGridProps extends VariantProps, SimpleGridProps {
   tokens: TokenInterface[]
 }
 
 export const ColorGrid = (props: ColorGridProps) => {
-  const { tokens, variant = "background" } = props
+  const { tokens, variant = "background", ...rest } = props
   return (
-    <SimpleGrid minChildWidth="80px" gap="2">
+    <SimpleGrid minChildWidth="120px" gap="4" {...rest}>
       {tokens.map((token) => (
         <ColorGridItem key={token.name} token={token} variant={variant} />
       ))}

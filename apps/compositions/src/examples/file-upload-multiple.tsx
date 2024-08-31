@@ -9,7 +9,7 @@ import { HiUpload } from "react-icons/hi"
 export const FileUploadMultiple = () => {
   return (
     <FileUploadRoot maxFiles={5}>
-      <FileUploadTrigger>
+      <FileUploadTrigger asChild>
         <Button variant="outline" size="sm">
           <HiUpload /> Upload file
         </Button>

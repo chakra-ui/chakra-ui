@@ -1,18 +1,18 @@
 import { IconButton, Stack } from "@chakra-ui/react"
-import { FaPhone, FaSearch } from "react-icons/fa"
+import { RiPhoneLine, RiSearchLine } from "react-icons/ri"
 
 export const ButtonIcons = () => (
   <Stack direction="row">
     <IconButton aria-label="Search database">
-      <FaSearch />
+      <RiSearchLine />
     </IconButton>
 
     <IconButton colorPalette="blue" aria-label="Search database">
-      <FaSearch />
+      <RiSearchLine />
     </IconButton>
 
     <IconButton colorPalette="teal" aria-label="Call Segun" size="lg">
-      <FaPhone />
+      <RiPhoneLine />
     </IconButton>
   </Stack>
 )

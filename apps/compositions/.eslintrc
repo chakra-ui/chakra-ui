@@ -5,4 +5,17 @@
     "ecmaVersion": 10,
     "project": "./tsconfig.json",
   },
+  "env": {
+    "browser": true,
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+  },
 }

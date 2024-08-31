@@ -13,7 +13,7 @@ import {
 
 const SelectValueItem = () => (
   <SelectValueText placeholder="Select movie">
-    {(items) => {
+    {(items: Array<{ name: string; avatar: string }>) => {
       const { name, avatar } = items[0]
       return (
         <HStack>
@@ -37,7 +37,7 @@ export const SelectWithAvatar = () => {
       positioning={{ sameWidth: true }}
     >
       <SelectLabel>Select member</SelectLabel>
-      <SelectTrigger clearable>
+      <SelectTrigger>
         <SelectValueItem />
       </SelectTrigger>
       <SelectContent portalled={false}>

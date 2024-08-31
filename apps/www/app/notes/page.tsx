@@ -4,7 +4,7 @@ import { notes } from ".velite"
 
 export default function Page() {
   return (
-    <Container py="20">
+    <Container py="20" fontSize="sm">
       <MDXContent code={notes[0].code} />
     </Container>
   )

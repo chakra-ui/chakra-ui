@@ -11,7 +11,7 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       verticalAlign: "top",
       position: "relative",
-      colorPalette: "gray",
+      colorPalette: "accent",
       _disabled: {
         cursor: "not-allowed",
       },
@@ -26,14 +26,10 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       color: "white",
       borderWidth: "1px",
       borderColor: "transparent",
-      _focus: {
-        outline: "2px solid",
-        outlineColor: "focusRing",
-        outlineOffset: "2px",
-      },
+      focusRing: "outside",
       _invalid: {
         colorPalette: "red",
-        borderColor: "red.500",
+        borderColor: "border.error",
       },
       _disabled: {
         opacity: "0.5",
@@ -81,62 +77,37 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       outline: {
         control: {
           borderWidth: "1px",
-          borderColor: "inherit",
+          borderColor: "border",
           _checked: {
-            bg: "colorPalette.600",
-            borderColor: "colorPalette.600",
+            bg: "colorPalette.solid",
+            borderColor: "colorPalette.solid",
+            color: "colorPalette.contrast",
           },
           _indeterminate: {
-            bg: "colorPalette.600",
-            borderColor: "colorPalette.600",
+            bg: "colorPalette.solid",
+            borderColor: "colorPalette.solid",
           },
         },
       },
       subtle: {
         control: {
           borderWidth: "1px",
-          bg: {
-            base: "colorPalette.100",
-            _dark: "colorPalette.200/20",
-          },
-          borderColor: {
-            base: "colorPalette.200",
-            _dark: "colorPalette.200/10",
-          },
+          bg: "colorPalette.subtle",
+          borderColor: "colorPalette.subtle",
           _checked: {
-            color: { base: "colorPalette.700", _dark: "colorPalette.200" },
+            color: "colorPalette.fg",
           },
           _indeterminate: {
-            color: { base: "colorPalette.700", _dark: "colorPalette.200" },
+            color: "colorPalette.fg",
           },
         },
       },
     },
   },
 
-  compoundVariants: [
-    {
-      variant: "outline",
-      colorPalette: "gray",
-      css: {
-        control: {
-          color: "fg.inverted",
-          _checked: {
-            bg: { base: "gray.800", _dark: "gray.200" },
-            borderColor: { base: "gray.800", _dark: "gray.200" },
-          },
-          _indeterminate: {
-            bg: { base: "gray.800", _dark: "gray.200" },
-            borderColor: { base: "gray.800", _dark: "gray.200" },
-          },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     variant: "outline",
     size: "md",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

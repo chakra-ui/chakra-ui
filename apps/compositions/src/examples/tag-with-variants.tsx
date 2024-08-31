@@ -5,7 +5,7 @@ import { HiCheck } from "react-icons/hi"
 export const TagWithVariants = () => {
   return (
     <Stack gap="8">
-      <For each={["subtle", "solid", "surface", "raised"]}>
+      <For each={["subtle", "solid", "outline", "surface"]}>
         {(variant) => (
           <HStack key={variant}>
             <Tag variant={variant}>Gray</Tag>

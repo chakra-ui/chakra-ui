@@ -11,11 +11,11 @@ export const tableSlotRecipe = defineSlotRecipe({
       width: "full",
       textAlign: "start",
       verticalAlign: "top",
-      colorPalette: "gray",
+      colorPalette: "accent",
     },
     row: {
       _selected: {
-        bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+        bg: "colorPalette.muted",
       },
     },
     cell: {
@@ -42,7 +42,7 @@ export const tableSlotRecipe = defineSlotRecipe({
         body: {
           "& tr": {
             _hover: {
-              bg: { base: "colorPalette.100", _dark: "colorPalette.700" },
+              bg: "colorPalette.muted",
             },
           },
         },
@@ -65,7 +65,7 @@ export const tableSlotRecipe = defineSlotRecipe({
       true: {
         row: {
           "&:nth-of-type(odd) td": {
-            bg: "bg.muted",
+            bg: "bg.subtle",
           },
         },
       },
@@ -108,7 +108,7 @@ export const tableSlotRecipe = defineSlotRecipe({
           borderBottomWidth: "1px",
         },
         header: {
-          bg: "bg.muted",
+          bg: "bg.subtle",
         },
         row: {
           "&:not(:last-of-type)": {
@@ -169,6 +169,6 @@ export const tableSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "line",
     size: "md",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

@@ -5,7 +5,7 @@ export const dataListSlotRecipe = defineSlotRecipe({
   className: "chakra-data-list",
   base: {
     itemLabel: {
-      color: "fg.muted",
+      color: "fg.subtle",
       display: "flex",
       alignItems: "center",
       gap: "1",

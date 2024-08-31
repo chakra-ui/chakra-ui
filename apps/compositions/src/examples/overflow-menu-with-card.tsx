@@ -15,10 +15,10 @@ export const OverflowMenuWithCard = () => {
           <HStack>
             <Avatar name="Sage Adebayo" />
             <Text>Sage</Text>
-            <Text color="fg.muted">5h</Text>
+            <Text color="fg.subtle">5h</Text>
           </HStack>
           <OverflowMenuRoot>
-            <OverflowMenuTrigger vertical size="sm" color="fg.muted" />
+            <OverflowMenuTrigger vertical size="sm" color="fg.subtle" />
             <OverflowMenuContent>
               <OverflowMenuItem value="Share">Share</OverflowMenuItem>
               <OverflowMenuItem value="Report">Report</OverflowMenuItem>

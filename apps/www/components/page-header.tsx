@@ -14,7 +14,7 @@ export const PageHeader = (props: PageHeaderProps) => {
       <Heading as="h1" size="3xl" letterSpacing="tight">
         {title}
       </Heading>
-      <Text textStyle="sm" color="fg.muted">
+      <Text textStyle="sm" color="fg.subtle">
         {description}
       </Text>
       {links && (
@@ -24,7 +24,7 @@ export const PageHeader = (props: PageHeaderProps) => {
               variant="underline"
               fontSize="sm"
               target="_blank"
-              color="fg.muted"
+              color="fg.subtle"
               key={link.title + link.url}
               href={link.url}
             >

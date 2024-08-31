@@ -15,7 +15,7 @@ export const CardBasic = () => {
         <Heading size="lg" mt="4" mb="2">
           Nue Camp
         </Heading>
-        <Text color="fg.muted">
+        <Text color="fg.subtle">
           This is the card body. Lorem ipsum dolor sit amet, consectetur
           adipiscing elit. Curabitur nec odio vel dui euismod fermentum.
           Curabitur nec odio vel dui euismod fermentum.

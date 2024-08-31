@@ -6,6 +6,9 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { base: "{colors.white}", _dark: "{colors.black}" },
     },
     muted: {
+      value: { base: "{colors.gray.50}", _dark: "{colors.gray.950}" },
+    },
+    subtle: {
       value: { base: "{colors.gray.100}", _dark: "{colors.gray.900}" },
     },
     emphasized: {
@@ -34,8 +37,11 @@ export const semanticColors = defineSemanticTokens.colors({
     DEFAULT: {
       value: { base: "{colors.black}", _dark: "{colors.gray.50}" },
     },
-    muted: {
+    subtle: {
       value: { base: "{colors.gray.600}", _dark: "{colors.gray.400}" },
+    },
+    muted: {
+      value: { base: "{colors.gray.400}", _dark: "{colors.gray.500}" },
     },
     inverted: {
       value: { base: "{colors.gray.50}", _dark: "{colors.black}" },
@@ -57,8 +63,11 @@ export const semanticColors = defineSemanticTokens.colors({
     DEFAULT: {
       value: { base: "{colors.gray.200}", _dark: "{colors.gray.800}" },
     },
-    muted: {
+    subtle: {
       value: { base: "{colors.gray.100}", _dark: "{colors.gray.900}" },
+    },
+    muted: {
+      value: { base: "{colors.gray.50}", _dark: "{colors.gray.950}" },
     },
     emphasized: {
       value: { base: "{colors.gray.300}", _dark: "{colors.gray.700}" },
@@ -80,6 +89,237 @@ export const semanticColors = defineSemanticTokens.colors({
     },
   },
   focusRing: {
-    value: { base: "{colors.blue.600}", _dark: "{colors.blue.500}" },
+    value: { base: "{colors.blue.600/50}", _dark: "{colors.blue.500/50}" },
+  },
+
+  accent: {
+    contrast: {
+      value: { base: "{colors.white}", _dark: "{colors.black}" },
+    },
+    subtle: {
+      value: { base: "{colors.gray.200}", _dark: "{colors.gray.800}" },
+    },
+    muted: {
+      value: { base: "{colors.gray.100}", _dark: "{colors.gray.900}" },
+    },
+    fg: {
+      value: { base: "{colors.gray.800}", _dark: "{colors.gray.200}" },
+    },
+    emphasized: {
+      value: { base: "{colors.gray.200}", _dark: "{colors.gray.800}" },
+    },
+    solid: {
+      value: { base: "{colors.gray.900}", _dark: "{colors.white}" },
+    },
+  },
+
+  gray: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    subtle: {
+      value: { base: "{colors.gray.100}", _dark: "{colors.gray.900}" },
+    },
+    muted: {
+      value: { base: "{colors.gray.50}", _dark: "{colors.gray.950}" },
+    },
+    fg: {
+      value: { base: "{colors.gray.900}", _dark: "{colors.gray.200}" },
+    },
+    emphasized: {
+      value: { base: "{colors.gray.200}", _dark: "{colors.gray.800}" },
+    },
+    solid: {
+      value: { base: "{colors.gray.900}", _dark: "{colors.gray.200}" },
+    },
+  },
+
+  red: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    subtle: {
+      value: { base: "{colors.red.100}", _dark: "{colors.red.900}" },
+    },
+    muted: {
+      value: { base: "{colors.red.50}", _dark: "{colors.red.950}" },
+    },
+    fg: {
+      value: { base: "{colors.red.900}", _dark: "{colors.red.200}" },
+    },
+    emphasized: {
+      value: { base: "{colors.red.200}", _dark: "{colors.red.800}" },
+    },
+    solid: {
+      value: { base: "{colors.red.600}", _dark: "{colors.red.600}" },
+    },
+  },
+
+  orange: {
+    contrast: {
+      value: { base: "white", _dark: "black" },
+    },
+    subtle: {
+      value: { base: "{colors.orange.100}", _dark: "{colors.orange.900}" },
+    },
+    muted: {
+      value: { base: "{colors.orange.50}", _dark: "{colors.orange.950}" },
+    },
+    fg: {
+      value: { base: "{colors.orange.900}", _dark: "{colors.orange.200}" },
+    },
+    emphasized: {
+      value: { base: "{colors.orange.200}", _dark: "{colors.orange.800}" },
+    },
+    solid: {
+      value: { base: "{colors.orange.600}", _dark: "{colors.orange.500}" },
+    },
+  },
+
+  green: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    fg: {
+      value: { base: "{colors.green.900}", _dark: "{colors.green.200}" },
+    },
+    subtle: {
+      value: { base: "{colors.green.100}", _dark: "{colors.green.900}" },
+    },
+    muted: {
+      value: { base: "{colors.green.50}", _dark: "{colors.green.950}" },
+    },
+    emphasized: {
+      value: { base: "{colors.green.200}", _dark: "{colors.green.800}" },
+    },
+    solid: {
+      value: { base: "{colors.green.600}", _dark: "{colors.green.600}" },
+    },
+  },
+
+  blue: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    fg: {
+      value: { base: "{colors.blue.900}", _dark: "{colors.blue.200}" },
+    },
+    subtle: {
+      value: { base: "{colors.blue.100}", _dark: "{colors.blue.900}" },
+    },
+    muted: {
+      value: { base: "{colors.blue.50}", _dark: "{colors.blue.950}" },
+    },
+    emphasized: {
+      value: { base: "{colors.blue.200}", _dark: "{colors.blue.800}" },
+    },
+    solid: {
+      value: { base: "{colors.blue.600}", _dark: "{colors.blue.600}" },
+    },
+  },
+
+  yellow: {
+    contrast: {
+      value: { base: "black", _dark: "black" },
+    },
+    fg: {
+      value: { base: "{colors.yellow.900}", _dark: "{colors.yellow.200}" },
+    },
+    muted: {
+      value: { base: "{colors.yellow.50}", _dark: "{colors.yellow.950}" },
+    },
+    subtle: {
+      value: { base: "{colors.yellow.100}", _dark: "{colors.yellow.900}" },
+    },
+    emphasized: {
+      value: { base: "{colors.yellow.200}", _dark: "{colors.yellow.800}" },
+    },
+    solid: {
+      value: { base: "{colors.yellow.300}", _dark: "{colors.yellow.300}" },
+    },
+  },
+
+  teal: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    fg: {
+      value: { base: "{colors.teal.900}", _dark: "{colors.teal.200}" },
+    },
+    muted: {
+      value: { base: "{colors.teal.50}", _dark: "{colors.teal.950}" },
+    },
+    subtle: {
+      value: { base: "{colors.teal.100}", _dark: "{colors.teal.900}" },
+    },
+    emphasized: {
+      value: { base: "{colors.teal.200}", _dark: "{colors.teal.800}" },
+    },
+    solid: {
+      value: { base: "{colors.teal.600}", _dark: "{colors.teal.600}" },
+    },
+  },
+
+  purple: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    fg: {
+      value: { base: "{colors.purple.900}", _dark: "{colors.purple.200}" },
+    },
+    muted: {
+      value: { base: "{colors.purple.50}", _dark: "{colors.purple.950}" },
+    },
+    subtle: {
+      value: { base: "{colors.purple.100}", _dark: "{colors.purple.900}" },
+    },
+    emphasized: {
+      value: { base: "{colors.purple.200}", _dark: "{colors.purple.800}" },
+    },
+    solid: {
+      value: { base: "{colors.purple.600}", _dark: "{colors.purple.600}" },
+    },
+  },
+
+  pink: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    fg: {
+      value: { base: "{colors.pink.900}", _dark: "{colors.pink.200}" },
+    },
+    muted: {
+      value: { base: "{colors.pink.50}", _dark: "{colors.pink.950}" },
+    },
+    subtle: {
+      value: { base: "{colors.pink.100}", _dark: "{colors.pink.900}" },
+    },
+    emphasized: {
+      value: { base: "{colors.pink.200}", _dark: "{colors.pink.800}" },
+    },
+    solid: {
+      value: { base: "{colors.pink.600}", _dark: "{colors.pink.600}" },
+    },
+  },
+
+  cyan: {
+    contrast: {
+      value: { base: "white", _dark: "white" },
+    },
+    fg: {
+      value: { base: "{colors.cyan.900}", _dark: "{colors.cyan.200}" },
+    },
+    muted: {
+      value: { base: "{colors.cyan.50}", _dark: "{colors.cyan.950}" },
+    },
+    subtle: {
+      value: { base: "{colors.cyan.100}", _dark: "{colors.cyan.900}" },
+    },
+    emphasized: {
+      value: { base: "{colors.cyan.200}", _dark: "{colors.cyan.800}" },
+    },
+    solid: {
+      value: { base: "{colors.cyan.600}", _dark: "{colors.cyan.600}" },
+    },
   },
 })

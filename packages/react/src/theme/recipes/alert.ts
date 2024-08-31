@@ -49,35 +49,41 @@ export const alertSlotRecipe = defineSlotRecipe({
     variant: {
       subtle: {
         root: {
-          bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
+          bg: "colorPalette.subtle",
+          color: "colorPalette.fg",
+        },
+      },
+
+      surface: {
+        root: {
+          bg: "colorPalette.muted",
+          color: "colorPalette.fg",
+          shadow: "inset 0 0 0px 1px var(--shadow-color)",
+          shadowColor: "colorPalette.emphasized",
         },
         indicator: {
-          color: { base: "colorPalette.800", _dark: "colorPalette.400" },
+          color: "colorPalette.fg",
         },
       },
 
       outline: {
         root: {
-          bg: { base: "colorPalette.50", _dark: "colorPalette.400/10" },
-          shadowColor: {
-            base: "colorPalette.200",
-            _dark: "colorPalette.200/10",
-          },
-          color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+          color: "colorPalette.fg",
           shadow: "inset 0 0 0px 1px var(--shadow-color)",
+          shadowColor: "colorPalette.emphasized",
         },
         indicator: {
-          color: { base: "colorPalette.800", _dark: "colorPalette.400" },
+          color: "colorPalette.fg",
         },
       },
 
       solid: {
         root: {
-          bg: "colorPalette.600",
-          color: "white",
+          bg: "colorPalette.solid",
+          color: "colorPalette.contrast",
         },
         indicator: {
-          color: "white",
+          color: "colorPalette.contrast",
         },
       },
     },

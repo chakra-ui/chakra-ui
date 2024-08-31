@@ -7,7 +7,7 @@ import {
 
 export const CheckboxCardDisabled = () => {
   return (
-    <CheckboxCardRoot disabled>
+    <CheckboxCardRoot disabled maxW="320px">
       <CheckboxCardControl>
         <Stack gap="0">
           <CheckboxCardLabel>Disabled</CheckboxCardLabel>

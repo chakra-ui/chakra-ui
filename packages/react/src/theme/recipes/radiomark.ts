@@ -38,29 +38,21 @@ export const radiomarkRecipe = defineRecipe({
     variant: {
       outline: {
         borderWidth: "1px",
-        borderColor: "inherit",
+        borderColor: "border",
         _checked: {
-          bg: "colorPalette.600",
-          borderColor: "colorPalette.600",
+          bg: "colorPalette.solid",
+          color: "colorPalette.contrast",
+          borderColor: "colorPalette.solid",
         },
       },
 
       subtle: {
         borderWidth: "1px",
-        bg: {
-          base: "colorPalette.100",
-          _dark: "colorPalette.200/20",
-        },
-        borderColor: {
-          base: "colorPalette.200",
-          _dark: "colorPalette.200/10",
-        },
+        bg: "colorPalette.subtle",
+        borderColor: "colorPalette.subtle",
         color: "transparent",
         _checked: {
-          color: {
-            base: "colorPalette.700",
-            _dark: "colorPalette.200",
-          },
+          color: "colorPalette.fg",
         },
       },
 
@@ -68,7 +60,7 @@ export const radiomarkRecipe = defineRecipe({
         borderWidth: "1px",
         borderColor: "inherit",
         _checked: {
-          color: { base: "colorPalette.600", _dark: "colorPalette.300" },
+          color: "colorPalette.fg",
           borderColor: "currentcolor",
         },
         "& .dot": {
@@ -92,19 +84,9 @@ export const radiomarkRecipe = defineRecipe({
     },
   },
 
-  compoundVariants: [
-    {
-      variant: "outline",
-      colorPalette: "gray",
-      css: {
-        color: "fg.inverted",
-      },
-    },
-  ],
-
   defaultVariants: {
     variant: "outline",
     size: "md",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

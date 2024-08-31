@@ -1,14 +1,6 @@
 import { readExampleFile } from "@/lib/composition"
 import { highlightCode } from "@/lib/highlight-code"
-import {
-  Absolute,
-  Box,
-  BoxProps,
-  HStack,
-  Stack,
-  Tabs,
-  Text,
-} from "@chakra-ui/react"
+import { Box, BoxProps, HStack, Stack, Tabs, Text } from "@chakra-ui/react"
 import dynamic from "next/dynamic"
 import Link from "next/link"
 import { CopyButton } from "./copy-button"
@@ -37,11 +29,12 @@ export const ExamplePreview = (props: Props) => {
 
 interface CodeProps extends Props {
   showCopy?: boolean
+  ext?: string
 }
 
 export const ExampleCode = async (props: CodeProps) => {
-  const { name, showCopy = true } = props
-  const content = await readExampleFile(name)
+  const { name, showCopy = true, ext = "tsx" } = props
+  const content = await readExampleFile(name, ext)
   const html = await highlightCode(content)
   return (
     <>
@@ -50,9 +43,9 @@ export const ExampleCode = async (props: CodeProps) => {
         dangerouslySetInnerHTML={{ __html: html }}
       />
       {showCopy && (
-        <Absolute top="4" right="6">
+        <Box pos="absolute" top="4" right="6">
           <CopyButton value={content} />
-        </Absolute>
+        </Box>
       )}
     </>
   )
@@ -60,11 +53,14 @@ export const ExampleCode = async (props: CodeProps) => {
 
 interface CodeWrapperProps {
   maxHeight?: BoxProps["maxHeight"]
+  bg?: BoxProps["bg"]
+  px?: BoxProps["px"]
+  py?: BoxProps["py"]
   children: React.ReactNode
 }
 
 export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
-  const { children, maxHeight } = props
+  const { children, maxHeight, bg, px = 8, py = 6 } = props
   return (
     <Box
       height="100%"
@@ -72,11 +68,12 @@ export const ExampleCodeWrapper = (props: CodeWrapperProps) => {
       css={{
         position: "relative",
         "& pre": {
-          px: "8",
-          py: "6",
+          px,
+          py,
           maxHeight,
           overflow: "auto",
           my: "0",
+          bg,
         },
       }}
     >
@@ -110,7 +107,7 @@ export const ExampleLinkTree = (props: LinkTreeProps) => {
                 py="0.5"
                 px="2"
                 _currentPage={{
-                  layerStyle: "fill.muted",
+                  layerStyle: "fill.subtle",
                   colorPalette: "gray",
                 }}
               >
@@ -156,7 +153,7 @@ export const ExampleTabs = (props: Props) => {
   return (
     <Tabs.Root
       className="example-tabs"
-      variant="soft"
+      variant="subtle"
       defaultValue={"preview"}
       mb="4em"
     >
@@ -165,10 +162,10 @@ export const ExampleTabs = (props: Props) => {
         <Tabs.Trigger value="code">Code</Tabs.Trigger>
       </Tabs.List>
       <Tabs.ContentGroup borderWidth="1px" rounded="md" overflow="hidden">
-        <Tabs.Content value="preview" mt="0" padding={{ base: "6", sm: "10" }}>
+        <Tabs.Content value="preview" mt="0!" padding={{ base: "6", sm: "10" }}>
           <ExamplePreview name={name} />
         </Tabs.Content>
-        <Tabs.Content value="code" mt="0">
+        <Tabs.Content value="code" mt="0!">
           <ExampleCodeWrapper maxHeight="480px">
             <ExampleCode name={name} />
           </ExampleCodeWrapper>

@@ -20,7 +20,7 @@ export interface ButtonVariant {
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
   /** @default "solid" */
-  variant?: "solid" | "subtle" | "outline" | "ghost" | "plain"
+  variant?: "solid" | "subtle" | "surface" | "outline" | "ghost" | "plain"
 }
 
 export type ButtonVariantProps = {
@@ -131,7 +131,6 @@ export type LinkVariantMap = {
 }
 
 export interface MarkVariant {
-  /** @default "plain" */
   variant?: "subtle" | "solid" | "text" | "plain"
 }
 
@@ -227,7 +226,7 @@ export interface CheckmarkVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "outline" */
-  variant?: "outline" | "subtle"
+  variant?: "outline" | "subtle" | "plain"
 }
 
 export type CheckmarkVariantProps = {
@@ -280,7 +279,7 @@ export type AccordionSlot = "root" | "item" | "itemTrigger" | "itemContent" | "i
 
 export interface AccordionVariant {
   /** @default "outline" */
-  variant?: "outline" | "elevated" | "contained" | "plain"
+  variant?: "outline" | "subtle" | "enclosed" | "plain"
   /** @default "md" */
   size?: "sm" | "md" | "lg"
 }
@@ -315,7 +314,7 @@ export interface AlertVariant {
   /** @default "info" */
   status?: "info" | "warning" | "success" | "error" | "neutral"
   /** @default "subtle" */
-  variant?: "subtle" | "outline" | "solid"
+  variant?: "subtle" | "surface" | "outline" | "solid"
   /** @default "md" */
   size?: "sm" | "md" | "lg"
 }
@@ -358,7 +357,7 @@ export interface BlockquoteVariant {
   /** @default "start" */
   justify?: "start" | "center" | "end"
   /** @default "subtle" */
-  variant?: "subtle" | "solid" | "plain"
+  variant?: "subtle" | "solid"
 }
 
 export type BlockquoteVariantProps = {
@@ -433,8 +432,8 @@ export type CheckboxCardSlot = "root" | "control" | "label" | "addon" | "indicat
 export interface CheckboxCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
-  /** @default "subtle" */
-  variant?: "plain" | "subtle"
+  /** @default "outline" */
+  variant?: "plain" | "subtle" | "outline"
 }
 
 export type CheckboxCardVariantProps = {
@@ -815,8 +814,8 @@ export type RadioCardSlot = "root" | "label" | "item" | "itemText" | "itemContro
 export interface RadioCardVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
-  /** @default "subtle" */
-  variant?: "plain" | "subtle"
+  /** @default "outline" */
+  variant?: "plain" | "subtle" | "outline"
 }
 
 export type RadioCardVariantProps = {
@@ -916,7 +915,7 @@ export type SelectVariantMap = {
 
 // Slider
 
-export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker"
+export type SliderSlot = "root" | "label" | "thumb" | "valueText" | "track" | "range" | "control" | "markerGroup" | "marker" | "markerIndicator"
 
 export interface SliderVariant {
   /** @default "md" */
@@ -991,7 +990,7 @@ export type SwitchSlot = "root" | "label" | "control" | "thumb" | "indicator"
 
 export interface SwitchVariant {
   /** @default "solid" */
-  variant?: "solid" | "outline" | "raised"
+  variant?: "solid" | "raised"
   /** @default "md" */
   size?: "xs" | "sm" | "md" | "lg"
 }
@@ -1032,14 +1031,12 @@ export type TableVariantMap = {
 export type TabsSlot = "root" | "trigger" | "list" | "content" | "contentGroup" | "indicator"
 
 export interface TabsVariant {
-  /** @default "horizontal" */
-  orientation?: "vertical" | "horizontal"
   fitted?: boolean
   justify?: "start" | "center" | "end"
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "line" */
-  variant?: "line" | "soft" | "enclosed" | "outline" | "plain"
+  variant?: "line" | "subtle" | "enclosed" | "outline" | "plain"
 }
 
 export type TabsVariantProps = {
@@ -1058,7 +1055,7 @@ export interface TagVariant {
   /** @default "md" */
   size?: "sm" | "md" | "lg"
   /** @default "surface" */
-  variant?: "subtle" | "solid" | "outline" | "surface" | "raised"
+  variant?: "subtle" | "solid" | "outline" | "surface"
 }
 
 export type TagVariantProps = {

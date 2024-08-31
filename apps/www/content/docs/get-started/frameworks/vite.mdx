@@ -19,6 +19,8 @@ Use the vite template below to get started quickly.
 
 ## Installation
 
+> The minimum node version required is Node.20.x
+
 :::steps
 
 ### Install dependencies
@@ -46,7 +48,7 @@ This provider composes the following:
 - `ChakraProvider` from `@chakra-ui/react` for the styling system
 - `ThemeProvider` from `next-themes` for color mode
 
-```tsx title="src/main.tsx"
+```tsx title="src/main.tsx" {1,8,10}
 import { Provider } from "@/components/ui/provider"
 import React from "react"
 import ReactDOM from "react-dom/client"
@@ -63,22 +65,47 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 
 ### Update tsconfig
 
-If you're using TypeScript, you need to update the `compilerOptions` in the
-tsconfig file to include the following options:
+If you're using TypeScript, in the `tsconfig.app.json` file, make sure the
+`compilerOptions` includes the following:
 
 ```json title="tsconfig.json"
 {
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }
 ```
 
+### Setup Vite Config Paths
+
+In your project, set up a vite config path to automatically sync `tsconfig` with
+vite using the command:
+
+```bash
+npm i -D vite-tsconfig-paths
+```
+
+Update the `vite.config.ts` file:
+
+```ts {3} /tsconfigPaths()/
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
+import tsconfigPaths from "vite-tsconfig-paths"
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), tsconfigPaths()],
+})
+```
+
 ### Enjoy!
 
-When the power of the snippets and the primitive components from Chakra UI, you
+With the power of the snippets and the primitive components from Chakra UI, you
 can build your UI faster.
 
 ```tsx

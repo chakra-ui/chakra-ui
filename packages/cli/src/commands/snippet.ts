@@ -39,9 +39,10 @@ export const SnippetCommand = new Command("snippet")
       .argument("[snippets...]", "snippets to add")
       .option("-d, --dry-run", "Dry run")
       .option("--outdir <dir>", "Output directory to write the snippets")
+      .option("-f, --force", "Overwrite existing files")
       .action(async (components: string[], flags: unknown) => {
         const parsedFlags = addCommandFlagsSchema.parse(flags)
-        const { dryRun } = parsedFlags
+        const { dryRun, force } = parsedFlags
 
         const ctx = await getProjectContext({ cwd: process.cwd() })
         debug("context", ctx)
@@ -78,6 +79,8 @@ export const SnippetCommand = new Command("snippet")
         debug("fileDependencies", fileDependencies)
         debug("npmDependencies", npmDependencies)
 
+        let skippedFiles: string[] = []
+
         await tasks([
           {
             title: `Installing required dependencies...`,
@@ -91,7 +94,10 @@ export const SnippetCommand = new Command("snippet")
             task: async () => {
               await Promise.all(
                 fileDependencies.map(async (dep) => {
-                  if (existsSync(join(outdir, dep))) return
+                  if (existsSync(join(outdir, dep)) && !force) {
+                    skippedFiles.push(dep)
+                    return
+                  }
                   const item = await fetchComposition(dep)
 
                   if (jsx) {
@@ -101,7 +107,11 @@ export const SnippetCommand = new Command("snippet")
 
                   const outPath = join(outdir, item.file.name)
 
-                  await writeFile(outPath, item.file.content, "utf-8")
+                  await writeFile(
+                    outPath,
+                    item.file.content.replace("compositions/ui", "."),
+                    "utf-8",
+                  )
                 }),
               )
             },
@@ -111,7 +121,10 @@ export const SnippetCommand = new Command("snippet")
             task: async () => {
               await Promise.all(
                 components.map(async (id) => {
-                  if (existsSync(join(outdir, id))) return
+                  if (existsSync(join(outdir, id)) && !force) {
+                    skippedFiles.push(id)
+                    return
+                  }
 
                   const item = await fetchComposition(id)
 
@@ -125,13 +138,23 @@ export const SnippetCommand = new Command("snippet")
                   if (dryRun) {
                     printFileSync(item)
                   } else {
-                    await writeFile(outPath, item.file.content, "utf-8")
+                    await writeFile(
+                      outPath,
+                      item.file.content.replace("compositions/ui", "."),
+                      "utf-8",
+                    )
                   }
                 }),
               )
             },
           },
         ])
+
+        if (skippedFiles.length) {
+          p.log.warn(
+            `Skipping ${skippedFiles.length} file(s) that already exist. Use the --force flag to overwrite.`,
+          )
+        }
 
         p.outro("🎉 Done!")
       }),

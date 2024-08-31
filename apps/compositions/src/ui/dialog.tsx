@@ -5,8 +5,7 @@ import { forwardRef } from "react"
 interface DialogContentProps extends ChakraDialog.ContentProps {
   portalled?: boolean
   containerRef?: React.RefObject<HTMLElement>
-  showArrow?: boolean
-  showBackdrop?: boolean
+  backdrop?: boolean
 }
 
 export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
@@ -15,14 +14,13 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       children,
       portalled = true,
       containerRef,
-      showArrow,
-      showBackdrop = true,
+      backdrop = true,
       ...rest
     } = props
 
     return (
       <Portal disabled={!portalled} container={containerRef}>
-        {showBackdrop && <ChakraDialog.Backdrop />}
+        {backdrop && <ChakraDialog.Backdrop />}
         <ChakraDialog.Positioner>
           <ChakraDialog.Content ref={ref} {...rest} asChild={false}>
             {children}
@@ -56,7 +54,7 @@ export const DialogTitle = (props: ChakraDialog.TitleProps) => {
 }
 
 export const DialogDescription = (props: ChakraDialog.DescriptionProps) => {
-  return <ChakraDialog.Description color="fg.muted" {...props} />
+  return <ChakraDialog.Description color="fg.subtle" {...props} />
 }
 
 export const DialogRoot = ChakraDialog.Root

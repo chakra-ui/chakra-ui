@@ -123,3 +123,12 @@ export const SliderMarker = withContext<HTMLDivElement, SliderMarkerProps>(
   "marker",
   { forwardAsChild: true },
 )
+
+////////////////////////////////////////////////////////////////////////////////////
+
+export interface SliderMarkerIndicatorProps extends HTMLChakraProps<"div"> {}
+
+export const SliderMarkerIndicator = withContext<
+  HTMLDivElement,
+  SliderMarkerIndicatorProps
+>("div", "markerIndicator")

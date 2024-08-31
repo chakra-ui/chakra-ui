@@ -1,5 +1,13 @@
 # @chakra-ui/cli
 
+## 3.0.0-next.20
+
+### Patch Changes
+
+- [`c074b58`](https://github.com/chakra-ui/chakra-ui/commit/c074b58770908d9ab27367578020134975ea5378)
+  Thanks [@segunadebayo](https://github.com/segunadebayo)! - Fix issue where
+  vite project throws due to config search
+
 ## 3.0.0-next.19
 
 ## 3.0.0-next.18

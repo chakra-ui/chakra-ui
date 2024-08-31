@@ -49,7 +49,7 @@ const DemoCheckboxCard = (props: CheckboxCardRootProps) => {
       <CheckboxCardControl>
         <Stack gap="0" flex="1">
           <CheckboxCardLabel>Next.js</CheckboxCardLabel>
-          <Text color="fg.muted">Best for apps</Text>
+          <Text color="fg.subtle">Best for apps</Text>
         </Stack>
       </CheckboxCardControl>
     </CheckboxCardRoot>

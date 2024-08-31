@@ -6,36 +6,44 @@ import { useState } from "react"
 import { LuPlus } from "react-icons/lu"
 
 interface Item {
+  id: string
   title: string
   content: React.ReactNode
 }
 
 const items: Item[] = [
-  { title: "Tab 1", content: "Tab Content 1" },
-  { title: "Tab 2", content: "Tab Content 2" },
-  { title: "Tab 3", content: "Tab Content 3" },
-  { title: "Tab 4", content: "Tab Content 4" },
+  { id: "1", title: "Tab", content: "Tab Content" },
+  { id: "2", title: "Tab", content: "Tab Content" },
+  { id: "3", title: "Tab", content: "Tab Content" },
+  { id: "4", title: "Tab", content: "Tab Content" },
 ]
+
+const uuid = () => {
+  return Math.random().toString(36).substring(2, 15)
+}
 
 export const TabsWithDynamicAdd = () => {
   const [tabs, setTabs] = useState<Item[]>(items)
-  const [selectedTab, setSelectedTab] = useState<string | null>(items[0].title)
+  const [selectedTab, setSelectedTab] = useState<string | null>(items[0].id)
 
   const addTab = () => {
     const newTabs = [...tabs]
 
+    const uid = uuid()
+
     newTabs.push({
-      title: `Tab ${tabs.length + 1}`,
-      content: `Tab Body ${tabs.length + 1}`,
+      id: uid,
+      title: `Tab`,
+      content: `Tab Body`,
     })
 
     setTabs(newTabs)
-    setSelectedTab(newTabs[newTabs.length - 1].title)
+    setSelectedTab(newTabs[newTabs.length - 1].id)
   }
 
-  const removeTab = (title: string) => {
+  const removeTab = (id: string) => {
     if (tabs.length > 1) {
-      const newTabs = [...tabs].filter((tab) => tab.title !== title)
+      const newTabs = [...tabs].filter((tab) => tab.id !== id)
       setTabs(newTabs)
     }
   }
@@ -49,13 +57,15 @@ export const TabsWithDynamicAdd = () => {
     >
       <Tabs.List flex="1 1 auto">
         {tabs.map((item) => (
-          <Tabs.Trigger value={item.title} key={item.title}>
+          <Tabs.Trigger value={item.id} key={item.id}>
             {item.title}{" "}
             <CloseButton
+              as="span"
+              role="button"
               size="xs"
               onClick={(e) => {
                 e.stopPropagation()
-                removeTab(item.title)
+                removeTab(item.id)
               }}
             />
           </Tabs.Trigger>
@@ -73,9 +83,9 @@ export const TabsWithDynamicAdd = () => {
 
       <Tabs.ContentGroup>
         {tabs.map((item) => (
-          <Tabs.Content value={item.title} key={item.title}>
+          <Tabs.Content value={item.id} key={item.id}>
             <Heading size="xl" my="6">
-              {item.content}
+              {item.content} {item.id}
             </Heading>
             <Text>
               Dolore ex esse laboris elit magna esse sunt. Pariatur in veniam

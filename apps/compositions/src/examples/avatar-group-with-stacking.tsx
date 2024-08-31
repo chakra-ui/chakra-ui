@@ -8,21 +8,21 @@ export const AvatarGroupWithStacking = () => {
         {items.map((item) => (
           <Avatar key={item.name} src={item.src} name={item.name} />
         ))}
-        <Avatar variant="solid" fallback="+3" />
+        <Avatar fallback="+3" />
       </AvatarGroup>
 
       <AvatarGroup size="lg" stacking="first-on-top">
         {items.map((item) => (
           <Avatar key={item.name} src={item.src} name={item.name} />
         ))}
-        <Avatar variant="solid" fallback="+3" />
+        <Avatar fallback="+3" />
       </AvatarGroup>
 
       <AvatarGroup size="lg" spaceX="1" borderless>
         {items.map((item) => (
           <Avatar key={item.name} src={item.src} name={item.name} />
         ))}
-        <Avatar variant="solid" fallback="+3" />
+        <Avatar fallback="+3" />
       </AvatarGroup>
     </Stack>
   )

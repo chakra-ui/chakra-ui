@@ -1,18 +1,16 @@
+import { Blob } from "@/components/site/blob"
+import { ChakraProSection } from "@/components/site/chakra-pro.section"
+import { DesignSystemSection } from "@/components/site/design-system.section"
+import { FooterSection } from "@/components/site/footer.section"
+import { FrameworkSection } from "@/components/site/framework.section"
+import { HeaderSection } from "@/components/site/header.section"
+import { HeroSection } from "@/components/site/hero.section"
+import { BlitzIcon } from "@/components/site/icons"
+import { PartnersSection } from "@/components/site/partners.section"
+import { SponsorSection } from "@/components/site/sponsor.section"
+import { StatSection } from "@/components/site/stat.section"
+import { TestimonialSection } from "@/components/site/testimonial.section"
 import { Icon, Stack } from "@chakra-ui/react"
-import { Accessibility } from "./page/accessibility"
-import { Blob } from "./page/blob"
-import { DesignSystem } from "./page/design-system"
-import { Footer } from "./page/footer"
-import { Frameworks } from "./page/frameworks"
-import { Header } from "./page/header"
-import { Hero } from "./page/hero"
-import { HeroShowCase } from "./page/hero-showcase"
-import { BlitzIcon } from "./page/icons"
-import { Partners } from "./page/partners"
-import { Sponsors } from "./page/sponsors"
-import { Stats } from "./page/stats"
-import { Templates } from "./page/templates"
-import { Testimonials } from "./page/testimonials"
 
 const BlitzIconSection = () => (
   <Icon
@@ -22,47 +20,46 @@ const BlitzIconSection = () => (
     pos="absolute"
     top="58px"
     right="67px"
-    mdDown={{ display: "none" }}
+    color="fg.inverted"
+    hideBelow="md"
   >
     <BlitzIcon />
   </Icon>
 )
 
-const MainContent = () => (
-  <Stack gap={{ base: "24", md: "52" }}>
-    <Stack>
-      <Hero />
-      <HeroShowCase />
-    </Stack>
-    <Partners />
-    <DesignSystem />
-    <Accessibility />
-    <Stats />
-    <Testimonials />
-    <Sponsors />
-    <Frameworks />
-    <Templates />
-  </Stack>
-)
+const AmbientLights = () => {
+  return (
+    <>
+      <Blob top="-50px" left="50%" transform="translateX(-50%)" />
+      <Blob bottom="-50%" left="-30%" top="40%" />
+      <Blob
+        height="2000px"
+        width="1200px"
+        bottom="0"
+        left="40%"
+        top="1200px"
+        transform="translateX(-40%)"
+      />
+    </>
+  )
+}
 
 export default function Page() {
   return (
-    <Stack
-      className="dark"
-      color="white"
-      bg="var(--bg)"
-      pos="relative"
-      gap="8"
-      overflowX="hidden"
-      css={{
-        "--bg": "colors.black",
-      }}
-    >
-      <Blob top="111px" left="50%" transform="translateX(-50%)" />
+    <Stack pos="relative" gap="8" overflowX="hidden" overflowY="hidden">
+      <AmbientLights />
       <BlitzIconSection />
-      <Header />
-      <MainContent />
-      <Footer />
+      <HeaderSection />
+      <HeroSection />
+      <PartnersSection />
+      <DesignSystemSection />
+      <StatSection />
+      {/* <Accessibility /> */}
+      <TestimonialSection />
+      <SponsorSection />
+      <FrameworkSection />
+      <ChakraProSection />
+      <FooterSection />
     </Stack>
   )
 }

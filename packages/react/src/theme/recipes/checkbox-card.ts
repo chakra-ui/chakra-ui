@@ -9,20 +9,12 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
     root: {
       display: "flex",
       flexDirection: "column",
-      borderWidth: "1px",
       userSelect: "none",
-      colorPalette: "gray",
-      pos: "relative",
-      _focus: {
-        outline: "2px solid",
-        outlineColor: "focusRing",
-        outlineOffset: "2px",
-      },
+      colorPalette: "accent",
+      position: "relative",
+      focusRing: "outside",
       _disabled: {
-        opacity: 0.8,
-        color: "fg.muted",
-        cursor: "not-allowed",
-        borderColor: "border.disabled!",
+        opacity: 0.5,
       },
       _invalid: {
         outline: "2px solid",
@@ -36,7 +28,7 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       rounded: "inherit",
       justifyContent: "space-between",
       _disabled: {
-        bg: "bg.muted!",
+        bg: "bg.subtle!",
       },
     },
     label: {
@@ -45,12 +37,12 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       _disabled: {
-        color: "fg.muted!",
+        color: "fg.subtle!",
       },
     },
     addon: {
       _disabled: {
-        color: "fg.muted",
+        color: "fg.subtle",
       },
     },
     indicator: checkmarkRecipe.base,
@@ -68,8 +60,8 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
           gap: "3",
         },
         addon: {
-          paddingInline: "3",
-          paddingBlock: "1.5",
+          px: "3",
+          py: "1.5",
           borderTopWidth: "1px",
         },
         indicator: checkmarkRecipe.variants?.size.sm,
@@ -85,8 +77,8 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
           rounded: "md",
         },
         addon: {
-          paddingInline: "4",
-          paddingBlock: "2",
+          px: "4",
+          py: "2",
           borderTopWidth: "1px",
         },
         indicator: checkmarkRecipe.variants?.size.md,
@@ -101,16 +93,19 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
           gap: "4",
         },
         addon: {
-          paddingInline: "4",
-          paddingBlock: "2",
+          px: "4",
+          py: "2",
           borderTopWidth: "1px",
         },
         indicator: checkmarkRecipe.variants?.size.lg,
       },
     },
+
     variant: {
       plain: {
         root: {
+          borderWidth: "1px",
+          borderColor: "border",
           bg: "bg",
         },
         indicator: checkmarkRecipe.variants?.variant.outline,
@@ -118,25 +113,32 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
 
       subtle: {
         root: {
-          bg: "bg",
-          _checked: {
-            borderColor: {
-              base: "colorPalette.300",
-              _dark: "colorPalette.300/40",
-            },
+          bg: "bg.subtle/60",
+          _hover: {
+            bg: "bg.subtle",
           },
         },
         control: {
           _checked: {
-            bg: {
-              base: "colorPalette.50",
-              _dark: "colorPalette.400/20",
-            },
+            bg: "colorPalette.subtle",
+            color: "colorPalette.fg",
           },
         },
-        label: {
+        indicator: checkmarkRecipe.variants?.variant.plain,
+      },
+
+      outline: {
+        root: {
+          borderWidth: "1px",
+          borderColor: "border",
+          bg: "bg",
+          _hover: {
+            bg: "bg.muted",
+          },
           _checked: {
-            color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+            boxShadow: "0 0 0 1px var(--shadow-color)",
+            boxShadowColor: "colorPalette.solid",
+            borderColor: "colorPalette.solid",
           },
         },
         indicator: checkmarkRecipe.variants?.variant.outline,
@@ -144,24 +146,9 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
     },
   },
 
-  compoundVariants: [
-    {
-      colorPalette: "gray",
-      css: {
-        indicator: {
-          color: "fg.inverted",
-          "&:is([data-checked], [data-indeterminate])": {
-            bg: { base: "gray.800", _dark: "gray.200" },
-            borderColor: { base: "gray.800", _dark: "gray.200" },
-          },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     size: "md",
-    variant: "subtle",
-    colorPalette: "gray",
+    variant: "outline",
+    colorPalette: "accent",
   },
 })

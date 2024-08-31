@@ -109,7 +109,8 @@ const config = defineConfig({
       colors: {
         bg: {
           DEFAULT: { value: "{colors.gray.100}" },
-          muted: { value: "{colors.gray.100}" },
+          primary: { value: "{colors.teal.100}" },
+          secondary: { value: "{colors.gray.100}" },
         },
       },
     },
@@ -123,6 +124,7 @@ This allows the use of the `bg` token in the following ways:
 
 ```tsx
 <Box bg="bg">
-  <Box bg="bg.muted">Hello World</Box>
+  <Box bg="bg.primary">Hello World</Box>
+  <Box bg="bg.secondary">Hello World</Box>
 </Box>
 ```

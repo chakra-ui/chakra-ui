@@ -2,7 +2,7 @@ import { Checkmark, Stack } from "@chakra-ui/react"
 
 export const CheckmarkBasic = () => {
   return (
-    <Stack>
+    <Stack colorPalette="accent">
       <Checkmark />
       <Checkmark checked />
       <Checkmark indeterminate />

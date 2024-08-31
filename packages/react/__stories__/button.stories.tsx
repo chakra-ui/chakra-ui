@@ -19,3 +19,4 @@ export { ButtonWithIcons as WithIcon } from "compositions/examples/button-with-i
 export { ButtonWithLoading as WithLoading } from "compositions/examples/button-with-loading"
 export { ButtonWithStyleOverride as WithStyleOverrides } from "compositions/examples/button-with-style-override"
 export { ButtonWithGroup as WithGroup } from "compositions/examples/button-with-group"
+export { ButtonWithMenu as WithMenu } from "compositions/examples/button-with-menu"

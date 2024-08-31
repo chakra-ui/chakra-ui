@@ -40,7 +40,7 @@ export const nativeSelectSlotRecipe = defineSlotRecipe({
       top: "50%",
       transform: "translateY(-50%)",
       height: "100%",
-      color: "fg.muted",
+      color: "fg.subtle",
       _disabled: {
         opacity: "0.5",
       },

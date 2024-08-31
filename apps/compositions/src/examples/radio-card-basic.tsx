@@ -23,7 +23,7 @@ export const RadioCardBasic = () => {
               <RadioCardItemText fontWeight="medium">
                 {item.title}
               </RadioCardItemText>
-              <Text color="fg.muted">{item.description}</Text>
+              <Text color="fg.subtle">{item.description}</Text>
             </Stack>
           </RadioCardItem>
         ))}

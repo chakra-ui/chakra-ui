@@ -25,7 +25,7 @@ export const AvatarOverflowMenu = (props: AvatarOverflowMenuProps) => {
       </MenuTrigger>
       <MenuContent>
         {items.map((item) => (
-          <MenuItem value={item.name}>
+          <MenuItem key={item.name} value={item.name}>
             <Avatar name={item.name} src={item.src} />
             {item.name}
           </MenuItem>

@@ -34,6 +34,7 @@ export interface UtilityValues {
     | "fg"
     | "border"
     | "focusRing"
+    | "accent"
   background: Tokens["colors"]
   backgroundColor: Tokens["colors"]
   backgroundGradient: Tokens["gradients"] | "to-t" | "to-tr" | "to-r" | "to-br" | "to-b" | "to-bl" | "to-l" | "to-tl"
@@ -227,10 +228,10 @@ export interface UtilityValues {
   divideStyle: CssProperties["borderStyle"]
   textStyle: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl"
   layerStyle:
-    | "fill.muted"
+    | "fill.subtle"
     | "fill.surface"
     | "fill.solid"
-    | "outline.muted"
+    | "outline.subtle"
     | "outline.solid"
     | "indicator.bottom"
     | "indicator.top"

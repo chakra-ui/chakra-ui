@@ -1,7 +1,6 @@
 import { globbySync } from "globby"
 import { existsSync, readFileSync } from "node:fs"
-import { join } from "node:path"
-import { resolve } from "node:path/posix"
+import { join, resolve } from "node:path"
 
 export interface ProjectScope {
   framework: "next" | "remix" | "vite" | null
@@ -24,8 +23,11 @@ function getFramework(files: string[], cwd: string) {
   }
 
   if (files.find((file) => file.startsWith("vite.config"))) {
-    const viteConfig = readFileSync(resolve(cwd, "vite.config.js"), "utf-8")
-    const isRemix = viteConfig.includes("@remix-run/dev")
+    const [viteConfigPath] = globbySync(["vite.config.ts", "vite.config.js"], {
+      cwd,
+    })
+    const viteConfig = readFileSync(viteConfigPath, "utf-8")
+    const isRemix = !!viteConfig?.includes("@remix-run/dev")
     return isRemix ? "remix" : "vite"
   }
 

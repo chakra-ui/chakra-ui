@@ -9,7 +9,7 @@ import { HiCamera } from "react-icons/hi"
 export const FileUploadMediaCapture = () => {
   return (
     <FileUploadRoot capture="environment">
-      <FileUploadTrigger>
+      <FileUploadTrigger asChild>
         <Button variant="outline" size="sm">
           <HiCamera /> Open Camera
         </Button>

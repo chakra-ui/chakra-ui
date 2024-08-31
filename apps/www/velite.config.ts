@@ -20,6 +20,13 @@ import { remarkSteps } from "./lib/remark-steps"
 
 const cwd = process.cwd()
 
+const slugify = (str: string) => {
+  return str
+    .replace(/.*\/content\//, "")
+    .replace(/\.mdx$/, "")
+    .replace(cwd, "")
+}
+
 const docs = defineCollection({
   name: "Docs",
   pattern: ["content/docs/**/*.mdx"],
@@ -40,10 +47,7 @@ const docs = defineCollection({
     .transform((data, { meta }) => {
       return {
         ...data,
-        slug: meta.path
-          .replace(/.*\/content\//, "")
-          .replace(/\.mdx$/, "")
-          .replace(cwd, ""),
+        slug: slugify(meta.path),
         category: meta.path
           .replace(/.*\/content\//, "")
           .replace(/\/[^/]*$/, "")
@@ -75,9 +79,31 @@ const showcases = defineCollection({
   }),
 })
 
+const blogs = defineCollection({
+  name: "Blog",
+  pattern: "content/blog/**/*.mdx",
+  schema: s
+    .object({
+      title: s.string(),
+      type: s.enum(["release", "announcement", "article"]),
+      description: s.string(),
+      metadata: s.metadata(),
+      content: s.mdx(),
+      authors: s.array(s.string()),
+      publishedAt: s.string(),
+      toc: s.toc(),
+    })
+    .transform((data, { meta }) => {
+      return {
+        ...data,
+        slug: slugify(meta.path),
+      }
+    }),
+})
+
 export default defineConfig({
   root: cwd,
-  collections: { docs, showcases, notes },
+  collections: { docs, showcases, notes, blogs },
   mdx: {
     remarkPlugins: [
       remarkDirective,

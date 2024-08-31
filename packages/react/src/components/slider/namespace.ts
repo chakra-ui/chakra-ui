@@ -2,6 +2,7 @@ export {
   SliderRoot as Root,
   SliderRootPropsProvider as RootPropsProvider,
   SliderMarker as Marker,
+  SliderMarkerIndicator as MarkerIndicator,
   SliderThumb as Thumb,
   SliderValueText as ValueText,
   SliderRange as Range,
@@ -14,6 +15,7 @@ export {
 export type {
   SliderRootProps as RootProps,
   SliderMarkerProps as MarkerProps,
+  SliderMarkerIndicatorProps as MarkerIndicatorProps,
   SliderThumbProps as ThumbProps,
   SliderValueTextProps as ValueTextProps,
   SliderRangeProps as RangeProps,

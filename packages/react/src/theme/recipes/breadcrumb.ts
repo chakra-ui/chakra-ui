@@ -6,13 +6,13 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
   slots: breadcrumbAnatomy.keys(),
   base: {
     root: {
-      colorPalette: "gray",
+      colorPalette: "accent",
     },
     list: {
       display: "flex",
       alignItems: "center",
       wordBreak: "break-word",
-      color: "fg.muted",
+      color: "fg.subtle",
     },
     link: {
       outline: "0",
@@ -28,9 +28,9 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       alignItems: "center",
     },
     separator: {
-      color: "fg.muted",
+      color: "fg.subtle",
       opacity: "0.8",
-      "& svg": {
+      _icon: {
         boxSize: "1em",
       },
     },
@@ -38,47 +38,36 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       justifyContent: "center",
-      "& svg": {
+      _icon: {
         boxSize: "1em",
       },
     },
   },
+
   variants: {
     variant: {
       underline: {
-        root: {
-          borderRadius: "md",
-          color: { base: "colorPalette.800", _dark: "colorPalette.400" },
-        },
         link: {
-          color: { base: "colorPalette.600", _dark: "colorPalette.400" },
-          fontWeight: "medium",
+          color: "colorPalette.fg",
           textDecoration: "underline",
           textUnderlineOffset: "0.2em",
-          textDecorationColor: {
-            base: "colorPalette.600/40",
-            _dark: "colorPalette.500/40",
-          },
+          textDecorationColor: "colorPalette.emphasized",
         },
         currentLink: {
-          color: { base: "colorPalette.800", _dark: "colorPalette.300" },
-          fontWeight: "medium",
+          color: "colorPalette.fg",
         },
       },
       plain: {
-        currentLink: {
-          color: { base: "colorPalette.600", _dark: "colorPalette.500" },
-          fontWeight: "medium",
-        },
         link: {
-          color: "fg.muted",
-          _hover: {
-            textDecoration: "underline",
-            color: { base: "colorPalette.700", _dark: "colorPalette.600" },
-          },
+          color: "fg.subtle",
+          _hover: { color: "fg" },
+        },
+        currentLink: {
+          color: "fg",
         },
       },
     },
+
     size: {
       sm: {
         list: {
@@ -100,26 +89,10 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
       },
     },
   },
-  compoundVariants: [
-    {
-      colorPalette: "gray",
-      variant: "plain",
-      css: {
-        link: {
-          color: "fg.muted",
-          _hover: {
-            color: { base: "colorPalette.700", _dark: "colorPalette.300" },
-          },
-        },
-        currentLink: {
-          color: { base: "colorPalette.800", _dark: "colorPalette.300" },
-        },
-      },
-    },
-  ],
+
   defaultVariants: {
     variant: "plain",
     size: "md",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

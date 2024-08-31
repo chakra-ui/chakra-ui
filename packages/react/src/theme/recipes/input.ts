@@ -64,7 +64,7 @@ export const inputRecipe = defineRecipe({
       filled: {
         borderWidth: "1px",
         borderColor: "transparent",
-        bg: "bg.muted",
+        bg: "bg.subtle",
         _invalid: {
           borderColor: "var(--error-color)",
         },

@@ -1,6 +1,6 @@
 "use client"
 
-import { ColorModeButton } from "@/components/color-mode-button"
+import { ColorModeButton } from "@/components/docs/color-mode-button"
 import { Logo } from "@/components/logo"
 import { MobileSearchButton, SearchButton } from "@/components/search-button"
 import { SocialLinks } from "@/components/social-links"
@@ -41,7 +41,7 @@ const HeaderRoot = chakra("header", {
     width: "100%",
     minHeight: "64px",
     borderBottom: "1px solid",
-    borderColor: "border.muted",
+    borderColor: "border.subtle",
     zIndex: "10",
   },
 })
@@ -49,7 +49,7 @@ const HeaderRoot = chakra("header", {
 const TopNavLink = chakra(Link, {
   base: {
     fontSize: "sm",
-    color: "fg.muted",
+    color: "fg.subtle",
     _currentPage: {
       color: "fg",
       fontWeight: "medium",
@@ -77,7 +77,7 @@ const TopNavMobileLink = chakra(Link, {
     display: "block",
     py: "2",
     px: "4",
-    color: "fg.muted",
+    color: "fg.subtle",
     w: "full",
     _currentPage: {
       color: "fg",
@@ -261,7 +261,7 @@ const HeaderMobileActions = () => {
 const HeaderDesktopNavbar = () => {
   return (
     <Box hideBelow="md">
-      <HStack pt="2" pb="2">
+      <HStack py="2">
         <HeaderPrimaryNavbar />
         <Spacer />
         <HeaderDesktopActions />
@@ -284,7 +284,7 @@ const HeaderMobileNavbar = () => {
 export const Header = () => {
   return (
     <HeaderRoot>
-      <Container as="nav">
+      <Container>
         <HeaderDesktopNavbar />
         <HeaderMobileNavbar />
       </Container>

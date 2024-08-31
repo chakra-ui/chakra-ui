@@ -11,14 +11,10 @@ export const checkmarkRecipe = defineRecipe({
     color: "white",
     borderWidth: "1px",
     borderColor: "transparent",
-    _focusVisible: {
-      outline: "2px solid",
-      outlineColor: "focusRing",
-      outlineOffset: "2px",
-    },
+    focusVisibleRing: "outside",
     _invalid: {
       colorPalette: "red",
-      borderColor: "red.500",
+      borderColor: "border.error",
     },
     _disabled: {
       opacity: "0.5",
@@ -43,49 +39,32 @@ export const checkmarkRecipe = defineRecipe({
     variant: {
       outline: {
         borderWidth: "1px",
-        borderColor: "inherit",
+        borderColor: "border",
         "&:is([data-checked], [data-indeterminate])": {
-          bg: "colorPalette.600",
-          borderColor: "colorPalette.600",
+          bg: "colorPalette.solid",
+          color: "colorPalette.contrast",
+          borderColor: "colorPalette.solid",
         },
       },
       subtle: {
         borderWidth: "1px",
-        bg: {
-          base: "colorPalette.100",
-          _dark: "colorPalette.200/20",
-        },
-        borderColor: {
-          base: "colorPalette.200",
-          _dark: "colorPalette.200/10",
-        },
+        bg: "colorPalette.subtle",
+        borderColor: "colorPalette.subtle",
         "&:is([data-checked], [data-indeterminate])": {
-          color: {
-            base: "colorPalette.700",
-            _dark: "colorPalette.200",
-          },
+          color: "colorPalette.fg",
+        },
+      },
+      plain: {
+        "&:is([data-checked], [data-indeterminate])": {
+          color: "colorPalette.fg",
         },
       },
     },
   },
 
-  compoundVariants: [
-    {
-      variant: "outline",
-      colorPalette: "gray",
-      css: {
-        color: "fg.inverted",
-        "&:is([data-checked], [data-indeterminate])": {
-          bg: { base: "gray.800", _dark: "gray.200" },
-          borderColor: { base: "gray.800", _dark: "gray.200" },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     variant: "outline",
     size: "md",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })

@@ -3,12 +3,10 @@
 import { Select as ChakraSelect, Portal } from "@chakra-ui/react"
 import { CloseButton } from "compositions/ui/close-button"
 
-interface SelectTriggerProps extends ChakraSelect.ControlProps {
-  clearable?: boolean
-}
+interface SelectTriggerProps extends ChakraSelect.ControlProps {}
 
 export const SelectTrigger = (props: SelectTriggerProps) => {
-  const { clearable, children, ...rest } = props
+  const { children, ...rest } = props
   return (
     <ChakraSelect.Control {...rest}>
       <ChakraSelect.Trigger>
@@ -21,7 +19,7 @@ export const SelectTrigger = (props: SelectTriggerProps) => {
 
 export const SelectClearTrigger = () => (
   <ChakraSelect.ClearTrigger asChild>
-    <CloseButton size="sm" variant="plain" />
+    <CloseButton size="sm" variant="ghost" />
   </ChakraSelect.ClearTrigger>
 )
 
@@ -53,7 +51,7 @@ export const SelectItem = (props: ChakraSelect.ItemProps) => {
 
 interface SelectValueTextProps
   extends Omit<ChakraSelect.ValueTextProps, "children"> {
-  children?(items: any[]): React.ReactNode
+  children?(items: ChakraSelect.CollectionItem[]): React.ReactNode
 }
 
 export const SelectValueText = (props: SelectValueTextProps) => {

@@ -10,10 +10,6 @@ const docsLinks: NavItem = {
           title: "Overview",
           items: [
             { title: "Installation", url: "installation" },
-            {
-              title: "Changelog",
-              url: "https://github.com/chakra-ui/chakra-ui/blob/main/CHANGELOG.md",
-            },
             { title: "Migration", url: "migration" },
             { title: "CLI", url: "cli" },
             { title: "Contributing", url: "contributing" },
@@ -267,7 +263,7 @@ export const docsConfig: DocsConfig = {
   donationUrl: "https://opencollective.com/chakra-ui",
   navigation: [
     docsLinks,
-    { title: "Figma", url: "figma" },
+    { title: "Enterprise", url: "enterprise" },
     { title: "Blog", url: "blog" },
     { title: "Showcase", url: "showcase" },
   ],

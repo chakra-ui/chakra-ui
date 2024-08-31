@@ -1,4 +1,4 @@
-import { Box, Kbd } from "@chakra-ui/react"
+import { Kbd } from "@chakra-ui/react"
 import { AspectRatioTokenDoc } from "compositions/lib/aspect-ratio-token-toc"
 import { BorderRadiusTokenDoc } from "compositions/lib/border-radius-token-doc"
 import { BreakpointDoc } from "compositions/lib/breakpoint-doc"
@@ -13,11 +13,11 @@ import { SpacingTokenDoc } from "compositions/lib/spacing-token-doc"
 import * as TypographyDocs from "compositions/lib/typography-token-doc"
 import { ZIndexTokenDoc } from "compositions/lib/z-index-token-doc"
 import * as runtime from "react/jsx-runtime"
-import { Card, CardGroup } from "./card"
 import { Example, ExamplePreview, ExampleTabs } from "./example"
 import { Anchor } from "./mdx/anchor"
 import { Blockquote } from "./mdx/blockquote"
 import { Callout } from "./mdx/callout"
+import { Card, CardGroup } from "./mdx/card"
 import { Code, Pre } from "./mdx/code"
 import { CodeBlock } from "./mdx/code-block"
 import { CodeGroup } from "./mdx/code-group"
@@ -88,9 +88,5 @@ interface MDXProps {
 export const MDXContent = (props: MDXProps) => {
   const { code, components = {} } = props
   const Component = useMDXComponent(code)
-  return (
-    <Box fontSize="sm">
-      <Component components={{ ...sharedComponents, ...components }} />
-    </Box>
-  )
+  return <Component components={{ ...sharedComponents, ...components }} />
 }

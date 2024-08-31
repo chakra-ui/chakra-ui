@@ -33,6 +33,8 @@ export interface Conditions {
   _complete: string
   /** `&[data-incomplete]` */
   _incomplete: string
+  /** `&[data-dragging]` */
+  _dragging: string
   /** `&::before` */
   _before: string
   /** `&::after` */
@@ -111,9 +113,9 @@ export interface Conditions {
   _invalid: string
   /** `&:autofill` */
   _autofill: string
-  /** `&:in-range` */
+  /** `&:is(:in-range, [data-in-range])` */
   _inRange: string
-  /** `&:out-of-range` */
+  /** `&:is(:out-of-range, [data-outside-range])` */
   _outOfRange: string
   /** `&::placeholder, &[data-placeholder]` */
   _placeholder: string
@@ -145,6 +147,18 @@ export interface Conditions {
   _currentPage: string
   /** `&[aria-current=step]` */
   _currentStep: string
+  /** `&[data-today]` */
+  _today: string
+  /** `&[data-unavailable]` */
+  _unavailable: string
+  /** `&[data-range-start]` */
+  _rangeStart: string
+  /** `&[data-range-end]` */
+  _rangeEnd: string
+  /** `&[data-now]` */
+  _now: string
+  /** `&[data-topmost]` */
+  _topmost: string
   /** `@media (prefers-reduced-motion: reduce)` */
   _motionReduce: string
   /** `@media (prefers-reduced-motion: no-preference)` */

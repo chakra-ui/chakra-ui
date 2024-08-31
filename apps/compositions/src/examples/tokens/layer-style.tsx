@@ -1,8 +1,8 @@
 import { Center, For, HStack, Stack, Text } from "@chakra-ui/react"
 
 const items = [
-  ["Fill", ["fill.muted", "fill.surface", "fill.solid"]],
-  ["Outline", ["outline.muted", "outline.solid"]],
+  ["Fill", ["fill.subtle", "fill.surface", "fill.solid"]],
+  ["Outline", ["outline.subtle", "outline.solid"]],
   [
     "Indicator",
     ["indicator.top", "indicator.bottom", "indicator.start", "indicator.end"],

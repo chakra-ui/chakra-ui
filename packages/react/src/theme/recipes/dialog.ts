@@ -64,7 +64,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
     },
     body: {
       flex: "1",
-      color: "fg.muted",
+      color: "fg.subtle",
       paddingX: "6",
     },
     footer: {

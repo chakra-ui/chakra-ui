@@ -91,6 +91,7 @@ export const defaultConditions = defineConditions({
   highlighted: "&[data-highlighted]",
   complete: "&[data-complete]",
   incomplete: "&[data-incomplete]",
+  dragging: "&[data-dragging]",
 
   before: "&::before",
   after: "&::after",
@@ -144,8 +145,8 @@ export const defaultConditions = defineConditions({
   valid: "&:is([data-valid], [data-state=valid])",
   invalid: "&:is([data-invalid], [aria-invalid=true], [data-state=invalid])",
   autofill: "&:autofill",
-  inRange: "&:in-range",
-  outOfRange: "&:out-of-range",
+  inRange: "&:is(:in-range, [data-in-range])",
+  outOfRange: "&:is(:out-of-range, [data-outside-range])",
   placeholder: "&::placeholder, &[data-placeholder]",
   placeholderShown: "&:is(:placeholder-shown, [data-placeholder-shown])",
   pressed: "&:is([aria-pressed=true], [data-pressed])",
@@ -163,6 +164,12 @@ export const defaultConditions = defineConditions({
   current: "&[data-current]",
   currentPage: "&[aria-current=page]",
   currentStep: "&[aria-current=step]",
+  today: "&[data-today]",
+  unavailable: "&[data-unavailable]",
+  rangeStart: "&[data-range-start]",
+  rangeEnd: "&[data-range-end]",
+  now: "&[data-now]",
+  topmost: "&[data-topmost]",
 
   motionReduce: "@media (prefers-reduced-motion: reduce)",
   motionSafe: "@media (prefers-reduced-motion: no-preference)",
@@ -237,17 +244,18 @@ export const defaultBaseConfig = defineConfig({
     },
     gradientFrom: {
       values: "colors",
-      transform: (value) => ({ "--gradient-from": value }),
+      transform: createColorMixTransform("--gradient-from"),
     },
     gradientTo: {
       values: "colors",
-      transform: (value) => ({ "--gradient-to": value }),
+      transform: createColorMixTransform("--gradient-to"),
     },
     gradientVia: {
       values: "colors",
-      transform(value) {
+      transform(value, args) {
+        const color = createColorMixTransform("--gradient-via")(value, args)
         return {
-          "--gradient-via": value,
+          "--gradient-via": color,
           "--gradient-via-stops":
             "var(--gradient-from), var(--gradient-via), var(--gradient-to)",
         }

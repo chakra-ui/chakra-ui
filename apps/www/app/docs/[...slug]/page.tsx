@@ -5,7 +5,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { Toc } from "@/components/toc"
 import { docsConfig } from "@/docs.config"
 import { flattenToc } from "@/lib/flatten-toc"
-import { Show, Stack } from "@chakra-ui/react"
+import { Box, Show, Stack } from "@chakra-ui/react"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { SidebarEnd } from "../sidebar"
@@ -43,7 +43,9 @@ export default function Page(props: Props) {
           description={page.description}
           links={page.links}
         />
-        <MDXContent code={page.code} />
+        <Box fontSize="sm">
+          <MDXContent code={page.code} />
+        </Box>
       </Stack>
 
       <Show when={!page.hideToc}>

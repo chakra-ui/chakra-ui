@@ -9,7 +9,7 @@ import { HiUpload } from "react-icons/hi"
 export const FileUploadDirectory = () => {
   return (
     <FileUploadRoot directory>
-      <FileUploadTrigger>
+      <FileUploadTrigger asChild>
         <Button variant="outline" size="sm">
           <HiUpload /> Upload file
         </Button>

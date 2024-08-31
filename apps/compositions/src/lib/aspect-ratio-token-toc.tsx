@@ -26,12 +26,12 @@ export const AspectRatioTokenDoc = () => {
                 aspectRatio={token.value}
                 width="40"
                 bg="bg.muted"
-                color="fg.muted"
+                color="fg.subtle"
                 borderWidth="1px"
               >
                 <VStack gap="0">
                   <Text>{token.extensions.prop}</Text>
-                  <Text color="fg.muted/50">{token.value}</Text>
+                  <Text color="fg.subtle/50">{token.value}</Text>
                 </VStack>
               </Center>
             </Stack>

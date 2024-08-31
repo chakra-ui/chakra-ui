@@ -13,15 +13,15 @@ export const statSlotRecipe = defineSlotRecipe({
       flex: "1 1 0%",
     },
     label: {
-      color: "fg.muted",
+      color: "fg.subtle",
       textStyle: "sm",
     },
     helpText: {
-      color: "fg.muted",
+      color: "fg.subtle",
       textStyle: "xs",
     },
     valueUnit: {
-      color: "fg.muted",
+      color: "fg.subtle",
       textStyle: "xs",
       fontWeight: "initial",
       letterSpacing: "initial",

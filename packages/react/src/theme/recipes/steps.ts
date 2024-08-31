@@ -6,7 +6,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
   slots: stepsAnatomy.keys(),
   base: {
     root: {
-      colorPalette: "gray",
+      colorPalette: "accent",
       display: "flex",
       gap: "4",
     },
@@ -21,7 +21,7 @@ export const stepsSlotRecipe = defineSlotRecipe({
       color: "fg",
     },
     description: {
-      color: "fg.muted",
+      color: "fg.subtle",
     },
     separator: {
       bg: "border",
@@ -116,40 +116,40 @@ export const stepsSlotRecipe = defineSlotRecipe({
             borderWidth: "var(--steps-thickness)",
           },
           _current: {
-            bg: "bg.muted",
+            bg: "colorPalette.subtle",
             borderWidth: "var(--steps-thickness)",
-            borderColor: "colorPalette.600",
-            color: { base: "colorPalette.700", _dark: "colorPalette.200" },
+            borderColor: "colorPalette.solid",
+            color: "colorPalette.fg",
           },
           _complete: {
-            bg: "colorPalette.600",
-            borderColor: "colorPalette.600",
-            color: "white",
+            bg: "colorPalette.solid",
+            borderColor: "colorPalette.solid",
+            color: "colorPalette.contrast",
           },
         },
         separator: {
           _complete: {
-            bg: "colorPalette.600",
+            bg: "colorPalette.solid",
           },
         },
       },
       subtle: {
         indicator: {
           _incomplete: {
-            bg: "bg.muted",
+            bg: "bg.subtle",
           },
           _current: {
-            bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-            color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+            bg: "colorPalette.subtle",
+            color: "colorPalette.fg",
           },
           _complete: {
-            bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
-            color: { base: "colorPalette.800", _dark: "colorPalette.200" },
+            bg: "colorPalette.emphasized",
+            color: "colorPalette.fg",
           },
         },
         separator: {
           _complete: {
-            bg: "colorPalette.400",
+            bg: "colorPalette.emphasized",
           },
         },
       },
@@ -189,42 +189,10 @@ export const stepsSlotRecipe = defineSlotRecipe({
     },
   },
 
-  compoundVariants: [
-    {
-      variant: "solid",
-      colorPalette: "gray",
-      css: {
-        indicator: {
-          _complete: {
-            bg: { base: "gray.800", _dark: "gray.200" },
-            borderColor: { base: "gray.800", _dark: "gray.200" },
-            color: { base: "white", _dark: "gray.800" },
-          },
-        },
-        separator: {
-          _complete: {
-            bg: { base: "gray.800", _dark: "gray.200" },
-          },
-        },
-      },
-    },
-    {
-      variant: "subtle",
-      colorPalette: "gray",
-      css: {
-        indicator: {
-          _complete: {
-            bg: { base: "gray.200", _dark: "gray.300/20" },
-          },
-        },
-      },
-    },
-  ],
-
   defaultVariants: {
     size: "md",
     variant: "solid",
     orientation: "horizontal",
-    colorPalette: "gray",
+    colorPalette: "accent",
   },
 })
