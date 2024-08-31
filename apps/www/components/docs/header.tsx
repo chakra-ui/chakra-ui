@@ -239,7 +239,6 @@ const HeaderDesktopActions = () => {
     <HStack gap="2" minH="48px" flexShrink="1" minW="0">
       <HeaderVersionMenu />
       <CommandMenu
-        data={{}}
         trigger={<SearchButton width="256px" size="sm" flexShrink="1" />}
       />
       <HeaderSocialLinks />
@@ -251,7 +250,7 @@ const HeaderDesktopActions = () => {
 const HeaderMobileActions = () => {
   return (
     <HStack>
-      <CommandMenu data={{}} trigger={<MobileSearchButton />} />
+      <CommandMenu trigger={<MobileSearchButton />} disableHotkey />
       <ColorModeButton />
       <HeaderMobileMenuDropdown />
     </HStack>

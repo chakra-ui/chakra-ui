@@ -1,8 +1,16 @@
 "use client"
 
 import { data } from "@/lib/search"
+import { Combobox } from "@ark-ui/react"
 import { useEnvironmentContext } from "@ark-ui/react/environment"
-import { Center, DialogTrigger, Input, Stack, Text } from "@chakra-ui/react"
+import {
+  Center,
+  DialogTrigger,
+  Input,
+  Stack,
+  Text,
+  chakra,
+} from "@chakra-ui/react"
 import {
   DialogBackdrop,
   DialogContent,
@@ -11,6 +19,36 @@ import {
 import { matchSorter } from "match-sorter"
 import { useParams, useRouter } from "next/navigation"
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react"
+
+const ComboboxRoot = chakra(Combobox.Root, {
+  base: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "1",
+  },
+})
+const ComboboxControl = chakra(Combobox.Control)
+const ComboboxInput = chakra(Combobox.Input, {}, { forwardAsChild: true })
+const ComboboxContent = chakra(Combobox.Content, {
+  base: {
+    borderRadius: "md",
+  },
+})
+const ComboboxList = chakra(Combobox.List)
+const ComboboxItemGroup = chakra(Combobox.ItemGroup)
+const ComboboxItemGroupLabel = chakra(Combobox.ItemGroupLabel)
+const ComboboxItem = chakra(Combobox.Item, {
+  base: {
+    borderRadius: "md",
+    _hover: {
+      bg: "gray.subtle",
+      cursor: "pointer",
+    },
+    _selected: {
+      bg: "gray.subtle",
+    },
+  },
+})
 
 interface Item {
   label: string
@@ -21,6 +59,7 @@ interface Item {
 
 interface Props {
   trigger: ReactNode
+  disableHotkey?: boolean
 }
 
 export const CommandMenu = (props: Props) => {
@@ -30,18 +69,13 @@ export const CommandMenu = (props: Props) => {
   const router = useRouter()
   const params = useParams<{ framework: string }>()
 
-  useHotkey(setOpen)
-
-  console.log("data", data)
+  useHotkey(setOpen, { disable: props.disableHotkey })
 
   return (
     <DialogRoot open={open} onOpenChange={(event) => setOpen(event.open)}>
       <DialogTrigger asChild>{props.trigger}</DialogTrigger>
-
-      <DialogBackdrop />
       <DialogContent p="2" width={{ base: "100%", sm: "md" }}>
-        dialog
-        {/* <Combobox.Root
+        <ComboboxRoot
           open
           disableLayer
           inputBehavior="autohighlight"
@@ -55,12 +89,12 @@ export const CommandMenu = (props: Props) => {
           }}
           onInputValueChange={({ inputValue }) => setInputValue(inputValue)}
         >
-          <Combobox.Control>
-            <Combobox.Input asChild>
+          <ComboboxControl>
+            <ComboboxInput asChild>
               <Input />
-            </Combobox.Input>
-          </Combobox.Control>
-          <Combobox.Content
+            </ComboboxInput>
+          </ComboboxControl>
+          <ComboboxContent
             boxShadow="none"
             px="0"
             py="0"
@@ -68,7 +102,7 @@ export const CommandMenu = (props: Props) => {
             maxH="68vh"
             overscrollBehavior="contain"
           >
-            <Combobox.List>
+            <ComboboxList>
               {matchEntries.length === 0 && (
                 <Center p="3" minH="40">
                   <Text color="fg.muted" textStyle="sm">
@@ -77,16 +111,16 @@ export const CommandMenu = (props: Props) => {
                 </Center>
               )}
               {matchEntries.map(([key, items]) => (
-                <Combobox.ItemGroup key={key}>
-                  <Combobox.ItemGroupLabel
+                <ComboboxItemGroup key={key}>
+                  <ComboboxItemGroupLabel
                     textTransform="capitalize"
                     color="fg.muted"
                     fontWeight="medium"
                   >
                     {key}
-                  </Combobox.ItemGroupLabel>
+                  </ComboboxItemGroupLabel>
                   {items.map((item) => (
-                    <Combobox.Item
+                    <ComboboxItem
                       key={item.value}
                       item={item}
                       persistFocus
@@ -99,7 +133,7 @@ export const CommandMenu = (props: Props) => {
                         <Text
                           textStyle="sm"
                           fontWeight="medium"
-                          color="accent.default"
+                          color="teal.600"
                         >
                           {item.category}
                         </Text>
@@ -112,13 +146,13 @@ export const CommandMenu = (props: Props) => {
                           {item.description}
                         </Text>
                       </Stack>
-                    </Combobox.Item>
+                    </ComboboxItem>
                   ))}
-                </Combobox.ItemGroup>
+                </ComboboxItemGroup>
               ))}
-            </Combobox.List>
-          </Combobox.Content>
-        </Combobox.Root> */}
+            </ComboboxList>
+          </ComboboxContent>
+        </ComboboxRoot>
       </DialogContent>
     </DialogRoot>
   )
@@ -145,10 +179,16 @@ const useFilteredItems = (data: Record<string, Item[]>, inputValue: string) => {
   return { matchEntries, filteredItems }
 }
 
-const useHotkey = (setOpen: (open: boolean) => void) => {
+const useHotkey = (
+  setOpen: (open: boolean) => void,
+  options: { disable?: boolean },
+) => {
+  const { disable } = options
   const env = useEnvironmentContext()
 
   useEffect(() => {
+    if (disable) return
+
     const document = env.getDocument()
     const isMac = /(Mac|iPhone|iPod|iPad)/i.test(navigator?.platform)
     const hotkey = isMac ? "metaKey" : "ctrlKey"
@@ -161,8 +201,9 @@ const useHotkey = (setOpen: (open: boolean) => void) => {
     }
 
     document.addEventListener("keydown", handleKeydown, true)
+
     return () => {
       document.removeEventListener("keydown", handleKeydown, true)
     }
-  }, [env, setOpen])
+  }, [env, setOpen, disable])
 }
