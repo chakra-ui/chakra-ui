@@ -11,13 +11,9 @@ import {
   Text,
   chakra,
 } from "@chakra-ui/react"
-import {
-  DialogBackdrop,
-  DialogContent,
-  DialogRoot,
-} from "compositions/ui/dialog"
+import { DialogContent, DialogRoot } from "compositions/ui/dialog"
 import { matchSorter } from "match-sorter"
-import { useParams, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 
 const ComboboxRoot = chakra(Combobox.Root, {
@@ -67,7 +63,6 @@ export const CommandMenu = (props: Props) => {
   const [inputValue, setInputValue] = useState("")
   const { matchEntries, filteredItems } = useFilteredItems(data, inputValue)
   const router = useRouter()
-  const params = useParams<{ framework: string }>()
 
   useHotkey(setOpen, { disable: props.disableHotkey })
 
@@ -85,7 +80,7 @@ export const CommandMenu = (props: Props) => {
           items={filteredItems}
           onValueChange={(e) => {
             setOpen(false)
-            router.push(`/${params.framework}/${e.value}`)
+            router.push(`/${e.value}`)
           }}
           onInputValueChange={({ inputValue }) => setInputValue(inputValue)}
         >
