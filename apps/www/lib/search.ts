@@ -1,7 +1,7 @@
 import { docs } from ".velite"
 
 const getStarted = docs
-  .filter((page) => page.category === "docs/get-started")
+  .filter((page) => page.category.startsWith("docs/get-started"))
   .map((page) => ({
     label: page.title,
     value: page.slug,
@@ -10,7 +10,7 @@ const getStarted = docs
   }))
 
 const styling = docs
-  .filter((page) => page.category === "docs/styling")
+  .filter((page) => page.category.startsWith("docs/styling"))
   .map((page) => ({
     label: page.title,
     value: page.slug,
@@ -19,7 +19,7 @@ const styling = docs
   }))
 
 const theming = docs
-  .filter((page) => page.category === "docs/styling")
+  .filter((page) => page.category.startsWith("docs/theming"))
   .map((page) => ({
     label: page.title,
     value: page.slug,
@@ -28,7 +28,7 @@ const theming = docs
   }))
 
 const components = docs
-  .filter((page) => page.category === "docs/components")
+  .filter((page) => page.category.startsWith("docs/components"))
   .map((page) => ({
     label: page.title,
     value: page.slug,
