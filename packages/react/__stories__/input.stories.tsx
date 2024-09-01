@@ -18,5 +18,6 @@ export { InputVariantTable as Variants } from "compositions/examples/input-varia
 export { InputWithErrorText as ErrorText } from "compositions/examples/input-with-error-text"
 export { InputWithField as Field } from "compositions/examples/input-with-field"
 export { InputWithHelperText as HelperText } from "compositions/examples/input-with-helper-text"
+export { InputWithHookForm as HookForm } from "compositions/examples/input-with-hook-form"
 export { InputWithLeftAndRightElement as LeftAndRightElement } from "compositions/examples/input-with-left-and-right-element"
 export { InputWithLeftElement as LeftElement } from "compositions/examples/input-with-left-element"

@@ -24,3 +24,4 @@ export { CheckboxWithGroup as WithGroup } from "compositions/examples/checkbox-w
 export { CheckboxWithIndeterminate as WithIndeterminate } from "compositions/examples/checkbox-with-indeterminate"
 export { CheckboxWithLink as WithLink } from "compositions/examples/checkbox-with-link"
 export { CheckboxWithStates as WithStates } from "compositions/examples/checkbox-with-states"
+export { CheckboxWithHookForm as WithHookForm } from "compositions/examples/checkbox-with-hook-form"

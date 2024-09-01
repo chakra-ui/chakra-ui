@@ -14,6 +14,7 @@ import { drawerSlotRecipe } from "./recipes/drawer"
 import { editableSlotRecipe } from "./recipes/editable"
 import { emptyStateSlotRecipe } from "./recipes/empty-state"
 import { fieldSlotRecipe } from "./recipes/field"
+import { fieldsetSlotRecipe } from "./recipes/fieldset"
 import { fileUploadSlotRecipe } from "./recipes/file-upload"
 import { hoverCardSlotRecipe } from "./recipes/hover-card"
 import { listSlotRecipe } from "./recipes/list"
@@ -58,6 +59,7 @@ export const slotRecipes = {
   editable: editableSlotRecipe,
   emptyState: emptyStateSlotRecipe,
   field: fieldSlotRecipe,
+  fieldset: fieldsetSlotRecipe,
   fileUpload: fileUploadSlotRecipe,
   hoverCard: hoverCardSlotRecipe,
   list: listSlotRecipe,
