@@ -27,7 +27,7 @@ export const fieldsetSlotRecipe = defineSlotRecipe({
       },
     },
     helperText: {
-      color: "fg.muted",
+      color: "fg.subtle",
       textStyle: "sm",
     },
     errorText: {
