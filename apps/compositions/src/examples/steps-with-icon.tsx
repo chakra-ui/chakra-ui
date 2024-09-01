@@ -1,7 +1,7 @@
 import { Group } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
-  StepsCompleteContent,
+  StepsCompletedContent,
   StepsContent,
   StepsItem,
   StepsList,
@@ -23,7 +23,7 @@ export const StepsWithIcon = () => {
       <StepsContent index={0}>Contact Details</StepsContent>
       <StepsContent index={1}>Payment</StepsContent>
       <StepsContent index={2}>Book an Appointment</StepsContent>
-      <StepsCompleteContent>All steps are complete!</StepsCompleteContent>
+      <StepsCompletedContent>All steps are complete!</StepsCompletedContent>
 
       <Group>
         <StepsPrevTrigger asChild>

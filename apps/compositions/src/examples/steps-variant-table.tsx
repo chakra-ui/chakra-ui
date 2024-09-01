@@ -11,7 +11,7 @@ import { colorPalettes } from "compositions/lib/color-palettes"
 import { PlaygroundTable } from "compositions/lib/playground-table"
 import { Button } from "compositions/ui/button"
 import {
-  StepsCompleteContent,
+  StepsCompletedContent,
   StepsContent,
   StepsItem,
   StepsList,
@@ -64,7 +64,7 @@ export const StepsVariantTable = () => {
 
 const DemoSteps = (props: StepsRootProps) => {
   return (
-    <StepsRoot {...props} skippable={false}>
+    <StepsRoot {...props}>
       <StepsList>
         <StepsItem index={0} title="Step 1" />
         <StepsItem index={1} title="Step 2" />
@@ -74,7 +74,7 @@ const DemoSteps = (props: StepsRootProps) => {
       <StepsContent index={0}>Step 1</StepsContent>
       <StepsContent index={1}>Step 2</StepsContent>
       <StepsContent index={2}>Step 3</StepsContent>
-      <StepsCompleteContent>All steps are complete!</StepsCompleteContent>
+      <StepsCompletedContent>All steps are complete!</StepsCompletedContent>
 
       <Group>
         <StepsPrevTrigger asChild>
