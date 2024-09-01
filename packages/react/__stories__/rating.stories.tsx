@@ -20,4 +20,5 @@ export { RatingSizeTable as Sizes } from "compositions/examples/rating-size-tabl
 export { RatingWithColors as WithColors } from "compositions/examples/rating-with-colors"
 export { RatingWithCustomIcon as WithCustomIcon } from "compositions/examples/rating-with-custom-icon"
 export { RatingWithHalf as WithHalf } from "compositions/examples/rating-with-half"
+export { RatingWithHookForm as WithHookForm } from "compositions/examples/rating-with-hook-form"
 export { RatingWithReadonly as ReadOnly } from "compositions/examples/rating-with-readonly"
