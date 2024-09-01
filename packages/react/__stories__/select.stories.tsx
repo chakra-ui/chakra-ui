@@ -18,6 +18,7 @@ export { SelectInPopover as InPopover } from "compositions/examples/select-in-po
 export { SelectWithAvatar as Avatar } from "compositions/examples/select-with-avatar"
 export { SelectWithClear as Clear } from "compositions/examples/select-with-clear"
 export { SelectWithDisabled as Disabled } from "compositions/examples/select-with-disabled"
+export { SelectWithHookForm as HookForm } from "compositions/examples/select-with-hook-form"
 export { SelectWithInvalid as Invalid } from "compositions/examples/select-with-invalid"
 export { SelectWithOptionGroup as OptionGroup } from "compositions/examples/select-with-option-group"
 export { SelectWithOverflow as Overflow } from "compositions/examples/select-with-overflow"
