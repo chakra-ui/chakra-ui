@@ -8,7 +8,7 @@ import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
 const formSchema = z.object({
-  number: z.string().min(1, "Enter a valid number"),
+  number: z.string({ message: "Number is required" }),
 })
 
 type FormValues = z.infer<typeof formSchema>
