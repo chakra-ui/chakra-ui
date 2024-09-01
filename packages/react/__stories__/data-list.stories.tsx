@@ -15,4 +15,4 @@ export default {
 export { DataListBasic as Basic } from "compositions/examples/data-list-basic"
 export { DataListSizeTable as Sizes } from "compositions/examples/data-list-size-table"
 export { DataListVertical as Vertical } from "compositions/examples/data-list-vertical"
-export { DataListWithInfo as WithInfo } from "compositions/examples/data-list-with-info"
+export { DataListWithInfo as Info } from "compositions/examples/data-list-with-info"

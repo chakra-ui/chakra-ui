@@ -14,5 +14,5 @@ export default {
 
 export { GridBasic as Basic } from "compositions/examples/grid-basic"
 export { GridSpanningColumns as SpanningColumns } from "compositions/examples/grid-spanning-columns"
-export { GridWithColSpan as WithColSpan } from "compositions/examples/grid-with-col-span"
-export { GridWithTemplateAreas as WithTemplateAreas } from "compositions/examples/grid-with-template-areas"
+export { GridWithColSpan as ColSpan } from "compositions/examples/grid-with-col-span"
+export { GridWithTemplateAreas as TemplateAreas } from "compositions/examples/grid-with-template-areas"
