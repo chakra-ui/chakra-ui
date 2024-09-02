@@ -10,4 +10,4 @@ export { FileUploadDirectory as Directory } from "compositions/examples/file-upl
 export { FileUploadInDialog as Dialog } from "compositions/examples/file-upload-in-dialog"
 export { FileUploadMediaCapture as MediaCapture } from "compositions/examples/file-upload-media-capture"
 export { FileUploadMultiple as Multiple } from "compositions/examples/file-upload-multiple"
-export { FileUploadWithDropzone as WithDropzone } from "compositions/examples/file-upload-with-dropzone"
+export { FileUploadWithDropzone as Dropzone } from "compositions/examples/file-upload-with-dropzone"

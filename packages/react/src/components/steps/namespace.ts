@@ -13,7 +13,7 @@ export {
   StepsNumber as Number,
   StepsIndicator as Indicator,
   StepsDescription as Description,
-  StepsCompleteContent as CompleteContent,
+  StepsCompletedContent as CompletedContent,
 } from "./steps"
 
 export type {
@@ -30,10 +30,10 @@ export type {
   StepsPrevTriggerProps as PrevTriggerProps,
   StepsNextTriggerProps as NextTriggerProps,
   StepsDescriptionProps as DescriptionProps,
-  StepsCompleteContentProps as CompleteContentProps,
+  StepsCompletedContentProps as CompletedContentProps,
 } from "./steps"
 
 export {
-  StepsContext as Context,
   StepsItemContext as ItemContext,
-} from "./steps.ark"
+  // StepsContext as Context,
+} from "@ark-ui/react/steps"

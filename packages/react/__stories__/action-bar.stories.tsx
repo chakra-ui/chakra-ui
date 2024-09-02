@@ -13,4 +13,4 @@ export default {
 } satisfies Meta
 
 export { ActionBarBasic as Basic } from "compositions/examples/action-bar-basic"
-export { ActionBarWithCloseTrigger as WithCloseTrigger } from "compositions/examples/action-bar-with-close-trigger"
+export { ActionBarWithCloseTrigger as CloseTrigger } from "compositions/examples/action-bar-with-close-trigger"

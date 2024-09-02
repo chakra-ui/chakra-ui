@@ -68,7 +68,7 @@ export const StepsIndicator = (props: StepsIndicatorProps) => {
 export const StepsList = ChakraSteps.List
 export const StepsRoot = ChakraSteps.Root
 export const StepsContent = ChakraSteps.Content
-export const StepsCompleteContent = ChakraSteps.CompleteContent
+export const StepsCompletedContent = ChakraSteps.CompletedContent
 
 export const StepsNextTrigger = (props: ChakraSteps.NextTriggerProps) => {
   return <ChakraSteps.NextTrigger {...props} />

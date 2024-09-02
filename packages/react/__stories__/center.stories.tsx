@@ -12,7 +12,7 @@ export default {
 }
 
 export { CenterBasic as Basic } from "compositions/examples/center-basic"
-export { CenterWithAbsolute as WithAbsolute } from "compositions/examples/center-with-absolute"
-export { CenterWithIcons as WithIcons } from "compositions/examples/center-with-icons"
-export { CenterWithInline as WithInline } from "compositions/examples/center-with-inline"
-export { CenterWithSquare as WithSquare } from "compositions/examples/center-with-square"
+export { CenterWithAbsolute as Absolute } from "compositions/examples/center-with-absolute"
+export { CenterWithIcons as Icons } from "compositions/examples/center-with-icons"
+export { CenterWithInline as Inline } from "compositions/examples/center-with-inline"
+export { CenterWithSquare as Square } from "compositions/examples/center-with-square"

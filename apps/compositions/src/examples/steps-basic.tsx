@@ -1,7 +1,7 @@
 import { Group } from "@chakra-ui/react"
 import { Button } from "compositions/ui/button"
 import {
-  StepsCompleteContent,
+  StepsCompletedContent,
   StepsContent,
   StepsItem,
   StepsList,
@@ -12,7 +12,7 @@ import {
 
 export const StepsBasic = () => {
   return (
-    <StepsRoot skippable={false} defaultValue={1} count={3}>
+    <StepsRoot defaultValue={1} count={3}>
       <StepsList>
         <StepsItem index={0} title="Step 1" />
         <StepsItem index={1} title="Step 2" />
@@ -22,7 +22,7 @@ export const StepsBasic = () => {
       <StepsContent index={0}>Step 1</StepsContent>
       <StepsContent index={1}>Step 2</StepsContent>
       <StepsContent index={2}>Step 3</StepsContent>
-      <StepsCompleteContent>All steps are complete!</StepsCompleteContent>
+      <StepsCompletedContent>All steps are complete!</StepsCompletedContent>
 
       <Group>
         <StepsPrevTrigger asChild>
