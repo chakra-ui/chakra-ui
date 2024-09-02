@@ -312,6 +312,9 @@ importers:
       hastscript:
         specifier: 9.0.0
         version: 9.0.0
+      match-sorter:
+        specifier: 6.3.4
+        version: 6.3.4
       mdast:
         specifier: 3.0.0
         version: 3.0.0
@@ -20880,7 +20883,7 @@ snapshots:
 
   match-sorter@6.3.4:
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.25.4
       remove-accents: 0.5.0
 
   math-random@1.0.4: {}
