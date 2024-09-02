@@ -1,9 +1,9 @@
-import { anatomy } from "@ark-ui/anatomy/menu"
+import { menuAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const menuSlotRecipe = defineSlotRecipe({
   className: "chakra-menu",
-  slots: [...anatomy.keys(), "itemCommand"],
+  slots: menuAnatomy.keys(),
   base: {
     content: {
       outline: 0,

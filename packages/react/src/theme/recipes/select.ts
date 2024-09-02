@@ -1,4 +1,4 @@
-import { selectAnatomy } from "@ark-ui/anatomy"
+import { selectAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const selectSlotRecipe = defineSlotRecipe({

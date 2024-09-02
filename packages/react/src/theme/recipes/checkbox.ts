@@ -1,8 +1,8 @@
-import { anatomy } from "@ark-ui/anatomy/checkbox"
+import { checkboxAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const checkboxSlotRecipe = defineSlotRecipe({
-  slots: anatomy.keys(),
+  slots: checkboxAnatomy.keys(),
   className: "chakra-checkbox",
   base: {
     root: {

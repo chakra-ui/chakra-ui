@@ -1,14 +1,9 @@
+import { actionBarAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const actionBarSlotRecipe = defineSlotRecipe({
   className: "chakra-action-bar",
-  slots: [
-    "positioner",
-    "content",
-    "separator",
-    "selectionTrigger",
-    "closeTrigger",
-  ],
+  slots: actionBarAnatomy.keys(),
   base: {
     positioner: {
       position: "fixed",

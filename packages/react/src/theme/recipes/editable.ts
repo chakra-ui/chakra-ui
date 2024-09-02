@@ -1,4 +1,4 @@
-import { editableAnatomy } from "@ark-ui/anatomy"
+import { editableAnatomy } from "../../anatomy"
 import { defineSlotRecipe, defineStyle } from "../../styled-system"
 
 const sharedStyles = defineStyle({
@@ -9,7 +9,7 @@ const sharedStyles = defineStyle({
 })
 
 export const editableSlotRecipe = defineSlotRecipe({
-  slots: [...editableAnatomy.keys(), "textarea"],
+  slots: editableAnatomy.keys(),
   className: "chakra-editable",
   base: {
     preview: {

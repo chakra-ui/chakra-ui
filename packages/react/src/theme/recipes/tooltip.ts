@@ -1,4 +1,4 @@
-import { tooltipAnatomy } from "@ark-ui/anatomy"
+import { tooltipAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const tooltipSlotRecipe = defineSlotRecipe({

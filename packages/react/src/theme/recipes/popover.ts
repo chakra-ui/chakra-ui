@@ -1,11 +1,9 @@
-import { popoverAnatomy } from "@ark-ui/anatomy"
+import { popoverAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
-
-const anatomy = popoverAnatomy.extendWith("header", "body", "footer")
 
 export const popoverSlotRecipe = defineSlotRecipe({
   className: "chakra-popover",
-  slots: anatomy.keys(),
+  slots: popoverAnatomy.keys(),
   base: {
     content: {
       position: "relative",
