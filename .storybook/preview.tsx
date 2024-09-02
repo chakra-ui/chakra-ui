@@ -1,8 +1,23 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
 import type { Preview, ReactRenderer } from "@storybook/react"
-import { Global } from "@storybook/theming"
 import React from "react"
-import { ChakraProvider, defaultSystem } from "../packages/react/src"
+import {
+  ChakraProvider,
+  createSystem,
+  defaultConfig,
+} from "../packages/react/src"
+
+const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: "Figtree" },
+        body: { value: "Figtree" },
+        mono: { value: "Roboto Mono" },
+      },
+    },
+  },
+})
 
 const preview: Preview = {
   parameters: {
@@ -21,10 +36,7 @@ const preview: Preview = {
       },
     }),
     (Story) => (
-      <ChakraProvider value={defaultSystem}>
-        <Global
-          styles={{ body: { fontSize: defaultSystem.token("fontSizes.sm") } }}
-        />
+      <ChakraProvider value={system}>
         <Story />
       </ChakraProvider>
     ),

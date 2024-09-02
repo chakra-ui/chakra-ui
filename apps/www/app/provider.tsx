@@ -5,6 +5,14 @@ import { Toaster } from "compositions/ui/toaster"
 import { ThemeProvider } from "next-themes"
 
 const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: "var(--font-figtree)" },
+        body: { value: "var(--font-figtree)" },
+      },
+    },
+  },
   globalCss: {
     ":root": {
       "--header-height": { base: "64px", md: "104px" },

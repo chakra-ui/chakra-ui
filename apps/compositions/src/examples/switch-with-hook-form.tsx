@@ -1,3 +1,5 @@
+"use client"
+
 import { Button, Stack } from "@chakra-ui/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Field } from "compositions/ui/field"
