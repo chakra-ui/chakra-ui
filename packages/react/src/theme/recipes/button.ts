@@ -92,7 +92,7 @@ export const buttonRecipe = defineRecipe({
         bg: "colorPalette.muted",
         color: "colorPalette.fg",
         shadow: "inset 0 0 0px 1px var(--shadow-color)",
-        shadowColor: "colorPalette.subtle",
+        shadowColor: "colorPalette.emphasized",
         _hover: {
           bg: "colorPalette.subtle",
         },

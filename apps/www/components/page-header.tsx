@@ -14,9 +14,7 @@ export const PageHeader = (props: PageHeaderProps) => {
       <Heading as="h1" size="3xl" letterSpacing="tight">
         {title}
       </Heading>
-      <Text textStyle="sm" color="fg.subtle">
-        {description}
-      </Text>
+      <Text color="fg.subtle">{description}</Text>
       {links && (
         <HStack gap="6" mb="4">
           {links.map((link) => (
