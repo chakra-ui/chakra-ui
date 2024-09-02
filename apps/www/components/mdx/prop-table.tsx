@@ -43,19 +43,27 @@ export const PropTable = async (props: Props) => {
     <Box divideY="1px">
       {sortEntries(propTypes.props).map(([key, value]) => (
         <Box py="4" key={key}>
-          <HStack>
+          <HStack width="full">
             <Box fontWeight="medium">{key}</Box>
             {value.isRequired && <Badge colorPalette="red">required</Badge>}
-            <Code variant="outline" lineClamp="1" maxW="50ch">
-              {value.type}
-            </Code>
             {value.defaultValue && (
               <Code whiteSpace="nowrap" colorPalette="teal" variant="surface">
                 default: {stringify(value.defaultValue)}
               </Code>
             )}
           </HStack>
-          <Box color="fg.subtle" mt="2">
+          <Box mt="2">
+            <Code
+              px="0"
+              colorPalette="teal"
+              display="inline-flex"
+              variant="plain"
+              lineClamp="1"
+            >
+              {value.type}
+            </Code>
+          </Box>
+          <Box color="fg.subtle" mt="2" textStyle="sm">
             {value.description}
           </Box>
         </Box>

@@ -37,12 +37,12 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       gap: "2",
       _disabled: {
-        color: "fg.subtle!",
+        opacity: 0.5,
       },
     },
     addon: {
       _disabled: {
-        color: "fg.subtle",
+        opacity: 0.5,
       },
     },
     indicator: checkmarkRecipe.base,

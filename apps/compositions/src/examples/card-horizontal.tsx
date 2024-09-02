@@ -16,7 +16,7 @@ export const CardHorizontal = () => (
           Caffè latte is a coffee beverage of Italian origin made with espresso
           and steamed milk.
         </Card.Description>
-        <HStack>
+        <HStack mt="4">
           <Badge>Hot</Badge>
           <Badge>Caffeine</Badge>
         </HStack>

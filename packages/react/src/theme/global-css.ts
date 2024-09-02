@@ -36,18 +36,17 @@ export const globalCss = defineGlobalStyles({
         "sepia",
       ].map((prop) => [`--backdrop-${prop}`, empty]),
     ),
+    "--global-font-mono": "fonts.mono",
+    "--global-font-body": "fonts.body",
+    "--global-color-border": "colors.border",
   },
   body: {
-    fontFamily: "body",
     color: "fg",
     bg: "bg",
     lineHeight: "1.5",
+    colorPalette: "accent",
   },
   "*::placeholder": {
-    color: "fg.muted",
-  },
-  "*, *::before, &::after": {
-    borderColor: "border",
-    wordWrap: "break-word",
+    color: "fg.subtle",
   },
 })

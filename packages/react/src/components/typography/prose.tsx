@@ -198,7 +198,7 @@ export const Prose = chakra("div", {
     },
     "& thead": {
       borderBottomWidth: "1px",
-      borderBottomColor: "border.muted",
+      borderBottomColor: "border.subtle",
     },
     "& tbody tr": {
       borderBottomWidth: "1px",

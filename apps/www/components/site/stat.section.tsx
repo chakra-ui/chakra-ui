@@ -133,7 +133,7 @@ export const StatSection = async () => {
             <Heading textAlign="center" fontWeight="medium">
               Built for modern product teams.
               <br />
-              <Span color="gray.400">
+              <Span color="fg.subtle">
                 From next-gen startups to established enterprises.
               </Span>
             </Heading>

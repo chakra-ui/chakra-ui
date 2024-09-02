@@ -21,6 +21,7 @@ export function createPreflight(options: PreflightConfig) {
       margin: "0px",
       padding: "0px",
       font: "inherit",
+      wordWrap: "break-word",
     },
     "*, *::before, *::after": {
       boxSizing: "border-box",

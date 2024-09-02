@@ -43,7 +43,7 @@ export default function Page(props: Props) {
           description={page.description}
           links={page.links}
         />
-        <Box fontSize="sm">
+        <Box>
           <MDXContent code={page.code} />
         </Box>
       </Stack>
