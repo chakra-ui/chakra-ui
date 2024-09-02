@@ -1,4 +1,4 @@
-import { hoverCardAnatomy } from "@ark-ui/anatomy"
+import { hoverCardAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const hoverCardSlotRecipe = defineSlotRecipe({

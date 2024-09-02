@@ -1,7 +1,8 @@
+import { dataListAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const dataListSlotRecipe = defineSlotRecipe({
-  slots: ["root", "item", "itemLabel", "itemValue"],
+  slots: dataListAnatomy.keys(),
   className: "chakra-data-list",
   base: {
     itemLabel: {

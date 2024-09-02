@@ -1,8 +1,8 @@
-import { anatomy } from "@ark-ui/anatomy/switch"
+import { switchAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const switchSlotRecipe = defineSlotRecipe({
-  slots: [...anatomy.keys(), "indicator"],
+  slots: switchAnatomy.keys(),
   className: "chakra-switch",
   base: {
     root: {

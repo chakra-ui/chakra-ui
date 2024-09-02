@@ -1,9 +1,9 @@
-import { anatomy } from "@ark-ui/anatomy/file-upload"
+import { fileUploadAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const fileUploadSlotRecipe = defineSlotRecipe({
   className: "chakra-file-upload",
-  slots: anatomy.keys(),
+  slots: fileUploadAnatomy.keys(),
   base: {
     root: {
       display: "flex",

@@ -1,5 +1,5 @@
-import { pinInputAnatomy } from "@ark-ui/anatomy"
 import { mapEntries } from "@chakra-ui/utils"
+import { pinInputAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 import { inputRecipe } from "./input"
 

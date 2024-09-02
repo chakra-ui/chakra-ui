@@ -1,8 +1,8 @@
-import { anatomy } from "@ark-ui/anatomy/avatar"
+import { avatarAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const avatarSlotRecipe = defineSlotRecipe({
-  slots: anatomy.keys(),
+  slots: avatarAnatomy.keys(),
   className: "chakra-avatar",
   base: {
     root: {

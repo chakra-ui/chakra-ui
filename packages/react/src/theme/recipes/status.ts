@@ -1,8 +1,9 @@
+import { statusAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const statusSlotRecipe = defineSlotRecipe({
   className: "chakra-status",
-  slots: ["root", "indicator"],
+  slots: statusAnatomy.keys(),
 
   base: {
     root: {

@@ -1,4 +1,4 @@
-import { progressAnatomy } from "@ark-ui/anatomy"
+import { progressAnatomy } from "../../anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const progressSlotRecipe = defineSlotRecipe({
