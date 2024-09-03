@@ -9,6 +9,7 @@
     "lint": "next lint",
     "generate:composition": "pnpm tsx scripts/composition.ts",
     "generate:types": "pnpm tsx scripts/generate-types.ts",
+    "generate:icon": "pnpm tsx scripts/generate-icon.ts",
     "prebuild": "pnpm generate:composition"
   },
   "dependencies": {
@@ -42,6 +43,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "color2k": "2.0.3",
+    "@svgr/core": "8.1.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "typescript": "^5"

@@ -361,6 +361,9 @@ importers:
         specifier: 0.1.1
         version: 0.1.1
     devDependencies:
+      '@svgr/core':
+        specifier: 8.1.0
+        version: 8.1.0(typescript@5.5.4)
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4
@@ -373,6 +376,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.3.0
+      color2k:
+        specifier: 2.0.3
+        version: 2.0.3
       eslint:
         specifier: ^8
         version: 8.57.0
@@ -5706,6 +5712,9 @@ packages:
 
   color-string@1.9.1:
     resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}
+
+  color2k@2.0.3:
+    resolution: {integrity: sha512-zW190nQTIoXcGCaU08DvVNFTmQhUpnJfVuAKfWqUQkflXKpaDdpaYoM0iluLS9lgJNHyBF58KKA2FBEwkD7wog==}
 
   color@4.2.3:
     resolution: {integrity: sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==}
@@ -15315,6 +15324,17 @@ snapshots:
       - supports-color
       - typescript
 
+  '@svgr/core@8.1.0(typescript@5.5.4)':
+    dependencies:
+      '@babel/core': 7.24.7
+      '@svgr/babel-preset': 8.1.0(@babel/core@7.24.7)
+      camelcase: 6.3.0
+      cosmiconfig: 8.3.6(typescript@5.5.4)
+      snake-case: 3.0.4
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
   '@svgr/hast-util-to-babel-ast@8.0.0':
     dependencies:
       '@babel/types': 7.24.7
@@ -17801,6 +17821,8 @@ snapshots:
       color-name: 1.1.4
       simple-swizzle: 0.2.2
 
+  color2k@2.0.3: {}
+
   color@4.2.3:
     dependencies:
       color-convert: 2.0.1
@@ -17964,6 +17986,15 @@ snapshots:
       path-type: 4.0.0
     optionalDependencies:
       typescript: 5.5.3
+
+  cosmiconfig@8.3.6(typescript@5.5.4):
+    dependencies:
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      parse-json: 5.2.0
+      path-type: 4.0.0
+    optionalDependencies:
+      typescript: 5.5.4
 
   cosmiconfig@9.0.0(typescript@5.5.3):
     dependencies:
