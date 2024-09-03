@@ -18,7 +18,7 @@ export const buttonRecipe = defineRecipe({
     fontWeight: "medium",
     transitionProperty: "common",
     transitionDuration: "moderate",
-    colorPalette: "accent",
+
     focusVisibleRing: "outside",
     _disabled: {
       layerStyle: "disabled",
@@ -130,6 +130,5 @@ export const buttonRecipe = defineRecipe({
   defaultVariants: {
     size: "md",
     variant: "solid",
-    colorPalette: "accent",
   },
 })

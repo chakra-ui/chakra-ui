@@ -6,7 +6,6 @@ export const selectSlotRecipe = defineSlotRecipe({
   slots: selectAnatomy.keys(),
   base: {
     root: {
-      colorPalette: "gray",
       display: "flex",
       flexDirection: "column",
       gap: "1.5",

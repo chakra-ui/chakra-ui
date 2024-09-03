@@ -1,13 +1,13 @@
 import { docsConfig } from "@/docs.config"
 import type { Metadata } from "next"
-import { Figtree } from "next/font/google"
+import { Inter } from "next/font/google"
 import { Provider } from "./provider"
 import "./scrollbar.css"
 import "./shiki.css"
 
-const figtree = Figtree({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-figtree",
+  variable: "--font-inter",
 })
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={figtree.variable}>
+    <html lang="en" className={inter.variable}>
       <body>
         <Provider>{children}</Provider>
       </body>

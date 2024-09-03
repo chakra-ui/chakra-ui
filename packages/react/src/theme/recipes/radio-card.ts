@@ -6,9 +6,6 @@ export const radioCardSlotRecipe = defineSlotRecipe({
   className: "chakra-radio-card",
   slots: radioGroupAnatomy.keys(),
   base: {
-    root: {
-      colorPalette: "accent",
-    },
     item: {
       display: "flex",
       flexDirection: "column",
@@ -140,6 +137,5 @@ export const radioCardSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "outline",
-    colorPalette: "accent",
   },
 })

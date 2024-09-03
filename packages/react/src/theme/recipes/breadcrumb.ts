@@ -5,9 +5,6 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
   className: "chakra-breadcrumb",
   slots: breadcrumbAnatomy.keys(),
   base: {
-    root: {
-      colorPalette: "accent",
-    },
     list: {
       display: "flex",
       alignItems: "center",
@@ -93,6 +90,5 @@ export const breadcrumbSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "plain",
     size: "md",
-    colorPalette: "accent",
   },
 })

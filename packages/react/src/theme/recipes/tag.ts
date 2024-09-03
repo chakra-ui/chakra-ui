@@ -9,7 +9,6 @@ export const tagSlotRecipe = defineSlotRecipe({
   className: "chakra-tag",
   base: {
     root: {
-      colorPalette: "accent",
       display: "inline-flex",
       verticalAlign: "top",
       alignItems: "center",
@@ -83,6 +82,5 @@ export const tagSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "surface",
-    colorPalette: "accent",
   },
 })

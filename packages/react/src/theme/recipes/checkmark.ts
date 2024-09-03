@@ -65,6 +65,5 @@ export const checkmarkRecipe = defineRecipe({
   defaultVariants: {
     variant: "outline",
     size: "md",
-    colorPalette: "accent",
   },
 })

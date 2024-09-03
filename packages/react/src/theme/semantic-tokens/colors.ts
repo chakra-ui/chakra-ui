@@ -97,7 +97,7 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { base: "{colors.white}", _dark: "{colors.black}" },
     },
     subtle: {
-      value: { base: "{colors.gray.200/50}", _dark: "{colors.gray.800}" },
+      value: { base: "{colors.gray.200}", _dark: "{colors.gray.800}" },
     },
     muted: {
       value: { base: "{colors.gray.100}", _dark: "{colors.gray.900}" },
@@ -184,7 +184,7 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { base: "{colors.green.900}", _dark: "{colors.green.200}" },
     },
     subtle: {
-      value: { base: "{colors.green.100}", _dark: "{colors.green.900}" },
+      value: { base: "{colors.green.100}", _dark: "{colors.green.950}" },
     },
     muted: {
       value: { base: "{colors.green.50}", _dark: "{colors.green.950}" },
@@ -205,7 +205,7 @@ export const semanticColors = defineSemanticTokens.colors({
       value: { base: "{colors.blue.900}", _dark: "{colors.blue.200}" },
     },
     subtle: {
-      value: { base: "{colors.blue.100}", _dark: "{colors.blue.900}" },
+      value: { base: "{colors.blue.100}", _dark: "{colors.blue.950}" },
     },
     muted: {
       value: { base: "{colors.blue.50}", _dark: "{colors.blue.950}" },

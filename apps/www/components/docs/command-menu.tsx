@@ -32,7 +32,12 @@ const ComboboxContent = chakra(Combobox.Content, {
 })
 const ComboboxList = chakra(Combobox.List)
 const ComboboxItemGroup = chakra(Combobox.ItemGroup)
-const ComboboxItemGroupLabel = chakra(Combobox.ItemGroupLabel)
+const ComboboxItemGroupLabel = chakra(Combobox.ItemGroupLabel, {
+  base: {
+    px: "4",
+    py: "3",
+  },
+})
 const ComboboxItem = chakra(Combobox.Item, {
   base: {
     borderRadius: "md",
@@ -100,7 +105,7 @@ export const CommandMenu = (props: Props) => {
             <ComboboxList>
               {matchEntries.length === 0 && (
                 <Center p="3" minH="40">
-                  <Text color="fg.muted" textStyle="sm">
+                  <Text color="fg.subtle" textStyle="sm">
                     No results found for <Text as="strong">{inputValue}</Text>
                   </Text>
                 </Center>
@@ -109,7 +114,7 @@ export const CommandMenu = (props: Props) => {
                 <ComboboxItemGroup key={key}>
                   <ComboboxItemGroupLabel
                     textTransform="capitalize"
-                    color="fg.muted"
+                    color="fg.subtle"
                     fontWeight="medium"
                   >
                     {key}
@@ -134,7 +139,7 @@ export const CommandMenu = (props: Props) => {
                         </Text>
                         <Text
                           textStyle="sm"
-                          color="fg.muted"
+                          color="fg.subtle"
                           mt="0.5"
                           lineClamp={2}
                         >
@@ -158,12 +163,15 @@ const useFilteredItems = (data: Record<string, Item[]>, inputValue: string) => {
 
   const filter = useCallback(
     (value: string): Record<string, Item[]> => {
-      if (!value) return data
+      if (!value)
+        return Object.fromEntries(
+          Object.entries(data).map(([key, value]) => [key, value.slice(0, 4)]),
+        )
 
       const results = matchSorter(items, value, {
         keys: ["label", "description"],
       })
-      return results.length ? { "Search Results:": results } : {}
+      return results.length ? { "Search Results": results.slice(0, 8) } : {}
     },
     [items, data],
   )

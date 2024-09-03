@@ -8,7 +8,6 @@ export const badgeRecipe = defineRecipe({
     gap: "1",
     fontWeight: "medium",
     fontVariantNumeric: "tabular-nums",
-    colorPalette: "accent",
     whiteSpace: "nowrap",
     verticalAlign: "middle",
   },
@@ -76,6 +75,5 @@ export const badgeRecipe = defineRecipe({
   defaultVariants: {
     variant: "subtle",
     size: "sm",
-    colorPalette: "gray",
   },
 })

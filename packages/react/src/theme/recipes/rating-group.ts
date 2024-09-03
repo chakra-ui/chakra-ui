@@ -7,7 +7,6 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "inline-flex",
-      colorPalette: "orange",
     },
 
     control: {
@@ -30,7 +29,7 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
       height: "1em",
       position: "relative",
 
-      "& svg": {
+      _icon: {
         stroke: "currentColor",
         width: "100%",
         height: "100%",
@@ -68,22 +67,22 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
     size: {
       xs: {
         item: {
-          fontSize: "0.875rem",
+          fontSize: "sm",
         },
       },
       sm: {
         item: {
-          fontSize: "1.125rem",
+          fontSize: "lg",
         },
       },
       md: {
         item: {
-          fontSize: "1.5rem",
+          fontSize: "2xl",
         },
       },
       lg: {
         item: {
-          fontSize: "2rem",
+          fontSize: "3xl",
         },
       },
     },
@@ -91,6 +90,5 @@ export const ratingGroupSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
-    colorPalette: "orange",
   },
 })

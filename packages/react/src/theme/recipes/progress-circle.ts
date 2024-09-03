@@ -7,7 +7,6 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
   base: {
     root: {
       display: "inline-flex",
-      colorPalette: "accent",
       textStyle: "sm",
       position: "relative",
     },
@@ -82,6 +81,5 @@ export const progressCircleSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
-    colorPalette: "accent",
   },
 })

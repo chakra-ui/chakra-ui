@@ -11,9 +11,9 @@ const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
       fonts: {
-        heading: { value: "Figtree" },
-        body: { value: "Figtree" },
-        mono: { value: "Roboto Mono" },
+        heading: { value: "Inter, sans-serif" },
+        body: { value: "Inter, sans-serif" },
+        mono: { value: "Roboto Mono, monospace" },
       },
     },
   },

@@ -87,6 +87,5 @@ export const radiomarkRecipe = defineRecipe({
   defaultVariants: {
     variant: "outline",
     size: "md",
-    colorPalette: "accent",
   },
 })

@@ -6,7 +6,6 @@ export const stepsSlotRecipe = defineSlotRecipe({
   slots: stepsAnatomy.keys(),
   base: {
     root: {
-      colorPalette: "accent",
       display: "flex",
       gap: "4",
     },
@@ -193,6 +192,5 @@ export const stepsSlotRecipe = defineSlotRecipe({
     size: "md",
     variant: "solid",
     orientation: "horizontal",
-    colorPalette: "accent",
   },
 })

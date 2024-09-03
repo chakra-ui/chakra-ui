@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Toaster as ChakraToaster,
   Portal,

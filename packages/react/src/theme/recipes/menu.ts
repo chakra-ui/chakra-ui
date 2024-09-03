@@ -13,7 +13,6 @@ export const menuSlotRecipe = defineSlotRecipe({
       zIndex: "dropdown",
       borderRadius: "md",
       overflow: "hidden",
-      colorPalette: "accent",
       _open: {
         animationStyle: "slide-fade-in",
         animationDuration: "fast",
@@ -120,6 +119,5 @@ export const menuSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "subtle",
-    colorPalette: "accent",
   },
 })

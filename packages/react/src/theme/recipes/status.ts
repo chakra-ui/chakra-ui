@@ -10,7 +10,6 @@ export const statusSlotRecipe = defineSlotRecipe({
       display: "inline-flex",
       alignItems: "center",
       gap: "2",
-      colorPalette: "accent",
     },
 
     indicator: {
@@ -45,6 +44,5 @@ export const statusSlotRecipe = defineSlotRecipe({
 
   defaultVariants: {
     size: "md",
-    colorPalette: "accent",
   },
 })

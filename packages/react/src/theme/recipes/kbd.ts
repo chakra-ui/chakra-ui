@@ -10,7 +10,6 @@ export const kbdRecipe = defineRecipe({
     whiteSpace: "nowrap",
     wordSpacing: "-0.5em",
     userSelect: "none",
-    colorPalette: "accent",
     py: "0.2em",
   },
 
@@ -59,6 +58,5 @@ export const kbdRecipe = defineRecipe({
   defaultVariants: {
     size: "md",
     variant: "raised",
-    colorPalette: "accent",
   },
 })

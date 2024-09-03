@@ -30,7 +30,6 @@ export const numberInputSlotRecipe = defineSlotRecipe({
     root: {
       position: "relative",
       zIndex: 0,
-      colorPalette: "gray",
       isolation: "isolate",
     },
     input: {

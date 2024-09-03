@@ -8,8 +8,8 @@ const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
       fonts: {
-        heading: { value: "var(--font-figtree)" },
-        body: { value: "var(--font-figtree)" },
+        heading: { value: "var(--font-inter)" },
+        body: { value: "var(--font-inter)" },
       },
     },
   },

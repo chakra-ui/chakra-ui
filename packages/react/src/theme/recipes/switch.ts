@@ -16,7 +16,6 @@ export const switchSlotRecipe = defineSlotRecipe({
         base: "var(--switch-diff)",
         _rtl: "calc(var(--switch-diff) * -1)",
       },
-      colorPalette: "accent",
     },
 
     label: {
@@ -164,6 +163,5 @@ export const switchSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "solid",
     size: "md",
-    colorPalette: "accent",
   },
 })

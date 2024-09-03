@@ -6,8 +6,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
   slots: accordionAnatomy.keys(),
   base: {
     root: {
-      width: "100%",
-      colorPalette: "accent",
+      width: "full",
     },
     item: {
       overflowAnchor: "none",
@@ -148,6 +147,5 @@ export const accordionSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "outline",
-    colorPalette: "accent",
   },
 })

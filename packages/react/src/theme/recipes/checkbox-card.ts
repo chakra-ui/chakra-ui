@@ -10,7 +10,6 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
       display: "flex",
       flexDirection: "column",
       userSelect: "none",
-      colorPalette: "accent",
       position: "relative",
       focusRing: "outside",
       _disabled: {
@@ -149,6 +148,5 @@ export const checkboxCardSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     size: "md",
     variant: "outline",
-    colorPalette: "accent",
   },
 })

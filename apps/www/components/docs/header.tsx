@@ -5,6 +5,7 @@ import { Logo } from "@/components/logo"
 import { MobileSearchButton, SearchButton } from "@/components/search-button"
 import { SocialLinks } from "@/components/social-links"
 import { VersionMenu } from "@/components/version-menu"
+import { docsConfig } from "@/docs.config"
 import { useRoute } from "@/lib/use-route"
 import {
   Box,
@@ -142,16 +143,16 @@ interface HeaderVersionMenuProps {
 const HeaderVersionMenu = ({ containerRef }: HeaderVersionMenuProps) => (
   <VersionMenu
     items={[
-      { title: "v3", value: "3.1.0", url: "/v3" },
-      { title: "v2", value: "2.8.x", url: "/v2" },
-      { title: "v1", value: "1.5.x", url: "/v1" },
+      { title: "v3", value: "3.1.x", url: "#" },
+      { title: "v2", value: "2.8.x", url: "https://v2.chakra-ui.com" },
+      { title: "v1", value: "1.5.x", url: "https://v1.chakra-ui.com" },
     ]}
     containerRef={containerRef}
   />
 )
 
 const HeaderSocialLinks = () => (
-  <SocialLinks items={[{ type: "github", href: "#" }]} />
+  <SocialLinks items={[{ type: "github", href: docsConfig.repoUrl }]} />
 )
 
 const HeaderMobileMenuDropdown = () => {

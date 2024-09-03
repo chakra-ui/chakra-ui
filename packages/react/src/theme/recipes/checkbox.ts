@@ -11,7 +11,6 @@ export const checkboxSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       verticalAlign: "top",
       position: "relative",
-      colorPalette: "accent",
       _disabled: {
         cursor: "not-allowed",
       },
@@ -108,6 +107,5 @@ export const checkboxSlotRecipe = defineSlotRecipe({
   defaultVariants: {
     variant: "outline",
     size: "md",
-    colorPalette: "accent",
   },
 })

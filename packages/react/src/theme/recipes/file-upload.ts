@@ -10,7 +10,6 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
       flexDirection: "column",
       gap: "4",
       width: "100%",
-      colorPalette: "accent",
     },
     label: {
       fontWeight: "medium",
@@ -75,7 +74,5 @@ export const fileUploadSlotRecipe = defineSlotRecipe({
     },
   },
 
-  defaultVariants: {
-    colorPalette: "accent",
-  },
+  defaultVariants: {},
 })
