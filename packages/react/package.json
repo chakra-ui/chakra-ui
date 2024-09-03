@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@ark-ui/anatomy": "3.5.0",
-    "@ark-ui/react": "3.9.0",
+    "@ark-ui/react": "3.10.0",
     "@chakra-ui/hooks": "workspace:*",
     "@chakra-ui/utils": "workspace:*",
     "@emotion/is-prop-valid": "1.2.2",

@@ -1,9 +1,6 @@
 "use client"
 
-import {
-  Steps as ArkSteps,
-  StepsItemContext as ArkStepsItemContext,
-} from "@ark-ui/react/steps"
+import { Steps as ArkSteps } from "@ark-ui/react/steps"
 import type { Assign } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
@@ -102,13 +99,13 @@ export interface StepsNumberProps extends HTMLChakraProps<"div"> {}
 export const StepsNumber = forwardRef<HTMLDivElement, StepsNumberProps>(
   function StepsNumber(props, ref) {
     return (
-      <ArkStepsItemContext>
+      <ArkSteps.ItemContext>
         {(api) => (
           <chakra.div ref={ref} {...props}>
             {api.index + 1}
           </chakra.div>
         )}
-      </ArkStepsItemContext>
+      </ArkSteps.ItemContext>
     )
   },
 )
@@ -152,13 +149,13 @@ export interface StepsStatusProps {
 
 export const StepsStatus = (props: StepsStatusProps) => {
   return (
-    <ArkStepsItemContext>
+    <ArkSteps.ItemContext>
       {(api) => {
         if (api.current) return <>{props.current ?? props.incomplete}</>
         if (api.completed) return <>{props.complete}</>
         return <>{props.incomplete ?? props.current}</>
       }}
-    </ArkStepsItemContext>
+    </ArkSteps.ItemContext>
   )
 }
 

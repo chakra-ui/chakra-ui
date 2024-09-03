@@ -289,8 +289,8 @@ importers:
   apps/www:
     dependencies:
       '@ark-ui/react':
-        specifier: 3.9.0
-        version: 3.9.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.10.0
+        version: 3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@chakra-ui/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
@@ -482,8 +482,8 @@ importers:
         specifier: 3.5.0
         version: 3.5.0(@internationalized/date@3.5.5)
       '@ark-ui/react':
-        specifier: 3.9.0
-        version: 3.9.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 3.10.0
+        version: 3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@chakra-ui/hooks':
         specifier: workspace:*
         version: link:../hooks
@@ -1042,8 +1042,8 @@ packages:
   '@ark-ui/anatomy@3.5.0':
     resolution: {integrity: sha512-KoROLVVT23BvFHcye/GYhG8NJ2CH0C+CaoJhXrkEjvk8pbEx80Xk5NIUy5gL7xmX+LDD7kY5t3NotBqCu+2L2w==}
 
-  '@ark-ui/react@3.9.0':
-    resolution: {integrity: sha512-RQ7mhhs42WdpKstNaLEsw3Dv9XUyomoZ0TpdVEQTAUTYi3fLrC+tRXYnMJrvumlAJLEuBJo4G3gJb4u2DVV1/A==}
+  '@ark-ui/react@3.10.0':
+    resolution: {integrity: sha512-/Jt1smg6dNwH5XYh7xWhVpnggI9sd/UgZzNTc45n5ccZVYpbVL1Qco9fov38t5JArtLc6Q5cc+xOxpjuAomYZw==}
     peerDependencies:
       react: 18.2.0
       react-dom: 18.2.0
@@ -11439,7 +11439,7 @@ snapshots:
     transitivePeerDependencies:
       - '@internationalized/date'
 
-  '@ark-ui/react@3.9.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@ark-ui/react@3.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@internationalized/date': 3.5.5
       '@zag-js/accordion': 0.65.1

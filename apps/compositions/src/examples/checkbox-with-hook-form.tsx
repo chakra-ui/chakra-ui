@@ -43,13 +43,14 @@ export const CheckboxWithHookForm = () => {
       <Fieldset.Root invalid={invalid}>
         <Fieldset.Legend>Select your framework</Fieldset.Legend>
         <CheckboxGroup
+          invalid={invalid}
           value={framework.field.value}
           onValueChange={framework.field.onChange}
           name={framework.field.name}
         >
           <Fieldset.Control>
             {items.map((item) => (
-              <Checkbox key={item.value} invalid={invalid} value={item.value}>
+              <Checkbox key={item.value} value={item.value}>
                 {item.label}
               </Checkbox>
             ))}
