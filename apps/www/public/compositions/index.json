@@ -29,6 +29,17 @@
   },
   {
     "type": "composition",
+    "id": "avatar-overflow-menu",
+    "file": "avatar-overflow-menu.tsx",
+    "component": "AvatarOverflowMenu",
+    "npmDependencies": [],
+    "fileDependencies": [
+      "compositions/ui/avatar",
+      "compositions/ui/menu"
+    ]
+  },
+  {
+    "type": "composition",
     "id": "avatar",
     "file": "avatar.tsx",
     "component": "Avatar",
@@ -232,7 +243,9 @@
     "npmDependencies": [
       "react-icons"
     ],
-    "fileDependencies": []
+    "fileDependencies": [
+      "./link-button"
+    ]
   },
   {
     "type": "composition",
@@ -240,9 +253,12 @@
     "file": "password-input.tsx",
     "component": "PasswordInput",
     "npmDependencies": [
-      "@chakra-ui/hooks"
+      "@chakra-ui/hooks",
+      "react-icons"
     ],
-    "fileDependencies": []
+    "fileDependencies": [
+      "./input-group"
+    ]
   },
   {
     "type": "composition",
