@@ -195,7 +195,7 @@ export const tabsSlotRecipe = defineSlotRecipe({
           borderRadius: "var(--tabs-trigger-radius)",
           _selected: {
             bg: "bg",
-            color: "fg",
+            color: "colorPalette.fg",
             shadow: "xs",
           },
         },

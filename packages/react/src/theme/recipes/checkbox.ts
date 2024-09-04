@@ -40,7 +40,6 @@ export const checkboxSlotRecipe = defineSlotRecipe({
 
     label: {
       userSelect: "none",
-      fontWeight: "medium",
       _disabled: {
         opacity: "0.5",
       },

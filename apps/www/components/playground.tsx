@@ -27,11 +27,12 @@ const SectionTitle = ({ children, id }: SectionTitleProps) => {
       px="4"
       py="3"
       rounded="md"
+      colorPalette="accent"
     >
       <Text fontWeight="medium" id={id}>
         <Link href={`#${id}`}>{children}</Link>
       </Text>
-      <NextLink passHref legacyBehavior href={"#"}>
+      <NextLink passHref legacyBehavior href={`/docs/components/${id}`}>
         <Link fontSize="sm">View in docs</Link>
       </NextLink>
     </Flex>
